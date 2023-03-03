@@ -1762,6 +1762,10 @@ struct obj *obj;
 			pline("Unfortunately, you don't know how to use that tool.");
 			return;
 		}
+		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && (have_unknowledgestone() == 2) &&  (!obj->known || !obj->rknown || !obj->dknown || !obj->bknown) )	{
+			pline("Unfortunately, you don't know how to use that tool.");
+			return;
+		}
 	}
 
 	if(Underwater) {
@@ -5318,6 +5322,10 @@ doapply()
 		if (obj->oclass == TOOL_CLASS && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && !Is_candle(obj) && !(objects[obj->otyp].oc_name_known) ) {
 			pline("Unfortunately you don't know how to use that item.");
 			return(0);
+		}
+		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && (have_unknowledgestone() == 2) &&  (!obj->known || !obj->rknown || !obj->dknown || !obj->bknown) )	{
+			pline("Unfortunately, you don't know how to use that tool.");
+			return;
 		}
 	}
 

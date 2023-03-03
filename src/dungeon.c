@@ -2260,6 +2260,7 @@ level_difficulty()
 	if (Role_if(PM_PSION) && u.ulevel >= 7) retvalue += rnd(retvalue);
 
 	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || Race_if(PM_PLAYER_DYNAMO) || autismweaponcheck(ART_ARABELLA_S_BLACK_PRONG) || autismweaponcheck(ART_HOL_ON_MAN) || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
+	if (have_difficultystone() == 2) retvalue += 10;
 	if (Race_if(PM_BULDOZGAR) && !rn2(10)) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
 

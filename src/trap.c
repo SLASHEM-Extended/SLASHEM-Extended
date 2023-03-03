@@ -3758,7 +3758,8 @@ unsigned trflags;
 	nastytrapdur = (Role_if(PM_GRADUATE) ? 12 : Role_if(PM_GEEK) ? 25 : 50);
 	if (!nastytrapdur) nastytrapdur = 50; /* fail safe */
 
-	if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastytrapdur *= 20;
+	if (YouAreScrewedEternally) nastytrapdur *= 20;
+	if (have_longscrewupstone() == 2) nastytrapdur *= 10;
 	if (RngeNastyReduction && nastytrapdur > 1) nastytrapdur /= 2;
 	if (uarmh && uarmh->oartifact == ART_HAHAREDUCTION && nastytrapdur > 1) nastytrapdur /= 2;
 
@@ -27257,7 +27258,10 @@ int x, y;
 			badeffect();
 		}
 
-		if (!extralongsqueak()) badeffect();
+		if (!extralongsqueak()) {
+			if (have_funwallstone() == 2) reallybadeffect();
+			else badeffect();
+		}
 
 		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));

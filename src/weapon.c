@@ -3608,6 +3608,11 @@ int skill;
 	if (NopeskillEffect || u.uprops[NOPESKILL_EFFECT].extrinsic || have_nopeskillstone()) {
 		if (can_advance(skill, FALSE)) {
 
+			if (have_nopeskillstone() == 2) {
+				P_ADVANCE(skill) /= 2;
+				if (P_ADVANCE(skill) < 0) P_ADVANCE(skill) = 0;
+			}
+
 			if (P_ADVANCE(skill) < 5) P_ADVANCE(skill) = 0;
 			else P_ADVANCE(skill) -= 5;
 

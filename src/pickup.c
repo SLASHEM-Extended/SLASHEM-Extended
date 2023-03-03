@@ -1575,6 +1575,14 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		pline("Oh no, apparently there is some sort of curse on this gem. It won't leave your inventory as long as it's still cursed.");
 	}
 
+	/* artifact versions of such stones should be harder to get rid of --Amy */
+	if ( (is_nastygraystone(obj) || is_feminismstone(obj)) ) {
+		if (obj->oartifact) {
+			if (!rn2(3)) obj->cursed = obj->hvycurse = TRUE;
+			if (!rn2(3)) obj->cursed = obj->stckcurse = TRUE;
+		}
+	}
+
 	if (uwep && uwep == obj) mrg_to_wielded = TRUE;
 	nearload = near_capacity();
 	prinv(nearload == SLT_ENCUMBER ? moderateloadmsg : (char *) 0,

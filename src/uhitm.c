@@ -10714,7 +10714,8 @@ boolean ranged;
 			while (midentity > 249) midentity -= 249; /* monstercolor! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
-			if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastyduration *= 20;
+			if (YouAreScrewedEternally) nastyduration *= 20;
+			if (have_longscrewupstone() == 2) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(midentity, nastyduration, blackngvar);
@@ -10727,7 +10728,8 @@ boolean ranged;
 
 		{
 			register int nastyduration = ((tmp + 2) * rnd(10));
-			if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) nastyduration *= 20;
+			if (YouAreScrewedEternally) nastyduration *= 20;
+			if (have_longscrewupstone() == 2) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(u.adrunsattack, nastyduration, blackngvar);

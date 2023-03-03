@@ -3730,7 +3730,7 @@ int tech_no;
                 return(0);
         }
 
-	if ((TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) && rn2(10)) {
+	if ((TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) && (rn2(10) || (have_techniquestone() == 2) ) ) {
 
 		pline("Unfortunately, nothing happens.");
 		techtout(tech_no) = rnz(5000);

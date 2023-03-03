@@ -655,7 +655,20 @@ Boots_on()
 
     if (uarmf && uarmf->oartifact == ART_RATCH_CLOSURE_SCRATCHING && uarmf->spe < 1) uarmf->spe++;
 
-	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmf);
+	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uarmf);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uarmf->cursed = uarmf->hvycurse = TRUE;
+				if (!rn2(5)) uarmf->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uarmf->cursed = uarmf->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (uarmf && uarmf->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmf->spe--;
 
@@ -1668,7 +1681,20 @@ Cloak_on()
 		}
 	}
 
-	if (uarmc && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmc);
+	if (uarmc && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uarmc);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uarmc->cursed = uarmc->hvycurse = TRUE;
+				if (!rn2(5)) uarmc->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uarmc->cursed = uarmc->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (uarmc && uarmc->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmc->spe--;
 
@@ -2335,7 +2361,20 @@ Helmet_on()
 		if (!uarmh->cursed) curse(uarmh); /* don't tell the poor sap about their horrible fate */
     }
 
-	if (uarmh && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmh);
+	if (uarmh && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uarmh);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uarmh->cursed = uarmh->hvycurse = TRUE;
+				if (!rn2(5)) uarmh->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uarmh->cursed = uarmh->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (uarmh && uarmh->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmh->spe--;
 
@@ -2884,7 +2923,20 @@ Gloves_on()
 		uarmg->hvycurse = 1;
     }
 
-	if (uarmg && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmg);
+	if (uarmg && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uarmg);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uarmg->cursed = uarmg->hvycurse = TRUE;
+				if (!rn2(5)) uarmg->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uarmg->cursed = uarmg->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (uarmg && uarmg->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmg->spe--;
 
@@ -3273,7 +3325,20 @@ Shield_on()
 		else uarms->spe = -(rnd(7));
     }
 
-	if (uarms && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarms);
+	if (uarms && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uarms);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uarms->cursed = uarms->hvycurse = TRUE;
+				if (!rn2(5)) uarms->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uarms->cursed = uarms->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (uarms && uarms->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarms->spe--;
 
@@ -3449,7 +3514,20 @@ Shirt_on()
 
 	}
 
-	if (uarmu && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarmu);
+	if (uarmu && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uarmu);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uarmu->cursed = uarmu->hvycurse = TRUE;
+				if (!rn2(5)) uarmu->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uarmu->cursed = uarmu->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (uarmu && uarmu->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmu->spe--;
 
@@ -3674,7 +3752,20 @@ sexysqueaking:
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_ISILDUR && uarm->spe < 1) uarm->spe = rnd(10);
 	if (uarm && uarm->oartifact == ART_COCKBANGER_ARMOR && uarm->spe < 1) uarm->spe = rnd(10);
 
-	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uarm);
+	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uarm);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uarm->cursed = uarm->hvycurse = TRUE;
+				if (!rn2(5)) uarm->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uarm->cursed = uarm->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (uarm && uarm->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarm->spe--;
 
@@ -3975,7 +4066,20 @@ Amulet_on()
 		if (!uamul->cursed) curse(uamul);
     }
 
-	if (uamul && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uamul);
+	if (uamul && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uamul);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uamul->cursed = uamul->hvycurse = TRUE;
+				if (!rn2(5)) uamul->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uamul->cursed = uamul->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 }
 
@@ -4169,7 +4273,20 @@ Implant_on()
 		getnastytrapintrinsic();
     }
 
-	if (uimplant && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uimplant);
+	if (uimplant && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uimplant);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uimplant->cursed = uimplant->hvycurse = TRUE;
+				if (!rn2(5)) uimplant->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uimplant->cursed = uimplant->stckcurse = TRUE;
+			}
+		}
+
+	}
 
     if (!rn2(3)) curse(uimplant);
 
@@ -4559,7 +4676,20 @@ register struct obj *obj;
 		obj->hvycurse = 1;
     }
 
-	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(obj);
+	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(obj);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				obj->cursed = obj->hvycurse = TRUE;
+				if (!rn2(5)) obj->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				obj->cursed = obj->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (obj && obj->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) obj->spe--;
 
@@ -4787,7 +4917,20 @@ register struct obj *otmp;
 	    flags.botl = 1;
 	}
 
-	if (otmp && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(otmp);
+	if (otmp && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(otmp);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				otmp->cursed = otmp->hvycurse = TRUE;
+				if (!rn2(5)) otmp->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				otmp->cursed = otmp->stckcurse = TRUE;
+			}
+		}
+
+	}
 
 	if (otmp && otmp->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) otmp->spe--;
 

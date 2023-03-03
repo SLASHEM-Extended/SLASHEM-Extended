@@ -7097,6 +7097,27 @@ destroyarmorattack()
 
 }
 
+/* for grayout nasty trap: does the game display gray # glyphs everywhere? --Amy */
+boolean
+grayoutobscuration()
+{
+	if ((moves % 15) == 0) return TRUE;
+	if (((moves + 1) % 15) == 0) return TRUE;
+	if (((moves + 2) % 15) == 0) return TRUE;
+	if (((moves + 3) % 15) == 0) return TRUE;
+	if (((moves + 4) % 15) == 0) return TRUE;
+	if (have_grayoutstone() == 2) {
+		if (((moves + 5) % 15) == 0) return TRUE;
+		if (((moves + 6) % 15) == 0) return TRUE;
+		if (((moves + 7) % 15) == 0) return TRUE;
+		if (((moves + 8) % 15) == 0) return TRUE;
+		if (((moves + 9) % 15) == 0) return TRUE;
+	}
+
+	return FALSE;
+
+}
+
 /* allow the player to uncurse a choice item --Amy */
 void
 uncurseoneitem()
@@ -9785,6 +9806,16 @@ newbadtry:
 			setworn(otmp, W_ARM);
 			Armor_on();
 			if (otmp) curse(otmp);
+		}
+
+		if (have_cursedpartstone() == 2) {
+			if (!rn2(2)) {
+				otmp->cursed = otmp->hvycurse = TRUE;
+				if (!rn2(5)) otmp->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				otmp->cursed = otmp->stckcurse = TRUE;
+			}
 		}
 
 	}

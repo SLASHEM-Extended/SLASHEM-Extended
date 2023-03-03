@@ -995,6 +995,10 @@ doread()
 			pline("Unfortunately you don't know how to read that book.");
 			return(0);
 		}
+		if (scroll->oclass == SPBOOK_CLASS && scroll->otyp != SPE_BOOK_OF_THE_DEAD && (have_unknowledgestone() == 2) &&  (!scroll->known || !scroll->rknown || !scroll->dknown || !scroll->bknown) ) {
+			pline("Unfortunately you don't know how to read that book.");
+			return;
+		}
 	}
 
 	/* Actions required to win the game aren't counted towards conduct */

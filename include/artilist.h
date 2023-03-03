@@ -11497,6 +11497,230 @@ A("fook sri saeve",				AMULET_OF_SEVERE_FUCKUP, /* monster speed bug and dschueu
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Severe Uninformation",				UNINFORMATION_STONE, /* items just display ??? as their name */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("The Womanler Gives Chase",				MANLER_STONE, /* manler moves towards you more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Doorning Day",				DOORNING_STONE, /* the allmain.c part of doorning always strikes */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("del alles.bkk",				UNIDENTIFY_STONE, /* your shit unidentifies itself 5 times faster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Arabella's Bedrock",				STONE_OF_CURSING, /* your shit curses itself 5 times faster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Extra-High Difficulty",				STONE_OF_DIFFICULTY, /* increases difficulty by another 10 points */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Fred's Optiometrist",				OPTION_STONE, /* your options change 10 times more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Fully Id Or Nope",				UN_KNOWLEDGE_STONE, /* the items in question need to have known, rknown etc. identified as well, or they don't work */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Deep Descent",				DSCHUEUEUET_STONE, /* dschueueuet effect drops you deeper on average */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Halfcut Hahahahaha Hahaha Haha",				NOPESKILL_STONE, /* trying to enhance a skill cuts its training amount in half */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Clap It Away",				PROOFLOSS_STONE, /* your items unproof themselves 10 times more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("I See Youuuuu",				UN_INVIS_STONE, /* your items become visible 10 times more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Beyond Help",				COVID_STONE, /* you suffer from covid-19 symptoms 50 times more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Fffff Queak Prrrt",				UBERGOD_STONE, /* farting webs are created 5 times more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Gas As A Weapon",				FUNWALL_STONE, /* the wallfarting effect uses reallybadeffect() */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Last Foreva",				CURSED_PART_STONE, /* the cursed items have 50% to become heavily cursed, 20% prime cursed, and an independant 50% to become sticky cursed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Nuclear War Aftermath",				FALLOUT_STONE, /* contamination increases twice as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Screen Glitch",				MOJIBAKE_STONE, /* more mojibake than usual */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Quasi Permanence",				LONG_SCREWUP_STONE, /* multiplies nastytrap durations by 10 again */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Trash It!",				SKILL_LOSS_STONE, /* skill loss happens 3 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Flucker Low",				FLUCTUATING_SPEED_STONE, /* worse values for the fluctuating speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Grrm. TAA TATATATAAAA, TA TAAA TA TAAAAAA...",				SATAN_STONE, /* satan paralysis is rn1(5,5) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Blabberblabberwanamada.",				MONNOISE_STONE, /* monster noises are 5 times as common */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Leiki's Quest",				RANG_CALL_STONE, /* rang call increases sanity by 5 times as much */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Lose ALL the spells",				RECURRING_SPELL_LOSS_STONE, /* spell memory loss drains 5 times as much */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Man Are You Lush",				ANTI_TRAINING_STONE, /* skill training loss drains 5 times as much */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Tout daau - daau - daau",				TECHOUT_STONE, /* tech timeouts are 5 times higher */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Wasteful Wither",				STAT_DECAY_STONE, /* stats decay 5 times as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Mork More",				MOVEMORK_STONE, /* monsters are generated with even more movement energy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("This Is So Funny",				HORROR_STONE, /* horror status effects happen twice as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Good Luck, You'll Need It",				ARTIFICIAL_STONE, /* the cursed artifacts have 50% to become heavily cursed, 20% prime cursed, and an independant 50% to become sticky cursed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Unplayable Game.",				EVIL_PATCH_STONE, /* you gain intrinsic nasty trap effects 3 times as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Not So Secret Anymore",				SECRET_ATTACK_STONE, /* monsters use their secret attacks 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Robbie's Weariness",				WAKEUP_CALL_STONE, /* wakeup call happens 10 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Tiny Visibility Window",				GRAYOUT_STONE, /* display is gray for 10 turns, normal for 5 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Make The Shroud Bigger",				GRAY_CENTER_STONE, /* shrouds a 5x5 area around you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("See Even Less",				CHECKERBOARD_STONE, /* only one out of 4 tiles is visible */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Hoho I Ate Your Input",				LAG_STONE, /* input is discarded 50% of the time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Arrgh He Comes For Us",				UNDRESSING_STONE, /* 5 times as likely to be undressed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Waiting For Godot",				LATENCY_STONE, /* increases the average amount of lag */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Better Put It All Away",				WRAPOVER_STONE, /* wrapover happens 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("It Explodes!",				DESTRUCTION_STONE, /* item destruction happens 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Who Needs Fairness Anyway",				UNFAIR_ATTACK_STONE, /* monsters use unfair attacks 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Try It Out Longer",				AUTOCURSE_STONE, /* the cursed items have 50% to become heavily cursed, 20% prime cursed, and an independant 50% to become sticky cursed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Donot Work Atall",				TECHNIQUE_STONE, /* techs don't work at all */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("There Is A Loud Clap",				DISENCHANTMENT_STONE, /* disenchantment happens 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Navigate This Mess",				CHAOS_TERRAIN_STONE, /* terrain transformations happen 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Gremlin's Revenge",				STONE_OF_INTRINSIC_LOSS, /* intrinsic loss happens 10 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Infernal Area",				NASTY_STONE, /* nasty trap effects happen 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Keep Stumbling",				TRAP_CREATION_STONE, /* traps are created twice as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Pure Aids",				STONE_OF_VULNERABILITY, /* you get hit with vulnerability effects 10 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Who Needs Items Anyway?",				ITEM_TELEPORTING_STONE, /* items teleport away twice as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Quaff That Sparkling Wine",				AMNESIA_STONE, /* amnesia happens 5 times as often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Live Fast, Die Young, Hae-iae",				TURN_LIMIT_STONE, /* taking damage reduces ascension limit by 10 times as much */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Thats Derp",				DROPCURSE_STONE, /* the cursed items have 50% to become heavily cursed, 20% prime cursed, and an independant 50% to become sticky cursed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Wallify Up!",				STONE_OF_PERMANENCE, /* walls regrow another 5 times as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

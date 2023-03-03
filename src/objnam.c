@@ -7502,6 +7502,7 @@ boolean showpoisoned;
 	}
 
 	if (!dn && restoring) dn = "???";
+	if (have_uninformationstone() == 2) dn = "???";
 	buf[0] = '\0';
 	/*
 	 * clean up known when it's tied to oc_name_known, eg after AD_DRIN
@@ -7845,6 +7846,11 @@ boolean showpoisoned;
 	default:
 		sprintf(buf,"glorkum %d %d %d", obj->oclass, typ, obj->spe);
 	}
+
+	if (have_uninformationstone() == 2) {
+		sprintf(buf, "???");
+	}
+
 	if ((obj->quan != 1L) && !PlayerUninformation) strcpy(buf, makeplural(buf));
 
 	if (obj->onamelth && obj->dknown && !PlayerUninformation) {

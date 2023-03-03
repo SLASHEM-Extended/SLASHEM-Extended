@@ -3463,391 +3463,421 @@ have_starlightstone()
 	return(FALSE);
 }
 
-boolean
+int
 have_rmbstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RIGHT_MOUSE_BUTTON_STONE)
+		if(otmp->otyp == RIGHT_MOUSE_BUTTON_STONE) {
 			return(TRUE);
 		}
 
+	}
 	if (u.nastinator01) return TRUE;
 	if (sjwcheck(1)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_displaystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISPLAY_LOSS_STONE)
+		if(otmp->otyp == DISPLAY_LOSS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator02) return TRUE;
 	if (sjwcheck(2)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_yellowspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YELLOW_SPELL_STONE)
+		if(otmp->otyp == YELLOW_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator03) return TRUE;
 	if (sjwcheck(3)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_spelllossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SPELL_LOSS_STONE)
+		if(otmp->otyp == SPELL_LOSS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator04) return TRUE;
 	if (sjwcheck(4)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_autodestructstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTO_DESTRUCT_STONE)
+		if(otmp->otyp == AUTO_DESTRUCT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator05) return TRUE;
 	if (sjwcheck(5)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_memorylossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MEMORY_LOSS_STONE)
+		if(otmp->otyp == MEMORY_LOSS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator06) return TRUE;
 	if (sjwcheck(6)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_inventorylossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INVENTORY_LOSS_STONE)
+		if(otmp->otyp == INVENTORY_LOSS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator07) return TRUE;
 	if (sjwcheck(7)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_blackystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLACKY_STONE)
+		if(otmp->otyp == BLACKY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator08) return TRUE;
 	if (sjwcheck(8)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_menubugstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MENU_BUG_STONE)
+		if(otmp->otyp == MENU_BUG_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator09) return TRUE;
 	if (sjwcheck(9)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_speedbugstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SPEEDBUG_STONE)
+		if(otmp->otyp == SPEEDBUG_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator10) return TRUE;
 	if (sjwcheck(10)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_superscrollerstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SUPERSCROLLER_STONE)
+		if(otmp->otyp == SUPERSCROLLER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator11) return TRUE;
 	if (sjwcheck(11)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_freehandbugstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FREE_HAND_BUG_STONE)
+		if(otmp->otyp == FREE_HAND_BUG_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator12) return TRUE;
 	if (sjwcheck(12)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_unidentifystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNIDENTIFY_STONE)
+		if(otmp->otyp == UNIDENTIFY_STONE) {
+			if (otmp->oartifact == ART_DEL_ALLES_BKK) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator13) return TRUE;
 	if (sjwcheck(13)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_thirststone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_THIRST)
+		if(otmp->otyp == STONE_OF_THIRST) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator14) return TRUE;
 	if (sjwcheck(14)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_unluckystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNLUCKY_STONE)
+		if(otmp->otyp == UNLUCKY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator15) return TRUE;
 	if (sjwcheck(15)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_shadesofgreystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SHADES_OF_GREY_STONE)
+		if(otmp->otyp == SHADES_OF_GREY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator16) return TRUE;
 	if (sjwcheck(16)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_faintingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_FAINTING)
+		if(otmp->otyp == STONE_OF_FAINTING) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator17) return TRUE;
 	if (sjwcheck(17)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_cursingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_CURSING)
+		if(otmp->otyp == STONE_OF_CURSING) {
+			if (otmp->oartifact == ART_ARABELLA_S_BEDROCK) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator18) return TRUE;
 	if (sjwcheck(18)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_difficultystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_DIFFICULTY)
+		if(otmp->otyp == STONE_OF_DIFFICULTY) {
+			if (otmp->oartifact == ART_EXTRA_HIGH_DIFFICULTY) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator19) return TRUE;
 	if (sjwcheck(19)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_deafnessstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEAFNESS_STONE)
+		if(otmp->otyp == DEAFNESS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator20) return TRUE;
 	if (sjwcheck(20)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_weaknessstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEAKNESS_STONE)
+		if(otmp->otyp == WEAKNESS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator21) return TRUE;
 	if (sjwcheck(21)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_antimagicstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTIMAGIC_STONE)
+		if(otmp->otyp == ANTIMAGIC_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator22) return TRUE;
 	if (sjwcheck(22)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_rotthirteenstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ROT_THIRTEEN_STONE)
+		if(otmp->otyp == ROT_THIRTEEN_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator23) return TRUE;
 	if (sjwcheck(23)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bishopstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BISHOP_STONE)
+		if(otmp->otyp == BISHOP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator24) return TRUE;
 	if (sjwcheck(24)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_confusionstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CONFUSION_STONE)
+		if(otmp->otyp == CONFUSION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator25) return TRUE;
 	if (sjwcheck(25)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dropbugstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DROPBUG_STONE)
+		if(otmp->otyp == DROPBUG_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator26) return TRUE;
 	if (sjwcheck(26)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dstwstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DSTW_STONE)
+		if(otmp->otyp == DSTW_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator27) return TRUE;
 	if (sjwcheck(27)) return TRUE;
 
@@ -3856,612 +3886,665 @@ have_dstwstone()
 	return(FALSE);
 }
 
-boolean
+int
 have_amnesiastone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AMNESIA_STONE)
+		if(otmp->otyp == AMNESIA_STONE) {
+			if (otmp->oartifact == ART_QUAFF_THAT_SPARKLING_WINE) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator28) return TRUE;
 	if (sjwcheck(28)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bigscriptstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BIGSCRIPT_STONE)
+		if(otmp->otyp == BIGSCRIPT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator29) return TRUE;
 	if (sjwcheck(29)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bankstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BANK_STONE)
+		if(otmp->otyp == BANK_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator30) return TRUE;
 	if (sjwcheck(30)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_mapstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAP_STONE)
+		if(otmp->otyp == MAP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator31) return TRUE;
 	if (sjwcheck(31)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_techniquestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TECHNIQUE_STONE)
+		if(otmp->otyp == TECHNIQUE_STONE) {
+			if (otmp->oartifact == ART_DONOT_WORK_ATALL) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator32) return TRUE;
 	if (sjwcheck(32)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_disenchantmentstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISENCHANTMENT_STONE)
+		if(otmp->otyp == DISENCHANTMENT_STONE) {
+			if (otmp->oartifact == ART_THERE_IS_A_LOUD_CLAP) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator33) return TRUE;
 	if (sjwcheck(33)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_verisiertstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VERISIERT_STONE)
+		if(otmp->otyp == VERISIERT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator34) return TRUE;
 	if (sjwcheck(34)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_chaosterrainstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHAOS_TERRAIN_STONE)
+		if(otmp->otyp == CHAOS_TERRAIN_STONE) {
+			if (otmp->oartifact == ART_NAVIGATE_THIS_MESS) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator35) return TRUE;
 	if (sjwcheck(35)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_mutenessstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MUTENESS_STONE)
+		if(otmp->otyp == MUTENESS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator36) return TRUE;
 	if (sjwcheck(36)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_engravingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ENGRAVING_STONE)
+		if(otmp->otyp == ENGRAVING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator37) return TRUE;
 	if (sjwcheck(37)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_magicdevicestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAGIC_DEVICE_STONE)
+		if(otmp->otyp == MAGIC_DEVICE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator38) return TRUE;
 	if (sjwcheck(38)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bookstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BOOK_STONE)
+		if(otmp->otyp == BOOK_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator39) return TRUE;
 	if (sjwcheck(39)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_levelstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LEVEL_STONE)
+		if(otmp->otyp == LEVEL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator40) return TRUE;
 	if (sjwcheck(40)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_quizstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == QUIZ_STONE)
+		if(otmp->otyp == QUIZ_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator41) return TRUE;
 	if (sjwcheck(41)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_statusstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STATUS_STONE)
+		if(otmp->otyp == STATUS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator42) return TRUE;
 	if (sjwcheck(42)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_alignmentstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ALIGNMENT_STONE)
+		if(otmp->otyp == ALIGNMENT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator43) return TRUE;
 	if (sjwcheck(43)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_stairstrapstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STAIRSTRAP_STONE)
+		if(otmp->otyp == STAIRSTRAP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator44) return TRUE;
 	if (sjwcheck(44)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_uninformationstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNINFORMATION_STONE)
+		if(otmp->otyp == UNINFORMATION_STONE) {
+			if (otmp->oartifact == ART_SEVERE_UNINFORMATION) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator45) return TRUE;
 	if (sjwcheck(45)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_captchastone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CAPTCHA_STONE)
+		if(otmp->otyp == CAPTCHA_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator46) return TRUE;
 	if (sjwcheck(46)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_farlookstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FARLOOK_STONE)
+		if(otmp->otyp == FARLOOK_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator47) return TRUE;
 	if (sjwcheck(47)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_respawnstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RESPAWN_STONE)
+		if(otmp->otyp == RESPAWN_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator48) return TRUE;
 	if (sjwcheck(48)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_intrinsiclossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_INTRINSIC_LOSS)
+		if(otmp->otyp == STONE_OF_INTRINSIC_LOSS) {
+			if (otmp->oartifact == ART_GREMLIN_S_REVENGE) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator49) return TRUE;
 	if (sjwcheck(49)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bloodlossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLOOD_LOSS_STONE)
+		if(otmp->otyp == BLOOD_LOSS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator50) return TRUE;
 	if (sjwcheck(50)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_badeffectstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BAD_EFFECT_STONE)
+		if(otmp->otyp == BAD_EFFECT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator51) return TRUE;
 	if (sjwcheck(51)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_trapcreationstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAP_CREATION_STONE)
+		if(otmp->otyp == TRAP_CREATION_STONE) {
+			if (otmp->oartifact == ART_KEEP_STUMBLING) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator52) return TRUE;
 	if (sjwcheck(52)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_vulnerabilitystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_VULNERABILITY)
+		if(otmp->otyp == STONE_OF_VULNERABILITY) {
+			if (otmp->oartifact == ART_PURE_AIDS) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator53) return TRUE;
 	if (sjwcheck(53)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_itemportstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ITEM_TELEPORTING_STONE)
+		if(otmp->otyp == ITEM_TELEPORTING_STONE) {
+			if (otmp->oartifact == ART_WHO_NEEDS_ITEMS_ANYWAY_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator54) return TRUE;
 	if (sjwcheck(54)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nastystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NASTY_STONE)
+		if(otmp->otyp == NASTY_STONE) {
+			if (otmp->oartifact == ART_INFERNAL_AREA) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator55) return TRUE;
 	if (sjwcheck(55)) return TRUE;
 	if (AssholeModeActive) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_metabolicstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == METABOLIC_STONE)
+		if(otmp->otyp == METABOLIC_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator56) return TRUE;
 	if (sjwcheck(56)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_noreturnstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_NO_RETURN)
+		if(otmp->otyp == STONE_OF_NO_RETURN) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator57) return TRUE;
 	if (sjwcheck(57)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_egostone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EGOSTONE)
+		if(otmp->otyp == EGOSTONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator58) return TRUE;
 	if (sjwcheck(58)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_fastforwardstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FAST_FORWARD_STONE)
+		if(otmp->otyp == FAST_FORWARD_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator59) return TRUE;
 	if (sjwcheck(59)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_rottenstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ROTTEN_STONE)
+		if(otmp->otyp == ROTTEN_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator60) return TRUE;
 	if (sjwcheck(60)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_unskilledstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNSKILLED_STONE)
+		if(otmp->otyp == UNSKILLED_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator61) return TRUE;
 	if (sjwcheck(61)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_lowstatstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOW_STAT_STONE)
+		if(otmp->otyp == LOW_STAT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator62) return TRUE;
 	if (sjwcheck(62)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_trainingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAINING_STONE)
+		if(otmp->otyp == TRAINING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator63) return TRUE;
 	if (sjwcheck(63)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_exercisestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EXERCISE_STONE)
+		if(otmp->otyp == EXERCISE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator64) return TRUE;
 	if (sjwcheck(64)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_limitationstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TURN_LIMIT_STONE)
+		if(otmp->otyp == TURN_LIMIT_STONE) {
+			if (otmp->oartifact == ART_LIVE_FAST__DIE_YOUNG__HAE_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator65) return TRUE;
 	if (sjwcheck(65)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_weaksightstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEAK_SIGHT_STONE)
+		if(otmp->otyp == WEAK_SIGHT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator66) return TRUE;
 	if (sjwcheck(66)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_messagestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHATTER_STONE)
+		if(otmp->otyp == CHATTER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator67) return TRUE;
 	if (sjwcheck(67)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nonsacredstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NONSACRED_STONE)
+		if(otmp->otyp == NONSACRED_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator68) return TRUE;
 	if (sjwcheck(68)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_starvationstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STARVATION_STONE)
+		if(otmp->otyp == STARVATION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator69) return TRUE;
 	if (sjwcheck(69)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 2) return TRUE;
@@ -4469,2212 +4552,2391 @@ have_starvationstone()
 	return(FALSE);
 }
 
-boolean
+int
 have_droplessstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DROPLESS_STONE)
+		if(otmp->otyp == DROPLESS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator70) return TRUE;
 	if (sjwcheck(70)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_loweffectstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOW_EFFECT_STONE)
+		if(otmp->otyp == LOW_EFFECT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator71) return TRUE;
 	if (sjwcheck(71)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_invisostone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INVISO_STONE)
+		if(otmp->otyp == INVISO_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator72) return TRUE;
 	if (sjwcheck(72)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_ghostlystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GHOSTLY_STONE)
+		if(otmp->otyp == GHOSTLY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator73) return TRUE;
 	if (sjwcheck(73)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dehydratingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEHYDRATING_STONE)
+		if(otmp->otyp == DEHYDRATING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator74) return TRUE;
 	if (sjwcheck(74)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_hatestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_HATE)
+		if(otmp->otyp == STONE_OF_HATE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator75) return TRUE;
 	if (sjwcheck(75)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_directionswapstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DIRECTIONAL_SWAP_STONE)
+		if(otmp->otyp == DIRECTIONAL_SWAP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator76) return TRUE;
 	if (sjwcheck(76)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nonintrinsicstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NONINTRINSICAL_STONE)
+		if(otmp->otyp == NONINTRINSICAL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator77) return TRUE;
 	if (sjwcheck(77)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dropcursestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DROPCURSE_STONE)
+		if(otmp->otyp == DROPCURSE_STONE) {
+			if (otmp->oartifact == ART_THATS_DERP) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator78) return TRUE;
 	if (sjwcheck(78)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nakedstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_NAKED_STRIPPING)
+		if(otmp->otyp == STONE_OF_NAKED_STRIPPING) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator79) return TRUE;
 	if (sjwcheck(79)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_antilevelstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTILEVEL_STONE)
+		if(otmp->otyp == ANTILEVEL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator80) return TRUE;
 	if (sjwcheck(80)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_stealerstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STEALER_STONE)
+		if(otmp->otyp == STEALER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator81) return TRUE;
 	if (sjwcheck(81)) return TRUE;
 	if (have_suckstonearti()) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_rebelstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REBEL_STONE)
+		if(otmp->otyp == REBEL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator82) return TRUE;
 	if (sjwcheck(82)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_shitstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SHIT_STONE)
+		if(otmp->otyp == SHIT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator83) return TRUE;
 	if (sjwcheck(83)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_misfirestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_MISFIRING)
+		if(otmp->otyp == STONE_OF_MISFIRING) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator84) return TRUE;
 	if (sjwcheck(84)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_wallstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_PERMANENCE)
+		if(otmp->otyp == STONE_OF_PERMANENCE) {
+			if (otmp->oartifact == ART_WALLIFY_UP_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator85) return TRUE;
 	if (sjwcheck(85)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_disconnectstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISCONNECT_STONE)
+		if(otmp->otyp == DISCONNECT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator86) return TRUE;
 	if (sjwcheck(86)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_interfacescrewstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SCREW_STONE)
+		if(otmp->otyp == SCREW_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator87) return TRUE;
 	if (sjwcheck(87)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bossfightstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BOSSFIGHT_STONE)
+		if(otmp->otyp == BOSSFIGHT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator88) return TRUE;
 	if (sjwcheck(88)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_entirelevelstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ENTIRE_LEVEL_STONE)
+		if(otmp->otyp == ENTIRE_LEVEL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator89) return TRUE;
 	if (sjwcheck(89)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bonestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BONE_STONE)
+		if(otmp->otyp == BONE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator90) return TRUE;
 	if (sjwcheck(90)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_autocursestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOCURSE_STONE)
+		if(otmp->otyp == AUTOCURSE_STONE) {
+			if (otmp->oartifact == ART_TRY_IT_OUT_LONGER) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator91) return TRUE;
 	if (sjwcheck(91)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_highlevelstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HIGHLEVEL_STONE)
+		if(otmp->otyp == HIGHLEVEL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator92) return TRUE;
 	if (sjwcheck(92)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_spellforgettingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SPELL_MEMORY_STONE)
+		if(otmp->otyp == SPELL_MEMORY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator93) return TRUE;
 	if (sjwcheck(93)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_soundeffectstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SOUND_EFFECT_STONE)
+		if(otmp->otyp == SOUND_EFFECT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator94) return TRUE;
 	if (sjwcheck(94)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_timerunstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TIME_USE_STONE)
+		if(otmp->otyp == TIME_USE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator95) return TRUE;
 	if (sjwcheck(95)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_lootcutstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOOTCUT_STONE)
+		if(otmp->otyp == LOOTCUT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator96) return TRUE;
 	if (sjwcheck(96)) return TRUE;
 	if (AssholeModeActive) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_monsterspeedstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MONSTER_SPEED_STONE)
+		if(otmp->otyp == MONSTER_SPEED_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator97) return TRUE;
 	if (sjwcheck(97)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_scalingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SCALING_STONE)
+		if(otmp->otyp == SCALING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator98) return TRUE;
 	if (sjwcheck(98)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_inimicalstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INIMICAL_STONE)
+		if(otmp->otyp == INIMICAL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator99) return TRUE;
 	if (sjwcheck(99)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_whitespellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WHITE_SPELL_STONE)
+		if(otmp->otyp == WHITE_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator100) return TRUE;
 	if (sjwcheck(100)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_greyoutstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GREYOUT_STONE)
+		if(otmp->otyp == GREYOUT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator101) return TRUE;
 	if (sjwcheck(101)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_quasarstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == QUASAR_STONE)
+		if(otmp->otyp == QUASAR_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator102) return TRUE;
 	if (sjwcheck(102)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_mommystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MOMMY_STONE)
+		if(otmp->otyp == MOMMY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator103) return TRUE;
 	if (sjwcheck(103)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_horrorstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HORROR_STONE)
+		if(otmp->otyp == HORROR_STONE) {
+			if (otmp->oartifact == ART_THIS_IS_SO_FUNNY) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator104) return TRUE;
 	if (sjwcheck(104)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_artificialstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ARTIFICIAL_STONE)
+		if(otmp->otyp == ARTIFICIAL_STONE) {
+			if (otmp->oartifact == ART_GOOD_LUCK__YOU_LL_NEED_IT) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator105) return TRUE;
 	if (sjwcheck(105)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_wereformstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEREFORM_STONE)
+		if(otmp->otyp == WEREFORM_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator106) return TRUE;
 	if (sjwcheck(106)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_antiprayerstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTIPRAYER_STONE)
+		if(otmp->otyp == ANTIPRAYER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator107) return TRUE;
 	if (sjwcheck(107)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_evilpatchstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVIL_PATCH_STONE)
+		if(otmp->otyp == EVIL_PATCH_STONE) {
+			if (otmp->oartifact == ART_UNPLAYABLE_GAME_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator108) return TRUE;
 	if (sjwcheck(108)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_hardmodestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HARD_MODE_STONE)
+		if(otmp->otyp == HARD_MODE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator109) return TRUE;
 	if (sjwcheck(109)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_secretattackstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SECRET_ATTACK_STONE)
+		if(otmp->otyp == SECRET_ATTACK_STONE) {
+			if (otmp->oartifact == ART_NOT_SO_SECRET_ANYMORE) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator110) return TRUE;
 	if (sjwcheck(110)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_eaterstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EATER_STONE)
+		if(otmp->otyp == EATER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator111) return TRUE;
 	if (sjwcheck(111)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_covetousstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COVETOUS_STONE)
+		if(otmp->otyp == COVETOUS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator112) return TRUE;
 	if (sjwcheck(112)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nonseeingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NON_SEEING_STONE)
+		if(otmp->otyp == NON_SEEING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator113) return TRUE;
 	if (sjwcheck(113)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_darkmodestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DARKMODE_STONE)
+		if(otmp->otyp == DARKMODE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator114) return TRUE;
 	if (sjwcheck(114)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_unfindablestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNFINDABLE_STONE)
+		if(otmp->otyp == UNFINDABLE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator115) return TRUE;
 	if (sjwcheck(115)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_homicidestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HOMICIDE_STONE)
+		if(otmp->otyp == HOMICIDE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator116) return TRUE;
 	if (sjwcheck(116)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_multitrappingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MULTITRAPPING_STONE)
+		if(otmp->otyp == MULTITRAPPING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator117) return TRUE;
 	if (sjwcheck(117)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_wakeupcallstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WAKEUP_CALL_STONE)
+		if(otmp->otyp == WAKEUP_CALL_STONE) {
+			if (otmp->oartifact == ART_ROBBIE_S_WEARINESS) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator118) return TRUE;
 	if (sjwcheck(118)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_grayoutstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRAYOUT_STONE)
+		if(otmp->otyp == GRAYOUT_STONE) {
+			if (otmp->oartifact == ART_TINY_VISIBILITY_WINDOW) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator119) return TRUE;
 	if (sjwcheck(119)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 1) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_graycenterstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRAY_CENTER_STONE)
+		if(otmp->otyp == GRAY_CENTER_STONE) {
+			if (otmp->oartifact == ART_MAKE_THE_SHROUD_BIGGER) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator120) return TRUE;
 	if (sjwcheck(120)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 2) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_checkerboardstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHECKERBOARD_STONE)
+		if(otmp->otyp == CHECKERBOARD_STONE) {
+			if (otmp->oartifact == ART_SEE_EVEN_LESS) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator121) return TRUE;
 	if (sjwcheck(121)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 3) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_clockwisestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CLOCKWISE_STONE)
+		if(otmp->otyp == CLOCKWISE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator122) return TRUE;
 	if (sjwcheck(122)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_counterclockwisestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COUNTERCLOCKWISE_STONE)
+		if(otmp->otyp == COUNTERCLOCKWISE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator123) return TRUE;
 	if (sjwcheck(123)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_lagstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LAG_STONE)
+		if(otmp->otyp == LAG_STONE) {
+			if (otmp->oartifact == ART_HOHO_I_ATE_YOUR_INPUT) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator124) return TRUE;
 	if (sjwcheck(124)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_blesscursestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLESSCURSE_STONE)
+		if(otmp->otyp == BLESSCURSE_STONE) {
 			return(TRUE);
 		}
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 6) return TRUE;
+	}
 	if (u.nastinator125) return TRUE;
 	if (sjwcheck(125)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_delightstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DELIGHT_STONE)
+		if(otmp->otyp == DELIGHT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator126) return TRUE;
 	if (sjwcheck(126)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dischargestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DISCHARGE_STONE)
+		if(otmp->otyp == DISCHARGE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator127) return TRUE;
 	if (sjwcheck(127)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_trashstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRASH_STONE)
+		if(otmp->otyp == TRASH_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator128) return TRUE;
 	if (sjwcheck(128)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_filteringstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FILTERING_STONE)
+		if(otmp->otyp == FILTERING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator129) return TRUE;
 	if (sjwcheck(129)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_deformattingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEFORMATTING_STONE)
+		if(otmp->otyp == DEFORMATTING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator130) return TRUE;
 	if (sjwcheck(130)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_flickerstripstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FLICKER_STRIP_STONE)
+		if(otmp->otyp == FLICKER_STRIP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator131) return TRUE;
 	if (sjwcheck(131)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_undressingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNDRESSING_STONE)
+		if(otmp->otyp == UNDRESSING_STONE) {
+			if (otmp->oartifact == ART_ARRGH_HE_COMES_FOR_US) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator132) return TRUE;
 	if (sjwcheck(132)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_hyperbluestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HYPER_BLUE_STONE)
+		if(otmp->otyp == HYPER_BLUE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator133) return TRUE;
 	if (sjwcheck(133)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nolightstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NO_LIGHT_STONE)
+		if(otmp->otyp == NO_LIGHT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator134) return TRUE;
 	if (sjwcheck(134)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_paranoiastone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PARANOIA_STONE)
+		if(otmp->otyp == PARANOIA_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator135) return TRUE;
 	if (sjwcheck(135)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_fleecestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FLEECE_STONE)
+		if(otmp->otyp == FLEECE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator136) return TRUE;
 	if (sjwcheck(136)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_interruptionstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INTERRUPTION_STONE)
+		if(otmp->otyp == INTERRUPTION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator137) return TRUE;
 	if (sjwcheck(137)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dustbinstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DUSTBIN_STONE)
+		if(otmp->otyp == DUSTBIN_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator138) return TRUE;
 	if (sjwcheck(138)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_batterystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BATTERY_STONE)
+		if(otmp->otyp == BATTERY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator139) return TRUE;
 	if (sjwcheck(139)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_butterfingerstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BUTTERFINGER_STONE)
+		if(otmp->otyp == BUTTERFINGER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator140) return TRUE;
 	if (sjwcheck(140)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_miscastingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MISCASTING_STONE)
+		if(otmp->otyp == MISCASTING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator141) return TRUE;
 	if (sjwcheck(141)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_messagesuppressionstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MESSAGE_SUPPRESSION_STONE)
+		if(otmp->otyp == MESSAGE_SUPPRESSION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator142) return TRUE;
 	if (sjwcheck(142)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_stuckannouncementstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STUCK_ANNOUNCEMENT_STONE)
+		if(otmp->otyp == STUCK_ANNOUNCEMENT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator143) return TRUE;
 	if (sjwcheck(143)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_stormstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STORM_STONE)
+		if(otmp->otyp == STORM_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator144) return TRUE;
 	if (sjwcheck(144)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_maximumdamagestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAXIMUM_DAMAGE_STONE)
+		if(otmp->otyp == MAXIMUM_DAMAGE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator145) return TRUE;
 	if (sjwcheck(145)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_latencystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LATENCY_STONE)
+		if(otmp->otyp == LATENCY_STONE) {
+			if (otmp->oartifact == ART_WAITING_FOR_GODOT) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator146) return TRUE;
 	if (sjwcheck(146)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_starlitskystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STARLIT_SKY_STONE)
+		if(otmp->otyp == STARLIT_SKY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator147) return TRUE;
 	if (sjwcheck(147)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_trapknowledgestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAP_KNOWLEDGE_STONE)
+		if(otmp->otyp == TRAP_KNOWLEDGE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator148) return TRUE;
 	if (sjwcheck(148)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_highscorestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HIGHSCORE_STONE)
+		if(otmp->otyp == HIGHSCORE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator149) return TRUE;
 	if (sjwcheck(149)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_pinkspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PINK_SPELL_STONE)
+		if(otmp->otyp == PINK_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator150) return TRUE;
 	if (sjwcheck(150)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_greenspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GREEN_SPELL_STONE)
+		if(otmp->otyp == GREEN_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator151) return TRUE;
 	if (sjwcheck(151)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 5) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_evcstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVC_STONE)
+		if(otmp->otyp == EVC_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator152) return TRUE;
 	if (sjwcheck(152)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_underlaidstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNDERLAID_STONE)
+		if(otmp->otyp == UNDERLAID_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator153) return TRUE;
 	if (sjwcheck(153)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_damagemeterstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DAMAGE_METER_STONE)
+		if(otmp->otyp == DAMAGE_METER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator154) return TRUE;
 	if (sjwcheck(154)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_weightstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WEIGHT_STONE)
+		if(otmp->otyp == WEIGHT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator155) return TRUE;
 	if (sjwcheck(155)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_infofuckstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INFOFUCK_STONE)
+		if(otmp->otyp == INFOFUCK_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator156) return TRUE;
 	if (sjwcheck(156)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_blackspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLACK_SPELL_STONE)
+		if(otmp->otyp == BLACK_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator157) return TRUE;
 	if (sjwcheck(157)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_cyanspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CYAN_SPELL_STONE)
+		if(otmp->otyp == CYAN_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator158) return TRUE;
 	if (sjwcheck(158)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_heapstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HEAP_STONE)
+		if(otmp->otyp == HEAP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator159) return TRUE;
 	if (sjwcheck(159)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bluespellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLUE_SPELL_STONE)
+		if(otmp->otyp == BLUE_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator160) return TRUE;
 	if (sjwcheck(160)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 4) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_tronstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRON_STONE)
+		if(otmp->otyp == TRON_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator161) return TRUE;
 	if (sjwcheck(161)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_redspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RED_SPELL_STONE)
+		if(otmp->otyp == RED_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator162) return TRUE;
 	if (sjwcheck(162)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_tooheavystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TOO_HEAVY_STONE)
+		if(otmp->otyp == TOO_HEAVY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator163) return TRUE;
 	if (sjwcheck(163)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_elongatedstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELONGATED_STONE)
+		if(otmp->otyp == ELONGATED_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator164) return TRUE;
 	if (sjwcheck(164)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_wrapoverstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WRAPOVER_STONE)
+		if(otmp->otyp == WRAPOVER_STONE) {
+			if (otmp->oartifact == ART_BETTER_PUT_IT_ALL_AWAY) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator165) return TRUE;
 	if (sjwcheck(165)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_destructionstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DESTRUCTION_STONE)
+		if(otmp->otyp == DESTRUCTION_STONE) {
+			if (otmp->oartifact == ART_IT_EXPLODES_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator166) return TRUE;
 	if (sjwcheck(166)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_meleeprefixstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MELEE_PREFIX_STONE)
+		if(otmp->otyp == MELEE_PREFIX_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator167) return TRUE;
 	if (sjwcheck(167)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_automorestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOMORE_STONE)
+		if(otmp->otyp == AUTOMORE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator168) return TRUE;
 	if (sjwcheck(168)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_unfairattackstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNFAIR_ATTACK_STONE)
+		if(otmp->otyp == UNFAIR_ATTACK_STONE) {
+			if (otmp->oartifact == ART_WHO_NEEDS_FAIRNESS_ANYWAY) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator169) return TRUE;
 	if (sjwcheck(169)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_orangespellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ORANGE_SPELL_STONE)
+		if(otmp->otyp == ORANGE_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator170) return TRUE;
 	if (sjwcheck(170)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_violetspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VIOLET_SPELL_STONE)
+		if(otmp->otyp == VIOLET_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator171) return TRUE;
 	if (sjwcheck(171)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 11) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_longingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LONGING_STONE)
+		if(otmp->otyp == LONGING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator172) return TRUE;
 	if (sjwcheck(172)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_cursedpartstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CURSED_PART_STONE)
+		if(otmp->otyp == CURSED_PART_STONE) {
+			if (otmp->oartifact == ART_LAST_FOREVA) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator173) return TRUE;
 	if (sjwcheck(173)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_quaversalstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == QUAVERSAL_STONE)
+		if(otmp->otyp == QUAVERSAL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator174) return TRUE;
 	if (sjwcheck(174)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_appearanceshufflingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == APPEARANCE_SHUFFLING_STONE)
+		if(otmp->otyp == APPEARANCE_SHUFFLING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator175) return TRUE;
 	if (sjwcheck(175)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_brownspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BROWN_SPELL_STONE)
+		if(otmp->otyp == BROWN_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator176) return TRUE;
 	if (sjwcheck(176)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 12) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_choicelessstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHOICELESS_STONE)
+		if(otmp->otyp == CHOICELESS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator177) return TRUE;
 	if (sjwcheck(177)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_goldspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GOLDSPELL_STONE)
+		if(otmp->otyp == GOLDSPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator178) return TRUE;
 	if (sjwcheck(178)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_deprovementstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DEPROVEMENT_STONE)
+		if(otmp->otyp == DEPROVEMENT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator179) return TRUE;
 	if (sjwcheck(179)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_initializationstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INITIALIZATION_STONE)
+		if(otmp->otyp == INITIALIZATION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator180) return TRUE;
 	if (sjwcheck(180)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_gushlushstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GUSHLUSH_STONE)
+		if(otmp->otyp == GUSHLUSH_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator181) return TRUE;
 	if (sjwcheck(181)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_soiltypestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SOILTYPE_STONE)
+		if(otmp->otyp == SOILTYPE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator182) return TRUE;
 	if (sjwcheck(182)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dangerousterrainstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DANGEROUS_TERRAIN_STONE)
+		if(otmp->otyp == DANGEROUS_TERRAIN_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator183) return TRUE;
 	if (sjwcheck(183)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_falloutstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FALLOUT_STONE)
+		if(otmp->otyp == FALLOUT_STONE) {
+			if (otmp->oartifact == ART_NUCLEAR_WAR_AFTERMATH) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator184) return TRUE;
 	if (sjwcheck(184)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_mojibakestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MOJIBAKE_STONE)
+		if(otmp->otyp == MOJIBAKE_STONE) {
+			if (otmp->oartifact == ART_SCREEN_GLITCH) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator185) return TRUE;
 	if (sjwcheck(185)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_gravationstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRAVATION_STONE)
+		if(otmp->otyp == GRAVATION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator186) return TRUE;
 	if (sjwcheck(186)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_uncalledstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UNCALLED_STONE)
+		if(otmp->otyp == UNCALLED_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator187) return TRUE;
 	if (sjwcheck(187)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_explodingdicestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EXPLODING_DICE_STONE)
+		if(otmp->otyp == EXPLODING_DICE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator188) return TRUE;
 	if (sjwcheck(188)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_permacursestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PERMACURSE_STONE)
+		if(otmp->otyp == PERMACURSE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator189) return TRUE;
 	if (sjwcheck(189)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_shroudedidentitystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SHROUDED_IDENTITY_STONE)
+		if(otmp->otyp == SHROUDED_IDENTITY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator190) return TRUE;
 	if (sjwcheck(190)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 6) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_feelergaugesstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FEELER_GAUGE_STONE)
+		if(otmp->otyp == FEELER_GAUGE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator191) return TRUE;
 	if (sjwcheck(191)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_longscrewupstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LONG_SCREWUP_STONE)
+		if(otmp->otyp == LONG_SCREWUP_STONE) {
+			if (otmp->oartifact == ART_QUASI_PERMANENCE) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator192) return TRUE;
 	if (sjwcheck(192)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_wingyellowstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WING_YELLOW_STONE)
+		if(otmp->otyp == WING_YELLOW_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator193) return TRUE;
 	if (sjwcheck(193)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_lifesavingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LIFE_SAVING_STONE)
+		if(otmp->otyp == LIFE_SAVING_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator194) return TRUE;
 	if (sjwcheck(194)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_curseusestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CURSEUSE_STONE)
+		if(otmp->otyp == CURSEUSE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator195) return TRUE;
 	if (sjwcheck(195)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_cutnutritionstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CUT_NUTRITION_STONE)
+		if(otmp->otyp == CUT_NUTRITION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator196) return TRUE;
 	if (sjwcheck(196)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_skilllossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SKILL_LOSS_STONE)
+		if(otmp->otyp == SKILL_LOSS_STONE) {
+			if (otmp->oartifact == ART_TRASH_IT_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator197) return TRUE;
 	if (sjwcheck(197)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_autopilotstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOPILOT_STONE)
+		if(otmp->otyp == AUTOPILOT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator198) return TRUE;
 	if (sjwcheck(198)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_forcestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FORCE_STONE)
+		if(otmp->otyp == FORCE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator199) return TRUE;
 	if (sjwcheck(199)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_monsterglyphstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MONSTER_GLYPH_STONE)
+		if(otmp->otyp == MONSTER_GLYPH_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator200) return TRUE;
 	if (sjwcheck(200)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_changingdirectivestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHANGING_DIRECTIVE_STONE)
+		if(otmp->otyp == CHANGING_DIRECTIVE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator201) return TRUE;
 	if (sjwcheck(201)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_containerkaboomstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CONTAINER_KABOOM_STONE)
+		if(otmp->otyp == CONTAINER_KABOOM_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator202) return TRUE;
 	if (sjwcheck(202)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_stealdegradestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STEAL_DEGRADE_STONE)
+		if(otmp->otyp == STEAL_DEGRADE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator203) return TRUE;
 	if (sjwcheck(203)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_leftinventorystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LEFT_INVENTORY_STONE)
+		if(otmp->otyp == LEFT_INVENTORY_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator204) return TRUE;
 	if (sjwcheck(204)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_fluctuatingspeedstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FLUCTUATING_SPEED_STONE)
+		if(otmp->otyp == FLUCTUATING_SPEED_STONE) {
+			if (otmp->oartifact == ART_FLUCKER_LOW) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator205) return TRUE;
 	if (sjwcheck(205)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_tarmustrokingnorastone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TARMUSTROKINGNORA_STONE)
+		if(otmp->otyp == TARMUSTROKINGNORA_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator206) return TRUE;
 	if (sjwcheck(206)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_failurestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FAILURE_STONE)
+		if(otmp->otyp == FAILURE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator207) return TRUE;
 	if (sjwcheck(207)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_brightcyanspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BRIGHT_CYAN_SPELL_STONE)
+		if(otmp->otyp == BRIGHT_CYAN_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator208) return TRUE;
 	if (sjwcheck(208)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 13) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_frequentationspawnstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FREQUENTATION_SPAWN_STONE)
+		if(otmp->otyp == FREQUENTATION_SPAWN_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator209) return TRUE;
 	if (sjwcheck(209)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_petaistone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PET_AI_STONE)
+		if(otmp->otyp == PET_AI_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator210) return TRUE;
 	if (sjwcheck(210)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_satanstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SATAN_STONE)
+		if(otmp->otyp == SATAN_STONE) {
+			if (otmp->oartifact == ART_GRRM__TAA_TATATATAAAA__TA_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator211) return TRUE;
 	if (sjwcheck(211)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_rememberancestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REMEMBERANCE_STONE)
+		if(otmp->otyp == REMEMBERANCE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator212) return TRUE;
 	if (sjwcheck(212)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_pokeliestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == POKELIE_STONE)
+		if(otmp->otyp == POKELIE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator213) return TRUE;
 	if (sjwcheck(213)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 7) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_autopickupstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == AUTOPICKUP_STONE)
+		if(otmp->otyp == AUTOPICKUP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator214) return TRUE;
 	if (sjwcheck(214)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dywypistone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DYWYPI_STONE)
+		if(otmp->otyp == DYWYPI_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator215) return TRUE;
 	if (sjwcheck(215)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_silverspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SILVER_SPELL_STONE)
+		if(otmp->otyp == SILVER_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator216) return TRUE;
 	if (sjwcheck(216)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 14) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_metalspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == METAL_SPELL_STONE)
+		if(otmp->otyp == METAL_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator217) return TRUE;
 	if (sjwcheck(217)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 15) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_platinumspellstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PLATINUM_SPELL_STONE)
+		if(otmp->otyp == PLATINUM_SPELL_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator218) return TRUE;
 	if (sjwcheck(218)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 11 && u.femauspices11 == 16) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_manlerstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MANLER_STONE)
+		if(otmp->otyp == MANLER_STONE) {
+			if (otmp->oartifact == ART_WOMANLER_GIVES_CHASE) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator219) return TRUE;
 	if (sjwcheck(219)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_doorningstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DOORNING_STONE)
+		if(otmp->otyp == DOORNING_STONE) {
+			if (otmp->oartifact == ART_DOORNING_DAY) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator220) return TRUE;
 	if (sjwcheck(220)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nownsiblestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NOWNSIBLE_STONE)
+		if(otmp->otyp == NOWNSIBLE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator221) return TRUE;
 	if (sjwcheck(221)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_elmstreetstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELM_STREET_STONE)
+		if(otmp->otyp == ELM_STREET_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator222) return TRUE;
 	if (sjwcheck(222)) return TRUE;
 	if (have_suckstonearti()) return TRUE;
@@ -6682,700 +6944,764 @@ have_elmstreetstone()
 	return(FALSE);
 }
 
-boolean
+int
 have_monnoisestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MONNOISE_STONE)
+		if(otmp->otyp == MONNOISE_STONE) {
+			if (otmp->oartifact == ART_BLABBERBLABBERWANAMADA_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator223) return TRUE;
 	if (sjwcheck(223)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_rangcallstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RANG_CALL_STONE)
+		if(otmp->otyp == RANG_CALL_STONE) {
+			if (otmp->oartifact == ART_LEIKI_S_QUEST) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator224) return TRUE;
 	if (sjwcheck(224)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_recurringspelllossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RECURRING_SPELL_LOSS_STONE)
+		if(otmp->otyp == RECURRING_SPELL_LOSS_STONE) {
+			if (otmp->oartifact == ART_LOSE_ALL_THE_SPELLS) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator225) return TRUE;
 	if (sjwcheck(225)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_antitrainingstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTI_TRAINING_STONE)
+		if(otmp->otyp == ANTI_TRAINING_STONE) {
+			if (otmp->oartifact == ART_MAN_ARE_YOU_LUSH) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator226) return TRUE;
 	if (sjwcheck(226)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_techoutstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TECHOUT_STONE)
+		if(otmp->otyp == TECHOUT_STONE) {
+			if (otmp->oartifact == ART_TOUT_DAAU___DAAU___DAAU) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator227) return TRUE;
 	if (sjwcheck(227)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 11) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_statdecaystone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STAT_DECAY_STONE)
+		if(otmp->otyp == STAT_DECAY_STONE) {
+			if (otmp->oartifact == ART_WASTEFUL_WITHER) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator228) return TRUE;
 	if (sjwcheck(228)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 30 && u.femauspices30 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_movemorkstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MOVEMORK_STONE)
+		if(otmp->otyp == MOVEMORK_STONE) {
+			if (otmp->oartifact == ART_MORK_MORE) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator229) return TRUE;
 	if (sjwcheck(229)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 8) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_badpartstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BAD_PART_STONE)
+		if(otmp->otyp == BAD_PART_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator230) return TRUE;
 	if (sjwcheck(230)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_completelybadpartstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COMPLETELY_BAD_PART_STONE)
+		if(otmp->otyp == COMPLETELY_BAD_PART_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator231) return TRUE;
 	if (sjwcheck(231)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 13 && u.femauspices13 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_evilvariantstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVIL_VARIANT_STONE)
+		if(otmp->otyp == EVIL_VARIANT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator232) return TRUE;
 	if (sjwcheck(232)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_sanitytreblestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SANE_TREBLE_STONE)
+		if(otmp->otyp == SANE_TREBLE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator233) return TRUE;
 	if (sjwcheck(233)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_statdecreasestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STATCREASE_STONE)
+		if(otmp->otyp == STATCREASE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator234) return TRUE;
 	if (sjwcheck(234)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_simeoutstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SIMEOUT_STONE)
+		if(otmp->otyp == SIMEOUT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator235) return TRUE;
 	if (sjwcheck(235)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_giantexplorerstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GIANT_EXPLORER_STONE)
+		if(otmp->otyp == GIANT_EXPLORER_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator236) return TRUE;
 	if (sjwcheck(236)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_trapwarpstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TRAPWARP_STONE)
+		if(otmp->otyp == TRAPWARP_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator237) return TRUE;
 	if (sjwcheck(237)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_yawmstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YAWM_STONE)
+		if(otmp->otyp == YAWM_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator238) return TRUE;
 	if (sjwcheck(238)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_chaoscradlestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHAOSCRADLE_STONE)
+		if(otmp->otyp == CHAOSCRADLE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator239) return TRUE;
 	if (sjwcheck(239)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_tezstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TEZ_STONE)
+		if(otmp->otyp == TEZ_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator240) return TRUE;
 	if (sjwcheck(240)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_bossgodstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BOSSGOD_STONE)
+		if(otmp->otyp == BOSSGOD_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator241) return TRUE;
 	if (sjwcheck(241)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_ubergodstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UBERGOD_STONE)
+		if(otmp->otyp == UBERGOD_STONE) {
+			if (otmp->oartifact == ART_FFFFF_QUEAK_PRRRT) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator242) return TRUE;
 	if (sjwcheck(242)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_toogoodgostone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TOO_GOOD_GO_STONE)
+		if(otmp->otyp == TOO_GOOD_GO_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator243) return TRUE;
 	if (sjwcheck(243)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_killerroomstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KILLER_ROOM_STONE)
+		if(otmp->otyp == KILLER_ROOM_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator244) return TRUE;
 	if (sjwcheck(244)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_funwallstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FUNWALL_STONE)
+		if(otmp->otyp == FUNWALL_STONE) {
+			if (otmp->oartifact == ART_GAS_AS_A_WEAPON) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator245) return TRUE;
 	if (sjwcheck(245)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_reallybadstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REALLY_BAD_STONE)
+		if(otmp->otyp == REALLY_BAD_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator246) return TRUE;
 	if (sjwcheck(246)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_covidstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COVID_STONE)
+		if(otmp->otyp == COVID_STONE) {
+			if (otmp->oartifact == ART_BEYOND_HELP) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator247) return TRUE;
 	if (sjwcheck(247)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_blaststone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BLAST_STONE)
+		if(otmp->otyp == BLAST_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator248) return TRUE;
 	if (sjwcheck(248)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nastycursestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NASTYCURSE_STONE)
+		if(otmp->otyp == NASTYCURSE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator249) return TRUE;
 	if (sjwcheck(249)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_realliestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == REAL_LIE_STONE)
+		if(otmp->otyp == REAL_LIE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator250) return TRUE;
 	if (sjwcheck(250)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_escapepaststone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ESCAPE_PAST_STONE)
+		if(otmp->otyp == ESCAPE_PAST_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator251) return TRUE;
 	if (sjwcheck(251)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 20 && u.femauspices20 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_pethatestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PETHATE_STONE)
+		if(otmp->otyp == PETHATE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator252) return TRUE;
 	if (sjwcheck(252)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_petlashoutstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PET_LASHOUT_STONE)
+		if(otmp->otyp == PET_LASHOUT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator253) return TRUE;
 	if (sjwcheck(253)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_petstarvestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PETSTARVE_STONE)
+		if(otmp->otyp == PETSTARVE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator254) return TRUE;
 	if (sjwcheck(254)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_petscrewstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PETSCREW_STONE)
+		if(otmp->otyp == PETSCREW_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator255) return TRUE;
 	if (sjwcheck(255)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_techlossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TECH_LOSS_STONE)
+		if(otmp->otyp == TECH_LOSS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator256) return TRUE;
 	if (sjwcheck(256)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_prooflossstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PROOFLOSS_STONE)
+		if(otmp->otyp == PROOFLOSS_STONE) {
+			if (otmp->oartifact == ART_CLAP_IT_AWAY) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator257) return TRUE;
 	if (sjwcheck(257)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_uninvisstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UN_INVIS_STONE)
+		if(otmp->otyp == UN_INVIS_STONE) {
+			if (otmp->oartifact == ART_I_SEE_YOUUUUU) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator258) return TRUE;
 	if (sjwcheck(258)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_detectationstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DETECTATION_STONE)
+		if(otmp->otyp == DETECTATION_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator259) return TRUE;
 	if (sjwcheck(259)) return TRUE;
 	return(FALSE);
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 11) return TRUE;
 }
 
-boolean
+int
 have_optionstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == OPTION_STONE)
+		if(otmp->otyp == OPTION_STONE) {
+			if (otmp->oartifact == ART_FRED_S_OPTIOMETRIST) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator260) return TRUE;
 	if (sjwcheck(260)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 25 && u.femauspices25 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_miscolorstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MISCOLOR_STONE)
+		if(otmp->otyp == MISCOLOR_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator261) return TRUE;
 	if (sjwcheck(261)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 11) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_onerainbowstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ONE_RAINBOW_STONE)
+		if(otmp->otyp == ONE_RAINBOW_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator262) return TRUE;
 	if (sjwcheck(262)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 12) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_colorshiftstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == COLORSHIFT_STONE)
+		if(otmp->otyp == COLORSHIFT_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator263) return TRUE;
 	if (sjwcheck(263)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 13) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_toplinestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TOP_LINE_STONE)
+		if(otmp->otyp == TOP_LINE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator264) return TRUE;
 	if (sjwcheck(264)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 8 && u.femauspices8 == 10) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_capsstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CAPS_STONE)
+		if(otmp->otyp == CAPS_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator265) return TRUE;
 	if (sjwcheck(265)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 11) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_unknowledgestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UN_KNOWLEDGE_STONE)
+		if(otmp->otyp == UN_KNOWLEDGE_STONE) {
+			if (otmp->oartifact == ART_FULLY_ID_OR_NOPE) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator266) return TRUE;
 	if (sjwcheck(266)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 9) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_darkhancestone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DARKHANCE_STONE)
+		if(otmp->otyp == DARKHANCE_STONE) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator267) return TRUE;
 	if (sjwcheck(267)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 6 && u.femauspices6 == 12) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_dschueueuetstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DSCHUEUEUET_STONE)
+		if(otmp->otyp == DSCHUEUEUET_STONE) {
+			if (otmp->oartifact == ART_DEEP_DESCENT) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator268) return TRUE;
 	if (sjwcheck(268)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_nopeskillstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NOPESKILL_STONE)
+		if(otmp->otyp == NOPESKILL_STONE) {
+			if (otmp->oartifact == ART_HALFCUT_HAHAHAHAHA_HAHAHA_) return 2;
 			return(TRUE);
 		}
+	}
 	if (u.nastinator269) return TRUE;
 	if (sjwcheck(269)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 12) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_fuckfuckfuckstone()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == STONE_OF_COMPLETE_FUCKUP)
+		if(otmp->otyp == STONE_OF_COMPLETE_FUCKUP) {
 			return(TRUE);
 		}
+	}
 	if (u.nastinator270) return TRUE;
 	if (sjwcheck(270)) return TRUE;
 	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 10) return TRUE;
@@ -24999,6 +25325,119 @@ boolean knoweverything;
 					pline("Artifact specs: +3 to-hit and +30 damage, chaotic. This artifact was suggested by Demo and has a host of downsides including the stealer and banking trap effects, aggravate monster, feeler gauges, bad effects and dimness, and if you equip it, you get the curseuse and autocurse nastytrap effects for 5000 turns even if you then immediately put the bat away again."); break;
 				case ART_FOOK_SRI_SAEVE:
 					pline("Artifact specs: monster speed bug and dschueueuet bug when worn. Because the variant that calls itself 3.7 is severely fucked up and can just go to hell."); break;
+
+				case ART_SEVERE_UNINFORMATION:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_WOMANLER_GIVES_CHASE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_DOORNING_DAY:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_DEL_ALLES_BKK:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_ARABELLA_S_BEDROCK:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_EXTRA_HIGH_DIFFICULTY:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_FRED_S_OPTIOMETRIST:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_FULLY_ID_OR_NOPE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_DEEP_DESCENT:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_HALFCUT_HAHAHAHAHA_HAHAHA_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_CLAP_IT_AWAY:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_I_SEE_YOUUUUU:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_BEYOND_HELP:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_FFFFF_QUEAK_PRRRT:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_GAS_AS_A_WEAPON:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_LAST_FOREVA:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_NUCLEAR_WAR_AFTERMATH:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_SCREEN_GLITCH:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_QUASI_PERMANENCE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_TRASH_IT_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_FLUCKER_LOW:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_GRRM__TAA_TATATATAAAA__TA_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_BLABBERBLABBERWANAMADA_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_LEIKI_S_QUEST:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_LOSE_ALL_THE_SPELLS:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_MAN_ARE_YOU_LUSH:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_TOUT_DAAU___DAAU___DAAU:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_WASTEFUL_WITHER:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_MORK_MORE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_THIS_IS_SO_FUNNY:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_GOOD_LUCK__YOU_LL_NEED_IT:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_UNPLAYABLE_GAME_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_NOT_SO_SECRET_ANYMORE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_ROBBIE_S_WEARINESS:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_TINY_VISIBILITY_WINDOW:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_MAKE_THE_SHROUD_BIGGER:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_SEE_EVEN_LESS:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_HOHO_I_ATE_YOUR_INPUT:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_ARRGH_HE_COMES_FOR_US:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_WAITING_FOR_GODOT:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_BETTER_PUT_IT_ALL_AWAY:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_IT_EXPLODES_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_WHO_NEEDS_FAIRNESS_ANYWAY:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_TRY_IT_OUT_LONGER:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_DONOT_WORK_ATALL:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_THERE_IS_A_LOUD_CLAP:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_NAVIGATE_THIS_MESS:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_GREMLIN_S_REVENGE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_INFERNAL_AREA:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_KEEP_STUMBLING:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_PURE_AIDS:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_WHO_NEEDS_ITEMS_ANYWAY_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_QUAFF_THAT_SPARKLING_WINE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_LIVE_FAST__DIE_YOUNG__HAE_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_THATS_DERP:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_WALLIFY_UP_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

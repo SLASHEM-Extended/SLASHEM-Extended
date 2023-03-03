@@ -1436,7 +1436,8 @@ register struct monst *mtmp;
 
 	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
 		pline("A horrible call rang in your head...");
-		increasesanity(1);
+		if (have_rangcallstone() == 2) increasesanity(5);
+		else increasesanity(1);
 	}
 
 	if (mdat == &mons[PM_KRINSCH_SAEIER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
@@ -1470,7 +1471,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(10000)) {
+	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2((have_wakeupcallstone() == 2) ? 1000 : 10000)) {
 		wakeup(mtmp);
 	}
 
@@ -1968,7 +1969,7 @@ newbossSING:
 	}
 
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
-	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2((have_monnoisestone() == 2) ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (mdat->msound) {
 
 			case MS_PRIEST:

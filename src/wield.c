@@ -293,7 +293,20 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		pline("You realize that you've made a horrible mistake.");
 	}
 
-	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uwep);
+	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+		curse(uwep);
+
+		if (have_autocursestone() == 2) {
+			if (!rn2(2)) {
+				uwep->cursed = uwep->hvycurse = TRUE;
+				if (!rn2(5)) uwep->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				uwep->cursed = uwep->stckcurse = TRUE;
+			}
+		}
+
+	}
 	
 	if (uwep && uwep->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uwep->spe--;
 
@@ -493,7 +506,20 @@ swapweaponchoice:
 			pline("You realize that you've made a horrible mistake.");
 		}
 
-		if (uswapwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) curse(uswapwep);
+		if (uswapwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
+			curse(uswapwep);
+
+			if (have_autocursestone() == 2) {
+				if (!rn2(2)) {
+					uswapwep->cursed = uswapwep->hvycurse = TRUE;
+					if (!rn2(5)) uswapwep->prmcurse = TRUE;
+				}
+				if (!rn2(2)) {
+					uswapwep->cursed = uswapwep->stckcurse = TRUE;
+				}
+			}
+
+		}
 	
 		if (uswapwep && uswapwep->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uswapwep->spe--;
 

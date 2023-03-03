@@ -1117,6 +1117,21 @@ bad_artifact()
 			if (otmp) curse(otmp);
 		}
 
+		if ( (is_nastygraystone(otmp) || is_feminismstone(otmp)) ) {
+			if (!rn2(3)) otmp->cursed = otmp->hvycurse = TRUE;
+			if (!rn2(3)) otmp->cursed = otmp->stckcurse = TRUE;
+		}
+
+		if (have_artificialstone() == 2) {
+			if (!rn2(2)) {
+				otmp->cursed = otmp->hvycurse = TRUE;
+				if (!rn2(5)) otmp->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				otmp->cursed = otmp->stckcurse = TRUE;
+			}
+		}
+
 	}
 
 }
@@ -1305,6 +1320,21 @@ bad_artifact_xtra()
 			setworn(otmp, W_ARM);
 			Armor_on();
 			if (otmp) curse(otmp);
+		}
+
+		if ( (is_nastygraystone(otmp) || is_feminismstone(otmp)) ) {
+			if (!rn2(3)) otmp->cursed = otmp->hvycurse = TRUE;
+			if (!rn2(3)) otmp->cursed = otmp->stckcurse = TRUE;
+		}
+
+		if (have_artificialstone() == 2) {
+			if (!rn2(2)) {
+				otmp->cursed = otmp->hvycurse = TRUE;
+				if (!rn2(5)) otmp->prmcurse = TRUE;
+			}
+			if (!rn2(2)) {
+				otmp->cursed = otmp->stckcurse = TRUE;
+			}
 		}
 
 	}
