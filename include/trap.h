@@ -811,6 +811,7 @@ extern struct trap *ftrap;
 #define DARKHANCE_TRAP 714
 #define DSCHUEUEUET_TRAP 715
 #define NOPESKILL_TRAP 716
+#define FUCKFUCKFUCK_TRAP 717
 
 /* todo area
 
@@ -909,8 +910,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	717
+#define TIMERUN_TRAP	718
 
-#define TRAPNUM 718
+#define TRAPNUM 719
 
 #endif /* TRAP_H */

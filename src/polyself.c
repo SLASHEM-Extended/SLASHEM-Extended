@@ -2479,6 +2479,7 @@ dospinweb()
 		case BISHOP_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case FUCKFUCKFUCK_TRAP:
 		case OPTION_TRAP:
 		case MISCOLOR_TRAP:
 		case ONE_RAINBOW_TRAP:

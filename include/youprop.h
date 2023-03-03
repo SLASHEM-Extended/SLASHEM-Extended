@@ -496,6 +496,7 @@
 #define CovidTrapEffect		u.uprops[COVID_TRAP_EFFECT].intrinsic
 #define ArtiblastEffect		u.uprops[ARTIBLAST_EFFECT].intrinsic
 #define RepeatingNastycurseEffect		u.uprops[REPEATING_NASTYCURSE_EFFECT].intrinsic
+#define FuckfuckfuckEffect		u.uprops[FUCKFUCKFUCK_EFFECT].intrinsic
 
 #define OptionBugEffect		u.uprops[OPTION_BUG_EFFECT].intrinsic
 #define MiscolorEffect		u.uprops[MISCOLOR_EFFECT].intrinsic

@@ -1184,7 +1184,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(271)) {
+		switch (rnd(272)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1458,6 +1458,7 @@ randenchantment()
 			case 269: return DARKHANCE_EFFECT;
 			case 270: return DSCHUEUEUET_EFFECT;
 			case 271: return NOPESKILL_EFFECT;
+			case 272: return FUCKFUCKFUCK_EFFECT;
 			default: return POISON_RES;
 
 		}
@@ -1945,7 +1946,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(271)) {
+	switch (rnd(272)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2218,6 +2219,7 @@ randnastyenchantment()
 			case 269: return DARKHANCE_EFFECT;
 			case 270: return DSCHUEUEUET_EFFECT;
 			case 271: return NOPESKILL_EFFECT;
+			case 272: return FUCKFUCKFUCK_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2388,7 +2390,7 @@ randominsidetrap()
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(271)) {
+	else switch (rnd(272)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2661,6 +2663,7 @@ randominsidetrap()
 		case 269: return DARKHANCE_TRAP;
 		case 270: return DSCHUEUEUET_TRAP;
 		case 271: return NOPESKILL_TRAP;
+		case 272: return FUCKFUCKFUCK_TRAP;
 
 	}
 
@@ -3994,7 +3997,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(269)) {
+			switch (rnd(270)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4534,6 +4537,8 @@ getnastytrapintrinsic()
 				    DschueueuetEffect |= FROMOUTSIDE; break;
 				case 269:
 				    NopeskillEffect |= FROMOUTSIDE; break;
+				case 270:
+				    FuckfuckfuckEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -4952,7 +4957,7 @@ int duration, blackngvar;
 {
 		if (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone()) duration *= 20;
 
-		switch (rnd(269)) {
+		switch (rnd(270)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -5252,6 +5257,7 @@ int duration, blackngvar;
 			case 267: DarkhanceEffect += rnz(duration); break;
 			case 268: DschueueuetEffect += rnz(duration); break;
 			case 269: NopeskillEffect += rnz(duration); break;
+			case 270: FuckfuckfuckEffect += rnz(duration); break;
 
 		}
 
@@ -5560,6 +5566,7 @@ int efftype, nastyduration, blackngvar;
 		case 267: DarkhanceEffect += rnz(nastyduration); break;
 		case 268: DschueueuetEffect += rnz(nastyduration); break;
 		case 269: NopeskillEffect += rnz(nastyduration); break;
+		case 270: FuckfuckfuckEffect += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

@@ -871,6 +871,7 @@ static struct {
 	{ "darkhance", DARKHANCE_TRAP },
 	{ "dschueueuet", DSCHUEUEUET_TRAP },
 	{ "nopeskill", NOPESKILL_TRAP },
+	{ "fuckfuckfuck", FUCKFUCKFUCK_TRAP },
 
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }

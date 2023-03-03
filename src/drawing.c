@@ -1046,6 +1046,7 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "darkhance trap", C(CLR_BLACK)},	/* trap */
 	{'^', "dschueueuet trap", C(CLR_BROWN)},	/* trap */
 	{'^', "nopeskill trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "fuckfuckfuck trap", C(CLR_BRIGHT_MAGENTA)},	/* trap */
 
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
@@ -1920,6 +1921,7 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_darkhance_trap),
 	g_FILLER(S_dschueueuet_trap),
 	g_FILLER(S_nopeskill_trap),
+	g_FILLER(S_fuckfuckfuck_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
@@ -2782,6 +2784,7 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_darkhance_trap),
 	g_FILLER(S_dschueueuet_trap),
 	g_FILLER(S_nopeskill_trap),
+	g_FILLER(S_fuckfuckfuck_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -3641,6 +3644,7 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_darkhance_trap),
 	g_FILLER(S_dschueueuet_trap),
 	g_FILLER(S_nopeskill_trap),
+	g_FILLER(S_fuckfuckfuck_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4501,6 +4505,7 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_darkhance_trap),
 	g_FILLER(S_dschueueuet_trap),
 	g_FILLER(S_nopeskill_trap),
+	g_FILLER(S_fuckfuckfuck_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5569,6 +5574,7 @@ boolean is_rlevel;
 	    showsyms[S_darkhance_trap] = 0x04;
 	    showsyms[S_dschueueuet_trap] = 0x04;
 	    showsyms[S_nopeskill_trap] = 0x04;
+	    showsyms[S_fuckfuckfuck_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
 #endif /* PUBLIC_SERVER */

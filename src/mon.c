@@ -2209,7 +2209,7 @@ struct monst *mon;
 		mmove *= 2;
 	}
 
-	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
+	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uamul && uamul->oartifact == ART_FOOK_SRI_SAEVE) || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
@@ -3436,6 +3436,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != DSCHUEUEUET_TRAP
 				&& ttmp->ttyp != NOPESKILL_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != FUCKFUCKFUCK_TRAP
 				&& ttmp->ttyp != REAL_LIE_TRAP
 				&& ttmp->ttyp != ESCAPE_PAST_TRAP
 				&& ttmp->ttyp != PETHATE_TRAP

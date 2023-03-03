@@ -3810,7 +3810,7 @@ RING((char *)0, 0,  "indian", 0, 0, 0, 0, 2, MT_INKA, CLR_RED, 1),
 #define AMULET(name,desc,power,prob,metal,color,minlvl) OBJECT( \
 		OBJ(name,desc), BITS(0,0,0,0,1,0,0,0,0,0,0,0,metal), power, \
 		AMULET_CLASS, prob, 0, 0, 150, 0, 0, 0, 0, 20, color, minlvl, 0 )
-AMULET("amulet of change",        "square",     0,          8750,	MT_IRON,	CLR_BLACK, 1),
+AMULET("amulet of change",        "square",     0,          8747,	MT_IRON,	CLR_BLACK, 1),
 AMULET("amulet of peace",        "inka",     PEACEVISION,   1300,	MT_INKA,	CLR_ORANGE, 20),
 AMULET("amulet of polymorph",      "wired",     0,          100,	MT_METAL,	CLR_BLACK, 15),
 AMULET("amulet of drain resistance","warped",   DRAIN_RES,  6000, 	MT_IRON,	CLR_GRAY, 10),
@@ -3903,6 +3903,7 @@ AMULET("amulet of anti-teleportation",    "rigid",  NORETURN, 3, MT_METAL,	CLR_B
 AMULET("amulet of escape problem",    "sunblade",  ESCAPE_PAST_EFFECT, 3, MT_METEOSTEEL,	CLR_ORANGE, 1),
 AMULET("amulet of miscoloration",	 "rapid",	MISCOLOR_EFFECT,  3, MT_GEMSTONE, CLR_BRIGHT_MAGENTA, 1),
 AMULET("amulet of lost knowledge",	 "sunken",	UN_KNOWLEDGE_EFFECT,  3, MT_LIQUID, CLR_MAGENTA, 1),
+AMULET("amulet of severe fuckup",	 "fucking",	FUCKFUCKFUCK_EFFECT,  3, MT_MYSTERIOUS, CLR_BRIGHT_MAGENTA, 1),
 
 AMULET("amulet of item insecurity",	 "arasia",	CURSED_PARTS,  3, MT_BRICK, CLR_ORANGE, 1),
 AMULET("amulet of stopped evolution",	 "darwinism",	DEPROVEMENT,  3, MT_FLESH, CLR_CYAN, 1),
@@ -9199,16 +9200,16 @@ GEM("marble", "white",                 200, 0,  200, 5, 5, 15,  3, MT_GEMSTONE, 
 GEM("morion", "black",                 200, 0,  200, 5, 5, 15,  7, MT_GEMSTONE, CLR_BLACK, 2),
 GEM("jade", "green",                   200, 0,  300, 5, 5, 15,  6, MT_GEMSTONE, CLR_GREEN, 1),
 /* jade should be last for runestone mimics, makemon.c, and white glass first worthless glass --Amy */
-GEM("worthless piece of white glass", "white",   2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_WHITE, 1),
-GEM("worthless piece of blue glass", "blue",     2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_BLUE, 1),
-GEM("worthless piece of red glass", "red",       2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_RED, 1),
-GEM("worthless piece of yellowish brown glass", "yellowish brown", 2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BROWN, 1),
-GEM("worthless piece of orange glass", "orange", 2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_ORANGE, 1),
-GEM("worthless piece of yellow glass", "yellow", 2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_YELLOW, 1),
-GEM("worthless piece of black glass",  "black",  2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLACK, 1),
-GEM("worthless piece of pink glass",  "pink",  2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
-GEM("worthless piece of cyan glass",  "cyan",  2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_CYAN, 1),
-GEM("worthless piece of teal glass",  "teal",  2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_CYAN, 1),
+GEM("worthless piece of white glass", "white",   2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_WHITE, 1),
+GEM("worthless piece of blue glass", "blue",     2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_BLUE, 1),
+GEM("worthless piece of red glass", "red",       2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_RED, 1),
+GEM("worthless piece of yellowish brown glass", "yellowish brown", 2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BROWN, 1),
+GEM("worthless piece of orange glass", "orange", 2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_ORANGE, 1),
+GEM("worthless piece of yellow glass", "yellow", 2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_YELLOW, 1),
+GEM("worthless piece of black glass",  "black",  2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BLACK, 1),
+GEM("worthless piece of pink glass",  "pink",  2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_MAGENTA, 1),
+GEM("worthless piece of cyan glass",  "cyan",  2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_CYAN, 1),
+GEM("worthless piece of teal glass",  "teal",  2954, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_CYAN, 1),
 GEM("worthless piece of green glass", "green",   2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_GREEN, 1),
 GEM("worthless piece of radiant glass", "radiant",   2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_BRIGHT_GREEN, 1),
 GEM("worthless piece of violet glass", "violet", 2955, 0, 0, 6, 6, 6, 5, MT_GLASS, CLR_MAGENTA, 1),
@@ -9319,7 +9320,7 @@ GEM("Dora's jewel", "orange", 10, 0, 0, 20, 20, 6, 5, MT_GLASS, CLR_ORANGE, 1),
 
 /* Placement note: there is a wishable subrange for   
  * "gray stones" in the o_ranges[] array in objnam.c  
- * that is currently everything between luckstones and flint (inclusive).
+ * that is currently everything between luckstones and sling ammo (inclusive).
  * luckstone must be first
  */
 ROCK("luckstone", "gray",			0, 600,  0,   10, 15, 15, 1, 10, 7, MT_MINERAL, CLR_GRAY, 1),
@@ -9384,6 +9385,7 @@ ROCK("rebel stone", "gray",			0, 10,  0,   10, 30, 30, 1, 10, 9, MT_MINERAL, CLR
 ROCK("shit stone", "gray",			0, 10,  0,   10, 30, 30, 1, 10, 9, MT_MINERAL, CLR_GRAY, 1),
 ROCK("stone of misfiring", "gray",		0, 10,  0,   10, 30, 30, 1, 10, 9, MT_MINERAL, CLR_GRAY, 1),
 ROCK("stone of permanence", "gray",		0, 10,  0,   10, 30, 30, 1, 10, 9, MT_MINERAL, CLR_GRAY, 1),
+ROCK("stone of complete fuckup", "gray",	0, 10,  0,   10, 30, 30, 1, 10, 9, MT_MINERAL, CLR_GRAY, 1),
 
 ROCK("amnesia stone", "gray",			0, 10,  0,   10, 30, 30, 1, 10, 9, MT_MINERAL, CLR_GRAY, 1),
 ROCK("bigscript stone", "gray",		0, 10,  0,   10, 30, 30, 1, 10, 9, MT_MINERAL, CLR_GRAY, 1),

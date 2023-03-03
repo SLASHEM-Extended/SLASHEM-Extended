@@ -3969,6 +3969,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_RESIST_CONFUSION, "todo" },
 	{ SPE_RESIST_CONTAMINATION, "todo" },
 
+	{ STONE_OF_COMPLETE_FUCKUP, "todo" },
 	{ REAL_LIE_STONE, "todo" },
 	{ ESCAPE_PAST_STONE, "todo" },
 	{ PETHATE_STONE, "todo" },
@@ -4010,6 +4011,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CLOAK_OF_NULLIFICATION, "todo" },
 	{ AMULET_OF_MISCOLORATION, "amulet of todo" },
 	{ AMULET_OF_LOST_KNOWLEDGE, "amulet of todo" },
+	{ AMULET_OF_SEVERE_FUCKUP, "amulet of todo" },
 
 	{ CASINO_CHIP, "amulet of todo" },
 
@@ -7161,6 +7163,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_RESIST_CONFUSION, "todo" },
 	{ SPE_RESIST_CONTAMINATION, "todo" },
 
+	{ STONE_OF_COMPLETE_FUCKUP, "todo" },
 	{ REAL_LIE_STONE, "todo" },
 	{ ESCAPE_PAST_STONE, "todo" },
 	{ PETHATE_STONE, "todo" },
@@ -7202,6 +7205,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CLOAK_OF_NULLIFICATION, "todo" },
 	{ AMULET_OF_MISCOLORATION, "amulet of todo" },
 	{ AMULET_OF_LOST_KNOWLEDGE, "amulet of todo" },
+	{ AMULET_OF_SEVERE_FUCKUP, "amulet of todo" },
 
 	{ CASINO_CHIP, "amulet of todo" },
 
@@ -9239,9 +9243,9 @@ STATIC_OVL NEARDATA const struct o_range o_ranges[] = {
 	{ "firearm", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "gun", 	WEAPON_CLASS, PISTOL, AUTO_SHOTGUN },
 	{ "grenade", 	WEAPON_CLASS, FRAG_GRENADE, GAS_GRENADE },
-	{ "venom",	VENOM_CLASS,  BLINDING_VENOM, ACID_VENOM },
-	{ "gray stone",	GEM_CLASS,    LUCKSTONE,      FLINT },
-	{ "grey stone",	GEM_CLASS,    LUCKSTONE,      FLINT },
+	{ "venom",	VENOM_CLASS,  BLINDING_VENOM, SEGFAULT_VENOM },
+	{ "gray stone",	GEM_CLASS,    LUCKSTONE,      SLING_AMMO },
+	{ "grey stone",	GEM_CLASS,    LUCKSTONE,      SLING_AMMO },
 };
 
 #define BSTRCMP(base,ptr,string) ((ptr) < base || strcmp((ptr),string))

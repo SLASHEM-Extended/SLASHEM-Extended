@@ -1070,6 +1070,9 @@ register struct obj *obj;
 	case AMULET_OF_LOST_KNOWLEDGE:
 		You("forgot what a toilet is. Can you eat it? Or pick it up and throw it at an enemy?");
 		break;
+	case AMULET_OF_SEVERE_FUCKUP:
+		pline_The("toilet seems to be no longer there, and instead you see a pile of debris and rubble! Looks like the aftermath of a bomb explosion!");
+		break;
 	case AMULET_OF_ESCAPE_PROBLEM:
 		pline_The("water runs in circles, getting infinitesimally closer to the drain but not actually reaching it!");
 		break;
@@ -1763,7 +1766,7 @@ dodown()
 		at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
 
 		/* based on a feature from nethack 3.7, a nastytrap that makes downstairs skip levels sometimes --Amy */
-		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone() || autismweaponcheck(ART_UNATTAINABLE_NINETEEN) ) {
+		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone() || (uamul && uamul->oartifact == ART_FOOK_SRI_SAEVE) || autismweaponcheck(ART_UNATTAINABLE_NINETEEN) ) {
 			if (!rn2(3) && !(dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !(dunlev(&u.uz) == (dunlevs_in_dungeon(&u.uz) - 1) ) && !(u.ux == sstairs.sx && u.uy == sstairs.sy) ) {
 
 				d_level dtmp;

@@ -4314,6 +4314,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone())) {
+		sprintf(buf, "the following problem: Items lose their BUC identification like they do in the variant that calls itself 3.7 and don't stack properly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FuckfuckfuckEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (OptionBugEffect || u.uprops[OPTION_BUG_EFFECT].extrinsic || have_optionstone())) {
 		sprintf(buf, "the following problem: Your options may randomly change to other values.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", OptionBugEffect);
@@ -9026,6 +9032,11 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone()) {
+		sprintf(buf, "the following problem: Items lose their BUC identification like they do in the variant that calls itself 3.7 and don't stack properly.");
+	      sprintf(eos(buf), " (%ld)", FuckfuckfuckEffect);
 		dump(youhad, buf);
 	}
 	if (OptionBugEffect || u.uprops[OPTION_BUG_EFFECT].extrinsic || have_optionstone()) {

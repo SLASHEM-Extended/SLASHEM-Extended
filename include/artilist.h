@@ -11493,6 +11493,10 @@ A("Bat from Baltimore",                BASEBALL_BAT, /* by Demo, stealer trap, b
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(3,30),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
 
+A("fook sri saeve",				AMULET_OF_SEVERE_FUCKUP, /* monster speed bug and dschueueuet trap effect when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

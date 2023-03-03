@@ -656,6 +656,16 @@ boolean creation;
 	    pline("%s out.", Tobjnam(otmp, "go"));
 	snuff_otmp = TRUE;
     }
+
+    if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone()) {
+	if (otmp) {
+		otmp->known = FALSE;
+		otmp->dknown = FALSE;
+		otmp->rknown = FALSE;
+		otmp->bknown = FALSE;
+	}
+    }
+
     /* Must do carrying effects on object prior to add_to_minv() */
     carry_obj_effects(mtmp, otmp);
     /* add_to_minv() might free otmp [if merged with something else],

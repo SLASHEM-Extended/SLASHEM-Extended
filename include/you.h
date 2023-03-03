@@ -972,6 +972,7 @@ struct you {
 	boolean nastinator267;
 	boolean nastinator268;
 	boolean nastinator269;
+	boolean nastinator270;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;

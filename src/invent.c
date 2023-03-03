@@ -7367,6 +7367,21 @@ have_nopeskillstone()
 	return(FALSE);
 }
 
+boolean
+have_fuckfuckfuckstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == STONE_OF_COMPLETE_FUCKUP)
+			return(TRUE);
+		}
+	if (u.nastinator270) return TRUE;
+	if (sjwcheck(270)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 15 && u.femauspices15 == 10) return TRUE;
+	return(FALSE);
+}
+
 
 
 
@@ -9776,6 +9791,13 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 
 	if (obj->stackmarked || otmp->stackmarked) return FALSE; /* by Amy */
 
+	if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone()) {
+		if (obj->bknown != otmp->bknown) return FALSE;
+		if (obj->known != otmp->known) return FALSE;
+		if (obj->rknown != otmp->rknown) return FALSE;
+		if (obj->dknown != otmp->dknown) return FALSE;
+	}
+
 	if (obj->unpaid != otmp->unpaid ||
 	    obj->spe != otmp->spe || (obj->dknown && !otmp->dknown) ||
 	    (obj->bknown && !otmp->bknown && !(Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA) ) ) ||
@@ -9803,8 +9825,8 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->bypass != otmp->bypass)
 	    return(FALSE);
 
-	if ((obj->oclass==WEAPON_CLASS || obj->oclass==ARMOR_CLASS) &&
-	    (obj->oerodeproof!=otmp->oerodeproof || (obj->rknown && !otmp->rknown) ))
+	/* WUUUUUUUUT different erosionproofing STACKED if it wasn't a weapon or armor piece??? WHAT THE FUCK --Amy */
+	if ( (obj->oerodeproof != otmp->oerodeproof) || (obj->rknown && !otmp->rknown) )
 	    return FALSE;
 
 	if (obj->oclass == FOOD_CLASS && (obj->oeaten != otmp->oeaten ||
@@ -9835,6 +9857,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	 * the initial age is no longer a multiple of 25. The
 	 * simplest solution is just to use 20 instead, since
 	 * initial candle age is always a multiple of 20.
+	 * Amy edit: why the everloving *fuck* would you hack the age such that it depends on cost
 	 */
 	if ((obj->otyp == TORCH || Is_candle(obj)) && obj->age/20 != otmp->age/20)
 	    return(FALSE);
@@ -15223,6 +15246,8 @@ boolean knoweverything;
 				pline("This amulet causes the dungeon to become miscolored."); break;
 			case AMULET_OF_LOST_KNOWLEDGE:
 				pline("This amulet makes it so that you no longer know how to use unidentified spellbooks or tools, so you have to identify their base type first."); break;
+			case AMULET_OF_SEVERE_FUCKUP:
+				pline("This amulet causes items to lose their BUC knowledge when picked up by monsters, and they no longer stack properly."); break;
 			case AMULET_OF_WRONG_SEEING:
 				pline("This amulet causes books to be read incorrectly."); break;
 			case AMULET_OF_ESCAPE_PROBLEM:
@@ -18086,6 +18111,8 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes your projectiles to always misfire."); break;
 		 	case STONE_OF_PERMANENCE:
 				pline("A stone that curses itself and causes rapid dungeon regrowth."); break;
+		 	case STONE_OF_COMPLETE_FUCKUP:
+				pline("A stone that curses itself and causes variantthatcallsitself3.7-style BUC fuckery."); break;
 
 		 	case DEAFNESS_STONE:
 				pline("A stone that curses itself and causes a hearing break."); break;
@@ -24970,6 +24997,8 @@ boolean knoweverything;
 					pline("Artifact specs: +3 to-hit and +10 damage."); break;
 				case ART_BAT_FROM_BALTIMORE:
 					pline("Artifact specs: +3 to-hit and +30 damage, chaotic. This artifact was suggested by Demo and has a host of downsides including the stealer and banking trap effects, aggravate monster, feeler gauges, bad effects and dimness, and if you equip it, you get the curseuse and autocurse nastytrap effects for 5000 turns even if you then immediately put the bat away again."); break;
+				case ART_FOOK_SRI_SAEVE:
+					pline("Artifact specs: monster speed bug and dschueueuet bug when worn. Because the variant that calls itself 3.7 is severely fucked up and can just go to hell."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

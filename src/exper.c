@@ -1328,6 +1328,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, you cannot use spellbooks or tools unless their base item type is identified.");
 						else pline("Your auspices say: 15 9");
 						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 15, items lose their BUC, enchantment and rustproofing knowledge when monsters pick them up, and they no longer stack properly.");
+						else pline("Your auspices say: 15 10");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 16) {
