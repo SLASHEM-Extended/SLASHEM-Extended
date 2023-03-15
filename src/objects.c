@@ -7807,6 +7807,10 @@ SCROLL((char *)0,               "WAYNE INTRESSIERTS",  P_NONE,     1,   0, 100, 
 SCROLL((char *)0,               "SIGERING ROSAT",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "JESUS IN THE GARAGE",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "DER DRUCKER NUEDELT MINUTENLANG RUM",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "YOU DROVE IN FRONT OF AN OBSTACLE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "GO ON THE BARRICADES",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "SEH GUT  BRAUCH KEINE BRILLE",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "WARUM BIN ICH SO VERPIHINST",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL
