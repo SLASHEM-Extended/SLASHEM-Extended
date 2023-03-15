@@ -487,7 +487,13 @@ boolean racialexception;
 	strcpy(nambuf, See_invisible ? Monnam(mon) : mon_nam(mon));
 
 	old = which_armor(mon, flag);
-	if (old && old->cursed) return;
+
+	/* hostile monsters may occasionally cheat and simply shake off a cursed item --Amy
+	 * In Soviet Russia, curses are absolute. No one may be able to ever take off a cursed item, not even monsters who
+	 * are, by definition, completely unable to remove curses and therefore have zero chance to ever switch to
+	 * something else. Because it's such an ingenious strategy to carry around a -10 leather armor and give it to
+	 * a monster who will then forever have shitty AC. */
+	if (old && old->cursed && (issoviet || mon->mpeaceful || mon->mtame || rn2(5)) ) return;
 	if (old && flag == W_AMUL) return; /* no such thing as better amulets */
 	best = old;
 

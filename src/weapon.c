@@ -3192,7 +3192,7 @@ register struct monst *mon;
 		 * can know it's cursed and needn't even bother trying.
 		 * Still....
 		 */
-		if (mw_tmp && mw_tmp->cursed && mw_tmp->otyp != CORPSE) {
+		if (mw_tmp && mw_tmp->cursed && (mon->mpeaceful || mon->mtame || issoviet || rn2(5)) && mw_tmp->otyp != CORPSE) {
 		    if (canseemon(mon)) {
 			char welded_buf[BUFSZ];
 			const char *mon_hand = mbodypart(mon, HAND);
