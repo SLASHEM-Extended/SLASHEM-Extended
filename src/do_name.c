@@ -322,14 +322,16 @@ register struct obj *obj;
 	/* strip leading and trailing spaces; unnames item if all spaces */
 	(void)mungspaces(buf);
 
-	/* relax restrictions over proper capitalization for artifacts */
-	if ((aname = artifact_name(buf, &objtyp)) != 0 && objtyp == obj->otyp)
-		strcpy(buf, aname);
-
 	if (obj->oartifact) {
 		pline_The("artifact seems to resist the attempt.");
 		return;
-	} else if (obj->fakeartifact) {
+	}
+
+	/* relax restrictions over proper capitalization for artifacts */
+	if ((aname = artifact_name(buf, &objtyp)) != 0 && /*objtyp == obj->otyp*/ (restrict_name(obj, aname) || exist_artifact(obj->otyp, aname)) )
+		strcpy(buf, aname);
+
+	if (obj->fakeartifact) {
 		/* It was lame to be able to sort out fake artifacts by naming them, and besides, I made up so many beautiful
 		 * names for all the fake artifacts! You're not supposed to overwrite them with some gibberish! --Amy */
 		pline_The("artifact seems to resist the attempt.");
