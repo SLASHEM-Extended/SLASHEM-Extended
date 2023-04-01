@@ -5968,6 +5968,8 @@ static const char *epitaphs[] = {
 	"WTF, I just died. Dude, I was polymorphed into a powerful form with 334 maximum HP and that nazgul just killed me instantly. 'It breathes--More-- You have died.'", /* happened to Amy in angbander mode */
 	"Being an idiot is great, don't you agree?",
 	"huh something has got to be bugged there, I was in Minetown with my level 4 character and offered 1600 zorkmids but the priest somehow didn't give me protection. Amy must have made a programming mistake somewhere.",
+	"whaaaaat, you nooblar didn't instantly guess that aphantaconotan disks cure insight? lol every little child knows that, it's something you learn at elementary school! of course I didn't bother adding an in-game hint about that because it was supposed to be OBVIOUS, you gross ignoramus! :D :D :D",
+	"but of course the crystal skulls have to be taken to level 3 of Mithardir and dropped on the eight squares around the magic portal which will cause Father of Death to appear, the secret boss of Mithardir who holds the fourth key of law! lol you REALLY had to ask me to figure that out lol noob :P",
 
 };
 

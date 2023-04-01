@@ -7811,6 +7811,10 @@ SCROLL((char *)0,               "YOU DROVE IN FRONT OF AN OBSTACLE",  P_NONE,   
 SCROLL((char *)0,               "GO ON THE BARRICADES",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "SEH GUT  BRAUCH KEINE BRILLE",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "WARUM BIN ICH SO VERPIHINST",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "WHY DO YOU WEAR HIGH HEELS IN YELLOW LENG",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "KANN MIT STILETTOS WEDER ANSATZWEISE NOCH ABSATZWEISE LAUFEN",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "SCHWULERNAHCERFEHRSFERBUND",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "WEINHOHEITEN RAUBRITTER UND DIE DUDEN REDAKTION",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 
 
 #ifdef MAIL

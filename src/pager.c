@@ -5331,7 +5331,7 @@ static NEARDATA const char * const longinglines[] = {
 "Did you know that your fingers can turn into a very erogenous zone when you let %s place her stiletto heels on them? Just think about how wonderful the pain would feel!",
 "Being trampled by %s's extra thick block heels is really lewd!",
 "Even if you're not normally into ballbusting, you'd certainly make an exception for %s's godlike women's feet.",
-"It's really annoying that you have to get up and leave for work each day, because you'd much rather just spend the entire day in bed together with %d.",
+"It's really annoying that you have to get up and leave for work each day, because you'd much rather just spend the entire day in bed together with %s.",
 "%s is a goddess that has been created to drive you insane, and make you think about her all day and night because she's incredibly beautiful.",
 "You want %s to wear lady boots with extra thick block heels, because she can certainly crush your fingers and toes underneath the lovely heels very well.",
 "After a long day of work, you just want to spend the evening together with %s, the woman of your dreams.",
@@ -28986,6 +28986,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"The unbearable odor of the rictim terrorizer's body lotion wafts through the dungeon, and having to smell such a stink makes you want to vomit.",
 	"Some bitter male smell is hanging in the air... and it's getting stronger! You can hardly breathe!",
 	"Even your most odoriferous relative doesn't smell as bad as the courtier! Ugh!",
+	"Back when she was little, Amy actually thought that the term 'stealth' meant the act of stealing something.",
 
 };
 
