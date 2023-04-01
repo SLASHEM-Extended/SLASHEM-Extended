@@ -107,6 +107,12 @@ register struct monst *mtmp;
 	register int x = mtmp->mx, y = mtmp->my;
 	boolean already_saw_mon = !occupation ? 0 : canspotmon(mtmp);
 	int rd = dochug(mtmp);
+
+	/* Amy edit: if you have a lot of astral vision range, things farther away than BOLT_LIM should still interrupt you
+	 * originally the constant interruption effect when you have astral vision was a bug, but I won't fix it :-P */
+	int interruptrange = BOLT_LIM+1;
+	if (u.xray_range > interruptrange) interruptrange = u.xray_range;
+
 #if 0
 	/* part of the original warning code which was replaced in 3.3.1 */
 	register struct permonst *mdat = mtmp->data;        
@@ -154,10 +160,10 @@ register struct monst *mtmp;
 	if (occupation && !rd && !Confusion &&
 	    (!mtmp->mpeaceful || Hallucination) &&
 	    /* it's close enough to be a threat */
-	    distu(mtmp->mx,mtmp->my) <= (BOLT_LIM+1)*(BOLT_LIM+1) &&
+	    distu(mtmp->mx,mtmp->my) <= (interruptrange * interruptrange) &&
 	    /* and either couldn't see it before, or it was too far away */
 	    (!already_saw_mon || !couldsee(x,y) ||
-		distu(x,y) > (BOLT_LIM+1)*(BOLT_LIM+1)) &&
+		distu(x,y) > (interruptrange * interruptrange)) &&
 	    /* can see it now, or sense it and would normally see it */
 	    (canseemon(mtmp) ||
 		(sensemon(mtmp) && couldsee(mtmp->mx,mtmp->my))) &&
