@@ -191,7 +191,7 @@ MONSTER: '@',"tank breaker",(26,14),hostile,awake
 # Elite guard
 MONSTER: '@',"riot breaker",(04,13),hostile
 # Objects
-OBJECT:')',"pistol",(31,10),blessed,0,"Chekhov's gun"
+OBJECT:')',"pistol",(31,10),blessed,0,"Chekhov's Gun"
 OBJECT:')',"pistol bullet",(31,10)
 OBJECT:')',"pistol bullet",(31,10)
 OBJECT:'(',"chest",(55,18),blessed,2
