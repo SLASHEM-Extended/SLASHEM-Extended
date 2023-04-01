@@ -2956,7 +2956,7 @@ struct obj *obj;
 		obj->spe--;
 		if (obj->spe < 0) {
 			int randospe = abs(obj->spe);
-			if (randospe < rnd(20)) {
+			if (randospe > rnd(20)) {
 				useup(obj);
 				pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
