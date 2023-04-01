@@ -40,6 +40,8 @@ stoned_dialogue()
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	if (i == 7L)
 		HFast = 0L;
+	if (i == 3L)
+		pline("Be careful, you will turn into a statue if you don't stop this process.");
 	if (i == 1L) {
 		nomul(-3, "getting stoned", FALSE);
 		nomovemsg = 0;
@@ -2849,6 +2851,7 @@ nh_timeout()
 	if (Sick && (moves % 7 == 0) ) {
 		pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "Ye still feel poxy." : "You still feel deathly sick.");
 		if (Sickopathy) pline("You have %ld turns to live.", Sick);
+		else if (!rn2(5)) pline("If you don't cure this condition in time, you will die.");
 	}
 	if(u.mtimedone && !--u.mtimedone) {
 		if (!Race_if(PM_UNGENOMOLD) && u.polyformed) rehumanize();
