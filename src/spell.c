@@ -8125,6 +8125,32 @@ whisperchoice:
 
 	case SPE_ACID_INGESTION:
 		pline("Sulfuric acid forms in your mouth...");
+
+		/* bullshit downside by Amy - we don't want petrification to be THAT trivial to cure... */
+
+		if (!rn2(2)) {
+			if (u.uhpmax < 2) {
+				u.youaredead = 1;
+				killer = "dissolving completely";
+				killer_format = KILLED_BY;
+				done(DIED);
+				u.youaredead = 0;
+			} else {
+				u.uhpmax--;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = TRUE;
+				if (Upolyd) {
+					if (u.mhmax > 1) u.mhmax--;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+				}
+			}
+			Your("health was damaged.");
+		} else {
+			u.negativeprotection += rnd(3);
+			MCReduction += rn1(2500, 2500);
+			Your("body was damaged.");
+		}
+
 		if (Acid_resistance && (StrongAcid_resistance || AcidImmunity || rn2(10)) ) {
 			pline("This tastes %s.", FunnyHallu ? "tangy" : "sour");
 		} else {

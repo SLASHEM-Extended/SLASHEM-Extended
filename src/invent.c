@@ -17523,7 +17523,7 @@ boolean knoweverything;
 			case SPE_ENERGY_BOLT:
 				pline("A medium-damage attack spell that cannot be resisted."); break;
 			case SPE_ACID_INGESTION:
-				pline("This spell creates acid in your mouth, which you will then swallow, resulting in damage unless you're acid resistant. Use it to cure petrification."); break;
+				pline("This spell creates acid in your mouth, which you will then swallow, resulting in damage unless you're acid resistant. Use it to cure petrification. Beware: it will also randomly drain your maximum health or temporarily reduce your protection!"); break;
 			case SPE_INDUCE_VOMITING:
 				pline("If you want to vomit for some reason, you can cast this spell."); break;
 			case SPE_REBOOT:
