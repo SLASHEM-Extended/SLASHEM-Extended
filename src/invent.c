@@ -947,7 +947,7 @@ struct obj *obj;
 		if (!rn2(5)) obj->rknown = FALSE;
 		if (!rn2(5)) obj->dknown = FALSE;
 		if (!rn2(5)) {
-			if (OBJ_DESCR(objects[obj->otyp]) && (objects[obj->otyp].oc_name_known || objects[obj->otyp].oc_uname)) 
+			if (objects[obj->otyp].oc_name_known || objects[obj->otyp].oc_uname) 
 				forget_single_object(obj->otyp);
 			if (!obj->oartifact && !obj->fakeartifact && obj->onamelth) {
 				obj->onamelth = 0;
@@ -7699,6 +7699,7 @@ have_fuckfuckfuckstone()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_COMPLETE_FUCKUP) {
+			if (otmp->oartifact == ART_FUUUUUUUUCK_) return 2;
 			return(TRUE);
 		}
 	}
@@ -25437,6 +25438,8 @@ boolean knoweverything;
 				case ART_THATS_DERP:
 					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
 				case ART_WALLIFY_UP_:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_FUUUUUUUUCK_:
 					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
 
 				default:

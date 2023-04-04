@@ -2162,8 +2162,11 @@ forget_single_object(obj_id)
 {
 	if (obj_id == RIN_MEMORY && rn2(6))
 	    return;   /* does not want to be forgotten */
-	objects[obj_id].oc_name_known = 0;
-	objects[obj_id].oc_pre_discovered = 0;	/* a discovery when relearned */
+
+	if (OBJ_DESCR(objects[obj_id])) {
+		objects[obj_id].oc_name_known = 0;
+		objects[obj_id].oc_pre_discovered = 0;	/* a discovery when relearned */
+	}
 	if (objects[obj_id].oc_uname) {
 	    free((void *)objects[obj_id].oc_uname);
 	    objects[obj_id].oc_uname = 0;
@@ -2230,8 +2233,8 @@ forget_objects(percent)
 	}
 
 	for (count = 0, i = 1; i < NUM_OBJECTS; i++)
-	    if (OBJ_DESCR(objects[i]) &&
-		    (objects[i].oc_name_known || objects[i].oc_uname))
+		/* don't need to check for OBJ_DESCR(objects[otmp->otyp]) - forget_single_object() does that now --Amy */
+	    if (objects[i].oc_name_known || objects[i].oc_uname)
 		indices[count++] = i;
 
 	randomize(indices, count);

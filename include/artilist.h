@@ -11721,6 +11721,10 @@ A("Wallify Up!",				STONE_OF_PERMANENCE, /* walls regrow another 5 times as fast
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+A("FUUUUUUUUCK!",				STONE_OF_COMPLETE_FUCKUP, /* also unidentifies the base item */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

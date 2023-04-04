@@ -663,6 +663,13 @@ boolean creation;
 		otmp->dknown = FALSE;
 		otmp->rknown = FALSE;
 		otmp->bknown = FALSE;
+
+		if (have_fuckfuckfuckstone() == 2) {
+			/* OBJ_DESCR(objects[otmp->otyp]) is checked by forget_single_object() now --Amy */
+			if (objects[otmp->otyp].oc_name_known || objects[otmp->otyp].oc_uname)
+				forget_single_object(otmp->otyp);
+		}
+
 	}
     }
 
