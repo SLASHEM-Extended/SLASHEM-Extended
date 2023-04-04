@@ -2318,14 +2318,40 @@ yasichoice:
 	}
 
 	/* gradually time out temporary problems */
-	if (mtmp->mblinded && !--mtmp->mblinded)
-	    mtmp->mcansee = 1;
-	if (mtmp->mfrozen && !--mtmp->mfrozen) {
-	    mtmp->mcanmove = 1;
-	    mtmp->masleep = 0;
+	if (mtmp->mblinded) {
+		mtmp->mblinded--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mblinded) mtmp->mblinded--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mblinded) mtmp->mblinded--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mblinded) mtmp->mblinded--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mblinded) mtmp->mblinded--;
+		if (mtmp->mblinded < 1) {
+			mtmp->mcansee = 1;
+		}
+
 	}
-	if (mtmp->mfleetim && !--mtmp->mfleetim)
-	    mtmp->mflee = 0;
+	if (mtmp->mfrozen) {
+		mtmp->mfrozen--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfrozen) mtmp->mfrozen--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfrozen) mtmp->mfrozen--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfrozen) mtmp->mfrozen--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfrozen) mtmp->mfrozen--;
+
+		if (mtmp->mfrozen < 1) {
+			mtmp->mcanmove = 1;
+			mtmp->masleep = 0;
+		}
+	}
+	if (mtmp->mfleetim) {
+		mtmp->mfleetim--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfleetim) mtmp->mfleetim--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfleetim) mtmp->mfleetim--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfleetim) mtmp->mfleetim--;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ) && mtmp->mfleetim) mtmp->mfleetim--;
+
+		if (mtmp->mfleetim < 1) {
+			mtmp->mflee = 0;
+		}
+	}
 
 	/* FIXME: mtmp->mlstmv ought to be updated here */
     }

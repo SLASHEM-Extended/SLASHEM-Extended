@@ -1501,8 +1501,15 @@ register struct monst *mtmp;
 
 		int bleedingdamage = rnd(1 + (mtmp->bleedout / 10));
 		if (bleedingdamage > mtmp->bleedout) bleedingdamage = mtmp->bleedout;
+		int bleedingtimeout = bleedingdamage;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) {
+			bleedingdamage /= 5;
+			if (bleedingdamage < 1) bleedingdamage = 1;
+			bleedingtimeout *= 2;
+		}
+
 		mtmp->mhp -= bleedingdamage;
-		mtmp->bleedout -= bleedingdamage;
+		mtmp->bleedout -= bleedingtimeout;
 		if (cansee(mtmp->mx,mtmp->my) && !rn2(10)) pline("%s bleeds.", Monnam(mtmp));
 		if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* fail safe */
 
@@ -1561,6 +1568,8 @@ register struct monst *mtmp;
 	if (mtmp->mconf) {
 		int unconfusechance = 50;
 
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) unconfusechance = 10;
+
 		if (!PlayerCannotUseSkills && mtmp->mtame) {
 
 			switch (P_SKILL(P_PETKEEPING)) {
@@ -1582,6 +1591,8 @@ register struct monst *mtmp;
 	if (mtmp->mstun) {
 		int unstunchance = 10;
 
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) unstunchance = 2;
+
 		if (!PlayerCannotUseSkills && mtmp->mtame) {
 
 			switch (P_SKILL(P_PETKEEPING)) {
@@ -1601,25 +1612,48 @@ register struct monst *mtmp;
 	}
 
 	/* cancelled monsters get un-cancelled with a VERY low probability --Amy */
-	if (mtmp->mcan && !rn2(10000)) {
-		mtmp->mcan = 0;
-		mtmp->canceltimeout = 0;
+	if (mtmp->mcan) {
+		int uncancelchance = 10000;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) uncancelchance = 1000;
+
+		if (!rn2(uncancelchance)) {
+			mtmp->mcan = 0;
+			mtmp->canceltimeout = 0;
+		}
 	}
 	/* and much more often if you used the spell */
-	if (mtmp->mcan && mtmp->canceltimeout && !rn2(500)) {
-		mtmp->mcan = 0;
-		mtmp->canceltimeout = 0;
+	if (mtmp->mcan && mtmp->canceltimeout) {
+
+		int uncancelchance = 500;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) uncancelchance = 50;
+
+		if (!rn2(uncancelchance)) {
+			mtmp->mcan = 0;
+			mtmp->canceltimeout = 0;
+		}
 	}
 
 	/* slowed monsters get un-slowed with a low probability --Amy */
-	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && !mtmp->inertia && !rn2(2000)) {
-		mon_adjust_speed(mtmp, 1, (struct obj *)0);
-		mtmp->slowtimeout = 0;
+	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && !mtmp->inertia) {
+
+		int unslowchance = 2000;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) unslowchance = 200;
+
+		if (!rn2(unslowchance)) {
+			mon_adjust_speed(mtmp, 1, (struct obj *)0);
+			mtmp->slowtimeout = 0;
+		}
 	}
 	/* and much more often if you used the spell */
-	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && mtmp->slowtimeout && !mtmp->inertia && !rn2(100)) {
-		mon_adjust_speed(mtmp, 1, (struct obj *)0);
-		mtmp->slowtimeout = 0;
+	if (mtmp->mspeed == MSLOW && mtmp->permspeed == MSLOW && mtmp->slowtimeout && !mtmp->inertia) {
+
+		int unslowchance = 100;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) unslowchance = 10;
+
+		if (!rn2(unslowchance)) {
+			mon_adjust_speed(mtmp, 1, (struct obj *)0);
+			mtmp->slowtimeout = 0;
+		}
 	}
 
 	/* is the monster charging a special laser cannon? */
@@ -1870,8 +1904,21 @@ newbossSING:
 	if (mtmp->mhp <= 0) return(1); /* m_respond gaze can kill medusa */
 
 	/* fleeing monsters might regain courage */
-	if (mtmp->mflee && !mtmp->mfleetim
-	   && mtmp->mhp == mtmp->mhpmax && !rn2(25)) mtmp->mflee = 0;
+	if (mtmp->mflee && !mtmp->mfleetim && mtmp->mhp == mtmp->mhpmax) {
+		int unfleechance = 25;
+		if (!mtmp->mtame && (mtmp->data->geno & G_UNIQ)) unfleechance = 5;
+
+		if (!rn2(unfleechance)) {
+			mtmp->mflee = 0;
+		}
+
+	}
+
+	if (mtmp->mflee && (mtmp->mfleetim > 0) && !mtmp->mtame && (mtmp->data->geno & G_UNIQ)) {
+		mtmp->mfleetim /= 2;
+		if (mtmp->mfleetim < 0) mtmp->mfleetim = 0;
+		if (mtmp->mfleetim == 0) mtmp->mflee = 0;
+	}
 
 	if (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) {
 		mtmp->mflee = 0;
