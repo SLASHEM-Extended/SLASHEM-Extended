@@ -2748,11 +2748,11 @@ inaccurateguns:
 
 	}
 
-	if (MON_WEP(mon)) { /* shien lightsaber form */
+	if (MON_WEP(mon)) { /* shien monster lightsaber form */
 		struct obj *monweapon;
 		monweapon = MON_WEP(mon);
 		if (monweapon) {
-			if (is_lightsaber(monweapon) && tmp > -50 && monweapon->lamplit && !rn2(2)) {
+			if (is_lightsaber(monweapon) && tmp > -50 && monweapon->lamplit && (!rn2(2) || ((mon->data->geno & G_UNIQ) && !rn2(2)) ) ) {
 				tmp = -100;
 				pline("%s's lightsaber blocks the projectile!", Monnam(mon));
 

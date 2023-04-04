@@ -2815,10 +2815,16 @@ usemelee:
 				if (otmp) {
 				    hittmp = hitval(otmp, &youmonst);
 				    tmp += hittmp;
-				    if (is_lightsaber(otmp) && otmp->lamplit) tmp += 3; /* shii-cho lightsaber form */
+				    if (is_lightsaber(otmp) && otmp->lamplit) {  /* shii-cho monster lightsaber form */
+						tmp += 3;
+						if (mtmp->data->geno & G_UNIQ) tmp += 3;
+				    }
 
-					/* vaapad lightsaber form */
-				    if (is_lightsaber(otmp) && otmp->lamplit && bimanual(otmp) && otmp->altmode) tmp += 5;
+					/* vaapad monster lightsaber form */
+				    if (is_lightsaber(otmp) && otmp->lamplit && bimanual(otmp) && otmp->altmode) {
+					tmp += 5;
+					if (mtmp->data->geno & G_UNIQ) tmp += 5;
+				    }
 
 				    mswings(mtmp, otmp);
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL && (tmp > rnd(20+i)) ) {
@@ -6985,35 +6991,39 @@ hitmu(mtmp, mattk)
 
 			}
 
-			/* makashi lightsaber form - since monsters don't dual-wield, just check for 2-handedness and shield */
+			/* makashi monster lightsaber form - since monsters don't dual-wield, just check for
+			 * 2-handedness and shield */
 			if (otmp && is_lightsaber(otmp) && otmp->lamplit && !bimanual(otmp)) {
 				struct obj *blocker;
 				blocker = which_armor(mtmp, W_ARMS);
 				if (!blocker) {
 					dmg += 3;
+					if (mtmp->data->geno & G_UNIQ) dmg += 3;
 				}
 			}
 
-			/* vaapad lightsaber form */
+			/* vaapad monster lightsaber form */
 			if (otmp && is_lightsaber(otmp) && otmp->lamplit && bimanual(otmp) && otmp->altmode) {
 				dmg += 2;
+				if (mtmp->data->geno & G_UNIQ) dmg += 2;
 			}
 
-			/* wedi lightsaber form */
+			/* wedi monster lightsaber form */
 			if (otmp && is_lightsaber(otmp) && otmp->lamplit && !rn2(20)) {
 
 				pline("%s uses the force against you!", Monnam(mtmp));
 
 				int wedidamage = 5;
 				if (otmp->spe > 0) wedidamage += otmp->spe;
+				if (mtmp->data->geno & G_UNIQ) wedidamage *= 2;
 				losehp(wedidamage, "a monster using the Wedi lightsaber form", KILLED_BY);
-				if (!rn2(10)) {
+				if (!rn2((mtmp->data->geno & G_UNIQ) ? 5 : 10)) {
 					pushplayer(FALSE);
 				}
 			}
 
-			/* juyo lightsaber form - can disenchant your weapon, or cut it if it's under -20 */
-			if (otmp && is_lightsaber(otmp) && otmp->lamplit && uwep && !rn2(20)) {
+			/* juyo monster lightsaber form - can disenchant your weapon, or cut it if it's under -20 */
+			if (otmp && is_lightsaber(otmp) && otmp->lamplit && uwep && !rn2((mtmp->data->geno & G_UNIQ) ? 10 : 20)) {
 				if (!is_lightsaber(uwep) && !stack_too_big(uwep)) {
 					if (uwep->spe > -20) {
 						uwep->spe--;

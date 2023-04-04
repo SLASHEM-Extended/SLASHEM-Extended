@@ -2203,12 +2203,13 @@ struct monst *mon;
 		mmove *= 2;
 	}
 
-	/* ataru lightsaber form - boosts monster speed slightly if it has two weapon attacks */
+	/* ataru monster lightsaber form - boosts monster speed slightly if it has two weapon attacks
+	 * this is because monsters don't dual-wield in SLEX (unlike dnethack) but still need some kind of boost --Amy */
 	if (MON_WEP(mon) && (mons[mon->mnum].mattk[1].aatyp == AT_WEAP) ) {
 		struct obj *monweapon;
 		monweapon = MON_WEP(mon);
 		if (monweapon) {
-			if (is_lightsaber(monweapon) && !bimanual(monweapon) && monweapon->lamplit && !rn2(20)) {
+			if (is_lightsaber(monweapon) && !bimanual(monweapon) && monweapon->lamplit && !rn2((mon->data->geno & G_UNIQ) ? 10 : 20)) {
 				mmove *= 2;
 			}
 		}

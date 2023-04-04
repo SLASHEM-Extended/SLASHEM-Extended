@@ -381,12 +381,13 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	int spellev, chance, difficulty, splcaster, learning;
 	boolean monsterniman = FALSE;
 
-	if (MON_WEP(mtmp)) { /* niman lightsaber form */
+	if (MON_WEP(mtmp)) { /* niman monster lightsaber form */
 		struct obj *monweapon;
 		monweapon = MON_WEP(mtmp);
 		if (monweapon) {
 			if (is_lightsaber(monweapon) && monweapon->lamplit) {
 				ml += 5;
+				if (mtmp->data->geno & G_UNIQ) ml += 5;
 				monsterniman = TRUE;
 			}
 		}
@@ -549,7 +550,10 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	learning = 15 * (-difficulty / spellev);
 	chance += learning > 20 ? 20 : learning;
 
-	if (monsterniman) chance += 25;
+	if (monsterniman) {
+		chance += 25;
+		if (mtmp->data->geno & G_UNIQ) chance += 25;
+	}
 
 	/* clamp the chance */
 	if (chance < 0) chance = 0;

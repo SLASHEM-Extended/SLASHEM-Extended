@@ -375,7 +375,7 @@ register struct monst *mon;
 	if (mon->egotype_armorer) base -= 5;
 	if (mon->egotype_tank) base -= 10;
 
-	/* soresu lightsaber form */
+	/* soresu monster lightsaber form */
 	if (which_armor(mon, W_ARM)) {
 		struct obj *monarmor = which_armor(mon, W_ARM);
 		if (monarmor && (monarmor->otyp >= ROBE && monarmor->otyp <= ROBE_OF_WEAKNESS) ) {
@@ -384,6 +384,7 @@ register struct monst *mon;
 				monweapon = MON_WEP(mon);
 				if (monweapon) {
 					if (is_lightsaber(monweapon) && monweapon->lamplit) base -= 10;
+					if (mon->data->geno & G_UNIQ) base -= 10;
 				}
 			}			
 		}
