@@ -4549,6 +4549,9 @@ nomul(nval, txt, discountpossible)
 				}
 			}
 			u.singtrapocc = FALSE;
+			u.singtraptreaded = FALSE;
+			u.singtraphighheel = FALSE;
+			u.singtrapcowdung = FALSE;
 			pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
 
 		} else return;

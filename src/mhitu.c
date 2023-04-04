@@ -695,7 +695,7 @@ elena10:
 			}
 
 			/* soft sneakers use M4_SNEAKERS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SOFT_SNEAKERS) || (footwear && footwear->otyp == MARIKE_SNEAKERS) || (footwear && footwear->otyp == RUTH_SNEAKERS) || (footwear && footwear->otyp == LOU_SNEAKERS) || (footwear && footwear->otyp == JANA_SNEAKERS) || (footwear && footwear->otyp == ALMUT_SNEAKERS) || (footwear && footwear->otyp == YVONNE_GIRL_SNEAKERS) || (footwear && footwear->otyp == ELIF_SNEAKERS) || (footwear && footwear->otyp == KERSTIN_SNEAKERS) || (footwear && footwear->otyp == ANTJE_SNEAKERS) || (footwear && itemhasappearance(footwear, APP_BLUE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PLATFORM_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_RED_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PINK_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_REGULAR_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_EXCEPTIONAL_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_ELITE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_CYAN_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_GENTLE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_YELLOW_SNEAKERS)) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || (randomsexyheels == 12) || mtmp->data == &mons[PM_GIRL_WHO_LOOKS_LIKE_HER_NAME_WAS_FANNY] || mtmp->data == &mons[PM_CUDDLE_GIRL_SNEAKER] || mtmp->data == &mons[PM_STRIPED_GIRL_SNEAKER] || mtmp->data == &mons[PM_RED_SOLE_SNEAKER] || mtmp->data == &mons[PM_GREEN_SOLE_SNEAKER] || mtmp->data == &mons[PM_CYAN_SOLE_SNEAKER] || mtmp->data == &mons[PM_YELLOW_SOLE_SNEAKER] || mtmp->data == &mons[PM_BLUE_SOLE_SNEAKER] || mtmp->data == &mons[PM_PURPLE_SOLE_SNEAKER] || mtmp->data == &mons[PM_ORANGE_SOLE_SNEAKER] || mtmp->data == &mons[PM_BROWN_SOLE_SNEAKER] || mtmp->data == &mons[PM_GRAY_SOLE_SNEAKER] || mtmp->data == &mons[PM_PLATFORM_SNEAKER] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == SOFT_SNEAKERS) || (footwear && footwear->otyp == MARIKE_SNEAKERS) || (footwear && footwear->otyp == RUTH_SNEAKERS) || (footwear && footwear->otyp == LOU_SNEAKERS) || (footwear && footwear->otyp == JANA_SNEAKERS) || (footwear && footwear->otyp == ALMUT_SNEAKERS) || (footwear && footwear->otyp == YVONNE_GIRL_SNEAKERS) || (footwear && footwear->otyp == ELIF_SNEAKERS) || (footwear && footwear->otyp == KERSTIN_SNEAKERS) || (footwear && footwear->otyp == ANTJE_SNEAKERS) || (footwear && itemhasappearance(footwear, APP_BLUE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PLATFORM_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_RED_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_PINK_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_REGULAR_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_EXCEPTIONAL_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_ELITE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_CYAN_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_GENTLE_SNEAKERS)) || (footwear && itemhasappearance(footwear, APP_YELLOW_SNEAKERS)) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || (randomsexyheels == 12) || mtmp->data == &mons[PM_GIRL_WHO_LOOKS_LIKE_HER_NAME_WAS_FANNY] || mtmp->data == &mons[PM_CUDDLE_GIRL_SNEAKER] || mtmp->data == &mons[PM_STRIPED_GIRL_SNEAKER] || mtmp->data == &mons[PM_RED_SOLE_SNEAKER] || mtmp->data == &mons[PM_GREEN_SOLE_SNEAKER] || mtmp->data == &mons[PM_PINK_SOLE_SNEAKER] || mtmp->data == &mons[PM_CYAN_SOLE_SNEAKER] || mtmp->data == &mons[PM_YELLOW_SOLE_SNEAKER] || mtmp->data == &mons[PM_BLUE_SOLE_SNEAKER] || mtmp->data == &mons[PM_PURPLE_SOLE_SNEAKER] || mtmp->data == &mons[PM_ORANGE_SOLE_SNEAKER] || mtmp->data == &mons[PM_BROWN_SOLE_SNEAKER] || mtmp->data == &mons[PM_GRAY_SOLE_SNEAKER] || mtmp->data == &mons[PM_PLATFORM_SNEAKER] || mtmp->data == &mons[PM_RITA_S_HIGH_HEELED_SNEAKER]) ) {
 elena11:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -21438,12 +21438,149 @@ katicleaning()
 STATIC_PTR int
 singcleaning()
 {
+	char buf[BUFSZ];
+
 	if (delay) {
 		delay++;
+
+		if (!rn2(25)) {
+			switch (rnd(7)) {
+				case 1:
+					pline("Ugh! Icky!"); break;
+				case 2:
+					pline("Damn, that's some shitty work..."); break;
+				case 3:
+					pline("You wonder why you are even cleaning those stupid shoes."); break;
+				case 4:
+					pline("The damn shoe polish doesn't seem to be effective..."); break;
+				case 5:
+					pline("Why didn't she at least give you some piece of cloth?"); break;
+				case 6:
+					pline("Eek, you want to wash your hands at once."); break;
+				case 7:
+					pline("Damn, the shit is still clinging to the soles!"); break;
+			}
+		}
+
+		if (!rn2(200)) {
+			pline("Oh no! The can of shoe polish is empty. You need a new one, but Sing demands that you pay 50 euros for it.");
+
+			getlin("Buy a new can of shoe polish? If you refuse, the girl will be very angry. [y/yes/no]",buf);
+
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys")) ) {
+				if (u.ugold >= 50) {
+					u.ugold -= 50;
+					pline("Sing takes your 50 euros and hands you a new can of shoe polish.");
+				} else {
+					u.moneydebt += 50;
+					pline("Your debts have increased by 50 euros and amount to %d now, and Sing hands you a new can of shoe polish.", u.moneydebt);
+				}
+
+			} else {
+			      register struct monst *mtmp2;
+
+				for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+					if (!mtmp2->mtame) {
+						mtmp2->mpeaceful = 0;
+						mtmp2->mfrenzied = 1;
+						mtmp2->mhp = mtmp2->mhpmax;
+					}
+				}
+				u.singtrapocc = FALSE;
+				u.singtraptreaded = FALSE;
+				u.singtraphighheel = FALSE;
+				u.singtrapcowdung = FALSE;
+				pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
+				GravationEffect += rnz(2000);
+
+				u.singtrapocc = FALSE;
+				u.singtraptreaded = FALSE;
+				u.singtraphighheel = FALSE;
+				u.singtrapcowdung = FALSE;
+				return(0);
+
+			}
+
+		}
+
+		if (u.singtraptreaded && !rn2(100)) {
+			You("feel that it's gonna take forever to clean the shit from those stupid treaded soles, and don't really feel like continuing.");
+
+			getlin("Continue cleaning the shoes anyway? If you refuse, the girl will be very angry. [y/yes/no]",buf);
+
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys")) ) {
+
+				delay -= 10;
+				drain_alla(1);
+				pline("Well shit. Seems like the shit just won't come off those damn treaded soles.");
+
+			} else {
+
+			      register struct monst *mtmp2;
+
+				for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+
+					if (!mtmp2->mtame) {
+						mtmp2->mpeaceful = 0;
+						mtmp2->mfrenzied = 1;
+						mtmp2->mhp = mtmp2->mhpmax;
+					}
+				}
+				u.singtrapocc = FALSE;
+				u.singtraptreaded = FALSE;
+				u.singtraphighheel = FALSE;
+				u.singtrapcowdung = FALSE;
+				pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
+				EnmityBug += rnz(5000);
+
+				u.singtrapocc = FALSE;
+				u.singtraptreaded = FALSE;
+				u.singtraphighheel = FALSE;
+				u.singtrapcowdung = FALSE;
+				return(0);
+
+			}
+
+		}
+
+		if (u.singtraphighheel && !rn2(50)) {
+			u.usanity += rnd(10);
+			flags.botl = TRUE;
+			pline("That stupid woman, why couldn't she watch out where she steps with her damn high heels?");
+		}
+
+		if (u.singtrapcowdung && !rn2(200)) {
+			pline("Shit, the cow dung got all over your clothes.");
+
+			if (Upolyd) u.mhmax--;
+			u.uhpmax--;
+
+			if (u.mhmax < 1) u.mhmax = 1;
+			if (u.uhpmax < 1) u.uhpmax = 1;
+
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+
+			flags.botl = TRUE;
+
+			register struct obj *objX, *objX2;
+			for (objX = invent; objX; objX = objX2) {
+				objX2 = objX->nobj;
+				if (!rn2(5)) rust_dmg(objX, xname(objX), 2, TRUE, &youmonst);
+			}
+
+		}
+
 		return(1);
 	} else {
 		pline("Finally, you cleaned all the shit from the sexy female shoes!");
 		u.singtrapocc = FALSE;
+		u.singtraptreaded = FALSE;
+		u.singtraphighheel = FALSE;
+		u.singtrapcowdung = FALSE;
 		return(0);
 	}
 }
@@ -21476,12 +21613,19 @@ register struct monst *mtmp;
 
 	pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
 
+	if (treadedshoemonster(mtmp->data)) pline("Ugh, treaded soles. Cleaning them will be a shitload of work (literally).");
+	if (highheeledshoemonster(mtmp->data)) pline("You don't understand how a woman would be careless enough to make her high heels dirty like that...");
+
 	if (extraannoying) mtmp->singdirty = 2;
 	else mtmp->singdirty = 1;
 
 	if (yn("Do you want to clean them?") == 'y') {
 			delay = (extraannoying ? -200 : -40);
+			if (treadedshoemonster(mtmp->data)) delay *= 2;
 			u.singtrapocc = TRUE;
+			if (treadedshoemonster(mtmp->data)) u.singtraptreaded = TRUE;
+			if (highheeledshoemonster(mtmp->data)) u.singtraphighheel = TRUE;
+			if (extraannoying) u.singtrapcowdung = TRUE;
 			if (extraannoying) set_occupation(singcleaning, "cleaning cow dung from female shoes", 0);
 			else set_occupation(singcleaning, "cleaning dog shit from female shoes", 0);
 			mtmp->mpeaceful = TRUE;

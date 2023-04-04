@@ -1804,7 +1804,8 @@ newbossSING:
 		if (pm) {
 			struct monst *singbitch;
 			singbitch = makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK); /* not frenzied --Amy */
-			if (singbitch) {
+			if (singbitch) singbitch->singannoyance = TRUE; /* in case you're preoccupied... --Amy */
+			if (singbitch && !u.singtrapocc && !u.katitrapocc) {
 				if (!singclean(singbitch)) {
 					mtmp->mpeaceful = TRUE;
 					mtmp->mfrenzied = FALSE;

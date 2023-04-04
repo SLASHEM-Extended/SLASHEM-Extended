@@ -11335,6 +11335,9 @@ u_init()
 
 	u.katitrapocc = 0;
 	u.singtrapocc = 0;
+	u.singtraptreaded = FALSE;
+	u.singtraphighheel = FALSE;
+	u.singtrapcowdung = FALSE;
 
 	u.cellargravate = 0;
 

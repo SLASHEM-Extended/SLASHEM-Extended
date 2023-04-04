@@ -221,6 +221,8 @@
 #define spawnswithsneakers(ptr)		(((ptr)->mflags4 & M4_SNEAKERS) != 0L)
 #define spawnswithhammersandal(ptr)		(((ptr)->mflags4 & M4_HAMMERSANDAL) != 0L)
 #define spawnswithpumps(ptr)		(((ptr)->mflags4 & M4_PUMPS) != 0L)
+#define treadedshoemonster(ptr)		(((ptr)->mflags4 & M4_TREADED) != 0L)
+#define highheeledshoemonster(ptr)		(((ptr)->mflags4 & M4_HIGHHEELED) != 0L)
 
 #define canalwaysride(ptr)	((ptr) == &mons[PM_SLOW_HUMPER] || (ptr) == &mons[PM_TLOTTING_HUMPER] || (ptr) == &mons[PM_HUMPER] || (ptr) == &mons[PM_DOMESTIC_HUMPER] || (ptr) == &mons[PM_FAST_HUMPER] || (ptr) == &mons[PM_PETTY_FAST_HUMPER] || (ptr) == &mons[PM_BLITZ_HUMPER] || (ptr) == &mons[PM_WEAPONIZED_HUMPER] || (ptr) == &mons[PM_EFFING_HUMPER] || (ptr) == &mons[PM_TURBO_HUMPER] || (ptr) == &mons[PM_RARE_HUMPER] || (ptr) == &mons[PM_WOODEN_RAFT] || (ptr) == &mons[PM_MINE_TROLLEY] || (ptr) == &mons[PM_CLASHING_MINE_TROLLEY] || (ptr) == &mons[PM_SHIP_O__THE_SEA] || (ptr) == &mons[PM_RIDABLE_HUMPER] || (ptr) == &mons[PM_INKA_HUMPER] || (ptr) == &mons[PM_DIGGING_ON_FARMER])
 

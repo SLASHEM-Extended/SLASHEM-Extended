@@ -3064,7 +3064,12 @@ moveloop()
 		if (u.riderhack) u.riderhack = FALSE;
 
 		if (!occupation) u.katitrapocc = FALSE;
-		if (!occupation) u.singtrapocc = FALSE;
+		if (!occupation) {
+			u.singtrapocc = FALSE;
+			u.singtraptreaded = FALSE;
+			u.singtraphighheel = FALSE;
+			u.singtrapcowdung = FALSE;
+		}
 
 		if (!rn2(100)) u.statuetrapname = rn2(NUMMONS);
 
@@ -14635,6 +14640,9 @@ stop_occupation()
 					}
 				}
 				u.singtrapocc = FALSE;
+				u.singtraptreaded = FALSE;
+				u.singtraphighheel = FALSE;
+				u.singtrapcowdung = FALSE;
 				pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
 
 			} else return;
@@ -14645,6 +14653,9 @@ stop_occupation()
 		occupation = 0;
 		u.katitrapocc = FALSE;
 		u.singtrapocc = FALSE;
+		u.singtraptreaded = FALSE;
+		u.singtraphighheel = FALSE;
+		u.singtrapcowdung = FALSE;
 		flags.botl = 1; /* in case u.uhs changed */
 /* fainting stops your occupation, there's no reason to sync.
 		sync_hunger();
@@ -18096,6 +18107,9 @@ boolean new_game;	/* false => restoring an old game */
 
 		u.singtrapocc = 0;
 		u.katitrapocc = 0;
+		u.singtraptreaded = FALSE;
+		u.singtraphighheel = FALSE;
+		u.singtrapcowdung = FALSE;
 
 		u.ublesscnt += rnz(300);
 		change_luck(-1);

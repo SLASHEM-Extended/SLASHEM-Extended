@@ -343,6 +343,8 @@
 #define M4_SNEAKERS	0x00004000L	/* spawns with some sort of sneakers */
 #define M4_HAMMERSANDAL	0x00008000L	/* spawns with some sort of sandal weapon */
 #define M4_PUMPS	0x00010000L	/* spawns with some sort of pumps */
+#define M4_TREADED	0x00020000L	/* for MS_SHOE: has treaded sole */
+#define M4_HIGHHEELED	0x00040000L	/* for MS_SHOE: is high-heeled */
 
 #define M5_SPACEWARS	0x00000001L		/* Castle of the Winds monster */
 #define M5_JOKE	0x00000002L		/* joke monster */
