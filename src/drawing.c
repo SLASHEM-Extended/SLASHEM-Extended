@@ -4776,12 +4776,11 @@ boolean is_rlevel;
 		&& !iflags.grmode
 #  endif
 		)
-#ifndef PUBLIC_SERVER
-		/* putty can't display non-printable characters... so let's disable that horrible interface screw --Amy */
-	    monsyms[S_HUMAN] = 0x01; /* smiley face */
-#else
-	    ; /* nothing */
-#endif /* PUBLIC_SERVER */
+		/* putty can't display non-printable characters... so we need to provide a way to disable
+		 * that horrible interface screw --Amy */
+
+	    if (flags.epyxmode) monsyms[S_HUMAN] = 0x01; /* smiley face */
+
 
 # endif
 	for (i = 0; i < MAXPCHARS; i++)
@@ -4825,7 +4824,9 @@ boolean is_rlevel;
 	    showsyms[S_upstair] = 0xf0; /* Greek Xi */
 	    showsyms[S_dnstair] = 0xf0;
 #ifndef MSWIN_GRAPHICS
-#ifndef PUBLIC_SERVER
+
+	    if (flags.epyxmode) {
+
 	    showsyms[S_arrow_trap] = 0x04; /* diamond (cards) */
 	    showsyms[S_dart_trap] = 0x04;
 	    showsyms[S_falling_rock_trap] = 0x04;
@@ -5577,7 +5578,9 @@ boolean is_rlevel;
 	    showsyms[S_fuckfuckfuck_trap] = 0x04;
 
 	    showsyms[S_timerun_trap] = 0x04;
-#endif /* PUBLIC_SERVER */
+
+	    } /* epyx mode */
+
 #endif /* MSWIN */
 	}
 #endif /* ASCIIGRAPH */

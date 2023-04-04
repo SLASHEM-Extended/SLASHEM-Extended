@@ -119,6 +119,7 @@ static struct Bool_Opt
 	{"eatingdoors", &flags.eatingdoors, TRUE, SET_IN_GAME},
 	{"eatingwalls", &flags.eatingwalls, TRUE, SET_IN_GAME},
 	{"eight_bit_tty", &iflags.wc_eight_bit_input, FALSE, SET_IN_GAME},	/*WC*/
+	{"epyxmode", &flags.epyxmode, TRUE, SET_IN_GAME},
 #if defined(TTY_GRAPHICS) || defined(CURSES_GRAPIHCS)
 	{"extmenu", &iflags.extmenu, FALSE, SET_IN_GAME},
 #else
@@ -3270,6 +3271,11 @@ goodfruit:
 			    )
 			    bot_reconfig();
 
+			else if ((boolopt[i].addr) == &flags.epyxmode) {
+			    if (isrougelike || Is_rogue_level(&u.uz)) assign_rogue_graphics(TRUE);
+			    need_redraw = TRUE;
+			}
+
 			else if ((boolopt[i].addr) == &flags.invlet_constant) {
 			    if (flags.invlet_constant) reassign();
 			}
@@ -5254,7 +5260,7 @@ char *op;
 void
 randomoptionchange()
 {
-	switch (rnd(75)) {
+	switch (rnd(76)) {
 		case 1:
 			flags.autodig = !flags.autodig;
 			break;
@@ -5572,6 +5578,10 @@ randomoptionchange()
 					iflags.sortloot = 'f';
 					break;
 			}
+			break;
+		case 76:
+			flags.epyxmode = !flags.epyxmode;
+			if (isrougelike || Is_rogue_level(&u.uz)) assign_rogue_graphics(TRUE);
 			break;
 		default:
 			break;

@@ -47,6 +47,9 @@ struct flag {
 	boolean  eatingdoors; /* being a scurrier or similar will eat doors by moving into them */
 	boolean  eatingwalls; /* being a scurrier or similar will eat walls by moving into them */
 	boolean  end_own;	/* list all own scores */
+
+	boolean  epyxmode;	/* @ becomes smiley on the rogue level */
+
 	boolean  explore;	/* in exploration mode */
 #ifdef OPT_DISPMAP
 	boolean  fast_map;	/* use optimized, less flexible map display */
