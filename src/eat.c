@@ -3577,6 +3577,13 @@ register int pm;
 
 		break;
 
+	    case PM_JOHANNA_S_RED_LEATHER_BOOT:
+
+		u.extralives++;
+		pline("1-UP!");
+
+		break;
+
 	    case PM_BETTINA_S_COMBAT_BOOT:
 
 		pline("Ulch - the heel was tainted!");

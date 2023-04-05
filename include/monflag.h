@@ -190,6 +190,8 @@
 #define MR_DEATH	0x00400000L	/* resists death magic */
 #define MR_DRAIN	0x00800000L	/* resists level drain */
 
+/* MR_FIRE|MR_COLD|MR_SLEEP|MR_DISINT|MR_ELEC|MR_POISON|MR_ACID|MR_STONE|MR_DEATH|MR_DRAIN = resist all */
+
 #define MR_PLUSONE	0x01000000L	/* need +1 weapon to hit */
 #define MR_PLUSTWO	0x02000000L	/* need +2 weapon to hit */
 #define MR_PLUSTHREE	0x04000000L	/* need +3 weapon to hit */

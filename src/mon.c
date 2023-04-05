@@ -516,6 +516,7 @@ register struct monst *mtmp;
 	    case PM_SMOKY_QUARTZ_UNICORN:
 	    case PM_JET_UNICORN:
 	    case PM_PEARL_UNICORN:
+	    case PM_ICEFLAME_UNICORN:
 	    case PM_CURICORN:
 	    case PM_JAPICORN:
 	    case PM_BLASTICORN:
