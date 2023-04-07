@@ -3346,7 +3346,7 @@ dotech()
 			break;
 
 		case T_AMMO_UPGRADE:
-			pline("This technique requires you to wield firearm ammo, which will be enhanced in enchantment value and BUC. Remember that like everything that can affect a stack of items, big stacks of ammo (more than 25 ammos in one stack) have a chance to resist depending on the exact stack size.");
+			pline("This technique requires you to wield firearm ammo, which may be enhanced in enchantment value and BUC. Remember that like everything that can affect a stack of items, big stacks of ammo (more than 25 ammos in one stack) have a chance to resist depending on the exact stack size. Ammo that is already highly enchanted is less likely to gain additional enchantment points, and the maximum that you can reach with this technique is +10.");
 			break;
 
 		case T_LASER_POWER:
