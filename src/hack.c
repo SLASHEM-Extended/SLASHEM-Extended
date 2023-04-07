@@ -5375,6 +5375,9 @@ inv_weight()
 		}
 	}
 
+	if (BurdenedState) wt *= 2;
+	if (StrongBurdenedState) wt += 2000;
+
 	wc = weight_cap();
 	return (wt - wc);
 }

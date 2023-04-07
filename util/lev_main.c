@@ -873,6 +873,9 @@ static struct {
 	{ "nopeskill", NOPESKILL_TRAP },
 	{ "fuckfuckfuck", FUCKFUCKFUCK_TRAP },
 
+	{ "burden", BURDEN_TRAP },
+	{ "magic vacuum", MAGIC_VACUUM_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

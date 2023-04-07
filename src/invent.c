@@ -11273,6 +11273,8 @@ boolean knoweverything;
 				pline("Don't bother unless you're looking for a quarterstaff that does extra damage to undead and demons."); break;
 			case RUNED_ROD:
 				pline("Slightly better than a quarterstaff and made of iron, but still a weak two-handed weapon."); break;
+			case VACUUM_STAFF:
+				pline("Two-handed quarterstaff with good damage output, especially against small monsters, but it also shrouds you in a magic vacuum that makes your spells less effective."); break;
 			case STAR_ROD:
 				pline("A platinum quarterstaff that requires two hands and doesn't do all that much damage."); break;
 			case FIRE_HOOK:
@@ -12631,6 +12633,8 @@ boolean knoweverything;
 			pline("Whenever these gloves block an attack, they gain a layer of grease unless they're already maximally greased.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HARDCORE_CLOTH))
 			pline("Grants resistance to cold, poison and sleep and makes you immune to mind flayers. That is an awful lot of good stuff for a randomized appearance, so there is a major downside: you can only use directions that are at most a 90 degree angle from the previously used direction, unless you wait for a turn. Also, stuff that is 'behind' you may not be visible.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WARNING_COAT))
+			pline("This cloak is so radiant blue that it remains visible even if you are invisible, thereby making it impossible for you to remain undetected.");
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
@@ -12729,6 +12733,10 @@ boolean knoweverything;
 				pline("If you put on this cloak, you are subjected to a status effect that halves your armor class and abuses your wisdom. And in order to fix that, you must take it off again, however these cloaks are usually generated cursed."); break;
 			case CLOAK_OF_CONTAMINATION_RESISTA:
 				pline("A cloak that provides maximum magic cancellation and tones down the effects of weeping angel contamination."); break;
+			case CLOAK_OF_BURDEN:
+				pline("Bad cloak that makes your equipment twice as heavy, and it doesn't even grant magic cancellation. It is usually generated cursed."); break;
+			case CLOAK_OF_VACUUM:
+				pline("If you want to cast spells, this cloak is not the best choice since it makes your spells less effective, but other than that it grants 3 points of magic cancellation. It is usually generated cursed."); break;
 			case ICKY_SHIELD:
 				pline("It's a shield that offers great armor class, but due to the ickiness it's very hard to block projectiles with it."); break;
 			case HEAVY_SHIELD:
@@ -13464,6 +13472,8 @@ boolean knoweverything;
 				pline("A plain headgear that, despite its name, does not make you super fast."); break;
 			case MECHA_IRAZU:
 				pline("Whatever the hell it is, it's made of plastic and covers your head."); break;
+			case VACUUM_HELMET:
+				pline("A helmet with 2 points of AC that reduces the power of your spells and also makes it harder to gain spell memory. It is usually generated cursed."); break;
 			case SCHOOL_CAP:
 				pline("A basic cap."); break;
 			case WINCING_GRIMACE:
@@ -15475,6 +15485,8 @@ boolean knoweverything;
 				pline("Wearing this amulet causes you to become female if you were male, and in reverse. The amulet will then disintegrate."); break;
 			case AMULET_OF_POLYMORPH:
 				pline("Wearing this amulet causes you to polymorph. The amulet will then disintegrate."); break;
+			case AMULET_OF_BURDEN:
+				pline("This amulet makes your character much heavier until removed. It is usually generated cursed."); break;
 			case AMULET_OF_TECHNICALITY:
 				pline("While this amulet is worn, your effective technique levels will be 33%% higher and +3, making them much more powerful."); break;
 			case AMULET_OF_STONE:
@@ -25441,6 +25453,14 @@ boolean knoweverything;
 					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
 				case ART_FUUUUUUUUCK_:
 					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_DWEEEEEEEAUWEAUW:
+					pline("Artifact specs: +2 to-hit and +5 damage, can be invoked to fire a solar beam in a direction of your choice."); break;
+				case ART_THAT_OLD_BUG:
+					pline("Artifact specs: if you pick up items, your weight temporarily increases."); break;
+				case ART_NO_MIND_DECAY:
+					pline("Artifact specs: 5 extra points of AC, makes you immune to mind flayer attacks."); break;
+				case ART_GO_ON_A_SURVEY_RECREATION:
+					pline("Artifact specs: regeneration and energy regeneration when worn, using the wait command drains your score by 50."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

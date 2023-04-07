@@ -179,6 +179,7 @@ const struct innate {
 		     {	 0, 0, 0, 0, 0 } },
 
 	noo_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
+		     {  1, &(HMagicVacuum), "", "", FALSE },
 		     {   7, &(HFast), "quick", "slow", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
@@ -226,6 +227,8 @@ const struct innate {
 	cou_abil[] = { {	 1, &(HHunger), "", "", FALSE },
 		     {   1, &(HAggravate_monster), "", "", FALSE },
 		     {  1, &(HConflict), "", "", FALSE },
+		     {  1, &(HBurdenedState), "", "", FALSE },
+		     {  1, &(HMagicVacuum), "", "", FALSE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	wei_abil[] = { {   1, &(HPsi_resist), "", "", TRUE },
@@ -1191,6 +1194,7 @@ const struct innate {
 		     {	 1, &(HAcid_resistance), "", "", TRUE },
 		     {	 1, &(HFree_action), "", "", TRUE },
 		     {	 1, &(HFlying), "", "", TRUE },
+		     {	 1, &(HBurdenedState), "", "", FALSE },
 		     {   0, 0, 0, 0, 0 } },
 
 	syl_abil[] = { {1,  &(HHunger), "", "", FALSE },
@@ -1292,6 +1296,7 @@ const struct innate {
 
 	red_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
 		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {  1, &(HMagicVacuum), "", "", FALSE },
 		     {   0, 0, 0, 0, 0 } },
 
 	dut_abil[] = { {  1, &(HCold_resistance), "", "", TRUE },
@@ -1305,6 +1310,7 @@ const struct innate {
 	yok_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
 		     {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HFire_resistance), "", "", TRUE },
+		     {  15, &(HMagicVacuum), "less capable of casting magic", "capable of casting magic more effectively", FALSE },
 		     {   0, 0, 0, 0, 0 } },
 
 	sin_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
@@ -1345,6 +1351,13 @@ const struct innate {
 
 	kut_abil[] = { {  1, &(HConf_resist), "", "", TRUE },
 			{	 1, &(HKeen_memory), "", "", TRUE },
+		     {  20, &(HMagicVacuum), "less capable of casting magic", "capable of casting magic more effectively", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	maz_abil[] = { {  1, &(HMagicVacuum), "", "", FALSE },
+		     {   0, 0, 0, 0, 0 } },
+
+	urg_abil[] = { {  1, &(HMagicVacuum), "", "", FALSE },
 		     {   0, 0, 0, 0, 0 } },
 
 	nav_abil[] = { {  1, &(HPainSense), "", "", TRUE },
@@ -1406,6 +1419,7 @@ const struct innate {
 
 	tro_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
 		     {   1, &(HRegeneration), "", "", TRUE },
+		     {  1, &(HMagicVacuum), "", "", FALSE },
 		     {   0, 0, 0, 0, 0 } },
 
 	ung_abil[] = { {  1, &(HSearching), "", "", TRUE },
@@ -2579,6 +2593,8 @@ int oldlevel, newlevel;
 	case PM_TONBERRY:            rabil = ton_abil;	break;
 	case PM_KUTAR:            rabil = kut_abil;	break;
 	case PM_NAVI:            rabil = nav_abil;	break;
+	case PM_MAZIN:            rabil = maz_abil;	break;
+	case PM_URGOTH:            rabil = urg_abil;	break;
 	case PM_SENSER:            rabil = sen_abil;	break;
 	case PM_PLAYER_UNICORN:            rabil = uni_abil;	break;
 	case PM_RETICULAN:            rabil = ret_abil;	break;

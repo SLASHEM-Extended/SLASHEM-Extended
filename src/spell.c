@@ -11927,6 +11927,7 @@ int spell;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) chance -= 20;
 	if (uarm && uarm->oartifact == ART_MADE_OF_IRON) chance -= 20;
+	if (StrongMagicVacuum) chance -= 50;
 
 	if (Race_if(PM_PLAYER_GOLEM)) {
 		chance -= 25;
@@ -12409,6 +12410,13 @@ int spell, boost;
 	boost *= boostmultiplier;
 	boost /= 100;
 
+	if (MagicVacuum) {
+		boost /= (StrongMagicVacuum) ? 5 : 2;
+		if (priorknow > 9999) boost /= 2;
+	}
+
+	if (boost < 0) boost = 0;
+
 	spl_book[spell].sp_know = ((spl_book[spell].sp_know + boost > MAX_KNOW) ? MAX_KNOW : (spl_book[spell].sp_know + boost) );
 
 }
@@ -12445,6 +12453,13 @@ boolean initial; /* FALSE if you knew the spell before, otherwise TRUE; reductio
 
 	knowvalue *= boostmultiplier;
 	knowvalue /= 100;
+
+	if (MagicVacuum) {
+		knowvalue /= (StrongMagicVacuum) ? 5 : 2;
+		if (priorknow > 9999) knowvalue /= 2;
+	}
+
+	if (knowvalue < 0) knowvalue = 0;
 
 	spl_book[spell].sp_know = (spl_book[spell].sp_know < 1) ? knowvalue : ((spl_book[spell].sp_know + knowvalue) > MAX_KNOW) ? MAX_KNOW : (spl_book[spell].sp_know + knowvalue);
 

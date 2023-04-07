@@ -3736,6 +3736,14 @@ register int pm;
 					You_feel("less forgetful!");
 				}
 				break;
+			case 10:	/* soy sauce (cure magic vacuum) */
+				pline("Err, soy sauce?! That doesn't really mix with chocolate!");
+				make_magicvacuum(0L);
+				break;
+			case 11:	/* lavender (cure burden) */
+				pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
+				make_burdened(0L);
+				break;
 			default: break;
 
 		}
@@ -6178,6 +6186,14 @@ eatspecial() /* called after eating non-food */
 					You_feel("less forgetful!");
 				}
 				break;
+			case 10:	/* soy sauce (cure magic vacuum) */
+				pline("Err, soy sauce?! That doesn't really mix with chocolate!");
+				make_magicvacuum(0L);
+				break;
+			case 11:	/* lavender (cure burden) */
+				pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
+				make_burdened(0L);
+				break;
 			default: break;
 
 		}
@@ -7093,6 +7109,14 @@ register struct obj *otmp;
 					HMap_amnesia &= ~TIMEOUT;
 					You_feel("less forgetful!");
 				}
+				break;
+			case 10:	/* soy sauce (cure magic vacuum) */
+				pline("Err, soy sauce?! That doesn't really mix with chocolate!");
+				make_magicvacuum(0L);
+				break;
+			case 11:	/* lavender (cure burden) */
+				pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
+				make_burdened(0L);
 				break;
 			default: break;
 

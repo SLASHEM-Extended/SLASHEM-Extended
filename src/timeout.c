@@ -3643,6 +3643,14 @@ nh_timeout()
 			if (!HWinceState)
 				pline("You're not wincing anymore.");
 			break;
+		case BURDENED_STATE:
+			if (!HBurdenedState)
+				You_feel("lighter"); /* missing period is sic from castle of the winds */
+			break;
+		case MAGIC_VACUUM:
+			if (!HMagicVacuum)
+				You_feel("capable of casting magic effectively again.");
+			break;
 		case STEALTH:
 			if (!HStealth)
 				pline("Your movements are a little less silent.");

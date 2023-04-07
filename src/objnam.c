@@ -201,6 +201,10 @@ int prop;
 			return "glib combat";
 		case PAIN_SENSE:
 			return "pain sense";
+		case BURDENED_STATE:
+			return "burden";
+		case MAGIC_VACUUM:
+			return "magic vacuum";
 
 		case RNGE_IRREGULARITY:
 			return "irregularity";
@@ -4015,6 +4019,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ CASINO_CHIP, "amulet of todo" },
 
+	{ AMULET_OF_BURDEN, "amulet of todo" },
+	{ CLOAK_OF_BURDEN, "todo" },
+	{ CLOAK_OF_VACUUM, "todo" },
+	{ VACUUM_HELMET, "todo" },
+	{ VACUUM_STAFF, "todo" },
+
 	{0, "" }
 };
 
@@ -7208,6 +7218,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_SEVERE_FUCKUP, "amulet of todo" },
 
 	{ CASINO_CHIP, "amulet of todo" },
+
+	{ AMULET_OF_BURDEN, "amulet of todo" },
+	{ CLOAK_OF_BURDEN, "todo" },
+	{ CLOAK_OF_VACUUM, "todo" },
+	{ VACUUM_HELMET, "todo" },
+	{ VACUUM_STAFF, "todo" },
 
 	{0, "" }
 };

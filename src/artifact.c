@@ -641,6 +641,7 @@ init_randarts()
 	artilist[ART_SHE_S_STILL_AN_ANASTASIA].otyp = find_loafers();
 	artilist[ART_KILLCAP].otyp = find_sweaty_shoes();
 
+	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_JANA_S_ROULETTE_OF_LIFE].otyp = find_foundry_cloak();
 	artilist[ART_MAGIC_JUGGULATE].otyp = find_spellsucking_cloak();
 	artilist[ART_HIGH_KING_OF_SKIRIM].otyp = find_storm_coat();
@@ -4765,6 +4766,17 @@ greenchoice:
 
 		}
 
+		if (obj->oartifact == ART_DWEEEEEEEAUWEAUW) {
+			int dweaustrength = (GushLevel / 4);
+			if (dweaustrength < 1) dweaustrength = 1;
+
+			getdir(NULL);
+			buzz(28,dweaustrength,u.ux,u.uy,u.dx,u.dy); /* 28 = solar beam */
+
+			break;
+
+		}
+
 		if (obj->oartifact == ART_RAYSWANDIR) {
 
 			getdir(NULL);
@@ -6199,7 +6211,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(49)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(51)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -7228,6 +7240,46 @@ retrytrinsic:
 					if(!(HDefusing & FROMOUTSIDE)) {
 						You_feel("knowledgable about the art of defusing traps!");
 						HDefusing |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 50:
+				if (intloss) {
+					if (HBurdenedState & INTRINSIC) {
+						HBurdenedState &= ~INTRINSIC;
+						You_feel("lighter");
+						hasmadeachange = 1;
+					}
+					if (HBurdenedState & TIMEOUT) {
+						HBurdenedState &= ~TIMEOUT;
+						You_feel("lighter");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HBurdenedState & FROMOUTSIDE)) {
+						You_feel("burdened");
+						HBurdenedState |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 51:
+				if (intloss) {
+					if (HMagicVacuum & INTRINSIC) {
+						HMagicVacuum &= ~INTRINSIC;
+						You_feel("capable of casting magic effectively again!");
+						hasmadeachange = 1;
+					}
+					if (HMagicVacuum & TIMEOUT) {
+						HMagicVacuum &= ~TIMEOUT;
+						You_feel("capable of casting magic effectively again!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HMagicVacuum & FROMOUTSIDE)) {
+						You_feel("less capable of casting magic!");
+						HMagicVacuum |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

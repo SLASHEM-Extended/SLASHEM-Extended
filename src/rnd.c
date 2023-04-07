@@ -1695,7 +1695,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(152)) {
+	switch (rnd(154)) {
 
 		case 1:
 		case 2:
@@ -1933,6 +1933,10 @@ randenchantment()
 		case 151:
 		case 152:
 			return DEFUSING;
+		case 153:
+			return BURDENED_STATE;
+		case 154:
+			return MAGIC_VACUUM;
 
 		default:
 			return POISON_RES;

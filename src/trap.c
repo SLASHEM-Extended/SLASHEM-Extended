@@ -14798,6 +14798,24 @@ callingoutdone:
 
 			break;
 
+		case BURDEN_TRAP:
+
+			pline("A gray light surrounds you...");
+			seetrap(trap);
+
+			make_burdened(HBurdenedState + rnd(10) + rnd(monster_difficulty() * 100) );
+
+			break;
+
+		case MAGIC_VACUUM_TRAP:
+
+			pline("A black light surrounds you...");
+			seetrap(trap);
+
+			make_magicvacuum(HMagicVacuum + rnd(10) + rnd(monster_difficulty() * 100) );
+
+			break;
+
 		case U_HAVE_BEEN_TRAP:
 
 			You_feel("like you have been here before...");
@@ -21930,6 +21948,8 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case MONICIDE_TRAP:
 		case TRAP_CREATION_TRAP:
 		case LEOLD_TRAP:
+		case BURDEN_TRAP:
+		case MAGIC_VACUUM_TRAP:
 		case ANIMEBAND_TRAP:
 		case PERFUME_TRAP:
 		case COURT_TRAP:
@@ -25005,6 +25025,8 @@ struct trap *ttmp;
 	if (ttmp->ttyp == DEBT_TRAP) chance = 10;
 	if (ttmp->ttyp == INVERSION_TRAP) chance = 12;
 	if (ttmp->ttyp == WINCE_TRAP) chance = 10;
+	if (ttmp->ttyp == BURDEN_TRAP) chance = 20;
+	if (ttmp->ttyp == MAGIC_VACUUM_TRAP) chance = 16;
 	if (ttmp->ttyp == ALIGNMENT_TRASH_TRAP) chance = 20;
 	if (ttmp->ttyp == DOGSIDE_TRAP) chance = 20;
 	if (ttmp->ttyp == BANKRUPT_TRAP) chance = 25;
@@ -25645,6 +25667,10 @@ struct trap *ttmp;
 			multiplier = 6; break;
 		case WINCE_TRAP:
 			multiplier = 6; break;
+		case MAGIC_VACUUM_TRAP:
+			multiplier = 9; break;
+		case BURDEN_TRAP:
+			multiplier = 10; break;
 		case ALIGNMENT_TRASH_TRAP:
 			multiplier = 20; break;
 		case DOGSIDE_TRAP:
@@ -26569,6 +26595,8 @@ boolean force;
 			case DEBT_TRAP:
 			case INVERSION_TRAP:
 			case WINCE_TRAP:
+			case BURDEN_TRAP:
+			case MAGIC_VACUUM_TRAP:
 			case ALIGNMENT_TRASH_TRAP:
 			case DOGSIDE_TRAP:
 			case BANKRUPT_TRAP:

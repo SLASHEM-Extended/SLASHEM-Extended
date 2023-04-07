@@ -992,6 +992,36 @@ long xtime;
 }
 
 void
+make_burdened(xtime)
+long xtime;
+{
+	boolean wasalready = HBurdenedState;
+	if (xtime) {
+		set_itimeout(&HBurdenedState, xtime);
+		if (wasalready) You_feel("more burdened");
+		else You_feel("burdened");
+	} else {
+		set_itimeout(&HBurdenedState, xtime);
+		if (wasalready) You_feel("lighter");
+	}
+}
+
+void
+make_magicvacuum(xtime)
+long xtime;
+{
+	boolean wasalready = HMagicVacuum;
+	if (xtime) {
+		set_itimeout(&HMagicVacuum, xtime);
+		if (wasalready) You_feel("even less capable of casting magic!");
+		else You_feel("less capable of casting magic!");
+	} else {
+		set_itimeout(&HMagicVacuum, xtime);
+		if (wasalready) You_feel("capable of casting magic effectively again!");
+	}
+}
+
+void
 make_sick(xtime, cause, talk, type)
 long xtime;
 const char *cause;	/* sickness cause */
@@ -2247,7 +2277,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(512)) {
+	switch (rnd(514)) {
 
 		case 1:
 		case 2:
@@ -3823,6 +3853,14 @@ newoffmon:
 			make_inverted(HInvertedState + rnz(150));
 			break;
 
+		case 513:
+			make_burdened(HBurdenedState + rnz(1500));
+			break;
+
+		case 514:
+			make_magicvacuum(HMagicVacuum + rnz(1500));
+			break;
+
 		default:
 			break;
 	}
@@ -3888,7 +3926,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(124)) {
+	switch (rnd(126)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -5073,6 +5111,15 @@ newoffmonX:
 		case 124:
 			make_inverted(HInvertedState + rnz(150));
 			break;
+
+		case 125:
+			make_burdened(HBurdenedState + rnz(1500));
+			break;
+
+		case 126:
+			make_magicvacuum(HMagicVacuum + rnz(1500));
+			break;
+
 
 		default:
 		break;

@@ -1103,7 +1103,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(256)) {
+	switch(rnd(260)) {
 	case 1:
 	case 2:
 	case 3:
@@ -2253,6 +2253,30 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HDefusing & TIMEOUT) {
 			HDefusing &= ~TIMEOUT;
 			You_feel("unable to defuse traps!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 257:
+	case 258: if (HBurdenedState & INTRINSIC) {
+			HBurdenedState &= ~INTRINSIC;
+			You_feel("lighter");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HBurdenedState & TIMEOUT) {
+			HBurdenedState &= ~TIMEOUT;
+			You_feel("lighter");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 259:
+	case 260: if (HMagicVacuum & INTRINSIC) {
+			HMagicVacuum &= ~INTRINSIC;
+			You_feel("capable of casting magic effectively again!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HMagicVacuum & TIMEOUT) {
+			HMagicVacuum &= ~TIMEOUT;
+			You_feel("capable of casting magic effectively again!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;

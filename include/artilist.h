@@ -11725,6 +11725,22 @@ A("FUUUUUUUUCK!",				STONE_OF_COMPLETE_FUCKUP, /* also unidentifies the base ite
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+A("Dweeeeeeeauweauw",				VACUUM_STAFF, /* can be invoked to fire a solar beam in a direction of your choice with power (gushlevel/4) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 5), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("That Old Bug",				AMULET_OF_BURDEN, /* picking up things makes you heavier */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("No Mind Decay",				VACUUM_HELMET, /* 5 extra points of AC and makes you immune to mind flaying */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Go On A Survey Recreation",				LEATHER_CLOAK, /* initialized to always be warning coat, using the wait command drains your score by 50 points */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

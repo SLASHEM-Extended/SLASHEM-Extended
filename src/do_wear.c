@@ -1144,6 +1144,8 @@ Cloak_on()
 	case CLOAK_OF_FULL_NUTRITION:
 
 	case CLOAK_OF_AGGRAVATION:
+	case CLOAK_OF_BURDEN:
+	case CLOAK_OF_VACUUM:
 	case CLOAK_OF_MAGICAL_BREATHING:
 	case CLOAK_OF_STAT_LOCK:
 	case WING_CLOAK:
@@ -1942,6 +1944,8 @@ Cloak_off()
 	case HIDE:
 	case CLOAK_OF_PEACE:
 	case CLOAK_OF_DIMNESS:
+	case CLOAK_OF_BURDEN:
+	case CLOAK_OF_VACUUM:
 	case CLOAK_OF_CONTAMINATION_RESISTA:
 	case DISPLACER_BEAST_HIDE:
 	case THE_NEMEAN_LION_HIDE:
@@ -2058,6 +2062,7 @@ Helmet_on()
 	case HELM_OF_DISCOVERY:
 	case HELM_OF_DRAIN_RESISTANCE:
 	case HELM_OF_FEAR:
+	case VACUUM_HELMET:
 	case BOOGEYMAN_HELMET:
 	case HELM_OF_HUNGER:
 	case HELM_OF_TRUE_SIGHT:
@@ -2449,6 +2454,7 @@ Helmet_off()
 	case ORCISH_HELM:
 	case HELM_OF_DRAIN_RESISTANCE:
 	case HELM_OF_FEAR:
+	case VACUUM_HELMET:
 	case BOOGEYMAN_HELMET:
 	case HELM_OF_TRUE_SIGHT:
 	case HELM_OF_WARNING:
@@ -3854,6 +3860,11 @@ Amulet_on()
 	case AMULET_OF_UNDEAD_WARNING:
 		break;
 
+	case AMULET_OF_BURDEN:
+		You_feel("burdened");
+		makeknown(AMULET_OF_BURDEN);
+		break;
+
 	case AMULET_OF_TIME:
 		pline("The time is: %d:%d", getlt()->tm_hour, getlt()->tm_min);
 		break;
@@ -4121,6 +4132,10 @@ Amulet_off()
 	case FAKE_AMULET_OF_YENDOR:
 		break;
 	case AMULET_OF_UNDEAD_WARNING:
+		break;
+
+	case AMULET_OF_BURDEN:
+		You_feel("lighter");
 		break;
 
 	case AMULET_OF_FUMBLING:
@@ -6188,6 +6203,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ERDRICK_S_ARMOR) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SPACEWASTE) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_NOSED_BUG) uac -= 7;
+	if (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;

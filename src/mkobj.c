@@ -3037,6 +3037,7 @@ boolean shopinit;
 		   otmp->otyp == AMULET_OF_FUMBLING ||
 		   otmp->otyp == AMULET_OF_HUNGER ||
 		   otmp->otyp == AMULET_OF_BLINDNESS ||
+		   otmp->otyp == AMULET_OF_BURDEN ||
 		   otmp->otyp == AMULET_OF_RESTFUL_SLEEP)) {
 			curse_on_creation(otmp);
 		} else {
@@ -3317,12 +3318,15 @@ boolean shopinit;
 		   otmp->otyp == CLOAK_OF_CONFUSION ||
 		   otmp->otyp == CLOAK_OF_FUMBLING ||
 		   otmp->otyp == CLOAK_OF_DIMNESS ||
+		   otmp->otyp == CLOAK_OF_BURDEN ||
+		   otmp->otyp == CLOAK_OF_VACUUM ||
 		   otmp->otyp == CLOAK_OF_TRANSFORMATION ||
 		   otmp->otyp == CLOAK_OF_AGGRAVATION ||
 		   otmp->otyp == CLOAK_OF_CONFLICT ||
 		   otmp->otyp == CLOAK_OF_STAT_LOCK ||
 		   otmp->otyp == HELM_OF_OPPOSITE_ALIGNMENT ||
 		   otmp->otyp == HELM_OF_FEAR ||
+		   otmp->otyp == VACUUM_HELMET ||
 		   otmp->otyp == BOOGEYMAN_HELMET ||
 		   otmp->otyp == HELM_OF_SENSORY_DEPRIVATION ||
 		   otmp->otyp == HELM_OF_HUNGER ||

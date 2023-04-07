@@ -7400,6 +7400,8 @@ boolean guaranteed;
 
 	if ((guaranteed || !rn2(10)) && InvertedState) enl_msg(You_, "are", "were", StrongInvertedState ? " completely inverted" : " inverted");
 	if ((guaranteed || !rn2(10)) && WinceState) enl_msg(You_, "are", "were", StrongWinceState ? " wincing painfully" : " wincing");
+	if ((guaranteed || !rn2(10)) && BurdenedState) enl_msg(You_, "are", "were", StrongBurdenedState ? " heavily burdened" : " burdened");
+	if ((guaranteed || !rn2(10)) && MagicVacuum) enl_msg(You_, "are", "were", StrongMagicVacuum ? " suffering from a complete magic vacuum" : " suffering from a magic vacuum");
 
 	if ((guaranteed || !rn2(10)) && Hallu_party) you_are(StrongHallu_party ? "totally hallu partying" : "hallu partying");
 	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are(StrongDrunken_boxing ? "a very drunken boxer" : "a drunken boxer");
@@ -12064,6 +12066,8 @@ int final;
 	if (Map_amnesia) dump("  ", StrongMap_amnesia ? "You had total map amnesia" : "You had map amnesia");
 	if (InvertedState) dump("  ", StrongInvertedState ? "You were completely inverted" : "You were inverted");
 	if (WinceState) dump("  ", StrongWinceState ? "You were wincing painfully" : "You were wincing");
+	if (BurdenedState) dump("  ", StrongBurdenedState ? "You were heavily burdened" : "You were burdened");
+	if (MagicVacuum) dump("  ", StrongMagicVacuum ? "You were suffering from a complete magic vacuum" : "You were suffering from a magic vacuum");
 
 	if ((Blind_telepat || Unblind_telepat) && !StrongTelepat) dump(youwere, "telepathic");
 	if ((Blind_telepat || Unblind_telepat) && StrongTelepat) dump(youwere, "very telepathic");

@@ -1562,7 +1562,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 	if (obj->quan != count && obj->otyp != LOADSTONE && obj->otyp != LUCKSTONE && obj->otyp != HEALTHSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) )
 	    obj = splitobj(obj, count);
 
-	if (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone()) {
+	if (TooHeavyEffect || u.uprops[TOO_HEAVY_EFFECT].extrinsic || have_tooheavystone() || (uamul && uamul->oartifact == ART_THAT_OLD_BUG) ) {
 		if (IncreasedGravity < 10000000) IncreasedGravity += 50;
 	}
 

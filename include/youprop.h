@@ -1275,7 +1275,7 @@
 #define IntInvis	(HInvis || pm_invisible(youmonst.data))
 #define ExtInvis	(EInvis || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == INVIS) ) || (uwep && uwep->oartifact == ART_MOVE_IN_THE_SHADOWS) || (uwep && uwep->oartifact == ART_WHEREABOUT_OF_X) || (uarmc && uarmc->oartifact == ART_INVISIBLE_VISIBILITITY) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || (uwep && uwep->oartifact == ART_ORB_OF_FLEECE) || have_invisoloadstone() || (Race_if(PM_BATMAN) && uwep && uwep->oartifact == ART_BLACKSWANDIR) || (uarmf && uarmf->oartifact == ART_GORGEOUS_VEIL_MODEL) || (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR) || (uarmh && uarmh->oartifact == ART_MARLENA_S_SONG) || (uarmh && uarmh->oartifact == ART_DULLIFIER) || (uwep && uwep->oartifact == ART_JARMEN_CHEATERTYPE_KELL) || (uarm && uarm->oartifact == ART_VERY_INVISIBLE) || (uarmc && uarmc->oartifact == ART_CAN_T_KILL_WHAT_YOU_CAN_T_) || (uwep && uwep->oartifact == ART_SECRETS_OF_INVISIBLE_PLEAS) )
 
-#define Invis			(((IntInvis && u.nonintrinsicproperty != INVIS) || (ExtInvis && u.nonextrinsicproperty != INVIS)) && !BInvis && !Race_if(PM_ELEMENTAL) && !(uarm && uarm->oartifact == ART_PLANTOPLIM) && !NoInvisible && !((uwep && uwep->otyp == GROM_AXE) || (u.twoweap && uswapwep && uswapwep->otyp == GROM_AXE)) )
+#define Invis			(((IntInvis && u.nonintrinsicproperty != INVIS) || (ExtInvis && u.nonextrinsicproperty != INVIS)) && !BInvis && !(uarmc && itemhasappearance(uarmc, APP_WARNING_COAT)) && !Race_if(PM_ELEMENTAL) && !(uarm && uarm->oartifact == ART_PLANTOPLIM) && !NoInvisible && !((uwep && uwep->otyp == GROM_AXE) || (u.twoweap && uswapwep && uswapwep->otyp == GROM_AXE)) )
 #define Invisible		(Invis && !See_invisible)
 		/* Note: invisibility also hides inventory and steed */
 #define StrongInvis	(IntInvis && ExtInvis && Invis && u.nondoubleproperty != INVIS)
@@ -1782,5 +1782,19 @@
 #define StrongDefusing	(IntDefusing && ExtDefusing && Defusing && u.nondoubleproperty != DEFUSING)
 
 #define NoDefusing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DEFUSING].intrinsic || UHaveAids || (u.impossibleproperty == DEFUSING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HBurdenedState		u.uprops[BURDENED_STATE].intrinsic
+#define EBurdenedState		u.uprops[BURDENED_STATE].extrinsic
+#define IntBurdenedState	(HBurdenedState || issoviet)
+#define ExtBurdenedState	(EBurdenedState)
+#define BurdenedState		(IntBurdenedState || ExtBurdenedState )
+#define StrongBurdenedState		(IntBurdenedState && ExtBurdenedState && BurdenedState)
+
+#define HMagicVacuum		u.uprops[MAGIC_VACUUM].intrinsic
+#define EMagicVacuum		u.uprops[MAGIC_VACUUM].extrinsic
+#define IntMagicVacuum	(HMagicVacuum)
+#define ExtMagicVacuum	(EMagicVacuum || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
+#define MagicVacuum		(IntMagicVacuum || ExtMagicVacuum )
+#define StrongMagicVacuum		(IntMagicVacuum && ExtMagicVacuum && MagicVacuum)
 
 #endif /* YOUPROP_H */

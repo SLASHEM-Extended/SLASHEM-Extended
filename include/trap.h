@@ -813,6 +813,9 @@ extern struct trap *ftrap;
 #define NOPESKILL_TRAP 716
 #define FUCKFUCKFUCK_TRAP 717
 
+#define BURDEN_TRAP 718
+#define MAGIC_VACUUM_TRAP 719
+
 /* todo area
 
 normal ones:
@@ -828,7 +831,7 @@ nasty traps:
 
 #define EVIL_MIRROR_TRAP
 #define SPELL_COOLDOWN_TRAP
-#define BURDEN_TRAP
+#define MEAN_BURDEN_TRAP
 #define CARRCAP_TRAP
 #define ACTION_TIMEOUT_TRAP
 #define KILLCAM_TRAP
@@ -910,8 +913,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	718
+#define TIMERUN_TRAP	720
 
-#define TRAPNUM 719
+#define TRAPNUM 721
 
 #endif /* TRAP_H */

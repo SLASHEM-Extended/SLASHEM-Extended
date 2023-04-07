@@ -2353,6 +2353,8 @@ dospinweb()
 		case MONICIDE_TRAP:
 		case TRAP_CREATION_TRAP:
 		case LEOLD_TRAP:
+		case BURDEN_TRAP:
+		case MAGIC_VACUUM_TRAP:
 		case ANIMEBAND_TRAP:
 		case PERFUME_TRAP:
 		case COURT_TRAP:

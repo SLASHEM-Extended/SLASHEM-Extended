@@ -897,6 +897,9 @@ register struct obj *obj;
 	case AMULET_OF_BLINDNESS:
 		You("can't see whether something is happening to the toilet!");
 		break;
+	case AMULET_OF_BURDEN:
+		pline_The("toilet seems to weigh a lot.");
+		break;
 	case AMULET_OF_STRANGULATION:
 		pline_The("toilet seems to scream in agony silently.");
 		break;
@@ -5129,6 +5132,12 @@ long timeout;
 int
 donull()
 {
+	if (uarmc && uarmc->oartifact == ART_GO_ON_A_SURVEY_RECREATION) {
+		u.urexp -= 50;
+		if (u.urexp < 0) u.urexp = 0;
+
+	}
+
 	return(1);	/* Do nothing, but let other things happen */
 }
 

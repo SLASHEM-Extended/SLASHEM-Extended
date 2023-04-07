@@ -3965,6 +3965,8 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != MONICIDE_TRAP
 				&& ttmp->ttyp != TRAP_CREATION_TRAP
 				&& ttmp->ttyp != LEOLD_TRAP
+				&& ttmp->ttyp != BURDEN_TRAP
+				&& ttmp->ttyp != MAGIC_VACUUM_TRAP
 				&& ttmp->ttyp != ANIMEBAND_TRAP
 				&& ttmp->ttyp != PERFUME_TRAP
 				&& ttmp->ttyp != COURT_TRAP
