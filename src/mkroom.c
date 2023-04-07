@@ -2831,7 +2831,7 @@ STATIC_OVL struct permonst *
 prisonermon()	/* return random prisoner type --Amy */
 {
 	if (rn2(5)) return (&mons[PM_PRISONER]);
-	else switch (rnd(8)) {
+	else switch (rnd(9)) {
 		case 1: return (&mons[PM_CASTLE_PRISONER]);
 		case 2: return (&mons[PM_OCCASIONAL_FRIEND]);
 		case 3: return (&mons[PM_GIRL_OUTSIDE_GANG]);
@@ -2840,6 +2840,7 @@ prisonermon()	/* return random prisoner type --Amy */
 		case 6: return (&mons[PM_GRAVITY_STRIKER]);
 		case 7: return (&mons[PM_POEZ_PRESIDENT]);
 		case 8: return (&mons[PM_YLVA_PRISONER]);
+		case 9: return (&mons[PM_ARCANE_PRISONER]);
 	}
 	return (&mons[PM_PRISONER]); /* fail safe */
 }

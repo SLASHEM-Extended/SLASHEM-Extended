@@ -7743,6 +7743,7 @@ register struct	monst	*mtmp;
 		if (monsndx(ptr) == PM_HUMAN_WERESTILETTOSANDAL) (void)mongets(mtmp, HIGH_STILETTOS);
 
 		if (monsndx(ptr) == PM_ILSE_S_LADY_PUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (ptr == &mons[PM_HIGH_DAIMYO]) (void) mongets(mtmp, KATANA);
 		if (ptr == &mons[PM_STREET_RACQUET]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_GANXTA]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_SUPER_GANXTA]) (void) mongets(mtmp, SUPER_KNUCKLES);
@@ -10215,6 +10216,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_HISSER_KOMODO_DRAGON]) (void) mongets(mtmp, CHAIN_MAIL);
 		if (mtmp->data == &mons[PM_POISONOUS_TREE_FROG]) (void) mongets(mtmp, SCR_GROWTH);
 		if (mtmp->data == &mons[PM_MARLEN_S_SEXY_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS);
+		if (mtmp->data == &mons[PM_SHINWIKI]) (void) mongets(mtmp, DWARVISH_SPEAR);
 
 		if (mtmp->data == &mons[PM_LIZARD_MAGE]) (void) mongets(mtmp, !rn2(3) ? SHORT_SWORD : !rn2(2) ? BROADSWORD : LONG_SWORD);
 
@@ -10889,6 +10891,10 @@ loveheelover:
 		if (ptr == &mons[PM_SHARPOLD]) {
 			(void) mongets(mtmp, ORCISH_HELM);
 			(void) mongets(mtmp, SHARP_AXE);
+		}
+		if (ptr == &mons[PM_FAROUA_S_PINK_STILETTO_SANDAL]) {
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL);
+			(void) mongets(mtmp, STILETTO_SANDALS);
 		}
 		if (ptr == &mons[PM_DOUBLECONTOKOBOLD]) {
 			(void) mongets(mtmp, SPETUM);
@@ -13994,7 +14000,7 @@ loveheelover:
 			 m_initthrow(mtmp, FIVE_SEVEN_BULLET, 50);
 		}
 
-		if (mtmp->data == &mons[PM_RIDABLE_HUMPER] || mtmp->data == &mons[PM_SADDLE_NIGHTMARE] || mtmp->data == &mons[PM_READY_BATTLEHORSE]) {
+		if (mtmp->data == &mons[PM_RIDABLE_HUMPER] || mtmp->data == &mons[PM_SADDLE_NIGHTMARE] || mtmp->data == &mons[PM_READY_BATTLEHORSE] || (!rn2(2) && mtmp->data == &mons[PM_HORSE_OF_THE_WIZARD]) ) {
 			struct obj *osaddle;
 			if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
 				if (mpickobj(mtmp, osaddle, TRUE)) { /* it became a gold piece (e.g. minimalist) --Amy */
@@ -18359,6 +18365,7 @@ loveheelover:
 		if (ptr == &mons[PM_LASSY_GIRL]) (void) mongets(mtmp, QATAR);
 		if (ptr == &mons[PM_MEGAWHIPPET]) (void) mongets(mtmp, SECRET_SOUND_WHIP);
 		if (ptr == &mons[PM_PUMPS_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (ptr == &mons[PM_SCARAB_GUARDIAN]) (void) mongets(mtmp, SHIELD);
 
 		if (mtmp->data == &mons[PM_NESTING_SPIDER]) { 
 			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);
@@ -25579,6 +25586,8 @@ register int	mmflags;
 			if (mndx == PM_DUEDUE_DUEDUE_DUE_DUE_DUEUEUEUEUE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DRONING_UFO_PART) set_mimic_sym(mtmp);
 			if (mndx == PM_SUMTHINS_KILLIN_YA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_MALIG_N_ANT_KNIGHT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_EEEH__EEEH_) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ONE_IN_A_HUNDRED_ZOMBIE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_THAT_STUFF_WASNT_YOURS_ANYWAY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HEHEHE_YOUR_GAME_ENDED_BRO) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
@@ -26655,6 +26664,12 @@ register int	mmflags;
 
 			if (mndx == PM_HIDDEN_FLAT_SQUEEZING_MACHINE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEEP_FLAT_SQUEEZING_MACHINE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_CURA_SENTRY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PRESIDENT_SENTRY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_PURA_SENTRY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_HEA_LOL_ALL_THE_ITEMS_HAVE_BEEN_TRASHED_HEHEHEHEHE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_WURA_SENTRY) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_EHEHEHEHEHE_THE_DEVS_ARE_SO_EVIL____) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			break;
 
