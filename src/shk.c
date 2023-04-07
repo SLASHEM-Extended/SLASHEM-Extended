@@ -5867,33 +5867,36 @@ shk_identify(slang, shkp)
 
 	/* premier */
 	else mult = 2;
+
+	/* note by Amy: greatly increased cost for items that are supposed to be hard to id, so that having access to this
+	 * service combined with lots of money doesn't completely trivialize the ID game... */
 	
 	switch (obj->oclass) {        
-		case AMULET_CLASS:      charge = 375 * mult;
+		case AMULET_CLASS:      charge = 1600 * mult;
 					break;
-		case IMPLANT_CLASS:      charge = 500 * mult;
+		case IMPLANT_CLASS:      charge = 2000 * mult;
 					break;
-		case WEAPON_CLASS:      charge = 75 * mult;
+		case WEAPON_CLASS:      charge = 100 * mult;
 					break;
-		case ARMOR_CLASS:       charge = 100 * mult;
+		case ARMOR_CLASS:       charge = 500 * mult;
 					break;
-		case FOOD_CLASS:        charge = 25 * mult;   
+		case FOOD_CLASS:        charge = 50 * mult;   
 					break;
-		case SCROLL_CLASS:      charge = 150 * mult;   
+		case SCROLL_CLASS:      charge = 750 * mult;   
 					break;
-		case SPBOOK_CLASS:      charge = 250 * mult;   
+		case SPBOOK_CLASS:      charge = 1250 * mult;   
 					break;
-		case POTION_CLASS:      charge = 150 * mult;   
+		case POTION_CLASS:      charge = 750 * mult;   
 					break;
-		case RING_CLASS:        charge = 300 * mult;   
+		case RING_CLASS:        charge = 1500 * mult;   
 					break;
-		case WAND_CLASS:        charge = 200 * mult;   
+		case WAND_CLASS:        charge = 1000 * mult;   
 					break;
-		case TOOL_CLASS:        charge = 50 * mult;   
+		case TOOL_CLASS:        charge = 250 * mult;   
 					break;
-		case GEM_CLASS:         charge = 500 * mult;
+		case GEM_CLASS:         charge = 2000 * mult;
 					break;
-		default:                charge = 75 * mult;
+		default:                charge = 400 * mult;
 					break;
 	}
 		
