@@ -599,19 +599,19 @@ mattackm(magr, mdef)
 			}
 		    if (mattk->aatyp == AT_BREA) {
 
-			if (mattk->adtyp == AD_FIRE && resists_fire(mdef)) {
+			if (mattk->adtyp == AD_FIRE && resists_fire(mdef) && !player_will_pierce_resistance()) {
 				strike = 0;
-			} else if (mattk->adtyp == AD_COLD && resists_cold(mdef)) {
+			} else if (mattk->adtyp == AD_COLD && (resists_cold(mdef) && !player_will_pierce_resistance()) ) {
 				strike = 0;
 			} else if (mattk->adtyp == AD_SLEE && resists_sleep(mdef)) {
 				strike = 0;
 			} else if (mattk->adtyp == AD_DISN && resists_disint(mdef)) {
 				strike = 0;
-			} else if (mattk->adtyp == AD_ELEC && resists_elec(mdef)) {
+			} else if (mattk->adtyp == AD_ELEC && (resists_elec(mdef) && !player_will_pierce_resistance()) ) {
 				strike = 0;
-			} else if (mattk->adtyp == AD_DRST && resists_poison(mdef)) {
+			} else if (mattk->adtyp == AD_DRST && (resists_poison(mdef) && !player_will_pierce_resistance()) ) {
 				strike = 0;
-			} else if (mattk->adtyp == AD_ACID && resists_acid(mdef)) {
+			} else if (mattk->adtyp == AD_ACID && (resists_acid(mdef) && !player_will_pierce_resistance()) ) {
 				strike = 0;
 			} else if ((mattk->adtyp < AD_MAGM || mattk->adtyp > AD_SPC2) && mattk->adtyp != AD_RBRE) {
 				goto meleeattack;
@@ -4420,8 +4420,7 @@ physical:
 			/* MRKR: Handling damage when hitting with */
 			/*       a burning torch */
 
-			if(otmp->otyp == TORCH && otmp->lamplit
-			   && !resists_fire(mdef)) {
+			if(otmp->otyp == TORCH && otmp->lamplit && (!resists_fire(mdef) || player_will_pierce_resistance() ) ) {
 
 			  if (!Blind) {
 			    static char outbuf[BUFSZ];
@@ -4565,7 +4564,7 @@ physical:
 		}
 		if (!rn2(33)) tmp += destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
 		if (!rn2(33)) tmp += destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
-		if (resists_fire(mdef)) {
+		if (resists_fire(mdef) && !player_will_pierce_resistance()) {
 		    if (vis)
 			pline_The("fire doesn't seem to burn %s!",
 								mon_nam(mdef));
@@ -4584,7 +4583,7 @@ physical:
 		    break;
 		}
 		if (vis) pline("%s is covered in frost!", Monnam(mdef));
-		if (resists_cold(mdef)) {
+		if (resists_cold(mdef) && !player_will_pierce_resistance()) {
 		    if (vis)
 			pline_The("frost doesn't seem to chill %s!",
 								mon_nam(mdef));
@@ -4603,7 +4602,7 @@ physical:
 		}
 		if (vis) pline("%s gets zapped!", Monnam(mdef));
 		if (!rn2(33)) tmp += destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
-		if (resists_elec(mdef)) {
+		if (resists_elec(mdef) && !player_will_pierce_resistance()) {
 		    if (vis) pline_The("zap doesn't shock %s!", mon_nam(mdef));
 		    shieldeff(mdef->mx, mdef->my);
 		    golemeffects(mdef, AD_ELEC, tmp);
@@ -4619,7 +4618,7 @@ physical:
 		    tmp = 0;
 		    break;
 		}
-		if (resists_acid(mdef)) {
+		if (resists_acid(mdef) && !player_will_pierce_resistance()) {
 		    if (vis)
 			pline("%s is covered in acid, but it seems harmless.",
 			      Monnam(mdef));
@@ -6020,12 +6019,12 @@ physical:
 		    if (vis)
 			pline("%s %s was poisoned!", s_suffix(Monnam(magr)),
 			      mpoisons_subj(magr, mattk));
-		    if (resists_poison(mdef)) {
+		    if (resists_poison(mdef) && !player_will_pierce_resistance()) {
 			if (vis)
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    } else {
-			if (rn2(100)) tmp += rn1(10,6);
+			if (rn2(100) || resists_poison(mdef)) tmp += rn1(10,6);
 			else {
 			    if (vis) pline_The("poison was deadly...");
 			    tmp = mdef->mhp;
@@ -6040,12 +6039,12 @@ physical:
 		    if (vis)
 			pline("%s %s was poisoned!", s_suffix(Monnam(magr)),
 			      mpoisons_subj(magr, mattk));
-		    if (resists_poison(mdef)) {
+		    if (resists_poison(mdef) && !player_will_pierce_resistance()) {
 			if (vis)
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    } else {
-			if (rn2(100)) tmp += rn1(10,6);
+			if (rn2(100) || resists_poison(mdef)) tmp += rn1(10,6);
 			else {
 			    if (vis) pline_The("poison was deadly...");
 			    tmp = mdef->mhp;
@@ -6063,13 +6062,13 @@ physical:
 		if (nohit) break;
 
 		if (!cancelled && !rn2(3)) {
-		    if (resists_poison(mdef)) {
+		    if (resists_poison(mdef) && !player_will_pierce_resistance()) {
 			if (vis)
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    } else {
 			if (vis) pline("%s is badly poisoned!", Monnam(mdef));
-			if (rn2(10)) tmp += rn1(20,12);
+			if (rn2(10) || resists_poison(mdef)) tmp += rn1(20,12);
 			else {
 			    if (vis) pline_The("poison was deadly...");
 			    tmp = mdef->mhp;
@@ -6795,7 +6794,7 @@ int attnumber;
 		    if(canseemon(magr))
 			pline("%s is splashed by %s acid!",
 			      buf, s_suffix(mon_nam(mdef)));
-		    if (resists_acid(magr)) {
+		    if (resists_acid(magr) && !player_will_pierce_resistance()) {
 			if(canseemon(magr))
 			    pline("%s is not affected.", Monnam(magr));
 			tmp = 0;
@@ -6919,7 +6918,7 @@ int attnumber;
 		}
 		return 1;
 	    case AD_COLD:
-		if (resists_cold(magr)) {
+		if (resists_cold(magr) && !player_will_pierce_resistance()) {
 		    if (canseemon(magr)) {
 			pline("%s is mildly chilly.", Monnam(magr));
 			golemeffects(magr, AD_COLD, tmp);
@@ -7076,7 +7075,7 @@ int attnumber;
 		}
 		break;
 	    case AD_FIRE:
-		if (resists_fire(magr)) {
+		if (resists_fire(magr) && !player_will_pierce_resistance()) {
 		    if (canseemon(magr)) {
 			pline("%s is mildly warmed.", Monnam(magr));
 			golemeffects(magr, AD_FIRE, tmp);
@@ -7088,7 +7087,7 @@ int attnumber;
 		    pline("%s is suddenly very hot!", Monnam(magr));
 		break;
 	    case AD_ELEC:
-		if (resists_elec(magr)) {
+		if (resists_elec(magr) && !player_will_pierce_resistance()) {
 		    if (canseemon(magr)) {
 			pline("%s is mildly tingled.", Monnam(magr));
 			golemeffects(magr, AD_ELEC, tmp);
@@ -8255,13 +8254,13 @@ int attnumber;
 		}
 		break;
 	    case AD_VENO:
-		if (resists_poison(magr)) {
+		if (resists_poison(magr) && !player_will_pierce_resistance()) {
 			if (canseemon(magr))
 			    pline_The("poison doesn't seem to affect %s.",
 				mon_nam(magr));
 		} else {
 			if (canseemon(magr)) pline("%s is badly poisoned!", Monnam(magr));
-			if (rn2(10)) tmp += rn1(20,12);
+			if (rn2(10) || resists_poison(magr)) tmp += rn1(20,12);
 			else {
 			    if (canseemon(magr)) pline_The("poison was deadly...");
 			    tmp = magr->mhp;

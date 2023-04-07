@@ -359,7 +359,7 @@ int prop;
 		case RNGE_EXTINCTION:
 			return "extinction";
 		case RNGE_DEFUSING:
-			return "defusing";
+			return "special defusing";
 		case RNGE_DENASTIFICATION:
 			return "denastification";
 		case CONT_RES:
@@ -390,6 +390,8 @@ int prop;
 			return "full nutrients";
 		case TECHNICALITY:
 			return "technicality";
+		case RESISTANCE_PIERCING:
+			return "resistance piercing";
 		case DEFUSING:
 			return "defusing";
 		case RNGE_MULTISHOT:
@@ -4025,6 +4027,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ VACUUM_HELMET, "todo" },
 	{ VACUUM_STAFF, "todo" },
 
+	{ CLOAK_OF_RESISTANCE_PIERCING, "todo" },
+	{ GAUNTLETS_OF_ELEMENTAL_POWER, "todo" },
+	{ RIN_PIERCING, "todo" },
+	{ ROBE_OF_MAGIC_POWER, "todo" },
+
 	{0, "" }
 };
 
@@ -7224,6 +7231,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CLOAK_OF_VACUUM, "todo" },
 	{ VACUUM_HELMET, "todo" },
 	{ VACUUM_STAFF, "todo" },
+
+	{ CLOAK_OF_RESISTANCE_PIERCING, "todo" },
+	{ GAUNTLETS_OF_ELEMENTAL_POWER, "todo" },
+	{ RIN_PIERCING, "todo" },
+	{ ROBE_OF_MAGIC_POWER, "todo" },
 
 	{0, "" }
 };

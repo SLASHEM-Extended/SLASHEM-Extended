@@ -70,6 +70,7 @@ const struct innate {
 			{25, &(HMagical_breathing), "aquatic", "hydrophobic", TRUE },
 		     {  26, &(HShock_resistance), "insulated", "conductive", TRUE },
 		     {	 28, &(HHalf_physical_damage), "resistant to normal damage", "less resistant to damage", TRUE },
+		     {  30, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	 0, 0, 0, 0, 0 } },  
 
 	ast_abil[] = { {	 1, &(HSwimming), "", "", TRUE },
@@ -189,6 +190,7 @@ const struct innate {
 		     {  30, &(HCold_resistance), "warm", "cooler", TRUE },
 		     {  30, &(HFire_resistance), "cool", "warmer", TRUE },
 		     {  30, &(HShock_resistance), "insulated", "conductive", TRUE },
+		     {  30, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	hus_abil[] = { {	 1, &(HScentView), "", "", TRUE },
@@ -214,6 +216,7 @@ const struct innate {
 			{     10, &(HPsi_resist), "psionic", "less psionic", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {  16, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
+		     {  20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   24, &(HInvis), "hidden", "more visible", TRUE },
 		     {   25, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -364,6 +367,7 @@ const struct innate {
 		     {	 0, 0, 0, 0, 0 } },
 
 	fla_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
+		     {  12, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {  13, &(HCold_resistance), "warm", "cooler", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -396,6 +400,7 @@ const struct innate {
 			{	5, &(DamageMeterBug), "", "", FALSE },
 			{	9, &(RangCallEffect), "", "", FALSE },
 		     {	10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			{     12, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 			{	14, &(CrapEffect), "", "", FALSE },
 			{	18, &(PokelieEffect), "", "", FALSE },
 			{	22, &(ExplodingDiceEffect), "", "", FALSE },
@@ -403,7 +408,8 @@ const struct innate {
 			{	30, &(InterfaceScrewed), "", "", FALSE },
 		     {   0, 0, 0, 0, 0 } },
 
-	dea_abil[] = { {	18, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+	dea_abil[] = { {   1, &(HResistancePiercing), "", "", TRUE },
+			 {	18, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	blo_abil[] = { {   1, &(HWarning), "", "", TRUE },
@@ -564,6 +570,7 @@ const struct innate {
 		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
 		     {	17, &(HWarning), "sensitive", "careless", TRUE },
 		     {	20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
+		     {  25, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	ota_abil[] = { {	8, &(HWarning), "sensitive", "careless", TRUE },
@@ -593,6 +600,7 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	aci_abil[] = { {   1, &(HAcid_resistance), "", "", TRUE },
+			{     20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	loc_abil[] = { {   1, &(HSearching), "", "", TRUE },
@@ -641,14 +649,17 @@ const struct innate {
 
 	ice_abil[] = { {   1, &(HCold_resistance), "", "", TRUE },
 		     {  13, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {  16, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	ele_abil[] = { {   1, &(HShock_resistance), "", "", TRUE },
+		     {  15, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	psn_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HFull_nutrient), "", "", TRUE },
 			{   5, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {  22, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	25, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -656,11 +667,13 @@ const struct innate {
 			 {   10, &(HInfravision), "perceptive", "half blind", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	emn_abil[] = { {	10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+	emn_abil[] = { {  5, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+			{   10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{   15, &(HPsi_resist), "psionic", "less psionic", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	cha_abil[] = { {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
+	cha_abil[] = { {   8, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+			 {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	zoo_abil[] = { {   1, &(HWarning), "", "", TRUE },
@@ -732,6 +745,7 @@ const struct innate {
 	psi_abil[] = { {   1, &(HTelepat), "", "", TRUE },
 		     {   1, &(HClairvoyant), "","", TRUE },
 		     {   3, &(HSee_invisible), "your vision sharpen", "your vision blur", TRUE },
+		     {   4, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   5, &(ETelepat), "aware", "unaware", TRUE },
 		     {   6, &(HPainSense), "empathic", "cold-hearted", TRUE },
 		     {   7, &(HAggravate_monster), "noisy", "quiet", FALSE },
@@ -755,11 +769,13 @@ const struct innate {
 		     {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
 		     {	5, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {  30, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	pok_abil[] = { {   1, &(HDisint_resistance), "", "", TRUE },
 		     {   4, &(HWarning), "sensitive", "careless", TRUE },
 		     {   7, &(HSearching), "perceptive", "unaware", TRUE },
+		     {   8, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   10, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life", TRUE },
 		     {   12, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {   13, &(HFast), "quick", "slow", TRUE },
@@ -885,6 +901,7 @@ const struct innate {
 		     {	15, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{  20, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		       {   20, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
+		     {  25, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	mid_abil[] = { { 1, &(HSearching), "", "", TRUE },
@@ -907,6 +924,7 @@ const struct innate {
 			 {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
 			{	7, &(HWarning), "sensitive", "careless", TRUE },
 			{  15, &(HTeleport_control), "controlled","uncontrolled", TRUE },
+			{     20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		       {   25, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
 		     {  30, &(HReflecting), "reflexive", "nonreflexive", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -923,6 +941,7 @@ const struct innate {
 
 	tha_abil[] = { {	4, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {   10, &(HAggravate_monster), "intolerable", "more acceptable", FALSE },
+		     {  24, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	ord_abil[] = { {   5, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
@@ -1304,6 +1323,7 @@ const struct innate {
 
 	ira_abil[] = { {  1, &(HPoison_resistance), "", "", TRUE },
 		     {   12, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
+		     {  20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	26, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -1355,6 +1375,10 @@ const struct innate {
 		     {   0, 0, 0, 0, 0 } },
 
 	maz_abil[] = { {  1, &(HMagicVacuum), "", "", FALSE },
+		     {  14, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	vee_abil[] = { {  20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	urg_abil[] = { {  1, &(HMagicVacuum), "", "", FALSE },
@@ -1525,6 +1549,7 @@ const struct innate {
 
 	bac_abil[] = { {	1, &(HControlMagic), "", "", TRUE },
 			 {	10, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+		     {  15, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	20, &(HCont_resist), "protected from contamination", "vulnerable to contamination", TRUE },  
 		     {   0, 0, 0, 0, 0 } },
 
@@ -2595,6 +2620,7 @@ int oldlevel, newlevel;
 	case PM_NAVI:            rabil = nav_abil;	break;
 	case PM_MAZIN:            rabil = maz_abil;	break;
 	case PM_URGOTH:            rabil = urg_abil;	break;
+	case PM_VEELA:            rabil = vee_abil;	break;
 	case PM_SENSER:            rabil = sen_abil;	break;
 	case PM_PLAYER_UNICORN:            rabil = uni_abil;	break;
 	case PM_RETICULAN:            rabil = ret_abil;	break;
@@ -2873,6 +2899,8 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
+		if (uleft && uleft->oartifact == ART_SPEECHBREAK) tmp += 5;
+		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
 		if (uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
@@ -3219,6 +3247,8 @@ int x;
 		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
 		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
 		if (uarm && uarm->oartifact == ART_SEE_THE_MULCH_STATE) tmp += 3;
+		if (uleft && uleft->oartifact == ART_SPEECHBREAK) tmp += 5;
+		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;

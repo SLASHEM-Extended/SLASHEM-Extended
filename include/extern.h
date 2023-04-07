@@ -2642,6 +2642,8 @@ E void give_code_number(void);
 E void devil_misbehavior(void);
 E void trophy_get(void);
 
+E boolean player_will_pierce_resistance(void);
+
 E boolean issovietmode();
 E boolean isevilvariantmode();
 

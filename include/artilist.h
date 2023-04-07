@@ -11741,6 +11741,38 @@ A("Go On A Survey Recreation",				LEATHER_CLOAK, /* initialized to always be war
 	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN|SPFX_EREGEN), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Krasch Xtra",				CLOAK_OF_RESISTANCE_PIERCING, /* resist cold, fire and shock */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("floemmelfloemmelFloemmelfloemmel",				GAUNTLETS_OF_ELEMENTAL_POWER, /* +1 to-hit and damage, 5% better spellcasting chances */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Jederdi",				ROBE_OF_MAGIC_POWER, /* lightsaber forms train twice as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Castomania",				ROBE_OF_MAGIC_POWER, /* spellcasting skills train twice as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Everything Comes With A Cost",				ROBE_OF_MAGIC_POWER, /* extra skill training, yawm and trapwarp effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Speechbreak",				RIN_LAMITY, /* magic vacuum, +5 STR and DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Datlest Krann",				GAUNTLETS_OF_BAD_CASTING, /* resistance piercing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("SuperheavyKlonk",				WEIGHTING_GAUNTLETS, /* burden, too heavy effect, +4 melee damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

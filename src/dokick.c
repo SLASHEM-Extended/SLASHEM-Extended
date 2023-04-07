@@ -769,7 +769,7 @@ register boolean clumsy;
 		}
 	}
 
-	if (uarmf && uarmf->oartifact == ART_VERA_S_ICECUBE_SMASH && !resists_cold(mon)) {
+	if (uarmf && uarmf->oartifact == ART_VERA_S_ICECUBE_SMASH && (!resists_cold(mon) || player_will_pierce_resistance()) ) {
 		pline("Your very lovely female 'Vera' sneakers clamp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon,TOE)) );
 		if (!resist(mon, RING_CLASS, 0, NOTELL)) {
 			mon_adjust_speed(mon, -1, (struct obj *)0 );

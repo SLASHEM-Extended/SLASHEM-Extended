@@ -1633,7 +1633,7 @@ climdone:
 
 		u.urmaxlvlL++;
 
-		if (!rn2(3)) { switch (rnd(53)) {
+		if (!rn2(3)) { switch (rnd(56)) {
 
 			case 1: 
 			case 2: 
@@ -1721,6 +1721,12 @@ climdone:
 			    HWinceState |= FROMOUTSIDE; pline("You start wincing!"); break;
 			case 53: 
 			    HPainSense |= FROMOUTSIDE; pline("Got pain sense!"); break;
+			case 54: 
+			    HBurdenedState |= FROMOUTSIDE; pline("Got burden!"); break;
+			case 55: 
+			    HMagicVacuum |= FROMOUTSIDE; pline("Got magic vacuum!"); break;
+			case 56: 
+			    HResistancePiercing |= FROMOUTSIDE; pline("Got resistance piercing!"); break;
 
 			default:
 				break;
@@ -1748,7 +1754,7 @@ climdone:
 
 		u.urmaxlvlF++;
 
-		if (!rn2(4)) { switch (rnd(53)) {
+		if (!rn2(4)) { switch (rnd(56)) {
 
 			case 1: 
 			case 2: 
@@ -1836,6 +1842,12 @@ climdone:
 			    HWinceState |= FROMOUTSIDE; pline("You start wincing!"); break;
 			case 53: 
 			    HPainSense |= FROMOUTSIDE; pline("Got pain sense!"); break;
+			case 54: 
+			    HBurdenedState |= FROMOUTSIDE; pline("Got burden!"); break;
+			case 55: 
+			    HMagicVacuum |= FROMOUTSIDE; pline("Got magic vacuum!"); break;
+			case 56: 
+			    HResistancePiercing |= FROMOUTSIDE; pline("Got resistance piercing!"); break;
 
 			default:
 				break;

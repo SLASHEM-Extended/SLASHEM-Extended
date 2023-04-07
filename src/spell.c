@@ -5073,10 +5073,10 @@ aulechoice:
 
 			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
 			    if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
-			    if (resists_poison(nexusmon)) continue;
+			    if (resists_poison(nexusmon) && !player_will_pierce_resistance()) continue;
 
 				nexusmon->mhp -= rn1(10, 6);
-				if (!rn2(500)) {
+				if (!rn2(500) && !resists_poison(nexusmon)) {
 					pline("The poison was deadly...");
 					nexusmon->mhp = -1;
 					xkilled(nexusmon, 0);
@@ -11953,6 +11953,7 @@ int spell;
 	if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) chance += 10;
 	if (uwep && uwep->oartifact == ART_ORIGIN_OF_CASTING) chance += 20;
 	if (uwep && uwep->oartifact == ART_HELIOKOPIS_S_PLAYSTYLE) chance += 20;
+	if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) chance += 5;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;

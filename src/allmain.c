@@ -2909,7 +2909,7 @@ moveloop()
 
 		}
 
-		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone()) && !rn2(100)) {
+		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone() || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) ) && !rn2(100)) {
 			for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 				if (ttmp->ttyp == MAGIC_PORTAL) continue;
 				if (rn2(100)) continue;
@@ -2941,7 +2941,7 @@ moveloop()
 				if (!rn2(buggardchance)) {
 					pline("%s is hit by an icicle!", Monnam(mtmp));
 					wakeup(mtmp); /* monster becomes hostile */
-					if (resists_cold(mtmp)) continue;
+					if (resists_cold(mtmp) && !player_will_pierce_resistance()) continue;
 					if (!rn2(5) && !resist(mtmp, SPBOOK_CLASS, 0, NOTELL) ) {
 						mon_adjust_speed(mtmp, -1, (struct obj *)0);
 						m_dowear(mtmp, FALSE); /* might want speed boots */
@@ -3002,7 +3002,7 @@ moveloop()
 		    if (amountoftargets && targetmon) {
 				pline("%s is hit by lightning!", Monnam(targetmon));
 				wakeup(targetmon); /* monster becomes hostile */
-				if (resists_elec(targetmon)) continue;
+				if (resists_elec(targetmon) && !player_will_pierce_resistance()) continue;
 				hurtmon(targetmon, rnd(50 + (GushLevel * 2)));
 
 		    }
@@ -16371,6 +16371,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "warning coat")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "jort")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nondefined helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "skort")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "full gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "manl robe")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -17685,6 +17688,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "warning coat")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "jort")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nondefined helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "skort")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "full gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "manl robe")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

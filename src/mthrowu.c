@@ -1316,7 +1316,7 @@ blockingdone:
                    the(mon_nam(mtmp)));
             }
 
-	    if (otmp->otyp == ACID_VENOM && resists_acid(mtmp))
+	    if (otmp->otyp == ACID_VENOM && resists_acid(mtmp) && !player_will_pierce_resistance())
 		damage = 0;
 	    if (ismimic) seemimic(mtmp);
 	    mtmp->msleeping = 0;
@@ -1324,11 +1324,11 @@ blockingdone:
 	    else if (verbose) pline("%s is hit%s", Monnam(mtmp), exclam(damage));
 
 	    if (otmp->opoisoned) {
-		if (resists_poison(mtmp)) {
+		if (resists_poison(mtmp) && !player_will_pierce_resistance()) {
 		    if (vis) pline_The("poison doesn't seem to affect %s.",
 				   mon_nam(mtmp));
 		} else {
-		    if (rn2(150)) {
+		    if (rn2(150) || resists_poison(mtmp)) {
 			damage += rnd(mtmp->mtame ? 15 : 6);
 		    } else {
 			if (vis) pline_The("poison was deadly...");
@@ -1361,7 +1361,7 @@ blockingdone:
 		if (verbose) pline("It is beguiled!");
 	    }
 	    if (otmp->otyp == ACID_VENOM && cansee(mtmp->mx,mtmp->my)) {
-		if (resists_acid(mtmp)) {
+		if (resists_acid(mtmp) && !player_will_pierce_resistance()) {
 		    if (vis || verbose)
 			pline("%s is unaffected.", Monnam(mtmp));
 		    damage = 0;

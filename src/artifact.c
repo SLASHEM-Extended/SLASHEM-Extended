@@ -1924,19 +1924,19 @@ struct monst *mtmp;
 		return FALSE;
 	    switch(weap->attk.adtyp) {
 		case AD_FIRE:
-			if (yours ? Fire_resistance : resists_fire(mtmp))
+			if (yours ? Fire_resistance : (resists_fire(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_ACID:
-			if (yours ? Acid_resistance : resists_acid(mtmp))
+			if (yours ? Acid_resistance : (resists_acid(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_COLD:
-			if (yours ? Cold_resistance : resists_cold(mtmp))
+			if (yours ? Cold_resistance : (resists_cold(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_ELEC:
-			if (yours ? Shock_resistance : resists_elec(mtmp))
+			if (yours ? Shock_resistance : (resists_elec(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_MAGM:
@@ -1945,7 +1945,7 @@ struct monst *mtmp;
 			    retval = FALSE;
 			break;
 		case AD_DRST:
-			if (yours ? Poison_resistance : resists_poison(mtmp))
+			if (yours ? Poison_resistance : (resists_poison(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_DRLI:
@@ -2027,19 +2027,19 @@ struct obj *otmp;
 		return FALSE;
 	    switch(weap->attk.adtyp) {
 		case AD_FIRE:
-			if (yours ? Fire_resistance : resists_fire(mtmp))
+			if (yours ? Fire_resistance : (resists_fire(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_ACID:
-			if (yours ? Acid_resistance : resists_acid(mtmp))
+			if (yours ? Acid_resistance : (resists_acid(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_COLD:
-			if (yours ? Cold_resistance : resists_cold(mtmp))
+			if (yours ? Cold_resistance : (resists_cold(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_ELEC:
-			if (yours ? Shock_resistance : resists_elec(mtmp))
+			if (yours ? Shock_resistance : (resists_elec(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_MAGM:
@@ -2048,7 +2048,7 @@ struct obj *otmp;
 			    retval = FALSE;
 			break;
 		case AD_DRST:
-			if (yours ? Poison_resistance : resists_poison(mtmp))
+			if (yours ? Poison_resistance : (resists_poison(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
 			break;
 		case AD_DRLI:
@@ -2662,7 +2662,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    youdefend ? "you" : mon_nam(mdef));
 	    if (!youdefend && otmp->oartifact == ART_SCHOSCHO_BARBITUER) adjalign(-1);
 
-	    if (youdefend ? (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) : resists_poison(mdef)) {
+	    if (youdefend ? (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) : (resists_poison(mdef) && !player_will_pierce_resistance()) ) {
 		if (youdefend)
 		    You("are not affected by the poison.");
 		else
@@ -2686,7 +2686,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    *dmgptr += d(3,6) + 6;
 		    break;
 		case 10:
-			if (!rn2(20) && !(youdefend && uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) ) {
+			if (!rn2(20) && !(!youdefend && resists_poison(mdef)) && !(youdefend && uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) ) {
 		    pline_The("poison was deadly...");
 		    *dmgptr = 2 *
 			    (youdefend ? Upolyd ? u.mh : u.uhp : mdef->mhp) +
@@ -6211,7 +6211,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(51)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(52)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -7280,6 +7280,26 @@ retrytrinsic:
 					if(!(HMagicVacuum & FROMOUTSIDE)) {
 						You_feel("less capable of casting magic!");
 						HMagicVacuum |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 52:
+				if (intloss) {
+					if (HResistancePiercing & INTRINSIC) {
+						HResistancePiercing &= ~INTRINSIC;
+						You_feel("unable to damage immune opponents!");
+						hasmadeachange = 1;
+					}
+					if (HResistancePiercing & TIMEOUT) {
+						HResistancePiercing &= ~TIMEOUT;
+						You_feel("unable to damage immune opponents!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HResistancePiercing & FROMOUTSIDE)) {
+						You_feel("capable of damaging immune opponents!");
+						HResistancePiercing |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

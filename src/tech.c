@@ -4368,7 +4368,7 @@ secureidchoice:
 		    	    	break;
 			    setmangry(mtmp);
 		    	    You("catch %s in your acid trail!", mon_nam(mtmp));
-		    	    if (!resists_acid(mtmp)) {
+		    	    if (!resists_acid(mtmp) || player_will_pierce_resistance()) {
 				int tmp = 1;
 				/* Need to add a to-hit */
 				tmp += d(2,4);
@@ -9290,8 +9290,8 @@ rockpoisonchoice:
 						mtmp->mstrategy &= ~STRAT_WAITFORU;
 					}
 				}
-				if (!resists_poison(mtmp)) {
-					if (!rn2(500)) {
+				if (!resists_poison(mtmp) || player_will_pierce_resistance()) {
+					if (!rn2(500) && !resists_poison(mtmp) ) {
 						Your("poison was deadly...");
 						injectiondmg = (mtmp->mhp * 10);
 					}

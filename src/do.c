@@ -745,6 +745,9 @@ giveback:
 		case RIN_SEE_INVISIBLE:
 		    You("see some air in the sink.");
 		    break;
+		case RIN_PIERCING:
+		    You("see a few waterdrops sliding right through the solid part of the sink!");
+		    break;
 		case RIN_LEECH:
 		    pline("The sink drains energy from the ring!");
 		    break;

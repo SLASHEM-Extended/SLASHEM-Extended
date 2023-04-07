@@ -359,10 +359,10 @@ boolean yours; /* is it your fault (for killing monsters) */
 				explmask |= resists_magm(mtmp);
 				break;
 			case AD_FIRE:
-				explmask |= resists_fire(mtmp);
+				explmask |= (resists_fire(mtmp) && !player_will_pierce_resistance() );
 				break;
 			case AD_COLD:
-				explmask |= resists_cold(mtmp);
+				explmask |= (resists_cold(mtmp) && !player_will_pierce_resistance() );
 				break;
 			case AD_SLEE:
 				explmask |= resists_sleep(mtmp);
@@ -373,13 +373,13 @@ boolean yours; /* is it your fault (for killing monsters) */
 					resists_disint(mtmp);
 				break;
 			case AD_ELEC:
-				explmask |= resists_elec(mtmp);
+				explmask |= (resists_elec(mtmp) && !player_will_pierce_resistance() );
 				break;
 			case AD_DRST:
-				explmask |= resists_poison(mtmp);
+				explmask |= (resists_poison(mtmp) && !player_will_pierce_resistance()) ;
 				break;
 			case AD_ACID:
-				explmask |= resists_acid(mtmp);
+				explmask |= (resists_acid(mtmp) && !player_will_pierce_resistance()) ;
 				break;
 			default:
 				impossible("explosion type %d?", adtyp);
@@ -1192,7 +1192,7 @@ boolean isyou;
     if (!mon && x == u.ux && y == u.uy)
 	mon = u.usteed;
     if (mon && !DEADMONSTER(mon)) {
-	if (resists_fire(mon)) {
+	if (resists_fire(mon) && !player_will_pierce_resistance()) {
 	    shielded = TRUE;
 	} else {
 	    for(obj = mon->minvent; obj; obj = obj2) {

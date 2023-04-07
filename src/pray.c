@@ -654,7 +654,7 @@ aligntyp resp_god;
 	if (u.uswallow) {
 	    pline("Suddenly a bolt of lightning comes down at you from the heavens!");
 	    pline("It strikes %s!", mon_nam(u.ustuck));
-	    if (!resists_elec(u.ustuck)) {
+	    if (!resists_elec(u.ustuck) || player_will_pierce_resistance()) {
 		pline("%s fries to a crisp!", Monnam(u.ustuck));
 		/* Yup, you get experience.  It takes guts to successfully
 		 * pull off this trick on your god, anyway.

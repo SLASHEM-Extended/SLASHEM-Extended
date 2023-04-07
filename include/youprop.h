@@ -66,7 +66,7 @@
 #define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || AssholeModeActive || have_multitrappingstone() || Role_if(PM_WALSCHOLAR) || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
 #define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
 #define CannotSelectItemsInPrompts	(InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone())
-#define Yawming	(YawmBug || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone())
+#define Yawming	(YawmBug || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone() || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) )
 #define TezActive	(TezEffect || u.uprops[TEZ_EFFECT].extrinsic || have_tezstone())
 #define EnthuActive	(EnthuEffect || u.uprops[ENTHU_EFFECT].extrinsic || have_bossgodstone())
 #define WallsAreNoFun	(NoFunWallsEffect || u.uprops[NO_FUN_WALLS].extrinsic || have_funwallstone())
@@ -1306,7 +1306,7 @@
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
 #define EExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].extrinsic
 #define IntExtra_wpn_practice	(HExtra_wpn_practice)
-#define ExtExtra_wpn_practice	(EExtra_wpn_practice || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
+#define ExtExtra_wpn_practice	(EExtra_wpn_practice || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
 
 #define Extra_wpn_practice	(IntExtra_wpn_practice || ExtExtra_wpn_practice)
 #define StrongExtra_wpn_practice	(IntExtra_wpn_practice && ExtExtra_wpn_practice && Extra_wpn_practice)
@@ -1786,15 +1786,25 @@
 #define HBurdenedState		u.uprops[BURDENED_STATE].intrinsic
 #define EBurdenedState		u.uprops[BURDENED_STATE].extrinsic
 #define IntBurdenedState	(HBurdenedState || issoviet)
-#define ExtBurdenedState	(EBurdenedState)
+#define ExtBurdenedState	(EBurdenedState || (uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) )
 #define BurdenedState		(IntBurdenedState || ExtBurdenedState )
 #define StrongBurdenedState		(IntBurdenedState && ExtBurdenedState && BurdenedState)
 
 #define HMagicVacuum		u.uprops[MAGIC_VACUUM].intrinsic
 #define EMagicVacuum		u.uprops[MAGIC_VACUUM].extrinsic
 #define IntMagicVacuum	(HMagicVacuum)
-#define ExtMagicVacuum	(EMagicVacuum || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
+#define ExtMagicVacuum	(EMagicVacuum || autismringcheck(ART_SPEECHBREAK) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
 #define MagicVacuum		(IntMagicVacuum || ExtMagicVacuum )
 #define StrongMagicVacuum		(IntMagicVacuum && ExtMagicVacuum && MagicVacuum)
+
+#define HResistancePiercing		u.uprops[RESISTANCE_PIERCING].intrinsic
+#define EResistancePiercing		u.uprops[RESISTANCE_PIERCING].extrinsic
+#define IntResistancePiercing	(HResistancePiercing)
+#define ExtResistancePiercing	(EResistancePiercing || (uarmg && uarmg->oartifact == ART_DATLEST_KRANN) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == RESISTANCE_PIERCING) ) )
+
+#define ResistancePiercing		(((IntResistancePiercing && u.nonintrinsicproperty != RESISTANCE_PIERCING) || (ExtResistancePiercing && u.nonextrinsicproperty != RESISTANCE_PIERCING)) && !NoResistancePiercing)
+#define StrongResistancePiercing	(IntResistancePiercing && ExtResistancePiercing && ResistancePiercing && u.nondoubleproperty != RESISTANCE_PIERCING)
+
+#define NoResistancePiercing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic || UHaveAids || (u.impossibleproperty == RESISTANCE_PIERCING ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #endif /* YOUPROP_H */

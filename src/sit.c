@@ -1103,7 +1103,7 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(260)) {
+	switch(rnd(261)) {
 	case 1:
 	case 2:
 	case 3:
@@ -2277,6 +2277,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HMagicVacuum & TIMEOUT) {
 			HMagicVacuum &= ~TIMEOUT;
 			You_feel("capable of casting magic effectively again!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 261: if (HResistancePiercing & INTRINSIC) {
+			HResistancePiercing &= ~INTRINSIC;
+			You_feel("unable to damage immune opponents!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HResistancePiercing & TIMEOUT) {
+			HResistancePiercing &= ~TIMEOUT;
+			You_feel("unable to damage immune opponents!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;

@@ -1908,6 +1908,7 @@ playerextrinsicfireres()
 	if ((uwep && uwep->oartifact == ART_WRATH_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
 	if ((uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && (moves % 3 == 0) ) ) return TRUE;
 	if ((uamul && uamul->oartifact == ART_DEMOBLING) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SILVESTERBLAM) || (uarmf && uarmf->oartifact == ART_MY_LOVE) || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || have_spectrumplinggem() || (uwep && uwep->oartifact == ART_DEATH_S_FATHOM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarms && uarms->oartifact == ART_HEATEM_UP) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_COAL_PEER) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || (uarm && uarm->oartifact == ART_DUEUEUEUET) ) return TRUE;
+	if ( (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) ) return TRUE;
 
 	return FALSE;
 }
@@ -1929,7 +1930,7 @@ playerextrinsiccoldres()
 	if ((uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_COLD_SOUL) || (uwep && uwep->oartifact == ART_RELEASE_FROM_CARE) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
 	if ((uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uwep && uwep->oartifact == ART_ELEMENTS_TIME_THREE) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) || (uarmf && uarmf->oartifact == ART_DYKE_RESISTS) || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uarmf && uarmf->oartifact == ART_SIMPLY_WHITE) || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uwep && uwep->oartifact == ART_CUTRELEASE) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) ) return TRUE;
-	if (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) return TRUE;
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) ) return TRUE;
 
 	return FALSE;
 }
@@ -1947,7 +1948,7 @@ playerextrinsicshockres()
 	if ((uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_STORMHELM) || (uarmc && uarmc->oartifact == ART_WEB_OF_THE_CHOSEN)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_FIRE_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
 	if ((uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_DYKE_RESISTS) || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || (uwep && uwep->oartifact == ART_DEATH_S_FATHOM) ) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) ) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) ) return TRUE;
 
 	return FALSE;
 }
@@ -9168,6 +9169,7 @@ datadeleteattack()
 			u.uprops[DEAC_FULL_NUTRIENT].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_TECHNICALITY].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_DEFUSING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_SCENT_VIEW].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_CONTROL_MAGIC].intrinsic += (rn2(10) ? 10000 : 100000);
@@ -12215,6 +12217,7 @@ peffects(otmp)
 		u.uprops[DEAC_FULL_NUTRIENT].intrinsic = 0;
 		u.uprops[DEAC_TECHNICALITY].intrinsic = 0;
 		u.uprops[DEAC_DEFUSING].intrinsic = 0;
+		u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic = 0;
 		u.uprops[DEAC_SCENT_VIEW].intrinsic = 0;
 		u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic = 0;
 		u.uprops[DEAC_CONTROL_MAGIC].intrinsic = 0;
@@ -13585,7 +13588,7 @@ boolean your_fault;
 		if (mon->data == &mons[PM_PESTILENCE]) goto do_healing;
 		if (dmgtype(mon->data, AD_DISE) ||
 			   dmgtype(mon->data, AD_PEST) || /* won't happen, see prior goto */
-			   resists_poison(mon)) {
+			   (resists_poison(mon) && !player_will_pierce_resistance()) ) {
 		    if (canseemon(mon))
 			pline("%s looks unharmed.", Monnam(mon));
 		    break;
@@ -13897,7 +13900,7 @@ boolean your_fault;
 */
 	/* KMH, balance patch -- added */
 	case POT_ACID:
-		if (!resists_acid(mon) && !resist(mon, POTION_CLASS, 0, NOTELL)) {
+		if ((!resists_acid(mon) || player_will_pierce_resistance()) && !resist(mon, POTION_CLASS, 0, NOTELL)) {
 		    pline("%s %s in pain!", Monnam(mon),
 			  is_silent(mon->data) ? "writhes" : "shrieks");
 		    mon->mhp -= d(obj->cursed ? 2 : 1, obj->blessed ? 4 : 8);
@@ -16349,6 +16352,15 @@ void
 give_code_number()
 {
 	pline("code to be implemented.");
+}
+
+/* will the player succeed in damaging an immune opponent with the resistance piercing trinsic? --Amy */
+boolean
+player_will_pierce_resistance()
+{
+	if (ResistancePiercing && !rn2(20)) return TRUE;
+	if (StrongResistancePiercing && !rn2(20)) return TRUE;
+	return FALSE;
 }
 
 /* is the player someone whom we don't want to play this game? */

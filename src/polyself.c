@@ -2964,7 +2964,7 @@ dogaze()
 		    } else if (adtyp == AD_FIRE) {
 			int dmg = d(2,6);
 			You("attack %s with a fiery gaze!", mon_nam(mtmp));
-			if (resists_fire(mtmp)) {
+			if (resists_fire(mtmp) && !player_will_pierce_resistance()) {
 			    pline_The("fire doesn't burn %s!", mon_nam(mtmp));
 			    dmg = 0;
 			}

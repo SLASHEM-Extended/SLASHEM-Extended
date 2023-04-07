@@ -3787,6 +3787,10 @@ nh_timeout()
 			if (!Defusing)
 				pline("You no longer know how to defuse traps.");
 			break;
+		case RESISTANCE_PIERCING:
+			if (!ResistancePiercing)
+				pline("You can no longer pierce enemy resistances.");
+			break;
 		case SCENT_VIEW:
 			if (!ScentView)
 				pline("Your %s returns to normal.", body_part(NOSE));
@@ -4065,6 +4069,9 @@ nh_timeout()
 			break;
 		case DEAC_DEFUSING:
 			pline("You are no longer prevented from having the defusing power.");
+			break;
+		case DEAC_RESISTANCE_PIERCING:
+			pline("You are no longer prevented from having resistance piercing.");
 			break;
 		case DEAC_SCENT_VIEW:
 			pline("You are no longer prevented from having scent view.");

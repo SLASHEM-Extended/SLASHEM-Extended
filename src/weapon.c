@@ -6206,8 +6206,10 @@ int degree;
 	if (uwep && uwep->oartifact == ART_ROSH_TRAINOR && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
 	if (uwep && uwep->otyp == PINK_LIGHTSWORD && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
 	if (uwep && uwep->otyp == PINK_DOUBLE_LIGHTSWORD && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
+	if (uarm && uarm->oartifact == ART_JEDERDI && skill >= P_SHII_CHO && skill <= P_WEDI) degree *= 2;
 
 	if (Race_if(PM_MAZIN) && (skill >= P_ATTACK_SPELL && skill <= P_MATTER_SPELL) ) degree *= 2;
+	if (uarm && uarm->oartifact == ART_CASTOMANIA && skill >= P_ATTACK_SPELL && skill <= P_MATTER_SPELL) degree *= 2;
 
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IME_SPEW && skill == P_SQUEAKING) degree *= 2;
 

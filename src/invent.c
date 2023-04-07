@@ -12869,6 +12869,8 @@ boolean knoweverything;
 				pline("Robes can be worn instead of armor. This is mainly useful for monks and jedi who are penalized for wearing 'real' armor."); break;
 			case ROBE_OF_PROTECTION:
 				pline("If you don't want to wear a real armor, you can use this for some armor class."); break;
+			case ROBE_OF_MAGIC_POWER:
+				pline("Do you want to be able to damage those assholes who are immune to fire, cold, shock, poison or acid? With this robe, there's a small chance that your elemental attacks will bypass the opponent's resistance and damages him anyway!"); break;
 			case ROBE_OF_DESTINY:
 				pline("This robe makes it so that monsters will always spawn with a level that is at least the current monster difficulty. It gives 5 points of armor class and no magic cancellation."); break;
 			case ROBE_OF_STASIS:
@@ -13280,6 +13282,8 @@ boolean knoweverything;
 				pline("The act of putting on this cloak can curse your entire inventory. Afterwards, it will provide a bit of AC and 3 points of magic cancellation without further curse effects."); break;
 			case CLOAK_OF_STONE:
 				pline("Wear it, and you'll turn to stone! But if you can cure that, it will then act as a standard MC3 cloak."); break;
+			case CLOAK_OF_RESISTANCE_PIERCING:
+				pline("Allows you to occasionally damage an enemy anyway if he would have resisted your elemental attack, and conveys 3 points of magic cancellation."); break;
 			case CLOAK_OF_LYCANTHROPY:
 				pline("Putting this cloak on allows you to acquire lycanthropy, which will always make you a wereWOLF as opposed to another wereform. It also gives more AC than usual and 3 points of magic cancellation."); break;
 			case CLOAK_OF_UNLIGHT:
@@ -13817,6 +13821,8 @@ boolean knoweverything;
 				pline("You want paralysis resistance, right? Well, you just found a way to get it!"); break;
 			case ELVEN_GAUNTLETS:
 				pline("Light gauntlets that provide stealth."); break;
+			case GAUNTLETS_OF_ELEMENTAL_POWER:
+				pline("You have a 5%% chance of damaging a normally immune enemy with fire, cold, shock, poison or acid while wearing these."); break;
 			case GAUNTLETS_OF_GOOD_FORTUNE:
 				pline("This pair of gloves acts as a luckstone when worn."); break;
 			case GAUNTLETS_OF_DEXTERITY:
@@ -14926,6 +14932,8 @@ boolean knoweverything;
 				pline("A ring that causes dimness and is usually generated cursed."); break;
 			case RIN_STEALTH:
 				pline("You will make less noise if you wear this ring."); break;
+			case RIN_PIERCING:
+				pline("While wearing this ring, your elemental attacks may sometimes pierce the enemy's resistance and deal damage anyway."); break;
 			case RIN_MEMORY:
 				pline("A ring that provides the otherwise unobtainable amnesia resistance."); break;
 			case RIN_SUSTAIN_ABILITY: 
@@ -25461,6 +25469,22 @@ boolean knoweverything;
 					pline("Artifact specs: 5 extra points of AC, makes you immune to mind flayer attacks."); break;
 				case ART_GO_ON_A_SURVEY_RECREATION:
 					pline("Artifact specs: regeneration and energy regeneration when worn, using the wait command drains your score by 50."); break;
+				case ART_KRASCH_XTRA:
+					pline("Artifact specs: resist cold, fire and shock when worn."); break;
+				case ART_FLOEMMELFLOEMMELFLOEMMELFL:
+					pline("Artifact specs: +1 to-hit and damage as well as 5%% better spellcasting chances when worn."); break;
+				case ART_JEDERDI:
+					pline("Artifact specs: while wearing it, lightsaber forms train twice as fast."); break;
+				case ART_CASTOMANIA:
+					pline("Artifact specs: while wearing it, spellcasting skills train twice as fast."); break;
+				case ART_EVERYTHING_COMES_WITH_A_CO:
+					pline("Artifact specs: extra skill training, yawm trap and trapwarping effects when worn."); break;
+				case ART_SPEECHBREAK:
+					pline("Artifact specs: magic vacuum, +5 strength and dexterity when worn."); break;
+				case ART_DATLEST_KRANN:
+					pline("Artifact specs: resistance piercing when worn."); break;
+				case ART_SUPERHEAVYKLONK:
+					pline("Artifact specs: burden, too heavy effect and +4 melee damage when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

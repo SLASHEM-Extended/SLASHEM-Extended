@@ -19889,6 +19889,7 @@ stdcontracting:
 		u.uprops[DEAC_FULL_NUTRIENT].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_TECHNICALITY].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_DEFUSING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_SCENT_VIEW].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_CONTROL_MAGIC].intrinsic += rnz( (monster_difficulty() * 100) + 1);
@@ -20617,7 +20618,7 @@ register struct attack *mattk;
 	int i, tmp;
 	boolean powerbiote = FALSE;
 
-	if (Slimed && Corrosivity && !resists_acid(mtmp)) {
+	if (Slimed && Corrosivity && (!resists_acid(mtmp) || player_will_pierce_resistance()) ) {
 		int corrosivdamage = rnd(u.ulevel);
 		if (StrongCorrosivity) corrosivdamage = rnd(u.ulevel * 2);
 
@@ -20631,7 +20632,7 @@ register struct attack *mattk;
 
 	}
 
-	if (u.bodyfluideffect && !resists_acid(mtmp)) {
+	if (u.bodyfluideffect && (!resists_acid(mtmp) || player_will_pierce_resistance()) ) {
 
 		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
@@ -20644,7 +20645,7 @@ register struct attack *mattk;
 	}
 
 	/* from PRIME: "Very experienced Xel'Naga have stronger acid blood." --Amy */
-	if (Role_if(PM_XELNAGA) && u.ulevel >= 15 && !resists_acid(mtmp)) {
+	if (Role_if(PM_XELNAGA) && u.ulevel >= 15 && (!resists_acid(mtmp) || player_will_pierce_resistance()) ) {
 
 		pline("%s is covered with a corrosive substance!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
@@ -20744,7 +20745,7 @@ register struct attack *mattk;
 
 	}
 
-	if (tech_inuse(T_BIG_N_VEINY) && !resists_poison(mtmp)) {
+	if (tech_inuse(T_BIG_N_VEINY) && (!resists_poison(mtmp) || player_will_pierce_resistance()) ) {
 		pline("%s is poisoned!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(5) ) <= 0) {
 			pline("%s dies!", Monnam(mtmp));
@@ -20752,7 +20753,7 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-		if (!rn2(100)) {
+		if (!rn2(100) && !resists_poison(mtmp)) {
 			mtmp->mhp = 0;
 			pline("The poison was deadly...");
 			xkilled(mtmp,0);
@@ -20761,7 +20762,7 @@ register struct attack *mattk;
 		}
 	}
 
-	if (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS && !resists_poison(mtmp)) {
+	if (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS && (!resists_poison(mtmp) || player_will_pierce_resistance()) ) {
 		pline("%s is poisoned by your black leather pumps!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(10) ) <= 0) {
 			pline("%s dies!", Monnam(mtmp));
@@ -20769,7 +20770,7 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-		if (!rn2(50)) {
+		if (!rn2(50) && !resists_poison(mtmp)) {
 			mtmp->mhp = 0;
 			pline("The poison was deadly...");
 			xkilled(mtmp,0);
@@ -20778,7 +20779,7 @@ register struct attack *mattk;
 		}
 	}
 
-	if (uarmh && uarmh->oartifact == ART_TARI_FEFALAS && !resists_poison(mtmp)) {
+	if (uarmh && uarmh->oartifact == ART_TARI_FEFALAS && (!resists_poison(mtmp) || player_will_pierce_resistance()) ) {
 		pline("%s is poisoned!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(5) ) <= 0) {
 			pline("%s dies!", Monnam(mtmp));
@@ -20788,7 +20789,7 @@ register struct attack *mattk;
 		}
 	}
 
-	if (uarmc && !resists_elec(mtmp) && itemhasappearance(uarmc, APP_ELECTROSTATIC_CLOAK) ) {
+	if (uarmc && (!resists_elec(mtmp) || player_will_pierce_resistance()) && itemhasappearance(uarmc, APP_ELECTROSTATIC_CLOAK) ) {
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
 			pline("%s is electrocuted and dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
@@ -20797,7 +20798,7 @@ register struct attack *mattk;
 		}
 	}
 
-	if (RngeVoltage && !resists_elec(mtmp)) {
+	if (RngeVoltage && (!resists_elec(mtmp) || player_will_pierce_resistance()) ) {
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
 			pline("%s is electrocuted and dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
@@ -20851,7 +20852,7 @@ dothepassive:
 	    case AD_ACID:
 		if (!rn2(2)) {
 		    pline("%s is splashed by your acid!", Monnam(mtmp));
-		    if (resists_acid(mtmp)) {
+		    if (resists_acid(mtmp) && !player_will_pierce_resistance()) {
 			pline("%s is not affected.", Monnam(mtmp));
 			tmp = 0;
 		    }
@@ -20954,7 +20955,7 @@ dothepassive:
 		}
 		return 1;
 	    case AD_COLD: /* Brown mold or blue jelly */
-		if (resists_cold(mtmp)) {
+		if (resists_cold(mtmp) && !player_will_pierce_resistance()) {
 		    shieldeff(mtmp->mx, mtmp->my);
 		    pline("%s is mildly chilly.", Monnam(mtmp));
 		    golemeffects(mtmp, AD_COLD, tmp);
@@ -20982,7 +20983,7 @@ dothepassive:
 		}
 		break;
 	    case AD_FIRE: /* Red mold */
-		if (resists_fire(mtmp)) {
+		if (resists_fire(mtmp) && !player_will_pierce_resistance()) {
 		    shieldeff(mtmp->mx, mtmp->my);
 		    pline("%s is mildly warm.", Monnam(mtmp));
 		    golemeffects(mtmp, AD_FIRE, tmp);
@@ -20992,7 +20993,7 @@ dothepassive:
 		pline("%s is suddenly very hot!", Monnam(mtmp));
 		break;
 	    case AD_ELEC:
-		if (resists_elec(mtmp)) {
+		if (resists_elec(mtmp) && !player_will_pierce_resistance()) {
 		    shieldeff(mtmp->mx, mtmp->my);
 		    pline("%s is slightly tingled.", Monnam(mtmp));
 		    golemeffects(mtmp, AD_ELEC, tmp);
@@ -21364,11 +21365,11 @@ dothepassive:
 		}
 		break;
 	    case AD_VENO:
-		if (resists_poison(mtmp)) {
+		if (resists_poison(mtmp) && !player_will_pierce_resistance()) {
 		    pline_The("poison doesn't seem to affect %s.", mon_nam(mtmp));
 		} else {
 			pline("%s is badly poisoned!", Monnam(mtmp));
-			if (rn2(10)) tmp += rn1(20,12);
+			if (rn2(10) || resists_poison(mtmp)) tmp += rn1(20,12);
 			else {
 			    pline_The("poison was deadly...");
 			    tmp = mtmp->mhp;

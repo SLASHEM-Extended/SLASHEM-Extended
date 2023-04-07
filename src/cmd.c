@@ -7076,6 +7076,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoResistancePiercing && (final || u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic) ) {
+		sprintf(buf, "prevented from having resistance piercing");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && NoScentView && (final || u.uprops[DEAC_SCENT_VIEW].intrinsic) ) {
 		sprintf(buf, "prevented from having scent view");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
@@ -7612,6 +7618,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Full_nutrient) you_have(StrongFull_nutrient ? "very full nutrients" : "full nutrients");
 	if ((guaranteed || !rn2(10)) && Technicality) you_have(StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if ((guaranteed || !rn2(10)) && Defusing) you_have(StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
+	if ((guaranteed || !rn2(10)) && ResistancePiercing) you_have(StrongResistancePiercing ? "powerful resistance piercing abilities" : "resistance piercing abilities");
 	if ((guaranteed || !rn2(10)) && (ScentView || EcholocationActive)) you_have(StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if ((guaranteed || !rn2(10)) && DiminishedBleeding) you_have(StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if ((guaranteed || !rn2(10)) && ControlMagic) you_have(StrongControlMagic ? "strong magic control" : "magic control");
@@ -11742,6 +11749,12 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoResistancePiercing) {
+		sprintf(buf, "prevented from having resistance piercing");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic);
+		dump(youwere, buf);
+	}
+
 	if (NoScentView) {
 		sprintf(buf, "prevented from having scent view");
 		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
@@ -12242,6 +12255,7 @@ int final;
 	if (Full_nutrient) dump(youhad, StrongFull_nutrient ? "very full nutrients" : "full nutrients");
 	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if (Defusing) dump(youhad, StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
+	if (ResistancePiercing) dump(youhad, StrongResistancePiercing ? "powerful resistance piercing abilities" : "resistance piercing abilities");
 	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if (ControlMagic) dump(youhad, StrongControlMagic ? "strong magic control" : "magic control");

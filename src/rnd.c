@@ -1695,7 +1695,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(154)) {
+	switch (rnd(155)) {
 
 		case 1:
 		case 2:
@@ -1937,6 +1937,8 @@ randenchantment()
 			return BURDENED_STATE;
 		case 154:
 			return MAGIC_VACUUM;
+		case 155:
+			return RESISTANCE_PIERCING;
 
 		default:
 			return POISON_RES;
@@ -2234,7 +2236,7 @@ randnastyenchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(72)) {
+	switch (rnd(73)) {
 
 		case 1:
 			return FIRE_RES;
@@ -2380,6 +2382,8 @@ randomdisableproperty()
 			return HALLUC_RES;
 		case 72:
 			return DEFUSING;
+		case 73:
+			return RESISTANCE_PIERCING;
 		default:
 			return POISON_RES;
 	}
@@ -3508,7 +3512,7 @@ deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(136)) {
+	switch (rnd(137)) {
 
 		case 1:
 		case 2:
@@ -3865,6 +3869,10 @@ register int amount;
 			u.uprops[DEAC_DEFUSING].intrinsic += amount;
 			pline("You are prevented from having the defusing power!");
 			break;
+		case 137:
+			u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic += amount;
+			pline("You are prevented from having resistance piercing!");
+			break;
 	}
 
 }
@@ -3873,7 +3881,7 @@ int
 goodimplanteffect(obj)
 struct obj *obj;
 {
-	switch (obj->shirtmessage % 58) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
+	switch (obj->shirtmessage % 59) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
 
 		case 0:
 			return DTBEEM_RES;
@@ -3991,6 +3999,8 @@ struct obj *obj;
 			return HALLUC_RES;
 		case 57:
 			return DEFUSING;
+		case 58:
+			return RESISTANCE_PIERCING;
 		default:
 			return POISON_RES;
 

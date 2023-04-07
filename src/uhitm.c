@@ -853,6 +853,7 @@ register struct monst *mtmp;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
+	if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
 	if (uwep && uwep->oartifact == ART_JUSTICE_FOR_GARLIC) tmp += 5;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
@@ -1935,7 +1936,7 @@ int dieroll;
 			if (!Blind) pline("%s is on fire!", Monnam(mon));
 			if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
 			if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
-			if (noeffect || resists_fire(mon)) {
+			if (noeffect || (resists_fire(mon) && !player_will_pierce_resistance() ) ) {
 			    if (!noeffect)
 				shieldeff(mon->mx, mon->my);
 			    if (!Blind) 
@@ -1951,7 +1952,7 @@ int dieroll;
 			break;
 		    case 1: /* Cold */
 		    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
-			if (noeffect || resists_cold(mon)) {
+			if (noeffect || (resists_cold(mon) && !player_will_pierce_resistance()) ) {
 			    if (!noeffect)
 				shieldeff(mon->mx, mon->my);
 			    if (!Blind) 
@@ -1965,7 +1966,7 @@ int dieroll;
 		    case 2: /* Elec */
 			if (!Blind) pline("%s is zapped!", Monnam(mon));
 			if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
-			if (noeffect || resists_elec(mon)) {
+			if (noeffect || (resists_elec(mon) && !player_will_pierce_resistance()) ) {
 			    if (!noeffect)
 				shieldeff(mon->mx, mon->my);
 			    if (!Blind)
@@ -1982,7 +1983,7 @@ int dieroll;
 		    case 3: /* Acid */
 			if (!Blind)
 			    pline("%s is covered in acid!", Monnam(mon));
-			if (noeffect || resists_acid(mon)) {
+			if (noeffect || (resists_acid(mon) && !player_will_pierce_resistance()) ) {
 			    if (!Blind)
 				pline_The("acid doesn't burn %s!", Monnam(mon));
 			    dmgbonus = 0;
@@ -2286,7 +2287,7 @@ int dieroll;
 				if (!Blind) pline("%s is on fire!", Monnam(mon));
 				if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
 				if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
-				if (noeffect || resists_fire(mon)) {
+				if (noeffect || (resists_fire(mon) && !player_will_pierce_resistance() ) ) {
 				    if (!noeffect)
 					shieldeff(mon->mx, mon->my);
 				    if (!Blind) 
@@ -2302,7 +2303,7 @@ int dieroll;
 				break;
 			    case 1: /* Cold */
 			    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
-				if (noeffect || resists_cold(mon)) {
+				if (noeffect || (resists_cold(mon) && !player_will_pierce_resistance()) ) {
 				    if (!noeffect)
 					shieldeff(mon->mx, mon->my);
 				    if (!Blind) 
@@ -2316,7 +2317,7 @@ int dieroll;
 			    case 2: /* Elec */
 				if (!Blind) pline("%s is zapped!", Monnam(mon));
 				if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
-				if (noeffect || resists_elec(mon)) {
+				if (noeffect || (resists_elec(mon) && !player_will_pierce_resistance()) ) {
 				    if (!noeffect)
 					shieldeff(mon->mx, mon->my);
 				    if (!Blind)
@@ -2333,7 +2334,7 @@ int dieroll;
 			    case 3: /* Acid */
 				if (!Blind)
 				    pline("%s is covered in acid!", Monnam(mon));
-				if (noeffect || resists_acid(mon)) {
+				if (noeffect || (resists_acid(mon) && !player_will_pierce_resistance()) ) {
 				    if (!Blind)
 					pline_The("acid doesn't burn %s!", Monnam(mon));
 				    dmgbonus = 0;
@@ -2616,7 +2617,7 @@ int dieroll;
 					if (!Blind) pline("%s is on fire!", Monnam(mon));
 					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
 					if (!rn2(33)) dmgbonus += destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
-					if (noeffect || resists_fire(mon)) {
+					if (noeffect || (resists_fire(mon) && !player_will_pierce_resistance() ) ) {
 					    if (!noeffect)
 						shieldeff(mon->mx, mon->my);
 					    if (!Blind) 
@@ -2632,7 +2633,7 @@ int dieroll;
 					break;
 				    case 1: /* Cold */
 				    	if (!Blind) pline("%s is covered in frost!", Monnam(mon));
-					if (noeffect || resists_cold(mon)) {
+					if (noeffect || (resists_cold(mon) && !player_will_pierce_resistance()) ) {
 					    if (!noeffect)
 						shieldeff(mon->mx, mon->my);
 					    if (!Blind) 
@@ -2646,7 +2647,7 @@ int dieroll;
 				    case 2: /* Elec */
 					if (!Blind) pline("%s is zapped!", Monnam(mon));
 					if (!rn2(33)) dmgbonus += destroy_mitem(mon, WAND_CLASS, AD_ELEC);
-					if (noeffect || resists_elec(mon)) {
+					if (noeffect || (resists_elec(mon) && !player_will_pierce_resistance()) ) {
 					    if (!noeffect)
 						shieldeff(mon->mx, mon->my);
 					    if (!Blind)
@@ -2663,7 +2664,7 @@ int dieroll;
 				    case 3: /* Acid */
 					if (!Blind)
 					    pline("%s is covered in acid!", Monnam(mon));
-					if (noeffect || resists_acid(mon)) {
+					if (noeffect || (resists_acid(mon) && !player_will_pierce_resistance()) ) {
 					    if (!Blind)
 						pline_The("acid doesn't burn %s!", Monnam(mon));
 					    dmgbonus = 0;
@@ -2845,7 +2846,7 @@ int dieroll;
 		    /*       fire damage, but uses up the torch  */
 		    /*       more quickly.                       */
 
-		    if(obj && obj->otyp == TORCH && obj->lamplit && !resists_fire(mon)) {
+		    if(obj && obj->otyp == TORCH && obj->lamplit && (!resists_fire(mon) || player_will_pierce_resistance() ) ) {
 
 		      burnmsg = TRUE;
 
@@ -2857,7 +2858,7 @@ int dieroll;
 		      /* the hit messages are printed. */
 		    }
 
-		    if(obj && obj->otyp == LIGHTTORCH && obj->lamplit && !resists_fire(mon)) {
+		    if(obj && obj->otyp == LIGHTTORCH && obj->lamplit && (!resists_fire(mon) || player_will_pierce_resistance() ) ) {
 
 		      burnmsg = TRUE;
 
@@ -2869,7 +2870,7 @@ int dieroll;
 		      /* the hit messages are printed. */
 		    }
 
-		    if (thrown && obj && obj->otyp == FLAMETHROWER && !resists_fire(mon)) {
+		    if (thrown && obj && obj->otyp == FLAMETHROWER && (!resists_fire(mon) || player_will_pierce_resistance() ) ) {
 		      burnmsg = TRUE; /* special-cased because flamethrowers aren't lit */
 			tmp += rnd(6);
 		      if (resists_cold(mon)) tmp += rnd(6);
@@ -2922,7 +2923,7 @@ int dieroll;
 			}
 
 			if (obj && obj->otyp == ACID_VENOM) {
-				if (resists_acid(mon)) {
+				if (resists_acid(mon) && !player_will_pierce_resistance()) {
 					Your("venom hits %s harmlessly.", mon_nam(mon));
 					tmp = 0;
 				} else {
@@ -3311,7 +3312,7 @@ int dieroll;
 			tmp = 0;
 			break;
 		    case ACID_VENOM: /* thrown (or spit) */
-			if (resists_acid(mon)) {
+			if (resists_acid(mon) && !player_will_pierce_resistance()) {
 				Your("venom hits %s harmlessly.",
 					mon_nam(mon));
 				tmp = 0;
@@ -3550,6 +3551,7 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 		if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
@@ -3600,6 +3602,7 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp += 8;
 		if (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) tmp += 2;
+		if (!thrown && uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) tmp += 4;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -4335,7 +4338,7 @@ melatechoice:
 	    else poiskilled = TRUE;
 	}
 	  
-	if (tmp < 1) {
+	if (tmp < 1) { /* if (tmp < 0), but it is possible to deal no damage (not a bug) */
 	    /* make sure that negative damage adjustment can't result
 	       in inadvertently boosting the victim's hit points */
 	    tmp = 0;
@@ -4562,7 +4565,7 @@ melatechoice:
 	/* FIQ wants the player to do fire damage to monsters while burned.
 	 * I'm granting him that wish, but the player needs to have burnopathy too. --Amy */
 
-	if (Burnopathy && Burned && !resists_fire(mon) && !thrown ) {
+	if (Burnopathy && Burned && (!resists_fire(mon) || player_will_pierce_resistance()) && !thrown ) {
 
 	      pline("%s is burning!", Monnam(mon));
 
@@ -4570,7 +4573,7 @@ melatechoice:
 
 	}
 
-	if (u.enchantspell && !resists_fire(mon) && !thrown ) {
+	if (u.enchantspell && (!resists_fire(mon) || player_will_pierce_resistance()) && !thrown ) {
 
 	      pline("%s is burning!", Monnam(mon));
 
@@ -6641,7 +6644,7 @@ register struct attack *mattk;
 		}
 		if (!rn2(33)) tmp += destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
 		if (!rn2(33)) tmp += destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);
-		if (resists_fire(mdef)) {
+		if (resists_fire(mdef) && !player_will_pierce_resistance()) {
 		    if (!Blind)
 			pline_The("fire doesn't heat %s!", mon_nam(mdef));
 		    golemeffects(mdef, AD_FIRE, tmp);
@@ -6658,7 +6661,7 @@ register struct attack *mattk;
 		}
 		if (rn2(3)) break;
 		if (!Blind) pline("%s is covered in frost!", Monnam(mdef));
-		if (resists_cold(mdef)) {
+		if (resists_cold(mdef) && !player_will_pierce_resistance()) {
 		    shieldeff(mdef->mx, mdef->my);
 		    if (!Blind)
 			pline_The("frost doesn't chill %s!", mon_nam(mdef));
@@ -6675,7 +6678,7 @@ register struct attack *mattk;
 		if (rn2(3)) break;
 		if (!Blind) pline("%s is zapped!", Monnam(mdef));
 		if (!rn2(33)) tmp += destroy_mitem(mdef, WAND_CLASS, AD_ELEC);
-		if (resists_elec(mdef)) {
+		if (resists_elec(mdef) && !player_will_pierce_resistance()) {
 		    if (!Blind)
 			pline_The("zap doesn't shock %s!", mon_nam(mdef));
 		    golemeffects(mdef, AD_ELEC, tmp);
@@ -6686,7 +6689,7 @@ register struct attack *mattk;
 		if (!rn2(33)) tmp += destroy_mitem(mdef, RING_CLASS, AD_ELEC);
 		break;
 	    case AD_ACID:
-		if (resists_acid(mdef)) tmp = 0;
+		if (resists_acid(mdef) && !player_will_pierce_resistance()) tmp = 0;
 		break;
 	    case AD_STON:
 	    case AD_EDGE:
@@ -6866,11 +6869,11 @@ register struct attack *mattk;
 	    case AD_DRCH:
 		if (!negated && !rn2(8)) {
 		    Your("%s was poisoned!", mpoisons_subj(&youmonst, mattk));
-		    if (resists_poison(mdef))
+		    if (resists_poison(mdef) && !player_will_pierce_resistance())
 			pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    else {
-			if (!rn2(100)) {
+			if (!rn2(100) && !resists_poison(mdef)) {
 			    Your("poison was deadly...");
 			    tmp = mdef->mhp;
 			} else tmp += rn1(10,6);
@@ -6879,12 +6882,12 @@ register struct attack *mattk;
 		break;
 	    case AD_VENO:
 		if (!negated && !rn2(3)) {
-		    if (resists_poison(mdef))
+		    if (resists_poison(mdef) && !player_will_pierce_resistance())
 			pline_The("poison doesn't seem to affect %s.",
 				mon_nam(mdef));
 		    else {
 			pline("%s is badly poisoned!", Monnam(mdef));
-			if (!rn2(10)) {
+			if (!rn2(10) && !resists_poison(mdef)) {
 			    Your("poison was deadly...");
 			    tmp = mdef->mhp;
 			} else tmp += rn1(20,12);
@@ -7809,22 +7812,22 @@ register struct attack *mattk;
 	    case AD_POIS:
 	    case AD_WISD:
 	    case AD_DRCH:
-		resistance = resists_poison(mdef);
+		resistance = (resists_poison(mdef) && !player_will_pierce_resistance()) ;
 		if (resistance)
 			pline_The("poison doesn't seem to affect %s.", mon_nam(mdef));
 		else {
-			if (!rn2(100)) {
+			if (!rn2(100) && !resists_poison(mdef)) {
 			    Your("poison was deadly...");
 			    tmp = mdef->mhp;
 			}
 		}
 		goto common;
 	    case AD_VENO:
-		if (resists_poison(mdef))
+		if (resists_poison(mdef) && !player_will_pierce_resistance())
 			pline_The("poison doesn't seem to affect %s.", mon_nam(mdef));
 		else {
 			pline("%s is badly poisoned!", Monnam(mdef));
-			if (!rn2(10)) {
+			if (!rn2(10) && !resists_poison(mdef)) {
 			    Your("poison was deadly...");
 			    tmp = mdef->mhp;
 			} else tmp *= 2;
@@ -7861,13 +7864,13 @@ register struct attack *mattk;
 		tmp += u.ulevel;
 		goto common;
 	    case AD_COLD:
-		resistance = resists_cold(mdef);
+		resistance = (resists_cold(mdef) && !player_will_pierce_resistance());
 		goto common;
 	    case AD_ACID:
-		resistance = resists_acid(mdef);
+		resistance = (resists_acid(mdef) && !player_will_pierce_resistance()) ;
 		goto common;
 	    case AD_FIRE:
-		resistance = resists_fire(mdef);
+		resistance = (resists_fire(mdef) && !player_will_pierce_resistance());
 		goto common;
 	    case AD_MALK:
 		if (!resists_elec(mdef)) {
@@ -8204,7 +8207,7 @@ register struct attack *mattk;
 		break;
 
 	    case AD_ELEC:
-		resistance = resists_elec(mdef);
+		resistance = (resists_elec(mdef) && !player_will_pierce_resistance());
 common:
 		if (!resistance) {
 		    pline("%s gets blasted!", Monnam(mdef));
@@ -8413,7 +8416,7 @@ register struct attack *mattk;
 			break;
 		    case AD_ACID:
 			pline("%s is covered with your goo!", Monnam(mdef));
-			if (resists_acid(mdef)) {
+			if (resists_acid(mdef) && !player_will_pierce_resistance()) {
 			    pline("It seems harmless to %s.", mon_nam(mdef));
 			    dam = 0;
 			}
@@ -8432,7 +8435,7 @@ register struct attack *mattk;
 		    case AD_ELEC:
 			if (rn2(2)) {
 			    pline_The("air around %s crackles with electricity.", mon_nam(mdef));
-			    if (resists_elec(mdef)) {
+			    if (resists_elec(mdef) && !player_will_pierce_resistance()) {
 				pline("%s seems unhurt.", Monnam(mdef));
 				dam = 0;
 			    }
@@ -8441,7 +8444,7 @@ register struct attack *mattk;
 			break;
 		    case AD_COLD:
 			if (rn2(2)) {
-			    if (resists_cold(mdef)) {
+			    if (resists_cold(mdef) && !player_will_pierce_resistance()) {
 				pline("%s seems mildly chilly.", Monnam(mdef));
 				dam = 0;
 			    } else
@@ -8464,7 +8467,7 @@ register struct attack *mattk;
 			break;
 		    case AD_FIRE:
 			if (rn2(2)) {
-			    if (resists_fire(mdef)) {
+			    if (resists_fire(mdef) && !player_will_pierce_resistance()) {
 				pline("%s seems mildly hot.", Monnam(mdef));
 				dam = 0;
 			    } else

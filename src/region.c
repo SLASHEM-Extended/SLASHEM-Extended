@@ -965,7 +965,7 @@ void * p2;
 		mtmp->mblinded = 1;
 		mtmp->mcansee = 0;
 	    }
-	    if (resists_poison(mtmp))
+	    if (resists_poison(mtmp) && !player_will_pierce_resistance())
 		return FALSE;
 	    mtmp->mhp -= rnd(dam) + 5;
 	    if (mtmp->mhp <= 0) {

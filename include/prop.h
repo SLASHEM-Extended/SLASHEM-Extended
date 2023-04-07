@@ -759,7 +759,10 @@
 #define BURDENED_STATE 684 /* lvlup */
 #define MAGIC_VACUUM 685 /* lvlup */
 
-#define SECOND_CHANCE		686
+#define RESISTANCE_PIERCING 686 /* lvlup */
+#define DEAC_RESISTANCE_PIERCING 687
+
+#define SECOND_CHANCE		688
 #define LAST_PROP		(SECOND_CHANCE)
 
 #define APP_VAMPIRIC_CLOAK 1000

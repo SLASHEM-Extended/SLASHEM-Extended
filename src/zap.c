@@ -371,8 +371,8 @@ struct obj *otmp;
 				mtmp->mstrategy &= ~STRAT_WAITFORU;
 			}
 
-			if (!resists_poison(mtmp)) {
-				if (!rn2(500)) {
+			if (!resists_poison(mtmp) || player_will_pierce_resistance()) {
+				if (!rn2(500) && !resists_poison(mtmp)) {
 					Your("poison was deadly...");
 					dmg = (mtmp->mhp * 10);
 				} else dmg = rn1(10, 6);
@@ -418,7 +418,7 @@ struct obj *otmp;
 			pline("Your rock hits %s's %s!", mon_nam(mtmp), mbodypart(mtmp, HEAD));
 			dmg += (10 + rnd(u.ulevel) + skilldmg);
 		}
-		if (!resists_elec(mtmp)) {
+		if (!resists_elec(mtmp) || player_will_pierce_resistance()) {
 			pline("%s is electrified!", Monnam(mtmp));
 			dmg += (10 + rnd(u.ulevel) + skilldmg);
 		}
@@ -758,7 +758,7 @@ armorsmashdone:
 		break;
 
 	case WAN_TOXIC:
-		if (!resists_poison(mtmp)) {
+		if (!resists_poison(mtmp) || player_will_pierce_resistance()) {
 			if (canseemon(mtmp)) pline("%s is badly poisoned!", Monnam(mtmp));
 			while ((!resist(mtmp, otmp->oclass, 0, NOTELL) && rn2(20) && (mtmp->mhp > 1) ) ) {
 				mtmp->mhp--;
@@ -767,7 +767,7 @@ armorsmashdone:
 		break;
 
 	case SPE_TOXIC:
-		if (!rn2(3) && !resists_poison(mtmp)) {
+		if (!rn2(3) && (!resists_poison(mtmp) || player_will_pierce_resistance() ) ) {
 			if (canseemon(mtmp)) pline("%s is badly poisoned!", Monnam(mtmp));
 			while ((!resist(mtmp, otmp->oclass, 0, NOTELL) && rn2(20) && (mtmp->mhp > 1) ) ) {
 				mtmp->mhp--;
@@ -8807,7 +8807,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		    skilldmg = spell_damage_bonus(SPE_MAGIC_MISSILE);
 		break;
 	case ZT_FIRE:
-		if (resists_fire(mon)) {
+		if (resists_fire(mon) && !player_will_pierce_resistance()) {
 		    sho_shieldeff = TRUE;
 		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
@@ -8822,7 +8822,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	    if (!rn2(50)) (void)destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
 		break;
 	case ZT_COLD:
-		if (resists_cold(mon)) {
+		if (resists_cold(mon) && !player_will_pierce_resistance()) {
 		    sho_shieldeff = TRUE;
 		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
@@ -8888,7 +8888,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		tmp = mon->mhp+1;
 		break;
 	case ZT_LIGHTNING:
-		if (resists_elec(mon)) {
+		if (resists_elec(mon) && !player_will_pierce_resistance()) {
 		    sho_shieldeff = TRUE;
 		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    tmp = 0;
@@ -8905,14 +8905,14 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			else mon->mblinded += rnd_tmp;
 		}
 
-		if (resists_elec(mon)) break;
+		if (resists_elec(mon) && !player_will_pierce_resistance()) break;
 
 		if (!rn2(100)) (void)destroy_mitem(mon, WAND_CLASS, AD_ELEC);
 		/* not actually possible yet */
 		if (!rn2(100)) (void)destroy_mitem(mon, RING_CLASS, AD_ELEC);
 		break;
 	case ZT_POISON_GAS:
-		if (resists_poison(mon)) {
+		if (resists_poison(mon) && !player_will_pierce_resistance()) {
 		    sho_shieldeff = TRUE;
 		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
@@ -8920,7 +8920,7 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		tmp = d(nd,6);
 		break;
 	case ZT_ACID:
-		if (resists_acid(mon)) {
+		if (resists_acid(mon) && !player_will_pierce_resistance()) {
 		    sho_shieldeff = TRUE;
 		    if (canseemon(mon)) pline("%s is immune to the attack!", Monnam(mon));
 		    break;
