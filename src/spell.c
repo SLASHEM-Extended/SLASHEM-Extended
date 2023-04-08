@@ -2219,6 +2219,10 @@ learn()
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
 			    }
+			    if (book->oartifact == ART_PAGAN_POETRY) {
+				u.superspecialspell = booktype;
+				pline_The("spell is your super special spell now.");
+			    }
 			    if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
@@ -2308,6 +2312,10 @@ learn()
 				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
+			}
+			if (book->oartifact == ART_PAGAN_POETRY) {
+				u.superspecialspell = booktype;
+				pline_The("spell is your super special spell now.");
 			}
 
 			if (book->oartifact == ART_IWA_ERWI) {
@@ -3269,6 +3277,7 @@ boolean atme;
 	/* only being easier to cast is not good enough for the "special spell", since you can't have a failure rate
 	 * lower than 0%. Reduce cost of casting the special spell to 80%! --Amy */
 	if (spellid(spell) == urole.spelspec) { if (rn2(10)) energy += 1; energy *= 4; energy /= 5; }
+	if (spellid(spell) == u.superspecialspell) { if (rn2(10)) energy += 1; energy *= 4; energy /= 5; }
 
 	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
 	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 3;
@@ -11672,6 +11681,9 @@ int spell;
 	if (spellid(spell) == urole.spelspec)
 		splcaster += urole.spelsbon;
 
+	if (spellid(spell) == u.superspecialspell)
+		splcaster += 5;
+
 	/* `healing spell' bonus */
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL)
 		splcaster += special;
@@ -11954,6 +11966,7 @@ int spell;
 	if (uwep && uwep->oartifact == ART_ORIGIN_OF_CASTING) chance += 20;
 	if (uwep && uwep->oartifact == ART_HELIOKOPIS_S_PLAYSTYLE) chance += 20;
 	if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) chance += 5;
+	if (uarmc && uarmc->oartifact == ART_CASTEASY) chance += 5;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;
@@ -12310,6 +12323,7 @@ int spell;
 	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
 	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
+	if (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) chance += 20;
 
 	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) chance += 5;
 

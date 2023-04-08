@@ -230,7 +230,7 @@ register struct obj *pen;
 	boolean by_descr = FALSE;
 	const char *typeword;
 
-	int oldspe, oldrecharged; /* for spellbooks */
+	int oldspe, oldrecharged, oldartifact; /* for spellbooks */
 	boolean oldknown;
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
@@ -401,8 +401,11 @@ found:
 		       "spellbook is left unfinished and your writing fades.");
 			update_inventory();	/* pen charges */
 		} else {
-			pline_The("scroll is now useless and disappears!");
-			useup(paper);
+
+			if (!(paper->oartifact == ART_SCRIBE_WHAT_YOU_WANT_TO_SC)) {
+				pline_The("scroll is now useless and disappears!");
+				useup(paper);
+			}
 		}
 		obfree(new_obj, (struct obj *) 0);
 		return(1);
@@ -425,8 +428,13 @@ found:
 			    wipeout_text(namebuf, (6+MAXULEV - u.ulevel)/6, 0);
 			} else
 			    sprintf(namebuf, "%s was here!", playeraliasname);
-			You("write \"%s\" and the scroll disappears.", namebuf);
-			useup(paper);
+
+			if (paper->oartifact == ART_SCRIBE_WHAT_YOU_WANT_TO_SC) You("write \"%s\" on the scroll, which doesn't actually have any effect.", namebuf);
+			else You("write \"%s\" and the scroll disappears.", namebuf);
+
+			if (!(paper->oartifact == ART_SCRIBE_WHAT_YOU_WANT_TO_SC)) {
+				useup(paper);
+			}
 		}
 		obfree(new_obj, (struct obj *) 0);
 		return(1);
@@ -437,6 +445,8 @@ found:
 	oldspe = paper->spe;
 	oldrecharged = (int)paper->recharged; /* for spellbooks */
 	oldknown = paper->known;
+	oldartifact = -1;
+	if (paper->oartifact) oldartifact = paper->oartifact;
 
 	useup(paper);
 	use_skill(P_DEVICES,10);
@@ -503,6 +513,22 @@ found:
 		if (oldknown == TRUE) new_obj->known = TRUE;
 
 	}
+	if (oldartifact > 0) {
+
+		if (oldartifact == ART_PAGAN_POETRY) {
+			artilist[ART_PAGAN_POETRY].otyp = new_obj->otyp;
+			new_obj = onameX(new_obj, artiname(oldartifact));
+			artilist[ART_PAGAN_POETRY].otyp = SPE_BLANK_PAPER;
+		}
+
+		if (oldartifact == ART_SCRIBE_WHAT_YOU_WANT_TO_SC) {
+			artilist[ART_SCRIBE_WHAT_YOU_WANT_TO_SC].otyp = new_obj->otyp;
+			new_obj = onameX(new_obj, artiname(oldartifact));
+			artilist[ART_SCRIBE_WHAT_YOU_WANT_TO_SC].otyp = SCR_BLANK_PAPER;
+		}
+
+	}
+
 	new_obj->blessed = (curseval > 0);
 	new_obj->cursed = (curseval < 0);
 

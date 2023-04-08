@@ -437,6 +437,7 @@ WEAPON("log", (char *)0,
 
 /* Paddles */
 /* Good to-hit and small damage, but low large damage */
+/* fly swatter has to be first */
 WEAPON("fly swatter", (char *)0,
 	1, 0, 0,  659, 4,  3, 12,  2, 2, B,   P_PADDLE, MT_PLASTIC, CLR_GREEN, 1),
 WEAPON("vermin swatter", (char *)0,
@@ -464,6 +465,7 @@ WEAPON("otama", (char *)0,
 	1, 0, 0,  20, 1,  3, 2, 2, 1, B,   P_PADDLE, MT_METAL, HI_METAL, 1),
 WEAPON("telephone", (char *)0, /* applying a positively enchanted one disenchants it and summons a tame demon */
 	1, 0, 0,  50, 2, 50, 6, 6, 2, B,   P_PADDLE, MT_PAPER, CLR_BRIGHT_BLUE, 5),
+/* telephone has to be last */
 
 /* first orb = eagle ball */
 WEAPON("eagle ball", (char *)0,

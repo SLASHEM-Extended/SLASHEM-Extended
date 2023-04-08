@@ -7321,6 +7321,7 @@ boolean guaranteed;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
+		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
 		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 
@@ -11994,6 +11995,7 @@ int final;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
+		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
 		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 

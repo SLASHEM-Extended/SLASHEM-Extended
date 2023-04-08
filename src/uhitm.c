@@ -273,8 +273,7 @@ boolean barehanded;
 	if (flags.confirm && !(ParanoiaBugEffect || u.uprops[PARANOIA_BUG].extrinsic || have_paranoiastone()) && mtmp->mpeaceful
 	    && !(Confusion && !Conf_resist) && !Hallucination && !(Stunned && !Stun_resist) ) {
 		/* Intelligent chaotic weapons (Stormbringer) want blood */
-		if (!barehanded &&
-		  uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE) ) {
+		if ((BloodthirstyAttacking || (uwep && weapon_is_bloodthirsty(uwep)) )) {
 			override_confirmation = HIT_UWEP;
 			return retval;
 		}
@@ -286,8 +285,7 @@ boolean barehanded;
 			sprintf(qbuf, "Really attack %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') {
 				/* Stormbringer is not tricked so easily */
-				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				if (BloodthirstyAttacking || (u.twoweap && uswapwep && weapon_is_bloodthirsty(uswapwep)) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -299,8 +297,7 @@ boolean barehanded;
 			getlin ("Are you really sure [yes/no]?",bufX);
 			if (strcmp (bufX, "yes")) {
 				/* Stormbringer is not tricked so easily */
-				if (!barehanded && u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+				if (BloodthirstyAttacking || (u.twoweap && uswapwep && weapon_is_bloodthirsty(uswapwep)) ) {
 					override_confirmation = HIT_USWAPWEP;
 					/* Lose primary attack */
 					return HIT_USWAPWEP;
@@ -897,6 +894,7 @@ register struct monst *mtmp;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
+	if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -909,6 +907,8 @@ register struct monst *mtmp;
 	if (FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) ) tmp -= 5;
 
 	if (Role_if(PM_EMERA) && mtmp->female && humanoid(mtmp->data)) tmp += rnd(u.ulevel);
+
+	if (uwep && uwep->oartifact == ART_ORE_DEPOSIT && lithivorous(mtmp->data)) tmp += 5;
 
 	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
 	if (Race_if(PM_MONGUNG)) tmp += 10;
@@ -1054,9 +1054,7 @@ register struct monst *mtmp;
 	 */
 	/* Intelligent chaotic weapons (Stormbringer) want blood */
 	if (is_safepet(mtmp) && !flags.forcefight) {
-	    if (( (!uwep && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone())) || (uwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uwep->oartifact != ART_STROMBRINGER && uwep->oartifact != ART_PATRICIA_S_FEMININITY && uwep->oartifact != ART_ALASSEA_TELEMNAR && uwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->otyp != TECPATL && !(u.twoweap && uswapwep && uswapwep->otyp == TECPATL) && uwep->oartifact != ART_WAND_OF_ORCUS && uwep->oartifact != ART_GENOCIDE && uwep->oartifact != ART_THIRST_FOR_BLOOD && uwep->oartifact != ART_SLAVE_TO_ARMOK && uwep->oartifact != ART_KILLING_EDGE) ) 
-		&& (!u.twoweap || !uswapwep 
-		   || (uswapwep->oartifact != ART_STORMBRINGER && !(BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) && uswapwep->oartifact != ART_STROMBRINGER && uswapwep->oartifact != ART_PATRICIA_S_FEMININITY && uswapwep->oartifact != ART_ALASSEA_TELEMNAR && uswapwep->oartifact != ART_THRANDUIL_LOSSEHELIN && uswapwep->oartifact != ART_HEAVY_THUNDERSTORM && uwep->otyp != TECPATL && !(u.twoweap && uswapwep && uswapwep->otyp == TECPATL) && uswapwep->oartifact != ART_WAND_OF_ORCUS && uswapwep->oartifact != ART_GENOCIDE && uswapwep->oartifact != ART_THIRST_FOR_BLOOD && uswapwep->oartifact != ART_SLAVE_TO_ARMOK && uswapwep->oartifact != ART_KILLING_EDGE) )){
+	    if (!(BloodthirstyAttacking || (uwep && weapon_is_bloodthirsty(uwep)) || (u.twoweap && uswapwep && weapon_is_bloodthirsty(uswapwep)) ) ) {
 		/* there are some additional considerations: this won't work
 		 * if in a shop or Punished or you miss a random roll or
 		 * if you can walk thru walls and your pet cannot (KAA) or
@@ -1232,14 +1230,14 @@ int dieroll;
 {
 	register boolean malive = TRUE;
 
-	if (override_confirmation || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) ) {
-	    /* this may need to be generalized if weapons other than
-	       Stormbringer acquire similar anti-social behavior... */
+	if (override_confirmation || BloodthirstyAttacking) {
+	    /* this may need to be generalized if weapons other than Stormbringer acquire similar anti-social behavior...
+	     * Amy edit: not just Stormbringer, but plenty of other weapons, and also a general nastytrap effect */
 	    if (flags.verbose)
 		if (override_confirmation == HIT_UWEP)
-		    Your("bloodthirsty blade attacks!");
+		    Your("bloodthirsty weapon attacks!");
 		else
-		    pline("The black blade will not be thwarted!");
+		    Your("bloodthirsty attack will not be thwarted!");
 	}
 
 	if(!*mhit) {
@@ -1459,6 +1457,7 @@ martial_dmg()
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) damage += 10;
+	if (uarm && uarm->oartifact == ART_MONKSTERMAN) damage += 5;
 	if (RngeMaritalArts) damage += 5;
 
 	if (Glib_combat && IsGlib) {
@@ -1695,6 +1694,15 @@ int dieroll;
 				tmp *= 3;
 				tmp /= 2;
 			}
+
+			if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) tmp += 1;
+
+			if (uarmg && uarmg->oartifact == ART_BOX_FIST) tmp += 5;
+			if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) tmp += 5;
+			if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) tmp += 10;
+			if (uarm && uarm->oartifact == ART_MONKSTERMAN) tmp += 5;
+
+			if (uarmc && itemhasappearance(uarmc, APP_BOXING_GOWN)) tmp += 2;
 
 			if (!(PlayerCannotUseSkills)) {
 				switch (P_SKILL(P_GENERAL_COMBAT)) {
@@ -2364,7 +2372,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -3377,6 +3385,10 @@ int dieroll;
 				if (obj->spe > 0) tmp += obj->spe;
 			}
 
+			if (obj && obj->oartifact == ART_FOR_THE_PERMABLIND_POTATO && !obj->dknown) {
+				tmp += 20;
+			}
+
 			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
 				tmp += obj->spe;
 			}
@@ -3603,6 +3615,9 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp += 8;
 		if (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) tmp += 2;
 		if (!thrown && uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) tmp += 4;
+		if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
+		if (uwep && uwep->oartifact == ART_BUCK_SHOT && !uwep->bknown) tmp += 2;
+
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -3702,11 +3717,23 @@ int dieroll;
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
 		}
+		if (obj && obj->oartifact == ART_ORE_DEPOSIT && lithivorous(mon->data)) {
+			tmp += rnd(20);
+		}
+
+		if (thrown && obj && obj->oartifact == ART_ARROW_OF_SLAY_GOOD && mon->data->maligntyp > 0) {
+			tmp += rnd(15);
+		}
+
 		if (obj && obj->oartifact == ART_MOLDSWANDIR && mon->data->mlet == S_FUNGUS) {
 			tmp += rnd(10);
 		}
 
 		if (Role_if(PM_EMERA) && !thrown && mon->female && humanoid(mon->data)) tmp += rnd(u.ulevel);
+
+		if (thrown && obj && obj->oartifact == ART_DARTHADART && obj->spe < 15) {
+			obj->spe++;
+		}
 
 		if (thrown && obj && obj->oartifact == ART_NEZ_SPECIAL_OFFER) {
 			mon->bleedout += rnd(10);
@@ -3802,6 +3829,11 @@ int dieroll;
 		if (wep && wep->oartifact == ART_LUCKLESS_FOLLY && Luck < 0) tmp -= Luck;
 
 		if (wep && wep->oartifact == ART_PUCKOCK && thrown && uball && (wep == uball)) tmp += 30;
+		if (wep && wep->oartifact == ART_SKULL_SWORD && thrown) tmp += 5;
+		if (wep && wep->oartifact == ART_VIOLENT_SKULL_SWORD && thrown) tmp += 10;
+
+		if (wep && wep->oartifact == ART_WU_TSCHI_ && thrown) tmp += 10;
+		if (wep && wep->oartifact == ART_WUMMP && thrown) tmp += 12;
 
 		if (wep && wep->otyp == JUMPING_FLAMER) {
 			if (!rn2(33)) (burnarmor(mon));
@@ -3812,6 +3844,35 @@ int dieroll;
 				mon->mfrozen = 3;
 				mon->mcanmove = 0;
 				mon->mstrategy &= ~STRAT_WAITFORU;
+			}
+		}
+
+		if (wep && wep->oartifact == ART_MAGISTUS && thrown) {
+			if (mon->mhpmax > 1) {
+				mon->mhpmax--;
+				if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+			}
+		}
+		if (wep && wep->oartifact == ART_TRISMAGISTUS && thrown) {
+			if (mon->mhpmax > 1) {
+				mon->mhpmax -= 3;
+				if (mon->mhpmax < 1) mon->mhpmax = 1;
+				if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+			}
+		}
+		if (wep && wep->oartifact == ART_VIOLENT_SKULL_SWORD && thrown) {
+			if (!resists_drli(mon)) {
+				pline("%s suddenly seems weaker!", mon_nam(mon));
+				mon->mhpmax -= rnd(8);
+				if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+				if (mon->mhp <= 0 || !mon->m_lev) {
+					pline("%s dies!", Monnam(mon));
+					xkilled(mon,0);
+					return FALSE;
+				} else {
+					mon->m_lev--;
+				}
+				if (!rn2(5) && wep->spe > -20) wep->spe--;
 			}
 		}
 
@@ -4603,6 +4664,10 @@ melatechoice:
 		if (javreduction < rnd(100)) tmp /= 2;
 
 	}
+
+	/* skull swords don't want to be used in melee */
+	if (!thrown && obj && obj->oartifact == ART_SKULL_SWORD) tmp /= 2;
+	if (!thrown && obj && obj->oartifact == ART_VIOLENT_SKULL_SWORD) tmp /= 2;
 
 	/* heavy two-handed weapons are bad versus tiny enemies (hard to effectively hit a tiny monster with a huge weapon) */
 	if (!thrown && obj && is_heavyweapon(obj) && verysmall(mon->data) && tmp > 1) {
@@ -9632,6 +9697,10 @@ use_weapon:
 
 				}
 
+				if (uwep && uwep->oartifact == ART_SKOGLO && !rn2(200)) {
+					pushplayerfar(FALSE, 100);
+				}
+
 				if (uwep && uwep->oartifact == ART_SHARPENING_SLAT && !rn2(100) && uwep->spe < 0) {
 					uwep->spe++;
 					pline("Your weapon repairs itself a bit!");
@@ -9648,6 +9717,12 @@ use_weapon:
 				if (uwep && uwep->oartifact == ART_DULL_METAL && !rn2(50) && uwep->spe > -20) {
 					uwep->spe--;
 					pline("Your weapon sustains damage.");
+				}
+				if (uwep && uwep->oartifact == ART_SKULL_SWORD && uwep->spe > -20) {
+					uwep->spe--;
+				}
+				if (uwep && uwep->oartifact == ART_VIOLENT_SKULL_SWORD && uwep->spe > -20) {
+					uwep->spe--;
 				}
 				if (uwep && uwep->otyp == SECRET_SOUND_WHIP) {
 					increasesanity(1);
@@ -9837,6 +9912,10 @@ bladeangerdone2:
 					uswapwep->spe--;
 					pline("Your ball sustains damage.");
 				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SKOGLO && !rn2(200)) {
+					pushplayerfar(FALSE, 100);
+				}
+
 				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DONNNNNNNNNNNNG && !rn2(3) && uswapwep->spe > -20) {
 					uswapwep->spe--;
 					pline("Your weapon sustains damage.");

@@ -262,6 +262,8 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == FRAG_GRENADE) multishot += 5;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == GAS_GRENADE) multishot += 5;
 
+	    if (launcher && launcher->oartifact == ART_MEASURE_SKILLING) multishot++;
+
 	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->age <= monstermoves) ) {
 		int artitimeout = rnz(2000);
 		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
@@ -274,6 +276,7 @@ int thrown;
 	    if (obj && obj->otyp == RAPID_DART) multishot += 2;
 	    if (obj && obj->otyp == NINJA_STAR) multishot += 3;
 	    if (obj && obj->otyp == FLAMETHROWER) multishot += 4;
+	    if (obj && obj->oartifact == ART_POEPOEPOEPOEOEU_) multishot += 4;
 
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
@@ -1682,6 +1685,8 @@ boolean hitsroof;
 	if (dmg > 0 && Race_if(PM_RODNEYAN)) dmg += (1 + (GushLevel / 3) );
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) dmg += 8;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) dmg += 2;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) dmg += 5;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_BUCK_SHOT && !uwep->bknown) dmg += 2;
 
 	if (Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1956,6 +1961,7 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
 		if (launcher && (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) && obj && obj->otyp == ETHER_BOLT) range += 2;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPESNIPESNIPE) range += 5;
 
 		if (!PlayerCannotUseSkills && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == KLIUSLING && launcher->lamplit) {
 			if (u.kliuskill >= 20) range++;
@@ -2465,6 +2471,7 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_SPINESHOOTER) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
+	if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

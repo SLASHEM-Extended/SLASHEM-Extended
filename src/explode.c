@@ -573,6 +573,15 @@ boolean yours; /* is it your fault (for killing monsters) */
 		/* do property damage first, in case we end up leaving bones */
 		if (adtyp == AD_FIRE) burn_away_slime();
 
+		if (uarms && uarms->oartifact == ART_OF_VOIDING && damu > 0) {
+			damu -= rnd(2);
+			if (damu < 1) damu = 1;
+		}
+		if (uarms && uarms->oartifact == ART_OF_NULLING && damu > 0) {
+			damu -= rnd(4);
+			if (damu < 1) damu = 1;
+		}
+
 		/* player may get lucky and take less damage --Amy */
 		if (!rn2(3) && damu >= 1) {damu++; damu = damu / 2; if (damu < 1) damu = 1;}
 		if (!rn2(10) && damu >= 1 && GushLevel >= 10) {damu++; damu = damu / 3; if (damu < 1) damu = 1;}

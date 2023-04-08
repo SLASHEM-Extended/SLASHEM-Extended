@@ -1477,7 +1477,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2((have_wakeupcallstone() == 2) ? 1000 : 10000)) {
+	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2((have_wakeupcallstone() == 2) ? 1000 : 10000)) {
 		wakeup(mtmp);
 	}
 

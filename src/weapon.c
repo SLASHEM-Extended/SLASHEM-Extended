@@ -1078,6 +1078,30 @@ struct monst *mon;
 	struct permonst *ptr = mon->data;
 	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp));
 
+	boolean willcriticalhit = 0;
+
+	/* nice patch - critical hits --Amy */
+	if (Race_if(PM_SWIKNI) && otmp && objects[otmp->otyp].oc_skill == P_KNIFE) { /* not -P_KNIFE --Amy */
+		if (!rn2(30 - (Luck*2))) {
+
+			willcriticalhit = TRUE;
+
+		}
+
+	} else {
+		if (!rn2(100 - (Luck*2))) { /* nice patch - critical hits --Amy */
+
+			willcriticalhit = TRUE;
+
+		}
+	}
+	if (uwep && uwep->oartifact == ART_FULLY_ON_THE_TWELVE && !rn2(5)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_FULLY_ON_IT && !rn2(5)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
+
+	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
+	/* end critical hit chance calculation */
+
 	if (otyp == CREAM_PIE) return 0;
 
 	if (otmp->oartifact == ART_HOUCHOU)
@@ -2301,6 +2325,15 @@ struct monst *mon;
 
 		}
 
+		if (otmp->otyp == ART_M__M__M_) {
+			if (P_SKILL(P_PADDLE) < P_BASIC) bonus += 12;
+			else if (P_SKILL(P_PADDLE) < P_SKILLED) bonus += 10;
+			else if (P_SKILL(P_PADDLE) < P_EXPERT) bonus += 8;
+			else if (P_SKILL(P_PADDLE) < P_MASTER) bonus += 6;
+			else if (P_SKILL(P_PADDLE) < P_GRAND_MASTER) bonus += 4;
+			else if (P_SKILL(P_PADDLE) < P_SUPREME_MASTER) bonus += 2;
+		}
+
 		if (uarmg && itemhasappearance(uarmg, APP_FENCING_GLOVES) ) {
 			if ( (objects[otmp->otyp].oc_skill == P_SHORT_SWORD) || (objects[otmp->otyp].oc_skill == P_BROAD_SWORD) || (objects[otmp->otyp].oc_skill == P_LONG_SWORD) || (objects[otmp->otyp].oc_skill == P_TWO_HANDED_SWORD) || (objects[otmp->otyp].oc_skill == P_SCIMITAR) || (objects[otmp->otyp].oc_skill == P_SABER) || (objects[otmp->otyp].oc_skill == P_DAGGER) ) {
 			bonus += Role_if(PM_FENCER) ? 2 : 1;
@@ -2452,23 +2485,10 @@ struct monst *mon;
 		if (tmp < 1) tmp = 1;
 	}
 
-	if (Race_if(PM_SWIKNI) && otmp && objects[otmp->otyp].oc_skill == P_KNIFE) { /* not -P_KNIFE --Amy */
-		if ((!rn2(30 - (Luck*2))) && !(uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT)) { /* nice patch - critical hits --Amy */
-
-			pline("Critical hit!");
-			u.cnd_criticalcount++;
-			tmp *= 2;
-
-		}
-
-	} else {
-		if ((!rn2(100 - (Luck*2))) && !(uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT)) { /* nice patch - critical hits --Amy */
-
-			pline("Critical hit!");
-			u.cnd_criticalcount++;
-			tmp *= 2;
-
-		}
+	if (willcriticalhit) {
+		pline("Critical hit!");
+		u.cnd_criticalcount++;
+		tmp *= 2;
 	}
 
 	if (Race_if(PM_JAPURA) && (is_angbandmonster(mon->data) || is_cowmonster(mon->data) || is_animemonster(mon->data) || is_steammonster(mon->data) || is_dlordsmonster(mon->data) || is_dnethackmonster(mon->data) || is_jokemonster(mon->data) || is_diablomonster(mon->data) || is_jonadabmonster(mon->data) || is_evilpatchmonster(mon->data) || is_elonamonster(mon->data) || is_aoemonster(mon->data) || is_elderscrollsmonster(mon->data) ) ) {
@@ -6214,6 +6234,8 @@ int degree;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IME_SPEW && skill == P_SQUEAKING) degree *= 2;
 
 	if (Role_if(PM_JOCKEY) && skill == P_RIDING) degree *= 2;
+
+	if (uarm && uarm->oartifact == ART_HOARDIT && skill == P_BODY_ARMOR) degree *= 2;
 
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;

@@ -442,7 +442,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {	\
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {	\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
@@ -534,7 +534,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_stone);
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -1090,7 +1090,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1487,7 +1487,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
+	if ((GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) ) && grayoutobscuration() ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}

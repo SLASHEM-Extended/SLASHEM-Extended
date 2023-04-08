@@ -7357,6 +7357,11 @@ register struct obj *otmp;
 		pline("It tasted like seventh heaven!");
 	}
 
+	if (otmp && otmp->oartifact == ART_STAY_FULL_FOR_A_WEEK) {
+		lesshungry(7000);
+		pline("Okay, now you really don't need any food for a good long while.");
+	}
+
 	if (otmp && otmp->oartifact == ART_HOE_PA) {
 		if (!Cold_resistance) You_feel("more resistant to cold!");
 		incr_itimeout(&HCold_resistance, rnz(10000));
@@ -8145,7 +8150,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
-	if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->otyp == HELM_OF_NO_DIGESTION || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
+	if (uarmh && (uarmh->otyp == PLASTEEL_HELM || uarmh->oartifact == ART_KAWA_JUR_FES || uarmh->otyp == HELM_OF_NO_DIGESTION || uarmh->otyp == HELM_OF_STORMS || uarmh->otyp == HELM_OF_DETECT_MONSTERS) ){
 		pline("The %s covers your whole face.", xname(uarmh));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;

@@ -2903,6 +2903,7 @@ int x;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uwep && uwep->oartifact == ART_MONS_INFERNALIS_X_) tmp += 10;
 		if (uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
@@ -2917,6 +2918,9 @@ int x;
 		if (Race_if(PM_URGOTH)) tmp += 5;
 		if (uwep && uwep->oartifact == ART_UNATTAINABLE_NINETEEN) tmp += 2;
 		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
+		if (uwep && uwep->oartifact == ART_SWING_FOR_THE_FENCES) tmp += 10;
+		if (uwep && uwep->oartifact == ART_INDOBURDENIA_VIRII) tmp += 10;
+		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3256,6 +3260,7 @@ int x;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
 		if (uarms && uarms->oartifact == ART_YOHUALLI_TEZCATL) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
+		if (uarmg && uarmg->oartifact == ART_A_LITTLE_SUGAR) tmp += 3;
 		if (u.combatcommand) tmp += 1;
 		if (Race_if(PM_THRALL)) tmp += 3;
 
@@ -3309,6 +3314,7 @@ int x;
 		if (u.combatcommand) tmp += 1;
 		if (Race_if(PM_URGOTH)) tmp += 3;
 		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
+		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

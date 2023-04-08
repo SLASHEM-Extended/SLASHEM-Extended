@@ -32558,7 +32558,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 

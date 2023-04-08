@@ -7953,6 +7953,9 @@ int  typ, fatal;
 
 			if(!rn2(StrongPoison_resistance ? 20 : 4)) {
 			/* Check that a stat change was made */
+
+			if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) return;
+
 			if (adjattrib(typ, -1, 1, TRUE)) {
 			    pline("You%s!", poiseff[typ]);
 				pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");			 }
@@ -7963,6 +7966,8 @@ int  typ, fatal;
 		if(Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) {
 			if(!strcmp(string, "blast")) shieldeff(u.ux, u.uy);
 			pline_The("poison doesn't seem to affect you.");
+
+			if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) return;
 
 			if(!rn2(StrongPoison_resistance ? 100 : 20)) {
 			/* Check that a stat change was made */
@@ -7992,12 +7997,16 @@ int  typ, fatal;
 		pline_The("poison was deadly...");
 		}
 	} else if(i <= 5) {
+
+		if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) goto statchangedone;
+
 		/* Check that a stat change was made */
 		if (adjattrib(typ, thrown_weapon ? -1 : StrongPoison_resistance ? -1 : Poison_resistance ? -rno(3) : -rnd(5), 1, TRUE)) {
 		    pline("You%s!", poiseff[typ]);
 			pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");
 		}
 
+statchangedone:
 		/* still does damage --Amy */
 		i = thrown_weapon ? rnd(6) : rn1(10,6);
 		if(Half_physical_damage && rn2(2) ) i = (i+1) / 2;

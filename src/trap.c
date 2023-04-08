@@ -1990,6 +1990,11 @@ burnagain:
 
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
+	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
+
+	if (otmp->oartifact == ART_PROOFINGNESS_POOFS && !otmp->rknown) vulnerable = FALSE;
+
 	if (otmp->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) vulnerable = FALSE;
 
 	if (itemhasappearance(otmp, APP_WITHERED_CLOAK) ) vulnerable = FALSE;
@@ -2113,6 +2118,11 @@ struct monst *victim;
 	if (itemhasappearance(otmp, APP_BRAND_NEW_GLOVES) && rn2(4) ) vulnerable = FALSE;
 
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
+
+	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
+
+	if (otmp->oartifact == ART_PROOFINGNESS_POOFS && !otmp->rknown) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) vulnerable = FALSE;
 
@@ -23938,6 +23948,11 @@ register boolean force, here;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
+		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
+
+		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
+
 		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
 
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
@@ -23948,6 +23963,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_WELCOME_ON_BOARD) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_UNDERWATER_LOVE) continue;
 		if ((obj->where != OBJ_FLOOR) && have_whitewaterrafting()) continue;
@@ -24322,6 +24338,11 @@ register boolean force, here;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
+		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
+
+		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
+
 		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
 
 		if (itemhasappearance(obj, APP_WITHERED_CLOAK) ) continue;
@@ -24386,6 +24407,11 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_BRAND_NEW_GLOVES) && rn2(2) ) continue;
 
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
+
+		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
+
+		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
 
 		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
 
@@ -24506,6 +24532,14 @@ drown()
 	boolean inpool_ok = FALSE, crawl_ok;
 	int i, x, y;
 	const char *sparkle = level.flags.lethe? "sparkling " : "";
+
+	if (uarm && uarm->oartifact == ART_WEGEO_ACQUA_DE_EISU_FORTE) {
+		if (isok(u.ux, u.uy) && (levl[u.ux][u.uy].typ == WATER || levl[u.ux][u.uy].typ == POOL || levl[u.ux][u.uy].typ == MOAT)) {
+			levl[u.ux][u.uy].typ = ICE;
+			Norep("The water beneath you freezes.");
+		}
+		return FALSE;
+	}
 
 	/* happily wading in the same contiguous pool */
 	if (u.uinwater && !(is_crystalwater(u.ux-u.dx,u.uy-u.dy)) && is_drowningpool(u.ux-u.dx,u.uy-u.dy) &&
@@ -24640,6 +24674,8 @@ drown()
 		boolean succ = Is_waterlevel(&u.uz) ? TRUE :
 				emergency_disrobe(&lost);
 
+		if (uwep && uwep->oartifact == ART_LAKITU_GET_ME_OUT) succ = TRUE;
+
 		You("try to crawl out of the water.");
 		if (lost)
 			You("dump some of your gear to lose weight...");
@@ -24657,6 +24693,12 @@ drown()
 		pline("Your fin boots prevent you from drowning.");
 		u.udrowning = FALSE;
 		return(FALSE);
+	}
+
+	if (uwep && uwep->oartifact == ART_LAKITU_GET_ME_OUT) {
+		pline("Dieau-dieau-dieau-dieau-dieau! Lakitu comes and fishes you out of the water.");
+		safe_teleds_normalterrain(TRUE);
+		return TRUE;
 	}
 
 	if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) You("go to Davy Jones' locker.");
@@ -24780,6 +24822,8 @@ crystaldrown()
 		boolean succ = Is_waterlevel(&u.uz) ? TRUE :
 				emergency_disrobe(&lost);
 
+		if (uwep && uwep->oartifact == ART_LAKITU_GET_ME_OUT) succ = TRUE;
+
 		You("try to fly out of the water.");
 		if (lost)
 			You("dump some of your gear to lose weight...");
@@ -24797,6 +24841,13 @@ crystaldrown()
 		u.udrowning = FALSE;
 		return(FALSE);
 	}
+
+	if (uwep && uwep->oartifact == ART_LAKITU_GET_ME_OUT) {
+		pline("Dieau-dieau-dieau-dieau-dieau! Lakitu comes and fishes you out of the water.");
+		safe_teleds_normalterrain(TRUE);
+		return TRUE;
+	}
+
 	u.youaredead = 1;
 
 	You("drown.");

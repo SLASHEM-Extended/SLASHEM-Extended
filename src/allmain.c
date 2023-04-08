@@ -2421,6 +2421,75 @@ moveloop()
 			}
 		}
 
+		if (uamul && uamul->oartifact == ART_CURSE_THE_TIME_SHIFT && !rn2(10000)) {
+			monstermoves += 1000;
+			moves += 1000;
+			pline("Time shifts...");
+		}
+
+		if (uarm && uarm->oartifact == ART_SEVEBREAKYOU__SEVEBREAK_ && !rn2(200)) {
+			adjalign(1);
+		}
+
+		if (uarm && uarm->oartifact == ART_DUH_BEWEGEO_ZISCH && !rn2(100)) {
+			make_confused(HConfusion + rn1(10,10), TRUE);
+			pushplayer(TRUE);
+
+			switch (rnd(8)) { /* lightning in random direction */
+				case 1:
+					buzz(15, rnd(6), u.ux, u.uy, -1, 0);
+					break;
+				case 2:
+					buzz(15, rnd(6), u.ux, u.uy, 1, 0);
+					break;
+				case 3:
+					buzz(15, rnd(6), u.ux, u.uy, -1, 1);
+					break;
+				case 4:
+					buzz(15, rnd(6), u.ux, u.uy, 1, 1);
+					break;
+				case 5:
+					buzz(15, rnd(6), u.ux, u.uy, 0, 1);
+					break;
+				case 6:
+					buzz(15, rnd(6), u.ux, u.uy, -1, -1);
+					break;
+				case 7:
+					buzz(15, rnd(6), u.ux, u.uy, 1, -1);
+					break;
+				case 8:
+					buzz(15, rnd(6), u.ux, u.uy, 0, -1);
+					break;
+				}
+			pline("zisch!");
+			stop_occupation();
+		}
+
+		if (uarm && uarm->oartifact == ART_IT_POWER_KNOEPP && !rn2(100)) {
+
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+			    if (u.usteed && nexusmon == u.usteed) continue;
+	
+				if (nexusmon->mtrapped) {
+				    /* no longer in previous trap (affects mintrap) */
+				    nexusmon->mtrapped = 0;
+				    fill_pit(nexusmon->mx, nexusmon->my);
+				}
+
+				pushmonster(nexusmon);
+				pushmonster(nexusmon);
+
+			}
+
+			pushplayer(TRUE);
+			pline("*knoepp*");
+			stop_occupation();
+		}
+
 		if (uarmf && uarmf->oartifact == ART_CLIMATE_PROTECTION_IS_ERRI && u.copwantedlevel < 1000) {
 			u.copwantedlevel += 1000;
 		}
@@ -2653,6 +2722,16 @@ moveloop()
 				if (ldstone) {
 				      pline("The stone automatically wanders into your knapsack!");
 					(void) pickup_object(ldstone, 1L, TRUE, TRUE);
+				}
+			}
+		}
+
+		if (uarms && uarms->oartifact == ART_XXXXXXXXXXXXXXXXXXXXX) {
+			if (!rn2(10000)) {
+				if (rn2(2)) {
+					goodeffect();
+				} else {
+					badeffect();
 				}
 			}
 		}
@@ -3196,6 +3275,8 @@ moveloop()
 		if (u.uprops[CURSED_PARTS].extrinsic && !rn2(500)) bad_equipment(0);
 
 		if (have_cursedpartstone() && !rn2(500)) bad_equipment(0);
+
+		if (uamul && uamul->oartifact == ART_ARABELLA_S_EXCHANGER && !rn2(500)) bad_equipment(0);
 
 		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK && !rn2(500)) bad_equipment(0);
 
@@ -5926,6 +6007,10 @@ controlagain:
 
 		}
 
+		if (uarm && uarm->oartifact == ART_CLANKING_RATTLE) {
+			wake_nearby();
+		}
+
 		if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_RUMBLE_BOOTS) )) {
 			wake_nearby();
 		}
@@ -6672,6 +6757,11 @@ newbossJANI:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM && !rn2(100)) nivellate();
 
 		if (uarmf && uarmf->oartifact == ART_HERSAY_PRICE && !u.berserktime && !rn2(100)) {
+			u.berserktime = 25;
+			You("suddenly go berserk!");
+		}
+
+		if (uarmg && uarmg->oartifact == ART_KROL_GR && !u.berserktime && !rn2(1000)) {
 			u.berserktime = 25;
 			You("suddenly go berserk!");
 		}
@@ -7796,6 +7886,11 @@ newbossO:
 
 		}
 
+		if (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST && !rn2(100000)) {
+			ragnarok(TRUE);
+			if (evilfriday) evilragnarok(TRUE,level_difficulty());
+		}
+
 		if (RngeImmobility && !rn2(5000) ) {
 
 			int monstcnt;
@@ -8269,8 +8364,9 @@ newbossO:
 		/* soresu form trains passively if you have both a lit lightsaber and a robe, but very slowly --Amy */
 		if (uarm && uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
 			u.usoresuturns++;
+			if (uarm && uarm->oartifact == ART_HOARDIT) u.usoresuturns += 9;
 			if (u.usoresuturns >= 100) {
-				u.usoresuturns = 0;
+				u.usoresuturns -= 100;
 				use_skill(P_SORESU, 1);
 			}
 
@@ -8278,8 +8374,9 @@ newbossO:
 
 		if (uarm && uarm->oartifact == ART_SORESURE) {
 			u.usoresuturns++;
+			if (uarm && uarm->oartifact == ART_HOARDIT) u.usoresuturns += 9;
 			if (u.usoresuturns >= 100) {
-				u.usoresuturns = 0;
+				u.usoresuturns -= 100;
 				use_skill(P_SORESU, 1);
 			}
 
@@ -13835,6 +13932,13 @@ past4:
 		pline("Looks like you tried to use antigold cheats, which is not permitted. Your antigold was deleted.");
 	}
 
+	if (uarm && uarm->oartifact == ART_WEGEO_ACQUA_DE_EISU_FORTE) {
+		if (isok(u.ux, u.uy) && (levl[u.ux][u.uy].typ == WATER || levl[u.ux][u.uy].typ == POOL || levl[u.ux][u.uy].typ == MOAT)) {
+			levl[u.ux][u.uy].typ = ICE;
+			Norep("The water beneath you freezes.");
+		}
+	}
+
 	/* banishment can send you to branches you've not been to yet... but if Ludios didn't generate, there's a problem:
 	 * the magic portal in there won't have a corresponding portal on the other side and therefore triggering it
 	 * results in a DYWYPI prompt! So we can't banish the player to Ludios early --Amy */
@@ -18108,6 +18212,47 @@ boolean new_game;	/* false => restoring an old game */
 		/* lifesaved */
 		pline("There's no escape - you'll just crash again!");
 		u.youaredead = 0;
+
+	}
+
+	if (!new_game && uarm && uarm->oartifact == ART_SEVEBREAKYOU__SEVEBREAK_) {
+		pline("Savebreak! You're being penalized.");
+		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by trying to hangup cheat", FALSE);
+
+		u.singtrapocc = 0;
+		u.katitrapocc = 0;
+		u.singtraptreaded = FALSE;
+		u.singtraphighheel = FALSE;
+		u.singtrapcowdung = FALSE;
+
+		u.ublesscnt += rnz(300);
+		change_luck(-1);
+
+		u.ualign.sins++;
+		u.alignlim--;
+	      adjalign(-10);
+
+		u.uhpmax -= rnd(5);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uhpmax < 1) {
+		    u.youaredead = 1;
+		    killer = "critical existence failure";
+		    killer_format = KILLED_BY;
+		    done(DIED);
+		    u.youaredead = 0;
+		}
+		u.uenmax -= rnd(5);
+		if (u.uenmax < 0) {
+			u.uenmax = u.uen = 0;
+		}
+		if (Upolyd) {
+			u.mhmax -= rnd(10);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			if (u.mhmax < 1) rehumanize();
+		}
+
+		u.hangupcheat = 0;
+		u.hangupparalysis = 0;
 
 	}
 

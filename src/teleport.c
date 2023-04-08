@@ -2542,6 +2542,57 @@ newtry:
 }
 
 void
+pushplayerfar(allowtrap, distance)
+boolean allowtrap;
+int distance;
+{
+		coord ccc;
+		int direction, pushwidth, trycnt;
+		register struct obj *otmp;
+		trycnt = 0;
+
+		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+
+newtry:
+		direction = rnd(8);
+		pushwidth = distance;
+		ccc.x = u.ux;
+		ccc.y = u.uy;
+
+		while (pushwidth--) {
+		if (direction == 1 || direction == 5) ccc.x += 1; 
+		else if (direction == 2 || direction == 6) ccc.x -= 1; 
+		else if (direction == 3 || direction == 7) ccc.y += 1; 
+		else if (direction == 4 || direction == 8) ccc.y -= 1; 
+
+		if (direction == 5) ccc.y += 1;
+		else if (direction == 6) ccc.y -= 1;
+		else if (direction == 7) ccc.x -= 1;
+		else if (direction == 8) ccc.x += 1;
+
+		if (!isok(ccc.x, ccc.y)) break; /* otherwise the game could segfault! */
+
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0 ) break;
+		}
+
+		if ((levl[ccc.x][ccc.y].typ != ROOM && levl[ccc.x][ccc.y].typ != AIR && levl[ccc.x][ccc.y].typ != STAIRS && levl[ccc.x][ccc.y].typ != LADDER && levl[ccc.x][ccc.y].typ != FOUNTAIN && levl[ccc.x][ccc.y].typ != THRONE && levl[ccc.x][ccc.y].typ != SINK && levl[ccc.x][ccc.y].typ != TOILET && levl[ccc.x][ccc.y].typ != GRAVE && levl[ccc.x][ccc.y].typ != ALTAR && levl[ccc.x][ccc.y].typ != ICE && levl[ccc.x][ccc.y].typ != CLOUD && levl[ccc.x][ccc.y].typ != SNOW && levl[ccc.x][ccc.y].typ != ASH && levl[ccc.x][ccc.y].typ != SAND && levl[ccc.x][ccc.y].typ != PAVEDFLOOR && levl[ccc.x][ccc.y].typ != HIGHWAY && levl[ccc.x][ccc.y].typ != GRASSLAND && levl[ccc.x][ccc.y].typ != NETHERMIST && levl[ccc.x][ccc.y].typ != STALACTITE && levl[ccc.x][ccc.y].typ != CRYPTFLOOR && levl[ccc.x][ccc.y].typ != BUBBLES && levl[ccc.x][ccc.y].typ != RAINCLOUD &&
+			 levl[ccc.x][ccc.y].typ != CORR) || MON_AT(ccc.x, ccc.y) || (t_at(ccc.x, ccc.y) && !allowtrap) || (otmp = sobj_at(BOULDER, ccc.x, ccc.y)) != 0) {
+		if (trycnt < 50) {trycnt++; goto newtry;}
+		return; /* more than 50 tries */
+		}
+
+		if (!isok(ccc.x, ccc.y)) return; /* otherwise the game could segfault! */
+
+		pline("You're pushed back!");
+
+		teleds(ccc.x, ccc.y, allowtrap);
+
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+		return;
+}
+
+void
 pushplayersilently(allowtrap)
 boolean allowtrap;
 {

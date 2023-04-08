@@ -2292,6 +2292,13 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_KAWA_JUR_FES) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Ju kawad jur fes.");
+		}
+    }
+
     if (uarmh && uarmh->oartifact == ART_DARK_NADIR) {
 		if (!uarmh->cursed) {
 		    if (Blind)
@@ -3255,6 +3262,12 @@ Shield_on()
 			pline("You feel that there is nothing but agony waiting for you, and as a proof, your shield just became cursed.");
 		}
     }
+
+    if (uarms && uarms->oartifact == ART_CREMATED && (objects[uarmg->otyp].oc_color != CLR_ORANGE)) {
+		pline_The("shield becomes orange!");
+		objects[uarms->otyp].oc_color = CLR_ORANGE;
+    }
+
     if (uarms && uarms->oartifact == ART_BURNING_DISK) {
 		if (!uarms->cursed) {
 			curse(uarms);
@@ -3626,8 +3639,15 @@ Armor_on()
 
 	}
 
+	if (uarm && uarm->oartifact == ART_SOME_ACTUAL_ARMOR && uarm->spe < 5) uarm->spe = 5;
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
 		pline("BEEEEEEEP! Your armor is cursed!");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SEVEBREAKYOU__SEVEBREAK_) {
+		pline("Your armor becomes cursed.");
 		curse(uarm);
 	}
 
@@ -6200,6 +6220,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_FORGED_OF_STEEL) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_YAUI_GAUI_FURS) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_PHANTOM_OF_THE_OPERA) uac -= 5;
@@ -6223,6 +6244,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
+	if (uwep && uwep->oartifact == ART_MAGDALENA_S_CUDDLEWEAPON) uac -= 5;
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
@@ -6275,6 +6297,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) uac += 10;
 	if (uwep && uwep->oartifact == ART_OTHER_MJOLLNIR) uac += 10;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OTHER_MJOLLNIR) uac += 10;
+	if (uarmf && uarmf->oartifact == ART_HOHO_DINGO && !uarmf->known) uac -= 12;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -6740,6 +6763,9 @@ struct monst *victim;
 	if(otmp && (!otmph || !rn2(4))) otmph = otmp;
 	otmp = (victim == &youmonst) ? uarms : which_armor(victim, W_ARMS);
 	if(otmp && (!otmph || !rn2(4))) otmph = otmp;
+
+	if ((victim == &youmonst) && uarmc && uarmc->oartifact == ART_BAMSEL_IN_THE_WAY) otmph = uarmc;
+
 	return(otmph);
 }
 

@@ -177,6 +177,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		curse(uwep);
 		pline("Whoops, the weapon cursed itself.");
 	}
+	if (uwep && uwep->oartifact == ART_SHADOWBLADE_BASED_ON_STORM && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, the weapon cursed itself.");
+	}
 	if (uwep && uwep->oartifact == ART_GODAWFUL_ENCHANTMENT && !uwep->cursed) {
 		curse(uwep);
 		pline("Whoops, the weapon cursed itself.");
@@ -387,6 +391,10 @@ swapweaponchoice:
 			pline("Whoops, the weapon cursed itself.");
 		}
 		if (uswapwep && uswapwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, the weapon cursed itself.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_SHADOWBLADE_BASED_ON_STORM && !uswapwep->cursed) {
 			curse(uswapwep);
 			pline("Whoops, the weapon cursed itself.");
 		}
@@ -1307,6 +1315,11 @@ boolean fade_scrolls;
 
 	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
 
+	if (target->oartifact == ART_SARTIRO ) return;
+	if (target->oartifact == ART_PARTICULARLY_SOLID_SKULL ) return;
+
+	if (target->oartifact == ART_PROOFINGNESS_POOFS && !target->rknown) return;
+
 	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
 
 	if (uarmf && !rn2(2) && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) return;
@@ -1429,6 +1442,11 @@ boolean fade_scrolls;
 	if (itemhasappearance(target, APP_BRAND_NEW_GLOVES) && rn2(4) ) return;
 
 	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
+
+	if (target->oartifact == ART_SARTIRO ) return;
+	if (target->oartifact == ART_PARTICULARLY_SOLID_SKULL ) return;
+
+	if (target->oartifact == ART_PROOFINGNESS_POOFS && !target->rknown) return;
 
 	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
 

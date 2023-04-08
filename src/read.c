@@ -1327,6 +1327,13 @@ doread()
 		pline("Mastering the %s skill will teach you the hidden power.", wpskillname(u.hiddenpowerskill));
 	}
 
+	if (scroll->oartifact == ART_ULTRALASER && !(scroll->obrittle) ) {
+		scroll->obrittle++; /* in case it's a blank scroll, you FILTHY exploit exploiter! you are SO LAME! --Amy */
+		You("may shoot an ultra laser beam!");
+		getdir(NULL);
+		buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
+	}
+
 	if(scroll->oartifact == ART_MARAUDER_S_MAP) {
 		if(Blind) {
 			pline("Being blind, you cannot see the %s.", the(xname(scroll)));
@@ -7613,6 +7620,8 @@ newboss:
 
 		    int i, j, bd = confused ? 5 : 1;
 
+			if (sobj->oartifact == ART_TRAPBURNER) bd = 7;
+
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 
 				if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
@@ -9051,6 +9060,13 @@ newboss:
 		
 				newsym(randomx,randomy);
 	
+			}
+		}
+
+		if (sobj->oartifact == ART_HELL_OR_HIGH_WATER && u.ualign.type == A_CHAOTIC) {
+			if (levl[u.ux][u.uy].typ == WATER || levl[u.ux][u.uy].typ == POOL || levl[u.ux][u.uy].typ == MOAT) {
+				levl[u.ux][u.uy].typ = LAVAPOOL;
+				pline_The("water underneath you becomes extremely hot!");
 			}
 		}
 

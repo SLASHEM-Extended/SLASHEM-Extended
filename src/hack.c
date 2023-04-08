@@ -1402,7 +1402,7 @@ walscholardone:
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -2218,25 +2218,17 @@ domove()
 						    && !sensemon(mtmp))
 		    stumble_onto_mimic(mtmp);
 		else if (mtmp->mpeaceful && !Hallucination) {
-		    pline("Pardon me, %s.", m_monnam(mtmp));
+			pline("Pardon me, %s.", m_monnam(mtmp));
 
 			/* Amy edit: it makes no fucking sense that Stormbringer doesn't auto-attack in this situation!
 			 * You fucking bumped into a fucking peaceful monster with a fucking Stormbringer for fuck's sake!
 			 * Since it's too annoying to program it so that it does, I'm just making the monster hostile for now */
-			if (uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE)) {
-				setmangry(mtmp);
-			}
-			if (u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+			if (BloodthirstyAttacking || (uwep && weapon_is_bloodthirsty(uwep)) || (u.twoweap && uswapwep && weapon_is_bloodthirsty(uswapwep)) ) {
 				setmangry(mtmp);
 			}
 		} else {
-		    You("move right into %s.", mon_nam(mtmp));
-			if (uwep && (uwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uwep->oartifact == ART_STROMBRINGER || uwep->oartifact == ART_PATRICIA_S_FEMININITY || uwep->oartifact == ART_ALASSEA_TELEMNAR || uwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uwep->oartifact == ART_WAND_OF_ORCUS || uwep->oartifact == ART_GENOCIDE || uwep->oartifact == ART_THIRST_FOR_BLOOD || uwep->oartifact == ART_SLAVE_TO_ARMOK || uwep->oartifact == ART_KILLING_EDGE)) {
-				setmangry(mtmp);
-			}
-			if (u.twoweap && uswapwep &&
-				  (uswapwep->oartifact == ART_STORMBRINGER || (BloodthirstyEffect || u.uprops[BLOODTHIRSTY_EFFECT].extrinsic || have_stormstone()) || uswapwep->oartifact == ART_STROMBRINGER || uswapwep->oartifact == ART_PATRICIA_S_FEMININITY || uswapwep->oartifact == ART_ALASSEA_TELEMNAR || uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN || uswapwep->oartifact == ART_HEAVY_THUNDERSTORM || (uwep && uwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || uswapwep->oartifact == ART_WAND_OF_ORCUS || uswapwep->oartifact == ART_GENOCIDE || uswapwep->oartifact == ART_THIRST_FOR_BLOOD || uswapwep->oartifact == ART_SLAVE_TO_ARMOK || uswapwep->oartifact == ART_KILLING_EDGE) ) {
+			You("move right into %s.", mon_nam(mtmp));
+			if (BloodthirstyAttacking || (uwep && weapon_is_bloodthirsty(uwep)) || (u.twoweap && uswapwep && weapon_is_bloodthirsty(uswapwep)) ) {
 				setmangry(mtmp);
 			}
 		}
@@ -4903,6 +4895,15 @@ int k_format; /* WAC k_format is an int */
 
 	}
 
+	if (uarms && uarms->oartifact == ART_OF_VOIDING && n > 0) {
+		n -= rnd(2);
+		if (n < 1) n = 1;
+	}
+	if (uarms && uarms->oartifact == ART_OF_NULLING && n > 0) {
+		n -= rnd(4);
+		if (n < 1) n = 1;
+	}
+
 	/* let's allow the player to deflect some damage if he's lucky (higher chance with good constitution). --Amy */
 	if (rn2(ABASE(A_CON))) {
 	if (!rn2(3) && n >= 1) {n++; n = n / 2; if (n < 1) n = 1;}
@@ -5225,6 +5226,7 @@ weight_cap()
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) carrcap += 1000;
 	if (RngeCarryingBoost) carrcap += 1000;
 	if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 50);
+	if (uarmc && uarmc->oartifact == ART_OH_MY_GOD_SPANDEX) carrcap += 200;
 
 	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 
@@ -5317,6 +5319,7 @@ inv_weight()
 	if (u.graundweight) wt += u.graundweight;
 	if (uarmh && itemhasappearance(uarmh, APP_LEAD_HELMET)) wt += 50;
 	if (uarmf && itemhasappearance(uarmf, APP_LEAD_BOOTS)) wt += 100;
+	if (uarm && uarm->oartifact == ART_SUPERHEAVY_GARBO) wt += 250;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
 	if (uwep && uwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) wt += 500;

@@ -6694,6 +6694,7 @@ struct monst *mon;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
+		if (uarmc && uarmc->oartifact == ART_FRADLE_OF_EG) armpro++;
 		if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) armpro++;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 		if (Race_if(PM_INKA)) armpro++;
@@ -9783,6 +9784,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
+		if ((uarm && uarm->oartifact == ART_SUPERHEAVY_GARBO) && !rn2(2)) break;
 		if (u.umonnum == PM_WOOD_GOLEM ||
 		    u.umonnum == PM_LEATHER_GOLEM) {
 			You("rot!");
@@ -18913,6 +18915,15 @@ register int n;
 		while (!rn2(6)) n += basedamage;
 	}
 
+	if (uarms && uarms->oartifact == ART_OF_VOIDING && n > 0) {
+		n -= rnd(2);
+		if (n < 1) n = 1;
+	}
+	if (uarms && uarms->oartifact == ART_OF_NULLING && n > 0) {
+		n -= rnd(4);
+		if (n < 1) n = 1;
+	}
+
 	/* sometimes you take less damage. The game is deadly enough already. High constitution helps. --Amy */
 	if (!issoviet && rn2(ABASE(A_CON))) {
 	if (!rn2(3) && n >= 1) {n++; n = n / 2; if (n < 1) n = 1;}
@@ -19032,7 +19043,7 @@ register int n;
 
 	if (isfriday && !rn2(50)) n += rnd(n);
 
-	if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
+	if (Invulnerable || (uarmc && uarmc->oartifact == ART_NOTONHEAD && !rn2(10)) || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
 
 	if (u.metalguard) {
 		u.metalguard = 0;
@@ -20685,6 +20696,16 @@ register struct attack *mattk;
 		profanedmg = rnd(profanedmg);
 		if((mtmp->mhp -= profanedmg ) <= 0) {
 			pline("%s drops dead!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarms && uarms->oartifact == ART_CREMATED) {
+		pline("%s is cremated!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(5)) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;

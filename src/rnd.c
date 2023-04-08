@@ -2896,6 +2896,22 @@ randartwhip()
 }
 
 int
+randartpaddle()
+{
+	int result;
+	result = rnd_class(FLY_SWATTER, TELEPHONE);
+	return result;
+}
+
+int
+randartrobe()
+{
+	int result;
+	result = rnd_class(ROBE, ROBE_OF_WEAKNESS);
+	return result;
+}
+
+int
 randartdagger()
 {
 	int result;
@@ -3314,6 +3330,22 @@ randartwhipX()
 {
 	int result;
 	result = BULLWHIP + rn2((SECRET_WHIP + 1) - BULLWHIP);
+	return result;
+}
+
+int
+randartpaddleX()
+{
+	int result;
+	result = FLY_SWATTER + rn2((TELEPHONE + 1) - FLY_SWATTER);
+	return result;
+}
+
+int
+randartrobeX()
+{
+	int result;
+	result = ROBE + rn2((ROBE_OF_WEAKNESS + 1) - ROBE);
 	return result;
 }
 

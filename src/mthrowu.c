@@ -256,6 +256,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
+		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
 		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 
@@ -455,6 +456,12 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 		return(0);
+
+	} else if (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST && rn2(3)) {
+
+			if(Blind || !flags.verbose) You("are not hit by the missile.");
+			else You("are not hit by %s.", onm);
+			return(0);
 
 	} else if (powerfulimplants() && (!rn2(extrachance) || !rn2(extrachance) || !rn2(extrachance)) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 

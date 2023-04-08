@@ -317,6 +317,7 @@ dig()
 	if (uwep && uwep->oartifact == ART_STONEBITER) bonus += 5;
 	if (uwep && uwep->oartifact == ART_BREAK_OUT) bonus += 5;
 	if (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) bonus += 5;
+	if (uarmc && uarmc->oartifact == ART_MINING_FOR_FUN_AND_PROFIT) bonus += 5;
 	if (tunnels(youmonst.data)) bonus += rn2(3); /* digging monsters really should have a bonus here --Amy */
 	if (needspick(youmonst.data)) bonus += rn2(3); /* and more so if they're dedicated miners (e.g. dwarf) */
 	if (!PlayerCannotUseSkills) {

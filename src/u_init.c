@@ -11382,6 +11382,8 @@ u_init()
 	if (Role_if(PM_WEIRDBOY)) u.casinochips++;
 	if (Role_if(PM_GANGSTER)) u.casinochips += 2;
 
+	u.superspecialspell = -1;
+
 	/* set player's haircut to a random value at game start --Amy */
 	u.femalehaircut = rnd(55);
 	u.malehaircut = rnd(18);

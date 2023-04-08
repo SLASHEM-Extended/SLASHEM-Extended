@@ -10436,6 +10436,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+		    if (uarm && uarm->oartifact == ART_COLD_PROTECTI) {
+				skip++;
+				break;
+			}
+
 		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {
 				skip++;
 				break;

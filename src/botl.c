@@ -801,6 +801,7 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_FREE_EXTRA_CANCEL) armpro++;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
+	if (uarmc && uarmc->oartifact == ART_FRADLE_OF_EG) armpro++;
 	if (uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 	if (uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 	if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;

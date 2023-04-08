@@ -2642,6 +2642,10 @@ E void give_code_number(void);
 E void devil_misbehavior(void);
 E void trophy_get(void);
 
+E boolean player_wears_metal(void);
+
+E boolean weapon_is_bloodthirsty(struct obj *);
+
 E boolean player_will_pierce_resistance(void);
 
 E boolean issovietmode();
@@ -2973,6 +2977,10 @@ E int randartmace(void);
 E int randartmaceX(void);
 E int randartwhip(void);
 E int randartwhipX(void);
+E int randartpaddle(void);
+E int randartpaddleX(void);
+E int randartrobe(void);
+E int randartrobeX(void);
 
 E int randomfeminismtraptype(void);
 
@@ -3352,6 +3360,7 @@ E boolean u_teleport_monC(struct monst *,BOOLEAN_P);
 E boolean u_teleport_monD(struct monst *,BOOLEAN_P);
 E void pushplayer(BOOLEAN_P);
 E void pushplayersilently(BOOLEAN_P);
+E void pushplayerfar(BOOLEAN_P, int);
 E boolean pushmonster(struct monst *);
 E boolean teleok(int,int,BOOLEAN_P);
 E boolean teleok_normalterrain(int,int,BOOLEAN_P);
