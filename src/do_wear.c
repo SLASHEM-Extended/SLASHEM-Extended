@@ -3263,7 +3263,7 @@ Shield_on()
 		}
     }
 
-    if (uarms && uarms->oartifact == ART_CREMATED && (objects[uarmg->otyp].oc_color != CLR_ORANGE)) {
+    if (uarms && uarms->oartifact == ART_CREMATED && (objects[uarms->otyp].oc_color != CLR_ORANGE)) {
 		pline_The("shield becomes orange!");
 		objects[uarms->otyp].oc_color = CLR_ORANGE;
     }

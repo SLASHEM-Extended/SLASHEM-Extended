@@ -7620,7 +7620,7 @@ newboss:
 
 		    int i, j, bd = confused ? 5 : 1;
 
-			if (sobj->oartifact == ART_TRAPBURNER) bd = 7;
+			if (sobj->oartifact == ART_TRAPBURNER) bd = 6;
 
 		      for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 

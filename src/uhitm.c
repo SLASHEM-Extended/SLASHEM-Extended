@@ -9698,6 +9698,7 @@ use_weapon:
 				}
 
 				if (uwep && uwep->oartifact == ART_SKOGLO && !rn2(200)) {
+
 					pushplayerfar(FALSE, 100);
 				}
 

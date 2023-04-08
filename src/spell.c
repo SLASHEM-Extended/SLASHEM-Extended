@@ -11682,7 +11682,7 @@ int spell;
 		splcaster += urole.spelsbon;
 
 	if (spellid(spell) == u.superspecialspell)
-		splcaster += 5;
+		splcaster -= 5;
 
 	/* `healing spell' bonus */
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL)

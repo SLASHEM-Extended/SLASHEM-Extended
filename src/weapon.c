@@ -2325,7 +2325,8 @@ struct monst *mon;
 
 		}
 
-		if (otmp->otyp == ART_M__M__M_) {
+		if (otmp->oartifact == ART_M__M__M_) {
+
 			if (P_SKILL(P_PADDLE) < P_BASIC) bonus += 12;
 			else if (P_SKILL(P_PADDLE) < P_SKILLED) bonus += 10;
 			else if (P_SKILL(P_PADDLE) < P_EXPERT) bonus += 8;
