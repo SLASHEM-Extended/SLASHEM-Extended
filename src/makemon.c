@@ -25306,9 +25306,12 @@ register int	mmflags;
 
 		case S_CENTAUR:
 			if (mndx == PM_UNSEEN_CRUSHER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_MEDICANT_SPROW) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_MEDICANT_DRIDER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_U_DIED_IN_AN_ACCIDENT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MYRMIDON_DIATRYPON) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_HAHA_YOU_CANNOT_SEE_ME) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_DRIDE_DRIDE_DRIDE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			break;
 
 		case S_GREMLIN:
@@ -26196,6 +26199,8 @@ register int	mmflags;
 
 			break;
 		case S_HUMAN:
+
+			if (mndx == PM_PEN_A_MEDICANT) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
 			if (mtmp->data == &mons[PM_TRUE_YOUNG_WOMAN]) {
 				int spawnnumber = rn1(8, 3);
