@@ -4087,6 +4087,7 @@ use_pole (obj)
 	struct obj *otmp;
 	boolean fishing;
 	int levitatorskill = 1;
+	int effectvar = 0;
 
 	if (Race_if(PM_LEVITATOR) && !(PlayerCannotUseSkills)) {
 
@@ -4180,6 +4181,15 @@ use_pole (obj)
 
 	/* What is there? */
 	mtmp = m_at(cc.x, cc.y);
+
+	effectvar = 1;
+	if (Race_if(PM_LEVITATOR)) {
+		if (rn2(levitatorskill)) effectvar = 1 + rnd(2);
+		else effectvar = 1 + rnd(4);
+	} else {
+		effectvar = rnd(6);
+		if (uwep && uwep->oartifact == ART_LAKITU_GET_ME_OUT) effectvar = 1 + rnd(5);
+	}
 
 	if (obj->otyp == FISHING_POLE) {
 	    fishing = is_pool(cc.x, cc.y);
