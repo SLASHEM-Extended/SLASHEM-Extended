@@ -21484,7 +21484,7 @@ singcleaning()
 			}
 		}
 
-		if (!rn2(200)) {
+		if (!rn2(500)) {
 			pline("Oh no! The can of shoe polish is empty. You need a new one, but Sing demands that you pay 50 euros for it.");
 
 			getlin("Buy a new can of shoe polish? If you refuse, the girl will be very angry. [y/yes/no]",buf);
@@ -21528,7 +21528,15 @@ singcleaning()
 		}
 
 		if (u.singtraptreaded && !rn2(100)) {
-			You("feel that it's gonna take forever to clean the shit from those stupid treaded soles, and don't really feel like continuing.");
+
+			switch (rnd(3)) {
+				case 1:
+				You("feel that it's gonna take forever to clean the shit from those stupid treaded soles, and don't really feel like continuing."); break;
+				case 2:
+				pline("Treaded soles are so annoying, you are afraid you'll be here all day. Maybe you want to abort the entire ordeal of cleaning them."); break;
+				case 3:
+				You("still haven't made much progress because all the nooks of those treaded soles still have shit in them! Your motivation has certainly decreased to an absolute low."); break;
+			}
 
 			getlin("Continue cleaning the shoes anyway? If you refuse, the girl will be very angry. [y/yes/no]",buf);
 
@@ -21571,7 +21579,16 @@ singcleaning()
 		if (u.singtraphighheel && !rn2(50)) {
 			u.usanity += rnd(10);
 			flags.botl = TRUE;
-			pline("That stupid woman, why couldn't she watch out where she steps with her damn high heels?");
+			switch (rnd(4)) {
+				case 1:
+					pline("That stupid woman, why couldn't she watch out where she steps with her damn high heels?"); break;
+				case 2:
+					pline("Stupid woman with stupid high heels! Why she stepped into shit with them, you will never understand."); break;
+				case 3:
+					pline("The fact that you are actually trying to wipe the shit from a pair of high heels is really hurting your dignity. You wonder whether you should just stop doing it."); break;
+				case 4:
+					pline("You really hate that woman for making her high heels dirty like that. Like, it almost feels as if she did that on purpose because she knew that someone would be stupid enough to try to clean them by hand."); break;
+			}
 		}
 
 		if (u.singtrapcowdung && !rn2(200)) {

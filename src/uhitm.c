@@ -8609,7 +8609,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(783)) {
+		switch (rnd(784)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -9394,6 +9394,7 @@ register int roll;
 		case 781: pline("Your character plays exactly like a samurai... who didn't enhance the melee weapon skills yet, and therefore your attack misses."); break;
 		case 782: pline("You are trying to play your character like it was a samurai, but it actually isn't one, and so your melee attack misses!"); break;
 		case 783: pline("You are somehow unconcentrated and shoot your ball highly over the goal."); break;
+		case 784: pline("You scream 'Bii-iarr!' Oh no, you missed."); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;

@@ -5432,6 +5432,13 @@ static NEARDATA const char * const longinglines[] = {
 "%s's feet are wearing rainbow-colored flatform sandals which must be made of a material called 'fluffy-soft'!",
 "%s is wearing the absolute hippie heels with green soles and green block heels, and the best part is that even the heel tips are the same cuddly green color!",
 "Wow, %s's orange peep-toes look so incredibly female, you'd die for having them place girl kicks into your shins...",
+"You want %s to always wear the erotic combat boots with treaded stroking block heels, which are currently on her feet.",
+"%s's mary janes with treaded stroking block heel are looking soooooooo cuuuuuuute!",
+"%s is wearing sexy loafers with thick block heels specially for you, because you find it eroticizing to watch her step into dog shit with the treaded heels and in particular the fact that you then have to clean her shoes by hand is super exciting.",
+"Wow, %s's pink leather boots have a super-high shaft with incredibly cute zippers, and the block heels are absolutely kind and gentle!",
+"You want the buckles of %s's mary janes to slit your leg full length again and again, and you'll also allow them to use the extremely sharp metallic pin in order to cause particularly heavy damage.",
+"If %s puts her barbed hook zippers on your leg, you cannot resist. She can drag them over your skin very slowly and incredibly painfully, opening bloody wounds that will take a long time to heal, but you'll still allow the beautiful girl to do so because she's just so lovely.",
+"Whenever the wounds on your skin have healed, you beg %s to open them again with her very high black stiletto heels, which are surprisingly capable of dealing a lot of damage rather quickly.",
 };
 
 static NEARDATA const char * const soviettaunts[] = {

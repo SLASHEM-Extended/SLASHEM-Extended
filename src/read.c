@@ -941,6 +941,7 @@ doread()
 	"Mmmmm, what a nice sex you are. Nice. Very nice indeed...",
 	"We have all sorts of items on board. Do check out our inflight shopping catalogue.",
 	"Wulun duome fengkuang, wo zong neng gen shang zhengzai fasheng de shiqing.",
+	"The exact wording of the NetHack shahada reads: I bear witness that there is no vanilla besides 3.4.3 and I bear witness that 3.4.3nao is its playable form and final release.", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];
