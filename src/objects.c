@@ -200,7 +200,7 @@ WEAPON("chemistry space axe", (char *)0,
 	1, 0, 1,  50, 48, 40,  14, 14, 0, S,   P_AXE, MT_LIQUID, CLR_BRIGHT_GREEN, 30),
 /* chemistry space axe has to be last */
 
-/* Pick-axes */
+/* Pick-axes - dwarvish mattock is first */
 /* (also weptool pick-axe) */
 WEAPON("dwarvish mattock", "broad pick",
 	0, 0, 1, 1190, 48, 50, 15,  10,0, B,   P_PICK_AXE, MT_IRON, HI_METAL, 12),
@@ -208,6 +208,7 @@ WEAPON("soft mattock", (char *)0,
 	1, 0, 1, 100, 48, 50, 15,  10,0, B,   P_PICK_AXE, MT_SILK, CLR_WHITE, 12),
 WEAPON("eternium mattock", (char *)0,
 	1, 0, 1, 10, 48, 50, 18,  12,0, B,   P_PICK_AXE, MT_ETERNIUM, CLR_BRIGHT_BLUE, 30),
+/* last mattock is eternium mattock */
 
 /* Short swords - orcish has to be first */
 WEAPON("orcish short sword", "crude short sword",
@@ -356,7 +357,7 @@ WEAPON("high-elven warsword", "runed curved sword",
 	0, 0, 0,  20,  4, 15, 10, 10, 2, S,   P_SCIMITAR, MT_MITHRIL, HI_METAL, 15),
 /* high-elven warsword has to be last */
 
-/* Brass knuckles (by Amy) */
+/* Brass knuckles (by Amy) - brass has to be first */
 WEAPON("brass knuckles", (char *)0,
 	1, 0, 0,  1000, 2, 10, 3, 3, 0, B,   P_BARE_HANDED_COMBAT, MT_IRON, HI_METAL, 1),
 WEAPON("super knuckles", (char *)0,
@@ -365,8 +366,9 @@ WEAPON("ultra knuckles", (char *)0,
 	1, 0, 0,  10, 2, 20, 5, 5, 0, B,   P_BARE_HANDED_COMBAT, MT_IRON, HI_METAL, 12),
 WEAPON("elite knuckles", (char *)0,
 	1, 0, 0,  1, 2, 50, 8, 8, 0, B,   P_BARE_HANDED_COMBAT, MT_METAL, HI_METAL, 30),
+/* elite knuckles are last */
 
-/* Sabers */
+/* Sabers - rapier has to be first */
 WEAPON("rapier", (char *)0,
 	1, 0, 0, 290, 12, 40,  6,  8,  0, P,  P_SABER, MT_METAL, CLR_BLACK, 1),
 	/* STEPHEN WHITE'S NEW CODE */
@@ -395,6 +397,7 @@ WEAPON("wild blade", (char *)0,
 	1, 0, 0, 150, 12, 15,  9, 10, 1, S,   P_SABER, MT_FLESH, CLR_RED, 13),
 WEAPON("golden saber", (char *)0,
 	1, 0, 0, 150, 12, 150,  10,  10, 0, S,   P_SABER, MT_GOLD, CLR_YELLOW, 14),
+/* golden saber is last saber */
 
 /* Clubs - regular one has to be first */
 WEAPON("club", (char *)0,
@@ -485,6 +488,7 @@ WEAPON("cigar", (char *)0, /* polearm-type */
 	1, 0, 0,  20, 2, 100, 6, 6, 1, B,   P_ORB, MT_COMPOST, CLR_BROWN, 24),
 /* last orb = cigar */
 
+/* regular grinder is first */
 WEAPON("grinder", (char *)0,
 	1, 0, 1, 700, 100, 20, 6, 6, 0, P,   P_GRINDER, MT_IRON, CLR_BLACK, 1),
 WEAPON("heavy grinder", (char *)0,
@@ -493,7 +497,9 @@ WEAPON("varied grinder", (char *)0,
 	1, 0, 1, 100, 100, 20, 7, 7, 0, P,   P_GRINDER, MT_IRON, CLR_MAGENTA, 10),
 WEAPON("circular saw", (char *)0, /* peaceful monsters automatically become hostile, slows you down like spirit */
 	1, 0, 1,  1, 260, 800, 12, 10, 1, P,   P_GRINDER, MT_SCRAP, CLR_GRAY, 80),
+/* circular saw is last grinder */
 
+/* qatar = first claw */
 WEAPON("qatar", (char *)0,
 	1, 0, 0, 689, 8, 10, 7, 7, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 1),
 WEAPON("lower arm blade", (char *)0,
@@ -506,6 +512,7 @@ WEAPON("camo qatar", (char *)0,
 	1, 0, 0, 100, 8, 35, 8, 8, 0, P,   P_CLAW, MT_IRON, CLR_CYAN, 10),
 WEAPON("ambush qatar", (char *)0, /* when doing something other than moving, your speed is cut in half */
 	1, 0, 1,  1, 8, 200, 16, 16, 0, P,   P_CLAW, MT_IRON, CLR_BLACK, 60),
+/* ambush qatar = last claw */
 
 /* Maces - silver has to be first */
 WEAPON("silver mace", (char *)0,
@@ -983,6 +990,7 @@ BOW("hydra bow", (char *)0,	1, 1, 100, 12, 60, 0, MT_WOOD, P_BOW, CLR_BROWN, 50)
 BOW("wildhild bow", (char *)0,	1, 1, 10, 12, 60, 0, MT_SILK, P_BOW, CLR_WHITE, 20),
 /* wildhild bow must be last */
 
+/* orcish arrow must be first arrow */
 PROJECTILE("orcish arrow", "crude arrow",
 	0, 1200, 0, 2, 9, 9, 0, MT_IRON, -P_BOW, CLR_BLACK, 1),
 PROJECTILE("arrow", (char *)0,
@@ -1015,6 +1023,7 @@ PROJECTILE("bronze arrow", (char *)0,
 	1, 100, 0,10,14,14, 0, MT_COPPER, -P_BOW, CLR_ORANGE, 16),
 PROJECTILE("wonder arrow", (char *)0,
 	1, 500, 0, 2, 10, 10, 0, MT_IRON, -P_BOW, CLR_MAGENTA, 2),
+/* last arrow is wonder arrow */
 
 /* Slings - regular has to be first */
 BOW("sling", (char *)0,		1, 0, 2300, 2, 20, 2, MT_WOOD, P_SLING, HI_LEATHER, 1),
@@ -1143,6 +1152,7 @@ GUN("pile bunker", (char *)0,   			1, 0,  20, 16, 40, 12, 0, 0, WP_GENERIC, MT_B
 GUN("helo crossbow", (char *)0,			1, 1,  20, 20, 40, 30, -5, 10, WP_GENERIC, MT_WOOD, P_CROSSBOW, CLR_ORANGE, 30),
 /* helo crossbow has to be last */
 
+/* regular crossbow bolt has to be first */
 PROJECTILE("crossbow bolt", (char *)0,
 	1, 1300, 0, 2, 16, 16, 1, MT_IRON, -P_CROSSBOW, HI_METAL, 1),
 PROJECTILE("fleece bolt", (char *)0,
@@ -1165,9 +1175,9 @@ PROJECTILE("ether bolt", (char *)0, /* +2 range */
 	1, 100, 0, 2, 16, 16, 1, MT_ETHER, -P_CROSSBOW, CLR_GREEN, 15),
 PROJECTILE("material bolt", (char *)0,
 	1, 500, 0, 2, 16, 16, 1, MT_IRON, -P_CROSSBOW, CLR_CYAN, 1),
+/* material bolt has to be last */
 
-
-/* Darts */
+/* Darts - regular one has to be first */
 /* (also weptoool spoon) */
 WEAPON("dart", (char *)0,
 	1, 1, 0, 2399,  0,  4,  5,  2, 0, P,   -P_DART, MT_IRON, HI_METAL, 1),
@@ -1187,9 +1197,9 @@ WEAPON("sand dart", (char *)0, /* spawns in much higher quantity */
 	1, 1, 0, 500,  0,  4,  1,  1, 0, P,   -P_DART, MT_SAND, CLR_BROWN, 1),
 WEAPON("random dart", (char *)0,
 	1, 1, 0, 500,  0,  4,  5,  2, 0, P,   -P_DART, MT_IRON, CLR_WHITE, 1),
+/* last dart = random dart */
 
-
-/* Shurikens */
+/* Shurikens - regular must be first */
 WEAPON("shuriken", "throwing star",
 	0, 1, 0, 1139,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_IRON, HI_METAL, 1),
 WEAPON("ninja star", (char *)0, /* +3 multishot */
@@ -1212,6 +1222,7 @@ WEAPON("nano shuriken", (char *)0,
 	1, 1, 0, 40,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_NANOMACHINE, CLR_BRIGHT_GREEN, 1),
 WEAPON("cubic star", (char *)0,
 	1, 1, 0, 200,  0,  5,  6,  5, 2, P,   -P_SHURIKEN, MT_IRON, CLR_BLACK, 1),
+/* cubic star is last shuriken */
 
 /* Boomerangs - regular has to be first */
 WEAPON("boomerang", (char *)0,

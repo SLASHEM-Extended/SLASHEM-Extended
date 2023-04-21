@@ -2712,6 +2712,30 @@ reroll:
 }
 
 int
+randartdragonscales()
+{
+	int result;
+	result = rnd_class(GRAY_DRAGON_SCALES, YELLOW_DRAGON_SCALES);
+	return result;
+}
+
+int
+randartdragonscalemail()
+{
+	int result;
+	result = rnd_class(GRAY_DRAGON_SCALE_MAIL, YELLOW_DRAGON_SCALE_MAIL);
+	return result;
+}
+
+int
+randartdragonscaleshield()
+{
+	int result;
+	result = rnd_class(GRAY_DRAGON_SCALE_SHIELD, YELLOW_DRAGON_SCALE_SHIELD);
+	return result;
+}
+
+int
 randartlightsaber()
 {
 	int result;
@@ -2940,6 +2964,78 @@ randartknife()
 {
 	int result;
 	result = rnd_class(WORM_TOOTH, TOOTH_OF_AN_ALGOLIAN_SUNTIGER);
+	return result;
+}
+
+int
+randartclaw()
+{
+	int result;
+	result = rnd_class(QATAR, AMBUSH_QATAR);
+	return result;
+}
+
+int
+randartshuriken()
+{
+	int result;
+	result = rnd_class(SHURIKEN, CUBIC_STAR);
+	return result;
+}
+
+int
+randartdart()
+{
+	int result;
+	result = rnd_class(DART, RANDOM_DART);
+	return result;
+}
+
+int
+randartarrow()
+{
+	int result;
+	result = rnd_class(ORCISH_ARROW, WONDER_ARROW);
+	return result;
+}
+
+int
+randartsaber()
+{
+	int result;
+	result = rnd_class(RAPIER, GOLDEN_SABER);
+	return result;
+}
+
+int
+randartmattock()
+{
+	int result;
+	result = rnd_class(DWARVISH_MATTOCK, ETERNIUM_MATTOCK);
+	return result;
+}
+
+int
+randartgrinder()
+{
+	int result;
+	result = rnd_class(GRINDER, CIRCULAR_SAW);
+	return result;
+}
+
+int
+randartknuckles()
+{
+	int result;
+	result = rnd_class(BRASS_KNUCKLES, ELITE_KNUCKLES);
+	return result;
+}
+
+int
+randartcrossbowbolt()
+{
+	int result;
+	result = rnd_class(CROSSBOW_BOLT, MATERIAL_BOLT);
 	return result;
 }
 
@@ -3362,6 +3458,78 @@ randartknifeX()
 {
 	int result;
 	result = WORM_TOOTH + rn2((TOOTH_OF_AN_ALGOLIAN_SUNTIGER + 1) - WORM_TOOTH);
+	return result;
+}
+
+int
+randartclawX()
+{
+	int result;
+	result = QATAR + rn2((AMBUSH_QATAR + 1) - QATAR);
+	return result;
+}
+
+int
+randartshurikenX()
+{
+	int result;
+	result = SHURIKEN + rn2((CUBIC_STAR + 1) - SHURIKEN);
+	return result;
+}
+
+int
+randartdartX()
+{
+	int result;
+	result = DART + rn2((RANDOM_DART + 1) - DART);
+	return result;
+}
+
+int
+randartarrowX()
+{
+	int result;
+	result = ORCISH_ARROW + rn2((WONDER_ARROW + 1) - ORCISH_ARROW);
+	return result;
+}
+
+int
+randartsaberX()
+{
+	int result;
+	result = RAPIER + rn2((GOLDEN_SABER + 1) - RAPIER);
+	return result;
+}
+
+int
+randartmattockX()
+{
+	int result;
+	result = DWARVISH_MATTOCK + rn2((ETERNIUM_MATTOCK + 1) - DWARVISH_MATTOCK);
+	return result;
+}
+
+int
+randartgrinderX()
+{
+	int result;
+	result = GRINDER + rn2((CIRCULAR_SAW + 1) - GRINDER);
+	return result;
+}
+
+int
+randartknucklesX()
+{
+	int result;
+	result = BRASS_KNUCKLES + rn2((ELITE_KNUCKLES + 1) - BRASS_KNUCKLES);
+	return result;
+}
+
+int
+randartcrossbowboltX()
+{
+	int result;
+	result = CROSSBOW_BOLT + rn2((MATERIAL_BOLT + 1) - CROSSBOW_BOLT);
 	return result;
 }
 

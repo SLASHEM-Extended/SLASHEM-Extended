@@ -12213,6 +12213,994 @@ A("Mons Infernalis X2",				SPEAR, /* randart2 spear, +10 strength */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5,3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
 
+A("Verygrimtooth",				ORCISH_DAGGER, /* poison damage like dirge */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2,6),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("Now That's A Good Enchantment",				ORCISH_DAGGER, /* equipping it while it's less than +7 sets it to +7 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Typical Orc",				ORCISH_DAGGER, /* poison resist when wielded, +4 to-hit when dual-wielding and if you happen to be dual-wielding two of these, another +10 to-hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Stabdab",				ELVEN_DAGGER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Talonhide",				SCALPEL,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Wendelder",				ORCISH_SHORT_SWORD, /* death and disint res */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Grrrrrrr!",				ORCISH_SHORT_SWORD,
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG2), 0, (M2_ELF|M2_GNOME|M2_DWARF),
+	PHYS(8, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Plltsch",				SCIMITAR, /* swimming, unbreathing */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("HackNSlash",				SCIMITAR, /* +5 bleeding damage, very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Tap Bouncer",				BRASS_KNUCKLES,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Aintgetin",				BRASS_KNUCKLES, /* 1 in 3 chance to teleport the target away if it fails a MR check */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Hard Impact",				BRASS_KNUCKLES, /* +5 STR */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Flll...sch",				IRON_SABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Clah",				IRON_SABER,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	COLD(3, 3), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ueh The Part Is +3",				IRON_SABER, /* sets itself to +3 when wielded, regardless of what enchantment value it had before */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 333L ),
+
+A("Slash The Undead",				IRON_SABER,
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, (M2_UNDEAD),
+	PHYS(4, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Blullglull",				LEATHER_SABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Solgol",				LEATHER_SABER,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_LORD|M2_PRINCE),
+	PHYS(6, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Falco's Orb",				EAGLE_BALL, /* +1 increase accuracy and damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Powcharge",				EAGLE_BALL, /* +1 multishot with ranged weapons */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Smart Cleaver",				GRINDER, /* the grinding attack deals +d6 extra damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dumber Cleaver",				GRINDER, /* bloodthirsty, the grinding attack deals +d6 extra damage but also hits peaceful and tame creatures */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(3, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Krart-t-t-t-t",				GRINDER, /* +2 sight range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Inconspicuous Start",				QATAR,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	PHYS(3, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Kicksin Girl",				QATAR, /* +5 kick damage if you're female */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Trapass (what a name)",				QATAR, /* trap revealing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("ASS ASS in ASS",				QATAR, /* randart2 claw, can be invoked for trap detection */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Boemm",				SILVER_MACE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(9, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("A Siya",				SILVER_MACE,
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, (M2_DEMON),
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Pricktrick",				BATLETH, /* +6 bleeding damage, d3 thorns in melee */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Secanted",				BATLETH, /* 3 extra points of AC when wielded, and if you have a shield, +5% chance to block */
+	(SPFX_RESTR), 0, 0,
+	PHYS(14, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Clop-clop-clop",				MORNING_STAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Very-specificness",				WAR_HAMMER, /* +1 increase accuracy */
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_DEFN), 0, S_WORM,
+	PHYS(12, 29), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2700L ),
+
+A("Charr",				SPETUM, /* acid res when wielded */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(4, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Longloss",				RANSEUR, /* sight bonus, -d10 melee and ranged to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Garant of Uara",				RANSEUR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(21, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Storm On",				VOULGE, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Hey There",				VOULGE, /* successfully applying it at an enemy drains its maximum health by one */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Fooch",				FAUCHARD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("hit a corner",				FAUCHARD, /* can hit squares that you cannot see */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("+5 To All",				GUISARME, /* 5 extra AC when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 555L ),
+
+A("PhysStatBoost",				GUISARME, /* +5 STR, CON and DEX when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("GlangGlang",				BILL_GUISARME, /* intrinsic speed */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dongdodongdodong",				BILL_GUISARME, /* intrinsic speed, but deactivates extrinsic speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(8, 13), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sorbitur",				BEC_DE_CORBIN, /* resist poison */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Gad Inaf",				ORCISH_SPEAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Infaspel",				ORCISH_SPEAR, /* 5% better spellcasting chances */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Miss Does It Real",		 		SPEAR, /* -10 melee to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Aeiaeaeaeaeaeae",				SPEAR,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Nosbado",				SPEAR, /* 20% chance to resist bad effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("dot line dot line dot line (and so on)",				SPEAR,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(6, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Underirdic!",				SPEAR, /* you can walk on farmland and mountains */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Pointed Javelin",				JAVELIN, /* spawns with rn1(5,5) stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Goldstruck",				JAVELIN, /* +10 damage when thrown */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Tropical Wood Selection",				JAVELIN, /* spawns with +4 stack size, becomes poisoned when thrown */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Just Fire Away",				BOW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Sights Zoomed",				BOW, /* infravision */
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Kreeso",				ELVEN_ARROW,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Goodres Elven",				ELVEN_ARROW, /* cannot be eroded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 150L ),
+
+A("Samski-err",				YA,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Goliath Be Afraid",				SLING,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Snipegiant",				SLING, /* +1 multishot */
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, M2_GIANT,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Dole 'Em All Out",				SLING, /* +2 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Flingpower!",				SLING, /* sling skill trains twice as fast */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dotri",				DART,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Flawwer",				DART,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Muhish",				DART, /* damage h@ck, spawns with 3x as much stack size */
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12L ),
+
+A("Way Too Long",				SHURIKEN, /* +10 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Seven's Good",				SHURIKEN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 73L ),
+
+A("Cutnerve",				SHURIKEN, /* +d6 bleeding damage to targets */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Aeres Running Shoes",				SPEED_BOOTS, /* fear and fear factor, prostitute taunts give you xfear for rnz(1000) (more) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Say 'Chess'",				SHOTGUN, /* checkerboard effect, +2 range */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("Hyper-Intelligence",				SHOTGUN, /* +7 INT when wielded, and if your ammo hits a target there's a mightbooststat(INT) effect, but you cannot have speed, free action, warning or sight bonus while wielding it and unequipping it increases your debts by d100 if your debts are below 10 million */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Enemy Dead At Close Range",				SAWED_OFF_SHOTGUN, /* -1 range, -10 to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Italy Si-Es",				AUTO_SHOTGUN, /* +4 range, -d25 to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Spreadout",				SHOTGUN_SHELL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Bullpow",				SHOTGUN_SHELL,
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
+	PHYS(7, 14), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 30L ),
+
+A("Klarnigur",				AUTO_SHOTGUN_SHELL, /* spawns with double the usual ammo amount */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Wattz Power",				HAND_BLASTER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Skilled Throughload",				HAND_BLASTER, /* +1 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Spew The Bow",				ARM_BLASTER, /* if you fire a salvo, you also fire a d4-strength magic missile in the same direction */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Watertrooper",				MG_BULLET, /* dmg h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("A Mile And A Half",				SNIPER_BULLET, /* +25 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 150L ),
+
+A("Long Mile",				BLASTER_BOLT, /* +5 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Half Mile",				HEAVY_BLASTER_BOLT,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Homing Beam",				BFG_AMMO, /* dmg h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Eight Thousand",				BFG_AMMO,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("MRLS",				ROCKET, /* +1 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Miss Launcher",				ROCKET_LAUNCHER, /* dmg h@ck, +2 range */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Vihat Baguetten Bus Stop",				QATAR, /* randart claw, dmg h@ck, full nutrients, clairvoyance */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Vilea's Secret",				QATAR, /* randart2 claw, searching has 1 in 20 chance that "cause fear" is triggered with no downsides for the player */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Emma's Sympathy",				WAR_HAMMER, /* randart hammer, 1 in 25 chance that the target monster has to pass a MR check or becomes peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("UT Ruler",				LEATHER_SABER, /* randart saber, +d10 bleeding damage to targets */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Vorpal Ruler",				LEATHER_SABER, /* randart2 saber, +d10 bleeding damage to targets */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bread For The World",				GRINDER, /* randart grinder, full nutrients, slow digestion, regeneration */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Blood-Smeared Saw",				GRINDER, /* randart2 grinder, bloodthirsty */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Pirattery",				SCIMITAR, /* randart scimitar, pirate speak */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Blue Corsar Swimming",				SCIMITAR, /* randart2 scimitar, infravision, prevents items from becoming wet, resist cold and shock */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Manaboost",				EAGLE_BALL, /* randart orb */
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Nail Impact",				BRASS_KNUCKLES, /* randart2 knuckles, +10 bleeding damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Steel On Steel",				BRASS_KNUCKLES, /* randart knuckles, +3 AC */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("FiveOnPin",				CROSSBOW_BOLT, /* randart crossbow bolt */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 55L ),
+
+A("Sigmund's Small Load",				CROSSBOW_BOLT, /* randart2 crossbow bolt, spawns with stack size of 1, bisects targets */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("D---!",				ARROW, /* randart arrow */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12L ),
+
+A("flai awei",				ARROW, /* randart2 arrow, +10 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Creamres",				SLING, /* randart2 sling, resist fire, cold, sleep, acid and psi, invoke for cure glib */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Be Conserved",				DART, /* randart dart, 90% chance to be preserved if it would have mulched */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Fliufliufliuuuuuuu!",				DART, /* randart2 dart, spawns with 3x stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Ninjingy",				SHURIKEN, /* randart shuriken, +2 range */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Capauer",				SHURIKEN, /* randart2 shuriken, if your shuriken skill isn't maxxed, every maximally reachable skill level starting from expert gives +1 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Let It Stay",				RED_DRAGON_SCALES, /* randart dragon scales, if you put them on while they're no DSM yet they become +3 if they were lower and in non-DSM form they also give 7 extra AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Ha-Monk",				RED_DRAGON_SCALE_MAIL, /* randart DSM, doesn't hinder you if you're supposed to wear light armor, including no armor spellcasting penalty, and gives 1 extra AC per soresu skill level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("It Is Complete Now",				RED_DRAGON_SCALE_SHIELD, /* randart DSS, gives all foo-o-pathies */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Drowsing Rod",				QUARTERSTAFF, /* randart2 quarterstaff, sleep res when wielded, 1 in 3 that targets have to pass a MR check or be put to sleep if not sleep resistant */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Mystic Eyes",				LENSES,
+	(SPFX_RESTR|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mortality Dial",				MACE, /* randart2 mace */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Staff of Rot",				QUARTERSTAFF, /* randart2 quarterstaff, can rot target's armor */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Xanathar's Ring of Proof",				RIN_ADORNMENT, /* randart ring, also gives intrinsic stealth */
+	(SPFX_RESTR|SPFX_STLTH|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
+
+A("Hammer of the Gods",				HEAVY_HAMMER, /* sickness resistance when wielded */
+	(SPFX_RESTR|SPFX_WARN|SPFX_INTEL|SPFX_DFLAG2), 0, (M2_DEMON|M2_UNDEAD),
+	PHYS(8, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 25000L ),
+
+A("I Don't Particularly Like High Heels",				LOW_BOOTS, /* randart2 boots, never count as high heels */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("This Trench War Has Been Fought",				LONG_SWORD, /* randart melee weapon, if the monster has less than 10% health remaining it dies outright and if it has less than 33%, it loses half of what it had remaining */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Plus To Dam",				LEATHER_GLOVES, /* +2 increase damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Plus To Hit",				LEATHER_GLOVES, /* +5 increase accuracy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("strbonus",				LEATHER_GLOVES, /* +5 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("dexbonus",				LEATHER_GLOVES, /* +5 DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Quite Normal",				HELMET, /* +1 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Steeler",				HELMET, /* +3 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Havewings",				HELMET, /* res fire, cold and shock, anti-teleportation, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cliervoyens",				HELMET, /* shows monsters in a 5x5 area around you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Speeeeeed",				HIGH_BOOTS, /* fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Slowing",				HIGH_BOOTS, /* slows you down twice as much as spirit, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Ultra-P",				HIGH_BOOTS, /* levitation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Oh Man Boring",				HIGH_BOOTS, /* +1 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12L ),
+
+A("Flufiv",				LOW_BOOTS,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sterdynes",				LOW_BOOTS, /* +1 AC, becomes erosionproof when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Anti Slide",				LOW_BOOTS, /* can walk on snow and ice */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Tscheinschform",				LOW_BOOTS, /* invoking it changes its base item to a completely random ("randart2") type of boots */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Extra Latitude",				PARTIAL_PLATE_MAIL, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("And Longitude",				PARTIAL_PLATE_MAIL, /* +500 carry cap, +1000 max carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Smiley Face",				RIBBED_PLATE_MAIL, /* +3 CHA, +1 all other stats */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Redguard Appearance",				RIBBED_PLATE_MAIL, /* resist fire and poison */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Godly Protect",				FULL_PLATE_MAIL, /* 20% that a mhitu attack doesn't damage you */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Full Spectrum",				FULL_PLATE_MAIL, /* resist fire, cold, shock, poison, sleep, acid and psi */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Dark-L",				FULL_PLATE_MAIL, /* fire cannot destroy your items nor burn your armor, infravision, nolite, monsters are short-sighted */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Feiljur",				PLASTEEL_ARMOR, /* AC becomes worse by 5 points */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Floex",				PLASTEEL_ARMOR,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hirr",				PLASTEEL_ARMOR, /* becomes erosionproof when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Winnnnng",				PLASTEEL_HELM, /* autocurses, invoke detects objects and traps and gives 20 turns of detect monsters */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Flyyyyy",				PLASTEEL_HELM, /* flying, anti-teleportation, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Em-Si",				PLASTEEL_GLOVES, /* +1 MC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Not Below Nine",				PLASTEEL_GLOVES, /* AD_MCRE cannot reduce your MC below 9 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 999L ),
+
+A("White Loafers",				PLASTEEL_BOOTS, /* sexy flats, anastasia trap effect */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Whoa Look At Those",				PLASTEEL_BOOTS, /* sexy flats, anna trap effect, heavily autocurses, can be invoked to gain a random intrinsic */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Fascend",				PLASTEEL_CLOAK, /* MC = 10, but your AC is halved */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8888L ),
+
+A("At Arms Length",				PLASTEEL_CLOAK, /* monsters also keep walking randomly in melee */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("You Are Ugly",				TAPERED_MAIL, /* 1 in 2000 that an attempt is made to reduce your CHA by one, +1 increase damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dammit Pick Up",				TAPERED_MAIL, /* -5 ranged to-hit, aggravate monster, sleep resist */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Stand you forwards, there would now the earl come",				LEATHER_ARMOR, /* randart armor, invis, M2_PRINCE have +5 spawn freq and they always spawn with a random gun */
+	(SPFX_RESTR|SPFX_STLTH|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("There Goes She To",				LEATHER_ARMOR, /* randart2 armor, permanent stat damage nastytrap effect, wakeup call, autocurse, +4 increase damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ten Minutes Colder",				HELMET, /* randart helmet, res fire and cold, but if ZT_FIRE tries to damage your items, fire res is deactivated for 1 (more) turn; searching gives 50% chance to regenerate one HP */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Poisustain",				METAL_LAMELLAR_ARMOR, /* resist poison, sustain ability */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Cannot be harmed bla-bla",				METAL_LAMELLAR_ARMOR, /* all your armor pieces cannot be eroded, heap trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Foking Tenk",				DWARVISH_MITHRIL_COAT, /* 7 extra AC */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Clangfriend",				DWARVISH_MITHRIL_COAT, /* increased digging speed, M2_DWARF are spawned peaceful, +3 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Yesexi",				BAR_CHAIN_MAIL, /* suppresses stealth */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Isimoud",				BAR_CHAIN_MAIL, /* halves monster spawn rate and level difficulty */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Seien Glou",				ORCISH_CHAIN_MAIL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Emsi Woers",				ORCISH_CHAIN_MAIL, /* sets your MC to exactly 2 no matter what (except unbalancor, then it's still 0) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blaswon",				ORCISH_CHAIN_MAIL, /* +1 AC, can be invoked to increase enchantment by one up to a maximum of +1 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Korholt",				ORCISH_CHAIN_MAIL, /* M2_ORC have +20 spawn freq and M5_VANILLA have +2 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Duedueueueueue",				ORCISH_RING_MAIL, /* teleportitis */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Wu-Wu",				ORCISH_RING_MAIL, /* if you dual-wield, +2 damage and +4 to-hit in melee */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Worschat",				ORCISH_RING_MAIL,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Klaer Ov",				ORCISH_RING_MAIL, /* recurring amnesia, 1 in 15 per turn to get a confused clairvoyance effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("New Coat",				LAB_COAT, /* makes AC worse by 1 and increases MC by 1 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ramming Support Rippage",				LAB_COAT, /* if turn counter is divisible by 3, you cannot have resist acid; peace_minded returns FALSE 50% of the time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Detonations Mantle",				LAB_COAT, /* invoke for dynamite explosion centered on you, which doesn't hit you */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Post Office Farmer Heng",				MUMMY_WRAPPING, /* slightly increases range of polearms (probably to 9, so 3-square distance enemies can be hit only in a straight line) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Sithe Ded",				MUMMY_WRAPPING, /* shows all S_MUMMY */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Won Steschan",				MUMMY_WRAPPING, /* invoke for 500 turns of resist fire, cold and shock */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Very Good Fit",				OILSKIN_CLOAK, /* +3 AC, AD_MCRE cannot reduce your MC below 3 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Denh Obvio",				OILSKIN_CLOAK, /* invoke to fire a poison beam with strength of 6 in a direction of your choice */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Klalter",				OILSKIN_CLOAK, /* teleportitis, you cannot have double tele control */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, LIGHT_AREA, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Resist Boredom",				LORICATED_CLOAK, /* resist sleep */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Protect From Heavy Rain",				ELVEN_LEATHER_HELM, /* you can pass through rain clouds with no ill effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Give The Bonus Stuff",				ELVEN_LEATHER_HELM, /* +1 multishot */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Metal Negater",				ELVEN_LEATHER_HELM, /* halves metal spellcasting penalties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Douvoned",				ELVEN_LEATHER_HELM, /* +1 damage in melee and if you hit, +5 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Badly Dented",				DENTED_POT, /* makes AC worse by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Can't Be Damaged Further",				DENTED_POT, /* immune to rust and disenchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Be The Lite",				DENTED_POT, /* sight bonus, +1 increase accuracy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2600L ),
+
+A("Yaggfalse",				ELVEN_SHIELD,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kluusch",				ELVEN_SHIELD, /* if the shield blocks a projectile or melee attack, you regenerate 1 HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Tartsch",				SHIELD, /* randart shield, resist piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Ronditsch",				SHIELD, /* randart2 shield, +1 increase damage and accuracy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Havener",				URUK_HAI_SHIELD, /* 1 in 2 chance that if an arrow is shot at you, the shield will unconditionally block it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Spickar",				URUK_HAI_SHIELD, /* if you block a projectile, you can opt to fire a magic missile with strength gushlevel/3 in the direction the projectile came from, but only if the shield has no artifact timeout and it then gets one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("First Thirtel",				ORCISH_SHIELD,
+	(SPFX_RESTR|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Second Thirtel",				ORCISH_SHIELD,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Third Thirtel",				ORCISH_SHIELD,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Angularity",				LARGE_SHIELD, /* prism reflection */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Yellow Status",				LARGE_SHIELD, /* resist poison, +1 AC, +2 INT */
+	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Spikemash",				IRON_SHOES, /* falling into a spiked pit turns it into a regular pit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Daroh No",				IRON_SHOES, /* dart traps cannot fire poisoned darts at you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("House Animal Warner",				IRON_SHOES, /* pets whine when near traps, even when not leashed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Deepmine Safety",				IRON_SHOES, /* if you trigger a poly trap, you can choose whether or not you want to actually be polyd */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Glitch In The Monitor",				IRON_SHOES, /* double telepathy, EVC effect */
+	(SPFX_RESTR|SPFX_ESP|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cure Good",				UNICORN_HORN, /* randart unihorn, applying works as if it had 2 extra points of enchantment */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dig, of course",				DWARVISH_MATTOCK, /* randart mattock, faster digging speed, dmg h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(9, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Eternale Delay",				DWARVISH_MATTOCK, /* randart2 mattock, digs slower than normal, resist fear */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("old person talk",				LEATHER_CLOAK, /* randart2 cloak, -5 increase accuracy, magic vacuum, halves multishot, +50 spawn freq for M5_VANILLA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Gallow Digs",				LONG_SWORD, /* randart2 melee weapon, invoke to fire a digging beam in a direction of your choice */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Griene Eidi",				GREEN_LIGHTSABER, /* peacevision */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Berserk Rage",				RED_LIGHTSABER, /* doesn't go out when cursed, menu bug, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Fara Weapon",				RED_LIGHTSABER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Palace Terror",				RED_LIGHTSABER, /* +5 spawn freq for MS_DEAD and 1 in 100 per turn to receive d5 sanity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hah-Tschh",				BLUE_LIGHTSABER, /* suppresses freeze status effect */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(3, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Cannot Do Is Frozen",				BLUE_LIGHTSABER, /* protects potions from cold, can be invoked to cure freeze */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Vintage Memory",				RED_DOUBLE_LIGHTSABER, /* dulls 5x as often and down to -2, shades of gray, invoke for a controlled teleport */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Fading From Memory",				VIOLET_LIGHTSABER, /* keen memory, recurring amnesia */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	STUN(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Helf Me Nevertheless",				WHITE_LIGHTSABER, /* halves speed, resist sleep, free action and discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Black Mark",				WHITE_LIGHTSABER, /* -1 increase damage and accuracy, life saving */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Calf Cutlet Without Beod",				WHITE_DOUBLE_LIGHTSABER, /* hunger, full nutrients */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Smarted Diamond",				WHITE_DOUBLE_LIGHTSABER,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ELEC(8, 8), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kruruink",				POWERFIST, /* if you hit something and your temporary very fast speed was less than 2 turns, it is now set to 2 turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Extended Durability",				POWERFIST, /* 75% chance to not be eroded, 80% chance to not be dulled if it would have */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dit Dit",				PISTOL_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Large Magazine",				PISTOL_BULLET, /* 3x stack size */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Seldom Price",				SMG_BULLET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ), /* the price is not a mistake --Amy */
+
+A("Washington's Capper",				SMG_BULLET, /* +5 range, +1 multishot, -5 to-hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Lincoln's Repeater",				FLINTLOCK, /* +1 multishot */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4400L ),
+
+A("Fire Free",				FLINTLOCK,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Actually Usable GL",				GRENADE_LAUNCHER, /* +6 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Ping Em Away",				GRENADE_LAUNCHER, /* +12 bashing damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Colt 1911",				PISTOL, /* resist acid */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1900L ),
+
+A("MP5",				SUBMACHINE_GUN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Loud Shitter",				SUBMACHINE_GUN, /* -7 to-hit, +2-3 multishot, every bullet you fire from it causes wake_nearby */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Winnetou's Friend",				RIFLE, /* damage h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(15, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ay-Pee Rifle",				RIFLE, /* shooting a target tries to corrode its armor */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("FTS",				RIFLE_BULLET, /* +10 range, to-hit doesn't decline with range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 120L ),
+
+A("Evasion Break",				RIFLE_BULLET, /* enemies cannot evade, dodge, shrug off etc. the bullet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Chinese Model",				ASSAULT_RIFLE, /* -5 to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Xuanlong",				ASSAULT_RIFLE, /* -5 to-hit, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4400L ),
+
+A("Theo's Box",				ASSAULT_RIFLE_BULLET, /* damage h@ck, spawns with d(4x stack size) extra ammo */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 180L ),
+
+A("All Wasted",				ASSAULT_RIFLE_BULLET, /* stack size is reduced to one third of the normal amount */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("AK-2074",				KALASHNIKOV, /* invert, every firearms skill level below expert gives +2 to-hit and +1 damage, but every skill level above it gives -2 both */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gigantic Sun",				EAGLE_BALL, /* randart2 orb, increases your sight range by 3 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

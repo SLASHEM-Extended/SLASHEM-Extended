@@ -225,6 +225,7 @@ init_randarts()
 	 * WAN_MAKE_INVISIBLE = wand, SPE_MAGICTORCH = spellbook */
 
 	artilist[ART_SOULCALIBUR].otyp = randartmeleeweapon();
+	artilist[ART_THIS_TRENCH_WAR_HAS_BEEN_F].otyp = randartmeleeweapon();
 	artilist[ART_SKOGLO].otyp = randartmeleeweapon();
 	artilist[ART_UNDEADBANE].otyp = randartmeleeweapon();
 	artilist[ART_RAINBOWSWANDIR].otyp = randartmeleeweapon();
@@ -233,6 +234,7 @@ init_randarts()
 	artilist[ART_VORPAL_EDGE].otyp = randartmeleeweapon();
 	artilist[ART_FINAL_CONSEQUENCE].otyp = randartmeleeweapon();
 	artilist[ART_DARK_MAGIC].otyp = randartsuit();
+	artilist[ART_STAND_YOU_FORWARDS__THERE_].otyp = randartsuit();
 	artilist[ART_BEAM_CONTROL].otyp = randartmeleeweapon();
 	artilist[ART_SANDRA_S_SECRET_WEAPON].otyp = randartmeleeweapon();
 	artilist[ART_FINAL_DOOR_SOLUTION].otyp = randartmeleeweapon();
@@ -254,6 +256,7 @@ init_randarts()
 	artilist[ART_NATALIA_IS_LOVELY_BUT_DANG].otyp = randartshirt();
 	artilist[ART_TAPE_ARMAMENT].otyp = randartsuit();
 	artilist[ART_CATHAN_S_SIGIL].otyp = randartring();
+	artilist[ART_XANATHAR_S_RING_OF_PROOF].otyp = randartring();
 	artilist[ART_RING_OF_EVERYTHING_RESISTA].otyp = randartring();
 	artilist[ART_VERSION_CONTROL].otyp = randartring();
 	artilist[ART_FLEEING_MINE_MAIL].otyp = randartsuit();
@@ -272,6 +275,7 @@ init_randarts()
 	artilist[ART_RITA_S_LOVELY_OVERGARMENT].otyp = randartcloak();
 	artilist[ART_LUNAR_ECLIPSE_TONIGHT].otyp = randartcloak();
 	artilist[ART_LORSKEL_S_SPEED].otyp = randarthelm();
+	artilist[ART_TEN_MINUTES_COLDER].otyp = randarthelm();
 	artilist[ART_KAWA_JUR_FES].otyp = randarthelm();
 	artilist[ART____DOT__ALIEN_RADIO].otyp = randarthelm();
 	artilist[ART_NADJA_S_DARKNESS_GENERATOR].otyp = randarthelm();
@@ -281,6 +285,7 @@ init_randarts()
 	artilist[ART_KROL_GR].otyp = randartgloves();
 	artilist[ART_A_LITTLE_SUGAR].otyp = randartgloves();
 	artilist[ART_NO_FUTURE_BUT_AGONY].otyp = randartshield();
+	artilist[ART_TARTSCH].otyp = randartshield();
 	artilist[ART_OF_VOIDING].otyp = randartshield();
 	artilist[ART_THERMO_NUCLEAR_CHAMBER].otyp = randartshield();
 	artilist[ART_FLUIDSHIELD].otyp = randartshield();
@@ -396,6 +401,7 @@ init_randarts()
 	artilist[ART_RIDGET_PHASTO].otyp = randartvenom();
 	artilist[ART_ACIDFALL].otyp = randartlongsword();
 	artilist[ART_AVALON].otyp = randartscimitar();
+	artilist[ART_PIRATTERY].otyp = randartscimitar();
 	artilist[ART_WORSE_CARNWENNAN].otyp = randartknife();
 	artilist[ART_SEAFOAM].otyp = randarttrident();
 	artilist[ART_UNLIMITED_MOON].otyp = randartflail();
@@ -405,6 +411,7 @@ init_randarts()
 	artilist[ART_SKULL_SWORD].otyp = randartshortsword();
 	artilist[ART_UNATTAINABLE_NINETEEN].otyp = randartshortsword();
 	artilist[ART_GNOLLBANE].otyp = randarthammer();
+	artilist[ART_EMMA_S_SYMPATHY].otyp = randarthammer();
 	artilist[ART_EMERALD_SWORD].otyp = randarttwohandedsword();
 	artilist[ART_CELESTIAL_SCEPTRE].otyp = randartmace();
 	artilist[ART_INDOBURDENIA_VIRII].otyp = randartmace();
@@ -425,6 +432,7 @@ init_randarts()
 	artilist[ART_REGINA_LUX].otyp = randartmorningstar();
 	artilist[ART_HARPOON_OF_TRITON].otyp = randarttrident();
 	artilist[ART_MERCILESS_MARE].otyp = randartunihorn();
+	artilist[ART_CURE_GOOD].otyp = randartunihorn();
 	artilist[ART_ENRAI].otyp = randartpolearm();
 	artilist[ART_PRINCIPIUM_INCERTI].otyp = randartpolearm();
 	artilist[ART_BOW_OF_HERCULES].otyp = randartbow();
@@ -432,12 +440,28 @@ init_randarts()
 	artilist[ART_GRADIUS].otyp = randartshortsword();
 	artilist[ART_U_TSCHELLI].otyp = randartpaddle();
 	artilist[ART_ALTADOON_HERMA_MORA].otyp = randartrobe();
+	artilist[ART_VIHAT_BAGUETTEN_BUS_STOP].otyp = randartclaw();
+	artilist[ART_UT_RULER].otyp = randartsaber();
+	artilist[ART_BREAD_FOR_THE_WORLD].otyp = randartgrinder();
+	artilist[ART_MANABOOST].otyp = randartorb();
+	artilist[ART_STEEL_ON_STEEL].otyp = randartknuckles();
+	artilist[ART_FIVEONPIN].otyp = randartcrossbowbolt();
+	artilist[ART_D____].otyp = randartarrow();
+	artilist[ART_BE_CONSERVED].otyp = randartdart();
+	artilist[ART_NINJINGY].otyp = randartshuriken();
+	artilist[ART_LET_IT_STAY].otyp = randartdragonscales();
+	artilist[ART_HA_MONK].otyp = randartdragonscalemail();
+	artilist[ART_IT_IS_COMPLETE_NOW].otyp = randartdragonscaleshield();
+	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
+	artilist[ART_OLD_PERSON_TALK].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
+	artilist[ART_I_DON_T_PARTICULARLY_LIKE_].otyp = randartbootsX();
 	artilist[ART_HOHO_DINGO].otyp = randartbootsX();
 	artilist[ART_FIREPROOF_WALL].otyp = randartmeleeweaponX();
 	artilist[ART_SPEARBLADE].otyp = randartmeleeweaponX();
+	artilist[ART_GALLOW_DIGS].otyp = randartmeleeweaponX();
 	artilist[ART_RADIATOR_AREA].otyp = randartmeleeweaponX();
 	artilist[ART_JESSICA_S_WINNING_STRIKE].otyp = randartmeleeweaponX();
 	artilist[ART_MARKUS_S_JUSTICE].otyp = randartmeleeweaponX();
@@ -484,11 +508,13 @@ init_randarts()
 	artilist[ART_CANNONEER].otyp = randartlauncherX();
 	artilist[ART_SPEEDHACK].otyp = randartlauncherX();
 	artilist[ART_RAYSWANDIR].otyp = randartquarterstaffX();
+	artilist[ART_DROWSING_ROD].otyp = randartquarterstaffX();
 	artilist[ART_PAINBOWSWANDIR].otyp = randartbowX();
 	artilist[ART_EARTH_GAS_GUN].otyp = randartlauncherX();
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
 	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
+	artilist[ART_THERE_GOES_SHE_TO].otyp = randartsuitX();
 	artilist[ART_HUNKSTERMAN].otyp = randartsuitX();
 	artilist[ART_DUH_BEWEGEO_ZISCH].otyp = randartsuitX();
 	artilist[ART_SEVEBREAKYOU__SEVEBREAK_].otyp = randartsuitX();
@@ -510,6 +536,7 @@ init_randarts()
 	artilist[ART_GAUNTLETS_OF_YIN_AND_YANG].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_I_M_GETTING_HUNGRY].otyp = randartshieldX();
+	artilist[ART_RONDITSCH].otyp = randartshieldX();
 	artilist[ART_OF_NULLING].otyp = randartshieldX();
 	artilist[ART_SUPER_ENERGY_LINES].otyp = randartshieldX();
 	artilist[ART_CCC_CCC_CCCCCCC].otyp = randartshieldX();
@@ -574,12 +601,15 @@ init_randarts()
 	artilist[ART_HOL_ON_MAN].otyp = randartvenomX();
 	artilist[ART_POWER_POLE].otyp = randartpolearmX();
 	artilist[ART_BALANCE_PSEUDOSHIELD].otyp = randartquarterstaffX();
+	artilist[ART_STAFF_OF_ROT].otyp = randartquarterstaffX();
 	artilist[ART_STAFF_OF_THE_ARCHMAGIGI].otyp = randartquarterstaffX();
 	artilist[ART_BLU_TOE].otyp = randartorbX();
+	artilist[ART_GIGANTIC_SUN].otyp = randartorbX();
 	artilist[ART_POSSO_CONTINUARE_LATERALE].otyp = randartorbX();
 	artilist[ART_CROSSBOW_OF_THE_GNOLL_LORD].otyp = randartcrossbowX();
 	artilist[ART_HOWLING_FLAIL].otyp = randartflailX();
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
+	artilist[ART_MORTALITY_DIAL].otyp = randartmaceX();
 	artilist[ART_ARK_OF_THE_COVENANT].otyp = randartpickaxeX();
 	artilist[ART_FAMOUS_LANCE].otyp = randartlanceX();
 	artilist[ART_SERPENT_RING_OF_SET].otyp = randartringX();
@@ -593,6 +623,7 @@ init_randarts()
 	artilist[ART_FIRE_SOUL].otyp = randartshortswordX();
 	artilist[ART_DAEFAROTH].otyp = randartdaggerX();
 	artilist[ART_NOCLAF].otyp = randartscimitarX();
+	artilist[ART_BLUE_CORSAR_SWIMMING].otyp = randartscimitarX();
 	artilist[ART_AVAL_N].otyp = randartscimitarX();
 	artilist[ART_EUTATS_ENOTS].otyp = randartaxeX();
 	artilist[ART_BRAINSTORM].otyp = randartflailX();
@@ -613,6 +644,17 @@ init_randarts()
 	artilist[ART_VIOLENT_SKULL_SWORD].otyp = randartlongswordX();
 	artilist[ART_GLAMDRING__CHINESE_BOOTLEG].otyp = randartlongswordX();
 	artilist[ART_M__M__M_].otyp = randartpaddleX();
+	artilist[ART_ASS_ASS_IN_ASS].otyp = randartclawX();
+	artilist[ART_VILEA_S_SECRET].otyp = randartclawX();
+	artilist[ART_VORPAL_RULER].otyp = randartsaberX();
+	artilist[ART_BLOOD_SMEARED_SAW].otyp = randartgrinderX();
+	artilist[ART_NAIL_IMPACT].otyp = randartknucklesX();
+	artilist[ART_SIGMUND_S_SMALL_LOAD].otyp = randartcrossbowboltX();
+	artilist[ART_FLAI_AWEI].otyp = randartarrowX();
+	artilist[ART_CREAMRES].otyp = randartslingX();
+	artilist[ART_FLIUFLIUFLIUUUUUUU_].otyp = randartdartX();
+	artilist[ART_CAPAUER].otyp = randartshurikenX();
+	artilist[ART_ETERNALE_DELAY].otyp = randartmattockX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();

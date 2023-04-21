@@ -2982,6 +2982,29 @@ E int randartpaddleX(void);
 E int randartrobe(void);
 E int randartrobeX(void);
 
+E int randartclaw(void);
+E int randartclawX(void);
+E int randartshuriken(void);
+E int randartshurikenX(void);
+E int randartdart(void);
+E int randartdartX(void);
+E int randartarrow(void);
+E int randartarrowX(void);
+E int randartsaber(void);
+E int randartsaberX(void);
+E int randartmattock(void);
+E int randartmattockX(void);
+E int randartgrinder(void);
+E int randartgrinderX(void);
+E int randartknuckles(void);
+E int randartknucklesX(void);
+E int randartcrossbowbolt(void);
+E int randartcrossbowboltX(void);
+
+E int randartdragonscales(void);
+E int randartdragonscalemail(void);
+E int randartdragonscaleshield(void);
+
 E int randomfeminismtraptype(void);
 
 E int randartbadgraystone(void);
