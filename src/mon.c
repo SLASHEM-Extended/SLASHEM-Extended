@@ -3374,13 +3374,14 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 				}
 			}
 			/* Note: ALLOW_SANCT only prevents movement, not */
-			/* attack, into a temple. */
+			/* attack, into a temple.
+			 * Amy edit: waaaaaaaay too uber OP if you can be completely safe in there! lame exploit abuser! */
 			if(level.flags.has_temple &&
 			   *in_rooms(nx, ny, TEMPLE) &&
 			   !*in_rooms(x, y, TEMPLE) &&
 			   !(u.elberethcheese && (rnd(u.elberethcheese + 100) > 100) ) && 
 			   in_your_sanctuary((struct monst *)0, nx, ny)) {
-				if(!(flag & ALLOW_SANCT) && !rn2(5) ) continue;
+				if(!(flag & ALLOW_SANCT) && rn2(3) && !(mon->data->geno & G_UNIQ) ) continue;
 				info[cnt] |= ALLOW_SANCT;
 				if (!rn2(10) && monnear(mon, nx, ny) ) u.elberethcheese++;
 			}

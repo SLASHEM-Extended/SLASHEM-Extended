@@ -537,13 +537,19 @@ int *inrange, *nearby, *scared;
 	 * increasingly less likely to work again. This counter should time out back to zero very slowly */
 	if (u.elberethcheese && (rnd(u.elberethcheese + 100) > 100) ) return;
 
-	/* "super bonus evil patch idea" by jonadab - monsters with only 1HP ignore Elbereth and similar scary stuff */
-	*scared = ( (mtmp->mhp > 1) && *nearby && (onscary(seescaryx, seescaryy, mtmp) && (rnd(20) > 1) ||
-			       (!mtmp->mpeaceful && (rnd(5) > 2) &&
-				    in_your_sanctuary(mtmp, 0, 0))));
+	/* "super bonus evil patch idea" by jonadab - monsters with only 1HP ignore Elbereth and similar scary stuff
+	 * Amy addition: bosses are immune, you lamer, because they're supposed to be a challenge ffs! */
+	*scared = 
+		/* elbereth or scare monster scroll */
+		( (mtmp->mhp > 1) && *nearby && !(mtmp->data->geno & G_UNIQ) &&
+		 (onscary(seescaryx, seescaryy, mtmp) && rn2(9)) ||
+
+		/* sanctuary (aka cheesy exploit for lamers) */
+		(!mtmp->mpeaceful && (rnd(5) > 2) && !(mtmp->data->geno & G_UNIQ) && in_your_sanctuary(mtmp, 0, 0)) );
+
 	/* note by Amy: I always felt permanent Elbereths were waaaaaaaay too strong.
-	It's much more interesting if Elbereth has a chance to fail, too.
-	After all, where's the challenge in burning an Elbereth, then whacking at soldier ants for two hours straight? */
+	 * It's much more interesting if Elbereth has a chance to fail, too.
+	 * After all, where's the challenge in burning an Elbereth, then whacking at soldier ants for two hours straight? */
 
 	if(*scared) {
 		u.elberethcheese++;
