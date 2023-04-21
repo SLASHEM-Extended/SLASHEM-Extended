@@ -4194,8 +4194,7 @@ use_pole (obj)
 	if (obj->otyp == FISHING_POLE) {
 	    fishing = is_pool(cc.x, cc.y);
 	    /* Try a random effect */
-	    switch (Race_if(PM_LEVITATOR) ? (rn2(levitatorskill) ? (1 + rnd(2)) : (1 + rnd(4)) ) : rnd(6))
-	    {
+	    switch (effectvar) {
 		case 1:
 		    /* Snag yourself */
 		    You("hook yourself!");
