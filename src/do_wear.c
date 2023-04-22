@@ -455,6 +455,14 @@ Boots_on()
 	}
     }
 
+    if (uarmf && uarmf->oartifact == ART_WHOA_LOOK_AT_THOSE) {
+	if (!uarmf->hvycurse) {
+		curse(uarmf);
+		uarmf->hvycurse = TRUE;
+		/* no message (intentional) --Amy */
+	}
+    }
+
     if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) ) {
 	      if (!uarmf->cursed) {
 			curse(uarmf);
@@ -489,6 +497,14 @@ Boots_on()
 		/* except not really, prime curse can still be lifted; the message is intentionally misleading --Amy */
     }
 
+    if (uarmf && uarmf->oartifact == ART_STERDYNES) {
+	if (!uarmf->oerodeproof) {
+		uarmf->oerodeproof = TRUE;
+		uarmf->rknown = TRUE;
+		Your("boots become sturdy.");
+	}
+    }
+
     if (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) {
 		if (!uarmf->cursed) {
 			curse(uarmf);
@@ -518,6 +534,12 @@ Boots_on()
 		if (!uarmf->cursed) {
 			curse(uarmf);
 			pline("The devils curse your boots.");
+		}
+    }
+    if (uarmf && uarmf->oartifact == ART_SLOWING) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("BEEEEEP! The boots are cursed of slowness.");
 		}
     }
 
@@ -2292,6 +2314,27 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_HAVEWINGS) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Well, you have wings now (which cannot fly), but aren't capable of taking them off.");
+		}
+    }
+
+    if (uarmh && uarmh->oartifact == ART_WINNNNNG) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Oops, the helmet cursed itself.");
+		}
+    }
+
+    if (uarmh && uarmh->oartifact == ART_FLYYYYY) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Oops, the helmet cursed itself.");
+		}
+    }
+
     if (uarmh && uarmh->oartifact == ART_KAWA_JUR_FES) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
@@ -3639,6 +3682,10 @@ Armor_on()
 
 	}
 
+	if (uarm && uarm->oartifact == ART_LET_IT_STAY && uarm->otyp >= GRAY_DRAGON_SCALES && uarm->otyp <= YELLOW_DRAGON_SCALES) {
+		if (uarm->spe < 3) uarm->spe = 3;
+	}
+
 	if (uarm && uarm->oartifact == ART_SOME_ACTUAL_ARMOR && uarm->spe < 5) uarm->spe = 5;
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
@@ -3696,6 +3743,19 @@ Armor_on()
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_MEET_WOMAN_ANTJE) {
+		curse(uarm);
+	}
+
+	if (uarm && uarm->oartifact == ART_HIRR) {
+		if (!uarm->oerodeproof) {
+			uarm->oerodeproof = TRUE;
+			uarm->rknown = TRUE;
+			Your("armor makes a hirring sound.");
+		}
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_THERE_GOES_SHE_TO) {
+		pline("Well, there goes she to.");
 		curse(uarm);
 	}
 
@@ -5939,7 +5999,7 @@ find_ac()
 	else if (ACURR(A_DEX) < 24) uac -= 9;
 	else uac -= 10;
 
-	if (Role_if(PM_MONK) && !uwep && (!uarm ||
+	if (Role_if(PM_MONK) && !uwep && (!uarm || (uarm->oartifact == ART_HA_MONK) ||
 		(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms) {
 /*WAC cap off the Monk's ac bonus to -11 */
             if (u.ulevel > 18) uac -= 11;
@@ -6109,6 +6169,19 @@ find_ac()
 
 	}
 
+	if (uarm && uarm->oartifact == ART_HA_MONK && !(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_SORESU)) {
+			case P_BASIC: uac -= 1; break;
+			case P_SKILLED: uac -= 2; break;
+			case P_EXPERT: uac -= 3; break;
+			case P_MASTER: uac -= 4; break;
+			case P_GRAND_MASTER: uac -= 5; break;
+			case P_SUPREME_MASTER: uac -= 6; break;
+
+		}
+
+	}
+
 	if (uimplant && !(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_IMPLANTS)) {
 			case P_BASIC: uac -= 1; break;
@@ -6213,12 +6286,15 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_PARRYINGSTAFF) uac -= 7;
 	if (uwep && uwep->oartifact == ART_ALIETTA_S_PARASOL) uac -= 7;
 	if (uwep && uwep->oartifact == ART_SKAZKA_OB_DURAKE) uac -= 7;
+	if (uwep && uwep->oartifact == ART_STEEL_ON_STEEL) uac -= 3;
 	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_QUARRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
+	if (uarm && uarm->oartifact == ART_FOKING_TENK) uac -= 7;
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
+	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
 	if (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_FORGED_OF_STEEL) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) uac -= 5;
@@ -6249,15 +6325,18 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
+	if (uwep && uwep->oartifact == ART_SECANTED) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BLUEFORM) uac -= 2;
 	if (uarms && uarms->oartifact == ART_CUTTING_THROUGH) uac -= 5;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) uac -= 2;
 	if (uarmh && uarmh->oartifact == ART_DUE_DUE_DUE_DUE_BRMMMMMMM) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_CAN_T_TOUCH_THIS) uac -= 10;
 	if (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) uac -= 5;
+	if (uarms && uarms->oartifact == ART_YELLOW_STATUS) uac -= 1;
 	if (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) uac -= 10;
 	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
 	if (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) uac -= 5;
 	if (uarm && uarm->oartifact == ART_STABLE_EXOSKELETON) uac -= 10;
@@ -6266,6 +6345,7 @@ find_ac()
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) uac -= 1;
+	if (uarm && uarm->oartifact == ART_LET_IT_STAY && uarm->otyp >= GRAY_DRAGON_SCALES && uarm->otyp <= YELLOW_DRAGON_SCALES) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) uac -= 2;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_FOOKING_TANK) uac -= 10;
@@ -6276,6 +6356,7 @@ find_ac()
 	if (Race_if(PM_HYPOTHERMIC) && uarmc) uac -= 3;
 	if (uarm && uarm->oartifact == ART_UBERGAGE) uac -= 4;
 	if (uarm && uarm->oartifact == ART_PEOPLE_COAT) uac -= 5;
+	if (uarm && uarm->oartifact == ART_EXTRA_LATITUDE) uac -= 5;
 	if (uarms && uarms->oartifact == ART_NORSE_MITHRIL) uac -= 5;
 	if (uarmu && uarmu->oartifact == ART_SWEET_VICTORIA) uac -= 2;
 	if (uarmh && uarmh->oartifact == ART_FOOTBALL_MASK) uac -= 2;
@@ -6289,6 +6370,9 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_BRINGS_WHICH) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DEMANDING_ENTRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DUEUEUEUET) uac += 5;
+	if (uarm && uarm->oartifact == ART_FEILJUR) uac += 5;
+	if (uarmf && uarmf->oartifact == ART_OH_MAN_BORING) uac -= 1;
+	if (uarmf && uarmf->oartifact == ART_STERDYNES) uac -= 1;
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 	if (FemtrapActivePatricia) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;
@@ -6298,6 +6382,11 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_OTHER_MJOLLNIR) uac += 10;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OTHER_MJOLLNIR) uac += 10;
 	if (uarmf && uarmf->oartifact == ART_HOHO_DINGO && !uarmf->known) uac -= 12;
+	if (uwep && uwep->oartifact == ART____TO_ALL) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_QUITE_NORMAL) uac -= 1;
+	if (uarmh && uarmh->oartifact == ART_STEELER) uac -= 3;
+	if (uarmc && uarmc->oartifact == ART_NEW_COAT) uac += 1;
+	if (uarmh && uarmh->oartifact == ART_BADLY_DENTED) uac += 1;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -6555,6 +6644,13 @@ find_ac()
 	}
 
 	if (Dimmed) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+		
+	}
+
+	if (uarmc && uarmc->oartifact == ART_FASCEND) {
 		int difference = (-(uac - 10));
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;

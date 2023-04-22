@@ -110,7 +110,7 @@ E void arti_poly_contents(struct obj *);
 E int find_wildtalentartifact(void);
 E int find_prostituteartifact(void);
 E int find_kurwaartifact(void);
-E void intrinsicgainorloss(void);
+E void intrinsicgainorloss(int);
 
 /* ### attrib.c ### */
 

@@ -9728,7 +9728,7 @@ newboss:
 		if(!Confusion) {
 		    if (FunnyHallu) {
 			pline("What a trippy feeling!");
-		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) )
+		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn)
 			pline("Blimey! Ye're one sheet to the wind!");
 			else 
 			pline("Huh, What?  Where am I?");

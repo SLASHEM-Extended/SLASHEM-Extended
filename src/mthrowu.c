@@ -270,6 +270,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uwep && uwep->oartifact == ART_SECANTED) shieldblockrate += 5;
 		if (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM) shieldblockrate += 10;
 		if (Numbed) shieldblockrate -= 10;
@@ -328,7 +329,7 @@ const char *name;	/* if null, then format `obj' */
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
 	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == REACH_TRIDENT || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE || obj->otyp == LASER_CHAIN));
-	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN) );
+	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= PISTOL_BULLET && obj->otyp <= GAS_GRENADE);
 
 	if (is_bulletammo) extrachance = 1;
@@ -407,6 +408,10 @@ const char *name;	/* if null, then format `obj' */
 
 		return(0);
 
+	} else if (uarms && uarms->oartifact == ART_HAVENER && rn2(2) && obj && (objects[obj->otyp].oc_skill == -P_BOW || objects[obj->otyp].oc_skill == P_BOW) ) {
+
+		goto shieldblockboo;
+
 	} else if (!rn2(extrachance) && (rnd(100) < shieldblockrate) ) {
 
 			if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER) ) ) {
@@ -422,11 +427,35 @@ const char *name;	/* if null, then format `obj' */
 
 			} else {
 
+shieldblockboo:
 				/* a good shield allows you to block projectiles --Amy */
 				if(Blind || !flags.verbose) pline("You block a projectile with your shield.");
 				else You("block %s with your shield.", onm);
 				use_skill(P_SHIELD, 1);
 				if (uarms && uarms->oartifact == ART_SHIENSIDE) use_skill(P_SHIEN, 1);
+				if (uarms && uarms->oartifact == ART_SPICKAR && uarms->age <= monstermoves) {
+					int artitimeout = rnz(2000);
+					if (!rn2(5)) artitimeout = rnz(20000);
+					int mmstrength = (GushLevel / 3);
+					if (mmstrength < 1) mmstrength = 1;
+					/* squeaking does not help here, as it's not an actual invoke --Amy */
+					uarms->age = (monstermoves + artitimeout);
+
+					Your("shield fires a magic missile!");
+					getdir(NULL);
+					buzz(20,mmstrength,u.ux,u.uy,u.dx,u.dy); /* 20 = magic missile */
+
+				}
+				if (uarms && uarms->oartifact == ART_KLUUSCH) {
+					if (Upolyd) {
+						u.mh++;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					} else {
+						u.uhp++;
+						if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					}
+					flags.botl = TRUE;
+				}
 				if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM && !rn2(50) && uarms && uarms->spe > -20) {
 					uarms->spe--;
 					pline("Bimmselimmelimm! Splinters of your shield are flying everywhere!");

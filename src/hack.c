@@ -1130,7 +1130,7 @@ int mode;
 
 	} else if (tmpr->typ == MOUNTAIN) {
 		if (mode != DO_MOVE) return FALSE;
-		if (mode == DO_MOVE && !Passes_walls && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER)) {
+		if (mode == DO_MOVE && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !Passes_walls && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER)) {
 			int climbingchance = 100;
 			if (uamul && uamul->otyp == AMULET_OF_CLIMBING) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (ublindf && ublindf->otyp == CLIMBING_SET) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
@@ -1155,7 +1155,7 @@ int mode;
 	} else if (tmpr->typ == FARMLAND) {
 		if (mode != DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (WallsAreHyperBlue) {
 				You("crash into a farmland! Ouch!");
@@ -1402,7 +1402,7 @@ walscholardone:
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || WallsAreHyperBlue ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || autismweaponcheck(ART_SAY__CHESS_) || WallsAreHyperBlue ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -2059,6 +2059,7 @@ domove()
 			    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 			    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)
 			    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+			    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
 			    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 			    || resists_cold(&youmonst) || Flying
 			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
@@ -5174,6 +5175,7 @@ max_carr_cap()
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) maxcarrcap += 5000;
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) maxcarrcap += 1000;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) maxcarrcap += 2000;
+	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) maxcarrcap += 1000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) maxcarrcap += 1000;
 	if (RngeCarryingBoost) maxcarrcap += 1000;
 	if (u.xtralevelmult > 1) maxcarrcap += ((u.xtralevelmult - 1) * 10);
@@ -5223,6 +5225,7 @@ weight_cap()
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) carrcap += 1000;
+	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) carrcap += 500;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) carrcap += 1000;
 	if (RngeCarryingBoost) carrcap += 1000;
 	if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 50);

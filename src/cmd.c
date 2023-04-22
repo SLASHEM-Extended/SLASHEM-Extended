@@ -1543,7 +1543,7 @@ domonability()
 
 			adjalign(-50);	/* bad!! */
 			change_luck(-1);
-			if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
+			if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
 			else You_hear("the studio audience applaud!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
 
@@ -7337,6 +7337,7 @@ boolean guaranteed;
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
 		if (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM) shieldblockrate += 10;
+		if (uwep && uwep->oartifact == ART_SECANTED) shieldblockrate += 5;
 		if (Numbed) shieldblockrate -= 10;
 
 		if (!PlayerCannotUseSkills) {
@@ -12009,6 +12010,7 @@ int final;
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uwep && uwep->oartifact == ART_SECANTED) shieldblockrate += 5;
 		if (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM) shieldblockrate += 10;
 		if (Numbed) shieldblockrate -= 10;

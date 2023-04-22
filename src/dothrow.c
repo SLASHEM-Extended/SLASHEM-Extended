@@ -263,6 +263,9 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_TEAM_FORTRESS_GL && obj->otyp == GAS_GRENADE) multishot += 5;
 
 	    if (launcher && launcher->oartifact == ART_MEASURE_SKILLING) multishot++;
+	    if (launcher && launcher->oartifact == ART_SKILLED_THROUGHLOAD) multishot++;
+	    if (launcher && launcher->oartifact == ART_LINCOLN_S_REPEATER) multishot++;
+	    if (launcher && launcher->oartifact == ART_LOUD_SHITTER) multishot += rn1(2, 2);
 
 	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->age <= monstermoves) ) {
 		int artitimeout = rnz(2000);
@@ -277,6 +280,29 @@ int thrown;
 	    if (obj && obj->otyp == NINJA_STAR) multishot += 3;
 	    if (obj && obj->otyp == FLAMETHROWER) multishot += 4;
 	    if (obj && obj->oartifact == ART_POEPOEPOEPOEOEU_) multishot += 4;
+	    if (obj && obj->oartifact == ART_MRLS) multishot += 1;
+	    if (obj && obj->oartifact == ART_WASHINGTON_S_CAPPER) multishot += 1;
+	    if (uarmh && uarmh->oartifact == ART_GIVE_THE_BONUS_STUFF) multishot += 1;
+
+	    if (obj && obj->oartifact == ART_CAPAUER && !PlayerCannotUseSkills) {
+		if (P_MAX_SKILL(P_SHURIKEN) == P_SUPREME_MASTER) {
+			switch (P_SKILL(P_SHURIKEN)) {
+				case P_GRAND_MASTER: multishot += 1; break;
+				case P_MASTER: multishot += 2; break;
+				case P_EXPERT: multishot += 3; break;
+			}
+		} else if (P_MAX_SKILL(P_SHURIKEN) == P_GRAND_MASTER) {
+			switch (P_SKILL(P_SHURIKEN)) {
+				case P_MASTER: multishot += 1; break;
+				case P_EXPERT: multishot += 2; break;
+			}
+		} else if (P_MAX_SKILL(P_SHURIKEN) == P_MASTER) {
+			switch (P_SKILL(P_SHURIKEN)) {
+				case P_EXPERT: multishot += 1; break;
+			}
+		}
+
+	    }
 
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
@@ -295,6 +321,8 @@ int thrown;
 			if (Race_if(PM_AZTPOK) || Race_if(PM_MAYMES)) multishot++;
 	    }
 
+	    if (uwep && uwep->oartifact == ART_POWCHARGE) multishot++;
+
 	    if (launcher && (launcher->otyp == RIFLE || launcher->otyp == SNIPER_RIFLE || launcher->otyp == HUNTING_RIFLE || launcher->otyp == PROCESS_CARD) && uarmc && itemhasappearance(uarmc, APP_RIFLING_POWER_CLOAK) ) multishot += rnd(2);
 
 	    if (launcher && launcher->otyp == HYDRA_BOW) multishot += 2;
@@ -302,6 +330,9 @@ int thrown;
 	    if (launcher && launcher->otyp == WILDHILD_BOW) multishot += 2;
 
 	    if (launcher && launcher->oartifact == ART_STREAMSHOOTER) multishot += 1;
+
+	    if (launcher && launcher->oartifact == ART_SNIPEGIANT) multishot += 1;
+	    if (launcher && launcher->oartifact == ART_DOLE__EM_ALL_OUT) multishot += 2;
 
 	    if (launcher && launcher->oartifact == ART_MAXIMUM_LAUNCH_POWER) multishot += rnd(2);
 
@@ -485,6 +516,10 @@ int thrown;
 	    }
 	    if (launcher && launcher->otyp == SHOVEL) {
 		multishot--;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) {
+		multishot /= 2;
 		if (multishot < 1) multishot = 1;
 	    }
 
@@ -729,6 +764,22 @@ newbossO:
 		(void) makemon(mkclass(S_ANT,0), 0, 0, MM_ANGRY);
 	}
 
+	if (launcher && launcher->oartifact == ART_SPEW_THE_BOW) {
+		buzz(10, rnd(4), u.ux, u.uy, u.dx, u.dy);
+	}
+
+	if (tech_inuse(T_GREEN_MISSILE) && obj && obj->oclass == VENOM_CLASS) {
+		int melteestrength = 1;
+		if (techlevX(get_tech_no(T_GREEN_MISSILE)) > 9) melteestrength += (techlevX(get_tech_no(T_GREEN_MISSILE)) / 10);
+		buzz(16, melteestrength, u.ux, u.uy, u.dx, u.dy);
+	}
+
+	if (obj && obj->oartifact == ART_ACTUAL_FLAME && u.uen >= 5) {
+		u.uen -= 5;
+		flags.botl = TRUE;
+		buzz(1, 1, u.ux, u.uy, u.dx, u.dy); /* 1, not 11, or it'll explode! */
+	}
+
 	if (tech_inuse(T_BLADE_ANGER) && (objects[obj->otyp].oc_skill == -P_SHURIKEN || objects[obj->otyp].oc_skill == P_SHURIKEN ) ) {
 		struct obj *pseudo;
 		pseudo = mksobj(SPE_BLADE_ANGER, FALSE, 2, FALSE);
@@ -776,18 +827,6 @@ newbossO:
 		if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 		return 1;
 
-	}
-
-	if (tech_inuse(T_GREEN_MISSILE) && obj && obj->oclass == VENOM_CLASS) {
-		int melteestrength = 1;
-		if (techlevX(get_tech_no(T_GREEN_MISSILE)) > 9) melteestrength += (techlevX(get_tech_no(T_GREEN_MISSILE)) / 10);
-		buzz(16, melteestrength, u.ux, u.uy, u.dx, u.dy);
-	}
-
-	if (obj && obj->oartifact == ART_ACTUAL_FLAME && u.uen >= 5) {
-		u.uen -= 5;
-		flags.botl = TRUE;
-		buzz(1, 1, u.ux, u.uy, u.dx, u.dy); /* 1, not 11, or it'll explode! */
 	}
 
 	if ((tech_inuse(T_BEAMSWORD) || (obj && obj->oartifact == ART_LINK_S_MASTER_SWORD)) && is_lightsaber(obj) && obj->lamplit ) {
@@ -872,6 +911,23 @@ bladeangerdone:
 				pline("Your weapon dulls.");
 				u.cnd_weapondull++;
 			}
+		}
+		if (uswapwep && ammo_and_launcher(obj, uswapwep) && weaponwilldull(uswapwep) && (rnd(7) > savechance) && !issoviet) {
+			if (uswapwep->greased) {
+				uswapwep->greased--;
+				pline("Your weapon loses its grease.");
+			} else {
+				uswapwep->spe--;
+				pline("Your weapon dulls.");
+				u.cnd_weapondull++;
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_LOUD_SHITTER && ammo_and_launcher(obj, uwep)) {
+			wake_nearby();
+		}
+		if (uswapwep && uswapwep->oartifact == ART_LOUD_SHITTER && ammo_and_launcher(obj, uswapwep)) {
+			wake_nearby();
 		}
 
 	    twoweap = u.twoweap;
@@ -1687,6 +1743,27 @@ boolean hitsroof;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) dmg += 2;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) dmg += 5;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_BUCK_SHOT && !uwep->bknown) dmg += 2;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_FALCO_S_ORB) dmg += 1;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_PLUS_TO_DAM) dmg += 2;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_YOU_ARE_UGLY) dmg += 1;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) dmg += 4;
+	if (dmg > 0 && uarms && uarms->oartifact == ART_RONDITSCH) dmg += 1;
+
+	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
+		if (!PlayerCannotUseSkills) {
+			if (P_SKILL(P_FIREARM) < P_BASIC) dmg += 3;
+			else if (P_SKILL(P_FIREARM) == P_BASIC) dmg += 2;
+			else if (P_SKILL(P_FIREARM) == P_SKILLED) dmg += 1;
+		}
+		if (P_SKILL(P_FIREARM) == P_MASTER) dmg -= 2;
+		if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) dmg -= 4;
+		if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) dmg -= 6;
+	}
+	if (dmg > 0 && u.twoweap && uswapwep && uswapwep->oartifact == ART_AK_____) {
+		if (P_SKILL(P_FIREARM) == P_MASTER) dmg -= 2;
+		if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) dmg -= 4;
+		if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) dmg -= 6;
+	}
 
 	if (Race_if(PM_ITAQUE)) dmg -= 1;
 	if (uwep && uwep->oartifact == ART_RIP_STRATEGY) dmg -= 5;
@@ -1697,6 +1774,7 @@ boolean hitsroof;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) dmg -= 9;
 	if (uwep && uwep->oartifact == ART_VLADSBANE) dmg -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) dmg -= 5;
+	if (uwep && uwep->oartifact == ART_BLACK_MARK) dmg -= 1;
 
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
@@ -1791,6 +1869,8 @@ int thrown;
 	if (launcher && (launcher->oartifact == ART_PLAGUE || launcher->oartifact == ART_BOW_OF_HERCULES) &&
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
 		obj->opoisoned = 1;
+
+	if (obj && obj->oartifact == ART_TROPICAL_WOOD_SELECTION) obj->opoisoned = 1;
 
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == POISON_BOLT) obj->opoisoned = 1;
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == CHROME_PELLET) obj->opoisoned = 1;
@@ -1962,6 +2042,8 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
 		if (launcher && (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) && obj && obj->otyp == ETHER_BOLT) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPESNIPESNIPE) range += 5;
+		if (obj && obj->oartifact == ART_WAY_TOO_LONG) range += 10;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SAY__CHESS_) range += 2;
 
 		if (!PlayerCannotUseSkills && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == KLIUSLING && launcher->lamplit) {
 			if (u.kliuskill >= 20) range++;
@@ -1991,7 +2073,19 @@ int thrown;
 		if (uarmg && uarmg->oartifact == ART_BEEEEEEEANPOLE && launcher && objects[launcher->otyp].oc_skill == P_BOW) range += 5;
 		if (uwep && uwep->oartifact == ART_SNIPER_CROSSHAIR && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) range += 30;
 		if ((uarmc && itemhasappearance(uarmc, APP_CYANISM_CLOAK)) && launcher && objects[launcher->otyp].oc_skill == P_SLING) range += 3;
+		if (launcher && launcher->oartifact == ART_ITALY_SI_ES) range += 4;
+		if (launcher && launcher->oartifact == ART_MISS_LAUNCHER) range += 2;
+		if (launcher && launcher->oartifact == ART_ACTUALLY_USABLE_GL) range += 6;
+		if (obj && obj->oartifact == ART_A_MILE_AND_A_HALF) range += 25;
+		if (obj && obj->oartifact == ART_LONG_MILE) range += 5;
+		if (obj && obj->oartifact == ART_FLAI_AWEI) range += 10;
+		if (obj && obj->oartifact == ART_NINJINGY) range += 2;
+		if (obj && obj->oartifact == ART_FTS) range += 10;
+		if (obj && obj->oartifact == ART_WASHINGTON_S_CAPPER) range += 5;
+
 		if (obj && obj->oartifact == ART_RACER_PROJECTILE) range *= 2;
+
+		if (launcher && launcher->oartifact == ART_ENEMY_DEAD_AT_CLOSE_RANGE) range--;
 
 		if (Race_if(PM_GERTEUT) && range > 5) range = 5;
 		if (Race_if(PM_PERVERT) && range > 2) range = 2;
@@ -2016,6 +2110,8 @@ int thrown;
 
 		if (Race_if(PM_GERTEUT) && range > 5) range = 5;
 		if (Race_if(PM_PERVERT) && range > 2) range = 2;
+
+		if (range < 1) range = 1; /* fail safe */
 
 		mon = bhit(u.dx,u.dy,range,THROWN_WEAPON,
 			   (int (*)(MONST_P,OBJ_P))0,
@@ -2472,6 +2568,45 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_SPINESHOOTER) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
 	if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
+	if (uwep && uwep->oartifact == ART_FALCO_S_ORB) tmp += 1;
+	if (uwep && uwep->oartifact == ART_VERY_SPECIFICNESS) tmp += 1;
+	if (uarmg && uarmg->oartifact == ART_PLUS_TO_HIT) tmp += 5;
+	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
+	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
+
+	if (uwep && uwep->oartifact == ART_AK_____) {
+		if (!PlayerCannotUseSkills) {
+			if (P_SKILL(P_FIREARM) < P_BASIC) tmp += 6;
+			else if (P_SKILL(P_FIREARM) == P_BASIC) tmp += 4;
+			else if (P_SKILL(P_FIREARM) == P_SKILLED) tmp += 2;
+		}
+		if (P_SKILL(P_FIREARM) == P_MASTER) tmp -= 2;
+		if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) tmp -= 4;
+		if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
+	}
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AK_____) {
+		if (P_SKILL(P_FIREARM) == P_MASTER) tmp -= 2;
+		if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) tmp -= 4;
+		if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
+	}
+
+	if (obj && obj->oartifact == ART_WASHINGTON_S_CAPPER) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_LONGLOSS) tmp -= rnd(10);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LONGLOSS) tmp -= rnd(10);
+	if (uwep && uwep->oartifact == ART_ENEMY_DEAD_AT_CLOSE_RANGE) tmp -= 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ENEMY_DEAD_AT_CLOSE_RANGE) tmp -= 10;
+	if (uwep && uwep->oartifact == ART_ITALY_SI_ES) tmp -= rnd(25);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ITALY_SI_ES) tmp -= rnd(25);
+	if (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
+	if (uwep && uwep->oartifact == ART_LOUD_SHITTER) tmp -= 7;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LOUD_SHITTER) tmp -= 7;
+	if (uwep && uwep->oartifact == ART_CHINESE_MODEL) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHINESE_MODEL) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_XUANLONG) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_XUANLONG) tmp -= 5;
+
+	if (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) tmp -= 5;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -2656,6 +2791,8 @@ inaccurateguns:
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) tmp = -100; /* 50% chance of automiss --Amy */
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) tmp = -100;
 
+	if (obj && obj->oartifact == ART_EVASION_BREAK) goto evasionchancedone;
+
 	/* certain monsters are capable of deflecting projectiles --Amy */
 
 	if (!pieks && !(gunused && rn2(3)) && !(rn2(13) < skillpierce ) ) {
@@ -2693,6 +2830,8 @@ inaccurateguns:
 		tmp = -100;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}
+
+evasionchancedone:
 
 	if (FemtrapActiveNatalia && !flags.female && spawnswithhammersandal(mon->data) && rn2(4)) {
 		tmp = -100;
@@ -2953,6 +3092,8 @@ inaccurateguns:
 	 * Crossbows are a bit of a special case: they're potentially the most damaging shooter for which the ammos
 	 * can be re-used, but most types also need a pretty high enchantment value to get any serious multishot,
 	 * and they're also kind of meant to be used at long range, so their to-hit will receive a lesser nerf. */
+
+	if (obj && obj->oartifact == ART_FTS) tmp += distmin(u.ux, u.uy, mon->mx, mon->my);
 
 	if ( !(launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) && (!(launcher  && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_CROSSBOW && !rn2(2)) ) ) {
 
@@ -3266,6 +3407,9 @@ inaccurateguns:
 			broken = 0;
 
 		    if (obj->oartifact == ART_USE_A_LOT) {
+			if (rn2(10)) broken = 0;
+		    }
+		    if (obj->oartifact == ART_BE_CONSERVED) {
 			if (rn2(10)) broken = 0;
 		    }
 

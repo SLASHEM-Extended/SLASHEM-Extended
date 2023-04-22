@@ -6734,7 +6734,7 @@ incarnationfinish:
 
 	    case T_INTRINSIC_ROULETTE:
 		You("spin the roulette wheel...");
-		intrinsicgainorloss();
+		intrinsicgainorloss(0);
 		t_timeout = rnz(10000);
 		break;
 

@@ -6957,7 +6957,7 @@ int how;
 	    mondied(mdef);
 
 	if (be_sad && mdef->mhp <= 0) {
-	    You(FunnyHallu ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    You(FunnyHallu ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
 	}
 
@@ -6991,7 +6991,7 @@ mon_xkilled(mdef, fltxt, how)
 		xkilled(mdef,0);
 
 	if (be_sad && mdef->mhp <= 0) {
-	    You(FunnyHallu ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
+	    You(FunnyHallu ? "are feeling totally down for a moment, then it passes." : (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? "hang the jib for a moment, then it passes." : "have a sad feeling for a moment, then it passes.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Da! Vash pitomets umer! Tip bloka l'da ochen' pozabavilo!" : "Daeaeae-aeaeaeaeae!");
 	}
 }
@@ -7777,7 +7777,7 @@ newbossA:
 	} else if (mtmp->mtame) {
 		adjalign(-50);	/* bad!! */
 		/* your god is mighty displeased... */
-		if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
+		if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
 		else You_hear("the studio audience applaud!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
 

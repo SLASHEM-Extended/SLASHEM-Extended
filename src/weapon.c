@@ -2862,7 +2862,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 			 * used to be so that they wouldn't ever consider artifacts valid ammunition, but that was just stupid;
 			 * in vanilla, no artifact ammo existed and artifact daggers, spears etc. couldn't spawn in stacks,
 			 * but this is SLEX so they should be able to fire those */
-			if ((otmp = oselect(mtmp, rwep[i])) && (!otmp->oartifact || (!issoviet && (otmp->quan > 1 || (otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT)) ) )
+			if ((otmp = oselect(mtmp, rwep[i])) && (!otmp->oartifact || (!issoviet && (otmp->quan > 1 || (otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT) || (otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD)) ) )
 			    && ( (!otmp->cursed && !(otmp->quan == 1) ) || otmp != MON_WEP(mtmp)))
 				return(otmp);
 		/* STEPHEN WHITE'S NEW CODE */
@@ -3020,7 +3020,7 @@ register struct monst *mtmp;
 	for(otmp=mtmp->minvent; otmp; otmp = otmp->nobj) {
 		if (
 		(otmp->oclass == WEAPON_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS)
-			&& otmp->oartifact && !(otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT) && touch_artifact(otmp,mtmp)
+			&& otmp->oartifact && !(otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT) && !(otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD) && touch_artifact(otmp,mtmp)
 			&& ((!wearing_shield) || !objects[otmp->otyp].oc_bimanual) )
 		    return otmp;
 	}
@@ -6257,6 +6257,7 @@ int degree;
 	if (uimplant && uimplant->oartifact == ART_FASTPLANT && skill == P_IMPLANTS) degree *= 2;
 	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && skill == P_HIGH_HEELS) degree *= 5;
 	if (FemtrapActiveNaomi && skill == P_HIGH_HEELS) degree *= 2;
+	if (uwep && uwep->oartifact == ART_FLINGPOWER_ && skill == P_SLING) degree *= 2;
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
@@ -10541,6 +10542,10 @@ int direction;
 	int grndax, grnday, grndbx, grndby, grndcx, grndcy, grnddx, grnddy;
 	struct monst *mtmp;
 	int grindingdamage = 1;
+
+	boolean ThreeSixZeroGrinding = FALSE; /* hit peacefuls like in the variant that calls itself 3.6.0 --Amy */
+	if (autismweaponcheck(ART_DUMBER_CLEAVER)) ThreeSixZeroGrinding = TRUE; /* will anger peacefuls */
+
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_GRINDER)) {
 			default: break;
@@ -10586,6 +10591,9 @@ int direction;
 		}
 	}
 	if (uwep && objects[uwep->otyp].oc_skill == (tech_inuse(T_GRAP_SWAP) ? P_LANCE : P_GRINDER) && uwep->spe > 0) grindingdamage += uwep->spe;
+
+	if (uwep && uwep->oartifact == ART_SMART_CLEAVER) grindingdamage += 6;
+	if (uwep && uwep->oartifact == ART_DUMBER_CLEAVER) grindingdamage += 6;
 
 	if (grindingdamage > 1) grindingdamage = rnd(grindingdamage);
 
@@ -10685,20 +10693,24 @@ int direction;
 
 	}
 
-	if (isok(grndax, grnday) && (mtmp = m_at(grndax, grnday)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+	if (isok(grndax, grnday) && (mtmp = m_at(grndax, grnday)) && ((!(mtmp->mtame) && !(mtmp->mpeaceful)) || ThreeSixZeroGrinding) && !DEADMONSTER(mtmp)) {
 		Your("weapon grinds %s!", mon_nam(mtmp));
+		if (ThreeSixZeroGrinding) wakeup(mtmp);
 		hurtmon(mtmp, grindingdamage);
 	}
-	if (isok(grndbx, grndby) && (mtmp = m_at(grndbx, grndby)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+	if (isok(grndbx, grndby) && (mtmp = m_at(grndbx, grndby)) && ((!(mtmp->mtame) && !(mtmp->mpeaceful)) || ThreeSixZeroGrinding) && !DEADMONSTER(mtmp)) {
 		Your("weapon grinds %s!", mon_nam(mtmp));
+		if (ThreeSixZeroGrinding) wakeup(mtmp);
 		hurtmon(mtmp, grindingdamage);
 	}
-	if (isok(grndcx, grndcy) && (mtmp = m_at(grndcx, grndcy)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+	if (isok(grndcx, grndcy) && (mtmp = m_at(grndcx, grndcy)) && ((!(mtmp->mtame) && !(mtmp->mpeaceful)) || ThreeSixZeroGrinding) && !DEADMONSTER(mtmp)) {
 		Your("weapon grinds %s!", mon_nam(mtmp));
+		if (ThreeSixZeroGrinding) wakeup(mtmp);
 		hurtmon(mtmp, grindingdamage);
 	}
-	if (isok(grnddx, grnddy) && (mtmp = m_at(grnddx, grnddy)) && !(mtmp->mtame) && !(mtmp->mpeaceful) && !DEADMONSTER(mtmp)) {
+	if (isok(grnddx, grnddy) && (mtmp = m_at(grnddx, grnddy)) && ((!(mtmp->mtame) && !(mtmp->mpeaceful)) || ThreeSixZeroGrinding) && !DEADMONSTER(mtmp)) {
 		Your("weapon grinds %s!", mon_nam(mtmp));
+		if (ThreeSixZeroGrinding) wakeup(mtmp);
 		hurtmon(mtmp, grindingdamage);
 	}
 

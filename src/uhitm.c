@@ -652,7 +652,7 @@ register struct monst *mtmp;
 
 	if(Role_if(PM_MONK) && !Upolyd) {
 		if(!uwep && (!u.twoweap || !uswapwep) && !uarms && 
-		  (!uarm || (uarm && uarm->otyp >= ELVEN_TOGA && 
+		  (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm && uarm->otyp >= ELVEN_TOGA && 
 		  	uarm->otyp <= ROBE_OF_WEAKNESS)))
 		  	
 		  tmp += (GushLevel / 3) + 2;
@@ -667,7 +667,7 @@ register struct monst *mtmp;
 		tmp -= 20;
 	}
 
-	if(Role_if(PM_HEDDERJEDI) && uarm && ((uarm->otyp < ELVEN_TOGA) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
+	if(Role_if(PM_HEDDERJEDI) && uarm && !(uarm->oartifact == ART_HA_MONK) && ((uarm->otyp < ELVEN_TOGA) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
 		pline("Your armor is rather cumbersome...");
 		tmp -= 20;
 	}
@@ -694,6 +694,11 @@ register struct monst *mtmp;
 
 		}
 
+	}
+
+	if (uwep && uwep->oartifact == ART_TYPICAL_ORC && u.twoweap) {
+		tmp += 4;
+		if (uswapwep && uswapwep->oartifact == ART_TYPICAL_ORC) tmp += 10;
 	}
 
 	if (uwep && uwep->oartifact == ART_TEH_HUNK && !uwep->lamplit && tmp > 0) tmp += 5;
@@ -756,7 +761,7 @@ register struct monst *mtmp;
 	if( (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
-		   (uarm &&
+		   (uarm && !(uarm->oartifact == ART_HA_MONK) &&
 		   (uarm->otyp < ELVEN_TOGA || uarm->otyp > ROBE_OF_WEAKNESS))){
 		    char yourbuf[BUFSZ];
 		    You("can't use %s %s effectively in this armor...", shk_your(yourbuf, uwep), xname(uwep));
@@ -895,6 +900,35 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;
 	if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
+	if (uwep && uwep->oartifact == ART_FALCO_S_ORB) tmp += 1;
+	if (uwep && uwep->oartifact == ART_VERY_SPECIFICNESS) tmp += 1;
+	if (uarmg && uarmg->oartifact == ART_PLUS_TO_HIT) tmp += 5;
+	if (uarm && uarm->oartifact == ART_WU_WU && u.twoweap) tmp += 4;
+	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
+	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
+
+	if (uwep && uwep->oartifact == ART_AK_____) {
+		if (!PlayerCannotUseSkills) {
+			if (P_SKILL(P_FIREARM) < P_BASIC) tmp += 6;
+			else if (P_SKILL(P_FIREARM) == P_BASIC) tmp += 4;
+			else if (P_SKILL(P_FIREARM) == P_SKILLED) tmp += 2;
+		}
+		if (P_SKILL(P_FIREARM) == P_MASTER) tmp -= 2;
+		if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) tmp -= 4;
+		if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
+	}
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AK_____) {
+		if (P_SKILL(P_FIREARM) == P_MASTER) tmp -= 2;
+		if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) tmp -= 4;
+		if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
+	}
+
+	if (uwep && uwep->oartifact == ART_LONGLOSS) tmp -= rnd(10);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LONGLOSS) tmp -= rnd(10);
+	if (uwep && uwep->oartifact == ART_MISS_DOES_IT_REAL) tmp -= 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MISS_DOES_IT_REAL) tmp -= 10;
+	if (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -2135,6 +2169,10 @@ int dieroll;
 				mon->mcanmove = 0;
 				mon->mstrategy &= ~STRAT_WAITFORU;
 				You("klobbed %s, who cannot move for the time being.", mon_nam(mon));
+			}
+
+			if (obj && obj->oartifact == ART_PING_EM_AWAY && tmp > 0) {
+				tmp += 12;
 			}
 
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) {
@@ -3563,6 +3601,7 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uarmh && uarmh->oartifact == ART_DOUVONED) tmp += 1;
 		if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
@@ -3617,7 +3656,30 @@ int dieroll;
 		if (!thrown && uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) tmp += 4;
 		if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
 		if (uwep && uwep->oartifact == ART_BUCK_SHOT && !uwep->bknown) tmp += 2;
+		if (uwep && uwep->oartifact == ART_FALCO_S_ORB) tmp += 1;
+		if (uarmg && uarmg->oartifact == ART_PLUS_TO_DAM) tmp += 2;
+		if (uarm && uarm->oartifact == ART_YOU_ARE_UGLY) tmp += 1;
+		if (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) tmp += 4;
+		if (uarm && uarm->oartifact == ART_WU_WU && u.twoweap) tmp += 2;
+		if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
 
+		if (uwep && uwep->oartifact == ART_AK_____) {
+			if (!PlayerCannotUseSkills) {
+				if (P_SKILL(P_FIREARM) < P_BASIC) tmp += 3;
+				else if (P_SKILL(P_FIREARM) == P_BASIC) tmp += 2;
+				else if (P_SKILL(P_FIREARM) == P_SKILLED) tmp += 1;
+			}
+			if (P_SKILL(P_FIREARM) == P_MASTER) tmp -= 2;
+			if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) tmp -= 4;
+			if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AK_____) {
+			if (P_SKILL(P_FIREARM) == P_MASTER) tmp -= 2;
+			if (P_SKILL(P_FIREARM) == P_GRAND_MASTER) tmp -= 4;
+			if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
+		}
+
+		if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
@@ -3693,6 +3755,14 @@ int dieroll;
 
 		/* various artifacts and other specific things with *beneficial* effects go here --Amy
 		 * negative effects, like collusion knives, should run even if it wasn't a "valid weapon attack" */
+
+		if (obj && obj->oartifact == ART_EMMA_S_SYMPATHY && !mon->mpeaceful && !mon->mtame && !rn2(25)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mpeaceful = TRUE;
+				pline("%s becomes peaceful!", Monnam(mon));
+				return FALSE;
+			}
+		}
 
 		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
 
@@ -3834,6 +3904,15 @@ int dieroll;
 
 		if (wep && wep->oartifact == ART_WU_TSCHI_ && thrown) tmp += 10;
 		if (wep && wep->oartifact == ART_WUMMP && thrown) tmp += 12;
+		if (wep && wep->oartifact == ART_GOLDSTRUCK && thrown) tmp += 10;
+
+		if (uwep && uwep->oartifact == ART_HYPER_INTELLIGENCE && wep && (objects[wep->otyp].w_ammotyp == WP_SHELL) ) {
+			mightbooststat(A_INT);
+		}
+
+		if (uwep && uwep->oartifact == ART_AY_PEE_RIFLE && wep && (objects[wep->otyp].w_ammotyp == WP_BULLET_RIFLE) ) {
+			hurtmarmor(mon, AD_CORR);
+		}
 
 		if (wep && wep->otyp == JUMPING_FLAMER) {
 			if (!rn2(33)) (burnarmor(mon));
@@ -3876,9 +3955,81 @@ int dieroll;
 			}
 		}
 
+		if (wep && wep->oartifact == ART_THIS_TRENCH_WAR_HAS_BEEN_F) {
+			if (mon->mhp < (mon->mhpmax / 10)) {
+				mon->mhp = -1;
+				pline("%s is instantly killed!", Monnam(mon));
+				xkilled(mon,0);
+				return FALSE;
+			} else if (mon->mhp < (mon->mhpmax / 3)) {
+				if (mon->mhp > 1) mon->mhp /= 2;
+				pline("%s is greatly weakened!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_HACKNSLASH) {
+			mon->bleedout += 5;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_STAFF_OF_ROT) {
+			hurtmarmor(mon, AD_DCAY);
+		}
+
+		if (wep && wep->oartifact == ART_DROWSING_ROD && !rn2(3)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				int parlyzdur = rnd(5);
+
+				if (!mon->msleeping && sleep_monst(mon, parlyzdur, -1)) {
+					pline("%s is put to sleep by you!", Monnam(mon));
+					slept_monst(mon);
+				}
+
+			}
+
+		}
+
+		if (wep && wep->oartifact == ART_PRICKTRICK) {
+			mon->bleedout += 6;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_NAIL_IMPACT) {
+			mon->bleedout += 10;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_UT_RULER) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_VORPAL_RULER) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_CUTNERVE && thrown) {
+			mon->bleedout += rnd(6);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_KRURUINK && !thrown) {
+			if (HFast < 2) HFast = 2;
+		}
+
 		if (wep && wep->oartifact == ART_GAE_BUIDHE) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_AINTGETIN && !rn2(3)) {
+
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+
+				if (u_teleport_mon(mon, FALSE)) pline("%s is teleported away!", Monnam(mon));
+			}
+
 		}
 
 		if (!thrown && wep && wep->oartifact == ART_SWORDBREAKER) {
@@ -4573,7 +4724,7 @@ melatechoice:
 
 	/* Special monk strikes */
 	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
-		(!uarm || (uarm && uarm->otyp >= ELVEN_TOGA &&
+		(!uarm || (uarm && uarm->oartifact == ART_HA_MONK) || (uarm && uarm->otyp >= ELVEN_TOGA &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
@@ -9751,6 +9902,10 @@ use_weapon:
 					}
 				}
 
+				if (uarmh && uarmh->oartifact == ART_DOUVONED) {
+					lesshungry(5);
+				}
+
 				if (uwep && uwep->oartifact == ART_SCHWILLSCHWILLSCHWILLSCHWI && uwep->lamplit && (u.dx || u.dy) && !u.dz) {
 					u.linkmasterswordhack = 1;
 					struct obj *pseudo;
@@ -13117,7 +13272,7 @@ void
 stumble_onto_mimic(mtmp)
 struct monst *mtmp;
 {
-	const char *fmt = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? "Arrrrr!  Suddenly %s shows its true colors!" : "Wait!  That's %s!",
+	const char *fmt = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? "Arrrrr!  Suddenly %s shows its true colors!" : "Wait!  That's %s!",
 		   *generic = "a monster",
 		   *what = 0;
 

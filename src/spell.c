@@ -5839,7 +5839,7 @@ addspmagain:
 					break;
 				case 18:
 					Your("intrinsics change.");
-					intrinsicgainorloss();
+					intrinsicgainorloss(0);
 					break;
 				case 19:
 					{
@@ -11357,7 +11357,7 @@ int spell;
 	statused = ACURR(urole.spelstat);
 
 	/* Calculate armor penalties */
-	if (uarm && !SpellColorMetal && !(uarm->blessed && !issoviet) && !(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) 
+	if (uarm && !SpellColorMetal && !(uarm->blessed && !issoviet) && !(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS) && !(uarm->oartifact == ART_HA_MONK) ) 
 	    splcaster += (issoviet ? 2 : 1);
 
 	/* Robes are body armour in SLASH'EM */
@@ -11387,6 +11387,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarm && uarm->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11400,6 +11401,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarm && uarm->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11431,6 +11433,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmc && uarmc->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11444,6 +11447,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmc && uarmc->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11476,6 +11480,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmu && uarmu->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11489,6 +11494,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmu && uarmu->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11522,8 +11528,9 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) shieldpenalties /= 2;
 
-		if (uarms && uarms->blessed && !issoviet) armorpenalties /= 2;
+		if (uarms && uarms->blessed && !issoviet) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / (issoviet ? 12 : 30));
 	}
@@ -11535,8 +11542,9 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) shieldpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) shieldpenalties /= 2;
 
-		if (uarms && uarms->blessed && !issoviet) armorpenalties /= 2;
+		if (uarms && uarms->blessed && !issoviet) shieldpenalties /= 2;
 
 		splcaster += (urole.spelshld * shieldpenalties / (issoviet ? 12 : 30));
 
@@ -11567,6 +11575,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmh && uarmh->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11580,6 +11589,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmh && uarmh->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11612,6 +11622,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmg && uarmg->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11625,6 +11636,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmg && uarmg->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11657,6 +11669,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmf && uarmf->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11671,6 +11684,7 @@ int spell;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_VELVET_GLOVES) ) armorpenalties /= 2;
+		if (uarmh && uarmh->oartifact == ART_METAL_NEGATER) armorpenalties /= 2;
 
 		if (uarmf && uarmf->blessed && !issoviet) armorpenalties /= 2;
 
@@ -11967,6 +11981,7 @@ int spell;
 	if (uwep && uwep->oartifact == ART_HELIOKOPIS_S_PLAYSTYLE) chance += 20;
 	if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) chance += 5;
 	if (uarmc && uarmc->oartifact == ART_CASTEASY) chance += 5;
+	if (uwep && uwep->oartifact == ART_INFASPEL) chance += 5;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;

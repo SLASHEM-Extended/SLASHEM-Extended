@@ -2816,6 +2816,8 @@ fixthings:
 		}
 	}
 
+	if (obj && obj->oartifact == ART_CURE_GOOD) chance += 2;
+
 	if (isfriday && chance > 1) chance /= 2;
 
 	if (chance > 18) chance = 18;
@@ -4155,13 +4157,15 @@ use_pole (obj)
 		min_range += 5;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_POST_OFFICE_FARMER_HENG && max_range < 9) max_range = 9;
+
 	if (distu(cc.x, cc.y) > max_range) {
 	    pline(FunnyHallu ? "Your stick's not long enough, it seems!" : "Too far!");
 	    return (res);
 	} else if (distu(cc.x, cc.y) < min_range) {
 	    pline(FunnyHallu ? "Your stick's too long, it seems!" : "Too close!");
 	    return (res);
-	} else if (!cansee(cc.x, cc.y) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) && obj->otyp != DARK_BAR &&
+	} else if (!cansee(cc.x, cc.y) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) && !(obj->oartifact == ART_HIT_A_CORNER) && obj->otyp != DARK_BAR &&
 		   ((mtmp = m_at(cc.x, cc.y)) == (struct monst *)0 || !canseemon(mtmp))) {
 	    You(cant_see_spot);
 	    return (res);
@@ -4436,6 +4440,11 @@ use_pole (obj)
 		    if (obj && obj->oartifact == ART_RIGHTLASH_LEFT && !rn2(100) && obj->spe < 15) {
 			obj->spe++;
 			pline("Your weapon seems sharper!");
+		    }
+
+		    if (obj && obj->oartifact == ART_HEY_THERE && mtmp && mtmp->mhpmax > 1) {
+			mtmp->mhpmax--;
+			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		    }
 
 		    if (obj && obj->oartifact == ART_ELEMENTS_TIME_THREE && isok(u.ux, u.uy) && !rn2(100)) {

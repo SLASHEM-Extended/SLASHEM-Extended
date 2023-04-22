@@ -1246,11 +1246,13 @@ register int after;	/* this is extra fast monster movement */
 		    if ((info[i] & ALLOW_TRAPS) && (trap = t_at(nx,ny))) {
 			if (mtmp->mleashed) {
 			    if (flags.soundok) whimper(mtmp);
-			} else
+			} else {
 			    /* 1/40 chance of stepping on it anyway, in case
 			     * it has to pass one to follow the player...
 			     */
+			    if (flags.soundok && uarmf && uarmf->oartifact == ART_HOUSE_ANIMAL_WARNER) whimper(mtmp);
 			    if (trap->tseen && rn2(40)) continue;
+			}
 		    }
 		}
 

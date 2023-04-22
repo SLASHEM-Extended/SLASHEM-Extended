@@ -1908,6 +1908,32 @@ sokoban_detect()
 int
 dosearch()
 {
+	if (uwep && uwep->oartifact == ART_VILEA_S_SECRET && !rn2(20)) {
+
+		register struct monst *mtmp;
+
+		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (DEADMONSTER(mtmp)) continue;
+		    if (distu(mtmp->mx,mtmp->my) > 50) continue;
+		    if(cansee(mtmp->mx,mtmp->my)) {
+			if (!resist(mtmp, SCROLL_CLASS, 0, NOTELL))
+				monflee(mtmp, rnd(10), FALSE, FALSE);
+		    }
+		}
+
+	}
+
+	if (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER && !rn2(2)) {
+		if (Upolyd) {
+			u.mh++;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		} else {
+			u.uhp++;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		flags.botl = TRUE;
+	}
+
 	if ((TarmuStrokingNora || u.uprops[TARMU_STROKING_NORA].extrinsic || (uarmh && uarmh->oartifact == ART_STROKING_COMBAT) || have_tarmustrokingnorastone()) && u.tarmustrokingturn < 1) {
 		u.tarmustrokingturn = rnd(100);
 

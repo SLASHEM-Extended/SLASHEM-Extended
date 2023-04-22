@@ -2407,6 +2407,8 @@ register struct obj *obj;
 	if (uarmf && (uarmf->oartifact == ART_ANTI_DISENCHANTER) && rn2(4) )
 	    return (FALSE);
 
+	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
+
 	if (stack_too_big(obj)) return (FALSE);
 
 	/* Charge for the cost of the object */
@@ -2559,6 +2561,8 @@ register struct obj *obj;
 	if (uarmf && (uarmf->oartifact == ART_ANTI_DISENCHANTER) && rn2(4) )
 	    return (FALSE);
 
+	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
+
 	if (stack_too_big(obj)) return (FALSE);
 
 	/* Charge for the cost of the object */
@@ -2632,6 +2636,8 @@ register struct obj *obj;
 	    return (FALSE);
 	if (obj_resists(obj, 10, 90))
 	    return (FALSE);
+
+	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 
 	if (stack_too_big(obj)) return (FALSE);
 
@@ -4853,7 +4859,7 @@ secureidchoice:
 		if(!Confusion) {
 		    if (FunnyHallu) {
 			pline("What a trippy feeling!");
-		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) )
+		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn)
 			pline("Blimey! Ye're one sheet to the wind!");
 			else 
 			pline("Huh, What?  Where am I?");
@@ -6626,7 +6632,7 @@ boolean ordinary;
 			pline_The("missiles bounce!");
 		    } else {
 			damage = d(4,6);
-			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yerself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yerself!" : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "Bilge!  Ye've shot yerself!" : "Idiot!  You've shot yourself!");
+			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yerself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yerself!" : PirateSpeakOn ? "Bilge!  Ye've shot yerself!" : "Idiot!  You've shot yourself!");
 		    }
 		    break;
 
@@ -6638,7 +6644,7 @@ boolean ordinary;
 			pline_The("beam bounces!");
 		    } else {
 			damage = d(12,6);
-			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yerself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yerself!" : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "Bilge!  Ye've shot yerself!" : "Idiot!  You've shot yourself!");
+			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yerself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yerself!" : PirateSpeakOn ? "Bilge!  Ye've shot yerself!" : "Idiot!  You've shot yourself!");
 		    }
 		    break;
 
@@ -7312,7 +7318,7 @@ boolean ordinary;
 
 		case WAN_SHARE_PAIN:	/*from Nethack TNG -- WAN_DRAINING */
 		    /*[Sakusha] add message */
-			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yerself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yerself!" : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "Bilge!  Ye've shot yerself!" : "Idiot!  You've shot yourself!");
+			pline(Role_if(PM_PIRATE) ? "Bilge!  Ye've shot yerself!" : Role_if(PM_KORSAIR) ? "Bilge!  Ye've shot yerself!" : PirateSpeakOn ? "Bilge!  Ye've shot yerself!" : "Idiot!  You've shot yourself!");
 		    /* theoretically we would have to take away half of */
 		    /* u.uhpmax _twice_, but I don't want to be unfair ... */
 		    makeknown(obj->otyp);
@@ -9752,7 +9758,7 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 	/* special reflection types adapted from FHS. It would be too much of a pain to code correctly,
 	 * so I just decide that special reflection amulets "overwrite" standard reflection. --Amy */
 
-			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || have_spectrumplinggem() || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
+			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || have_spectrumplinggem() || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarms && uarms->oartifact == ART_ANGULARITY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
 
 			    if (dx && dy) {
 
@@ -10431,6 +10437,11 @@ register int osym, dmgtyp;
 				break;
 		    }
 
+		    if (uwep && uwep->oartifact == ART_CANNOT_DO_IS_FROZEN) {
+				skip++;
+				break;
+			}
+
 		    if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) {
 				skip++;
 				break;
@@ -10531,6 +10542,10 @@ register int osym, dmgtyp;
 				skip++;
 				break;
 			}
+			if (uarm && uarm->oartifact == ART_DARK_L) {
+				skip++;
+				break;
+			}
 
 			if (osym==SCROLL_CLASS && obj->oartifact)
 			skip++;
@@ -10542,6 +10557,9 @@ register int osym, dmgtyp;
 			    pline("%s glows a strange %s, but remains intact.",
 				The(xname(obj)), hcolor("dark red"));
 		    }
+
+			if (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) u.uprops[DEAC_FIRE_RES].intrinsic += 1;
+
 		    quan = obj->quan;
 		    switch(osym) {
 			case POTION_CLASS:
@@ -10982,7 +11000,7 @@ boolean magicalwish; /* for the evil variant, because of Unnethack's nonmagical 
 	boolean magical_object;
 
 	nothing = zeroobj;  /* lint suppression; only its address matters */
-	if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
+	if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
 
 	if (!magicalwish) pline("This is the evil variant though, you can only wish for nonmagical crap.");
 	/* In Unnethack you'd even be disallowed to wish for an object class that has potentially magical ones...
@@ -11089,7 +11107,7 @@ makenonworkingwish()
 		pline("Unfortunately, nothing happens.");
 	}
 	else if (rn2(2)) {
-		if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
+		if (flags.verbose) { (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Shiver me timbers! Ye may wish for an object!") : You("may wish for an object."); }
 retry:
 		getlin("For what do you wish?", buf);
 		bad_artifact();

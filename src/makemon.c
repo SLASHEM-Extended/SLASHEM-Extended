@@ -746,6 +746,173 @@ register struct monst *mtmp;
 
 	if (needspick(ptr) && !rn2(40) ) (void) mongets(mtmp, PICK_AXE);
 
+	if (uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(mtmp->data)) {
+		if (rn2(3)) {
+			if (rn2(5)) {
+				(void) mongets(mtmp, PISTOL);
+				m_initthrow(mtmp, rn2(2000) ? PISTOL_BULLET : ANTIMATTER_PISTOL_BULLET, 25);
+			} else {
+				(void) mongets(mtmp, RIFLE);
+				m_initthrow(mtmp, rn2(2000) ? RIFLE_BULLET : ANTIMATTER_RIFLE_BULLET, 25);
+			}
+		}
+		else switch (rnd(105)) {
+			case 1:
+				(void) mongets(mtmp, HEAVY_MACHINE_GUN);
+				m_initthrow(mtmp, rn2(2000) ? MG_BULLET : ANTIMATTER_MG_BULLET, 50);
+				m_initthrow(mtmp, rn2(2000) ? MG_BULLET : ANTIMATTER_MG_BULLET, 50);
+				break;
+			case 2:
+				(void) mongets(mtmp, AUTO_SHOTGUN);
+				m_initthrow(mtmp, AUTO_SHOTGUN_SHELL, 50);
+				break;
+			case 3:
+				(void) mongets(mtmp, ARM_BLASTER);
+				m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
+				break;
+			case 4:
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				(void) mongets(mtmp, HAND_BLASTER);
+				m_initthrow(mtmp, BLASTER_BOLT, 40);
+				break;
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15:
+				(void) mongets(mtmp, CUTTING_LASER);
+				m_initthrow(mtmp, LASER_BEAM, 50);
+				break;
+			case 16:
+			case 17:
+			case 18:
+				(void) mongets(mtmp, RAYGUN);
+				m_initthrow(mtmp, RAYGUN_BOLT, 50);
+				break;
+			case 19:
+				(void) mongets(mtmp, ROCKET_LAUNCHER);
+				m_initthrow(mtmp, ROCKET, 5);
+				break;
+			case 20:
+				(void) mongets(mtmp, GRENADE_LAUNCHER);
+				m_initthrow(mtmp, FRAG_GRENADE, 15);
+				break;
+			case 21:
+				(void) mongets(mtmp, GRENADE_LAUNCHER);
+				m_initthrow(mtmp, GAS_GRENADE, 15);
+				break;
+			case 22:
+				(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				break;
+			case 23:
+			case 24:
+			case 25:
+			case 26:
+			case 27:
+			case 28:
+			case 29:
+			case 30:
+			case 31:
+			case 32:
+			case 33:
+			case 34:
+			case 35:
+			case 36:
+				(void) mongets(mtmp, SHOTGUN);
+				m_initthrow(mtmp, SHOTGUN_SHELL, 25);
+				break;
+			case 37:
+			case 38:
+			case 39:
+			case 40:
+			case 41:
+			case 42:
+			case 43:
+			case 44:
+			case 45:
+			case 46:
+			case 47:
+			case 48:
+			case 49:
+			case 50:
+				(void) mongets(mtmp, ASSAULT_RIFLE);
+				m_initthrow(mtmp, rn2(2000) ? ASSAULT_RIFLE_BULLET : ANTIMATTER_ASSAULT_RIFLE_BULLE, 50);
+				m_initthrow(mtmp, rn2(2000) ? ASSAULT_RIFLE_BULLET : ANTIMATTER_ASSAULT_RIFLE_BULLE, 25);
+				break;
+			case 51:
+			case 52:
+			case 53:
+			case 54:
+			case 55:
+			case 56:
+			case 57:
+			case 58:
+			case 59:
+			case 60:
+			case 61:
+			case 62:
+			case 63:
+			case 64:
+			case 65:
+			case 66:
+			case 67:
+			case 68:
+			case 69:
+			case 70:
+			case 71:
+			case 72:
+			case 73:
+			case 74:
+			case 75:
+				(void) mongets(mtmp, SNIPER_RIFLE);
+				m_initthrow(mtmp, rn2(2000) ? SNIPER_BULLET : ANTIMATTER_SNIPER_BULLET, 50);
+				break;
+			case 76:
+			case 77:
+			case 78:
+			case 79:
+			case 80:
+			case 81:
+			case 82:
+			case 83:
+			case 84:
+			case 85:
+			case 86:
+			case 87:
+			case 88:
+			case 89:
+			case 90:
+			case 91:
+			case 92:
+			case 93:
+			case 94:
+			case 95:
+			case 96:
+			case 97:
+			case 98:
+			case 99:
+			case 100:
+				(void) mongets(mtmp, SUBMACHINE_GUN);
+				m_initthrow(mtmp, rn2(2000) ? SMG_BULLET : ANTIMATTER_SMG_BULLET, 50);
+				break;
+			case 101:
+			case 102:
+			case 103:
+			case 104:
+			case 105:
+				(void) mongets(mtmp, PISTOL_PAIR);
+				m_initthrow(mtmp, rn2(2000) ? FIVE_SEVEN_BULLET : ANTIMATTER_FIVE_SEVEN_BULLET, 50);
+				break;
+		}
+
+	}
+
 	if (Role_if(PM_GRENADONIN) && !rn2(50)) {
 
 		switch (rnd(44)) { /* grenades half of the time, guns otherwise */
@@ -28174,6 +28341,12 @@ loopback:
 		if (ct > 0 && (Role_if(PM_JANITOR) && !(ptr->mflags1 & M1_METALLIVORE) && !(ptr->mflags3 & M3_LITHIVORE) && !(ptr->mflags4 & M4_ORGANIVORE) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_JANITOR) && dmgtype(ptr, AD_TRAP))) ct += 5;
 		if (ct > 0 && (Role_if(PM_JANITOR) && dmgtype(ptr, AD_WEBS))) ct += 3;
+		if (ct > 0 && (uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(ptr))) ct += 5;
+		if (ct > 0 && (uarm && uarm->oartifact == ART_KORHOLT && is_vanillamonster(ptr))) ct += 2;
+		if (ct > 0 && (uarm && uarm->oartifact == ART_KORHOLT && is_orc(ptr))) ct += 20;
+		if (ct > 0 && (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK && is_vanillamonster(ptr))) ct += 50;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_PALACE_TERROR && (ptr->msound == MS_DEAD))) ct += 5;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_PALACE_TERROR && (ptr->msound == MS_DEAD))) ct += 5;
 		if (ct > 0 && (Role_if(PM_STORMBOY) && is_swimmer(ptr))) ct += 4;
 		if (ct > 0 && (Role_if(PM_STORMBOY) && breathless(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_STORMBOY) && amphibious(ptr))) ct += 5;
@@ -29728,6 +29901,12 @@ int     spc;
 		if ((Role_if(PM_JANITOR) && !(mons[last].mflags1 & M1_METALLIVORE) && !(mons[last].mflags3 & M3_LITHIVORE) && !(mons[last].mflags4 & M4_ORGANIVORE) )) num += 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[last], AD_TRAP))) num += 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[last], AD_WEBS))) num += 3;
+		if ((uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(&mons[last]))) num += 5;
+		if ((uarm && uarm->oartifact == ART_KORHOLT && is_vanillamonster(&mons[last]))) num += 2;
+		if ((uarm && uarm->oartifact == ART_KORHOLT && is_orc(&mons[last]))) num += 20;
+		if ((uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK && is_vanillamonster(&mons[last]))) num += 50;
+		if ((uwep && uwep->oartifact == ART_PALACE_TERROR && (mons[last].msound == MS_DEAD))) num += 5;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_PALACE_TERROR && (mons[last].msound == MS_DEAD))) num += 5;
 		if ((Role_if(PM_STORMBOY) && is_swimmer(&mons[last]))) num += 4;
 		if ((Role_if(PM_STORMBOY) && breathless(&mons[last]))) num += 2;
 		if ((Role_if(PM_STORMBOY) && amphibious(&mons[last]))) num += 5;
@@ -30946,6 +31125,12 @@ int     spc;
 		if ((Role_if(PM_JANITOR) && !(mons[first].mflags1 & M1_METALLIVORE) && !(mons[first].mflags3 & M3_LITHIVORE) && !(mons[first].mflags4 & M4_ORGANIVORE) )) num -= 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[first], AD_TRAP))) num -= 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[first], AD_WEBS))) num -= 3;
+		if ((uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(&mons[first]))) num -= 5;
+		if ((uarm && uarm->oartifact == ART_KORHOLT && is_vanillamonster(&mons[first]))) num -= 2;
+		if ((uarm && uarm->oartifact == ART_KORHOLT && is_orc(&mons[first]))) num -= 20;
+		if ((uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK && is_vanillamonster(&mons[first]))) num -= 50;
+		if ((uwep && uwep->oartifact == ART_PALACE_TERROR && (mons[first].msound == MS_DEAD))) num -= 5;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_PALACE_TERROR && (mons[first].msound == MS_DEAD))) num -= 5;
 		if ((Role_if(PM_STORMBOY) && is_swimmer(&mons[first]))) num -= 4;
 		if ((Role_if(PM_STORMBOY) && breathless(&mons[first]))) num -= 2;
 		if ((Role_if(PM_STORMBOY) && amphibious(&mons[first]))) num -= 5;
@@ -32566,6 +32751,7 @@ register struct permonst *ptr;
 	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
+	if (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && !rn2(2)) return FALSE;
 
 	if (Race_if(PM_ALBAE) || Race_if(PM_IRAHA) || Race_if(PM_NEMESIS) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */
@@ -32604,6 +32790,8 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_CLONE_ && is_jokemonster(ptr) && rn2(2)) return TRUE;
 
 	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
+
+	if (uarm && uarm->oartifact == ART_CLANGFRIEND && is_dwarf(ptr)) return TRUE;
 
 	if (is_pokemon(ptr) && rn2(5) && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK) ) return TRUE;
 

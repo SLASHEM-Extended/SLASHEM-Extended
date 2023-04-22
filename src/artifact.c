@@ -1504,6 +1504,10 @@ register boolean mod;
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 			if (otmp->spe > 127) otmp->spe = 127;
@@ -1514,6 +1518,14 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_BOAH_WHAT_A_STACK) {
 			otmp->quan += 200;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_TROPICAL_WOOD_SELECTION) {
+			otmp->quan += 4;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_POINTED_JAVELIN) {
+			otmp->quan += rn1(5, 5);
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART______STOCKPILE) {
@@ -1534,6 +1546,31 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_ZIEIEIE_) {
 			otmp->quan += 400;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_THEO_S_BOX) {
+			otmp->quan += rnd(otmp->quan * 4);
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_MUHISH) {
+			otmp->quan *= 3;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_LARGE_MAGAZINE) {
+			otmp->quan *= 3;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_FLIUFLIUFLIUUUUUUU_) {
+			otmp->quan *= 3;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_KLARNIGUR) {
+			otmp->quan *= 2;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_ALL_WASTED) {
+			otmp->quan /= 3;
+			if (otmp->quan < 1) otmp->quan = 1;
 			otmp->owt = weight(otmp);
 		    }
 		    if (mod) {
@@ -2219,6 +2256,14 @@ int tmp;
 		switch (otmp->oartifact) {
 
 			case ART_M__M__M_:
+			case ART_MUHISH:
+			case ART_WATERTROOPER:
+			case ART_MISS_LAUNCHER:
+			case ART_HOMING_BEAM:
+			case ART_VIHAT_BAGUETTEN_BUS_STOP:
+			case ART_DIG__OF_COURSE:
+			case ART_THEO_S_BOX:
+			case ART_WINNETOU_S_FRIEND:
 				return 0;
 
 			default: break;
@@ -2672,7 +2717,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				update_mon_intrinsics(mdef, otmp2, FALSE, FALSE);
 			}
 			/* give the object to the character */
-			otmp2 = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) ? 
+			otmp2 = (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? 
 				hold_another_object(otmp2, "Ye snatched but dropped %s.",
 						   doname(otmp2), "Ye steal: ") :
 				hold_another_object(otmp2, "You snatched but dropped %s.",
@@ -2758,7 +2803,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -2851,7 +2896,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {
@@ -3567,7 +3612,7 @@ doinvoke()
 					break;
 				case 18:
 					Your("intrinsics change.");
-					intrinsicgainorloss();
+					intrinsicgainorloss(0);
 					break;
 				case 19:
 					{
@@ -4121,6 +4166,19 @@ chargingchoice:
 	    break;
 	case SPECIAL_INVOKE:
 
+		/* dummy entry for Amy's copypasting
+		if (obj->oartifact == ART_) {
+			break;
+		}
+
+		*/
+
+		if (obj->oartifact == ART_VINTAGE_MEMORY) {
+			if (!Teleport_control) HTeleport_control = 2;
+			tele();
+			break;
+		}
+
 		if (obj->oartifact == ART_FIVEFOLDSWITCH_) {
 
 			if (obj->spe < 1) {
@@ -4131,6 +4189,46 @@ chargingchoice:
 			obj->cursed = obj->hvycurse = obj->prmcurse = TRUE;
 			cure_nasty_traps();
 			pline("Switchswitchswitchswitchswitch!");
+			break;
+		}
+
+		if (obj->oartifact == ART_WON_STESCHAN) {
+			incr_itimeout(&HCold_resistance, 500);
+			incr_itimeout(&HFire_resistance, 500);
+			incr_itimeout(&HShock_resistance, 500);
+			You("become resistant to the elements.");
+			break;
+		}
+
+		if (obj->oartifact == ART_TSCHEINSCHFORM) {
+			int tscheinschtype;
+			long savewornmask;
+			savewornmask = obj->owornmask;
+			setworn((struct obj *)0, obj->owornmask);
+
+tscheinschroll:
+			tscheinschtype = HAWAIIAN_SHIRT + rn2((LEVITATION_BOOTS + 1) - HAWAIIAN_SHIRT);
+			if (!(objects[tscheinschtype].oc_armcat == ARM_BOOTS)) goto tscheinschroll;
+
+			obj->otyp = tscheinschtype;
+			obj->owt = weight(obj);
+
+			setworn(obj, savewornmask);
+
+			pline("Okay, the boots have had their base type changed.");
+			break;
+		}
+
+		if (obj->oartifact == ART_CREAMRES) {
+			if (Glib) {
+				pline("You clean your %s.", makeplural(body_part(HAND)));
+				Glib = 0;
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_CANNOT_DO_IS_FROZEN) {
+			make_frozen(0L,TRUE);
 			break;
 		}
 
@@ -4146,6 +4244,23 @@ chargingchoice:
 				pline("Successfully unwore the item!");
 			}
 
+			break;
+		}
+
+		if (obj->oartifact == ART_GALLOW_DIGS) {
+			getdir(NULL);
+			zap_dig(TRUE); /* dig several tiles, like the wand */
+
+			break;
+		}
+
+		if (obj->oartifact == ART_BLASWON) {
+			if (obj->spe < 1) {
+				obj->spe++;
+				pline("Plus one.");
+			} else {
+				pline("Limit has been reached already.");
+			}
 			break;
 		}
 
@@ -4171,6 +4286,24 @@ chargingchoice:
 		if (obj->oartifact == ART_ARABELLA_S_LIGHTSWITCH) {
 			litroom(TRUE, obj);
 			pline_The("light has been switched on!");
+			break;
+		}
+
+		if (obj->oartifact == ART_ASS_ASS_IN_ASS) {
+			trap_detect((struct obj *)0);
+			break;
+		}
+
+		if (obj->oartifact == ART_WINNNNNG) {
+			(void)object_detect(obj, 0);
+			trap_detect((struct obj *)0);
+			incr_itimeout(&HDetect_monsters, 20);
+			see_monsters();
+			break;
+		}
+
+		if (obj->oartifact == ART_WHOA_LOOK_AT_THOSE) {
+			intrinsicgainorloss(1);
 			break;
 		}
 
@@ -4321,7 +4454,7 @@ chargingchoice:
 			} 
 			u.ublessed += 2;
 			Your("skin feels harder.");
-
+			break;
 		}
 
 		if (obj->oartifact == ART_EROTIC_STAT_TRAIN) {
@@ -4667,16 +4800,20 @@ goldenchoice:
 					break;
 				}
 				long savewornmask;
+
+				savewornmask = goldenitem->owornmask;
+				setworn((struct obj *)0, goldenitem->owornmask);
+
 				goldenitem = mk_artifact(goldenitem, (aligntyp)A_NONE, TRUE);
 				if (goldenitem && goldenitem->oartifact) {
 					useupall(obj);
 
-					savewornmask = goldenitem->owornmask;
-					setworn((struct obj *)0, goldenitem->owornmask);
 					setworn(goldenitem, savewornmask);
 
 					pline("Success!");
 					return 1;
+				} else if (goldenitem) {
+					setworn(goldenitem, savewornmask);
 				}
 			}
 			break;
@@ -4841,6 +4978,27 @@ greenchoice:
 
 		}
 
+		if (obj->oartifact == ART_DETONATIONS_MANTLE) {
+			struct obj *dynamite;
+			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					u.detonationhack = TRUE;
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					dropy(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
+					u.detonationhack = FALSE;
+				}
+			}
+
+			break;
+
+		}
+
 		if (obj->oartifact == ART_POPPY_S_STRIPED_TIGHTS) {
 			struct obj *dynamite;
 			dynamite = mksobj(STICK_OF_DYNAMITE, TRUE, FALSE, FALSE);
@@ -4900,6 +5058,15 @@ greenchoice:
 
 			getdir(NULL);
 			buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_DENH_OBVIO) {
+
+			getdir(NULL);
+			buzz(16,6,u.ux,u.uy,u.dx,u.dy); /* 16 = poison gas */
 
 			break;
 
@@ -5737,7 +5904,8 @@ find_kurwaartifact()
 
 /* Function that adds or removes a random intrinsic from the player. --Amy */
 void
-intrinsicgainorloss()
+intrinsicgainorloss(inttype)
+int inttype; /* 0 = random, 1 = always gain an intrinsic, 2 = always lose an intrinsic */
 {
 	register boolean intloss = rn2(2);
 
@@ -5746,6 +5914,9 @@ intrinsicgainorloss()
 
 retrytrinsic:
 	if (!rn2(5)) intloss = rn2(2);
+
+	if (inttype == 1) intloss = FALSE;
+	if (inttype == 2) intloss = TRUE;
 
 	if (rn2(4)) { /* ones that can easily be gained by eating things */
 		switch (rnd(16)) {

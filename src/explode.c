@@ -563,6 +563,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 	
 	/* You are not hurt if this is remote */
 	if (remote) uhurt = FALSE;
+	if (u.detonationhack) uhurt = FALSE;
 	
 	if (uhurt) {
 		/* [ALI] Give message if it's a weapon (grenade) exploding */

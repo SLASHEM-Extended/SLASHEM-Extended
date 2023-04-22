@@ -793,8 +793,8 @@ struct monst *mon;
 
 	if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
+	if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
 
-	if (MCReduction && mon == &youmonst) armpro -= (1 + (MCReduction / 5000));
 	if (u.magicshield) armpro++;
 	if (Race_if(PM_GERTEUT)) armpro++;
 	if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
@@ -802,6 +802,8 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_IMPRACTICAL_COMBAT_WEAR) armpro++;
 	if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 	if (uarmc && uarmc->oartifact == ART_FRADLE_OF_EG) armpro++;
+	if (uarmg && uarmg->oartifact == ART_EM_SI) armpro++;
+	if (uarmc && uarmc->oartifact == ART_NEW_COAT) armpro++;
 	if (uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 	if (uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 	if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
@@ -811,6 +813,20 @@ struct monst *mon;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 	if (Race_if(PM_INKA)) armpro++;
 	if (ACURR(A_CHA) >= 18) armpro++;
+
+	if (MCReduction && (mon == &youmonst)) {
+		int prereduce = armpro;
+		if (uarmg && uarmg->oartifact == ART_NOT_BELOW_NINE && prereduce <= 9) armpro = prereduce;
+		if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT && prereduce <= 3) armpro = prereduce;
+
+		armpro -= (1 + (MCReduction / 5000));
+		if (uarmg && uarmg->oartifact == ART_NOT_BELOW_NINE && prereduce > 9 && armpro < 9) armpro = 9;
+		if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT && prereduce > 3 && armpro < 3) armpro = 3;
+	}
+
+	/* artifact that sets MC to an exact value, ignoring modifiers (except unbalancor) */
+	if (uarm && uarm->oartifact == ART_EMSI_WOERS) armpro = 2;
+
 	if (armpro < 0) armpro = 0;
 	if (isunbalancor) armpro = 0;
 

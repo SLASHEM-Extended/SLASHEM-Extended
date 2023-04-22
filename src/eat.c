@@ -2001,12 +2001,12 @@ register int pm;
 	    case PM_GARGANTUAN_COCKATRICE:
 
 		Your("intrinsics seem to change!");
-		intrinsicgainorloss();
+		intrinsicgainorloss(0);
 		break;
 
 	    case PM_JUNOW_TRICE:
 		Your("intrinsics seem to change!");
-		intrinsicgainorloss();
+		intrinsicgainorloss(0);
 
 		if (!rn2(20)) {
 

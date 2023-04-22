@@ -207,7 +207,7 @@ pline VA_DECL(const char *, line)
 /* right : Ye read "Here lies ..."
    wrong : You read "Here lies ..."
    wrong : Ye read "'er lies ..." */
-        if( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) &&(*line!='"')&&(strlen(line)<(BUFSZ-5))
+        if( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) &&(*line!='"')&&(strlen(line)<(BUFSZ-5))
              &&(!program_state.in_impossible)
              &&(strlen(line)>9)){
                 /* >9: "You die ..." but not "It hits." */
@@ -373,7 +373,7 @@ pline VA_DECL(const char *, line)
 	if (typ == MSGTYP_NOREP && !(MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !autismweaponcheck(ART_BRAND_BRAND) && !(uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) && !strcmp(line, prevmsg)) return;
 	putstr(WIN_MESSAGE, 0, line);
 
-	if (HeapEffectBug || u.uprops[HEAP_EFFECT].extrinsic || have_heapstone()) {
+	if (HeapEffectBug || u.uprops[HEAP_EFFECT].extrinsic || have_heapstone() || (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA) ) {
 		int heaping = rno(4);
 		if (!rn2(7)) heaping += rno(8);
 		while (heaping > 0) {
@@ -1104,7 +1104,7 @@ ustatusline()
 void
 self_invis_message()
 {
-	if(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ){
+	if(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) {
 	pline("%s %s.",
 	    FunnyHallu ? "Arr, Matey!  Ye" : "Avast!  All of a sudden, ye",
 	    See_invisible ? "can see right through yerself" :

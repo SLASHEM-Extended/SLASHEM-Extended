@@ -286,6 +286,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
 			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
 			if (issuxxor) monclock *= 2;
+			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) monclock /= 3;
 
@@ -330,8 +331,9 @@ moveloop()
 			if (ishaxor) xtraclock /= 2;
 			if (Race_if(PM_LICH_WARRIOR)) xtraclock /= 2;
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
-			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) monclock /= 2;
+			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) xtraclock /= 2;
 			if (issuxxor) xtraclock *= 2;
+			if (uarm && uarm->oartifact == ART_ISIMOUD) xtraclock *= 2;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) xtraclock /= 3;
 
@@ -1127,6 +1129,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
 				if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1307,6 +1312,7 @@ moveloop()
 						    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 						    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+						    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
 						    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
@@ -1347,6 +1353,12 @@ moveloop()
 				}
 
 				if ((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) && u.umoved && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS && moveamt > 1) {
+					moveamt /= 2;
+				}
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_HELF_ME_NEVERTHELESS && moveamt > 1) {
 					moveamt /= 2;
 				}
 				if (uwep && uwep->otyp == AMBUSH_QATAR && !u.umoved && moveamt > 1) {
@@ -1575,6 +1587,9 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
+			if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
 			if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
@@ -1772,6 +1787,7 @@ moveloop()
 					    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 					    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+					    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
 					    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
@@ -1832,7 +1848,14 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
-
+			if (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_HELF_ME_NEVERTHELESS && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
 			if (uwep && uwep->otyp == AMBUSH_QATAR && !u.umoved && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
@@ -2012,6 +2035,7 @@ moveloop()
 				    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
 				    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
 				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
+				    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
 				    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
 				    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
@@ -2463,6 +2487,11 @@ moveloop()
 				}
 			pline("zisch!");
 			stop_occupation();
+		}
+
+		if (uarm && uarm->oartifact == ART_YOU_ARE_UGLY && !rn2(2000)) {
+			You("feel ugly...");
+			(void) adjattrib(A_CHA, -1, 0, TRUE);
 		}
 
 		if (uarm && uarm->oartifact == ART_IT_POWER_KNOEPP && !rn2(100)) {
@@ -4210,6 +4239,9 @@ trapsdone:
 		if (uwep && uwep->otyp == YITH_TENTACLE && !rn2(200)) increasesanity(1);
 		if (u.twoweap && uswapwep && uswapwep->otyp == YITH_TENTACLE && !rn2(200)) increasesanity(1);
 
+		if (uwep && uwep->oartifact == ART_PALACE_TERROR && !rn2(100)) increasesanity(rnd(5));
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_PALACE_TERROR && !rn2(100)) increasesanity(rnd(5));
+
 		/* using other roles' quest artifacts (e.g. by wishing for them) gives downsides --Amy */
 		if (!rn2(100) && foreignartifactcount() > 0) {
 			contaminate(foreignartifactcount(), FALSE);
@@ -4659,6 +4691,10 @@ greasingdone:
 		}
 
 		if (StatDecay && !rn2((have_statdecaystone() == 2) ? 200 : 1000)) {
+			statdrain();
+		}
+
+		if (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO && !rn2((have_statdecaystone() == 2) ? 200 : 1000)) {
 			statdrain();
 		}
 
@@ -7726,7 +7762,7 @@ newbossRLR:
 
 		if (Race_if(PM_FIXER) && !rn2(1000)) {
 			Your("intrinsics change.");
-			intrinsicgainorloss();
+			intrinsicgainorloss(0);
 		}
 
 		if (Race_if(PM_RACE_THAT_DOESN_T_EXIST) && !rn2(100)) {
@@ -9693,7 +9729,7 @@ newbossB:
 			flags.botl = TRUE;
 		}
 
-		if (is_raincloud(u.ux, u.uy)) {
+		if (is_raincloud(u.ux, u.uy) && !(uarmh && uarmh->oartifact == ART_PROTECT_FROM_HEAVY_RAIN) ) {
 
 			if (level.flags.lethe) pline("Sparkling rain washes over you.");
 			else pline("Rain washes over you.");
@@ -10988,6 +11024,16 @@ newboss:
 			forget(1 + rn2(5));
 		}
 
+		if (uwep && uwep->oartifact == ART_FADING_FROM_MEMORY && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FADING_FROM_MEMORY && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
+		}
+
 		if (uarmh && uarmh->oartifact == ART_TIARA_OF_AMNESIA && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
@@ -11004,6 +11050,11 @@ newboss:
 		}
 
 		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+			You_feel("dizzy!");
+			forget(1 + rn2(5));
+		}
+
+		if (uarm && uarm->oartifact == ART_KLAER_OV && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
@@ -11076,6 +11127,10 @@ newboss:
 			}
 			rndcurse();
 
+		}
+
+		if (uarm && uarm->oartifact == ART_KLAER_OV && !rn2(15)) {
+			do_vicinity_mapX();
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_GRAFFITI_GLOVES) && !rn2(2000) ) {
@@ -13915,6 +13970,7 @@ past4:
 	u.polyattackhack = 0;
 	u.mongetshack = 0;
 	u.dynamitehack = 0;
+	u.detonationhack = 0;
 	u.lamefarmer = 0;
 	u.evilvarhack = 0;
 
@@ -14439,7 +14495,7 @@ past4:
 		pline("%s", generate_garbage_string());
 	}
 
-	if (EvencoreEffect || u.uprops[EVC_EFFECT].extrinsic || have_evcstone()) {
+	if (EvencoreEffect || u.uprops[EVC_EFFECT].extrinsic || have_evcstone() || (uarmf && uarmf->oartifact == ART_GLITCH_IN_THE_MONITOR) ) {
 
 		int x, y;
 

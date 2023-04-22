@@ -1688,6 +1688,7 @@ struct you {
 	boolean wollohhack;
 	boolean polyattackhack;
 	boolean dynamitehack;
+	boolean detonationhack;
 	int mongetshack;
 	boolean evilvarhack;
 

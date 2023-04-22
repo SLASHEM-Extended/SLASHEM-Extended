@@ -1799,7 +1799,21 @@ register struct attack *mattk;
 			rn2(2) ? "block" : "deflect",
 			(blocker == uarmg || blocker == uarmf) ? "" : "s",
 			s_suffix(mon_nam(mtmp)));
-		if (uarms && (blocker == uarms)) use_skill(P_SHIELD, 1);
+		if (uarms && (blocker == uarms)) {
+			use_skill(P_SHIELD, 1);
+
+			if (uarms && uarms->oartifact == ART_KLUUSCH) {
+				if (Upolyd) {
+					u.mh++;
+					if (u.mh > u.mhmax) u.mh = u.mhmax;
+				} else {
+					u.uhp++;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				}
+				flags.botl = TRUE;
+			}
+
+		}
 		if (uimplant && (blocker == uimplant)) use_skill(P_IMPLANTS, 1);
 		if (uarm && (blocker == uarm) && uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) { /* has to train quickly, otherwise it's too much of a PITA because of low robe AC --Amy */
 			use_skill(P_SORESU, rnd(2));
@@ -6680,9 +6694,9 @@ struct monst *mon;
 
 	if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
+	if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
 
 	if (mon == &youmonst) {
-		if (MCReduction) armpro -= (1 + (MCReduction / 5000));
 		if (u.magicshield) armpro += 1;
 		if (Race_if(PM_GERTEUT)) armpro++;
 		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
@@ -6695,10 +6709,27 @@ struct monst *mon;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
 		if (uarmc && uarmc->oartifact == ART_FRADLE_OF_EG) armpro++;
+		if (uarmg && uarmg->oartifact == ART_EM_SI) armpro++;
+		if (uarmc && uarmc->oartifact == ART_NEW_COAT) armpro++;
 		if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) armpro++;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 		if (Race_if(PM_INKA)) armpro++;
 		if (ACURR(A_CHA) >= 18) armpro++;
+
+		if (MCReduction) {
+
+			int prereduce = armpro;
+			if (uarmg && uarmg->oartifact == ART_NOT_BELOW_NINE && prereduce <= 9) armpro = prereduce;
+			if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT && prereduce <= 3) armpro = prereduce;
+
+			armpro -= (1 + (MCReduction / 5000));
+			if (uarmg && uarmg->oartifact == ART_NOT_BELOW_NINE && prereduce > 9 && armpro < 9) armpro = 9;
+			if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT && prereduce > 3 && armpro < 3) armpro = 3;
+		}
+
+		/* artifact that sets MC to an exact value, ignoring modifiers (except unbalancor) */
+		if (uarm && uarm->oartifact == ART_EMSI_WOERS) armpro = 2;
+
 		if (isunbalancor) armpro = 0;
 	}
 	if (armpro < 0) armpro = 0;
@@ -19043,7 +19074,7 @@ register int n;
 
 	if (isfriday && !rn2(50)) n += rnd(n);
 
-	if (Invulnerable || (uarmc && uarmc->oartifact == ART_NOTONHEAD && !rn2(10)) || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
+	if (Invulnerable || (uarmc && uarmc->oartifact == ART_NOTONHEAD && !rn2(10)) || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarm && uarm->oartifact == ART_GODLY_PROTECT && !rn2(5)) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
 
 	if (u.metalguard) {
 		u.metalguard = 0;
@@ -20671,6 +20702,17 @@ register struct attack *mattk;
 	if (uwep && uwep->oartifact == ART_BRISTLY_STRING) {
 		pline("%s is damaged by your bristly string!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+
+	}
+
+	if (uwep && uwep->oartifact == ART_PRICKTRICK) {
+		pline("%s is damaged by your pricks!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(3) ) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

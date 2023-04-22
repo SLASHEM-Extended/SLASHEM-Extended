@@ -1821,6 +1821,7 @@ struct monst *victim;
     int mat_idx;
 
 	if (victim == &youmonst && FireImmunity) return 0;
+	if (victim == &youmonst && uarm && uarm->oartifact == ART_DARK_L) return 0;
 
 	if ((victim == &youmonst) && !rn2(2) ) make_burned(HBurned + rnd(20 + (monster_difficulty() * 5) ),TRUE);
     
@@ -1991,7 +1992,12 @@ burnagain:
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_GOODRES_ELVEN ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
+
+	if (otmp->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) vulnerable = FALSE;
+
+	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (otmp->owornmask & W_ARMOR) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_PROOFINGNESS_POOFS && !otmp->rknown) vulnerable = FALSE;
 
@@ -2120,7 +2126,12 @@ struct monst *victim;
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_GOODRES_ELVEN ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
+
+	if (otmp->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) vulnerable = FALSE;
+
+	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (otmp->owornmask & W_ARMOR) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_PROOFINGNESS_POOFS && !otmp->rknown) vulnerable = FALSE;
 
@@ -4327,7 +4338,7 @@ dothetrap:
 
 			otmp->quan = 1L;
 			otmp->owt = weight(otmp);
-			if (!rn2(6)) otmp->opoisoned = 1;
+			if (!rn2(6) && !(uarmf && uarmf->oartifact == ART_DAROH_NO) ) otmp->opoisoned = 1;
 			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
 			else
 			if (thitu(7 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "little dart")) {
@@ -6924,7 +6935,7 @@ rerollX:
 					break;
 				case 18:
 					Your("intrinsics change.");
-					intrinsicgainorloss();
+					intrinsicgainorloss(0);
 					break;
 				case 19:
 					{
@@ -8722,6 +8733,13 @@ newbossPENT:
 		} else if (u.umonnum == PM_PIT_VIPER ||
 			u.umonnum == PM_PIT_FIEND)
 		    pline("How pitiful.  Isn't that the pits?");
+
+		if (ttype == SPIKED_PIT && uarmf && uarmf->oartifact == ART_SPIKEMASH) {
+			if (trap) trap->ttyp = PIT;
+			ttype = PIT;
+			pline("Thanks to your spike-mashing boots, the spikes in the pits are destroyed and cannot harm you.");
+		}
+
 		if (ttype == SPIKED_PIT) {
 		    const char *predicament = "on a set of sharp iron spikes";
 		    if (u.usteed) {
@@ -9622,6 +9640,19 @@ madnesseffect:
 		    You_feel("momentarily different.");
 		    /* Trap did nothing; don't remove it --KAA */
 		} else {
+
+			if (uarmf && uarmf->oartifact == ART_DEEPMINE_SAFETY) {
+				char deepminebuf[BUFSZ];
+				getlin ("Do you want to be polymorped? [y/yes/no]",deepminebuf);
+				(void) lcase (deepminebuf);
+				if (!(strcmp (deepminebuf, "yes")) || !(strcmp (deepminebuf, "y")) || !(strcmp (deepminebuf, "ye")) || !(strcmp (deepminebuf, "ys"))) {
+					pline("Okay...");
+				} else {
+					pline("Alright, you won't be polymorphed this time.");
+					break;
+				}
+			}
+
 		    (void) steedintrap(trap, (struct obj *)0);
 		    deltrap(trap);	/* delete trap before polymorph */
 		    newsym(u.ux,u.uy);	/* get rid of trap symbol */
@@ -23949,7 +23980,12 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
+
+		if (obj->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) continue;
+
+		if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (obj->owornmask & W_ARMOR) ) continue;
 
 		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
 
@@ -23976,7 +24012,8 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWIMCHAMP) continue;
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_SEA_ELF)) continue;
 		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
-		if ((obj->where != OBJ_FLOOR) && (uarmf && uarmf->oartifact == ART_STEERBOAT)) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_STEERBOAT) continue;
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) continue;
 
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_VIKING) && (rn2(50) < u.ulevel) ) continue;
 
@@ -24339,7 +24376,12 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
+
+		if (obj->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) continue;
+
+		if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (obj->owornmask & W_ARMOR) ) continue;
 
 		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
 
@@ -24409,7 +24451,12 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
+
+		if (obj->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) continue;
+
+		if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (obj->owornmask & W_ARMOR) ) continue;
 
 		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
 
@@ -24599,7 +24646,7 @@ drown()
 			if (flags.verbose)
 				pline("But you aren't drowning.");
 			if (!Is_waterlevel(&u.uz)) {
-				if (FunnyHallu || (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ))
+				if (FunnyHallu || (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) )
 					Your("keel hits the bottom.");
 				else
 					You("touch bottom.");
@@ -24701,7 +24748,7 @@ drown()
 		return TRUE;
 	}
 
-	if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) You("go to Davy Jones' locker.");
+	if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) You("go to Davy Jones' locker.");
 	else You("drown.");
 
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Nikto ne znayet, pochemu ty byl nastol'ko glup, chtoby upast' v vodu, no eto ne imeyet nikakogo znacheniya, v lyubom sluchaye, potomu chto vy mozhete svernut' novogo personazha pryamo seychas." : "HUAAAAAAA-A-AAAAHHHHHH!");

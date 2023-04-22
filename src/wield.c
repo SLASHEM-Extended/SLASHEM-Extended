@@ -123,6 +123,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 
 	if (!cancurseshit) goto cursingdone;
 
+	if (uwep && uwep->oartifact == ART_UEH_THE_PART_IS___) {
+		uwep->spe = 3;
+	}
+
 	if (uwep && uwep->oartifact == ART_BAT_FROM_BALTIMORE) {
 		if (CurseuseEffect < 5000L) CurseuseEffect = 5000L;
 		if (AutocursingEquipment < 5000L) AutocursingEquipment = 5000L;
@@ -203,6 +207,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		if (uwep->spe > -10) uwep->spe = -10;
 	}
 
+	if (uwep && uwep->oartifact == ART_NOW_THAT_S_A_GOOD_ENCHANTM) {
+		if (uwep->spe < 7) uwep->spe = 7;
+	}
+
 	if (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) {
 		if (uwep->spe > -20) uwep->spe--;
 	}
@@ -242,6 +250,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_FADED_USELESSNESS) {
 		curse(uwep);
 		pline("In order to prevent it from falling off, your knife curses itself.");
+	}
+
+	if (uwep && uwep->oartifact == ART_BERSERK_RAGE) {
+		curse(uwep);
+		pline("Well, you cannot easily stop your berserk rage now.");
 	}
 
 	if (uwep && uwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !uwep->hvycurse) {
@@ -459,6 +472,11 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_FADED_USELESSNESS) {
 			curse(uswapwep);
 			pline("In order to prevent it from falling off, your knife curses itself.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_BERSERK_RAGE) {
+			curse(uswapwep);
+			pline("Well, you cannot easily stop your berserk rage now.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_THRANDUIL_LOSSEHELIN && !uswapwep->hvycurse) {
@@ -1316,7 +1334,12 @@ boolean fade_scrolls;
 	if (target->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) return;
 
 	if (target->oartifact == ART_SARTIRO ) return;
+	if (target->oartifact == ART_GOODRES_ELVEN ) return;
 	if (target->oartifact == ART_PARTICULARLY_SOLID_SKULL ) return;
+
+	if (target->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) return;
+
+	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (target->owornmask & W_ARMOR) ) return;
 
 	if (target->oartifact == ART_PROOFINGNESS_POOFS && !target->rknown) return;
 
@@ -1444,7 +1467,12 @@ boolean fade_scrolls;
 	if (itemhasappearance(target, APP_IMAGINARY_HEELS) ) return;
 
 	if (target->oartifact == ART_SARTIRO ) return;
+	if (target->oartifact == ART_GOODRES_ELVEN ) return;
 	if (target->oartifact == ART_PARTICULARLY_SOLID_SKULL ) return;
+
+	if (target->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) return;
+
+	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (target->owornmask & W_ARMOR) ) return;
 
 	if (target->oartifact == ART_PROOFINGNESS_POOFS && !target->rknown) return;
 
@@ -1794,6 +1822,13 @@ unwield(obj, put_away)
 register struct obj *obj;
 boolean put_away;
 {
+    if (obj && obj->oartifact == ART_HYPER_INTELLIGENCE) {
+	if (u.moneydebt < 10000000) { /* filthy exploit exploiter who thinks he can overflow the counter! FU! --Amy */
+		u.moneydebt += rnd(100);
+		Your("debts have increased to %d because you're not allowed to put this weapon away.", u.moneydebt);
+	}
+    }
+
     /* MRKR: Extinguish torches when they are put away */
     if (put_away && obj->otyp == TORCH && obj->lamplit) {
 	You("extinguish %s before putting it away.", yname(obj));

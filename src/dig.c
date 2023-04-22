@@ -316,6 +316,8 @@ dig()
 	if (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) bonus += 5;
 	if (uwep && uwep->oartifact == ART_STONEBITER) bonus += 5;
 	if (uwep && uwep->oartifact == ART_BREAK_OUT) bonus += 5;
+	if (uwep && uwep->oartifact == ART_DIG__OF_COURSE) bonus += 5;
+	if (uarm && uarm->oartifact == ART_CLANGFRIEND) bonus += 5;
 	if (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) bonus += 5;
 	if (uarmc && uarmc->oartifact == ART_MINING_FOR_FUN_AND_PROFIT) bonus += 5;
 	if (tunnels(youmonst.data)) bonus += rn2(3); /* digging monsters really should have a bonus here --Amy */
@@ -337,6 +339,8 @@ dig()
 	    bonus *= 2;
 	if (Race_if(PM_IRAHA)) bonus *= rnd(3);
 	if (isfriday && bonus > 1) bonus /= 2;
+
+	if (uwep && uwep->oartifact == ART_ETERNALE_DELAY) bonus -= 5;
 
 	if (uwep->otyp == SHOVEL && !(uwep->oartifact == ART_AFTERMINE) )
 	    bonus -= rn2(Role_if(PM_UNDERTAKER) ? 5 : 20); /* digging with a shovel takes longer */

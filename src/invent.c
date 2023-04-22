@@ -26100,7 +26100,7 @@ boolean knoweverything;
 				case ART_HAVENER:
 					pline("Artifact specs: with a 50%% chance, this shield will block arrows that are being shot at you. This is in addition to the shield's regular chance to block."); break;
 				case ART_SPICKAR:
-					pline("Artifact specs: if you block a projectile with this shield and it doesn't currently have an artifact timeout, you will fire a magic missile in the direction that the projectile came from. Doing so sets a timeout for the artifact, of course."); break;
+					pline("Artifact specs: if you block a projectile with this shield and it doesn't currently have an artifact timeout, you will fire a magic missile in a direction of your choice (preferably at the enemy who just shot you). Doing so sets a timeout for the artifact, of course."); break;
 				case ART_FIRST_THIRTEL:
 					pline("Artifact specs: searching when worn."); break;
 				case ART_SECOND_THIRTEL:

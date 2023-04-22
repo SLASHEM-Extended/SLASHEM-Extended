@@ -4408,6 +4408,8 @@ register struct obj *otmp;
 {
 	int otyp = otmp->otyp;
 
+	if (otmp && otmp->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
+
 	if (SpellColorMetal) {
 		return (!(is_metallic(otmp)));
 	}

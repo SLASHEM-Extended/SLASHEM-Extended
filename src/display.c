@@ -450,7 +450,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {		\
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {		\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
@@ -542,7 +542,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_grayglyph);
 	}
 
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -1100,7 +1100,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1244,6 +1244,8 @@ newsym(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
@@ -1360,6 +1362,8 @@ newsym(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
@@ -1497,7 +1501,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {
+	if ((CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || autismweaponcheck(ART_SAY__CHESS_) || have_checkerboardstone()) && ( ((x + y) % ((have_checkerboardstone() == 2) ? 4 : 2) ) != (moves % ((have_checkerboardstone() == 2) ? 4 : 2) ) ) ) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1641,6 +1645,8 @@ newsymX(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
@@ -1757,6 +1763,8 @@ newsymX(x,y)
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
@@ -3725,6 +3733,8 @@ struct monst *mon;
 	if (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) return TRUE;
+	if (uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) return TRUE;
 	if (uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) return TRUE;
 	if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) return TRUE;

@@ -1483,7 +1483,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2((have_wakeupcallstone() == 2) ? 1000 : 10000)) {
+	if ((WakeupCallBug || (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2((have_wakeupcallstone() == 2) ? 1000 : 10000)) {
 		wakeup(mtmp);
 	}
 
@@ -2979,7 +2979,7 @@ toofar:
 /*	Now the actual movement phase	*/
 
 #ifndef GOLDOBJ
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
 
@@ -2989,7 +2989,7 @@ toofar:
 	    lepgold = findgold(mtmp->minvent);
 	}
 
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
@@ -3561,6 +3561,12 @@ toofar:
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
 			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		}
+
+		if (uarmf && uarmf->oartifact == ART_AERES_RUNNING_SHOES) {
+			make_feared(HFeared + rnz(1000),FALSE);
+			set_itimeout(&HeavyFeared, HFeared);
+			pline("Oh no, the mean prostitute wants to kick you! Help!");
 		}
 
 		}
@@ -4280,7 +4286,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */

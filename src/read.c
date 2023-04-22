@@ -5642,12 +5642,32 @@ proofarmorchoice:
 		    }
 
 		}
+
+	    {	register int ct = 0;
+		register struct monst *mtmp;
+
+		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (DEADMONSTER(mtmp)) continue;
+		    if (distu(mtmp->mx,mtmp->my) > 50) continue;
+		    if(cansee(mtmp->mx,mtmp->my)) {
+			if (!resist(mtmp, sobj->oclass, 0, NOTELL))
+				monflee(mtmp, rnd(10), FALSE, FALSE);
+			if(!mtmp->mtame) ct++;	/* pets don't laugh at you */
+		    }
+		}
+		if(!ct)
+		      You_hear("%s in the distance.", "maniacal laughter");
+
+		break;
+	    }
+
 	case SCR_SCARE_MONSTER:
 	    {	register int ct = 0;
 		register struct monst *mtmp;
 
 		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		    if (DEADMONSTER(mtmp)) continue;
+		    if (distu(mtmp->mx,mtmp->my) > 100) continue;
 		    if(cansee(mtmp->mx,mtmp->my)) {
 			if(confused || sobj->cursed) {
 			    mtmp->mflee = mtmp->mfrozen = mtmp->msleeping = 0;
@@ -5661,12 +5681,9 @@ proofarmorchoice:
 		}
 		if(!ct)
 		      You_hear("%s in the distance.",
-			       (confused || sobj->cursed) ? "sad wailing" :
-							"maniacal laughter");
-		else if(sobj->otyp == SCR_SCARE_MONSTER)
-			You_hear("%s close by.",
-				  (confused || sobj->cursed) ? "sad wailing" :
-						 "maniacal laughter");
+			       (confused || sobj->cursed) ? "sad wailing" : "maniacal laughter");
+		else 
+			You_hear("%s close by.", (confused || sobj->cursed) ? "sad wailing" : "maniacal laughter");
 		break;
 	    }
 	case SCR_BLANK_PAPER:

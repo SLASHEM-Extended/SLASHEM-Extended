@@ -2316,6 +2316,8 @@ level_difficulty()
 	else if (retvalue > 6 && retvalue <= 11 && !rn2(4)) retvalue = ((retvalue - 5) + rnd(5));
 	else if (retvalue > 11 && !rn2(3)) retvalue = (5 + rnd(retvalue - 5));
 
+	if (uarm && uarm->oartifact == ART_ISIMOUD) retvalue /= 2;
+
 	if (retvalue > 126) retvalue = 126; /* fail safe */
 	if (retvalue < 1) retvalue = 1;
 

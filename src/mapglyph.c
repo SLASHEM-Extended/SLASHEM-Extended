@@ -113,7 +113,7 @@ int n;
 
 	color = objects[n].oc_color;
 
-	if (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || isblait) {
+	if (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || autismweaponcheck(ART_VINTAGE_MEMORY) || isblait) {
 		switch (objects[n].oc_color) {
 			case CLR_RED:
 			case CLR_BROWN:
@@ -166,7 +166,7 @@ int n;
 	}
 
 	boolean greyshades = FALSE;
-	if ((ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) greyshades = TRUE;
+	if ((ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || autismweaponcheck(ART_VINTAGE_MEMORY) ) && Infravision) greyshades = TRUE;
 	if ((uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || isblait) greyshades = TRUE;
 
 	color = mons[n].mcolor;
@@ -235,7 +235,7 @@ int n;
 	}
 
 	boolean greyshades = FALSE;
-	if ((ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone()) && Infravision) greyshades = TRUE;
+	if ((ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || autismweaponcheck(ART_VINTAGE_MEMORY) ) && Infravision) greyshades = TRUE;
 	if ((uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || isblait) greyshades = TRUE;
 
 	color = mons[n].mcolor;
@@ -1650,7 +1650,7 @@ unsigned *ospecial;
 		else if (FemtrapActiveMarlena && !rn2(10) ) color = (rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN);
 		else if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 		else if (SpellColorGreen) color = CLR_GREEN;
-		else if (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || isblait ) {
+		else if (ShadesOfGrey || (uarm && uarm->oartifact == ART_GRAYSCALE_WANDERER) || autismweaponcheck(ART____SHADES_OF_GRAYSWANDIR) || (uarm && uarm->oartifact == ART_GREY_FUCKERY) || (uamul && uamul->oartifact == ART_COLORLESS_VARIETY) || u.uprops[SHADES_OF_GREY].extrinsic || have_shadesofgreystone() || autismweaponcheck(ART_VINTAGE_MEMORY) || isblait ) {
 			switch (color) {
 				case CLR_RED:
 				case CLR_BROWN:

@@ -2249,6 +2249,20 @@ nh_timeout()
 
 	}
 
+	if (uwep && uwep->oartifact == ART_TRAPASS__WHAT_A_NAME_) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TRAP_REVEALING) ) {
 
 	    struct trap *t;
@@ -2849,7 +2863,7 @@ nh_timeout()
 	if(Vomiting) vomiting_dialogue();
 	if(Strangled) choke_dialogue();
 	if (Sick && (moves % 7 == 0) ) {
-		pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ? "Ye still feel poxy." : "You still feel deathly sick.");
+		pline(Role_if(PM_PIRATE) ? "Ye still feel poxy." : Role_if(PM_KORSAIR) ? "Ye still feel poxy." : PirateSpeakOn ? "Ye still feel poxy." : "You still feel deathly sick.");
 		if (Sickopathy) pline("You have %ld turns to live.", Sick);
 		else if (!rn2(5)) pline("If you don't cure this condition in time, you will die.");
 	}
@@ -3745,7 +3759,7 @@ nh_timeout()
 			if (unconscious() || Sleep_resistance)
 				HSleeping += rnd(1000);
 			else if (Sleeping) {
-				if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || (uwep && uwep->oartifact == ART_ARRRRRR_MATEY) ) pline("Ye take a caulk.");
+				if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) pline("Ye take a caulk.");
 				else You("fall asleep.");
 				sleeptime = rnd(20);
 				fall_asleep(-sleeptime, TRUE);
@@ -5216,7 +5230,7 @@ long timeout;
 	    case PINK_DOUBLE_LIGHTSWORD:
 	    case LASERXBOW:
 	    case SITH_STAFF:
-	    	if (obj->altmode && obj->cursed && !rn2(25)) {
+	    	if (obj->altmode && obj->cursed && !rn2(25) && !(obj->oartifact == ART_BERSERK_RAGE) ) {
 		    obj->altmode = FALSE;
 		    pline("%s %s reverts to single blade mode!",
 			    whose, xname(obj));
@@ -5247,7 +5261,7 @@ long timeout;
 	    case ELECTRIC_CIGARETTE:
 	        /* Callback is checked every 5 turns - 
 	        	lightsaber automatically deactivates if not wielded */
-	        if ((obj->cursed && !rn2(50)) ||
+	        if ((obj->cursed && !rn2(50) && !(obj->oartifact == ART_BERSERK_RAGE) ) ||
 	            (obj->where == OBJ_FLOOR) || 
 		    (obj->where == OBJ_MINVENT && 
 		    	(!MON_WEP(obj->ocarry) || MON_WEP(obj->ocarry) != obj)) ||

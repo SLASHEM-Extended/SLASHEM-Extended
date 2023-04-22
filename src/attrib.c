@@ -2903,6 +2903,7 @@ int x;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uarm && uarm->oartifact == ART_CLANGFRIEND) tmp += 3;
 		if (uwep && uwep->oartifact == ART_MONS_INFERNALIS_X_) tmp += 10;
 		if (uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp += 10;
@@ -2921,6 +2922,10 @@ int x;
 		if (uwep && uwep->oartifact == ART_SWING_FOR_THE_FENCES) tmp += 10;
 		if (uwep && uwep->oartifact == ART_INDOBURDENIA_VIRII) tmp += 10;
 		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;
+		if (uwep && uwep->oartifact == ART_HARD_IMPACT) tmp += 5;
+		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_STRBONUS) tmp += 5;
+		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3065,6 +3070,7 @@ int x;
 		if (uarmf && itemhasappearance(uarmf, APP_HOMO_SHOES) && u.homosexual == 2) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
+		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 3;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -3186,6 +3192,9 @@ int x;
 		if (u.combatcommand) tmp += 1;
 		if (Race_if(PM_WYLVAN)) tmp += 1;
 		if (x == A_INT && uamul && uamul->oartifact == ART_KLENSCHGOR) tmp += 5;
+		if (x == A_INT && uwep && uwep->oartifact == ART_HYPER_INTELLIGENCE) tmp += 7;
+		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
+		if (x == A_INT && uarms && uarms->oartifact == ART_YELLOW_STATUS) tmp += 2;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3263,6 +3272,9 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_A_LITTLE_SUGAR) tmp += 3;
 		if (u.combatcommand) tmp += 1;
 		if (Race_if(PM_THRALL)) tmp += 3;
+		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_DEXBONUS) tmp += 5;
+		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3315,6 +3327,8 @@ int x;
 		if (Race_if(PM_URGOTH)) tmp += 3;
 		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;
+		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
+		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;
