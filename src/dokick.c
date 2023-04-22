@@ -896,7 +896,7 @@ register xchar x, y;
 		objenchant = uarmf->spe;
 	else objenchant = 0;
 
-	if (objenchant < canhitmon && !Upolyd && (issoviet || !rn2(isfriday ? 2 : 3) ) ) {
+	if ((objenchant < canhitmon) && (canhitmon > 0) && !Upolyd && (issoviet || !rn2(isfriday ? 2 : 3) ) ) {
 		if (!issoviet) Your("attack doesn't seem to harm %s.",
 			mon_nam(mon));
 		else pline("Etot monstr ne mozhet byt' povrezhden, potomu chto Sovetskiy khochet nesmotrya vas.");
