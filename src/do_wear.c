@@ -483,6 +483,8 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_BUGBOOTS_OF_ERRORNESS && uarmf->spe > -1) uarmf->spe = -1;
+
     if (uarmf && uarmf->oartifact == ART_PRACTICLASSY && !flags.hybridbeacher && !(quest_status.killed_nemesis)) {
 		flags.hybridbeacher = TRUE;
 		flags.hybridization++;

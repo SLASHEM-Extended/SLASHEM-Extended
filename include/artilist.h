@@ -13201,6 +13201,62 @@ A("Gigantic Sun",				EAGLE_BALL, /* randart2 orb, increases your sight range by 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Double Free Corruption",				FRAG_GRENADE, /* if it explodes, you get a temporary nasty trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Bugboots of Errorness",				LOW_BOOTS, /* randart2 boots, become -1 when worn while they're higher than that, speed bug, kicking monsters while they're still -1 or lower can cause them to not do any damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Fonlauschi",				VOULGE, /* randart2 polearm, material becomes SILK when wielded, doesn't shatter when applied but is instead disenchanted down to -20 (if already -20 or worse, no change) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Twisted Turn",				KNIFE, /* randart2 knife, perma-poisoned, 1 in 100 to become either blinded, confused or hallucinating for d10 (more) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Mccauley's Intelligence",				BROADSWORD, /* randart2 broadsword, your INT cannot be higher than 6, autocurses */
+	(SPFX_RESTR|SPFX_DFLAG1|SPFX_EVIL), 0, (M1_HUMANOID|M1_ANIMAL),
+	PHYS(8, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Mccauley's Argument",				SHORT_SWORD, /* randart2 short sword, magic vacuum, autocurses */
+	(SPFX_RESTR|SPFX_DFLAG1|SPFX_EVIL), 0, (M1_TPORT),
+	PHYS(4, 22), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Stab All Over",				UNICORN_HORN, /* randart2 unihorn, all unihorns act as if they had an additional +1 while you're wielding this and they are less likely to be vaporized or lose enchantment when applied */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Unwieldytine",				TRIDENT, /* randart2 trident, weighs 200 additional units, -rn1(5, 5) melee to-hit; if you're female, also increases critical hit chance by 5% */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Turvang's Thunder",				WAR_HAMMER, /* randart2 hammer, resist stun */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kloeb",				CLUB, /* randart club */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Nooby Bonus Style",				AXE, /* randart axe; if it's one-handed and in your main hand, it grants +2 increase damage, but if it's two-handed, it grants very fast speed and discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Hakuna Maalum",				SPEAR, /* randart spear */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ashikaga's Revenge",				TWO_HANDED_SWORD, /* randart2 two-handed sword, bisects targets, stealer trap effect and AD_SEDU have +10 spawn freq */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tschapsnap",				BULLWHIP, /* randart2 whip, sight bonus, monsters with distu(mtmp->mx,mtmp->my) greater than 290 move with 2-3 times as much speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(20, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

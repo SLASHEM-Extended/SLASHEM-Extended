@@ -17725,6 +17725,10 @@ loveheelover:
 			(void) mongets(mtmp, MEATSWORD);
 		}
 
+		if (ptr == &mons[PM_FLEECY_SUSPICIOUS_PERSON]) {
+			if ((find_warning_coat()) != -1) (void)mongets(mtmp, find_warning_coat());
+		}
+
 		if (ptr == &mons[PM_CARBON_XORN]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, GRAPHITE, 25);
@@ -17940,6 +17944,7 @@ loveheelover:
 		if (ptr == &mons[PM_KATI_S_BALLERINA]) (void) mongets(mtmp, SWEET_MOCASSINS);
 
 		if (ptr == &mons[PM_EDDA_S_BLUE_VELVET_PEEP_TOE]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if (ptr == &mons[PM_EGOBLASTER_ICEMASTER]) (void) mongets(mtmp, FUR);
 
 		if (ptr == &mons[PM_YNGVAR]) (void) mongets(mtmp, GENTLEMAN_S_SUIT);
 		if (ptr == &mons[PM_TOWELBEAR]) (void) mongets(mtmp, TOWEL);
@@ -28187,6 +28192,8 @@ loopback:
 		if (ct > 0 && (issoviet && is_vanillamonster(ptr))) ct += 20;
 		if (ct > 0 && (Race_if(PM_SPIRIT) && passes_walls(ptr))) ct += 2;
 		if (ct > 0 && (Race_if(PM_WEAPON_TRAPPER) && dmgtype(ptr, AD_WEBS))) ct += 2;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_ASHIKAGA_S_REVENGE && dmgtype(ptr, AD_SEDU))) ct += 10;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_ASHIKAGA_S_REVENGE && dmgtype(ptr, AD_SEDU))) ct += 10;
 		if (ct > 0 && (Race_if(PM_UNALIGNMENT_THING) && is_dnethackmonster(ptr))) ct += 1;
 		if (ct > 0 && (Race_if(PM_VAMPIRE) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Race_if(PM_VENTURE_CAPITALIST) && likes_gold(ptr))) ct += 4;
@@ -29753,6 +29760,8 @@ int     spc;
 		if ((issoviet && is_vanillamonster(&mons[last]))) num += 20;
 		if ((Race_if(PM_SPIRIT) && passes_walls(&mons[last]))) num += 2;
 		if ((Race_if(PM_WEAPON_TRAPPER) && dmgtype(&mons[last], AD_WEBS))) num += 2;
+		if ((uwep && uwep->oartifact == ART_ASHIKAGA_S_REVENGE && dmgtype(&mons[last], AD_SEDU))) num += 10;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_ASHIKAGA_S_REVENGE && dmgtype(&mons[last], AD_SEDU))) num += 10;
 		if ((Race_if(PM_UNALIGNMENT_THING) && is_dnethackmonster(&mons[last]))) num += 1;
 		if ((Race_if(PM_VAMPIRE) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Race_if(PM_VENTURE_CAPITALIST) && likes_gold(&mons[last]))) num += 4;
@@ -30977,6 +30986,8 @@ int     spc;
 		if ((issoviet && is_vanillamonster(&mons[first]))) num -= 20;
 		if ((Race_if(PM_SPIRIT) && passes_walls(&mons[first]))) num -= 2;
 		if ((Race_if(PM_WEAPON_TRAPPER) && dmgtype(&mons[first], AD_WEBS))) num -= 2;
+		if ((uwep && uwep->oartifact == ART_ASHIKAGA_S_REVENGE && dmgtype(&mons[first], AD_SEDU))) num -= 10;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_ASHIKAGA_S_REVENGE && dmgtype(&mons[first], AD_SEDU))) num -= 10;
 		if ((Race_if(PM_UNALIGNMENT_THING) && is_dnethackmonster(&mons[first]))) num -= 1;
 		if ((Race_if(PM_VAMPIRE) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Race_if(PM_VENTURE_CAPITALIST) && likes_gold(&mons[first]))) num -= 4;
@@ -32594,6 +32605,12 @@ int type;
 		case PM_WEREHUGGINGBOOT: return 160;
 		case PM_SNOW_GOLEM: return 160;
 		case PM_STONE_GOLEM: return 180;
+		case PM_LARGE_STONE_GOLEM: return 250;
+		case PM_HUGE_STONE_GOLEM: return 350;
+		case PM_GIANT_STONE_GOLEM: return 500;
+		case PM_HIGH_END_STONE_GOLEM: return 700;
+		case PM_UBER_STONE_GOLEM: return 1000;
+		case PM_ULTRA_STONE_GOLEM: return 1500;
 		case PM_CERAMIC_GOLEM: return 90;
 		case PM_GRAY_STONE_GOLEM: return 180;
 		case PM_STONE_STATUE: return 180;

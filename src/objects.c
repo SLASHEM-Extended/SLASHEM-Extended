@@ -7845,6 +7845,7 @@ SCROLL((char *)0,               "KANN MIT STILETTOS WEDER ANSATZWEISE NOCH ABSAT
 SCROLL((char *)0,               "SCHWULERNAHCERFEHRSFERBUND",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "WEINHOHEITEN RAUBRITTER UND DIE DUDEN REDAKTION",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "VIHAT BAGUETTEN",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "OXIDATIONS AND REDUCTATIONS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 
 #ifdef MAIL

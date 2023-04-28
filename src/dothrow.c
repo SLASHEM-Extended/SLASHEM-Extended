@@ -1748,6 +1748,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_YOU_ARE_UGLY) dmg += 1;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) dmg += 4;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_RONDITSCH) dmg += 1;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) dmg += 2;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {

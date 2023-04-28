@@ -7073,6 +7073,51 @@ newbossSTEN:
 			}
 		}
 
+		if (uwep && uwep->oartifact == ART_TWISTED_TURN && !rn2(100)) {
+			switch (rnd(3)) {
+				case 1:
+					if (FunnyHallu) You_feel("rather trippy.");
+					else You_feel("rather %s.", body_part(LIGHT_HEADED));
+					make_confused(HConfusion + rn1(5, 5),FALSE);
+					stop_occupation();
+					break;
+				case 2:
+					if (FunnyHallu) You_feel("even weirder!");
+					else You_feel("weirded out!");
+					make_hallucinated(HHallucination + rn1(5, 5),FALSE,0L);
+					stop_occupation();
+					break;
+				case 3:
+					if (!Blind) pline("Everything suddenly goes dark.");
+					make_blinded(Blinded + rn1(5, 5),FALSE);
+					if (!Blind) Your("%s", vision_clears);
+					stop_occupation();
+					break;
+			}
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TWISTED_TURN && !rn2(100)) {
+			switch (rnd(3)) {
+				case 1:
+					if (FunnyHallu) You_feel("rather trippy.");
+					else You_feel("rather %s.", body_part(LIGHT_HEADED));
+					make_confused(HConfusion + rn1(5, 5),FALSE);
+					stop_occupation();
+					break;
+				case 2:
+					if (FunnyHallu) You_feel("even weirder!");
+					else You_feel("weirded out!");
+					make_hallucinated(HHallucination + rn1(5, 5),FALSE,0L);
+					stop_occupation();
+					break;
+				case 3:
+					if (!Blind) pline("Everything suddenly goes dark.");
+					make_blinded(Blinded + rn1(5, 5),FALSE);
+					if (!Blind) Your("%s", vision_clears);
+					stop_occupation();
+					break;
+			}
+		}
+
 		if (uarmf && itemhasappearance(uarmf, APP_DEVIL_LETTUCE_SHOES) && !rn2(1000)) {
 			make_hallucinated(HHallucination + rnz(20), TRUE, 0L);
 		}

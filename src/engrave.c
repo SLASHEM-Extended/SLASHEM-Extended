@@ -1084,6 +1084,8 @@ static const char *random_mesg[] = {
 	"Some of the ship's functions are offline due to ongoing equipment upgrades.",
 	"This is the Divine Warship Albedrion. It took part in the final battle in the War of the Gods against the fleet of the forces of Chaos.",
 	"This plane is rigged to blow when the altitude is below 1000 feet. Please sit back, relax, and enjoy the trip back down to the ground. It won't take long.",
+	"hey guys check out my new roguelike game!!! it has realtime combat and if you die you get some goodies to help you with your next run, but its fiendishly hard so its still a roguelike!!!!!!!111 check out super action dungeons of metaprogression now, the brand-new roguelike game!!!!", /* based on the noobies that appear on r/roguelikes every once in a while, who think they can just apply the term "roguelike" to any game because it's "popular" to apply that term in a completely wrong way --Amy */
+	"hey guys i'm making a turn-based roguelike! i totally feel like calling it that, to distinguish it from the many real-time roguelikes out there!!", /* ditto; if it's real-time it's not a roguelike, simple as that */
 
 };
 

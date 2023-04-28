@@ -3226,6 +3226,7 @@ int x;
 			tmp -= norahunger;
 		}
 
+		if (autismweaponcheck(ART_MCCAULEY_S_INTELLIGENCE) && tmp > 6 && x == A_INT) tmp = 6;
 		if (uarmf && uarmf->oartifact == ART_KILLCAP && tmp > 6) tmp = 6;
 		if (uarmh && uarmh->otyp == DUNCE_CAP) return(Role_if(PM_JESTER) ? 9 : 6);
 

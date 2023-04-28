@@ -1098,6 +1098,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_THE_TWELVE && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_IT && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
 	/* end critical hit chance calculation */

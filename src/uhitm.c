@@ -927,6 +927,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LONGLOSS) tmp -= rnd(10);
 	if (uwep && uwep->oartifact == ART_MISS_DOES_IT_REAL) tmp -= 10;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MISS_DOES_IT_REAL) tmp -= 10;
+	if (uwep && uwep->oartifact == ART_UNWIELDYTINE) tmp -= rn1(5, 5);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UNWIELDYTINE) tmp -= rn1(5, 5);
 	if (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 
@@ -3662,6 +3664,7 @@ int dieroll;
 		if (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) tmp += 4;
 		if (uarm && uarm->oartifact == ART_WU_WU && u.twoweap) tmp += 2;
 		if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
+		if (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) tmp += 2;
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {

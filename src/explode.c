@@ -1314,6 +1314,15 @@ int dest;
 	}
     }
 
+    if (obj && obj->oartifact == ART_DOUBLE_FREE_CORRUPTION) {
+	int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+	if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+	int blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+	if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+	randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+    }
+
     if (Role_if(PM_GRENADONIN) || (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU) ) {
 
 	if (isyou) {

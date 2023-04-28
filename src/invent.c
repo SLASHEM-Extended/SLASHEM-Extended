@@ -26201,6 +26201,34 @@ boolean knoweverything;
 					pline("Artifact specs: inverts you while wielded, and has increased damage and to-hit if your firearms skill is below expert but reduces it if the skill is above expert."); break;
 				case ART_GIGANTIC_SUN:
 					pline("Artifact specs: +3 sight range when wielded."); break;
+				case ART_DOUBLE_FREE_CORRUPTION:
+					pline("Artifact specs: uhh... the name doesn't sound very promising..."); break;
+				case ART_BUGBOOTS_OF_ERRORNESS:
+					pline("Artifact specs: they cause certain bugs, which you probably don't want."); break;
+				case ART_FONLAUSCHI:
+					pline("Artifact specs: wielding it sets its material to silk if it was something else, and it doesn't shatter when applied but is instead disenchanted if it would have shattered."); break;
+				case ART_TWISTED_TURN:
+					pline("Artifact specs: permanently poisoned, but can blind, confuse or hallucinate you while wielded."); break;
+				case ART_MCCAULEY_S_INTELLIGENCE:
+					pline("Artifact specs: +8 to-hit and +14 damage against humanoids and animals, autocurses and prevents your intelligence from being higher than 6. This is a broad weapon."); break;
+				case ART_MCCAULEY_S_ARGUMENT:
+					pline("Artifact specs: +4 to-hit and +22 damage against teleporting monsters, autocurses and causes a magic vacuum when wielded. This is a narrow weapon."); break;
+				case ART_STAB_ALL_OVER:
+					pline("Artifact specs: +3 to-hit and +11 damage, improves the application effect of all unihorns when wielded."); break;
+				case ART_UNWIELDYTINE:
+					pline("Artifact specs: +14 damage, weighs 200 additional units and reduces your melee to-hit when wielded. If you're female, it also slightly increases your chance of landing a critical hit against enemies."); break;
+				case ART_TURVANG_S_THUNDER:
+					pline("Artifact specs: +12 damage to shock-susceptible monsters, stun resistance when wielded."); break;
+				case ART_KLOEB:
+					pline("Artifact specs: +6 to-hit and +6 damage."); break;
+				case ART_NOOBY_BONUS_STYLE:
+					pline("Artifact specs: if it's one-handed, wielding it grants +2 increase damage, but if it's two-handed, wielding it grants very fast speed and discount action."); break;
+				case ART_HAKUNA_MAALUM:
+					pline("Artifact specs: +6 damage."); break;
+				case ART_ASHIKAGA_S_REVENGE:
+					pline("Artifact specs: bisects targets, stealer trap effect and increased odds of item-stealing monsters spawning while wielded."); break;
+				case ART_TSCHAPSNAP:
+					pline("Artifact specs: +20 to-hit and +2 damage, sight bonus, and while wielding it, monsters who are far away from you move much faster than normal."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

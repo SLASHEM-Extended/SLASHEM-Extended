@@ -415,6 +415,9 @@ init_randarts()
 	artilist[ART_EMERALD_SWORD].otyp = randarttwohandedsword();
 	artilist[ART_CELESTIAL_SCEPTRE].otyp = randartmace();
 	artilist[ART_INDOBURDENIA_VIRII].otyp = randartmace();
+	artilist[ART_KLOEB].otyp = randartclub();
+	artilist[ART_NOOBY_BONUS_STYLE].otyp = randartaxe();
+	artilist[ART_HAKUNA_MAALUM].otyp = randartspear();
 	artilist[ART_HOLYBASHER].otyp = randartflail();
 	artilist[ART_RAISING_HEART].otyp = randartquarterstaff();
 	artilist[ART_LANCE_ARMSTRONG].otyp = randartlance();
@@ -457,6 +460,7 @@ init_randarts()
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_OLD_PERSON_TALK].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
+	artilist[ART_BUGBOOTS_OF_ERRORNESS].otyp = randartbootsX();
 	artilist[ART_I_DON_T_PARTICULARLY_LIKE_].otyp = randartbootsX();
 	artilist[ART_HOHO_DINGO].otyp = randartbootsX();
 	artilist[ART_FIREPROOF_WALL].otyp = randartmeleeweaponX();
@@ -598,6 +602,7 @@ init_randarts()
 	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
 	artilist[ART_DESANN_S_WRATH].otyp = randartlightsaberX();
 	artilist[ART_DONGOR].otyp = randartvenomX();
+	artilist[ART_STAB_ALL_OVER].otyp = randartunihornX();
 	artilist[ART_HOL_ON_MAN].otyp = randartvenomX();
 	artilist[ART_POWER_POLE].otyp = randartpolearmX();
 	artilist[ART_BALANCE_PSEUDOSHIELD].otyp = randartquarterstaffX();
@@ -609,6 +614,8 @@ init_randarts()
 	artilist[ART_CROSSBOW_OF_THE_GNOLL_LORD].otyp = randartcrossbowX();
 	artilist[ART_HOWLING_FLAIL].otyp = randartflailX();
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
+	artilist[ART_UNWIELDYTINE].otyp = randarttridentX();
+	artilist[ART_TURVANG_S_THUNDER].otyp = randarthammerX();
 	artilist[ART_MORTALITY_DIAL].otyp = randartmaceX();
 	artilist[ART_ARK_OF_THE_COVENANT].otyp = randartpickaxeX();
 	artilist[ART_FAMOUS_LANCE].otyp = randartlanceX();
@@ -624,6 +631,7 @@ init_randarts()
 	artilist[ART_DAEFAROTH].otyp = randartdaggerX();
 	artilist[ART_NOCLAF].otyp = randartscimitarX();
 	artilist[ART_BLUE_CORSAR_SWIMMING].otyp = randartscimitarX();
+	artilist[ART_FONLAUSCHI].otyp = randartpolearmX();
 	artilist[ART_AVAL_N].otyp = randartscimitarX();
 	artilist[ART_EUTATS_ENOTS].otyp = randartaxeX();
 	artilist[ART_BRAINSTORM].otyp = randartflailX();
@@ -655,6 +663,11 @@ init_randarts()
 	artilist[ART_FLIUFLIUFLIUUUUUUU_].otyp = randartdartX();
 	artilist[ART_CAPAUER].otyp = randartshurikenX();
 	artilist[ART_ETERNALE_DELAY].otyp = randartmattockX();
+	artilist[ART_TWISTED_TURN].otyp = randartknifeX();
+	artilist[ART_MCCAULEY_S_INTELLIGENCE].otyp = randartbroadswordX();
+	artilist[ART_MCCAULEY_S_ARGUMENT].otyp = randartshortswordX();
+	artilist[ART_ASHIKAGA_S_REVENGE].otyp = randarttwohandedswordX();
+	artilist[ART_TSCHAPSNAP].otyp = randartwhipX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
@@ -2803,7 +2816,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -2896,7 +2909,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_ASHIKAGA_S_REVENGE || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {

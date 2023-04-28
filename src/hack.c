@@ -5328,6 +5328,8 @@ inv_weight()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (uwep && uwep->oartifact == ART_OTHER_MJOLLNIR) wt += 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OTHER_MJOLLNIR) wt += 500;
+	if (uwep && uwep->oartifact == ART_UNWIELDYTINE) wt += 200;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UNWIELDYTINE) wt += 200;
 
 	/* Symbiotes can have a weight. If you're a symbiant, the weight is considerably lower; everyone else will get
 	 * a skill-dependant amount of weight added. At master and above, the weight no longer gets a multiplier --Amy

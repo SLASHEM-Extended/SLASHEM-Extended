@@ -1240,6 +1240,12 @@ register struct monst *mtmp;
 
 		break;
 	    case PM_STONE_GOLEM:
+	    case PM_LARGE_STONE_GOLEM:
+	    case PM_HUGE_STONE_GOLEM:
+	    case PM_GIANT_STONE_GOLEM:
+	    case PM_HIGH_END_STONE_GOLEM:
+	    case PM_UBER_STONE_GOLEM:
+	    case PM_ULTRA_STONE_GOLEM:
 		obj = mkcorpstat(STATUE, (struct monst *)0,
 			mdat, x, y, FALSE);
 		break;
@@ -2225,6 +2231,13 @@ struct monst *mon;
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
+	}
+
+	if (uwep && uwep->oartifact == ART_TSCHAPSNAP && distu(mon->mx,mon->my) > 290) {
+		mmove *= (1 + rnd(2));
+	}
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TSCHAPSNAP && distu(mon->mx,mon->my) > 290) {
+		mmove *= (1 + rnd(2));
 	}
 
 	/* additive speed increases second */
@@ -7819,13 +7832,22 @@ mon_to_stone(mtmp)
 {
     boolean polymorphed = mtmp->oldmonnm != monsndx(mtmp->data);
 
+	/* change by Amy: higher-level golems, if they can be turned to stone, will turn into better stone golems */
+	int newchamgolem = PM_STONE_GOLEM;
+	if (mtmp->data->mlevel >= 20) newchamgolem = PM_LARGE_STONE_GOLEM;
+	if (mtmp->data->mlevel >= 30) newchamgolem = PM_HUGE_STONE_GOLEM;
+	if (mtmp->data->mlevel >= 40) newchamgolem = PM_GIANT_STONE_GOLEM;
+	if (mtmp->data->mlevel >= 50) newchamgolem = PM_HIGH_END_STONE_GOLEM;
+	if (mtmp->data->mlevel >= 70) newchamgolem = PM_UBER_STONE_GOLEM;
+	if (mtmp->data->mlevel >= 100) newchamgolem = PM_ULTRA_STONE_GOLEM;
+
     if(mtmp->data->mlet == S_GOLEM) {
 	/* it's a golem, and not a stone golem */
 	if(canseemon(mtmp))
 	    pline("%s solidifies...", Monnam(mtmp));
-	if (newcham(mtmp, &mons[PM_STONE_GOLEM], FALSE, FALSE)) {
+	if (newcham(mtmp, &mons[newchamgolem], FALSE, FALSE)) {
 	    if (!polymorphed)
-		mtmp->oldmonnm = PM_STONE_GOLEM;    /* Change is permanent */
+		mtmp->oldmonnm = newchamgolem;    /* Change is permanent */
 	    if(canseemon(mtmp))
 		pline("Now it's %s.", an(mtmp->data->mname));
 	} else {

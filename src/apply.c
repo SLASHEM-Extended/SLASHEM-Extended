@@ -2633,7 +2633,7 @@ struct obj *obj;
 	}
 
 	/* higher chance for vaporizing the horn as a centaur --Amy */
-	if (obj && !obj->oartifact && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
+	if (obj && !obj->oartifact && !(uwep && uwep->oartifact == ART_STAB_ALL_OVER && rn2(2)) && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
 
 degradeagain:
 	    if (obj->spe < 1) {
@@ -2653,7 +2653,7 @@ degradeagain:
 
 	    }
 		}
-	if (obj && obj->oartifact && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
+	if (obj && obj->oartifact && !(uwep && uwep->oartifact == ART_STAB_ALL_OVER && rn2(2)) && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
 	    if (obj->spe < 1) {
 	    useup(obj);
 	    pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
@@ -2817,6 +2817,7 @@ fixthings:
 	}
 
 	if (obj && obj->oartifact == ART_CURE_GOOD) chance += 2;
+	if (uwep && uwep->oartifact == ART_STAB_ALL_OVER) chance++;
 
 	if (isfriday && chance > 1) chance /= 2;
 
@@ -4336,7 +4337,11 @@ use_pole (obj)
 		}
 
 	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
-		if (obj->oartifact == ART_NOBREAK && obj->spe < 1) {
+		if (obj->oartifact == ART_FONLAUSCHI && obj->spe < 1) {
+			if (obj->spe > -20) obj->spe--;
+			pline(FunnyHallu ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		} else if (obj->oartifact == ART_NOBREAK && obj->spe < 1) {
 			if (obj->spe > -20) obj->spe--;
 			pline(FunnyHallu ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
@@ -4355,7 +4360,11 @@ use_pole (obj)
 
 	    if ((!rn2(isfriday ? 500 : 1000) && !obj->oartifact) || (!rn2(isfriday ? 125 : 250) && obj->otyp == WOODEN_BAR && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 125 : 250) && (obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS) && (!obj->oartifact || !rn2(10))) || (!rn2(isfriday ? 5000 : 10000) && obj->oartifact)) {
 
-		if (obj->oartifact == ART_NOBREAK && (obj->oeroded >= 3 || obj->oeroded2 >= 3)) {
+		if (obj->oartifact == ART_FONLAUSCHI && (obj->oeroded >= 3 || obj->oeroded2 >= 3)) {
+			if (obj->spe > -20) obj->spe--;
+			pline(FunnyHallu ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		} else if (obj->oartifact == ART_NOBREAK && (obj->oeroded >= 3 || obj->oeroded2 >= 3)) {
 			if (obj->spe > -20) obj->spe--;
 			pline(FunnyHallu ? "Your stick seems shorter now!" : "Your weapon seems less effective.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");

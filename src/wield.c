@@ -144,6 +144,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("weapon's material morphs to a different one!");
 	}
 
+	if (uwep && uwep->oartifact == ART_FONLAUSCHI && objects[uwep->otyp].oc_material != MT_SILK) {
+		objects[uwep->otyp].oc_material = MT_SILK;
+		Your("weapon is made of silk now.");
+	}
+
 	if (uwep && uwep->otyp == HONOR_KATANA && !uwep->cursed) {
 		curse(uwep);
 		Your("katana welds itself to your %s!", body_part(HAND));
@@ -245,6 +250,16 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_XIUHCOATL) {
 		curse(uwep);
 		pline("The atlatl becomes cursed as you wield it.");
+	}
+
+	if (uwep && uwep->oartifact == ART_MCCAULEY_S_INTELLIGENCE) {
+		curse(uwep);
+		pline("Broad weapons are better than narrow weapons because their effect applies to more types of monsters.");
+	}
+
+	if (uwep && uwep->oartifact == ART_MCCAULEY_S_ARGUMENT) {
+		curse(uwep);
+		pline("Narrow weapons are worse than broad weapons because their effect applies to only a few types of monsters.");
 	}
 
 	if (uwep && uwep->oartifact == ART_FADED_USELESSNESS) {
@@ -473,6 +488,17 @@ swapweaponchoice:
 			curse(uswapwep);
 			pline("In order to prevent it from falling off, your knife curses itself.");
 		}
+
+		if (uswapwep && uswapwep->oartifact == ART_MCCAULEY_S_INTELLIGENCE) {
+			curse(uswapwep);
+			pline("Broad weapons are better than narrow weapons because their effect applies to more types of monsters.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_MCCAULEY_S_ARGUMENT) {
+			curse(uswapwep);
+			pline("Narrow weapons are worse than broad weapons because their effect applies to only a few types of monsters.");
+		}
+
 
 		if (uswapwep && uswapwep->oartifact == ART_BERSERK_RAGE) {
 			curse(uswapwep);

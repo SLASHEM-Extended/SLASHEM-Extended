@@ -413,6 +413,12 @@
 
 #define made_of_rock(ptr)	((passes_walls(ptr) && thick_skinned(ptr)) || \
 				 (ptr) == &mons[PM_STONE_GOLEM] || \
+				 (ptr) == &mons[PM_LARGE_STONE_GOLEM] || \
+				 (ptr) == &mons[PM_HUGE_STONE_GOLEM] || \
+				 (ptr) == &mons[PM_GIANT_STONE_GOLEM] || \
+				 (ptr) == &mons[PM_HIGH_END_STONE_GOLEM] || \
+				 (ptr) == &mons[PM_UBER_STONE_GOLEM] || \
+				 (ptr) == &mons[PM_ULTRA_STONE_GOLEM] || \
 				 (ptr) == &mons[PM_STONE_STATUE] || \
 				 (ptr) == &mons[PM_STATUE_GARGOYLE])
 #define hates_silver(ptr)	(is_were(ptr) || is_vampire(ptr) || \
