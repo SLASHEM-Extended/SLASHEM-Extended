@@ -14468,6 +14468,7 @@ callingoutdone:
 				}
 				pline("Haaaaaaaa!");
 			}
+			if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 
 			break;
 
