@@ -2768,19 +2768,19 @@ struct monst *mtmp;
 	    return FALSE;
 	}
 
-	if (levl[x][y].typ == STAIRS && !stuck && !immobile) {
+	if (levl[x][y].typ == STAIRS && !(u.usteed && (mtmp == u.usteed)) && !stuck && !immobile) {
 		if (x == xdnstair && y == ydnstair && !is_floater(mtmp->data))
 			m.has_defense = MUSE_DOWNSTAIRS;
 		if (x == xupstair && y == yupstair && ledger_no(&u.uz) != 1)
 	/* Unfair to let the monsters leave the dungeon with the Amulet */
 	/* (or go to the endlevel since you also need it, to get there) */
 			m.has_defense = MUSE_UPSTAIRS;
-	} else if (levl[x][y].typ == LADDER && !stuck && !immobile) {
+	} else if (levl[x][y].typ == LADDER && !(u.usteed && (mtmp == u.usteed)) && !stuck && !immobile) {
 		if (x == xupladder && y == yupladder)
 			m.has_defense = MUSE_UP_LADDER;
 		if (x == xdnladder && y == ydnladder && !is_floater(mtmp->data))
 			m.has_defense = MUSE_DN_LADDER;
-	} else if (sstairs.sx && sstairs.sx == x && sstairs.sy == y) {
+	} else if (sstairs.sx && !(u.usteed && (mtmp == u.usteed)) && sstairs.sx == x && sstairs.sy == y) {
 		m.has_defense = MUSE_SSTAIRS;
 	} else if (!stuck && !immobile) {
 	/* Note: trap doors take precedence over teleport traps. */
@@ -2799,6 +2799,7 @@ struct monst *mtmp;
 				&& !is_floater(mtmp->data)
 				&& !mtmp->isshk && !mtmp->isgd
 				&& !mtmp->ispriest
+				&& !(u.usteed && (mtmp == u.usteed))
 				&& Can_fall_thru(&u.uz)
 						) {
 				trapx = xx;
@@ -2864,6 +2865,7 @@ struct monst *mtmp;
 		    && !is_floater(mtmp->data)
 		    /* monsters digging in Sokoban can ruin things */
 		    && !In_sokoban(&u.uz)
+		    && !(u.usteed && (mtmp == u.usteed))
 		    /* digging wouldn't be effective; assume they know that */
 		    && !(levl[x][y].wall_info & W_NONDIGGABLE)
 		    && !(Is_botlevel(&u.uz) || In_endgame(&u.uz))
@@ -2894,6 +2896,7 @@ struct monst *mtmp;
 		   && haseyes(mtmp->data)
 		   && (!obj->cursed ||
 		       (!(mtmp->isshk && inhishop(mtmp))
+			    && !(u.usteed && (mtmp == u.usteed))
 			    && !mtmp->isgd && !mtmp->ispriest))) {
 		    /* see WAN_TELEPORTATION case above */
 		    if (!level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) {
@@ -2905,6 +2908,7 @@ struct monst *mtmp;
 		nomore(MUSE_SCR_ROOT_PASSWORD_DETECTION);
 		if(obj->otyp == SCR_ROOT_PASSWORD_DETECTION
 		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !(u.usteed && (mtmp == u.usteed))
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_ROOT_PASSWORD_DETECTION;
@@ -2913,6 +2917,7 @@ struct monst *mtmp;
 		nomore(MUSE_SCR_COURSE_TRAVELING);
 		if(obj->otyp == SCR_COURSE_TRAVELING
 		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !(u.usteed && (mtmp == u.usteed))
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_COURSE_TRAVELING;
@@ -2929,6 +2934,7 @@ struct monst *mtmp;
 		nomore(MUSE_SCR_TELE_LEVEL);
 		if(obj->otyp == SCR_TELE_LEVEL
 		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !(u.usteed && (mtmp == u.usteed))
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_TELE_LEVEL;
@@ -2937,6 +2943,7 @@ struct monst *mtmp;
 		nomore(MUSE_SCR_BRANCH_TELEPORT);
 		if(obj->otyp == SCR_BRANCH_TELEPORT && evilfriday
 		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !(u.usteed && (mtmp == u.usteed))
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_BRANCH_TELEPORT;
@@ -2945,6 +2952,7 @@ struct monst *mtmp;
 		nomore(MUSE_WAN_TELE_LEVEL);
 		if(obj->otyp == WAN_TELE_LEVEL && obj->spe > 0
 		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !(u.usteed && (mtmp == u.usteed))
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_WAN_TELE_LEVEL;
@@ -2953,6 +2961,7 @@ struct monst *mtmp;
 		nomore(MUSE_SCR_WARPING);
 		if(obj->otyp == SCR_WARPING
 		   && (!(mtmp->isshk && inhishop(mtmp))
+			    && !(u.usteed && (mtmp == u.usteed))
 			    && !mtmp->isgd && !mtmp->ispriest)) {
 			m.defensive = obj;
 			m.has_defense = MUSE_SCR_WARPING;
