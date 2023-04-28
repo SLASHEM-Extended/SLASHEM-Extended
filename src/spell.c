@@ -5356,6 +5356,7 @@ addspmagain:
 		for(whismtmp = fmon; whismtmp; whismtmp = whisnextmon) {
 		    whisnextmon = whismtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(whismtmp)) continue;
+		    if (evilfriday && level.flags.noteleport) continue;
 		    if (whismtmp->mtame) {
 			if (whismtmp->mtrapped) {
 			    /* no longer in previous trap (affects mintrap) */

@@ -818,6 +818,7 @@ struct obj *obj;
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(mtmp)) continue;
+		    if (evilfriday && level.flags.noteleport) continue;
 		    if (mtmp->mtame) {
 			if (mtmp->mtrapped) {
 			    /* no longer in previous trap (affects mintrap) */
@@ -854,6 +855,7 @@ struct obj *obj;
 		for(mtmp = fmon; mtmp; mtmp = nextmon) {
 		    nextmon = mtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(mtmp)) continue;
+		    if (evilfriday && level.flags.noteleport) continue;
 		    if (!monnear(mtmp, u.ux, u.uy)) continue;
 		    if (mtmp->mtame) {
 			if (mtmp->mtrapped) {
