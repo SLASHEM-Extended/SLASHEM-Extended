@@ -968,25 +968,26 @@ doforce()		/* try to force a chest with your weapon */
 
 				if(mtmp->mtame) {
 				    abuse_dog(mtmp);
-				    if (mtmp->meating) {
+				}
+
+				if (mtmp->meating) {
 					pline("Startled, %s spits out the food it was eating!", mon_nam(mtmp));
 					mtmp->meating = 0;
-					}
-				    if (mtmp->mfrozen) {
+				}
+				if (mtmp->mfrozen) {
 					pline("Being hit by your force, %s is jolted back to its senses.", mon_nam(mtmp));
 					mtmp->mfrozen = 0;
-					}
-				    if (mtmp->msleeping) {
+				}
+				if (mtmp->msleeping) {
 					pline("Being hit by your force, %s suddenly wakes up!", mon_nam(mtmp));
 					mtmp->msleeping = 0;
-					}
-				    mtmp->mcanmove = 1;
-				    mtmp->masleep = 0;
-				    if (mtmp->mtame)
-					monflee(mtmp, (dmg ? rnd(dmg) : 1), FALSE, FALSE);
-				    else
-					mtmp->mflee = 0;
 				}
+				mtmp->mcanmove = 1;
+				mtmp->masleep = 0;
+				if (mtmp->mtame)
+					monflee(mtmp, (dmg ? rnd(dmg) : 1), FALSE, FALSE);
+				else
+					mtmp->mflee = 0;
 
 				if (dmg > 0) {
 					mtmp->mhp -= dmg;
