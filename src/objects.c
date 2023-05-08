@@ -7846,6 +7846,12 @@ SCROLL((char *)0,               "SCHWULERNAHCERFEHRSFERBUND",  P_NONE,     1,   
 SCROLL((char *)0,               "WEINHOHEITEN RAUBRITTER UND DIE DUDEN REDAKTION",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "VIHAT BAGUETTEN",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "OXIDATIONS AND REDUCTATIONS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "CONTROL ROOMS ON AN ACCOMODATING COURSE",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "YOU CAN ME GLADLY WITH THE PARAGRAPH ALL BLOODY RATCHETS",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "BITTE RATEN SIE MICH HEI",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "DOES THE MONEY GO ON POCKETS FOR A VAUT",  P_NONE,     1,   0, 100, CLR_BROWN, 1), /* "vaut" is not a misspelling!!! --Amy */
+SCROLL((char *)0,               "I HAVE DRAWN THE LARGE LOT",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "HO ALSONTAI E VAGABONDE",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
 
 
 #ifdef MAIL

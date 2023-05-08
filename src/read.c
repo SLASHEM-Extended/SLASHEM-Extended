@@ -944,6 +944,8 @@ doread()
 	"The exact wording of the NetHack shahada reads: I bear witness that there is no vanilla besides 3.4.3 and I bear witness that 3.4.3nao is its playable form and final release.", /* by Demo */
 	"NetHack is not a roguelike. Reason: bones files. The game gives you a level that someone's wizard died on, at a depth of dungeon level 20, and by that time said wizard had a bag of holding containing 20 pages of loot. You wouldn't have obtained nearly as much loot on a regular level 20, so this obviously breaks the rule of 'if you die, it shouldn't result in future runs becoming easier'.",
 	"Bones files are cheating. Reason: the ghost possesses an entire dungeon worth of items up to whatever level it died on, which you get *in addition* to all the items you already got on your journey from level 1 to whatever level the bones file was on. That's, like, way overpowered.",
+	"Those people around here are all more or less annoying, because they are all more or less male!",
+	"Yeah, the infernal sound of a church bell is not a good reason to avoid roads that pass by a church. But, God, religions should be abolished!",
 
 	    };
 	    char buf[BUFSZ];

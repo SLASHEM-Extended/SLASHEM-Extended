@@ -29011,6 +29011,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Dieau-dieau-dieau-dieau-dieau! Lakitu comes and fishes you out of the water.",
 	"Dieau-dieau-dieau-dieau-dieau! Lakitu comes and fishes you out of the water, but takes 2 coins for the service.",
 	"You fell into the water... but somehow Lakitu doesn't come to save you, because he's currently busy filming Toad who is attempting a 120 star speedrun in Super Releasio 64. 'Kjear! Aa-hu! Ah-dubberdubberdubberdubberdubber! Hiarwigo! Oh-dey! Rueue! Bo! Aeaeaeaeaeaeaeaeaeaeaeh! Iii-am-debest!' And so on! Toad really has the best voice lines ever!",
+	"The plural of 'rotatonis the infections' is 'rotatonises the infectionses'.",
 
 };
 
