@@ -1,5 +1,34 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.3 - January 2023
+- Using the force on a monster will wake up the monster unconditionally now; previously, it only woke up tame ones.
+- In evilvariant mode, magic whistles no longer work on no-teleport levels.
+- Non-tame steeds can no longer use escape items, stairs, trap doors etc. because that was causing bugs.
+- Fixed the oversight where triggering a field break trap would not update the screen to reflect changes made to the terrain.
+- Fixed the SLASH'EM bug where if the player kicks with a pair of boots whose enchantment value is -1 or worse, it would fail to damage monsters at all.
+- Temple sanctuary is less powerful now, and bosses are immune to it.
+- Added new in/extrinsics: burden, magic vacuum and resistance piercing.
+- The identify shop service is more expensive now.
+- Status effects like confusion, stun or fear time out very quickly for boss monsters now.
+- Overhauled the sing trap effect: the shoe monsters now have various flags that affect how the player interacts with them.
+- New option "epyxmode" which controls whether the specific Epyx graphics can be used in rougelike mode (they don't work on all terminals).
+- Nerfed the acid ingestion spell.
+- The giant explorer nastytrap now properly causes the player to be interrupted whenever any monster inside the astral vision radius moves.
+- Fixed the bug where bubblehorns would break too often.
+- The game now gives more verbose messages if the player is deathly sick or turning to stone, to emphasize the fact that these conditions will kill the character unless cured.
+- Fixed the bug where the Gangster role's quest artifact would not generate.
+- Ported a bugfix from the variant that calls itself Nethack 3.7.0 to resolve issues with artifact naming.
+- Sometimes, monsters may now simply unequip a cursed item even if it's welded to them.
+- Monsters can now use lightsaber forms in combat, if they have a lightsaber.
+- Added the possibility for nastier versions of existing nasty trap effects to be triggered.
+- Monsters with mind flayer blasts no longer affect the entire level with the blast, and non-hostile ones deal less damage with the blast.
+- If the player offers 20k zorkmids to a temple priest, the sin counter will be reduced by one.
+- Fixed an oversight that caused the mana cost for a player's spit attack to be calculated incorrectly.
+- Fixed errors where if the player died due to turning to slime, the death message would sometimes show a garbled string.
+- Breaking out of a farting web, or avoiding it entirely, is much harder now.
+- The chance that a female character has an egg randomly hatch tame has been reduced.
+- Added new ways by which the player can increase stats.
+
 2.8.2 - January 2023
 - Overenchanting an artifact ring no longer causes it to explode, but instead resets its enchantment to zero.
 - Reduced the amount of boots items generated in changing rooms.
