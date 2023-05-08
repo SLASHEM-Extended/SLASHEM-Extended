@@ -5354,7 +5354,7 @@ doapply()
 		}
 		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && (have_unknowledgestone() == 2) &&  (!obj->known || !obj->rknown || !obj->dknown || !obj->bknown) )	{
 			pline("Unfortunately, you don't know how to use that tool.");
-			return;
+			return(0);
 		}
 	}
 
