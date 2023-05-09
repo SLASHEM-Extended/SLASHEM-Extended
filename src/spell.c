@@ -3811,12 +3811,21 @@ castanyway:
 				break;
 			}
 		}
+
+		/* make it depend on spell level... */
+		intellchance *= 16;
+		intellchance /= (8 + spellev(spell));
+
 		if (!rn2(intellchance)) (void) adjattrib(A_INT, 1, FALSE, TRUE);
 	}
 
 	if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 		u.unimanturns++;
-		mightbooststat(A_INT);
+
+		if (spellev(spell) > rn2(8)) {
+			mightbooststat(A_INT);
+		}
+
 		if (u.unimanturns >= 3) {
 			u.unimanturns = 0;
 			use_skill(P_NIMAN, 1);
@@ -3832,7 +3841,11 @@ castanyway:
 	}
 	if (uwep && uwep->oartifact == ART_NEVERMAN) {
 		u.unimanturns++;
-		mightbooststat(A_INT);
+
+		if (spellev(spell) > rn2(8)) {
+			mightbooststat(A_INT);
+		}
+
 		if (u.unimanturns >= 3) {
 			u.unimanturns = 0;
 			use_skill(P_NIMAN, 1);

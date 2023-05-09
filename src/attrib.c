@@ -2202,13 +2202,13 @@ exerchk()
 		/* make it even harder if they're already rather high --Amy */
 		if (sgn(AEXE(i)) >= 1) {
 
-			if (ABASE(i) >= (10 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
-			if (ABASE(i) >= (12 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
-			if (ABASE(i) >= (13 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
-			if (ABASE(i) >= (14 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
-			if (ABASE(i) >= (15 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
-			if (ABASE(i) >= (16 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
-			if (ABASE(i) >= (17 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(2)) continue;
+			if (ABASE(i) >= (10 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(5)) continue;
+			if (ABASE(i) >= (12 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
+			if (ABASE(i) >= (13 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
+			if (ABASE(i) >= (14 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
+			if (ABASE(i) >= (15 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
+			if (ABASE(i) >= (16 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
+			if (ABASE(i) >= (17 + goupbuust) && (ASTART(i) <= ABASE(i)) && !rn2(3)) continue;
 		}
 
 		/* different formula for abuse --Amy */
