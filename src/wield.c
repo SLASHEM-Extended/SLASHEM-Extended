@@ -590,8 +590,14 @@ boolean put_away;
 	if (!wep) {
 	    /* No weapon */
 	    if (uwep) {
+
 		You("are empty %s.", body_part(HANDED));
+
+		/* BUG: doing this while the secondary hand has a lit lightsaber doesn't turn it off! fix that! --Amy */
+		if (u.twoweap && uswapwep) unwield(uswapwep, TRUE);
+
 		setuwep((struct obj *) 0, put_away, TRUE);
+
 		/* You can just drop your weapon and pick it back up in zero turns, so unwielding something should not
 		 * take time either.
 		 * Except in Soviet Russia of course, where dropping and picking up items isn't free, because nothing done
