@@ -5448,7 +5448,7 @@ begin_burn(obj, already_lit)
 				if (u.polgoskill >= 2500) lightsaberchance3++;
 				if (u.polgoskill >= 4320) lightsaberchance3++;
 			}
-			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age--; /* Double power usage */
+			if ((willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) || !already_lit) obj->age--; /* Double power usage */
 
 		}
 	    	turns = 1;
@@ -5510,7 +5510,7 @@ begin_burn(obj, already_lit)
 				if (u.polgoskill >= 2500) lightsaberchance3++;
 				if (u.polgoskill >= 4320) lightsaberchance3++;
 			}
-			if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age--; /* Double power usage */
+			if ((willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) || !already_lit) obj->age--; /* Double power usage */
 		}
 	    }
 	    case RED_LIGHTSABER:
@@ -5654,7 +5654,7 @@ begin_burn(obj, already_lit)
 			if (u.polgoskill >= 4320) lightsaberchance3++;
 		}
 
-		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age -= turns;
+		if ((willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) || !already_lit) obj->age -= turns;
 		if (carried(obj) && !already_lit)
 		    update_inventory();
 	    } else {
