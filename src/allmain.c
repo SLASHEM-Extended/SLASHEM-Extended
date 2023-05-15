@@ -14047,6 +14047,13 @@ past4:
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 
+	/* far too many cases where you suddenly aren't dual-wielding anymore, hard to catch them all... --Amy
+	 * we need to prevent a lit, non-wielded lightsaber that constantly drains energy without being used! */
+	if (!u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {
+		pline("%s deactivates.", yname(uswapwep));
+		end_burn(uswapwep, TRUE);
+	}
+
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 
 	if (autismweaponcheck(ART_BAT_FROM_HELL)) {
