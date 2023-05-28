@@ -29350,12 +29350,12 @@ int     spc;
 	if (canincreaselevel) {
 		if (!rn2(5)) bonuslevel += rnd(5);
 		if (!rn2(20)) bonuslevel += rnd(7);
-		if (!rn2(100)) bonuslevel += rnd(10);
-		if (!rn2(500)) bonuslevel += rnd(15);
-		if (!rn2(2500)) bonuslevel += rnd(20);
-		if (!rn2(20000)) bonuslevel += rnd(30);
-		if (!rn2(50000)) bonuslevel += rnd(50);
-		if (!rn2(100000)) bonuslevel += rnd(100);
+		if (!rn2(100) && (u.urmaxlvlUP > 9)) bonuslevel += rnd(10);
+		if (!rn2(500) && (u.urmaxlvlUP > 9)) bonuslevel += rnd(15);
+		if (!rn2(2500) && (u.urmaxlvlUP > 14)) bonuslevel += rnd(20);
+		if (!rn2(20000) && (u.urmaxlvlUP > 19)) bonuslevel += rnd(30);
+		if (!rn2(50000) && (u.urmaxlvlUP > 22)) bonuslevel += rnd(50);
+		if (!rn2(100000) && (u.urmaxlvlUP > 24)) bonuslevel += rnd(100);
 	}
 
 	if (rn2(5)) calctype = 1;
@@ -29370,7 +29370,7 @@ int     spc;
 	    if (!rn2(5)) maxmlev += rnz(2);
 	    if (!rn2(20)) maxmlev += rnz(3);
 	    if (!rn2(100)) maxmlev += rnz(4);
-	    if (!rn2(10000)) maxmlev += 127;
+	    if (!rn2(10000) && (u.urmaxlvlUP > 19)) maxmlev += 127;
 	}
 		/*if (maxmlev > 127) maxmlev = 127;*/ /* very important! The game might otherwise crash or become unstable! */
 	if(class < 1 || class >= MAXMCLASSES) {
