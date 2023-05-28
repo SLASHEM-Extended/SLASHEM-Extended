@@ -5804,9 +5804,9 @@ doapply()
 		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
 			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
 				u.ugold -= 10000;
-				obj->age += 750;
-				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
-				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
+				obj->age += 1000;
+				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1000 * rnd(2));
+				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (1000 * rnd(2));
 				Your("lightsaber was recharged.");
 			}
 		}
@@ -5825,9 +5825,9 @@ doapply()
 		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
 			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
 				u.ugold -= 10000;
-				obj->age += 750;
-				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
-				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
+				obj->age += 1000;
+				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1000 * rnd(2));
+				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (1000 * rnd(2));
 				Your("lightsaber was recharged.");
 			}
 		}
@@ -5847,9 +5847,9 @@ doapply()
 		if (obj && obj->oartifact == ART_COLONEL_PROUDSTER && !obj->lamplit && obj->age == 0 && u.ugold >= 10000) {
 			if (yn("Recharge the lightsaber for 10000 zorkmids?") == 'y') {
 				u.ugold -= 10000;
-				obj->age += 750;
-				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
-				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
+				obj->age += 1000;
+				if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1000 * rnd(2));
+				if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (1000 * rnd(2));
 				Your("lightsaber was recharged.");
 			}
 		}

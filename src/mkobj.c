@@ -2829,7 +2829,7 @@ boolean shopinit;
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->lamplit = 0;
-			otmp->age = (long) rn1(500,1000);
+			otmp->age = (long) rn1(1000,1000);
 					if (!rn2(20)) {
 						otmp->age += rnz(1000);
 					} else if (!rn2(20)) {
@@ -2858,6 +2858,11 @@ boolean shopinit;
 			if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 				if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
 				else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
+			}
+
+			if (bimanual(otmp)) { /* double lightsabers should last at least a bit longer --Amy */
+				otmp->age *= 11;
+				otmp->age /= 10;
 			}
 
 			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));

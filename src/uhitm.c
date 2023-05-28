@@ -781,8 +781,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->otyp == ORANGE_LIGHTSABER) tmp -= 5;
 
 	/* special class effect uses... */
-	if (tech_inuse(T_KIII)) tmp += 4;
-	if (tech_inuse(T_BERSERK)) tmp += 2;
+	if (tech_inuse(T_KIII) && !(tech_inuse(T_WILD_SLASHING)) ) tmp += 4;
+	if (tech_inuse(T_BERSERK) && !(tech_inuse(T_WILD_SLASHING)) ) tmp += 2;
 
 	/* if you're fearless, your attacks are also fearless and will strike true more often --Amy */
 	if (StrongFear_resistance) tmp += rnd(4);
@@ -946,7 +946,7 @@ register struct monst *mtmp;
 
 	if (uwep && uwep->oartifact == ART_ORE_DEPOSIT && lithivorous(mtmp->data)) tmp += 5;
 
-	if (tech_inuse(T_CONCENTRATING)) tmp += 50;
+	if (tech_inuse(T_CONCENTRATING) && !(tech_inuse(T_WILD_SLASHING)) ) tmp += 50;
 	if (Race_if(PM_MONGUNG)) tmp += 10;
 
 	if (Race_if(PM_BOVER)) {
@@ -993,7 +993,7 @@ register struct monst *mtmp;
 	if (GushLevel > 26) tmp += 1;
 	if (GushLevel > 29) tmp += 1;
 
-	if (tech_inuse(T_STEADY_HAND)) tmp += 5;
+	if (tech_inuse(T_STEADY_HAND) && !(tech_inuse(T_WILD_SLASHING)) ) tmp += 5;
 
 	if (!issoviet && !rn2(3)) tmp += rno(GushLevel);
 
@@ -2542,9 +2542,9 @@ int dieroll;
 								obj->spe++;
 								pline("Your lightsaber vibrates and is highly enchanted now!");
 							} else {
-								obj->age += 100;
-								if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (100 * rnd(2));
-								if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (100 * rnd(2));
+								obj->age += rn1(100, 100);
+								if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (rn1(100, 100) * rnd(2));
+								if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (rn1(100, 100) * rnd(2));
 								pline("Your lightsaber gains additional energy!");
 							}
 						}

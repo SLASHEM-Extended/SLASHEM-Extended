@@ -1845,7 +1845,7 @@ int curse_bless;
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
 		    }
-		    else obj->age += 1500;
+		    else obj->age += 2000;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -1855,7 +1855,7 @@ int curse_bless;
 			}
 		} else {
 		    obj->spe = 1;
-		    obj->age += 750;
+		    obj->age += 1000;
 		    if (issoviet && obj->age > 1500) {
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
@@ -1917,9 +1917,9 @@ int curse_bless;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");
 		    }
 		    else {
-			obj->age += 1500;
-			if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1500 * rnd(2));
-			if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (1500 * rnd(2));
+			obj->age += 2000;
+			if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (2000 * rnd(2));
+			if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (2000 * rnd(2));
 		    }
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
@@ -1929,9 +1929,9 @@ int curse_bless;
 				else uncurse(obj, FALSE);
 			}
 		} else {
-		    obj->age += 750;
-		    if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (750 * rnd(2));
-		    if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (750 * rnd(2));
+		    obj->age += 1000;
+		    if (obj->otyp == ORANGE_LIGHTSABER) obj->age += (1000 * rnd(2));
+		    if (obj->oartifact == ART_DESANN_S_WRATH) obj->age += (1000 * rnd(2));
 		    if (issoviet && obj->age > 1500) {
 				obj->age = 1500;
 				pline("Vasha legkaya sablya ne zaryazhena pravil'no, potomu chto tip ledyanogo bloka nenavidit Emi i vse izmeneniya, kotoryye ona proizvodit. Yasno, chto slesh ikh vsegda budet vonyuchey kuchey der'ma.");

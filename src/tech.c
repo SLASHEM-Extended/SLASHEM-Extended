@@ -3198,7 +3198,7 @@ dotech()
 			break;
 
 		case T_WILD_SLASHING:
-			pline("While this technique is active, your dual-wielded lightsabers will attack more quickly but have reduced to-hit.");
+			pline("While this technique is active, your dual-wielded lightsabers will attack more quickly but have reduced to-hit. Beware: you can't just cheat by running a to-hit-increasing technique at the same time, those won't give you any to-hit bonuses while wild slashing is active.");
 			break;
 
 		case T_ABSORBER_SHIELD:
@@ -7116,7 +7116,7 @@ revid_end:
 			pline("You're not holding a lightsaber!");
 			break;
 		}
-		num = 100 + (techlevX(tech_no) * 5);
+		num = 200 + (techlevX(tech_no) * 7);
 	    	techt_inuse(tech_no) = num + 1;
 		t_timeout = rnz(2500);
 		pline("Your lightsaber becomes capable of absorbing enemy projectiles to gain energy.");
@@ -7552,7 +7552,7 @@ revid_end:
 			break;
 
 		case T_ENERGY_TRANSFER:
-			num = 100 + (techlevX(tech_no) * 3);
+			num = 200 + (techlevX(tech_no) * 5);
 		    	techt_inuse(tech_no) = num + 1;
 			pline("For a while, casting spells will recharge your lightsaber (but it must be lit).");
 

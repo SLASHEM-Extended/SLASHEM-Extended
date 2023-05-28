@@ -16057,7 +16057,7 @@ dodip()
 		/* uses up potion, doesn't set obj->greased */
 		pline("%s %s with an oily sheen.",
 		      Yname2(obj), otense(obj, "gleam"));
-		if (obj && obj->otyp == TORCH) obj->age += 1500;
+		if (obj && obj->otyp == TORCH) obj->age += 2000;
 	    } else {
 		pline("%s %s less %s.",
 		      Yname2(obj), otense(obj, "are"),
