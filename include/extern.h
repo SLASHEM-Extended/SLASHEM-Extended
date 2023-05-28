@@ -80,6 +80,7 @@ E boolean exist_artifact(int,const char *);
 E void artifact_exists(struct obj *,const char *,BOOLEAN_P);
 E int nartifact_exist(void);
 E boolean spec_ability(struct obj *,unsigned long);
+E boolean cspec_ability(struct obj *,unsigned long);
 E boolean arti_is_evil(struct obj *);
 E boolean arti_nonwishable(struct obj *);
 E boolean confers_luck(struct obj *);

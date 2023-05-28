@@ -1513,6 +1513,10 @@ register boolean mod;
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_RAGGO_S_ROCK) {
+			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_SIEGFRIED_S_DEATHBOLT) {
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
@@ -1632,6 +1636,16 @@ unsigned long abil;
 	return((boolean)(arti && (arti->spfx & abil)));
 }
 
+boolean
+cspec_ability(otmp, abil)
+struct obj *otmp;
+unsigned long abil;
+{
+	const struct artifact *arti = get_artifact(otmp);
+
+	return((boolean)(arti && (arti->cspfx & abil)));
+}
+
 /* determine if a given artifact is "evil" (used in pickup.c) --Amy */
 boolean
 arti_is_evil(obj)
@@ -1648,17 +1662,42 @@ struct obj *obj;
     return (obj->oartifact && spec_ability(obj, SPFX_NOWISH));
 }
 
-/* used so that callers don't need to known about SPFX_ codes */
+/* used so that callers don't need to known about SPFX_ codes
+ * Amy edit: gaaaaaaaaah idiotic vanilla programmers, why don't you differ between "confers luck when equipped" and
+ * "confers luck when carried"??? that's, like, SO stupid, why even have those flags in the first place if you can't be
+ * bothered to make them work? */
 boolean
 confers_luck(obj)
 struct obj *obj;
 {
+	boolean invokenotworn = FALSE;
     /* might as well check for this too */
     if (obj->otyp == LUCKSTONE) return TRUE;
 
     if (obj->otyp == FEDORA && obj == uarmh) return TRUE;
 
-    return (obj->oartifact && spec_ability(obj, SPFX_LUCK));
+    if (obj->oartifact && spec_ability(obj, SPFX_LUCK)) {
+
+	if (obj->oclass == ARMOR_CLASS && !(obj->owornmask & W_ARMOR) ) invokenotworn = TRUE;
+	if (obj->oclass == WEAPON_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == RING_CLASS && !(obj->owornmask & W_RING) ) invokenotworn = TRUE;
+	if (obj->oclass == AMULET_CLASS && !(obj->owornmask & W_AMUL) ) invokenotworn = TRUE;
+	if (obj->oclass == IMPLANT_CLASS && !(obj->owornmask & W_IMPLANT) ) invokenotworn = TRUE;
+	if (obj->oclass == BALL_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == CHAIN_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == VENOM_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (obj->oclass == GEM_CLASS && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (is_weptool(obj) && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+	if (is_blindfold_slot(obj) && !(obj->owornmask & W_TOOL) ) invokenotworn = TRUE;
+
+	if (obj->oclass != ARMOR_CLASS && obj->oclass != RING_CLASS && obj->oclass != AMULET_CLASS && obj->oclass != IMPLANT_CLASS && !(is_blindfold_slot(obj)) && !(obj->owornmask & W_WEP) ) invokenotworn = TRUE;
+
+	if (!invokenotworn) return TRUE;
+    }
+
+    if (obj->oartifact && cspec_ability(obj, SPFX_LUCK)) return TRUE;
+
+    return FALSE;
 }
 
 /* used to check whether a monster is getting reflection from an artifact */

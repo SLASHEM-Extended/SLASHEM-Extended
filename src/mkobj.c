@@ -2678,7 +2678,9 @@ boolean shopinit;
 		}
 		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
+		/* Amy edit: regular rocks are so common, and we might be adding more artifact versions of those in future
+		 * versions, so we want to make sure they don't spawn literally everywhere - make them 20x less common */
+		if (artif && (artif != 2) && (!rn2(20) || (otmp->otyp != ROCK) ) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || RngeListening) && !Hallucination && (rnd(30) > ACURR(A_INT))) pline("Precognition: made artifact");
 		}

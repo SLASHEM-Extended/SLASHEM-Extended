@@ -7799,7 +7799,7 @@ newbossRLR:
 
 		/* catchall for health/manastones: make sure that if they enter or leave your inventory without the function
 		 * making sure that their effect updates, the numbers are corrected periodically */
-		if (!rn2(200)) {
+		if (!rn2(10)) {
 			recalc_health();
 			recalc_mana();
 			set_moreluck();
