@@ -446,14 +446,14 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	if (u.ulevel < MAXULEV) {
 
-	if ((!ishomicider || rn2(2)) && !((Deprovement || u.uprops[DEPROVEMENT].extrinsic || have_deprovementstone()) && !(u.ulevel < 10 && !rn2(u.ulevel + 1)) && rn2(10) )
-) {	/* homicider only gains hp/pw 50% of the time --Amy */
+	if (!((Deprovement || u.uprops[DEPROVEMENT].extrinsic || have_deprovementstone()) && !(u.ulevel < 10 && !rn2(u.ulevel + 1)) && rn2(10) ) ) {
+
+	/* homicider only gains 50% of the usual amount --Amy */
 	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
 
 	num = newhp();
 	num += rnz(2);
 	if (num < 0) num = 0;
-	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
 	num += rn2(3);
 	if (u.ulevel >= 19) num += rnd(2);
 	if (u.ulevel >= 24) num += rnd(2);
@@ -464,6 +464,15 @@ boolean incr;	/* true iff via incremental experience growth */
 	if (Race_if(PM_PLAYER_DOLGSMAN)) {
 		num *= 3;
 		num /= 4;
+	}
+
+	if (ishomicider && num > 0) {
+		num /= 2;
+		if (num > 0 && !rn2(2)) num--;
+	}
+	if (Race_if(PM_SPRIGGAN) && num > 0) {
+		num /= 2;
+		if (num > 0 && !rn2(2)) num--;
 	}
 
 	u.uhpmax += num;
@@ -502,27 +511,38 @@ boolean incr;	/* true iff via incremental experience growth */
 
 	if (Race_if(PM_YEEK) || Race_if(PM_DUFFLEPUD)) num /= 2;
 
+	if (ishomicider && num > 0) {
+		num /= 2;
+		if (num > 0 && !rn2(2)) num--;
+	}
+
 	u.uenmax += num;
 	u.uen += num;
 	} /* homicider check */
 
 	} else { /* u.ulevel > MAXULEV */
 
-	if ((!ishomicider || rn2(2)) && !((Deprovement || u.uprops[DEPROVEMENT].extrinsic || have_deprovementstone()) && !(u.ulevel < 10 && !rn2(u.ulevel + 1)) && rn2(10) )
-) {	/* homicider only gains hp/pw 50% of the time --Amy */
-	/* a.k.a. "bullshit downside that every fun new race gets" (term coined by Khor) */
+	if (!((Deprovement || u.uprops[DEPROVEMENT].extrinsic || have_deprovementstone()) && !(u.ulevel < 10 && !rn2(u.ulevel + 1)) && rn2(10) ) ) {
 
 	num = newhp();
 	num += rnz(2);
 	if (num < 0) num = 0;
 	if (num > 1) num /= rnd(12);
-	if (Race_if(PM_SPRIGGAN) && !rn2(2)) num = 0;
 	num += rn2(2);
 
 	if (Race_if(PM_YEEK) || Race_if(PM_DUFFLEPUD) || Race_if(PM_PLAYER_FAIRY)) num /= 2;
 	if (Race_if(PM_PLAYER_DOLGSMAN)) {
 		num *= 3;
 		num /= 4;
+	}
+
+	if (ishomicider && num > 0) {
+		num /= 2;
+		if (num > 0 && !rn2(2)) num--;
+	}
+	if (Race_if(PM_SPRIGGAN) && num > 0) {
+		num /= 2;
+		if (num > 0 && !rn2(2)) num--;
 	}
 
 	u.uhpmax += num;
@@ -557,6 +577,11 @@ boolean incr;	/* true iff via incremental experience growth */
 	num += rn2(2);
 
 	if (Race_if(PM_YEEK) || Race_if(PM_DUFFLEPUD)) num /= 2;
+
+	if (ishomicider && num > 0) {
+		num /= 2;
+		if (num > 0 && !rn2(2)) num--;
+	}
 
 	u.uenmax += num;
 	u.uen += num;
