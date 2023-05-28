@@ -1126,14 +1126,16 @@ newbossRLN:
 
 						}
 					}
-				} else if (mtmp2->mpeaceful) {
+				} else if (mtmp2->mpeaceful && !is_infrastructure_monster(mtmp2)) {
 					mtmp2->mpeaceful = 0;
 					count++;
 				} else {
-					/*mtmp2->mberserk = 1;*/ /* removed because this attribute doesn't exist in this fork */
-					if (!rn2(5)) mtmp2->mfrenzied = 1; /* but we have something else instead now :D */
-					mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
-					count++;
+					if (!is_infrastructure_monster(mtmp2)) {
+						/*mtmp2->mberserk = 1;*/ /* removed because berserk doesn't exist in this fork */
+						if (!rn2(5)) mtmp2->mfrenzied = 1; /* but we have something else instead now :D */
+						mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
+						count++;
+					}
 				}
 			}
 		}

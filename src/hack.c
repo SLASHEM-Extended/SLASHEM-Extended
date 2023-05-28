@@ -4516,7 +4516,7 @@ nomul(nval, txt, discountpossible)
 
 			for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 
-				if (!mtmp2->mtame) {
+				if (!mtmp2->mtame && !is_infrastructure_monster(mtmp2) ) {
 					mtmp2->mpeaceful = 0;
 					mtmp2->mfrenzied = 1;
 					mtmp2->mhp = mtmp2->mhpmax;
@@ -4535,7 +4535,7 @@ nomul(nval, txt, discountpossible)
 
 			for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 
-				if (!mtmp2->mtame) {
+				if (!mtmp2->mtame && !is_infrastructure_monster(mtmp2) ) {
 					mtmp2->mpeaceful = 0;
 					mtmp2->mfrenzied = 1;
 					mtmp2->mhp = mtmp2->mhpmax;

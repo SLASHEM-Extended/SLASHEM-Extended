@@ -3255,8 +3255,7 @@ moveloop()
 
 		    for (k = -3; k <= 3; k++) for(l = -3; l <= 3; l++) {
 			if (!isok(u.ux + k, u.uy + l)) continue;
-			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd 			== 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(rn2(5) && (mtmp3->data->geno & G_UNIQ))) {
 
 				if (mtmp3->mfrenzied) continue;
@@ -5057,10 +5056,12 @@ greasingdone:
 							}
 						}
 					} else if (mtmp2->mpeaceful) {
-						mtmp2->mpeaceful = 0;
+						if (!is_infrastructure_monster(mtmp2)) mtmp2->mpeaceful = 0;
 					} else {
-						if (!rn2(5)) mtmp2->mfrenzied = 1; /* but we have something else instead now :D */
-						mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
+						if (!is_infrastructure_monster(mtmp2)) {
+							if (!rn2(5)) mtmp2->mfrenzied = 1;
+							mtmp2->mhp = mtmp2->mhpmax;
+						}
 					}
 				}
 			}
@@ -14825,7 +14826,7 @@ stop_occupation()
 
 				for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 
-					if (!mtmp2->mtame) {
+					if (!mtmp2->mtame && !is_infrastructure_monster(mtmp2) ) {
 						mtmp2->mpeaceful = 0;
 						mtmp2->mfrenzied = 1;
 						mtmp2->mhp = mtmp2->mhpmax;
@@ -14845,7 +14846,7 @@ stop_occupation()
 
 				for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 
-					if (!mtmp2->mtame) {
+					if (!mtmp2->mtame && !is_infrastructure_monster(mtmp2) ) {
 						mtmp2->mpeaceful = 0;
 						mtmp2->mfrenzied = 1;
 						mtmp2->mhp = mtmp2->mhpmax;

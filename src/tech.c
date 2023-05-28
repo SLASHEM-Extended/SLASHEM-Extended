@@ -5122,8 +5122,7 @@ breakstare:
 
 		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 			if (!isok(u.ux + k, u.uy + l)) continue;
-			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd 			== 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
 
 				/* gotta write a huge function for this now --Amy */
@@ -5972,8 +5971,7 @@ resettechdone:
 
 			    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 				if (!isok(u.ux + k, u.uy + l)) continue;
-				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
 
 				{
@@ -6588,8 +6586,7 @@ heelschosen:
 
 		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 			if (!isok(u.ux + k, u.uy + l)) continue;
-			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
 
 			{
@@ -8128,8 +8125,7 @@ cardtrickchoice:
 
 		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 			if (!isok(u.ux + k, u.uy + l)) continue;
-			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && !mtmp3->iswiz && mtmp3->data != &mons[PM_WIZARD_OF_YENDOR] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && !is_rider(mtmp3->data) && !is_deadlysin(mtmp3->data) && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0 && !is_rider(mtmp3->data) && !is_deadlysin(mtmp3->data)
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(rn2(5) && mtmp3->data->geno & G_UNIQ) && caughtX == 0)
 
 			{
@@ -8541,8 +8537,7 @@ repairitemchoice:
 
 		    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 			if (!isok(u.ux + k, u.uy + l)) continue;
-			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->mpeaceful == 0 && mtmp3->mfrenzied == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->mpeaceful == 0 && mtmp3->mfrenzied == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !resist(mtmp3, RING_CLASS, 0, NOTELL) && !(mtmp3->data->geno & G_UNIQ) )
 
 			{
@@ -8642,9 +8637,7 @@ repairitemchoice:
 			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 			if (!mtmp) {
 				You("were such a noob and wasted this powerful technique by aiming it at thin air! Why didn't you target a monster instead?");
-			} else if (mtmp->isshk == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
-				&& mtmp->isgyp == 0
-		&& mtmp->data != &mons[PM_SHOPKEEPER] && !resists_magm(mtmp) && mtmp->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp->data != &mons[PM_BLACK_MARKETEER] && mtmp->data != &mons[PM_ALIGNED_PRIEST] && mtmp->data != &mons[PM_MASTER_PRIEST] && mtmp->data != &mons[PM_ELITE_PRIEST] && mtmp->data != &mons[PM_HIGH_PRIEST] && mtmp->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD] && mtmp->data != &mons[PM_CROUPIER] && mtmp->data != &mons[PM_MASTER_CROUPIER] && mtmp->data != &mons[PM_ELITE_CROUPIER]
+			} else if (!is_infrastructure_monster(mtmp) && mtmp->isminion == 0 && mtmp->isgyp == 0
 			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 				if (!resist(mtmp, WAND_CLASS, 0, NOTELL)) {
 					(void) mon_spec_polyX(mtmp, (struct permonst *)0, 0L, FALSE, TRUE, FALSE, FALSE);
@@ -8672,9 +8665,7 @@ repairitemchoice:
 			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 			if (!mtmp) {
 				pline("There is no monster in that direction. Nothing happens.");
-			} else if (mtmp->isshk == 0 && mtmp->mtame == 0 && mtmp->mpeaceful == 0 && mtmp->mfrenzied == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
-				&& mtmp->isgyp == 0
-		&& mtmp->data != &mons[PM_SHOPKEEPER] && humanoid(mtmp->data) && mtmp->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp->data != &mons[PM_BLACK_MARKETEER] && mtmp->data != &mons[PM_ALIGNED_PRIEST] && mtmp->data != &mons[PM_MASTER_PRIEST] && mtmp->data != &mons[PM_ELITE_PRIEST] && mtmp->data != &mons[PM_HIGH_PRIEST] && mtmp->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD] && mtmp->data != &mons[PM_CROUPIER] && mtmp->data != &mons[PM_MASTER_CROUPIER] && mtmp->data != &mons[PM_ELITE_CROUPIER]
+			} else if (mtmp->mtame == 0 && !is_infrastructure_monster(mtmp) && mtmp->mpeaceful == 0 && mtmp->mfrenzied == 0 && mtmp->isminion == 0 && mtmp->isgyp == 0
 			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 				if (!resist(mtmp, WAND_CLASS, 0, NOTELL)) {
 					int pacifychance = 10;
@@ -9632,9 +9623,7 @@ mkwsh_end:
 			mtmp = m_at(u.ux + u.dx, u.uy + u.dy);
 			if (!mtmp) {
 				pline("That was a waste, man. The target square didn't contain a monster!");
-			} else if (mtmp->isshk == 0 && mtmp->isgd == 0 && mtmp->ispriest == 0 && mtmp->isminion == 0
-				&& mtmp->isgyp == 0
-		&& mtmp->data != &mons[PM_SHOPKEEPER] && mtmp->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp->data != &mons[PM_BLACK_MARKETEER] && mtmp->data != &mons[PM_ALIGNED_PRIEST] && mtmp->data != &mons[PM_MASTER_PRIEST] && mtmp->data != &mons[PM_ELITE_PRIEST] && mtmp->data != &mons[PM_HIGH_PRIEST] && mtmp->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD] && mtmp->data != &mons[PM_CROUPIER] && mtmp->data != &mons[PM_MASTER_CROUPIER] && mtmp->data != &mons[PM_ELITE_CROUPIER]
+			} else if (mtmp->isminion == 0 && !is_infrastructure_monster(mtmp) && mtmp->isgyp == 0
 			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 				mongone(mtmp);
 				pline("*poof*");
@@ -9938,8 +9927,7 @@ extrachargechoice:
 
 			    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 				if (!isok(u.ux + k, u.uy + l)) continue;
-				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) && caughtX == 0)
 
 				{
@@ -10019,8 +10007,7 @@ extrachargechoice:
 
 			for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 				if (!isok(u.ux + k, u.uy + l)) continue;
-				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(rn2(5) && (mtmp3->data->geno & G_UNIQ))) {
 
 				if (mtmp3->mfrenzied) continue;
@@ -10222,8 +10209,7 @@ extrachargechoice:
 
 			    for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
 				if (!isok(u.ux + k, u.uy + l)) continue;
-				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && mtmp3->mtame == 0 && mtmp3->isshk == 0 && mtmp3->isgd == 0 && mtmp3->ispriest == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
-&& mtmp3->data != &mons[PM_SHOPKEEPER] && mtmp3->data != &mons[PM_MASTER_SHOPKEEPER] && mtmp3->data != &mons[PM_ELITE_SHOPKEEPER] && mtmp3->data != &mons[PM_BLACK_MARKETEER] && mtmp3->data != &mons[PM_ALIGNED_PRIEST] && mtmp3->data != &mons[PM_MASTER_PRIEST] && mtmp3->data != &mons[PM_ELITE_PRIEST] && mtmp3->data != &mons[PM_HIGH_PRIEST] && mtmp3->data != &mons[PM_DNETHACK_ELDER_PRIEST_TM_] && mtmp3->data != &mons[PM_GUARD] && mtmp3->data != &mons[PM_MASTER_GUARD] && mtmp3->data != &mons[PM_ELITE_GUARD] && mtmp3->data != &mons[PM_CROUPIER] && mtmp3->data != &mons[PM_MASTER_CROUPIER] && mtmp3->data != &mons[PM_ELITE_CROUPIER]
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
 			&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) )
 
 				{

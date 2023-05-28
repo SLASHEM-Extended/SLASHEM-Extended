@@ -302,6 +302,21 @@ struct permonst *mptr;
 		      (slithy(mptr) && !bigmonst(mptr)));
 }
 
+boolean
+is_infrastructure_monster(mtmp)
+struct monst *mtmp;
+{
+	if (!mtmp) return FALSE; /* shouldn't happen */
+
+	if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return TRUE;
+
+	if (mtmp->data == &mons[PM_CROUPIER]) return TRUE;
+	if (mtmp->data == &mons[PM_MASTER_CROUPIER]) return TRUE;
+	if (mtmp->data == &mons[PM_ELITE_CROUPIER]) return TRUE;
+
+	return FALSE;
+}
+
 #endif /* OVL0 */
 #ifdef OVL1
 

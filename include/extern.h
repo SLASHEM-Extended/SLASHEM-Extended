@@ -1957,6 +1957,7 @@ E const char *locomotion(const struct permonst *,const char *);
 E const char *stagger(const struct permonst *,const char *);
 E const char *on_fire(struct permonst *,struct attack *);
 E const struct permonst *raceptr(struct monst *);
+E boolean is_infrastructure_monster(struct monst *);
 
 /* ### monmove.c ### */
 

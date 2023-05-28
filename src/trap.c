@@ -9439,13 +9439,13 @@ madnesseffect:
 
 				}
 
-			} else if (!mtmp2->mtame) {
+			} else if (!mtmp2->mtame && !is_infrastructure_monster(mtmp2)) {
 
 				mtmp2->mtame = mtmp2->mpeaceful = 0;
 
 			}
 
-			if (!mtmp2->mtame && !rn2(5)) mtmp2->mfrenzied = 1;
+			if (!mtmp2->mtame && !is_infrastructure_monster(mtmp2) && !rn2(5)) mtmp2->mfrenzied = 1;
 
 		}
 

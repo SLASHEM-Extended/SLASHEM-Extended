@@ -8360,11 +8360,13 @@ register struct monst *mtmp;
 
 						}
 					}
-				} else if (mtmp2->mpeaceful) {
+				} else if (mtmp2->mpeaceful && !is_infrastructure_monster(mtmp2)) {
 					mtmp2->mpeaceful = 0;
 				} else {
-					if (!rn2(5)) mtmp2->mfrenzied = 1;
-					mtmp2->mhp = mtmp2->mhpmax; /* let's heal them instead --Amy */
+					if (!is_infrastructure_monster(mtmp2)) {
+						if (!rn2(5)) mtmp2->mfrenzied = 1;
+						mtmp2->mhp = mtmp2->mhpmax;
+					}
 				}
 			}
 		}
