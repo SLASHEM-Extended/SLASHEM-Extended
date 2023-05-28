@@ -3766,6 +3766,7 @@ newboss:
 
 						ptrZ = rndmonst();
 						attempts++;
+						if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -3778,6 +3779,9 @@ newboss:
 						attempts = 0;
 						goto newboss;
 					}
+
+					u.mondiffhack = 0;
+
 					if (!rn2(10) ) {
 						attempts = 0;
 						goto newboss;
@@ -5182,6 +5186,7 @@ newbossC:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !( (ptrZ->geno & G_UNIQ) && (is_male(ptrZ)) ))) && attempts < 50000);
@@ -5198,11 +5203,14 @@ newbossC:
 				tamedog(bossmon, (struct obj *) 0, TRUE);
 			}
 
+			u.mondiffhack = 0;
+
 newbossF:
 			do {
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !( (ptrZ->geno & G_UNIQ) && (is_female(ptrZ)) ))) && attempts < 50000);
@@ -5218,6 +5226,8 @@ newbossF:
 			if (bossmon) {
 				tamedog(bossmon, (struct obj *) 0, TRUE);
 			}
+
+			u.mondiffhack = 0;
 
 			pline_The("avenger and his woman have appeared!");
 
@@ -5391,6 +5401,7 @@ newbossF:
 			do {
 				shoe = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!shoe || (shoe && !(shoe->msound == MS_SHOE))) && attempts < 50000);
@@ -5404,6 +5415,9 @@ newbossF:
 				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
 				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
 			} else pline("Somehow, it failed... :(");
+
+			u.mondiffhack = 0;
+
 			break;
 		}
 

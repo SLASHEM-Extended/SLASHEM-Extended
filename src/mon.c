@@ -5158,6 +5158,7 @@ newbossSING:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
@@ -5182,6 +5183,7 @@ newbossSING:
 		}
 
 		u.aggravation = 0;
+		u.mondiffhack = 0;
 
 	}
 
@@ -7738,6 +7740,7 @@ newbossA:
 		do {
 			ptrZ = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -7752,6 +7755,7 @@ newbossA:
 		}
 
 		u.aggravation = 0;
+		u.mondiffhack = 0;
 
 	}
 

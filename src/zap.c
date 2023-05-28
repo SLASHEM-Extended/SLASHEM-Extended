@@ -4264,6 +4264,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 
 		} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
 
@@ -4282,6 +4283,7 @@ newboss:
 		}
 	    }
 
+		u.mondiffhack = 0;
 		u.aggravation = 0;
 
 		break;

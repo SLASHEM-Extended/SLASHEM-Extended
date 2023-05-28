@@ -11353,6 +11353,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.mondiffhack = 0;
 	u.levelmarked = FALSE;
 	u.sweatyshoetimer = 0;
 	u.stonedchilltimer = 0;

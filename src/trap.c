@@ -2339,6 +2339,7 @@ newbossING:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
@@ -2355,7 +2356,7 @@ newbossING:
 			if (pm) (void) makemon(pm, ttmp->tx, ttmp->ty, MM_ANGRY|MM_ADJACENTOK);
 
 			u.aggravation = 0;
-
+			u.mondiffhack = 0;
 
 	}
 
@@ -5183,6 +5184,7 @@ newboss:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -5195,6 +5197,7 @@ newboss:
 				attempts = 0;
 				goto newboss;
 			}
+			u.mondiffhack = 0;
 
 		}
 
@@ -5221,12 +5224,16 @@ newgirl:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->msound == MS_FART_LOUD || ptrZ->msound == MS_FART_NORMAL || ptrZ->msound == MS_FART_QUIET))) && attempts < 50000);
 
 			if (ptrZ && (ptrZ->msound == MS_FART_LOUD || ptrZ->msound == MS_FART_NORMAL || ptrZ->msound == MS_FART_QUIET) ) {
 				(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+
+				u.mondiffhack = 0;
+
 				if (ammount > 0) {
 					ammount--;
 					attempts = 0;
@@ -5240,6 +5247,7 @@ newgirl:
 
 		}
 
+		u.mondiffhack = 0;
 		u.aggravation = 0;
 
 		You_feel("a very feminine aura!");
@@ -5263,12 +5271,16 @@ newegomon:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(always_egotype(ptrZ)))) && attempts < 50000);
 
 			if (ptrZ && (always_egotype(ptrZ)) ) {
 				(void) makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+
+				u.mondiffhack = 0;
+
 				if (ammount > 0) {
 					ammount--;
 					attempts = 0;
@@ -5282,6 +5294,7 @@ newegomon:
 
 		}
 
+		u.mondiffhack = 0;
 		u.aggravation = 0;
 
 		pline("hwer!");
@@ -7037,6 +7050,7 @@ newbossPENT:
 
 						ptrZ = rndmonst();
 						attempts++;
+						if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -7049,6 +7063,9 @@ newbossPENT:
 						attempts = 0;
 						goto newbossPENT;
 					}
+
+					u.mondiffhack = 0;
+
 					if (!rn2(10) ) {
 						attempts = 0;
 						goto newbossPENT;
@@ -23639,6 +23656,7 @@ newwere:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(dmgtype(pm, AD_WERE)))) && attempts < 50000);
@@ -23654,6 +23672,7 @@ newwere:
 
 			if (pm) (void) makemon(pm, cx, cy, MM_ANGRY|MM_FRENZIED);
 
+			u.mondiffhack = 0;
 			u.aggravation = 0;
 
 			break;
@@ -23709,6 +23728,7 @@ newhamburger:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(is_undead(pm)))) && attempts < 50000);
@@ -23724,6 +23744,8 @@ newhamburger:
 
 			if (pm) (void) makemon(pm, cx, cy, MM_ANGRY);
 			aggroamount--;
+
+			u.mondiffhack = 0;
 
 			} /* while (aggroamount) */
 

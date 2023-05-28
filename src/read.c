@@ -7366,6 +7366,7 @@ newboss:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -7378,6 +7379,9 @@ newboss:
 				attempts = 0;
 				goto newboss;
 			}
+
+			u.mondiffhack = 0;
+
 			if (confused ? rn2(10) : !rn2(100) ) {
 				attempts = 0;
 				goto newboss;
@@ -10499,6 +10503,7 @@ newbossC:
 
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -10515,6 +10520,8 @@ newbossC:
 			if (bossmon) {
 				tamedog(bossmon, (struct obj *) 0, TRUE);
 			}
+
+			u.mondiffhack = 0;
 
 		}
 

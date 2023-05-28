@@ -779,6 +779,7 @@ newhamburger:
 			do {
 				ppm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ppm || (ppm && !(dmgtype(ppm, AD_COLD)) && !(dmgtype(ppm, AD_FRZE)) && !(dmgtype(ppm, AD_ICEB)) )) && attempts < 50000);
@@ -794,6 +795,7 @@ newhamburger:
 
 			if (ppm) (void) makemon(ppm, u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 			aggroamount--;
+			u.mondiffhack = 0;
 
 			} /* while (aggroamount) */
 
@@ -1066,6 +1068,7 @@ newwere:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SOUND))) && attempts < 50000);
@@ -1082,6 +1085,7 @@ newwere:
 			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 			break;
 

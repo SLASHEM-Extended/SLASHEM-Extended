@@ -5955,6 +5955,7 @@ newbossPENT:
 
 						ptrZ = rndmonst();
 						attempts++;
+						if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -5967,6 +5968,9 @@ newbossPENT:
 						attempts = 0;
 						goto newbossPENT;
 					}
+
+					u.mondiffhack = 0;
+
 					if (!rn2(10) ) {
 						attempts = 0;
 						goto newbossPENT;
@@ -8874,6 +8878,7 @@ dashingchoice:
 			do {
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 
 			} while ( (!ptrZ || (ptrZ && !(attacktype(ptrZ, AT_EXPL)))) && attempts < 50000);
 
@@ -8894,6 +8899,8 @@ dashingchoice:
 				bomber->isspell = bomber->uexp = TRUE;
 
 			}
+
+			u.mondiffhack = 0;
 
 		}
 

@@ -4026,6 +4026,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
@@ -4049,6 +4050,7 @@ newboss:
 		    docall(otmp);
 
 		u.aggravation = 0;
+		u.mondiffhack = 0;
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
@@ -8946,6 +8948,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
@@ -8964,6 +8967,7 @@ newboss:
 		if (known) makeknown(otmp->otyp);
 
 		u.aggravation = 0;
+		u.mondiffhack = 0;
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 
@@ -10989,6 +10993,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
@@ -11012,6 +11017,7 @@ newboss:
 		    docall(otmp);
 
 		u.aggravation = 0;
+		u.mondiffhack = 0;
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;

@@ -1402,6 +1402,8 @@ struct you {
 	int nursesymbiotecost;
 	int nurseshutdowncost;
 
+	int mondiffhack;	/* for functions that spawn monsters with specific traits */
+
 #ifdef NOARTIFACTWISH
 	int usacrifice;                 /* number of sacrifices so far */
 #endif

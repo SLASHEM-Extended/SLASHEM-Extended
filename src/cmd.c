@@ -1939,6 +1939,7 @@ newbossSTEN:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_STENCH ))) && attempts < 50000);
@@ -1954,6 +1955,7 @@ newbossSTEN:
 
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
+			u.mondiffhack = 0;
 			u.aggravation = 0;
 
 		}

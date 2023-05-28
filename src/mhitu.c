@@ -4466,6 +4466,7 @@ newboss:
 
 						ptrZ = rndmonst();
 						attempts++;
+						if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -4482,6 +4483,7 @@ newboss:
 
 					}
 					u.aggravation = 0;
+					u.mondiffhack = 0;
 					break;
 				case 26:
 				case 27: /* drain random stats by one, 50% chance for each of being affected */

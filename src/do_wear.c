@@ -3822,6 +3822,7 @@ sexysqueaking:
 
 			ptrZ = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!ptrZ || (ptrZ && !(ptrZ->msound == MS_FART_NORMAL))) && attempts < 50000);
@@ -3838,6 +3839,7 @@ sexysqueaking:
 			tamedog(bossmon, (struct obj *) 0, TRUE);
 			pline("Someone sexy is waiting for you nearby...");
 		}
+		u.mondiffhack = 0;
 
 	}
 

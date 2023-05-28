@@ -3170,6 +3170,7 @@ moveloop()
 		else u.funnyhalluroll = rn2(10000);
 
 		if (u.riderhack) u.riderhack = FALSE;
+		u.mondiffhack = FALSE;
 
 		if (!occupation) u.katitrapocc = FALSE;
 		if (!occupation) {
@@ -3734,6 +3735,7 @@ newbossMYA:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD))) && attempts < 50000);
 
@@ -3750,6 +3752,8 @@ newbossMYA:
 			if (mariyamon) mariyamon->fartbonus = 9;
 
 			u.aggravation = 0;
+
+			u.mondiffhack = 0;
 
 		}
 
@@ -3772,6 +3776,7 @@ newbossKTA:
 							do {
 								pm = rndmonst();
 								attempts++;
+								if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 								if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 							} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD))) && attempts < 50000);
@@ -3794,6 +3799,7 @@ newbossKTA:
 							if (!rn2(10)) increasesanity(1);
 
 							u.aggravation = 0;
+							u.mondiffhack = 0;
 
 						}
 					}
@@ -3906,6 +3912,7 @@ newbossS:
 
 							ptrZ = rndmonst();
 							attempts++;
+							if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 							if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 						} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -3949,6 +3956,7 @@ newbossS:
 						}
 
 						u.aggravation = 0;
+						u.mondiffhack = 0;
 						deltrap(ttmp);
 						goto trapsdone;
 					} 
@@ -4303,6 +4311,7 @@ newbossJENNY:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
@@ -4326,6 +4335,7 @@ newbossJENNY:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -4339,6 +4349,7 @@ newbossBQ:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL))) && attempts < 50000);
@@ -4358,6 +4369,8 @@ newbossBQ:
 				tamedog(blonde, (struct obj *) 0, TRUE);
 				pline("Suddenly, you gain a new sexy pet!");
 			}
+
+			u.mondiffhack = 0;
 		}
 
 		if (u.conclusiocount && !rn2(20000)) {
@@ -5171,6 +5184,7 @@ newbossFLUID:
 					do {
 						pm = rndmonst();
 						attempts++;
+						if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!pm || (pm && !(pm->msound == MS_FLUIDATOR ))) && attempts < 50000);
@@ -5183,6 +5197,8 @@ newbossFLUID:
 						attempts = 0;
 						goto newbossFLUID;
 					}
+
+					u.mondiffhack = 0;
 
 					if (samefluidator == 2 && samefluidmonster) pm = &mons[samefluidmonster];
 
@@ -5247,6 +5263,7 @@ newbossBULL:
 				do {
 					pm = rndmonst();
 					attempts++;
+					if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 					if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 				} while ( (!pm || (pm && !(pm->msound == MS_BULLETATOR ))) && attempts < 50000);
@@ -5269,6 +5286,7 @@ newbossBULL:
 					(void) makemon(pm, cx, cy, MM_ADJACENTOK|MM_ANGRY);
 
 				}
+				u.mondiffhack = 0;
 			}
 
 			u.aggravation = 0;
@@ -5296,6 +5314,7 @@ newbossPOMP:
 				do {
 					pm = rndmonst();
 					attempts++;
+					if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 					if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 				} while ( (!pm || (pm && !(pm->msound == MS_POMPEJI ))) && attempts < 50000);
@@ -5318,6 +5337,7 @@ newbossPOMP:
 					(void) makemon(pm, cx, cy, MM_ADJACENTOK|MM_ANGRY);
 
 				}
+				u.mondiffhack = 0;
 			}
 
 			if (!rn2(10)) {
@@ -5429,6 +5449,7 @@ newbossMAYBRITT:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(is_female(pm) && is_jokemonster(pm) ))) && attempts < 50000);
@@ -5468,6 +5489,8 @@ newbossMAYBRITT:
 
 				}
 			}
+			u.mondiffhack = 0;
+			u.aggravation = 0;
 
 		}
 
@@ -5491,6 +5514,7 @@ newbossUTE:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(is_male(pm) && humanoid(pm) ))) && attempts < 50000);
@@ -5508,6 +5532,7 @@ newbossUTE:
 
 			u.aggravation = 0;
 			u.heavyaggravation = 0;
+			u.mondiffhack = 0;
 
 			if (uarmf && itemhasappearance(uarmf, APP_MISSYS)) {
 				goodeffect();
@@ -6166,6 +6191,7 @@ newbossMANU:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(spawnswithblockheels(pm) ))) && attempts < 50000);
@@ -6183,6 +6209,7 @@ newbossMANU:
 
 			u.aggravation = 0;
 			u.heavyaggravation = 0;
+			u.mondiffhack = 0;
 			pline("Manuela challenges you to fight a woman in block-heeled boots!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			stop_occupation();
@@ -6202,6 +6229,7 @@ newbossNATA:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(spawnswithhammersandal(pm) ))) && attempts < 50000);
@@ -6218,6 +6246,7 @@ newbossNATA:
 			if (pm) (makemon(pm, 0, 0, MM_ANGRY|MM_ADJACENTOK));
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 		}
 
 		if (!rn2(5000) && FemtrapActiveSusanne ) {
@@ -6237,6 +6266,7 @@ newbossSUSA:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(is_female(pm) && (pm->geno & G_UNIQ) ))) && attempts < 50000);
@@ -6254,6 +6284,7 @@ newbossSUSA:
 
 			u.aggravation = 0;
 			u.heavyaggravation = 0;
+			u.mondiffhack = 0;
 			DifficultyIncreased -= 1;
 			HighlevelStatus -= 1;
 			EntireLevelMode -= 1;
@@ -6278,6 +6309,7 @@ newbossKERSTIN:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(spawnswithblockheels(pm) || spawnswithsandals(pm) || spawnswithsneakers(pm)) )) && attempts < 50000);
@@ -6301,6 +6333,7 @@ newbossKERSTIN:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -6318,6 +6351,7 @@ newbossKSENIA:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(spawnswithsandals(pm)) )) && attempts < 50000);
@@ -6334,6 +6368,7 @@ newbossKSENIA:
 			if (pm) makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -6351,6 +6386,7 @@ newbossKLARA:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(spawnswithsandals(pm)) )) && attempts < 50000);
@@ -6367,6 +6403,7 @@ newbossKLARA:
 			if (pm) makemon(pm, 0, 0, MM_ADJACENTOK);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -6433,6 +6470,7 @@ newbossJANI:
 				do {
 					pm = rndmonst();
 					attempts++;
+					if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 					if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 				} while ( (!pm || (pm && !(pm->msound == MS_PANTS) ) ) && attempts < 50000);
@@ -6449,6 +6487,7 @@ newbossJANI:
 				if (pm) (void) makemon(pm, cx, cy, MM_ANGRY|MM_ADJACENTOK);
 
 				u.aggravation = 0;
+				u.mondiffhack = 0;
 
 			}
 			u.aggravation = 0;
@@ -6939,6 +6978,7 @@ newbossFK:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH ))) && attempts < 50000);
@@ -6954,8 +6994,11 @@ newbossFK:
 
 			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
 			u.cnd_aggravateamount++;
+			u.mondiffhack = 0;
 
 			} /* while (aggroamount) */
+
+			u.aggravation = 0;
 
 			pline("Several angry females come out of a portal.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -6979,6 +7022,7 @@ newbossF:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH ))) && attempts < 50000);
@@ -6994,8 +7038,11 @@ newbossF:
 
 			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
 			u.cnd_aggravateamount++;
+			u.mondiffhack = 0;
 
 			} /* while (aggroamount) */
+
+			u.aggravation = 0;
 
 			pline("Several angry females come out of a portal.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -7016,6 +7063,7 @@ newbossWHOR:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_WHORE ))) && attempts < 50000);
@@ -7032,6 +7080,7 @@ newbossWHOR:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7049,6 +7098,7 @@ newbossSTEN:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_STENCH ))) && attempts < 50000);
@@ -7065,6 +7115,7 @@ newbossSTEN:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7208,6 +7259,7 @@ newbossBUTT:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
@@ -7224,6 +7276,7 @@ newbossBUTT:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7283,6 +7336,7 @@ newbossSF:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SHOE))) && attempts < 50000);
@@ -7299,6 +7353,7 @@ newbossSF:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7314,6 +7369,7 @@ newbossJOH:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SHOE))) && attempts < 50000);
@@ -7330,6 +7386,7 @@ newbossJOH:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7347,6 +7404,7 @@ newbossCONV:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_CONVERT ))) && attempts < 50000);
@@ -7363,6 +7421,7 @@ newbossCONV:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7380,6 +7439,7 @@ newbossSING:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
@@ -7404,6 +7464,7 @@ newbossSING:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7447,6 +7508,7 @@ newbossLUISA:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
@@ -7469,6 +7531,7 @@ newbossLUISA:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7486,6 +7549,7 @@ newbossLILO:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(is_randomizedmonster(pm))) ) && attempts < 50000);
@@ -7518,6 +7582,7 @@ newbossLILO:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7633,6 +7698,7 @@ newbossATHL:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(is_female(pm))) || (pm && !(attacktype(pm, AT_KICK))) ) && attempts < 50000);
@@ -7653,6 +7719,7 @@ newbossATHL:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7670,6 +7737,7 @@ newbossJIL:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SOCKS) ) ) && attempts < 50000);
@@ -7686,6 +7754,7 @@ newbossJIL:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7703,6 +7772,7 @@ newbossBOSS:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
@@ -7717,6 +7787,7 @@ newbossBOSS:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7734,6 +7805,7 @@ newbossRLL:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
@@ -7750,6 +7822,7 @@ newbossRLL:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7767,6 +7840,7 @@ newbossRLR:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
@@ -7783,6 +7857,7 @@ newbossRLR:
 			if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7922,6 +7997,7 @@ newbossA:
 			do {
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -7936,6 +8012,7 @@ newbossA:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -7952,6 +8029,7 @@ newbossO:
 			do {
 				ptrZ = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!ptrZ || (ptrZ && !is_demon(ptrZ))) && attempts < 50000);
@@ -7965,6 +8043,7 @@ newbossO:
 			}
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -8779,6 +8858,7 @@ newbossX:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
@@ -8795,6 +8875,7 @@ newbossX:
 			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -9251,6 +9332,7 @@ newbossZ:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET ))) && attempts < 50000);
@@ -9267,6 +9349,7 @@ newbossZ:
 			if (pm) (void) makemon(pm, 0, 0, NO_MM_FLAGS);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -9283,6 +9366,7 @@ newbossL:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD))) && attempts < 50000);
@@ -9299,6 +9383,7 @@ newbossL:
 			if (pm) (void) makemon(pm, 0, 0, NO_MM_FLAGS);
 
 			u.aggravation = 0;
+			u.mondiffhack = 0;
 
 		}
 
@@ -9351,6 +9436,7 @@ newbossY:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->mcolor == CLR_GREEN || pm->mcolor == CLR_BRIGHT_GREEN ))) && attempts < 50000);
@@ -9365,6 +9451,8 @@ newbossY:
 			}
 
 			if (pm) (void) makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+
+			u.mondiffhack = 0;
 
 			if (rn2(3)) goto newbossY;
 
@@ -9385,6 +9473,7 @@ newbossB:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->mcolor == CLR_BRIGHT_BLUE ))) && attempts < 50000);
@@ -9401,6 +9490,8 @@ newbossB:
 			if (enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) {
 				if (pm) (void) makemon(pm, 0, 0, NO_MM_FLAGS);
 			}
+
+			u.mondiffhack = 0;
 
 			if (rn2(3)) goto newbossB;
 
@@ -10558,6 +10649,7 @@ newboss:
 
 						ptrZ = rndmonst();
 						attempts++;
+						if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
@@ -10574,6 +10666,7 @@ newboss:
 
 					}
 					u.aggravation = 0;
+					u.mondiffhack = 0;
 					break;
 				case 26:
 				case 27: /* drain random stats by one, 50% chance for each of being affected */
@@ -14019,6 +14112,7 @@ past4:
 	u.detonationhack = 0;
 	u.lamefarmer = 0;
 	u.evilvarhack = 0;
+	u.mondiffhack = 0;
 
 	kill_deathmarked_monsters();
 

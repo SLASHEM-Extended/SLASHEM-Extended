@@ -5501,6 +5501,7 @@ buttpetmarker:
 			do {
 				pm = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!pm || (pm && !(pm->msound == MS_FART_NORMAL) && !(pm->msound == MS_FART_LOUD) && !(pm->msound == MS_FART_QUIET))) && attempts < 50000);
@@ -5520,6 +5521,8 @@ buttpetmarker:
 				tamedog(buttpet, (struct obj *) 0, TRUE);
 				pline("Suddenly, you gain a new sexy pet!");
 			}
+
+			u.mondiffhack = 0;
 
 		} else {
 			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
@@ -7207,6 +7210,7 @@ revid_end:
 			do {
 				shoe = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!shoe || (shoe && !(shoe->msound == MS_SHOE))) && attempts < 50000);
@@ -7220,6 +7224,9 @@ revid_end:
 				shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
 				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
 			} else pline("Somehow, it failed... :(");
+
+			u.mondiffhack = 0;
+
 		}
 
 		break;
@@ -9671,6 +9678,7 @@ mkwsh_end:
 			do {
 				shoe = rndmonst();
 				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 				if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 			} while ( (!shoe || (shoe && !is_diablomonster(shoe))) && attempts < 50000);
@@ -9685,6 +9693,8 @@ mkwsh_end:
 				if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
 			} else pline("It seems that the world of Sanctuary has run out of monsters.");
 		}
+			u.mondiffhack = 0;
+
 			break;
 
 		case T_UNDERTOW:
@@ -10236,6 +10246,7 @@ extrachargechoice:
 				do {
 					shoe = rndmonst();
 					attempts++;
+					if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 					if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 				} while ( (!shoe || (shoe && !(shoe->mflags5 & M5_SPACEWARS) && !(shoe->mflags5 & M5_JOKE))) && attempts < 50000);
@@ -10244,6 +10255,7 @@ extrachargechoice:
 					shoemonst = makemon(shoe, u.ux, u.uy, NO_MM_FLAGS);
 					if (shoemonst) (void) tamedog(shoemonst, (struct obj *) 0, TRUE);
 				}
+				u.mondiffhack = 0;
 			}
 
 			t_timeout = rnz(5000);

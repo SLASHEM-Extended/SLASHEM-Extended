@@ -508,6 +508,7 @@ newbossTSD:
 					do {
 						pm = rndmonst();
 						attempts++;
+						if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 						if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 					} while ( (!pm || (pm && !(pm->msound == MS_TREESQUAD ))) && attempts < 50000);
@@ -522,6 +523,8 @@ newbossTSD:
 					}
 
 					if (pm) (void) makemon(pm, cx, cy, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK);
+
+					u.mondiffhack = 0;
 
 				}
 
@@ -558,6 +561,7 @@ newbossMETALMAFIA:
 				do {
 					pm = rndmonst();
 					attempts++;
+					if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 					if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 				} while ( (!pm || (pm && !(pm->msound == MS_METALMAFIA ))) && attempts < 50000);
@@ -572,6 +576,8 @@ newbossMETALMAFIA:
 				}
 
 				if (pm) (void) makemon(pm, 0, 0, MM_ANGRY);
+
+				u.mondiffhack = 0;
 
 				if (monstcnt > 0) {
 					monstcnt--;

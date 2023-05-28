@@ -920,6 +920,7 @@ newbossRLL:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
@@ -935,6 +936,7 @@ newbossRLL:
 
 		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
+		u.mondiffhack = 0;
 		u.aggravation = 0;
 
 	}
@@ -980,6 +982,7 @@ newbossRLM:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
@@ -995,6 +998,7 @@ newbossRLM:
 
 		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
+		u.mondiffhack = 0;
 		u.aggravation = 0;
 
 	}
@@ -1025,6 +1029,7 @@ newbossRLN:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->msound == MS_SUPERMAN ))) && attempts < 50000);
@@ -1041,6 +1046,7 @@ newbossRLN:
 		if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
 
 		u.aggravation = 0;
+		u.mondiffhack = 0;
 
 	}
 
@@ -1439,6 +1445,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
@@ -1457,6 +1464,7 @@ newboss:
 	    }
 	    pline("A boss monster appears from nowhere!");
 
+		u.mondiffhack = 0;
 		u.aggravation = 0;
 
 	break;
@@ -2248,6 +2256,7 @@ newboss:
 		do {
 			pm = rndmonst();
 			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
 			if (!rn2(2000)) reset_rndmonst(NON_PM);
 
 		} while ( (!pm || (pm && !(pm->geno & G_UNIQ))) && attempts < 50000);
@@ -2266,6 +2275,7 @@ newboss:
 	    }
 	    pline("A boss monster appears from nowhere!");
 
+		u.mondiffhack = 0;
 		u.aggravation = 0;
 
 	break;
