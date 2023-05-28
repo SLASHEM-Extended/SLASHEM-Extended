@@ -2099,10 +2099,18 @@ d_level *lev;
 /* use instead of depth() wherever a degree of difficulty is made
  * dependent on the location in the dungeon (eg. monster creation).
  */
-xchar /* xchar means it can only be 127 or lower. If a value >127 is returned, the game destabilizes! */
+xchar /* xchar used to mean it can only be 127 or lower. If a value >127 is returned, the game destabilizes! no longer the 	 * case though, because Amy fixed that */
 level_difficulty()
 {
 	int retvalue;
+
+	boolean canincreaselevel = TRUE;
+	if (moves < 1000) {
+		if (u.urmaxlvlUP < 3) canincreaselevel = FALSE;
+		if (u.urmaxlvlUP == 3 && rn2(2)) canincreaselevel = FALSE;
+		if (u.urmaxlvlUP == 4 && !rn2(3)) canincreaselevel = FALSE;
+		if (u.urmaxlvlUP == 5 && !rn2(4)) canincreaselevel = FALSE;
+	}
 
 	int depthuz;
 	int deepestuz;
@@ -2150,14 +2158,16 @@ level_difficulty()
 	else if (depthuz == 10) depthuz = 8;
 	else if (depthuz == 11) depthuz = 8;
 
-	if (In_endgame(&u.uz))
-		retvalue = (110 + (u.ulevel/2) );
-	else if (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5)))
-		retvalue = 110;
-	else if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(3))
+	if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(3))
 		retvalue = (depthuz + rn2(u.ulevel) + 2 );
 	else
 		retvalue = depthuz;
+
+	if (In_endgame(&u.uz)) {
+		if (retvalue < (110 + (u.ulevel/2) )) retvalue = 110 + (u.ulevel/2);
+	} else if (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5))) {
+		if (retvalue < 110) retvalue = 110;
+	}
 
 	if (u.uhave.amulet && !u.freeplaymode && (retvalue < 50)) retvalue = 50;
 
@@ -2235,7 +2245,10 @@ level_difficulty()
 	}
 
 	/* occasionally have them be just a little out of depth to keep you on your toes... --Amy */
-	if (!rn2(20)) retvalue += rno(3);
+	if (!rn2(20) && canincreaselevel) retvalue += rno(3);
+	if (!rn2(100) && (u.urmaxlvlUP > 5)) retvalue += rno(5);
+	if (!rn2(500) && (u.urmaxlvlUP > 10)) retvalue += rno(10);
+	if (!rn2(10000) && (u.urmaxlvlUP > 20)) retvalue += rno(50);
 
 	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
 	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) {
@@ -2318,7 +2331,7 @@ level_difficulty()
 
 	if (uarm && uarm->oartifact == ART_ISIMOUD) retvalue /= 2;
 
-	if (retvalue > 126) retvalue = 126; /* fail safe */
+	/*if (retvalue > 126) retvalue = 126;*/ /* fail safe */
 	if (retvalue < 1) retvalue = 1;
 
 	/*pline("%d diff", retvalue);*/
@@ -2346,7 +2359,7 @@ monster_difficulty()
 	if (Race_if(PM_DEVELOPER)) tempval += rnd(30);
 
 	if (tempval < 1) tempval = 1;
-	if (tempval > 125) tempval = 125; /* to be on the safe side */
+	/*if (tempval > 125) tempval = 125;*/ /* to be on the safe side */
 
 	/*pline("%d mondiff", tempval);*/
 

@@ -27777,7 +27777,7 @@ rndmonst()
 	    if (!rn2(100)) maxmlev *= 2;
 	    if (!rn2(1000)) maxmlev *= 4;
 	    if (!rn2(10000)) maxmlev = 127;
-		if (maxmlev > 127) maxmlev = 127; /* maxmlev is an int, but better safe than sorry. --Amy */
+		/*if (maxmlev > 127) maxmlev = 127;*/ /* maxmlev is an int, but better safe than sorry. --Amy */
 
 		/* In Soviet Russia, things can never be difficult enough. Don't bother the player with weak stuff like newts,
 		 * when we could spawn all kinds of barbazus, chthonians and great wyrms of the elements in Gehennom. --Amy */
@@ -27799,7 +27799,7 @@ rndmonst()
 		/* fail safes */
 		if (minmlev > 126) minmlev = 126;
 		if (minmlev >= maxmlev) maxmlev = minmlev + 1;
-		if (maxmlev > 127) maxmlev = 127;
+		/*if (maxmlev > 127) maxmlev = 127;*/
 		if (minmlev < 0) minmlev = 0;
 
 #ifdef REINCARNATION
@@ -27818,7 +27818,7 @@ loopback:
 	    for ( ; mndx < SPECIAL_PM; mndx++) {
 		ptr = &mons[mndx];
 		rndmonst_state.mchoices[mndx] = 0;
-		if (tooweak(mndx, minmlev) || (rn2(20) ? toostrong(mndx, maxmlev) : ptr->mlevel > maxmlev ) )
+		if (tooweak(mndx, minmlev) || (rn2(5) ? (toostrong(mndx, maxmlev)) : (ptr->mlevel > maxmlev) ) )
 		    continue;
 #ifdef REINCARNATION
 		if (upper && !isupper((int)def_monsyms[(int)(ptr->mlet)]) && rn2(5) ) continue;
@@ -29227,6 +29227,15 @@ int     spc;
 	int uncommonten = 0;
 	int minmlev = 0;
 
+	/* Amy change: early in the game, if your XL is still very low, OOD monsters should be rare */
+	boolean canincreaselevel = TRUE;
+	if (moves < 1000) {
+		if (u.urmaxlvlUP < 3) canincreaselevel = FALSE;
+		if (u.urmaxlvlUP == 3 && rn2(2)) canincreaselevel = FALSE;
+		if (u.urmaxlvlUP == 4 && !rn2(3)) canincreaselevel = FALSE;
+		if (u.urmaxlvlUP == 5 && !rn2(4)) canincreaselevel = FALSE;
+	}
+
 	if (!issoviet) {
 		uncommontwo = rn2(2) ? 1 : 0;
 		uncommonthree = rn2(3) ? 1 : 0;
@@ -29338,27 +29347,32 @@ int     spc;
 	boolean calctype;
 
 	bonuslevel = 0;
-	if (!rn2(5)) bonuslevel += rnd(5);
-	if (!rn2(20)) bonuslevel += rnd(7);
-	if (!rn2(100)) bonuslevel += rnd(10);
-	if (!rn2(500)) bonuslevel += rnd(15);
-	if (!rn2(2500)) bonuslevel += rnd(20);
-	if (!rn2(20000)) bonuslevel += rnd(30);
-	if (!rn2(50000)) bonuslevel += rnd(50);
-	if (!rn2(100000)) bonuslevel += rnd(100);
+	if (canincreaselevel) {
+		if (!rn2(5)) bonuslevel += rnd(5);
+		if (!rn2(20)) bonuslevel += rnd(7);
+		if (!rn2(100)) bonuslevel += rnd(10);
+		if (!rn2(500)) bonuslevel += rnd(15);
+		if (!rn2(2500)) bonuslevel += rnd(20);
+		if (!rn2(20000)) bonuslevel += rnd(30);
+		if (!rn2(50000)) bonuslevel += rnd(50);
+		if (!rn2(100000)) bonuslevel += rnd(100);
+	}
 
 	if (rn2(5)) calctype = 1;
 	else calctype = 0;
 
 	/*maxmlev = level_difficulty() >> 1;*/ /* what the heck? does that divide the actual result by 2?! --Amy */
 	  maxmlev = monster_difficulty();
+
+	if (canincreaselevel) {
 	    if (!rn2(100)) maxmlev *= 2;
 	    if (!rn2(1000)) maxmlev *= 4;
 	    if (!rn2(5)) maxmlev += rnz(2);
 	    if (!rn2(20)) maxmlev += rnz(3);
 	    if (!rn2(100)) maxmlev += rnz(4);
-	    if (!rn2(10000)) maxmlev = 127;
-		if (maxmlev > 127) maxmlev = 127; /* very important! The game might otherwise crash or become unstable! */
+	    if (!rn2(10000)) maxmlev += 127;
+	}
+		/*if (maxmlev > 127) maxmlev = 127;*/ /* very important! The game might otherwise crash or become unstable! */
 	if(class < 1 || class >= MAXMCLASSES) {
 	    impossible("mkclass called with bad class!");
 	    return(-1);
@@ -29380,8 +29394,9 @@ int     spc;
 	/* fail safes */
 	if (minmlev > 126) minmlev = 126;
 	if (minmlev >= maxmlev) maxmlev = minmlev + 1;
-	if (maxmlev > 127) maxmlev = 127;
+	/*if (maxmlev > 127) maxmlev = 127;*/
 	if (minmlev < 0) minmlev = 0;
+	if (maxmlev < 1) maxmlev = 1;
 
 	/*pline("max spawn level %d",maxmlev);*/
 
