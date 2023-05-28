@@ -558,6 +558,11 @@ register struct obj *obj;
 
 	if (UncalledEffect || u.uprops[UNCALLED_EFFECT].extrinsic || have_uncalledstone()) return;
 
+	if (obj->otyp == AMULET_OF_YENDOR || obj->otyp == FAKE_AMULET_OF_YENDOR) {
+		pline("Hahaha. Nice try.");
+		return;
+	}
+
 	if (!obj->dknown) return; /* probably blind */
 	otemp = *obj;
 	otemp.quan = 1L;
