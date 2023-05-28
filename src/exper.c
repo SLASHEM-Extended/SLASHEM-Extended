@@ -30,14 +30,14 @@ int lev;
 
 	if (!issoviet) {
 
-	if (lev == 1)  return (20L);     /* need 20           */
-	if (lev == 2)  return (40L);    /* need 20           */
-	if (lev == 3)  return (80L);    /* need 40          */
-	if (lev == 4)  return (160L);    /* need 80          */
-	if (lev == 5)  return (320L);   /* need 160          */
-	if (lev == 6)  return (640L);   /* need 320          */
-	if (lev == 7)  return (1280L);   /* need 640         */
-	if (lev == 8)  return (2560L);   /* need 1280         */
+	if (lev == 1)  return (10L);     /* need 20           */
+	if (lev == 2)  return (30L);    /* need 20           */
+	if (lev == 3)  return (70L);    /* need 40          */
+	if (lev == 4)  return (150L);    /* need 80          */
+	if (lev == 5)  return (300L);   /* need 160          */
+	if (lev == 6)  return (600L);   /* need 320          */
+	if (lev == 7)  return (1200L);   /* need 640         */
+	if (lev == 8)  return (2500L);   /* need 1280         */
 	if (lev == 9)  return (5000L);   /* need 2440         */
 	if (lev == 10) return (10000L);   /* need 5000         */
 	if (lev == 11) return (20000L);  /* need 10000         */
