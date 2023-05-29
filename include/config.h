@@ -8,6 +8,8 @@
 /*#define DEBUG*/
 /*#define DDEBUG*/
 
+/* #define PUBLIC_SERVER */ /* for deploying the game on a server */
+
 /*
  * Section 1:	Operating and window systems selection.
  *		Select the version of the OS you are using.
@@ -224,7 +226,10 @@
 #define NEWS "news"		/* the file containing the latest hack news */
 #define NEWS_AREA FILE_AREA_SHARE
 #define PANICLOG "paniclog"	/* log of panic and impossible events */
+
+#ifndef PUBLIC_SERVER /* doesn't seem to work properly on esm */
 #define LIVELOGFILE "livelog" /* live game progress log file */
+#endif
 
 #ifdef LIVELOGFILE
 #define LIVELOG_BONES_KILLER	/* Report if a ghost of a former player is 
@@ -533,7 +538,10 @@ typedef unsigned char	uchar;
 
 /* Write out player's current location to this file.
    Can be left undefined, which will disable the feature. */
+
+#ifndef PUBLIC_SERVER
 #define WHEREIS_FILE "whereis/%n.whereis"
+#endif
 
 /* Some public servers have a bug that I call "phantom crash bug". It is most
  * certainly caused by a buffer size being overrun, but so far I couldn't find

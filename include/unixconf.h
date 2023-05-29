@@ -120,9 +120,9 @@
  * FILE_AREA_DOC	For human-readable documentation
  */
 
-#ifdef PUBLIC_SERVER
-#define FILE_AREAS 		/* Use file areas */
-#endif
+/*#ifdef PUBLIC_SERVER*/
+/*#define FILE_AREAS*/ 		/* Use file areas */
+/*#endif*/
 
 #ifdef FILE_AREAS
 
