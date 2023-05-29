@@ -13722,6 +13722,14 @@ int final;
 		sprintf(buf, "%d monster%s with your symbiote's attacks", u.cnd_symbiotekills, plur(u.cnd_symbiotekills));
 		enl_msg(You_, "killed ", "killed ", buf);
 	}
+	if (u.cnd_singhelped) {
+		sprintf(buf, "%d pair%s of shoes for Sing", u.cnd_singhelped, plur(u.cnd_singhelped));
+		enl_msg(You_, "cleaned ", "cleaned ", buf);
+	}
+	if (u.cnd_singrefused) {
+		sprintf(buf, "to clean shoes for Sing %d times", u.cnd_singrefused);
+		enl_msg(You_, "refused ", "refused ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -14321,6 +14329,12 @@ int final;
 
 	sprintf(buf, "%d monster%s with your symbiote's attacks", u.cnd_symbiotekills, plur(u.cnd_symbiotekills));
 	dump("  You killed ", buf);
+
+	sprintf(buf, "%d pair%s of shoes for Sing", u.cnd_singhelped, plur(u.cnd_singhelped));
+	dump("  You cleaned ", buf);
+
+	sprintf(buf, "to clean shoes for Sing %d times", u.cnd_singrefused);
+	dump("  You refused ", buf);
 
 	dump("", "");
 }

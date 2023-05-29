@@ -4541,6 +4541,7 @@ nomul(nval, txt, discountpossible)
 					mtmp2->mhp = mtmp2->mhpmax;
 				}
 			}
+			u.cnd_singrefused++;
 			u.singtrapocc = FALSE;
 			u.singtraptreaded = FALSE;
 			u.singtraphighheel = FALSE;

@@ -21552,7 +21552,7 @@ singcleaning()
 		delay++;
 
 		if (!rn2(25)) {
-			switch (rnd(7)) {
+			switch (rnd(11)) {
 				case 1:
 					pline("Ugh! Icky!"); break;
 				case 2:
@@ -21567,6 +21567,14 @@ singcleaning()
 					pline("Eek, you want to wash your hands at once."); break;
 				case 7:
 					pline("Damn, the shit is still clinging to the soles!"); break;
+				case 8:
+					pline("It's a shitload of work, literally..."); break;
+				case 9:
+					pline("Actually, the girl should have to clean her shoes herself, after all she was the one who stepped into shit with them..."); break;
+				case 10:
+					pline("You curse the girl shoes and their owner."); break;
+				case 11:
+					pline("Did Sing coerce the girl into making her shoes dirty just so she can force you to do this work?!"); break;
 			}
 		}
 
@@ -21596,6 +21604,7 @@ singcleaning()
 						mtmp2->mhp = mtmp2->mhpmax;
 					}
 				}
+				u.cnd_singrefused++;
 				u.singtrapocc = FALSE;
 				u.singtraptreaded = FALSE;
 				u.singtraphighheel = FALSE;
@@ -21603,10 +21612,6 @@ singcleaning()
 				pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
 				GravationEffect += rnz(2000);
 
-				u.singtrapocc = FALSE;
-				u.singtraptreaded = FALSE;
-				u.singtraphighheel = FALSE;
-				u.singtrapcowdung = FALSE;
 				return(0);
 
 			}
@@ -21651,11 +21656,8 @@ singcleaning()
 				u.singtrapcowdung = FALSE;
 				pline("The beautiful girl in the sexy female shoes is very sad that you didn't finish cleaning her lovely footwear, and urges everyone in her vicinity to bludgeon you.");
 				EnmityBug += rnz(5000);
+				u.cnd_singrefused++;
 
-				u.singtrapocc = FALSE;
-				u.singtraptreaded = FALSE;
-				u.singtraphighheel = FALSE;
-				u.singtrapcowdung = FALSE;
 				return(0);
 
 			}
@@ -21702,6 +21704,7 @@ singcleaning()
 		return(1);
 	} else {
 		pline("Finally, you cleaned all the shit from the sexy female shoes!");
+		u.cnd_singhelped++;
 		u.singtrapocc = FALSE;
 		u.singtraptreaded = FALSE;
 		u.singtraphighheel = FALSE;

@@ -2008,6 +2008,8 @@ struct you {
 	int cnd_weapondull;	/* how many times your weapons dulled */
 	int cnd_armordull;	/* how many times your armor pieces dulled */
 	int cnd_symbiotekills;	/* how many times your symbiote killed an enemy */
+	int cnd_singhelped;	/* how many pairs of shoes you cleaned for Sing */
+	int cnd_singrefused;	/* how many times you refused to clear a pair of shoes for Sing */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */
