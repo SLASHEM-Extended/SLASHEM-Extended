@@ -475,9 +475,7 @@ found:
 				You_feel("like a scarecrow.");
 				u.youaredead = 0;
 
-			}
-
-			if (Race_if(PM_SUSTAINER) && rn2(50)) {
+			} else if (Race_if(PM_SUSTAINER) && rn2(50)) {
 				pline("The stat drain doesn't seem to affect you.");
 			} else if (Role_if(PM_ASTRONAUT) && rn2(2)) {
 				pline("Your steeled body prevents the stat loss!");

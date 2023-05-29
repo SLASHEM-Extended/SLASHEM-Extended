@@ -1722,6 +1722,12 @@ adjattrib(ndx, incr, msgflg, canresist)
 		if (msgflg == 0 && flags.verbose)
 		    pline("You're already as %s as you can get.",
 			  minusattr[ndx]);
+
+		/* Amy edit: granted, stat instadeath would be kinda BS here... but you should at least get *some* penalty
+		 * for playing badly enough to allow a stat to be drained that low! So, we're reducing your alla. */
+		You_feel("a drain on your soul...");
+		drain_alla(abs(incr));
+
 		ABASE(ndx) = ATTRMIN(ndx); /* just in case */
 		return FALSE;
 	    }

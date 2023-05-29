@@ -7620,6 +7620,9 @@ register struct obj *otmp;
 				AMAX(A_STR) -= 1;
 				u.cnd_permstatdamageamount++;
 				Your("strength falls off!");
+			} else {
+				Your("soul has been drained considerably!");
+				drain_alla(10);
 			}
 		}
 		if (rn2(2)) {
@@ -7628,6 +7631,9 @@ register struct obj *otmp;
 				AMAX(A_CON) -= 1;
 				u.cnd_permstatdamageamount++;
 				Your("constitution falls off!");
+			} else {
+				Your("soul has been drained considerably!");
+				drain_alla(10);
 			}
 		}
 		if (rn2(2)) {
@@ -7636,6 +7642,9 @@ register struct obj *otmp;
 				AMAX(A_WIS) -= 1;
 				u.cnd_permstatdamageamount++;
 				Your("wisdom falls off!");
+			} else {
+				Your("soul has been drained considerably!");
+				drain_alla(10);
 			}
 		}
 		if (rn2(2)) {
@@ -7644,6 +7653,9 @@ register struct obj *otmp;
 				AMAX(A_INT) -= 1;
 				u.cnd_permstatdamageamount++;
 				Your("intelligence falls off!");
+			} else {
+				Your("soul has been drained considerably!");
+				drain_alla(10);
 			}
 		}
 		if (rn2(2)) {
@@ -7652,6 +7664,9 @@ register struct obj *otmp;
 				AMAX(A_DEX) -= 1;
 				u.cnd_permstatdamageamount++;
 				Your("dexterity falls off!");
+			} else {
+				Your("soul has been drained considerably!");
+				drain_alla(10);
 			}
 		}
 	}

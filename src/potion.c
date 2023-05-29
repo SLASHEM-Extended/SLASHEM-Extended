@@ -6950,8 +6950,16 @@ void
 statdrain()
 {
 	int statdrained = rn2(A_MAX);
-	if (ABASE(statdrained) < 4) return;
-	if (ABASE(statdrained) < (3 + rnd(8)) ) return;
+	if (ABASE(statdrained) < 4) {
+		Your("soul has been drained considerably!");
+		drain_alla(10);
+		return;
+	}
+	if (ABASE(statdrained) < (3 + rnd(8)) ) {
+		Your("soul has been drained!");
+		drain_alla(5);
+		return;
+	}
 
 	if (Race_if(PM_SUSTAINER) && rn2(50)) {
 		pline("The stat drain doesn't seem to affect you.");
@@ -12540,6 +12548,9 @@ peffects(otmp)
 					case A_WIS:
 						pline("Your wisdom falls off!"); break;
 				}
+			} else {
+				Your("soul has been drained considerably!");
+				drain_alla(10);
 			}
 
 			cure_feminism_traps();

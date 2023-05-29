@@ -4567,6 +4567,8 @@ tscheinschroll:
 						ABASE(A_CHA) -= 1;
 						AMAX(A_CHA) -= 1;
 						u.cnd_permstatdamageamount++;
+					} else {
+						drain_alla(10);
 					}
 					chaloss--;
 				}
