@@ -5657,6 +5657,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Tip ledyanoy glyby izbegayet Emi, potomu chto UOU-KHA-KHA, on ne khochet, chtoby ona ispravlyala oshibki, khotya nikto drugoy ne nashel vsekh problem s kosoy chertoy.",
 "Lyubyye yevropeyskiye agenty, kotoryye popytayutsya podorvat' prevoskhodstvo Kremlya, vydavaya sebya za tekh, kem oni ne yaviyayustya, poluchat znachitel'noye snizheniye zdorov'ya! Chertovy pridurki!",
 "Vladel'tsy magazinov, kotoryye teleportiruyutsya, ub'yut vas, potomu chto vy takoy zhe natsional-sotsialist, kak diktator, pravyashchiy Kiyevom.",
+"Yesli u monstra yest' neskol'ko oruzheynykh atak, on mozhet strelyat' iz oruzhiya dal'nego boya neskol'ko raz za khod, potomu chto tip ledyanoy glyby - luchshiy geymdizayner vo vselennoy. Kho, khe khe khe khe...",
 };
 
 static NEARDATA const char * const practicantlines[] = {

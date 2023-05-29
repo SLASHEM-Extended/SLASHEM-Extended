@@ -1458,6 +1458,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	struct obj *singleobj, *mwep;
 	char sym = obj->oclass;
 	int hitu, blindinc = 0;
+	int tmpwpndmg = 0;
 
 	bhitpos.x = x;
 	bhitpos.y = y;
@@ -1601,7 +1602,26 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    hitu = thitu(8 + (mon->m_lev / 2), 0, singleobj, (char *)0);
 			    break;
 			default:
-			    dam = dmgval(singleobj, &youmonst);
+
+			    tmpwpndmg = dmgval(singleobj, &youmonst);
+				if (tmpwpndmg > 0) {
+					if (mon->m_lev < 2 && u.urmaxlvlUP < 4) tmpwpndmg /= 2;
+					if (mon->m_lev == 2 && u.urmaxlvlUP < 4) {
+						tmpwpndmg /= 3;
+						tmpwpndmg *= 2;
+					}
+					if (mon->m_lev == 3 && u.urmaxlvlUP < 4) {
+						tmpwpndmg /= 4;
+						tmpwpndmg *= 3;
+					}
+					if (mon->m_lev == 4 && u.urmaxlvlUP < 4) {
+						tmpwpndmg /= 5;
+						tmpwpndmg *= 4;
+					}
+					if (tmpwpndmg < 1) tmpwpndmg = 1; /* fail safe */
+				}
+
+			    dam = tmpwpndmg;
 			    if (singleobj->otyp == BOULDER && !rn2(2)) dam += (2 * (mon->m_lev));
 
 			    if (singleobj->otyp == BOULDER && (mon->data == &mons[PM_BOULDER_FART] || mon->data == &mons[PM_FIRM_BOULDER_FART])) {
@@ -1832,6 +1852,7 @@ struct monst *mtmp;
 	int chance;
 
 	int polelimit = POLE_LIM;
+	int tmpwpndmg = 0;
 
 	if (mtmp->data == &mons[PM_MECHTNED]) return;
 	if (mtmp->data == &mons[PM_IMPALAZON]) return;
@@ -1872,7 +1893,25 @@ struct monst *mtmp;
 		      obj_is_pname(otmp) ? the(onm) : an(onm));
 	    }
 
-	    dam = dmgval(otmp, &youmonst);
+	    tmpwpndmg = dmgval(otmp, &youmonst);
+		if (tmpwpndmg > 0) {
+			if (mtmp->m_lev < 2 && u.urmaxlvlUP < 4) tmpwpndmg /= 2;
+			if (mtmp->m_lev == 2 && u.urmaxlvlUP < 4) {
+				tmpwpndmg /= 3;
+				tmpwpndmg *= 2;
+			}
+			if (mtmp->m_lev == 3 && u.urmaxlvlUP < 4) {
+				tmpwpndmg /= 4;
+				tmpwpndmg *= 3;
+			}
+			if (mtmp->m_lev == 4 && u.urmaxlvlUP < 4) {
+				tmpwpndmg /= 5;
+				tmpwpndmg *= 4;
+			}
+			if (tmpwpndmg < 1) tmpwpndmg = 1; /* fail safe */
+		}
+	    dam = tmpwpndmg;
+
 	    hitv = 3 - distmin(u.ux,u.uy, mtmp->mx,mtmp->my);
 	    if (hitv < -4) hitv = -4;
 	    if (bigmonst(youmonst.data)) hitv++;

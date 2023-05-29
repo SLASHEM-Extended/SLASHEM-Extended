@@ -2193,6 +2193,8 @@ mattacku(mtmp)
 		 * invisible, or you might be blind....
 		 */
 
+	int didrangedattack = 0;
+
 	int yourarmorclass;
 	int hittmp;
 	int mlevfortohit;
@@ -2797,7 +2799,7 @@ cursesatyou:
 
 swingweapon:
 
-			if(range2 || !rn2(4) ) {
+			if (range2 || !rn2(4) ) {
 				register struct obj *rangewepon;
 #ifdef REINCARNATION
 				if (!Is_rogue_level(&u.uz) || !rn2(3) ) {
@@ -2805,8 +2807,26 @@ swingweapon:
 
 					rangewepon = select_rwep(mtmp, FALSE);
 					if (!rangewepon && !range2) goto usemelee;
+					if (!issoviet && didrangedattack && !range2) goto usemelee;
 
-					if (!blue_on_blue(mtmp)) thrwmu(mtmp);
+					/* note by Amy: it's a balance problem if monsters can use multiple ranged attacks per turn
+					 * as a result of having several weapon attacks; you do not get to fire your assault rifle
+					 * 6 times for 30 bullets in one turn just because you're polyd into a nonexistant cop. */
+
+					/* In Soviet Russia, the Kreml's troops can just cheat and fire their guns many times per
+					 * second, because the type of ice block wants to make sure that all enemies of the state
+					 * will be shredded before they can try anything funny. So beware, those lieutenants and
+					 * captains are going to pump you full of lead several times in succession before you
+					 * finally get another turn! Ha ha ha! */
+
+					if (!blue_on_blue(mtmp) && (!didrangedattack || issoviet) ) {
+						if (issoviet && (didrangedattack == 1)) {
+							pline("Monstry mogut strelyat' iz neskol'kikh vidov oruzhiya dal'nego boya za odin khod, kho-kha-kha, ya takoy smeshnoy! Podpis': tip ledyanoy glyby.");
+							didrangedattack = 2;
+						}
+						thrwmu(mtmp);
+						if (!didrangedattack) didrangedattack = 1;
+					}
 #ifdef REINCARNATION
 				}
 #endif
@@ -6772,6 +6792,7 @@ hitmu(mtmp, mattk)
 
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	int dmg, armpro, permdmg;
+	int tmpwpndmg = 0;
 	int armprolimit = 75;
 	int	nobj = 0;
 	char	 buf[BUFSZ];
@@ -7016,7 +7037,28 @@ hitmu(mtmp, mattk)
 				    dmg++;
 			    }
 #endif
-			} else dmg += dmgval(otmp, &youmonst);
+			} else {
+				/* very early in the game, low-level monsters shouldn't instagib your starting char --Amy */
+				tmpwpndmg = dmgval(otmp, &youmonst);
+				if (tmpwpndmg > 0) {
+					if (mtmp->m_lev < 2 && u.urmaxlvlUP < 4) tmpwpndmg /= 2;
+					if (mtmp->m_lev == 2 && u.urmaxlvlUP < 4) {
+						tmpwpndmg /= 3;
+						tmpwpndmg *= 2;
+					}
+					if (mtmp->m_lev == 3 && u.urmaxlvlUP < 4) {
+						tmpwpndmg /= 4;
+						tmpwpndmg *= 3;
+					}
+					if (mtmp->m_lev == 4 && u.urmaxlvlUP < 4) {
+						tmpwpndmg /= 5;
+						tmpwpndmg *= 4;
+					}
+					if (tmpwpndmg < 1) tmpwpndmg = 1; /* fail safe */
+				}
+
+				dmg += tmpwpndmg;
+			}
 
 			if (otmp && otmp->otyp == COLLUSION_KNIFE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 
