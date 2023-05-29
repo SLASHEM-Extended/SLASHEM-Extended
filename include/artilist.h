@@ -13261,6 +13261,14 @@ A("Raggo's Rock",			ROCK, /* always spawns with quantity of 1, by Demo */
 	(SPFX_RESTR|SPFX_ONLYONE|SPFX_SPEAK|SPFX_LUCK), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+A("glorkum 3 721 5",				WATER_DRAGON_SCALES, /* 5 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("svetochuvstvitel'nost'",				POT_SPEED, /* quaffing it gives 200 turns of berserk and 2000 turns of thirst nastytrap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

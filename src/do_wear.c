@@ -6374,6 +6374,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_BRINGS_WHICH) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DEMANDING_ENTRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DUEUEUEUET) uac += 5;
+	if (uarm && uarm->oartifact == ART_GLORKUM________) uac -= 5;
 	if (uarm && uarm->oartifact == ART_FEILJUR) uac += 5;
 	if (uarmf && uarmf->oartifact == ART_OH_MAN_BORING) uac -= 1;
 	if (uarmf && uarmf->oartifact == ART_STERDYNES) uac -= 1;

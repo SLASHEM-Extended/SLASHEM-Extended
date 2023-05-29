@@ -12582,6 +12582,11 @@ peffects(otmp)
 		break;
 	case POT_SPEED:
 
+		if (otmp->oartifact == ART_SVETOCHUVSTVITEL_NOST_) {
+			if (!u.berserktime) u.berserktime = 200;
+			Thirst += 2000;
+		}
+
 		if (evilfriday && otmp->cursed) {
 			u.uprops[DEAC_FAST].intrinsic += rnd(500);
 			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");

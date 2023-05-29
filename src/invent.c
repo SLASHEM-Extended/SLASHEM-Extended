@@ -26231,6 +26231,10 @@ boolean knoweverything;
 					pline("Artifact specs: +20 to-hit and +2 damage, sight bonus, and while wielding it, monsters who are far away from you move much faster than normal."); break;
 				case ART_RAGGO_S_ROCK:
 					pline("Artifact specs: acts as a luckstone when wielded. This artifact has been invented by Demo."); break;
+				case ART_GLORKUM________:
+					pline("Artifact specs: 5 extra points of AC when worn. This item is indeed item class 3 (armor) and acts as if its spe (enchantment) was +5 (although the AC bonus stacks with any actual enchantment on the item), but the base type will not remain 721 as new base items are added to SLEX."); break;
+				case ART_SVETOCHUVSTVITEL_NOST_:
+					pline("Artifact specs: gives you effects as if you had taken a shot of the RL drug named 'speed' if you quaff it. Addiction/withdrawal is not modeled by the game yet, though."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
