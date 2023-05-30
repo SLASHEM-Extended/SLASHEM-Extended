@@ -808,7 +808,7 @@ struct mkroom *sroom;
 		    (type == RELIGIONCENTER) ? (rn2(5) ? specialtensmon(347) /* MS_CONVERT */ : specialtensmon(348) /* MS_ALIEN */ ) :
 			(type == CLINIC) ? specialtensmon(218) /* AD_HEAL */ :
 			(type == TERRORHALL) ? mkclass(S_UMBER,0) :
-			(type == CASINOROOM) ? ( ((level_difficulty() + u.pompejipermanentrecord) > 80) ? &mons[PM_ELITE_CROUPIER] : ((level_difficulty() + u.pompejipermanentrecord) > 40) ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER] )  :
+			(type == CASINOROOM) ? ( ((level_difficulty() + u.pompejipermanentrecord) > 100) ? &mons[PM_ELITE_CROUPIER] : ((level_difficulty() + u.pompejipermanentrecord) > 80) ? &mons[PM_EXCEPTIONAL_CROUPIER] : ((level_difficulty() + u.pompejipermanentrecord) > 60) ? &mons[PM_MASTER_CROUPIER] : ((level_difficulty() + u.pompejipermanentrecord) > 40) ? &mons[PM_EXPERIENCED_CROUPIER] : &mons[PM_CROUPIER] )  :
 			(type == ROBBERCAVE) ? (!rn2(20) ? specialtensmon(286) /* AD_SAMU */ : !rn2(4) ? specialtensmon(357) /* AD_THIE */ : !rn2(3) ? specialtensmon(212) /* AD_SITM */ : !rn2(2) ? specialtensmon(213) /* AD_SEDU */ : specialtensmon(211) /* AD_SGLD */ ) :
 			(type == SANITATIONCENTRAL) ? specialtensmon(363) /* AD_SANI */ :
 			(type == VARIANTROOM) ? specialtensmon(u.specialtensionmonster) :
@@ -1052,7 +1052,7 @@ cgrfinished:
 
 			if (sx == tx && sy == ty) {
 				register struct monst *croupier;
-				croupier = makemon(level_difficulty() > 80 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 40 ? &mons[PM_MASTER_CROUPIER] : &mons[PM_CROUPIER], sx, sy, MM_ADJACENTOK);
+				croupier = makemon(level_difficulty() > 100 ? &mons[PM_ELITE_CROUPIER] : level_difficulty() > 80 ? &mons[PM_EXCEPTIONAL_CROUPIER] : level_difficulty() > 60 ? &mons[PM_MASTER_CROUPIER] : level_difficulty() > 40 ? &mons[PM_EXPERIENCED_CROUPIER] : &mons[PM_CROUPIER], sx, sy, MM_ADJACENTOK);
 				if (croupier) {
 					croupier->mfrenzied = FALSE;
 					croupier->mpeaceful = 1;

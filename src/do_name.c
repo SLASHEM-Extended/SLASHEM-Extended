@@ -793,6 +793,10 @@ stupidsegfault:
 		return buf;
 	    if (mdat == &mons[PM_MASTER_SHOPKEEPER] && !do_invis)
 		return buf;
+	    if (mdat == &mons[PM_EXPERIENCED_SHOPKEEPER] && !do_invis)
+		return buf;
+	    if (mdat == &mons[PM_EXCEPTIONAL_SHOPKEEPER] && !do_invis)
+		return buf;
 	    if (mdat == &mons[PM_ELITE_SHOPKEEPER] && !do_invis)
 		return buf;
 	    strcat(buf, " the ");

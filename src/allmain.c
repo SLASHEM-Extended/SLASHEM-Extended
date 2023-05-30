@@ -5347,7 +5347,7 @@ newbossPOMP:
 			}
 
 			if (!rn2(10)) {
-				(void) makemon(((level_difficulty() + u.pompejipermanentrecord) > 39) ? &mons[PM_XRP_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 19) ? &mons[PM_MST_PUNISHER] : &mons[PM_SHP_PUNISHER], 0, 0, MM_ADJACENTOK|MM_ANGRY);
+				(void) makemon( ((level_difficulty() + u.pompejipermanentrecord) > 79) ? &mons[PM_XRP_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 59) ? &mons[PM_SEP_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 39) ? &mons[PM_MST_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 19) ? &mons[PM_EXP_PUNISHER] : &mons[PM_SHP_PUNISHER], 0, 0, MM_ADJACENTOK|MM_ANGRY);
 			}
 
 			if (!rn2(10)) u.pompejiwantedlevel--;
@@ -15371,7 +15371,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) pline("Message of the day: This is a reminder that you should be playing the game on a terminal with the dimensions 125x45. If you haven't already, open your terminal settings NOW and change it to 125x45 or you'll keep wondering why the bottom status line disappears or gets cut off when it gets too long! Use exactly 125x45 for best results, any other dimensions and it won't work properly!");
 
 #else
-	if (new_game) pline("Message of the day: This is a reminder that you should be playing the game on a terminal with the dimensions 80x25. Yes, you read that right, 80x25, not that weird 80x24 default that many terminal emulators seem to have. If you haven't already, open your terminal settings NOW and change it to 80x25 or you'll keep wondering why the bottom status line disappears when it gets too long! But also, don't make the terminal bigger - if you set it to wacky values like 88x25 or 137x34 or whatever, the bottom status line won't work properly either!");
+	if (new_game) pline("Message of the day: Sorry for all the savebreak updates lately, it's the only way I can make sure the version of the game on this server is up to date because our multiversioning script is malfunctioning. If you had a previous game on the old version, please use 'Play Slash'EM Extended old version' from the launch menu. In case that still doesn't bring your old game back, contact me on the IRC or Reddit and I'll find a way to restore your game :-) Sincerely, Amy.");
 
 #endif
 

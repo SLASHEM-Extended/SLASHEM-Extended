@@ -313,17 +313,25 @@ struct monst *mtmp;
 	if (mtmp->data == &mons[PM_CROUPIER]) return TRUE;
 	if (mtmp->data == &mons[PM_MASTER_CROUPIER]) return TRUE;
 	if (mtmp->data == &mons[PM_ELITE_CROUPIER]) return TRUE;
+	if (mtmp->data == &mons[PM_EXPERIENCED_CROUPIER]) return TRUE;
+	if (mtmp->data == &mons[PM_EXCEPTIONAL_CROUPIER]) return TRUE;
 
 	if (mtmp->data == &mons[PM_SHOPKEEPER]) return TRUE;
 	if (mtmp->data == &mons[PM_MASTER_SHOPKEEPER]) return TRUE;
 	if (mtmp->data == &mons[PM_ELITE_SHOPKEEPER]) return TRUE;
+	if (mtmp->data == &mons[PM_EXPERIENCED_SHOPKEEPER]) return TRUE;
+	if (mtmp->data == &mons[PM_EXCEPTIONAL_SHOPKEEPER]) return TRUE;
 
 	if (mtmp->data == &mons[PM_GUARD]) return TRUE;
 	if (mtmp->data == &mons[PM_MASTER_GUARD]) return TRUE;
 	if (mtmp->data == &mons[PM_ELITE_GUARD]) return TRUE;
+	if (mtmp->data == &mons[PM_EXPERIENCED_GUARD]) return TRUE;
+	if (mtmp->data == &mons[PM_EXCEPTIONAL_GUARD]) return TRUE;
 
 	if (mtmp->data == &mons[PM_ALIGNED_PRIEST]) return TRUE;
 	if (mtmp->data == &mons[PM_MASTER_PRIEST]) return TRUE;
+	if (mtmp->data == &mons[PM_EXPERIENCED_PRIEST]) return TRUE;
+	if (mtmp->data == &mons[PM_EXCEPTIONAL_PRIEST]) return TRUE;
 	if (mtmp->data == &mons[PM_HIGH_PRIEST]) return TRUE;
 	if (mtmp->data == &mons[PM_ELITE_PRIEST]) return TRUE;
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) return TRUE;

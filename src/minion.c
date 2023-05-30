@@ -19,7 +19,7 @@ boolean ownloc; /* TRUE = summon wherever I am (REQUIRES A MONSTER TO EXIST!!!),
 	if (mon) {
 	    ptr = mon->data;
 	    atyp = (ptr->maligntyp==A_NONE) ? A_NONE : sgn(ptr->maligntyp);
-	    if (mon->ispriest || mon->data == &mons[PM_ALIGNED_PRIEST] || mon->data == &mons[PM_MASTER_PRIEST] || mon->data == &mons[PM_ELITE_PRIEST]
+	    if (mon->ispriest || mon->data == &mons[PM_ALIGNED_PRIEST] || mon->data == &mons[PM_MASTER_PRIEST] || mon->data == &mons[PM_EXPERIENCED_PRIEST] || mon->data == &mons[PM_EXCEPTIONAL_PRIEST] || mon->data == &mons[PM_ELITE_PRIEST]
 		|| mon->data == &mons[PM_ANGEL])
 		atyp = EPRI(mon)->shralign;
 	} else {

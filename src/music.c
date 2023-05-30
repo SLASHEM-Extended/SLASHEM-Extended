@@ -173,7 +173,7 @@ awaken_soldiers()
 
 	while(mtmp) {
 	    if (!DEADMONSTER(mtmp) &&
-			is_mercenary(mtmp->data) && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD] && mtmp->data != &mons[PM_CROUPIER] && mtmp->data != &mons[PM_MASTER_CROUPIER] && mtmp->data != &mons[PM_ELITE_CROUPIER]) {
+			is_mercenary(mtmp->data) && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_EXPERIENCED_GUARD] && mtmp->data != &mons[PM_EXCEPTIONAL_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD] && mtmp->data != &mons[PM_CROUPIER] && mtmp->data != &mons[PM_MASTER_CROUPIER] && mtmp->data != &mons[PM_EXPERIENCED_CROUPIER] && mtmp->data != &mons[PM_EXCEPTIONAL_CROUPIER] && mtmp->data != &mons[PM_ELITE_CROUPIER]) {
 		mtmp->mpeaceful = mtmp->msleeping = mtmp->mfrozen = 0;
 		mtmp->masleep = 0;
 		mtmp->mcanmove = 1;

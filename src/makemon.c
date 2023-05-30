@@ -1427,7 +1427,7 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_ELF_CHAMPION]) {(void) mongets(mtmp, POT_CONFUSION); (void) mongets(mtmp, POT_CONFUSION); (void) mongets(mtmp, POT_CONFUSION);}
 		if (ptr == &mons[PM_LECTURER]) {(void) mongets(mtmp, POT_SLEEPING); (void) mongets(mtmp, POT_SLEEPING); (void) mongets(mtmp, POT_SLEEPING);}
 
-		if(is_mercenary(ptr) || mm == PM_SHOPKEEPER || mm == PM_MASTER_SHOPKEEPER || mm == PM_ELITE_SHOPKEEPER || mm == PM_PUNISHER
+		if(is_mercenary(ptr) || mm == PM_SHOPKEEPER || mm == PM_MASTER_SHOPKEEPER || mm == PM_EXPERIENCED_SHOPKEEPER || mm == PM_EXCEPTIONAL_SHOPKEEPER || mm == PM_ELITE_SHOPKEEPER || mm == PM_PUNISHER
 				|| mm == PM_CHIEF_YEOMAN_WARDER || mm == PM_YEOMAN_WARDER || mm == PM_SHOTGUN_STORMTROOPER
 				|| mm == PM_JEDI || mm == PM_SHADOW_JEDI
 				|| mm == PM_HEDDERJEDI || mm == PM_PADAWAN || mm == PM_STORMTROOPER
@@ -2081,6 +2081,8 @@ register struct monst *mtmp;
 			  break;
 			case PM_SHOPKEEPER:
 			case PM_MASTER_SHOPKEEPER:
+			case PM_EXPERIENCED_SHOPKEEPER:
+			case PM_EXCEPTIONAL_SHOPKEEPER:
 			case PM_ELITE_SHOPKEEPER:
 			case PM_PUNISHER:
 			  (void) mongets(mtmp, rn2(50) ? SHOTGUN : SAWED_OFF_SHOTGUN);
@@ -9307,10 +9309,14 @@ register struct	monst	*mtmp;
 			case PM_NEWBIE_SOLDIER: mac = 10; break;
 			case PM_RECRUIT_SOLDIER: mac = 10; break;
 			case PM_GUARD: mac = -1; break;
+			case PM_EXPERIENCED_GUARD: mac = -2; break;
 			case PM_MASTER_GUARD: mac = -2; break;
+			case PM_EXCEPTIONAL_GUARD: mac = -2; break;
 			case PM_ELITE_GUARD: mac = -3; break;
 			case PM_CROUPIER: mac = -1; break;
 			case PM_MASTER_CROUPIER: mac = -2; break;
+			case PM_EXPERIENCED_CROUPIER: mac = -2; break;
+			case PM_EXCEPTIONAL_CROUPIER: mac = -2; break;
 			case PM_ELITE_CROUPIER: mac = -3; break;
 			case PM_PRISON_GUARD: mac = -2; break;
 			case PM_SOLDIER: mac = 3; break;
@@ -9400,9 +9406,13 @@ register struct	monst	*mtmp;
 
 		    if(ptr != &mons[PM_GUARD] &&
 			ptr != &mons[PM_MASTER_GUARD] &&
+			ptr != &mons[PM_EXCEPTIONAL_GUARD] &&
+			ptr != &mons[PM_EXPERIENCED_GUARD] &&
 			ptr != &mons[PM_ELITE_GUARD] &&
 			ptr != &mons[PM_CROUPIER] &&
 			ptr != &mons[PM_MASTER_CROUPIER] &&
+			ptr != &mons[PM_EXPERIENCED_CROUPIER] &&
+			ptr != &mons[PM_EXCEPTIONAL_CROUPIER] &&
 			ptr != &mons[PM_ELITE_CROUPIER] &&
 			ptr != &mons[PM_PRISON_GUARD] &&
 			ptr != &mons[PM_WATCHMAN] &&
@@ -9433,7 +9443,7 @@ register struct	monst	*mtmp;
 		    			/* They're going to need it :-) */
 			mongets(mtmp,rn2(3) ? RING_MAIL : PLATE_MAIL);
 		  
-		}  else if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER]) {
+		}  else if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_EXPERIENCED_SHOPKEEPER] || ptr == &mons[PM_EXCEPTIONAL_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER]) {
 		    (void) mongets(mtmp,SKELETON_KEY);
 		    /* STEPHEN WHITE'S NEW CODE                
 		     *
@@ -25075,9 +25085,9 @@ register int	mmflags;
 	}
 
 	/* slex shopkeepers don't fuck around - if you engage them, they may hit you with a variety of nasty stuff --Amy */
-	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_SHP_PUNISHER] || ptr == &mons[PM_MST_PUNISHER] || ptr == &mons[PM_XRP_PUNISHER] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) {
+	if (ptr == &mons[PM_SHOPKEEPER] || ptr == &mons[PM_MASTER_SHOPKEEPER] || ptr == &mons[PM_EXPERIENCED_SHOPKEEPER] || ptr == &mons[PM_EXCEPTIONAL_SHOPKEEPER] || ptr == &mons[PM_ELITE_SHOPKEEPER] || ptr == &mons[PM_BLACK_MARKETEER] || ptr == &mons[PM_GUARD] || ptr == &mons[PM_SHP_PUNISHER] || ptr == &mons[PM_EXP_PUNISHER] || ptr == &mons[PM_SEP_PUNISHER] || ptr == &mons[PM_MST_PUNISHER] || ptr == &mons[PM_XRP_PUNISHER] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_EXPERIENCED_GUARD] || ptr == &mons[PM_EXCEPTIONAL_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_EXPERIENCED_CROUPIER] || ptr == &mons[PM_EXCEPTIONAL_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) {
 
-		if (ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_SHP_PUNISHER] || ptr == &mons[PM_MST_PUNISHER] || ptr == &mons[PM_XRP_PUNISHER] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) mtmp->noegodesc = TRUE;
+		if (ptr == &mons[PM_GUARD] || ptr == &mons[PM_MASTER_GUARD] || ptr == &mons[PM_EXPERIENCED_GUARD] || ptr == &mons[PM_EXCEPTIONAL_GUARD] || ptr == &mons[PM_ELITE_GUARD] || ptr == &mons[PM_SHP_PUNISHER] || ptr == &mons[PM_EXP_PUNISHER] || ptr == &mons[PM_SEP_PUNISHER] || ptr == &mons[PM_MST_PUNISHER] || ptr == &mons[PM_XRP_PUNISHER] || ptr == &mons[PM_CROUPIER] || ptr == &mons[PM_MASTER_CROUPIER] || ptr == &mons[PM_EXPERIENCED_CROUPIER] || ptr == &mons[PM_EXCEPTIONAL_CROUPIER] || ptr == &mons[PM_ELITE_CROUPIER]) mtmp->noegodesc = TRUE;
 		if (rn2(2)) {
 			mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		}
@@ -27142,7 +27152,7 @@ register int	mmflags;
 		else if (rn2(10))        m_initsgrp(mtmp, mtmp->mx, mtmp->my);
 	    }
 		/* allow other monsters to spawn in groups too --Amy */
-	    else if (!rn2(isgrouper ? 10 : 500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_MASTER_SHOPKEEPER && mndx != PM_ELITE_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_MASTER_PRIEST && mndx != PM_ELITE_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != PM_MASTER_GUARD && mndx != PM_ELITE_GUARD && mndx != PM_CROUPIER && mndx != PM_MASTER_CROUPIER && mndx != PM_ELITE_CROUPIER && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
+	    else if (!rn2(isgrouper ? 10 : 500) && allow_special && mndx != PM_SHOPKEEPER && mndx != PM_MASTER_SHOPKEEPER && mndx != PM_EXPERIENCED_SHOPKEEPER && mndx != PM_EXCEPTIONAL_SHOPKEEPER && mndx != PM_ELITE_SHOPKEEPER && mndx != PM_BLACK_MARKETEER && mndx != PM_ALIGNED_PRIEST && mndx != PM_MASTER_PRIEST && mndx != PM_EXPERIENCED_PRIEST && mndx != PM_EXCEPTIONAL_PRIEST && mndx != PM_ELITE_PRIEST && mndx != PM_HIGH_PRIEST && mndx != PM_DNETHACK_ELDER_PRIEST_TM_ && mndx != PM_GUARD && mndx != PM_MASTER_GUARD && mndx != PM_EXPERIENCED_GUARD && mndx != PM_EXCEPTIONAL_GUARD && mndx != PM_ELITE_GUARD && mndx != PM_CROUPIER && mndx != PM_MASTER_CROUPIER && mndx != PM_EXPERIENCED_CROUPIER && mndx != PM_EXCEPTIONAL_CROUPIER && mndx != PM_ELITE_CROUPIER && mndx != quest_info(MS_NEMESIS) /*&& !(ptr->geno & G_UNIQ)*/ ) {
 		if (!rn2(isgrouper ? 100 : 500))  m_initxxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if(!rn2(isgrouper ?  10 : 100))  m_initxlgrp(mtmp, mtmp->mx, mtmp->my);
 		else if (!rn2(isgrouper ? 5 : 20)) m_initvlgrp(mtmp, mtmp->mx, mtmp->my);

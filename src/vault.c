@@ -223,7 +223,7 @@ fnd:
 	}
 
 	/* make something interesting happen */
-	if(!(guard = makemon(((level_difficulty() + u.pompejipermanentrecord) > 39) ? &mons[PM_ELITE_GUARD] : ((level_difficulty() + u.pompejipermanentrecord) > 19) ? &mons[PM_MASTER_GUARD] : &mons[PM_GUARD], x, y, NO_MM_FLAGS))) return;
+	if(!(guard = makemon( ((level_difficulty() + u.pompejipermanentrecord) > 79) ? &mons[PM_ELITE_GUARD] : ((level_difficulty() + u.pompejipermanentrecord) > 59) ? &mons[PM_EXCEPTIONAL_GUARD] : ((level_difficulty() + u.pompejipermanentrecord) > 39) ? &mons[PM_MASTER_GUARD] : ((level_difficulty() + u.pompejipermanentrecord) > 19) ? &mons[PM_EXPERIENCED_GUARD] : &mons[PM_GUARD], x, y, NO_MM_FLAGS))) return;
 	guard->isgd = 1;
 	guard->mpeaceful = 1;
 	set_malign(guard);

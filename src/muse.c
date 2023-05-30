@@ -2833,9 +2833,13 @@ struct monst *mtmp;
 		if ((mon = m_at(xx,yy)) && is_mercenary(mon->data) &&
 				mon->data != &mons[PM_GUARD] &&
 				mon->data != &mons[PM_MASTER_GUARD] &&
+				mon->data != &mons[PM_EXPERIENCED_GUARD] &&
+				mon->data != &mons[PM_EXCEPTIONAL_GUARD] &&
 				mon->data != &mons[PM_ELITE_GUARD] &&
 				mon->data != &mons[PM_CROUPIER] &&
 				mon->data != &mons[PM_MASTER_CROUPIER] &&
+				mon->data != &mons[PM_EXPERIENCED_CROUPIER] &&
+				mon->data != &mons[PM_EXCEPTIONAL_CROUPIER] &&
 				mon->data != &mons[PM_ELITE_CROUPIER] &&
 				(mon->msleeping || (!mon->mcanmove))) {
 			m.defensive = obj;

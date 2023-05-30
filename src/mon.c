@@ -1690,6 +1690,8 @@ register struct monst *mtmp;
 
 	    case PM_CROUPIER:
 	    case PM_MASTER_CROUPIER:
+	    case PM_EXPERIENCED_CROUPIER:
+	    case PM_EXCEPTIONAL_CROUPIER:
 	    case PM_ELITE_CROUPIER:
 		if (!rn2(2)) {
 			num = rnd(2);
@@ -5279,16 +5281,16 @@ newbossSING:
 
 	}
 
-	if (tmp == PM_ALIGNED_PRIEST || tmp == PM_MASTER_PRIEST || tmp == PM_ELITE_PRIEST || tmp == PM_HIGH_PRIEST || tmp == PM_DNETHACK_ELDER_PRIEST_TM_) { /* you murderer! */
+	if (tmp == PM_ALIGNED_PRIEST || tmp == PM_MASTER_PRIEST || tmp == PM_EXCEPTIONAL_PRIEST || tmp == PM_EXPERIENCED_PRIEST || tmp == PM_ELITE_PRIEST || tmp == PM_HIGH_PRIEST || tmp == PM_DNETHACK_ELDER_PRIEST_TM_) { /* you murderer! */
 		angry_guards(FALSE); /* The guards are on the side of Moloch's priests (not a bug). */
 	}
 
-	if(tmp == PM_SHOPKEEPER || tmp == PM_MASTER_SHOPKEEPER || tmp == PM_ELITE_SHOPKEEPER || tmp == PM_CROUPIER || tmp == PM_MASTER_CROUPIER || tmp == PM_ELITE_CROUPIER || tmp == PM_BLACK_MARKETEER || tmp == PM_GUARD || tmp == PM_MASTER_GUARD || tmp == PM_ELITE_GUARD || ((tmp == PM_ALIGNED_PRIEST || tmp == PM_MASTER_PRIEST || tmp == PM_ELITE_PRIEST || tmp == PM_HIGH_PRIEST || tmp == PM_DNETHACK_ELDER_PRIEST_TM_) && mtmp->malign <= 0 && ((int)EPRI(mtmp)->shralign != A_NONE) ) ) {
+	if(tmp == PM_SHOPKEEPER || tmp == PM_MASTER_SHOPKEEPER || tmp == PM_EXPERIENCED_SHOPKEEPER || tmp == PM_EXCEPTIONAL_SHOPKEEPER || tmp == PM_ELITE_SHOPKEEPER || tmp == PM_CROUPIER || tmp == PM_MASTER_CROUPIER || tmp == PM_EXPERIENCED_CROUPIER || tmp == PM_EXCEPTIONAL_CROUPIER || tmp == PM_ELITE_CROUPIER || tmp == PM_BLACK_MARKETEER || tmp == PM_GUARD || tmp == PM_MASTER_GUARD || tmp == PM_EXPERIENCED_GUARD || tmp == PM_EXCEPTIONAL_GUARD || tmp == PM_ELITE_GUARD || ((tmp == PM_ALIGNED_PRIEST || tmp == PM_MASTER_PRIEST || tmp == PM_MASTER_PRIEST || tmp == PM_EXCEPTIONAL_PRIEST || tmp == PM_ELITE_PRIEST || tmp == PM_HIGH_PRIEST || tmp == PM_DNETHACK_ELDER_PRIEST_TM_) && mtmp->malign <= 0 && ((int)EPRI(mtmp)->shralign != A_NONE) ) ) {
 		u.pompejiwantedlevel++;
 		u.pompejipermanentrecord++;
 	}
 
-	if(tmp == PM_SHOPKEEPER || tmp == PM_MASTER_SHOPKEEPER || tmp == PM_ELITE_SHOPKEEPER || tmp == PM_BLACK_MARKETEER || tmp == PM_GUARD || tmp == PM_MASTER_GUARD || tmp == PM_ELITE_GUARD || tmp == PM_CROUPIER || tmp == PM_MASTER_CROUPIER || tmp == PM_ELITE_CROUPIER) /* punishment */ {
+	if(tmp == PM_SHOPKEEPER || tmp == PM_MASTER_SHOPKEEPER || tmp == PM_EXPERIENCED_SHOPKEEPER || tmp == PM_EXCEPTIONAL_SHOPKEEPER || tmp == PM_ELITE_SHOPKEEPER || tmp == PM_BLACK_MARKETEER || tmp == PM_GUARD || tmp == PM_MASTER_GUARD || tmp == PM_EXPERIENCED_GUARD || tmp == PM_EXCEPTIONAL_GUARD || tmp == PM_ELITE_GUARD || tmp == PM_CROUPIER || tmp == PM_MASTER_CROUPIER || tmp == PM_EXPERIENCED_CROUPIER || tmp == PM_EXCEPTIONAL_CROUPIER || tmp == PM_ELITE_CROUPIER) /* punishment */ {
 
 		pline("The twit quickly called the kops, and it seems they're out to get you!");
 		angry_guards(FALSE); /* Porkman observed the towns remaining peaceful if you murder all the shopkeepers... */
@@ -7062,7 +7064,7 @@ xkilled(mtmp, dest)
 	mdat = mtmp->data; /* mondead can change that, see below */
 
 	if (practicantterror && !u.pract_shopkeepers) {
-		if (mdat == &mons[PM_SHOPKEEPER] || mdat == &mons[PM_MASTER_SHOPKEEPER] || mdat == &mons[PM_ELITE_SHOPKEEPER]) u.pract_shopkeepercount++;
+		if (mdat == &mons[PM_SHOPKEEPER] || mdat == &mons[PM_MASTER_SHOPKEEPER] || mdat == &mons[PM_EXCEPTIONAL_SHOPKEEPER] || mdat == &mons[PM_EXPERIENCED_SHOPKEEPER] || mdat == &mons[PM_ELITE_SHOPKEEPER]) u.pract_shopkeepercount++;
 		if (u.pract_shopkeepercount >= 5) {
 			pline("%s rings out: '8000 zorkmids, payable right away to my account. Last warning. Kill any more shopkeepers and I'm enormously cracking your cardboard boxes.'", noroelaname());
 			fineforpracticant(8000, 0, 0);
@@ -7070,7 +7072,7 @@ xkilled(mtmp, dest)
 		}
 	}
 	if (practicantterror && !u.pract_peacedisturb) {
-		if (mdat == &mons[PM_SHOPKEEPER] || mdat == &mons[PM_MASTER_SHOPKEEPER] || mdat == &mons[PM_ELITE_SHOPKEEPER] || mdat == &mons[PM_GUARD] || mdat == &mons[PM_MASTER_GUARD] || mdat == &mons[PM_ELITE_GUARD] || mdat == &mons[PM_CROUPIER] || mdat == &mons[PM_MASTER_CROUPIER] || mdat == &mons[PM_ELITE_CROUPIER] || mdat == &mons[PM_ALIGNED_PRIEST] || mdat == &mons[PM_ELITE_PRIEST] || mdat == &mons[PM_MASTER_PRIEST] || mdat == &mons[PM_HIGH_PRIEST] || mdat == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN] || mdat == &mons[PM_WATCH_LIEUTENANT] || mdat == &mons[PM_WATCH_LEADER]) u.pract_disturbcount++;
+		if (mdat == &mons[PM_SHOPKEEPER] || mdat == &mons[PM_MASTER_SHOPKEEPER] || mdat == &mons[PM_EXPERIENCED_SHOPKEEPER] || mdat == &mons[PM_EXCEPTIONAL_SHOPKEEPER] || mdat == &mons[PM_ELITE_SHOPKEEPER] || mdat == &mons[PM_GUARD] || mdat == &mons[PM_MASTER_GUARD] || mdat == &mons[PM_EXPERIENCED_GUARD] || mdat == &mons[PM_EXCEPTIONAL_GUARD] || mdat == &mons[PM_ELITE_GUARD] || mdat == &mons[PM_CROUPIER] || mdat == &mons[PM_MASTER_CROUPIER] || mdat == &mons[PM_EXPERIENCED_CROUPIER] || mdat == &mons[PM_EXCEPTIONAL_CROUPIER] || mdat == &mons[PM_ELITE_CROUPIER] || mdat == &mons[PM_ALIGNED_PRIEST] || mdat == &mons[PM_ELITE_PRIEST] || mdat == &mons[PM_EXCEPTIONAL_PRIEST] || mdat == &mons[PM_EXPERIENCED_PRIEST] || mdat == &mons[PM_MASTER_PRIEST] || mdat == &mons[PM_HIGH_PRIEST] || mdat == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || mdat == &mons[PM_WATCHMAN] || mdat == &mons[PM_WATCH_CAPTAIN] || mdat == &mons[PM_WATCH_LIEUTENANT] || mdat == &mons[PM_WATCH_LEADER]) u.pract_disturbcount++;
 
 		if (u.pract_disturbcount >= 20) {
 			pline("%s thunders: 'That was the last straw for you! From now on you pay the conventional penalty for too many murders without permission, for the rest of your life!'", noroelaname());
