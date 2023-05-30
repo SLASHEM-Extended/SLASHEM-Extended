@@ -1,6 +1,22 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.4 - May 2023
+- Overhauled "infrastructure" NPCs by adding more tiers to them and also rebalancing their stats.
+- Certain highly damaging types of trap deal less damage to low-level characters now to cut down on unfair instadeaths before you have a chance to survive them.
+- If a player character's stat would have been drained below the minimum, and it's not something like mind flaying that results in an instadeath, it now drains the player character's alla; previously, nothing would happen at all in such a situation. Permanent stat damage effects in particular have been made more dangerous as they will take off significant amounts of alla if the stat cannot be drained.
+- In the very early game, low-level monsters with weapons will deal less weapon damage to the player now.
+- Monsters can no longer fire several salvos of ranged weapon attacks at the player now, even if they have several weapon attacks.
+- Certain parts of level generation would result in late-game levels being filled with too many monsters on average, this has been corrected.
+- Many effects that anger monsters on a level will now refrain from angering "infrastructure" NPCs like shopkeepers, temple priests and croupiers.
+- Out of depth monsters should spawn far less often very early in the game now.
+- Lightsabers now start with more charge on average and recharging them with methods other than the charge saber technique is also generally more effective now.
+- Changed the method for giving HP and Pw to homicider and spriggan race characters when they level up.
+- Early game experience requirements for leveling up have been changed slightly to speed up the early game.
+- Fixed the vanilla bug where SPFX_LUCK (the attribute on artifacts that make them act like luckstones) would always assume that the item gave this effect when carried, even when it was specified in artilist.h that it should only do so when the item is equipped.
+
 2.8.3 - January 2023
+- Fixed an issue where lightsabers wouldn't always consume the proper amount of energy per turn.
+- Fixed the jedi patch bug where dual-wielding lightsabers and then using certain ways to switch to other weapons would leave the (now no longer wielded) off-hand lightsaber to remain lit.
 - Using the force on a monster will wake up the monster unconditionally now; previously, it only woke up tame ones.
 - In evilvariant mode, magic whistles no longer work on no-teleport levels.
 - Non-tame steeds can no longer use escape items, stairs, trap doors etc. because that was causing bugs.
