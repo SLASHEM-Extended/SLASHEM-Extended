@@ -3965,8 +3965,14 @@ newbossS:
 			}
 
 			if (ttmp && ttmp->ttyp == FUMAROLE && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
+				 int inhalechance = 100;
+				 if (u.urmaxlvlUP == 1) inhalechance = 30;
+				 else if (u.urmaxlvlUP == 2) inhalechance = 50;
+				 else if (u.urmaxlvlUP == 3) inhalechance = 75;
 
-				if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
+				if (rn2(100) >= inhalechance) {
+					 pline("A cloud of spores surrounds you!");
+				} else if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
 					 pline("A cloud of spores surrounds you!");
 				} else if (RngeGasFiltering && !rn2(2)) {
 					 pline("A cloud of spores surrounds you!");

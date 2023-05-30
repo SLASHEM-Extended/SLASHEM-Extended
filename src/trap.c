@@ -4459,16 +4459,17 @@ dothetrap:
 		{
 		    int dmg = rnd(30) + rnd(monster_difficulty() + 1);
 			if (dmg > 1) {
-				if (u.ulevel == 1) dmg /= 2;
-				else if (u.ulevel == 2) {
+				if (u.ulevel == 1) {
+					dmg *= 3;
+					dmg /= 10;
+				} else if (u.ulevel == 2) {
+					dmg /= 2;
+				} else if (u.ulevel == 3) {
 					dmg *= 2;
 					dmg /= 3;
-				} else if (u.ulevel == 3) {
+				} else if (u.ulevel == 4) {
 					dmg *= 3;
 					dmg /= 4;
-				} else if (u.ulevel == 4) {
-					dmg *= 4;
-					dmg /= 5;
 				}
 			}
 
@@ -4508,16 +4509,17 @@ dothetrap:
 		{
 		    int dmg = rnd(20) + rnd(monster_difficulty() + 1);
 			if (dmg > 1) {
-				if (u.ulevel == 1) dmg /= 2;
-				else if (u.ulevel == 2) {
+				if (u.ulevel == 1) {
+					dmg *= 3;
+					dmg /= 10;
+				} else if (u.ulevel == 2) {
+					dmg /= 2;
+				} else if (u.ulevel == 3) {
 					dmg *= 2;
 					dmg /= 3;
-				} else if (u.ulevel == 3) {
+				} else if (u.ulevel == 4) {
 					dmg *= 3;
 					dmg /= 4;
-				} else if (u.ulevel == 4) {
-					dmg *= 4;
-					dmg /= 5;
 				}
 			}
 
@@ -4562,16 +4564,17 @@ dothetrap:
 		} else {
 		    int dmg = d(6,6) + rnd(monster_difficulty() + 1); /* should be std BOULDER dmg? */
 			if (dmg > 1) {
-				if (u.ulevel == 1) dmg /= 2;
-				else if (u.ulevel == 2) {
+				if (u.ulevel == 1) {
+					dmg *= 3;
+					dmg /= 10;
+				} else if (u.ulevel == 2) {
+					dmg /= 2;
+				} else if (u.ulevel == 3) {
 					dmg *= 2;
 					dmg /= 3;
-				} else if (u.ulevel == 3) {
+				} else if (u.ulevel == 4) {
 					dmg *= 3;
 					dmg /= 4;
-				} else if (u.ulevel == 4) {
-					dmg *= 4;
-					dmg /= 5;
 				}
 			}
 
@@ -8798,10 +8801,20 @@ newbossPENT:
 				}
 			    losehp(rnd(pitdamage) + rnd((monster_difficulty() / 2) + 1) ,"fell into a pit of iron spikes",
 				NO_KILLER_PREFIX);
-			    if (!rn2(6))
-				poisoned("spikes", A_STR, "fall onto poison spikes", 8);
+			    if (!rn2(6)) {
+
+				 int inhalechance = 100;
+				 if (u.urmaxlvlUP == 1) inhalechance = 30;
+				 else if (u.urmaxlvlUP == 2) inhalechance = 50;
+				 else if (u.urmaxlvlUP == 3) inhalechance = 75;
+
+				if (rn2(100) < inhalechance) {
+					poisoned("spikes", A_STR, "fall onto poison spikes", 8);
+				}
+			    }
 			} else if (ttype == GIANT_CHASM) {
 				pitdamage = 25;
+				if (u.urmaxlvlUP < 5) pitdamage = 12;
 				if (pitdamage > 1) {
 					if (u.ulevel == 1) pitdamage /= 2;
 					else if (u.ulevel == 2) {
@@ -9755,6 +9768,9 @@ madnesseffect:
 			}
 		}
 
+		if (u.urmaxlvlUP < 5) projectiledamage /= 2;
+		if (projectiledamage < 1) projectiledamage = 1; /* fail safe */
+
 		unsigned steed_mid = 0;
 		struct obj *saddle = 0;
 		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
@@ -9805,6 +9821,9 @@ madnesseffect:
 	    case BOMB_TRAP:
 		{
 			int projectiledamage = rnd(36) + rnd( (monster_difficulty() * 3) + 1);
+
+			if (u.urmaxlvlUP < 5) projectiledamage = rnd(16) + rnd(monster_difficulty() + 1);
+
 			if (projectiledamage > 1) {
 				if (u.ulevel == 1) projectiledamage /= 2;
 				else if (u.ulevel == 2) {
@@ -10687,7 +10706,8 @@ madnesseffect:
 		pline("Suddenly, you're hit by an enormous cannonball!");
 
 		{
-			int projectiledamage = rnd(24)+ rnd( (monster_difficulty() * 2) + 1);
+			int projectiledamage = rnd(24) + rnd( (monster_difficulty() * 2) + 1);
+			if (u.urmaxlvlUP < 5) projectiledamage = rnd(12) + rnd( (monster_difficulty()) + 1);
 			if (projectiledamage > 1) {
 				if (u.ulevel == 1) projectiledamage /= 2;
 				else if (u.ulevel == 2) {
@@ -19063,16 +19083,17 @@ skillrandomizeredo:
 		{
 			int projectiledamage = rnd(30) + rnd((monster_difficulty() * 5) + 1);
 			if (projectiledamage > 1) {
-				if (u.ulevel == 1) projectiledamage /= 2;
-				else if (u.ulevel == 2) {
+				if (u.ulevel == 1) {
+					projectiledamage *= 3;
+					projectiledamage /= 10;
+				} else if (u.ulevel == 2) {
+					projectiledamage /= 2;
+				} else if (u.ulevel == 3) {
 					projectiledamage *= 2;
 					projectiledamage /= 3;
-				} else if (u.ulevel == 3) {
+				} else if (u.ulevel == 4) {
 					projectiledamage *= 3;
 					projectiledamage /= 4;
-				} else if (u.ulevel == 4) {
-					projectiledamage *= 4;
-					projectiledamage /= 5;
 				}
 			}
 
@@ -19791,7 +19812,13 @@ int zx,zy;
 	struct obj* mhat;
 	struct obj* otmp;
 
-	for (rocks = rnd(100)+rnd(100);rocks > 0;rocks--) {
+	/* make sure this isn't an unavoidable instadeath at XL1 --Amy */
+	int amountofrocks = rnd(100) + rnd(100);
+	if (u.ulevel == 1) amountofrocks = rnd(30) + rnd(30);
+	if (u.ulevel == 2) amountofrocks = rnd(50) + rnd(50);
+	if (u.ulevel == 3) amountofrocks = rnd(70) + rnd(70);
+
+	for (rocks = amountofrocks; rocks > 0; rocks--) {
 		rx = zx + rn2(3)-1; 
 		ry = zy + rn2(3)-1;
 		if (levl[rx][ry].typ == ROOM || levl[rx][ry].typ == CORR) {
@@ -23270,6 +23297,7 @@ struct obj *box;        /* at the moment only for floor traps */
 {
         int num = 0;
         num = d(8, 4) + rnd(monster_difficulty() + 1);
+	  if (u.urmaxlvlUP < 5) num = d(5, 4) + rnd((monster_difficulty() / 2) + 1);
 		if (num > 1) {
 			if (u.ulevel == 1) num /= 2;
 			else if (u.ulevel == 2) {
@@ -23545,6 +23573,7 @@ struct obj *box;	/* null for floor trap */
 	    }
 	} else {
 	    num = d(6,4);
+	    if (u.urmaxlvlUP < 5) num = d(3, 4);
 	}
 
 	if (num > 1) {
