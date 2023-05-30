@@ -157,6 +157,7 @@ int mndx;
 	case PM_DEAD_POTATO:
 	case PM_ADOM_MUMMY:
 	case PM_EVIL_HUMAN_MUMMY:
+	case PM_MUMMY_HOMER:
 	case PM_HUMAN_MUMMY:	mndx = PM_HUMAN;  break;
 	case PM_GIANT_ZOMBIE:
 	case PM_EVIL_GIANT_MUMMY:
@@ -739,6 +740,7 @@ register struct monst *mtmp;
 	    case PM_DEFINITELY_NOT_ORC_MUMMY:
 	    case PM_ELF_MUMMY:
 	    case PM_HUMAN_MUMMY:
+	    case PM_MUMMY_HOMER:
 	    case PM_MUMMY:
 		case PM_TOMB_MUMMY:
 	    case PM_ADOM_MUMMY:
@@ -2274,6 +2276,8 @@ struct monst *mon;
     if (Race_if(PM_PLAYER_UNICORN)) mmove += 3; /* because you have double speed --Amy */
 
 	/* divisions last */
+
+	if (mon->data == &mons[PM_DEWING_BAT] && !rn2(2) && mmove > 1) mmove /= 2;
 
 	if (uamul && uamul->oartifact == ART_APATHY_STRATEGY && mmove > 1) mmove /= 2;
 

@@ -247,6 +247,7 @@
 #define is_elonamonster(ptr)	((ptr)->mflags5 & M5_ELONA)
 #define is_aoemonster(ptr)	((ptr)->mflags5 & M5_AOE)
 #define is_elderscrollsmonster(ptr)	((ptr)->mflags5 & M5_ELDERSCROLLS)
+#define is_chatgptmonster(ptr)	((ptr)->mflags5 & M5_CHATGPT)
 
 #define monsterflees(ptr)	((ptr)->mflags6 & M6_FLEE)
 #define monsterrandomwalk(ptr)	((ptr)->mflags6 & M6_RANDWALK)
@@ -323,6 +324,7 @@
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_FUNGUS]) ? 3 : \
 				 ((ptr) == &mons[PM_LUMINESCENT_WARP_PATCH]) ? 3 : \
 				 ((ptr) == &mons[PM_BRIGHTER_SHADOW]) ? 3 : \
+				 ((ptr) == &mons[PM_LUMINOUS_WING]) ? 3 : \
 				 ((ptr) == &mons[PM_TAME_SPEED___MONSTER]) ? 3 : \
 				 ((ptr) == &mons[PM_SMOKING_LIBAVIUS_SPIRIT]) ? 3 : \
 				 ((ptr) == &mons[PM_FIRE_VAMPIRE])? 2 : \
@@ -350,7 +352,7 @@
 /*	[note: the light ranges above were reduced to 1 for performance...] */
 /*  WAC increased to 3 and 2?*/
 #define likes_lava(ptr)		(ptr == &mons[PM_FIRE_ELEMENTAL] || ptr == &mons[PM_LAVA_SPIDER] || ptr == &mons[PM_GREATER_FIRE_ELEMENTAL] || \
-				 ptr == &mons[PM_SALAMANDER] || ptr == &mons[PM_TELEPORT_TRAP] || ptr == &mons[PM_LAVA_GREMLIN] || ptr == &mons[PM_STEAM_NAGA] || ptr == &mons[PM_STEAM_NAGA_HATCHLING] || ptr == &mons[PM_PLAYER_SALAMANDER] || ptr == &mons[PM_FIRE_GOLEM] || ptr == &mons[PM_CHARMANDER] || ptr == &mons[PM_CHARMELEON]  || ptr == &mons[PM_CHARIZARD] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
+				 ptr == &mons[PM_SALAMANDER] || ptr == &mons[PM_ASHEN_GOLEM] || ptr == &mons[PM_TELEPORT_TRAP] || ptr == &mons[PM_LAVA_GREMLIN] || ptr == &mons[PM_STEAM_NAGA] || ptr == &mons[PM_STEAM_NAGA_HATCHLING] || ptr == &mons[PM_PLAYER_SALAMANDER] || ptr == &mons[PM_FIRE_GOLEM] || ptr == &mons[PM_CHARMANDER] || ptr == &mons[PM_CHARMELEON]  || ptr == &mons[PM_CHARIZARD] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
 
 #define pm_invisible(ptr)	((ptr) == &mons[PM_STALKER] || \
 				 (ptr) == &mons[PM_BLACK_LIGHT] || \

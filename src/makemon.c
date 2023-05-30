@@ -7937,6 +7937,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_STRONG_TANKWIELDER]) (void) mongets(mtmp, BIDENHANDER);
 		if (ptr == &mons[PM_NOVICE_FENCER]) (void) mongets(mtmp, LEATHER_SABER);
 		if (ptr == &mons[PM_WILD_LADY]) (void) mongets(mtmp, WILD_BLADE);
+		if (ptr == &mons[PM_BLOCKCHAIN_DUDE]) (void) mongets(mtmp, BOULDER);
 		if (ptr == &mons[PM_TENNIS_PLAYER]) (void) mongets(mtmp, TENNIS_RACKET);
 		if (ptr == &mons[PM_ABUSER]) (void) mongets(mtmp, RIDING_CROP);
 		if (ptr == &mons[PM_TOOL_USER]) (void) mongets(mtmp, NOVICE_HAMMER);
@@ -9507,10 +9508,18 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, ROCKET_LAUNCHER);
 			 m_initthrow(mtmp, ROCKET, 20);
 		}
+		if (ptr == &mons[PM_EXPLOSIVE_FURYBORG]) {
+			(void) mongets(mtmp, HAND_BLASTER);
+			 m_initthrow(mtmp, BLASTER_BOLT, 35);
+		}
 
 		if (ptr == &mons[PM_IRIS_S_HIGH_HEELED_SANDAL]) {
 			(void) mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
 			(void) mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
+		}
+
+		if (ptr == &mons[PM_GILDED_SENTINEL]) {
+			(void) mongets(mtmp, rnd_class(LONG_SWORD,GREAT_HOUCHOU));
 		}
 
 		if (ptr == &mons[PM_HOT_PLATE]) {
@@ -10533,6 +10542,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CIGAR_SMOKING_JUROR]) (void) mongets(mtmp, CIGAR);
 		if (mtmp->data == &mons[PM_OLOG]) (void) mongets(mtmp, WAR_HAMMER);
 		if (mtmp->data == &mons[PM_OLOG_THAT_COULD_HAVE_BEEN]) (void) mongets(mtmp, WAR_HAMMER);
+		if (mtmp->data == &mons[PM_QUIRKY_ARMAMENT_TROLL]) (void) mongets(mtmp, GIANT_SEA_ANEMONE);
 
 		if (ptr == &mons[PM_BANGTROLL]) {
 			(void) mongets(mtmp, SHOTGUN);
@@ -24938,6 +24948,11 @@ register int	mmflags;
 		mtmp->isegotype = 1;
 		mtmp->egotype_deepstatemember = 1;
 	}
+	if (ptr == &mons[PM_DEEP_SERENADE]) {
+		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
+		mtmp->isegotype = 1;
+		mtmp->egotype_deepstatemember = 1;
+	}
 	if (ptr == &mons[PM_PERFUMED_HC_BITCH]) {
 		mtmp->noegodesc = mtmp->noegodisplay = TRUE;
 		mtmp->isegotype = 1;
@@ -25460,6 +25475,8 @@ register int	mmflags;
 			if (mndx == PM_SOMETHING_INVISIBLE_IS_KILLING_YOU) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_DEEPSTATE_MURDER_SQUAD) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_THATS_IT_PLAYTIMES_OVER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_UNSUNG_SERENADE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_DEEP_SERENADE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_MOVANIC_HAHA) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_ITS_COOL_WHEN_YOU_CANNOT_SEE_A_DEADLY_MONSTER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mtmp->data == &mons[PM_ANIMEBAND_PLAYER]) {
@@ -33301,6 +33318,13 @@ assign_sym:
 		s_sym = ARMOR_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(MUMMY_WRAPPING, CLOAK_OF_DISPLACEMENT);
+	}
+
+	if (mtmp->data == &mons[PM_SPECTRAL_BLADE]) {
+		s_sym = WEAPON_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = ORCISH_DAGGER + rn2(HAWAIIAN_SHIRT - ORCISH_DAGGER);
+
 	}
 
 	if (mtmp->data == &mons[PM_UNOVA_STUNFISK]) {
