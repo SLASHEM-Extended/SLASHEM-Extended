@@ -21769,6 +21769,7 @@ register struct monst *mtmp;
 		mtmp->mtame = mtmp->mpeaceful = FALSE;
 		mtmp->mfrenzied = TRUE;
 		mtmp->singannoyance = FALSE;
+		u.cnd_singrefused++;
 
 	      register struct monst *mtmp2;
 		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
