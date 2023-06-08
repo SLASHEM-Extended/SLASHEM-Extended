@@ -554,6 +554,54 @@ struct obj *box;
 			otmp->owt = weight(otmp);
 			(void) add_to_container(box, otmp);
 		}
+		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet) {
+			if (!rn2(2)) {
+				otmp = mkobj(WEAPON_CLASS, TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp);
+				}
+			}
+			if (!rn2(2)) {
+				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp);
+				}
+			}
+		}
+		if (iszapem && In_spacebase(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet) {
+			if (!rn2(2)) {
+				otmp = mkobj(WEAPON_CLASS, TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp);
+				}
+			}
+			if (!rn2(2)) {
+				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp);
+				}
+			}
+		}
+		if (u.preversionmode && In_greencross(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet) {
+			if (!rn2(2)) {
+				otmp = mkobj(WEAPON_CLASS, TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp);
+				}
+			}
+			if (!rn2(2)) {
+				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp);
+				}
+			}
+		}
 
 		n = (ishaxor ? rnd(2) : rn2(2)); break;
 		break;
@@ -561,14 +609,21 @@ struct obj *box;
 				/* Initial inventory, no empty medical kits */
 				if (moves <= 1 && !in_mklev) minn = 1;
 				break;
-	case TREASURE_CHEST:	n = (ishaxor ? rno(100) : rno(50)); break;
+	case TREASURE_CHEST:	n = (ishaxor ? rnd(100) : rnd(50)); break; /* used to be rno but the rn1 BS below... --Amy */
 	case ICE_BOX_OF_HOLDING:
 	case ICE_BOX_OF_WATERPROOFING:
 	case DISPERSION_BOX:
 	case ICE_BOX:		n = (ishaxor ? 40 : 20); break;
 	case CHEST_OF_HOLDING:
-	case NANO_CHEST:
-	case CHEST:		n = (ishaxor ? rnd(10) : rnd(5)); break;
+	case NANO_CHEST:	n = (ishaxor ? rnd(10) : rnd(5)); break;
+
+	case CHEST:		
+		n = (ishaxor ? rnd(10) : rnd(5));
+		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet) n += rn2(6);
+		if (iszapem && In_spacebase(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet) n += rn2(6);
+		if (u.preversionmode && In_greencross(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet) n += rn2(6);
+		break;
+
 	case LARGE_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
 	case LEAD_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
 	case SACK:
@@ -584,7 +639,17 @@ struct obj *box;
 	default:		n = 0; break;
 	}
 
+	/* it is soooooooo stOOOOOOOOOOOpid that 9 out of 10 containers are empty even if a nonzero number for n was rolled!
+	 * and therefore, I decided to unfuck that a bit so that you get more containers with at least one item --Amy */
+	if (n > 0 && rn2(10) && !issoviet && !minn) {
+		minn = 1;
+	}
+	if (n > 1 && rn2(2) && (minn < 2)) minn++;
+
+	if (box->otyp == TREASURE_CHEST) minn++; /* no empty treasure chests, also happened waaaaaaaay too often --Amy */
+
 	for (n = rn1(n+1 - minn, minn); n > 0; n--) {
+
 	    if (box->otyp == MEDICAL_KIT) {
 		int supplies[] = { PHIAL, BANDAGE, PILL };
 		if (!(otmp = mksobj(supplies[rn2(SIZE(supplies))], TRUE, TRUE, FALSE)))
