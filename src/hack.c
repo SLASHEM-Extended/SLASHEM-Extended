@@ -1233,6 +1233,7 @@ int mode;
 
 			tmpr->typ = CORR;
 			blockorunblock_point(ux+dx,uy+dy);
+			newsym(ux+dx,uy+dy);
 			if (FemtrapActiveJana && !rn2(2)) {
 				if (rn2(2)) {
 					pline("There was a woman hidden underneath the wall!");
