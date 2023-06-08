@@ -1129,6 +1129,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (Race_if(PM_PLAYER_ZRUTY) && !rn2(3) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1583,6 +1586,9 @@ moveloop()
 				if (uright && uright->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
 				if (ublindf && ublindf->owt > 15 && !rn2(6) && moveamt > 1) moveamt /= 2;
 			}
+
+			if (Race_if(PM_PLAYER_ZRUTY) && !rn2(3) && moveamt > 1)
+				moveamt /= 2;
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;

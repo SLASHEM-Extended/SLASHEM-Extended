@@ -24649,6 +24649,23 @@ register int	mmflags;
 		mtmp->mpeaceful = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
+	/* zruties are an endangered species, and the evil humans are hunting them, the assholes! --Amy */
+	if (Race_if(PM_PLAYER_ZRUTY) && is_human(mtmp->data) && !mtmp->mpeaceful && !mtmp->mtame && !rn2(4)) {
+		mtmp->mfrenzied = TRUE;
+	}
+	if (Race_if(PM_HUMANOID_DEVIL) && mtmp->data->mlet == S_ANGEL) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
+	if (Race_if(PM_HUMANOID_ANGEL) && mtmp->data->mlet == S_DEMON) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
+	if (Race_if(PM_HUMANOID_ANGEL) && is_demon(mtmp->data)) {
+		mtmp->mpeaceful = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
+
 	mtmp->mtraitor  = FALSE;
 	mtmp->masleep = 0;
 
@@ -32832,6 +32849,16 @@ register struct permonst *ptr;
 
 	if (uarmc && itemhasappearance(uarmc, APP_POLITICIAN_CLOAK) ) return FALSE;
 
+	if (Race_if(PM_PLAYER_ZRUTY) && is_human(ptr)) {
+		return FALSE;
+	}
+
+	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_DEVIL)) return FALSE;
+	if (ptr->mlet == S_DEMON && Race_if(PM_HUMANOID_ANGEL)) return FALSE;
+	if (is_demon(ptr) && Race_if(PM_HUMANOID_ANGEL)) return FALSE;
+	if (ptr->maligntyp > 0 && ptr->mlet != S_DEMON && Race_if(PM_HUMANOID_DEVIL)) return FALSE;
+	if (ptr->maligntyp < 0 && ptr->mlet != S_ANGEL && Race_if(PM_HUMANOID_ANGEL)) return FALSE;
+
 	if (always_tame(ptr) && (!always_hostile(ptr) || !rn2(3))) return TRUE;
 
 	aligntyp mal = ptr->maligntyp, ual = u.ualign.type;
@@ -32939,10 +32966,6 @@ register struct permonst *ptr;
 	if (always_hostile(ptr)) return FALSE;
 	if (ptr->msound == MS_LEADER || ptr->msound == MS_GUARDIAN)
 		return TRUE;
-
-	if (ptr->mlet == S_ANGEL && Race_if(PM_HUMANOID_DEVIL)) return FALSE;
-	if (ptr->mlet == S_DEMON && Race_if(PM_HUMANOID_ANGEL)) return FALSE;
-	if (is_demon(ptr) && Race_if(PM_HUMANOID_ANGEL)) return FALSE;
 
 	if (is_elf(ptr) && is_elf(youmonst.data)) {
 		/* Light and dark elves are always hostile to each other.

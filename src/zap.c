@@ -6397,6 +6397,7 @@ boolean ordinary;
 		    } else {
 			pline("You've set yourself afire!");
 			damage = d(12,6);
+			if (Race_if(PM_LOWER_ENT)) damage *= 2;
 		    }
 		    if (Slimed) {                    
 			pline("The slime is burned away!");
@@ -6425,6 +6426,7 @@ boolean ordinary;
 		    } else {
 			pline("You've set yourself afire and severely burned your own body!");
 			damage = d(24,6);
+			if (Race_if(PM_LOWER_ENT)) damage *= 2;
 		    }
 		    if (Slimed) {                    
 			pline("The slime is burned away!");
@@ -6456,9 +6458,11 @@ boolean ordinary;
 
 		case SPE_MULTIBEAM:
 
+			damage = 0;
+
 		    if (!Shock_resistance) {
 			You("shock yourself!");
-			damage = d(12,6);
+			damage += d(12,6);
 			exercise(A_CON, FALSE);
 		    } else {
 			shieldeff(u.ux, u.uy);
@@ -6480,7 +6484,8 @@ boolean ordinary;
 			ugolemeffects(AD_FIRE, d(12,6));
 		    } else {
 			pline("You've set yourself afire!");
-			damage = d(12,6);
+			damage += d(12,6);
+			if (Race_if(PM_LOWER_ENT)) damage += d(12,6);
 		    }
 		    if (Slimed) {                    
 			pline("The slime is burned away!");
@@ -6504,9 +6509,12 @@ boolean ordinary;
 			ugolemeffects(AD_COLD, d(12,6));
 		    } else {
 			You("imitate a popsicle!");
-			damage = d(12,6);
-			if (Race_if(PM_GAVIL)) damage *= 2;
-			if (Race_if(PM_HYPOTHERMIC)) damage *= 3;
+			damage += d(12,6);
+			if (Race_if(PM_GAVIL)) damage += d(12,6);
+			if (Race_if(PM_HYPOTHERMIC)) {
+				damage += d(12,6);
+				damage += d(12,6);
+			}
 		    }
 		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
@@ -6514,9 +6522,11 @@ boolean ordinary;
 
 		case SPE_CALL_THE_ELEMENTS:
 
+			damage = 0;
+
 		    if (!Shock_resistance) {
 			You("shock yourself powerfully!");
-			damage = d(12,12);
+			damage += d(12,12);
 			exercise(A_CON, FALSE);
 		    } else {
 			shieldeff(u.ux, u.uy);
@@ -6544,7 +6554,8 @@ boolean ordinary;
 			ugolemeffects(AD_FIRE, d(12,12));
 		    } else {
 			pline("You've set yourself afire and severely burned your own body!");
-			damage = d(12,12);
+			damage += d(12,12);
+			if (Race_if(PM_LOWER_ENT)) damage += d(12,12);
 		    }
 		    if (Slimed) {                    
 			pline("The slime is burned away!");
@@ -6578,9 +6589,12 @@ boolean ordinary;
 			ugolemeffects(AD_COLD, d(12,12));
 		    } else {
 			You("imitate an ice block!");
-			damage = d(12,12);
-			if (Race_if(PM_GAVIL)) damage *= 2;
-			if (Race_if(PM_HYPOTHERMIC)) damage *= 3;
+			damage += d(12,12);
+			if (Race_if(PM_GAVIL)) damage += d(12,12);
+			if (Race_if(PM_HYPOTHERMIC)) {
+				damage += d(12,12);
+				damage += d(12,12);
+			}
 		    }
 		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */    destroy_item(POTION_CLASS, AD_COLD);
 
@@ -9067,6 +9081,7 @@ xchar sx, sy;
 		ugolemeffects(AD_FIRE, d(nd, 6));
 	    } else {
 		dam = d(nd, 6);
+		if (Race_if(PM_LOWER_ENT)) dam *= 2;
 	    }
 	    if (Slimed) {            
 		pline("The slime is burned away!");

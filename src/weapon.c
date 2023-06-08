@@ -6345,6 +6345,8 @@ screwupsdone:
 
 	if (Role_if(PM_GRENADONIN) && skill != P_FIREARM && rn2(3)) return;
 
+	if (Race_if(PM_UNALIGNMENT_THING) && !rn2(3)) return;
+
 	if (u.polyattackhack && skill == P_POLYMORPHING) return;
 
 	if (Race_if(PM_MAGYAR) && !rn2(2)) return;

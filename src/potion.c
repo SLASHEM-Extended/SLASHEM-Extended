@@ -926,6 +926,16 @@ boolean talk;
 	if (xtime && Frozen) make_frozen(0L, TRUE); 
 	if (xtime) burn_away_slime();
 
+	/* bullshit downside for the very powerful ent race: they *really* don't like fire --Amy */
+	if (xtime && Race_if(PM_LOWER_ENT) && !Upolyd) {
+		if (u.uhpmax > 1) {
+			u.uhpmax--;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			flags.botl = TRUE;
+			You("were singed!");
+		}
+	}
+
 	set_itimeout(&HBurned, xtime);
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "Uhh... the fire's getting a little bit too hot, even for your tastes!" : "You're badly burned!");

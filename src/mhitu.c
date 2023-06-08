@@ -2426,6 +2426,7 @@ mattacku(mtmp)
 	if (mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 	if (uwep && uwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KARATE_KID && attacktype(mtmp->data, AT_KICK)) tmp += 20;
+	if (Race_if(PM_PLAYER_ZRUTY) && is_human(mtmp->data)) tmp += rnd(5);
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
 	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += rnd(5);
@@ -7462,6 +7463,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		    pline("You're %s!", on_fire(youmonst.data, mattk));
+		    if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 		    if (youmonst.data == &mons[PM_STRAW_GOLEM] ||
 		        youmonst.data == &mons[PM_PAPER_GOLEM]) {
 			    You("roast!");
@@ -7501,6 +7503,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (uncancelled) {
 		    pline("You're %s!", on_fire(youmonst.data, mattk));
+		    if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 		    if (youmonst.data == &mons[PM_STRAW_GOLEM] ||
 		        youmonst.data == &mons[PM_PAPER_GOLEM]) {
 			    You("roast!");
@@ -9698,6 +9701,7 @@ dopois:
 
 			pline("You're seared by %s hot plasma radiation!", StrongFire_resistance ? "" : Fire_resistance ? "very" : "extremely");
 			if (!Fire_resistance) dmg *= 2;
+			if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if (StrongFire_resistance && dmg > 1) dmg /= 2;
 			if (FireImmunity && dmg > 1) dmg = 1;
 
@@ -12251,6 +12255,7 @@ do_stone2:
 	    case AD_LAVA:
 		pline("You are covered with lava!");
 
+		    if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 		    if(!mtmp->mcan && rn2(2)) {
 			if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 				shieldeff(u.ux, u.uy);
@@ -12456,6 +12461,7 @@ do_stone2:
 		if (mtmp->mcan) break;
 
 			pline("It's extremely hot in here!");
+			if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 			if (!Fire_resistance) tmp *= 2;
 			if (StrongFire_resistance && tmp > 1) tmp /= 2;
 			if (FireImmunity && tmp > 1) tmp = 1;
@@ -13210,6 +13216,7 @@ do_stone2:
 		    } else tmp = 0;
 		    break;
 		case AD_FIRE:
+		    if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 		    if(!mtmp->mcan && rn2(2)) {
 			if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 				shieldeff(u.ux, u.uy);
@@ -13493,6 +13500,7 @@ boolean ufound;
 		goto common;
 	    case AD_FIRE:
 		burn_away_slime();
+		if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 		not_affected |= Fire_resistance;
 		goto common;
 	    case AD_LAVA:
@@ -13504,10 +13512,12 @@ boolean ufound;
 		if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50))
 		      (void)destroy_item(SPBOOK_CLASS, AD_FIRE);
 		burn_away_slime();
+		if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 		not_affected |= Fire_resistance;
 		goto common;
 	    case AD_PLAS:
 		pline("You're seared by %s hot plasma radiation!", StrongFire_resistance ? "" : Fire_resistance ? "very" : "extremely");
+		if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 		if (!Fire_resistance) tmp *= 2;
 		if (StrongFire_resistance && tmp > 1) tmp /= 2;
 		if (FireImmunity && tmp > 1) tmp = 1;
@@ -17442,6 +17452,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(2,6);
 		    if (!rn2(10)) dmg += dmgplus;
+		    if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 
 		    pline("%s attacks you with a fiery gaze!", Monnam(mtmp));
 		    stop_occupation();
@@ -17710,6 +17721,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			    pline("%s attacks you with a plasma gaze!", Monnam(mtmp));
 		    int dmg = dmgplus;
 		    stop_occupation();
+		    if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if (!Fire_resistance) dmg *= 2;
 			if (StrongFire_resistance && dmg > 1) dmg /= 2;
 			if (FireImmunity && dmg > 1) dmg = 1;
@@ -17783,6 +17795,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
 		    int dmg = d(3,6);
 		    if (!rn2(3)) dmg += dmgplus;
+		    if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 
 		    pline("%s attacks you with a really hot gaze!", Monnam(mtmp));
 		    stop_occupation();

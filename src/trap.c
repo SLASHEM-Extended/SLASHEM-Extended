@@ -8306,6 +8306,7 @@ newbossPENT:
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
+			if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if(Fire_resistance) dmg = 0;
 			if ( /* burnarmor(&youmonst) || */ isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
@@ -8379,6 +8380,7 @@ newbossPENT:
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
+			if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if(Fire_resistance) dmg = 0;
 			if ( /* burnarmor(&youmonst) || */ isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
@@ -8434,6 +8436,7 @@ newbossPENT:
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
+			if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if(Fire_resistance) dmg = 0;
 			if ( /* burnarmor(&youmonst) || */ isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
@@ -8513,6 +8516,7 @@ newbossPENT:
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
+			if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if(Fire_resistance) dmg = 0;
 			if ( /* burnarmor(&youmonst) || */ isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
@@ -8572,6 +8576,7 @@ newbossPENT:
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
+			if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if(Fire_resistance) dmg = 0;
 			if ( /* burnarmor(&youmonst) || */ isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
@@ -8648,6 +8653,7 @@ newbossPENT:
 			if (dmg) {pline("You are hit by cold!"); losehp(dmg, "cold", KILLED_BY); }
 			break;
 			case 4: /* fire */
+			if (Race_if(PM_LOWER_ENT)) dmg *= 2;
 			if(Fire_resistance) dmg = 0;
 			if ( /* burnarmor(&youmonst) || */ isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) /* new calculation -- Amy */ {
 			    destroy_item(SCROLL_CLASS, AD_FIRE);
@@ -23496,6 +23502,7 @@ struct obj *box;	/* null for floor trap */
 		if (issoviet) pline("Plamya plameni! Kha kha kha! Nadeyus', vy poteryayete vse svoi maksimal'nyye ochki zhizni, spasticheskaya zaderzhka.");
 	    }
 	}
+	if (Race_if(PM_LOWER_ENT)) num *= 2;
 
 	if (num > 1) {
 		if (u.ulevel == 1) num /= 2;
@@ -23575,6 +23582,7 @@ struct obj *box;	/* null for floor trap */
 	    num = d(6,4);
 	    if (u.urmaxlvlUP < 5) num = d(3, 4);
 	}
+	if (Race_if(PM_LOWER_ENT)) num *= 2;
 
 	if (num > 1) {
 		if (u.ulevel == 1) num /= 2;

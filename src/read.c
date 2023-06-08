@@ -2238,6 +2238,10 @@ forget_objects(percent)
 		percent *= 2;
 		if (percent > 100) percent = 100;
 	}
+	if (Race_if(PM_PLAYER_JABBERWOCK)) {
+		percent *= 2;
+		if (percent > 100) percent = 100;
+	}
 
 	if (percent == 0) return;
 	if (percent <= 0 || percent > 100) {
@@ -2356,6 +2360,10 @@ forget_levels(percent)
 	if (percent == 0) return;
 
 	if (isfriday) {
+		percent *= 2;
+		if (percent > 100) percent = 100;
+	}
+	if (Race_if(PM_PLAYER_JABBERWOCK)) {
 		percent *= 2;
 		if (percent > 100) percent = 100;
 	}

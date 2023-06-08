@@ -2237,6 +2237,10 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
+	if (Race_if(PM_UNALIGNMENT_THING) && mon->data->msound == MS_CONVERT && !mon->mpeaceful && !mon->mtame && (mmove > 0)) {
+		mmove += rnd(mmove);
+	}
+
 	if (uwep && uwep->oartifact == ART_TSCHAPSNAP && distu(mon->mx,mon->my) > 290) {
 		mmove *= (1 + rnd(2));
 	}

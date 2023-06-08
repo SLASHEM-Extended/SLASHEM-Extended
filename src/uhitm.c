@@ -6830,8 +6830,10 @@ register struct attack *mattk;
 		}
 
 		if (Race_if(PM_PLAYER_JABBERWOCK) && !Upolyd && mattk->aatyp != AT_WEAP) {
-			if (u.ulevel > 20) tmp = rnd(20);
-			else tmp = rnd(u.ulevel);
+			int jabdamage = (u.ulevel * 2 / 3);
+			if (jabdamage < 1) jabdamage = 1;
+			if (jabdamage > 20) jabdamage = 20;
+			tmp = rnd(jabdamage);
 		}
 
 		break;
@@ -7742,6 +7744,7 @@ register struct attack *mattk;
 
 		break;
 
+	    case AD_SAMU:
 	    case AD_SPEL:
 		/* obvious rule patch because the rodneyan race is way too overpowered otherwise --Amy */
 		if (Race_if(PM_RODNEYAN) && !Upolyd && (rnd(GushLevel + 100) < 100)) tmp = 0;
@@ -10370,7 +10373,10 @@ bladeangerdone2:
 	     * this is achieved by making the monster be able to retaliate faster if it survives your attacks --Amy */
 	     if (mon && Race_if(PM_PLAYER_JABBERWOCK)) {
 			mon->movement++;
-			if (mon->data->mmove >= 3) mon->movement += rn2((mon->data->mmove / 3) + 1);
+			if (mon->data->mmove >= 3) {
+				mon->movement += rn2((mon->data->mmove / 3) + 1);
+				if (!rn2(2)) mon->movement += rn2((mon->data->mmove / 3) + 1);
+			}
 	     }
 
 		(void) passive(mon, sum[i], 1, mattk->aatyp, FALSE);
@@ -11185,6 +11191,7 @@ boolean ranged;
 	    case AD_PLAS:
 
 			pline("You are suddenly extremely hot!");
+			if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 			if (!Fire_resistance) tmp *= 2;
 			if (StrongFire_resistance && tmp > 1) tmp /= 2;
 			if (FireImmunity && tmp > 1) tmp = 1;
@@ -12763,23 +12770,22 @@ boolean ranged;
 
 		if (Race_if(PM_GAVIL)) tmp *= 2;
 		if (Race_if(PM_HYPOTHERMIC)) tmp *= 3;
-		if(monnear(mon, u.ux, u.uy)) {
-		    if((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
+
+		if((Cold_resistance && rn2(StrongCold_resistance ? 20 : 5)) || ColdImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("a mild chill.");
 			ugolemeffects(AD_COLD, tmp);
 			break;
-		    }
-		    You("are suddenly very cold!");
-		    mdamageu(mon, tmp);
+		}
+		You("are suddenly very cold!");
+		mdamageu(mon, tmp);
 		/* monster gets stronger with your heat! */
-			if(malive) {
+		if(malive) {
 		    mon->mhp += tmp / 2;
 		    if (mon->mhpmax < mon->mhp) mon->mhpmax = mon->mhp;
-		/* at a certain point, the monster will reproduce! */
+			/* at a certain point, the monster will reproduce! */
 		    if(mon->mhpmax > ((int) (mon->m_lev+1) * 8) && !rn2(5) ) /* prevent easy farming --Amy */
 			(void)split_mon(mon, &youmonst);
-			}
 		}
 		break;
 	      case AD_STUN:		/* specifically yellow mold */
@@ -12830,7 +12836,7 @@ boolean ranged;
 		    make_hallucinated(HHallucination + (long)tmp, TRUE, 0L);
 		break;
 	      case AD_FIRE:
-		if(monnear(mon, u.ux, u.uy)) {
+			if (Race_if(PM_LOWER_ENT)) tmp *= 2;
 		    if((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("mildly warm.");
@@ -12839,10 +12845,8 @@ boolean ranged;
 		    }
 		    You("are suddenly very hot!");
 		    mdamageu(mon, tmp);
-		}
 		break;
 	      case AD_LAVA:
-		if(monnear(mon, u.ux, u.uy)) {
 
 			if (ptr->mattk[i].aatyp == AT_RATH) {
 				hurtarmor(AD_LAVA);
@@ -12857,6 +12861,8 @@ boolean ranged;
 			    passive_obj(mon, target, &(ptr->mattk[i]));
 		    }
 
+			if (Race_if(PM_LOWER_ENT)) tmp *= 2;
+
 		    if((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			shieldeff(u.ux, u.uy);
 			You_feel("quite warm.");
@@ -12865,7 +12871,6 @@ boolean ranged;
 		    }
 		    You("are suddenly extremely hot!");
 		    mdamageu(mon, tmp);
-		}
 		break;
 	      case AD_ELEC:
 		if((Shock_resistance && rn2(StrongShock_resistance ? 20 : 5)) || ShockImmunity) {

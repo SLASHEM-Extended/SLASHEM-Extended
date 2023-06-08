@@ -241,6 +241,10 @@ more_experienced(exp, rexp)
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && (exp > 1)) exp /= 2;
 	if (Race_if(PM_ETHEREALOID) && (exp > 1)) exp /= 2;
 	if (Race_if(PM_INCORPOREALOID) && (exp > 1)) exp /= 2;
+	if (Race_if(PM_MANSTER) && (exp > 1)) {
+		exp *= 2;
+		exp /= 3;
+	}
 
 	u.uexp += exp;
 	u.urexp += 4*exp + rexp;

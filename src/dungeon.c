@@ -2276,6 +2276,7 @@ level_difficulty()
 	if (have_difficultystone() == 2) retvalue += 10;
 	if (Race_if(PM_BULDOZGAR) && !rn2(10)) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;
+	if (Race_if(PM_PLAYER_JABBERWOCK) && !rn2(3)) retvalue += rnd(u.ulevel);
 
 	if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) retvalue += (6 + u.ulevel);
 

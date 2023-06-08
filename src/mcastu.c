@@ -611,6 +611,9 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 
 	    case AD_FIRE:
 		pline("You're enveloped in flames.");
+
+		if (Race_if(PM_LOWER_ENT)) dmg *= 2;
+
 		if((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 			shieldeff(u.ux, u.uy);
 			pline("But you resist the effects.");
@@ -1707,8 +1710,10 @@ int spellnum;
 	if ((Fire_resistance && rn2(StrongFire_resistance ? 20 : 5)) || FireImmunity) {
 	    shieldeff(u.ux, u.uy);
 	    dmg = 0;
-	} else
+	} else {
 	    dmg = d(8, 6);
+	    if (Race_if(PM_LOWER_ENT)) dmg *= 2;
+	}
 	if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	if (StrongHalf_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	burn_away_slime();

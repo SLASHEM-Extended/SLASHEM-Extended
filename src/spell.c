@@ -10776,6 +10776,9 @@ losespells()
 		}
 	}
 
+	/* maybe also reduce spell memory a bit more, to make the amnesia effect matter --Amy */
+	if (!rn2(5)) spellmemoryloss(level_difficulty() + 1);
+
 	book = 0;
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
 		continue;
