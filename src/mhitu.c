@@ -2199,6 +2199,8 @@ mattacku(mtmp)
 	int hittmp;
 	int mlevfortohit;
 
+	boolean canweaphit = TRUE;
+
 	/* you can attack land-based monsters while underwater, so why should YOU be protected from THEIR attacks??? --Amy */
 	if(!ranged) nomul(0, 0, FALSE);
 	if(mtmp->mhp <= 0 /*|| (Underwater && !is_swimmer(mtmp->data))*/)
@@ -3174,11 +3176,34 @@ elena37:
 
 				}
 				if((tmp > (j = dieroll = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
-				    sum[i] = hitmu(mtmp, mattk);
-					if (!rn2(75)) pushplayer(FALSE);
+
+				/* adjustment by Amy - it's unfair if monsters can use both weapon attacks with a two-hander,
+				 * because that is something you cannot do if you have two weapon attacks. Monsters cannot
+				 * dual-wield, so to simulate them being able to do so they can swing a one-hander twice, but
+				 * for the sake of it, two-handers shouldn't be able to become motherfucking tanks! */
+
+					if (!canweaphit && otmp && bimanual(otmp)) {
+
+						mdat2 = &mons[PM_CAST_DUMMY];
+						a = &mdat2->mattk[3];
+						a->aatyp = AT_TUCH;
+						a->adtyp = mattk->adtyp;
+						a->damn = mattk->damn;
+						a->damd = mattk->damd;
+
+						canweaphit = TRUE;
+						sum[i] = hitmu(mtmp, a);
+						if (!rn2(75)) pushplayer(FALSE);
+					} else {
+						if (otmp && bimanual(otmp)) canweaphit = FALSE;
+						sum[i] = hitmu(mtmp, mattk);
+						if (!rn2(75)) pushplayer(FALSE);
+					}
 				}
-				else
-				    missmu(mtmp, tmp , j, mattk);
+				else {
+					if (otmp && bimanual(otmp)) canweaphit = !canweaphit;
+					missmu(mtmp, tmp , j, mattk);
+				}
 				/* KMH -- Don't accumulate to-hit bonuses */
 				if (otmp)
 					tmp -= hittmp;

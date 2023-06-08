@@ -321,6 +321,9 @@ mattackm(magr, mdef)
     /* Calculate the armour class differential. */
     tmp = find_mac(mdef);
 
+    boolean didrangedattack = FALSE;
+    boolean canweaphit = TRUE;
+
     boolean norangepassive = FALSE; /* don't run passives against phantom attacks, please --Amy */
 
     boolean egotypearcane = magr->egotype_arcane;
@@ -664,11 +667,12 @@ mattackm(magr, mdef)
 
 	    case AT_WEAP:
 		/* "ranged" attacks */
-		if (range || (!rn2(4) && mdef->mtame) ) {
+		if ((range || (!rn2(4) && mdef->mtame) ) && !didrangedattack) {
 
 		    res[i] = thrwmm(magr, mdef);
 		    attk = 0;
 		    strike = res[i] & MM_HIT;
+		    didrangedattack = TRUE;
 		    break;
 		}
 		/* "hand to hand" attacks */
@@ -682,8 +686,11 @@ mattackm(magr, mdef)
 		otmp = MON_WEP(magr);
 
 		if (otmp) {
-		    if (vis) mswingsm(magr, mdef, otmp);
-		    tmp += hitval(otmp, mdef);
+		    if (canweaphit) {
+			    if (vis) mswingsm(magr, mdef, otmp);
+			    tmp += hitval(otmp, mdef);
+		    }
+		    if (bimanual(otmp)) canweaphit = !canweaphit;
 		}
 		/* fall through */
 	    case AT_CLAW:
