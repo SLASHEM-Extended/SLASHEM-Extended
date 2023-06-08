@@ -1356,7 +1356,7 @@ register xchar x,y,cnt;
 
 	/* Headstones are indelible */
 	if(ep && ep->engr_type != HEADSTONE){
-	    if(ep->engr_type != BURN || is_ice(x,y)) {
+	    if(ep->engr_type != BURN || is_ice(x,y) || is_snow(x,y)) {
 		if(ep->engr_type != DUST && ep->engr_type != ENGR_BLOOD) {
 			cnt = /*rn2(1 + 40/(cnt+1)) ? 0 : 1)*/rnd(cnt) ; /* nerf to semi-permanent Elbereths --Amy */
 			if (rn2(5)) cnt /= 2;
@@ -1413,8 +1413,8 @@ boolean read_it; /* Read any sensed engraving */
 	    case DUST:
 		if(!Blind) {
 			sensed = 1;
-			pline("%s is written here in the %s.", Something,
-				is_ice(x,y) ? "frost" : "dust");
+			pline("%s is written here on the %s.", Something,
+				is_ice(x,y) ? "frost" : is_snow(x,y) ? "snow" : surface(x,y));
 		}
 		break;
 	    case ENGRAVE:
@@ -1430,7 +1430,7 @@ boolean read_it; /* Read any sensed engraving */
 		if (!Blind || can_reach_floor()) {
 			sensed = 1;
 			pline("Some text has been %s into the %s here.",
-				is_ice(x,y) ? "melted" : "burned",
+				is_ice(x,y) ? "melted" : is_snow(x,y) ? "melted" : "burned",
 				surface(x,y));
 		}
 		break;
@@ -1906,7 +1906,7 @@ doengrave()
 	    case SCROLL_CLASS:
 	    case SPBOOK_CLASS:
 		Your("%s would get %s.", xname(otmp),
-			is_ice(u.ux,u.uy) ? "all frosty" : "too dirty");
+			is_ice(u.ux,u.uy) ? "all frosty" : is_snow(u.ux,u.uy) ? "all frosty" : "too dirty");
 		ptext = FALSE;
 		break;
 
@@ -2297,6 +2297,8 @@ doengrave()
 				"Chips fly out from the headstone." :
 				is_ice(u.ux,u.uy) ?
 				"Ice chips fly up from the ice surface!" :
+				is_snow(u.ux,u.uy) ?
+				"Snowflakes fly up from the ice surface!" :
 				"Gravel flies up from the floor.");
 			else
 			    strcpy(post_engr_text, "You hear drilling!");
@@ -2461,6 +2463,7 @@ doengrave()
 				    Your("%s %s %s.", xname(otmp),
 					 otense(otmp, "get"),
 					 is_ice(u.ux,u.uy) ?
+					 "frosty" : is_snow(u.ux,u.uy) ?
 					 "frosty" : "dusty");
 				dengr = TRUE;
 			    } else
@@ -2468,7 +2471,7 @@ doengrave()
 				     xname(otmp));
 			else
 			    Your("%s %s %s.", xname(otmp), otense(otmp, "get"),
-				  is_ice(u.ux,u.uy) ? "frosty" : "dusty");
+				  is_ice(u.ux,u.uy) ? "frosty" : is_snow(u.ux,u.uy) ? "snowy" : "dusty");
 			break;
 		    default:
 			break;
@@ -2524,8 +2527,8 @@ doengrave()
 	    pline("%s %sturns to dust.",
 		  The(xname(otmp)), Blind ? "" : "glows violently, then ");
 	    if (!IS_GRAVE(levl[u.ux][u.uy].typ))
-		You("are not going to get anywhere trying to write in the %s with your dust.",
-		    is_ice(u.ux,u.uy) ? "frost" : "dust");
+		You("are not going to get anywhere trying to write on the %s with your dust.",
+		    is_ice(u.ux,u.uy) ? "frost" : is_snow(u.ux,u.uy) ? "snow" : surface(u.ux, u.uy));
 	    useup(otmp);
 	    ptext = FALSE;
 	}
@@ -2587,7 +2590,7 @@ doengrave()
 			You(
 			 "cannot wipe out the message that is %s the %s here.",
 			 oep->engr_type == BURN ?
-			   (is_ice(u.ux,u.uy) ? "melted into" : "burned into") :
+			   (is_ice(u.ux,u.uy) ? "melted into" : is_snow(u.ux,u.uy) ? "melted into" : "burned into") :
 			   "engraved in", surface(u.ux,u.uy));
 			return(1);
 		    } else
@@ -2608,7 +2611,7 @@ doengrave()
 	    case DUST:
 		everb = (oep && !eow ? "add to the writing in" :
 				       "write in");
-		eloc = (is_ice(u.ux,u.uy) ? "frost" : "dust");
+		eloc = (is_ice(u.ux,u.uy) ? "frost" : is_snow(u.ux,u.uy) ? "snow" : surface(u.ux,u.uy));
 		break;
 	    case HEADSTONE:
 		everb = (oep && !eow ? "add to the epitaph on" :
@@ -2621,8 +2624,9 @@ doengrave()
 	    case BURN:
 		everb = (oep && !eow ?
 			( is_ice(u.ux,u.uy) ? "add to the text melted into" :
+			 is_snow(u.ux,u.uy) ? "add to the text melted into" :
 					      "add to the text burned into") :
-			( is_ice(u.ux,u.uy) ? "melt into" : "burn into"));
+			( is_ice(u.ux,u.uy) ? "melt into" : is_snow(u.ux,u.uy) ? "melt into" : "burn into"));
 		break;
 	    case MARK:
 		everb = (oep && !eow ? "add to the graffiti on" :
@@ -2801,7 +2805,8 @@ doengrave()
 		multi = -(len/(canengravefast ? 20 : 10) );
 		if (multi)
 		    nomovemsg = is_ice(u.ux,u.uy) ?
-			"You finish melting your message into the ice.":
+			"You finish melting your message into the ice.": is_snow(u.ux,u.uy) ?
+			"You finish melting your message into the snow.":
 			"You finish burning your message into the floor.";
 		break;
 	    case MARK:

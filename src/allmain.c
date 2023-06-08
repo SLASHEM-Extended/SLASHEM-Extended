@@ -9805,12 +9805,12 @@ newbossB:
 			levl[u.ux][u.uy].typ = POOL;
 		}
 
-		if (is_sand(u.ux, u.uy) && !(FemtrapActiveAntje && PlayerInBlockHeels) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
+		if (is_sand(u.ux, u.uy) && !u.uswallow && !(FemtrapActiveAntje && PlayerInBlockHeels) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
 			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
 			make_blinded(Blinded + rnd(5),FALSE);
 		}
 
-		if (is_nethermist(u.ux, u.uy) && !rn2(isfriday ? 3 : 5)) {
+		if (is_nethermist(u.ux, u.uy) && !u.uswallow && !rn2(isfriday ? 3 : 5)) {
 
 			if ((!Drain_resistance || !rn2(StrongDrain_resistance ? 20 : 5)) && u.uexp > 100) {
 				u.uexp -= (u.uexp / 100);
@@ -9822,19 +9822,19 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !ColdImmunity && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !ColdImmunity && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
 		}
 
-		if (is_styxriver(u.ux, u.uy)) {
+		if (is_styxriver(u.ux, u.uy) && !u.uswallow) {
 
 			if ((!Flying && !Levitation && !(u.usteed && is_swimmer(u.usteed->data)) ) || !rn2(5)) {
 				Norep("Continued exposure to the Styx River will cause contamination.");
@@ -9844,7 +9844,7 @@ newbossB:
 
 		}
 
-		if (is_burningwagon(u.ux, u.uy) && !FireImmunity) {
+		if (is_burningwagon(u.ux, u.uy) && !u.uswallow && !FireImmunity) {
 			pline("The wagon burns you!");
 			stop_occupation();
 			make_burned(HBurned + rnd(10 + level_difficulty()), FALSE);
@@ -9861,7 +9861,7 @@ newbossB:
 
 		}
 
-		if (is_moorland(u.ux, u.uy) && !(u.usteed && is_swimmer(u.usteed->data)) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
+		if (is_moorland(u.ux, u.uy) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
 			stop_occupation();
@@ -9878,7 +9878,7 @@ newbossB:
 			flags.botl = TRUE;
 		}
 
-		if (is_raincloud(u.ux, u.uy) && !(uarmh && uarmh->oartifact == ART_PROTECT_FROM_HEAVY_RAIN) ) {
+		if (is_raincloud(u.ux, u.uy) && !u.uswallow && !(uarmh && uarmh->oartifact == ART_PROTECT_FROM_HEAVY_RAIN) ) {
 
 			if (level.flags.lethe) pline("Sparkling rain washes over you.");
 			else pline("Rain washes over you.");
@@ -9900,7 +9900,7 @@ newbossB:
 
 		}
 
-		if (is_urinelake(u.ux, u.uy) && !(u.usteed && is_swimmer(u.usteed->data)) && !Flying && !Levitation) {
+		if (is_urinelake(u.ux, u.uy) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !Flying && !Levitation) {
 
 			stop_occupation();
 			if (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record > 0) {
@@ -9936,7 +9936,7 @@ newbossB:
 
 		}
 
-		if (is_stalactite(u.ux, u.uy) && (Flying || Levitation)) {
+		if (is_stalactite(u.ux, u.uy) && !u.uswallow && (Flying || Levitation)) {
 			pline("The stalactite pierces you!");
 			losehp(rnd(10 + level_difficulty()), "being impaled on a stalactite", KILLED_BY);
 			stop_occupation();
