@@ -2821,7 +2821,7 @@ newbossING:
 			       ((IS_DOOR(lev->typ) || IS_WALL(lev->typ))
 				&& !flags.mon_moving) ? 200L : 0L);
 		lev->doormask = 0;	/* subsumes altarmask, icedpool... */
-		if (IS_ROOM(lev->typ) && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) ) /* && !IS_AIR(lev->typ) */
+		if (IS_ROOM(lev->typ) && lev->typ != STAIRS && lev->typ != LADDER && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) ) /* && !IS_AIR(lev->typ) */
 		    lev->typ = ROOM;
 
 		/*
@@ -13305,7 +13305,7 @@ madnesseffect:
 		case WALL_TRAP:
 			You("stepped on a trigger!");
 
-			if ( !(levl[u.ux][u.uy].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(levl[u.ux][u.uy].wall_info & W_NONDIGGABLE) ) {
+			if ( !(levl[u.ux][u.uy].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(levl[u.ux][u.uy].wall_info & W_NONDIGGABLE) && levl[u.ux][u.uy].typ != STAIRS && levl[u.ux][u.uy].typ != LADDER ) {
 				levl[u.ux][u.uy].typ = ROCKWALL;
 				pline("Suddenly there's a wall!");
 			} else {
@@ -14505,7 +14505,7 @@ callingoutdone:
 					x = rn1(COLNO-3,2);
 					y = rn2(ROWNO);
 					lev = &levl[x][y];
-					if (isok(x,y) && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER) {
+					if (isok(x,y) && lev->typ != STAIRS && lev->typ != LADDER && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER) {
 						lev->typ = CORR;
 					}
 				}
