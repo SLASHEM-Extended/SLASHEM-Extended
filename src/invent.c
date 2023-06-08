@@ -7906,7 +7906,7 @@ struct obj *otmp;
 			(otmp->oclass == BALL_CLASS && otmp->otyp != HEAVY_LASER_BALL) ||
 			(otmp->oclass == CHAIN_CLASS && otmp->otyp != LASER_CHAIN) ||
 			(otmp->oclass == ROCK_CLASS && otmp->otyp != STATUE) ||
-		    (otmp->oclass == POTION_CLASS && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_VACCINE)) &&
+		    (otmp->oclass == POTION_CLASS && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_VACCINE)) && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_DYE)) &&
 		     /* only applicable potion is oil, and it will only
 			be offered as a choice when already discovered */
 		     (otyp != POT_OIL || !otmp->dknown ||
@@ -16325,7 +16325,7 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_LUCKY))
 			pline("Occasionally, quaffing this potion gives a random good effect.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DYE))
-			pline("If you quaff this potion, you may change the color of an item in your inventory to the potion's color.");
+			pline("If you quaff this potion, you may change the color of an item in your inventory to the potion's color. You can also apply it to change the color of an item without actually experiencing the potion's regular effect.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ANTIHISTAMINE))
 			pline("Quaffing this potion grants temporary poison resistance in addition to its normal effect.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_UNLUCKY))

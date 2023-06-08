@@ -5329,7 +5329,7 @@ doapply()
 
 	if(check_capacity((char *)0)) return (0);
 
-	if (carrying(POT_OIL) || carryingappearance(APP_POTION_VACCINE) || uhave_graystone())
+	if (carrying(POT_OIL) || carryingappearance(APP_POTION_VACCINE) || carryingappearance(APP_POTION_DYE) || uhave_graystone())
 		strcpy(class_list, tools_too);
 	else
 		strcpy(class_list, tools);
@@ -5400,6 +5400,31 @@ doapply()
 			You("inject the covid-19 vaccine...");
 			if (FunnyHallu) pline("Now you should no longer be obligated to wear a butt-ugly face mask and keep 2 meters of distance to other people. After all, you're immune to the plague now.");
 			upnivel(TRUE);
+			return 1;
+		}
+	}
+
+	if (itemhasappearance(obj, APP_POTION_DYE)) {
+		if (yn("Dye an item?") == 'y') {
+			noartispeak = TRUE; /* item is now gone */
+			useup(obj);
+
+			register struct obj *steeling;
+			if (CannotSelectItemsInPrompts) return 1;
+			pline("You may dye an object.");
+dyechoice:
+			steeling = getobj(allowxall, "dye");
+			if (!steeling) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to dye an item.");
+				else goto dyechoice;
+				pline("Oh well, if you don't wanna...");
+			} else {
+				int dyepotion = find_potion_of_dye();
+				objects[steeling->otyp].oc_color = objects[dyepotion].oc_color;
+				pline_The("item was dyed successfully!");
+			}
+
 			return 1;
 		}
 	}
