@@ -7996,6 +7996,10 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GANG_SCIENTIST]) {
 	  		m_initthrow(mtmp, FLAMETHROWER, 8);
 		}
+		if (ptr == &mons[PM_ALPHA_MALE]) {
+			(void) mongets(mtmp, BRASS_KNUCKLES);
+			(void) mongets(mtmp, KNIFE);
+		}
 
 		if (ptr == &mons[PM_CHINESE_RADIO_BEACON_OFFICER]) {
 			(void) mongets(mtmp, KATANA);
@@ -10717,6 +10721,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_FILLER_RUBBER]) (void) mongets(mtmp, QATAR);
 		if (mtmp->data == &mons[PM_SPACKMATICIAN]) (void) mongets(mtmp, KNIFE);
 		if (mtmp->data == &mons[PM_MICHELLE]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (mtmp->data == &mons[PM_EIGHTY_POWER_RUBBER]) (void) mongets(mtmp, UNICORN_HORN);
 
 		if (ptr == &mons[PM_KNOLLER]) {
 			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
@@ -16813,6 +16818,10 @@ loveheelover:
 		if (ptr == &mons[PM_TARBALL]) {
 			(void) mongets(mtmp, BITUKNIFE);
 		}
+		if (ptr == &mons[PM_NEBULA_ELEMENTAL]) {
+			(void)mongets(mtmp, rnd_class(LONG_SWORD,GREAT_HOUCHOU));
+		}
+
 		if (ptr == &mons[PM_COOLINK]) {
 			(void) mongets(mtmp, BEAMSWORD);
 		}
@@ -25476,6 +25485,16 @@ register int	mmflags;
 	switch(ptr->mlet) {
 		case S_MIMIC:
 			set_mimic_sym(mtmp);
+			if (mndx == PM_ENVIRONMENTAL_ADAPTATION) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
+			if (mndx == PM_MIMIC_HIVE_MIND) {
+				int hivemimics = rnd(9);
+				while (hivemimics > 0) {
+					hivemimics--;
+					(void) makemon(mkclass(S_MIMIC,0), mtmp->mx, mtmp->my, MM_ADJACENTOK);
+				}
+			}
+
 			break;
 		case S_TROLL:
 			if (mndx == PM_OLOG_HAI_MIMIC) set_mimic_sym(mtmp);
@@ -33506,7 +33525,7 @@ assign_sym:
 		appear = STAR_ROD;
 	}
 
-	if (mtmp->data == &mons[PM_WAND_MIMIC] || mtmp->data == &mons[PM_WAND_PERMAMIMIC]) {
+	if (mtmp->data == &mons[PM_WAND_MIMIC] || mtmp->data == &mons[PM_WAND_PERMAMIMIC] || mtmp->data == &mons[PM_STRAEG]) {
 		s_sym = WAND_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
@@ -33540,6 +33559,11 @@ assign_sym:
 		s_sym = MAXOCLASSES;
 		ap_type = M_AP_FURNITURE;
 		appear = S_stone;
+	}
+	if (mtmp->data == &mons[PM_DOPPELSTRAEG]) {
+		s_sym = MAXOCLASSES;
+		ap_type = M_AP_FURNITURE;
+		appear = S_throne;
 	}
 	if (mtmp->data == &mons[PM_LOL_OWNED]) {
 		s_sym = MAXOCLASSES;

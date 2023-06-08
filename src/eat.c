@@ -1078,6 +1078,7 @@ register int pm;
 	    case PM_DEAD_LIZARD:
 	    case PM_STOPWATCH_LIZARD:
 	    case PM_RUNE_LIZARD:
+	    case PM_YUNICOR_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:
 	    case PM_DARKEN_LIZARD:
@@ -1247,6 +1248,7 @@ struct monst *mon;
 	case PM_DEAD_LIZARD:
       case PM_STOPWATCH_LIZARD:
 	case PM_RUNE_LIZARD:
+	case PM_YUNICOR_LIZARD:
 	case PM_SPECTRAL_LIZARD:
       case PM_BLUE_LIZARD:
       case PM_DARKEN_LIZARD:
@@ -3330,6 +3332,7 @@ register int pm;
 	    case PM_DEAD_LIZARD:
 	    case PM_STOPWATCH_LIZARD:
 	    case PM_RUNE_LIZARD:
+	    case PM_YUNICOR_LIZARD:
 	    case PM_SPECTRAL_LIZARD:
 	    case PM_BLUE_LIZARD:
 	    case PM_DARKEN_LIZARD:
@@ -3413,6 +3416,7 @@ register int pm;
 	    case PM_METAMORPHOSE:
 	    case PM_UNIQUE_SHIFTER:
 	    case PM_GHELEON:
+	    case PM_SHAPESHIFTING_EXPERTISE:
 	    case PM_RAINBOW_SPHERE:
 	    case PM_ELONA_BADGER:
 	    case PM_PURPLE_R:
