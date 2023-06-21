@@ -7853,6 +7853,9 @@ SCROLL((char *)0,               "BITTE RATEN SIE MICH HEI",  P_NONE,     1,   0,
 SCROLL((char *)0,               "DOES THE MONEY GO ON POCKETS FOR A VAUT",  P_NONE,     1,   0, 100, CLR_BROWN, 1), /* "vaut" is not a misspelling!!! --Amy */
 SCROLL((char *)0,               "I HAVE DRAWN THE LARGE LOT",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "HO ALSONTAI E VAGABONDE",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "TRY TO OUR ANN LEE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "EAMMAEAMAMMAEEA EAMAMMAEEA EAROEKARE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "DAISY IN HER BOLD PRINTS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 
 
 #ifdef MAIL

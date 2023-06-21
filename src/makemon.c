@@ -8000,6 +8000,10 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, BRASS_KNUCKLES);
 			(void) mongets(mtmp, KNIFE);
 		}
+		if (mtmp->data == &mons[PM_UNKNOWN_QUANTITY]) {
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+		}
 
 		if (ptr == &mons[PM_CHINESE_RADIO_BEACON_OFFICER]) {
 			(void) mongets(mtmp, KATANA);
@@ -12341,6 +12345,14 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SCOTLAND_YARD_AGENT]) (void) mongets(mtmp, LUCERN_HAMMER);
 		if (mtmp->data == &mons[PM_KSK_TYPE]) (void) mongets(mtmp, LUCERN_HAMMER);
 		if (mtmp->data == &mons[PM_BULLETATOR_ANNOYER]) (void) mongets(mtmp, PARTISAN + rn2(ORCISH_SPEAR - PARTISAN) );
+
+		if (mtmp->data == &mons[PM_ANN_LEE]) {
+			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
+		}
 
 		if (ptr == &mons[PM_SOLDIERCROTTA]) {
 			  if (rn2(2)) {
@@ -26891,6 +26903,8 @@ register int	mmflags;
 			if (mndx == PM_KLIEAU_MANTICORE) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mtmp->data == &mons[PM_ARTILLERY_DRAGON]) set_mimic_sym(mtmp);
 			if (ptr == &mons[PM_SUPER_STEALTHER]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
+			if (mndx == PM_COVER_UP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+
 			if (mtmp->data == &mons[PM_DIABLO_PLAYER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {
