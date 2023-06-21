@@ -3335,6 +3335,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
+		if (uarms && uarms->oartifact == ART_FETTIS_SLOT) tmp += 3;
 		if (Race_if(PM_URGOTH)) tmp += 3;
 		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;

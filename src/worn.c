@@ -400,6 +400,17 @@ register struct monst *mon;
 
 	if (is_wagon(mon->mx, mon->my)) base -= 10;
 
+	if (uarm && uarm->oartifact == ART_INTERNAL_VIEW && base < 10) {
+		int acamount = base - 10; /* example: base = -10, i.e. 20 points of AC */
+		if (acamount < 0) acamount *= -1; /* acamount would now be 20 */
+
+		acamount *= 7;
+		acamount /= 10;
+		/* acamount is 14 now */
+
+		base = 10 - acamount; /* -4 instead of -10 */
+	}
+
 	/* Monsters with too good AC should not be completely unhittable. --Amy */
 	if (!rn2(20)) {
 		int absoluteac = (-(base - 10));

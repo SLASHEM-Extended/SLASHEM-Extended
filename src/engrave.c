@@ -1354,6 +1354,11 @@ register xchar x,y,cnt;
 {
 	register struct engr *ep = engr_at(x,y);
 
+	if (uarmf && uarmf->oartifact == ART_ART_ROCKZ && cnt) {
+		if (cnt == 1 && !rn2(3)) cnt = 0;
+		else if (!rn2(3)) cnt /= 2;
+	}
+
 	/* Headstones are indelible */
 	if(ep && ep->engr_type != HEADSTONE){
 	    if(ep->engr_type != BURN || is_ice(x,y) || is_snow(x,y)) {

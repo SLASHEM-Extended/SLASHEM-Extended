@@ -21260,7 +21260,7 @@ boolean knoweverything;
 				case ART_BANG_BANG:
 					pline("Artifact specs: +5 to-hit and +20 stun damage, wielding it sets it to +2 if its enchantment was lower, but also causes deafness. Chaotic."); break;
 				case ART_TUNA_CANNON:
-					pline("Artifact specs: +20 damage to cold-susceptible monsters, +1 multishot, neutral."); break;
+					pline("Artifact specs: +20 damage to cold-susceptible monsters, +1 multishot, you always take maximum damage and your AC is much worse while wielding it, neutral."); break;
 				case ART_PFIIIIIIIIET:
 					pline("Artifact specs: No specialties."); break;
 				case ART_DOGWALK:
@@ -26237,6 +26237,36 @@ boolean knoweverything;
 					pline("Artifact specs: 5 extra points of AC when worn. This item is indeed item class 3 (armor) and acts as if its spe (enchantment) was +5 (although the AC bonus stacks with any actual enchantment on the item), but the base type will not remain 721 as new base items are added to SLEX."); break;
 				case ART_SVETOCHUVSTVITEL_NOST_:
 					pline("Artifact specs: gives you effects as if you had taken a shot of the RL drug named 'speed' if you quaff it. Addiction/withdrawal is not modeled by the game yet, though."); break;
+				case ART_SPACE_SHUTTLE:
+					pline("Artifact specs: contamination resistance when worn."); break;
+				case ART_ART_ROCKZ:
+					pline("Artifact specs: engravings scuff less quickly while you're wearing them."); break;
+				case ART_COVER_UP:
+					pline("Artifact specs: displacement when worn."); break;
+				case ART_CHEST_TANK:
+					pline("Artifact specs: gives 20 extra points of AC but causes you to take double damage."); break;
+				case ART_IS_ONLY_OWWE:
+					pline("Artifact specs: fast speed and gives you a chance to avoid missile attacks, but wearing it also makes your AC worse."); break;
+				case ART_SUIT_OF_JANE_MAIL:
+					pline("Artifact specs: jane trap effect and higher nivellation caps when worn."); break;
+				case ART_FETTIS_SLOT:
+					pline("Artifact specs: makes you thick-skinned and increases constitution by 3 while worn but you no longer fit through narrow passages."); break;
+				case ART_BOBAIS:
+					pline("Artifact specs: slows down the rate of lightsaber energy usage while you're wearing it, and doesn't hinder monks, jedi and the like even though it's a non-robe torso armor."); break;
+				case ART_GIVE_IT_ME_YOUR_WILL:
+					pline("Artifact specs: can be invoked for acquirement, with undesirable side effects that are less bad if you're in a form without hands."); break;
+				case ART_BULLETSTOPPER:
+					pline("Artifact specs: allows you to deflect bullets 50%% of the time."); break;
+				case ART_RANGED_REDUCER:
+					pline("Artifact specs: monsters are less likely to use missile weapon attacks against you while you're wearing it."); break;
+				case ART_SLOW_MISSILES:
+					pline("Artifact specs: prevents monsters from using ranged attacks if they're more than 6 squares away."); break;
+				case ART_INTERNAL_VIEW:
+					pline("Artifact specs: monsters act as if they had reduced AC while you're wearing it."); break;
+				case ART_KOPKILLER:
+					pline("Artifact specs: +5 to-hit and double damage against kops, chaotic."); break;
+				case ART_SILENCER:
+					pline("Artifact specs: +5 to-hit and +10 damage against monsters that are always female, chaotic. This artifact was originally in Nethack-- (which used to be called Nethack++ but people were asking stupid questions about the game supposedly having been transcribed to a different programming language) and probably got scrapped when the SJW hordes started calling it 'misogynist' or something."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

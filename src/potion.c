@@ -8198,6 +8198,12 @@ nivellate()
 			upperceiling *= 3;
 			upperceiling /= 2;
 		}
+		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
+			lowerceiling *= 6;
+			lowerceiling /= 5;
+			upperceiling *= 6;
+			upperceiling /= 5;
+		}
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
@@ -8360,6 +8366,12 @@ nivellate()
 			lowerceiling /= 2;
 			upperceiling *= 3;
 			upperceiling /= 2;
+		}
+		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
+			lowerceiling *= 6;
+			lowerceiling /= 5;
+			upperceiling *= 6;
+			upperceiling /= 5;
 		}
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
@@ -8553,6 +8565,10 @@ boolean guaranteed;
 			ceiling *= 9;
 			ceiling /= 10;
 		}
+		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
+			ceiling *= 6;
+			ceiling /= 5;
+		}
 
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
@@ -8683,6 +8699,10 @@ boolean guaranteed;
 		if (Race_if(PM_WISP)) {
 			ceiling *= 4;
 			ceiling /= 3;
+		}
+		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
+			ceiling *= 6;
+			ceiling /= 5;
 		}
 
 		if (ceiling < 10) ceiling = 10; /* fail safe */

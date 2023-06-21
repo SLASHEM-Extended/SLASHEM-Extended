@@ -225,6 +225,7 @@ init_randarts()
 	 * WAN_MAKE_INVISIBLE = wand, SPE_MAGICTORCH = spellbook */
 
 	artilist[ART_SOULCALIBUR].otyp = randartmeleeweapon();
+	artilist[ART_KOPKILLER].otyp = randartmeleeweapon();
 	artilist[ART_THIS_TRENCH_WAR_HAS_BEEN_F].otyp = randartmeleeweapon();
 	artilist[ART_SKOGLO].otyp = randartmeleeweapon();
 	artilist[ART_UNDEADBANE].otyp = randartmeleeweapon();
@@ -540,6 +541,7 @@ init_randarts()
 	artilist[ART_GAUNTLETS_OF_YIN_AND_YANG].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_I_M_GETTING_HUNGRY].otyp = randartshieldX();
+	artilist[ART_FETTIS_SLOT].otyp = randartshieldX();
 	artilist[ART_RONDITSCH].otyp = randartshieldX();
 	artilist[ART_OF_NULLING].otyp = randartshieldX();
 	artilist[ART_SUPER_ENERGY_LINES].otyp = randartshieldX();
@@ -554,6 +556,7 @@ init_randarts()
 	artilist[ART_CURSE_THE_TIME_SHIFT].otyp = randartamuletX();
 	artilist[ART_FULLY_THE_LONG_PENIS].otyp = randartwandX();
 	artilist[ART_WORLD_OF_COQ].otyp = randartwandX();
+	artilist[ART_GIVE_IT_ME_YOUR_WILL].otyp = randartimplantX();
 	artilist[ART_WHOOSHZAP].otyp = randartwandX();
 	artilist[ART_NADJA_S_SILENCE].otyp = randartmeleeweaponX();
 	artilist[ART_A_SWORD_NAMED_SWORD].otyp = randartmeleeweaponX();
@@ -852,6 +855,9 @@ init_randarts()
 	artilist[ART_NOW_YOUR_ABLE_TO_POLY].otyp = find_osfa_cloak();
 	artilist[ART_PINEAPPLE_TYCOON_S_FINISH].otyp = find_tarpaulin_cloak();
 	artilist[ART_SAFARI_ROCKZ].otyp = find_missys();
+	artilist[ART_SPACE_SHUTTLE].otyp = find_missys();
+	artilist[ART_ART_ROCKZ].otyp = find_missys();
+	artilist[ART_COVER_UP].otyp = find_missys();
 	artilist[ART_SPIRIT_ROCKZ].otyp = find_missys();
 	artilist[ART_PURPLE_JUNGLE].otyp = find_missys();
 	artilist[ART_EAZY_GOING].otyp = find_missys();
@@ -4228,6 +4234,19 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_GIVE_IT_ME_YOUR_WILL) {
+			curse(obj);
+			obj->hvycurse = obj->prmcurse = obj->stckcurse = TRUE;
+
+			if (!powerfulimplants()) {
+				getnastytrapintrinsic();
+			}
+
+			acquireitem();
+
+			break;
+		}
 
 		if (obj->oartifact == ART_VINTAGE_MEMORY) {
 			if (!Teleport_control) HTeleport_control = 2;

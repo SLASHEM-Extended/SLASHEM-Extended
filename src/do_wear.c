@@ -6003,7 +6003,7 @@ find_ac()
 	else if (ACURR(A_DEX) < 24) uac -= 9;
 	else uac -= 10;
 
-	if (Role_if(PM_MONK) && !uwep && (!uarm || (uarm->oartifact == ART_HA_MONK) ||
+	if (Role_if(PM_MONK) && !uwep && (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) ||
 		(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms) {
 /*WAC cap off the Monk's ac bonus to -11 */
             if (u.ulevel > 18) uac -= 11;
@@ -6321,6 +6321,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
@@ -6655,6 +6656,20 @@ find_ac()
 		
 	}
 
+	if (uwep && uwep->oartifact == ART_TUNA_CANNON) {
+		int difference = (-(uac - 10));
+		difference = difference / 4;
+		if (difference > 0) uac = 10 - difference;
+		
+	}
+
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TUNA_CANNON) {
+		int difference = (-(uac - 10));
+		difference = difference / 4;
+		if (difference > 0) uac = 10 - difference;
+		
+	}
+
 	if (uarmc && uarmc->oartifact == ART_FASCEND) {
 		int difference = (-(uac - 10));
 		difference = difference / 2;
@@ -6695,6 +6710,13 @@ find_ac()
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
 		
+	}
+
+	if (uarm && uarm->oartifact == ART_IS_ONLY_OWWE) {
+		int difference = (-(uac - 10));
+		difference *= 4;
+		difference /= 5;
+		if (difference > 0) uac = 10 - difference;
 	}
 
 	if (Race_if(PM_TAYIIN)) {

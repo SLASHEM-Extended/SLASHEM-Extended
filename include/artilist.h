@@ -3603,8 +3603,8 @@ A("Bang Bang",				SAWED_OFF_SHOTGUN, /* deafness when wielded, and sets itself t
 	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
 	STUN(5,20), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
 
-A("Tuna Cannon",				POWER_CROSSBOW, /* +1 multishot */
-	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+A("Tuna Cannon",				POWER_CROSSBOW, /* +1 multishot, you take maximum damage, cuts your AC to one quarter of the normal amount */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	COLD(0, 20), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
 
 A("Pfiiiiiiiiet",				TIN_WHISTLE, /* no specialty - just to unlock petkeeping skill */
@@ -13269,6 +13269,65 @@ A("svetochuvstvitel'nost'",				POT_SPEED, /* quaffing it gives 200 turns of bers
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+A("Space Shuttle",				LOW_BOOTS, /* initialized to always be missys, contamination resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Art Rockz",				LOW_BOOTS, /* initialized to always be missys, engravings scuff less quickly */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Cover Up",				LOW_BOOTS, /* initialized to always be missys, displacement */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Chest Tank",				BANDED_MAIL, /* 20 extra points of AC but you take double damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Is Only Owwe",				BANDED_MAIL, /* fast speed, 10% chance to evade missile attacks but 20% less AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Suit of Jane Mail",				CHAIN_MAIL, /* jane trap effect and 20% higher caps for nivellation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Fettis Slot",				SHIELD, /* randart2 shield, you are thick-skinned and +3 CON but don't fit through narrow passages */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bobais",				STUDDED_LEATHER_ARMOR, /* doesn't hinder monks, jedi and such, 20% chance that your lightsaber doesn't lose energy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Give It Me Your Will",				IMPLANT_OF_ABRASION, /* randart2 implant, invoke for acquirement but doing so sticky prime curses the implant and if you're not in a form without hands, also gives you a nastytrap effect permanently */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bulletstopper",				STUDDED_LEATHER_ARMOR, /* 50% chance to deflect bullets */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ranged Reducer",				STUDDED_LEATHER_ARMOR, /* 33% chance that monsters cannot use missile weapons */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Slow Missiles",				STUDDED_LEATHER_ARMOR, /* monsters cannot use ranged attacks on a distance greater than 6 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Internal View",				STUDDED_LEATHER_ARMOR, /* monsters have 30% less AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Kopkiller",				LONG_SWORD, /* randart melee weapon */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_KOP,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1000L ),
+
+A("Silencer",				HALBERD,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_FEMALE),
+	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

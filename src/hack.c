@@ -1495,7 +1495,7 @@ walscholardone:
 		You("cannot pass that way.");
 	    return FALSE;
 	}
-	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || FemtrapActivePatricia || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_URGOTH) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_INCORPOREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
+	if ( (bigmonst(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || FemtrapActivePatricia || (!Upolyd && Race_if(PM_HUMANOID_CENTAUR) ) || (!Upolyd && Race_if(PM_URGOTH) ) || (!Upolyd && Race_if(PM_ETHEREALOID) ) || (!Upolyd && Race_if(PM_INCORPOREALOID) ) || (!Upolyd && Race_if(PM_PLAYER_CERBERUS) ) || (!Upolyd && Race_if(PM_CHIROPTERAN) ) || (!Upolyd && Race_if(PM_THUNDERLORD) ) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uarms && uarms->oartifact == ART_FETTIS_SLOT) || (!Upolyd && Race_if(PM_PLAYER_JABBERWOCK) ) ) {
 	    if (mode == DO_MOVE)
 		Your("body is too large to fit through.");
 	    return FALSE;
@@ -5006,7 +5006,7 @@ int k_format; /* WAC k_format is an int */
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW) || (uarm && uarm->oartifact == ART_CHEST_TANK)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 

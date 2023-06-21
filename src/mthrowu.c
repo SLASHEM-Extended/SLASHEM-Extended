@@ -498,6 +498,15 @@ shieldblockboo:
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (uarm && uarm->oartifact == ART_IS_ONLY_OWWE && !rn2(10)) {
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
+	} else if (uarm && uarm->oartifact == ART_BULLETSTOPPER && !rn2(2) && obj && is_bullet(obj) ) {
+			pline_The("armor deflects the shot.");
+			return(0);
+
 	} else if (Race_if(PM_CUPID) && !rn2(5)) {
 
 			if(Blind || !flags.verbose) You("sidestep a projectile.");
@@ -1858,6 +1867,7 @@ struct monst *mtmp;
 	if (mtmp->data == &mons[PM_IMPALAZON]) return;
 	if (mtmp->data == &mons[PM_MYSTERY_WOMAN]) return;
 	if (mtmp->data == &mons[PM_SILVER_LADY_PUMP]) return;
+	if (uarm && uarm->oartifact == ART_RANGED_REDUCER && !rn2(3)) return;
 
 	/* Rearranged beginning so monsters can use polearms not in a line */
 	if (mtmp->weapon_check == NEED_WEAPON || !MON_WEP(mtmp)) {
@@ -1945,9 +1955,13 @@ struct monst *mtmp;
 		objects[mwep->otyp].oc_range * objects[mwep->otyp].oc_range) 
 		return; /* Out of range */
 
+	if (!(elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone())
+	&& (uarm && uarm->oartifact == ART_SLOW_MISSILES) && (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > (BOLT_LIM*BOLT_LIM)) ) 
+		return; /* Out of range */
+
 	/* monsters were throwing darts way across the map, that is, distances of 70+ squares.
 	 * This was obviously not intended; they should just be able to fire sniper rifles at their actual range. --Amy */
-	else if (!(elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
+	if (!(elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) && !(mwep && ammo_and_launcher(otmp, mwep) && objects[mwep->otyp].oc_range) && dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) > ((BOLT_LIM + strongmonst(mtmp->data) ) * (BOLT_LIM + strongmonst(mtmp->data) )) ) return;
 
 	/* Multishot calculations */
 	multishot = 1;

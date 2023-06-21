@@ -243,7 +243,7 @@ on the first floor, especially when you're playing as something with drain resis
 kseniaagain:
 
 			pline("%s kicks you%c", Monnam(mtmp),
-				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) ? '.' : (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.' : (FemtrapActivePatricia) ? '.' : '!');
+				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) ? '.' : (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.'  : (uarms && uarms->oartifact == ART_FETTIS_SLOT) ? '.' : (FemtrapActivePatricia) ? '.' : '!');
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
@@ -2624,7 +2624,7 @@ mattacku(mtmp)
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
-					    (!thick_skinned(youmonst.data) && !(FemtrapActivePatricia) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) && !(uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
+					    (!thick_skinned(youmonst.data) && !(FemtrapActivePatricia) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) && !(uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) && !(uarms && uarms->oartifact == ART_FETTIS_SLOT) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
 					sum[i] = hitmu(mtmp, mattk);
 				} else
 				    missmu(mtmp, tmp, j, mattk);
@@ -2680,12 +2680,14 @@ mattacku(mtmp)
 		/* This has the side effect of AT_HUGS hitting from far away. I decided to declare this "bug" a feature. */
 			break;
 		case AT_BEAM:  /* ranged non-contact attack by Chris - only go off 40% of the time for balance reasons --Amy */
+
 			if (!rn2(2) && !issoviet) break;
 cursesatyou:
 			if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 				if (foundyou) sum[i] = hitmu(mtmp, mattk);  
 				else wildmiss(mtmp, mattk);  
 			}
+
 			break;
 		case AT_GAZE:	/* can affect you either ranged or not */
 			if (!rn2(2) && !issoviet) break;
@@ -6798,7 +6800,7 @@ hitmu(mtmp, mattk)
 {
 	register struct permonst *mdat = mtmp->data;
 	register int tmp = d((int)mattk->damn, (int)mattk->damd*10);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd * 10;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd * 10;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 	register int uncancelled, ptmp;
 	register boolean statsavingthrow = 0;
@@ -6871,7 +6873,7 @@ hitmu(mtmp, mattk)
 	if( (is_undead(mdat) || mtmp->egotype_undead) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ASTRAL_LIGHTWELL)
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) {
 		dmg = (int)mattk->damn * (int)mattk->damd;
 		if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 			dmg *= 2;
@@ -10831,7 +10833,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	char	 buf[BUFSZ];
 	struct trap *t = t_at(u.ux, u.uy);
 	int	tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd;
 	int	tim_tmp;
 	register struct obj *otmp2;
 	int	i;
@@ -13427,7 +13429,7 @@ boolean ufound;
 	}
     else {
 	register int tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 
 	hitmsg(mtmp, mattk);
@@ -15785,7 +15787,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	if (rnd(100) < ACURR(A_CHA)) return 0; /* no message because it would get too spammy */
 
 	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) dmgplus = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) dmgplus = (int)mattk->damn * (int)mattk->damd;
 
 	switch(atttypB) {
 	    case AD_STON:
@@ -17457,7 +17459,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!mtmp->mcan && canseemon(mtmp) && !resists_blnd(&youmonst)
 			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && (issoviet || !rn2(6)) ) {
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
-		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI)) blnd = (int)mattk->damn * (int)mattk->damd;
+		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) blnd = (int)mattk->damn * (int)mattk->damd;
 
 		    if (FunnyHallu) pline("The power of %s aurora overwhelms you!", s_suffix(mon_nam(mtmp)));
 		    else You("are blinded by %s radiance!", s_suffix(mon_nam(mtmp)));
@@ -19148,7 +19150,7 @@ register int n;
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
-	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW)) n = n * 2;
+	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW) || (uarm && uarm->oartifact == ART_CHEST_TANK)) n = n * 2;
 	if (uamul && uamul->otyp == AMULET_OF_VULNERABILITY) n *= rnd(4);
 	if (RngeFrailness) n = n * 2;
 
