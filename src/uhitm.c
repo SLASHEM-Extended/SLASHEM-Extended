@@ -713,7 +713,7 @@ register struct monst *mtmp;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) tmp += 5;
 	if (u.twoweap && uwep && uswapwep && uswapwep->oartifact == ART_TEH_HUNK && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS && uwep->oclass != VENOM_CLASS)) tmp += 5;
 
-	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) {
+	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uwep && uwep->oartifact == ART_DE_SID) || Role_if(PM_HEDDERJEDI)) && uwep && (is_launcher(uwep) && !(uwep->otyp == LASERXBOW && uwep->lamplit))) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -731,7 +731,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (is_missile(uwep) || is_ammo(uwep))) {
+	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uwep && uwep->oartifact == ART_DE_SID) || Role_if(PM_HEDDERJEDI)) && uwep && (is_missile(uwep) || is_ammo(uwep))) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -740,7 +740,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) {
+	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uwep && uwep->oartifact == ART_DE_SID) || Role_if(PM_HEDDERJEDI)) && uwep && (!u.usteed && !(tech_inuse(T_POLE_MELEE)) && is_pole(uwep))) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -749,7 +749,7 @@ register struct monst *mtmp;
 		if (u.hunkskill >= 4320) tmp++;
 	}
 
-	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || Role_if(PM_HEDDERJEDI)) && uwep && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS && uwep->oclass != VENOM_CLASS)) {
+	if (!PlayerCannotUseSkills && ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uwep && uwep->oartifact == ART_DE_SID) || Role_if(PM_HEDDERJEDI)) && uwep && (uwep->oclass != WEAPON_CLASS && !is_weptool(uwep) && uwep->oclass != GEM_CLASS && uwep->oclass != BALL_CLASS && uwep->oclass != CHAIN_CLASS && uwep->oclass != VENOM_CLASS)) {
 		if (u.hunkskill >= 20) tmp++;
 		if (u.hunkskill >= 160) tmp++;
 		if (u.hunkskill >= 540) tmp++;
@@ -2207,7 +2207,7 @@ int dieroll;
 					if (u.hunkturns >= 5) {
 						u.hunkturns = 0;
 						u.hunkskill++;
-						if ((obj && obj->oartifact == ART_TEH_HUNK) || Role_if(PM_HEDDERJEDI) || (uarm && uarm->oartifact == ART_HUNKSTERMAN)) {
+						if ((obj && obj->oartifact == ART_TEH_HUNK) || (uwep && uwep->oartifact == ART_DE_SID) || Role_if(PM_HEDDERJEDI) || (uarm && uarm->oartifact == ART_HUNKSTERMAN)) {
 							if (u.hunkskill == 20) You("are now more skilled in form IX (Hunk).");
 							if (u.hunkskill == 160) You("are now more skilled in form IX (Hunk).");
 							if (u.hunkskill == 540) You("are now more skilled in form IX (Hunk).");
@@ -2221,7 +2221,7 @@ int dieroll;
 			}
 
 			if (!PlayerCannotUseSkills && is_lightsaber(obj)) {
-				if ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uwep && uwep->otyp == LIGHTTORCH) || Role_if(PM_HEDDERJEDI)) {
+				if ((uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uwep && uwep->oartifact == ART_DE_SID) || (uwep && uwep->otyp == LIGHTTORCH) || Role_if(PM_HEDDERJEDI)) {
 					if (u.hunkskill >= 20) tmp++;
 					if (u.hunkskill >= 160) tmp++;
 					if (u.hunkskill >= 540) tmp++;

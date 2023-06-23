@@ -341,13 +341,14 @@ dig()
 	if (isfriday && bonus > 1) bonus /= 2;
 
 	if (uwep && uwep->oartifact == ART_ETERNALE_DELAY) bonus -= 5;
+	if (uwep && uwep->oartifact == ART_DE_SID && uwep->altmode) bonus += rnd(20);
 
-	if (uwep->otyp == SHOVEL && !(uwep->oartifact == ART_AFTERMINE) )
+	if (uwep && uwep->otyp == SHOVEL && !(uwep->oartifact == ART_AFTERMINE) )
 	    bonus -= rn2(Role_if(PM_UNDERTAKER) ? 5 : 20); /* digging with a shovel takes longer */
 
-	if (is_lightsaber(uwep))
-	    bonus -= rn2(20); /* Melting a hole takes longer */
-	if (is_lightsaber(uwep) && !uwep->lamplit)
+	if (uwep && is_lightsaber(uwep) && !(uwep->oartifact == ART_DE_SID) ) /* Melting a hole takes longer */
+	    bonus -= (uwep->lamplit && uwep->altmode) ? rn2(8) : rn2(20); /* but is faster if both blades are lit --Amy */
+	if (uwep && is_lightsaber(uwep) && !uwep->lamplit)
 	    bonus -= rn2(200); /* and if the saber isn't lit (shadow jedi role), it takes like forever --Amy */
 
 	digging.effort += bonus;

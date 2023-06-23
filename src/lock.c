@@ -909,10 +909,17 @@ doforce()		/* try to force a chest with your weapon */
 				int dmg;
 				int mdx, mdy;
 				dmg = rnd(2) + dbon() + uwep->spe;
+
+				 /* having both blades on boosts the damage --Amy */
+				if (uwep->lamplit && uwep->altmode) dmg += rnd(3);
+
 				if (UseTheForce) dmg += 5;
 				if (StrongUseTheForce) dmg += 5;
 				if (tech_inuse(T_USE_THE_FORCE_LUKE)) dmg += techlevX(get_tech_no(T_USE_THE_FORCE_LUKE));
 				if (uarmg && uarmg->oartifact == ART_USE_THE_FORCE_LUKE) dmg += 10;
+				if (uwep && uwep->oartifact == ART_DE_SID && uwep->lamplit) dmg += 5;
+				if (uwep && uwep->oartifact == ART_DE_SID && uwep->lamplit && uwep->altmode) dmg += 5;
+
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Role_if(PM_HEDDERJEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Role_if(PM_SHADOW_JEDI) && UseTheForce) dmg += u.ulevel;
@@ -927,14 +934,30 @@ doforce()		/* try to force a chest with your weapon */
 				}
 
 				if (!PlayerCannotUseSkills) {
-					switch (P_SKILL(P_WEDI)) {
+					switch (P_SKILL(P_WEDI)) { /* again, bigger boosts if you use both blades --Amy */
 
-						case P_BASIC:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(2) : 1; break;
-						case P_SKILLED:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(4) : rnd(2); break;
-						case P_EXPERT:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(6) : rnd(3); break;
-						case P_MASTER:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(8) : rnd(4); break;
-						case P_GRAND_MASTER:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(10) : rnd(5); break;
-						case P_SUPREME_MASTER:	dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(12) : rnd(6); break;
+						case P_BASIC:
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(2) : 1;
+							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(2);
+							break;
+						case P_SKILLED:
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(4) : rnd(2);								if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(4);
+							break;
+						case P_EXPERT:
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(6) : rnd(3);								if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(6);
+							break;
+						case P_MASTER:
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(8) : rnd(4);
+							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(8);
+							break;
+						case P_GRAND_MASTER:
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(10) : rnd(5);
+							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(10);
+							break;
+						case P_SUPREME_MASTER:
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(12) : rnd(6);
+							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(12);
+							break;
 						default: break;
 					}
 				}

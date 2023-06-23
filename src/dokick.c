@@ -48,6 +48,7 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_AS_STRONG_AS_BOOTS) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_ARTHUR_S_HIGH_HEELED_PLATF) dmg += 2;
 	if (uarmf && uarmf->oartifact == ART_KATHARINA_S_LOVELINESS) dmg += 10;
+	if (uarmf && uarmf->oartifact == ART_FIGHT_WITH_PLATFORM_INA) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) dmg += 2;
 	if (uarmf && itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) dmg += 5;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) dmg += 5;

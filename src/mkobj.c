@@ -4003,6 +4003,8 @@ boolean guaranteed; /* can it work even when you have permacurse nastytrap effec
 {
 	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone() || (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) ) ) return;
 
+	if (!guaranteed && uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER && rn2(2)) return;
+
 	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}

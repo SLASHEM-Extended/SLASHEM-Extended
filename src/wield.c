@@ -190,6 +190,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		curse(uwep);
 		pline("Whoops, the weapon cursed itself.");
 	}
+	if (uwep && uwep->oartifact == ART_DE_SID && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, the weapon cursed itself.");
+	}
 	if (uwep && uwep->oartifact == ART_GODAWFUL_ENCHANTMENT && !uwep->cursed) {
 		curse(uwep);
 		pline("Whoops, the weapon cursed itself.");
@@ -423,6 +427,10 @@ swapweaponchoice:
 			pline("Whoops, the weapon cursed itself.");
 		}
 		if (uswapwep && uswapwep->oartifact == ART_SHADOWBLADE_BASED_ON_STORM && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, the weapon cursed itself.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_DE_SID && !uswapwep->cursed) {
 			curse(uswapwep);
 			pline("Whoops, the weapon cursed itself.");
 		}
@@ -1284,6 +1292,7 @@ void
 uwepgone()
 {
 	if (uwep) {
+
 		if (artifact_light(uwep) && uwep->lamplit) {
 		    end_burn(uwep, FALSE);
 		    if (!Blind) pline("%s glowing.", Tobjnam(uwep, "stop"));

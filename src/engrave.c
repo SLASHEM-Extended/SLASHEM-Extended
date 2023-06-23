@@ -1535,6 +1535,7 @@ freehand()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
+	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 
 	return(!uwep || !welded(uwep) ||
 	   (!bimanual(uwep) && (!uarms || !uarms->cursed)));
@@ -1552,6 +1553,7 @@ freehandX()
 {
 	if (uwep && uwep->oartifact == ART_WAR_S_SWORD) return 1;
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
+	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 
 	if (!PlayerCannotUseSkills) {
 

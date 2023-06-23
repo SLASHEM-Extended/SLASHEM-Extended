@@ -26267,6 +26267,28 @@ boolean knoweverything;
 					pline("Artifact specs: +5 to-hit and double damage against kops, chaotic."); break;
 				case ART_SILENCER:
 					pline("Artifact specs: +5 to-hit and +10 damage against monsters that are always female, chaotic. This artifact was originally in Nethack-- (which used to be called Nethack++ but people were asking stupid questions about the game supposedly having been transcribed to a different programming language) and probably got scrapped when the SJW hordes started calling it 'misogynist' or something."); break;
+				case ART_THROUGH_THE_MOTIONS:
+					pline("Artifact specs: can be invoked to upgrade its base item to one that gives more protection, up to plate mail. Invoking it when it's already plate mail does nothing."); break;
+				case ART_CLOUDYBAND:
+					pline("Artifact specs: claudia trap effect and disintegration resistance when worn."); break;
+				case ART_NOW_YOU_MADE_HER_SAD:
+					pline("Artifact specs: victoria trap effect, rays don't lose range when hitting something and your ranged weapons have +2 range while wearing it."); break;
+				case ART_HA_HA_HA_HA___:
+					pline("Artifact specs: little marie trap effect, warning, ESP, double resistance piercing, clairvoyance, sight bonus and infravision when worn, autocurses."); break;
+				case ART_GREENTOP:
+					pline("Artifact specs: elise trap effect, changes its color to green when worn, and while you're wearing it, every green armor piece that you're wearing grants a +3 AC bonus."); break;
+				case ART_ARABELLA_S_FEMINIZER:
+					pline("Artifact specs: conveys clairvoyance and DETECT MONSTERS!!! You absolutely want to wear this, and you don't care if it also does some other things while worn. Put it on! Now! You know that the game becomes much easier if you always know where the monsters are!"); break;
+				case ART_HER_UNREACHABLE_BROOK:
+					pline("Artifact specs: +10 to-hit and +16 damage, jette trap effect and antisearching, unwielding it causes 1000 more turns of the jette trap effect."); break;
+				case ART_IGNORANCE_IS_BLISS:
+					pline("Artifact specs: verena trap effect and acts as a luckstone when worn."); break;
+				case ART_MARJI_JANA:
+					pline("Artifact specs: flying, unbreathing and half physical damage when worn. You don't know whether it does anything else..."); break;
+				case ART_FIGHT_WITH_PLATFORM_INA:
+					pline("Artifact specs: bridghitte trap effect and +10 kick damage when worn."); break;
+				case ART_DE_SID:
+					pline("Artifact specs: ute trap effect, doesn't make your hands unusable and allows you to use the form IX (Hunk) lightsaber form when wielded, can melt walls more quickly with the #force command and using the force against an enemy deals more damage than normal. Autocurses."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

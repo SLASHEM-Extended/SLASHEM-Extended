@@ -2085,6 +2085,7 @@ int thrown;
 		if (obj && obj->oartifact == ART_NINJINGY) range += 2;
 		if (obj && obj->oartifact == ART_FTS) range += 10;
 		if (obj && obj->oartifact == ART_WASHINGTON_S_CAPPER) range += 5;
+		if (uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD) range += 2;
 
 		if (obj && obj->oartifact == ART_RACER_PROJECTILE) range *= 2;
 

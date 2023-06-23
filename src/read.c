@@ -2426,6 +2426,16 @@ forget(howmuch)
 int howmuch;
 {
 
+	if (uarmf && uarmf->oartifact == ART_MARJI_JANA && !rn2(100)) {
+		u.youaredead = 1;
+		pline("NETHACK caused a General Protection Fault in module KRNL386.EXE at address 0001:A0A4.");
+		killer_format = KILLED_BY;
+		killer = "Jana's Marjis";
+		done(DIED);
+		u.youaredead = 0;
+
+	}
+
 	/* Amnesia can make you forget contamination, but only if it's less than fatal --Amy */
 	if (u.contamination && u.contamination < 1000) {
 		decontaminate(100);

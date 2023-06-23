@@ -13329,6 +13329,50 @@ A("Silencer",				HALBERD,
 	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_FEMALE),
 	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
 
+A("Through The Motions",				LEATHER_ARMOR, /* invoke upgrades its base type */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Cloudyband",				T_SHIRT, /* randart2 shirt, claudia trap effect, disintegration resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Now You Made Her Sad",				T_SHIRT, /* randart2 shirt, victoria trap effect, rays don't lose range when hitting something, your ranged weapons have +2 range */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ha ha ha ha...",				T_SHIRT, /* randart2 shirt, little marie trap effect, double resistance piercing, clairvoyance, sight bonus, infravision, autocurses, becomes +18 if you put it on while it's lower */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_WARN|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Greentop",				T_SHIRT, /* randart2 shirt, elise trap effect, becomes CLR_GREEN when worn, +3 AC for every worn armor piece that is also green (including this one) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Arabella's Feminizer",				FEMINISM_DRAGON_SCALE_MAIL, /* arabella trap effect, cursed parts, completely bad part, clairvoyance, detect monsters, heavily autocurses, uncurse() fails 50% of the time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Her Unreachable Brook",				LONG_SWORD, /* randart melee weapon, jette trap effect, antisearching, unwielding it increases jette trap timeout by 1000 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(10, 16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Ignorance Is Bliss",				CHAIN_COIF, /* verena trap effect */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Marji Jana",				LOW_BOOTS, /* initialized to always be ankle boots, jana trap effect, flying, unbreathing, getting hit by amnesia has 1% chance to instakill you (no joke), heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Fight With Platform-Ina",				SINFUL_HEELS, /* bridghitte effect, +10 kick damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("De-Sid",				SITH_STAFF, /* ute trap effect, autocurses, can still use your hands and allows the hunk lightsaber form to work, can dig as fast as a pick-axe, +5 damage when using the force against enemies */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

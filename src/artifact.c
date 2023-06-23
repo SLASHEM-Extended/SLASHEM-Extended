@@ -225,6 +225,7 @@ init_randarts()
 	 * WAN_MAKE_INVISIBLE = wand, SPE_MAGICTORCH = spellbook */
 
 	artilist[ART_SOULCALIBUR].otyp = randartmeleeweapon();
+	artilist[ART_HER_UNREACHABLE_BROOK].otyp = randartmeleeweapon();
 	artilist[ART_KOPKILLER].otyp = randartmeleeweapon();
 	artilist[ART_THIS_TRENCH_WAR_HAS_BEEN_F].otyp = randartmeleeweapon();
 	artilist[ART_SKOGLO].otyp = randartmeleeweapon();
@@ -558,6 +559,10 @@ init_randarts()
 	artilist[ART_WORLD_OF_COQ].otyp = randartwandX();
 	artilist[ART_GIVE_IT_ME_YOUR_WILL].otyp = randartimplantX();
 	artilist[ART_WHOOSHZAP].otyp = randartwandX();
+	artilist[ART_CLOUDYBAND].otyp = randartshirtX();
+	artilist[ART_NOW_YOU_MADE_HER_SAD].otyp = randartshirtX();
+	artilist[ART_HA_HA_HA_HA___].otyp = randartshirtX();
+	artilist[ART_GREENTOP].otyp = randartshirtX();
 	artilist[ART_NADJA_S_SILENCE].otyp = randartmeleeweaponX();
 	artilist[ART_A_SWORD_NAMED_SWORD].otyp = randartmeleeweaponX();
 	artilist[ART_HERITAGE_IGNORER].otyp = randartmeleeweaponX();
@@ -806,6 +811,7 @@ init_randarts()
 	artilist[ART_SNAILHUNT].otyp = find_garden_slippers();
 	artilist[ART_ANTJE_S_POWERSTRIDE].otyp = find_dyke_boots();
 	artilist[ART_NADINE_S_CUTENESS].otyp = find_ankle_strap_sandals();
+	artilist[ART_MARJI_JANA].otyp = find_ankle_boots();
 
 	artilist[ART_AMPERSAND_HAREM].otyp = find_demonologist_boots();
 	artilist[ART_DIP_DIVE].otyp = find_mud_boots();
@@ -4234,6 +4240,24 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_THROUGH_THE_MOTIONS) {
+
+			if (obj->otyp == PLATE_MAIL) {
+				pline("This suit of armor can no longer be upgraded.");
+				break;
+			}
+
+			You("try to upgrade your suit of armor.");
+
+			if (obj->otyp == LEATHER_ARMOR) obj->otyp = STUDDED_LEATHER_ARMOR;
+			else if (obj->otyp == STUDDED_LEATHER_ARMOR) obj->otyp = RING_MAIL;
+			else if (obj->otyp == RING_MAIL) obj->otyp = SCALE_MAIL;
+			else if (obj->otyp == SCALE_MAIL) obj->otyp = CHAIN_MAIL;
+			else if (obj->otyp == CHAIN_MAIL) obj->otyp = SPLINT_MAIL;
+			else if (obj->otyp == SPLINT_MAIL) obj->otyp = PLATE_MAIL;
+			break;
+		}
 
 		if (obj->oartifact == ART_GIVE_IT_ME_YOUR_WILL) {
 			curse(obj);

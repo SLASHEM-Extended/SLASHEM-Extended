@@ -3311,6 +3311,8 @@ moveloop()
 
 		if (have_cursedpartstone() && !rn2(500)) bad_equipment(0);
 
+		if (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER && !rn2(500)) bad_equipment(0);
+
 		if (uamul && uamul->oartifact == ART_ARABELLA_S_EXCHANGER && !rn2(500)) bad_equipment(0);
 
 		if (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK && !rn2(500)) bad_equipment(0);
@@ -7920,6 +7922,8 @@ newbossRLR:
 			incr_itimeout(&HFast, rnd(50));
 		}
 
+		if (autismweaponcheck(ART_HER_UNREACHABLE_BROOK) && FemaleTrapJette < 1000) FemaleTrapJette = 1000;
+
 		/* if you have many forgotten spells, maybe remove one of them entirely --Amy */
 		if (!rn2(2000)) {
 			removeforgottenspell();
@@ -10989,6 +10993,24 @@ newboss:
 		}
 
 		if (CompletelyBadPartBug && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+
+			if (chaosx && chaosy && isok(chaosx, chaosy) && levl[chaosx][chaosy].typ <= ROCKWALL && ((levl[chaosx][chaosy].wall_info & W_NONDIGGABLE) == 0) ) {
+
+				levl[chaosx][chaosy].typ = randomwalltype();
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+				blockorunblock_point(chaosx,chaosy);
+
+				if (!rn2(15) && !t_at(chaosx, chaosy)) (void) maketrap(chaosx, chaosy, randominsidetrap(), 100, FALSE);
+
+			}
+
+		}
+
+		if (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER && !rn2(5) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
 			chaosy = rn2(ROWNO);

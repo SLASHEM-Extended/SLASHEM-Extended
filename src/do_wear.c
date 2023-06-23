@@ -514,6 +514,11 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_MARJI_JANA) {
+		curse(uarmf);
+		uarmf->hvycurse = TRUE;
+    }
+
     if (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) {
 		if (!uarmf->hvycurse) {
 			curse(uarmf);
@@ -3571,6 +3576,17 @@ Shirt_on()
 
 	}
 
+	if (uarmu->oartifact == ART_HA_HA_HA_HA___) {
+		curse(uarmu);
+		pline("Ha ha ha ha...");
+		if (uarmu->spe < 18) uarmu->spe = 18;
+	}
+
+	if (uarmu->oartifact == ART_GREENTOP && (objects[uarmu->otyp].oc_color != CLR_GREEN)) {
+		pline_The("shirt becomes green!");
+		objects[uarmu->otyp].oc_color = CLR_GREEN;
+	}
+
 	if (uarmu->oartifact == ART_SOME_CHAMBER_DOOR) {
 		curse(uarmu);
 		uarmu->hvycurse = TRUE;
@@ -3693,6 +3709,11 @@ Armor_on()
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUPERESCAPE_MAIL) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
+	}
+
+	if (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SEVEBREAKYOU__SEVEBREAK_) {
@@ -6393,6 +6414,14 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_STEELER) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_NEW_COAT) uac += 1;
 	if (uarmh && uarmh->oartifact == ART_BADLY_DENTED) uac += 1;
+
+	if (uarmu && uarmu->oartifact == ART_GREENTOP && (objects[uarmu->otyp].oc_color == CLR_GREEN)) uac -= 3;
+	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmh && (objects[uarmh->otyp].oc_color == CLR_GREEN)) uac -= 3;
+	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarm && (objects[uarm->otyp].oc_color == CLR_GREEN)) uac -= 3;
+	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarms && (objects[uarms->otyp].oc_color == CLR_GREEN)) uac -= 3;
+	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmf && (objects[uarmf->otyp].oc_color == CLR_GREEN)) uac -= 3;
+	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmc && (objects[uarmc->otyp].oc_color == CLR_GREEN)) uac -= 3;
+	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmg && (objects[uarmg->otyp].oc_color == CLR_GREEN)) uac -= 3;
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {

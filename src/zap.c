@@ -8545,6 +8545,7 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 			    (*fhitm)(mtmp, obj);
 				if (uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) range -= 0;
 				else if (uarms && uarms->oartifact == ART_OPEN_RETRIBUTION) range -= 0;
+				else if (uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD) range -= 0;
 			    else if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) range -= 1;
 			    else if ( (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) range -= 1;
 			    else range -= 3;
@@ -8576,7 +8577,7 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 notamonster:
 	    if(fhito) {
 		if(bhitpile(obj,fhito,bhitpos.x,bhitpos.y))
-		    if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) && !(uarms && uarms->oartifact == ART_OPEN_RETRIBUTION) ) range--;
+		    if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) && !(uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD) && !(uarms && uarms->oartifact == ART_OPEN_RETRIBUTION) ) range--;
 	    } else {
 		if(weapon == KICKED_WEAPON &&
 		      ((obj->oclass == COIN_CLASS &&
@@ -9744,7 +9745,7 @@ sigilcontroldirection:
 			    slept_monst(mon);
 		    }
 		}
-		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) && !(uarms && uarms->oartifact == ART_OPEN_RETRIBUTION) ) range -= 2;
+		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES) ) && !(uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD) && !(uarms && uarms->oartifact == ART_OPEN_RETRIBUTION) ) range -= 2;
 	    } else {
 		miss(fltxt,mon);
 	    }
@@ -9764,7 +9765,7 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 	    } else
 	    if ((zap_hit_player((int) u.uac, 0)) || (Conflict && (zap_hit_player((int) u.uac, 0)) ) || (Race_if(PM_SPARD) && (zap_hit_player((int) u.uac, 0)) ) || (StrongConflict && (zap_hit_player((int) u.uac, 0)) ) ) {
 
-		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES)) && !(uarms && uarms->oartifact == ART_OPEN_RETRIBUTION) ) range -= 2;
+		if (!(uarmg && itemhasappearance(uarmg, APP_RAYDUCTNAY_GLOVES)) && !(uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD) && !(uarms && uarms->oartifact == ART_OPEN_RETRIBUTION) ) range -= 2;
 		pline("%s hits you!", The(fltxt));
 		if (Reflecting && ((abstype == ZT_DEATH && rn2(StrongReflecting ? 100 : 20)) || (abstype != ZT_DEATH && rn2(StrongReflecting ? 20 : 5)) ) && abs(type) != ZT_SPELL(ZT_FIRE)) {
 		    if (!Blind) {

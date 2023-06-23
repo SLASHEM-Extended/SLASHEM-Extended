@@ -2256,6 +2256,7 @@ E int find_cuddle_cloth_boots(void);
 E int find_garden_slippers(void);
 E int find_dyke_boots(void);
 E int find_ankle_strap_sandals(void);
+E int find_ankle_boots(void);
 E int find_demonologist_boots(void);
 E int find_mud_boots(void);
 E int find_failed_shoes(void);

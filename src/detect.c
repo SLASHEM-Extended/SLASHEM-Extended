@@ -1696,7 +1696,7 @@ register int aflag;
 	register struct trap *trap;
 	register struct monst *mtmp;
 
-	if (AntisearchEffect || u.uprops[ANTISEARCH_EFFECT].extrinsic || have_unfindablestone()) return(1);
+	if (AntisearchEffect || u.uprops[ANTISEARCH_EFFECT].extrinsic || have_unfindablestone() || autismweaponcheck(ART_HER_UNREACHABLE_BROOK) ) return(1);
 
 	int fundxtrachange = 10;
 	if (!(PlayerCannotUseSkills)) {
