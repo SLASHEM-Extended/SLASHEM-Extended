@@ -17649,7 +17649,7 @@ boolean knoweverything;
 			case SPE_ANTI_MAGIC_SHELL:
 				pline("After casting this spell, neither you nor any monster will be able to cast any spells for a period of time."); break;
 			case SPE_CURE_WOUNDED_LEGS:
-				pline("One of very few methods to cure your legs is this spell."); break;
+				pline("One of very few methods to cure your legs is this spell. It reduces your 'wounded legs' timeout by a couple turns, but you may have to cast it repeatedly to cure the status effect completely."); break;
 			case SPE_ANGER_PEACEFUL_MONSTER:
 				pline("If you want to avoid penalties for angering a monster by attacking it, you can stand next to it and cast this spell."); break;
 			case SPE_UNTAME_MONSTER:

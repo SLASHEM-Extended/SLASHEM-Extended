@@ -415,7 +415,7 @@ mount_steed(mtmp, force)
 	    Your("%s are in no shape for riding.", makeplural(body_part(LEG)));
 #ifdef WIZARD
 	    if (force && wizard && yn("Heal your legs?") == 'y')
-		HWounded_legs = EWounded_legs = 0;
+		HWounded_legs = 0;
 	    else
 #endif
 	    if (yn("But you can try to get on your steed anyway. Do it?") == 'y') {
@@ -791,7 +791,7 @@ dismount_steed(reason)
 	 * so after dismounting they refer to the player's
 	 * legs once again.
 	 */
-	if (repair_leg_damage) HWounded_legs = EWounded_legs = 0;
+	if (repair_leg_damage) HWounded_legs = 0;
 
 	/* Release the steed and saddle */
 	u.usteed = 0;

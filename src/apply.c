@@ -2180,17 +2180,10 @@ int magic; /* 0=Physical, otherwise skill level */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (Wounded_legs) {
- 		long wl = (EWounded_legs & BOTH_SIDES);
-		const char *bp = body_part(LEG);
-
-		if (wl == BOTH_SIDES) bp = makeplural(bp);
 		if (u.usteed)
 		    pline("%s is in no shape for jumping.", Monnam(u.usteed));
 		else
-		Your("%s%s %s in no shape for jumping.",
-		     (wl == LEFT_SIDE) ? "left " :
-			(wl == RIGHT_SIDE) ? "right " : "",
-		     bp, (wl == BOTH_SIDES) ? "are" : "is");
+		    Your("%s is in no shape for jumping.", body_part(LEG));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}

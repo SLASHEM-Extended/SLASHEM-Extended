@@ -1597,14 +1597,7 @@ dokick()
 	/* your legs are not fucking welded to the horse, so you should be able to kick monsters too!!! --Amy */
 	} else if (Wounded_legs) {
 		/* note: jump() has similar code */
-		long wl = (EWounded_legs & BOTH_SIDES);
-		const char *bp = body_part(LEG);
-
-		if (wl == BOTH_SIDES) bp = makeplural(bp);
-		Your("%s%s %s in no shape for kicking.",
-		     (wl == LEFT_SIDE) ? "left " :
-			(wl == RIGHT_SIDE) ? "right " : "",
-		     bp, (wl == BOTH_SIDES) ? "are" : "is");
+		Your("%s is in no shape for kicking.", body_part(LEG));
 		no_kick = TRUE;
 	} else if (near_capacity() > SLT_ENCUMBER) {
 		Your("load is too heavy to balance yourself for a kick.");

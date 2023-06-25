@@ -1025,7 +1025,7 @@ moveloop()
 				}
 			}
 
-			if (uarmf && uarmf->otyp == ZIPPER_BOOTS && !EWounded_legs) EWounded_legs = 1;
+			/*if (uarmf && uarmf->otyp == ZIPPER_BOOTS && !EWounded_legs) EWounded_legs = 1;*/
 
 			/* small chance of scaring yourself if you stand on Elbereth, even if you engraved it --Amy */
 			if (sengr_at("Elbereth", u.ux, u.uy) && !rn2(isfriday ? 50 : 100) && !Blind ) {
@@ -9297,9 +9297,10 @@ newbossX:
 			make_hallucinated(0L,TRUE,0L);
 		}
 
-		if (Wounded_legs && ((EWounded_legs & LEFT_SIDE) || (EWounded_legs & RIGHT_SIDE)) && (HWounded_legs < 1) ) {
+		if (Wounded_legs && (HWounded_legs < 0) ) {
 			pline("Fixing a bug that would prevent your legs from healing...");
 			heal_legs();
+			HWounded_legs = 0;
 		}
 
 		if (In_netherrealm(&u.uz) && !u.netherrealmcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {

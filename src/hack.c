@@ -5259,8 +5259,8 @@ weight_cap()
 			|| (u.usteed && strongmonst(u.usteed->data)) ) {
 		carrcap += 2000;
 	} else if (!Flying) {
-		if(EWounded_legs & LEFT_SIDE) carrcap -= 250;
-		if(EWounded_legs & RIGHT_SIDE) carrcap -= 250;
+		if (HWounded_legs) carrcap -= 250;
+		if (EWounded_legs) carrcap -= 250;
 	}
 
 	/* multipliers go here */

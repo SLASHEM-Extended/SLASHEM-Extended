@@ -5215,10 +5215,9 @@ register int timex;
 
 	/*if(!Wounded_legs || (HWounded_legs & TIMEOUT))*/
 	/* This was interacting incorrectly with items that give wounded legs extrinsically, probably because the
-	 * original devteam never expected someone to actually make such items... --Amy */
+	 * original devteam never expected someone to actually make such items... so we discard "side" --Amy */
 
 	HWounded_legs = timex;
-	EWounded_legs = side;
 	(void)encumber_msg();
 }
 
@@ -5234,15 +5233,9 @@ heal_legs()
 		if (!u.usteed)
 		{
 			/* KMH, intrinsics patch */
-			if((EWounded_legs & BOTH_SIDES) == BOTH_SIDES) {
-			Your("%s feel somewhat better.",
-				makeplural(body_part(LEG)));
-		} else {
-			Your("%s feels somewhat better.",
-				body_part(LEG));
+			Your("%s feels somewhat better.", body_part(LEG));
 		}
-		}
-		HWounded_legs = EWounded_legs = 0;
+		HWounded_legs = 0;
 	}
 	(void)encumber_msg();
 }

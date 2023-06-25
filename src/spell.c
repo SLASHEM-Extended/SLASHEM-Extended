@@ -9679,7 +9679,11 @@ controlagain:
 	case SPE_CURE_WOUNDED_LEGS:
 
 		if (Wounded_legs) pline("A warm glow spreads through your %s!", makeplural(body_part(LEG)));
-		HWounded_legs = EWounded_legs = 0;
+
+		if (HWounded_legs > 0) {
+			HWounded_legs -= rn1(20, 20);
+			if (HWounded_legs < 0) HWounded_legs = 0; /* fail safe */
+		}
 
 		break;
 
