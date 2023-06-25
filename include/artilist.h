@@ -13373,6 +13373,58 @@ A("De-Sid",				SITH_STAFF, /* ute trap effect, autocurses, can still use your ha
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Jonadab's Extra Mode",				LOADBOULDER, /* +10 all stats while carried, trying to pray tells you whether it's safe like gang scholar but always, double extra skill training, trap revealing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Shiny Brightness",				STARLIGHTSTONE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_XRAY), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Gulp-Gulp-Gulp",				POT_FULL_HEALING, /* if it's in your open inventory and you run out of health, it lifesaves you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Reju Gluck Gluck Gluck Bug",				HELMET, /* randart2 helmet, healup doesn't heal you at all if your HP is below one quarter of the max */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Unidentified Hellcast",				POWER_CROSSBOW, /* fires exploding bolts, description doesn't display its stats (intentional) */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	FIRE(3, 5), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Why Does The Game Generate So Many Crossbows",				QUARTERSTAFF, /* randart quarterstaff, 1 in 50 for a randomly generated weapon to be changed to some sort of crossbow */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Rumple Rumple",				SCR_EARTH, /* creates boulders in a 5x5 area */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Block It Real",				SCR_LOCKOUT, /* every blocked square gets a boulder */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Healaportation",				SCR_TELEPORTATION, /* heals the reader */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Damn Word Play",				POT_EXTRA_HEALING, /* +5 max HP on top of the regular effect but you become cursed and doomed for 12k turns when quaffing it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Giv Smth Gud",				SCR_ALLY, /* activates super aggravation, difficulty trap and others for 1 turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Max's Capsule",				POT_CYANIDE, /* instakills you if you're stupid enough to quaff it, breathing its vapors gives conf, stun and fear */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Design Your Own",				SCR_BLANK_PAPER, /* randart2 scroll, reading it allows you to enter the name of any scroll that you have formally identified and which can be written with the magic marker. if you gave a valid type, you get 5 heavily cursed scrolls of that type and your alla is drained by 5 times the base magic marker cost of that scroll type */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

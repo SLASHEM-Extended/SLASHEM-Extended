@@ -1527,6 +1527,52 @@ blackmarkdone:
 	}
 postmandone:
 
+	if (have_autohealpotion() && u.uhp < 1 && how < GENOCIDED) {
+
+		register struct obj *prcstone;
+
+		pline("But wait...");
+		pline("gulp-gulp-gulp");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+
+		prcstone = carryingarti(ART_GULP_GULP_GULP);
+
+		if (prcstone) {
+			if (prcstone->quan > 1) {
+				prcstone->quan -= 1;
+				prcstone->owt = weight(prcstone);
+			} else useupall(prcstone);
+		} else { /* game over */
+			pline("Except that for some reason the potion didn't work, so you only thought that you felt better and really you're just as dead as before!");
+			goto gulpdone;
+		}
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto gulpdone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+gulpdone:
+
 	if ((uarm && uarm->oartifact == ART_VERSUS_INSTADEATH) && (u.uhp > 0) && (u.uhpmax > 0) && how < GENOCIDED) {
 		pline("But wait...");
 		Your("armor %s!", !Blind ? "begins to glow" : "feels warm");

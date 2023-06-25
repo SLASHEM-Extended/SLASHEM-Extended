@@ -3,6 +3,23 @@
 
 #include "hack.h"
 
+/* it would have been too much to ask to simply have a function that checks write costs for base items without requiring
+ * an actual dummy item to exist... --Amy */
+int
+writecostohmygod(type)
+int type;
+{
+	int writecostbah = 1;
+
+	register struct obj *pseudo = mksobj(SCR_BLANK_PAPER, FALSE, FALSE, FALSE);
+	pseudo->otyp = type;
+	writecostbah = writecost(pseudo);
+
+	obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+
+	return writecostbah;
+}
+
 /*
  * returns basecost of a scroll or a spellbook
  */

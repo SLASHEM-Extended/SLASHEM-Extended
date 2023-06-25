@@ -984,7 +984,7 @@ int x,y;
 	}
 
 	/* D: Detonate crossbow bolts from Hellfire if they hit */
-	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
+	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || mwep->oartifact == ART_UNIDENTIFIED_HELLCAST || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
 		  && is_ammo(obj) && ammo_and_launcher(obj, mwep)) {
 	  
 		if (cansee(bhitpos.x,bhitpos.y)) 

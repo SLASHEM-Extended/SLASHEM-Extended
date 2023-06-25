@@ -2895,7 +2895,18 @@ dopray()
 {
     /* Confirm accidental slips of Alt-P */
 
-    if ((Role_if(PM_GANG_SCHOLAR) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX)) && u.scholarturns < moves) {
+    if (have_superjonadabstone()) {
+
+	if (can_pray(FALSE) && !u.ugangr) godvoice(u.ualign.type, "Ah yes, my scholar, pray to me and I will lend thee my helping hand!");
+	else {
+		if (u.ugangr) godvoice(u.ualign.type, "Thou hast angered me before. I expect thee to make a valuable sacrifice to me first before thou mayst pray again.");
+		if (u.ublesscnt > 0) godvoice(u.ualign.type, "Thou mayst not pray yet!");
+		if ((int)Luck < (HardcoreAlienMode ? 1 : Race_if(PM_SPARD) ? -1 : 0) ) godvoice(u.ualign.type, "Thou art unlucky! I cannot help thee now!");
+		if (u.ualign.record < (HardcoreAlienMode ? 20 : Race_if(PM_SPARD) ? -10 : 0) ) godvoice(u.ualign.type, "Thou must not pray to me, for thou hath sinned!");
+		if (Inhell || flags.gehenna) godvoice(u.ualign.type, "My scholar, I cannot help thee in the Under World!");
+	}
+
+    } else if ((Role_if(PM_GANG_SCHOLAR) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX)) && u.scholarturns < moves) {
 
 	u.scholarturns = moves + 1000;
 

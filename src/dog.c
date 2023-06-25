@@ -178,7 +178,8 @@ struct monst *
 make_familiar(otmp,x,y,quietly,startpet)
 register struct obj *otmp;
 xchar x, y;
-boolean quietly, startpet;
+boolean quietly;
+int startpet; /* 0 = maybe, 1 = always, 2 = never */
 {
 	struct permonst *pm;
 	struct monst *mtmp = 0;
@@ -199,7 +200,7 @@ boolean quietly, startpet;
 			pline(FunnyHallu ? "... into a pile of garbage. Even you know that that's of no use." : "... into a pile of dust.");
 		    break;	/* mtmp is null */
 		}
-	    } else if (startpet || !rn2(3)) {
+	    } else if ((startpet == 1) || (!rn2(3) && !startpet) ) {
 		pm = &mons[pet_type()];
 	    } else {
 		pm = rndmonst();

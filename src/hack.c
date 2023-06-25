@@ -5386,7 +5386,11 @@ inv_weight()
 	}
 
 	if (BurdenedState) wt *= 2;
-	if (StrongBurdenedState) wt += 2000;
+	if (StrongBurdenedState) {
+	/* add 2000 more, unless you have a low cap because being insta-overloaded with no way to fix it ain't fun --Amy */
+		if (weight_cap() < 1000) wt += (weight_cap() * 2);
+		else wt += 2000;
+	}
 
 	wc = weight_cap();
 	return (wt - wc);

@@ -332,6 +332,7 @@ init_randarts()
 	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
 	artilist[ART_TOTAL_GAUCHE].otyp = randartdagger();
 	artilist[ART_HELICOPTER_TWIRL].otyp = randartquarterstaff();
+	artilist[ART_WHY_DOES_THE_GAME_GENERATE].otyp = randartquarterstaff();
 	artilist[ART_CUTRELEASE].otyp = randartknife();
 	artilist[ART_GIVE_CRAP_A_BAD_NAME].otyp = randartknife();
 	artilist[ART_TIARA_OF_AMNESIA].otyp = randarthelm();
@@ -534,6 +535,7 @@ init_randarts()
 	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
 	artilist[ART_PANTAP].otyp = randartcloakX();
 	artilist[ART_RUTH_S_DARK_FORCE].otyp = randarthelmX();
+	artilist[ART_REJU_GLUCK_GLUCK_GLUCK_BUG].otyp = randarthelmX();
 	artilist[ART_HAMBURG_ONE].otyp = randarthelmX();
 	artilist[ART_ARABELLA_S_MELEE_POWER].otyp = randartmeleeweaponX();
 	artilist[ART_ASBESTOS_MATERIAL].otyp = randartmeleeweaponX();
@@ -602,6 +604,7 @@ init_randarts()
 	artilist[ART_TAILCUTTER].otyp = randartmeleeweaponX();
 	artilist[ART_WONDER_WATERING_PLACE].otyp = randartpotionX();
 	artilist[ART_SECRET_RECIPE].otyp = randartscrollX();
+	artilist[ART_DESIGN_YOUR_OWN].otyp = randartscrollX();
 	artilist[ART_ULTRALASER].otyp = randartscrollX();
 	artilist[ART_HEAVY_HEAVY_BABE].otyp = randartballX();
 	artilist[ART_HAMSTRUNG_FOUR_SURE].otyp = randartchainX();
@@ -1080,7 +1083,10 @@ make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE, FALSE);
 }
 
 /* Make an evil artifact and automatically equip it for the player --Amy
- * This can also always spawn another copy of an existing one (not a bug) */
+ * This can also always spawn another copy of an existing one (not a bug)
+ * there are a few failsafes, e.g. it cannot be an amulet of strangulation (too deadly) and the item cannot weigh more
+ * than 2x your weight cap because if you were to get instantly overloaded by the item, it might result in your death
+ * without anything that you could do about it, which isn't fun at all */
 void
 bad_artifact()
 {
@@ -1091,7 +1097,7 @@ bad_artifact()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && (objects[a->otyp].oc_weight < (weight_cap() * 2) ) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }
@@ -1256,7 +1262,7 @@ bad_artifact_xtra()
 
 	/* gather eligible artifacts */
 	for (n = 0, a = artilist+1, m = 1; a->otyp; a++, m++)
-	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
+	    if (!(a->spfx & SPFX_NOGEN) && (a->spfx & SPFX_EVIL) && (objects[a->otyp].oc_weight < (weight_cap() * 2) ) && !(a->otyp == AMULET_OF_STRANGULATION) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && !(a->otyp == ROCK && artiexist[m]) && (!(artiexist[m] && (a->spfx & SPFX_ONLYONE)) ) ) {
 
 		    eligible[n++] = m;
 	    }

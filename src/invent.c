@@ -1056,8 +1056,18 @@ register int type;
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if(otmp->otyp == type)
-			return(otmp);
+		if(otmp->otyp == type) return(otmp);
+	return((struct obj *) 0);
+}
+
+struct obj *
+carryingarti(type)
+register int type;
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj)
+		if(otmp->oartifact == type) return(otmp);
 	return((struct obj *) 0);
 }
 
@@ -1068,8 +1078,7 @@ register int type;
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if(itemhasappearance(otmp, type))
-			return(otmp);
+		if(itemhasappearance(otmp, type)) return(otmp);
 	return((struct obj *) 0);
 
 }
@@ -1350,6 +1359,31 @@ have_pokeloadstone()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LOADSTONE && otmp->oartifact == ART_AUTOMATIC_POKE_BALL)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_autohealpotion()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == POT_FULL_HEALING && otmp->oartifact == ART_GULP_GULP_GULP)
+			return(TRUE);
+		}
+	return(FALSE);
+
+}
+
+boolean
+have_superjonadabstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LOADBOULDER && otmp->oartifact == ART_JONADAB_S_EXTRA_MODE)
 			return(TRUE);
 		}
 	return(FALSE);
@@ -26289,6 +26323,32 @@ boolean knoweverything;
 					pline("Artifact specs: bridghitte trap effect and +10 kick damage when worn."); break;
 				case ART_DE_SID:
 					pline("Artifact specs: ute trap effect, doesn't make your hands unusable and allows you to use the form IX (Hunk) lightsaber form when wielded, can melt walls more quickly with the #force command and using the force against an enemy deals more damage than normal. Autocurses."); break;
+				case ART_JONADAB_S_EXTRA_MODE:
+					pline("Artifact specs: +10 all stats, praying tells you whether it's safe to do so, double skill training and trap revealing when carried."); break;
+				case ART_SHINY_BRIGHTNESS:
+					pline("Artifact specs: x-ray vision when carried."); break;
+				case ART_GULP_GULP_GULP:
+					pline("Artifact specs: having it in open inventory will lifesave you, but only if you die because you ran out of hit points. Instadeaths still kill you for real."); break;
+				case ART_REJU_GLUCK_GLUCK_GLUCK_BUG:
+					pline("Artifact specs: may bug out when quaffed."); break;
+				case ART_UNIDENTIFIED_HELLCAST:
+					pline("Artifact specs: unknown, because this artifact acts as if it wasn't identified."); break;
+				case ART_WHY_DOES_THE_GAME_GENERATE:
+					pline("Artifact specs: while you're wielding it, randomly generated weapons are more likely to be crossbows."); break;
+				case ART_RUMPLE_RUMPLE:
+					pline("Artifact specs: creates boulders in a bigger radius when read."); break;
+				case ART_BLOCK_IT_REAL:
+					pline("Artifact specs: every square blocked by the lockout effect spawns a boulder."); break;
+				case ART_HEALAPORTATION:
+					pline("Artifact specs: the one who reads it is healed."); break;
+				case ART_DAMN_WORD_PLAY:
+					pline("Artifact specs: improves your maximum health when quaffed but also does some really bad stuff."); break;
+				case ART_GIV_SMTH_GUD:
+					pline("Artifact specs: more likely to spawn a higher-level pet when read."); break;
+				case ART_MAX_S_CAPSULE:
+					pline("Artifact specs: ends your life if you quaff it, so you probably shouldn't do that unless you want to start a new character. If you breathe its vapors instead, you become confused, stunned and feared."); break;
+				case ART_DESIGN_YOUR_OWN:
+					pline("Artifact specs: after reading it, you can choose a scroll that your character has formally identified, and receive 5 heavily cursed copies of the scroll in question, but at the cost of alla."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

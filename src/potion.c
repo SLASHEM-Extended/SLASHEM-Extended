@@ -12801,6 +12801,28 @@ peffects(otmp)
 		break;
 	case POT_EXTRA_HEALING:
 		You_feel("much better.");
+
+		if (otmp->oartifact == ART_DAMN_WORD_PLAY) {
+
+			u.badfcursed += 12000;
+			u.badfdoomed += 12000;
+
+			pline("That damn word play.");
+
+			u.uhp += 5;
+			u.uhpmax += 5;
+
+			u.usymbiote.mhpmax += 5;
+			maybe_evolve_symbiote();
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+
+			if (Upolyd) {
+				u.mh += 5;
+				u.mhmax += 5;
+			}
+
+		}
+
 		healup(d(6,8) + rnz(u.ulevel) + 5 * bcsign(otmp),
 		       otmp->blessed ? 5 : !otmp->cursed ? 2 : 0,
 		       !otmp->cursed, TRUE);
@@ -13110,6 +13132,17 @@ peffects(otmp)
 		break;
 
 	case POT_CYANIDE:
+
+		if (otmp->oartifact == ART_MAX_S_CAPSULE) {
+			u.youaredead = 1;
+			pline("As you quaff from the bottle, you quickly turn blue and drop to the ground, dead.");
+			killer_format = KILLED_BY;
+			killer = "quaffing the cyanide capsule";
+			done(DIED);
+			u.youaredead = 0;
+
+		}
+
 		make_sick(Sick ? Sick/2L + 1L : 20, "cyanide potion", TRUE, SICK_VOMITABLE);
 		losestr(StrongPoison_resistance ? 1 : Poison_resistance ? rnd(3) : rnd(10), TRUE);
 		pline(FunnyHallu ? "This tastes a little bitter; maybe it's some sort of medicine?" : "CN(-) + HCl <==> HCN + Cl(-) ");
@@ -13354,6 +13387,7 @@ healup(nhp, nxtra, curesick, cureblind)
 	int nhp, nxtra;
 	register boolean curesick, cureblind;
 {
+	if (uarmh && uarmh->oartifact == ART_REJU_GLUCK_GLUCK_GLUCK_BUG && (u.uhp < (u.uhpmax / 4) ) ) return;
 
 	if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) nhp *= 2;
 	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
@@ -14116,6 +14150,14 @@ register struct obj *obj;
 		}
 		break;
 	case POT_CYANIDE:
+
+		if (obj->oartifact == ART_MAX_S_CAPSULE) {
+			make_feared(HFeared + rnz(150) + rnd(monster_difficulty()), FALSE);
+			make_confused(HConfusion + rnd(150) + rnd(monster_difficulty()), FALSE);
+			make_stunned(HStun + rnd(150) + rnd(monster_difficulty()), FALSE);
+			You("have a dangerously high amount of liquid cyanide in your %s.", body_part(FACE));
+		}
+
 		if (u.uhp < 10) {
 			/* DEATH */
 			losehp(10,"a potion of cyanide",KILLED_BY);

@@ -2932,6 +2932,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_STRBONUS) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
+		if (have_superjonadabstone()) tmp += 10;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3078,6 +3079,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 3;
+		if (have_superjonadabstone()) tmp += 10;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -3203,6 +3205,7 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_HYPER_INTELLIGENCE) tmp += 7;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (x == A_INT && uarms && uarms->oartifact == ART_YELLOW_STATUS) tmp += 2;
+		if (have_superjonadabstone()) tmp += 10;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3285,6 +3288,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_DEXBONUS) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
+		if (have_superjonadabstone()) tmp += 10;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3341,6 +3345,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;
 		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
+		if (have_superjonadabstone()) tmp += 10;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

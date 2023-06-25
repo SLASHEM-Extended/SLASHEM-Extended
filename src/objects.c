@@ -7856,6 +7856,7 @@ SCROLL((char *)0,               "HO ALSONTAI E VAGABONDE",  P_NONE,     1,   0, 
 SCROLL((char *)0,               "TRY TO OUR ANN LEE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 SCROLL((char *)0,               "EAMMAEAMAMMAEEA EAMAMMAEEA EAROEKARE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "DAISY IN HER BOLD PRINTS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "BAERMAESAENS WEIA GRUNECKEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 
 
 #ifdef MAIL

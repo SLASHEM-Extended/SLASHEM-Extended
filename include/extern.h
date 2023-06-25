@@ -538,7 +538,7 @@ E int armorbonusvalue(struct obj *);
 /* ### dog.c ### */
 
 E void initedog(struct monst *);
-E struct monst *make_familiar(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,BOOLEAN_P);
+E struct monst *make_familiar(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P,int);
 E struct monst *make_helper(int,XCHAR_P,XCHAR_P);
 E struct monst *makedog(void);
 E void update_mlstmv(void);
@@ -1031,10 +1031,13 @@ E void delallobj(int,int);
 E void delobj(struct obj *);
 E struct obj *sobj_at(int,int,int);
 E struct obj *carrying(int);
+E struct obj *carryingarti(int);
 E struct obj *carryingappearance(int);
 E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
+E boolean have_superjonadabstone(void);
+E boolean have_autohealpotion(void);
 E boolean have_repeatingloadstone(void);
 E boolean have_whitewaterrafting(void);
 E boolean have_daisybag(void);
@@ -3867,6 +3870,7 @@ E int racial_exception(struct monst *, struct obj *);
 /* ### write.c ### */
 
 E int writecost(struct obj *);
+E int writecostohmygod(int);
 E int dowrite(struct obj *);
 
 /* ### zap.c ### */

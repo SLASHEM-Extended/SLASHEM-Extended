@@ -1313,8 +1313,8 @@
 
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
 #define EExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].extrinsic
-#define IntExtra_wpn_practice	(HExtra_wpn_practice)
-#define ExtExtra_wpn_practice	(EExtra_wpn_practice || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
+#define IntExtra_wpn_practice	(HExtra_wpn_practice || have_superjonadabstone())
+#define ExtExtra_wpn_practice	(EExtra_wpn_practice || have_superjonadabstone() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
 
 #define Extra_wpn_practice	(IntExtra_wpn_practice || ExtExtra_wpn_practice)
 #define StrongExtra_wpn_practice	(IntExtra_wpn_practice && ExtExtra_wpn_practice && Extra_wpn_practice)

@@ -1340,6 +1340,44 @@ doread()
 		buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
 	}
 
+	if (scroll->oartifact == ART_DESIGN_YOUR_OWN && !(scroll->obrittle) ) {
+		scroll->obrittle++;
+
+		int designyourown;
+
+		pline("Pick a scroll to design. The prompt will loop until you actually make a choice. Be aware that actually designing a scroll will drain your alla, and if you don't have enough left, you die!");
+
+designyourownagain:
+
+		for (designyourown = SCR_CREATE_MONSTER; designyourown <= SCR_GIRLINESS; designyourown++) {
+			if (objects[designyourown].oc_name_known && (writecostohmygod(designyourown) < 1000) ) {
+				pline("The %s scroll is available for a cost of %d.", obj_descr[designyourown].oc_name, writecostohmygod(designyourown) * 5);
+				if (yn("Create some of those?") == 'y') {
+					drain_alla(writecostohmygod(designyourown) * 5);
+					struct obj *usaddling;
+					usaddling = mksobj(designyourown, TRUE, FALSE, FALSE);
+					if (usaddling) {
+						usaddling->quan = 5;
+						usaddling->owt = weight(usaddling);
+						curse(usaddling);
+						usaddling->hvycurse = TRUE;
+						usaddling->bknown = TRUE;
+						dropy(usaddling);
+						stackobj(usaddling);
+					}
+					goto designyourowndone;
+				}
+			}
+		}
+		if (yn("Do you want to design no scroll at all?") == 'y') {
+			goto designyourowndone;
+		}
+		else goto designyourownagain;
+
+designyourowndone:
+		pline("Scroll designing attempt finished.");
+	}
+
 	if(scroll->oartifact == ART_MARAUDER_S_MAP) {
 		if(Blind) {
 			pline("Being blind, you cannot see the %s.", the(xname(scroll)));
@@ -4519,6 +4557,84 @@ void * poolcnt;
 }
 
 STATIC_PTR void
+do_lockfloodboulder(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+
+			if (rn2(3)) doorlockX(randomx, randomy, TRUE);
+			else {
+				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
+				else levl[randomx][randomy].typ = CROSSWALL;
+				blockorunblock_point(randomx,randomy);
+				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+				del_engr_at(randomx, randomy);
+
+				if ((mtmp = m_at(randomx, randomy)) != 0) {
+					(void) minliquid(mtmp);
+				} else {
+					newsym(randomx,randomy);
+				}
+
+			}
+			(void) mksobj_at(BOULDER, randomx, randomy, TRUE, FALSE, FALSE);
+		}
+	}
+
+	if (rn2(3)) {
+		doorlockX(x, y, TRUE);
+		if (levl[x][y].typ == DOOR) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a wall at x, y */
+		if (levl[x][y].typ != DOOR) levl[x][y].typ = STONE;
+		else levl[x][y].typ = CROSSWALL;
+		blockorunblock_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
 undo_treeflood(x, y, roomcnt)
 int x, y;
 void * roomcnt;
@@ -6271,7 +6387,26 @@ aliasagain:
 
 	case SCR_ALLY:
 		known = TRUE;
-		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, TRUE);
+
+		if (sobj->oartifact == ART_GIV_SMTH_GUD) {
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+			DifficultyIncreased += 1;
+			HighlevelStatus += 1;
+			EntireLevelMode += 1;
+
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, 2); /* never make the starting pet */
+		} else {
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, TRUE);
+		}
+
+		if (sobj->oartifact == ART_GIV_SMTH_GUD) {
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+			if (DifficultyIncreased > 0) DifficultyIncreased -= 1;
+			if (HighlevelStatus > 0) HighlevelStatus -= 1;
+			if (EntireLevelMode > 0) EntireLevelMode -= 1;
+		}
 
 		break;
 
@@ -7760,8 +7895,9 @@ newboss:
 			if (!rn2(10)) radius += rnd(6);
 			if (!rn2(25)) radius += rnd(8);
 			if (radius > MAX_RADIUS) radius = MAX_RADIUS;
-				do_clear_areaX(u.ux, u.uy, radius, do_lockflood,
-						(void *)&madepool);
+
+			if (sobj->oartifact == ART_BLOCK_IT_REAL) do_clear_areaX(u.ux, u.uy, radius, do_lockfloodboulder, (void *)&madepool);
+			else do_clear_areaX(u.ux, u.uy, radius, do_lockflood, (void *)&madepool);
 
 			/* check if there are safe tiles around the player */
 			for (x = u.ux-1; x <= u.ux+1; x++) {
@@ -9420,6 +9556,8 @@ retry:
 			u.youaredead = 0;
 		}
 
+		if (sobj->oartifact == ART_HEALAPORTATION) healup(400 + rnz(u.ulevel), 0, 0, 0);
+
 		if(confused || sobj->cursed) 
 			{
 		      if (!playerlevelportdisabled()) level_tele();
@@ -10017,6 +10155,8 @@ randenchchoice:
 #endif
 	    	 (!In_endgame(&u.uz) || Is_earthlevel(&u.uz))) {
 	    	register int x, y;
+		int earthradius = 1;
+		if (sobj->oartifact == ART_RUMPLE_RUMPLE) earthradius = 2;
 
 	    	/* Identify the scroll */
 	    	pline_The("%s rumbles %s you!", ceiling(u.ux,u.uy),
@@ -10030,8 +10170,8 @@ randenchchoice:
 			/* Sokoban guilt */
 
 	    	/* Loop through the surrounding squares */
-	    	if (!sobj->cursed) for (x = u.ux-1; x <= u.ux+1; x++) {
-	    	    for (y = u.uy-1; y <= u.uy+1; y++) {
+	    	if (!sobj->cursed || (sobj->oartifact == ART_RUMPLE_RUMPLE) ) for (x = u.ux-earthradius; x <= u.ux+earthradius; x++) {
+	    	    for (y = u.uy-earthradius; y <= u.uy+earthradius; y++) {
 
 	    	    	/* Is this a suitable spot? */
 	    	    	if (isok(x, y) && !closed_door(x, y) &&

@@ -1650,6 +1650,82 @@ void * poolcnt;
 }
 
 STATIC_PTR void
+do_lockflooddboulder(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+
+			if (rn2(3)) doorlockX(randomx, randomy, TRUE);
+			else {
+				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
+				else levl[randomx][randomy].typ = CROSSWALL;
+				blockorunblock_point(randomx,randomy);
+				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+				del_engr_at(randomx, randomy);
+
+				if ((mtmp = m_at(randomx, randomy)) != 0) {
+					(void) minliquid(mtmp);
+				} else {
+					newsym(randomx,randomy);
+				}
+			}
+			(void) mksobj_at(BOULDER, randomx, randomy, TRUE, FALSE, FALSE);
+		}
+	}
+	if (rn2(3)) {
+		doorlockX(x, y, TRUE);
+		if (levl[x][y].typ == DOOR) (void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a wall at x, y */
+		if (levl[x][y].typ != DOOR) levl[x][y].typ = STONE;
+		else levl[x][y].typ = CROSSWALL;
+		blockorunblock_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
 do_treefloodd(x, y, poolcnt)
 int x, y;
 void * poolcnt;
@@ -3240,6 +3316,9 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
+
+		if (otmp->oartifact == ART_HEALAPORTATION) mtmp->mhp = mtmp->mhpmax;
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		how = SCR_TELEPORTATION;
 		if (obj_is_cursed || mtmp->mconf) {
@@ -4369,6 +4448,12 @@ newboss:
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 	case MUSE_POT_EXTRA_HEALING:
+
+		if (otmp->oartifact == ART_DAMN_WORD_PLAY) {
+			mtmp->mhpmax += 5;
+			mtmp->mhp += 5;
+		}
+
 		mquaffmsg(mtmp, otmp);
 		i = d(6 + 2 * bcsign(otmp), 8);
 		mtmp->mhp += i;
@@ -8702,6 +8787,10 @@ struct monst *mtmp;
 
 	case MUSE_SCR_LOCKOUT:
 
+		{
+		boolean boulderlockout = FALSE;
+		if (otmp->oartifact == ART_BLOCK_IT_REAL) boulderlockout = TRUE;
+
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
@@ -8712,7 +8801,8 @@ struct monst *mtmp;
 			if (!rn2(10)) radiusC += rnd(6);
 			if (!rn2(25)) radiusC += rnd(8);
 			if (radiusC > MAX_RADIUS) radiusC = MAX_RADIUS;
-			do_clear_areaX(u.ux, u.uy, radiusC, do_lockfloodd, (void *)&madepoolQ);
+			if (boulderlockout) do_clear_areaX(u.ux, u.uy, radiusC, do_lockflooddboulder, (void *)&madepoolQ);
+			else do_clear_areaX(u.ux, u.uy, radiusC, do_lockfloodd, (void *)&madepoolQ);
 
 			/* check if there are safe tiles around the player */
 			for (xQ = u.ux-1; xQ <= u.ux+1; xQ++) {
@@ -8733,6 +8823,8 @@ struct monst *mtmp;
 						"You see dust particles flying around." );
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+
+		}
 
 		return 2;
 
@@ -9829,6 +9921,9 @@ newboss:
 
 	case MUSE_SCR_EARTH:
 	    {
+		int earthradius = 1;
+		if (otmp->oartifact == ART_RUMPLE_RUMPLE) earthradius = 2;
+
 		/* TODO: handle steeds */
 	    	register int x, y;
 		/* don't use monster fields after killing it */
@@ -9851,8 +9946,8 @@ newboss:
 		}
 
 	    	/* Loop through the surrounding squares */
-	    	for (x = mmx-1; x <= mmx+1; x++) {
-	    	    for (y = mmy-1; y <= mmy+1; y++) {
+	    	for (x = mmx-earthradius; x <= mmx+earthradius; x++) {
+	    	    for (y = mmy-earthradius; y <= mmy+earthradius; y++) {
 	    	    	/* Is this a suitable spot? */
 	    	    	if (isok(x, y) && !closed_door(x, y) &&
 	    	    			!IS_ROCK(levl[x][y].typ) &&

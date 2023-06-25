@@ -29028,6 +29028,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Why did UDTV make it so that the game laaaaags like hell when a couple of monsters are active? Like, in nethack and slex, I can fill a level with hundreds of monsters and nothing lags, what overly complicated and arcane routines are the zombies in UDTV running that uses up so much processing power?!",
 	"It is not believable if things happen only while they're inside the player's 'reality bubble' and once you're far enough away, they are just frozen in time. Because that means 'run away until they're outside the bubble' is a valid strategy, and that would very definitely not work in real life, you'd have to cross an actual state border to make the cops stop chasing you and even then there's still Interpol who can still chase you even in other countries. Reality bubble == unrealistic!!",
 	"The dev of NetHack++ put in a ton of work but when they announced it on the newsgroup, all they got was stupid questions. <mickey mouse voice> 'is the game written in c++ now?' And the dev had to respond in a seriously annoyed voice: 'No, goddammit, it’s still written in C, now please focus on the damn gameplay changes I made, which are pretty numerous and greatly enhance the game!' Sadly, there were no answers beyond the stupid c++ questions because people are goddamn philistines.",
+	"You have a dangerously high amount of liquid cyanide in your face.",
+	"You have a dangerously high amount of liquid cyanide in your face. Be aware that if you try to wipe it off, you'll have the poisonous substance on your hands as well, making things even worse.",
 
 };
 

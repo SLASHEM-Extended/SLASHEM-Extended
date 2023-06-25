@@ -814,6 +814,20 @@ nh_timeout()
 
 	}
 
+	if (have_superjonadabstone()) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (uarmh && itemhasappearance(uarmh, APP_RADIO_HELMET) ) {
 
 	    struct trap *t;

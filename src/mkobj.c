@@ -405,6 +405,24 @@ levscalerollpast:
 
 	}
 
+	if (uwep && uwep->oartifact == ART_WHY_DOES_THE_GAME_GENERATE && oclass == WEAPON_CLASS) {
+
+		if (!rn2(50) && objects[i].oc_skill != P_CROSSBOW) {
+			int spattempts = 0;
+			while (spattempts++ < 50000 && (objects[i].oc_skill != P_CROSSBOW)) {
+				prob = rnd(100000);
+				i = bases[(int)oclass];
+				while((prob -= objects[i].oc_prob) > 0) i++;
+
+				if(objects[i].oc_class != oclass)
+					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+				if(!OBJ_NAME(objects[i]))
+					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+			}
+		}
+
+	}
+
 	if (ismusablenumber(i) && (u.antimusablebias > rn2(100) ) ) {
 
 		prob = rnd(100000);
