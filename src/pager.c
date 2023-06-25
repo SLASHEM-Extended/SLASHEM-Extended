@@ -5661,6 +5661,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Lyubyye yevropeyskiye agenty, kotoryye popytayutsya podorvat' prevoskhodstvo Kremlya, vydavaya sebya za tekh, kem oni ne yaviyayustya, poluchat znachitel'noye snizheniye zdorov'ya! Chertovy pridurki!",
 "Vladel'tsy magazinov, kotoryye teleportiruyutsya, ub'yut vas, potomu chto vy takoy zhe natsional-sotsialist, kak diktator, pravyashchiy Kiyevom.",
 "Yesli u monstra yest' neskol'ko oruzheynykh atak, on mozhet strelyat' iz oruzhiya dal'nego boya neskol'ko raz za khod, potomu chto tip ledyanoy glyby - luchshiy geymdizayner vo vselennoy. Kho, khe khe khe khe...",
+"Yesli u monstra yest' dvuruchnoye oruzhiye i dve ataki oruzhiyem, to ved' on mozhet atakovat' im dvazhdy za khod! Khotya vy mozhete atakovat' tol'ko dvazhdy, yesli u vas yest' odnoruchnoye oruzhiye! Sovetskiy Tip Ledyanoy Glyby samyy bol'shoy! KHAA-KHAA!",
 };
 
 static NEARDATA const char * const practicantlines[] = {
@@ -29026,6 +29027,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"If you kill the melded task force, which is all but easy because that thing is basically 'don't allow it to attack you in melee or your game instantly ends', the dungeon where it was becomes forever uninhabitable because the bastard fucker transforms into some outerspace thing that cannot be removed by any means and spawns an endless swarm of overpowered ubermonsters who will kill you if you don't leave. That's how you design a good game, yeah.",
 	"Why did UDTV make it so that the game laaaaags like hell when a couple of monsters are active? Like, in nethack and slex, I can fill a level with hundreds of monsters and nothing lags, what overly complicated and arcane routines are the zombies in UDTV running that uses up so much processing power?!",
 	"It is not believable if things happen only while they're inside the player's 'reality bubble' and once you're far enough away, they are just frozen in time. Because that means 'run away until they're outside the bubble' is a valid strategy, and that would very definitely not work in real life, you'd have to cross an actual state border to make the cops stop chasing you and even then there's still Interpol who can still chase you even in other countries. Reality bubble == unrealistic!!",
+	"The dev of NetHack++ put in a ton of work but when they announced it on the newsgroup, all they got was stupid questions. <mickey mouse voice> 'is the game written in c++ now?' And the dev had to respond in a seriously annoyed voice: 'No, goddammit, it’s still written in C, now please focus on the damn gameplay changes I made, which are pretty numerous and greatly enhance the game!' Sadly, there were no answers beyond the stupid c++ questions because people are goddamn philistines.",
 
 };
 

@@ -3182,9 +3182,11 @@ elena37:
 				/* adjustment by Amy - it's unfair if monsters can use both weapon attacks with a two-hander,
 				 * because that is something you cannot do if you have two weapon attacks. Monsters cannot
 				 * dual-wield, so to simulate them being able to do so they can swing a one-hander twice, but
-				 * for the sake of it, two-handers shouldn't be able to become motherfucking tanks! */
+				 * for the sake of it, two-handers shouldn't be able to become motherfucking tanks!
+				 * In Soviet Russia, monsters can do whatever the hell they want. If they have a two-hander, they
+				 * can simply swing it twice and demolish you, muahahahaha. */
 
-					if (!canweaphit && otmp && bimanual(otmp)) {
+					if (!canweaphit && !issoviet && otmp && bimanual(otmp)) {
 
 						mdat2 = &mons[PM_CAST_DUMMY];
 						a = &mdat2->mattk[3];
@@ -3197,6 +3199,7 @@ elena37:
 						sum[i] = hitmu(mtmp, a);
 						if (!rn2(75)) pushplayer(FALSE);
 					} else {
+						if (issoviet && !canweaphit) pline("Kreml' reshil, chto monstry mogut prosto atakovat' vas dvuruchnym oruzhiyem neskol'ko raz khar-khar-kharrrrrr!");
 						if (otmp && bimanual(otmp)) canweaphit = FALSE;
 						sum[i] = hitmu(mtmp, mattk);
 						if (!rn2(75)) pushplayer(FALSE);
