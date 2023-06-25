@@ -184,6 +184,8 @@ int
 fightm(mtmp)		/* have monsters fight each other */
 	register struct monst *mtmp;
 {
+	if (DEADMONSTER(mtmp)) return 0;
+
 	register struct monst *mon, *nmon;
 	int result, has_u_swallowed;
 #ifdef LINT
@@ -3346,6 +3348,9 @@ struct attack *mattk;
     int typ = mattk->adtyp == AD_RBRE ? rnd(AD_SPC2) : mattk->adtyp;
     int mhp;
 
+    if (DEADMONSTER(magr)) return 0;
+    if (DEADMONSTER(mdef)) return 0;
+
     if (linedup(mdef->mx, mdef->my, magr->mx, magr->my, FALSE)) {
 	if (magr->mcan) {
 	    if (flags.soundok) {
@@ -3382,6 +3387,9 @@ struct attack *mattk;
 {
     register struct obj *obj;
     int mhp;
+
+    if (DEADMONSTER(magr)) return 0;
+    if (DEADMONSTER(mdef)) return 0;
 
     if (magr->mcan) {
 	if (flags.soundok) {
@@ -3441,6 +3449,9 @@ struct monst *magr, *mdef;
     schar skill;
     int multishot, mhp;
     const char *onm;
+
+    if (DEADMONSTER(magr)) return 0;
+    if (DEADMONSTER(mdef)) return 0;
 
 	int polelimit = POLE_LIM;
 
@@ -3704,6 +3715,9 @@ hitmm(magr, mdef, mattk)
 	register struct monst *magr,*mdef;
 	struct	attack *mattk;
 {
+	if (DEADMONSTER(magr)) return 0;
+	if (DEADMONSTER(mdef)) return 0;
+
 	if(vis){
 		int compat;
 		char buf[BUFSZ], mdef_name[BUFSZ];
@@ -3855,6 +3869,9 @@ gazemm(magr, mdef, mattk)
 {
 	char buf[BUFSZ];
 
+	if (DEADMONSTER(magr)) return 0;
+	if (DEADMONSTER(mdef)) return 0;
+
 	if(vis) {
 		sprintf(buf,"%s gazes at", Monnam(magr));
 		pline("%s %s...", buf, mon_nam(mdef));
@@ -3906,6 +3923,9 @@ gulpmm(magr, mdef, mattk)
 	int	status;
 	char buf[BUFSZ];
 	struct obj *obj;
+
+	if (DEADMONSTER(magr)) return 0;
+	if (DEADMONSTER(mdef)) return 0;
 
 	if (mdef->data->msize >= MZ_HUGE && magr->data->msize < MZ_HUGE) return MM_MISS;
 
@@ -3972,6 +3992,9 @@ explmm(magr, mdef, mattk)
 {
 	int result;
 
+	if (DEADMONSTER(magr)) return 0;
+	if (DEADMONSTER(mdef)) return 0;
+
 	if (magr->mcan)
 	    return MM_MISS;
 
@@ -4007,6 +4030,10 @@ mdamagem(magr, mdef, mattk)
 	register struct monst	*magr, *mdef;
 	register struct attack	*mattk;
 {
+
+	if (DEADMONSTER(magr)) return 0;
+	if (DEADMONSTER(mdef)) return 0;
+
 	struct obj *obj;
 	char buf[BUFSZ];
 	struct permonst *pa = magr->data, *pd = mdef->data;
@@ -6664,6 +6691,9 @@ register struct obj *obj;
 {
 	boolean is_acid;
 
+	if (DEADMONSTER(magr)) return;
+	if (DEADMONSTER(mdef)) return;
+
 	if (!magr || !mdef || !obj) return; /* just in case */
 
 	/* It is just teh uber cheat0r that non-passive rusting attacks still cause the attacking monster's shit to rust. */
@@ -6714,6 +6744,9 @@ mswingsm(magr, mdef, otemp)
 register struct monst *magr, *mdef;
 register struct obj *otemp;
 {
+	if (DEADMONSTER(magr)) return;
+	if (DEADMONSTER(mdef)) return;
+
 	char buf[BUFSZ];
 	if (!flags.verbose || Blind || !mon_visible(magr)) return;
 	strcpy(buf, mon_nam(mdef));
@@ -6737,6 +6770,9 @@ int attnumber;
 	register struct permonst *madat = magr->data;
 	char buf[BUFSZ];
 	int i, tmp;
+
+	if (DEADMONSTER(magr)) return 0;
+	/* mdef may be dead --Amy */
 
 	int atttypB;
 

@@ -1472,6 +1472,8 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	bhitpos.x = x;
 	bhitpos.y = y;
 
+	if (DEADMONSTER(mon)) return;
+
 	if (obj->quan == 1L) {
 	    /*
 	     * Remove object from minvent.  This cannot be done later on;
@@ -1853,6 +1855,8 @@ void
 thrwmu(mtmp)
 struct monst *mtmp;
 {
+	if (DEADMONSTER(mtmp)) return;
+
 	struct obj *otmp, *mwep;
 	xchar x, y;
 	schar skill;
@@ -2137,6 +2141,8 @@ register struct attack *mattk;
 {
 	register struct obj *otmp;
 
+	if (DEADMONSTER(mtmp)) return 0;
+
 	if(mtmp->mcan) {
 
 	    if(flags.soundok)
@@ -2193,6 +2199,8 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 	register struct monst *mtmp;
 	register struct attack  *mattk;
 {
+	if (DEADMONSTER(mtmp)) return 0;
+
 	/* if new breath types are added, change AD_ACID to max type */
 	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_SPC2) : mattk->adtyp ;
 
@@ -2291,6 +2299,7 @@ xchar ax, ay;
 	/* if new breath types are added, change AD_ACID to max type */
 	int typ = (mattk->adtyp == AD_RBRE) ? rnd(AD_SPC2) : mattk->adtyp ;
 
+	if (DEADMONSTER(mtmp)) return 0;
 
 	if((typ >= AD_MAGM) && (typ <= AD_SPC2)) {
 		if(canseemon(mtmp))
@@ -2515,6 +2524,8 @@ mfind_target(mtmp, force_linedup)
 struct monst *mtmp;
 boolean force_linedup;
 {
+	if (DEADMONSTER(mtmp)) return (struct monst *)0;
+
 	int dir, origdir = -1;
 	int x, y, dx, dy, tbx, tby;
 
@@ -2570,6 +2581,9 @@ mlined_up(mtmp, mdef, breath)	/* From dnethack: is mtmp in position to use range
 	register boolean breath;
 {
 	struct monst *mat;
+
+	if (DEADMONSTER(mtmp)) return 0;
+	if (DEADMONSTER(mdef)) return 0;
 
 	boolean lined_up = linedup(mdef->mx,mdef->my,mtmp->mx,mtmp->my, FALSE);
 
