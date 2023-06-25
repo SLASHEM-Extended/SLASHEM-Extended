@@ -644,9 +644,13 @@ struct obj *box;
 	if (n > 0 && rn2(10) && !issoviet && !minn) {
 		minn = 1;
 	}
-	if (n > 1 && rn2(2) && (minn < 2)) minn++;
+	if (n > 1 && rn2(2) && (minn < 2)) {
+		minn++; n++;
+	}
 
-	if (box->otyp == TREASURE_CHEST) minn++; /* no empty treasure chests, also happened waaaaaaaay too often --Amy */
+	if (box->otyp == TREASURE_CHEST) {
+		minn++; n++; /* no empty treasure chests, also happened waaaaaaaay too often --Amy */
+	}
 
 	for (n = rn1(n+1 - minn, minn); n > 0; n--) {
 
