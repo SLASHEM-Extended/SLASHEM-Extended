@@ -19827,7 +19827,7 @@ int zx,zy;
 	for (rocks = amountofrocks; rocks > 0; rocks--) {
 		rx = zx + rn2(3)-1; 
 		ry = zy + rn2(3)-1;
-		if (levl[rx][ry].typ == ROOM || levl[rx][ry].typ == CORR) {
+		if (isok(rx, ry) && levl[rx][ry].typ == ROOM || levl[rx][ry].typ == CORR) {
 			if (rn2(50)) {
 				otmp = mksobj(ROCK,FALSE,FALSE, FALSE);
 			} else {
