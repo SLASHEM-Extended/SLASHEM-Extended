@@ -23242,7 +23242,7 @@ struct obj *box;        /* at the moment only for floor traps */
         pline("A freezing cloud shoots from %s!", surface(u.ux, u.uy));
         if (Cold_resistance) {
                 shieldeff(u.ux, u.uy);
-                num = d(2, 2) + rnd((monster_difficulty() / 5) + 1);
+                num /= 2;
 		    if (StrongCold_resistance && num > 1) num /= 2;
 		    if (ColdImmunity) num = 0;
         }
@@ -23251,7 +23251,7 @@ struct obj *box;        /* at the moment only for floor traps */
                 You("are uninjured.");
         else
                 losehp(num, "freezing cloud", KILLED_BY_AN);
-			if (!rn2(10)) make_frozen(HFrozen + (num * 5), TRUE); /* randomly freeze the player --Amy */
+			if (!rn2(10)) make_frozen(HFrozen + 1 + (num * 5), TRUE); /* randomly freeze the player --Amy */
 		    if (isevilvariant || !rn2(issoviet ? 6 : Race_if(PM_GAVIL) ? 6 : Race_if(PM_HYPOTHERMIC) ? 6 : 33)) /* new calculations --Amy */        destroy_item(POTION_CLASS, AD_COLD);
 }
 
@@ -23282,7 +23282,7 @@ struct obj *box;        /* at the moment only for floor traps */
         pline("A lightning bolt hits you!");
         if (Shock_resistance) {
                 shieldeff(u.ux, u.uy);
-                num = d(2, 2) + rnd((monster_difficulty() / 5) + 1);
+                num /= 2;
 		    if (StrongShock_resistance && num > 1) num /= 2;
 		    if (ShockImmunity) num = 0;
         }
@@ -23291,7 +23291,7 @@ struct obj *box;        /* at the moment only for floor traps */
                 You("are uninjured.");
         else
                 losehp(num, "lightning trap", KILLED_BY_AN);
-			if (!rn2(3)) make_numbed(HNumbed + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
+			if (!rn2(3)) make_numbed(HNumbed + 1 + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 6 : 33)) destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 30 : 165)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -23325,7 +23325,8 @@ struct obj *box;        /* at the moment only for floor traps */
         pline("A massive electric shock surges through your body!");
         if (Shock_resistance) {
                 shieldeff(u.ux, u.uy);
-                num = d(6, 3) + rnd((monster_difficulty() / 2) + 1);
+                num *= 2;
+		    num /= 3;
 		    if (StrongShock_resistance && num > 1) num /= 2;
 		    if (ShockImmunity) num = 0;
         }
@@ -23334,7 +23335,7 @@ struct obj *box;        /* at the moment only for floor traps */
                 You("are uninjured.");
         else
                 losehp(num, "volt trap", KILLED_BY_AN);
-		    make_numbed(HNumbed + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
+		    make_numbed(HNumbed + 1 + (num * 5), TRUE); /* PLAYER NUMBED CAN'T DO --Amy */
 		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) destroy_item(WAND_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 2 : 10)) destroy_item(RING_CLASS, AD_ELEC);
 		    if (isevilvariant || !rn2(issoviet ? 10 : 50)) /* new calculations --Amy */	destroy_item(AMULET_CLASS, AD_ELEC);
@@ -23390,59 +23391,106 @@ struct obj *box;        /* at the moment only for floor traps */
 
         if (Acid_resistance) { /* let's just assume the stuff is acidic or corrosive --Amy */
                 shieldeff(u.ux, u.uy);
-                num = d(2, 2)+ rnd((monster_difficulty() / 4) + 1);
+                num /= 2;
         }
 
-		if (Stoned) fix_petrification();
+	if (Stoned) fix_petrification();
 
-		if (!rn2(10) || !(uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) ) {
+	if (!rn2(10) || !(uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) ) {
 
-	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
-	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
-	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
-	    if (uarmf && !rn2(5)) (void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+	/* damage boots, but don't destroy them; if they would be destroyed, disenchant them instead --Amy */
+	    if (uarmf && !rn2(5)) {
+		if (uarmf->oeroded < MAX_ERODE) (void)rust_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe--;
+			pline("Eek, it's icky.");
+		}
+	    }
+	    if (uarmf && !rn2(5)) {
+		if (uarmf->oeroded < MAX_ERODE) (void)rust_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe--;
+			pline("Eek, it's icky.");
+		}
+	    }
+	    if (uarmf && !rn2(5)) {
+		if (uarmf->oeroded2 < MAX_ERODE) (void)rust_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe--;
+			pline("Eek, it's icky.");
+		}
+	    }
+	    if (uarmf && !rn2(5)) {
+		if (uarmf->oeroded2 < MAX_ERODE) (void)rust_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe--;
+			pline("Eek, it's icky.");
+		}
+	    }
 		/* Dog shit is extremely aggressive to footwear. Let's give it a chance to do withering damage. --Amy */
-	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
-	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
-	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
-	    if (uarmf && !rn2(25)) (void)wither_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
-
+	    if (uarmf && !rn2(25)) {
+		if (uarmf->oeroded < MAX_ERODE) (void)wither_dmg(uarmf, xname(uarmf), 0, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe -= 2;
+			pline("Goddamn shit!");
 		}
-
-		if (!uarmf) {
-			pline("You slip on the shit with your bare %s.", makeplural(body_part(FOOT)));
-			num *= 2;
+	    }
+	    if (uarmf && !rn2(25)) {
+		if (uarmf->oeroded < MAX_ERODE) (void)wither_dmg(uarmf, xname(uarmf), 1, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe -= 2;
+			pline("Goddamn shit!");
 		}
-
-		if (uarmf ? !rn2(20) : !rn2(15)) {
-			HFumbling = FROMOUTSIDE | rnd(5);
-			incr_itimeout(&HFumbling, rnd(2));
-			u.fumbleduration += rnz(uarmf ? 30 : 20);
-
+	    }
+	    if (uarmf && !rn2(25)) {
+		if (uarmf->oeroded2 < MAX_ERODE) (void)wither_dmg(uarmf, xname(uarmf), 2, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe -= 2;
+			pline("Goddamn shit!");
 		}
-
-		if ((uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) || Role_if(PM_HUSSY) ) {
-		    if (!(HFast & INTRINSIC)) {
-			if (!Fast)
-			    You("speed up.");
-			else
-			    Your("quickness feels more natural.");
-			exercise(A_DEX, TRUE);
-		    }
-		    HFast |= FROMOUTSIDE;
-
-		} else if (!rn2(20)) u_slow_down();
-
-		if ( !rn2(StrongFree_action ? 1000 : 100) || (!Free_action && !rn2(10)))	{
-			You("inhale the intense smell of shit! The world spins and goes dark.");
-			nomovemsg = "You are conscious again.";	/* default: "you can move again" */
-			if (isstunfish) nomul(-rnz(10), "unconscious from smelling dog shit", TRUE);
-			else nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
-			exercise(A_DEX, FALSE);
+	    }
+	    if (uarmf && !rn2(25)) {
+		if (uarmf->oeroded2 < MAX_ERODE) (void)wither_dmg(uarmf, xname(uarmf), 3, TRUE, &youmonst);
+		else if (uarmf->spe > -20) {
+			uarmf->spe -= 2;
+			pline("Goddamn shit!");
 		}
+	    }
 
-	  if (uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) num /= 4;
-        if (num) losehp(num, "heap of shit", KILLED_BY_AN);
+	} /* profiled boots or random chance check end */
+
+	if (!uarmf) {
+		pline("You slip on the shit with your bare %s.", makeplural(body_part(FOOT)));
+		num *= 2;
+	}
+
+	if (uarmf ? !rn2(20) : !rn2(15)) {
+		HFumbling = FROMOUTSIDE | rnd(5);
+		incr_itimeout(&HFumbling, rnd(2));
+		u.fumbleduration += rnz(uarmf ? 30 : 20);
+	}
+
+	if ((uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) || Role_if(PM_HUSSY) ) {
+	    if (!(HFast & INTRINSIC)) {
+		if (!Fast)
+		    You("speed up.");
+		else
+		    Your("quickness feels more natural.");
+		exercise(A_DEX, TRUE);
+	    }
+	    HFast |= FROMOUTSIDE;
+	} else if (!rn2(20)) u_slow_down();
+
+	if ( !rn2(StrongFree_action ? 1000 : 100) || (!Free_action && !rn2(10))) {
+		You("inhale the intense smell of shit! The world spins and goes dark.");
+		nomovemsg = "You are conscious again.";
+		if (isstunfish) nomul(-rnz(10), "unconscious from smelling dog shit", TRUE);
+		else nomul(-rnd(10), "unconscious from smelling dog shit", TRUE);
+		exercise(A_DEX, FALSE);
+	}
+
+	if (uarmf && itemhasappearance(uarmf, APP_PROFILED_BOOTS) ) num /= 4;
+      if (num) losehp(num, "heap of shit", KILLED_BY_AN);
 
 }
 
