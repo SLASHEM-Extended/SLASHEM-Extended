@@ -3637,7 +3637,7 @@ badeffect()
 		case 463:
 		pline("You lose  Mana");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
-		drain_en(rnz((monster_difficulty() * 10) + 1) );
+		drain_en(rnz((monster_difficulty() * rn1(5, 1)) + 1) );
 		break;
 
 		case 464:
@@ -4922,7 +4922,7 @@ reallybadeffect()
 		case 101:
 		pline("You lose  Mana");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
-		drain_en(rnz((monster_difficulty() * 10) + 1) );
+		drain_en(rnz((monster_difficulty() * rn1(5, 1)) + 1) );
 		break;
 
 		case 102:
