@@ -5617,7 +5617,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(737)) {
+				switch (rnd(738)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -6356,6 +6356,7 @@ melatechoice:
 				case 735: pline("The time has come for %s to die.", mon_nam(mon)); break;
 				case 736: pline("%s fell into the lava, and tries to pull %sself back out but you intentionally block the space where %s'd land, so %s ends up melting away.", Monnam(mon), mhim(mon), mhe(mon), mhe(mon)); break;
 				case 737: pline("You fully score a goal because %s ain't got no chance.", mon_nam(mon)); break;
+				case 738: pline("You evil person, you broke off %s's stiletto heels!", mon_nam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
@@ -8766,7 +8767,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(784)) {
+		switch (rnd(785)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -9552,6 +9553,7 @@ register int roll;
 		case 782: pline("You are trying to play your character like it was a samurai, but it actually isn't one, and so your melee attack misses!"); break;
 		case 783: pline("You are somehow unconcentrated and shoot your ball highly over the goal."); break;
 		case 784: pline("You scream 'Bii-iarr!' Oh no, you missed."); break;
+		case 785: pline("You stand there helplessly while %s scratches %s stiletto heels up and down your %sied shins constantly.", mon_nam(mdef), mhis(mdef), body_part(BLOOD)); break;
 
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
