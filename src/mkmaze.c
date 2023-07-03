@@ -128,12 +128,12 @@ int floortype;		/* The 'wall' floortype */
 	register int x,y;
 	struct rm *lev;
 
-	int density = 3;
-	if (!rn2(5)) density += 1;
-	if (!rn2(10)) density += rnd(3);
-	if (!rn2(25)) density += rnd(5);
-	if (!rn2(125)) density += rnd(10);
-	if (!rn2(750)) density += rnd(20);
+	int density = 3 + rn2(8);
+	if (!rn2(5)) density += rnd(6);
+	if (!rn2(10)) density += rnd(15);
+	if (!rn2(25)) density += rnd(30);
+	if (!rn2(125)) density += rnd(40);
+	if (!rn2(750)) density += rnd(50);
 
 	/* sanity check on incoming variables */
 	if (x1<0 || x2>=COLNO || x1>x2 || y1<0 || y2>=ROWNO || y1>y2)
@@ -260,63 +260,63 @@ boolean initial;
 
 	/* Put in the walls... */
 	{
-	    int wallchoice = rn2(250);
+	    int wallchoice = rn2(450);
 
-	    if (wallchoice < 217)
+	    if (wallchoice < 417)
 		wallify_stone(x1, y1, x2, y2);
-	    else if (wallchoice < 218)
+	    else if (wallchoice < 418)
 		wallify_special(x1, y1, x2, y2, CROSSWALL);
-	    else if (wallchoice < 219)
+	    else if (wallchoice < 419)
 		wallify_special(x1, y1, x2, y2, CLOUD);
-	    else if (wallchoice < 221)
+	    else if (wallchoice < 421)
 		wallify_special(x1, y1, x2, y2, MOAT);
-	    else if (wallchoice < 223)
+	    else if (wallchoice < 423)
 		wallify_special(x1, y1, x2, y2, ICE);
-	    else if (wallchoice < 225)
+	    else if (wallchoice < 425)
 		wallify_special(x1, y1, x2, y2, LAVAPOOL);
-	    else if (wallchoice < 226)
+	    else if (wallchoice < 426)
 		wallify_special(x1, y1, x2, y2, TREE);
-	    else if (wallchoice < 227)
+	    else if (wallchoice < 427)
 		wallify_special(x1, y1, x2, y2, GRAVEWALL);
-	    else if (wallchoice < 228)
+	    else if (wallchoice < 428)
 		wallify_special(x1, y1, x2, y2, TUNNELWALL);
-	    else if (wallchoice < 229)
+	    else if (wallchoice < 429)
 		wallify_special(x1, y1, x2, y2, FARMLAND);
-	    else if (wallchoice < 230)
+	    else if (wallchoice < 430)
 		wallify_special(x1, y1, x2, y2, MOUNTAIN);
-	    else if (wallchoice < 231)
+	    else if (wallchoice < 431)
 		wallify_special(x1, y1, x2, y2, WATERTUNNEL);
-	    else if (wallchoice < 232)
+	    else if (wallchoice < 432)
 		wallify_special(x1, y1, x2, y2, CRYSTALWATER);
-	    else if (wallchoice < 233)
+	    else if (wallchoice < 433)
 		wallify_special(x1, y1, x2, y2, MOORLAND);
-	    else if (wallchoice < 234)
+	    else if (wallchoice < 434)
 		wallify_special(x1, y1, x2, y2, URINELAKE);
-	    else if (wallchoice < 235)
+	    else if (wallchoice < 435)
 		wallify_special(x1, y1, x2, y2, SHIFTINGSAND);
-	    else if (wallchoice < 236)
+	    else if (wallchoice < 436)
 		wallify_special(x1, y1, x2, y2, STYXRIVER);
-	    else if (wallchoice < 237)
+	    else if (wallchoice < 437)
 		wallify_special(x1, y1, x2, y2, SNOW);
-	    else if (wallchoice < 238)
+	    else if (wallchoice < 438)
 		wallify_special(x1, y1, x2, y2, ASH);
-	    else if (wallchoice < 239)
+	    else if (wallchoice < 439)
 		wallify_special(x1, y1, x2, y2, SAND);
-	    else if (wallchoice < 240)
+	    else if (wallchoice < 440)
 		wallify_special(x1, y1, x2, y2, PAVEDFLOOR);
-	    else if (wallchoice < 241)
+	    else if (wallchoice < 441)
 		wallify_special(x1, y1, x2, y2, HIGHWAY);
-	    else if (wallchoice < 242)
+	    else if (wallchoice < 442)
 		wallify_special(x1, y1, x2, y2, GRASSLAND);
-	    else if (wallchoice < 243)
+	    else if (wallchoice < 443)
 		wallify_special(x1, y1, x2, y2, NETHERMIST);
-	    else if (wallchoice < 244)
+	    else if (wallchoice < 444)
 		wallify_special(x1, y1, x2, y2, STALACTITE);
-	    else if (wallchoice < 245)
+	    else if (wallchoice < 445)
 		wallify_special(x1, y1, x2, y2, CRYPTFLOOR);
-	    else if (wallchoice < 246)
+	    else if (wallchoice < 446)
 		wallify_special(x1, y1, x2, y2, BUBBLES);
-	    else if (wallchoice < 247)
+	    else if (wallchoice < 447)
 		wallify_special(x1, y1, x2, y2, RAINCLOUD);
 	    else
 		wallify_special(x1, y1, x2, y2, IRONBARS);

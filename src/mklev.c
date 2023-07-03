@@ -1458,47 +1458,47 @@ specdungeoninit()
 	for (x = 0; x < COLNO; x++)
 	  for (y = 0; y < ROWNO; y++) {
 
-		if (isok(x,y) && In_illusorycastle(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(5)) {
+		if (isok(x,y) && In_illusorycastle(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(10)) {
 			levl[x][y].typ = randomwalltype();
 
 		}
 
-		if (isok(x,y) && (In_voiddungeon(&u.uz) && !rn2(10)) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(5)) {
+		if (isok(x,y) && (In_voiddungeon(&u.uz) && !rn2(25)) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(5)) {
 			levl[x][y].typ = NETHERMIST;
 			maketrap(x, y, GIANT_CHASM, 100, TRUE);
 		}
 
-		if (isok(x,y) && In_netherrealm(&u.uz) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR || (IS_STWALL(levl[x][y].typ) && !rn2(5)) ) && !rn2(5)) {
+		if (isok(x,y) && In_netherrealm(&u.uz) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR || (IS_STWALL(levl[x][y].typ) && !rn2(5)) ) && !rn2(10)) {
 			levl[x][y].typ = NETHERMIST;
 			if (!rn2(5)) maketrap(x, y, GIANT_CHASM, 100, TRUE);
 		}
 
-		if (isok(x,y) && In_angmar(&u.uz) && (IS_STWALL(levl[x][y].typ) && !rn2(5))) {
+		if (isok(x,y) && In_angmar(&u.uz) && (IS_STWALL(levl[x][y].typ) && !rn2(10))) {
 			levl[x][y].typ = rn2(7) ? SAND : SHIFTINGSAND;
 
 		}
 
-		if (isok(x,y) && In_angmar(&u.uz) && ((levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && rn2(3))) {
+		if (isok(x,y) && In_angmar(&u.uz) && ((levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && rn2(2))) {
 			levl[x][y].typ = rn2(7) ? SAND : SHIFTINGSAND;
 
 		}
 
-		if (isok(x,y) && In_swimmingpool(&u.uz) && (IS_STWALL(levl[x][y].typ) && rn2(10))) {
+		if (isok(x,y) && In_swimmingpool(&u.uz) && (IS_STWALL(levl[x][y].typ) && rn2(5))) {
 			levl[x][y].typ = WATERTUNNEL;
 
 		}
 
-		if (isok(x,y) && In_swimmingpool(&u.uz) && ((levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(10))) {
+		if (isok(x,y) && In_swimmingpool(&u.uz) && ((levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(20))) {
 			levl[x][y].typ = WATERTUNNEL;
 
 		}
 
-		if (isok(x,y) && In_hellbathroom(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && rn2(2)) {
+		if (isok(x,y) && In_hellbathroom(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(3)) {
 			levl[x][y].typ = rn2(100) ? URINELAKE : TOILET;
 
 		}
 
-		if (isok(x,y) && In_sewerplant(&u.uz) && (IS_STWALL(levl[x][y].typ) || (levl[x][y].typ == ROOM || levl[x][y].typ == CORR)) && !rn2(3)) {
+		if (isok(x,y) && In_sewerplant(&u.uz) && (IS_STWALL(levl[x][y].typ) || (levl[x][y].typ == ROOM || levl[x][y].typ == CORR)) && !rn2(5)) {
 			levl[x][y].typ = rn2(5) ? MOORLAND : MOAT;
 
 		}
