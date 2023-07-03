@@ -3911,14 +3911,13 @@ struct obj *obj, *otmp;
 
 			    (void) get_obj_location(obj, &oox, &ooy, 0);
 			    refresh_x = oox; refresh_y = ooy;
-			    if (vegetarian(&mons[obj->corpsenm])) {
-				/* Don't animate monsters that aren't flesh */
-				obj = poly_obj(obj, MEATBALL, FALSE);
-				if (obj) obj->finalcancel = TRUE;
-			    	goto smell;
+			    if (vegetarian(&mons[obj->corpsenm]) && otmp->otyp == SPE_STONE_TO_FLESH) {
+				/* Don't animate monsters that aren't flesh
+				 * Amy edit: in fact, don't do anything to those statues at all if you hit them with the spell
+				 * but if it was the wand, they should just animate as normal */
+				break;
 			    }
-			    if (!animate_statue(obj, oox, ooy,
-						ANIMATE_SPELL, (int *)0)) {
+			    if (!animate_statue(obj, oox, ooy, ANIMATE_SPELL, (int *)0)) {
 				struct obj *item;
 makecorpse:			if (mons[obj->corpsenm].geno &
 							(G_NOCORPSE|G_UNIQ)) {

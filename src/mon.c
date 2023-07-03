@@ -2565,6 +2565,22 @@ meatmetal(mtmp)
 			mtmp->mhp += objects[otmp->otyp].oc_weight;
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		    }
+
+			if (otmp->otyp == MEDICAL_KIT)
+			    delete_contents(otmp);
+			if (Has_contents(otmp)) {
+			    register struct obj *otmp3;
+			    while ((otmp3 = otmp->cobj) != 0) {
+				obj_extract_self(otmp3);
+				if ( (otmp->otyp == ICE_BOX || otmp->otyp == DISPERSION_BOX || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == ICE_BOX_OF_WATERPROOFING || otmp->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+				    otmp3->icedobject = TRUE;
+				    otmp3->age = monstermoves - otmp3->age;
+				    start_corpse_timeout(otmp3);
+				}
+				(void) mpickobj(mtmp, otmp3, FALSE);
+			    }
+			}
+
 		    if(otmp == uball) {
 			unpunish();
 			delobj(otmp);
@@ -2653,6 +2669,22 @@ meatlithic(mtmp)
 			mtmp->mhp += objects[otmp->otyp].oc_weight;
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		    }
+
+			if (otmp->otyp == MEDICAL_KIT)
+			    delete_contents(otmp);
+			if (Has_contents(otmp)) {
+			    register struct obj *otmp3;
+			    while ((otmp3 = otmp->cobj) != 0) {
+				obj_extract_self(otmp3);
+				if ( (otmp->otyp == ICE_BOX || otmp->otyp == DISPERSION_BOX || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == ICE_BOX_OF_WATERPROOFING || otmp->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+				    otmp3->icedobject = TRUE;
+				    otmp3->age = monstermoves - otmp3->age;
+				    start_corpse_timeout(otmp3);
+				}
+				(void) mpickobj(mtmp, otmp3, FALSE);
+			    }
+			}
+
 		    if(otmp == uball) {
 			unpunish();
 			delobj(otmp);
@@ -2730,6 +2762,22 @@ meatanything(mtmp)
 			mtmp->mhp += objects[otmp->otyp].oc_weight;
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 		    }
+
+			if (otmp->otyp == MEDICAL_KIT)
+			    delete_contents(otmp);
+			if (Has_contents(otmp)) {
+			    register struct obj *otmp3;
+			    while ((otmp3 = otmp->cobj) != 0) {
+				obj_extract_self(otmp3);
+				if ( (otmp->otyp == ICE_BOX || otmp->otyp == DISPERSION_BOX || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == ICE_BOX_OF_WATERPROOFING || otmp->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+				    otmp3->icedobject = TRUE;
+				    otmp3->age = monstermoves - otmp3->age;
+				    start_corpse_timeout(otmp3);
+				}
+				(void) mpickobj(mtmp, otmp3, FALSE);
+			    }
+			}
+
 		    if(otmp == uball) {
 			unpunish();
 			delobj(otmp);
@@ -2795,6 +2843,22 @@ meatcorpse(mtmp)
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vy boites' ne meneye, vy malen'kiy rebenok? Postaraytes', chtoby ne ispachkat' sebya, kha-kha!" : "Kwololololo lololololo!");
 			}
 		    mtmp->meating = 2;
+
+			if (otmp->otyp == MEDICAL_KIT)
+			    delete_contents(otmp);
+			if (Has_contents(otmp)) {
+			    register struct obj *otmp3;
+			    while ((otmp3 = otmp->cobj) != 0) {
+				obj_extract_self(otmp3);
+				if ( (otmp->otyp == ICE_BOX || otmp->otyp == DISPERSION_BOX || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == ICE_BOX_OF_WATERPROOFING || otmp->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+				    otmp3->icedobject = TRUE;
+				    otmp3->age = monstermoves - otmp3->age;
+				    start_corpse_timeout(otmp3);
+				}
+				(void) mpickobj(mtmp, otmp3, FALSE);
+			    }
+			}
+
 		    delobj(otmp);
 
 			if (mtmp->data == &mons[PM_CORPULENT_DOG] || mtmp->data == &mons[PM_THICK_POTATO] || mtmp->data == &mons[PM_BLACK_MUZZLE] || mtmp->data == &mons[PM_CORPSE_SPITTER] || mtmp->data == &mons[PM_MUZZLE_FIEND] || mtmp->data == &mons[PM_MAW_FIEND] || mtmp->data == &mons[PM_ROCKET_MUZZLE]) {
@@ -2884,7 +2948,16 @@ meatobj(mtmp)		/* for gelatinous cubes */
 		poly = polyfodder(otmp);
 		grow = mlevelgain(otmp);
 		heal = mhealup(otmp);
-		delobj(otmp);		/* munch */
+
+		if(otmp == uball) {
+			unpunish();
+			delobj(otmp);
+		} else if (otmp == uchain) {
+			unpunish();	/* frees uchain */
+		} else {
+			delobj(otmp);		/* munch */
+		}
+
 		ptr = mtmp->data;
 		if (poly) {
 		    if (mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,

@@ -340,15 +340,62 @@ boolean devour;
 		obj->odrained = 1;
 	} else if (obj == uball) {
 	    unpunish();
+
+		if (obj->otyp == MEDICAL_KIT)
+		    delete_contents(obj);
+		if (Has_contents(obj)) {
+		    register struct obj *otmp3;
+		    while ((otmp3 = obj->cobj) != 0) {
+			obj_extract_self(otmp3);
+			if ( (obj->otyp == ICE_BOX || obj->otyp == DISPERSION_BOX || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == ICE_BOX_OF_WATERPROOFING || obj->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+			    otmp3->icedobject = TRUE;
+			    otmp3->age = monstermoves - otmp3->age;
+			    start_corpse_timeout(otmp3);
+			}
+			(void) mpickobj(mtmp, otmp3, FALSE);
+		    }
+		}
+
 	    delobj(obj);
-	} else if (obj == uchain)
+	} else if (obj == uchain) {
+
+		if (obj->otyp == MEDICAL_KIT)
+		    delete_contents(obj);
+		if (Has_contents(obj)) {
+		    register struct obj *otmp3;
+		    while ((otmp3 = obj->cobj) != 0) {
+			obj_extract_self(otmp3);
+			if ( (obj->otyp == ICE_BOX || obj->otyp == DISPERSION_BOX || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == ICE_BOX_OF_WATERPROOFING || obj->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+			    otmp3->icedobject = TRUE;
+			    otmp3->age = monstermoves - otmp3->age;
+			    start_corpse_timeout(otmp3);
+			}
+			(void) mpickobj(mtmp, otmp3, FALSE);
+		    }
+		}
+
 	    unpunish();
-	else if (obj->quan > 1L && obj->oclass == FOOD_CLASS) {
+	} else if (obj->quan > 1L && obj->oclass == FOOD_CLASS) {
 	    obj->quan--;
 	    obj->owt = weight(obj);
-	} else
-	    delobj(obj);
+	} else {
 
+		if (obj->otyp == MEDICAL_KIT)
+		    delete_contents(obj);
+		if (Has_contents(obj)) {
+		    register struct obj *otmp3;
+		    while ((otmp3 = obj->cobj) != 0) {
+			obj_extract_self(otmp3);
+			if ( (obj->otyp == ICE_BOX || obj->otyp == DISPERSION_BOX || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == ICE_BOX_OF_WATERPROOFING || obj->otyp == ICE_BOX_OF_DIGESTION) && otmp3->otyp == CORPSE) {
+			    otmp3->icedobject = TRUE;
+			    otmp3->age = monstermoves - otmp3->age;
+			    start_corpse_timeout(otmp3);
+			}
+			(void) mpickobj(mtmp, otmp3, FALSE);
+		    }
+		}
+	    delobj(obj);
+	}
 	if (poly) {
 	    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,
 		    cansee(mtmp->mx, mtmp->my), FALSE, FALSE);
