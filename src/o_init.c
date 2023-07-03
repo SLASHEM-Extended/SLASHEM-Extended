@@ -338,6 +338,9 @@ initobjectsamnesia()
 		setworn(otmp11, W_IMPLANT);
 	}
 
+	/* random appearances have now been shuffled - please re-align randarts that depend on them --Amy
+	 * it's important that every effect that shuffles appearances will run this code, including e.g. being a kurwa */
+	init_appearance_randarts();
 }
 
 void

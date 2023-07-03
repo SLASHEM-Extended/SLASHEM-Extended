@@ -681,6 +681,19 @@ init_randarts()
 	artilist[ART_TSCHAPSNAP].otyp = randartwhipX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
+
+	init_appearance_randarts();
+
+}
+
+/* "appearance randarts" are those supposed to have a specific randomized appearance, usually armor pieces, by Amy
+ * these will need to be reset if amnesia or appearance shuffling causes the appearances of such items to be re-randomized,
+ * otherwise none of them will have the proper random appearance for the rest of the game as soon as one such shuffling
+ * incident happens! */
+void
+init_appearance_randarts()
+{
+
 	artilist[ART_HIGHEST_FEELING].otyp = find_fetish_heels();
 	artilist[ART_VORPAL_HEELS].otyp = find_fetish_heels();
 	artilist[ART_LORSKEL_S_INTEGRITY].otyp = find_lolita_boots();
@@ -895,6 +908,7 @@ init_randarts()
 	artilist[ART_SCAN_ME].otyp = find_missys();
 	artilist[ART_BACTERIA].otyp = find_missys();
 	artilist[ART_JULIA_S_SLIPPERS].otyp = find_house_slippers();
+
 
 }
 

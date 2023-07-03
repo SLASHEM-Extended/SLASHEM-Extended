@@ -86,6 +86,7 @@ E boolean arti_nonwishable(struct obj *);
 E boolean confers_luck(struct obj *);
 E boolean arti_reflects(struct obj *);
 E void init_randarts(void);
+E void init_appearance_randarts(void);
 E boolean restrict_name(struct obj *,const char *);
 E boolean defends(int,struct obj *);
 E boolean protects(int,struct obj *);
