@@ -2560,3 +2560,10 @@ The various hexagrams, heptagrams and whatnot kinds of wards in Terrahack are in
 If you offer an excessively high amount of gold to a temple priest, namely at least 20000 at once, your sin counter may be reduced by one.
 Please, for the love of God, do not blindly melee every stationary enemy in a weird-looking room if you don't know what you are doing. And if you're not sure whether you know what you're doing, the answer is no, you don't.
 Even though Lamashtu is extremely dangerous, remember that she's still bound by the iron rule that the game is turn-based, so don't blindly mash keys, but take your time and pause after each round of combat. Think carefully before you make any move, and you can defeat her.
+Dipping items into a well is safe, unlike fountains. Doing so won't summon monsters or otherwise do stuff; the only thing that happens is that the item gets wet.
+If you dip an item into a poisoned well, and it's something that can be poisoned, you will coat it in poison with no ill effects. Dipping anything else does nothing.
+They say that having a high petkeeping skill allows newly obtained pets to start with higher maximum health, especially if you also have a lot of charisma.
+They say that having a high symbiosis skill allows newly obtained symbiotes to start with higher maximum health, especially if you also have a lot of charisma.
+Occasionally, special dungeon levels and mazes will have some of their walls replaced with random terrain. It is very rare for them to replace all the walls with walkable terrain.
+If you leave a container on the floor and a monster capable of eating the container's material walks over it, the contents become the monster's inventory, meaning they aren't lost forever, thank God.
+Occasionally, the randomized appearances of items may shuffle. If that happens, existing artifacts will also end up with a different randomized appearance, but newly generated artifacts that depend on a specific appearance will still be spawned with the original one.

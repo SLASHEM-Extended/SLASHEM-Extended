@@ -15667,7 +15667,36 @@ dodip()
 
 	here = levl[u.ux][u.uy].typ;
 	/* Is there a fountain to dip into here? */
-	if (IS_FOUNTAIN(here)) {
+
+	if (IS_WELL(here)) { /* item gets wet, no other effects --Amy */
+		if(yn("Dip it into the well?") == 'y') {
+			(void) get_wet(obj, level.flags.lethe);
+
+			if (!rn2(10)) {
+				levl[u.ux][u.uy].typ = CORR;
+				pline("The well dries up!");
+			}
+
+			return(1);
+		}
+	} else if (IS_POISONEDWELL(here)) { /* item becomes poisoned if possible, *do not* get wet (not a bug) --Amy */
+		if(yn("Dip it into the poisoned well?") == 'y') {
+
+			if(is_poisonable(obj) && !stack_too_big(obj)) {
+				if (flags.verbose) You("coat it with poison.");
+				obj->opoisoned = TRUE;
+			}
+			/* supposedly there's so much poison in the water that it's barely a liquid anymore, meaning that
+			 * the item is covered with poison but doesn't get wet enough to rust or dilute */
+
+			if (!rn2(10)) {
+				levl[u.ux][u.uy].typ = CORR;
+				pline("The well dries up!");
+			}
+
+			return(1);
+		}
+	} else if (IS_FOUNTAIN(here)) {
 		if(yn("Dip it into the fountain?") == 'y') {
 			dipfountain(obj);
 			return(1);
