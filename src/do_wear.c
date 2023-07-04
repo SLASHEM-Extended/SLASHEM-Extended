@@ -4636,7 +4636,7 @@ register struct obj *obj;
 		ABON(which) += obj->spe;
 		if (ACURR(which) != old_attrib ||
 			(objects[obj->otyp].oc_name_known &&
-			    old_attrib != 25 && old_attrib != 3)) {
+			    old_attrib != 25 && old_attrib != 1)) {
 		    flags.botl = 1;
 		    makeknown(obj->otyp);
 		    obj->known = 1;
@@ -6009,7 +6009,9 @@ find_ac()
 
 /* STEPHEN WHITE'S NEW CODE */
 	/* Dexterity now affects AC */
-	if (ACURR(A_DEX) < 4) uac += 3;
+	if (ACURR(A_DEX) < 2) uac += 5;
+	else if (ACURR(A_DEX) < 3) uac += 4;
+	else if (ACURR(A_DEX) < 4) uac += 3;
 	else if (ACURR(A_DEX) < 6) uac += 2;
 	else if (ACURR(A_DEX) < 8) uac += 1;
 	else if (ACURR(A_DEX) < 11) uac -= 0;
@@ -6840,6 +6842,8 @@ glibr()
 	boolean leftfall, rightfall;
 	const char *otherwep = 0;
 
+	int isknuckles = FALSE;
+
 	leftfall = (uleft && !uleft->cursed &&
 		    (!uwep || !welded(uwep) || !bimanual(uwep)));
 	rightfall = (uright && !uright->cursed && (!welded(uwep)));
@@ -6876,7 +6880,11 @@ glibr()
 			dropx(otmp);
 	}
 	otmp = uwep;
-	if (otmp && !welded(otmp) && (otmp->otyp != BRASS_KNUCKLES) && !(otmp->oartifact == ART_GREEN_ASSISTANT) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
+
+	/* brass knuckles do not fall off, unless (hypothetically) you're wearing heavy ones with a STR of 1 --Amy */
+	if (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == ELITE_KNUCKLES || otmp->oartifact == ART_GREEN_ASSISTANT) isknuckles = TRUE;
+
+	if (otmp && !welded(otmp) && !(isknuckles && ACURR(A_STR) > 1) ) {
 		const char *thiswep;
 
 		/* nice wording if both weapons are the same type */

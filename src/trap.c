@@ -9217,32 +9217,32 @@ newbossPENT:
 					case A_STR:
 						pline("You're not as strong as you used to be...");
 						ABASE(A_STR) -= 5;
-						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRABSMIN(A_STR);}
 						break;
 					case A_DEX:
 						pline("You're not as agile as you used to be...");
 						ABASE(A_DEX) -= 5;
-						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
 						break;
 					case A_CON:
 						pline("You're not as hardy as you used to be...");
 						ABASE(A_CON) -= 5;
-						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRABSMIN(A_CON);}
 						break;
 					case A_WIS:
 						pline("You're not as wise as you used to be...");
 						ABASE(A_WIS) -= 5;
-						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
 						break;
 					case A_INT:
 						pline("You're not as bright as you used to be...");
 						ABASE(A_INT) -= 5;
-						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRABSMIN(A_INT);}
 						break;
 					case A_CHA:
 						pline("You're not as beautiful as you used to be...");
 						ABASE(A_CHA) -= 5;
-						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 						break;
 				}
 				break;
@@ -9254,12 +9254,12 @@ newbossPENT:
 				ABASE(A_WIS)--;
 				ABASE(A_INT)--;
 				ABASE(A_CHA)--;
-				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
-				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
-				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
-				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
-				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
-				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRABSMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRABSMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRABSMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 				break;
 		}
 		if (dmg) losehp(dmg, "a time trap", KILLED_BY);
@@ -9587,7 +9587,9 @@ madnesseffect:
 
 			webmsgok = FALSE; /* mintrap printed the messages */
 		    }
-		    if (str <= 3) u.utrap = rn1(6,6);
+		    if (str <= 1) u.utrap = rn1(24,6);
+		    else if (str <= 2) u.utrap = rn1(12,6);
+		    else if (str <= 3) u.utrap = rn1(6,6);
 		    else if (str < 6) u.utrap = rn1(6,4);
 		    else if (str < 9) u.utrap = rn1(4,4);
 		    else if (str < 12) u.utrap = rn1(4,2);
@@ -10851,7 +10853,7 @@ madnesseffect:
 					if (!rn2(3)) {
 
 						int reducedstat = rn2(A_MAX);
-						if(ABASE(reducedstat) <= ATTRMIN(reducedstat)) {
+						if(ABASE(reducedstat) <= ATTRABSMIN(reducedstat)) {
 							pline("Your health was damaged!");
 							u.uhpmax -= rnd(5);
 							if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -14736,9 +14738,9 @@ callingoutdone:
 			seetrap(trap);
 			{
 				int halfstat = rn2(A_MAX);
-				if (ABASE(halfstat) > 3) {
+				if (ABASE(halfstat) > 1) {
 					ABASE(halfstat) /= 2;
-					if (ABASE(halfstat) < 3) ABASE(halfstat) = 3;
+					if (ABASE(halfstat) < 1) ABASE(halfstat) = 1;
 					AMAX(halfstat) = ABASE(halfstat);
 					switch (halfstat) {
 
@@ -14765,7 +14767,7 @@ callingoutdone:
 			seetrap(trap);
 			{
 				int halfstat = rn2(A_MAX);
-				while (ABASE(halfstat) > 3 && (!attr_will_go_up(halfstat, FALSE))) {
+				while (ABASE(halfstat) > 1 && (!attr_will_go_up(halfstat, FALSE))) {
 					ABASE(halfstat) -= 1;
 					AMAX(halfstat) -= 1;
 
@@ -15661,7 +15663,9 @@ skillrandomizeredo:
 		{
 		    register int str = ACURR(A_STR);
 
-		    if (str <= 3) u.utrap = rn1(6,6);
+		    if (str <= 1) u.utrap = rn1(24,6);
+		    else if (str <= 2) u.utrap = rn1(12,6);
+		    else if (str <= 3) u.utrap = rn1(6,6);
 		    else if (str < 6) u.utrap = rn1(6,4);
 		    else if (str < 9) u.utrap = rn1(4,4);
 		    else if (str < 12) u.utrap = rn1(4,2);
@@ -18552,7 +18556,7 @@ skillrandomizeredo:
 						if (!uarmh || uarmh->otyp != DUNCE_CAP) {
 
 					    /* No such thing as mindless players... */
-					    if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
+					    if (ABASE(A_INT) <= ATTRABSMIN(A_INT)) {
 						int lifesaved = 0;
 						struct obj *wore_amulet = uamul;
 			
@@ -18566,7 +18570,7 @@ skillrandomizeredo:
 							} else if (wizard) {
 							    /* explicitly chose not to die;
 							       arbitrarily boost intelligence */
-							    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
+							    ABASE(A_INT) = ATTRABSMIN(A_INT) + 2;
 							    You_feel("like a scarecrow.");
 							    break;
 							}

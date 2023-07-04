@@ -477,7 +477,7 @@ found:
 	u.cnd_markercount++;
 	if (evilfriday && !rn2(3)) { /* EPI that was talked about in #hardfought by several people */
 		if (!rn2(10)) {
-			if (ABASE(A_INT) < 4) {
+			if (ABASE(A_INT) < 2) {
 				u.youaredead = 1;
 				pline("Your last thought fades away.");
 				killer = "being too stupid to write";

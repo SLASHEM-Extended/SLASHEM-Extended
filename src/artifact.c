@@ -4626,7 +4626,7 @@ tscheinschroll:
 				HShock_resistance |= FROMOUTSIDE;
 
 				while (chaloss > 0) {
-					if (ABASE(A_CHA) > 3) {
+					if (ABASE(A_CHA) > 1) {
 						ABASE(A_CHA) -= 1;
 						AMAX(A_CHA) -= 1;
 						u.cnd_permstatdamageamount++;

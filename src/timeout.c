@@ -1194,6 +1194,60 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && ACURR(A_DEX) == 2 && !rn2(200) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
+			    slip_or_trip();
+
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    nomul(-2, "fumbling", TRUE);
+			    nomovemsg = "";
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+
+	}
+
+	if (u.umoved && ACURR(A_DEX) == 1 && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
+			    slip_or_trip();
+
+			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+
+				if (rn2(50)) {
+					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+					if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+				} else {
+					You_feel("dizzy!");
+					forget(1 + rn2(5));
+				}
+			    }
+
+			    nomul(-2, "fumbling", TRUE);
+			    nomovemsg = "";
+			    /* The more you are carrying the more likely you
+			     * are to make noise when you fumble.  Adjustments
+			     * to this number must be thoroughly play tested.
+			     */
+			    if ((inv_weight() > -500)) {
+				You("make a lot of noise!");
+				wake_nearby();
+			    }
+
+	}
+
 	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
@@ -1583,7 +1637,7 @@ nh_timeout()
 						if (!uarmh || uarmh->otyp != DUNCE_CAP) {
 
 					    /* No such thing as mindless players... */
-					    if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
+					    if (ABASE(A_INT) <= ATTRABSMIN(A_INT)) {
 						int lifesaved = 0;
 						struct obj *wore_amulet = uamul;
 			
@@ -1597,7 +1651,7 @@ nh_timeout()
 							} else if (wizard) {
 							    /* explicitly chose not to die;
 							       arbitrarily boost intelligence */
-							    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
+							    ABASE(A_INT) = ATTRABSMIN(A_INT) + 2;
 							    You_feel("like a scarecrow.");
 							    break;
 							}

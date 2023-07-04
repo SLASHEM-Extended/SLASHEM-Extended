@@ -7129,17 +7129,16 @@ maybegaincha()
 	if (ABASE(A_CHA) < 10) {
 		int chachance = 100;
 		switch (ABASE(A_CHA)) {
+			case 1: chachance = 33; break;
+			case 2: chachance = 66; break;
+			case 3: chachance = 100; break;
 			case 4: chachance = 150; break;
 			case 5: chachance = 200; break;
 			case 6: chachance = 250; break;
 			case 7: chachance = 300; break;
 			case 8: chachance = 350; break;
 			case 9: chachance = 400; break;
-			default: {
-				if (ABASE(A_CHA) < 4) chachance = 100;
-				else chachance = 500;
-				break;
-			}
+			default: chachance = 500; break;
 		}
 		if (!rn2(chachance)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
 	}

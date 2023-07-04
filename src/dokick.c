@@ -377,8 +377,12 @@ register boolean clumsy;
 		/* convert potential damage to actual damage */
 		dmg = rnd(dmg);
 		if (martial()) {
+
+		    int dexdamage = ACURR(A_DEX) / 2;
+		    if (dexdamage < 0) dexdamage = 0;
+
 		    if (dmg > /*1*/0) kick_skill = P_MARTIAL_ARTS; /* fix by Amy */
-		    dmg += rn2(ACURR(A_DEX)/2 + 1);
+		    dmg += rn2(dexdamage + 1);
 
 			/* artifact hit effect (hammerfeet) implemented by stealing code from dnethack --Amy */
 			if(uarmf && uarmf->oartifact) {

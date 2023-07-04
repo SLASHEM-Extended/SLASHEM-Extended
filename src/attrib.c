@@ -1718,7 +1718,7 @@ adjattrib(ndx, incr, msgflg, canresist)
 		ABASE(ndx) = AMAX(ndx);
 	    }
 	} else {
-	    if (ABASE(ndx) <= ATTRMIN(ndx)) {
+	    if (ABASE(ndx) <= ATTRABSMIN(ndx)) {
 		if (msgflg == 0 && flags.verbose)
 		    pline("You're already as %s as you can get.",
 			  minusattr[ndx]);
@@ -1728,17 +1728,17 @@ adjattrib(ndx, incr, msgflg, canresist)
 		You_feel("a drain on your soul...");
 		drain_alla(abs(incr));
 
-		ABASE(ndx) = ATTRMIN(ndx); /* just in case */
+		ABASE(ndx) = ATTRABSMIN(ndx); /* just in case */
 		return FALSE;
 	    }
 
 	    ABASE(ndx) += incr;
-	    if(ABASE(ndx) < ATTRMIN(ndx)) {
-		incr = ABASE(ndx) - ATTRMIN(ndx);
-		ABASE(ndx) = ATTRMIN(ndx);
+	    if(ABASE(ndx) < ATTRABSMIN(ndx)) {
+		incr = ABASE(ndx) - ATTRABSMIN(ndx);
+		ABASE(ndx) = ATTRABSMIN(ndx);
 		AMAX(ndx) += incr;
-		if(AMAX(ndx) < ATTRMIN(ndx))
-		    AMAX(ndx) = ATTRMIN(ndx);
+		if(AMAX(ndx) < ATTRABSMIN(ndx))
+		    AMAX(ndx) = ATTRABSMIN(ndx);
 	    }
 	}
 	if (msgflg <= 0)
@@ -1766,7 +1766,9 @@ gainstr(otmp, incr)
 
 	if(incr) num = incr;
 	else {
-	    if(ABASE(A_STR) < 18) num = (rn2(4) ? 1 : rnd(6) );
+	    if (ABASE(A_STR) < 3) num = (rn2(3) ? rnd(3) : rnd(6) );
+	    else if (ABASE(A_STR) < 4) num = (rn2(4) ? rnd(2) : rnd(6) );
+	    else if(ABASE(A_STR) < 18) num = (rn2(4) ? 1 : rnd(6) );
 	    else if (ABASE(A_STR) < STR18(85)) num = rnd(10);
 	}
 	(void) adjattrib(A_STR, (otmp && otmp->cursed) ? -num : num, TRUE, TRUE);
@@ -1784,9 +1786,9 @@ losestr(num, canresist)	/* may kill you; cause may be poison or monster like 'a'
 	if (num > 0) pline("%d points of your strength got sapped!",num);
 	if (num < 0) pline("%d points of your strength got restored!",-num);
 
-	if (ustr < 3) pline("Since you don't have enough strength, your health is being sapped instead.");
+	if (ustr < 1) pline("Since you don't have enough strength, your health is being sapped instead.");
 
-	while(ustr < 3) {
+	while(ustr < 1) {
 	    ++ustr;
 	    --num;
 	    hpreduce = rnd(5);
@@ -2131,12 +2133,12 @@ exerchk()
 				ABASE(A_WIS) -= 1;
 				AMAX(A_WIS) -= 1;
 				flags.botl = 1;
-				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
 
 				/* it's a total crapshoot if any little contamination can instakill you. I decided that
 				 * if it's less than 100, you can't be instakilled but the contamination may go down. --Amy */
 					if (u.contamination < 100) {
-						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
 							ABASE(A_WIS) += 1;
 							AMAX(A_WIS) += 1;
 						}
@@ -2152,7 +2154,7 @@ exerchk()
 					/* lifesaved */
 					u.youaredead = 0;
 					pline("WARNING: Your wisdom is still critically low and you may die from contamination again! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
-					if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+					if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
 						ABASE(A_WIS) += 1;
 						AMAX(A_WIS) += 1;
 					}
@@ -2290,7 +2292,10 @@ int stattoboost;
 	if (ABASE(stattoboost) >= 18) {
 		return;
 	}
-	if ( (ABASE(stattoboost) >= 12) && (ASTART(stattoboost) <= ABASE(stattoboost)) ) {
+
+	if (ABASE(stattoboost) == 1) statgoupchance = 33;
+	else if (ABASE(stattoboost) == 2) statgoupchance = 66;
+	else if ( (ABASE(stattoboost) >= 12) && (ASTART(stattoboost) <= ABASE(stattoboost)) ) {
 		if (ABASE(stattoboost) == (12 + goupbuust)) statgoupchance = 200;
 		else if (ABASE(stattoboost) == (13 + goupbuust)) statgoupchance = 300;
 		else if (ABASE(stattoboost) == (14 + goupbuust)) statgoupchance = 400;
@@ -2362,7 +2367,7 @@ boolean rerollpossible;
 	    for (i = 0; (i < A_MAX) && ((x -= urole.attrdist[i]) > 0); i++) ;
 	    if(i >= A_MAX) continue; /* impossible */
 
-	    if(ABASE(i) <= ATTRMIN(i)) {
+	    if(ABASE(i) <= ATTRMIN(i)) { /* not ATTRABSMIN! should always be at least 3 for all attributes --Amy */
 
 		tryct++;
 		continue;
@@ -2398,10 +2403,10 @@ redist_attr()
 	    tmp = AMAX(i);
 	    AMAX(i) += (rn2(5)-2);
 	    if (AMAX(i) > ATTRMAX(i)) AMAX(i) = ATTRMAX(i);
-	    if (AMAX(i) < ATTRMIN(i)) AMAX(i) = ATTRMIN(i);
+	    if (AMAX(i) < ATTRABSMIN(i)) AMAX(i) = ATTRABSMIN(i);
 	    ABASE(i) = ABASE(i) * AMAX(i) / tmp;
 	    /* ABASE(i) > ATTRMAX(i) is impossible */
-	    if (ABASE(i) < ATTRMIN(i)) ABASE(i) = ATTRMIN(i);
+	    if (ABASE(i) < ATTRABSMIN(i)) ABASE(i) = ATTRABSMIN(i);
 	}
 	(void)encumber_msg();
 }
@@ -2824,7 +2829,9 @@ newhp()
 	    }
 	}
 
-	if (ACURR(A_CON) <= 3) conplus = -2;
+	if (ACURR(A_CON) <= 1) conplus = -4;
+	else if (ACURR(A_CON) <= 2) conplus = -3;
+	else if (ACURR(A_CON) <= 3) conplus = -2;
 	else if (ACURR(A_CON) <= 6) conplus = -1;
 	else if (ACURR(A_CON) <= 9) conplus = 0;
 	else if (ACURR(A_CON) <= 12) conplus = 1;
@@ -2850,6 +2857,8 @@ acurr(x)
 int x;
 {
 	register int tmp = (u.abon.a[x] + u.atemp.a[x] + u.acurr.a[x]);
+
+	int maxvalue = (x == A_STR) ? 125 : 25;
 
 	if (x == A_STR) {
 
@@ -2966,7 +2975,19 @@ int x;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_str > 0) tmp -= u.tsloss_str;
 
-			 return((tmp >= 125) ? 125 : (tmp <= 3) ? 3 : tmp);
+		if (Race_if(PM_PERVERT)) { /* debuff when not praying or having sex every once in a while --Amy */
+			int reductorval = u.pervertsex;
+			while (reductorval >= 10000) {
+				reductorval -= 10000;
+				tmp--;
+			}
+			reductorval = u.pervertpray;
+			while (reductorval >= 10000) {
+				reductorval -= 10000;
+				tmp--;
+			}
+		}
+
 	} else if (x == A_CHA) {
 		/*if (tmp < 18 && (youmonst.data && youmonst.data->mlet == S_NYMPH ||
 		    u.umonnum == PM_SUCCUBUS || u.umonnum == PM_INCUBUS))
@@ -3160,7 +3181,6 @@ int x;
 		/* having a hemorrhage means you don't look so good... --Amy */
 		if (PlayerBleeds > 100) tmp--;
 
-		return((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp);
 	} else if (x == A_INT || x == A_WIS) {
 		/* yes, this may raise int/wis if player is sufficiently
 		 * stupid.  there are lower levels of cognition than "dunce".
@@ -3401,9 +3421,9 @@ int x;
 	}
 
 #ifdef WIN32_BUG
-	return(x=((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp));
+	return(x=((tmp >= maxvalue) ? maxvalue : (tmp <= 1) ? 1 : tmp));
 #else
-	return((schar)((tmp >= 25) ? 25 : (tmp <= 3) ? 3 : tmp));
+	return((schar)((tmp >= maxvalue) ? maxvalue : (tmp <= 1) ? 1 : tmp));
 #endif
 }
 
@@ -3627,7 +3647,7 @@ boolean displaymessage;
 		else if (targetattr == A_STR && actuallimit >= 18) actuallimit = 8;
 		else {
 			actuallimit -= 10;
-			if (actuallimit < 3) actuallimit = 3;
+			if (actuallimit < 1) actuallimit = 1;
 		}
 	}
 

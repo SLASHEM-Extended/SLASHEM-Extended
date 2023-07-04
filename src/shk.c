@@ -2368,6 +2368,8 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	if (Race_if(PM_ZAUR)) tmp *= 2L;
 	if (Race_if(PM_WYLVAN)) tmp *= 2L;
 	if (Race_if(PM_URGOTH)) tmp *= 3L;
+	if (ACURR(A_CHA) == 2) tmp *= 2L;
+	if (ACURR(A_CHA) == 1) tmp *= 3L;
 
 	if (Race_if(PM_DUTHOL)) tmp *= 2L;
 	if (Role_if(PM_OTAKU)) tmp += tmp / 3L; /* bad at making deals */
@@ -2524,6 +2526,9 @@ register struct monst *shkp;
 		tmp /= 3L;
 	else
 		tmp /= 2L;
+
+	if (ACURR(A_CHA) == 2) tmp /= 2L;
+	if (ACURR(A_CHA) == 1) tmp /= 3L;
 
 	if (Role_if(PM_OTAKU)) tmp /= 3L; /* bad at making deals */
 	if (Race_if(PM_DUTHOL)) tmp /= 2L;
@@ -6944,17 +6949,16 @@ shk_offer_price(slang, charge, shkp)
 	if (ABASE(A_CHA) < 10) {
 		int chachance = 100;
 		switch (ABASE(A_CHA)) {
+			case 1: chachance = 33; break;
+			case 2: chachance = 66; break;
+			case 3: chachance = 100; break;
 			case 4: chachance = 150; break;
 			case 5: chachance = 200; break;
 			case 6: chachance = 250; break;
 			case 7: chachance = 300; break;
 			case 8: chachance = 350; break;
 			case 9: chachance = 400; break;
-			default: {
-				if (ABASE(A_CHA) < 4) chachance = 100;
-				else chachance = 500;
-				break;
-			}
+			default: chachance = 500; break;
 		}
 		if (!rn2(chachance)) (void) adjattrib(A_CHA, 1, FALSE, TRUE);
 	}
@@ -6990,13 +6994,18 @@ shk_smooth_charge(pcharge, lower, upper)
 	else if(ACURR(A_CHA) > 6)  *pcharge *= 18;
 	else if(ACURR(A_CHA) > 5)  *pcharge *= 19;
 	else if(ACURR(A_CHA) > 4)  *pcharge *= 20;
-	else *pcharge *= 21;
+	else if(ACURR(A_CHA) > 3)  *pcharge *= 21;
+	else if(ACURR(A_CHA) > 2)  *pcharge *= 23;
+	else *pcharge *= 25;
 	*pcharge /= 10;
 
 	if (uarmh && !uarmh->oinvis && uarmh->otyp == DUNCE_CAP) *pcharge *= 2L;
 
 	if (Role_if(PM_OTAKU)) *pcharge *= 3L; /* bad at making deals */
 	if (Race_if(PM_DUTHOL)) *pcharge *= 2L;
+
+	if (ACURR(A_CHA) == 2) *pcharge *= 2L;
+	if (ACURR(A_CHA) == 1) *pcharge *= 3L;
 
 	if (Race_if(PM_ZAUR)) *pcharge *= 2L;
 	if (Race_if(PM_WYLVAN)) *pcharge *= 2L;

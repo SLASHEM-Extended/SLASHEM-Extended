@@ -42,5 +42,6 @@ struct	attribs {
 
 #define ATTRMAX(x) (urace.attrmax[x])
 #define ATTRMIN(x) (urace.attrmin[x])
+#define ATTRABSMIN(x) (1)
 
 #endif /* ATTRIB.H */

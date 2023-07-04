@@ -5004,6 +5004,14 @@ int k_format; /* WAC k_format is an int */
 		}
 		if (n <= damutemp) n++;
 	}
+	if (ACURR(A_CON) == 2) {
+		n *= 11;
+		n /= 10;
+	}
+	if (ACURR(A_CON) == 1) {
+		n *= 12;
+		n /= 10;
+	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW) || (uarm && uarm->oartifact == ART_CHEST_TANK)) n = n * 2;
@@ -5218,6 +5226,8 @@ weight_cap()
 	if (u.sokobanfinished) carrcap += 50;
 	if (u.deepminefinished) carrcap += 50;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) carrcap -= 250;
+	if (ACURR(A_STR) == 1) carrcap -= 200;
+	if (ACURR(A_STR) == 2) carrcap -= 100;
 	if (uarmg && uarmg->oartifact == ART_HANDBOXED) carrcap += 1000;
 	if (uwep && uwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GIRLFUL_BONKING) carrcap -= 500;

@@ -2418,6 +2418,35 @@ register struct obj *spellbook;
 			makeknown(booktype);
 			return(1);
 		}
+
+		if (ACURR(A_INT) == 1 && !rn2(4)) {
+
+			check_unpaid_usage(spellbook, TRUE);
+			pline("%s", generate_garbage_string());
+
+			{
+				const char *line;
+				char buflin[BUFSZ];
+				if (rn2(2)) line = getrumor(-1, buflin, TRUE);
+				else line = getrumor(0, buflin, TRUE);
+				if (!*line) line = "Slash'EM rumors file closed for renovation.";
+				pline("%s", line);
+			}
+
+			pline("%s", generate_garbage_string());
+
+			consume_obj_charge(spellbook, FALSE); /* even if you have good devices skill --Amy */
+
+			if (!rn2(2)) pline("%s", generate_garbage_string());
+			if (!rn2(5)) {
+				badeffect();
+				pline("%s", generate_garbage_string());
+			}
+			spellbook->in_use = FALSE;
+
+			return(1);
+		}
+
 		if (spellbook->spe > 0 && confused && rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 2 : 10) ) {
 		    check_unpaid_usage(spellbook, TRUE);
 
@@ -3258,6 +3287,14 @@ boolean atme;
 			energy++;
 		}
 	}
+	if (ACURR(A_WIS) == 2) {
+		energy *= 11;
+		energy /= 10;
+	}
+	if (ACURR(A_WIS) == 1) {
+		energy *= 12;
+		energy /= 10;
+	}
 
 	/* inertia control and spellbinder make spells a bit more expensive... --Amy */
 	if (u.inertiacontrol) {
@@ -3799,17 +3836,16 @@ castanyway:
 	if (ABASE(A_INT) < 10) {
 		int intellchance = 500;
 		switch (ABASE(A_INT)) {
+			case 1: intellchance = 300; break;
+			case 2: intellchance = 400; break;
+			case 3: intellchance = 500; break;
 			case 4: intellchance = 600; break;
 			case 5: intellchance = 700; break;
 			case 6: intellchance = 800; break;
 			case 7: intellchance = 900; break;
 			case 8: intellchance = 1000; break;
 			case 9: intellchance = 1000; break;
-			default: {
-				if (ABASE(A_INT) < 4) intellchance = 500;
-				else intellchance = 1000;
-				break;
-			}
+			default: intellchance = 1000; break;
 		}
 
 		/* make it depend on spell level... */
@@ -5256,7 +5292,7 @@ addspmagain:
 					if (!rn2(3)) {
 
 						int reducedstat = rn2(A_MAX);
-						if(ABASE(reducedstat) <= ATTRMIN(reducedstat)) {
+						if(ABASE(reducedstat) <= ATTRABSMIN(reducedstat)) {
 							pline("Your health was damaged!");
 							u.uhpmax -= rnd(5);
 							if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -6667,7 +6703,7 @@ secureidchoice:
 			register int statloss = rn2(A_MAX);
 
 			ABASE(statloss) -= rnd(2);
-			if (ABASE(statloss) < ATTRMIN(statloss)) ABASE(statloss) = ATTRMIN(statloss);
+			if (ABASE(statloss) < ATTRABSMIN(statloss)) ABASE(statloss) = ATTRABSMIN(statloss);
 			AMAX(statloss) = ABASE(statloss);
 			pline("You are hit by nexus forces!");
 			poisontell(statloss);
@@ -7124,7 +7160,7 @@ secureidchoice:
 	case SPE_WHISPERS_FROM_BEYOND:
 
 		ABASE(A_INT) -= rnd(2);
-		if (ABASE(A_INT) < ATTRMIN(A_INT)) {
+		if (ABASE(A_INT) < ATTRABSMIN(A_INT)) {
 			u.youaredead = 1;
 			Your("last thought fades away.");
 			killer = "brainlessness";
@@ -7141,13 +7177,13 @@ secureidchoice:
 
 			/* if you're still alive then you're either in wizard mode, or you deserve to be able to go on playing. */
 
-			ABASE(A_INT) = ATTRMIN(A_INT);
+			ABASE(A_INT) = ATTRABSMIN(A_INT);
 			You_feel("like a scarecrow.");
 		}
 		AMAX(A_INT) = ABASE(A_INT);
 
 		ABASE(A_WIS) -= rnd(2);
-		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) {
+		if (ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
 
 			u.youaredead = 1;
 			You("turn into an unthinkable vegetable and die.");
@@ -7158,7 +7194,7 @@ secureidchoice:
 
 			/* player still alive somehow? well then, you can go on playing */
 
-			ABASE(A_WIS) = ATTRMIN(A_WIS);
+			ABASE(A_WIS) = ATTRABSMIN(A_WIS);
 		}
 		AMAX(A_WIS) = ABASE(A_WIS);
 
@@ -7640,27 +7676,27 @@ whisperchoice:
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 
 		ABASE(A_STR) -= rnd(5);
-		if (ABASE(A_STR) < ATTRMIN(A_STR)) ABASE(A_STR) = ATTRMIN(A_STR);
+		if (ABASE(A_STR) < ATTRABSMIN(A_STR)) ABASE(A_STR) = ATTRABSMIN(A_STR);
 		AMAX(A_STR) = ABASE(A_STR);
 
 		ABASE(A_DEX) -= rnd(5);
-		if (ABASE(A_DEX) < ATTRMIN(A_DEX)) ABASE(A_DEX) = ATTRMIN(A_DEX);
+		if (ABASE(A_DEX) < ATTRABSMIN(A_DEX)) ABASE(A_DEX) = ATTRABSMIN(A_DEX);
 		AMAX(A_DEX) = ABASE(A_DEX);
 
 		ABASE(A_INT) -= rnd(5);
-		if (ABASE(A_INT) < ATTRMIN(A_INT)) ABASE(A_INT) = ATTRMIN(A_INT);
+		if (ABASE(A_INT) < ATTRABSMIN(A_INT)) ABASE(A_INT) = ATTRABSMIN(A_INT);
 		AMAX(A_INT) = ABASE(A_INT);
 
 		ABASE(A_WIS) -= rnd(5);
-		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) ABASE(A_WIS) = ATTRMIN(A_WIS);
+		if (ABASE(A_WIS) < ATTRABSMIN(A_WIS)) ABASE(A_WIS) = ATTRABSMIN(A_WIS);
 		AMAX(A_WIS) = ABASE(A_WIS);
 
 		ABASE(A_CON) -= rnd(5);
-		if (ABASE(A_CON) < ATTRMIN(A_CON)) ABASE(A_CON) = ATTRMIN(A_CON);
+		if (ABASE(A_CON) < ATTRABSMIN(A_CON)) ABASE(A_CON) = ATTRABSMIN(A_CON);
 		AMAX(A_CON) = ABASE(A_CON);
 
 		ABASE(A_CHA) -= rnd(5);
-		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
+		if (ABASE(A_CHA) < ATTRABSMIN(A_CHA)) ABASE(A_CHA) = ATTRABSMIN(A_CHA);
 		AMAX(A_CHA) = ABASE(A_CHA);
 
 		makewish(TRUE);
@@ -7704,37 +7740,37 @@ whisperchoice:
 
 		if (!rn2(2)) {
 		ABASE(A_STR) -= 1;
-		if (ABASE(A_STR) < ATTRMIN(A_STR)) ABASE(A_STR) = ATTRMIN(A_STR);
+		if (ABASE(A_STR) < ATTRABSMIN(A_STR)) ABASE(A_STR) = ATTRABSMIN(A_STR);
 		AMAX(A_STR) = ABASE(A_STR);
 		}
 
 		if (!rn2(2)) {
 		ABASE(A_DEX) -= 1;
-		if (ABASE(A_DEX) < ATTRMIN(A_DEX)) ABASE(A_DEX) = ATTRMIN(A_DEX);
+		if (ABASE(A_DEX) < ATTRABSMIN(A_DEX)) ABASE(A_DEX) = ATTRABSMIN(A_DEX);
 		AMAX(A_DEX) = ABASE(A_DEX);
 		}
 
 		if (!rn2(2)) {
 		ABASE(A_INT) -= 1;
-		if (ABASE(A_INT) < ATTRMIN(A_INT)) ABASE(A_INT) = ATTRMIN(A_INT);
+		if (ABASE(A_INT) < ATTRABSMIN(A_INT)) ABASE(A_INT) = ATTRABSMIN(A_INT);
 		AMAX(A_INT) = ABASE(A_INT);
 		}
 
 		if (!rn2(2)) {
 		ABASE(A_WIS) -= 1;
-		if (ABASE(A_WIS) < ATTRMIN(A_WIS)) ABASE(A_WIS) = ATTRMIN(A_WIS);
+		if (ABASE(A_WIS) < ATTRABSMIN(A_WIS)) ABASE(A_WIS) = ATTRABSMIN(A_WIS);
 		AMAX(A_WIS) = ABASE(A_WIS);
 		}
 
 		if (!rn2(2)) {
 		ABASE(A_CON) -= 1;
-		if (ABASE(A_CON) < ATTRMIN(A_CON)) ABASE(A_CON) = ATTRMIN(A_CON);
+		if (ABASE(A_CON) < ATTRABSMIN(A_CON)) ABASE(A_CON) = ATTRABSMIN(A_CON);
 		AMAX(A_CON) = ABASE(A_CON);
 		}
 
 		if (!rn2(2)) {
 		ABASE(A_CHA) -= 1;
-		if (ABASE(A_CHA) < ATTRMIN(A_CHA)) ABASE(A_CHA) = ATTRMIN(A_CHA);
+		if (ABASE(A_CHA) < ATTRABSMIN(A_CHA)) ABASE(A_CHA) = ATTRABSMIN(A_CHA);
 		AMAX(A_CHA) = ABASE(A_CHA);
 		}
 
@@ -12359,6 +12395,7 @@ int spell;
 	if (RngeDnethack) chance -= 10;
 	if (Race_if(PM_INHERITOR)) chance -= 10;
 	if (RngeUnnethack) chance -= 33;
+	if (ACURR(A_INT) < 3) chance -= 25;
 
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
@@ -12415,6 +12452,10 @@ int spell;
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY) {
 		chance *= 5;
 		chance /= 6;
+	}
+	if (ACURR(A_INT) == 1) { /* 25% autofail if you're as stupid as possible */
+		chance *= 3;
+		chance /= 4;
 	}
 
 	if (Race_if(PM_INHERITOR)) chance--;

@@ -1867,7 +1867,34 @@ int thrown;
 	else if (thrown == 666) { /* inbuilt pistol boots */
 		if (uarmf && itemhasappearance(uarmf, APP_PISTOL_BOOTS) ) launcher = uarmf;
 	}
-	
+
+	boolean misfire = FALSE;
+	if (obj->cursed) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if (obj->otyp == FLIMSY_DART) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if (ACURR(A_DEX) == 1) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) ) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if (obj->greased) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if (autismweaponcheck(ART_FOEOEOEOEOEOEOE)) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) {
+		if (!rn2(7)) misfire = TRUE;
+	}
+	if ((obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) misfire = TRUE;
+
 	/* KMH -- Handle Plague here */
 	if (launcher && (launcher->oartifact == ART_PLAGUE || launcher->oartifact == ART_BOW_OF_HERCULES) &&
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
@@ -1879,7 +1906,7 @@ int thrown;
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == CHROME_PELLET) obj->opoisoned = 1;
 
 	obj->was_thrown = 1;
-	if ((obj->cursed || (obj->otyp == FLIMSY_DART) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) || obj->greased || autismweaponcheck(ART_FOEOEOEOEOEOEOE) || (Race_if(PM_PLAYER_SKELETON) && !rn2(3)) || (uarmg && itemhasappearance(uarmg, APP_CLUMSY_GLOVES) ) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) ) && (u.dx || u.dy) && (!rn2(7) || (obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || (u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() )) ) {
+	if (misfire && (u.dx || u.dy) ) {
 	    boolean slipok = TRUE;
 	    if (ammo_and_launcher(obj, launcher))
 		pline("%s!", Tobjnam(obj, "misfire"));
@@ -2616,7 +2643,9 @@ boolean polearming;
 
 	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 
-	if (ACURR(A_DEX) < 4) tmp -= 3;
+	if (ACURR(A_DEX) < 2) tmp -= 5;
+	else if (ACURR(A_DEX) < 3) tmp -= 4;
+	else if (ACURR(A_DEX) < 4) tmp -= 3;
 	else if (ACURR(A_DEX) < 6) tmp -= 2;
 	else if (ACURR(A_DEX) < 8) tmp -= 1;
 	else if (ACURR(A_DEX) >= 12) tmp += (ACURR(A_DEX) - 11);

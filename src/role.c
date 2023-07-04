@@ -5921,7 +5921,7 @@ const struct Race races[] = {
 	{      3,      3,  3,  3,  3,  3 },
 	{ STR19(25), 125, 125, 125, 125, 125 },
 	/* new limit values for the six attributes by Amy */
-	{  STR19(50), 16, 15, 19, 21, 18 },
+	{  STR19(25), 16, 15, 19, 21, 18 },
 	/* Init   Lower  Higher */
 	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
 	{  1, 0,  1, 0,  1, 0 }		/* Energy */

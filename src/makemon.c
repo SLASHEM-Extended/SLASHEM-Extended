@@ -24650,24 +24650,27 @@ register int	mmflags;
 	mtmp->mcansee = mtmp->mcanmove = TRUE;
 	mtmp->mpeaceful = (mmflags & MM_ANGRY) ? FALSE : peace_minded(ptr);
 	if (!mtmp->mpeaceful && (mmflags & MM_FRENZIED) && !rn2(3)) mtmp->mfrenzied = TRUE;
+
+	if (!mtmp->mpeaceful && ACURR(A_CHA) == 1 && !rn2(10)) mtmp->mfrenzied = TRUE;
+
 	if (mmflags & MM_XFRENZIED) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN]) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (ptr == &mons[PM_DOGCATCHER] || ptr == &mons[PM_NET_DOGCATCHER] || ptr == &mons[PM_SNARE_DOGCATCHER] || ptr == &mons[PM_ELDER_DOGCATCHER] || ptr == &mons[PM_WEB_DOGCATCHER] || ptr == &mons[PM_FALLING_DOGCATCHER]) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (ptr == &mons[PM_TAPIA]) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (ptr == &mons[PM_PRION]) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 	/* zruties are an endangered species, and the evil humans are hunting them, the assholes! --Amy */
@@ -24675,15 +24678,15 @@ register int	mmflags;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (Race_if(PM_HUMANOID_DEVIL) && mtmp->data->mlet == S_ANGEL) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (Race_if(PM_HUMANOID_ANGEL) && mtmp->data->mlet == S_DEMON) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 	if (Race_if(PM_HUMANOID_ANGEL) && is_demon(mtmp->data)) {
-		mtmp->mpeaceful = FALSE;
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 
@@ -26950,8 +26953,12 @@ register int	mmflags;
 				if (!rn2(5)) (void) makemon(&mons[PM_RUNT], mtmp->mx, mtmp->my, MM_ADJACENTOK);
 			}
 
-			if (Race_if(PM_ELF)) mtmp->mpeaceful = FALSE;
-			if (Race_if(PM_PLAYER_MYRKALFR)) mtmp->mpeaceful = FALSE;
+			if (Race_if(PM_ELF)) {
+				mtmp->mpeaceful = mtmp->mtame = FALSE;
+			}
+			if (Race_if(PM_PLAYER_MYRKALFR)) {
+				mtmp->mpeaceful = mtmp->mtame = FALSE;
+			}
 			break;
 		case S_UNICORN:
 
@@ -32861,6 +32868,8 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 	if (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && !rn2(2)) return FALSE;
+
+	if (ACURR(A_CHA) < 3 && !rn2(10)) return FALSE;
 
 	if (Race_if(PM_ALBAE) || Race_if(PM_IRAHA) || Race_if(PM_NEMESIS) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */
 	if (Role_if(PM_CRUEL_ABUSER) && Qstats(killed_nemesis) ) return FALSE; /* you murderer! */

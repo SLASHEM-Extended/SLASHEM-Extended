@@ -3322,7 +3322,9 @@ abon()		/* attack bonus for strength & dexterity */
 	int str = ACURR(A_STR), dex = ACURR(A_DEX);
 
 	/* [Tom] lowered these a little */        
-	if (str < 6) sbon = -1;
+	if (str < 2) sbon = -3;
+	else if (str < 3) sbon = -2;
+	else if (str < 6) sbon = -1;
 	else if (str < 8) sbon = 0;
 	else if (str < 13) sbon = 1;
 	else if (str < 17) sbon = 2;
@@ -3337,7 +3339,9 @@ abon()		/* attack bonus for strength & dexterity */
 	else if (str == STR19(24)) sbon = 9;  /* 24 */
 	else sbon = 10;
   
-	if (dex < 5) sbon -= 1;
+	if (dex < 2) sbon -= 3;
+	else if (dex < 3) sbon -= 2;
+	else if (dex < 5) sbon -= 1;
 	else if (dex < 7) sbon += 0;
 	else if (dex < 10) sbon += 1;
 	else if (dex < 11) sbon += 2;
@@ -3403,7 +3407,9 @@ dbon()		/* damage bonus for strength */
 
 	if (!issoviet) {
 
-		if (str < 5) return(-2);
+		if (str < 2) return(-4);
+		else if (str < 3) return(-3);
+		else if (str < 5) return(-2);
 		else if (str < 8) return(-1);
 		else if (str < 10) return(0);
 		else if (str < 14) return(1);
@@ -3423,7 +3429,9 @@ dbon()		/* damage bonus for strength */
 
 	} else {
 
-		if (str < 5) return(-5);
+		if (str < 2) return(-8);
+		else if (str < 3) return(-6);
+		else if (str < 5) return(-5);
 		else if (str < 8) return(-4);
 		else if (str < 10) return(-3);
 		else if (str < 14) return(-2);

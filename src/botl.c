@@ -823,6 +823,7 @@ struct monst *mon;
 		if (uarmg && uarmg->oartifact == ART_NOT_BELOW_NINE && prereduce > 9 && armpro < 9) armpro = 9;
 		if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT && prereduce > 3 && armpro < 3) armpro = 3;
 	}
+	if (ACURR(A_WIS) == 1) armpro--;
 
 	/* artifact that sets MC to an exact value, ignoring modifiers (except unbalancor) */
 	if (uarm && uarm->oartifact == ART_EMSI_WOERS) armpro = 2;

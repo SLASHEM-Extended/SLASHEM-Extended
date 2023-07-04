@@ -24113,7 +24113,7 @@ boolean knoweverything;
 					/* drain a stat without giving any message --Amy */
 					{
 						int statdrained = rn2(A_MAX);
-						if (ABASE(statdrained) >= 4) {
+						if (ABASE(statdrained) >= 2) {
 							ABASE(statdrained) -= 1;
 							AMAX(statdrained) -= 1;
 						}

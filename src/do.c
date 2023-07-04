@@ -1723,8 +1723,12 @@ dodown()
 			/* allow the > key to go down into a pit. But only if it really is one! --Amy */
 			if ((trap = t_at(u.ux,u.uy)) && (trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SPIKED_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT) && !u.utrap) {
 				You("carefully ease yourself into the %spit.", (trap->ttyp == SPIKED_PIT) ? "spiked " : "");
+
+				int effdex = ACURR(A_DEX) - 2;
+				if (effdex < 1) effdex = 1;
+
                          /* if you're fumbling or clumsy, you slip */ 
-				if ((Fumbling || rn2(ACURR(A_DEX) - 2) == 0) && !is_clinger(youmonst.data)) {     
+				if ((Fumbling || (rn2(effdex) == 0) ) && !is_clinger(youmonst.data)) {     
 					You("slip while trying to enter the %spit!", (trap->ttyp == SPIKED_PIT) ? "spiked " : "");
 					dotrap(trap, FORCEBUNGLE);
 					exercise(A_DEX, FALSE);

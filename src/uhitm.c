@@ -11075,7 +11075,7 @@ boolean ranged;
 					if (!rn2(3)) {
 
 						int reducedstat = rn2(A_MAX);
-						if(ABASE(reducedstat) <= ATTRMIN(reducedstat)) {
+						if(ABASE(reducedstat) <= ATTRABSMIN(reducedstat)) {
 							pline("Your health was damaged!");
 							u.uhpmax -= rnd(5);
 							if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -11172,32 +11172,32 @@ boolean ranged;
 					case A_STR:
 						pline("You're not as strong as you used to be...");
 						ABASE(A_STR) -= 5;
-						if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {tmp *= 3; ABASE(A_STR) = ATTRABSMIN(A_STR);}
 						break;
 					case A_DEX:
 						pline("You're not as agile as you used to be...");
 						ABASE(A_DEX) -= 5;
-						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {tmp *= 3; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
 						break;
 					case A_CON:
 						pline("You're not as hardy as you used to be...");
 						ABASE(A_CON) -= 5;
-						if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {tmp *= 3; ABASE(A_CON) = ATTRABSMIN(A_CON);}
 						break;
 					case A_WIS:
 						pline("You're not as wise as you used to be...");
 						ABASE(A_WIS) -= 5;
-						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {tmp *= 3; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
 						break;
 					case A_INT:
 						pline("You're not as bright as you used to be...");
 						ABASE(A_INT) -= 5;
-						if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {tmp *= 3; ABASE(A_INT) = ATTRABSMIN(A_INT);}
 						break;
 					case A_CHA:
 						pline("You're not as beautiful as you used to be...");
 						ABASE(A_CHA) -= 5;
-						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {tmp *= 3; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 						break;
 				}
 				break;
@@ -11209,12 +11209,12 @@ boolean ranged;
 				ABASE(A_WIS)--;
 				ABASE(A_INT)--;
 				ABASE(A_CHA)--;
-				if(ABASE(A_STR) < ATTRMIN(A_STR)) {tmp *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
-				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {tmp *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
-				if(ABASE(A_CON) < ATTRMIN(A_CON)) {tmp *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
-				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {tmp *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
-				if(ABASE(A_INT) < ATTRMIN(A_INT)) {tmp *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
-				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {tmp *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {tmp *= 2; ABASE(A_STR) = ATTRABSMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {tmp *= 2; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {tmp *= 2; ABASE(A_CON) = ATTRABSMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {tmp *= 2; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {tmp *= 2; ABASE(A_INT) = ATTRABSMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {tmp *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 				break;
 		}
 		break;
@@ -11501,7 +11501,7 @@ boolean ranged;
 		break;
 	  case AD_DRIN:
 	    if(!rn2(3)) {
-		    if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
+		    if (ABASE(A_INT) <= ATTRABSMIN(A_INT)) {
 			int lifesaved = 0;
 			struct obj *wore_amulet = uamul;
 
@@ -11515,7 +11515,7 @@ boolean ranged;
 				} else if (wizard) {
 				    /* explicitly chose not to die;
 				       arbitrarily boost intelligence */
-				    ABASE(A_INT) = ATTRMIN(A_INT) + 2;
+				    ABASE(A_INT) = ATTRABSMIN(A_INT) + 2;
 				    You_feel("like a scarecrow.");
 				    break;
 				}
@@ -12971,14 +12971,14 @@ boolean ranged;
 		if (StrongPoison_resistance && wdmg > 1) wdmg /= 2;
 		if(wdmg > 0){
 		
-			while( ABASE(A_WIS) > ATTRMIN(A_WIS) && wdmg > 0){
+			while( ABASE(A_WIS) > ATTRABSMIN(A_WIS) && wdmg > 0){
 				wdmg--;
 				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
 				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
 				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
 			}
-			if(AMAX(A_WIS) > ATTRMIN(A_WIS) && 
+			if(AMAX(A_WIS) > ATTRABSMIN(A_WIS) && 
 				ABASE(A_WIS) < AMAX(A_WIS)/2) AMAX(A_WIS) -= 1; //permanently drain wisdom
 			if(wdmg){
 				boolean chg;
@@ -12997,7 +12997,7 @@ boolean ranged;
 			}
 			else {
 				if(!uarmh){
-					tmp = (ABASE(A_WIS) <= ATTRMIN(A_WIS)) ? ( 2 * (Upolyd ? u.mh : u.uhp) + 400) : (tmp * 2); 
+					tmp = (ABASE(A_WIS) <= ATTRABSMIN(A_WIS)) ? ( 2 * (Upolyd ? u.mh : u.uhp) + 400) : (tmp * 2); 
 					pline("%s smashes your %s!",
 						mon_nam(mon), body_part(HEAD));
 				} else pline("%s's headspike hits your %s!",

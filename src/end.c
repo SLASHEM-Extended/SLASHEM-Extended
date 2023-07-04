@@ -1213,6 +1213,8 @@ persiadone:
 			for (statxx = 0; statxx < A_MAX; statxx++) {
 				ABASE(statxx) -= 1;
 				AMAX(statxx) -= 1;
+				if (ABASE(statxx) < ATTRABSMIN(statxx)) ABASE(statxx) = ATTRABSMIN(statxx);
+				if (AMAX(statxx) < ATTRABSMIN(statxx)) AMAX(statxx) = ATTRABSMIN(statxx);
 			}
 			u.uenmax -= rnz(50);
 			if (u.uenmax < 0) u.uenmax = 0;
@@ -1261,6 +1263,8 @@ trolldone:
 			for (statxx = 0; statxx < A_MAX; statxx++) {
 				ABASE(statxx) -= 1;
 				AMAX(statxx) -= 1;
+				if (ABASE(statxx) < ATTRABSMIN(statxx)) ABASE(statxx) = ATTRABSMIN(statxx);
+				if (AMAX(statxx) < ATTRABSMIN(statxx)) AMAX(statxx) = ATTRABSMIN(statxx);
 			}
 			u.uenmax -= rnz(50);
 			if (u.uenmax < 0) u.uenmax = 0;
@@ -1866,6 +1870,8 @@ perilousdone:
 					for (statxx = 0; statxx < A_MAX; statxx++) {
 						ABASE(statxx) -= 1;
 						AMAX(statxx) -= 1;
+						if (ABASE(statxx) < ATTRABSMIN(statxx)) ABASE(statxx) = ATTRABSMIN(statxx);
+						if (AMAX(statxx) < ATTRABSMIN(statxx)) AMAX(statxx) = ATTRABSMIN(statxx);
 					}
 					u.uenmax -= rnz(50);
 					if (u.uenmax < 0) u.uenmax = 0;

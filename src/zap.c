@@ -6920,32 +6920,32 @@ boolean ordinary;
 					case A_STR:
 						pline("You're not as strong as you used to be...");
 						ABASE(A_STR) -= 5;
-						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRABSMIN(A_STR);}
 						break;
 					case A_DEX:
 						pline("You're not as agile as you used to be...");
 						ABASE(A_DEX) -= 5;
-						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
 						break;
 					case A_CON:
 						pline("You're not as hardy as you used to be...");
 						ABASE(A_CON) -= 5;
-						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRABSMIN(A_CON);}
 						break;
 					case A_WIS:
 						pline("You're not as wise as you used to be...");
 						ABASE(A_WIS) -= 5;
-						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
 						break;
 					case A_INT:
 						pline("You're not as bright as you used to be...");
 						ABASE(A_INT) -= 5;
-						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRABSMIN(A_INT);}
 						break;
 					case A_CHA:
 						pline("You're not as beautiful as you used to be...");
 						ABASE(A_CHA) -= 5;
-						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 						break;
 				}
 				break;
@@ -6957,12 +6957,12 @@ boolean ordinary;
 				ABASE(A_WIS)--;
 				ABASE(A_INT)--;
 				ABASE(A_CHA)--;
-				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
-				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
-				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
-				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
-				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
-				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRABSMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRABSMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRABSMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 				break;
 		}
 		if (dmg) losehp(dmg, "the forces of time", KILLED_BY);
@@ -8216,7 +8216,8 @@ register int booktype;
 	int tmp;
 
 
-	if (intell < 10) tmp = -1;      /* Punish low intell. before level else low */
+	if (intell < 2) tmp = -2;      /* Punish low intell. before level else low */
+	else if (intell < 10) tmp = -1;
 	else if (GushLevel < 5) tmp = 0; /* intell. gets punished only when high level*/
 	else if (intell < 14)  tmp = 1;
 	else if (intell <= 18) tmp = 2;            
@@ -8263,7 +8264,11 @@ int skill;
 	case P_SUPREME_MASTER:      hit_bon =  10; break;
     }
 
-    if (dex < 4)
+    if (dex < 2)
+	hit_bon -= 5;
+    else if (dex < 3)
+	hit_bon -= 4;
+    else if (dex < 4)
 	hit_bon -= 3;
     else if (dex < 6)
 	hit_bon -= 2;

@@ -29030,6 +29030,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The dev of NetHack++ put in a ton of work but when they announced it on the newsgroup, all they got was stupid questions. <mickey mouse voice> 'is the game written in c++ now?' And the dev had to respond in a seriously annoyed voice: 'No, goddammit, it’s still written in C, now please focus on the damn gameplay changes I made, which are pretty numerous and greatly enhance the game!' Sadly, there were no answers beyond the stupid c++ questions because people are goddamn philistines.",
 	"You have a dangerously high amount of liquid cyanide in your face.",
 	"You have a dangerously high amount of liquid cyanide in your face. Be aware that if you try to wipe it off, you'll have the poisonous substance on your hands as well, making things even worse.",
+	"Your weapon is too heavy for you.",
+	"Your weapon is too heavy for you. This means that you'll automatically drop it and cannot use it normally unless you increase your strength.",
 
 };
 

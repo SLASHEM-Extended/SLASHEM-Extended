@@ -7621,7 +7621,7 @@ register struct obj *otmp;
 		(void) adjattrib(A_CHA, 5, 0, TRUE);
 
 		if (rn2(2)) {
-			if (ABASE(A_STR) > 3) {
+			if (ABASE(A_STR) > 1) {
 				ABASE(A_STR) -= 1;
 				AMAX(A_STR) -= 1;
 				u.cnd_permstatdamageamount++;
@@ -7632,7 +7632,7 @@ register struct obj *otmp;
 			}
 		}
 		if (rn2(2)) {
-			if (ABASE(A_CON) > 3) {
+			if (ABASE(A_CON) > 1) {
 				ABASE(A_CON) -= 1;
 				AMAX(A_CON) -= 1;
 				u.cnd_permstatdamageamount++;
@@ -7643,7 +7643,7 @@ register struct obj *otmp;
 			}
 		}
 		if (rn2(2)) {
-			if (ABASE(A_WIS) > 3) {
+			if (ABASE(A_WIS) > 1) {
 				ABASE(A_WIS) -= 1;
 				AMAX(A_WIS) -= 1;
 				u.cnd_permstatdamageamount++;
@@ -7654,7 +7654,7 @@ register struct obj *otmp;
 			}
 		}
 		if (rn2(2)) {
-			if (ABASE(A_INT) > 3) {
+			if (ABASE(A_INT) > 1) {
 				ABASE(A_INT) -= 1;
 				AMAX(A_INT) -= 1;
 				u.cnd_permstatdamageamount++;
@@ -7665,7 +7665,7 @@ register struct obj *otmp;
 			}
 		}
 		if (rn2(2)) {
-			if (ABASE(A_DEX) > 3) {
+			if (ABASE(A_DEX) > 1) {
 				ABASE(A_DEX) -= 1;
 				AMAX(A_DEX) -= 1;
 				u.cnd_permstatdamageamount++;
@@ -8367,12 +8367,12 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			ABASE(A_WIS)--;
 			ABASE(A_INT)--;
 			ABASE(A_CHA)--;
-			if(ABASE(A_STR) < ATTRMIN(A_STR)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_STR) = ATTRMIN(A_STR);}
-			if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_DEX) = ATTRMIN(A_DEX);}
-			if(ABASE(A_CON) < ATTRMIN(A_CON)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CON) = ATTRMIN(A_CON);}
-			if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_WIS) = ATTRMIN(A_WIS);}
-			if(ABASE(A_INT) < ATTRMIN(A_INT)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_INT) = ATTRMIN(A_INT);}
-			if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CHA) = ATTRMIN(A_CHA);}
+			if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_STR) = ATTRABSMIN(A_STR);}
+			if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+			if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CON) = ATTRABSMIN(A_CON);}
+			if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+			if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_INT) = ATTRABSMIN(A_INT);}
+			if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {losehp(rnd(15), "eating radioactive food", KILLED_BY); ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 	    }
 
 	    if (otmp->otyp == PETRIFYIUM_BAR) {

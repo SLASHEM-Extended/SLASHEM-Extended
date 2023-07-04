@@ -5742,7 +5742,7 @@ newbossUTE:
 
 				stop_occupation();
 
-				if ((!SustainAbilityOn || !SustainLossSafe) && ABASE(A_CHA) > 3) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
+				if ((!SustainAbilityOn || !SustainLossSafe) && ABASE(A_CHA) > 1) (void) adjattrib(A_CHA, -1, TRUE, TRUE);
 				else {
 				    if (Upolyd) {
 					u.mh -= 5;
@@ -9587,32 +9587,32 @@ newbossB:
 					case A_STR:
 						pline("You're not as strong as you used to be...");
 						ABASE(A_STR) -= 5;
-						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRABSMIN(A_STR);}
 						break;
 					case A_DEX:
 						pline("You're not as agile as you used to be...");
 						ABASE(A_DEX) -= 5;
-						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
 						break;
 					case A_CON:
 						pline("You're not as hardy as you used to be...");
 						ABASE(A_CON) -= 5;
-						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRABSMIN(A_CON);}
 						break;
 					case A_WIS:
 						pline("You're not as wise as you used to be...");
 						ABASE(A_WIS) -= 5;
-						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
 						break;
 					case A_INT:
 						pline("You're not as bright as you used to be...");
 						ABASE(A_INT) -= 5;
-						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRABSMIN(A_INT);}
 						break;
 					case A_CHA:
 						pline("You're not as beautiful as you used to be...");
 						ABASE(A_CHA) -= 5;
-						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 						break;
 				}
 				break;
@@ -9624,12 +9624,12 @@ newbossB:
 				ABASE(A_WIS)--;
 				ABASE(A_INT)--;
 				ABASE(A_CHA)--;
-				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
-				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
-				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
-				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
-				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
-				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRABSMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRABSMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRABSMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 				break;
 		}
 		if (dmg) losehp(dmg, "being timed", KILLED_BY);
@@ -9664,32 +9664,32 @@ newbossB:
 					case A_STR:
 						pline("You're not as strong as you used to be...");
 						ABASE(A_STR) -= 5;
-						if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRMIN(A_STR);}
+						if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRABSMIN(A_STR);}
 						break;
 					case A_DEX:
 						pline("You're not as agile as you used to be...");
 						ABASE(A_DEX) -= 5;
-						if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRMIN(A_DEX);}
+						if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
 						break;
 					case A_CON:
 						pline("You're not as hardy as you used to be...");
 						ABASE(A_CON) -= 5;
-						if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRMIN(A_CON);}
+						if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRABSMIN(A_CON);}
 						break;
 					case A_WIS:
 						pline("You're not as wise as you used to be...");
 						ABASE(A_WIS) -= 5;
-						if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRMIN(A_WIS);}
+						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
 						break;
 					case A_INT:
 						pline("You're not as bright as you used to be...");
 						ABASE(A_INT) -= 5;
-						if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRMIN(A_INT);}
+						if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRABSMIN(A_INT);}
 						break;
 					case A_CHA:
 						pline("You're not as beautiful as you used to be...");
 						ABASE(A_CHA) -= 5;
-						if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+						if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 						break;
 				}
 				break;
@@ -9701,12 +9701,12 @@ newbossB:
 				ABASE(A_WIS)--;
 				ABASE(A_INT)--;
 				ABASE(A_CHA)--;
-				if(ABASE(A_STR) < ATTRMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRMIN(A_STR);}
-				if(ABASE(A_DEX) < ATTRMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRMIN(A_DEX);}
-				if(ABASE(A_CON) < ATTRMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRMIN(A_CON);}
-				if(ABASE(A_WIS) < ATTRMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRMIN(A_WIS);}
-				if(ABASE(A_INT) < ATTRMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRMIN(A_INT);}
-				if(ABASE(A_CHA) < ATTRMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRMIN(A_CHA);}
+				if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRABSMIN(A_STR);}
+				if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+				if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRABSMIN(A_CON);}
+				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+				if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRABSMIN(A_INT);}
+				if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
 				break;
 		}
 		if (dmg) losehp(dmg, "being timed", KILLED_BY);
@@ -12640,6 +12640,11 @@ pastds2:
 
 		    if (flags.bypasses) clear_bypasses();
 		    if(IsGlib) glibr();
+
+		if (ACURR(A_STR) == 1 && uwep && !welded(uwep) && uwep->owt >= 100) {
+			Norep("Your weapon is too heavy for you.");
+			glibr();
+		}
 
 		/* symbiote HP regeneration - rather slow, but depends on your symbiosis skill and charisma --Amy */
 		if (uactivesymbiosis) {
@@ -19159,7 +19164,7 @@ antjenewturn:
 							}
 						} else {
 							int punchchance = 0;
-							if (ACURR(A_STR) >= STR19(50)) punchchance = 10;
+							if (ACURR(A_STR) >= STR19(25)) punchchance = 10;
 							else if (ACURR(A_STR) >= STR19(24)) punchchance = 9;
 							else if (ACURR(A_STR) >= STR19(23)) punchchance = 8;
 							else if (ACURR(A_STR) >= STR19(22)) punchchance = 7;
@@ -19214,7 +19219,7 @@ antjenewturn:
 							}
 						} else {
 							int punchchance = 0;
-							if (ACURR(A_STR) >= STR19(50)) punchchance = 10;
+							if (ACURR(A_STR) >= STR19(25)) punchchance = 10;
 							else if (ACURR(A_STR) >= STR19(24)) punchchance = 9;
 							else if (ACURR(A_STR) >= STR19(23)) punchchance = 8;
 							else if (ACURR(A_STR) >= STR19(22)) punchchance = 7;
@@ -19272,7 +19277,7 @@ antjenewturn:
 							drain_alla(20);
 						} else {
 							int punchchance = 0;
-							if (ACURR(A_STR) >= STR19(50)) punchchance = 10;
+							if (ACURR(A_STR) >= STR19(25)) punchchance = 10;
 							else if (ACURR(A_STR) >= STR19(24)) punchchance = 9;
 							else if (ACURR(A_STR) >= STR19(23)) punchchance = 8;
 							else if (ACURR(A_STR) >= STR19(22)) punchchance = 7;
@@ -19724,7 +19729,7 @@ newturn:
 						if (!rn2(3)) pumpslikeyou--;
 						pline("The sexy leather pumps quickly evade your grasp and stomp on your %s with their lovely high heel.", body_part(FINGER));
 						if (!rn2(4)) losehp(rnd(4),"having their fingers crushed underneath cone-heeled lady pumps",KILLED_BY);
-						if (!rn2(5) && rnd(30) > ACURR(A_CON)) {
+						if (!rn2(5) && (rnd(30) > ACURR(A_CON)) ) {
 							if (u.uhpmax < 2) {
 								u.youaredead = 1;
 								pline("The pain is unbearable... apparently the incredibly cute heel broke your bones. While you're groaning in pain, the high heel proceeds to successively crush all of your remaining body parts.");
@@ -19742,7 +19747,7 @@ newturn:
 					}
 					break;
 				case 4:
-					if (rnd(30) < ACURR(A_DEX) && rnd(30) < ACURR(A_DEX)) {
+					if ( (rnd(30) < ACURR(A_DEX)) && (rnd(30) < ACURR(A_DEX)) ) {
 						pline("It seems that your constant movement makes the sexy leather pumps slightly dizzy.");
 						if (pumpslikeyou < 0) pumpslikeyou++;
 						if (rn2(3)) pumpsstate = PUMPIDLE;
@@ -19789,7 +19794,7 @@ newturn:
 			if (yn("Do you try to run?") == 'y') {
 				if (rnd(20) > ACURR(A_DEX)) {
 					pline("Unfortunately the very lovely heels catch you, and slam on your head with full force.");
-					if (ABASE(A_INT) <= ATTRMIN(A_INT)) {
+					if (ABASE(A_INT) <= ATTRABSMIN(A_INT)) {
 						u.youaredead = 1;
 						pline("The incredibly tender cone heels split your skull. You die.");
 						killer = "having their head crushed by a high-heeled leather pump";

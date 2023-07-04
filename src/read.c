@@ -1007,6 +1007,17 @@ doread()
 		}
 	}
 
+	if (ACURR(A_INT) == 1 && !rn2(4) && scroll->oclass == SCROLL_CLASS) {
+
+		pline("%s", generate_garbage_string());
+		if (carried(scroll)) useup(scroll);
+		else if (mcarried(scroll)) m_useup(scroll->ocarry, scroll);
+		else useupf(scroll, 1L);
+		pline("%s", generate_garbage_string());
+
+		return 1;
+	}
+
 	/* Actions required to win the game aren't counted towards conduct */
 	if (scroll->otyp != SPE_BOOK_OF_THE_DEAD &&
 		scroll->otyp != SPE_BLANK_PAPER &&
