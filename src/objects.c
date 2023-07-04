@@ -7857,7 +7857,13 @@ SCROLL((char *)0,               "TRY TO OUR ANN LEE",  P_NONE,     1,   0, 100, 
 SCROLL((char *)0,               "EAMMAEAMAMMAEEA EAMAMMAEEA EAROEKARE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "DAISY IN HER BOLD PRINTS",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "BAERMAESAENS WEIA GRUNECKEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "DO NOT GO YOUR WITHHUMANS ON THE NODEL",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "G ENDE R",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "GENDERN WIRD NICHTS AENDERN",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "EVERYONE WANTS TO DO A TAX DECLARATION",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 
+/* dummy for easier copypasting */
+/* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
 
 #ifdef MAIL
 SCROLL("mail",                  "stamped",              P_NONE, 0,   0,   0, CLR_BRIGHT_BLUE, 1),

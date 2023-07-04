@@ -303,6 +303,8 @@ mattackm(magr, mdef)
      */
     boolean range;
 
+	char buf[BUFSZ];
+
     if (!magr || !mdef) return(MM_MISS);		/* mike@genat */
     if (DEADMONSTER(mdef)) { /* catchall by Amy */
 	return(MM_MISS);
@@ -3208,21 +3210,33 @@ meleeattack:
 	}
 
 	if ((magr->data->msound == MS_SOCKS) && mdef->mcanmove && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
-		if (vis) pline("%s's beguiling smell affects %s!", Monnam(magr), mon_nam(mdef) );
+
+		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+		strcpy(buf, mon_nam(mdef));
+
+		if (vis) pline("%s's beguiling smell affects %s!", Monnam(magr), buf);
 		mdef->mcanmove = 0;
 		mdef->mfrozen = rn1(3,4);
 		mdef->mstrategy &= ~STRAT_WAITFORU;
 	}
 	if ((magr->data->msound == MS_PANTS) && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
-		if (vis) pline("%s catches a whiff from %s!", Monnam(mdef), mon_nam(magr) );
+
+		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+		strcpy(buf, Monnam(mdef));
+
+		if (vis) pline("%s catches a whiff from %s!", buf, mon_nam(magr) );
 		badpeteffect(mdef);
 	}
 
 	if (magr->data->msound == MS_CUSS && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+
+		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+		strcpy(buf, mon_nam(mdef));
+
 		if (magr->iswiz) {
 			badpeteffect(mdef);
 			mdef->healblock += (1 + magr->m_lev);
-			if (vis) pline("%s calls %s nasty names.", Monnam(magr), mon_nam(mdef) );
+			if (vis) pline("%s calls %s nasty names.", Monnam(magr), buf );
 		} else if (magr->data->mlet == S_ANGEL || magr->mnum == PM_CHRISTMAS_CHILD || magr->mnum == PM_HELLS_ANGEL || !rn2(5)) {
 			mdef->healblock += (1 + magr->m_lev);
 			if (vis) pline("%s is dimmed.", Monnam(mdef));
