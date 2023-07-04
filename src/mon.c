@@ -3362,7 +3362,7 @@ nexttry:	/* eels prefer the water, but if there is no water nearby,
 		if (mon->mtame && !PlayerCannotUseSkills) {
 			boolean willbeconfused = TRUE;
 			switch (P_SKILL(P_PETKEEPING)) {
-				default: willbeconfused = TRUE;
+				default: willbeconfused = TRUE; break;
 				case P_BASIC: if (!rn2(5)) willbeconfused = FALSE; break;
 				case P_SKILLED: if (rnd(5) > 3) willbeconfused = FALSE; break;
 				case P_EXPERT: if (rnd(5) > 2) willbeconfused = FALSE; break;
@@ -10098,7 +10098,34 @@ boolean holdeneffect;
 	if ((u.usymbiote.mnum != PM_SLICK_RUEA) && (u.usymbiote.mnum != PM_SHEER_SPACER) && (u.usymbiote.mnum != PM_DOUBLE_AURORA_BOMBER) && (u.usymbiote.mnum != PM_CRITICALLY_INJURED_THIEF) && (u.usymbiote.mnum != PM_CRITICALLY_INJURED_JEDI) && u.usymbiote.mhpmax < (mons[u.usymbiote.mnum].mlevel * 8)) {
 		u.usymbiote.mhpmax += mons[u.usymbiote.mnum].mlevel;
 		if (u.usymbiote.mhpmax > (mons[u.usymbiote.mnum].mlevel * 8)) u.usymbiote.mhpmax = (mons[u.usymbiote.mnum].mlevel * 8);
+
+		/* high skill, especially coupled with high charisma, means they don't start with anemic health --Amy */
+		if (!PlayerCannotUseSkills) {
+
+			int minimumhealth = 0;
+
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				default: break;
+				case P_BASIC: minimumhealth = 10; break;
+				case P_SKILLED: minimumhealth = 20; break;
+				case P_EXPERT: minimumhealth = 30; break;
+				case P_MASTER: minimumhealth = 50; break;
+				case P_GRAND_MASTER: minimumhealth = 70; break;
+				case P_SUPREME_MASTER: minimumhealth = 100; break;
+			}
+
+			if (ACURR(A_CHA) > 9) {
+				minimumhealth *= (100 + ( (ACURR(A_CHA) - 9) * 3) );
+				minimumhealth /= 100;
+			}
+
+			if (u.usymbiote.mhpmax < minimumhealth) u.usymbiote.mhpmax = minimumhealth;
+
+		}
+
 	}
+
+	if (u.usymbiote.mnum == PM_SLICK_RUEA || u.usymbiote.mnum == PM_SHEER_SPACER || u.usymbiote.mnum == PM_DOUBLE_AURORA_BOMBER || u.usymbiote.mnum == PM_CRITICALLY_INJURED_THIEF || u.usymbiote.mnum == PM_CRITICALLY_INJURED_JEDI) u.usymbiote.mhpmax = 1;
 
 	if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
 
@@ -10201,6 +10228,33 @@ boolean canbeother;
 		u.usymbiote.mhpmax *= 3;
 		u.usymbiote.mhpmax /= 2;
 	}
+
+	/* high skill, especially coupled with high charisma, means they don't start with anemic health --Amy */
+	if (!PlayerCannotUseSkills) {
+
+		int minimumhealth = 0;
+
+		switch (P_SKILL(P_SYMBIOSIS)) {
+			default: break;
+			case P_BASIC: minimumhealth = 10; break;
+			case P_SKILLED: minimumhealth = 20; break;
+			case P_EXPERT: minimumhealth = 30; break;
+			case P_MASTER: minimumhealth = 50; break;
+			case P_GRAND_MASTER: minimumhealth = 70; break;
+			case P_SUPREME_MASTER: minimumhealth = 100; break;
+		}
+
+		if (ACURR(A_CHA) > 9) {
+			minimumhealth *= (100 + ( (ACURR(A_CHA) - 9) * 3) );
+			minimumhealth /= 100;
+		}
+
+		if (u.usymbiote.mhpmax < minimumhealth) u.usymbiote.mhpmax = minimumhealth;
+
+	}
+
+	if (u.usymbiote.mnum == PM_SLICK_RUEA || u.usymbiote.mnum == PM_SHEER_SPACER || u.usymbiote.mnum == PM_DOUBLE_AURORA_BOMBER || u.usymbiote.mnum == PM_CRITICALLY_INJURED_THIEF || u.usymbiote.mnum == PM_CRITICALLY_INJURED_JEDI) u.usymbiote.mhpmax = 1;
+
 	if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500; /* cap value */
 
 	/* symbiote HP start out at half of the maximum if you get a random one */

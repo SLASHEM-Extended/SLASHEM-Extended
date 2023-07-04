@@ -1462,7 +1462,39 @@ boolean guaranteed;
 	if (mtmp->mnamelth) strcpy(NAME(mtmp2), NAME(mtmp));
 	initedog(mtmp2);
 	replmon(mtmp, mtmp2);
+
 	/* `mtmp' is now obsolete */
+
+	/* high skill, especially coupled with high charisma, means they don't start with anemic health --Amy */
+	if (!PlayerCannotUseSkills) {
+
+		int minimumhealth = 0;
+
+		switch (P_SKILL(P_PETKEEPING)) {
+			default: break;
+			case P_BASIC: minimumhealth = 10; break;
+			case P_SKILLED: minimumhealth = 20; break;
+			case P_EXPERT: minimumhealth = 30; break;
+			case P_MASTER: minimumhealth = 50; break;
+			case P_GRAND_MASTER: minimumhealth = 70; break;
+			case P_SUPREME_MASTER: minimumhealth = 100; break;
+		}
+
+		if (ACURR(A_CHA) > 9) {
+			minimumhealth *= (100 + ( (ACURR(A_CHA) - 9) * 3) );
+			minimumhealth /= 100;
+		}
+
+		if (mtmp2->mhpmax < minimumhealth) {
+			int hpdifference = (minimumhealth - mtmp2->mhpmax);
+			mtmp2->mhpmax = minimumhealth;
+			mtmp2->mhp += hpdifference;
+			if (mtmp2->mhp > mtmp2->mhpmax) mtmp2->mhp = mtmp2->mhpmax;
+		}
+	}
+	/* this can mean that a 5HP little dog is suddenly boosted to 100HP... but since you usually don't have grand master
+	 * petkeeping skill on dungeon level 2 with your XL3 char, this should still be balanced, and means that freshly
+	 * tamed pets in gehennom will no longer die immediately late into the game when ancient red dragons and everything	 * are roaming freely, although you still need good petkeeping and charisma for this boost --Amy */
 
 	if (obj) {		/* thrown food */
 	    /* defer eating until the edog extension has been set up */
