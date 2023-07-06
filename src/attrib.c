@@ -2158,10 +2158,12 @@ exerchk()
 						ABASE(A_WIS) += 1;
 						AMAX(A_WIS) += 1;
 					}
-				} else if (ABASE(A_WIS) < 4) {
+				} else if (ABASE(A_WIS) < 2) {
 					pline("DANGER!!! Your wisdom is critically low and you're very likely to die from the contamination! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+				} else if (ABASE(A_WIS) < 4) {
+					pline("Watch out!! Your wisdom is very low, the contamination may well reduce it below 1 and then you die! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
 				} else if (ABASE(A_WIS) < 6) {
-					pline("Warning! Your wisdom is low and if the contamination causes it to fall below 3, you die! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+					pline("Warning! Your wisdom is low and if the contamination causes it to fall below 1, you die! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
 				}
 
 			}

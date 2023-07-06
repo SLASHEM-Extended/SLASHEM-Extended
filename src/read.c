@@ -947,6 +947,7 @@ doread()
 	"Those people around here are all more or less annoying, because they are all more or less male!",
 	"Yeah, the infernal sound of a church bell is not a good reason to avoid roads that pass by a church. But, God, religions should be abolished!",
 	"One cannot drink as much as one wants to drink even more!",
+	"The Three Big S - Sodomy, Serpents and Syphilis", /* by Demo */
 
 	    };
 	    char buf[BUFSZ];

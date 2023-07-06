@@ -29032,6 +29032,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You have a dangerously high amount of liquid cyanide in your face. Be aware that if you try to wipe it off, you'll have the poisonous substance on your hands as well, making things even worse.",
 	"Your weapon is too heavy for you.",
 	"Your weapon is too heavy for you. This means that you'll automatically drop it and cannot use it normally unless you increase your strength.",
+	"It is NOT a bug that Sokoban level difficulty goes down as you move up the dungeon levels. If the top of the branch is dungeon level 3 then the game should spawn monsters appropriate for a level difficulty of 3, not 11!",
+	"Why on earth would a player who died to 'generate at difficulty 8 or higher' wands of death in soko several times state that setting the level difficulty to 11 for a supposed-to-be-easy-because-early-game branch would be a 'bugfix'??? TSX *introduced* a bug by changing that from the way it works in vanilla!!!",
 
 };
 
