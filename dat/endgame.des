@@ -54,9 +54,8 @@ PORTAL:(0,0,75,19),(65,13,75,19),"air"
 MONSTER:'@',"Elvenking",(67,16)
 MONSTER:'H',"minotaur",(67,14)
 #  An assortment of earth-appropriate nasties
-#  in each cavern.
+#  in each cavern, but a bit less earth E's because Amy feels like there's too many of them now
 MONSTER:'E',"earth elemental",(52,13),hostile
-MONSTER:'E',"earth elemental",(53,13),hostile
 MONSTER:'T',"rock troll",(53,12)
 MONSTER:'H',"stone giant",(54,12)
 #
@@ -70,7 +69,6 @@ MONSTER:'E',"earth elemental",(70,08),hostile
 MONSTER:'E',"earth elemental",(60,03),hostile
 MONSTER:'H',"stone giant",(61,04)
 MONSTER:'E',"earth elemental",(62,04),hostile
-MONSTER:'E',"earth elemental",(61,05),hostile
 MONSTER:'s',"scorpion",(62,05)
 MONSTER:'p',"rock piercer",(63,05)
 #
@@ -78,8 +76,6 @@ MONSTER:'U',"umber hulk",(40,05)
 MONSTER:'v',"dust vortex",(42,05)
 MONSTER:'T',"rock troll",(38,06)
 MONSTER:'E',"earth elemental",(39,06),hostile
-MONSTER:'E',"earth elemental",(41,06),hostile
-MONSTER:'E',"earth elemental",(38,07),hostile
 MONSTER:'H',"stone giant",(39,07)
 MONSTER:'E',"earth elemental",(43,07),hostile
 MONSTER:''',"stone golem",(37,08)
@@ -88,7 +84,6 @@ MONSTER:'S',"pit viper",(43,09)
 MONSTER:'T',"rock troll",(44,10)
 #
 MONSTER:'E',"earth elemental",(02,01),hostile
-MONSTER:'E',"earth elemental",(03,01),hostile
 MONSTER:''',"stone golem",(01,02)
 MONSTER:'E',"earth elemental",(02,02),hostile
 MONSTER:'T',"rock troll",(04,03)
@@ -102,15 +97,11 @@ MONSTER:'E',"earth elemental",(21,03),hostile
 MONSTER:'H',"minotaur",(21,04)
 MONSTER:'E',"earth elemental",(21,05),hostile
 MONSTER:'T',"rock troll",(22,05)
-MONSTER:'E',"earth elemental",(22,06),hostile
-MONSTER:'E',"earth elemental",(23,06),hostile
 #
 MONSTER:'S',"pit viper",(14,08)
 MONSTER:'&',"barbed devil",(14,09)
 MONSTER:'E',"earth elemental",(13,10),hostile
 MONSTER:'T',"rock troll",(12,11)
-MONSTER:'E',"earth elemental",(14,12),hostile
-MONSTER:'E',"earth elemental",(15,13),hostile
 MONSTER:'H',"stone giant",(17,13)
 MONSTER:''',"stone golem",(18,13)
 MONSTER:'&',"pit fiend",(18,12)
@@ -120,7 +111,6 @@ MONSTER:'E',"earth elemental",(18,10),hostile
 MONSTER:'&',"barbed devil",(02,16)
 MONSTER:'E',"earth elemental",(03,16),hostile
 MONSTER:'T',"rock troll",(02,17)
-MONSTER:'E',"earth elemental",(04,17),hostile
 MONSTER:'E',"earth elemental",(04,18),hostile
 
 MONSTER:'E',"thematic earth elemental",random,hostile
@@ -179,11 +169,8 @@ TELEPORT_REGION:(01,00,24,19),(25,00,75,19),up
 TELEPORT_REGION:(56,00,75,19),(01,00,55,19),down
 PORTAL:(57,01,75,19),(0,0,0,0),"fire"
 REGION:(00,00,75,19),lit,"ordinary"
-MONSTER:'E',"air elemental",random,hostile
-MONSTER:'E',"air elemental",random,hostile
-MONSTER:'E',"air elemental",random,hostile
-MONSTER:'E',"air elemental",random,hostile
-MONSTER:'E',"air elemental",random,hostile
+
+# monsters - slightly reduced amount by Amy 
 MONSTER:'E',"air elemental",random,hostile
 MONSTER:'E',"air elemental",random,hostile
 MONSTER:'E',"air elemental",random,hostile
@@ -204,10 +191,7 @@ MONSTER:'A',"couatl",random
 MONSTER:'D',random,random
 MONSTER:'D',random,random
 MONSTER:'D',random,random
-MONSTER:'D',random,random
-MONSTER:'D',random,random
 
-MONSTER:'E',random,random
 MONSTER:'E',random,random
 MONSTER:'E',random,random
 MONSTER:'J',random,random
@@ -323,76 +307,51 @@ TRAP:"fire",random
 TRAP:"fire",random
 TRAP:"fire",random
 TRAP:"fire",random
-#  An assortment of fire-appropriate nasties
-MONSTER:'D',"red dragon",random
+#  An assortment of fire-appropriate nasties - reduced by Amy to make it less repetitive
 MONSTER:'&',"balrog",random
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'v',"fire vortex",random
-MONSTER:'d',"hell hound",random
-#
-MONSTER:'H',"fire giant",random
 MONSTER:'&',"barbed devil",random
-MONSTER:'d',"hell hound",random
-MONSTER:''',"stone golem",random
-MONSTER:'&',"pit fiend",random
-MONSTER:'E',"fire elemental",random,hostile
-#
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'d',"hell hound",random
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'s',"scorpion",random
-MONSTER:'H',"fire giant",random
-#
-MONSTER:'d',"hell hound",random
+MONSTER:'&',"barbed devil",random
 MONSTER:'v',"dust vortex",random
-MONSTER:'v',"fire vortex",random
 MONSTER:'E',"fire elemental",random,hostile
 MONSTER:'E',"fire elemental",random,hostile
 MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'d',"hell hound",random
 MONSTER:'E',"fire elemental",random,hostile
-MONSTER:''',"stone golem",random
-MONSTER:'S',"pit viper",random
-MONSTER:'S',"pit viper",random
-MONSTER:'v',"fire vortex",random
-#
+MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'E',"fire elemental",random,hostile
 MONSTER:'E',"fire elemental",random,hostile
 MONSTER:'E',"fire elemental",random,hostile
 MONSTER:'H',"fire giant",random
-MONSTER:'E',"fire elemental",random,hostile
+MONSTER:'H',"fire giant",random
+MONSTER:'H',"fire giant",random
 MONSTER:'v',"fire vortex",random
 MONSTER:'v',"fire vortex",random
-MONSTER:'&',"pit fiend",random
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'S',"pit viper",random
-#
-MONSTER:':',"salamander",random,hostile
-MONSTER:':',"salamander",random,hostile
+MONSTER:'v',"fire vortex",random
+MONSTER:'v',"fire vortex",random
+MONSTER:'d',"hell hound",random
+MONSTER:'d',"hell hound",random
+MONSTER:'d',"hell hound",random
+MONSTER:'d',"hell hound",random
 MONSTER:'H',"minotaur",random
-MONSTER:':',"salamander",random,hostile
-MONSTER:'v',"steam vortex",random
-MONSTER:':',"salamander",random,hostile
-MONSTER:':',"salamander",random,hostile
-#
-MONSTER:'H',"fire giant",random
-MONSTER:'&',"barbed devil",random
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'v',"fire vortex",random
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'d',"hell hound",random
-MONSTER:'H',"fire giant",random
 MONSTER:'&',"pit fiend",random
-MONSTER:'E',"fire elemental",random,hostile
-MONSTER:'E',"fire elemental",random,hostile
-#
-MONSTER:'&',"barbed devil",random
+MONSTER:'&',"pit fiend",random
+MONSTER:'S',"pit viper",random
+MONSTER:'S',"pit viper",random
+MONSTER:'D',"red dragon",random
 MONSTER:':',"salamander",random,hostile
+MONSTER:':',"salamander",random,hostile
+MONSTER:':',"salamander",random,hostile
+MONSTER:':',"salamander",random,hostile
+MONSTER:'s',"scorpion",random
 MONSTER:'v',"steam vortex",random
-MONSTER:':',"salamander",random,hostile
-MONSTER:':',"salamander",random,hostile
+MONSTER:'v',"steam vortex",random
+MONSTER:''',"stone golem",random
+MONSTER:''',"stone golem",random
 
 MONSTER:'E',"thematic fire elemental",random,hostile
 MONSTER:'E',"thematic fire elemental",random,hostile
@@ -445,7 +404,7 @@ WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
 ENDMAP
 TELEPORT_REGION:(0,0,25,19),(0,0,0,0)
 PORTAL:(51,0,75,19),(0,0,0,0),"astral"
-# A fisherman's dream...
+# A fisherman's dream... Amy edit: reduced amount, because this plane is already tedious enough
 MONSTER:';',"giant eel",random
 MONSTER:';',"giant eel",random
 MONSTER:';',"giant eel",random
@@ -458,16 +417,6 @@ MONSTER:';',"electric eel",random
 MONSTER:';',"electric eel",random
 MONSTER:';',"electric eel",random
 MONSTER:';',"electric eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"electric eel",random
-MONSTER:';',"kraken",random
-MONSTER:';',"kraken",random
-MONSTER:';',"kraken",random
-MONSTER:';',"kraken",random
-MONSTER:';',"kraken",random
-MONSTER:';',"kraken",random
 MONSTER:';',"kraken",random
 MONSTER:';',"kraken",random
 MONSTER:';',"kraken",random
@@ -487,12 +436,7 @@ MONSTER:';',random,random
 MONSTER:';',random,random
 MONSTER:';',random,random
 MONSTER:';',random,random
-# These guys feel like home here
-MONSTER:'E',"water elemental",random,hostile
-MONSTER:'E',"water elemental",random,hostile
-MONSTER:'E',"water elemental",random,hostile
-MONSTER:'E',"water elemental",random,hostile
-MONSTER:'E',"water elemental",random,hostile
+# These guys feel like home here - but there were actually too many for slex, so the amount also got reduced
 MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
 MONSTER:'E',"water elemental",random,hostile
@@ -528,27 +472,29 @@ MESSAGE: "Here the High Temples of the aligned gods are located."
 MESSAGE: "You sense alarm, hostility, and excitement in the air!"
 GEOMETRY:center,center
 MAP
-                              ---------------                              
-                              |.............|                              
-                              |..---------..|                              
-                              |..|.......|..|                              
----------------               |..|.......|..|               ---------------
-|.............|               |..|.......|..|               |.............|
-|..---------..-|   |-------|  |..|.......|..|  |-------|   |-..---------..|
-|..|.......|...-| |-.......-| |..|.......|..| |-.......-| |-...|.......|..|
+------......................-------------------......................------
+|....|................-----.....................-----................|....|
+|....|-----------------..........---------..........-----------------|....|
+|..---             |..|......||..|.......|..||......|..|             ---..|
+|..------------    |..----|..||..|.......|..||..|----..|    ------------..|
+|.............|    |..|   ----|..|.......|..|----   |..|    |.............|
+|..---------..-|   |..-----||....|.......|....||-----..|   |-..---------..|
+|..|.......|...-| |-.......-|....|.......|....|-.......-| |-...|.......|..|
 |..|.......|....-|-.........-||..----+----..||-.........-|-....|.......|..|
 |..|.......+.....+...........||.............||...........+.....+.......|..|
 |..|.......|....-|-.........-|--|.........|--|-.........-|-....|.......|..|
-|..|.......|...-| |-.......-|   -|---+---|-   |-.......-| |-...|.......|..|
-|..---------..-|   |---+---|    |-.......-|    |---+---|   |-..---------..|
-|.............|      |...|-----|-.........-|-----|...|      |.............|
----------------      |.........|...........|.........|      ---------------
-                     -------...|-.........-|...-------                     
-                           |....|-.......-|....|                           
-                           ---...|---+---|...---                           
-                             |...............|                             
+|..|.......|...-| |-.......-|--|-|---+---|-|--|-.......-| |-...|.......|..|
+|..---------..-|   |---+---||..||-.......-||..||---+---|   |-..---------..|
+|.............|      |...|---..|-.........-|..---|...|      |.............|
+|..---..-------------|.........|...........|.........|-------------..---..|
+|..---...............-------...|-.........-|...-------...............---..|
+|....|.....................|....|-.......-|....|.....................|....|
+|....|------------------------...|---+---|...------------------------|....|
+------                       |...............|                       ------
                              -----------------                             
 ENDMAP
+# map tweaked a bit by Amy to have some more space for monsters, hopefully making the place less crowded
+
 # Rider locations
 RANDOM_PLACES:(23,9),(37,14),(51,9)
 # Where the player will land on arrival
@@ -652,33 +598,15 @@ MONSTER:'A',"Angel",(61,13),law,peaceful
 MONSTER:'A',"Angel",(62,13),neutral,hostile
 MONSTER:'A',"Angel",(63,13),neutral,peaceful
 #
-# Assorted nasties
+# Assorted nasties - slightly reduced by Amy
 MONSTER:'L',random,random,hostile
-MONSTER:'L',random,random,hostile
-MONSTER:'L',random,random,hostile
+MONSTER[50%]:'L',random,random,hostile
 MONSTER:'V',random,random,hostile
-MONSTER:'V',random,random,hostile
-MONSTER:'V',random,random,hostile
+MONSTER[50%]:'V',random,random,hostile
 MONSTER:'D',random,random,hostile
-MONSTER:'D',random,random,hostile
-MONSTER:'D',random,random,hostile
+MONSTER[50%]:'D',random,random,hostile
 
-# astral elementals (new creation by Amy
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
-MONSTER:'E',"astral elemental",random,hostile
+# astral elementals (new creation by Amy)
 MONSTER:'E',"astral elemental",random,hostile
 MONSTER:'E',"astral elemental",random,hostile
 MONSTER:'E',"astral elemental",random,hostile
