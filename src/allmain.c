@@ -12814,7 +12814,7 @@ pastds2:
 		    } else if (Upolyd && u.mh < u.mhmax && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 
 			/* faster regeneration --Amy */
-			regenrate = (20 - (GushLevel / 3));
+			regenrate = (16 - (GushLevel / 5));
 			if (regenrate < 6) regenrate = 6;
 			if (Race_if(PM_HAXOR)) regenrate /= 2;
 			if (is_grassland(u.ux, u.uy)) regenrate *= 2;
@@ -12854,35 +12854,38 @@ pastds2:
  * +2 blessed) for the basis of regeneration calculations.
  */
 
-			/* adjustments by Amy - make it slower, because otherwise intrinsic regeneration is useless later on */
- 			int efflev = rnd(GushLevel) + (u.uhealbonus);
+			/* adjustments by Amy - make it slower, because otherwise intrinsic regeneration is useless later on
+			 * but it shouldn't be ultra slow at XL1... */
+			int effvar = max(GushLevel, rn1(5, 5));
+
+ 			int efflev = rnd(effvar) + (u.uhealbonus);
  			int effcon = rnd(ACURR(A_CON)) + (u.uhealbonus);
 
 			if (!(PlayerCannotUseSkills)) {
 
-			if (!issoviet) {
-				if (P_SKILL(P_RIDING) == P_SKILLED) efflev += 2;
-				if (P_SKILL(P_RIDING) == P_EXPERT) efflev += 5;
-				if (P_SKILL(P_RIDING) == P_MASTER) efflev += 7;
-				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev += 10;
-				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) efflev += 12;
-				if (P_SKILL(P_RIDING) == P_SKILLED) effcon += 2;
-				if (P_SKILL(P_RIDING) == P_EXPERT) effcon += 5;
-				if (P_SKILL(P_RIDING) == P_MASTER) effcon += 7;
-				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon += 10;
-				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) effcon += 12;
-			} else {
-				if (P_SKILL(P_RIDING) == P_SKILLED) efflev -= 2;
-				if (P_SKILL(P_RIDING) == P_EXPERT) efflev -= 5;
-				if (P_SKILL(P_RIDING) == P_MASTER) efflev -= 7;
-				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev -= 10;
-				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) efflev -= 12;
-				if (P_SKILL(P_RIDING) == P_SKILLED) effcon -= 2;
-				if (P_SKILL(P_RIDING) == P_EXPERT) effcon -= 5;
-				if (P_SKILL(P_RIDING) == P_MASTER) effcon -= 7;
-				if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon -= 10;
-				if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) effcon -= 12;
-			}
+				if (!issoviet) {
+					if (P_SKILL(P_RIDING) == P_SKILLED) efflev += 1;
+					if (P_SKILL(P_RIDING) == P_EXPERT) efflev += 2;
+					if (P_SKILL(P_RIDING) == P_MASTER) efflev += 3;
+					if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev += 4;
+					if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) efflev += 5;
+					if (P_SKILL(P_RIDING) == P_SKILLED) effcon += 1;
+					if (P_SKILL(P_RIDING) == P_EXPERT) effcon += rnd(2);
+					if (P_SKILL(P_RIDING) == P_MASTER) effcon += rnd(3);
+					if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon += rnd(4);
+					if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) effcon += rnd(5);
+				} else {
+					if (P_SKILL(P_RIDING) == P_SKILLED) efflev -= 2;
+					if (P_SKILL(P_RIDING) == P_EXPERT) efflev -= 5;
+					if (P_SKILL(P_RIDING) == P_MASTER) efflev -= 7;
+					if (P_SKILL(P_RIDING) == P_GRAND_MASTER) efflev -= 10;
+					if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) efflev -= 12;
+					if (P_SKILL(P_RIDING) == P_SKILLED) effcon -= 2;
+					if (P_SKILL(P_RIDING) == P_EXPERT) effcon -= 5;
+					if (P_SKILL(P_RIDING) == P_MASTER) effcon -= 7;
+					if (P_SKILL(P_RIDING) == P_GRAND_MASTER) effcon -= 10;
+					if (P_SKILL(P_RIDING) == P_SUPREME_MASTER) effcon -= 12;
+				}
 
 			} /* player cannot use skills */
 
@@ -12901,8 +12904,8 @@ pastds2:
 			}
 
 	/* Yeah I know this makes no sense at all, but it improves the usefulness of the riding skill. --Amy */
-			int heal = 1;
 
+			int heal = 1;
 
 			if ( efflev > 9 && !(moves % 3)) {
 			    if (effcon <= 12) {
@@ -12919,7 +12922,7 @@ pastds2:
 			    }
 			} else if (Regeneration ||
 			     (efflev <= 9 &&
-			      !(moves % ((MAXULEV+12) / (GushLevel+2) + 1)))) {
+			      !(moves % ((MAXULEV+12) / ( (GushLevel / 2) + 5) + 1)))) {
 			    flags.botl = 1;
 			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp++;
@@ -13002,25 +13005,26 @@ pastds2:
 
 		    }
 
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(200) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.uhp += rnd(5 + (GushLevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(20) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(200) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.mh += rnd(5 + (GushLevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) ) {
+
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(35 - GushLevel) ) {
 				u.uhp++;
 				if (Race_if(PM_PIERCER)) u.uhp++;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(60 / GushLevel) && Upolyd ) {
+			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(35 - GushLevel) && Upolyd ) {
 				u.mh++;
 				if (Race_if(PM_PIERCER)) u.mh++;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -13041,7 +13045,7 @@ pastds2:
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(20) ) {
+			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(200) ) {
 				u.uen += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.uen += rnd(5 + (GushLevel / 5));
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
@@ -13070,13 +13074,13 @@ pastds2:
 			}
 		    }
 
-		    
+
 		    /* KMH -- OK to regenerate if you don't move */
 		    if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
 				((Energy_regeneration && !rn2(StrongEnergy_regeneration ? 2 : 3)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
-				(!(moves%((MAXULEV + 15 - GushLevel) *                                    
+				(!(moves % ((MAXULEV - (GushLevel / 2)) *
 				(Role_if(PM_WIZARD) ? 3 : 4) / 6)))))) {
 			u.uen += rn1((int)(ACURR(A_WIS) + ACURR(A_INT)) / 15 + 1,1);
 			if (Race_if(PM_PIERCER)) u.uen += rn1((int)(ACURR(A_WIS) + ACURR(A_INT)) / 15 + 1,1);
@@ -13132,7 +13136,7 @@ pastds2:
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(90 / GushLevel) ) {
+			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(70 - (GushLevel * 2)) ) {
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
