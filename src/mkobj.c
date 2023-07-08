@@ -228,6 +228,7 @@ levscalerollpast:
 	 * a high base level item reaches its full spawn chance */
 	if ((i != GOLD_PIECE) && (objects[i].oc_minlvl > 1) ) {
 		levscalediff = rnd(100 + level_difficulty());
+		if (!rn2(100)) levscalediff += 100;
 		int attempts = 50000;
 
 		while (attempts && (levscalediff < objects[i].oc_minlvl)) {

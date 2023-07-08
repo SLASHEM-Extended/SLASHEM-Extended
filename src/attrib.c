@@ -2951,6 +2951,7 @@ int x;
 		if (uarm && uarm->otyp == ROBE_OF_WEAKNESS) tmp -= 3;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
+		if (isbadstatter) tmp -= 2;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3170,6 +3171,7 @@ int x;
 		if (u.tsloss_cha > 0) tmp -= u.tsloss_cha;
 		if (FemtrapActiveAntje && !PlayerInBlockHeels) tmp -= 5;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
+		if (isbadstatter) tmp -= 2;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);
@@ -3250,6 +3252,7 @@ int x;
 		if (u.tsloss_int > 0 && x == A_INT) tmp -= u.tsloss_int;
 		if (u.tsloss_wis > 0 && x == A_WIS) tmp -= u.tsloss_wis;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
+		if (isbadstatter) tmp -= 2;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);
@@ -3324,6 +3327,7 @@ int x;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_dex > 0) tmp -= u.tsloss_dex;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
+		if (isbadstatter) tmp -= 2;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);
@@ -3406,6 +3410,7 @@ int x;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_con > 0) tmp -= u.tsloss_con;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
+		if (isbadstatter) tmp -= 2;
 
 	}
 

@@ -388,6 +388,7 @@ static struct Bool_Opt
 	{"hybridhardmoder", &flags.hybridhardmoder, FALSE, SET_IN_FILE}, 
 	{"hybridstunfish", &flags.hybridstunfish, FALSE, SET_IN_FILE}, 
 	{"hybridkillfiller", &flags.hybridkillfiller, FALSE, SET_IN_FILE}, 
+	{"hybridbadstatter", &flags.hybridbadstatter, FALSE, SET_IN_FILE}, 
 
 	{"randomhybrids", &flags.randomhybrids, TRUE, DISP_IN_GAME},
 
@@ -1767,6 +1768,9 @@ boolean tinitial, tfrom_file;
 		flags.hybridization++;
 	}
 	if (match_optname(opts, "hybridkillfiller", 16, FALSE)) {
+		flags.hybridization++;
+	}
+	if (match_optname(opts, "hybridbadstatter", 16, FALSE)) {
 		flags.hybridization++;
 	}
 

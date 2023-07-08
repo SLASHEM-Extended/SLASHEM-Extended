@@ -256,6 +256,7 @@ struct flag {
 	boolean hybridhardmoder;
 	boolean hybridstunfish;
 	boolean hybridkillfiller;
+	boolean hybridbadstatter;
 
 	boolean hybridcancel;	/* to make sure players don't get hybrid races if they explicitly don't want any */
 	boolean randomhybrids;	/* turn it off if you don't want random hybrid races */

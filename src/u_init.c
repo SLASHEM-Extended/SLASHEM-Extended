@@ -17935,6 +17935,8 @@ u_init()
 	case PM_THRALL: racebounus = rnz(8); break;
 	default:	racebounus = rnz(10); break;
 
+	if (Race_if(PM_BADSTATTER)) racebounus += 12; /* not granted when using hybrid race, obviously --Amy */
+
 	}
 
     switch (u.ualign.type) {

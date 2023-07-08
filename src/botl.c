@@ -543,6 +543,7 @@ bot1()
 		if (flags.hybridhardmoder) sprintf(nb = eos(nb), "x");
 		if (flags.hybridstunfish) sprintf(nb = eos(nb), "q");
 		if (flags.hybridkillfiller) sprintf(nb = eos(nb), "k");
+		if (flags.hybridbadstatter) sprintf(nb = eos(nb), "y");
 	}
 
 	if (flags.showscore)
