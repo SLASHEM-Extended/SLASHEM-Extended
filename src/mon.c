@@ -1991,7 +1991,11 @@ register struct monst *mtmp;
 	else pline("This is really disgusting. You resist the urge to vomit, but fail to pay attention to your surroundings for a moment...");
 
 	crapcnt = 1;
-	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
+	if (mtmp->crapbonus > 0) {
+		crapcnt += mtmp->crapbonus;
+		drain_alla(crapcnt);
+		pline(flags.female ? "Your vagina seems to turn itself inward..." : "It feels like your penis is contracting...");
+	}
 	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
 
 	if (isstunfish) {
@@ -2020,7 +2024,11 @@ register struct monst *mtmp;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	crapcnt = 1;
-	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
+	if (mtmp->crapbonus > 0) {
+		crapcnt += mtmp->crapbonus;
+		drain_alla(crapcnt);
+		pline(flags.female ? "Your vagina seems to turn itself inward..." : "It feels like your penis is contracting...");
+	}
 	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
 
 	pline("Because you are stupid, you stop to listen.");
@@ -2040,7 +2048,11 @@ register struct monst *mtmp;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	crapcnt = 1;
-	if (mtmp->crapbonus > 0) crapcnt += mtmp->crapbonus;
+	if (mtmp->crapbonus > 0) {
+		crapcnt += mtmp->crapbonus;
+		drain_alla(crapcnt);
+		pline(flags.female ? "Your vagina seems to turn itself inward..." : "It feels like your penis is contracting...");
+	}
 	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
 
 	pline("For some reason you are aroused, and just stand there listening.");

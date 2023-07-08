@@ -29034,6 +29034,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your weapon is too heavy for you. This means that you'll automatically drop it and cannot use it normally unless you increase your strength.",
 	"It is NOT a bug that Sokoban level difficulty goes down as you move up the dungeon levels. If the top of the branch is dungeon level 3 then the game should spawn monsters appropriate for a level difficulty of 3, not 11!",
 	"Why on earth would a player who died to 'generate at difficulty 8 or higher' wands of death in soko several times state that setting the level difficulty to 11 for a supposed-to-be-easy-because-early-game branch would be a 'bugfix'??? TSX *introduced* a bug by changing that from the way it works in vanilla!!!",
+	"It feels like your penis is contracting...",
+	"Your vagina seems to turn itself inward...",
+	"It feels like your penis is contracting... why on earth is such a message even in the game?!",
+	"Your vagina seems to turn itself inward... and you think that Amy must be really fucked up, adding such stuff to an ASCII game.",
 
 };
 
