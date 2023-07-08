@@ -6882,7 +6882,7 @@ glibr()
 	otmp = uwep;
 
 	/* brass knuckles do not fall off, unless (hypothetically) you're wearing heavy ones with a STR of 1 --Amy */
-	if (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == ELITE_KNUCKLES || otmp->oartifact == ART_GREEN_ASSISTANT) isknuckles = TRUE;
+	if (otmp && (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == ELITE_KNUCKLES || otmp->oartifact == ART_GREEN_ASSISTANT) ) isknuckles = TRUE;
 
 	if (otmp && !welded(otmp) && !(isknuckles && ACURR(A_STR) > 1) ) {
 		const char *thiswep;
