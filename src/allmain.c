@@ -19516,6 +19516,8 @@ pumpsminigame()
 	int pumpsstate = 0;
 	int pumpslikeyou = 0;
 	int pumpshealth = 100;
+	int pumpsdefiled = 0;
+	boolean pumpsnutkick = FALSE;
 
 	int yourdamagedeal;
 	int yourstrength;
@@ -19534,11 +19536,19 @@ pumpsminigame()
 #define PUMPTOESTOMP	4
 #define PUMPIDLE	5
 #define PUMPINLAP	6
+#define PUMPDEFILED 7
 
 	pline("In this minigame, you and the pair of lady pumps will take turns alternately. There are various conditions that you can reach to end the game. Good luck!");
 
 newturn:
 	if (!yourturn) { /* it's the pumps' turn */
+
+		if (pumpsdefiled) {
+			pumpsstate = PUMPDEFILED;
+			pline("The sexy leather pumps have been defiled and aren't acting anymore.");
+			yourturn = TRUE;
+			goto newturn;
+		}
 
 		if (pumpsstate == 0 || !rn2(5)) pumpsstate = rnd(minigameturns >= 10 ? 6 : 5);
 		if (pumpsstate == PUMPKICKINNUTS && flags.female) {
@@ -19594,6 +19604,7 @@ newturn:
 					pumpslikeyou += rnd(2);
 
 				}
+				pumpsnutkick = TRUE;
 
 				break;
 			case PUMPTOESTOMP:
@@ -19657,6 +19668,7 @@ newturn:
 		yourturn = TRUE;
 
 	} else { /* it's your turn */
+
 		winid tmpwin;
 		anything any;
 		menu_item *selected;
@@ -19665,16 +19677,20 @@ newturn:
 		any.a_void = 0;         /* zero out all bits */
 		tmpwin = create_nhwindow(NHW_MENU);
 		start_menu(tmpwin);
-		any.a_int = 1;
-		add_menu(tmpwin, NO_GLYPH, &any , 'g', 0, ATR_NONE, "Gently caress", MENU_UNSELECTED);
-		any.a_int = 2;
-		add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Punch", MENU_UNSELECTED);
-		any.a_int = 3;
-		add_menu(tmpwin, NO_GLYPH, &any , 't', 0, ATR_NONE, "Try to put them on again", MENU_UNSELECTED);
-		any.a_int = 4;
-		add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Run in circles", MENU_UNSELECTED);
+		if (!pumpsdefiled) {
+			any.a_int = 1;
+			add_menu(tmpwin, NO_GLYPH, &any , 'g', 0, ATR_NONE, "Gently caress", MENU_UNSELECTED);
+			any.a_int = 2;
+			add_menu(tmpwin, NO_GLYPH, &any , 'p', 0, ATR_NONE, "Punch", MENU_UNSELECTED);
+			any.a_int = 3;
+			add_menu(tmpwin, NO_GLYPH, &any , 't', 0, ATR_NONE, "Try to put them on again", MENU_UNSELECTED);
+			any.a_int = 4;
+			add_menu(tmpwin, NO_GLYPH, &any , 'r', 0, ATR_NONE, "Run in circles", MENU_UNSELECTED);
+		}
+		any.a_int = 5;
+		add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, "Defile", MENU_UNSELECTED);
 		if (pumpslikeyou >= 5) {
-			any.a_int = 5;
+			any.a_int = 6;
 			add_menu(tmpwin, NO_GLYPH, &any , 'k', 0, ATR_NONE, "Kiss", MENU_UNSELECTED);
 		}
 
@@ -19747,6 +19763,7 @@ newturn:
 							} else {
 								u.uhpmax--;
 								if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+								pline("One of your bones feels strangely soft, you hope it's not broken...");
 							}
 						}
 					}
@@ -19762,6 +19779,40 @@ newturn:
 					}
 					break;
 				case 5:
+					if (pumpsnutkick) {
+						pline("It's impossible, you are in too much pain to do that.");
+					} else {
+						if (yn("Do you really want to defile the sexy leather pumps?") == 'y') {
+
+							if (!rn2(2)) {
+								if (uarmf && uarmf->oeroded < MAX_ERODE) uarmf->oeroded++;
+								else if (uarmf && uarmf->spe > -20) uarmf->spe--;
+							} else {
+								if (uarmf && uarmf->oeroded2 < MAX_ERODE) uarmf->oeroded2++;
+								else if (uarmf && uarmf->spe > -20) uarmf->spe--;
+							}
+
+							morehungry(10);
+
+
+							if (!pumpsdefiled) {
+								pline(flags.female ? "With your vagina, you start peeing into the sexy leather pumps." : "You put your penis over the sexy leather pumps and start urinating into them.");
+								pumpsdefiled = 1;
+
+								u.ualign.sins++;
+								u.alignlim--;
+							      adjalign(-1000);
+
+							} else {
+								pline(flags.female ? "You continue squirting your pee into the sexy leather pumps with your vagina." : "You continue urinating into the sexy leather pumps with your penis.");
+								pumpsdefiled++;
+							      adjalign(-100);
+							}
+						}
+					}
+
+					break;
+				case 6:
 					if (pumpsstate == PUMPINLAP) {
 						pline("Aww, the lovely leather pumps seem to really like being kissed by you!");
 						pumpslikeyou++;
@@ -19781,6 +19832,18 @@ newturn:
 
 	}
 	if (yourturn) goto newturn;
+
+	if (pumpsdefiled) {
+		if (pumpsdefiled >= 20) {
+			pline("You monster, you irreversibly defiled the pumps. They are now utterly unusable.");
+			useupall(uarmf);
+			return;
+		} else {
+			if (yn("Do you stop defiling the pumps?") == 'y') {
+				return;
+			} else goto newturn;
+		}
+	}
 
 	if ((pumpslikeyou > 0) && rnd(pumpslikeyou) > 9) {
 		pline("The sexy leather pumps are satisfied, and offer you to end the fight.");
