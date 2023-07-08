@@ -1153,7 +1153,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 		(void) drop_throw(mon, otmp, 0, mtmp->mx, mtmp->my);
 		return 1;
 	    }
-	} else if (mtmp->data == &mons[PM_XXXXXXXXXXXXXXXXXXXX]) { /* will never be hit by monsters' ranged attacks */
+	} else if (mtmp->data == &mons[PM_XXXXXXXXXXXXXXXXXXXX] || mtmp->data == &mons[PM_IDE_BY__]) { /* will never be hit by monsters' ranged attacks */
 	    if (!ismimic) {
 		pline("%s swats a projectile away.", Monnam(mtmp));
 	    }

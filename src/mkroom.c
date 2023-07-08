@@ -2346,8 +2346,19 @@ minotaurvariant() /* Amy notice: keep is_minotaur() in mondata.c updated too */
 struct permonst *
 insidemon()
 {
-	int     i = rnd(130);
-	if (i > 129)	{
+	int     i = rnd(153);
+	if (i > 152) return(rn2(20) ? &mons[PM_SUPERTHIEF] : (level_difficulty() < 24) ? &mons[PM_SUPERTHIEF] : &mons[PM____BIT_SUBSYSTEM]);
+	else if (i > 151)	return(&mons[PM_YOUR_MAP_SHOWS_]);
+	else if (i > 150)	return(&mons[PM_HEAVILY_INJURED]);
+	else if (i > 145)	return(&mons[PM_YOU_SEE_]);
+	else if (i > 140)	return(&mons[PM_CRITICALLY_INJURED]);
+	else if (i > 139)	return(&mons[PM_IDE_BY__]);
+	else if (i > 138)	return(&mons[PM_VAILABLE__EXIT_ANYWAY_]);
+	else if (i > 137)	return(&mons[PM_MAND_PENDING__MAGIC_SPELL___]);
+	else if (i > 136)	return(&mons[PM_E_PALE_WRAITH_WITH_A_LIGHTNING_STROKE_]);
+	else if (i > 132)	return(&mons[PM_CRITICALLY_INJURED_PERCENTS]);
+	else if (i > 130)	return(&mons[PM_OGRE_PERCENTS]);
+	else if (i > 129)	{
 		switch (rnd(5)) {
 			case 1:
 				return(rn2(5) ? &mons[PM_SUPERTHIEF] : &mons[PM_SLICK_RUEA]);

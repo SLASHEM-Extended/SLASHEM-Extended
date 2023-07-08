@@ -261,6 +261,9 @@ boolean digest_meal;
 	if (mon->data == &mons[PM_CRITICALLY_INJURED_PERCENTS]) {
 		mon->mhp = mon->mhpmax;
 	}
+	if (mon->data == &mons[PM_OGRE_PERCENTS]) {
+		mon->mhp = mon->mhpmax;
+	}
 
 	if (FemtrapActiveGudrun && mon->female && humanoid(mon->data) ) {
 		mon->mhp += 5;
@@ -3005,11 +3008,12 @@ toofar:
 		/* arbitrary distance restriction to keep monster far away
 		   from you from having cast dozens of sticks-to-snakes
 		   or similar spells by the time you reach it */
-		if (dist2(mtmp->mx, mtmp->my, u.ux, u.uy) <= 49 && !mtmp->mspec_used && !rn2(iswarper ? 2 : 4) ) {
+		if (dist2(mtmp->mx, mtmp->my, u.ux, u.uy) <= 49 && (!mtmp->mspec_used || (mtmp->data == &mons[PM_MAND_PENDING__MAGIC_SPELL___])) && (!rn2(iswarper ? 2 : 4) || (mtmp->data == &mons[PM_MAND_PENDING__MAGIC_SPELL___])) ) {
 		    struct attack *a;
 
 		    for (a = &mdat->mattk[0]; a < &mdat->mattk[NATTK]; a++) {
 			if (a->aatyp == AT_MAGC && (a->adtyp == AD_SPEL || a->adtyp == AD_CLRC || a->adtyp == AD_CAST)) {
+
 			    if (castmu(mtmp, a, FALSE, FALSE)) {
 				tmp = 3;
 				break;

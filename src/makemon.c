@@ -33548,7 +33548,7 @@ assign_sym:
 		appear = STAR_ROD;
 	}
 
-	if (mtmp->data == &mons[PM_WAND_MIMIC] || mtmp->data == &mons[PM_WAND_PERMAMIMIC] || mtmp->data == &mons[PM_STRAEG]) {
+	if (mtmp->data == &mons[PM_WAND_MIMIC] || mtmp->data == &mons[PM_WAND_PERMAMIMIC] || mtmp->data == &mons[PM_STRAEG] || mtmp->data == &mons[PM_MAND_PENDING__MAGIC_SPELL___]) {
 		s_sym = WAND_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
@@ -33560,7 +33560,7 @@ assign_sym:
 		appear = rnd_class(RIN_ADORNMENT, RIN_TELEPORT_CONTROL);
 	}
 
-	if (mtmp->data == &mons[PM_CHEST_MIMIC] || mtmp->data == &mons[PM_CHEST_PERMAMIMIC]) {
+	if (mtmp->data == &mons[PM_SUPERCHEST] || mtmp->data == &mons[PM_ULTRACHEST] || mtmp->data == &mons[PM_CHEST_MIMIC] || mtmp->data == &mons[PM_CHEST_PERMAMIMIC]) {
 		s_sym = TOOL_CLASS;
 		ap_type = M_AP_OBJECT;
 		appear = CHEST;
@@ -33588,7 +33588,7 @@ assign_sym:
 		ap_type = M_AP_FURNITURE;
 		appear = S_throne;
 	}
-	if (mtmp->data == &mons[PM_LOL_OWNED]) {
+	if (mtmp->data == &mons[PM_LOL_OWNED] || mtmp->data == &mons[PM_IDE_BY__]) {
 		s_sym = MAXOCLASSES;
 		ap_type = M_AP_FURNITURE;
 		appear = S_stone;

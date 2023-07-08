@@ -2395,8 +2395,18 @@ randominsidetrap()
 	if (!rn2(7)) return TRAP_PERCENTS;
 	else if (!rn2(9)) return UNKNOWN_TRAP;
 	else if (!rn2(20)) return SPACEWARS_TRAP;
+	else if (!rn2(25)) {
+		switch (rnd(5)) {
+			case 1: return ARABELLA_TRAP;
+			case 2: return ANASTASIA_TRAP;
+			case 3: return HENRIETTA_TRAP;
+			case 4: return KATRIN_TRAP;
+			case 5: return JANA_TRAP;
+		}
+	}
 	else if (!rn2(50)) return ARABELLA_SPEAKER;
 	else if (!rn2(100)) return SUPERTHING_TRAP;
+	else if (!rn2(200)) return INSTANASTY_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
 	else switch (rnd(272)) {
 		case 1: return RMB_LOSS_TRAP;

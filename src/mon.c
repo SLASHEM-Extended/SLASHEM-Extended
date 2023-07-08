@@ -2171,7 +2171,7 @@ struct monst *mon;
 
 	if (FemtrapActiveKsenia && spawnswithsandals(mon->data) && (mmove < 12)) mmove = 12;
 
-	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_ENEMY_FROM_LEVEL___] || mon->data == &mons[PM_VELCRO_BITCH] || mon->data == &mons[PM_SOCKS_GIRL] || mon->data == &mons[PM_ULTRACHEST] || mon->data == &mons[PM_JILL] ) {
+	if (mon->data == &mons[PM_HUSSY_JILL] || mon->data == &mons[PM_ENEMY_FROM_LEVEL___] || mon->data == &mons[PM_VELCRO_BITCH] || mon->data == &mons[PM_SOCKS_GIRL] || mon->data == &mons[PM_MAND_PENDING__MAGIC_SPELL___] || mon->data == &mons[PM_E_PALE_WRAITH_WITH_A_LIGHTNING_STROKE_] || mon->data == &mons[PM_ULTRACHEST] || mon->data == &mons[PM_JILL] ) {
 	/* Hussy Jill is a dangerous quest nemesis. As long as you don't hurt her, she'll just stand in place...
 	 * but as soon as she loses as much as a single hit point, she'll completely 0wn your sorry butt :P --Amy */
 		if (!(u.usteed && mon == u.usteed) && (mon->mhp == mon->mhpmax)) {
@@ -5047,6 +5047,10 @@ register struct monst *mtmp;
 
 	if (tmp == PM_DOUBLE_AURORA_BOMBER) {
 		getnastytrapintrinsic();
+	}
+
+	if (tmp == PM_VAILABLE__EXIT_ANYWAY_) {
+		NastinessProblem += 100000;
 	}
 
 	if (tmp == PM_SLICK_RUEA) {

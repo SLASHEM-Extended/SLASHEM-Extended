@@ -3216,17 +3216,18 @@ elena37:
 			}
 			break;
 		case AT_MAGC:
-			if (!rn2(iswarper ? 2 : 8)) /* yeah they need to be toned down a lot */{
+			if (!rn2(iswarper ? 2 : 8) || (mtmp->data == &mons[PM_MAND_PENDING__MAGIC_SPELL___]) ) {
+			/* yeah they need to be toned down a lot because that spell spammage in vanilla was just insane --Amy */
 
-			if (range2) {
-			    if (!blue_on_blue(mtmp))
-				sum[i] = buzzmu(mtmp, mattk);
-			} else {
-			    if (foundyou)
-				sum[i] = castmu(mtmp, mattk, TRUE, TRUE);
-			    else
-				sum[i] = castmu(mtmp, mattk, TRUE, FALSE);
-			}
+				if (range2) {
+				    if (!blue_on_blue(mtmp))
+					sum[i] = buzzmu(mtmp, mattk);
+				} else {
+				    if (foundyou)
+					sum[i] = castmu(mtmp, mattk, TRUE, TRUE);
+				    else
+					sum[i] = castmu(mtmp, mattk, TRUE, FALSE);
+				}
 
 			}
 
@@ -6003,6 +6004,15 @@ newboss:
 			if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("Bad luck - the giant enemy crab bisects you. Goodbye.");
 				losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "being bisected by a giant enemy crab",KILLED_BY);
+			}
+		}
+	}
+
+	if (mtmp->data == &mons[PM_E_PALE_WRAITH_WITH_A_LIGHTNING_STROKE_]) {
+		if(!range2 && foundyou && (tmp > (j = rnd(20+i)))) {
+			if (!rn2(20) && !bigmonst(youmonst.data) && !StrongDiminishedBleeding && !Invulnerable && !(Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+				pline("Bad luck - the wraith bisects you. Goodbye.");
+				losehp(2 * (Upolyd ? u.mh : u.uhp) + 200, "being bisected by a wraith", KILLED_BY);
 			}
 		}
 	}

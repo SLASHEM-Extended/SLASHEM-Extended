@@ -494,6 +494,17 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_SLICK_RUEA]) return TRUE;
 	if (ptr == &mons[PM_SHEER_SPACER]) return TRUE;
 	if (ptr == &mons[PM_DIVISION_FIEND]) return TRUE;
+	if (ptr == &mons[PM_CRITICALLY_INJURED_PERCENTS]) return TRUE;
+	if (ptr == &mons[PM_OGRE_PERCENTS]) return TRUE;
+	if (ptr == &mons[PM____BIT_SUBSYSTEM]) return TRUE;
+	if (ptr == &mons[PM_YOUR_MAP_SHOWS_]) return TRUE;
+	if (ptr == &mons[PM_HEAVILY_INJURED]) return TRUE;
+	if (ptr == &mons[PM_YOU_SEE_]) return TRUE;
+	if (ptr == &mons[PM_CRITICALLY_INJURED]) return TRUE;
+	if (ptr == &mons[PM_IDE_BY__]) return TRUE;
+	if (ptr == &mons[PM_VAILABLE__EXIT_ANYWAY_]) return TRUE;
+	if (ptr == &mons[PM_MAND_PENDING__MAGIC_SPELL___]) return TRUE;
+	if (ptr == &mons[PM_E_PALE_WRAITH_WITH_A_LIGHTNING_STROKE_]) return TRUE;
 
 	return FALSE;
 

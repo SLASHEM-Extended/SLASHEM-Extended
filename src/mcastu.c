@@ -458,13 +458,23 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		    spellnum = choose_clerical_spell(spellnum);
 		else { /* AD_CAST - often reroll when psybolt or open wounds is chosen --Amy */
 
-			if ((moves % 4 == 0) || ((moves + 1) % 4 == 0)) spellnum = choose_clerical_spell(spellnum);
-			else spellnum = choose_magic_spell(spellnum);
+			if ((moves % 4 == 0) || ((moves + 1) % 4 == 0)) {
+				spellnum = choose_clerical_spell(spellnum);
+				spellcasttype = AD_CLRC;
+			} else {
+				spellnum = choose_magic_spell(spellnum);
+				spellcasttype = AD_SPEL;
+			}
 
 			while (rn2(7) && !spellnum) {
 
-				if ((moves % 4 == 0) || ((moves + 1) % 4 == 0)) spellnum = choose_clerical_spell(spellnum);
-				else spellnum = choose_magic_spell(spellnum);
+				if ((moves % 4 == 0) || ((moves + 1) % 4 == 0)) {
+					spellnum = choose_clerical_spell(spellnum);
+					spellcasttype = AD_CLRC;
+				} else {
+					spellnum = choose_magic_spell(spellnum);
+					spellcasttype = AD_SPEL;
+				}
 
 			}
 
@@ -492,7 +502,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 	}
 
 	/* monster unable to cast spells? */
-	if (mtmp->mcan || arcaniumfail() || (mtmp->data == &mons[PM_KLAPPTNIX]) || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || mtmp->m_en < 5 || mtmp->mspec_used || !ml || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ARK_OF_THE_COVENANT) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5))  ) {
+	if (mtmp->mcan || arcaniumfail() || (mtmp->data == &mons[PM_KLAPPTNIX]) || (RngeAntimagicA && !rn2(10)) || (RngeAntimagicB && !rn2(5)) || (RngeAntimagicC && !rn2(2)) || (RngeAntimagicD) || (RngeSpellDisruption && !rn2(5)) || mtmp->m_en < 5 || (mtmp->mspec_used && !(mtmp->data == &mons[PM_MAND_PENDING__MAGIC_SPELL___])) || !ml || u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || (uwep && uwep->oartifact == ART_ARK_OF_THE_COVENANT) || (uwep && uwep->oartifact == ART_ANTIMAGICBANE) || (uarmc && (itemhasappearance(uarmc, APP_VOID_CLOAK) || itemhasappearance(uarmc, APP_SHELL_CLOAK)) && !rn2(5))  ) {
 	    cursetxt(mtmp, is_undirected_spell(spellcasttype, spellnum));
 	    return(0);
 	}

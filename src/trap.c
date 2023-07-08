@@ -16542,9 +16542,9 @@ skillrandomizeredo:
 
 		case JANA_TRAP:
 			if (FemaleTrapJana) break;
-			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+			if (!dontreveal && !FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) seetrap(trap);
 
-			if (!FemtrapActiveRuth) {
+			if (!FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Jana.");
 				pline("Someone's hiding underneath a grave wall, but some of the grave walls have teleporters or cursed calleds underneath, so be careful!");
 			}
@@ -16560,9 +16560,9 @@ skillrandomizeredo:
 
 		case KATRIN_TRAP:
 			if (FemaleTrapKatrin) break;
-			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+			if (!dontreveal && !FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) seetrap(trap);
 
-			if (!FemtrapActiveRuth) {
+			if (!FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Katrin.");
 				pline("Some girls are planning to use their sticky chewing gum as a trap to prevent you from getting away!");
 			}
@@ -17115,9 +17115,9 @@ skillrandomizeredo:
 		 case HENRIETTA_TRAP:
 
 			if (FemaleTrapHenrietta) break;
-			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+			if (!dontreveal && !FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) seetrap(trap);
 
-			if (!FemtrapActiveRuth) {
+			if (!FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Henrietta.");
 				pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
 			}
@@ -17153,9 +17153,9 @@ skillrandomizeredo:
 		 case ARABELLA_TRAP:
 
 			if (FemaleTrapArabella) break;
-			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+			if (!dontreveal && !FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) seetrap(trap);
 
-			if (!FemtrapActiveRuth) {
+			if (!FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Arabella.");
 				pline("Oh no, the master of nasty traps is laying out her snares to get you!");
 			}
@@ -17327,9 +17327,9 @@ skillrandomizeredo:
 		 case ANASTASIA_TRAP:
 
 			if (FemaleTrapAnastasia) break;
-			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+			if (!dontreveal && !FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) seetrap(trap);
 
-			if (!FemtrapActiveRuth) {
+			if (!FemtrapActiveRuth && !(in_rooms(u.ux, u.uy, INSIDEROOM)) ) {
 				pline("Whoops... you seem to have stumbled into a trap that was set by Anastasia.");
 				pline("Suddenly, you feel that you're going to step into a heap of shit.");
 			}

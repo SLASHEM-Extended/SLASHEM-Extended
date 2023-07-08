@@ -3120,7 +3120,7 @@ meleeattack:
 
 	}
 
-	if ((magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || (magr->data == &mons[PM_GIANT_ENEMY_CRAB] && !rn2(20)) || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL]) && isevilvariant) {
+	if ((magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_] || (magr->data == &mons[PM_GIANT_ENEMY_CRAB] && !rn2(20)) || (magr->data == &mons[PM_E_PALE_WRAITH_WITH_A_LIGHTNING_STROKE_] && !rn2(20)) || magr->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL]) && isevilvariant) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
