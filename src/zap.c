@@ -8519,6 +8519,11 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 			}
 		}
 
+		if (magicpassesthrough(mtmp)) {
+			pline_The("spell passes through %s.", mon_nam(mtmp));
+			goto notamonster;
+		}
+
 		notonhead = (bhitpos.x != mtmp->mx ||
 			     bhitpos.y != mtmp->my);
 		if (weapon != FLASHED_LIGHT) {
@@ -8763,6 +8768,8 @@ int dx, dy;
 			if (mtmp && mtmp->mtame && control_magic_works()) {
 				pline_The("boomerang passes through %s.", mon_nam(mtmp));
 			} else if (mtmp->handytime) {
+				pline_The("boomerang passes through %s.", mon_nam(mtmp));
+			} else if (magicpassesthrough(mtmp)) {
 				pline_The("boomerang passes through %s.", mon_nam(mtmp));
 			} else {
 				m_respond(mtmp);
@@ -9631,6 +9638,10 @@ sigilcontroldirection:
 			pline_The("spell passes through %s.", mon_nam(mon));
 			goto raypassthrough;
 		}
+		if (magicpassesthrough(mon)) {
+			pline_The("spell passes through %s.", mon_nam(mon));
+			goto raypassthrough;
+		}
 
         /* WAC Player/Monster Fireball */
             if (abs(type) == ZT_SPELL(ZT_FIRE)) break;
@@ -9761,6 +9772,8 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 			if (control_magic_works() && type >= 0) {
 				pline_The("spell passes through %s.", mon_nam(u.usteed));
 			} else if (u.usteed->handytime) {
+				pline_The("spell passes through %s.", mon_nam(u.usteed));
+			} else if (magicpassesthrough(u.usteed)) {
 				pline_The("spell passes through %s.", mon_nam(u.usteed));
 			} else {
 				mon = u.usteed;

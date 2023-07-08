@@ -505,8 +505,26 @@ register struct permonst *ptr;
 	if (ptr == &mons[PM_VAILABLE__EXIT_ANYWAY_]) return TRUE;
 	if (ptr == &mons[PM_MAND_PENDING__MAGIC_SPELL___]) return TRUE;
 	if (ptr == &mons[PM_E_PALE_WRAITH_WITH_A_LIGHTNING_STROKE_]) return TRUE;
+	if (ptr == &mons[PM_ARABELLA_SHOE]) return TRUE;
+	if (ptr == &mons[PM_ANASTASIA_SHOE]) return TRUE;
+	if (ptr == &mons[PM_HENRIETTA_SHOE]) return TRUE;
+	if (ptr == &mons[PM_KATRIN_SHOE]) return TRUE;
+	if (ptr == &mons[PM_JANA_SHOE]) return TRUE;
 
 	return FALSE;
+
+}
+
+/* do ranged weapons pass through this monster every time? --Amy */
+boolean
+magicpassesthrough(mtmp)
+struct monst *mtmp;
+{
+	if (mtmp->data == &mons[PM_ARABELLA_SHOE]) return TRUE;
+	if (mtmp->data == &mons[PM_ANASTASIA_SHOE]) return TRUE;
+	if (mtmp->data == &mons[PM_HENRIETTA_SHOE]) return TRUE;
+	if (mtmp->data == &mons[PM_KATRIN_SHOE]) return TRUE;
+	if (mtmp->data == &mons[PM_JANA_SHOE]) return TRUE;
 
 }
 

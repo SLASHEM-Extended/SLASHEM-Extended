@@ -33455,6 +33455,10 @@ assign_sym:
 		ap_type = M_AP_FURNITURE;
 		appear = S_mountain;
 	}
+	if (mtmp->data == &mons[PM_JANA_SHOE]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_gravewall;
+	}
 	if (mtmp->data == &mons[PM_TREEENT]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_tree;
