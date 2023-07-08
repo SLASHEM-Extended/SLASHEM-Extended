@@ -16,6 +16,7 @@ STATIC_DCL const char *where_name(int);
 STATIC_DCL void check_contained(struct obj *,const char *);
 #endif
 #endif /* OVL1 */
+STATIC_DCL int makeobject_core(int);
 
 extern struct obj *thrownobj;		/* defined in dothrow.c */
 
@@ -169,6 +170,87 @@ boolean shopinit;
  * 2 = absolutely never make the item into an artifact, and also don't make contents if it's a container
  */
 
+int
+makeobject_core(oclass)
+int oclass;
+{
+	int prob = rnd(100000);
+	int i;
+	int levscalediff;
+
+	i = bases[(int)oclass];
+	while((prob -= objects[i].oc_prob) > 0) i++;
+
+	if(objects[i].oc_class != oclass)
+		panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+	if(!OBJ_NAME(objects[i]))
+		panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+
+	/* Levelscaler race: very unlikely to get "out of depth items" --Amy */
+	if (islevelscaler && (i != GOLD_PIECE) && (objects[i].oc_minlvl > 1)) {
+
+		levscalediff = level_difficulty();
+		if (levscalediff < 1) levscalediff = 1; /* fail safe */
+
+		/*pline("trying to make item %d with level %d (level difficulty is %d)", i, objects[i].oc_minlvl, levscalediff);*/
+
+		while ((levscalediff >= 1) && (objects[i].oc_minlvl > levscalediff)) {
+
+			/*pline("item %d has level %d but scale is %d", i, objects[i].oc_minlvl, levscalediff);*/
+
+			if (!rn2(3)) {
+
+				/* somehow there's a weird potential for infinite loops... let's prevent them --Amy */
+				if (!rn2(50)) {
+					i = GOLD_PIECE;
+					goto levscalerollpast;
+				}
+
+				prob = rnd(100000);
+				i = bases[(int)oclass];
+				while((prob -= objects[i].oc_prob) > 0) i++;
+
+				if(objects[i].oc_class != oclass)
+					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+				if(!OBJ_NAME(objects[i]))
+					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+
+			}
+			levscalediff += 1;
+		}
+
+	}
+levscalerollpast:
+
+	/* inspired by ais523, higher base level items shouldn't appear constantly on early dlvls --Amy
+	 * they should still have a chance of spawning, so that exploring the levels is worthwile, but we don't want them
+	 * to have the full spawn chance; level_difficulty() is actually slightly random so it can take quite a while until
+	 * a high base level item reaches its full spawn chance */
+	if ((i != GOLD_PIECE) && (objects[i].oc_minlvl > 1) ) {
+		levscalediff = rnd(100 + level_difficulty());
+		int attempts = 50000;
+
+		while (attempts && (levscalediff < objects[i].oc_minlvl)) {
+			attempts--;
+
+			/*pline("item %d has level %d but scale is %d", i, objects[i].oc_minlvl, levscalediff);*/
+
+			prob = rnd(100000);
+			i = bases[(int)oclass];
+			while((prob -= objects[i].oc_prob) > 0) i++;
+
+			if(objects[i].oc_class != oclass)
+				panic("probtype error, oclass=%d i=%d", (int) oclass, i);
+			if(!OBJ_NAME(objects[i]))
+				panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+
+		}
+
+	}
+
+	return i;
+}
+
 struct obj *
 mkobj(oclass, artif, shopinit)
 char oclass;
@@ -305,41 +387,7 @@ boolean shopinit;
 
 	}
 
-levscalereroll:
-
-	i = bases[(int)oclass];
-	while((prob -= objects[i].oc_prob) > 0) i++;
-
-	if(objects[i].oc_class != oclass)
-		panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-	if(!OBJ_NAME(objects[i]))
-		panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
-
-	/* Levelscaler race: very unlikely to get "out of depth items" --Amy */
-	if (islevelscaler && i != GOLD_PIECE && (objects[i].oc_minlvl > 1)) {
-
-		levscalediff = level_difficulty();
-		if (levscalediff < 1) levscalediff = 1; /* fail safe */
-
-		/*pline("trying to make item %d with level %d (level difficulty is %d)", i, objects[i].oc_minlvl, levscalediff);*/
-
-		while ((levscalediff >= 1) && (objects[i].oc_minlvl > levscalediff)) {
-			if (!rn2(3)) {
-				/*pline("didn't make the roll! (level difficulty was %d)", levscalediff);*/
-
-				/* somehow there's a weird potential for infinite loops... let's prevent them --Amy */
-				if (!rn2(50)) {
-					i = GOLD_PIECE;
-					goto levscalerollpast;
-				}
-				prob = rnd(100000);
-				goto levscalereroll;
-			}
-			levscalediff += 1;
-		}
-
-	}
-levscalerollpast:
+	i = makeobject_core(oclass);
 
 	if (oclass == SPBOOK_CLASS) {
 
@@ -347,40 +395,22 @@ levscalerollpast:
 
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias1)) {
-				prob = rnd(100000);
-				i = bases[(int)oclass];
-				while((prob -= objects[i].oc_prob) > 0) i++;
 
-				if(objects[i].oc_class != oclass)
-					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-				if(!OBJ_NAME(objects[i]))
-					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+				i = makeobject_core(oclass);
 			}
 
 		} else if (u.spellbookbias2 >= 0 && (rnd(100) <= u.spellbookchance2) && (spell_skilltype(i) != u.spellbookbias2)) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias2)) {
-				prob = rnd(100000);
-				i = bases[(int)oclass];
-				while((prob -= objects[i].oc_prob) > 0) i++;
 
-				if(objects[i].oc_class != oclass)
-					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-				if(!OBJ_NAME(objects[i]))
-					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+				i = makeobject_core(oclass);
 			}
 
 		} else if (u.spellbookbias3 >= 0 && (rnd(100) <= u.spellbookchance3) && (spell_skilltype(i) != u.spellbookbias3)) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (spell_skilltype(i) != u.spellbookbias3)) {
-				prob = rnd(100000);
-				i = bases[(int)oclass];
-				while((prob -= objects[i].oc_prob) > 0) i++;
 
-				if(objects[i].oc_class != oclass)
-					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-				if(!OBJ_NAME(objects[i]))
-					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+				i = makeobject_core(oclass);
 			}
 
 		}
@@ -392,14 +422,8 @@ levscalerollpast:
 		if (!rn2(20) && objects[i].oc_skill != P_JAVELIN) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (objects[i].oc_skill != P_JAVELIN)) {
-				prob = rnd(100000);
-				i = bases[(int)oclass];
-				while((prob -= objects[i].oc_prob) > 0) i++;
 
-				if(objects[i].oc_class != oclass)
-					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-				if(!OBJ_NAME(objects[i]))
-					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+				i = makeobject_core(oclass);
 			}
 		}
 
@@ -410,14 +434,8 @@ levscalerollpast:
 		if (!rn2(50) && objects[i].oc_skill != P_CROSSBOW) {
 			int spattempts = 0;
 			while (spattempts++ < 50000 && (objects[i].oc_skill != P_CROSSBOW)) {
-				prob = rnd(100000);
-				i = bases[(int)oclass];
-				while((prob -= objects[i].oc_prob) > 0) i++;
 
-				if(objects[i].oc_class != oclass)
-					panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-				if(!OBJ_NAME(objects[i]))
-					panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+				i = makeobject_core(oclass);
 			}
 		}
 
@@ -425,50 +443,22 @@ levscalerollpast:
 
 	if (ismusablenumber(i) && (u.antimusablebias > rn2(100) ) ) {
 
-		prob = rnd(100000);
-		i = bases[(int)oclass];
-		while((prob -= objects[i].oc_prob) > 0) i++;
-
-		if(objects[i].oc_class != oclass)
-			panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-		if(!OBJ_NAME(objects[i]))
-			panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+		i = makeobject_core(oclass);
 	}
 
 	/* Gray stones are too common; have a chance to reroll them at least once --Amy */
 	if (i >= RIGHT_MOUSE_BUTTON_STONE && i <= NASTY_STONE && rn2(5)) {
 
-		prob = rnd(100000);
-		i = bases[(int)oclass];
-		while((prob -= objects[i].oc_prob) > 0) i++;
-
-		if(objects[i].oc_class != oclass)
-			panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-		if(!OBJ_NAME(objects[i]))
-			panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+		i = makeobject_core(oclass);
 	}
 
 	if (i >= ELIF_S_JEWEL && i <= DORA_S_JEWEL && rn2(5)) {
 
-		prob = rnd(100000);
-		i = bases[(int)oclass];
-		while((prob -= objects[i].oc_prob) > 0) i++;
-
-		if(objects[i].oc_class != oclass)
-			panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-		if(!OBJ_NAME(objects[i]))
-			panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+		i = makeobject_core(oclass);
 	}
 
 	if (i == SCR_RAGNAROK && rn2(64)) {
-		prob = rnd(100000);
-		i = bases[(int)oclass];
-		while((prob -= objects[i].oc_prob) > 0) i++;
-
-		if(objects[i].oc_class != oclass)
-			panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-		if(!OBJ_NAME(objects[i]))
-			panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
+		i = makeobject_core(oclass);
 
 	}
 
@@ -476,19 +466,10 @@ levscalerollpast:
 	if (oclass == ARMOR_CLASS && !isvanillaarmor(i) && rn2(2)) {
 
 		int armortries = 0;
-armorreroll:
-		prob = rnd(100000);
-		i = bases[(int)oclass];
-		while((prob -= objects[i].oc_prob) > 0) i++;
 
-		if(objects[i].oc_class != oclass)
-			panic("probtype error, oclass=%d i=%d", (int) oclass, i);
-		if(!OBJ_NAME(objects[i]))
-			panic("probtype no object name error, oclass=%d i=%d", (int) oclass, i);
-
-		if (!isvanillaarmor(i) && (armortries < 5000)) {
+		while (!isvanillaarmor(i) && (armortries < 5000)) {
 			armortries++;
-			goto armorreroll;
+			i = makeobject_core(oclass);
 		}
 
 	}
