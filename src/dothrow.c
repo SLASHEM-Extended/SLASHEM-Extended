@@ -2783,6 +2783,17 @@ inaccurateguns:
 			case P_SUPREME_MASTER: tmp += rnd(6); break;
 		}
 
+		/* shien and djem so are both "form V" so they boost each other --Amy
+		 * reduced monster evasiveness if you've enhanced both */
+		if (obj && is_lightsaber(obj) && (obj->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
+			if (P_SKILL(P_SHIEN) >= P_BASIC && P_SKILL(P_DJEM_SO) >= P_BASIC) skillpierce++;
+			if (P_SKILL(P_SHIEN) >= P_SKILLED && P_SKILL(P_DJEM_SO) >= P_SKILLED) skillpierce++;
+			if (P_SKILL(P_SHIEN) >= P_EXPERT && P_SKILL(P_DJEM_SO) >= P_EXPERT) skillpierce++;
+			if (P_SKILL(P_SHIEN) >= P_MASTER && P_SKILL(P_DJEM_SO) >= P_MASTER) skillpierce++;
+			if (P_SKILL(P_SHIEN) >= P_GRAND_MASTER && P_SKILL(P_DJEM_SO) >= P_GRAND_MASTER) skillpierce++;
+			if (P_SKILL(P_SHIEN) >= P_SUPREME_MASTER && P_SKILL(P_DJEM_SO) >= P_SUPREME_MASTER) skillpierce++;
+		}
+
 		/* polearms and such should get to-hit bonuses from general combat as well, because I want it :D --Amy */
 		if (pieks) {
 

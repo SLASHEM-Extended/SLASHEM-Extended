@@ -5484,6 +5484,15 @@ begin_burn(obj, already_lit)
 
 			if (is_lightsaber(obj) && (obj->where == OBJ_MINVENT) && rn2(20)) willdrainenergy = FALSE;
 
+			/* juyo and vaapad so are both "form VII" so they boost each other --Amy
+			 * reduced double lightsaber power usage if you've enhanced both */
+			if (P_SKILL(P_JUYO) >= P_BASIC && P_SKILL(P_VAAPAD) >= P_BASIC && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_SKILLED && P_SKILL(P_VAAPAD) >= P_SKILLED && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_MASTER && P_SKILL(P_VAAPAD) >= P_MASTER && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_GRAND_MASTER && P_SKILL(P_VAAPAD) >= P_GRAND_MASTER && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_SUPREME_MASTER && P_SKILL(P_VAAPAD) >= P_SUPREME_MASTER && !rn2(20)) willdrainenergy = FALSE;
+
 			if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 			if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
@@ -5553,6 +5562,16 @@ begin_burn(obj, already_lit)
 		lightsaberchance2 = 0;
 		lightsaberchance3 = 0;
 	    	if (obj->altmode && obj->age > 1) {
+
+			/* juyo and vaapad so are both "form VII" so they boost each other --Amy
+			 * reduced double lightsaber power usage if you've enhanced both */
+			if (P_SKILL(P_JUYO) >= P_BASIC && P_SKILL(P_VAAPAD) >= P_BASIC && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_SKILLED && P_SKILL(P_VAAPAD) >= P_SKILLED && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_MASTER && P_SKILL(P_VAAPAD) >= P_MASTER && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_GRAND_MASTER && P_SKILL(P_VAAPAD) >= P_GRAND_MASTER && !rn2(20)) willdrainenergy = FALSE;
+			if (P_SKILL(P_JUYO) >= P_SUPREME_MASTER && P_SKILL(P_VAAPAD) >= P_SUPREME_MASTER && !rn2(20)) willdrainenergy = FALSE;
+
 			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
 				switch (P_SKILL(P_MAKASHI)) {
 					case P_BASIC: lightsaberchance = 1; break;

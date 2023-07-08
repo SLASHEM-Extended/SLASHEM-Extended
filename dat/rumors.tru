@@ -2567,3 +2567,7 @@ They say that having a high symbiosis skill allows newly obtained symbiotes to s
 Occasionally, special dungeon levels and mazes will have some of their walls replaced with random terrain. It is very rare for them to replace all the walls with walkable terrain.
 If you leave a container on the floor and a monster capable of eating the container's material walks over it, the contents become the monster's inventory, meaning they aren't lost forever, thank God.
 Occasionally, the randomized appearances of items may shuffle. If that happens, existing artifacts will also end up with a different randomized appearance, but newly generated artifacts that depend on a specific appearance will still be spawned with the original one.
+If you enhance both the Shien and Djem So lightsaber forms, your lightsaber gains additional chance to block projectiles.
+If you enhance both the Shien and Djem So lightsaber forms, enemies are less likely to evade your thrown lightsaber.
+If you enhance both the Juyo and Vaapad lightsaber forms, your lightsaber is more likely to cut an enemy's weapon.
+If you enhance both the Juyo and Vaapad lightsaber forms, your double lightsabers will use up less power than normal while in double mode (but obviously still more than they use in single mode).

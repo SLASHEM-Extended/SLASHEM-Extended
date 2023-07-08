@@ -2479,6 +2479,15 @@ int dieroll;
 						default: juyochance += 0; break;
 					}
 
+					/* juyo and vaapad so are both "form VII" so they boost each other --Amy
+					 * increased chance to cut enemy weapons if you've enhanced both */
+					if (P_SKILL(P_JUYO) >= P_BASIC && P_SKILL(P_VAAPAD) >= P_BASIC) juyochance++;
+					if (P_SKILL(P_JUYO) >= P_SKILLED && P_SKILL(P_VAAPAD) >= P_SKILLED) juyochance++;
+					if (P_SKILL(P_JUYO) >= P_EXPERT && P_SKILL(P_VAAPAD) >= P_EXPERT) juyochance++;
+					if (P_SKILL(P_JUYO) >= P_MASTER && P_SKILL(P_VAAPAD) >= P_MASTER) juyochance++;
+					if (P_SKILL(P_JUYO) >= P_GRAND_MASTER && P_SKILL(P_VAAPAD) >= P_GRAND_MASTER) juyochance++;
+					if (P_SKILL(P_JUYO) >= P_SUPREME_MASTER && P_SKILL(P_VAAPAD) >= P_SUPREME_MASTER) juyochance++;
+
 				}
 				if (P_SKILL(weapon_type(uwep)) >= P_SKILLED && !(PlayerCannotUseSkills) ) {
 					juyochance += 30;

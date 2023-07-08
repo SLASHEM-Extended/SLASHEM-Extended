@@ -351,6 +351,15 @@ const char *name;	/* if null, then format `obj' */
 				default: saberblockrate += 0; break;
 			}
 
+			/* shien and djem so are both "form V" so they boost each other --Amy
+			 * bonus to lightsaber blocking chance if you've enhanced both */
+			if (P_SKILL(P_SHIEN) >= P_BASIC && P_SKILL(P_DJEM_SO) >= P_BASIC) saberblockrate++;
+			if (P_SKILL(P_SHIEN) >= P_SKILLED && P_SKILL(P_DJEM_SO) >= P_SKILLED) saberblockrate++;
+			if (P_SKILL(P_SHIEN) >= P_EXPERT && P_SKILL(P_DJEM_SO) >= P_EXPERT) saberblockrate++;
+			if (P_SKILL(P_SHIEN) >= P_MASTER && P_SKILL(P_DJEM_SO) >= P_MASTER) saberblockrate++;
+			if (P_SKILL(P_SHIEN) >= P_GRAND_MASTER && P_SKILL(P_DJEM_SO) >= P_GRAND_MASTER) saberblockrate++;
+			if (P_SKILL(P_SHIEN) >= P_SUPREME_MASTER && P_SKILL(P_DJEM_SO) >= P_SUPREME_MASTER) saberblockrate++;
+
 		}
 		if (P_SKILL(weapon_type(uwep)) >= P_SKILLED && !(PlayerCannotUseSkills) ) {
 			saberblockrate += 30;
