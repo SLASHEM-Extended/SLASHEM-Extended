@@ -693,6 +693,8 @@ STATIC_OVL void
 	savelife(how)
 int how;
 {
+	pline("You %s because of %s, but didn't actually die.", ends[how], killer);
+
 	u.uswldtim = 0;
 	if (Second_chance) {
 		u.uhp = u.uhplast;
