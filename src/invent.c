@@ -15434,6 +15434,36 @@ boolean knoweverything;
 				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_FREEDOM].a_ac, enchname(objects[IMPLANT_OF_FREEDOM].oc_oprop));
 				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it.", objects[IMPLANT_OF_FREEDOM].a_ac); break;
 
+			case IMPLANT_OF_SERENITY:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_SERENITY].a_ac, enchname(objects[IMPLANT_OF_SERENITY].oc_oprop)); break;
+
+			case IMPLANT_OF_GILGAMESH:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_GILGAMESH].a_ac, enchname(objects[IMPLANT_OF_GILGAMESH].oc_oprop)); break;
+
+			case IMPLANT_OF_THE_PLANES:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_THE_PLANES].a_ac, enchname(objects[IMPLANT_OF_THE_PLANES].oc_oprop)); break;
+
+			case IMPLANT_OF_RECKONING:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_RECKONING].a_ac, enchname(objects[IMPLANT_OF_RECKONING].oc_oprop)); break;
+
+			case IMPLANT_OF_RESPECT:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_RESPECT].a_ac, enchname(objects[IMPLANT_OF_RESPECT].oc_oprop)); break;
+
+			case IMPLANT_OF_EXCELLENCE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_EXCELLENCE].a_ac, enchname(objects[IMPLANT_OF_EXCELLENCE].oc_oprop)); break;
+
+			case IMPLANT_OF_PUNITION:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_PUNITION].a_ac, enchname(objects[IMPLANT_OF_PUNITION].oc_oprop)); break;
+
+			case IMPLANT_OF_HUBRIS:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_HUBRIS].a_ac, enchname(objects[IMPLANT_OF_HUBRIS].oc_oprop)); break;
+
+			case IMPLANT_OF_OMEN:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_OMEN].a_ac, enchname(objects[IMPLANT_OF_OMEN].oc_oprop)); break;
+
+			case IMPLANT_OF_CARNAGE:
+				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_CARNAGE].a_ac, enchname(objects[IMPLANT_OF_CARNAGE].oc_oprop)); break;
+
 			case IMPLANT_OF_QUEEB_BUTT:
 				pline("An implant that gives %d points of AC. It can be charged.", objects[IMPLANT_OF_QUEEB_BUTT].a_ac); break;
 
@@ -15501,6 +15531,13 @@ boolean knoweverything;
 			case IMPLANT_OF_ENFORCING:
 				if (!PlayerCannotUseSkills && P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_ENFORCING].a_ac, enchname(objects[IMPLANT_OF_ENFORCING].oc_oprop));
 				else pline("An implant that gives %d points of AC. It also gives an enchantment, but your skill isn't high enough to recognize it. It can be charged.", objects[IMPLANT_OF_ENFORCING].a_ac); break;
+
+			case IMPLANT_OF_LEGEND:
+				pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_LEGEND].a_ac, enchname(objects[IMPLANT_OF_LEGEND].oc_oprop)); break;
+
+			case IMPLANT_OF_VIRTUE:
+				pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_VIRTUE].a_ac, enchname(objects[IMPLANT_OF_VIRTUE].oc_oprop)); break;
+
 
 			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 			}
@@ -26349,6 +26386,22 @@ boolean knoweverything;
 					pline("Artifact specs: ends your life if you quaff it, so you probably shouldn't do that unless you want to start a new character. If you breathe its vapors instead, you become confused, stunned and feared."); break;
 				case ART_DESIGN_YOUR_OWN:
 					pline("Artifact specs: after reading it, you can choose a scroll that your character has formally identified, and receive 5 heavily cursed copies of the scroll in question, but at the cost of alla."); break;
+				case ART_GLEN_HOSPITAL:
+					pline("Artifact specs: occasionally nullifies incoming damage when worn and grants resistance to fear, and if you're in a form without hands, your wisdom is greatly increased and can also be increased beyond the soft cap more easily. 'Dear Lord, grant me the serenity to accept the things I cannot change, the courage to change the things I can, and the wisdom to tell the difference.'"); break;
+				case ART_RIVERS_OF_BABYLON:
+					pline("Artifact specs: increases the health of newly obtained symbiotes. If you are in a form without hands, the boost is greater."); break;
+				case ART_CLEAN_ASCENSION_RUN:
+					pline("Artifact specs: grants free action, discount action and sleep resistance if you're in the elemental planes. If you are in a form without hands, you have the double version of those properties and also intrinsic half physical and spell damage as well as 10 extra points of AC, but likewise only in the elemental planes."); break;
+				case ART_FOOD_FOR_THOUGHT:
+					pline("Artifact specs: increases the soft cap for intelligence and wisdom, and if you're in a form without hands, the increase is bigger and you also gain +2 INT."); break;
+				case ART_NIOBE_S_ANGER:
+					pline("Artifact specs: while wearing it, eggs cannot hatch tame and the evil deities are always angry at you, the haughty bastards. But if you're in a form without hands, your accuracy and damage output are boosted. Be aware that if you take off this item, the gods will still be angry and need to be mollified somehow, and mollifying them while you're still wearing it doesn't work at all."); break;
+				case ART_FOREBODING:
+					pline("Artifact specs: allows you to sometimes sense the statistics of newly generated items, and if you're in a form without hands you'll get enlightenment from time to time."); break;
+				case ART_WILL_S_SACRIFICE:
+					pline("Artifact specs: if you die while wearing this item and happen to have a source of life saving, monsters near you may be tamed, and if you're in a form without hands at the time of your death, all monsters on the current level also become un-frenzied if they were frenzied. Beware: you need to provide your own source of life saving. If you try to rely on this artifact implant to save your life, you will die for real."); break;
+				case ART_DUNGEON_BOSS__WITH_SHARP_S:
+					pline("Artifact specs: +1 to all stats when worn, or if you're in a form without hands, +2 to all except strength, which is boosted by +10 instead."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

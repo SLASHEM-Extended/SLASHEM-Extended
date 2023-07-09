@@ -6981,11 +6981,20 @@ revid_end:
 				objects[wearimplant->otyp].oc_oprop = randnastyenchantment();
 			}
 
+			if (wearimplant->otyp >= IMPLANT_OF_SERENITY && wearimplant->otyp <= IMPLANT_OF_CARNAGE) {
+				objects[wearimplant->otyp].a_ac = rnd(9);
+				objects[wearimplant->otyp].oc_oprop = randfemienchantment();
+			}
+			if (wearimplant->otyp >= IMPLANT_OF_LEGEND && wearimplant->otyp <= IMPLANT_OF_VIRTUE) {
+				objects[wearimplant->otyp].a_ac = rnd(9);
+				objects[wearimplant->otyp].oc_oprop = randfemienchantment();
+			}
+
 			if (wearimplant->otyp >= IMPLANT_OF_IRE && wearimplant->otyp <= IMPLANT_OF_FREEDOM) {
 				objects[wearimplant->otyp].a_ac = rnd(5);
 				objects[wearimplant->otyp].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 			}
-			if (wearimplant->otyp >= IMPLANT_OF_TEN_THOUSAND_THINGS && wearimplant->otyp <= IMPLANT_OF_ENFORCING) {
+			if (wearimplant->otyp >= IMPLANT_OF_TEN_THOUSAND_THINGS && wearimplant->otyp <= IMPLANT_OF_VIRTUE) {
 				objects[wearimplant->otyp].a_ac = rnd(5);
 				objects[wearimplant->otyp].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 			}

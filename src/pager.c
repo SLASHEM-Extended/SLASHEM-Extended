@@ -29038,6 +29038,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your vagina seems to turn itself inward...",
 	"It feels like your penis is contracting... why on earth is such a message even in the game?!",
 	"Your vagina seems to turn itself inward... and you think that Amy must be really fucked up, adding such stuff to an ASCII game.",
+	"Oh no, the gods are angry at you for no real reason!",
+	"Oh no, the gods are angry at you for no real reason! (Classic SLEX!)",
 
 };
 

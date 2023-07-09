@@ -33417,7 +33417,7 @@ assign_sym:
 	if (mtmp->data == &mons[PM_IMPLANT_MIMIC] || mtmp->data == &mons[PM_IMPLANT_PERMAMIMIC]) {
 		s_sym = IMPLANT_CLASS;
 		ap_type = M_AP_OBJECT;
-		appear = rnd_class(IMPLANT_OF_ABSORPTION, IMPLANT_OF_ENFORCING);
+		appear = rnd_class(IMPLANT_OF_ABSORPTION, IMPLANT_OF_VIRTUE);
 	}
 
 	if (mtmp->data == &mons[PM_PARENTHESIS]) {

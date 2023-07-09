@@ -4662,8 +4662,7 @@ long timeout;
 		    /* tame if your own egg hatches while you're on the
 		       same dungeon level, or any dragon egg which hatches
 		       while it's in your inventory */
-		    if ((yours && !silent) ||
-			(carried(egg) && mon->data->mlet == S_DRAGON)) {
+		    if (((yours && !silent) || (carried(egg) && mon->data->mlet == S_DRAGON)) && !(uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) ) {
 			if ((mon2 = tamedog(mon, (struct obj *)0, FALSE)) != 0) {
 			    mon = mon2;
 			    if (carried(egg) && mon->data->mlet != S_DRAGON)

@@ -1751,6 +1751,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) dmg += 4;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_RONDITSCH) dmg += 1;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) dmg += 2;
+	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) dmg += 2;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -2604,6 +2605,7 @@ boolean polearming;
 	if (uarmg && uarmg->oartifact == ART_PLUS_TO_HIT) tmp += 5;
 	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
 	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {

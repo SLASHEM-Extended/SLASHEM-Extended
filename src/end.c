@@ -695,6 +695,30 @@ int how;
 {
 	pline("You %s because of %s, but didn't actually die.", ends[how], killer);
 
+	/* will's sacrifice helpfully triggers *before* perilous life saving erases your inventory :D */
+	if (uimplant && uimplant->oartifact == ART_WILL_S_SACRIFICE) {
+		int i, j, bd = 5;
+		struct monst *mtmp;
+
+		verbalize("I Am Legend!"); /* yeah totally not a crappy movie reference :-P --Amy */
+
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 && !DEADMONSTER(mtmp) && mtmp->mtame == 0 
+			&& mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ))
+				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+		}
+
+		if (powerfulimplants()) {
+			for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+				if (!DEADMONSTER(mtmp)) {
+					mtmp->mfrenzied = 0;
+				}
+			}
+		}
+
+	}
+
 	u.uswldtim = 0;
 	if (Second_chance) {
 		u.uhp = u.uhplast;

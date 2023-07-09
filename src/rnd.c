@@ -2234,6 +2234,113 @@ randnastyenchantment()
 }
 
 int
+randfemienchantment()
+{
+		switch (rnd(98)) {
+			case 1: return FEMTRAP_FEMMY;
+			case 2: return FEMTRAP_MADELEINE;
+			case 3: return FEMTRAP_MARLENA;
+			case 4: return FEMTRAP_ANASTASIA;
+			case 5: return FEMTRAP_JESSICA;
+			case 6: return FEMTRAP_SOLVEJG;
+			case 7: return FEMTRAP_WENDY;
+			case 8: return FEMTRAP_KATHARINA;
+			case 9: return FEMTRAP_ELENA;
+			case 10: return FEMTRAP_THAI;
+			case 11: return FEMTRAP_ELIF;
+			case 12: return FEMTRAP_NADJA;
+			case 13: return FEMTRAP_SANDRA;
+			case 14: return FEMTRAP_NATALJE;
+			case 15: return FEMTRAP_JEANETTA;
+			case 16: return FEMTRAP_YVONNE;
+			case 17: return FEMTRAP_MAURAH;
+			case 18: return FEMTRAP_MELTEM;
+			case 19: return FEMTRAP_SARAH;
+			case 20: return FEMTRAP_CLAUDIA;
+			case 21: return FEMTRAP_LUDGERA;
+			case 22: return FEMTRAP_KATI;
+			case 23: return FEMTRAP_NELLY;
+			case 24: return FEMTRAP_EVELINE;
+			case 25: return FEMTRAP_KARIN;
+			case 26: return FEMTRAP_JUEN;
+			case 27: return FEMTRAP_KRISTINA;
+			case 28: return FEMTRAP_LOU;
+			case 29: return FEMTRAP_ALMUT;
+			case 30: return FEMTRAP_JULIETTA;
+			case 31: return FEMTRAP_ARABELLA;
+			case 32: return FEMTRAP_KRISTIN;
+			case 33: return FEMTRAP_ANNA;
+			case 34: return FEMTRAP_RUEA;
+			case 35: return FEMTRAP_DORA;
+			case 36: return FEMTRAP_MARIKE;
+			case 37: return FEMTRAP_JETTE;
+			case 38: return FEMTRAP_INA;
+			case 39: return FEMTRAP_SING;
+			case 40: return FEMTRAP_VICTORIA;
+			case 41: return FEMTRAP_MELISSA;
+			case 42: return FEMTRAP_ANITA;
+			case 43: return FEMTRAP_HENRIETTA;
+			case 44: return FEMTRAP_VERENA;
+			case 45: return FEMTRAP_ANNEMARIE;
+			case 46: return FEMTRAP_JIL;
+			case 47: return FEMTRAP_JANA;
+			case 48: return FEMTRAP_KATRIN;
+			case 49: return FEMTRAP_GUDRUN;
+			case 50: return FEMTRAP_ELLA;
+			case 51: return FEMTRAP_MANUELA;
+			case 52: return FEMTRAP_JENNIFER;
+			case 53: return FEMTRAP_PATRICIA;
+			case 54: return FEMTRAP_ANTJE;
+			case 55: return FEMTRAP_ANTJE_X;
+			case 56: return FEMTRAP_KERSTIN;
+			case 57: return FEMTRAP_LAURA;
+			case 58: return FEMTRAP_LARISSA;
+			case 59: return FEMTRAP_NORA;
+			case 60: return FEMTRAP_NATALIA;
+			case 61: return FEMTRAP_SUSANNE;
+			case 62: return FEMTRAP_LISA;
+			case 63: return FEMTRAP_BRIDGHITTE;
+			case 64: return FEMTRAP_JULIA;
+			case 65: return FEMTRAP_NICOLE;
+			case 66: return FEMTRAP_RITA;
+			case 67: return FEMTRAP_JANINA;
+			case 68: return FEMTRAP_ROSA;
+			case 69: return FEMTRAP_KSENIA;
+			case 70: return FEMTRAP_LYDIA;
+			case 71: return FEMTRAP_CONNY;
+			case 72: return FEMTRAP_KATIA;
+			case 73: return FEMTRAP_MARIYA;
+			case 74: return FEMTRAP_ELISE;
+			case 75: return FEMTRAP_RONJA;
+			case 76: return FEMTRAP_ARIANE;
+			case 77: return FEMTRAP_JOHANNA;
+			case 78: return FEMTRAP_INGE;
+			case 79: return FEMTRAP_RUTH;
+			case 80: return FEMTRAP_MAGDALENA;
+			case 81: return FEMTRAP_MARLEEN;
+			case 82: return FEMTRAP_KLARA;
+			case 83: return FEMTRAP_FRIEDERIKE;
+			case 84: return FEMTRAP_NAOMI;
+			case 85: return FEMTRAP_UTE;
+			case 86: return FEMTRAP_JASIEEN;
+			case 87: return FEMTRAP_YASAMAN;
+			case 88: return FEMTRAP_MAY_BRITT;
+			case 89: return FEMTRAP_NADINE;
+			case 90: return FEMTRAP_LUISA;
+			case 91: return FEMTRAP_IRINA;
+			case 92: return FEMTRAP_LISELOTTE;
+			case 93: return FEMTRAP_GRETA;
+			case 94: return FEMTRAP_JANE;
+			case 95: return FEMTRAP_SUE_LYN;
+			case 96: return FEMTRAP_CHARLOTTE;
+			case 97: return FEMTRAP_HANNAH;
+			case 98: return FEMTRAP_LITTLE_MARIE;
+		}
+
+	return FEMTRAP_ELISE; /* appease compiler */
+}
+
+int
 randomdisableproperty()
 {
 	switch (rnd(73)) {
@@ -3139,7 +3246,7 @@ int
 randartimplant()
 {
 	int result;
-	result = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_ENFORCING);
+	result = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_VIRTUE);
 	return result;
 }
 
@@ -3649,7 +3756,7 @@ int
 randartimplantX()
 {
 	int result;
-	result = IMPLANT_OF_ABSORPTION + rn2((IMPLANT_OF_ENFORCING + 1) - IMPLANT_OF_ABSORPTION);
+	result = IMPLANT_OF_ABSORPTION + rn2((IMPLANT_OF_VIRTUE + 1) - IMPLANT_OF_ABSORPTION);
 	return result;
 }
 

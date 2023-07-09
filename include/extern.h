@@ -2886,6 +2886,7 @@ E int randomillusionattack(void);
 E int randmonsound(void);
 E int randenchantment(void);
 E int randnastyenchantment(void);
+E int randfemienchantment(void);
 E int randomdisableproperty(void);
 E int randominsidetrap(void);
 E int randartmeleeweapon(void);

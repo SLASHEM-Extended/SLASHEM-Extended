@@ -6087,7 +6087,7 @@ rerollX:
 				acqo->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
 				break;
 			case IMPLANT_CLASS:
-				acqo->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_ENFORCING);
+				acqo->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_VIRTUE);
 				break;
 		}
 

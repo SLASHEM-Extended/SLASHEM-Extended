@@ -845,6 +845,20 @@ register char oclass;
 	objects[IMPLANT_OF_MENSTRATING].a_ac = rnd(5);
 	objects[IMPLANT_OF_ENFORCING].a_ac = rnd(5);
 
+	objects[IMPLANT_OF_SERENITY].a_ac = rnd(9);
+	objects[IMPLANT_OF_GILGAMESH].a_ac = rnd(9);
+	objects[IMPLANT_OF_THE_PLANES].a_ac = rnd(9);
+	objects[IMPLANT_OF_RECKONING].a_ac = rnd(9);
+	objects[IMPLANT_OF_RESPECT].a_ac = rnd(9);
+	objects[IMPLANT_OF_EXCELLENCE].a_ac = rnd(9);
+	objects[IMPLANT_OF_PUNITION].a_ac = rnd(9);
+	objects[IMPLANT_OF_HUBRIS].a_ac = rnd(9);
+	objects[IMPLANT_OF_OMEN].a_ac = rnd(9);
+	objects[IMPLANT_OF_CARNAGE].a_ac = rnd(9);
+
+	objects[IMPLANT_OF_LEGEND].a_ac = rnd(9);
+	objects[IMPLANT_OF_VIRTUE].a_ac = rnd(9);
+
 	objects[IMPLANT_OF_QUICKENING].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_KARMA].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_FERVOR].oc_oprop = randnastyenchantment();
@@ -870,6 +884,20 @@ register char oclass;
 	objects[IMPLANT_OF_BIG_OL].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_ANAL_RETENTION].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_GALVANIZATION].oc_oprop = randnastyenchantment();
+
+	objects[IMPLANT_OF_SERENITY].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_GILGAMESH].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_THE_PLANES].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_RECKONING].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_RESPECT].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_EXCELLENCE].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_PUNITION].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_HUBRIS].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_OMEN].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_CARNAGE].oc_oprop = randfemienchantment();
+
+	objects[IMPLANT_OF_LEGEND].oc_oprop = randfemienchantment();
+	objects[IMPLANT_OF_VIRTUE].oc_oprop = randfemienchantment();
 
 	objects[IMPLANT_OF_IRE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[IMPLANT_OF_MALICE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();

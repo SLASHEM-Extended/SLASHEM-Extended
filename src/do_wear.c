@@ -4418,6 +4418,8 @@ Implant_on()
     if (uimplant->otyp >= IMPLANT_OF_BUTCHERY && uimplant->otyp <= IMPLANT_OF_FREEDOM) curse(uimplant);
     if (uimplant->otyp >= IMPLANT_OF_TOTAL_NONSENSE && uimplant->otyp <= IMPLANT_OF_GALVANIZATION) curse(uimplant);
     if (uimplant->otyp >= IMPLANT_OF_YOUR_MOMMA && uimplant->otyp <= IMPLANT_OF_ENFORCING) curse(uimplant);
+    if (uimplant->otyp >= IMPLANT_OF_SERENITY && uimplant->otyp <= IMPLANT_OF_CARNAGE) curse(uimplant);
+    if (uimplant->otyp >= IMPLANT_OF_LEGEND && uimplant->otyp <= IMPLANT_OF_VIRTUE) curse(uimplant);
 
     if (!PlayerCannotUseSkills) {
 	bucidchance = 0;
@@ -6368,6 +6370,7 @@ find_ac()
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
 	if (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) uac -= 5;
 	if (uarm && uarm->oartifact == ART_STABLE_EXOSKELETON) uac -= 10;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) uac -= 10;
 	if (HardcoreAlienMode) uac -= 1;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) uac -= 10;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;

@@ -2771,6 +2771,14 @@ moveloop()
 			}
 		}
 
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FOREBODING && !rn2(2000)) {
+			You_feel("self-knowledgeable...");
+			display_nhwindow(WIN_MESSAGE, FALSE);
+			enlightenment(0, 1);
+			pline_The("feeling subsides.");
+			exercise(A_WIS, TRUE);
+		}
+
 		if (numberofwornmysteriousitems() > 0) {
 			int mysteriousamount = numberofwornmysteriousitems();
 
@@ -14159,6 +14167,11 @@ past4:
 		BankTrapEffect += 10000; /* to hopefully thwart stupid exploits :-P --Amy */
 		u.ugold = 0;
 		pline("Looks like you tried to use antigold cheats, which is not permitted. Your antigold was deleted.");
+	}
+
+	if (uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER && u.ugangr < 3) {
+		u.ugangr = 3;
+		pline("Oh no, the gods are angry at you for no real reason!");
 	}
 
 	if (uarm && uarm->oartifact == ART_WEGEO_ACQUA_DE_EISU_FORTE) {

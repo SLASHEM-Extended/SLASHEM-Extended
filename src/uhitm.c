@@ -906,6 +906,7 @@ register struct monst *mtmp;
 	if (uarm && uarm->oartifact == ART_WU_WU && u.twoweap) tmp += 4;
 	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
 	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -3674,6 +3675,7 @@ int dieroll;
 		if (uarm && uarm->oartifact == ART_WU_WU && u.twoweap) tmp += 2;
 		if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
 		if (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) tmp += 2;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 2;
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {

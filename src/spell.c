@@ -10431,7 +10431,7 @@ rerollX:
 				otmp->otyp = rnd_class(AMULET_OF_CHANGE,AMULET_OF_VULNERABILITY);
 				break;
 			case IMPLANT_CLASS:
-				otmp->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_ENFORCING);
+				otmp->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_VIRTUE);
 				break;
 		}
 		pline("Your artifact was rerolled to another base item!");

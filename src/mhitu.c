@@ -19217,7 +19217,12 @@ register int n;
 
 	if (Invulnerable || (uarmc && uarmc->oartifact == ART_NOTONHEAD && !rn2(10)) || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarm && uarm->oartifact == ART_GODLY_PROTECT && !rn2(5)) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
 
-	if (u.metalguard) {
+	if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
+		n = 0;
+		Your("implant nullifies the damage!");
+	}
+
+	if (u.metalguard && n > 0) {
 		u.metalguard = 0;
 		n = 0;
 		Your("metal guard prevents the damage!");

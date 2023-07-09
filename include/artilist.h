@@ -13425,6 +13425,38 @@ A("Design Your Own",				SCR_BLANK_PAPER, /* randart2 scroll, reading it allows y
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Glen Hospital",				IMPLANT_OF_SERENITY, /* 10% chance to nullify incoming damage, resist fear, and if you're in a form without hands, +10 WIS and wisdom can go up beyond the soft cap without the random chance of failure */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Rivers of Babylon",				IMPLANT_OF_GILGAMESH, /* 10% extra maximum health for newly obtained symbiotes, or 25% if you're in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Clean Ascension Run",				IMPLANT_OF_THE_PLANES, /* if you're in the elemental planes, free action, discount action and sleep resistance, and if you're in a form without hands you have the double version of those properties as well as intrinsic half physical and half spell damage and 10 extra points of AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Food For Thought",				IMPLANT_OF_RECKONING, /* increases INT and WIS soft cap by 2, or 5 if you're in a form without hands, and if you're in a form without hands you additionally have +2 INT */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Niobe's Anger",				IMPLANT_OF_HUBRIS, /* eggs cannot hatch tame, divine anger is always at least 3 but if you're in a form without hands, you have +4 increase accuracy and +2 increase damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Foreboding",				IMPLANT_OF_OMEN, /* allows you to listen in on item generation like the listener race, and if you're in a form without hands you also have 1 in 2000 chance per turn to get an enlightenment effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Will's Sacrifice",				IMPLANT_OF_LEGEND, /* if you die and happen to have life saving, acts as a confused scroll of taming; if you're in a form without hands, all frenzied monsters on the current level additionally become un-frenzied */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dungeon Boss (with sharp ss)",				IMPLANT_OF_VIRTUE, /* +1 all stats, or if you're in a form without hands, +10 STR and +2 all other stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

@@ -5034,8 +5034,10 @@ int k_format; /* WAC k_format is an int */
 	} else if (StrongWonderlegs && !rn2(10) && Wounded_legs) {
 		n = 0;
 		pline("You are unharmed!");
-	}
-	else if (u.metalguard) {
+	} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
+		n = 0;
+		Your("implant nullifies the damage!");
+	} else if (u.metalguard) {
 		    u.metalguard = 0;
 		    n = 0;
 		    Your("metal guard prevents the damage!");

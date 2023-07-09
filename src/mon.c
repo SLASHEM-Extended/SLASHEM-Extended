@@ -1816,7 +1816,7 @@ register struct monst *mtmp;
 		if (mtmp->mrevived) break;
 		num = rnd(3);
 		while (num--)
-			obj = mksobj_at(rnd_class(IMPLANT_OF_ABSORPTION, IMPLANT_OF_ENFORCING), x, y, TRUE, FALSE, FALSE);
+			obj = mksobj_at(rnd_class(IMPLANT_OF_ABSORPTION, IMPLANT_OF_VIRTUE), x, y, TRUE, FALSE, FALSE);
 		mtmp->mnamelth = 0;
 		break;
 
@@ -10110,6 +10110,10 @@ boolean holdeneffect;
 	u.usymbiote.mnum = mtmp->mnum;
 	u.usymbiote.mhpmax = mtmp->mhpmax;
 	if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) u.usymbiote.mhpmax *= 2;
+	if (uimplant && uimplant->oartifact == ART_RIVERS_OF_BABYLON) {
+		u.usymbiote.mhpmax *= (powerfulimplants() ? 125 : 110);
+		u.usymbiote.mhpmax /= 100;
+	}
 
 	if ((u.usymbiote.mnum != PM_SLICK_RUEA) && (u.usymbiote.mnum != PM_SHEER_SPACER) && (u.usymbiote.mnum != PM_DOUBLE_AURORA_BOMBER) && (u.usymbiote.mnum != PM_CRITICALLY_INJURED_THIEF) && (u.usymbiote.mnum != PM_CRITICALLY_INJURED_JEDI) && u.usymbiote.mhpmax < (mons[u.usymbiote.mnum].mlevel * 8)) {
 		u.usymbiote.mhpmax += mons[u.usymbiote.mnum].mlevel;
@@ -10243,6 +10247,11 @@ boolean canbeother;
 	if (extrahealth) {
 		u.usymbiote.mhpmax *= 3;
 		u.usymbiote.mhpmax /= 2;
+	}
+
+	if (uimplant && uimplant->oartifact == ART_RIVERS_OF_BABYLON) {
+		u.usymbiote.mhpmax *= (powerfulimplants() ? 125 : 110);
+		u.usymbiote.mhpmax /= 100;
 	}
 
 	/* high skill, especially coupled with high charisma, means they don't start with anemic health --Amy */

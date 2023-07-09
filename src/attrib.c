@@ -2944,6 +2944,7 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_STRBONUS) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (have_superjonadabstone()) tmp += 10;
+		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 10 : 1);
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3104,6 +3105,7 @@ int x;
 		if (u.combatcommand) tmp += 1;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 3;
 		if (have_superjonadabstone()) tmp += 10;
+		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -3230,6 +3232,9 @@ int x;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (x == A_INT && uarms && uarms->oartifact == ART_YELLOW_STATUS) tmp += 2;
 		if (have_superjonadabstone()) tmp += 10;
+		if (x == A_WIS && powerfulimplants() && uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL) tmp += 10;
+		if (x == A_INT && powerfulimplants() && uimplant && uimplant->oartifact == ART_FOOD_FOR_THOUGHT) tmp += 2;
+		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3314,6 +3319,7 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_DEXBONUS) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (have_superjonadabstone()) tmp += 10;
+		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3372,6 +3378,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_PHYSSTATBOOST) tmp += 5;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (have_superjonadabstone()) tmp += 10;
+		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;
@@ -3632,6 +3639,10 @@ boolean displaymessage;
 
 	if (RngeStatcapIncrease) actuallimit += 5;
 	if (uarmf && uarmf->oartifact == ART_EROTIC_STAT_TRAIN) actuallimit += 5;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && targetattr == A_WIS) actuallimit += 10000; /* guaranteed success */
+	if (uimplant && uimplant->oartifact == ART_FOOD_FOR_THOUGHT && (targetattr == A_WIS || targetattr == A_INT)) {
+		actuallimit += (powerfulimplants() ? 5 : 2);
+	}
 
 	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone()) {
 		if (targetattr == A_STR && actuallimit >= STR19(25)) actuallimit = STR18(70);
