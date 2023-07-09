@@ -3693,6 +3693,9 @@ register int after;
 	if (mtmp->mfrenzied && mtmp->mpeaceful) mtmp->mpeaceful = 0;
 	if (mtmp->mfrenzied && mtmp->mtame) mtmp->mtame = 0;
 
+	/* but if a hostile one is tame, it becomes peaceful (somehow this happens occasionally, not sure why) --Amy */
+	if (mtmp->mtame && !mtmp->mpeaceful && !mtmp->mfrenzied) mtmp->mpeaceful = TRUE; /* and also remains tame */
+
 	if (mtmp->data->mlet == S_TURRET || (mtmp->data == &mons[PM_SECRETIVE_INFORMANT] && !mtmp->codeguessed) || stationary(mtmp->data) || ((is_hider(mtmp->data) || mtmp->egotype_hide || mtmp->egotype_mimic) && (mtmp->mundetected || mtmp->m_ap_type == M_AP_FURNITURE || mtmp->m_ap_type == M_AP_OBJECT) ) ) {
 
 		if (mtmp->meating) { /* special case here by Amy, otherwise they'd never finish eating! */
