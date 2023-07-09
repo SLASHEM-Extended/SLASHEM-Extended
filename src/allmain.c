@@ -2293,20 +2293,20 @@ moveloop()
 					if (moveamt < 1) moveamt = 1;
 				}
 			} else if (uarmf && uarmf->oartifact == ART_JONADAB_S_BUG_MASTERY) {
-				if ((moves % 80) < 10) {
+				if ((moves % 64) < 10) {
 					moveamt /= 12;
 					if (moveamt < 1) moveamt = 1;
 				} else {
-					moveamt *= ((moves % 80) - 10);
+					moveamt *= ((moves % 64) - 10);
 					moveamt /= 12;	
 					if (moveamt < 1) moveamt = 1;
 				}
 			} else {
-				if ((moves % 60) < 10) {
+				if ((moves % 52) < 10) {
 					moveamt /= 12;
 					if (moveamt < 1) moveamt = 1;
 				} else {
-					moveamt *= ((moves % 60) - 10);
+					moveamt *= ((moves % 52) - 10);
 					moveamt /= 12;	
 					if (moveamt < 1) moveamt = 1;
 				}
