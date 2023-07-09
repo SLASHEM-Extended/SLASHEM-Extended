@@ -313,7 +313,8 @@ mattackm(magr, mdef)
 	return(MM_MISS);
     }
     if (mdef->handytime) return(MM_MISS);
-    if (!magr->mcanmove || magr->msleeping) return(MM_MISS);
+    /* note by Amy: it's weird if pets can still fight back while eating, so now they can't */
+    if (!magr->mcanmove || magr->msleeping || magr->meating) return(MM_MISS);
     pa = magr->data;  pd = mdef->data;
 
     /* Grid bugs cannot attack at an angle. */
