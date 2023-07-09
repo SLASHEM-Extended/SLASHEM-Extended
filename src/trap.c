@@ -1970,10 +1970,12 @@ struct monst *victim;
 			 * as cloth or paper, and therefore get a saving throw versus burning */
 			if (objects[otmp->otyp].oc_material == MT_WOOD && rn2(4)) vulnerable = FALSE;
 			if (objects[otmp->otyp].oc_material == MT_LEATHER && rn2(2)) vulnerable = FALSE;
+			if (objects[otmp->otyp].oc_material == MT_ALKALINE && rn2(2)) vulnerable = FALSE;
 			break;
 		case 1: vulnerable = is_rustprone(otmp);
 			break;
 		case 2: vulnerable = is_rottable(otmp);
+			if (objects[otmp->otyp].oc_material == MT_ALKALINE && rn2(2)) vulnerable = FALSE;
 			is_primary = FALSE;
 			break;
 		case 3: vulnerable = is_corrodeable(otmp);

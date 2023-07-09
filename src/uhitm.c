@@ -13139,7 +13139,7 @@ struct attack *mattk;		/* null means we find one internally */
 	case AD_FLAM:
 
 burnagain:
-	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == MT_WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == MT_LEATHER && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
+	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_flammable(obj) && !(objects[obj->otyp].oc_material == MT_WOOD && rn2(4)) && !(objects[obj->otyp].oc_material == MT_LEATHER && rn2(2)) && !(objects[obj->otyp].oc_material == MT_ALKALINE && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
 
 			if (obj->oeroded < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) {
 				obj->oeroded++;
@@ -13161,7 +13161,7 @@ burnagain:
 
 	case AD_DCAY:
 
-	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_rottable(obj) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
+	    if(!mon->mcan && !(Race_if(PM_CHIQUAI) && rn2(4)) && !stack_too_big(obj) && is_rottable(obj) && !(objects[obj->otyp].oc_material == MT_ALKALINE && rn2(2)) && !obj->oerodeproof && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != AMULET_OF_YENDOR && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && obj->oartifact != ART_KEY_OF_LAW && obj->oartifact != ART_KEY_OF_CHAOS && obj->oartifact != ART_KEY_OF_NEUTRALITY && obj->oartifact != ART_GAUNTLET_KEY ) {
 
 			if (obj->oeroded2 < MAX_ERODE && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && !((obj->blessed && !rnl(4)))) {
 				obj->oeroded2++;

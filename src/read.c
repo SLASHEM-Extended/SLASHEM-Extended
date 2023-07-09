@@ -6626,6 +6626,8 @@ aliasagain:
 
 	case SCR_INFERIOR_MATERIAL:
 
+	/* Amy grepping target: "materialeffect" - check regular and superior too */
+
 		if (CannotSelectItemsInPrompts) break;
 		known = TRUE;
 
@@ -6645,7 +6647,7 @@ materialchoice1:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(18)) {
+				switch (rnd(19)) {
 					case 1: changematerial = MT_LIQUID; break;
 					case 2: changematerial = MT_WAX; break;
 					case 3: changematerial = MT_VEGGY; break;
@@ -6664,6 +6666,7 @@ materialchoice1:
 					case 16: changematerial = MT_ALLOY; break;
 					case 17: changematerial = MT_SCRAP; break;
 					case 18: changematerial = MT_TINSEL; break;
+					case 19: changematerial = MT_FILM; break;
 					default: changematerial = MT_PAPER; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -6695,7 +6698,7 @@ materialchoice2:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(16)) {
+				switch (rnd(17)) {
 					case 1: changematerial = MT_MYSTERIOUS; break;
 					case 2: changematerial = MT_WOOD; break;
 					case 3: changematerial = MT_BONE; break;
@@ -6712,6 +6715,7 @@ materialchoice2:
 					case 14: changematerial = MT_LEAD; break;
 					case 15: changematerial = MT_CHROME; break;
 					case 16: changematerial = MT_AMBER; break;
+					case 17: changematerial = MT_ALKALINE; break;
 					default: changematerial = MT_METAL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -6743,7 +6747,7 @@ materialchoice3:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(16)) {
+				switch (rnd(17)) {
 					case 1: changematerial = MT_DRAGON_HIDE; break;
 					case 2: changematerial = MT_SILVER; break;
 					case 3: changematerial = MT_GOLD; break;
@@ -6760,6 +6764,7 @@ materialchoice3:
 					case 14: changematerial = MT_PWN_BUBBLE; break;
 					case 15: changematerial = MT_METEOSTEEL; break;
 					case 16: changematerial = MT_ANTIDOTIUM; break;
+					case 17: changematerial = MT_MENGETIUM; break;
 					default: changematerial = MT_MITHRIL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;

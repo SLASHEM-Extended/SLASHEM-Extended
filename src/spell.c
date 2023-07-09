@@ -11425,7 +11425,7 @@ int spell;
 	    splcaster += (issoviet ? 2 : 1);
 
 	/* Robes are body armour in SLASH'EM */
-	if (uarm && !SpellColorMetal && is_metallic(uarm) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
+	if (uarm && !SpellColorMetal && (is_metallic(uarm) || is_filmitem(uarm)) && !is_etheritem(uarm) && !is_meteosteelitem(uarm)) {
 
 		/* Amy grepping target: "materialeffect" */
 		switch (objects[(uarm)->otyp].oc_material) {
@@ -11436,6 +11436,7 @@ int spell;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_TINSEL: armorpenalties *= 10; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_FILM: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
@@ -11472,7 +11473,7 @@ int spell;
 		splcaster += (urole.spelarmr * armorpenalties / (issoviet ? 12 : 30));
 	}
 
-	if (uarmc && !SpellColorMetal && is_metallic(uarmc) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
+	if (uarmc && !SpellColorMetal && (is_metallic(uarmc) || is_filmitem(uarmc)) && !is_etheritem(uarmc) && !is_meteosteelitem(uarmc)) {
 
 		switch (objects[(uarmc)->otyp].oc_material) {
 			default: break;
@@ -11482,6 +11483,7 @@ int spell;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_TINSEL: armorpenalties *= 10; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_FILM: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
@@ -11519,7 +11521,7 @@ int spell;
 
 	}
 
-	if (uarmu && !SpellColorMetal && is_metallic(uarmu) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
+	if (uarmu && !SpellColorMetal && (is_metallic(uarmu) || is_filmitem(uarmu)) && !is_etheritem(uarmu) && !is_meteosteelitem(uarmu)) {
 
 		switch (objects[(uarmu)->otyp].oc_material) {
 			default: break;
@@ -11529,6 +11531,7 @@ int spell;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_TINSEL: armorpenalties *= 10; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_FILM: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
@@ -11577,6 +11580,7 @@ int spell;
 			case MT_GOLD: shieldpenalties *= 8; shieldpenalties /= 15; break;
 			case MT_TINSEL: shieldpenalties *= 10; shieldpenalties /= 15; break;
 			case MT_PLATINUM: shieldpenalties *= 18; shieldpenalties /= 15; break;
+			case MT_FILM: shieldpenalties *= 18; shieldpenalties /= 15; break;
 			case MT_ALLOY: shieldpenalties *= 18; shieldpenalties /= 15; break;
 			case MT_MITHRIL: shieldpenalties *= 13; shieldpenalties /= 15; break;
 			case MT_VIVA: shieldpenalties *= 12; shieldpenalties /= 15; break;
@@ -11614,7 +11618,7 @@ int spell;
 
 	}
 
-	if (uarmh && !SpellColorMetal && is_metallic(uarmh) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
+	if (uarmh && !SpellColorMetal && (is_metallic(uarmh) || is_filmitem(uarmh)) && !is_etheritem(uarmh) && !is_meteosteelitem(uarmh) && uarmh->otyp != HELM_OF_BRILLIANCE) {
 
 		switch (objects[(uarmh)->otyp].oc_material) {
 			default: break;
@@ -11624,6 +11628,7 @@ int spell;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_TINSEL: armorpenalties *= 10; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_FILM: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
@@ -11661,7 +11666,7 @@ int spell;
 
 	}
 
-	if (uarmg && !SpellColorMetal && is_metallic(uarmg) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
+	if (uarmg && !SpellColorMetal && (is_metallic(uarmg) || is_filmitem(uarmg)) && !is_etheritem(uarmg) && !is_meteosteelitem(uarmg)) {
 
 		switch (objects[(uarmg)->otyp].oc_material) {
 			default: break;
@@ -11671,6 +11676,7 @@ int spell;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_TINSEL: armorpenalties *= 10; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_FILM: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;
@@ -11708,7 +11714,7 @@ int spell;
 
 	}
 
-	if (uarmf && !SpellColorMetal && is_metallic(uarmf) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
+	if (uarmf && !SpellColorMetal && (is_metallic(uarmf) || is_filmitem(uarmf)) && !is_etheritem(uarmf) && !is_meteosteelitem(uarmf)) {
 
 		switch (objects[(uarmf)->otyp].oc_material) {
 			default: break;
@@ -11718,6 +11724,7 @@ int spell;
 			case MT_GOLD: armorpenalties *= 8; armorpenalties /= 15; break;
 			case MT_TINSEL: armorpenalties *= 10; armorpenalties /= 15; break;
 			case MT_PLATINUM: armorpenalties *= 18; armorpenalties /= 15; break;
+			case MT_FILM: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_ALLOY: armorpenalties *= 18; armorpenalties /= 15; break;
 			case MT_MITHRIL: armorpenalties *= 13; armorpenalties /= 15; break;
 			case MT_VIVA: armorpenalties *= 12; armorpenalties /= 15; break;

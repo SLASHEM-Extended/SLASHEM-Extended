@@ -537,8 +537,8 @@ struct obj {
 
 #define is_heavyweapon(obj)	((bimanual(obj) && objects[(obj)->otyp].oc_skill >= P_DAGGER && objects[(obj)->otyp].oc_skill <= P_WHIP && objects[(obj)->otyp].oc_skill != P_POLEARMS && !is_lightsaber(obj) && objects[(obj)->otyp].oc_skill != P_QUARTERSTAFF && !(objects[(obj)->otyp].oc_skill >= P_LANCE && objects[(obj)->otyp].oc_skill <= P_BOOMERANG) ) || obj->otyp == ATGEIR)
 
-/* misc */
-#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= MT_LEATHER || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_FOAM || objects[(otmp)->otyp].oc_material == MT_TINSEL || \
+/* misc - grep target "materialeffect" because materials could be flimsy */
+#define is_flimsy(otmp)		(objects[(otmp)->otyp].oc_material <= MT_LEATHER || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_FILM || objects[(otmp)->otyp].oc_material == MT_FOAM || objects[(otmp)->otyp].oc_material == MT_TINSEL || \
 				 (otmp)->otyp == RUBBER_HOSE)
 /* note by Amy: it is intentional that secree and compost don't appear here */
 

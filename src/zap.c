@@ -2817,6 +2817,18 @@ create_polymon(obj, okind)
 	    pm_index = PM_MITHRIL_GOLEM;
 	    material = "mithril ";
 	    break;
+	case MT_FILM:
+	    pm_index = PM_FILM_GOLEM;
+	    material = "film ";
+	    break;
+	case MT_ALKALINE:
+	    pm_index = PM_ALKALINE_GOLEM;
+	    material = "alkaline ";
+	    break;
+	case MT_MENGETIUM:
+	    pm_index = PM_MENGETIUM_GOLEM;
+	    material = "mengetium ";
+	    break;
 	case MT_ALLOY:
 	    pm_index = PM_ALLOY_GOLEM;
 	    material = "alloy ";

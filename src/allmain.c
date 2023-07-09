@@ -5856,7 +5856,6 @@ steelingchoice:
 		}
 steelingdone:
 
-		/* Amy grepping target: "materialeffect" */
 		if (uarmc && uarmc->oartifact == ART_PROTECT_WHAT_CANNOT_BE_PRO && !rn2(5000) ) {
 			register struct obj *steeling;
 			if (CannotSelectItemsInPrompts) goto protectwhatdone;
@@ -5869,19 +5868,9 @@ protectwhatchoice:
 				else goto protectwhatchoice;
 				pline("Oh well, if you don't wanna...");
 			} else {
-				if (objects[(steeling)->otyp].oc_material >= MT_WAX && objects[(steeling)->otyp].oc_material <= MT_WOOD) 
+				if (is_flammable(steeling) || is_rottable(steeling) || is_rustprone(steeling) || is_corrodeable(steeling)) {
 					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material == MT_IRON)
-					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material == MT_COPPER)
-					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material == MT_PLASTIC)
-					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material >= MT_VIVA && objects[(steeling)->otyp].oc_material <= MT_SAND) 
-					pline("That is erodable, and therefore it doesn't work!");
-				else if (objects[(steeling)->otyp].oc_material >= MT_CHROME && objects[(steeling)->otyp].oc_material <= MT_AMBER) 
-					pline("That is erodable, and therefore it doesn't work!");
-				else if (!stack_too_big(steeling)) {
+				} else if (!stack_too_big(steeling)) {
 					steeling->oerodeproof = 1;
 					p_glow2(steeling, NH_PURPLE);
 					if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
