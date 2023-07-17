@@ -10509,7 +10509,7 @@ boolean ranged;
 	for(i = 0; ; i++) {
 	    if(i >= NATTK) return(malive | mhit);	/* no passive attacks */
 	    if((!ranged && (ptr->mattk[i].aatyp == AT_NONE || (!malive && ptr->mattk[i].aatyp == AT_BOOM)) ) ||
-		  (ranged && ptr->mattk[i].aatyp == AT_RATH) ) { /* try this one */
+		  (ranged && (ptr->mattk[i].aatyp == AT_RATH || (!malive && monnear(mon, u.ux, u.uy) && ptr->mattk[i].aatyp == AT_BOOM)) ) ) { /* try this one */
 
 		if (ptr->mattk[i].aatyp == AT_RATH) rathback = TRUE;
 		else rathback = FALSE;
@@ -13450,7 +13450,7 @@ ranged_thorns(mon)
 register struct monst *mon;
 {
 
-	if (!attacktype(mon->data, AT_RATH)) return;
+	if (!attacktype(mon->data, AT_RATH) && !attacktype(mon->data, AT_BOOM)) return;
 
 	int mithrilitemcount = 0;
 
