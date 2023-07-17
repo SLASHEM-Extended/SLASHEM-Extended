@@ -586,7 +586,7 @@ vision_recalc(control)
     else {
 	int has_night_vision = 1;	/* hero has night vision */
 
-	if (Underwater && !Is_waterlevel(&u.uz)) {
+	if (Underwater && !Is_waterlevel(&u.uz) && !Swimming ) {
 	    /*
 	     * The hero is under water.  Only see surrounding locations if
 	     * they are also underwater.  This overrides night vision but
@@ -594,7 +594,8 @@ vision_recalc(control)
 	     */
 	    has_night_vision = 0;
 
-	    if (Swimming) {
+	    /*if (Swimming) {
+
 		    for (row = 0; row <= ROWNO; row++)
 			for (col = 0; col <= COLNO; col++) {
 			    if (!isok(col,row)) continue;
@@ -604,7 +605,7 @@ vision_recalc(control)
 			    next_array[row][col] = IN_SIGHT | COULD_SEE;
 			}
 
-	    } else {
+	    } else */{
 
 		    for (row = u.uy-1; row <= u.uy+1; row++)
 			for (col = u.ux-1; col <= u.ux+1; col++) {

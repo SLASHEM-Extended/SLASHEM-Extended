@@ -2142,7 +2142,7 @@ under_water(mode)
 	return;
     }
     /* limited update */
-    else {
+    else { /* mode == 0 */
 	for (y = lasty-1; y <= lasty+1; y++)
 	    for (x = lastx-1; x <= lastx+1; x++)
 		if (isok(x,y))
