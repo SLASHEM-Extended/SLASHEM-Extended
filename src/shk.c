@@ -6917,21 +6917,27 @@ shk_offer_price(slang, charge, shkp)
 
 	/* Player _wants_ to pay, but can he? */
 	/* WAC -- Check the credit:  but don't use check_credit
-	 * since we don't want to charge him for part of it if he can't pay for all 
-	 * of it 
+	 * since we don't want to charge him for part of it if he can't pay for all of it 
+	 * Amy edit: credit cloning is such a filthy cheat... so you have to use cash for services now!
+	 * otherwise, we might as well make all services cost 1 zorkmid, including high-end enchant armor, since the player
+	 * will, in the case of doubt, just steal their money back
 	 */
 #ifndef GOLDOBJ
-	if (charge > (u.ugold + credit)) {
+	if (charge > u.ugold) {
 #else
-	if (charge > (money_cnt(invent) + credit)) {  
+	if (charge > money_cnt(invent) ) {
 #endif
-		verbalize("Cash on the spot, %s, and you ain't got the dough!",
-			slang);
+		if (credit > 0) {
+			verbalize((u.ualign.record < 0) ? "Sorry, services are cash only. There have been too many adventurers like you in the past who tried to cheat me and my colleagues." : "Sorry, services are cash only.");
+		} else {
+			verbalize("Cash on the spot, %s, and you ain't got the dough!", slang);
+		}
+
 		return(FALSE);
 	}
 
 	/* Charge the customer */
-	charge = check_credit (charge, shkp); /* Deduct the credit first */
+	/* charge = check_credit (charge, shkp); */ /* Deduct the credit first */
 
 #ifndef GOLDOBJ
 	u.ugold -= charge;
