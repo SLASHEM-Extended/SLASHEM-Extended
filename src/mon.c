@@ -10176,6 +10176,10 @@ boolean canbeother;
 	struct permonst *pm = 0;
 	int attempts = 0;
 
+newsymbiotetry:
+	attempts = 0;
+	pm = (struct permonst *)0;
+
 	if (canbeother) {
 		do {
 			pm = rndmonst();
@@ -10213,6 +10217,11 @@ boolean canbeother;
 			pline("For some reason, symbiote creation failed.");
 			return;
 		}
+	}
+
+	/* it would be truly mean to give you some ultra-heavy cursed symbiote that makes you instantly overloaded --Amy */
+	if (symbioteweight(monsndx(pm)) >= (weight_cap() * 2) ) {
+		goto newsymbiotetry;
 	}
 
 	/* reset any existing symbiote structure first */

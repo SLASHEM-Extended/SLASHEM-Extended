@@ -5355,31 +5355,51 @@ inv_weight()
 	/* Symbiotes can have a weight. If you're a symbiant, the weight is considerably lower; everyone else will get
 	 * a skill-dependant amount of weight added. At master and above, the weight no longer gets a multiplier --Amy
 	 * climacterial role has zero symbiote weight starting at XL5 */
+
+	if (uinsymbiosis) wt += symbioteweight(u.usymbiote.mnum);
+
+	if (BurdenedState) wt *= 2;
+	if (StrongBurdenedState) {
+	/* add 2000 more, unless you have a low cap because being insta-overloaded with no way to fix it ain't fun --Amy */
+		if (weight_cap() < 1000) wt += (weight_cap() * 2);
+		else wt += 2000;
+	}
+
+	wc = weight_cap();
+	return (wt - wc);
+}
+
+int
+symbioteweight(symbiotetype)
+int symbiotetype;
+{
+	int xtraweight = 0;
+
 	if (uinsymbiosis && !(Role_if(PM_CLIMACTERIAL) && u.ulevel >= 5)) {
 
 		if (Role_if(PM_SYMBIANT)) {
 
 			int symweight = 0;
 
-			if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) symweight += 100;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_HUGE) symweight += 30;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) symweight += 10;
-			if ((int) mons[u.usymbiote.mnum].cwt > 99) symweight += ((int) mons[u.usymbiote.mnum].cwt / 100);
+			if (mons[symbiotetype].msize >= MZ_GIGANTIC) symweight += 100;
+			else if (mons[symbiotetype].msize >= MZ_HUGE) symweight += 30;
+			else if (mons[symbiotetype].msize >= MZ_LARGE) symweight += 10;
+			if ((int) mons[symbiotetype].cwt > 99) symweight += ((int) mons[symbiotetype].cwt / 100);
 
-			if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) symweight = 0;
-			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) symweight = 0;
+			if (Race_if(PM_BABYLONIAN) && mons[symbiotetype].mlet == S_TURRET) symweight = 0;
+			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && symbiotetype == PM_REMORA) symweight = 0;
 
 			if (symweight < 0) symweight = 0; /* fail safe */
-			wt += symweight;
+			xtraweight += symweight;
 
 		} else {
 
 			int symweight = 50; /* base weight even for weightless one */
 
-			if (mons[u.usymbiote.mnum].msize >= MZ_GIGANTIC) symweight += 1000;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_HUGE) symweight += 300;
-			else if (mons[u.usymbiote.mnum].msize >= MZ_LARGE) symweight += 100;
-			if ((int) mons[u.usymbiote.mnum].cwt > 9) symweight += ((int) mons[u.usymbiote.mnum].cwt / 10);
+			if (mons[symbiotetype].msize >= MZ_GIGANTIC) symweight += 1000;
+			else if (mons[symbiotetype].msize >= MZ_HUGE) symweight += 300;
+			else if (mons[symbiotetype].msize >= MZ_LARGE) symweight += 100;
+			if ((int) mons[symbiotetype].cwt > 9) symweight += ((int) mons[symbiotetype].cwt / 10);
 
 			/* goauld is special: they don't get a multiplier */
 			if (Race_if(PM_GOAULD)) ;
@@ -5395,24 +5415,16 @@ inv_weight()
 				}
 			} else symweight *= 5;
 
-			if (Race_if(PM_BABYLONIAN) && mons[u.usymbiote.mnum].mlet == S_TURRET) symweight = 0;
-			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) symweight = 0;
+			if (Race_if(PM_BABYLONIAN) && mons[symbiotetype].mlet == S_TURRET) symweight = 0;
+			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && symbiotetype == PM_REMORA) symweight = 0;
 
 			if (symweight < 0) symweight = 0; /* fail safe */
-			wt += symweight;
+			xtraweight += symweight;
 
 		}
 	}
+	return xtraweight;
 
-	if (BurdenedState) wt *= 2;
-	if (StrongBurdenedState) {
-	/* add 2000 more, unless you have a low cap because being insta-overloaded with no way to fix it ain't fun --Amy */
-		if (weight_cap() < 1000) wt += (weight_cap() * 2);
-		else wt += 2000;
-	}
-
-	wc = weight_cap();
-	return (wt - wc);
 }
 
 /*
