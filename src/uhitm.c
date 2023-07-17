@@ -5643,7 +5643,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(740)) {
+				switch (rnd(741)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -6385,6 +6385,7 @@ melatechoice:
 				case 738: pline("You evil person, you broke off %s's stiletto heels!", mon_nam(mon)); break;
 				case 739: pline("Finally, %s ain't be getting on your nerves no more!", mon_nam(mon)); break;
 				case 740: pline("After being shot in the %s, %s dies (expectably).", mbodypart(mon, HEAD), mon_nam(mon)); break;
+				case 741: pline("%s dies from with rupture of brain.", Monnam(mon)); break; /* sic from elona */
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
