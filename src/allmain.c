@@ -2836,6 +2836,9 @@ moveloop()
 
 		if (IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) u.fluidatorwantedlevel += 5;
 
+		/* walscholar can go into grave walls, but that shouldn't be abusable --Amy */
+		if (levl[u.ux][u.uy].typ == GRAVEWALL && !u.walscholarpass) u.fluidatorwantedlevel += 5;
+
 		if (!(IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) && levl[u.ux][u.uy].typ != IRONBARS) {
 			u.fluidatorwantedlevel--;
 			if (u.fluidatorwantedlevel < 0) u.fluidatorwantedlevel = 0; /* fail safe */

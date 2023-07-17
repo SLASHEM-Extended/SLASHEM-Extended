@@ -1212,6 +1212,11 @@ int mode;
 
 		if (mode != DO_MOVE) return FALSE;
 
+		if (Role_if(PM_WALSCHOLAR) && (yn("You can move into the grave wall, which will require you to use some nutrition.") == 'y') ) { /* so that you don't get suck having to trash your alignment --Amy */
+			morehungry(25);
+			goto walscholardone;
+		}
+
 		if (Role_if(PM_WALSCHOLAR) && (yn("Do you really want to dig into the grave wall? Doing so would be sinful for a Walscholar.") != 'y') ) return FALSE;
 
 		if (rn2(5) && !(uwep && uwep->oartifact == ART_CERULEAN_SMASH) ) {
