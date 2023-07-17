@@ -526,6 +526,7 @@ struct monst *mtmp;
 	if (mtmp->data == &mons[PM_KATRIN_SHOE]) return TRUE;
 	if (mtmp->data == &mons[PM_JANA_SHOE]) return TRUE;
 
+	return FALSE;
 }
 
 /* can the monster swat projectiles away? --Amy */
