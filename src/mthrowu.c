@@ -507,6 +507,11 @@ shieldblockboo:
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY && rnd(10) < ( ((moves % 13) > 9) ? 6 : (powerfulimplants()) ? 11 : 10) ) {
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
 	} else if (uarm && uarm->oartifact == ART_IS_ONLY_OWWE && !rn2(10)) {
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
 			else You("skillfully evade %s.", onm);

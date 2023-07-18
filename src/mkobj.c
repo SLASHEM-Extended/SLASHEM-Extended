@@ -302,6 +302,9 @@ boolean shopinit;
 			oclass = u.veryobtainclass3;
 		}
 
+		if (uarm && uarm->oartifact == ART_CHEST_IN_THE_BANDIT_S_LAIR && !rn2(40))
+			oclass = ARMOR_CLASS;
+
 		if ((oclass == SCROLL_CLASS) && (rn2(100) < u.scrollspawnchance)) {
 			oclass = COIN_CLASS;
 		}
@@ -622,6 +625,21 @@ struct obj *box;
 		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet) n += rn2(6);
 		if (iszapem && In_spacebase(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet) n += rn2(6);
 		if (u.preversionmode && In_greencross(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet) n += rn2(6);
+
+		if (uarm && uarm->oartifact == ART_CHEST_IN_THE_BANDIT_S_LAIR) { /* only applies to regular chests --Amy */
+
+			int armorxtras = rnd(3);
+			while (armorxtras > 0) {
+				armorxtras--;
+				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp);
+				}
+			}
+
+		}
+
 		break;
 
 	case LARGE_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;

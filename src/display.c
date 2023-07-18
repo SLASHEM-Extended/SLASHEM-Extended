@@ -1245,6 +1245,7 @@ newsym(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -1363,6 +1364,7 @@ newsym(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -1646,6 +1648,7 @@ newsymX(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -1764,6 +1767,7 @@ newsymX(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
+		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
@@ -3734,6 +3738,7 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) return TRUE;
+	if (uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) return TRUE;
 	if (uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) return TRUE;

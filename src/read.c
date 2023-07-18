@@ -1352,6 +1352,20 @@ doread()
 		buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
 	}
 
+	if (scroll->oartifact == ART_MAPS_TO_PLAY && scroll->oclass == SCROLL_CLASS && !(scroll->obrittle) ) {
+		if (writecost(scroll) <= 50) {
+			struct obj *createdscroll;
+
+		    	createdscroll = mksobj_at(scroll->otyp, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (createdscroll) {
+				createdscroll->quan += rnd(8);
+				createdscroll->owt = weight(createdscroll);
+			}
+			pline("A couple of maps to play have been put on the ground.");
+
+		}
+	}
+
 	if (scroll->oartifact == ART_DESIGN_YOUR_OWN && !(scroll->obrittle) ) {
 		scroll->obrittle++;
 
@@ -9515,6 +9529,53 @@ retry:
 		break;
 
 	case SCR_WORLD_FALL:
+
+		if (sobj->oartifact == ART_TUNGUSKA_EVENT) {
+
+			You_hear("a sound that reminds you of fireworks.");
+
+			int x, y;
+			struct obj *dynamite;
+			coord cc;
+			int tunguskas = rn1(10, 11);
+tunguskaagain:
+
+			cc.x = rn1(COLNO-3,2);
+			cc.y = rn2(ROWNO);
+			dynamite = mksobj_at(STICK_OF_DYNAMITE, cc.x, cc.y, TRUE, FALSE, FALSE);
+
+			if (dynamite) {
+				u.dynamitehack = TRUE;
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
+				}
+				u.dynamitehack = FALSE;
+			}
+			if (tunguskas > 0) {
+				tunguskas--;
+				goto tunguskaagain;
+			}
+
+			for (x = 0; x < COLNO; x++)
+			  for (y = 0; y < ROWNO; y++) {
+
+				if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == LAVAPOOL || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
+
+					levl[x][y].typ = LAVAPOOL;
+					blockorunblock_point(x,y);
+					if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+					newsym(x, y);
+
+				}
+
+			}
+
+		}
 
 		if (confused) {
 

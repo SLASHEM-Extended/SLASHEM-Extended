@@ -237,6 +237,10 @@ more_experienced(exp, rexp)
 			exp *= 11;
 			exp /= 10;
 		}
+		if (uarm && uarm->oartifact == ART_OH_NO_I_SAVED__AM_I_NEVERT) {
+			exp *= 11;
+			exp /= 10;
+		}
 	}
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && (exp > 1)) exp /= 2;
 	if (Race_if(PM_ETHEREALOID) && (exp > 1)) exp /= 2;

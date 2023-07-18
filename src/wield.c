@@ -144,6 +144,17 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("weapon's material morphs to a different one!");
 	}
 
+	if (uwep && uwep->oartifact == ART_SPACEL_SWIM) {
+		if (objects[uwep->otyp].oc_material != MT_IRON) {
+			objects[uwep->otyp].oc_material = MT_IRON;
+			Your("weapon is made of iron now.");
+		}
+		if (uwep->oerodeproof) {
+			uwep->oerodeproof = 0;
+			Your("weapon is no longer erosionproof.");
+		}
+	}
+
 	if (uwep && uwep->oartifact == ART_FONLAUSCHI && objects[uwep->otyp].oc_material != MT_SILK) {
 		objects[uwep->otyp].oc_material = MT_SILK;
 		Your("weapon is made of silk now.");

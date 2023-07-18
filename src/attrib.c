@@ -3017,6 +3017,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LYDIA_S_SEXYROOM) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
+		if (uarm && uarm->oartifact == ART_TOWNIE_DUMP) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) tmp += (5 + uarmf->spe);

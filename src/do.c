@@ -4460,7 +4460,7 @@ rerollchaloc:
 		    u_on_newpos(xdnladder, ydnladder);
 		} else {
 		    if (newdungeon) {
-			if (Is_stronghold(&u.uz)) {
+			if (Is_stronghold(&u.uz) && !u.missingstaircase) {
 			    register xchar x, y;
 			    int attempts = 0;
 
@@ -4475,6 +4475,20 @@ rerollchaloc:
 				attempts++;
 			    } while ((occupied(x, y) || IS_STWALL(levl[x][y].typ) || IS_WATERTUNNEL(levl[x][y].typ) || !goodpos(x, y, &youmonst, 0)) && attempts < 999999);
 			    u_on_newpos(x, y);
+
+			    if (!u.missingstaircase && levl[x][y].typ != STAIRS && levl[x][y].typ != LADDER && uarm && uarm->oartifact == ART_ADD_THE_MISSING_STAIRCASE) {
+				u.missingstaircase = TRUE;
+
+				sstairs.sx = x;
+				sstairs.sy = y;
+				sstairs.up = FALSE;
+				assign_level(&sstairs.tolev, &valley_level);
+				levl[x][y].ladder = LA_DOWN;
+				levl[x][y].typ = STAIRS;
+
+				pline("Stairs down appear from nowhere!");
+			    }
+
 			} else u_on_sstairs();
 		    } else u_on_dnstairs();
 		}

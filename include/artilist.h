@@ -5221,8 +5221,8 @@ A("Grinder",				MEATSWORD,
 	(SPFX_RESTR), 0, 0,
 	PHYS(4,12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Ouchfire",				ICKY_BLADE,
-	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+A("Ouchfire",				ICKY_BLADE, /* you take maximum damage */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	FIRE(1,16), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
 
 A("Antivamp Whoosh",				GRANITE_IMPALER,
@@ -10317,7 +10317,7 @@ A("Ultracursed Vampiric High-Heeled Shoes",				SENTIENT_HIGH_HEELED_SHOES, /* st
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Iron of Innermost Joy",				IMPLANT_OF_ABRASION, /* randart, material sets itself to IRON when equipped, heavily curses itself, wallwalking, you always walk in random directions; if in a form without hands, astral vision and half physical/spell damage */
+A("Iron of Innermost Joy",				IMPLANT_OF_ABRASION, /* randart, material sets itself to IRON when equipped, heavily curses itself, wallwalking, you walk in random directions for 10 turns and then normally for 3 turns; if in a form without hands, astral vision and half physical/spell damage. also you can deflect projectiles */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100000L ),
 
@@ -13456,6 +13456,118 @@ A("Will's Sacrifice",				IMPLANT_OF_LEGEND, /* if you die and happen to have lif
 A("Dungeon Boss (with sharp ss)",				IMPLANT_OF_VIRTUE, /* +1 all stats, or if you're in a form without hands, +10 STR and +2 all other stats */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Spacel-Swim",				MACE, /* material becomes IRON when equipped and it loses erosionproofing, flying and if you swim in water, the map reveals itself */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Thaiforce",				RED_LIGHTSABER, /* randart lightsaber, use the force, thai trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Henriettenforce",				RED_LIGHTSABER, /* randart2 lightsaber, use the force, 1000 turns of henrietta trap effect, resist sleep and stone, and you get permanent intrinsic aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Susa Mail",				HAWAIIAN_SHORTS, /* susanne trap effect, autocurses, 8 extra points of AC, use the force, 10% chance to nullify incoming damage, monster speed bug */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Artigrade",				POT_GAIN_LEVEL, /* can also upgrade artifacts when dipped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Add The Missing Staircase",				LEATHER_ARMOR, /* randart2 armor, going up to the castle when coming from the valley creates a downstair; if that has already happened, the armor conveys sight bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tunguska Event",				SCR_WORLD_FALL, /* causes dynamite explosions that can also blow up walls and generate lava like the ragnarok effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Library Hiding",				LEATHER_CLOAK, /* randart cloak, invisibility, this item spawns invisible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Find Me Nevertheless",				LEATHER_CLOAK, /* randart2 cloak, double invisibility, this item spawns hidden */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Dat's God",				LONG_SWORD, /* randart melee weapon, spawns erodeproof */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ideal Base",				LOW_BOOTS, /* randart2 boots, spawns with random erosion, invoke to gain a point of enchantment up to a max of +3 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Suk Me Hahahahahah",				HELMET, /* randart helmet, spawns with d3 grease */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Wear Off The Damn RNG",				HELMET, /* randart2 helmet, spawns with 3 grease and can be invoked to gain a layer of grease */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Nothing But Filler",				LEATHER_ARMOR, /* randart2 suit, spawns with random erosion and erosionproofing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Olscratch",				ICKY_BLADE, /* if you get hit with the playerbleed() effect, you bleed for twice as long */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(8, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("St-ickyness",				ICKY_BLADE, /* julietta trap effect, suppresses glib, protects from item-stealers */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	ACID(6, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Help With The Mine",				LEATHER_ARMOR, /* +2 sight range while you're in the gnomish mines and +1 while you're in the deep mines */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Townie Dump",				LEATHER_ARMOR, /* +5 charisma */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Tilling Fields",				LEATHER_ARMOR, /* allows you to walk through farmland */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sharp Smoky Stench",				STUDDED_LEATHER_ARMOR, /* fire traps reveal themselves with 1 in 500 chance per turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Throw Blostones",				STUDDED_LEATHER_ARMOR, /* shopkeepers spawn with a boulder on their square */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("The Patrol's Orders",				STUDDED_LEATHER_ARMOR, /* you see all 'o' and 'O' */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Chest in the bandit's lair",				CHAIN_MAIL, /* random class objects have 1 in 40 to become armor, newly spawned chests have d3 additional armor pieces in them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Oh no I saved, am I nevertheless so stupid!",				CHAIN_MAIL, /* turn counter advances twice as fast, you gain 10% more experience */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Crypt Smell",				BANDED_MAIL, /* undead warning, and if you're in a crypt room you also have scent view */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("A Roomful Will Be A Challenge",				STRIPE_MAIL, /* 1 in 5000 to spawn rn1(9, 9) giants of identical type */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Maps To Play",				SCR_BLANK_PAPER, /* randart2 scroll, if it's a type that can be multiplied via card trick then reading it creates a stack of additional scrolls of the same base type */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Multipot",				POT_WATER, /* randart2 potion, spawns with rn1(6,6) extra stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
 
 /*
  *	Stormbringer only has a 2 because it can drain a level,

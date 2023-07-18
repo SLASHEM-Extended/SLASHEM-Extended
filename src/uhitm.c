@@ -10524,7 +10524,7 @@ boolean ranged;
 	else
 	    tmp = 0;
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) {
 		if (ptr->mattk[i].damn)
 		    tmp = (int)ptr->mattk[i].damn * (int)ptr->mattk[i].damd;
 		else if(ptr->mattk[i].damd)

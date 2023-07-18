@@ -225,6 +225,7 @@ init_randarts()
 	 * WAN_MAKE_INVISIBLE = wand, SPE_MAGICTORCH = spellbook */
 
 	artilist[ART_SOULCALIBUR].otyp = randartmeleeweapon();
+	artilist[ART_DAT_S_GOD].otyp = randartmeleeweapon();
 	artilist[ART_HER_UNREACHABLE_BROOK].otyp = randartmeleeweapon();
 	artilist[ART_KOPKILLER].otyp = randartmeleeweapon();
 	artilist[ART_THIS_TRENCH_WAR_HAS_BEEN_F].otyp = randartmeleeweapon();
@@ -270,6 +271,7 @@ init_randarts()
 	artilist[ART_IT_POWER_KNOEPP].otyp = randartsuit();
 	artilist[ART_DON_SUICUNE_USED_SELFDESTR].otyp = randartsuit();
 	artilist[ART_WONDERCLOAK].otyp = randartcloak();
+	artilist[ART_LIBRARY_HIDING].otyp = randartcloak();
 	artilist[ART_BAMSEL_IN_THE_WAY].otyp = randartcloak();
 	artilist[ART_EVELINE_S_CIVIL_MANTLE].otyp = randartcloak();
 	artilist[ART_INA_S_OVERCOAT].otyp = randartcloak();
@@ -277,6 +279,7 @@ init_randarts()
 	artilist[ART_RITA_S_LOVELY_OVERGARMENT].otyp = randartcloak();
 	artilist[ART_LUNAR_ECLIPSE_TONIGHT].otyp = randartcloak();
 	artilist[ART_LORSKEL_S_SPEED].otyp = randarthelm();
+	artilist[ART_SUK_ME_HAHAHAHAHAH].otyp = randarthelm();
 	artilist[ART_TEN_MINUTES_COLDER].otyp = randarthelm();
 	artilist[ART_KAWA_JUR_FES].otyp = randarthelm();
 	artilist[ART____DOT__ALIEN_RADIO].otyp = randarthelm();
@@ -399,6 +402,7 @@ init_randarts()
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
+	artilist[ART_THAIFORCE].otyp = randartlightsaber();
 	artilist[ART_HALF_SUPER_ENCHANTMENT].otyp = randartlightsaber();
 	artilist[ART_WEDIFORCE].otyp = randartvenom();
 	artilist[ART_RIDGET_PHASTO].otyp = randartvenom();
@@ -461,8 +465,10 @@ init_randarts()
 	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
+	artilist[ART_FIND_ME_NEVERTHELESS].otyp = randartcloakX();
 	artilist[ART_OLD_PERSON_TALK].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
+	artilist[ART_IDEAL_BASE].otyp = randartbootsX();
 	artilist[ART_BUGBOOTS_OF_ERRORNESS].otyp = randartbootsX();
 	artilist[ART_I_DON_T_PARTICULARLY_LIKE_].otyp = randartbootsX();
 	artilist[ART_HOHO_DINGO].otyp = randartbootsX();
@@ -521,6 +527,7 @@ init_randarts()
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
 	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
+	artilist[ART_ADD_THE_MISSING_STAIRCASE].otyp = randartsuitX();
 	artilist[ART_THERE_GOES_SHE_TO].otyp = randartsuitX();
 	artilist[ART_HUNKSTERMAN].otyp = randartsuitX();
 	artilist[ART_DUH_BEWEGEO_ZISCH].otyp = randartsuitX();
@@ -535,6 +542,7 @@ init_randarts()
 	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
 	artilist[ART_PANTAP].otyp = randartcloakX();
 	artilist[ART_RUTH_S_DARK_FORCE].otyp = randarthelmX();
+	artilist[ART_WEAR_OFF_THE_DAMN_RNG].otyp = randarthelmX();
 	artilist[ART_REJU_GLUCK_GLUCK_GLUCK_BUG].otyp = randarthelmX();
 	artilist[ART_HAMBURG_ONE].otyp = randarthelmX();
 	artilist[ART_ARABELLA_S_MELEE_POWER].otyp = randartmeleeweaponX();
@@ -579,6 +587,7 @@ init_randarts()
 	artilist[ART_FOEOEOEOEOEOEOE].otyp = randartlauncherX();
 	artilist[ART_NEVER_WILL_THIS_BE_USEFUL].otyp = randartmeleeweaponX();
 	artilist[ART_QUARRY].otyp = randartsuitX();
+	artilist[ART_NOTHING_BUT_FILLER].otyp = randartsuitX();
 	artilist[ART_CONNY_S_COMBAT_COAT].otyp = randartcloakX();
 	artilist[ART_ACIDSHOCK_CASTLECRUSHER].otyp = randartcloakX();
 	artilist[ART_LAURA_S_SWIMSUIT].otyp = randartcloakX();
@@ -603,7 +612,9 @@ init_randarts()
 	artilist[ART_PEEK].otyp = randartmeleeweaponX();
 	artilist[ART_TAILCUTTER].otyp = randartmeleeweaponX();
 	artilist[ART_WONDER_WATERING_PLACE].otyp = randartpotionX();
+	artilist[ART_MULTIPOT].otyp = randartpotionX();
 	artilist[ART_SECRET_RECIPE].otyp = randartscrollX();
+	artilist[ART_MAPS_TO_PLAY].otyp = randartscrollX();
 	artilist[ART_DESIGN_YOUR_OWN].otyp = randartscrollX();
 	artilist[ART_ULTRALASER].otyp = randartscrollX();
 	artilist[ART_HEAVY_HEAVY_BABE].otyp = randartballX();
@@ -612,6 +623,7 @@ init_randarts()
 	artilist[ART_GANTULETS_OF_MISPEALING].otyp = randartglovesX();
 	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
 	artilist[ART_DESANN_S_WRATH].otyp = randartlightsaberX();
+	artilist[ART_HENRIETTENFORCE].otyp = randartlightsaberX();
 	artilist[ART_DONGOR].otyp = randartvenomX();
 	artilist[ART_STAB_ALL_OVER].otyp = randartunihornX();
 	artilist[ART_HOL_ON_MAN].otyp = randartvenomX();
@@ -1561,12 +1573,50 @@ register boolean mod;
 			otmp->spe += 9;
 			if (otmp->spe > 127) otmp->spe = 127;
 		    }
+		    if (otmp && otmp->oartifact == ART_LIBRARY_HIDING) {
+			otmp->oinvis = TRUE;
+		    }
+		    if (otmp && otmp->oartifact == ART_DAT_S_GOD) {
+			otmp->oerodeproof = TRUE;
+		    }
+		    if (otmp && otmp->oartifact == ART_SUK_ME_HAHAHAHAHAH) {
+			otmp->greased = rnd(3);
+		    }
+		    if (otmp && otmp->oartifact == ART_WEAR_OFF_THE_DAMN_RNG) {
+			otmp->greased = 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_IDEAL_BASE) {
+			if (rn2(2)) {
+				otmp->oeroded = rnd(3);
+				if (!rn2(3)) otmp->oeroded2 = rnd(3);
+			} else {
+				otmp->oeroded2 = rnd(3);
+				if (!rn2(3)) otmp->oeroded = rnd(3);
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_NOTHING_BUT_FILLER) {
+			otmp->oerodeproof = TRUE;
+			if (rn2(2)) {
+				otmp->oeroded = rnd(3);
+				if (!rn2(3)) otmp->oeroded2 = rnd(3);
+			} else {
+				otmp->oeroded2 = rnd(3);
+				if (!rn2(3)) otmp->oeroded = rnd(3);
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_FIND_ME_NEVERTHELESS) {
+			otmp->oinvis = otmp->oinvisreal = TRUE;
+		    }
 		    if (otmp && otmp->oartifact == ART_STRONG_) {
 			otmp->spe += rn1(7,7);
 			if (otmp->spe > 127) otmp->spe = 127;
 		    }
 		    if (otmp && otmp->oartifact == ART_BOAH_WHAT_A_STACK) {
 			otmp->quan += 200;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_MULTIPOT) {
+			otmp->quan += rn1(6,6);
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_TROPICAL_WOOD_SELECTION) {
@@ -4379,6 +4429,26 @@ tscheinschroll:
 				pline("Plus one.");
 			} else {
 				pline("Limit has been reached already.");
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_IDEAL_BASE) {
+			if (obj->spe < 3) {
+				obj->spe++;
+				pline("The ideal base has been put to good use.");
+			} else {
+				pline("You've maxxed out the ideal base already.");
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_WEAR_OFF_THE_DAMN_RNG) {
+			if (obj->greased < 3) {
+				obj->greased++;
+				pline("Since the damn RNG always causes the grease to wear off, you applied another layer.");
+			} else {
+				pline("Currently, the amount of grease on this item is at the maximum.");
 			}
 			break;
 		}

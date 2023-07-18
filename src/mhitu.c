@@ -6849,7 +6849,7 @@ hitmu(mtmp, mattk)
 {
 	register struct permonst *mdat = mtmp->data;
 	register int tmp = d((int)mattk->damn, (int)mattk->damd*10);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd * 10;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd * 10;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 	register int uncancelled, ptmp;
 	register boolean statsavingthrow = 0;
@@ -6922,7 +6922,7 @@ hitmu(mtmp, mattk)
 	if( (is_undead(mdat) || mtmp->egotype_undead) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ASTRAL_LIGHTWELL)
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) {
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) {
 		dmg = (int)mattk->damn * (int)mattk->damd;
 		if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
 			dmg *= 2;
@@ -8971,7 +8971,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -10882,7 +10882,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	char	 buf[BUFSZ];
 	struct trap *t = t_at(u.ux, u.uy);
 	int	tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd;
 	int	tim_tmp;
 	register struct obj *otmp2;
 	int	i;
@@ -13478,7 +13478,7 @@ boolean ufound;
 	}
     else {
 	register int tmp = d((int)mattk->damn, (int)mattk->damd);
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) tmp = (int)mattk->damn * (int)mattk->damd;
 	register boolean not_affected = defends((int)mattk->adtyp, uwep);
 
 	hitmsg(mtmp, mattk);
@@ -15836,7 +15836,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	if (rnd(100) < ACURR(A_CHA)) return 0; /* no message because it would get too spammy */
 
 	dmgplus = d((int)mattk->damn, (int)mattk->damd);	/* why the heck did gaze attacks have fixed damage??? --Amy */
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) dmgplus = (int)mattk->damn * (int)mattk->damd;
+	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) dmgplus = (int)mattk->damn * (int)mattk->damd;
 
 	switch(atttypB) {
 	    case AD_STON:
@@ -17508,7 +17508,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!mtmp->mcan && canseemon(mtmp) && !resists_blnd(&youmonst)
 			&& distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM && (issoviet || !rn2(6)) ) {
 		    int blnd = d((int)mattk->damn, (int)mattk->damd);
-		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) blnd = (int)mattk->damn * (int)mattk->damd;
+		    if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) blnd = (int)mattk->damn * (int)mattk->damd;
 
 		    if (FunnyHallu) pline("The power of %s aurora overwhelms you!", s_suffix(mon_nam(mtmp)));
 		    else You("are blinded by %s radiance!", s_suffix(mon_nam(mtmp)));
@@ -19217,15 +19217,23 @@ register int n;
 
 	if (Invulnerable || (uarmc && uarmc->oartifact == ART_NOTONHEAD && !rn2(10)) || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarm && uarm->oartifact == ART_GODLY_PROTECT && !rn2(5)) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;
 
-	if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
+	if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("implant nullifies the damage!");
+		return;
+	}
+
+	if (uarm && uarm->oartifact == ART_SUSA_MAIL && n > 0 && !rn2(10)) {
+		n = 0;
+		Your("armor nullifies the damage!");
+		return;
 	}
 
 	if (u.metalguard && n > 0) {
 		u.metalguard = 0;
 		n = 0;
 		Your("metal guard prevents the damage!");
+		return;
 	}
 
 	if (n == 0) {

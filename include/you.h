@@ -692,6 +692,8 @@ struct you {
 
 	int stonedchilltimer;	/* to control whether you get the damage reduction */
 
+	int missingstaircase;	/* for artifact that creates downstairs on the castle level */
+
 	int soviettemporary;	/* for fleecey light */
 	int evilvartemporary;	/* for fleecey light */
 

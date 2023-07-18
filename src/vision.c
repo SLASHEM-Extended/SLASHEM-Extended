@@ -586,7 +586,7 @@ vision_recalc(control)
     else {
 	int has_night_vision = 1;	/* hero has night vision */
 
-	if (Underwater && !Is_waterlevel(&u.uz) && !Swimming ) {
+	if (Underwater && !Is_waterlevel(&u.uz) && (!Swimming || (uwep && uwep->oartifact == ART_SPACEL_SWIM) ) ) {
 	    /*
 	     * The hero is under water.  Only see surrounding locations if
 	     * they are also underwater.  This overrides night vision but
@@ -594,7 +594,7 @@ vision_recalc(control)
 	     */
 	    has_night_vision = 0;
 
-	    /*if (Swimming) {
+	    if (Swimming && uwep && uwep->oartifact == ART_SPACEL_SWIM) { /* originally a bug, enabled for artifact --Amy */
 
 		    for (row = 0; row <= ROWNO; row++)
 			for (col = 0; col <= COLNO; col++) {
@@ -605,7 +605,7 @@ vision_recalc(control)
 			    next_array[row][col] = IN_SIGHT | COULD_SEE;
 			}
 
-	    } else */{
+	    } else {
 
 		    for (row = u.uy-1; row <= u.uy+1; row++)
 			for (col = u.ux-1; col <= u.ux+1; col++) {
@@ -684,6 +684,8 @@ vision_recalc(control)
 	if (uwep && uwep->oartifact == ART_IS_EVERYWHERE && uwep->lamplit) efflightradius += 4;
 	if (uwep && uwep->oartifact == ART_KRART_T_T_T_T) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_GIGANTIC_SUN) efflightradius += 3;
+	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_mines(&u.uz)) efflightradius += 2;
+	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_deepmines(&u.uz)) efflightradius += 1;
 
 	if (efflightradius > MAX_RADIUS) efflightradius = MAX_RADIUS; /* fail safe, why isn't that present in vanilla --Amy */
 

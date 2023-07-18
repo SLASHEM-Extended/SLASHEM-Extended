@@ -751,6 +751,9 @@ long xtime;
 		u.youaredead = 0;
 	}
 
+	if (uwep && uwep->oartifact == ART_OLSCRATCH) xtime *= 2;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OLSCRATCH) xtime *= 2;
+
 	PlayerBleeds += xtime;
 	if (PlayerBleeds > 100) You("have a hemorrhage!");
 	else if (PlayerBleeds > 50) You("are bleeding profusely!");
@@ -1862,7 +1865,7 @@ playerextrinsicsleepres()
 	if ((uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) || (uarmf && uarmf->oartifact == ART_NASTIST) || (uarmf && uarmf->oartifact == ART_CLICHE_WEAR) || (uarmf && uarmf->oartifact == ART_BEND_FROM_THE_NOISE) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) || (uarmf && uarmf->oartifact == ART_SUCH_A_SIGHER) || (uwep && uwep->oartifact == ART_CALCAR)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_MERCILESS_MARE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarmf && uarmf->oartifact == ART_THOSEFROMTHERE) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) return TRUE;
 	if ((uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS) || (uarmu && uarmu->oartifact == ART_PRISMATIC_SHIRT) || (uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) || (uarm && uarm->oartifact == ART_LYNN_S_EVERVIGILANCE) ) return TRUE;
-	if ((uarms && uarms->oartifact == ART_CREMATED) || (uwep && uwep->oartifact == ART_CREAMRES) || (uwep && uwep->oartifact == ART_DROWSING_ROD) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) || (uarmc && uarmc->oartifact == ART_RESIST_BOREDOM) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) ) return TRUE;
+	if ((uarms && uarms->oartifact == ART_CREMATED) || (uwep && uwep->oartifact == ART_CREAMRES) || (uwep && uwep->oartifact == ART_DROWSING_ROD) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) || (uarmc && uarmc->oartifact == ART_RESIST_BOREDOM) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) ) return TRUE;
 
 	return FALSE;
 }
@@ -1893,7 +1896,7 @@ playerextrinsicstoneres()
 	if ((uwep && uwep->oartifact == ART_HERITAGE_DIGGER) || (uarm && uarm->oartifact == ART_LU_NONNAME) || (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR) || (uarmf && uarmf->oartifact == ART_AS_STRONG_AS_BOOTS) || (uwep && uwep->oartifact == ART_RESIST_AGAINST_ITS_DAMAGE) || (uarmf && uarmf->oartifact == ART_PLAYING_ANASTASIA) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uarms && uarms->oartifact == ART_AEGIS)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uwep && uwep->oartifact == ART_STAHNGNIR_S_GIANT_CRUSHER) || (uarmf && uarmf->oartifact == ART_SANDALMENS && !flags.female) || (uarmf && uarmf->oartifact == ART_PRETTY_ROOMMAID) || (uarmf && uarmf->oartifact == ART_NASTIST) || (uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER) || (uarmh && uarmh->oartifact == ART_JESTES_TAKA_KURWA)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uwep && uwep->oartifact == ART_HELIOKOPIS_S_WIZARDING_AID) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) || (uwep && uwep->oartifact == ART_SWORD_OF_BHELEU) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD)) return TRUE;
-	if ((uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS)) return TRUE;
+	if ((uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS)) return TRUE;
 
 	return FALSE;
 }
@@ -15081,8 +15084,9 @@ boolean amnesia;
  * Polearms are not currently implemented.
  */
 int
-upgrade_obj(obj)
+upgrade_obj(obj, canarti)
 register struct obj *obj;
+boolean canarti;
 /* returns 1 if something happened (potion should be used up) 
  * returns 0 if nothing happened
  * returns -1 if object exploded (potion should be used up) 
@@ -15099,8 +15103,8 @@ register struct obj *obj;
 	if (!obj)
 		return 0;
 	(void)snuff_lit(obj);
-	if (obj->oartifact)
-		/* WAC -- Could have some funky fx */
+	if (obj->oartifact && !canarti)
+		/* WAC -- Could have some funky fx; Amy remark: who cares though? we allow it in some cases */
 		return 0;
 
 	if (is_hazy(obj)) return 0; /* poly weapon into mattock, upgrade to pick-axe, poly into 0:50 tinning kit, unpoly... +50 weapon :-P can't have that! --Amy */
@@ -15895,7 +15899,7 @@ dodip()
 	/* KMH, balance patch -- idea by Dylan O'Donnell <dylanw@demon.net> */
 	else if (potion->otyp == POT_GAIN_LEVEL && obj->oclass != POTION_CLASS) { /* this should fix it --Amy */
 	/* thanks to the guy/girl figuring it out */
-	    res = upgrade_obj(obj);
+	    res = upgrade_obj(obj, (potion->oartifact == ART_ARTIGRADE) ? TRUE : FALSE);
 
 	    if (res != 0) {
 
@@ -16191,7 +16195,7 @@ dodip()
 		use_skill(P_DEVICES, 1);
 	    return 1;
 	} else if (potion->otyp == POT_GAIN_LEVEL) {
-	    res = upgrade_obj(obj);
+	    res = upgrade_obj(obj, (potion->oartifact == ART_ARTIGRADE) ? TRUE : FALSE);
 	    if (res != 0) {
 		if (res == 1) {
 		    /* The object was upgraded */

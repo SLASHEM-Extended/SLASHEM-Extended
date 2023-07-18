@@ -2241,7 +2241,7 @@ struct monst *mon;
 		}
 	}
 
-	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uamul && uamul->oartifact == ART_FOOK_SRI_SAEVE) || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
+	if ((MonsterSpeedBug || u.uprops[MONSTER_SPEED_BUG].extrinsic || (uamul && uamul->oartifact == ART_FOOK_SRI_SAEVE) || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uarm && uarm->oartifact == ART_SUSA_MAIL) || have_monsterspeedstone()) && !rn2(2) && (mmove > 0)) {
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;

@@ -540,6 +540,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
+		if (uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mtmp->data->mlet == S_ORC || mtmp->data->mlet == S_OGRE) )
+		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_SITHE_DED && mtmp->data->mlet == S_MUMMY)
 		    ways_seen++;
 		if (uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mtmp->mx, mtmp->my) < 9 )
@@ -773,6 +775,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
 			strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mtmp->data->mlet == S_ORC || mtmp->data->mlet == S_OGRE) ) {
+			strcat(monbuf, "patrol's orders");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmc && uarmc->oartifact == ART_SITHE_DED && mtmp->data->mlet == S_MUMMY) {
@@ -29040,6 +29046,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your vagina seems to turn itself inward... and you think that Amy must be really fucked up, adding such stuff to an ASCII game.",
 	"Oh no, the gods are angry at you for no real reason!",
 	"Oh no, the gods are angry at you for no real reason! (Classic SLEX!)",
+	"Stairs down appear from nowhere!",
+	"Stairs down appear from nowhere! Unfortunately, they lead nowhere though, and the game crashes if you use them.",
+	"Stairs down appear from nowhere! But due to a bug, they go to level 55 of Gehennom, which would be massively out of depth for your current character.",
+	"A couple of maps to play have been put on the ground.",
+	"A couple of maps to play have been put on the ground. You don't know what to do with them, though.",
 
 };
 

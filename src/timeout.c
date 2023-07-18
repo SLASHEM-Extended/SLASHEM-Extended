@@ -814,6 +814,20 @@ nh_timeout()
 
 	}
 
+	if (uarm && uarm->oartifact == ART_SHARP_SMOKY_STENCH) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (have_superjonadabstone()) {
 
 	    struct trap *t;

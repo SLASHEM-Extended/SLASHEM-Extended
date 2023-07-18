@@ -3716,6 +3716,11 @@ Armor_on()
 		uarm->hvycurse = TRUE;
 	}
 
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUSA_MAIL) {
+		pline("Your armor becomes cursed.");
+		curse(uarm);
+	}
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SEVEBREAKYOU__SEVEBREAK_) {
 		pline("Your armor becomes cursed.");
 		curse(uarm);
@@ -6398,6 +6403,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_MADE_OF_IRON) uac -= 10;
 	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;
 	if (uarm && uarm->oartifact == ART_BRINGS_NOTHING) uac -= 5;
+	if (uarm && uarm->oartifact == ART_SUSA_MAIL) uac -= 8;
 	if (uarm && uarm->oartifact == ART_BRINGS_WHICH) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DEMANDING_ENTRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DUEUEUEUET) uac += 5;

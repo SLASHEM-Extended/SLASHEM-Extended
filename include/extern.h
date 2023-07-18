@@ -944,6 +944,7 @@ E int monster_nearby(void);
 E void nomul(int, const char *, BOOLEAN_P);
 E void forcenomul(int, const char *);
 E void unmul(const char *);
+E int symbioteweight(int);
 #ifdef SHOW_DMG
 E void showdmg(int);
 #endif
@@ -2617,7 +2618,7 @@ E boolean get_wet(struct obj *, BOOLEAN_P);
 E int dodip(void);
 E void djinni_from_bottle(struct obj *,int);
 /* KMH, balance patch -- new function */
-E int upgrade_obj(struct obj *);
+E int upgrade_obj(struct obj *, BOOLEAN_P);
 E struct monst *split_mon(struct monst *,struct monst *);
 E const char *bottlename(void);
 E void bad_equipment(int);

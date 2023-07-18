@@ -2090,6 +2090,10 @@ register struct monst *mtmp;
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 			  m_initthrow(mtmp, SHOTGUN_SHELL, 20);
 
+				if (uarm && uarm->oartifact == ART_THROW_BLOSTONES) {
+					(void) mksobj_at(BOULDER, mtmp->mx, mtmp->my, TRUE, FALSE, FALSE);
+				}
+
 			/* evil patch idea by jonadab: 5% chance for shopkeepers to be generated invisible */
 			  if (!rn2(20)) (void) mongets(mtmp, CLOAK_OF_INVISIBILITY);
 

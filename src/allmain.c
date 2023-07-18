@@ -2387,6 +2387,21 @@ moveloop()
 
 			}
 
+			if (uarm && uarm->oartifact == ART_OH_NO_I_SAVED__AM_I_NEVERT) {
+
+			    if (rn2(10)) {
+				    monstermoves++;
+				    moves++;
+				    nh_timeout();
+			    } else if (!rn2(2)) {
+				    monstermoves += 2;
+				    moves += 2;
+				    nh_timeout();
+				    nh_timeout();
+			    }
+
+			}
+
 			if (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) {
 
 			    if (rn2(10)) {
@@ -2417,7 +2432,13 @@ moveloop()
 				    nh_timeout();
 			    }
 
-				veryfasttime = TimeGoesByFaster / 5000;
+				veryfasttime = TimeGoesByFaster;
+				if (veryfasttime >= 67108864) veryfasttime -= 67108864;
+				if (veryfasttime >= 33554432) veryfasttime -= 33554432;
+				if (veryfasttime >= 16777216) veryfasttime -= 16777216;
+				veryfasttime /= 5000;
+				if (veryfasttime > 10) veryfasttime = 10; /* sanity check --Amy */
+
 				if (veryfasttime) {
 
 					moves += veryfasttime;
@@ -6930,6 +6951,26 @@ newbossJANI:
 			litroomlite(FALSE);
 		}
 
+		if (uarm && uarm->oartifact == ART_A_ROOMFUL_WILL_BE_A_CHALLE && !rn2(5000)) {
+			int aggroamount = rn1(9,9);
+
+			struct monst *giantbase;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+			giantbase = makemon(mkclass(S_GIANT,0), 0, 0, MM_ANGRY|MM_ADJACENTOK);
+			if (giantbase) {
+				while (aggroamount) {
+					aggroamount--;
+					makemon(&mons[giantbase->mnum], giantbase->mx, giantbase->my, MM_ANGRY|MM_ADJACENTOK);
+				}
+			}
+
+			u.aggravation = FALSE;
+		}
+
 		if (FemtrapActiveAntje && u.uhunger >= 2500 && !rn2(50)) {
 			switch (rnd(4)) {
 				case 1:
@@ -7923,6 +7964,10 @@ newbossRLR:
 		}
 
 		if (autismweaponcheck(ART_HER_UNREACHABLE_BROOK) && FemaleTrapJette < 1000) FemaleTrapJette = 1000;
+
+		if (autismweaponcheck(ART_HENRIETTENFORCE) && FemaleTrapHenrietta < 1000) FemaleTrapHenrietta = 1000;
+
+		if (autismweaponcheck(ART_HENRIETTENFORCE) && !(HAggravate_monster & FROMOUTSIDE) ) HAggravate_monster |= FROMOUTSIDE;
 
 		/* if you have many forgotten spells, maybe remove one of them entirely --Amy */
 		if (!rn2(2000)) {

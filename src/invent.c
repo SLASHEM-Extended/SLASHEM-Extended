@@ -21991,7 +21991,7 @@ boolean knoweverything;
 				case ART_GRINDER:
 					pline("Artifact specs: +4 to-hit and +12 damage."); break;
 				case ART_OUCHFIRE:
-					pline("Artifact specs: +1 to-hit and +16 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +1 to-hit and +16 damage to fire-susceptible monsters, fire resistance and you take maximum damage when wielded."); break;
 				case ART_ANTIVAMP_WHOOSH:
 					pline("Artifact specs: +8 to-hit and +20 damage to vampires, neutral."); break;
 				case ART_RESISTOMATIC:
@@ -24830,7 +24830,7 @@ boolean knoweverything;
 				case ART_ULTRACURSED_VAMPIRIC_HIGH_:
 					pline("Artifact specs: death and drain resistance when worn. However, putting them on makes it very difficult to take them off again (you'll see why)."); break;
 				case ART_IRON_OF_INNERMOST_JOY:
-					pline("Artifact specs: wallwalking when worn but you can no longer control the direction you're moving. If you're in a form without hands, it also conveys astral vision, half spell damage and half physical damage."); break;
+					pline("Artifact specs: wallwalking when worn but you can intermittently no longer control the direction you're moving. Allows you to deflect incoming projectiles with a pretty good chance. If you're in a form without hands, it also conveys astral vision, half spell damage and half physical damage."); break;
 				case ART_LOWER_TURNCOUNT:
 					pline("Artifact specs: using it reduces the turn counter by a couple hundred turns."); break;
 				case ART_HAHAREDUCTION:
@@ -26402,6 +26402,62 @@ boolean knoweverything;
 					pline("Artifact specs: if you die while wearing this item and happen to have a source of life saving, monsters near you may be tamed, and if you're in a form without hands at the time of your death, all monsters on the current level also become un-frenzied if they were frenzied. Beware: you need to provide your own source of life saving. If you try to rely on this artifact implant to save your life, you will die for real."); break;
 				case ART_DUNGEON_BOSS__WITH_SHARP_S:
 					pline("Artifact specs: +1 to all stats when worn, or if you're in a form without hands, +2 to all except strength, which is boosted by +10 instead."); break;
+				case ART_SPACEL_SWIM:
+					pline("Artifact specs: its material becomes iron if you equip it while it's something else, and if it was erosionproof, it no longer is upon equipping. Conveys flying, and if you swim in water, the map reveals itself. Not only do you have to provide your own source of swimming for the latter, you also need to figure out how to swim while flying, hahahahaha..."); break;
+				case ART_THAIFORCE:
+					pline("Artifact specs: you can use the force like a real jedi and have the thai trap effect while wielding it."); break;
+				case ART_HENRIETTENFORCE:
+					pline("Artifact specs: +2 damage, you can use the force like a real jedi, gives the henrietta trap effect for a while as well as permanent aggravate monster, and while wielding it you also resist sleep and petrification. "); break;
+				case ART_SUSA_MAIL:
+					pline("Artifact specs: autocurses, susanne trap effect, 8 extra points of AC, you can use the force like a real jedi and can occasionally nullify incoming damage and the monster speed bug is in effect while wearing it."); break;
+				case ART_ARTIGRADE:
+					pline("Artifact specs: can also upgrade artifacts via dipping them into this potion, as long as their base item type can be upgraded."); break;
+				case ART_ADD_THE_MISSING_STAIRCASE:
+					pline("Artifact specs: if you come up from the valley of the dead to the castle, a downstair is generated. This can only happen once. If it has already happened, this armor conveys sight bonus instead."); break;
+				case ART_TUNGUSKA_EVENT:
+					pline("Artifact specs: reading it causes dynamite explosions that can also raze undiggable walls, and random lava appears on the level."); break;
+				case ART_LIBRARY_HIDING:
+					pline("Artifact specs: invisibility when worn. This artifact spawns invisible."); break;
+				case ART_FIND_ME_NEVERTHELESS:
+					pline("Artifact specs: double invisibility when worn. This artifact spawns doubly invisible."); break;
+				case ART_DAT_S_GOD:
+					pline("Artifact specs: +5 damage, spawns erodeproof."); break;
+				case ART_IDEAL_BASE:
+					pline("Artifact specs: spawns with random erosion and can be invoked to gain a point of enchantment up to a maximum of +3."); break;
+				case ART_SUK_ME_HAHAHAHAHAH:
+					pline("Artifact specs: spawns with random amounts of grease."); break;
+				case ART_WEAR_OFF_THE_DAMN_RNG:
+					pline("Artifact specs: spawns fully greased and can be invoked to gain a layer of grease (up to the maximum, of course, so you should only do that if it lost some grease layers)."); break;
+				case ART_NOTHING_BUT_FILLER:
+					pline("Artifact specs: spawns erodeproof, but also eroded. This is the type of artifact that the type of ice block would call 'nothing but filler' and remove from the game because he's so boring and hates variety."); break;
+				case ART_OLSCRATCH:
+					pline("Artifact specs: +8 to-hit and +10 damage, but if you start bleeding, you bleed for twice as long."); break;
+				case ART_ST_ICKYNESS:
+					pline("Artifact specs: +6 to-hit and +9 damage to acid-susceptible monsters, julietta trap effect, protects you from the slippery fingers effect and makes you resistant to item-stealing monsters."); break;
+				case ART_HELP_WITH_THE_MINE:
+					pline("Artifact specs: while you're in the gnomish mines, your sight range is increased by 2 and in the deep mines it's increased by 1. No effect if you're wearing it somewhere else."); break;
+				case ART_TOWNIE_DUMP:
+					pline("Artifact specs: +5 charisma when worn."); break;
+				case ART_TILLING_FIELDS:
+					pline("Artifact specs: allows you to walk through farmland when worn."); break;
+				case ART_SHARP_SMOKY_STENCH:
+					pline("Artifact specs: reveals fire traps over time while you're wearing it."); break;
+				case ART_THROW_BLOSTONES:
+					pline("Artifact specs: while you're wearing it, newly generated shopkeepers spawn with a boulder on their square."); break;
+				case ART_PATROL_S_ORDERS:
+					pline("Artifact specs: displays all orcs and ogres when worn."); break;
+				case ART_CHEST_IN_THE_BANDIT_S_LAIR:
+					pline("Artifact specs: causes armor pieces to spawn more often, especially in chests."); break;
+				case ART_OH_NO_I_SAVED__AM_I_NEVERT:
+					pline("Artifact specs: while wearing it, the turn counter advances twice as fast and you gain 10%% bonus experience."); break;
+				case ART_CRYPT_SMELL:
+					pline("Artifact specs: undead warning when worn, and if you're in a crypt room you also have scent view."); break;
+				case ART_A_ROOMFUL_WILL_BE_A_CHALLE:
+					pline("Artifact specs: occasionally spawns a group of giants when worn."); break;
+				case ART_MAPS_TO_PLAY:
+					pline("Artifact specs: reading it may provide a stack of additional scrolls of the same base type."); break;
+				case ART_MULTIPOT:
+					pline("Artifact specs: spawns with a huge stack size."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

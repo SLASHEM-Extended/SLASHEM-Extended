@@ -7810,6 +7810,7 @@ cardtrickchoice:
 				if (rnd(cardpotency) > writecost(otmp)) {
 					pline("Success! You managed to duplicate the scroll.");
 					otmp->quan++;
+					otmp->owt = weight(otmp);
 				} else {
 					pline("Unfortunately your attempt to duplicate the scroll failed.");
 				}
@@ -11375,7 +11376,7 @@ tinker()
 	chance = 5;
 /*	chance += PSKILL(P_TINKER); */
 	if (rnl(10) < chance) {		
-		upgrade_obj(otmp);
+		upgrade_obj(otmp, FALSE);
 	} else {
 		/* object downgrade  - But for now,  nothing :) */
 	}
