@@ -1433,7 +1433,8 @@ register struct monst *mtmp;
 				|| mm == PM_HEDDERJEDI || mm == PM_PADAWAN || mm == PM_STORMTROOPER
 				|| mm == PM_ENEMY_TROOPER || mm == PM_INFANTRYMAN || mm == PM_CUNTGUN_TROOPER
 				|| mm == PM_GI_TROOPER || mm == PM_HEAVY_WEAPON_DUDE || mm == PM_RIFLEMAN
-				|| mm == PM_SNIPER || mm == PM_TREPIDANT_SNIPER || mm == PM_RIOT_BREAKER || mm == PM_TANK_BREAKER
+				|| mm == PM_SNIPER || mm == PM_RUMSTAND_SNIPER
+				|| mm == PM_TREPIDANT_SNIPER || mm == PM_RIOT_BREAKER || mm == PM_TANK_BREAKER
 				|| mm == PM_EVASIVE_ENEMY_TROOPER || mm == PM_EVASIVE_INFANTRYMAN || mm == PM_EVASIVE_CUNTGUN_TROOPER
 				|| mm == PM_EVASIVE_GI_TROOPER || mm == PM_EVASIVE_HEAVY_WEAPON_DUDE || mm == PM_EVASIVE_RIFLEMAN
 				|| mm == PM_EVASIVE_SNIPER || mm == PM_EVASIVE_RIOT_BREAKER || mm == PM_EVASIVE_TANK_BREAKER
@@ -2045,6 +2046,7 @@ register struct monst *mtmp;
 			  break;
 
 			case PM_SNIPER:
+			case PM_RUMSTAND_SNIPER:
 			case PM_TREPIDANT_SNIPER:
 			case PM_EVASIVE_SNIPER:
 			  	w1 = SNIPER_RIFLE;
@@ -13700,6 +13702,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_TURVANG_HAMMER]) (void) mongets(mtmp, THUNDER_HAMMER);
 		if (mtmp->data == &mons[PM_MINAS_TAW]) (void) mongets(mtmp, DWARVISH_BATTLE_AXE);
 
+		if (mtmp->data == &mons[PM_YOUNG_PRACTICANT_BRIDE]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
+
 		if (mtmp->data == &mons[PM_UNWISE_BLUE_SMOKER]) {
 			(void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 			(void) mongets(mtmp, CIGARETTE);
@@ -15351,6 +15355,10 @@ loveheelover:
 		if (ptr == &mons[PM_DARKLAND_ORC]) {
 			(void) mongets(mtmp, BOW);
 			 m_initthrow(mtmp, ORCISH_ARROW, 40);
+		}
+		if (ptr == &mons[PM_BOWSNIPE_ORC]) {
+			(void) mongets(mtmp, ORCISH_BOW);
+			 m_initthrow(mtmp, ORCISH_ARROW, 30);
 		}
 		if (ptr == &mons[PM_GUNBLIN_FIGHTER]) {
 			(void) mongets(mtmp, PISTOL);
@@ -18067,6 +18075,7 @@ loveheelover:
 
 	    case S_HUMANOID:
 
+		if (ptr == &mons[PM_USE_THE_ROD]) (void) mongets(mtmp, RUNED_ROD);
 		if (ptr == &mons[PM_KNIVER]) (void) mongets(mtmp, UNKNOWN_KNIFE);
 		if (ptr == &mons[PM_GAY_JEDI_WANNABE]) (void) mongets(mtmp, PINK_LIGHTSWORD);
 		if (ptr == &mons[PM_SOFTWARF]) (void) mongets(mtmp, SOFT_MATTOCK);
@@ -20772,6 +20781,12 @@ loveheelover:
 	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
 
 		mtmp->crapbonus += 50;
+
+	}
+
+	if (ptr == &mons[PM_YOUNG_PRACTICANT_BRIDE]) {
+
+		mtmp->crapbonus += 10;
 
 	}
 

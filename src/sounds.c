@@ -1775,6 +1775,10 @@ register struct monst *mtmp;
 	case MS_HERCULES:
 	case MS_CRYTHROAT:
 	case MS_SPEEDBUG:
+	case MS_HOOT:
+	case MS_RUSTLE:
+	case MS_SEMEN:
+	case MS_SCIENTIST:
 		/* todo */
 		ret = "Unfinished sound effect.";
 		break;
@@ -2059,6 +2063,10 @@ register struct monst *mtmp;
 	case MS_HERCULES:
 	case MS_CRYTHROAT:
 	case MS_SPEEDBUG:
+	case MS_HOOT:
+	case MS_RUSTLE:
+	case MS_SEMEN:
+	case MS_SCIENTIST:
 		/* todo */
 		ret = "Unfinished sound effect.";
 		break;
@@ -2330,6 +2338,10 @@ register struct monst *mtmp;
 	case MS_HERCULES:
 	case MS_CRYTHROAT:
 	case MS_SPEEDBUG:
+	case MS_HOOT:
+	case MS_RUSTLE:
+	case MS_SEMEN:
+	case MS_SCIENTIST:
 		/* todo */
 		ret = "Unfinished sound effect.";
 		break;
@@ -3773,6 +3785,10 @@ repairitemchoice:
 	case MS_HERCULES:
 	case MS_CRYTHROAT:
 	case MS_SPEEDBUG:
+	case MS_HOOT:
+	case MS_RUSTLE:
+	case MS_SEMEN:
+	case MS_SCIENTIST:
 		/* todo */
 		verbl_msg = "The sound effect of this monster has not been implemented yet.";
 		break;
@@ -6250,7 +6266,11 @@ register struct monst *mtmp;
 			case MS_SILLY:
 			case MS_HERCULES:
 			case MS_CRYTHROAT:
-			case MS_SPEEDBUG: /* todo all the way up */
+			case MS_SPEEDBUG:
+			case MS_HOOT:
+			case MS_RUSTLE:
+			case MS_SEMEN:
+			case MS_SCIENTIST: /* todo all the way up */
 
 			switch (distresslevel) {
 				case 1:

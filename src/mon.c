@@ -299,6 +299,7 @@ int mndx;
 	case PM_UNIQUE_SHIFTER:	mcham = CHAM_UNIQUE_SHIFTER; break;
 	case PM_PLAYER_CHANGELING:	mcham = CHAM_PLAYER_CHANGELING; break;
 	case PM_CHANGERING_KELPIE:	mcham = CHAM_CHANGERING_KELPIE; break;
+	case PM_EACH_UISGE:	mcham = CHAM_EACH_UISGE; break;
 	case PM_DITTO:	mcham = CHAM_DITTO; break;
 	case PM_GIANT_CHAMELEON:	mcham = CHAM_GIANT_CHAMELEON; break;
 	default: mcham = CHAM_ORDINARY; break;
@@ -373,6 +374,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_ELONA_BADGER,
 		PM_RAINBOW_SPHERE,
 		PM_SHAPESHIFTING_EXPERTISE,
+		PM_EACH_UISGE,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -8818,6 +8820,7 @@ struct monst *mon;
 	case CHAM_SANDWICH: chambaselvl = 6; break;
 	case CHAM_KARMA_CHAMELEON: chambaselvl = 6; break;
 	case CHAM_CHANGERING_KELPIE: chambaselvl = 5; break;
+	case CHAM_EACH_UISGE: chambaselvl = 20; break;
 	case CHAM_JUNOW_TRICE: chambaselvl = 10; break;
 	case CHAM_POLY_FLAYER: chambaselvl = 15; break;
 	case CHAM_WILD_CHANGE_NYMPH: chambaselvl = 5; break;
@@ -9434,6 +9437,7 @@ rainbowchoice:
 	    case CHAM_CHANGELING_MUMMY:
 	    case CHAM_KARMA_CHAMELEON:
 	    case CHAM_CHANGERING_KELPIE:
+	    case CHAM_EACH_UISGE:
 	    case CHAM_GIANT_CHAMELEON:
 		if (!rn2(7)) {
 chameleonchoice:

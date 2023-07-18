@@ -2030,6 +2030,7 @@ register int pm;
 
 	    case PM_SMALL_CHICKATRICE:
 	    case PM_NEWT:
+	    case PM_FLIPFLOP:
 	    case PM_DRAGONEWT:
 	    case PM_CLAYMORE_DRAGONEWT:
 	    case PM_DRACO_EQUES:
@@ -3449,6 +3450,7 @@ register int pm;
 	    case PM_VERY_POLY_NYMPH:
 	    case PM_KARMA_CHAMELEON:
 	    case PM_CHANGERING_KELPIE:
+	    case PM_EACH_UISGE:
 	    case PM_EVIL_CHAMELEON:
 	    case PM_DOPPELGANGER:
 	    case PM_METAL_DOPPELGANGER:

@@ -2230,6 +2230,10 @@ newbossSING:
 			case MS_HERCULES:
 			case MS_CRYTHROAT:
 			case MS_SPEEDBUG:
+			case MS_HOOT:
+			case MS_RUSTLE:
+			case MS_SEMEN:
+			case MS_SCIENTIST:
 				/* todo */
 				verbalize("My sound has not been coded yet.");
 				break;

@@ -153,6 +153,10 @@
 #define MS_HERCULES	144	/* whenever this monster hits you in melee, subsequent attacks it makes deal more damage */
 #define MS_CRYTHROAT	145	/* is always visible and TALKS IN ALL CAPS */
 #define MS_SPEEDBUG	146	/* monster's actual speed is randomized per turn */
+#define MS_HOOT	147	/* by ChatGPT: for owls and stuff */
+#define MS_RUSTLE	148	/* by ChatGPT: for tree monsters and stuff */
+#define MS_SEMEN	149	/* inseminates female characters, which is of course not icky at all */
+#define MS_SCIENTIST	150	/* talks about science */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */
