@@ -333,6 +333,7 @@ init_randarts()
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
 	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
 	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
+	artilist[ART_FINALLY__A_USABLE_POLEARM_].otyp = randartpolearm();
 	artilist[ART_TOTAL_GAUCHE].otyp = randartdagger();
 	artilist[ART_HELICOPTER_TWIRL].otyp = randartquarterstaff();
 	artilist[ART_WHY_DOES_THE_GAME_GENERATE].otyp = randartquarterstaff();
@@ -889,6 +890,9 @@ init_appearance_randarts()
 	artilist[ART_NOW_YOUR_ABLE_TO_POLY].otyp = find_osfa_cloak();
 	artilist[ART_PINEAPPLE_TYCOON_S_FINISH].otyp = find_tarpaulin_cloak();
 	artilist[ART_SAFARI_ROCKZ].otyp = find_missys();
+	artilist[ART_SMILE_Z].otyp = find_missys();
+	artilist[ART_SECRET_RAINBOW].otyp = find_missys();
+	artilist[ART_YELLY].otyp = find_missys();
 	artilist[ART_SPACE_SHUTTLE].otyp = find_missys();
 	artilist[ART_ART_ROCKZ].otyp = find_missys();
 	artilist[ART_COVER_UP].otyp = find_missys();

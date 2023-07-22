@@ -26458,6 +26458,22 @@ boolean knoweverything;
 					pline("Artifact specs: reading it may provide a stack of additional scrolls of the same base type."); break;
 				case ART_MULTIPOT:
 					pline("Artifact specs: spawns with a huge stack size."); break;
+				case ART_ZARL_S_SHOT:
+					pline("Artifact specs: +5 to-hit and +6 damage, telepathy when wielded. Amy would suggest this artifact to be added to vanilla if she didn't know that her suggestions are gonna be dismissed anyway, even though vanilla really needs an artifact version of this weak weapon."); break;
+				case ART_POWERVALK:
+					pline("Artifact specs: +5 to-hit and +6 damage, very fast speed when wielded. This artifact really ought to be added to vanilla nethack which, up to this day, still doesn't have even a single artifact spear, making the spear skill a total waste of skill slots that's best ignored by everyone."); break;
+				case ART_FINALLY__A_USABLE_POLEARM_:
+					pline("Artifact specs: +5 to-hit and +6 damage, sight bonus when wielded. Vanilla Nethack could really benefit from this artifact, just so that there is an artifact polearm at last, which would greatly increase the usefulness of the polearm skill."); break;
+				case ART_PERFECT_UNIVERSE:
+					pline("Artifact specs: +4 to-hit and +4 damage, and while you're wielding it, monsters with weapons have lower chance to hit against you."); break;
+				case ART_THUNDERFIST:
+					pline("Artifact specs: +5 to-hit and +12 damage to shock-susceptible monsters. This artifact is based on what's apparently the original version of Mjollnir, back when the developers didn't know that the lucern 'hammer' isn't really a hammer, but this is SLEX so the artifact fits right in, and also there's still the actual Mjollnir so all is well."); break;
+				case ART_SMILE_Z:
+					pline("Artifact specs: resistance piercing when worn."); break;
+				case ART_SECRET_RAINBOW:
+					pline("Artifact specs: warp reflection when worn."); break;
+				case ART_YELLY:
+					pline("Artifact specs: one out of two hostile projectiles misses you while you're wearing them."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

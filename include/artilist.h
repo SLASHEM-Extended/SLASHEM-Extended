@@ -13569,6 +13569,38 @@ A("Multipot",				POT_WATER, /* randart2 potion, spawns with rn1(6,6) extra stack
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
 
+A("Zarl's Shot",				CROSSBOW,
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Powervalk",				SPEAR, /* very fast speed when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Finally! A usable polearm.",				RANSEUR, /* randart polearm, sight bonus when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Perfect Universe",				RANSEUR, /* monsters with melee weapons have -5 to-hit against you */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Thunderfist",				LUCERN_HAMMER,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(5, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Smile'z",				LOW_BOOTS, /* initialized to always be missys, resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Secret Rainbow",				LOW_BOOTS, /* initialized to always be missys, warp reflection */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Yelly",				LOW_BOOTS, /* initialized to always be missys, 50% chance to deflect projectiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
 /*
  *	Stormbringer only has a 2 because it can drain a level,
  *	providing 8 more.

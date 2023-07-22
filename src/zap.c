@@ -9824,7 +9824,7 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 				dy = 0;
 			    }
 
-			} else if ((uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME)) {
+			} else if ((uamul && uamul->otyp == AMULET_OF_WARP_DIMENSION) || (uarmf && uarmf->oartifact == ART_SECRET_RAINBOW) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME)) {
 
 			    dx = rn1(3, -1);	/*-1, 0, 1*/
 			    dy = rn1(3, -1);	/*-1, 0, 1*/
