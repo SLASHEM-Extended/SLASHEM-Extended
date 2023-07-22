@@ -842,8 +842,7 @@ boolean polyspot;
 		char buf[BUFSZ];
 
 		You("touch %s.", mon_nam(u.usteed));
-		sprintf(buf, "falling off %s",
-				an(u.usteed->data->mname));
+		sprintf(buf, "falling off a petrifying steed");
 		instapetrify(buf);
 	    }
 	    dismount_steed(DISMOUNT_FELL);

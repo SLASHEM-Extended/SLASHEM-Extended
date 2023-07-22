@@ -4755,8 +4755,8 @@ secureidchoice:
 					polymon(PM_STONE_GOLEM))) {
 				char kbuf[BUFSZ];
 
-				sprintf(kbuf, "%s corpse", an(mons[obj->corpsenm].mname));
-				pline("Snatching %s is a fatal mistake.", kbuf);
+				sprintf(kbuf, "snatching a petrifying corpse");
+				pline("Snatching this type of corpse is a fatal mistake.");
 				instapetrify(kbuf);
 			    }
 			    obj = hold_another_object(obj, "You drop %s!",

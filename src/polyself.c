@@ -1096,7 +1096,7 @@ int	mntmp;
 
 	    	pline("No longer petrifying-resistant, you touch %s.",
 	    			mon_nam(u.usteed));
-	    	sprintf(buf, "riding %s", an(u.usteed->data->mname));
+	    	sprintf(buf, "riding a petrifying monster");
 	    	instapetrify(buf);
  	    }
 	    if (!can_ride(u.usteed)) dismount_steed(DISMOUNT_POLY);

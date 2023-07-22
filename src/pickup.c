@@ -1438,8 +1438,8 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		else {
 			char kbuf[BUFSZ];
 
-			strcpy(kbuf, "a petrifyium bar");
-			pline("Touching %s is a fatal mistake.", kbuf);
+			strcpy(kbuf, "touching a petrifyium bar");
+			pline("Touching a petrifyium bar is a fatal mistake.");
 			instapetrify(kbuf);
 		    return -1;
 
@@ -1453,8 +1453,8 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		else {
 			char kbuf[BUFSZ];
 
-			strcpy(kbuf, "a petrifyium bra");
-			pline("Touching %s is a fatal mistake.", kbuf);
+			strcpy(kbuf, "touching a petrifyium bra");
+			pline("Touching a petrifyium bra is a fatal mistake.");
 			instapetrify(kbuf);
 		    return -1;
 
@@ -1469,9 +1469,8 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		else {
 			char kbuf[BUFSZ];
 
-			strcpy(kbuf, an(corpse_xname(obj, TRUE)));
-			pline("Touching %s is a fatal mistake.", kbuf);
-			strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+			pline("Touching this type of corpse is a fatal mistake.");
+			strcpy(kbuf, "touching a petrifying corpse");
 			instapetrify(kbuf);
 		    return -1;
 		}
@@ -2216,9 +2215,8 @@ boolean invobj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, an(corpse_xname(obj, TRUE)));
-		    pline("Touching %s is a fatal mistake.", kbuf);
-		    strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    pline("Touching this type of corpse is a fatal mistake.");
+		    strcpy(kbuf, "touching a petrifying corpse");
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2232,8 +2230,8 @@ boolean invobj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, "a petrifyium bar");
-		    pline("Touching %s is a fatal mistake.", kbuf);
+		    strcpy(kbuf, "touching a petrifyium bar");
+		    pline("Touching a petrifyium bar is a fatal mistake.");
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2247,8 +2245,8 @@ boolean invobj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, "a petrifyium bra");
-		    pline("Touching %s is a fatal mistake.", kbuf);
+		    strcpy(kbuf, "touching a petrifyium bra");
+		    pline("Touching a petrifyium bra is a fatal mistake.");
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2263,9 +2261,8 @@ boolean invobj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, an(corpse_xname(obj, TRUE)));
-		    pline("Touching %s is a fatal mistake.", kbuf);
-		    strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    pline("Touching a petrifying egg is a fatal mistake.");
+		    strcpy(kbuf, "touching a petrifying egg");
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2418,9 +2415,8 @@ register struct obj *obj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, an(corpse_xname(obj, TRUE)));
-		    pline("Touching %s is a fatal mistake.", kbuf);
-		    strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    pline("Touching this type of corpse is a fatal mistake.");
+		    strcpy(kbuf, "touching a petrifying corpse");
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2434,8 +2430,8 @@ register struct obj *obj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, "a petrifyium bar");
-		    pline("Touching %s is a fatal mistake.", kbuf);
+		    strcpy(kbuf, "touching a petrifyium bar");
+		    pline("Touching a petrifyium bar is a fatal mistake.");
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2449,8 +2445,8 @@ register struct obj *obj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, "a petrifyium bra");
-		    pline("Touching %s is a fatal mistake.", kbuf);
+		    strcpy(kbuf, "touching a petrifyium bra");
+		    pline("Touching a petrifyium bra is a fatal mistake.");
 		    instapetrify(kbuf);
 		    return -1;
 		}
@@ -2465,9 +2461,8 @@ register struct obj *obj;
 		else {
 		    char kbuf[BUFSZ];
 
-		    strcpy(kbuf, an(corpse_xname(obj, TRUE)));
-		    pline("Touching %s is a fatal mistake.", kbuf);
-		    strcpy(kbuf, an(killer_cxname(obj, TRUE)));
+		    pline("Touching a petrifying egg is a fatal mistake.");
+		    strcpy(kbuf, "touching a petrifying egg");
 		    instapetrify(kbuf);
 		    return -1;
 		}

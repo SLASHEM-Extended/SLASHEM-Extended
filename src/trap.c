@@ -22984,7 +22984,7 @@ const char *arg;
 			&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
 		pline("%s touch the %s corpse.", arg,
 		        mons[uwep->corpsenm].mname);
-		sprintf(kbuf, "%s corpse", an(mons[uwep->corpsenm].mname));
+		sprintf(kbuf, "touching a petrifying corpse");
 		instapetrify(kbuf);
 	}
 	/* Or your secondary weapon, if wielded */
@@ -22992,7 +22992,7 @@ const char *arg;
 			touch_petrifies(&mons[uswapwep->corpsenm]) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )){
 		pline("%s touch the %s corpse.", arg,
 		        mons[uswapwep->corpsenm].mname);
-		sprintf(kbuf, "%s corpse", an(mons[uswapwep->corpsenm].mname));
+		sprintf(kbuf, "touching a petrifying corpse");
 		instapetrify(kbuf);
 	}
 }
@@ -26499,8 +26499,7 @@ struct trap *ttmp;
 		else {
 			char kbuf[BUFSZ];
 
-			sprintf(kbuf, "trying to help %s out of a pit",
-					an(mtmp->data->mname));
+			sprintf(kbuf, "trying to help a petrifying monster out of a pit");
 			instapetrify(kbuf);
 			return 1;
 		}

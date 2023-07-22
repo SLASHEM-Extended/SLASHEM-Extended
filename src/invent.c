@@ -10111,7 +10111,7 @@ boolean force_touch;
 	    else
 			pline("Touching the %s corpse is a fatal mistake...",
 				mons[otmp->corpsenm].mname);
-		sprintf(kbuf, "%s corpse", an(mons[otmp->corpsenm].mname));
+		sprintf(kbuf, "feeling a petrifying corpse");
 		instapetrify(kbuf);
 	}
 }

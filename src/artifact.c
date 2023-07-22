@@ -2860,20 +2860,20 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				touch_petrifies(&mons[otmp2->corpsenm]) && (!uarmg || FingerlessGloves)) {
 				char kbuf[BUFSZ];
 
-				sprintf(kbuf, "stolen %s corpse", mons[otmp2->corpsenm].mname);
+				sprintf(kbuf, "a stolen petrifying corpse");
 				instapetrify(kbuf);
 			}
 			if (otmp2->otyp == PETRIFYIUM_BAR && (!uarmg || FingerlessGloves)) {
 				char kbuf[BUFSZ];
 
-				sprintf(kbuf, "stolen petrifyium bar");
+				sprintf(kbuf, "a stolen petrifyium bar");
 				instapetrify(kbuf);
 
 			}
 			if (otmp2->otyp == PETRIFYIUM_BRA && (!uarmg || FingerlessGloves)) {
 				char kbuf[BUFSZ];
 
-				sprintf(kbuf, "stolen petrifyium bra");
+				sprintf(kbuf, "a stolen petrifyium bra");
 				instapetrify(kbuf);
 
 			}

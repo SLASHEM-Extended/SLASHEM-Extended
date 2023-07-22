@@ -3156,7 +3156,7 @@ Gloves_off()
 
 	You("wield the %s in your bare %s.",
 	    corpse_xname(uwep, TRUE), makeplural(body_part(HAND)));
-	strcpy(kbuf, an(killer_cxname(uwep, TRUE)));
+	strcpy(kbuf, "wielding a petrifying corpse");
 	instapetrify(kbuf);
 	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
     }
@@ -3165,7 +3165,7 @@ Gloves_off()
 	char kbuf[BUFSZ];
 
 	You("wield the bar in your bare %s.", makeplural(body_part(HAND)));
-	strcpy(kbuf, "petrifyium bar");
+	strcpy(kbuf, "wielding a petrifyium bar");
 	instapetrify(kbuf);
 	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
 
@@ -3175,7 +3175,7 @@ Gloves_off()
 	char kbuf[BUFSZ];
 
 	You("wield the bra in your bare %s.", body_part(HAND));
-	strcpy(kbuf, "petrifyium bra");
+	strcpy(kbuf, "wielding a petrifyium bra");
 	instapetrify(kbuf);
 	uwepgone();  /* life-saved still doesn't allow touching cockatrice */
 
@@ -3189,7 +3189,7 @@ Gloves_off()
 	You("wield the %s in your bare %s.",
 	    corpse_xname(uswapwep, TRUE), body_part(HAND));
 
-	strcpy(kbuf, an(killer_cxname(uswapwep, TRUE)));
+	strcpy(kbuf, "wielding a petrifying egg");
 	instapetrify(kbuf);
 	uswapwepgone();	/* lifesaved still doesn't allow touching cockatrice */
     }

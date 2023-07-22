@@ -240,7 +240,7 @@ use_saddle(otmp)
 
 	    You("touch %s.", mon_nam(mtmp));
  	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-		sprintf(kbuf, "attempting to saddle %s", an(mtmp->data->mname));
+		sprintf(kbuf, "attempting to saddle a petrifying monster");
 		instapetrify(kbuf);
  	    }
 	}
@@ -490,7 +490,7 @@ mount_steed(mtmp, force)
 	    char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
-	    sprintf(kbuf, "attempting to ride %s", an(mtmp->data->mname));
+	    sprintf(kbuf, "attempting to ride a petrifying monster");
 	    instapetrify(kbuf);
 	}
 	if (!(mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && mtmp->data->msound == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (mtmp->data->msound == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {

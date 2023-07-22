@@ -179,24 +179,24 @@ int thrown;
 		    touch_petrifies(&mons[obj->corpsenm]))) {
 		You("throw the %s corpse with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
-		sprintf(killer_buf, "%s corpse", an(mons[obj->corpsenm].mname));
+		sprintf(killer_buf, "throwing a petrifying corpse");
 		instapetrify(killer_buf);
 	}
 	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == PETRIFYIUM_BAR)) {
 		You("throw the bar with your bare %s.", body_part(HAND));
-		sprintf(killer_buf, "thrown petrifyium bar");
+		sprintf(killer_buf, "a thrown petrifyium bar");
 		instapetrify(killer_buf);
 	}
 	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == PETRIFYIUM_BRA)) {
 		You("throw the bra with your bare %s.", body_part(HAND));
-		sprintf(killer_buf, "thrown petrifyium bra");
+		sprintf(killer_buf, "a thrown petrifyium bra");
 		instapetrify(killer_buf);
 	}
 	if ( (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && (obj->otyp == EGG &&
 		    touch_petrifies(&mons[obj->corpsenm]) && obj->corpsenm != PM_PLAYERMON)) {
 		You("throw the %s egg with your bare %s.",
 		    mons[obj->corpsenm].mname, body_part(HAND));
-		sprintf(killer_buf, "%s egg", an(mons[obj->corpsenm].mname));
+		sprintf(killer_buf, "throwing a petrifying egg");
 		instapetrify(killer_buf);
 	}
 	if (welded(obj)) {

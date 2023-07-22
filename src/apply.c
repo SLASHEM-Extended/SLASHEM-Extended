@@ -2346,8 +2346,7 @@ register struct obj *obj;
 	    else {
 		pline("Tinning %s without wearing gloves is a fatal mistake...",
 			an(mons[corpse->corpsenm].mname));
-		sprintf(kbuf, "trying to tin %s without gloves",
-			an(mons[corpse->corpsenm].mname));
+		sprintf(kbuf, "trying to tin a petrifying monster without gloves");
 	    }
 	    instapetrify(kbuf);
 	}
@@ -2476,8 +2475,7 @@ register struct obj *obj;
 	    else {
 		pline("Tinning %s without wearing gloves is a fatal mistake...",
 			an(mons[corpse->corpsenm].mname));
-		sprintf(kbuf, "trying to tin %s without gloves",
-			an(mons[corpse->corpsenm].mname));
+		sprintf(kbuf, "trying to tin a petrifying monster without gloves");
 	    }
 	    instapetrify(kbuf);
 	}
@@ -4010,7 +4008,7 @@ struct obj *obj;
 		    if (otmp->otyp == PETRIFYIUM_BAR && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			char kbuf[BUFSZ];
 			sprintf(kbuf, "a petrifyium bar");
-			pline("Snatching %s is a fatal mistake.", kbuf);
+			pline("Snatching a petrifyium bar is a fatal mistake.");
 			instapetrify(kbuf);
 
 		    }
@@ -4018,7 +4016,7 @@ struct obj *obj;
 		    if (otmp->otyp == PETRIFYIUM_BRA && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			char kbuf[BUFSZ];
 			sprintf(kbuf, "a petrifyium bra");
-			pline("Snatching %s is a fatal mistake.", kbuf);
+			pline("Snatching a petrifyium bra is a fatal mistake.");
 			instapetrify(kbuf);
 
 		    }
@@ -4030,9 +4028,8 @@ struct obj *obj;
 				polymon(PM_STONE_GOLEM))) {
 			char kbuf[BUFSZ];
 
-			sprintf(kbuf, "%s corpse",
-				an(mons[otmp->corpsenm].mname));
-			pline("Snatching %s is a fatal mistake.", kbuf);
+			sprintf(kbuf, "snatching a petrifying corpse");
+			pline("Snatching this kind of corpse is a fatal mistake.");
 			instapetrify(kbuf);
 		    }
 		    otmp = hold_another_object(otmp, "You drop %s!",

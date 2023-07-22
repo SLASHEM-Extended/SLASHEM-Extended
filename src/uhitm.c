@@ -6668,7 +6668,7 @@ struct attack *mattk;
 		    touch_petrifies(&mons[otmp->corpsenm]) && (!uarmg || FingerlessGloves)) {
 		char kbuf[BUFSZ];
 
-		sprintf(kbuf, "stolen %s corpse", mons[otmp->corpsenm].mname);
+		sprintf(kbuf, "a stolen petrifying corpse");
 		instapetrify(kbuf);
 		break;		/* stop the theft even if hero survives */
 	    }
@@ -8744,7 +8744,7 @@ register struct attack *mattk;
 		char kbuf[BUFSZ];
 
 		You("bite into %s.", mon_nam(mdef));
-		sprintf(kbuf, "swallowing %s whole", an(mdef->data->mname));
+		sprintf(kbuf, "swallowing a petrifying monster whole");
 		instapetrify(kbuf);
 	    }
 	}

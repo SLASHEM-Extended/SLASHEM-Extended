@@ -19616,7 +19616,7 @@ register struct monst *mon;
 			char kbuf[BUFSZ];
 			You("touch %s's body, which unfortunately happens to be made of petrifyium.", mon_nam(mon));
  			if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
-				sprintf(kbuf, "having sex with %s", an(mon->data->mname));
+				sprintf(kbuf, "having sex with a petrifying monster");
 				instapetrify(kbuf);
 			}
 
