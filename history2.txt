@@ -1,5 +1,47 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.5 - June 2023
+- Half spell damage now greatly reduces the risk that a death ray instakills the player.
+- The player can no longer simply drop the Amulet of Yendor by wielding it and then obtaining slippery fingers or polymorphing into something that cannot wield a 
+weapon.
+- Attempting to wish for an item with negative luck now respects less of the player's preferences.
+- Added the dimness trap to the list of traps that can be untrapped if the player has the defusing property.
+- Fixed delayed petrification death messages (hopefully).
+- Effects that give a random symbiote to the player should no longer give one that would completely overburden the player.
+- Walscholars now have the ability to move into grave walls.
+- Shopkeeper services can no longer be paid with credit.
+- Fixed a previously introduced bug where being in the water while having the swimming property would cause the entire level to be revealed.
+- Added three new item materials.
+- If the player lifesaves, the game now tells you what the (averted) cause of death was.
+- Added a workaround for the problem where a monster can somehow be both tame and hostile at the same time.
+- Monsters (especially pets) that are busy eating can no longer attack others while they're performing the eating occupation.
+- Adjusted the speed system when the player has the fluctuating speed nastytrap effect.
+- Overhauled the pumps and antje minigames.
+- Lightsaber forms that share the same roman number now synergize with each other, giving bonuses to their respective effects.
+- Depending on the level difficulty, high-level items may now be generated less often if their level is above the level difficulty.
+- Rebalanced the elemental planes by adjusting the amount of monsters that generate there, and also made changes to the layout of the Astral Plane.
+- The player's stats have a lower cap of 1 instead of 3 now. Going below 3 in any stat gives quite harsh penalties.
+- Items can be dipped into a (poisoned) well now.
+- Higher petkeeping skill now increases the maximum HP of a newly obtained pet if it was below a certain threshold, which scales with skill level and charisma. Symbiosis skill does the same for newly obtained symbiotes.
+- Monsters that eat containers will no longer delete the container's contents. Instead, the contents are generally transferred to the monster's inventory.
+- Rebalanced the chance of finding spellbooks inside statues, and it's no longer impossible to turn them into an alive monster if they're vegetarian, but doing so requires the wand of stone to flesh.
+- Shit traps can no longer destroy the player's boots, but disenchant them instead.
+- Special levels have their walls replaced with random terrain less often now, and if they do, the chance to have 100% of walls replaced is much lower.
+- If the randomized appearances of items are shuffled, any artifacts that depend on them are also set to the new appearances so that newly generated artifacts behave properly.
+- Toned down the stronger drain energy effect that can occasionally happen as a random bad effect.
+- Fixed the crash bug inherited from Sporkhack where triggering a ceiling collapse trap at the very edge of the map could cause rocks to drop in invalid locations, corrupting the game.
+- Added a couple of failsafe mechanisms to hopefully ensure that dead monsters can't somehow still attack on occasion just after they died.
+- Pets no longer have ultra crappy to-hit against doubly invisible monsters. They still get a penalty, but at least they should be able to hit such monsters now.
+- Fixed some issues with the "wounded legs" status effect.
+- Improved the likelihood for the player to find items inside containers.
+- Traps can no longer replace staircases with different terrain.
+- Improved some enlightenment descriptions, particularly those that deal with RNG effects on item generation.
+- Monsters with two-handed weapons can no longer attack twice per turn if they have two weapon attacks.
+- Dye potions can now be applied to dye an item.
+- Fixed the bug where certain types of hazardous terrain would still affect the player even when engulfed by a monster.
+- Fixed the oversight where the screen wouldn't always update after the player dug out a grave wall.
+- Rebalanced some playable races that were too strong.
+
 2.8.4 - May 2023
 - Overhauled "infrastructure" NPCs by adding more tiers to them and also rebalancing their stats.
 - Certain highly damaging types of trap deal less damage to low-level characters now to cut down on unfair instadeaths before you have a chance to survive them.
