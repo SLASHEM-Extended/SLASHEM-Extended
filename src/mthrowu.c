@@ -2130,7 +2130,24 @@ struct monst *mtmp;
 		  onm);
 	    m_shot.o = otmp->otyp;
 	} else {
-	    if (flags.soundok && !issoviet) You_hear("a flinging sound."); /* at least tell the player that something's happening --Amy */
+
+	    m_shot.s = (mwep && ammo_and_launcher(otmp,mwep)) ? TRUE : FALSE;
+
+	    if (flags.soundok && !issoviet) {
+
+		/* at least tell the player that something's happening, instead of stupidly stopping input while the off-screen
+		 * projectile is flying (which can make the player think the game hangs when the projectile was fired from
+		 * far away, since it may delay output for several seconds while nothing apparently happens) --Amy */
+		if (multishot > 1) {
+			if (is_bullet(otmp)) You_hear("several gunshots.");
+			else if (m_shot.s) You_hear("rapid shooting sounds.");
+			else You_hear("multiple flinging sounds.");
+		} else {
+			if (is_bullet(otmp)) You_hear("the sound of gunfire.");
+			else if (m_shot.s) You_hear("a shooting sound.");
+			else You_hear("a flinging sound.");
+		}
+	    }
 	    m_shot.o = STRANGE_OBJECT;	/* don't give multishot feedback */
 	}
 

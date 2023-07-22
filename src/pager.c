@@ -29051,6 +29051,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"Stairs down appear from nowhere! But due to a bug, they go to level 55 of Gehennom, which would be massively out of depth for your current character.",
 	"A couple of maps to play have been put on the ground.",
 	"A couple of maps to play have been put on the ground. You don't know what to do with them, though.",
+	"You hear a shooting sound.",
+	"You hear a shooting sound. Someone's firing at you, and you still cannot see who it is!",
+	"You hear the sound of gunfire.",
+	"You hear the sound of gunfire. Damn, some bastard has a gun! You must make sure he doesn't kill you!",
+	"You hear several gunshots.",
+	"You hear several gunshots. Oh no, someone's got a gun, and it's even an automatic one!",
+	"You hear rapid shooting sounds.",
+	"You hear rapid shooting sounds. Hopefully you have a good shield or lightsaber to block the projectiles.",
+	"You hear multiple flinging sounds.",
+	"You hear multiple flinging sounds. Who's the asshole throwing daggers at you?",
 
 };
 
