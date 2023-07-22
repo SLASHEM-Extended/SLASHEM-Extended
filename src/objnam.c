@@ -10634,7 +10634,8 @@ typfnd:
 	    obj_extract_self(otmp);	 /* now release it for caller's use */
 	}
 
-	if(cnt > 0 && objects[typ].oc_merge && oclass != SPBOOK_CLASS &&
+	/* wtf, why would you still have the same chance of getting the requested quantity with negative luck??? --Amy */
+	if(cnt > 0 && !(Luck < 0 && !rn2(2) && !wizard) && objects[typ].oc_merge && oclass != SPBOOK_CLASS &&
 		(typ != CORPSE || !is_reviver(&mons[mntmp])) &&
 		(cnt < rnd(6) ||
 #ifdef WIZARD
@@ -10656,7 +10657,7 @@ typfnd:
 		 is_weptool(otmp) ||
 			(oclass==RING_CLASS && objects[typ].oc_charged)) {
 		if(spe > rnd(5) && spe > otmp->spe) spe = 0;
-		if(spe > 2 && Luck < 0) spesgn = -1;
+		if(spe > 0 && Luck < 0) spesgn = -1; /* wtf, why would negative luck reverse it only for +3 or higher??? --Amy */
 	} else {
 		if (oclass == WAND_CLASS) {
 			if (spe > 1 && spesgn == -1) spe = 1;
@@ -10862,7 +10863,8 @@ typfnd:
 		otmp->age = 1L;
 	}
 
-	if (isgreased) otmp->greased = 1;
+	/* wtf! you always get greased even if your luck is negative??? nope! --Amy */
+	if (isgreased && !(Luck < 0 && !rn2(2) && !wizard) ) otmp->greased = 1;
 
 	if (isdiluted && otmp->oclass == POTION_CLASS &&
 			otmp->otyp != POT_WATER)
