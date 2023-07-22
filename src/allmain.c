@@ -19099,12 +19099,14 @@ antjeminigame()
 	char choicetwobuf[BUFSZ];
 	char choicethreebuf[BUFSZ];
 	char choicefourbuf[BUFSZ];
+	char choicefivebuf[BUFSZ];
 
 antjenewturn:
 	sprintf(choiceonebuf, "choice 1");
 	sprintf(choicetwobuf, "choice 2");
 	sprintf(choicethreebuf, "choice 3");
 	sprintf(choicefourbuf, "choice 4");
+	sprintf(choicefivebuf, "choice 5");
 
 	/* tell player what's happening */
 	switch (antjestage) {
@@ -19141,6 +19143,7 @@ antjenewturn:
 			sprintf(choicetwobuf, "Ignore her.");
 			sprintf(choicethreebuf, "Punch her.");
 			sprintf(choicefourbuf, "Try to feel up her butt cheeks.");
+			sprintf(choicefivebuf, "Offer to accompany her.");
 			break;
 
 		case 5:
@@ -19148,6 +19151,7 @@ antjenewturn:
 			sprintf(choicetwobuf, "Ignore her.");
 			sprintf(choicethreebuf, "Punch her.");
 			sprintf(choicefourbuf, "Offer to pull down her pants.");
+			sprintf(choicefivebuf, "Try to touch her.");
 			break;
 
 		case 10:
@@ -19155,6 +19159,7 @@ antjenewturn:
 			sprintf(choicetwobuf, "Ignore her.");
 			sprintf(choicethreebuf, "Punch her.");
 			sprintf(choicefourbuf, "Tell her how aroused you are.");
+			sprintf(choicefivebuf, "Offer to help her.");
 			break;
 
 		case 15:
@@ -19162,6 +19167,7 @@ antjenewturn:
 			sprintf(choicetwobuf, "Ignore her.");
 			sprintf(choicethreebuf, "Punch her.");
 			sprintf(choicefourbuf, "Start wanking off.");
+			sprintf(choicefivebuf, "Offer to wipe off her butt.");
 			break;
 
 		case 20:
@@ -19169,6 +19175,7 @@ antjenewturn:
 			sprintf(choicetwobuf, "Meditate.");
 			sprintf(choicethreebuf, "Do something stupid.");
 			sprintf(choicefourbuf, "Wank off.");
+			sprintf(choicefivebuf, "Flee.");
 			break;
 
 		case 100:
@@ -19176,6 +19183,7 @@ antjenewturn:
 			sprintf(choicetwobuf, "Think sexy thoughts.");
 			sprintf(choicethreebuf, "Spank her ass.");
 			sprintf(choicefourbuf, "Rape her.");
+			sprintf(choicefivebuf, "Use excessive violence.");
 			break;
 
 		default:
@@ -19194,6 +19202,8 @@ antjenewturn:
 	add_menu(tmpwin, NO_GLYPH, &any , 'c', 0, ATR_NONE, choicethreebuf, MENU_UNSELECTED);
 	any.a_int = 4;
 	add_menu(tmpwin, NO_GLYPH, &any , 'd', 0, ATR_NONE, choicefourbuf, MENU_UNSELECTED);
+	any.a_int = 5;
+	add_menu(tmpwin, NO_GLYPH, &any , 'e', 0, ATR_NONE, choicefivebuf, MENU_UNSELECTED);
 
 	end_menu(tmpwin, "What do you do?");
 	n = select_menu(tmpwin, PICK_ONE, &selected);
@@ -19243,6 +19253,9 @@ antjenewturn:
 						break;
 					case 4:
 						pline("As your %s start groping Antje's butt, she suddenly turns around and pushes you away, then she brazenly decides to enter the men's cabin.", makeplural(body_part(HAND)) );
+						break;
+					case 5:
+						pline("Antje just ignores you and enters the men's cabin, so you decide to follow her.");
 						break;
 				}
 			} else {
@@ -19302,6 +19315,14 @@ antjenewturn:
 						drain_alla(2);
 						playeraroused = TRUE;
 						break;
+					case 5:
+						pline("As you touch her butt, Antje slaps you in the %s.", body_part(FACE));
+						if (!playerprone && rnd(10) > ACURR(A_CON) ) {
+							playerprone = TRUE;
+							pline("Since you're too scrawny, the pain causes you to drop helplessly to the floor.");
+						}
+						losehp(6, "being slapped by Antje", KILLED_BY);
+						break;
 				}
 			} else {
 				pline("Antje proceeds to pull down her pants, revealing very thick butt cheeks.");
@@ -19327,7 +19348,10 @@ antjenewturn:
 						}
 						break;
 					case 3:
-						if (playeraroused) {
+						if (playerprone) {
+							pline("You fail to get up, and have to watch Antje pressing a thick log of shit on the toilet lid with her female butt.");
+							drain_alla(15);
+						} else if (playeraroused) {
 							pline("Due to being aroused by the sexy Antje, you can't bring yourself to hurt her. Instead, you just watch as she takes a crap on the toilet lid with her beautifully thick butt.");
 							drain_alla(20);
 						} else {
@@ -19365,6 +19389,11 @@ antjenewturn:
 						playeraroused = TRUE;
 						pline("You tell the sexy Antje that you just love to see her taking a crap... and she does. The crapping noises that her butt makes are very exciting!");
 						drain_alla(5);
+						break;
+					case 5:
+						playeraroused = TRUE;
+						u.usanity += rnd(25); /* not increasesanity() */
+						pline("It is incredibly sexy to be feeling up Antje's buttocks while she fully craps on the toilet lid. Somehow, though, your brain has difficulties trying to handle this sight.");
 						break;
 				}
 			} else {
@@ -19425,6 +19454,23 @@ antjenewturn:
 						pline("You begin to touch yourself. Disgusted, Antje rushes off, and now you're alone in the toilet, but %s.", flags.female ? "apparently you've been contaminated by your smegma" : "you've wanked so much that your mucosa membranes are starting to get inflamed");
 						contaminate(50, FALSE);
 						break;
+					case 5:
+						if (playerprone) {
+							incr_itimeout(&Glib, 50);
+							pline("Since you can't get up, you can't get to the toilet paper, and Antje doesn't give you any either, but forces you to wipe off her thick butt with your bare %s... eww...", body_part(HAND));
+						} else {
+							pline("Antje agrees, so you grab some toilet paper and use it to wipe off her thick butt.");
+							if (!Vomiting) {
+								You_feel("like you're going to throw up.");
+							      make_vomiting(Vomiting+20, TRUE);
+								if (Sick && Sick < 100) set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+							} else {
+								You("have to vomit immediately.");
+								vomit();
+								morehungry(20);
+							}
+						}
+						break;
 				}
 			} else {
 				pline("You watch Antje's beautiful butt cheeks as she walks out of the toilet with her high heels, and can't help but feel that she's pretty erotic.");
@@ -19473,6 +19519,18 @@ antjenewturn:
 						drain_alla(30);
 						adjattrib(A_CHA, 1, FALSE, TRUE);
 						playeraroused = TRUE;
+						break;
+					case 5:
+						if (playerprone) {
+							pline("Since you're knocked out, you can't quickly leave the toilet, and have to smell the stinking log of shit that Antje placed on the toilet lid until you're finally far enough away.");
+							badeffect();
+						} else {
+							if (playeraroused) make_stunned(HStun + rnz(500),FALSE);
+							make_confused(HConfusion + rnz(500),FALSE);
+
+							pline(playeraroused ? "Whoa, Antje can produce such incredibly exciting crapping noises, and she doesn't hesitate to simply crap on the toilet lid!" : "You can't wrap your head around the behavior of that Antje girl.");
+							pline("But, you did manage to leave the cabin at last.");
+						}
 						break;
 				}
 			} else {
@@ -19523,6 +19581,50 @@ antjenewturn:
 
 						}
 						break;
+					case 5:
+						if (!u.berserktime) u.berserktime = 25;
+						adjalign(-50);
+						u.ualign.sins++;
+						u.alignlim--;
+
+						if (!rn2(20)) u.copwantedlevel += rnz(u.ualign.sins + 1);
+
+						u.cnd_kopsummonamount++;
+						int copcnt = rnd(15);
+
+						if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+							copcnt = (copcnt / 2) + 1;
+						}
+
+						if (RngeAntiGovernment) {
+							copcnt = (copcnt / 2) + 1;
+						}
+
+						int tryct = 0;
+						int x, y;
+
+						for (tryct = 0; tryct < 2000; tryct++) {
+							x = rn1(COLNO-3,2);
+							y = rn2(ROWNO);
+
+							if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+								(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
+								break;
+								}
+						}
+
+					      while(--copcnt >= 0) {
+							(void) makemon(mkclass(S_KOP,0), 0, 0, rn2(3) ? MM_ANGRY|MM_ADJACENTOK : MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+						} /* while */
+
+						if (uarmf) pline("With your boots, you fully kick Antje in the back of the head repeatedly.");
+						else if (uwep && (objects[uwep->otyp].oc_dir == 0)) pline("Using your blunt weapon, you bash Antje's head with full force.");
+						else if (uwep) pline("Using your edged weapon, you cut a slit open, and watch in shock as Antje bleeds profusely.");
+						else pline("Your fists bonk Antje's defenseless head repeatedly.");
+
+						pline("You're not sure what kind of devil has possessed you, but somehow the anger in you has erupted. However, you're also aware that you probably just committed a crime and %s will certainly not be very pleased - oh whoops, and there's a police siren and an alarm mentioning the name '%s' sounds in the distance! Maybe, just maybe, you shouldn't have treated the poor innocent Antje that badly...", u_gname(), playeraliasname);
+
+						break;
 				}
 			} else {
 				pline("There's not much left for you to do, now that Antje is knocked out.");
@@ -19567,7 +19669,8 @@ pumpsminigame()
 	int pumpslikeyou = 0;
 	int pumpshealth = 100;
 	int pumpsdefiled = 0;
-	boolean pumpsnutkick = FALSE;
+	int pumpsnutkick = 0;
+	boolean pumpsfirstturn = FALSE;
 
 	int yourdamagedeal;
 	int yourstrength;
@@ -19608,6 +19711,9 @@ newturn:
 
 		if (rn2(25) < ((pumpslikeyou > 10) ? 10 : pumpslikeyou) ) pumpsstate = PUMPINLAP;
 
+		/* first turn can't be kick in the nuts because the pumps aren't that unfair :-) */
+		if (!pumpsfirstturn && pumpsstate == PUMPKICKINNUTS) pumpsstate = PUMPBASHING;
+
 		switch (pumpsstate) {
 
 			case PUMPSCRATCHING:
@@ -19624,7 +19730,7 @@ newturn:
 				    pline("You can feel the heel scratching on your shin bone! It hurts and bleeds a lot!");
 				else
 				    pline("You watch in shock as your blood is squirting everywhere, all the while feeling the razor-sharp high heel mercilessly opening your %ss!", body_part(LEG));
-				losehp(u.legscratching, "endorphic leg scratches", KILLED_BY);
+				losehp(u.legscratching ? rnd(u.legscratching) : 1, "endorphic leg scratches", KILLED_BY);
 				u.legscratching++;
 				pumpslikeyou--;
 				if (u.legscratching >= 20) pumpslikeyou--;
@@ -19633,7 +19739,7 @@ newturn:
 			case PUMPBASHING:
 
 				pline("Klock! The heel slams on your %s, producing a beautiful sound.", body_part(HEAD));
-				losehp(rnd(20),"being bashed on the head by an orgasm pump",KILLED_BY);
+				losehp(rnd(4),"being bashed on the head by an orgasm pump",KILLED_BY);
 				if (!rn2(3)) pumpslikeyou++;
 
 				break;
@@ -19643,24 +19749,24 @@ newturn:
 
 					pline("The sexy leather pumps painfully drive the lovely cone heel into your nuts, and you moan in agony!");
 
-					losehp(rnd(monster_difficulty() + 20),"being kicked in the nuts by a sexy leather pump",KILLED_BY);
+					losehp(rno(monster_difficulty() + 4),"being kicked in the nuts by a sexy leather pump",KILLED_BY);
 					pumpslikeyou -= 3;
 
 				} else {
 
 					pline("The sexy leather pumps kick you in the nuts with their lovely cone heel, and you moan in lust due to the intense pain!");
 
-					losehp(rnd(10),"being kicked in the nuts by a sexy leather pump",KILLED_BY);
+					losehp(rnd(2),"being kicked in the nuts by a sexy leather pump",KILLED_BY);
 					pumpslikeyou += rnd(2);
 
 				}
-				pumpsnutkick = TRUE;
+				pumpsnutkick += 3;
 
 				break;
 			case PUMPTOESTOMP:
 
 				pline("The sexy leather pumps stomp your toes with their lovely heels!");
-				losehp(rnd(5),"having their toes stomped by sexy leather pumps",KILLED_BY);
+				losehp(rnd(2),"having their toes stomped by sexy leather pumps",KILLED_BY);
 
 				if (!rn2(10) && (rnd(30) > ACURR(A_CON)) ) {
 					pline("Your defenseless %s was crushed underneath the very sexy heel!", body_part(TOE));
@@ -19716,6 +19822,7 @@ newturn:
 
 		}
 		yourturn = TRUE;
+		pumpsfirstturn = TRUE;
 
 	} else { /* it's your turn */
 
@@ -19766,7 +19873,7 @@ newturn:
 				case 2:
 					if (ACURR(A_DEX) < rnd(25) && ACURR(A_DEX) < rnd(25)) {
 						pline("Ouch - you punched the hard, unyielding cone heel!");
-						losehp(rnd(4),"punching a massive cone heel",KILLED_BY);
+						losehp(rnd(2),"punching a massive cone heel",KILLED_BY);
 					} else if (rnd(yourstrength) > 10) {
 						yourdamagedeal = rnd(yourstrength);
 						pumpshealth -= yourdamagedeal;
@@ -19799,7 +19906,7 @@ newturn:
 					} else {
 						if (!rn2(3)) pumpslikeyou--;
 						pline("The sexy leather pumps quickly evade your grasp and stomp on your %s with their lovely high heel.", body_part(FINGER));
-						if (!rn2(4)) losehp(rnd(4),"having their fingers crushed underneath cone-heeled lady pumps",KILLED_BY);
+						if (!rn2(4)) losehp(rnd(2),"having their fingers crushed underneath cone-heeled lady pumps",KILLED_BY);
 						if (!rn2(5) && (rnd(30) > ACURR(A_CON)) ) {
 							if (u.uhpmax < 2) {
 								u.youaredead = 1;
@@ -19822,7 +19929,9 @@ newturn:
 					if ( (rnd(30) < ACURR(A_DEX)) && (rnd(30) < ACURR(A_DEX)) ) {
 						pline("It seems that your constant movement makes the sexy leather pumps slightly dizzy.");
 						if (pumpslikeyou < 0) pumpslikeyou++;
+
 						if (rn2(3)) pumpsstate = PUMPIDLE;
+						else pumpsstate = rnd(4);
 					} else {
 						pline("Your fancy footwork didn't fool the lovely leather pumps.");
 						pumpsstate = rnd(4);
@@ -19879,6 +19988,7 @@ newturn:
 		}
 		yourturn = FALSE;
 		minigameturns++;
+		if (pumpsnutkick > 0) pumpsnutkick--; /* recover from pain after a while */
 
 	}
 	if (yourturn) goto newturn;
