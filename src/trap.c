@@ -25176,6 +25176,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == LASER_TRAP) chance = 16;
 	if (ttmp->ttyp == CONFUSE_TRAP) chance = 10;
 	if (ttmp->ttyp == STUN_TRAP) chance = 10;
+	if (ttmp->ttyp == DIMNESS_TRAP) chance = 10;
 	if (ttmp->ttyp == HALLUCINATION_TRAP) chance = 12;
 	if (ttmp->ttyp == NUMBNESS_TRAP) chance = 8;
 	if (ttmp->ttyp == FREEZING_TRAP) chance = 20;
@@ -25736,6 +25737,8 @@ struct trap *ttmp;
 		case CONFUSE_TRAP:
 			multiplier = 5; break;
 		case STUN_TRAP:
+			multiplier = 5; break;
+		case DIMNESS_TRAP:
 			multiplier = 5; break;
 		case HALLUCINATION_TRAP:
 			multiplier = 5; break;
@@ -26735,6 +26738,7 @@ boolean force;
 			case LASER_TRAP:
 			case CONFUSE_TRAP:
 			case STUN_TRAP:
+			case DIMNESS_TRAP:
 			case HALLUCINATION_TRAP:
 			case NUMBNESS_TRAP:
 			case FREEZING_TRAP:
