@@ -24635,9 +24635,9 @@ boolean *lostsome;
 		     * Undroppables are: body armor, boots, gloves,
 		     * amulets, and rings because of the time and effort
 		     * in removing them + loadstone and other cursed stuff
-		     * for obvious reasons.
+		     * for obvious reasons. Amy edit: and the amulet of yendor, you filthy cheater :-P
 		     */
-		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) || is_feminismstone(obj) ) && obj->cursed) ||
+		    if (!(( (obj->otyp == LOADSTONE || obj->otyp == LUCKSTONE || obj->otyp == HEALTHSTONE || obj->otyp == MANASTONE || obj->otyp == SLEEPSTONE || obj->otyp == LOADBOULDER || (obj->otyp == AMULET_OF_YENDOR && !u.freeplaymode) || (obj->otyp == FAKE_AMULET_OF_YENDOR && !u.freeplaymode) || obj->otyp == STARLIGHTSTONE || obj->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(obj) || is_feminismstone(obj) ) && (obj->cursed || (obj->otyp == AMULET_OF_YENDOR && !u.freeplaymode) || (obj->otyp == FAKE_AMULET_OF_YENDOR && !u.freeplaymode) ) ) ||
 			  obj == uamul || obj == uimplant || obj == uleft || obj == uright ||
 			  obj == ublindf || obj == uarm || obj == uarmc ||
 			  obj == uarmg || obj == uarmf ||

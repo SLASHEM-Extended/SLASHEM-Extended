@@ -7845,6 +7845,8 @@ dropitemattack()
 			}
 
 			if ( (otmpi->otyp == LOADSTONE || otmpi->otyp == LOADBOULDER || otmpi->otyp == STARLIGHTSTONE || otmpi->otyp == LUCKSTONE || otmpi->otyp == HEALTHSTONE || otmpi->otyp == MANASTONE || otmpi->otyp == SLEEPSTONE || otmpi->otyp == STONE_OF_MAGIC_RESISTANCE || is_nastygraystone(otmpi) || is_feminismstone(otmpi)) && otmpi->cursed ) continue;
+			/* it is okay to drop amulets of yendor here, because you have to go through the trouble of setting up
+			 * a situation where you get hit by an item-dropping attack --Amy */
 
 			if (otmpi->owornmask & (W_BALL|W_CHAIN)) continue;
 			else if (otmpi->owornmask) {
