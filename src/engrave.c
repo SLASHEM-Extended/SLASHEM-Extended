@@ -6024,6 +6024,7 @@ static const char *epitaphs[] = {
 	"Yeah you can't play vanilla nethack, you can't get any of your damn potions and scrolls identified and if you carry them out in the open, a monster with fire or cold attacks will definitely spawn sooner rather than later and deal extra damage to you proportional to the # of carried consumables, killing you instantly.",
 	"The best way to deal with random monsters with a wand of death in vanilla nethack before you can survive them is to pretend that they're not in the game and roll a new char if you do run into one. I'm fairly convinced that there's a game design problem if the game really plays like that.",
 	"Random instadeaths that you can't avoid are no fun! If there's special code that allows you to survive a death ray once even without reflection or MR, you'll still die to the next zap because the FILTHY monsters can CH3AT by moving and instantly zapping you again all in one turn, even if you moved such that you'd no longer be lined up with them!",
+	"Oh and I'll still maintain that Nethack sucks. This cannot be argued. Might as well have an 'Ultra Death' enemy that just has a random chance of spawning right next to you if you do literally anything. If it does, it instantly kills you just by having spawned and ignores the effects of Amulets of Life Saving in the process.",
 
 };
 

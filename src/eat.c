@@ -3918,6 +3918,7 @@ register int pm;
 		case PM_FLOATING_BRAIN:
 		case PM_MINDWITNESS:
 		case PM_BRAIN_GOLEM:
+		case PM_BRAINBLOSSOM_PATCH:
 		case PM_INTELLIGENCE_PIN:
 		case PM_LOWER_BRAIN:
 		case PM_MUMAK_FLAYER:

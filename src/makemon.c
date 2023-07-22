@@ -7919,6 +7919,7 @@ register struct	monst	*mtmp;
 
 		if (monsndx(ptr) == PM_ILSE_S_LADY_PUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_HIGH_DAIMYO]) (void) mongets(mtmp, KATANA);
+		if (ptr == &mons[PM_UNI_EMPRESS]) (void) mongets(mtmp, DARK_HORN);
 		if (ptr == &mons[PM_STREET_RACQUET]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_GANXTA]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_SUPER_GANXTA]) (void) mongets(mtmp, SUPER_KNUCKLES);
@@ -12351,6 +12352,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SCOTLAND_YARD_AGENT]) (void) mongets(mtmp, LUCERN_HAMMER);
 		if (mtmp->data == &mons[PM_KSK_TYPE]) (void) mongets(mtmp, LUCERN_HAMMER);
 		if (mtmp->data == &mons[PM_BULLETATOR_ANNOYER]) (void) mongets(mtmp, PARTISAN + rn2(ORCISH_SPEAR - PARTISAN) );
+		if (mtmp->data == &mons[PM_BUBBLEMON]) (void) mongets(mtmp, BUBBLEHORN);
 
 		if (mtmp->data == &mons[PM_ANN_LEE]) {
 			(void) mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1));
@@ -27017,6 +27019,7 @@ register int	mmflags;
 			    mtmp->minvis = TRUE;
 			}
 
+			if (mndx == PM_STOLEN_STAR_VAMPIRE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_ORIENTAL_VAMPIRE) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_BIG_BULLETATOR_V) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
 			if (mndx == PM_SING_S_DEEPSTATE_AGENT) {mtmp->perminvis = TRUE; mtmp->minvis = TRUE; }
