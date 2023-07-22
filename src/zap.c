@@ -9190,9 +9190,10 @@ xchar sx, sy;
 		break;
 	    }
 
-		/* we can reach this even if it was disintegration, but only if no item saved you */
+		/* we can reach this even if it was disintegration, but only if no item saved you
+		 * Amy note: half spell damage gives 4 in 5 extra chance to survive a death ray */
 
-	    if (!rn2(20) || abs(type) == ZT_BREATH(ZT_DEATH) ) {
+	    if ( (!rn2(20) && (!rn2(5) || !Half_spell_damage) && (!rn2(5) || !StrongHalf_spell_damage) ) || abs(type) == ZT_BREATH(ZT_DEATH) ) {
 		u.youaredead = 1;
 		killer_format = KILLED_BY_AN;
 		killer = fltxt;
