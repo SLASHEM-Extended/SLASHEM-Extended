@@ -10347,6 +10347,7 @@ register struct obj *obj;		   /* no texts here! */
 		pline("Harharhar, this is the evil variant, so YOU are being penalized for a monster cheating the sokoban puzzle.");
 	}
 
+	obj->oartifact = 0;
 	obj->otyp = ROCK;
 	obj->quan = (long) rn1(60, 7);
 	obj->owt = weight(obj);
