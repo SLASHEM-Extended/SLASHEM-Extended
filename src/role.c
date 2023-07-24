@@ -11250,6 +11250,9 @@ recursioneffect()
 	u.oldrecursionrole = -1;
 	u.oldrecursionrace = -1;
 
+	boolean waspolyd = Upolyd;
+	int polymonnum = u.umonnum;
+
 	if (!rn2(4)) {
 
 	flags.initrole = randrole();
@@ -11278,7 +11281,16 @@ recursioneffect()
 
 	}
 
+	/* set it all up properly... this is such a pain in the butt --Amy */
+
+	u.umonnum = u.umonster = (flags.female && urole.femalenum != NON_PM) ? urole.femalenum : urole.malenum;
+
 	init_uasmon();
+
+	if (waspolyd) {
+		u.umonnum = polymonnum;
+		set_uasmon();
+	}
 
 	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
 
