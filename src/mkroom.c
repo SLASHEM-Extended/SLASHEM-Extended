@@ -2409,6 +2409,8 @@ insidemon()
 	else if (i > 18)	return(&mons[PM_HUGE_OGRE_THIEF]);
 	else if (i > 9)	return(&mons[PM_GUNNHILD_S_GENERAL_STORE]);
 	else			return(&mons[PM_SUPERTHIEF]);
+
+	return(&mons[PM_SUPERTHIEF]); /* appease compiler */
 }
 
 struct permonst *
