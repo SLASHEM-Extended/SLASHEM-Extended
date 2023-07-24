@@ -4127,7 +4127,7 @@ use_pole (obj)
 #endif
 
 	typ = weapon_type(obj);
-	if ((typ == P_FLAIL && obj->otyp != HEAVY_LASER_BALL && obj->otyp != LASER_CHAIN) || (typ == P_CLUB && !Role_if(PM_AKLYST)) || typ == P_MORNING_STAR) {
+	if (obj->otyp == SPINED_BALL || (obj->otyp == AKLYS && !Role_if(PM_AKLYST)) || (obj->otyp == BLOW_AKLYS && !Role_if(PM_AKLYST)) || obj->otyp == CHAIN_AND_SICKLE) {
 		if (PlayerCannotUseSkills || P_SKILL(typ) <= P_BASIC) max_range = 4;
 		else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
 		else max_range = 8;
