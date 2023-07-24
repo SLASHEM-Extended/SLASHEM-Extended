@@ -29061,6 +29061,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear rapid shooting sounds. Hopefully you have a good shield or lightsaber to block the projectiles.",
 	"You hear multiple flinging sounds.",
 	"You hear multiple flinging sounds. Who's the asshole throwing daggers at you?",
+	"You feel rather itchy under your ring mail.",
+	"You feel rather itchy under your ring mail. Eurgh, wank off already and be done with it, you pervert!",
 
 };
 

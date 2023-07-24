@@ -4928,7 +4928,7 @@ melatechoice:
 
 		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) ) {
 
-			switch (rnd(596)) {
+			switch (rnd(597)) {
 	
 			case 1: pline("%s staggers from your furious assault.", Monnam(mon)); break;
 			case 2: pline("Your cut barely scratches %s's scales.", mon_nam(mon)); break;
@@ -5526,6 +5526,7 @@ melatechoice:
 			case 594: pline("%s is driven back by your blow.", Monnam(mon)); break;
 			case 595: pline("At last, you landed a hit. %s will require several more of those if you want to win this encounter, though.", Monnam(mon)); break;
 			case 596: pline("%s was shot but didn't die!", Monnam(mon)); break;
+			case 597: pline("%s decides to eat a mochi, but suddenly starts choking. You perform the Heimlich maneuver and bash %s up with full force, which causes the mochi to rocket back out of %s mouth, and %s survives with slight injuries.", Monnam(mon), mhim(mon), mhis(mon), mhe(mon)); break;
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -5643,7 +5644,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(741)) {
+				switch (rnd(744)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -6386,6 +6387,9 @@ melatechoice:
 				case 739: pline("Finally, %s ain't be getting on your nerves no more!", mon_nam(mon)); break;
 				case 740: pline("After being shot in the %s, %s dies (expectably).", mbodypart(mon, HEAD), mon_nam(mon)); break;
 				case 741: pline("%s dies from with rupture of brain.", Monnam(mon)); break; /* sic from elona */
+				case 742: pline("%s decides to eat a mochi, but suddenly starts choking. Instead of helping %s, you just stand by and wait until %s runs out of air and explodes into tiny chunks.", Monnam(mon), mhim(mon), mhe(mon)); break;
+				case 743: pline("%s decides to eat a mochi, but suddenly starts choking. You perform the Heimlich maneuver and bash %s up with full force; while that causes the mochi to rocket back out of %s mouth, %s also sustains a severe gastrointestinal hemorrhage and dies shortly after.", Monnam(mon), mhim(mon), mhis(mon), mhe(mon)); break;
+				case 744: pline("%s fails the Turing test and is derezzed!", Monnam(mon)); break;
 
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
