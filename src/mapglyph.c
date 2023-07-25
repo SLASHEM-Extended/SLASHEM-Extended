@@ -7,6 +7,8 @@
 #include "wintty.h"	/* for prototype of has_color() only */
 #endif
 #include "color.h"
+#include <ctype.h>	/* metanite64: for toupper() prototype */
+
 #define HI_DOMESTIC CLR_WHITE	/* monst.c */
 
 int explcolors[] = {

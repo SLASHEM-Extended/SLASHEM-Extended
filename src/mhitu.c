@@ -7,6 +7,8 @@
 #include "artifact.h"
 #include "edog.h"
 
+void maybe_scream(); /* hacky fix for mac compiling */
+
 STATIC_VAR NEARDATA struct obj *otmp;
 STATIC_PTR int katicleaning(void);
 STATIC_PTR int singcleaning(void);

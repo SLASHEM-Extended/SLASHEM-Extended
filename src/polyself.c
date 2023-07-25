@@ -12,6 +12,8 @@
 
 #include "hack.h"
 
+void reinitmissingno(); /* hacky fix for mac compiling */
+
 #ifdef OVLB
 STATIC_DCL void polyman(const char *,const char *);
 STATIC_DCL void break_armor(void);

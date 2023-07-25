@@ -13,6 +13,8 @@
 # endif
 #endif
 
+void reinitmissingno(); /* hacky fix for mac compiling */
+
 STATIC_PTR int eatmdone(void);
 STATIC_PTR int eatfood(void);
 STATIC_PTR void costly_tin(const char*);

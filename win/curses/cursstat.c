@@ -5,6 +5,10 @@
 #include "wincurs.h"
 #include "cursstat.h"
 
+/* metanite64: hacky fix for compiling with latest clang on mac, probably
+   has issues with certain compilers on windows too */
+int magic_negationX(struct monst *);
+
 /* Status window functions for curses interface */
 
 /* Private declarations */

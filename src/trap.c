@@ -4,6 +4,8 @@
 
 #include "hack.h"
 
+void reinitmissingno();		/* hacky fix for mac compiling */
+
 extern const char * const destroy_strings[];	/* from zap.c */
 
 STATIC_DCL void rocks_fall(int, int);

@@ -76,7 +76,12 @@ extern int errno;
 # else
 #include <sys/stat.h>
 # endif
+#else
+#include <sys/stat.h>
 #endif
+
+/* metanite64: the last else clause was added bc newer macOS versions weren't getting the include at all */
+
 #ifndef O_BINARY	/* used for micros, no-op for others */
 # define O_BINARY 0
 #endif

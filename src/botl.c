@@ -5,6 +5,10 @@
 #include "hack.h"
 #include "wintty.h"
 
+/* hacky fixes for mac compiling */
+int uhp();
+int uhpmax();
+
 #ifdef OVL0
 extern const char *hu_stat[];	/* defined in eat.c */
 

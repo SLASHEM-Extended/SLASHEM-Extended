@@ -7,6 +7,9 @@
 #include "hack.h"
 #include "extern.h"
 #include "func_tab.h"
+
+void nhwindows_hangup(); /* hacky fix for mac compiling */
+
 /* #define DEBUG */	/* uncomment for debugging */
 
 /*
