@@ -330,6 +330,7 @@ boolean forcecontrol;
 	boolean iswere = (u.ulycn >= LOW_PM || is_were(youmonst.data));
 	boolean isvamp = (is_vampire(youmonst.data) && !Race_if(PM_VAMGOYLE) && issoviet );
 	boolean was_floating = (Levitation || Flying);
+	boolean canhavesemicontrol = TRUE;
 
 	if (Race_if(PM_MISSINGNO)) {
 		reinitmissingno();
@@ -343,6 +344,10 @@ boolean forcecontrol;
 
 	if (Unchanging) {
 		if (!wizard || !forcecontrol) return;
+	}
+
+	if (Race_if(PM_MOULD) || Race_if(PM_TRANSFORMER) || Race_if(PM_POLYINITOR) || Race_if(PM_DESTABILIZER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) || Race_if(PM_MISSINGNO) || Race_if(PM_UNGENOMOLD) || Race_if(PM_DEATHMOLD) || Race_if(PM_AK_THIEF_IS_DEAD_) ) {
+		canhavesemicontrol = FALSE;
 	}
 
 	if (Race_if(PM_PLAYER_SLIME)) { /* cannot polymorph at all - punishment for being slimed --Amy */
@@ -652,7 +657,7 @@ controldone:
 		if (draconian &&
 		    (mntmp == armor_to_dragon(uarm->otyp) || tries == 5))
 		    goto do_merge;
-	} else if ((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) && rn2(StrongPolymorph_control ? 10 : 5)) {
+	} else if ((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) && rn2(StrongPolymorph_control ? 10 : 5) && canhavesemicontrol) {
 		/* Not an experienced Doppelganger yet */
 		do {
 			/* Slightly different wording */
