@@ -3185,7 +3185,11 @@ meleeattack:
 		}
 
 		if (magr->crapbonus && (rn2(100) < magr->crapbonus)) {
-			if (vis) pline("%s craps in %s's face.", Monnam(magr), mon_nam(magr));
+
+			/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
+			strcpy(buf, mon_nam(mdef));
+
+			if (vis) pline("%s craps in %s's face.", Monnam(magr), buf);
 			else if (!YouAreDeaf) pline("You hear crapping noises.");
 			int rnd_tmp;
 			rnd_tmp = rnd(1 + (level_difficulty() * 3));
