@@ -2841,6 +2841,7 @@ newbossING:
 		}
 
 		unearth_objs(x, y);
+		blockorunblock_point(x,y); /* might have transformed wall into floor */
 		break;
 	}
 	ttmp->hiddentrap = 0;
