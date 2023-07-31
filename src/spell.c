@@ -58,6 +58,7 @@ STATIC_DCL void spell_backfire(int);
 STATIC_DCL const char *spelltypemnemonic(int);
 static int spell_dash(void);
 STATIC_DCL void boostknow(int, int);
+STATIC_DCL void drainknow(int, int);
 STATIC_DCL void incrnknow(int, BOOLEAN_P);
 
 boolean
@@ -10543,15 +10544,84 @@ rerollX:
 
 	if (!SpellColorCyan && !(pseudo && pseudo->otyp == SPE_ADD_SPELL_MEMORY) ) {
 
-		boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
-		if ((rnd(spellev(spell) + 5)) > 5) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST)); /* higher-level spells boost more --Amy */
-		if (!rn2(52 - (spellev(spell) * 2) ) && !Race_if(PM_DUNADAN) ) { /* jackpot! */
-			boostknow(spell, (CAST_BOOST * 5) );
-			boostknow(spell, (CAST_BOOST * spellev(spell) ) );
+		int castboost = Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST;
+		boolean canboostmore = TRUE;
+
+		if (pseudo) {
+			switch (pseudo->otyp) {
+
+				case SPE_ALTER_REALITY:
+				case SPE_REBOOT:
+				case SPE_CLONE_MONSTER:
+				case SPE_THRONE_GAMBLE:
+				case SPE_GAIN_LEVEL:
+				case SPE_ATTUNE_MAGIC:
+				case SPE_REROLL_ARTIFACT:
+				case SPE_CHARGING:
+				case SPE_RELOCATION:
+				case SPE_AULE_SMITHING:
+				case SPE_REPAIR_WEAPON:
+				case SPE_REPAIR_ARMOR:
+				case SPE_PASSWALL:
+					canboostmore = FALSE; break;
+
+				default: break;
+			}
 		}
 
-		if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
-		if (Role_if(PM_PSYKER)) boostknow(spell, (Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST));
+		if (canboostmore) {
+
+			if (!PlayerCannotUseSkills) {
+
+				switch (P_SKILL(P_MEMORIZATION)) {
+					case P_BASIC: castboost *= 21; castboost /= 20; break;
+					case P_SKILLED: castboost *= 22; castboost /= 20; break;
+					case P_EXPERT: castboost *= 23; castboost /= 20; break;
+					case P_MASTER: castboost *= 24; castboost /= 20; break;
+					case P_GRAND_MASTER: castboost *= 25; castboost /= 20; break;
+					case P_SUPREME_MASTER: castboost *= 26; castboost /= 20; break;
+				}
+			}
+
+			if (spellev(spell) >= 2 && !rn2(2)) {
+				castboost *= 11;
+				castboost /= 10;
+			}
+			if (spellev(spell) >= 3 && !rn2(2)) {
+				castboost *= 12;
+				castboost /= 11;
+			}
+			if (spellev(spell) >= 4 && !rn2(2)) {
+				castboost *= 13;
+				castboost /= 12;
+			}
+			if (spellev(spell) >= 5 && !rn2(2)) {
+				castboost *= 15;
+				castboost /= 14;
+			}
+			if (spellev(spell) >= 6 && !rn2(2)) {
+				castboost *= 17;
+				castboost /= 16;
+			}
+			if (spellev(spell) >= 7 && !rn2(2)) {
+				castboost *= 18;
+				castboost /= 17;
+			}
+			if (spellev(spell) >= 8 && !rn2(2)) {
+				castboost *= 20;
+				castboost /= 19;
+			}
+		}
+
+		boostknow(spell, castboost);
+		if (((rnd(spellev(spell) + 5)) > 5) && canboostmore) boostknow(spell, castboost); /* higher-level spells boost more --Amy */
+		if (!rn2(52 - (spellev(spell) * 2) ) && canboostmore && !Race_if(PM_DUNADAN) ) { /* jackpot! */
+			boostknow(spell, (castboost * 5) );
+			boostknow(spell, (castboost * spellev(spell) ) );
+		}
+
+		if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell, castboost);
+		if (Role_if(PM_PSYKER)) boostknow(spell, castboost);
 
 	}
 
@@ -10588,84 +10658,91 @@ rerollX:
 		}
 
 		if (cyanwillgodown) {
-			boostknow(spell, -rnd(100));
+			drainknow(spell, rnd(100));
 			if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 		}
 	}
 
-	if (pseudo && ( (pseudo->otyp == SPE_ALTER_REALITY) || ((pseudo->otyp == SPE_REBOOT) && !rn2(10)) || (pseudo->otyp == SPE_CLONE_MONSTER) ) ) {
+	if (pseudo && pseudo->otyp == SPE_REBOOT && !rn2(10) ) {
 
-		boostknow(spell, -(rnd(20000)));
+		drainknow(spell, (rnd(20000)));
+		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
+
+	}
+
+	if (pseudo && ((pseudo->otyp == SPE_ALTER_REALITY) || (pseudo->otyp == SPE_CLONE_MONSTER) ) ) {
+
+		drainknow(spell, (rnd(20000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_THRONE_GAMBLE) && !rn2(6) ) {
 
-		boostknow(spell, -(rnd(100000)));
+		drainknow(spell, (rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_GAIN_LEVEL) && !rn2(200) ) {
 
-		boostknow(spell, -(rnd(50000)));
+		drainknow(spell, (rnd(50000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_ATTUNE_MAGIC) && !rn2(6) ) {
 
-		boostknow(spell, -(rnd(100000)));
+		drainknow(spell, (rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_REROLL_ARTIFACT) && !rn2(5) ) {
 
-		boostknow(spell, -(rnd(100000)));
+		drainknow(spell, (rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_CHARGING) && !rn2(role_skill == P_SUPREME_MASTER ? 9 : role_skill == P_GRAND_MASTER ? 8 : role_skill == P_MASTER ? 7 : role_skill == P_EXPERT ? 6 : role_skill == P_SKILLED ? 5 : 4) ) {
 
-		boostknow(spell, -(rnd(100000)));
+		drainknow(spell, (rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_RELOCATION) && !rn2(role_skill == P_SUPREME_MASTER ? 9 : role_skill == P_GRAND_MASTER ? 8 : role_skill == P_MASTER ? 7 : role_skill == P_EXPERT ? 6 : role_skill == P_SKILLED ? 5 : 4) ) {
 
-		boostknow(spell, -(rnd(10000)));
+		drainknow(spell, (rnd(10000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && pseudo->otyp == SPE_ADD_SPELL_MEMORY) {
 
-		boostknow(spell, -500);
+		drainknow(spell, 500);
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_AULE_SMITHING) && !rn2(role_skill == P_SUPREME_MASTER ? 9 : role_skill == P_GRAND_MASTER ? 8 : role_skill == P_MASTER ? 7 : role_skill == P_EXPERT ? 6 : role_skill == P_SKILLED ? 5 : 4) ) {
 
-		boostknow(spell, -(rnd(100000)));
+		drainknow(spell, (rnd(100000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && ((pseudo->otyp == SPE_REPAIR_WEAPON) || (pseudo->otyp == SPE_REPAIR_ARMOR)) && !rn2(role_skill == P_SUPREME_MASTER ? 15 : role_skill == P_GRAND_MASTER ? 14 : role_skill == P_MASTER ? 13 : role_skill == P_EXPERT ? 12 : role_skill == P_SKILLED ? 11 : 10) ) {
 
-		boostknow(spell, -(rnd(25000)));
+		drainknow(spell, (rnd(25000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
 
 	if (pseudo && (pseudo->otyp == SPE_PASSWALL) && !rn2(role_skill == P_SUPREME_MASTER ? 30 : role_skill == P_GRAND_MASTER ? 25 : role_skill == P_MASTER ? 24 : role_skill == P_EXPERT ? 23 : role_skill == P_SKILLED ? 22 : 20) ) {
 
-		boostknow(spell, -(rnd(10000)));
+		drainknow(spell, (rnd(10000)));
 		if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 
 	}
@@ -11028,7 +11105,7 @@ int lossamount;
 		lossamount *= rnd(5);
 
 		if (choicenumber > 0 && thisone >= 0) {
-			boostknow(thisone, -(lossamount * 100));
+			drainknow(thisone, (lossamount * 100));
 			if (spellknow(thisone) < 0) {
 				spl_book[thisone].sp_know = 0;
 				pline("You lose all knowledge of the %s spell!", spellname(thisone));
@@ -11070,7 +11147,7 @@ morezapping:
 
 		while (nzap > 0) {
 
-			if (spellknow(n) > 0) boostknow(n, -10000);
+			if (spellknow(n) > 0) drainknow(n, 10000);
 			if (spellknow(n) < 0) spellknow(n) = 0;
 
 			if (spellknow(n) <= 0) {
@@ -12527,6 +12604,15 @@ int spell, boost;
 
 }
 
+/* reduce memory of a spell, e.g. because you have cyan spells or cast stuff like add spell memory */
+void
+drainknow(spell, drainamount)
+int spell, drainamount;
+{
+	if (spl_book[spell].sp_know < drainamount) spl_book[spell].sp_know = 0;
+	else spl_book[spell].sp_know -= drainamount;
+}
+
 void
 incrnknow(spell, initial)
 int spell;
@@ -12637,7 +12723,18 @@ studyspell()
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(spell_no, FALSE);
 			exercise(A_WIS, TRUE);      /* extra study */
 			return (TRUE);
-		} else /* 1000 < spellknow(spell_no) <= 5000 */
+		} else if (spellknow(spell_no) < 11000) {
+			int studyvalue = Race_if(PM_DUNADAN) ? DUNADAN_KEEN : KEEN;
+			int studydiff = 11000 - spellknow(spell_no); /* between 1 and 10000 */
+
+			studyvalue *= studydiff;
+			studyvalue /= 10000;
+
+			Your("focus and reinforce your memory of the spell.");
+			boostknow(spell_no, studyvalue);
+			if (Role_if(PM_MAHOU_SHOUJO)) boostknow(spell_no, studyvalue);
+			return (TRUE);
+		} else /* 11000 < spellknow(spell_no) <= whatever the maximum is */
 			You("know that spell quite well already.");
 	}
 	return (FALSE);

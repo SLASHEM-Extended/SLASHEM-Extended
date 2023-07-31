@@ -2750,7 +2750,7 @@ dotech()
 			break;
 
 		case T_REINFORCE:
-			pline("Using this technique allows you to reinforce your memory of an almost-forgotten spell.");
+			pline("Using this technique allows you to reinforce your memory of an almost-forgotten spell, or increase the memory of a moderately memorized spell up to 110%%.");
 			break;
 
 		case T_FLURRY:
