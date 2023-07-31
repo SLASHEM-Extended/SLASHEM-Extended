@@ -4218,6 +4218,20 @@ register int pm;
 		    flags.botl = 1;
 		}
 
+	/* occasionally boost various stats, INT and CHA have enough monsters but others might not --Amy */
+		if (strongmonst(ptr) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+			mightbooststat(A_STR);
+		}
+		if (extra_nasty(ptr) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+			mightbooststat(A_CON);
+		}
+		if (is_stalker(ptr) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+			mightbooststat(A_DEX);
+		}
+		if (likes_magic(ptr) && !(u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) ) {
+			mightbooststat(A_WIS);
+		}
+
 	/* Dream eaters, on the other hand, are bad to eat. --Amy */
 		if (dmgtype(ptr, AD_DREA) && !multi) {
 		    pline("Suddenly you have a nightmare!");
