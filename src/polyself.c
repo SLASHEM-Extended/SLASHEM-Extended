@@ -1514,14 +1514,14 @@ int alone;
 		}
 	    uwepgone();
 
-	    if (( (!wep->cursed && (wep->otyp != AMULET_OF_YENDOR || u.freeplaymode) && (wep->otyp != FAKE_AMULET_OF_YENDOR || u.freeplaymode) ) || (wep->otyp != LOADSTONE && wep->otyp != LUCKSTONE && wep->otyp != HEALTHSTONE && wep->otyp != MANASTONE && wep->otyp != SLEEPSTONE && wep->otyp != LOADBOULDER && (wep->otyp != AMULET_OF_YENDOR || u.freeplaymode) && (wep->otyp != FAKE_AMULET_OF_YENDOR || u.freeplaymode) && wep->otyp != STARLIGHTSTONE && wep->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(wep) && !is_feminismstone(wep) ) ) && !(wep->otyp == LUCKSTONE && isevilvariant && !wep->cursed && !wep->blessed && Luck < 0))
+	    if (canletgo(otmp, "poly-drop"))
 		dropx(otmp);
 
 weapondone:
 
 	    if (otmp2 != 0) {
 		uswapwepgone();
-		if (( (!otmp2->cursed && (otmp2->otyp != AMULET_OF_YENDOR || u.freeplaymode) && (otmp2->otyp != FAKE_AMULET_OF_YENDOR || u.freeplaymode) ) || (otmp2->otyp != LOADSTONE && otmp2->otyp != LUCKSTONE && otmp2->otyp != HEALTHSTONE && otmp2->otyp != MANASTONE && otmp2->otyp != SLEEPSTONE && otmp2->otyp != LOADBOULDER && (otmp2->otyp != AMULET_OF_YENDOR || u.freeplaymode) && (otmp2->otyp != FAKE_AMULET_OF_YENDOR || u.freeplaymode) && otmp2->otyp != STARLIGHTSTONE && otmp2->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(otmp2) && !is_feminismstone(otmp2) ) ) && !(otmp2->otyp == LUCKSTONE && isevilvariant && !otmp2->cursed && !otmp2->blessed && Luck < 0))
+		if (canletgo(otmp2, "poly-drop"))
 		    dropx(otmp2);
 	    }
 	    untwoweapon();
