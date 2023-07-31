@@ -5407,6 +5407,7 @@ addspmagain:
 		    whisnextmon = whismtmp->nmon; /* trap might kill mon */
 		    if (DEADMONSTER(whismtmp)) continue;
 		    if (evilfriday && level.flags.noteleport) continue;
+		    if (whismtmp == u.usteed) continue;
 		    if (whismtmp->mtame) {
 			if (whismtmp->mtrapped) {
 			    /* no longer in previous trap (affects mintrap) */
@@ -6686,6 +6687,7 @@ secureidchoice:
 			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
 			    nextmon = nexusmon->nmon; /* trap might kill mon */
 			    if (DEADMONSTER(nexusmon)) continue;
+			    if (nexusmon == u.usteed) continue;
 			    if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
 
 			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
