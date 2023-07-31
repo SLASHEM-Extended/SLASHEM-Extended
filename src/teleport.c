@@ -2325,6 +2325,11 @@ banishplayer()
 
 	dtmp = random_banishment_level();
 
+	if (multi >= 0) {
+		nomovemsg = "You feel a little dizzy.";
+		nomul(-1, "being banished", FALSE); /* because it's not called until you get another turn... */
+	}
+
 	schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
 	u.cnd_banishmentcount++;
 

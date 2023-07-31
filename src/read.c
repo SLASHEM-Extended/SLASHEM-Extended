@@ -948,6 +948,17 @@ doread()
 	"Yeah, the infernal sound of a church bell is not a good reason to avoid roads that pass by a church. But, God, religions should be abolished!",
 	"One cannot drink as much as one wants to drink even more!",
 	"The Three Big S - Sodomy, Serpents and Syphilis", /* by Demo */
+	"Kiss the cook",
+	"I'm making SCIENCE!",
+	"Don't mess with the chef",
+	"Don't make me poison you",
+	"Gehennom's Kitchen",
+	"Rat: The other white meat",
+	"If you can't stand the heat, get out of Gehennom!",
+	"If we weren't meant to eat animals, why are they made out of meat?",
+	"If you don't like the food, I'll stab you",
+	"I am an alchemist; if you see me running, try to catch up...",
+	"Samantha the WHAMMM!!! ey wer hatsenn so gemacht dass man da nicht gelähmt wird ey!",
 
 	    };
 	    char buf[BUFSZ];
