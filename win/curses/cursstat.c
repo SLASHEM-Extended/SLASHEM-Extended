@@ -29,6 +29,7 @@ static void curses_add_statuses(WINDOW *, boolean, boolean, int *, int *);
 static void curses_add_status(WINDOW *, boolean, boolean, int *, int *,
                               const char *, int);
 static int decrement_highlight(nhstat *, boolean);
+int magic_negationX(struct monst *);
 
 #ifdef STATUS_COLORS
 static attr_t hpen_color_attr(boolean, int, int);

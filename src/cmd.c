@@ -202,6 +202,8 @@ STATIC_DCL boolean help_dir(CHAR_P,const char *);
 
 STATIC_PTR int domenusystem(void); /* WAC the menus*/
 
+void nhwindows_hangup(); /* hacky fix for mac compiling */
+
 STATIC_PTR int stefanjerepair(void);
 STATIC_PTR int deseamshoes(void);
 static NEARDATA schar delay;            /* moves left for stefanje repairs */

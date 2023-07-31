@@ -36,6 +36,9 @@ const char *enc_abbrev_stat[] = {
 	"Old"
 };
 
+int uhp();
+int uhpmax();
+
 STATIC_DCL void bot1(void);
 STATIC_DCL void bot2(void);
 #ifdef ALLEG_FX

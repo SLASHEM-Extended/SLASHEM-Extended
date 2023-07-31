@@ -9,6 +9,8 @@
 #include "color.h"
 #define HI_DOMESTIC CLR_WHITE	/* monst.c */
 
+#include <ctype.h>	/* metanite64: for toupper() prototype */
+
 int explcolors[] = {
 	CLR_BLACK,	/* dark    */
 	CLR_GREEN,	/* noxious */

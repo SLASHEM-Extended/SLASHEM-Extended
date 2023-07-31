@@ -917,6 +917,7 @@ E int blackjack_card(void);
 /* ### hack.c ### */
 
 E void maybe_wail(void);
+E void maybe_scream(void);
 
 #ifdef DUNGEON_GROWTH
 E void catchup_dgn_growths(int);
@@ -3526,6 +3527,7 @@ E void u_init(void);
 E void alter_reality(int);
 E void polyinitors(void);
 E void reinitgods(void);
+E void reinitmissingno(void);
 
 /* ### uhitm.c ### */
 
