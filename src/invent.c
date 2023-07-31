@@ -10630,9 +10630,11 @@ doorganize()	/* inventory organizer by Del Lamb */
 	/* except those that will be merged with the selected object   */
 	for (otmp = invent; otmp; otmp = otmp->nobj)
 		if (otmp != obj && !mergable(otmp,obj)) {
-			if (otmp->invlet <= 'Z')
-				alphabet[(otmp->invlet) - 'A' + 26] = ' ';
-			else	alphabet[(otmp->invlet) - 'a']	    = ' ';
+			let = otmp->invlet;
+			if (let >= 'a' && let <= 'z')
+			    alphabet[let - 'a'] = ' ';
+			else if (let >= 'A' && let <= 'Z')
+			    alphabet[let - 'A' + 26] = ' ';
 		}
 
 	/* compact the list by removing all the blanks */
