@@ -1695,12 +1695,21 @@ boolean lava,rndom;
 			levl[cx][cy].typ = ALTAR;
 			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
 			else switch (rnd(3)) {
-	
-			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
-			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
-			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
-	
+				case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
 			}
+
+			if (!rn2(25)) {
+				register struct obj *altarwater;
+				altarwater = mksobj_at(POT_WATER, cx, cy, FALSE, FALSE, FALSE);
+				if (altarwater) {
+
+					if (Amask2align(levl[cx][cy].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+					else bless(altarwater);
+				}
+			}
+
 		}
 
 	}
@@ -1968,12 +1977,21 @@ boolean lava,rndom;
 			levl[cx][cy].typ = ALTAR;
 			if (rn2(10)) levl[cx][cy].altarmask = Align2amask( A_NONE );
 			else switch (rnd(3)) {
-	
-			case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
-			case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
-			case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
-	
+				case 1: levl[cx][cy].altarmask = Align2amask( A_LAWFUL ); break;
+				case 2: levl[cx][cy].altarmask = Align2amask( A_NEUTRAL ); break;
+				case 3: levl[cx][cy].altarmask = Align2amask( A_CHAOTIC ); break;
 			}
+
+			if (!rn2(25)) {
+				register struct obj *altarwater;
+				altarwater = mksobj_at(POT_WATER, cx, cy, FALSE, FALSE, FALSE);
+				if (altarwater) {
+
+					if (Amask2align(levl[cx][cy].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+					else bless(altarwater);
+				}
+			}
+
 		}
 	}
 
@@ -11835,29 +11853,29 @@ skip1:
 		if(!rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
 		if(ishaxor && !rn2(500)) mkthrone(croom); /* rare cause they may give wishes --Amy */
 
-		if(!rn2(500)) mkpentagram(croom);
-		if(ishaxor && !rn2(500)) mkpentagram(croom);
+		if(!rn2(200)) mkpentagram(croom);
+		if(ishaxor && !rn2(200)) mkpentagram(croom);
 
-		if(!rn2(250)) mkwell(croom);
-		if(ishaxor && !rn2(250)) mkwell(croom);
+		if(!rn2(100)) mkwell(croom);
+		if(ishaxor && !rn2(100)) mkwell(croom);
 
-		if(!rn2(250)) mkpoisonedwell(croom);
-		if(ishaxor && !rn2(250)) mkpoisonedwell(croom);
+		if(!rn2(100)) mkpoisonedwell(croom);
+		if(ishaxor && !rn2(100)) mkpoisonedwell(croom);
 
-		if(!rn2(250)) mkwagon(croom);
-		if(ishaxor && !rn2(250)) mkwagon(croom);
+		if(!rn2(100)) mkwagon(croom);
+		if(ishaxor && !rn2(100)) mkwagon(croom);
 
-		if(!rn2(250)) mkburningwagon(croom);
-		if(ishaxor && !rn2(250)) mkburningwagon(croom);
+		if(!rn2(100)) mkburningwagon(croom);
+		if(ishaxor && !rn2(100)) mkburningwagon(croom);
 
-		if(!rn2(150)) mkwoodentable(croom);
-		if(ishaxor && !rn2(150)) mkwoodentable(croom);
+		if(!rn2(75)) mkwoodentable(croom);
+		if(ishaxor && !rn2(75)) mkwoodentable(croom);
 
-		if(!rn2(300)) mkcarvedbed(croom);
-		if(ishaxor && !rn2(300)) mkcarvedbed(croom);
+		if(!rn2(200)) mkcarvedbed(croom);
+		if(ishaxor && !rn2(200)) mkcarvedbed(croom);
 
-		if(!rn2(75)) mkstrawmattress(croom);
-		if(ishaxor && !rn2(75)) mkstrawmattress(croom);
+		if(!rn2(45)) mkstrawmattress(croom);
+		if(ishaxor && !rn2(45)) mkstrawmattress(croom);
 
 		if(!rn2(60)) {
 		    mksink(croom);
@@ -12607,6 +12625,47 @@ skip1:
 		    }
 		}
 
+		/* maybe place interesting features --Amy */
+
+		add_amy_stuff(croom);
+
+	}
+
+   }
+}
+
+/*
+ *	Place deposits of minerals (gold and misc gems) in the stone
+ *	surrounding the rooms on the map.
+ *	Also place kelp in water.
+ */
+
+void
+add_amy_stuff(croom)
+register struct mkroom *croom;
+{
+		if ( ((croom->hx - croom->lx + 1) * (croom->hy - croom->ly + 1)) > 50) {
+
+			int roomsize = (croom->hx - croom->lx + 1) * (croom->hy - croom->ly + 1);
+			int helpcounter = roomsize;
+			if (ishaxor) helpcounter *= 2;
+			int interx, intery;
+			int seedparameter = (20 + rn2(100));
+			if (!rn2(2)) seedparameter *= rnd(10);
+			if (seedparameter < 1) seedparameter = 1; /* fail safe */
+
+			while (helpcounter > 0) {
+				interx = somex(croom);
+				intery = somey(croom);
+				helpcounter--;
+
+				if (isok(interx, intery) && !rn2(seedparameter) && (levl[interx][intery].typ == ROOM || levl[interx][intery].typ == CORR) ) {
+
+					mkfeature(interx, intery);
+				}
+			}
+		}
+
 		/* place additional items, monsters and traps, amount is random but higher average for bigger rooms --Amy */
 		if (croom->rtype == OROOM) { /* only for regular rooms, please */
 			int roomsize = (croom->hx - croom->lx + 1) * (croom->hy - croom->ly + 1);
@@ -12698,16 +12757,8 @@ skip1:
 			}
 		}
 
-	}
 
-   }
 }
-
-/*
- *	Place deposits of minerals (gold and misc gems) in the stone
- *	surrounding the rooms on the map.
- *	Also place kelp in water.
- */
 
 STATIC_OVL void
 mineralize()
@@ -12922,12 +12973,21 @@ mineralize()
 				levl[x][y].typ = ALTAR;
 				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
 				else switch (rnd(3)) {
-		
-				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
-				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
-				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
-		
+					case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+					case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+					case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
 				}
+
+				if (!rn2(25)) {
+					register struct obj *altarwater;
+					altarwater = mksobj_at(POT_WATER, x, y, FALSE, FALSE, FALSE);
+					if (altarwater) {
+
+						if (Amask2align(levl[x][y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+						else bless(altarwater);
+					}
+				}
+
 			}
 
 		}
@@ -16868,8 +16928,20 @@ register struct mkroom *croom;
 	/* -1 - A_CHAOTIC, 0 - A_NEUTRAL, 1 - A_LAWFUL */
 	al = rn2((int)A_LAWFUL+2) - 1;
 	if (!rn2(10) || issoviet) levl[m.x][m.y].altarmask = Align2amask( al );
-	/* "Unaligned altars have next to no reason for being generated in the early part of the game." Of course they do! They're there to reduce the chance of players lucking into a coaligned altar! Shouldn't that be obvious? --Amy */
+	/* "Unaligned altars have next to no reason for being generated in the early part of the game." Of course they do! 	 * They're there to reduce the chance of players lucking into a coaligned altar! Shouldn't that be obvious? --Amy
+	 * But in Soviet Russia, Moloch isn't allowed to have any altars because he's the president of the united states,
+	 * and therefore automatically counts as the greatest evil in the world. People do not worship him in Russia. */
 	else levl[m.x][m.y].altarmask = Align2amask( A_NONE );
+
+	if (!rn2(25)) {
+		register struct obj *altarwater;
+		altarwater = mksobj_at(POT_WATER, m.x, m.y, FALSE, FALSE, FALSE);
+		if (altarwater) {
+			if (Amask2align(levl[m.x][m.y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+			else bless(altarwater);
+		}
+	}
+
 }
 
 static void

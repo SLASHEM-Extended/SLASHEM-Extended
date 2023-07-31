@@ -1017,6 +1017,15 @@ cgrfinished:
 					case 4:
 						levl[sx][sy].typ = ALTAR; break;
 						levl[sx][sy].altarmask = Align2amask( A_NONE );
+
+						register struct obj *altarwater;
+						altarwater = mksobj_at(POT_WATER, sx, sy, FALSE, FALSE, FALSE);
+						if (altarwater) {
+
+							if (!rn2(5)) curse(altarwater);
+							else bless(altarwater);
+						}
+
 				}
 			}
 
@@ -1147,6 +1156,15 @@ cgrfinished:
 			if (sx == tx && sy == ty && levl[sx][sy].typ != STAIRS && levl[sx][sy].typ != LADDER) {
 				levl[sx][sy].typ = ALTAR;
 				levl[sx][sy].altarmask = Align2amask( A_NONE );
+
+				if (!rn2(10)) {
+					register struct obj *altarwater;
+					altarwater = mksobj_at(POT_WATER, sx, sy, FALSE, FALSE, FALSE);
+					if (altarwater) {
+						if (!rn2(5)) curse(altarwater);
+						else bless(altarwater);
+					}
+				}
 			}
 			break;
 
@@ -1449,6 +1467,16 @@ cgrfinished:
 				case 3: levl[mm.x][mm.y].altarmask = Align2amask( A_CHAOTIC ); break;
 				case 4: levl[mm.x][mm.y].altarmask = Align2amask( A_NONE ); break;
 
+			}
+
+			if (!rn2(10)) {
+				register struct obj *altarwater;
+				altarwater = mksobj_at(POT_WATER, mm.x, mm.y, FALSE, FALSE, FALSE);
+				if (altarwater) {
+
+					if (Amask2align(levl[mm.x][mm.y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+					else bless(altarwater);
+				}
 			}
 
 			(void) mkobj_at(SPBOOK_CLASS, mm.x, mm.y, FALSE, FALSE);

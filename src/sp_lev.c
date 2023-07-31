@@ -43,9 +43,6 @@ STATIC_DCL void create_corridor(corridor *);
 
 STATIC_DCL boolean create_subroom(struct mkroom *, XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P, XCHAR_P);
 
-STATIC_DCL void mkfeature(int,int);
-
-
 #define LEFT	1
 #define H_LEFT	2
 #define CENTER	3
@@ -100,7 +97,7 @@ int num_lregions = 0;
 lev_init init_lev;
 
 /* Make a random dungeon feature --Amy */
-STATIC_OVL void
+void
 mkfeature(x,y)
 register int x, y;
 {
@@ -111,7 +108,6 @@ register int x, y;
 	register struct obj *otmp;
 
 	if (occupied(x, y)) return;
-	if (rn2(20)) return;
 
 	whatisit = rnd(330);
 
@@ -293,10 +289,21 @@ register int x, y;
 	levl[x][y].typ = THRONE; break;
 
 	case 142:
-	levl[x][y].typ = ALTAR;
-	al = rn2((int)A_LAWFUL+2) - 1;
-	if (!rn2(10)) levl[x][y].altarmask = Align2amask( al );
-	else levl[x][y].altarmask = Align2amask( A_NONE );
+		levl[x][y].typ = ALTAR;
+		al = rn2((int)A_LAWFUL+2) - 1;
+		if (!rn2(10)) levl[x][y].altarmask = Align2amask( al );
+		else levl[x][y].altarmask = Align2amask( A_NONE );
+
+		if (!rn2(25)) {
+			register struct obj *altarwater;
+			altarwater = mksobj_at(POT_WATER, x, y, FALSE, FALSE, FALSE);
+			if (altarwater) {
+
+				if (Amask2align(levl[x][y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+				else bless(altarwater);
+			}
+		}
+
 	 break;
 
 	case 143:
@@ -520,6 +527,9 @@ register int x, y;
 	case 305:
 	case 306:
 	levl[x][y].typ = RAINCLOUD; break;
+
+	case 307:
+	levl[x][y].typ = PENTAGRAM; break;
 
 	default:
 	levl[x][y].typ = STONE; break;
@@ -4166,7 +4176,7 @@ schar ftyp, btyp;
 				if (!ishomicider) (void) makemon((struct permonst *)0, xx, yy, MM_MAYSLEEP);
 				else makerandomtrap_at(xx, yy, TRUE);
 				}
-		    else if(!rn2(ishaxor ? 10 : 20)) 
+		    else if(!rn2(ishaxor ? 200 : 400)) 
 				(void) mkfeature(xx, yy);
 		} else {
 			crm->typ = SCORR;
@@ -5559,6 +5569,10 @@ room *r, *pr;
 		 * at a later point.  Currently no good way to fix this.
 		 */
 		if( (aroom->rtype != OROOM || (at_dgn_entrance("Green Cross") && !(level.flags.has_greencrossroom)) || !rn2( ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && (depth(&u.uz) > 1 && !(u.preversionmode && In_greencross(&u.uz) && (dunlev(&u.uz) == 1)) && !(iszapem && In_spacebase(&u.uz) && (dunlev(&u.uz) == 1))) ) ? 1 : ((isironman || RngeIronmanMode || In_netherrealm(&u.uz)) && depth(&u.uz) < 2) ? 10 : Role_if(PM_CAMPERSTRIKER) ? 50 : 5000) ) && r->filled) fill_room(aroom, FALSE);
+
+		if ( (aroom->rtype == OROOM || !rn2(5)) && (!r->nsubroom || !rn2(5)) ) {
+			add_amy_stuff(aroom);
+		}
 	}
 }
 

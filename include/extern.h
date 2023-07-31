@@ -1735,6 +1735,7 @@ E void randhunkrivers(void);
 E void mkrandrivers(void);
 E void specdungeoninit(void);
 E void mk_knox_portal(XCHAR_P,XCHAR_P);
+E void add_amy_stuff(struct mkroom *);
 
 /* ### mkmap.c ### */
 
@@ -3244,6 +3245,7 @@ E void makerandomtrap(BOOLEAN_P);
 E void makeinvisotrap(void);
 E void makegirlytrap(void);
 E void makespacewarstrap(void);
+E void mkfeature(int,int);
 
 /* ### spell.c ### */
 

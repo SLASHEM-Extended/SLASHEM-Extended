@@ -1095,12 +1095,20 @@ int x,y;
 				levl[x][y].typ = ALTAR;
 				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
 				else switch (rnd(3)) {
-	
-				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
-				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
-				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
-	
+					case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+					case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+					case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
 				}
+
+				if (!rn2(25)) {
+					register struct obj *altarwater;
+					altarwater = mksobj_at(POT_WATER, x, y, FALSE, FALSE, FALSE);
+					if (altarwater) {
+						if (Amask2align(levl[x][y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+						else bless(altarwater);
+					}
+				}
+
 			}
 			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TREE;
@@ -1228,12 +1236,20 @@ int x,y;
 				levl[x][y].typ = ALTAR;
 				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
 				else switch (rnd(3)) {
-	
-				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
-				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
-				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
-	
+					case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+					case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+					case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
 				}
+
+				if (!rn2(25)) {
+					register struct obj *altarwater;
+					altarwater = mksobj_at(POT_WATER, x, y, FALSE, FALSE, FALSE);
+					if (altarwater) {
+						if (Amask2align(levl[x][y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+						else bless(altarwater);
+					}
+				}
+
 			}
 			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TREE;
@@ -1375,12 +1391,20 @@ int x,y;
 				levl[x][y].typ = ALTAR;
 				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
 				else switch (rnd(3)) {
-	
-				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
-				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
-				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
-	
+					case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+					case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+					case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
 				}
+
+				if (!rn2(25)) {
+					register struct obj *altarwater;
+					altarwater = mksobj_at(POT_WATER, x, y, FALSE, FALSE, FALSE);
+					if (altarwater) {
+						if (Amask2align(levl[x][y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+						else bless(altarwater);
+					}
+				}
+
 			}
 			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TREE;
@@ -1505,12 +1529,20 @@ int x,y;
 				levl[x][y].typ = ALTAR;
 				if (rn2(10)) levl[x][y].altarmask = Align2amask( A_NONE );
 				else switch (rnd(3)) {
-	
-				case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
-				case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
-				case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
-	
+					case 1: levl[x][y].altarmask = Align2amask( A_LAWFUL ); break;
+					case 2: levl[x][y].altarmask = Align2amask( A_NEUTRAL ); break;
+					case 3: levl[x][y].altarmask = Align2amask( A_CHAOTIC ); break;
 				}
+
+				if (!rn2(25)) {
+					register struct obj *altarwater;
+					altarwater = mksobj_at(POT_WATER, x, y, FALSE, FALSE, FALSE);
+					if (altarwater) {
+						if (Amask2align(levl[x][y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+						else bless(altarwater);
+					}
+				}
+
 			}
 			else if (!rn2(ishaxor ? 1000 : 2000) && ((levl[x][y].typ == CORR) || (levl[x][y].typ == ROOM)))
 				levl[x][y].typ = TREE;
