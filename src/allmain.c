@@ -12694,13 +12694,13 @@ pastds2:
 		/* symbiote HP regeneration - rather slow, but depends on your symbiosis skill and charisma --Amy */
 		if (uactivesymbiosis) {
 			int symregenrate = 50;
-			int symmuchregrate = 500;
+			int symmuchregrate = 1000;
 
 			if (ACURR(A_CHA) < 15) {
 				symregenrate += ((15 - ACURR(A_CHA)) * 5);
 			}
 			if (ACURR(A_CHA) > 15) {
-				symregenrate -= ACURR(A_CHA);
+				symregenrate -= (ACURR(A_CHA) - 15);
 			}
 
 			if (!(PlayerCannotUseSkills)) {
@@ -12709,29 +12709,31 @@ pastds2:
 					case P_BASIC:
 						symregenrate *= 4;
 						symregenrate /= 5;
-						symmuchregrate = 450;
+						symmuchregrate = 900;
 						break;
 					case P_SKILLED:
-						symregenrate *= 3;
-						symregenrate /= 5;
-						symmuchregrate = 400;
+						symregenrate *= 7;
+						symregenrate /= 10;
+						symmuchregrate = 800;
 						break;
 					case P_EXPERT:
-						symregenrate *= 2;
+						symregenrate *= 3;
 						symregenrate /= 5;
-						symmuchregrate = 350;
+						symmuchregrate = 700;
 						break;
 					case P_MASTER:
-						symregenrate /= 5;
-						symmuchregrate = 300;
+						symregenrate /= 2;
+						symmuchregrate = 600;
 						break;
 					case P_GRAND_MASTER:
-						symregenrate /= 6;
-						symmuchregrate = 250;
+						symregenrate *= 2;
+						symregenrate /= 5;
+						symmuchregrate = 500;
 						break;
 					case P_SUPREME_MASTER:
-						symregenrate /= 8;
-						symmuchregrate = 200;
+						symregenrate *= 3;
+						symregenrate /= 10;
+						symmuchregrate = 400;
 						break;
 				}
 			}

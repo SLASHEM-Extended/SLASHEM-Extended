@@ -8684,12 +8684,12 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 			if ((u.uhunger >= 2500) || PlayerCannotUseSkills || (P_SKILL(P_SYMBIOSIS) == P_ISRESTRICTED)) {
 				u.uhunger -= 5;
 			} else switch (P_SKILL(P_SYMBIOSIS)) {
-		      	case P_BASIC:	u.uhunger -= (2 + rn2(2)); break;
-		      	case P_SKILLED:	u.uhunger -= 2; break;
-		      	case P_EXPERT:	u.uhunger -= rnd(2); break;
-		      	case P_MASTER:	u.uhunger--; break;
-		      	case P_GRAND_MASTER:	if (!rn2(2)) u.uhunger--; break;
-		      	case P_SUPREME_MASTER:	if (!rn2(3)) u.uhunger--; break;
+		      	case P_BASIC:	u.uhunger -= 3; break;
+		      	case P_SKILLED:	u.uhunger -= (2 + rn2(2)); break;
+		      	case P_EXPERT:	u.uhunger -= 2; break;
+		      	case P_MASTER:	u.uhunger -= rnd(2); break;
+		      	case P_GRAND_MASTER:	u.uhunger -= rno(2); break;
+		      	case P_SUPREME_MASTER:	u.uhunger--; break;
 		      	default: u.uhunger -= 3; break;
 			}
 		}
