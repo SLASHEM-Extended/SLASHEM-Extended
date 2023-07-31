@@ -2864,7 +2864,7 @@ struct monst *mtmp;
 
 		for(xx = x-1; xx <= x+1; xx++) for(yy = y-1; yy <= y+1; yy++)
 		if (isok(xx,yy))
-		if (xx != u.ux && yy != u.uy)
+		if (xx != u.ux || yy != u.uy)
 		if (!(isgridbug(mtmp->data)) || xx == x || yy == y)
 		if ((xx==x && yy==y) || !level.monsters[xx][yy])
 		if ((t = t_at(xx,yy)) != 0)
