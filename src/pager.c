@@ -5668,6 +5668,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Vladel'tsy magazinov, kotoryye teleportiruyutsya, ub'yut vas, potomu chto vy takoy zhe natsional-sotsialist, kak diktator, pravyashchiy Kiyevom.",
 "Yesli u monstra yest' neskol'ko oruzheynykh atak, on mozhet strelyat' iz oruzhiya dal'nego boya neskol'ko raz za khod, potomu chto tip ledyanoy glyby - luchshiy geymdizayner vo vselennoy. Kho, khe khe khe khe...",
 "Yesli u monstra yest' dvuruchnoye oruzhiye i dve ataki oruzhiyem, to ved' on mozhet atakovat' im dvazhdy za khod! Khotya vy mozhete atakovat' tol'ko dvazhdy, yesli u vas yest' odnoruchnoye oruzhiye! Sovetskiy Tip Ledyanoy Glyby samyy bol'shoy! KHAA-KHAA!",
+"Voyska Kremlya nikogda ne smogut ispol'zovat' nepravil'noye artefaktnoye oruzhiye, potomu chto tip ledyanoy glyby ne khochet, chtoby oni dezertirovali.",
 };
 
 static NEARDATA const char * const practicantlines[] = {

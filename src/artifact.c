@@ -2083,7 +2083,13 @@ touch_artifact(obj,mon)
 	int dmg;
 	char buf[BUFSZ];
 
-	if (!yours) return 0;
+	/* Amy change: allowing monsters to just use artifacts anyway, because it's a silly restriction anyway */
+	/* In Soviet Russia, none of the Kreml's troops may use weapons that have been forged by the enemy, because doing so
+	 * counts as defecting - after all, who knows whose side they're really on if they're not using Russian weapons? */
+	if (!yours) {
+		if (issoviet) return 0;
+		else return 1;
+	}
 	You("are blasted by %s power!", s_suffix(the(xname(obj))));
 	u.cnd_artiblastcount++;
 	dmg = d((Race_if(PM_KUTAR) ? 8 : StrongAntimagic ? 3 : Antimagic ? 6 : 8), (self_willed ? 10 : 6));
