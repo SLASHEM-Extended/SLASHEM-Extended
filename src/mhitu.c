@@ -2354,7 +2354,7 @@ mattacku(mtmp)
 				doname(level.objects[u.ux][u.uy]));
 			    if (obj) obj->spe = save_spe;
 			} else
-			    impossible("hiding under nothing?");
+			    pline("hiding under nothing?"); /* used to be impossible, but declared a feature --Amy */
 		    }
 		    newsym(u.ux,u.uy);
 		}
