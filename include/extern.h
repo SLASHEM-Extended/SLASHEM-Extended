@@ -482,6 +482,7 @@ E char *coyotename(struct monst *,char *);
 E char *pantsdescription(struct monst *);
 E char *bundledescription(void);
 
+E char *playerweaponname(void);
 
 /* ### do_wear.c ### */
 

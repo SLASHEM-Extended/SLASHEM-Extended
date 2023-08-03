@@ -1223,6 +1223,22 @@ register struct monst *mtmp;
 }
 
 char *
+playerweaponname()
+{
+	static char weapnamebuf[BUFSZ];
+
+	sprintf(weapnamebuf, "dummy weapon");
+
+	if (!uwep) {
+		sprintf(weapnamebuf, "imaginary widget");
+	} else {
+		sprintf(weapnamebuf, xname(uwep));
+	}
+
+	return weapnamebuf;
+}
+
+char *
 bundledescription()
 {
 	static char pantsbuf[BUFSZ]; 
