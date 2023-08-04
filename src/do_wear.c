@@ -4029,11 +4029,12 @@ Amulet_on()
 
 		break;
 
-	case AMULET_OF_UNCHANGING:
-		if (Slimed) {
+	case AMULET_OF_UNCHANGING: /* Amy change: no longer prevents sliming from running its course */
+/*		if (Slimed) {
 		    Slimed = 0;
 		    flags.botl = 1;
 		}
+*/
 		break;
 	case AMULET_OF_FUMBLING:
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
