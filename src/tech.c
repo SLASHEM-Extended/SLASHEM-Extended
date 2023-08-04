@@ -6942,7 +6942,7 @@ revid_end:
 		pline("Your implant is removed.");
 		Implant_off();
 
-		t_timeout = rnz(2000);
+		t_timeout = rnz(20000);
 		break;
 
 	    case T_REROLL_IMPLANT:
@@ -8329,34 +8329,34 @@ repairitemchoice:
 			/* symbiant and goauld can use it more often... but they're too different, and therefore
 			 * being a goauld symbiant doesn't reduce the timeout by more :P --Amy */
 
-				int symbiotimer = 10000;
+				int symbiotimer = 20000;
 
 				if (!PlayerCannotUseSkills) {
 					switch (P_SKILL(P_SYMBIOSIS)) {
 						default: break;
 						case P_BASIC:
-							symbiotimer = 9000;
+							symbiotimer = 18000;
 							break;
 						case P_SKILLED:
-							symbiotimer = 8000;
+							symbiotimer = 16000;
 							break;
 						case P_EXPERT:
-							symbiotimer = 7000;
+							symbiotimer = 14000;
 							break;
 						case P_MASTER:
-							symbiotimer = 6000;
+							symbiotimer = 12000;
 							break;
 						case P_GRAND_MASTER:
-							symbiotimer = 5000;
+							symbiotimer = 10000;
 							break;
 						case P_SUPREME_MASTER:
-							symbiotimer = 4000;
+							symbiotimer = 8000;
 							break;
 					}
 
 				}
 
-				if (Role_if(PM_SYMBIANT) || Race_if(PM_GOAULD)) symbiotimer /= 5;
+				if (Role_if(PM_SYMBIANT) || Race_if(PM_GOAULD)) symbiotimer /= 2;
 
 				struct obj *usymbioteitem;
 
