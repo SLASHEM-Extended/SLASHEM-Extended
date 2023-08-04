@@ -6018,6 +6018,32 @@ boolean ordinary;
 
 		if (Stoned) fix_petrification();
 
+			/* bullshit downside by Amy - we don't want petrification to be THAT trivial to cure... */
+
+			if (!rn2(2)) {
+				if (u.uhpmax < 3) {
+					u.youaredead = 1;
+					killer = "dissolving completely";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+				} else {
+					u.uhpmax -= 2;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					flags.botl = TRUE;
+					if (Upolyd) {
+						if (u.mhmax > 2) u.mhmax -= 2;
+						else u.mhmax = 1;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					}
+				}
+				Your("health was damaged.");
+			} else {
+				u.negativeprotection += rnd(6);
+				MCReduction += rn1(5000, 5000);
+				Your("body was damaged.");
+			}
+
         	    if (!rn2(u.twoweap ? 3 : 6)) erode_obj(uwep, TRUE, TRUE);
         	    if (u.twoweap && !rn2(3)) erode_obj(uswapwep, TRUE, TRUE);
         	    if (!rn2(6)) erode_armor(&youmonst, TRUE);
@@ -6026,6 +6052,31 @@ boolean ordinary;
 		    makeknown(WAN_ACID);
 		case SHADOW_HORN:
 		if (Stoned) fix_petrification();
+
+			if (!rn2(2)) {
+				if (u.uhpmax < 3) {
+					u.youaredead = 1;
+					killer = "dissolving completely";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+				} else {
+					u.uhpmax -= 2;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					flags.botl = TRUE;
+					if (Upolyd) {
+						if (u.mhmax > 2) u.mhmax -= 2;
+						else u.mhmax = 1;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					}
+				}
+				Your("health was damaged.");
+			} else {
+				u.negativeprotection += rnd(6);
+				MCReduction += rn1(5000, 5000);
+				Your("body was damaged.");
+			}
+
 		    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			shieldeff(u.ux,u.uy);
 			pline("Ugh!");
@@ -6038,6 +6089,31 @@ boolean ordinary;
 		case WAN_SLUDGE:
 		    makeknown(WAN_SLUDGE);
 		case SPE_SLUDGE:
+
+			if (!rn2(2)) {
+				if (u.uhpmax < 6) {
+					u.youaredead = 1;
+					killer = "dissolving completely";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+				} else {
+					u.uhpmax -= 5;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					flags.botl = TRUE;
+					if (Upolyd) {
+						if (u.mhmax > 5) u.mhmax -= 5;
+						else u.mhmax = 1;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					}
+				}
+				Your("health was damaged.");
+			} else {
+				u.negativeprotection += rnd(12);
+				MCReduction += rn1(10000, 10000);
+				Your("body was damaged.");
+			}
+
 		if (Stoned) fix_petrification();
 		    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {
 			shieldeff(u.ux,u.uy);
@@ -7379,7 +7455,8 @@ boolean ordinary;
 		    if (u.umonnum == PM_STONE_GOLEM)
 			(void) polymon(PM_FLESHY_GOLEM);
 		    if (Stoned) fix_petrification();	/* saved! */
-		    /* but at a cost.. */
+		    /* but at a cost.. Amy note: don't need any further bullshit downside because who has time to drop all
+		     * the lithic objects just to make sure they don't get nuked by this spell? */
 		    for (otemp = invent; otemp; otemp = onext) {
 			onext = otemp->nobj;
 			(void) bhito(otemp, obj);
@@ -9234,7 +9311,38 @@ xchar sx, sy;
 	    break;
 	case ZT_ACID:
 
-		if (Stoned) fix_petrification();
+		if (Stoned) {
+			fix_petrification();
+
+			/* if you zap in . direction, it's definitely deliberate, but if you get hit by a blast, who knows...
+			 * you might have tried to kill a monster and got hit by the rebound, and anyway we'd have to make sure
+			 * that it really was *your* beam, so... we'll just make it so that the bullshit downside for curing
+			 * petrification is given only if you were actually turning to stone to begin with --Amy */
+			if (!rn2(2)) {
+				if (u.uhpmax < 3) {
+					u.youaredead = 1;
+					killer = "dissolving completely";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+				} else {
+					u.uhpmax -= 2;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					flags.botl = TRUE;
+					if (Upolyd) {
+						if (u.mhmax > 2) u.mhmax -= 2;
+						else u.mhmax = 1;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					}
+				}
+				Your("health was damaged.");
+			} else {
+				u.negativeprotection += rnd(6);
+				MCReduction += rn1(5000, 5000);
+				Your("body was damaged.");
+			}
+
+		}
 
 		/* KMH, balance patch -- new intrinsic */
 	    if ((Acid_resistance && rn2(StrongAcid_resistance ? 20 : 5)) || AcidImmunity) {

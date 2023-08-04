@@ -8112,21 +8112,60 @@ whisperchoice:
 		break;
 	case SPE_FIXING:
 		You_feel("revitalized.");
-		if (Stoned) fix_petrification();
-		    if (Slimed) {
+
+		if ((Sick || Slimed) && !Role_if(PM_HEALER)) {
+			if (u.uenmax > 0) {
+				u.uenmax--;
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			} else {
+				You("don't have enough power for this spell.");
+				break;
+			}
+		}
+
+		if (Stoned) {
+			fix_petrification();
+
+			if (!rn2(2)) {
+				if (u.uhpmax < 2) {
+					u.youaredead = 1;
+					killer = "dissolving completely";
+					killer_format = KILLED_BY;
+					done(DIED);
+					u.youaredead = 0;
+				} else {
+					u.uhpmax--;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+					flags.botl = TRUE;
+					if (Upolyd) {
+						if (u.mhmax > 1) u.mhmax--;
+						if (u.mh > u.mhmax) u.mh = u.mhmax;
+					}
+				}
+				Your("health was damaged.");
+			} else {
+				u.negativeprotection += rnd(3);
+				MCReduction += rn1(2500, 2500);
+				Your("body was damaged.");
+			}
+		}
+
+		if (Slimed) {
 			pline("The slime disappears.");
 			Slimed =0;
-		    }
-		    make_sick(0L, (char *) 0, FALSE, SICK_ALL);
-			make_blinded(0L,FALSE);
-		    make_stunned(0L,TRUE);
-		    make_confused(0L,TRUE);
-		    (void) make_hallucinated(0L,FALSE,0L);
-		    make_numbed(0L,TRUE);
-		    make_feared(0L,TRUE);
-		    make_frozen(0L,TRUE);
-		    make_burned(0L,TRUE);
-		    make_dimmed(0L,TRUE);
+		}
+
+		make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+		make_blinded(0L,FALSE);
+		make_stunned(0L,TRUE);
+		make_confused(0L,TRUE);
+		(void) make_hallucinated(0L,FALSE,0L);
+		make_numbed(0L,TRUE);
+		make_feared(0L,TRUE);
+		make_frozen(0L,TRUE);
+		make_burned(0L,TRUE);
+		make_dimmed(0L,TRUE);
+
 		break;
 
 	case SPE_FIRE:

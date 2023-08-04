@@ -17464,7 +17464,7 @@ boolean knoweverything;
 			case SPE_GOOD_NIGHT:
 				pline("A spell that fires invisible beams of pure darkness, making areas unlit and doing great damage to lawful-aligned monsters."); break;
 			case SPE_FIXING:
-				pline("The cure-all spell that fixes just about every status condition there is."); break;
+				pline("The cure-all spell that fixes just about every status condition there is. Beware: if it cures sickness or sliming, your maximum mana is drained by one, and if it cures petrification (which it can also do), it will also randomly drain your maximum health or temporarily reduce your protection!"); break;
 			case SPE_CHAOS_TERRAIN:
 				pline("Creates chaotic terrain around you. This spell is very straining and will damage your maximum mana."); break;
 			case SPE_RANDOM_SPEED:
