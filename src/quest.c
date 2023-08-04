@@ -79,6 +79,18 @@ nemdead()
 	    Qstat(killed_nemesis) = TRUE;
 	    qt_pager(QT_KILLEDNEM);
 
+	    /* quest-specific artifacts of all roles can randomly generate now; note that this doesn't mean the actual QAs,
+	     * but rather special artifacts that are placed somewhere on a specific quest --Amy */
+	    de_energise_artifact(ART_PROCOMFORT_SUPER);
+
+	    if (achieveX.completed_rivalquest) {
+		int quartinum = ART_ORB_OF_DETECTION;
+		while (quartinum <= ART_PENUMBRAL_LASSO) {
+			de_energise_artifact(quartinum);
+			quartinum++;
+		}
+	    }
+
 	    if (Role_if(PM_PRACTICANT) || isbeacher) {
 		You("managed to overthrow %s's reign of terror!!!", noroelaname());
 		if (u.practicantcash) {

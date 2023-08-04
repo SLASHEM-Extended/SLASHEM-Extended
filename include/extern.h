@@ -67,6 +67,7 @@ E int wand_explode(struct obj *,BOOLEAN_P);
 /* ### artifact.c ### */
 
 E void elemental_imbue(int);
+E void de_energise_artifact(int);
 E void init_artifacts(void);
 E void init_artifacts1(void);
 E void save_artifacts(int);

@@ -1138,16 +1138,19 @@ register struct monst *mtmp;
 			pline("All that remains is her horn...");
 			obj = oname(mksobj(UNICORN_HORN, TRUE, FALSE, FALSE),
 					artiname(ART_NIGHTHORN));
+			de_energise_artifact(ART_NIGHTHORN);
 			goto initspecial;
 	    case PM_BEHOLDER:
 			pline("All that remains is a single eye...");
 			obj = oname(mksobj(EYEBALL, TRUE, FALSE, FALSE),
 					artiname(ART_EYE_OF_THE_BEHOLDER));
+			de_energise_artifact(ART_EYE_OF_THE_BEHOLDER);
 			goto initspecial;
 	    case PM_VECNA:
 			pline("All that remains is a hand...");
 			obj = oname(mksobj(SEVERED_HAND, TRUE, FALSE, FALSE),
 					artiname(ART_HAND_OF_VECNA));
+			de_energise_artifact(ART_HAND_OF_VECNA);
 		initspecial:
 			obj->quan = 1;
 			obj->owt = weight(obj);
@@ -5451,6 +5454,8 @@ newbossSING:
 		    trophy = oname(trophy, artiname(ART_HELM_OF_KNOWLEDGE));
 		    dropy(trophy);
 		}
+		de_energise_artifact(ART_HELM_OF_KNOWLEDGE);
+		de_energise_artifact(ART_BOOTS_OF_THE_MACHINE);
 
 	    	learntech_or_leveltech(T_SECURE_IDENTIFY, FROMOUTSIDE, 1);
 	    	You("also learn the secure identify technique, and it can be used twice as often for the remaining game.");
@@ -5833,6 +5838,7 @@ newbossSING:
 
       if(mtmp->data == &mons[PM_KALWINA] && !u.emynluincomplete) {
 		u.emynluincomplete = 1;
+		de_energise_artifact(ART_KAL);
 		pline("Congratulations, you broke the curse of Emyn Luin! As a reward, you'll gain extra spell memory when learning a new spell, your techniques time out faster so they can be used more often, and your skills train slightly faster!");
 	}
 
@@ -5961,6 +5967,7 @@ newbossSING:
 		    trophy = oname(trophy, artiname(ART_BIZARRO_ORGASMATRON));
 		    dropy(trophy);
 		}
+		de_energise_artifact(ART_BIZARRO_ORGASMATRON);
 
 		boolean havegifts = u.ugifts;
 
@@ -6559,6 +6566,9 @@ newbossSING:
 
 	if(mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
 
+		/* did you win the game? then you may find the artifact robe randomly generated now --Amy */
+		if (u.freeplaymode) de_energise_artifact(ART_MOTHERFUCKER_TROPHY);
+
 		if (!achieveX.killed_elderpriest) {
 
 	            achieveX.killed_elderpriest = 1;
@@ -6607,6 +6617,8 @@ newbossSING:
 
 	if(mtmp->data == &mons[PM_EROGENOUS_KATIA]) {
 
+		de_energise_artifact(ART_KATIA_S_SOFT_COTTON);
+
 		if (!achieveX.killed_katia) {
 
 	            achieveX.killed_katia = 1;
@@ -6631,6 +6643,8 @@ newbossSING:
 
 	if(mtmp->data == &mons[PM_STAHNGNIR__THE_STEEL_GIANT_LORD]) {
 
+		de_energise_artifact(ART_STAHNGNIR_S_BASHHUNK);
+
 		if (!achieveX.killed_stahngnir) {
 
 	            achieveX.killed_stahngnir = 1;
@@ -6642,6 +6656,14 @@ newbossSING:
 	}
 
 	if(mtmp->data == &mons[u.rivalneminum]) {
+
+		if (quest_status.killed_nemesis) {
+			int quartinum = ART_ORB_OF_DETECTION;
+			while (quartinum <= ART_PENUMBRAL_LASSO) {
+				de_energise_artifact(quartinum);
+				quartinum++;
+			}
+		}
 
 		if (!achieveX.completed_rivalquest) {
 

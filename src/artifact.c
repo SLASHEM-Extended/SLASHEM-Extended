@@ -169,6 +169,14 @@ int elemtype;
 	}
 }
 
+/* Amy change: reaching certain milestones allows specific artifacts to randomly generate from that point on
+ * this is done by removing the NOGEN flag from them; that change is saved into the savegame file */
+void
+de_energise_artifact(artinum)
+int artinum;
+{
+	artilist[artinum].spfx &= ~SPFX_NOGEN;
+}
 
 /* handle some special cases; must be called after role_init() */
 STATIC_OVL void

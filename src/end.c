@@ -2253,6 +2253,12 @@ die:
 			u.freeplaytransit = TRUE;
 			u.freeplayplanes = FALSE;
 
+			/* did you kill the elder priest? then you may find the artifact robe randomly generated now --Amy */
+			if (achieveX.killed_elderpriest) de_energise_artifact(ART_MOTHERFUCKER_TROPHY);
+
+			/* might not have been able to finish deep mines, in case the stone didn't generate */
+			de_energise_artifact(ART_ARKENSTONE_OF_THRAIN);
+
 			if (u.uhave.amulet) { /* no longer need the amulet, now that you've won */
 				struct obj *otmpi, *otmpii;
 				if (invent) {

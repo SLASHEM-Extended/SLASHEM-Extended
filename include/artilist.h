@@ -13691,6 +13691,7 @@ A("Wallet of Perseus",       BAG_OF_HOLDING,
         NO_ATTK,        NO_DFNS,        NO_CARY,
         0,      A_NONE, NON_PM, NON_PM, 10000L ),
 
+/* nighthorn can generate randomly after defeating nightmare */
 A("Nighthorn", UNICORN_HORN,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_REFLECT|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
@@ -13701,6 +13702,7 @@ A("The Key of Law", SKELETON_KEY,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
+/* eye of the beholder can generate randomly after defeating beholder */
 A("The Eye of the Beholder", EYEBALL,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
@@ -13711,6 +13713,7 @@ A("The Key of Neutrality", SKELETON_KEY,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_NEUTRAL, NON_PM, NON_PM, 1000L ),
 
+/* hand of vecna can generate randomly after defeating vecna */
 A("The Hand of Vecna",       SEVERED_HAND,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_REGEN|SPFX_HPHDAM|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        DRLI(0,0),      CARY(AD_COLD),
@@ -13726,18 +13729,18 @@ A("The Gauntlet Key", SKELETON_KEY,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
-/* reward for defeating the elder priest */
+/* reward for defeating the elder priest, can generate randomly after you both defeated an elder priest and ascended */
 A("Motherfucker Trophy", ROBE, /* +5 increase damage and accuracy, 20% better spellcasting chances, fast skill training */
 	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,
 	0,      A_NONE, NON_PM, NON_PM, 50000L ),
 
-/* for Emyn Luin boss - no special effects, cannot be wished for */
+/* for Emyn Luin boss - no special effects, cannot be wished for, can generate randomly after defeating kalwina */
 A("Kal",			KALASHNIKOV,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-/* for Green Cross boss - cannot be wished for */
+/* for Green Cross boss - cannot be wished for, can generate randomly after defeating stahngnir */
 A("Stahngnir's Bashhunk", AIR_PRESSURE_HAMMER, /* petrification resistance when wielded */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	PHYS(5, 0),	NO_DFNS, NO_CARY,
@@ -13756,36 +13759,37 @@ A("Shock Swing",			LONG_SWORD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_ATTK), 0, 0,
 	ELEC(0,8),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+/* procomfort super can generate randomly after completing the quest */
 A("ProComfort Super",			RED_STRING,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_REGEN), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,	0, A_NONE, PM_CLIMACTERIAL, NON_PM, 6000L ),
 
 
-/* reward for finishing the Illusory Castle */
+/* reward for finishing the Illusory Castle, can generate randomly after beating the motherfucker glass golem */
 A("The Helm of Knowledge", HELM_OF_TELEPATHY,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	IDENTIFY,	A_NONE, NON_PM, NON_PM, 10000L),
 
-/* artifact on the special level in the Illusory Castle */
+/* artifact on the special level in the Illusory Castle, can generate randomly after beating the motherfucker glass golem */
 A("Boots of the Machine", SPEED_BOOTS, /* aggravate monster, confusion resistance, displays all golems and unliving monsters */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0,	A_NONE, NON_PM, NON_PM, 10000L),
 
-/* artifact on the special level in the Deep Mines */
+/* artifact on the special level in the Deep Mines, can generate randomly after beating the mines or ascending */
 A("The Arkenstone of Thrain", LUCKSTONE, /* invokes for perilous identify - curses the stone and gives 10 bad effects */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	IDENTIFY,	A_NONE, NON_PM, NON_PM, 10000L),
 
-/* reward for finishing the Mainframe */
+/* reward for finishing the Mainframe, can generate randomly after beating the bofh */
 A("Bizarro Orgasmatron", HITCHHIKER_S_GUIDE_TO_THE_GALA,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	CREATE_PORTAL,	A_NONE, NON_PM, NON_PM, 10000L),
 
-/* reward for finishing Hell's Bathroom */
+/* reward for finishing Hell's Bathroom, can generate randomly after beating katia */
 A("Katia's Soft Cotton", BATH_TOWEL, /* if you take a crap while wearing it, you may gain charisma */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
@@ -13795,7 +13799,8 @@ A("Katia's Soft Cotton", BATH_TOWEL, /* if you take a crap while wearing it, you
 
 /*** The artifacts for the quest dungeon, all self-willed ***/
 
-/* Amy note: The Orb of Detection MUST be the first one!!! see foreignartifactcount() in invent.c */
+/* Amy note: The Orb of Detection MUST be the first one!!! see foreignartifactcount() in invent.c
+ * these can generate randomly if you completed either both the regular and rival quest, or picked up the AoY */
 
 A("The Orb of Detection",	CRYSTAL_BALL,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_ESP|SPFX_HSPDAM), 0,
@@ -14644,6 +14649,7 @@ A("Penumbral Lasso",				LANCE, /* if it would break from jousting, it might not 
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
 	PHYS(0, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_LAWFUL, PM_JOCKEY, NON_PM, 4000L ),
 
+/* Penumbral Lasso must be last!!! */
 
 /* Amy note: DO NOT add non-quest artifacts beyond this point!!! foreignartifactcount() in invent.c depends on it */
 

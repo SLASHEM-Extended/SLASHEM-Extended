@@ -317,6 +317,16 @@ struct obj *obj;
 	} else if (obj->otyp == AMULET_OF_YENDOR) {
 		if (u.uhave.amulet) impossible("already have amulet?");
 		u.uhave.amulet = 1;
+
+		/* at this point, all quest artifacts enter random generation, this is mostly for flavor because the player
+		 * won't be able to pick up crossaligned ones anyway, but also has the side effect that player monsters
+		 * later in the game (astral in particular) can now generate with them, including ones like the tsurugi :-P */
+		int quartinum = ART_ORB_OF_DETECTION;
+		while (quartinum <= ART_PENUMBRAL_LASSO) {
+			de_energise_artifact(quartinum);
+			quartinum++;
+		}
+
 #ifdef RECORD_ACHIEVE
 
 		if (!achieve.get_amulet) {
@@ -533,6 +543,7 @@ struct obj *obj;
 			u.uhpmax += rnd(2);
 			u.uenmax += rnd(2);
 			if (Upolyd) u.mhmax += rnd(2);
+			de_energise_artifact(ART_ARKENSTONE_OF_THRAIN);
 		}
 #ifdef LIVELOGFILE
 		livelog_achieve_update();
