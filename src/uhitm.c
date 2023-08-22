@@ -2097,7 +2097,8 @@ int dieroll;
 
 		/* Bashing with bows, darts, ranseurs or inactive lightsabers might not be completely useless... --Amy */
 
-		    if (( (is_launcher(obj) && obj->otyp != WEAPON_SIGN && !(obj->otyp == LASERXBOW && obj->lamplit) && !(obj->otyp == KLIUSLING && obj->lamplit)) || is_missile(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
+		    if (( (is_launcher(obj) && obj->otyp != WEAPON_SIGN && !(obj->otyp == LASERXBOW && obj->lamplit) && !(obj->otyp == KLIUSLING && obj->lamplit)) || is_missile(obj) || is_ammo(obj) || (is_pole(obj) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(obj) && !obj->lamplit) ) && !thrown) {
+
 
 			if (!(PlayerCannotUseSkills) && !rn2(2)) {
 
@@ -3757,14 +3758,21 @@ int dieroll;
 
 	if (valid_weapon_attack) {
 	    struct obj *wep;
+	    struct obj *thrwwep = (struct obj *)0;
 
 	    /* to be valid a projectile must have had the correct projector */
 	    wep = PROJECTILE(obj) ? launcher : obj;
+	    if (!thrown && !launcher) wep = obj; /* bashing with ammo --Amy */
+
+	    if (thrown && !wep) {
+		thrwwep = obj; /* throwing ammo or launchers - very ineffective, but trains skill --Amy */
+	    }
 
 		/* bashing with launchers or other "bad" weapons shouldn't give insane bonuses --Amy */
-		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
+		if (wep && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) ) && !thrown)) tmp += weapon_dam_bonus(wep);
 
-		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+		if (wep && !thrown && !(( (is_launcher(wep) && !(wep->otyp == LASERXBOW && wep->lamplit) && !(wep->otyp == KLIUSLING && wep->lamplit)) || is_missile(wep) || is_ammo(wep) || (is_pole(wep) && !(tech_inuse(T_POLE_MELEE)) && !u.usteed) || (is_lightsaber(wep) && !wep->lamplit) )) ) tmp += melee_dam_bonus(wep);	/* extra damage bonus added by Amy */
+
 		if (wep && thrown) tmp += ranged_dam_bonus(wep);	/* ditto */
 
 		/* various artifacts and other specific things with *beneficial* effects go here --Amy
@@ -4312,8 +4320,11 @@ melatechoice:
 
 	    /* [this assumes that `!thrown' implies wielded...] */
 	    wtype = weapon_type(wep);
+	    if (thrwwep) wtype = weapon_type(thrwwep);
 	    if (!(mon->egotype_flickerer) && !noeffect && !(mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_CRITICALLY_INJURED_PERCENTS] || mon->data == &mons[PM_SUPERDEEP_TYPE] || mon->data == &mons[PM_AGULA] || mon->data == &mons[PM_DTTN_ERROR] || mon->data == &mons[PM_FLUIDATOR_IVE] || mon->data == &mons[PM_MISTER_GRIBBS] || mon->data == &mons[PM_AMBER_FEMMY] || mon->data == &mons[PM_IMMUNITY_VIRUS] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_ARABELLA_SHOE] || mon->data == &mons[PM_ANASTASIA_SHOE] || mon->data == &mons[PM_HENRIETTA_SHOE] || mon->data == &mons[PM_KATRIN_SHOE] || mon->data == &mons[PM_JANA_SHOE] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) ) {
-		    if (thrown || !u.twoweap || !rn2(2)) use_skill(wtype, 1);
+		    if (thrown || !u.twoweap || !rn2(2)) {
+			use_skill(wtype, 1);
+		    }
 		    else if (u.twoweap) use_skill(P_TWO_WEAPON_COMBAT,1);
 
 		    if (!thrown) { /* general combat skill is trained by using melee weapons --Amy */
