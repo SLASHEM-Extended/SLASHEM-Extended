@@ -10912,6 +10912,11 @@ losespells()
 	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
 	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
 
+	/* have no spells? well then... magic vacuum :P --Amy */
+	if (spellid(0) == NO_SPELL) {
+		make_magicvacuum(HMagicVacuum + rnd(10) + rnd(monster_difficulty() * 100) );
+	}
+
 	/* reduce memory of one known spell that still has memory left --Amy */
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
 		continue;
