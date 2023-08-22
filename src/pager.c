@@ -5670,6 +5670,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli u monstra yest' dvuruchnoye oruzhiye i dve ataki oruzhiyem, to ved' on mozhet atakovat' im dvazhdy za khod! Khotya vy mozhete atakovat' tol'ko dvazhdy, yesli u vas yest' odnoruchnoye oruzhiye! Sovetskiy Tip Ledyanoy Glyby samyy bol'shoy! KHAA-KHAA!",
 "Voyska Kremlya nikogda ne smogut ispol'zovat' nepravil'noye artefaktnoye oruzhiye, potomu chto tip ledyanoy glyby ne khochet, chtoby oni dezertirovali.",
 "Vrazheskiye voyska mogut smotret' na vashi voyska s beskonechnogo rasstoyaniya, i yesli vy ne vooruzhite svoi shturmovymi vintovkami, oni bez shansov razob'yutsya. Mua kha kha.",
+"Yesli vy stolknetes' s monstrami na rannem etape, oni vsegda smogut imet' maksimal'no vozmozhnyy uroven', dazhe yesli eto vpolne mozhet privesti k tomu, chto vas ub'yut, potomu chto vy igrayete ne v tom rezhime. Vina.",
 };
 
 static NEARDATA const char * const practicantlines[] = {

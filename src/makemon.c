@@ -27878,7 +27878,7 @@ rndmonst()
 	    /* determine the level of the weakest monster to make. */
 	    minmlev = /*zlevel / 6*/0;
 	    /* determine the level of the strongest monster to make. */
-	    maxmlev = (zlevel + u.ulevel + 1)>>1;
+	    maxmlev = (zlevel + gentlelevel() + 1)>>1;
 
 	    if (!rn2(100)) maxmlev *= 2;
 	    if (!rn2(1000)) maxmlev *= 4;

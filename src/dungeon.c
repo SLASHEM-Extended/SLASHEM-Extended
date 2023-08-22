@@ -2354,7 +2354,7 @@ monster_difficulty()
 
 	int tempval;
 
-	tempval = (level_difficulty() + u.ulevel + 1)>>1;
+	tempval = (level_difficulty() + gentlelevel() + 1)>>1;
 	if (tempval < level_difficulty()) tempval = level_difficulty();
 	/* this function is meant to make sure high-level characters don't get stupidly easy monsters at shallow depths,
 	 * yet I also don't want monsters at deep dungeon levels to be of a lower level than they should be. --Amy */
@@ -2368,6 +2368,53 @@ monster_difficulty()
 
 	return((xchar) tempval);
 
+}
+
+/* for level/monster difficulty calculations when spawning monsters: skew towards lower levels early on --Amy */
+int
+gentlelevel()
+{
+	int returnlevel = u.ulevel;
+
+	/* In Soviet Russia, you get the full monster strength at every point in time, even when you're a wee novice who
+	 * will get brutally owned by high-level monsters, because only the strongest warriors may survive. */
+	if (issoviet) return returnlevel;
+
+	switch (u.ulevel) {
+		case 2:
+			if (rn2(5)) returnlevel = 1;
+			break;
+		case 3:
+			returnlevel = rnd(3);
+			break;
+		case 4:
+			returnlevel = rnd(3) + 1;
+			break;
+		case 5:
+			if (!rn2(5)) returnlevel = 3;
+			else if (!rn2(2)) returnlevel = 4;
+			break;
+		case 6:
+			if (!rn2(2)) returnlevel = 5;
+			break;
+		case 7:
+			if (!rn2(4)) returnlevel = 5;
+			else if (!rn2(2)) returnlevel = 6;
+			break;
+		case 8:
+			returnlevel = rnd(3) + 5;
+			break;
+		case 9:
+			if (rn2(4)) returnlevel = 8;
+			break;
+		case 10:
+			if (rn2(3)) returnlevel = 9;
+			break;
+		default:
+			break;
+	}
+
+	return returnlevel;
 }
 
 /* Take one word and try to match it to a level.
