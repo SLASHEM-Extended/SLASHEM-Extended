@@ -778,7 +778,12 @@ meleeattack:
 	    case AT_GAZE:
 		strike = 0;	/* will not wake up a sleeper */
 
-		if (!range || clear_path(magr->mx, magr->my, mdef->mx, mdef->my) ) {
+		/* endless gaze spammage against pets was really getting annoying... --Amy
+		 * In Soviet Russia, the enemy's troops can stare down at your troops from endlessly far away, and do so
+		 * constantly, meaning that your only hope is to equip them all with AK-47's and pray they manage to line
+		 * themselves up for a shot. Otherwise, your guys just get wrecked with no chance. */
+
+		if (!range || (clear_path(magr->mx, magr->my, mdef->mx, mdef->my) && (!rn2(10) || issoviet) ) ) {
 
 			res[i] = gazemm(magr, mdef, mattk);
 		} else norangepassive = TRUE;
