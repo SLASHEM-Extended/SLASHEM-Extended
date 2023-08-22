@@ -56,9 +56,9 @@ STATIC_DCL void set_botl_warn(int);
  * -- or somewhat over 160 characters
  */
 #if COLNO <= 170
-#define MAXCO 240
+#define MAXCO 320
 #else
-#define MAXCO (COLNO+70)
+#define MAXCO (COLNO+150)
 #endif
 
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
