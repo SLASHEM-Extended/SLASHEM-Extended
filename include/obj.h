@@ -29,7 +29,7 @@ struct obj {
 	unsigned owt;
 	long quan;		/* number of items */
 
-	schar spe;		/* quality of weapon, armor or ring (+ or -)
+	int spe;		/* quality of weapon, armor or ring (+ or -)
 				   number of charges for wand ( >= -1 )
 				   marks your eggs, spinach tins
 				   royal coffers for a court ( == 2)

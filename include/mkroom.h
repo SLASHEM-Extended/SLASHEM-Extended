@@ -13,7 +13,7 @@ struct mkroom {
 	schar rlit;			/* is the room lit ? */
 	schar doorct;		/* door count */
 	schar fdoor;		/* index for the first door of the room */
-	schar nsubrooms;	/* number of subrooms */
+	int nsubrooms;	/* number of subrooms */
 	boolean irregular;	/* true if room is non-rectangular */
 	struct mkroom *sbrooms[MAX_SUBROOMS];  /* Subrooms pointers */
 	struct monst *resident; /* priest/shopkeeper/guard for this room */

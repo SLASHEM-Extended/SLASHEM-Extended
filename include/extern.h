@@ -621,7 +621,7 @@ E s_level *Is_special(d_level *);
 E branch *Is_branchlev(d_level *);
 E xchar ledger_no(d_level *);
 E xchar maxledgerno(void);
-E schar depth(d_level *);
+E int depth(d_level *);
 E xchar dunlev(d_level *);
 E xchar dunlevs_in_dungeon(d_level *);
 E xchar real_dunlevs_in_dungeon(d_level *);
@@ -702,9 +702,9 @@ E int induced_align(int);
 E boolean Invocation_lev(d_level *);
 E xchar level_difficulty(void);
 E xchar monster_difficulty(void);
-E schar lev_by_name(const char *);
+E int lev_by_name(const char *);
 #ifdef WIZARD
-E schar print_dungeon(BOOLEAN_P,schar *,xchar *);
+E int print_dungeon(BOOLEAN_P,int *,xchar *);
 #endif
 E int donamelevel(void);
 E int dooverview(void);

@@ -55,8 +55,8 @@ static branch *branches = (branch *) 0;	/* dungeon branch list		   */
 
 struct lchoice {
 	int idx;
-	schar lev[MAXLINFO];
-	schar playerlev[MAXLINFO];
+	int lev[MAXLINFO];
+	int playerlev[MAXLINFO];
 	xchar dgn[MAXLINFO];
 	char menuletter;
 };
@@ -864,7 +864,7 @@ init_dungeons()
 
 	    if (i) {	/* set depth */
 		branch *br;
-		schar from_depth;
+		int from_depth;
 		boolean from_up;
 		int branch_num;
 
@@ -1124,7 +1124,7 @@ boolean noquest;
 	 */
 	register int i;
 	d_level tmp;
-	register schar ret = 0;
+	register int ret = 0;
 
 	for(i = 0; i < n_dgns; i++) {
 	    if((tmp.dlevel = dungeons[i].dunlev_ureached) == 0) continue;
@@ -1193,11 +1193,11 @@ xchar	ledgerno;
 
 /* returns the depth of a level, in floors below the surface	*/
 /* (note levels in different dungeons can have the same depth).	*/
-schar
+int
 depth(lev)
 d_level	*lev;
 {
-	return((schar)( dungeons[lev->dnum].depth_start + lev->dlevel - 1));
+	return((int)( dungeons[lev->dnum].depth_start + lev->dlevel - 1));
 }
 
 boolean
@@ -2373,11 +2373,11 @@ monster_difficulty()
 /* Take one word and try to match it to a level.
  * Recognized levels are as shown by print_dungeon().
  */
-schar
+int
 lev_by_name(nam)
 const char *nam;
 {
-    schar lev = 0;
+    int lev = 0;
     s_level *slev;
     d_level dlev;
     const char *p;
@@ -2495,10 +2495,10 @@ print_branch(win, dnum, lower_bound, upper_bound, bymenu, lchoices)
 }
 
 /* Print available dungeon information. */
-schar
+int
 print_dungeon(bymenu, rlev, rdgn)
 boolean bymenu;
-schar *rlev;
+int *rlev;
 xchar *rdgn;
 {
     int     i, last_level, nlev;
