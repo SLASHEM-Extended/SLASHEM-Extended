@@ -3785,6 +3785,8 @@ E void grinderattack(int);
 E int difeasemu(struct permonst *);
 E void climtrainsqueaking(int);
 E boolean bulletator_allowed(int);
+E int increase_damage_bonus_value(void);
+E int increase_accuracy_bonus_value(void);
 
 /* ### were.c ### */
 

@@ -2135,12 +2135,11 @@ Helmet_on()
 	case HELM_OF_BRILLIANCE:
 		makeknown(uarmh->otyp);
 		break;
-	case CORNUTHAUM:
+	case CORNUTHAUM: /* Amy edit: moved to attrib.c to prevent bugs where the bonus becomes permanent */
 		/* people think marked wizards know what they're talking
 		 * about, but it takes trained arrogance to pull it off,
 		 * and the actual enchantment of the hat is irrelevant.
 		 */
-		ABON(A_CHA) += (Role_if(PM_WIZARD) ? 1 : -1);
 		flags.botl = 1;
 		makeknown(uarmh->otyp);
 		break;
@@ -2643,7 +2642,6 @@ Helmet_off()
 	    break;
 	case CORNUTHAUM:
 	    if (!cancelled_don) {
-		ABON(A_CHA) += (Role_if(PM_WIZARD) ? -1 : 1);
 		flags.botl = 1;
 	    }
 	    break;
@@ -4631,59 +4629,22 @@ register struct obj *obj;
 		    spoteffects(FALSE);	/* for sinks */
 		}
 		break;
-	case RIN_GAIN_STRENGTH:
-		which = A_STR;
-		goto adjust_attrib;
+	case RIN_GAIN_STRENGTH: /* all moved to attrib.c so we no longer have to pay attention when destroying stuff --Amy */
 	case RIN_GAIN_CONSTITUTION:
-		which = A_CON;
-		goto adjust_attrib;
 	case RIN_ADORNMENT:
-		which = A_CHA;
- adjust_attrib:
-		old_attrib = ACURR(which);
-		ABON(which) += obj->spe;
-		if (ACURR(which) != old_attrib ||
-			(objects[obj->otyp].oc_name_known &&
-			    old_attrib != 25 && old_attrib != 1)) {
-		    flags.botl = 1;
-		    makeknown(obj->otyp);
-		    obj->known = 1;
-		    update_inventory();
-		}
-		break;
 	case RIN_GAIN_INTELLIGENCE:
-		ABON(A_INT) += obj->spe;
-		flags.botl = 1;
-		if (obj->spe || objects[RIN_GAIN_INTELLIGENCE].oc_name_known) {
-			makeknown(RIN_GAIN_INTELLIGENCE);
-			obj->known = TRUE;
-		}
-		break;
 	case RIN_GAIN_WISDOM:
-		ABON(A_WIS) += obj->spe;
-		flags.botl = 1;
-		if (obj->spe || objects[RIN_GAIN_WISDOM].oc_name_known) {
-			makeknown(RIN_GAIN_WISDOM);
-			obj->known = TRUE;
-		}
-		break;
 	case RIN_GAIN_DEXTERITY:
-		ABON(A_DEX) += obj->spe;
 		flags.botl = 1;
-		if (obj->spe || objects[RIN_GAIN_DEXTERITY].oc_name_known) {
-			makeknown(RIN_GAIN_DEXTERITY);
-			obj->known = TRUE;
-		}
+		makeknown(obj->otyp);
+		obj->known = 1;
+		update_inventory();
 		break;
-	case RIN_INCREASE_ACCURACY:	/* KMH */
-		u.uhitinc += obj->spe;
+	case RIN_INCREASE_ACCURACY:	/* KMH - edited by Amy, moved to a function in weapon.c */
 		break;
 	case RIN_INCREASE_DAMAGE:
-		u.udaminc += obj->spe;
 		break;
 	case RIN_HEAVY_ATTACK:
-		u.uhitinc += obj->spe;
-		u.udaminc += obj->spe;
 		break;
 	case RIN_PROTECTION_FROM_SHAPE_CHAN:
 		rescham();
@@ -4926,41 +4887,22 @@ boolean gone;
 		if (!Levitation) makeknown(RIN_LEVITATION);
 		break;
 	case RIN_GAIN_STRENGTH:
-		which = A_STR;
-		goto adjust_attrib;
 	case RIN_GAIN_INTELLIGENCE:
-		which = A_INT;
-		goto adjust_attrib;
 	case RIN_GAIN_WISDOM:
-		which = A_WIS;
-		goto adjust_attrib;
 	case RIN_GAIN_DEXTERITY:
-		which = A_DEX;
-		goto adjust_attrib;
 	case RIN_GAIN_CONSTITUTION:
-		which = A_CON;
-		goto adjust_attrib;
 	case RIN_ADORNMENT:
-		which = A_CHA;
  adjust_attrib:
-		old_attrib = ACURR(which);
-		ABON(which) -= obj->spe;
-		if (ACURR(which) != old_attrib) {
-		    flags.botl = 1;
-		    makeknown(obj->otyp);
-		    obj->known = 1;
-		    update_inventory();
-		}
+		flags.botl = 1;
+		makeknown(obj->otyp);
+		obj->known = 1;
+		update_inventory();
 		break;
 	case RIN_INCREASE_ACCURACY:	/* KMH */
-		u.uhitinc -= obj->spe;
 		break;
 	case RIN_INCREASE_DAMAGE:
-		u.udaminc -= obj->spe;
 		break;
 	case RIN_HEAVY_ATTACK:
-		u.uhitinc -= obj->spe;
-		u.udaminc -= obj->spe;
 		break;
 	case RIN_PROTECTION:
 		/* might have forgotten it due to amnesia */

@@ -404,8 +404,8 @@ register boolean clumsy;
 	if (blessed_foot_damage) dmg += rnd(4);
 	if (uarmf) dmg += uarmf->spe;
 
-	if (u.udaminc > 1) dmg += rnd(u.udaminc);
-	else dmg += u.udaminc;	/* add ring(s) of increase damage */
+	if (increase_damage_bonus_value() > 1) dmg += rnd(increase_damage_bonus_value());
+	else dmg += increase_damage_bonus_value();	/* add ring(s) of increase damage */
 
 	dmg += (Drunken_boxing && Confusion);
 	dmg += (StrongDrunken_boxing && Confusion);

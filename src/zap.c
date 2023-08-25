@@ -2224,70 +2224,12 @@ boolean weakeffect;
 
 	switch(obj->otyp) {
 		case RIN_GAIN_STRENGTH:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) ABON(A_STR) += 1;
-				else if (!willresist) ABON(A_STR) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
 		case RIN_GAIN_DEXTERITY:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) ABON(A_DEX) += 1;
-				else if (!willresist) ABON(A_DEX) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
 		case RIN_GAIN_CONSTITUTION:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) ABON(A_CON) += 1;
-				else if (!willresist) ABON(A_CON) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
 		case RIN_GAIN_INTELLIGENCE:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) ABON(A_INT) += 1;
-				else if (!willresist) ABON(A_INT) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
 		case RIN_GAIN_WISDOM:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) ABON(A_WIS) += 1;
-				else if (!willresist) ABON(A_WIS) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
 		case RIN_ADORNMENT:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) ABON(A_CHA) += 1;
-				else if (!willresist) ABON(A_CHA) -= obj->spe;
-				flags.botl = 1;
-			}
-			break;
-		case RIN_INCREASE_ACCURACY:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) u.uhitinc += 1;
-				else if (!willresist) u.uhitinc -= obj->spe;
-			}
-			break;
-		case RIN_INCREASE_DAMAGE:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) u.udaminc += 1;
-				else if (!willresist) u.udaminc -= obj->spe;
-			}
-			break;
-		case RIN_HEAVY_ATTACK:
-			if ((obj->owornmask & W_RING) && u_ring) {
-				if (obj->spe < 0 && !willresist) {
-					u.udaminc += 1;
-					u.uhitinc += 1;
-				}
-				else if (!willresist) {
-					u.udaminc -= obj->spe;
-					u.uhitinc -= obj->spe;
-				}
-			}
+			flags.botl = 1;
 			break;
 		/* case RIN_PROTECTION:  not needed */
 	}
@@ -2423,37 +2365,13 @@ register struct obj *obj;
 	u_ring = (obj == uleft) || (obj == uright);
 	switch(obj->otyp) {
 	case RIN_GAIN_STRENGTH:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_STR)--;
-	    	flags.botl = 1;
-	    }
-	    break;
+	case RIN_GAIN_DEXTERITY:
+	case RIN_GAIN_WISDOM:
+	case RIN_GAIN_INTELLIGENCE:
 	case RIN_GAIN_CONSTITUTION:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CON)--;
-	    	flags.botl = 1;
-	    }
-	    break;
 	case RIN_ADORNMENT:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CHA)--;
-	    	flags.botl = 1;
-	    }
-	    break;
-	case RIN_INCREASE_ACCURACY:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.uhitinc--;
-	    break;
-	case RIN_INCREASE_DAMAGE:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.udaminc--;
-	    break;
-	case RIN_HEAVY_ATTACK:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	u.udaminc--;
-	    	u.uhitinc--;
-	    }
-	    break;
+		flags.botl = 1;
+		break;
 	case RIN_PROTECTION:
 	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;
@@ -2498,37 +2416,13 @@ register struct obj *obj;
 	u_ring = (obj == uleft) || (obj == uright);
 	switch(obj->otyp) {
 	case RIN_GAIN_STRENGTH:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_STR) -= (save_spe * 2);
-	    	flags.botl = 1;
-	    }
-	    break;
+	case RIN_GAIN_DEXTERITY:
+	case RIN_GAIN_WISDOM:
+	case RIN_GAIN_INTELLIGENCE:
 	case RIN_GAIN_CONSTITUTION:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CON) -= (save_spe * 2);
-	    	flags.botl = 1;
-	    }
-	    break;
 	case RIN_ADORNMENT:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CHA) -= (save_spe * 2);
-	    	flags.botl = 1;
-	    }
-	    break;
-	case RIN_INCREASE_ACCURACY:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.uhitinc -= (save_spe * 2);
-	    break;
-	case RIN_INCREASE_DAMAGE:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.udaminc -= (save_spe * 2);
-	    break;
-	case RIN_HEAVY_ATTACK:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	u.udaminc -= (save_spe * 2);
-	    	u.uhitinc -= (save_spe * 2);
-	    }
-	    break;
+		flags.botl = 1;
+		break;
 	case RIN_PROTECTION:
 	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;
@@ -2578,37 +2472,13 @@ register struct obj *obj;
 	u_ring = (obj == uleft) || (obj == uright);
 	switch(obj->otyp) {
 	case RIN_GAIN_STRENGTH:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_STR)--;
-	    	flags.botl = 1;
-	    }
-	    break;
 	case RIN_GAIN_CONSTITUTION:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CON)--;
-	    	flags.botl = 1;
-	    }
-	    break;
+	case RIN_GAIN_DEXTERITY:
+	case RIN_GAIN_WISDOM:
+	case RIN_GAIN_INTELLIGENCE:
 	case RIN_ADORNMENT:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CHA)--;
-	    	flags.botl = 1;
-	    }
-	    break;
-	case RIN_INCREASE_ACCURACY:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.uhitinc--;
-	    break;
-	case RIN_INCREASE_DAMAGE:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.udaminc--;
-	    break;
-	case RIN_HEAVY_ATTACK:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	u.udaminc--;
-	    	u.uhitinc--;
-	    }
-	    break;
+		flags.botl = 1;
+		break;
 	case RIN_PROTECTION:
 	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;
@@ -2646,37 +2516,13 @@ register struct obj *obj;
 	u_ring = (obj == uleft) || (obj == uright);
 	switch(obj->otyp) {
 	case RIN_GAIN_STRENGTH:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_STR)++;
-	    	flags.botl = 1;
-	    }
-	    break;
 	case RIN_GAIN_CONSTITUTION:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CON)++;
-	    	flags.botl = 1;
-	    }
-	    break;
+	case RIN_GAIN_WISDOM:
+	case RIN_GAIN_DEXTERITY:
+	case RIN_GAIN_INTELLIGENCE:
 	case RIN_ADORNMENT:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	ABON(A_CHA)++;
-	    	flags.botl = 1;
-	    }
-	    break;
-	case RIN_INCREASE_ACCURACY:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.uhitinc++;
-	    break;
-	case RIN_INCREASE_DAMAGE:
-	    if ((obj->owornmask & W_RING) && u_ring)
-	    	u.udaminc++;
-	    break;
-	case RIN_HEAVY_ATTACK:
-	    if ((obj->owornmask & W_RING) && u_ring) {
-	    	u.udaminc++;
-	    	u.uhitinc++;
-	    }
-	    break;
+		flags.botl = 1;
+		break;
 	case RIN_PROTECTION:
 	case RIN_THREE_POINT_SEVEN_PROTECTI:
 	    flags.botl = 1;

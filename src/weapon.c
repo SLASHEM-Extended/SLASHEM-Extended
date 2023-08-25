@@ -11183,6 +11183,35 @@ int lossamount;
 
 }
 
+/* increase damage or accuracy: waaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaay too bug-prone if we have to constantly check whether
+ * the player has had their ring destroyed, because there's so many ways in which that can happen, so we're externalizing
+ * that stuff now and just check for the presence of such rings whenever we need to do the calculation --Amy */
+int
+increase_damage_bonus_value()
+{
+	int damagebonusvalue = 0;
+	if (uleft && uleft->otyp == RIN_INCREASE_DAMAGE) damagebonusvalue += uleft->spe;
+	if (uright && uright->otyp == RIN_INCREASE_DAMAGE) damagebonusvalue += uright->spe;
+	if (uleft && uleft->otyp == RIN_HEAVY_ATTACK) damagebonusvalue += uleft->spe;
+	if (uright && uright->otyp == RIN_HEAVY_ATTACK) damagebonusvalue += uright->spe;
+	if (u.udamincxtra) damagebonusvalue += u.udamincxtra;
+
+	return damagebonusvalue;
+}
+
+int
+increase_accuracy_bonus_value()
+{
+	int accbonusvalue = 0;
+	if (uleft && uleft->otyp == RIN_INCREASE_ACCURACY) accbonusvalue += uleft->spe;
+	if (uright && uright->otyp == RIN_INCREASE_ACCURACY) accbonusvalue += uright->spe;
+	if (uleft && uleft->otyp == RIN_HEAVY_ATTACK) accbonusvalue += uleft->spe;
+	if (uright && uright->otyp == RIN_HEAVY_ATTACK) accbonusvalue += uright->spe;
+	if (u.uhitincxtra) accbonusvalue += u.uhitincxtra;
+
+	return accbonusvalue;
+}
+
 #endif /* OVLB */
 
 /*weapon.c*/

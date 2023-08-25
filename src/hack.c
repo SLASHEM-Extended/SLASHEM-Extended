@@ -826,14 +826,14 @@ still_chewing(x,y)
 	assign_level(&digging.level, &u.uz);
 	/* solid rock takes more work & time to dig through */
 	digging.effort =
-	    (IS_ROCK(lev->typ) && !IS_TREE(lev->typ) ? 30 : 60) + u.udaminc;
+	    (IS_ROCK(lev->typ) && !IS_TREE(lev->typ) ? 30 : 60) + increase_damage_bonus_value();
 	You("start chewing %s %s.",
 	    (boulder || IS_TREE(lev->typ)) ? "on a" : "a hole in the",
 	    boulder ? "boulder" :
 	    IS_TREE(lev->typ) ? "tree" : IS_WATERTUNNEL(lev->typ) ? "rock above the water" : IS_ROCK(lev->typ) ? "rock" : "door");
 	watch_dig((struct monst *)0, x, y, FALSE);
 	return 1;
-    } else if ((digging.effort += (30 + u.udaminc)) <= 100)  {
+    } else if ((digging.effort += (30 + increase_damage_bonus_value())) <= 100)  {
 	if (flags.verbose)
 	    You("%s chewing on the %s.",
 		digging.chew ? "continue" : "begin",

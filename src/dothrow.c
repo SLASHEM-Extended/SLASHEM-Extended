@@ -1688,8 +1688,8 @@ boolean hitsroof;
 	}
 	if (dmg > 1 && less_damage) dmg = 1;
 	if (dmg > 0) {
-		if (u.udaminc > 1) dmg += rnd(u.udaminc);
-		else dmg += u.udaminc;
+		if (increase_damage_bonus_value() > 1) dmg += rnd(increase_damage_bonus_value());
+		else dmg += increase_damage_bonus_value();
 	}
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) dmg += 2;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) dmg += 5;
@@ -2524,7 +2524,7 @@ boolean polearming;
 	boolean gunused = 0;
 	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
 
-	tmp = -1 + ( (!rn2(3) && Luck > 0) ? rnd(Luck) : Luck) + find_mac(mon) + ((u.uhitinc > 1) ? rnd(u.uhitinc) : u.uhitinc) +
+	tmp = -1 + ( (!rn2(3) && Luck > 0) ? rnd(Luck) : Luck) + find_mac(mon) + ((increase_accuracy_bonus_value() > 1) ? rnd(increase_accuracy_bonus_value()) : increase_accuracy_bonus_value()) +
 			(!rn2(3) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(GushLevel))) : (maybe_polyd(youmonst.data->mlevel + 1, GushLevel)) );
 
 	/* early-game bonuses to make starting characters not suck too badly --Amy */

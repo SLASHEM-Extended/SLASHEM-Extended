@@ -7607,10 +7607,10 @@ boolean guaranteed;
 	}
 
 	/*** Physical attributes ***/
-	if ((guaranteed || !rn2(10)) && u.uhitinc)
-	    you_have(enlght_combatinc("to hit", u.uhitinc, final, buf));
-	if ((guaranteed || !rn2(10)) && u.udaminc)
-	    you_have(enlght_combatinc("damage", u.udaminc, final, buf));
+	if ((guaranteed || !rn2(10)) && increase_accuracy_bonus_value() )
+	    you_have(enlght_combatinc("to hit", increase_accuracy_bonus_value(), final, buf));
+	if ((guaranteed || !rn2(10)) && increase_damage_bonus_value())
+	    you_have(enlght_combatinc("damage", increase_damage_bonus_value(), final, buf));
 	if ((guaranteed || !rn2(10)) && Slow_digestion) you_have(StrongSlow_digestion ? "extremely slow digestion" : "slower digestion");
 	if ((guaranteed || !rn2(10)) && Keen_memory)
 		enl_msg("Your memory ", "is", "was", StrongKeen_memory ? " very keen" : " keen");
@@ -12244,12 +12244,12 @@ int final;
 	}
 
 	/*** Physical attributes ***/
-	if (u.uhitinc)
+	if (increase_accuracy_bonus_value())
 	    dump(youhad,
-		enlght_combatinc("to hit", u.uhitinc, final, buf));
-	if (u.udaminc)
+		enlght_combatinc("to hit", increase_accuracy_bonus_value(), final, buf));
+	if (increase_damage_bonus_value())
 	    dump(youhad,
-		enlght_combatinc("damage", u.udaminc, final, buf));
+		enlght_combatinc("damage", increase_damage_bonus_value(), final, buf));
 	if (Slow_digestion) dump(youhad, StrongSlow_digestion ? "extremely slow digestion" : "slower digestion");
 	if (Keen_memory) dump("  ", StrongKeen_memory ? "Your memory was very keen" : "Your memory was keen");
 

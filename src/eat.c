@@ -5922,19 +5922,15 @@ struct obj *otmp;
 		break;
 	    case RIN_INCREASE_ACCURACY:
 		accessory_has_effect(otmp);
-		u.uhitinc += otmp->spe;
 		u.uhitincxtra += otmp->spe;
 		break;
 	    case RIN_INCREASE_DAMAGE:
 		accessory_has_effect(otmp);
-		u.udaminc += otmp->spe;
 		u.udamincxtra += otmp->spe;
 		break;
 	    case RIN_HEAVY_ATTACK:
 		accessory_has_effect(otmp);
-		u.uhitinc += otmp->spe;
 		u.uhitincxtra += otmp->spe;
-		u.udaminc += otmp->spe;
 		u.udamincxtra += otmp->spe;
 		break;
 	    case RIN_PROTECTION:

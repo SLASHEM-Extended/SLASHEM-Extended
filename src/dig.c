@@ -309,7 +309,7 @@ dig()
 	}
 
 	/* calculate digging effort */
-	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosionX(uwep) + u.udaminc + RngeBloodlust + (Drunken_boxing && Confusion) + (StrongDrunken_boxing && Confusion);
+	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosionX(uwep) + increase_damage_bonus_value() + RngeBloodlust + (Drunken_boxing && Confusion) + (StrongDrunken_boxing && Confusion);
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_DIGGER_GLOVES)) bonus += 5;

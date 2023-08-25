@@ -2945,6 +2945,8 @@ int x;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (have_superjonadabstone()) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 10 : 1);
+		if (uleft && uleft->otyp == RIN_GAIN_STRENGTH) tmp += uleft->spe;
+		if (uright && uright->otyp == RIN_GAIN_STRENGTH) tmp += uright->spe;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3107,6 +3109,9 @@ int x;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 3;
 		if (have_superjonadabstone()) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
+		if (uarmh && uarmh->otyp == CORNUTHAUM && Role_if(PM_WIZARD)) tmp += 1;
+		if (uleft && uleft->otyp == RIN_ADORNMENT) tmp += uleft->spe;
+		if (uright && uright->otyp == RIN_ADORNMENT) tmp += uright->spe;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -3175,6 +3180,7 @@ int x;
 		if (FemtrapActiveAntje && !PlayerInBlockHeels) tmp -= 5;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
+		if (uarmh && uarmh->otyp == CORNUTHAUM && !Role_if(PM_WIZARD)) tmp -= 1;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);
@@ -3236,6 +3242,10 @@ int x;
 		if (x == A_WIS && powerfulimplants() && uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL) tmp += 10;
 		if (x == A_INT && powerfulimplants() && uimplant && uimplant->oartifact == ART_FOOD_FOR_THOUGHT) tmp += 2;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
+		if (x == A_INT && uleft && uleft->otyp == RIN_GAIN_INTELLIGENCE) tmp += uleft->spe;
+		if (x == A_INT && uright && uright->otyp == RIN_GAIN_INTELLIGENCE) tmp += uright->spe;
+		if (x == A_WIS && uleft && uleft->otyp == RIN_GAIN_WISDOM) tmp += uleft->spe;
+		if (x == A_WIS && uright && uright->otyp == RIN_GAIN_WISDOM) tmp += uright->spe;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3321,6 +3331,8 @@ int x;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (have_superjonadabstone()) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
+		if (uleft && uleft->otyp == RIN_GAIN_DEXTERITY) tmp += uleft->spe;
+		if (uright && uright->otyp == RIN_GAIN_DEXTERITY) tmp += uright->spe;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3380,6 +3392,8 @@ int x;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (have_superjonadabstone()) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
+		if (uleft && uleft->otyp == RIN_GAIN_CONSTITUTION) tmp += uleft->spe;
+		if (uright && uright->otyp == RIN_GAIN_CONSTITUTION) tmp += uright->spe;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

@@ -449,7 +449,7 @@ register struct monst *mtmp;
 
 	/* idea gotten from watching Chris's to-hit discussion: high luck gave too big boosts --Amy */
 
-	tmp = 1 + ( (rn2(2) && Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + ((u.uhitinc > 1) ? rnd(u.uhitinc) : u.uhitinc) +
+	tmp = 1 + ( (rn2(2) && Luck > 0) ? rnd(Luck) : Luck) + abon() + find_mac(mtmp) + ((increase_accuracy_bonus_value() > 1) ? rnd(increase_accuracy_bonus_value()) : increase_accuracy_bonus_value()) +
 		(rn2(2) ? (maybe_polyd(rnd(youmonst.data->mlevel + 1), rnd(GushLevel))) : (maybe_polyd(youmonst.data->mlevel + 1, GushLevel)) );
 
 	/* another extra boost --Amy */
@@ -3596,8 +3596,8 @@ int dieroll;
 
 	if (get_dmg_bonus && tmp > 0) {
 
-		if (u.udaminc > 1) tmp += rnd(u.udaminc);
-		else tmp += u.udaminc;
+		if (increase_damage_bonus_value() > 1) tmp += rnd(increase_damage_bonus_value());
+		else tmp += increase_damage_bonus_value();
 
 		if (uarmh && uarmh->oartifact == ART_REMOTE_GAMBLE) tmp += 2;
 		if (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) tmp += 5;
