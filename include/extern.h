@@ -2605,6 +2605,7 @@ E int dodrink(void);
 E void badeffect(void);
 E void reallybadeffect(void);
 E void goodeffect(void);
+E boolean trophylevel(void);
 E boolean grayoutobscuration(void);
 E void badpeteffect(struct monst *);
 E void allbadpeteffects(struct monst *);

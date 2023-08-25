@@ -2016,6 +2016,7 @@ struct you {
 	int cnd_symbiotekills;	/* how many times your symbiote killed an enemy */
 	int cnd_singhelped;	/* how many pairs of shoes you cleaned for Sing */
 	int cnd_singrefused;	/* how many times you refused to clear a pair of shoes for Sing */
+	int cnd_trophiesobtained;	/* how many trophies you scored */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

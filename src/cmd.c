@@ -13733,6 +13733,10 @@ int final;
 		sprintf(buf, "to clean shoes for Sing %d times", u.cnd_singrefused);
 		enl_msg(You_, "refused ", "refused ", buf);
 	}
+	if (u.cnd_trophiesobtained) {
+		sprintf(buf, "%d trophies", u.cnd_trophiesobtained);
+		enl_msg(You_, "obtained ", "obtained ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -14338,6 +14342,9 @@ int final;
 
 	sprintf(buf, "to clean shoes for Sing %d times", u.cnd_singrefused);
 	dump("  You refused ", buf);
+
+	sprintf(buf, "%d trophies", u.cnd_trophiesobtained);
+	dump("  You obtained ", buf);
 
 	dump("", "");
 }

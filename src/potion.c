@@ -16439,6 +16439,7 @@ trophy_get()
 	if (Race_if(PM_HERALD)) heraldgift();
 	mightbooststat(A_CON);
 	mightbooststat(A_CHA);
+	u.cnd_trophiesobtained++;
 
 	if (uarmf && uarmf->oartifact == ART_DAD_S_MONEY) {
 		u.ugold += 1000;
@@ -16452,6 +16453,19 @@ trophy_get()
 		pline("Well done! Your maximum health and mana were increased to make sure you'll get even more trophies! Go for it!");
 	}
 
+}
+
+/* does the player get lucky to have stuff spawn with certain traits identified? --Amy */
+boolean
+trophylevel()
+{
+	int itidchance = 0;
+	itidchance += u.ulevel; /* doesn't help to level past 30 (intentional) */
+	itidchance += u.cnd_trophiesobtained;
+	if (itidchance > 250) itidchance = 250;
+	if (itidchance > rn2(300)) return TRUE;
+
+	return FALSE;
 }
 
 void
