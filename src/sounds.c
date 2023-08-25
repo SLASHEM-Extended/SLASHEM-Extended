@@ -6855,10 +6855,8 @@ dochat()
 
     }
 
-    if (Role_if(PM_CONVICT) && is_rat(mtmp->data) && !mtmp->mpeaceful &&
-     !mtmp->mtame) {
-        You("attempt to soothe the %s with chittering sounds.",
-         l_monnam(mtmp));
+    if (Role_if(PM_CONVICT) && is_rat(mtmp->data) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 5) && !mtmp->mpeaceful && !mtmp->mtame) {
+        You("attempt to soothe the %s with chittering sounds.", l_monnam(mtmp));
         if ((rnl(10) < 2) || ((rnd(30 - ACURR(A_CHA))) < 4)) {
             (void) tamedog(mtmp, (struct obj *) 0, FALSE);
         } else {
@@ -6899,7 +6897,7 @@ dochat()
 
 	}
 
-    if ( (Role_if(PM_FEAT_MASTER) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX)) && mtmp->data->mlet == S_VORTEX && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
+    if ( (Role_if(PM_FEAT_MASTER) || Race_if(PM_VORTEX) || Race_if(PM_CORTEX)) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 7) && mtmp->data->mlet == S_VORTEX && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) ) {
 
 		if (yn("Tame the vortex?") == 'y') {
 
@@ -6911,7 +6909,7 @@ dochat()
 		}
 	}
 
-    if (Race_if(PM_KOP) && mtmp->data->mlet == S_KOP && mtmp->mpeaceful && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && u.uhunger > 100 ) {
+    if (Race_if(PM_KOP) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 10) && mtmp->data->mlet == S_KOP && mtmp->mpeaceful && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) && u.uhunger > 100 ) {
 
 		if (yn("Recruit this officer of the law?") == 'y') {
 
@@ -6956,7 +6954,7 @@ dochat()
 
 	}
 
-    if (Role_if(PM_LADIESMAN) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !mtmp->mfrenzied && !(mtmp->data->geno & G_UNIQ) ) {
+    if (Role_if(PM_LADIESMAN) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 10) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !mtmp->mfrenzied && !(mtmp->data->geno & G_UNIQ) ) {
 
 		if (yn("Seduce this pretty lady?") == 'y') {
 
@@ -6973,7 +6971,7 @@ dochat()
 		}
 	}
 
-	if (Race_if(PM_BABYLONIAN) && mtmp->mpeaceful && !mtmp->mtame && mtmp->data->mlet == S_TURRET) {
+	if (Race_if(PM_BABYLONIAN) && mtmp->mpeaceful && mtmp->m_lev <= 30 && mtmp->m_lev < (u.ulevel + 5) && !mtmp->mtame && mtmp->data->mlet == S_TURRET) {
 		int stonescost = 10;
 		if (mtmp->m_lev >= 1) stonescost = (mtmp->m_lev) * 10;
 		pline("You can turn this turret into a symbiote by paying %d stones.", stonescost);
@@ -7017,7 +7015,7 @@ dochat()
 		}
     }
 
-    if (Race_if(PM_MUMMY) && mtmp->mnum != quest_info(MS_NEMESIS) && !(mtmp->data->geno & G_UNIQ) &&
+    if (Race_if(PM_MUMMY) && mtmp->mnum != quest_info(MS_NEMESIS) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 7) && !(mtmp->data->geno & G_UNIQ) &&
      !mtmp->mtame && (is_undead(mtmp->data) || mtmp->egotype_undead) && u.uhunger > 500) {
 
 		if (yn("Try to tame this undead monster?") == 'y') {
