@@ -1821,4 +1821,8 @@
 
 #define NoResistancePiercing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic || UHaveAids || (u.impossibleproperty == RESISTANCE_PIERCING ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define FuckOverEffect		(FALSE) /* todo */
+
+#define StrongFuckOverEffect		(FALSE) /* todo */
+
 #endif /* YOUPROP_H */

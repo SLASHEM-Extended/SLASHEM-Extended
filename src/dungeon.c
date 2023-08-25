@@ -2149,14 +2149,16 @@ level_difficulty()
 	}
 
 	/* since the dungeon in SLEX is pretty deep, let's make the difficulty increase more gentle... --Amy */
-	if (depthuz >= 12) {
-		depthuz *= 4;
-		depthuz /= 5;
-	} else if (depthuz == 7) depthuz = 6;
-	else if (depthuz == 8) depthuz = 7;
-	else if (depthuz == 9) depthuz = 7;
-	else if (depthuz == 10) depthuz = 8;
-	else if (depthuz == 11) depthuz = 8;
+	if (!FuckOverEffect) {
+		if (depthuz >= 12) {
+			depthuz *= 4;
+			depthuz /= 5;
+		} else if (depthuz == 7) depthuz = 6;
+		else if (depthuz == 8) depthuz = 7;
+		else if (depthuz == 9) depthuz = 7;
+		else if (depthuz == 10) depthuz = 8;
+		else if (depthuz == 11) depthuz = 8;
+	}
 
 	if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(3))
 		retvalue = (depthuz + rn2(u.ulevel) + 2 );
@@ -2251,19 +2253,19 @@ level_difficulty()
 	if (!rn2(10000) && (u.urmaxlvlUP > 20)) retvalue += rno(50);
 
 	/* some variation - it's annoying if you always get max difficulty monsters --Amy */
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) {
+	if ((retvalue > 1) && !StrongFuckOverEffect && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 3 : 2)) && !u.outtadepthtrap && !rn2(issoviet ? 3 : 2)) {
 		retvalue *= 4;
 		retvalue /= 5;
 	}
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 5 : 3)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) {
+	if ((retvalue > 1) && !StrongFuckOverEffect && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 5 : 3)) && !u.outtadepthtrap && !rn2(issoviet ? 15 : 5)) {
 		retvalue *= 3;
 		retvalue /= 5;
 	}
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 10 : 5)) && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) {
+	if ((retvalue > 1) && !StrongFuckOverEffect && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 10 : 5)) && !u.outtadepthtrap && !rn2(issoviet ? 200 : 50)) {
 		retvalue *= 2;
 		retvalue /= 5;
 	}
-	if ((retvalue > 1) && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 20 : 10)) && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) {
+	if ((retvalue > 1) && !StrongFuckOverEffect && ((!u.aggravation && !isaggravator && !isextravator && !GravationAggravation ) || !rn2((ExtAggravate_monster || isextravator || GravationAggravation) ? 20 : 10)) && !u.outtadepthtrap && !rn2(issoviet ? 1250 : 250)) {
 		retvalue /= 5;
 	}
 
@@ -2322,13 +2324,15 @@ level_difficulty()
 
 	/* skew generation to make very high-level monsters much more unlikely --Amy */
 
-	if ((retvalue > 20) && rn2(3)) retvalue = (19 + rnd(retvalue - 19));
+	if ((retvalue > 20) && rn2(3) && !StrongFuckOverEffect) retvalue = (19 + rnd(retvalue - 19));
 
 	/* now skew it even more towards low-level stuff */
 
-	if (retvalue > 1 && retvalue <= 6 && !rn2(5)) retvalue = rnd(retvalue);
-	else if (retvalue > 6 && retvalue <= 11 && !rn2(4)) retvalue = ((retvalue - 5) + rnd(5));
-	else if (retvalue > 11 && !rn2(3)) retvalue = (5 + rnd(retvalue - 5));
+	if (!FuckOverEffect) {
+		if (retvalue > 1 && retvalue <= 6 && !rn2(5)) retvalue = rnd(retvalue);
+		else if (retvalue > 6 && retvalue <= 11 && !rn2(4)) retvalue = ((retvalue - 5) + rnd(5));
+		else if (retvalue > 11 && !rn2(3)) retvalue = (5 + rnd(retvalue - 5));
+	}
 
 	if (uarm && uarm->oartifact == ART_ISIMOUD) retvalue /= 2;
 
