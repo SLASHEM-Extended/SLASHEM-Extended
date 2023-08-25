@@ -3270,7 +3270,7 @@ stillinwater:;
 			      Amonnam(mtmp), ceiling(u.ux,u.uy));
 			if(mtmp->mtame) /* jumps to greet you, not attack */
 			    ;
-			else if(uarmh && is_metallic(uarmh) && !is_etheritem(uarmh))
+			else if(uarmh && is_hardmaterial(uarmh))
 			    pline("Its blow glances off your helmet.");
 			else if (u.uac + 3 <= rnd(20) && rn2(3) ) /* ac no longer gives complete protection --Amy */
 			    You("are almost hit by %s!",

@@ -4440,7 +4440,7 @@ dothetrap:
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+				if(is_hardmaterial(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 4;
 				} else if (flags.verbose) {
@@ -4487,7 +4487,7 @@ dothetrap:
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+				if(is_hardmaterial(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 2;
 				} else if (flags.verbose) {
@@ -4537,7 +4537,7 @@ dothetrap:
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+				if(is_hardmaterial(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 2;
 				} else if (flags.verbose) {
@@ -4594,7 +4594,7 @@ dothetrap:
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+				if(is_hardmaterial(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 2;
 				} else if (flags.verbose) {
@@ -15128,7 +15128,7 @@ callingoutdone:
 				  body_part(HEAD));
 
 			    if (uarmh) {
-				if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+				if(is_hardmaterial(uarmh)) {
 				    pline("Fortunately, you are wearing a hard helmet.");
 				    dmg /= 2;
 				} else if (flags.verbose) {
@@ -19943,7 +19943,7 @@ int zx,zy;
 	if (somehit) {
 		pline("Some rocks land on your %s!",body_part(HEAD));
 		if (uarmh) {
-			if (is_metallic(uarmh) && !is_etheritem(uarmh)) {
+			if (is_hardmaterial(uarmh)) {
 				pline("Your hard helmet protects you somewhat.");
 				dmg /= 2;
 			} else if (flags.verbose) {

@@ -10358,7 +10358,7 @@ randenchchoice:
 			You("are hit by %s!", doname(otmp2));
 			dmg = dmgval(otmp2, &youmonst) * otmp2->quan;
 			if (uarmh && !sobj->cursed) {
-			    if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+			    if(is_hardmaterial(uarmh)) {
 				pline("Fortunately, you are wearing a hard helmet.");
 				if (dmg > 2) dmg = 2;
 			    } else if (flags.verbose) {

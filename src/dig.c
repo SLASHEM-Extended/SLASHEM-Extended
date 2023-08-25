@@ -1894,7 +1894,7 @@ boolean bigrange;
 			      "ladder" : "stairs", ceiling(u.ux, u.uy));
 		    You("loosen a rock from the %s.", ceiling(u.ux, u.uy));
 		    pline("It falls on your %s!", body_part(HEAD));
-		    losehp(rnd((uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) ? 2 : 6),
+		    losehp(rnd((uarmh && is_hardmaterial(uarmh)) ? 2 : 6),
 			   "falling rock", KILLED_BY_AN);
 		    otmp = mksobj_at(ROCK, u.ux, u.uy, FALSE, FALSE, FALSE);
 		    if (otmp) {

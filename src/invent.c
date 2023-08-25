@@ -13510,7 +13510,7 @@ boolean knoweverything;
 			case SEDGE_HAT:
 				pline("The main use of this helm is to give you acid resistance."); break;
 			case SKULLCAP:
-				pline("Nothing special, just a helmet made of iron."); break;
+				pline("Nothing special, just a helmet that protects your head from falling rocks and stuff like that."); break;
 			case NURSE_CAP:
 				pline("It has a red cross painted on the front of it. Despite this, it doesn't do anything special."); break;
 			case KATYUSHA:

@@ -4499,6 +4499,38 @@ register struct obj *otmp;
 	return FALSE;
 }
 
+/* for e.g. helmets: do they stop rocks? metal works, wood is supposed to be hard enough, most lithic materials too
+ * keyword "materialeffect" --Amy */
+boolean
+is_hardmaterial(otmp)
+register struct obj *otmp;
+{
+	if (otmp->otyp == SKULLCAP) return TRUE;
+
+	if (objects[(otmp)->otyp].oc_material == MT_ETHER) return FALSE;
+	if (objects[(otmp)->otyp].oc_material == MT_ALKALINE) return FALSE;
+
+	if (is_metallic(otmp)) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_WOOD) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_BONE) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_GLASS) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_GEMSTONE) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_MINERAL) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_OBSIDIAN) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_CONUNDRUM) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_CERAMIC) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_TAR) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_BRICK) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_NANOMACHINE) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_PWN_BUBBLE) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_MENGETIUM) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_AMBER) return TRUE;
+
+	return FALSE;
+
+}
+
+/* keyword "materialeffect" --Amy */
 boolean
 is_rustprone(otmp)
 register struct obj *otmp;

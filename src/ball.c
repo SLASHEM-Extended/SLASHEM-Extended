@@ -38,7 +38,7 @@ ballfall()
 		pline_The("iron ball falls on your %s.",
 			body_part(HEAD));
 		if (uarmh) {
-		    if(is_metallic(uarmh) && !is_etheritem(uarmh)) {
+		    if(is_hardmaterial(uarmh)) {
 			pline("Fortunately, you are wearing a hard helmet.");
 			dmg = 3;
 		    } else if (flags.verbose)

@@ -702,6 +702,7 @@ E int induced_align(int);
 E boolean Invocation_lev(d_level *);
 E xchar level_difficulty(void);
 E xchar monster_difficulty(void);
+E int gentlelevel(void);
 E int lev_by_name(const char *);
 #ifdef WIZARD
 E int print_dungeon(BOOLEAN_P,int *,xchar *);
@@ -1798,6 +1799,7 @@ E boolean is_rustprone(struct obj *);
 E boolean is_corrodeable(struct obj *);
 E boolean is_flammable(struct obj *);
 E boolean is_rottable(struct obj *);
+E boolean is_hardmaterial(struct obj *);
 E void place_object(struct obj *,int,int);
 E void remove_object(struct obj *);
 E void discard_minvent(struct monst *);

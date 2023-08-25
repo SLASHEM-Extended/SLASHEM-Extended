@@ -7847,7 +7847,7 @@ struct obj *obj;	/* wand or spell */
 		/* similar to zap_dig() */
 		pline("A rock is dislodged from the %s and falls on your %s.",
 		      ceiling(x, y), body_part(HEAD));
-		losehp(rnd((uarmh && is_metallic(uarmh) && !is_etheritem(uarmh)) ? 2 : 6),
+		losehp(rnd((uarmh && is_hardmaterial(uarmh)) ? 2 : 6),
 		       "falling rock", KILLED_BY_AN);
 		if ((otmp = mksobj_at(ROCK, x, y, FALSE, FALSE, FALSE)) != 0) {
 
