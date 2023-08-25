@@ -5671,6 +5671,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Voyska Kremlya nikogda ne smogut ispol'zovat' nepravil'noye artefaktnoye oruzhiye, potomu chto tip ledyanoy glyby ne khochet, chtoby oni dezertirovali.",
 "Vrazheskiye voyska mogut smotret' na vashi voyska s beskonechnogo rasstoyaniya, i yesli vy ne vooruzhite svoi shturmovymi vintovkami, oni bez shansov razob'yutsya. Mua kha kha.",
 "Yesli vy stolknetes' s monstrami na rannem etape, oni vsegda smogut imet' maksimal'no vozmozhnyy uroven', dazhe yesli eto vpolne mozhet privesti k tomu, chto vas ub'yut, potomu chto vy igrayete ne v tom rezhime. Vina.",
+"Yesli vy naydete artefakt s nepravil'nym vyravnivaniyem, vy nichego ne smozhete sdelat'. Eto ne pozvolit vam yego zabrat'. Potomu chto tip ledyanoy glyby KHARKHAR-KHARKHAR KHAR samyy luchshiy!",
 };
 
 static NEARDATA const char * const practicantlines[] = {

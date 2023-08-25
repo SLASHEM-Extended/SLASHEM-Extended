@@ -2133,8 +2133,11 @@ touch_artifact(obj,mon)
     /* can pick it up unless you're totally non-synch'd with the artifact
      * Amy edit: spawning artifacts that you just cannot pick up is as stupid as role-specific gear in Diablo 2...
      * so now, you have a 1 in 4 chance of picking up the item anyway; constant blasts still make the item dangerous */
-    if (badclass && badalign && self_willed && rn2(4)) {
-	if (yours) pline("%s your grasp!", Tobjnam(obj, "evade"));
+    if (badclass && badalign && self_willed && (rn2(4) || issoviet) ) {
+	if (yours) {
+		pline("%s your grasp!", Tobjnam(obj, "evade"));
+		if (issoviet) pline("Muakhakha-kha-kha, ty ne budesh' ispol'zovat' etu shtuku. Zamedleniye.");
+	}
 	return 0;
     }
     /* This is a kludge, but I'm not sure where else to put it */
