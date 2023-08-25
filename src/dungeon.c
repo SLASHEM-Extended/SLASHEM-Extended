@@ -2848,6 +2848,14 @@ dooverview()
 
 	}
 
+	mptr = find_mapseen(&u.uz);
+
+	if (mptr && !DisplayDoesNotGoAtAll && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) && mptr->custom) {
+
+		pline("This level is currently annotated as %s.", mptr->custom);
+
+	}
+
 	win = create_nhwindow(NHW_MENU);
 
 	for (mptr = mapseenchn; mptr; mptr = mptr->next) {
