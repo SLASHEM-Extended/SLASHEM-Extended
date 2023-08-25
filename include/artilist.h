@@ -13773,7 +13773,7 @@ A("The Helm of Knowledge", HELM_OF_TELEPATHY,
 
 /* artifact on the special level in the Illusory Castle, can generate randomly after beating the motherfucker glass golem */
 A("Boots of the Machine", SPEED_BOOTS, /* aggravate monster, confusion resistance, displays all golems and unliving monsters */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_NOWISH|SPFX_EVIL), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0,	A_NONE, NON_PM, NON_PM, 10000L),
 
@@ -13886,7 +13886,7 @@ A("Black Death",                     HALBERD,
 	DRLI(5,10),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_UNDERTAKER, NON_PM, 3000L ),
 
 A("Slow Blade",                ORCISH_SHORT_SWORD,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_SEARCH|SPFX_REGEN ), 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_SEARCH|SPFX_REGEN), 0,
 	PHYS(2,2),      NO_DFNS,        NO_CARY,        HEALING, A_LAWFUL, PM_ACID_MAGE, NON_PM, 1000L ),
 
 A("Fire-Brigade Reel",                RUBBER_HOSE,
@@ -13952,7 +13952,7 @@ A("Blade of Gothmog",          GRANITE_IMPALER, /* heavily autocurses */
 	SUMMON_FIRE_ELEMENTAL,         A_CHAOTIC, PM_CHAOS_SORCEROR, NON_PM, 10000L ),
 
 A("Beam Multiplier",          T_SHIRT, /* england mode when worn, resist fire/cold/shock */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_EVIL), 0, 0,
 	NO_ATTK,        NO_DFNS,        NO_CARY,
 	0,         A_NEUTRAL, PM_ELEMENTALIST, NON_PM, 6000L ),
 
@@ -14028,7 +14028,7 @@ A("Lovely Pink Pumps",    FEMININE_PUMPS,
 	NO_ATTK,        DRLI(0,0),        NO_CARY,    INVIS, A_NEUTRAL, PM_TRANSVESTITE, NON_PM, 5000L ),
 
 A("Kiss Boots",    HIPPIE_HEELS,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HSPDAM|SPFX_HPHDAM), SPFX_EREGEN, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HSPDAM|SPFX_HPHDAM|SPFX_EVIL), SPFX_EREGEN, 0,
 	NO_ATTK,        DRLI(0,0),        NO_CARY,    IDENTIFY, A_NEUTRAL, PM_TRANSSYLVANIAN, NON_PM, 5000L ),
 
 A("Golden High Heels",    LEATHER_PEEP_TOES,
@@ -14036,11 +14036,11 @@ A("Golden High Heels",    LEATHER_PEEP_TOES,
 	NO_ATTK,        ACID(0,0),        NO_CARY,    LEVITATION, A_NEUTRAL, PM_TOPMODEL, NON_PM, 5000L ),
 
 A("Unobtainable Beauties",    SENTIENT_HIGH_HEELS,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_WARN|SPFX_REFLECT|SPFX_SPEAK), SPFX_REGEN, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_WARN|SPFX_REFLECT|SPFX_SPEAK|SPFX_EVIL), SPFX_REGEN, 0,
 	NO_ATTK,        ACID(0,0),        NO_CARY,    HEALING, A_NEUTRAL, PM_FAILED_EXISTENCE, NON_PM, 5000L ),
 
 A("Activist Stick",			FLY_SWATTER,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DCLAS), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
 	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_LAWFUL, PM_ACTIVISTOR, NON_PM, 4800L ),
 
 A("The Eyes of the Overworld",	LENSES,
@@ -14207,7 +14207,7 @@ A("Saint Something Four Crystal",	DILITHIUM_CRYSTAL,
 	TAMING,	A_NEUTRAL,	 PM_MAHOU_SHOUJO, NON_PM, 12500L ),
 
 A("Master Ball",	REALLY_HEAVY_IRON_BALL, /* bad effects when wielded */
-	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REGEN|SPFX_EREGEN|SPFX_REFLECT), 0, 0,
+	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REGEN|SPFX_EREGEN|SPFX_REFLECT|SPFX_EVIL), 0, 0,
 	PHYS(16,32),	DFNS(AD_MAGM),	NO_CARY,
 	TAMING,	A_NEUTRAL,	 PM_DOLL_MISTRESS, NON_PM, 50000L ),
 
@@ -14280,7 +14280,7 @@ A("Vivec Blade",	TSURUGI,
 	0,		A_NEUTRAL, PM_ORDINATOR, NON_PM, 4500L ),
 
 A("Summoned Sword",                ELVEN_BROADSWORD,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_STLTH|SPFX_REGEN ), 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_STLTH|SPFX_REGEN), 0,
 	PHYS(4,8),      NO_DFNS,        NO_CARY,        DRAGON_BREATH, A_CHAOTIC, PM_THALMOR, NON_PM, 3000L ),
 
 A("Bow of Vines", ELVEN_BOW,
@@ -14289,7 +14289,7 @@ A("Bow of Vines", ELVEN_BOW,
 	ENERGY_BOOST, A_NEUTRAL, PM_BOSMER, NON_PM, 4000L ),
 
 A("Ambassador Robe",	ROBE_OF_WEAKNESS,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HSPDAM|SPFX_HPHDAM), SPFX_EREGEN, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HSPDAM|SPFX_HPHDAM|SPFX_EVIL), SPFX_EREGEN, 0,
 	NO_ATTK,	DRLI(0,0),	CARY(AD_MAGM),
 	CREATE_PORTAL,	A_CHAOTIC,	 PM_ALTMER, NON_PM, 2500L),
 
@@ -14388,25 +14388,25 @@ A("The Medallion of Shifters",	AMULET_OF_ESP,
 	LEV_TELE,	A_NEUTRAL, PM_SHAPESHIFTER, NON_PM, 4000L ),
 
 A("The King's Stolen Crown", HELM_OF_OPPOSITE_ALIGNMENT,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_HSPDAM|SPFX_HPHDAM), 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_EVIL), (SPFX_HSPDAM|SPFX_HPHDAM), 0,
 	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),
 	LEV_TELE,  A_LAWFUL, PM_JESTER, NON_PM, 5000L ),
 
 A("Highest Feeling",    LOW_BOOTS, /* initialized to always be fetish heels; 50% chance of extra speed */
-	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_TCTRL|SPFX_HPHDAM), 0, 0,
+	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_TCTRL|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
 	NO_ATTK,        DFNS(AD_FIRE),        NO_CARY,    0, A_NEUTRAL, PM_PROSTITUTE, NON_PM, 10000L ),
 
 A("Lorskel's Integrity",    LOW_BOOTS, /* initialized to always be lolita boots, spawns fart traps every once in a while, has the lolita boots effect even if the base item type changes (because kurwa) */
-	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT), 0, 0,
+	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT|SPFX_EVIL), 0, 0,
 	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,    0, A_CHAOTIC, PM_KURWA, NON_PM, 5000L ),
 
 A("The Slime Crown", HELM_OF_STORMS,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), (SPFX_HSPDAM|SPFX_HPHDAM), 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_EVIL), (SPFX_HSPDAM|SPFX_HPHDAM), 0,
 	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),
 	LEV_TELE,  A_CHAOTIC, PM_DQ_SLIME, NON_PM, 5000L ),
 
 A("Gender-Inspecific Whip", BULLETPROOF_CHAINWHIP,
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DFLAG2), 0, M2_FEMALE|M2_MALE,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DFLAG2), 0, (M2_FEMALE|M2_MALE),
 	PHYS(8,20),        NO_DFNS,        NO_CARY,
 	0,  A_NEUTRAL, PM_FEMINIST, NON_PM, 2000L ),
 
@@ -14456,7 +14456,7 @@ A("The Elder Cerebral Fluid", ICKY_BLADE,
 	ENERGY_BOOST,	A_LAWFUL, PM_ANACHRONOUNBINDER, NON_PM, 2500L ),
 
 A("Cerulean Smash", HIGH_HEELED_SANDAL, /* +10 charisma when wielded, can dig through grave walls in one turn, wielding it as a non-hussy will set it to -10 and heavily curse it (in case you're a smartass and wish for it) */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	COLD(10, 14),	NO_DFNS, NO_CARY,
 	PHASING,	A_CHAOTIC, PM_HUSSY, NON_PM, 8000L ),
 
@@ -14556,7 +14556,7 @@ A("Gaysect", CHEMISTRY_SPACE_AXE, /* tsurugi of muramasa with different base ite
 	0,	A_CHAOTIC, PM_CYBERNINJA, NON_PM, 4500L ),
 
 A("Voiceshutter", HEAVY_HAMMER, /* deafness when wielded */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_STLTH|SPFX_ATTK), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_STLTH|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	ELEC(10, 20),	DFNS(AD_ELEC), NO_CARY,
 	LEV_TELE,	A_LAWFUL, PM_DISSIDENT, NON_PM, 6000L ),
 
@@ -14586,7 +14586,7 @@ A("Meancane",				WALKING_STICK, /* disintegration resistance and free action */
 	PHYS(8, 14), NO_DFNS, NO_CARY, 0, A_CHAOTIC, PM_EMERA, NON_PM, 3000L ),
 
 A("Clean Mauler",				DWARVISH_SPEAR, /* always hits as a +4 weapon but dulls quickly like ceramic */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_EVIL), 0, 0,
 	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_TOSSER, NON_PM, 2500L ),
 
 A("Nobreak",				AKLYS, /* instead of breaking, it loses enchantment */
@@ -14602,7 +14602,7 @@ A("Hungerhealer",				HITCHHIKER_S_GUIDE_TO_THE_GALA, /* passively increases hung
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_SYMBIANT, NON_PM, 4242L ),
 
 A("Flagellator",				SEXPLAY_WHIP, /* 1 in 5000 chance to polymorph you into a M2_NEUTER, doesn't drop upon poly */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_EVIL), 0, 0,
 	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_GENDERSTARIST, NON_PM, 2000L ),
 
 A("Major Presence",				GAUNTLETS, /* +2 to-hit and damage */
@@ -14610,11 +14610,11 @@ A("Major Presence",				GAUNTLETS, /* +2 to-hit and damage */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_COMBATANT, NON_PM, 4000L ),
 
 A("Gropestroker",				SADO_MASO_GLOVES, /* stroking a farting monster has 1 in 20 of pacifying it and 1 in 100 of frenzying it */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_BUTT_LOVER, NON_PM, 3000L ),
 
 A("Softstep",				ANASTASIA_DANCING_SHOES, /* cannot be destroyed by erosion, stepping into a heap of shit that wasn't yet detected gives +1 CHA */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_LAWFUL, PM_DANCER, NON_PM, 10000L ),
 
 A("Hammer of Hellforge",				MALLET,
@@ -14630,7 +14630,7 @@ A("Ass Deaf Auger",				WAN_BANISHMENT, /* doesn't get zapped by monsters; if a s
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_SECRET_ADVICE_MEMBER, NON_PM, 8000L ),
 
 A("Katharina's Loveliness",				KATHARINA_PLATFORM_BOOTS, /* +10 kick damage, +10 CHA, maurah trap effect */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_CHAOTIC, PM_SHOE_FETISHIST, NON_PM, 16000L ),
 
 A("Clickpass",				SOFT_CHASTITY_BELT, /* prevents foocubi from using their sex attack on you, protects from item theft like being a nymph */
@@ -14642,7 +14642,7 @@ A("Spectrum Pling",				CIRMOCLINE, /* prism reflection and resist fire, cold, sh
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_WOMANIZER, NON_PM, 20000L ),
 
 A("Sabrina's Rescue",				STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster when wielded */
-	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_WARN|SPFX_ATTK), 0, 0,
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_WARN|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	ACID(4, 12), NO_DFNS, NO_CARY, DRAGON_BREATH, A_LAWFUL, PM_SINGSLAVE, NON_PM, 18000L ),
 
 A("Penumbral Lasso",				LANCE, /* if it would break from jousting, it might not */

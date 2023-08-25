@@ -1912,8 +1912,10 @@ long wp_mask;
 	    mask = &EDisint_resistance;
 	else if (dtyp == AD_DRST)
 	    mask = &EPoison_resistance;
+	else if (dtyp == AD_STUN)
+	    mask = &EStun_resist;
 	else if (dtyp == AD_DRLI) 
-	    mask = &EDrain_resistance; 
+	    mask = &EDrain_resistance;
 
 	if (mask && wp_mask == W_ART && !on) {
 	    /* find out if some other artifact also confers this intrinsic */
@@ -2128,8 +2130,10 @@ touch_artifact(obj,mon)
 	exercise(A_WIS, FALSE);
     }
 
-    /* can pick it up unless you're totally non-synch'd with the artifact */
-    if (badclass && badalign && self_willed) {
+    /* can pick it up unless you're totally non-synch'd with the artifact
+     * Amy edit: spawning artifacts that you just cannot pick up is as stupid as role-specific gear in Diablo 2...
+     * so now, you have a 1 in 4 chance of picking up the item anyway; constant blasts still make the item dangerous */
+    if (badclass && badalign && self_willed && rn2(4)) {
 	if (yours) pline("%s your grasp!", Tobjnam(obj, "evade"));
 	return 0;
     }
