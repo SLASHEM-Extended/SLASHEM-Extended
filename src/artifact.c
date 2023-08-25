@@ -228,7 +228,7 @@ init_randarts()
 {
 	/* randarts - the code in this file is from dnethack (thanks Chris) with adaptations --Amy */
 	/* base item: LONG_SWORD = melee weapon, BOW = launcher, DART = missile, LEATHER_ARMOR = suit,
-	 * VICTORIAN_UNDERWEAR = shirt, ORCISH_CLOAK = cloak, HELMET = helm, LEATHER_GLOVES = gloves,
+	 * VICTORIAN_UNDERWEAR = shirt, ORCISH_CLOAK = cloak, HELMET = helm, REGULAR_GLOVES = gloves,
 	 * SHIELD = shield, LOW_BOOTS = boots, RIN_AGGRAVATE_MONSTER = ring, AMULET_OF_STRANGULATION = amulet,
 	 * WAN_MAKE_INVISIBLE = wand, SPE_MAGICTORCH = spellbook */
 

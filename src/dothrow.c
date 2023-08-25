@@ -3204,7 +3204,7 @@ evasionchancedone:
 	    case ELVEN_GAUNTLETS:
 		tmp += 1;
 		break;
-	    case LEATHER_GLOVES:
+	    case REGULAR_GLOVES:
 	    case GAUNTLETS_OF_SWIMMING:            
 	    case GAUNTLETS_OF_DEXTERITY:
 		break;

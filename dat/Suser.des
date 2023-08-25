@@ -58,7 +58,7 @@ OBJECT:'(',"chest",(69,04)
 OBJECT:'(',"wooden harp",(18,03)
 OBJECT:'+',random,(18,04)
 OBJECT:'+',"time shift",(18,04)
-OBJECT:'[',"leather gloves",(18,04)
+OBJECT:'[',"regular gloves",(18,04)
 # Toilet paper
 OBJECT:'?',"blank paper",(41,03)
 OBJECT:'?',"blank paper",(41,03)

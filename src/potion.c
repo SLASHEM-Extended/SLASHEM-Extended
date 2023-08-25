@@ -15341,13 +15341,13 @@ boolean canarti;
 			obj->otyp = CORNUTHAUM;
 			break;
 		/* gloves */
-		case LEATHER_GLOVES:
+		case REGULAR_GLOVES:
 			if (!rn2(2)) obj->otyp = GAUNTLETS_OF_SWIMMING;
 			else obj->otyp = GAUNTLETS_OF_DEXTERITY;
 			break;
 		case GAUNTLETS_OF_SWIMMING:
 		case GAUNTLETS_OF_DEXTERITY:
-			obj->otyp = LEATHER_GLOVES;
+			obj->otyp = REGULAR_GLOVES;
 			break;
 		case GAUNTLETS:
 			obj->otyp = SILVER_GAUNTLETS;

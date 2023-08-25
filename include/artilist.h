@@ -961,7 +961,7 @@ A("Warner Brother",			PLASTEEL_HELM,
 	(SPFX_RESTR|SPFX_WARN|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 250L ),
 
-A("Dark Nadir",			HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
+A("Dark Nadir",			STANDARD_HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -1061,7 +1061,7 @@ A("Conspiracy Theory",			PARANOIA_HELMET,
 	(SPFX_RESTR|SPFX_ESP), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2300L ),
 
-A("Box Fist",			LEATHER_GLOVES, /* +5 unarmed damage */
+A("Box Fist",			REGULAR_GLOVES, /* +5 unarmed damage */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -2029,12 +2029,12 @@ A("The Bow of Skadi",	BOW,
 	COLD(1,24),	DFNS(AD_COLD),	NO_CARY,
 	0, A_LAWFUL, NON_PM, NON_PM, 4000L), /*Read to learn Cone of Cold (Skadi's Galdr) */
 
-A("The Crown of the Saint King",	HELMET, /*Actually gold circlet*/
+A("The Crown of the Saint King",	STANDARD_HELMET, /*Actually gold circlet*/
 	(SPFX_RESTR|SPFX_INTEL), 0, 0, /* Amy: +5 AC and no other effect */
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0, A_LAWFUL, NON_PM, NON_PM, 4000L), /*Also causes pets to always follow you when worn*/
 
-A("The Helm of the Dark Lord",	HELMET, /*Actually visored helmet*/
+A("The Helm of the Dark Lord",	STANDARD_HELMET, /*Actually visored helmet*/
 	(SPFX_RESTR|SPFX_INTEL), 0, 0, /* Amy: +5 AC and no other effect */
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0, A_CHAOTIC, NON_PM, NON_PM, 4000L), /*Also causes pets to always follow you when worn*/
@@ -4230,15 +4230,15 @@ A("Lunar Eclipse Tonight",			ORCISH_CLOAK,
 	(SPFX_RESTR|SPFX_LUCK), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
 
-A("Lorskel's Speed",			HELMET, /* makes the player very fast and adds extra speed sometimes */
+A("Lorskel's Speed",			STANDARD_HELMET, /* makes the player very fast and adds extra speed sometimes */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
-A("106Dot1 Alien Radio",			HELMET, /* works like radio helmet */
+A("106Dot1 Alien Radio",			STANDARD_HELMET, /* works like radio helmet */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Nadja's Darkness Generator",			HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
+A("Nadja's Darkness Generator",			STANDARD_HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -4246,11 +4246,11 @@ A("Tha Wall",			LEATHER_ARMOR, /* 9 extra points of AC */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 900L ),
 
-A("LLLLLLLLLLLLLM",			HELMET, /* LLM messages, free action and drain resistance */
+A("LLLLLLLLLLLLLM",			STANDARD_HELMET, /* LLM messages, free action and drain resistance */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Arabella's Great Banisher",			LEATHER_GLOVES, /* levelteleportitis, heavily curse themselves when worn, disables teleport control */
+A("Arabella's Great Banisher",			REGULAR_GLOVES, /* levelteleportitis, heavily curse themselves when worn, disables teleport control */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -4385,7 +4385,7 @@ A("Trap Dungeon of Shambhala",	VICTORIAN_UNDERWEAR, /* sets itself to +10 when w
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0, A_NEUTRAL, NON_PM, NON_PM, 4500L), 
 
-A("Zero Percent Failure",		HELMET, /* makes spellcasting easier */
+A("Zero Percent Failure",		STANDARD_HELMET, /* makes spellcasting easier */
 	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0, A_NONE, NON_PM, NON_PM, 4000L),
@@ -4410,12 +4410,12 @@ A("Arabella's Artifact Creation Result",	LONG_SWORD, /* aggravate monster, recur
 	PHYS(20,12),	NO_DFNS,	NO_CARY,
 	0,		A_LAWFUL, NON_PM, NON_PM, 4500L), 
 
-A("The Tiara of Amnesia", HELMET, /* guess what the effect of this thing is :-P --Amy */
+A("The Tiara of Amnesia", STANDARD_HELMET, /* guess what the effect of this thing is :-P --Amy */
 	(SPFX_RESTR|SPFX_INTEL|SPFX_EVIL), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0,	A_LAWFUL, NON_PM, NON_PM, 9999L),
 
-A("Flue Flue Flueflue Flue", HELMET, /* undead warning, flying */
+A("Flue Flue Flueflue Flue", STANDARD_HELMET, /* undead warning, flying */
 	(SPFX_RESTR|SPFX_INTEL), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0,	A_LAWFUL, NON_PM, NON_PM, 9999L),
@@ -4466,27 +4466,27 @@ A("Jana's Secret Car",				ORCISH_CLOAK, /* speed, unbreathing, but bumping into 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Unimplemented Feature",				HELMET, /* confusion, DSTW effect */
+A("Unimplemented Feature",				STANDARD_HELMET, /* confusion, DSTW effect */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
-A("Flat Insanity",				HELMET, /* inventorylessness, autocurses when worn */
+A("Flat Insanity",				STANDARD_HELMET, /* inventorylessness, autocurses when worn */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_REFLECT|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2500L ),
 
-A("Freeze Or Yes",				LEATHER_GLOVES, /* player acquires intrinsic freezopathy from putting them on */
+A("Freeze Or Yes",				REGULAR_GLOVES, /* player acquires intrinsic freezopathy from putting them on */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Princess Bitch",				LEATHER_GLOVES, /* sitting on a throne always gives the princess bitch effect */
+A("Princess Bitch",				REGULAR_GLOVES, /* sitting on a throne always gives the princess bitch effect */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
-A("Would You Raight That",				LEATHER_GLOVES, /* unlocks searching skill and caps it at expert but also prime curses itself if you didn't have the skill before */
+A("Would You Raight That",				REGULAR_GLOVES, /* unlocks searching skill and caps it at expert but also prime curses itself if you didn't have the skill before */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Difficulty 5",				LEATHER_GLOVES, /* flying, monsters often create a trap upon spawning, monster spawn frequency doubled and difficulty + (6 + your experience level) */
+A("Difficulty 5",				REGULAR_GLOVES, /* flying, monsters often create a trap upon spawning, monster spawn frequency doubled and difficulty + (6 + your experience level) */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
@@ -4530,7 +4530,7 @@ A("RNG's Pride",				LEATHER_ARMOR, /* if you put it on while it's +0, it will ra
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("RNG's Joy",				LEATHER_GLOVES, /* if you put it on while it's +0, it will randomly set itself to something between -5 and +5 */
+A("RNG's Joy",				REGULAR_GLOVES, /* if you put it on while it's +0, it will randomly set itself to something between -5 and +5 */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -4542,7 +4542,7 @@ A("RNG's Embrace",				ORCISH_CLOAK, /* if you put it on while it's +0, it will r
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("RNG's Grimace",				HELMET, /* if you put it on while it's +0, it will randomly set itself to something between -5 and +5 */
+A("RNG's Grimace",				STANDARD_HELMET, /* if you put it on while it's +0, it will randomly set itself to something between -5 and +5 */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -4794,11 +4794,11 @@ A("Pantap",			ORCISH_CLOAK,
 	(SPFX_RESTR|SPFX_ESP|SPFX_WARN), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Ruth's Dark Force",			HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
+A("Ruth's Dark Force",			STANDARD_HELMET, /* autocurses, creates darkness once every 100 turns, but improves your to-hit by 5 */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Hamburg One",			HELMET, /* hunger */
+A("Hamburg One",			STANDARD_HELMET, /* hunger */
 	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -4810,11 +4810,11 @@ A("Asbestos Material",			LONG_SWORD, /* always poisoned */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Tanks A Lot",			LEATHER_GLOVES, /* glibbery hands, 5 extra points of AC */
+A("Tanks A Lot",			REGULAR_GLOVES, /* glibbery hands, 5 extra points of AC */
 	(SPFX_RESTR|SPFX_REGEN|SPFX_EREGEN|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Dimvision",			LEATHER_GLOVES, /* putting them on for the first time gives you the eddy wind technique but also permanent weak sight! */
+A("Dimvision",			REGULAR_GLOVES, /* putting them on for the first time gives you the eddy wind technique but also permanent weak sight! */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -4941,19 +4941,19 @@ A("Protect What Cannot Be Protected",				ORCISH_CLOAK, /* allows you to erodepro
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Girlful Farting Noises",				HELMET, /* spawns a farting monster 1 in 1000 turns, flying */
+A("Girlful Farting Noises",				STANDARD_HELMET, /* spawns a farting monster 1 in 1000 turns, flying */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("YOU SEE HERE AN ARTIFACT",				HELMET, /* bigscript */
+A("YOU SEE HERE AN ARTIFACT",				STANDARD_HELMET, /* bigscript */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
 
-A("Numb Or Maybe",				LEATHER_GLOVES, /* player acquires intrinsic numbopathy from putting them on 50%, gets a random bad effect 49% or acquires intrinsic yellow spells 1% */
+A("Numb Or Maybe",				REGULAR_GLOVES, /* player acquires intrinsic numbopathy from putting them on 50%, gets a random bad effect 49% or acquires intrinsic yellow spells 1% */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Dead-Slam The Time Shut",				LEATHER_GLOVES, /* unlocks device skill and caps it at expert but also prime curses itself if you didn't have the skill before */
+A("Dead-Slam The Time Shut",				REGULAR_GLOVES, /* unlocks device skill and caps it at expert but also prime curses itself if you didn't have the skill before */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -5025,7 +5025,7 @@ A("Corina's Snowy Tread",				LOW_BOOTS, /* initialized to always be winter stile
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
 
-A("Number 23",				HELMET, /* initialized to always be an aluminium helmet; psi resistance */
+A("Number 23",				STANDARD_HELMET, /* initialized to always be an aluminium helmet; psi resistance */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
 
@@ -5033,11 +5033,11 @@ A("Hauntnight",				ORCISH_CLOAK, /* initialized to always be a ghostly cloak; mo
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
-A("Lorskel's Special Protection",				LEATHER_GLOVES, /* initialized to always be polnish gloves; AD_SITM fails 4 out of 5 times */
+A("Lorskel's Special Protection",				REGULAR_GLOVES, /* initialized to always be polnish gloves; AD_SITM fails 4 out of 5 times */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Robbery Gone Right",				LEATHER_GLOVES, /* initialized to always be polnish gloves; random gold spawns have 3 times more gold in them */
+A("Robbery Gone Right",				REGULAR_GLOVES, /* initialized to always be polnish gloves; random gold spawns have 3 times more gold in them */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
 
@@ -5045,7 +5045,7 @@ A("Josefine's Evilness",				LOW_BOOTS, /* initialized to always be velcro boots;
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
 
-A("Whiny Mary",				LEATHER_GLOVES, /* initialized to always be clumsy gloves; while wearing them, your weapon automatically curses itself every turn, but ranged attacks get +rnd(5) multishot */
+A("Whiny Mary",				REGULAR_GLOVES, /* initialized to always be clumsy gloves; while wearing them, your weapon automatically curses itself every turn, but ranged attacks get +rnd(5) multishot */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2400L ),
 
@@ -5061,7 +5061,7 @@ A("Shelly",				ORCISH_CLOAK, /* initialized to always be a void cloak; antimagic
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
 
-A("Spread Your Legs Wide",				LEATHER_GLOVES, /* initialized to always be grey-shaded gloves; sets your AC to 10, autocurses */
+A("Spread Your Legs Wide",				REGULAR_GLOVES, /* initialized to always be grey-shaded gloves; sets your AC to 10, autocurses */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
@@ -5081,7 +5081,7 @@ A("Katie Melua's Female Weapon",				LOW_BOOTS, /* initialized to always be fleec
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Cockuetry",				LEATHER_GLOVES, /* initialized to always be fingerless gloves; petrification resistance */
+A("Cockuetry",				REGULAR_GLOVES, /* initialized to always be fingerless gloves; petrification resistance */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
@@ -5089,7 +5089,7 @@ A("PercentIoeoepsPercentD-thief",				ORCISH_CLOAK, /* initialized to always be a
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Peeping Groove",				LEATHER_GLOVES, /* initialized to always be fatal gloves; if you use a shotgun while wearing them, you get +rnd(7) multishot */
+A("Peeping Groove",				REGULAR_GLOVES, /* initialized to always be fatal gloves; if you use a shotgun while wearing them, you get +rnd(7) multishot */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2000L ),
 
@@ -5109,11 +5109,11 @@ A("Paleolithic Elbow Contractor",				ORCISH_CLOAK, /* initialized to always be a
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
 
-A("Nuclear Bomb",				HELMET, /* initialized to always be a celtic helmet; newly generated golems always have the exploder and bomber egotypes */
+A("Nuclear Bomb",				STANDARD_HELMET, /* initialized to always be a celtic helmet; newly generated golems always have the exploder and bomber egotypes */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 20000L ),
 
-A("Beeeeeeeanpole",				LEATHER_GLOVES, /* initialized to always be english gloves; +5 range for arrows fired from bows */
+A("Beeeeeeeanpole",				REGULAR_GLOVES, /* initialized to always be english gloves; +5 range for arrows fired from bows */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -5613,7 +5613,7 @@ A("Luisa's Irresistible Charm",				LOW_BOOTS, /* initialized to always be erotic
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
-A("Jana's Deceptive Mask",				HELMET, /* initialized to always be secret helmet; if a monster uncovers you, 1% chance to instantly die (no joke). */
+A("Jana's Deceptive Mask",				STANDARD_HELMET, /* initialized to always be secret helmet; if a monster uncovers you, 1% chance to instantly die (no joke). */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -5621,7 +5621,7 @@ A("Now It Becomes Different",				ORCISH_CLOAK, /* initialized to always be diffi
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Natascha's Stroking Units",				LEATHER_GLOVES, /* initialized to always be velvet gloves; monsters attacking you take 1d10 damage, unless they need a +1 or higher weapon to hit */
+A("Natascha's Stroking Units",				REGULAR_GLOVES, /* initialized to always be velvet gloves; monsters attacking you take 1d10 damage, unless they need a +1 or higher weapon to hit */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 10000L ),
 
@@ -5629,7 +5629,7 @@ A("Speak to OJ",				LOW_BOOTS, /* initialized to always be sputa boots; farting 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Due Due-Due-Due Brmmmmmmm",				HELMET, /* initialized to always be formula one helmet; very fast speed, and +2 AC */
+A("Due Due-Due-Due Brmmmmmmm",				STANDARD_HELMET, /* initialized to always be formula one helmet; very fast speed, and +2 AC */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
@@ -5637,7 +5637,7 @@ A("Toilet Noises",				ORCISH_CLOAK, /* initialized to always be excrement cloak;
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Line Can Play By Yourself",				LEATHER_GLOVES, /* initialized to always be racer gloves; gridbug conduct, doubles your speed */
+A("Line Can Play By Yourself",				REGULAR_GLOVES, /* initialized to always be racer gloves; gridbug conduct, doubles your speed */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
@@ -5649,7 +5649,7 @@ A("Nourofibroma",				ORCISH_CLOAK, /* initialized to always be guild cloak; free
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Madeline's Stupid Girl",				LEATHER_GLOVES, /* initialized to always be shitty gloves; 1 in 500 chance to spawn a shit trap on the level and you trigger them even if you're flying; +3 increase damage */
+A("Madeline's Stupid Girl",				REGULAR_GLOVES, /* initialized to always be shitty gloves; 1 in 500 chance to spawn a shit trap on the level and you trigger them even if you're flying; +3 increase damage */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -5879,15 +5879,15 @@ A("Allcolor Prism",				ORCISH_CLOAK, /* initialized to always be fleeceling cloa
 	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Mary Inscription",				LEATHER_GLOVES, /* initialized to always be princess gloves; all monsters always spawn hostile, +10 CHA, +5 AC */
+A("Mary Inscription",				REGULAR_GLOVES, /* initialized to always be princess gloves; all monsters always spawn hostile, +10 CHA, +5 AC */
 	(SPFX_RESTR|SPFX_REFLECT|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 10000L ),
 
-A("Fathien Elder's Secret Power",				LEATHER_GLOVES, /* initialized to always be uncanny gloves; occult spells don't cause backlash */
+A("Fathien Elder's Secret Power",				REGULAR_GLOVES, /* initialized to always be uncanny gloves; occult spells don't cause backlash */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
 
-A("Si-Oh-Wee",				LEATHER_GLOVES, /* initialized to always be slaying gloves; +2 damage and accuracy */
+A("Si-Oh-Wee",				REGULAR_GLOVES, /* initialized to always be slaying gloves; +2 damage and accuracy */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -5943,7 +5943,7 @@ A("Katie Melua's Fleeciness",				LOW_BOOTS, /* initialized to always be weapon l
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL|SPFX_REGEN), 0, 0,
 	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
 
-A("Elona's Snail Trail",				HELMET, /* initialized to always be rubynus helmet; half speed unless you're a snail, +10 CON and very fast speed if you are one */
+A("Elona's Snail Trail",				STANDARD_HELMET, /* initialized to always be rubynus helmet; half speed unless you're a snail, +10 CON and very fast speed if you are one */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -6107,27 +6107,27 @@ A("Ina's Sorrow",				ORCISH_CLOAK, /* initialized to always be an inalish cloak,
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Why Not Do The Real Thing",				HELMET, /* initialized to always be a grunter helmet, 75% chance to not become sick from a sickness effect, but activates evilvariant mode; armor pieces have 5% extra chance to be spawned with a random enchantment */
+A("Why Not Do The Real Thing",				STANDARD_HELMET, /* initialized to always be a grunter STANDARD_HELMET, 75% chance to not become sick from a sickness effect, but activates evilvariant mode; armor pieces have 5% extra chance to be spawned with a random enchantment */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Claudia's Sexy Scent",				HELMET, /* initialized to always be a cloudy helmet, monsters with MS_STENCH are 99% peaceful and chatting to them with at least 1000 zorkmids allows you to hire them, your kick does +10 damage and has 25% chance to paralyze a monster for d10 turns, but you occasionally have to fart and also have the shit trap effect */
+A("Claudia's Sexy Scent",				STANDARD_HELMET, /* initialized to always be a cloudy STANDARD_HELMET, monsters with MS_STENCH are 99% peaceful and chatting to them with at least 1000 zorkmids allows you to hire them, your kick does +10 damage and has 25% chance to paralyze a monster for d10 turns, but you occasionally have to fart and also have the shit trap effect */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
-A("Vacuum Cleaner Death",				HELMET, /* initialized to always be a breath control helmet, amulets of strangulation kill you instantly while wearing this, farting effects deal extra damage and cause additional bad effects, sleep/slow/poison gas traps damage and paralyze you, magical breathing, monsters with AD_SUCK have +50 spawn frequency, 1 in 25000 chance per turn to spawn a tame sweet blonde next to you */
+A("Vacuum Cleaner Death",				STANDARD_HELMET, /* initialized to always be a breath control STANDARD_HELMET, amulets of strangulation kill you instantly while wearing this, farting effects deal extra damage and cause additional bad effects, sleep/slow/poison gas traps damage and paralyze you, magical breathing, monsters with AD_SUCK have +50 spawn frequency, 1 in 25000 chance per turn to spawn a tame sweet blonde next to you */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
-A("Nypherisbane",				HELMET, /* initialized to always be a gas mask, poison and sickness resistance, kicking a snake or naga does +100 extra damage, autocurses */
+A("Nypherisbane",				STANDARD_HELMET, /* initialized to always be a gas mask, poison and sickness resistance, kicking a snake or naga does +100 extra damage, autocurses */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
-A("Christmas Medal",				HELMET, /* initialized to always be a sages helmet, see invisible */
+A("Christmas Medal",				STANDARD_HELMET, /* initialized to always be a sages STANDARD_HELMET, see invisible */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
 
-A("Longest Ray",				LEATHER_GLOVES, /* initialized to always be rayductnay gloves, adds extra range to beams like over-ray (and stacks with that) */
+A("Longest Ray",				REGULAR_GLOVES, /* initialized to always be rayductnay gloves, adds extra range to beams like over-ray (and stacks with that) */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -7071,15 +7071,15 @@ A("Finding Thyself",				ORCISH_CLOAK, /* initialized to always be cloister cloak
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Saladin's Desert Fox",				HELMET, /* initialized to always be shemagh, full nutrients when worn, swords of all kinds do more damage, prayer may occasionally warn you if it's not safe to pray */
+A("Saladin's Desert Fox",				STANDARD_HELMET, /* initialized to always be shemagh, full nutrients when worn, swords of all kinds do more damage, prayer may occasionally warn you if it's not safe to pray */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Jamila's Belief",				HELMET, /* initialized to always be shemagh, protects from MS_CONVERT and MS_HCALIEN effects, increases your alignment by one with 1 in 1000 chance per turn, but taking it off gives -200 alignment and +1 sins */
+A("Jamila's Belief",				STANDARD_HELMET, /* initialized to always be shemagh, protects from MS_CONVERT and MS_HCALIEN effects, increases your alignment by one with 1 in 1000 chance per turn, but taking it off gives -200 alignment and +1 sins */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Slipping Sucking",				HELMET, /* initialized to always be ceramic helmet, sustain ability */
+A("Slipping Sucking",				STANDARD_HELMET, /* initialized to always be ceramic STANDARD_HELMET, sustain ability */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
@@ -7399,19 +7399,19 @@ A("Ludgera's Secret Course",				LOW_BOOTS, /* initialized to always be hiking bo
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
 
-A("There Are Several Of Them",				HELMET, /* initialized to always be pope hat; improved light radius, spirituality skill trains twice as fast */
+A("There Are Several Of Them",				STANDARD_HELMET, /* initialized to always be pope hat; improved light radius, spirituality skill trains twice as fast */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Football Mask",				HELMET, /* initialized to always be corona mask; footerer effect, +2 AC */
+A("Football Mask",				STANDARD_HELMET, /* initialized to always be corona mask; footerer effect, +2 AC */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("FFP-3 Mask",				HELMET, /* initialized to always be corona mask; 80% chance to resist corona and another -5 CHA */
+A("FFP-3 Mask",				STANDARD_HELMET, /* initialized to always be corona mask; 80% chance to resist corona and another -5 CHA */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Acu Become Have",				HELMET, /* initialized to always be anachronononono helmet; 1 in 50000 chance per turn to unlock skills like an acu, but you need to have at least a million score and it resets your score to zero whenever it triggers. */
+A("Acu Become Have",				STANDARD_HELMET, /* initialized to always be anachronononono helmet; 1 in 50000 chance per turn to unlock skills like an acu, but you need to have at least a million score and it resets your score to zero whenever it triggers. */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
@@ -7423,7 +7423,7 @@ A("Satan's Suggestion",				ORCISH_CLOAK, /* initialized to always be wetsuit; ma
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Egasso's Gibberish",				LEATHER_GLOVES, /* initialized to always be multilinguitis gloves, confusion + confusion resistance, your MC is always at least 5, improves AC by 10%, +5 CHA */
+A("Egasso's Gibberish",				REGULAR_GLOVES, /* initialized to always be multilinguitis gloves, confusion + confusion resistance, your MC is always at least 5, improves AC by 10%, +5 CHA */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
@@ -7519,7 +7519,7 @@ A("Schwilililili Morph",				TIN_OPENER, /* using #youpoly has only 50% chance of
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Green Thumb",				LEATHER_GLOVES, /* initialized to always be nondescript gloves; can walk through trees and you regain an extra HP per turn when being on a tree square */
+A("Green Thumb",				REGULAR_GLOVES, /* initialized to always be nondescript gloves; can walk through trees and you regain an extra HP per turn when being on a tree square */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
@@ -8441,7 +8441,7 @@ A("Antimagicbane",                  COLLUSION_KNIFE, /* prevents both you and mo
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	STUN(3,4),	DFNS(AD_MAGM),	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 3500L ),
 
-A("Gantulets of Mispealing",				LEATHER_GLOVES, /* randart2, trying to engrave Elbereth will always misengrave, other engravings also randomly misengrave */
+A("Gantulets of Mispealing",				REGULAR_GLOVES, /* randart2, trying to engrave Elbereth will always misengrave, other engravings also randomly misengrave */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
@@ -9329,7 +9329,7 @@ A("Truly Magnified",				KILLER_SPAWN_BOOTS, /* clairvoyance, multiplies killer r
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Soarup",				HELMET, /* always initialized to be higher helmet, flying, if it's +0 when you put it on it becomes +1 */
+A("Soarup",				STANDARD_HELMET, /* always initialized to be higher STANDARD_HELMET, flying, if it's +0 when you put it on it becomes +1 */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
@@ -11165,7 +11165,7 @@ A("Fist of Fury",				SILVER_GAUNTLETS,
 	(SPFX_RESTR|SPFX_INTEL), 0, 0,
 	PHYS(5,10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
 
-A("Kazaana",				LEATHER_GLOVES, /* randart2 gloves, can be invoked for amnesia of magnitude 3 */
+A("Kazaana",				REGULAR_GLOVES, /* randart2 gloves, can be invoked for amnesia of magnitude 3 */
 	(SPFX_RESTR|SPFX_HSPDAM|SPFX_INTEL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -11285,11 +11285,11 @@ A("Claudia's Beauty",				LOW_BOOTS, /* initialized to always be superhard sandal
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Max the Secret Agent",				LEATHER_GLOVES, /* initialized to always be telescope, gives you maxxed sight range while worn */
+A("Max the Secret Agent",				REGULAR_GLOVES, /* initialized to always be telescope, gives you maxxed sight range while worn */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Kati's Antagonism",				LEATHER_GLOVES, /* initialized to always be telescope, autocurses, aggravate monster and feminism aggravation */
+A("Kati's Antagonism",				REGULAR_GLOVES, /* initialized to always be telescope, autocurses, aggravate monster and feminism aggravation */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
@@ -11317,7 +11317,7 @@ A("Arabella's Lightswitch",				RING_MAIL, /* detectation effect, can be invoked 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Habiba's Matronage",				HELMET, /* initialized to always be hardcore cloth, activates hardcore alien mode, also gives intrinsic half physical damage and regeneration, double magical breathing and +2 increase damage */
+A("Habiba's Matronage",				STANDARD_HELMET, /* initialized to always be hardcore cloth, activates hardcore alien mode, also gives intrinsic half physical damage and regeneration, double magical breathing and +2 increase damage */
 	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
@@ -11929,15 +11929,15 @@ A("It Shimmers",				LARGE_SHIELD,
 	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Unknowingness As A Weapon",				LEATHER_GLOVES, /* randart2 gloves, +5 to-hit and damage as long as the base item isn't identified */
+A("Unknowingness As A Weapon",				REGULAR_GLOVES, /* randart2 gloves, +5 to-hit and damage as long as the base item isn't identified */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Kawa Jur Fes",				HELMET, /* randart helmet, autocurses, you cannot eat or quaff, 20% chance to resist corona */
+A("Kawa Jur Fes",				STANDARD_HELMET, /* randart STANDARD_HELMET, autocurses, you cannot eat or quaff, 20% chance to resist corona */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
-A("Krol-Gr",				LEATHER_GLOVES, /* randart gloves, 1 in 1000 to go berserk for 25 turns */
+A("Krol-Gr",				REGULAR_GLOVES, /* randart gloves, 1 in 1000 to go berserk for 25 turns */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
@@ -12069,11 +12069,11 @@ A("Mini Computer",				ORCISH_HELM,
 	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG2), 0, M2_ELF,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
 
-A("Russet Enchantment",				HELMET,
+A("Russet Enchantment",				STANDARD_HELMET,
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
 
-A("Poison Hand",				LEATHER_GLOVES, /* poison resistance, lower risk of losing stats to poison */
+A("Poison Hand",				REGULAR_GLOVES, /* poison resistance, lower risk of losing stats to poison */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
@@ -12137,7 +12137,7 @@ A("Rest The Case",				DWARVISH_IRON_HELM, /* immunity to beheading */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("A Little Sugar",				LEATHER_GLOVES, /* randart gloves, +3 DEX, free action */
+A("A Little Sugar",				REGULAR_GLOVES, /* randart gloves, +3 DEX, free action */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -12697,35 +12697,35 @@ A("This Trench War Has Been Fought",				LONG_SWORD, /* randart melee weapon, if 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
 
-A("Plus To Dam",				LEATHER_GLOVES, /* +2 increase damage */
+A("Plus To Dam",				REGULAR_GLOVES, /* +2 increase damage */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Plus To Hit",				LEATHER_GLOVES, /* +5 increase accuracy */
+A("Plus To Hit",				REGULAR_GLOVES, /* +5 increase accuracy */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("strbonus",				LEATHER_GLOVES, /* +5 STR */
+A("strbonus",				REGULAR_GLOVES, /* +5 STR */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("dexbonus",				LEATHER_GLOVES, /* +5 DEX */
+A("dexbonus",				REGULAR_GLOVES, /* +5 DEX */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Quite Normal",				HELMET, /* +1 AC */
+A("Quite Normal",				STANDARD_HELMET, /* +1 AC */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
-A("Steeler",				HELMET, /* +3 AC */
+A("Steeler",				STANDARD_HELMET, /* +3 AC */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Havewings",				HELMET, /* res fire, cold and shock, anti-teleportation, autocurses */
+A("Havewings",				STANDARD_HELMET, /* res fire, cold and shock, anti-teleportation, autocurses */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Cliervoyens",				HELMET, /* shows monsters in a 5x5 area around you */
+A("Cliervoyens",				STANDARD_HELMET, /* shows monsters in a 5x5 area around you */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -12849,7 +12849,7 @@ A("There Goes She To",				LEATHER_ARMOR, /* randart2 armor, permanent stat damag
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Ten Minutes Colder",				HELMET, /* randart helmet, res fire and cold, but if ZT_FIRE tries to damage your items, fire res is deactivated for 1 (more) turn; searching gives 50% chance to regenerate one HP */
+A("Ten Minutes Colder",				STANDARD_HELMET, /* randart STANDARD_HELMET, res fire and cold, but if ZT_FIRE tries to damage your items, fire res is deactivated for 1 (more) turn; searching gives 50% chance to regenerate one HP */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -13385,7 +13385,7 @@ A("Gulp-Gulp-Gulp",				POT_FULL_HEALING, /* if it's in your open inventory and y
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Reju Gluck Gluck Gluck Bug",				HELMET, /* randart2 helmet, healup doesn't heal you at all if your HP is below one quarter of the max */
+A("Reju Gluck Gluck Gluck Bug",				STANDARD_HELMET, /* randart2 STANDARD_HELMET, healup doesn't heal you at all if your HP is below one quarter of the max */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
@@ -13501,11 +13501,11 @@ A("Ideal Base",				LOW_BOOTS, /* randart2 boots, spawns with random erosion, inv
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Suk Me Hahahahahah",				HELMET, /* randart helmet, spawns with d3 grease */
+A("Suk Me Hahahahahah",				STANDARD_HELMET, /* randart STANDARD_HELMET, spawns with d3 grease */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
-A("Wear Off The Damn RNG",				HELMET, /* randart2 helmet, spawns with 3 grease and can be invoked to gain a layer of grease */
+A("Wear Off The Damn RNG",				STANDARD_HELMET, /* randart2 STANDARD_HELMET, spawns with 3 grease and can be invoked to gain a layer of grease */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
 
@@ -14232,7 +14232,7 @@ A("Maui's Fishhook",	GRAPPLING_HOOK, /* warns of eels */
 	0,		A_CHAOTIC, PM_DIVER, NON_PM, 4500L ),
 
 
-A("Helm of Storms", HELMET,
+A("Helm of Storms", STANDARD_HELMET,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM), 0, 0,
 	NO_ATTK,        NO_DFNS,        CARY(AD_MAGM),
 	0,  A_NEUTRAL, PM_SPACEWARS_FIGHTER, NON_PM, 5000L ),

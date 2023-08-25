@@ -13505,7 +13505,7 @@ boolean knoweverything;
 				pline("A relatively weak headgear."); break;
 			case PLASTEEL_HELM:
 				pline("Good protection and 9 points of magic cancellation, but this helmet prevents you from performing certain actions."); break;
-			case HELMET:
+			case STANDARD_HELMET:
 				pline("A standard helmet that can be worn for protection."); break;
 			case SEDGE_HAT:
 				pline("The main use of this helm is to give you acid resistance."); break;
@@ -13751,7 +13751,7 @@ boolean knoweverything;
 				pline("A pair of gauntlets that improves your armor class by 2 points."); break;
 			case GAUNTLETS_OF_THE_FORCE:
 				pline("This pair of gloves offers good protection and enhances your ability to use the force."); break;
-			case LEATHER_GLOVES:
+			case REGULAR_GLOVES:
 				pline("A standard pair of gloves that offers little protection."); break;
 			case ORIHALCYON_GAUNTLETS:
 				pline("It doesn't matter whether you're able to spell the name of this item. What does matter is that wearing it gives motherfucking magic resistance!!!!!111oneoneone"); break;

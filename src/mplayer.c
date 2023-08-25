@@ -1036,7 +1036,7 @@ register boolean special;
 		mk_mplayer_armor(mtmp, helm);
 		mk_mplayer_armor(mtmp, shield);
 		if (rn2(8))
-		    mk_mplayer_armor(mtmp, rnd_class(LEATHER_GLOVES,
+		    mk_mplayer_armor(mtmp, rnd_class(REGULAR_GLOVES,
 					       GAUNTLETS_OF_DEXTERITY));
 		if (rn2(8))
 		    mk_mplayer_armor(mtmp, rnd_class(LOW_BOOTS, LEVITATION_BOOTS));

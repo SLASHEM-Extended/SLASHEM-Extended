@@ -268,7 +268,7 @@ register struct monst *mtmp;
 			case 18: (void) mongets(mtmp, MECHA_IRAZU); break;
 			case 19: (void) mongets(mtmp, SCHOOL_CAP); break;
 			case 20:
-			case 21: (void) mongets(mtmp, HELMET); break;
+			case 21: (void) mongets(mtmp, STANDARD_HELMET); break;
 			case 22: (void) mongets(mtmp, SKULLCAP); break;
 		}
 
@@ -311,7 +311,7 @@ register struct monst *mtmp;
 			case 2:
 			case 3:
 			case 4:
-			case 5: (void) mongets(mtmp, LEATHER_GLOVES); break;
+			case 5: (void) mongets(mtmp, REGULAR_GLOVES); break;
 			case 6: (void) mongets(mtmp, GAUNTLETS_OF_TYPING); break;
 			case 7: (void) mongets(mtmp, GAUNTLETS_OF_PLUGSUIT); break;
 			case 8: (void) mongets(mtmp, COMMANDER_GLOVES); break;
@@ -1444,7 +1444,7 @@ register struct monst *mtmp;
 		    switch (mm) {
 			case PM_ILLUSIONARY_SOLDIER:
 
-				(void) mongets(mtmp, LEATHER_GLOVES);
+				(void) mongets(mtmp, REGULAR_GLOVES);
 				{
 					struct obj *otmpS = mksobj(CORPSE,TRUE,FALSE, FALSE);
 
@@ -2499,7 +2499,7 @@ register struct monst *mtmp;
 			m_initthrow(mtmp, SNIPER_BULLET, 50);
 			m_initthrow(mtmp, FRAG_GRENADE, 20);
 		     (void)mongets(mtmp, JUMPSUIT);
-		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, STANDARD_HELMET);
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
@@ -2568,8 +2568,8 @@ register struct monst *mtmp;
 
 		   case PM_QUARTERBACK:
 		   case PM_UNDEAD_QUARTERBACK:
-		     (void)mongets(mtmp, LEATHER_GLOVES);
-		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
+		     (void)mongets(mtmp, STANDARD_HELMET);
 		     (void)mongets(mtmp, BASEBALL_BAT);
 		     if (!rn2(50)) (void) mongets(mtmp, rnd_offensive_item(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
@@ -2673,7 +2673,7 @@ register struct monst *mtmp;
 
 		   case PM_WEIRDBOY:
 		   case PM_UNDEAD_WEIRDBOY:
-		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, STANDARD_HELMET);
 		     (void)mongets(mtmp, BRONZE_MORNING_STAR);
 		     (void)mongets(mtmp, HEALER_UNIFORM);
 		     (void)mongets(mtmp, POT_HEALING);
@@ -2700,7 +2700,7 @@ register struct monst *mtmp;
 		   case PM_ASTRONAUT:
 		   case PM_UNDEAD_ASTRONAUT:
 		     (void)mongets(mtmp, JUMPSUIT);
-		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, STANDARD_HELMET);
 		     (void)mongets(mtmp, HIGH_BOOTS);
 		     (void)mongets(mtmp, LEATHER_CLOAK);
 		     (void)mongets(mtmp, SCR_ANTIMATTER);
@@ -2891,7 +2891,7 @@ register struct monst *mtmp;
 
 		     (void)mongets(mtmp, MALLET);
 		     (void)mongets(mtmp, FULL_PLATE_MAIL);
-		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, STANDARD_HELMET);
 
 			break;
 
@@ -2961,7 +2961,7 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, PICK_AXE);
 		     (void)mongets(mtmp, WAR_HAMMER);
 		     (void)mongets(mtmp, CHAIN_MAIL);
-		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, STANDARD_HELMET);
 		     (void)mongets(mtmp, SCR_LOCKOUT);
 		   break;
 
@@ -3638,8 +3638,8 @@ register struct monst *mtmp;
 			 m_initthrow(mtmp, BLASTER_BOLT, 50);
 			 m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
 		     (void)mongets(mtmp, CHAIN_MAIL);
-		     (void)mongets(mtmp, HELMET);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, STANDARD_HELMET);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, IRON_SHOES);
 			if (!rn2(100)) {
 		     (void)mongets(mtmp, BFG);
@@ -3889,7 +3889,7 @@ register struct monst *mtmp;
 
 		     (void)mongets(mtmp, RAPIER);
 		     (void)mongets(mtmp, RUFFLED_SHIRT);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, LEATHER_CLOAK);
 
 		   break;
@@ -3911,7 +3911,7 @@ register struct monst *mtmp;
 
 		     (void)mongets(mtmp, RAPIER);
 		     (void)mongets(mtmp, VICTORIAN_UNDERWEAR);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, LEATHER_CLOAK);
 
 		   break;
@@ -4401,7 +4401,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, SCALPEL);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, WAN_HEALING);
 		     (void)mongets(mtmp, WAN_SLEEP);
 #ifndef GOLDOBJ
@@ -4445,8 +4445,8 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, LONG_SWORD);
 		     (void)mongets(mtmp, PLATE_MAIL);
 		     (void)mongets(mtmp, LARGE_SHIELD);
-		     (void)mongets(mtmp, HELMET);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, STANDARD_HELMET);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 #ifndef GOLDOBJ
 		     mtmp->mgold = (long) d(mtmp->m_lev, 15);
 #else
@@ -4477,8 +4477,8 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, LONG_SWORD);
 		     (void)mongets(mtmp, PLATE_MAIL);
 		     (void)mongets(mtmp, LARGE_SHIELD);
-		     (void)mongets(mtmp, HELMET);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, STANDARD_HELMET);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, LOW_BOOTS);
 		     break;
 
@@ -4551,7 +4551,7 @@ register struct monst *mtmp;
 
 		     (void)mongets(mtmp, HAWAIIAN_SHIRT);
 		     (void)mongets(mtmp, DUNCE_CAP);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, DAGGER);
 		     (void)mongets(mtmp, RUBBER_HOSE);
 
@@ -4600,7 +4600,7 @@ register struct monst *mtmp;
 
 		     (void)mongets(mtmp, FEDORA);
 		     (void)mongets(mtmp, ELVEN_CLOAK);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, KNIFE);
 		     if (!rn2(6)) (void)mongets(mtmp, KICKING_BOOTS);
 
@@ -4703,7 +4703,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, BATTLE_STAFF);
 		     (void)mongets(mtmp, LEATHER_ARMOR);
-		     (void)mongets(mtmp, HELMET);
+		     (void)mongets(mtmp, STANDARD_HELMET);
 
 		   break;
 
@@ -4736,7 +4736,7 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, DAGGER);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		     (void)mongets(mtmp, CLOAK_OF_DISPLACEMENT);
 
 		   break;
@@ -6368,7 +6368,7 @@ register struct monst *mtmp;
 
 			(void)mongets(mtmp, LEATHER_CLOAK);
 			(void)mongets(mtmp, HIGH_BOOTS);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		else if (mm == PM_MINER || mm == PM_DEAD_MINER) {
@@ -6799,8 +6799,8 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, LONG_SWORD);
 		     (void)mongets(mtmp, PLATE_MAIL);
 		     (void)mongets(mtmp, LARGE_SHIELD);
-		     (void)mongets(mtmp, HELMET);
-		     (void)mongets(mtmp, LEATHER_GLOVES);
+		     (void)mongets(mtmp, STANDARD_HELMET);
+		     (void)mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		if (ptr == &mons[PM_DEATHWALKER_BATTLEMASTER]) {
@@ -6858,7 +6858,7 @@ register struct monst *mtmp;
 		} else if(mm == PM_GITHYANKI_PIRATE){
 			(void)mongets(mtmp, TWO_HANDED_SWORD);
 			(void)mongets(mtmp, BRONZE_PLATE_MAIL);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, HIGH_BOOTS);
 		} else if (is_hobbit(ptr)) {
 			    switch (rn2(6)) {
@@ -6950,8 +6950,8 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -6966,8 +6966,8 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			if (!rn2(2)) (void)mongets(mtmp, (rn2(2)) ? SPEAR : SHORT_SWORD);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -6979,8 +6979,8 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_KATCHTAIN]) {
 			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -6991,8 +6991,8 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_PITCH_KOPETEER]) {
 			(void)mongets(mtmp, TWO_HANDED_SWORD);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -7003,8 +7003,8 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_KATCHENANT]) {
 			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -7017,8 +7017,8 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, (rn2(2)) ? SHOTGUN : SAWED_OFF_SHOTGUN);
 			m_initthrow(mtmp, SHOTGUN_SHELL, 30);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -7029,8 +7029,8 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_KEEYOP]) {
 			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -7071,8 +7071,8 @@ register struct monst *mtmp;
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			if (rn2(2)) (void) mongets(mtmp, (rn2(2)) ? GAS_GRENADE : FRAG_GRENADE);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -7109,8 +7109,8 @@ register struct monst *mtmp;
 				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			}
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -7166,8 +7166,8 @@ register struct monst *mtmp;
 				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			}
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 
@@ -7224,8 +7224,8 @@ register struct monst *mtmp;
 				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			}
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 
@@ -7288,8 +7288,8 @@ register struct monst *mtmp;
 				if (!rn2(5)) (void) mongets(mtmp, GRENADE_LAUNCHER);
 			}
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 
@@ -7471,7 +7471,7 @@ register struct monst *mtmp;
 
 			if (ptr == &mons[PM_BOLD]) {
 				(void) mongets(mtmp, BOW);
-				(void) mongets(mtmp, HELMET);
+				(void) mongets(mtmp, STANDARD_HELMET);
 		  		m_initthrow(mtmp, ARROW, 50);
 			}
 
@@ -7552,16 +7552,16 @@ register struct monst *mtmp;
 
 		if (ptr == &mons[PM_CENTAUR_PWNZ_R]) {
 			(void) mongets(mtmp, SUBMACHINE_GUN);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			m_initthrow(mtmp, SMG_BULLET, 50);
 			m_initthrow(mtmp, SMG_BULLET, 50);
 		}
 
 		if (ptr == &mons[PM_CENTAUR_CH_AT_R]) {
 			(void) mongets(mtmp, RAYGUN);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, HIGH_BOOTS);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, TWO_HANDED_SWORD);
 			m_initthrow(mtmp, RAYGUN_BOLT, 50);
 			m_initthrow(mtmp, RAYGUN_BOLT, 50);
@@ -7987,7 +7987,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_KHOTITE]) (void) mongets(mtmp, KHOPESH);
 		if (ptr == &mons[PM_NIGHTMARE_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
 		if (ptr == &mons[PM_HELL_WIZARD]) (void) mongets(mtmp, rnd_class(QUARTERSTAFF,PLATINUM_FIRE_HOOK));
-		if (ptr == &mons[PM_SYSTEMLING]) (void) mongets(mtmp, HELMET);
+		if (ptr == &mons[PM_SYSTEMLING]) (void) mongets(mtmp, STANDARD_HELMET);
 		if (ptr == &mons[PM_SMOKER_HC_WOMAN]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_TUFTRIKE]) (void) mongets(mtmp, DANCING_SHOES);
 		if (ptr == &mons[PM_BUILDER]) (void) mongets(mtmp, WAR_HAMMER);
@@ -8278,13 +8278,13 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_REDGUARD_BRAGBITCH]) {
 			(void) mongets(mtmp, BANDED_MAIL);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, HIGH_BOOTS);
 			(void) mongets(mtmp, LORICATED_CLOAK);
 		}
 		if (ptr == &mons[PM_UMA]) {
 			(void) mongets(mtmp, PLATE_MAIL);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, HIGH_BOOTS);
 			(void) mongets(mtmp, LORICATED_CLOAK);
 			(void) mongets(mtmp, AXE);
@@ -8292,7 +8292,7 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_FORT_LUDIOS_GUARD]) {
 			(void) mongets(mtmp, LOW_BOOTS);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, LEATHER_CLOAK);
 			(void) mongets(mtmp, rnd_class(LONG_SWORD,GREAT_HOUCHOU));
 			(void) mongets(mtmp, rnd_class(SMALL_SHIELD,SHIELD_OF_REFLECTION));
@@ -8328,9 +8328,9 @@ register struct	monst	*mtmp;
 			  }
 			(void)mongets(mtmp, rn2(2) ? KNIFE : DAGGER);
 			if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
-			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, STANDARD_HELMET);
 			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, LOW_BOOTS);
 			(void)mongets(mtmp, LEATHER_CLOAK);
 		}
@@ -8855,9 +8855,9 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_WOYZECK]) {
 			(void)mongets(mtmp, SHORT_SWORD);
 			(void)mongets(mtmp, LEATHER_ARMOR);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, LOW_BOOTS);
-			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, STANDARD_HELMET);
 			(void)mongets(mtmp, LARGE_SHIELD);
 		}
 		if (monsndx(ptr) == PM_EVRA_THE_MOP_LADY) {
@@ -8924,7 +8924,7 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
 			(void)mongets(mtmp, PAPER_SHIELD);
 			(void)mongets(mtmp, LOW_BOOTS);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		if (ptr == &mons[PM_CHIEFBANE]) {
@@ -8961,9 +8961,9 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_AK____SOLDIER]) {
 			(void)mongets(mtmp, KALASHNIKOV);
-			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, STANDARD_HELMET);
 			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, LOW_BOOTS);
 			(void)mongets(mtmp, LEATHER_CLOAK);
 			m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 40);
@@ -8971,9 +8971,9 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_RUSSIAN_SOLDIER]) {
 			(void)mongets(mtmp, KALASHNIKOV);
-			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, STANDARD_HELMET);
 			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, LOW_BOOTS);
 			(void)mongets(mtmp, LEATHER_CLOAK);
 			m_initthrow(mtmp, LEAD_ASSAULT_RIFLE_BULLET, 40);
@@ -9096,8 +9096,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_EVIL_WATCH_LEADER]) {
 			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -9107,8 +9107,8 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, (rn2(2)) ? KNIFE : DAGGER);
 			if (!rn2(2)) (void)mongets(mtmp, (rn2(2)) ? SPEAR : SHORT_SWORD);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -9116,8 +9116,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_EVIL_WATCH_CAPTAIN]) {
 			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -9125,8 +9125,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_EVIL_MARKETEER]) {
 			(void)mongets(mtmp, TWO_HANDED_SWORD);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -9134,8 +9134,8 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_EVIL_WATCH_LIEUTENANT]) {
 			(void)mongets(mtmp, (rn2(2)) ? LONG_SWORD : SILVER_SABER);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -9144,8 +9144,8 @@ register struct	monst	*mtmp;
 			(void)mongets(mtmp, (rn2(2)) ? SHOTGUN : SAWED_OFF_SHOTGUN);
 			m_initthrow(mtmp, SHOTGUN_SHELL, 30);
 			(void)mongets(mtmp, (!rn2(3)) ? RING_MAIL : rn2(2) ? CHAIN_MAIL : SPLINT_MAIL);
-			(void)mongets(mtmp, HELMET);
-			if (!rn2(3)) (void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, STANDARD_HELMET);
+			if (!rn2(3)) (void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, rn2(2) ? LOW_BOOTS : HIGH_BOOTS);
 			(void)mongets(mtmp, SMALL_SHIELD);
 		}
@@ -9403,7 +9403,7 @@ register struct	monst	*mtmp;
 			mac += 2 + mongets(mtmp, LEATHER_ARMOR);
 
 		    if (mac < 10 && rn2(3))
-			mac += 1 + mongets(mtmp, HELMET);
+			mac += 1 + mongets(mtmp, STANDARD_HELMET);
 		    else if (mac < 10 && rn2(2))
 			mac += 1 + mongets(mtmp, DENTED_POT);
 		    if (mac < 10 && rn2(3))
@@ -9415,7 +9415,7 @@ register struct	monst	*mtmp;
 		    else if (mac < 10 && rn2(2))
 			mac += 2 + mongets(mtmp, HIGH_BOOTS);
 		    if (mac < 10 && rn2(3))
-			mac += 1 + mongets(mtmp, LEATHER_GLOVES);
+			mac += 1 + mongets(mtmp, REGULAR_GLOVES);
 		    else if (mac < 10 && rn2(2))
 			mac += 1 + mongets(mtmp, LEATHER_CLOAK);
 
@@ -9709,7 +9709,7 @@ register struct	monst	*mtmp;
 
 		if (ptr == &mons[PM_GAUNTPEEKER]) {
 			(void) mongets(mtmp, UNKNOWN_KNIFE);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		if (ptr == &mons[PM_LOVEHEEL_SHOE]) {
@@ -9800,7 +9800,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_BEARD_GOLEM]) {
 			 (void) mongets(mtmp, HELMET_BEARD);
-			 (void) mongets(mtmp, HELMET);
+			 (void) mongets(mtmp, STANDARD_HELMET);
 		}
 		if (mtmp->data == &mons[PM_RETARDED_GOLEM]) {
 			 (void) mongets(mtmp, SLING);
@@ -10207,7 +10207,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_LEGION_DEVIL_LAUGHER]) {
 			 (void) mongets(mtmp, GLAIVE);
-			 (void) mongets(mtmp, HELMET);
+			 (void) mongets(mtmp, STANDARD_HELMET);
 			 (void) mongets(mtmp, LOW_BOOTS);
 		}
 		if (mtmp->data == &mons[PM_LEGION_DEVIL_ZAPPER]) {
@@ -10597,32 +10597,32 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_SPLASHER_TROLL]) {
 			(void) mongets(mtmp, BARDICHE);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 		if (mtmp->data == &mons[PM_HELLWEAP_TROLL]) {
 			(void) mongets(mtmp, BILL_GUISARME);
 			(void) mongets(mtmp, BATTLE_AXE);
-			(void) mongets(mtmp, LEATHER_GLOVES);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, REGULAR_GLOVES);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 		if (mtmp->data == &mons[PM_DETERMINED_TROLL]) {
 			(void) mongets(mtmp, LUCERN_HAMMER);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 		if (mtmp->data == &mons[PM_WHOLE_TROLL]) {
 			(void) mongets(mtmp, HALBERD);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, ORCISH_CLOAK);
 		}
 		if (mtmp->data == &mons[PM_SPIRIT_THROWER_TROLL]) {
 			(void) mongets(mtmp, SPIRIT_THROWER);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, GLAIVE);
 			(void) mongets(mtmp, ELVEN_CLOAK);
 		}
 		if (mtmp->data == &mons[PM_ABNORMAL_OLOG_HAI]) {
 			(void) mongets(mtmp, SICKLE);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, PAPER_SHIELD);
 		}
 		if (mtmp->data == &mons[PM_STAVE_TROLL]) {
@@ -10632,7 +10632,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_OLOG_HAI_KLIEAUER]) {
 			(void) mongets(mtmp, GLAIVE);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			m_initthrow(mtmp, SHURIKEN, 50);
 		}
 		if (mtmp->data == &mons[PM_OLOG_HAI_LASERPOINTER]) {
@@ -10659,7 +10659,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_UPCHARGE_TROLL]) {
 			(void) mongets(mtmp, PHYSICIAN_BAR);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 
 		break;
@@ -10687,7 +10687,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_COCKATRICE_CARRIER]) {
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			{
 				struct obj *otmpS = mksobj(CORPSE,TRUE,FALSE, FALSE);
 
@@ -11217,8 +11217,8 @@ loveheelover:
 			m_initthrow(mtmp, LEAD_PISTOL_BULLET, 20);
 		}
 		if(mtmp->data == &mons[PM_EKIKOBOLD]) {
-			(void) mongets(mtmp, HELMET);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, STANDARD_HELMET);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		break;
@@ -11594,7 +11594,7 @@ loveheelover:
 			(void) mongets(mtmp, LOW_BOOTS);
 			(void) mongets(mtmp, DENTED_POT);
 			(void) mongets(mtmp, LEATHER_CLOAK);
-			if (rn2(2)) (void) mongets(mtmp, LEATHER_GLOVES);
+			if (rn2(2)) (void) mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		if (mtmp->data == &mons[PM_KOP_PIE]) m_initthrow(mtmp, CREAM_PIE, 2);
@@ -11699,7 +11699,7 @@ loveheelover:
 		if (ptr == &mons[PM_EREGK]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, LARGE_SHIELD);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 		if (ptr == &mons[PM_KETAMINE_GLADIATOR]) {
 			(void) mongets(mtmp, IRON_SABER);
@@ -11976,7 +11976,7 @@ loveheelover:
 		}
 		if (mtmp->data == &mons[PM_GLOVE_LORD]) {
 			(void) mongets(mtmp, AXE);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		if (mtmp->data == &mons[PM_GNOMISH_GUNMAN]) {
@@ -11998,7 +11998,7 @@ loveheelover:
 			} else {
 			  	m_initthrow(mtmp, FRAG_GRENADE, 20);
 			}
-		  	(void) mongets(mtmp, HELMET);
+		  	(void) mongets(mtmp, STANDARD_HELMET);
 		  	(void) mongets(mtmp, RING_MAIL);
 		  	(void) mongets(mtmp, IRON_SHOES);
 		  	(void) mongets(mtmp, LARGE_SHIELD);
@@ -12010,7 +12010,7 @@ loveheelover:
 			} else {
 			  	m_initthrow(mtmp, FRAG_GRENADE, 20);
 			}
-		  	(void) mongets(mtmp, HELMET);
+		  	(void) mongets(mtmp, STANDARD_HELMET);
 		  	(void) mongets(mtmp, RING_MAIL);
 		  	(void) mongets(mtmp, IRON_SHOES);
 		  	(void) mongets(mtmp, LARGE_SHIELD);
@@ -12078,7 +12078,7 @@ loveheelover:
 		  	(void) mongets(mtmp, CROSSBOW);
 		  	(void) mongets(mtmp, LEATHER_CLOAK);
 		  	(void) mongets(mtmp, GNOMISH_SUIT);
-		  	(void) mongets(mtmp, LEATHER_GLOVES);
+		  	(void) mongets(mtmp, REGULAR_GLOVES);
 		  	(void) mongets(mtmp, LONG_SWORD);
 		  	(void) mongets(mtmp, GNOMISH_HELM);
 		  	m_initthrow(mtmp, CROSSBOW_BOLT, 50);
@@ -12148,7 +12148,7 @@ loveheelover:
 			 m_initthrow(mtmp, BONE_FRAGMENT, 30);
 		}
 		if (ptr == &mons[PM_HIGH_PIXIE]) {
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, CROSSBOW);
 			 m_initthrow(mtmp, HEAVY_CROSSBOW_BOLT, 50);
 		}
@@ -12208,7 +12208,7 @@ loveheelover:
 		}
 
 		if (mtmp->data == &mons[PM_ARMPIXIE]) {
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, CROSSBOW);
 	  		m_initthrow(mtmp, CROSSBOW_BOLT, 45);
 		}
@@ -12236,17 +12236,17 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_HAND_OTYUGH]) {
 			(void) mongets(mtmp, TWO_HANDED_SWORD);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 
 		if (mtmp->data == &mons[PM_TIMER_NYMPH]) {
 			(void) mongets(mtmp, GLAIVE);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 
 		if (mtmp->data == &mons[PM_DAMAGE_NYMPH]) {
 			(void) mongets(mtmp, FLY_SWATTER);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, RING_MAIL);
 		}
 
@@ -12266,7 +12266,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_SOLDIER_NYMPH]) {
 			(void) mongets(mtmp, SPEAR);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
 			(void) mongets(mtmp, LOW_BOOTS);
 			(void) mongets(mtmp, RIFLE);
@@ -12286,14 +12286,14 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_STEALSTEALSTEAL_NYMPH]) {
 			(void) mongets(mtmp, RAPIER);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 
 		if (mtmp->data == &mons[PM_SUPER_THIEVING_NYMPH]) {
 			(void) mongets(mtmp, BATTLE_AXE);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 			(void) mongets(mtmp, BLUE_DRAGON_SCALE_MAIL);
 			(void) mongets(mtmp, ASSAULT_RIFLE);
@@ -12374,9 +12374,9 @@ loveheelover:
 			  }
 			(void)mongets(mtmp, rn2(2) ? KNIFE : DAGGER);
 			if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
-			(void)mongets(mtmp, HELMET);
+			(void)mongets(mtmp, STANDARD_HELMET);
 			(void)mongets(mtmp, STUDDED_LEATHER_ARMOR);
-			(void)mongets(mtmp, LEATHER_GLOVES);
+			(void)mongets(mtmp, REGULAR_GLOVES);
 			(void)mongets(mtmp, LOW_BOOTS);
 			(void)mongets(mtmp, LEATHER_CLOAK);
 		}
@@ -12611,7 +12611,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_SUPER_SOLDIER_ANT]) {
 		  	(void) mongets(mtmp, SUBMACHINE_GUN);
-		  	(void) mongets(mtmp, HELMET);
+		  	(void) mongets(mtmp, STANDARD_HELMET);
 		  	(void) mongets(mtmp, ORCISH_CLOAK);
 		  	(void) mongets(mtmp, RING_MAIL);
 		  	m_initthrow(mtmp, SMG_BULLET, 20);
@@ -12695,8 +12695,8 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_SIGNIFICANT_THREAT_INCREASE_CENTAUR]) {
 			(void) mongets(mtmp, BANDED_MAIL);
-			(void) mongets(mtmp, HELMET);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, STANDARD_HELMET);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, LANCE);
 		}
 		if (ptr == &mons[PM_BAB]) {
@@ -12788,7 +12788,7 @@ loveheelover:
 		  	(void) mongets(mtmp, IRON_SHOES);
 		}
 		if (ptr == &mons[PM_LEFT_CENTAUR]) {
-		  	(void) mongets(mtmp, LEATHER_GLOVES);
+		  	(void) mongets(mtmp, REGULAR_GLOVES);
 		  	m_initthrow(mtmp, FLIMSY_DART, 40);
 		}
 		if (ptr == &mons[PM_FITH_CENTAUR]) {
@@ -12924,12 +12924,12 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_ELVEN_MASTER_SPIRIT]) {
 		  	(void) mongets(mtmp, LONG_SWORD);
-		  	(void) mongets(mtmp, HELMET);
+		  	(void) mongets(mtmp, STANDARD_HELMET);
 		  	(void) mongets(mtmp, LARGE_SHIELD);
 		}
 		if (ptr == &mons[PM_ELDER_MASTER]) {
 		  	(void) mongets(mtmp, LONG_SWORD);
-		  	(void) mongets(mtmp, HELMET);
+		  	(void) mongets(mtmp, STANDARD_HELMET);
 		  	(void) mongets(mtmp, LARGE_SHIELD);
 		}
 		if (ptr == &mons[PM_ELVEN_ARCHER_SPIRIT]) {
@@ -13152,7 +13152,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_WOODFALLER_BRIGADE]) {
 			(void) mongets(mtmp, SHARP_AXE);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 		if (ptr == &mons[PM_ACTUAL_EVIL_PATCH]) {
 			(void) mongets(mtmp, SCR_EVIL_VARIANT);
@@ -13799,7 +13799,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_GREMLIN_SMASHER]) (void) mongets(mtmp, WAR_HAMMER);
 		if (mtmp->data == &mons[PM_ORMOR_CLOW]) {
 			(void) mongets(mtmp, SPLINT_MAIL);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, AXE);
 			if (!rn2(3)) (void) mongets(mtmp, LARGE_SHIELD);
 		}
@@ -13820,7 +13820,7 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_SMASHLIN]) {
 			(void) mongets(mtmp, PLATE_MAIL);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, BATTLE_AXE);
 			(void) mongets(mtmp, SHIELD);
 		}
@@ -14009,7 +14009,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_VOLCANO_MUNCHER]) {
 			(void) mongets(mtmp, SLING);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			 m_initthrow(mtmp, VOLCANIC_GLASS_FRAGMENT, 50);
 		}
 
@@ -15282,7 +15282,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_VOLCALINGER]) {
 			(void) mongets(mtmp, SLING);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, SPLINT_MAIL);
 			 m_initthrow(mtmp, VOLCANIC_GLASS_FRAGMENT, 50);
 		}
@@ -15532,7 +15532,7 @@ loveheelover:
 		if (ptr == &mons[PM_ORC_KITTER]) {
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, MEDIUM_MITHRIL_COAT);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, SMALL_SHIELD);
 			 m_initthrow(mtmp, SLING_AMMO, 40);
 		}
@@ -15662,7 +15662,7 @@ loveheelover:
 			(void) mongets(mtmp, SILK_MAIL);
 			(void) mongets(mtmp, QUARTERSTAFF);
 			(void) mongets(mtmp, ORCISH_HELM);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 		}
 
 		if (mtmp->data == &mons[PM_COLORED_ORC]) {
@@ -15820,14 +15820,14 @@ loveheelover:
 
 		if (ptr == &mons[PM_ODORIFEROUS_COURTIER]) {
 			(void) mongets(mtmp, LONG_SWORD);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, CHAIN_MAIL);
 			(void) mongets(mtmp, LARGE_SHIELD);
 		}
 
 		if (ptr == &mons[PM_MESSENGER_OF_DEATH]) {
 			(void) mongets(mtmp, SCYTHE);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, FLINT, 40);
 		}
@@ -15890,18 +15890,18 @@ loveheelover:
 			m_initthrow(mtmp, KNIFE, 5);
 		}
 		if (ptr == &mons[PM_POLICH]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, GUISARME);
 			(void) mongets(mtmp, PLATE_MAIL);
 		}
 		if (ptr == &mons[PM_WHIPLICH]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, CHAINWHIP);
 			(void) mongets(mtmp, ELVEN_CLOAK);
 			(void) mongets(mtmp, CRYSTAL_PLATE_MAIL);
 		}
 		if (ptr == &mons[PM_AXLICH]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, AXE);
 			(void) mongets(mtmp, ICKY_SHIELD);
 			(void) mongets(mtmp, ELVEN_CLOAK);
@@ -15909,21 +15909,21 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_DOUBLE_HAND_LICH]) {
 			(void) mongets(mtmp, TWO_HANDED_SWORD);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, HIGH_BOOTS);
 			(void) mongets(mtmp, ELVEN_CLOAK);
 			(void) mongets(mtmp, PLATE_MAIL);
 		}
 		if (ptr == &mons[PM_LONG_LICH]) {
-			(void) mongets(mtmp, HELMET);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, STANDARD_HELMET);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, LEATHER_CLOAK);
 			(void) mongets(mtmp, BANDED_MAIL);
 		}
 		if (ptr == &mons[PM_BROAD_LICH]) {
-			(void) mongets(mtmp, HELMET);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, STANDARD_HELMET);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, BROADSWORD);
 			(void) mongets(mtmp, URUK_HAI_SHIELD);
 			(void) mongets(mtmp, BANDED_MAIL);
@@ -15960,20 +15960,20 @@ loveheelover:
 			m_initthrow(mtmp, JAVELIN, 5);
 		}
 		if (ptr == &mons[PM_RATATA_LICH]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, BRONZE_PLATE_MAIL);
 			(void) mongets(mtmp, ASSAULT_RIFLE);
 			m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
 		}
 		if (ptr == &mons[PM_PUMPSHOT_LICH]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, ORCISH_CLOAK);
 			(void) mongets(mtmp, RIBBED_PLATE_MAIL);
 			(void) mongets(mtmp, SHOTGUN);
 			m_initthrow(mtmp, SHOTGUN_SHELL, 30);
 		}
 		if (ptr == &mons[PM_MATLICH]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, SNEAKERS);
 			(void) mongets(mtmp, ORCISH_CLOAK);
 			(void) mongets(mtmp, PARTIAL_PLATE_MAIL);
@@ -15981,7 +15981,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_LIESER]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, COMBAT_STILETTOS);
 			(void) mongets(mtmp, ELVEN_CLOAK);
 			(void) mongets(mtmp, FULL_PLATE_MAIL);
@@ -15989,7 +15989,7 @@ loveheelover:
 			m_initthrow(mtmp, INKA_STINGER, 50);
 		}
 		if (ptr == &mons[PM_SLIGON]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, CATAPULT);
 			(void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 			(void) mongets(mtmp, ELVEN_CLOAK);
@@ -16001,7 +16001,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_BERTHMARTAR]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, BATTLE_AXE);
 			(void) mongets(mtmp, TRAFFIC_LIGHT);
 			(void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
@@ -16289,7 +16289,7 @@ loveheelover:
 		if (ptr == &mons[PM_WAKE_ELDER_MUMMY]) {
 			(void) mongets(mtmp, REACH_TRIDENT);
 			(void) mongets(mtmp, HEAVY_MAIL);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, SMALL_SHIELD);
 		}
 
@@ -17369,7 +17369,7 @@ loveheelover:
 		}
 		if(ptr == &mons[PM_RE_ON_PURCHASED_DEMON]) {
 			(void) mongets(mtmp, DANCING_SHOES);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 		}
 		if(ptr == &mons[PM_CHOICE_DEVIL]) {
 			switch (rnd(3)) {
@@ -17704,7 +17704,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BRIGHTAR]) {
 			(void) mongets(mtmp, COURSE_LANCE);
 			(void) mongets(mtmp, RAPIRAPI);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, POT_EXTRA_HEALING);
 			(void) mongets(mtmp, ARM_BLASTER);
 			 m_initthrow(mtmp, HEAVY_BLASTER_BOLT, 50);
@@ -17718,8 +17718,8 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ULTRARCHON]) {
 			(void) mongets(mtmp, TWO_HANDED_SWORD);
 			(void) mongets(mtmp, PLATE_MAIL);
-			(void) mongets(mtmp, HELMET);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, STANDARD_HELMET);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, HIGH_BOOTS);
 			 m_initthrow(mtmp, SHURIKEN, 50);
 			 m_initthrow(mtmp, SHURIKEN, 50);
@@ -17745,7 +17745,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ROSAE]) {
 			(void) mongets(mtmp, ROSE_WHIP);
 			(void) mongets(mtmp, SCALE_MAIL);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			 m_initthrow(mtmp, DART, 40);
 		}
 
@@ -17894,7 +17894,7 @@ loveheelover:
 			(void) mongets(mtmp, CARDBOARD_FAN);
 		}
 		if (ptr == &mons[PM_BLADE_ALPHA]) {
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			(void) mongets(mtmp, SCALE_MAIL);
 		}
 		if (ptr == &mons[PM_TALC_SHOOTER]) {
@@ -18180,7 +18180,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_SUPER_CRAZY_CRIMINAL_ASSFACE_KID]) {
 			(void) mongets(mtmp, HIGH_BOOTS);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 			switch (rnd(4)) {
 				case 1:
 					(void) mongets(mtmp, BULLWHIP);
@@ -18419,7 +18419,7 @@ loveheelover:
 			(void) mongets(mtmp, DENTED_POT);
 			(void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
 			(void) mongets(mtmp, LEATHER_CLOAK);
-			(void) mongets(mtmp, LEATHER_GLOVES);
+			(void) mongets(mtmp, REGULAR_GLOVES);
 			(void) mongets(mtmp, LOW_BOOTS);
 		}
 		if (ptr == &mons[PM_BARTEEK]) {
@@ -18895,7 +18895,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_BAD]) {
 			(void) mongets(mtmp, LEATHER_JACKET);
-			(void) mongets(mtmp, HELMET);
+			(void) mongets(mtmp, STANDARD_HELMET);
 		}
 
 		if (mtmp->data == &mons[PM_SEX_ADDICT]) (void) mongets(mtmp, SEXPLAY_WHIP);
@@ -19254,7 +19254,7 @@ loveheelover:
 	if (ptr == &mons[PM_HANNES]) {
 		(void) mongets(mtmp, PISTOL);
 		(void) mongets(mtmp, LEATHER_ARMOR);
-		(void) mongets(mtmp, HELMET);
+		(void) mongets(mtmp, STANDARD_HELMET);
 		(void) mongets(mtmp, WAN_STUN_MONSTER);
 		(void) mongets(mtmp, IRON_SHOES);
 		m_initthrow(mtmp, PISTOL_BULLET, 50);
@@ -20568,7 +20568,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_NATASCHA]) {
 		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
-		(void) mongets(mtmp, LEATHER_GLOVES);
+		(void) mongets(mtmp, REGULAR_GLOVES);
 		(void) mongets(mtmp, SHIELD_OF_REFLECTION);
 	}
 
@@ -21941,7 +21941,7 @@ loveheelover:
 
 	if (ptr == &mons[PM_NILS]) {
 		(void) mongets(mtmp, DWARVISH_SPEAR);
-		(void) mongets(mtmp, HELMET);
+		(void) mongets(mtmp, STANDARD_HELMET);
 		m_initthrow(mtmp, ORCISH_SPEAR, 5);
 	}
 
@@ -22305,7 +22305,7 @@ loveheelover:
 		if (!rn2(5)) mongets(mtmp, SWEET_MOCASSINS);
 		if (!rn2(5)) mongets(mtmp, BULLWHIP);
 		if (!rn2(5)) mongets(mtmp, RING_MAIL);
-		if (!rn2(5)) mongets(mtmp, HELMET);
+		if (!rn2(5)) mongets(mtmp, STANDARD_HELMET);
 		if (!rn2(5)) mongets(mtmp, WAN_DRAIN_MANA);
 		if (!rn2(5)) mongets(mtmp, POT_EXTRA_HEALING);
 		if (!rn2(5)) mongets(mtmp, SILVER_SPEAR);
@@ -22623,7 +22623,7 @@ loveheelover:
 		if (!rn2(5)) mongets(mtmp, POT_CYANIDE);
 		if (!rn2(5)) mongets(mtmp, POT_HALLUCINATION);
 		if (!rn2(5)) mongets(mtmp, POT_HALLUCINATION);
-		if (!rn2(5)) mongets(mtmp, LEATHER_GLOVES);
+		if (!rn2(5)) mongets(mtmp, REGULAR_GLOVES);
 	}
 
 	if (ptr == &mons[PM_CHEMISTRY_WATCHER]) {
@@ -22857,7 +22857,7 @@ loveheelover:
 		(void) mongets(mtmp, SWEET_MOCASSINS);
 		(void) mongets(mtmp, BULLWHIP);
 		(void) mongets(mtmp, RING_MAIL);
-		(void) mongets(mtmp, HELMET);
+		(void) mongets(mtmp, STANDARD_HELMET);
 		(void) mongets(mtmp, WAN_DRAIN_MANA);
 		(void) mongets(mtmp, POT_EXTRA_HEALING);
 		(void) mongets(mtmp, SILVER_SPEAR);
@@ -23183,7 +23183,7 @@ loveheelover:
 		(void) mongets(mtmp, POT_CYANIDE);
 		(void) mongets(mtmp, POT_HALLUCINATION);
 		(void) mongets(mtmp, POT_HALLUCINATION);
-		(void) mongets(mtmp, LEATHER_GLOVES);
+		(void) mongets(mtmp, REGULAR_GLOVES);
 	}
 
 	if (ptr == &mons[PM_MISTER_ALSO_MATTE]) {

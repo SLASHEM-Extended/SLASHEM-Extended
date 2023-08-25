@@ -388,7 +388,7 @@ const struct shclass shtypes[] = {
 	    {{85, RING_CLASS}, {9, GEM_CLASS}, {5, AMULET_CLASS}, {1, IMPLANT_CLASS}, {0, 0}},
 	    shkrings},
 	{"quality apparel and accessories", WAND_CLASS, 4, D_SHOP,
-	    {{90, WAND_CLASS}, {5, -LEATHER_GLOVES}, {5, -ELVEN_CLOAK}, {0, 0}},
+	    {{90, WAND_CLASS}, {5, -REGULAR_GLOVES}, {5, -ELVEN_CLOAK}, {0, 0}},
 	     shkwands},
 	{"hardware store", TOOL_CLASS, 3, D_SHOP,
 	    {{100, TOOL_CLASS}, {0, 0}}, shktools},

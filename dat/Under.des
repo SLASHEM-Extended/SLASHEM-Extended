@@ -486,7 +486,7 @@ OBJECT:'/',"create horde",contained,uncursed,1
 OBJECT:'/',"speed monster",contained,uncursed,1
 OBJECT:'/',"make invisible",contained,uncursed,1
 OBJECT:'%',"corpse",contained,"cockatrice",0
-OBJECT:'[',"leather gloves",contained,cursed,-1
+OBJECT:'[',"regular gloves",contained,cursed,-1
 
 MONSTER:';',"electric eel",(66,10),hostile
 MONSTER:';',"electric eel",(66,12),hostile

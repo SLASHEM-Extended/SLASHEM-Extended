@@ -3471,7 +3471,7 @@ boolean shopinit;
 
 		}
 		/* simulate lacquered armor for samurai */
-		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == HELMET) ) {
+		if ( ( Role_if(PM_SAMURAI) && otmp->otyp == SPLINT_MAIL) || (Role_if(PM_ERDRICK) && otmp->otyp == STANDARD_HELMET) ) {
 #ifdef UNIXPC
 			/* optimizer bitfield bug */
 			otmp->oerodeproof = 1;

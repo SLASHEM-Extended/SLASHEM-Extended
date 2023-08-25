@@ -609,7 +609,7 @@ RANDOM_PLACES:(11,17),(36,17),(61,17),(11,14),(36,14),(61,14)
 
 STAIR:(19,01),up
 
-OBJECT:'[',"helmet",place[0],blessed,0,"Helm of Storms"
+OBJECT:'[',"standard helmet",place[0],blessed,0,"Helm of Storms"
 MONSTER:'@',"Arabella",place[0],hostile
 
 # Sub-bosses

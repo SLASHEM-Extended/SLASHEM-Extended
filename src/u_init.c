@@ -283,7 +283,7 @@ static struct trobj Erdrick[] = {
 	{ ANTI_CASTER_CLOAK, -5, ARMOR_CLASS, 1, 0 },
 	{ SADO_MASO_GLOVES, -5, ARMOR_CLASS, 1, 0 },
 	{ STAIRWELL_STOMPING_BOOTS, -5, ARMOR_CLASS, 1, 0 },
-	{ HELMET, 1, ARMOR_CLASS, 1, 1 },
+	{ STANDARD_HELMET, 1, ARMOR_CLASS, 1, 1 },
 	{ TORCH, 0, TOOL_CLASS, 1, 0 },
 	{ EUCALYPTUS_LEAF, 0, FOOD_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -478,7 +478,7 @@ static struct trobj Jester[] = {
 
 	{ HAWAIIAN_SHIRT, 3, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ DUNCE_CAP, 3, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, GEM_CLASS, 27, UNDEF_BLESS },
 	{ DAGGER, 1, WEAPON_CLASS, 2, UNDEF_BLESS },
 	{ CREAM_PIE, 0, FOOD_CLASS, 10, UNDEF_BLESS },
@@ -751,7 +751,7 @@ static struct trobj Grenadonin[] = {
 	{ LEATHER_CLOAK, -4, ARMOR_CLASS, 1, 0 },
 	{ FEDORA, -1, ARMOR_CLASS, 1, 0 },
 	{ DRAGON_EYEPATCH, 0, TOOL_CLASS, 1, 0 },
-	{ LEATHER_GLOVES, -6, ARMOR_CLASS, 1, 0 },
+	{ REGULAR_GLOVES, -6, ARMOR_CLASS, 1, 0 },
 	{ AMULET_OF_QUICK_ATTACK, 0, AMULET_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
@@ -903,7 +903,7 @@ static struct trobj Gunner[] = {
 static struct trobj DoomMarine[] = {
 	{ PISTOL, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, 0 },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, 0 },
 	{ IRON_SHOES, 0, ARMOR_CLASS, 1, 0 },
 	{ COMMANDER_SUIT, 0, ARMOR_CLASS, 1, 0 },
 	{ HELM_OF_UNDERWATER_ACTION, 0, ARMOR_CLASS, 1, 0 },
@@ -1183,7 +1183,7 @@ static struct trobj ShoeFetishist[] = {
 
 static struct trobj Healer[] = {
 	{ SCALPEL, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ STETHOSCOPE, 0, TOOL_CLASS, 1, 0 },
 	{ MEDICAL_KIT, 0, TOOL_CLASS, 1, 0 },        
 	{ POT_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
@@ -1213,12 +1213,12 @@ static struct trobj Ice_Mage[] = {
 };
 static struct trobj Jedi[] = {
 	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 static struct trobj ShadowJedi[] = {
 	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ BLACK_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
@@ -1261,7 +1261,7 @@ static struct trobj WhiteDoubleSaber[] = {
 static struct trobj BorgItems[] = {
 	{ RED_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
 };
 
@@ -1277,9 +1277,9 @@ static struct trobj Knight[] = {
 	{ LONG_SWORD, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ LANCE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ PLATE_MAIL, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ HELMET, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ STANDARD_HELMET, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ LARGE_SHIELD, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ APPLE, 0, FOOD_CLASS, 10, 0 },
 	{ CARROT, 0, FOOD_CLASS, 10, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -1299,9 +1299,9 @@ static struct trobj Wandkeeper[] = {
 static struct trobj Paladin[] = {
 	{ LONG_SWORD, 3, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ LARGE_SHIELD, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ HELMET, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ STANDARD_HELMET, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ STUDDED_LEATHER_ARMOR, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ LOW_BOOTS, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
 	{ FOOD_RATION, 0, FOOD_CLASS, 4, UNDEF_BLESS },
@@ -1314,7 +1314,7 @@ static struct trobj FoxhoundAgent[] = {
 	{ FEDORA, 0, ARMOR_CLASS, 1, 1 },
 	{ KICKING_BOOTS, 0, ARMOR_CLASS, 1, 0 },
 	{ ELVEN_CLOAK, 2, ARMOR_CLASS, 1, 1 },
-	{ LEATHER_GLOVES, 1, ARMOR_CLASS, 1, 0 },
+	{ REGULAR_GLOVES, 1, ARMOR_CLASS, 1, 0 },
 	{ LEMBAS_WAFER, 0, FOOD_CLASS, 2, UNDEF_BLESS },
 	{ K_RATION, 0, FOOD_CLASS, 3, UNDEF_BLESS },
 	{ ASIAN_PEAR, 0, FOOD_CLASS, 10, 0 },
@@ -1367,7 +1367,7 @@ static struct trobj DollMistress[] = {
 
 static struct trobj Monk[] = {
 #define M_BOOK		2
-	{ LEATHER_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
@@ -1384,7 +1384,7 @@ static struct trobj Monk[] = {
 
 static struct trobj HalfBaked[] = {
 #define HBA_BOOK		1
-	{ LEATHER_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ POT_HEALING, 0, POTION_CLASS, 3, UNDEF_BLESS },
@@ -1405,7 +1405,7 @@ static struct trobj Saiyan[] = {
 
 static struct trobj Psion[] = {
 #define PS_BOOK		2
-	{ LEATHER_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
@@ -1424,7 +1424,7 @@ static struct trobj Noble[] = {
 #define NOB_SHIRT	1
 	{ RAPIER, 2, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ RUFFLED_SHIRT, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ LEATHER_CLOAK, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, RING_CLASS, 1, UNDEF_BLESS },
 	{ APPLE, 0, FOOD_CLASS, 10, 0 },
@@ -1678,7 +1678,7 @@ static struct trobj Pickpocket[] = {
 	{ DAGGER, 0, WEAPON_CLASS, 10, 0 },
 	{ KNIFE, 0, WEAPON_CLASS, 2, 0 },
 	{ LOCK_PICK, 0, TOOL_CLASS, 1, 0 },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ CLOAK_OF_DISPLACEMENT, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 
 	{ 0, 0, 0, 0, 0 }
@@ -1845,8 +1845,8 @@ static struct trobj Yautja[] = {
 };
 
 static struct trobj Quarterback[] = {
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, 0 },
-	{ HELMET, 0, ARMOR_CLASS, 1, 0 },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, 0 },
+	{ STANDARD_HELMET, 0, ARMOR_CLASS, 1, 0 },
 	{ BASEBALL_BAT, 2, WEAPON_CLASS, 1, 1 },
 	{ PISTOL_BULLET, 0, WEAPON_CLASS, 50, 0 },
 	{ POT_BOOZE, 0, POTION_CLASS, 6, 0 },
@@ -1962,7 +1962,7 @@ static struct trobj Mason[] = {
 	{ WAR_HAMMER, 4, WEAPON_CLASS, 1, 0 },
 	{ PICK_AXE, 3, TOOL_CLASS, 1, 0 },
 	{ CHAIN_MAIL, 0, ARMOR_CLASS, 1, 0 },
-	{ HELMET, 0, ARMOR_CLASS, 1, 0 },
+	{ STANDARD_HELMET, 0, ARMOR_CLASS, 1, 0 },
 	{ SCR_LOCKOUT, 0, SCROLL_CLASS, 3, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
@@ -2037,7 +2037,7 @@ static struct trobj UndeadSlayer[] = {
 	{ WOODEN_STAKE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ SILVER_SPEAR, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ SILVER_DAGGER, 0, WEAPON_CLASS, 5, UNDEF_BLESS },
-	{ HELMET, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ STANDARD_HELMET, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ CHAIN_MAIL, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ CLOVE_OF_GARLIC, 0, FOOD_CLASS, 5, 1 },
 	{ SPRIG_OF_WOLFSBANE, 0, FOOD_CLASS, 5, 1 },
@@ -2101,7 +2101,7 @@ static struct trobj Yeoman[] = {
 	{ PARTISAN, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ LEATHER_ARMOR, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ HIGH_BOOTS, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ LEATHER_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ APPLE, 0, FOOD_CLASS, 10, 0 },
 	{ CARROT, 0, FOOD_CLASS, 10, 0 },
 	{ POT_WATER, 0, POTION_CLASS, 3, 0 },
@@ -3377,7 +3377,7 @@ static struct inv_sub { int race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_ELF,	SHORT_SWORD,		ELVEN_SHORT_SWORD     },
     { PM_ELF,	BOW,			ELVEN_BOW	      },
     { PM_ELF,	ARROW,			ELVEN_ARROW	      },
-    { PM_ELF,	HELMET,			ELVEN_LEATHER_HELM    },
+    { PM_ELF,	STANDARD_HELMET,			ELVEN_LEATHER_HELM    },
  { PM_ELF,	SMALL_SHIELD,		ELVEN_SHIELD	      },
     { PM_ELF,	CLOAK_OF_DISPLACEMENT,	ELVEN_CLOAK	      },
     { PM_ELF,	CRAM_RATION,		LEMBAS_WAFER	      },
@@ -3386,13 +3386,13 @@ static struct inv_sub { int race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_ORC,	SHORT_SWORD,		ORCISH_SHORT_SWORD    },
     { PM_ORC,	BOW,			ORCISH_BOW	      },
     { PM_ORC,	ARROW,			ORCISH_ARROW	      },
-    { PM_ORC,	HELMET,			ORCISH_HELM	      },
+    { PM_ORC,	STANDARD_HELMET,			ORCISH_HELM	      },
     { PM_ORC,	SMALL_SHIELD,		ORCISH_SHIELD	      },
     { PM_ORC,	RING_MAIL,		ORCISH_RING_MAIL      },
     { PM_ORC,	CHAIN_MAIL,		ORCISH_CHAIN_MAIL     },
     { PM_DWARF, SPEAR,			DWARVISH_SPEAR	      },
     { PM_DWARF, SHORT_SWORD,		DWARVISH_SHORT_SWORD  },
-    { PM_DWARF, HELMET,			DWARVISH_IRON_HELM    },
+    { PM_DWARF, STANDARD_HELMET,			DWARVISH_IRON_HELM    },
  { PM_DWARF, SMALL_SHIELD,		DWARVISH_ROUNDSHIELD  },
  { PM_DWARF, PICK_AXE,		DWARVISH_MATTOCK      },
  { PM_DWARF, BATTLE_AXE,		DWARVISH_BATTLE_AXE      },
@@ -3408,7 +3408,7 @@ static struct inv_sub { int race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_DROW,		ARROW,			DARK_ELVEN_ARROW      },
     { PM_DROW,		CROSSBOW,			DROVEN_CROSSBOW      },
     { PM_DROW,		CROSSBOW_BOLT,			DROVEN_BOLT      },
-	 { PM_GNOME, HELMET,	GNOMISH_HELM },
+	 { PM_GNOME, STANDARD_HELMET,	GNOMISH_HELM },
 	 { PM_GNOME, LOW_BOOTS, GNOMISH_BOOTS },
 	 { PM_GNOME, HIGH_BOOTS, GNOMISH_BOOTS },
 	 { PM_GNOME, LEATHER_ARMOR, GNOMISH_SUIT },
@@ -31031,7 +31031,7 @@ register struct trobj *trop;
                 objX->cursed = TRUE;
                 objX->enchantment = HALF_PHDAM;
             }
-            if (objX->otyp == LEATHER_GLOVES && Role_if(PM_GRENADONIN) ) {
+            if (objX->otyp == REGULAR_GLOVES && Role_if(PM_GRENADONIN) ) {
                 objX->cursed = TRUE;
                 objX->enchantment = WARN_UNDEAD;
             }
@@ -31255,7 +31255,7 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
                 obj->enchantment = HALF_PHDAM;
             }
-            if (obj->otyp == LEATHER_GLOVES && Role_if(PM_GRENADONIN) ) {
+            if (obj->otyp == REGULAR_GLOVES && Role_if(PM_GRENADONIN) ) {
                 obj->cursed = TRUE;
                 obj->enchantment = WARN_UNDEAD;
             }

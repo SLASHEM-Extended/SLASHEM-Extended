@@ -8179,7 +8179,7 @@ OBJECT:')', "runesword", contained, blessed, 3
 OBJECT:')', "halberd", contained, blessed, 3
 OBJECT:')', "bullwhip", contained, blessed, 3
 OBJECT:'[', "shield of reflection", contained, blessed, 3
-OBJECT:'[', "helmet", contained, blessed, 3
+OBJECT:'[', "standard helmet", contained, blessed, 3
 OBJECT:'[', "crystal plate mail", contained, blessed, 3
 OBJECT:'[', "cloak of magic resistance", contained, blessed, 3
 TRAP:"statue", place[4]
@@ -8948,7 +8948,7 @@ OBJECT:')', "runesword", contained, blessed, 3
 OBJECT:')', "halberd", contained, blessed, 3
 OBJECT:')', "bullwhip", contained, blessed, 3
 OBJECT:'[', "shield of reflection", contained, blessed, 3
-OBJECT:'[', "helmet", contained, blessed, 3
+OBJECT:'[', "standard helmet", contained, blessed, 3
 OBJECT:'[', "crystal plate mail", contained, blessed, 3
 OBJECT:'[', "cloak of magic resistance", contained, blessed, 3
 TRAP:"statue", place[4]

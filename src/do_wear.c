@@ -2039,7 +2039,7 @@ Helmet_on()
 		flags.botl = 1;
 		break;
 	case PLASTEEL_HELM:
-	case HELMET:
+	case STANDARD_HELMET:
 
 	case NURSE_CAP:
 	case KATYUSHA:
@@ -2468,7 +2468,7 @@ Helmet_off()
 	    flags.botl = 1;
 	    return 0;
 	case PLASTEEL_HELM:
-	case HELMET:
+	case STANDARD_HELMET:
 
 	case NURSE_CAP:
 	case KATYUSHA:
@@ -2692,7 +2692,7 @@ Gloves_on()
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
 	case ROCKET_GAUNTLETS:
-	case LEATHER_GLOVES:
+	case REGULAR_GLOVES:
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
 	case GAUNTLETS_OF_SLOWING:
@@ -3018,7 +3018,7 @@ Gloves_off()
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
 	case ROCKET_GAUNTLETS:
-	case LEATHER_GLOVES:
+	case REGULAR_GLOVES:
 	case OILSKIN_GLOVES:
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
