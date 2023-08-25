@@ -3752,7 +3752,7 @@ jediskip:
 		}
 	}
 
-	if (!isdemagogue) {
+	if (!isdemagogue && !u.demagoguepersist) {
 
 	if (!tech_known(T_DISARM) && (P_SKILL(skill) == P_SKILLED) && 
     		skill <= P_LAST_WEAPON && skill != P_WHIP) {
@@ -5451,7 +5451,17 @@ int degree;
 
     if (skill != P_NONE) {
 
-	if (isdemagogue) {
+	if (u.demagoguepersist && !isdemagogue) {
+
+		if (P_ADVANCE(skill) == 0) return; /* fix exploits */
+		if (P_ADVANCE(skill) < degree) P_ADVANCE(skill) = 0;
+		else P_ADVANCE(skill) -= degree;
+		if (!P_RESTRICTED(skill)) {
+			skill_sanity_check(skill);
+		}
+		return; /* important!!! if you recursed away from demagogue before turn 100k, skills still may not train! */
+
+	} else if (isdemagogue) {
 
 		if (P_ADVANCE(skill) == 0) return; /* fix exploits */
 

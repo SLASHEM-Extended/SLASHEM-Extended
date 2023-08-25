@@ -653,6 +653,15 @@ nh_timeout()
 	}
 	if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
 
+	if (u.tumblrerpersist) u.tumblrerpersist--;
+	if (u.tumblrerpersist < 0) u.tumblrerpersist = 0; /* fail safe */
+
+	if (u.addictpersist) u.addictpersist--;
+	if (u.addictpersist < 0) u.addictpersist = 0; /* fail safe */
+
+	if (u.demagoguepersist) u.demagoguepersist--;
+	if (u.demagoguepersist < 0) u.demagoguepersist = 0; /* fail safe */
+
 	if (u.soviettemporary) {
 		u.soviettemporary--;
 	}

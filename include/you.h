@@ -697,6 +697,10 @@ struct you {
 	int soviettemporary;	/* for fleecey light */
 	int evilvartemporary;	/* for fleecey light */
 
+	int tumblrerpersist;	/* starting as tumblrer */
+	int addictpersist;	/* starting as addict */
+	int demagoguepersist;	/* starting as demagogue */
+
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
 
 	boolean antiamysquad;	/* monster that gives its speech only once */

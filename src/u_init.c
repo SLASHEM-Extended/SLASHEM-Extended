@@ -11384,6 +11384,13 @@ u_init()
 	if (Role_if(PM_WEIRDBOY)) u.casinochips++;
 	if (Role_if(PM_GANGSTER)) u.casinochips += 2;
 
+	u.tumblrerpersist = 0;
+	if (Race_if(PM_TUMBLRER)) u.tumblrerpersist = 100000;
+	u.addictpersist = 0;
+	if (Race_if(PM_ADDICT)) u.addictpersist = 100000;
+	u.demagoguepersist = 0;
+	if (Role_if(PM_DEMAGOGUE)) u.demagoguepersist = 100000;
+
 	u.superspecialspell = -1;
 
 	/* set player's haircut to a random value at game start --Amy */
