@@ -1458,7 +1458,7 @@ specdungeoninit()
 	for (x = 0; x < COLNO; x++)
 	  for (y = 0; y < ROWNO; y++) {
 
-		if (isok(x,y) && In_illusorycastle(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(10)) {
+		if (isok(x,y) && In_illusorycastle(&u.uz) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && !rn2(20)) {
 			levl[x][y].typ = randomwalltype();
 
 		}
