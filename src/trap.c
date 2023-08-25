@@ -5350,7 +5350,7 @@ newegomon:
 
 		if (u.ualign.type == A_NEUTRAL) adjalign(1);
 
-		switch (rnd(40)) {
+		switch (rnd(42)) {
 			case 1:
 			case 2:
 			case 3:
@@ -5365,7 +5365,9 @@ newegomon:
 				break;
 
 			case 5:
-				pline("The water is bad!");
+				if (!rn2(10)) pline("The water is bad, because of course it is!");
+				else pline("The water is bad!");
+				if (!rn2(10)) pline("Reminder: do not quaff from fountains!");
 				badeffect();
 				break;
 
@@ -5387,19 +5389,29 @@ newegomon:
 				break;
 
 			case 7:
-				pline("Ulch - the water was radioactive!");
-				contaminate(rnd(10 + level_difficulty()), TRUE);
+
+				if (rn2(10)) {
+					pline("Ulch - the water was radioactive!");
+					contaminate(rnd(10 + level_difficulty()), TRUE);
+				} else {
+					pline("Urrgh, this water must be extremely radioactive, and you wish you hadn't made the error of quaffing it.");
+					contaminate(rnz(100 + (level_difficulty() * 5)), TRUE);
+				}
 				break;
 
 			case 8:
-				{
+			{
 				int pm = rn2(5) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
 				if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
 				if (pm && (pm != NON_PM)) {
 					(void) makemon(&mons[pm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
 					pline("An angry demon climbs out of the fountain...");
+					if (!rn2(5)) {
+						pline("Now you're probably dead. If you hadn't quaffed from the fountain, you might have lived.");
+						if (!rn2(3)) pline("If you play really well now, you may still survive, but chances are you'll bash at the level 98 demon lord with your puny level %d char like a complete dorf and get all surprised when you (expectably) die.", u.ulevel);
+					}
 				}
-				}
+			}
 			break;
 
 			case 9:
@@ -5447,6 +5459,7 @@ newegomon:
 				register struct obj *crsobj;
 
 				pline("This water's no good!");
+				if (!rn2(5)) pline("Told ya that only noobs quaff from fountains.");
 				morehungry(rn1(20, 11));
 				exercise(A_CON, FALSE);
 				for(crsobj = invent; crsobj ; crsobj = crsobj->nobj)
@@ -5548,7 +5561,56 @@ newegomon:
 				newuhs(FALSE);
 				break;
 			case 28:
+				if (!rn2(5)) {
+					forget(rnd(20));
+					You_feel("a loss of memory. Maybe you shouldn't have quaffed from the fountain.");
+					if (!rn2(10)) pline("In fact, maybe you shouldn't be quaffing from fountains at all if you want to live.");
+				} else {
+					int ulx, uly;
+					for (ulx = 1; ulx < (COLNO); ulx++)
+				        for (uly = 0; uly < (ROWNO); uly++) {
+						levl[ulx][uly].lit = 0;
+					}
+
+					int heavyfountain = rnz(5000);
+					make_hallucinated(HHallucination + heavyfountain,FALSE,0L);
+					set_itimeout(&HeavyHallu, HHallucination);
+					u.uprops[DEAC_HALLUC_RES].intrinsic += heavyfountain;
+					pline("All the lights go out, in this disco hell...");
+				}
+				break;
 			case 29:
+				switch (rnd(6)) {
+
+					case 1:
+						make_inverted(rnz(5000));
+						pline("Well uhh, seems you're walking upside down. Shoulda stayed away from the stupid fountain.");
+						break;
+					case 2:
+						make_wincing(rnz(50000)); /* no, this number is not a typo --Amy */
+						pline("A feeling of pain shoots into your body, and doesn't seem to be going away any time soon! Why did you quaff from a fountain in the first place? Some genius you are!");
+						break;
+					case 3:
+						u.inertia += rnz(1000);
+						pline("E v e r y t h i n g   i s   m o v i n g   i n   s l o w   m o t i o n . . .   Y o u   g e t   t h e   f e e l i n g   t h a t   f o u n t a i n   q u a f f i n g   i s   b a d .");
+						break;
+					case 4:
+						incr_itimeout(&HMap_amnesia, rnz(100 * (monster_difficulty() + 1) ) );
+						pline("Somehow, your memory is lost...");
+						if (!rn2(5)) pline("An inner voice tells you that you should finally stop the bad habit of fountain quaffing or your characters will keep dying.");
+						break;
+					case 5:
+						make_magicvacuum(rnz(5000));
+						pline("A dark void enters your %s. Whatever was in the water, it wasn't healthy, and if your intelligence is above 3, you will now stop quaffing from fountains for the rest of your SLEX playing career.", body_part(HEAD));
+						if (ACURR(A_INT) < 4) pline("Sadly, you seem to be very stupid though, so you'll continue quaffing and wonder why your chars keep dying.");
+						break;
+					case 6:
+						make_burdened(rnz(5000));
+						pline("Now you're burdened because you didn't get the memo that you *do not quaff from fountains*. Your fault.");
+						break;
+				}
+				break;
+
 			case 30:
 			case 31:
 			case 32:
