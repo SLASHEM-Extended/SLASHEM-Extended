@@ -15413,6 +15413,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (flags.hybridstunfish && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "stunned-like-a-fish ");
 	if (flags.hybridkillfiller && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "killfiller ");
 	if (flags.hybridbadstatter && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "badstatter ");
+	if (flags.hybriddroughter && (hybridcount++ < 20)) sprintf(eos(xtrabuf), "droughter ");
 	if (hybridcount >= 20) sprintf(eos(xtrabuf), "(%d hybrids) ", hybridcount);
 
 	if (new_game) { /* for recursion trap */
@@ -18738,7 +18739,8 @@ get_realtime(void)
 }
 #endif /* REALTIME_ON_BOTL || RECORD_REALTIME */
 
-/* if enough game time has elapsed, things in the player's favor happen less often --Amy */
+/* if enough game time has elapsed, things in the player's favor happen less often --Amy
+ * "droughter" hybrid race gives the values of an old, unbalanced SLEX version where you really don't get any loot */
 boolean
 timebasedlowerchance()
 {
@@ -18751,85 +18753,164 @@ timebasedlowerchance()
 	if (u.uevent.invoked && (rnd(10) > 3)) return FALSE;
 	if (!(u.uevent.invoked) && !(flags.wonderland && !(u.wonderlandescape)) && In_lategame(&u.uz) && !rn2(5)) return FALSE;
 
-	int chance = 133;
+	int chance = isdroughter ? 115 : 133;
 	chance -= (moves * 100 / u.monstertimefinish);
 	/* make sure we don't fall off the bottom */
-	if (chance < 33) chance = 33;
+
+	if (isdroughter) {
+		if (chance < 15) chance = 15;
+	} else {
+		if (chance < 33) chance = 33;
+	}
 
 	if (moves > 20000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
 	if (moves > 40000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
 	if (moves > 60000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
 	if (moves > 80000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
 	if (moves > 100000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
-	if (moves > 120000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+	if (moves > 120000 && (!rn2(2) || isdroughter)) {
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
-	if (moves > 140000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+	if (moves > 140000 && (!rn2(2) || isdroughter)) {
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
-	if (moves > 160000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+	if (moves > 160000 && (!rn2(2) || isdroughter)) {
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
-	if (moves > 180000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+	if (moves > 180000 && (!rn2(2) || isdroughter)) {
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
-	if (moves > 200000 && !rn2(2)) {
-		chance *= 19;
-		chance /= 20;
+	if (moves > 200000 && (!rn2(2) || isdroughter)) {
+		if (isdroughter) {
+			chance *= 9;
+			chance /= 10;
+		} else {
+			chance *= 19;
+			chance /= 20;
+		}
 	}
 
 	if (In_quest(&u.uz)) {
-		chance /= rnd(2);
+		if (isdroughter) {
+			chance /= 2;
+		} else {
+			chance /= rnd(2);
+		}
 	}
 
 	if ((In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) && !rn2(2)) {
-		chance *= 2;
-		chance /= rn1(2,2);
+		if (isdroughter) {
+			chance /= rnd(2);
+		} else {
+			chance *= 2;
+			chance /= rn1(2,2);
+		}
 	}
 
 	if (In_yendorian(&u.uz) && !(flags.wonderland && !(u.wonderlandescape)) && !rn2(2) ) {
-		chance *= 3;
-		chance /= rn1(3,3);
+		if (isdroughter) {
+			chance /= rnd(3);
+		} else {
+			chance *= 3;
+			chance /= rn1(3,3);
+		}
 	}
 
 	if ((In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) && !rn2(2) ) {
-		chance *= 3;
-		chance /= rn1(3,3);
+		if (isdroughter) {
+			chance /= rnd(3);
+		} else {
+			chance *= 3;
+			chance /= rn1(3,3);
+		}
 	}
 
 	if (In_rivalquest(&u.uz) || In_subquest(&u.uz) || In_bellcaves(&u.uz)) {
-		chance /= rnd(5);
+		if (isdroughter) {
+			chance /= 5;
+		} else {
+			chance /= rnd(5);
+		}
 	}
 
-	if (chance < 10) chance = 10; /* always at least a 10% chance of getting it --Amy */
+	if (isdroughter) {
+		if (chance < 5) chance = 5; /* always at least a 5% chance of getting it --Amy */
+	} else {
+		if (chance < 10) chance = 10; /* always at least a 10% chance of getting it --Amy */
+	}
 	/* edit: actually 9%, i.e. the rnd below is not a typo */
 
 	if (chance > rnd(100)) return(TRUE); /* the effect will happen despite the lower chance */

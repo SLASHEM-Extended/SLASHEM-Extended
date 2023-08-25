@@ -6294,6 +6294,21 @@ const struct Race races[] = {
 	{  6, 0,  0, 6,  2, 0 },	/* Hit points */
 	{  3, 0,  3, 0,  2, 0 }		/* Energy */
 },
+{	"droughter", "droughter", "drought", "Dgh",
+	{0, 0},
+	PM_DROUGHTER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
+	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
 {	"drow", "droven", "drovenkind", "Dro",
 	{0, 0},
 	PM_DROW, NON_PM, PM_DROW_MUMMY, PM_DROW_ZOMBIE,
@@ -10053,6 +10068,7 @@ int rolenum, gendnum, alignnum, pickhow;
 {
     int i;
     int races_ok = 0;
+    int tryct = 0;
 
     for (i = 0; i < SIZE(races)-1; i++) {
 	if (ok_race(rolenum, i, gendnum, alignnum))
@@ -10068,7 +10084,7 @@ int rolenum, gendnum, alignnum, pickhow;
 		    if (!rn2(10) && !flags.hybridcancel && flags.randomhybrids) {	/* hybrid races --Amy */
 
 			flags.hybridization++;
-			switch (rnd(47)) {
+			switch (rnd(48)) {
 
 				case 1:
 					flags.hybridangbander = 1; break;
@@ -10164,12 +10180,16 @@ int rolenum, gendnum, alignnum, pickhow;
 					flags.hybridkillfiller = 1; break;
 				case 47:
 					flags.hybridbadstatter = 1; break;
+				case 48:
+					flags.hybriddroughter = 1; break;
 
 			}
 
-			while ((rnd(7)) < 3) {
+			while (((rnd(7)) < 3) && (tryct < 100) ) {
 
-				switch (rnd(47)) {
+				tryct++;
+
+				switch (rnd(48)) {
 	
 					case 1:
 						if (!(flags.hybridangbander)) {flags.hybridangbander = 1; flags.hybridization++; break;
@@ -10312,7 +10332,10 @@ int rolenum, gendnum, alignnum, pickhow;
 					case 47:
 						if (!(flags.hybridbadstatter)) {flags.hybridbadstatter = 1; flags.hybridization++; break;
 						}
-	
+					case 48:
+						if (!(flags.hybriddroughter)) {flags.hybriddroughter = 1; flags.hybridization++; break;
+						}
+
 				}
 			}
 
@@ -10468,7 +10491,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(47)) {
+			switch (rnd(48)) {
 
 			case 1:
 				if (flags.hybridangbander) {
@@ -10846,6 +10869,14 @@ int type;
 					pline("You no longer have the badstatter hybrid race.");
 				}
 				break;
+			case 48:
+				if (flags.hybriddroughter) {
+					tryct = 1000;
+					flags.hybriddroughter = FALSE;
+					flags.hybridization--;
+					pline("You no longer have the droughter hybrid race.");
+				}
+				break;
 
 			} /* end switch case */
 		}
@@ -10854,7 +10885,7 @@ int type;
 
 		while (tryct++ < 1000) {
 
-			switch (rnd(47)) {
+			switch (rnd(48)) {
 
 			case 1:
 				if (!flags.hybridangbander) {
@@ -11230,6 +11261,14 @@ int type;
 					flags.hybridbadstatter = TRUE;
 					flags.hybridization++;
 					pline("You now have the badstatter hybrid race.");
+				}
+				break;
+			case 48:
+				if (!flags.hybriddroughter) {
+					tryct = 1000;
+					flags.hybriddroughter = TRUE;
+					flags.hybridization++;
+					pline("You now have the droughter hybrid race.");
 				}
 				break;
 

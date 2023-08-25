@@ -6029,6 +6029,7 @@ static const char *epitaphs[] = {
 	"If a game developer just ignores feedback altogether and pretends to never have received your complaint, it's a sure sign that the game is terrible and should be stayed away from. A sensible developer would at least say 'no, won't change that' and thereby have the game qualify for the label of 'bad' (as opposed to 'utter heap of crap').",
 	"I want to play SLEX, and not constantly feel as if a sharp object is being poked into my ass rim.",
 	"I'd prefer to have a game that simply runs, over one that uses maybe 0.01%% less memory of which I have more than enough anyway and constantly bugs out.",
+	"Huh? Droughter hybrid race? Amy are you serious, how am I supposed to survive if monsters only drop a corpse 1 in 20 times they were supposed to drop one??? Unplayable game!!!!!!! You should remove that playable race so that players don't accidentally pick it!",
 
 };
 
