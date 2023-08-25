@@ -3756,6 +3756,14 @@ int dieroll;
 		if (tmp < 1) tmp = 1;
 	}
 
+	/* throwing launchers or ammo (if no suitable launcher is wielded) should still train the skill, but give no bonus */
+	if (tmp > 0 && thrown && obj && is_launcher(obj) && !valid_weapon_attack) {
+		use_skill(weapon_type(obj), 1);
+	}
+	if (tmp > 0 && thrown && obj && is_ammo(obj) && (!launcher || !ammo_and_launcher(obj, launcher)) && !valid_weapon_attack) {
+		use_skill(weapon_type(obj), 1);
+	}
+
 	if (valid_weapon_attack) {
 	    struct obj *wep;
 	    struct obj *thrwwep = (struct obj *)0;
