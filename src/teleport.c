@@ -2383,8 +2383,10 @@ boolean give_feedback;
 		else if (rloc_pos_ok(cc.x, cc.y, mtmp)) {
 		    rloc_to(mtmp, cc.x, cc.y);
 		    /* As rloc() ... */
-		    if (mtmp->isshk && !inhishop(mtmp))
+		    if (mtmp->isshk && !inhishop(mtmp) && issoviet) {
 			make_angry_shk(mtmp, omx, omy);
+			pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+		    }
 		} else {
 		    pline("Sorry...");
 		    rloc(mtmp, FALSE);
@@ -2406,7 +2408,10 @@ boolean give_feedback;
 
 	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
 
-	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
+	if (mtmp->isshk && issoviet) {
+		make_angry_shk(mtmp, 0, 0);
+		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	}
 
 			int nlev;
 			d_level flev;
@@ -2446,7 +2451,10 @@ boolean give_feedback;
 
 	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
 
-	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
+	if (mtmp->isshk && issoviet) {
+		make_angry_shk(mtmp, 0, 0);
+		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	}
 
 			int nlev;
 			d_level flev;
@@ -2472,7 +2480,10 @@ boolean give_feedback;
 
 	if (mtmp->data == &mons[PM_BAN_EVADING_TROLL]) return FALSE;
 
-	if (mtmp->isshk) make_angry_shk(mtmp, 0, 0);
+	if (mtmp->isshk && issoviet) {
+		make_angry_shk(mtmp, 0, 0);
+		pline("VA-KHA-KHA-KHA, lavochnik ub'yet tebya.");
+	}
 
 			int nlev;
 			d_level flev;
