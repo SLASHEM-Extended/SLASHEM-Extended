@@ -1086,6 +1086,7 @@ static const char *random_mesg[] = {
 	"This plane is rigged to blow when the altitude is below 1000 feet. Please sit back, relax, and enjoy the trip back down to the ground. It won't take long.",
 	"hey guys check out my new roguelike game!!! it has realtime combat and if you die you get some goodies to help you with your next run, but its fiendishly hard so its still a roguelike!!!!!!!111 check out super action dungeons of metaprogression now, the brand-new roguelike game!!!!", /* based on the noobies that appear on r/roguelikes every once in a while, who think they can just apply the term "roguelike" to any game because it's "popular" to apply that term in a completely wrong way --Amy */
 	"hey guys i'm making a turn-based roguelike! i totally feel like calling it that, to distinguish it from the many real-time roguelikes out there!!", /* ditto; if it's real-time it's not a roguelike, simple as that */
+	"dendelo ga di, wololololo di gad",
 
 };
 
@@ -6025,6 +6026,9 @@ static const char *epitaphs[] = {
 	"The best way to deal with random monsters with a wand of death in vanilla nethack before you can survive them is to pretend that they're not in the game and roll a new char if you do run into one. I'm fairly convinced that there's a game design problem if the game really plays like that.",
 	"Random instadeaths that you can't avoid are no fun! If there's special code that allows you to survive a death ray once even without reflection or MR, you'll still die to the next zap because the FILTHY monsters can CH3AT by moving and instantly zapping you again all in one turn, even if you moved such that you'd no longer be lined up with them!",
 	"Oh and I'll still maintain that Nethack sucks. This cannot be argued. Might as well have an 'Ultra Death' enemy that just has a random chance of spawning right next to you if you do literally anything. If it does, it instantly kills you just by having spawned and ignores the effects of Amulets of Life Saving in the process.",
+	"If a game developer just ignores feedback altogether and pretends to never have received your complaint, it's a sure sign that the game is terrible and should be stayed away from. A sensible developer would at least say 'no, won't change that' and thereby have the game qualify for the label of 'bad' (as opposed to 'utter heap of crap').",
+	"I want to play SLEX, and not constantly feel as if a sharp object is being poked into my ass rim.",
+	"I'd prefer to have a game that simply runs, over one that uses maybe 0.01%% less memory of which I have more than enough anyway and constantly bugs out.",
 
 };
 

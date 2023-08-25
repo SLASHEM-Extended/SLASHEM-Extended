@@ -14392,7 +14392,7 @@ boolean knoweverything;
 			case FLYING_BOOTS:
 				pline("A funny pair of boots with wings that allows the wearer to fly like an eagle."); break;
 			case BOOTS_OF_ACID_RESISTANCE:
-				pline("Wearing these boots grats the otherwise hard-to-get acid resistance property, but unfortunately it won't protect your equipment."); break;
+				pline("Wearing these boots grants the otherwise hard-to-get acid resistance property, but unfortunately it won't protect your equipment."); break;
 			case ELVEN_BOOTS:
 				pline("Wearers of this pair of boots can walk very quietly."); break;
 			case KICKING_BOOTS:

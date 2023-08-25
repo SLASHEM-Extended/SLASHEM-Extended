@@ -7919,6 +7919,7 @@ SCROLL((char *)0,               "EVERYONE WANTS TO DO A TAX DECLARATION",  P_NON
 SCROLL((char *)0,               "THERE IS A TRAIN STATION NAMED ABSATZSOHLENKOSTEN IN THE VOLCANIC EIFEL",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "WHAT YOU NEED IS A GENDERED WORK SPACE",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "KNOX KNAXORED",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "SAFE IUUEF NDRC GU B",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
