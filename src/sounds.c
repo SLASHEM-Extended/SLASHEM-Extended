@@ -3888,6 +3888,8 @@ repairitemchoice:
 
 			register struct obj *metalmafiaotmp;
 
+metalmafiaagain:
+
 			metalmafiaotmp = getobj(allnoncount, "offer to the metal mafia");
 
 			if (!metalmafiaotmp) {
@@ -3917,6 +3919,7 @@ repairitemchoice:
 			if (metalmafiaotmp->owt < 20) {
 				useupall(metalmafiaotmp);
 				verbalize("That's scrap metal. I'll take it, but it's not gonna fetch much cash, so... gimme something better!");
+				goto metalmafiaagain;
 				break;
 			} else {
 				if (!rn2(5)) {
@@ -3932,11 +3935,13 @@ repairitemchoice:
 					} else {
 						useupall(metalmafiaotmp);
 						verbalize("Yeah, that thing's good, it'll sell for some cash, but I still need more. Gimme more metal!");
+						goto metalmafiaagain;
 					}
 					break;
 				} else {
 					useupall(metalmafiaotmp);
 					verbalize("Yeah, that thing's good, it'll sell for some cash, but I still need more. Gimme more metal!");
+					goto metalmafiaagain;
 					break;
 				}
 			}
