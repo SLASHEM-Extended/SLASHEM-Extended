@@ -958,7 +958,8 @@ doread()
 	"If we weren't meant to eat animals, why are they made out of meat?",
 	"If you don't like the food, I'll stab you",
 	"I am an alchemist; if you see me running, try to catch up...",
-	"Samantha the WHAMMM!!! ey wer hatsenn so gemacht dass man da nicht gelähmt wird ey!",
+	"Samantha the WHAMMM!!! ey wer hatsenn so gemacht dass man da nicht gelaehmt wird ey!",
+	"I beat all three acts of elona and Norne gave me a toilet as a reward!",
 
 	    };
 	    char buf[BUFSZ];

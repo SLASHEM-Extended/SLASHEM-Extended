@@ -1612,6 +1612,7 @@ int dieroll;
 	char unconventional[BUFSZ];	/* substituted for word "attack" in msg */
 	char saved_oname[BUFSZ];
 	char cutbuf[BUFSZ];
+	char buf[BUFSZ];
 
 	boolean sanitymessage = (u.usanity > rn2(1000));
 
@@ -5592,7 +5593,12 @@ melatechoice:
 			case 641: pline("Even though you slashed your blade across %s's body and %s's bleeding all over, %s doesn't stop fighting!", mon_nam(mon), mhe(mon), mhe(mon)); break;
 			case 642: pline("Your heavy hammer smashed %s's skull so powerfully that you expected %s to drop dead, but somehow %s survived!", mon_nam(mon), mhim(mon), mhe(mon)); break;
 			case 643: pline("You smashed %s in the %s with a force that should have knocked %s lights out, but %s narrowly deflected the blow and is only seriously injured.", mon_nam(mon), mbodypart(mon, FACE), mhis(mon), mhe(mon)); break;
-			case 644: pline("%s is knocked out, and the referee starts counting, 'One! Two! Three!' But when he reaches 7, %s gets back up and the fight continues.", Monnam(mon), mon_nam(mon)); break;
+			case 644: {
+
+				strcpy(buf, mon_nam(mon)); /* stupid bug is stupid --Amy */
+
+				pline("%s is knocked out, and the referee starts counting, 'One! Two! Three!' But when he reaches 7, %s gets back up and the fight continues.", Monnam(mon), buf); break;
+			}
 
 			default: pline("You hit %s!", mon_nam(mon)); break;
 	
@@ -6015,7 +6021,11 @@ melatechoice:
 				case 301: pline("%s's skull shatters under the force of your blow.", Monnam(mon)); break;
 				case 302: pline("%s's hip is crushed and bone shards puncture its femoral artery, bringing a quick death.", Monnam(mon)); break;
 				case 303: pline("%s spins as its %s is broken, struggles to breathe, and expires.", Monnam(mon), mbodypart(mon, NECK)); break;
-				case 304: pline("%s stumbles as its %s and shoulder are crushed to mid-torso while bones and wreckage are driven into it. Since all of %s's internal organs are destroyed, it falls over dead.", Monnam(mon), mbodypart(mon, ARM), mon_nam(mon)); break;
+				case 304: {
+					strcpy(buf, mon_nam(mon));
+
+					pline("%s stumbles as its %s and shoulder are crushed to mid-torso while bones and wreckage are driven into it. Since all of %s's internal organs are destroyed, it falls over dead.", Monnam(mon), mbodypart(mon, ARM), buf); break;
+				}
 				case 305: pline("You crush %s's lower torso and hip, who drops to its knees with %s gushing out of its mouth.", mon_nam(mon), mbodypart(mon, BLOOD)); break;
 				case 306: pline("Your hit didn't seem like much, but the bone driven into %s's kidney begs to differ. After a few seconds, %s dies of shock.", mon_nam(mon), mon_nam(mon)); break;
 				case 307: pline("You hit %s's %s from above and drive it into its torso, causing its to waddle in tearing pain before finally dying in agony.", mon_nam(mon), mbodypart(mon, HEAD)); break;
@@ -6093,7 +6103,11 @@ melatechoice:
 				case 379: pline("Your crushing bite cracks %s's skull.", mon_nam(mon)); break;
 				case 380: pline("%s suddenly finds it hard to breathe with its throat lying on the ground. It collapses next to it, dead.", Monnam(mon)); break;
 				case 381: pline("You hold %s's still beating heart in your feral claw... wait, never mind, it's stopped now.", mon_nam(mon)); break;
-				case 382: pline("%s's %s snaps as you snatch it and shake it back and forth. Then you drop %s on the ground and begin to feast.", Monnam(mon), mbodypart(mon, NECK), mon_nam(mon)); break;
+				case 382: {
+					strcpy(buf, mon_nam(mon));
+
+					pline("%s's %s snaps as you snatch it and shake it back and forth. Then you drop %s on the ground and begin to feast.", Monnam(mon), mbodypart(mon, NECK), buf); break;
+				}
 				case 383: pline("You manage to bite both of %s's %s apart. Then your teeth reach its %s cracking it, allowing you to eat %s whole.", mon_nam(mon), makeplural(mbodypart(mon, LEG)), mbodypart(mon, SPINE), mon_nam(mon)); break;
 				case 384: pline("You crush %s's %s including every bone from the calf to the ribs. Bone shards play billiards with its organs and %s vessels and it is dead before it slushes to the ground.", mon_nam(mon), mbodypart(mon, LEG), mbodypart(mon, BLOOD)); break;
 				case 385: pline("There's a release of tension in %s's midsection, who is unable to catch its guts as they spill out onto the ground.", mon_nam(mon)); break;
@@ -6235,7 +6249,11 @@ melatechoice:
 				case 521: pline("You crush %s's %s underneath your boots, whose %s turns blue as it suffocates.", mon_nam(mon), mbodypart(mon, STOMACH), mbodypart(mon, FACE)); break;
 				case 522: pline("You hack up %s's body with a knife, neatly transforming it into mincemeat.", mon_nam(mon)); break;
 				case 523: pline("You ensured that you don't have to clean the %s shoes!", l_monnam(mon)); break;
-				case 524: pline("You lock %s into a room with a wild vulture and watch joyfully as the poor %s sap is hacked to death by the very sharp claws.", mon_nam(mon), l_monnam(mon)); break;
+				case 524: {
+					strcpy(buf, l_monnam(mon));
+
+					pline("You lock %s into a room with a wild vulture and watch joyfully as the poor %s sap is hacked to death by the very sharp claws.", mon_nam(mon), buf); break;
+				}
 				case 525: pline("%s has prayed too often, causing the gods to become really angry and hit it with a wide-angle disintegration beam.", Monnam(mon)); break;
 				case 526: pline("%s tries to pray to its god to be protected from the attack, but forgot that praying in Gehennom doesn't work. As a result, it is killed by the wrath of the angry deity.", Monnam(mon)); break;
 				case 527: pline("%s guides your strike and allows you to defeat %s!", u_gname(), mon_nam(mon)); break;
@@ -6263,7 +6281,12 @@ melatechoice:
 				case 549: pline("You sink your sword deep into %s's chest and break several ribs.", mon_nam(mon)); break;
 				case 550: pline("With a well-placed chop, you puncture %s's %s, who falls over unconscious and then dies.", mon_nam(mon), mbodypart(mon, LUNG)); break;
 				case 551: pline("You manage to cut open %s's abdomen, and know that it will slowly die.", mon_nam(mon)); break;
-				case 552: pline("You severed %s's carotid artery and a fountain of %s drenches the room. %s bleeds spectacularly to death.", mon_nam(mon), mbodypart(mon, BLOOD), Monnam(mon)); break;
+				case 552: {
+
+					strcpy(buf, Monnam(mon));
+
+					pline("You severed %s's carotid artery and a fountain of %s drenches the room. %s bleeds spectacularly to death.", mon_nam(mon), mbodypart(mon, BLOOD), buf); break;
+				}
 				case 553: pline("Your mighty swing severs %s's %s across the breastbone, who stumbles backwards and dies.", mon_nam(mon), mbodypart(mon, ARM)); break;
 				case 554: pline("You cut open %s's skull and cleave its brain.", mon_nam(mon)); break;
 				case 555: pline("%s stops your blade with its torso, and has its ribs pierced and heart punctured, dying instantly.", Monnam(mon)); break;
@@ -6287,7 +6310,11 @@ melatechoice:
 				case 573: pline("Client %s sent a bogus command packet and is removed from the game.", m_monnam(mon)); break;
 				case 574: pline("Client %s sent an unreadable command packet and can no longer participate in this game.", m_monnam(mon)); break;
 				case 575: pline("You've learned how to use conqueror's haki, even though one has to be born with that, and make %s fall down unconscious.", mon_nam(mon)); break;
-				case 576: pline("%s is someone from the revolutinos army, who don't like marine guys like you at all, but the reverse is also true and therefore you shoot down %s now.", Monnam(mon), mon_nam(mon)); break;
+				case 576: {
+					strcpy(buf, mon_nam(mon));
+
+					pline("%s is someone from the revolutinos army, who don't like marine guys like you at all, but the reverse is also true and therefore you shoot down %s now.", Monnam(mon), buf); break;
+				}
 				case 577: pline("Your cannonball hits %s fully in the %s.", mon_nam(mon), mbodypart(mon, STOMACH)); break;
 				case 578: pline("Since you know that a guillotine trap is nearby, you lure %s to it, who is so stupid and actually triggers the trap, losing %s %s.", mon_nam(mon), mhis(mon), mbodypart(mon, HEAD)); break;
 				case 579: pline("As %s tries to push you into a bottomless pit, you dodge and thereby cause %s to fall in %sself.", mon_nam(mon), mhim(mon), mhim(mon)); break;
@@ -6397,7 +6424,11 @@ melatechoice:
 				case 683: pline("%s suddenly remembers that %s cannot see blood, and falls down unconscious from seeing the wound you gave to %s.", Monnam(mon), mhe(mon), mhim(mon)); break;
 				case 684: pline("You lamer used the screen-wide total annihilation ability, and %s simply dies. Great, maybe you should just use the autoplaythegameforyou command if you don't want to put in the effort for playing the game properly.", mon_nam(mon)); break;
 				case 685: pline("%s ignored a red traffic light, and is chased off the dungeon by the police.", Monnam(mon)); break;
-				case 686: pline("You deactivate the %s-floor collision detection, which results in %s falling through the floor to %s death.", l_monnam(mon), mon_nam(mon), mhis(mon)); break;
+				case 686: {
+					strcpy(buf, mon_nam(mon));
+
+					pline("You deactivate the %s-floor collision detection, which results in %s falling through the floor to %s death.", l_monnam(mon), buf, mhis(mon)); break;
+				}
 				case 687: pline("The double wanker of %s can suck cocks in hell now.", mon_nam(mon)); break;
 				case 688: pline("%s is crying %sy tears because you're so mean to %s.", Monnam(mon), mbodypart(mon, BLOOD), mhim(mon)); break;
 				case 689: pline("Good job, now you made %s sad because you're such an evil person.", mon_nam(mon)); break;
@@ -8857,6 +8888,7 @@ register int roll;
 	register boolean totalmiss = ((roll - target) > 20); /* tell the player if their to-hit is really sucky --Amy */
 	register struct obj *blocker = (struct obj *)0;
 	long mwflags = mdef->misc_worn_check;
+	char buf[BUFSZ];
 
 		/* 3 values for blocker
 		 *	No blocker:  (struct obj *) 0  
@@ -9390,7 +9422,7 @@ register int roll;
 		case 495: pline("You just know that you can't ever hope to compete with %s.", mon_nam(mdef)); break;
 		case 496: pline("%s makes a 'click' sound that reminds you of a timebomb, and you decide to back off.", Monnam(mdef)); break;
 		case 497: pline("For a moment, your conscience bothers you... and as a result, you don't follow through on your plan to attack %s.", mon_nam(mdef)); break;
-		case 498: pline("You cucumber wimp! You can't even hit the easy-to-hit %s!", mon_nam(mdef)); break;
+		case 498: pline("You cucumber wimp! You can't even hit the easy-to-hit %s!", l_monnam(mdef)); break;
 		case 499: pline("Whoa your attacks are so nooblike, no wonder you don't hit."); break;
 		case 500: pline("You fall down yet again."); break;
 		case 501: pline("Can you even get one single attack off? Sure doesn't seem like it!"); break;
@@ -9439,7 +9471,7 @@ register int roll;
 		case 544: pline("Now you look old, because %s fully pwns you.", mon_nam(mdef)); break;
 		case 545: pline("You try to sell %s, but fail.", mon_nam(mdef)); break;
 		case 546: pline("You'll never be able to rescue %s that way.", urole.homebase); break;
-		case 547: pline("If you can't even hit the wimpy %s, you can completely forgot about your mission to purge %s.", l_monnam(mdef), urole.intermed); break;
+		case 547: pline("If you can't even hit the wimpy %s, you can completely forget about your mission to purge %s.", l_monnam(mdef), urole.intermed); break;
 		case 548: pline("All your friends at %s are booing at the TV screen that shows you missing constantly with that little sword.", urole.homebase); break;
 		case 549: pline("You feel the voice of your worst enemy penetrate your mind from %s. It says: 'Ha ha ha, you tin can are no match for me.'", urole.intermed); break;
 		case 550: pline("Some guy comes and diverts you, so you forget to attack."); break;
@@ -9606,7 +9638,11 @@ register int roll;
 		case 711: pline("You hit %s with a superpowered attack that should have killed %s outright, but %s has the annoying property to occasionally nullify incoming damage!", mon_nam(mdef), mhim(mdef), mhe(mdef)); break;
 		case 712: pline("It seems that %s does not respect you!", mon_nam(mdef)); break;
 		case 713: pline("You are stupid enough to cast a spell of an element that %s is immune to, and end up dealing no damage!", mon_nam(mdef)); break;
-		case 714: pline("%s suddenly offers some food to you which you happily eat, but then you become infatuated with %s because %s apparently spiked the comestible with an aphrodisiac...", Monnam(mdef), mon_nam(mdef), mhe(mdef)); break;
+		case 714: {
+			strcpy(buf, mon_nam(mdef));
+
+			pline("%s suddenly offers some food to you which you happily eat, but then you become infatuated with %s because %s apparently spiked the comestible with an aphrodisiac...", Monnam(mdef), buf, mhe(mdef)); break;
+		}
 		case 715: pline("%s fell into the lava, but simply jumps back out unharmed!", Monnam(mdef)); break;
 		case 716: pline("You use your mundane iron weapon against %s, which does nothing because %s can't be harmed by non-silver weapons.", mon_nam(mdef), mhe(mdef)); break;
 		case 717: pline("%s hacks into the game code and reprograms it such that the player's melee attacks automatically miss every time.", Monnam(mdef)); break;
@@ -9720,7 +9756,11 @@ register int roll;
 		case 825: pline("%s knows that you'll never land a hit with that %s because you're just such a wimp.", Monnam(mdef), playerweaponname()); break;
 		case 826: pline("You get the fucked-ass corpse bug: because %s is standing on a corpse and the programmers are REALLY stupid, it registered as you striking the corpse instead of the alive monster, so your attack did no damage but still reduced your weapon's durability.", mon_nam(mdef)); break;
 		case 827: pline("You try to fire your gun straight at %s's %s but the aimbot, which cannot even be turned off because of the stupid programmer morons, thinks you are aiming for a different monster standing five feet away. The result is that the bullet doesn't hit anything at all.", mon_nam(mdef), mbodypart(mdef, FACE)); break;
-		case 828: pline("You try to fully hammer the annoying %s on the %s but unfortunately you're standing in waist-high water. As you draw back to attack, suddenly your body is just a tad too deep in the water and the STUPID programming aborts your attack entirely, while %s keeps fighting without having to face the same problems.", l_monnam(mdef), mbodypart(mdef, HEAD), mon_nam(mdef)); break;
+		case 828: {
+			strcpy(buf, mon_nam(mdef));
+
+			pline("You try to fully hammer the annoying %s on the %s but unfortunately you're standing in waist-high water. As you draw back to attack, suddenly your body is just a tad too deep in the water and the STUPID programming aborts your attack entirely, while %s keeps fighting without having to face the same problems.", l_monnam(mdef), mbodypart(mdef, HEAD), buf); break;
+		}
 		case 829: pline("You furiously try to smash %s's stupid %s in, but %s last hit knocked you back just far enough that your swing passes harmlessly through the air in front of %s.", mon_nam(mdef), mbodypart(mdef, FACE), mhis(mdef), mhim(mdef)); break;
 		case 830: pline("You want to rip apart every little bit of skin from the asshole that is %s, but you just don't seem to have the strength to land an effective hit!", mon_nam(mdef)); break;
 		case 831: pline("Even though you absolutely want to kill %s and devour %s corpse, you seem unable to hit %s at all!", mon_nam(mdef), mhis(mdef), mhim(mdef)); break;
