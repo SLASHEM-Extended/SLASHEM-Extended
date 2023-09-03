@@ -1948,6 +1948,13 @@ register struct attack *mattk;
 			}
 		}
 
+		if (objects[(blocker)->otyp].oc_material == MT_CHITIN && organivorous(mtmp->data) && !rn2(100)) {
+			if (blocker->spe > -20) {
+				blocker->spe--;
+				pline_The("chitin on your %s was gnawed a bit!", simple_typename(blocker->otyp));
+			}
+		}
+
 		/* evil patch idea: if equipment is used very often, it eventually degrades --Amy */
 
 		if (armorwilldull(blocker) && (rnd(7) > savechance) && !issoviet) {
@@ -6794,6 +6801,7 @@ struct monst *mon;
 	if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
 	if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
+	if (numberofwornadamantiumarmor() && (armpro < numberofwornadamantiumarmor())) armpro = numberofwornadamantiumarmor();
 
 	if (mon == &youmonst) {
 		if (u.magicshield) armpro += 1;
@@ -13129,7 +13137,7 @@ do_stone2:
 
 		    /* Mik: Go corrode a few things... */
 			/*for (otmp2 = invent; otmp2; otmp2 = otmp2->nobj)
-			    if (is_corrodeable(otmp2) && !rn2(9))
+			    if (is_corrodeable(otmp2) && !(objects[obj2->otyp].oc_material == MT_GREEN_STEEL && rn2(2)) && !rn2(9))
 		    		(void) rust_dmg(otmp2, xname(otmp2), 3, FALSE, 
 					&youmonst);*/
 			if(!rn2(3)) erode_armor(&youmonst, TRUE);
@@ -19435,7 +19443,7 @@ register struct obj *obj;
 
 	vis = cansee(mon->mx, mon->my);
 
-	if ((is_acid ? is_corrodeable(obj) : is_rustprone(obj)) && !stack_too_big(obj) &&
+	if ((is_acid ? (is_corrodeable(obj) && !(objects[obj->otyp].oc_material == MT_GREEN_STEEL && rn2(2)) ) : (is_rustprone(obj)) && !(objects[obj->otyp].oc_material == MT_COBALT && rn2(2)) && !(objects[obj->otyp].oc_material == MT_BRONZE && rn2(2)) ) && !stack_too_big(obj) &&
 	    (is_acid ? obj->oeroded2 : obj->oeroded) < MAX_ERODE) {
 		if (obj->greased || (obj->oartifact && rn2(4)) || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		        if (vis) pline("Somehow, %s weapon is not affected.",

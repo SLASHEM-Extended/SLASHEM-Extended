@@ -4427,82 +4427,6 @@ const char *nm;
 	return(otmp);
 }
 
-/* Amy grepping target: "materialeffect" */
-boolean
-is_flammable(otmp)
-register struct obj *otmp;
-{
-	int otyp = otmp->otyp;
-	int omat = objects[otyp].oc_material;
-
-	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
-		return (!(is_metallic(otmp)));
-	}
-
-	if (objects[otyp].oc_oprop == FIRE_RES || otyp == WAN_FIRE)
-		return FALSE;
-
-	if (objects[otyp].oc_material == MT_PLASTIC) return TRUE;
-	if (objects[otyp].oc_material == MT_VIVA) return TRUE;
-	if (objects[otyp].oc_material == MT_SILK) return TRUE;
-	if (objects[otyp].oc_material == MT_ARCANIUM) return TRUE;
-	if (objects[otyp].oc_material == MT_POURPOOR) return TRUE;
-	if (objects[otyp].oc_material == MT_ETHER) return TRUE;
-	if (objects[otyp].oc_material == MT_BRICK) return TRUE;
-	if (objects[otyp].oc_material == MT_NANOMACHINE) return TRUE;
-	if (objects[otyp].oc_material == MT_FOAM) return TRUE;
-	if (objects[otyp].oc_material == MT_TINSEL) return TRUE;
-	if (objects[otyp].oc_material == MT_AMBER) return TRUE;
-	if (objects[otyp].oc_material == MT_FILM) return TRUE;
-	if (objects[otyp].oc_material == MT_ALKALINE) return TRUE;
-	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_COMPOST && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_INKA && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_SHADOWSTUFF && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_OBSIDIAN && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_LEAD && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_CHROME && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_CERAMIC && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_CELESTIUM && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_PWN_BUBBLE && evilfriday) return TRUE;
-
-	if (omat <= MT_WOOD && omat != MT_LIQUID) return TRUE;
-	return FALSE;
-
-}
-
-boolean
-is_rottable(otmp)
-register struct obj *otmp;
-{
-	int otyp = otmp->otyp;
-	int omat = objects[otyp].oc_material;
-
-	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
-		return (!(is_metallic(otmp)));
-	}
-
-	if (objects[otyp].oc_material == MT_INKA) return TRUE;
-	if (objects[otyp].oc_material == MT_ARCANIUM) return TRUE;
-	if (objects[otyp].oc_material == MT_SECREE) return TRUE;
-	if (objects[otyp].oc_material == MT_COMPOST) return TRUE;
-	if (objects[otyp].oc_material == MT_BRICK) return TRUE;
-	if (objects[otyp].oc_material == MT_SAND) return TRUE;
-	if (objects[otyp].oc_material == MT_NANOMACHINE) return TRUE;
-	if (objects[otyp].oc_material == MT_ANTIDOTIUM) return TRUE;
-	if (objects[otyp].oc_material == MT_FOAM) return TRUE;
-	if (objects[otyp].oc_material == MT_SCRAP) return TRUE;
-	if (objects[otyp].oc_material == MT_AMBER) return TRUE;
-	if (objects[otyp].oc_material == MT_ALKALINE) return TRUE;
-	if (objects[otyp].oc_material == MT_BONE && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_SHADOWSTUFF && evilfriday) return TRUE;
-	if (objects[otyp].oc_material == MT_CELESTIUM && evilfriday) return TRUE;
-
-	if (omat <= MT_WOOD && omat != MT_LIQUID) return TRUE;
-	return FALSE;
-}
-
 /* for e.g. helmets: do they stop rocks? metal works, wood is supposed to be hard enough, most lithic materials too
  * keyword "materialeffect" --Amy */
 boolean
@@ -4529,9 +4453,98 @@ register struct obj *otmp;
 	if (objects[(otmp)->otyp].oc_material == MT_PWN_BUBBLE) return TRUE;
 	if (objects[(otmp)->otyp].oc_material == MT_MENGETIUM) return TRUE;
 	if (objects[(otmp)->otyp].oc_material == MT_AMBER) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_FIRMAMENT) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_ADAMANTIUM) return TRUE;
 
 	return FALSE;
 
+}
+
+/* Amy grepping target: "materialeffect" */
+boolean
+is_flammable(otmp)
+register struct obj *otmp;
+{
+	int otyp = otmp->otyp;
+	int omat = objects[otyp].oc_material;
+
+	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
+		return (!(is_metallic(otmp)));
+	}
+
+	if (objects[otyp].oc_oprop == FIRE_RES || otyp == WAN_FIRE)
+		return FALSE;
+
+	if (objects[otyp].oc_material == MT_PLASTIC) return TRUE;
+	if (objects[otyp].oc_material == MT_VIVA) return TRUE;
+	if (objects[otyp].oc_material == MT_SILK) return TRUE;
+	if (objects[otyp].oc_material == MT_ARCANIUM) return TRUE;
+	if (objects[otyp].oc_material == MT_POURPOOR) return TRUE;
+	if (objects[otyp].oc_material == MT_ALUMEN) return TRUE;
+	if (objects[otyp].oc_material == MT_ETHER) return TRUE;
+	if (objects[otyp].oc_material == MT_BRICK) return TRUE;
+	if (objects[otyp].oc_material == MT_NANOMACHINE) return TRUE;
+	if (objects[otyp].oc_material == MT_FOAM) return TRUE;
+	if (objects[otyp].oc_material == MT_CHITIN) return TRUE;
+	if (objects[otyp].oc_material == MT_TINSEL) return TRUE;
+	if (objects[otyp].oc_material == MT_AMBER) return TRUE;
+	if (objects[otyp].oc_material == MT_MERCURIAL) return TRUE;
+	if (objects[otyp].oc_material == MT_BAMBOO) return TRUE;
+	if (objects[otyp].oc_material == MT_FILM) return TRUE;
+	if (objects[otyp].oc_material == MT_ALKALINE) return TRUE;
+	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_COMPOST && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_INKA && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_SHADOWSTUFF && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_OBSIDIAN && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_LEAD && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CHROME && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CERAMIC && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_SHELL && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CELESTIUM && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_COBALT && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_MESH && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_PWN_BUBBLE && evilfriday) return TRUE;
+
+	if (omat <= MT_WOOD && omat != MT_LIQUID) return TRUE;
+	return FALSE;
+
+}
+
+boolean
+is_rottable(otmp)
+register struct obj *otmp;
+{
+	int otyp = otmp->otyp;
+	int omat = objects[otyp].oc_material;
+
+	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
+		return (!(is_metallic(otmp)));
+	}
+
+	if (objects[otyp].oc_material == MT_INKA) return TRUE;
+	if (objects[otyp].oc_material == MT_ARCANIUM) return TRUE;
+	if (objects[otyp].oc_material == MT_SECREE) return TRUE;
+	if (objects[otyp].oc_material == MT_COMPOST) return TRUE;
+	if (objects[otyp].oc_material == MT_BRICK) return TRUE;
+	if (objects[otyp].oc_material == MT_SAND) return TRUE;
+	if (objects[otyp].oc_material == MT_NANOMACHINE) return TRUE;
+	if (objects[otyp].oc_material == MT_BAMBOO) return TRUE;
+	if (objects[otyp].oc_material == MT_ANTIDOTIUM) return TRUE;
+	if (objects[otyp].oc_material == MT_CHITIN) return TRUE;
+	if (objects[otyp].oc_material == MT_CORAL) return TRUE;
+	if (objects[otyp].oc_material == MT_FOAM) return TRUE;
+	if (objects[otyp].oc_material == MT_MESH) return TRUE;
+	if (objects[otyp].oc_material == MT_SCRAP) return TRUE;
+	if (objects[otyp].oc_material == MT_AMBER) return TRUE;
+	if (objects[otyp].oc_material == MT_ALKALINE) return TRUE;
+	if (objects[otyp].oc_material == MT_BONE && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_DRAGON_HIDE && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_SHADOWSTUFF && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CELESTIUM && evilfriday) return TRUE;
+
+	if (omat <= MT_WOOD && omat != MT_LIQUID) return TRUE;
+	return FALSE;
 }
 
 /* keyword "materialeffect" --Amy */
@@ -4548,12 +4561,15 @@ register struct obj *otmp;
 	}
 
 	if (objects[otyp].oc_material == MT_IRON) return TRUE;
+	if (objects[otyp].oc_material == MT_SINNUM) return TRUE;
 	if (objects[otyp].oc_material == MT_SCRAP) return TRUE;
 	if (objects[otyp].oc_material == MT_ALLOY) return TRUE;
 	if (objects[otyp].oc_material == MT_INKA) return TRUE;
 	if (objects[otyp].oc_material == MT_ARCANIUM) return TRUE;
+	if (objects[otyp].oc_material == MT_BRONZE) return TRUE;
 	if (objects[otyp].oc_material == MT_POURPOOR) return TRUE;
 	if (objects[otyp].oc_material == MT_ETERNIUM) return TRUE;
+	if (objects[otyp].oc_material == MT_COBALT) return TRUE;
 	if (objects[otyp].oc_material == MT_ETHER) return TRUE;
 	if (objects[otyp].oc_material == MT_BRICK) return TRUE;
 	if (objects[otyp].oc_material == MT_TINSEL) return TRUE;
@@ -4575,10 +4591,14 @@ register struct obj *otmp;
 	}
 
 	if (objects[otyp].oc_material == MT_COPPER) return TRUE;
+	if (objects[otyp].oc_material == MT_BRONZE) return TRUE;
 	if (objects[otyp].oc_material == MT_IRON) return TRUE;
+	if (objects[otyp].oc_material == MT_SINNUM) return TRUE;
 	if (objects[otyp].oc_material == MT_VIVA) return TRUE;
+	if (objects[otyp].oc_material == MT_ALUMEN) return TRUE;
 	if (objects[otyp].oc_material == MT_TAR) return TRUE;
 	if (objects[otyp].oc_material == MT_ARCANIUM) return TRUE;
+	if (objects[otyp].oc_material == MT_COBALT) return TRUE;
 	if (objects[otyp].oc_material == MT_SECREE) return TRUE;
 	if (objects[otyp].oc_material == MT_POURPOOR) return TRUE;
 	if (objects[otyp].oc_material == MT_ETERNIUM) return TRUE;
@@ -4587,6 +4607,8 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == MT_FOAM) return TRUE;
 	if (objects[otyp].oc_material == MT_SCRAP) return TRUE;
 	if (objects[otyp].oc_material == MT_ALLOY) return TRUE;
+	if (objects[otyp].oc_material == MT_GREEN_STEEL) return TRUE;
+	if (objects[otyp].oc_material == MT_CORAL) return TRUE;
 	if (objects[otyp].oc_material == MT_TINSEL) return TRUE;
 	if (objects[otyp].oc_material == MT_LEAD && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_METAL && evilfriday) return TRUE;
@@ -4597,6 +4619,9 @@ register struct obj *otmp;
 	if (objects[otyp].oc_material == MT_NANOMACHINE && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_CONUNDRUM && evilfriday) return TRUE;
 	if (objects[otyp].oc_material == MT_AMBER && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_CHITIN && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_MESH && evilfriday) return TRUE;
+	if (objects[otyp].oc_material == MT_TITANIUM && evilfriday) return TRUE;
 
 	return FALSE;
 }

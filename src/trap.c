@@ -1820,6 +1820,7 @@ struct monst *victim;
     char buf[BUFSZ];
     int mat_idx;
 
+	if (victim == &youmonst && steelbreak()) return 0;
 	if (victim == &youmonst && FireImmunity) return 0;
 	if (victim == &youmonst && uarm && uarm->oartifact == ART_DARK_L) return 0;
 
@@ -1973,12 +1974,15 @@ struct monst *victim;
 			if (objects[otmp->otyp].oc_material == MT_ALKALINE && rn2(2)) vulnerable = FALSE;
 			break;
 		case 1: vulnerable = is_rustprone(otmp);
+			if (objects[otmp->otyp].oc_material == MT_COBALT && rn2(2)) vulnerable = FALSE;
+			if (objects[otmp->otyp].oc_material == MT_BRONZE && rn2(2)) vulnerable = FALSE;
 			break;
 		case 2: vulnerable = is_rottable(otmp);
 			if (objects[otmp->otyp].oc_material == MT_ALKALINE && rn2(2)) vulnerable = FALSE;
 			is_primary = FALSE;
 			break;
 		case 3: vulnerable = is_corrodeable(otmp);
+			if (objects[otmp->otyp].oc_material == MT_GREEN_STEEL && rn2(2)) vulnerable = FALSE;
 			is_primary = FALSE;
 			break;
 	}
@@ -7717,7 +7721,7 @@ newbossPENT:
 
 				pline("Poison washes over you!");
 				if (uarmg) {
-				    if (uarmg->oerodeproof || (Race_if(PM_CHIQUAI) && rn2(4)) || (uarmg->oartifact && rn2(4)) || !is_corrodeable(uarmg)) {
+				    if (uarmg->oerodeproof || (Race_if(PM_CHIQUAI) && rn2(4)) || (uarmg->oartifact && rn2(4)) || (objects[uarmg->otyp].oc_material == MT_GREEN_STEEL && rn2(2)) || !is_corrodeable(uarmg)) {
 					Your("gloves seem unaffected.");
 				    } else if (uarmg->oeroded2 < MAX_ERODE) {
 					if (uarmg->greased) {
@@ -24375,11 +24379,11 @@ register boolean force, here;
 			/* Drop through for rusting effects... */
 			/* Weapons, armor, tools and other things may rust... */
 		    default:
-			if (is_rustprone(obj) && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded < MAX_ERODE &&
+			if (is_rustprone(obj) && !(objects[obj->otyp].oc_material == MT_COBALT && rn2(2)) && !(objects[obj->otyp].oc_material == MT_BRONZE && rn2(2)) && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded < MAX_ERODE &&
 					!(obj->oerodeproof || 
 					 (obj->blessed && !rnl(4))))
 				obj->oeroded++;
-			else if (is_rustprone(obj) && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) &&
+			else if (is_rustprone(obj) && !(objects[obj->otyp].oc_material == MT_COBALT && rn2(2)) && !(objects[obj->otyp].oc_material == MT_BRONZE && rn2(2)) && !(Race_if(PM_CHIQUAI) && rn2(4)) && !(obj->oartifact && rn2(4)) && (!rn2(2) || !(uarmf && uarmf->oartifact == ART_LUISA_S_IRRESISTIBLE_CHARM) ) && obj->oeroded == MAX_ERODE && !evades_destruction(obj) && !hard_to_destruct(obj) &&
 					!(obj->oerodeproof ))
 			{
 			    

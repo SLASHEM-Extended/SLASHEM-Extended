@@ -305,6 +305,9 @@ const char *materialnm[] = {
 	"celestium", "conundrum", "pwn-bubble", "meteosteel",
 	"antidotium", "nanomachine", "foam", "scrap", "alloy",
 	"tinsel", "amber", "film", "alkaline", "mengetium",
+	"chitin", "shell", "green steel", "mercurial", "firmament", 
+	"bamboo", "cobalt", "coral", "sinnum", "bronze", 
+	"alumen", "mesh", "steel", "titanium", "adamantium", 
 };
 
 /* Vision */

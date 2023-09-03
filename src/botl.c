@@ -799,6 +799,7 @@ struct monst *mon;
 	if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
 	if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
+	if (numberofwornadamantiumarmor() && (armpro < numberofwornadamantiumarmor())) armpro = numberofwornadamantiumarmor();
 
 	if (u.magicshield) armpro++;
 	if (Race_if(PM_GERTEUT)) armpro++;

@@ -818,6 +818,8 @@ struct monst *mon;
 		bonus += rnd(20);
 	    if (objects[otyp].oc_material == MT_COPPER && hates_copper(ptr))
 		bonus += 20;
+	    if (objects[otyp].oc_material == MT_MERCURIAL && !rn2(10) && !(resists_poison(mon)) )
+		bonus += rnd(4);
 	    if (objects[otyp].oc_material == MT_PLATINUM && hates_platinum(ptr))
 		bonus += 20;
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {
@@ -1099,6 +1101,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_IT && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
+	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
 	/* end critical hit chance calculation */
@@ -1394,6 +1397,8 @@ struct monst *mon;
 		bonus += rnd(20);
 	    if (objects[otyp].oc_material == MT_COPPER && hates_copper(ptr))
 		bonus += 20;
+	    if (objects[otyp].oc_material == MT_MERCURIAL && !rn2(10) && !(resists_poison(mon)) )
+		bonus += rnd(4);
 	    if (objects[otyp].oc_material == MT_PLATINUM && hates_platinum(ptr))
 		bonus += 20;
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {

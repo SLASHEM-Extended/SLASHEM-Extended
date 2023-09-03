@@ -7050,7 +7050,10 @@ static const char *foodwords[] = {
 	"porcelain", "celestial cloth", "conundrum",
 	"bubbles", "meteoric steel", "antidote", "nanomachines",
 	"foam", "scrap metal", "alloy", "lametta", "amber",
-	"film", "lye", "mengetium",
+	"film", "lye", "mengetium", "chitin", "shell bits", 
+	"green steel", "mercury", "firmament", "light wood", "cobalt", 
+	"corals", "tin", "bronze", "aluminium", "mesh", 
+	"steel", "titanium", "adamantium", 
 };
 
 STATIC_OVL const char *
@@ -8369,9 +8372,22 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 			pline("The contamination spreads through your body.");
 			contaminate(rnz((level_difficulty() + 40) * 5), TRUE);
 	    }
+	    if (material == MT_COBALT) {
+			pline("Whoops, the metal was slightly contaminated.");
+			contaminate(rnd(100), TRUE);
+	    }
 	    if (material == MT_ANTIDOTIUM) {
 			pline("It was a covid-19 antidote!");
 			upnivel(TRUE);
+	    }
+	    if (material == MT_MERCURIAL) {
+			pline("Blegh! Your body cannot handle such a poisonous material!");
+			(void) adjattrib(A_STR, -rnd(5), FALSE, TRUE);
+			(void) adjattrib(A_DEX, -rnd(5), FALSE, TRUE);
+			(void) adjattrib(A_INT, -rnd(5), FALSE, TRUE);
+			(void) adjattrib(A_CON, -rnd(5), FALSE, TRUE);
+			(void) adjattrib(A_CHA, -rnd(5), FALSE, TRUE);
+			(void) adjattrib(A_WIS, -rnd(5), FALSE, TRUE);
 	    }
 	    if (material == MT_VIVA) {
 			pline("Eating radioactive metal is a bad idea.");

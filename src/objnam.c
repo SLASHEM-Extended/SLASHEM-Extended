@@ -8030,8 +8030,10 @@ char *prefix;
 			(objects[(obj)->otyp].oc_material == MT_CONUNDRUM) ? "unravelled " :
 			(objects[(obj)->otyp].oc_material == MT_ALKALINE) ? "stabilized " :
 			(objects[(obj)->otyp].oc_material == MT_MENGETIUM) ? "cthulhuian " :
+			(objects[(obj)->otyp].oc_material == MT_FIRMAMENT) ? "stalwart " :
 			(objects[(obj)->otyp].oc_material == MT_PWN_BUBBLE) ? "pwning " :
 			(objects[(obj)->otyp].oc_material == MT_METEOSTEEL) ? "super-ammo " :
+			(objects[(obj)->otyp].oc_material == MT_ADAMANTIUM) ? "impenetrable " :
 			(objects[(obj)->otyp].oc_material == MT_BRICK) ? "rock-solid " :
 			(objects[(obj)->otyp].oc_material == MT_ANTIDOTIUM) ? "covid-repellant " :
 		       is_rustprone(obj) ? "rustproof " :
@@ -8123,6 +8125,21 @@ register struct obj *obj;
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_TAR) strcat(prefix,"t-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SILK) strcat(prefix,"s-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ARCANIUM) strcat(prefix,"a-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CHITIN) strcat(prefix,"n-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SHELL) strcat(prefix,"1-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GREEN_STEEL) strcat(prefix,"& ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MERCURIAL) strcat(prefix,"R-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_FIRMAMENT) strcat(prefix,"F-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_BAMBOO) strcat(prefix,"| ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_COBALT) strcat(prefix,"K-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_CORAL) strcat(prefix,"k-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SINNUM) strcat(prefix,"u-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_BRONZE) strcat(prefix,"z-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ALUMEN) strcat(prefix,"2-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MESH) strcat(prefix,"# ");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_STEEL) strcat(prefix,"5-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_TITANIUM) strcat(prefix,"U-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ADAMANTIUM) strcat(prefix,"9-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SECREE) strcat(prefix,"= ");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_POURPOOR) strcat(prefix,"] ");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_COMPOST) strcat(prefix,"o-");

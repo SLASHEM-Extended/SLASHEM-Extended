@@ -2350,6 +2350,7 @@ register struct obj *obj;
 	    return (FALSE);
 
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
+	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
 
 	if (stack_too_big(obj)) return (FALSE);
 
@@ -2456,6 +2457,7 @@ register struct obj *obj;
 	    return (FALSE);
 
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
+	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
 
 	if (stack_too_big(obj)) return (FALSE);
 
@@ -2508,6 +2510,7 @@ register struct obj *obj;
 	    return (FALSE);
 
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
+	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
 
 	if (stack_too_big(obj)) return (FALSE);
 
@@ -2666,6 +2669,66 @@ create_polymon(obj, okind)
 	case MT_FILM:
 	    pm_index = PM_FILM_GOLEM;
 	    material = "film ";
+	    break;
+	case MT_BRONZE:
+	    pm_index = PM_BRONZE_GOLEM;
+	    material = "bronze ";
+	    break;
+	case MT_CHITIN:
+	    pm_index = PM_CHITIN_GOLEM;
+	    material = "chitin ";
+	    break;
+	case MT_SHELL:
+	    pm_index = PM_SHELL_GOLEM;
+	    material = "shell ";
+	    break;
+	case MT_GREEN_STEEL:
+	    pm_index = PM_GREEN_STEEL_GOLEM;
+	    material = "green steel ";
+	    break;
+	case MT_MERCURIAL:
+	    pm_index = PM_MERCURY_GOLEM;
+	    material = "mercurial ";
+	    break;
+	case MT_FIRMAMENT:
+	    pm_index = PM_FIRMAMENT_GOLEM;
+	    material = "firmament ";
+	    break;
+	case MT_BAMBOO:
+	    pm_index = PM_BAMBOO_GOLEM;
+	    material = "bamboo ";
+	    break;
+	case MT_COBALT:
+	    pm_index = PM_COBALT_GOLEM;
+	    material = "cobalt ";
+	    break;
+	case MT_CORAL:
+	    pm_index = PM_CORAL_GOLEM;
+	    material = "coral ";
+	    break;
+	case MT_SINNUM:
+	    pm_index = PM_TIN_GOLEM;
+	    material = "sinnum ";
+	    break;
+	case MT_ALUMEN:
+	    pm_index = PM_ALUMINIUM_GOLEM;
+	    material = "alumen ";
+	    break;
+	case MT_MESH:
+	    pm_index = PM_MESH_GOLEM;
+	    material = "mesh ";
+	    break;
+	case MT_STEEL:
+	    pm_index = PM_STEEL_GOLEM;
+	    material = "steel ";
+	    break;
+	case MT_TITANIUM:
+	    pm_index = PM_TITANIUM_GOLEM;
+	    material = "titanium ";
+	    break;
+	case MT_ADAMANTIUM:
+	    pm_index = PM_ADAMANTIUM_GOLEM;
+	    material = "adamantium ";
 	    break;
 	case MT_ALKALINE:
 	    pm_index = PM_ALKALINE_GOLEM;
@@ -10424,7 +10487,11 @@ register int osym, dmgtyp;
 
 	for(obj = invent; obj; obj = frame.next_obj) {
 	    frame.next_obj = obj->nobj;
-	    if(obj->oclass != osym) continue; /* test only objs of type osym */
+	    if(obj->oclass != osym) {
+		boolean willcontinue = TRUE;
+		if (objects[obj->otyp].oc_material == MT_SINNUM && dmgtyp == AD_COLD) willcontinue = FALSE;
+		if (willcontinue) continue; /* test only objs of type osym */
+	    }
 	    if(obj->oartifact) continue; /* don't destroy artifacts */
 	    if(obj->in_use && obj->quan == 1) continue; /* not available */
 	    if (obj->oerodeproof) continue; /* this item is immune --Amy */
@@ -10543,6 +10610,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+		    if (!steelbreak()) {
+				skip++;
+				break;
+			}
+
 			if (uarmc && uarmc->oartifact == ART_BOWSER_S_FUN_ARENA) {
 				skip++;
 				break;
@@ -10596,6 +10668,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+			if (objects[obj->otyp].oc_material == MT_CORAL) {
+				skip++;
+				break;
+			}
+
 			if (ShockImmunity) {
 				skip++;
 				break;
@@ -10631,6 +10708,15 @@ register int osym, dmgtyp;
 		    break;
 	    }
 	    if(!skip) {
+
+		if (objects[obj->otyp].oc_material == MT_SINNUM && dmgtyp == AD_COLD && obj->oclass != POTION_CLASS) {
+			if (obj->spe > -10) {
+				obj->spe--;
+				pline("%s has been damaged by cold!", xname(obj));
+				continue;
+			}
+		}
+
 		if (obj->in_use) --quan; /* one will be used up elsewhere */
 		for(i = cnt = 0L; i < quan; i++)
 		    if(!rn2(10) && (rnd(20 + Luck) < 15) && (rnd(20 + Luck) < 15) ) cnt++;

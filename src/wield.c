@@ -1421,7 +1421,7 @@ boolean fade_scrolls;
 		target->spe = 0;
 	    }
 	} else if (target->oerodeproof || (Race_if(PM_CHIQUAI) && rn2(4)) ||
-		(acid_dmg ? !is_corrodeable(target) : !is_rustprone(target))) {
+		(acid_dmg ? (!is_corrodeable(target) || (objects[target->otyp].oc_material == MT_GREEN_STEEL && rn2(2))) : (!is_rustprone(target) || (objects[target->otyp].oc_material == MT_COBALT && rn2(2) ) || (objects[target->otyp].oc_material == MT_BRONZE && rn2(2) ) )) ) {
 	    if (flags.verbose || !(target->oerodeproof && target->rknown)) {
 		if (victim == &youmonst)
 		    Your("%s not affected.", aobjnam(target, "are"));

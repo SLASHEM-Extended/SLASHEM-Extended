@@ -637,6 +637,11 @@ shieldblockboo:
 			pline_The("copper decomposes you!");
 			exercise(A_CON, FALSE);
 		}
+		if (obj && objects[obj->otyp].oc_material == MT_MERCURIAL && !rn2(10) && !Poison_resistance) {
+			dam += rnd(4);
+			pline_The("mercury poisons you!");
+			exercise(A_CON, FALSE);
+		}
 		if (obj && objects[obj->otyp].oc_material == MT_PLATINUM && (hates_platinum(youmonst.data) || u.contamination >= 1000) ) {
 			dam += 20;
 			pline_The("platinum smashes you!");
@@ -970,6 +975,7 @@ int x,y;
 		create = 1;
 
 	    if (objects[obj->otyp].oc_material == MT_LEAD && !create && !rn2(4)) create = 1;
+	    if (objects[obj->otyp].oc_material == MT_BAMBOO && !create && !rn2(4)) create = 1;
 	    if (obj->otyp == DART_OF_DISINTEGRATION && rn2(10)) create = 0;
 
 	} else create = 1;

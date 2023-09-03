@@ -7557,6 +7557,8 @@ register struct obj *dwpn;
 
 	if (objects[dwpn->otyp].oc_material == MT_PLATINUM) minenchant += 1;
 
+	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) minenchant -= 2;
+
 	if (dwpn->otyp >= WEDGED_LITTLE_GIRL_SANDAL && dwpn->otyp <= PROSTITUTE_SHOE && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_SHOE_FETISHIST)) minenchant--;
 
 	if (dwpn->oartifact == ART_VINTAGE_MEMORY) minenchant -= 2;
@@ -7568,9 +7570,12 @@ register struct obj *dwpn;
 
 	if ((dwpn->spe <= rnd(8)) && rn2(8) && objects[dwpn->otyp].oc_material != MT_CERAMIC && !(dwpn->oartifact == ART_CLEAN_MAULER) ) return FALSE; /* less likely with lower enchantment --Amy */
 
-	if (dwpn->oartifact == ART_CLEAN_MAULER) dullchance = 100;
-	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance = 100;
-	if (objects[dwpn->otyp].oc_material == MT_LIQUID) dullchance = 250;
+	if (dwpn->oartifact == ART_CLEAN_MAULER) dullchance /= 10;
+	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance /= 10;
+	if (objects[dwpn->otyp].oc_material == MT_LIQUID) dullchance /= 4;
+	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) dullchance /= 2;
+	if (objects[dwpn->otyp].oc_material == MT_CORAL) dullchance /= 2;
+	if (objects[dwpn->otyp].oc_material == MT_ADAMANTIUM) dullchance *= 4;
 
 	if (dwpn->otyp >= WEDGED_LITTLE_GIRL_SANDAL && dwpn->otyp <= PROSTITUTE_SHOE && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_SHOE_FETISHIST)) dullchance /= 2;
 	if (dwpn->oartifact == ART_VINTAGE_MEMORY) dullchance /= 5;
@@ -7603,6 +7608,8 @@ register struct obj *dwpn;
 
 	if (objects[dwpn->otyp].oc_material == MT_PLATINUM) minenchant += 1;
 
+	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) minenchant -= 2;
+
 	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) minenchant -= 10;
 
 	if (Race_if(PM_RUSMOT)) minenchant -= 5;
@@ -7611,8 +7618,11 @@ register struct obj *dwpn;
 
 	if ((dwpn->spe <= (Race_if(PM_RUSMOT) ? (rnd(8) - 5) : rnd(8)) ) && rn2(8) && objects[dwpn->otyp].oc_material != MT_CERAMIC ) return FALSE; /* less likely with lower enchantment --Amy */
 
-	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance = 100;
-	if (objects[dwpn->otyp].oc_material == MT_LIQUID) dullchance = 125;
+	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) dullchance /= 10;
+	if (objects[dwpn->otyp].oc_material == MT_LIQUID) dullchance /= 8;
+	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) dullchance /= 2;
+	if (objects[dwpn->otyp].oc_material == MT_CORAL) dullchance /= 2;
+	if (objects[dwpn->otyp].oc_material == MT_ADAMANTIUM) dullchance *= 4;
 
 	if (Race_if(PM_RUSMOT)) dullchance /= 5;
 
@@ -10739,6 +10749,57 @@ conundrumbreak()
 		return FALSE;
 	}
 	if (ublindf && objects[ublindf->otyp].oc_material == MT_CONUNDRUM && !rn2(10)) {
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
+/* steel items can make your fire-vulnerable break less often --Amy
+ * returns TRUE if item can break, otherwise FALSE */
+boolean
+steelbreak()
+{
+	if (uwep && objects[uwep->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarm && objects[uarm->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmc && objects[uarmc->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmh && objects[uarmh->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarms && objects[uarms->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmg && objects[uarmg->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmf && objects[uarmf->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uarmu && objects[uarmu->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uamul && objects[uamul->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uimplant && objects[uimplant->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uleft && objects[uleft->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (uright && objects[uright->otyp].oc_material == MT_STEEL && !rn2(10)) {
+		return FALSE;
+	}
+	if (ublindf && objects[ublindf->otyp].oc_material == MT_STEEL && !rn2(10)) {
 		return FALSE;
 	}
 
@@ -15723,7 +15784,7 @@ dodip()
 			rider_cant_reach(); /* not skilled enough to reach */
 		    } else {
 
-			if (rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
+			if (rn2(2) && !stack_too_big(obj) && !obj->oerodeproof && is_rustprone(obj) && !(objects[obj->otyp].oc_material == MT_COBALT && rn2(2)) && !(objects[obj->otyp].oc_material == MT_BRONZE && rn2(2)) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
 
 				remove_worn_item(obj, FALSE);
 				if (obj == uball) unpunish();

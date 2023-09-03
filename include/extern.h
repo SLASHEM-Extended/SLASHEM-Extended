@@ -1067,6 +1067,7 @@ E int dostackmark(void);
 
 E int numberofetheritems(void);
 E int numberofwornetheritems(void);
+E int numberofwornadamantiumarmor(void);
 E int numberofwornmysteriousitems(void);
 E boolean evades_destruction(struct obj *);
 
@@ -2637,6 +2638,7 @@ E void increasesanity(int);
 E void gain_alla(int);
 E void drain_alla(int);
 E boolean conundrumbreak(void);
+E boolean steelbreak(void);
 E void statdrain(void);
 E void nastytrapcurse(void);
 E void shank_player(void);

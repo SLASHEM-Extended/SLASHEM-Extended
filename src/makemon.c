@@ -32355,6 +32355,8 @@ int type;
 		case PM_PHASING_MOUNTAIN_GOLEM: return 200;
 		case PM_SENTINEL_OF_MITHARDIR: return 150;
 		case PM_ITALIAN_GOLEM: return 150;
+		case PM_MERCURY_GOLEM: return 300;
+		case PM_ADAMANTIUM_GOLEM: return 500;
 		case PM_PEARL_GOLEM: return 12;
 		case PM_OXYGEN_GOLEM: return 16;
 		case PM_SULFUR_GOLEM: return 24;

@@ -29068,6 +29068,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel rather itchy under your ring mail.",
 	"You feel rather itchy under your ring mail. Eurgh, wank off already and be done with it, you pervert!",
 	"When the Amy was little, she always thought that the term 'stealth' referred to the act of stealing something!",
+	"The chitin was gnawed a bit!",
 
 };
 

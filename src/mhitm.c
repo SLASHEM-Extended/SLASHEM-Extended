@@ -4517,6 +4517,10 @@ physical:
                                 tmp += 20;
                                 if (vis) pline("The copper decomposes %s!", mon_nam(mdef));
                         }
+                        if(otmp && objects[otmp->otyp].oc_material == MT_MERCURIAL && !rn2(10) && !(resists_poison(mdef))) {
+                                tmp += rnd(4);
+                                if (vis) pline("The mercury poisons %s!", mon_nam(mdef));
+                        }
                         if(otmp && objects[otmp->otyp].oc_material == MT_PLATINUM && (hates_platinum(pd))) {
                                 tmp += 20;
                                 if (vis) pline("The platinum smashes %s!", mon_nam(mdef));
@@ -6743,7 +6747,7 @@ register struct obj *obj;
 	    return;
 
 	if (!mdef->mcan &&
-	    (is_acid ? is_corrodeable(obj) : is_rustprone(obj)) && !stack_too_big(obj) &&
+	    (is_acid ? (is_corrodeable(obj) && !(objects[obj->otyp].oc_material == MT_GREEN_STEEL && rn2(2)) ) : (is_rustprone(obj) && !(objects[obj->otyp].oc_material == MT_COBALT && rn2(2) ) && !(objects[obj->otyp].oc_material == MT_BRONZE && rn2(2) ) ) ) && !stack_too_big(obj) &&
 	    (is_acid ? obj->oeroded2 : obj->oeroded) < MAX_ERODE) {
 		if (obj->greased || (obj->oartifact && rn2(4)) || obj->oerodeproof || (obj->blessed && rn2(3))) {
 		    if (cansee(mdef->mx, mdef->my) && flags.verbose)

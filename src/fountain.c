@@ -659,7 +659,7 @@ register struct obj *obj;
 	/* Don't grant Excalibur when there's more than one object.  */
 	/* (quantity could be > 1 if merged daggers got polymorphed) */
 
-	if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
+	if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && !(objects[obj->otyp].oc_material == MT_COBALT && rn2(2)) && !(objects[obj->otyp].oc_material == MT_BRONZE && rn2(2)) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
 		remove_worn_item(obj, FALSE);
 		if (obj == uball) unpunish();
 		useupall(obj);
@@ -934,7 +934,7 @@ register struct obj *obj;
 	}
 	u.cnd_toiletamount++;
 
-	if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
+	if (rn2(2) && !obj->oerodeproof && is_rustprone(obj) && !(objects[obj->otyp].oc_material == MT_COBALT && rn2(2)) && !(objects[obj->otyp].oc_material == MT_BRONZE && rn2(2)) && !hard_to_destruct(obj) && (!obj->oartifact || !rn2(4)) && obj->oeroded == MAX_ERODE) {
 		remove_worn_item(obj, FALSE);
 		if (obj == uball) unpunish();
 		useupall(obj);

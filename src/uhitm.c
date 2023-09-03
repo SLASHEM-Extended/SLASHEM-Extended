@@ -907,6 +907,8 @@ register struct monst *mtmp;
 	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
 	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
+	if (uwep && objects[uwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -1594,6 +1596,7 @@ int dieroll;
 	boolean silvermsg = FALSE, silverobj = FALSE;
 	boolean vivaobj = FALSE;
 	boolean copperobj = FALSE;
+	boolean mercurialobj = FALSE;
 	boolean platinumobj = FALSE;
 	int cursedobj = 0;
 	boolean inkaobj = FALSE;
@@ -1817,6 +1820,27 @@ int dieroll;
 		}
 		if (uright && uright->oartifact == ART_SPIKED_KNUCKLES) {
 			mon->bleedout += rnd(5);
+		}
+
+		if (uleft && objects[(uleft)->otyp].oc_material == MT_MERCURIAL && !uarmg) {
+			if (!rn2(10) && !resists_poison(mon)) {
+				pline("%s is poisoned by your mercurial ring!", Monnam(mon));
+				tmp += rnd(10);
+				if (!rn2(10000)) {
+					tmp += 9999;
+					pline("The poison was deadly...");
+				}
+			}
+		}
+		if (uright && objects[(uright)->otyp].oc_material == MT_MERCURIAL && !uarmg) {
+			if (!rn2(10) && !resists_poison(mon)) {
+				pline("%s is poisoned by your mercurial ring!", Monnam(mon));
+				tmp += rnd(10);
+				if (!rn2(10000)) {
+					tmp += 9999;
+					pline("The poison was deadly...");
+				}
+			}
 		}
 
 		if (u.nailpolish && (!uarmg || FingerlessGloves) ) {
@@ -2293,6 +2317,10 @@ int dieroll;
 			if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
 				tmp += 20;
 				copperobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_MERCURIAL && !rn2(10) && !(resists_poison(mon) )) {
+				tmp += rnd(4);
+				mercurialobj = TRUE;
 			}
 			if (objects[obj->otyp].oc_material == MT_PLATINUM && hates_platinum(mdat)) {
 				tmp += 20;
@@ -3472,6 +3500,10 @@ int dieroll;
 			if (objects[obj->otyp].oc_material == MT_COPPER && hates_copper(mdat)) {
 				tmp += 20;
 				copperobj = TRUE;
+			}
+			if (objects[obj->otyp].oc_material == MT_MERCURIAL && !rn2(10) && !(resists_poison(mon)) ) {
+				tmp += rnd(4);
+				mercurialobj = TRUE;
 			}
 			if (objects[obj->otyp].oc_material == MT_PLATINUM && hates_platinum(mdat)) {
 				tmp += 20;
@@ -5674,6 +5706,7 @@ melatechoice:
 	if (inkaobj) pline("The inka string hurts %s!", mon_nam(mon));
 	if (odorobj) pline("The odor beguils %s!", mon_nam(mon));
 	if (copperobj) pline("The copper decomposes %s!", mon_nam(mon));
+	if (mercurialobj) pline("The mercury poisons %s!", mon_nam(mon));
 	if (platinumobj) pline("The platinum smashes %s!", mon_nam(mon));
 	if (cursedobj) pline("A black aura blasts %s!", mon_nam(mon));
 
@@ -13288,6 +13321,13 @@ struct attack *mattk;		/* null means we find one internally */
 		if(ptr->mattk[i].aatyp == AT_NONE) break; /* try this one */
 	    }
 	    mattk = &(ptr->mattk[i]);
+	}
+
+	if (objects[(obj)->otyp].oc_material == MT_CHITIN && organivorous(mon->data) && !rn2(100)) {
+		if (obj->spe > -20) {
+			obj->spe--;
+			pline_The("chitin was gnawed a bit!");
+		}
 	}
 
 	switch(mattk->adtyp) {

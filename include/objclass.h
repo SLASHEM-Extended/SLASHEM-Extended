@@ -99,24 +99,39 @@ struct objclass {
 #define MT_FILM		50	/* organic */
 #define MT_ALKALINE		51	/* organic, metallic and lithic (all three at the same time) */
 #define MT_MENGETIUM		52	/* inedible */
-#define LASTMATERIAL	MT_MENGETIUM
+#define MT_CHITIN		53	/* organic */
+#define MT_SHELL		54	/* lithic */
+#define MT_GREEN_STEEL		55	/* metallic */
+#define MT_MERCURIAL		56	/* metallic */
+#define MT_FIRMAMENT		57	/* inedible */
+#define MT_BAMBOO		58	/* organic */
+#define MT_COBALT		59	/* metallic */
+#define MT_CORAL		60	/* lithic */
+#define MT_SINNUM		61	/* metallic */
+#define MT_BRONZE		62	/* metallic */
+#define MT_ALUMEN		63	/* metallic */
+#define MT_MESH		64	/* organic */
+#define MT_STEEL		65	/* metallic */
+#define MT_TITANIUM	66		/* metallic */
+#define MT_ADAMANTIUM		67	/* organic */
+#define LASTMATERIAL	MT_ADAMANTIUM
 /* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 
 /* and *change it in this motherfucking file too!!!* especially the definitions just below */
 
-#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_CELESTIUM || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_FILM || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
+#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_CELESTIUM || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_CHITIN || objects[(otmp)->otyp].oc_material == MT_ADAMANTIUM || objects[(otmp)->otyp].oc_material == MT_MESH || objects[(otmp)->otyp].oc_material == MT_BAMBOO || objects[(otmp)->otyp].oc_material == MT_FILM || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
 
 #define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= MT_IRON && \
-				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_METEOSTEEL || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_SCRAP || objects[(otmp)->otyp].oc_material == MT_ALLOY || objects[(otmp)->otyp].oc_material == MT_TINSEL || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_CHROME || objects[(otmp)->otyp].oc_material == MT_TINSEL)
+				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_METEOSTEEL || objects[(otmp)->otyp].oc_material == MT_MERCURIAL || objects[(otmp)->otyp].oc_material == MT_GREEN_STEEL || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_SINNUM || objects[(otmp)->otyp].oc_material == MT_SCRAP || objects[(otmp)->otyp].oc_material == MT_ALUMEN || objects[(otmp)->otyp].oc_material == MT_ALLOY || objects[(otmp)->otyp].oc_material == MT_TINSEL || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_BRONZE || objects[(otmp)->otyp].oc_material == MT_CHROME || objects[(otmp)->otyp].oc_material == MT_COBALT || objects[(otmp)->otyp].oc_material == MT_TINSEL || objects[(otmp)->otyp].oc_material == MT_STEEL || objects[(otmp)->otyp].oc_material == MT_TITANIUM)
 
-#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_SAND || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_OBSIDIAN || objects[(otmp)->otyp].oc_material == MT_CONUNDRUM || objects[(otmp)->otyp].oc_material == MT_CERAMIC || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK || objects[(otmp)->otyp].oc_material == MT_AMBER)
+#define is_lithic(otmp)		(objects[(otmp)->otyp].oc_material == MT_BONE || objects[(otmp)->otyp].oc_material == MT_GLASS || objects[(otmp)->otyp].oc_material == MT_GEMSTONE || objects[(otmp)->otyp].oc_material == MT_MINERAL || objects[(otmp)->otyp].oc_material == MT_SAND || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_OBSIDIAN || objects[(otmp)->otyp].oc_material == MT_SHELL || objects[(otmp)->otyp].oc_material == MT_CORAL || objects[(otmp)->otyp].oc_material == MT_CONUNDRUM || objects[(otmp)->otyp].oc_material == MT_CERAMIC || objects[(otmp)->otyp].oc_material == MT_TAR || objects[(otmp)->otyp].oc_material == MT_BRICK || objects[(otmp)->otyp].oc_material == MT_AMBER)
 
 /* primary damage: fire/rust/--- */
 /* secondary damage: rot/acid/acid */
 /* all of them in mkobj.c now --Amy */
 
-#define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == MT_BRICK)
-#define hard_to_destruct(otmp)	((otmp->otyp == FAKE_AMULET_OF_YENDOR) || objects[otmp->otyp].oc_material == MT_ETERNIUM || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact == ART_SOFTSTEP) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
+#define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == MT_BRICK || objects[otmp->otyp].oc_material == MT_FIRMAMENT || (objects[otmp->otyp].oc_material == MT_ADAMANTIUM && rn2(4)) )
+#define hard_to_destruct(otmp)	((otmp->otyp == FAKE_AMULET_OF_YENDOR) || objects[otmp->otyp].oc_material == MT_ETERNIUM || (objects[otmp->otyp].oc_material == MT_BAMBOO && !rn2(4)) || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact == ART_SOFTSTEP) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
 #define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == MT_ETHER)
 #define is_meteosteelitem(otmp)	(objects[otmp->otyp].oc_material == MT_METEOSTEEL)
 #define is_mysteriousitem(otmp)	(objects[otmp->otyp].oc_material == MT_MYSTERIOUS)

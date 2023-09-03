@@ -6673,7 +6673,7 @@ materialchoice1:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(19)) {
+				switch (rnd(27)) {
 					case 1: changematerial = MT_LIQUID; break;
 					case 2: changematerial = MT_WAX; break;
 					case 3: changematerial = MT_VEGGY; break;
@@ -6693,6 +6693,14 @@ materialchoice1:
 					case 17: changematerial = MT_SCRAP; break;
 					case 18: changematerial = MT_TINSEL; break;
 					case 19: changematerial = MT_FILM; break;
+					case 20: changematerial = MT_CHITIN; break;
+					case 21: changematerial = MT_SHELL; break;
+					case 22: changematerial = MT_BAMBOO; break;
+					case 23: changematerial = MT_COBALT; break;
+					case 24: changematerial = MT_CORAL; break;
+					case 25: changematerial = MT_SINNUM; break;
+					case 26: changematerial = MT_BRONZE; break;
+					case 27: changematerial = MT_ALUMEN; break;
 					default: changematerial = MT_PAPER; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -6724,7 +6732,7 @@ materialchoice2:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(17)) {
+				switch (rnd(21)) {
 					case 1: changematerial = MT_MYSTERIOUS; break;
 					case 2: changematerial = MT_WOOD; break;
 					case 3: changematerial = MT_BONE; break;
@@ -6742,6 +6750,10 @@ materialchoice2:
 					case 15: changematerial = MT_CHROME; break;
 					case 16: changematerial = MT_AMBER; break;
 					case 17: changematerial = MT_ALKALINE; break;
+					case 18: changematerial = MT_GREEN_STEEL; break;
+					case 19: changematerial = MT_MERCURIAL; break;
+					case 20: changematerial = MT_MESH; break;
+					case 21: changematerial = MT_STEEL; break;
 					default: changematerial = MT_METAL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;
@@ -6773,7 +6785,7 @@ materialchoice3:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(17)) {
+				switch (rnd(20)) {
 					case 1: changematerial = MT_DRAGON_HIDE; break;
 					case 2: changematerial = MT_SILVER; break;
 					case 3: changematerial = MT_GOLD; break;
@@ -6791,6 +6803,9 @@ materialchoice3:
 					case 15: changematerial = MT_METEOSTEEL; break;
 					case 16: changematerial = MT_ANTIDOTIUM; break;
 					case 17: changematerial = MT_MENGETIUM; break;
+					case 18: changematerial = MT_FIRMAMENT; break;
+					case 19: changematerial = MT_TITANIUM; break;
+					case 20: changematerial = MT_ADAMANTIUM; break;
 					default: changematerial = MT_MITHRIL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;

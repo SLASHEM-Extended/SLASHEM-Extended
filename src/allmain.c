@@ -8213,6 +8213,49 @@ newbossO:
 			}
 		}
 
+		if (uwep && objects[uwep->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uarm && objects[uarm->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uarmc && objects[uarmc->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uarmf && objects[uarmf->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uarmg && objects[uarmg->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uarmh && objects[uarmh->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uarmu && objects[uarmu->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uarms && objects[uarms->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uamul && objects[uamul->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uimplant && objects[uimplant->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uleft && objects[uleft->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (uright && objects[uright->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+		if (ublindf && objects[ublindf->otyp].oc_material == MT_MERCURIAL && !rn2(2000)) {
+			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
+		}
+
 		if (In_sewerplant(&u.uz) && !rn2(250) && !Breathless) {
 			poisoned("sewer air", rn2(A_MAX), "the poisonous air in the sewer plant", 30);
 		}

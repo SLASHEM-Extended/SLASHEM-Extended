@@ -1351,6 +1351,19 @@ numberofwornetheritems()
 }
 
 int
+numberofwornadamantiumarmor()
+{
+	int number = 0;
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if (objects[otmp->otyp].oc_material == MT_ADAMANTIUM && otmp->owornmask & W_ARMOR) number++;
+	}
+	return number;
+
+}
+
+int
 numberofwornmysteriousitems()
 {
 	int number = 0;
@@ -10975,7 +10988,7 @@ boolean knoweverything;
 			case ATHAME:
 				pline("A high-quality dagger that can create hard engravings. It can be thrown."); break;
 			case MERCURIAL_ATHAME:
-				pline("This silver dagger can create hard engravings. It can be thrown."); break;
+				pline("This mercurial dagger can create hard engravings. It can be thrown."); break;
 			case SILVER_DAGGER:
 				pline("A dagger that does extra damage to undead. It can be thrown."); break;
 			case ELVEN_DAGGER:
@@ -11529,7 +11542,7 @@ boolean knoweverything;
 			case PLASTIC_MACE:
 				pline("Made of a different material and otherwise similar to the bog-standard mace."); break;
 			case BRONZE_MACE:
-				pline("It's a mace made of copper, and it doesn't do a lot of damage."); break;
+				pline("It's a mace made of bronze, and it doesn't do a lot of damage."); break;
 			case ORNATE_MACE:
 				pline("It's a mace made of gold, and it does only little damage."); break;
 			case MILL_PAIL:

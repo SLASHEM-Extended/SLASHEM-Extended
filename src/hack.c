@@ -4711,6 +4711,12 @@ boolean tellplayer;
 		return;
 	}
 
+	/* Mercury amulets in particular offer a bit of protection, but not other mercury equipment --Amy */
+	if (uamul && objects[uamul->otyp].oc_material == MT_MERCURIAL && !rn2(10)) {
+		if (tellplayer) pline("Your mercury amulet prevents you from being contaminated!");
+		return;
+	}
+
 	/* Platinum is supposed to be a material that shields you against contamination --Amy */
 	if (uwep && objects[uwep->otyp].oc_material == MT_PLATINUM && !rn2(10)) {
 		if (tellplayer) pline("Your platinum weapon prevents you from being contaminated!");

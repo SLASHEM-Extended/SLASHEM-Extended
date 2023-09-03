@@ -2606,6 +2606,7 @@ boolean polearming;
 	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
 	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
+	if (obj && objects[obj->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -3463,6 +3464,8 @@ evasionchancedone:
 		    if (obj->oartifact == ART_BE_CONSERVED) {
 			if (rn2(10)) broken = 0;
 		    }
+
+		    if (objects[otyp].oc_material == MT_BAMBOO && broken && !rn2(4)) broken = 0;
 
 		    if (objects[otyp].oc_material == MT_LEAD && broken && !rn2(4)) broken = 0;
 		    if (otyp == DART_OF_DISINTEGRATION && rn2(10) ) broken = 1;
