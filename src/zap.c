@@ -9071,7 +9071,7 @@ xchar sx, sy;
 	    if (abs(type) == ZT_BREATH(ZT_DEATH)) {
 
 		dam = d(nd, StrongDisint_resistance ? 2 : Disint_resistance ? 3 : 6);
-		losehp(dam, "a disintegration beam", KILLED_BY);
+		/* losehp(dam, "a disintegration beam", KILLED_BY); apparently not needed --Amy */
 
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are not disintegrated.");
