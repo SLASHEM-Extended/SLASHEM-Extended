@@ -4196,3 +4196,4 @@ Bronze and copper are materials that have some similarities, but bronze is gener
 Items made of steel are immune to being destroyed by fire. Unfortunately, this doesn't do much because potions, scrolls and the like are rarely made of steel and weapons or armor pieces are also immune to fire when they're made of certain other high-quality materials.
 Items made of titanium cannot be destroyed at all, but weigh twice as much.
 Armor pieces made of adamantium will reduce your final amount of magic cancellation by one for every such item you're wearing, so they're generally not the best choice.
+Alimathium is the most common item material, but the game displays random other materials for items made out of it. What does it do? Well, every such item in your inventory increases the chance that nasty traps are spawned.

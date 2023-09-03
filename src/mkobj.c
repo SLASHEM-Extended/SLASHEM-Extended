@@ -4455,6 +4455,7 @@ register struct obj *otmp;
 	if (objects[(otmp)->otyp].oc_material == MT_AMBER) return TRUE;
 	if (objects[(otmp)->otyp].oc_material == MT_FIRMAMENT) return TRUE;
 	if (objects[(otmp)->otyp].oc_material == MT_ADAMANTIUM) return TRUE;
+	if (objects[(otmp)->otyp].oc_material == MT_ALIMATHIUM) return TRUE;
 
 	return FALSE;
 

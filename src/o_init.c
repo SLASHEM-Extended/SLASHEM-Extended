@@ -859,6 +859,58 @@ register char oclass;
 	objects[IMPLANT_OF_LEGEND].a_ac = rnd(9);
 	objects[IMPLANT_OF_VIRTUE].a_ac = rnd(9);
 
+	objects[IMPLANT_OF_FATE].a_ac = rnd(8);
+	objects[IMPLANT_OF_THE_SEA_LION].a_ac = rnd(8);
+	objects[IMPLANT_OF_JUSTICE].a_ac = rnd(8);
+	objects[IMPLANT_OF_DISASTER].a_ac = rnd(8);
+	objects[IMPLANT_OF_REDRESS].a_ac = rnd(8);
+	objects[IMPLANT_OF_QUARRELS].a_ac = rnd(8);
+	objects[IMPLANT_OF_PARANOIA].a_ac = rnd(8);
+	objects[IMPLANT_OF_TORMENT].a_ac = rnd(8);
+	objects[IMPLANT_OF_SWIFT_DEFEAT].a_ac = rnd(8);
+	objects[IMPLANT_OF_INTEGRITY].a_ac = rnd(8);
+	objects[IMPLANT_OF_CHASTITY].a_ac = rnd(8);
+	objects[IMPLANT_OF_BINDING].a_ac = rnd(8);
+	objects[IMPLANT_OF_MOLLIFICATION].a_ac = rnd(8);
+	objects[IMPLANT_OF_FULL_HEALING].a_ac = rnd(8);
+	objects[IMPLANT_OF_DESTRUCTION].a_ac = rnd(8);
+	objects[IMPLANT_OF_FRIENDSHIP].a_ac = rnd(8);
+	objects[IMPLANT_OF_SATIATION].a_ac = rnd(8);
+	objects[IMPLANT_OF_PRESERVATION].a_ac = rnd(8);
+	objects[IMPLANT_OF_QUICK_DRAWING].a_ac = rnd(8);
+	objects[IMPLANT_OF_WAND_CHARGING].a_ac = rnd(8);
+
+	objects[IMPLANT_OF_SORROW].a_ac = rnd(8);
+	objects[IMPLANT_OF_CLEAR_THINKING].a_ac = rnd(8);
+	objects[IMPLANT_OF_MIND_BLASTING].a_ac = rnd(8);
+	objects[IMPLANT_OF_THE_OCTOPUS].a_ac = rnd(8);
+
+	objects[IMPLANT_OF_FATE].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_THE_SEA_LION].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_JUSTICE].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_DISASTER].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_REDRESS].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_QUARRELS].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_PARANOIA].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_TORMENT].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_SWIFT_DEFEAT].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_INTEGRITY].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_CHASTITY].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_BINDING].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_MOLLIFICATION].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_FULL_HEALING].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_DESTRUCTION].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_FRIENDSHIP].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_SATIATION].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_PRESERVATION].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_QUICK_DRAWING].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_WAND_CHARGING].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+
+	objects[IMPLANT_OF_SORROW].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_CLEAR_THINKING].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_MIND_BLASTING].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+	objects[IMPLANT_OF_THE_OCTOPUS].a_can = !rn2(5) ? rn1(6, 4) : rnd(3);
+
 	objects[IMPLANT_OF_QUICKENING].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_KARMA].oc_oprop = randnastyenchantment();
 	objects[IMPLANT_OF_FERVOR].oc_oprop = randnastyenchantment();

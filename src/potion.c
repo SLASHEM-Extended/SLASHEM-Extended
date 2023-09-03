@@ -7576,6 +7576,7 @@ register struct obj *dwpn;
 	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_CORAL) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_ADAMANTIUM) dullchance *= 4;
+	if (objects[dwpn->otyp].oc_material == MT_ALIMATHIUM) dullchance *= 10;
 
 	if (dwpn->otyp >= WEDGED_LITTLE_GIRL_SANDAL && dwpn->otyp <= PROSTITUTE_SHOE && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_SHOE_FETISHIST)) dullchance /= 2;
 	if (dwpn->oartifact == ART_VINTAGE_MEMORY) dullchance /= 5;
@@ -7623,6 +7624,7 @@ register struct obj *dwpn;
 	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_CORAL) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_ADAMANTIUM) dullchance *= 4;
+	if (objects[dwpn->otyp].oc_material == MT_ALIMATHIUM) dullchance *= 10;
 
 	if (Race_if(PM_RUSMOT)) dullchance /= 5;
 

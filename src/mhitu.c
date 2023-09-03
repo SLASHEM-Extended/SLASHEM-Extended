@@ -6769,41 +6769,45 @@ struct monst *mon;
 	int armpro = 0;
 
 	armor = (mon == &youmonst) ? uarm : which_armor(mon, W_ARM);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 	armor = (mon == &youmonst) ? uarmc : which_armor(mon, W_ARMC);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 	armor = (mon == &youmonst) ? uarmh : which_armor(mon, W_ARMH);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 
 	/* armor types for shirt, gloves, shoes, and shield don't currently
-	   provide any magic cancellation but we might as well be complete */
+	   provide any magic cancellation but we might as well be complete
+	 * Amy edit: now they do :P */
 	armor = (mon == &youmonst) ? uarmu : which_armor(mon, W_ARMU);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 	armor = (mon == &youmonst) ? uarmg : which_armor(mon, W_ARMG);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 	armor = (mon == &youmonst) ? uarmf : which_armor(mon, W_ARMF);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 	armor = (mon == &youmonst) ? uarms : which_armor(mon, W_ARMS);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 
 	/* this one is really a stretch... */
 	armor = (mon == &youmonst) ? 0 : which_armor(mon, W_SADDLE);
-	if (armor && armpro < objects[armor->otyp].a_can)
+	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
 
-	if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
-	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
-	if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
-	if (numberofwornadamantiumarmor() && (armpro < numberofwornadamantiumarmor())) armpro = numberofwornadamantiumarmor();
-
 	if (mon == &youmonst) {
+		if (uimplant && (armpro < objects[uimplant->otyp].a_can))
+			armpro = objects[uimplant->otyp].a_can;
+
+		if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
+		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
+		if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
+		if (numberofwornadamantiumarmor() && (armpro < numberofwornadamantiumarmor())) armpro = numberofwornadamantiumarmor();
+
 		if (u.magicshield) armpro += 1;
 		if (Race_if(PM_GERTEUT)) armpro++;
 		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;

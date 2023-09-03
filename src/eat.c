@@ -7053,7 +7053,7 @@ static const char *foodwords[] = {
 	"film", "lye", "mengetium", "chitin", "shell bits", 
 	"green steel", "mercury", "firmament", "light wood", "cobalt", 
 	"corals", "tin", "bronze", "aluminium", "mesh", 
-	"steel", "titanium", "adamantium", 
+	"steel", "titanium", "adamantium", "alimathium", 
 };
 
 STATIC_OVL const char *

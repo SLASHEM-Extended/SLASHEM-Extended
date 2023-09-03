@@ -8036,6 +8036,7 @@ char *prefix;
 			(objects[(obj)->otyp].oc_material == MT_ADAMANTIUM) ? "impenetrable " :
 			(objects[(obj)->otyp].oc_material == MT_BRICK) ? "rock-solid " :
 			(objects[(obj)->otyp].oc_material == MT_ANTIDOTIUM) ? "covid-repellant " :
+			(objects[(obj)->otyp].oc_material == MT_ALIMATHIUM) ? "ass-sealed " :
 		       is_rustprone(obj) ? "rustproof " :
 		       is_corrodeable(obj) ? "corrodeproof " :	/* "stainless"? */
 		       is_flammable(obj) ? "fireproof " : "stainless "); /* Amy edit: let's use that :-) */
@@ -8116,6 +8117,7 @@ register struct obj *obj;
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_SILVER) strcat(prefix,"S-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GOLD) strcat(prefix,"g-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLATINUM) strcat(prefix,"P-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ALIMATHIUM) strcat(prefix,"Q-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MITHRIL) strcat(prefix,"M-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLASTIC) strcat(prefix,"p-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GEMSTONE) strcat(prefix,"$ ");

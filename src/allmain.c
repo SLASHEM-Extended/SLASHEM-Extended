@@ -8256,6 +8256,245 @@ newbossO:
 			poisoned("mercurial equipment", rn2(A_MAX), "wearing mercurial equipment", 30);
 		}
 
+		if (uwep && objects[uwep->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uarm && objects[uarm->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uarmc && objects[uarmc->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uarmf && objects[uarmf->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uarmg && objects[uarmg->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uarmh && objects[uarmh->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uarmu && objects[uarmu->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uarms && objects[uarms->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uamul && objects[uamul->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uimplant && objects[uimplant->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uleft && objects[uleft->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (uright && objects[uright->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+		if (ublindf && objects[ublindf->otyp].oc_material == MT_ALIMATHIUM && !rn2(10000)) {
+			int tryct = 0;
+			int x, y;
+			boolean canbeinawall = FALSE;
+			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, FART_TRAP, 0, TRUE);
+					break;
+					}
+			}
+
+		}
+
 		if (In_sewerplant(&u.uz) && !rn2(250) && !Breathless) {
 			poisoned("sewer air", rn2(A_MAX), "the poisonous air in the sewer plant", 30);
 		}

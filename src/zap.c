@@ -2714,6 +2714,10 @@ create_polymon(obj, okind)
 	    pm_index = PM_ALUMINIUM_GOLEM;
 	    material = "alumen ";
 	    break;
+	case MT_ALIMATHIUM:
+	    pm_index = PM_ALIMATHIUM_GOLEM;
+	    material = "alimathium ";
+	    break;
 	case MT_MESH:
 	    pm_index = PM_MESH_GOLEM;
 	    material = "mesh ";
@@ -10503,6 +10507,11 @@ register int osym, dmgtyp;
 	    switch(dmgtyp) {
 		case AD_COLD:
 
+			if (objects[obj->otyp].oc_material == MT_ALIMATHIUM) {
+				skip++;
+				break;
+			}
+
 		    if (!conundrumbreak()) {
 				skip++;
 				break;
@@ -10581,6 +10590,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_VENO:
 
+			if (objects[obj->otyp].oc_material == MT_ALIMATHIUM) {
+				skip++;
+				break;
+			}
+
 		    if (!conundrumbreak()) {
 				skip++;
 				break;
@@ -10604,6 +10618,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_FIRE:
 		    xresist = (Fire_resistance && obj->oclass != POTION_CLASS);
+
+			if (objects[obj->otyp].oc_material == MT_ALIMATHIUM) {
+				skip++;
+				break;
+			}
 
 		    if (!conundrumbreak()) {
 				skip++;
@@ -10662,6 +10681,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_ELEC:
 		    xresist = (Shock_resistance && obj->oclass != RING_CLASS);
+
+			if (objects[obj->otyp].oc_material == MT_ALIMATHIUM) {
+				skip++;
+				break;
+			}
 
 		    if (!conundrumbreak()) {
 				skip++;

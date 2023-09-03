@@ -3426,6 +3426,27 @@ foreignartifactcount()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 
+		if ((objects[(otmp)->otyp].oc_material == MT_ALIMATHIUM) && !otmp->oerodeproof) {
+			facount++;
+
+			if (uwep && uwep == otmp) facount += 4;
+			if (uswapwep && uswapwep == otmp && u.twoweap) facount += 4;
+			if (ublindf && ublindf == otmp) facount += 4;
+			if (uleft && uleft == otmp) facount += 4;
+			if (uright && uright == otmp) facount += 4;
+			if (uamul && uamul == otmp) facount += 4;
+			if (uimplant && uimplant == otmp) facount += 4;
+			if (uarmf && uarmf == otmp) facount += 4;
+			if (uarmg && uarmg == otmp) facount += 4;
+			if (uarmh && uarmh == otmp) facount += 4;
+			if (uarmc && uarmc == otmp) facount += 4;
+			if (uarms && uarms == otmp) facount += 4;
+			if (uarmu && uarmu == otmp) facount += 4;
+			if (uarm && uarm == otmp) facount += 4;
+			if (uskin && uskin == otmp) facount += 4;
+
+		}
+
 		if (otmp->oartifact && ((otmp->oartifact >= ART_ORB_OF_DETECTION && !is_quest_artifact(otmp) ) || (u.dirtifiedexcalibur && otmp->oartifact == ART_EXCALIBUR) ) ) {
 			if (otmp->oclass == WEAPON_CLASS || is_weptool(otmp)) {
 				if (uwep && uwep == otmp) facount += 4;
@@ -15490,6 +15511,66 @@ boolean knoweverything;
 			case IMPLANT_OF_CARNAGE:
 				pline("An implant that gives %d points of AC and the %s enchantment.", objects[IMPLANT_OF_CARNAGE].a_ac, enchname(objects[IMPLANT_OF_CARNAGE].oc_oprop)); break;
 
+			case IMPLANT_OF_FATE:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_FATE].a_ac, objects[IMPLANT_OF_FATE].a_can); break;
+
+			case IMPLANT_OF_THE_SEA_LION:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_THE_SEA_LION].a_ac, objects[IMPLANT_OF_THE_SEA_LION].a_can); break;
+
+			case IMPLANT_OF_JUSTICE:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_JUSTICE].a_ac, objects[IMPLANT_OF_JUSTICE].a_can); break;
+
+			case IMPLANT_OF_DISASTER:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_DISASTER].a_ac, objects[IMPLANT_OF_DISASTER].a_can); break;
+
+			case IMPLANT_OF_REDRESS:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_REDRESS].a_ac, objects[IMPLANT_OF_REDRESS].a_can); break;
+
+			case IMPLANT_OF_QUARRELS:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_QUARRELS].a_ac, objects[IMPLANT_OF_QUARRELS].a_can); break;
+
+			case IMPLANT_OF_PARANOIA:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_PARANOIA].a_ac, objects[IMPLANT_OF_PARANOIA].a_can); break;
+
+			case IMPLANT_OF_TORMENT:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_TORMENT].a_ac, objects[IMPLANT_OF_TORMENT].a_can); break;
+
+			case IMPLANT_OF_SWIFT_DEFEAT:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_SWIFT_DEFEAT].a_ac, objects[IMPLANT_OF_SWIFT_DEFEAT].a_can); break;
+
+			case IMPLANT_OF_INTEGRITY:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_INTEGRITY].a_ac, objects[IMPLANT_OF_INTEGRITY].a_can); break;
+
+			case IMPLANT_OF_CHASTITY:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_CHASTITY].a_ac, objects[IMPLANT_OF_CHASTITY].a_can); break;
+
+			case IMPLANT_OF_BINDING:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_BINDING].a_ac, objects[IMPLANT_OF_BINDING].a_can); break;
+
+			case IMPLANT_OF_MOLLIFICATION:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_MOLLIFICATION].a_ac, objects[IMPLANT_OF_MOLLIFICATION].a_can); break;
+
+			case IMPLANT_OF_FULL_HEALING:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_FULL_HEALING].a_ac, objects[IMPLANT_OF_FULL_HEALING].a_can); break;
+
+			case IMPLANT_OF_DESTRUCTION:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_DESTRUCTION].a_ac, objects[IMPLANT_OF_DESTRUCTION].a_can); break;
+
+			case IMPLANT_OF_FRIENDSHIP:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_FRIENDSHIP].a_ac, objects[IMPLANT_OF_FRIENDSHIP].a_can); break;
+
+			case IMPLANT_OF_SATIATION:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_SATIATION].a_ac, objects[IMPLANT_OF_SATIATION].a_can); break;
+
+			case IMPLANT_OF_PRESERVATION:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_PRESERVATION].a_ac, objects[IMPLANT_OF_PRESERVATION].a_can); break;
+
+			case IMPLANT_OF_QUICK_DRAWING:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_QUICK_DRAWING].a_ac, objects[IMPLANT_OF_QUICK_DRAWING].a_can); break;
+
+			case IMPLANT_OF_WAND_CHARGING:
+				pline("An implant that gives %d points of AC and %d points of MC.", objects[IMPLANT_OF_WAND_CHARGING].a_ac, objects[IMPLANT_OF_WAND_CHARGING].a_can); break;
+
 			case IMPLANT_OF_QUEEB_BUTT:
 				pline("An implant that gives %d points of AC. It can be charged.", objects[IMPLANT_OF_QUEEB_BUTT].a_ac); break;
 
@@ -15564,6 +15645,17 @@ boolean knoweverything;
 			case IMPLANT_OF_VIRTUE:
 				pline("An implant that gives %d points of AC and the %s enchantment. It can be charged.", objects[IMPLANT_OF_VIRTUE].a_ac, enchname(objects[IMPLANT_OF_VIRTUE].oc_oprop)); break;
 
+			case IMPLANT_OF_SORROW:
+				pline("An implant that gives %d points of AC and %d points of MC. It can be charged.", objects[IMPLANT_OF_SORROW].a_ac, objects[IMPLANT_OF_SORROW].a_can); break;
+
+			case IMPLANT_OF_CLEAR_THINKING:
+				pline("An implant that gives %d points of AC and %d points of MC. It can be charged.", objects[IMPLANT_OF_CLEAR_THINKING].a_ac, objects[IMPLANT_OF_CLEAR_THINKING].a_can); break;
+
+			case IMPLANT_OF_MIND_BLASTING:
+				pline("An implant that gives %d points of AC and %d points of MC. It can be charged.", objects[IMPLANT_OF_MIND_BLASTING].a_ac, objects[IMPLANT_OF_MIND_BLASTING].a_can); break;
+
+			case IMPLANT_OF_THE_OCTOPUS:
+				pline("An implant that gives %d points of AC and %d points of MC. It can be charged.", objects[IMPLANT_OF_THE_OCTOPUS].a_ac, objects[IMPLANT_OF_THE_OCTOPUS].a_can); break;
 
 			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 			}
