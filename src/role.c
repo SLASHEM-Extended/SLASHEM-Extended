@@ -9501,7 +9501,7 @@ const struct Race races[] = {
 },
 {	"yokuda", "yokuda", "yokudahood", "Yok",
 	{0, 0},
-	PM_REDGUARD, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	PM_YOKUDA, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
 	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
 	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
 	MH_HUMAN, 0, 0,
