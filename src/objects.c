@@ -8528,6 +8528,9 @@ SCROLL((char *)0,               "SAFE IUUEF NDRC GU B",  P_NONE,     1,   0, 100
 SCROLL((char *)0,               "TOYL ENT RUBLE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "PEBCAK",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "KA TET",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "MY DEAR MR SINGING COMMUNITY",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "HUUUUUGE EXPLOIT WITH SCROLLS OF FLOOD",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "HET TYPE DAT DINGEN LOGT WIL ELKE EXPLOIT MISBRUIKEN",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

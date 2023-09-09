@@ -960,6 +960,7 @@ doread()
 	"I am an alchemist; if you see me running, try to catch up...",
 	"Samantha the WHAMMM!!! ey wer hatsenn so gemacht dass man da nicht gelaehmt wird ey!",
 	"I beat all three acts of elona and Norne gave me a toilet as a reward!",
+	"Ik ben het type dat dingen registreert, en ik zal mijn weg naar een soepele ascensie exploitieren, ook al is dit het laatste wat ik in mijn leven doe!",
 
 	    };
 	    char buf[BUFSZ];
