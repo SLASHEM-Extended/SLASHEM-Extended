@@ -961,6 +961,8 @@ doread()
 	"Samantha the WHAMMM!!! ey wer hatsenn so gemacht dass man da nicht gelaehmt wird ey!",
 	"I beat all three acts of elona and Norne gave me a toilet as a reward!",
 	"Ik ben het type dat dingen registreert, en ik zal mijn weg naar een soepele ascensie exploitieren, ook al is dit het laatste wat ik in mijn leven doe!",
+	"Wow, Pale Night is sooooo sexy, I spent some very romantic hours with her and she feels so fleecy-soft! <3",
+	"gender theory is pseudoreligious juju magic",
 
 	    };
 	    char buf[BUFSZ];

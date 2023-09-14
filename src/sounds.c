@@ -7557,6 +7557,10 @@ conversionsermon()
 		"Kafirler korku icinde titreyip Allah'in kutsal gazabina huekmedilsin.",
 		"Basoertuesue takmayan tuem inancsiz kadinlar din degistirilmelidir!",
 		"Evlilik oencesi cinsel iliski, yalnizca inanmayanlarin isledigi oeluemcuel bir guenahtir! Bunun icin Allah onlari oelduerecek!",
+		"Allah onlara oeluem emrini verdigi icin, oegrencilerimizin geleneksel kiyafetlerini giymelerine izin vermedikleri icin buetuen kafirler oelecekler.",
+		"Bizim kanunumuz Allah'in kanunudur! Hicbir duenyevi insanin, oezellikle de sapkinlarin neyin dogru oldugu konusunda soez hakki yoktur!",
+		"Biz bu uelkeye aitiz ve aksini soeyleyen her kafir Allah'in gazabina ugrayacaktir! Bu bir gercek!",
+		"Kamuoyunda basoertuesue takma hakkimizi savunmak icin kaya gibi dimdik duracagiz! Kafirler bize neyi giyip giyemeyecegimizi soeyleyemezler, cuenkue Allah bizden yanadir!",
 	};
 	verbalize("%s", conversion_msgs[rn2(SIZE(conversion_msgs))]);
 

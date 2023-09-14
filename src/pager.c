@@ -29069,6 +29069,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel rather itchy under your ring mail. Eurgh, wank off already and be done with it, you pervert!",
 	"When the Amy was little, she always thought that the term 'stealth' referred to the act of stealing something!",
 	"The chitin was gnawed a bit!",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Allah onlara oeluem emrini verdigi icin, oegrencilerimizin geleneksel kiyafetlerini giymelerine izin vermedikleri icin buetuen kafirler oelecekler.'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Bizim kanunumuz Allah'in kanunudur! Hicbir duenyevi insanin, oezellikle de sapkinlarin neyin dogru oldugu konusunda soez hakki yoktur!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Biz bu uelkeye aitiz ve aksini soeyleyen her kafir Allah'in gazabina ugrayacaktir! Bu bir gercek!'",
+	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Kamuoyunda basoertuesue takma hakkimizi savunmak icin kaya gibi dimdik duracagiz! Kafirler bize neyi giyip giyemeyecegimizi soeyleyemezler, cuenkue Allah bizden yanadir!'",
 
 };
 

@@ -1087,6 +1087,8 @@ static const char *random_mesg[] = {
 	"hey guys check out my new roguelike game!!! it has realtime combat and if you die you get some goodies to help you with your next run, but its fiendishly hard so its still a roguelike!!!!!!!111 check out super action dungeons of metaprogression now, the brand-new roguelike game!!!!", /* based on the noobies that appear on r/roguelikes every once in a while, who think they can just apply the term "roguelike" to any game because it's "popular" to apply that term in a completely wrong way --Amy */
 	"hey guys i'm making a turn-based roguelike! i totally feel like calling it that, to distinguish it from the many real-time roguelikes out there!!", /* ditto; if it's real-time it's not a roguelike, simple as that */
 	"dendelo ga di, wololololo di gad",
+	"They say that Pale Night's real name is Claudia.",
+	"They say that Pale Night is capable of assuming the body and shape of a mortal, which is why she might pretend that her name was Claudia.",
 
 };
 
@@ -6031,6 +6033,7 @@ static const char *epitaphs[] = {
 	"I'd prefer to have a game that simply runs, over one that uses maybe 0.01%% less memory of which I have more than enough anyway and constantly bugs out.",
 	"Huh? Droughter hybrid race? Amy are you serious, how am I supposed to survive if monsters only drop a corpse 1 in 20 times they were supposed to drop one??? Unplayable game!!!!!!! You should remove that playable race so that players don't accidentally pick it!",
 	"nooooo you fixed it! i wanted to autowin the game by using scrolls of flood to make enemies not attack me and you evil amy witch fixed it!!! i am too bad to play the game properly i can only win with exploits what am i gonna do now???????", /* yeah loggers of course a game that has been in development for 10 years and whose dev has a very fine-tuned antenna that detects things that make the game easier than intended, would have overlooked that one. suuuuure, dream on. this isn't dnethack where exploits are not only tolerated but part of the official easy ascension strategy (and the reason why so many players have ascended dnethack in the first place) */
+	"I attacked Pale Night in melee, and my char was so stupid to remove her veil and died instantly!",
 
 };
 

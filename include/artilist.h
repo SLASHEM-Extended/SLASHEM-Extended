@@ -6107,15 +6107,15 @@ A("Ina's Sorrow",				ORCISH_CLOAK, /* initialized to always be an inalish cloak,
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Why Not Do The Real Thing",				STANDARD_HELMET, /* initialized to always be a grunter STANDARD_HELMET, 75% chance to not become sick from a sickness effect, but activates evilvariant mode; armor pieces have 5% extra chance to be spawned with a random enchantment */
+A("Why Not Do The Real Thing",				STANDARD_HELMET, /* initialized to always be a grunter helmet, 75% chance to not become sick from a sickness effect, but activates evilvariant mode; armor pieces have 5% extra chance to be spawned with a random enchantment */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Claudia's Sexy Scent",				STANDARD_HELMET, /* initialized to always be a cloudy STANDARD_HELMET, monsters with MS_STENCH are 99% peaceful and chatting to them with at least 1000 zorkmids allows you to hire them, your kick does +10 damage and has 25% chance to paralyze a monster for d10 turns, but you occasionally have to fart and also have the shit trap effect */
+A("Claudia's Sexy Scent",				STANDARD_HELMET, /* initialized to always be a cloudy helmet, monsters with MS_STENCH are 99% peaceful and chatting to them with at least 1000 zorkmids allows you to hire them, your kick does +10 damage and has 25% chance to paralyze a monster for d10 turns, but you occasionally have to fart and also have the shit trap effect */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
-A("Vacuum Cleaner Death",				STANDARD_HELMET, /* initialized to always be a breath control STANDARD_HELMET, amulets of strangulation kill you instantly while wearing this, farting effects deal extra damage and cause additional bad effects, sleep/slow/poison gas traps damage and paralyze you, magical breathing, monsters with AD_SUCK have +50 spawn frequency, 1 in 25000 chance per turn to spawn a tame sweet blonde next to you */
+A("Vacuum Cleaner Death",				STANDARD_HELMET, /* initialized to always be a breath control helmet, amulets of strangulation kill you instantly while wearing this, farting effects deal extra damage and cause additional bad effects, sleep/slow/poison gas traps damage and paralyze you, magical breathing, monsters with AD_SUCK have +50 spawn frequency, 1 in 25000 chance per turn to spawn a tame sweet blonde next to you */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
@@ -6123,7 +6123,7 @@ A("Nypherisbane",				STANDARD_HELMET, /* initialized to always be a gas mask, po
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
-A("Christmas Medal",				STANDARD_HELMET, /* initialized to always be a sages STANDARD_HELMET, see invisible */
+A("Christmas Medal",				STANDARD_HELMET, /* initialized to always be a sages helmet, see invisible */
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
 
@@ -7079,7 +7079,7 @@ A("Jamila's Belief",				STANDARD_HELMET, /* initialized to always be shemagh, pr
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Slipping Sucking",				STANDARD_HELMET, /* initialized to always be ceramic STANDARD_HELMET, sustain ability */
+A("Slipping Sucking",				STANDARD_HELMET, /* initialized to always be ceramic helmet, sustain ability */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
@@ -9329,7 +9329,7 @@ A("Truly Magnified",				KILLER_SPAWN_BOOTS, /* clairvoyance, multiplies killer r
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Soarup",				STANDARD_HELMET, /* always initialized to be higher STANDARD_HELMET, flying, if it's +0 when you put it on it becomes +1 */
+A("Soarup",				STANDARD_HELMET, /* always initialized to be higher helmet, flying, if it's +0 when you put it on it becomes +1 */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
@@ -11933,7 +11933,7 @@ A("Unknowingness As A Weapon",				REGULAR_GLOVES, /* randart2 gloves, +5 to-hit 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Kawa Jur Fes",				STANDARD_HELMET, /* randart STANDARD_HELMET, autocurses, you cannot eat or quaff, 20% chance to resist corona */
+A("Kawa Jur Fes",				STANDARD_HELMET, /* randart helmet, autocurses, you cannot eat or quaff, 20% chance to resist corona */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
@@ -12849,7 +12849,7 @@ A("There Goes She To",				LEATHER_ARMOR, /* randart2 armor, permanent stat damag
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Ten Minutes Colder",				STANDARD_HELMET, /* randart STANDARD_HELMET, res fire and cold, but if ZT_FIRE tries to damage your items, fire res is deactivated for 1 (more) turn; searching gives 50% chance to regenerate one HP */
+A("Ten Minutes Colder",				STANDARD_HELMET, /* randart helmet, res fire and cold, but if ZT_FIRE tries to damage your items, fire res is deactivated for 1 (more) turn; searching gives 50% chance to regenerate one HP */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -13385,7 +13385,7 @@ A("Gulp-Gulp-Gulp",				POT_FULL_HEALING, /* if it's in your open inventory and y
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Reju Gluck Gluck Gluck Bug",				STANDARD_HELMET, /* randart2 STANDARD_HELMET, healup doesn't heal you at all if your HP is below one quarter of the max */
+A("Reju Gluck Gluck Gluck Bug",				STANDARD_HELMET, /* randart2 helmet, healup doesn't heal you at all if your HP is below one quarter of the max */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
@@ -13501,11 +13501,11 @@ A("Ideal Base",				LOW_BOOTS, /* randart2 boots, spawns with random erosion, inv
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Suk Me Hahahahahah",				STANDARD_HELMET, /* randart STANDARD_HELMET, spawns with d3 grease */
+A("Suk Me Hahahahahah",				STANDARD_HELMET, /* randart helmet, spawns with d3 grease */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
-A("Wear Off The Damn RNG",				STANDARD_HELMET, /* randart2 STANDARD_HELMET, spawns with 3 grease and can be invoked to gain a layer of grease */
+A("Wear Off The Damn RNG",				STANDARD_HELMET, /* randart2 helmet, spawns with 3 grease and can be invoked to gain a layer of grease */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
 
