@@ -912,6 +912,14 @@ register int after;	/* this is extra fast monster movement */
 	long info[9], allowflags;
 #define GDIST(x,y) (dist2(x,y,gx,gy))
 
+	/* stupid bug where monsters can spawn both hostile and tame: placing this check in monmove.c does nothing --Amy */
+	if (mtmp->mfrenzied && mtmp->mpeaceful) mtmp->mpeaceful = 0;
+	if (mtmp->mfrenzied && mtmp->mtame) {
+		mtmp->mtame = 0;
+		return 0;
+	}
+	if (mtmp->mtame && !mtmp->mpeaceful && !mtmp->mfrenzied) mtmp->mpeaceful = TRUE;
+
 	if (mtmp->willbebanished) {
 		mtmp->willbebanished = FALSE;
 		if (u.usteed && u.usteed == mtmp) {
