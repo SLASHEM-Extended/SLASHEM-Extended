@@ -1546,9 +1546,17 @@ register boolean mod;
 {
 	register const struct artifact *a;
 
+	boolean artimatch = FALSE;
+
 	if (otmp && *name)
-	    for (a = artilist+1; a->otyp; a++)
-		if (a->otyp == otmp->otyp && !strcmp(a->name, name)) {
+	    for (a = artilist+1; a->otyp; a++) {
+
+		artimatch = FALSE;
+		if (a->otyp == otmp->otyp) artimatch = TRUE;
+		if (a->otyp == WORM_TOOTH && otmp->otyp == CRYSKNIFE) artimatch = TRUE;
+		if (a->otyp == CRYSKNIFE && otmp->otyp == WORM_TOOTH) artimatch = TRUE;
+
+		if (artimatch && !strcmp(a->name, name)) {
 		    register int m = a - artilist;
 		    otmp->oartifact = (/*char*/int)(mod ? m : 0);
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
@@ -1702,7 +1710,8 @@ register boolean mod;
 		    if (a->inv_prop || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE || otmp->oartifact == ART_DEFINITE_LIGHTSABER) otmp->age = 0;
 		    if ((mod == FALSE) || rn2(100)) artiexist[m] = mod;
 		    break;
-		}
+		} /* if artimatch */
+	    } /* for artilist */
 	return;
 }
 
