@@ -233,7 +233,6 @@ A("Deep Freeze",                ATHAME,
 	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
 	COLD(5,6),      COLD(0,0),      NO_CARY,        0, A_CHAOTIC, PM_ICE_MAGE, NON_PM, 400L ),
 
-
 A("Serpent's Tongue",            DAGGER,
 	SPFX_RESTR, 0, 0,
         PHYS(2,0),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_NECROMANCER, NON_PM, 400L ),
@@ -243,7 +242,6 @@ A("The Marauder's Map", SCR_MAGIC_MAPPING,
 	(SPFX_RESTR), 0, 0, NO_ATTK,	NO_DFNS,	NO_CARY,
 	OBJECT_DET,	A_CHAOTIC, PM_PIRATE, NON_PM, 2000L ),
 
-
 A("Cleaver",                    BATTLE_AXE,
 	SPFX_RESTR, 0, 0,
 	PHYS(3,6),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, PM_BARBARIAN, NON_PM, 1500L ),
@@ -251,6 +249,73 @@ A("Cleaver",                    BATTLE_AXE,
 A("Doomblade",                  ORCISH_SHORT_SWORD,
 	SPFX_RESTR, 0, 0,
 	PHYS(0,10),     NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_HUMAN_WEREWOLF, NON_PM, 1000L ),
+
+/*
+ *	Stormbringer only has a 2 because it can drain a level,
+ *	providing 8 more.
+ */
+A("Stormbringer",               RUNESWORD,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_INTEL|SPFX_DRLI), 0, 0,
+	DRLI(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+
+A("Reaver",			SCIMITAR,
+	(SPFX_RESTR|SPFX_INTEL),0,0,
+	PHYS(5,8),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, PM_PIRATE, NON_PM, 6000L ),
+
+A("Deathsword",                   TWO_HANDED_SWORD,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_HUMAN,
+	PHYS(5,14),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_BARBARIAN, NON_PM, 5000L ),
+
+A("Bat from Hell",                BASEBALL_BAT, /* your HP can't ever be higher than half of the max, unless you're a rogue */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(3,20),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_ROGUE, NON_PM, 5000L ),
+
+A("Elfrist",                    ORCISH_SPEAR,
+	SPFX_DFLAG2, 0, M2_ELF,
+	PHYS(5,16),     NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_HUMAN_WEREWOLF, PM_ORC, 300L ),
+
+A("Plague", DARK_ELVEN_BOW,	/* KMH */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(5,8),        DFNS(AD_DRST),  NO_CARY,        0, A_CHAOTIC, PM_DROW, NON_PM, 6000L ),
+	/* Auto-poison code in dothrow.c */
+
+A("Mumakbane",			LONG_SWORD,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_QUADRUPED,
+	FIRE(5,60),	NO_DFNS,	NO_CARY,
+	0, 		A_NEUTRAL,	NON_PM, NON_PM, 500L ),
+
+A("Wormbiter",			CRYSKNIFE,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_WORM,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,
+	0,		A_NEUTRAL,	NON_PM, NON_PM, 2000L ),
+
+A("Shocker",			ELECTRIC_SWORD,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(3,0),	NO_DFNS,	NO_CARY,
+	0,		A_NEUTRAL,	NON_PM, NON_PM, 1000L ),
+
+A("The Burned Moth Relay",	RELAY,
+	(SPFX_RESTR), SPFX_PROTEC, 0, 	
+	NO_ATTK,	NO_DFNS,	NO_CARY,
+	0,		A_NEUTRAL,	NON_PM, NON_PM, 200L ),
+
+A("Hellfire", CROSSBOW,	/* WAC */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(5,8),        FIRE(0,0),  NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+	/* Auto-explode code in dothrow.c, uhitm.c */
+
+A("Houchou",                SPOON,
+	(SPFX_RESTR), 0, 0,
+        NO_ATTK,      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 50000L ),
+
+/* KMH -- made it a bag of holding */
+A("Wallet of Perseus",       BAG_OF_HOLDING,
+        (SPFX_RESTR), 0, 0,
+        NO_ATTK,        NO_DFNS,        NO_CARY,
+        0,      A_NONE, NON_PM, NON_PM, 10000L ),
+
+/* Amy artifacts begin here */
 
 A("Sea Gull",				DAGGER,
 	(SPFX_RESTR|SPFX_ATTK), 0, 0,
@@ -7563,10 +7628,6 @@ A("Heel of Fortune",				STEEL_CAPPED_SANDAL,
 	(SPFX_RESTR|SPFX_LUCK), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
-	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
-	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
-
 A("Swiss Amy Knife",				SURVIVAL_KNIFE, /* displays all MS_SHOE */
 	(SPFX_RESTR), 0, 0,
 	PHYS(14, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
@@ -13601,18 +13662,11 @@ A("Yelly",				LOW_BOOTS, /* initialized to always be missys, 50% chance to defle
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
 
-/*
- *	Stormbringer only has a 2 because it can drain a level,
- *	providing 8 more.
- */
-A("Stormbringer",               RUNESWORD,
-	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_INTEL|SPFX_DRLI), 0, 0,
-	DRLI(5,2),	DRLI(0,0),	NO_CARY,	0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+/* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
-
-A("Reaver",			SCIMITAR,
-	(SPFX_RESTR|SPFX_INTEL),0,0,
-	PHYS(5,8),	NO_DFNS,	NO_CARY,	0, A_CHAOTIC, PM_PIRATE, NON_PM, 6000L ),
+A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
+	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
 
 A("The Red Sword",			FLAME_MOUNTAIN,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_ATTK), 0, 0,
@@ -13626,70 +13680,17 @@ A("Thiefbane",                  LONG_SWORD,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_BEHEAD|SPFX_DCLAS|SPFX_DRLI|SPFX_NOWISH), 0, S_HUMAN,
 	DRLI(5,2),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
 
-A("Deathsword",                   TWO_HANDED_SWORD,
-	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_HUMAN,
-	PHYS(5,14),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_BARBARIAN, NON_PM, 5000L ),
-
-A("Bat from Hell",                BASEBALL_BAT, /* your HP can't ever be higher than half of the max, unless you're a rogue */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
-	PHYS(3,20),      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_ROGUE, NON_PM, 5000L ),
-
-A("Elfrist",                    ORCISH_SPEAR,
-	SPFX_DFLAG2, 0, M2_ELF,
-	PHYS(5,16),     NO_DFNS,        NO_CARY,        0, A_CHAOTIC, PM_HUMAN_WEREWOLF, PM_ORC, 300L ),
-
-A("Plague", DARK_ELVEN_BOW,	/* KMH */
-	(SPFX_RESTR|SPFX_DEFN), 0, 0,
-	PHYS(5,8),        DFNS(AD_DRST),  NO_CARY,        0, A_CHAOTIC, PM_DROW, NON_PM, 6000L ),
-	/* Auto-poison code in dothrow.c */
-
-
-A("Mumakbane",			LONG_SWORD,
-	(SPFX_RESTR|SPFX_DCLAS), 0, S_QUADRUPED,
-	FIRE(5,60),	NO_DFNS,	NO_CARY,
-	0, 		A_NEUTRAL,	NON_PM, NON_PM, 500L ),
-
-A("Wormbiter",			CRYSKNIFE,
-	(SPFX_RESTR|SPFX_DCLAS), 0, S_WORM,
-	PHYS(5,0),	NO_DFNS,	NO_CARY,
-	0,		A_NEUTRAL,	NON_PM, NON_PM, 2000L ),
-
-A("Shocker",			ELECTRIC_SWORD,
-	(SPFX_RESTR|SPFX_ATTK), 0, 0,
-	ELEC(3,0),	NO_DFNS,	NO_CARY,
-	0,		A_NEUTRAL,	NON_PM, NON_PM, 1000L ),
-
 A("Scales of the Dragon Lord",	GRAY_DRAGON_SCALE_MAIL,
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_PROTEC), 0, 0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	DRAGON_BREATH,	A_CHAOTIC,	NON_PM, NON_PM, 5000L ),
-
-A("The Burned Moth Relay",	RELAY,
-	(SPFX_RESTR), SPFX_PROTEC, 0, 	
-	NO_ATTK,	NO_DFNS,	NO_CARY,
-	0,		A_NEUTRAL,	NON_PM, NON_PM, 200L ),
 
 A("The Key Of Access",		SKELETON_KEY,
 	(SPFX_RESTR|SPFX_NOGEN),	0,		0,
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	CREATE_PORTAL,	A_NONE,		NON_PM, NON_PM, 200L ),
 
-A("Hellfire", CROSSBOW,	/* WAC */
-	(SPFX_RESTR|SPFX_DEFN), 0, 0,
-	PHYS(5,8),        FIRE(0,0),  NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
-	/* Auto-explode code in dothrow.c, uhitm.c */
-
-A("Houchou",                SPOON,
-	(SPFX_RESTR), 0, 0,
-        NO_ATTK,      NO_DFNS,        NO_CARY,        0, A_CHAOTIC, NON_PM, NON_PM, 50000L ),
-
 /*** Special Artifacts ***/
-
-/* KMH -- made it a bag of holding */
-A("Wallet of Perseus",       BAG_OF_HOLDING,
-        (SPFX_RESTR), 0, 0,
-        NO_ATTK,        NO_DFNS,        NO_CARY,
-        0,      A_NONE, NON_PM, NON_PM, 10000L ),
 
 /* nighthorn can generate randomly after defeating nightmare */
 A("Nighthorn", UNICORN_HORN,
