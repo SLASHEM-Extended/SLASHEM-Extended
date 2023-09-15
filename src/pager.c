@@ -29073,6 +29073,16 @@ static NEARDATA const char * const fake_plines[] = {
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Bizim kanunumuz Allah'in kanunudur! Hicbir duenyevi insanin, oezellikle de sapkinlarin neyin dogru oldugu konusunda soez hakki yoktur!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Biz bu uelkeye aitiz ve aksini soeyleyen her kafir Allah'in gazabina ugrayacaktir! Bu bir gercek!'",
 	"Incoming message for Player 1. The message is from 'Ruea'. It reads: 'Kamuoyunda basoertuesue takma hakkimizi savunmak icin kaya gibi dimdik duracagiz! Kafirler bize neyi giyip giyemeyecegimizi soeyleyemezler, cuenkue Allah bizden yanadir!'",
+	"You feel that you're being fucked over.",
+	"You feel that you're being fucked over. But that's always the case in SLEX.",
+	"You feel less resistant to mystery attacks!",
+	"You feel less likely to find magical items!",
+	"You feel a chocolate-like taste in your mouth...",
+	"You feel a chocolate-like taste in your mouth... but it's actually lye, and your tongue dissolves!",
+	"You feel a chocolate-like taste in your mouth... except that you're allergic to chocolate, so you have to spit it out instead of swallowing even though it tastes great. :-(",
+	"Reminder that you're not supposed to abuse exploits in SLEX that make the game easier!",
+	"Reminder that you're not supposed to abuse exploits in SLEX that make the game easier, and if you do so anyway, Amy *will* find out about it!",
+	"Reminder that you're not supposed to abuse exploits in SLEX that make the game easier, and if Amy sees you doing it, she will nerf them much harder than she would have done if you had told her right away!",
 
 };
 

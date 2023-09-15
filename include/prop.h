@@ -762,7 +762,15 @@
 #define RESISTANCE_PIERCING 686 /* lvlup */
 #define DEAC_RESISTANCE_PIERCING 687
 
-#define SECOND_CHANCE		688
+#define MYSTERY_RES 688 /* lvlup */
+#define DEAC_MYSTERY_RES 689
+
+#define MAGIC_FIND 690 /* lvlup */
+#define DEAC_MAGIC_FIND 691
+
+#define FUCK_OVER 692 /* lvlup */
+
+#define SECOND_CHANCE		693
 #define LAST_PROP		(SECOND_CHANCE)
 
 #define APP_VAMPIRIC_CLOAK 1000

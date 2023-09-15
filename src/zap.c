@@ -7568,7 +7568,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
 	}
 
-	if (youdefend ? (!youattack && Antimagic && rn2(StrongAntimagic ? 20 : 5) ) /* no longer complete protection --Amy */
+	if (youdefend ? (!youattack && ((Antimagic && rn2(StrongAntimagic ? 20 : 5)) || (chitinprotection() && rn2(3)) || (MysteryResist && rn2(3)) || (StrongMysteryResist && rn2(3)) ) ) /* no longer complete protection --Amy */
 		      : resist(mdef, obj->oclass, 0, NOTELL))
 		return FALSE;	/* resisted cancellation */
 

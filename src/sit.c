@@ -1103,7 +1103,20 @@ rndcurse()			/* curse a few inventory items at random! */
 void
 attrcurse()			/* remove a random INTRINSIC ability */
 {
-	switch(rnd(261)) {
+	if (chitinprotection() && !rn2(3)) {
+		You("resist the intrinsic loss!");
+		return;
+	}
+	if (MysteryResist && !rn2(3)) {
+		You("resist the intrinsic loss!");
+		return;
+	}
+	if (StrongMysteryResist && !rn2(3)) {
+		You("resist the intrinsic loss!");
+		return;
+	}
+
+	switch(rnd(262)) {
 	case 1:
 	case 2:
 	case 3:
@@ -2288,6 +2301,39 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HResistancePiercing & TIMEOUT) {
 			HResistancePiercing &= ~TIMEOUT;
 			You_feel("unable to damage immune opponents!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 262: if (HFuckOverEffect & INTRINSIC) {
+			HFuckOverEffect &= ~INTRINSIC;
+			You_feel("that you're no longer being fucked over!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HFuckOverEffect & TIMEOUT) {
+			HFuckOverEffect &= ~TIMEOUT;
+			You_feel("that you're no longer being fucked over!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 263: if (HMysteryResist & INTRINSIC) {
+			HMysteryResist &= ~INTRINSIC;
+			You_feel("less resistant to mystery attacks!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HMysteryResist & TIMEOUT) {
+			HMysteryResist &= ~TIMEOUT;
+			You_feel("less resistant to mystery attacks!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 264: if (HMagicFindBonus & INTRINSIC) {
+			HMagicFindBonus &= ~INTRINSIC;
+			You_feel("less likely to find magical items!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HMagicFindBonus & TIMEOUT) {
+			HMagicFindBonus &= ~TIMEOUT;
+			You_feel("less likely to find magical items!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;

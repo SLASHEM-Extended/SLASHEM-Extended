@@ -3756,6 +3756,10 @@ nh_timeout()
 			if (!HMagicVacuum)
 				You_feel("capable of casting magic effectively again.");
 			break;
+		case FUCK_OVER:
+			if (!HFuckOverEffect)
+				You_feel("that the RNG is less likely to fuck you over now.");
+			break;
 		case STEALTH:
 			if (!HStealth)
 				pline("Your movements are a little less silent.");
@@ -3895,6 +3899,14 @@ nh_timeout()
 		case RESISTANCE_PIERCING:
 			if (!ResistancePiercing)
 				pline("You can no longer pierce enemy resistances.");
+			break;
+		case MYSTERY_RES:
+			if (!MysteryResist)
+				pline("Your mystery resistance has ended.");
+			break;
+		case MAGIC_FIND:
+			if (!MagicFindBonus)
+				pline("Your chance to find magical items goes back to normal.");
 			break;
 		case SCENT_VIEW:
 			if (!ScentView)
@@ -4177,6 +4189,12 @@ nh_timeout()
 			break;
 		case DEAC_RESISTANCE_PIERCING:
 			pline("You are no longer prevented from having resistance piercing.");
+			break;
+		case DEAC_MYSTERY_RES:
+			pline("You are no longer prevented from having mystery resistance.");
+			break;
+		case DEAC_MAGIC_FIND:
+			pline("You are no longer prevented from having magic find.");
 			break;
 		case DEAC_SCENT_VIEW:
 			pline("You are no longer prevented from having scent view.");

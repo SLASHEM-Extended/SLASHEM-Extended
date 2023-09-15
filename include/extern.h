@@ -745,6 +745,7 @@ E void fix_petrification(void);
 E void consume_oeaten(struct obj *,int);
 E boolean maybe_finished_meal(BOOLEAN_P);
 E void energysap(struct obj *);
+E void chocolate_effect(void);
 
 /* ### end.c ### */
 
@@ -2683,6 +2684,7 @@ E boolean sandprotection(void);
 E boolean shadowprotection(void);
 E boolean obsidianprotection(void);
 E boolean chromeprotection(void);
+E boolean chitinprotection(void);
 E int angelshadowstuff(void);
 E void statdebuff(void);
 E void nivellate(void);

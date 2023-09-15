@@ -6756,7 +6756,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(52)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(55)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -7845,6 +7845,66 @@ retrytrinsic:
 					if(!(HResistancePiercing & FROMOUTSIDE)) {
 						You_feel("capable of damaging immune opponents!");
 						HResistancePiercing |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 53:
+				if (intloss) {
+					if (HFuckOverEffect & INTRINSIC) {
+						HFuckOverEffect &= ~INTRINSIC;
+						You_feel("that you're no longer being fucked over!");
+						hasmadeachange = 1;
+					}
+					if (HFuckOverEffect & TIMEOUT) {
+						HFuckOverEffect &= ~TIMEOUT;
+						You_feel("that you're no longer being fucked over!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HFuckOverEffect & FROMOUTSIDE)) {
+						You_feel("that you're being fucked over.");
+						HFuckOverEffect |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 54:
+				if (intloss) {
+					if (HMysteryResist & INTRINSIC) {
+						HMysteryResist &= ~INTRINSIC;
+						You_feel("less resistant to mystery attacks!");
+						hasmadeachange = 1;
+					}
+					if (HMysteryResist & TIMEOUT) {
+						HMysteryResist &= ~TIMEOUT;
+						You_feel("less resistant to mystery attacks!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HMysteryResist & FROMOUTSIDE)) {
+						You_feel("resistant to mystery attacks!");
+						HMysteryResist |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 55:
+				if (intloss) {
+					if (HMagicFindBonus & INTRINSIC) {
+						HMagicFindBonus &= ~INTRINSIC;
+						You_feel("less likely to find magical items!");
+						hasmadeachange = 1;
+					}
+					if (HMagicFindBonus & TIMEOUT) {
+						HMagicFindBonus &= ~TIMEOUT;
+						You_feel("less likely to find magical items!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HMagicFindBonus & FROMOUTSIDE)) {
+						You_feel("more likely to find magical items!");
+						HMagicFindBonus |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

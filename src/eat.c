@@ -3692,67 +3692,8 @@ register int pm;
 	    case PM_CHOOKATRICE:
 	    case PM_ROCKATRICE:
 
-		switch (rnd(16)) {
+		chocolate_effect();
 
-			case 1:	/* blueberry (cure blind) */
-				/* They're good for your eyes, too. [Sakusha]*/
-				pline("It was blueberry-flavored!");
-				make_blinded((long)u.ucreamed,TRUE);
-				break;
-			case 2:	/* bitter (cure stun) */
-				pline("It tasted bitter!");
-				make_stunned(0L,TRUE);
-				break;
-			case 3:	/* wasabi (cure confuse) */
-				pline("It contained all-natural wasabi extract!");
-				make_confused(0L,TRUE);
-				break;
-			case 4:	/* mattya (cure slow and totter) */
-				pline("There was some weird japanese food extras in there...");
-				make_frozen(0L, TRUE);
-				u.totter = 0;
-				break;
-			case 5:	/* ginger (cure hallucinate) */
-				pline("Ginger! Who puts that in a chocolate???");
-				(void) make_hallucinated(0L, TRUE, 0L);
-				break;
-			case 6:	/* chili (cure invert) */
-				pline("Chili??? What the hell, chocolate and that don't belong together!");
-				make_inverted(0L);
-				break;
-			case 7:	/* almond (cure wince) */
-				pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
-				make_wincing(0L);
-				break;
-			case 8:	/* caramel (cure inertia) */
-				pline("Caramel flavor, not too bad.");
-				if (u.inertia) {
-					u.inertia = 0;
-					You_feel("less slow.");
-				}
-				break;
-			case 9:	/* orange (cure map amnesia) */
-				pline("It had orange flavor, not really your cup of tea but oh well...");
-				if (HMap_amnesia & INTRINSIC) {
-					HMap_amnesia &= ~INTRINSIC;
-					You_feel("less forgetful!");
-				}
-				if (HMap_amnesia & TIMEOUT) {
-					HMap_amnesia &= ~TIMEOUT;
-					You_feel("less forgetful!");
-				}
-				break;
-			case 10:	/* soy sauce (cure magic vacuum) */
-				pline("Err, soy sauce?! That doesn't really mix with chocolate!");
-				make_magicvacuum(0L);
-				break;
-			case 11:	/* lavender (cure burden) */
-				pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
-				make_burdened(0L);
-				break;
-			default: break;
-
-		}
 		break;
 
 	    case PM_FEARFUL_COCKATRICE:
@@ -6155,67 +6096,8 @@ eatspecial() /* called after eating non-food */
 	}
 
 	if (itemhasappearance(otmp, APP_BLOCKCHOC_BOOTS)) {
-		switch (rnd(16)) {
 
-			case 1:	/* blueberry (cure blind) */
-				/* They're good for your eyes, too. [Sakusha]*/
-				pline("It was blueberry-flavored!");
-				make_blinded((long)u.ucreamed,TRUE);
-				break;
-			case 2:	/* bitter (cure stun) */
-				pline("It tasted bitter!");
-				make_stunned(0L,TRUE);
-				break;
-			case 3:	/* wasabi (cure confuse) */
-				pline("It contained all-natural wasabi extract!");
-				make_confused(0L,TRUE);
-				break;
-			case 4:	/* mattya (cure slow and totter) */
-				pline("There was some weird japanese food extras in there...");
-				make_frozen(0L, TRUE);
-				u.totter = 0;
-				break;
-			case 5:	/* ginger (cure hallucinate) */
-				pline("Ginger! Who puts that in a chocolate???");
-				(void) make_hallucinated(0L, TRUE, 0L);
-				break;
-			case 6:	/* chili (cure invert) */
-				pline("Chili??? What the hell, chocolate and that don't belong together!");
-				make_inverted(0L);
-				break;
-			case 7:	/* almond (cure wince) */
-				pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
-				make_wincing(0L);
-				break;
-			case 8:	/* caramel (cure inertia) */
-				pline("Caramel flavor, not too bad.");
-				if (u.inertia) {
-					u.inertia = 0;
-					You_feel("less slow.");
-				}
-				break;
-			case 9:	/* orange (cure map amnesia) */
-				pline("It had orange flavor, not really your cup of tea but oh well...");
-				if (HMap_amnesia & INTRINSIC) {
-					HMap_amnesia &= ~INTRINSIC;
-					You_feel("less forgetful!");
-				}
-				if (HMap_amnesia & TIMEOUT) {
-					HMap_amnesia &= ~TIMEOUT;
-					You_feel("less forgetful!");
-				}
-				break;
-			case 10:	/* soy sauce (cure magic vacuum) */
-				pline("Err, soy sauce?! That doesn't really mix with chocolate!");
-				make_magicvacuum(0L);
-				break;
-			case 11:	/* lavender (cure burden) */
-				pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
-				make_burdened(0L);
-				break;
-			default: break;
-
-		}
+		chocolate_effect();
 
 	}
 
@@ -7083,67 +6965,7 @@ register struct obj *otmp;
 	    case CHOCOLATE:
 	    case CHOCOEGG:
 
-		switch (rnd(16)) {
-
-			case 1:	/* blueberry (cure blind) */
-				/* They're good for your eyes, too. [Sakusha]*/
-				pline("It was blueberry-flavored!");
-				make_blinded((long)u.ucreamed,TRUE);
-				break;
-			case 2:	/* bitter (cure stun) */
-				pline("It tasted bitter!");
-				make_stunned(0L,TRUE);
-				break;
-			case 3:	/* wasabi (cure confuse) */
-				pline("It contained all-natural wasabi extract!");
-				make_confused(0L,TRUE);
-				break;
-			case 4:	/* mattya (cure slow and totter) */
-				pline("There was some weird japanese food extras in there...");
-				make_frozen(0L, TRUE);
-				u.totter = 0;
-				break;
-			case 5:	/* ginger (cure hallucinate) */
-				pline("Ginger! Who puts that in a chocolate???");
-				(void) make_hallucinated(0L, TRUE, 0L);
-				break;
-			case 6:	/* chili (cure invert) */
-				pline("Chili??? What the hell, chocolate and that don't belong together!");
-				make_inverted(0L);
-				break;
-			case 7:	/* almond (cure wince) */
-				pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
-				make_wincing(0L);
-				break;
-			case 8:	/* caramel (cure inertia) */
-				pline("Caramel flavor, not too bad.");
-				if (u.inertia) {
-					u.inertia = 0;
-					You_feel("less slow.");
-				}
-				break;
-			case 9:	/* orange (cure map amnesia) */
-				pline("It had orange flavor, not really your cup of tea but oh well...");
-				if (HMap_amnesia & INTRINSIC) {
-					HMap_amnesia &= ~INTRINSIC;
-					You_feel("less forgetful!");
-				}
-				if (HMap_amnesia & TIMEOUT) {
-					HMap_amnesia &= ~TIMEOUT;
-					You_feel("less forgetful!");
-				}
-				break;
-			case 10:	/* soy sauce (cure magic vacuum) */
-				pline("Err, soy sauce?! That doesn't really mix with chocolate!");
-				make_magicvacuum(0L);
-				break;
-			case 11:	/* lavender (cure burden) */
-				pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
-				make_burdened(0L);
-				break;
-			default: break;
-
-		}
+		chocolate_effect();
 
 		break;
 
@@ -9202,6 +9024,88 @@ register struct obj *obj;
 
 	base = (int)(full_amount ? (long)base * uneaten_amt / full_amount : 0L);
 	return (base < 1) ? 1 : base;
+}
+
+void
+chocolate_effect()
+{
+	switch (rnd(16)) {
+
+		case 1:	/* blueberry (cure blind) */
+			/* They're good for your eyes, too. [Sakusha]*/
+			pline("It was blueberry-flavored!");
+			make_blinded((long)u.ucreamed,TRUE);
+			break;
+		case 2:	/* bitter (cure stun) */
+			pline("It tasted bitter!");
+			make_stunned(0L,TRUE);
+			break;
+		case 3:	/* wasabi (cure confuse) */
+			pline("It contained all-natural wasabi extract!");
+			make_confused(0L,TRUE);
+			break;
+		case 4:	/* mattya (cure slow and totter) */
+			pline("There was some weird japanese food extras in there...");
+			make_frozen(0L, TRUE);
+			u.totter = 0;
+			break;
+		case 5:	/* ginger (cure hallucinate) */
+			pline("Ginger! Who puts that in a chocolate???");
+			(void) make_hallucinated(0L, TRUE, 0L);
+			break;
+		case 6:	/* chili (cure invert) */
+			pline("Chili??? What the hell, chocolate and that don't belong together!");
+			make_inverted(0L);
+			HInvertedState &= ~INTRINSIC;
+			break;
+		case 7:	/* almond (cure wince) */
+			pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
+			make_wincing(0L);
+			HWinceState &= ~INTRINSIC;
+			break;
+		case 8:	/* caramel (cure inertia) */
+			pline("Caramel flavor, not too bad.");
+			if (u.inertia) {
+				u.inertia = 0;
+				You_feel("less slow.");
+			}
+			break;
+		case 9:	/* orange (cure map amnesia) */
+			pline("It had orange flavor, not really your cup of tea but oh well...");
+			if (HMap_amnesia & INTRINSIC) {
+				HMap_amnesia &= ~INTRINSIC;
+				You_feel("less forgetful!");
+			}
+			if (HMap_amnesia & TIMEOUT) {
+				HMap_amnesia &= ~TIMEOUT;
+				You_feel("less forgetful!");
+			}
+			break;
+		case 10:	/* soy sauce (cure magic vacuum) */
+			pline("Err, soy sauce?! That doesn't really mix with chocolate!");
+			make_magicvacuum(0L);
+			HMagicVacuum &= ~INTRINSIC;
+			break;
+		case 11:	/* lavender (cure burden) */
+			pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
+			make_burdened(0L);
+			HBurdenedState &= ~INTRINSIC;
+			break;
+		case 12:	/* marchpane (cure fuck-over) */
+			pline("Bleh, who decided to make that chocolate marchpane-flavored?");
+			if (HFuckOverEffect & INTRINSIC) {
+				HFuckOverEffect &= ~INTRINSIC;
+				You_feel("that you're no longer being fucked over!");
+			}
+			if (HFuckOverEffect & TIMEOUT) {
+				HFuckOverEffect &= ~TIMEOUT;
+				You_feel("that you're no longer being fucked over!");
+			}
+			break;
+		default: break;
+
+	}
+
 }
 
 void

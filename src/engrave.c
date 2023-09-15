@@ -6034,6 +6034,7 @@ static const char *epitaphs[] = {
 	"Huh? Droughter hybrid race? Amy are you serious, how am I supposed to survive if monsters only drop a corpse 1 in 20 times they were supposed to drop one??? Unplayable game!!!!!!! You should remove that playable race so that players don't accidentally pick it!",
 	"nooooo you fixed it! i wanted to autowin the game by using scrolls of flood to make enemies not attack me and you evil amy witch fixed it!!! i am too bad to play the game properly i can only win with exploits what am i gonna do now???????", /* yeah loggers of course a game that has been in development for 10 years and whose dev has a very fine-tuned antenna that detects things that make the game easier than intended, would have overlooked that one. suuuuure, dream on. this isn't dnethack where exploits are not only tolerated but part of the official easy ascension strategy (and the reason why so many players have ascended dnethack in the first place) */
 	"I attacked Pale Night in melee, and my char was so stupid to remove her veil and died instantly!",
+	"What, the final enlightenment screen said that I was 'being fucked over', why is that even specifically mentioned in SLEX? It's always the case, no matter what char you play and no matter how you try to avoid the stupid stuff in this game!",
 
 };
 

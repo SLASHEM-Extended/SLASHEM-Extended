@@ -7086,6 +7086,18 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoMysteryResist && (final || u.uprops[DEAC_MYSTERY_RES].intrinsic) ) {
+		sprintf(buf, "prevented from having mystery resistance");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_MYSTERY_RES].intrinsic);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && NoMagicFindBonus && (final || u.uprops[DEAC_MAGIC_FIND].intrinsic) ) {
+		sprintf(buf, "prevented from having magic find");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_MAGIC_FIND].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && NoScentView && (final || u.uprops[DEAC_SCENT_VIEW].intrinsic) ) {
 		sprintf(buf, "prevented from having scent view");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
@@ -7414,6 +7426,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && WinceState) enl_msg(You_, "are", "were", StrongWinceState ? " wincing painfully" : " wincing");
 	if ((guaranteed || !rn2(10)) && BurdenedState) enl_msg(You_, "are", "were", StrongBurdenedState ? " heavily burdened" : " burdened");
 	if ((guaranteed || !rn2(10)) && MagicVacuum) enl_msg(You_, "are", "were", StrongMagicVacuum ? " suffering from a complete magic vacuum" : " suffering from a magic vacuum");
+	if ((guaranteed || !rn2(10)) && FuckOverEffect) enl_msg(You_, "are", "were", StrongFuckOverEffect ? " being totally fucked over" : " being fucked over");
 
 	if ((guaranteed || !rn2(10)) && Hallu_party) you_are(StrongHallu_party ? "totally hallu partying" : "hallu partying");
 	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are(StrongDrunken_boxing ? "a very drunken boxer" : "a drunken boxer");
@@ -7625,6 +7638,8 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && Technicality) you_have(StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if ((guaranteed || !rn2(10)) && Defusing) you_have(StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
 	if ((guaranteed || !rn2(10)) && ResistancePiercing) you_have(StrongResistancePiercing ? "powerful resistance piercing abilities" : "resistance piercing abilities");
+	if ((guaranteed || !rn2(10)) && MysteryResist) you_have(StrongMysteryResist ? "strong mystery resistance" : "mystery resistance");
+	if ((guaranteed || !rn2(10)) && MagicFindBonus) you_have(StrongMagicFindBonus ? "much higher chances of finding magical items" : "higher chances of finding magical items");
 	if ((guaranteed || !rn2(10)) && (ScentView || EcholocationActive)) you_have(StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if ((guaranteed || !rn2(10)) && DiminishedBleeding) you_have(StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if ((guaranteed || !rn2(10)) && ControlMagic) you_have(StrongControlMagic ? "strong magic control" : "magic control");
@@ -11761,6 +11776,18 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoMysteryResist) {
+		sprintf(buf, "prevented from having mystery resistance");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_MYSTERY_RES].intrinsic);
+		dump(youwere, buf);
+	}
+
+	if (NoMagicFindBonus) {
+		sprintf(buf, "prevented from having magic find");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_MAGIC_FIND].intrinsic);
+		dump(youwere, buf);
+	}
+
 	if (NoScentView) {
 		sprintf(buf, "prevented from having scent view");
 		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SCENT_VIEW].intrinsic);
@@ -12089,6 +12116,7 @@ int final;
 	if (WinceState) dump("  ", StrongWinceState ? "You were wincing painfully" : "You were wincing");
 	if (BurdenedState) dump("  ", StrongBurdenedState ? "You were heavily burdened" : "You were burdened");
 	if (MagicVacuum) dump("  ", StrongMagicVacuum ? "You were suffering from a complete magic vacuum" : "You were suffering from a magic vacuum");
+	if (FuckOverEffect) dump("  ", StrongFuckOverEffect ? "You were being totally fucked over" : "You were being fucked over");
 
 	if ((Blind_telepat || Unblind_telepat) && !StrongTelepat) dump(youwere, "telepathic");
 	if ((Blind_telepat || Unblind_telepat) && StrongTelepat) dump(youwere, "very telepathic");
@@ -12264,6 +12292,8 @@ int final;
 	if (Technicality) dump(youhad, StrongTechnicality ? "greatly improved technique levels" : "improved technique levels");
 	if (Defusing) dump(youhad, StrongDefusing ? "very good abilities to disarm traps" : "the ability to disarm traps");
 	if (ResistancePiercing) dump(youhad, StrongResistancePiercing ? "powerful resistance piercing abilities" : "resistance piercing abilities");
+	if (MysteryResist) dump(youhad, StrongMysteryResist ? "strong mystery resistance" : "mystery resistance");
+	if (MagicFindBonus) dump(youhad, StrongMagicFindBonus ? "much higher chances of finding magical items" : "higher chances of finding magical items");
 	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if (ControlMagic) dump(youhad, StrongControlMagic ? "strong magic control" : "magic control");

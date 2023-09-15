@@ -3280,6 +3280,16 @@ moveloop()
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 		}
 
+		if ((u.inertia > 1) && MysteryResist && !rn2(5)) {
+			u.inertia--;
+		}
+		if ((u.inertia > 1) && StrongMysteryResist && !rn2(5)) {
+			u.inertia--;
+		}
+		if ((u.inertia > 1) && chitinprotection() && !rn2(5)) {
+			u.inertia--;
+		}
+
 		if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && u.inertia < 5) u.inertia = 15;
 
 		if (uarmf && uarmf->oartifact == ART_KRISTIN_S_NOBILITY) {

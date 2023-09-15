@@ -17,6 +17,7 @@ STATIC_DCL void check_contained(struct obj *,const char *);
 #endif
 #endif /* OVL1 */
 STATIC_DCL int makeobject_core(int);
+STATIC_DCL boolean artigenechance(int);
 
 extern struct obj *thrownobj;		/* defined in dothrow.c */
 
@@ -133,6 +134,29 @@ const struct icp hellprobs[] = {
 {  1, CHAIN_CLASS},
 {  1, IMPLANT_CLASS}
 };
+
+/* chance that an item is made into an artifact, by Amy, includes multipliers for the chance
+ * returns TRUE if the artifact can be made */
+STATIC_OVL boolean
+artigenechance(artichance)
+int artichance;
+{
+	if (Race_if(PM_LISTENER)) artichance *= 2;
+
+	if (MagicFindBonus) {
+		artichance *= 9;
+		artichance /= 10;
+	}
+	if (StrongMagicFindBonus) {
+		artichance *= 9;
+		artichance /= 10;
+	}
+	if (artichance < 1) artichance = 1; /* fail safe */
+
+	if (!rn2(artichance)) return TRUE;
+
+	return FALSE;
+}
 
 struct obj *
 mkobj_at(let, x, y, artif, shopinit)
@@ -2523,6 +2547,15 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (MagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (StrongMagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		/* lategame (Gehennom and beyond) should spawn highly enchanted gear slightly more often --Amy
 		 * idea from Nethack Fourk but implementation is my own */
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
@@ -2543,7 +2576,7 @@ boolean shopinit;
 		}
 		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 40 : 20)) {
+		if (artif && (artif != 2) && artigenechance(20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2647,7 +2680,7 @@ boolean shopinit;
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
 		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
+		if (artif && (artif != 2) && artigenechance(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2677,7 +2710,7 @@ boolean shopinit;
 			}
 			if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-			if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
+			if (artif && (artif != 2) && artigenechance(50)) {
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 				if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 			}
@@ -2753,6 +2786,15 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (MagicFindBonus && !rn2(8) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (StrongMagicFindBonus && !rn2(8) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -2767,7 +2809,7 @@ boolean shopinit;
 
 		/* Amy edit: regular rocks are so common, and we might be adding more artifact versions of those in future
 		 * versions, so we want to make sure they don't spawn literally everywhere - make them 20x less common */
-		if (artif && (artif != 2) && (!rn2(20) || (otmp->otyp != ROCK) ) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
+		if (artif && (artif != 2) && (!rn2(20) || (otmp->otyp != ROCK) ) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -2942,6 +2984,15 @@ boolean shopinit;
 				otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			} else	blessorcurse_on_creation(otmp, 10);
 
+			if (MagicFindBonus && !rn2(6) && otmp->spe == 0) {
+				if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+				else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+			}
+			if (StrongMagicFindBonus && !rn2(6) && otmp->spe == 0) {
+				if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+				else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+			}
+
 			if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 				if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
 				else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3096,6 +3147,15 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (MagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (StrongMagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3113,7 +3173,7 @@ boolean shopinit;
 		}
 		if (!rn2(400)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
+		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3144,7 +3204,7 @@ boolean shopinit;
 		}
 		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
+		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3192,7 +3252,7 @@ boolean shopinit;
 		}
 		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 120 : 60)) {
+		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3215,6 +3275,15 @@ boolean shopinit;
 			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
+
+		if (MagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (StrongMagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3242,7 +3311,7 @@ boolean shopinit;
 		}
 		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 200 : 100)) {
+		if (artif && (artif != 2) && artigenechance(100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3294,6 +3363,15 @@ boolean shopinit;
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (MagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (StrongMagicFindBonus && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3310,7 +3388,7 @@ boolean shopinit;
 		}
 		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
+		if (artif && (artif != 2) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3338,7 +3416,7 @@ boolean shopinit;
 		}
 		if (!rn2(160)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
+		if (artif && (artif != 2) && artigenechance(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3389,7 +3467,7 @@ boolean shopinit;
 		}
 		if (!rn2(100)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 200 : 100)) {
+		if (artif && (artif != 2) && artigenechance(100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3442,6 +3520,15 @@ boolean shopinit;
 			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 		} else	blessorcurse_on_creation(otmp, 10);
 
+		if (MagicFindBonus && !rn2(5) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (StrongMagicFindBonus && !rn2(5) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3456,7 +3543,7 @@ boolean shopinit;
 		}
 		if (!rn2(40)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 80 : 40)) {
+		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3567,7 +3654,7 @@ boolean shopinit;
 		}
 		if (!rn2(1600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 320 : 160)) {
+		if (artif && (artif != 2) && artigenechance(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3627,7 +3714,7 @@ boolean shopinit;
 		}
 		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 100 : 50)) {
+		if (artif && (artif != 2) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -3655,7 +3742,7 @@ boolean shopinit;
 		}
 		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
-		if (artif && (artif != 2) && !rn2(Race_if(PM_LISTENER) ? 400 : 200)) {
+		if (artif && (artif != 2) && artigenechance(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}

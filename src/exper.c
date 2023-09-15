@@ -1666,7 +1666,7 @@ climdone:
 
 		u.urmaxlvlL++;
 
-		if (!rn2(3)) { switch (rnd(56)) {
+		if (!rn2(3)) { switch (rnd(61)) {
 
 			case 1: 
 			case 2: 
@@ -1760,6 +1760,14 @@ climdone:
 			    HMagicVacuum |= FROMOUTSIDE; pline("Got magic vacuum!"); break;
 			case 56: 
 			    HResistancePiercing |= FROMOUTSIDE; pline("Got resistance piercing!"); break;
+			case 57: 
+			    HFuckOverEffect |= FROMOUTSIDE; pline("Got fuck-over!"); break;
+			case 58:
+			case 59:
+			case 60:
+			    HMysteryResist |= FROMOUTSIDE; pline("Got mystery resistance!"); break;
+			case 61:
+			    HMagicFindBonus |= FROMOUTSIDE; pline("Got magic find!"); break;
 
 			default:
 				break;
@@ -1787,7 +1795,7 @@ climdone:
 
 		u.urmaxlvlF++;
 
-		if (!rn2(4)) { switch (rnd(56)) {
+		if (!rn2(4)) { switch (rnd(61)) {
 
 			case 1: 
 			case 2: 
@@ -1881,6 +1889,14 @@ climdone:
 			    HMagicVacuum |= FROMOUTSIDE; pline("Got magic vacuum!"); break;
 			case 56: 
 			    HResistancePiercing |= FROMOUTSIDE; pline("Got resistance piercing!"); break;
+			case 57: 
+			    HFuckOverEffect |= FROMOUTSIDE; pline("Got fuck-over!"); break;
+			case 58:
+			case 59:
+			case 60:
+			    HMysteryResist |= FROMOUTSIDE; pline("Got mystery resistance!"); break;
+			case 61:
+			    HMagicFindBonus |= FROMOUTSIDE; pline("Got magic find!"); break;
 
 			default:
 				break;

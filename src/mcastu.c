@@ -868,6 +868,22 @@ int spellnum;
 	break;
 
     case MGC_MEGALOAD:
+	if (MysteryResist && rn2(2)) {
+		dmg = 0;
+		You("resist the megaload spell!");
+		break;
+	}
+	if (chitinprotection() && rn2(2)) {
+		dmg = 0;
+		You("resist the megaload spell!");
+		break;
+	}
+	if (StrongMysteryResist && rn2(2)) {
+		dmg = 0;
+		You("resist the megaload spell!");
+		break;
+	}
+
 	if ((otmp = mksobj(LOADSTONE, TRUE, FALSE, FALSE)) != (struct obj *)0) {
 	pline(FunnyHallu ? "Aww, something's killing your good feelings!" : "You feel burdened");
 	otmp->quan = 1;
@@ -1064,7 +1080,7 @@ newbossRLN:
 	}
 
 	dmg = 0;   
-	break;   
+	break;
     case MGC_AGGRAVATION:
 	You_feel("that monsters are aware of your presence.");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
@@ -1072,13 +1088,34 @@ newbossRLN:
 	dmg = 0;
 	break;
     case MGC_CURSE_ITEMS:
+	if (MysteryResist && !rn2(3)) {
+		dmg = 0;
+		You("resist the itemcursing spell!");
+		break;
+	}
+	if (chitinprotection() && !rn2(3)) {
+		dmg = 0;
+		You("resist the itemcursing spell!");
+		break;
+	}
+	if (StrongMysteryResist && !rn2(3)) {
+		dmg = 0;
+		You("resist the itemcursing spell!");
+		break;
+	}
 	You_feel("as if you need some help.");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 	rndcurse();
 	dmg = 0;
 	break;
     case MGC_DESTRY_ARMR:
-	if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+	if (chitinprotection() && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (MysteryResist && rn2(StrongMysteryResist ? 9 : 3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 	    shieldeff(u.ux, u.uy);
 	    pline("A field of force surrounds you!");
 	} else {
@@ -1171,6 +1208,22 @@ newbossRLN:
 
     case MGC_DIVINE_WRATH: /* new idea by Amy. Yes, this is very evil. :D */
 
+		if (chitinprotection() && !rn2(2)) {
+			dmg = 0;
+			You("resist the divine wrath spell!");
+			break;
+		}
+		if (MysteryResist && !rn2(2)) {
+			dmg = 0;
+			You("resist the divine wrath spell!");
+			break;
+		}
+		if (StrongMysteryResist && !rn2(2)) {
+			dmg = 0;
+			You("resist the divine wrath spell!");
+			break;
+		}
+
 		u.ugangr++;
 		if (!rn2(5)) u.ugangr++;
 		if (!rn2(25)) u.ugangr++;
@@ -1180,7 +1233,13 @@ newbossRLN:
 		break;
 
     case MGC_WITHER:
-	if (Antimagic && rn2(StrongAntimagic ? 5 : 3)) {
+	if (chitinprotection() && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (MysteryResist && rn2(StrongMysteryResist ? 5 : 3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (Antimagic && rn2(StrongAntimagic ? 5 : 3)) {
 	    shieldeff(u.ux, u.uy);
 	    pline("A field of force surrounds you!");
 	} else {
@@ -1226,7 +1285,13 @@ newbossRLN:
 	dmg = 0;
 	break;
     case MGC_DAMAGE_ARMR:
-	if (Antimagic && rn2(StrongAntimagic ? 5 : 3)) {
+	if (chitinprotection() && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (MysteryResist && rn2(StrongMysteryResist ? 5 : 3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (Antimagic && rn2(StrongAntimagic ? 5 : 3)) {
 	    shieldeff(u.ux, u.uy);
 	    pline("A field of force surrounds you!");
 	} else {
@@ -1315,7 +1380,13 @@ newbossRLN:
 	dmg = 0;
 	break;
     case MGC_WEAKEN_YOU:		/* drain strength */
-	if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
+	if (chitinprotection() && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    You_feel("momentarily weakened.");
+	} else if (MysteryResist && rn2(StrongMysteryResist ? 9 : 3)) {
+	    shieldeff(u.ux, u.uy);
+	    You_feel("momentarily weakened.");
+	} else if (Antimagic && rn2(StrongAntimagic ? 20 : 5)) {
 	    shieldeff(u.ux, u.uy);
 	    You_feel("momentarily weakened.");
 	} else {
@@ -1601,6 +1672,23 @@ int spellnum;
 
 	case 20:
 	/* antimatter storm --Amy */
+
+	if (chitinprotection() && rn2(2)) {
+		dmg = 0;
+		You("resist the antimatter spell!");
+		break;
+	}
+	if (MysteryResist && rn2(2)) {
+		dmg = 0;
+		You("resist the antimatter spell!");
+		break;
+	}
+	if (StrongMysteryResist && rn2(2)) {
+		dmg = 0;
+		You("resist the antimatter spell!");
+		break;
+	}
+
 	pline("You are caught in an antimatter storm!");
 	dmg = d(8, 6);
 	withering_damage(invent, FALSE, FALSE); /* This can potentially damage all of your inventory items. --Amy */
@@ -1614,6 +1702,22 @@ int spellnum;
 	case 23:
 	case 24:
 	case 25:
+
+		if (chitinprotection() && rn2(2)) {
+			dmg = 0;
+			You("resist the petrify spell!");
+			break;
+		}
+		if (MysteryResist && rn2(2)) {
+			dmg = 0;
+			You("resist the petrify spell!");
+			break;
+		}
+		if (StrongMysteryResist && rn2(2)) {
+			dmg = 0;
+			You("resist the petrify spell!");
+			break;
+		}
 
 		/* petrify - similar to cockatrice hissing --Amy */
 		You_feel("a massive burden on your chest!");
@@ -1635,6 +1739,22 @@ int spellnum;
 	case 28:
 	case 29:
 	case 30:
+
+		if (chitinprotection() && rn2(2)) {
+			dmg = 0;
+			You("resist the sliming spell!");
+			break;
+		}
+		if (MysteryResist && rn2(2)) {
+			dmg = 0;
+			You("resist the sliming spell!");
+			break;
+		}
+		if (StrongMysteryResist && rn2(2)) {
+			dmg = 0;
+			You("resist the sliming spell!");
+			break;
+		}
 
 		/* sliming - similar to green slime attack --Amy */
 		    if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
@@ -1663,6 +1783,22 @@ int spellnum;
 		 break;
 
 	case 38:
+
+		if (chitinprotection() && rn2(2)) {
+			dmg = 0;
+			You("resist the amnesia spell!");
+			break;
+		}
+		if (MysteryResist && rn2(2)) {
+			dmg = 0;
+			You("resist the amnesia spell!");
+			break;
+		}
+		if (StrongMysteryResist && rn2(2)) {
+			dmg = 0;
+			You("resist the amnesia spell!");
+			break;
+		}
 
 		/* amnesia - evil patch idea by jonadab */
 		forget(3);
@@ -1760,6 +1896,23 @@ int spellnum;
 	break;
     }
     case CLC_CURSE_ITEMS:
+
+	if (chitinprotection() && !rn2(3)) {
+		dmg = 0;
+		You("resist the itemcursing spell!");
+		break;
+	}
+	if (MysteryResist && !rn2(3)) {
+		dmg = 0;
+		You("resist the itemcursing spell!");
+		break;
+	}
+	if (StrongMysteryResist && !rn2(3)) {
+		dmg = 0;
+		You("resist the itemcursing spell!");
+		break;
+	}
+
 	You_feel("as if you need some help.");
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 	rndcurse();
@@ -2127,6 +2280,9 @@ int spellnum;
 	    else dmg = 4 + (int)mtmp->m_lev;;
 	    if (Half_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
 	    if (StrongHalf_spell_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	    if (chitinprotection() && rn2(2) ) dmg = (dmg + 1) / 2;
+	    if (MysteryResist && rn2(2) ) dmg = (dmg + 1) / 2;
+	    if (StrongMysteryResist && rn2(2) ) dmg = (dmg + 1) / 2;
 	    if (issoviet) pline("Teper' vy mertvy. Sovetskaya smeyetsya, potomu chto vy, veroyatno, vlozhili dvesti chasov v etot kharakter.");
 	    nomul(-dmg, "paralyzed by a monster spell", TRUE);
 	}
@@ -2185,7 +2341,13 @@ int spellnum;
 	dmg = 0;
 	break;
     case CLC_STAT_DRAIN:		/* drain a random stat */
-	if (Antimagic && rn2(StrongAntimagic ? 10 : 3)) {
+	if (chitinprotection() && rn2(3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (MysteryResist && rn2(StrongMysteryResist ? 10 : 3)) {
+	    shieldeff(u.ux, u.uy);
+	    pline("A field of force surrounds you!");
+	} else if (Antimagic && rn2(StrongAntimagic ? 10 : 3)) {
 	    shieldeff(u.ux, u.uy);
 	    You_feel("less powerful for a moment, but the feeling passes.");
 	} else {

@@ -578,7 +578,7 @@ drinkfountain()
 			break;
 
 		case 33:
-			switch (rnd(6)) {
+			switch (rnd(7)) {
 
 				case 1:
 					make_inverted(rnz(5000));
@@ -605,6 +605,12 @@ drinkfountain()
 				case 6:
 					make_burdened(rnz(5000));
 					pline("Now you're burdened because you didn't get the memo that you *do not quaff from fountains*. Your fault.");
+					break;
+				case 7:
+					if(!(HFuckOverEffect & FROMOUTSIDE)) {
+						pline("Yeah, now you're being fucked over. Your fault, you shouldn't be quaffing from fountains, you noob.");
+						HFuckOverEffect |= FROMOUTSIDE;
+					} else pline("Seems you got lucky this time, but you should still stop quaffing from fountains, you noob.");
 					break;
 			}
 			break;

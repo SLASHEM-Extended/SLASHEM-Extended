@@ -5825,7 +5825,7 @@ chargingchoice:
 
 	} else if (rn2(100)) { /* "rare" effects */
 
-		switch (rnd(54)) {
+		switch (rnd(57)) {
 			case 1: /* mollify the gods by one point */
 				if (u.ugangr) {
 					u.ugangr--;
@@ -6213,6 +6213,12 @@ secremchoice:
 			case 54: /* add skill training */
 				additionalskilltraining(rnd(10));
 				break;
+			case 55: /* chocolate (may fix stuff) */
+			case 56:
+			case 57:
+				You_feel("a chocolate-like taste in your mouth...");
+				chocolate_effect();
+				break; 
 		}
 
 	} else { /* "uber rare" effects - extremely powerful stuff goes here */
@@ -7409,6 +7415,56 @@ chromeprotection()
 	}
 	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_CHROME && !rn2(10)) {
 		pline("Your chrome equipment prevents the poison effect!");
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
+/* does your equipment made of chitin protect you from mystery? --Amy */
+boolean
+chitinprotection()
+{
+	if (uarm && objects[(uarm)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmf && objects[(uarmf)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmg && objects[(uarmg)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmh && objects[(uarmh)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarms && objects[(uarms)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uarmu && objects[(uarmu)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uamul && objects[(uamul)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uimplant && objects[(uimplant)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uleft && objects[(uleft)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uright && objects[(uright)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (ublindf && objects[(ublindf)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (uwep && objects[(uwep)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
+		return TRUE;
+	}
+	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
 		return TRUE;
 	}
 
@@ -9282,6 +9338,8 @@ datadeleteattack()
 			u.uprops[DEAC_TECHNICALITY].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_DEFUSING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_MYSTERY_RES].intrinsic += (rn2(10) ? 10000 : 100000);
+			u.uprops[DEAC_MAGIC_FIND].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_SCENT_VIEW].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += (rn2(10) ? 10000 : 100000);
 			u.uprops[DEAC_CONTROL_MAGIC].intrinsic += (rn2(10) ? 10000 : 100000);
@@ -12382,6 +12440,8 @@ peffects(otmp)
 		u.uprops[DEAC_TECHNICALITY].intrinsic = 0;
 		u.uprops[DEAC_DEFUSING].intrinsic = 0;
 		u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic = 0;
+		u.uprops[DEAC_MYSTERY_RES].intrinsic = 0;
+		u.uprops[DEAC_MAGIC_FIND].intrinsic = 0;
 		u.uprops[DEAC_SCENT_VIEW].intrinsic = 0;
 		u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic = 0;
 		u.uprops[DEAC_CONTROL_MAGIC].intrinsic = 0;

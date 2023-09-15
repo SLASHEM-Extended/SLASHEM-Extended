@@ -2482,41 +2482,49 @@ convertdone:
 
 		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
 
-			badeffect();
-			stop_occupation();
-		    if (!obsidianprotection()) switch (rn2(17)) {
-		    case 0:
-		    case 1:
-		    case 2:
-		    case 3: make_confused(HConfusion + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 40% */
-			    break;
-		    case 4:
-		    case 5:
-		    case 6: make_confused(HConfusion + (2L * rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);		/* 30% */
-			    make_stunned(HStun + (rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);
-			    break;
-		    case 7:
-		    case 8: make_stunned(HStun + (2L * rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);		/* 20% */
-			    make_confused(HConfusion + (rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);
-			    break;
-		    case 9: make_stunned(HStun + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
-			    break;
-		    case 10: make_numbed(HNumbed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
-			    break;
-		    case 11: make_frozen(HFrozen + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
-			    break;
-		    case 12: make_burned(HBurned + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
-			    break;
-		    case 13: make_feared(HFeared + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
-			    break;
-		    case 14: make_blinded(Blinded + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
-			    break;
-		    case 15: make_hallucinated(HHallucination + rnd(100 + (mtmp->m_lev * 5) ), FALSE, 0L);			/* 10% */
-			    break;
-		    case 16: make_dimmed(HDimmed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
-			    break;
-		    }
-			if (!rn2(20)) increasesanity(rnd(10 + (mtmp->m_lev * 2) ));
+			boolean wouwouresisted = FALSE;
+
+			if (MysteryResist && !rn2(StrongMysteryResist ? 3 : 5)) wouwouresisted = TRUE;
+			if (chitinprotection() && !rn2(5)) wouwouresisted = TRUE;
+
+			if (!wouwouresisted) {
+
+				badeffect();
+				stop_occupation();
+			    if (!obsidianprotection()) switch (rn2(17)) {
+			    case 0:
+			    case 1:
+			    case 2:
+			    case 3: make_confused(HConfusion + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 40% */
+				    break;
+			    case 4:
+			    case 5:
+			    case 6: make_confused(HConfusion + (2L * rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);		/* 30% */
+				    make_stunned(HStun + (rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);
+				    break;
+			    case 7:
+			    case 8: make_stunned(HStun + (2L * rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);		/* 20% */
+				    make_confused(HConfusion + (rnd(100 + (mtmp->m_lev * 5) ) / 3L), FALSE);
+				    break;
+			    case 9: make_stunned(HStun + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+				    break;
+			    case 10: make_numbed(HNumbed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+				    break;
+			    case 11: make_frozen(HFrozen + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+				    break;
+			    case 12: make_burned(HBurned + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+				    break;
+			    case 13: make_feared(HFeared + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+				    break;
+			    case 14: make_blinded(Blinded + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+				    break;
+			    case 15: make_hallucinated(HHallucination + rnd(100 + (mtmp->m_lev * 5) ), FALSE, 0L);			/* 10% */
+				    break;
+			    case 16: make_dimmed(HDimmed + rnd(100 + (mtmp->m_lev * 5) ), FALSE);			/* 10% */
+				    break;
+			    }
+				if (!rn2(20)) increasesanity(rnd(10 + (mtmp->m_lev * 2) ));
+			}
 		}
 
 	}
@@ -2735,62 +2743,70 @@ convertdone:
 	}
 
 	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !(uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER && !mtmp->mfrenzied) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
-		switch (rnd(10)) {
 
-			case 1:
-				pline("Urgh! You inhale the vile stench that emanates from %s!", mon_nam(mtmp));
-				break;
-			case 2:
-				if (mtmp->female) pline("%s's perfume is beguiling, and you have trouble concentrating!", Monnam(mtmp));
-				else pline("Ugh, %s's body lotion smells utterly repulsive. You can hardly concentrate on what you're doing.", mon_nam(mtmp));
-				break;
-			case 3:
-				if (mtmp->female) pline("You deeply inhale %s's feminine scent.", mon_nam(mtmp));
-				else pline("%s's gritty aftershave makes you dizzy.", Monnam(mtmp));
-				break;
-			case 4:
-				if (mtmp->female) pline("%s's odor cloud made of concentrated perfume infiltrates your %s!", Monnam(mtmp), body_part(NOSE));
-				else pline("Bleh, your %s just can't handle the stench that %s's aftershave is spreading.", body_part(NOSE), mon_nam(mtmp));
-				break;
-			case 5:
-				pline("Your %s are having trouble dealing with the asphyxiating stench that comes from %s!", makeplural(body_part(LUNG)), mon_nam(mtmp));
-				break;
-			case 6:
-				if (mtmp->female) pline("%s attacks you with a fragrance cloud!", Monnam(mtmp));
-				else pline("%s attacks you with a stinking cloud!", Monnam(mtmp));
-				break;
-			case 7:
-				if (mtmp->female) pline("%s is close enough that you can smell %s perfume... but it's way too concentrated, and inhaling the aroma makes you dizzy!", Monnam(mtmp), mhis(mtmp));
-				else pline("The unbearable odor of %s's body lotion wafts through the dungeon, and having to smell such a stink makes you want to vomit.", mon_nam(mtmp));
-				break;
-			case 8:
-				if (mtmp->female) pline("The lovely scent of femininity floods your nostrils... until you realize that it's getting ever stronger, and you are having trouble when breathing!");
-				else pline("Some bitter male smell is hanging in the air... and it's getting stronger! You can hardly breathe!");
-				break;
-			case 9:
-				if (mtmp->female) pline("%s's perfume is so scentful that %s reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh!", Monnam(mtmp), mhe(mtmp));
-				else pline("Even your most odoriferous relative doesn't smell as bad as %s! Ugh!", mon_nam(mtmp));
-				break;
-			case 10:
-				pline("%s's odor reminds you of an oriental brothel! What an intrusive perfume is %s using, anyway?", Monnam(mtmp), mhe(mtmp));
-				break;
+		boolean wouwouresisted = FALSE;
 
-		}
-		u.cnd_perfumecount++;
-		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+		if (MysteryResist && !rn2(StrongMysteryResist ? 3 : 5)) wouwouresisted = TRUE;
+		if (chitinprotection() && !rn2(5)) wouwouresisted = TRUE;
 
-		if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
-			pline("But the gas mask protects you from the effects.");
-		} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
-			pline("But you actually enjoy the lovely scent.");
-		} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
-			pline("But you actually enjoy the lovely scent.");
-		} else {
+		if (!wouwouresisted) {
 
-			badeffect();
-			if (rn2(2) || Role_if(PM_EMERA)) increasesanity(rnz(20 + mtmp->m_lev));
-			stop_occupation();
-		}
+			switch (rnd(10)) {
+
+				case 1:
+					pline("Urgh! You inhale the vile stench that emanates from %s!", mon_nam(mtmp));
+					break;
+				case 2:
+					if (mtmp->female) pline("%s's perfume is beguiling, and you have trouble concentrating!", Monnam(mtmp));
+					else pline("Ugh, %s's body lotion smells utterly repulsive. You can hardly concentrate on what you're doing.", mon_nam(mtmp));
+					break;
+				case 3:
+					if (mtmp->female) pline("You deeply inhale %s's feminine scent.", mon_nam(mtmp));
+					else pline("%s's gritty aftershave makes you dizzy.", Monnam(mtmp));
+					break;
+				case 4:
+					if (mtmp->female) pline("%s's odor cloud made of concentrated perfume infiltrates your %s!", Monnam(mtmp), body_part(NOSE));
+					else pline("Bleh, your %s just can't handle the stench that %s's aftershave is spreading.", body_part(NOSE), mon_nam(mtmp));
+					break;
+				case 5:
+					pline("Your %s are having trouble dealing with the asphyxiating stench that comes from %s!", makeplural(body_part(LUNG)), mon_nam(mtmp));
+					break;
+				case 6:
+					if (mtmp->female) pline("%s attacks you with a fragrance cloud!", Monnam(mtmp));
+					else pline("%s attacks you with a stinking cloud!", Monnam(mtmp));
+					break;
+				case 7:
+					if (mtmp->female) pline("%s is close enough that you can smell %s perfume... but it's way too concentrated, and inhaling the aroma makes you dizzy!", Monnam(mtmp), mhis(mtmp));
+					else pline("The unbearable odor of %s's body lotion wafts through the dungeon, and having to smell such a stink makes you want to vomit.", mon_nam(mtmp));
+					break;
+				case 8:
+					if (mtmp->female) pline("The lovely scent of femininity floods your nostrils... until you realize that it's getting ever stronger, and you are having trouble when breathing!");
+					else pline("Some bitter male smell is hanging in the air... and it's getting stronger! You can hardly breathe!");
+					break;
+				case 9:
+					if (mtmp->female) pline("%s's perfume is so scentful that %s reminds you of what your aunt smells like when she comes for a visit on Christmas! Ugh!", Monnam(mtmp), mhe(mtmp));
+					else pline("Even your most odoriferous relative doesn't smell as bad as %s! Ugh!", mon_nam(mtmp));
+					break;
+				case 10:
+					pline("%s's odor reminds you of an oriental brothel! What an intrusive perfume is %s using, anyway?", Monnam(mtmp), mhe(mtmp));
+					break;
+			}
+			u.cnd_perfumecount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+
+			if (rn2(10) && uarmh && itemhasappearance(uarmh, APP_GAS_MASK) ) {
+				pline("But the gas mask protects you from the effects.");
+			} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
+				pline("But you actually enjoy the lovely scent.");
+			} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
+				pline("But you actually enjoy the lovely scent.");
+			} else {
+
+				badeffect();
+				if (rn2(2) || Role_if(PM_EMERA)) increasesanity(rnz(20 + mtmp->m_lev));
+				stop_occupation();
+			}
+		} /* mystery res check */
 	}
 
 	/* Monsters with MS_BONES can rattle. If this causes you to snap out of a longer paralysis, more power to you :D */

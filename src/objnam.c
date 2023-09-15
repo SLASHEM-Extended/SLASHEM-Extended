@@ -205,6 +205,8 @@ int prop;
 			return "burden";
 		case MAGIC_VACUUM:
 			return "magic vacuum";
+		case FUCK_OVER:
+			return "fuck-over";
 
 		case RNGE_IRREGULARITY:
 			return "irregularity";
@@ -392,6 +394,10 @@ int prop;
 			return "technicality";
 		case RESISTANCE_PIERCING:
 			return "resistance piercing";
+		case MYSTERY_RES:
+			return "mystery resistance";
+		case MAGIC_FIND:
+			return "magic find";
 		case DEFUSING:
 			return "defusing";
 		case RNGE_MULTISHOT:

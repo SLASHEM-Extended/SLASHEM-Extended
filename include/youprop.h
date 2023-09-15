@@ -1821,8 +1821,31 @@
 
 #define NoResistancePiercing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic || UHaveAids || (u.impossibleproperty == RESISTANCE_PIERCING ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define FuckOverEffect		(FALSE) /* todo */
+#define HFuckOverEffect		u.uprops[FUCK_OVER].intrinsic
+#define EFuckOverEffect		u.uprops[FUCK_OVER].extrinsic
+#define IntFuckOverEffect	(HFuckOverEffect)
+#define ExtFuckOverEffect	(EFuckOverEffect || Race_if(PM_RODNEYAN) )
+#define FuckOverEffect		(IntFuckOverEffect || ExtFuckOverEffect)
+#define StrongFuckOverEffect		(IntFuckOverEffect && ExtFuckOverEffect && FuckOverEffect)
 
-#define StrongFuckOverEffect		(FALSE) /* todo */
+#define HMysteryResist		u.uprops[MYSTERY_RES].intrinsic
+#define EMysteryResist		u.uprops[MYSTERY_RES].extrinsic
+#define IntMysteryResist	(HMysteryResist)
+#define ExtMysteryResist	(EMysteryResist || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MYSTERY_RES) ) )
+
+#define MysteryResist		(((IntMysteryResist && u.nonintrinsicproperty != MYSTERY_RES) || (ExtMysteryResist && u.nonextrinsicproperty != MYSTERY_RES)) && !NoMysteryResist)
+#define StrongMysteryResist	(IntMysteryResist && ExtMysteryResist && MysteryResist && u.nondoubleproperty != MYSTERY_RES)
+
+#define NoMysteryResist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MYSTERY_RES].intrinsic || UHaveAids || (u.impossibleproperty == MYSTERY_RES ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HMagicFindBonus		u.uprops[MAGIC_FIND].intrinsic
+#define EMagicFindBonus		u.uprops[MAGIC_FIND].extrinsic
+#define IntMagicFindBonus	(HMagicFindBonus)
+#define ExtMagicFindBonus	(EMagicFindBonus || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MAGIC_FIND) ) )
+
+#define MagicFindBonus		(((IntMagicFindBonus && u.nonintrinsicproperty != MAGIC_FIND) || (ExtMagicFindBonus && u.nonextrinsicproperty != MAGIC_FIND)) && !NoMagicFindBonus)
+#define StrongMagicFindBonus	(IntMagicFindBonus && ExtMagicFindBonus && MagicFindBonus && u.nondoubleproperty != MAGIC_FIND)
+
+#define NoMagicFindBonus	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MAGIC_FIND].intrinsic || UHaveAids || (u.impossibleproperty == MAGIC_FIND ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #endif /* YOUPROP_H */
