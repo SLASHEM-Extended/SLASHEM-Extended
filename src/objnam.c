@@ -4037,6 +4037,27 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ MYSTERY_DRAGON_SCALE_MAIL, "todo" },
+	{ MYSTERY_DRAGON_SCALES, "todo" },
+	{ MYSTERY_DRAGON_SCALE_SHIELD, "todo" },
+	{ AMULET_OF_FUCKING, "todo" },
+	{ AMULET_OF_MYSTERY_RESISTANCE, "todo" },
+	{ CLOAK_OF_FUCKING, "todo" },
+	{ GAUNTLETS_OF_FORTUNE, "todo" },
+	{ GAUNTLETS_OF_MYSTERY_RESISTANC, "todo" },
+	{ CLOAK_OF_MAGIC_FIND, "todo" },
+	{ COMBINATION_CLOAK, "todo" },
+	{ CLOAK_OF_LOWER_MYSTERY, "todo" },
+	{ CLOAK_OF_MYSTERY, "todo" },
+	{ CLOAK_OF_ARMOR_MYSTERY, "todo" },
+	{ RIN_MAGIC_FIND, "todo" },
+	{ RIN_MYSTERY_RESISTANCE, "todo" },
+	{ MYSTERIOUS_PICK, "todo" },
+	{ MAGISWORD, "todo" },
+	{ HELM_OF_MYSTERY_RES, "todo" },
+	{ MYSTERIOUS_BOOTS, "todo" },
+	{ MYSTERY_SHIELD, "todo" },
+
 	{0, "" }
 };
 
@@ -7241,6 +7262,27 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ROBE_OF_MAGIC_POWER, "sehrli kuch libosi" },
 
 	/* todo area */
+
+	{ MYSTERY_DRAGON_SCALE_MAIL, "todo" },
+	{ MYSTERY_DRAGON_SCALES, "todo" },
+	{ MYSTERY_DRAGON_SCALE_SHIELD, "todo" },
+	{ AMULET_OF_FUCKING, "todo" },
+	{ AMULET_OF_MYSTERY_RESISTANCE, "todo" },
+	{ CLOAK_OF_FUCKING, "todo" },
+	{ GAUNTLETS_OF_FORTUNE, "todo" },
+	{ GAUNTLETS_OF_MYSTERY_RESISTANC, "todo" },
+	{ CLOAK_OF_MAGIC_FIND, "todo" },
+	{ COMBINATION_CLOAK, "todo" },
+	{ CLOAK_OF_LOWER_MYSTERY, "todo" },
+	{ CLOAK_OF_MYSTERY, "todo" },
+	{ CLOAK_OF_ARMOR_MYSTERY, "todo" },
+	{ RIN_MAGIC_FIND, "todo" },
+	{ RIN_MYSTERY_RESISTANCE, "todo" },
+	{ MYSTERIOUS_PICK, "todo" },
+	{ MAGISWORD, "todo" },
+	{ HELM_OF_MYSTERY_RES, "todo" },
+	{ MYSTERIOUS_BOOTS, "todo" },
+	{ MYSTERY_SHIELD, "todo" },
 
 	{0, "" }
 };

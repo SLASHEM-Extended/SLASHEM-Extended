@@ -11070,6 +11070,8 @@ boolean knoweverything;
 				pline("A basic short sword that doesn't deal a lot of damage."); break;
 			case KHOPESH:
 				pline("This short sword does more damage to small monsters than large ones."); break;
+			case MAGISWORD:
+				pline("A short sword that conveys mystery resistance while wielded."); break;
 			case TRASH_SWORD:
 				pline("This short sword is made of a particularly bad material and doesn't deal much damage."); break;
 			case PARRY_SWORD:
@@ -13050,6 +13052,8 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as sustain ability."); break;
 			case CONTRO_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as control magic."); break;
+			case MYSTERY_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as mystery resistance."); break;
 			case HEROIC_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALE_MAIL: 
@@ -13124,6 +13128,8 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as sustain ability."); break;
 			case CONTRO_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as control magic."); break;
+			case MYSTERY_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as mystery resistance."); break;
 			case HEROIC_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as diminished bleeding."); break;
 			case STONE_DRAGON_SCALES: 
@@ -13437,6 +13443,18 @@ boolean knoweverything;
 				pline("This cloak reduces the time for which you're paralyzed, and also provides 3 points of magic cancellation."); break;
 			case CLOAK_OF_TECHNICALITY:
 				pline("A cloak that makes your techniques more effective while worn. It grants 3 points of magic cancellation."); break;
+			case CLOAK_OF_FUCKING:
+				pline("You'll encounter higher-level monsters if you wear this cloak. It is usually generated cursed and grants 3 points of magic cancellation."); break;
+			case CLOAK_OF_MAGIC_FIND:
+				pline("A cloak that increases your chance of finding equipment with nonzero enchantment value, as well as artifacts, and it provides 3 points of magic cancellation."); break;
+			case COMBINATION_CLOAK:
+				pline("Super useful cloak that grants both mystery and death resistance, as well as 3 points of magic cancellation."); break;
+			case CLOAK_OF_LOWER_MYSTERY:
+				pline("This cloak grants mystery resistance and 2 points of magic cancellation."); break;
+			case CLOAK_OF_MYSTERY:
+				pline("This cloak grants mystery resistance and 3 points of magic cancellation."); break;
+			case CLOAK_OF_ARMOR_MYSTERY:
+				pline("This cloak grants mystery resistance and 2 points of magic cancellation, as well as above-average amounts of AC."); break;
 			case CLOAK_OF_FULL_NUTRITION:
 				pline("With this cloak, actions that use up nutrition will use up less than usual. Also, it provides 3 points of magic cancellation."); break;
 			case BIKINI:
@@ -13759,6 +13777,8 @@ boolean knoweverything;
 				pline("This helm causes BIGscript. It provides low AC and no magic cancellation."); break;
 			case QUIZ_HELM:
 				pline("This helm causes quizzes. It provides medium AC and no magic cancellation."); break;
+			case HELM_OF_MYSTERY_RES:
+				pline("Useful helmet that protects you from a variety of detrimental effects, similar to magic resistance."); break;
 			case SCENTY_HELMET:
 				pline("A helmet that should probably be spelled 'scentsy helmet' but isn't. Anyway, if you wear it, you'll be able to smell certain types of monsters at a distance."); break;
 			case DIZZY_HELMET:
@@ -13912,6 +13932,10 @@ boolean knoweverything;
 				pline("Depending on their enchantment, these gloves can increase or decrease your dexterity if you wear them."); break;
 			case GAUNTLETS_OF_LEECH:
 				pline("Wear this pair of gauntlets and you will recover some mana for every creature you kill!"); break;
+			case GAUNTLETS_OF_FORTUNE:
+				pline("This pair of gauntlets makes it more likely for you to find enchanted equipment and artifacts."); break;
+			case GAUNTLETS_OF_MYSTERY_RESISTANC:
+				pline("A pair of gloves that makes you resistant to many types of magical effects."); break;
 			case SMALL_SHIELD:
 				pline("A wooden shield that offers a little protection."); break;
 			case ELVEN_SHIELD:
@@ -13932,6 +13956,8 @@ boolean knoweverything;
 				pline("A lightweight shield that gives lots of armor class and chance to block."); break;
 			case CRYSTAL_SHIELD:
 				pline("This glass shield can deflect lots of attacks and also gives MC1."); break;
+			case MYSTERY_SHIELD:
+				pline("Provides decent protection and chance to block, as well as mystery resistance."); break;
 			case GRIM_SHIELD:
 				pline("A reasonably good shield that gives a point of magic cancellation and can even be used when you're equipped with a two-handed weapon or using two weapons at once."); break;
 			case LARGE_SHIELD:
@@ -14031,7 +14057,9 @@ boolean knoweverything;
 			case CORONA_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides sustain ability as well as protection."); break;
 			case CONTRO_DRAGON_SCALE_SHIELD: 
-				pline("A shield made from dragon hide that provides sustain ability as well as control magic."); break;
+				pline("A shield made from dragon hide that provides control magic as well as control magic."); break;
+			case MYSTERY_DRAGON_SCALE_SHIELD: 
+				pline("A shield made from dragon hide that provides mystery resistance as well as control magic."); break;
 			case HEROIC_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides diminished bleeding as well as protection."); break;
 			case STONE_DRAGON_SCALE_SHIELD:
@@ -14459,6 +14487,8 @@ boolean knoweverything;
 				pline("This pair of boots can carry you through the dungeon... well, not really, but it lights up dark areas for easier scouting."); break;
 			case FREEZING_BOOTS:
 				pline("A really thick pair of boots that allows you to withstand temperatures as low as 200 degrees Kelvin."); break;
+			case MYSTERIOUS_BOOTS:
+				pline("Wear this pair of boots if you need to become resistant to monster spells, perfume and various other annoying things."); break;
 			case FUMBLE_BOOTS:
 				pline("Wear this pair of boots if you want to fumble, which probably won't ever be the case. They are usually generated cursed."); break;
 			case FIRE_BOOTS:
@@ -15115,6 +15145,10 @@ boolean knoweverything;
 				pline("Disintegration resistance is what this ring grants to the wearer."); break;
 			case RIN_MIND_SHIELDING:
 				pline("One of very few ways to get psi resistance is putting this baby on one of your fingers."); break;
+			case RIN_MAGIC_FIND:
+				pline("Wearing this ring improves your chance of finding interesting items."); break;
+			case RIN_MYSTERY_RESISTANCE:
+				pline("By wearing this ring, you become resistant to monster spells, intrinsic theft and several other dangerous effects."); break;
 			case RIN_RANDOM_EFFECTS:
 				pline("A ring that grants the magical effect of %s.", enchname(objects[RIN_RANDOM_EFFECTS].oc_oprop) ); break;
 			case RIN_SPECIAL_EFFECTS: 
@@ -15684,8 +15718,12 @@ boolean knoweverything;
 				pline("Wearing this amulet causes you to become female if you were male, and in reverse. The amulet will then disintegrate."); break;
 			case AMULET_OF_POLYMORPH:
 				pline("Wearing this amulet causes you to polymorph. The amulet will then disintegrate."); break;
+			case AMULET_OF_MYSTERY_RESISTANCE:
+				pline("You can wear this amulet to become resistant to various magical effects."); break;
 			case AMULET_OF_BURDEN:
 				pline("This amulet makes your character much heavier until removed. It is usually generated cursed."); break;
+			case AMULET_OF_FUCKING:
+				pline("An amulet that increases the general difficulty of randomly spawned monsters. It is usually generated cursed."); break;
 			case AMULET_OF_TECHNICALITY:
 				pline("While this amulet is worn, your effective technique levels will be 33%% higher and +3, making them much more powerful."); break;
 			case AMULET_OF_STONE:
@@ -16078,6 +16116,8 @@ boolean knoweverything;
 				pline("A tool that can also be used as a weapon. It can be applied for digging."); break;
 			case BRICK_PICK:
 				pline("A rather damaging pick-axe weapon that can be applied for digging."); break;
+			case MYSTERIOUS_PICK:
+				pline("This pick-axe can be used for digging, and it grants mystery resistance when wielded. However, using it as a weapon is rather ineffective due to its low damage output."); break;
 			case MYSTERY_PICK:
 				pline("It's slightly better than the regular pick-axe weapon and can also be applied for digging."); break;
 			case NANO_PICK:

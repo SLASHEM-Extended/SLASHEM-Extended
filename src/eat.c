@@ -5099,6 +5099,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case CONUNDRUM_PICK:
 		case MYSTERY_PICK:
 		case BRONZE_PICK:
+		case MYSTERIOUS_PICK:
 		case BRICK_PICK:
 		case NANO_PICK:
 		case AXE:
@@ -9057,11 +9058,13 @@ chocolate_effect()
 			pline("Chili??? What the hell, chocolate and that don't belong together!");
 			make_inverted(0L);
 			HInvertedState &= ~INTRINSIC;
+			HInvertedState &= ~TIMEOUT;
 			break;
 		case 7:	/* almond (cure wince) */
 			pline("Uhh, that tasted a bit like cyanide... hopefully it was just almond flavor!");
 			make_wincing(0L);
 			HWinceState &= ~INTRINSIC;
+			HWinceState &= ~TIMEOUT;
 			break;
 		case 8:	/* caramel (cure inertia) */
 			pline("Caramel flavor, not too bad.");
@@ -9085,11 +9088,13 @@ chocolate_effect()
 			pline("Err, soy sauce?! That doesn't really mix with chocolate!");
 			make_magicvacuum(0L);
 			HMagicVacuum &= ~INTRINSIC;
+			HMagicVacuum &= ~TIMEOUT;
 			break;
 		case 11:	/* lavender (cure burden) */
 			pline("Huh, that chocolate tasted purple! Maybe it was ruby chocolate?");
 			make_burdened(0L);
 			HBurdenedState &= ~INTRINSIC;
+			HBurdenedState &= ~TIMEOUT;
 			break;
 		case 12:	/* marchpane (cure fuck-over) */
 			pline("Bleh, who decided to make that chocolate marchpane-flavored?");

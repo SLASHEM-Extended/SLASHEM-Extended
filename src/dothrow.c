@@ -3025,6 +3025,7 @@ evasionchancedone:
 				break;
 			case STEEL_SHIELD:
 			case GRIM_SHIELD:
+			case MYSTERY_SHIELD:
 				shieldblockrate = 40;
 				break;
 			case METEORIC_STEEL_SHIELD:
@@ -3093,6 +3094,7 @@ evasionchancedone:
 			case NEGATIVE_DRAGON_SCALE_SHIELD:
 			case CORONA_DRAGON_SCALE_SHIELD:
 			case CONTRO_DRAGON_SCALE_SHIELD:
+			case MYSTERY_DRAGON_SCALE_SHIELD:
 			case HEROIC_DRAGON_SCALE_SHIELD:
 			case STONE_DRAGON_SCALE_SHIELD:
 			case CYAN_DRAGON_SCALE_SHIELD:

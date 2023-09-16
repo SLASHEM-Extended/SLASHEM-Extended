@@ -701,6 +701,12 @@ giveback:
 	      case RIN_MATERIAL_STABILITY:
 		    pline("The sink seems to be reintegrating.");
 		    break;
+	      case RIN_MAGIC_FIND:
+		    pline("There seems to be a gem in the sink, but it disappears.");
+		    break;
+	      case RIN_MYSTERY_RESISTANCE:
+		    pline("The sink seems to be surrounded by a magical shield.");
+		    break;
 	      case RIN_RANDOM_EFFECTS:
 	      case RIN_SPECIAL_EFFECTS:
 		    pline("You are not sure if there is anything happening to the sink at all.");
@@ -902,6 +908,12 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_BURDEN:
 		pline_The("toilet seems to weigh a lot.");
+		break;
+	case AMULET_OF_FUCKING:
+		pline_The("toilet seems to have sex with someone... ugh why did you have to see that...");
+		break;
+	case AMULET_OF_MYSTERY_RESISTANCE:
+		pline_The("toilet seems shielded.");
 		break;
 	case AMULET_OF_STRANGULATION:
 		pline_The("toilet seems to scream in agony silently.");

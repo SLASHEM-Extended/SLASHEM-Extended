@@ -17071,6 +17071,18 @@ boolean new_game;	/* false => restoring an old game */
 
 		/* todo area */
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sinnum gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sinnum cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coral cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cobalt cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bamboo cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shale cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mystery dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin boots")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -18385,6 +18397,18 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "manl robe")) OBJ_DESCR(objects[i]) = "erkak xalati";
 
 		/* todo area */
+
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sinnum gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "sinnum cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "coral cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cobalt cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bamboo cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shale cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mystery dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "chitin boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

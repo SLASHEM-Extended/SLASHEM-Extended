@@ -12117,6 +12117,8 @@ struct obj *obj;
 		return (boolean)needspick(mon->data);
 	    if (typ == BRICK_PICK)
 		return (boolean)needspick(mon->data);
+	    if (typ == MYSTERIOUS_PICK)
+		return (boolean)needspick(mon->data);
 	    if (typ == NANO_PICK)
 		return (boolean)needspick(mon->data);
 	    if (typ == UNICORN_HORN)

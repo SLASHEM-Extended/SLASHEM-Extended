@@ -1831,7 +1831,7 @@
 #define HMysteryResist		u.uprops[MYSTERY_RES].intrinsic
 #define EMysteryResist		u.uprops[MYSTERY_RES].extrinsic
 #define IntMysteryResist	(HMysteryResist)
-#define ExtMysteryResist	(EMysteryResist || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MYSTERY_RES) ) )
+#define ExtMysteryResist	(EMysteryResist || (uwep && uwep->otyp == MYSTERIOUS_PICK) || (uwep && uwep->otyp == MAGISWORD) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MYSTERY_RES) ) )
 
 #define MysteryResist		(((IntMysteryResist && u.nonintrinsicproperty != MYSTERY_RES) || (ExtMysteryResist && u.nonextrinsicproperty != MYSTERY_RES)) && !NoMysteryResist)
 #define StrongMysteryResist	(IntMysteryResist && ExtMysteryResist && MysteryResist && u.nondoubleproperty != MYSTERY_RES)
