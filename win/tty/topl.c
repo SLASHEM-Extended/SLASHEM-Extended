@@ -275,7 +275,7 @@ more()
     if(morc == '\033') {
 	cw->flags |= WIN_STOP;
 
-	if (youmonst.data && EscapePastIsBad) {
+	if (!program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && youmonst.data && EscapePastIsBad) {
 
 		int nastytrapdur;
 		int blackngdur;
