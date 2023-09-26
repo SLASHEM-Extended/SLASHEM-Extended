@@ -964,6 +964,7 @@ doread()
 	"Wow, Pale Night is sooooo sexy, I spent some very romantic hours with her and she feels so fleecy-soft! <3",
 	"gender theory is pseudoreligious juju magic",
 	"I am a sorry-ass exploit abuser who can't win a game by playing it the intended way and therefore resorts to looking for lame loopholes", /* Loggers_VIII and shadowrider38 are both guilty of this because they are trying to keep the exploits secret but I WILL find out what they are eventually :P those bastards won't keep me from properly balancing my game forever! --Amy */
+	"People like you are the reason why I need to fireproof my game against all sorts of lame exploits.",
 
 	    };
 	    char buf[BUFSZ];

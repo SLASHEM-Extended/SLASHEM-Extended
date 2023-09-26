@@ -8571,6 +8571,7 @@ SCROLL((char *)0,               "THE WLAN IS NOT CALLED WIFI",  P_NONE,     1,  
 SCROLL((char *)0,               "A STUPID SCHOOL DAY WHICH IS STULTUS",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "THE NEW DESIGN IS UGLY",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "GREYEL GRAYEL IS A WASTE OF TAX MONEY",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "YOUR NEXT CONNECTIONS EC TO RATTERRATTERRATTER FROM PLATFORM FIIIIIEP",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
