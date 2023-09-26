@@ -3705,8 +3705,10 @@ boolean shopinit;
 			  otmp->otyp == RIN_DIMNESS ||
 			  otmp->otyp == RIN_WINCING ||
 			  otmp->otyp == RIN_HALLUCINATION ||
-			  otmp->otyp == RIN_HUNGER || !rn2(9))) {
+			  otmp->otyp == RIN_HUNGER || !rn2(18))) {
 			curse_on_creation(otmp);
+		} else if (!rn2(9)) { /* wtf why couldn't non-charged rings generate blessed??? --Amy */
+		    blessorcurse_on_creation(otmp, 1);
 		}
 
 		if (!rn2(1000)) otmp->oerodeproof = 1;
