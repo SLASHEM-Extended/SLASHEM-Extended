@@ -79,6 +79,11 @@ nemdead()
 	    Qstat(killed_nemesis) = TRUE;
 	    qt_pager(QT_KILLEDNEM);
 
+		if (!Race_if(PM_BABYLONIAN)) {
+			u.weapon_slots += 1;
+			pline("As a bonus, you gain an additional skill slot!");
+		}
+
 	    /* quest-specific artifacts of all roles can randomly generate now; note that this doesn't mean the actual QAs,
 	     * but rather special artifacts that are placed somewhere on a specific quest --Amy */
 	    de_energise_artifact(ART_PROCOMFORT_SUPER);
@@ -108,6 +113,12 @@ artitouch()
 	if(!Qstat(touched_artifact)) {
 	    Qstat(touched_artifact) = TRUE;
 	    qt_pager(QT_GOTIT);
+
+		if (!Race_if(PM_BABYLONIAN)) {
+			u.weapon_slots += 1;
+			pline("As a bonus, you gain an additional skill slot!");
+		}
+
 	    exercise(A_WIS, TRUE);
 	}
 }

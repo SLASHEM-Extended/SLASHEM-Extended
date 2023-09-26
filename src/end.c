@@ -2282,6 +2282,11 @@ die:
 			u.freeplaytransit = FALSE;
 			pline("You find yourself back in the dungeon. Since you've officially won the game, you can freely explore now. If you want to go back to the Elemental Planes, you have to visit Moloch's Sanctum first. You can also retire (commit suicide) when you are ready.");
 
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 3;
+				pline("As a bonus, you gain three additional skill slots!");
+			}
+
 			return;
 
 		}

@@ -9451,6 +9451,7 @@ newbossX:
 
 		if (!u.bellimbued && u.uhave.bell && In_bellcaves(&u.uz)) {
 			u.bellimbued = 1;
+
 			u.uhpmax += rnd(3);
 			u.uenmax += rnd(3);
 			if (Upolyd) u.mhmax += rnd(3);
@@ -9492,6 +9493,11 @@ newbossX:
 
 			qt_pager(QT_BELLIMBUED);
 
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
+
 		}
 
 		/* Imbuing the amulet is done in three phases. ziratha had the idea that if you didn't defeat the
@@ -9501,6 +9507,11 @@ newbossX:
 			u.amuletimbued1 = 1;
 			qt_pager(QT_AMULETIMBUED1);
 		      (void) safe_teleds_normalterrain(FALSE);
+
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 			if (!achieve.killed_beholder) {
 				pline("Suddenly, you get the feeling that a sinister presence is watching you intently...");
@@ -9514,6 +9525,11 @@ newbossX:
 			qt_pager(QT_AMULETIMBUED2);
 		      (void) safe_teleds_normalterrain(FALSE);
 
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
+
 			if (!achieve.killed_nightmare) {
 				pline("Suddenly, you get the feeling that a nightmarish creature is on the loose...");
 				(void) makemon(&mons[PM_UBERNIGHTMARE], 0, 0, MM_ANGRY|MM_FRENZIED);
@@ -9525,6 +9541,11 @@ newbossX:
 			u.amuletimbued3 = 1;
 			qt_pager(QT_AMULETIMBUED3);
 		      (void) safe_teleds_normalterrain(FALSE);
+
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 			if (!achieve.killed_vecna) {
 				pline("Suddenly, you get the feeling that an eerie lord of the dead is living here...");

@@ -339,6 +339,11 @@ struct obj *obj;
 				u.extralives++;
 				pline("Thanks to your flawless performance so far, you gain an extra life (1-UP)!");
 			}
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 2;
+				pline("As a bonus, you gain two additional skill slots!");
+			}
+
 			com_pager(196);
 
 #ifdef LIVELOGFILE
@@ -367,6 +372,11 @@ struct obj *obj;
 			achieve.get_candelabrum = 1;
 
 			trophy_get();
+
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 			qt_pager(QT_VLAD);
 
@@ -422,6 +432,11 @@ struct obj *obj;
 			achieve.get_book = 1;
 
 			trophy_get();
+
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 			qt_pager(QT_RODNEY);
 

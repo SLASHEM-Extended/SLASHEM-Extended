@@ -6395,175 +6395,191 @@ newbossSING:
 
 		if (!achieve.killed_medusa) {
 
+	            achieve.killed_medusa = 1;
+			qt_pager(QT_MEDUSA);
+
 			trophy_get();
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 		}
 
-            achieve.killed_medusa = 1;
-		qt_pager(QT_MEDUSA);
 	}
         if(mtmp->data == &mons[PM_NIGHTMARE]) {
 
 		if (!achieve.killed_nightmare) {
 
+	            achieve.killed_nightmare = 1;
 			trophy_get();
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 		}
-
-            achieve.killed_nightmare = 1;
 
 	}
         if(mtmp->data == &mons[PM_VECNA]) {
 
 		if (!achieve.killed_vecna) {
 
+	            achieve.killed_vecna = 1;
 			trophy_get();
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 		}
 
-            achieve.killed_vecna = 1;
 	}
         if(mtmp->data == &mons[PM_BEHOLDER]) {
 
 		if (!achieve.killed_beholder) {
+	            achieve.killed_beholder = 1;
 
 			trophy_get();
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 		}
 
-            achieve.killed_beholder = 1;
 	}
         if(mtmp->data == &mons[PM_RUGGO_THE_GNOME_KING]) {
 
 		if (!achieve.killed_ruggo) {
+	            achieve.killed_ruggo = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_ruggo = 1;
 	}
         if(mtmp->data == &mons[PM_KROO_THE_KOBOLD_KING]) {
 
 		if (!achieve.killed_kroo) {
+	            achieve.killed_kroo = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_kroo = 1;
 	}
         if(mtmp->data == &mons[PM_GRUND_THE_ORC_KING]) {
 
 		if (!achieve.killed_grund) {
+	            achieve.killed_grund = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_grund = 1;
 	}
 
         if(mtmp->data == &mons[PM_VERA_THE_ICE_QUEEN]) {
 
 		if (!achieveX.killed_vera) {
+	            achieveX.killed_vera = 1;
 
 			trophy_get();
 
 		}
 
-            achieveX.killed_vera = 1;
 	}
 
         if(mtmp->data == &mons[PM_ELAINE_THE_ENCHANTRESS]) {
 
 		if (!achieveX.killed_elaine) {
+	            achieveX.killed_elaine = 1;
 
 			trophy_get();
 
 		}
 
-            achieveX.killed_elaine = 1;
 	}
 
         if(mtmp->data == &mons[PM_THE_LARGEST_GIANT]) {
 
 		if (!achieve.killed_largestgiant) {
+	            achieve.killed_largestgiant = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_largestgiant = 1;
 	}
         if(mtmp->data == &mons[PM_SHELOB]) {
 
 		if (!achieve.killed_shelob) {
+	            achieve.killed_shelob = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_shelob = 1;
 	}
         if(mtmp->data == &mons[PM_GIRTAB]) {
 
 		if (!achieve.killed_girtab) {
+	            achieve.killed_girtab = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_girtab = 1;
 	}
         if(mtmp->data == &mons[PM_APHRODITE]) {
 
 		if (!achieve.killed_aphrodite) {
+	            achieve.killed_aphrodite = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_aphrodite = 1;
 	}
         if(mtmp->data == &mons[PM_DOCTOR_FRANKENSTEIN]) {
 
 		if (!achieve.killed_frankenstein) {
 
+	            achieve.killed_frankenstein = 1;
 			trophy_get();
 
 		}
 
-            achieve.killed_frankenstein = 1;
 	}
         if(mtmp->data == &mons[PM_CROESUS]) {
 
 		if (!achieve.killed_croesus) {
+	            achieve.killed_croesus = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_croesus = 1;
 	}
         if(mtmp->data == &mons[PM_FATHER_DAGON]) {
 
 		if (!achieve.killed_dagon) {
+	            achieve.killed_dagon = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_dagon = 1;
 	}
         if(mtmp->data == &mons[PM_MOTHER_HYDRA]) {
 
 		if (!achieve.killed_hydra) {
+	            achieve.killed_hydra = 1;
 
 			trophy_get();
 
 		}
 
-            achieve.killed_hydra = 1;
 	}
 
 	if(mtmp->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) {
@@ -6672,6 +6688,10 @@ newbossSING:
 	            achieveX.completed_rivalquest = 1;
 
 			trophy_get();
+			if (!Race_if(PM_BABYLONIAN)) {
+				u.weapon_slots += 1;
+				pline("As a bonus, you gain an additional skill slot!");
+			}
 
 		}
 
