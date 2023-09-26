@@ -1376,12 +1376,16 @@ do_vicinity_map()
 {
 
     if (DetectionMethodsDontWork) return;
+    if (level.flags.nommap) {
+	pline("Something blocks your clairvoyance!");
+	return;
+    }
 
     register int zx, zy;
-    int lo_y = (u.uy-5 < 0 ? 0 : u.uy-5),
-	hi_y = (u.uy+6 > ROWNO ? ROWNO : u.uy+6),
-	lo_x = (u.ux-9 < 1 ? 1 : u.ux-9),	/* avoid column 0 */
-	hi_x = (u.ux+10 > COLNO ? COLNO : u.ux+10);
+    int lo_y = (u.uy-4 < 0 ? 0 : u.uy-4),
+	hi_y = (u.uy+5 > ROWNO ? ROWNO : u.uy+5),
+	lo_x = (u.ux-4 < 1 ? 1 : u.ux-4),	/* avoid column 0 */
+	hi_x = (u.ux+5 > COLNO ? COLNO : u.ux+5);
 
     for (zx = lo_x; zx < hi_x; zx++)
 	for (zy = lo_y; zy < hi_y; zy++)
@@ -1399,12 +1403,16 @@ do_vicinity_mapX()
 {
 
     if (DetectionMethodsDontWork) return;
+    if (level.flags.nommap) {
+	pline("Something blocks your clairvoyance!");
+	return;
+    }
 
     register int zx, zy;
-    int lo_y = (u.uy-4 < 0 ? 0 : u.uy-4),
-	hi_y = (u.uy+5 > ROWNO ? ROWNO : u.uy+5),
-	lo_x = (u.ux-7 < 1 ? 1 : u.ux-7),	/* avoid column 0 */
-	hi_x = (u.ux+8 > COLNO ? COLNO : u.ux+8);
+    int lo_y = (u.uy-3 < 0 ? 0 : u.uy-3),
+	hi_y = (u.uy+4 > ROWNO ? ROWNO : u.uy+4),
+	lo_x = (u.ux-3 < 1 ? 1 : u.ux-3),	/* avoid column 0 */
+	hi_x = (u.ux+4 > COLNO ? COLNO : u.ux+4);
 
     for (zx = lo_x; zx < hi_x; zx++)
 	for (zy = lo_y; zy < hi_y; zy++)

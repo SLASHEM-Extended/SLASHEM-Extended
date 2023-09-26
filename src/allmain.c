@@ -12919,7 +12919,10 @@ pastds2:
 			}
 		}
 
-		if (( (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5)) && !rn2(5)) || Clairvoyant) &&
+		/* Amy edit: it's sooooooo laaaaame if you just get clairvoyance for the rest of the game because you're
+		 * carrying that stupid amulet. all other magical items require you to wear them for their effect, so for the
+		 * sake of it, you now have to wear the amulet of yendor too if you want clairvoyance, lamer! */
+		if (( (u.uhave.amulet && (uamul && uamul->otyp == AMULET_OF_YENDOR) && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(10)) && !rn2(10)) || Clairvoyant) &&
 		    !In_endgame(&u.uz) && !BClairvoyant && !rn2(StrongClairvoyant ? 15 : 40) && !rn2(2))
 			do_vicinity_map();
 
