@@ -5448,7 +5448,8 @@ int xtra_wt;
 
     if (wt <= 0) return UNENCUMBERED;
     if (wc <= 1) return OVERLOADED;
-    cap = (wt*2 / wc) + 1;
+/*    cap = (wt*2 / wc) + 1;*/
+	cap = (wt / wc) + 1;
     return min(cap, OVERLOADED);
 }
 
@@ -5463,7 +5464,8 @@ max_capacity()
 {
     int wt = inv_weight();
 
-    return (wt - (2 * wc));
+/*    return (wt - (2 * wc)); */
+	return (wt - (4 * wc));
 }
 
 boolean
