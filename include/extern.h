@@ -629,6 +629,7 @@ E xchar ledger_to_dnum(XCHAR_P);
 E xchar ledger_to_dlev(XCHAR_P);
 E xchar deepest_lev_reached(BOOLEAN_P);
 E boolean on_level(d_level *,d_level *);
+E boolean builds_up(d_level *);
 E void next_level(BOOLEAN_P);
 E void prev_level(BOOLEAN_P);
 E void u_on_newpos(int,int);

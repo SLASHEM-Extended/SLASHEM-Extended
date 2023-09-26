@@ -1240,6 +1240,20 @@ d_level *lev;
 	return (branch *) 0;
 }
 
+/* from 3.6 (EEP) - returns True iff the branch 'lev' is in a branch which builds up */
+boolean
+builds_up(lev)
+d_level *lev;
+{
+    dungeon *dptr = &dungeons[lev->dnum];
+    /*
+     * FIXME:  this misclassifies a single level branch reached via stairs
+     * from below.  Saving grace is that no such branches currently exist.
+     */
+    return (boolean) (dptr->num_dunlevs > 1
+                      && dptr->entry_lev == dptr->num_dunlevs);
+}
+
 /* goto the next level (or appropriate dungeon) */
 void
 next_level(at_stairs)
@@ -2169,6 +2183,11 @@ level_difficulty()
 		if (retvalue < (110 + (u.ulevel/2) )) retvalue = 110 + (u.ulevel/2);
 	} else if (u.uhave.amulet && !u.freeplaymode && (u.amuletcompletelyimbued || !rn2(5))) {
 		if (retvalue < 110) retvalue = 110;
+	}
+
+	/* evilvariant addition from 3.6: if the dungeon is entered from below, artificially increase difficulty --Amy */
+	if (isevilvariant && builds_up(&u.uz)) {
+		retvalue += 2 * (dungeons[u.uz.dnum].entry_lev - u.uz.dlevel + 1);
 	}
 
 	if (u.uhave.amulet && !u.freeplaymode && (retvalue < 50)) retvalue = 50;
