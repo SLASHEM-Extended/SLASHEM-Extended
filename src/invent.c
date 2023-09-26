@@ -12234,7 +12234,7 @@ boolean knoweverything;
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FATAL_GLOVES))
 			pline("If you wear this pair of gloves, your magnetic items can occasionally experience a case of fatal attraction.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BEAUTIFUL_HEELS))
-			pline("Such a lovely pair of high heels! <3 They will greatly increase your charisma when worn because the cone heels are incredibly cuuuuuute, so you should definitely allow them to gently enclose your sweet feet!");
+			pline("Such a lovely pair of high heels! <3 They will greatly increase your charisma when worn because the columnar heels are incredibly cuuuuuute, so you should definitely allow them to gently enclose your sweet feet!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ELECTROSTATIC_CLOAK))
 			pline("It crackles with electricity, and will damage monsters that attack you in melee. However, sometimes you will be confused or numbed by the voltage.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WEEPING_HELMET))
@@ -26671,6 +26671,8 @@ boolean knoweverything;
 					pline("Artifact specs: warp reflection when worn."); break;
 				case ART_YELLY:
 					pline("Artifact specs: one out of two hostile projectiles misses you while you're wearing them."); break;
+				case ART_DAT_NIGGA_S_GOT_DA_BLING:
+					pline("Artifact specs: They have columnar heels, no matter what type of shoe the base item and randomized appearance are."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

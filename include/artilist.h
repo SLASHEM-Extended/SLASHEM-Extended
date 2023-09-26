@@ -13662,6 +13662,10 @@ A("Yelly",				LOW_BOOTS, /* initialized to always be missys, 50% chance to defle
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
 
+A("Dat Nigga's Got Da Bling",				LOW_BOOTS, /* randart2 boots, count as columnar heels */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8800L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -983,6 +983,11 @@ nh_timeout()
 	}
 
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
+
+	if (u.umoved && !rn2(500) && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+		pline("Well, you don't really feel comfortable with those columnar heels. They slow you down even though they're very pretty, and people might laugh at you.");
+	}
+
 	if (u.umoved && PlayerInHighHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
 		if (PlayerInStilettoHeels && !rn2(100) && multi >= 0) {

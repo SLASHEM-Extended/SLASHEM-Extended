@@ -2707,6 +2707,7 @@ E boolean ishighheeledb(int);
 
 E boolean playerwearshighheels(void);
 E boolean playerwearssexyflats(void);
+E boolean maybecolumnarheels(void);
 E boolean maybestilettoheels(void);
 E boolean maybeconeheels(void);
 E boolean maybeblockheels(void);

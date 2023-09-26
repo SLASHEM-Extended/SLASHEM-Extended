@@ -478,6 +478,7 @@ init_randarts()
 	artilist[ART_OLD_PERSON_TALK].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
 	artilist[ART_IDEAL_BASE].otyp = randartbootsX();
+	artilist[ART_DAT_NIGGA_S_GOT_DA_BLING].otyp = randartbootsX();
 	artilist[ART_BUGBOOTS_OF_ERRORNESS].otyp = randartbootsX();
 	artilist[ART_I_DON_T_PARTICULARLY_LIKE_].otyp = randartbootsX();
 	artilist[ART_HOHO_DINGO].otyp = randartbootsX();

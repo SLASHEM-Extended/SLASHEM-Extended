@@ -1657,6 +1657,25 @@ playerwearssexyflats()
 }
 
 boolean
+maybecolumnarheels()
+{
+	if (uarmf && itemhasappearance(uarmf, APP_WINGED_SANDALS)) return FALSE;
+	if (uarmf && uarmf->oartifact == ART_I_DON_T_PARTICULARLY_LIKE_) return FALSE;
+
+	if (!uarmf) return FALSE;
+	/* uarmf is definitely defined now */
+
+	if (OBJ_DESCR(objects[uarmf->otyp])) {
+		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
+	}
+
+	if (uarmf->oartifact == ART_DAT_NIGGA_S_GOT_DA_BLING) return TRUE;
+
+	return FALSE;
+
+}
+
+boolean
 maybestilettoheels()
 {
 	if (uarmf && itemhasappearance(uarmf, APP_WINGED_SANDALS)) return FALSE;
@@ -1709,7 +1728,6 @@ maybeconeheels()
 
 		if (itemhasappearance(uarmf, APP_ANKLE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SHADOWY_HEELS)) return TRUE;
-		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_NOBLE_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_ORGASM_PUMPS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) return TRUE;

@@ -1129,6 +1129,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (Race_if(PM_PLAYER_ZRUTY) && !rn2(3) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1591,6 +1594,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)

@@ -6036,6 +6036,7 @@ static const char *epitaphs[] = {
 	"nooooo you fixed it! i wanted to autowin the game by using scrolls of flood to make enemies not attack me and you evil amy witch fixed it!!! i am too bad to play the game properly i can only win with exploits what am i gonna do now???????", /* yeah loggers of course a game that has been in development for 10 years and whose dev has a very fine-tuned antenna that detects things that make the game easier than intended, would have overlooked that one. suuuuure, dream on. this isn't dnethack where exploits are not only tolerated but part of the official easy ascension strategy (and the reason why so many players have ascended dnethack in the first place) */
 	"I attacked Pale Night in melee, and my char was so stupid to remove her veil and died instantly!",
 	"What, the final enlightenment screen said that I was 'being fucked over', why is that even specifically mentioned in SLEX? It's always the case, no matter what char you play and no matter how you try to avoid the stupid stuff in this game!",
+	"Noooooo, I got stuck with a cursed pair of columnar heels and couldn't lift the curse, and since I lacked the high heels skill I was slowed down by those stupid heels! I would have escaped from that monster without the dumb shoes! Why do high heels even exist, they're a walking impairment!",
 
 };
 

@@ -58,6 +58,7 @@ const char *name;	/* if null, then format `obj' */
 	int saberblockrate = 0;
 	int enchrequired = 0;
 	int enchhave = 0;
+	int columnarevasion = 0;
 
 	int extrachance = 1;
 
@@ -383,6 +384,25 @@ const char *name;	/* if null, then format `obj' */
 
 	}
 
+	if (PlayerInColumnarHeels) {
+		columnarevasion = 0;
+
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_HIGH_HEELS)) {
+
+				case P_BASIC:	columnarevasion += 5; break;
+				case P_SKILLED:	columnarevasion += 10; break;
+				case P_EXPERT:	columnarevasion += 15; break;
+				case P_MASTER:	columnarevasion += 20; break;
+				case P_GRAND_MASTER:	columnarevasion += 25; break;
+				case P_SUPREME_MASTER:	columnarevasion += 30; break;
+				default: columnarevasion += 0; break;
+			}
+
+		}
+
+	}
+
 	if (uwep && is_lightsaber(uwep) && !uwep->lamplit && Role_if(PM_SHADOW_JEDI)) {
 		saberblockrate = 1;
 		if (!PlayerCannotUseSkills) {
@@ -533,6 +553,11 @@ shieldblockboo:
 
 			if(Blind || !flags.verbose) You("sidestep a projectile.");
 			else You("sidestep %s.", onm);
+			return(0);
+
+	} else if (columnarevasion > rnd(100)) {
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
 			return(0);
 
 	} else if (uwep && uwep->oartifact == ART_SYLVIE_S_INVENTION && rn2(3)) {

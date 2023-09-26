@@ -162,6 +162,8 @@
 
 #define PlayerInSexyFlats	(playerwearssexyflats())
 
+#define CanHaveColumnarHeels	(maybecolumnarheels())
+
 #define CanHaveStilettoHeels	(maybestilettoheels())
 
 #define CanHaveConeHeels	(maybeconeheels())
@@ -170,13 +172,15 @@
 
 #define CanHaveWedgeHeels	(maybewedgeheels())
 
-#define PlayerInStilettoHeels	(CanHaveStilettoHeels)
+#define PlayerInColumnarHeels	(CanHaveColumnarHeels)
 
-#define PlayerInConeHeels	(!CanHaveStilettoHeels && CanHaveConeHeels)
+#define PlayerInStilettoHeels	(!CanHaveColumnarHeels && CanHaveStilettoHeels)
 
-#define PlayerInBlockHeels	(!CanHaveStilettoHeels && !CanHaveConeHeels && CanHaveBlockHeels)
+#define PlayerInConeHeels	(!CanHaveColumnarHeels && !CanHaveStilettoHeels && CanHaveConeHeels)
 
-#define PlayerInWedgeHeels	(!CanHaveStilettoHeels && !CanHaveConeHeels && !CanHaveBlockHeels && CanHaveWedgeHeels)
+#define PlayerInBlockHeels	(!CanHaveColumnarHeels && !CanHaveStilettoHeels && !CanHaveConeHeels && CanHaveBlockHeels)
+
+#define PlayerInWedgeHeels	(!CanHaveColumnarHeels && !CanHaveStilettoHeels && !CanHaveConeHeels && !CanHaveBlockHeels && CanHaveWedgeHeels)
 
 #define PirateSpeakOn	((uwep && uwep->oartifact == ART_ARRRRRR_MATEY) || (uwep && uwep->oartifact == ART_PIRATTERY))
 
