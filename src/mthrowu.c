@@ -602,16 +602,16 @@ shieldblockboo:
 	
 				if (uarms) {
 				    /* destroy shield; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				    if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
 				} else if (uarmc) {
 				    /* destroy cloak; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				    if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
 				} else if (uarm) {
 				    /* destroy suit */
-				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				    if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
 				} else if (uarmu) {
 				    /* destroy shirt */
-				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				    if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
 				} else {
 					if (u.uhpmax > 20) {
 						u.uhpmax -= rnd(20);
@@ -800,16 +800,16 @@ shieldblockboo:
 	
 				if (uarms) {
 				    /* destroy shield; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				    if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
 				} else if (uarmc) {
 				    /* destroy cloak; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				    if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
 				} else if (uarm) {
 				    /* destroy suit */
-				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				    if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
 				} else if (uarmu) {
 				    /* destroy shirt */
-				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				    if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
 				} else {
 					if (u.uhpmax > 20) {
 						u.uhpmax -= rnd(20);
@@ -832,16 +832,16 @@ shieldblockboo:
 	
 				if (uarms) {
 				    /* destroy shield; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				    if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
 				} else if (uarmc) {
 				    /* destroy cloak; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				    if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
 				} else if (uarm) {
 				    /* destroy suit */
-				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				    if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
 				} else if (uarmu) {
 				    /* destroy shirt */
-				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				    if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
 				} else {
 					if (u.uhpmax > 20) {
 						u.uhpmax -= rnd(20);
@@ -1758,16 +1758,16 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	
 				if (uarms) {
 				    /* destroy shield; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				    if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
 				} else if (uarmc) {
 				    /* destroy cloak; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				    if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
 				} else if (uarm) {
 				    /* destroy suit */
-				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				    if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
 				} else if (uarmu) {
 				    /* destroy shirt */
-				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				    if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
 				} else {
 					if (u.uhpmax > 20) {
 						u.uhpmax -= rnd(20);

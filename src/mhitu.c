@@ -7250,16 +7250,16 @@ hitmu(mtmp, mattk)
 	
 				if (uarms) {
 				    /* destroy shield; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
+				    if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
 				} else if (uarmc) {
 				    /* destroy cloak; other possessions are safe */
-				    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
+				    if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
 				} else if (uarm) {
 				    /* destroy suit */
-				    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
+				    if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
 				} else if (uarmu) {
 				    /* destroy shirt */
-				    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
+				    if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
 				} else {
 					if (u.uhpmax > 20) {
 						u.uhpmax -= rnd(20);
@@ -9872,24 +9872,22 @@ dopois:
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "monster-induced died", KILLED_BY);
@@ -9899,7 +9897,7 @@ dopois:
 			done(DIED);
 			u.youaredead = 0;
 		}
-	    return 1; /* lifesaved */
+		return 1; /* lifesaved */
 
 	}
 	      break;
@@ -9917,23 +9915,22 @@ dopois:
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "monster-induced vapor died", KILLED_BY);
@@ -13354,27 +13351,23 @@ do_stone2:
             } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
-		}
-
-		 else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+		} else if (uarms) {
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "a drill died", KILLED_BY);
@@ -13401,27 +13394,23 @@ do_stone2:
             } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
-		}
-
-		 else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+		} else if (uarms) {
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "vaporization died", KILLED_BY);
@@ -14736,27 +14725,23 @@ common:
             } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
-		}
-
-		 else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+		} else if (uarms) {
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "KABOOM you died", KILLED_BY);
@@ -14780,27 +14765,23 @@ common:
             } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
-		}
-
-		 else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+		} else if (uarms) {
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "vaporization kaboom you died", KILLED_BY);
@@ -16295,24 +16276,22 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
                 break;
 
 		} else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "a died gaze", KILLED_BY);
@@ -16348,24 +16327,22 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
                 break;
 
 		} else if (uarms) {
-		    /* destroy shield; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMS)) (void) destroy_arm(uarms);
-		    break;
+			/* destroy shield; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMS) && !(itemsurvivedestruction(uarms, 12)) ) (void) destroy_arm(uarms);
+			break;
 		} else if (uarmc) {
-		    /* destroy cloak; other possessions are safe */
-		    if (!(EDisint_resistance & W_ARMC)) (void) destroy_arm(uarmc);
-		    break;
+			/* destroy cloak; other possessions are safe */
+			if (!(EDisint_resistance & W_ARMC) && !(itemsurvivedestruction(uarmc, 12)) ) (void) destroy_arm(uarmc);
+			break;
 		} else if (uarm) {
-		    /* destroy suit */
-		    if (!(EDisint_resistance & W_ARM)) (void) destroy_arm(uarm);
-		    break;
+			/* destroy suit */
+			if (!(EDisint_resistance & W_ARM) && !(itemsurvivedestruction(uarm, 12)) ) (void) destroy_arm(uarm);
+			break;
 		} else if (uarmu) {
-		    /* destroy shirt */
-		    if (!(EDisint_resistance & W_ARMU)) (void) destroy_arm(uarmu);
-		    break;
-		}
-
-		if (u.uhpmax > 20) {
+			/* destroy shirt */
+			if (!(EDisint_resistance & W_ARMU) && !(itemsurvivedestruction(uarmu, 12)) ) (void) destroy_arm(uarmu);
+			break;
+		} else if (u.uhpmax > 20) {
 			u.uhpmax -= rnd(20);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			losehp(rnz(100 + level_difficulty()), "vaporgaze died", KILLED_BY);

@@ -1041,6 +1041,7 @@ E struct obj *sobj_at(int,int,int);
 E struct obj *carrying(int);
 E struct obj *carryingarti(int);
 E struct obj *carryingappearance(int);
+E boolean itemsurvivedestruction(struct obj *, int);
 E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);

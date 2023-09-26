@@ -9846,6 +9846,30 @@ dotypeinv()
 	return 0;
 }
 
+/* additional chance for items to survive e.g. bad polymorphs --Amy
+ * return TRUE if the item will survive */
+boolean
+itemsurvivedestruction(otmp, survivalchance)
+struct obj *otmp;
+int survivalchance;
+{
+	int survivespe = 0;
+
+	if (!otmp) return FALSE; /* shouldn't happen */
+
+	survivespe = otmp->spe;
+	if (survivespe < 0) survivespe = 0;
+
+	while (survivespe > 0) {
+		survivespe--;
+		if (!rn2(survivalchance)) return TRUE;
+	}
+
+	if (otmp->oerodeproof && rn2(3)) return TRUE;
+
+	return FALSE;
+}
+
 /* return a string describing the dungeon feature at <x,y> if there
    is one worth mentioning at that location; otherwise null */
 const char *
