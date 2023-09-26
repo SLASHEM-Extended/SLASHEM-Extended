@@ -8106,6 +8106,8 @@ register struct obj *obj;
 	register struct objclass *ocl = &objects[typ];
 	register int nn = ocl->oc_name_known;
 
+	int objowt = 0;
+
 	/* When using xname, we want "poisoned arrow", and when using
 	 * doname, we want "poisoned +0 arrow".  This kludge is about the only
 	 * way to do it, at least until someone overhauls xname() and doname(),
@@ -8528,12 +8530,16 @@ ring:
 
 #ifdef SHOW_WEIGHT
 	  /* [max] weight inventory */
-	if ((obj->otyp != BOULDER) || !throws_rocks (youmonst.data))
-	  if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && */
+
+	objowt = obj->owt;
+	if (throws_rocks(youmonst.data) && obj->otyp == BOULDER) objowt = 500;
+	if (throws_rocks(youmonst.data) && obj->otyp == LOADBOULDER) objowt = 5000;
+
+	if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
 && (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != METEOR_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
-		        sprintf (eos(bp), " {%d}", obj->owt);
+		        sprintf (eos(bp), " {%d}", objowt);
 /* show the freaking weight of all items! --Amy */
 #endif
 

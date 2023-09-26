@@ -3543,6 +3543,20 @@ evasionchancedone:
 		exercise(A_DEX, TRUE);
 		ranged_thorns(mon);
 		(void) hmon(mon,obj,thrown?thrown:3,dieroll);
+
+		if (obj) {
+			int bouldersplinterchance = 10;
+			if (obj->oartifact) bouldersplinterchance *= 10;
+			if (obj->cursed) bouldersplinterchance /= 2;
+			if (obj->blessed) bouldersplinterchance *= 3;
+			/* eventually there will be a boulder-throwing skill that modifies the chance --Amy */
+
+			if (!rn2(bouldersplinterchance)) {
+				pline_The("boulder shatters into fragments!");
+				fracture_rock(obj);
+			}
+		}
+
 	    } else {
 		tmiss(obj, mon);
 	    }

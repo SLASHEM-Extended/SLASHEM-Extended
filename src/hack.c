@@ -5343,9 +5343,18 @@ inv_weight()
 #else
 		if (otmp->oclass == COIN_CLASS)
 			wt += (int)(((long)otmp->quan + 50L) / /*100L*/10000L);
-		else if (otmp->otyp != BOULDER || !throws_rocks(youmonst.data))
+		else if ( (otmp->otyp != BOULDER && otmp->otyp != LOADBOULDER) || !throws_rocks(youmonst.data))
 #endif
 			wt += otmp->owt;
+
+		/* boulders shouldn't be completely weightless as a giant! --Amy */
+		if (throws_rocks(youmonst.data) && (otmp->otyp == BOULDER)) {
+			wt += 500;
+		}
+		if (throws_rocks(youmonst.data) && (otmp->otyp == LOADBOULDER)) {
+			wt += 5000;
+		}
+
 		otmp = otmp->nobj;
 	}
 	if (IncreasedGravity) wt += IncreasedGravity;

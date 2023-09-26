@@ -18437,9 +18437,9 @@ boolean knoweverything;
 				pline("Slotless magic resistance can be obtained by having this stone in your inventory. Beware:  it will curse itself after a while, and if the stone is cursed, you will take double damage from everything!"); break;
 			case LOADBOULDER:
 #ifdef PHANTOM_CRASH_BUG
-				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it. Giants can lift it with no problems though."); break;
+				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it. Giants can lift it with little problems though."); break;
 #else
-				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it; if you try to pick it up, you will always do so even if it would overburden you! It's okay to pick one up if you are a giant, though."); break;
+				pline("This extremely heavy item is usually generated cursed and can't be dropped unless you uncurse it; if you try to pick it up, you will always do so even if it would overburden you! It's easier to pick one up if you are a giant, but even then they still weigh a lot."); break;
 #endif
 			case FLINT:
 				pline("A projectile meant to be in conjunction with a sling to do damage to enemies."); break;
@@ -19223,9 +19223,9 @@ boolean knoweverything;
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
-			case BOULDER: 
+			case BOULDER:
 				pline("A large boulder that weighs a ton. It can be thrown, provided you're strong enough."); break;
-			case STATUE: 
+			case STATUE:
 				pline("This statue depicts some sort of monster. There may be a way to make it come back to life, or you can smash it to see if it contains items.");
 #ifdef EXTENDED_INFO
 				corpsepager(obj->corpsenm);
@@ -19248,19 +19248,19 @@ boolean knoweverything;
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
-			case HEAVY_IRON_BALL: 
+			case HEAVY_IRON_BALL:
 				pline("A heavy but damaging weapon that uses the flail skill."); break;
-			case HEAVY_LASER_BALL: 
+			case HEAVY_LASER_BALL:
 				pline("This flail-class weapon uses power, meaning it has to be turned on if you want to use it as a weapon."); break;
-			case HEAVY_TINSEL_BALL: 
+			case HEAVY_TINSEL_BALL:
 				pline("Flail-class weapon, prohibitevly heavy, but the damage is actually crappy."); break;
-			case AMBER_BALL: 
+			case AMBER_BALL:
 				pline("It's a rather powerful flail-class weapon with considerable weight."); break;
-			case QUITE_HEAVY_IRON_BALL: 
+			case QUITE_HEAVY_IRON_BALL:
 				pline("This iron ball is heavier than a standard heavy iron ball but also does more damage. It uses the flail skill."); break;
-			case REALLY_HEAVY_IRON_BALL: 
+			case REALLY_HEAVY_IRON_BALL:
 				pline("Rarely found, this flail-class weapon weighs really much but does a ton of damage."); break;
-			case EXTREMELY_HEAVY_IRON_BALL: 
+			case EXTREMELY_HEAVY_IRON_BALL:
 				pline("One of the most damaging weapons in the entire game. Provided you're capable of lifting and wielding it, this extremely heavy flail-class weapon will smack the living daylights out of your enemies."); break;
 			case IMPOSSIBLY_HEAVY_IRON_BALL: 
 				pline("You probably won't be able to lift this ball. It seems you somehow managed to get it into your inventory, but now you're probably overburdened and cannot move unless you drop it."); break;
