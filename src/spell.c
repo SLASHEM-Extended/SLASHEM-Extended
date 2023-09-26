@@ -3931,7 +3931,7 @@ castanyway:
 	pseudo->quan = 20L;			/* do not let useup get it */
 
 	/* WAC -- If skilled enough,  will act like a blessed version */
-	if (role_skill >= P_SKILLED) { /* made it depend on skill level --Amy */
+	if (role_skill >= P_SKILLED && issoviet) { /* made it depend on skill level --Amy */
 		if (!rn2(10) && role_skill == P_SKILLED) pseudo->blessed = 1;
 		if (!rn2(8) && role_skill == P_EXPERT) pseudo->blessed = 1;
 		if (!rn2(6) && role_skill == P_MASTER) pseudo->blessed = 1;
@@ -4192,7 +4192,7 @@ magicalenergychoice:
 	case SPE_DESTROY_ARMOR:
 	case SPE_COMMAND_UNDEAD:
 	case SPE_SUMMON_UNDEAD:
-		if (rn2(5)) pseudo->blessed = 0;
+		if (rn2(5) || !issoviet) pseudo->blessed = 0;
 		(void) seffects(pseudo);
 		break;
 	case SPE_CHARGING:
@@ -4247,7 +4247,7 @@ magicalenergychoice:
 #endif
 		/* fall through */
 	case SPE_INVISIBILITY:
-		if (rn2(5)) pseudo->blessed = 0;
+		if (rn2(5) || !issoviet) pseudo->blessed = 0;
 		(void) peffects(pseudo);
 		break;
 	case SPE_CURE_BLINDNESS:

@@ -6213,6 +6213,10 @@ aliasagain:
 			       artificially increase number of worn items */
 			    if (obj == uswapwep) {
 				if (!u.twoweap) wornmask = 0L;
+
+				/* cheator, you're not supposed to be able to uncurse everything just by wielding it! --Amy */
+			    if (obj == uwep && !welded(uwep)) wornmask = 0L;
+
 			    } /* remove curse spell ignores quiver, this is intentional --Amy */
 			}
 			/* Amy nerf: blessed ones were way too powerful, allowing you to more or less ignore curses */
