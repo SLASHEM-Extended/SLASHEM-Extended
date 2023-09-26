@@ -2011,7 +2011,7 @@ moveloop()
 			}
 
 			/* salamander race by Kwahn, speeds up in lava */
-			if (is_lava(u.ux, u.uy) && Race_if(PM_PLAYER_SALAMANDER)) {
+			if (is_lava(u.ux, u.uy) && Race_if(PM_PLAYER_SALAMANDER) && !Upolyd) {
 				oldspeed = moveamt;
 				moveamt *= 3;
 				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
@@ -2063,14 +2063,14 @@ moveloop()
 			}
 
 			/* unicorns are ultra fast!!! However, they have enough bullshit downsides to reign them in. --Amy */
-			if (Race_if(PM_PLAYER_UNICORN)) {
+			if (Race_if(PM_PLAYER_UNICORN) && !Upolyd) {
 				oldspeed = moveamt;
 				moveamt *= 2;
 				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
 			/* metals are even faster but take greatly increased damage --Amy */
-			if (Race_if(PM_METAL)) {
+			if (Race_if(PM_METAL && !Upolyd)) {
 				oldspeed = moveamt;
 				moveamt *= 3;
 				if (moveamt > (oldspeed + 72)) moveamt = (oldspeed + 72);
@@ -2186,11 +2186,11 @@ moveloop()
 
 			if (uarmf && uarmf->oartifact == ART_WARP_SPEED && (is_waterypool(u.ux, u.uy) || is_watertunnel(u.ux, u.uy))) moveamt += (speedbonus(moveamt * 5, NORMAL_SPEED * 5));
 
-			if (Race_if(PM_DUTHOL) && is_sand(u.ux, u.uy)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (Race_if(PM_DUTHOL) && !Upolyd && is_sand(u.ux, u.uy)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 
-			if (Race_if(PM_CELTIC) && (rn2(100) < u.ulevel)) moveamt += speedbonus(moveamt, NORMAL_SPEED);
+			if (Race_if(PM_CELTIC) && !Upolyd && (rn2(100) < u.ulevel)) moveamt += speedbonus(moveamt, NORMAL_SPEED);
 
-			if (Race_if(PM_SERB) && !rn2(10)) moveamt += speedbonus(moveamt, NORMAL_SPEED);
+			if (Race_if(PM_SERB) && !Upolyd && !rn2(10)) moveamt += speedbonus(moveamt, NORMAL_SPEED);
 
 			if (StrongPasses_walls && !rn2(3) && isok(u.ux, u.uy) && IS_STWALL(levl[u.ux][u.uy].typ) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (StrongFast && !rn2(10) && (!Race_if(PM_FRO) || !rn2(2)) && (!Race_if(PM_MACTHEIST) || !rn2(2)) && !YouHaveTheSpeedBug) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);

@@ -2089,7 +2089,7 @@ A("The Staff of Withering",	QUARTERSTAFF,
  * IMHO dnethack's balance is completely out of whack, so I tried my best to make them all balanced. --Amy
  * Chris's comments are preserved just for the sake of it. */
 
-A("The Bow of Skadi",	BOW,
+A("The Bow of Skadi",	BOW, /* slower rate of fire because seriously, +24 damage??? --Amy */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_ATTK), 0, 0,
 	COLD(1,24),	DFNS(AD_COLD),	NO_CARY,
 	0, A_LAWFUL, NON_PM, NON_PM, 4000L), /*Read to learn Cone of Cold (Skadi's Galdr) */
