@@ -965,6 +965,8 @@ doread()
 	"gender theory is pseudoreligious juju magic",
 	"I am a sorry-ass exploit abuser who can't win a game by playing it the intended way and therefore resorts to looking for lame loopholes", /* Loggers_VIII and shadowrider38 are both guilty of this because they are trying to keep the exploits secret but I WILL find out what they are eventually :P those bastards won't keep me from properly balancing my game forever! --Amy */
 	"People like you are the reason why I need to fireproof my game against all sorts of lame exploits.",
+	"I just realized that my alarm clock will ring tomorrow at 11 o'clock which is exactly 11 hours and 11 minutes from now!",
+	"Dear missy <3, did you know that the only reason I ordered your beautiful shoes is because I want to scratch up and down my legs with the tender stiletto heels again and again, very painfully?",
 
 	    };
 	    char buf[BUFSZ];

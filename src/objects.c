@@ -18,7 +18,8 @@ struct monst { struct monst *dummy; };	/* lint: struct obj's union */
 #  define COLOR_FIELD(X) X,
 #endif	/* !OBJECTS_PASS_2_ */
 
-
+/* If you are a modderling looking to deconstruct SLEX, I hope that the huge amount of objects will put you off :P
+ * After all, these items have been added because I want them in the game, not because I want them to be removed --Amy */
 
 /* objects have symbols: ) [ = " ( % ! ? + / $ * ` 0 _ . */
 

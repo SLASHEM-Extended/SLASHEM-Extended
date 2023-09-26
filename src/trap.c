@@ -4,6 +4,11 @@
 
 #include "hack.h"
 
+
+/* If you are a modderling looking to deconstruct SLEX, I hope that you'll have to waste lots of free time looking for
+ * all the traps you're going to remove, because they're meant to stay :P --Amy */
+
+
 extern const char * const destroy_strings[];	/* from zap.c */
 
 STATIC_DCL void rocks_fall(int, int);
