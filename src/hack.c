@@ -1505,7 +1505,7 @@ walscholardone:
 		Your("body is too large to fit through.");
 	    return FALSE;
 	}
-	if (invent && ((inv_weight() + weight_cap()) > 5000)) {
+	if (invent && ((inv_weight() + weight_cap()) > max_carr_cap() )) {
 	    if (mode == DO_MOVE)
         if (!Passes_walls)
 		You("are carrying too much to get through.");
