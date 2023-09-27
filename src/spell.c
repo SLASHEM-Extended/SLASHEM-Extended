@@ -12219,6 +12219,7 @@ int spell;
 	if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) chance += 5;
 	if (uarmc && uarmc->oartifact == ART_CASTEASY) chance += 5;
 	if (uwep && uwep->oartifact == ART_INFASPEL) chance += 5;
+	if (uarmg && uarmg->oartifact == ART_HOGWILD_WIZ) chance += 10;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;
@@ -12675,6 +12676,7 @@ int spell;
 	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
 	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
 	if (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) chance += 20;
+	if (uarmg && uarmg->oartifact == ART_HOGWILD_WIZ) chance += 5;
 
 	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) chance += 5;
 

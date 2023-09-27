@@ -9083,6 +9083,7 @@ dopois:
 	    case AD_SSEX:
 
 		if (flags.female && uarm && uarm->oartifact == ART_PRECIOUS_VIRGINITY) break;
+		if (uimplant && uimplant->oartifact == ART_DO_NOT_WANT_SEX) break;
 		if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) break;
 		if (statsavingthrow) break;
 

@@ -466,7 +466,7 @@ trap_of_walls:
 
 	if (update) {
 
-		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2((have_wallstone() == 2) ? 500 : 100)) {
+		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uimplant && uimplant->oartifact == ART_THEY_RE_REALLY_AFTER_ME) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2((have_wallstone() == 2) ? 500 : 100)) {
 			secretcorr = FALSE;
 			goto trap_of_walls;
 		}

@@ -1673,7 +1673,7 @@ domonability()
 	else if (is_were(youmonst.data) && yn("Do you want to summon help?")=='y' ) return dosummon();
 	else if ((webmaker(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && webmaker(&mons[u.usymbiote.mnum]) )) && yn("Do you want to spin webs?")=='y' ) return dospinweb();
 	else if ((is_hider(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_hider(&mons[u.usymbiote.mnum]) )) && yn("Do you want to hide?")=='y' ) return dohide();
-	else if ((is_mind_flayer(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) )) && yn("Do you want to emit a mind blast?")=='y' ) return domindblast();
+	else if ((is_mind_flayer(youmonst.data) || (uimplant && uimplant->oartifact == ART_TSCHHKRZKRZ) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) )) && yn("Do you want to emit a mind blast?")=='y' ) return domindblast();
 	else if (splittinggremlin(youmonst.data) && yn("Do you want to replicate in water?")=='y' ) {
 	    if(IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
 		if (split_mon(&youmonst, (struct monst *)0))
@@ -7344,6 +7344,7 @@ boolean guaranteed;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
+		if (uarms->oartifact == ART_TSCHINGFIRM) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
@@ -12043,6 +12044,7 @@ int final;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
+		if (uarms->oartifact == ART_TSCHINGFIRM) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;

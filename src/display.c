@@ -1231,6 +1231,7 @@ newsym(x,y)
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mon->data, AD_RBRE) || dmgtype(mon->data, AD_RNG) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
@@ -1350,6 +1351,7 @@ newsym(x,y)
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mon->data, AD_RBRE) || dmgtype(mon->data, AD_RNG) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
@@ -1634,6 +1636,7 @@ newsymX(x,y)
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mon->data, AD_RBRE) || dmgtype(mon->data, AD_RNG) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
@@ -1753,6 +1756,7 @@ newsymX(x,y)
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
+		(uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mon->data, AD_RBRE) || dmgtype(mon->data, AD_RNG) ) ) ||
 		(StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
@@ -3723,6 +3727,7 @@ struct monst *mon;
 	if (StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) return TRUE;
 	if (StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) return TRUE;
 	if (StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) return TRUE;
+	if (uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mon->data, AD_RBRE) || dmgtype(mon->data, AD_RNG) ) ) return TRUE;
 	if (StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) return TRUE;
 	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) return TRUE;

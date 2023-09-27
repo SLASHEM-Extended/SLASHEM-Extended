@@ -9796,6 +9796,9 @@ tunguskaagain:
 			/* Note: if rn2(5)==0, identify all items */
 			if (cval == 1 && sobj->blessed && Luck > 0) ++cval;
 		} else	cval = 1;
+
+		if (cval && uarmc && uarmc->oartifact == ART_IDENTIFICATION_HELP) cval++;
+
 		if(!objects[sobj->otyp].oc_name_known) more_experienced(0,10);
 		if (carried(sobj)) useup(sobj);
 		else useupf(sobj, 1L);

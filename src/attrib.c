@@ -3085,6 +3085,7 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 10 : 1);
 		if (uleft && uleft->otyp == RIN_GAIN_STRENGTH) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_STRENGTH) tmp += uright->spe;
+		if (uarmg && uarmg->oartifact == ART_LIKE_GRACE) tmp += 5;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3471,6 +3472,7 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uleft && uleft->otyp == RIN_GAIN_DEXTERITY) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_DEXTERITY) tmp += uright->spe;
+		if (uarmg && uarmg->oartifact == ART_LIKE_GRACE) tmp += 5;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;

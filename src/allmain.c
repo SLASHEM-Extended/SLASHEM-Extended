@@ -3369,11 +3369,21 @@ moveloop()
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EGRID_BUG && !rn2(500)) bad_equipment(0);
 
-		if (AppearanceShuffling && !rn2(2000)) initobjectsamnesia();;
+		if (AppearanceShuffling && !rn2(2000)) initobjectsamnesia();
 
-		if (u.uprops[APPEARANCE_SHUFFLING].extrinsic && !rn2(2000)) initobjectsamnesia();;
+		if (u.uprops[APPEARANCE_SHUFFLING].extrinsic && !rn2(2000)) initobjectsamnesia();
 
-		if (have_appearanceshufflingstone() && !rn2(2000)) initobjectsamnesia();;
+		if (have_appearanceshufflingstone() && !rn2(2000)) initobjectsamnesia();
+
+		if (uimplant && uimplant->oartifact == ART_DEAR_GOD__HELP_ME_) {
+			if (!rn2(powerfulimplants() ? 5000 : 15000)) {
+				if (u.ugangr > 0) {
+					u.ugangr--;
+					if (u.ugangr) pline("%s seems %s.", u_gname(), FunnyHallu ? "groovy" : "slightly mollified");
+					else pline("%s seems %s.", u_gname(), FunnyHallu ? "cosmic (not a new fact)" : "mollified");
+				}
+			}
+		}
 
 		if (FaintActive && !rn2(100) && multi >= 0) {
 
@@ -3417,6 +3427,10 @@ moveloop()
 			nomovemsg = "You regain consciousness.";
 			afternmv = unfaintX;
 
+		}
+
+		if (uarmc && uarmc->oartifact == ART_REALLY_FIND_EM && !rn2(2000)) {
+			object_detect((struct obj *)0, 0);
 		}
 
 		if ((uleft && uleft->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
@@ -7198,6 +7212,10 @@ newbossSTEN:
 			}
 		}
 
+		if (autismweaponcheck(ART_HELIOPOLIS_MISTAKE)) {
+			if (KillerRoomEffect < 5000) KillerRoomEffect = 5000;
+		}
+
 		if (uwep && uwep->oartifact == ART_TWISTED_TURN && !rn2(100)) {
 			switch (rnd(3)) {
 				case 1:
@@ -9041,6 +9059,29 @@ newbossO:
 			}
 		}
 
+		if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_ && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+			switch (rnd(4)) {
+				case 1:
+					(void) burnarmor(&youmonst);
+					destroy_item(SCROLL_CLASS, AD_FIRE);
+					destroy_item(SPBOOK_CLASS, AD_FIRE);
+					destroy_item(POTION_CLASS, AD_FIRE);
+					break;
+				case 2:
+					destroy_item(POTION_CLASS, AD_COLD);
+					break;
+				case 3:
+					destroy_item(RING_CLASS, AD_ELEC);
+					destroy_item(WAND_CLASS, AD_ELEC);
+					destroy_item(AMULET_CLASS, AD_ELEC);
+					break;
+				case 4:
+					(void) destroy_item(POTION_CLASS, AD_VENO);
+					(void) destroy_item(FOOD_CLASS, AD_VENO);
+					break;
+			}
+		}
+
 		if (uwep && uwep->oartifact == ART_SOL_VALTIVA && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
@@ -10575,6 +10616,26 @@ newbossB:
 				HStun -= rnd(20);
 				if (HStun < 2) HStun = 2;
 			}
+		}
+
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_STALWART_OMM && HStun && !rn2(100)) {
+			make_stunned(0L,TRUE);
+		}
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_STALWART_OMM && HFrozen && !rn2(100)) {
+			make_frozen(0L,FALSE);
+		}
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_STALWART_OMM && HBurned && !rn2(100)) {
+			make_burned(0L,FALSE);
+		}
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_STALWART_OMM && HWinceState && !rn2(100)) {
+			make_wincing(0L);
+			HWinceState &= ~INTRINSIC;
+			HWinceState &= ~TIMEOUT;
+		}
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_STALWART_OMM && HInvertedState && !rn2(100)) {
+			make_inverted(0L);
+			HInvertedState &= ~INTRINSIC;
+			HInvertedState &= ~TIMEOUT;
 		}
 
 		/* Gang Scholar gods are really nice: unless you're in Gehennom, they will occasionally fix status effects

@@ -267,6 +267,8 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_LINCOLN_S_REPEATER) multishot++;
 	    if (launcher && launcher->oartifact == ART_LOUD_SHITTER) multishot += rn1(2, 2);
 
+	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
+
 	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->age <= monstermoves) ) {
 		int artitimeout = rnz(2000);
 		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
@@ -306,6 +308,9 @@ int thrown;
 
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
+
+	    if (uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) multishot++;
+	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot++;
 
 	    if (launcher && objects[launcher->otyp].oc_skill == P_FIREARM && !(PlayerCannotUseSkills) && P_SKILL(P_SQUEAKING) >= P_MASTER && P_SKILL(P_GUN_CONTROL) >= P_MASTER && Upolyd) {
 			multishot++;
@@ -489,6 +494,11 @@ int thrown;
 
 	    /* Shotlimit controls your rate of fire */
 	    if ((shotlimit > 0) && (multishot > shotlimit)) multishot = shotlimit;
+
+	    if (uarm && uarm->oartifact == ART_POWASPEL) {
+		multishot -= rnd(2);
+		if (multishot < 1) multishot = 1;
+	    }
 
 	    if (launcher && launcher->oartifact == ART_DESERT_EAGLE) {
 		multishot--;
@@ -1752,6 +1762,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_RONDITSCH) dmg += 1;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) dmg += 2;
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) dmg += 2;
+	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) dmg += 4;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -1779,6 +1790,7 @@ boolean hitsroof;
 	if (uwep && uwep->oartifact == ART_VLADSBANE) dmg -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) dmg -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) dmg -= 1;
+	if (uarm && uarm->oartifact == ART_POWASPEL) dmg -= 3;
 
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
@@ -2607,6 +2619,7 @@ boolean polearming;
 	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
 	if (obj && objects[obj->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
+	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -2639,6 +2652,7 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHINESE_MODEL) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_XUANLONG) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_XUANLONG) tmp -= 5;
+	if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
 
 	if (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) tmp -= 5;
 

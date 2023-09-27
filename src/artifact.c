@@ -4243,8 +4243,8 @@ chargingchoice:
 		obj->age = 0;
 		return 0;
 	    }
-	    b_effect = obj->blessed &&
-		(Role_switch == oart->role || !oart->role);
+	    b_effect = (obj->blessed && (Role_switch == oart->role));
+	    if (obj->oartifact == ART_CHARGE_O_MANIA && powerfulimplants()) b_effect = TRUE;
 	    recharge(otmp, b_effect ? 1 : obj->cursed ? -1 : 0);
 	    update_inventory();
 	    break;
@@ -4862,6 +4862,17 @@ callingoutdone:
 			You_feel("full of mystic power!");
 			if (!obj->obrittle) {
 				u.uen = u.uenmax;
+				flags.botl = TRUE;
+				if (!rn2(5)) obj->obrittle++;
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_DINGDOENG_) {
+			You_feel("healthier!");
+			if (powerfulimplants() || !obj->obrittle) {
+				u.uhp = u.uhpmax;
+				if (Upolyd) u.mh = u.mhmax;
 				flags.botl = TRUE;
 				if (!rn2(5)) obj->obrittle++;
 			}
@@ -5840,6 +5851,9 @@ bangbagchoice:
 	    break;
 	  }
 	case ENLIGHTENING:
+
+	    if (!powerfulimplants() && obj && obj->oartifact == ART_SAATUSPLEASE) curse(obj);
+
 	    enlightenment(0, 1);
 	    break;
 	case CREATE_AMMO: {

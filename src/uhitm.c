@@ -909,6 +909,7 @@ register struct monst *mtmp;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
 	if (uwep && objects[uwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
+	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -934,6 +935,7 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UNWIELDYTINE) tmp -= rn1(5, 5);
 	if (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
+	if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -3710,6 +3712,7 @@ int dieroll;
 		if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
 		if (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) tmp += 2;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 2;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {
@@ -3728,6 +3731,7 @@ int dieroll;
 		}
 
 		if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
+		if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

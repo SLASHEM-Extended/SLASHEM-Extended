@@ -13666,6 +13666,154 @@ A("Dat Nigga's Got Da Bling",				LOW_BOOTS, /* randart2 boots, count as columnar
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8800L ),
 
+A("Powaspel",				ROBE_OF_SPELL_BOOSTING, /* +4 spell power on top of existing effect, -3 increase accuracy and damage, -d2 multishot with ranged weapons */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Total Parry Gauche",				MAGISWORD, /* if it's in the off-hand, double mystery res and 10 extra points of AC as well as 40% chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fastfuck",				AMULET_OF_FUCKING, /* fast speed */
+	(SPFX_RESTR|SPFX_SEEK|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Fortune Is Good",				GAUNTLETS_OF_FORTUNE,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Like Grace",				GAUNTLETS_OF_MYSTERY_RESISTANC, /* +5 STR and DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Really Find Em",				CLOAK_OF_MAGIC_FIND, /* 1 in 2000 while worn to get an effect that mimics uncursed potion of object detection */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Super Combo!",				COMBINATION_CLOAK, /* psi res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Winter Age",				CLOAK_OF_LOWER_MYSTERY,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Identification Help",				CLOAK_OF_MYSTERY, /* scroll of identify identifies one more item (unless it decides to identify the entire inventory) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Dang Armor",				CLOAK_OF_ARMOR_MYSTERY, /* 3 extra points of AC and one more for every positive enchantment, material becomes TITANIUM when putting it on */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Blachwartz",				RIN_MYSTERY_RESISTANCE, /* resist cold and fire */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("RNG Cessation",				MYSTERY_DRAGON_SCALES, /* displays all monsters with AD_RBRE or AD_RNG */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Whackabit",				MYSTERIOUS_PICK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Frenchyposs",				MYSTERIOUS_BOOTS, /* +2 damage with axes and one more per enchantment level of the boots; if they are blessed, +1 multishot with all firearms */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tschingfirm",				MYSTERY_SHIELD, /* 10% extra chance to block */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Dimethyl Escutcheon",				CASTSHIRT, /* poison resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Hogwild Wiz",				GAUNTLETS_OF_SPELL_POWER, /* 10% extra spellcasting chance and 5% extra like failuncap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Finetuning",				AMULET_OF_SPELLCASTING, /* food appraisal */
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Heliopolis Mistake",				CASTER_STAFF, /* killer spawn trap effect for 5000 turns, clairvoyance, scent view, echolocation, red spells */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	ELEC(8, 12), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 7000L ),
+
+A("SaatusPlease",				IMPLANT_OF_FATE, /* invoking curses the implant unless you're in a form without hands; if you are in such a form, it also grants peacevision while worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, ENLIGHTENING, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Clear Catastrophe",				IMPLANT_OF_DISASTER, /* nastiness, and friday 13th effect unless you're in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Yah, Yah",				IMPLANT_OF_REDRESS, /* +1 AC for every worn armor piece that is colored red; if you're in a form without hands, putting a red-colored armor piece on will remove one point of negative enchantment from it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Biuuu!",				IMPLANT_OF_QUARRELS, /* +1 multishot with crossbows, and if you're in a form without hands also +1 multishot with bows */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("They're Really After Me",				IMPLANT_OF_PARANOIA, /* trap of walls effect, scent view if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Throw My Life Away",				IMPLANT_OF_SWIFT_DEFEAT, /* premature death, but lifesaves you if in a form without hands; double attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Stalwart Omm",				IMPLANT_OF_INTEGRITY, /* disint res, and if you're in a form without hands there's 1% chance per turn that wince, invert, stun, burn or freeze effects end */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Do Not Want Sex",				IMPLANT_OF_CHASTITY, /* prevents AD_SSEX, and diminished bleeding if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Dear God, Help Me!",				IMPLANT_OF_MOLLIFICATION, /* 1 in 15000 per turn that divine anger times out by one, or 1 in 5000 if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Dingdoeng!",				IMPLANT_OF_FULL_HEALING, /* can be invoked to heal you back to full HP but 1 in 5 chance that the artifact becomes brittle; if it's already brittle and you're not in a form without hands, it doesn't actually restore your HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("I'm Gonna Crush Ya!",				IMPLANT_OF_DESTRUCTION, /* destruction effect, +4 increase accuracy, and +4 increase damage if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Friend Of All The Animals",				IMPLANT_OF_FRIENDSHIP, /* all "d" and "f" have 50% chance of spawning peaceful; if in a form without hands, additionally all M1_ANIMAL have 50% chance of spawning peaceful and 2% of peaceful ones spawn tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Enterogaster Alto",				IMPLANT_OF_SATIATION, /* full nutrients, and slow digestion if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Higherholder",				IMPLANT_OF_PRESERVATION, /* sustain ability, and fully prevents stat loss if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Real Time Switching",				IMPLANT_OF_QUICK_DRAWING, /* fast speed, and if you're in a form without hands, wielding a weapon doesn't use a turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Charge-O-Mania",				IMPLANT_OF_WAND_CHARGING, /* charging effect is blessed if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, CHARGE_OBJ, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("SarreFree",				IMPLANT_OF_CLEAR_THINKING, /* resist confusion, and if in a form without hands, keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Tschhkrzkrz",				IMPLANT_OF_MIND_BLASTING, /* you can #monster to emit mind blasts; if in a form without hands, they deal more damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

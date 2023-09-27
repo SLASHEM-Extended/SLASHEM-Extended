@@ -441,6 +441,8 @@ Boots_on()
 	default: impossible(unknown_type_long, c_boots, uarmf->otyp);
     }
 
+    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarmf && objects[uarmf->otyp].oc_color == CLR_RED && uarmf->spe < 0) uarmf->spe++;
+
     if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) ) {
 	if (u.ulevel >= 15 && uarmf->spe >= 1 && !uinsymbiosis) {
 		u.usymbiote.active = 1;
@@ -1536,12 +1538,19 @@ Cloak_on()
 	default: impossible(unknown_type_long, c_cloak, uarmc->otyp);
     }
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarmc && objects[uarmc->otyp].oc_color == CLR_RED && uarmc->spe < 0) uarmc->spe++;
+
 	if (uarmc && itemhasappearance(uarmc, APP_STRAITJACKET_CLOAK) ) {
 		if (!uarmc->hvycurse) {
 			curse(uarmc);
 			uarmc->hvycurse = 1;
 			pline("An aura of evil darkness surrounds your cloak as you put it on!");
 		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_DANG_ARMOR && (objects[uarmc->otyp].oc_material != MT_TITANIUM)) {
+		pline_The("cloak turns into a titanium cloak!");
+		objects[uarmc->otyp].oc_material = MT_TITANIUM;
 	}
 
 	if (uarmc && itemhasappearance(uarmc, APP_IGNORANT_CLOAK) ) {
@@ -2335,6 +2344,8 @@ Helmet_on()
 	default: impossible(unknown_type_long, c_helmet, uarmh->otyp);
     }
 
+    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarmh && objects[uarmh->otyp].oc_color == CLR_RED && uarmh->spe < 0) uarmh->spe++;
+
     if (uarmh && uarmh->oartifact == ART_NYPHERISBANE) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
@@ -2855,6 +2866,8 @@ Gloves_on()
 	default: impossible(unknown_type_long, c_gloves, uarmg->otyp);
     }
 
+    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarmg && objects[uarmg->otyp].oc_color == CLR_RED && uarmg->spe < 0) uarmg->spe++;
+
     if (uarmg && uarmg->oartifact == ART_JONADAB_S_METAL_GUARD && (objects[uarmg->otyp].oc_material != MT_IRON)) {
 		pline_The("pair of gloves turns into iron gauntlets!");
 		objects[uarmg->otyp].oc_material = MT_IRON;
@@ -3324,6 +3337,8 @@ Shield_on()
     }
 */
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarms && objects[uarms->otyp].oc_color == CLR_RED && uarms->spe < 0) uarms->spe++;
+
 	if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == DIFFICULT_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == TEZ_SHIELD) curse(uarms);
@@ -3585,6 +3600,8 @@ Shirt_on()
 
 	}
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarmu && objects[uarmu->otyp].oc_color == CLR_RED && uarmu->spe < 0) uarmu->spe++;
+
 	if (uarmu->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
 		if (!Stoned) {
 			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
@@ -3685,6 +3702,9 @@ Armor_on()
 			makeknown(uarm->otyp);
 			break;
 	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarm && objects[uarm->otyp].oc_color == CLR_RED && uarm->spe < 0) uarm->spe++;
+
 	if (uarm && uarm->otyp == ROBE_OF_NASTINESS) {
 		if (!uarm->cursed) curse(uarm);
 	}
@@ -6342,6 +6362,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
 	if (uwep && uwep->oartifact == ART_SECANTED) uac -= 3;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_BLUEFORM) uac -= 2;
 	if (uarms && uarms->oartifact == ART_CUTTING_THROUGH) uac -= 5;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) uac -= 2;
@@ -6371,6 +6392,10 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) uac -= 5;
 	if (Race_if(PM_HYPOTHERMIC) && uarmc) uac -= 3;
+	if (uarmc && uarmc->oartifact == ART_DANG_ARMOR) {
+		uac -= 3;
+		if (uarmc->spe > 0) uac -= uarmc->spe;
+	}
 	if (uarm && uarm->oartifact == ART_UBERGAGE) uac -= 4;
 	if (uarm && uarm->oartifact == ART_PEOPLE_COAT) uac -= 5;
 	if (uarm && uarm->oartifact == ART_EXTRA_LATITUDE) uac -= 5;
@@ -6425,6 +6450,16 @@ find_ac()
 			if (uarms && is_metallic(uarms)) uac -= 2;
 			if (uarmg && is_metallic(uarmg)) uac -= 2;
 		}
+	}
+
+	if (uimplant && uimplant->oartifact == ART_YAH__YAH) {
+			if (uarm && objects[uarm->otyp].oc_color == CLR_RED) uac -= 1;
+			if (uarmu && objects[uarmu->otyp].oc_color == CLR_RED) uac -= 1;
+			if (uarmc && objects[uarmc->otyp].oc_color == CLR_RED) uac -= 1;
+			if (uarmg && objects[uarmg->otyp].oc_color == CLR_RED) uac -= 1;
+			if (uarmh && objects[uarmh->otyp].oc_color == CLR_RED) uac -= 1;
+			if (uarmf && objects[uarmf->otyp].oc_color == CLR_RED) uac -= 1;
+			if (uarmc && objects[uarmc->otyp].oc_color == CLR_RED) uac -= 1;
 	}
 
 	/* make it easier for player to finish shoe-cleaning occupation --Amy */

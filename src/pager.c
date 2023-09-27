@@ -540,6 +540,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
+		if (uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mtmp->data, AD_RBRE) || dmgtype(mtmp->data, AD_RNG) ) )
+		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mtmp->data->mlet == S_ORC || mtmp->data->mlet == S_OGRE) )
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_SITHE_DED && mtmp->data->mlet == S_MUMMY)
@@ -775,6 +777,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
 			strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mtmp->data, AD_RBRE) || dmgtype(mtmp->data, AD_RNG) ) ) {
+			strcat(monbuf, "RNG cessation");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mtmp->data->mlet == S_ORC || mtmp->data->mlet == S_OGRE) ) {

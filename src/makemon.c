@@ -27361,11 +27361,11 @@ register int	mmflags;
 	} 
 
 	/* Kop characters sometimes receive pets --Amy */
-	if (mtmp->mpeaceful && !monster_is_revived && Race_if(PM_KOP) && !rn2(10) && sgn(u.ualign.type) == sgn(mtmp->data->maligntyp) && (mtmp->data->mr < rnd(100) ) ) {
+	if (!monster_is_revived && Race_if(PM_KOP) && !rn2(10) && sgn(u.ualign.type) == sgn(mtmp->data->maligntyp) && (mtmp->data->mr < rnd(100) ) ) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
-	if (mtmp->mpeaceful && !monster_is_revived && uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG && !rn2(10)) {
+	if (!monster_is_revived && uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG && !rn2(10)) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
@@ -27374,6 +27374,10 @@ register int	mmflags;
 	}
 
 	if (!rn2(50) && !monster_is_revived && ((mtmp->data->mcolor == CLR_GREEN) || ((mtmp->data->mcolor) == CLR_BRIGHT_GREEN)) && uarmc && itemhasappearance(uarmc, APP_GRASS_CLOAK) ) {
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
+	}
+
+	if (!rn2(50) && powerfulimplants() && uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && is_animal(mtmp->data) ) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
@@ -27429,7 +27433,7 @@ register int	mmflags;
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
-	if (mtmp->mpeaceful && !monster_is_revived && is_animal(mtmp->data) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER && !rn2(100)) {
+	if (!monster_is_revived && is_animal(mtmp->data) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER && !rn2(100)) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
@@ -32942,6 +32946,9 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_CLONE_ && is_jokemonster(ptr) && rn2(2)) return TRUE;
 
 	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
+
+	if (uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && rn2(2) && (ptr->mlet == S_DOG || ptr->mlet == S_FELINE)) return TRUE;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && rn2(2) && is_animal(ptr) ) return TRUE;
 
 	if (uarm && uarm->oartifact == ART_CLANGFRIEND && is_dwarf(ptr)) return TRUE;
 

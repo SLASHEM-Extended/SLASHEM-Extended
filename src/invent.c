@@ -26686,6 +26686,80 @@ boolean knoweverything;
 					pline("Artifact specs: one out of two hostile projectiles misses you while you're wearing them."); break;
 				case ART_DAT_NIGGA_S_GOT_DA_BLING:
 					pline("Artifact specs: They have columnar heels, no matter what type of shoe the base item and randomized appearance are."); break;
+				case ART_POWASPEL:
+					pline("Artifact specs: gives much bigger boosts to your spellcasting power but reduces the damage and accuracy of your melee and missile attacks and also reduces multishot."); break;
+				case ART_TOTAL_PARRY_GAUCHE:
+					pline("Artifact specs: if you're dual-wielding and this weapon is in your secondary weapon slot, you have double mystery resistance, 10 extra points of AC and 40%% chance to block missiles."); break;
+				case ART_FASTFUCK:
+					pline("Artifact specs: fast speed and searching bonus when worn."); break;
+				case ART_FORTUNE_IS_GOOD:
+					pline("Artifact specs: acts as a luckstone when worn."); break;
+				case ART_LIKE_GRACE:
+					pline("Artifact specs: +5 strength and dexterity when worn."); break;
+				case ART_REALLY_FIND_EM:
+					pline("Artifact specs: detects objects every once in a while as long as you're wearing it."); break;
+				case ART_SUPER_COMBO_:
+					pline("Artifact specs: psi resistance when worn."); break;
+				case ART_WINTER_AGE:
+					pline("Artifact specs: cold resistance when worn."); break;
+				case ART_IDENTIFICATION_HELP:
+					pline("Artifact specs: scrolls of identify will identify more items on average while you're wearing it."); break;
+				case ART_DANG_ARMOR:
+					pline("Artifact specs: gives extra AC, especially if this item is highly enchanted; putting it on automatically changes its material to titanium."); break;
+				case ART_BLACHWARTZ:
+					pline("Artifact specs: resist cold and fire when worn."); break;
+				case ART_RNG_CESSATION:
+					pline("Artifact specs: displays all monsters with randomized attacks when worn."); break;
+				case ART_WHACKABIT:
+					pline("Artifact specs: +4 to-hit and +4 damage."); break;
+				case ART_FRENCHYPOSS:
+					pline("Artifact specs: if you're using an axe, it deals +2 damage and one more per positive enchantment level on the boots, and if these boots are blessed and you use a firearm, you have +1 multishot."); break;
+				case ART_TSCHINGFIRM:
+					pline("Artifact specs: reflection and 10%% extra chance to block when worn."); break;
+				case ART_DIMETHYL_ESCUTCHEON:
+					pline("Artifact specs: poison resistance when worn."); break;
+				case ART_HOGWILD_WIZ:
+					pline("Artifact specs: significantly boosts spellcasting chance when worn, chaotic."); break;
+				case ART_FINETUNING:
+					pline("Artifact specs: ESP and food appraisal when worn."); break;
+				case ART_HELIOPOLIS_MISTAKE:
+					pline("Artifact specs: +8 to-hit and +12 damage to shock-susceptible monsters, equipping it causes the killer spawn trap effect for a while, and while wielding it you also have clairvoyance, scent view, echolocation and red spells. Lawful."); break;
+				case ART_SAATUSPLEASE:
+					pline("Artifact specs: can be invoked for enlightenment but unless you're in a form without hands, doing so will curse this artifact. If you are in a form without hands, you additionally have peacevision while wearing it."); break;
+				case ART_CLEAR_CATASTROPHE:
+					pline("Artifact specs: nastiness when worn, and unless you're in a form without hands the game will also act as if it was Friday the 13th."); break;
+				case ART_YAH__YAH:
+					pline("Artifact specs: +1 AC for every worn red-colored armor piece while you're wearing this. If you are in a form without hands, putting on a negatively-enchanted red-colored armor piece removes a point of negative enchantment from it."); break;
+				case ART_BIUUU_:
+					pline("Artifact specs: +1 multishot with crossbows when worn, and if you're in a form without hands, also +1 multishot with bows."); break;
+				case ART_THEY_RE_REALLY_AFTER_ME:
+					pline("Artifact specs: ESP and trap of walls effect when worn, and if you're in a form without hands it also grants scent view."); break;
+				case ART_THROW_MY_LIFE_AWAY:
+					pline("Artifact specs: double attacks and premature death when worn. If you are in a form without hands, it'll also lifesave you if you die, but is used up if it does."); break;
+				case ART_STALWART_OMM:
+					pline("Artifact specs: disintegration resistance when worn, and if you're in a form without hands, temporary versions of the wince, invert, stun, burn or freeze effects may end more quickly."); break;
+				case ART_DO_NOT_WANT_SEX:
+					pline("Artifact specs: monsters cannot force you to have sex with them, and if you're in a form without hands, also diminished bleeding."); break;
+				case ART_DEAR_GOD__HELP_ME_:
+					pline("Artifact specs: while wearing it, divine anger times out after a while, and more quickly if you're in a form without hands."); break;
+				case ART_DINGDOENG_:
+					pline("Artifact specs: can be invoked to heal you back to full HP."); break;
+				case ART_I_M_GONNA_CRUSH_YA_:
+					pline("Artifact specs: destruction effect and +4 increase accuracy when worn, and if you're in a form without hands, also +4 increase damage."); break;
+				case ART_FRIEND_OF_ALL_THE_ANIMALS:
+					pline("Artifact specs: dogs and cats spawn peaceful sometimes while wearing it, and if you're in a form without hands, that effect extends to all animals and they may even occasionally spawn tame."); break;
+				case ART_ENTEROGASTER_ALTO:
+					pline("Artifact specs: full nutrients when worn, and if you're in a form without hands, also slow digestion."); break;
+				case ART_HIGHERHOLDER:
+					pline("Artifact specs: sustain ability when worn, and if you're in a form without hands, it fully prevents stat reduction as long as the reduction effect respects the 'sustain ability' property in the first place"); break;
+				case ART_REAL_TIME_SWITCHING:
+					pline("Artifact specs: fast speed when worn, and if you're in a form without hands you can wield a different weapon without using up a turn."); break;
+				case ART_CHARGE_O_MANIA:
+					pline("Artifact specs: can be invoked for charging. The charging effect is uncursed if in a form with hands and blessed if in a form without hands."); break;
+				case ART_SARREFREE:
+					pline("Artifact specs: resist confusion when worn, and keen memory if in a form without hands."); break;
+				case ART_TSCHHKRZKRZ:
+					pline("Artifact specs: allows you to #monster to emit mind flayer blasts, and if you're in a form without hands, they deal more damage to enemies."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

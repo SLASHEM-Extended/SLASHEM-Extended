@@ -78,6 +78,9 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 	}
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) {
+		shieldblockrate = 40;
+	}
 	if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER)) ) {
 		shieldblockrate += 25;
 	}
@@ -258,6 +261,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
+		if (uarms->oartifact == ART_TSCHINGFIRM) shieldblockrate += 10;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
@@ -451,7 +455,7 @@ const char *name;	/* if null, then format `obj' */
 				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);
 				use_skill(P_TWO_WEAPON_COMBAT, 1);
 
-			} else if (u.twoweap && uswapwep && (uswapwep->oartifact == ART_BLOCKPARRY || uswapwep->otyp == PARRY_DAGGER || uswapwep->otyp == PARRY_SWORD) ) {
+			} else if (u.twoweap && uswapwep && (uswapwep->oartifact == ART_BLOCKPARRY || uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE || uswapwep->otyp == PARRY_DAGGER || uswapwep->otyp == PARRY_SWORD) ) {
 
 				Your("parrying weapon blocks a projectile.");
 				use_skill(P_TWO_WEAPON_COMBAT, 1);

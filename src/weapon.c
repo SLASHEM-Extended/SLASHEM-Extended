@@ -6936,6 +6936,11 @@ struct obj *weapon;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && weapon && weapon_type(weapon) == P_AXE) {
+		bonus += 2;
+		if (uarmf->spe > 0) bonus += uarmf->spe;
+	}
+
 	/* boomerang damage bonus for Batman */
 	if (Race_if(PM_BATMAN) && weapon && weapon_type(weapon) == P_BOOMERANG){
 

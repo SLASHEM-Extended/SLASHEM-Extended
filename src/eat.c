@@ -8019,13 +8019,13 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 
-	if (u.urealedibility || Role_if(PM_COOK) ) {
+	if (u.urealedibility || Role_if(PM_COOK) || (uamul && uamul->oartifact == ART_FINETUNING) ) {
 		int res = edibility_prompts(otmp);
 		if (res) {
-		    if (u.urealedibility) {u.urealedibility -= 1;
-		    if (u.urealedibility == 0) Your("%s stops tingling and your sense of smell returns to normal.",
-			body_part(NOSE));
-			}
+		    if (u.urealedibility) {
+			u.urealedibility -= 1;
+			if (u.urealedibility == 0) Your("%s stops tingling and your sense of smell returns to normal.", body_part(NOSE));
+		    }
 		    if (res == 1) return 0;
 		}
 	}

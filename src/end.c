@@ -1670,6 +1670,40 @@ versusinstadone:
 
 implantdone:
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_THROW_MY_LIFE_AWAY && how <= GENOCIDED) {
+		pline("But wait...");
+		Your("implant %s!", !Blind ? "begins to glow" : "feels warm");
+		You_feel("much better!");
+		pline_The("implant crumbles to dust!");
+		useup(uimplant);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto implantdone2;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+
+	}
+
+implantdone2:
+
 	if (MenuIsBugged && how < GENOCIDED) {
 		pline("But wait! You still have the menu bug!");
 

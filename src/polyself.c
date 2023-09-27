@@ -3090,11 +3090,15 @@ domindblast()
 			continue;
 		u_sen = telepathic(mtmp->data) && !mtmp->mcansee;
 		if (u_sen || (telepathic(mtmp->data) && rn2(3)) || !rn2(2)) {
+
+			int mindblastdmg = rn1(4,4);
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TSCHHKRZKRZ) mindblastdmg *= rn1(2, 2);
+
 			You("lock in on %s %s.", s_suffix(mon_nam(mtmp)),
 				u_sen ? "telepathy" :
 				telepathic(mtmp->data) ? "latent telepathy" :
 				"mind");
-			mtmp->mhp -= rn1(4,4);
+			mtmp->mhp -= mindblastdmg;
 			if (mtmp->mhp <= 0)
 				killed(mtmp);
 		}

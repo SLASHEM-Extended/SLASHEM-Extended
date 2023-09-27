@@ -839,9 +839,14 @@ dowield()
 	/* Handle no object, or object in other slot */
 	if (wep == &zeroobj)
 		wep = (struct obj *) 0;
-	else if (wep == uswapwep && !Race_if(PM_HUMAN_WRAITH) && !cantwield(youmonst.data) )
-		return (doswapweapon());
-	else if (wep == uswapwep && Race_if(PM_HUMAN_WRAITH) ) {
+	else if (wep == uswapwep && !Race_if(PM_HUMAN_WRAITH) && !cantwield(youmonst.data) ) {
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_REAL_TIME_SWITCHING) {
+			doswapweapon();
+			return 0;
+		} else {
+			return (doswapweapon());
+		}
+	}else if (wep == uswapwep && Race_if(PM_HUMAN_WRAITH) ) {
 
 		pline("You now have no secondary weapon readied.");
 		setuswapwep((struct obj *) 0, FALSE);
@@ -863,6 +868,7 @@ dowield()
 	untwoweapon();
 	if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_REAL_TIME_SWITCHING) return 0;
 	return (result);
 }
 
@@ -943,6 +949,7 @@ doswapweapon()
 		untwoweapon();
 	if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_REAL_TIME_SWITCHING) return 0;
 	return (result);
 }
 
