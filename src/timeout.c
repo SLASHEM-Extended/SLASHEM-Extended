@@ -3909,6 +3909,10 @@ nh_timeout()
 			if (!MysteryResist)
 				pline("Your mystery resistance has ended.");
 			break;
+		case SPELLBOOST:
+			if (!Spellboost)
+				pline("Your spellcasting boost has timed out.");
+			break;
 		case MAGIC_FIND:
 			if (!MagicFindBonus)
 				pline("Your chance to find magical items goes back to normal.");
@@ -4197,6 +4201,9 @@ nh_timeout()
 			break;
 		case DEAC_MYSTERY_RES:
 			pline("You are no longer prevented from having mystery resistance.");
+			break;
+		case DEAC_SPELLBOOST:
+			pline("You are no longer prevented from having spellboost.");
 			break;
 		case DEAC_MAGIC_FIND:
 			pline("You are no longer prevented from having magic find.");

@@ -6757,7 +6757,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(55)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(56)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -7906,6 +7906,26 @@ retrytrinsic:
 					if(!(HMagicFindBonus & FROMOUTSIDE)) {
 						You_feel("more likely to find magical items!");
 						HMagicFindBonus |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 56:
+				if (intloss) {
+					if (HSpellboost & INTRINSIC) {
+						HSpellboost &= ~INTRINSIC;
+						You_feel("your spell power waning!");
+						hasmadeachange = 1;
+					}
+					if (HSpellboost & TIMEOUT) {
+						HSpellboost &= ~TIMEOUT;
+						You_feel("your spell power waning!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HSpellboost & FROMOUTSIDE)) {
+						You_feel("able to cast spells more powerfully!");
+						HSpellboost |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

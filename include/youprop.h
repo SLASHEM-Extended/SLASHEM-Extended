@@ -1852,4 +1852,14 @@
 
 #define NoMagicFindBonus	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MAGIC_FIND].intrinsic || UHaveAids || (u.impossibleproperty == MAGIC_FIND ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
+#define HSpellboost		u.uprops[SPELLBOOST].intrinsic
+#define ESpellboost		u.uprops[SPELLBOOST].extrinsic
+#define IntSpellboost	(HSpellboost)
+#define ExtSpellboost	(ESpellboost || (uwep && uwep->otyp == CASTER_STAFF) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == SPELLBOOST) ) )
+
+#define Spellboost		(((IntSpellboost && u.nonintrinsicproperty != SPELLBOOST) || (ExtSpellboost && u.nonextrinsicproperty != SPELLBOOST)) && !NoSpellboost)
+#define StrongSpellboost	(IntSpellboost && ExtSpellboost && Spellboost && u.nondoubleproperty != SPELLBOOST)
+
+#define NoSpellboost	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SPELLBOOST].intrinsic || UHaveAids || (u.impossibleproperty == SPELLBOOST ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
 #endif /* YOUPROP_H */

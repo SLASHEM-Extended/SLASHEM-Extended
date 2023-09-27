@@ -20082,6 +20082,7 @@ stdcontracting:
 		u.uprops[DEAC_DEFUSING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_MYSTERY_RES].intrinsic += rnz( (monster_difficulty() * 100) + 1);
+		u.uprops[DEAC_SPELLBOOST].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_MAGIC_FIND].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_SCENT_VIEW].intrinsic += rnz( (monster_difficulty() * 100) + 1);
 		u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += rnz( (monster_difficulty() * 100) + 1);

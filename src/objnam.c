@@ -396,6 +396,8 @@ int prop;
 			return "resistance piercing";
 		case MYSTERY_RES:
 			return "mystery resistance";
+		case SPELLBOOST:
+			return "spellboost";
 		case MAGIC_FIND:
 			return "magic find";
 		case DEFUSING:
@@ -4057,6 +4059,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ HELM_OF_MYSTERY_RES, "todo" },
 	{ MYSTERIOUS_BOOTS, "todo" },
 	{ MYSTERY_SHIELD, "todo" },
+	{ ROBE_OF_SPELL_BOOSTING, "todo" },
+	{ CLOAK_OF_SPELL_BOOSTING, "todo" },
+	{ CASTSHIRT, "todo" },
+	{ GAUNTLETS_OF_SPELL_POWER, "todo" },
+	{ AMULET_OF_SPELLCASTING, "todo" },
+	{ CASTER_STAFF, "todo" },
 
 	{0, "" }
 };
@@ -7283,6 +7291,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ HELM_OF_MYSTERY_RES, "todo" },
 	{ MYSTERIOUS_BOOTS, "todo" },
 	{ MYSTERY_SHIELD, "todo" },
+	{ ROBE_OF_SPELL_BOOSTING, "todo" },
+	{ CLOAK_OF_SPELL_BOOSTING, "todo" },
+	{ CASTSHIRT, "todo" },
+	{ GAUNTLETS_OF_SPELL_POWER, "todo" },
+	{ AMULET_OF_SPELLCASTING, "todo" },
+	{ CASTER_STAFF, "todo" },
 
 	{0, "" }
 };

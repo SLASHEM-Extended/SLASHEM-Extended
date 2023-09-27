@@ -1116,7 +1116,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		return;
 	}
 
-	switch(rnd(262)) {
+	switch(rnd(265)) {
 	case 1:
 	case 2:
 	case 3:
@@ -2334,6 +2334,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HMagicFindBonus & TIMEOUT) {
 			HMagicFindBonus &= ~TIMEOUT;
 			You_feel("less likely to find magical items!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 265: if (HSpellboost & INTRINSIC) {
+			HSpellboost &= ~INTRINSIC;
+			You_feel("your spell power waning!");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HSpellboost & TIMEOUT) {
+			HSpellboost &= ~TIMEOUT;
+			You_feel("your spell power waning!");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;

@@ -8241,6 +8241,9 @@ register int booktype;
 		case P_GRAND_MASTER:      tmp +=  4; break;
 		case P_SUPREME_MASTER:      tmp +=  5; break;
 	}
+	if (Spellboost) tmp++;
+	if (StrongSpellboost) tmp++;
+
 	if (tmp > 0) tmp = rn2(tmp + 1); /* too high bonuses make spellcaster roles too powerful! --Amy */
 
 	if (MagicVacuum && (tmp > 0)) tmp = 0;

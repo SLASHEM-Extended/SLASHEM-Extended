@@ -53,6 +53,7 @@ const struct innate {
 	xel_abil[] = { {	 1, &(HSwimming), "", "", TRUE },
 		     {  1, &(HAcid_resistance), "", "", TRUE },
 		     {  1, &(HScentView), "", "", TRUE },
+		     {  5, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  6, &(HStealth), "stealthy", "noisy", TRUE },
 		     {  6, &(HJumping), "able to jump around", "unable to jump around", TRUE },
 		     {  9, &(HMysteryResist), "mysteriously resistant", "afraid of mysteries", TRUE },
@@ -190,7 +191,8 @@ const struct innate {
 		     {   7, &(HFast), "quick", "slow", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
-	dia_abil[] = { {	24, &(HFast), "quick", "slow", TRUE },
+	dia_abil[] = { {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
+		     {  24, &(HFast), "quick", "slow", TRUE },
 		     {  25, &(HMagicFindBonus), "capable of finding magical items", "less capable of finding magical items", TRUE },
 		     {  30, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {  30, &(HPoison_resistance), "healthy", "less healthy", TRUE },
@@ -221,6 +223,7 @@ const struct innate {
 
 	mas_abil[] = { {	 1, &(HSee_invisible), "", "", TRUE },
 			{	 1, &(HKeen_memory), "", "", TRUE },
+		     {       3, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{     10, &(HPsi_resist), "psionic", "less psionic", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {  16, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
@@ -253,6 +256,7 @@ const struct innate {
 		     {	13, &(HExpBoost), "a surge of experience", "a loss of experience", TRUE },  
 		     {   14, &(HAcid_resistance), "warded", "endangered", TRUE },
 		     {   16, &(HDrain_resistance), "more resistant to drain life", "less resistant to drain life", TRUE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		    { 22,  &(HInfravision), "perceptive", "half blind", TRUE },
 		       {   25, &(HPolymorph), "polymorphic", "form-stable", FALSE },
 		     {  26, &(HCold_resistance), "warm", "cooler", TRUE },
@@ -269,6 +273,7 @@ const struct innate {
 		     {   10, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {	 13, &(HSlow_digestion), "a certain satiation", "the need to eat more", TRUE },
 			{   23, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {  24, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	cav_abil[] = { {	 7, &(HFast), "quick", "slow", TRUE },
@@ -381,6 +386,7 @@ const struct innate {
 	fla_abil[] = { {   1, &(HFire_resistance), "", "", TRUE },
 		     {  12, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {  13, &(HCold_resistance), "warm", "cooler", TRUE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	sli_abil[] = { {   1, &(HAcid_resistance), "", "", TRUE },
@@ -417,12 +423,14 @@ const struct innate {
 			{	14, &(CrapEffect), "", "", FALSE },
 		     {	 15, &(HFuckOverEffect), "being fucked over", "not being fucked over anymore", FALSE },
 			{	18, &(PokelieEffect), "", "", FALSE },
+			{     20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{	22, &(ExplodingDiceEffect), "", "", FALSE },
 			{	26, &(AutopilotEffect), "", "", FALSE },
 			{	30, &(InterfaceScrewed), "", "", FALSE },
 		     {   0, 0, 0, 0, 0 } },
 
 	dea_abil[] = { {   1, &(HResistancePiercing), "", "", TRUE },
+			{     10, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			 {	18, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -502,6 +510,7 @@ const struct innate {
 		     {  6, &(HSearching), "perceptive", "unaware", TRUE },
 			{	7, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {	8, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+			{     10, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{	12, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		       {   18, &(HPolymorph_control), "your choices improve", "choiceless", TRUE },
@@ -548,6 +557,7 @@ const struct innate {
 
 	car_abil[] = { { 1, &(HSearching), "", "", TRUE },
 			{ 7, &(HWarning), "sensitive", "insensitive", TRUE },
+			{  30, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{ 0, 0, 0, 0 } },
 
 	drm_abil[] = { { 7, &(HFast), "quick", "slow", TRUE },
@@ -556,6 +566,7 @@ const struct innate {
 
 	drd_abil[] = { {	15, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {  20, &(HPainSense), "empathic", "cold-hearted", TRUE },
+			{  28, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{ 0, 0, 0, 0 } },
 
 	fjo_abil[] = { { 1, &(HSwimming), "", "", TRUE },
@@ -585,11 +596,13 @@ const struct innate {
 	dol_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {	3, &(HWarning), "sensitive", "careless", TRUE },
 			{   9, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+			{  25, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	sag_abil[] = { {   1, &(HFull_nutrient), "", "", TRUE },
 		     {   5, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {  10, &(HSearching), "perceptive", "unaware", TRUE },
+		     {  12, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  15, &(HMysteryResist), "mysteriously resistant", "afraid of mysteries", TRUE },
 		     {	17, &(HWarning), "sensitive", "careless", TRUE },
 		     {	20, &(HDiscount_action), "resistant to paralysis", "less resistant to paralysis", TRUE },
@@ -604,6 +617,7 @@ const struct innate {
 		     {   1, &(HStealth), "", "", TRUE },
 		     {   1, &(HTechnicality), "", "", TRUE },
 		     {   1, &(HMagicFindBonus), "", "", TRUE },
+			{   1, &(HSpellboost), "", "", TRUE },
 			{   3, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {	12, &(HWarning), "sensitive", "careless", TRUE },
 		     {  15, &(HMysteryResist), "mysteriously resistant", "afraid of mysteries", TRUE },
@@ -626,6 +640,7 @@ const struct innate {
 
 	aci_abil[] = { {   1, &(HAcid_resistance), "", "", TRUE },
 			{     20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+			{     20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	loc_abil[] = { {   1, &(HSearching), "", "", TRUE },
@@ -677,30 +692,39 @@ const struct innate {
 	ice_abil[] = { {   1, &(HCold_resistance), "", "", TRUE },
 		     {  13, &(HFire_resistance), "cool", "warmer", TRUE },
 		     {  16, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
+	lib_abil[] = { {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	ele_abil[] = { {   1, &(HShock_resistance), "", "", TRUE },
 		     {  15, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	psn_abil[] = { {   1, &(HPoison_resistance), "", "", TRUE },
 		     {   1, &(HFull_nutrient), "", "", TRUE },
 			{   5, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  22, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	25, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	occ_abil[] = { {  6, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
+	occ_abil[] = { { 5, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
+			 {  6, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 			 {   10, &(HInfravision), "perceptive", "half blind", TRUE },
 		     {  30, &(HMysteryResist), "mysteriously resistant", "afraid of mysteries", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	emn_abil[] = { {  5, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+			{    8, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{   10, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{   15, &(HPsi_resist), "psionic", "less psionic", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	cha_abil[] = { {   8, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+			{  10, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			 {   20, &(HEnergy_regeneration), "charged with mana", "a loss of mana", TRUE },
 		     {  22, &(HMysteryResist), "mysteriously resistant", "afraid of mysteries", TRUE },
 		     {   0, 0, 0, 0, 0 } },
@@ -782,6 +806,7 @@ const struct innate {
 		     {  10, &(HDetect_monsters), "connected","detached", TRUE },
 		     {  12, &(HFuckOverEffect), "being fucked over", "not being fucked over anymore", FALSE },
 		     {  15, &(HFlying), "weightless", "grounded", TRUE },
+		     {  16, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  20, &(HPasses_walls), "ethereal","mundane", TRUE },
 			{   25, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
 		     {   0, 0, 0, 0, 0 } },
@@ -799,6 +824,7 @@ const struct innate {
 		     {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
 		     {	5, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			{   15, &(HManaleech), "magically attuned", "no longer magically attuned", TRUE },
+		     {  15, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  30, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -828,6 +854,7 @@ const struct innate {
 
 	gof_abil[] = {	{1, &(HDrain_resistance), "", "", TRUE },
 		     {   1, &(HInfravision), "", "", TRUE },
+		     {   6, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  10, &(HReflecting), "reflexive", "nonreflexive", TRUE },
 		     {  20, &(HDiminishedBleeding), "your wounds closing faster", "your blood pumping", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -953,12 +980,14 @@ const struct innate {
 
 	wiz_abil[] = { {   1, &(HManaleech), "", "", TRUE },
 		     {	4, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+		     {  10, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			 {	15, &(HWarning), "sensitive", "careless", TRUE },
 		     {  17, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	alt_abil[] = { {   1, &(HControlMagic), "", "", TRUE },
 			 {   3, &(HUndead_warning), "sensitive", "careless", TRUE },
+			{     5, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{	7, &(HWarning), "sensitive", "careless", TRUE },
 			{  15, &(HTeleport_control), "controlled","uncontrolled", TRUE },
 			{     20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
@@ -979,6 +1008,7 @@ const struct innate {
 
 	tha_abil[] = { {	4, &(HSleep_resistance), "awake", "tired", TRUE },
 		     {   10, &(HAggravate_monster), "intolerable", "more acceptable", FALSE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  22, &(HMysteryResist), "mysteriously resistant", "afraid of mysteries", TRUE },
 		     {  24, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
@@ -1054,6 +1084,7 @@ const struct innate {
 	per_abil[] = { { 1, &(HHunger), "", "", FALSE },
 		     {  15, &(HFull_nutrient), "your metabolism slowing down", "your metabolism speeding up", TRUE },
 		     {  20, &(HFire_resistance), "cool", "warmer", TRUE },
+		     {  24, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	mog_abil[] = { { 7, &(HShock_resistance), "insulated", "conductive", TRUE },
@@ -1369,6 +1400,7 @@ const struct innate {
 	bre_abil[] = { {  1, &(HFire_resistance), "", "", TRUE },
 		     {   1, &(HCold_resistance), "", "", TRUE },
 		     {  1, &(HShock_resistance), "", "", TRUE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	elm_abil[] = { {  1, &(HFire_resistance), "", "", TRUE },
@@ -1444,7 +1476,8 @@ const struct innate {
 		     {  14, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
-	vee_abil[] = { {  20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
+	vee_abil[] = { {  11, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
+			 {  20, &(HResistancePiercing), "able to pierce enemy resistances", "incapable of piercing enemy resistances", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	urg_abil[] = { {  1, &(HMagicVacuum), "", "", FALSE },
@@ -1593,6 +1626,7 @@ const struct innate {
 		     {   1, &(HTeleportation), "", "", FALSE },
 		     {   1, &(HTeleport_control), "", "", TRUE },
 		     {   1, &(HMysteryResist), "", "", TRUE },
+		     {  24, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	jel_abil[] = { {	 1, &(HPoison_resistance), "", "", TRUE },
@@ -1610,11 +1644,15 @@ const struct innate {
 	trn_abil[] = { {	 1, &(HExtra_wpn_practice), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
+	nem_abil[] = { { 18, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
+		     {	 0, 0, 0, 0, 0 } },
+
 	zau_abil[] = { {	 1, &(HStone_resistance), "", "", TRUE },
 		     {   1, &(HSwimming), "", "", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	wyl_abil[] = { {	 1, &(HScentView), "", "", TRUE },
+		     {  12, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {	 0, 0, 0, 0, 0 } },
 
 	thr_abil[] = { {	 1, &(HSearching), "", "", TRUE },
@@ -1643,6 +1681,7 @@ const struct innate {
 			{   20, &(HSee_invisible), "your vision sharpen", "your vision blurring", TRUE },
 		    { 20,  &(HInfravision), "perceptive", "half blind", TRUE },
 		     {	20, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
+		     {  20, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	cer_abil[] = { { 1, &(HFire_resistance), "", "", TRUE },
@@ -1674,6 +1713,7 @@ const struct innate {
 		     {   1, &(HTeleport_control), "", "", TRUE },
 		     {   1, &(HSee_invisible), "", "", TRUE },
 		     {   1, &(HFuckOverEffect), "", "", FALSE },
+			{   1, &(HSpellboost), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
 	esp_abil[] = { {  1, &(HSick_resistance), "", "", TRUE },
@@ -1705,6 +1745,7 @@ const struct innate {
 	sat_abil[] = { {   1, &(HTechnicality), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
 		     {   1, &(HControlMagic), "", "", TRUE },
+		     {  18, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  20, &(HMagicFindBonus), "capable of finding magical items", "less capable of finding magical items", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -1716,6 +1757,7 @@ const struct innate {
 		     {   1, &(HTechnicality), "", "", TRUE },
 		     {   1, &(HScentView), "", "", TRUE },
 		     {   6, &(HPainSense), "empathic", "cold-hearted", TRUE },
+		     {  10, &(HSpellboost), "a surge of spell power", "a reduction of spell power", TRUE },
 		     {  20, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -2598,6 +2640,7 @@ int oldlevel, newlevel;
 	case PM_CHAOS_SORCEROR:	abil = cha_abil;	break;
 	case PM_ELEMENTALIST:	abil = emn_abil;	break;
 	case PM_ICE_MAGE:	abil = ice_abil;	break;
+	case PM_LIBRARIAN:	abil = lib_abil;	break;
 	case PM_JEDI:		abil = jed_abil;	break;
 	case PM_HEDDERJEDI:		abil = jed_abil;	break;
 	case PM_KNIGHT:         abil = kni_abil;	break;
@@ -2755,6 +2798,7 @@ int oldlevel, newlevel;
 	case PM_JELLY:            rabil = jel_abil;	break;
 	case PM_WEAPON_IMP:            rabil = wim_abil;	break;
 	case PM_TRAINER:            rabil = trn_abil;	break;
+	case PM_NEMESIS:            rabil = nem_abil;	break;
 	case PM_CUPID:            rabil = cup_abil;	break;
 	case PM_ZAUR:            rabil = zau_abil;	break;
 	case PM_WYLVAN:            rabil = wyl_abil;	break;

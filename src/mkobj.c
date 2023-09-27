@@ -833,7 +833,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(162)) {
+	switch (rnd(165)) {
 
 		case 1:
 			return ATHAME;
@@ -1086,6 +1086,12 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 		case 161:
 		case 162:
 			return CASINO_CHIP;
+		case 163:
+			return CLOAK_OF_MYSTERY;
+		case 164:
+			return GAUNTLETS_OF_MYSTERY_RESISTANC;
+		case 165:
+			return RIN_MYSTERY_RESISTANCE;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}
@@ -1769,7 +1775,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(181)) {
+	switch (rnd(182)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -2132,6 +2138,8 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return INFUSION;
 		case 181:
 			return SCR_EXTRA_SKILL_POINT;
+		case 182:
+			return COMBINATION_CLOAK;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 

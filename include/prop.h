@@ -770,7 +770,10 @@
 
 #define FUCK_OVER 692 /* lvlup */
 
-#define SECOND_CHANCE		693
+#define SPELLBOOST 693 /* lvlup */
+#define DEAC_SPELLBOOST 694
+
+#define SECOND_CHANCE		695
 #define LAST_PROP		(SECOND_CHANCE)
 
 #define APP_VAMPIRIC_CLOAK 1000

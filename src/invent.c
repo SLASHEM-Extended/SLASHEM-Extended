@@ -8203,6 +8203,7 @@ register const char *let,*word;
 			|| otmp->otyp == CHANTER_SHIRT
 			|| otmp->otyp == BAD_SHIRT
 			|| otmp->otyp == BODYGLOVE
+			|| otmp->otyp == CASTSHIRT
 			|| otmp->otyp == BEAUTIFUL_SHIRT
 			|| otmp->otyp == TOILET_ROLL
 			|| otmp->otyp == PETA_COMPLIANT_SHIRT
@@ -11393,6 +11394,8 @@ boolean knoweverything;
 				pline("The basic quarterstaff is a two-handed weapon that does pitiful damage compared to other two-handers."); break;
 			case CONTRO_STAFF:
 				pline("A two-handed quarterstaff that deals moderate damage and also grants control magic when wielded."); break;
+			case CASTER_STAFF:
+				pline("For a quarterstaff, it doesn't deal too bad damage, but is still two-handed. Its real use is to boost the effect of your spells while you're wielding it."); break;
 			case SILVER_KHAKKHARA:
 				pline("Don't bother unless you're looking for a quarterstaff that does extra damage to undead and demons."); break;
 			case RUNED_ROD:
@@ -12885,6 +12888,8 @@ boolean knoweverything;
 				pline("This very lovely piece of cloth (which counts as a shirt) offers medium magic cancellation. It can be read."); break;
 			case BODYGLOVE: 
 				pline("Good thing this item is not unbalanced at all. Just a t-shirt that offers sickness resistance and maximum magic cancel-WAIT WHAT OMG I GOTTA WEAR THIS SO BAD!!! It can be read."); break;
+			case CASTSHIRT: 
+				pline("A t-shirt that boosts your spell power, but its base material might have unwanted side effects. It can be read."); break;
 			case STRIPED_SHIRT:
 				pline("A shirt that can be worn under a suit of armor. Shopkeepers who see you wearing this will not allow you to enter their shop. It can be read."); break;
 			case RUFFLED_SHIRT:
@@ -12995,6 +13000,8 @@ boolean knoweverything;
 				pline("If you don't want to wear a real armor, you can use this for some armor class."); break;
 			case ROBE_OF_MAGIC_POWER:
 				pline("Do you want to be able to damage those assholes who are immune to fire, cold, shock, poison or acid? With this robe, there's a small chance that your elemental attacks will bypass the opponent's resistance and damages him anyway!"); break;
+			case ROBE_OF_SPELL_BOOSTING:
+				pline("A robe that boosts the power of certain spells (e.g. damage-dealing or healing spells)."); break;
 			case ROBE_OF_DESTINY:
 				pline("This robe makes it so that monsters will always spawn with a level that is at least the current monster difficulty. It gives 5 points of armor class and no magic cancellation."); break;
 			case ROBE_OF_STASIS:
@@ -13482,6 +13489,8 @@ boolean knoweverything;
 				pline("This cloak reduces the time for which you're paralyzed, and also provides 3 points of magic cancellation."); break;
 			case CLOAK_OF_TECHNICALITY:
 				pline("A cloak that makes your techniques more effective while worn. It grants 3 points of magic cancellation."); break;
+			case CLOAK_OF_SPELL_BOOSTING:
+				pline("This cloak improves the power of spells that have scaling effects, and also grants 3 points of magic cancellation."); break;
 			case CLOAK_OF_FUCKING:
 				pline("You'll encounter higher-level monsters if you wear this cloak. It is usually generated cursed and grants 3 points of magic cancellation."); break;
 			case CLOAK_OF_MAGIC_FIND:
@@ -13865,6 +13874,8 @@ boolean knoweverything;
 				pline("These gloves improve your searching ability by automatically searching for traps and secret doors every turn."); break;
 			case GAUNTLETS_OF_DEFUSING:
 				pline("Wear this pair of gloves to be capable of untrapping more trap types than normal!"); break;
+			case GAUNTLETS_OF_SPELL_POWER:
+				pline("A useful pair of gloves that improves the power of spells whose effects scale with skill level."); break;
 			case COMMANDER_GLOVES:
 				pline("They sure look good but unfortunately these gloves are actually rather plain."); break;
 			case FIELD_GLOVES:
@@ -15759,6 +15770,8 @@ boolean knoweverything;
 				pline("Wearing this amulet causes you to polymorph. The amulet will then disintegrate."); break;
 			case AMULET_OF_MYSTERY_RESISTANCE:
 				pline("You can wear this amulet to become resistant to various magical effects."); break;
+			case AMULET_OF_SPELLCASTING:
+				pline("If you want to cast powerful spells, this amulet may help by increasing the spells' power level."); break;
 			case AMULET_OF_BURDEN:
 				pline("This amulet makes your character much heavier until removed. It is usually generated cursed."); break;
 			case AMULET_OF_FUCKING:

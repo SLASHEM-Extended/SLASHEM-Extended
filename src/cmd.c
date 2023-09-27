@@ -7092,6 +7092,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && NoSpellboost && (final || u.uprops[DEAC_SPELLBOOST].intrinsic) ) {
+		sprintf(buf, "prevented from having spellboost");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SPELLBOOST].intrinsic);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && NoMagicFindBonus && (final || u.uprops[DEAC_MAGIC_FIND].intrinsic) ) {
 		sprintf(buf, "prevented from having magic find");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", u.uprops[DEAC_MAGIC_FIND].intrinsic);
@@ -7642,6 +7648,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && ResistancePiercing) you_have(StrongResistancePiercing ? "powerful resistance piercing abilities" : "resistance piercing abilities");
 	if ((guaranteed || !rn2(10)) && MysteryResist) you_have(StrongMysteryResist ? "strong mystery resistance" : "mystery resistance");
 	if ((guaranteed || !rn2(10)) && MagicFindBonus) you_have(StrongMagicFindBonus ? "much higher chances of finding magical items" : "higher chances of finding magical items");
+	if ((guaranteed || !rn2(10)) && Spellboost) you_have(StrongSpellboost ? "greatly improved spell power" : "improved spell power");
 	if ((guaranteed || !rn2(10)) && (ScentView || EcholocationActive)) you_have(StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if ((guaranteed || !rn2(10)) && DiminishedBleeding) you_have(StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if ((guaranteed || !rn2(10)) && ControlMagic) you_have(StrongControlMagic ? "strong magic control" : "magic control");
@@ -11784,6 +11791,12 @@ int final;
 		dump(youwere, buf);
 	}
 
+	if (NoSpellboost) {
+		sprintf(buf, "prevented from having spellboost");
+		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_SPELLBOOST].intrinsic);
+		dump(youwere, buf);
+	}
+
 	if (NoMagicFindBonus) {
 		sprintf(buf, "prevented from having magic find");
 		sprintf(eos(buf), " (%ld)", u.uprops[DEAC_MAGIC_FIND].intrinsic);
@@ -12298,6 +12311,7 @@ int final;
 	if (ResistancePiercing) dump(youhad, StrongResistancePiercing ? "powerful resistance piercing abilities" : "resistance piercing abilities");
 	if (MysteryResist) dump(youhad, StrongMysteryResist ? "strong mystery resistance" : "mystery resistance");
 	if (MagicFindBonus) dump(youhad, StrongMagicFindBonus ? "much higher chances of finding magical items" : "higher chances of finding magical items");
+	if (Spellboost) dump(youhad, StrongSpellboost ? "greatly improved spell power" : "improved spell power");
 	if (ScentView || EcholocationActive) dump(youhad, StrongScentView ? "scent view and echolocation" : (ScentView && EcholocationActive) ? "scent view and echolocation" : EcholocationActive ? "echolocation" : "scent view");
 	if (DiminishedBleeding) dump(youhad, StrongDiminishedBleeding ? "greatly diminished bleeding" : "diminished bleeding");
 	if (ControlMagic) dump(youhad, StrongControlMagic ? "strong magic control" : "magic control");

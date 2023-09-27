@@ -1695,7 +1695,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(161)) {
+	switch (rnd(163)) {
 
 		case 1:
 		case 2:
@@ -1948,6 +1948,9 @@ randenchantment()
 			return MYSTERY_RES;
 		case 161:
 			return MAGIC_FIND;
+		case 162:
+		case 163:
+			return SPELLBOOST;
 
 		default:
 			return POISON_RES;
@@ -2352,7 +2355,7 @@ randfemienchantment()
 int
 randomdisableproperty()
 {
-	switch (rnd(75)) {
+	switch (rnd(76)) {
 
 		case 1:
 			return FIRE_RES;
@@ -2504,6 +2507,8 @@ randomdisableproperty()
 			return MYSTERY_RES;
 		case 75:
 			return MAGIC_FIND;
+		case 76:
+			return SPELLBOOST;
 		default:
 			return POISON_RES;
 	}
@@ -3842,7 +3847,7 @@ deacrandomintrinsic(amount)
 register int amount;
 {
 
-	switch (rnd(140)) {
+	switch (rnd(141)) {
 
 		case 1:
 		case 2:
@@ -4212,6 +4217,10 @@ register int amount;
 			u.uprops[DEAC_MAGIC_FIND].intrinsic += amount;
 			pline("You are prevented from having magic find!");
 			break;
+		case 141:
+			u.uprops[DEAC_SPELLBOOST].intrinsic += amount;
+			pline("You are prevented from having spellboost!");
+			break;
 	}
 
 }
@@ -4220,7 +4229,7 @@ int
 goodimplanteffect(obj)
 struct obj *obj;
 {
-	switch (obj->shirtmessage % 61) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
+	switch (obj->shirtmessage % 62) { /* remember to not randomize them!!! each number has to map to exactly one property --Amy */
 
 		case 0:
 			return DTBEEM_RES;
@@ -4344,6 +4353,8 @@ struct obj *obj;
 			return MYSTERY_RES;
 		case 60:
 			return MAGIC_FIND;
+		case 61:
+			return SPELLBOOST;
 		default:
 			return POISON_RES;
 
