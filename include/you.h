@@ -1406,6 +1406,7 @@ struct you {
 	boolean totter;	/* scroll of symmetry toggles this */
 
 	boolean ataruinvoked;
+	boolean ataratarinvoked;
 
 	int nurseextracost;	/* for chat-to-nurses functionality */
 	int nursedecontamcost;	/* ditto */
@@ -1800,6 +1801,7 @@ struct you {
 	int pervertpray;	/* same for praying (and yes, the gods can still get angry :P) */
 
 	boolean fungalsandals;
+	boolean castlecrushglitch;
 
 	int gaugetimer;	/* one point shoot and particle cannon require 50 turns to reload */
 	int battertimer;	/* battering ram requires 2 turns to reload */

@@ -219,6 +219,7 @@ boolean ghostly, frozen;
 		 */
 		if (ghostly && !frozen && !age_is_relative(otmp) && !is_lightsaber(otmp))
 		    otmp->age = monstermoves - omoves + otmp->age;
+		    otmp->invoketimer = monstermoves - omoves + otmp->invoketimer;
 
 		/* get contents of a container or statue */
 		if (Has_contents(otmp)) {

@@ -1991,6 +1991,7 @@ set_moreluck()
 	if (have_suckstonearti()) u.moreluck += 5;
 	if (uwep && uwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
+	if (uarm && uarm->oartifact == ART_AMMY_S_COMPLAINT) u.moreluck -= 5;
 
 }
 
@@ -3094,6 +3095,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
+		if (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) tmp -= 5;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3545,8 +3547,6 @@ int x;
 			if (uarmg && is_metallic(uarmg)) tmp++;
 		}
 
-		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
-
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 
@@ -3573,6 +3573,8 @@ int x;
 		if (u.tsloss_con > 0) tmp -= u.tsloss_con;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
+		if (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) tmp -= 5;
+		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 
 	}
 

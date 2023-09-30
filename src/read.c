@@ -10172,12 +10172,12 @@ randenchchoice:
 		}
 		else{ /* sobj is an artifact */
 			if (u.ublesscnt > 0) {pline("The map reveals nothing."); break;}
-			if(sobj->age > monstermoves){
+			if(sobj->invoketimer > monstermoves){
 				pline("The map %s hard to see.", vtense((char *)0,"are"));
 				if (isstunfish) nomul(-(rnz(3)), "reading an artifact map", TRUE);
 				else nomul(-(rnd(3)), "reading an artifact map", TRUE);
-				sobj->age += (long) d(3,10);
-			} else sobj->age = monstermoves + (long) d(3,10);
+				sobj->invoketimer += (long) d(3,10);
+			} else sobj->invoketimer = monstermoves + (long) d(3,10);
 			do_vicinity_map();
 			u.ublesscnt += rnz(300);
 		}

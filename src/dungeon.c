@@ -2355,6 +2355,8 @@ level_difficulty()
 
 	if (uarm && uarm->oartifact == ART_ISIMOUD) retvalue /= 2;
 
+	if (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) retvalue--;
+
 	if (u.mondiffhack > 0) retvalue += u.mondiffhack; /* this needs to be beyond the isimoud division --Amy */
 
 	/*if (retvalue > 126) retvalue = 126;*/ /* fail safe */

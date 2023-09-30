@@ -2316,7 +2316,7 @@ struct monst *mon;
 
 		}
 
-		if (!(PlayerCannotUseSkills)) {
+	  if (!(PlayerCannotUseSkills)) {
 
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SKILLED)) bonus += 1;
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_EXPERT)) bonus += rnd(2);
@@ -2329,6 +2329,17 @@ struct monst *mon;
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr) && (P_SKILL(P_KNIFE) == P_GRAND_MASTER)) bonus += rnd(6);
 	    if (otmp->otyp == SURVIVAL_KNIFE && is_animal(ptr) && (P_SKILL(P_KNIFE) == P_SUPREME_MASTER)) bonus += rnd(8);
 
+		if (otmp->oartifact == ART_ATAR_ATAR) {
+			switch (P_SKILL(P_ATARU)) {
+				case P_BASIC:	bonus += rnd(2); break;
+				case P_SKILLED:	bonus += rnd(4); break;
+				case P_EXPERT:	bonus += rnd(6); break;
+				case P_MASTER:	bonus += rnd(8); break;
+				case P_GRAND_MASTER:	bonus += rnd(10); break;
+				case P_SUPREME_MASTER:	bonus += rnd(12); break;
+				default: tmp += 0; break;
+
+			}
 		}
 
 		if (otmp->oartifact == ART_M__M__M_) {
@@ -2364,6 +2375,8 @@ struct monst *mon;
 			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_SUPREME_MASTER) bonus += 1;
 			}
 		}
+
+	    } /* player cannot use skills check */
 
 		if (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN && (objects[otmp->otyp].oc_skill == P_AXE)) {
 			bonus += 5;
@@ -3289,8 +3302,9 @@ struct monst * mon;
 
 	// for some reason, the lightsaber prototype is created with
 	// age == 0
-	if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER)
-		obj->age = 300L;
+	/* Amy edit: no longer bugged as hell */
+	/* if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER)
+		obj->age = 300L; */
 	/* WAC - Check lightsaber is on */
 	if (!obj->lamplit) {
 	    if (obj->cursed && !rn2(2)) {

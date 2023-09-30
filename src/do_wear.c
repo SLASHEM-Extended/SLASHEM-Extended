@@ -680,6 +680,20 @@ Boots_on()
 		}
     }
 
+    if (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("We're making sure that you have to stay on the highway.");
+		}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_HIGHWAY_FIGHTER) {
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("We're making sure that you have to stay on the highway.");
+		}
+    }
+
     if (uarmf && uarmf->oartifact == ART_AMY_LOVES_AUTOCURSING_ITEM) {
 		if (!uarmf->cursed) {
 			curse(uarmf);
@@ -3370,6 +3384,12 @@ Shield_on()
 	if (uarms && uarms->otyp == TEZ_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == SPI_IMAGE_MOOSE_SHIELD) curse(uarms);
 
+    if (uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH) {
+	curse(uarms);
+	uarms->hvycurse = uarms->stckcurse = TRUE;
+	pline("Watch out. The Rambi barrel can transform you into a black King Zing or a blue Klubba, and then the game crashes, erasing your savegame file in the process.");
+    }
+
     if (uarms && uarms->oartifact == ART_SHATTERED_DREAMS) {
 		if (!uarms->cursed) {
 			curse(uarms);
@@ -3650,6 +3670,12 @@ Shirt_on()
 
 	}
 
+	if (uarmu->oartifact == ART_TILLMANN_S_TARGET && !uarmu->hvycurse) {
+		curse(uarmu);
+		uarmu->hvycurse = TRUE;
+		pline("Yeah. Now you're Tillmann's target, and he'll crush you.");
+	}
+
 	if (uarmu->oartifact == ART_HA_HA_HA_HA___) {
 		curse(uarmu);
 		pline("Ha ha ha ha...");
@@ -3810,6 +3836,26 @@ Armor_on()
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ASSEIGNMENT_CURSE_) {
 		pline("Une malediction assignee a votre armure.");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_AMMY_S_COMPLAINT) {
+		pline("Your armor becomes cursed.");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_AMMY_S_BAND) {
+		pline("Your armor becomes cursed.");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_AMMY_S_RETRIBUTION) {
+		pline("Your armor becomes cursed.");
+		curse(uarm);
+	}
+
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_AMMY_S_RNG_CHANGER) {
+		pline("Your armor becomes cursed.");
 		curse(uarm);
 	}
 
@@ -6064,7 +6110,7 @@ find_ac()
 	else if (ACURR(A_DEX) < 24) uac -= 9;
 	else uac -= 10;
 
-	if (Role_if(PM_MONK) && !uwep && (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) ||
+	if (Role_if(PM_MONK) && !uwep && (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) ||
 		(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms) {
 /*WAC cap off the Monk's ac bonus to -11 */
             if (u.ulevel > 18) uac -= 11;
@@ -6437,6 +6483,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
 	if (uarm && uarm->oartifact == ART_UPPER_RUM) uac -= 10;
 	if (uarm && uarm->oartifact == ART_MADE_OF_IRON) uac -= 10;
+	if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;
 	if (uarm && uarm->oartifact == ART_BRINGS_NOTHING) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SUSA_MAIL) uac -= 8;
@@ -6725,6 +6772,13 @@ find_ac()
 		int difference = (-(uac - 10));
 		difference *= 4;
 		difference /= 5;
+		if (difference > 0) uac = 10 - difference;
+	}
+
+	if (uarm && uarm->oartifact == ART_AMMY_S_BAND) {
+		int difference = (-(uac - 10));
+		difference *= 2;
+		difference /= 3;
 		if (difference > 0) uac = 10 - difference;
 	}
 

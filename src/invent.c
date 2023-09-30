@@ -10319,6 +10319,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->oinvis != otmp->oinvis ||
 	    obj->oinvisreal != otmp->oinvisreal ||
 	    obj->oldtyp != otmp->oldtyp ||
+	    obj->invoketimer != otmp->invoketimer ||
 	    obj->greased != otmp->greased ||
 	    obj->mstartinventX != otmp->mstartinventX ||
 	    obj->oeroded != otmp->oeroded ||
@@ -26869,6 +26870,128 @@ boolean knoweverything;
 					pline("Artifact specs: julia trap effect, half physical damage, mystery and curse resistance when worn."); break;
 				case ART_POCAHONTAS_HOME:
 					pline("Artifact specs: laura trap effect and acid immunity when worn."); break;
+				case ART_THEY_ALL_FEEL_FLEECY:
+					pline("Artifact specs: half physical damage, free action and tanja trap effect when worn."); break;
+				case ART_CASTLE_CRUSH_GLITCH:
+					pline("Artifact specs: lara trap effect, can randomly polyform you and doesn't drop if you polymorph into a bad form, heavily sticky autocurses when worn."); break;
+				case ART_TILLMANN_S_TARGET:
+					pline("Artifact specs: sonja trap effect, -5 strength and constitution, fear and life saving when worn, heavily autocurses, can be invoked for create familiar. If it saves your life, it is destroyed."); break;
+				case ART_HIGHWAY_HUNTER:
+					pline("Artifact specs: rhea trap effect and killer spawns, transforms regular floor you walk over into highways, autocurses."); break;
+				case ART_HIGHWAY_FIGHTER:
+					pline("Artifact specs: rhea trap effect, transforms regular floor you walk over into highways, penalizes you for saving the game, autocurses."); break;
+				case ART_ATAR_ATAR:
+					pline("Artifact specs: can be invoked to create another copy of this artifact, but only if that has never been done in the current game. It deals extra damage the higher your form IV (Ataru) skill is, even if you don't dual-wield, but if you dual-wield two of this artifact, they use up lightsaber energy at half the normal rate."); break;
+				case ART_DABLAGRA_WENN:
+					pline("Artifact specs: if it's on, it speeds up your Pw regeneration rate proportional to your form VI (Niman) skill."); break;
+				case ART_FLYGEL_BOOTS:
+					pline("Artifact specs: flying when worn."); break;
+				case ART_RULE_CONFORMING_SCHWANZLUT:
+					pline("Artifact specs: 3 extra points of AC but while you're wearing it, randomly generated equipment cannot spawn with a positive enchantment value."); break;
+				case ART_AMMY_S_COMPLAINT:
+					pline("Artifact specs: magic resistance, acts as luckstone when worn and -5 luck, autocurses. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_AMMY_S_BAND:
+					pline("Artifact specs: magic resistance and conny trap effect when worn, makes your AC worse, autocurses. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_AMMY_S_RETRIBUTION:
+					pline("Artifact specs: reflection when worn and doesn't hinder you if you're a monk, jedi or such, randomly generated items cannot be artifacts, autocurses. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_AMMY_S_RNG_CHANGER:
+					pline("Artifact specs: reflection when worn and all traps have the same spawn frequency, modifies the RNG, autocurses. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_AMMY_S_EASYMODE:
+					pline("Artifact specs: reflection, turn limitation and reduces level difficulty by one when worn. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_AMMY_S_WAIL:
+					pline("Artifact specs: magic resistance, wincing and ESP when worn. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_FIRST_PAIR:
+					pline("Artifact specs: diminished bleeding when worn, transvestite sacrifice gift."); break;
+				case ART_SOFT_ON_THE_CLOUD:
+					pline("Artifact specs: half physical damage, transvestite sacrifice gift."); break;
+				case ART_SHARP_EDGED_AND_DANGEROUS:
+					pline("Artifact specs: deals +10 bleeding damage when kicking and if you do use them for kicking a monster, the sin counter is much less likely to go up. Transvestite sacrifice gift."); break;
+				case ART_CANNOT_WALK_WITH_THE_ARIAN:
+					pline("Artifact specs: technicality, ariane trap effect, high heels skill trains 3x as fast, but slows you down a bit when worn, transsylvanian sacrifice gift."); break;
+				case ART_THICK_PLATFORM_CRAZE:
+					pline("Artifact specs: anastasia trap effect, +5 kick damage and 2 extra points of AC but you cannot be very fast while wearing them, intelligent female monsters can dim you, transsylvanian sacrifice gift."); break;
+				case ART_DIEAMEND:
+					pline("Artifact specs: +2 charisma, erdrick sacrifice gift."); break;
+				case ART_NOOBNOOBNOOB:
+					pline("Artifact specs: magic resistance when carried, noob mode barb sacrifice gift. If you are playing a noob mode barb, you get the charlotte trap effect *permanently* upon generation of this artifact."); break;
+				case ART_FLIUMILL:
+					pline("Artifact specs: +12 damage and spawns with bigger stack size, ninja sacrifice gift."); break;
+				case ART_BAEFF:
+					pline("Artifact specs: if you are dual-wielding and your other hand is empty, +8 unarmed damage; +8 strength, and this artifact deals +10 damage against small monsters as well as +4 against large ones. Assassin sacrifice gift."); break;
+				case ART_TIME_FOR_A_CALL:
+					pline("Artifact specs: clairvoyance when wielded, deals +6 damage when bashing, undertaker sacrifice gift."); break;
+				case ART_DONTPLODE:
+					pline("Artifact specs: doesn't explode if it normally would, acid mage sacrifice gift."); break;
+				case ART_BREAK_EVERYTHING:
+					pline("Artifact specs: +8 damage to cold-susceptible monsters, fire resistance when wielded, firefighter sacrifice gift, and if you actually are a firefighter, you can smash various types of terrain with it."); break;
+				case ART_TADA:
+					pline("Artifact specs: spawns with higher amount of charges and also gains more when recharged, flame mage sacrifice gift."); break;
+				case ART_FERGIE_S_GLACIER:
+					pline("Artifact specs: suppresses the freeze status effect when worn but prevents you from having resist confusion or stun, heavily autocurses, and if you're wielding a quarterstaff-type weapon you also levitate, ice mage sacrifice gift."); break;
+				case ART_LESSEE_DAT:
+					pline("Artifact specs: if you're an electric mage, reading it may improve your elemental spell skill; electric mage sacrifice gift."); break;
+				case ART_MULTIPLY_ME:
+					pline("Artifact specs: grants more spell memory when read successfully, especially if you're an occult master, and is an occult master sacrifice gift."); break;
+				case ART_THATS_ENOUGH_RIGHT_THERE:
+					pline("Artifact specs: fire immunity and heavily autocurses when worn, chaos sorceror sacrifice gift."); break;
+				case ART_FULTRA:
+					pline("Artifact specs: ESP when wielded, chaos sorceror sacrifice gift."); break;
+				case ART_SPELLSNIPE:
+					pline("Artifact specs: infravision and resistance piercing when worn, elementalist sacrifice gift."); break;
+				case ART_SUPER_PEEP_TOES:
+					pline("Artifact specs: death and mystery resistance when worn, topmodel sacrifice gift."); break;
+				case ART_JUMP_HURRIES:
+					pline("Artifact specs: jumping and grants extra speed when wielded, topmodel sacrifice gift."); break;
+				case ART_WILD_OAR:
+					pline("Artifact specs: +20 damage against animals, can be applied to hit targets standing two tiles away, topmodel sacrifice gift."); break;
+				case ART_TRIPPING:
+					pline("Artifact specs: carrying it causes randomized gold spawns to have more gold in them on average, failed existence sacrifice gift."); break;
+				case ART_ALL_IS_LOST:
+					pline("Artifact specs: death and hallu resistance when carried, failed existence sacrifice gift."); break;
+				case ART_KNOW_OF_THE_CURSE:
+					pline("Artifact specs: waterproof, always costs a turn when applied and can sometimes create a trap, failed existence sacrifice gift."); break;
+				case ART_VENOREAL:
+					pline("Artifact specs: +15 to-hit and +12 damage, poisons the target, and if you're a poison mage, it spawns with bigger stack size. Poison mage sacrifice gift."); break;
+				case ART_PFIE_PFIEPFIE:
+					pline("Artifact specs: displays its charges if you apply it, doesn't explode when it normally would, musician sacrifice gift."); break;
+				case ART_EXCALIDENT:
+					pline("Artifact specs: +5 to-hit and +10 damage, warning, automatic searching and bonus searching chance, chevalier sacrifice gift."); break;
+				case ART_WINTERHOLD_S_KEEP:
+					pline("Artifact specs: cold immunity when wielded, warrior sacrifice gift."); break;
+				case ART_DRIVE_BY:
+					pline("Artifact specs: increases multishot by 2 when riding and another 1 if your steed is in a gallop, gangster sacrifice gift."); break;
+				case ART_YES_OCCIFER:
+					pline("Artifact specs: double free action when wielded, officer sacrifice gift. The name is spelled correctly."); break;
+				case ART_SUNSET_SASAPARILLA:
+					pline("Artifact specs: spawns with bigger stack size, and quaffing it deactivates speed for a while but fully heals you and grants some nutrition, courier sacrifice gift."); break;
+				case ART_BENNY_S_CHIP:
+					pline("Artifact specs: courier sacrifice gift and can be invoked if you are a courier, in which case it alters reality but deletes all your spells, reduces your maximum HP by 20 and your intelligence by 1. If you're not a courier, the invoke does nothing."); break;
+				case ART_DEATH_AVERT:
+					pline("Artifact specs: no specialties, intel scribe sacrifice gift."); break;
+				case ART_YOUR_LUCKY_DAY:
+					pline("Artifact specs: spawns with more charges, wandkeeper sacrifice gift."); break;
+				case ART_CHARGING_MADE_EASY:
+					pline("Artifact specs: -5 increase accuracy and damage when wielded, can be invoked to gain extra charges but also causes you to suffer from vulnerability for a while, zyborg sacrifice gift."); break;
+				case ART_CAST_AK:
+					pline("Artifact specs: doesn't explode if it otherwise would, zapping greatly reduces your alignment, increases your sin counter by 10 and divine anger by 1, death eater sacrifice gift."); break;
+				case ART_HEEEEELEEEEEN:
+					pline("Artifact specs: displays all pets and they cannot rebel and will follow you to other levels regardless of how far away they are, sticky autocurses, and if you're not an activistor, you also suffer from the jette trap effect while wearing it. Activistor sacrifice gift."); break;
+				case ART_MINE_OUT:
+					pline("Artifact specs: can dig faster than normal and grants sight bonus when wielded, midget sacrifice gift."); break;
+				case ART_CERNY_:
+					pline("Artifact specs: higher HP cap for corona effects, higher soft cap for constitution, and effects that may raise your constitution are more likely to do so, midget sacrifice gift."); break;
+				case ART_PSI_STAFF:
+					pline("Artifact specs: +4 to-hit and +2 stun damage, psi resistance when wielded, psion sacrifice gift."); break;
+				case ART_ELENA_S_EPITOME:
+					pline("Artifact specs: trap creation, petrification resistance, fear factor and occasionally nullifies damage while worn, shoe fetishist sacrifice gift."); break;
+				case ART_ELENA_S_COMPETITION:
+					pline("Artifact specs: if you get hit in melee, 1%% chance to become invulnerable for a few turns, shoe fetishist sacrifice gift."); break;
+				case ART_ELENA_S_REWARD:
+					pline("Artifact specs: while wearing them, monsters who produce squeaky farting noises spawn much more often and if they fart, your alla and sanity will increase, plus you may become paralyzed when farted on. If you didn't complete the quest yet, this paralysis is accompanied by you being sent back to dungeon level 1, otherwise the farting monster becomes peaceful. If the quest is completed, you can also chat to such farting monsters to pacify them. Shoe fetishist sacrifice gift."); break;
+				case ART_UNBINDALL_CHEAT:
+					pline("Artifact specs: can be invoked to set the training amount of all restricted skills to zero, anachronounbinder sacrifice gift."); break;
+				case ART_PREIM_OH:
+					pline("Artifact specs: displays skill training in the enhance screen, binder sacrifice gift."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

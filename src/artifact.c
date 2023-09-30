@@ -233,6 +233,7 @@ init_randarts()
 	 * WAN_MAKE_INVISIBLE = wand, SPE_MAGICTORCH = spellbook */
 
 	artilist[ART_SOULCALIBUR].otyp = randartmeleeweapon();
+	artilist[ART_WINTERHOLD_S_KEEP].otyp = randartmeleeweapon();
 	artilist[ART_DAT_S_GOD].otyp = randartmeleeweapon();
 	artilist[ART_HER_UNREACHABLE_BROOK].otyp = randartmeleeweapon();
 	artilist[ART_KOPKILLER].otyp = randartmeleeweapon();
@@ -245,6 +246,7 @@ init_randarts()
 	artilist[ART_VORPAL_EDGE].otyp = randartmeleeweapon();
 	artilist[ART_FINAL_CONSEQUENCE].otyp = randartmeleeweapon();
 	artilist[ART_DARK_MAGIC].otyp = randartsuit();
+	artilist[ART_AMMY_S_WAIL].otyp = randartsuit();
 	artilist[ART_STAND_YOU_FORWARDS__THERE_].otyp = randartsuit();
 	artilist[ART_BEAM_CONTROL].otyp = randartmeleeweapon();
 	artilist[ART_SANDRA_S_SECRET_WEAPON].otyp = randartmeleeweapon();
@@ -263,6 +265,8 @@ init_randarts()
 	artilist[ART_SURESHOT].otyp = randartlauncher();
 	artilist[ART_STINGWING].otyp = randartmissile();
 	artilist[ART_NOBILE_MOBILITY].otyp = randartshirt();
+	artilist[ART_TILLMANN_S_TARGET].otyp = randartshirt();
+	artilist[ART_THEY_ALL_FEEL_FLEECY].otyp = randartshirt();
 	artilist[ART_ANTIMAGIC_FIELD].otyp = randartshirt();
 	artilist[ART_NATALIA_IS_LOVELY_BUT_DANG].otyp = randartshirt();
 	artilist[ART_TAPE_ARMAMENT].otyp = randartsuit();
@@ -279,6 +283,7 @@ init_randarts()
 	artilist[ART_IT_POWER_KNOEPP].otyp = randartsuit();
 	artilist[ART_DON_SUICUNE_USED_SELFDESTR].otyp = randartsuit();
 	artilist[ART_WONDERCLOAK].otyp = randartcloak();
+	artilist[ART_PREIM_OH].otyp = randartcloak();
 	artilist[ART_LIBRARY_HIDING].otyp = randartcloak();
 	artilist[ART_BAMSEL_IN_THE_WAY].otyp = randartcloak();
 	artilist[ART_EVELINE_S_CIVIL_MANTLE].otyp = randartcloak();
@@ -294,6 +299,7 @@ init_randarts()
 	artilist[ART_NADJA_S_DARKNESS_GENERATOR].otyp = randarthelm();
 	artilist[ART_THA_WALL].otyp = randartsuit();
 	artilist[ART_LLLLLLLLLLLLLM].otyp = randarthelm();
+	artilist[ART_SPELLSNIPE].otyp = randartgloves();
 	artilist[ART_ARABELLA_S_GREAT_BANISHER].otyp = randartgloves();
 	artilist[ART_KROL_GR].otyp = randartgloves();
 	artilist[ART_A_LITTLE_SUGAR].otyp = randartgloves();
@@ -306,6 +312,8 @@ init_randarts()
 	artilist[ART_GREXIT_IS_NEAR].otyp = randartshield();
 	artilist[ART_REAL_MEN_WEAR_PSYCHOS].otyp = randartshield();
 	artilist[ART_AMYBSOD_S_NEW_FOOTWEAR].otyp = randartboots();
+	artilist[ART_FLYGEL_BOOTS].otyp = randartboots();
+	artilist[ART_HIGHWAY_HUNTER].otyp = randartboots();
 	artilist[ART_MANUELA_S_UNKNOWN_HEELS].otyp = randartboots();
 	artilist[ART_HADES_THE_MEANIE].otyp = randartboots();
 	artilist[ART_AMY_LOVES_AUTOCURSING_ITEM].otyp = randartboots();
@@ -335,6 +343,7 @@ init_randarts()
 	artilist[ART_SCHWANZUS_LANGUS].otyp = randartmeleeweapon();
 	artilist[ART_TRAP_DUNGEON_OF_SHAMBHALA].otyp = randartshirt();
 	artilist[ART_ZERO_PERCENT_FAILURE].otyp = randarthelm();
+	artilist[ART_RULE_CONFORMING_SCHWANZLUT].otyp = randarthelm();
 	artilist[ART_HENRIETTA_S_HEAVY_CASTER].otyp = randartcloak();
 	artilist[ART_ROFLCOPTER_WEB].otyp = randartsuit();
 	artilist[ART_SHIVANHUNTER_S_UNUSED_PRIZ].otyp = randartsuit();
@@ -406,11 +415,13 @@ init_randarts()
 	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
 	artilist[ART_PHILOSOPHER_S_STONE].otyp = randartfeminismjewel();
 	artilist[ART_VAPER_BAPER].otyp = randartball();
+	artilist[ART_YES_OCCIFER].otyp = randartchain();
 	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
 	artilist[ART_CHAINS_OF_MALCANTHET].otyp = randartchain();
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
+	artilist[ART_CHARGING_MADE_EASY].otyp = randartlightsaber();
 	artilist[ART_THAIFORCE].otyp = randartlightsaber();
 	artilist[ART_HALF_SUPER_ENCHANTMENT].otyp = randartlightsaber();
 	artilist[ART_WEDIFORCE].otyp = randartvenom();
@@ -436,6 +447,7 @@ init_randarts()
 	artilist[ART_HAKUNA_MAALUM].otyp = randartspear();
 	artilist[ART_HOLYBASHER].otyp = randartflail();
 	artilist[ART_RAISING_HEART].otyp = randartquarterstaff();
+	artilist[ART_PSI_STAFF].otyp = randartquarterstaff();
 	artilist[ART_LANCE_ARMSTRONG].otyp = randartlance();
 	artilist[ART_GOLIATHBANE].otyp = randartsling();
 	artilist[ART_FIREBIRD].otyp = randartboomerang();
@@ -474,6 +486,7 @@ init_randarts()
 	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
+	artilist[ART_UNBINDALL_CHEAT].otyp = randartcloakX();
 	artilist[ART_FIND_ME_NEVERTHELESS].otyp = randartcloakX();
 	artilist[ART_OLD_PERSON_TALK].otyp = randartcloakX();
 	artilist[ART_HENRIETTA_S_DOGSHIT_BOOTS].otyp = randartbootsX();
@@ -482,6 +495,7 @@ init_randarts()
 	artilist[ART_BUGBOOTS_OF_ERRORNESS].otyp = randartbootsX();
 	artilist[ART_I_DON_T_PARTICULARLY_LIKE_].otyp = randartbootsX();
 	artilist[ART_HOHO_DINGO].otyp = randartbootsX();
+	artilist[ART_HIGHWAY_FIGHTER].otyp = randartbootsX();
 	artilist[ART_FIREPROOF_WALL].otyp = randartmeleeweaponX();
 	artilist[ART_SPEARBLADE].otyp = randartmeleeweaponX();
 	artilist[ART_GALLOW_DIGS].otyp = randartmeleeweaponX();
@@ -537,6 +551,7 @@ init_randarts()
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
 	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
+	artilist[ART_AMMY_S_RNG_CHANGER].otyp = randartsuitX();
 	artilist[ART_ADD_THE_MISSING_STAIRCASE].otyp = randartsuitX();
 	artilist[ART_THERE_GOES_SHE_TO].otyp = randartsuitX();
 	artilist[ART_HUNKSTERMAN].otyp = randartsuitX();
@@ -562,6 +577,8 @@ init_randarts()
 	artilist[ART_GAUNTLETS_OF_YIN_AND_YANG].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_I_M_GETTING_HUNGRY].otyp = randartshieldX();
+	artilist[ART_THATS_ENOUGH_RIGHT_THERE].otyp = randartshieldX();
+	artilist[ART_CASTLE_CRUSH_GLITCH].otyp = randartshieldX();
 	artilist[ART_FETTIS_SLOT].otyp = randartshieldX();
 	artilist[ART_RONDITSCH].otyp = randartshieldX();
 	artilist[ART_OF_NULLING].otyp = randartshieldX();
@@ -575,6 +592,7 @@ init_randarts()
 	artilist[ART_SCARAB_OF_ADORNMENT].otyp = randartringX();
 	artilist[ART_SCHWUEU].otyp = randartamuletX();
 	artilist[ART_CURSE_THE_TIME_SHIFT].otyp = randartamuletX();
+	artilist[ART_YOUR_LUCKY_DAY].otyp = randartwandX();
 	artilist[ART_FULLY_THE_LONG_PENIS].otyp = randartwandX();
 	artilist[ART_WORLD_OF_COQ].otyp = randartwandX();
 	artilist[ART_GIVE_IT_ME_YOUR_WILL].otyp = randartimplantX();
@@ -782,8 +800,10 @@ init_appearance_randarts()
 	artilist[ART_SHE_S_STILL_AN_ANASTASIA].otyp = find_loafers();
 	artilist[ART_KILLCAP].otyp = find_sweaty_shoes();
 	artilist[ART_KATHARINA_S_SIGH].otyp = find_white_buffalo_boots();
+	artilist[ART_THICK_PLATFORM_CRAZE].otyp = find_white_buffalo_boots();
 	artilist[ART_SASSY_JULIA].otyp = find_sister_shoes();
 	artilist[ART_POCAHONTAS_HOME].otyp = find_sister_shoes();
+	artilist[ART_SOFT_ON_THE_CLOUD].otyp = find_sister_shoes();
 
 	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_JANA_S_ROULETTE_OF_LIFE].otyp = find_foundry_cloak();
@@ -806,6 +826,7 @@ init_appearance_randarts()
 	artilist[ART_PRETTY_ROOMMAID].otyp = find_heroine_mocassins();
 	artilist[ART_ALISEH_S_RED_COLOR].otyp = find_lolita_boots();
 	artilist[ART_KATIE_MELUA_S_FLEECINESS].otyp = find_weapon_light_boots();
+	artilist[ART_SHARP_EDGED_AND_DANGEROUS].otyp = find_weapon_light_boots();
 	artilist[ART_ELONA_S_SNAIL_TRAIL].otyp = find_rubynus_helmet();
 	artilist[ART_LORENZI_S_CLEANING_RESIDUE].otyp = find_everlasting_boots();
 
@@ -882,6 +903,7 @@ init_appearance_randarts()
 	artilist[ART_U_BE_CURRY].otyp = find_barefoot_shoes();
 	artilist[ART_H__S_GANGSTER_KICKS].otyp = find_exceptional_sneakers();
 	artilist[ART_TOO_OLD_MODEL].otyp = find_blockchoc_boots();
+	artilist[ART_ELENA_S_COMPETITION].otyp = find_block_heeled_boots();
 	artilist[ART_DAMPENER].otyp = find_platform_sneakers();
 	artilist[ART_MAY_BRITT_S_ADULTHOOD].otyp = find_iceblock_heels();
 	artilist[ART_LYDIA_S_SEXYROOM].otyp = find_paragraph_shoes();
@@ -937,6 +959,14 @@ init_appearance_randarts()
 	artilist[ART_BACTERIA].otyp = find_missys();
 	artilist[ART_JULIA_S_SLIPPERS].otyp = find_house_slippers();
 
+	{
+		int tryct = 0;
+multiplymeagain:
+		tryct++;
+		int multiplyme = randartspellbook();
+		while (objects[multiplyme].oc_skill != P_OCCULT_SPELL && tryct < 10000) goto multiplymeagain;
+		artilist[ART_MULTIPLY_ME].otyp = multiplyme;
+	}
 
 }
 
@@ -1710,8 +1740,10 @@ register boolean mod;
 			    otmp->oldtyp = STRANGE_OBJECT;
 			}
 		    }
-		    /* the age field is used both for lightsaber power and the invoke timer... ugh --Amy */
-		    if (a->inv_prop || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE || otmp->oartifact == ART_DEFINITE_LIGHTSABER) otmp->age = 0;
+		    /* the age field is used both for lightsaber power and the invoke timer... ugh --Amy
+		     * but thankfully we can fix that BS, now we use otmp->invoketimer */
+		    /* if (a->inv_prop || otmp->oartifact == ART_LIGHTSABER_PROTOTYPE || otmp->oartifact == ART_DEFINITE_LIGHTSABER) */
+		    otmp->invoketimer = 0;
 		    if ((mod == FALSE) || rn2(100)) artiexist[m] = mod;
 		    break;
 		} /* if artimatch */
@@ -4096,6 +4128,20 @@ arti_invoke(obj)
 		return 1;
 	}
 
+	if (obj->oartifact == ART_ATAR_ATAR) {
+		if (!u.ataratarinvoked) {
+			register struct obj *trophy;
+			u.ataratarinvoked = TRUE;
+			trophy = mksobj(GREEN_LIGHTSABER, FALSE, FALSE, FALSE);
+			if (trophy) {
+				trophy = onameX(trophy, artiname(ART_ATAR_ATAR));
+				dropy(trophy);
+			}
+			pline("Another copy of this artifact was dropped on the floor.");
+		} else pline("Since this invocation has already been done, it cannot be performed again.");
+		return 1;
+	}
+
 	if (obj->oartifact == ART_ATARU_TWO) {
 		if (!u.ataruinvoked && !exist_artifact(CRYSTAL_SWORD, artiname(ART_ATARU_ONE))) {
 			register struct obj *trophy;
@@ -4155,16 +4201,16 @@ arti_invoke(obj)
 		adjalign(-rnz(100));
 	}
 
-	if(obj->age > monstermoves) {
+	if(obj->invoketimer > monstermoves) {
 	    /* the artifact is tired :-) */
 	    You_feel("that %s %s ignoring you.",
 		     the(xname(obj)), otense(obj, "are"));
 	    /* and just got more so; patience is essential... */
-	    obj->age += (long) d(3,10);
-	    if (!rn2(5)) obj->age += (long) rnz(100);
+	    obj->invoketimer += (long) d(3,10);
+	    if (!rn2(5)) obj->invoketimer += (long) rnz(100);
 	    return 1;
 	}
-	obj->age = monstermoves + artitimeout;
+	obj->invoketimer = monstermoves + artitimeout;
 	use_skill(P_SQUEAKING, rnd(10));
 
 	u.cnd_invokecount++;
@@ -4227,7 +4273,7 @@ arti_invoke(obj)
 	  }
 	case UNTRAP: {
 	    if(!untrap(TRUE)) {
-		obj->age = 0; /* don't charge for changing their mind */
+		obj->invoketimer = 0; /* don't charge for changing their mind */
 		return 0;
 	    }
 	    break;
@@ -4243,7 +4289,7 @@ chargingchoice:
 		if (yn("Really exit with no object selected?") == 'y')
 			pline("You just wasted the opportunity to charge your items.");
 		else goto chargingchoice;
-		obj->age = 0;
+		obj->invoketimer = 0;
 		return 0;
 	    }
 	    b_effect = (obj->blessed && (Role_switch == oart->role));
@@ -4348,6 +4394,12 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_TILLMANN_S_TARGET) {
+			pline("Suddenly, you gain a new companion!");
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+			break;
+		}
 
 		if (obj->oartifact == ART_THROUGH_THE_MOTIONS) {
 
@@ -5915,7 +5967,7 @@ bangbagchoice:
             You_feel("one with the spirit world.");
         }
         incr_itimeout(&Phasing, (50 + rnd(100)));
-        obj->age += Phasing; /* Time begins after phasing ends */
+        obj->invoketimer += Phasing; /* Time begins after phasing ends */
         break;
 	  }
 	}
@@ -5931,19 +5983,19 @@ bangbagchoice:
 		adjalign(-rnz(100));
 	}
 
-	if(on && obj->age > monstermoves) {
+	if(on && obj->invoketimer > monstermoves) {
 	    /* the artifact is tired :-) */
 	    u.uprops[oart->inv_prop].extrinsic ^= W_ARTI;
 	    You_feel("that %s %s ignoring you.",
 		     the(xname(obj)), otense(obj, "are"));
 	    /* can't just keep repeatedly trying */
-	    obj->age += (long) d(3,10);
-	    if (!rn2(5)) obj->age += (long) rnz(100);
+	    obj->invoketimer += (long) d(3,10);
+	    if (!rn2(5)) obj->invoketimer += (long) rnz(100);
 	    return 1;
 	} else if(!on) {
 	    /* when turning off property, determine downtime */
 	    /* arbitrary for now until we can tune this -dlc */
-	    obj->age = monstermoves + artitimeout;
+	    obj->invoketimer = monstermoves + artitimeout;
 	    use_skill(P_SQUEAKING, rnd(10));
 	}
 

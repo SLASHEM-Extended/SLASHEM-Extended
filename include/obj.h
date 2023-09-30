@@ -144,6 +144,7 @@ struct obj {
 
 	unsigned oeaten;	/* nutrition left in food, if partly eaten */
 	long age;		/* creation date */
+	long invoketimer;	/* stupid programmers, why didn't they make an extra flag for that... *headdesk* --Amy */
 
 	int shirtmessage;	/* o_id is not random enough for me. --Amy */
 

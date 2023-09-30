@@ -5102,6 +5102,10 @@ long timeout;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
+		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
+			if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
+			if (obj == uswapwep && !rn2(2)) willdrainenergy = FALSE;
+		}
 
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
 			willdrainenergy = FALSE; /* do nothing */
@@ -5593,6 +5597,10 @@ begin_burn(obj, already_lit)
 			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 			if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 			if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
+			if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
+				if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
+				if (obj == uswapwep && !rn2(2)) willdrainenergy = FALSE;
+			}
 
 			if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION)) {
 				switch (P_SKILL(P_MAKASHI)) {
@@ -5652,6 +5660,10 @@ begin_burn(obj, already_lit)
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
+		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
+			if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
+			if (obj == uswapwep && !rn2(2)) willdrainenergy = FALSE;
+		}
 
 		lightsaberchance = 0;
 		lightsaberchance2 = 0;
@@ -5810,6 +5822,10 @@ begin_burn(obj, already_lit)
 			willdrainenergy = FALSE;
 		}
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
+		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
+			if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
+			if (obj == uswapwep && !rn2(2)) willdrainenergy = FALSE;
+		}
 
 		if (!PlayerCannotUseSkills && tech_inuse(T_ENERGY_CONSERVATION) && obj && is_lightsaber(obj)) {
 			switch (P_SKILL(P_MAKASHI)) {

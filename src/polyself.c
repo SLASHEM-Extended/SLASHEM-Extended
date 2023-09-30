@@ -376,7 +376,7 @@ boolean forcecontrol;
 	}
 	old_light = Upolyd ? emits_light(youmonst.data) : 0;
 
-	if (tech_inuse(T_POLYFORM)) {
+	if (tech_inuse(T_POLYFORM) || u.castlecrushglitch) {
 
 		do {
 			mntmp = rn2(NUMMONS);
@@ -1416,7 +1416,7 @@ glovesdone:
 
 	}
 
-	if ((otmp = uarms) != 0 && !uarms->stckcurse) {
+	if ((otmp = uarms) != 0 && !(uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH) && !uarms->stckcurse) {
 	    You("can no longer hold your shield!");
 	    (void) Shield_off();
 	    dropx(otmp);

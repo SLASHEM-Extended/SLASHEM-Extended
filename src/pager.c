@@ -29097,6 +29097,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Finally, the girls decided to no longer call for help when attacked, after all they're strong and can fight for themselves!",
 	"Seems like the manufacturers are having trouble producing enough perfume for all the girls and women, so for the time being, they're less likely to beguile you.",
 	"Someone decided to let you free, so you'll no longer be attacked by treaded block heels while bound to a stick.",
+	"Watch out. The Rambi barrel can transform you into a black King Zing or a blue Klubba, and then the game crashes, erasing your savegame file in the process.",
+
 };
 
 const char *

@@ -217,6 +217,13 @@ register int x;
 
 	}
 
+	if (youmonst.data && uarm && uarm->oartifact == ART_AMMY_S_RNG_CHANGER) {
+
+		while (tmp < utmp && !rn2(x) && !rn2(2) )
+			tmp++;
+
+	}
+
 	return tmp;
 
 	/* was:

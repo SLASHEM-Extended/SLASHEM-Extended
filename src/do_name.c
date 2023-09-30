@@ -426,6 +426,7 @@ const char *name;
 	return otmp;
 }
 
+/* create artifact only if it doesn't exist already */
 struct obj *
 oname(obj, name)
 struct obj *obj;
@@ -466,6 +467,7 @@ const char *name;
 	return obj;
 }
 
+/* create artifact even if it does exist already */
 struct obj *
 onameX(obj, name)
 struct obj *obj;

@@ -2490,6 +2490,13 @@ moveloop()
 			pline("Time shifts...");
 		}
 
+		if (uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH && !rn2(2000)) {
+			u.castlecrushglitch = TRUE;
+			You("touch the Rambi barrel and transform...");
+			polyself(FALSE);
+			u.castlecrushglitch = FALSE;
+		}
+
 		if (uarm && uarm->oartifact == ART_SEVEBREAKYOU__SEVEBREAK_ && !rn2(200)) {
 			adjalign(1);
 		}
@@ -2560,6 +2567,23 @@ moveloop()
 
 		if (uarmf && uarmf->oartifact == ART_CLIMATE_PROTECTION_IS_ERRI && u.copwantedlevel < 1000) {
 			u.copwantedlevel += 1000;
+		}
+
+		if (uwep && uwep->oartifact == ART_DABLAGRA_WENN && uwep->lamplit && !PlayerCannotUseSkills) {
+			int dablagrachance = 0;
+			switch (P_SKILL(P_NIMAN)) {
+				case P_BASIC: dablagrachance = 1; break;
+				case P_SKILLED: dablagrachance = 2; break;
+				case P_EXPERT: dablagrachance = 3; break;
+				case P_MASTER: dablagrachance = 4; break;
+				case P_GRAND_MASTER: dablagrachance = 5; break;
+				case P_SUPREME_MASTER: dablagrachance = 6; break;
+			}
+			if (dablagrachance > rn2(10)) {
+				u.uen++;
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+				flags.botl = TRUE;
+			}
 		}
 
 		if (OptionBugEffect && !rn2((have_optionstone() == 2) ? 200 : 1000)) {
@@ -2974,7 +2998,7 @@ moveloop()
 			u.yawmtime++;
 		}
 
-		if ((KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || have_killerroomstone()) && !rn2(2000)) {
+		if ((KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || have_killerroomstone()) && !rn2(2000)) {
 			int killerroomtype = rnd(27);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 
@@ -6967,6 +6991,16 @@ newbossJANI:
 		if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) {
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = CLOUD;
+			}
+		}
+		if (uarm && uarm->oartifact == ART_HIGHWAY_HUNTER) {
+			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
+				levl[u.ux][u.uy].typ = HIGHWAY;
+			}
+		}
+		if (uarm && uarm->oartifact == ART_HIGHWAY_FIGHTER) {
+			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
+				levl[u.ux][u.uy].typ = HIGHWAY;
 			}
 		}
 
@@ -14595,6 +14629,8 @@ past4:
 	u.lamefarmer = 0;
 	u.evilvarhack = 0;
 	u.mondiffhack = 0;
+	u.castlecrushglitch = FALSE;
+	u.fungalsandals = FALSE;
 
 	kill_deathmarked_monsters();
 
@@ -18989,8 +19025,44 @@ boolean new_game;	/* false => restoring an old game */
 			if (u.mhmax < 1) rehumanize();
 		}
 
-		u.hangupcheat = 0;
-		u.hangupparalysis = 0;
+	}
+
+	if (!new_game && uarmf && uarmf->oartifact == ART_HIGHWAY_FIGHTER) {
+		You("cannot save while being the highway fighter! Since you did it anyway, you're penalized now!");
+
+		if (multi >= 0) nomul(-(2 + u.hangupparalysis), "paralyzed by saving as a highway fighter", FALSE);
+
+		u.singtrapocc = 0;
+		u.katitrapocc = 0;
+		u.singtraptreaded = FALSE;
+		u.singtraphighheel = FALSE;
+		u.singtrapcowdung = FALSE;
+
+		u.ublesscnt += rnz(300);
+		change_luck(-1);
+
+		u.ualign.sins++;
+		u.alignlim--;
+	      adjalign(-10);
+
+		u.uhpmax -= rnd(5);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uhpmax < 1) {
+		    u.youaredead = 1;
+		    killer = "critical existence failure";
+		    killer_format = KILLED_BY;
+		    done(DIED);
+		    u.youaredead = 0;
+		}
+		u.uenmax -= rnd(5);
+		if (u.uenmax < 0) {
+			u.uenmax = u.uen = 0;
+		}
+		if (Upolyd) {
+			u.mhmax -= rnd(10);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+			if (u.mhmax < 1) rehumanize();
+		}
 
 	}
 

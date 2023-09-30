@@ -141,6 +141,8 @@ STATIC_OVL boolean
 artigenechance(artichance)
 int artichance;
 {
+	if (uarm && uarm->oartifact == ART_AMMY_S_RETRIBUTION) return FALSE;
+
 	if (Race_if(PM_LISTENER)) artichance *= 2;
 
 	if (MagicFindBonus) {
@@ -2394,6 +2396,7 @@ boolean shopinit;
 	otmp = newobj(0);
 	*otmp = zeroobj;
 	otmp->age = monstermoves;
+	otmp->invoketimer = monstermoves;
 	otmp->o_id = flags.ident++;
 	if (!otmp->o_id) otmp->o_id = flags.ident++;	/* ident overflowed */
 	otmp->quan = 1L;
@@ -2597,6 +2600,9 @@ boolean shopinit;
 			otmp->age = (otmp->cursed ? rn2(15) + 2 : 
 					(otmp->blessed ? 15 : rn2(10) + 10));
 		}
+
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
 		break;
 	case FOOD_CLASS:
 	    otmp->odrained = 0;
@@ -2728,6 +2734,8 @@ boolean shopinit;
 				if (artif != 2) u.fakeartifacts++;
 			}
 
+			if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
 			break;
 		}
 		else if (otmp->otyp == ROCK) otmp->quan = (long) rn1(6,6);
@@ -2831,6 +2839,8 @@ boolean shopinit;
 		if (issoviet) otmp->spe = 0;
 
 		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
@@ -3012,6 +3022,7 @@ boolean shopinit;
 			}
 
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
 		case TREASURE_CHEST:
@@ -3171,6 +3182,8 @@ boolean shopinit;
 
 		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
 		break;
 	    }
 
@@ -3271,6 +3284,8 @@ boolean shopinit;
 			if (artif != 2) u.fakeartifacts++;
 		}
 
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
 		break;
 	case VENOM_CLASS:
 		blessorcurse_on_creation(otmp, 10);
@@ -3333,6 +3348,8 @@ boolean shopinit;
 		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (otmp->oartifact == ART_BUS_ERROR || otmp->oartifact == ART_MYSTERIOUS_SPIKES) otmp->quan = 1;
+
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
 	case CHAIN_CLASS:
@@ -3406,6 +3423,8 @@ boolean shopinit;
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
 		}
+
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
 	case POTION_CLASS:
@@ -3596,6 +3615,8 @@ boolean shopinit;
 		if (itemhasappearance(otmp, APP_HIGHER_HELMET)) otmp->spe += rne(2);
 		if (itemhasappearance(otmp, APP_SUPER_BOOTS)) otmp->spe += 5;
 
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
 	case WAND_CLASS:
@@ -3735,6 +3756,8 @@ boolean shopinit;
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
 		}
+
+		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
 	case ROCK_CLASS:

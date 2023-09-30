@@ -269,11 +269,11 @@ int thrown;
 
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
-	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->age <= monstermoves) ) {
+	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->invoketimer <= monstermoves) ) {
 		int artitimeout = rnz(2000);
 		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
 		multishot += 6;
-		launcher->age = (monstermoves + artitimeout);
+		launcher->invoketimer = (monstermoves + artitimeout);
 	    }
 
 	    if (obj && obj->oartifact == ART_WIWIU_) multishot += rnd(3);

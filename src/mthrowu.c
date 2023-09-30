@@ -468,13 +468,13 @@ shieldblockboo:
 				else You("block %s with your shield.", onm);
 				use_skill(P_SHIELD, 1);
 				if (uarms && uarms->oartifact == ART_SHIENSIDE) use_skill(P_SHIEN, 1);
-				if (uarms && uarms->oartifact == ART_SPICKAR && uarms->age <= monstermoves) {
+				if (uarms && uarms->oartifact == ART_SPICKAR && uarms->invoketimer <= monstermoves) {
 					int artitimeout = rnz(2000);
 					if (!rn2(5)) artitimeout = rnz(20000);
 					int mmstrength = (GushLevel / 3);
 					if (mmstrength < 1) mmstrength = 1;
 					/* squeaking does not help here, as it's not an actual invoke --Amy */
-					uarms->age = (monstermoves + artitimeout);
+					uarms->invoketimer = (monstermoves + artitimeout);
 
 					Your("shield fires a magic missile!");
 					getdir(NULL);

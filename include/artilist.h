@@ -13862,6 +13862,250 @@ A("Pocahontas Home",				LOW_BOOTS, /* initialized to always be sister shoes, lau
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("They All Feel Fleecy",				T_SHIRT, /* randart shirt, free action, tanja trap effect */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Castle Crush Glitch",				SHIELD, /* randart2 shield, lara trap effect, heavily sticky autocurses, 1 in 2000 to be polyformed and the shield doesn't drop when you poly */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Tillmann's Target",				T_SHIRT, /* randart shirt, sonja trap effect, -5 str and con, fear, life saving, heavily autocurses, invoke for create familiar */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Highway Hunter",				LOW_BOOTS, /* randart boots, rhea trap and killer spawn effect, transforms floor underneath you into highway, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Highway Fighter",				LOW_BOOTS, /* randart2 boots, rhea trap effect, transforms floor underneath you into highway, autocurses, penalizes you for saving the game */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Atar-Atar",				GREEN_LIGHTSABER, /* can be invoked exactly once to spawn a second copy of this artifact, d(2*ataru skill) extra damage, and if you're dual-wielding two of them they drain power at half the normal rate */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dablagra Wenn",				BLUE_LIGHTSABER, /* 10% chance per niman skill to regenerate an additional Pw per turn, but only if the lightsaber is on */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Flygel Boots",				LOW_BOOTS, /* randart boots, flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("rule-conforming Schwanzlut",				STANDARD_HELMET, /* randart helmet, 3 axtra points of AC but equipment can't spawn +1 or higher */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ammy's Complaint",				CHAIN_MAIL, /* -5 luck, autocurses */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_LUCK), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ammy's Band",				BANDED_MAIL, /* conny trap effect, autocurse, makes AC worse by 33% */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ammy's Retribution",				PLATE_MAIL, /* doesn't hinder monks, jedi and such, autocurses, randomly generated items cannot be artifacts */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ammy's RNG Changer",				LEATHER_ARMOR, /* randart2 armor, x-race effect on the rng, autocurses, all traps have the same spawn freq */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ammy's Easymode",				STUDDED_LEATHER_ARMOR, /* level difficulty reduced by 1 (not below 1), turn limitation */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ammy's Wail",				LEATHER_ARMOR, /* randart armor, wince */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_ESP), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("First Pair",				LADY_BOOTS, /* diminished bleeding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TRANSVESTITE, NON_PM, 8000L ),
+
+A("Soft on the Cloud",				LOW_BOOTS, /* initialized to always be sister shoes */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TRANSVESTITE, NON_PM, 4000L ),
+
+A("Sharp-Edged And Dangerous",				LOW_BOOTS, /* initialized to always be weapon light boots, +10 bleeding damage when kicking and only 1 in X chance to increase sin counter */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TRANSVESTITE, NON_PM, 4000L ),
+
+A("Cannot Walk With The Arianen",				FEMININE_PUMPS, /* slows you down like spirit, high heels skill trains 3x as fast, technicality, ariane trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TRANSSYLVANIAN, NON_PM, 2500L ),
+
+A("Thick Platform Craze",				LOW_BOOTS, /* initialized to always be white buffalo boots; anastasia trap effect, +5 kick damage, +2 ac, prevents you from being very fast, intelligent female monsters can dim you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TRANSSYLVANIAN, NON_PM, 10000L ),
+
+A("Dieamend",				AMULET_OF_THIRD_CHANCE, /* +2 CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ERDRICK, NON_PM, 5000L ),
+
+A("NOOBNOOBNOOB",				CHARLOTTE_S_JEWEL, /* if this item is generated as a noob mode barb, you get the charlotte trap effect permanently */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, PM_NOOB_MODE_BARB, NON_PM, 1500L ),
+
+A("Fliumill",				WINDMILL_BLADE, /* dmg h@ck because programmers are so ultra stupid and don't just make a SPFX_DBLDAMAGE flag, spawns with double stack size and can be gifted again even after it has already been generated */
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 0), NO_DFNS, NO_CARY, 0, A_NONE, PM_NINJA, NON_PM, 100L ),
+
+A("Baeff",				CESTUS, /* +8 unarmed damage (requires dual-wielding with one hand empty if that wasn't obvious) even if this arti is in the off-hand, also +8 strength and dmgval +4 and another +6 against that which the base damage value is low against */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ASSASSIN, NON_PM, 6000L ),
+
+A("Time For A Call",				SHOVEL, /* clairvoyance, +6 bash damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_UNDERTAKER, NON_PM, 4000L ),
+
+A("Dontplode",				WAN_ACID, /* doesn't blow up when charging or zapping while it's cursed etc. */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ACID_MAGE, NON_PM, 3000L ),
+
+A("Break Everything",				BATTLE_AXE, /* if you're a firefighter, it can be used to raze iron bars, mountains, farmland and more, and it won't damage the axe */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	COLD(0, 8), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, PM_FIREFIGHTER, NON_PM, 5000L ),
+
+A("Tada",				FIRE_HORN, /* starts with +10 charges and gains double amount of additional charges when charged */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FLAME_MAGE, NON_PM, 2500L ),
+
+A("Fergie's Glacier",				FREEZING_BOOTS, /* suppresses freeze status effect, levitation if your weapon is a quarterstaff-type, heavily autocurses, you cannot have resist stun or conf */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ICE_MAGE, NON_PM, 8000L ),
+
+A("Lessee Dat",				SPE_THUNDER_WAVE, /* reading it successfully as an electric mage has chance like throne skill improvement to improve thunder wave skill */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ELECTRIC_MAGE, NON_PM, 2000L ),
+
+A("Multiply Me",				SPE_BLINDING_RAY, /* always a random type of occult spellbook, 5x spell memory if read by an occult master or 2x otherwise */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_OCCULT_MASTER, NON_PM, 3000L ),
+
+A("Thats Enough Right There",				SHIELD, /* randart2 shield, heavily autocurses, fire immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_CHAOS_SORCEROR, NON_PM, 12000L ),
+
+A("Fultra",				DEATH_HORN,
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_CHAOS_SORCEROR, NON_PM, 1000L ),
+
+A("Spellsnipe",				REGULAR_GLOVES, /* randart gloves, infravision, resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ELEMENTALIST, NON_PM, 3000L ),
+
+A("Super Peep Toes",				LEATHER_PEEP_TOES, /* resist death and mystery */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TOPMODEL, NON_PM, 4000L ),
+
+A("Jump-Hurries",				CLIMBING_STICK, /* jumping, extra speed like real speed devil */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TOPMODEL, NON_PM, 5000L ),
+
+A("Wild Oar",				BOAT_OAR, /* can be used as a polearm */
+	(SPFX_RESTR|SPFX_DFLAG1), 0, M1_ANIMAL,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, PM_TOPMODEL, NON_PM, 6000L ),
+
+A("Tripping",				HENRIETTA_S_JEWEL, /* carrying it causes randomized gold spawns to have 50% more gold in them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FAILED_EXISTENCE, NON_PM, 1000L ),
+
+A("All Is Lost",				ITEM_TELEPORTING_STONE, /* resist death and hallu when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FAILED_EXISTENCE, NON_PM, 500L ),
+
+A("Know of the Curse",				HANDYBAG, /* waterproof, always costs a turn when used, if it's more than 50 turns since the last use it also creates a trap on a random square */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FAILED_EXISTENCE, NON_PM, 100L ),
+
+A("Venoreal",				ACID_VENOM, /* poisons targets, if it's generated when player is a poison mage it has 3x stack size and then 25 more on top of that */
+	(SPFX_RESTR), 0, 0,
+	PHYS(15, 12), NO_DFNS, NO_CARY, 0, A_NONE, PM_POISON_MAGE, NON_PM, 25L ),
+
+A("Pfie Pfiepfie",				MAGIC_FLUTE, /* using it reveals its charges, doesn't explode */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MUSICIAN, NON_PM, 3000L ),
+
+A("Excalident",				TRIDENT,
+	(SPFX_RESTR|SPFX_WARN|SPFX_SEEK|SPFX_INTEL|SPFX_SEARCH), 0, 0,
+	PHYS(5,10), NO_DFNS, NO_CARY, 0, A_NONE, PM_CHEVALIER, NON_PM, 4000L ),
+
+A("Winterhold's Keep",				LONG_SWORD, /* randart melee weapon, cold immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_WARRIOR, NON_PM, 7000L ),
+
+A("Drive-By",				SUBMACHINE_GUN, /* +2 multishot when riding and another +1 when the steed is gallopping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GANGSTER, NON_PM, 3000L ),
+
+A("yes,occifer",				IRON_CHAIN, /* randart iron chain, sic, double free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_OFFICER, NON_PM, 2000L ),
+
+A("Sunset Sasaparilla",				POT_BOOZE, /* +rn1(10,10) stack size, deactivates speed for 1000 turns when quaffed, heals you fully and +200 nutrition, can be gifted more than once */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_COURIER, NON_PM, 50L ),
+
+A("Benny's Chip",				DATA_CHIP, /* invoke for alter reality but doing so deletes all spells, -20 max HP and -1 INT permanently, and the invoke only works for a courier */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, PM_COURIER, NON_PM, 8000L ),
+
+A("Death Avert",				SCR_RESURRECTION, /* no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_INTEL_SCRIBE, NON_PM, 10000L ),
+
+A("Your Lucky Day",				WAN_NOTHING, /* randart2 wand; as a wandkeeper, spawns with 50 extra charges, or 3 if the wand can only be recharged once; other roles get 20 or 1 extra charges, respectively */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_WANDKEEPER, NON_PM, 4000L ),
+
+A("Charging Made Easy",				RED_LIGHTSABER, /* randart lightsaber, invoke gives 500 extra charge but also rnz(5000) vulnerability, also wielding it gives -5 increase accuracy and damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, PM_ZYBORG, NON_PM, 4000L ),
+
+A("Cast AK",				WAN_DEATH, /* doesn't explode, every zap gives -100 alignment, +10 sins and +1 divine anger */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DEATH_EATER, NON_PM, 2500L ),
+
+A("Heeeeeleeeeen",				VICTORIAN_UNDERWEAR, /* displays all pets and they cannot rebel and will follow you to other levels regardless of distance, sticky autocurse, non-activistors also have jette effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ACTIVISTOR, NON_PM, 1000L ),
+
+A("Mine Out",				DWARVISH_MATTOCK, /* faster digging, sight bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MIDGET, NON_PM, 4000L ),
+
+A("Cerny!",				DWARVISH_MITHRIL_COAT, /* +50% hp cap for corona, +5 softcap for con, maybegainstat con 3x as likely to work */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MIDGET, NON_PM, 2000L ),
+
+A("Psi Staff",				QUARTERSTAFF, /* randart quarterstaff, resist psi */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(4, 2), NO_DFNS, NO_CARY, 0, A_NONE, PM_PSION, NON_PM, 5000L ),
+
+A("Elena's Epitome",				IRINA_WEDGE_SANDALS, /* trap creation, stone res, fear factor, 10% chance to nullify incoming damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_SHOE_FETISHIST, NON_PM, 8000L ),
+
+A("Elena's Competition",				LOW_BOOTS, /* initialized to always be block-heeled boots, 1 in 100 when you get hit in melee to become invulnerable for 2-5 turns if you aren't already */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_SHOE_FETISHIST, NON_PM, 2000L ),
+
+A("Elena's Reward",				ELENA_COMBAT_BOOTS, /* +50 spawnfreq for MS_FART_NORMAL and if they fart, you gain 5 alla and sanity, plus 1 in 20 to be paralyzed for 20 turns; if the quest isn't complete, you are backtostarted, otherwise the monster becomes peaceful. if the quest is complete, chatting to MS_FART_NORMAL pacifies them too */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_SHOE_FETISHIST, NON_PM, 6000L ),
+
+A("Unbindall Cheat",				LEATHER_CLOAK, /* randart2 cloak, invoke to set training in all restricted skills to zero */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, PM_ANACHRONOUNBINDER, NON_PM, 1000L ),
+
+A("Preim-oh",				LEATHER_CLOAK, /* randart cloak, shows skill training in enhance screen */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_BINDER, NON_PM, 8000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

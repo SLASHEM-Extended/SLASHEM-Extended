@@ -652,7 +652,7 @@ register struct monst *mtmp;
 
 	if(Role_if(PM_MONK) && !Upolyd) {
 		if(!uwep && (!u.twoweap || !uswapwep) && !uarms && 
-		  (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm && uarm->otyp >= ELVEN_TOGA && 
+		  (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA && 
 		  	uarm->otyp <= ROBE_OF_WEAKNESS)))
 		  	
 		  tmp += (GushLevel / 3) + 2;
@@ -667,7 +667,7 @@ register struct monst *mtmp;
 		tmp -= 20;
 	}
 
-	if(Role_if(PM_HEDDERJEDI) && uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_BOBAIS) && ((uarm->otyp < ELVEN_TOGA) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
+	if(Role_if(PM_HEDDERJEDI) && uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_BOBAIS) && !(uarm->oartifact == ART_AMMY_S_RETRIBUTION) && ((uarm->otyp < ELVEN_TOGA) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
 		pline("Your armor is rather cumbersome...");
 		tmp -= 20;
 	}
@@ -761,7 +761,7 @@ register struct monst *mtmp;
 	if( (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
-		   (uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_BOBAIS) &&
+		   (uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_BOBAIS) && !(uarm->oartifact == ART_AMMY_S_RETRIBUTION) &&
 		   (uarm->otyp < ELVEN_TOGA || uarm->otyp > ROBE_OF_WEAKNESS))){
 		    char yourbuf[BUFSZ];
 		    You("can't use %s %s effectively in this armor...", shk_your(yourbuf, uwep), xname(uwep));
@@ -4794,7 +4794,7 @@ melatechoice:
 
 	/* Special monk strikes */
 	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
-		(!uarm || (uarm && uarm->oartifact == ART_HA_MONK) || (uarm && uarm->oartifact == ART_BOBAIS) || (uarm && uarm->otyp >= ELVEN_TOGA &&
+		(!uarm || (uarm && uarm->oartifact == ART_HA_MONK) || (uarm && uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
