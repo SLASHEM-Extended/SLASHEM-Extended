@@ -10187,7 +10187,7 @@ feel_cockatrice(otmp, force_touch)
 struct obj *otmp;
 boolean force_touch;
 {
-	char kbuf[BUFSZ];
+	static char kbuf[BUFSZ];
 
 	if (will_feel_cockatrice(otmp, force_touch)) {
 	    if(poly_when_stoned(youmonst.data))
@@ -11160,6 +11160,8 @@ boolean knoweverything;
 				pline("This Japanese long sword can deal more damage than a regular long sword."); break;
 			case AUTOMATIC_KATANA:
 				pline("It's more damaging than a long sword."); break;
+			case FLEURE:
+				pline("A long sword stolen from Elona which deals less small damage but more large damage than a regular long sword."); break;
 			case SUGUHANOKEN: 
 				pline("A totally shitty longsword. You should replace this with a real longsword!"); break;
 			case GREAT_HOUCHOU: 
@@ -12417,6 +12419,8 @@ boolean knoweverything;
 			pline("Made of radioactive material, wearing it for a prolonged time will slowly sap your maximum health. It also has a chance of protecting you from monsters' gaze attacks.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VELVET_PUMPS))
 			pline("Such a lovely, soft pair of high-heeled female pumps! <3 (No, the Amy does not have a shoe fetish at all. She just happens to love cone heels!)");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SLING_PUMPS))
+			pline("These feminine pumps are very sexy with the cute cone heels!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HEARING_CLOAK))
 			pline("If you wear this cloak, listening to the dungeon becomes possible and very occasionally you'll notice a monster being spawned.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CALF_LEATHER_SANDALS))
@@ -14143,6 +14147,8 @@ boolean knoweverything;
 				pline("Dwarves like to wear these, but they aren't actually dwarven. They provide relatively good AC."); break;
 			case CRYSTAL_BOOTS:
 				pline("A pair of boots that offers high armor class."); break;
+			case BROKEN_BOOTS:
+				pline("Useless. They don't give armor class, even when enchanted."); break;
 			case WEDGE_SANDALS:
 				pline("A lovely pair of high-heeled women's sandals that provides no protection but looks pretty."); break;
 			case DANCING_SHOES:
@@ -14537,6 +14543,8 @@ boolean knoweverything;
 				pline("This pair of boots can carry you through the dungeon... well, not really, but it lights up dark areas for easier scouting."); break;
 			case FREEZING_BOOTS:
 				pline("A really thick pair of boots that allows you to withstand temperatures as low as 200 degrees Kelvin."); break;
+			case OVER_SHOES:
+				pline("Finned shoes. Unless you're in water, they slow down your movement somewhat. While wearing them, you can enter restricted areas (except the elemental planes) but taking them off breaks them, making them useless!"); break;
 			case MYSTERIOUS_BOOTS:
 				pline("Wear this pair of boots if you need to become resistant to monster spells, perfume and various other annoying things."); break;
 			case FUMBLE_BOOTS:
@@ -15800,6 +15808,8 @@ boolean knoweverything;
 				pline("Wearing this amulet allows the wearer to fly."); break;
 			case AMULET_OF_LIFE_SAVING:
 				pline("You can survive death once if you wear this amulet. It will disintegrate if it saves your life."); break;
+			case AMULET_OF_MONSTER_SAVING:
+				pline("Monsters can survive death if they wear this amulet. No special effects if you wear it."); break;
 			case AMULET_OF_MAGICAL_BREATHING:
 				pline("An amulet that allows you to survive without air if you wear it."); break;
 			case AMULET_OF_REFLECTION:
@@ -15958,6 +15968,8 @@ boolean knoweverything;
 				pline("Don't wear this amulet unless you want to take much more damage by everything. It will autocurse when worn."); break;
 			case AMULET_OF_SECOND_CHANCE:
 				pline("A weaker version of the amulet of life saving that allows you to survive a deadly hit without restoring you to full hit points."); break;
+			case AMULET_OF_THIRD_CHANCE:
+				pline("This amulet saves your life when worn if, and only if, you died as a result of running out of hit points. If it does save you, it's used up."); break;
 			case AMULET_OF_DATA_STORAGE:
 				pline("This amulet does nothing when worn."); break;
 			case AMULET_OF_WATERWALKING:
@@ -26760,6 +26772,16 @@ boolean knoweverything;
 					pline("Artifact specs: resist confusion when worn, and keen memory if in a form without hands."); break;
 				case ART_TSCHHKRZKRZ:
 					pline("Artifact specs: allows you to #monster to emit mind flayer blasts, and if you're in a form without hands, they deal more damage to enemies."); break;
+				case ART_NYEHEHEHEHE_:
+					pline("Artifact specs: if it lifesaves a hostile monster, it's not used up. Have fun figuring out how to truly kill the monster in such a case."); break;
+				case ART_LIGHTBLOOM:
+					pline("Artifact specs: resist light when wielded, and if you attack in melee there's a small chance that you blast a solar beam in the direction of your attack."); break;
+				case ART_ROOFRIDGE_CLASS:
+					pline("Artifact specs: +10 to-hit and double damage."); break;
+				case ART_DON_T_DIE_WHILE_IN_THERE:
+					pline("Artifact specs: while in a potentially restricted area (e.g. green cross or yendorian tower), lifesaves you from instadeaths, but if it does, it's used up."); break;
+				case ART_FOURTH_CHANCE:
+					pline("Artifact specs: can lifesave you several times before it's used up."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

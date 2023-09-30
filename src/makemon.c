@@ -1254,7 +1254,7 @@ register struct monst *mtmp;
 		if (ptr == &mons[PM_CAT_APULT]) { (void)mongets(mtmp, SLING); m_initthrow(mtmp, ROCK, 50); m_initthrow(mtmp, ROCK, 50);}
 		if (ptr == &mons[PM_POISON_SLINGER]) m_initthrow(mtmp, GAS_GRENADE, 3);
 		if (ptr == &mons[PM_INCORRECT_CAT]) (void)mongets(mtmp, rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1) );
-		if (ptr == &mons[PM_ANNOYING_CAT]) (void)mongets(mtmp, AMULET_OF_LIFE_SAVING );
+		if (ptr == &mons[PM_ANNOYING_CAT]) (void)mongets(mtmp, AMULET_OF_MONSTER_SAVING );
 		if (ptr == &mons[PM_HYPER_SABLE_CAT]) (void)mongets(mtmp, GOLDEN_SABER );
 		if (ptr == &mons[PM_HELL_SLINGER]) { (void)mongets(mtmp, SLING); m_initthrow(mtmp, FLINT, 25);}
 
@@ -3743,7 +3743,7 @@ register struct monst *mtmp;
 			 m_initthrow(mtmp, SHOTGUN_SHELL, 10);
 		     (void)mongets(mtmp, CLOAK_OF_REFLECTION);
 		     if (!rn2(10)) (void) mongets(mtmp, WAN_DEATH);
-		     if (!rn2(10)) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		     if (!rn2(10)) (void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 
 		   break;
 
@@ -5808,31 +5808,31 @@ register struct monst *mtmp;
 
 		} else if (mm == PM_REDGUARD_GIRL){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
-			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			(void)mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 
 		} else if (mm == PM_REDGUARD_WOMAN){
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
-			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			(void)mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 
 		} else if (mm == PM_REDGUARD_LADY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
-			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			(void)mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 
 		} else if (mm == PM_ODOROUS_GIRL){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
-			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			(void)mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 
 		} else if (mm == PM_ODOROUS_WOMAN){
 			(void)mongets(mtmp, HUGGING_BOOT);
 			(void)mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
-			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			(void)mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 
 		} else if (mm == PM_ODOROUS_LADY){
 			(void)mongets(mtmp, SEXY_LEATHER_PUMP);
 			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
-			(void)mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			(void)mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 
 		} else if (mm == PM_THIEVING_GIRL){
 			(void)mongets(mtmp, SOFT_GIRL_SNEAKER);
@@ -10352,7 +10352,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DINGBAT]) (void) mongets(mtmp, BELL);
 
 		if (mtmp->data == &mons[PM_ARCEUS]) (void) mongets(mtmp, WAN_CHROMATIC_BEAM);
-		if (mtmp->data == &mons[PM_EXTRA_DONALD]) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		if (mtmp->data == &mons[PM_EXTRA_DONALD]) (void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		if (mtmp->data == &mons[PM_KARIN_S_FLAT_SANDAL]) (void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		if (mtmp->data == &mons[PM_JASIEEN_S_WEDGE_SANDAL]) { (void) mongets(mtmp, WEDGE_SANDALS); (void) mongets(mtmp, SCR_TRAP_CREATION); (void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); } /* M4_HAMMERSANDAL|M4_SANDALS */
 		if (mtmp->data == &mons[PM_JASIEEN_S_SOFT_WEDGE_SANDAL]) { (void) mongets(mtmp, WEDGE_SANDALS); (void) mongets(mtmp, SCR_TRAP_CREATION); (void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); } /* M4_HAMMERSANDAL|M4_SANDALS */
@@ -11837,7 +11837,7 @@ loveheelover:
 		  	m_initthrow(mtmp, GOLDEN_ARROW, 40);
 		}
 		if (mtmp->data == &mons[PM_NIGERIAN_PRINCE]) {
-		  	(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		  	(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		  	(void) mongets(mtmp, RIN_TIMELY_BACKUP);
 		}
 		if (mtmp->data == &mons[PM_YELLOW_FEMMY]) {
@@ -13220,7 +13220,7 @@ loveheelover:
 
 		if (ptr == &mons[PM_SALMA]) {
 		  	(void) mongets(mtmp, SWEET_MOCASSINS);
-		  	(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		  	(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		}
 
 		if (mtmp->data == &mons[PM_YITHGUS]) (void) mongets(mtmp, WAN_INSANITY);
@@ -13668,7 +13668,7 @@ loveheelover:
 		}
 		if(ptr == &mons[PM_CHAMPION_FEMMY]) {
 			(void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
-			(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		}
 		if(ptr == &mons[PM_SUMATRA_CHIEF]) {
 			 m_initthrow(mtmp, rnd_class(JAVELIN, STACK_JAVELIN), 5);
@@ -14508,7 +14508,7 @@ loveheelover:
 			(void) mongets(mtmp, WAN_DIGGING);
 		} else if (ptr == &mons[PM_CHEATING_MINOTAUR]) { /* evil patch idea by jonadab */
 			if (!rn2(3)) (void) mongets(mtmp, WAN_LIGHTNING);
-			else if (!rn2(2)) (void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+			else if (!rn2(2)) (void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 			else (void) mongets(mtmp, AMULET_OF_REFLECTION);
 		} else if (is_giant(ptr) && mtmp->m_lev > 1) {
 		    for (cnt = rn2((int)(mtmp->m_lev / 2)); cnt; cnt--) {
@@ -19173,7 +19173,7 @@ loveheelover:
 	if (ptr == &mons[PM_PETE]) {
 		(void) mongets(mtmp, PISTOL);
 		m_initthrow(mtmp, PISTOL_BULLET, 50);
-		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		(void) mongets(mtmp, STRIPED_SHIRT);
 
 	}
@@ -20180,7 +20180,7 @@ loveheelover:
 		(void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); /* M4_HAMMERSANDAL */
 		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
-		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		(void) mongets(mtmp, CLOAK_OF_REFLECTION);
 		(void) mongets(mtmp, BLACK_DRAGON_SCALE_MAIL);
 		(void) mongets(mtmp, HELM_OF_STEEL);
@@ -20220,7 +20220,7 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_TINANYA]) {
-		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		(void) mongets(mtmp, LEATHER_PEEP_TOES);
 		(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); /* M4_HAMMERSANDAL */
 		(void) mongets(mtmp, SPEAR);
@@ -21746,7 +21746,7 @@ loveheelover:
 		(void) mongets(mtmp, WAN_INERTIA);
 		(void) mongets(mtmp, BOOTS_OF_ACID_RESISTANCE);
 		(void) mongets(mtmp, RIN_TIMELY_BACKUP);
-		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		(void) mongets(mtmp, WAN_BAD_EFFECT);
 		(void) mongets(mtmp, WAN_GAIN_LEVEL);
 		(void) mongets(mtmp, WAN_INCREASE_MAX_HITPOINTS);
@@ -21817,7 +21817,7 @@ loveheelover:
 		(void) mongets(mtmp, OBSID);
 		(void) mongets(mtmp, PLASTEEL_ARMOR);
 		(void) mongets(mtmp, GREEN_LIGHTSABER);
-		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		(void) mongets(mtmp, WAN_FULL_HEALING);
 		(void) mongets(mtmp, WAN_BAD_EFFECT);
 	}
@@ -22069,7 +22069,7 @@ loveheelover:
 		(void) mongets(mtmp, FORCE_PIKE);
 		(void) mongets(mtmp, YELLOW_DRAGON_SCALES);
 		(void) mongets(mtmp, VENOM_SHIELD);
-		(void) mongets(mtmp, AMULET_OF_LIFE_SAVING);
+		(void) mongets(mtmp, AMULET_OF_MONSTER_SAVING);
 		(void) mongets(mtmp, POT_ICE);
 		(void) mongets(mtmp, SCR_EGOISM);
 		(void) mongets(mtmp, SCR_BAD_EFFECT);

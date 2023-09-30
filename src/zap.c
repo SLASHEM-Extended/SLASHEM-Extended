@@ -9277,6 +9277,8 @@ xchar sx, sy;
 
 		if (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER && rn2(20) ) {
 			dam = 0;
+		} else if (uwep && uwep->oartifact == ART_LIGHTBLOOM && rn2(20) ) {
+			dam = 0;
 		} else if (uwep && uwep->otyp == PARASOL && (!rn2(2) || (uwep->oartifact == ART_MADELINE_S_GUARDIAN)) ) {
 			dam = 0;
 			pline("Thanks to your parasol, the sunlight doesn't hit you.");

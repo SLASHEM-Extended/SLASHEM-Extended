@@ -1129,6 +1129,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
+					moveamt /= 2;
+
 				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1595,6 +1598,9 @@ moveloop()
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
+
+			if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
+					moveamt /= 2;
 
 			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
@@ -14597,6 +14603,8 @@ past4:
 	if (u.levelporting && multi >= 0) nomul(-2, "being levelported", FALSE);
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
+	if (In_subquest(&u.uz) && !u.prematuresubquest) u.prematuresubquest = TRUE;
+	if (In_yendorian(&u.uz) && !u.prematureyendortower) u.prematureyendortower = TRUE;
 
 	if (u.ugold < 0) { /* bug! */
 		BankTrapEffect += 10000; /* to hopefully thwart stupid exploits :-P --Amy */
@@ -14631,6 +14639,8 @@ past4:
 	}
 
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
+	if (In_subquest(&u.uz) && !u.prematuresubquest) u.prematuresubquest = TRUE;
+	if (In_yendorian(&u.uz) && !u.prematureyendortower) u.prematureyendortower = TRUE;
 
 	if (autismweaponcheck(ART_BAT_FROM_HELL)) {
 		if (!Role_if(PM_ROGUE)) {

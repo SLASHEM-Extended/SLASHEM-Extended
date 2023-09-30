@@ -6835,7 +6835,7 @@ struct attack *mattk;
 	    if (otmp->where != OBJ_INVENT) /*continue*/return; /* otherwise you could steal everything the monster has! */
 	    if (otmp->otyp == CORPSE &&
 		    touch_petrifies(&mons[otmp->corpsenm]) && (!uarmg || FingerlessGloves)) {
-		char kbuf[BUFSZ];
+		static char kbuf[BUFSZ];
 
 		sprintf(kbuf, "a stolen petrifying corpse");
 		instapetrify(kbuf);
@@ -8910,7 +8910,7 @@ register struct attack *mattk;
 			  s_suffix(mon_nam(mdef)));
 		}
 	    } else {
-		char kbuf[BUFSZ];
+		static char kbuf[BUFSZ];
 
 		You("bite into %s.", mon_nam(mdef));
 		sprintf(kbuf, "swallowing a petrifying monster whole");
@@ -10309,6 +10309,13 @@ bladeangerdone2:
 					}
 
 				}
+
+				if (uwep && uwep->oartifact == ART_LIGHTBLOOM && !rn2(100) && (u.dx || u.dy) && !u.dz) {
+					buzz(18, 3, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
 
 				if (uwep && uwep->oartifact == ART_H__S_BRITTLE_REPLICA && !rn2(10)) {
 					useupall(uwep);
@@ -12197,7 +12204,7 @@ boolean ranged;
 		    You("don't feel very well.");
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by attacking the wrong monster");
 		    delayed_killer = kbuf;
 		} else
@@ -12212,7 +12219,7 @@ boolean ranged;
 		    You("don't feel very well.");
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by attacking the wrong monster");
 		    delayed_killer = kbuf;
 		} else

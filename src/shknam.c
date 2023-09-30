@@ -1397,7 +1397,7 @@ struct mkroom	*sroom;
 		  mpickobj(shk, otmp, TRUE);
 		  if (otmp->spe < 5) otmp->spe += rnd(5);
 	  }
-	  otmp = mksobj(AMULET_OF_LIFE_SAVING, FALSE, FALSE, FALSE);
+	  otmp = mksobj(AMULET_OF_MONSTER_SAVING, FALSE, FALSE, FALSE);
 	  if (otmp) {
 		  mpickobj(shk, otmp, TRUE);
 	  }

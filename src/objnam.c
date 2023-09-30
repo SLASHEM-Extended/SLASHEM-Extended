@@ -4065,6 +4065,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ GAUNTLETS_OF_SPELL_POWER, "todo" },
 	{ AMULET_OF_SPELLCASTING, "todo" },
 	{ CASTER_STAFF, "todo" },
+	{ AMULET_OF_MONSTER_SAVING, "todo" },
+	{ AMULET_OF_THIRD_CHANCE, "todo" },
+	{ FLEURE, "todo" },
+	{ BROKEN_BOOTS, "todo" },
+	{ OVER_SHOES, "todo" },
 
 	{0, "" }
 };
@@ -7297,6 +7302,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ GAUNTLETS_OF_SPELL_POWER, "todo" },
 	{ AMULET_OF_SPELLCASTING, "todo" },
 	{ CASTER_STAFF, "todo" },
+	{ AMULET_OF_MONSTER_SAVING, "todo" },
+	{ AMULET_OF_THIRD_CHANCE, "todo" },
+	{ FLEURE, "todo" },
+	{ BROKEN_BOOTS, "todo" },
+	{ OVER_SHOES, "todo" },
 
 	{0, "" }
 };

@@ -4545,7 +4545,7 @@ struct monst *mon;
 	/*if (!nonliving(mon->data)) {*/
 	    struct obj *otmp = which_armor(mon, W_AMUL);
 
-	    if (otmp && otmp->otyp == AMULET_OF_LIFE_SAVING)
+	    if (otmp && otmp->otyp == AMULET_OF_MONSTER_SAVING)
 		return otmp;
 	/*}*/
 	return (struct obj *)0;
@@ -4598,7 +4598,7 @@ struct monst *mtmp;
 			pline("But wait...");
 			pline("%s medallion begins to glow!",
 				s_suffix(Monnam(mtmp)));
-			makeknown(AMULET_OF_LIFE_SAVING);
+			makeknown(AMULET_OF_MONSTER_SAVING);
 			if (attacktype(mtmp->data, AT_EXPL)
 			    || attacktype(mtmp->data, AT_BOOM))
 				pline("%s reconstitutes!", Monnam(mtmp));
@@ -4606,7 +4606,7 @@ struct monst *mtmp;
 				pline("%s looks much better!", Monnam(mtmp));
 			pline_The("medallion crumbles to dust!");
 		}
-		m_useup(mtmp, lifesave);
+		if (lifesave && lifesave->oartifact != ART_NYEHEHEHEHE_) m_useup(mtmp, lifesave);
 		mtmp->mcanmove = 1;
 		mtmp->masleep = 0;
 		mtmp->mfrozen = 0;
@@ -10360,7 +10360,7 @@ newsymbiotetry:
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 			display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-			char kbuf[BUFSZ];
+			static char kbuf[BUFSZ];
 			pline("Unfortunately the symbiote you got is of a petrifying kind.");
 			sprintf(kbuf, "symbiosis accident");
 			instapetrify(kbuf);

@@ -13814,6 +13814,26 @@ A("Tschhkrzkrz",				IMPLANT_OF_MIND_BLASTING, /* you can #monster to emit mind b
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Nyehehehehe.",				AMULET_OF_MONSTER_SAVING, /* if it lifesaves a hostile monster, it's not used up */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Lightbloom",				FLEURE, /* resist light, 1 in 100 to blast a strength 3 solar beam in melee */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Roofridge Class",				FLEURE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Don't Die While In There",				OVER_SHOES, /* lifesaves you while you're in a potentially restricted area as long as you didn't run out of health, but uses up the boots in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Fourth Chance",				AMULET_OF_THIRD_CHANCE, /* if it lifesaves you, its brittleness increases and only if the brittleness becomes too high it's used up, otherwise you get to keep it so it can lifesave you again */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -650,6 +650,9 @@ struct you {
 	int greencrosschance;
 	boolean greencrossopen;
 
+	boolean prematuresubquest;
+	boolean prematureyendortower;
+
 	boolean roxannemode; /* for Fuel Nail artifact */
 	int roxannetimer;
 

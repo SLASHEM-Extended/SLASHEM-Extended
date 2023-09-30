@@ -1603,6 +1603,62 @@ postmandone:
 	}
 gulpdone:
 
+	if (uamul && uamul->otyp == AMULET_OF_THIRD_CHANCE && u.uhp < 1 && how < GENOCIDED) {
+
+		pline("But wait...");
+		makeknown(AMULET_OF_THIRD_CHANCE);
+		Your("amulet %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+
+		if (uamul->oartifact == ART_FOURTH_CHANCE) {
+			if (rn2(2)) {
+				if (uamul->obrittle >= 3) {
+					pline_The("medallion crumbles to dust!");
+					useup(uamul);
+				} else {
+					uamul->obrittle++;
+					pline_The("medallion dulls quite a bit, but remains intact for now.");	
+				}
+			} else {
+				if (uamul->obrittle2 >= 3) {
+					pline_The("medallion crumbles to dust!");
+					useup(uamul);
+				} else {
+					uamul->obrittle2++;
+					pline_The("medallion dulls quite a bit, but remains intact for now.");	
+				}
+			}
+		} else {
+			pline_The("medallion crumbles to dust!");
+			useup(uamul);
+		}
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto thirddone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+thirddone:
+
 	if ((uarm && uarm->oartifact == ART_VERSUS_INSTADEATH) && (u.uhp > 0) && (u.uhpmax > 0) && how < GENOCIDED) {
 		pline("But wait...");
 		Your("armor %s!", !Blind ? "begins to glow" : "feels warm");
@@ -1635,6 +1691,45 @@ gulpdone:
 		}
 	}
 versusinstadone:
+
+	if ((uarmf && uarmf->oartifact == ART_DON_T_DIE_WHILE_IN_THERE) && (u.uhp > 0) && (u.uhpmax > 0) && how < GENOCIDED) {
+		boolean overshoesave = FALSE;
+		if (In_greencross(&u.uz) || In_mainframe(&u.uz) || In_gammacaves(&u.uz) || In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_yendorian(&u.uz) || In_bellcaves(&u.uz)) overshoesave = TRUE;
+
+		if (overshoesave) {
+
+			pline("But wait...");
+			Your("pair of boots %s!", !Blind ? "begins to glow" : "feels warm");
+			if (how == CHOKING) You("vomit ...");
+			You_feel("much better!");
+			pline_The("boots crumble to dust!");
+			useup(uarmf);
+
+			if (wanttodie) {
+				pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+				goto overshoedone;
+			}
+
+			(void) adjattrib(A_CON, -1, TRUE, TRUE);
+			if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+			savelife(how);
+			u.lifesavepenalty++;
+			if (how == GENOCIDED)
+				pline("Unfortunately you are still genocided...");
+			else {
+
+				killer = 0;
+				killer_format = 0;
+#ifdef LIVELOGFILE
+				livelog_avert_death();
+#endif
+				u.youaredead = 0;
+
+				return;
+			}
+		}
+	}
+overshoedone:
 
 	if (uimplant && uimplant->oartifact == ART_DECAPITATION_UP && how <= GENOCIDED) {
 		pline("But wait...");

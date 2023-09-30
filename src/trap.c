@@ -10013,6 +10013,7 @@ madnesseffect:
 
 		if (uwep && uwep->oartifact == ART_ATTIC_CODE) greencrossworks = TRUE;
 		if (uarm && uarm->oartifact == ART_SECRET_COURSE_VACUUM_CLEAN) greencrossworks = TRUE;
+		if (uarmf && uarmf->otyp == OVER_SHOES) greencrossworks = TRUE;
 
 		if (!greencrossworks) {
 			pline("You trigger a magic portal.");
@@ -10020,19 +10021,19 @@ madnesseffect:
 			break;
 		}
 
-		if (at_dgn_entrance("The Subquest") && !u.silverbellget) {
+		if (at_dgn_entrance("The Subquest") && !u.prematuresubquest && !u.silverbellget && !(uarmf && uarmf->otyp == OVER_SHOES)) {
 			pline("You trigger a magic portal.");
 			pline("The power of your nemesis is keeping this portal closed...");
 			break;
 		}
 
-		if (at_dgn_entrance("Rival Quest") && !u.silverbellget) {
+		if (at_dgn_entrance("Rival Quest") && !u.silverbellget && !(uarmf && uarmf->otyp == OVER_SHOES)) {
 			pline("You trigger a magic portal.");
 			pline("The power of your nemesis is keeping this portal closed...");
 			break;
 		}
 
-		if (at_dgn_entrance("Yendorian Tower") && !achieve.get_amulet) {
+		if (at_dgn_entrance("Yendorian Tower") && !u.prematureyendortower && !(uarmf && uarmf->otyp == OVER_SHOES) && !achieve.get_amulet) {
 			pline("You trigger a magic portal.");
 			pline("As long as the Amulet of Yendor has never been in your possession, this portal will not function.");
 			break;
@@ -23056,7 +23057,7 @@ void
 selftouch(arg)
 const char *arg;
 {
-	char kbuf[BUFSZ];
+	static char kbuf[BUFSZ];
 
 	if(uwep && uwep->otyp == CORPSE && touch_petrifies(&mons[uwep->corpsenm])
 			&& (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
@@ -26578,7 +26579,7 @@ struct trap *ttmp;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 			display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-			char kbuf[BUFSZ];
+			static char kbuf[BUFSZ];
 
 			sprintf(kbuf, "trying to help a petrifying monster out of a pit");
 			instapetrify(kbuf);

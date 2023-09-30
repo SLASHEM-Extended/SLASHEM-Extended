@@ -6037,6 +6037,7 @@ static const char *epitaphs[] = {
 	"I attacked Pale Night in melee, and my char was so stupid to remove her veil and died instantly!",
 	"What, the final enlightenment screen said that I was 'being fucked over', why is that even specifically mentioned in SLEX? It's always the case, no matter what char you play and no matter how you try to avoid the stupid stuff in this game!",
 	"Noooooo, I got stuck with a cursed pair of columnar heels and couldn't lift the curse, and since I lacked the high heels skill I was slowed down by those stupid heels! I would have escaped from that monster without the dumb shoes! Why do high heels even exist, they're a walking impairment!",
+	"Stupid monster kept lifesaving, that's gotta be a big fat bug, Amy. Normally, an amulet of life saving is used up when it saves someone's life. And why did my wand of probing show that the monster's amulet was called 'Nyehehehehe.'? Are you trying to make fun of me?",
 
 };
 

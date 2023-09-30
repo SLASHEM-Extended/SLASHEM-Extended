@@ -236,7 +236,7 @@ use_saddle(otmp)
 	}
 	ptr = mtmp->data;
 	if (touch_petrifies(ptr) && (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) )) {
-	    char kbuf[BUFSZ];
+	    static char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
  	    if (!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
@@ -487,7 +487,7 @@ mount_steed(mtmp, force)
 	/* Amy edit: you should be able to ride a cockatrice as long as your body is sufficiently covered in clothing
 	 * or also if you're highly skilled (making high riding skill more useful in the process) */
 	if (touch_petrifies(ptr) && (PlayerCannotUseSkills || (P_SKILL(P_RIDING) < P_EXPERT)) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) && !(uarmg && !FingerlessGloves && uarmu && uarm && uarmc) ) {
-	    char kbuf[BUFSZ];
+	    static char kbuf[BUFSZ];
 
 	    You("touch %s.", mon_nam(mtmp));
 	    sprintf(kbuf, "attempting to ride a petrifying monster");

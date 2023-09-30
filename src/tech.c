@@ -4753,7 +4753,7 @@ secureidchoice:
 				    (!uarmg || FingerlessGloves) && (!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 				    !(poly_when_stoned(youmonst.data) &&
 					polymon(PM_STONE_GOLEM))) {
-				char kbuf[BUFSZ];
+				static char kbuf[BUFSZ];
 
 				sprintf(kbuf, "snatching a petrifying corpse");
 				pline("Snatching this type of corpse is a fatal mistake.");

@@ -2083,11 +2083,11 @@ upperdungeonagain:
 				dtmp.dnum = dname_to_dnum("The Quest");
 				break;
 			case 3:
-				if (!u.silverbellget) goto upperdungeonagain;
+				if (!u.silverbellget && !u.prematuresubquest) goto upperdungeonagain;
 				dtmp.dnum = dname_to_dnum("The Subquest");
 				break;
 			case 4:
-				if (!u.silverbellget) goto upperdungeonagain;
+				if (!u.silverbellget && !!u.prematuresubquest) goto upperdungeonagain;
 				dtmp.dnum = dname_to_dnum("Bell Caves");
 				break;
 			case 5:
@@ -2212,19 +2212,19 @@ lowerdungeonagain:
 				dtmp.dnum = dname_to_dnum("Vlad's Tower");
 				break;
 			case 11:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Yendorian Tower");
 				break;
 			case 12:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Forging Chamber");
 				break;
 			case 13:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Dead Grounds");
 				break;
 			case 14:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Ordered Chaos");
 				break;
 			case 15:
@@ -2243,43 +2243,43 @@ lowerdungeonagain:
 				dtmp.dnum = dname_to_dnum("Resting Zone GE");
 				break;
 			case 20:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TA");
 				break;
 			case 21:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TB");
 				break;
 			case 22:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TC");
 				break;
 			case 23:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TD");
 				break;
 			case 24:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TE");
 				break;
 			case 25:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TF");
 				break;
 			case 26:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TG");
 				break;
 			case 27:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TH");
 				break;
 			case 28:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TI");
 				break;
 			case 29:
-				if (!achieve.get_amulet) goto lowerdungeonagain;
+				if (!achieve.get_amulet && !u.prematureyendortower) goto lowerdungeonagain;
 				dtmp.dnum = dname_to_dnum("Resting Zone TJ");
 				break;
 			case 30:

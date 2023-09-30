@@ -11816,7 +11816,7 @@ struct monst *mtmp;
 	if (difficulty < 6 && !rn2(30))
 	    return rn2(6) ? POT_POLYMORPH : WAN_POLYMORPH;
 
-	if (!rn2(40)/* && !nonliving(pm)*/) return AMULET_OF_LIFE_SAVING;
+	if (!rn2(40)/* && !nonliving(pm)*/) return AMULET_OF_MONSTER_SAVING;
 
 	switch (rn2(3)) {
 		case 0:
@@ -12087,7 +12087,7 @@ struct obj *obj;
 		return TRUE;
 	    break;
 	case AMULET_CLASS:
-	    if (typ == AMULET_OF_LIFE_SAVING || typ == AMULET_OF_DATA_STORAGE || typ == AMULET_OF_REFLECTION || typ == AMULET_OF_PRISM || typ == AMULET_OF_WARP_DIMENSION)
+	    if (typ == AMULET_OF_MONSTER_SAVING || typ == AMULET_OF_DATA_STORAGE || typ == AMULET_OF_REFLECTION || typ == AMULET_OF_PRISM || typ == AMULET_OF_WARP_DIMENSION)
 		return /*(boolean)(!nonliving(mon->data))*/TRUE;
 	    if (typ == AMULET_OF_REFLECTION)
 		return TRUE;

@@ -894,6 +894,9 @@ register struct obj *obj;
 	case AMULET_OF_LIFE_SAVING:
 		pline_The("toilet gains an extra life!");
 		break;
+	case AMULET_OF_MONSTER_SAVING:
+		pline_The("toilet reconstitutes!");
+		break;
 	case AMULET_OF_MAGICAL_BREATHING:
 		pline_The("toilet water flows down the drain without requiring the flushing to be operated!");
 		break;
@@ -977,6 +980,9 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_SECOND_CHANCE:
 		pline_The("toilet breaks apart and reintegrates!");
+		break;
+	case AMULET_OF_THIRD_CHANCE:
+		pline_The("toilet water runs out... but then mysteriously fills up again!");
 		break;
 	case AMULET_OF_DATA_STORAGE:
 		pline_The("toilet seems absolutely safe.");
@@ -1679,7 +1685,7 @@ dodown()
 		return(0);
 	}
 
-	if (stairs_down && u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Gamma Caves") && !u.sewerplantcomplete && !(uwep && uwep->oartifact == ART_ATTIC_CODE)) {
+	if (stairs_down && !(uarmf && uarmf->otyp == OVER_SHOES) && u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Gamma Caves") && !u.sewerplantcomplete && !(uwep && uwep->oartifact == ART_ATTIC_CODE)) {
 		pline("The Gamma Caves cannot be entered as long as you didn't make it to the bottom of the Sewer Plant yet.");
 		return(0);
 	}
@@ -1938,7 +1944,7 @@ doup()
 		return(0);
 	}
 
-	if (u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Mainframe") && !u.gammacavescomplete && !(uwep && uwep->oartifact == ART_ATTIC_CODE)) {
+	if (u.ux == sstairs.sx && u.uy == sstairs.sy && at_dgn_entrance("Mainframe") && !(uarmf && uarmf->otyp == OVER_SHOES) && !u.gammacavescomplete && !(uwep && uwep->oartifact == ART_ATTIC_CODE)) {
 		pline("The Mainframe cannot be entered as long as you didn't make it to the bottom of the Gamma Caves yet.");
 		return(0);
 	}
@@ -4735,6 +4741,8 @@ rerollchaloc:
 
 	/* once you enter Green Cross, it stays open even if the random number changes --Amy */
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
+	if (In_subquest(&u.uz) && !u.prematuresubquest) u.prematuresubquest = TRUE;
+	if (In_yendorian(&u.uz) && !u.prematureyendortower) u.prematureyendortower = TRUE;
 
 	/* once Croesus is dead, his alarm doesn't work any more */
 	if (Is_knox(&u.uz) && (new || !mvitals[PM_CROESUS].died)) {

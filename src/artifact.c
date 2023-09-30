@@ -2893,20 +2893,20 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 						   doname(otmp2), "You steal: ");
 			if (otmp2->otyp == CORPSE &&
 				touch_petrifies(&mons[otmp2->corpsenm]) && (!uarmg || FingerlessGloves)) {
-				char kbuf[BUFSZ];
+				static char kbuf[BUFSZ];
 
 				sprintf(kbuf, "a stolen petrifying corpse");
 				instapetrify(kbuf);
 			}
 			if (otmp2->otyp == PETRIFYIUM_BAR && (!uarmg || FingerlessGloves)) {
-				char kbuf[BUFSZ];
+				static char kbuf[BUFSZ];
 
 				sprintf(kbuf, "a stolen petrifyium bar");
 				instapetrify(kbuf);
 
 			}
 			if (otmp2->otyp == PETRIFYIUM_BRA && (!uarmg || FingerlessGloves)) {
-				char kbuf[BUFSZ];
+				static char kbuf[BUFSZ];
 
 				sprintf(kbuf, "a stolen petrifyium bra");
 				instapetrify(kbuf);
@@ -4874,7 +4874,7 @@ callingoutdone:
 				u.uhp = u.uhpmax;
 				if (Upolyd) u.mh = u.mhmax;
 				flags.botl = TRUE;
-				if (!rn2(5)) obj->obrittle++;
+				if (!obj->obrittle && !rn2(5)) obj->obrittle++;
 			}
 			break;
 		}

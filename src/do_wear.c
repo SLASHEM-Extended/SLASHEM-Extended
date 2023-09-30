@@ -124,6 +124,7 @@ Boots_on()
 	case IRON_SHOES:
 	case HIGH_BOOTS:
 	case CRYSTAL_BOOTS:
+	case BROKEN_BOOTS:
 	case GNOMISH_BOOTS:
 	case WEDGE_SANDALS:
 	case FEMININE_PUMPS:
@@ -409,6 +410,10 @@ Boots_on()
 			makeknown(uarmf->otyp);
 			You("walk very quietly.");
 		}
+		break;
+	case OVER_SHOES:
+		makeknown(uarmf->otyp);
+		You("feel a bit handicapped in these shoes.");
 		break;
 	case FUMBLE_BOOTS:
 	case ATSUZOKO_BOOTS:
@@ -736,6 +741,8 @@ Boots_off()
     }
 
     int otyp = uarmf->otyp;
+    struct obj *footwear = uarmf;
+
     long oldprop = u.uprops[objects[otyp].oc_oprop].extrinsic & ~WORN_BOOTS;
 
     takeoff_mask &= ~W_ARMF;
@@ -810,6 +817,7 @@ Boots_off()
 	case STILETTO_SANDALS:
 	case HIGH_BOOTS:
 	case CRYSTAL_BOOTS:
+	case BROKEN_BOOTS:
 	case JUMPING_BOOTS:
 	case KICKING_BOOTS:
 	case FIRE_BOOTS:
@@ -1048,6 +1056,16 @@ Boots_off()
 	case HIPPIE_HEELS:
 
 		pline("You decide you had enough of those hallucination-inducing boots.");
+		break;
+
+	case OVER_SHOES:
+		if (!cancelled_don && footwear) {
+			footwear->otyp = BROKEN_BOOTS;
+			footwear->oartifact = 0;
+			footwear->onamelth = 0;
+			*ONAME(footwear) = '\0';
+			pline_The("boots break upon being taken off!");
+		}
 		break;
 
 	default: impossible(unknown_type, c_boots, otyp);
@@ -3192,7 +3210,7 @@ Gloves_off()
     /* Prevent wielding cockatrice when not wearing gloves */
     if (uwep && uwep->otyp == CORPSE &&
 		touch_petrifies(&mons[uwep->corpsenm])) {
-	char kbuf[BUFSZ];
+	static char kbuf[BUFSZ];
 
 	You("wield the %s in your bare %s.",
 	    corpse_xname(uwep, TRUE), makeplural(body_part(HAND)));
@@ -3202,7 +3220,7 @@ Gloves_off()
     }
 
     if (uwep && uwep->otyp == PETRIFYIUM_BAR) {
-	char kbuf[BUFSZ];
+	static char kbuf[BUFSZ];
 
 	You("wield the bar in your bare %s.", makeplural(body_part(HAND)));
 	strcpy(kbuf, "wielding a petrifyium bar");
@@ -3212,7 +3230,7 @@ Gloves_off()
     }
 
     if (uwep && uwep->otyp == PETRIFYIUM_BRA) {
-	char kbuf[BUFSZ];
+	static char kbuf[BUFSZ];
 
 	You("wield the bra in your bare %s.", body_part(HAND));
 	strcpy(kbuf, "wielding a petrifyium bra");
@@ -3224,7 +3242,7 @@ Gloves_off()
     /* KMH -- ...or your secondary weapon when you're wielding it */
     if (u.twoweap && uswapwep && uswapwep->otyp == CORPSE &&
 	touch_petrifies(&mons[uswapwep->corpsenm])) {
-	char kbuf[BUFSZ];
+	static char kbuf[BUFSZ];
 
 	You("wield the %s in your bare %s.",
 	    corpse_xname(uswapwep, TRUE), body_part(HAND));
@@ -4021,6 +4039,7 @@ Amulet_on()
 	case AMULET_OF_CONFLICT:*/
 	case FAKE_AMULET_OF_YENDOR:
 	case AMULET_OF_SECOND_CHANCE:
+	case AMULET_OF_THIRD_CHANCE:
 		break;
 	case AMULET_OF_UNDEAD_WARNING:
 		break;
@@ -4297,6 +4316,7 @@ Amulet_off()
 	case AMULET_VERSUS_STONE:
 	case AMULET_OF_REFLECTION:
 	case AMULET_OF_SECOND_CHANCE:
+	case AMULET_OF_THIRD_CHANCE:
 	case AMULET_OF_DEPETRIFY:
 	case AMULET_OF_CHANGE:
 	case AMULET_OF_UNCHANGING:
@@ -5982,6 +6002,8 @@ struct obj *obj;
 		armoringvalue -= abs(obj->spe);
 		armoringvalue -= min((int)greatest_erosionX(obj),objects[(obj)->otyp].a_ac);
 	}
+
+	if (obj->otyp == BROKEN_BOOTS && armoringvalue > 0) armoringvalue = 0;
 
 	return armoringvalue;
 

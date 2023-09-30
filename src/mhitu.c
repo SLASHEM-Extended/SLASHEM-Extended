@@ -938,7 +938,7 @@ elena13:
 			}
 
 			/* feminine pumps use M4_PUMPS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || (footwear && footwear->otyp == ANITA_LADY_PUMPS) || (footwear && footwear->otyp == LYDIA_LADY_PUMPS) || (footwear && footwear->otyp == WENDY_LEATHER_PUMPS) || (footwear && footwear->otyp == NELLY_LADY_PUMPS) || (footwear && footwear->otyp == DESTRUCTIVE_HEELS) || (footwear && footwear->otyp == AUTOSCOOTER_HEELS) || (footwear && footwear->otyp == VIOLET_BEAUTY_HEELS) || (footwear && itemhasappearance(footwear, APP_VELVET_PUMPS)) || (footwear && itemhasappearance(footwear, APP_STONE_CARVED_HEELS)) || (footwear && itemhasappearance(footwear, APP_MISSYS)) || (footwear && itemhasappearance(footwear, APP_FEELGOOD_HEELS)) || (footwear && itemhasappearance(footwear, APP_PARAGRAPH_SHOES)) || (footwear && itemhasappearance(footwear, APP_BONE_HEELS)) || (footwear && itemhasappearance(footwear, APP_BRIDAL_SHOES)) || (footwear && itemhasappearance(footwear, APP_ORGASM_PUMPS)) || (footwear && itemhasappearance(footwear, APP_PRINCESS_PUMPS)) || (footwear && itemhasappearance(footwear, APP_SEXY_HEELS)) || (footwear && itemhasappearance(footwear, APP_SHADOWY_HEELS)) || (footwear && itemhasappearance(footwear, APP_MARY_JANES)) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_DELFI_ROCKZ] || mtmp->data == &mons[PM_ALL_TIME_FAVZ] || mtmp->data == &mons[PM_HAPPY_CLOUD] || mtmp->data == &mons[PM_WOOD_FEELING_INDIGO] || mtmp->data == &mons[PM_KATRIN_SHOE] || mtmp->data == &mons[PM_WOOD_FEELING_PAPAYA] || mtmp->data == &mons[PM_WOOD_FEELING_MINT] || mtmp->data == &mons[PM_BLACK_MANDALA] || mtmp->data == &mons[PM_UNDERWATER_LOVE] || mtmp->data == &mons[PM_TIRE_ROCKZ] || mtmp->data == &mons[PM_PRETTY_FEMALE_PARAGRAPH_SHOE] || mtmp->data == &mons[PM_TIRE_ROCKZ_BABYPINK] || mtmp->data == &mons[PM_SWEET_CHERRY] || mtmp->data == &mons[PM_ROCKZ_ARMY] || mtmp->data == &mons[PM_MY_LOVE_YIN] || mtmp->data == &mons[PM_MY_LOVE_YANG] || mtmp->data == &mons[PM_SKETCH_IT] || mtmp->data == &mons[PM_BUNNY_ROCKZ] || mtmp->data == &mons[PM_CAT_ROCKZ] || mtmp->data == &mons[PM_COLLEGE_ROCKZ] || mtmp->data == &mons[PM_WELCOME_ON_BOARD] || mtmp->data == &mons[PM_BACTERIA_MISSYS] || mtmp->data == &mons[PM_SILVER_LADY_PUMP] || mtmp->data == &mons[PM_ELEGANT_CONE_HEEL_PUMP] || mtmp->data == &mons[PM_BANDANA_ROCKZ] || mtmp->data == &mons[PM_SCAN_ME_MISSYS] || mtmp->data == &mons[PM_SMILE_Z] || mtmp->data == &mons[PM_SECRET_RAINBOW] || mtmp->data == &mons[PM_YELLY] || mtmp->data == &mons[PM_SPACE_SHUTTLE_MISSYS] || mtmp->data == &mons[PM_ART_ROCKZ] || mtmp->data == &mons[PM_COVER_UP] || mtmp->data == &mons[PM_POKERFACE_MISSYS] || mtmp->data == &mons[PM_KITTEN_HEEL_PUMPS] || mtmp->data == &mons[PM_ROSE_ROCKZ] || mtmp->data == &mons[PM_ORANGE_VELVET_PUMP] || mtmp->data == &mons[PM_YES_I_ROCKZ] || mtmp->data == &mons[PM_WHITE_KARMA] || mtmp->data == &mons[PM_BLACK_KARMA] || mtmp->data == &mons[PM_STREET_ROCKZ] || mtmp->data == &mons[PM_HUMAN_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_ARVOGENIC_TOPMODEL] || (randomsexyheels == 15) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES] || mtmp->data == &mons[PM_DISINTERESTED_OLDER_WOMAN] || mtmp->data == &mons[PM_JOY_PORN_STAR]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == FEMININE_PUMPS) || (footwear && footwear->otyp == ANITA_LADY_PUMPS) || (footwear && footwear->otyp == LYDIA_LADY_PUMPS) || (footwear && footwear->otyp == WENDY_LEATHER_PUMPS) || (footwear && footwear->otyp == NELLY_LADY_PUMPS) || (footwear && footwear->otyp == DESTRUCTIVE_HEELS) || (footwear && footwear->otyp == AUTOSCOOTER_HEELS) || (footwear && footwear->otyp == VIOLET_BEAUTY_HEELS) || (footwear && itemhasappearance(footwear, APP_VELVET_PUMPS)) || (footwear && itemhasappearance(footwear, APP_SLING_PUMPS)) || (footwear && itemhasappearance(footwear, APP_STONE_CARVED_HEELS)) || (footwear && itemhasappearance(footwear, APP_MISSYS)) || (footwear && itemhasappearance(footwear, APP_FEELGOOD_HEELS)) || (footwear && itemhasappearance(footwear, APP_PARAGRAPH_SHOES)) || (footwear && itemhasappearance(footwear, APP_BONE_HEELS)) || (footwear && itemhasappearance(footwear, APP_BRIDAL_SHOES)) || (footwear && itemhasappearance(footwear, APP_ORGASM_PUMPS)) || (footwear && itemhasappearance(footwear, APP_PRINCESS_PUMPS)) || (footwear && itemhasappearance(footwear, APP_SEXY_HEELS)) || (footwear && itemhasappearance(footwear, APP_SHADOWY_HEELS)) || (footwear && itemhasappearance(footwear, APP_MARY_JANES)) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_ANIMATED_SEXY_LEATHER_PUMP] || mtmp->data == &mons[PM_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_DELFI_ROCKZ] || mtmp->data == &mons[PM_ALL_TIME_FAVZ] || mtmp->data == &mons[PM_HAPPY_CLOUD] || mtmp->data == &mons[PM_WOOD_FEELING_INDIGO] || mtmp->data == &mons[PM_KATRIN_SHOE] || mtmp->data == &mons[PM_WOOD_FEELING_PAPAYA] || mtmp->data == &mons[PM_WOOD_FEELING_MINT] || mtmp->data == &mons[PM_BLACK_MANDALA] || mtmp->data == &mons[PM_UNDERWATER_LOVE] || mtmp->data == &mons[PM_TIRE_ROCKZ] || mtmp->data == &mons[PM_PRETTY_FEMALE_PARAGRAPH_SHOE] || mtmp->data == &mons[PM_TIRE_ROCKZ_BABYPINK] || mtmp->data == &mons[PM_SWEET_CHERRY] || mtmp->data == &mons[PM_ROCKZ_ARMY] || mtmp->data == &mons[PM_MY_LOVE_YIN] || mtmp->data == &mons[PM_MY_LOVE_YANG] || mtmp->data == &mons[PM_SKETCH_IT] || mtmp->data == &mons[PM_BUNNY_ROCKZ] || mtmp->data == &mons[PM_CAT_ROCKZ] || mtmp->data == &mons[PM_COLLEGE_ROCKZ] || mtmp->data == &mons[PM_WELCOME_ON_BOARD] || mtmp->data == &mons[PM_BACTERIA_MISSYS] || mtmp->data == &mons[PM_SILVER_LADY_PUMP] || mtmp->data == &mons[PM_ELEGANT_CONE_HEEL_PUMP] || mtmp->data == &mons[PM_BANDANA_ROCKZ] || mtmp->data == &mons[PM_SCAN_ME_MISSYS] || mtmp->data == &mons[PM_SMILE_Z] || mtmp->data == &mons[PM_SECRET_RAINBOW] || mtmp->data == &mons[PM_YELLY] || mtmp->data == &mons[PM_SPACE_SHUTTLE_MISSYS] || mtmp->data == &mons[PM_ART_ROCKZ] || mtmp->data == &mons[PM_COVER_UP] || mtmp->data == &mons[PM_POKERFACE_MISSYS] || mtmp->data == &mons[PM_KITTEN_HEEL_PUMPS] || mtmp->data == &mons[PM_ROSE_ROCKZ] || mtmp->data == &mons[PM_ORANGE_VELVET_PUMP] || mtmp->data == &mons[PM_YES_I_ROCKZ] || mtmp->data == &mons[PM_WHITE_KARMA] || mtmp->data == &mons[PM_BLACK_KARMA] || mtmp->data == &mons[PM_STREET_ROCKZ] || mtmp->data == &mons[PM_HUMAN_WERESEXYLEATHERPUMP] || mtmp->data == &mons[PM_ARVOGENIC_TOPMODEL] || (randomsexyheels == 15) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_FUNNEL_HEELED_PUMP] || mtmp->data == &mons[PM_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_HUMAN_WEREBEAUTIFULFUNNELHEELEDPUMP] || mtmp->data == &mons[PM_BLOODY_BEAUTIES] || mtmp->data == &mons[PM_DISINTERESTED_OLDER_WOMAN] || mtmp->data == &mons[PM_JOY_PORN_STAR]) ) {
 elena14:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -10516,7 +10516,7 @@ dopois:
 		    You("don't feel very well.");
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by some monster");
 		    delayed_killer = kbuf;
 		} else
@@ -10535,7 +10535,7 @@ dopois:
 		    You("don't feel very well.");
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by some monster");
 		    delayed_killer = kbuf;
 		} else
@@ -12852,7 +12852,7 @@ do_stone2:
 		    You("don't feel very well.");
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by an engulfing attack");
 		    delayed_killer = kbuf;
 		} else
@@ -12871,7 +12871,7 @@ do_stone2:
 		    You("don't feel very well.");
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by an engulfing attack");
 		    delayed_killer = kbuf;
 		} else
@@ -16608,7 +16608,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    You("don't feel very well.");
 			make_slimed(100);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by a gaze");
 		    delayed_killer = kbuf;
 		} else
@@ -16630,7 +16630,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    You("don't feel very well.");
 			make_slimed(20);
 		    killer_format = KILLED_BY_AN;
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 		    sprintf(kbuf, "slimed by a gaze");
 		    delayed_killer = kbuf;
 		} else

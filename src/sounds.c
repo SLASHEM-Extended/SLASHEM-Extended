@@ -6840,7 +6840,7 @@ dochat()
 			if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 				display_nhwindow(WIN_MESSAGE, FALSE);
 			else {
-				char kbuf[BUFSZ];
+				static char kbuf[BUFSZ];
 				pline("Incorporating a petrifying creature is a fatal mistake.");
 				sprintf(kbuf, "picking the wrong symbiote");
 				instapetrify(kbuf);

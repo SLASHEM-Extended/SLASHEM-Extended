@@ -11177,6 +11177,8 @@ u_init()
 	else u.eeveelution = PM_VAPOREON;
 
 	u.greencrossopen = FALSE; /* initialized at game start only */
+	u.prematuresubquest = FALSE;
+	u.prematureyendortower = FALSE;
 
 	u.greencrosschance = rnd(20);
 

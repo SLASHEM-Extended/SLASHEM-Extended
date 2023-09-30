@@ -1436,7 +1436,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-			char kbuf[BUFSZ];
+			static char kbuf[BUFSZ];
 
 			strcpy(kbuf, "touching a petrifyium bar");
 			pline("Touching a petrifyium bar is a fatal mistake.");
@@ -1451,7 +1451,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-			char kbuf[BUFSZ];
+			static char kbuf[BUFSZ];
 
 			strcpy(kbuf, "touching a petrifyium bra");
 			pline("Touching a petrifyium bra is a fatal mistake.");
@@ -1467,7 +1467,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-			char kbuf[BUFSZ];
+			static char kbuf[BUFSZ];
 
 			pline("Touching this type of corpse is a fatal mistake.");
 			strcpy(kbuf, "touching a petrifying corpse");
@@ -1487,7 +1487,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-			char kbuf[BUFSZ];
+			static char kbuf[BUFSZ];
 			strcpy(kbuf, "coming into contact with a petrifying object");
 
 			pline("Touching a petrifying egg is a fatal mistake.");
@@ -2213,7 +2213,7 @@ boolean invobj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    pline("Touching this type of corpse is a fatal mistake.");
 		    strcpy(kbuf, "touching a petrifying corpse");
@@ -2228,7 +2228,7 @@ boolean invobj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    strcpy(kbuf, "touching a petrifyium bar");
 		    pline("Touching a petrifyium bar is a fatal mistake.");
@@ -2243,7 +2243,7 @@ boolean invobj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    strcpy(kbuf, "touching a petrifyium bra");
 		    pline("Touching a petrifyium bra is a fatal mistake.");
@@ -2259,7 +2259,7 @@ boolean invobj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    pline("Touching a petrifying egg is a fatal mistake.");
 		    strcpy(kbuf, "touching a petrifying egg");
@@ -2413,7 +2413,7 @@ register struct obj *obj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    pline("Touching this type of corpse is a fatal mistake.");
 		    strcpy(kbuf, "touching a petrifying corpse");
@@ -2428,7 +2428,7 @@ register struct obj *obj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    strcpy(kbuf, "touching a petrifyium bar");
 		    pline("Touching a petrifyium bar is a fatal mistake.");
@@ -2443,7 +2443,7 @@ register struct obj *obj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    strcpy(kbuf, "touching a petrifyium bra");
 		    pline("Touching a petrifyium bra is a fatal mistake.");
@@ -2459,7 +2459,7 @@ register struct obj *obj;
 		if (poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))
 		    display_nhwindow(WIN_MESSAGE, FALSE);
 		else {
-		    char kbuf[BUFSZ];
+		    static char kbuf[BUFSZ];
 
 		    pline("Touching a petrifying egg is a fatal mistake.");
 		    strcpy(kbuf, "touching a petrifying egg");
