@@ -6210,6 +6210,10 @@ dyechoice:
 	case ANASTASIA_S_JEWEL:
 	case JESSICA_S_JEWEL:
 	case MARLENA_S_JEWEL:
+	case TANJA_S_JEWEL:
+	case SONJA_S_JEWEL:
+	case RHEA_S_JEWEL:
+	case LARA_S_JEWEL:
 	case NADINE_S_JEWEL:
 	case LUISA_S_JEWEL:
 	case IRINA_S_JEWEL:

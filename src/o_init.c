@@ -3646,6 +3646,19 @@ find_buffalo_boots()
 }
 
 int
+find_white_buffalo_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WHITE_BUFFALO_BOOTS)) return i;
+    }
+
+    impossible("white buffalo boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_heroine_mocassins()
 {
     register int i;
@@ -4019,6 +4032,19 @@ find_sweaty_shoes()
     }
 
     impossible("sweaty shoes not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_sister_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SISTER_SHOES)) return i;
+    }
+
+    impossible("sister shoes not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

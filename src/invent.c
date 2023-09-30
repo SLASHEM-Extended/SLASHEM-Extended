@@ -2825,6 +2825,58 @@ have_femtraplittlemarie()
 }
 
 boolean
+have_femtraptanja()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TANJA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(99)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtrapsonja()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SONJA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(100)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraprhea()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == RHEA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(101)) return TRUE;
+	return(FALSE);
+}
+
+boolean
+have_femtraplara()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LARA_S_JEWEL)
+			return(TRUE);
+		}
+	if (feminizecheck(102)) return TRUE;
+	return(FALSE);
+}
+
+boolean
 have_primecurse()
 {
 	register struct obj *otmp;
@@ -10268,6 +10320,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->oinvisreal != otmp->oinvisreal ||
 	    obj->oldtyp != otmp->oldtyp ||
 	    obj->greased != otmp->greased ||
+	    obj->mstartinventX != otmp->mstartinventX ||
 	    obj->oeroded != otmp->oeroded ||
 	    obj->oeroded2 != otmp->oeroded2 ||
 	    obj->bypass != otmp->bypass)
@@ -12441,6 +12494,8 @@ boolean knoweverything;
 			pline("With this cloak, praying to your deity will not always set a prayer timeout. Unfortunately, the game never tells you whether it did or not, though.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUFFALO_BOOTS))
 			pline("Thanks to the plateau soles, this pair of boots counts as high heels (technically one could consider them to be wedge heels). Kicking a monster with them will push it back more often, but you will encounter more heaps of shit and you will fully step into them even if you're flying.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WHITE_BUFFALO_BOOTS))
+			pline("Thanks to the plateau soles, this pair of boots counts as high heels (technically one could consider them to be wedge heels). Kicking a monster with them will push it back more often, but they're susceptible to rotting even if their base material normally isn't.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLEECELING_CLOAK))
 			pline("All glyphs have a 1 in 5 chance of being fleecy-colored while you wear this.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HEROINE_MOCASSINS))
@@ -12665,6 +12720,8 @@ boolean knoweverything;
 			pline("These stiletto heels deal extra damage when kicking, based on your short sword skill, and train that.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLOCKCHOC_BOOTS))
 			pline("A very lovely pair of block-heeled combat boots that can also be eaten, which may give one of a variety of effects.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SISTER_SHOES))
+			pline("These brown combat boots have black block heels, which look incredibly lovely! If you kick an enemy, you scratch them with your heels to cause bleeding damage.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLATFORM_SNEAKERS))
 			pline("These sexy flats deal slightly increased damage if you kick an opponent.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ICEBLOCK_HEELS))
@@ -14354,6 +14411,14 @@ boolean knoweverything;
 				pline("This is a pair of sneakers with extra thick soles, yet they're still sexy flats. They carry Kristina's curse, and have 2 AC and 0 MC."); break;
 			case LOU_SNEAKERS:
 				pline("Actually this pair of sneakers is all dirty and worn out, but strangely enough they still count as sexy flats. They carry Lou's curse, and have 1 AC and 0 MC."); break;
+			case SONJA_SNEAKERS:
+				pline("A rather worn-out pair of sneakers that still counts as sexy flats. They carry Sonja's curse, and have 0 AC and 0 MC."); break;
+			case TANJA_SNEAKERS:
+				pline("Very cute sneakers, so of course they count as sexy flats. They carry Tanja's curse, and have 2 AC and 0 MC."); break;
+			case RHEA_LADY_PUMPS:
+				pline("Incredibly sexy cone heels. They carry Rhea's curse, and have 2 AC and 2 MC."); break;
+			case LARA_COMBAT_BOOTS:
+				pline("These black combat boots are sooooo sexy because not only do they have treaded soles, but the block heels are also treaded! They carry Lara's curse, and have 3 AC and 2 MC."); break;
 			case ALMUT_SNEAKERS:
 				pline("These white girl sneakers look sooooooooooooo gentle!!! So you can bet money that they use the sexy flats skill. They carry Almut's curse, and have 2 AC and 0 MC."); break;
 			case JULIETTA_PEEP_TOES:
@@ -18491,6 +18556,14 @@ boolean knoweverything;
 				pline("While having this jewel in your inventory, you're afflicted with Thai's curse. It autocurses and cannot be dropped while cursed."); break;
 			case ELENA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Elena's curse. It autocurses and cannot be dropped while cursed."); break;
+			case TANJA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Tanja's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SONJA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Sonja's curse. It autocurses and cannot be dropped while cursed."); break;
+			case RHEA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Rhea's curse. It autocurses and cannot be dropped while cursed."); break;
+			case LARA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Lara's curse. It autocurses and cannot be dropped while cursed."); break;
 			case WENDY_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Wendy's curse. It autocurses and cannot be dropped while cursed."); break;
 			case ANASTASIA_S_JEWEL:
@@ -26782,6 +26855,20 @@ boolean knoweverything;
 					pline("Artifact specs: while in a potentially restricted area (e.g. green cross or yendorian tower), lifesaves you from instadeaths, but if it does, it's used up."); break;
 				case ART_FOURTH_CHANCE:
 					pline("Artifact specs: can lifesave you several times before it's used up."); break;
+				case ART_FIND_THE_COMBAT_STANCE:
+					pline("Artifact specs: +10 kick damage and allows you to sometimes sidestep enemy projectiles when worn."); break;
+				case ART_SISTER_S_ACID:
+					pline("Artifact specs: deals low amounts of acid damage to enemies who hit you in melee."); break;
+				case ART_DOUBTLY_POISON:
+					pline("Artifact specs: your wielded weapon, and any projectiles you throw or fire, automatically become superpoisoned if possible, can be invoked to fire a poison blast in a direction of your choice, neutral."); break;
+				case ART_PLAY_THE_GAME_YOURSELF:
+					pline("Artifact specs: henrietta trap effect, half spell damage, mystery and disintegration resistance when worn, chaotic."); break;
+				case ART_KATHARINA_S_SIGH:
+					pline("Artifact specs: katharina trap effect, half physical damage, immunity to sock attacks and high resistance to perfume when worn."); break;
+				case ART_SASSY_JULIA:
+					pline("Artifact specs: julia trap effect, half physical damage, mystery and curse resistance when worn."); break;
+				case ART_POCAHONTAS_HOME:
+					pline("Artifact specs: laura trap effect and acid immunity when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

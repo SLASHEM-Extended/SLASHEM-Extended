@@ -434,6 +434,7 @@ struct monst {
 	Bitfield(crapbonus,6);
 
 	Bitfield(shinymonst,1);	/* 1 in 8192 chance, by aosdict */
+	Bitfield(laramonst,1);	/* for lara trap effect */
 
 	Bitfield(wastame,1);	/* for re-taming technique */
 

@@ -16168,6 +16168,82 @@ skillrandomizeredo:
 
 		 break;
 
+		 case TANJA_TRAP:
+
+			if (FemaleTrapTanja) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Tanja.");
+				pline("The girls learned takewondo, and will knock the crap out of you with their female sneakers.");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapTanja = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapTanja += 100;
+			if (!rn2(3)) FemaleTrapTanja += rnz(500);
+
+		 break;
+
+		 case SONJA_TRAP:
+
+			if (FemaleTrapSonja) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Sonja.");
+				pline("Seems that the girls will call for help if you attack them.");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapSonja = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapSonja += 100;
+			if (!rn2(3)) FemaleTrapSonja += rnz(500);
+
+		 break;
+
+		 case RHEA_TRAP:
+
+			if (FemaleTrapRhea) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Rhea.");
+				pline("Ugh, the girls and women are really going to beguile you with the horrible odor of their perfume!");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapRhea = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapRhea += 100;
+			if (!rn2(3)) FemaleTrapRhea += rnz(500);
+
+		 break;
+
+		 case LARA_TRAP:
+
+			if (FemaleTrapLara) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Lara.");
+				pline("You look forward to being attacked by treaded block heel boots while you're bound to a stick.");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapLara = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapLara += 100;
+			if (!rn2(3)) FemaleTrapLara += rnz(500);
+
+		 break;
+
 		 case RUTH_TRAP:
 
 			if (FemaleTrapRuth) break;
@@ -22231,6 +22307,30 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			break;
 		case MARLENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarlena) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+			}
+			break;
+		case TANJA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapTanja) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+			}
+			break;
+		case SONJA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapSonja) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+			}
+			break;
+		case RHEA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapRhea) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+			}
+			break;
+		case LARA_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapLara) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
 			}

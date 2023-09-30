@@ -5824,6 +5824,30 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && FemtrapActiveTanja) {
+		sprintf(buf, "possessed by the ghost of Tanja.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapTanja);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveSonja) {
+		sprintf(buf, "possessed by the ghost of Sonja.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapSonja);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveRhea) {
+		sprintf(buf, "possessed by the ghost of Rhea.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapRhea);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveLara) {
+		sprintf(buf, "possessed by the ghost of Lara.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapLara);
+		you_are(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && FemtrapActiveNadine) {
 		sprintf(buf, "possessed by the ghost of Nadine.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapNadine);
@@ -10525,6 +10549,30 @@ int final;
 	if (FemtrapActiveMarlena) {
 		sprintf(buf, "possessed by the ghost of Marlena.");
 	      sprintf(eos(buf), " (%ld)", FemaleTrapMarlena);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveTanja) {
+		sprintf(buf, "possessed by the ghost of Tanja.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapTanja);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveSonja) {
+		sprintf(buf, "possessed by the ghost of Sonja.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapSonja);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveRhea) {
+		sprintf(buf, "possessed by the ghost of Rhea.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapRhea);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveLara) {
+		sprintf(buf, "possessed by the ghost of Lara.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapLara);
 		dump(youwere, buf);
 	}
 

@@ -438,6 +438,14 @@ int prop;
 			return "Madeleine's curse";
 		case FEMTRAP_MARLENA:
 			return "Marlena's curse";
+		case FEMTRAP_TANJA:
+			return "Tanja's curse";
+		case FEMTRAP_SONJA:
+			return "Sonja's curse";
+		case FEMTRAP_RHEA:
+			return "Rhea's curse";
+		case FEMTRAP_LARA:
+			return "Lara's curse";
 		case FEMTRAP_NADINE:
 			return "Nadine's curse";
 		case FEMTRAP_LUISA:
@@ -3644,6 +3652,10 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ANASTASIA_S_JEWEL, "Anastasia dragotsennost'" },
 	{ JESSICA_S_JEWEL, "Jessica dragotsennost'" },
 	{ MARLENA_S_JEWEL, "Marlena dragotsennost'" },
+	{ TANJA_S_JEWEL, "Tanja dragotsennost'" },
+	{ SONJA_S_JEWEL, "Sonja dragotsennost'" },
+	{ RHEA_S_JEWEL, "Rhea dragotsennost'" },
+	{ LARA_S_JEWEL, "Lara dragotsennost'" },
 	{ NADINE_S_JEWEL, "Nadine dragotsennost'" },
 	{ LUISA_S_JEWEL, "Luisa dragotsennost'" },
 	{ IRINA_S_JEWEL, "Irina dragotsennost'" },
@@ -4070,6 +4082,10 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ FLEURE, "todo" },
 	{ BROKEN_BOOTS, "todo" },
 	{ OVER_SHOES, "todo" },
+	{ TANJA_SNEAKERS, "todo" },
+	{ SONJA_SNEAKERS, "todo" },
+	{ RHEA_LADY_PUMPS, "todo" },
+	{ LARA_COMBAT_BOOTS, "todo" },
 
 	{0, "" }
 };
@@ -6880,6 +6896,10 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ANASTASIA_S_JEWEL, "Anastasia marvarid" },
 	{ JESSICA_S_JEWEL, "Jessica marvarid" },
 	{ MARLENA_S_JEWEL, "Marlena marvarid" },
+	{ TANJA_S_JEWEL, "Tanja marvarid" },
+	{ SONJA_S_JEWEL, "Sonja marvarid" },
+	{ RHEA_S_JEWEL, "Rhea marvarid" },
+	{ LARA_S_JEWEL, "Lara marvarid" },
 	{ NADINE_S_JEWEL, "Nadine marvarid" },
 	{ LUISA_S_JEWEL, "Luisa marvarid" },
 	{ IRINA_S_JEWEL, "Irina marvarid" },
@@ -7307,6 +7327,10 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ FLEURE, "todo" },
 	{ BROKEN_BOOTS, "todo" },
 	{ OVER_SHOES, "todo" },
+	{ TANJA_SNEAKERS, "todo" },
+	{ SONJA_SNEAKERS, "todo" },
+	{ RHEA_LADY_PUMPS, "todo" },
+	{ LARA_COMBAT_BOOTS, "todo" },
 
 	{0, "" }
 };

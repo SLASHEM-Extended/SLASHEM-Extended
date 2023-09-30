@@ -15026,6 +15026,18 @@ selecttrap:
 		    case MARLENA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case TANJA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case SONJA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case RHEA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case LARA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
 		    case NADINE_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
 			break;

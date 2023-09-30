@@ -150,7 +150,7 @@ typedef struct branch {
 #define In_sokoban(x)		(((x)->dnum == sokoban_dnum) || issokosolver)
 #define In_sokoban_real(x)	((x)->dnum == sokoban_dnum)
 #define Inhell			In_hell(&u.uz)	/* now gehennom */
-#define In_endgame(x)		((x)->dnum == astral_level.dnum)
+#define In_endgame(x)		((x)->dnum == astral_level.dnum) /* apparently this works, i.e. TRUE for all planes */
 #define InZAPM			In_ZAPM(&u.uz)	/* space base, sewer plant, gamma caves, mainframe */
 #define InDevnull			In_Devnull(&u.uz)	/* grue, joust, digdug, pacman, pool */
 

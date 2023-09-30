@@ -4085,6 +4085,10 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != TANJA_TRAP
+				&& ttmp->ttyp != SONJA_TRAP
+				&& ttmp->ttyp != RHEA_TRAP
+				&& ttmp->ttyp != LARA_TRAP
 				&& ttmp->ttyp != NADINE_TRAP
 				&& ttmp->ttyp != LUISA_TRAP
 				&& ttmp->ttyp != IRINA_TRAP
@@ -4606,7 +4610,7 @@ struct monst *mtmp;
 				pline("%s looks much better!", Monnam(mtmp));
 			pline_The("medallion crumbles to dust!");
 		}
-		if (lifesave && lifesave->oartifact != ART_NYEHEHEHEHE_) m_useup(mtmp, lifesave);
+		if (!mtmp->mpeaceful && !mtmp->mtame && lifesave && lifesave->oartifact != ART_NYEHEHEHEHE_) m_useup(mtmp, lifesave);
 		mtmp->mcanmove = 1;
 		mtmp->masleep = 0;
 		mtmp->mfrozen = 0;
@@ -8422,7 +8426,7 @@ sarahdone:
 		contaminate(rnd((mtmp->m_lev + 1) * 2), TRUE);
 		increasesanity(rnd((mtmp->m_lev + 1) * 2));
     }
-    if(mtmp->data->msound == MS_SOCKS) {
+    if(mtmp->data->msound == MS_SOCKS && !(uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) ) {
 		u.cnd_socksmell++;
 		pline("You inhale the beguiling smell that emanates from %s...", mon_nam(mtmp) );
 

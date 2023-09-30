@@ -1913,6 +1913,10 @@ int thrown;
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
 		obj->opoisoned = 1;
 
+	if (uarmf && uarmf->oartifact == ART_DOUBTLY_POISON && is_poisonable(obj)) {
+		obj->opoisoned = obj->superpoison = 1;
+	}
+
 	if (obj && obj->oartifact == ART_TROPICAL_WOOD_SELECTION) obj->opoisoned = 1;
 
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == POISON_BOLT) obj->opoisoned = 1;

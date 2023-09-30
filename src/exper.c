@@ -1057,6 +1057,18 @@ exprecalc(void)
 					case 98:
 						pline("You receive an elaborate auspicious message: At experience level %d, damaging a female monster causes you to be affected with a nastytrap effect.", displaycheck);
 						break;
+					case 99:
+						pline("You receive an elaborate auspicious message: At experience level %d, female sneakers are upper strong.", displaycheck);
+						break;
+					case 100:
+						pline("You receive an elaborate auspicious message: At experience level %d, hitting a female monster may cause aggravation.", displaycheck);
+						break;
+					case 101:
+						pline("You receive an elaborate auspicious message: At experience level %d, perfume monsters shoot red gas bullets at you which emit a horrible stench.", displaycheck);
+						break;
+					case 102:
+						pline("You receive an elaborate auspicious message: At experience level %d, being paralyzed can cause treaded high heels to attack you intermittently.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

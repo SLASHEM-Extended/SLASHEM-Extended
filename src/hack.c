@@ -4581,6 +4581,46 @@ nomul(nval, txt, discountpossible)
 		if (nval > -2) nval = -2;
 	}
 
+	if (nval < 0 && FemtrapActiveLara && !u.laratraptimer) {
+
+		struct permonst *pm = 0;
+		int attempts = 0;
+		register struct monst *laramon;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+newbossLARA:
+		do {
+			pm = rndmonst();
+			attempts++;
+			if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+			if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+		} while ( (!pm || (pm && !(treadedshoemonster(pm) && highheeledshoemonster(pm)) )) && attempts < 50000);
+
+		if (!pm && rn2(50) ) {
+			attempts = 0;
+			goto newbossLARA;
+		}
+		if (pm && !(treadedshoemonster(pm) && highheeledshoemonster(pm)) && rn2(50) ) {
+			attempts = 0;
+			goto newbossLARA;
+		}
+
+		if (pm) (laramon = makemon(pm, u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK));
+
+		if (laramon) {
+			laramon->laramonst = TRUE;
+		}
+
+		u.aggravation = 0;
+		u.mondiffhack = 0;
+
+	}
+
 	/* Discount action will halve paralysis duration, but some paralysis sources ignore it --Amy */
 	if (Discount_action && discountpossible && (nval < -1)) nval /= 2;
 	if (StrongDiscount_action && discountpossible && (nval < -1)) nval /= 2;
@@ -4615,6 +4655,8 @@ void
 unmul(msg_override)
 const char *msg_override;
 {
+	struct monst *mtmp;
+
 	multi = 0;	/* caller will usually have done this already */
 	(void) memset(multi_txt, 0, BUFSZ);
 	if (msg_override) nomovemsg = msg_override;
@@ -4625,6 +4667,24 @@ const char *msg_override;
 	if (afternmv) (*afternmv)();
 	afternmv = 0;
 	flags.botl = 1;
+
+	/* lara trap effect: specially spawned monsters should banish themselves when you're unparalyzed --Amy */
+	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		if (mtmp->laramonst) {
+			mtmp->laramonst = 0;
+
+			d_level flev;
+
+			if (mon_has_amulet(mtmp) || In_endgame(&u.uz)) {
+				break;
+			}
+			flev = random_banishment_level();
+			migrate_to_level(mtmp, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+
+			break;
+		}
+	}
+
 }
 
 #endif /* OVL2 */

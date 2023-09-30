@@ -559,6 +559,12 @@ shieldblockboo:
 			else You("sidestep %s.", onm);
 			return(0);
 
+	} else if (uarmf && uarmf->oartifact == ART_FIND_THE_COMBAT_STANCE && !rn2(5)) {
+
+			if(Blind || !flags.verbose) You("sidestep a projectile.");
+			else You("sidestep %s.", onm);
+			return(0);
+
 	} else if (columnarevasion > rnd(100)) {
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
 			else You("skillfully evade %s.", onm);

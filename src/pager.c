@@ -29089,7 +29089,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"Reminder that you're not supposed to abuse exploits in SLEX that make the game easier!",
 	"Reminder that you're not supposed to abuse exploits in SLEX that make the game easier, and if you do so anyway, Amy *will* find out about it!",
 	"Reminder that you're not supposed to abuse exploits in SLEX that make the game easier, and if Amy sees you doing it, she will nerf them much harder than she would have done if you had told her right away!",
-
+	"The girls learned takewondo, and will knock the crap out of you with their female sneakers.",
+	"Seems that the girls will call for help if you attack them.",
+	"Ugh, the girls and women are really going to beguile you with the horrible odor of their perfume!",
+	"You look forward to being attacked by treaded block heel boots while you're bound to a stick.",
+	"Somehow, the girls forgot how to use taekwondo moves. Good for you, I guess.",
+	"Finally, the girls decided to no longer call for help when attacked, after all they're strong and can fight for themselves!",
+	"Seems like the manufacturers are having trouble producing enough perfume for all the girls and women, so for the time being, they're less likely to beguile you.",
+	"Someone decided to let you free, so you'll no longer be attacked by treaded block heels while bound to a stick.",
 };
 
 const char *

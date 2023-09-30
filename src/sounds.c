@@ -4407,6 +4407,8 @@ metalmafiaagain:
 						pline("But you actually enjoy the lovely scent.");
 					} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
 						pline("But you actually enjoy the lovely scent.");
+					} else if (rn2(10) && uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) {
+						pline("But you actually enjoy the lovely scent.");
 					} else {
 						badeffect();
 						if (rn2(2)) increasesanity(rnz(20 + mtmp->m_lev));
@@ -4449,6 +4451,8 @@ metalmafiaagain:
 			} else if (rn2(5) && uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) {
 				pline("But you actually enjoy the lovely scent.");
 			} else if (rn2(20) && uwep && uwep->oartifact == ART_HIGH_ORIENTAL_PRAISE) {
+				pline("But you actually enjoy the lovely scent.");
+			} else if (rn2(10) && uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) {
 				pline("But you actually enjoy the lovely scent.");
 			} else {
 				badeffect();
@@ -6064,6 +6068,13 @@ register struct monst *mtmp;
 
 	if (FemtrapActiveLittleMarie && is_female(mtmp->data)) {
 		randomnastytrapeffect(rnz(2 + mtmp->m_lev), 1000 - mtmp->m_lev);
+	}
+
+	if (FemtrapActiveSonja && !mtmp->mpeaceful && !mtmp->mtame && !rn2(10) && is_female(mtmp->data)) {
+		incr_itimeout(&HAggravate_monster, (mtmp->m_lev * 5) + 1);
+		You_feel("that monsters are aware of your presence.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");
+		aggravate();
 	}
 
 	if (mtmp->data->msound == MS_FEARHARE) {

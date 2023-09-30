@@ -4618,6 +4618,8 @@ register struct obj *otmp;
 	int otyp = otmp->otyp;
 	int omat = objects[otyp].oc_material;
 
+	if (itemhasappearance(otmp, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
+
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));
 	}

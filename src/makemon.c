@@ -203,9 +203,9 @@ int otyp,oquan;
 	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
 	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
 	if (is_weptool(otmp)) otmp->mstartinventB = 1;
-	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer) ) otmp->mstartinventX = 1;
-	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer) ) otmp->mstartinventX = 1;
-	if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer) ) otmp->mstartinventX = 1;
+	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+	if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
 
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
@@ -7821,6 +7821,16 @@ register struct monst *mtmp;
 
 	}
 
+	if (FemtrapActiveRhea && mtmp->data->msound == MS_STENCH) {
+		u.mongetshack = 100;
+		(void)mongets(mtmp, WILDHILD_BOW);
+		m_initthrow(mtmp, ODOR_SHOT, 50);
+		m_initthrow(mtmp, ODOR_SHOT, 50);
+		m_initthrow(mtmp, ODOR_SHOT, 50);
+		m_initthrow(mtmp, ODOR_SHOT, 50);
+		u.mongetshack = 0;
+	}
+
 	if (mtmp->data->msound == MS_TREESQUAD) {
 		(void)mongets(mtmp, rn2(2) ? QUARTERSTAFF : TORCH);
 		(void)mongets(mtmp, rn2(2) ? LANCE : PITCHFORK);
@@ -14059,6 +14069,10 @@ loveheelover:
 		if (ptr == &mons[PM_SEXTARIAN_CUTIE]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL); /* M4_HAMMERSANDAL */
 		}
+		if (ptr == &mons[PM_LACQUERED_FEMMY]) {
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+			(void) mongets(mtmp, POT_CURE_SERIOUS_WOUNDS);
+		}
 		if (ptr == &mons[PM_SCIENTITS]) {
 			(void) mongets(mtmp, CANDY_BRA);
 		}
@@ -18593,6 +18607,7 @@ loveheelover:
 		if (ptr == &mons[PM_LASSY_GIRL]) (void) mongets(mtmp, QATAR);
 		if (ptr == &mons[PM_MEGAWHIPPET]) (void) mongets(mtmp, SECRET_SOUND_WHIP);
 		if (ptr == &mons[PM_PUMPS_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+		if (ptr == &mons[PM_TAEKWONDO_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (ptr == &mons[PM_SCARAB_GUARDIAN]) (void) mongets(mtmp, SHIELD);
 
 		if (mtmp->data == &mons[PM_NESTING_SPIDER]) { 

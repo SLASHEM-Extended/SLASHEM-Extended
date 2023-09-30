@@ -10240,18 +10240,18 @@ u_init()
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(98); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(98);
-	u.climauspices6 = rnd(98);
-	u.climauspices9 = rnd(98);
-	u.climauspices12 = rnd(98);
-	u.climauspices15 = rnd(98);
-	u.climauspices18 = rnd(98);
-	u.climauspices21 = rnd(98);
-	u.climauspices24 = rnd(98);
-	u.climauspices27 = rnd(98);
-	u.climauspices30 = rnd(98);
+	u.climauspices3 = rnd(102);
+	u.climauspices6 = rnd(102);
+	u.climauspices9 = rnd(102);
+	u.climauspices12 = rnd(102);
+	u.climauspices15 = rnd(102);
+	u.climauspices18 = rnd(102);
+	u.climauspices21 = rnd(102);
+	u.climauspices24 = rnd(102);
+	u.climauspices27 = rnd(102);
+	u.climauspices30 = rnd(102);
 
 	u.sjwL1E1 = rnd(270); /* timerun and stuff */
 	u.sjwL2E1 = rnd(270);
@@ -11355,6 +11355,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.laratraptimer = 0;
 	u.missingstaircase = 0;
 	u.mondiffhack = 0;
 	u.levelmarked = FALSE;
@@ -32630,18 +32631,18 @@ int realityflag;
 	u.femauspices28 = rnd(9);
 	u.femauspices30 = rnd(10);
 
-	u.feminizeffect = rnd(98); /* amount of feminism trap effects; keyword: "marlena" */
+	u.feminizeffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
 
-	u.climauspices3 = rnd(98);
-	u.climauspices6 = rnd(98);
-	u.climauspices9 = rnd(98);
-	u.climauspices12 = rnd(98);
-	u.climauspices15 = rnd(98);
-	u.climauspices18 = rnd(98);
-	u.climauspices21 = rnd(98);
-	u.climauspices24 = rnd(98);
-	u.climauspices27 = rnd(98);
-	u.climauspices30 = rnd(98);
+	u.climauspices3 = rnd(102);
+	u.climauspices6 = rnd(102);
+	u.climauspices9 = rnd(102);
+	u.climauspices12 = rnd(102);
+	u.climauspices15 = rnd(102);
+	u.climauspices18 = rnd(102);
+	u.climauspices21 = rnd(102);
+	u.climauspices24 = rnd(102);
+	u.climauspices27 = rnd(102);
+	u.climauspices30 = rnd(102);
 
 	u.sjwL1E1 = rnd(270); /* timerun and stuff */
 	u.sjwL2E1 = rnd(270);

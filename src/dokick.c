@@ -53,6 +53,7 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) dmg += 5;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) dmg += 5;
 	if (flags.female && uwep && uwep->oartifact == ART_KICKSIN_GIRL) dmg += 5;
+	if (uarmf && uarmf->oartifact == ART_FIND_THE_COMBAT_STANCE) dmg += 10;
 
 	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;
 
@@ -441,7 +442,7 @@ register boolean clumsy;
 		showdmg(dmg);
 #endif
 	}
-	if (mon->mhp > 0 && (martial() || (uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS))) && !bigmonst(mon->data) && !rn2(3) &&
+	if (mon->mhp > 0 && (martial() || (uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) || (uarmf && itemhasappearance(uarmf, APP_WHITE_BUFFALO_BOOTS)) ) && !bigmonst(mon->data) && !rn2(3) &&
 	    mon->mcanmove && mon != u.ustuck && !mon->mtrapped) {
 		/* see if the monster has a place to move into */
 		mdx = mon->mx + u.dx;
@@ -638,6 +639,11 @@ register boolean clumsy;
 		mon->mcanmove = 0;
 		mon->mfrozen = rnd(5);
 		mon->mstrategy &= ~STRAT_WAITFORU;
+	}
+
+	if (uarmf && itemhasappearance(uarmf, APP_SISTER_SHOES)) {
+		mon->bleedout += rnd(5);
+		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) {

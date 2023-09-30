@@ -13827,12 +13827,40 @@ A("Roofridge Class",				FLEURE,
 	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
 
 A("Don't Die While In There",				OVER_SHOES, /* lifesaves you while you're in a potentially restricted area as long as you didn't run out of health, but uses up the boots in the process */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Fourth Chance",				AMULET_OF_THIRD_CHANCE, /* if it lifesaves you, its brittleness increases and only if the brittleness becomes too high it's used up, otherwise you get to keep it so it can lifesave you again */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Find The Combat Stance",				TANJA_SNEAKERS, /* 20% chance to sidestep a projectile, +10 kick damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Sister's Acid",				SONJA_SNEAKERS, /* d4 passive acid damage to monsters attacking you in melee */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Doubtly Poison",				RHEA_LADY_PUMPS, /* if your wielded weapon can be superpoisoned, it is; if you fire a projectile that can be superpoisoned, it is; can be invoked to fire a poison blast with strength 10 in a direction of your choice */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NEUTRAL, NON_PM, NON_PM, 18000L ),
+
+A("Play The Game Yourself",				LARA_COMBAT_BOOTS, /* henrietta trap effect, resist mystery and disintegration, can lifesave you */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 10000L ),
+
+A("Katharina's Sigh",				LOW_BOOTS, /* initialized to always be white buffalo boots, katharina trap effect, immunity to MS_SOCKS and 90% chance to resist perfume */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Sassy Julia",				LOW_BOOTS, /* initialized to always be sister shoes, julia trap effect, mystery and curse resistance */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Pocahontas Home",				LOW_BOOTS, /* initialized to always be sister shoes, laura trap effect, acid immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

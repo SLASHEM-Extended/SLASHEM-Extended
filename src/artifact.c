@@ -781,6 +781,9 @@ init_appearance_randarts()
 	artilist[ART_HEELMARJI].otyp = find_devil_lettuce_shoes();
 	artilist[ART_SHE_S_STILL_AN_ANASTASIA].otyp = find_loafers();
 	artilist[ART_KILLCAP].otyp = find_sweaty_shoes();
+	artilist[ART_KATHARINA_S_SIGH].otyp = find_white_buffalo_boots();
+	artilist[ART_SASSY_JULIA].otyp = find_sister_shoes();
+	artilist[ART_POCAHONTAS_HOME].otyp = find_sister_shoes();
 
 	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_JANA_S_ROULETTE_OF_LIFE].otyp = find_foundry_cloak();
@@ -5295,6 +5298,15 @@ greenchoice:
 
 			getdir(NULL);
 			buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_DOUBTLY_POISON) {
+
+			getdir(NULL);
+			buzz(26,10,u.ux,u.uy,u.dx,u.dy); /* 26 = poison blast */
 
 			break;
 

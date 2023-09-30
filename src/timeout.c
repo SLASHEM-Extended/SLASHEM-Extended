@@ -716,6 +716,12 @@ nh_timeout()
 		if (!(u.burrowed)) pline("Your extra armor class from burrowing has timed out.");
 	}
 
+	if (u.laratraptimer) {
+		u.laratraptimer--;
+		if (u.laratraptimer < 0) u.laratraptimer = 0;
+		/* no message if it times out */
+	}
+
 	if (u.combatcommand) {
 		u.combatcommand--;
 		if (u.combatcommand < 0) u.combatcommand = 0;
@@ -3067,6 +3073,30 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_TANJA:
+
+			pline("Somehow, the girls forgot how to use taekwondo moves. Good for you, I guess.");
+
+		 break;
+
+		 case FEMTRAP_SONJA:
+
+			pline("Finally, the girls decided to no longer call for help when attacked, after all they're strong and can fight for themselves!");
+
+		 break;
+
+		 case FEMTRAP_RHEA:
+
+			pline("Seems like the manufacturers are having trouble producing enough perfume for all the girls and women, so for the time being, they're less likely to beguile you.");
+
+		 break;
+
+		 case FEMTRAP_LARA:
+
+			pline("Someone decided to let you free, so you'll no longer be attacked by treaded block heels while bound to a stick.");
 
 		 break;
 

@@ -876,6 +876,11 @@ static struct {
 	{ "burden", BURDEN_TRAP },
 	{ "magic vacuum", MAGIC_VACUUM_TRAP },
 
+	{ "sonja", SONJA_TRAP },
+	{ "tanja", TANJA_TRAP },
+	{ "lara", LARA_TRAP },
+	{ "rhea", RHEA_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

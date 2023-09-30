@@ -288,15 +288,15 @@
 
 #define HAcid_resistance	u.uprops[ACID_RES].intrinsic
 #define EAcid_resistance	u.uprops[ACID_RES].extrinsic
-#define IntAcid_resistance	(HAcid_resistance || AcidImmunity || (uarm && uarm->oartifact == ART_NULARMOR) || resists_acid(&youmonst) || is_acid_resistant(youmonst.data) || (powerfulsymbiosis() && is_acid_resistant(&mons[u.usymbiote.mnum])) )
-#define ExtAcid_resistance	(EAcid_resistance || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == ACID_RES) ) || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uimplant && uimplant->oartifact == ART_THEY_RE_ALL_YELLOW) || (uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) || (uarmf && uarmf->oartifact == ART_EVERYTHING_IS_GREEN) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) || (uwep && uwep->oartifact == ART_COLT_____) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uwep && uwep->oartifact == ART_CHARR) || autismringcheck(ART_BILE_PATCH) || (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) || (uwep && uwep->oartifact == ART_SCHOSCHO_BARBITUER) || (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && (moves % 3 == 0) ) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uwep && uwep->oartifact == ART_RESISTOMATIC) || (uwep && uwep->otyp == CHEMISTRY_SPACE_AXE) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS))
+#define IntAcid_resistance	(HAcid_resistance || AcidImmunity || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME) || (uarm && uarm->oartifact == ART_NULARMOR) || resists_acid(&youmonst) || is_acid_resistant(youmonst.data) || (powerfulsymbiosis() && is_acid_resistant(&mons[u.usymbiote.mnum])) )
+#define ExtAcid_resistance	(EAcid_resistance || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == ACID_RES) ) || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uimplant && uimplant->oartifact == ART_THEY_RE_ALL_YELLOW) || (uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) || (uarmf && uarmf->oartifact == ART_EVERYTHING_IS_GREEN) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) || (uwep && uwep->oartifact == ART_COLT_____) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uwep && uwep->oartifact == ART_CHARR) || autismringcheck(ART_BILE_PATCH) || (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME) || (uwep && uwep->oartifact == ART_SCHOSCHO_BARBITUER) || (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && (moves % 3 == 0) ) || (uarmg && uarmg->oartifact == ART_SPECTRATOR && (moves % 5 == 0) ) || (uwep && uwep->oartifact == ART_RESISTOMATIC) || (uwep && uwep->otyp == CHEMISTRY_SPACE_AXE) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS))
 
 #define Acid_resistance		(((IntAcid_resistance && u.nonintrinsicproperty != ACID_RES) || (ExtAcid_resistance && u.nonextrinsicproperty != ACID_RES)) && !hybridragontype(AD_ACID) && !NoAcid_resistance)
 #define StrongAcid_resistance	(IntAcid_resistance && ExtAcid_resistance && Acid_resistance && u.nondoubleproperty != ACID_RES)
 
 #define NoAcid_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ACID_RES].intrinsic || UHaveAids || (u.impossibleproperty == ACID_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define AcidImmunity		(uarm && uarm->oartifact == ART_NULARMOR)
+#define AcidImmunity		((uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME))
 
 #define HStone_resistance	u.uprops[STONE_RES].intrinsic
 #define EStone_resistance	u.uprops[STONE_RES].extrinsic
@@ -697,6 +697,10 @@
 #define FemaleTrapFemmy	u.uprops[FEMTRAP_FEMMY].intrinsic
 #define FemaleTrapMadeleine	u.uprops[FEMTRAP_MADELEINE].intrinsic
 #define FemaleTrapMarlena	u.uprops[FEMTRAP_MARLENA].intrinsic
+#define FemaleTrapTanja	u.uprops[FEMTRAP_TANJA].intrinsic
+#define FemaleTrapSonja	u.uprops[FEMTRAP_SONJA].intrinsic
+#define FemaleTrapRhea	u.uprops[FEMTRAP_RHEA].intrinsic
+#define FemaleTrapLara	u.uprops[FEMTRAP_LARA].intrinsic
 #define FemaleTrapAnastasia	u.uprops[FEMTRAP_ANASTASIA].intrinsic
 #define FemaleTrapJessica	u.uprops[FEMTRAP_JESSICA].intrinsic
 #define FemaleTrapSolvejg	u.uprops[FEMTRAP_SOLVEJG].intrinsic
@@ -796,11 +800,15 @@
 #define FemtrapActiveFemmy	(FemaleTrapFemmy || u.uprops[FEMTRAP_FEMMY].extrinsic || have_femtrapfemmy())
 #define FemtrapActiveMadeleine	(FemaleTrapMadeleine || u.uprops[FEMTRAP_MADELEINE].extrinsic || have_femtrapmadeleine())
 #define FemtrapActiveMarlena	(FemaleTrapMarlena || u.uprops[FEMTRAP_MARLENA].extrinsic || have_femtrapmarlena())
+#define FemtrapActiveTanja	(FemaleTrapTanja || u.uprops[FEMTRAP_TANJA].extrinsic || have_femtraptanja())
+#define FemtrapActiveSonja	(FemaleTrapSonja || u.uprops[FEMTRAP_SONJA].extrinsic || have_femtrapsonja())
+#define FemtrapActiveRhea	(FemaleTrapRhea || u.uprops[FEMTRAP_RHEA].extrinsic || have_femtraprhea())
+#define FemtrapActiveLara	(FemaleTrapLara || u.uprops[FEMTRAP_LARA].extrinsic || have_femtraplara())
 #define FemtrapActiveAnastasia	(FemaleTrapAnastasia || u.uprops[FEMTRAP_ANASTASIA].extrinsic || have_femtrapanastasia() || (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR) || (uarmf && uarmf->oartifact == ART_PLAYING_ANASTASIA) || (uarmf && uarmf->oartifact == ART_WHITE_LOAFERS) || (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) || (uarmf && uarmf->oartifact == ART_SHE_S_STILL_AN_ANASTASIA) || autismweaponcheck(ART_REAL_WALKING) || (autismweaponcheck(ART_DAMN_SKI_WEDGE) && !uarmf) || (uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT))
 #define FemtrapActiveJessica	(FemaleTrapJessica || u.uprops[FEMTRAP_JESSICA].extrinsic || have_femtrapjessica() || (uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE))
 #define FemtrapActiveSolvejg	(FemaleTrapSolvejg || u.uprops[FEMTRAP_SOLVEJG].extrinsic || have_femtrapsolvejg())
 #define FemtrapActiveWendy	(FemaleTrapWendy || u.uprops[FEMTRAP_WENDY].extrinsic || have_femtrapwendy() || autismweaponcheck(ART_TOMORROW_WENDY_S_CHOICENA) )
-#define FemtrapActiveKatharina	(FemaleTrapKatharina || u.uprops[FEMTRAP_KATHARINA].extrinsic || have_femtrapkatharina())
+#define FemtrapActiveKatharina	(FemaleTrapKatharina || u.uprops[FEMTRAP_KATHARINA].extrinsic || have_femtrapkatharina() || (uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) )
 #define FemtrapActiveElena	(FemaleTrapElena || u.uprops[FEMTRAP_ELENA].extrinsic || have_femtrapelena())
 #define FemtrapActiveThai	(FemaleTrapThai || u.uprops[FEMTRAP_THAI].extrinsic || have_femtrapthai() || Race_if(PM_TAYIIN) || autismweaponcheck(ART_THAIFORCE) || autismweaponcheck(ART_BIDETHANDER) )
 #define FemtrapActiveElif	(FemaleTrapElif || u.uprops[FEMTRAP_ELIF].extrinsic || have_femtrapelif())
@@ -835,7 +843,7 @@
 #define FemtrapActiveVictoria	(FemaleTrapVictoria || u.uprops[FEMTRAP_VICTORIA].extrinsic || have_femtrapvictoria() || (uarmu && uarmu->oartifact == ART_NOW_YOU_MADE_HER_SAD))
 #define FemtrapActiveMelissa	(FemaleTrapMelissa || u.uprops[FEMTRAP_MELISSA].extrinsic || have_femtrapmelissa())
 #define FemtrapActiveAnita	(FemaleTrapAnita || u.uprops[FEMTRAP_ANITA].extrinsic || have_femtrapanita())
-#define FemtrapActiveHenrietta	(FemaleTrapHenrietta || u.uprops[FEMTRAP_HENRIETTA].extrinsic || have_femtraphenrietta() || (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) )
+#define FemtrapActiveHenrietta	(FemaleTrapHenrietta || u.uprops[FEMTRAP_HENRIETTA].extrinsic || have_femtraphenrietta() || (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) || (uarmf && uarmf->oartifact == ART_PLAY_THE_GAME_YOURSELF) )
 #define FemtrapActiveVerena	(FemaleTrapVerena || u.uprops[FEMTRAP_VERENA].extrinsic || have_femtrapverena() || (uarmh && uarmh->oartifact == ART_IGNORANCE_IS_BLISS))
 #define FemtrapActiveAnnemarie	(FemaleTrapAnnemarie || u.uprops[FEMTRAP_ANNEMARIE].extrinsic || have_femtrapannemarie())
 #define FemtrapActiveJil	(FemaleTrapJil || u.uprops[FEMTRAP_JIL].extrinsic || have_femtrapjil())
@@ -849,14 +857,14 @@
 #define FemtrapActiveAntje	(FemaleTrapAntje || u.uprops[FEMTRAP_ANTJE].extrinsic || have_femtrapantje() || (uarm && uarm->oartifact == ART_MEET_WOMAN_ANTJE) )
 #define FemtrapActiveAntjeX	(FemaleTrapAntjeX || u.uprops[FEMTRAP_ANTJE_X].extrinsic || have_femtrapantjex() || (uarmu && uarmu->oartifact == ART_SOME_CHAMBER_DOOR) )
 #define FemtrapActiveKerstin	(FemaleTrapKerstin || u.uprops[FEMTRAP_KERSTIN].extrinsic || have_femtrapkerstin() || bmwride(ART_KERSTIN_S_COWBOY_BOOST) || autismweaponcheck(ART_GONDOLIN_S_HIDDEN_PASSAGE) )
-#define FemtrapActiveLaura	(FemaleTrapLaura || u.uprops[FEMTRAP_LAURA].extrinsic || have_femtraplaura())
+#define FemtrapActiveLaura	(FemaleTrapLaura || u.uprops[FEMTRAP_LAURA].extrinsic || have_femtraplaura() || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME) )
 #define FemtrapActiveLarissa	(FemaleTrapLarissa || u.uprops[FEMTRAP_LARISSA].extrinsic || have_femtraplarissa() || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) )
 #define FemtrapActiveNora	(FemaleTrapNora || u.uprops[FEMTRAP_NORA].extrinsic || have_femtrapnora())
 #define FemtrapActiveNatalia	(FemaleTrapNatalia || u.uprops[FEMTRAP_NATALIA].extrinsic || have_femtrapnatalia())
 #define FemtrapActiveSusanne	(FemaleTrapSusanne || u.uprops[FEMTRAP_SUSANNE].extrinsic || have_femtrapsusanne() || (uarm && uarm->oartifact == ART_SUSA_MAIL) )
 #define FemtrapActiveLisa	(FemaleTrapLisa || u.uprops[FEMTRAP_LISA].extrinsic || have_femtraplisa())
 #define FemtrapActiveBridghitte	(FemaleTrapBridghitte || u.uprops[FEMTRAP_BRIDGHITTE].extrinsic || have_femtrapbridghitte() || (uarmf && uarmf->oartifact == ART_FIGHT_WITH_PLATFORM_INA) )
-#define FemtrapActiveJulia	(FemaleTrapJulia || u.uprops[FEMTRAP_JULIA].extrinsic || have_femtrapjulia())
+#define FemtrapActiveJulia	(FemaleTrapJulia || u.uprops[FEMTRAP_JULIA].extrinsic || have_femtrapjulia() || (uarmf && uarmf->oartifact == ART_SASSY_JULIA) )
 #define FemtrapActiveNicole	(FemaleTrapNicole || u.uprops[FEMTRAP_NICOLE].extrinsic || have_femtrapnicole())
 #define FemtrapActiveRita	(FemaleTrapRita || u.uprops[FEMTRAP_RITA].extrinsic || have_femtraprita())
 #define FemtrapActiveJanina	(FemaleTrapJanina || u.uprops[FEMTRAP_JANINA].extrinsic || have_femtrapjanina())
@@ -1618,7 +1626,7 @@
 #define HVersus_curses		u.uprops[VERSUS_CURSES].intrinsic
 #define EVersus_curses		u.uprops[VERSUS_CURSES].extrinsic
 #define IntVersus_curses	(HVersus_curses || (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_MENGETIUM) )
-#define ExtVersus_curses	(EVersus_curses || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == VERSUS_CURSES) ) || (uwep && uwep->oartifact == ART_FAMOUS_LANCE) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uwep && uwep->oartifact == ART_STAFF_OF_NECROMANCY) || (uarmu && uarmu->oartifact == ART_MEMORIAL_GARMENTS) )
+#define ExtVersus_curses	(EVersus_curses || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == VERSUS_CURSES) ) || (uwep && uwep->oartifact == ART_FAMOUS_LANCE) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_SASSY_JULIA) || (uwep && uwep->oartifact == ART_STAFF_OF_NECROMANCY) || (uarmu && uarmu->oartifact == ART_MEMORIAL_GARMENTS) )
 
 #define Versus_curses		(((IntVersus_curses && u.nonintrinsicproperty != VERSUS_CURSES) || (ExtVersus_curses && u.nonextrinsicproperty != VERSUS_CURSES)) && !NoVersus_curses)
 #define StrongVersus_curses	(IntVersus_curses && ExtVersus_curses && Versus_curses && u.nondoubleproperty != VERSUS_CURSES)
@@ -1835,7 +1843,7 @@
 #define HMysteryResist		u.uprops[MYSTERY_RES].intrinsic
 #define EMysteryResist		u.uprops[MYSTERY_RES].extrinsic
 #define IntMysteryResist	(HMysteryResist || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) )
-#define ExtMysteryResist	(EMysteryResist || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) || (uwep && uwep->otyp == MYSTERIOUS_PICK) || (uwep && uwep->otyp == MAGISWORD) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MYSTERY_RES) ) )
+#define ExtMysteryResist	(EMysteryResist || (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) || (uwep && uwep->otyp == MYSTERIOUS_PICK) || (uarmf && uarmf->oartifact == ART_SASSY_JULIA) || (uarmf && uarmf->oartifact == ART_PLAY_THE_GAME_YOURSELF) || (uwep && uwep->otyp == MAGISWORD) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MYSTERY_RES) ) )
 
 #define MysteryResist		(((IntMysteryResist && u.nonintrinsicproperty != MYSTERY_RES) || (ExtMysteryResist && u.nonextrinsicproperty != MYSTERY_RES)) && !NoMysteryResist)
 #define StrongMysteryResist	(IntMysteryResist && ExtMysteryResist && MysteryResist && u.nondoubleproperty != MYSTERY_RES)
