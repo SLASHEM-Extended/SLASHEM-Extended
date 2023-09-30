@@ -140,7 +140,20 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	register struct permonst *ptr = mtmp->data;
 	int	i, tmp, tmp2;
 
-	tmp = 1 + mtmp->m_lev * mtmp->m_lev;
+	int monlevforexp, monlevdistance;
+
+	monlevforexp = mtmp->m_lev;
+	monlevdistance = 0;
+
+	/* overleveled monsters shouldn't give so much bonus; after all, a level 49 church mouse just takes more thwacks
+	 * to kill compared to a level 1 one, no need to give millions of experience for that --Amy */
+	if (mtmp->m_lev > mtmp->data->mlevel) {
+		monlevdistance = mtmp->m_lev - mtmp->data->mlevel;
+		if (monlevdistance > 1) monlevdistance /= 2;
+	}
+	monlevforexp -= monlevdistance;
+
+	tmp = 1 + (monlevforexp * monlevforexp);
 
 /*	For higher ac values, give extra experience */
 	if ((i = find_mac(mtmp)) < 3) tmp += (7 - i) * ((i < 0) ? 2 : 1);
@@ -163,13 +176,13 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 /*	For each "special" damage type give extra experience */
 	for(i = 0; i < NATTK; i++) {
 	    tmp2 = ptr->mattk[i].adtyp;
-	    if(tmp2 > AD_PHYS && tmp2 < AD_BLND) tmp += 2*mtmp->m_lev;
+	    if(tmp2 > AD_PHYS && tmp2 < AD_BLND) tmp += 2*monlevforexp;
 	    else if((tmp2 == AD_DRLI) || (tmp2 == AD_STON) ||
 	    		(tmp2 == AD_SLIM)) tmp += 50;
-	    else if(tmp != AD_PHYS) tmp += mtmp->m_lev;
+	    else if(tmp != AD_PHYS) tmp += monlevforexp;
 		/* extra heavy damage bonus */
 	    if((int)(ptr->mattk[i].damd * ptr->mattk[i].damn) > 23)
-		tmp += mtmp->m_lev;
+		tmp += monlevforexp;
 	    if (tmp2 == AD_WRAP && ptr->mlet == S_EEL) { /* edited by Amy */
 		tmp *= 11;
 		tmp /= 10;
@@ -177,31 +190,31 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	}
 
 /*	For certain "extra nasty" monsters, give even more */
-	if (extra_nasty(ptr)) tmp += (rnd(7) * mtmp->m_lev);
+	if (extra_nasty(ptr)) tmp += (rnd(7) * monlevforexp);
 
 /*	For higher level monsters, an additional bonus is given */
-	if(mtmp->m_lev > 8) tmp += 50;
+	if(monlevforexp > 8) tmp += 50;
 	/* Amy edit: high experience levels require lots of XP, but high-level monsters don't give all that much more XP
 	 * than low-level ones? gotta fix that... */
-	if(mtmp->m_lev > 10) {
-		int hilvlmod = (mtmp->m_lev - 9);
+	if(monlevforexp > 10 && monlevdistance < 3) {
+		int hilvlmod = (monlevforexp - 9);
 		tmp += (hilvlmod * hilvlmod);
 	}
-	if(mtmp->m_lev > 20) {
-		int hilvlmod = (mtmp->m_lev - 19);
+	if(monlevforexp > 20 && monlevdistance < 6) {
+		int hilvlmod = (monlevforexp - 19);
 		tmp += (hilvlmod * hilvlmod * rnd(10));
 	}
-	if(mtmp->m_lev > 30) {
-		int hilvlmod = (mtmp->m_lev - 29);
+	if(monlevforexp > 30 && monlevdistance < 9) {
+		int hilvlmod = (monlevforexp - 29);
 		tmp += (hilvlmod * hilvlmod * 10);
 	}
-	if(mtmp->m_lev > 40) {
-		int hilvlmod = (mtmp->m_lev - 39);
+	if(monlevforexp > 40 && monlevdistance < 12) {
+		int hilvlmod = (monlevforexp - 39);
 		tmp += (hilvlmod * hilvlmod * 100);
 	}
 	/* Amy edit again: but it's still not enough... */
-	if (mtmp->m_lev > 0 && tmp > 0) {
-		tmp *= (100 + (mtmp->m_lev * 2));
+	if (monlevforexp > 0 && tmp > 0) {
+		tmp *= (100 + (monlevforexp * 2));
 		tmp /= 100;
 	}
 
