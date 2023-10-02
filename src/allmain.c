@@ -1129,6 +1129,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
 					moveamt /= 2;
 
@@ -1599,8 +1602,11 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
+			if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
 			if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
-					moveamt /= 2;
+				moveamt /= 2;
 
 			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
@@ -2176,6 +2182,7 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uwep && uwep->oartifact == ART_JUMP_HURRIES && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);

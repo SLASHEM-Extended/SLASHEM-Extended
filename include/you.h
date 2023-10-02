@@ -653,6 +653,8 @@ struct you {
 	boolean prematuresubquest;
 	boolean prematureyendortower;
 
+	int knowofthecursetimer;
+
 	int laratraptimer;
 
 	boolean roxannemode; /* for Fuel Nail artifact */

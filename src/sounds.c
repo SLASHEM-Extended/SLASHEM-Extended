@@ -2953,6 +2953,11 @@ register struct monst *mtmp;
 			remove_worn_item(uright, TRUE);
 		}
 
+		if (uarmf && uarmf->oartifact == ART_ELENA_S_REWARD && quest_status.killed_nemesis && mtmp->data->msound == MS_FART_NORMAL && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied) {
+			mtmp->mpeaceful = TRUE;
+			verbalize("You've won, so I'll be at your service...");
+		}
+
 		pline("You gently caress %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 
 		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_SEX_GAME && !mtmp->mpeaceful && !mtmp->mfrenzied) {

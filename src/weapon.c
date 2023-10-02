@@ -538,6 +538,9 @@ struct monst *mon;
 		tmp = rnd(objects[otyp].oc_wldam);
 		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wldam;
 	    }
+
+	    if (otmp->oartifact == ART_BAEFF) tmp += 4;
+
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
@@ -660,6 +663,9 @@ struct monst *mon;
 		tmp = rnd(objects[otyp].oc_wsdam);
 		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wsdam;
 	    }
+
+	    if (otmp->oartifact == ART_BAEFF) tmp += 10;
+
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
@@ -1116,6 +1122,9 @@ struct monst *mon;
 		tmp = rnd(objects[otyp].oc_wldam);
 		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wldam;
 	    }
+
+	    if (otmp->oartifact == ART_BAEFF) tmp += 4;
+
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
@@ -1238,6 +1247,9 @@ struct monst *mon;
 		tmp = rnd(objects[otyp].oc_wsdam);
 		if (otmp->oartifact == ART_FINAL_CONSEQUENCE) tmp = objects[otyp].oc_wsdam;
 	    }
+
+	    if (otmp->oartifact == ART_BAEFF) tmp += 10;
+
 	    switch (otyp) {
 		case IRON_CHAIN:
 		case CROSSBOW_BOLT:
@@ -5314,7 +5326,7 @@ restrpasstwo:
 			sprintf(buf, "        ");
 		} else
 #ifdef WIZARD
-		if (wizard || RngeSkillReveal) {
+		if (wizard || RngeSkillReveal || (uarmc && uarmc->oartifact == ART_PREIM_OH) ) {
 		    if (!iflags.menu_tab_sep)
 			sprintf(buf, " %s%-*s %-12s %-12s %4d(%4d)",
 			    prefix, longest, wpskillname(i), sklnambuf, sklnambuftwo,
@@ -6280,6 +6292,7 @@ int degree;
 	if (uarm && uarm->oartifact == ART_HOARDIT && skill == P_BODY_ARMOR) degree *= 2;
 
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
+	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;

@@ -11356,6 +11356,7 @@ u_init()
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
 	u.laratraptimer = 0;
+	u.knowofthecursetimer = 0;
 	u.missingstaircase = 0;
 	u.mondiffhack = 0;
 	u.levelmarked = FALSE;
@@ -31427,6 +31428,7 @@ register struct trobj *trop;
 }
 
 /* Alter reality: the flag controls which messages you get.
+ * -1 = never give a message
  * 0 = "The power of Eru flows through you"
  * 1 = 90% chance of no message, 10% chance of "Suddenly, the reality is altered"
  */

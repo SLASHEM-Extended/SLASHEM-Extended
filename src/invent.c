@@ -1429,6 +1429,30 @@ have_superjonadabstone()
 }
 
 boolean
+have_trippingjewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == HENRIETTA_S_JEWEL && otmp->oartifact == ART_TRIPPING)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_allisloststone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ITEM_TELEPORTING_STONE && otmp->oartifact == ART_ALL_IS_LOST)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_repeatingloadstone()
 {
 	register struct obj *otmp;

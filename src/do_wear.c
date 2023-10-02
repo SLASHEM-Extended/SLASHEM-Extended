@@ -531,6 +531,12 @@ Boots_on()
 		uarmf->hvycurse = TRUE;
     }
 
+    if (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER && !uarmf->hvycurse) {
+		curse(uarmf);
+		uarmf->hvycurse = TRUE;
+		pline("A frosty aura surrounds your boots...");
+    }
+
     if (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) {
 		if (!uarmf->hvycurse) {
 			curse(uarmf);
@@ -3482,6 +3488,10 @@ Shield_on()
 			curse(uarms);
 		}
     }
+    if (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) {
+		curse(uarms);
+		uarms->hvycurse = TRUE;
+    }
 
     if (uarms && uarms->oartifact == ART_RNG_S_SAFEGUARD && uarms->spe == 0) {
 		if (!rn2(2)) uarms->spe = rnd(7);
@@ -3690,6 +3700,12 @@ Shirt_on()
 	if (uarmu->oartifact == ART_SOME_CHAMBER_DOOR) {
 		curse(uarmu);
 		uarmu->hvycurse = TRUE;
+	}
+
+	if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN) {
+		curse(uarmu);
+		uarmu->stckcurse = TRUE;
+		pline("Yay, the sexy underwear sticks! Yay!");
 	}
 
 	if (uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
@@ -6429,6 +6445,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
+	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) uac -= 2;
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;

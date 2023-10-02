@@ -26,6 +26,7 @@ STATIC_DCL void dig_up_grave(void);
 #define DIGTYP_DOOR       4
 #define DIGTYP_TREE       5
 #define DIGTYP_IRONBAR    6
+#define DIGTYP_FIREAXE    7
 
 
 STATIC_OVL boolean
@@ -140,6 +141,12 @@ xchar x, y;
 	boolean ispick = is_pick(otmp);
 	boolean isantibar = is_antibar(otmp);
 	boolean issaber = is_lightsaber(otmp);
+
+	if (otmp->oartifact == ART_BREAK_EVERYTHING && Role_if(PM_FIREFIGHTER)) {
+		if (IS_IRONBAR(levl[x][y].typ) || IS_TREE(levl[x][y].typ) || IS_FARMLAND(levl[x][y].typ) || IS_MOUNTAIN(levl[x][y].typ)) {
+			return DIGTYP_FIREAXE;
+		}
+	}
 
 	return ((ispick
 		|| issaber
@@ -316,6 +323,7 @@ dig()
 	if (uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) bonus += 5;
 	if (uwep && uwep->oartifact == ART_STONEBITER) bonus += 5;
 	if (uwep && uwep->oartifact == ART_BREAK_OUT) bonus += 5;
+	if (uwep && uwep->oartifact == ART_MINE_OUT) bonus += 5;
 	if (uwep && uwep->oartifact == ART_DIG__OF_COURSE) bonus += 5;
 	if (uarm && uarm->oartifact == ART_CLANGFRIEND) bonus += 5;
 	if (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) bonus += 5;
@@ -386,7 +394,10 @@ dig()
 		register struct obj *obj;
 		register boolean shopedge = *in_rooms(dpx, dpy, SHOPBASE);
 
-		if ((obj = sobj_at(STATUE, dpx, dpy)) != 0) {
+		if (Role_if(PM_FIREFIGHTER) && uwep && uwep->oartifact == ART_BREAK_EVERYTHING && (IS_IRONBAR(lev->typ) || IS_TREE(lev->typ) || IS_FARMLAND(lev->typ) || IS_MOUNTAIN(lev->typ) ) ) {
+			lev->typ = ROOM;
+			digtxt = "You cleared away the obstructing terrain.";
+		} else if ((obj = sobj_at(STATUE, dpx, dpy)) != 0) {
 			if (break_statue(obj)) {
 				digtxt = "The statue shatters.";
 				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {

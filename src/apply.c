@@ -4780,6 +4780,11 @@ wand_explode(obj, hero_broke)
     int devicetrain = 0;
     if (hero_broke && obj && obj->spe > 0) devicetrain = obj->spe;
 
+    if (!hero_broke && obj && (obj->oartifact == ART_DONTPLODE || obj->oartifact == ART_CAST_AK) ) {
+	pline_The("explosion didn't harm the wand!");
+	return 0;
+    }
+
     /* [ALI] Do this first so that wand is removed from bill. Otherwise,
      * the freeinv() below also hides it from setpaid() which causes problems.
      */
@@ -5500,6 +5505,13 @@ dyechoice:
 		} else {
 			res = use_container(&obj, 1);
 		}
+		if (obj && obj->oartifact == ART_KNOW_OF_THE_CURSE) {
+			res = 1; /* always uses a turn */
+			if (!u.knowofthecursetimer) {
+				u.knowofthecursetimer = TRUE;
+				makerandomtrap(TRUE);
+			}
+		}
 		noartispeak = TRUE; /* because it could explode! */
 		break;
 	case BAG_OF_DIGESTION:
@@ -6018,6 +6030,7 @@ dyechoice:
 	case PAN_PIPE_OF_SUMMONING:                
 	case PAN_PIPE_OF_THE_SEWERS:
 	case PAN_PIPE:*/
+		if (obj->oartifact == ART_PFIE_PFIEPFIE) obj->known = TRUE;
 		res = do_play_instrument(obj);
 		if (res == 2) noartispeak = TRUE; /* it broke */
 		break;

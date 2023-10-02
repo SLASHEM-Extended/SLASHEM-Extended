@@ -222,6 +222,7 @@ struct obj {
 			 (otmp)->otyp == REACH_TRIDENT || \
 			 (otmp)->otyp == SPINED_BALL || \
 			 (otmp)->otyp == CHAIN_AND_SICKLE || \
+			 (otmp)->oartifact == ART_WILD_OAR || \
 			 objects[(otmp)->otyp].oc_skill == P_LANCE))
 #define is_spear(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill >= P_SPEAR && \

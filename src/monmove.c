@@ -3487,6 +3487,34 @@ toofar:
 		adjattrib(A_CHA, -1, FALSE, TRUE);
 	    }
 
+	    if (inrange && (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) && mtmp->female && humanoid(mtmp->data) && !rn2(25)) {
+		static const char *platform_msgs[] = {
+			"hahaha",
+			"what a fag",
+			"lol those shoes",
+			"is he kidding us",
+			"is that a tranny?",
+			"for real?",
+			"he must be gay",
+			"did he escape from the asylum?",
+		};
+		static const char *platform_msgs2[] = {
+			"lol that girl with those lame-ass shoes",
+			"those are sooooo out of vogue",
+			"who the hell wears platform shoes???",
+			"is she compensating for something?",
+			"what a stupid girl",
+			"haha is the cunt crying now?",
+			"she looks fat in those shoes",
+			"platform shoes were in use 50 years ago, is she some old granny?",
+		};
+		if (flags.female) verbalize("%s", platform_msgs2[rn2(SIZE(platform_msgs2))]);
+		else verbalize("%s", platform_msgs[rn2(SIZE(platform_msgs))]);
+
+		make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+		if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"monsters making fun of the shoes",KILLED_BY);
+	    }
+
 	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(100) && !flags.female && !mtmp->female) {
 		verbalize("lol look at that fag over there in those ridiculous heels");
 		if (!rn2(5)) verbalize("if he could at least walk in them, but nope...");

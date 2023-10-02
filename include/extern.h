@@ -1046,6 +1046,8 @@ E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
 E boolean have_superjonadabstone(void);
+E boolean have_trippingjewel(void);
+E boolean have_allisloststone(void);
 E boolean have_autohealpotion(void);
 E boolean have_repeatingloadstone(void);
 E boolean have_whitewaterrafting(void);

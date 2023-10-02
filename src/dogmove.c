@@ -814,6 +814,8 @@ register struct monst *mtmp;
 
 	int hasbeenbetrayed = 0;
 
+	if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN) return FALSE;
+
 	if (Role_if(PM_SLAVE_MASTER) && rn2(10)) return FALSE; /* can keep monsters tame more easily --Amy */
 	if (Race_if(PM_CELTIC) && mtmp->data->mlet == S_GOLEM) return FALSE; /* everything else betrays you more often */
 	if (Role_if(PM_POKEMON) && is_pokemon(mtmp->data) && rn2(10)) return FALSE;

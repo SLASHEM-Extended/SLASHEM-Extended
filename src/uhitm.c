@@ -966,6 +966,8 @@ register struct monst *mtmp;
 
 	if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
 
@@ -1916,6 +1918,9 @@ int dieroll;
 			}
 		}
 
+		if (uwep && uwep->oartifact == ART_BAEFF) tmp += 8;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAEFF) tmp += 8;
+
 		if (uarm && uarm->oartifact == ART_EXTRAPUGELN && !(PlayerCannotUseSkills)) {
 			if (martial_bonus()) {
 				switch (P_SKILL(P_MARTIAL_ARTS)) {
@@ -2225,6 +2230,8 @@ int dieroll;
 
 				}
 			}
+			if (obj && obj->oartifact == ART_TIME_FOR_A_CALL) tmp += 6;
+
 			if (obj && obj->oartifact == ART_GAMMASABER) tmp += rnd(10);
 			if (obj && obj->oartifact == ART_TEH_HUNK && !obj->lamplit && tmp > 0) tmp += 5;
 			if (obj && obj->oartifact == ART_GAYGUN && (u.homosexual == 1)) tmp += 5;
@@ -3699,6 +3706,8 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
 		if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
+		if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp += 8;
 		if (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) tmp += 2;
 		if (!thrown && uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) tmp += 4;

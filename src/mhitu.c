@@ -19256,6 +19256,12 @@ register int n;
 		return;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME && !rn2(10)) {
+		n = 0;
+		Your("pair of heels nullifies the damage!");
+		return;
+	}
+
 	if (u.metalguard && n > 0) {
 		u.metalguard = 0;
 		n = 0;
@@ -19393,6 +19399,11 @@ register int n;
 
 	}
 #endif
+
+	if (uarmf && uarmf->oartifact == ART_ELENA_S_COMPETITION && !rn2(100) && !Invulnerable) {
+		incr_itimeout(&Invulnerable, rn1(4, 2));
+		You("become invulnerable!");
+	}
 
 	if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
 		if ((have_limitationstone() == 2) && (n > 0)) u.ascensiontimelimit -= (n * 10);

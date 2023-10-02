@@ -2220,9 +2220,38 @@ learn()
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
 			    }
+			    if (book->oartifact == ART_MULTIPLY_ME) {
+				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
+				pline_The("spell memory bonus was multiplied!");
+			    }
 			    if (book->oartifact == ART_PAGAN_POETRY) {
 				u.superspecialspell = booktype;
 				pline_The("spell is your super special spell now.");
+			    }
+			    if (book->oartifact == ART_LESSEE_DAT && Role_if(PM_ELECTRIC_MAGE)) {
+				if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
+					pline("You can now learn the elemental spells skill.");
+				} else if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_UNSKILLED) {
+					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_BASIC;
+					pline("You can now learn the elemental spells skill.");
+				} else if (rn2(2) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_BASIC) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SKILLED;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(4) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_EXPERT;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(10) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_MASTER;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(100) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_MASTER) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_GRAND_MASTER;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(200) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SUPREME_MASTER;
+					pline("Your knowledge of the elemental spells skill increases.");
+				}
 			    }
 			    if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
@@ -2314,9 +2343,39 @@ learn()
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
 			}
+			if (book->oartifact == ART_MULTIPLY_ME) {
+				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
+				pline_The("spell memory bonus was multiplied!");
+			}
 			if (book->oartifact == ART_PAGAN_POETRY) {
 				u.superspecialspell = booktype;
 				pline_The("spell is your super special spell now.");
+			}
+
+			if (book->oartifact == ART_LESSEE_DAT && Role_if(PM_ELECTRIC_MAGE)) {
+				if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_ISRESTRICTED) {
+					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
+					pline("You can now learn the elemental spells skill.");
+				} else if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_UNSKILLED) {
+					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_BASIC;
+					pline("You can now learn the elemental spells skill.");
+				} else if (rn2(2) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_BASIC) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SKILLED;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(4) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_EXPERT;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(10) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_MASTER;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(100) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_MASTER) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_GRAND_MASTER;
+					pline("Your knowledge of the elemental spells skill increases.");
+				} else if (!rn2(200) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER) {
+					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SUPREME_MASTER;
+					pline("Your knowledge of the elemental spells skill increases.");
+				}
 			}
 
 			if (book->oartifact == ART_IWA_ERWI) {

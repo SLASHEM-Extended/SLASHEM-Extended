@@ -37,6 +37,7 @@
 #define SPFX_EVIL   0x10000000L	/* considered to be an artifact with disadvantages --Amy */
 #define SPFX_ONLYONE 0x20000000L	/* artifact never spawns again if it was already generated --Amy */
 #define SPFX_NOWISH 0x40000000L	/* not wishable --Amy */
+#define SPFX_GIFTAGAIN 0x80000000L	/* can be gifted several times --Amy */
 
 #define SPFX_DBONUS 0x01F00000L	/* attack bonus mask */
 

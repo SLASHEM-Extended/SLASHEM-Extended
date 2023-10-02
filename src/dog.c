@@ -982,6 +982,8 @@ boolean pets_only;	/* true for ascension or final escape */
 		}
 	}
 
+	if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN) extraradius = 999999;
+
 	for (mtmp = fmon; mtmp; mtmp = mtmp2) {
 	    mtmp2 = mtmp->nmon;
 	    if (DEADMONSTER(mtmp)) continue;

@@ -1091,7 +1091,7 @@ boolean existingagain;	/* if TRUE, existing ones can be generated again */
 	    if ((!by_align ? a->otyp == o_typ :
 		    (a->alignment == alignment ||
 			(a->alignment == A_NONE && u.ugifts > 0))) &&
-		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == ROCK && artiexist[m]) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!artiexist[m] || (existingagain && !(a->spfx & SPFX_ONLYONE) ) )) {
+		(!(a->spfx & SPFX_NOGEN) || unique) && !(a->otyp == ROCK && artiexist[m]) && !(a->otyp == WAN_DESLEXIFICATION && !issoviet) && (!artiexist[m] && !(a->spfx & SPFX_GIFTAGAIN) || (existingagain && !(a->spfx & SPFX_ONLYONE) ) )) {
 		/*
 		 * [ALI] The determination of whether an artifact is
 		 * hostile to the player is a little more complex in
@@ -1140,7 +1140,7 @@ boolean existingagain;	/* if TRUE, existing ones can be generated again */
 	    /* make an appropriate object if necessary, then christen it */
 make_artif: if (by_align) otmp = mksobj((int)a->otyp, TRUE, FALSE, FALSE);
 
-	    if (existingagain && !(a->spfx & SPFX_ONLYONE)) otmp = onameX(otmp, a->name);
+	    if ( (existingagain || (a->spfx & SPFX_GIFTAGAIN)) && !(a->spfx & SPFX_ONLYONE)) otmp = onameX(otmp, a->name);
 	    else otmp = oname(otmp, a->name);
 
 	    otmp->oartifact = m;
@@ -1593,6 +1593,15 @@ register boolean mod;
 		if (artimatch && !strcmp(a->name, name)) {
 		    register int m = a - artilist;
 		    otmp->oartifact = (/*char*/int)(mod ? m : 0);
+
+		    if (otmp && otmp->oartifact == ART_NOOBNOOBNOOB && Role_if(PM_NOOB_MODE_BARB)) {
+			FemaleTrapCharlotte |= FROMOUTSIDE;
+			if (!FemtrapActiveRuth) {
+				pline("The feminism power compels you because you're such a noob...");
+				pline("Watch out, the Bang Gang is considering you a target. They're coming for you, and they have some tricks and traps ready.");
+			}
+		    }
+
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_MYSTERIOUS_SPIKES) {
@@ -1625,6 +1634,26 @@ register boolean mod;
 			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+			if (otmp->spe > 127) otmp->spe = 127;
+		    }
+		    if (otmp && otmp->oartifact == ART_YOUR_LUCKY_DAY) {
+			switch (otmp->otyp) {
+				case WAN_WISHING:
+				case WAN_CHARGING:
+				case WAN_ACQUIREMENT:
+				case WAN_GAIN_LEVEL:
+				case WAN_INCREASE_MAX_HITPOINTS:
+					otmp->spe += Role_if(PM_WANDKEEPER) ? 3 : 1;
+					if (otmp->spe > 127) otmp->spe = 127;
+					break;
+				default:
+					otmp->spe += Role_if(PM_WANDKEEPER) ? 50 : 20;
+					if (otmp->spe > 127) otmp->spe = 127;
+					break;
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_TADA) {
+			otmp->spe += 10;
 			if (otmp->spe > 127) otmp->spe = 127;
 		    }
 		    if (otmp && otmp->oartifact == ART_LIBRARY_HIDING) {
@@ -1677,6 +1706,10 @@ register boolean mod;
 			otmp->quan += 4;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_SUNSET_SASAPARILLA) {
+			otmp->quan += rn1(10,10);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_POINTED_JAVELIN) {
 			otmp->quan += rn1(5, 5);
 			otmp->owt = weight(otmp);
@@ -1719,6 +1752,15 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_KLARNIGUR) {
 			otmp->quan *= 2;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_FLIUMILL) {
+			otmp->quan *= 2;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_VENOREAL && Role_if(PM_POISON_MAGE)) {
+			otmp->quan *= 3;
+			otmp->quan += 25;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_ALL_WASTED) {
@@ -2461,6 +2503,7 @@ int tmp;
 
 			case ART_M__M__M_:
 			case ART_MUHISH:
+			case ART_FLIUMILL:
 			case ART_WATERTROOPER:
 			case ART_MISS_LAUNCHER:
 			case ART_HOMING_BEAM:
@@ -3007,7 +3050,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -4394,6 +4437,89 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_UNBINDALL_CHEAT) {
+
+			int pickskill;
+
+			for (pickskill = 0; pickskill < P_NUM_SKILLS; pickskill++) {
+				if (pickskill > P_NONE) {
+					if (P_SKILL(pickskill) != P_ISRESTRICTED) continue;
+					P_ADVANCE(pickskill) = 0;
+				}
+			}
+			pline("Training in restricted skills nullified.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_CHARGING_MADE_EASY) {
+			deacrandomintrinsic(rnz(5000));
+			AutomaticVulnerabilitiy += rnz(5000);
+			obj->age += 500;
+			pline("Lightsaber recharged.");
+		}
+
+		if (obj->oartifact == ART_BENNY_S_CHIP) {
+			if (Role_if(PM_COURIER)) {
+				int n;
+				pline("BANG! Benny shoots you in the head with his pistol.");
+
+				if (u.uhpmax < 21) {
+				    u.youaredead = 1;
+				    killer_format = KILLED_BY;
+				    killer = "being shot in the head";
+				    done(DIED);
+				    u.youaredead = 0;
+
+				} else {
+					u.uhpmax -= 20;
+					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+					if(ABASE(A_INT) < 2) {
+						u.youaredead = 1;
+						u.youarereallydead = 1;
+						Your("last thought fades away.");
+						killer = "bullet to the brain";
+						killer_format = KILLED_BY;
+						done(DIED);
+		
+						/* player still alive somehow? kill them again :P */
+		
+						pline("Unfortunately your brain is still gone.");
+						killer = "bullet to the brain";
+						killer_format = KILLED_BY;
+						done(DIED);
+
+						if (!wizard) {
+							pline("Unfortunately your brain is STILL gone. Your game ends here.");
+							done(ESCAPED);
+						}
+
+						u.youaredead = 0;
+						u.youarereallydead = 0;
+
+						ABASE(A_INT) = ATTRABSMIN(A_INT);
+						You_feel("like a scarecrow.");
+						AMAX(A_INT) = ABASE(A_INT);
+
+					} else {
+						ABASE(A_INT) -= 1;
+						AMAX(A_INT) -= 1;
+					}
+
+
+				}
+				for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+					spellid(n) = NO_SPELL;
+				}
+
+				alter_reality(-1);
+
+				flags.botl = 1;
+			} else pline("Hmm... that didn't do anything.");
+			break;
+		}
 
 		if (obj->oartifact == ART_TILLMANN_S_TARGET) {
 			pline("Suddenly, you gain a new companion!");

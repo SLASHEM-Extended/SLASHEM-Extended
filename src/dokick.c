@@ -54,6 +54,7 @@ register boolean clumsy;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) dmg += 5;
 	if (flags.female && uwep && uwep->oartifact == ART_KICKSIN_GIRL) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_FIND_THE_COMBAT_STANCE) dmg += 10;
+	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) dmg += 5;
 
 	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;
 
@@ -282,9 +283,17 @@ register boolean clumsy;
 
 	if (uarmf && itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) {
 		dmg += u.ulevel;
-		u.ualign.sins++;
-		u.alignlim--;
-		pline("Using such a dangerous pair of boots without permission is very sinful.");
+		if (uarmf && uarmf->oartifact == ART_SHARP_EDGED_AND_DANGEROUS) {
+			if (!u.ualign.sins || (u.ualign.sins && !rn2(u.ualign.sins))) {
+				u.ualign.sins++;
+				u.alignlim--;
+				pline("Using such a dangerous pair of boots without permission is very sinful.");
+			}
+		} else {
+			u.ualign.sins++;
+			u.alignlim--;
+			pline("Using such a dangerous pair of boots without permission is very sinful.");
+		}
 	}
 
 	if (uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) dmg += 10;
@@ -653,6 +662,10 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->oartifact == ART_FULL_PROGRAM) {
 		mon->bleedout += 3;
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SHARP_EDGED_AND_DANGEROUS) {
+		mon->bleedout += 10;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) {

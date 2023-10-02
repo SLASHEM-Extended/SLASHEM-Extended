@@ -568,6 +568,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame)
 		    ways_seen++;
+		if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mtmp->mtame)
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) )
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
@@ -833,6 +835,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame) {
 			strcat(monbuf, "petsense");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mtmp->mtame) {
+			strcat(monbuf, "helen");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mtmp->data->mlet == S_YETI || mtmp->data->mlet == S_ZOUTHERN) ) {

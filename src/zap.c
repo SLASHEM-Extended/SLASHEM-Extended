@@ -4108,6 +4108,13 @@ register struct obj *wand;
 
 	}
 
+	if (wand && wand->oartifact == ART_CAST_AK) {
+		adjalign(-100);
+		u.ualign.sins += 10; 
+		u.alignlim -= 10;
+		u.ugangr++;
+	}
+
 	if (wand && wand->oartifact == ART_WEB_CONFERENCE) {
 
 		switch (rnd(8)) {

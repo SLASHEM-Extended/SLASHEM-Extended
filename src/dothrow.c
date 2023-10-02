@@ -320,6 +320,10 @@ int thrown;
 
 	    if (launcher && launcher->otyp == CATAPULT && (!obj || obj->otyp != ROCK)) multishot += rnd(5);
 	    if (launcher && launcher->otyp == CATAPULT && obj && obj->otyp == ROCK) multishot += rno(5);
+	    if (launcher && launcher->oartifact == ART_DRIVE_BY && u.usteed) {
+		multishot += 2;
+		if (u.ugallop) multishot++;
+	    }
 
 	    if ((uwep && uwep->oartifact == ART_SPEERTHROW) && (skill == P_SPEAR) ) {
 			multishot += 2;
@@ -1789,6 +1793,8 @@ boolean hitsroof;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) dmg -= 9;
 	if (uwep && uwep->oartifact == ART_VLADSBANE) dmg -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) dmg -= 5;
+	if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) dmg -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) dmg -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) dmg -= 1;
 	if (uarm && uarm->oartifact == ART_POWASPEL) dmg -= 3;
 
@@ -2612,6 +2618,8 @@ boolean polearming;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 	if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DUAL_MASTERY) tmp += 5;
 	if (uwep && uwep->oartifact == ART_SPINESHOOTER) tmp += 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) tmp -= 5;

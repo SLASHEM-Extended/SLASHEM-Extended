@@ -13951,7 +13951,7 @@ A("NOOBNOOBNOOB",				CHARLOTTE_S_JEWEL, /* if this item is generated as a noob m
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, PM_NOOB_MODE_BARB, NON_PM, 1500L ),
 
 A("Fliumill",				WINDMILL_BLADE, /* dmg h@ck because programmers are so ultra stupid and don't just make a SPFX_DBLDAMAGE flag, spawns with double stack size and can be gifted again even after it has already been generated */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_GIFTAGAIN), 0, 0,
 	PHYS(12, 0), NO_DFNS, NO_CARY, 0, A_NONE, PM_NINJA, NON_PM, 100L ),
 
 A("Baeff",				CESTUS, /* +8 unarmed damage (requires dual-wielding with one hand empty if that wasn't obvious) even if this arti is in the off-hand, also +8 strength and dmgval +4 and another +6 against that which the base damage value is low against */
@@ -14047,7 +14047,7 @@ A("yes,occifer",				IRON_CHAIN, /* randart iron chain, sic, double free action *
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_OFFICER, NON_PM, 2000L ),
 
 A("Sunset Sasaparilla",				POT_BOOZE, /* +rn1(10,10) stack size, deactivates speed for 1000 turns when quaffed, heals you fully and +200 nutrition, can be gifted more than once */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_GIFTAGAIN), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_COURIER, NON_PM, 50L ),
 
 A("Benny's Chip",				DATA_CHIP, /* invoke for alter reality but doing so deletes all spells, -20 max HP and -1 INT permanently, and the invoke only works for a courier */

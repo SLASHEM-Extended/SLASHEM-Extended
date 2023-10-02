@@ -2150,6 +2150,12 @@ int curse_bless;
 
 		n = (int)obj->recharged;
 		if (n > 0 && rn2(3) && (n * n * n > rn2(9*9*9))) {
+
+			if (obj->oartifact == ART_PFIE_PFIEPFIE) {
+				pline_The("recharging failed!");
+				return;
+			}
+
 			Your("%s glows violently and evaporates!", xname(obj));
 			useup(obj);
 		    return;
@@ -2159,6 +2165,7 @@ int curse_bless;
 		    stripspe(obj);
 		} else if (is_blessed) {
 		    obj->spe += d(2,4);
+		    if (obj->oartifact == ART_TADA) obj->spe += d(2,4);
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
@@ -2169,6 +2176,7 @@ int curse_bless;
 			}
 		} else {
 		    obj->spe += rnd(4);
+		    if (obj->oartifact == ART_TADA) obj->spe += rnd(4);
 		    if (obj->spe > 20) obj->spe = 20;
 		    p_glow1(obj);
 			u.cnd_chargingcount++;

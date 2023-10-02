@@ -2436,6 +2436,8 @@ int stattoboost;
 		else if (ABASE(stattoboost) == (17 + goupbuust)) statgoupchance = 1000;
 	}
 
+	if (uarm && uarm->oartifact == ART_CERNY_ && stattoboost == A_CON) statgoupchance /= 3;
+
 	if (!rn2(statgoupchance)) statwillgoup = TRUE;
 	if (statwillgoup) {
 		adjattrib(stattoboost, 1, 0, TRUE);
@@ -3087,6 +3089,7 @@ int x;
 		if (uleft && uleft->otyp == RIN_GAIN_STRENGTH) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_STRENGTH) tmp += uright->spe;
 		if (uarmg && uarmg->oartifact == ART_LIKE_GRACE) tmp += 5;
+		if ((uwep && uwep->oartifact == ART_BAEFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAEFF)) tmp += 8;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3161,6 +3164,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LYDIA_S_SEXYROOM) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
 		if (uarm && uarm->oartifact == ART_TOWNIE_DUMP) tmp += 5;
+		if (uamul && uamul->oartifact == ART_DIEAMEND) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) tmp += (5 + uarmf->spe);
@@ -3800,6 +3804,7 @@ boolean displaymessage;
 	if (uimplant && uimplant->oartifact == ART_FOOD_FOR_THOUGHT && (targetattr == A_WIS || targetattr == A_INT)) {
 		actuallimit += (powerfulimplants() ? 5 : 2);
 	}
+	if (uarm && uarm->oartifact == ART_CERNY_ && targetattr == A_CON) actuallimit += 5;
 
 	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone()) {
 		if (targetattr == A_STR && actuallimit >= STR19(25)) actuallimit = STR18(70);

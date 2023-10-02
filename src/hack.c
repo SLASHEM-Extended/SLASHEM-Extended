@@ -5111,6 +5111,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (uarm && uarm->oartifact == ART_SUSA_MAIL && !rn2(10)) {
 		n = 0;
 		Your("armor nullifies the damage!");
+	} else if (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME && !rn2(10)) {
+		n = 0;
+		Your("pair of heels nullifies the damage!");
 	} else if (u.metalguard) {
 		u.metalguard = 0;
 		n = 0;

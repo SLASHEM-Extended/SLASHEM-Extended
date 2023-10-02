@@ -1256,6 +1256,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mon->mtame) ||
 		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
 		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
@@ -1376,6 +1377,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mon->mtame) ||
 		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
 		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
@@ -1661,6 +1663,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mon->mtame) ||
 		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
 		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
@@ -1781,6 +1784,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) ||
 		(uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) ||
+		(uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mon->mtame) ||
 		(uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) ||
 		(uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) ||
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
@@ -3753,6 +3757,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_BUGNOSE && (mon->data->mlet == S_ANT || mon->data->mlet == S_XAN) ) return TRUE;
 	if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mon->mtame) return TRUE;
+	if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mon->mtame) return TRUE;
 	if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mon->mtame) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) return TRUE;

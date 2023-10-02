@@ -490,6 +490,11 @@ nh_timeout()
 		if (!u.powerfailure) pline("Your power comes back online.");
 	}
 
+	if (u.knowofthecursetimer) {
+		u.knowofthecursetimer--;
+		if (u.knowofthecursetimer < 0) u.knowofthecursetimer = 0; /* fail safe */
+	}
+
 	if (u.demagogueabilitytimer) {
 		u.demagogueabilitytimer--;
 		if (u.demagogueabilitytimer < 0) u.demagogueabilitytimer = 0; /* fail safe */
@@ -1425,6 +1430,12 @@ nh_timeout()
 	}
 
 	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && have_trapcreationstone() ) {
+
+		makerandomtrap(FALSE);
+
+	}
+
+	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME ) {
 
 		makerandomtrap(FALSE);
 

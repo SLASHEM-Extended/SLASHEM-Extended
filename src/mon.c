@@ -8331,6 +8331,28 @@ sarahdone:
 			else reducesanity(1);
 			pline("This is actually enjoyable.");
 		}
+		if (uarmf && uarmf->oartifact == ART_ELENA_S_REWARD) {
+			gain_alla(5);
+			u.usanity += 5; /* doesn't cause bad side effects */
+			if (!rn2(20) && multi >= 0) {
+				nomul(-20, "unconscious from inhaling too much farting gas", TRUE);
+
+				if (quest_status.killed_nemesis) {
+					mtmp->mfrenzied = FALSE;
+					mtmp->mpeaceful = TRUE;
+				} else {
+					make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+					(void) safe_teleds_normalterrain(FALSE); /* to minimize the chance that the monster follows */
+
+					d_level dtmp;
+
+					dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
+					dtmp.dlevel = 1;
+					schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+
+				}
+			}
+		}
     }
     if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
