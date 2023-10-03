@@ -11179,6 +11179,7 @@ u_init()
 	u.greencrossopen = FALSE; /* initialized at game start only */
 	u.prematuresubquest = FALSE;
 	u.prematureyendortower = FALSE;
+	u.arstechnicadone = FALSE;
 
 	u.greencrosschance = rnd(20);
 

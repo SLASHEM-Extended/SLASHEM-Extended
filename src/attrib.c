@@ -3106,6 +3106,8 @@ int x;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
 		if (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) tmp -= 5;
+		if (uleft && uleft->oartifact == ART_FIRST_EXCHANGE) tmp -= 5;
+		if (uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp -= 5;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3333,6 +3335,8 @@ int x;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
 		if (uarmh && uarmh->otyp == CORNUTHAUM && !Role_if(PM_WIZARD)) tmp -= 1;
+		if (uleft && uleft->oartifact == ART_SECOND_EXCHANGE) tmp -= 5;
+		if (uright && uright->oartifact == ART_SECOND_EXCHANGE) tmp -= 5;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);
@@ -3400,6 +3404,8 @@ int x;
 		if (x == A_WIS && uright && uright->otyp == RIN_GAIN_WISDOM) tmp += uright->spe;
 		if (x == A_WIS && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 5;
 		if (x == A_INT && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 7;
+		if (x == A_INT && uleft && uleft->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
+		if (x == A_INT && uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3488,6 +3494,8 @@ int x;
 		if (uleft && uleft->otyp == RIN_GAIN_DEXTERITY) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_DEXTERITY) tmp += uright->spe;
 		if (uarmg && uarmg->oartifact == ART_LIKE_GRACE) tmp += 5;
+		if (uleft && uleft->oartifact == ART_SECOND_EXCHANGE) tmp += 5;
+		if (uright && uright->oartifact == ART_SECOND_EXCHANGE) tmp += 5;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;

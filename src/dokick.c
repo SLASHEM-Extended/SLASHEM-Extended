@@ -15,7 +15,6 @@ static NEARDATA const char *gate_str;
 extern boolean notonhead;	/* for long worms */
 
 STATIC_DCL void kickdmg(struct monst *, BOOLEAN_P);
-STATIC_DCL void kick_monster(XCHAR_P, XCHAR_P);
 STATIC_DCL int kick_object(XCHAR_P, XCHAR_P);
 STATIC_DCL char *kickstr(char *);
 STATIC_DCL void otransit_msg(struct obj *, BOOLEAN_P, long);
@@ -842,7 +841,7 @@ register boolean clumsy;
 	}
 }
 
-STATIC_OVL void
+void
 kick_monster(x, y)
 register xchar x, y;
 {

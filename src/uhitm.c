@@ -2453,7 +2453,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -2864,6 +2864,11 @@ int dieroll;
 			    }
 			    if (obj->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE) {
 					tmp += 20;
+			    }
+
+			    if (launcher && launcher->oartifact == ART_BANG_THE_HEAD_AWAY && !rn2(20) && !noncorporeal(mon->data) && !amorphous(mon->data) && has_head(mon->data) && !(mon->data->geno & G_UNIQ) ) {
+				pline("Head shot!");
+				tmp += 9999;
 			    }
 
 			    if (launcher && launcher->otyp == LASERXBOW && launcher->lamplit && launcher->altmode) {
@@ -3860,6 +3865,10 @@ int dieroll;
 
 		if (obj && obj->oartifact == ART_VERSUS_ELECTRICALLY_BASED_ && (dmgtype(mon->data, AD_ELEC) || dmgtype(mon->data, AD_MALK) ) ) {
 			tmp += d(3, 10);
+		}
+
+		if (!thrown && obj && obj->oartifact == ART_UP_DOWN_STAB && isok(mon->mx, mon->my) && ((levl[mon->mx][mon->my].typ == WOODENTABLE) || (levl[mon->mx][mon->my].typ == POOL) || (levl[mon->mx][mon->my].typ == MOAT) || (levl[mon->mx][mon->my].typ == WATER) ) ) {
+			tmp += 20;
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
@@ -10135,6 +10144,11 @@ use_weapon:
 				if (uwep && uwep->oartifact == ART_SHARPENING_SLAT && !rn2(100) && uwep->spe < 0) {
 					uwep->spe++;
 					pline("Your weapon repairs itself a bit!");
+				}
+
+				if (uwep && uwep->oartifact == ART_GEB_ME_ALL_YOUR_MONEY && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+					monflee(mon, rnd(10), FALSE, FALSE);
+					pline("%s looks scared.", Monnam(mon));
 				}
 
 				if (uwep && uwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uwep->spe > -20) {

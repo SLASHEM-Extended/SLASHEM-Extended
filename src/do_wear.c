@@ -4832,6 +4832,11 @@ register struct obj *obj;
 		Your("ring seems to have cursed itself.");
     }
 
+    if (obj->oartifact == ART_SECOND_EXCHANGE && !obj->cursed) {
+		curse(obj);
+		Your("ring cursed itself.");
+    }
+
     if (obj->oartifact == ART_VERSION_CONTROL) {
 		if (!obj->cursed) {
 			curse(obj);
@@ -6455,6 +6460,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
+	if (uarm && uarm->oartifact == ART_BRITNEY_S_DECEPTION) uac -= 6;
 	if (uwep && uwep->oartifact == ART_MAGDALENA_S_CUDDLEWEAPON) uac -= 5;
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;

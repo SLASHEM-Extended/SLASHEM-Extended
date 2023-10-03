@@ -2010,6 +2010,8 @@ burnagain:
 
 	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (otmp->owornmask & W_ARMOR) ) vulnerable = FALSE;
 
+	if (uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (otmp->owornmask & W_ARMOR) ) vulnerable = FALSE;
+
 	if (otmp->oartifact == ART_PROOFINGNESS_POOFS && !otmp->rknown) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) vulnerable = FALSE;
@@ -2143,6 +2145,8 @@ struct monst *victim;
 	if (otmp->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) vulnerable = FALSE;
 
 	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (otmp->owornmask & W_ARMOR) ) vulnerable = FALSE;
+
+	if (uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (otmp->owornmask & W_ARMOR) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_PROOFINGNESS_POOFS && !otmp->rknown) vulnerable = FALSE;
 
@@ -24287,6 +24291,8 @@ register boolean force, here;
 
 		if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (obj->owornmask & W_ARMOR) ) continue;
 
+		if (uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (obj->owornmask & W_ARMOR) ) continue;
+
 		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
 
 		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
@@ -24302,6 +24308,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_WELCOME_ON_BOARD) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_UNDERWATER_LOVE) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmh && uarmh->oartifact == ART_AIR_ON_HOLD) continue;
 		if ((obj->where != OBJ_FLOOR) && have_whitewaterrafting()) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_TRIDENT_OF_POSEIDON) continue;		
@@ -24683,6 +24690,8 @@ register boolean force, here;
 
 		if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (obj->owornmask & W_ARMOR) ) continue;
 
+		if (uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (obj->owornmask & W_ARMOR) ) continue;
+
 		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
 
 		if (obj->oartifact == ART_RATCH_CLOSURE_SCRATCHING && rn2(4) ) continue;
@@ -24757,6 +24766,8 @@ register boolean force, here;
 		if (obj->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) continue;
 
 		if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (obj->owornmask & W_ARMOR) ) continue;
+
+		if (uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (obj->owornmask & W_ARMOR) ) continue;
 
 		if (obj->oartifact == ART_PROOFINGNESS_POOFS && !obj->rknown) continue;
 

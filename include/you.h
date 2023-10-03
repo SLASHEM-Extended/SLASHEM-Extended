@@ -644,6 +644,7 @@ struct you {
 	int joustchallengecomplete;
 	int gruechallengecomplete;
 	int devnullcomplete;
+	boolean arstechnicadone;
 
 	int maxrndmonstchoicecount;	/* for rndmonst() in makemon.c */
 

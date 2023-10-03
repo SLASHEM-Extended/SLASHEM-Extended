@@ -7253,6 +7253,7 @@ xkilled(mtmp, dest)
 
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
+	if (uwep && uwep->oartifact == ART_FOR_STYGWYR_) healup(mtmp->m_lev, 0, FALSE, FALSE);
 
 	if (uwep && uwep->oartifact == ART_SOUL_EDGE) healup(1, 0, FALSE, FALSE);
 

@@ -540,6 +540,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mtmp->data) )
 		    ways_seen++;
+		if (have_maybrittclick() && is_jokemonster(mtmp->data) )
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mtmp->data, AD_RBRE) || dmgtype(mtmp->data, AD_RNG) ) )
@@ -780,6 +782,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mtmp->data) ) {
+			strcat(monbuf, "joke monster view");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (have_maybrittclick() && is_jokemonster(mtmp->data) ) {
 			strcat(monbuf, "joke monster view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }

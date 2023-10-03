@@ -20879,7 +20879,6 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-
 	}
 
 	if (u.bodyfluideffect && (!resists_acid(mtmp) || player_will_pierce_resistance()) ) {
@@ -20891,7 +20890,6 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-
 	}
 
 	/* from PRIME: "Very experienced Xel'Naga have stronger acid blood." --Amy */
@@ -20904,7 +20902,6 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-
 	}
 
 	if (uarmf && uarmf->oartifact == ART_SISTER_S_ACID && (!resists_acid(mtmp) || player_will_pierce_resistance()) ) {
@@ -20916,7 +20913,6 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-
 	}
 
 	if (uwep && uwep->oartifact == ART_BRISTLY_STRING) {
@@ -20927,7 +20923,6 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-
 	}
 
 	if (uwep && uwep->oartifact == ART_PRICKTRICK) {
@@ -20938,12 +20933,21 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
-
 	}
 
 	if (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) {
 		pline("%s is damaged by your thorny shield!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(5) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarm && uarm->oartifact == ART_BRITNEY_S_DECEPTION) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(GushLevel) ) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

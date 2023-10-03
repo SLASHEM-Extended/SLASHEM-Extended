@@ -3997,6 +3997,19 @@ find_stone_carved_heels()
 }
 
 int
+find_stupid_stilettos()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_STUPID_STILETTOS)) return i;
+    }
+
+    impossible("stupid stilettos not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_homo_shoes()
 {
     register int i;

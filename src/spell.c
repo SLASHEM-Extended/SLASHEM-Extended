@@ -12279,6 +12279,7 @@ int spell;
 	if (uarmc && uarmc->oartifact == ART_CASTEASY) chance += 5;
 	if (uwep && uwep->oartifact == ART_INFASPEL) chance += 5;
 	if (uarmg && uarmg->oartifact == ART_HOGWILD_WIZ) chance += 10;
+	if (have_magicrystal()) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
@@ -12737,6 +12738,7 @@ int spell;
 	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
 	if (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) chance += 20;
 	if (uarmg && uarmg->oartifact == ART_HOGWILD_WIZ) chance += 5;
+	if (have_magicrystal()) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
 
 	if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) chance += 5;

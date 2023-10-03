@@ -579,6 +579,7 @@ E boolean ship_object(struct obj *,XCHAR_P,XCHAR_P,BOOLEAN_P);
 E void obj_delivery(void);
 E schar down_gate(XCHAR_P,XCHAR_P);
 E void impact_drop(struct obj *,XCHAR_P,XCHAR_P,XCHAR_P);
+E void kick_monster(XCHAR_P, XCHAR_P);
 
 /* ### dothrow.c ### */
 
@@ -1045,6 +1046,8 @@ E boolean itemsurvivedestruction(struct obj *, int);
 E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
+E boolean have_maybrittclick(void);
+E boolean have_magicrystal(void);
 E boolean have_superjonadabstone(void);
 E boolean have_trippingjewel(void);
 E boolean have_allisloststone(void);
@@ -2265,6 +2268,7 @@ E int find_ballet_heels(void);
 E int find_steel_toed_boots(void);
 E int find_marji_shoes(void);
 E int find_stone_carved_heels(void);
+E int find_stupid_stilettos(void);
 E int find_homo_shoes(void);
 E int find_devil_lettuce_shoes(void);
 E int find_loafers(void);
@@ -3021,6 +3025,8 @@ E int randartshuriken(void);
 E int randartshurikenX(void);
 E int randartdart(void);
 E int randartdartX(void);
+E int randartjavelin(void);
+E int randartjavelinX(void);
 E int randartarrow(void);
 E int randartarrowX(void);
 E int randartsaber(void);

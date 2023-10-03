@@ -1441,6 +1441,30 @@ have_trippingjewel()
 }
 
 boolean
+have_maybrittclick()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MAY_BRITT_S_JEWEL && otmp->oartifact == ART_MAY_BRITT_S_CLICK)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_magicrystal()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CHALCEDON && otmp->oartifact == ART_MAGICRYSTAL)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_allisloststone()
 {
 	register struct obj *otmp;
@@ -19697,7 +19721,7 @@ boolean knoweverything;
 			switch (obj->oartifact) {
 
 				case ART_FIREWALL:
-					pline("Artifact specs: +4 to-hit and +4 damage to fire-susceptible monsters, resist fire when wielded, lawful, flame mage sacrifice gift."); break;
+					pline("Artifact specs: +4 to-hit and +4 fire damage, resist fire when wielded, lawful, flame mage sacrifice gift."); break;
 				case ART_STING:
 					pline("Artifact specs: warns of orcs and +5 to-hit and double damage to them, lawful, aligned with elf race."); break;
 				case ART_GIANTKILLER:
@@ -19745,17 +19769,17 @@ boolean knoweverything;
 				case ART_SWORD_OF_BALANCE:
 					pline("Artifact specs: +2 to-hit and +10 damage to crossaligned monsters, neutral."); break;
 				case ART_FROST_BRAND:
-					pline("Artifact specs: +5 to-hit and double damage to cold-susceptible monsters, cold resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and double cold damage, cold resistance when wielded."); break;
 				case ART_FIRE_BRAND:
-					pline("Artifact specs: +5 to-hit and double damage to fire-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and double fire damage, fire resistance when wielded."); break;
 				case ART_VORPAL_BLADE:
 					pline("Artifact specs: +5 to-hit and +2 damage, beheads targets, neutral."); break;
 				case ART_DISRUPTER:
 					pline("Artifact specs: +5 to-hit and +30 damage to undead, neutral, priest sacrifice gift."); break;
 				case ART_MJOLLNIR:
-					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, weighs 500 extra units, makes your AC worse by 10 points, neutral, valkyrie sacrifice gift."); break;
+					pline("Artifact specs: +5 to-hit and +24 shock damage, can be thrown with a strength of 25, weighs 500 extra units, makes your AC worse by 10 points, neutral, valkyrie sacrifice gift."); break;
 				case ART_OTHER_MJOLLNIR:
-					pline("Artifact specs: +5 to-hit and +24 damage to shock-susceptible monsters, can be thrown with a strength of 25, weighs 500 extra units, makes your AC worse by 10 points, neutral, vanilla valk sacrifice gift."); break;
+					pline("Artifact specs: +5 to-hit and +24 shock damage, can be thrown with a strength of 25, weighs 500 extra units, makes your AC worse by 10 points, neutral, vanilla valk sacrifice gift."); break;
 				case ART_GAUNTLETS_OF_DEFENSE:
 					pline("Artifact specs: half physical damage when worn, can be invoked for invisibility, neutral, monk sacrifice gift."); break;
 				case ART_MIRRORBRIGHT:
@@ -19767,7 +19791,7 @@ boolean knoweverything;
 				case ART_GRIMTOOTH:
 					pline("Artifact specs: +2 to-hit and +6 damage, chaotic, aligned with orc race."); break;
 				case ART_DEEP_FREEZE:
-					pline("Artifact specs: +5 to-hit and +6 damage to cold-susceptible monsters, cold resistance when wielded, chaotic, ice mage sacrifice gift."); break;
+					pline("Artifact specs: +5 to-hit and +6 cold damage, cold resistance when wielded, chaotic, ice mage sacrifice gift."); break;
 				case ART_SERPENT_S_TONGUE:
 					pline("Artifact specs: +2 to-hit and double damage, chaotic, necromancer sacrifice gift. Does extra poison damage."); break;
 				case ART_MARAUDER_S_MAP:
@@ -19777,9 +19801,9 @@ boolean knoweverything;
 				case ART_DOOMBLADE:
 					pline("Artifact specs: +10 damage, can sometimes do extra damage, chaotic."); break;
 				case ART_SEA_GULL:
-					pline("Artifact specs: +2 to-hit and +4 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +2 to-hit and +4 fire damage."); break;
 				case ART_JUNGLE_GUARD:
-					pline("Artifact specs: Regeneration and acid resistance when wielded, +1 to-hit and +10 damage to acid-susceptible monsters."); break;
+					pline("Artifact specs: Regeneration and acid resistance when wielded, +1 to-hit and +10 acid damage."); break;
 				case ART_DARK_MOON_RISING:
 					pline("Artifact specs: Warning when wielded, +4 to-hit and +8 damage."); break;
 				case ART_DIGGING_DOG:
@@ -19789,13 +19813,13 @@ boolean knoweverything;
 				case ART_STORMBRINGER_S_LITTLE_BROT:
 					pline("Artifact specs: drain resistance when wielded, +1 to-hit and +2 drain life damage, chaotic."); break;
 				case ART_THORN_ROSE:
-					pline("Artifact specs: +5 to-hit and +2 damage to fire-susceptible monsters, fire resistance when wielded, lawful."); break;
+					pline("Artifact specs: +5 to-hit and +2 fire damage, fire resistance when wielded, lawful."); break;
 				case ART_BLUEWRATH:
-					pline("Artifact specs: +5 to-hit and +2 damage to cold-susceptible monsters, cold resistance when wielded, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +2 cold damage, cold resistance when wielded, neutral."); break;
 				case ART_KAMEHAMEHADOKEN:
 					pline("Artifact specs: +8 to-hit and +16 damage."); break;
 				case ART_ELECTRIFIER:
-					pline("Artifact specs: +5 to-hit and +2 damage to shock-susceptible monsters, shock resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +2 shock damage, shock resistance when wielded."); break;
 				case ART_DOUBLE_BESTARD:
 					pline("Artifact specs: +20 damage, -d20 to-hit and slows you down considerably. The misspelling is intentional."); break;
 				case ART_GUARDIAN_OF_ARANOCH:
@@ -19807,7 +19831,7 @@ boolean knoweverything;
 				case ART_SOUNDING_IRON:
 					pline("Artifact specs: +2 to-hit and +6 damage."); break;
 				case ART_FIRMNAIL:
-					pline("Artifact specs: Acts as a luckstone and gives fire resistance when wielded, +1 to-hit and +8 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: Acts as a luckstone and gives fire resistance when wielded, +1 to-hit and +8 fire damage."); break;
 				case ART_SUPERCLEAN_DESEAMER:
 					pline("Artifact specs: Protection and stealth when wielded, +10 to-hit and +4 damage."); break;
 				case ART_SOOTHING_FAN:
@@ -19841,9 +19865,9 @@ boolean knoweverything;
 				case ART_STARCRAFT_FLAIL:
 					pline("Artifact specs: Half spell damage when wielded, +1 to-hit and double damage, chaotic."); break;
 				case ART_PWNHAMMER:
-					pline("Artifact specs: Grayout, half physical damage and cold resistance when wielded, +5 to-hit and +16 damage to cold-susceptible monsters."); break;
+					pline("Artifact specs: Grayout, half physical damage and cold resistance when wielded, +5 to-hit and +16 cold damage."); break;
 				case ART_PWNHAMMER_DUECE:
-					pline("Artifact specs: Regeneration and fire resistance when wielded, +8 to-hit and +24 damage to fire-susceptible monsters, +10 monster difficulty and you can't see lit squares unless you'd also see them if they were unlit."); break;
+					pline("Artifact specs: Regeneration and fire resistance when wielded, +8 to-hit and +24 fire damage, +10 monster difficulty and you can't see lit squares unless you'd also see them if they were unlit."); break;
 				case ART_DOCKSIDE_WALK:
 					pline("Artifact specs: Teleport control when wielded, +2 to-hit and +10 damage."); break;
 				case ART_KARATE_KID:
@@ -19853,7 +19877,7 @@ boolean knoweverything;
 				case ART_ARMOR_PIERCING_HUG:
 					pline("Artifact specs: Protection and shock resistance when wielded, +50 to-hit and +2 damage."); break;
 				case ART_ASIAN_WINTER:
-					pline("Artifact specs: Aggravates monsters and fire resistance when wielded, +4 to-hit and +18 damage to cold-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: Aggravates monsters and fire resistance when wielded, +4 to-hit and +18 cold damage, chaotic."); break;
 				case ART_FRENCH_MARIA:
 					pline("Artifact specs: Warning and acid resistance when wielded, +2 to-hit and +12 damage."); break;
 				case ART_FORCE_INDIA:
@@ -19875,11 +19899,11 @@ boolean knoweverything;
 				case ART_DULL_METAL:
 					pline("Artifact specs: +1 to-hit and +20 damage, but may occasionally dull upon hitting something."); break;
 				case ART_GNARLWHACK:
-					pline("Artifact specs: Fire and hallucination resistance as well as searching when wielded, +5 to-hit and +8 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: Fire and hallucination resistance as well as searching when wielded, +5 to-hit and +8 fire damage."); break;
 				case ART_FIRE_LEADER:
-					pline("Artifact specs: Acts as a luckstone, +9 to-hit and +24 damage to fire-susceptible monsters, disables your fire resistance for 1000 turns, makes fire-resistant monsters more likely to spawn, can be invoked to untrap, neutral."); break;
+					pline("Artifact specs: Acts as a luckstone, +9 to-hit and +24 fire damage, disables your fire resistance for 1000 turns, makes fire-resistant monsters more likely to spawn, can be invoked to untrap, neutral."); break;
 				case ART_FUMATA_YARI:
-					pline("Artifact specs: etherwind, speed and acid resistance when wielded, +2 to-hit and +16 damage to acid-susceptible monsters."); break;
+					pline("Artifact specs: etherwind, speed and acid resistance when wielded, +2 to-hit and +16 acid damage."); break;
 				case ART_NON_SUCKER:
 					pline("Artifact specs: +6 to-hit and +12 damage."); break;
 				case ART_DIMOAK_S_HEW:
@@ -19891,9 +19915,9 @@ boolean knoweverything;
 				case ART_COCK_APPLICATION:
 					pline("Artifact specs: Protection when wielded, +3 to-hit and +16 level-drain damage, will gradually sap your maximum health when wielded."); break;
 				case ART_NOT_A_HAMMER:
-					pline("Artifact specs: Reflection when wielded, your AC cannot be better than 10, +4 to-hit and +16 damage to cold-susceptible monsters. This is not a hammer-class weapon."); break;
+					pline("Artifact specs: Reflection when wielded, your AC cannot be better than 10, +4 to-hit and +16 cold damage. This is not a hammer-class weapon."); break;
 				case ART_IT_S_A_POLEARM:
-					pline("Artifact specs: Magic resistance and AIDS when wielded (which doesn't disable the magic resistance), +4 to-hit and +16 damage to shock-susceptible monsters. This is a polearm-class weapon."); break;
+					pline("Artifact specs: Magic resistance and AIDS when wielded (which doesn't disable the magic resistance), +4 to-hit and +16 shock damage. This is a polearm-class weapon."); break;
 				case ART_BEC_DE_ASCORBIN:
 					pline("Artifact specs: +1 to-hit and +4 damage, can be applied for healing, lawful."); break;
 				case ART_PALEOLITHIC_RELIC:
@@ -19903,13 +19927,13 @@ boolean knoweverything;
 				case ART_MISGUIDED_MISSILE:
 					pline("Artifact specs: Teleport control when wielded, you occasionally move in the wrong direction, +16 damage."); break;
 				case ART_MARE_S_SPECIAL_ROCKET:
-					pline("Artifact specs: Reflection, cold resistance and makes you quite a bit slower when wielded, +8 to-hit and +16 damage to cold-susceptible monsters, lawful."); break;
+					pline("Artifact specs: Reflection, cold resistance and makes you quite a bit slower when wielded, +8 to-hit and +16 cold damage, lawful."); break;
 				case ART_LIGHTNING_BLADE:
-					pline("Artifact specs: +2 to-hit and +12 damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: +2 to-hit and +12 shock damage."); break;
 				case ART_FISHING_GRANDPA:
 					pline("Artifact specs: Warns of eels and adds +20 to-hit and +40 damage versus eels."); break;
 				case ART_STATIC_STICK:
-					pline("Artifact specs: shock resistance when wielded, +4 to-hit and +14 damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: shock resistance when wielded, +4 to-hit and +14 shock damage."); break;
 				case ART_PEOPLE_EATING_TRIDENT:
 					pline("Artifact specs: sight bonus when wielded, warns of Team @ and adds +8 to-hit and double damage versus all @."); break;
 				case ART_MADELINE_S_GUARDIAN:
@@ -19919,7 +19943,7 @@ boolean knoweverything;
 				case ART_LACKWARE:
 					pline("Artifact specs: +1 to-hit and +2 damage."); break;
 				case ART_WILD_HUNT:
-					pline("Artifact specs: Searching, protection and fire resistance when wielded, +2 to-hit and +16 damage to fire-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: Searching, protection and fire resistance when wielded, +2 to-hit and +16 fire damage, chaotic."); break;
 				case ART_BUFFY_AMMO:
 					pline("Artifact specs: +10 to-hit and +40 damage to demons."); break;
 				case ART_HEAVY_HITTER_ARROW:
@@ -19953,11 +19977,11 @@ boolean knoweverything;
 				case ART_DOOMGUY_S_WET_DREAM:
 					pline("Artifact specs: +2 to-hit and double damage."); break;
 				case ART_GRAND_DADDY:
-					pline("Artifact specs: +20 to-hit and +20 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +20 to-hit and +20 fire damage."); break;
 				case ART_EXTRA_FIREPOWER:
 					pline("Artifact specs: +2 to-hit and +10 damage."); break;
 				case ART_DEMON_MACHINE:
-					pline("Artifact specs: infravision when wielded, +6 to-hit and +12 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: infravision when wielded, +6 to-hit and +12 fire damage."); break;
 				case ART_ICBM:
 					pline("Artifact specs: +20 to-hit and +2 damage."); break;
 				case ART_BEARKILLER:
@@ -19975,7 +19999,7 @@ boolean knoweverything;
 				case ART_CRUEL_PUNISHER:
 					pline("Artifact specs: aggravates monsters and energy regeneration when wielded, +2 to-hit and +12 damage, chaotic."); break;
 				case ART_BRISTLY_STRING:
-					pline("Artifact specs: Monsters take damage if they melee you. +3 to-hit and +12 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: Monsters take damage if they melee you. +3 to-hit and +12 fire damage."); break;
 				case ART_POLICE_BRUTALITY:
 					pline("Artifact specs: +4 to-hit and +14 damage."); break;
 				case ART_DEMONSTRANTS_GO_HOME:
@@ -20517,7 +20541,7 @@ boolean knoweverything;
 				case ART_FAEAEAEAEAEAU:
 					pline("Artifact specs: Fire resistance when wielded."); break;
 				case ART_DIGGER_GEM:
-					pline("Artifact specs: +5 to-hit and +16 damage to acid-susceptible monsters."); break;
+					pline("Artifact specs: +5 to-hit and +16 acid damage."); break;
 				case ART_KHOR_S_CURSE:
 					pline("Artifact specs: well, see for yourself, you picked it up after all, hahaha! :D"); break;
 				case ART_STRANGE_PROTECTOR:
@@ -20543,23 +20567,23 @@ boolean knoweverything;
 				case ART_RESTKEEPER:
 					pline("Artifact specs: +4 to-hit and +8 damage to crossaligned monsters, lawful. The type of ice block created this item in case someone wants to compile firearms out of the game, which will never happen. :-P"); break;
 				case ART_ICEBITER:
-					pline("Artifact specs: cold resistance when wielded, +6 to-hit and +6 damage to cold-susceptible monsters, lawful."); break;
+					pline("Artifact specs: cold resistance when wielded, +6 to-hit and +6 cold damage, lawful."); break;
 				case ART_SHOCK_BRAND:
-					pline("Artifact specs: shock resistance when wielded, +5 to-hit and double damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: shock resistance when wielded, +5 to-hit and double shock damage."); break;
 				case ART_ACID_BRAND:
-					pline("Artifact specs: acid resistance when wielded, +5 to-hit and double damage to acid-susceptible monsters."); break;
+					pline("Artifact specs: acid resistance when wielded, +5 to-hit and double acid damage."); break;
 				case ART_SNAKESKIN:
 					pline("Artifact specs: hallucination resistance, protection and acid resistance when worn, neutral. Soviet, the creator of a different variant, actually deferred the role for which this artifact was originally intended..."); break;
 				case ART_POSEIDON_S_TREASURE:
-					pline("Artifact specs: +10 to-hit and +10 damage to shock-susceptible monsters, neutral."); break;
+					pline("Artifact specs: +10 to-hit and +10 shock damage, neutral."); break;
 				case ART_GLADIUS:
 					pline("Artifact specs: +8 to-hit and +6 damage, neutral. Someone ought to tell the creator that he made an artifact sword that's basically called 'sword' (lol)."); break;
 				case ART_HRUNTING:
 					pline("Artifact specs: +4 to-hit and +4 damage, neutral. In SLASHTHEM this thing is associated with the warrior role, despite the original idea that the warrior role is Elder Scrolls-themed."); break;
 				case ART_DEBUGGER:
-					pline("Artifact specs: shock resistance when wielded, +5 to-hit and +4 damage to shock-susceptible monsters, neutral."); break;
+					pline("Artifact specs: shock resistance when wielded, +5 to-hit and +4 shock damage, neutral."); break;
 				case ART_ACIDTESTER:
-					pline("Artifact specs: acid resistance when wielded, +5 to-hit and +4 damage to acid-susceptible monsters, neutral. According to Soviet the name is temporary."); break;
+					pline("Artifact specs: acid resistance when wielded, +5 to-hit and +4 acid damage, neutral. According to Soviet the name is temporary."); break;
 				case ART_STRAIGHTSHOT:
 					pline("Artifact specs: +10 to-hit and +2 damage, neutral."); break;
 				case ART_SHIMMERSTAFF:
@@ -20589,7 +20613,7 @@ boolean knoweverything;
 				case ART_MOUSER_S_SCALPEL:
 					pline("Artifact specs: +5 to-hit and +2 damage, neutral. Misleading name because it's not a scalpel in the first place."); break;
 				case ART_GRAYWAND:
-					pline("Artifact specs: +3 to-hit and +6 damage to cold-susceptible monsters, neutral. Not even remotely a wand. No idea what the original author of this artifact intended."); break;
+					pline("Artifact specs: +3 to-hit and +6 cold damage, neutral. Not even remotely a wand. No idea what the original author of this artifact intended."); break;
 				case ART_HEARTSEEKER:
 					pline("Artifact specs: +3 to-hit and +2 damage, neutral."); break;
 				case ART_CAT_S_CLAW:
@@ -20647,7 +20671,7 @@ boolean knoweverything;
 				case ART_STAFF_OF_WITHERING:
 					pline("Artifact specs: cold resistance when wielded, +3 to-hit and +4 level-drain damage to crossaligned monsters, chaotic."); break;
 				case ART_BOW_OF_SKADI:
-					pline("Artifact specs: cold resistance when wielded, +1 to-hit and +24 damage to cold-susceptible monsters, slower rate of fire, lawful. In dnethack you can somehow read this weapon (wtf) and learn cone of cold (double wtf)."); break;
+					pline("Artifact specs: cold resistance when wielded, +1 to-hit and +24 cold damage, slower rate of fire, lawful. In dnethack you can somehow read this weapon (wtf) and learn cone of cold (double wtf)."); break;
 				case ART_CROWN_OF_THE_SAINT_KING:
 					pline("Artifact specs: 5 extra points of AC, lawful. In dnethack it would make pets always follow you but that would be a pain in the butt to code."); break;
 				case ART_HELM_OF_THE_DARK_LORD:
@@ -20687,9 +20711,9 @@ boolean knoweverything;
 				case ART_TENSA_ZANGETSU:
 					pline("Artifact specs: speed and half spell damage when wielded, massively increases hunger and damages you every turn, +1 to-hit and double damage, neutral."); break;
 				case ART_SODE_NO_SHIRAYUKI:
-					pline("Artifact specs: cold resistance when wielded, +1 to-hit and double damage to cold-susceptible monsters, lawful."); break;
+					pline("Artifact specs: cold resistance when wielded, +1 to-hit and double cold damage, lawful."); break;
 				case ART_TOBIUME:
-					pline("Artifact specs: fire resistance when wielded, +1 to-hit and +2 damage to fire-susceptible monsters, chaotic. According to Chris, this artifact is an 'awkward' weapon."); break;
+					pline("Artifact specs: fire resistance when wielded, +1 to-hit and +2 fire damage, chaotic. According to Chris, this artifact is an 'awkward' weapon."); break;
 				case ART_LANCE_OF_LONGINUS:
 					pline("Artifact specs: half spell damage, half physical damage, reflection, magic and drain resistance, stun, confusion, hallucination and freezing when wielded, lawful. Seriously, dnethack artifacts are completely out of whack."); break;
 				case ART_HARKENSTONE:
@@ -20707,11 +20731,11 @@ boolean knoweverything;
 				case ART_BLADE_DANCER_S_DAGGER:
 					pline("Artifact specs: +4 to-hit and +4 damage."); break;
 				case ART_LIMB_OF_THE_BLACK_TREE:
-					pline("Artifact specs: fire resistance when wielded, +4 to-hit and +2 damage to fire-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: fire resistance when wielded, +4 to-hit and +2 fire damage, chaotic."); break;
 				case ART_LASH_OF_THE_COLD_WASTE:
-					pline("Artifact specs: cold resistance when wielded, +4 to-hit and +2 damage to cold-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: cold resistance when wielded, +4 to-hit and +2 cold damage, chaotic."); break;
 				case ART_RAMIEL:
-					pline("Artifact specs: shock resistance when wielded, +4 to-hit and +2 damage to shock-susceptible monsters, lawful. In dnethack this thing would have a special ranged attack but here you'll probably want to use the 'apply b' tactic."); break;
+					pline("Artifact specs: shock resistance when wielded, +4 to-hit and +2 shock damage, lawful. In dnethack this thing would have a special ranged attack but here you'll probably want to use the 'apply b' tactic."); break;
 				case ART_SPINESEARCHER:
 					pline("Artifact specs: stealth when wielded, +1 to-hit and +6 damage, chaotic."); break;
 				case ART_QUICKSILVER:
@@ -20777,7 +20801,7 @@ boolean knoweverything;
 				case ART_TENTACLE_ROD:
 					pline("Artifact specs: +7 to-hit and +2 damage."); break;
 				case ART_CRESCENT_BLADE:
-					pline("Artifact specs: reflection when wielded, beheads monsters, +4 to-hit and double damage to fire-susceptible monsters, lawful."); break;
+					pline("Artifact specs: reflection when wielded, beheads monsters, +4 to-hit and double fire damage, lawful."); break;
 				case ART_DARKWEAVER_S_CLOAK:
 					pline("Artifact specs: magic resistance when worn."); break;
 				case ART_SPIDERSILK:
@@ -20785,7 +20809,7 @@ boolean knoweverything;
 				case ART_WEBWEAVER_S_CROOK:
 					pline("Artifact specs: magic resistance when wielded, +1 to-hit and double damage, lawful."); break;
 				case ART_LOLTH_S_FANG:
-					pline("Artifact specs: drain resistance when wielded, +10 to-hit and +10 damage to acid-susceptible monsters."); break;
+					pline("Artifact specs: drain resistance when wielded, +10 to-hit and +10 acid damage."); break;
 				case ART_WEB_OF_LOLTH:
 					pline("Artifact specs: warning, magic and drain resistance as well as improved spellcasting chances when worn, but slows you down to half speed, chaotic."); break;
 				case ART_CLAWS_OF_THE_REVENANCER:
@@ -20799,7 +20823,7 @@ boolean knoweverything;
 				case ART_ARCOR_KERYM:
 					pline("Artifact specs: drain resistance when wielded, +5 to-hit and double damage, lawful."); break;
 				case ART_ARYFAERN_KERYM:
-					pline("Artifact specs: shock resistance and improved spellcasting chances when wielded, +5 to-hit and +10 damage to shock-susceptible monsters, neutral."); break;
+					pline("Artifact specs: shock resistance and improved spellcasting chances when wielded, +5 to-hit and +10 shock damage, neutral."); break;
 				case ART_ARYVELAHR_KERYM:
 					pline("Artifact specs: reflection and drain resistance when wielded, +5 to-hit and double damage, chaotic."); break;
 				case ART_ARMOR_OF_KHAZAD_DUM:
@@ -20833,7 +20857,7 @@ boolean knoweverything;
 				case ART_ROD_OF_THE_ELVISH_LORDS:
 					pline("Artifact specs: +3 to-hit and double damage, chaotic."); break;
 				case ART_SOL_VALTIVA:
-					pline("Artifact specs: fire resistance when wielded, +5 to-hit and +24 damage to fire-susceptible monsters, random item destruction, disables fire resistance for a while when wielded, chaotic."); break;
+					pline("Artifact specs: fire resistance when wielded, +5 to-hit and +24 fire damage, random item destruction, disables fire resistance for a while when wielded, chaotic."); break;
 				case ART_STAFF_OF_THE_ARCHMAGI:
 					pline("Artifact specs: searching, cold, fire and shock resistance and acts as a luckstone when wielded, +20 to-hit and +4 stun damage."); break;
 				case ART_ROBE_OF_THE_ARCHMAGI:
@@ -20843,29 +20867,29 @@ boolean knoweverything;
 				case ART_KUSANAGI_NO_TSURUGI:
 					pline("Artifact specs: energy regeneration, searching, acts as a luckstone, aggravate monster, recurring disenchantment and itemcursing when wielded, beheads monsters, +20 to-hit and +12 damage, lawful."); break;
 				case ART_GENOCIDE:
-					pline("Artifact specs: fire resistance when wielded, +10 to-hit and +20 damage to fire-susceptible monsters, bloodthirsty, causes the uberjackal effect, disables reflection for a while when wielded, lawful."); break;
+					pline("Artifact specs: fire resistance when wielded, +10 to-hit and +20 fire damage, bloodthirsty, causes the uberjackal effect, disables reflection for a while when wielded, lawful."); break;
 				case ART_ROD_OF_DIS:
 					pline("Artifact specs: +10 to-hit and +8 damage, lawful."); break;
 				case ART_AVARICE:
 					pline("Artifact specs: +10 to-hit and +2 damage, lawful. In dnethack this artifact would steal items from monsters but why would I go through the PITA of coding that?!"); break;
 				case ART_FIRE_OF_HEAVEN:
-					pline("Artifact specs: shock and fire resistance when wielded, +1 to-hit and double damage to fire-susceptible monsters, lawful."); break;
+					pline("Artifact specs: shock and fire resistance when wielded, +1 to-hit and double fire damage, lawful."); break;
 				case ART_DIADEM_OF_AMNESIA:
 					pline("Artifact specs: causes recurring amnesia when worn, lawful. Put it on right now to ease your troubled mind."); break;
 				case ART_THUNDER_S_VOICE:
-					pline("Artifact specs: shock resistance when wielded, +6 to-hit and +6 damage to shock-susceptible monsters, lawful."); break;
+					pline("Artifact specs: shock resistance when wielded, +6 to-hit and +6 shock damage, lawful."); break;
 				case ART_SERPENT_S_TOOTH:
 					pline("Artifact specs: poison resistance when wielded, lawful."); break;
 				case ART_UNBLEMISHED_SOUL:
 					pline("Artifact specs: acts as a luckstone when wielded, lawful."); break;
 				case ART_WRATH_OF_HEAVEN:
-					pline("Artifact specs: resist fire and shock when wielded, +1 to-hit and double damage to shock-susceptible monsters, lawful."); break;
+					pline("Artifact specs: resist fire and shock when wielded, +1 to-hit and double shock damage, lawful."); break;
 				case ART_ALL_SEEING_EYE_OF_THE_FLY:
 					pline("Artifact specs: undead warning when worn, lawful."); break;
 				case ART_COLD_SOUL:
 					pline("Artifact specs: cold, shock and fire resistance when wielded, lawful."); break;
 				case ART_SCEPTRE_OF_THE_FROZEN_FLOO:
-					pline("Artifact specs: cold resistance when wielded, +1 to-hit and double damage to cold-susceptible monsters, lawful."); break;
+					pline("Artifact specs: cold resistance when wielded, +1 to-hit and double cold damage, lawful."); break;
 				case ART_CARESS:
 					pline("Artifact specs: shock resistance when wielded, +1 to-hit and +20 shock damage to elves, humans and dwarves, lawful. Being whipped feels very soothing! <3"); break;
 				case ART_ICONOCLAST:
@@ -20875,13 +20899,13 @@ boolean knoweverything;
 				case ART_HEARTCLEAVER:
 					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
 				case ART_WRATHFUL_WIND:
-					pline("Artifact specs: cold resistance when wielded, +10 to-hit and double damage to cold-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: cold resistance when wielded, +10 to-hit and double cold damage, chaotic."); break;
 				case ART_STING_OF_THE_POISON_QUEEN:
 					pline("Artifact specs: magic resistance when wielded, +4 to-hit and +12 damage, chaotic."); break;
 				case ART_SCOURGE_OF_LOLTH:
 					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
 				case ART_DOOMSCREAMER:
-					pline("Artifact specs: acid resistance when wielded, +1 to-hit and double damage to acid-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: acid resistance when wielded, +1 to-hit and double acid damage, chaotic."); break;
 				case ART_WAND_OF_ORCUS:
 					pline("Artifact specs: +5 to-hit and +12 drain life damage, bloodthirsty, chaotic. But you're probably going to zap monsters with it so all of those stats are irrelevant anyway."); break;
 				case ART_SWORD_OF_ERATHAOL:
@@ -20915,7 +20939,7 @@ boolean knoweverything;
 				case ART_WORMBITER:
 					pline("Artifact specs: +5 to-hit and double damage to worms, neutral."); break;
 				case ART_SHOCKER:
-					pline("Artifact specs: +3 to-hit and double damage to shock-susceptible monsters, neutral."); break;
+					pline("Artifact specs: +3 to-hit and double shock damage, neutral."); break;
 				case ART_SCALES_OF_THE_DRAGON_LORD:
 					pline("Artifact specs: protection when worn, can be invoked for dragon breath, chaotic. Special generation."); break;
 				case ART_BURNED_MOTH_RELAY:
@@ -20975,7 +20999,7 @@ boolean knoweverything;
 				case ART_SLOW_BLADE:
 					pline("Artifact specs: searching and regeneration while carried, +2 to-hit and +2 damage, can be invoked for healing, lawful, acid mage quest artifact."); break;
 				case ART_FIRE_BRIGADE_REEL:
-					pline("Artifact specs: half spell damage and half physical damage while carried, +4 to-hit and +8 damage to cold-susceptible monsters, can be invoked to summon a water elemental, lawful, firefighter quest artifact."); break;
+					pline("Artifact specs: half spell damage and half physical damage while carried, +4 to-hit and +8 cold damage, can be invoked to summon a water elemental, lawful, firefighter quest artifact."); break;
 				case ART_CANDLE_OF_ETERNAL_FLAME:
 					pline("Artifact specs: warning, cold resistance and teleport control while carried, can be invoked to summon a fire elemental, neutral, flame mage quest artifact."); break;
 				case ART_NETHACK_SOURCES:
@@ -20989,7 +21013,7 @@ boolean knoweverything;
 				case ART_STAFF_OF_AESCULAPIUS:
 					pline("Artifact specs: regeneration when wielded, +3 to-hit and double level-drain damage, can be invoked for healing, neutral, healer quest artifact."); break;
 				case ART_TENTACLE_STAFF:
-					pline("Artifact specs: warning and stealth when wielded, +8 to-hit and double damage to shock-susceptible monsters, can be invoked to charge objects, chaotic, twelph quest artifact."); break;
+					pline("Artifact specs: warning and stealth when wielded, +8 to-hit and double shock damage, can be invoked to charge objects, chaotic, twelph quest artifact."); break;
 				case ART_STORM_WHISTLE:
 					pline("Artifact specs: warning, fire resistance and teleport control while carried, can be invoked to summon a water elemental, lawful, ice mage quest artifact."); break;
 				case ART_THUNDER_WHISTLE:
@@ -21115,7 +21139,7 @@ boolean knoweverything;
 				case ART_HEFFER_S_BOW:
 					pline("Artifact specs: warning, regeneration and energy regeneration when wielded, +6 to-hit and double damage, can be invoked to create ammo, lawful, druid quest artifact."); break;
 				case ART_GUNBOW:
-					pline("Artifact specs: half physical damage when wielded, energy regeneration and drain resistance while carried, +7 to-hit and double damage to shock-susceptible monsters, can be invoked to create ammo, neutral, amazon quest artifact."); break;
+					pline("Artifact specs: half physical damage when wielded, energy regeneration and drain resistance while carried, +7 to-hit and double shock damage, can be invoked to create ammo, neutral, amazon quest artifact."); break;
 				case ART_MASTER_KEY_OF_THIEVERY:
 					pline("Artifact specs: warning, teleport control and half physical damage while carried, can be invoked for untrapping, chaotic, rogue quest artifact."); break;
 				case ART_NOCTURNAL_KEY:
@@ -21219,7 +21243,7 @@ boolean knoweverything;
 				case ART_STROMBRINGER:
 					pline("Artifact specs: +5 to-hit and +2 level-drain damage, drain resistance when wielded, bloodthirsty, chaotic."); break;
 				case ART_BLAZERUNNER:
-					pline("Artifact specs: +8 to-hit and +8 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +8 to-hit and +8 fire damage, fire resistance when wielded."); break;
 				case ART_CIVIL_WAR:
 					pline("Artifact specs: conflict when wielded, chaotic."); break;
 				case ART_HEAVY_THUNDERSTORM:
@@ -21245,11 +21269,11 @@ boolean knoweverything;
 				case ART_GLASSPOINT:
 					pline("Artifact specs: +8 to-hit and +4 damage."); break;
 				case ART_EAMANE_LUINWE:
-					pline("Artifact specs: +10 to-hit and +12 damage to fire-susceptible monsters, stealth, confusion and very fast speed when wielded, neutral."); break;
+					pline("Artifact specs: +10 to-hit and +12 fire damage, stealth, confusion and very fast speed when wielded, neutral."); break;
 				case ART_GUN_CONTROL_LAWS:
 					pline("Artifact specs: +5 to-hit and +40 damage, autocurses when wielded, carries an ancient Morgothian curse, chaotic."); break;
 				case ART_OVERHEATER:
-					pline("Artifact specs: +5 to-hit and +16 damage to fire-susceptible monsters, fire resistance when wielded, autocurses; while wielding it, fire traps occasionally spawn underneath you."); break;
+					pline("Artifact specs: +5 to-hit and +16 fire damage, fire resistance when wielded, autocurses; while wielding it, fire traps occasionally spawn underneath you."); break;
 				case ART_MAXIMUM_LAUNCH_POWER:
 					pline("Artifact specs: extra multishot."); break;
 				case ART_KILL_THEM_ALL:
@@ -21257,11 +21281,11 @@ boolean knoweverything;
 				case ART_PSCHIIIIIIIII:
 					pline("Artifact specs: +5 to-hit and +40 damage."); break;
 				case ART_ELECTROCUTION:
-					pline("Artifact specs: +10 to-hit and +60 damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: +10 to-hit and +60 shock damage."); break;
 				case ART_POWER_PELLET:
 					pline("Artifact specs: +1 to-hit and double damage."); break;
 				case ART_FIRE_IN_THE_HOLE:
-					pline("Artifact specs: +5 to-hit and +40 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +5 to-hit and +40 fire damage."); break;
 				case ART_POWERED_ARBALEST:
 					pline("Artifact specs: +2 to-hit and +12 damage."); break;
 				case ART_DEMON_BREAKPOINT:
@@ -21275,9 +21299,9 @@ boolean knoweverything;
 				case ART_PUNISHMENT_FOR_YOU:
 					pline("Artifact specs: +3 damage per rank in your flail skill, lawful."); break;
 				case ART_SHOCKLASH:
-					pline("Artifact specs: +8 to-hit and +12 damage to shock-susceptible monsters, shock resistance when wielded."); break;
+					pline("Artifact specs: +8 to-hit and +12 shock damage, shock resistance when wielded."); break;
 				case ART_EVERYTHING_MUST_BURN:
-					pline("Artifact specs: +2 to-hit and +16 damage to fire-susceptible monsters, fire resistance and ability to survive in lava when wielded, but wielding it will occasionally burn you."); break;
+					pline("Artifact specs: +2 to-hit and +16 fire damage, fire resistance and ability to survive in lava when wielded, but wielding it will occasionally burn you."); break;
 				case ART_FEMALE_BEAUTY:
 					pline("Artifact specs: magic resistance when worn, +5 charisma if you're female but -5 to all stats if not."); break;
 				case ART_BIENVENIDO_A_MIAMI:
@@ -21581,7 +21605,7 @@ boolean knoweverything;
 				case ART_MAGIC_RESISTANCE_GET:
 					pline("Artifact specs: magic resistance when carried. Hooray if you are a giant."); break;
 				case ART_SHOCKING_THERAPY:
-					pline("Artifact specs: +5 to-hit and +14 damage to shock-susceptible monsters, disables shock resistance when wielded, chaotic."); break;
+					pline("Artifact specs: +5 to-hit and +14 shock damage, disables shock resistance when wielded, chaotic."); break;
 				case ART_ENIGMATIC_RIDDLE:
 					pline("Artifact specs: +7 to-hit and +2 damage."); break;
 				case ART_DO_YOU_EVEN_LIFT:
@@ -21589,7 +21613,7 @@ boolean knoweverything;
 				case ART_GANGBANGING_LIKE_A_BOSS:
 					pline("Artifact specs: +20 damage, chaotic."); break;
 				case ART_FREEZEMETAL:
-					pline("Artifact specs: +7 to-hit and +10 damage to cold-susceptible monsters."); break;
+					pline("Artifact specs: +7 to-hit and +10 cold damage."); break;
 				case ART_KINGS_RANSOM_FOR_YOU:
 					pline("Artifact specs: +5 to-hit and +10 stun damage, protection and reflection when wielded but also halves your movement speed and gains a Topi Ylinen curse."); break;
 				case ART_DO_NOT_THROW_ME:
@@ -21651,7 +21675,7 @@ boolean knoweverything;
 				case ART_BANG_BANG:
 					pline("Artifact specs: +5 to-hit and +20 stun damage, wielding it sets it to +2 if its enchantment was lower, but also causes deafness. Chaotic."); break;
 				case ART_TUNA_CANNON:
-					pline("Artifact specs: +20 damage to cold-susceptible monsters, +1 multishot, you always take maximum damage and your AC is much worse while wielding it, neutral."); break;
+					pline("Artifact specs: +20 cold damage, +1 multishot, you always take maximum damage and your AC is much worse while wielding it, neutral."); break;
 				case ART_PFIIIIIIIIET:
 					pline("Artifact specs: No specialties."); break;
 				case ART_DOGWALK:
@@ -21715,7 +21739,7 @@ boolean knoweverything;
 				case ART_JONADAB_S_EVIL_PATCH_ARTIF:
 					pline("Artifact specs: +2 damage, chaotic."); break;
 				case ART_WHAT_IT_SAYS_ON_THE_TIN:
-					pline("Artifact specs: fire resistance when wielded, +2 to-hit and +20 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: fire resistance when wielded, +2 to-hit and +20 fire damage."); break;
 				case ART_DEADLY_GAMBLING:
 					pline("Artifact specs: +d30 damage, but wielding it has a small chance of instakilling you."); break;
 				case ART_PRISMATIC_PROTECTION:
@@ -21773,7 +21797,7 @@ boolean knoweverything;
 				case ART_RATTATTATTATTATT:
 					pline("Artifact specs: +16 damage, aggravate monster when wielded."); break;
 				case ART_FLAM_R:
-					pline("Artifact specs: +10 to-hit and +2 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +10 to-hit and +2 fire damage, fire resistance when wielded."); break;
 				case ART_SURESHOT:
 					pline("Artifact specs: +20 to-hit and +2 damage."); break;
 				case ART_STINGWING:
@@ -21883,7 +21907,7 @@ boolean knoweverything;
 				case ART_ZANKAI_HUNG_ZE_TUNG_DO_HAI:
 					pline("Artifact specs: +1 to-hit and double damage, half spell damage and speed when worn, massively increases hunger and damages the wielder, neutral."); break;
 				case ART_AWKWARDNESS:
-					pline("Artifact specs: +1 to-hit and +2 damage to fire-susceptible monsters, fire resistance when wielded, chaotic."); break;
+					pline("Artifact specs: +1 to-hit and +2 fire damage, fire resistance when wielded, chaotic."); break;
 				case ART_SCHWANZUS_LANGUS:
 					pline("Artifact specs: magic resistance, half physical and spell damage, reflection, stun, confusion, hallucination and freezing when wielded, lawful."); break;
 				case ART_TRAP_DUNGEON_OF_SHAMBHALA:
@@ -21913,7 +21937,7 @@ boolean knoweverything;
 				case ART_THRANDUIL_LOSSEHELIN:
 					pline("Artifact specs: +5 to-hit and double level-drain damage, drain resistance and fleecy-colored glyphs when wielded, bloodthirsty, may spontaneously disintegrate, heavily autocurses, chaotic."); break;
 				case ART_FEANARO_SINGOLLO:
-					pline("Artifact specs: +10 to-hit and +12 damage to fire-susceptible monsters, stealth, confusion and speed when wielded, neutral."); break;
+					pline("Artifact specs: +10 to-hit and +12 fire damage, stealth, confusion and speed when wielded, neutral."); break;
 				case ART_WINSETT_S_BIG_DADDY:
 					pline("Artifact specs: Multishot bonus, randomly fires 1 or 2 more missiles per turn."); break;
 				case ART_FEMINIST_GIRL_S_PURPLE_WEA:
@@ -21989,7 +22013,7 @@ boolean knoweverything;
 				case ART_HENRIETTA_S_DOGSHIT_BOOTS:
 					pline("Artifact specs: The former owner stepped into a huge pile of dog shit with them. So if you put them on, you will aggravate monsters and your stealth is disabled, monsters will always spawn hostile and always know where you are, and of course they autocurse as well. Chaotic."); break;
 				case ART_FIREPROOF_WALL:
-					pline("Artifact specs: +4 to-hit and +4 damage to fire-susceptible monsters, fire resistance when wielded, lawful."); break;
+					pline("Artifact specs: +4 to-hit and +4 fire damage, fire resistance when wielded, lawful."); break;
 				case ART_SPEARBLADE:
 					pline("Artifact specs: +9 to-hit and +2 damage, lawful."); break;
 				case ART_RADIATOR_AREA:
@@ -22009,7 +22033,7 @@ boolean knoweverything;
 				case ART_SPECIAL_LACK:
 					pline("Artifact specs: +10 damage, chaotic."); break;
 				case ART_WING_WING:
-					pline("Artifact specs: +2 to-hit and +4 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +2 to-hit and +4 fire damage."); break;
 				case ART_CARMOUFALSCH:
 					pline("Artifact specs: No specialties."); break;
 				case ART_WIE_ES_AUCH_SEI:
@@ -22057,7 +22081,7 @@ boolean knoweverything;
 				case ART_SPACE_BEGINS_AFTER_HERE:
 					pline("Artifact specs: +2 to-hit and +12 damage."); break;
 				case ART_CORINA_S_THUNDER:
-					pline("Artifact specs: +2 to-hit and +12 damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: +2 to-hit and +12 shock damage."); break;
 				case ART_INNER_TUBE:
 					pline("Artifact specs: reflection when wielded."); break;
 				case ART_SOLO_SLACKER:
@@ -22131,7 +22155,7 @@ boolean knoweverything;
 				case ART_MIMICBANE:
 					pline("Artifact specs: +10 to-hit and double damage to mimics, hallucination resistance when wielded, lawful."); break;
 				case ART_HAHAHAHAHAHAHAAAAAAAAAAAA:
-					pline("Artifact specs: +3 to-hit and +6 damage to cold-susceptible monsters, neutral."); break;
+					pline("Artifact specs: +3 to-hit and +6 cold damage, neutral."); break;
 				case ART_POISON_PEN_LETTER:
 					pline("Artifact specs: +9 to-hit and +10 level-drain damage, regeneration and half physical damage when wielded, poisons you each turn you wield it, neutral."); break;
 				case ART_SUNALI_S_SUMMONING_STORM:
@@ -22276,7 +22300,7 @@ boolean knoweverything;
 				case ART_WHISTLE_OF_PROTECTION:
 					pline("Artifact specs: energy regeneration and magic resistance while carried, can be invoked for energy boost, chaotic, occult master quest artifact."); break;
 				case ART_BLADE_OF_GOTHMOG:
-					pline("Artifact specs: +13 to-hit and +14 damage to fire-susceptible monsters, fire resistance while wielded, heavily autocurses, can be invoked to summon a fire elemental, chaotic, chaos sorceror quest artifact."); break;
+					pline("Artifact specs: +13 to-hit and +14 fire damage, fire resistance while wielded, heavily autocurses, can be invoked to summon a fire elemental, chaotic, chaos sorceror quest artifact."); break;
 				case ART_BEAM_MULTIPLIER:
 					pline("Artifact specs: fire, cold and shock resistance when worn, increases the average range of all beams, neutral, elementalist quest artifact."); break;
 				case ART_ELLI_S_PSEUDOBAND_OF_POS:
@@ -22303,7 +22327,7 @@ boolean knoweverything;
 				case ART_U_ARE_A_CHEATER:
 					pline("Artifact specs: magic resistance when wielded, chaotic."); break;
 				case ART_COOL_CHAMBER:
-					pline("Artifact specs: +4 to-hit and +8 damage to cold-susceptible monsters."); break;
+					pline("Artifact specs: +4 to-hit and +8 cold damage."); break;
 				case ART_ANIMALBANE:
 					pline("Artifact specs: +5 to-hit and double damage to animals, warns of animals when wielded."); break;
 				case ART_ALWAYS_HIT_FOR_LITTLE_DAMA:
@@ -22311,7 +22335,7 @@ boolean knoweverything;
 				case ART_GRINDER:
 					pline("Artifact specs: +4 to-hit and +12 damage."); break;
 				case ART_OUCHFIRE:
-					pline("Artifact specs: +1 to-hit and +16 damage to fire-susceptible monsters, fire resistance and you take maximum damage when wielded."); break;
+					pline("Artifact specs: +1 to-hit and +16 fire damage, fire resistance and you take maximum damage when wielded."); break;
 				case ART_ANTIVAMP_WHOOSH:
 					pline("Artifact specs: +8 to-hit and +20 damage to vampires, neutral."); break;
 				case ART_RESISTOMATIC:
@@ -22321,9 +22345,9 @@ boolean knoweverything;
 				case ART_ARRRRRR_MATEY:
 					pline("Artifact specs: +4 damage, korsair speak when wielded."); break;
 				case ART_SPAMBAIT_FIRE:
-					pline("Artifact specs: +8 damage to fire-susceptible monsters, and a general +2 increase damage when wielded."); break;
+					pline("Artifact specs: +8 fire damage, and a general +2 increase damage when wielded."); break;
 				case ART_ARABSTREET_SOUND:
-					pline("Artifact specs: +6 to-hit and +2 damage to fire-susceptible monsters, 1 out of 50 monsters is spawned with the sounder egotype while you wield it."); break;
+					pline("Artifact specs: +6 to-hit and +2 fire damage, 1 out of 50 monsters is spawned with the sounder egotype while you wield it."); break;
 				case ART_HALLUDUCKDIR:
 					pline("Artifact specs: +5 to-hit and +10 damage, hallucination resistance when wielded."); break;
 				case ART_WHACKDOCK:
@@ -22343,7 +22367,7 @@ boolean knoweverything;
 				case ART_MANUELA_S_PRACTICANT_TERRO:
 					pline("Artifact specs: +5 to-hit and double damage, fire resistance when wielded, autocurses, aggravate monster when wielded, all monsters are spawned hostile and their levels are higher if more of their species have been generated already and you can walk in lava unharmed, chaotic."); break;
 				case ART_THOR_S_STRIKE:
-					pline("Artifact specs: +6 to-hit and +12 damage to shock-susceptible monsters, and if you wield it while having a strength of 25, you get +5 increase damage. Lawful."); break;
+					pline("Artifact specs: +6 to-hit and +12 shock damage, and if you wield it while having a strength of 25, you get +5 increase damage. Lawful."); break;
 				case ART_BLACK_POISON_INSIDE:
 					pline("Artifact specs: beheads monsters, always poisoned, chaotic."); break;
 				case ART_LUISA_S_CHARMING_BEAUTY:
@@ -22353,7 +22377,7 @@ boolean knoweverything;
 				case ART_PATRICIA_S_FEMININITY:
 					pline("Artifact specs: wielding it makes you thick-skinned. It is bloodthirsty, and less likely than ordinary steel-capped sandals to lose enchantment if you hit something with it. Neutral."); break;
 				case ART_HENRIETTA_S_MISTAKE:
-					pline("Artifact specs: +2 to-hit and +16 damage to acid-susceptible monsters, but if you move around, you will constantly step into heaps of shit. Heavily autocurses when wielded and also gives aggravate monster and disables stealth. Chaotic."); break;
+					pline("Artifact specs: +2 to-hit and +16 acid damage, but if you move around, you will constantly step into heaps of shit. Heavily autocurses when wielded and also gives aggravate monster and disables stealth. Chaotic."); break;
 				case ART_TEACHING_STICK:
 					pline("Artifact specs: +4 to-hit and +8 damage, drain resistance when wielded."); break;
 				case ART_WETTING_WEATHER:
@@ -22363,7 +22387,7 @@ boolean knoweverything;
 				case ART_GRANDPA:
 					pline("Artifact specs: +5 to-hit and double damage."); break;
 				case ART_ROAD_TRASH:
-					pline("Artifact specs: +2 to-hit and +14 damage to acid-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: +2 to-hit and +14 acid damage, chaotic."); break;
 				case ART_ALSO_MATTE_MASK:
 					pline("Artifact specs: poison resistance when wielded, always poisoned."); break;
 				case ART_CRUSHING_IMPACT:
@@ -22381,9 +22405,9 @@ boolean knoweverything;
 				case ART_EQUALHIT:
 					pline("Artifact specs: +15 to-hit and +2 damage, neutral."); break;
 				case ART_SOFTSPIRE:
-					pline("Artifact specs: +6 to-hit and +12 damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: +6 to-hit and +12 shock damage."); break;
 				case ART_EXPLOSION_MISSILE:
-					pline("Artifact specs: +8 to-hit and +2 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +8 to-hit and +2 fire damage."); break;
 				case ART_AND_IT_KEEPS_ON_MOVING:
 					pline("Artifact specs: autocurses, you are constantly pushed around while wielding it."); break;
 				case ART_HIGH_ROLLER_S_LUCK:
@@ -22471,7 +22495,7 @@ boolean knoweverything;
 				case ART_STEEL_GREATER_ROCK:
 					pline("Artifact specs: +12 damage."); break;
 				case ART_HELLBRINGER:
-					pline("Artifact specs: +8 to-hit and +8 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +8 to-hit and +8 fire damage, fire resistance when wielded."); break;
 				case ART_KILLER_PIANO:
 					pline("Artifact specs: +6 to-hit and double damage, beheads monster, aggravate monster and gridbug conduct when wielded, applying it gives a permanent intrinsic nasty effect."); break;
 				case ART_SOUNDTONE_FM:
@@ -22533,7 +22557,7 @@ boolean knoweverything;
 				case ART_JONADAB_S_HEAVYLOAD:
 					pline("Artifact specs: ESP and invisibility while carried."); break;
 				case ART_HANGING_CALL:
-					pline("Artifact specs: +5 to-hit and +4 damage to acid-susceptible monsters, acid resistance when wielded, neutral. This is a 'temporary' artifact created by Soviet5lo, but which is permanent here because Slash'EM Extended normally doesn't implement temporary features."); break;
+					pline("Artifact specs: +5 to-hit and +4 acid damage, acid resistance when wielded, neutral. This is a 'temporary' artifact created by Soviet5lo, but which is permanent here because Slash'EM Extended normally doesn't implement temporary features."); break;
 				case ART_BLUE_SCREEN_OF_DEATH:
 					pline("Artifact specs: shock resistance when worn, makes everything blue and occasionally spawns blue monsters."); break;
 				case ART_SADDLE_OF_REFLECTION:
@@ -22680,7 +22704,7 @@ boolean knoweverything;
 				case ART_METEORIC_AC:
 					pline("Artifact specs: 15 extra points of AC when worn, gang scholar quest artifact."); break;
 				case ART_NUCLEAR_SPEAR:
-					pline("Artifact specs: +14 damage to fire-susceptible monsters, can be invoked for dragon breath, nuclear physicist quest artifact."); break;
+					pline("Artifact specs: +14 fire damage, can be invoked for dragon breath, nuclear physicist quest artifact."); break;
 				case ART_SWORD_OF_GILGAMESH:
 					pline("Artifact specs: warning and reflection when wielded, +5 to-hit and +10 damage, tracer quest artifact."); break;
 				case ART_PROCOMFORT_SUPER:
@@ -22798,7 +22822,7 @@ boolean knoweverything;
 				case ART_ELDER_CEREBRAL_FLUID:
 					pline("Artifact specs: +10 to-hit and +2 level drain damage, energy regeneration and half spell damage when carried, can be invoked for energy boost, lawful, anachronounbinder quest artifact. This artifact was designed by Demo and is a dilithium crystal in demogorgonhack, but I (Amy) decided to make it a weapon instead."); break;
 				case ART_CERULEAN_SMASH:
-					pline("Artifact specs: +10 to-hit and +14 damage to cold-susceptible monsters, +10 charisma when wielded, allows you to dig through grave walls in one turn and can be invoked for phasing, chaotic, hussy quest artifact."); break; /* no mention of the evil effect for non-hussy players, this is on purpose */
+					pline("Artifact specs: +10 to-hit and +14 cold damage, +10 charisma when wielded, allows you to dig through grave walls in one turn and can be invoked for phasing, chaotic, hussy quest artifact."); break; /* no mention of the evil effect for non-hussy players, this is on purpose */
 				case ART_ULTIMATE_PICK:
 					pline("Artifact specs: +20 damage, neutral, mason quest artifact."); break;
 				case ART_RAFSCHAR_S_SUPERWEAPON:
@@ -23156,7 +23180,7 @@ boolean knoweverything;
 				case ART_HERITAGE_DIGGER:
 					pline("Artifact specs: +12 damage, petrification resistance when wielded, lawful."); break;
 				case ART_SANDY_OASES:
-					pline("Artifact specs: +5 to-hit and +10 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +5 to-hit and +10 fire damage."); break;
 				case ART_H__S_BRITTLE_REPLICA:
 					pline("Artifact specs: +12 to-hit and +12 damage, but since this is actually a replica of a real sword, it will shatter after using it a couple of times."); break;
 				case ART_DAEDRA_SEEKER:
@@ -23206,7 +23230,7 @@ boolean knoweverything;
 				case ART_CLAYFACE_S_FEAR:
 					pline("Artifact specs: +8 to-hit and +14 damage. However, Clayface is actually immune to batarangs :P"); break;
 				case ART_HARMONY_VIRGIN:
-					pline("Artifact specs: +6 to-hit and +12 damage to shock-susceptible monsters, discount action when wielded and prevents you from contracting STDs."); break;
+					pline("Artifact specs: +6 to-hit and +12 shock damage, discount action when wielded and prevents you from contracting STDs."); break;
 				case ART_ONYX_MANTLE:
 					pline("Artifact specs: disintegration resistance when worn."); break;
 				case ART_ASTEROID_BELT:
@@ -23276,7 +23300,7 @@ boolean knoweverything;
 				case ART_MISSING_UNIQUE_ITEM:
 					pline("Artifact specs: no specialties. Seems that someone simply forgot to give an effect to this item."); break;
 				case ART_GLACIERDALE:
-					pline("Artifact specs: +8 to-hit and +10 damage to cold-susceptible monsters, cold resistance while wielded and allows you to walk on snow and ice unharmed and protects your potions from cold."); break;
+					pline("Artifact specs: +8 to-hit and +10 cold damage, cold resistance while wielded and allows you to walk on snow and ice unharmed and protects your potions from cold."); break;
 				case ART_JONADAB_S_VEHEMENCE:
 					pline("Artifact specs: +10 damage."); break;
 				case ART_SIGNO_ONE:
@@ -23284,7 +23308,7 @@ boolean knoweverything;
 				case ART_MOLOCH_S_PERSONAL_PHONE:
 					pline("Artifact specs: +6 to-hit and +2 damage, applying it will call hostile demon lords, chaotic."); break;
 				case ART_KLINGON_COMMANDER_S_ARMS:
-					pline("Artifact specs: +10 to-hit and +14 damage to shock-susceptible monsters, chaotic."); break;
+					pline("Artifact specs: +10 to-hit and +14 shock damage, chaotic."); break;
 				case ART_PRICK_BEARER_S_RANSOM:
 					pline("Artifact specs: causes the target to bleed, and killing a monster while wielding it produces zorkmids."); break;
 				case ART_TEXAS_INSTRUMENTS_XS:
@@ -23294,7 +23318,7 @@ boolean knoweverything;
 				case ART_SAXS_BEAUTY:
 					pline("Artifact specs: resist fire, cold, shock, poison and psi when wielded."); break;
 				case ART_YVONNE_S_HONOR:
-					pline("Artifact specs: +8 to-hit and +12 damage to cold-susceptible monsters, resist cold, shock and fear when wielded. They're also made of a velvety-soft blue color and Amy actually has them in real life."); break;
+					pline("Artifact specs: +8 to-hit and +12 cold damage, resist cold, shock and fear when wielded. They're also made of a velvety-soft blue color and Amy actually has them in real life."); break;
 				case ART_MILLICENT_S_CONE:
 					pline("Artifact specs: +6 to-hit and +8 damage, lawful."); break;
 				case ART_MARTHA_S_FOREIGN_GOER:
@@ -23445,7 +23469,7 @@ boolean knoweverything;
 				case ART_PEEPLUE:
 					pline("Artifact specs: +2 kick damage and you cannot be engulfed while wielding it. If you're currently affected by the juen trap effect, you also have free action. Yes, I'm aware that this is an oddly specific condition that won't be fulfilled most of the time."); break;
 				case ART_NATALIA_S_MARK:
-					pline("Artifact specs: +20 to-hit and +10 damage to fire-susceptible monsters and very fast speed while wielded."); break;
+					pline("Artifact specs: +20 to-hit and +10 fire damage and very fast speed while wielded."); break;
 				case ART_SUNTINOPENER:
 					pline("Artifact specs: emits light when wielded. K2 suggested this artifact."); break;
 				case ART_SUNRUBBERHOSE:
@@ -23467,7 +23491,7 @@ boolean knoweverything;
 				case ART_WHAT_YOU_REALLY_NEEDED:
 					pline("Artifact specs: +2 to-hit and +8 damage, energy regeneration when wielded. You really needed this artifact weapon and are glad that you've found it now."); break;
 				case ART_FROZEN_ORB:
-					pline("Artifact specs: +16 damage to cold-susceptible monsters and cold resistance when wielded. According to someone on battle.net, frozen orb does so-so many hundred damage but when I asked him 'really?', he told me 'no' because seriously, no orb-class weapon deals that much damage."); break;
+					pline("Artifact specs: +16 cold damage and cold resistance when wielded. According to someone on battle.net, frozen orb does so-so many hundred damage but when I asked him 'really?', he told me 'no' because seriously, no orb-class weapon deals that much damage."); break;
 				case ART_CLEVER_CLEAVER:
 					pline("Artifact specs: +3 to-hit and +6 damage. Don't worry, this isn't the variant that calls itself Nethack 3.6, so it won't hit peaceful monsters."); break;
 				case ART_JINADA:
@@ -23483,7 +23507,7 @@ boolean knoweverything;
 				case ART_WRONG_TURN:
 					pline("Artifact specs: heavily autocurses, and putting it on turns you into an undead creature! Also, even if the creature you become is too big for wearing armor, it won't come off again."); break;
 				case ART_HELLPIT_FLAME:
-					pline("Artifact specs: +10 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +10 fire damage."); break;
 				case ART_STRAIGHT_OUTTA_CODING_HELL:
 					pline("Artifact specs: +2 to-hit and +4 damage."); break;
 				case ART_WEIGHT_ANCHOR:
@@ -23772,7 +23796,7 @@ boolean knoweverything;
 				case ART_LUKE_S_BLUELIGHT:
 					pline("Artifact specs: +8 to-hit and +8 damage, lawful."); break;
 				case ART_ENTURN_SWASH:
-					pline("Artifact specs: +10 to-hit and +8 damage to shock-susceptible monsters, protection when wielded."); break;
+					pline("Artifact specs: +10 to-hit and +8 shock damage, protection when wielded."); break;
 				case ART_BAOBHAN_MOUNTAIN:
 					pline("Artifact specs: +6 to-hit and +6 damage, half spell damage, 10%% better spellcasting chances and manler effect when wielded."); break;
 				case ART_UNFAIR_FIGHTING:
@@ -23830,7 +23854,7 @@ boolean knoweverything;
 				case ART_SOFTSTEP:
 					pline("Artifact specs: cannot be destroyed by erosion, stepping into a heap of shit can increase your charisma, shock resistance when worn, lawful, dancer quest artifact."); break;
 				case ART_HAMMER_OF_HELLFORGE:
-					pline("Artifact specs: +10 damage to fire-susceptible monsters, fire resistance and grants protection when wielded, chaotic, diablist quest artifact."); break;
+					pline("Artifact specs: +10 fire damage, fire resistance and grants protection when wielded, chaotic, diablist quest artifact."); break;
 				case ART_DOWNSIZE_GLASS:
 					pline("Artifact specs: acts as a luckstone when carried, can be invoked for boss nuke, neutral, preversioner quest artifact."); break;
 				case ART_ASS_DEAF_AUGER:
@@ -23972,7 +23996,7 @@ boolean knoweverything;
 				case ART_THIRST_FOR_BLOOD:
 					pline("Artifact specs: +6 to-hit and +4 damage, bloodthirsty, chaotic."); break;
 				case ART_DISCHARGER:
-					pline("Artifact specs: +8 to-hit and +10 damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: +8 to-hit and +10 shock damage."); break;
 				case ART_MELATED_METAL:
 					pline("Artifact specs: +6 to-hit and +6 damage. If you hit something with it, there's a 1 in 1000 chance that you can change the material of a worn armor piece to copper, but if you pick no item or one that is already made of copper, the mace disenchants itself."); break;
 				case ART_SNEAKERITIS:
@@ -24088,7 +24112,7 @@ boolean knoweverything;
 				case ART_WOEBLADE:
 					pline("Artifact specs: +10 damage, occasionally deals extra damage, chaotic."); break;
 				case ART_ELEMENTS_TIME_THREE:
-					pline("Artifact specs: +8 to-hit and +6 damage to fire-susceptible monsters, cold resistance when wielded, applying it at something has 1 in 100 chance of firing a lightning bolt in a random direction. Beware, the lightning bolt can reflect back at you."); break;
+					pline("Artifact specs: +8 to-hit and +6 fire damage, cold resistance when wielded, applying it at something has 1 in 100 chance of firing a lightning bolt in a random direction. Beware, the lightning bolt can reflect back at you."); break;
 				case ART_BELLELDOUBLE:
 					pline("Artifact specs: double attacks when wielded."); break;
 				case ART_TECHCTION:
@@ -24242,7 +24266,7 @@ boolean knoweverything;
 				case ART_STOP_THE_AIRSHIPS:
 					pline("Artifact specs: flying enemies may occasionally miss their turn."); break;
 				case ART_FIRE_BRANDED_HELLHUNK:
-					pline("Artifact specs: +4 to-hit and +10 damage to fire-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +4 to-hit and +10 fire damage, fire resistance when wielded."); break;
 				case ART_SEEVEEN:
 					pline("Artifact specs: +2 light radius when wielded."); break;
 				case ART_BIRDBANE:
@@ -24264,7 +24288,7 @@ boolean knoweverything;
 				case ART_ULTIMATE_WORLD_FALL:
 					pline("Artifact specs: +24 to-hit and +8 damage, teaches the world fall technique and activates a ragnarok timer when wielded."); break;
 				case ART_DEATH_S_FATHOM:
-					pline("Artifact specs: +10 to-hit and +16 damage to cold-susceptible monsters, fire and shock resistance when wielded."); break;
+					pline("Artifact specs: +10 to-hit and +16 cold damage, fire and shock resistance when wielded."); break;
 				case ART_ZANTASBORE:
 					pline("Artifact specs: +4 to-hit and +6 damage, very fast speed when wielded."); break;
 				case ART_STRIKE_THE_BALL:
@@ -24483,7 +24507,7 @@ boolean knoweverything;
 				case ART_PLAYING_ANASTASIA:
 					pline("Artifact specs: petrification resistance and anastasia trap effect when worn, because you love playing Anastasia while wearing these treaded soles."); break;
 				case ART_SABRINA_S_RESCUE:
-					pline("Artifact specs: +4 to-hit and +12 damage to acid-susceptible monsters, half physical damage, warning and aggravate monster when wielded, can be invoked for dragon breath, lawful, singslave quest artifact."); break;
+					pline("Artifact specs: +4 to-hit and +12 acid damage, half physical damage, warning and aggravate monster when wielded, can be invoked for dragon breath, lawful, singslave quest artifact."); break;
 				case ART_LILLY_S_SECRET_AGENCY:
 					pline("Artifact specs: can be invoked to exchange your documents with Rosa Lilly the Secret Agent."); break;
 				case ART_DIS_IS_E_PRISEM:
@@ -24599,7 +24623,7 @@ boolean knoweverything;
 				case ART_VERSCENT_:
 					pline("Artifact specs: corrosivity when worn, makes all perfume monsters try to flee from you."); break;
 				case ART_BRIGHTE_SEE__EEEE:
-					pline("Artifact specs: +4 to-hit and +8 damage to fire-susceptible monsters, stoned chilling and sight bonus when wielded."); break;
+					pline("Artifact specs: +4 to-hit and +8 fire damage, stoned chilling and sight bonus when wielded."); break;
 				case ART_KAMAHEWA:
 					pline("Artifact specs: glib combat when worn. If you use the appraisal technique on this artifact while it's +6 or lower, it gains a point of enchantment."); break;
 				case ART_ARSHTRITTMESSER:
@@ -25042,7 +25066,7 @@ boolean knoweverything;
 				case ART_WIWIU_:
 					pline("Artifact specs: increased multishot rate when worn."); break;
 				case ART_REAL_ACID:
-					pline("Artifact specs: +4 to-hit and +16 damage to acid-susceptible monsters."); break;
+					pline("Artifact specs: +4 to-hit and +16 acid damage."); break;
 				case ART_STRONG_:
 					pline("Artifact specs: usually spawns with a very high enchantment value."); break;
 				case ART_WENDY_S_DRAIN:
@@ -25056,7 +25080,7 @@ boolean knoweverything;
 				case ART_MAIN_GAUCHE:
 					pline("Artifact specs: +1 to-hit and +3 damage."); break;
 				case ART_PIRATTE_HUNTING:
-					pline("Artifact specs: +2 to-hit and +6 damage to fire-susceptible monsters. The name is not a misspelling."); break;
+					pline("Artifact specs: +2 to-hit and +6 fire damage. The name is not a misspelling."); break;
 				case ART_DOUBLE_BERETTA:
 					pline("Artifact specs: +6 to-hit and +2 damage."); break;
 				case ART_DOUBLE_COLT_____:
@@ -25080,7 +25104,7 @@ boolean knoweverything;
 				case ART_BURDENSOME_LOG:
 					pline("Artifact specs: +15 damage when thrown."); break;
 				case ART_CORROSER_LANCE:
-					pline("Artifact specs: +13 damage to acid-susceptible monsters. If you're using it in melee, it has +5 to-hit while you're riding and -5 to-hit otherwise."); break;
+					pline("Artifact specs: +13 acid damage. If you're using it in melee, it has +5 to-hit while you're riding and -5 to-hit otherwise."); break;
 				case ART_ASTRAL_LIGHTWELL:
 					pline("Artifact specs: astral vision when lit, causes undead to deal double damage to you."); break;
 				case ART_MINOPOWER:
@@ -25088,7 +25112,7 @@ boolean knoweverything;
 				case ART_JADEN_S_MISSION:
 					pline("Artifact specs: +4 to-hit and +4 damage."); break;
 				case ART_FYARR_S_FYRE:
-					pline("Artifact specs: +5 to-hit and double damage to fire-susceptible monsters, resist fire when wielded."); break;
+					pline("Artifact specs: +5 to-hit and double fire damage, resist fire when wielded."); break;
 				case ART_MOVENIN_HOSASA:
 					pline("Artifact specs: very fast speed when wielded."); break;
 				case ART_SPIKED_KNUCKLES:
@@ -25190,7 +25214,7 @@ boolean knoweverything;
 				case ART_DEMANDING_ENTRY:
 					pline("Artifact specs: 5 extra points of AC and drain resistance when worn, allows you to enter shops even if the shopkeeper normally wouldn't let you in."); break;
 				case ART_ACIDFALL:
-					pline("Artifact specs: +5 to-hit and double damage to acid-susceptible monsters, acid resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and double acid damage, acid resistance when wielded."); break;
 				case ART_AVALON:
 					pline("Artifact specs: regeneration, +1 to-hit and +1 damage, lawful."); break;
 				case ART_BALMUNG:
@@ -25204,7 +25228,7 @@ boolean knoweverything;
 				case ART_CIRCE_S_WITCHSTAFF:
 					pline("Artifact specs: +4 to-hit and +4 damage, beheads enemies, neutral."); break;
 				case ART_END__C_GRIM_REAPER_:
-					pline("Artifact specs: +3 to-hit and +20 damage to cold-susceptible monsters, drain resistance and makes the turn counter increase twice as fast when wielded, neutral."); break;
+					pline("Artifact specs: +3 to-hit and +20 cold damage, drain resistance and makes the turn counter increase twice as fast when wielded, neutral."); break;
 				case ART_GAE_BULG:
 					pline("Artifact specs: +5 to-hit and +5 drain life damage, can drain levels from enemies, chaotic."); break;
 				case ART_GAE_DEARG:
@@ -25292,7 +25316,7 @@ boolean knoweverything;
 				case ART_HAMMER_OF_JUSTICE:
 					pline("Artifact specs: +5 to-hit and double damage to crossaligned monsters, acts as a luckstone and provides protection when wielded, lawful."); break;
 				case ART_SNOW_ILLUSION:
-					pline("Artifact specs: +5 to-hit and double damage to cold-susceptible monsters, cold resistance when wielded, lawful."); break;
+					pline("Artifact specs: +5 to-hit and double cold damage, cold resistance when wielded, lawful."); break;
 				case ART_SWORDBREAKER:
 					pline("Artifact specs: +2 to-hit and +4 damage, provides protection when wielded, disenchants enemy weapons, lawful."); break;
 				case ART_WINKCHAINSWORD:
@@ -25338,17 +25362,17 @@ boolean knoweverything;
 				case ART_EBONY_LACQUERED_BOW:
 					pline("Artifact specs: +5 to-hit and double damage, searching when wielded, lawful."); break;
 				case ART_AQUARHAPSODY:
-					pline("Artifact specs: +5 to-hit and double damage to cold-susceptible monsters, cold resistance when wielded, lawful."); break;
+					pline("Artifact specs: +5 to-hit and double cold damage, cold resistance when wielded, lawful."); break;
 				case ART_GOLIATHBANE:
 					pline("Artifact specs: +5 to-hit and double damage, lawful."); break;
 				case ART_FIREBIRD:
-					pline("Artifact specs: +5 to-hit and +24 damage to fire-susceptible monsters, fire resistance when wielded, hitting something with it may reduce its enchantment value, lawful."); break;
+					pline("Artifact specs: +5 to-hit and +24 fire damage, fire resistance when wielded, hitting something with it may reduce its enchantment value, lawful."); break;
 				case ART_SHUGO:
 					pline("Artifact specs: +5 to-hit and +3 damage to snakes and horses, protection when wielded, neutral."); break;
 				case ART_STEAMBRINGER:
 					pline("Artifact specs: +5 to-hit and +30 damage to amorphous monsters, fire resistance when wielded, neutral."); break;
 				case ART_FIRE_SOUL:
-					pline("Artifact specs: +5 to-hit and double damage to fire-susceptible monsters, fire resistance when wielded, neutral."); break;
+					pline("Artifact specs: +5 to-hit and double fire damage, fire resistance when wielded, neutral."); break;
 				case ART_SWORD_OF_REVOLUTION:
 					pline("Artifact specs: +5 to-hit and double damage to crossaligned monsters, neutral."); break;
 				case ART_DAEFAROTH:
@@ -25356,7 +25380,7 @@ boolean knoweverything;
 				case ART_NOCLAF:
 					pline("Artifact specs: +5 to-hit and +2 damage."); break;
 				case ART_JINRAI:
-					pline("Artifact specs: +5 to-hit and double damage to shock-susceptible monsters, shock resistance when wielded, neutral."); break;
+					pline("Artifact specs: +5 to-hit and double shock damage, shock resistance when wielded, neutral."); break;
 				case ART_DUAL_MASTERY:
 					pline("Artifact specs: +5 to-hit and +3 damage, and if it's in your off-hand weapon slot while dual-wielding you also generally gain a +5 increase accuracy bonus. Neutral."); break;
 				case ART_EUTATS_ENOTS:
@@ -25372,15 +25396,15 @@ boolean knoweverything;
 				case ART_FOWLER:
 					pline("Artifact specs: +5 to-hit and double damage to rodents, neutral."); break;
 				case ART_POLAR_STAR:
-					pline("Artifact specs: +5 to-hit and +16 damage to cold-susceptible monsters, cold resistance and waterwalking when wielded, darkens your surroundings, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +16 cold damage, cold resistance and waterwalking when wielded, darkens your surroundings, neutral."); break;
 				case ART_POLARIS:
-					pline("Artifact specs: +5 to-hit and +16 damage to cold-susceptible monsters, cold resistance and waterwalking when wielded, darkens your surroundings, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +16 cold damage, cold resistance and waterwalking when wielded, darkens your surroundings, neutral."); break;
 				case ART_RUNEBREAKER:
 					pline("Artifact specs: +5 to-hit and double damage to liches, magic resistance when wielded, neutral."); break;
 				case ART_PARRYINGSTAFF:
 					pline("Artifact specs: +8 to-hit and +3 damage, 7 extra points of AC when wielded, neutral."); break;
 				case ART_SAKUSHNIR:
-					pline("Artifact specs: +5 to-hit and +15 damage to shock-susceptible monsters, forces you to adhere to the samurai conduct, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +15 shock damage, forces you to adhere to the samurai conduct, neutral."); break;
 				case ART_REVOLTER:
 					pline("Artifact specs: +5 to-hit and double damage to lords and princes, conflict when wielded, neutral."); break;
 				case ART_ASUIBIHC_FO_NAIDRAUG:
@@ -25390,13 +25414,13 @@ boolean knoweverything;
 				case ART_CLIFFHANGER:
 					pline("Artifact specs: +8 to-hit and +1 damage, neutral."); break;
 				case ART_SNAKEFIRE:
-					pline("Artifact specs: +5 to-hit and double damage to fire-susceptible monsters, fire resistance when wielded, neutral."); break;
+					pline("Artifact specs: +5 to-hit and double fire damage, fire resistance when wielded, neutral."); break;
 				case ART_FLAMESNIPER:
-					pline("Artifact specs: 5 to-hit and double damage to fire-susceptible monsters, fire resistance when wielded, neutral."); break;
+					pline("Artifact specs: 5 to-hit and double fire damage, fire resistance when wielded, neutral."); break;
 				case ART_SOUTHERN_CROSS:
 					pline("Artifact specs: +5 to-hit and +7 damage, magic resistance when wielded, neutral."); break;
 				case ART_THUNDERBIRD:
-					pline("Artifact specs: +10 to-hit and double damage to shock-susceptible monsters, shock resistance when wielded, neutral."); break;
+					pline("Artifact specs: +10 to-hit and double shock damage, shock resistance when wielded, neutral."); break;
 				case ART_FLOWER_HURRICANE:
 					pline("Artifact specs: +5 to-hit and double damage, chaotic."); break;
 				case ART_BLACK_SARENA:
@@ -25416,9 +25440,9 @@ boolean knoweverything;
 				case ART_ATLACH_NACHA:
 					pline("Artifact specs: +8 to-hit and double damage to monsters that count as human, elf, dwarf, gnome or hobbit. Free action when wielded, chaotic."); break;
 				case ART_FLAME_EATER:
-					pline("Artifact specs: +5 to-hit and +16 damage to fire-susceptible monsters, fire resistance and item destruction when wielded, chaotic."); break;
+					pline("Artifact specs: +5 to-hit and +16 fire damage, fire resistance and item destruction when wielded, chaotic."); break;
 				case ART_FIRE_EATER:
-					pline("Artifact specs: +5 to-hit and +16 damage to fire-susceptible monsters, fire resistance and prevents you from seeing at a distance when wielded, chaotic."); break;
+					pline("Artifact specs: +5 to-hit and +16 fire damage, fire resistance and prevents you from seeing at a distance when wielded, chaotic."); break;
 				case ART_ONIKIRIMARU:
 					pline("Artifact specs: +5 to-hit and double damage to ogres, chaotic."); break;
 				case ART_SPINESHOOTER:
@@ -25456,7 +25480,7 @@ boolean knoweverything;
 				case ART_MERCILESS_MARE:
 					pline("Artifact specs: +5 to-hit and +3 damage, reflection and sleep resistance when wielded, chaotic."); break;
 				case ART_ENRAI:
-					pline("Artifact specs: +5 to-hit and double damage to shock-susceptible monsters, shock resistance when wielded, chaotic."); break;
+					pline("Artifact specs: +5 to-hit and double shock damage, shock resistance when wielded, chaotic."); break;
 				case ART_NIUR_KRAD:
 					pline("Artifact specs: +5 to-hit and double drain life damage, can drain levels from enemies, chaotic."); break;
 				case ART_PRINCIPIUM_INCERTI:
@@ -25502,7 +25526,7 @@ boolean knoweverything;
 				case ART_HATCHET_OF_HINAMIZAWA:
 					pline("Artifact specs: +5 to-hit and +14 damage to monsters that count as human."); break;
 				case ART_GOURAI:
-					pline("Artifact specs: +5 to-hit and double damage to shock-susceptible monsters, shock resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and double shock damage, shock resistance when wielded."); break;
 				case ART_MAXWELL_S_HAMMER:
 					pline("Artifact specs: +5 to-hit and double damage to monsters that count as human."); break;
 				case ART_COOKING_OF_DEVOTING_WIFE:
@@ -25518,9 +25542,9 @@ boolean knoweverything;
 				case ART_MIRACLE_PAINT:
 					pline("Artifact specs: +16 to-hit and +4 stun damage, and wielding it conveys shock resistance, see invisible, searching and hallucination resistance and works like a luckstone."); break;
 				case ART_FLARE_FLAKE:
-					pline("Artifact specs: +5 to-hit and +20 damage to fire-susceptible monsters, disables cold resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +20 fire damage, disables cold resistance when wielded."); break;
 				case ART_JACK_O__LANTERN:
-					pline("Artifact specs: +5 to-hit and +6 damage to cold-susceptible monsters, cold resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +6 cold damage, cold resistance when wielded."); break;
 				case ART_TWINKLESTAR:
 					pline("Artifact specs: +5 to-hit and +4 damage, magic resistance when wielded."); break;
 				case ART_STARRING_INFERNO:
@@ -25532,9 +25556,9 @@ boolean knoweverything;
 				case ART_HIDE_PENETRATOR:
 					pline("Artifact specs: +12 to-hit and double damage, searching and magic resistance when wielded."); break;
 				case ART_FLAME_PILLAR:
-					pline("Artifact specs: +5 to-hit and +20 damage to fire-susceptible monsters, halves your AC, fire resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +20 fire damage, halves your AC, fire resistance when wielded."); break;
 				case ART_ICE_PILLAR:
-					pline("Artifact specs: +5 to-hit and +20 damage to cold-susceptible monsters, halves your AC, cold resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +20 cold damage, halves your AC, cold resistance when wielded."); break;
 				case ART_SKAZKA_OB_DURAKE:
 					pline("Artifact specs: +30 damage to demons, 7 extra points of AC, sickness resistance and -3 intelligence when wielded."); break;
 				case ART_TEN_DIMENSIONAL_SCYTHE:
@@ -25600,7 +25624,7 @@ boolean knoweverything;
 				case ART_YEEN_S_BUTCHER:
 					pline("Artifact specs: +5 to-hit and +8 stun damage, chaotic."); break;
 				case ART_XIUHCOATL:
-					pline("Artifact specs: +5 to-hit and +24 damage to fire-susceptible monsters, ESP and levitation when wielded, autocurses."); break;
+					pline("Artifact specs: +5 to-hit and +24 fire damage, ESP and levitation when wielded, autocurses."); break;
 				case ART_CROSSBOW_OF_CARL:
 					pline("Artifact specs: +5 to-hit and +6 damage, reflection and ESP when wielded, chaotic."); break;
 				case ART_GJALLAR:
@@ -25716,9 +25740,9 @@ boolean knoweverything;
 				case ART_FIVEFOLDSWITCH_:
 					pline("Artifact specs: if you invoke it while it's at least +1, it cures all nasty trap effects, but then the armor becomes -20 and prime curses itself."); break;
 				case ART_CHILDREN_MJOLLNIR:
-					pline("Artifact specs: +5 to-hit and +12 damage to shock-susceptible monsters, neutral. Omg that artifact has 'child' in its name that's sooooo offensive and Amy should be banned."); break;
+					pline("Artifact specs: +5 to-hit and +12 shock damage, neutral. Omg that artifact has 'child' in its name that's sooooo offensive and Amy should be banned."); break;
 				case ART_WEAKER_MJOLLNIR:
-					pline("Artifact specs: +5 to-hit and +12 damage to shock-susceptible monsters, neutral."); break;
+					pline("Artifact specs: +5 to-hit and +12 shock damage, neutral."); break;
 				case ART_SCHWOINGLE:
 					pline("Artifact specs: +5 to-hit and +12 damage."); break;
 				case ART_LATIN_SPEAR:
@@ -25726,11 +25750,11 @@ boolean knoweverything;
 				case ART_DARK_SINGER:
 					pline("Artifact specs: +1 to-hit and +10 damage."); break;
 				case ART_SEU:
-					pline("Artifact specs: +4 to-hit and +8 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +4 to-hit and +8 fire damage."); break;
 				case ART_GA_BRADDA_DANA_BREIGHT_BAG:
 					pline("Artifact specs: +6 to-hit and +9 damage."); break;
 				case ART_ICEBLOCK_S_NEGATION:
-					pline("Artifact specs: +15 to-hit and +14 damage to fire-susceptible monsters, fire resistance when wielded, neutral. This artifact is based on the 'Warforger' hammer that the type of ice block invented, and who intentionally made it so that it deals physical damage instead of fire damage so that fire-resistant monsters don't negate the damage, but Amy decided to create a version that does deal fire damage, muahahahaha."); break;
+					pline("Artifact specs: +15 to-hit and +14 fire damage, fire resistance when wielded, neutral. This artifact is based on the 'Warforger' hammer that the type of ice block invented, and who intentionally made it so that it deals physical damage instead of fire damage so that fire-resistant monsters don't negate the damage, but Amy decided to create a version that does deal fire damage, muahahahaha."); break;
 				case ART_BACK_TO_ORIGIN:
 					pline("Artifact specs: instead of restoring a stat, zapping it resets the base values of your stats back to whatever they were when you started the game."); break;
 				case ART_BEST_OFFENSE_IS_A_GOOD_DEF:
@@ -25981,7 +26005,7 @@ boolean knoweverything;
 				case ART_DARTHADART:
 					pline("Artifact specs: if you fire it at a target and hit, its enchantment will go up, unless it's already +15 or higher."); break;
 				case ART_U_TSCHELLI:
-					pline("Artifact specs: +5 to-hit and +8 damage to acid-susceptible monsters, acid resistance when wielded."); break;
+					pline("Artifact specs: +5 to-hit and +8 acid damage, acid resistance when wielded."); break;
 				case ART_M__M__M_:
 					pline("Artifact specs: +20 to-hit, and deals extra damage the lower your paddle skill is."); break;
 				case ART_SKOGLO:
@@ -25993,7 +26017,7 @@ boolean knoweverything;
 				case ART_CLENCH_FIST:
 					pline("Artifact specs: +4 to-hit and +8 damage, resist fear when wielded."); break;
 				case ART_HIBERNIA_SKIRIMI:
-					pline("Artifact specs: +6 to-hit and +10 damage to cold-susceptible monsters, fire resistance when wielded."); break;
+					pline("Artifact specs: +6 to-hit and +10 cold damage, fire resistance when wielded."); break;
 				case ART_WEGEO_ACQUA_DE_EISU_FORTE:
 					pline("Artifact specs: allows you to walk on water, which will transform into ice in the process."); break;
 				case ART_INDOBURDENIA_VIRII:
@@ -26081,7 +26105,7 @@ boolean knoweverything;
 				case ART_BAMSEL_IN_THE_WAY:
 					pline("Artifact specs: more likely to be targetted by effects that target a random worn piece of armor."); break;
 				case ART_ICEBLOCK_SWORD:
-					pline("Artifact specs: +6 to-hit and +6 damage to cold-susceptible monsters, disables fire resistance when wielded."); break;
+					pline("Artifact specs: +6 to-hit and +6 cold damage, disables fire resistance when wielded."); break;
 				case ART_AVAL_N:
 					pline("Artifact specs: +1 to-hit and +10 damage, regeneration when wielded."); break;
 				case ART_SONICBOOM_BABY__LET_S_DO_T:
@@ -26127,7 +26151,7 @@ boolean knoweverything;
 				case ART_FLLL___SCH:
 					pline("Artifact specs: +4 damage."); break;
 				case ART_CLAH:
-					pline("Artifact specs: +3 to-hit and +3 damage to cold-susceptible monsters, cold resistance when wielded."); break;
+					pline("Artifact specs: +3 to-hit and +3 cold damage, cold resistance when wielded."); break;
 				case ART_UEH_THE_PART_IS___:
 					pline("Artifact specs: equipping it sets its enchantment value to +3, regardless of what it was before."); break;
 				case ART_SLASH_THE_UNDEAD:
@@ -26167,7 +26191,7 @@ boolean knoweverything;
 				case ART_VERY_SPECIFICNESS:
 					pline("Artifact specs: +12 to-hit and +29 damage to worms, fire resistance and +1 increase accuracy when wielded."); break;
 				case ART_CHARR:
-					pline("Artifact specs: +4 to-hit and +6 damage to cold-susceptible monsters, acid resistance when wielded."); break;
+					pline("Artifact specs: +4 to-hit and +6 cold damage, acid resistance when wielded."); break;
 				case ART_LONGLOSS:
 					pline("Artifact specs: +12 damage, sight bonus, reduces to-hit for melee and ranged attacks by d10."); break;
 				case ART_GARANT_OF_UARA:
@@ -26201,7 +26225,7 @@ boolean knoweverything;
 				case ART_NOSBADO:
 					pline("Artifact specs: while wielded, allows you to resist bad effects with a 1 in 5 chance."); break;
 				case ART_DOT_LINE_DOT_LINE_DOT_LINE:
-					pline("Artifact specs: +6 to-hit and +10 damage to shock-susceptible monsters."); break;
+					pline("Artifact specs: +6 to-hit and +10 shock damage."); break;
 				case ART_UNDERIRDIC_:
 					pline("Artifact specs: +3 to-hit and +3 damage, allows you to walk on farmland and mountains when wielded."); break;
 				case ART_POINTED_JAVELIN:
@@ -26231,7 +26255,7 @@ boolean knoweverything;
 				case ART_DOTRI:
 					pline("Artifact specs: +2 to-hit and +3 damage."); break;
 				case ART_FLAWWER:
-					pline("Artifact specs: +4 to-hit and +4 damage to fire-susceptible monsters."); break;
+					pline("Artifact specs: +4 to-hit and +4 fire damage."); break;
 				case ART_MUHISH:
 					pline("Artifact specs: +12 to-hit, spawns with bigger stack size."); break;
 				case ART_WAY_TOO_LONG:
@@ -26533,7 +26557,7 @@ boolean knoweverything;
 				case ART_PALACE_TERROR:
 					pline("Artifact specs: +10 to-hit and +10 damage, increases spawn frequency for monsters that spawn already dead, occasionally causes you to receive sanity when wielded."); break;
 				case ART_HAH_TSCHH:
-					pline("Artifact specs: +3 to-hit and +5 damage to cold-susceptible monsters, suppresses the freeze status effect."); break;
+					pline("Artifact specs: +3 to-hit and +5 cold damage, suppresses the freeze status effect."); break;
 				case ART_CANNOT_DO_IS_FROZEN:
 					pline("Artifact specs: cold resistance and protects your potions from cold when wielded, can be invoked for cure freeze."); break;
 				case ART_VINTAGE_MEMORY:
@@ -26547,7 +26571,7 @@ boolean knoweverything;
 				case ART_CALF_CUTLET_WITHOUT_BEOD:
 					pline("Artifact specs: +7 damage, hunger and full nutrients when wielded."); break;
 				case ART_SMARTED_DIAMOND:
-					pline("Artifact specs: +8 to-hit and +8 damage to shock-susceptible monsters, shock resistance when wielded."); break;
+					pline("Artifact specs: +8 to-hit and +8 shock damage, shock resistance when wielded."); break;
 				case ART_KRURUINK:
 					pline("Artifact specs: +4 damage, hitting something with it will give you very fast speed for 2 turns."); break;
 				case ART_EXTENDED_DURABILITY:
@@ -26611,7 +26635,7 @@ boolean knoweverything;
 				case ART_UNWIELDYTINE:
 					pline("Artifact specs: +14 damage, weighs 200 additional units and reduces your melee to-hit when wielded. If you're female, it also slightly increases your chance of landing a critical hit against enemies."); break;
 				case ART_TURVANG_S_THUNDER:
-					pline("Artifact specs: +12 damage to shock-susceptible monsters, stun resistance when wielded."); break;
+					pline("Artifact specs: +12 shock damage, stun resistance when wielded."); break;
 				case ART_KLOEB:
 					pline("Artifact specs: +6 to-hit and +6 damage."); break;
 				case ART_NOOBY_BONUS_STYLE:
@@ -26753,7 +26777,7 @@ boolean knoweverything;
 				case ART_OLSCRATCH:
 					pline("Artifact specs: +8 to-hit and +10 damage, but if you start bleeding, you bleed for twice as long."); break;
 				case ART_ST_ICKYNESS:
-					pline("Artifact specs: +6 to-hit and +9 damage to acid-susceptible monsters, julietta trap effect, protects you from the slippery fingers effect and makes you resistant to item-stealing monsters."); break;
+					pline("Artifact specs: +6 to-hit and +9 acid damage, julietta trap effect, protects you from the slippery fingers effect and makes you resistant to item-stealing monsters."); break;
 				case ART_HELP_WITH_THE_MINE:
 					pline("Artifact specs: while you're in the gnomish mines, your sight range is increased by 2 and in the deep mines it's increased by 1. No effect if you're wearing it somewhere else."); break;
 				case ART_TOWNIE_DUMP:
@@ -26787,7 +26811,7 @@ boolean knoweverything;
 				case ART_PERFECT_UNIVERSE:
 					pline("Artifact specs: +4 to-hit and +4 damage, and while you're wielding it, monsters with weapons have lower chance to hit against you."); break;
 				case ART_THUNDERFIST:
-					pline("Artifact specs: +5 to-hit and +12 damage to shock-susceptible monsters. This artifact is based on what's apparently the original version of Mjollnir, back when the developers didn't know that the lucern 'hammer' isn't really a hammer, but this is SLEX so the artifact fits right in, and also there's still the actual Mjollnir so all is well."); break;
+					pline("Artifact specs: +5 to-hit and +12 shock damage. This artifact is based on what's apparently the original version of Mjollnir, back when the developers didn't know that the lucern 'hammer' isn't really a hammer, but this is SLEX so the artifact fits right in, and also there's still the actual Mjollnir so all is well."); break;
 				case ART_SMILE_Z:
 					pline("Artifact specs: resistance piercing when worn."); break;
 				case ART_SECRET_RAINBOW:
@@ -26833,7 +26857,7 @@ boolean knoweverything;
 				case ART_FINETUNING:
 					pline("Artifact specs: ESP and food appraisal when worn."); break;
 				case ART_HELIOPOLIS_MISTAKE:
-					pline("Artifact specs: +8 to-hit and +12 damage to shock-susceptible monsters, equipping it causes the killer spawn trap effect for a while, and while wielding it you also have clairvoyance, scent view, echolocation and red spells. Lawful."); break;
+					pline("Artifact specs: +8 to-hit and +12 shock damage, equipping it causes the killer spawn trap effect for a while, and while wielding it you also have clairvoyance, scent view, echolocation and red spells. Lawful."); break;
 				case ART_SAATUSPLEASE:
 					pline("Artifact specs: can be invoked for enlightenment but unless you're in a form without hands, doing so will curse this artifact. If you are in a form without hands, you additionally have peacevision while wearing it."); break;
 				case ART_CLEAR_CATASTROPHE:
@@ -26947,7 +26971,7 @@ boolean knoweverything;
 				case ART_DONTPLODE:
 					pline("Artifact specs: doesn't explode if it normally would, acid mage sacrifice gift."); break;
 				case ART_BREAK_EVERYTHING:
-					pline("Artifact specs: +8 damage to cold-susceptible monsters, fire resistance when wielded, firefighter sacrifice gift, and if you actually are a firefighter, you can smash various types of terrain with it."); break;
+					pline("Artifact specs: +8 cold damage, fire resistance when wielded, firefighter sacrifice gift, and if you actually are a firefighter, you can smash various types of terrain with it."); break;
 				case ART_TADA:
 					pline("Artifact specs: spawns with higher amount of charges and also gains more when recharged, flame mage sacrifice gift."); break;
 				case ART_FERGIE_S_GLACIER:
@@ -27076,6 +27100,120 @@ boolean knoweverything;
 					pline("Artifact specs: randomly branchports you when quaffed."); break;
 				case ART_GENDERGENDERGENDER:
 					pline("Artifact specs: does nothing special, but is a sacrifice gift for the genderstarist role and will get people up in arms because 'oh my god the term GENDER has been used by amy she must be such an evil witch!!!1'"); break;
+				case ART_ARS_TECHNICA:
+					pline("Artifact specs: +10 damage, magic resistance when wielded, and if you're an artist and equip this artifact for the first time, your paddle skill cap increases by one level. Artist sacrifice gift."); break;
+				case ART_MAY_BRITT_S_CLICK:
+					pline("Artifact specs: displays all joke monsters when carried, gang scholar sacrifice gift."); break;
+				case ART_MOIST_CHERRY:
+					pline("Artifact specs: can be invoked for cure bleeding, but unless you're a bleeder, this increases your sanity and contamination. Bleeder sacrifice gift."); break;
+				case ART_EI_KEN_WOOK_WIF_DIS:
+					pline("Artifact specs: fast speed when worn and doesn't cause the fumbling effect from the 'stupid stilettos' appearance, goff sacrifice gift."); break;
+				case ART_EFGOURD:
+					pline("Artifact specs: confusion resistance when worn, and if you're a drunk, you can still quaff while wearing it. Drunk sacrifice gift."); break;
+				case ART_WOMANBEATER:
+					pline("Artifact specs: +15 damage to monsters who are always female, cruel abuser sacrifice gift."); break;
+				case ART_BANG_THE_HEAD_AWAY:
+					pline("Artifact specs: allows ammos fired from it to occasionally behead enemies, slave master sacrifice gift."); break;
+				case ART_FOR_STYGWYR_:
+					pline("Artifact specs: heals you whenever you kill something while wielding it, bloodseeker sacrifice gift."); break;
+				case ART_GEB_ME_ALL_YOUR_MONEY:
+					pline("Artifact specs: +8 damage, and if you hit something in melee it must make a saving throw or flee, bully sacrifice gift."); break;
+				case ART_POURRI_R_:
+					pline("Artifact specs: full nutrients when worn, cook sacrifice gift."); break;
+				case ART_MAGICRYSTAL:
+					pline("Artifact specs: gives spellcasting chance boosts when carried but also the meltem trap effect, augurer sacrifice gift."); break;
+				case ART_SMASHIN:
+					pline("Artifact specs: +20 damage, heavily aggravates monsters and autocurses, sage sacrifice gift, and if you're not a sage the autocursing will be heavy and sticky."); break;
+				case ART_HAHA_OWNED:
+					pline("Artifact specs: bisects enemies, but whenever it does, the sword's enchantment value decreases. Otaku sacrifice gift."); break;
+				case ART_UP_DOWN_STAB:
+					pline("Artifact specs: +4 damage, and if your opponent is either on a table or in non-crystal water, you deal an additional 20 damage. Gamer sacrifice gift."); break;
+				case ART_Y_SWORD:
+					pline("Artifact specs: deals extra damage proportional to your highest sword-type skill, saiyan sacrifice gift."); break;
+				case ART_TSCHUEUU:
+					pline("Artifact specs: +15 to-hit, +10 range for bolts, disallows multishot, increases your movement rate when you fire, goldminer sacrifice gift."); break;
+				case ART_BACK_KICK:
+					pline("Artifact specs: if you move away from a monster, you automatically kick the monster in question. Politician sacrifice gift."); break;
+				case ART_WORLD_CLASS_JUMP:
+					pline("Artifact specs: reduces the mana cost for jumping, feat master sacrifice gift."); break;
+				case ART_KNIFE_EM:
+					pline("Artifact specs: +10 damage, regeneration when wielded, gunner sacrifice gift."); break;
+				case ART_JUMPING_FLAMING_HE_TIE_CLI:
+					pline("Artifact specs: spawns with extra ammo, doom marine sacrifice gift."); break;
+				case ART_SUPERSTAB:
+					pline("Artifact specs: double stealth and allows backstabbing when wielded, foxhound agent sacrifice gift."); break;
+				case ART_FIRST_EXCHANGE:
+					pline("Artifact specs: +5 intelligence and -5 strength when worn, mahou shoujo sacrifice gift."); break;
+				case ART_SECOND_EXCHANGE:
+					pline("Artifact specs: +5 dexterity and -5 charisma when worn, autocurses, mahou shoujo sacrifice gift."); break;
+				case ART_FLING_IN_THE_DARK:
+					pline("Artifact specs: +2 damage, infravision when wielded, ringseeker sacrifice gift."); break;
+				case ART_AIR_ON_HOLD:
+					pline("Artifact specs: prevents items from getting wet and protects you from water turbulence when worn, diver sacrifice gift."); break;
+				case ART_BRITNEY_S_DECEPTION:
+					pline("Artifact specs: improves your AC by 6 points and deals thorns damage to things attacking you in melee, druid sacrifice gift."); break;
+				case ART_GREAT_MATRON:
+					pline("Artifact specs: +20 damage. If you're not an amazon, it autocurses and causes weak sight, and if you're not female, it gives you the natalia and arabella trap effects for a while. Amazon sacrifice gift."); break;
+				case ART_SLAM_:
+					pline("Artifact specs: +10 damage, resist sleep and makes your armor pieces more resilient when wielded, ordinator sacrifice gift."); break;
+				case ART_PROTECTION_SET:
+					pline("Artifact specs: double half physical damage when worn, thalmor sacrifice gift."); break;
+				case ART_ALTERNATE_SPELLWEAVE:
+					pline("Artifact specs: double half spell damage, prism reflection and bad alignment when worn, thalmor sacrifice gift."); break;
+				case ART_COMPLETE_SIGHT:
+					pline("Artifact specs: clairvoyance, warning, scent view and echolocation when worn, medium sacrifice gift and if you're not a medium, it causes the game to lag."); break;
+				case ART_MELEE_DAMMIT:
+					pline("Artifact specs: +6 to-hit and +8 damage, death resistance and your shoes automatically take themselves off if not cursed or become very negatively enchanted if they are cursed, ysexymate sacrifice gift."); break;
+				case ART_ASTRA_MAIL:
+					pline("Artifact specs: x-ray vision, flying, difficulty trap and aggravation trap effect when worn, makes you much more susceptible to HP reduction from corona, heavily sticky autocurses, fighter sacrifice gift."); break;
+				case ART_EASTERN_CLASH:
+					pline("Artifact specs: +7 to-hit and +5 damage, fast speed when wielded, fencer sacrifice gift."); break;
+				case ART_GOOSCH_HIDARI:
+					pline("Artifact specs: +6 damage, and if you're dual-wielding with this weapon in your secondary slot it grants free action and discount action. Fencer sacrifice gift."); break;
+				case ART_DACHA_DACHA_DACHA:
+					pline("Artifact specs: increased chance to land critical hits, hitting things on several turns in succession does combo damage as long as you don't spend a turn not hitting anything, anachronist sacrifice gift."); break;
+				case ART_EXCALISHIELD:
+					pline("Artifact specs: drain resistance both when worn and wielded, +6 damage if you bash with it and also +6 if you use shield bash, paladin sacrifice gift."); break;
+				case ART_DESSESGA:
+					pline("Artifact specs: +5 to-hit and +10 damage, keen memory when wielded, hedderjedi sacrifice gift."); break;
+				case ART_BLAG_LITE:
+					pline("Artifact specs: +7 to-hit and +8 damage, uses up power at half the normal rate, de-light trap effect when wielded, shadow jedi sacrifice gift."); break;
+				case ART_LARISSA_S_LAUGHTER:
+					pline("Artifact specs: +8 damage, larissa trap effect when wielded and if you're not a hussy the larissa trap effect persists for a while after you unwield it, slowly trains squeaking skill over time, can be invoked to change its material to inka, hussy sacrifice gift."); break;
+				case ART_BOMBERSNEE:
+					pline("Artifact specs: +8 damage, lawful, grenadonin sacrifice gift."); break;
+				case ART_GO_UP_AND_SOAR:
+					pline("Artifact specs: flying and very fast speed when worn, astronaut sacrifice gift."); break;
+				case ART_HEARING_EAR:
+					pline("Artifact specs: scent view, echolocation and covetous warning when worn, dissident sacrifice gift."); break;
+				case ART_PECTORAL_HEEL:
+					pline("Artifact specs: counts as stiletto heels and grants swimming when worn, makes you ultra fast if you're in water, displays semicolons up to a certain distance, fjorde sacrifice gift."); break;
+				case ART_SLAM_SHUT_AND_BE_DONE:
+					pline("Artifact specs: +25 damage to lords and princes, practicant sacrifice gift."); break;
+				case ART_NEEDLESSLY_MEAN:
+					pline("Artifact specs: +6 to-hit and +14 damage to monsters that are always female, warning and +4 strength when wielded, emera sacrifice gift."); break;
+				case ART_REGROWN_RESOURCE:
+					pline("Artifact specs: spawns erodeproof and with higher stack size, tosser sacrifice gift."); break;
+				case ART_BAEAU:
+					pline("Artifact specs: spawns with higher average enchantment, aklyst sacrifice gift."); break;
+				case ART_LUCKY_PACK:
+					pline("Artifact specs: increases your symbiote's attack frequency while carried, symbiant sacrifice gift."); break;
+				case ART_HAMMER_GOOD_HELM:
+					pline("Artifact specs: gives bonus AC when worn, especially if you're a combatant, and is a sacrifice gift for the combatant role."); break;
+				case ART_MIRACLE_BEAUTIFUL_NOISES:
+					pline("Artifact specs: slowly reduces your sanity while carried, butt lover sacrifice gift."); break;
+				case ART_HARDCORE_ADDICTION:
+					pline("Artifact specs: makes you resistant against conversion sermon and wouwou taunts while carried, butt lover sacrifice gift."); break;
+				case ART_SLAM_INTO:
+					pline("Artifact specs: kicking a male monster deals extra damage and if the monster doesn't resist, it is debilitated by your powerful kick. Dancer sacrifice gift."); break;
+				case ART_GARBAGE_STAFF:
+					pline("Artifact specs: +6 damage, poison resistance and +3 INT and WIS when wielded, diablist sacrifice gift."); break;
+				case ART_KHALIM_S_FEMUR:
+					pline("Artifact specs: +8 to-hit and +12 shock damage, can leech life or mana from enemies, diablist sacrifice gift."); break;
+				case ART_BROWNING:
+					pline("Artifact specs: +4 to-hit, shoots up to 5 more bullets per turn, stealth when wielded, secret advice member sacrifice gift."); break;
+				case ART_MENSTRUATION_HURTS:
+					pline("Artifact specs: natalia trap effect, +6 all stats and prime curses itself when worn, permacurse effect if you're not a climacterial, and is a sacrifice gift for climacterials."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

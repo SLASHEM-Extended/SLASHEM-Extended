@@ -2007,6 +2007,7 @@ water_friction()
 
 	if (Race_if(PM_SEA_ELF)) return; /* idea by Elronnd: they are at home in the sea, and therefore unaffected */
 	if (tech_inuse(T_SILENT_OCEAN)) return; /* if the ocean is silent, it means there are no currents */
+	if (uarmh && uarmh->oartifact == ART_AIR_ON_HOLD) return;
 
 	if (Swimming && rn2(StrongSwimming ? 20 : 4))
 		return;		/* natural swimmers have advantage */

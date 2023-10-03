@@ -3038,6 +3038,14 @@ randartdart()
 }
 
 int
+randartjavelin()
+{
+	int result;
+	result = rnd_class(JAVELIN, STACK_JAVELIN);
+	return result;
+}
+
+int
 randartarrow()
 {
 	int result;
@@ -3528,6 +3536,14 @@ randartdartX()
 {
 	int result;
 	result = DART + rn2((RANDOM_DART + 1) - DART);
+	return result;
+}
+
+int
+randartjavelinX()
+{
+	int result;
+	result = JAVELIN + rn2((STACK_JAVELIN + 1) - JAVELIN);
 	return result;
 }
 

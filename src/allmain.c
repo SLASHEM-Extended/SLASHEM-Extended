@@ -8999,6 +8999,11 @@ newbossO:
 			u.uprops[DEAC_REFLECTING].intrinsic += 1000;
 		}
 
+		if (autismweaponcheck(ART_GREAT_MATRON) && !flags.female) {
+			if (FemaleTrapNatalia < 2000) FemaleTrapNatalia = 2000;
+			if (FemaleTrapArabella < 5000) FemaleTrapArabella = 5000;
+		}
+
 		if (autismweaponcheck(ART_MASSIVE_BUT_LOVELY)) {
 			if (!FemaleTrapWendy) FemaleTrapWendy += 10000;
 
@@ -14649,6 +14654,20 @@ past4:
 	    /* once-per-hero-took-time things go here */
 	    /******************************************/
 
+		if (u.umoved && uarmf && uarmf->oartifact == ART_BACK_KICK) {
+
+			if (isok(u.ux - u.dx, u.uy - u.dy) ) {
+				struct monst *backkick;
+				backkick = m_at(u.ux - u.dx, u.uy - u.dy);
+
+				if (backkick && !backkick->mpeaceful && !backkick->mtame) {
+					You("kick back with your heel...");
+					kick_monster(u.ux - u.dx, u.uy - u.dy);
+				}
+
+			}
+
+		}
 
 	} /* actual time passed */
 

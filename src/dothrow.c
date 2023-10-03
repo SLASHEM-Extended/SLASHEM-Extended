@@ -759,6 +759,7 @@ newbossO:
 	if (multishot > 1 && isfriday && !rn2(3)) multishot = rnd(multishot);
 
 	if (obj && obj->otyp == JUMPING_FLAMER) multishot = 1;
+	if (launcher && launcher->oartifact == ART_TSCHUEUU) multishot = 1;
 
 	m_shot.s = (ammo_and_launcher(obj, uwep) && !(uwep && uwep->otyp == LASERXBOW && !uwep->lamplit) && !(uwep && uwep->otyp == KLIUSLING && !uwep->lamplit) ) ? TRUE : FALSE;
 	/* give a message if shooting more than one, or if player
@@ -779,6 +780,8 @@ newbossO:
 		(void) makemon(mkclass(S_XAN,0), 0, 0, MM_ANGRY);
 		(void) makemon(mkclass(S_ANT,0), 0, 0, MM_ANGRY);
 	}
+
+	if (launcher && launcher->oartifact == ART_TSCHUEUU) youmonst.movement += 6;
 
 	if (launcher && launcher->oartifact == ART_SPEW_THE_BOW) {
 		buzz(10, rnd(4), u.ux, u.uy, u.dx, u.dy);
@@ -2094,6 +2097,7 @@ int thrown;
 		if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == SNIPESLING && obj) range += 5;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->oartifact == ART_TSCHUEUU && obj) range += 10;
 		if (launcher && (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) && obj && obj->otyp == ETHER_BOLT) range += 2;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPESNIPESNIPE) range += 5;
 		if (obj && obj->oartifact == ART_WAY_TOO_LONG) range += 10;

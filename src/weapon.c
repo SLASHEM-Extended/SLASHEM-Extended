@@ -6950,6 +6950,27 @@ struct obj *weapon;
 
 	}
 
+	if (weapon && weapon->oartifact == ART_Y_SWORD && !(PlayerCannotUseSkills) ) {
+		int highestweaponskill = P_UNSKILLED;
+		if (P_SKILL(P_SHORT_SWORD) > highestweaponskill) highestweaponskill = P_SKILL(P_SHORT_SWORD);
+		if (P_SKILL(P_BROAD_SWORD) > highestweaponskill) highestweaponskill = P_SKILL(P_BROAD_SWORD);
+		if (P_SKILL(P_LONG_SWORD) > highestweaponskill) highestweaponskill = P_SKILL(P_LONG_SWORD);
+		if (P_SKILL(P_TWO_HANDED_SWORD) > highestweaponskill) highestweaponskill = P_SKILL(P_TWO_HANDED_SWORD);
+		if (P_SKILL(P_SCIMITAR) > highestweaponskill) highestweaponskill = P_SKILL(P_SCIMITAR);
+		if (P_SKILL(P_SABER) > highestweaponskill) highestweaponskill = P_SKILL(P_SABER);
+
+		switch (highestweaponskill) {
+			case P_BASIC: bonus += 3; break;
+			case P_SKILLED: bonus += 6; break;
+			case P_EXPERT: bonus += 9; break;
+			case P_MASTER: bonus += 12; break;
+			case P_GRAND_MASTER: bonus += 15; break;
+			case P_SUPREME_MASTER: bonus += 18; break;
+
+		}
+
+	}
+
 	if (weapon && weapon->oartifact == ART_NEVER_WILL_THIS_BE_USEFUL && !(PlayerCannotUseSkills) ) {
 
 		switch (P_SKILL(P_TRIDENT)) {

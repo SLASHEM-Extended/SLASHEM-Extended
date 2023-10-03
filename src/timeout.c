@@ -951,7 +951,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && uarmf && itemhasappearance(uarmf, APP_STUPID_STILETTOS)) {
+	if (u.umoved && uarmf && itemhasappearance(uarmf, APP_STUPID_STILETTOS) && !(uarmf->oartifact == ART_EI_KEN_WOOK_WIF_DIS) ) {
 		int slipchance = 1;
 
 		if (!PlayerCannotUseSkills) {

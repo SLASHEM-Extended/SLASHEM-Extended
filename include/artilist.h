@@ -14226,6 +14226,234 @@ A("gendergendergender",				LONG_SWORD, /* randart2 melee weapon, no specialties 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GENDERSTARIST, NON_PM, 1000L ),
 
+A("Ars Technica",				MAGICAL_PAINTBRUSH, /* if you're an artist and equip it for the first time, your paddle skill cap increases by one level */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(0, 10), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, PM_ARTIST, NON_PM, 5000L ),
+
+A("May-Britt's Click",				MAY_BRITT_S_JEWEL, /* displays all joke monsters when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GANG_SCHOLAR, NON_PM, 2000L ),
+
+A("Moist Cherry",				CHERRY, /* invoke to cure bleeding, but if you're not a bleeder, your sanity and contamination are increased by the amount of bleeding damage that was healed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, PM_BLEEDER, NON_PM, 3000L ),
+
+A("ei ken wook wif dis",				LOW_BOOTS, /* initialized to always be stupid stilettos, fast speed, you don't have the "stupid stiletto" stumbling effect */
+	(SPFX_RESTR), 0, 0, /* not SPFX_EVIL - the bad effect is suppressed */
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GOFF, NON_PM, 4000L ),
+
+A("Efgourd",				PLASTEEL_HELM, /* confusion resistance; if you're a drunk, it doesn't prevent quaffing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DRUNK, NON_PM, 6000L ),
+
+A("Womanbeater",				RIDING_CROP,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_FEMALE,
+	PHYS(0, 15), NO_DFNS, NO_CARY, 0, A_NONE, PM_CRUEL_ABUSER, NON_PM, 2000L ),
+
+A("Bang The Head Away",				FLINTLOCK, /* ammos can behead enemies */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_SLAVE_MASTER, NON_PM, 8000L ),
+
+A("For Stygwyr!",				RED_LIGHTSABER, /* randart lightsaber, gives additional HP when you kill something */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_BLOODSEEKER, NON_PM, 5000L ),
+
+A("Geb Me All Your Money",				DAGGER, /* randart2 dagger, hitting something in melee causes it to flee unless it resists */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, PM_BULLY, NON_PM, 2500L ),
+
+A("Pourri(R)",				DENTED_POT, /* full nutrients */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_COOK, NON_PM, 1500L ),
+
+A("Magicrystal",				CHALCEDON, /* when carried, 5% better spellcasting chance and 5% like failuncap but also meltem trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_AUGURER, NON_PM, 8000L ),
+
+A("Smashin",				MACE, /* randart mace, superaggravatemonster, autocurses. if you're not a sage, it heavily sticky autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, PM_SAGE, NON_PM, 6000L ),
+
+A("Haha Owned",				OSBANE_KATANA, /* bisects enemies, but every time it does, the sword is disenchanted up to -20 */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_OTAKU, NON_PM, 4000L ),
+
+A("Up-Down Stab",				ELVEN_SHORT_SWORD, /* if the opponent is either on a table or a non-crystal water tile, a flat +20 damage is added */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, PM_GAMER, NON_PM, 1400L ),
+
+A("Y-Sword",				PICK_AXE, /* randart pick-axe, checks your highest sword-type skill and gives +3 damage per skill level in that */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_SAIYAN, NON_PM, 8000L ),
+
+A("tschueuu",				CROSSBOW, /* randart crossbow, dmg h@ck, +10 range for bolts, cannot have multishot and if you fire, you gain 6 movement energy */
+	(SPFX_RESTR), 0, 0,
+	PHYS(15, 0), NO_DFNS, NO_CARY, 0, A_NONE, PM_GOLDMINER, NON_PM, 3000L ),
+
+A("Back Kick",				FEMININE_PUMPS, /* if you move, and there was a monster "behind" you, the pumps kick that monster automatically */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_POLITICIAN, NON_PM, 6000L ),
+
+A("World Class Jump",				JUMPING_BOOTS, /* reduces jumping mana cost to 2, or 8 if you're not a feat master */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FEAT_MASTER, NON_PM, 10000L ),
+
+A("Knife'Em",				KNIFE, /* randart knife */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, PM_GUNNER, NON_PM, 3000L ),
+
+A("jumping flaming he tie-clip",				JUMPING_FLAMER, /* spawns with rnz(50) extra ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DOOM_MARINE, NON_PM, 5000L ),
+
+A("Superstab",				QATAR, /* randart2 claw, double stealth, allows backstabbing */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FOXHOUND_AGENT, NON_PM, 3000L ),
+
+A("First Exchange",				RIN_GAIN_INTELLIGENCE, /* +5 INT, -5 STR */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MAHOU_SHOUJO, NON_PM, 3000L ),
+
+A("Second Exchange",				RIN_GAIN_DEXTERITY, /* +5 DEX, -5 CHA, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MAHOU_SHOUJO, NON_PM, 3000L ),
+
+A("fling in the dark",				SLING, /* infravision when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, PM_RINGSEEKER, NON_PM, 1000L ),
+
+A("Air-On-Hold",				HELM_OF_UNDERWATER_ACTION, /* items don't get wet, prevents water turbulence */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DIVER, NON_PM, 6000L ),
+
+A("Britney's Deception",				BRONZE_PLATE_MAIL, /* 6 extra points of AC, d(gushlevel) thorns damage in melee */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DRUID, NON_PM, 8000L ),
+
+A("The Great Matron",				PIKE, /* if you're not an amazon, autocurse and weak sight; if you're not female, 2000 turns of natalia trap effect and 5000 turns of arabella trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, PM_AMAZON, NON_PM, 6000L ),
+
+A("Slam!",				HEAVY_HAMMER, /* resist sleep, all worn armor pieces are 90% resistant to erosion, withering and disenchantment */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, PM_ORDINATOR, NON_PM, 10000L ),
+
+A("Protection Set",				SHIELD, /* randart2 shield, double half physical damage */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_THALMOR, NON_PM, 8000L ),
+
+A("Alternate Spellweave",				SHIELD, /* randart2 shield, double half spell damage, prism reflection, bad alignment */
+	(SPFX_RESTR|SPFX_HSPDAM|SPFX_REFLECT|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_THALMOR, NON_PM, 10000L ),
+
+A("Complete Sight",				STANDARD_HELMET, /* randart helmet, clairvoyance, scent view, echolocation, and if you're not a medium, the game lags */
+	(SPFX_RESTR|SPFX_WARN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MEDIUM, NON_PM, 5000L ),
+
+A("MELEE DAMMIT",				SEXY_LEATHER_PUMP, /* death resistance, if you're wearing noncursed shoes they automatically take themselves off and if you're wearing cursed ones, they become -10 if they were higher */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(6, 8), NO_DFNS, NO_CARY, 0, A_NONE, PM_SEXYMATE, NON_PM, 4000L ),
+
+A("Astra Mail",				DIAMOND_DRAGON_SCALE_MAIL, /* flying, heavy sticky autocurse, difficulty trap effect, aggravation trap effect, corona cap for HP is divided by 3 */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_XRAY), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FIGHTER, NON_PM, 6500L ),
+
+A("Eastern Clash",				SCIMITAR, /* fast speed */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 5), NO_DFNS, NO_CARY, 0, A_NONE, PM_FENCER, NON_PM, 3000L ),
+
+A("Goosch Hidari",				PARRY_SWORD, /* if it's your secondary weapon when dual-wielding, it grants free action and discount action */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, PM_FENCER, NON_PM, 3000L ),
+
+A("dacha-dacha-dacha",				FORCE_PIKE, /* 10% extra chance to land a critical hit, hitting something increases a combo meter that is added to the damage done but not hitting anything sets the combo meter to 0 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ANACHRONIST, NON_PM, 1800L ),
+
+A("Excalishield",				WEAPON_SIGN, /* also gives drain res when wielded, +6 bashing damage and if you're using shield bash it also deals +6 damage */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, PM_PALADIN, NON_PM, 6000L ),
+
+A("Dessesga",				WHITE_DOUBLE_LIGHTSABER, /* keen memory */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_NONE, PM_HEDDERJEDI, NON_PM, 8000L ),
+
+A("Blag-Lite",				BLACK_LIGHTSABER, /* 50% chance to not use up power, de-light trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(7, 8), NO_DFNS, NO_CARY, 0, A_NONE, PM_SHADOW_JEDI, NON_PM, 7000L ),
+
+A("Larissa's Laughter",				BLOCK_HEELED_COMBAT_BOOT, /* larissa trap effect, if you're not a hussy you also get the larissa trap effect for 5000 turns. 1 in 1000 per turn to train squeaking by one point, can be invoked to change material to MT_INKA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, PM_HUSSY, NON_PM, 8000L ),
+
+A("Bombersnee",				GRENADE_LAUNCHER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0,8), NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_GRENADONIN, NON_PM, 1200L ),
+
+A("Go Up And Soar",				ROCKET_GAUNTLETS, /* flying, very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ASTRONAUT, NON_PM, 18000L ),
+
+A("Hearing Ear",				BUNNY_EAR, /* scent view, echolocation, covetous warning */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DISSIDENT, NON_PM, 5000L ),
+
+A("Pectoral Heel",				LOW_BOOTS, /* initialized to always be fin boots; counts as stiletto heels, swimming, and if you're in water you're very fast with extra speed. displays semicolons which aren't more than distu(100) away from you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_FJORDE, NON_PM, 7000L ),
+
+A("Slam Shut And Be Done",				WAR_HAMMER, /* randart2 hammer */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_LORD|M2_PRINCE),
+	PHYS(0, 25), NO_DFNS, NO_CARY, 0, A_NONE, PM_PRACTICANT, NON_PM, 6000L ),
+
+A("Needlessly Mean",				BULLWHIP, /* randart2 whip, +4 strength */
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, M2_FEMALE,
+	PHYS(6, 14), NO_DFNS, NO_CARY, 0, A_NONE, PM_EMERA, NON_PM, 2000L ),
+
+A("Regrown Resource",				JAVELIN, /* randart javelin, spawns erodeproof and with +9 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TOSSER, NON_PM, 500L ),
+
+A("Baeau",				BLOW_AKLYS, /* spawns with +d10 enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_AKLYST, NON_PM, 3000L ),
+
+A("Lucky Pack",				LUCKSTONE, /* while carried, your symbiotes have 5% extra chance to attack both in melee and passively */
+	(SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_SYMBIANT, NON_PM, 3000L ),
+
+A("Hammer-Good Helm",				HELM_OF_STEEL, /* 10 extra AC if you're a combatant, 5 otherwise */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_COMBATANT, NON_PM, 3000L ),
+
+A("Miracle-Beautiful Noises",				KATHARINA_S_JEWEL, /* 1 in 200 per turn to reduce sanity by one when carried */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_BUTT_LOVER, NON_PM, 6000L ),
+
+A("Hardcore Addiction",				MELTEM_S_JEWEL, /* 90% resistance against MS_CONVERT and 75% against MS_WOUWOU */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_BUTT_LOVER, NON_PM, 4000L ),
+
+A("Slam-Into",				FRIEDERIKE_DANCING_SHOES, /* if you kick a male monster, you deal +8 damage and the monster has to make a saving throw, otherwise it is slowed, stunned, feared and heal blocked and 1 in 10 cancelled */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DANCER, NON_PM, 3000L ),
+
+A("Garbage Staff",				QUARTERSTAFF, /* randart quarterstaff, +3 CON and INT */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(0, 6), DFNS(AD_DRST), NO_CARY, 0, A_NONE, PM_DIABLIST, NON_PM, 2500L ),
+
+A("Khalim's Femur",				FLAIL, /* randart2 melee weapon, can leech life or mana like an orb */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(8, 12), NO_DFNS, NO_CARY, 0, A_NONE, PM_DIABLIST, NON_PM, 4000L ),
+
+A("Browning",				HEAVY_MACHINE_GUN, /* +d5 multishot, dmg h@ck */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	PHYS(4, 0), NO_DFNS, NO_CARY, 0, A_NONE, PM_SECRET_ADVICE_MEMBER, NON_PM, 6000L ),
+
+A("Menstruation Hurts",				T_SHIRT, /* randart2 shirt, natalia trap effect, +6 all stats, prime curses itself and if you're not a climacterial it also gives the permacurse trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_CLIMACTERIAL, NON_PM, 6666L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

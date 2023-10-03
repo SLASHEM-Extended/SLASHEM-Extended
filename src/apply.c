@@ -2102,6 +2102,17 @@ int magic; /* 0=Physical, otherwise skill level */
 	coord cc;
 	struct trap *trap;
 
+	int jumpcost = 10;
+	if (uarmf && uarmf->oartifact == ART_WORLD_CLASS_JUMP) {
+		if (Role_if(PM_FEAT_MASTER)) jumpcost /= 5;
+		else {
+			jumpcost *= 4;
+			jumpcost /= 5;
+		}
+	}
+
+	if (jumpcost < 1) jumpcost = 1; /* fail safe */
+
 	if (trap = t_at(u.ux, u.uy)) {
 		if (trap->ttyp == VIVISECTION_TRAP) {
 			You("are in vivisection, and therefore unable to jump!");
@@ -2120,8 +2131,8 @@ int magic; /* 0=Physical, otherwise skill level */
 		You_cant("jump very far.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
-	} else if (!magic && u.uen < 10) { /* No longer completely free. --Amy */
-		You("don't have enough energy to jump! You need at least 10 points of mana!");
+	} else if (!magic && u.uen < jumpcost) { /* No longer completely free. --Amy */
+		You("don't have enough energy to jump! You need at least %d points of mana!", jumpcost);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	} else if (u.uswallow) {
@@ -2298,7 +2309,7 @@ int magic; /* 0=Physical, otherwise skill level */
 	    nomul(-1, "jumping around", TRUE);
 	    nomovemsg = "";
 	    morehungry(rnd(25));
-	    if (!magic) u.uen -= 10;
+	    if (!magic) u.uen -= jumpcost;
 	    return 1;
 	}
 }

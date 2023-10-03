@@ -139,6 +139,35 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		if (uwep->spe > 120) uwep->spe = 120; /* fail safe */
 	}
 
+	if (uwep && uwep->oartifact == ART_ARS_TECHNICA && Role_if(PM_ARTIST) && !u.arstechnicadone) {
+		u.arstechnicadone = TRUE;
+
+		if (P_MAX_SKILL(P_PADDLE) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_PADDLE);
+			pline("You can now learn the paddle skill!");
+		} else if (P_MAX_SKILL(P_PADDLE) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_PADDLE);
+			pline("You can now learn the paddle skill!");
+			P_MAX_SKILL(P_PADDLE) = P_BASIC;
+		} else if (P_MAX_SKILL(P_PADDLE) == P_BASIC) {
+			P_MAX_SKILL(P_PADDLE) = P_SKILLED;
+			pline("You can now become skilled with paddles!");
+		} else if (P_MAX_SKILL(P_PADDLE) == P_SKILLED) {
+			P_MAX_SKILL(P_PADDLE) = P_EXPERT;
+			pline("You can now become expert with paddles!");
+		} else if (P_MAX_SKILL(P_PADDLE) == P_EXPERT) {
+			P_MAX_SKILL(P_PADDLE) = P_MASTER;
+			pline("You can now become master with paddles!");
+		} else if (P_MAX_SKILL(P_PADDLE) == P_MASTER) {
+			P_MAX_SKILL(P_PADDLE) = P_GRAND_MASTER;
+			pline("You can now become grand master with paddles!");
+		} else if (P_MAX_SKILL(P_PADDLE) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_PADDLE) = P_SUPREME_MASTER;
+			pline("You can now become supreme master with paddles!");
+		} else pline("Sadly your knowledge of the paddle skill is already maxed.");
+
+	}
+
 	if (uwep && uwep->oartifact == ART_WHY_ALWAYS_CONUNDRUM && objects[uwep->otyp].oc_material == MT_CONUNDRUM) {
 		objects[uwep->otyp].oc_material = rn2(LASTMATERIAL + 1);
 		Your("weapon's material morphs to a different one!");
@@ -165,9 +194,19 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("katana welds itself to your %s!", body_part(HAND));
 	}
 
+	if (uwep && uwep->oartifact == ART_GREAT_MATRON && !Role_if(PM_AMAZON) && !uwep->cursed) {
+		curse(uwep);
+		pline("Your fault, only amazons are allowed to use this weapon!");
+	}
+
 	if (uwep && uwep->oartifact == ART_RIDGET_PHASTO) {
 		curse(uwep);
 		uwep->hvycurse = uwep->prmcurse = uwep->stckcurse = TRUE;
+	}
+
+	if (uwep && uwep->oartifact == ART_SMASHIN) {
+		curse(uwep);
+		if (!Role_if(PM_SAGE)) uwep->hvycurse = uwep->stckcurse = TRUE;
 	}
 
 	if (uwep && uwep->oartifact == ART_HOL_ON_MAN && !uwep->cursed) {
@@ -411,9 +450,19 @@ swapweaponchoice:
 			if (AutocursingEquipment < 5000L) AutocursingEquipment = 5000L;
 		}
 
+		if (uswapwep && uswapwep->oartifact == ART_GREAT_MATRON && !Role_if(PM_AMAZON) && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Your fault, only amazons are allowed to use this weapon!");
+		}
+
 		if (uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
 			curse(uswapwep);
 			uswapwep->hvycurse = uswapwep->prmcurse = uswapwep->stckcurse = TRUE;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_SMASHIN) {
+			curse(uswapwep);
+			if (!Role_if(PM_SAGE)) uswapwep->hvycurse = uswapwep->stckcurse = TRUE;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN && !uswapwep->cursed) {
@@ -1400,6 +1449,8 @@ boolean fade_scrolls;
 
 	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (target->owornmask & W_ARMOR) ) return;
 
+	if (uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (target->owornmask & W_ARMOR) ) return;
+
 	if (target->oartifact == ART_PROOFINGNESS_POOFS && !target->rknown) return;
 
 	if (itemhasappearance(target, APP_WITHERED_CLOAK) ) return;
@@ -1532,6 +1583,8 @@ boolean fade_scrolls;
 	if (target->oartifact == ART_EXTENDED_DURABILITY && rn2(4)) return;
 
 	if (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA && (target->owornmask & W_ARMOR) ) return;
+
+	if (uwep && uwep->oartifact == ART_SLAM_ && rn2(10) && (target->owornmask & W_ARMOR) ) return;
 
 	if (target->oartifact == ART_PROOFINGNESS_POOFS && !target->rknown) return;
 
