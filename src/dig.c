@@ -27,7 +27,7 @@ STATIC_DCL void dig_up_grave(void);
 #define DIGTYP_TREE       5
 #define DIGTYP_IRONBAR    6
 #define DIGTYP_FIREAXE    7
-
+/* keep d_action and d_target in sync!!! otherwise, CRASH with illegible backtrace "?? at 07f49320" or something --Amy */
 
 STATIC_OVL boolean
 rm_waslit()
@@ -144,6 +144,7 @@ xchar x, y;
 
 	if (otmp->oartifact == ART_BREAK_EVERYTHING && Role_if(PM_FIREFIGHTER)) {
 		if (IS_IRONBAR(levl[x][y].typ) || IS_TREE(levl[x][y].typ) || IS_FARMLAND(levl[x][y].typ) || IS_MOUNTAIN(levl[x][y].typ)) {
+
 			return DIGTYP_FIREAXE;
 		}
 	}
@@ -735,8 +736,8 @@ cleanup:
 		digging.level.dlevel = -1;
 		return(0);
 	} else {		/* not enough effort has been spent yet */
-		static const char *const d_target[7] = {
-			"", "rock", "statue", "boulder", "door", "tree", "bars"
+		static const char *const d_target[8] = {
+			"", "rock", "statue", "boulder", "door", "tree", "bars", "obstruction"
 		};
 		int dig_target = dig_typ(uwep, dpx, dpy);
 
@@ -1427,14 +1428,15 @@ struct obj *obj;
 				if (FunnyHallu) pline("It creates erotic air current noises.");
 			}
 		} else {
-			static const char * const d_action[7][2] = {
+			static const char * const d_action[8][2] = {
 			    {"swinging","slicing the air"},
 			    {"digging","cutting through the wall"},
 			    {"chipping the statue","cutting the statue"},
 			    {"hitting the boulder","cutting through the boulder"},
 			    {"chopping at the door","burning through the door"},
 			    {"cutting the tree","razing the tree"},
-			    {"smashing the bars","breaking the bars"}
+			    {"smashing the bars","breaking the bars"},
+			    {"smashing the obstruction","breaking the obstruction"}
 			};
 			did_dig_msg = FALSE;
 			digging.quiet = FALSE;

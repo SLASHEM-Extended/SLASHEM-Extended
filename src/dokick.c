@@ -284,6 +284,7 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_WEAPON_LIGHT_BOOTS)) {
 		dmg += u.ulevel;
 		if (uarmf && uarmf->oartifact == ART_SHARP_EDGED_AND_DANGEROUS) {
+
 			if (!u.ualign.sins || (u.ualign.sins && !rn2(u.ualign.sins))) {
 				u.ualign.sins++;
 				u.alignlim--;

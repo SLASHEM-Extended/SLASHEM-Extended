@@ -8346,9 +8346,16 @@ sarahdone:
 
 					d_level dtmp;
 
-					dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
-					dtmp.dlevel = 1;
-					schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+					if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+						pline("You shudder for a moment.");
+					} else if (playerlevelportdisabled()) {
+						pline("You shudder for a moment.");
+					} else {
+
+						dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
+						dtmp.dlevel = 1;
+						schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+					}
 
 				}
 			}

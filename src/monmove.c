@@ -3481,13 +3481,7 @@ toofar:
 		pline("%s", generate_garbage_string());
 	    }
 
-	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(50) && flags.female && mtmp->female) {
-		verbalize("haha look at that bitch with those silly heels");
-		if (!rn2(3)) verbalize("she can't even walk in them, lol");
-		adjattrib(A_CHA, -1, FALSE, TRUE);
-	    }
-
-	    if (inrange && (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) && mtmp->female && humanoid(mtmp->data) && !rn2(25)) {
+	    if (inrange && (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) && !mtmp->mpeaceful && mtmp->female && humanoid(mtmp->data) && !rn2(25)) {
 		static const char *platform_msgs[] = {
 			"hahaha",
 			"what a fag",
@@ -3515,7 +3509,13 @@ toofar:
 		if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"monsters making fun of the shoes",KILLED_BY);
 	    }
 
-	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(100) && !flags.female && !mtmp->female) {
+	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(50) && flags.female && mtmp->female) {
+		verbalize("haha look at that bitch with those silly heels");
+		if (!rn2(3)) verbalize("she can't even walk in them, lol");
+		adjattrib(A_CHA, -1, FALSE, TRUE);
+	    }
+
+	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(100) && !flags.female && !mtmp->female) {
 		verbalize("lol look at that fag over there in those ridiculous heels");
 		if (!rn2(5)) verbalize("if he could at least walk in them, but nope...");
 		adjattrib(A_CHA, -1, FALSE, TRUE);

@@ -5508,7 +5508,7 @@ dyechoice:
 		if (obj && obj->oartifact == ART_KNOW_OF_THE_CURSE) {
 			res = 1; /* always uses a turn */
 			if (!u.knowofthecursetimer) {
-				u.knowofthecursetimer = TRUE;
+				u.knowofthecursetimer = 50;
 				makerandomtrap(TRUE);
 			}
 		}
