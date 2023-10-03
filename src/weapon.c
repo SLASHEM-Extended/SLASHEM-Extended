@@ -5326,7 +5326,7 @@ restrpasstwo:
 			sprintf(buf, "        ");
 		} else
 #ifdef WIZARD
-		if (wizard || RngeSkillReveal || (uarmc && uarmc->oartifact == ART_PREIM_OH) ) {
+		if (wizard || RngeSkillReveal || (powerfulimplants() && uimplant && uimplant->oartifact == ART_DOUBLEBIND) || (uarmc && uarmc->oartifact == ART_PREIM_OH) ) {
 		    if (!iflags.menu_tab_sep)
 			sprintf(buf, " %s%-*s %-12s %-12s %4d(%4d)",
 			    prefix, longest, wpskillname(i), sklnambuf, sklnambuftwo,
@@ -6967,6 +6967,10 @@ struct obj *weapon;
 	if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && weapon && weapon_type(weapon) == P_AXE) {
 		bonus += 2;
 		if (uarmf->spe > 0) bonus += uarmf->spe;
+	}
+
+	if (uarmh && uarmh->oartifact == ART_THIRD_CAR && weapon && weapon_type(weapon) == P_WHIP) {
+		bonus += 5;
 	}
 
 	/* boomerang damage bonus for Batman */

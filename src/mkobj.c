@@ -4150,7 +4150,7 @@ uncurse(otmp, guaranteed)
 register struct obj *otmp;
 boolean guaranteed; /* can it work even when you have permacurse nastytrap effect? (can still fail if heavily cursed --Amy */
 {
-	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone() || (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) ) ) return;
+	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone() || (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) || (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) ) ) return;
 
 	if (!guaranteed && uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER && rn2(2)) return;
 

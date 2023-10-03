@@ -11172,6 +11172,7 @@ dodrink()
 	register struct obj *otmp;
 	char quaffables[SIZE(beverages) + 2];
 	char *qp = quaffables;
+	struct obj otemp;
 
 	if (Strangled) {
 		pline(FunnyHallu ? "You don't wanna do booze right now." : "If you can't breathe air, how can you drink liquid?");
@@ -12262,6 +12263,15 @@ peffects(otmp)
 		break;
 
 	case POT_GREEN_TEA:
+
+		if (otmp->oartifact == ART_CURE_FOR_ANOREXIA) {
+
+			if (FemaleTrapNora || FemaleTrapIna) Your("anorexia condition disappears.");
+
+			FemaleTrapNora = 0L;
+			FemaleTrapIna = 0L;
+		}
+
 		if (otmp->cursed)
 		    pline("Yecch!  This tastes %s.",
 			  FunnyHallu ? "like the contents of a trash can" : "poisonous");
@@ -13435,6 +13445,11 @@ peffects(otmp)
 		} break;
 
 	case POT_PORTER:
+
+		if (otmp->oartifact == ART_SHATTERING_ELIXIR) {
+		      if (!playerlevelportdisabled()) randombranchtele();
+		}
+
 		if (FunnyHallu)
 			You_feel("like hopping around!");
 		else

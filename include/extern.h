@@ -2191,6 +2191,7 @@ E int find_english_gloves(void);
 E int find_wedge_espadrilles(void);
 E int find_treaded_heels(void);
 E int find_korean_sandals(void);
+E int find_sling_pumps(void);
 E int find_octarine_robe(void);
 E int find_chinese_cloak(void);
 E int find_polyform_cloak(void);

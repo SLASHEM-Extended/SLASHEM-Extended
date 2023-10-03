@@ -25654,7 +25654,7 @@ boolean knoweverything;
 				case ART_HABIBA_S_MATRONAGE:
 					pline("Artifact specs: double half physical damage, double regeneration, double magical breathing and +2 increase damage when worn, but of course there's a bad downside to that which consists of the fact that you have to follow the hardcore alien conduct."); break;
 				case ART_AHAUND:
-					pline("Artifact specs: warning when worn because Amy couldn't think of anything interesting that this artifact might do. If you come up with a fun artifact pair of gauntlets of rainbow moud, tell me and maybe it'll be implemented!"); break;
+					pline("Artifact specs: warning when worn because Amy couldn't think of anything interesting that this artifact might do back when she designed it. She came up with a fun artifact pair of gauntlets of rainbow moud by now, but it's not this one so you probably just got unlucky :D"); break;
 				case ART_PARTICULARLY_HEAVY_STONE:
 					pline("Artifact specs: increases the chance that a downstair takes you down a lot of levels at once."); break;
 				case ART_CAPS_LOCK:
@@ -27016,6 +27016,66 @@ boolean knoweverything;
 					pline("Artifact specs: can be invoked to set the training amount of all restricted skills to zero, anachronounbinder sacrifice gift."); break;
 				case ART_PREIM_OH:
 					pline("Artifact specs: displays skill training in the enhance screen, binder sacrifice gift."); break;
+				case ART_REPAIR_YOUR_BRAIN:
+					pline("Artifact specs: can be invoked for restore intelligence but also curses the pick and reduces its enchantment value. If it's already -20 or worse, the invocation does not work."); break;
+				case ART_BRITTA_S_MURDER_STORY:
+					pline("Artifact specs: power failure, your radar doesn't work, resist fear, +7 intelligence, +5 wisdom, 3x as much stat exercise and effects that may occasionally boost stats will do so more often. They may spotaneously re-curse themselves when worn."); break;
+				case ART_SUPERDRAGONBANE:
+					pline("Artifact specs: +5 to-hit and double damage to dragons, reflection when wielded."); break;
+				case ART_GIANTCRUSHER:
+					pline("Artifact specs: +5 to-hit and double damage to monsters that count as giants, +5 strength when wielded, neutral."); break;
+				case ART_OGRE_POWER:
+					pline("Artifact specs: +5 to-hit and double damage to ogres, +3 constitution when wielded."); break;
+				case ART_HAXORTROLL:
+					pline("Artifact specs: +5 to-hit and double damage to trolls, regeneration when wielded."); break;
+				case ART_THAT_GIVES_IT_NOT:
+					pline("Artifact specs: displays all covetous monsters when worn."); break;
+				case ART_NOTKNOW_EY:
+					pline("Artifact specs: prevents psychic blasts from affecting you when worn."); break;
+				case ART_XTRALUCK:
+					pline("Artifact specs: +3 luck when worn."); break;
+				case ART_THIRD_CAR:
+					pline("Artifact specs: whip-class weapons deal +5 damage, digging tools dig faster, archeologist sacrifice gift."); break;
+				case ART_DAN_THE_MAGE:
+					pline("Artifact specs: spellboost and resistance piercing when worn."); break;
+				case ART_ALL_THE_BETTER_SPELLING:
+					pline("Artifact specs: boosts spellcasting success chance when worn, possibly beyond the normal limits."); break;
+				case ART_SUDUNSEL:
+					pline("Artifact specs: low local memory, +2 increase accuracy and damage, much better chance to find loot, heavily autocurses when worn and monsters don't drop their money upon death."); break;
+				case ART_WERKAUF:
+					pline("Artifact specs: lag trap effect, higher spawn rate for zombies and monsters spawn with musable items more often when worn."); break;
+				case ART_SHIT_HAPPENZ:
+					pline("Artifact specs: if you step into a heap of shit that you haven't stepped into yet while wearing this, you gain a line of alla."); break;
+				case ART_BEWARE_OF_THE_PITFALL:
+					pline("Artifact specs: you cannot fall into pits while wearing them."); break;
+				case ART_WORTH_CHECKING_OUT:
+					pline("Artifact specs: usually spawns with a random enchantment value."); break;
+				case ART_IDEA_IN_HEADBACK:
+					pline("Artifact specs: mystery and death resistance when worn. This artifact is more interesting than 'Ahaund', the other artifact pair of gauntlets of rainbow moud."); break;
+				case ART_SIGNUM_ARGENTUM_POLISHIUM:
+					pline("Artifact specs: double reflection when worn."); break;
+				case ART_LIGHT_____STATED_:
+					pline("Artifact specs: blinking speed when wielded but causes unlight constantly and also gives nolite, de-light and dark mode trap effects."); break;
+				case ART_OWENER:
+					pline("Artifact specs: +8 damage, drains power at half the normal rate. This artifact usually generates without power so you'll have to recharge it first."); break;
+				case ART_DIPLITE:
+					pline("Artifact specs: +10 damage, slowly recharges itself over time if you're wielding it without turning it on but whenever it gains a charge that way, it heavily curses itself!"); break;
+				case ART_CURE_FOR_ANOREXIA:
+					pline("Artifact specs: cures the ina and nora feminism trap effects when quaffed."); break;
+				case ART_ARABELLA_S_RECTIFIER:
+					pline("Artifact specs: doubles your MC when worn, and if you're in a form without hands, it even slowly increases your maximum alignment over time! Yeah! Who cares about other potential effects, you know you'll want to wear it because it's an awesome item. Neutral."); break;
+				case ART_CANC___:
+					pline("Artifact specs: +1 MC, and if you're in a form without hands your items can resist cancellation with a pretty good chance."); break;
+				case ART_DOUBLEBIND:
+					pline("Artifact specs: gives twice as much MC as the base item, and if you're in a form without hands, the #enhance screen will tell you how much training you have in each skill."); break;
+				case ART_ALMOST_TANGIBLE:
+					pline("Artifact specs: prevents your MC from falling below this item's nominal value, and if you're in a form without hands, you can eat all rings regardless of their material."); break;
+				case ART_OCTOPODDY:
+					pline("Artifact specs: can be invoked to force-equip a bad item. If you're in a form without hands, the item in question has better enchantment values on average and will display the enchantment value upon generation."); break;
+				case ART_SHATTERING_ELIXIR:
+					pline("Artifact specs: randomly branchports you when quaffed."); break;
+				case ART_GENDERGENDERGENDER:
+					pline("Artifact specs: does nothing special, but is a sacrifice gift for the genderstarist role and will get people up in arms because 'oh my god the term GENDER has been used by amy she must be such an evil witch!!!1'"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

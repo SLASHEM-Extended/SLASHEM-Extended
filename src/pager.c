@@ -470,6 +470,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
 		    ways_seen++;
+		if (uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
+		    ways_seen++;
 		if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mtmp->data) || mtmp->egotype_covetous) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mtmp->data->geno & G_UNIQ))
@@ -633,6 +635,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mtmp->data) || mtmp->egotype_covetous) ) {
+			strcat(monbuf, "warned of covetous monsters");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mtmp->data) || mtmp->egotype_covetous) ) {
 			strcat(monbuf, "warned of covetous monsters");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }

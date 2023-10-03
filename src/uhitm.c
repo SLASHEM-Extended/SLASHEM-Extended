@@ -852,6 +852,7 @@ register struct monst *mtmp;
 	if (!uwep && StrongGlib_combat && Glib) tmp += 5;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
@@ -3656,6 +3657,7 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_DOUVONED) tmp += 1;
 		if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;

@@ -421,6 +421,8 @@ init_randarts()
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
+	artilist[ART_LIGHT_____STATED_].otyp = randartlightsaber();
+	artilist[ART_OWENER].otyp = randartlightsaber();
 	artilist[ART_CHARGING_MADE_EASY].otyp = randartlightsaber();
 	artilist[ART_THAIFORCE].otyp = randartlightsaber();
 	artilist[ART_HALF_SUPER_ENCHANTMENT].otyp = randartlightsaber();
@@ -498,6 +500,7 @@ init_randarts()
 	artilist[ART_HIGHWAY_FIGHTER].otyp = randartbootsX();
 	artilist[ART_FIREPROOF_WALL].otyp = randartmeleeweaponX();
 	artilist[ART_SPEARBLADE].otyp = randartmeleeweaponX();
+	artilist[ART_GENDERGENDERGENDER].otyp = randartmeleeweaponX();
 	artilist[ART_GALLOW_DIGS].otyp = randartmeleeweaponX();
 	artilist[ART_RADIATOR_AREA].otyp = randartmeleeweaponX();
 	artilist[ART_JESSICA_S_WINNING_STRIKE].otyp = randartmeleeweaponX();
@@ -667,8 +670,10 @@ init_randarts()
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
 	artilist[ART_UNWIELDYTINE].otyp = randarttridentX();
 	artilist[ART_TURVANG_S_THUNDER].otyp = randarthammerX();
+	artilist[ART_OGRE_POWER].otyp = randarthammerX();
 	artilist[ART_MORTALITY_DIAL].otyp = randartmaceX();
 	artilist[ART_ARK_OF_THE_COVENANT].otyp = randartpickaxeX();
+	artilist[ART_REPAIR_YOUR_BRAIN].otyp = randartpickaxeX();
 	artilist[ART_FAMOUS_LANCE].otyp = randartlanceX();
 	artilist[ART_SERPENT_RING_OF_SET].otyp = randartringX();
 	artilist[ART_HOLY_GRAIL].otyp = randartquarterstaffX();
@@ -688,6 +693,7 @@ init_randarts()
 	artilist[ART_BRAINSTORM].otyp = randartflailX();
 	artilist[ART_NO_MOON_AT_ALL].otyp = randartflailX();
 	artilist[ART_POLARIS].otyp = randartmorningstarX();
+	artilist[ART_HAXORTROLL].otyp = randartmorningstarX();
 	artilist[ART_SONICBOOM_BABY__LET_S_DO_T].otyp = randartmorningstarX();
 	artilist[ART_GO_FULLY_OFF].otyp = randartmorningstarX();
 	artilist[ART_FLAMESNIPER].otyp = randartbowX();
@@ -702,6 +708,7 @@ init_randarts()
 	artilist[ART_UNKNOWINGNESS_AS_A_WEAPON].otyp = randartglovesX();
 	artilist[ART_VIOLENT_SKULL_SWORD].otyp = randartlongswordX();
 	artilist[ART_GLAMDRING__CHINESE_BOOTLEG].otyp = randartlongswordX();
+	artilist[ART_GIANTCRUSHER].otyp = randartlongswordX();
 	artilist[ART_M__M__M_].otyp = randartpaddleX();
 	artilist[ART_ASS_ASS_IN_ASS].otyp = randartclawX();
 	artilist[ART_VILEA_S_SECRET].otyp = randartclawX();
@@ -716,6 +723,7 @@ init_randarts()
 	artilist[ART_ETERNALE_DELAY].otyp = randartmattockX();
 	artilist[ART_TWISTED_TURN].otyp = randartknifeX();
 	artilist[ART_MCCAULEY_S_INTELLIGENCE].otyp = randartbroadswordX();
+	artilist[ART_SUPERDRAGONBANE].otyp = randartbroadswordX();
 	artilist[ART_MCCAULEY_S_ARGUMENT].otyp = randartshortswordX();
 	artilist[ART_ASHIKAGA_S_REVENGE].otyp = randarttwohandedswordX();
 	artilist[ART_TSCHAPSNAP].otyp = randartwhipX();
@@ -769,6 +777,7 @@ init_appearance_randarts()
 	artilist[ART_HABIBA_S_MATRONAGE].otyp = find_hardcore_cloth();
 	artilist[ART_BEEEEEEEANPOLE].otyp = find_english_gloves();
 	artilist[ART_LEGMA].otyp = find_korean_sandals();
+	artilist[ART_BRITTA_S_MURDER_STORY].otyp = find_sling_pumps();
 	artilist[ART_TERRY_PRATCHETT_S_INGENUIT].otyp = find_octarine_robe();
 	artilist[ART_ARABELLA_S_SEXY_GIRL_BUTT].otyp = find_chinese_cloak();
 	artilist[ART_LONG_LASTING_JOY].otyp = find_polyform_cloak();
@@ -1604,6 +1613,7 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
+		    if (otmp && otmp->oartifact == ART_OWENER) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_MYSTERIOUS_SPIKES) {
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
@@ -1631,6 +1641,10 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD) {
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_WORTH_CHECKING_OUT && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
@@ -4437,6 +4451,31 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_OCTOPODDY) {
+			if (powerfulimplants()) bad_equipment(1);
+			else bad_equipment(0);
+			break;
+		}
+
+		if (obj->oartifact == ART_REPAIR_YOUR_BRAIN) {
+			if (obj->spe < -19) {
+				pline_The("invocation failed.");
+				break;
+			}
+			curse(obj);
+			obj->spe -= rnd(5);
+
+			if (ABASE(A_INT) < AMAX(A_INT)) {
+				ABASE(A_INT) = AMAX(A_INT);
+				flags.botl = TRUE;
+				You_feel("smarter!");
+			} else {
+				pline("It seems that your intelligence has not been drained yet.");
+			}
+
+			break;
+		}
 
 		if (obj->oartifact == ART_UNBINDALL_CHEAT) {
 

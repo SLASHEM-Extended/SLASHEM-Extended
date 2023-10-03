@@ -27325,6 +27325,29 @@ register int	mmflags;
 			}
 		}
 
+		if (uarmh && uarmh->oartifact == ART_WERKAUF && mtmp->data->mmove && (rnd(mtmp->data->mmove) > 5) && !rn2(25)) {
+
+			switch (rnd(10)) {
+	
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5: 
+					if (rn2(20)) mongets(mtmp, rnd_offensive_item(mtmp));
+					else mongets(mtmp, rnd_offensive_item_new(mtmp)); break;
+				case 6:
+				case 7:
+				case 8:
+					if (rn2(20)) mongets(mtmp, rnd_defensive_item(mtmp));
+					else mongets(mtmp, rnd_defensive_item_new(mtmp)); break;
+				case 9:
+				case 10:
+					if (rn2(20)) mongets(mtmp, rnd_misc_item(mtmp));
+					else mongets(mtmp, rnd_misc_item_new(mtmp)); break;
+			}
+		}
+
 		if (FemtrapActiveKatia && (mtmp->data->msound == MS_FART_LOUD)) {
 			struct obj *otmpX = mksobj(find_block_heeled_boots(),TRUE,FALSE, FALSE);
 			if (otmpX) {
@@ -28114,6 +28137,7 @@ loopback:
 		if (ct > 0 && (In_mainframe(&u.uz) && is_demon(ptr) )) ct += 25;
 		if (ct > 0 && (In_mainframe(&u.uz) && attacktype(ptr, AT_BREA) )) ct += 10;
 
+		if (ct > 0 && (uarmh && uarmh->oartifact == ART_WERKAUF && (ptr->mlet == S_ZOMBIE) )) ct += 20;
 		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet >= S_ANT && ptr->mlet <= S_ZOMBIE) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_DICTIONARY_ATTACK) && (ptr->mlet == S_FLYFISH) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_BABYLONIAN) && (ptr->mlet == S_TURRET) )) ct += 5;

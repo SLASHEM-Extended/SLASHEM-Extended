@@ -1989,6 +1989,7 @@ set_moreluck()
 	if (have_amateurluckstone()) u.moreluck += 5;
 	if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) u.moreluck += 5;
 	if (have_suckstonearti()) u.moreluck += 5;
+	if (uarmh && uarmh->oartifact == ART_XTRALUCK) u.moreluck += 3;
 	if (uwep && uwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
 	if (uarm && uarm->oartifact == ART_AMMY_S_COMPLAINT) u.moreluck -= 5;
@@ -2097,6 +2098,8 @@ boolean	inc_or_dec;
 		/* note by Amy - it's stupid if you can only lose your attribute points if they're greater than 18. */
 
 		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : -rn2(2);
+
+		if (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY && inc_or_dec) AEXE(i) += 2;
 
 		if (Extra_wpn_practice) 
 			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : 0;
@@ -2437,6 +2440,9 @@ int stattoboost;
 	}
 
 	if (uarm && uarm->oartifact == ART_CERNY_ && stattoboost == A_CON) statgoupchance /= 3;
+	if (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) statgoupchance /= 5;
+
+	if (statgoupchance < 1) statgoupchance = 1; /* fail safe */
 
 	if (!rn2(statgoupchance)) statwillgoup = TRUE;
 	if (statwillgoup) {
@@ -3077,6 +3083,7 @@ int x;
 		if (Race_if(PM_URGOTH)) tmp += 5;
 		if (uwep && uwep->oartifact == ART_UNATTAINABLE_NINETEEN) tmp += 2;
 		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
+		if (uwep && uwep->oartifact == ART_GIANTCRUSHER) tmp += 5;
 		if (uwep && uwep->oartifact == ART_SWING_FOR_THE_FENCES) tmp += 10;
 		if (uwep && uwep->oartifact == ART_INDOBURDENIA_VIRII) tmp += 10;
 		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;
@@ -3391,6 +3398,8 @@ int x;
 		if (x == A_INT && uright && uright->otyp == RIN_GAIN_INTELLIGENCE) tmp += uright->spe;
 		if (x == A_WIS && uleft && uleft->otyp == RIN_GAIN_WISDOM) tmp += uleft->spe;
 		if (x == A_WIS && uright && uright->otyp == RIN_GAIN_WISDOM) tmp += uright->spe;
+		if (x == A_WIS && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 5;
+		if (x == A_INT && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 7;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3531,6 +3540,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
 		if (uarms && uarms->oartifact == ART_FETTIS_SLOT) tmp += 3;
+		if (uwep && uwep->oartifact == ART_OGRE_POWER) tmp += 3;
 		if (Race_if(PM_URGOTH)) tmp += 3;
 		if (uwep && uwep->oartifact == ART_GONDOLIN_S_HIDDEN_PASSAGE) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_CORNY_DOOD && !flags.female) tmp += 3;

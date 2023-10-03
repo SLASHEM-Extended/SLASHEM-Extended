@@ -5319,7 +5319,7 @@ doapply()
 	char class_list[MAXOCLASSES+2];
 	boolean noartispeak = FALSE; /* if item was vaporized, don't call arti_speaks because segfaults despite fail safe */
 
-	if (u.powerfailure || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) {
+	if (u.powerfailure || (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) {
 		pline("Your power's down, and therefore you cannot apply anything.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;

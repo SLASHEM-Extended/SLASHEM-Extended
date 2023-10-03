@@ -5414,7 +5414,7 @@ dozap()
 	register struct obj *obj;
 	int	damage;
 
-	if (u.powerfailure || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) )) {
+	if (u.powerfailure || (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) )) {
 		pline("Your power's down, and therefore you cannot zap anything.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
@@ -7574,7 +7574,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
 	}
 
-	if (youdefend ? (!youattack && ((Antimagic && rn2(StrongAntimagic ? 20 : 5)) || (chitinprotection() && rn2(3)) || (MysteryResist && rn2(3)) || (StrongMysteryResist && rn2(3)) ) ) /* no longer complete protection --Amy */
+	if (youdefend ? (!youattack && ((Antimagic && rn2(StrongAntimagic ? 20 : 5)) || (chitinprotection() && rn2(3)) || (MysteryResist && rn2(3)) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CANC___ && rn2(10)) || (StrongMysteryResist && rn2(3)) ) ) /* no longer complete protection --Amy */
 		      : resist(mdef, obj->oclass, 0, NOTELL))
 		return FALSE;	/* resisted cancellation */
 

@@ -4830,6 +4830,8 @@ register struct monst *mtmp;
 		You("allowed someone who was on the phone to die! The gods certainly aren't very pleased.");
 	}
 
+	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) mtmp->mgold = 0;
+
 	mtmp->flagged_for_death = FALSE;
 
 	if(mtmp->isgd) {

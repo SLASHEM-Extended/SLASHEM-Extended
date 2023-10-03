@@ -2228,6 +2228,11 @@ moveloop()
 			    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
+			if (uwep && uwep->oartifact == ART_LIGHT_____STATED_) {
+			    moveamt += speedbonus(moveamt * 2 / 3, NORMAL_SPEED * 2 / 3);
+			    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			}
+
 			if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL) {
 			    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
@@ -7030,6 +7035,25 @@ newbossJANI:
 			litroomlite(FALSE);
 		}
 
+		if (autismweaponcheck(ART_LIGHT_____STATED_)) {
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				levl[ulx][uly].lit = 0;
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_DIPLITE && !uwep->lamplit && !rn2(10)) {
+			if (!uwep->cursed) {
+				curse(uwep);
+				pline("Dark light surrounds your weapon.");
+			}
+			uwep->hvycurse = TRUE;
+			uwep->age++;
+		}
+
+		if (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY && !rn2(1000) && !uarmf->cursed) curse(uarmf);
+
 		if (uarm && uarm->oartifact == ART_A_ROOMFUL_WILL_BE_A_CHALLE && !rn2(5000)) {
 			int aggroamount = rn1(9,9);
 
@@ -7096,6 +7120,8 @@ newbossJANI:
 			verbalize("I'm challenging you to a duel. Bet that you won't be able to survive my furious attack?");
 
 		}
+
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER && !rn2(1000)) u.alignlim++;
 
 		if (uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 			int aggroamount = rnd(6);
@@ -9018,7 +9044,7 @@ newbossO:
 			}
 		}
 
-		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || have_delightstone() || autismweaponcheck(ART_EGRID_BUG) || autismweaponcheck(ART_DELIGHTSABER) || autismweaponcheck(ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
+		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || autismweaponcheck(ART_LIGHT_____STATED_) || have_delightstone() || autismweaponcheck(ART_EGRID_BUG) || autismweaponcheck(ART_DELIGHTSABER) || autismweaponcheck(ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
 
@@ -10225,6 +10251,15 @@ newbossB:
 		}
 
 		if ( (have_primecurse() || (uinsymbiosis && u.usymbiote.prmcurse)) && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+			if (!Blind) {
+				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+			}
+			rndcurse();
+
+		}
+
+		if (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -19265,6 +19300,8 @@ timebasedlowerchance()
 {
 	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
 	if (AssholeModeActive) return FALSE; /* unconditional failure if you're playing asshole mode */
+
+	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) return TRUE; /* always generate the item */
 
 	/* if you're in a lategame dungeon, or doubly so if you've completed the invocation, we assume that you've already
 	 * obtained 2000 of everything so you probably don't need that much extra loot :-P --Amy */

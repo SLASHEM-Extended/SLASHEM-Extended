@@ -14106,6 +14106,126 @@ A("Preim-oh",				LEATHER_CLOAK, /* randart cloak, shows skill training in enhanc
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_BINDER, NON_PM, 8000L ),
 
+A("Repair Your Brain",				PICK_AXE, /* randart2 pick-axe, invoke for restore intelligence but doing so curses the pick and reduces enchantment by d5; if already -20 or worse, the invoke doesn't work */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Britta's Murder Story",				LOW_BOOTS, /* initialized to always be sling pumps, power failure, radar not working, resist fear, +7 INT, +5 WIS, stat exercise happens 3x faster, maybegainstat happens 5x as often, 1 in 1000 that they re-curse themselves while worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Superdragonbane",			BROADSWORD, /* randart2 broadsword */
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_REFLECT), 0, S_DRAGON,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Giantcrusher",                LONG_SWORD, /* randart2 long sword, +5 STR */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_GIANT,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NEUTRAL, NON_PM, NON_PM, 2000L ),
+
+A("Ogre Power",		WAR_HAMMER, /* randart2 hammer, +3 CON */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_OGRE,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Haxortroll",                 MORNING_STAR, /* randart2 morning star */
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_REGEN), 0, S_TROLL,
+	PHYS(5,0),	NO_DFNS,	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("That Gives It Not",				FEDORA, /* displays all covetous monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Notknow Ey",				FEDORA, /* prevents mind flayer blasts from affecting you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Xtraluck",				FEDORA, /* +3 luck */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Third Car",				FEDORA, /* +5 damage for whips, +10 digging effort with digging tools */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ARCHEOLOGIST, NON_PM, 1000L ),
+
+A("Dan The Mage",				CORNUTHAUM, /* spellboost, resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("All The Better Spelling",				CORNUTHAUM, /* 5% casting chance and 5% failuncap-like */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sudunsel",				DUNCE_CAP, /* low local memory, +2 increase damage and accuracy, timebasedlowerchance always returns TRUE, heavily autocurses, monsters delete their money upon death */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Werkauf",				DUNCE_CAP, /* lag trap effect, +20 spawn chance for team Z, monsters spawn with musable items more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shit Happenz",				GNOMISH_SUIT, /* triggering a heap of shit that you didn't trigger yet gives +1 alla */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Beware of the Pitfall",				GNOMISH_BOOTS, /* you don't fall into pits */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Worth Checking Out",				GNOMISH_HELM, /* if it would have generated as +0, it gets a randomized enchantment value */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Idea in Headback",				GAUNTLETS_OF_RAINBOW_MOUD, /* resist mystery and death */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Signum Argentum Polishium",				SILVER_SHIELD, /* double reflection */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Light: 0 (stated)",				RED_LIGHTSABER, /* randart lightsaber, blinking speed, causes unlight every turn and also gives nolite, de-light and dark mode */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Owener",				RED_LIGHTSABER, /* randart lightsaber, starts with charge of 0 but 50% chance to not use up power */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Diplite",				BLACK_LIGHTSABER, /* while wielding it, if it's not on, 1 in 10 chance that the charge goes up by one, but this heavily curses the saber if it isn't already */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cure for Anorexia",				POT_GREEN_TEA, /* cures ina and nora trap effects when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Arabella's Rectifier",				IMPLANT_OF_THE_SEA_LION, /* doubles MC after all bonuses have been calculated, permacurse trap and curse items trap effects, if you're in a form without hands there's 1 in 1000 chance per turn to gain +1 max alignment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 10000L ),
+
+A("Canc...",				IMPLANT_OF_TORMENT, /* +1 MC, and if you're in a form without hands your items are 10x as likely to resist accidental cancellation effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Doublebind",				IMPLANT_OF_BINDING, /* your MC is at least twice that of the base item; if you're in a form without hands, the enhance screen displays skill training amounts */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Almost Tangible",				IMPLANT_OF_THE_OCTOPUS, /* your MC doesn't fall below that of the base item; if you're in a form without hands, you can eat all rings */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Octopoddy",				IMPLANT_OF_THE_OCTOPUS, /* invoke for bad equipment; if you're in a form without hands, the generated item doesn't always have a negative enchantment value and will spawn with its + known */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Shattering Elixir",				POT_PORTER, /* randomly branchports you when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("gendergendergender",				LONG_SWORD, /* randart2 melee weapon, no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GENDERSTARIST, NON_PM, 1000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -1719,6 +1719,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_STREET_ROCKZ) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uarmh && uarmh->oartifact == ART_SUDUNSEL) dmg += 2;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALES) dmg += 1;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) dmg += 1;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) dmg += 1;
@@ -2579,6 +2580,7 @@ boolean polearming;
 	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;

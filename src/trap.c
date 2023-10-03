@@ -3929,6 +3929,10 @@ unsigned trflags;
 		adjattrib(A_CHA, 1, 0, TRUE);
 	}
 
+	if (uarm && uarm->oartifact == ART_SHIT_HAPPENZ && ttype == SHIT_TRAP && !(trap->artionce)) {
+		gain_alla(1);
+	}
+
 	if (trap) trap->artionce = TRUE;
 
 dothetrap:
@@ -8796,6 +8800,9 @@ newbossPENT:
 	    case MANA_PIT:
 	    case ANOXIC_PIT:
 	    case ACID_PIT:
+
+		if (uarmf && uarmf->oartifact == ART_BEWARE_OF_THE_PITFALL) break; /* yes, even in sokoban! */
+
 		/* KMH -- You can't escape the Sokoban level traps */
 		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && (Levitation || Flying)) break;
 

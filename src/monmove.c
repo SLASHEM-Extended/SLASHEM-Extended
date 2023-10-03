@@ -2858,14 +2858,16 @@ convertdone:
 			pline("%s concentrates.", Monnam(mtmp));
 		if (distu(mtmp->mx, mtmp->my) > BOLT_LIM * BOLT_LIM) {
 			You(FunnyHallu ? "sense a fantastic wave of psychic energy." : "sense a faint wave of psychic energy.");
-			if (!mtmp->mpeaceful && !rn2(5)) maybehackimplant();
+			if (!mtmp->mpeaceful && !(uarmh && uarmh->oartifact == ART_NOTKNOW_EY) && !rn2(5)) maybehackimplant();
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
 		if ( (mtmp->mpeaceful || (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) ) &&
-		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0)))
+		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0))) {
 			pline("It feels quite soothing.");
-		else {
+		} else if (uarmh && uarmh->oartifact == ART_NOTKNOW_EY) {
+			pline("But it doesn't affect you.");
+		} else {
 			if (!mtmp->mpeaceful) maybehackimplant();
 			register boolean m_sen = sensemon(mtmp);
 

@@ -1319,7 +1319,7 @@ walscholardone:
 
 	/* autodig: note by Amy, this needs to interact with all nasty traps that would fire when you apply something.
 	 * For simplicity of coding, I decided to make autodig do nothing if you have such a trap active :P */
-	} else if (flags.autodig && !(u.powerfailure || CurseAsYouUse || InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone() || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) && !(WallsAreHyperBlue) && !flags.run && !flags.nopick &&
+	} else if (flags.autodig && !(u.powerfailure || (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) || CurseAsYouUse || InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone() || (isselfhybrid && (moves % 3 == 0 && moves % 11 != 0) ) ) && !(WallsAreHyperBlue) && !flags.run && !flags.nopick &&
 		   uwep && is_pick(uwep)) {
 	/* MRKR: Automatic digging when wielding the appropriate tool */
 	    if (mode == DO_MOVE) {

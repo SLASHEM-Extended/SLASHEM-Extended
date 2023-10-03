@@ -2439,6 +2439,12 @@ Helmet_on()
 		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) litroomlite(FALSE);
     }
 
+    if (uarmh && uarmh->oartifact == ART_SUDUNSEL && !uarmh->hvycurse) {
+	curse(uarmh);
+	uarmh->hvycurse = TRUE;
+	/* no message because you have LLM anyway */
+    }
+
     if (uarmh && uarmh->oartifact == ART_RUTH_S_DARK_FORCE) {
 		if (!uarmh->cursed) {
 		    if (Blind)

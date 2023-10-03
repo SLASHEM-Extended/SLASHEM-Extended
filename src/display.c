@@ -860,6 +860,9 @@ display_warningX(mon)
     int wl = (int) (mon->m_lev / 6);
     int glyph;
 
+    if (mon && (mon->data->msound == MS_DEEPSTATE)) return;
+    if (mon && mon->egotype_deepstatemember) return;
+
     if (mon_warning(mon)) {
         if (wl > WARNCOUNT - 1) wl = WARNCOUNT - 1;
 	/* 3.4.1: this really ought to be rn2(WARNCOUNT), but value "0"
@@ -1216,6 +1219,7 @@ newsym(x,y)
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226) ) ||
@@ -1339,6 +1343,7 @@ newsym(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
@@ -1623,6 +1628,7 @@ newsymX(x,y)
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_CORTEX) && nolimbs(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
@@ -1746,6 +1752,7 @@ newsymX(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
+		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
@@ -3716,6 +3723,7 @@ struct monst *mon;
 	if (Race_if(PM_CORTEX) && nolimbs(mon->data) ) return TRUE;
 	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) return TRUE;
 	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
+	if (uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
 	if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) return TRUE;

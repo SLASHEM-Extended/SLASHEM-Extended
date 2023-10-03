@@ -6838,7 +6838,8 @@ struct monst *mon;
 	if (mon == &youmonst) {
 		if (uimplant && (armpro < objects[uimplant->otyp].a_can))
 			armpro = objects[uimplant->otyp].a_can;
-
+		if (uimplant && uimplant->oartifact == ART_DOUBLEBIND && (armpro < (objects[uimplant->otyp].a_can * 2)) )
+			armpro = (objects[uimplant->otyp].a_can * 2);
 		if (bmwride(ART_MACAN_STRETCH) && armpro < 3) armpro = 3;
 		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
 		if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
@@ -6862,6 +6863,7 @@ struct monst *mon;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 		if (Race_if(PM_INKA)) armpro++;
 		if (ACURR(A_CHA) >= 18) armpro++;
+		if (uimplant && uimplant->oartifact == ART_CANC___) armpro++;
 
 		if (MCReduction) {
 
@@ -6873,7 +6875,13 @@ struct monst *mon;
 			if (uarmg && uarmg->oartifact == ART_NOT_BELOW_NINE && prereduce > 9 && armpro < 9) armpro = 9;
 			if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT && prereduce > 3 && armpro < 3) armpro = 3;
 		}
+
+		if (uimplant && uimplant->oartifact == ART_ALMOST_TANGIBLE && (armpro < objects[uimplant->otyp].a_can))
+			armpro = objects[uimplant->otyp].a_can;
+
 		if (ACURR(A_WIS) == 1) armpro--;
+
+		if (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) armpro *= 2;
 
 		/* artifact that sets MC to an exact value, ignoring modifiers (except unbalancor) */
 		if (uarm && uarm->oartifact == ART_EMSI_WOERS) armpro = 2;

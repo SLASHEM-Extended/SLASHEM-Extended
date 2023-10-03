@@ -2905,6 +2905,19 @@ find_korean_sandals()
 }
 
 int
+find_sling_pumps()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SLING_PUMPS)) return i;
+    }
+
+    impossible("sling pumps not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_octarine_robe()
 {
     register int i;

@@ -5112,6 +5112,7 @@ long timeout;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
 			if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
@@ -5607,6 +5608,7 @@ begin_burn(obj, already_lit)
 			if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 			if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
+			if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
 			if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 			if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
 				if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
@@ -5670,6 +5672,7 @@ begin_burn(obj, already_lit)
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
 			if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
@@ -5829,6 +5832,7 @@ begin_burn(obj, already_lit)
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
 			willdrainenergy = FALSE;
 		}
