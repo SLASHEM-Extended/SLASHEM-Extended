@@ -324,6 +324,7 @@ int thrown;
 		multishot += 2;
 		if (u.ugallop) multishot++;
 	    }
+	    if (launcher && launcher->oartifact == ART_BROWNING) multishot += rnd(5);
 
 	    if ((uwep && uwep->oartifact == ART_SPEERTHROW) && (skill == P_SPEAR) ) {
 			multishot += 2;

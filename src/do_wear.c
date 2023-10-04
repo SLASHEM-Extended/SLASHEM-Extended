@@ -3686,6 +3686,12 @@ Shirt_on()
 
 	}
 
+	if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS && !uarmu->prmcurse) {
+		curse(uarmu);
+		uarmu->hvycurse = uarmu->prmcurse = TRUE;
+		pline("Yes, menstruation hurts. Have fun.");
+	}
+
 	if (uarmu->oartifact == ART_TILLMANN_S_TARGET && !uarmu->hvycurse) {
 		curse(uarmu);
 		uarmu->hvycurse = TRUE;
@@ -3854,6 +3860,12 @@ Armor_on()
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_DUEUEUEUET) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
+	}
+
+	if (uarm && uarm->oartifact == ART_ASTRA_MAIL) {
+		curse(uarm);
+		uarm->hvycurse = uarm->stckcurse = TRUE;
+		pline("Oh no, the armor won't come off!");
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ASSEIGNMENT_CURSE_) {
@@ -6489,6 +6501,7 @@ find_ac()
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) uac -= 1;
 	if (uarm && uarm->oartifact == ART_LET_IT_STAY && uarm->otyp >= GRAY_DRAGON_SCALES && uarm->otyp <= YELLOW_DRAGON_SCALES) uac -= 7;
+	if (uarmh && uarmh->oartifact == ART_HAMMER_GOOD_HELM) uac -= (Role_if(PM_COMBATANT) ? 10 : 5);
 	if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) uac -= 2;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_FOOKING_TANK) uac -= 10;

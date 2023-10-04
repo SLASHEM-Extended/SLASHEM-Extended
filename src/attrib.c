@@ -3067,6 +3067,7 @@ int x;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uwep && uwep->oartifact == ART_NEEDLESSLY_MEAN) tmp += 4;
 		if (uarm && uarm->oartifact == ART_CLANGFRIEND) tmp += 3;
 		if (uwep && uwep->oartifact == ART_MONS_INFERNALIS_X_) tmp += 10;
 		if (uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
@@ -3097,6 +3098,7 @@ int x;
 		if (uright && uright->otyp == RIN_GAIN_STRENGTH) tmp += uright->spe;
 		if (uarmg && uarmg->oartifact == ART_LIKE_GRACE) tmp += 5;
 		if ((uwep && uwep->oartifact == ART_BAEFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAEFF)) tmp += 8;
+		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3266,6 +3268,7 @@ int x;
 		if (uarmh && uarmh->otyp == CORNUTHAUM && Role_if(PM_WIZARD)) tmp += 1;
 		if (uleft && uleft->otyp == RIN_ADORNMENT) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_ADORNMENT) tmp += uright->spe;
+		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -3406,6 +3409,8 @@ int x;
 		if (x == A_INT && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 7;
 		if (x == A_INT && uleft && uleft->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
 		if (x == A_INT && uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
+		if (x == A_INT && uwep && uwep->oartifact == ART_GARBAGE_STAFF) tmp += 3;
+		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3496,6 +3501,7 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_LIKE_GRACE) tmp += 5;
 		if (uleft && uleft->oartifact == ART_SECOND_EXCHANGE) tmp += 5;
 		if (uright && uright->oartifact == ART_SECOND_EXCHANGE) tmp += 5;
+		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3558,6 +3564,8 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uleft && uleft->otyp == RIN_GAIN_CONSTITUTION) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_GAIN_CONSTITUTION) tmp += uright->spe;
+		if (uwep && uwep->oartifact == ART_GARBAGE_STAFF) tmp += 3;
+		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

@@ -1668,6 +1668,10 @@ register boolean mod;
 			otmp->spe += 9;
 			if (otmp->spe > 127) otmp->spe = 127;
 		    }
+		    if (otmp && otmp->oartifact == ART_BAEAU) {
+			otmp->spe += rnd(10);
+			if (otmp->spe > 127) otmp->spe = 127;
+		    }
 		    if (otmp && otmp->oartifact == ART_YOUR_LUCKY_DAY) {
 			switch (otmp->otyp) {
 				case WAN_WISHING:
@@ -1736,6 +1740,11 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_TROPICAL_WOOD_SELECTION) {
 			otmp->quan += 4;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_REGROWN_RESOURCE) {
+			otmp->oerodeproof = TRUE;
+			otmp->quan += 9;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_JUMPING_FLAMING_HE_TIE_CLI) {
@@ -2543,6 +2552,7 @@ int tmp;
 			case ART_WATERTROOPER:
 			case ART_MISS_LAUNCHER:
 			case ART_TSCHUEUU:
+			case ART_BROWNING:
 			case ART_HOMING_BEAM:
 			case ART_VIHAT_BAGUETTEN_BUS_STOP:
 			case ART_DIG__OF_COURSE:
@@ -4475,6 +4485,12 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_LARISSA_S_LAUGHTER) {
+			objects[obj->otyp].oc_material = MT_INKA;
+			pline_The("boot is made of inka leather now.");
+			break;
+		}
 
 		if (obj->oartifact == ART_MOIST_CHERRY) {
 

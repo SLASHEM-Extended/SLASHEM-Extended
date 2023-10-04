@@ -202,6 +202,13 @@ moveloop()
 			}
 		}
 
+		if (u.dachacomboactive) {
+			u.dachacomboactive = FALSE;
+		} else if (u.dachacombostrike > 0) {
+			u.dachacombostrike = 0;
+			pline("Since you failed to hit something in your last action, your combo ends!");
+		}
+
 		u.polyprotected = 0;
 		u.aggravation = 0;
 		u.heavyaggravation = 0;
@@ -2182,6 +2189,7 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && u.uinwater && (uarmf->oartifact == ART_PECTORAL_HEEL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_JUMP_HURRIES && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -6995,6 +7003,14 @@ newbossJANI:
 				levl[u.ux][u.uy].typ = GRASSLAND;
 			}
 		}
+
+		if (autismweaponcheck(ART_MELEE_DAMMIT) && uarmf) {
+			if (uarmf->cursed && uarmf->spe > -10) uarmf->spe = -10;
+			if (!uarmf->cursed) {
+				(void) Boots_off();
+			}
+		}
+
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_GRASSSWANDIR) {
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = GRASSLAND;
@@ -7034,6 +7050,8 @@ newbossJANI:
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_POLARIS) {
 			litroomlite(FALSE);
 		}
+
+		if (have_miraclebeautifulnoises() && !rn2(200)) reducesanity(1);
 
 		if (autismweaponcheck(ART_LIGHT_____STATED_)) {
 			int ulx, uly;
@@ -9004,6 +9022,12 @@ newbossO:
 			if (FemaleTrapArabella < 5000) FemaleTrapArabella = 5000;
 		}
 
+		if (autismweaponcheck(ART_LARISSA_S_LAUGHTER) && !Role_if(PM_HUSSY)) {
+			if (FemaleTrapLarissa < 5000) FemaleTrapLarissa = 5000;
+		}
+
+		if (uwep && uwep->oartifact == ART_LARISSA_S_LAUGHTER && !rn2(1000)) use_skill(P_SQUEAKING, 1);
+
 		if (autismweaponcheck(ART_MASSIVE_BUT_LOVELY)) {
 			if (!FemaleTrapWendy) FemaleTrapWendy += 10000;
 
@@ -9049,7 +9073,7 @@ newbossO:
 			}
 		}
 
-		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || autismweaponcheck(ART_LIGHT_____STATED_) || have_delightstone() || autismweaponcheck(ART_EGRID_BUG) || autismweaponcheck(ART_DELIGHTSABER) || autismweaponcheck(ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
+		if ((DeLightBug || u.uprops[DE_LIGHT_BUG].extrinsic || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_BLAG_LITE) || have_delightstone() || autismweaponcheck(ART_EGRID_BUG) || autismweaponcheck(ART_DELIGHTSABER) || autismweaponcheck(ART_WEAKITE_THRUST)) && isok(u.ux, u.uy)) {
 			levl[u.ux][u.uy].lit = FALSE;
 		}
 

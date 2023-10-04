@@ -2646,10 +2646,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
 		u.alignlim++;
 
-	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || have_alignmentstone() || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
+	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_alignmentstone() || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;
 		if(u.ualign.record > u.alignlim)
 			u.ualign.record = u.alignlim;
@@ -5113,6 +5113,7 @@ long timeout;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
 			if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
@@ -5609,6 +5610,7 @@ begin_burn(obj, already_lit)
 			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 			if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 			if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+			if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 			if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 			if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
 				if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
@@ -5673,6 +5675,7 @@ begin_burn(obj, already_lit)
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
 			if (obj == uwep && !rn2(2)) willdrainenergy = FALSE;
@@ -5833,6 +5836,7 @@ begin_burn(obj, already_lit)
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
 			willdrainenergy = FALSE;
 		}

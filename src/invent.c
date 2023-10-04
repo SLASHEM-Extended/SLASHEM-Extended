@@ -1465,6 +1465,42 @@ have_magicrystal()
 }
 
 boolean
+have_luckypack()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == LUCKSTONE && otmp->oartifact == ART_LUCKY_PACK)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_miraclebeautifulnoises()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == KATHARINA_S_JEWEL && otmp->oartifact == ART_MIRACLE_BEAUTIFUL_NOISES)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_hardcoreaddiction()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MELTEM_S_JEWEL && otmp->oartifact == ART_HARDCORE_ADDICTION)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_allisloststone()
 {
 	register struct obj *otmp;

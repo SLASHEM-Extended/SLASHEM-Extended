@@ -10566,6 +10566,9 @@ symbiotemelee()
 		case 75:
 			symchance += 15; break;
 	}
+
+	if (have_luckypack()) symchance += 5;
+
 	if (rn2(100) < symchance) return TRUE;
 	return FALSE;
 }
@@ -10637,6 +10640,9 @@ symbiotepassive()
 		case 75:
 			symchance += 15; break;
 	}
+
+	if (have_luckypack()) symchance += 5;
+
 	if (rn2(100) < symchance) return TRUE;
 	return FALSE;
 }

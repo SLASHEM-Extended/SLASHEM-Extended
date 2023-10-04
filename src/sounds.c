@@ -4487,7 +4487,7 @@ metalmafiaagain:
 
 			break;
 
-		} else if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
+		} else if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (have_hardcoreaddiction() && rn2(10)) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
 
 			break;
 
@@ -4565,7 +4565,7 @@ metalmafiaagain:
 
 		}
 
-		if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
+		if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (have_hardcoreaddiction() && rn2(4)) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
 			break;
 		}
 

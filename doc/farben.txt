@@ -1,0 +1,15 @@
+#define CLR_RED			1
+#define CLR_GREEN		2
+#define CLR_BROWN		3
+#define CLR_BLUE		4
+#define CLR_MAGENTA		5
+#define CLR_CYAN		6
+#define CLR_GRAY		7
+#define CLR_BLACK		8
+#define CLR_ORANGE		9
+#define CLR_BRIGHT_GREEN	10
+#define CLR_YELLOW		11
+#define CLR_BRIGHT_BLUE		12
+#define CLR_BRIGHT_MAGENTA	13
+#define CLR_BRIGHT_CYAN		14
+#define CLR_WHITE		15

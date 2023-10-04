@@ -2211,6 +2211,9 @@ int dieroll;
 			if (obj && obj->oartifact == ART_PING_EM_AWAY && tmp > 0) {
 				tmp += 12;
 			}
+			if (obj && obj->oartifact == ART_EXCALISHIELD && tmp > 0) {
+				tmp += 6;
+			}
 
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) {
 				tmp *= 2;
@@ -3571,6 +3574,19 @@ int dieroll;
 		}
 	}
 
+	if (uwep && uwep->oartifact == ART_DACHA_DACHA_DACHA) {
+		tmp += u.dachacombostrike;
+		if (u.dachacombostrike) {
+			pline("+%d combo!", u.dachacombostrike);
+			u.dachacombostrike++;
+			u.dachacomboactive = TRUE;
+		} else {
+			You("start your combo.");
+			u.dachacombostrike++;
+			u.dachacomboactive = TRUE;
+		}
+	}
+
 	/* negative effects go here --Amy */
 
 	if (obj && obj->oartifact == ART_LUCKLESS_FOLLY && Luck > 0) tmp -= Luck;
@@ -3762,6 +3778,7 @@ int dieroll;
 	if (!thrown && (!Upolyd || !no_obj) && tech_inuse(T_SHIELD_BASH) && uarms && (uarms->spe > -4)) {
 		pline("Schrack!");
 		tmp += (3 + uarms->spe);
+		if (uarms->oartifact == ART_EXCALISHIELD) tmp += 6;
 		if (uarms->oartifact == ART_SPECTRATE_ETTECKOR) tmp += rnd(10);
 		if (!(PlayerCannotUseSkills)) {
 			switch (P_SKILL(P_SHIELD)) {
@@ -10248,7 +10265,7 @@ bladeangerdone2:
 
 				}
 
-				if (uwep && objects[uwep->otyp].oc_skill == P_ORB) {
+				if (uwep && ((objects[uwep->otyp].oc_skill == P_ORB) || (uwep->oartifact == ART_KHALIM_S_FEMUR)) ) {
 					int suckingchance = 12;
 					if (uwep && uwep->otyp == JARED_STONE) suckingchance = 11;
 					if (uwep && uwep->otyp == CIGARETTE) suckingchance = 11;

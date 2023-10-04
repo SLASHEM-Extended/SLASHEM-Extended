@@ -201,6 +201,18 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_SLAM_INTO && humanoid(mon->data) && !is_neuter(mon->data) && !(mon->female)) {
+		dmg += 8;
+		if (!resist(mon, TOOL_CLASS, 0, NOTELL)) {
+			pline("That kick really knocked the wind out of %s.", mon_nam(mon));
+			mon_adjust_speed(mon, -1, (struct obj *)0);
+			mon->mstun = TRUE;
+			monflee(mon, rnd(10), FALSE, FALSE);
+			mon->healblock += rnd(10);
+			if (!rn2(10)) cancelmonsterlite(mon);
+		}
+	}
+
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) dmg += 2;
 
 	if (uwep && uwep->oartifact == ART_PEEPLUE) dmg += 2;

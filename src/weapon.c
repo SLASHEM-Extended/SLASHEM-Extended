@@ -1105,6 +1105,7 @@ struct monst *mon;
 	}
 	if (uwep && uwep->oartifact == ART_FULLY_ON_THE_TWELVE && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_IT && !rn2(5)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_DACHA_DACHA_DACHA && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
