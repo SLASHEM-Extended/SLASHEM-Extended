@@ -10403,7 +10403,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->oinvis != otmp->oinvis ||
 	    obj->oinvisreal != otmp->oinvisreal ||
 	    obj->oldtyp != otmp->oldtyp ||
-	    obj->invoketimer != otmp->invoketimer ||
+	    (obj->oartifact && otmp->oartifact && obj->invoketimer != otmp->invoketimer) ||
 	    obj->greased != otmp->greased ||
 	    obj->mstartinventX != otmp->mstartinventX ||
 	    obj->oeroded != otmp->oeroded ||
