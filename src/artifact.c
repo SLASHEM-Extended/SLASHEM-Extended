@@ -1148,7 +1148,7 @@ boolean existingagain;	/* if TRUE, existing ones can be generated again */
 			    set_mon_data(&youmonst, &mons[u.umonnum], 0);
 		    }
 		}
-		if (hostile)
+		if (hostile && rn2(10)) /* don't just make it not spawn at all, that's boring --Amy */
 		    continue;
 		/* Amy evil patch change: remove guaranteed sacrifice gifts because we want variety. */
 		if (by_align && !rn2(issoviet ? 2 : 5) && Role_if(a->role) && !artiexist[m])
