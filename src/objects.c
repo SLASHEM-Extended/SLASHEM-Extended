@@ -1817,7 +1817,7 @@ CLOAK("combination cloak", "coral cloak", /* also gives dtbeem_res */
 CLOAK("cloak of lower mystery", "cobalt cloak",
 		0, 1,	MYSTERY_RES,  700, 0, 4, 50,  9, 2, MT_COBALT, CLR_BLUE, 1, 0),
 CLOAK("cloak of mystery", "bamboo cloak",
-		0, 1,	MYSTERY_RES,  500, 0, 4, 50,  9, 3, MT_BAMBOO, CLR_YELLOW, 4, 0),
+		0, 1,	MYSTERY_RES,  500, 0, 4, 50,  9, 3, MT_BAMBOO, CLR_YELLOW, 4, APP_BAMBOO_CLOAK),
 CLOAK("cloak of armor mystery", "shale cloak",
 		0, 1,	MYSTERY_RES,  300, 0, 4, 50,  7, 2, MT_SHELL, CLR_RED, 12, 0),
 CLOAK("cloak of spell boosting", "greenish cloak",
@@ -5706,8 +5706,12 @@ TOOL("condome", (char *)0,      1, 0, 0, 0,  190,  0,   5, MT_CLOTH, CLR_WHITE, 
 TOOL("climbing set", (char *)0,      1, 0, 0, 0,  100,  0,   500, MT_MINERAL, CLR_GRAY, 80),
 TOOL("defusing box", (char *)0,      1, 0, 0, 0,  200,  0,   200, MT_MINERAL, CLR_GRAY, 5),
 TOOL("soft chastity belt", (char *)0,      1, 0, 0, 0,   10,  0,   5, MT_SILK, CLR_WHITE, 1),
+
+/* leather saddle = first saddle */
 TOOL("leather saddle", "saddle", 0, 0, 0, 0, 3000,0, 150, MT_LEATHER, HI_LEATHER, 1),
 TOOL("inka saddle", "saddle",   0, 0, 0, 0, 500,0, 150, MT_INKA, HI_LEATHER, 20),
+/* inka saddle = last saddle */
+
 TOOL("leather leash", "leash",  0, 0, 0, 0, 1200, 0,  20, MT_LEATHER, HI_LEATHER, 1),
 TOOL("inka leash", "leash",     0, 0, 0, 0, 100, 0,  20, MT_INKA, HI_LEATHER, 20),
 TOOL("stethoscope", (char *)0,  1, 0, 0, 0, 2200,  0,  75, MT_IRON, HI_METAL, 1),
@@ -8600,6 +8604,9 @@ SCROLL((char *)0,               "A STUPID SCHOOL DAY WHICH IS STULTUS",  P_NONE,
 SCROLL((char *)0,               "THE NEW DESIGN IS UGLY",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "GREYEL GRAYEL IS A WASTE OF TAX MONEY",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "YOUR NEXT CONNECTIONS EC TO RATTERRATTERRATTER FROM PLATFORM FIIIIIEP",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "WOAH THAT IS PROBABLY THE HEIGHT",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "FROESTELHEIMER UND SOEHNE",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "DOPPELVORBEILAUFSPFEIL",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

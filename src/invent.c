@@ -27250,6 +27250,152 @@ boolean knoweverything;
 					pline("Artifact specs: +4 to-hit, shoots up to 5 more bullets per turn, stealth when wielded, secret advice member sacrifice gift."); break;
 				case ART_MENSTRUATION_HURTS:
 					pline("Artifact specs: natalia trap effect, +6 all stats and prime curses itself when worn, permacurse effect if you're not a climacterial, and is a sacrifice gift for climacterials."); break;
+				case ART_GIVE_US_TODAY_OUR_DAILY_GA:
+					pline("Artifact specs: energy regeneration when worn and you occasionally meet a flock of elona monsters."); break;
+				case ART_PEWWWWWWW:
+					pline("Artifact specs: +15 range, spawns with bigger stack size."); break;
+				case ART_SPECIAL_ROBUNG:
+					pline("Artifact specs: intrinsic control magic and double spellboost when worn."); break;
+				case ART_ETERNAL_BAMMELING:
+					pline("Artifact specs: spellboost when worn and causes your prayer timeout to decrease twice as fast, so you can pray again more quickly."); break;
+				case ART_MYSTERESIS_X:
+					pline("Artifact specs: +6 to-hit and +6 damage, mystery resistance when wielded."); break;
+				case ART_HYSTERESIS_X:
+					pline("Artifact specs: +6 to-hit and +6 damage, mystery resistance when wielded."); break;
+				case ART_LYST_ERG:
+					pline("Artifact specs: +6 to-hit and +6 damage, mystery resistance when wielded."); break;
+				case ART_OOOOOOH:
+					pline("Artifact specs: mystery resistance and 5 extra points of AC when worn."); break;
+				case ART_THAT_S_ARMOR:
+					pline("Artifact specs: 5 extra points of AC when worn and one more per body armor skill level."); break;
+				case ART_JUST_TO_HAVE_IT:
+					pline("Artifact specs: +1 strength and dexterity when worn."); break;
+				case ART_ABSOLUTE_ANTIMAGIC:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_RAND_ARM:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_ESPECIALLYRANDARM:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_HEART_INFACT:
+					pline("Artifact specs: fainting, sleep resistance and spellboost when worn."); break;
+				case ART_CHIP_INFACT:
+					pline("Artifact specs: fainting, sleep resistance, hyperbluewalls, technicality and spellboost when worn, autocurses."); break;
+				case ART_SAMA_KATA:
+					pline("Artifact specs: +4 to-hit and +3 damage, mystery resistance and spellbost when wielded."); break;
+				case ART_FERRUM_D:
+					pline("Artifact specs: +8 to-hit and +4 damage, mystery resistance and allows you to eat metal when wielded."); break;
+				case ART_SCHWI_SCHWI:
+					pline("Artifact specs: +4 fire damage, spellboost and prism reflection when wielded."); break;
+				case ART_SHROUD:
+					pline("Artifact specs: nicole trap effect, fuck over, +7 constitution and 10%% better spellcasting chance when worn."); break;
+				case ART_NOTHING_FOR_IT:
+					pline("Artifact specs: +4 damage, fuck over and +5 digging effort when wielded."); break;
+				case ART_HEAD_W:
+					pline("Artifact specs: spellboost, sleep resistance and free action when worn but you also take slightly more damage than normal."); break;
+				case ART_GREEN_MYSTERY:
+					pline("Artifact specs: becomes green when worn, and if your weapon is also green you have poison resistance but if your weapon is bright green you instead have sickness resistance and sickopathy."); break;
+				case ART_MR__OF_HIGH_HEELS:
+					pline("Artifact specs: becomes black when wielded, resistance piercing and magic find while wielded and if your torso armor is also black, you have death ray resistance and perilous life saving; if you wield this weapon as a male character, randomly generated equipment is less likely to spawn +0."); break;
+				case ART_AMMY_S_NORMALNESS:
+					pline("Artifact specs: mystery resistance when worn. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_TEH_NORM:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_RES_CIRCLE:
+					pline("Artifact specs: mystery resistance when worn, can be invoked for temporary resistance piercing."); break;
+				case ART_GRANT_ESPECIAL:
+					pline("Artifact specs: mystery resistance and 10 extra points of AC when worn."); break;
+				case ART_NUTRITION_AND_DIETETICS:
+					pline("Artifact specs: full nutrients when worn, but if you eat meat while wearing it, you get a temporary stat debuff."); break;
+				case ART_HOW_CAN_ONE_PLEASE_LOOK_LI:
+					pline("Artifact specs: half physical damage, -10 charisma, aggravate monster and fuck over when worn, autocurses."); break;
+				case ART_NANCY_S_ASSISTANCE:
+					pline("Artifact specs: becomes red when worn, half physical damage, anastasia trap effect, resist fear and discount action when worn and if you're female they additionally grant mystery resistance; if they're eroded (no matter how much or little), chaotic monsters will spawn peaceful more often."); break;
+				case ART_FIRM_TOP:
+					pline("Artifact specs: if you put it on, its material changes to 'firmament' if it was something else."); break;
+				case ART_GRISGREN:
+					pline("Artifact specs: +6 damage, and wielding it changes its material to 'green steel'."); break;
+				case ART_EWW_THAT_S_DISGUSTING:
+					pline("Artifact specs: +10 to-hit and +5 acid damage, acid resistance when wielded, and wielding it changes its material to 'secree'."); break;
+				case ART_COMPLETE_ARMORING:
+					pline("Artifact specs: double fire resistance when worn, and wearing it changes its material to 'steel'."); break;
+				case ART_MELUGAS_ROCKET:
+					pline("Artifact specs: wearing them changes the material to 'titanium', can be invoked for random breath in a direction of your choice."); break;
+				case ART_COB_AUTO:
+					pline("Artifact specs: spawns with more ammo and is probably made of cobalt."); break;
+				case ART_GIT_ALL_DE_ARTS_NO:
+					pline("Artifact specs: double magic find when worn."); break;
+				case ART_CASTOR_BOOST:
+					pline("Artifact specs: +7 cold damage, spellboost and contamination resistance when wielded."); break;
+				case ART_FANNY_S_BROOK_THAT_YOU_MIS:
+					pline("Artifact specs: count as stiletto heels and you deal extra kicking damage while wearing them, especially if you're female, but caution! If you are female and kill a male boss monster while wearing these, and your role is not 'feminist' and you're not in the elemental planes, your role permanently changes to 'feminist'!"); break;
+				case ART_WAND_INTO_SPELL:
+					pline("Artifact specs: double spellboost and considerably boosts your spellcasting chances while worn, possibly beyond the normal limits, but your devices skill will quickly decay over time."); break;
+				case ART_ENDARKEN_EVERYTHING:
+					pline("Artifact specs: mystery resistance and dark mode when worn, changes the material to 'shadowstuff' when worn, hostile monsters are less likely to approach you while wearing these."); break;
+				case ART_FINDEET:
+					pline("Artifact specs: magic find when worn but items generate cursed or with negative enchantment values more often, and items also generally generate more often."); break;
+				case ART_LOOKIE_LOOKIE:
+					pline("Artifact specs: magic find and clairvoyance when worn."); break;
+				case ART_NUCLEAR_WORTH:
+					pline("Artifact specs: contamination resistance and fuck over when worn."); break;
+				case ART_ELROS_EAERFALAS:
+					pline("Artifact specs: half spell damage and mystery resistance when worn."); break;
+				case ART_ANDEN_DRER:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_DLANGOUT:
+					pline("Artifact specs: magic find when worn."); break;
+				case ART_OUTMINE_OF_METAL:
+					pline("Artifact specs: fire resistance, magic find and magical breathing when worn."); break;
+				case ART_DEEPFOUND:
+					pline("Artifact specs: magic find when worn."); break;
+				case ART_POW_RER:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_CAAAAAST:
+					pline("Artifact specs: spellboost when worn."); break;
+				case ART_ALL_IN_ONE_EFF:
+					pline("Artifact specs: mystery resistance, magic find, fuck over and spellboost when worn, can re-curse itself."); break;
+				case ART_UNUSUAL_ENCH:
+					pline("Artifact specs: magic find, +1 increase damage and your spell memory lasts for a longer time when worn."); break;
+				case ART_ONE_IN_FOUR:
+					pline("Artifact specs: while carrying it, depending on the current turn number, you resist one of the following things: mystery, magic, contamination or death."); break;
+				case ART_DOUBLESHELL:
+					pline("Artifact specs: double mystery resistance while carried."); break;
+				case ART_NOT_GONNA_CONTAMINATE:
+					pline("Artifact specs: contamination resistance while carried but also causes you to suffer from some specific feminism trap effect in addition to the one granted by the jewel itself."); break;
+				case ART_HAVE_IT_ALL_BUT_NOT_GET:
+					pline("Artifact specs: magic, death and mystery resistance while carried, prevents you from getting positive intrinsics when leveling up, and this artifact is very hard to uncurse because it's immune to most forms of curse removal."); break;
+				case ART_TERROR_DROP:
+					pline("Artifact specs: +2 to-hit and double damage, and can make monsters turn to flee with a hit if the monster doesn't resist."); break;
+				case ART_GAUGE_REDUCE:
+					pline("Artifact specs: +5 to-hit and +5 damage, and if you hit an enemy, he might not be able to use special abilities or spells for a few turns."); break;
+				case ART_PULVERIZE_EM:
+					pline("Artifact specs: triple damage, autocurses."); break;
+				case ART_MANA_SLASHER:
+					pline("Artifact specs: +7 damage, drains the enemy's mana with a hit."); break;
+				case ART_ARROW_RAIN:
+					pline("Artifact specs: if you fire it while it doesn't have an artifact timeout, you fire 8 additional arrows but then the bow gets a timeout so it'll be a while until you can launch another such volley."); break;
+				case ART_GHAND:
+					pline("Artifact specs: if you attack unarmed while wearing them, and the enemy has eyes, he must make a saving throw or be blinded for a while."); break;
+				case ART_DIFFUSION_WAVE:
+					pline("Artifact specs: if you zap it while it still has charges, you restore some HP and Pw."); break;
+				case ART_BAKURETU_KEN:
+					pline("Artifact specs: if you attack unarmed while wearing it, your strikes may occasionally cause an explosion that only hits monsters, not you."); break;
+				case ART_ZIN_BA:
+					pline("Artifact specs: while riding a monster that has this saddle equipped, you have 10%% better spellcasting chances, +1 increase damage and +4 increase accuracy."); break;
+				case ART_MOUNT_BOND:
+					pline("Artifact specs: if your mount has this saddle equipped, you can use the #monster command for free to check up on the mount's health."); break;
+				case ART_FULL_DOSE_LIFE:
+					pline("Artifact specs: regeneration, energy regeneration, mystery resistance and slow digestion when worn."); break;
+				case ART_RES_BUT_BAD:
+					pline("Artifact specs: contamination resistance when worn but very strongly decreases your character's armor value (i.e. makes your AC worse), autocurses."); break;
+				case ART_AND_HOW_SHE_IS_CURSED:
+					pline("Artifact specs: putting it on curses it and gives it a negative enchantment value, but monsters are less likely to close in on you."); break;
+				case ART_FORTUTIOUSNESS_SIC_:
+					pline("Artifact specs: magic find when worn."); break;
+				case ART_WELL_FUCK:
+					pline("Artifact specs: fuck over when worn, autocurses, can be invoked for temporary protection and controlled levitation."); break;
+				case ART_LITE_THE_AREA:
+					pline("Artifact specs: sight bonus when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

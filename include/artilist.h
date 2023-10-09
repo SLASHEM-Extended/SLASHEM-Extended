@@ -14454,6 +14454,298 @@ A("Menstruation Hurts",				T_SHIRT, /* randart2 shirt, natalia trap effect, +6 a
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_CLIMACTERIAL, NON_PM, 6666L ),
 
+A("Give Us Today Our Daily Game Of Elona",				LEATHER_CLOAK, /* initialized to always be bamboo cloak, 1 in 2000 to have an elona tension spawn somewhere on the current level */
+	(SPFX_RESTR|SPFX_EREGEN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Pewwwwwww",				JAVELIN, /* randart2 javelin, +15 range, +rn1(9,9) stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Special Robung",				ROBE, /* randart2 robe, intrinsic control magic and double spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Eternal Bammeling",				ROBE, /* randart robe, spellboost, prayer timeout decreases twice as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mysteresis X",				QUARTERSTAFF, /* mystery resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hysteresis X",				QUARTERSTAFF, /* randart quarterstaff, mystery resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("lyst-erg",				QUARTERSTAFF, /* randart2 quarterstaff, mystery resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ooooooh",				STUDDED_LEATHER_ARMOR, /* mystery resist, 5 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("That's Armor",				CLOAK_OF_ARMOR_MYSTERY, /* 5 extra points of AC and one more per body armor skill level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Just To Have It",				CLOAK_OF_LOWER_MYSTERY, /* +1 STR and DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Absolute Antimagic",				CLOAK_OF_MYSTERY,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("rand-arm",				LEATHER_ARMOR, /* randart armor, mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("especiallyrandarm",				LEATHER_ARMOR, /* randart2 armor, mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Heart Infact",				LEATHER_ARMOR, /* randart armor, fainting, sleep resistance, spellboost */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Chip Infact",				LEATHER_ARMOR, /* randart2 armor, fainting, sleep resistance, spellboost, technicality, hyperbluewalls, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Sama-kata",				KATANA, /* mystery resist, spellboost */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Ferrum D",				DAGGER, /* randart2 dagger, mystery resist, allows you to eat metal when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Schwi Schwi",				EAGLE_BALL, /* randart2 orb, spellboost, prism reflection */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_ATTK), 0, 0,
+	FIRE(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Shroud",				LEATHER_CLOAK, /* randart cloak, nicole trap effect, fuck over, +7 CON and 10% extra casting chance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Nothing For It",				PICK_AXE, /* randart2 pick-axe, fuck over, +5 digging effort */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Head-W",				STANDARD_HELMET, /* randart helmet, spellboost, you take 10% more damage, resist sleep, free action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Green Mystery",				FEMININE_PUMPS, /* mystery resist, color changes to GREEN when you put them on; if your weapon is green, poison resist; if your weapon is bright green, sickness resist and sickopathy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Mr. of high heels",				SEXY_LEATHER_PUMP, /* color changes to BLACK when you wield it, resistance piercing, magic find and if your char is male and some random item would have generated +0, there's 10% for it to generate with a random enchantment value. if your torso armor is black, death resistance and perilous life saving */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ammy's Normalness",				BANDED_MAIL, /* mystery resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Teh Norm",				CHAIN_MAIL, /* mystery resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Res Circle",				SPLINT_MAIL, /* mystery resistance, invoke for 1000 turns of resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Grant Especial",				PLATE_MAIL, /* mystery resistance, 10 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Nutrition and Dietetics",				STANDARD_HELMET, /* randart helmet, full nutrients, eating meat gives temporary stat debuff */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("How Can One Please Look Like That",				STANDARD_HELMET, /* randart2 helmet, -10 charisma, aggravate monster, autocurses, fuck over */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Nancy's Assistance",				ITALIAN_HEELS, /* anastasia trap effect, color becomes RED when equipped, resist fear, discount action; if you're female they also give mystery resist; if they're eroded, chaotic monsters have 25% chance of spawning peaceful */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Firm-Top",				LEATHER_CLOAK, /* randart cloak, material becomes FIRMAMENT when equipped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Grisgren",				LONG_SWORD, /* randart melee weapon, material becomes GREENSTEEL when equipped */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Eww That's Disgusting",				LONG_SWORD, /* randart2 melee weapon, material becomes SECREE when equipped */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	ACID(10, 5), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Complete Armoring",				LEATHER_ARMOR, /* randart armor, material becomes STEEL when equipped, double fire resistance */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Melugas Rocket",				REGULAR_GLOVES, /* randart gloves, material becomes TITANIUM when equipped, invoke for random breath of strength 5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Cob-Auto",				DART, /* randart dart, material becomes COBALT when generated and 3-5x as much ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Git All De Arts No",				ORCISH_GUARD_SHIELD, /* double magic find */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Castor Boost",				QUARTERSTAFF, /* randart quarterstaff, spellboost, contamination resistance */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Fanny's Brook That You Miss",				LOW_BOOTS, /* randart2 boots, counts as stiletto heels, +7 kick damage when female or +2 when male, but if your char is female and you kill a male boss monster outside of the planes, your char permanently turns into a feminist */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wand Into Spell",				GLOVES_OF_ENERGY_DRAINING, /* double spellboost, 10% extra casting chance and 10% like failuncap, devices skill is drained by one with 1 in 100 per turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Endarken Everything",				LIGHTLESS_BOOTS, /* mystery resist, material becomes SHADOWSTUFF when equipped, dark mode, hostile monsters with appr=1 have 1 in 3 that it becomes 0 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Findeet",				CLOAK_OF_WRONG_ANNOUNCEMENT, /* magic find, 10% chance for items to generate cursed, if an item would have generated +0 there's 50% chance that the item gets a random negative enchantment value, +10 chance for timebasedlowerchance function */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Lookie-Lookie",				RIN_VISIBLE_BECOMING, /* magic find, clairvoyance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nuclear Worth",				AMULET_OF_EVIL_CRAFTING, /* contamination resistance, fuck over */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Elros Eaerfalas",				ELVEN_MITHRIL_COAT, /* mystery resist */
+	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Anden Drer",				ELVEN_LEATHER_HELM, /* mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dlangout",				DWARVISH_IRON_HELM, /* magic find */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Outmine of Metal",				DWARVISH_MITHRIL_COAT, /* magic find, magical breathing */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Deepfound",				DWARVISH_CLOAK, /* magic find */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Pow-rer",				ELVEN_CLOAK, /* mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Caaaaast",				ELVEN_LEATHER_HELM, /* spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("All In One Eff",				T_SHIRT, /* mystery resist, magic find, fuck over, spellboost, 1 in 1000 if it's not cursed to become cursed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Unusual Ench",				ELVEN_SHIELD, /* magic find, +1 increase damage, 20% chance that spells don't lose memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("One-In-Four",				RIGHT_MOUSE_BUTTON_STONE, /* randart bad gray stone, depending on the turn you have either mystery resistance, magic resistance, contamination resistance or death resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Doubleshell",				ELIF_S_JEWEL, /* randart feminism gem, double mystery resist */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Not Gonna Contaminate",				ELIF_S_JEWEL, /* randart feminism gem, contamination resist, you always have some specific feminism trap effect that has 1 in 5000 chance per turn to change to another */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Have It All But Not Get",				RIGHT_MOUSE_BUTTON_STONE, /* randart bad gray stone, magic, death and mystery resist, can't get positive intrinsics from leveling up, and this item is immune to uncurse() effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Terror Drop",				SHORT_SWORD, /* randart2 short sword, if the enemy doesn't resist he has to flee for 2 turns when hit */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Gauge Reduce",				LONG_SWORD, /* randart2 long sword, if you hit the enemy his mspec_used variable is increased by 2 */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Pulverize Em",				CLUB, /* randart2 club, to-hit h@ck, does 3x damage, autocurses */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Mana Slasher",				SCYTHE, /* reduces enemy's mana by 5; if the enemy had less than that, the maximum is reduced */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Arrow Rain",				BOW, /* randart2 bow, +8 multishot if it doesn't have an artifact timeout but when that multishot is launched, the bow gets such a timeout */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ghand",				REGULAR_GLOVES, /* randart2 gloves, if you attack unarmed and a monster with eyes fails a resistance check, it's blinded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Diffusion Wave",				WAN_NOTHING, /* randart2 wand, if you zap it while it still has charges you restore 2*gushlevel HP and Pw */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bakuretu-Ken",				AMULET_OF_MAGICAL_BREATHING, /* randart2 amulet, attacking unarmed has 20% chance of spirit-bomb-like explosion that deals low damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Zin-Ba",				LEATHER_SADDLE, /* randart saddle, 10% better spellcasting chance, +1 increase and +4 damage when riding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Mount Bond",				LEATHER_SADDLE, /* randart2 saddle, you can #monster to check up on your steed's HP and doing so doesn't use up a turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Full Dose Life",				STRIPE_MAIL, /* mystery resist, slow digestion */
+	(SPFX_RESTR|SPFX_REGEN|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Res But Bad",				RING_MAIL, /* contamination resist, -15 AC, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("And How She Is Cursed",				SCALE_MAIL, /* putting it on while it's better than -3 sets it to -3, autocurses, monsters have 20% that appr=1 becomes 0 and 5% that appr becomes -1 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fortutiousness(sic)",				LEATHER_ARMOR, /* magic find */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Well Fuck",				STUDDED_LEATHER_ARMOR, /* autocurses, fuck over, can be invoked for 4 temporary points of protection and rnz(250) turns of controlled levitation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Lite The Area",				JUMPING_BOOTS, /* sight bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -2790,6 +2790,14 @@ randartlightsaber()
 }
 
 int
+randartsaddle()
+{
+	int result;
+	result = rnd_class(LEATHER_SADDLE, INKA_SADDLE);
+	return result;
+}
+
+int
 randartpolearm()
 {
 	int result;
@@ -3304,6 +3312,14 @@ randartlightsaberX()
 {
 	int result;
 	result = GREEN_LIGHTSABER + rn2((MYSTERY_LIGHTSABER + 1) - GREEN_LIGHTSABER);
+	return result;
+}
+
+int
+randartsaddleX()
+{
+	int result;
+	result = LEATHER_SADDLE + rn2((INKA_SADDLE + 1) - LEATHER_SADDLE);
 	return result;
 }
 

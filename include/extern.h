@@ -2975,6 +2975,8 @@ E int randartknife(void);
 E int randartknifeX(void);
 E int randartlightsaber(void);
 E int randartlightsaberX(void);
+E int randartsaddle(void);
+E int randartsaddleX(void);
 E int randartlongsword(void);
 E int randartlongswordX(void);
 E int randartbroadsword(void);
