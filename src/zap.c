@@ -5264,7 +5264,7 @@ chargingchoice:
 				else goto chargingchoice;
 				break;
 			}
-			recharge(otmp, 1);
+			recharge(otmp, 0);
 			break;
 		case WAN_WONDER: /* supposed to have a random effect, may be implemented in future */
 

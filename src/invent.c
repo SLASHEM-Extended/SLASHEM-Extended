@@ -18301,7 +18301,7 @@ boolean knoweverything;
 			case WAN_CLONE_MONSTER:
 				pline("Zapping this wand at monsters will create a duplicate of that monster. You can also zap yourself, but unless you're polymorphed into a monster it probably won't work."); break;
 			case WAN_CHARGING:
-				pline("A wand that allows you to charge an object if you zap it. Beware, since this wand is so powerful you can't charge it more than once (but you can use it to charge itself if it hasn't been recharged yet)."); break;
+				pline("A wand that allows you to charge an object if you zap it. Beware, since this wand is so powerful you can't charge it more than once, and it only gives uncursed charging so while it can be used to recharge itself, you might want to use a source of blessed charging for that instead."); break;
 			case WAN_DIGGING:
 #ifdef PHANTOM_CRASH_BUG
 				pline("You can zap walls and other obstacles with this to remove them. It creates hard engravings too, engraving up to 50 characters in a single turn."); break;
