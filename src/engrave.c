@@ -6039,6 +6039,7 @@ static const char *epitaphs[] = {
 	"Noooooo, I got stuck with a cursed pair of columnar heels and couldn't lift the curse, and since I lacked the high heels skill I was slowed down by those stupid heels! I would have escaped from that monster without the dumb shoes! Why do high heels even exist, they're a walking impairment!",
 	"Stupid monster kept lifesaving, that's gotta be a big fat bug, Amy. Normally, an amulet of life saving is used up when it saves someone's life. And why did my wand of probing show that the monster's amulet was called 'Nyehehehehe.'? Are you trying to make fun of me?",
 	"The hell, there was an 'enemy from level 55' on dungeon level 2! Dude I was just starting out! Why did you place that there Amy, I died pretty much instantly! Maybe you should reconsider your monster spawning routines and fix that unfairness?",
+	"Yeah bullshit, the all-important item glitched out of my car when I turned. Stupid UDTV programmers, couldn't they just make items *not* fall out between two car tiles when turning?!",
 
 };
 

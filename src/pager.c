@@ -29122,6 +29122,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Seems like the manufacturers are having trouble producing enough perfume for all the girls and women, so for the time being, they're less likely to beguile you.",
 	"Someone decided to let you free, so you'll no longer be attacked by treaded block heels while bound to a stick.",
 	"Watch out. The Rambi barrel can transform you into a black King Zing or a blue Klubba, and then the game crashes, erasing your savegame file in the process.",
+	"Did the UDTV devteam really not yet fix the problem where taking a sharp turn with a vehicle can cause items to glitch in between vehicle tiles and fall out? Like, would it be so hard to check whether the normal constellation of car tiles has any 'leaks' and if not, just generally return 'FALSE' in the 'item_will_fall_out_of_vehicle()' or whatever it's called function?",
 
 };
 
