@@ -370,12 +370,13 @@ unsigned int *stuckid, *steedid;	/* STEED */
 	mread(fd, (void *) &uid, sizeof uid);
 	if (uid != getuid()) {		/* strange ... */
 	    /* for wizard mode, issue a reminder; for others, treat it
-	       as an attempt to cheat and refuse to restore this file */
+	       as an attempt to cheat and refuse to restore this file
+		 Amy edit: bullshit! you stupid bastards who always delete files without even giving a prompt! */
 	    pline("Saved game was not yours.");
 #ifdef WIZARD
 	if(!wizard)
 #endif
-		return FALSE;
+		/*return FALSE*/;
 	}
 
 	mread(fd, (void *) &flags, sizeof(struct flag));
