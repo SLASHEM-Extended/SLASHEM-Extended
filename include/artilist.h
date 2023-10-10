@@ -14746,6 +14746,98 @@ A("Lite The Area",				JUMPING_BOOTS, /* sight bonus */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Skodit",				LONG_SWORD, /* randart melee weapon, fuck over, echolocation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Whizzy Wiz",				WAN_TIME_STOP, /* stops time for d3 more turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Main Container",				STATUE, /* rolls a specific item class and then has 10 random items of that class inside */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Arti Lockbox",				STATUE, /* contains a random artifact */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hoards of Treasure",				STATUE, /* contains 50 random items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Emergency Cash",				STATUE, /* contains rn1(10000,10000) dollars */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Break-Into-Pieces",				BOULDER, /* if it's broken, the amount of resulting rocks is multiplied by rn1(10,10) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Entrap The Unwary",				BOULDER, /* if you push it, 1 in 100 chance that a trap is created underneath you unless there is one already */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Signal Tone",				BOULDER, /* calls wake_nearby() if you push it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Cool Dumbbell",				BOULDER, /* trains strength as fast as a vanilla boulder if you push it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blohit",				BOULDER, /* +10 damage and to-hit if you throw it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("This Is Useless",				IRON_CHAIN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Fire Is Good",				IRON_CHAIN, /* becomes +9 if you wield it while it's lower */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(0, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 999L ),
+
+A("Do The Control",				IRON_CHAIN, /* trap revealing when wielded, detect monsters if you're punished with it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lucky Generation",				HEAVY_IRON_BALL, /* if this artifact is generated, your flail skill cap increases by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("How Is The Car Rowed",				HEAVY_IRON_BALL, /* -6 melee to-hit, totter */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Useless Talk",				HEAVY_IRON_BALL, /* resist piercing, psi resist, full nutrition and food appraisal when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Arabella's Thinner",				HEAVY_IRON_BALL, /* randart heavy iron ball, prime autocurse, yawm, magic vacuum, corona nastytrap effect, halved corona caps, and if this is your punishment ball it grants detect monsters when wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Streeeeeam",				IRON_CHAIN, /* randart iron chain, if you're punished with it then your melee attacks have 1 in 20 to fire a magic missile with strength 6, can be invoked to fire the same type of magic missile */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Klong-right",				HEAVY_IRON_BALL, /* randart2 heavy iron ball, becomes rustproof and repairs erosion when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Siyid",				IRON_CHAIN, /* randart2 iron chain, giant explorer, autocurses, if you're punished with it you have astral vision and auto destruct */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Race Along The Highway",				IRON_CHAIN, /* randart2 iron chain, very fast speed, if you're punished with this and are wielding your punishment ball then you're also very fast and get twice as much speed bonus as the "real speed devil" artifact */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Gormaler",				HEAVY_IRON_BALL, /* randart2 heavy iron ball, material becomes CHROME when wielded, orange spells, 10000 turns of jil trap effect when wielded, and if you've been wielding it for at least 1000 turns straight then there's 1 in 3 chance that attacking in melee puts enemies to sleep who don't resist */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

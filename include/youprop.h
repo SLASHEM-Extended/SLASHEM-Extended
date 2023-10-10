@@ -31,7 +31,7 @@
 #define CanHaveBrightCyanSpells (BrightCyanSpells || u.uprops[BRIGHT_CYAN_SPELLS].extrinsic || have_brightcyanspellstone())
 #define CanHaveCyanSpells (CyanSpells || u.uprops[CYAN_SPELLS].extrinsic || have_cyanspellstone() || autismweaponcheck(ART_FOOK_THE_OBSTACLES) )
 #define CanHaveBlackSpells (BlackSpells || u.uprops[BLACK_SPELLS].extrinsic || have_blackspellstone() || autismweaponcheck(ART_EGRID_BUG) )
-#define CanHaveOrangeSpells (OrangeSpells || u.uprops[ORANGE_SPELLS].extrinsic || have_orangespellstone())
+#define CanHaveOrangeSpells (OrangeSpells || u.uprops[ORANGE_SPELLS].extrinsic || have_orangespellstone() || autismweaponcheck(ART_GORMALER) )
 #define CanHaveRedSpells (RedSpells || u.uprops[RED_SPELLS].extrinsic || have_redspellstone() || autismweaponcheck(ART_HELIOPOLIS_MISTAKE))
 #define CanHavePlatinumSpells (PlatinumSpells || u.uprops[PLATINUM_SPELLS].extrinsic || have_platinumspellstone() || autismweaponcheck(ART_KRONSCHER_BAR))
 #define CanHaveSilverSpells (SilverSpells || u.uprops[SILVER_SPELLS].extrinsic || have_silverspellstone() || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) || autismweaponcheck(ART_DIZZY_METAL_STORM) )
@@ -66,7 +66,7 @@
 #define NastyTrapNation		(NastynationBug || u.uprops[NASTY_NATION_BUG].extrinsic || AssholeModeActive || have_multitrappingstone() || Role_if(PM_WALSCHOLAR) || (uarm && uarm->oartifact == ART_AMMY_S_RNG_CHANGER) || (uamul && uamul->oartifact == ART_ANASTASIA_S_LURE))
 #define PlayerUninformation	(UninformationProblem || u.uprops[UNINFORMATION].extrinsic || have_uninformationstone() || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY))
 #define CannotSelectItemsInPrompts	(InitializationFail || u.uprops[INITIALIZATION_FAIL].extrinsic || have_initializationstone())
-#define Yawming	(YawmBug || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone() || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) )
+#define Yawming	(YawmBug || autismweaponcheck(ART_ARABELLA_S_THINNER) || u.uprops[YAWM_EFFECT].extrinsic || have_yawmstone() || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) )
 #define TezActive	(TezEffect || u.uprops[TEZ_EFFECT].extrinsic || have_tezstone())
 #define EnthuActive	(EnthuEffect || u.uprops[ENTHU_EFFECT].extrinsic || have_bossgodstone())
 #define WallsAreNoFun	(NoFunWallsEffect || u.uprops[NO_FUN_WALLS].extrinsic || have_funwallstone())
@@ -96,7 +96,7 @@
 #define DisplayDoesNotGoAtAll	(DisplayLoss || u.uprops[DISPLAY_LOST].extrinsic || have_displaystone() || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) )
 /* special case in dungeon.c and restore.c!!! */
 
-#define PlayerHasGiantExplorer	(GiantExplorerBug || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || u.uprops[GIANT_EXPLORER].extrinsic || have_giantexplorerstone())
+#define PlayerHasGiantExplorer	(GiantExplorerBug || autismweaponcheck(ART_SIYID) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || u.uprops[GIANT_EXPLORER].extrinsic || have_giantexplorerstone())
 
 #define FlimmeringStrips	(FlickerStripBug || u.uprops[FLICKER_STRIP_BUG].extrinsic || have_flickerstripstone() || (uarmh && uarmh->oartifact == ART_VIDEO_DECODER) || (uimplant && uimplant->oartifact == ART_IME_SPEW) )
 
@@ -1283,7 +1283,7 @@
 #define HDetect_monsters	u.uprops[DETECT_MONSTERS].intrinsic
 #define EDetect_monsters	u.uprops[DETECT_MONSTERS].extrinsic
 #define IntDetect_monsters	(HDetect_monsters)
-#define ExtDetect_monsters	(EDetect_monsters || autismringcheck(ART_ARABELLA_S_RADAR) || (uwep && uwep->oartifact == ART_HOL_ON_MAN) || (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF) ) || (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) || u.uprops[STORM_HELM].extrinsic )
+#define ExtDetect_monsters	(EDetect_monsters || autismringcheck(ART_ARABELLA_S_RADAR) || (uwep && uwep->oartifact == ART_HOL_ON_MAN) || (uchain && uchain->oartifact == ART_DO_THE_CONTROL) || (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) || (uwep && uwep->oartifact == ART_ARABELLA_S_THINNER && uball && (uwep == uball) ) || (uamul && uamul->oartifact == ART_SURTERSTAFF && uwep && (weapon_type(uwep) == P_QUARTERSTAFF) ) || (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) || u.uprops[STORM_HELM].extrinsic )
 
 #define Detect_monsters		(((IntDetect_monsters && u.nonintrinsicproperty != DETECT_MONSTERS) || (ExtDetect_monsters && u.nonextrinsicproperty != DETECT_MONSTERS)) && !Race_if(PM_KUTAR) && !u.powerfailure && !NoDetect_monsters && !DetectionMethodsDontWork)
 #define StrongDetect_monsters	(IntDetect_monsters && ExtDetect_monsters && Detect_monsters && u.nondoubleproperty != DETECT_MONSTERS)
@@ -1499,7 +1499,7 @@
 #define HAstral_vision	u.uprops[ASTRAL_VISION].intrinsic
 #define EAstral_vision	u.uprops[ASTRAL_VISION].extrinsic
 #define IntAstral_vision	(HAstral_vision || Race_if(PM_ETHEREALOID) || Race_if(PM_INCORPOREALOID))
-#define ExtAstral_vision	(EAstral_vision || (powerfulimplants() && uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) || (uwep && uwep->oartifact == ART_ASTRALTOR_TSCHH && uwep->lamplit) || (uwep && uwep->oartifact == ART_ASTRAL_LIGHTWELL && uwep->lamplit) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == ASTRAL_VISION) ) )
+#define ExtAstral_vision	(EAstral_vision || (uchain && uchain->oartifact == ART_SIYID) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_IRON_OF_INNERMOST_JOY) || (uwep && uwep->oartifact == ART_ASTRALTOR_TSCHH && uwep->lamplit) || (uwep && uwep->oartifact == ART_ASTRAL_LIGHTWELL && uwep->lamplit) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == ASTRAL_VISION) ) )
 
 #define Astral_vision	(((IntAstral_vision && u.nonintrinsicproperty != ASTRAL_VISION) || (ExtAstral_vision && u.nonextrinsicproperty != ASTRAL_VISION)) && !NoAstral_vision)
 #define StrongAstral_vision	(IntAstral_vision && ExtAstral_vision && Astral_vision && u.nondoubleproperty != ASTRAL_VISION)
@@ -1656,7 +1656,7 @@
 #define HPsi_resist		u.uprops[PSI_RES].intrinsic
 #define EPsi_resist		u.uprops[PSI_RES].extrinsic
 #define IntPsi_resist	(HPsi_resist || (uarmh && objects[uarmh->otyp].oc_material == MT_MENGETIUM) || (Upolyd && attackdamagetype(youmonst.data, AT_BREA, AD_SPC2) ))
-#define ExtPsi_resist	(EPsi_resist || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == PSI_RES) ) || (uwep && uwep->oartifact == ART_SWEETHEART_PUMP) || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || (uwep && uwep->oartifact == ART_SIGNO_ONE) || (uwep && uwep->oartifact == ART_PSIGUN) || (uwep && uwep->oartifact == ART_SAXS_BEAUTY) || (uarmu && uarmu->oartifact == ART_PEDIATRIC_GAWKING_GANGS) || (uwep && uwep->oartifact == ART_TASTE_THE_RAINBOW) || (uwep && uwep->oartifact == ART_PSI_TEC) || (uwep && uwep->oartifact == ART_IDSPIKE) || (uwep && uwep->oartifact == ART_EXPERIMENTAL_CHUNK) || (uwep && uwep->oartifact == ART_GODAWFUL_ENCHANTMENT) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_GLOATSANE) || (uwep && uwep->oartifact == ART_PSI_STAFF) || (uarmc && uarmc->oartifact == ART_SUPER_COMBO_) || (uarmf && uarmf->oartifact == ART_CUTESY_GIRL) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) || (uarmf && uarmf->oartifact == ART_PSI_ONIC) || (uarmc && uarmc->oartifact == ART_INSANE_MIND_SCREW) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_SHE_S_STILL_AN_ANASTASIA) || (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmc && uarmc->oartifact == ART_YOG_SOTHOTH_HELP_ME) || (uarmf && uarmf->oartifact == ART_JOSEFINE_S_EVILNESS) || (uarmh && uarmh->oartifact == ART_NUMBER___) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) || (uwep && uwep->oartifact == ART_YASDORIAN_S_JUNETHACK_IDEN) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) )
+#define ExtPsi_resist	(EPsi_resist || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == PSI_RES) ) || (uwep && uwep->oartifact == ART_SWEETHEART_PUMP) || (uarms && uarms->oartifact == ART_REAL_PSYCHOS_WEAR_PURPLE) || (uarms && uarms->oartifact == ART_REAL_MEN_WEAR_PSYCHOS) || (uwep && uwep->oartifact == ART_SIGNO_ONE) || (uwep && uwep->oartifact == ART_PSIGUN) || (uwep && uwep->oartifact == ART_SAXS_BEAUTY) || (uarmu && uarmu->oartifact == ART_PEDIATRIC_GAWKING_GANGS) || (uwep && uwep->oartifact == ART_TASTE_THE_RAINBOW) || (uwep && uwep->oartifact == ART_PSI_TEC) || (uwep && uwep->oartifact == ART_IDSPIKE) || (uwep && uwep->oartifact == ART_EXPERIMENTAL_CHUNK) || (uwep && uwep->oartifact == ART_GODAWFUL_ENCHANTMENT) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_GLOATSANE) || (uwep && uwep->oartifact == ART_PSI_STAFF) || (uarmc && uarmc->oartifact == ART_SUPER_COMBO_) || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uarmf && uarmf->oartifact == ART_CUTESY_GIRL) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) || (uarmf && uarmf->oartifact == ART_PSI_ONIC) || (uarmc && uarmc->oartifact == ART_INSANE_MIND_SCREW) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_SHE_S_STILL_AN_ANASTASIA) || (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmc && uarmc->oartifact == ART_YOG_SOTHOTH_HELP_ME) || (uarmf && uarmf->oartifact == ART_JOSEFINE_S_EVILNESS) || (uarmh && uarmh->oartifact == ART_NUMBER___) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) || (uwep && uwep->oartifact == ART_YASDORIAN_S_JUNETHACK_IDEN) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) )
 
 #define Psi_resist		(((IntPsi_resist && u.nonintrinsicproperty != PSI_RES) || (ExtPsi_resist && u.nonextrinsicproperty != PSI_RES)) && !hybridragontype(AD_SPC2) && !NoPsi_resist)
 #define StrongPsi_resist	(IntPsi_resist && ExtPsi_resist && Psi_resist && u.nondoubleproperty != PSI_RES)
@@ -1716,7 +1716,7 @@
 #define HFull_nutrient		u.uprops[FULL_NUTRIENT].intrinsic
 #define EFull_nutrient		u.uprops[FULL_NUTRIENT].extrinsic
 #define IntFull_nutrient	(HFull_nutrient)
-#define ExtFull_nutrient	(EFull_nutrient || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmf && uarmf->oartifact == ART_BEAUTYQUEAK) || (uarmf && uarmf->oartifact == ART_SWEET_CHERRY) || (uarmh && uarmh->oartifact == ART_POURRI_R_) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX) || (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) || (uwep && uwep->oartifact == ART_SMOKING_SQUIRREL) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || (uimplant && uimplant->oartifact == ART_ENTEROGASTER_ALTO) || (uwep && uwep->oartifact == ART_CALF_CUTLET_WITHOUT_BEOD) || (uwep && uwep->oartifact == ART_DUMPSTERMAN) || (uwep && uwep->oartifact == ART_VIHAT_BAGUETTEN_BUS_STOP) || (uwep && uwep->oartifact == ART_EDERGRADE) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarmf && uarmf->oartifact == ART_U_BE_CURRY) || (uwep && uwep->oartifact == ART_GIANT_MEAT_STICK) || (uwep && uwep->oartifact == ART_CUTRITION) || autismringcheck(ART_RELIABLE_TRINSICS) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == FULL_NUTRIENT) ) )
+#define ExtFull_nutrient	(EFull_nutrient || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmf && uarmf->oartifact == ART_BEAUTYQUEAK) || (uarmf && uarmf->oartifact == ART_SWEET_CHERRY) || (uarmh && uarmh->oartifact == ART_POURRI_R_) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX) || (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) || (uwep && uwep->oartifact == ART_SMOKING_SQUIRREL) || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || (uimplant && uimplant->oartifact == ART_ENTEROGASTER_ALTO) || (uwep && uwep->oartifact == ART_CALF_CUTLET_WITHOUT_BEOD) || (uwep && uwep->oartifact == ART_DUMPSTERMAN) || (uwep && uwep->oartifact == ART_VIHAT_BAGUETTEN_BUS_STOP) || (uwep && uwep->oartifact == ART_EDERGRADE) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarmf && uarmf->oartifact == ART_U_BE_CURRY) || (uwep && uwep->oartifact == ART_GIANT_MEAT_STICK) || (uwep && uwep->oartifact == ART_CUTRITION) || autismringcheck(ART_RELIABLE_TRINSICS) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == FULL_NUTRIENT) ) )
 
 #define Full_nutrient		(((IntFull_nutrient && u.nonintrinsicproperty != FULL_NUTRIENT) || (ExtFull_nutrient && u.nonextrinsicproperty != FULL_NUTRIENT)) && !Race_if(PM_PERVERT) && !NoFull_nutrient)
 #define StrongFull_nutrient	(IntFull_nutrient && ExtFull_nutrient && Full_nutrient && u.nondoubleproperty != FULL_NUTRIENT)
@@ -1740,7 +1740,7 @@
 
 #define ScentView		(((IntScentView && u.nonintrinsicproperty != SCENT_VIEW) || (ExtScentView && u.nonextrinsicproperty != SCENT_VIEW)) && !NoScentView)
 #define StrongScentView	(IntScentView && ExtScentView && ScentView && u.nondoubleproperty != SCENT_VIEW)
-#define HaveEcholocation	((Role_if(PM_BARD) || (uwep && uwep->oartifact == ART_GAME_KNOWLEDGE_CHEAT_SHEET) || (uwep && uwep->oartifact == ART_PEREGRINE_OF_NIGHT) || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) || (uarm && uarm->oartifact == ART_PUNKED_BY_HEIDI) || (uarmh && uarmh->oartifact == ART_HEARING_EAR) || (uarmh && uarmh->oartifact == ART_COMPLETE_SIGHT) || (uwep && uwep->oartifact == ART_HELIOPOLIS_MISTAKE) || Role_if(PM_STAND_USER) || RngeEcholocation || Race_if(PM_ANCIPITAL) || Race_if(PM_BATMAN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_HC_ALIEN) || u.echolocationspell || (Upolyd && youmonst.data->mlet == S_BAT) ) && !NoScentView && u.nonintrinsicproperty != SCENT_VIEW)
+#define HaveEcholocation	((Role_if(PM_BARD) || (uwep && uwep->oartifact == ART_GAME_KNOWLEDGE_CHEAT_SHEET) || (uwep && uwep->oartifact == ART_PEREGRINE_OF_NIGHT) || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) || (uarm && uarm->oartifact == ART_PUNKED_BY_HEIDI) || (uarmh && uarmh->oartifact == ART_HEARING_EAR) || (uarmh && uarmh->oartifact == ART_COMPLETE_SIGHT) || (uwep && uwep->oartifact == ART_SKODIT) || (uwep && uwep->oartifact == ART_HELIOPOLIS_MISTAKE) || Role_if(PM_STAND_USER) || RngeEcholocation || Race_if(PM_ANCIPITAL) || Race_if(PM_BATMAN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_HC_ALIEN) || u.echolocationspell || (Upolyd && youmonst.data->mlet == S_BAT) ) && !NoScentView && u.nonintrinsicproperty != SCENT_VIEW)
 #define EcholocationActive	(StrongScentView || HaveEcholocation)
 
 #define NoScentView	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SCENT_VIEW].intrinsic || UHaveAids || (u.impossibleproperty == SCENT_VIEW) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
@@ -1819,14 +1819,14 @@
 #define HMagicVacuum		u.uprops[MAGIC_VACUUM].intrinsic
 #define EMagicVacuum		u.uprops[MAGIC_VACUUM].extrinsic
 #define IntMagicVacuum	(HMagicVacuum)
-#define ExtMagicVacuum	(EMagicVacuum || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
+#define ExtMagicVacuum	(EMagicVacuum || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || autismweaponcheck(ART_ARABELLA_S_THINNER) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
 #define MagicVacuum		(IntMagicVacuum || ExtMagicVacuum )
 #define StrongMagicVacuum		(IntMagicVacuum && ExtMagicVacuum && MagicVacuum)
 
 #define HResistancePiercing		u.uprops[RESISTANCE_PIERCING].intrinsic
 #define EResistancePiercing		u.uprops[RESISTANCE_PIERCING].extrinsic
 #define IntResistancePiercing	(HResistancePiercing || (uarmu && uarmu->oartifact == ART_HA_HA_HA_HA___) )
-#define ExtResistancePiercing	(EResistancePiercing || (uarmu && uarmu->oartifact == ART_HA_HA_HA_HA___) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS) || (uarmh && uarmh->oartifact == ART_DAN_THE_MAGE) || (uarmg && uarmg->oartifact == ART_SPELLSNIPE) || (uarmf && uarmf->oartifact == ART_SMILE_Z) || (uarmg && uarmg->oartifact == ART_DATLEST_KRANN) || (uarms && uarms->oartifact == ART_TARTSCH) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == RESISTANCE_PIERCING) ) )
+#define ExtResistancePiercing	(EResistancePiercing || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uarmu && uarmu->oartifact == ART_HA_HA_HA_HA___) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS) || (uarmh && uarmh->oartifact == ART_DAN_THE_MAGE) || (uarmg && uarmg->oartifact == ART_SPELLSNIPE) || (uarmf && uarmf->oartifact == ART_SMILE_Z) || (uarmg && uarmg->oartifact == ART_DATLEST_KRANN) || (uarms && uarms->oartifact == ART_TARTSCH) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == RESISTANCE_PIERCING) ) )
 
 #define ResistancePiercing		(((IntResistancePiercing && u.nonintrinsicproperty != RESISTANCE_PIERCING) || (ExtResistancePiercing && u.nonextrinsicproperty != RESISTANCE_PIERCING)) && !NoResistancePiercing)
 #define StrongResistancePiercing	(IntResistancePiercing && ExtResistancePiercing && ResistancePiercing && u.nondoubleproperty != RESISTANCE_PIERCING)
@@ -1836,7 +1836,7 @@
 #define HFuckOverEffect		u.uprops[FUCK_OVER].intrinsic
 #define EFuckOverEffect		u.uprops[FUCK_OVER].extrinsic
 #define IntFuckOverEffect	(HFuckOverEffect)
-#define ExtFuckOverEffect	(EFuckOverEffect || (uamul && uamul->oartifact == ART_NUCLEAR_WORTH) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF) || autismweaponcheck(ART_NOTHING_FOR_IT) || Race_if(PM_RODNEYAN) || (uarm && uarm->oartifact == ART_WELL_FUCK) || (uarmc && uarmc->oartifact == ART_SHROUD) )
+#define ExtFuckOverEffect	(EFuckOverEffect || (uamul && uamul->oartifact == ART_NUCLEAR_WORTH) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismweaponcheck(ART_SKODIT) || (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF) || autismweaponcheck(ART_NOTHING_FOR_IT) || Race_if(PM_RODNEYAN) || (uarm && uarm->oartifact == ART_WELL_FUCK) || (uarmc && uarmc->oartifact == ART_SHROUD) )
 #define FuckOverEffect		(IntFuckOverEffect || ExtFuckOverEffect)
 #define StrongFuckOverEffect		(IntFuckOverEffect && ExtFuckOverEffect && FuckOverEffect)
 

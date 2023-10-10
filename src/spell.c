@@ -2470,7 +2470,7 @@ register struct obj *spellbook;
 		       have book become erased somehow, resume reading it */
 		    booktype != SPE_BLANK_PAPER) {
 		You("continue your efforts to memorize the spell.");
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone()) learn();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) learn();
 	} else {
 		/* KMH -- Simplified this code */
 		if (booktype == SPE_BLANK_PAPER) {

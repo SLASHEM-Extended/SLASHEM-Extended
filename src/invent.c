@@ -27445,6 +27445,52 @@ boolean knoweverything;
 					pline("Artifact specs: fuck over when worn, autocurses, can be invoked for temporary protection and controlled levitation."); break;
 				case ART_LITE_THE_AREA:
 					pline("Artifact specs: sight bonus when worn."); break;
+				case ART_SKODIT:
+					pline("Artifact specs: +5 to-hit and +6 damage, fuck over and echolocation when wielded."); break;
+				case ART_WHIZZY_WIZ:
+					pline("Artifact specs: stops time for longer than normal."); break;
+				case ART_MAIN_CONTAINER:
+					pline("Artifact specs: contains a bunch of items from a specific class."); break;
+				case ART_ARTI_LOCKBOX:
+					pline("Artifact specs: contains an artifact."); break;
+				case ART_HOARDS_OF_TREASURE:
+					pline("Artifact specs: contains lots of items."); break;
+				case ART_EMERGENCY_CASH:
+					pline("Artifact specs: contains a bunch of money."); break;
+				case ART_BREAK_INTO_PIECES:
+					pline("Artifact specs: breaks into a particularly big amount of rocks, if it is broken in the first place that is."); break;
+				case ART_ENTRAP_THE_UNWARY:
+					pline("Artifact specs: occasionally creates traps when pushed."); break;
+				case ART_SIGNAL_TONE:
+					pline("Artifact specs: wakes nearby monsters when pushed."); break;
+				case ART_COOL_DUMBBELL:
+					pline("Artifact specs: trains strength very quickly when pushed."); break;
+				case ART_BLOHIT:
+					pline("Artifact specs: +10 to-hit and damage if you use it as a throwing weapon."); break;
+				case ART_THIS_IS_USELESS:
+					pline("Artifact specs: +1 damage."); break;
+				case ART_FIRE_IS_GOOD:
+					pline("Artifact specs: +9 fire damage, becomes +9 when wielded if its enchantment value was lower."); break;
+				case ART_DO_THE_CONTROL:
+					pline("Artifact specs: trap revealing when wielded. If you were punished with this particular chain, you'd have detect monsters instead."); break;
+				case ART_LUCKY_GENERATION:
+					pline("Artifact specs: upon generation of this artifact, your cap in the flail skill is increased by one."); break;
+				case ART_HOW_IS_THE_CAR_ROWED:
+					pline("Artifact specs: +14 damage, -6 to-hit, totter when wielded."); break;
+				case ART_USELESS_TALK:
+					pline("Artifact specs: resistance piercing, psi resistance, full nutrients and food appraisal when wielded."); break;
+				case ART_ARABELLA_S_THINNER:
+					pline("Artifact specs: +20 damage. If this is your punishment ball and you wield it, you get DETECT MONSTERS!!! It also has a bunch of other effects when wielded but who cares about those?"); break;
+				case ART_STREEEEEAM:
+					pline("Artifact specs: can be invoked to fire a magic missile in a direction of your choice. If you were punished with this particular chain, you'd randomly fire magic missiles in melee combat instead."); break;
+				case ART_KLONG_RIGHT:
+					pline("Artifact specs: becomes erosionproof and repairs all erosion (if present) when wielded."); break;
+				case ART_SIYID:
+					pline("Artifact specs: +10 damage, giant explorer and autocurses when wielded. If you were punished with this particular chain, you'd have astral vision and auto destruct instead."); break;
+				case ART_RACE_ALONG_THE_HIGHWAY:
+					pline("Artifact specs: very fast speed when wielded. If you were punished with this particular chain and also wield your punishment ball, you'd have very fast speed and a good additional speed bonus."); break;
+				case ART_GORMALER:
+					pline("Artifact specs: +5 to-hit and +8 damage, material becomes chrome when wielded, orange spells, long-lasting jil trap effect, and if you wield it for at least 1000 turns without putting it away, your melee attacks can sometimes put monsters to sleep (as long as you're not dual-wielding) but unwielding the ball resets that counter to zero."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

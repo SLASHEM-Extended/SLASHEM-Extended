@@ -9412,6 +9412,7 @@ u_init()
 
 	u.artifactaffinity = 0;
 	u.artifinitythreshold = 0;
+	u.gormalerturns = 0;
 
 	u.pokelieresistances = 0;
 	u.pokeliegeneration = 0;

@@ -937,7 +937,10 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UNWIELDYTINE) tmp -= rn1(5, 5);
 	if (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 	if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
+	if (uwep && uwep->oartifact == ART_HOW_IS_THE_CAR_ROWED) tmp -= 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_HOW_IS_THE_CAR_ROWED) tmp -= 6;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -3106,6 +3109,7 @@ int dieroll;
 		switch(obj->otyp) {
 		    case BOULDER:		/* 1d20 */
 			tmp = thrown ? (dmgvalX(obj, mon) + GushLevel) : dmgvalX(obj, mon);
+			if (thrown && obj->oartifact == ART_BLOHIT) tmp += 10;
 			break;
 		    case HEAVY_IRON_BALL:	/* 1d25 */
 		    case REALLY_HEAVY_IRON_BALL:	/* 1d25 */
@@ -3808,6 +3812,7 @@ int dieroll;
 		}
 
 		if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 		if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
@@ -10198,6 +10203,18 @@ use_weapon:
 
 				}
 
+				if (uwep && uwep->oartifact == ART_GORMALER && !u.twoweap && u.gormalerturns >= 1000) {
+
+					int parlyzdur = rnd(5);
+
+					if (!rn2(3) && (rn2(100) > mon->data->mr) && !mon->msleeping && sleep_monst(mon, parlyzdur, -1)) {
+					    if (!Blind)
+						pline("%s is put to sleep by you!", Monnam(mon));
+					    slept_monst(mon);
+					}
+
+				}
+
 				if (uwep && uwep->oartifact == ART_SKOGLO && !rn2(200)) {
 
 					pushplayerfar(FALSE, 100);
@@ -10406,12 +10423,17 @@ bladeangerdone2:
 
 				}
 
+				if (uchain && uchain->oartifact == ART_STREEEEEAM && !rn2(20) && (u.dx || u.dy) && !u.dz) {
+					buzz(20, 6, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
 				if (uwep && uwep->oartifact == ART_LIGHTBLOOM && !rn2(100) && (u.dx || u.dy) && !u.dz) {
 					buzz(18, 3, u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;
 					if (DEADMONSTER(mon)) return FALSE;
 				}
-
 
 				if (uwep && uwep->oartifact == ART_H__S_BRITTLE_REPLICA && !rn2(10)) {
 					useupall(uwep);

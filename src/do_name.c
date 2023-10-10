@@ -292,9 +292,17 @@ do_mname()
 	    pline("%s doesn't like being called names!", Monnam(mtmp));
 	else if (mtmp->mnamelth && !mtmp->mtame)
 	    pline("%s doesn't like you enough to allow you to rename %s!", Monnam(mtmp), mhim(mtmp));
-	else if (!(strcmp(buf, "Glorious Dead") ) )
+	else if (!(strcmpi(buf, "Glorious Dead") ) )
 	    pline("That is an invalid name.");
-	else if (!(strcmp(buf, "Satan's Secret Storage") ) )
+	else if (!(strcmpi(buf, "Satan's Secret Storage") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Main Container") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Arti Lockbox") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Hoards of Treasure") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Emergency Cash") ) )
 	    pline("That is an invalid name.");
 	else
 	    (void) christen_monst(mtmp, buf);

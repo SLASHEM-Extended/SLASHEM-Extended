@@ -346,6 +346,7 @@ init_randarts()
 	artilist[ART_SAGGITTII].otyp = randartmissile();
 	artilist[ART_BENTSHOT].otyp = randartlauncher();
 	artilist[ART_JELLYWHACK].otyp = randartmeleeweapon();
+	artilist[ART_SKODIT].otyp = randartmeleeweapon();
 	artilist[ART_ONE_THROUGH_FOUR_SCEPTER].otyp = randartmeleeweapon();
 	artilist[ART_AL_CANONE].otyp = randartlauncher();
 	artilist[ART_VEIL_OF_MINISTRY].otyp = randartcloak();
@@ -434,7 +435,9 @@ init_randarts()
 	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
 	artilist[ART_PHILOSOPHER_S_STONE].otyp = randartfeminismjewel();
 	artilist[ART_VAPER_BAPER].otyp = randartball();
+	artilist[ART_ARABELLA_S_THINNER].otyp = randartball();
 	artilist[ART_YES_OCCIFER].otyp = randartchain();
+	artilist[ART_STREEEEEAM].otyp = randartchain();
 	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
 	artilist[ART_CHAINS_OF_MALCANTHET].otyp = randartchain();
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
@@ -692,7 +695,11 @@ init_randarts()
 	artilist[ART_DESIGN_YOUR_OWN].otyp = randartscrollX();
 	artilist[ART_ULTRALASER].otyp = randartscrollX();
 	artilist[ART_HEAVY_HEAVY_BABE].otyp = randartballX();
+	artilist[ART_KLONG_RIGHT].otyp = randartballX();
+	artilist[ART_GORMALER].otyp = randartballX();
 	artilist[ART_HAMSTRUNG_FOUR_SURE].otyp = randartchainX();
+	artilist[ART_SIYID].otyp = randartchainX();
+	artilist[ART_RACE_ALONG_THE_HIGHWAY].otyp = randartchainX();
 	artilist[ART_PAWNERMASTER].otyp = randartgemX();
 	artilist[ART_GANTULETS_OF_MISPEALING].otyp = randartglovesX();
 	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
@@ -1707,6 +1714,117 @@ register boolean mod;
 			otmp->spe += 9;
 			if (otmp->spe > 127) otmp->spe = 127;
 		    }
+
+		    if (otmp && otmp->oartifact == ART_LUCKY_GENERATION) {
+			pline("Luck smiles upon you...");
+
+			if (P_MAX_SKILL(P_FLAIL) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_FLAIL);
+				pline("You can now learn the flail skill!");
+			} else if (P_MAX_SKILL(P_FLAIL) == P_UNSKILLED) {
+				unrestrict_weapon_skill(P_FLAIL);
+				pline("You can now learn the flail skill!");
+				P_MAX_SKILL(P_FLAIL) = P_BASIC;
+			} else if (P_MAX_SKILL(P_FLAIL) == P_BASIC) {
+				P_MAX_SKILL(P_FLAIL) = P_SKILLED;
+				pline("You can now become skilled with flails!");
+			} else if (P_MAX_SKILL(P_FLAIL) == P_SKILLED) {
+				P_MAX_SKILL(P_FLAIL) = P_EXPERT;
+				pline("You can now become expert with flails!");
+			} else if (P_MAX_SKILL(P_FLAIL) == P_EXPERT) {
+				P_MAX_SKILL(P_FLAIL) = P_MASTER;
+				pline("You can now become master with flails!");
+			} else if (P_MAX_SKILL(P_FLAIL) == P_MASTER) {
+				P_MAX_SKILL(P_FLAIL) = P_GRAND_MASTER;
+				pline("You can now become grand master with flails!");
+			} else if (P_MAX_SKILL(P_FLAIL) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_FLAIL) = P_SUPREME_MASTER;
+				pline("You can now become supreme master with flails!");
+			} else pline("Sadly your knowledge of the flail skill is already maxed.");
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_MAIN_CONTAINER) {
+			int maincontainerclass = WEAPON_CLASS;
+			int maincontaineramount = 10;
+
+			register struct obj *ocont;
+
+			if (!rn2(1000)) maincontainerclass = BALL_CLASS;
+			else if (!rn2(2000)) maincontainerclass = CHAIN_CLASS;
+			else if (!rn2(1000)) maincontainerclass = VENOM_CLASS;
+			else if (!rn2(1000)) maincontainerclass = ROCK_CLASS;
+			else if (!rn2(1000)) maincontainerclass = IMPLANT_CLASS;
+			else switch (rnd(11)) {
+				case 1: maincontainerclass = WEAPON_CLASS; break;
+				case 2: maincontainerclass = ARMOR_CLASS; break;
+				case 3: maincontainerclass = RING_CLASS; break;
+				case 4: maincontainerclass = AMULET_CLASS; break;
+				case 5: maincontainerclass = WAND_CLASS; break;
+				case 6: maincontainerclass = SPBOOK_CLASS; break;
+				case 7: maincontainerclass = SCROLL_CLASS; break;
+				case 8: maincontainerclass = POTION_CLASS; break;
+				case 9: maincontainerclass = TOOL_CLASS; break;
+				case 10: maincontainerclass = FOOD_CLASS; break;
+				case 11: maincontainerclass = GEM_CLASS; break;
+			}
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_HOARDS_OF_TREASURE) {
+
+			int maincontaineramount = 50;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(RANDOM_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_EMERGENCY_CASH) {
+
+			register struct obj *ocont;
+			ocont = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
+			ocont->quan = rn1(10000,10000);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont);
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_ARTI_LOCKBOX) {
+			register struct obj *ocont;
+
+			boolean havegifts = u.ugifts;
+
+			if (!havegifts) u.ugifts++;
+
+			ocont = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont);
+			}
+
+			if (!havegifts) u.ugifts--;
+
+		    }
+
 		    if (otmp && otmp->oartifact == ART_BAEAU) {
 			otmp->spe += rnd(10);
 			if (otmp->spe > 127) otmp->spe = 127;
@@ -5695,6 +5813,15 @@ greenchoice:
 		}
 
 		if (obj->oartifact == ART_RAYSWANDIR) {
+
+			getdir(NULL);
+			buzz(20,6,u.ux,u.uy,u.dx,u.dy); /* 20 = magic missile */
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_STREEEEEAM) {
 
 			getdir(NULL);
 			buzz(20,6,u.ux,u.uy,u.dx,u.dy); /* 20 = magic missile */

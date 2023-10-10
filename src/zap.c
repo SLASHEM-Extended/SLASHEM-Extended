@@ -5079,6 +5079,7 @@ secureidchoice:
 		case WAN_TIME_STOP:
 			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 			TimeStopped += (3 + rnd(5));
+			if (obj->oartifact == ART_WHIZZY_WIZ) TimeStopped += rnd(3);
 
 			if (wizard) { /* for easier debugging --Amy */
 				if (yn("Wanna stop time for 2000 more turns?") == 'y') TimeStopped += 2000;
@@ -10400,6 +10401,9 @@ void
 fracture_rock(obj)	/* fractured by pick-axe or wand of striking */
 register struct obj *obj;		   /* no texts here! */
 {
+	boolean breakintopieces = FALSE;
+	if (obj && obj->oartifact == ART_BREAK_INTO_PIECES) breakintopieces = TRUE;
+
 	/* A little Sokoban guilt... */
 	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
 		change_luck(-1);
@@ -10415,6 +10419,7 @@ register struct obj *obj;		   /* no texts here! */
 	obj->oartifact = 0;
 	obj->otyp = ROCK;
 	obj->quan = (long) rn1(60, 7);
+	if (breakintopieces) obj->quan *= rn1(10,10);
 	obj->owt = weight(obj);
 	obj->oclass = GEM_CLASS;
 	obj->known = FALSE;

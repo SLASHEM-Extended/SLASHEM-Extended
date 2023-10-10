@@ -780,13 +780,13 @@ nh_timeout()
 
 	}
 
-	if (uarmf && itemhasappearance(uarmf, APP_EXPLOSIVE_BOOTS) && !rn2(10000) ) {
+	if (uarmf && itemhasappearance(uarmf, APP_EXPLOSIVE_BOOTS) && !rn2(uarmf->oartifact ? 200000 : 50000) ) {
 	      useup(uarmf);
 		pline("KAABLAMM!!! Your explosive boots suddenly detonate!");
-		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), rnz(u.ulevel * 5), 0, EXPL_FIERY);
-		losehp(rnz(u.ulevel * 5), "exploding TNT boots", KILLED_BY);
-	    set_wounded_legs(LEFT_SIDE, HWounded_legs + 1000);
-	    set_wounded_legs(RIGHT_SIDE, HWounded_legs + 1000);
+		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), rnz(u.ulevel * 2), 0, EXPL_FIERY);
+		losehp(rnz(u.ulevel * 2), "exploding TNT boots", KILLED_BY);
+		set_wounded_legs(LEFT_SIDE, HWounded_legs + 1000);
+		set_wounded_legs(RIGHT_SIDE, HWounded_legs + 1000);
 	}
 
 	if (uamul && uamul->oartifact == ART_DYNAMITUS && !rn2(2000) ) {
@@ -835,6 +835,20 @@ nh_timeout()
 	}
 
 	if (uarm && uarm->oartifact == ART_SHARP_SMOKY_STENCH) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (uwep && uwep->oartifact == ART_DO_THE_CONTROL) {
 
 	    struct trap *t;
 

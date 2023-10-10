@@ -193,6 +193,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		objects[uwep->otyp].oc_material = MT_SILK;
 		Your("weapon is made of silk now.");
 	}
+	if (uwep && uwep->oartifact == ART_GORMALER && objects[uwep->otyp].oc_material != MT_CHROME) {
+		objects[uwep->otyp].oc_material = MT_CHROME;
+		Your("weapon is made of chrome now.");
+	}
 	if (uwep && uwep->oartifact == ART_GRISGREN && objects[uwep->otyp].oc_material != MT_GREEN_STEEL) {
 		objects[uwep->otyp].oc_material = MT_GREEN_STEEL;
 		Your("weapon is made of green steel now.");
@@ -224,6 +228,15 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 
 	if (uwep && uwep->oartifact == ART_HOL_ON_MAN && !uwep->cursed) {
 		curse(uwep);
+	}
+	if (uwep && uwep->oartifact == ART_SIYID && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, your weapon became cursed.");
+	}
+
+	if (uwep && uwep->oartifact == ART_ARABELLA_S_THINNER) {
+		curse(uwep);
+		uwep->hvycurse = uwep->prmcurse = TRUE;
 	}
 
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
@@ -271,6 +284,15 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_YOU_RE_STUCCO && !uwep->cursed) {
 		curse(uwep);
 		pline("Great. You're stucco now.");
+	}
+
+	if (uwep && uwep->oartifact == ART_FIRE_IS_GOOD) {
+		if (uwep->spe < 9) uwep->spe = 9;
+	}
+
+	if (uwep && uwep->oartifact == ART_KLONG_RIGHT) {
+		uwep->oerodeproof = TRUE;
+		uwep->oeroded = uwep->oeroded2 = FALSE;
 	}
 
 	if (uwep && uwep->oartifact == ART_CERULEAN_SMASH && !Role_if(PM_HUSSY) && !uwep->hvycurse) {
@@ -480,6 +502,15 @@ swapweaponchoice:
 
 		if (uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN && !uswapwep->cursed) {
 			curse(uswapwep);
+		}
+		if (uswapwep && uswapwep->oartifact == ART_SIYID && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, your secondary weapon became cursed.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ARABELLA_S_THINNER) {
+			curse(uswapwep);
+			uswapwep->hvycurse = uswapwep->prmcurse = TRUE;
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_SEXCALIBUR && !uswapwep->hvycurse) {

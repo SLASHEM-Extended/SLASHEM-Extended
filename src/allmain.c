@@ -2189,6 +2189,7 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && !rn2(5) && uball && uwep && (uwep == uball)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && u.uinwater && (uarmf->oartifact == ART_PECTORAL_HEEL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_JUMP_HURRIES && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -3278,7 +3279,7 @@ moveloop()
 
 		if (!Upolyd && u.polyformed) u.polyformed = 0; /* catch-all, because coding this in polyself.c is horrible --Amy */
 
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone()) stop_occupation();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) stop_occupation();
  
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && Feared && !rn2(100)) {
 			pline("holy shit this is offensive");
@@ -4392,6 +4393,8 @@ trapsdone:
 				u.artifactaffinity -= 10;
 			}
 		}
+
+		if (uwep && uwep->oartifact == ART_GORMALER) u.gormalerturns++;
 
 		if (uarmf && uarmf->oartifact == ART_WHITE_KARMA && !rn2(100)) adjalign(1);
 
@@ -7363,6 +7366,10 @@ newbossSTEN:
 			if (KillerRoomEffect < 5000) KillerRoomEffect = 5000;
 		}
 
+		if (autismweaponcheck(ART_GORMALER)) {
+			if (FemaleTrapJil < 10000) FemaleTrapJil = 10000;
+		}
+
 		if (uwep && uwep->oartifact == ART_TWISTED_TURN && !rn2(100)) {
 			switch (rnd(3)) {
 				case 1:
@@ -8828,6 +8835,12 @@ newbossO:
 		}
 
 		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && CovidTrapEffect) {
+			nivellate();
+		}
+		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && uwep && uwep->oartifact == ART_ARABELLA_S_THINNER) {
+			nivellate();
+		}
+		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_THINNER) {
 			nivellate();
 		}
 		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && u.uprops[COVID_TRAP_EFFECT].extrinsic) {
@@ -14775,6 +14788,8 @@ past4:
 
 	kill_deathmarked_monsters();
 
+	if (!(uwep && uwep->oartifact == ART_GORMALER)) u.gormalerturns = 0;
+
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */
 	if (u.banishmentbeam && multi >= 0) nomul(-2, "being banished", FALSE);
 	if (u.levelporting && multi >= 0) nomul(-2, "being levelported", FALSE);
@@ -15741,6 +15756,10 @@ aliasagain:
 		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
 			if (eliasbuf && !(strncmpi(eliasbuf, "Glorious Dead", 14) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Satan's Secret Storage", 23) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Main Container", 15) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Arti Lockbox", 13) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Hoards of Treasure", 19) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Emergency Cash", 15) ) ) strcpy(eliasbuf, "Cheator");
 			strcpy(plalias, eliasbuf);
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
 		}
@@ -15751,6 +15770,22 @@ aliasagain:
 		strcpy(u.aliasname, "Uber Cheator");
 	}
 	if (!strncmpi(plname, "Satan's Secret Storage", 23)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Main Container", 15)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Arti Lockbox", 13)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Hoards of Treasure", 19)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Emergency Cash", 15)) {
 		strcpy(plalias, "Uber Cheator");
 		strcpy(u.aliasname, "Uber Cheator");
 	}

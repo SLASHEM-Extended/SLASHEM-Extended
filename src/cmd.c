@@ -16047,7 +16047,7 @@ char sym;
 	u.dy = ydir[dp-sdp];
 	u.dz = zdir[dp-sdp];
 
-	if (u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) ) {
+	if (u.totter || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || autismweaponcheck(ART_HOW_IS_THE_CAR_ROWED) || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) ) {
 
 		u.dx = -u.dx;
 		u.dy = -u.dy;
@@ -16379,7 +16379,7 @@ click_to_cmd(x, y, mod)
 	return cmd;
 	}
 
-	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || autismweaponcheck(ART_HOW_IS_THE_CAR_ROWED) || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -16662,7 +16662,7 @@ dotravel()
 
 	}
 
-	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
+	if (u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || autismweaponcheck(ART_HOW_IS_THE_CAR_ROWED) || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || u.totter || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || SpellColorPink) {
 		pline("A sinister force prevents you from quicktraveling!");
 		if (FunnyHallu) pline("Could this be the work of Arabella?");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

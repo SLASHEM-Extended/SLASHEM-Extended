@@ -2650,6 +2650,7 @@ boolean polearming;
 	if (obj && objects[obj->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 	if (bmwride(ART_ZIN_BA)) tmp += 4;
+	if (obj && obj->oartifact == ART_BLOHIT) tmp += 10;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {

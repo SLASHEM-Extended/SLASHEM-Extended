@@ -500,8 +500,12 @@ maeney:
 	if (pettype == PM_BABY_YELLOW_DRAGON || pettype == PM_BABY_GREEN_DRAGON || pettype == PM_BABY_BLUE_DRAGON || pettype == PM_BABY_RED_DRAGON || pettype == PM_BABY_ORANGE_DRAGON || pettype == PM_BABY_WHITE_DRAGON || pettype == PM_BABY_BLACK_DRAGON || pettype == PM_BABY_DEEP_DRAGON || pettype == PM_BABY_SHIMMERING_DRAGON || pettype == PM_BABY_GRAY_DRAGON || pettype == PM_BABY_SILVER_DRAGON) petname = "Odahviing";
 	}
 
-	if (petname && !(strcmp(petname, "Glorious Dead") ) ) petname = "Glorious Alive";
-	if (petname && !(strcmp(petname, "Satan's Secret Storage") ) ) petname = "Satan's Super Storage";
+	if (petname && !(strcmpi(petname, "Glorious Dead") ) ) petname = "Glorious Alive";
+	if (petname && !(strcmpi(petname, "Satan's Secret Storage") ) ) petname = "Satan's Super Storage";
+	if (petname && !(strcmpi(petname, "Main Container") ) ) petname = "Base Container";
+	if (petname && !(strcmpi(petname, "Arti Lockbox") ) ) petname = "Arti Openbox";
+	if (petname && !(strcmpi(petname, "Hoards of Treasure") ) ) petname = "Riches of Treasure";
+	if (petname && !(strcmpi(petname, "Emergency Cash") ) ) petname = "Emergency Money";
 
 	mtmp = makemon(&mons[pettype], u.ux, u.uy, MM_EDOG);
 

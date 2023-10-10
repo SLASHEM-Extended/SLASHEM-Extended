@@ -2048,7 +2048,7 @@ playerextrinsicspeed()
 	if ((uwep && uwep->oartifact == ART_GARNET_ROD) || (uwep && uwep->oartifact == ART_THREE_HEADED_FLAIL) || (uwep && uwep->oartifact == ART_POGO_STICK) || u.uprops[MULTISHOES].extrinsic) return TRUE;
 	if ((Role_if(PM_TRANSVESTITE) && PlayerInHighHeels) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_MAREYOUNGWOMAN_ACTION && (is_pool(u.ux, u.uy) || (levl[u.ux][u.uy].typ == FOUNTAIN)) ) return TRUE;
-	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) ) return TRUE;
+	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) ) return TRUE;
 
 	return FALSE;
 }
@@ -8324,6 +8324,10 @@ nivellate()
 			lowerceiling /= 3;
 			upperceiling /= 3;
 		}
+		if (autismweaponcheck(ART_ARABELLA_S_THINNER)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
@@ -8492,6 +8496,10 @@ nivellate()
 			lowerceiling /= 5;
 			upperceiling *= 6;
 			upperceiling /= 5;
+		}
+		if (autismweaponcheck(ART_ARABELLA_S_THINNER)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
 		}
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
@@ -8696,6 +8704,10 @@ boolean guaranteed;
 		if (uarm && uarm->oartifact == ART_ASTRA_MAIL) {
 			ceiling /= 3;
 		}
+		if (autismweaponcheck(ART_ARABELLA_S_THINNER)) {
+			ceiling /= 2;
+		}
+
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
 		if (u.uhpmax < ceiling) {
@@ -8829,6 +8841,9 @@ boolean guaranteed;
 		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
 			ceiling *= 6;
 			ceiling /= 5;
+		}
+		if (autismweaponcheck(ART_ARABELLA_S_THINNER)) {
+			ceiling /= 2;
 		}
 
 		if (ceiling < 10) ceiling = 10; /* fail safe */

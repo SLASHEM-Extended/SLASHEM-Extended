@@ -562,7 +562,39 @@ register struct obj *food;
 
 	exercise(A_CON, FALSE);
 
-	if (Breathless || (!Strangled && !rn2(isfriday ? 4 : 2))) { /* much higher chance to survive --Amy */
+	/* if you named yourself Croesus, probably with the intention of being able to lie to vault guards, there's
+	 * just a tiny little downside: overeating will definitely kill you, even if you're unbreathing --Amy */
+
+	if (!strcmpi(plname, "Croesus") || !strcmpi(plname, "Kroisos") || !strcmpi(plname, "Creosote") || !strcmpi(plalias, "Croesus") || !strcmpi(plalias, "Kroisos") || !strcmpi(plalias, "Creosote")) {
+
+		u.youaredead = 1;
+		killer_format = KILLED_BY_AN;
+		/*
+		 * Note all "killer"s below read "Choked on %s" on the
+		 * high score list & tombstone.  So plan accordingly.
+		 */
+		if(food) {
+			You("try to chow down %s... and suddenly explode into chunks.", foodword(food));
+			if (food->oclass == COIN_CLASS) {
+				killer = "a very rich meal";
+			} else {
+				killer = food_xname(food, FALSE);
+				if (food->otyp == CORPSE &&
+				    (mons[food->corpsenm].geno & G_UNIQ)) {
+				    if (!type_is_pname(&mons[food->corpsenm]))
+					killer = the(killer);
+				    killer_format = KILLED_BY;
+				}
+			}
+		} else {
+			You("explode into chunks.");
+			killer = "quick snack";
+		}
+		You(isangbander ? "have died." : "die...");
+		done(CHOKING);
+		u.youaredead = 0;
+
+	} else if (Breathless || (!Strangled && !rn2(isfriday ? 4 : 2))) { /* much higher chance to survive --Amy */
 		/* choking by eating AoS doesn't involve stuffing yourself */
 		/* ALI - nor does other non-food nutrition (eg., life-blood) */
 		if (!food || food->otyp == AMULET_OF_STRANGULATION) {
@@ -8032,7 +8064,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 
-	if (u.urealedibility || Role_if(PM_COOK) || (uamul && uamul->oartifact == ART_FINETUNING) ) {
+	if (u.urealedibility || Role_if(PM_COOK) || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uamul && uamul->oartifact == ART_FINETUNING) ) {
 		int res = edibility_prompts(otmp);
 		if (res) {
 		    if (u.urealedibility) {
