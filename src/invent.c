@@ -1623,6 +1623,54 @@ have_femityjewel()
 }
 
 boolean
+have_oneinfourstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_ONE_IN_FOUR)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_doubleshelljewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_DOUBLESHELL)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_contaminatejewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_NOT_GONNA_CONTAMINATE)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_haveitallstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_HAVE_IT_ALL_BUT_NOT_GET)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_sonjartifact()
 {
 	register struct obj *otmp;
@@ -3082,7 +3130,7 @@ boolean
 feminizecheck(femnumber)
 int femnumber;
 {
-	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL)) return FALSE;
+	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL) && !have_contaminatejewel() ) return FALSE;
 
 	if (Role_if(PM_CLIMACTERIAL)) {
 		if (u.urmaxlvlUP >= 3 && u.climauspices3 == femnumber) return TRUE;
@@ -3098,6 +3146,7 @@ int femnumber;
 	}
 
 	if (isfeminizer && u.feminizeffect == femnumber) return TRUE;
+	if (have_contaminatejewel() && u.contamjeweleffect == femnumber) return TRUE;
 
 	return FALSE;
 }

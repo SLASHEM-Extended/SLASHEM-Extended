@@ -2569,6 +2569,13 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uarmc && uarmc->oartifact == ART_FINDEET && otmp->spe == 0 && rn2(2)) {
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 
 		/* lategame (Gehennom and beyond) should spawn highly enchanted gear slightly more often --Amy
 		 * idea from Nethack Fourk but implementation is my own */
@@ -2813,6 +2820,13 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uarmc && uarmc->oartifact == ART_FINDEET && otmp->spe == 0 && rn2(2)) {
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3013,6 +3027,13 @@ boolean shopinit;
 				if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 				else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			}
+			if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
+				if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+				else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+			}
+			if (uarmc && uarmc->oartifact == ART_FINDEET && otmp->spe == 0 && rn2(2)) {
+				otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+			}
 
 			if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 				if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3177,6 +3198,13 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uarmc && uarmc->oartifact == ART_FINDEET && otmp->spe == 0 && rn2(2)) {
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3311,6 +3339,13 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uarmc && uarmc->oartifact == ART_FINDEET && otmp->spe == 0 && rn2(2)) {
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
 			if (otmp->spe > 0) otmp->spe += rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3399,6 +3434,13 @@ boolean shopinit;
 		if (StrongMagicFindBonus && !rn2(6) && otmp->spe == 0) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uarmc && uarmc->oartifact == ART_FINDEET && otmp->spe == 0 && rn2(2)) {
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
@@ -3559,6 +3601,13 @@ boolean shopinit;
 		if (StrongMagicFindBonus && !rn2(5) && otmp->spe == 0) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
+		if (uarmc && uarmc->oartifact == ART_FINDEET && otmp->spe == 0 && rn2(2)) {
+			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
 		if (otmp->spe && !rn2(6) && In_lategame(&u.uz)) {
@@ -4154,6 +4203,8 @@ boolean guaranteed; /* can it work even when you have permacurse nastytrap effec
 
 	if (!guaranteed && uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER && rn2(2)) return;
 
+	if (otmp && otmp->oartifact == ART_HAVE_IT_ALL_BUT_NOT_GET) return; /* so immune that even "guaranteed" remove curse effects do not uncurse it --Amy */
+
 	if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 		otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->stckcurse = 0;
 	}
@@ -4206,6 +4257,8 @@ register int chance;
 		curse_on_creation(otmp);
 	    } else if (!u.dungeongrowthhack) {
 			if (!rn2(5) && uarmc && itemhasappearance(uarmc, APP_CURSED_CALLED_CLOAK)) {
+				curse_on_creation(otmp);
+			} else if (uarmc && uarmc->oartifact == ART_FINDEET && !rn2(10)) {
 				curse_on_creation(otmp);
 			} else {
 				bless(otmp);

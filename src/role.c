@@ -11387,6 +11387,23 @@ bindertransformation()
 }
 
 void
+feministtransformation()
+{
+	u.temprecursion = 0;
+	u.temprecursiontime = 0;
+	u.demagoguerecursion = 0;
+	u.demagoguerecursiontime = 0;
+	u.oldrecursionrole = -1;
+	u.oldrecursionrace = -1;
+	
+	flags.initrole = str2role("Fem");
+	urole = roles[flags.initrole];
+
+	init_uasmon();
+
+}
+
+void
 temprecursioneffect()
 {
 	u.temprecursiontime = rnz(2500 + rnd(5000));

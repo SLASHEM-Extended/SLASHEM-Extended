@@ -4380,6 +4380,13 @@ altarfound:
 
 		if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) appr = 0;
 
+	if (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING && appr == 1 && !mtmp->mtame && !mtmp->mpeaceful && !rn2(3)) appr = 0;
+
+	if (uarm && uarm->oartifact == ART_AND_HOW_SHE_IS_CURSED) {
+		if (appr == 1 && !rn2(5)) appr = 0;
+		if (!rn2(20)) appr = -1;
+	}
+
 	    if (is_unicorn(ptr) && (level.flags.noteleport || Race_if(PM_STABILISATOR) || u.antitelespelltimeout)) {
 		/* on noteleport levels, perhaps we cannot avoid hero */
 		for(i = 0; i < cnt; i++)

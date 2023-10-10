@@ -695,6 +695,10 @@ boolean yours; /* is it your fault (for killing monsters) */
 			damu *= 12;
 			damu /= 10;
 		}
+		if (uarmh && uarmh->oartifact == ART_HEAD_W) {
+			damu *= 11;
+			damu /= 10;
+		}
 		if (Role_if(PM_DANCER) && !rn2(3)) damu = damu * 3;
 		if (Race_if(PM_METAL)) damu *= rnd(10);
 		if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW) || (uarm && uarm->oartifact == ART_CHEST_TANK) ) damu = damu * 2;

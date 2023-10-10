@@ -7881,6 +7881,13 @@ cleanup:
 	more_experienced(tmp, 0);
 	newexplevel();		/* will decide if you go up */
 
+	if (uarmf && uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS && flags.female && !In_endgame(&u.uz)) {
+		if (humanoid(mtmp->data) && !mtmp->female && (mtmp->data->geno & G_UNIQ) && !Role_if(PM_FEMINIST)) {
+			feministtransformation();
+			pline("Well done, now you're a feminist.");
+		}
+	}
+
 	if (!rn2(19150)) { /* evil patch idea by jonadab: summon a boss */
 		pline("The RNG decides to send in reinforcements to punish people who kill innocent monsters.");
 

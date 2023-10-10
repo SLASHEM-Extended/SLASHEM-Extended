@@ -55,6 +55,8 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_FIND_THE_COMBAT_STANCE) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) dmg += 5;
 
+	if (uarmf && uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) dmg += (flags.female ? 7 : 2);
+
 	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;
 
 	if (Race_if(PM_TAYIIN)) dmg += 2;

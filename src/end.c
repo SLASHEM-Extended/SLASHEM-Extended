@@ -2004,6 +2004,75 @@ menunosedone:
 	}
 wendydone:
 
+	if ((uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && uarm && objects[uarm->otyp].oc_color == CLR_BLACK) && how < GENOCIDED) {
+		pline("But wait! You have perilous life saving!");
+
+		if (yn_function("Come back to life?", ynchars, 'y') == 'y' ) {
+
+			if (wanttodie) {
+				pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+				goto mrhighheeldone;
+			}
+
+			if (u.ulevel > 2) {
+			    losexp("Mr. High Heel", TRUE, FALSE);
+			    losexp("Mr. High Heel", TRUE, FALSE);
+			    pline("You are the Mr. of high heels, and therefore don't die!");
+			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
+			    savelife(how);
+			    killer = 0;
+			    killer_format = 0;
+
+				/* lose all items */
+
+			while (invent) {
+			    for (otmp = invent; otmp; otmp = otmp2) {
+			      otmp2 = otmp->nobj;
+
+				if (evades_destruction(otmp) ) dropx(otmp);
+				else {
+				delete_contents(otmp);
+				useup(otmp);}
+			    }
+			}
+
+				/* lose all spells */
+				for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			    spellid(n) = NO_SPELL;
+				}
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+				(void) makemon(mkclass(S_HUMAN,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_HUMANOID,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GNOME,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_OGRE,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_GIANT,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_KOP,0), u.ux, u.uy, NO_MM_FLAGS);
+				(void) makemon(mkclass(S_ORC,0), u.ux, u.uy, NO_MM_FLAGS);
+
+				u.aggravation = 0;
+
+			    (void) safe_teleds_normalterrain(FALSE);
+
+#ifdef LIVELOGFILE
+			    livelog_avert_death();
+#endif
+			    u.youaredead = 0;
+
+			    return;
+			}
+
+			else pline("Sadly, you lack the strength to get back up, so you stay dead.");
+
+		}
+	}
+mrhighheeldone:
+
 	if (StrongStoned_chiller && how < GENOCIDED) {
 		pline("But wait! You have perilous life saving!");
 

@@ -3457,6 +3457,28 @@ moveloop()
 
 		}
 
+		if (uarm && uarm->oartifact == ART_HEART_INFACT && !rn2(100) && multi >= 0) {
+
+			You("faint from exertion.");
+			flags.soundok = 0;
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if (uarm && uarm->oartifact == ART_CHIP_INFACT && !rn2(100) && multi >= 0) {
+
+			You("faint from exertion.");
+			flags.soundok = 0;
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
 		if (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");
@@ -3482,6 +3504,8 @@ moveloop()
 		if (uarmc && uarmc->oartifact == ART_REALLY_FIND_EM && !rn2(2000)) {
 			object_detect((struct obj *)0, 0);
 		}
+
+		if (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF && !uarmu->cursed && !rn2(1000)) curse(uarmu);
 
 		if ((uleft && uleft->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
 
@@ -6567,6 +6591,31 @@ newbossKLARA:
 
 		}
 
+		if (uarmc && uarmc->oartifact == ART_GIVE_US_TODAY_OUR_DAILY_GA && !rn2(2000)) {
+
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			while (aggroamount) {
+
+				aggroamount--;
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(361), cx, cy, MM_ADJACENTOK|MM_ANGRY); /* M5_ELONA */
+
+				if (aggroamount < 0) aggroamount = 0;
+			}
+			u.aggravation = 0;
+
+		}
+
 		if (FemtrapActiveJanina && !rn2(1000)) {
 			int aggroamount = rnd(10);
 			if (isfriday) aggroamount *= 2;
@@ -7029,6 +7078,13 @@ newbossJANI:
 		if (uarm && uarm->oartifact == ART_HIGHWAY_FIGHTER) {
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = HIGHWAY;
+			}
+		}
+
+		if (uarmg && uarmg->oartifact == ART_WAND_INTO_SPELL && !rn2(100)) {
+			if (P_ADVANCE(P_DEVICES) > 0) {
+				P_ADVANCE(P_DEVICES) -= 1;
+				skill_sanity_check(P_DEVICES);
 			}
 		}
 
@@ -8103,6 +8159,7 @@ newbossRLR:
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
 		if (!rn2(5000)) u.feminizeffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -13288,25 +13345,24 @@ pastds2:
 			if (uarmf && uarmf->oartifact == ART_DELFI_ROCKZ) {
 				u.ublesscnt -= 2;
 			}
-		}
-		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+			if (uarm && uarm->oartifact == ART_ETERNAL_BAMMELING) u.ublesscnt--;
+			if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
-		if (uarmg && u.ublesscnt && itemhasappearance(uarmg, APP_COMFORTABLE_GLOVES) ) u.ublesscnt--;
-		if (uarmc && u.ublesscnt && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) u.ublesscnt--;
+			if (uarmg && u.ublesscnt && itemhasappearance(uarmg, APP_COMFORTABLE_GLOVES) ) u.ublesscnt--;
+			if (uarmc && u.ublesscnt && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) u.ublesscnt--;
 
-		if (u.ublesscnt && RngePrayer) u.ublesscnt--;
+			if (u.ublesscnt && RngePrayer) u.ublesscnt--;
 
-		if (u.ublesscnt && Race_if(PM_BOVER)) u.ublesscnt--;
+			if (u.ublesscnt && Race_if(PM_BOVER)) u.ublesscnt--;
 
-		if (u.ublesscnt && !(PlayerCannotUseSkills)) {
-
-			if ((P_SKILL(P_SPIRITUALITY) >= P_BASIC) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
-			if ((P_SKILL(P_SPIRITUALITY) >= P_SKILLED) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
-			if ((P_SKILL(P_SPIRITUALITY) >= P_EXPERT) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
-			if ((P_SKILL(P_SPIRITUALITY) >= P_MASTER) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
-			if ((P_SKILL(P_SPIRITUALITY) >= P_GRAND_MASTER) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
-			if ((P_SKILL(P_SPIRITUALITY) >= P_SUPREME_MASTER) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
-
+			if (u.ublesscnt && !(PlayerCannotUseSkills)) {
+				if ((P_SKILL(P_SPIRITUALITY) >= P_BASIC) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
+				if ((P_SKILL(P_SPIRITUALITY) >= P_SKILLED) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
+				if ((P_SKILL(P_SPIRITUALITY) >= P_EXPERT) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
+				if ((P_SKILL(P_SPIRITUALITY) >= P_MASTER) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
+				if ((P_SKILL(P_SPIRITUALITY) >= P_GRAND_MASTER) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
+				if ((P_SKILL(P_SPIRITUALITY) >= P_SUPREME_MASTER) && u.ublesscnt && !rn2(10)) u.ublesscnt--;
+			}
 		}
 
 		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
@@ -19504,6 +19560,8 @@ timebasedlowerchance()
 			chance /= rnd(5);
 		}
 	}
+
+	if (uarmc && uarmc->oartifact == ART_FINDEET) chance += 10;
 
 	if (isdroughter) {
 		if (chance < 5) chance = 5; /* always at least a 5% chance of getting it --Amy */

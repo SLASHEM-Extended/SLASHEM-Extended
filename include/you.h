@@ -1315,6 +1315,7 @@ struct you {
 	int dorian28;
 
 	int feminizeffect; /* for feminizer race to decide which feminism trap effect is currently active */
+	int contamjeweleffect; /* for "not gonna contaminate" artifact jewel */
 
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];

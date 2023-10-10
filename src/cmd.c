@@ -1885,6 +1885,12 @@ domonability()
 		use_skill(P_SQUEAKING, 1);
 		return 1;
 
+	} else if (bmwride(ART_MOUNT_BOND) && yn("Check up on your steed's health?") == 'y') {
+
+		if (u.usteed) pline("Your steed's health: %d (max %d).", u.usteed->mhp, u.usteed->mhpmax);
+
+		return 0; /* does not require you to use a turn --Amy */
+
 	} else if (Race_if(PM_HAND) && !u.handpulling && yn("Do you want to pull a monster to you?") == 'y') {
 
 		register struct monst *nexusmon;

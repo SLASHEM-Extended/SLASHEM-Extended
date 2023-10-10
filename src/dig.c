@@ -327,6 +327,7 @@ dig()
 	if (uwep && uwep->oartifact == ART_MINE_OUT) bonus += 5;
 	if (uarmh && uarmh->oartifact == ART_THIRD_CAR) bonus += 10;
 	if (uwep && uwep->oartifact == ART_DIG__OF_COURSE) bonus += 5;
+	if (uwep && uwep->oartifact == ART_NOTHING_FOR_IT) bonus += 5;
 	if (uarm && uarm->oartifact == ART_CLANGFRIEND) bonus += 5;
 	if (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) bonus += 5;
 	if (uarmc && uarmc->oartifact == ART_MINING_FOR_FUN_AND_PROFIT) bonus += 5;

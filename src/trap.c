@@ -23136,6 +23136,7 @@ const char *str;
 			u.cnd_stoningcount++;
 			stop_occupation();
 			delayed_killer = (str[0] ? str : "coming into contact with a petrifying object");
+			flags.botl = TRUE;
 		}
 	}
 /* Damn you annoying programmers! At least give us a chance to save ourselves with our stock of lizard corpses! */

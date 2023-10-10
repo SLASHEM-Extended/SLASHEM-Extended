@@ -483,6 +483,11 @@ Boots_on()
 
     }
 
+    if (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING && (objects[uarmf->otyp].oc_material != MT_SHADOWSTUFF)) {
+		pline_The("boots are made of shadowstuff now.");
+		objects[uarmf->otyp].oc_material = MT_SHADOWSTUFF;
+    }
+
     if (uarmf && !Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) {
 		if (!(u.monstertimefinish % 20)) { /* 1 in 20 games */
 			bindertransformation();
@@ -517,6 +522,16 @@ Boots_on()
 		uarmf->rknown = TRUE;
 		Your("boots become sturdy.");
 	}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_GREEN_MYSTERY && (objects[uarmf->otyp].oc_color != CLR_GREEN)) {
+		pline_The("pair of heels becomes green!");
+		objects[uarmf->otyp].oc_color = CLR_GREEN;
+    }
+
+    if (uarmf && uarmf->oartifact == ART_NANCY_S_ASSISTANCE && (objects[uarmf->otyp].oc_color != CLR_RED)) {
+		pline_The("pair of heels becomes red!");
+		objects[uarmf->otyp].oc_color = CLR_RED;
     }
 
     if (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) {
@@ -1598,6 +1613,10 @@ Cloak_on()
 		pline_The("cloak turns into a titanium cloak!");
 		objects[uarmc->otyp].oc_material = MT_TITANIUM;
 	}
+	if (uarmc && uarmc->oartifact == ART_FIRM_TOP && (objects[uarmc->otyp].oc_material != MT_FIRMAMENT)) {
+		pline_The("cloak turns into a firmament cloak!");
+		objects[uarmc->otyp].oc_material = MT_FIRMAMENT;
+	}
 
 	if (uarmc && itemhasappearance(uarmc, APP_IGNORANT_CLOAK) ) {
 		if (!uarmc->cursed) {
@@ -2439,6 +2458,11 @@ Helmet_on()
 		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) litroomlite(FALSE);
     }
 
+    if (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) {
+		curse(uarmh);
+		pline("Well, how can one please look like that.");
+    }
+
     if (uarmh && uarmh->oartifact == ART_SUDUNSEL && !uarmh->hvycurse) {
 	curse(uarmh);
 	uarmh->hvycurse = TRUE;
@@ -2923,6 +2947,10 @@ Gloves_on()
     if (uarmg && uarmg->oartifact == ART_JONADAB_S_METAL_GUARD && (objects[uarmg->otyp].oc_material != MT_IRON)) {
 		pline_The("pair of gloves turns into iron gauntlets!");
 		objects[uarmg->otyp].oc_material = MT_IRON;
+    }
+    if (uarmg && uarmg->oartifact == ART_MELUGAS_ROCKET && (objects[uarmg->otyp].oc_material != MT_TITANIUM)) {
+		pline_The("pair of gloves turns into titanium gauntlets!");
+		objects[uarmg->otyp].oc_material = MT_TITANIUM;
     }
 
     if (uarmg && itemhasappearance(uarmg, APP_SPANISH_GLOVES) ) {
@@ -3841,6 +3869,19 @@ Armor_on()
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
 	}
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_WELL_FUCK) {
+		pline("Well fuck. The armor is cursed.");
+		curse(uarm);
+	}
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_RES_BUT_BAD) {
+		pline("BEEEEEEEP! Your armor is cursed!");
+		curse(uarm);
+	}
+	if (uarm && uarm->oartifact == ART_AND_HOW_SHE_IS_CURSED) {
+		pline("Yeah, and how your armor is cursed.");
+		if (uarm->spe > -3) uarm->spe = -3;
+		curse(uarm);
+	}
 
 	if (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) {
 		curse(uarm);
@@ -3862,10 +3903,20 @@ Armor_on()
 		curse(uarm);
 	}
 
+	if (uarm && uarm->oartifact == ART_COMPLETE_ARMORING && (objects[uarm->otyp].oc_material != MT_STEEL)) {
+		pline_The("suit turns into steel!");
+		objects[uarm->otyp].oc_material = MT_STEEL;
+	}
+
 	if (uarm && uarm->oartifact == ART_ASTRA_MAIL) {
 		curse(uarm);
 		uarm->hvycurse = uarm->stckcurse = TRUE;
 		pline("Oh no, the armor won't come off!");
+	}
+
+	if (uarm && uarm->oartifact == ART_CHIP_INFACT) {
+		curse(uarm);
+		You("are about to have a chip infact! (yes, we know it's actually called 'chip attack', analogous to a heart attack but for a computer :P)");
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ASSEIGNMENT_CURSE_) {
@@ -6467,6 +6518,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) uac -= 2;
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
@@ -6476,7 +6528,22 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_MAGDALENA_S_CUDDLEWEAPON) uac -= 5;
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;
+	if (uarm && uarm->oartifact == ART_OOOOOOH) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
+	if (uarmc && uarmc->oartifact == ART_THAT_S_ARMOR) {
+		uac -= 5;
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_BODY_ARMOR)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 2; break;
+				case P_EXPERT: uac -= 3; break;
+				case P_MASTER: uac -= 4; break;
+				case P_GRAND_MASTER: uac -= 5; break;
+				case P_SUPREME_MASTER: uac -= 6; break;
+			}
+
+		}
+	}
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
 	if (uwep && uwep->oartifact == ART_SECANTED) uac -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) uac -= 10;
@@ -6489,6 +6556,7 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_YELLOW_STATUS) uac -= 1;
 	if (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) uac -= 10;
 	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
+	if (uarm && uarm->oartifact == ART_RES_BUT_BAD) uac += 15;
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;

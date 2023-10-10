@@ -173,6 +173,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("weapon's material morphs to a different one!");
 	}
 
+	if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && objects[uwep->otyp].oc_color != CLR_BLACK) {
+		objects[uwep->otyp].oc_color = CLR_BLACK;
+		Your("wielded shoe is painted black!");
+	}
+
 	if (uwep && uwep->oartifact == ART_SPACEL_SWIM) {
 		if (objects[uwep->otyp].oc_material != MT_IRON) {
 			objects[uwep->otyp].oc_material = MT_IRON;
@@ -187,6 +192,14 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_FONLAUSCHI && objects[uwep->otyp].oc_material != MT_SILK) {
 		objects[uwep->otyp].oc_material = MT_SILK;
 		Your("weapon is made of silk now.");
+	}
+	if (uwep && uwep->oartifact == ART_GRISGREN && objects[uwep->otyp].oc_material != MT_GREEN_STEEL) {
+		objects[uwep->otyp].oc_material = MT_GREEN_STEEL;
+		Your("weapon is made of green steel now.");
+	}
+	if (uwep && uwep->oartifact == ART_EWW_THAT_S_DISGUSTING && objects[uwep->otyp].oc_material != MT_SECREE) {
+		objects[uwep->otyp].oc_material = MT_SECREE;
+		Your("weapon is made of secree now (eww, that's disgusting!).");
 	}
 
 	if (uwep && uwep->otyp == HONOR_KATANA && !uwep->cursed) {

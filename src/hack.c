@@ -3921,6 +3921,7 @@ register boolean newlev;
 			if (uarmf && itemhasappearance(uarmf, APP_MACHINERY_BOOTS) && !u.uspellprot) {
 				u.uspellprot = 4;
 				u.uspmtime = 10;
+				if (!u.usptime) u.usptime = u.uspmtime;
 				find_ac();
 				flags.botl = TRUE;
 				You_feel("at home here, thanks to your machinery boots!");
@@ -5083,6 +5084,10 @@ int k_format; /* WAC k_format is an int */
 	}
 	if (ACURR(A_CON) == 1) {
 		n *= 12;
+		n /= 10;
+	}
+	if (uarmh && uarmh->oartifact == ART_HEAD_W) {
+		n *= 11;
 		n /= 10;
 	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;

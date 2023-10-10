@@ -1135,6 +1135,7 @@ dosounds()
 		if (uarmf && itemhasappearance(uarmf, APP_INDUSTRIAL_BOOTS) && !u.uspellprot) {
 			u.uspellprot = 4;
 			u.uspmtime = 10;
+			if (!u.usptime) u.usptime = u.uspmtime;
 			find_ac();
 			flags.botl = TRUE;
 			You_feel("strangely protected. Could be due to your boots.");

@@ -10241,6 +10241,7 @@ u_init()
 	u.femauspices30 = rnd(10);
 
 	u.feminizeffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
+	u.contamjeweleffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
 
 	u.climauspices3 = rnd(102);
 	u.climauspices6 = rnd(102);
@@ -32635,6 +32636,7 @@ int realityflag;
 	u.femauspices30 = rnd(10);
 
 	u.feminizeffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
+	u.contamjeweleffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
 
 	u.climauspices3 = rnd(102);
 	u.climauspices6 = rnd(102);

@@ -4064,6 +4064,19 @@ register struct obj *wand;
 		You_feel("more resistant to confusion!");
 	}
 
+	if (wand && wand->oartifact == ART_DIFFUSION_WAVE) {
+		u.uhp += (GushLevel * 2);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		u.uen += (GushLevel * 2);
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		if (Upolyd) {
+			u.mh += (GushLevel * 2);
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		}
+		pline("The wand restores some of your health and mana.");
+		flags.botl = TRUE;
+	}
+
 	if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,blessedboost);
 	if (objects[(wand)->otyp].oc_material == MT_ANTIDOTIUM) upnivel(TRUE);
 	if (objects[(wand)->otyp].oc_material == MT_ARCANIUM) {
@@ -5066,6 +5079,12 @@ secureidchoice:
 		case WAN_TIME_STOP:
 			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 			TimeStopped += (3 + rnd(5));
+
+			if (wizard) { /* for easier debugging --Amy */
+				if (yn("Wanna stop time for 2000 more turns?") == 'y') TimeStopped += 2000;
+				else if (yn("Wanna un-stop time?") == 'y') TimeStopped = 0;
+			}
+
 			break;
 
 		case WAN_LAVA: /* by jonadab */
@@ -9849,9 +9868,10 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 			pline("For some reason you are not affected.");
 
 	/* special reflection types adapted from FHS. It would be too much of a pain to code correctly,
-	 * so I just decide that special reflection amulets "overwrite" standard reflection. --Amy */
+	 * so I just decide that special reflection amulets "overwrite" standard reflection. --Amy
+	 * prism takes precedence over warp reflection, which takes precedence over "regular" reflection */
 
-			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_spectrumplinggem() || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarms && uarms->oartifact == ART_ANGULARITY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
+			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_spectrumplinggem() || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarms && uarms->oartifact == ART_ANGULARITY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_SCHWI_SCHWI) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
 
 			    if (dx && dy) {
 

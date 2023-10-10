@@ -2891,7 +2891,7 @@ int oldlevel, newlevel;
 
 			boolean willget = TRUE;
 
-			if (Race_if(PM_YUGGER)) { /* doesn't get positive ones --Amy */
+			if (Race_if(PM_YUGGER) || have_haveitallstone() ) { /* doesn't get positive ones --Amy */
 
 				if (abil->goodone) willget = FALSE;
 			}
@@ -3066,6 +3066,7 @@ int x;
 		if (uleft && uleft->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
+		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
 		if (uwep && uwep->oartifact == ART_NEEDLESSLY_MEAN) tmp += 4;
 		if (uarm && uarm->oartifact == ART_CLANGFRIEND) tmp += 3;
@@ -3330,6 +3331,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) tmp -= 5;
 		if (uarmh && itemhasappearance(uarmh, APP_CORONA_MASK)) tmp -= 5;
 		if (uarmh && uarmh->oartifact == ART_FFP___MASK) tmp -= 5;
+		if (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) tmp -= 10;
 		if (uarmf && itemhasappearance(uarmf, APP_BAREFOOT_SHOES)) tmp -= 1;
 		if (uarmf && itemhasappearance(uarmf, APP_SANDALS_WITH_SOCKS)) tmp -= 25;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
@@ -3479,6 +3481,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
 		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
 		if (uarm && uarm->oartifact == ART_SEE_THE_MULCH_STATE) tmp += 3;
+		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uleft && uleft->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
@@ -3549,6 +3552,7 @@ int x;
 		if (bmwride(ART_PANZER_TANK)) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (uarmc && uarmc->oartifact == ART_SHROUD) tmp += 7;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;

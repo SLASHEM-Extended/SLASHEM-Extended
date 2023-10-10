@@ -269,6 +269,7 @@ init_randarts()
 	artilist[ART_SURESHOT].otyp = randartlauncher();
 	artilist[ART_STINGWING].otyp = randartmissile();
 	artilist[ART_NOBILE_MOBILITY].otyp = randartshirt();
+	artilist[ART_ALL_IN_ONE_EFF].otyp = randartshirt();
 	artilist[ART_TILLMANN_S_TARGET].otyp = randartshirt();
 	artilist[ART_THEY_ALL_FEEL_FLEECY].otyp = randartshirt();
 	artilist[ART_ANTIMAGIC_FIELD].otyp = randartshirt();
@@ -1776,6 +1777,10 @@ register boolean mod;
 			otmp->quan += rn1(6,6);
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_PEWWWWWWW) {
+			otmp->quan += rn1(9,9);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_TROPICAL_WOOD_SELECTION) {
 			otmp->quan += 4;
 			otmp->owt = weight(otmp);
@@ -1836,6 +1841,11 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_KLARNIGUR) {
 			otmp->quan *= 2;
 			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_COB_AUTO) {
+			otmp->quan *= rn1(3,3);
+			otmp->owt = weight(otmp);
+			if (objects[otmp->otyp].oc_material != MT_COBALT) objects[otmp->otyp].oc_material = MT_COBALT;
 		    }
 		    if (otmp && otmp->oartifact == ART_FLIUMILL) {
 			otmp->quan *= 2;
@@ -2554,6 +2564,7 @@ struct monst *mon;
 			case ART_DAMNBLAST:
 			case ART_FAMOUS_LANCE:
 			case ART_EMERALD_SWORD:
+			case ART_PULVERIZE_EM:
 			case ART_ROOMMATE_S_SPECIAL_IDEA:
 			case ART_DO_YOU_EVEN_LIFT:
 			case ART_MARINE_THREAT_NEUTERED:
@@ -2611,6 +2622,11 @@ int tmp;
 	/* Amy edit: the fact that they always did max damage was fucked up, IMHO. */
 
 	if (spec_dbon_applies)
+
+	    if (otmp && otmp->oartifact == ART_PULVERIZE_EM) {
+			return rnd(max(tmp * 2, 1)); /* triple damage!! */
+	    }
+
 	    return weap->attk.damd ? rnd((int)weap->attk.damd) :
 		    /* [ALI] Unlike melee weapons, damd == 0 means no
 		     * bonus for launchers.
@@ -4524,6 +4540,33 @@ chargingchoice:
 
 		*/
 
+		if (obj->oartifact == ART_WELL_FUCK) {
+
+			if (u.uspellprot < 4) {
+				u.uspellprot = 4;
+				u.uspmtime = 10;
+				if (!u.usptime) u.usptime = u.uspmtime;
+				find_ac();
+			}
+			flags.botl = TRUE;
+
+			incr_itimeout(&HLevitation, rnz(250));
+			HLevitation |= I_SPECIAL;
+
+			You_feel("protected!");
+			You("float into the air!");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_RES_CIRCLE) {
+
+			incr_itimeout(&HResistancePiercing, 1000);
+			You("can pierce enemy resistances!");
+
+			break;
+		}
+
 		if (obj->oartifact == ART_LARISSA_S_LAUGHTER) {
 			objects[obj->otyp].oc_material = MT_INKA;
 			pline_The("boot is made of inka leather now.");
@@ -5608,6 +5651,15 @@ greenchoice:
 
 			getdir(NULL);
 			buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
+
+			break;
+
+		}
+
+		if (obj->oartifact == ART_MELUGAS_ROCKET) {
+
+			getdir(NULL);
+			buzz(20 + rn2(AD_SPC2),5,u.ux,u.uy,u.dx,u.dy); /* random breath */
 
 			break;
 

@@ -495,6 +495,13 @@ int thrown;
 		    You("throw a hail of %s!", xname(obj));
 	    }
 
+	    if (launcher && launcher->oartifact == ART_ARROW_RAIN && (launcher->invoketimer <= monstermoves) ) {
+		int artitimeout = rnz(2000);
+		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
+		multishot += 8;
+		launcher->invoketimer = (monstermoves + artitimeout);
+	    }
+
 	    if (launcher && launcher->otyp == PISTOL_PAIR) multishot *= 2;
 
 	    /* Shotlimit controls your rate of fire */
@@ -1772,6 +1779,8 @@ boolean hitsroof;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) dmg += 2;
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) dmg += 2;
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) dmg += 4;
+	if (dmg > 0 && uarms && uarms->oartifact == ART_UNUSUAL_ENCH) dmg += 1;
+	if (dmg > 0 && bmwride(ART_ZIN_BA)) dmg += 1;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -2103,6 +2112,7 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPESNIPESNIPE) range += 5;
 		if (obj && obj->oartifact == ART_WAY_TOO_LONG) range += 10;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SAY__CHESS_) range += 2;
+		if (obj && obj->oartifact == ART_PEWWWWWWW) range += 15;
 
 		if (!PlayerCannotUseSkills && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == KLIUSLING && launcher->lamplit) {
 			if (u.kliuskill >= 20) range++;
@@ -2639,6 +2649,7 @@ boolean polearming;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
 	if (obj && objects[obj->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
+	if (bmwride(ART_ZIN_BA)) tmp += 4;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {

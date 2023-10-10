@@ -911,6 +911,7 @@ register struct monst *mtmp;
 	if (uwep && objects[uwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
+	if (bmwride(ART_ZIN_BA)) tmp += 4;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -1820,6 +1821,39 @@ int dieroll;
 		if (uarmg && uarmg->oartifact == ART_PRICKBUFF) {
 			mon->bleedout += rnd(5);
 		}
+		if (uarmg && uarmg->oartifact == ART_GHAND) {
+			if (haseyes(mon->data) && !resist(mon, WEAPON_CLASS, 0, NOTELL) && !mon->mblinded ) {
+				mon->mblinded = rnd(10);
+				You("slammed the dazzling light to %s!", mon_nam(mon));
+			}
+		}
+
+		if (uamul && uamul->oartifact == ART_BAKURETU_KEN && !rn2(5)) {
+			int sx = u.ux, sy = u.uy, i;
+
+			pline("Bakuretu-Ken!"); /* similar to "Kamehame-ha!", from Elona --Amy */
+
+			for( i = 0; i < 2; i++) {		
+			    if (!isok(sx,sy) || !cansee(sx,sy) || 
+			    		IS_STWALL(levl[sx][sy].typ) || u.uswallow)
+			    	break;
+
+			    /* Display the center of the explosion */
+			    tmp_at(DISP_FLASH, explosion_to_glyph(EXPL_FIERY, S_explode5));
+			    tmp_at(sx, sy);
+			    delay_output();
+			    tmp_at(DISP_END, 0);
+
+			    sx += u.dx;
+			    sy += u.dy;
+			}
+			/* low explosion damage, since it triggers fairly often --Amy */
+			explode(sx, sy, 10, d(3,4), WAND_CLASS, EXPL_FIERY);
+
+			if (DEADMONSTER(mon)) return FALSE;
+
+		}
+
 		if (uleft && uleft->oartifact == ART_SPIKED_KNUCKLES) {
 			mon->bleedout += rnd(5);
 		}
@@ -3574,6 +3608,15 @@ int dieroll;
 		}
 	}
 
+	if (obj && obj->oartifact == ART_MANA_SLASHER) {
+		mon->m_en -= 5;
+		if (mon->m_en < 0) {
+			mon->m_en = 0;
+			mon->m_enmax -= rnd(5);
+			if (mon->m_enmax < 0) mon->m_enmax = 0;
+		}
+	}
+
 	if (uwep && uwep->oartifact == ART_DACHA_DACHA_DACHA) {
 		tmp += u.dachacombostrike;
 		if (u.dachacombostrike) {
@@ -3745,6 +3788,8 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && !bimanual(uwep)) tmp += 2;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 2;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
+		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH) tmp += 1;
+		if (bmwride(ART_ZIN_BA)) tmp += 1;
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {
@@ -10166,6 +10211,15 @@ use_weapon:
 				if (uwep && uwep->oartifact == ART_GEB_ME_ALL_YOUR_MONEY && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 					monflee(mon, rnd(10), FALSE, FALSE);
 					pline("%s looks scared.", Monnam(mon));
+				}
+
+				if (uwep && uwep->oartifact == ART_TERROR_DROP && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+					monflee(mon, 2, FALSE, FALSE);
+					pline("%s looks scared.", Monnam(mon));
+				}
+
+				if (uwep && uwep->oartifact == ART_GAUGE_REDUCE) {
+					mon->mspec_used += 2;
 				}
 
 				if (uwep && uwep->oartifact == ART_DESTRUCTION_BALL && !rn2(3) && uwep->spe > -20) {

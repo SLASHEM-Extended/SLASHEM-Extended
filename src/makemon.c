@@ -32997,6 +32997,8 @@ register struct permonst *ptr;
 
 	if (uarm && uarm->oartifact == ART_CLANGFRIEND && is_dwarf(ptr)) return TRUE;
 
+	if (uarmf && uarmf->oartifact == ART_NANCY_S_ASSISTANCE && (uarmf->oeroded || uarmf->oeroded2) && ptr->maligntyp < 0 && !rn2(4)) return TRUE;
+
 	if (is_pokemon(ptr) && rn2(5) && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK) ) return TRUE;
 
 	if (!rn2(5) && ptr->mlet == S_BAD_FOOD && uarmg && itemhasappearance(uarmg, APP_FLOWER_GLOVES) ) return TRUE;

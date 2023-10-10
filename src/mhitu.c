@@ -19240,6 +19240,10 @@ register int n;
 		n *= 12;
 		n /= 10;
 	}
+	if (uarmh && uarmh->oartifact == ART_HEAD_W) {
+		n *= 11;
+		n /= 10;
+	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW) || (uarm && uarm->oartifact == ART_CHEST_TANK)) n = n * 2;

@@ -269,6 +269,8 @@ register struct obj *obj;
 		return TRUE;
 	if (uwep && uwep->oartifact == ART_KRONSCHER_BAR && is_metallic(obj) && !obj->oerodeproof)
 		return TRUE;
+	if (uwep && uwep->oartifact == ART_FERRUM_D && is_metallic(obj) && !obj->oerodeproof)
+		return TRUE;
 
 	/* lithivores can eat stone; erosionproofing makes it impossible now --Amy */
 	if (lithivorous(youmonst.data) && is_lithic(obj) && !obj->oerodeproof )
@@ -556,7 +558,7 @@ register struct obj *food;
 		    delayed_killer = "slimed by a slimy meal";
 	}
 
-	}
+	} /* anorexia check */
 
 	exercise(A_CON, FALSE);
 
@@ -4606,6 +4608,8 @@ violated_vegetarian()
 	adjalign(-5);
     }
 	if (Role_if(PM_FAILED_EXISTENCE)) badeffect();
+
+	if (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) statdebuff();
 
 	if (have_anorexia()) { /* Their metabolism isn't used to meat. --Amy */
 

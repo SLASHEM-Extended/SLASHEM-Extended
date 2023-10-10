@@ -14658,7 +14658,7 @@ A("Caaaaast",				ELVEN_LEATHER_HELM, /* spellboost */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("All In One Eff",				T_SHIRT, /* mystery resist, magic find, fuck over, spellboost, 1 in 1000 if it's not cursed to become cursed */
+A("All In One Eff",				T_SHIRT, /* randart shirt, mystery resist, magic find, fuck over, spellboost, 1 in 1000 if it's not cursed to become cursed */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 

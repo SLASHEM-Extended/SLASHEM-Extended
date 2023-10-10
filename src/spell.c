@@ -2773,8 +2773,10 @@ void
 age_spells()
 {
 	int i;
-	if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5))
+	if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) /* sync this with cyan spells, see below! --Amy */
 		return;
+
+	if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) return;
 
 	/* the spell color trap that causes your memory to decrease when casting shouldn't be too awfully harsh... --Amy
 	 * ATTENTION: cyan spells reduces memory when casting, please keep that synchronized!!! */
@@ -10739,6 +10741,7 @@ rerollX:
 
 		if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) cyanwillgodown = FALSE;
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
+		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
 
 		if (!PlayerCannotUseSkills && spellmemorize(spell) && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 
@@ -12279,6 +12282,9 @@ int spell;
 	if (uarmc && uarmc->oartifact == ART_CASTEASY) chance += 5;
 	if (uwep && uwep->oartifact == ART_INFASPEL) chance += 5;
 	if (uarmg && uarmg->oartifact == ART_HOGWILD_WIZ) chance += 10;
+	if (bmwride(ART_ZIN_BA)) chance += 10;
+	if (uarmg && uarmg->oartifact == ART_WAND_INTO_SPELL) chance += 10;
+	if (uarmc && uarmc->oartifact == ART_SHROUD) chance += 10;
 	if (have_magicrystal()) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
 
@@ -12738,6 +12744,7 @@ int spell;
 	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;
 	if (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) chance += 20;
 	if (uarmg && uarmg->oartifact == ART_HOGWILD_WIZ) chance += 5;
+	if (uarmg && uarmg->oartifact == ART_WAND_INTO_SPELL) chance += 10;
 	if (have_magicrystal()) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
 
