@@ -14977,6 +14977,16 @@ callingoutdone:
 
 			break;
 
+		case FUCK_OVER_TRAP:
+
+			pline("A pink light surrounds you...");
+			seetrap(trap);
+
+			incr_itimeout(&HFuckOverEffect, rnd(10) + rnd(monster_difficulty() * 200) );
+			You("are gonna get fucked over!");
+
+			break;
+
 		case BURDEN_TRAP:
 
 			pline("A gray light surrounds you...");
@@ -21735,6 +21745,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case DEBT_TRAP:
 		case INVERSION_TRAP:
 		case WINCE_TRAP:
+		case FUCK_OVER_TRAP:
 		case U_HAVE_BEEN_TRAP:
 
 		case PERSISTENT_FART_TRAP:
@@ -25436,6 +25447,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == DEBT_TRAP) chance = 10;
 	if (ttmp->ttyp == INVERSION_TRAP) chance = 12;
 	if (ttmp->ttyp == WINCE_TRAP) chance = 10;
+	if (ttmp->ttyp == FUCK_OVER_TRAP) chance = 20;
 	if (ttmp->ttyp == BURDEN_TRAP) chance = 20;
 	if (ttmp->ttyp == MAGIC_VACUUM_TRAP) chance = 16;
 	if (ttmp->ttyp == ALIGNMENT_TRASH_TRAP) chance = 20;
@@ -26080,6 +26092,8 @@ struct trap *ttmp;
 			multiplier = 6; break;
 		case WINCE_TRAP:
 			multiplier = 6; break;
+		case FUCK_OVER_TRAP:
+			multiplier = 10; break;
 		case MAGIC_VACUUM_TRAP:
 			multiplier = 9; break;
 		case BURDEN_TRAP:
@@ -27007,6 +27021,7 @@ boolean force;
 			case TENTH_TRAP:
 			case DEBT_TRAP:
 			case INVERSION_TRAP:
+			case FUCK_OVER_TRAP:
 			case WINCE_TRAP:
 			case BURDEN_TRAP:
 			case MAGIC_VACUUM_TRAP:

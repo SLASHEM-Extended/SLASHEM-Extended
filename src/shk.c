@@ -3934,6 +3934,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != DEBT_TRAP
 				&& ttmp->ttyp != INVERSION_TRAP
 				&& ttmp->ttyp != WINCE_TRAP
+				&& ttmp->ttyp != FUCK_OVER_TRAP
 				&& ttmp->ttyp != U_HAVE_BEEN_TRAP
 				&& ttmp->ttyp != PERSISTENT_FART_TRAP
 				&& ttmp->ttyp != ATTACKING_HEEL_TRAP

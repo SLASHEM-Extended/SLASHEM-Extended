@@ -2427,6 +2427,7 @@ dospinweb()
 		case DEBT_TRAP:
 		case INVERSION_TRAP:
 		case WINCE_TRAP:
+		case FUCK_OVER_TRAP:
 		case U_HAVE_BEEN_TRAP:
 		case PERSISTENT_FART_TRAP:
 		case ATTACKING_HEEL_TRAP:

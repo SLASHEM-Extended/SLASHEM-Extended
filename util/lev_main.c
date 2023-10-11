@@ -881,6 +881,8 @@ static struct {
 	{ "lara", LARA_TRAP },
 	{ "rhea", RHEA_TRAP },
 
+	{ "fuck over", FUCK_OVER_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

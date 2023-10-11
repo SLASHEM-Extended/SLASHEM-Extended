@@ -821,6 +821,8 @@ extern struct trap *ftrap;
 #define RHEA_TRAP	722
 #define LARA_TRAP	723
 
+#define FUCK_OVER_TRAP 724
+
 /* todo area
 
 normal ones:
@@ -918,8 +920,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	724
+#define TIMERUN_TRAP	725
 
-#define TRAPNUM 725
+#define TRAPNUM 726
 
 #endif /* TRAP_H */

@@ -2371,7 +2371,7 @@ badeffect()
 
 	u.cnd_badeffectcount++;
 
-	switch (rnd(514)) {
+	switch (rnd(515)) {
 
 		case 1:
 		case 2:
@@ -3955,6 +3955,11 @@ newoffmon:
 			make_magicvacuum(HMagicVacuum + rnz(1500));
 			break;
 
+		case 515:
+			incr_itimeout(&HFuckOverEffect, rnz(5000) );
+			You("are gonna get fucked over!");
+			break;
+
 		default:
 			break;
 	}
@@ -4020,7 +4025,7 @@ reallybadeffect()
 
 	u.cnd_reallybadeffectcount++;
 
-	switch (rnd(126)) {
+	switch (rnd(127)) {
 
 		case 1:
 		if (FunnyHallu) You_feel("rather trippy.");
@@ -5214,6 +5219,10 @@ newoffmonX:
 			make_magicvacuum(HMagicVacuum + rnz(1500));
 			break;
 
+		case 127:
+			incr_itimeout(&HFuckOverEffect, rnz(5000) );
+			You("are gonna get fucked over!");
+			break;
 
 		default:
 		break;
