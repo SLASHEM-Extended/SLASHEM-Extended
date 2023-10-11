@@ -3316,6 +3316,11 @@ boolean guaranteed;
 		enl_msg("Items ", "are more likely to be generated cursed by", "were more likely to be generated cursed by", buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1) ) {
+		sprintf(buf, " %d", u.monstermultiplier);
+		enl_msg("Monster spawn rate ", "multiplier is currently", "multiplier was currently", buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { sprintf(buf, " %d", nartifact_exist() );
 		enl_msg("Number of artifacts generated ", "is", "was", buf);
 	}
@@ -8231,6 +8236,9 @@ int final;
 		sprintf(buf, " %d%%", u.genericcursechance);
 		dump("  Items were more likely to be generated cursed by", buf);
 	}
+
+	sprintf(buf, " %d", u.monstermultiplier);
+	dump("  Monster spawn rate multiplier was currently", buf);
 
 	sprintf(buf, " %d", nartifact_exist() );
 	dump("  Number of artifacts generated was ", buf);

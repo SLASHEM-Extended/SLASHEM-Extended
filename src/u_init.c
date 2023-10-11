@@ -11277,6 +11277,17 @@ u_init()
 
 	u.pract_procrastinatetimer = rn1(500000, 500000);
 
+	u.monstermultiplier = 100;
+	if (rn2(3)) {
+		if (rn2(2)) {
+			while (rn2(6)) u.monstermultiplier--;
+		} else {
+			while (rn2(6)) u.monstermultiplier++;
+		}
+	}
+	if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */
+	if (u.monstermultiplier > 190) u.monstermultiplier = 190;
+
 	u.drippingtread = 0;
 	u.drippingtreadtype = 0;
 	u.geolysis = 0;
@@ -11368,6 +11379,7 @@ u_init()
 	u.moneydebt = 0;
 	u.havebeeninludios = 0;
 	u.maxrndmonstchoicecount = 0;
+
 	u.coronations = 0;
 	u.inasuppression = 0;
 	u.conclusiocount = 0;
@@ -33636,6 +33648,17 @@ int realityflag;
 	}
 
 	u.pract_procrastinatetimer = rn1(500000, 500000);
+
+	u.monstermultiplier = 100;
+	if (rn2(3)) {
+		if (rn2(2)) {
+			while (rn2(6)) u.monstermultiplier--;
+		} else {
+			while (rn2(6)) u.monstermultiplier++;
+		}
+	}
+	if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */
+	if (u.monstermultiplier > 190) u.monstermultiplier = 190;
 
 	reset_nastinator();
 

@@ -284,6 +284,9 @@ moveloop()
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
+			monclock *= (10000 / u.monstermultiplier); /* values from 52 to 1000 */
+			monclock /= 100;
+
 			if (verisiertEffect || u.uprops[VERISIERTEFFECT].extrinsic || autismweaponcheck(ART_HOL_ON_MAN) || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || autismweaponcheck(ART_UPGRADED_LEMURE) || have_verisiertstone()) monclock /= 5;
 			if (uarmf && uarmf->oartifact == ART_BLACK_DIAMOND_ICON) monclock /= 4; /* stacks with the above */
 			if (ishaxor) monclock /= 2;
@@ -326,6 +329,9 @@ moveloop()
 			/* make sure we don't fall off the bottom */
 			if (xtraclock < 100000 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 100000; }
 			if (xtraclock < 60000) { xtraclock = 60000; }
+
+			xtraclock *= (10000 / u.monstermultiplier); /* values from 52 to 1000 */
+			xtraclock /= 100;
 
 			if (u.sterilized) xtraclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
@@ -3504,6 +3510,19 @@ moveloop()
 
 		if (uarmc && uarmc->oartifact == ART_REALLY_FIND_EM && !rn2(2000)) {
 			object_detect((struct obj *)0, 0);
+		}
+
+		if (!rn2(5000)) {
+			u.monstermultiplier = 100;
+			if (rn2(3)) {
+				if (rn2(2)) {
+					while (rn2(6)) u.monstermultiplier--;
+				} else {
+					while (rn2(6)) u.monstermultiplier++;
+				}
+			}
+			if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */
+			if (u.monstermultiplier > 190) u.monstermultiplier = 190;
 		}
 
 		if (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF && !uarmu->cursed && !rn2(1000)) curse(uarmu);
