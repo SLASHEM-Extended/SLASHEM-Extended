@@ -677,7 +677,7 @@ nh_timeout()
 	}
 	if (u.evilvartemporary < 0) u.evilvartemporary = 0; /* fail safe */
 
-	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !autismweaponcheck(ART_SACRIFICE_TONFA) && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2((have_intrinsiclossstone() == 2) ? 200 : 1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
@@ -731,6 +731,11 @@ nh_timeout()
 		u.combatcommand--;
 		if (u.combatcommand < 0) u.combatcommand = 0;
 		if (!(u.combatcommand)) pline("The effect of your combat command has ended.");
+	}
+
+	if (u.repunishcounter) {
+		u.repunishcounter--;
+		if (u.repunishcounter < 0) u.repunishcounter = 0;
 	}
 
 	if (u.magicshield) {
@@ -2671,8 +2676,10 @@ nh_timeout()
 
 	/* Nymph race randomly gets punished --Amy */
 	if (!rn2(2000) && Race_if(PM_NYMPH)) {
-			punishx();
+		punishx();
 	}
+
+	if (!rn2(1000) && u.repunishcounter && !Punished) punishx();
 
 	if (have_sleepstone() && !rn2(200)) {
 	    fall_asleep(-rnd(10), TRUE);
@@ -2693,6 +2700,14 @@ nh_timeout()
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
 	if (!rn2(500) && BloodLossProblem) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
+	if (!rn2(500) && uwep && uwep->oartifact == ART_SACRIFICE_TONFA) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
+	if (!rn2(500) && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
@@ -2888,6 +2903,22 @@ nh_timeout()
 		u.uenmax -= 1;
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
+	if (!rn2(2500) && uwep && uwep->oartifact == ART_SACRIFICE_TONFA) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
+	if (!rn2(2500) && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
 	if (!rn2(2500) && have_bloodlossstone() ) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;
@@ -2958,6 +2989,14 @@ nh_timeout()
 		u.legscratching++;
 	}
 	if (!rn2(7500) && u.twoweap && uswapwep && uswapwep->oartifact == ART_SCALPEL_OF_THE_BLOODLETTER) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && uwep && uwep->oartifact == ART_SACRIFICE_TONFA) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}

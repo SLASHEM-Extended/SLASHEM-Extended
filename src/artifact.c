@@ -435,9 +435,11 @@ init_randarts()
 	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
 	artilist[ART_PHILOSOPHER_S_STONE].otyp = randartfeminismjewel();
 	artilist[ART_VAPER_BAPER].otyp = randartball();
+	artilist[ART_DOCKEM_GOOD].otyp = randartball();
 	artilist[ART_ARABELLA_S_THINNER].otyp = randartball();
 	artilist[ART_YES_OCCIFER].otyp = randartchain();
 	artilist[ART_STREEEEEAM].otyp = randartchain();
+	artilist[ART_DON_T_GO_AWAY].otyp = randartchain();
 	artilist[ART_TSCHEND_FOR_ETERNITY].otyp = randartchain();
 	artilist[ART_CHAINS_OF_MALCANTHET].otyp = randartchain();
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
@@ -1855,6 +1857,9 @@ register boolean mod;
 			otmp->oinvis = TRUE;
 		    }
 		    if (otmp && otmp->oartifact == ART_DAT_S_GOD) {
+			otmp->oerodeproof = TRUE;
+		    }
+		    if (otmp && otmp->oartifact == ART_DON_T_GO_AWAY) {
 			otmp->oerodeproof = TRUE;
 		    }
 		    if (otmp && otmp->oartifact == ART_SUK_ME_HAHAHAHAHAH) {

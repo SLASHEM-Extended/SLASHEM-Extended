@@ -14907,6 +14907,13 @@ past4:
 		}
 	}
 
+	if (autismweaponcheck(ART_HOHO_RE_PUNISH_ME)) {
+		if (u.repunishcounter < 50000) u.repunishcounter = 50000;
+	}
+	if (uchain && uchain->oartifact == ART_HOHO_RE_PUNISH_ME) {
+		if (u.repunishcounter < 50000) u.repunishcounter = 50000;
+	}
+
 	if (Upolyd && youmonst.data == &mons[PM_SLITHER]) { /* laaaaaaaaaag! :D --Amy */
 		int lagamount = rno(10);
 		while (lagamount > 0) {
@@ -16461,6 +16468,9 @@ boolean new_game;	/* false => restoring an old game */
 
 	/* todo area */
 
+	obj_descr[SPE_LOOT_IMPROVEMENT].oc_name = "todo";
+	obj_descr[SPE_MYSTERY_PROTECTION].oc_name = "todo";
+
 	{
 
 	register int i;
@@ -17794,6 +17804,9 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_RESIST_CONTAMINATION].oc_name = "ifloslanishga qarshi turish";
 
 	/* todo area */
+
+	obj_descr[SPE_LOOT_IMPROVEMENT].oc_name = "todo";
+	obj_descr[SPE_MYSTERY_PROTECTION].oc_name = "todo";
 
 	{
 

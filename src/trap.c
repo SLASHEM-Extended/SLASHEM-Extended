@@ -27272,7 +27272,7 @@ boolean disarm;
 			   * being invalid once the chain is gone.
 			   * Deal with ball & chain right now instead.
 			   */
-			  if (Punished && !carried(uball) &&
+			  if (Punished && !(uchain && uchain->oartifact == ART_DON_T_GO_AWAY) && !(uball && uball->oartifact == ART_DOCKEM_GOOD) && !carried(uball) &&
 				((uchain->ox == u.ux && uchain->oy == u.uy) ||
 				 (uball->ox == u.ux && uball->oy == u.uy)))
 				unpunish();

@@ -6263,7 +6263,7 @@ aliasagain:
 		    }
 		}
 
-		if(Punished && !rn2(5)) {
+		if(Punished && !rn2(5) && !(uchain && uchain->oartifact == ART_DON_T_GO_AWAY) && !(uball && uball->oartifact == ART_DOCKEM_GOOD) ) {
 			rmcurseload += 200;
 			unpunish();
 		}
@@ -6369,7 +6369,7 @@ aliasagain:
 		    }
 		}
 
-		if(Punished && !confused) unpunish();
+		if(Punished && !confused && !(uchain && uchain->oartifact == ART_DON_T_GO_AWAY) && !(uball && uball->oartifact == ART_DOCKEM_GOOD)) unpunish();
 
 		update_inventory();
 
@@ -12135,9 +12135,11 @@ register struct obj	*sobj;
 		return;
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
-		pline("A ball and chain appears, then falls away.");
-		dropy(mkobj(BALL_CLASS, TRUE, FALSE));
-		return;
+		if (!Race_if(PM_NYMPH) && !u.repunishcounter) {
+			pline("A ball and chain appears, then falls away.");
+			dropy(mkobj(BALL_CLASS, TRUE, FALSE));
+			return;
+		}
 	}
 	setworn(mkobj(CHAIN_CLASS, TRUE, FALSE), W_CHAIN);
     if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==
@@ -12177,9 +12179,11 @@ punishx()
 		return;
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
-		pline("A ball and chain appears, then falls away.");
-		dropy(mkobj(BALL_CLASS, TRUE, FALSE));
-		return;
+		if (!Race_if(PM_NYMPH) && !u.repunishcounter) {
+			pline("A ball and chain appears, then falls away.");
+			dropy(mkobj(BALL_CLASS, TRUE, FALSE));
+			return;
+		}
 	}
 	setworn(mkobj(CHAIN_CLASS, TRUE, FALSE), W_CHAIN);
     if (((otmp = carrying(HEAVY_IRON_BALL)) != 0) &&(otmp->oartifact ==

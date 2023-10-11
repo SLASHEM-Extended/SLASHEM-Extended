@@ -19266,6 +19266,12 @@ register int n;
 		return;
 	}
 
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {
+		n = 0;
+		Your("tonfa nullifies the damage!");
+		return;
+	}
+
 	if (uarm && uarm->oartifact == ART_SUSA_MAIL && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("armor nullifies the damage!");

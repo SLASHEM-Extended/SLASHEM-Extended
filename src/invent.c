@@ -11505,6 +11505,8 @@ boolean knoweverything;
 				pline("Claw-class weapon that is rather ineffective versus small targets but does great damage versus large ones. It does bonus damage to fleeing monsters, as well as those that have been prevented from acting."); break;
 			case BELL_CLAWS:
 				pline("These claws aren't very effective if the target is large, but they're surprisingly useful against small ones. Like all claw-class weapons, it's especially good versus fleeing or paralyzed targets."); break;
+			case TONFA:
+				pline("A claw-class weapon that deals low damage (lower than the basic qatar even) but gives significant damage, to-hit and AC bonus if you're dual-wielding with it in the secondary weapon slot."); break;
 			case CAMO_QATAR:
 				pline("A claw that is made of a random material. Its damage output is average. Paralyze your target first or make it turn to flee, and it'll deal even more damage."); break;
 			case AMBUSH_QATAR:
@@ -18083,7 +18085,10 @@ boolean knoweverything;
 				pline("Casting this spell recalculates your attributes and may also change your experience level."); break;
 			case SPE_HOLY_SHIELD:
 				pline("For the duration of this spell, your shield has a higher chance of blocking attacks."); break;
-
+			case SPE_LOOT_IMPROVEMENT:
+				pline("Lasts for only a short while, and improves your chance of finding magical items when cast. If you're smart, you cast it just when you're about to perform an action that generates a bunch of new items."); break;
+			case SPE_MYSTERY_PROTECTION:
+				pline("This spell lasts for a short amount of time and grants mystery resistance while active."); break;
 			case SPE_FROST:
 				pline("Tries to slow down all monsters adjacent to you, but they can resist."); break;
 			case SPE_TRUE_SIGHT:
@@ -27569,6 +27574,22 @@ boolean knoweverything;
 					pline("Artifact specs: magic and mystery resistance when worn, and if your wielded weapon is made of copper you additionally have free action."); break;
 				case ART_GO_GASSI:
 					pline("Artifact specs: no specialties, zookeeper sacrifice gift."); break;
+				case ART_SABER_TONFA:
+					pline("Artifact specs: +6 damage, and if you're dual-wielding with this weapon in your secondary slot, also diminished bleeding and +5 dexterity."); break;
+				case ART_SACRIFICE_TONFA:
+					pline("Artifact specs: aggravate monster, teleportitis and blood loss when wielded, and if you're dual-wielding with this weapon in your secondary slot, also increased critical hit chance, +2 constitution, +5 wisdom, reflection, +5 melee damage and to-hit and 10 extra points of AC."); break;
+				case ART_SHIELD_TONFA:
+					pline("Artifact specs: +10 damage, and if you're dual-wielding with this weapon in your secondary slot, also 12 extra points of AC, +3 constitution, half physical damage and a chance to nullify incoming damage."); break;
+				case ART_SONIC_TONFA:
+					pline("Artifact specs: +2 to-hit and +10 damage, beheads enemies, and if you're dual-wielding with this weapon in your secondary slot, also 3 extra points of AC, mystery resistance and ultra fast speed."); break;
+				case ART_SMASH_TONFA:
+					pline("Artifact specs: +4 to-hit and +8 damage, and if you're dual-wielding with this weapon in your secondary slot, also +3 strength, 8 extra points of AC and improved attack speed."); break;
+				case ART_DON_T_GO_AWAY:
+					pline("Artifact specs: spawns erosionproof and if you were punished with this item, you'd not be able to unpunish yourself via remove curse."); break;
+				case ART_DOCKEM_GOOD:
+					pline("Artifact specs: +12 damage. If this is the ball that you're punished with, remove curse will not unpunish you."); break;
+				case ART_HOHO_RE_PUNISH_ME:
+					pline("Artifact specs: if you're punished with this chain or also if you wield it, you'll constantly be re-punished for a long while to come. And being whirly or amorphous etc. won't help."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -4316,7 +4316,7 @@ secureidchoice:
 		} else {
 		    You("liquify!");
 		if (Stoned) fix_petrification(); /* basically, you become an acid beam, and while I have absolutely no idea why acid would fix petrification in the first place, at least I'll make it consistent throughout the game. --Amy */
-		    if (Punished) {
+		    if (Punished && !u.repunishcounter) {
 			You("slip out of the iron chain.");
 			unpunish();
 		    }

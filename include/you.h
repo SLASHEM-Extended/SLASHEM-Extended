@@ -718,6 +718,7 @@ struct you {
 	boolean lamefarmer;	/* while this is true, newly generated monsters will have their equipment flagged as "doesn't drop" to reduce farming via e.g. create monster spells --Amy */
 
 	int superspecialspell;	/* for pagan poetry artifact: this spell is easier to cast */
+	int repunishcounter;	/* for "Hoho Re-Punish Me" artifact: while nonzero, you can be punished again */
 
 	/* Extra nastiness - nastinator race, but also other stuff uses this --Amy
 	 * timerun (keyword for my grepping) */

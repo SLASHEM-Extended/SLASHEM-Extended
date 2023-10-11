@@ -1109,6 +1109,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA && !rn2(20)) willcriticalhit = TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
 	/* end critical hit chance calculation */
@@ -1396,6 +1397,8 @@ struct monst *mon;
 			if (tmp > 100) tmp = 100;	/* objects[].oc_wldam */
 		}
 	}
+
+	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA && (otmp == uswapwep)) tmp += rnd(6);
 
 /*	Put weapon vs. monster type damage bonuses in below:	*/
 	if (Is_weapon || otmp->oclass == GEM_CLASS ||
@@ -3017,7 +3020,7 @@ static const NEARDATA short hwep[] = {
 	  STAR_ROD, RUNED_ROD, WEIGHTED_FLAIL, FLAIL, FLOGGER, CHAIN_AND_SICKLE, BULLWHIP, ASBESTOS_JAVELIN, STACK_JAVELIN,
 	  FIRE_STICK, TROUTSTAFF, FLINDBAR, QUARTERSTAFF, RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, FOAMY_STAFF,
 	  MASSAGER, INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, MACUAHUITL, PAPER_SWORD, QATAR, CLIMBING_STICK,
-	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD,
+	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD, TONFA,
 	  NATURAL_STICK, BONE_CLUB, CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR, CONUNDRUM_PICK,
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET, HEAVY_SPEAR,
 	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, JARED_STONE, KLIUSLING,

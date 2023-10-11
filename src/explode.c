@@ -722,6 +722,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		    damu = 0;
 		    Your("implant nullifies the damage!");
+		} else if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {
+		    damu = 0;
+		    Your("tonfa nullifies the damage!");
 		} else if (uarm && uarm->oartifact == ART_SUSA_MAIL && !rn2(10)) {
 		    damu = 0;
 		    Your("armor nullifies the damage!");

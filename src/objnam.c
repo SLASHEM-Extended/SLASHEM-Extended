@@ -4098,6 +4098,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ TANK_SADDLE, "todo" },
 	{ MESH_SADDLE, "todo" },
 	{ ADAMANT_LEASH, "todo" },
+	{ SPE_LOOT_IMPROVEMENT, "todo" },
+	{ SPE_MYSTERY_PROTECTION, "todo" },
+	{ TONFA, "todo" },
 
 	{0, "" }
 };
@@ -7355,6 +7358,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ TANK_SADDLE, "todo" },
 	{ MESH_SADDLE, "todo" },
 	{ ADAMANT_LEASH, "todo" },
+	{ SPE_LOOT_IMPROVEMENT, "todo" },
+	{ SPE_MYSTERY_PROTECTION, "todo" },
+	{ TONFA, "todo" },
 
 	{0, "" }
 };

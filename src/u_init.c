@@ -11373,6 +11373,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.repunishcounter = 0;
 	u.laratraptimer = 0;
 	u.knowofthecursetimer = 0;
 	u.missingstaircase = 0;

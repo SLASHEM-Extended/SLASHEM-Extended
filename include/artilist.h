@@ -14918,6 +14918,38 @@ A("Go Gassi",				ADAMANT_LEASH, /* no special effects */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ZOOKEEPER, NON_PM, 2000L ),
 
+A("Saber Tonfa",				TONFA, /* if it's in the secondary slot, diminished bleeding and +5 DEX */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sacrifice Tonfa",				TONFA, /* aggravate monster, teleportitis, blood loss; if it's in the secondary slot, 5% more critical hits, +2 CON, +5 WIS, reflection, +5 melee to-hit and damage and 10 extra points of AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Shield Tonfa",				TONFA, /* if it's in the secondary slot, 12 extra points of AC, +3 CON, half physical damage and 10% chance to nullify incoming damage */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Sonic Tonfa",				TONFA, /* if it's in the secondary slot, 3 extra points of AC, ultra fast speed and mystery resist */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	PHYS(2, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Smash Tonfa",				TONFA, /* if it's in the secondary slot, +3 STR, 8 extra points of AC and double attacks without the speed malus */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Don't Go Away",				IRON_CHAIN, /* randart iron chain, spawns erosionproof and if it's your punishment chain, uncurse() doesn't unpunish you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dockem Good",				HEAVY_IRON_BALL, /* randart heavy iron ball; if it's your punishment ball, uncurse() doesn't unpunish you */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Hoho Re-Punish Me",				IRON_CHAIN, /* while you're punished with it or also while you're wielding it, a counter is set to 50000 if it was lower and while the counter isn't zero yet, whenever you're not punished there's a 1 in 1000 chance for you to become punished. being whirly, amorphous or w/e does not prevent or stop punishment while the counter is nonzero */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

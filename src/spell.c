@@ -9576,6 +9576,33 @@ controlagain:
 			}
 		}
 		break;
+
+	case SPE_LOOT_IMPROVEMENT:
+		if(!(HMagicFindBonus & INTRINSIC)) {
+			You_feel("able to find magical items!");
+			incr_itimeout(&HMagicFindBonus, HMagicFindBonus ? rnd(5) : (10 + spell_damage_bonus(spellid(spell))) );
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+
+	case SPE_MYSTERY_PROTECTION:
+		if(!(HMysteryResist & INTRINSIC)) {
+			You_feel("protected from mysterious magic.");
+			incr_itimeout(&HMysteryResist, HMysteryResist ? (rnd(3) + spell_damage_bonus(spellid(spell))) : (rn1(33, 15) + spell_damage_bonus(spellid(spell))*3));
+		} else {
+			pline("%s", nothing_happens);	/* Already have as intrinsic */
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+		break;
+
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You_feel("healthy ..... for the moment at least.");

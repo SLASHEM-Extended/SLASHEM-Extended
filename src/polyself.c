@@ -1173,7 +1173,7 @@ int	mntmp;
 	    FunnyHallu ? pline("Fire all around you - how comfy!") : pline_The("lava now feels soothing.");
 	}
 	if (amorphous(youmonst.data) || is_whirly(youmonst.data) || unsolid(youmonst.data)) {
-	    if (Punished) {
+	    if (Punished && !(u.repunishcounter) ) {
 		You("slip out of the iron chain.");
 		unpunish();
 	    }

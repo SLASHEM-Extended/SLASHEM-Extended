@@ -912,6 +912,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 	if (bmwride(ART_ZIN_BA)) tmp += 4;
+	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) tmp += 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -1079,7 +1081,7 @@ register struct monst *mtmp;
 	/* Double and quad attacks gives extra attacks per round --Amy
 	 * This means you do all of your normal attacks two or four times. */
 	int attackamount = 0;
-	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) attackamount += rn2(2);
+	if (Double_attack || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) attackamount += rn2(2);
 	if (Quad_attack) attackamount += rn2(4); /* don't always give the full amount (balance reasons) --Amy */
 
 	/* whirlstaff technique... this is very powerful when polymorphed into a form with several other attacks --Amy */
@@ -3798,6 +3800,7 @@ int dieroll;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH) tmp += 1;
 		if (bmwride(ART_ZIN_BA)) tmp += 1;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {

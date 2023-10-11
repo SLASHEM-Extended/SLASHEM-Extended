@@ -5121,6 +5121,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		n = 0;
 		Your("implant nullifies the damage!");
+	} else if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {
+		n = 0;
+		Your("tonfa nullifies the damage!");
 	} else if (uarm && uarm->oartifact == ART_SUSA_MAIL && !rn2(10)) {
 		n = 0;
 		Your("armor nullifies the damage!");

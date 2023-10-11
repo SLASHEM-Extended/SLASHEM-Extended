@@ -6533,6 +6533,10 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) uac -= 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) uac -= 3;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
@@ -6576,6 +6580,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
+	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) uac -= 3;
 	if (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) uac -= 5;
 	if (uarm && uarm->oartifact == ART_STABLE_EXOSKELETON) uac -= 10;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) uac -= 10;

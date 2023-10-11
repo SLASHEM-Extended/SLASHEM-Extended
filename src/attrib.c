@@ -3073,6 +3073,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) tmp += 3;
 		if (uwep && uwep->oartifact == ART_NEEDLESSLY_MEAN) tmp += 4;
 		if (uarm && uarm->oartifact == ART_CLANGFRIEND) tmp += 3;
 		if (uwep && uwep->oartifact == ART_MONS_INFERNALIS_X_) tmp += 10;
@@ -3419,6 +3420,7 @@ int x;
 		if (x == A_INT && uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_GARBAGE_STAFF) tmp += 3;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
+		if (x == A_WIS && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
@@ -3480,6 +3482,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SABER_TONFA) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_IN_AWE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
@@ -3576,6 +3579,8 @@ int x;
 		if (uright && uright->otyp == RIN_GAIN_CONSTITUTION) tmp += uright->spe;
 		if (uwep && uwep->oartifact == ART_GARBAGE_STAFF) tmp += 3;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 2;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) tmp += 3;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;
