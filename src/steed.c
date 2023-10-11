@@ -36,6 +36,20 @@ int artid;
 
 }
 
+/* to check for your current steed's saddle, when looking for a specific base type of saddle --Amy */
+boolean
+opelride(saddleid)
+int saddleid;
+{
+	if (!u.usteed) return FALSE;
+
+	struct obj *osaeddle = which_armor(u.usteed, W_SADDLE);
+	if ((osaeddle = which_armor(u.usteed, W_SADDLE)) && osaeddle->otyp == saddleid) return TRUE;
+
+	return FALSE;
+
+}
+
 /* to check for some random monster's saddle, because we might be looking for a specific artifact --Amy */
 boolean
 mercedesride(artid, mtmp)
@@ -46,6 +60,21 @@ struct monst *mtmp;
 
 	struct obj *osaeddle = which_armor(mtmp, W_SADDLE);
 	if ((osaeddle = which_armor(mtmp, W_SADDLE)) && osaeddle->oartifact == artid) return TRUE;
+
+	return FALSE;
+
+}
+
+/* to check for some random monster's saddle, when looking for a specific base type of saddle --Amy */
+boolean
+fordride(saddleid, mtmp)
+int saddleid;
+struct monst *mtmp;
+{
+	if (!mtmp) return FALSE;
+
+	struct obj *osaeddle = which_armor(mtmp, W_SADDLE);
+	if ((osaeddle = which_armor(mtmp, W_SADDLE)) && osaeddle->otyp == saddleid) return TRUE;
 
 	return FALSE;
 

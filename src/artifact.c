@@ -516,6 +516,7 @@ init_randarts()
 	artilist[ART_IT_IS_COMPLETE_NOW].otyp = randartdragonscaleshield();
 	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
 	artilist[ART_ZIN_BA].otyp = randartsaddle();
+	artilist[ART_INFINITE_RANGE].otyp = randartleash();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
 	artilist[ART_UNBINDALL_CHEAT].otyp = randartcloakX();
@@ -788,6 +789,7 @@ init_randarts()
 	artilist[ART_TSCHAPSNAP].otyp = randartwhipX();
 	artilist[ART_NEEDLESSLY_MEAN].otyp = randartwhipX();
 	artilist[ART_MOUNT_BOND].otyp = randartsaddleX();
+	artilist[ART_ANNOYING_PET_MONITOR].otyp = randartleashX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
 

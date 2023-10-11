@@ -215,6 +215,8 @@ in_trouble()
 	    otmp = which_armor(u.usteed, W_SADDLE);
 	    if (Cursed_obj(otmp, LEATHER_SADDLE)) return TROUBLE_SADDLE;
 	    if (Cursed_obj(otmp, INKA_SADDLE)) return TROUBLE_SADDLE;
+	    if (Cursed_obj(otmp, TANK_SADDLE)) return TROUBLE_SADDLE;
+	    if (Cursed_obj(otmp, MESH_SADDLE)) return TROUBLE_SADDLE;
 	}
 
 	if (Blinded > 1 && haseyes(youmonst.data)) return(TROUBLE_BLIND);

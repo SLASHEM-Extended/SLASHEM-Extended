@@ -358,6 +358,10 @@ boolean on, silently;
 	    dismount_steed(DISMOUNT_FELL);
 	if (!on && mon == u.usteed && obj->otyp == INKA_SADDLE)
 	    dismount_steed(DISMOUNT_FELL);
+	if (!on && mon == u.usteed && obj->otyp == TANK_SADDLE)
+	    dismount_steed(DISMOUNT_FELL);
+	if (!on && mon == u.usteed && obj->otyp == MESH_SADDLE)
+	    dismount_steed(DISMOUNT_FELL);
 
     /* if couldn't see it but now can, or vice versa, update display */
     if (!silently && (unseen ^ !canseemon(mon)))
@@ -389,6 +393,10 @@ register struct monst *mon;
 			}			
 		}
 	}
+
+	if (fordride(TANK_SADDLE, mon)) base -= 5;
+
+	if (mercedesride(ART_DEATH_SQUAD_MOBILE, mon)) base -= 5;
 
 	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) ) base -= (10 + mon->m_lev);
 

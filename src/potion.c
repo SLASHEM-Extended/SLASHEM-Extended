@@ -1944,6 +1944,7 @@ playerextrinsicfreeaction()
 	if ((uarmu && uarmu->oartifact == ART_NUDE_AND_FREE && !uarm) || (uwep && uwep->oartifact == ART_MEANCANE) || (uwep && uwep->oartifact == ART_PERNICIOUS_GRID) || (!flags.female && uarmf && uarmf->oartifact == ART_BS_____) || (uarmc && uarmc->oartifact == ART_NOUROFIBROMA) || (uarmh && uarmh->oartifact == ART_LLLLLLLLLLLLLM) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || (uwep && uwep->oartifact == ART_PEEPLUE && FemtrapActiveJuen)) return TRUE;
 	if ((Role_if(PM_SINGSLAVE) && uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) || (uarmf && uarmf->oartifact == ART_UNFAIR_FIGHTING) || (uarms && uarms->oartifact == ART_LURTZ_S_WALL) || (uarms && uarms->oartifact == ART_BRASS_GUARD) || (uarmf && uarmf->oartifact == ART_ANASTASIA_S_GENTLENESS) || (uamul && uamul->oartifact == ART_PROTECTED_MODE_RUN_TIME) || (uwep && uwep->oartifact == ART_TECHCTION)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_HAMSTRUNG_FOUR_SURE) || (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) || (uarms && uarms->oartifact == ART_I_M_GETTING_HUNGRY) || (uarmh && uarmh->oartifact == ART_HEAD_W) || (uarm && uarm->oartifact == ART_ESSENTIALITY_EXTREME) || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmg && uarmg->oartifact == ART_FREE_ACTION_CALLED_FREE_AC) || (uarmc && uarmc->oartifact == ART_PREDATORY_STABILITY) || (uwep && uwep->oartifact == ART_IMMOBILASER)) return TRUE;
+	if ((uarm && uarm->oartifact == ART_OKAY__YOU_WIN_ && uwep && objects[(uwep)->otyp].oc_material == MT_COPPER) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FREE_FOR_ENOUGH) || (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) || (uarmf && uarmf->oartifact == ART_WAITING_TIMEOUT) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || tech_inuse(T_POWERFUL_AURA) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || (uwep && uwep->oartifact == ART_BLU_TOE) ) return TRUE;
 	if ((uarmg && uarmg->oartifact == ART_A_LITTLE_SUGAR) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarmu && uarmu->oartifact == ART_THEY_ALL_FEEL_FLEECY) || (uwep && uwep->oartifact == ART_YES_OCCIFER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GOOSCH_HIDARI) ) return TRUE;
 
@@ -5333,7 +5334,7 @@ goodeffect()
 					     obj->otyp == STONE_OF_MAGIC_RESISTANCE ||
 					     is_nastygraystone(obj) ||
 					     is_feminismstone(obj) ||
-					     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
+					     (obj->otyp == LEATHER_LEASH && obj->leashmon) || (obj->otyp == INKA_LEASH && obj->leashmon) || (obj->otyp == ADAMANT_LEASH && obj->leashmon) ) && !stack_too_big(obj) ) {
 						uncurse(obj, FALSE);
 					}
 
@@ -7015,6 +7016,12 @@ void
 statdrain()
 {
 	int statdrained = rn2(A_MAX);
+
+	if (uarm && uarm->oartifact == ART_CON_HOLD && statdrained == A_CON) {
+		Your("armor prevents the constitution drain!");
+		return;
+	}
+
 	if (ABASE(statdrained) < 2) {
 		Your("soul has been drained considerably!");
 		drain_alla(10);
@@ -12110,6 +12117,13 @@ peffects(otmp)
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 200;
 		if (Race_if(PM_RUSMOT)) u.uhunger += 100;
 		if (Role_if(PM_DRUNK)) u.uhunger += 100;
+
+		if (uarmc && uarmc->oartifact == ART_MOST_SCRAPPED_PERSON_IN_EX) {
+			set_itimeout(&HeavyConfusion, HConfusion);
+			u.uhunger += 100;
+			pline("*burp*");
+		}
+
 		newuhs(FALSE);
 		exercise(A_WIS, FALSE);
 		if(otmp->cursed && !Race_if(PM_RUSMOT)) {
@@ -15854,6 +15868,7 @@ boolean canarti;
 	    obj->otyp = otyp;
 	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
 	    remove_worn_item(obj, TRUE);
 	    obj->otyp = otyp2;
 	    obj->owornmask = owornmask;

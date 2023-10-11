@@ -2024,6 +2024,7 @@ void
 u_slow_down()
 {
 	if (uwep && uwep->oartifact == ART_DAEFAROTH) return; /* player is immune */
+	if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) return;
 
 	HFast = 0L;
 	if (!Fast) You("slow down.");
@@ -6834,6 +6835,8 @@ struct monst *mon;
 	armor = (mon == &youmonst) ? 0 : which_armor(mon, W_SADDLE);
 	if (armor && (armpro < objects[armor->otyp].a_can))
 	    armpro = objects[armor->otyp].a_can;
+	/* bleh, can't figure out where a_can is for a saddle, so I'm just hardwiring it, sue me :-P --Amy */
+	if (opelride(MESH_SADDLE) && armpro < 1) armpro = 1;
 
 	if (mon == &youmonst) {
 		if (uimplant && (armpro < objects[uimplant->otyp].a_can))
@@ -6864,6 +6867,7 @@ struct monst *mon;
 		if (Race_if(PM_INKA)) armpro++;
 		if (ACURR(A_CHA) >= 18) armpro++;
 		if (uimplant && uimplant->oartifact == ART_CANC___) armpro++;
+		if (bmwride(ART_EMS_BOOST)) armpro++;
 
 		if (MCReduction) {
 
@@ -20941,6 +20945,16 @@ register struct attack *mattk;
 
 	if (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) {
 		pline("%s is damaged by your thorny shield!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(5) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(5) ) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);

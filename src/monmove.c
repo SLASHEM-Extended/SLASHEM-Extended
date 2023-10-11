@@ -4401,7 +4401,7 @@ altarfound:
 		nx = poss[i].x;
 		ny = poss[i].y;
 
-		if (FeelerGauges || u.uprops[FEELER_GAUGES].extrinsic || have_feelergaugesstone() || autismweaponcheck(ART_BAT_FROM_BALTIMORE) ) appr = 1;
+		if (FeelerGauges || u.uprops[FEELER_GAUGES].extrinsic || have_feelergaugesstone() || (uarm && uarm->oartifact == ART_THEY_SOMEHOW_HAVE_A_RADAR) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) ) appr = 1;
 		if (Race_if(PM_BULDOZGAR) && !mtmp->mpeaceful && !mtmp->mtame) appr = 1;
 
 		if (appr != 0) {
@@ -4863,7 +4863,7 @@ struct monst *mtmp;
 		    obj->oclass != VENOM_CLASS &&
 		    typ != SACK && typ != BAG_OF_HOLDING &&
 		    typ != BAG_OF_TRICKS && !Is_candle(obj) &&
-		    typ != OILSKIN_SACK && typ != LEATHER_LEASH && typ != INKA_LEASH &&
+		    typ != OILSKIN_SACK && typ != LEATHER_LEASH && typ != INKA_LEASH && typ != ADAMANT_LEASH &&
 		    typ != STETHOSCOPE && typ != BLINDFOLD && typ != EYECLOSER && typ != DRAGON_EYEPATCH && typ != TOWEL &&
 		    typ != TIN_WHISTLE && typ != GRASS_WHISTLE && typ != MAGIC_WHISTLE &&
 		    typ != MAGIC_MARKER && typ != TIN_OPENER && typ != BUDO_NO_SASU &&

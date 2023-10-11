@@ -3389,6 +3389,7 @@ poly_obj(obj, id, degradation)
 		otmp->owornmask &= ~W_TOOL;
 	    if (obj->otyp == LEATHER_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj->otyp == INKA_LEASH && obj->leashmon) o_unleash(obj);
+	    if (obj->otyp == ADAMANT_LEASH && obj->leashmon) o_unleash(obj);
 	    if (obj_location == OBJ_INVENT) {
 		remove_worn_item(obj, TRUE);
 		setworn(otmp, otmp->owornmask);
@@ -3409,7 +3410,7 @@ poly_obj(obj, id, degradation)
 	else {
 	/* preserve the mask in case being used by something else */
 	otmp->owornmask = obj->owornmask;
-	    if (otmp->owornmask & W_SADDLE && otmp->otyp != LEATHER_SADDLE && otmp->otyp != INKA_SADDLE) {
+	    if (otmp->owornmask & W_SADDLE && otmp->otyp != LEATHER_SADDLE && otmp->otyp != INKA_SADDLE && otmp->otyp != TANK_SADDLE && otmp->otyp != MESH_SADDLE) {
 		struct monst *mtmp = obj->ocarry;
 		dismount_steed(DISMOUNT_THROWN);
 		otmp->owornmask &= ~W_SADDLE;
@@ -3501,6 +3502,7 @@ struct obj *obj, *otmp;
 {
 	int res = 1;	/* affected object by default */
 	xchar refresh_x, refresh_y;
+	int polyarmorobj; /* for polymorphing armor pieces into appropriate stuff for the slots --Amy */
 
 	if (obj->bypass) {
 		/* The bypass bit is currently only used as follows:
@@ -3816,9 +3818,9 @@ struct obj *obj, *otmp;
 		break;
 	case SPE_STONE_TO_FLESH:
 	case WAN_STONE_TO_FLESH:
+		/* Amy keyword: "materialeffect" for new lithic types that count as stone */
 		refresh_x = obj->ox; refresh_y = obj->oy;
-		if (objects[obj->otyp].oc_material != MT_MINERAL && objects[obj->otyp].oc_material != MT_TAR &&
-			objects[obj->otyp].oc_material != MT_GEMSTONE) {
+		if (objects[obj->otyp].oc_material != MT_MINERAL && objects[obj->otyp].oc_material != MT_TAR && objects[obj->otyp].oc_material != MT_GEMSTONE && objects[obj->otyp].oc_material != MT_BRICK && objects[obj->otyp].oc_material != MT_SAND && objects[obj->otyp].oc_material != MT_CONUNDRUM) {
 		    res = 0;
 		    break;
 		}
@@ -3908,6 +3910,36 @@ makecorpse:			if (mons[obj->corpsenm].geno &
 			obj = poly_obj(obj, MEAT_STICK, FALSE);
 			if (obj) obj->finalcancel = TRUE;
 			goto smell;
+		    case WEAPON_CLASS:
+			obj = poly_obj(obj, BROKEN_SWORD, FALSE);
+			/* yes, I know, it's weird that a bow or polearm would transform into a sword... --Amy */
+			if (obj) obj->finalcancel = TRUE;
+			goto smell;
+		    case ARMOR_CLASS:
+
+			switch (obj->otyp) {
+				case BROKEN_SHIELD:
+				case BROKEN_HELMET:
+				case BROKEN_BOOTS:
+				case RUSTED_GAUNTLETS:
+				case CRUMBLED_SHIRT:
+				case RIPPED_CLOAK:
+				case RUSTED_MAIL:
+					res = 0; return 0;
+				default:
+					polyarmorobj = RUSTED_MAIL;
+					if (is_shield(obj)) polyarmorobj = BROKEN_SHIELD;
+					else if (is_helmet(obj)) polyarmorobj = BROKEN_HELMET;
+					else if (is_boots(obj)) polyarmorobj = BROKEN_BOOTS;
+					else if (is_gloves(obj)) polyarmorobj = RUSTED_GAUNTLETS;
+					else if (is_shirt(obj)) polyarmorobj = CRUMBLED_SHIRT;
+					else if (is_cloak(obj)) polyarmorobj = RIPPED_CLOAK;
+					else if (is_suit(obj)) polyarmorobj = RUSTED_MAIL;
+					else impossible("what weird slot is the armor piece %d using???", obj->otyp);
+					obj = poly_obj(obj, polyarmorobj, FALSE);
+					if (obj) obj->finalcancel = TRUE;
+			}
+			goto smell;
 		    case GEM_CLASS:	/* rocks & gems */
 			obj = poly_obj(obj, MEATBALL, FALSE);
 			if (obj) obj->finalcancel = TRUE;
@@ -3919,8 +3951,6 @@ smell:
 			else
 			    Norep("You smell a delicious smell.");
 			break;
-		    case WEAPON_CLASS:	/* crysknife */
-		    	/* fall through */
 		    default:
 			res = 0;
 			break;

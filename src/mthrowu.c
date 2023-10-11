@@ -115,6 +115,9 @@ const char *name;	/* if null, then format `obj' */
 		case BARRIER_SHIELD:
 			shieldblockrate = 30;
 			break;
+		case BROKEN_SHIELD:
+			shieldblockrate = 0;
+			break;
 		case TROLL_SHIELD:
 		case MAGICAL_SHIELD:
 		case SPECIAL_SHIELD:
@@ -160,6 +163,7 @@ const char *name;	/* if null, then format `obj' */
 		case RAPIRAPI:
 		case TEZ_SHIELD:
 		case HIDE_SHIELD:
+		case GOLDEN_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:
@@ -308,6 +312,7 @@ const char *name;	/* if null, then format `obj' */
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) shieldblockrate = 0;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) shieldblockrate = 0;
+		if (uarms && uarms->otyp == BROKEN_SHIELD) shieldblockrate = 0;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -1245,6 +1250,9 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case BARRIER_SHIELD:
 				shieldblockrate = 40;
 				break;
+			case BROKEN_SHIELD:
+				shieldblockrate = 0;
+				break;
 			case TROLL_SHIELD:
 			case MAGICAL_SHIELD:
 			case SPECIAL_SHIELD:
@@ -1290,6 +1298,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 			case RAPIRAPI:
 			case TEZ_SHIELD:
 			case HIDE_SHIELD:
+			case GOLDEN_SHIELD:
 				shieldblockrate = 45;
 				break;
 			case SHIELD_OF_REFLECTION:
@@ -1376,6 +1385,8 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 
 		if (shieldblockrate && (blocker->spe > 0)) shieldblockrate += (blocker->spe * 2);
 		if (blocker->blessed) shieldblockrate += 5;
+
+		if (blocker->otyp == BROKEN_SHIELD) shieldblockrate = 0;
 
 		if (rnd(100) < shieldblockrate) {
 			    if (!ismimic) {

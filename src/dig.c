@@ -2123,6 +2123,9 @@ bury_an_obj(otmp)
 	if (otmp->otyp == INKA_LEASH && otmp->leashmon != 0)
 		o_unleash(otmp);
 
+	if (otmp->otyp == ADAMANT_LEASH && otmp->leashmon != 0)
+		o_unleash(otmp);
+
 	if (otmp == usaddle)
 		dismount_steed(DISMOUNT_GENERIC);
 

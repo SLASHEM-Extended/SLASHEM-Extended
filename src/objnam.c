@@ -4081,11 +4081,23 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AMULET_OF_THIRD_CHANCE, "todo" },
 	{ FLEURE, "todo" },
 	{ BROKEN_BOOTS, "todo" },
+	{ RIPPED_CLOAK, "todo" },
+	{ RUSTED_MAIL, "todo" },
+	{ RUSTED_GAUNTLETS, "todo" },
+	{ BROKEN_SHIELD, "todo" },
+	{ BROKEN_HELMET, "todo" },
+	{ CRUMBLED_SHIRT, "todo" },
 	{ OVER_SHOES, "todo" },
 	{ TANJA_SNEAKERS, "todo" },
 	{ SONJA_SNEAKERS, "todo" },
 	{ RHEA_LADY_PUMPS, "todo" },
 	{ LARA_COMBAT_BOOTS, "todo" },
+	{ BROKEN_SWORD, "todo" },
+	{ COPPER_PLATE_MAIL, "todo" },
+	{ GOLDEN_SHIELD, "todo" },
+	{ TANK_SADDLE, "todo" },
+	{ MESH_SADDLE, "todo" },
+	{ ADAMANT_LEASH, "todo" },
 
 	{0, "" }
 };
@@ -7326,11 +7338,23 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_THIRD_CHANCE, "todo" },
 	{ FLEURE, "todo" },
 	{ BROKEN_BOOTS, "todo" },
+	{ RIPPED_CLOAK, "todo" },
+	{ RUSTED_MAIL, "todo" },
+	{ RUSTED_GAUNTLETS, "todo" },
+	{ BROKEN_SHIELD, "todo" },
+	{ BROKEN_HELMET, "todo" },
+	{ CRUMBLED_SHIRT, "todo" },
 	{ OVER_SHOES, "todo" },
 	{ TANJA_SNEAKERS, "todo" },
 	{ SONJA_SNEAKERS, "todo" },
 	{ RHEA_LADY_PUMPS, "todo" },
 	{ LARA_COMBAT_BOOTS, "todo" },
+	{ BROKEN_SWORD, "todo" },
+	{ COPPER_PLATE_MAIL, "todo" },
+	{ GOLDEN_SHIELD, "todo" },
+	{ TANK_SADDLE, "todo" },
+	{ MESH_SADDLE, "todo" },
+	{ ADAMANT_LEASH, "todo" },
 
 	{0, "" }
 };
@@ -8394,6 +8418,10 @@ plus:
 			break;
 		}
 		if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
+			strcat(bp, " (in use)");
+			break;
+		}
+		if (obj->otyp == ADAMANT_LEASH && obj->leashmon != 0) {
 			strcat(bp, " (in use)");
 			break;
 		}

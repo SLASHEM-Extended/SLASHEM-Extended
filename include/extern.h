@@ -1043,6 +1043,9 @@ E struct obj *carrying(int);
 E struct obj *carryingarti(int);
 E struct obj *carryingappearance(int);
 E boolean itemsurvivedestruction(struct obj *, int);
+
+E boolean haveartileash(int);
+
 E boolean have_lizard(void);
 E boolean have_loadstone(void);
 E boolean have_pokeloadstone(void);
@@ -2981,6 +2984,8 @@ E int randartlightsaber(void);
 E int randartlightsaberX(void);
 E int randartsaddle(void);
 E int randartsaddleX(void);
+E int randartleash(void);
+E int randartleashX(void);
 E int randartlongsword(void);
 E int randartlongswordX(void);
 E int randartbroadsword(void);
@@ -3355,6 +3360,8 @@ E boolean confsteeddir(void);
 E boolean flysaddle(void);
 E boolean bmwride(int);
 E boolean mercedesride(int, struct monst *);
+E boolean opelride(int);
+E boolean fordride(int, struct monst *);
 E boolean dedicatedsteed(struct monst *);
 E boolean nogoodsteed(struct monst *);
 

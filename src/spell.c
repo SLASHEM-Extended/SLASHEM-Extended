@@ -7650,7 +7650,7 @@ whisperchoice:
 			     objC->otyp == STONE_OF_MAGIC_RESISTANCE ||
 			     is_nastygraystone(objC) ||
 			     is_feminismstone(objC) ||
-			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
+			     (objC->otyp == LEATHER_LEASH && objC->leashmon) || (objC->otyp == INKA_LEASH && objC->leashmon) || (objC->otyp == ADAMANT_LEASH && objC->leashmon) ) && !stack_too_big(objC) && !rn2(5) ) {
 			    	blessorcurse(objC, 2);
 			}
 		}

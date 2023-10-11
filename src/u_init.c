@@ -3367,6 +3367,10 @@ static struct trobj WarXtrT[] = {
 	{ GRAY_DRAGON_SCALES, 1, ARMOR_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
+static struct trobj WarXtrU[] = {
+	{ COPPER_PLATE_MAIL, 1, ARMOR_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
 
 
 /* race-based substitutions for initial inventory;
@@ -12387,7 +12391,7 @@ u_init()
 		skill_init(Skill_N);
 		break;
 	case PM_WARRIOR:
-		switch (rnd(20)) {   
+		switch (rnd(21)) {   
                     case 1: ini_inv(WarXtrA); break;
                     case 2: ini_inv(WarXtrB); break;
                     case 3: ini_inv(WarXtrC); break;
@@ -12408,6 +12412,7 @@ u_init()
                     case 18: ini_inv(WarXtrR); break;
                     case 19: ini_inv(WarXtrS); break;
                     case 20: ini_inv(WarXtrT); break;
+                    case 21: ini_inv(WarXtrU); break;
 		    default: break;
 		}
 		ini_inv(Warrior);
@@ -14612,7 +14617,7 @@ u_init()
 		if(!rn2(5)) ini_inv(Blindfold);
 		break;
 	case 62:
-		switch (rnd(20)) {   
+		switch (rnd(21)) {   
                     case 1: ini_inv(WarXtrA); break;
                     case 2: ini_inv(WarXtrB); break;
                     case 3: ini_inv(WarXtrC); break;
@@ -14633,6 +14638,7 @@ u_init()
                     case 18: ini_inv(WarXtrR); break;
                     case 19: ini_inv(WarXtrS); break;
                     case 20: ini_inv(WarXtrT); break;
+                    case 21: ini_inv(WarXtrU); break;
 		    default: break;
 		}
 		ini_inv(Warrior);
@@ -16328,7 +16334,7 @@ u_init()
 		if(!rn2(5)) ini_inv(Blindfold);
 		break;
 	case 62:
-		switch (rnd(20)) {   
+		switch (rnd(21)) {   
                     case 1: ini_inv(WarXtrA); break;
                     case 2: ini_inv(WarXtrB); break;
                     case 3: ini_inv(WarXtrC); break;
@@ -16349,6 +16355,7 @@ u_init()
                     case 18: ini_inv(WarXtrR); break;
                     case 19: ini_inv(WarXtrS); break;
                     case 20: ini_inv(WarXtrT); break;
+                    case 21: ini_inv(WarXtrU); break;
 		    default: break;
 		}
 		ini_inv(Warrior);
@@ -30970,6 +30977,9 @@ register struct trobj *trop;
             if (objX->otyp == FOAM_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == CRUMBLED_SHIRT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == CANDY_BRA && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -31191,6 +31201,9 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == FOAM_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == CRUMBLED_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == CANDY_BRA && !issoviet ) {

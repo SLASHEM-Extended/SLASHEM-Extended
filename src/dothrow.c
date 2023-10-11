@@ -3035,6 +3035,9 @@ evasionchancedone:
 			case BARRIER_SHIELD:
 				shieldblockrate = 40;
 				break;
+			case BROKEN_SHIELD:
+				shieldblockrate = 0;
+				break;
 			case TROLL_SHIELD:
 			case MAGICAL_SHIELD:
 			case SPECIAL_SHIELD:
@@ -3080,6 +3083,7 @@ evasionchancedone:
 			case RAPIRAPI:
 			case TEZ_SHIELD:
 			case HIDE_SHIELD:
+			case GOLDEN_SHIELD:
 				shieldblockrate = 45;
 				break;
 			case SHIELD_OF_REFLECTION:
@@ -3168,6 +3172,8 @@ evasionchancedone:
 		if (blocker->blessed) shieldblockrate += 5;
 
 		if (stupidrock && shieldblockrate) shieldblockrate *= 2;
+
+		if (blocker->otyp == BROKEN_SHIELD) tmp = 0;
 
 		if ((rnd(100) < shieldblockrate) && tmp > -50) {
 			tmp = -100;

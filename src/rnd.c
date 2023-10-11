@@ -2798,6 +2798,14 @@ randartsaddle()
 }
 
 int
+randartleash()
+{
+	int result;
+	result = rnd_class(LEATHER_LEASH, INKA_LEASH);
+	return result;
+}
+
+int
 randartpolearm()
 {
 	int result;
@@ -3320,6 +3328,14 @@ randartsaddleX()
 {
 	int result;
 	result = LEATHER_SADDLE + rn2((INKA_SADDLE + 1) - LEATHER_SADDLE);
+	return result;
+}
+
+int
+randartleashX()
+{
+	int result;
+	result = LEATHER_LEASH + rn2((INKA_LEASH + 1) - LEATHER_LEASH);
 	return result;
 }
 

@@ -1549,6 +1549,20 @@ have_invisoloadstone()
 }
 
 boolean
+haveartileash(artityp)
+int artityp;
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == artityp && otmp->leashmon != 0)
+			return(TRUE);
+		}
+	return(FALSE);
+
+}
+
+boolean
 have_spectrumplinggem()
 {
 	register struct obj *otmp;
@@ -10700,7 +10714,7 @@ struct obj *obj;
 			)) != 0L) return TRUE;
 	if (obj->oclass != TOOL_CLASS) return FALSE;
 	return (boolean)(obj == uwep || obj->lamplit ||
-				((obj->otyp == LEATHER_LEASH || obj->otyp == INKA_LEASH) && obj->leashmon));
+				((obj->otyp == LEATHER_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon));
 }
 
 int
@@ -11301,6 +11315,8 @@ boolean knoweverything;
 				pline("A short sword that conveys mystery resistance while wielded."); break;
 			case TRASH_SWORD:
 				pline("This short sword is made of a particularly bad material and doesn't deal much damage."); break;
+			case BROKEN_SWORD:
+				pline("A sword in two pieces. Using it as a weapon is about as effective as you'd expect, so you'd really be better off wielding some actual weapon. No, even if you enchant the broken sword to +7, it still won't deal meaningful damage."); break;
 			case PARRY_SWORD:
 				pline("A low-damage short sword that isn't very good for attacking, but if you're equipping two weapons and this sword is in your secondary slot, you can block projectiles with it."); break;
 			case SHORT_BLADE:
@@ -13103,6 +13119,8 @@ boolean knoweverything;
 				pline("A very heavy suit of armor that offers good protection."); break;
 			case BRONZE_PLATE_MAIL:
 				pline("This suit of armor is inferior to regular plate mail."); break;
+			case COPPER_PLATE_MAIL:
+				pline("It's the old bronze plate mail, now with better magic cancellation, so it might actually be worth using. Especially since it's made of copper, which can't rust."); break;
 			case SPLINT_MAIL:
 				pline("A robust suit of armor that offers good protection."); break;
 			case OLIHARCON_SPLINT_MAIL:
@@ -14197,6 +14215,8 @@ boolean knoweverything;
 				pline("A good shield that offers solid armor class."); break;
 			case STEEL_SHIELD:
 				pline("This metal shield can deflect lots of attacks."); break;
+			case GOLDEN_SHIELD:
+				pline("Pretty good shield with solid chance to block, but also really heavy."); break;
 			case METEORIC_STEEL_SHIELD:
 				pline("A lightweight shield that gives lots of armor class and chance to block."); break;
 			case CRYSTAL_SHIELD:
@@ -14340,6 +14360,18 @@ boolean knoweverything;
 				pline("A pair of boots that offers high armor class."); break;
 			case BROKEN_BOOTS:
 				pline("Useless. They don't give armor class, even when enchanted."); break;
+			case BROKEN_HELMET:
+				pline("A helmet that doesn't look too bad, but it's still broken and won't protect you. Enchanting it does not help."); break;
+			case BROKEN_SHIELD:
+				pline("This shield has shattered into three pieces, so it won't protect you from blows or missiles, even if you enchant it."); break;
+			case RUSTED_MAIL:
+				pline("Very heavy, and incredibly useless. This suit of armor provides no AC at all, and positive enchantment values don't change that fact."); break;
+			case RUSTED_GAUNTLETS:
+				pline("Well, you'd expect that a little rust wouldn't be so bad for a pair of gauntlets... but it means that no amount of positive enchantment value can make them give AC. Still good for handling cockatrice corpses, though."); break;
+			case RIPPED_CLOAK:
+				pline("Utterly useless, this cloak provides no protection at all. Don't bother enchanting it, because it still won't provide any protection."); break;
+			case CRUMBLED_SHIRT:
+				pline("This shirt is so torn that it won't provide armor class even if you enchant the hell out of it. And to top it off, it can't even be read anymore."); break;
 			case WEDGE_SANDALS:
 				pline("A lovely pair of high-heeled women's sandals that provides no protection but looks pretty."); break;
 			case DANCING_SHOES:
@@ -16481,12 +16513,18 @@ boolean knoweverything;
 				pline("Applying this at a tame monster may allow you to ride it. The more tame a monster is, the more likely you are to succeed in saddling it."); break;
 			case INKA_SADDLE: 
 				pline("This saddle allows for easy riding of tame monsters if you apply it. Careful: getting off your steed will have negative consequences."); break;
+			case TANK_SADDLE: 
+				pline("Use this saddle on a pet, and then you can ride it. Due to the heavy plating, it also improves the pet's AC by 5 points."); break;
+			case MESH_SADDLE: 
+				pline("Saddle your pet with this saddle in order to be able to ride it. This particular type of saddle provides MC1 while riding, just in case you're not wearing any MC-granting equipment."); break;
 			case UNSTABLE_STETHOSCOPE: 
 				pline("A stethoscope that occasionally reveals more information."); break;
 			case LEATHER_LEASH: 
 				pline("This tool can be applied at a tame monster to force it to follow you. Or that's what it *should* do, if pets weren't so goddamn stupid."); break;
 			case INKA_LEASH: 
 				pline("This tool can be applied at a tame monster to force it to follow you. If the pet falls behind, it attempts to teleport to you."); break;
+			case ADAMANT_LEASH: 
+				pline("This tool can be applied at a tame monster to force it to follow you. What's special about this type of leash is that a cursed one won't kill your pet by suffocation."); break;
 			case STETHOSCOPE: 
 				pline("This useful tool can be applied at monsters, objects and other things to find out more about them."); break;
 			case TINNING_KIT: 
@@ -27491,6 +27529,46 @@ boolean knoweverything;
 					pline("Artifact specs: very fast speed when wielded. If you were punished with this particular chain and also wield your punishment ball, you'd have very fast speed and a good additional speed bonus."); break;
 				case ART_GORMALER:
 					pline("Artifact specs: +5 to-hit and +8 damage, material becomes chrome when wielded, orange spells, long-lasting jil trap effect, and if you wield it for at least 1000 turns without putting it away, your melee attacks can sometimes put monsters to sleep (as long as you're not dual-wielding) but unwielding the ball resets that counter to zero."); break;
+				case ART_BEEEEEEEP:
+					pline("Artifact specs: -3 to-hit and damage in melee."); break;
+				case ART_MOST_SCRAPPED_PERSON_IN_EX:
+					pline("Artifact specs: -5 charisma and enmity trap when worn but if you quaff booze, it gives more nutrition and causes heavy confusion."); break;
+				case ART_RAT_PROBLEM:
+					pline("Artifact specs: causes rats to spawn more often when worn, and if you're at full health it grants infravision."); break;
+				case ART_THEY_SOMEHOW_HAVE_A_RADAR:
+					pline("Artifact specs: all monsters always beeline straight to you while you're wearing it."); break;
+				case ART_TINY_THREAD:
+					pline("Artifact specs: deactivates disintegration resistance and causes the enthumesis effect when worn."); break;
+				case ART_SOME_ATTRACTION:
+					pline("Artifact specs: causes metallivores to spawn more often when worn but actually gives 1 point of AC despite all the rust."); break;
+				case ART_ITS_NO_GOOD:
+					pline("Artifact specs: burdens you when worn."); break;
+				case ART_ROLLKABUDD:
+					pline("Artifact specs: causes you to fumble for a while but protects you from slowing attacks when worn."); break;
+				case ART_GONGDE_ERTAL:
+					pline("Artifact specs: mystery resistance and spellboost when worn."); break;
+				case ART_EMS_BOOST:
+					pline("Artifact specs: riding a steed that has this saddle equipped will boost your magic cancellation by one point."); break;
+				case ART_DEATH_SQUAD_MOBILE:
+					pline("Artifact specs: provides 5 extra points of AC to both you and your steed, as long as you're actually riding a steed with this saddle."); break;
+				case ART_PETCAMERA:
+					pline("Artifact specs: if you have a pet leashed to this one, all the leashed pets will always be displayed."); break;
+				case ART_INFINITE_RANGE:
+					pline("Artifact specs: doesn't snap loose or strangle your pet even if it gets very far away."); break;
+				case ART_ANNOYING_PET_MONITOR:
+					pline("Artifact specs: if you have a pet leashed to this one, all your pets are always seen no matter how far away they are, but things will also make annoying sound effects."); break;
+				case ART_CON_HOLD:
+					pline("Artifact specs: prevents your constitution from being drained, even from permanent stat damage effects."); break;
+				case ART_STACHEL_SATCHEL:
+					pline("Artifact specs: hannah trap effect, +2000 carry capacity and +500 maximum carry cap when worn and damages monsters who hit you in melee."); break;
+				case ART_MAKE_IT_ALL_CLOTHED:
+					pline("Artifact specs: sickness resistance when worn."); break;
+				case ART_FUNGIRADAR:
+					pline("Artifact specs: displays all fungi on the current level when worn."); break;
+				case ART_OKAY__YOU_WIN_:
+					pline("Artifact specs: magic and mystery resistance when worn, and if your wielded weapon is made of copper you additionally have free action."); break;
+				case ART_GO_GASSI:
+					pline("Artifact specs: no specialties, zookeeper sacrifice gift."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

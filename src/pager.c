@@ -572,6 +572,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mtmp->mtame)
 		    ways_seen++;
+		if (haveartileash(ART_ANNOYING_PET_MONITOR) && mtmp->mtame)
+		    ways_seen++;
 		if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame)
 		    ways_seen++;
 		if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN && mtmp->mtame)
@@ -581,6 +583,8 @@ lookat(x, y, buf, monbuf)
 		if (uwep && uwep->oartifact == ART_EGRID_BUG && mtmp->data->mlet == S_XAN)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS)
+		    ways_seen++;
+		if (uarm && uarm->oartifact == ART_FUNGIRADAR && mtmp->data->mlet == S_FUNGUS)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) )
 		    ways_seen++;
@@ -851,6 +855,10 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "pet view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
+		    if (haveartileash(ART_ANNOYING_PET_MONITOR) && mtmp->mtame) {
+			strcat(monbuf, "pet monitor");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
 		    if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame) {
 			strcat(monbuf, "petsense");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -869,6 +877,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS) {
 			strcat(monbuf, "fuyer brev");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarm && uarm->oartifact == ART_FUNGIRADAR && mtmp->data->mlet == S_FUNGUS) {
+			strcat(monbuf, "fungi radar");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mtmp->data->mlet == S_GOLEM || nonliving(mtmp->data) ) ) {

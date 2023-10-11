@@ -374,7 +374,7 @@ register struct monst *mtmp;
 			case 3: (void) mongets(mtmp, PARTIAL_PLATE_MAIL); break;
 			case 4: (void) mongets(mtmp, rn2(10) ? LEATHER_ARMOR : FULL_PLATE_MAIL); break;
 			case 5: (void) mongets(mtmp, CRYSTAL_PLATE_MAIL); break;
-			case 6: (void) mongets(mtmp, BRONZE_PLATE_MAIL); break;
+			case 6: (void) mongets(mtmp, rn2(5) ? BRONZE_PLATE_MAIL : COPPER_PLATE_MAIL); break;
 			case 7:
 			case 8: (void) mongets(mtmp, SPLINT_MAIL); break;
 			case 9:
@@ -1612,7 +1612,7 @@ register struct monst *mtmp;
 		  	  m_initthrow(mtmp, COPPER_RIFLE_BULLET, 25);
 		  	  m_initthrow(mtmp, COPPER_RIFLE_BULLET, 25);
 			  w2 = rn2(2) ? KNIFE : DAGGER;
-			  (void) mongets(mtmp, BRONZE_PLATE_MAIL);
+			  (void) mongets(mtmp, rn2(5) ? BRONZE_PLATE_MAIL : COPPER_PLATE_MAIL);
 			  break;
 			case PM_ARAB_SOLDIER:
 			  if (rn2(2)) {
@@ -28034,6 +28034,7 @@ loopback:
 		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_VAMPIRE) )) ct += 2;
 		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_WRAITH) )) ct += 2;
 		if (ct > 0 && (Is_chaotic_quest(&u.uz) && (ptr->mlet == S_ZOMBIE) )) ct += 2;
+		if (ct > 0 && (uarmh && uarmh->oartifact == ART_RAT_PROBLEM && (ptr->mlet == S_RODENT) )) ct += 10;
 		if (ct > 0 && (In_grund(&u.uz) && (ptr->mlet == S_ORC) )) ct += 5;
 		if (ct > 0 && (In_wyrm(&u.uz) && (ptr->mlet == S_DRAGON) )) ct += 5;
 		if (ct > 0 && (In_wyrm(&u.uz) && attacktype(ptr, AT_BREA) )) ct += 5;
@@ -28499,6 +28500,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_JANITOR) && !(ptr->mflags1 & M1_METALLIVORE) && !(ptr->mflags3 & M3_LITHIVORE) && !(ptr->mflags4 & M4_ORGANIVORE) )) ct += 5;
 		if (ct > 0 && (Role_if(PM_JANITOR) && dmgtype(ptr, AD_TRAP))) ct += 5;
 		if (ct > 0 && (Role_if(PM_JANITOR) && dmgtype(ptr, AD_WEBS))) ct += 3;
+		if (ct > 0 && (uarmg && uarmg->oartifact == ART_SOME_ATTRACTION && metallivorous(ptr))) ct += 5;
 		if (ct > 0 && (uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(ptr))) ct += 5;
 		if (ct > 0 && (uarm && uarm->oartifact == ART_KORHOLT && is_vanillamonster(ptr))) ct += 2;
 		if (ct > 0 && (uarm && uarm->oartifact == ART_KORHOLT && is_orc(ptr))) ct += 20;
@@ -30078,6 +30080,7 @@ int     spc;
 		if ((Role_if(PM_JANITOR) && !(mons[last].mflags1 & M1_METALLIVORE) && !(mons[last].mflags3 & M3_LITHIVORE) && !(mons[last].mflags4 & M4_ORGANIVORE) )) num += 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[last], AD_TRAP))) num += 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[last], AD_WEBS))) num += 3;
+		if ((uarmg && uarmg->oartifact == ART_SOME_ATTRACTION && metallivorous(&mons[last]))) num += 5;
 		if ((uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(&mons[last]))) num += 5;
 		if ((uarm && uarm->oartifact == ART_KORHOLT && is_vanillamonster(&mons[last]))) num += 2;
 		if ((uarm && uarm->oartifact == ART_KORHOLT && is_orc(&mons[last]))) num += 20;
@@ -31306,6 +31309,7 @@ int     spc;
 		if ((Role_if(PM_JANITOR) && !(mons[first].mflags1 & M1_METALLIVORE) && !(mons[first].mflags3 & M3_LITHIVORE) && !(mons[first].mflags4 & M4_ORGANIVORE) )) num -= 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[first], AD_TRAP))) num -= 5;
 		if ((Role_if(PM_JANITOR) && dmgtype(&mons[first], AD_WEBS))) num -= 3;
+		if ((uarmg && uarmg->oartifact == ART_SOME_ATTRACTION && metallivorous(&mons[first]))) num -= 5;
 		if ((uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(&mons[first]))) num -= 5;
 		if ((uarm && uarm->oartifact == ART_KORHOLT && is_vanillamonster(&mons[first]))) num -= 2;
 		if ((uarm && uarm->oartifact == ART_KORHOLT && is_orc(&mons[first]))) num -= 20;
@@ -32937,7 +32941,7 @@ register struct permonst *ptr;
 
 	if (Race_if(PM_RODNEYAN) && monsndx(ptr) == PM_RODNEY_S_SISTER) return TRUE;
 
-	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
+	if (EnmityBug || u.uprops[ENMITY_BUG].extrinsic || autismweaponcheck(ART_EMERALD_SWORD) || have_inimicalstone() || (uarmf && uarmf->oartifact == ART_HERSAY_PRICE) || (uarmc && uarmc->oartifact == ART_MOST_SCRAPPED_PERSON_IN_EX) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_TOMMY_S_DEFERRED_HEEL)) return FALSE;
 
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 	if (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && !rn2(2)) return FALSE;

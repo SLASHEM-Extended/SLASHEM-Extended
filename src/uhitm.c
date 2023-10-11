@@ -941,6 +941,8 @@ register struct monst *mtmp;
 	if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
 	if (uwep && uwep->oartifact == ART_HOW_IS_THE_CAR_ROWED) tmp -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_HOW_IS_THE_CAR_ROWED) tmp -= 6;
+	if (uwep && uwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -1649,6 +1651,8 @@ int dieroll;
 
 	objenchant = !thrown && no_obj || obj->spe < 0 ? 0 : obj->spe;
 
+	if (obj && obj->otyp == BROKEN_SWORD && objenchant > 0) objenchant = 0;
+
 	if (need_one(mon))    canhitmon = 1;
 	if (need_two(mon))    canhitmon = 2;
 	if (need_three(mon))  canhitmon = 3;
@@ -2236,7 +2240,7 @@ int dieroll;
 
 			}
 
-			if (obj && obj->spe > 0) tmp += obj->spe;
+			if (obj && obj->spe > 0 && obj->otyp != BROKEN_SWORD) tmp += obj->spe;
 
 			if (obj && obj->oartifact == ART_KLOBB && !rn2(10) && mon->mcanmove) {
 				mon->mfrozen = rnd(10);
@@ -3814,6 +3818,8 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 		if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
+		if (uwep && uwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

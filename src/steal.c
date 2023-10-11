@@ -490,6 +490,10 @@ gotobj:
 	    if (monkey_business && otmp->cursed) goto cant_take;
 	    o_unleash(otmp);
 	}
+	if (otmp->otyp == ADAMANT_LEASH && otmp->leashmon) {
+	    if (monkey_business && otmp->cursed) goto cant_take;
+	    o_unleash(otmp);
+	}
 
 	/* you're going to notice the theft... */
 	stop_occupation();

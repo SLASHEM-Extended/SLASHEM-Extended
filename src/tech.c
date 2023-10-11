@@ -6009,7 +6009,7 @@ resettechdone:
 				struct obj *usaddling;
 
 				pline("A saddle is created!");
-				usaddling = mksobj(rn2(2) ? LEATHER_SADDLE : INKA_SADDLE, TRUE, FALSE, FALSE);
+				usaddling = mksobj(rnd_class(LEATHER_SADDLE, INKA_SADDLE), TRUE, FALSE, FALSE);
 				if (usaddling) {
 					usaddling->quan = 1;
 					usaddling->known = usaddling->dknown = usaddling->bknown = usaddling->rknown = 1;

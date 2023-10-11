@@ -2192,6 +2192,9 @@ boolean invobj;
 	} else if (obj->otyp == INKA_LEASH && obj->leashmon != 0) {
 		pline("%s attached to your pet.", Tobjnam(obj, "are"));
 		return 0;
+	} else if (obj->otyp == ADAMANT_LEASH && obj->leashmon != 0) {
+		pline("%s attached to your pet.", Tobjnam(obj, "are"));
+		return 0;
 	} else if (obj == uwep) {
 		if (welded(obj)) {
 			weldmsg(obj);

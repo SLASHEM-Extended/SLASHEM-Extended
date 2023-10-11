@@ -14838,6 +14838,86 @@ A("Gormaler",				HEAVY_IRON_BALL, /* randart2 heavy iron ball, material becomes 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("BEEEEEEEP",				BROKEN_SWORD, /* -3 melee to-hit and damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Most Scrapped Person In Existence",				RIPPED_CLOAK, /* -5 charisma, quaffing booze gives +100 nutrition and causes heavy confusion, enmity trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Rat Problem",				BROKEN_HELMET, /* +10 spawn freq for S_RODENT; if you're at full health, you have infravision */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("They Somehow Have A Radar",				RUSTED_MAIL, /* feeler gauges effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("The Tiny Thread",				CRUMBLED_SHIRT, /* deactivates disintegration resistance, enthumesis effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Some Attraction",				RUSTED_GAUNTLETS, /* +5 spawn freq for metallivores, 1 extra point of AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Its No Good",				BROKEN_SHIELD, /* burden */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("RollKabudd",				BROKEN_BOOTS, /* fumble counter is always at least 1000, protects you from AD_SLOW */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Gongde Ertal",				GOLDEN_SHIELD, /* mystery resist, spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ems Boost",				MESH_SADDLE, /* +1 MC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Death Squad Mobile",				TANK_SADDLE, /* 5 extra points of AC for both you and the steed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Petcamera",				ADAMANT_LEASH, /* if this leash is in use, all leashed pets are always shown on screen */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Infinite Range",				LEATHER_LEASH, /* randart leash, a pet leashed to this one doesn't snap loose or choke no matter how far away it is */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Annoying Pet Monitor",				LEATHER_LEASH, /* randart2 leash; if this leash is in use, all pets are always shown on screen and you have the sound effect trap active */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Con Hold",				COPPER_PLATE_MAIL, /* prevents CON from being damaged, even for permanent stat damage effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Stachel Satchel",				COPPER_PLATE_MAIL, /* hannah trap effect, +2000 carry cap and +500 max carry cap, d5 thorns in melee */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Make It All Clothed",				COPPER_PLATE_MAIL, /* sickness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fungiradar",				COPPER_PLATE_MAIL, /* displays all F on the current level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Okay, you win.",				COPPER_PLATE_MAIL, /* mystery res, and if your weapon is made of copper you also have free action */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Go Gassi",				ADAMANT_LEASH, /* no special effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ZOOKEEPER, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

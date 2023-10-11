@@ -7277,6 +7277,7 @@ boolean guaranteed;
 		case RAPIRAPI:
 		case TEZ_SHIELD:
 		case HIDE_SHIELD:
+		case GOLDEN_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:
@@ -7357,6 +7358,11 @@ boolean guaranteed;
 			shieldblockrate = 33;
 			break;
 
+		case BROKEN_SHIELD:
+
+			shieldblockrate = 0;
+			break;
+
 		default: impossible("Unknown type of shield (%ld)", uarms->otyp);
 
 		}
@@ -7424,6 +7430,7 @@ boolean guaranteed;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) shieldblockrate = 0;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) shieldblockrate = 0;
+		if (uarms && uarms->otyp == BROKEN_SHIELD) shieldblockrate = 0;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 
@@ -12004,6 +12011,7 @@ int final;
 		case RAPIRAPI:
 		case TEZ_SHIELD:
 		case HIDE_SHIELD:
+		case GOLDEN_SHIELD:
 			shieldblockrate = 35;
 			break;
 		case SHIELD_OF_REFLECTION:
@@ -12084,6 +12092,11 @@ int final;
 			shieldblockrate = 33;
 			break;
 
+		case BROKEN_SHIELD:
+
+			shieldblockrate = 0;
+			break;
+
 		default: shieldblockrate = 0; /* we don't want to call impossible from here --Amy */
 
 		}
@@ -12151,6 +12164,7 @@ int final;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) shieldblockrate = 0;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) shieldblockrate = 0;
+		if (uarms && uarms->otyp == BROKEN_SHIELD) shieldblockrate = 0;
 
 		if (shieldblockrate < 0) shieldblockrate = 0;
 

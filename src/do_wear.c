@@ -1168,6 +1168,7 @@ Cloak_on()
 	case TROLL_HIDE:
 	case PLASTEEL_CLOAK:
 	case LORICATED_CLOAK:
+	case RIPPED_CLOAK:
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case CLOAK_OF_DRAIN_RESISTANCE:              
@@ -1850,6 +1851,7 @@ Cloak_off()
 	case LEO_NEMAEUS_HIDE:
 	case PLASTEEL_CLOAK:
 	case LORICATED_CLOAK:
+	case RIPPED_CLOAK:
 	case LEATHER_CLOAK:
 	case CLOAK_OF_WARMTH:
 	case CLOAK_OF_GROUNDING:
@@ -2165,6 +2167,7 @@ Helmet_on()
 	case CRYSTAL_HELM:
 	case DENTED_POT:
 	case BASINET:
+	case BROKEN_HELMET:
 	case ELVEN_LEATHER_HELM:
 	case ELVEN_HELM:
 	case WAR_HAT:
@@ -2611,6 +2614,7 @@ Helmet_off()
 	case HELM_OF_STEEL:
 	case DENTED_POT:
 	case BASINET:
+	case BROKEN_HELMET:
 	case ELVEN_LEATHER_HELM:
 	case ELVEN_HELM:
 	case WAR_HAT:
@@ -2802,6 +2806,7 @@ Gloves_on()
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
 	case ROCKET_GAUNTLETS:
+	case RUSTED_GAUNTLETS:
 	case REGULAR_GLOVES:
 	case GAUNTLETS_OF_STEEL:
 	case GAUNTLETS_OF_TYPING:
@@ -3137,6 +3142,7 @@ Gloves_off()
     switch(uarmg->otyp) {
 	case PLASTEEL_GLOVES:
 	case ROCKET_GAUNTLETS:
+	case RUSTED_GAUNTLETS:
 	case REGULAR_GLOVES:
 	case OILSKIN_GLOVES:
 	case GAUNTLETS_OF_STEEL:
@@ -3338,6 +3344,7 @@ Shield_on()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case GOLDEN_SHIELD:
 	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
 	case GRIM_SHIELD:
@@ -3355,6 +3362,7 @@ Shield_on()
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
+	case BROKEN_SHIELD:
 	case WEAPON_SIGN:
 	case TROLL_SHIELD:
 	case TARRIER:
@@ -3568,6 +3576,7 @@ Shield_off()
 	case DWARVISH_ROUNDSHIELD:
 	case LARGE_SHIELD:
 	case STEEL_SHIELD:
+	case GOLDEN_SHIELD:
 	case METEORIC_STEEL_SHIELD:
 	case CRYSTAL_SHIELD:
 	case GRIM_SHIELD:
@@ -3585,6 +3594,7 @@ Shield_off()
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
+	case BROKEN_SHIELD:
 	case WEAPON_SIGN:
 	case TROLL_SHIELD:
 	case CHROME_SHIELD:
@@ -6148,6 +6158,12 @@ struct obj *obj;
 	}
 
 	if (obj->otyp == BROKEN_BOOTS && armoringvalue > 0) armoringvalue = 0;
+	if (obj->otyp == RUSTED_MAIL && armoringvalue > 0) armoringvalue = 0;
+	if (obj->otyp == RIPPED_CLOAK && armoringvalue > 0) armoringvalue = 0;
+	if (obj->otyp == BROKEN_HELMET && armoringvalue > 0) armoringvalue = 0;
+	if (obj->otyp == RUSTED_GAUNTLETS && armoringvalue > 0) armoringvalue = 0;
+	if (obj->otyp == BROKEN_SHIELD && armoringvalue > 0) armoringvalue = 0;
+	if (obj->otyp == CRUMBLED_SHIRT && armoringvalue > 0) armoringvalue = 0;
 
 	return armoringvalue;
 
@@ -6597,6 +6613,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;
 	if (uarm && uarm->oartifact == ART_BRINGS_NOTHING) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SUSA_MAIL) uac -= 8;
+	if (uarmg && uarmg->oartifact == ART_SOME_ATTRACTION) uac -= 1;
 	if (uarm && uarm->oartifact == ART_BRINGS_WHICH) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DEMANDING_ENTRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DUEUEUEUET) uac += 5;
@@ -6605,6 +6622,7 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_OH_MAN_BORING) uac -= 1;
 	if (uarmf && uarmf->oartifact == ART_STERDYNES) uac -= 1;
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
+	if (bmwride(ART_DEATH_SQUAD_MOBILE)) uac -= 5;
 	if (FemtrapActivePatricia) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) uac -= 5;

@@ -3432,6 +3432,14 @@ moveloop()
 
 		if (have_appearanceshufflingstone() && !rn2(2000)) initobjectsamnesia();
 
+		if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) {
+			if (!u.fumbleduration) {
+				HFumbling = FROMOUTSIDE | rnd(5);
+				incr_itimeout(&HFumbling, rnd(20));
+				u.fumbleduration = 1000;
+			} else if (u.fumbleduration < 1000) u.fumbleduration = 1000;
+		}
+
 		if (uimplant && uimplant->oartifact == ART_DEAR_GOD__HELP_ME_) {
 			if (!rn2(powerfulimplants() ? 5000 : 15000)) {
 				if (u.ugangr > 0) {
@@ -16538,7 +16546,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vampiric cloak")) OBJ_DESCR(objects[i]) = "vampir plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral cloak")) OBJ_DESCR(objects[i]) = "pokhorony plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dragonhide cloak")) OBJ_DESCR(objects[i]) = "drakon'yey plashch";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ripped cloak")) OBJ_DESCR(objects[i]) = "razorval plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ripping cloak")) OBJ_DESCR(objects[i]) = "razorval plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal cloak")) OBJ_DESCR(objects[i]) = "metall plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "granite cloak")) OBJ_DESCR(objects[i]) = "granit plashch";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "asbestos cloak")) OBJ_DESCR(objects[i]) = "asbesta plashch";
@@ -17872,7 +17880,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vampiric cloak")) OBJ_DESCR(objects[i]) = "sindirishi plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "funeral cloak")) OBJ_DESCR(objects[i]) = "janoza plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dragonhide cloak")) OBJ_DESCR(objects[i]) = "ajdaho yashirish plash";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ripped cloak")) OBJ_DESCR(objects[i]) = "yirtilib plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ripping cloak")) OBJ_DESCR(objects[i]) = "yirtilib plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "metal cloak")) OBJ_DESCR(objects[i]) = "metall plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "granite cloak")) OBJ_DESCR(objects[i]) = "granit plash";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "asbestos cloak")) OBJ_DESCR(objects[i]) = "asbest plash";

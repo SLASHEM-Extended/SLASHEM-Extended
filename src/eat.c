@@ -6058,6 +6058,8 @@ eatspecial() /* called after eating non-food */
 		o_unleash(otmp);
 	else if (otmp->otyp == INKA_LEASH && otmp->leashmon)
 		o_unleash(otmp);
+	else if (otmp->otyp == ADAMANT_LEASH && otmp->leashmon)
+		o_unleash(otmp);
 
 	/* KMH -- idea by "Tommy the Terrorist" */
 	if ((otmp->otyp == TRIDENT) && !otmp->cursed && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) )

@@ -885,7 +885,7 @@ number_leashed()
 	register struct obj *obj;
 
 	for(obj = invent; obj; obj = obj->nobj)
-		if((obj->otyp == LEATHER_LEASH || obj->otyp == INKA_LEASH) && obj->leashmon != 0) i++;
+		if((obj->otyp == LEATHER_LEASH || obj->otyp == INKA_LEASH || obj->otyp == ADAMANT_LEASH) && obj->leashmon != 0) i++;
 	return(i);
 }
 
@@ -915,7 +915,7 @@ boolean feedback;
 		Your("leash falls slack.");
 	}
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) &&
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
 				otmp->leashmon == (int)mtmp->m_id)
 			otmp->leashmon = 0;
 	mtmp->mleashed = 0;
@@ -928,7 +928,7 @@ unleash_all()		/* player is about to die (for bones) */
 	register struct monst *mtmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj)
-		if(otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) otmp->leashmon = 0;
+		if(otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) otmp->leashmon = 0;
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 		mtmp->mleashed = 0;
 }
@@ -1045,7 +1045,7 @@ register struct monst *mtmp;
 
 	otmp = invent;
 	while(otmp) {
-		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) && otmp->leashmon == (int)mtmp->m_id)
+		if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) && otmp->leashmon == (int)mtmp->m_id)
 			return(otmp);
 		otmp = otmp->nobj;
 	}
@@ -1067,7 +1067,7 @@ next_to_u()
 			if (distu(mtmp->mx,mtmp->my) > 2) mnexto(mtmp);
 			if (distu(mtmp->mx,mtmp->my) > 2) {
 			    for(otmp = invent; otmp; otmp = otmp->nobj)
-				if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH) &&
+				if((otmp->otyp == LEATHER_LEASH || otmp->otyp == INKA_LEASH || otmp->otyp == ADAMANT_LEASH) &&
 					otmp->leashmon == (int)mtmp->m_id) {
 				    if(otmp->cursed) return(FALSE);
 				    You_feel("%s leash go slack.",
@@ -1092,9 +1092,10 @@ register xchar x, y;
 {
 	register struct obj *otmp;
 	register struct monst *mtmp;
+	int chokedamage = 2;
 
 	for (otmp = invent; otmp; otmp = otmp->nobj) {
-	    if ((otmp->otyp != LEATHER_LEASH && otmp->otyp != INKA_LEASH) || otmp->leashmon == 0) continue;
+	    if ((otmp->otyp != LEATHER_LEASH && otmp->otyp != INKA_LEASH && otmp->otyp != ADAMANT_LEASH) || otmp->leashmon == 0) continue;
 	    for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 		if (DEADMONSTER(mtmp)) continue;
 		if ((int)mtmp->m_id == otmp->leashmon) break; 
@@ -1104,13 +1105,17 @@ register xchar x, y;
 		otmp->leashmon = 0;
 		continue;
 	    }
-	    if (dist2(u.ux,u.uy,mtmp->mx,mtmp->my) >
-		    dist2(x,y,mtmp->mx,mtmp->my)) {
+
+	    if (otmp && otmp->otyp == INKA_LEASH) chokedamage = 20;
+
+	    if (dist2(u.ux,u.uy,mtmp->mx,mtmp->my) > dist2(x,y,mtmp->mx,mtmp->my)) {
 		if (!um_dist(mtmp->mx, mtmp->my, 3)) {
 		    ;	/* still close enough */
-		} else if (otmp->cursed && !breathless(mtmp->data) && (!mtmp->egotype_undead) ) {
+		} else if (otmp->oartifact == ART_INFINITE_RANGE) {
+			; /* doesn't snap or anything, no matter how far away the pet is */
+		} else if (otmp->cursed && otmp->otyp != ADAMANT_LEASH && !breathless(mtmp->data) && (!mtmp->egotype_undead) ) {
 		    if (um_dist(mtmp->mx, mtmp->my, 5) ||
-			    (mtmp->mhp -= rnd((otmp->otyp == LEATHER_LEASH ? 2 : 20))) <= 0) {
+			    (mtmp->mhp -= rnd(chokedamage)) <= 0) {
 			long save_pacifism = u.uconduct.killer;
 
 			Your("leash chokes %s to death!", mon_nam(mtmp));
@@ -1128,12 +1133,16 @@ register xchar x, y;
 		    }
 		} else {
 		    if (um_dist(mtmp->mx, mtmp->my, 5)) {
-			if (otmp->otyp == LEATHER_LEASH) {
+			if (otmp->otyp == LEATHER_LEASH || otmp->otyp == ADAMANT_LEASH) {
 				pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
 				m_unleash(mtmp, FALSE);
-			} else {
+			} else if (otmp->otyp == INKA_LEASH) {
 				pline("%s warps to you!", Monnam(mtmp));
 				mnexto(mtmp);
+			} else {
+				impossible("weird leash snapping effect %d", otmp->otyp);
+				pline("%s leash snaps loose!", s_suffix(Monnam(mtmp)));
+				m_unleash(mtmp, FALSE);
 			}
 		    } else {
 			You("pull on the leash.");
@@ -5639,10 +5648,13 @@ dyechoice:
 		break;
 	case LEATHER_LEASH:
 	case INKA_LEASH:
+	case ADAMANT_LEASH:
 		use_leash(obj);
 		break;
 	case LEATHER_SADDLE:
 	case INKA_SADDLE:
+	case TANK_SADDLE:
+	case MESH_SADDLE:
 		res = use_saddle(obj);
 		break;
 	case MAGIC_WHISTLE:

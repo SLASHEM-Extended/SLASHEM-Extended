@@ -7785,6 +7785,7 @@ xkilled(mtmp, dest)
 			/*if (mdat->msize < MZ_HUMAN && typ != FOOD_RATION
 			    && typ != LEATHER_LEASH
 			    && typ != INKA_LEASH
+			    && typ != ADAMANT_LEASH
 			    && typ != FIGURINE
 			    && (otmp->owt > 3 ||
 				objects[typ].oc_big oc_bimanual/oc_bulky ||

@@ -1802,6 +1802,11 @@ adjattrib(ndx, incr, msgflg, canresist)
 			return FALSE;
 		}
 
+		if (uarm && uarm->oartifact == ART_CON_HOLD && ndx == A_CON) {
+			Your("armor prevents the constitution drain!");
+			return FALSE;
+		}
+
 		int mithrilitemcount = 0;
 
 		if (uwep && objects[uwep->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
@@ -3342,6 +3347,7 @@ int x;
 		if (uarmh && uarmh->otyp == CORNUTHAUM && !Role_if(PM_WIZARD)) tmp -= 1;
 		if (uleft && uleft->oartifact == ART_SECOND_EXCHANGE) tmp -= 5;
 		if (uright && uright->oartifact == ART_SECOND_EXCHANGE) tmp -= 5;
+		if (uarmc && uarmc->oartifact == ART_MOST_SCRAPPED_PERSON_IN_EX) tmp -= 5;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);

@@ -1251,6 +1251,8 @@ newsym(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
+		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
@@ -1268,6 +1270,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
@@ -1376,6 +1379,8 @@ newsym(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
+		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
@@ -1393,6 +1398,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
@@ -1666,6 +1672,8 @@ newsymX(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
+		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
@@ -1683,6 +1691,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
@@ -1791,6 +1800,8 @@ newsymX(x,y)
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
+		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
+		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
@@ -1808,6 +1819,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
@@ -3768,6 +3780,8 @@ struct monst *mon;
 	if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) return TRUE;
 	if (have_maybrittclick() && is_jokemonster(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
+	if (haveartileash(ART_PETCAMERA) && mon->mleashed) return TRUE;
+	if (haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) return TRUE;
 	if (uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) return TRUE;
@@ -3784,6 +3798,7 @@ struct monst *mon;
 	if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) return TRUE;
+	if (uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) return TRUE;

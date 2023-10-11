@@ -250,7 +250,7 @@ struct monst *mon;
 	struct permonst *ptr = mon->data;
 	boolean Is_weapon = (otmp->oclass == WEAPON_CLASS || otmp->oclass == GEM_CLASS || otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS || is_weptool(otmp));
 
-	if (Is_weapon)
+	if (Is_weapon && !(otmp->otyp == BROKEN_SWORD && otmp->spe > 0) )
 		tmp += otmp->spe;
 
 /*	Put weapon specific "to hit" bonuses in below:		*/
@@ -787,7 +787,7 @@ struct monst *mon;
 			if(otmp->oartifact == ART_REAVER) tmp += d(1,8); break;
 	    }
 	}
-	if (Is_weapon) {
+	if (Is_weapon && !(otmp->otyp == BROKEN_SWORD && otmp->spe > 0) ) {
 		tmp += otmp->spe;
 		/* negative enchantment mustn't produce negative damage */
 		if (tmp < 0) tmp = 0;
@@ -1374,7 +1374,7 @@ struct monst *mon;
 	}
 	if (Is_weapon) {
 		if (InvertedState) tmp -= abs(otmp->spe);
-		else tmp += otmp->spe;
+		else if ((otmp->otyp != BROKEN_SWORD) || (otmp->spe < 0)) tmp += otmp->spe;
 		/* negative enchantment mustn't produce negative damage */
 		if (tmp < 0) tmp = 0;
 	}
@@ -3030,7 +3030,7 @@ static const NEARDATA short hwep[] = {
 	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, CERAMIC_KNIFE, BUBBLEHORN, EAGLE_BALL,
 	  COLLUSION_KNIFE, BITUKNIFE, VICTIM_KNIFE, UNKNOWN_KNIFE, ULTRA_KNUCKLES, PARRY_DAGGER,
 	  MEASURER, STILETTO, KNIFE, TORCH, WORM_TOOTH, OTAMA, CARDBOARD_FAN, GARBOWHIP,
-	  CLOTH_CHAIN, SUPER_KNUCKLES, BRASS_KNUCKLES
+	  CLOTH_CHAIN, SUPER_KNUCKLES, BRASS_KNUCKLES, BROKEN_SWORD
 };
 
 struct obj *
@@ -7751,6 +7751,8 @@ boolean extraskills;
 	 */
 	if (obj->otyp == LEATHER_SADDLE) skill = P_RIDING;
 	if (obj->otyp == INKA_SADDLE) skill = P_RIDING;
+	if (obj->otyp == TANK_SADDLE) skill = P_RIDING;
+	if (obj->otyp == MESH_SADDLE) skill = P_RIDING;
 
 	if (obj->otyp >= SMALL_SHIELD && obj->otyp <= SHIELD_OF_REFLECTION) skill = P_SHIELD;
 	if (obj->otyp >= PLATE_MAIL && obj->otyp <= YELLOW_DRAGON_SCALES) skill = P_BODY_ARMOR;
@@ -7772,6 +7774,7 @@ boolean extraskills;
 	if (obj->otyp == DARK_MAGIC_WHISTLE) skill = P_PETKEEPING;
 	if (obj->otyp == LEATHER_LEASH) skill = P_PETKEEPING;
 	if (obj->otyp == INKA_LEASH) skill = P_PETKEEPING;
+	if (obj->otyp == ADAMANT_LEASH) skill = P_PETKEEPING;
 	if (obj->otyp == FIGURINE) skill = P_PETKEEPING;
 	if (obj->otyp == WOODEN_FLUTE) skill = P_PETKEEPING;
 	if (obj->otyp == MAGIC_FLUTE) skill = P_PETKEEPING;

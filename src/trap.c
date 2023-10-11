@@ -7677,7 +7677,7 @@ newbossPENT:
 		    /* but at a cost.. */
 		    for (otemp = invent; otemp; otemp = onext) {
 			onext = otemp->nobj;
-			(void) bhito(otemp, pseudo);
+			if (!rn2(10)) (void) bhito(otemp, pseudo);
 			}
 		    /*
 		     * It is possible that we can now merge some inventory.
@@ -9902,6 +9902,8 @@ madnesseffect:
 		    recursive_mine = FALSE;
 		    saddle = sobj_at(LEATHER_SADDLE,u.ux, u.uy);
 		    if (!saddle) saddle = sobj_at(INKA_SADDLE,u.ux, u.uy);
+		    if (!saddle) saddle = sobj_at(TANK_SADDLE,u.ux, u.uy);
+		    if (!saddle) saddle = sobj_at(MESH_SADDLE,u.ux, u.uy);
 		    set_wounded_legs(LEFT_SIDE, HWounded_legs + rn1(35, 41));
 		    set_wounded_legs(RIGHT_SIDE, HWounded_legs + rn1(35, 41));
 		    exercise(A_DEX, FALSE);
