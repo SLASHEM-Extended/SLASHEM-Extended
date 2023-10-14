@@ -3673,8 +3673,8 @@ struct monst *magr, *mdef;
 	case PM_NINJA_GAIDEN:
 	case PM_NINJA:
 	case PM_SAMURAI:
-		if (obj->otyp == YA && mwep &&
-		    mwep->otyp == YUMI) multishot++;
+		if (obj->otyp == YA && mwep && mwep->otyp == YUMI) multishot++;
+		if (obj->otyp == FAR_EAST_ARROW && mwep && mwep->otyp == YUMI) multishot++;
 		break;
 	default:
 	    break;

@@ -5619,6 +5619,7 @@ dyechoice:
 		break;
 	case PICK_AXE:
 	case CONGLOMERATE_PICK:
+	case UNWIELDY_PICK:
 	case CONUNDRUM_PICK:
 	case SHOVEL:
 	case MYSTERY_PICK:

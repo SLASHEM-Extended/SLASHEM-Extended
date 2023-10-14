@@ -689,10 +689,11 @@ register char *enterstring;
 			 *pickB = carrying(CONGLOMERATE_PICK),
 			 *pickC = carrying(BRONZE_PICK),
 			 *pickD = carrying(BRICK_PICK),
-			 *pickH = carrying(MYSTERIOUS_PICK),
 			 *pickE = carrying(NANO_PICK),
 			 *pickF = carrying(MYSTERY_PICK),
 			 *pickG = carrying(CONUNDRUM_PICK),
+			 *pickH = carrying(MYSTERIOUS_PICK),
+			 *pickI = carrying(UNWIELDY_PICK),
 		       *mattock = carrying(DWARVISH_MATTOCK),
 		       *mattockB = carrying(SOFT_MATTOCK),
 			 *mattockC = carrying(ETERNIUM_MATTOCK);
@@ -733,8 +734,12 @@ register char *enterstring;
 			if (pickG->otyp == CONUNDRUM_PICK) ++cnt;
 		} else if (pickH) {
 		    tool = "mysterious pick";
-		    while ((pickG = pickG->nobj) != 0)
+		    while ((pickH = pickH->nobj) != 0)
 			if (pickH->otyp == MYSTERIOUS_PICK) ++cnt;
+		} else if (pickI) {
+		    tool = "unwieldy pick";
+		    while ((pickI = pickI->nobj) != 0)
+			if (pickI->otyp == UNWIELDY_PICK) ++cnt;
 		} else if (mattock) {
 		    tool = "mattock";
 		    while ((mattock = mattock->nobj) != 0)
@@ -764,7 +769,7 @@ register char *enterstring;
 	    verbalize("I don't sell to your kind here.");
 		should_block = TRUE;
 	    } else {
-		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(CONUNDRUM_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(MYSTERIOUS_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
+		should_block = (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(UNWIELDY_PICK, u.ux, u.uy) || sobj_at(CONUNDRUM_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(MYSTERIOUS_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
 				      sobj_at(DWARVISH_MATTOCK, u.ux, u.uy)));
 	    }
 	    if (should_block) (void) dochug(shkp);  /* shk gets extra move */
@@ -4587,9 +4592,9 @@ register struct monst *shkp;
 		} else {
 		    uondoor = (u.ux == eshkp->shd.x && u.uy == eshkp->shd.y);
 		    if(uondoor) {
-			badinv = (carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(MYSTERIOUS_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) ||
+			badinv = (carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(UNWIELDY_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(MYSTERIOUS_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) ||
             eshkp->pbanned ||
-				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(CONUNDRUM_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(MYSTERIOUS_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
+				  (Fast && (sobj_at(PICK_AXE, u.ux, u.uy) || sobj_at(CONGLOMERATE_PICK, u.ux, u.uy) || sobj_at(UNWIELDY_PICK, u.ux, u.uy) || sobj_at(CONUNDRUM_PICK, u.ux, u.uy) || sobj_at(MYSTERY_PICK, u.ux, u.uy) || sobj_at(BRONZE_PICK, u.ux, u.uy) || sobj_at(BRICK_PICK, u.ux, u.uy) || sobj_at(MYSTERIOUS_PICK, u.ux, u.uy) || sobj_at(NANO_PICK, u.ux, u.uy) || sobj_at(SOFT_MATTOCK, u.ux, u.uy) || sobj_at(ETERNIUM_MATTOCK, u.ux, u.uy) ||
 				  sobj_at(DWARVISH_MATTOCK, u.ux, u.uy))));
 			if(satdoor && badinv && !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY))
 			    return(0);
@@ -5738,7 +5743,7 @@ register xchar x, y;
 		&& !(uarm && uarm->oartifact == ART_DEMANDING_ENTRY) 
 		&& shkp->mcanmove && !shkp->msleeping
 		&& (x == sx-1 || x == sx+1 || y == sy-1 || y == sy+1)
-		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(MYSTERIOUS_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || (u.usteed && !(uarm && uarm->oartifact == ART_FAER_ME) )
+		&& (Invis || carrying(PICK_AXE) || carrying(CONGLOMERATE_PICK) || carrying(UNWIELDY_PICK) || carrying(CONUNDRUM_PICK) || carrying(MYSTERY_PICK) || carrying(BRONZE_PICK) || carrying(BRICK_PICK) || carrying(MYSTERIOUS_PICK) || carrying(NANO_PICK) || carrying(DWARVISH_MATTOCK) || carrying(SOFT_MATTOCK) || carrying(ETERNIUM_MATTOCK) || (u.usteed && !(uarm && uarm->oartifact == ART_FAER_ME) )
 	  )) {
 		pline("%s%s blocks your way!", shkname(shkp),
 				Invis ? " senses your motion and" : "");

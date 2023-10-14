@@ -462,6 +462,7 @@ init_randarts()
 	artilist[ART_DISMOUNTER].otyp = randartlance();
 	artilist[ART_FINAL_DEATH].otyp = randartwhip();
 	artilist[ART_MANEATER].otyp = randartshortsword();
+	artilist[ART_DIABLO_S_COLD_SMACKAGE].otyp = randartshortsword();
 	artilist[ART_SKULL_SWORD].otyp = randartshortsword();
 	artilist[ART_UNATTAINABLE_NINETEEN].otyp = randartshortsword();
 	artilist[ART_GNOLLBANE].otyp = randarthammer();
@@ -719,6 +720,7 @@ init_randarts()
 	artilist[ART_GIGANTIC_SUN].otyp = randartorbX();
 	artilist[ART_POSSO_CONTINUARE_LATERALE].otyp = randartorbX();
 	artilist[ART_SCHWI_SCHWI].otyp = randartorbX();
+	artilist[ART_MR__AHLBLOW_S_SIGNAGE].otyp = randartorbX();
 	artilist[ART_CROSSBOW_OF_THE_GNOLL_LORD].otyp = randartcrossbowX();
 	artilist[ART_HOWLING_FLAIL].otyp = randartflailX();
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
@@ -741,6 +743,7 @@ init_randarts()
 	artilist[ART_PULVERIZE_EM].otyp = randartclubX();
 	artilist[ART_AQUARHAPSODY].otyp = randartbowX();
 	artilist[ART_FIRE_SOUL].otyp = randartshortswordX();
+	artilist[ART_DIABLO_S_LBOD].otyp = randartshortswordX();
 	artilist[ART_TERROR_DROP].otyp = randartshortswordX();
 	artilist[ART_DAEFAROTH].otyp = randartdaggerX();
 	artilist[ART_FERRUM_D].otyp = randartdaggerX();
@@ -1955,6 +1958,10 @@ register boolean mod;
 			otmp->quan *= 3;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_SENSHI_NO_BICHIKU) {
+			otmp->quan *= 3;
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_LARGE_MAGAZINE) {
 			otmp->quan *= 3;
 			otmp->owt = weight(otmp);
@@ -2691,6 +2698,7 @@ struct monst *mon;
 			case ART_EMERALD_SWORD:
 			case ART_PULVERIZE_EM:
 			case ART_ROOMMATE_S_SPECIAL_IDEA:
+			case ART_MR__AHLBLOW_S_SIGNAGE:
 			case ART_DO_YOU_EVEN_LIFT:
 			case ART_MARINE_THREAT_NEUTERED:
 			case ART_WILD_HEAVY_SWINGS:

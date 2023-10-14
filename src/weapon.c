@@ -2656,7 +2656,7 @@ static NEARDATA const int rwep[] =
 	FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, RANDOSPEAR, SILK_SPEAR, SPEAR, ORCISH_SPEAR, CRAPPY_SPEAR,
 	JAVELIN, NEEDLE, MYSTERY_SHURIKEN, NANO_SHURIKEN, CUBIC_STAR, TAR_STAR, SHURIKEN,
 	DROVEN_ARROW, GOLDEN_ARROW, ANCIENT_ARROW, BRONZE_ARROW, HEAVY_SPEAR,
-	YA, SILVER_ARROW, TECPATL, DROVEN_DAGGER, WRAITHBLADE, BONE_DAGGER, ELVEN_ARROW,
+	YA, FAR_EAST_ARROW, SILVER_ARROW, TECPATL, DROVEN_DAGGER, WRAITHBLADE, BONE_DAGGER, ELVEN_ARROW,
 	DARK_ELVEN_ARROW, ODOR_SHOT, FORBIDDEN_ARROW, WONDER_ARROW,
 	ARROW, ORCISH_ARROW, BONE_ARROW, PAPER_ARROW, DROVEN_BOLT, KOKKEN, MINERAL_BOLT,
 	POISON_BOLT, HEAVY_CROSSBOW_BOLT, ETHER_BOLT, MATERIAL_BOLT,
@@ -3029,7 +3029,7 @@ static const NEARDATA short hwep[] = {
 	  HEAVENLY_WHIP, VIPERWHIP, ETHER_WHIP, BULLETPROOF_CHAINWHIP, INKA_SHACKLE, RUBBER_HOSE, SECRET_WHIP,
 	  WAR_HAMMER, MITHRIL_WHIP, CHAINWHIP, FLAME_WHIP, ROSE_WHIP, TINSEL_LONGSWORD,
 	  SILVER_DAGGER, ELVEN_DAGGER, WOODEN_STAKE, WONDER_DAGGER, DAGGER, ELITE_KNUCKLES, PARRY_SWORD,
-	  ORCISH_DAGGER, NOVICE_HAMMER, RAZOR_WHIP, MYSTERIOUS_PICK,
+	  ORCISH_DAGGER, NOVICE_HAMMER, RAZOR_WHIP, MYSTERIOUS_PICK, UNWIELDY_PICK,
 	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, CERAMIC_KNIFE, BUBBLEHORN, EAGLE_BALL,
 	  COLLUSION_KNIFE, BITUKNIFE, VICTIM_KNIFE, UNKNOWN_KNIFE, ULTRA_KNUCKLES, PARRY_DAGGER,
 	  MEASURER, STILETTO, KNIFE, TORCH, WORM_TOOTH, OTAMA, CARDBOARD_FAN, GARBOWHIP,
@@ -3168,6 +3168,7 @@ register struct monst *mon;
 			obj = m_carrying(mon, PICK_AXE);
 			if (!obj) obj = m_carrying(mon, CONUNDRUM_PICK);
 			if (!obj) obj = m_carrying(mon, CONGLOMERATE_PICK);
+			if (!obj) obj = m_carrying(mon, UNWIELDY_PICK);
 			if (!obj) obj = m_carrying(mon, MYSTERY_PICK);
 			if (!obj) obj = m_carrying(mon, BRONZE_PICK);
 			if (!obj) obj = m_carrying(mon, BRICK_PICK);
@@ -3213,6 +3214,7 @@ register struct monst *mon;
 			    obj = m_carrying(mon, PICK_AXE);
 			    if (!obj) obj = m_carrying(mon, CONUNDRUM_PICK);
 			    if (!obj) obj = m_carrying(mon, CONGLOMERATE_PICK);
+			    if (!obj) obj = m_carrying(mon, UNWIELDY_PICK);
 			    if (!obj) obj = m_carrying(mon, MYSTERY_PICK);
 			    if (!obj) obj = m_carrying(mon, BRONZE_PICK);
 			    if (!obj) obj = m_carrying(mon, BRICK_PICK);
@@ -7332,6 +7334,12 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
 	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
 	if (weapon && weapon->otyp == CONGLOMERATE_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
+
+	if (weapon && weapon->otyp == UNWIELDY_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
+	if (weapon && weapon->otyp == UNWIELDY_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);
+	if (weapon && weapon->otyp == UNWIELDY_PICK && (P_SKILL(P_PICK_AXE) == P_MASTER) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == UNWIELDY_PICK && (P_SKILL(P_PICK_AXE) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (weapon && weapon->otyp == UNWIELDY_PICK && (P_SKILL(P_PICK_AXE) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
 	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_SKILLED) ) bonus += 1;
 	if (weapon && weapon->otyp == CONUNDRUM_PICK && (P_SKILL(P_PICK_AXE) == P_EXPERT) ) bonus += rnd(2);

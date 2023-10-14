@@ -2927,8 +2927,9 @@ int dieroll;
 			     * their bows&arrows; they're highly trained.
 			     * WAC Only elves get dmg bonus from flurry. Change?
 			     */
-			    if (Role_if(PM_SAMURAI) &&
-				    obj->otyp == YA && launcher->otyp == YUMI)
+			    if (Role_if(PM_SAMURAI) && obj->otyp == YA && launcher->otyp == YUMI)
+				tmp++;
+			    if (Role_if(PM_SAMURAI) && obj->otyp == FAR_EAST_ARROW && launcher->otyp == YUMI)
 				tmp++;
 
 				if (Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR)) {
@@ -10440,6 +10441,11 @@ bladeangerdone2:
 
 				if (uwep && uwep->oartifact == ART_LIGHTBLOOM && !rn2(100) && (u.dx || u.dy) && !u.dz) {
 					buzz(18, 3, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+				if (uwep && uwep->oartifact == ART_DIABLO_S_LBOD && !rn2(20) && (u.dx || u.dy) && !u.dz) {
+					buzz(15, rnd(10), u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;
 					if (DEADMONSTER(mon)) return FALSE;
 				}

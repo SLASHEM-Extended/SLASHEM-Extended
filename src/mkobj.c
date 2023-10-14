@@ -2501,6 +2501,7 @@ boolean shopinit;
 		if (otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == POISON_BOLT || otmp->otyp == HEAVY_CROSSBOW_BOLT || otmp->otyp == ETHER_BOLT || otmp->otyp == MATERIAL_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT) otmp->quan += rnd(50);
 		if (otmp->otyp == PAPER_ARROW || otmp->otyp == FORBIDDEN_ARROW || otmp->otyp == GOLDEN_ARROW || otmp->otyp == ANCIENT_ARROW || otmp->otyp == BRONZE_ARROW) otmp->quan += rnd(15);
 		if (otmp->otyp == YA) otmp->quan += rnd(20);
+		if (otmp->otyp == FAR_EAST_ARROW) otmp->quan += rnd(20);
 		if (otmp->otyp == FLIMSY_DART) otmp->quan += rnd(30);
 		if (otmp->otyp == SAND_DART) otmp->quan += rnd(50);
 		if (otmp->otyp == INKA_STINGER || otmp->otyp == SPIKE) otmp->quan += rnd(30);

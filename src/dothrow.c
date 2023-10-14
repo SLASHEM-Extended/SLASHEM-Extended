@@ -409,6 +409,7 @@ int thrown;
 		break;
 	    case PM_SAMURAI:
 		if (obj->otyp == YA && launcher && launcher->otyp == YUMI) multishot++;
+		if (obj->otyp == FAR_EAST_ARROW && launcher && launcher->otyp == YUMI) multishot++;
 		break;
 	    default:
 		break;	/* No bonus */
@@ -3402,7 +3403,7 @@ evasionchancedone:
 
 		/* Detonate bolts shot by Hellfire */
 		if (ammo_and_launcher(obj, launcher) &&
-			(launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
+			(launcher->oartifact == ART_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
 		    if (cansee(bhitpos.x,bhitpos.y)) 
 			pline("%s explodes in a ball of fire!", Doname2(obj));
 		    else You_hear("an explosion");
@@ -3426,7 +3427,7 @@ evasionchancedone:
 			(!objects[otyp].oc_magic || !rn2(5) )))	/* also low chance for loadstones etc. to disappear */
 			|| (obj->oartifact == ART_HOUCHOU)
 			/* WAC catch Hellfire */
-			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
+			|| (launcher && (launcher->oartifact == ART_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))
 		   ) {
 		    /* we were breaking 2/3 of everything unconditionally.

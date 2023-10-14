@@ -14950,6 +14950,34 @@ A("Hoho Re-Punish Me",				IRON_CHAIN, /* while you're punished with it or also w
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
 
+A("Clang Sound",				UNWIELDY_PICK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Senshi no Bichiku",				FAR_EAST_ARROW, /* spawns with 3x stack size */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 6), NO_DFNS, NO_CARY, 0, A_NONE, PM_SAMURAI, NON_PM, 50L ),
+
+A("Bakuhatsu-sei Misairu",				FAR_EAST_ARROW, /* explodes like hellfire bolts */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GRENADONIN, NON_PM, 100L ),
+
+A("Mr. Ahlblow's Signage",				EAGLE_BALL, /* randart2 orb, to-hit h@ck, multiplies your speed by 1.5, your torso armor and helmet automatically get removed or if they're cursed they become -10, you cannot have more than 5 STR while wielding it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Diablo's Fire New Facts",				SHORT_SWORD,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(10, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Diablo's Cold Smackage",				SHORT_SWORD, /* randart short sword */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Diablo's LBOD",				SHORT_SWORD, /* randart2 short sword, 1 in 20 when meleeing that you fire a d10-strength lightning bolt in the direction of your attack */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

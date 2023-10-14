@@ -2194,6 +2194,13 @@ moveloop()
 				if (moveamt > (oldspeed + 6)) moveamt = (oldspeed + 6);
 			}
 
+			if (uwep && uwep->oartifact == ART_MR__AHLBLOW_S_SIGNAGE) {
+				oldspeed = moveamt;
+				moveamt *= 3;
+				moveamt /= 2;
+				if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
+			}
+
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && !rn2(5) && uball && uwep && (uwep == uball)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && u.uinwater && (uarmf->oartifact == ART_PECTORAL_HEEL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -7087,6 +7094,19 @@ newbossJANI:
 			if (uarmf->cursed && uarmf->spe > -10) uarmf->spe = -10;
 			if (!uarmf->cursed) {
 				(void) Boots_off();
+			}
+		}
+
+		if (autismweaponcheck(ART_MR__AHLBLOW_S_SIGNAGE) && uarmh) {
+			if (uarmh->cursed && uarmh->spe > -10) uarmh->spe = -10;
+			if (!uarmh->cursed) {
+				(void) Helmet_off();
+			}
+		}
+		if (autismweaponcheck(ART_MR__AHLBLOW_S_SIGNAGE) && uarm) {
+			if (uarm->cursed && uarm->spe > -10) uarm->spe = -10;
+			if (!uarm->cursed) {
+				(void) Armor_off();
 			}
 		}
 
@@ -17447,6 +17467,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white buffalo boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shale boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bang-green boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "japanese arrow")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -18785,6 +18806,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "white buffalo boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shale boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bang-green boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "japanese arrow")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

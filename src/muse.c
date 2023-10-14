@@ -12107,6 +12107,8 @@ struct obj *obj;
 		return (boolean)needspick(mon->data);
 	    if (typ == CONGLOMERATE_PICK)
 		return (boolean)needspick(mon->data);
+	    if (typ == UNWIELDY_PICK)
+		return (boolean)needspick(mon->data);
 	    if (typ == CONUNDRUM_PICK)
 		return (boolean)needspick(mon->data);
 	    if (typ == MYSTERY_PICK)

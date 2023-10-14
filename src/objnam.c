@@ -734,6 +734,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ DENTED_POT, "kubonda nabe" },
 	{ DWARVISH_MATTOCK, "dwarvish zaghnal" },
 	{ EGG, "tamago" },
+	{ FAR_EAST_ARROW, "kyokuto no ya" },
 	{ FLAIL, "nunchaku" },
 	{ FLY_SWATTER, "tataki tobu" },
 	{ FOOD_RATION, "gunyoki" },
@@ -4101,6 +4102,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_LOOT_IMPROVEMENT, "todo" },
 	{ SPE_MYSTERY_PROTECTION, "todo" },
 	{ TONFA, "todo" },
+	{ UNWIELDY_PICK, "todo" },
+	{ FAR_EAST_ARROW, "todo" },
 
 	{0, "" }
 };
@@ -7361,6 +7364,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_LOOT_IMPROVEMENT, "todo" },
 	{ SPE_MYSTERY_PROTECTION, "todo" },
 	{ TONFA, "todo" },
+	{ UNWIELDY_PICK, "todo" },
+	{ FAR_EAST_ARROW, "todo" },
 
 	{0, "" }
 };

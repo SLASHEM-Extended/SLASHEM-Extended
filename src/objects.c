@@ -1020,8 +1020,10 @@ PROJECTILE("elven arrow", "runed arrow",
 	0, 1500, 0, 2, 11, 11, 0, MT_WOOD, -P_BOW, HI_METAL, 6),
 PROJECTILE("dark elven arrow", "black runed arrow",
 	0, 200, 0, 2, 12, 12, 1, MT_WOOD, -P_BOW, CLR_BLACK, 12),
-PROJECTILE("ya", "bamboo arrow",
-	0, 1000, 0, 4, 11, 11, 2, MT_METAL, -P_BOW, HI_METAL, 5),
+PROJECTILE("ya", "japanese arrow",
+	0, 500, 0, 4, 11, 11, 2, MT_METAL, -P_BOW, HI_METAL, 5),
+PROJECTILE("far-east arrow", "bamboo arrow",
+	0, 500, 0, 4, 11, 11, 2, MT_BAMBOO, -P_BOW, CLR_BROWN, 5),
 PROJECTILE("droven arrow", "obsidian arrow",
 	0, 100, 0, 6, 16, 16, 3, MT_OBSIDIAN, -P_BOW, CLR_BLACK, 20),
 PROJECTILE("golden arrow", (char *)0,
@@ -5576,7 +5578,9 @@ WEPTOOL("spoon", (char *)0,
 
 /* pick-axes, regular one has to be first */
 WEPTOOL("pick-axe", (char *)0,
-	1, 0, 0, 0, 1840, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, MT_IRON, HI_METAL, 1),
+	1, 0, 0, 0, 1540, 32,   50,  6,  3, 0, WHACK,  P_PICK_AXE, MT_IRON, HI_METAL, 1),
+WEPTOOL("unwieldy pick", (char *)0,
+	1, 0, 0, 0, 300, 32,   50,  6,  4, 0, WHACK,  P_PICK_AXE, MT_COBALT, CLR_BRIGHT_CYAN, 2),
 WEPTOOL("conglomerate pick", (char *)0,
 	1, 0, 0, 0, 500, 32,   50,  6,  6, 0, WHACK,  P_PICK_AXE, MT_MINERAL, CLR_GRAY, 6),
 WEPTOOL("conundrum pick", (char *)0,
@@ -8637,6 +8641,7 @@ SCROLL((char *)0,               "SUR OLA 2TS",  P_NONE,     1,   0, 100, CLR_ORA
 SCROLL((char *)0,               "BEBB UILE CNII KSNM",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 SCROLL((char *)0,               "HT1 OAE9 VTR ES",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "SEMNGRPAAPSEDOTRBUSBRU",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "DIE HOCHZEITSMESSE  TRAU SCHAU WEM",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

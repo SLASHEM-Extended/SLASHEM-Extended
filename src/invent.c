@@ -12085,6 +12085,8 @@ boolean knoweverything;
 				pline("There are no arrows in the game that deal more damage than this one. These are meant to be put in a quiver and shot with a bow."); break;
 			case YA: 
 				pline("A high-quality arrow that has a moderate to-hit bonus. These are meant to be put in a quiver and shot with a bow."); break;
+			case FAR_EAST_ARROW: 
+				pline("This arrow is normally made of bamboo and has good damage as well as to-hit. These are meant to be put in a quiver and shot with a bow."); break;
 			case SLING: 
 				pline("The sling is what you want to use if you want your thrown rocks to do more than a single point of damage. You can quiver most types of rocks and gems to shoot them with a sling."); break;
 			case CATAPULT:
@@ -16287,6 +16289,8 @@ boolean knoweverything;
 				pline("Applying it will wake up and scare monsters, although they can resist the latter, and it also causes negative status effects to you."); break;
 			case CONGLOMERATE_PICK:
 				pline("This pick-axe can be applied to dig through walls, boulders or the floor, and it does a little more damage than a regular pick-axe."); break;
+			case UNWIELDY_PICK:
+				pline("You can dig by applying this pick-axe, or use it as a weapon, but it doesn't deal much damage."); break;
 			case BRONZE_PICK:
 				pline("This one-handed pick-axe does relatively good damage for its class, but its real use is to dig through walls or other obstacles, which is done by applying it."); break;
 			case CONUNDRUM_PICK:
@@ -27590,6 +27594,20 @@ boolean knoweverything;
 					pline("Artifact specs: +12 damage. If this is the ball that you're punished with, remove curse will not unpunish you."); break;
 				case ART_HOHO_RE_PUNISH_ME:
 					pline("Artifact specs: if you're punished with this chain or also if you wield it, you'll constantly be re-punished for a long while to come. And being whirly or amorphous etc. won't help."); break;
+				case ART_CLANG_SOUND:
+					pline("Artifact specs: +2 to-hit and +2 damage."); break;
+				case ART_SENSHI_NO_BICHIKU:
+					pline("Artifact specs: +3 to-hit and +6 damage, spawns with bigger stack size, samurai sacrifice gift."); break;
+				case ART_BAKUHATSU_SEI_MISAIRU:
+					pline("Artifact specs: explodes when fired, grenadonin sacrifice gift."); break;
+				case ART_MR__AHLBLOW_S_SIGNAGE:
+					pline("Artifact specs: double damage, multiplies your speed by 1.5, automatically undresses your torso armor and helm while wielded or sets them to -10 if they are cursed, and you cannot have more than 5 strength while wielding it."); break;
+				case ART_DIABLO_S_FIRE_NEW_FACTS:
+					pline("Artifact specs: +10 to-hit and +5 fire damage. This artifact is based on a joke by Amy where Diablo, the Lord of Terror, would somehow use a weak short sword as his main weapon."); break;
+				case ART_DIABLO_S_COLD_SMACKAGE:
+					pline("Artifact specs: +12 cold damage. This artifact is based on a joke by Amy where Diablo, the Lord of Terror, would somehow use a weak short sword as his main weapon."); break;
+				case ART_DIABLO_S_LBOD:
+					pline("Artifact specs: occasionally fires a lightning bolt in the direction of your melee attack. This artifact is based on a joke by Amy where Diablo, the Lord of Terror, would somehow use a weak short sword as his main weapon."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

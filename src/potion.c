@@ -694,6 +694,7 @@ findmorearrows:
 		if (!prcarrow) prcarrow = carrying(ELVEN_ARROW);
 		if (!prcarrow) prcarrow = carrying(DARK_ELVEN_ARROW);
 		if (!prcarrow) prcarrow = carrying(YA);
+		if (!prcarrow) prcarrow = carrying(FAR_EAST_ARROW);
 		if (!prcarrow) prcarrow = carrying(DROVEN_ARROW);
 		if (!prcarrow) prcarrow = carrying(GOLDEN_ARROW);
 		if (!prcarrow) prcarrow = carrying(ANCIENT_ARROW);

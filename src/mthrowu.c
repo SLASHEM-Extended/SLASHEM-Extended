@@ -1052,7 +1052,7 @@ int x,y;
 	}
 
 	/* D: Detonate crossbow bolts from Hellfire if they hit */
-	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || mwep->oartifact == ART_UNIDENTIFIED_HELLCAST || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
+	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || mwep->oartifact == ART_UNIDENTIFIED_HELLCAST || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
 		  && is_ammo(obj) && ammo_and_launcher(obj, mwep)) {
 	  
 		if (cansee(bhitpos.x,bhitpos.y)) 
@@ -2140,8 +2140,8 @@ struct monst *mtmp;
 	    case PM_NINJA:
 	    case PM_NINJA_GAIDEN:
 	    case PM_SAMURAI:
-		    if (otmp->otyp == YA && mwep &&
-			mwep->otyp == YUMI) multishot++;
+		    if (otmp->otyp == YA && mwep && mwep->otyp == YUMI) multishot++;
+		    if (otmp->otyp == FAR_EAST_ARROW && mwep && mwep->otyp == YUMI) multishot++;
 		    break;
 	    default:
 		break;

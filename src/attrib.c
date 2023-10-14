@@ -3134,6 +3134,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uarmf && uarmf->oartifact == ART_SKIN_AND_BONE && tmp > 6) tmp = 6;
+		if (autismweaponcheck(ART_MR__AHLBLOW_S_SIGNAGE) && tmp > 5) tmp = 5;
 		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (FemtrapActiveIna) tmp -= 3;
