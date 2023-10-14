@@ -5078,18 +5078,21 @@ register struct obj	*sobj;
 
 	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || (uarmc && uarmc->oartifact == ART_WINDS_OF_CHANGE) || (ublindf && ublindf->oartifact == ART_BLINDFOLD_OF_MISPELLING) || have_confusionstone() ) {
 
-	    pline("Suddenly you're very confused!");
-	    make_confused(HConfusion + 2, FALSE);
-	    pline("You screw up while reading the scroll...");
-	    confused = 1;
+		if (sobj->oclass == SCROLL_CLASS) {
+			pline("Suddenly you're very confused!");
+			make_confused(HConfusion + 2, FALSE);
+			pline("You screw up while reading the scroll...");
+			confused = 1;
+		}
 
 	}
 
 	if (evilfriday && (ABASE(A_INT) < rnd(8))) {
-	    pline("Due to your stupidity, you fail to read the scroll correctly!");
-	    make_confused(HConfusion + 2, FALSE);
-	    confused = 1;
-
+		if (sobj->oclass == SCROLL_CLASS) {
+			pline("Due to your stupidity, you fail to read the scroll correctly!");
+			make_confused(HConfusion + 2, FALSE);
+			confused = 1;
+		}
 	}
 
 	if (sobj->otyp == SCR_COPYING) {

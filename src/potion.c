@@ -11749,9 +11749,11 @@ peffects(otmp)
 
 	if ( (DSTWProblem || u.uprops[DSTW_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_UNIMPLEMENTED_FEATURE) || have_dstwstone() ) && !rn2(5)) {
 
-		pline("The potion doesn't seem to work!"); /* DSTW = abbreviation for "doesn't seem to work" --Amy */
-		u.cnd_nonworkpotioncount++;
-		return(-1);
+		if (otmp->oclass == POTION_CLASS) {
+			pline("The potion doesn't seem to work!"); /* DSTW = abbreviation for "doesn't seem to work" --Amy */
+			u.cnd_nonworkpotioncount++;
+			return(-1);
+		}
 
 	}
 
@@ -11777,7 +11779,7 @@ peffects(otmp)
 		return(-1);
 	}
 
-	if (RngeLevuntation) badeffect();
+	if (RngeLevuntation && otmp->oclass == POTION_CLASS) badeffect();
 
 	if (otmp->oartifact == ART_WONDER_WATERING_PLACE) {
 		int coronatries = rnd(10);
@@ -11802,9 +11804,11 @@ peffects(otmp)
 	/* sometimes your constitution can be a little _too_ high! */
 	/* edit: evil variant by Amy: nothing is too cruel :P */
 	if ( ((evilfriday && (Role_if(PM_BARBARIAN) || ACURR(A_CON) > 15)) || Role_if(PM_NOOB_MODE_BARB)) && !rn2(5)) {
-		pline("Strange ...");
-		nothing++;
-		return(-1);
+		if (otmp->oclass == POTION_CLASS) {
+			pline("Strange ...");
+			nothing++;
+			return(-1);
+		}
 	}
 
 	switch(otmp->otyp){
