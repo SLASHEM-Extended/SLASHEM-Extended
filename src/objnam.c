@@ -686,6 +686,10 @@ struct Jitem {
 			   typ != METEOR_FRAGMENT && 	\
 			   typ != AMBER_FRAGMENT && 	\
 			   typ != LEAD_CLUMP && 	\
+			   typ != JUNK_METAL && 	\
+			   typ != COBALT_CHUNK && 	\
+			   typ != BRONZE_NUGGET && 	\
+			   typ != STEEL_SLUG && 	\
 			   typ != SLING_AMMO && 	\
 			   typ != MOONSTONE && 	\
 			   typ != WONDER_STONE && 	\
@@ -4106,6 +4110,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ FAR_EAST_ARROW, "todo" },
 	{ TOP_BOX, "todo" },
 	{ TITAN_SACK, "todo" },
+	{ JUNK_METAL, "todo" },
+	{ COBALT_CHUNK, "todo" },
+	{ BRONZE_NUGGET, "todo" },
+	{ STEEL_SLUG, "todo" },
+	{ SATURNITE_FIST, "todo" },
+	{ JEONTU_GEOM, "todo" },
+	{ DIM_LANTERN, "todo" },
+	{ JACK_KNIFE, "todo" },
+	{ REPLICA_UNICORN_HORN, "todo" },
+	{ TITANIUM_HORN, "todo" },
 
 	{0, "" }
 };
@@ -7370,6 +7384,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ FAR_EAST_ARROW, "todo" },
 	{ TOP_BOX, "todo" },
 	{ TITAN_SACK, "todo" },
+	{ JUNK_METAL, "todo" },
+	{ COBALT_CHUNK, "todo" },
+	{ BRONZE_NUGGET, "todo" },
+	{ STEEL_SLUG, "todo" },
+	{ SATURNITE_FIST, "todo" },
+	{ JEONTU_GEOM, "todo" },
+	{ DIM_LANTERN, "todo" },
+	{ JACK_KNIFE, "todo" },
+	{ REPLICA_UNICORN_HORN, "todo" },
+	{ TITANIUM_HORN, "todo" },
 
 	{0, "" }
 };
@@ -7506,7 +7530,7 @@ register int otyp;
 		} else {
 			strcpy(buf, dn ? dn : actualn);
 			if(ocl->oc_class == GEM_CLASS)
-				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == METEOR_FRAGMENT || otyp == AMBER_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
+				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == JUNK_METAL || otyp == COBALT_CHUNK || otyp == BRONZE_NUGGET || otyp == STEEL_SLUG || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == METEOR_FRAGMENT || otyp == AMBER_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
 						" stone" : " gem");
 			if(un)
 				sprintf(eos(buf), " called %s", un);
@@ -7989,7 +8013,7 @@ boolean showpoisoned;
 	case GEM_CLASS:
 	    {
 		const char *rock =
-			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == METEOR_FRAGMENT || typ == AMBER_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
+			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == JUNK_METAL || typ == COBALT_CHUNK || typ == BRONZE_NUGGET || typ == STEEL_SLUG || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == METEOR_FRAGMENT || typ == AMBER_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
 		if (!obj->dknown || PlayerUninformation) {
 		    strcpy(buf, rock);
 		} else if (!nn) {
@@ -8450,7 +8474,7 @@ plus:
 				!obj->lamplit ? " attached" : ", lit");
 			break;
 		} else if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-			obj->otyp == BRASS_LANTERN || obj->otyp == TORCH ||
+			obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == TORCH ||
 			   Is_candle(obj)) {
 			if (Is_candle(obj) &&
 			    /* WAC - magic candles are never "partly used"
@@ -8628,7 +8652,7 @@ ring:
 
 	if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && (obj->otyp != TOP_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
-&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != METEOR_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
+&& (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != METEOR_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != JUNK_METAL) && (obj->otyp != COBALT_CHUNK) && (obj->otyp != BRONZE_NUGGET) && (obj->otyp != STEEL_SLUG) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
 		        sprintf (eos(bp), " {%d}", objowt);
 /* show the freaking weight of all items! --Amy */
@@ -10791,7 +10815,7 @@ typfnd:
 
 	if (islit &&
 		(typ == OIL_LAMP || typ == MAGIC_LAMP || 
-		 typ == BRASS_LANTERN || typ == TORCH || 
+		 typ == BRASS_LANTERN || typ == DIM_LANTERN || typ == TORCH || 
 		 Is_candle(otmp) || typ == POT_OIL)) {
 	    place_object(otmp, u.ux, u.uy);  /* make it viable light source */
 	    begin_burn(otmp, FALSE);

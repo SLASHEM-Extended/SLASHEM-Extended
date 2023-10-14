@@ -583,6 +583,14 @@ struct obj *box;
 			otmp->owt = weight(otmp);
 			(void) add_to_container(box, otmp, TRUE);
 		}
+		if (timebasedlowerchance() && !rn2(5)) {
+			otmp = mksobj(REPLICA_UNICORN_HORN, TRUE, TRUE, FALSE);
+			if (otmp) {
+				otmp->owt = weight(otmp);
+				(void) add_to_container(box, otmp, TRUE);
+			}
+		}
+
 		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet) {
 			if (!rn2(2)) {
 				otmp = mkobj(WEAPON_CLASS, TRUE, FALSE);
@@ -2761,6 +2769,14 @@ boolean shopinit;
 			otmp->quan = (long) rn1(6,6);
 			if (!rn2(10)) otmp->quan *= 2;
 		}
+		else if (otmp->otyp == COBALT_CHUNK && rn2(2) ) {
+			otmp->quan = (long) rn1(7,7);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
+		else if (otmp->otyp == BRONZE_NUGGET && rn2(2) ) {
+			otmp->quan = (long) rn1(7,7);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
 		else if (otmp->otyp == SLING_AMMO && rn2(2) ) {
 			otmp->quan = (long) rn1(7,7);
 			if (!rn2(10)) otmp->quan *= 2;
@@ -2769,8 +2785,16 @@ boolean shopinit;
 			otmp->quan = (long) rn1(6,6);
 			if (!rn2(10)) otmp->quan *= 2;
 		}
+		else if (otmp->otyp == STEEL_SLUG && rn2(2) ) {
+			otmp->quan = (long) rn1(6,6);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
 		else if (otmp->otyp == BONE_FRAGMENT && rn2(2) ) {
 			otmp->quan = (long) rn1(8,8);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
+		else if (otmp->otyp == JUNK_METAL && rn2(2) ) {
+			otmp->quan = (long) rn1(15,15);
 			if (!rn2(10)) otmp->quan *= 2;
 		}
 		else if (otmp->otyp == SILVER_SLINGSTONE && rn2(2) ) {
@@ -2943,6 +2967,25 @@ boolean shopinit;
 					otmp->age = (long) rn1(500,1000);
 					if (!rn2(20)) {
 						otmp->age += rnz(2000);
+					} else if (!rn2(20)) {
+						otmp->age = rnz(1000);
+					}
+					if (ishaxor) otmp->age *= 2;
+
+					if (!rn2(6) && In_lategame(&u.uz)) {
+						otmp->age += rnd(otmp->age);
+					}
+
+					otmp->lamplit = 0;
+					blessorcurse_on_creation(otmp, 5);
+					break;
+		case DIM_LANTERN:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
+			otmp->spe = 1;
+					otmp->age = (long) rn1(2500,5000);
+					if (!rn2(20)) {
+						otmp->age += rnz(10000);
 					} else if (!rn2(20)) {
 						otmp->age = rnz(1000);
 					}

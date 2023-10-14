@@ -8191,7 +8191,7 @@ struct obj *otmp;
 		|| (!strcmp(word, "rub") &&
 		    ((otmp->oclass == TOOL_CLASS &&
 		      otyp != OIL_LAMP && otyp != MAGIC_LAMP &&
-		      otyp != BRASS_LANTERN) ||
+		      otyp != BRASS_LANTERN && otyp != DIM_LANTERN) ||
 		     (otmp->oclass == GEM_CLASS && !is_graystone(otmp))))
 		|| (!strncmp(word, "rub on the stone", 16) &&
 		    *let == GEM_CLASS &&	/* using known touchstone */
@@ -16333,6 +16333,8 @@ boolean knoweverything;
 				pline("If this tool has charges, you can apply it to dispose of corpses. Into the trash it goes! :D"); break;
 			case BUDO_NO_SASU:
 				pline("Wielding this tool allows you to open tins more quickly, and if you're a supermarket cashier, you might want to use it as a weapon."); break;
+			case JEONTU_GEOM:
+				pline("A weapon-tool that allows you to open tins very quickly when wielded and uses the martial arts skill in melee, dealing respectable damage."); break;
 			case LUBRICANT_CAN:
 				pline("A charged tool that can be applied to grease your stuff. Careful, it's difficult to handle and you will occasionally hurt yourself."); break;
 			case SACK: 
@@ -16381,6 +16383,8 @@ boolean knoweverything;
 				pline("This lamp can be lit to provide a big radius of light for a while. Oil runs out after some time but can be refilled."); break;
 			case BRASS_LANTERN: 
 				pline("A mobile light source that lasts for quite a while."); break;
+			case DIM_LANTERN: 
+				pline("This light source lasts for a good while if you apply it. However, recharging it is rather useless because it adds less additional turns of fuel compared to the brass lantern."); break;
 			case MAGIC_LAMP: 
 				pline("This lamp won't ever go out, and according to certain fairy tales, it might be inhabited by a genie."); break;
 			case TIN_WHISTLE: 
@@ -16443,12 +16447,18 @@ boolean knoweverything;
 				pline("This polearm weapon-tool can be applied to catch fish."); break;
 			case GRAPPLING_HOOK: 
 				pline("A flail-type weapon-tool that can be used to pull objects and monsters toward you."); break;
+			case JACK_KNIFE: 
+				pline("This knife is also a tool that can be used to reel in objects or monsters by applying it."); break;
 			case UNICORN_HORN: 
 				pline("The unicorn horn can be used as a two-handed melee weapon that uses its own skill, and applying it can cure a variety of bad effects."); break;
 			case DARK_HORN:
 				pline("It's a two-handed melee weapon that uses the unicorn horn skill, but its main use is to be applied, which can cure some bad effects. Every time you apply it, the area around you is darkened."); break;
 			case SKY_HORN:
 				pline("This two-handed unicorn horn deals more damage in melee compared to a regular one, and can also be applied to fix certain afflictions."); break;
+			case TITANIUM_HORN:
+				pline("Very powerful two-handed weapon that has a pretty good chance of fixing status effects or lost stats when applied."); break;
+			case REPLICA_UNICORN_HORN:
+				pline("A tool that you can apply to cure various afflictions, although this particular one has a low chance of success. It can also be used as a weapon but deals absolutely crap damage, however unlike all the other unicorn horns it can be wielded one-handed."); break;
 			case BUBBLEHORN:
 				pline("This two-handed unicorn horn does very bad melee damage. Its actual purpose is to be applied to fix lost stats; a positively enchanted one may also increase the user's stats."); break;
 			case ARCANE_HORN:
@@ -16567,6 +16577,8 @@ boolean knoweverything;
 				pline("This tool lets you open tins more quickly when wielded. You can also use it as a weapon, but if you plan to do so, you'd be wise to turn it on first, and even then it deals negligible damage. It uses the martial arts skill, and power usage is half that of a regular lightsaber."); break;
 			case POWERFIST:
 				pline("Annoyed that bare-handed combat always deals crappy damage? Wield this to power up your unarmed melee attack! Beware though, it does count as using a weapon in case you're going for a weaponless conduct."); break;
+			case SATURNITE_FIST:
+				pline("Quite damaging, especially against small monsters, this weapon uses bare-handed combat skill to determine its damage, although it will break weaponless conduct."); break;
 			case LASERFIST:
 				pline("Laser-based bare-handed combat weapon tool. You need to turn it on first, otherwise its damage output is complete garbage. When turned on, it's pretty strong."); break;
 			case CAN_OF_GREASE:
@@ -18682,6 +18694,14 @@ boolean knoweverything;
 				pline("A useless gray stone whose only potential purpose is to be fired with a sling."); break;
 			case LEAD_CLUMP:
 				pline("This type of sling ammunition does decent damage."); break;
+			case JUNK_METAL:
+				pline("Total garbage, you can fire this ammo with a sling but it deals less damage than rocks, which means their damage is *really* low."); break;
+			case COBALT_CHUNK:
+				pline("Sling ammo with rather low damage output."); break;
+			case BRONZE_NUGGET:
+				pline("A mediocre type of sling ammo."); break;
+			case STEEL_SLUG:
+				pline("This sling ammo does decent damage when fired by a sling."); break;
 			case SLING_AMMO:
 				pline("Using this ammo for the sling is definitely better than firing regular rocks."); break;
 			case AMBER_FRAGMENT:
@@ -27634,6 +27654,30 @@ boolean knoweverything;
 					pline("Artifact specs: magic resistance when carried. This item cannot be wished for."); break;
 				case ART_GIDDEM_FAST_:
 					pline("Artifact specs: allows you to take out items without using up a turn, but putting items in still uses turns."); break;
+				case ART_ND___NND_D___NDMD__DM_D_D_: /* don't give useful descriptions, this is on purpose --Amy */
+					pline("D?D3/4ND0 D.D0D1ND, D2 D1/2D0NN"); break;
+				case ART_ND_D___N_NDMNN_ND___NDMN_N:
+					pline("ND>>DmD1/2, NND0D0, NND0ND1/2D, D1"); break;
+				case ART_HEAP_FROM_THE_YARD:
+					pline("Artifact specs: spawns with much greater quantity than normal."); break;
+				case ART_COLDCRAB:
+					pline("Artifact specs: +7 cold damage."); break;
+				case ART_ELECTRIC_SHOCK:
+					pline("Artifact specs: +8 to-hit and +6 lightning damage."); break;
+				case ART_GIGABONK:
+					pline("Artifact specs: +4 to-hit and double damage."); break;
+				case ART_INDUSTRIAL_LIGHTNING:
+					pline("Artifact specs: +6 to-hit and +12 lightning damage."); break;
+				case ART_GODAE_MUSUL:
+					pline("Artifact specs: +8 to-hit and +5 damage, allows you to use unarmed martial arts techniques while wielding it. The latter requires you to actually know those techniques in the first place."); break;
+				case ART_QUASIMAGICAL_SHINE:
+					pline("Artifact specs: spawns with much more fuel than normal."); break;
+				case ART_GONNA_BE_ANOTHER_BLOODBATH:
+					pline("Artifact specs: +18 damage, autocurses."); break;
+				case ART_FFFF_ERR_WHAT_AM_I_TYPING_:
+					pline("Artifact specs: better success chance when applied, but also causes a certain feminism trap effect every time you do apply it."); break;
+				case ART_ATLUS_HEAVE:
+					pline("Artifact specs: +12 damage and +10 strength when wielded, doesn't get vaporized from applying but becomes heavily cursed if it would have, and while wielding it you're confused and cannot have confusion resistance, half spell damage or half physical damage. Every time you wield it, its enchantment is reduced by one and if it gets to -20, it becomes sticky prime cursed!"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

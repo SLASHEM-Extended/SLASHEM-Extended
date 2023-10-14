@@ -5527,8 +5527,8 @@ TOOL("data chip", (char *)0,    1, 0, 0, 0,  400,  0,  10, MT_PLATINUM, CLR_GRAY
 
 /* Light sources */
 /* [Tom] made candles cheaper & more common */
-TOOL("tallow candle", "candle", 0, 1, 0, 0, 3580,  0, 20, MT_WAX, CLR_WHITE, 1),
-TOOL("wax candle", "candle",    0, 1, 0, 0, 3570,  0, 20, MT_WAX, CLR_WHITE, 1),
+TOOL("tallow candle", "candle", 0, 1, 0, 0, 3520,  0, 20, MT_WAX, CLR_WHITE, 1),
+TOOL("wax candle", "candle",    0, 1, 0, 0, 3520,  0, 20, MT_WAX, CLR_WHITE, 1),
 TOOL("magic candle",  "candle", 0, 1, 1, 0,  500,  0, 20, MT_WAX, CLR_WHITE, 20),
 TOOL("Japan-wax candle", "candle", 0, 1, 0, 0, 200, 0, 20, MT_WAX, CLR_WHITE, 1),
 TOOL("oil candle", "candle",    0, 1, 0, 0, 200, 0, 20, MT_WAX, CLR_WHITE, 1),
@@ -5539,7 +5539,8 @@ TOOL("unaffected candle", "candle", 0, 1, 0, 0, 200, 0, 20, MT_WAX, CLR_WHITE, 1
 TOOL("specific candle", "candle", 0, 1, 0, 0, 200, 0, 20, MT_WAX, CLR_WHITE, 1),
 TOOL("0 candle", "candle", 0, 1, 0, 0, 20, 0, 200, MT_WAX, CLR_WHITE, 1),
 TOOL("oil lamp", "lamp",        0, 0, 0, 0, 2500, 0,  40, MT_COPPER, CLR_YELLOW, 1),
-TOOL("brass lantern", (char *)0,1, 0, 0, 0,  1500, 0,  30, MT_COPPER, CLR_YELLOW, 1),
+TOOL("brass lantern", (char *)0,1, 0, 0, 0,  1000, 0,  30, MT_COPPER, CLR_YELLOW, 1),
+TOOL("dim lantern", (char *)0,1, 0, 0, 0,  500, 0,  50, MT_SINNUM, CLR_BROWN, 1), /* spawns with more fuel */
 TOOL("magic lamp", "lamp",      0, 0, 1, 0,  1000, 0,  40, MT_COPPER, CLR_YELLOW, 25),
 
 /* Instruments */
@@ -5601,6 +5602,8 @@ WEPTOOL("mystery pick", (char *)0,
 
 WEPTOOL("fishing pole", (char *)0,
 	1, 0, 0, 0, 500,  12,  50,  2,  6, 0, WHACK,  P_POLEARMS, MT_METAL, HI_METAL, 1),
+WEPTOOL("jack knife", (char *)0,
+	1, 0, 0, 0,  50,  6,  75,  7,  6, 1, SLASH,  P_KNIFE, MT_SHELL, CLR_GRAY, 8),
 WEPTOOL("grappling hook", "iron hook",
 	0, 0, 0, 0, 500,  12,  50,  4,  8, 0, WHACK,  P_FLAIL, MT_IRON, HI_METAL, 1),
 /* 3.4.1: unicorn horn left classified as "magic" - regular one has to be first */
@@ -5612,6 +5615,10 @@ WEPTOOL("piano", (char *)0,
 	1, 1, 0, 1,   20,  8, 500, 20, 20, 0, WHACK, P_UNICORN_HORN, MT_VIVA, CLR_BLACK, 32),
 WEPTOOL("dark horn", (char *)0, /* darkness when applied */
 	1, 1, 0, 1,  40,  8, 100, 16, 16, 0, PIERCE, P_UNICORN_HORN, MT_SHADOWSTUFF, CLR_BRIGHT_BLUE, 15),
+WEPTOOL("replica unicorn horn", (char *)0,
+	1, 1, 0, 0,  50,  2,  20,  2,  2, 0, PIERCE, P_UNICORN_HORN, MT_ALUMEN, CLR_GRAY, 1),
+WEPTOOL("titanium horn", (char *)0,
+	1, 1, 0, 1,  10,  9, 400, 17, 17, 1, PIERCE, P_UNICORN_HORN, MT_TITANIUM, CLR_ORANGE, 30),
 WEPTOOL("sky horn", (char *)0,
 	1, 1, 0, 1,  20,  4, 200, 13, 13, 0, PIERCE, P_UNICORN_HORN, MT_CELESTIUM, CLR_BRIGHT_CYAN, 10),
 WEPTOOL("arcane horn", (char *)0, /* can't be applied, unihorn effect when meleeing with it */
@@ -5753,14 +5760,18 @@ TOOL("binning kit", (char *)0,  1, 0, 0, 1, 100, 0,  30, MT_COMPOST, CLR_BROWN, 
 CONTAINER("medical kit", "leather bag", 0, 0, 0, 0,  1000, 0, 500, MT_LEATHER, HI_LEATHER, 1),
 
 WEPTOOL("tin opener",  (char *)0,
-	1, 0, 1, 0,  1900, 0, 30, 1,  1, 0, PIERCE, 0, MT_IRON, HI_METAL, 1),
+	1, 0, 1, 0,  1880, 0, 30, 1,  1, 0, PIERCE, 0, MT_IRON, HI_METAL, 1),
 WEPTOOL("laser tin opener", (char *)0,
 	1, 0, 1, 0,  100,  0, 100, 1,  1, 0, PIERCE, P_MARTIAL_ARTS, MT_IRON, CLR_YELLOW, 12),
+WEPTOOL("jeontu geom",  (char *)0,
+	1, 0, 1, 0,  20, 0, 500, 10,  10, 0, PIERCE, P_MARTIAL_ARTS, MT_MERCURIAL, CLR_GRAY, 30),
 WEPTOOL("budo no sasu",  (char *)0,
 	1, 0, 1, 0,  400, 0, 300, 1,  1, 0, PIERCE, 0, MT_SILVER, CLR_BRIGHT_CYAN, 1),
 
 WEPTOOL("powerfist", (char *)0,
-	1, 0, 1, 0,  1000,  6, 100, 7,  7, 0, WHACK, P_BARE_HANDED_COMBAT, MT_METAL, CLR_GRAY, 8),
+	1, 0, 1, 0,  990,  6, 100, 7,  7, 0, WHACK, P_BARE_HANDED_COMBAT, MT_METAL, CLR_GRAY, 8),
+WEPTOOL("saturnite fist", (char *)0, /* +1 small */
+	1, 0, 1, 0,  10,  5, 1500, 10,  9, 0, WHACK, P_BARE_HANDED_COMBAT, MT_TITANIUM, CLR_ORANGE, 32),
 WEPTOOL("laserfist", (char *)0,
 	1, 0, 1, 0,  100,  6, 2000, 7,  7, 0, WHACK, P_BARE_HANDED_COMBAT, MT_VIVA, CLR_ORANGE, 34),
 
@@ -10497,6 +10508,10 @@ ROCK("salt chunk", "gray", 		   	0, 500,  0,  10, 10, 10, 0, 10, 2, MT_MINERAL, 
 ROCK("whetstone", "gray",			0, 200,  0,  10, 15, 15, 1, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 ROCK("small piece of unrefined mithril", "gray", 0, 100, 0, 10, 6, 6, 0, 10, 5, MT_MITHRIL, CLR_GRAY, 1),
 ROCK("silver slingstone", "gray", 		0, 100,  0,  10, 11, 11, 0, 10, 5, MT_SILVER, CLR_GRAY, 1),
+ROCK("junk metal", "gray",			0, 1000,   0,  10, 2, 2, 0, 10, 2, MT_ALUMEN, CLR_GRAY, 1),
+ROCK("cobalt chunk", "gray",			0, 100,   0,  10, 6, 7, 0, 10, 5, MT_COBALT, CLR_GRAY, 1),
+ROCK("bronze nugget", "gray",			0, 400,   0,  10, 8, 7, 0, 10, 6, MT_BRONZE, CLR_GRAY, 1),
+ROCK("steel slug", "gray",			0, 500,  0,  10, 10, 9, 0, 10, 7, MT_STEEL, CLR_GRAY, 1),
 ROCK("talc", "gray",				0, 20,   0,  10, 7, 7, 0, 10, 1, MT_MINERAL, CLR_GRAY, 1),
 ROCK("graphite", "gray",			0, 20,   0,  10, 7, 7, 0, 10, 1, MT_MINERAL, CLR_GRAY, 1),
 ROCK("volcanic glass fragment", "gray",	0, 20,   0,  10, 12, 12, 0, 10, 5, MT_GEMSTONE,CLR_GRAY, 1), /* FHS obsidian */
@@ -10510,7 +10525,7 @@ ROCK("amber fragment", "gray",		0, 20,   0,  10, 7, 8, 0, 10, 3, MT_AMBER, CLR_G
 ROCK("sling ammo", "gray",			0, 4000, 0,  10, 9, 9, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 /* sling ammo = last random gray stone, for e.g. shk.c --Amy */
 
-ROCK("rock", (char *)0,				1,37739, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
+ROCK("rock", (char *)0,				1,35739, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 #undef GEM
 #undef ROCK
 

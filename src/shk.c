@@ -5561,6 +5561,7 @@ boolean altusage; /* some items have an "alternate" use with different cost */
 		  otmp->otyp == ORB_OF_CHARGING ||*/
 		  otmp->otyp == OIL_LAMP ||		 /* 1 - 10 */
 		  otmp->otyp == BRASS_LANTERN ||
+		  otmp->otyp == DIM_LANTERN ||
 		 (otmp->otyp >= MAGIC_FLUTE &&
 		  otmp->otyp <= DRUM_OF_EARTHQUAKE) ||	 /* 5 - 9 */
 		  otmp->oclass == WAND_CLASS) {		 /* 3 - 11 */

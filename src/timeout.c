@@ -1979,6 +1979,10 @@ nh_timeout()
 		deacrandomintrinsic(rnz(200));
 	}
 
+	if (!rn2((have_vulnerabilitystone() == 2) ? 25 : 250) && (uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) ) {
+		deacrandomintrinsic(rnz(200));
+	}
+
 	if (!rn2((have_vulnerabilitystone() == 2) ? 25 : 250) && AutomaticVulnerabilitiy) {
 
 		deacrandomintrinsic(rnz(200));
@@ -2373,6 +2377,20 @@ nh_timeout()
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
 		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(200) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
@@ -5247,13 +5265,14 @@ long timeout;
 		    
 	    case TORCH:
 	    case BRASS_LANTERN:
+	    case DIM_LANTERN:
 	    case OIL_LAMP:
 		switch((int)obj->age) {
 		    case 150:
 		    case 100:
 		    case 50:
 			if (canseeit) {
-			    if (obj->otyp == BRASS_LANTERN)
+			    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
 				lantern_message(obj);
 			    else
 				see_lamp_flicker(obj,
@@ -5263,7 +5282,7 @@ long timeout;
 
 		    case 25:
 			if (canseeit) {
-			    if (obj->otyp == BRASS_LANTERN)
+			    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
 				lantern_message(obj);
 			    else {
 				switch (obj->where) {
@@ -5287,7 +5306,7 @@ long timeout;
 			    switch (obj->where) {
 				case OBJ_INVENT:
 				case OBJ_MINVENT:
-				    if (obj->otyp == BRASS_LANTERN)
+				    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
 					pline("%s lantern has run out of power.",
 					    whose);
 				    else
@@ -5295,7 +5314,7 @@ long timeout;
 					    whose, xname(obj));
 				    break;
 				case OBJ_FLOOR:
-				    if (obj->otyp == BRASS_LANTERN)
+				    if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN)
 					You("see a lantern run out of power.");
 				    else
 					You("see %s go out.",
@@ -5822,6 +5841,7 @@ begin_burn(obj, already_lit)
 		break;
 
 	    case BRASS_LANTERN:
+	    case DIM_LANTERN:
 	    case OIL_LAMP:
 	    case TORCH:
 		/* magic times are 150, 100, 50, 25, and 0 */

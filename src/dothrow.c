@@ -2533,6 +2533,7 @@ boolean polearming;
 	if (objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
 	if (objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
 	if (obj->otyp == GRAPPLING_HOOK) pieks = 1;
+	if (obj->otyp == JACK_KNIFE) pieks = 1;
 	boolean stopevading = 0;
 	if (obj->oartifact == ART_STOP_EVADING_ME) stopevading = 1;
 

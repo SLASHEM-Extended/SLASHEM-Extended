@@ -14998,6 +14998,54 @@ A("Giddem,fast!",				TITAN_SACK, /* taking out items doesn't use a turn */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("ND1, NND0D0, NDmD+-Dm D?D3/4ND0 D.D0D1ND, D2 D1/2D0NN IRC-NDmNN.", IMPLANT_OF_ABRASION, /* randart implant, mojibake, anti-teleportation, and if you're in a form without hands, 1 in 200 chance per turn to be healed back up to full HP */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("ND2D3/4N NDmNN ND3/4NDmN ND>>DmD1/2, NND0D0, NND0ND1/2D, D1/4D0D1/4N.", IMPLANT_OF_ABRASION, /* randart2 implant, quaversal, vulnerability, and if you're in a form without hands, trap revealing with 5x the normal rate */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Heap From The Yard",				JUNK_METAL, /* spawns with rn1(500,500) extra ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
+
+A("Coldcrab",				COBALT_CHUNK,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Electric Shock",				BRONZE_NUGGET,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(8, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Gigabonk",				STEEL_SLUG,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Industrial Lightning",				SATURNITE_FIST,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(6, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Godae Musul",				JEONTU_GEOM, /* while wielded, you can use martial arts techs */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Quasimagical Shine",				DIM_LANTERN, /* spawns with 3x as much fuel */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Gonna Be Another Bloodbath",				JACK_KNIFE, /* autocurses */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 18), NO_DFNS, NO_CARY, 0, A_NONE, PM_MURDERER, NON_PM, 1800L ),
+
+A("Ffff err what am I typing there",				REPLICA_UNICORN_HORN, /* 30% base chance of working but applying it gives rnz(500) turns of an alignment-dependant feminism trap effect: either inge, elif or jessica */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Atlus Heave",				TITANIUM_HORN, /* if it would have vaporized, it doesn't and instead becomes heavily cursed; +10 strength when wielded but also confusion and prevents you from having resist confusion, half physical or half spell damage, loses a point of enchantment (up to -20) every time you wield it and if it's -20 or worse, it becomes sticky prime cursed! */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

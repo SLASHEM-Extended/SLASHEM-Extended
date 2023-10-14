@@ -14652,6 +14652,8 @@ register struct obj *o1, *o2;
 		case UNICORN_HORN:
 		case DARK_HORN:
 		case SKY_HORN:
+		case TITANIUM_HORN:
+		case REPLICA_UNICORN_HORN:
 		case ARCANE_HORN:
 			switch (o2->otyp) {
 			    case POT_SICKNESS:
@@ -16531,7 +16533,7 @@ dodip()
 	}
 
 	potion->in_use = FALSE;         /* didn't go poof */
-	if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == SKY_HORN || obj->otyp == ARCANE_HORN || obj->oclass == GEM_CLASS) &&
+	if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == SKY_HORN || obj->otyp == TITANIUM_HORN || obj->otyp == REPLICA_UNICORN_HORN || obj->otyp == ARCANE_HORN || obj->oclass == GEM_CLASS) &&
 	    (mixture = mixtype(obj, potion)) != 0) {
 		char oldbuf[BUFSZ], newbuf[BUFSZ];
 		short old_otyp = potion->otyp;
@@ -16539,7 +16541,7 @@ dodip()
 		boolean more_than_one = potion->quan > 1;
 		if (potion && finalcancelled(potion)) potfinalized = TRUE;
 
-		if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == SKY_HORN || obj->otyp == ARCANE_HORN) && (obj->cursed || (obj->spe < (-rn1(10, 10)))) ) { /* uh-oh */
+		if ((obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == SKY_HORN || obj->otyp == TITANIUM_HORN || obj->otyp == REPLICA_UNICORN_HORN || obj->otyp == ARCANE_HORN) && (obj->cursed || (obj->spe < (-rn1(10, 10)))) ) { /* uh-oh */
 			pline("BOOM! The potion explodes!");
 			if (practicantterror) {
 				pline("%s booms: 'Quit trying to create bombs, maggot. 200 zorkmids.'", noroelaname());
@@ -16658,7 +16660,7 @@ dodip()
 
 		/* clearing potions can strain the unihorn; if you do it on a finalized potion, it always happens because
 		 * finalized potions are actually meant to be used as what they are --Amy */
-		if (obj && (obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == SKY_HORN || obj->otyp == ARCANE_HORN) && (potfinalized || !rn2(10)) ) {
+		if (obj && (obj->otyp == UNICORN_HORN || obj->otyp == DARK_HORN || obj->otyp == SKY_HORN || obj->otyp == TITANIUM_HORN || obj->otyp == REPLICA_UNICORN_HORN || obj->otyp == ARCANE_HORN) && (potfinalized || !rn2(10)) ) {
 
 			if (obj->spe > -20) obj->spe--;
 			if(obj->blessed) unbless(obj);

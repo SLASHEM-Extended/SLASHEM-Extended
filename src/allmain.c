@@ -7176,6 +7176,12 @@ newbossJANI:
 			uwep->age++;
 		}
 
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ND___NND_D___NDMD__DM_D_D_ && !rn2(200)) {
+			u.uhp = u.uhpmax;
+			if (Upolyd) u.mh = u.mhmax;
+			flags.botl = TRUE;
+		}
+
 		if (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY && !rn2(1000) && !uarmf->cursed) curse(uarmf);
 
 		if (uarm && uarm->oartifact == ART_A_ROOMFUL_WILL_BE_A_CHALLE && !rn2(5000)) {

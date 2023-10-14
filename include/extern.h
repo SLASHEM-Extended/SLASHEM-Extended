@@ -3398,6 +3398,7 @@ E void techlevelup(void);
 E void techlevelspecific(int);
 E void learnrandomregulartech(void);
 E void resettechniqueextra(void);
+E boolean canuseunarmedtechs(void);
 
 /* ### teleport.c ### */
 

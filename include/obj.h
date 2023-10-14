@@ -256,10 +256,10 @@ struct obj {
 			 !is_unpoisonable_firearm_ammo(otmp))
 #define uslinging()	(uwep && objects[uwep->otyp].oc_skill == P_SLING)
 #define is_weptool(o)	((o)->oclass == TOOL_CLASS && \
-			 (objects[(o)->otyp].oc_skill != P_NONE || ((o)->otyp == TIN_OPENER) || ((o)->otyp == BUDO_NO_SASU) ) )
+			 (objects[(o)->otyp].oc_skill != P_NONE || ((o)->otyp == TIN_OPENER) || ((o)->otyp == BUDO_NO_SASU) || ((o)->otyp == JEONTU_GEOM) ) )
 
 #define is_weptoolbase(o)	(objects[o].oc_class == TOOL_CLASS && \
-			 (objects[o].oc_skill != P_NONE || (o == TIN_OPENER) || (o == BUDO_NO_SASU) ) )
+			 (objects[o].oc_skill != P_NONE || (o == TIN_OPENER) || (o == BUDO_NO_SASU) || (o == JEONTU_GEOM) ) )
 
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
@@ -376,7 +376,7 @@ struct obj {
 			 (o)->cobj != (struct obj *)0)
 #define Is_container(o) ((o)->otyp == MEDICAL_KIT || \
 			 (o)->otyp >= LARGE_BOX && (o)->otyp <= BAG_OF_TRICKS)
-#define Is_box(otmp)	((otmp)->otyp == LARGE_BOX || (otmp)->otyp == LEAD_BOX || (otmp)->otyp == CHEST || (otmp)->otyp == NANO_CHEST || (otmp)->otyp == TREASURE_CHEST || (otmp)->otyp == LARGE_BOX_OF_DIGESTION || (otmp)->otyp == CHEST_OF_HOLDING)
+#define Is_box(otmp)	((otmp)->otyp == LARGE_BOX || (otmp)->otyp == LEAD_BOX || (otmp)->otyp == TOP_BOX || (otmp)->otyp == CHEST || (otmp)->otyp == NANO_CHEST || (otmp)->otyp == TREASURE_CHEST || (otmp)->otyp == LARGE_BOX_OF_DIGESTION || (otmp)->otyp == CHEST_OF_HOLDING)
 #ifdef WALLET_O_P
 #define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \
                          ((otmp)->oartifact && \
@@ -478,6 +478,7 @@ struct obj {
 /* age field of this is relative age rather than absolute */
 #define age_is_relative(otmp)	((otmp)->otyp == BRASS_LANTERN\
 				|| (otmp)->otyp == OIL_LAMP\
+				|| (otmp)->otyp == DIM_LANTERN\
 				|| (otmp)->otyp == TORCH\
 				|| (otmp)->otyp == CANDELABRUM_OF_INVOCATION\
 				|| (otmp)->otyp == TALLOW_CANDLE\
@@ -494,6 +495,7 @@ struct obj {
 /* object can be ignited */
 #define ignitable(otmp)	((otmp)->otyp == BRASS_LANTERN\
 				|| (otmp)->otyp == OIL_LAMP\
+				|| (otmp)->otyp == DIM_LANTERN\
 				|| (otmp)->otyp == TORCH\
 				|| (otmp)->otyp == CANDELABRUM_OF_INVOCATION\
 				|| (otmp)->otyp == TALLOW_CANDLE\
@@ -521,6 +523,10 @@ struct obj {
 				 (obj)->otyp == VOLCANIC_GLASS_FRAGMENT     || \
 				 (obj)->otyp == TOUCHSTONE || \
 				 (obj)->otyp == LEAD_CLUMP || \
+				 (obj)->otyp == JUNK_METAL || \
+				 (obj)->otyp == COBALT_CHUNK || \
+				 (obj)->otyp == BRONZE_NUGGET || \
+				 (obj)->otyp == STEEL_SLUG || \
 				 (obj)->otyp == SLING_AMMO || \
 				 (obj)->otyp == BONE_FRAGMENT || \
 				 (obj)->otyp == METEOR_FRAGMENT || \

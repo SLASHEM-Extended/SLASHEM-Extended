@@ -4823,7 +4823,7 @@ breakstare:
 		t_timeout = rnz(750);
 	    	break;
 	    case T_BLITZ:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
@@ -4838,7 +4838,7 @@ breakstare:
                 t_timeout = rnz(5000);
 	    	break;
             case T_PUMMEL:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
@@ -4860,7 +4860,7 @@ breakstare:
 		    t_timeout = rnz(2000);
 		break;
             case T_G_SLAM:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
@@ -4896,7 +4896,7 @@ breakstare:
 		if (issoviet) pline("Sovetskaya nichego ne znayet o balansirovaniya ne ponimayet i poetomu khochet etu tekhniku, kotoraya uzhe slishkom sil'na, chtoby byt' yeshche sil'neye.");
 		break;            	
             case T_SPIRIT_BOMB:
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
@@ -6657,7 +6657,7 @@ incarnationfinish:
 
 		case T_COMBO_STRIKE:
 
-			if (uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU)) ) {
+			if (!canuseunarmedtechs()) {
 				You("can't do that while wielding a weapon!");
 				return 0;
 			}
@@ -7055,7 +7055,7 @@ revid_end:
 
 	    case T_UNARMED_FOCUS:
 
-		if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+		if (!canuseunarmedtechs()) {
 			pline("That requires you to be fighting without a weapon!");
 			break;
 		}
@@ -7675,15 +7675,12 @@ revid_end:
 
 		case T_DRAINING_PUNCH:
 
-	    	if ((uwep && !(Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU) )) || (u.twoweap && uswapwep)) {
+	    	if (!canuseunarmedtechs()) {
 			You("can't do this while wielding a weapon!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    		return(0);
-	    	} else if (uarms) {
-			You("can't do this while holding a shield!");
-			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-	    		return(0);
 	    	}
+		/* used to be impossible with a shield but that was dumb --Amy */
 		if (!getdir((char *)0)) return(0);
 		if (!u.dx && !u.dy) {
 			You("flex your muscles.");
@@ -12620,6 +12617,25 @@ learnrandomregulartech()
 
 	}
 
+}
+
+/* can you use a martial arts technique? normally you have to be bare-handed, but there may be exceptions --Amy */
+boolean
+canuseunarmedtechs()
+{
+	/* dual-wielding prevents it entirely */
+	if (u.twoweap && uswapwep) return FALSE;
+
+	/* godae musul is a special artifact that is suitable for martial arts moves */
+	if (uwep && uwep->oartifact == ART_GODAE_MUSUL) return TRUE;
+
+	/* supermarket cashier can use martial arts moves with all tin openers because he knows "tin-fu" */
+	if (uwep && Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU || uwep->otyp == JEONTU_GEOM) ) return TRUE;
+
+	/* everyone else needs to be bare-handed */
+	if (uwep) return FALSE;
+
+	return FALSE;
 }
 
 void

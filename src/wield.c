@@ -65,7 +65,7 @@ static const char allnoncount[] = { ALL_CLASSES, 0 };
 /* used by welded(), and also while wielding */
 #define will_weld(optr)		((optr)->cursed \
 				&& (erodeable_wep(optr) \
-				   || (optr)->otyp == TIN_OPENER || (optr)->otyp == BUDO_NO_SASU))
+				   || (optr)->otyp == TIN_OPENER || (optr)->otyp == BUDO_NO_SASU || (optr)->otyp == JEONTU_GEOM))
 
 
 /*** Functions that place a given item in a slot ***/
@@ -229,6 +229,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_HOL_ON_MAN && !uwep->cursed) {
 		curse(uwep);
 	}
+	if (uwep && uwep->oartifact == ART_GONNA_BE_ANOTHER_BLOODBATH && !uwep->cursed) {
+		curse(uwep);
+		pline("Raaaaaaahhh, your weapon became cursed!");
+	}
 	if (uwep && uwep->oartifact == ART_SIYID && !uwep->cursed) {
 		curse(uwep);
 		pline("Whoops, your weapon became cursed.");
@@ -307,6 +311,15 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 
 	if (uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) {
 		if (uwep->spe > -20) uwep->spe--;
+	}
+
+	if (uwep && uwep->oartifact == ART_ATLUS_HEAVE) {
+		if (uwep->spe > -20) uwep->spe--;
+		if (uwep->spe <= -20) {
+			curse(uwep); uwep->hvycurse = uwep->prmcurse = uwep->stckcurse = TRUE;
+		}
+		pline("Your weapon seems less effective.");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 	}
 
 	if (uwep && uwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uwep->hvycurse) {
@@ -503,6 +516,10 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_HOL_ON_MAN && !uswapwep->cursed) {
 			curse(uswapwep);
 		}
+		if (uswapwep && uswapwep->oartifact == ART_GONNA_BE_ANOTHER_BLOODBATH && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Raaaaaaahhh, your weapon became cursed!");
+		}
 		if (uswapwep && uswapwep->oartifact == ART_SIYID && !uswapwep->cursed) {
 			curse(uswapwep);
 			pline("Whoops, your secondary weapon became cursed.");
@@ -562,6 +579,15 @@ swapweaponchoice:
 
 		if (uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) {
 			if (uswapwep->spe > -20) uswapwep->spe--;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ATLUS_HEAVE) {
+			if (uswapwep->spe > -20) uswapwep->spe--;
+			if (uswapwep->spe <= -20) {
+				curse(uswapwep); uswapwep->hvycurse = uswapwep->prmcurse = uswapwep->stckcurse = TRUE;
+			}
+			pline("Your weapon seems less effective.");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_HENRIETTA_S_MISTAKE && !uswapwep->hvycurse) {

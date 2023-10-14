@@ -417,6 +417,7 @@ init_randarts()
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
 	artilist[ART_POLITICAL_CORRECTNESS_FOR_].otyp = randartspellbook();
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
+	artilist[ART_ND___NND_D___NDMD__DM_D_D_].otyp = randartimplant();
 	artilist[ART_ARABELLA_S_EXCHANGER].otyp = randartimplant();
 	artilist[ART_SYMPLANT].otyp = randartimplant();
 	artilist[ART_MAXHIT_BOOST].otyp = randartimplant();
@@ -647,6 +648,7 @@ init_randarts()
 	artilist[ART_FULLY_THE_LONG_PENIS].otyp = randartwandX();
 	artilist[ART_WORLD_OF_COQ].otyp = randartwandX();
 	artilist[ART_GIVE_IT_ME_YOUR_WILL].otyp = randartimplantX();
+	artilist[ART_ND_D___N_NDMNN_ND___NDMN_N].otyp = randartimplantX();
 	artilist[ART_WHOOSHZAP].otyp = randartwandX();
 	artilist[ART_CLOUDYBAND].otyp = randartshirtX();
 	artilist[ART_MENSTRUATION_HURTS].otyp = randartshirtX();
@@ -1905,6 +1907,10 @@ register boolean mod;
 			otmp->quan += rn1(6,6);
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_HEAP_FROM_THE_YARD) {
+			otmp->quan += rn1(500,500);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_PEWWWWWWW) {
 			otmp->quan += rn1(9,9);
 			otmp->owt = weight(otmp);
@@ -1987,6 +1993,9 @@ register boolean mod;
 			otmp->quan *= 3;
 			otmp->quan += 25;
 			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_QUASIMAGICAL_SHINE) {
+			otmp->age *= 3;
 		    }
 		    if (otmp && otmp->oartifact == ART_ALL_WASTED) {
 			otmp->quan /= 3;

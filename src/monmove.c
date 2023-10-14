@@ -4867,7 +4867,7 @@ struct monst *mtmp;
 		    typ != INKA_LEASH && typ != ADAMANT_LEASH &&
 		    typ != STETHOSCOPE && typ != BLINDFOLD && typ != EYECLOSER && typ != DRAGON_EYEPATCH && typ != TOWEL &&
 		    typ != TIN_WHISTLE && typ != GRASS_WHISTLE && typ != MAGIC_WHISTLE &&
-		    typ != MAGIC_MARKER && typ != TIN_OPENER && typ != BUDO_NO_SASU &&
+		    typ != MAGIC_MARKER && typ != TIN_OPENER && typ != BUDO_NO_SASU && typ != JEONTU_GEOM &&
 		    typ != SKELETON_KEY && typ != SECRET_KEY && typ != LOCK_PICK && typ != HAIRCLIP
 		) return FALSE;
 		if (Is_container(obj) && obj->cobj) return FALSE;

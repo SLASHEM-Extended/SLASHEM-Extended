@@ -1703,7 +1703,7 @@ struct obj *obj;
 	if (obj->lamplit) {
 	    if (artifact_light(obj)) return FALSE; /* Artifact lights are never snuffed */
 	    if (obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-		obj->otyp == BRASS_LANTERN || obj->otyp == POT_OIL ||
+		obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN || obj->otyp == POT_OIL ||
 		obj->otyp == TORCH) {
 		(void) get_obj_location(obj, &x, &y, 0);
 		if (obj->where == OBJ_MINVENT ? cansee(x,y) : !Blind)
@@ -1736,7 +1736,7 @@ struct obj *obj;
 	    if (obj->otyp == CANDELABRUM_OF_INVOCATION && obj->cursed)
 		return FALSE;
 	    if ((obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-		 obj->otyp == BRASS_LANTERN) && obj->cursed && !rn2(2))
+		 obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN) && obj->cursed && !rn2(2))
 		return FALSE;
 	    if (obj->where == OBJ_MINVENT ? cansee(x,y) : !Blind)
 		pline("%s %s light!", Yname2(obj), otense(obj, "catch"));
@@ -1786,7 +1786,7 @@ struct obj *obj;
 		return;
 	}
 	if(obj->lamplit) {
-		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
+		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == DIM_LANTERN ||
 				obj->otyp == BRASS_LANTERN) {
 		    pline("%s lamp is now off.", Shk_Your(buf, obj));
 		} else if(is_lightsaber(obj)) {
@@ -1856,7 +1856,7 @@ struct obj *obj;
 	/* magic lamps with an spe == 0 (wished for) cannot be lit */
 	if ((!Is_candle(obj) && obj->age == 0)
 			|| (obj->otyp == MAGIC_LAMP && obj->spe == 0)) {
-		if ((obj->otyp == BRASS_LANTERN)
+		if ((obj->otyp == BRASS_LANTERN) || (obj->otyp == DIM_LANTERN)
 			|| is_lightsaber(obj)
 			)
 			Your("%s has run out of power.", xname(obj));
@@ -1876,8 +1876,7 @@ struct obj *obj;
 		pline("%s for a moment, then %s.",
 		      Tobjnam(obj, "flicker"), otense(obj, "die"));
 	} else {
-		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP ||
-				obj->otyp == BRASS_LANTERN) {
+		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN) {
 		    check_unpaid(obj);
 		    pline("%s lamp is now on.", Shk_Your(buf, obj));
 		} else if (obj->otyp == TORCH) {
@@ -2083,7 +2082,7 @@ dorub()
 				badeffect();
 			}
 		}
-	} else if (obj->otyp == BRASS_LANTERN) {
+	} else if (obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN) {
 	    /* message from Adventure */
 	    pline("Rubbing the electric lamp is not particularly rewarding.");
 	    pline("Anyway, nothing exciting happens.");
@@ -2583,7 +2582,7 @@ register struct obj *obj;
 	    if (obj && obj->oartifact == ART_FERTILIZATOR && Role_if(PM_MILL_SWALLOWER)) {
 			struct obj *uammo;
 			int fertilammotyp = FLINT;
-			switch (rnd(13)) {
+			switch (rnd(17)) {
 				case 1: fertilammotyp = SALT_CHUNK; break;
 				case 2: fertilammotyp = SILVER_SLINGSTONE; break;
 				case 3: fertilammotyp = SMALL_PIECE_OF_UNREFINED_MITHR; break;
@@ -2597,6 +2596,10 @@ register struct obj *obj;
 				case 11: fertilammotyp = CONUNDRUM_NUGGET; break;
 				case 12: fertilammotyp = AMBER_FRAGMENT; break;
 				case 13: fertilammotyp = METEOR_FRAGMENT; break;
+				case 14: fertilammotyp = JUNK_METAL; break;
+				case 15: fertilammotyp = COBALT_CHUNK; break;
+				case 16: fertilammotyp = BRONZE_NUGGET; break;
+				case 17: fertilammotyp = STEEL_SLUG; break;
 				default : fertilammotyp = FLINT; break;
 			}
 
@@ -2649,10 +2652,14 @@ struct obj *obj;
 	}
 
 	/* higher chance for vaporizing the horn as a centaur --Amy */
-	if (obj && !obj->oartifact && !(uwep && uwep->oartifact == ART_STAB_ALL_OVER && rn2(2)) && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
+	if (obj && !obj->oartifact && !(obj->otyp == TITANIUM_HORN && (rnd(5) > 2) ) && !(uwep && uwep->oartifact == ART_STAB_ALL_OVER && rn2(2)) && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 10 : 100)) {
 
 degradeagain:
-	    if (obj->spe < 1) {
+	    if (obj->oartifact == ART_ATLUS_HEAVE) {
+		curse(obj);
+		obj->hvycurse = TRUE;
+		pline(FunnyHallu ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+	    } else if (obj->spe < 1) {
 	    useup(obj);
 	    pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
@@ -2668,9 +2675,13 @@ degradeagain:
 			curse(obj);
 
 	    }
-		}
-	if (obj && obj->oartifact && !(uwep && uwep->oartifact == ART_STAB_ALL_OVER && rn2(2)) && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
-	    if (obj->spe < 1) {
+	}
+	if (obj && obj->oartifact && !(obj->otyp == TITANIUM_HORN && (rnd(5) > 2) ) && !(uwep && uwep->oartifact == ART_STAB_ALL_OVER && rn2(2)) && (rnd(8) > nochargechange) && !rn2(Race_if(PM_HUMANOID_CENTAUR) ? 100 : 10000)) {
+	    if (obj->oartifact == ART_ATLUS_HEAVE) {
+		curse(obj);
+		obj->hvycurse = TRUE;
+		pline(FunnyHallu ? "The tool is glowing in a wide array of colors!" : "Your unicorn horn seems less effective.");
+	    } else if (obj->spe < 1) {
 	    useup(obj);
 	    pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
 	    if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
@@ -2685,7 +2696,7 @@ degradeagain:
 			curse(obj);
 
 	    }
-		}
+	}
 
 	if (obj && obj->cursed) {
 	    long lcount = (long) rnd(100);
@@ -2832,11 +2843,16 @@ fixthings:
 		}
 	}
 
+	if (obj && obj->otyp == REPLICA_UNICORN_HORN) chance -= 2;
+	if (obj && obj->oartifact == ART_FFFF_ERR_WHAT_AM_I_TYPING_) chance += 2;
+
 	if (obj && obj->oartifact == ART_CURE_GOOD) chance += 2;
+	if (obj && obj->otyp == TITANIUM_HORN) chance += 4;
 	if (uwep && uwep->oartifact == ART_STAB_ALL_OVER) chance++;
 
 	if (isfriday && chance > 1) chance /= 2;
 
+	if (chance < 1) chance = 1;
 	if (chance > 18) chance = 18;
 	if (issoviet && chance > 9) chance = 9;
 
@@ -5499,6 +5515,7 @@ dyechoice:
 			wield_tool(obj, "lash"); }
 		break;
 	case GRAPPLING_HOOK:
+	case JACK_KNIFE:
 		if (uwep && uwep == obj) res = use_grapple(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -5874,6 +5891,7 @@ dyechoice:
 	case OIL_LAMP:
 	case MAGIC_LAMP:
 	case BRASS_LANTERN:
+	case DIM_LANTERN:
 		use_lamp(obj);
 		break;
 
@@ -5993,6 +6011,7 @@ dyechoice:
 		break;
 	case TIN_OPENER:
 	case BUDO_NO_SASU:
+	case JEONTU_GEOM:
 		if(!carrying(TIN)) {
 			You("have no tin to open.");
 			goto xit;
@@ -6022,6 +6041,24 @@ dyechoice:
 		break;
 	case UNICORN_HORN:
 	case SKY_HORN:
+	case REPLICA_UNICORN_HORN:
+	case TITANIUM_HORN:
+
+		if (obj && obj->oartifact == ART_FFFF_ERR_WHAT_AM_I_TYPING_) {
+			if (u.ualign.type == A_LAWFUL) {
+				if (!FemaleTrapInge) pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
+				FemaleTrapInge += rnz(500);
+			}
+			if (u.ualign.type == A_NEUTRAL) {
+				if (!FemaleTrapElif) pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
+				FemaleTrapElif += rnz(500);
+			}
+			if (u.ualign.type == A_CHAOTIC) {
+				if (!FemaleTrapJessica) pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
+				FemaleTrapJessica += rnz(500);
+			}
+		}
+
 		if (use_unicorn_horn(obj)) noartispeak = TRUE;
 		break;
 	case BUBBLEHORN:
@@ -6233,6 +6270,10 @@ dyechoice:
 	case METEOR_FRAGMENT:
 	case AMBER_FRAGMENT:
 	case LEAD_CLUMP:
+	case JUNK_METAL:
+	case COBALT_CHUNK:
+	case BRONZE_NUGGET:
+	case STEEL_SLUG:
 	case SLING_AMMO:
 	case VOLCANIC_GLASS_FRAGMENT:
 	case STARLIGHTSTONE:

@@ -1640,6 +1640,7 @@ int dieroll;
 	if (thrown == 1 && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
 	if (thrown == 1 && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
 	if (thrown == 1 && obj->otyp == GRAPPLING_HOOK) pieks = 1;
+	if (thrown == 1 && obj->otyp == JACK_KNIFE) pieks = 1;
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
@@ -2669,7 +2670,7 @@ int dieroll;
 				if (obj->otyp == AMBUSH_QATAR) tmp += rnd(10);
 			}
 
-			if (obj && (obj->otyp == BRASS_KNUCKLES || obj->otyp == SUPER_KNUCKLES || obj->otyp == ULTRA_KNUCKLES || obj->otyp == ELITE_KNUCKLES || obj->otyp == POWERFIST || obj->otyp == LASERFIST) && tech_inuse(T_JIU_JITSU)) {
+			if (obj && (obj->otyp == BRASS_KNUCKLES || obj->otyp == SUPER_KNUCKLES || obj->otyp == ULTRA_KNUCKLES || obj->otyp == ELITE_KNUCKLES || obj->otyp == POWERFIST || obj->otyp == SATURNITE_FIST || obj->otyp == LASERFIST) && tech_inuse(T_JIU_JITSU)) {
 				int jiuextradmg = 0;
 				if (find_mac(mon) <= -5) jiuextradmg += 2;
 				if (find_mac(mon) <= -10) jiuextradmg += 2;
@@ -2725,7 +2726,7 @@ int dieroll;
 				if (Role_if(PM_SUPERMARKET_CASHIER)) tmp += rnd(10);
 			}
 
-			if (obj && (obj->otyp == LASER_TIN_OPENER || obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU) && Role_if(PM_SUPERMARKET_CASHIER)) {
+			if (obj && (obj->otyp == LASER_TIN_OPENER || obj->otyp == TIN_OPENER || obj->otyp == BUDO_NO_SASU || obj->otyp == JEONTU_GEOM) && Role_if(PM_SUPERMARKET_CASHIER)) {
 				if (obj->otyp == BUDO_NO_SASU) tmp += 5;
 				tmp += 2;
 				if (GushLevel >= 18) tmp += rnd(10);
