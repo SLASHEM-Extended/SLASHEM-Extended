@@ -1637,6 +1637,18 @@ have_femityjewel()
 }
 
 boolean
+have_stashitcontainer()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_STASHIT)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_oneinfourstone()
 {
 	register struct obj *otmp;
@@ -16253,6 +16265,8 @@ boolean knoweverything;
 				pline("A big container that can hold items."); break;
 			case LEAD_BOX:
 				pline("Super-heavy container. It has the advantage that monsters who grab hold of it won't be capable of emptying its contents."); break;
+			case TOP_BOX:
+				pline("A waterproof box that weighs quite a bit less than most other box types."); break;
 			case NANO_CHEST:
 				pline("A self-repairing container."); break;
 			case TREASURE_CHEST:
@@ -16323,6 +16337,8 @@ boolean knoweverything;
 				pline("A charged tool that can be applied to grease your stuff. Careful, it's difficult to handle and you will occasionally hurt yourself."); break;
 			case SACK: 
 				pline("This is a basic container that can be used to store items."); break;
+			case TITAN_SACK: 
+				pline("Apart from being very rare and made of an uncommon material, this sack is actually rather plain and can be used to store items. It isn't waterproof, so beware."); break;
 			case OILSKIN_SACK:
 				pline("A useful container that protects its contents from water."); break;
 			case POTATO_BAG:
@@ -27608,6 +27624,16 @@ boolean knoweverything;
 					pline("Artifact specs: +12 cold damage. This artifact is based on a joke by Amy where Diablo, the Lord of Terror, would somehow use a weak short sword as his main weapon."); break;
 				case ART_DIABLO_S_LBOD:
 					pline("Artifact specs: occasionally fires a lightning bolt in the direction of your melee attack. This artifact is based on a joke by Amy where Diablo, the Lord of Terror, would somehow use a weak short sword as his main weapon."); break;
+				case ART_GITTA_S_HANDBAG:
+					pline("Artifact specs: allows you to take out items without using up a turn, but putting items in still uses turns."); break;
+				case ART_KLARABELLA_S_HANDBAG:
+					pline("Artifact specs: allows you to put in items without using up a turn, but taking out items still uses turns."); break;
+				case ART_STASHIT:
+					pline("Artifact specs: allows you to put in items without using up a turn, but taking out items still uses turns. While carrying this artifact, you are weighed down by 1000 more units."); break;
+				case ART_JUST_LIKE_THAT:
+					pline("Artifact specs: magic resistance when carried. This item cannot be wished for."); break;
+				case ART_GIDDEM_FAST_:
+					pline("Artifact specs: allows you to take out items without using up a turn, but putting items in still uses turns."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

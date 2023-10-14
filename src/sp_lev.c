@@ -3803,7 +3803,7 @@ struct mkroom	*croom;
 		    break;
 		}
 		remove_object(otmp);
-		(void) add_to_container(container, otmp);
+		(void) add_to_container(container, otmp, TRUE);
 		goto o_done;		/* don't stack, but do other cleanup */
 	    /* container */
 	    case 2:
@@ -3846,7 +3846,7 @@ struct mkroom	*croom;
 		obj = was->minvent;
 		obj->owornmask = 0;
 		obj_extract_self(obj);
-		(void) add_to_container(otmp, obj);
+		(void) add_to_container(otmp, obj, TRUE);
 		}
 		otmp->owt = weight(otmp);
 		mongone(was);
@@ -5200,7 +5200,7 @@ retryrandtype:
 			    if (sobj && !rn2(3) ) {
 				for (i = rn2(2 + rn2(4)); i; i--)
 					if (timebasedlowerchance()) {
-					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE));
+					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE), TRUE);
 					}
 				sobj->owt = weight(sobj);
 			    }

@@ -2414,10 +2414,13 @@ newbossING:
 		mtmp = makemon(&mons[statue->corpsenm], 0, 0, NO_MM_FLAGS);
 		if (!mtmp) break; /* should never happen */
 		while(mtmp->minvent) {
+
 		    otmp = mtmp->minvent;
 		    otmp->owornmask = 0;
 		    obj_extract_self(otmp);
-		    (void) add_to_container(statue, otmp);
+
+		    /* in order to properly set the items to not always drop, a new flag is needed... --Amy */
+		    (void) add_to_container(statue, otmp, FALSE);
 		}
 		statue->owt = weight(statue);
 		if (!rn2(5)) statue->oinvis = 1; /* player needs see invisible to detect this thing --Amy */
@@ -2473,7 +2476,7 @@ newbossING:
 		    otmp = mtmp->minvent;
 		    otmp->owornmask = 0;
 		    obj_extract_self(otmp);
-		    (void) add_to_container(statue, otmp);
+		    (void) add_to_container(statue, otmp, FALSE);
 		}
 		statue->owt = weight(statue);
 		if (!rn2(5)) statue->oinvis = 1; /* player needs see invisible to detect this thing --Amy */
@@ -24123,6 +24126,7 @@ xchar x, y;
 	if (Is_container(obj)) {
 	    switch (obj->otyp) {
 	    case LEAD_BOX:
+	    case TOP_BOX:
 	    case ICE_BOX:
 	    case DISPERSION_BOX:
 	    case ICE_BOX_OF_HOLDING:
@@ -27851,6 +27855,7 @@ lava_effects()
 
 			switch (obj->otyp) {
 				case LEAD_BOX:
+				case TOP_BOX:
 				case ICE_BOX:
 				case DISPERSION_BOX:
 				case ICE_BOX_OF_HOLDING:

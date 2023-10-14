@@ -5506,6 +5506,7 @@ dyechoice:
 		break;
 	case LARGE_BOX:
 	case LEAD_BOX:
+	case TOP_BOX:
 	case TREASURE_CHEST:
 	case CHEST:
 	case NANO_CHEST:
@@ -5517,6 +5518,7 @@ dyechoice:
 	case SACK:
 	case BAG_OF_HOLDING:
 	case OILSKIN_SACK:
+	case TITAN_SACK:
 	case POTATO_BAG:
 	case HANDYBAG:
 		if ((obj->otyp == BAG_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING) && obj->cursed) {

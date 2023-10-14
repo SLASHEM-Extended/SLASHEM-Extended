@@ -1337,7 +1337,7 @@ cgrfinished:
 			    if (sobj) {
 				for (i = rn2(5); i; i--)
 					if (timebasedlowerchance()) {
-					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE));
+					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE), TRUE);
 					}
 				sobj->owt = weight(sobj);
 			    }
@@ -3760,7 +3760,7 @@ mkstatueroom()
 			    if (sobj && !rn2(3) ) {
 				for (i = rn2(2 + rn2(4)); i; i--)
 					if (timebasedlowerchance()) {
-					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE));
+					    (void) add_to_container(sobj, mkobj(RANDOM_CLASS, FALSE, FALSE), TRUE);
 					}
 				sobj->owt = weight(sobj);
 			    }

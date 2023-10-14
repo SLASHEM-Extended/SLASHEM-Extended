@@ -3525,7 +3525,7 @@ A("Cubic Sodium Chloride",				SALT_CHUNK, /* dissolving it creates 5 tame famili
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
 
 A("Magic Resistance Get",				BOULDER,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR), (SPFX_DEFN), 0,
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Shocking Therapy",				REALLY_HEAVY_IRON_BALL, /* disables shock resistance */
@@ -8447,7 +8447,7 @@ A("The Machine That Goes Pling",				DIAMOND, /* randart gem */
 	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
 A("Jonadab's Death Ray Insurance",				LOADSTONE,
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_DEFN), 0,
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Jonadab's Reflectiosus",				LOADSTONE,
@@ -11259,7 +11259,7 @@ A("Praefame",				RIN_HUNGER, /* autocurses, can be invoked to lose 500 nutrition
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 100L ),
 
 A("Philosopher's Stone",				ELIF_S_JEWEL, /* randart feminism jewel */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_DEFN), 0,
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Secespita",				VICTIM_KNIFE,
@@ -13947,7 +13947,7 @@ A("Dieamend",				AMULET_OF_THIRD_CHANCE, /* +2 CHA */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ERDRICK, NON_PM, 5000L ),
 
 A("NOOBNOOBNOOB",				CHARLOTTE_S_JEWEL, /* if this item is generated as a noob mode barb, you get the charlotte trap effect permanently */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_DEFN), 0,
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, PM_NOOB_MODE_BARB, NON_PM, 1500L ),
 
 A("Fliumill",				WINDMILL_BLADE, /* dmg h@ck because programmers are so ultra stupid and don't just make a SPFX_DBLDAMAGE flag, spawns with double stack size and can be gifted again even after it has already been generated */
@@ -14977,6 +14977,26 @@ A("Diablo's Cold Smackage",				SHORT_SWORD, /* randart short sword */
 A("Diablo's LBOD",				SHORT_SWORD, /* randart2 short sword, 1 in 20 when meleeing that you fire a d10-strength lightning bolt in the direction of your attack */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Gitta's Handbag",				HANDYBAG, /* taking out items doesn't use a turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Klarabella's Handbag",				HANDYBAG, /* putting in items doesn't use a turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Stashit",				LEAD_BOX, /* putting in items doesn't use a turn, carrying this item causes 1000 additional units of weight */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Just Like That",				TOP_BOX,
+	(SPFX_RESTR|SPFX_NOWISH), (SPFX_DEFN), 0,
+	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Giddem,fast!",				TITAN_SACK, /* taking out items doesn't use a turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

@@ -1688,8 +1688,11 @@ struct monst *mtmp;
 #else
 	if (mtmp->minvent) {
 #endif
-	    for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj)
+	    for (otmp = mtmp->minvent; otmp; otmp = otmp->nobj) {
 		otmp->dknown = 1;	/* treat as "seen" */
+
+	    }
+
 	    (void) display_minventory(mtmp, MINV_ALL, (char *)0);
 	} else {
 	    pline("%s is not carrying anything.", noit_Monnam(mtmp));
@@ -10497,7 +10500,16 @@ register struct obj *obj;
 	/* drop any objects contained inside the statue */
 	while ((item = obj->cobj) != 0) {
 	    obj_extract_self(item);
-	    place_object(item, obj->ox, obj->oy);
+
+		/* Amy edit: for statue traps, you shouldn't be able to cheat past the chance of loot erasure!!! */
+
+		if (is_musable(item) && item->mstartinvent && !(item->oartifact) && !(item->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (item->otyp == POT_BLOOD || item->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || !timebasedlowerchance() || (!timebasedlowerchance() && ((u.urexp > 10000) || (moves > 10000)) ) ) ) delobj(item);
+		else if (item->mstartinventB && !(item->oartifact) && !(item->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) delobj(item);
+		else if (item->mstartinventC && !(item->oartifact) && !(item->fakeartifact && !rn2(10)) && rn2(10) ) delobj(item);
+		else if (item->mstartinventE && !(item->oartifact) && !(item->fakeartifact && !rn2(20)) && rn2(20) ) delobj(item);
+		else if (item->mstartinventD && !(item->oartifact) && !(item->fakeartifact && !rn2(4)) && rn2(4) ) delobj(item);
+		else if (item->mstartinventX) delobj(item);
+		else place_object(item, obj->ox, obj->oy);
 	}
 	if (Role_if(PM_ARCHEOLOGIST) && !flags.mon_moving && (obj->spe & STATUE_HISTORIC)) {
 	    You_feel("guilty about damaging such a historic statue.");

@@ -5492,9 +5492,10 @@ dummies end */
 		wt, cost, sdam, ldam, hitbon, 0, wt, clr, minlvl, 0 )
 
 /* Containers - large box must be first, see obj.h */
-CONTAINER("large box", "wooden box",    0, 0, 0, 1, 3470,500,   8, MT_WOOD, HI_WOOD, 1),
+CONTAINER("large box", "wooden box",    0, 0, 0, 1, 3469,500,   8, MT_WOOD, HI_WOOD, 1),
 CONTAINER("large box of digestion", "wooden box", 0, 0, 0, 1, 20,500,   8, MT_WOOD, HI_WOOD, 10),
 CONTAINER("lead box", "metal box",    0, 0, 0, 1, 10, 1000,  50, MT_LEAD, CLR_GRAY, 40), /* cannot be emptied by monsters */
+CONTAINER("top box", (char *)0,    1, 0, 0, 1, 1, 200,  2000, MT_FIRMAMENT, CLR_WHITE, 90),
 CONTAINER("chest", "wooden container",  0, 0, 0, 1, 3479,750,  16, MT_WOOD, HI_WOOD, 1),
 CONTAINER("chest of holding", "wooden container",  0, 0, 0, 1, 20,750,  16, MT_WOOD, HI_WOOD, 10),
 CONTAINER("nano chest", "high-tech container",  0, 0, 0, 1, 1, 750, 500, MT_NANOMACHINE, CLR_WHITE, 90),
@@ -5504,10 +5505,11 @@ CONTAINER("ice box of holding", "cooling box", 0, 0, 0, 1,   20,400,  42, MT_PLA
 CONTAINER("ice box of waterproofing", "cooling box", 0, 0, 0, 1,   20,400,  42, MT_PLASTIC, CLR_WHITE, 20),
 CONTAINER("ice box of digestion", "cooling box", 0, 0, 0, 1,   20,400,  42, MT_PLASTIC, CLR_WHITE, 20),
 CONTAINER("dispersion box", "liquid box",         0, 0, 0, 1,  3, 400,  200, MT_LIQUID, CLR_WHITE, 1), /* waterproof, cannot be emptied by monsters */
-CONTAINER("sack", "bag",                0, 0, 0, 0, 2550, 5, 30, MT_CLOTH, HI_CLOTH, 1),
+CONTAINER("sack", "bag",                0, 0, 0, 0, 2500, 5, 30, MT_CLOTH, HI_CLOTH, 1),
 CONTAINER("potato bag", (char *)0,      1, 0, 0, 0,  250, 20, 40, MT_ARCANIUM, CLR_BRIGHT_BLUE, 5),
 CONTAINER("handybag", (char *)0,      1, 0, 0, 0,  200, 2, 100, MT_LEATHER, CLR_BROWN, 10), /* can be used without hands; as a female char, contents weigh less */
 CONTAINER("oilskin sack", "bag",        0, 0, 0, 0, 2000, 5, 30, MT_CLOTH, HI_CLOTH, 5),
+CONTAINER("titan sack", "bag",          0, 0, 0, 0,   50, 5, 100, MT_TITANIUM, HI_CLOTH, 30),
 CONTAINER("bag of holding", "bag",      0, 1, 0, 0, 2000, 5, 30, MT_CLOTH, HI_CLOTH, 8),
 CONTAINER("bag of digestion","bag",     0, 1, 0, 0,  500, 5, 30, MT_CLOTH, HI_CLOTH, 5),
 CONTAINER("bag of tricks", "bag",       0, 1, 1, 0, 1950, 5, 30, MT_CLOTH, HI_CLOTH, 5),

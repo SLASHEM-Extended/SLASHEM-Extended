@@ -119,7 +119,7 @@ resists_drli(mon)	/* returns TRUE if monster is drain-life resistant */
 struct monst *mon;
 {
 	struct permonst *ptr = mon->data;
-	struct obj *wep = ((mon == &youmonst) ? uwep : MON_WEP(mon));
+	struct obj *wep = ((mon == &youmonst) ? 0 : MON_WEP(mon));
 
 	return (boolean)(is_undead(ptr) || mon->egotype_undead || is_demon(ptr) || is_were(ptr) ||
 			 ptr == &mons[PM_DEATH] || is_golem(ptr) ||
@@ -141,15 +141,17 @@ struct monst *mon;
 		dmgtype(ptr, AD_RBRE) || dmgtype(ptr, AD_RNG))	/* Chromatic Dragon */
 	    return TRUE;
 	/* check for magic resistance granted by wielded weapon */
-	o = (mon == &youmonst) ? uwep : MON_WEP(mon);
+	o = (mon == &youmonst) ? 0 : MON_WEP(mon);
 	if (o && o->oartifact && defends(AD_MAGM, o))
 	    return TRUE;
 	/* check for magic resistance granted by worn or carried items */
-	o = (mon == &youmonst) ? invent : mon->minvent;
-	for ( ; o; o = o->nobj)
-	    if ((o->owornmask && objects[o->otyp].oc_oprop == ANTIMAGIC) ||
-		    (o->oartifact && protects(AD_MAGM, o)))
-		return TRUE;
+	if (mon != &youmonst) {
+		o = mon->minvent;
+		for ( ; o; o = o->nobj)
+		    if ((o->owornmask && objects[o->otyp].oc_oprop == ANTIMAGIC) ||
+			    (o->oartifact && protects(AD_MAGM, o)))
+			return TRUE;
+	}
 	return FALSE;
 }
 
@@ -172,14 +174,16 @@ struct monst *mon;
 	if (dmgtype_fromattack(ptr, AD_BLND, AT_EXPL) ||
 		dmgtype_fromattack(ptr, AD_BLND, AT_GAZE))
 	    return TRUE;
-	o = is_you ? uwep : MON_WEP(mon);
+	o = is_you ? 0 : MON_WEP(mon);
 	if (o && o->oartifact && defends(AD_BLND, o))
 	    return TRUE;
-	o = is_you ? invent : mon->minvent;
-	for ( ; o; o = o->nobj)
-	    if ((o->owornmask && objects[o->otyp].oc_oprop == BLINDED) ||
-		    (o->oartifact && protects(AD_BLND, o)))
-		return TRUE;
+	if (!is_you) {
+		o = mon->minvent;
+		for ( ; o; o = o->nobj)
+		    if ((o->owornmask && objects[o->otyp].oc_oprop == BLINDED) ||
+			    (o->oartifact && protects(AD_BLND, o)))
+			return TRUE;
+	}
 	return FALSE;
 }
 

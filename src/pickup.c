@@ -778,11 +778,13 @@ boolean (*allow)(OBJ_P);/* allow function */
 	if (!olist) return 0;
 
 	/* count the number of items allowed */
-	for (n = 0, last = 0, curr = olist; curr; curr = FOLLOW(curr, qflags))
+	for (n = 0, last = 0, curr = olist; curr; curr = FOLLOW(curr, qflags)) {
+
 	    if ((*allow)(curr)) {
 		last = curr;
 		n++;
 	    }
+	}
 
 	if (n == 0)	/* nothing to pick here */
 	    return (qflags & SIGNAL_NOMENU) ? -1 : 0;
@@ -1856,7 +1858,7 @@ lootcont:
 gotit:
 		if (coffers) {
 	    verbalize("Thank you for your contribution to reduce the debt.");
-		    (void) add_to_container(coffers, goldob);
+		    (void) add_to_container(coffers, goldob, TRUE);
 		    coffers->owt = weight(coffers);
 		} else {
 		    struct monst *mon = makemon(courtmon(),
@@ -2363,7 +2365,7 @@ boolean invobj;
 	    /* gold in container always needs to be added to credit */
 	    if (floor_container && obj->oclass == COIN_CLASS)
 		sellobj(obj, current_container->ox, current_container->oy);
-	    (void) add_to_container(current_container, obj);
+	    (void) add_to_container(current_container, obj, TRUE);
 	    current_container->owt = weight(current_container);
 	}
 	/* gold needs this, and freeinv() many lines above may cause
@@ -2586,7 +2588,7 @@ struct obj *box;
 				  box->ox, box->oy, sc);
 	if (deadcat) {
 	    obj_extract_self(deadcat);
-	    (void) add_to_container(box, deadcat);
+	    (void) add_to_container(box, deadcat, TRUE);
 	}
 	pline_The("%s inside the box is dead!",
 	    Hallucination ? rndmonnam() : "housecat");
@@ -2932,8 +2934,11 @@ ask_again2:
 				     (one_by_one ? (char *)0 : select),
 				     allflag, out_container,
 				     (int (*)(OBJ_P))0,
-				     0, "nodot"))
-			    used = 1;
+				     0, "nodot")) {
+				if (current_container->oartifact != ART_GITTA_S_HANDBAG && current_container->oartifact != ART_GIDDEM_FAST_) {
+				    used = 1;
+				}
+			}
 		    } else if (menu_on_request < 0) {
 			used |= menu_loot(menu_on_request,
 					  current_container, FALSE) > 0;
@@ -3018,7 +3023,9 @@ ask_again2:
 		    (void) askchain((struct obj **)&invent,
 				    (one_by_one ? (char *)0 : select), allflag,
 				    in_container, ck_bag, 0, "nodot");
-		    used = 1;
+		    if (current_container->oartifact != ART_KLARABELLA_S_HANDBAG && current_container->oartifact != ART_STASHIT) {
+			used = 1;
+		    }
 		} else if (menu_on_request < 0) {
 		    used |= menu_loot(menu_on_request,
 				      current_container, TRUE) > 0;
@@ -3132,6 +3139,10 @@ boolean put_in;
 		free((void *)pick_list);
 	}
     }
+    if (container && container->oartifact == ART_GITTA_S_HANDBAG && !put_in) return 0;
+    if (container && container->oartifact == ART_GIDDEM_FAST_ && !put_in) return 0;
+    if (container && container->oartifact == ART_KLARABELLA_S_HANDBAG && put_in) return 0;
+    if (container && container->oartifact == ART_STASHIT && put_in) return 0;
     return n_looted;
 }
 

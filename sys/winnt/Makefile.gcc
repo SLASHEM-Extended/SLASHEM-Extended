@@ -535,6 +535,7 @@ SP_LEV_H   = $(INCL)\align.h	$(INCL)\sp_lev.h
 VAULT_H	   = $(DUNGEON_H)	$(INCL)\vault.h
 YOUPROP_H  = $(PERMONST_H)	$(MONDATA_H)	    $(INCL)\prop.h    \
 	     $(INCL)\pm.h       $(INCL)\youprop.h
+ARTILIST_H  = $(CONFIG_H) $(INCL)\onames.h  $(INCL)\artilist.h 
 YOU_H	   = $(MONST_H)		$(YOUPROP_H)	    $(INCL)\align.h   \
 	     $(INCL)\attrib.h	$(INCL)\you.h
 DISPLAY_H  = $(MONDATA_H)	$(INCL)\vision.h    $(INCL)\display.h

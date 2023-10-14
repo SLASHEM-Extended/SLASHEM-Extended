@@ -581,21 +581,21 @@ struct obj *box;
 		otmp = mksobj(makemusableitem(), TRUE, TRUE, FALSE);
 		if (otmp) {
 			otmp->owt = weight(otmp);
-			(void) add_to_container(box, otmp);
+			(void) add_to_container(box, otmp, TRUE);
 		}
 		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet) {
 			if (!rn2(2)) {
 				otmp = mkobj(WEAPON_CLASS, TRUE, FALSE);
 				if (otmp) {
 					otmp->owt = weight(otmp);
-					(void) add_to_container(box, otmp);
+					(void) add_to_container(box, otmp, TRUE);
 				}
 			}
 			if (!rn2(2)) {
 				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
 				if (otmp) {
 					otmp->owt = weight(otmp);
-					(void) add_to_container(box, otmp);
+					(void) add_to_container(box, otmp, TRUE);
 				}
 			}
 		}
@@ -604,14 +604,14 @@ struct obj *box;
 				otmp = mkobj(WEAPON_CLASS, TRUE, FALSE);
 				if (otmp) {
 					otmp->owt = weight(otmp);
-					(void) add_to_container(box, otmp);
+					(void) add_to_container(box, otmp, TRUE);
 				}
 			}
 			if (!rn2(2)) {
 				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
 				if (otmp) {
 					otmp->owt = weight(otmp);
-					(void) add_to_container(box, otmp);
+					(void) add_to_container(box, otmp, TRUE);
 				}
 			}
 		}
@@ -620,14 +620,14 @@ struct obj *box;
 				otmp = mkobj(WEAPON_CLASS, TRUE, FALSE);
 				if (otmp) {
 					otmp->owt = weight(otmp);
-					(void) add_to_container(box, otmp);
+					(void) add_to_container(box, otmp, TRUE);
 				}
 			}
 			if (!rn2(2)) {
 				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
 				if (otmp) {
 					otmp->owt = weight(otmp);
-					(void) add_to_container(box, otmp);
+					(void) add_to_container(box, otmp, TRUE);
 				}
 			}
 		}
@@ -660,7 +660,7 @@ struct obj *box;
 				otmp = mkobj(ARMOR_CLASS, TRUE, FALSE);
 				if (otmp) {
 					otmp->owt = weight(otmp);
-					(void) add_to_container(box, otmp);
+					(void) add_to_container(box, otmp, TRUE);
 				}
 			}
 
@@ -670,9 +670,11 @@ struct obj *box;
 
 	case LARGE_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
 	case LEAD_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
+	case TOP_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
 	case SACK:
 	case HANDYBAG:
 	case OILSKIN_SACK:
+	case TITAN_SACK:
 				/* initial inventory: sack starts out empty */
 				if (moves <= 1 && !in_mklev) { n = 0; break; }
 				/*else FALLTHRU*/
@@ -811,7 +813,7 @@ struct obj *box;
 			    otmp->otyp = rnd_class(WAN_LIGHT, WAN_FIREBALL);
 		}
 	    }
-	    (void) add_to_container(box, otmp);
+	    (void) add_to_container(box, otmp, TRUE);
 	}
 }
 
@@ -3062,6 +3064,7 @@ boolean shopinit;
 		case CHEST_OF_HOLDING:
 		case LARGE_BOX:
 		case LEAD_BOX:
+		case TOP_BOX:
 			otmp->olocked = !!(rn2(5));
 					otmp->otrapped = !(rn2(10));
 		case ICE_BOX:
@@ -3070,6 +3073,7 @@ boolean shopinit;
 		case ICE_BOX_OF_WATERPROOFING:
 		case SACK:
 		case OILSKIN_SACK:
+		case TITAN_SACK:
 		case POTATO_BAG:
 		case HANDYBAG:
 		case BAG_OF_HOLDING:
@@ -3819,7 +3823,7 @@ boolean shopinit;
 			/* possibly overridden by mkcorpstat() */
 			otmp->corpsenm = rndmonnum();
 			if ( (!verysmall(&mons[otmp->corpsenm]) || !rn2(10) ) && timebasedlowerchance() && (artif != 2) && !rn2(10))
-			    (void) add_to_container(otmp, mkobj(SPBOOK_CLASS, FALSE, FALSE));
+			    (void) add_to_container(otmp, mkobj(SPBOOK_CLASS, FALSE, FALSE), TRUE);
 		}
 	      blessorcurse_on_creation(otmp, 7);
 
@@ -5169,10 +5173,13 @@ add_to_minv(mon, obj)
 /*
  * Add obj to container, make sure obj is "free".  Returns (merged) obj.
  * The input obj may be deleted in the process.
+ * For statue traps, "clearinventflags" is false: this is because the items get transferred from a live monster, without
+ * a chance for them to potentially be deleted, so we need to ensure they keep the mstartinvent flags --Amy
  */
 struct obj *
-add_to_container(container, obj)
+add_to_container(container, obj, clearinventflags)
     struct obj *container, *obj;
+    boolean clearinventflags;
 {
     struct obj *otmp;
 
@@ -5185,11 +5192,13 @@ add_to_container(container, obj)
     for (otmp = container->cobj; otmp; otmp = otmp->nobj)
 	if (merged(&otmp, &obj)) return (otmp);
 
-    obj->mstartinvent = 0;
-    obj->mstartinventB = 0;
-    obj->mstartinventC = 0;
-    obj->mstartinventD = 0;
-    obj->mstartinventE = 0;
+    if (clearinventflags) {
+	    obj->mstartinvent = 0;
+	    obj->mstartinventB = 0;
+	    obj->mstartinventC = 0;
+	    obj->mstartinventD = 0;
+	    obj->mstartinventE = 0;
+    }
     if (obj->mstartinventX) u.itemcleanupneeded = TRUE;
     obj->where = OBJ_CONTAINED;
     obj->ocontainer = container;

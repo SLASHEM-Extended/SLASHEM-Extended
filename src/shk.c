@@ -947,7 +947,7 @@ register struct obj *obj;
 			/* No indestructible objects currently stack */
 			break;
 		    case OBJ_CONTAINED:
-			add_to_container(obj->ocontainer, curr);
+			add_to_container(obj->ocontainer, curr, TRUE);
 			break;
 		    case OBJ_INVENT:
 			if (!flooreffects(curr, u.ux, u.uy, "fall"))

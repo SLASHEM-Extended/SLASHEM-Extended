@@ -5444,6 +5444,7 @@ inv_weight()
 	if (uarmf && itemhasappearance(uarmf, APP_LEAD_BOOTS)) wt += 100;
 	if (uarm && uarm->oartifact == ART_SUPERHEAVY_GARBO) wt += 250;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
+	if (have_stashitcontainer()) wt += 1000;
 	if (uwep && uwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (uwep && uwep->oartifact == ART_OTHER_MJOLLNIR) wt += 500;

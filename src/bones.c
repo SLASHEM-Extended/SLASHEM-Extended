@@ -200,7 +200,7 @@ struct obj *cont;
 		else if (mtmp)
 			(void) add_to_minv(mtmp, otmp);
 		else if (cont)
-			(void) add_to_container(cont, otmp);
+			(void) add_to_container(cont, otmp, TRUE);
 		else
 			place_object(otmp, u.ux, u.uy);
 	}
@@ -208,7 +208,7 @@ struct obj *cont;
 	if(u.ugold) {
 		long ugold = u.ugold;
 		if (mtmp) mtmp->mgold = ugold;
-		else if (cont) (void) add_to_container(cont, mkgoldobj(ugold));
+		else if (cont) (void) add_to_container(cont, mkgoldobj(ugold), TRUE);
 		else (void)mkgold(ugold, u.ux, u.uy);
 		u.ugold = ugold;	/* undo mkgoldobj()'s removal */
 	}

@@ -7059,7 +7059,7 @@ register struct monst *mdef;
 		else if (obj->mstartinventE && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventD && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventX) delobj(obj);
-		    else (void) add_to_container(otmp, obj);
+		    else (void) add_to_container(otmp, obj, TRUE);
 		}
 #ifndef GOLDOBJ
 		if (mdef->mgold) {
@@ -7067,7 +7067,7 @@ register struct monst *mdef;
 			au = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
 			au->quan = mdef->mgold;
 			au->owt = weight(au);
-			(void) add_to_container(otmp, au);
+			(void) add_to_container(otmp, au, TRUE);
 			mdef->mgold = 0;
 		}
 #endif

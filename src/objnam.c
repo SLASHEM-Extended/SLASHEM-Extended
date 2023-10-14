@@ -4104,6 +4104,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ TONFA, "todo" },
 	{ UNWIELDY_PICK, "todo" },
 	{ FAR_EAST_ARROW, "todo" },
+	{ TOP_BOX, "todo" },
+	{ TITAN_SACK, "todo" },
 
 	{0, "" }
 };
@@ -7366,6 +7368,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ TONFA, "todo" },
 	{ UNWIELDY_PICK, "todo" },
 	{ FAR_EAST_ARROW, "todo" },
+	{ TOP_BOX, "todo" },
+	{ TITAN_SACK, "todo" },
 
 	{0, "" }
 };
@@ -8622,7 +8626,7 @@ ring:
 	if (throws_rocks(youmonst.data) && obj->otyp == BOULDER) objowt = 500;
 	if (throws_rocks(youmonst.data) && obj->otyp == LOADBOULDER) objowt = 5000;
 
-	if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && */
+	if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && (obj->otyp != TOP_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)
 && (obj->otyp != WHETSTONE) && (obj->otyp != MANASTONE) && (obj->otyp != SLEEPSTONE) && (obj->otyp != LOADBOULDER) && (obj->otyp != STARLIGHTSTONE) && (obj->otyp != TALC) && (obj->otyp != GRAPHITE) && (obj->otyp != BONE_FRAGMENT) && (obj->otyp != METEOR_FRAGMENT) && (obj->otyp != AMBER_FRAGMENT) && (obj->otyp != LEAD_CLUMP) && (obj->otyp != SLING_AMMO) && (obj->otyp != VOLCANIC_GLASS_FRAGMENT) && (obj->otyp != STONE_OF_MAGIC_RESISTANCE) && (obj->otyp != FLINT) && (obj->otyp != SALT_CHUNK) && (obj->otyp != SILVER_SLINGSTONE) && (obj->otyp != CONUNDRUM_NUGGET) && (obj->otyp != SMALL_PIECE_OF_UNREFINED_MITHR) && (obj->otyp != AMULET_OF_YENDOR) && (obj->otyp != FAKE_AMULET_OF_YENDOR) && (!is_nastygraystone(obj))
 	      /*(obj->otyp != ICE_BOX) */ && (!Hallucination && flags.invweight && !WeightDisplayIsArbitrary))
@@ -10850,7 +10854,7 @@ typfnd:
 			break;
 		case SLIME_MOLD: otmp->spe = ftype;
 			/* Fall through */
-		case SKELETON_KEY: case SECRET_KEY: case CHEST: case NANO_CHEST: case LARGE_BOX: case LEAD_BOX:
+		case SKELETON_KEY: case SECRET_KEY: case CHEST: case NANO_CHEST: case LARGE_BOX: case LEAD_BOX: case TOP_BOX:
 		/*case HEAVY_IRON_BALL:*/ /*case IRON_CHAIN:*/ case STATUE:
 			/* otmp->cobj already done in mksobj() */
 				break;

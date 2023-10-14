@@ -1781,7 +1781,7 @@ register boolean mod;
 				ocont = mkobj(maincontainerclass, FALSE, FALSE);
 				if (ocont) {
 					ocont->owt = weight(ocont);
-					(void) add_to_container(otmp, ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
 				}
 			}
 
@@ -1798,7 +1798,7 @@ register boolean mod;
 				ocont = mkobj(RANDOM_CLASS, FALSE, FALSE);
 				if (ocont) {
 					ocont->owt = weight(ocont);
-					(void) add_to_container(otmp, ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
 				}
 			}
 
@@ -1811,7 +1811,7 @@ register boolean mod;
 			ocont->quan = rn1(10000,10000);
 			if (ocont) {
 				ocont->owt = weight(ocont);
-				(void) add_to_container(otmp, ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
 			}
 		    }
 
@@ -1825,7 +1825,7 @@ register boolean mod;
 			ocont = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
 			if (ocont) {
 				ocont->owt = weight(ocont);
-				(void) add_to_container(otmp, ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
 			}
 
 			if (!havegifts) u.ugifts--;
