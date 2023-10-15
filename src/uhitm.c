@@ -3151,6 +3151,32 @@ int dieroll;
 		    case HEAVY_ANTIDOTE_BALL:
 		    case HEAVY_METEORIC_BALL:
 		    case IMPOSSIBLY_HEAVY_ALLOY_BALL:
+		    case HEAVY_MESH_BALL:
+		    case HEAVY_FIRMAMENT_BALL:
+		    case HEAVY_SINNUM_BALL:
+		    case HEAVY_CORAL_BALL:
+		    case HEAVY_CHITIN_BALL:
+		    case HEAVY_BRONZE_BALL:
+		    case HEAVY_TITANIUM_BALL:
+		    case HEAVY_STEEL_BALL:
+		    case HEAVY_MERCURIAL_BALL:
+		    case HEAVY_BAMBOO_BALL:
+		    case HEAVY_ALU_BALL:
+		    case HEAVY_COBALT_BALL:
+		    case GREEN_STEEL_BALL:
+		    case MESH_CHAIN:
+		    case FIRMAMENT_CHAIN:
+		    case SINNUM_SCOURGE:
+		    case CORAL_NUNCHIAKU:
+		    case CHITIN_CHAIN:
+		    case BRONZE_CHAIN:
+		    case TITANIUM_SCOURGE:
+		    case STEEL_NUNCHIAKU:
+		    case MERCURIAL_CHAIN:
+		    case BAMBOO_CHAIN:
+		    case ALU_SCOURGE:
+		    case COBALT_NUNCHIAKU:
+		    case GREEN_STEEL_CHAIN:
 		    case HEAVY_BUBBLE_BALL:
 		    case HEAVY_FOAM_BALL:
 		    case HEAVY_CELESTIAL_BALL:

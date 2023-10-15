@@ -11,7 +11,7 @@ int type;
 {
 	int writecostbah = 1;
 
-	register struct obj *pseudo = mksobj(SCR_BLANK_PAPER, FALSE, FALSE, FALSE);
+	register struct obj *pseudo = mksobj(SCR_BLANK_PAPER, FALSE, 2, FALSE);
 	pseudo->otyp = type;
 	writecostbah = writecost(pseudo);
 

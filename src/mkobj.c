@@ -2432,6 +2432,8 @@ boolean shopinit;
 	otmp->objwassold = (shopinit ? 1 : 0);
 	otmp->icedobject = 0;
 
+	if (init && (artif == 0) && !rn2(50)) artif = 1;
+
 	/* each aspect that can be identified has a 4 in 5 chance of being possible to reveal by using the ID spell --Amy */
 	otmp->ident_bst = rn2(5);
 	otmp->ident_knw = rn2(5);

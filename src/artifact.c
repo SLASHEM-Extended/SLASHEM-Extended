@@ -4730,6 +4730,32 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_EVERYTHING_PROOF) {
+
+			register struct obj *steeling;
+			if (CannotSelectItemsInPrompts) goto protectwhatdone;
+			pline("You may erodeproof an item.");
+protectwhatchoice:
+			steeling = getobj(allowall, "erosionproof");
+			if (!steeling) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to erosionproof an item.");
+				else goto protectwhatchoice;
+				pline("Oh well, if you don't wanna...");
+			} else {
+				if (!stack_too_big(steeling)) {
+					steeling->oerodeproof = 1;
+					pline("Item erosionproofed.");
+					if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+						if (!steeling->cursed) bless(steeling);
+						else uncurse(steeling, FALSE);
+					}
+				} else pline("The stack was too big and therefore nothing happens...");
+			}
+protectwhatdone:
+			break;
+		}
+
 		if (obj->oartifact == ART_OCTOPODDY) {
 			if (powerfulimplants()) bad_equipment(1);
 			else bad_equipment(0);

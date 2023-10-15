@@ -1270,6 +1270,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uwep && uwep->oartifact == ART_SNICKERSNACK && mon->data->mlet == S_JABBERWOCK) ||
 		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
@@ -1398,6 +1399,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uwep && uwep->oartifact == ART_SNICKERSNACK && mon->data->mlet == S_JABBERWOCK) ||
 		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
@@ -1691,6 +1693,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uwep && uwep->oartifact == ART_SNICKERSNACK && mon->data->mlet == S_JABBERWOCK) ||
 		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
@@ -1819,6 +1822,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) ||
 		(uwep && uwep->oartifact == ART_EGRID_BUG && mon->data->mlet == S_XAN) ||
 		(uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) ||
+		(uwep && uwep->oartifact == ART_SNICKERSNACK && mon->data->mlet == S_JABBERWOCK) ||
 		(uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) ||
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
@@ -3798,6 +3802,7 @@ struct monst *mon;
 	if (uarmf && uarmf->oartifact == ART_SNAILHUNT && (mon->data->mlet == S_BLOB || mon->data->mlet == S_WORM) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT && (mon->data->mlet == S_ZOUTHERN || mon->data->mlet == S_YETI) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_FUYER_BREV && mon->data->mlet == S_FUNGUS) return TRUE;
+	if (uwep && uwep->oartifact == ART_SNICKERSNACK && mon->data->mlet == S_JABBERWOCK) return TRUE;
 	if (uarm && uarm->oartifact == ART_FUNGIRADAR && mon->data->mlet == S_FUNGUS) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) return TRUE;

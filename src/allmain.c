@@ -6057,6 +6057,32 @@ protectwhatchoice:
 		}
 protectwhatdone:
 
+		if (uchain && uchain->oartifact == ART_EVERYTHING_PROOF && !rn2(2000)) {
+			register struct obj *steeling;
+			if (CannotSelectItemsInPrompts) goto everythingproofdone;
+			pline("You may erodeproof an item.");
+everythingproofchoice:
+			steeling = getobj(allowall, "erosionproof");
+			if (!steeling) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to erosionproof an item.");
+				else goto everythingproofchoice;
+				pline("Oh well, if you don't wanna...");
+			} else {
+				if (!stack_too_big(steeling)) {
+					steeling->oerodeproof = 1;
+					p_glow2(steeling, NH_PURPLE);
+					if (steeling && objects[(steeling)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(steeling)) {
+						if (!steeling->cursed) bless(steeling);
+						else uncurse(steeling, FALSE);
+					}
+				} else pline("The stack was too big and therefore nothing happens...");
+			}
+everythingproofdone:
+			break;
+
+		}
+
 		if (uimplant && uimplant->oartifact == ART_FUKROSION && !rn2(2500) ) {
 			register struct obj *steeling;
 			if (CannotSelectItemsInPrompts) goto fukrosiondone;

@@ -19676,6 +19676,33 @@ boolean knoweverything;
 			case IMPOSSIBLY_HEAVY_NUCLEAR_BALL:
 				pline("Congratulations, you're probably overloaded now. If you can somehow wield and swing this thing, it will do a ton of damage, but my suspicion is that you're better off dropping it."); break;
 
+			case HEAVY_MESH_BALL:
+				pline("Heavy flail-class weapon that deals up to 25 base damage per hit."); break;
+			case HEAVY_FIRMAMENT_BALL:
+				pline("This ball is quite heavy, made of a high-quality material, and uses the flail skill to deal pretty good damage."); break;
+			case HEAVY_SINNUM_BALL:
+				pline("A very heavy ball that uses the flail skill and deals large quantities of melee damage."); break;
+			case HEAVY_CORAL_BALL:
+				pline("Super heavy ball, which uses the flail skill and deals great damage."); break;
+			case HEAVY_CHITIN_BALL:
+				pline("It's a heavy ball that uses the flail skill to determine its damage output."); break;
+			case HEAVY_BRONZE_BALL:
+				pline("A rather damaging flail-class weapon if you can manage the weight."); break;
+			case HEAVY_TITANIUM_BALL:
+				pline("Flail-class weapon that weighs a ton and also deals a ton of damage."); break;
+			case HEAVY_STEEL_BALL:
+				pline("If you can stem 4800 units of weight, you can swing this weapon and deal up to 45 damage per hit, or more if you have the flail skill."); break;
+			case HEAVY_MERCURIAL_BALL:
+				pline("Heavy ball that doesn't deal as much damage as most other types of ball, but has good to-hit and uses the flail skill."); break;
+			case HEAVY_BAMBOO_BALL:
+				pline("This very heavy ball has a base damage output of 27, good to-hit, and uses the flail skill."); break;
+			case HEAVY_ALU_BALL:
+				pline("Characters who are able to lift it can swing this flail-class weapon to deal pretty good damage while still having decent to-hit."); break;
+			case HEAVY_COBALT_BALL:
+				pline("Deals 40 damage on a max roll and has +10 to-hit, and uses the flail skill."); break;
+			case GREEN_STEEL_BALL:
+				pline("It's rather heavy, but can deal good damage and benefits from the flail skill."); break;
+
 			case HEAVY_BUBBLE_BALL:
 				pline("This flail-class weapon is heavy, despite being made of bubbles."); break;
 			case HEAVY_FOAM_BALL:
@@ -19814,6 +19841,32 @@ boolean knoweverything;
 				pline("Very heavy and very damaging melee weapon."); break;
 			case ALLOY_HOSTAGE_CHAIN:
 				pline("If you can actually wield this flail-class weapon, it'll deal very high damage in melee."); break;
+			case MESH_CHAIN:
+				pline("This chain deals low damage."); break;
+			case FIRMAMENT_CHAIN:
+				pline("Deals moderate amounts of damage and uses the flail skill."); break;
+			case SINNUM_SCOURGE:
+				pline("This flail-class weapon deals relatively good damage."); break;
+			case CORAL_NUNCHIAKU:
+				pline("Want to use the flail skill and deal good damage? Then this weapon might be for you, although it also weighs a lot."); break;
+			case CHITIN_CHAIN:
+				pline("A flail-class weapon that doesn't deal much damage."); break;
+			case BRONZE_CHAIN:
+				pline("This chain uses the flail skill and has d8 base damage output."); break;
+			case TITANIUM_SCOURGE:
+				pline("Relatively heavy, but also relatively damaging, and uses the flail skill."); break;
+			case STEEL_NUNCHIAKU:
+				pline("It's a high damage, high weight chain that uses the flail skill."); break;
+			case MERCURIAL_CHAIN:
+				pline("Deals crap all for damage, but has increased to-hit."); break;
+			case BAMBOO_CHAIN:
+				pline("The damage output of this flail-class weapon is very bad, however it has good to-hit."); break;
+			case ALU_SCOURGE:
+				pline("Despite its weight, this weapon only deals d10 base damage, and it uses the flail skill and has good to-hit."); break;
+			case COBALT_NUNCHIAKU:
+				pline("A flail with good to-hit and okay-ish damage, but also quite heavy."); break;
+			case GREEN_STEEL_CHAIN:
+				pline("A flail that deals d12 damage."); break;
 			case BUBBLE_CHAIN:
 				pline("A chain made of bubbles that deals low damage."); break;
 			case FOAM_CHAIN:
@@ -27678,6 +27731,30 @@ boolean knoweverything;
 					pline("Artifact specs: better success chance when applied, but also causes a certain feminism trap effect every time you do apply it."); break;
 				case ART_ATLUS_HEAVE:
 					pline("Artifact specs: +12 damage and +10 strength when wielded, doesn't get vaporized from applying but becomes heavily cursed if it would have, and while wielding it you're confused and cannot have confusion resistance, half spell damage or half physical damage. Every time you wield it, its enchantment is reduced by one and if it gets to -20, it becomes sticky prime cursed!"); break;
+				case ART_ON_TOP:
+					pline("Artifact specs: +10 to-hit and +10 damage."); break;
+				case ART_FRIGID_CANCER:
+					pline("Artifact specs: +8 cold damage, poison resistance when wielded."); break;
+				case ART_BLOCK_THE_MYST:
+					pline("Artifact specs: mystery resistance when wielded."); break;
+				case ART_PLIM_PLIM:
+					pline("Artifact specs: autosearching when wielded."); break;
+				case ART_AFTERHALL:
+					pline("Artifact specs: shock resistance when wielded."); break;
+				case ART_HARDENED_IN_THE_FORGE:
+					pline("Artifact specs: fire immunity when wielded, or if it's your punishment ball you also have fire immunity while not wielding it."); break;
+				case ART_DILJANED:
+					pline("Artifact specs: poison and sickness resistance when wielded."); break;
+				case ART_SNICKERSNACK:
+					pline("Artifact specs: +3 to-hit and +6 damage, displays all J-class monsters when wielded."); break;
+				case ART_ACICORNER:
+					pline("Artifact specs: +6 to-hit and +6 acid damage, acid resistance when wielded. If you are punished with this ball, you have acid immunity."); break;
+				case ART_HEI_THE_COLD:
+					pline("Artifact specs: +18 to-hit and +8 cold damage, cold resistance when wielded. If you were punished with this chain, it'd grant cold immunity and freezopathy instead."); break;
+				case ART_EVERYTHING_PROOF:
+					pline("Artifact specs: can be invoked to erosionproof an item of your choice. If you were punished with this chain, you'd instead be able to erosionproof an item of your choice every once in a while."); break;
+				case ART_CRAP_OXIDE:
+					pline("Artifact specs: +2 to-hit and +2 damage. If you were punished with this chain, you'd have the ability to eat stone items."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

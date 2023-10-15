@@ -10542,7 +10542,7 @@ OBJECT(OBJ("statue", (char *)0), BITS(1,0,0,1,0,0,0,0,0,0,0,P_NONE,MT_MINERAL), 
 
 /* heavy iron ball must be first */
 OBJECT(OBJ("heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
-		BALL_CLASS,  31400, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
+		BALL_CLASS,  15650, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
 						/* +d4 when "very heavy" */
 OBJECT(OBJ("heavy tinsel ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TINSEL), 0,
 		BALL_CLASS,  1000, 0,  2400, 10, 18, 18, 0, 0,  200, CLR_BROWN, 1, 0),
@@ -10562,6 +10562,10 @@ OBJECT(OBJ("heavy alloy ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAI
 		BALL_CLASS,  2000, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_YELLOW, 1, 0),
 OBJECT(OBJ("heavy bubble ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_PWN_BUBBLE), 0,
 		BALL_CLASS,  2000, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_ORANGE, 1, 0),
+OBJECT(OBJ("heavy mesh ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MESH), 0,
+		BALL_CLASS,  3000, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_GRAY, 1, 0),
+OBJECT(OBJ("heavy chitin ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CHITIN), 0,
+		BALL_CLASS,  3000, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_WHITE, 1, 0),
 
 OBJECT(OBJ("quite heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		BALL_CLASS,  10000, 0,  3200, 10, 32, 32, 0, 0,  200, CLR_GREEN, 10, 0),
@@ -10581,6 +10585,10 @@ OBJECT(OBJ("heavy scrap ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAI
 		BALL_CLASS,  2000, 0,  3200, 10, 32, 32, 0, 0,  200, CLR_CYAN, 10, 0),
 OBJECT(OBJ("heavy foam ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_FOAM), 0,
 		BALL_CLASS,  2000, 0,  3200, 10, 32, 32, 0, 0,  200, CLR_WHITE, 10, 0),
+OBJECT(OBJ("heavy firmament ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_FIRMAMENT), 0,
+		BALL_CLASS,  2000, 0,  3200, 10, 32, 32, 0, 0,  200, CLR_WHITE, 10, 0),
+OBJECT(OBJ("heavy bronze ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_BRONZE), 0,
+		BALL_CLASS,  2000, 0,  3200, 10, 32, 32, 0, 0,  200, CLR_BROWN, 10, 0),
 
 OBJECT(OBJ("really heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		BALL_CLASS,  1000, 0,  4000, 10, 38, 38, 0, 0,  200, CLR_RED, 20, 0),
@@ -10600,6 +10608,10 @@ OBJECT(OBJ("heavy antidote ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_F
 		BALL_CLASS,  1000, 0,  4000, 10, 38, 38, 0, 0,  200, CLR_GREEN, 20, 0),
 OBJECT(OBJ("heavy celestial ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CELESTIUM), 0,
 		BALL_CLASS,  1000, 0,  4000, 10, 38, 38, 0, 0,  200, CLR_BRIGHT_CYAN, 20, 0),
+OBJECT(OBJ("heavy sinnum ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_SINNUM), 0,
+		BALL_CLASS,  1000, 0,  4000, 10, 38, 38, 0, 0,  200, CLR_BLUE, 20, 0),
+OBJECT(OBJ("heavy titanium ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TITANIUM), 0,
+		BALL_CLASS,  1000, 0,  4000, 10, 38, 38, 0, 0,  200, CLR_ORANGE, 20, 0),
 
 OBJECT(OBJ("extremely heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		BALL_CLASS,  100, 0,  4800, 10, 45, 45, 0, 0,  200, CLR_ORANGE, 30, 0),
@@ -10619,6 +10631,10 @@ OBJECT(OBJ("heavy meteoric ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_F
 		BALL_CLASS,  100, 0,  4800, 10, 45, 45, 0, 0,  200, CLR_GRAY, 30, 0),
 OBJECT(OBJ("heavy zebetite ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_PWN_BUBBLE), 0,
 		BALL_CLASS,  100, 0,  4800, 10, 45, 45, 0, 0,  200, CLR_RED, 30, 0),
+OBJECT(OBJ("heavy coral ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CORAL), 0,
+		BALL_CLASS,  100, 0,  4800, 10, 45, 45, 0, 0,  200, CLR_BROWN, 30, 0),
+OBJECT(OBJ("heavy steel ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_STEEL), 0,
+		BALL_CLASS,  100, 0,  4800, 10, 45, 45, 0, 0,  200, CLR_BLUE, 30, 0),
 
 OBJECT(OBJ("impossibly heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		BALL_CLASS,  800, 0,  30000, 10, 60, 60, 0, 0,  200, CLR_BLACK, 50, 0),
@@ -10652,12 +10668,20 @@ OBJECT(OBJ("bulky mithril ball", (char *)0), BITS(1,0,1,0,0,0,0,0,1,0,WHACK,P_FL
 
 OBJECT(OBJ("heavy cloth ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CLOTH), 0,
 		BALL_CLASS,  1000, 0,  2400, 10, 20, 20, 10, 0,  200, CLR_WHITE, 1, 0),
+OBJECT(OBJ("heavy mercurial ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MERCURIAL), 0,
+		BALL_CLASS,  1000, 0,  2400, 10, 20, 20, 10, 0,  200, CLR_GRAY, 1, 0),
 OBJECT(OBJ("heavy tar ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TAR), 0,
 		BALL_CLASS,  1000, 0,  3200, 10, 27, 27, 10, 0,  200, CLR_BLACK, 10, 0),
+OBJECT(OBJ("heavy bamboo ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_BAMBOO), 0,
+		BALL_CLASS,  1000, 0,  3200, 10, 27, 27, 10, 0,  200, CLR_YELLOW, 10, 0),
 OBJECT(OBJ("heavy silk ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_SILK), 0,
+		BALL_CLASS,  500, 0,  4000, 10, 34, 34, 10, 0,  200, CLR_GRAY, 20, 0),
+OBJECT(OBJ("heavy alu ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_ALUMEN), 0,
 		BALL_CLASS,  500, 0,  4000, 10, 34, 34, 10, 0,  200, CLR_GRAY, 20, 0),
 OBJECT(OBJ("heavy leather ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LEATHER), 0,
 		BALL_CLASS,  50, 0,  4800, 10, 40, 40, 10, 0,  200, CLR_BROWN, 30, 0),
+OBJECT(OBJ("heavy cobalt ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_COBALT), 0,
+		BALL_CLASS,  50, 0,  4800, 10, 40, 40, 10, 0,  200, CLR_BRIGHT_CYAN, 30, 0),
 
 OBJECT(OBJ("heavy laser ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		BALL_CLASS,  200, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
@@ -10667,13 +10691,15 @@ OBJECT(OBJ("null ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MY
 		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BLACK, 10, 0),
 OBJECT(OBJ("amber ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_AMBER), 0,
 		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_ORANGE, 10, 0),
+OBJECT(OBJ("green steel ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_GREEN_STEEL), 0,
+		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_GREEN, 10, 0),
 OBJECT(OBJ("liquid ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LIQUID), 0,
 		BALL_CLASS,  1000, 0,  3600, 10, 35, 35, 0, 0,  200, CLR_BRIGHT_GREEN, 10, 0),
 /* liquid ball must be last */
 
 /* iron chain must be first */
 OBJECT(OBJ("iron chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
-		CHAIN_CLASS, 33600, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
+		CHAIN_CLASS, 17850, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
 						/* +1 both l & s */
 
 OBJECT(OBJ("tinsel chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TINSEL), 0,
@@ -10694,6 +10720,10 @@ OBJECT(OBJ("alloy chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_
 		CHAIN_CLASS, 2000, 0,  240,  0,  4,  4, 0, 0,  200, CLR_YELLOW, 1, 0),
 OBJECT(OBJ("bubble chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_PWN_BUBBLE), 0,
 		CHAIN_CLASS, 2000, 0,  240,  0,  4,  4, 0, 0,  200, CLR_ORANGE, 1, 0),
+OBJECT(OBJ("mesh chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MESH), 0,
+		CHAIN_CLASS, 3000, 0,  240,  0,  4,  4, 0, 0,  200, CLR_GRAY, 1, 0),
+OBJECT(OBJ("chitin chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CHITIN), 0,
+		CHAIN_CLASS, 3000, 0,  240,  0,  4,  4, 0, 0,  200, CLR_WHITE, 1, 0),
 
 OBJECT(OBJ("rotating chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		CHAIN_CLASS, 10000, 0,  480,  0,  8,  8, 0, 0,  200, CLR_BRIGHT_BLUE, 10, 0),
@@ -10713,6 +10743,10 @@ OBJECT(OBJ("scrap chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_
 		CHAIN_CLASS, 2000, 0,  480,  0,  8,  8, 0, 0,  200, CLR_CYAN, 10, 0),
 OBJECT(OBJ("foam chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_FOAM), 0,
 		CHAIN_CLASS, 2000, 0,  480,  0,  8,  8, 0, 0,  200, CLR_WHITE, 10, 0),
+OBJECT(OBJ("firmament chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_FIRMAMENT), 0,
+		CHAIN_CLASS, 2000, 0,  480,  0,  8,  8, 0, 0,  200, CLR_WHITE, 10, 0),
+OBJECT(OBJ("bronze chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_BRONZE), 0,
+		CHAIN_CLASS, 2000, 0,  480,  0,  8,  8, 0, 0,  200, CLR_BROWN, 10, 0),
 
 OBJECT(OBJ("scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		CHAIN_CLASS, 1000, 0,  1000,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_MAGENTA, 20, 0),
@@ -10732,6 +10766,10 @@ OBJECT(OBJ("antidote scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAI
 		CHAIN_CLASS, 1000, 0,  1000,  0,  15,  15, 0, 0,  200, CLR_GREEN, 20, 0),
 OBJECT(OBJ("celestial scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CELESTIUM), 0,
 		CHAIN_CLASS, 1000, 0,  1000,  0,  15,  15, 0, 0,  200, CLR_BRIGHT_CYAN, 20, 0),
+OBJECT(OBJ("sinnum scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_SINNUM), 0,
+		CHAIN_CLASS, 1000, 0,  1000,  0,  15,  15, 0, 0,  200, CLR_BLUE, 20, 0),
+OBJECT(OBJ("titanium scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TITANIUM), 0,
+		CHAIN_CLASS, 1000, 0,  1000,  0,  15,  15, 0, 0,  200, CLR_ORANGE, 20, 0),
 
 OBJECT(OBJ("nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 /* spelled wrong on purpose, as the samurai has another item with that name --Amy */
@@ -10752,6 +10790,10 @@ OBJECT(OBJ("meteoric nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FL
 		CHAIN_CLASS, 100, 0,  1600,  0,  24,  24, 0, 0,  200, CLR_GRAY, 30, 0),
 OBJECT(OBJ("zebetite nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_PWN_BUBBLE), 0,
 		CHAIN_CLASS, 100, 0,  1600,  0,  24,  24, 0, 0,  200, CLR_RED, 30, 0),
+OBJECT(OBJ("coral nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CORAL), 0,
+		CHAIN_CLASS, 100, 0,  1600,  0,  24,  24, 0, 0,  200, CLR_BROWN, 30, 0),
+OBJECT(OBJ("steel nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_STEEL), 0,
+		CHAIN_CLASS, 100, 0,  1600,  0,  24,  24, 0, 0,  200, CLR_BLUE, 30, 0),
 
 OBJECT(OBJ("hostage chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		CHAIN_CLASS, 400, 0,  3000,  0,  32,  32, 0, 0,  200, CLR_BLACK, 50, 0),
@@ -10785,12 +10827,20 @@ OBJECT(OBJ("mithril lash", (char *)0), BITS(1,0,1,0,0,0,0,0,1,0,WHACK,P_FLAIL,MT
 
 OBJECT(OBJ("cloth chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CLOTH), 0,
 		CHAIN_CLASS, 1000, 0,  240,  0,  2,  2, 10, 0,  200, CLR_WHITE, 1, 0),
+OBJECT(OBJ("mercurial chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_MERCURIAL), 0,
+		CHAIN_CLASS, 1000, 0,  240,  0,  2,  2, 10, 0,  200, CLR_GRAY, 1, 0),
 OBJECT(OBJ("tar chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TAR), 0,
 		CHAIN_CLASS, 1000, 0,  480,  0,  4,  4, 10, 0,  200, CLR_BLACK, 10, 0),
+OBJECT(OBJ("bamboo chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_BAMBOO), 0,
+		CHAIN_CLASS, 1000, 0,  480,  0,  4,  4, 10, 0,  200, CLR_YELLOW, 10, 0),
 OBJECT(OBJ("silk scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_SILK), 0,
+		CHAIN_CLASS, 500, 0,  1000,  0,  10,  10, 10, 0,  200, CLR_GRAY, 20, 0),
+OBJECT(OBJ("alu scourge", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_ALUMEN), 0,
 		CHAIN_CLASS, 500, 0,  1000,  0,  10,  10, 10, 0,  200, CLR_GRAY, 20, 0),
 OBJECT(OBJ("leather nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LEATHER), 0,
 		CHAIN_CLASS, 50, 0,  1600,  0,  16,  16, 10, 0,  200, CLR_BROWN, 30, 0),
+OBJECT(OBJ("cobalt nunchiaku", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_COBALT), 0,
+		CHAIN_CLASS, 50, 0,  1600,  0,  16,  16, 10, 0,  200, CLR_BRIGHT_CYAN, 30, 0),
 
 OBJECT(OBJ("laser chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		CHAIN_CLASS, 200, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
@@ -10800,6 +10850,8 @@ OBJECT(OBJ("null chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_M
 		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_BLACK, 10, 0),
 OBJECT(OBJ("amber chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_AMBER), 0,
 		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_ORANGE, 10, 0),
+OBJECT(OBJ("green steel chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_GREEN_STEEL), 0,
+		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_GREEN, 10, 0),
 OBJECT(OBJ("liquid chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_LIQUID), 0,
 		CHAIN_CLASS, 1000, 0,  720,  0,  12,  12, 0, 0,  200, CLR_BRIGHT_GREEN, 10, 0),
 /* liquid chain must be last */

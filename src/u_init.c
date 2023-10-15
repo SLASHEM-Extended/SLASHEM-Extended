@@ -30653,8 +30653,8 @@ register struct trobj *trop;
 				otyp = inv_asubs[i].subs_otyp;
 				break;
 			    }
-			obj = mksobj(otyp, TRUE, FALSE, FALSE);
-			if (Race_if(PM_HAXOR)) objX = mksobj(otyp, TRUE, FALSE, FALSE);
+			obj = mksobj(otyp, TRUE, 2, FALSE);
+			if (Race_if(PM_HAXOR)) objX = mksobj(otyp, TRUE, 2, FALSE);
 		} else {	/* UNDEF_TYP */
 			static NEARDATA short nocreate = STRANGE_OBJECT;
 			static NEARDATA short nocreate2 = STRANGE_OBJECT;

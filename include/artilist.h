@@ -15046,6 +15046,54 @@ A("Atlus Heave",				TITANIUM_HORN, /* if it would have vaporized, it doesn't and
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("On Top",				FIRMAMENT_CHAIN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Frigid Cancer",				COBALT_NUNCHIAKU,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	COLD(0, 8), DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Block The Myst",				HEAVY_MESH_BALL, /* mystery resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Plim plim",				HEAVY_CORAL_BALL,
+	(SPFX_RESTR|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Afterhall",				HEAVY_BRONZE_BALL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Hardened in the Forge",				HEAVY_STEEL_BALL, /* fire immunity when wielded or also if it's your punishment ball */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Diljaned",				HEAVY_MERCURIAL_BALL, /* sickness resistance */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Snickersnack",				HEAVY_BAMBOO_BALL, /* displays all J when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Acicorner",				GREEN_STEEL_BALL, /* if it's your punishment ball, it grants acid immunity */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ACID(6, 6), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hei The Cold",				SINNUM_SCOURGE, /* if you're punished with it, cold immunity and freezopathy */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	COLD(18, 8), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Everything-proof",				TITANIUM_SCOURGE, /* can be invoked to proof an item of your choice; if you're punished with it, 1 in 2000 per turn that you may proof an item of your choice */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Crap Oxide",				ALU_SCOURGE, /* if you're punished with it, you can eat stone */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -275,6 +275,8 @@ register struct obj *obj;
 	/* lithivores can eat stone; erosionproofing makes it impossible now --Amy */
 	if (lithivorous(youmonst.data) && is_lithic(obj) && !obj->oerodeproof )
 		return TRUE;
+	if (uchain && uchain->oartifact == ART_CRAP_OXIDE && is_lithic(obj) && !obj->oerodeproof )
+		return TRUE;
 
 	/* KMH -- Taz likes organics, too! */
 	if (( (!Upolyd && Race_if(PM_JELLY) ) || (!Upolyd && Race_if(PM_WEAPON_CUBE) ) || organivorous(youmonst.data)) && is_organic(obj) &&
