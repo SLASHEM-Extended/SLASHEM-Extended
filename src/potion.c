@@ -16714,7 +16714,7 @@ trophylevel()
 	itidchance += u.ulevel; /* doesn't help to level past 30 (intentional) */
 	itidchance += u.cnd_trophiesobtained;
 	if (itidchance > 250) itidchance = 250;
-	if (itidchance > rn2(300)) return TRUE;
+	if (itidchance > rn2(400)) return TRUE;
 
 	return FALSE;
 }
