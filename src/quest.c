@@ -85,8 +85,10 @@ nemdead()
 		}
 
 	    /* quest-specific artifacts of all roles can randomly generate now; note that this doesn't mean the actual QAs,
-	     * but rather special artifacts that are placed somewhere on a specific quest --Amy */
+	     * but rather special artifacts that are placed somewhere on a specific quest --Amy
+	     * also, if you've killed the nemesis, then your own quest artifact may generate randomly */
 	    de_energise_artifact(ART_PROCOMFORT_SUPER);
+	    de_energise_artifact((unsigned int) urole.questarti);
 
 	    if (achieveX.completed_rivalquest) {
 		int quartinum = ART_ORB_OF_DETECTION;

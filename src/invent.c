@@ -395,6 +395,8 @@ struct obj *obj;
 		if (!u.silverbellget) {
 			com_pager(195);
 			u.silverbellget = 1;
+			/* Amy edit: your quest artifact can generate randomly if you've obtained the bell */
+			de_energise_artifact((unsigned int) urole.questarti);
 			u.uhpmax += rnd(3);
 			u.uenmax += rnd(3);
 			if (Upolyd) u.mhmax += rnd(3);
