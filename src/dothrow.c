@@ -78,6 +78,7 @@ int thrown;
 	struct obj *launcher;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? rnd(3) : Race_if(PM_MANSTER) ? rnd(2) : Race_if(PM_MONGUNG) ? rnd(2) : Race_if(PM_HAXOR) ? rno(2) : 1;
 	boolean fullmultishot; /* depends on missile weapons skill --Amy */
+	boolean reallyfullmultishot;
 	int angeramount; /* for blade anger technique */
 
 	if (RngeMultishot) multishot++;
@@ -500,6 +501,8 @@ int thrown;
 		int artitimeout = rnz(2000);
 		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
 		multishot += 8;
+		fullmultishot = TRUE;
+		reallyfullmultishot = TRUE;
 		launcher->invoketimer = (monstermoves + artitimeout);
 	    }
 
@@ -747,7 +750,7 @@ newbossO:
 
 	/* nerf multishot --Amy */
 
-	fullmultishot = 0;
+	if (!reallyfullmultishot) fullmultishot = 0;
 	if (tech_inuse(T_FLURRY) && rn2(3)) fullmultishot = 1;
 	if (tech_inuse(T_DOUBLE_THROWNAGE) && rn2(3)) fullmultishot = 1;
 
