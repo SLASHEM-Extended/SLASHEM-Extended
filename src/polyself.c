@@ -1271,7 +1271,7 @@ break_armor()
 		Your("armor falls off!");
 		(void) Armor_gone();
 		dropx(otmp); /*WAC Drop instead of destroy*/
-	    } else if ((controlled_change) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)) || (itemsurvivedestruction(otmp, 8) && !issoviet) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5)) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3)) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2)) ) {
+	    } else if ((controlled_change) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)) || (itemsurvivedestruction(otmp, 8) && !issoviet) || (Polymorph_control && !issoviet && !rn2(3)) || ((Fast || Very_fast) && !issoviet && !rn2(3)) || (StrongFast && !issoviet && !rn2(3)) || (otmp->blessed && !issoviet && !rn2(2)) || (StrongPolymorph_control && !issoviet && !rn2(3)) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5)) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3)) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2)) ) {
 		if (donning(otmp)) cancel_don();
 
 		if (!otmp->cursed) {
@@ -1296,7 +1296,7 @@ break_armor()
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
-	    } else if ((controlled_change) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5)) || (itemsurvivedestruction(otmp, 8) && !issoviet) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3)) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2)) ) {
+	    } else if ((controlled_change) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5)) || (itemsurvivedestruction(otmp, 8) && !issoviet) || (Polymorph_control && !issoviet && !rn2(3)) || ((Fast || Very_fast) && !issoviet && !rn2(3)) || (StrongFast && !issoviet && !rn2(3)) || (otmp->blessed && !issoviet && !rn2(2)) || (StrongPolymorph_control && !issoviet && !rn2(3)) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3)) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2)) ) {
 
 		if (!otmp->cursed) {
 
@@ -1320,7 +1320,7 @@ break_armor()
 		Your("shirt falls off!");
 		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
 		dropx(otmp);
-	    } else if ((controlled_change && !uskin) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20) && !uskin) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5) && !uskin) || (itemsurvivedestruction(otmp, 8) && !issoviet && !uskin) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3) && !uskin) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2) && !uskin) ) {
+	    } else if ((controlled_change) || (youmonst.data->msize == MZ_MEDIUM && !issoviet && rn2(20)) || (youmonst.data->msize == MZ_LARGE && !issoviet && rn2(5)) || (itemsurvivedestruction(otmp, 8) && !issoviet) || (Polymorph_control && !issoviet && !rn2(3)) || ((Fast || Very_fast) && !issoviet && !rn2(3)) || (StrongFast && !issoviet && !rn2(3)) || (otmp->blessed && !issoviet && !rn2(2)) || (StrongPolymorph_control && !issoviet && !rn2(3)) || (youmonst.data->msize == MZ_HUGE && !issoviet && rn2(3)) || (youmonst.data->msize > MZ_HUGE && !issoviet && rn2(2)) ) {
 
 		if (!otmp->cursed) {
 
@@ -1379,7 +1379,7 @@ break_armor()
 	    if (!otmp->cursed) {
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();
-	    } else if (otmp->oartifact || (otmp->fakeartifact && rn2(2)) || (controlled_change) || (itemsurvivedestruction(otmp, 8) && !issoviet) ) {
+	    } else if (otmp->oartifact || (otmp->fakeartifact && rn2(2)) || (controlled_change) || (itemsurvivedestruction(otmp, 8) && !issoviet) || (Polymorph_control && !issoviet && !rn2(3)) || ((Fast || Very_fast) && !issoviet && !rn2(3)) || (StrongFast && !issoviet && !rn2(3)) || (otmp->blessed && !issoviet && !rn2(2)) || (StrongPolymorph_control && !issoviet && !rn2(3)) ) {
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();
 	    } else if (!(uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS)) {
