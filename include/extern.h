@@ -819,6 +819,7 @@ E long scatter(int, int, int, unsigned int, struct obj *);
 E void splatter_burning_oil(int, int);
 E void grenade_explode(struct obj *, int, int, BOOLEAN_P, int);
 E void arm_bomb(struct obj *, BOOLEAN_P);
+E void fatman_explosion(int, int, struct obj *);
 
 /* ### extralev.c ### */
 

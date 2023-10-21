@@ -5880,7 +5880,7 @@ melatechoice:
 
 			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
-				switch (rnd(772)) {
+				switch (rnd(773)) {
 
 				case 1: pline("You crush %s's skull into jelly.", mon_nam(mon)); break;
 				case 2: pline("You decapitate %s with a backhand stroke.", mon_nam(mon)); break;
@@ -6679,7 +6679,7 @@ melatechoice:
 				case 770: pline("Congratulations, after cherry-tapping %s with your weapon 500 times in a row from your lame underwater square that you created with your OP scroll of flood, %s died. You're really a pro player who truly knows how to play the game, and you're absolutely capable of winning without abusing stupid loopholes.", mon_nam(mon), mhe(mon)); break;
 				case 771: pline("Lamer, with time stop spells everyone could have defeated %s!", mon_nam(mon)); break;
 				case 772: pline("You've been kiting %s for a long time, and now you landed the finishing blow without taking even a single hit yourself.", mon_nam(mon)); break;
-
+				case 773: pline("Kaboooooom, nothing remains of %s after you fired your fatman at it.", mon_nam(mon)); break;
 
 				default: pline("You hit %s very hard!", mon_nam(mon)); break;
 	
@@ -9090,7 +9090,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(838)) {
+		switch (rnd(839)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -9938,6 +9938,7 @@ register int roll;
 		case 836: pline("Due to your strategy of kiting %s, you're not taking any hits, but in this case you didn't land one either.", mon_nam(mdef)); break;
 		case 837: pline("Since you're a lamer who has abused various game-breaking exploits in the past, you automiss %s now. Serves you right.", mon_nam(mdef)); break;
 		case 838: pline("Until you tell Amy about your lame autowin exploit that involves abusing a loophole in the game which is certainly not meant to be there, you'll always miss %s no matter what, so better confess your sins to the developer so she can patch out the bad bug.", mon_nam(mdef)); break;
+		case 839: pline("With your fatman, you fire a mini-nuke at %s... but since you're such a horribly bad shot, you miss, meaning you've just wasted your super precious ammo for nothing at all.", mon_nam(mdef)); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 

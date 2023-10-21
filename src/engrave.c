@@ -6040,6 +6040,9 @@ static const char *epitaphs[] = {
 	"Stupid monster kept lifesaving, that's gotta be a big fat bug, Amy. Normally, an amulet of life saving is used up when it saves someone's life. And why did my wand of probing show that the monster's amulet was called 'Nyehehehehe.'? Are you trying to make fun of me?",
 	"The hell, there was an 'enemy from level 55' on dungeon level 2! Dude I was just starting out! Why did you place that there Amy, I died pretty much instantly! Maybe you should reconsider your monster spawning routines and fix that unfairness?",
 	"Yeah bullshit, the all-important item glitched out of my car when I turned. Stupid UDTV programmers, couldn't they just make items *not* fall out between two car tiles when turning?!",
+	"the abyss, I have looked into it and it has stared back and said things like fleecy and bundlebundlebundle", /* by Loggers */
+	"Yeah sure, some random mob spawned with a fatman, fired a mini-nuke at me, and I died instantly. Great game, 10/10 would play again.",
+	"What? A giant appendage that has 1000 million hit points and fucking kills you in 2-3 hits? What’s the name of the illegal drug that the devs have been using???",
 
 };
 

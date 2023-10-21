@@ -1022,11 +1022,11 @@ int x,y;
 
 	} else create = 1;
 
-	if (obj->mstartinventB && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance() && rn2(4) ) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
-	if (obj->mstartinventC && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10)) create = 0;
-	if (obj->mstartinventE && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20)) create = 0;
-	if (obj->mstartinventD && obj->otyp != ROCKET && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4)) create = 0;
-	if (obj->mstartinventX && obj->otyp != ROCKET && !is_grenade(obj)) create = 0;
+	if (obj->mstartinventB && obj->otyp != ROCKET && obj->otyp != MINI_NUKE && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance() && rn2(4) ) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) ) create = 0;
+	if (obj->mstartinventC && obj->otyp != ROCKET && obj->otyp != MINI_NUKE && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10)) create = 0;
+	if (obj->mstartinventE && obj->otyp != ROCKET && obj->otyp != MINI_NUKE && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20)) create = 0;
+	if (obj->mstartinventD && obj->otyp != ROCKET && obj->otyp != MINI_NUKE && !is_grenade(obj) && !(obj->oartifact) && !(obj->fakeartifact && !rn2(4)) && rn2(4)) create = 0;
+	if (obj->mstartinventX && obj->otyp != ROCKET && obj->otyp != MINI_NUKE && !is_grenade(obj)) create = 0;
 
 	/* Detonate rockets */
 	if (is_grenade(obj)) {
@@ -1049,6 +1049,9 @@ int x,y;
 	    	else You_hear("an explosion");
 		explode(bhitpos.x, bhitpos.y, -ZT_SPELL(ZT_FIRE), d(3,8),
 		    WEAPON_CLASS, EXPL_FIERY);
+
+		if (obj && obj->otyp == MINI_NUKE) fatman_explosion(bhitpos.x, bhitpos.y, obj);
+
 	}
 
 	/* D: Detonate crossbow bolts from Hellfire if they hit */
@@ -2539,7 +2542,7 @@ int whodidit;	/* 1==hero, 0=other, -1==just check whether it'll pass thru */
 
 		hits = (oskill != -P_BOW  && oskill != -P_CROSSBOW &&
 			oskill != -P_DART && oskill != -P_SHURIKEN &&
-			(oskill != -P_FIREARM || obj_type == ROCKET) &&
+			(oskill != -P_FIREARM || obj_type == ROCKET || obj_type == MINI_NUKE) &&
 			oskill != P_SPEAR && oskill != P_JAVELIN &&
 			oskill != P_KNIFE);	/* but not dagger */
 		break;

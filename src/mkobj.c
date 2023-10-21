@@ -2558,6 +2558,8 @@ boolean shopinit;
 			otmp->quan += rnd(5);
 		}
 
+		if (otmp->otyp == MINI_NUKE) otmp->quan = 1;
+
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && (is_ammo(otmp) || is_missile(otmp) || is_grenade(otmp)) ) otmp->quan *= 2;
 
 		/* In Soviet Russia, it's completely unthinkable to find a stack of more than the standard rn1(12,12) arrows.

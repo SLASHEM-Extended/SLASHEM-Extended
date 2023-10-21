@@ -12145,9 +12145,11 @@ boolean knoweverything;
 				pline("It's a one-handed shotgun with bad to-hit, but its rate of fire is better than the regular shotgun."); break;
 			case AUTO_SHOTGUN:
 				pline("This two-handed shotgun is capable of firing several shotgun shells in one round of combat. It has a rather random to-hit chance though, so not all pellets might hit the target. Also, it uses 'auto shotgun shells', which are different from regular shotgun shells."); break;
-			case ROCKET_LAUNCHER: 
+			case ROCKET_LAUNCHER:
 				pline("The 'big daddy' of firearms, this baby shoots explosive rockets for massive damage. Yeah, baby. It takes awfully long to reload though."); break;
-			case GRENADE_LAUNCHER: 
+			case FATMAN:
+				pline("This enormously bulky weapon shoots mini-nukes over a range of 10 squares. The nuke explodes in a radius-8 area dealing good damage to monsters and can also raze walls, trees and various other terrain, as well as causing radioactive contamination, especially if you get caught in the blast."); break;
+			case GRENADE_LAUNCHER:
 				pline("If you want your grenades to pack a bigger punch, fire them with this weapon. The grenade launcher has a low rate of fire though."); break;
 			case PISTOL_BULLET:
 				pline("A metal bullet that can be fired with pistols."); break;
@@ -12223,6 +12225,8 @@ boolean knoweverything;
 				pline("Ammo used by the auto shotgun specifically. Don't try to fire it from other types of shotgun."); break;
 			case ROCKET:
 				pline("A highly explosive rocket. It requires a rocket launcher to be used effectively, but the explosion can hit several enemies at once."); break;
+			case MINI_NUKE:
+				pline("Fire these projectiles with the fatman to cause big nuclear explosions that can hit many enemies at once and raze destructible terrain. But, beware of the radioactive contamination that is released in the process!"); break;
 			case FRAG_GRENADE:
 				pline("You can just arm this bomb and throw it at a monster, but for better results, fire it with a grenade launcher."); break;
 			case GAS_GRENADE:
@@ -27757,6 +27761,12 @@ boolean knoweverything;
 					pline("Artifact specs: can be invoked to erosionproof an item of your choice. If you were punished with this chain, you'd instead be able to erosionproof an item of your choice every once in a while."); break;
 				case ART_CRAP_OXIDE:
 					pline("Artifact specs: +2 to-hit and +2 damage. If you were punished with this chain, you'd have the ability to eat stone items."); break;
+				case ART_EXPERIMENTAL_MIRV:
+					pline("Artifact specs: +7 multishot. Good luck finding enough mini-nukes to be able to fire that many at once, though, and also finding a target that actually warrants the use of so much firepower."); break;
+				case ART_MEGATON_LOAD:
+					pline("Artifact specs: +25 to-hit and +50 damage, +10 range, and the explosion has +8 radius and deals 16d16 damage to everything it hits."); break;
+				case ART_LITTLE_BOY:
+					pline("Artifact specs: -5 radius for the explosion (meaning that it only has a radius of 3) and the explosion only deals 5d5 damage to things caught in it, but on the bright side, these smaller nukes usually spawn in a bigger sized stack."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

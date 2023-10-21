@@ -77,8 +77,8 @@ int thrown;
 	struct obj *otmp;
 	struct obj *launcher;
 	int multishot = (Race_if(PM_CLOCKWORK_AUTOMATON) && !Upolyd) ? rnd(3) : Race_if(PM_MANSTER) ? rnd(2) : Race_if(PM_MONGUNG) ? rnd(2) : Race_if(PM_HAXOR) ? rno(2) : 1;
-	boolean fullmultishot; /* depends on missile weapons skill --Amy */
-	boolean reallyfullmultishot;
+	boolean fullmultishot = FALSE; /* depends on missile weapons skill --Amy */
+	boolean reallyfullmultishot = FALSE;
 	int angeramount; /* for blade anger technique */
 
 	if (RngeMultishot) multishot++;
@@ -255,6 +255,12 @@ int thrown;
 			case P_GRAND_MASTER:	multishot += rnd(5); break;
 			case P_SUPREME_MASTER:	multishot += rnd(6); break;
 		}
+	    }
+
+	    if (launcher && launcher->oartifact == ART_EXPERIMENTAL_MIRV) {
+		multishot += 7;
+		fullmultishot = TRUE;
+		reallyfullmultishot = TRUE;
 	    }
 
 	    if (launcher && launcher->otyp == WILDHILD_BOW && obj->otyp == ODOR_SHOT) multishot++;
@@ -556,7 +562,7 @@ int thrown;
 	     */
 	    if (launcher && is_launcher(launcher))
 	    {
-		if (objects[(launcher->otyp)].oc_rof) 
+		if (objects[(launcher->otyp)].oc_rof && launcher->oartifact != ART_EXPERIMENTAL_MIRV) 
 		    multishot += (objects[(launcher->otyp)].oc_rof - 1);
 		if (launcher->altmode == WP_MODE_SINGLE)
 		  /* weapons switchable b/w full/semi auto */
@@ -2044,6 +2050,8 @@ int thrown;
 			    u.dz < 0 ? ceiling(u.ux, u.uy) : surface(u.ux, u.uy));
 		    explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), d(3, 8),
 			    WEAPON_CLASS, EXPL_FIERY);
+
+			if (obj && obj->otyp == MINI_NUKE) fatman_explosion(u.ux, u.uy, obj);
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
@@ -2149,6 +2157,7 @@ int thrown;
 		if (launcher && launcher->oartifact == ART_ITALY_SI_ES) range += 4;
 		if (launcher && launcher->oartifact == ART_MISS_LAUNCHER) range += 2;
 		if (launcher && launcher->oartifact == ART_ACTUALLY_USABLE_GL) range += 6;
+		if (obj && obj->oartifact == ART_MEGATON_LOAD) range += 10;
 		if (obj && obj->oartifact == ART_A_MILE_AND_A_HALF) range += 25;
 		if (obj && obj->oartifact == ART_LONG_MILE) range += 5;
 		if (obj && obj->oartifact == ART_FLAI_AWEI) range += 10;
@@ -2236,6 +2245,8 @@ int thrown;
 	    else You_hear("an explosion");
 	    explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE),
 		    d(3,8), WEAPON_CLASS, EXPL_FIERY);
+
+		if (obj && obj->otyp == MINI_NUKE) fatman_explosion(bhitpos.x, bhitpos.y, obj);
 	}
 
 	if (obj->oclass == VENOM_CLASS) {
@@ -3555,6 +3566,9 @@ evasionchancedone:
 
 				explode(bhitpos.x, bhitpos.y, ZT_SPELL(ZT_FIRE), d(3,8), WEAPON_CLASS, EXPL_FIERY);
 				u.cnd_gunpowderused++;
+
+				if (obj && obj->otyp == MINI_NUKE) fatman_explosion(bhitpos.x, bhitpos.y, obj);
+
 				obfree(obj, (struct obj *)0);
 			} else {
 				obfree(obj, (struct obj *)0);

@@ -2759,7 +2759,7 @@ static NEARDATA const int rwep[] =
 	TANJA_S_JEWEL, SONJA_S_JEWEL, RHEA_S_JEWEL, LARA_S_JEWEL, 
 
 	SPOON,
-	BFG_AMMO, FRAG_GRENADE, GAS_GRENADE, ROCKET, METEOR_ARROW, FLAMETHROWER,
+	MINI_NUKE, BFG_AMMO, FRAG_GRENADE, GAS_GRENADE, ROCKET, METEOR_ARROW, FLAMETHROWER,
 	RADIO, RAYGUN_BOLT, LASER_BEAM, HEAVY_BLASTER_BOLT, BLASTER_BOLT,
 	ANTIMATTER_PISTOL_BULLET, ANTIMATTER_FIVE_SEVEN_BULLET, ANTIMATTER_SMG_BULLET, ANTIMATTER_MG_BULLET,
 	ANTIMATTER_RIFLE_BULLET, ANTIMATTER_SNIPER_BULLET, ANTIMATTER_ASSAULT_RIFLE_BULLE,
@@ -2991,6 +2991,8 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 			propellor = (oselect(mtmp, BFG));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_ROCKET) {
 			propellor = (oselect(mtmp, ROCKET_LAUNCHER));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_FATMAN) {
+			propellor = (oselect(mtmp, FATMAN));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_GRENADE) {
 			propellor = (oselect(mtmp, GRENADE_LAUNCHER));
 			if (!propellor) propellor = &zeroobj;  /* can toss grenades */

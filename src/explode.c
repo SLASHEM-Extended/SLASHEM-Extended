@@ -1069,6 +1069,77 @@ struct obj *obj;			/* only scatter this obj        */
 	return total;
 }
 
+/* Amy function for exploding mini-nukes fired from a fatman */
+void
+fatman_explosion(x, y, obj)
+int x, y;
+struct obj *obj;
+{
+	int fatmanx, fatmany;
+	struct monst *mtmp;
+	boolean willraze = FALSE;
+
+	if (!obj) {
+		impossible("fatman explosion bug");
+		return; /* bug */
+	}
+
+	int fatmanrange = 8;
+	int fatmandamage = 10;
+	if (obj->oartifact == ART_MEGATON_LOAD) {
+		fatmanrange += 8;
+		fatmandamage += 6;
+	}
+	if (obj->oartifact == ART_LITTLE_BOY) {
+		fatmanrange -= 5;
+		fatmandamage -= 5;
+	}
+
+	zap_strike_fx(x, y, AD_FIRE - 1);
+	FalloutEffect += 50; /* yes it's unrealistic that it persists even if you immediately levport away, shut up :P */
+
+	if (distu(x, y) <= (fatmanrange * fatmanrange)) {
+		You("are caught in a nuclear explosion!");
+		contaminate(rnz(100), TRUE);
+		losehp(rn1(fatmandamage, fatmandamage), "mini-nuke explosion", KILLED_BY_AN);
+	}
+
+	for (fatmanx = 0; fatmanx < COLNO; fatmanx++) {
+		for (fatmany = 0; fatmany < ROWNO; fatmany++) {
+			if (isok(fatmanx, fatmany)) {
+
+				willraze = FALSE;
+
+				if (dist2(fatmanx, fatmany, x, y) <= (fatmanrange * fatmanrange)) {
+					mtmp = m_at(fatmanx, fatmany);
+					if (mtmp && !DEADMONSTER(mtmp)) {
+						mtmp->mhp -= rn1(fatmandamage, fatmandamage);
+						pline("%s is caught in a nuclear explosion!", Monnam(mtmp));
+						if (mtmp->mhp < 1) {
+							pline("%s dies!", Monnam(mtmp));
+							xkilled(mtmp,0);
+						} else {
+							wakeup(mtmp); /* monster becomes hostile */
+						}
+					}
+
+					if (levl[fatmanx][fatmany].typ == ROCKWALL) willraze = TRUE;
+					if (IS_STWALL(levl[fatmanx][fatmany].typ) && !(levl[fatmanx][fatmany].wall_info & W_NONDIGGABLE) ) willraze = TRUE;
+					if (levl[fatmanx][fatmany].typ == TREE && !(levl[fatmanx][fatmany].wall_info & W_NONDIGGABLE) ) willraze = TRUE;
+
+					if (levl[fatmanx][fatmany].typ == FARMLAND || levl[fatmanx][fatmany].typ == MOUNTAIN || levl[fatmanx][fatmany].typ == IRONBARS || levl[fatmanx][fatmany].typ == WOODENTABLE || levl[fatmanx][fatmany].typ == CARVEDBED || levl[fatmanx][fatmany].typ == STRAWMATTRESS || levl[fatmanx][fatmany].typ == STALACTITE || levl[fatmanx][fatmany].typ == CLOUD || levl[fatmanx][fatmany].typ == BUBBLES || levl[fatmanx][fatmany].typ == RAINCLOUD) willraze = TRUE;
+
+					if (willraze) {
+						levl[fatmanx][fatmany].typ = CORR;
+						newsym(fatmanx,fatmany);
+					}
+
+				}
+
+			}
+		}
+	}
+}
 
 /*
  * Splatter burning oil from x,y to the surrounding area.

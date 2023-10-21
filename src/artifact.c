@@ -1915,6 +1915,10 @@ register boolean mod;
 			otmp->quan += rn1(9,9);
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_LITTLE_BOY) {
+			otmp->quan += rnz(10);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_TROPICAL_WOOD_SELECTION) {
 			otmp->quan += 4;
 			otmp->owt = weight(otmp);

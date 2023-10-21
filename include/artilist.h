@@ -15094,6 +15094,18 @@ A("Crap Oxide",				ALU_SCOURGE, /* if you're punished with it, you can eat stone
 	(SPFX_RESTR), 0, 0,
 	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Experimental MIRV",				FATMAN, /* +7 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Megaton Load",				MINI_NUKE, /* +10 range, +8 radius and +6 damage dice for the explosion */
+	(SPFX_RESTR), 0, 0,
+	PHYS(25, 50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Little Boy",				MINI_NUKE, /* -5 radius and -5 damage dice for the explosion, spawns with rnz(10) extra ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

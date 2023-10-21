@@ -191,6 +191,7 @@ struct objclass {
 #define WP_CUTTING	15
 #define WP_RAYGUN	16
 #define WP_BFG	17
+#define WP_FATMAN	18
 
 #define a_ac		oc_oc1	/* armor class, used in ARM_BONUS in do.c */
 #define a_can		oc_oc2		/* armor: used in mhitu.c */

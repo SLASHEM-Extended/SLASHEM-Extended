@@ -4146,6 +4146,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ALU_SCOURGE, "todo" },
 	{ COBALT_NUNCHIAKU, "todo" },
 	{ GREEN_STEEL_CHAIN, "todo" },
+	{ FATMAN, "todo" },
+	{ MINI_NUKE, "todo" },
 
 	{0, "" }
 };
@@ -7446,6 +7448,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ALU_SCOURGE, "todo" },
 	{ COBALT_NUNCHIAKU, "todo" },
 	{ GREEN_STEEL_CHAIN, "todo" },
+	{ FATMAN, "todo" },
+	{ MINI_NUKE, "todo" },
 
 	{0, "" }
 };
@@ -9884,6 +9888,9 @@ boolean actualwish;
 	int isinvisible;
 	int halfeaten, halfdrained, mntmp, contents;
 	int islit, unlabeled, ishistoric, isdiluted;
+
+	int maxwishamount = 1;
+
 	struct fruit *f;
 	int ftype = current_fruit;
 	char fruitbuf[BUFSZ];
@@ -10874,20 +10881,34 @@ typfnd:
 	    obj_extract_self(otmp);	 /* now release it for caller's use */
 	}
 
+	/* Amy edit: revamped that bad spaghetti code from vanilla */
+	maxwishamount = 1;
+
+	if (objects[typ].oc_merge && (cnt > 0) && oclass != SPBOOK_CLASS && typ != CORPSE) {
+		if (cnt < rnd(6)) maxwishamount = cnt;
+	}
+
+	if (Is_candle(otmp)) maxwishamount = 7;
+	if (typ == ROCKET) maxwishamount = 5;
+	if (Race_if(PM_BATMAN)) {
+		if (typ == BATARANG || typ == DARK_BATARANG) maxwishamount = 7;
+	}
+	if ((typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != BATARANG) && (typ != ROCKET) && (typ != DARK_BATARANG) && ((oclass == WEAPON_CLASS && is_ammo(otmp)) || typ == ROCK || is_missile(otmp))) {
+		/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
+		maxwishamount = 100;
+	}
+
 	/* wtf, why would you still have the same chance of getting the requested quantity with negative luck??? --Amy */
-	if(cnt > 0 && !(Luck < 0 && !rn2(2) && !wizard) && objects[typ].oc_merge && oclass != SPBOOK_CLASS &&
-		(typ != CORPSE || !is_reviver(&mons[mntmp])) &&
-		(cnt < rnd(6) ||
-#ifdef WIZARD
-		wizard ||
-#endif
-		 (cnt <= 7 && Is_candle(otmp)) ||
-		 (cnt <= 7 && (typ == BATARANG) && Race_if(PM_BATMAN)) ||
-		 (cnt <= 7 && (typ == DARK_BATARANG) && Race_if(PM_BATMAN)) ||
-		 (cnt <= 100 && (typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != BATARANG) && (typ != DARK_BATARANG) &&	/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
-		  ((oclass == WEAPON_CLASS && is_ammo(otmp))
-				|| typ == ROCK || is_missile(otmp)))))
-			otmp->quan = (long) cnt;
+	if (Luck < 0 && !rn2(2)) maxwishamount = 1;
+
+	if (wizard) {
+		otmp->quan = (long) cnt;
+	} else if (maxwishamount >= cnt) {
+		otmp->quan = (long) cnt;
+	} else if (cnt > 1) { /* wished for too many? too bad! now you only get one! --Amy */
+		cnt = 1;
+		otmp->quan = 1;
+	}
 
 	if (spesgn == 0) spe = otmp->spe;
 #ifdef WIZARD
