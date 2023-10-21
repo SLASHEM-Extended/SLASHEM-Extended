@@ -717,9 +717,10 @@ struct obj *box;
 	    } else
 	    if (box->otyp == ICE_BOX || box->otyp == DISPERSION_BOX || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == ICE_BOX_OF_WATERPROOFING || box->otyp == ICE_BOX_OF_DIGESTION) {
 		if (!timebasedlowerchance()) continue;
-		if (!(otmp = mksobj(CORPSE, TRUE, TRUE, FALSE))) continue;
+		if (!(otmp = mksobj(CORPSE, TRUE, FALSE, FALSE))) continue;
 		/* Note: setting age to 0 is correct.  Age has a different
 		 * from usual meaning for objects stored in ice boxes. -KAA
+		 * Amy note: very low chance for artifacts, mainly because of shops
 		 */
 		otmp->age = 0L;
 		otmp->icedobject = TRUE;

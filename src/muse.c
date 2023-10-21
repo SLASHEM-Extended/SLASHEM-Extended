@@ -4358,6 +4358,9 @@ newboss:
 		if (!rn2(20)) i = mtmp->mhpmax;
 		else if (!rn2(5)) i = d(8, 8);
 		else i = d(8, 4);
+
+		if (otmp->oartifact == ART_OVERHEAL_ME) i *= 3;
+
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 
@@ -4387,6 +4390,9 @@ newboss:
 		if (!rn2(20)) i = mtmp->mhpmax;
 		else if (!rn2(5)) i = d(8, 40);
 		else i = d(8, 20);
+
+		if (otmp->oartifact == ART_SAVING_FOR_A_RAINY_DAY) i *= 10;
+
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 

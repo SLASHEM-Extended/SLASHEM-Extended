@@ -31,6 +31,7 @@ STATIC_DCL void cprefx(int);
 STATIC_DCL int intrinsic_possible(int,struct permonst *);
 STATIC_DCL void givit(int,struct permonst *);
 STATIC_DCL void cpostfx(int);
+STATIC_DCL void articorpseconsume(struct obj *);
 STATIC_DCL void start_tin(struct obj *);
 STATIC_DCL int eatcorpse(struct obj *);
 STATIC_DCL void start_eating(struct obj *);
@@ -906,8 +907,10 @@ boolean message;
 	if(Race_if(PM_DEATHMOLD) && !rn2(5)) polyself(FALSE);
 
 	if(victual.piece->otyp == CORPSE) {
-		if (!victual.piece->odrained || /*Race_if(PM_VAMPIRE) &&*/ !rn2(5))
-		cpostfx(victual.piece->corpsenm);
+		if (!victual.piece->odrained || /*Race_if(PM_VAMPIRE) &&*/ !rn2(5)) {
+			cpostfx(victual.piece->corpsenm);
+			articorpseconsume(victual.piece);
+		}
 	} else
 		fpostfx(victual.piece);
 
@@ -5406,6 +5409,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		}
 		if (!evilfriday) {
 			cpostfx(mnum);
+			articorpseconsume(otmp);
 			if (carried(otmp)) useup(otmp);
 			else useupf(otmp, 1L);
 			return(2);
@@ -9184,6 +9188,141 @@ struct obj *obj;
 
 	if (obj && obj->oartifact == ART_MULTIJUICE && rn2(5)) return;
 	useup(obj);
+
+}
+
+void
+articorpseconsume(obj)
+struct obj *obj;
+{
+	switch (obj->oartifact) {
+
+		case ART_WHOA_ACID:
+			You(FunnyHallu ? "wanna do more acid!" : "feel less afraid of corrosives.");
+			HAcid_resistance |= FROMOUTSIDE;
+			break;
+		case ART_BURNUP:
+			You(FunnyHallu ? "be chillin'." : "feel a momentary chill.");
+			HFire_resistance |= FROMOUTSIDE;
+			break;
+		case ART_SOMNUS_MORTUS:
+			You_feel("wide awake.");
+			HSleep_resistance |= FROMOUTSIDE;
+			break;
+		case ART_YLVA_BLIMP:
+			You_feel("full of hot air.");
+			HCold_resistance |= FROMOUTSIDE;
+			break;
+		case ART_VERYFIRM:
+			You_feel(FunnyHallu ? "totally together, man." : "very firm.");
+			HDisint_resistance |= FROMOUTSIDE;
+			break;
+		case ART_GOODSHOCK:
+			if (FunnyHallu)
+				You_feel("grounded in reality.");
+			else
+				Your("health currently feels amplified!");
+			HShock_resistance |= FROMOUTSIDE;
+			break;
+		case ART_EMERGENCY_ASSISTANCE:
+			You_feel(Poison_resistance ? "especially healthy." : "healthy.");
+			HPoison_resistance |= FROMOUTSIDE;
+			break;
+		case ART_NYMPHISM:
+			You_feel(FunnyHallu ? "diffuse." : "very jumpy.");
+			HTeleportation |= FROMOUTSIDE;
+			break;
+		case ART_TENGU_SHUFFLE:
+			You_feel(FunnyHallu ? "centered in your personal space." : "in control of yourself.");
+			HTeleport_control |= FROMOUTSIDE;
+			break;
+		case ART_EYES_EVERYWHERE:
+			You_feel(FunnyHallu ? "in touch with the cosmos." : "a strange mental acuity.");
+			HTelepat |= FROMOUTSIDE;
+			break;
+		case ART_RADAR_UP_:
+			You_feel("that your radar was turned on.");
+			HWarning |= FROMOUTSIDE;
+			break;
+		case ART_LET_S_GO_ON_A_HUNT:
+			You_feel("capable of finding hidden secrets.");
+			HSearching |= FROMOUTSIDE;
+			break;
+		case ART_STALK_ME:
+			You_feel("less visible.");
+			HInvis |= FROMOUTSIDE;
+			break;
+		case ART_FOUND_IT_:
+			You_feel("your vision sharpen.");
+			HSee_invisible |= FROMOUTSIDE;
+			break;
+		case ART_LYING_NOVEL_CERIUM:
+			You_feel("immune to diseases.");
+			HSick_resistance |= FROMOUTSIDE;
+			break;
+		case ART_NOT_GONNA_DIE:
+			You_feel("safe from death.");
+			HDeath_resistance |= FROMOUTSIDE;
+			break;
+		case ART_MYSTERIUMTART:
+			You_feel("resistant to mystery attacks!");
+			HMysteryResist |= FROMOUTSIDE;
+			break;
+		case ART_FEEL_THE_LIVING:
+			You_feel("that your life force is safe now.");
+			HDrain_resistance |= FROMOUTSIDE;
+			break;
+		case ART_DUEUEUEUEUEUEI:
+			You_feel("your wounds healing more quickly.");
+			HRegeneration |= FROMOUTSIDE;
+			break;
+		case ART_OH__WELL___:
+			You_feel("stealthy.");
+			HStealth |= FROMOUTSIDE;
+			break;
+		case ART_YOU_BADASS_ENOUGH_:
+			You_feel("like a rabble-rouser.");
+			HConflict |= FROMOUTSIDE;
+			break;
+		case ART_ICE_SNACK:
+			You_feel("aquatic.");
+			HSwimming |= FROMOUTSIDE;
+			break;
+		case ART_REDEYE:
+			You_feel("capable of seeing in the dark.");
+			HInfravision |= FROMOUTSIDE;
+			break;
+		case ART_LUKE_S_LITTLE_SNACK:
+			You_feel("able to use the force like a true jedi!");
+			HUseTheForce |= FROMOUTSIDE;
+			break;
+		case ART_MINDBONUSES_FOR_YOU:
+			You_feel("mentally strong.");
+			HPsi_resist |= FROMOUTSIDE;
+			break;
+		case ART_NOSE_UP:
+			You_feel("a tingling in your %s!", body_part(NOSE));
+			HScentView |= FROMOUTSIDE;
+			break;
+		case ART_BLUE_BLUE_BLUE___:
+			You_feel(FunnyHallu ? "that pain is only weakness leaving the body, so you should cherish it." : "capable of seeing the pain of others.");
+			HPainSense |= FROMOUTSIDE;
+			break;
+		case ART__U__COMMAND:
+			You_feel("knowledgable about the art of defusing traps!");
+			HDefusing |= FROMOUTSIDE;
+			break;
+		case ART_MFER:
+			You_feel("more likely to find magical items!");
+			HMagicFindBonus |= FROMOUTSIDE;
+			break;
+		case ART_WIZARDLUNCH:
+			You_feel("able to cast spells more powerfully!");
+			HSpellboost |= FROMOUTSIDE;
+			break;
+		default: break;
+
+	}
 
 }
 

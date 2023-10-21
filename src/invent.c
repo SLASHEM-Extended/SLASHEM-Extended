@@ -13091,6 +13091,8 @@ boolean knoweverything;
 				pline("Only offers 3 AC and 1 MC (equivalent to a studded leather armor), but also poison resistance."); break;
 			case HEAVY_MAIL:
 				pline("This suit of armor weighs a hell of a lot and offers only three points of armor class."); break;
+			case LIGHT_MAIL:
+				pline("Light armor that provides minimal protection."); break;
 			case CLOAK_OF_PEACE:
 				pline("Wearing this cloak allows you to recognize peaceful monsters without needing to farlook them. FIQ wanted that to be enabled by default without requiring an extrinsic, but there are reasons why I made it the way it is now. Ask me if you need to know the specifics. (Yes, you should really join the IRC channel, unless you deliberately want to play the game unspoiled!)"); break;
 			case CLOAK_OF_DIMNESS:
@@ -27803,6 +27805,98 @@ boolean knoweverything;
 					pline("Artifact specs: it's probably Arabella's device for preventing nasty trap effects, so I'm pretty sure that wearing it will help you, too."); break;
 				case ART_JUBILEX_S_CODE:
 					pline("Artifact specs: sickopathy, diarrhea and stat decrease bug when worn, can be invoked for identify."); break;
+				case ART_FACKLE_THERE:
+					pline("Artifact specs: sight bonus when worn."); break;
+				case ART_ARMS_LEVEL_ONE:
+					pline("Artifact specs: wearing it improves your AC by one point."); break;
+				case ART_ARMS_LEVEL_TWO:
+					pline("Artifact specs: wearing it improves your AC by 2 points."); break;
+				case ART_ARMS_LEVEL_THREE:
+					pline("Artifact specs: wearing it improves your AC by 3 points."); break;
+				case ART_ARMS_LEVEL_FOUR:
+					pline("Artifact specs: wearing it improves your AC by 4 points."); break;
+				case ART_ARMS_LEVEL_FIVE:
+					pline("Artifact specs: wearing it improves your AC by 5 points."); break;
+				case ART_ARMS_LEVEL_TEN:
+					pline("Artifact specs: wearing it improves your AC by 10 points."); break;
+				case ART_GREYSHADE:
+					pline("Artifact specs: +5 dexterity when worn and provides 4 points of magic cancellation."); break;
+				case ART_OVERHEAL_ME:
+					pline("Artifact specs: heals three times as much."); break;
+				case ART_FULL_OF_MYSTIC_POWER:
+					pline("Artifact specs: restores three times as much mana."); break;
+				case ART_SAVING_FOR_A_RAINY_DAY:
+					pline("Artifact specs: heals ten times as much."); break;
+				case ART_RESTORE_ALL_MANA:
+					pline("Artifact specs: restores ten times as much mana."); break;
+				case ART_SUPERPHASEDOOR:
+					pline("Artifact specs: increased maximum possible distance for the teleportation effect."); break;
+				case ART_ANTITOXIN_IN_THE_SYSTEM:
+					pline("Artifact specs: when read, you gain temporary resistances to confusion, stun, blindness, hallucination, sickness and stoning."); break;
+				case ART_IDENTIFAI_REGULAR:
+					pline("Artifact specs: identifies several items when read."); break;
+				case ART_ALLYSAVER:
+					pline("Artifact specs: heals five times as much."); break;
+				case ART_WHOA_ACID:
+					pline("Artifact specs: eating it conveys intrinsic acid resistance. This item cannot be wished for because that would be too easy."); break;
+				case ART_BURNUP:
+					pline("Artifact specs: eating it conveys intrinsic fire resistance."); break;
+				case ART_SOMNUS_MORTUS:
+					pline("Artifact specs: eating it conveys intrinsic sleep resistance."); break;
+				case ART_YLVA_BLIMP:
+					pline("Artifact specs: eating it conveys intrinsic cold resistance."); break;
+				case ART_VERYFIRM:
+					pline("Artifact specs: eating it conveys intrinsic disintegration resistance."); break;
+				case ART_GOODSHOCK:
+					pline("Artifact specs: eating it conveys intrinsic shock resistance."); break;
+				case ART_EMERGENCY_ASSISTANCE:
+					pline("Artifact specs: eating it conveys intrinsic poison resistance."); break;
+				case ART_NYMPHISM:
+					pline("Artifact specs: eating it conveys intrinsic teleportitis."); break;
+				case ART_TENGU_SHUFFLE:
+					pline("Artifact specs: eating it conveys intrinsic teleport control. This item cannot be wished for because that would be too easy."); break;
+				case ART_EYES_EVERYWHERE:
+					pline("Artifact specs: eating it conveys intrinsic telepathy."); break;
+				case ART_RADAR_UP_:
+					pline("Artifact specs: eating it conveys intrinsic warning. This item cannot be wished for because that would be too easy."); break;
+				case ART_LET_S_GO_ON_A_HUNT:
+					pline("Artifact specs: eating it conveys intrinsic searching. This item cannot be wished for because that would be too easy."); break;
+				case ART_STALK_ME:
+					pline("Artifact specs: eating it conveys intrinsic invisibility."); break;
+				case ART_FOUND_IT_:
+					pline("Artifact specs: eating it conveys intrinsic see invisible."); break;
+				case ART_LYING_NOVEL_CERIUM:
+					pline("Artifact specs: eating it conveys intrinsic sickness resistance. This item cannot be wished for because that would be too easy."); break;
+				case ART_NOT_GONNA_DIE:
+					pline("Artifact specs: eating it conveys intrinsic death resistance. This item cannot be wished for because that would be too easy."); break;
+				case ART_MYSTERIUMTART:
+					pline("Artifact specs: eating it conveys intrinsic mystery resistance. This item cannot be wished for because that would be too easy."); break;
+				case ART_FEEL_THE_LIVING:
+					pline("Artifact specs: eating it conveys intrinsic drain resistance. This item cannot be wished for because that would be too easy."); break;
+				case ART_DUEUEUEUEUEUEI:
+					pline("Artifact specs: eating it conveys intrinsic regeneration. This item cannot be wished for because that would be too easy."); break;
+				case ART_OH__WELL___:
+					pline("Artifact specs: eating it conveys intrinsic stealth."); break;
+				case ART_YOU_BADASS_ENOUGH_:
+					pline("Artifact specs: eating it conveys intrinsic conflict. This item cannot be wished for because that would be too easy."); break;
+				case ART_ICE_SNACK:
+					pline("Artifact specs: eating it conveys intrinsic swimming."); break;
+				case ART_REDEYE:
+					pline("Artifact specs: eating it conveys intrinsic infravision. This item cannot be wished for because that would be too easy."); break;
+				case ART_LUKE_S_LITTLE_SNACK:
+					pline("Artifact specs: eating it conveys intrinsic use-the-force. This item cannot be wished for because that would be too easy."); break;
+				case ART_MINDBONUSES_FOR_YOU:
+					pline("Artifact specs: eating it conveys intrinsic psi resistance. This item cannot be wished for because that would be too easy."); break;
+				case ART_NOSE_UP:
+					pline("Artifact specs: eating it conveys intrinsic scent view."); break;
+				case ART_BLUE_BLUE_BLUE___:
+					pline("Artifact specs: eating it conveys intrinsic pain sense."); break;
+				case ART__U__COMMAND:
+					pline("Artifact specs: eating it conveys intrinsic defusing. This item cannot be wished for because that would be too easy."); break;
+				case ART_MFER:
+					pline("Artifact specs: eating it conveys intrinsic magic find. This item cannot be wished for because that would be too easy."); break;
+				case ART_WIZARDLUNCH:
+					pline("Artifact specs: eating it conveys intrinsic spellboost. This item cannot be wished for because that would be too easy."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

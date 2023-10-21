@@ -4155,6 +4155,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AMULET_OF_AUTOMATIC_SHUTDOWN, "todo" },
 	{ RIN_NASTINESS_RESISTANCE, "todo" },
 	{ RIN_INDIGESTION, "todo" },
+	{ LIGHT_MAIL, "todo" },
 
 	{0, "" }
 };
@@ -7464,6 +7465,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_AUTOMATIC_SHUTDOWN, "todo" },
 	{ RIN_NASTINESS_RESISTANCE, "todo" },
 	{ RIN_INDIGESTION, "todo" },
+	{ LIGHT_MAIL, "todo" },
 
 	{0, "" }
 };

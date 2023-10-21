@@ -3485,6 +3485,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
+		if (uarm && uarm->oartifact == ART_GREYSHADE) tmp += 5;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SABER_TONFA) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_IN_AWE) tmp += 5;

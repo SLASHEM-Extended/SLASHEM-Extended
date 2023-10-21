@@ -15858,6 +15858,36 @@ aliasagain:
 			if (eliasbuf && !(strncmpi(eliasbuf, "Arti Lockbox", 13) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Hoards of Treasure", 19) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Emergency Cash", 15) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Whoa-Acid", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Burnup", 7) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Somnus Mortus", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Ylva Blimp", 11) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Veryfirm", 9) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Goodshock", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Emergency Assistance", 21) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Nymphism", 9) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Tengu Shuffle", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Eyes Everywhere", 16) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Radar Up!", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Let's Go On A Hunt", 19) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Stalk-me", 9) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "found it.", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Lying Novel Cerium", 19) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Not Gonna Die", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Mysteriumtart", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Feel The Living", 16) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Dueueueueueuei", 15) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Oh, well...", 12) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "You Badass Enough?", 19) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Ice Snack", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Redeye", 7) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Luke's Little Snack", 20) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Mindbonuses For You", 20) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Nose-Up", 8) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Blue-blue-blue...", 18) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "The 'u' command", 16) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "MFer", 5) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Wizardlunch", 12) ) ) strcpy(eliasbuf, "Cheator");
 			strcpy(plalias, eliasbuf);
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
 		}
@@ -15884,6 +15914,126 @@ aliasagain:
 		strcpy(u.aliasname, "Uber Cheator");
 	}
 	if (!strncmpi(plname, "Emergency Cash", 15)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Whoa-Acid", 10)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Burnup", 7)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Somnus Mortus", 14)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Ylva Blimp", 11)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Veryfirm", 9)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Goodshock", 10)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Emergency Assistance", 21)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Nymphism", 9)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Tengu Shuffle", 14)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Eyes Everywhere", 16)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Radar Up!", 10)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Let's Go On A Hunt", 19)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Stalk-me", 9)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "found it.", 10)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Lying Novel Cerium", 19)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Not Gonna Die", 14)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Mysteriumtart", 14)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Feel The Living", 16)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Dueueueueueuei", 15)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Oh, well...", 12)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "You Badass Enough?", 19)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Ice Snack", 10)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Redeye", 7)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Luke's Little Snack", 20)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Mindbonuses For You", 20)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Nose-Up", 8)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Blue-blue-blue...", 18)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "The 'u' command", 16)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "MFer", 5)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Wizardlunch", 12)) {
 		strcpy(plalias, "Uber Cheator");
 		strcpy(u.aliasname, "Uber Cheator");
 	}

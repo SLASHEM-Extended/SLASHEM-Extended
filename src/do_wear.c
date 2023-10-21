@@ -6575,6 +6575,12 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_ONE) uac -= 1;
+	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TWO) uac -= 2;
+	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_THREE) uac -= 3;
+	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
+	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FIVE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TEN) uac -= 10;
 	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) uac -= 2;

@@ -304,6 +304,66 @@ do_mname()
 	    pline("That is an invalid name.");
 	else if (!(strcmpi(buf, "Emergency Cash") ) )
 	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Whoa-Acid") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Burnup") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Somnus Mortus") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Ylva Blimp") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Veryfirm") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Goodshock") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Emergency Assistance") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Nymphism") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Tengu Shuffle") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Eyes Everywhere") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Radar Up!") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Let's Go On A Hunt") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Stalk-me") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "found it.") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Lying Novel Cerium") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Not Gonna Die") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Mysteriumtart") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Feel The Living") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Dueueueueueuei") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Oh, well...") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "You Badass Enough?") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Ice Snack") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Redeye") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Luke's Little Snack") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Mindbonuses For You") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Nose-Up") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Blue-blue-blue...") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "The 'u' command") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "MFer") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Wizardlunch") ) )
+	    pline("That is an invalid name.");
 	else
 	    (void) christen_monst(mtmp, buf);
 	return(0);

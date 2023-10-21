@@ -6128,6 +6128,36 @@ aliasagain:
 			if (eliasbuf && !(strncmpi(eliasbuf, "Arti Lockbox", 13) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Hoards of Treasure", 19) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Emergency Cash", 15) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Whoa-Acid", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Burnup", 7) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Somnus Mortus", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Ylva Blimp", 11) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Veryfirm", 9) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Goodshock", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Emergency Assistance", 21) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Nymphism", 9) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Tengu Shuffle", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Eyes Everywhere", 16) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Radar Up!", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Let's Go On A Hunt", 19) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Stalk-me", 9) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "found it.", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Lying Novel Cerium", 19) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Not Gonna Die", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Mysteriumtart", 14) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Feel The Living", 16) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Dueueueueueuei", 15) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Oh, well...", 12) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "You Badass Enough?", 19) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Ice Snack", 10) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Redeye", 7) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Luke's Little Snack", 20) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Mindbonuses For You", 20) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Nose-Up", 8) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Blue-blue-blue...", 18) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "The 'u' command", 16) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "MFer", 5) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Wizardlunch", 12) ) ) strcpy(eliasbuf, "Cheator");
 
 			strcpy(plalias, eliasbuf);
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
@@ -9766,11 +9796,9 @@ tunguskaagain:
 		}
 
 		known = TRUE;
-		if(confused) 
-			{
+		if(confused || (sobj->oartifact == ART_SUPERPHASEDOOR) ) {
 			phase_door(1);
-			}
-		else {
+		} else {
 			phase_door(0);
 		}
 		break;
@@ -9882,29 +9910,45 @@ tunguskaagain:
 		}
 		return(1);
 	case SCR_STANDARD_ID: /* always identifies exactly one item --Amy */
-		makeknown(SCR_STANDARD_ID);
-		pline("This is a standard identify scroll.");
+		{
+			int identifaimore = 1;
+			if (sobj->oartifact == ART_IDENTIFAI_REGULAR) identifaimore += rnd(4);
+			makeknown(SCR_STANDARD_ID);
+			pline("This is a standard identify scroll.");
 
-		if (carried(sobj)) useup(sobj);
-		else useupf(sobj, 1L);
+			if (carried(sobj)) useup(sobj);
+			else useupf(sobj, 1L);
 
-		if(invent) {
-		    identify_pack(1, 0, 0);
+			if(invent) {
+				identify_pack(identifaimore, 0, 0);
+			}
 		}
 		return(1);
 	case SCR_HEALING: /* a basic healing item that can be used to - who would have guessed? - cure wounds! --Amy */
 		makeknown(SCR_HEALING);
 		You_feel("healthier!");
+		if (sobj->oartifact == ART_OVERHEAL_ME) {
+			if (!rn2(20)) healup(1200 + rnz(u.ulevel * 3), 0, FALSE, FALSE);
+			else if (!rn2(5)) healup(d(18,8) + rnz(u.ulevel * 3), 0, FALSE, FALSE);
+			else healup(d(15,6) + rnz(u.ulevel * 3), 0, FALSE, FALSE);
+		} else {
 			if (!rn2(20)) healup(400 + rnz(u.ulevel), 0, FALSE, FALSE);
 			else if (!rn2(5)) healup(d(6,8) + rnz(u.ulevel), 0, FALSE, FALSE);
 			else healup(d(5,6) + rnz(u.ulevel), 0, FALSE, FALSE);
+		}
 		break;
 	case SCR_EXTRA_HEALING: /* better healing scroll --Amy */
 		makeknown(SCR_EXTRA_HEALING);
 		You_feel("healthier!");
+		if (sobj->oartifact == ART_SAVING_FOR_A_RAINY_DAY) {
+			if (!rn2(20)) healup(20000 + rnz(u.ulevel * 50), 0, FALSE, FALSE);
+			else if (!rn2(5)) healup(d(60,40) + rnz(u.ulevel * 50), 0, FALSE, FALSE);
+			else healup(d(50,30) + rnz(u.ulevel * 50), 0, FALSE, FALSE);
+		} else {
 			if (!rn2(20)) healup(2000 + rnz(u.ulevel * 5), 0, FALSE, FALSE);
 			else if (!rn2(5)) healup(d(6,40) + rnz(u.ulevel * 5), 0, FALSE, FALSE);
 			else healup(d(5,30) + rnz(u.ulevel * 5), 0, FALSE, FALSE);
+		}
 		break;
 	case SCR_POWER_HEALING:
 		makeknown(SCR_POWER_HEALING);
@@ -9917,6 +9961,7 @@ tunguskaagain:
 		pline("A healing aura surrounds you...");
 
 		int healamount = (rnd(50) + 30 + rnz(u.ulevel * 3));
+		if (sobj->oartifact == ART_ALLYSAVER) healamount *= 5;
 		if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) healamount *= 2;
 		if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
 			healamount *= 2;
@@ -9992,22 +10037,45 @@ tunguskaagain:
 	case SCR_MANA: /* there was no simple mana potion in this game! --Amy */
 		makeknown(SCR_MANA);
 		You_feel("full of mystic power!");
+		if (sobj->oartifact == ART_FULL_OF_MYSTIC_POWER) {
+			if (!rn2(20)) u.uen += (1200 + rnz(u.ulevel * 3));
+			else if (!rn2(5)) u.uen += (d(18,8) + rnz(u.ulevel * 3));
+			else u.uen += (d(15,6) + rnz(u.ulevel * 3));
+		} else {
 			if (!rn2(20)) u.uen += (400 + rnz(u.ulevel));
 			else if (!rn2(5)) u.uen += (d(6,8) + rnz(u.ulevel));
 			else u.uen += (d(5,6) + rnz(u.ulevel));
-			if (u.uen > u.uenmax) u.uen = u.uenmax;
+		}
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		break;
 	case SCR_GREATER_MANA_RESTORATION: /* restores more mana --Amy */
 		makeknown(SCR_GREATER_MANA_RESTORATION);
 		You_feel("full of mystic power!");
+		if (sobj->oartifact == ART_RESTORE_ALL_MANA) {
+			if (!rn2(20)) u.uen += (20000 + rnz(u.ulevel * 50));
+			else if (!rn2(5)) u.uen += (d(60,40) + rnz(u.ulevel * 50));
+			else u.uen += (d(50,30) + rnz(u.ulevel * 50));
+		} else {
 			if (!rn2(20)) u.uen += (2000 + rnz(u.ulevel * 5));
 			else if (!rn2(5)) u.uen += (d(6,40) + rnz(u.ulevel * 5));
 			else u.uen += (d(5,30) + rnz(u.ulevel * 5));
-			if (u.uen > u.uenmax) u.uen = u.uenmax;
+		}
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		break;
 	case SCR_CURE: /* cures bad effects --Amy */
 		makeknown(SCR_CURE);
 		You_feel("revitalized.");
+
+		if (sobj->oartifact == ART_ANTITOXIN_IN_THE_SYSTEM) {
+			pline("And more resistant, too.");
+			incr_itimeout(&HConf_resist, rnz(1000));
+			incr_itimeout(&HStun_resist, rnz(1000));
+			incr_itimeout(&HBlind_resistance, rnz(1000));
+			incr_itimeout(&HHalluc_resistance, rnz(1000));
+			incr_itimeout(&HSick_resistance, rnz(1000));
+			incr_itimeout(&HStone_resistance, rnz(1000));
+		}
+
 		if (Stoned) fix_petrification();
 		    if (Slimed) {
 			pline("The slime disappears.");

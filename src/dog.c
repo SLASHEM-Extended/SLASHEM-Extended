@@ -500,12 +500,42 @@ maeney:
 	if (pettype == PM_BABY_YELLOW_DRAGON || pettype == PM_BABY_GREEN_DRAGON || pettype == PM_BABY_BLUE_DRAGON || pettype == PM_BABY_RED_DRAGON || pettype == PM_BABY_ORANGE_DRAGON || pettype == PM_BABY_WHITE_DRAGON || pettype == PM_BABY_BLACK_DRAGON || pettype == PM_BABY_DEEP_DRAGON || pettype == PM_BABY_SHIMMERING_DRAGON || pettype == PM_BABY_GRAY_DRAGON || pettype == PM_BABY_SILVER_DRAGON) petname = "Odahviing";
 	}
 
-	if (petname && !(strcmpi(petname, "Glorious Dead") ) ) petname = "Glorious Alive";
-	if (petname && !(strcmpi(petname, "Satan's Secret Storage") ) ) petname = "Satan's Super Storage";
-	if (petname && !(strcmpi(petname, "Main Container") ) ) petname = "Base Container";
-	if (petname && !(strcmpi(petname, "Arti Lockbox") ) ) petname = "Arti Openbox";
-	if (petname && !(strcmpi(petname, "Hoards of Treasure") ) ) petname = "Riches of Treasure";
-	if (petname && !(strcmpi(petname, "Emergency Cash") ) ) petname = "Emergency Money";
+	if (petname && !(strcmpi(petname, "Glorious Dead") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Satan's Secret Storage") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Main Container") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Arti Lockbox") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Hoards of Treasure") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Emergency Cash") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Whoa-Acid") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Burnup") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Somnus Mortus") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Ylva Blimp") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Veryfirm") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Goodshock") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Emergency Assistance") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Nymphism") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Tengu Shuffle") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Eyes Everywhere") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Radar Up!") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Let's Go On A Hunt") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Stalk-me") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "found it.") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Lying Novel Cerium") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Not Gonna Die") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Mysteriumtart") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Feel The Living") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Dueueueueueuei") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Oh, well...") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "You Badass Enough?") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Ice Snack") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Redeye") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Luke's Little Snack") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Mindbonuses For You") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Nose-Up") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Blue-blue-blue...") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "The 'u' command") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "MFer") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Wizardlunch") ) ) petname = "Cheating Bastard";
 
 	mtmp = makemon(&mons[pettype], u.ux, u.uy, MM_EDOG);
 
