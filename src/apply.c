@@ -6874,7 +6874,7 @@ materialchoice:
 		if (Role_if(PM_BLEEDER)) u.uhpmax += 5;
 		u.uenmax++;
 		if (Upolyd) u.mhmax++;
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			maybe_evolve_symbiote();

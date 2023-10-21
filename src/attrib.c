@@ -3226,6 +3226,7 @@ int x;
 		if (uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) tmp += 2;
 		if (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) tmp += 10;
 		if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) tmp += 5;
+		if (uarmc && uarmc->oartifact == ART_KATHERINE_S_BEACHWEAR && flags.female) tmp += 3;
 		if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JULIA_S_REAL_LOVE) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) tmp += 20;
@@ -3849,7 +3850,7 @@ boolean displaymessage;
 	}
 	if (uarm && uarm->oartifact == ART_CERNY_ && targetattr == A_CON) actuallimit += 5;
 
-	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone()) {
+	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone() || autismringcheck(ART_JUBILEX_S_CODE)) {
 		if (targetattr == A_STR && actuallimit >= STR19(25)) actuallimit = STR18(70);
 		else if (targetattr == A_STR && actuallimit >= STR19(24)) actuallimit = STR18(60);
 		else if (targetattr == A_STR && actuallimit >= STR19(23)) actuallimit = STR18(50);

@@ -1507,6 +1507,7 @@ martial_dmg()
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
+	if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) damage += 10;
 	if (uarm && uarm->oartifact == ART_MONKSTERMAN) damage += 5;
@@ -1755,6 +1756,7 @@ int dieroll;
 			if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) tmp += 1;
 
 			if (uarmg && uarmg->oartifact == ART_BOX_FIST) tmp += 5;
+			if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) tmp += 5;
 			if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) tmp += 5;
 			if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) tmp += 10;
 			if (uarm && uarm->oartifact == ART_MONKSTERMAN) tmp += 5;

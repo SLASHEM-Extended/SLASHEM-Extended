@@ -300,6 +300,7 @@ init_randarts()
 	artilist[ART_LUNAR_ECLIPSE_TONIGHT].otyp = randartcloak();
 	artilist[ART_LORSKEL_S_SPEED].otyp = randarthelm();
 	artilist[ART_HEAD_W].otyp = randarthelm();
+	artilist[ART_EFFICIENT_SHARING].otyp = randarthelm();
 	artilist[ART_NUTRITION_AND_DIETETICS].otyp = randarthelm();
 	artilist[ART_COMPLETE_SIGHT].otyp = randarthelm();
 	artilist[ART_SUK_ME_HAHAHAHAHAH].otyp = randarthelm();
@@ -333,6 +334,7 @@ init_randarts()
 	artilist[ART_KHOR_S_REQUIRED_IDEA].otyp = randartboots();
 	artilist[ART_ERROR_IN_PLAY_ENCHANTMENT].otyp = randartboots();
 	artilist[ART_WHOA_HOLD_ON_DUDE].otyp = randartring();
+	artilist[ART_MAXIMUM_SHUTLOCK].otyp = randartring();
 	artilist[ART_ACHROMANTIC_RING].otyp = randartring();
 	artilist[ART_GOLDENIVY_S_ENGAGEMENT_RIN].otyp = randartring();
 	artilist[ART_TYRANITAR_S_OWN_GAME].otyp = randartamulet();
@@ -416,6 +418,7 @@ init_randarts()
 	artilist[ART_BATMAN_NIGHT].otyp = randartspellbook();
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
 	artilist[ART_POLITICAL_CORRECTNESS_FOR_].otyp = randartspellbook();
+	artilist[ART_DOWNDRIVE].otyp = randartimplant();
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
 	artilist[ART_ND___NND_D___NDMD__DM_D_D_].otyp = randartimplant();
 	artilist[ART_ARABELLA_S_EXCHANGER].otyp = randartimplant();
@@ -843,6 +846,7 @@ init_appearance_randarts()
 	artilist[ART_RARE_ASIAN_LADY].otyp = find_beautiful_heels();
 	artilist[ART_JANA_S_FAIRNESS_CUP].otyp = find_homicidal_cloak();
 	artilist[ART_OUT_OF_TIME].otyp = find_castlevania_boots();
+	artilist[ART_KATHERINE_S_BEACHWEAR].otyp = find_tankini();
 	artilist[ART_PALEOLITHIC_ELBOW_CONTRACT].otyp = find_greek_cloak();
 	artilist[ART_NUCLEAR_BOMB].otyp = find_celtic_helmet();
 	artilist[ART_HABIBA_S_MATRONAGE].otyp = find_hardcore_cloth();
@@ -4515,13 +4519,12 @@ arti_invoke(obj)
 	    (void) seffects(&pseudo);
 	    break;
 	  }
-	case IDENTIFY: {
-		struct obj *pseudo = mksobj(SPE_IDENTIFY, FALSE, 2, FALSE);
-		if (!pseudo) break;
-		pseudo->blessed = pseudo->cursed = 0;
-		pseudo->quan = 42L;		/* do not let useup get it */
-		(void) seffects(pseudo);
-		obfree(pseudo, (struct obj *) 0);
+	case IDENTIFY:
+	    {
+		/* Amy edit: why on earth was there a kludge where a pseudo spellbook of id was created??? */
+		int cval = rn2(4);
+
+		if (invent) identify_pack(cval, 0, FALSE); /* like, the identify_pack function has already been invented! */
 
 		if (obj && obj->oartifact == ART_ARKENSTONE_OF_THRAIN) {
 			curse(obj);
@@ -4685,6 +4688,33 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_DOWNDRIVE) {
+
+			if (!uinsymbiosis) {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+				break;
+			}
+
+			if (powerfulimplants()) {
+				char buf[BUFSZ];
+				int sleeptime;
+				do {
+					getlin("How many moves do you wish to shutdown your symbiote for? [1-10000]", buf);
+					sleeptime = (!*buf || *buf=='\033') ? 0 : atoi(buf);
+				} while (sleeptime < 1 || sleeptime > 10000);
+				u.shutdowntime += sleeptime;
+			} else {
+				u.shutdowntime += 1000;
+			}
+			pline("Shutdown initiated.");
+
+			break;
+		}
 
 		if (obj->oartifact == ART_WELL_FUCK) {
 

@@ -2578,6 +2578,19 @@ find_hardcore_cloth()
 }
 
 int
+find_tankini()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_TANKINI)) return i;
+    }
+
+    impossible("tankini not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_missys()
 {
     register int i;

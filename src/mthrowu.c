@@ -110,6 +110,7 @@ const char *name;	/* if null, then format `obj' */
 			shieldblockrate = 0;
 			break;
 		case HEAVY_SHIELD:
+		case SHUTTER_SHIELD:
 			shieldblockrate = 10;
 			break;
 		case BARRIER_SHIELD:
@@ -1248,6 +1249,7 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 				shieldblockrate = 10;
 				break;
 			case HEAVY_SHIELD:
+			case SHUTTER_SHIELD:
 				shieldblockrate = 20;
 				break;
 			case BARRIER_SHIELD:

@@ -3831,6 +3831,7 @@ boolean shopinit;
 			  otmp->otyp == RIN_POLYMORPH ||
 			  otmp->otyp == RIN_AGGRAVATE_MONSTER ||
 			  otmp->otyp == RIN_SLEEPING ||
+			  otmp->otyp == RIN_INDIGESTION ||
 			  otmp->otyp == RIN_DISARMING ||
 			  otmp->otyp == RIN_NUMBNESS ||
 			  otmp->otyp == RIN_REVERSE_REGENERATION ||

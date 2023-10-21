@@ -2187,7 +2187,7 @@ register int pm;
 			u.uhpmax++;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -2213,7 +2213,7 @@ register int pm;
 			u.uhpmax += rnd(2);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax += rnd(2);
 			maybe_evolve_symbiote();
@@ -2249,7 +2249,7 @@ register int pm;
 			u.uhpmax += rnd(10);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
@@ -2300,7 +2300,7 @@ register int pm;
 			u.uhpmax += rnd(10);
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
 			u.usymbiote.mhpmax++;
@@ -4180,7 +4180,7 @@ register int pm;
 				u.uhpmax++;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			}
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				u.usymbiote.mhpmax++;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -4340,7 +4340,7 @@ register int pm;
 					u.uhpmax++;
 					if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
-				if (uactivesymbiosis) {
+				if (uinsymbiosis) {
 					u.usymbiote.mhpmax++;
 					maybe_evolve_symbiote();
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -6104,7 +6104,7 @@ eatspecial() /* called after eating non-food */
 			u.uhpmax++;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -7198,7 +7198,7 @@ register struct obj *otmp;
 			done(POISONING);
 			u.youaredead = 0;
 		    }
-			if (uactivesymbiosis && !rn2(17)) {
+			if (uinsymbiosis && !rn2(17)) {
 				u.usymbiote.mhpmax++;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -8067,6 +8067,12 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
+	if ((uleft && uleft->otyp == RIN_INDIGESTION) || (uright && uright->otyp == RIN_INDIGESTION)) {
+		pline("Somehow, you can't eat anything. Seems that you have indigestion.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
 	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 
@@ -8108,7 +8114,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	}
 
 	/* KMH -- Slow digestion is... indigestible */
-	if (otmp->otyp == RIN_SLOW_DIGESTION) {
+	if (otmp->otyp == RIN_SLOW_DIGESTION || otmp->otyp == RIN_INDIGESTION) {
 		pline("This ring is indigestible!");
 		(void) rottenfood(otmp);
 		if (otmp->dknown && !objects[otmp->otyp].oc_name_known
@@ -8577,7 +8583,7 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 
 	/* having a symbiote uses your nutrition to feed it, especially if it has HP regeneration --Amy
 	 * regenerating ones sap more nutrition if you're less skilled */
-	if (uactivesymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {
+	if (uinsymbiosis && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) {
 		if (carnivorous(&mons[u.usymbiote.mnum]) || herbivorous(&mons[u.usymbiote.mnum]) || metallivorous(&mons[u.usymbiote.mnum]) || organivorous(&mons[u.usymbiote.mnum]) || lithivorous(&mons[u.usymbiote.mnum])) u.uhunger--;
 		if (regenerates(&mons[u.usymbiote.mnum])) {
 
@@ -8691,7 +8697,7 @@ register int num;
 	}
 
 	/* eating heals symbiote a bit --Amy */
-	if (num >= 100 && uactivesymbiosis) {
+	if (num >= 100 && uinsymbiosis) {
 		if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 			u.usymbiote.mhp += (num / 100);
 			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
@@ -8700,7 +8706,7 @@ register int num;
 
 	}
 	/* and may increase its max HP --Amy */
-	if (num >= 5 && uactivesymbiosis) {
+	if (num >= 5 && uinsymbiosis) {
 		int linechance = 0;
 		int hownum = num;
 		while (hownum > 0) {

@@ -7489,6 +7489,11 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
+		if (uarmg && itemhasappearance(uarmg, APP_TRANSLUCENT_GLOVES) && !rn2(3)) {
+			Your("hands got hit, but your gloves repel the impact!");
+			break;
+		}
+
 		/* hurt the player's hands --Amy */
 		pline("Your hands got hit hard!");
 		incr_itimeout(&Glib, dmg);
@@ -10954,6 +10959,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE && mtmp->data->msize < MZ_HUGE) return(0);
 		if (uwep && uwep->oartifact == ART_PEEPLUE) return(0);
+		if ((uleft && uleft->otyp == RIN_INDIGESTION) || (uright && uright->otyp == RIN_INDIGESTION)) return(0);
 		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);

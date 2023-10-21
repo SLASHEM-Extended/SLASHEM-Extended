@@ -12403,6 +12403,8 @@ boolean knoweverything;
 			pline("Slippery gloves are similar to slippery cloaks, often allowing you to slip free of monsters' holding attacks.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PETRIFIED_CLOAK))
 			pline("If you hear the cockatrice's hissing, you will often turn to stone. But this lithic cloak allows you to resist most of the time.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TANKINI))
+			pline("Yeah, I know, it's silly because this piece of clothing is certainly not armored... but it still provides one additional point of AC in addition to the amount given by the base item type.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MIRRORED_GLOVES))
 			pline("A pair of gloves that's like a mirror. Monsters that try to use their gaze on you will sometimes gaze at the gloves, keeping you safe from the effects.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VISORED_HELMET))
@@ -12991,6 +12993,8 @@ boolean knoweverything;
 			pline("This cloak is covered with an oily film that causes grabbing monsters to fail to grab you.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RE_GREASING_GLOVES))
 			pline("Whenever these gloves block an attack, they gain a layer of grease unless they're already maximally greased.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TRANSLUCENT_GLOVES))
+			pline("A pair of gloves that allows you to keep a slightly tighter grip on your weapon in melee, making you less likely to be disarmed by enemies.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HARDCORE_CLOTH))
 			pline("Grants resistance to cold, poison and sleep and makes you immune to mind flayers. That is an awful lot of good stuff for a randomized appearance, so there is a major downside: you can only use directions that are at most a 90 degree angle from the previously used direction, unless you wait for a turn. Also, stuff that is 'behind' you may not be visible.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WARNING_COAT))
@@ -13103,6 +13107,8 @@ boolean knoweverything;
 				pline("A shield that only grants low armor class and weighs a lot."); break;
 			case BARRIER_SHIELD:
 				pline("This shield offers good armor class and a high chance to block."); break;
+			case SHUTTER_SHIELD:
+				pline("A shield with very good armor class but bad blocking chance. While wearing it, your symbiote is shut down and doesn't participate in combat until you take the shield off, but in order to complicate things, this shield autocurses when worn."); break;
 			case WEAPON_SIGN:
 				pline("A shield with moderate AC and chance to block. Unlike other shields, you can also wield it as a weapon, where it does d10 damage and gains boosts from your shield skill."); break;
 			case TROLL_SHIELD:
@@ -13652,6 +13658,8 @@ boolean knoweverything;
 				pline("The act of putting on this cloak can curse your entire inventory. Afterwards, it will provide a bit of AC and 3 points of magic cancellation without further curse effects."); break;
 			case CLOAK_OF_STONE:
 				pline("Wear it, and you'll turn to stone! But if you can cure that, it will then act as a standard MC3 cloak."); break;
+			case CLOAK_OF_SHUTDOWN:
+				pline("Autocurses when worn, and shuts down your symbiote until you take it off again. This cloak also provides two points of AC and three points of MC."); break;
 			case CLOAK_OF_RESISTANCE_PIERCING:
 				pline("Allows you to occasionally damage an enemy anyway if he would have resisted your elemental attack, and conveys 3 points of magic cancellation."); break;
 			case CLOAK_OF_LYCANTHROPY:
@@ -14109,6 +14117,8 @@ boolean knoweverything;
 				pline("These gloves improve your searching ability by automatically searching for traps and secret doors every turn."); break;
 			case GAUNTLETS_OF_DEFUSING:
 				pline("Wear this pair of gloves to be capable of untrapping more trap types than normal!"); break;
+			case GAUNTLETS_OF_AUTOMATIC_SHUTDOW:
+				pline("While worn, these gloves automatically shut down your symbiote if its health is below half of its maximum, but the symbiote can still regenerate in that state and get out of that shutdown. Beware, this pair of gloves can re-curse itself while worn."); break;
 			case GAUNTLETS_OF_SPELL_POWER:
 				pline("A useful pair of gloves that improves the power of spells whose effects scale with skill level."); break;
 			case COMMANDER_GLOVES:
@@ -15350,12 +15360,16 @@ boolean knoweverything;
 				pline("Most shapeshifters are forced back into their natural form if you wear this ring, and they are prevented from changing form too."); break;
 			case RIN_SLEEPING:
 				pline("Wearing this ring causes you to fall asleep. It is usually generated cursed."); break;
+			case RIN_INDIGESTION:
+				pline("Originally this ring was supposed to be a thing in SLASH'EM but isn't actually coded; here, it makes it impossible for you to eat or quaff anything, and also makes you immune to being engulfed. It is usually generated cursed and autocurses when worn."); break;
 			case RIN_ALACRITY:
 				pline("Wanna be fast? Sure you do. But this ring makes you *very* fast, so it's even better!"); break;
 			case RIN_DIMNESS:
 				pline("A ring that causes dimness and is usually generated cursed."); break;
 			case RIN_STEALTH:
 				pline("You will make less noise if you wear this ring."); break;
+			case RIN_NASTINESS_RESISTANCE:
+				pline("Reduces the average time that nasty traps last for while you're wearing it. This only affects actual nasty traps on the floor that you trigger, anything else that causes temporary nasty trap effects does not have its duration reduced while you're wearing this ring. But on the bright side, wearing two of them at once further reduces the duration."); break;
 			case RIN_PIERCING:
 				pline("While wearing this ring, your elemental attacks may sometimes pierce the enemy's resistance and deal damage anyway."); break;
 			case RIN_MEMORY:
@@ -15466,6 +15480,8 @@ boolean knoweverything;
 				pline("A ring that grants the magical effect of %s.", enchname(objects[RIN_SPECIAL_EFFECTS].oc_oprop) ); break;
 			case RIN_LEECH:
 				pline("A ring that allows you to restore a bit of mana if you kill a monster."); break;
+			case RIN_SHUTDOWN:
+				pline("Shuts down your symbiote while worn, and autocurses when put on. If you want your symbiote to be able to participate in combat again, you have to remove this ring."); break;
 			case RIN_DANGER:
 				pline("This ring is inscribed 'For you specially, %s. Sincerely, Arabella.'", playeraliasname); break;
 
@@ -16231,6 +16247,8 @@ boolean knoweverything;
 				pline("This amulet increases your food consumption when worn. It is usually generated cursed."); break;
 			case AMULET_OF_POWER:
 				pline("A magical amulet that grants energy regeneration if you wear it."); break;
+			case AMULET_OF_AUTOMATIC_SHUTDOWN:
+				pline("This amulet can re-curse itself while worn, and automatically puts your symbiote in shutdown mode if its health drops below half of its maximum. Can be useful to allow your symbiote to regenerate its lost HP without the risk of being killed by random damage."); break;
 			case AMULET_OF_INSOMNIA:
 				pline("Considering that this amulet conveys sleep resistance (which is rather mundane), it's quite rare."); break;
 			case AMULET_OF_SCENT:
@@ -27767,6 +27785,24 @@ boolean knoweverything;
 					pline("Artifact specs: +25 to-hit and +50 damage, +10 range, and the explosion has +8 radius and deals 16d16 damage to everything it hits."); break;
 				case ART_LITTLE_BOY:
 					pline("Artifact specs: -5 radius for the explosion (meaning that it only has a radius of 3) and the explosion only deals 5d5 damage to things caught in it, but on the bright side, these smaller nukes usually spawn in a bigger sized stack."); break;
+				case ART_SCHATZKI_S_RING:
+					pline("Artifact specs: slow digestion when worn."); break;
+				case ART_DOWNDRIVE:
+					pline("Artifact specs: can be invoked for shutdown. If you're in a form without hands, you can specify the duration of shutdown, otherwise it's always 1000 turns."); break;
+				case ART_EFFICIENT_SHARING:
+					pline("Artifact specs: if your symbiote has less current HP than your character, the symbiote is shut down while you have this helmet on your head."); break;
+				case ART_MAXIMUM_SHUTLOCK:
+					pline("Artifact specs: while wearing it, if your symbiote's HP is not at the maximum, the symbiote is shut down. This artifact autocurses when worn."); break;
+				case ART_TEH_SHOCK:
+					pline("Artifact specs: lightning immunity when worn."); break;
+				case ART_KATHERINE_S_BEACHWEAR:
+					pline("Artifact specs: grants 4 extra points of AC when worn. If you're female, it also grants +3 charisma and makes monsters spawn peaceful more often."); break;
+				case ART_BOXING_LESSON:
+					pline("Artifact specs: +5 unarmed damage when worn."); break;
+				case ART_ARABELLA_S_NASTYGUARD:
+					pline("Artifact specs: it's probably Arabella's device for preventing nasty trap effects, so I'm pretty sure that wearing it will help you, too."); break;
+				case ART_JUBILEX_S_CODE:
+					pline("Artifact specs: sickopathy, diarrhea and stat decrease bug when worn, can be invoked for identify."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

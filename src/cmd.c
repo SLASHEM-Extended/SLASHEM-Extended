@@ -7226,6 +7226,7 @@ boolean guaranteed;
 			shieldblockrate = 0;
 			break;
 		case HEAVY_SHIELD:
+		case SHUTTER_SHIELD:
 			shieldblockrate = 10;
 			break;
 		case BARRIER_SHIELD:
@@ -7741,6 +7742,8 @@ boolean guaranteed;
 		sprintf(buf, "in symbiosis with %s, symbiote health %d(%d), BUC %s%s%s%s%s", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
 		if (u.shutdowntime) {
 			sprintf(eos(buf), ", shutdown for %d turns", u.shutdowntime);
+		} else if (symbiote_is_shut_down()) {
+			sprintf(eos(buf), ", shutdown");
 		}
 		you_are(buf);
 	}
@@ -11960,6 +11963,7 @@ int final;
 			shieldblockrate = 0;
 			break;
 		case HEAVY_SHIELD:
+		case SHUTTER_SHIELD:
 			shieldblockrate = 10;
 			break;
 		case BARRIER_SHIELD:
@@ -12441,6 +12445,8 @@ int final;
 		sprintf(buf, "in symbiosis with %s, symbiote health %d(%d), BUC %s%s%s%s%s", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
 		if (u.shutdowntime) {
 			sprintf(eos(buf), ", shutdown for %d turns", u.shutdowntime);
+		} else if (symbiote_is_shut_down()) {
+			sprintf(eos(buf), ", shutdown");
 		}
 		dump(youwere, buf);
 	}

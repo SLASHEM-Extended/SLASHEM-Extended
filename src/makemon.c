@@ -32994,6 +32994,8 @@ register struct permonst *ptr;
 
 	if (uarmf && uarmf->oartifact == ART_CLONE_ && is_jokemonster(ptr) && rn2(2)) return TRUE;
 
+	if (uarmc && uarmc->oartifact == ART_KATHERINE_S_BEACHWEAR && flags.female && !rn2(10)) return TRUE;
+
 	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
 
 	if (uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && rn2(2) && (ptr->mlet == S_DOG || ptr->mlet == S_FELINE)) return TRUE;

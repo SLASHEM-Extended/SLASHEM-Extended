@@ -3801,16 +3801,29 @@ unsigned trflags;
 
 	if (YouAreScrewedEternally) nastytrapdur *= 20;
 	if (have_longscrewupstone() == 2) nastytrapdur *= 10;
+
+	if (uleft && uleft->otyp == RIN_NASTINESS_RESISTANCE) {
+		nastytrapdur *= 9;
+		nastytrapdur /= 10;
+	}
+	if (uright && uright->otyp == RIN_NASTINESS_RESISTANCE) {
+		nastytrapdur *= 9;
+		nastytrapdur /= 10;
+	}
 	if (RngeNastyReduction && nastytrapdur > 1) nastytrapdur /= 2;
 	if (uarmh && uarmh->oartifact == ART_HAHAREDUCTION && nastytrapdur > 1) nastytrapdur /= 2;
+	if (autismringcheck(ART_ARABELLA_S_NASTYGUARD)) nastytrapdur /= 2; /* having two of them does not stack --Amy */
+
+	if (nastytrapdur < 1) nastytrapdur = 1; /* fail safe */
 
 	femmytrapdur = (Role_if(PM_LADIESMAN) ? 5 : Role_if(PM_SEXYMATE) ? 10 : 20);
+
+	if (FemtrapActiveRosa) femmytrapdur *= 5;
 	if (!rn2(2)) femmytrapdur /= 2;
 	if (!rn2(5)) femmytrapdur /= 3;
 	if (!rn2(20)) femmytrapdur /= 5;
-	if (!femmytrapdur) femmytrapdur = 1; /* fail safe */
 
-	if (FemtrapActiveRosa) femmytrapdur *= 5;
+	if (femmytrapdur < 1) femmytrapdur = 1; /* fail safe */
 
 	blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
 	if (!blackngdur ) blackngdur = 500; /* fail safe */
@@ -5737,7 +5750,7 @@ newegomon:
 			}
 			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
 			u.uhp = u.uhpmax;
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				u.usymbiote.mhpmax += 4;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -7804,7 +7817,7 @@ newbossPENT:
 			else u.uhpmax++;
 			u.uhp = u.uhpmax;
 		}
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -24565,6 +24578,10 @@ register boolean force, here;
 		(void) snuff_lit(obj);
 
 		if (stack_too_big(obj) && !issoviet) continue;
+		if (rn2(10)) continue; /* used to affect everything unconditionally but that was way too harsh --Amy */
+		if (obj->blessed && rn2(issoviet ? 2 : 4) ) { /* blessed items get an extra saving throw --Amy */
+			continue;
+		}
 
 		{
 			if (obj->otyp == POT_WATER) uncurse(obj, TRUE);

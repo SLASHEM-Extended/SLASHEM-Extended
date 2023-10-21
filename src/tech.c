@@ -8456,7 +8456,7 @@ repairitemchoice:
 
 		case T_HEAL_SYMBIOTE:
 
-			if (!uactivesymbiosis) {
+			if (!uinsymbiosis) {
 				pline("You don't have a symbiote, so you can't heal it either!");
 				break;
 			}
@@ -8479,7 +8479,7 @@ repairitemchoice:
 
 		case T_BOOST_SYMBIOTE:
 
-			if (!uactivesymbiosis) {
+			if (!uinsymbiosis) {
 				pline("You can't boost a nonexistant symbiote!");
 				break;
 			}

@@ -15106,6 +15106,42 @@ A("Little Boy",				MINI_NUKE, /* -5 radius and -5 damage dice for the explosion,
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Schatzki's ring",				RIN_INDIGESTION, /* slow digestion */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Downdrive",				IMPLANT_OF_ABRASION, /* randart implant, invoke for 1000 turns of shutdown or if you're in a form without hands, you can specify a number of 1 to 10000 turns of shutdown */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Efficient Sharing",				STANDARD_HELMET, /* randart helmet, if your symbiote has less current HP than your character's current HP then the symbiote is shut down */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Maximum Shutlock",				RIN_ADORNMENT, /* randart ring, autocurses, if your symbiote has less than maximum HP then it's shut down */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Teh-Shock",				SHUTTER_SHIELD, /* lightning immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Katherine's Beachwear",				LEATHER_CLOAK, /* initialized to always be tankini, 4 extra points of AC and if you're female, +3 CHA and peace_minded() has 10% of being true */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Boxing Lesson",				GAUNTLETS_OF_AUTOMATIC_SHUTDOW, /* +5 unarmed damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Arabella's Nastyguard",				RIN_NASTINESS_RESISTANCE, /* halves nastytrap durations, arabella trap effect, magic vacuum, fuck over and your score drains by one per turn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Jubilex's Code",				RIN_INDIGESTION, /* sickopathy, diarrhea, stat decrease bug */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, IDENTIFY, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

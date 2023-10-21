@@ -7048,7 +7048,7 @@ boolean ordinary;
 			You_feel("powered up!");
 				if (Upolyd) u.mhmax += rnd(5);
 				else u.uhpmax += rnd(5);
-				if (uactivesymbiosis) {
+				if (uinsymbiosis) {
 					u.usymbiote.mhpmax += rnd(5);
 					maybe_evolve_symbiote();
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -7675,8 +7675,9 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	if (youdefend) {
 
 		if (uactivesymbiosis) {
-			u.usymbiote.mhp = 1;
+			u.usymbiote.mhp /= 2; /* used to set it to 1 but that was too harsh --Amy */
 			u.usymbiote.mhpmax -= rnd(10);
+			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;
 			if (u.usymbiote.mhpmax < 1) {
 				killsymbiote();
 				You("no longer have a symbiote.");

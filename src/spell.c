@@ -6201,7 +6201,7 @@ newbossPENT:
 			}
 			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
 			u.uhp = u.uhpmax;
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				u.usymbiote.mhpmax += 4;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -7363,7 +7363,7 @@ whisperchoice:
 		break;
 
 	case SPE_SYMHEAL:
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			int healamount;
 			healamount = (rnd(10) + 4 + (spell_damage_bonus(spellid(spell)) * 2) + rnd(rnz(u.ulevel)));
 			if (healamount > 1) healamount /= 2;
@@ -8251,7 +8251,7 @@ whisperchoice:
 			pline("Click! You feel vitalized.");
 			u.uhpmax++;
 			if (Upolyd) u.mhmax++;
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				u.usymbiote.mhpmax++;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;

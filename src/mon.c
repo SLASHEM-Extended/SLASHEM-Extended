@@ -2563,7 +2563,7 @@ meatmetal(mtmp)
 		touch_artifact(otmp,mtmp)) {
 		/* KMH -- Don't eat indigestible/choking objects */
 		if (otmp->otyp != AMULET_OF_STRANGULATION &&
-				otmp->otyp != RIN_SLOW_DIGESTION) {
+				otmp->otyp != RIN_SLOW_DIGESTION && otmp->otyp != RIN_INDIGESTION) {
 		    if (cansee(mtmp->mx,mtmp->my) && flags.verbose) {
 
 			/* metal mafia guys technically eat metallic items, but it's flavored as them selling the metal --Amy
@@ -2672,7 +2672,7 @@ meatlithic(mtmp)
 	    if (is_lithic(otmp) && !obj_resists(otmp, 5, 95) &&
 		touch_artifact(otmp,mtmp)) {
 			if (otmp->otyp != AMULET_OF_STRANGULATION &&
-				otmp->otyp != RIN_SLOW_DIGESTION) {
+				otmp->otyp != RIN_SLOW_DIGESTION && otmp->otyp != RIN_INDIGESTION) {
 		    if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
 			pline("%s eats %s!", Monnam(mtmp),
 				distant_name(otmp,doname));
@@ -2765,7 +2765,7 @@ meatanything(mtmp)
 	    if (!obj_resists(otmp, 5, 95) &&
 		touch_artifact(otmp,mtmp)) {
 		if (otmp->otyp != AMULET_OF_STRANGULATION &&
-				otmp->otyp != RIN_SLOW_DIGESTION) {
+				otmp->otyp != RIN_SLOW_DIGESTION && otmp->otyp != RIN_INDIGESTION) {
 		    if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
 			pline("%s eats %s!", Monnam(mtmp),
 				distant_name(otmp,doname));
@@ -2932,7 +2932,7 @@ meatobj(mtmp)		/* for gelatinous cubes */
 			!resists_ston(mtmp))
 		    continue;
 		if (otmp->otyp == AMULET_OF_STRANGULATION ||
-				otmp->otyp == RIN_SLOW_DIGESTION)
+				otmp->otyp == RIN_SLOW_DIGESTION && otmp->otyp != RIN_INDIGESTION)
 		    continue;
 		++count;
 		if (cansee(mtmp->mx,mtmp->my) && flags.verbose)
@@ -7301,7 +7301,7 @@ xkilled(mtmp, dest)
 	if (uimplant && uimplant->oartifact == ART_ETERNAL_SORENESS && !rn2(50)) {
 		u.uhpmax++;
 		if (Upolyd) u.mhmax++;
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax++;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			maybe_evolve_symbiote();
@@ -10660,7 +10660,7 @@ symbiotepassive()
 void
 symbiotemaygainhealth()
 {
-	if (!uactivesymbiosis) return;
+	if (!uinsymbiosis) return;
 	if (u.usymbiote.mnum == PM_CRITICALLY_INJURED_THIEF) return;
 	if (u.usymbiote.mnum == PM_CRITICALLY_INJURED_JEDI) return;
 	if (u.usymbiote.mnum == PM_SLICK_RUEA) return;
@@ -10692,7 +10692,7 @@ void
 maybe_evolve_symbiote()
 {
 	int oldtype, newtype;
-	if (!uactivesymbiosis) return;
+	if (!uinsymbiosis) return;
 
 	oldtype = u.usymbiote.mnum;
 	newtype = little_to_big(oldtype);

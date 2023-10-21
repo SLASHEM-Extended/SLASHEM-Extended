@@ -2073,6 +2073,26 @@ int apptest;
 	return FALSE; /* catchall */
 }
 
+/* is the player's symbiote shut down? --Amy */
+boolean
+symbiote_is_shut_down()
+{
+	if (u.shutdowntime) return TRUE;
+	if (uarmc && uarmc->otyp == CLOAK_OF_SHUTDOWN) return TRUE;
+	if (uarms && uarms->otyp == SHUTTER_SHIELD) return TRUE;
+	if (uleft && uleft->otyp == RIN_SHUTDOWN) return TRUE;
+	if (uright && uright->otyp == RIN_SHUTDOWN) return TRUE;
+	if (uarmg && uarmg->otyp == GAUNTLETS_OF_AUTOMATIC_SHUTDOW && uinsymbiosis && (u.usymbiote.mhp < (u.usymbiote.mhpmax / 2) ) ) return TRUE;
+	if (uamul && uamul->otyp == AMULET_OF_AUTOMATIC_SHUTDOWN && uinsymbiosis && (u.usymbiote.mhp < (u.usymbiote.mhpmax / 2) ) ) return TRUE;
+	if (uarmh && uarmh->oartifact == ART_EFFICIENT_SHARING) {
+		if (!Upolyd && (u.usymbiote.mhp < u.uhp)) return TRUE;
+		if (Upolyd && (u.usymbiote.mhp < u.mh)) return TRUE;
+	}
+	if (autismringcheck(ART_MAXIMUM_SHUTLOCK) && (u.usymbiote.mhp < u.usymbiote.mhpmax)) return TRUE;
+
+	return FALSE;
+}
+
 boolean
 player_wears_metal()
 {
@@ -5411,7 +5431,7 @@ goodeffect()
 			case 55: /* gain max HP */
 				u.uhpmax++;
 				if (Upolyd) u.mhmax++;
-				if (uactivesymbiosis) {
+				if (uinsymbiosis) {
 					u.usymbiote.mhpmax += rnd(5);
 					maybe_evolve_symbiote();
 					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -5824,7 +5844,7 @@ enchantweaponchoice:
 				break;
 			case 154:
 			case 155: /* heal symbiote */
-				if (uactivesymbiosis) {
+				if (uinsymbiosis) {
 					Your("symbiote seems healthier!");
 					u.usymbiote.mhp = u.usymbiote.mhpmax;
 				}
@@ -8536,7 +8556,7 @@ nivellate()
 
 	}
 
-	if (uactivesymbiosis && !rn2(2)) {
+	if (uinsymbiosis && !rn2(2)) {
 		lowerceiling = 200;
 		upperceiling = 300;
 		reduceamount = 1;
@@ -8882,7 +8902,7 @@ boolean guaranteed;
 
 	}
 
-	if (uactivesymbiosis) {
+	if (uinsymbiosis) {
 		int symlevel = mons[u.usymbiote.mnum].mlevel;
 		if (symlevel < 6) symlevel = 6;
 		ceiling = (symlevel * 10);
@@ -11229,6 +11249,11 @@ dodrink()
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
+	if ((uleft && uleft->otyp == RIN_INDIGESTION) || (uright && uright->otyp == RIN_INDIGESTION)) {
+		pline("Somehow, you can't quaff anything. Seems that you have indigestion.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
 
 	*qp++ = ALLOW_FLOOROBJ;
 	if (!u.uswallow && (IS_FOUNTAIN(levl[u.ux][u.uy].typ) ||
@@ -12441,7 +12466,7 @@ peffects(otmp)
 		make_hallucinated(HHallucination + time + d(10, 3), FALSE, 0L);
 		u.uhpmax += rnd(5);
 		u.uhp = u.uhpmax;
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax += 5;
 			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -13195,7 +13220,7 @@ peffects(otmp)
 				u.uhpmax += ((u.uhp - u.uhpmax) / 2);
 				u.uhp = u.uhpmax;
 			}
-			if (uactivesymbiosis && !otmp->cursed) {
+			if (uinsymbiosis && !otmp->cursed) {
 				u.usymbiote.mhpmax += num2;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -13415,7 +13440,7 @@ peffects(otmp)
 			if (u.uhp < 1) u.uhp = 1;	/* can't kill you */
 		} else {
 			if (Hallucination) make_hallucinated(0L,FALSE,0L);
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				u.usymbiote.mhpmax++;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -13448,7 +13473,7 @@ peffects(otmp)
 		You_feel("%spowerful!",otmp->blessed ? "very " : "");
 		u.uhp += x;
 		u.uhpmax += x;
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax += x;
 			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -13464,7 +13489,7 @@ peffects(otmp)
 		}	
 		if (otmp->blessed) {
 			u.uhpmax += rn2(5);
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				u.usymbiote.mhpmax += rn2(5);
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -13492,7 +13517,7 @@ peffects(otmp)
 		incr_itimeout(&HSee_invisible, time);
 		if (!rnl(3)) make_blinded(Blinded+time,TRUE);	
 		u.uhpmax += rn2(5);
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			u.usymbiote.mhpmax += rn2(5);
 			maybe_evolve_symbiote();
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
@@ -13667,7 +13692,7 @@ healup(nhp, nxtra, curesick, cureblind)
 			if(u.uhp > u.uhpmax) u.uhp = (u.uhpmax += nxtra);
 			else if (!rn2(2)) u.uhpmax += nxtra;
 		}
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			/* heal symbiote by about 10% of the amount you were healed; more if high skill --Amy */
 			u.usymbiote.mhpmax += nxtra;
 			maybe_evolve_symbiote();

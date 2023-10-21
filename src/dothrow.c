@@ -3046,6 +3046,7 @@ evasionchancedone:
 				shieldblockrate = 10;
 				break;
 			case HEAVY_SHIELD:
+			case SHUTTER_SHIELD:
 				shieldblockrate = 20;
 				break;
 			case BARRIER_SHIELD:

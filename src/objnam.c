@@ -4148,6 +4148,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ GREEN_STEEL_CHAIN, "todo" },
 	{ FATMAN, "todo" },
 	{ MINI_NUKE, "todo" },
+	{ SHUTTER_SHIELD, "todo" },
+	{ CLOAK_OF_SHUTDOWN, "todo" },
+	{ RIN_SHUTDOWN, "todo" },
+	{ GAUNTLETS_OF_AUTOMATIC_SHUTDOW, "todo" },
+	{ AMULET_OF_AUTOMATIC_SHUTDOWN, "todo" },
+	{ RIN_NASTINESS_RESISTANCE, "todo" },
+	{ RIN_INDIGESTION, "todo" },
 
 	{0, "" }
 };
@@ -7450,6 +7457,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ GREEN_STEEL_CHAIN, "todo" },
 	{ FATMAN, "todo" },
 	{ MINI_NUKE, "todo" },
+	{ SHUTTER_SHIELD, "todo" },
+	{ CLOAK_OF_SHUTDOWN, "todo" },
+	{ RIN_SHUTDOWN, "todo" },
+	{ GAUNTLETS_OF_AUTOMATIC_SHUTDOW, "todo" },
+	{ AMULET_OF_AUTOMATIC_SHUTDOWN, "todo" },
+	{ RIN_NASTINESS_RESISTANCE, "todo" },
+	{ RIN_INDIGESTION, "todo" },
 
 	{0, "" }
 };
@@ -10901,9 +10915,9 @@ typfnd:
 	/* wtf, why would you still have the same chance of getting the requested quantity with negative luck??? --Amy */
 	if (Luck < 0 && !rn2(2)) maxwishamount = 1;
 
-	if (wizard) {
+	if (wizard && (cnt > 0)) {
 		otmp->quan = (long) cnt;
-	} else if (maxwishamount >= cnt) {
+	} else if ((maxwishamount >= cnt) && (cnt > 0)) {
 		otmp->quan = (long) cnt;
 	} else if (cnt > 1) { /* wished for too many? too bad! now you only get one! --Amy */
 		cnt = 1;

@@ -1267,7 +1267,7 @@ register struct obj *obj;
 	    }
 	default:
 	    if (obj->otyp == AMULET_OF_STRANGULATION ||
-			obj->otyp == RIN_SLOW_DIGESTION)
+			obj->otyp == RIN_SLOW_DIGESTION || obj->otyp == RIN_INDIGESTION)
 		return TABU;
 	    if (hates_silver(mon->data) &&
 		objects[obj->otyp].oc_material == MT_SILVER)

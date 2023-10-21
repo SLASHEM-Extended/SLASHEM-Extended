@@ -3605,6 +3605,15 @@ moveloop()
 	
 		}
 
+		if (uleft && uleft->oartifact == ART_ARABELLA_S_NASTYGUARD) {
+			u.urexp--;
+			if (u.urexp < 0) u.urexp = 0;
+		}
+		if (uright && uright->oartifact == ART_ARABELLA_S_NASTYGUARD) {
+			u.urexp--;
+			if (u.urexp < 0) u.urexp = 0;
+		}
+
 		if (uarmc && (uarmc->oartifact == ART_INA_S_OVERCOAT) && !rn2(100) && multi >= 0) {
 
 			if (!strncmpi(plname, "Ina", 4) || !strncmpi(plalias, "Ina", 4)) {
@@ -7193,6 +7202,9 @@ newbossJANI:
 			}
 		}
 
+		if (uarmg && uarmg->otyp == GAUNTLETS_OF_AUTOMATIC_SHUTDOW && !uarmg->cursed && !rn2(1000)) curse(uarmg);
+		if (uamul && uamul->otyp == AMULET_OF_AUTOMATIC_SHUTDOWN && !uamul->cursed && !rn2(1000)) curse(uamul);
+
 		if (uwep && uwep->oartifact == ART_DIPLITE && !uwep->lamplit && !rn2(10)) {
 			if (!uwep->cursed) {
 				curse(uwep);
@@ -9540,7 +9552,7 @@ newbossX:
 		}
 
 		/* sleeping heals your symbiote... --Amy */
-		if (u.usleep && u.usleep < monstermoves && uactivesymbiosis) {
+		if (u.usleep && (u.usleep < monstermoves) && uinsymbiosis) {
 			if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 				u.usymbiote.mhp++;
 				if (is_carvedbed(u.ux, u.uy)) u.usymbiote.mhp += rn2(4);
@@ -12952,7 +12964,7 @@ newboss:
 
 		if (have_hungerhealer()) {
 			morehungry(1);
-			if (uactivesymbiosis && Role_if(PM_SYMBIANT)) {
+			if (uinsymbiosis && Role_if(PM_SYMBIANT)) {
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 					u.usymbiote.mhp++;
 					if (flags.showsymbiotehp) flags.botl = TRUE;
@@ -12961,7 +12973,7 @@ newboss:
 			}
 		}
 		if (uimplant && uimplant->oartifact == ART_SYMPLANT && !rn2(2)) {
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 					u.usymbiote.mhp++;
 					if (flags.showsymbiotehp) flags.botl = TRUE;
@@ -13238,7 +13250,7 @@ pastds2:
 
 		}
 
-		if ((u.uprops[CRAP_EFFECT].extrinsic || autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || autismweaponcheck(ART_GIRLFUL_BONKING) || CrapEffect || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || have_shitstone() || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
+		if ((u.uprops[CRAP_EFFECT].extrinsic || autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || autismweaponcheck(ART_GIRLFUL_BONKING) || CrapEffect || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || have_shitstone() || autismringcheck(ART_JUBILEX_S_CODE) || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT) ) && (u.uhs == 0) && !rn2(100) ) {
 			You("suddenly have to take a shit!");
 			use_skill(P_SQUEAKING, 5);
 			int crapduration = 5;
@@ -13337,7 +13349,7 @@ pastds2:
 		}
 
 		/* symbiote HP regeneration - rather slow, but depends on your symbiosis skill and charisma --Amy */
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			int symregenrate = 50;
 			int symmuchregrate = 1000;
 

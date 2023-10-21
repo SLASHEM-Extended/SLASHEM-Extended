@@ -2212,6 +2212,7 @@ E int find_chinese_cloak(void);
 E int find_polyform_cloak(void);
 E int find_absorbing_cloak(void);
 E int find_hardcore_cloth(void);
+E int find_tankini(void);
 E int find_birthcloth(void);
 E int find_poke_mongo_cloak(void);
 E int find_levuntation_cloak(void);
@@ -2687,6 +2688,8 @@ E boolean firgatest(void);
 E void give_code_number(void);
 E void devil_misbehavior(void);
 E void trophy_get(void);
+
+E boolean symbiote_is_shut_down(void);
 
 E boolean player_wears_metal(void);
 

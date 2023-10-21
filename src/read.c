@@ -9932,7 +9932,7 @@ tunguskaagain:
 		}
 		if (RngeNursery) healamount *= 2;
 
-		if (uactivesymbiosis) {
+		if (uinsymbiosis) {
 			Your("symbiote seems healthier!");
 			u.usymbiote.mhp += (rnd(50) + 30 + rnz(u.ulevel * 3));
 			if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;

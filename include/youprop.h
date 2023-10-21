@@ -232,7 +232,7 @@
 
 #define HShock_resistance	u.uprops[SHOCK_RES].intrinsic
 #define EShock_resistance	u.uprops[SHOCK_RES].extrinsic
-#define IntShock_resistance	(HShock_resistance || ShockImmunity || resists_elec(&youmonst) || is_elec_resistant(youmonst.data) || (powerfulsymbiosis() && is_elec_resistant(&mons[u.usymbiote.mnum])) )
+#define IntShock_resistance	(HShock_resistance || (uarms && uarms->oartifact == ART_TEH_SHOCK) || ShockImmunity || resists_elec(&youmonst) || is_elec_resistant(youmonst.data) || (powerfulsymbiosis() && is_elec_resistant(&mons[u.usymbiote.mnum])) )
 #define ExtShock_resistance	(playerextrinsicshockres())
 
 #define Shock_resistance	(((IntShock_resistance && u.nonintrinsicproperty != SHOCK_RES) || (ExtShock_resistance && u.nonextrinsicproperty != SHOCK_RES)) && !hybridragontype(AD_ELEC) && !Role_if(PM_ALTMER) && !NoShock_resistance )
@@ -240,7 +240,7 @@
 
 #define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || UHaveAids || (u.impossibleproperty == SHOCK_RES) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || autismweaponcheck(ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define ShockImmunity		(Race_if(PM_PLAYER_DYNAMO) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER && objects[uarms->otyp].oc_material == MT_WOOD) )
+#define ShockImmunity		(Race_if(PM_PLAYER_DYNAMO) || (uarms && uarms->oartifact == ART_TEH_SHOCK) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER && objects[uarms->otyp].oc_material == MT_WOOD) )
 
 #define HPoison_resistance	u.uprops[POISON_RES].intrinsic
 #define EPoison_resistance	u.uprops[POISON_RES].extrinsic
@@ -831,7 +831,7 @@
 #define FemtrapActiveLou	(FemaleTrapLou || u.uprops[FEMTRAP_LOU].extrinsic || have_femtraplou())
 #define FemtrapActiveAlmut	(FemaleTrapAlmut || u.uprops[FEMTRAP_ALMUT].extrinsic || have_femtrapalmut())
 #define FemtrapActiveJulietta	(FemaleTrapJulietta || u.uprops[FEMTRAP_JULIETTA].extrinsic || have_femtrapjulietta() || (autismweaponcheck(ART_DAMN_SKI_WEDGE) && !uarmf) || autismweaponcheck(ART_ST_ICKYNESS) || autismweaponcheck(ART_HOL_ON_MAN) )
-#define FemtrapActiveArabella	(FemaleTrapArabella || u.uprops[FEMTRAP_ARABELLA].extrinsic || have_femtraparabella() || (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER))
+#define FemtrapActiveArabella	(FemaleTrapArabella || u.uprops[FEMTRAP_ARABELLA].extrinsic || have_femtraparabella() || (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) )
 #define FemtrapActiveKristin	(FemaleTrapKristin || u.uprops[FEMTRAP_KRISTIN].extrinsic || have_femtrapkristin())
 #define FemtrapActiveAnna	(FemaleTrapAnna || u.uprops[FEMTRAP_ANNA].extrinsic || have_femtrapanna() || (uarmf && uarmf->oartifact == ART_WHOA_LOOK_AT_THOSE) )
 #define FemtrapActiveRuea	(FemaleTrapRuea || u.uprops[FEMTRAP_RUEA].extrinsic || have_femtrapruea())
@@ -1176,7 +1176,7 @@
 #define HSickopathy	u.uprops[SICKOPATHY].intrinsic
 #define ESickopathy	u.uprops[SICKOPATHY].extrinsic
 #define IntSickopathy	(HSickopathy)
-#define ExtSickopathy	(ESickopathy || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || (uarmf && uarmf->oartifact == ART_GREEN_MYSTERY && uwep && (objects[uwep->otyp].oc_color == CLR_BRIGHT_GREEN)) || (uwep && uwep->oartifact == ART_SCHOSCHO_BARBITUER) )
+#define ExtSickopathy	(ESickopathy || (uarmh && uarmh->oartifact == ART_INCREDIBLE_VIEW) || (uarms && uarms->oartifact == ART_IT_IS_COMPLETE_NOW) || autismringcheck(ART_JUBILEX_S_CODE) || (uarmf && uarmf->oartifact == ART_GREEN_MYSTERY && uwep && (objects[uwep->otyp].oc_color == CLR_BRIGHT_GREEN)) || (uwep && uwep->oartifact == ART_SCHOSCHO_BARBITUER) )
 
 #define Sickopathy	(((IntSickopathy && !(u.nonintrinsicproperty == SICKOPATHY)) || (ExtSickopathy && u.nonextrinsicproperty != SICKOPATHY)) && !NoSickopathy && !DetectionMethodsDontWork)
 #define StrongSickopathy	(IntSickopathy && ExtSickopathy && Sickopathy && u.nondoubleproperty != SICKOPATHY)
@@ -1467,7 +1467,7 @@
 #define HSlow_digestion		u.uprops[SLOW_DIGESTION].intrinsic
 #define ESlow_digestion		u.uprops[SLOW_DIGESTION].extrinsic
 #define IntSlow_digestion	(HSlow_digestion)
-#define ExtSlow_digestion	(ESlow_digestion || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == SLOW_DIGESTION) ) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (uwep && uwep->oartifact == ART_HOLY_GRAIL) || (uarmh && uarmh->oartifact == ART_NEVEREATER) || (uarm && uarm->oartifact == ART_FULL_DOSE_LIFE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ENTEROGASTER_ALTO) || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uarmh && uarmh->oartifact == ART_WOLF_KING) )
+#define ExtSlow_digestion	(ESlow_digestion || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == SLOW_DIGESTION) ) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (uwep && uwep->oartifact == ART_HOLY_GRAIL) || (uarmh && uarmh->oartifact == ART_NEVEREATER) || autismringcheck(ART_SCHATZKI_S_RING) || (uarm && uarm->oartifact == ART_FULL_DOSE_LIFE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ENTEROGASTER_ALTO) || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || (uarmh && uarmh->oartifact == ART_WOLF_KING) )
 
 #define Slow_digestion		(((IntSlow_digestion && u.nonintrinsicproperty != SLOW_DIGESTION) || (ExtSlow_digestion && u.nonextrinsicproperty != SLOW_DIGESTION)) && !Race_if(PM_PERVERT) && !Race_if(PM_GIGANT) && !NoSlow_digestion)  /* KMH */
 #define StrongSlow_digestion	(IntSlow_digestion && ExtSlow_digestion && Slow_digestion && u.nondoubleproperty != SLOW_DIGESTION)
@@ -1819,7 +1819,7 @@
 #define HMagicVacuum		u.uprops[MAGIC_VACUUM].intrinsic
 #define EMagicVacuum		u.uprops[MAGIC_VACUUM].extrinsic
 #define IntMagicVacuum	(HMagicVacuum)
-#define ExtMagicVacuum	(EMagicVacuum || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || autismweaponcheck(ART_ARABELLA_S_THINNER) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
+#define ExtMagicVacuum	(EMagicVacuum || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || autismweaponcheck(ART_ARABELLA_S_THINNER) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
 #define MagicVacuum		(IntMagicVacuum || ExtMagicVacuum )
 #define StrongMagicVacuum		(IntMagicVacuum && ExtMagicVacuum && MagicVacuum)
 
@@ -1836,7 +1836,8 @@
 #define HFuckOverEffect		u.uprops[FUCK_OVER].intrinsic
 #define EFuckOverEffect		u.uprops[FUCK_OVER].extrinsic
 #define IntFuckOverEffect	(HFuckOverEffect)
-#define ExtFuckOverEffect	(EFuckOverEffect || (uamul && uamul->oartifact == ART_NUCLEAR_WORTH) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismweaponcheck(ART_SKODIT) || (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF) || autismweaponcheck(ART_NOTHING_FOR_IT) || Race_if(PM_RODNEYAN) || (uarm && uarm->oartifact == ART_WELL_FUCK) || (uarmc && uarmc->oartifact == ART_SHROUD) )
+#define ExtFuckOverEffect	(EFuckOverEffect || (uamul && uamul->oartifact == ART_NUCLEAR_WORTH) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || autismweaponcheck(ART_SKODIT) || (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF) || autismweaponcheck(ART_NOTHING_FOR_IT) || Race_if(PM_RODNEYAN) || (uarm && uarm->oartifact == ART_WELL_FUCK) || (uarmc && uarmc->oartifact == ART_SHROUD) )
+
 #define FuckOverEffect		(IntFuckOverEffect || ExtFuckOverEffect)
 #define StrongFuckOverEffect		(IntFuckOverEffect && ExtFuckOverEffect && FuckOverEffect)
 

@@ -1434,6 +1434,15 @@ Cloak_on()
 		break;
 
 	case CLOAK_OF_CONFLICT:
+		if (!uarmc->cursed) {
+			curse(uarmc);
+			pline("Your cloak is surrounded by a black aura.");
+		}
+		break;
+
+	case CLOAK_OF_SHUTDOWN:
+
+		if (uinsymbiosis) makeknown(CLOAK_OF_SHUTDOWN);
 
 		if (!uarmc->cursed) {
 			curse(uarmc);
@@ -1985,6 +1994,7 @@ Cloak_off()
 
 	case CLOAK_OF_AGGRAVATION:
 	case CLOAK_OF_CONFLICT:
+	case CLOAK_OF_SHUTDOWN:
 	case CLOAK_OF_MAGICAL_BREATHING:
 	case CLOAK_OF_STAT_LOCK:
 	case WING_CLOAK:
@@ -2928,6 +2938,11 @@ Gloves_on()
 	    flags.botl = 1;
 		break;
 
+	case GAUNTLETS_OF_AUTOMATIC_SHUTDOW:
+		makeknown(uarmg->otyp);
+		pline("It seems that these gauntlets have a button on one side.");
+		break;
+
 	case GAUNTLETS_OF_SWIMMING:
 		if (u.uinwater) {
 		   pline(FunnyHallu ? "Suddenly, you're floating! Whee!" : "Hey! You can swim!");
@@ -3194,6 +3209,7 @@ Gloves_off()
 	case GAUNTLETS_OF_PLUGSUIT:
 	case GAUNTLETS_OF_DEFUSING:
 	case GAUNTLETS_OF_SPELL_POWER:
+	case GAUNTLETS_OF_AUTOMATIC_SHUTDOW:
 	case ROGUES_GLOVES:
 	case COMMANDER_GLOVES:
 	case FIELD_GLOVES:
@@ -3420,6 +3436,7 @@ Shield_on()
 	case MAGIC_DRAGON_SCALE_SHIELD:
 	case EVIL_DRAGON_SCALE_SHIELD:
 	case YELLOW_DRAGON_SCALE_SHIELD:
+	case SHUTTER_SHIELD:
 		break;
 	default: impossible(unknown_type, c_shield, uarms->otyp);
     }
@@ -3431,6 +3448,10 @@ Shield_on()
 	if (uarms && uarms->otyp == DIFFICULT_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == TEZ_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == SPI_IMAGE_MOOSE_SHIELD) curse(uarms);
+	if (uarms && uarms->otyp == SHUTTER_SHIELD) {
+		Your("shield becomes cursed.");
+		curse(uarms);
+	}
 
     if (uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH) {
 	curse(uarms);
@@ -3594,6 +3615,7 @@ Shield_off()
 	case ICKY_SHIELD:
 	case HEAVY_SHIELD:
 	case BARRIER_SHIELD:
+	case SHUTTER_SHIELD:
 	case BROKEN_SHIELD:
 	case WEAPON_SIGN:
 	case TROLL_SHIELD:
@@ -4196,6 +4218,11 @@ Amulet_on()
 	case AMULET_OF_BURDEN:
 		You_feel("burdened");
 		makeknown(AMULET_OF_BURDEN);
+		break;
+
+	case AMULET_OF_AUTOMATIC_SHUTDOWN:
+		pline("Somehow, this amulet seems to connect itself to your central nervous system.");
+		makeknown(AMULET_OF_AUTOMATIC_SHUTDOWN);
 		break;
 
 	case AMULET_OF_FUCKING:
@@ -4801,6 +4828,17 @@ register struct obj *obj;
 
 		break;
 
+	case RIN_SHUTDOWN:
+
+		if (uinsymbiosis) makeknown(RIN_SHUTDOWN);
+
+		if (!obj->cursed) {
+			curse(obj);
+			Your("ring becomes cursed!");
+		}
+
+		break;
+
 	case RIN_ILLNESS:
 
 		make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON),20), "a ring of illness", TRUE, SICK_NONVOMITABLE);
@@ -4813,11 +4851,10 @@ register struct obj *obj;
 		if Race_if(PM_KOBOLT) break;
 		HSleeping = rnd(1000);
 		break;
-#if 0
 	case RIN_INDIGESTION:
-		incr_itimeout(&HIndigestion, rnd(20));
+		/*incr_itimeout(&HIndigestion, rnd(20));*/
+		if (!obj->cursed) curse(obj);
 		break;
-#endif
 	case RIN_WARNING:
 		see_monsters();
 		break;
@@ -4950,6 +4987,8 @@ register struct obj *obj;
 
     }
 
+    if (obj->oartifact == ART_MAXIMUM_SHUTLOCK) curse(obj);
+
     if (obj->oartifact == ART_FIRE_NIGHT) {
 		if (!tech_known(T_BEAUTY_CHARM) && u.ugold >= 10000) {
 		    	learntech(T_BEAUTY_CHARM, FROMOUTSIDE, 1);
@@ -5075,12 +5114,10 @@ boolean gone;
 		if (!ESleeping && !(HSleeping & INTRINSIC) && !Race_if(PM_KOBOLT))
 			HSleeping = 0;
 		break;
-#if 0
 	case RIN_INDIGESTION:
-		if (!EIndigestion)
-			HIndigestion = 0;
+/*		if (!EIndigestion)
+			HIndigestion = 0;*/
 		break;
-#endif
 	case RIN_TIMELY_BACKUP:
 		You_feel("unsafe.");
 		break;
@@ -6589,6 +6626,8 @@ find_ac()
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) uac -= 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) uac -= 20;
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) uac -= 1;
+	if (uarmc && itemhasappearance(uarmc, APP_TANKINI)) uac -= 1;
+	if (uarmc && uarmc->oartifact == ART_KATHERINE_S_BEACHWEAR) uac -= 4;
 	if (uarm && uarm->oartifact == ART_LET_IT_STAY && uarm->otyp >= GRAY_DRAGON_SCALES && uarm->otyp <= YELLOW_DRAGON_SCALES) uac -= 7;
 	if (uarmh && uarmh->oartifact == ART_HAMMER_GOOD_HELM) uac -= (Role_if(PM_COMBATANT) ? 10 : 5);
 	if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) uac -= 2;

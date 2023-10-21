@@ -4959,7 +4959,7 @@ metalmafiaagain:
 								if (!Upolyd) u.uhpmax++;
 								else u.mhmax++;
 								use_skill(P_SQUEAKING, 1);
-								if (uactivesymbiosis) {
+								if (uinsymbiosis) {
 									u.usymbiote.mhpmax++;
 									maybe_evolve_symbiote();
 									if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;

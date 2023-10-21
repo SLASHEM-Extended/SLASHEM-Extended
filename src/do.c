@@ -440,6 +440,7 @@ register struct obj *obj;
 		pline_The("ring refuses to go down the drain!"); /* drain resistance, geddit? --Amy */
 		goto giveback;
 	    case RIN_SLOW_DIGESTION:
+	    case RIN_INDIGESTION:
 		pline_The("ring is regurgitated!");
 giveback:
 		obj->in_use = FALSE;
@@ -624,6 +625,9 @@ giveback:
 	      case RIN_NASTINESS:
 		    pline("The water looks extremely disgusting for a moment.");
 		    break;
+	      case RIN_NASTINESS_RESISTANCE:
+		    pline("The water looks less disgusting than usual for a moment.");
+		    break;
 	      case RIN_BAD_EFFECT:
 		    pline("The water looks really icky for a moment.");
 		    break;
@@ -756,6 +760,9 @@ giveback:
 		    break;
 		case RIN_LEECH:
 		    pline("The sink drains energy from the ring!");
+		    break;
+		case RIN_SHUTDOWN:
+		    pline("The sink's water supply momentarily seems to stop operating!");
 		    break;
 		case RIN_DANGER:
 		    pline("Terrible things are happening to the sink...");
@@ -1004,6 +1011,9 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_INSOMNIA:
 		pline_The("toilet seems ready to operate forever.");
+		break;
+	case AMULET_OF_AUTOMATIC_SHUTDOWN:
+		pline_The("toilet flushes, but then the water flow stops suddenly!");
 		break;
 	case AMULET_OF_MENTAL_STABILITY:
 		pline_The("toilet seems to be operating steadily.");

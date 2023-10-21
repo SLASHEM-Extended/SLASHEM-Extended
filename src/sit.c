@@ -365,7 +365,7 @@ dosit()
 			}
 			if(u.uhp >= (u.uhpmax - 5))  u.uhpmax += 4;
 			u.uhp = u.uhpmax;
-			if (uactivesymbiosis) {
+			if (uinsymbiosis) {
 				u.usymbiote.mhpmax += 4;
 				maybe_evolve_symbiote();
 				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
