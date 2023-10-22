@@ -661,6 +661,9 @@ nh_timeout()
 	if (u.tumblrerpersist) u.tumblrerpersist--;
 	if (u.tumblrerpersist < 0) u.tumblrerpersist = 0; /* fail safe */
 
+	if (u.startscummerpersist) u.startscummerpersist--;
+	if (u.startscummerpersist < 0) u.startscummerpersist = 0; /* fail safe */
+
 	if (u.addictpersist) u.addictpersist--;
 	if (u.addictpersist < 0) u.addictpersist = 0; /* fail safe */
 
@@ -2494,6 +2497,19 @@ nh_timeout()
 	}
 
 	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && u.uprops[NASTINESS_EFFECTS].extrinsic) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
+	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && (u.startscummerpersist || Race_if(PM_STARTSCUMMER)) ) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */

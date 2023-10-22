@@ -8235,6 +8235,12 @@ nivellate()
 			upperceiling *= 3;
 			upperceiling /= 4;
 		}
+		if (Race_if(PM_STARTSCUMMER)) {
+			lowerceiling *= 3;
+			lowerceiling /= 4;
+			upperceiling *= 3;
+			upperceiling /= 4;
+		}
 		if (Race_if(PM_SPRIGGAN)) {
 			lowerceiling *= 3;
 			lowerceiling /= 4;
@@ -8306,6 +8312,12 @@ nivellate()
 			upperceiling /= 4;
 		}
 		if (Race_if(PM_PLAYER_JABBERWOCK)) {
+			lowerceiling *= 4;
+			lowerceiling /= 3;
+			upperceiling *= 4;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
 			lowerceiling *= 4;
 			lowerceiling /= 3;
 			upperceiling *= 4;
@@ -8477,6 +8489,18 @@ nivellate()
 			upperceiling /= 3;
 		}
 		if (Race_if(PM_ZAUR)) {
+			lowerceiling *= 2;
+			lowerceiling /= 3;
+			upperceiling *= 2;
+			upperceiling /= 3;
+		}
+		if (Race_if(PM_STARTSCUMMER)) {
+			lowerceiling *= 3;
+			lowerceiling /= 4;
+			upperceiling *= 3;
+			upperceiling /= 4;
+		}
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
 			lowerceiling *= 2;
 			lowerceiling /= 3;
 			upperceiling *= 2;
@@ -8661,6 +8685,10 @@ boolean guaranteed;
 			ceiling *= 3;
 			ceiling /= 4;
 		}
+		if (Race_if(PM_STARTSCUMMER)) {
+			ceiling *= 3;
+			ceiling /= 4;
+		}
 		if (Race_if(PM_SPRIGGAN)) {
 			ceiling *= 3;
 			ceiling /= 4;
@@ -8707,6 +8735,10 @@ boolean guaranteed;
 		if (Race_if(PM_PLAYER_CERBERUS)) {
 			ceiling *= 5;
 			ceiling /= 4;
+		}
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+			ceiling *= 4;
+			ceiling /= 3;
 		}
 		if (Race_if(PM_PLAYER_JABBERWOCK)) {
 			ceiling *= 4;
@@ -8848,6 +8880,10 @@ boolean guaranteed;
 			ceiling *= 2;
 			ceiling /= 3;
 		}
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+			ceiling *= 2;
+			ceiling /= 3;
+		}
 		if (Race_if(PM_REDGUARD)) {
 			ceiling /= 2;
 		}
@@ -8868,6 +8904,10 @@ boolean guaranteed;
 		if (Race_if(PM_CARTHAGE)) {
 			ceiling *= 9;
 			ceiling /= 10;
+		}
+		if (Race_if(PM_STARTSCUMMER)) {
+			ceiling *= 3;
+			ceiling /= 4;
 		}
 		if (Race_if(PM_LICH_WARRIOR)) {
 			ceiling *= 5;
@@ -15807,6 +15847,10 @@ boolean canarti;
 			obj->otyp = SLICE_OF_PIZZA;
 			break;
 		case LOADSTONE:
+			obj->otyp = FLINT;
+			break;
+		case ROCK:
+			if (!Race_if(PM_PLAYABLE_NEANDERTHAL)) return 0;
 			obj->otyp = FLINT;
 			break;
 		case FLINT:

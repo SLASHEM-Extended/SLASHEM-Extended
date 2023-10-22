@@ -10582,6 +10582,8 @@ u_init()
 	u.dorian24 = rnd(270);
 	u.dorian28 = rnd(270);
 
+	u.startscummereffect = rnd(270);
+
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
 	u.adrunsattack = rnd(270); /* timerun etc. */
@@ -11414,6 +11416,8 @@ u_init()
 	if (Race_if(PM_ADDICT)) u.addictpersist = 100000;
 	u.demagoguepersist = 0;
 	if (Role_if(PM_DEMAGOGUE)) u.demagoguepersist = 100000;
+	u.startscummerpersist = 0;
+	if (Role_if(PM_STARTSCUMMER)) u.startscummerpersist = 200000;
 
 	u.superspecialspell = -1;
 
@@ -17967,7 +17971,9 @@ u_init()
 	case PM_BULDOZGAR: racebounus = rnz(12); break;
 	case PM_SWIKNI: racebounus = rnz(13); break;
 	case PM_URGOTH: racebounus = rnz(15); break;
+	case PM_PLAYABLE_NEANDERTHAL: racebounus = rnz(15); break;
 	case PM_THRALL: racebounus = rnz(8); break;
+	case PM_STARTSCUMMER: racebounus = 0; break;
 	default:	racebounus = rnz(10); break;
 
 	if (Race_if(PM_BADSTATTER)) racebounus += 12; /* not granted when using hybrid race, obviously --Amy */
@@ -30653,8 +30659,8 @@ register struct trobj *trop;
 				otyp = inv_asubs[i].subs_otyp;
 				break;
 			    }
-			obj = mksobj(otyp, TRUE, 2, FALSE);
-			if (Race_if(PM_HAXOR)) objX = mksobj(otyp, TRUE, 2, FALSE);
+			obj = mksobj(otyp, TRUE, Race_if(PM_STARTSCUMMER) ? TRUE : 2, FALSE);
+			if (Race_if(PM_HAXOR)) objX = mksobj(otyp, TRUE, Race_if(PM_STARTSCUMMER) ? TRUE : 2, FALSE);
 		} else {	/* UNDEF_TYP */
 			static NEARDATA short nocreate = STRANGE_OBJECT;
 			static NEARDATA short nocreate2 = STRANGE_OBJECT;
@@ -32998,6 +33004,8 @@ int realityflag;
 	u.dorian20 = rnd(270);
 	u.dorian24 = rnd(270);
 	u.dorian28 = rnd(270);
+
+	u.startscummereffect = rnd(270);
 
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);

@@ -153,6 +153,10 @@ int artichance;
 		artichance *= 9;
 		artichance /= 10;
 	}
+	if (Race_if(PM_STARTSCUMMER)) {
+		artichance *= 9;
+		artichance /= 10;
+	}
 	if (artichance < 1) artichance = 1; /* fail safe */
 
 	if (!rn2(artichance)) return TRUE;

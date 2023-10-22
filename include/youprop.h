@@ -1835,8 +1835,8 @@
 
 #define HFuckOverEffect		u.uprops[FUCK_OVER].intrinsic
 #define EFuckOverEffect		u.uprops[FUCK_OVER].extrinsic
-#define IntFuckOverEffect	(HFuckOverEffect)
-#define ExtFuckOverEffect	(EFuckOverEffect || (uamul && uamul->oartifact == ART_NUCLEAR_WORTH) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || autismweaponcheck(ART_SKODIT) || (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF) || autismweaponcheck(ART_NOTHING_FOR_IT) || Race_if(PM_RODNEYAN) || (uarm && uarm->oartifact == ART_WELL_FUCK) || (uarmc && uarmc->oartifact == ART_SHROUD) )
+#define IntFuckOverEffect	(HFuckOverEffect || (u.startscummerpersist && u.ulevel >= 20) || (Race_if(PM_STARTSCUMMER) && u.ulevel >= 20) )
+#define ExtFuckOverEffect	(EFuckOverEffect || (u.startscummerpersist && u.ulevel >= 20) || (Race_if(PM_STARTSCUMMER) && u.ulevel >= 20) || (uamul && uamul->oartifact == ART_NUCLEAR_WORTH) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || autismweaponcheck(ART_SKODIT) || (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF) || autismweaponcheck(ART_NOTHING_FOR_IT) || Race_if(PM_RODNEYAN) || (uarm && uarm->oartifact == ART_WELL_FUCK) || (uarmc && uarmc->oartifact == ART_SHROUD) )
 
 #define FuckOverEffect		(IntFuckOverEffect || ExtFuckOverEffect)
 #define StrongFuckOverEffect		(IntFuckOverEffect && ExtFuckOverEffect && FuckOverEffect)

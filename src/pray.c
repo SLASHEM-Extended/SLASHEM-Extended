@@ -2024,14 +2024,27 @@ dosacrifice()
     }
 
     if (Race_if(PM_MACTHEIST)) {
-	You("are an atheist! You cannot make offerings!");
-	return 0;
+
+	if (Is_astralevel(&u.uz)) {
+		pline("The only thing you can offer is the Amulet of Yendor.");
+	} else {
+		You("are an atheist! You cannot make offerings!");
+		return 0;
+	}
     }
 
     if (In_endgame(&u.uz)) {
 	if (!(otmp = getobj(sacrifice_types, "sacrifice"))) return 0;
     } else {
 	if (!(otmp = getobj(ext_sacrifice_types, "sacrifice"))) return 0;
+    }
+
+    if (Race_if(PM_MACTHEIST)) {
+	if (otmp->otyp != AMULET_OF_YENDOR && otmp->otyp != FAKE_AMULET_OF_YENDOR) {
+		pline("Can't you read? The only thing you can offer is the Amulet of Yendor, because you're an atheist!");
+		if (FunnyHallu) pline("Are you, by any chance, attempting to do the illiterate conduct too?");
+		return 0;
+	}
     }
 
     /* KMH -- offerings to Oracle */

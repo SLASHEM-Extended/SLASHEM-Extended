@@ -6148,6 +6148,21 @@ const struct Race races[] = {
 	{  2, 0,  0, 2,  2, 0 },	/* Hit points */
 	{  4, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"de-energiser", "de-energised", "free switching", "Den",
+	{0, 0},
+	PM_DE_ENERGISER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 18, 18, 18, 18, 18 },
+	/* Init   Lower  Higher */
+	{  1, 0,  0, 1,  1, 0 },	/* Hit points */
+	{  1, 0,  1, 0,  1, 0 }		/* Energy */
+},
 {	"deep elf", "deep elven", "deep elvenkind", "Dee",
 	{0, 0},
 	PM_DEEP_ELF, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,
@@ -8030,6 +8045,21 @@ const struct Race races[] = {
 	{  1, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  4, 0,  4, 0 }		/* Energy */
 },
+{	"neanderthal", "neanderthal", "many years ago", "Nea",
+	{0, 0},
+	PM_PLAYABLE_NEANDERTHAL, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR19(20),  8,  10, 17, 21, 6 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  2, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
+},
 {	"nemesis", "nemesis", "quest nemesis land", "Nem",
 	{0, 0},
 	PM_NEMESIS, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
@@ -8862,6 +8892,21 @@ const struct Race races[] = {
 	/* Init   Lower  Higher */
 	{  2, 0,  0, 2,  1, 0 },	/* Hit points */
 	{  1, 0,  2, 0,  2, 0 }		/* Energy */
+},
+{	"startscummer", "startscummer", "start scumming", "Ssc",
+	{0, 0},
+	PM_STARTSCUMMER, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{     10,     10, 10, 10, 10, 10 },
+	/* Init   Lower  Higher */
+	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
+	{  0, 0,  0, 0,  0, 0 }		/* Energy */
 },
 {	"sticker", "sticky", "stickiness", "Sti",
 	{0, 0},

@@ -138,6 +138,12 @@ doread()
 	    long save_Blinded = Blinded;
 	    if(flags.verbose)
 		You("break up the cookie and throw away the pieces.");
+
+	    if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+		pline("Because you can't read, that scrap of paper is of no real use to you.");
+		return 1;
+	    }
+
 	    Blinded = cant_see;	/* Treat invisible fortunes as if blind */
 	    outrumor(bcsign(scroll), BY_COOKIE, FALSE);
 	    Blinded = save_Blinded;
@@ -976,6 +982,10 @@ doread()
 		You_cant("feel any Braille writing.");
 		return 0;
 	    }
+	    if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+		pline("You're illiterate! You can't read!");
+		return 0;
+	    }
 	    u.uconduct.literate++;
 	    if(flags.verbose)
 		pline("It reads:");
@@ -1044,8 +1054,15 @@ doread()
 #ifdef MAIL
 		scroll->otyp != SCR_MAIL &&
 #endif
-		scroll->otyp != SCR_BLANK_PAPER)
-	    u.uconduct.literate++;
+		scroll->otyp != SCR_BLANK_PAPER) {
+
+			if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+				pline("You're illiterate! You can't read!");
+				return 0;
+			}
+
+			u.uconduct.literate++;
+	}
 
 	confused = (Confusion != 0);
 #ifdef MAIL

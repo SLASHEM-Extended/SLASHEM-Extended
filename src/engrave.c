@@ -1473,6 +1473,12 @@ boolean read_it; /* Read any sensed engraving */
 	    	char *et;
 	    	unsigned len, maxelen = BUFSZ - sizeof("You feel the words: \"\". ");
 	    	len = strlen(ep->engr_txt);
+
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+			pline("You're illiterate! You can't read!");
+			return FALSE;
+		}
+
 	    	if (len > maxelen) {
 	    		(void)strncpy(buf,  ep->engr_txt, (int)maxelen);
 			buf[maxelen] = '\0';
@@ -2681,8 +2687,15 @@ doengrave()
 	}
 
 	/* A single `x' is the traditional signature of an illiterate person */
-	if (len != 1 || (!index(ebuf, 'x') && !index(ebuf, 'X')))
-	    u.uconduct.literate++;
+	if (len != 1 || (!index(ebuf, 'x') && !index(ebuf, 'X'))) {
+
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+			pline("You're illiterate, and therefore you can't write that!");
+			return 0;
+		}
+
+		u.uconduct.literate++;
+	}
 
 	/* Evil Variant by ais523: the first Elbereth will always misengrave */
 	if ((evilfriday || (uarmg && uarmg->oartifact == ART_GANTULETS_OF_MISPEALING)) && strlen(ebuf) > 7) for (sp = ebuf; *sp; sp++) {

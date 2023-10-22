@@ -3186,11 +3186,15 @@ sjwcheck(nastynumber)
 int nastynumber;
 {
 	int sjwlevel;
-	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
+	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !Race_if(PM_STARTSCUMMER) && !u.startscummerpersist && !autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
 
 	sjwlevel = u.ulevel + u.xtralevelmult - 1; /* because u.xtralevelmult starts at 1, not 0 */
 
 	while (sjwlevel > 59) sjwlevel -= 30; /* it goes from XL1 to 59 and then loops from 30 again */
+
+	if (u.startscummerpersist || Race_if(PM_STARTSCUMMER)) {
+		if (u.startscummereffect == nastynumber) return TRUE;
+	}
 
 	if (isdorian) {
 		if (u.ulevel >= 4 && u.dorian4 == nastynumber) return TRUE;

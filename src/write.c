@@ -343,6 +343,11 @@ found:
 		return 1;
 	}
 
+	if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+		pline("Apparently you forgot that you're illiterate. Anyway, your attempt to write fails.");
+		return 1;
+	}
+
 	/* KMH, conduct */
 	u.uconduct.literate++;
 

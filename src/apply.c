@@ -3539,6 +3539,22 @@ struct obj *tstone;
     do_scratch = FALSE;
     streak_color = 0;
 
+    if (Race_if(PM_PLAYABLE_NEANDERTHAL) && tstone->otyp == FLINT && !evades_destruction(obj) && (obj->oclass == SCROLL_CLASS || obj->oclass == SPBOOK_CLASS)) {
+
+	if (obj->quan > 1) {
+		obj->quan -= 1;
+		obj->owt = weight(obj);
+	} else {
+		useupall(obj);
+	}
+	You("start a fire.");
+	gain_alla(5);
+	reducesanity(10);
+	litroom(TRUE, tstone);
+
+	return;
+    }
+
     switch (obj->oclass) {
     case WEAPON_CLASS:
     case TOOL_CLASS:

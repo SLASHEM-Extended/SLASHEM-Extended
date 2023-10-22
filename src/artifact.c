@@ -1063,6 +1063,30 @@ init_artifacts()
 	(void) memset((void *) artiexist, 0, sizeof artiexist);
 	(void) memset((void *) artidisco, 0, sizeof artidisco);
 	hack_artifacts();
+
+	if (Race_if(PM_DE_ENERGISER) && !u.deenergisedone) {
+
+		int quartinum = ART_ORB_OF_DETECTION;
+		while (quartinum <= ART_PENUMBRAL_LASSO) {
+			de_energise_artifact(quartinum);
+			quartinum++;
+		}
+
+		de_energise_artifact(ART_MOTHERFUCKER_TROPHY);
+		de_energise_artifact(ART_ARKENSTONE_OF_THRAIN);
+		de_energise_artifact(ART_NIGHTHORN);
+		de_energise_artifact(ART_EYE_OF_THE_BEHOLDER);
+		de_energise_artifact(ART_HAND_OF_VECNA);
+		de_energise_artifact(ART_HELM_OF_KNOWLEDGE);
+		de_energise_artifact(ART_BOOTS_OF_THE_MACHINE);
+		de_energise_artifact(ART_KAL);
+		de_energise_artifact(ART_BIZARRO_ORGASMATRON);
+		de_energise_artifact(ART_KATIA_S_SOFT_COTTON);
+		de_energise_artifact(ART_STAHNGNIR_S_BASHHUNK);
+		de_energise_artifact(ART_PROCOMFORT_SUPER);
+		u.deenergisedone = TRUE;
+	}
+
 }
 
 /* Post u_init() initialization */

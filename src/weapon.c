@@ -6991,6 +6991,15 @@ struct obj *weapon;
 		if (u.ulevel >= 30) bonus += 1;
 	}
 
+	if (Race_if(PM_PLAYABLE_NEANDERTHAL) && weapon && weapon_type(weapon) == P_SPEAR) {
+		bonus += 2;
+	}
+	if (Race_if(PM_PLAYABLE_NEANDERTHAL) && weapon && weapon_type(weapon) == P_CLUB) {
+		bonus += 4;
+		if (u.ulevel >= 15) bonus += 1;
+		if (u.ulevel >= 30) bonus += 1;
+	}
+
 	/* rubber hoses for jesters */
 	if (Role_if(PM_JESTER) && weapon && weapon->otyp == RUBBER_HOSE){
 
@@ -8673,6 +8682,17 @@ rerollthree:
 	}
 
 	if (Race_if(PM_HERALD)) {
+
+		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
+			if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_SKILLED;
+			else if (P_MAX_SKILL(skill) == P_MASTER) P_MAX_SKILL(skill) = P_EXPERT;
+			else if (P_MAX_SKILL(skill) == P_GRAND_MASTER) P_MAX_SKILL(skill) = P_MASTER;
+			else if (P_MAX_SKILL(skill) == P_SUPREME_MASTER) P_MAX_SKILL(skill) = P_GRAND_MASTER;
+
+		}
+	}
+
+	if (Race_if(PM_STARTSCUMMER)) {
 
 		for (skill = 0; skill < P_NUM_SKILLS; skill++) {
 			if (P_MAX_SKILL(skill) == P_EXPERT) P_MAX_SKILL(skill) = P_SKILLED;

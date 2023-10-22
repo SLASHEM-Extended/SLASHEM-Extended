@@ -7168,6 +7168,11 @@ register struct obj *otmp;
 		(void) lcase (buf);
 		if (!strcmp (buf, "yes") || !strcmp (buf, "y") || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) {
 
+			if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+				pline("Because you're illiterate, you can't read it.");
+				break;
+			}
+
 			/* reading it might influence your luck --Amy */
 
 			if (bcsign(otmp) == -1)	change_luck(-1);
@@ -7851,6 +7856,12 @@ register struct obj *otmp;
 		if (!strcmp (buf, "yes") || !strcmp (buf, "y") || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) {
 
 		/* reading it will influence the player's luck --Amy */
+
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+			pline("Because you're illiterate, you can't read it.");
+			return;
+		}
+
 
 		if (bcsign(otmp) == -1)	change_luck(-1);
 		else if (rn2(2) && bcsign(otmp) == 0) change_luck(1);

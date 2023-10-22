@@ -1238,6 +1238,13 @@ static const struct innate_tech
 			 {   10, T_BLOOD_RITUAL, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
+	nea_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+			 {   1, T_TINKER, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
 	and_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -11048,6 +11055,7 @@ race_tech()
 		case PM_BABYLONIAN:		return (bab_tech);
 		case PM_GERTEUT:		return (ger_tech);
 		case PM_POISONER:		return (poi_tech);
+		case PM_PLAYABLE_NEANDERTHAL:		return (nea_tech);
 		case PM_VORTEX:		return (vor_tech);
 		case PM_CORTEX:		return (cor_tech);
 		case PM_GNOME:		return (gno_tech);

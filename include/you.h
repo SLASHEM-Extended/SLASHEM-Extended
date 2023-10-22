@@ -710,6 +710,9 @@ struct you {
 	int tumblrerpersist;	/* starting as tumblrer */
 	int addictpersist;	/* starting as addict */
 	int demagoguepersist;	/* starting as demagogue */
+	int startscummerpersist;	/* starting as startscummer */
+
+	boolean deenergisedone;	/* for de-energiser race */
 
 	boolean artifactprotection;	/* because NHTNG's protection code is faulty */
 
@@ -1316,6 +1319,8 @@ struct you {
 	int dorian20;
 	int dorian24;
 	int dorian28;
+
+	int startscummereffect; /* for startscummer race to decide which nastytrap effect is currently active */
 
 	int feminizeffect; /* for feminizer race to decide which feminism trap effect is currently active */
 	int contamjeweleffect; /* for "not gonna contaminate" artifact jewel */

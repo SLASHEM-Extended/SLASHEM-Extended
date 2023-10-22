@@ -7282,6 +7282,10 @@ newbossJANI:
 
 		}
 
+		if (!rn2(5000)) {
+			u.startscummereffect = rnd(270); /* timerun effect */
+		}
+
 		if (FemtrapActiveElla && u.ulevel >= 10 && !rn2(20000)) {
 		      (void) makemon(&mons[PM_ELLA_THE_FEMINIST], 0, 0, MM_ANGRY);
 			u.ellaspawncount++;
@@ -14919,6 +14923,29 @@ past4:
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 
+	if (Race_if(PM_DE_ENERGISER) && !u.deenergisedone) {
+
+		int quartinum = ART_ORB_OF_DETECTION;
+		while (quartinum <= ART_PENUMBRAL_LASSO) {
+			de_energise_artifact(quartinum);
+			quartinum++;
+		}
+
+		de_energise_artifact(ART_MOTHERFUCKER_TROPHY);
+		de_energise_artifact(ART_ARKENSTONE_OF_THRAIN);
+		de_energise_artifact(ART_NIGHTHORN);
+		de_energise_artifact(ART_EYE_OF_THE_BEHOLDER);
+		de_energise_artifact(ART_HAND_OF_VECNA);
+		de_energise_artifact(ART_HELM_OF_KNOWLEDGE);
+		de_energise_artifact(ART_BOOTS_OF_THE_MACHINE);
+		de_energise_artifact(ART_KAL);
+		de_energise_artifact(ART_BIZARRO_ORGASMATRON);
+		de_energise_artifact(ART_KATIA_S_SOFT_COTTON);
+		de_energise_artifact(ART_STAHNGNIR_S_BASHHUNK);
+		de_energise_artifact(ART_PROCOMFORT_SUPER);
+		u.deenergisedone = TRUE;
+	}
+
 	/* far too many cases where you suddenly aren't dual-wielding anymore, hard to catch them all... --Amy
 	 * we need to prevent a lit, non-wielded lightsaber that constantly drains energy without being used! */
 	if (!u.twoweap && uswapwep && is_lightsaber(uswapwep) && uswapwep->lamplit) {
@@ -17662,6 +17689,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shale boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bang-green boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "japanese arrow")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tankini")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "translucent gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19001,6 +19030,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "shale boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bang-green boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "japanese arrow")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tankini")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "translucent gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

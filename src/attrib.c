@@ -1030,6 +1030,10 @@ const struct innate {
 		     {   1, &(HMagicFindBonus), "", "", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
+	ssc_abil[] = { { 1, &(HMagicFindBonus), "", "", TRUE },
+		      { 10, &(HFuckOverEffect), "being fucked over", "not being fucked over anymore", FALSE },
+			{   0, 0, 0, 0, 0 } },
+
 	dra_abil[] = { {	8, &(HControlMagic), "magic-controlled", "no longer magic-controlled", TRUE },
 			 { 10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
 		     {  15, &(HMagicFindBonus), "capable of finding magical items", "less capable of finding magical items", TRUE },
@@ -1107,6 +1111,10 @@ const struct innate {
 			{   0, 0, 0, 0, 0 } },
 
 	bab_abil[] = { { 1, &(HDefusing), "", "", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
+	nea_abil[] = { {  10, &(HScentView), "your sense of smell expanding", "less capable of smelling things", TRUE },
+		     {  12, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
 	rus_abil[] = { { 1, &(HCold_resistance), "", "", TRUE },
@@ -2744,6 +2752,7 @@ int oldlevel, newlevel;
 	case PM_VIETIS:	rabil = vie_abil;	break;
 	case PM_KORONST:	rabil = kst_abil;	break;
 	case PM_BABYLONIAN:	rabil = bab_abil;	break;
+	case PM_PLAYABLE_NEANDERTHAL:	rabil = nea_abil;	break;
 	case PM_RUSMOT:	rabil = rus_abil;	break;
 	case PM_MACTHEIST:	rabil = mac_abil;	break;
 	case PM_GREURO:	rabil = gru_abil;	break;
@@ -2755,6 +2764,7 @@ int oldlevel, newlevel;
 	case PM_KHAJIIT:	rabil = kha_abil;	break;
 	case PM_DWARF:		rabil = dwa_abil;	break;
 	case PM_PLAYER_NIBELUNG:		rabil = nib_abil;	break;
+	case PM_STARTSCUMMER:		rabil = ssc_abil;	break;
 	case PM_PLAYER_SLIME:		rabil = slm_abil;	break;
 	case PM_DROW:
 	case PM_PLAYER_MYRKALFR:

@@ -428,6 +428,9 @@ int thrown;
 		if (obj->otyp == ELVEN_ARROW && launcher &&
 				launcher->otyp == ELVEN_BOW) multishot++;
 		break;
+	    case PM_PLAYABLE_NEANDERTHAL:
+		if (skill == P_SLING) multishot++;
+		break;
 	    case PM_INKA:
 		if (launcher && launcher->otyp == INKA_SLING && ammo_and_launcher(obj, launcher) ) multishot += 2;
 		break;
