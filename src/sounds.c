@@ -6796,6 +6796,20 @@ dochat()
 		mtmp->m_ap_type == M_AP_OBJECT)
 	return(0);
 
+    if (mtmp->shinymonst && !mtmp->mfrenzied && !mtmp->mtame && (u.alla > 100)) {
+
+	if (yn("You can tame this monster for 100 alla. Do it?") == 'y') {
+
+		mtmp->mpeaceful = TRUE;
+		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+		u.alla -= 100;
+		pline("Done!");
+		return 1;
+
+	}
+
+    }
+
     /* sleeping monsters won't talk, except priests (who wake up) */
     if ((!mtmp->mcanmove || mtmp->msleeping) && !mtmp->ispriest) {
 	/* If it is unseen, the player can't tell the difference between
