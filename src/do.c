@@ -5281,17 +5281,17 @@ register int timex;
 void
 heal_legs()
 {
-	if(Wounded_legs) {
-		if (ATEMP(A_DEX) < 0) {
-			ATEMP(A_DEX)++;
-			flags.botl = 1;
-		}
+	if (ATEMP(A_DEX) < 0) {
+		ATEMP(A_DEX)++;
+		flags.botl = 1;
+	}
 
-		if (!u.usteed)
-		{
-			/* KMH, intrinsics patch */
-			Your("%s feels somewhat better.", body_part(LEG));
-		}
+	if (!u.usteed) {
+		/* KMH, intrinsics patch */
+		Your("%s feels somewhat better.", body_part(LEG));
+	}
+
+	if(Wounded_legs) {
 		HWounded_legs = 0;
 	}
 	(void)encumber_msg();
