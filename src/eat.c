@@ -8925,14 +8925,35 @@ boolean incr;
 
 	if(newhs != u.uhs) {
 		if(newhs >= WEAK && u.uhs < WEAK) {
-			losestr(1, FALSE);	/* this may kill you -- see below */
-			if (SustainAbilityOn) u.weakcheat++; /* cheater! */
+			flags.botl = TRUE; /* used to be losestr but way too buggy --Amy */
+			if (ABASE(A_STR) <= 1) {
+				Your("health is being sapped as a result of your weakness.");
+				int hpreduce = rnd(5);
+				if (Upolyd) {
+					u.mh -= hpreduce;
+					u.mhmax -= hpreduce;
+					if (u.mh < 1) u.mh = 1;
+					if (u.mhmax < 1) {
+						u.mhmax = 1;
+						drain_alla(100);
+						pline("A severe drain seems to be sucking out your soul...");
+					}
+				} else {
+					u.uhp -= hpreduce;
+					u.uhpmax -= hpreduce;
+					if (u.uhp < 1) u.uhp = 1;
+					if (u.uhpmax < 1) {
+						u.uhpmax = 1;
+						drain_alla(100);
+						pline("A severe drain seems to be sucking out your soul...");
+					}
+				}
 			}
-		else if(newhs < WEAK && u.uhs >= WEAK) {
-			if (!u.weakcheat) losestr(-1, TRUE); /* otherwise this could be exploited until you have 25 str --Amy */
-			else u.weakcheat--;
-			}
-		switch(newhs){
+		} else if(newhs < WEAK && u.uhs >= WEAK) {
+			flags.botl = TRUE;
+		}
+
+		switch(newhs) {
 		case HUNGRY:
 			if (FunnyHallu) {
 			    You((!incr) ?

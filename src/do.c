@@ -5263,8 +5263,8 @@ register int timex;
 	 * Caller is also responsible for adjusting messages.
 	 */
 
+	/* Amy edit: scrapped that silly bug-ridden atemp garbage, moved dex loss directly to attrib.c where it belongs */
 	if(!Wounded_legs) {
-		ATEMP(A_DEX)--;
 		flags.botl = 1;
 	}
 
@@ -5281,10 +5281,7 @@ register int timex;
 void
 heal_legs()
 {
-	if (ATEMP(A_DEX) < 0) {
-		ATEMP(A_DEX)++;
-		flags.botl = 1;
-	}
+	flags.botl = 1;
 
 	if (!u.usteed) {
 		/* KMH, intrinsics patch */

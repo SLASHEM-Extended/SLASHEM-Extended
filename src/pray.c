@@ -446,8 +446,6 @@ register int trouble;
 			u.utrap = 0;
 		    break;
 	    case TROUBLE_STARVING:
-			if (!u.weakcheat) losestr(-1, TRUE); /* otherwise this could be exploited until you have 25 str --Amy */
-			else u.weakcheat--;
 		    /* fall into... */
 	    case TROUBLE_HUNGRY:
 		    Your("%s feels content.", body_part(STOMACH));

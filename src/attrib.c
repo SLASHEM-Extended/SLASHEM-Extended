@@ -1937,11 +1937,24 @@ losestr(num, canresist)	/* may kill you; cause may be poison or monster like 'a'
 	    if (Upolyd) {
 		u.mh -= hpreduce;
 		u.mhmax -= hpreduce;
+		if (u.mh < 1) u.mh = 1;
+		if (u.mhmax < 1) {
+			u.mhmax = 1;
+			drain_alla(100);
+			pline("A severe drain seems to be sucking out your soul...");
+		}
 	    } else {
 		u.uhp -= hpreduce;
 		u.uhpmax -= hpreduce;
+		if (u.uhp < 1) u.uhp = 1;
+		if (u.uhpmax < 1) {
+			u.uhpmax = 1;
+			drain_alla(100);
+			pline("A severe drain seems to be sucking out your soul...");
+		}
 	    }
 	}
+
 	(void) adjattrib(A_STR, -num, TRUE, canresist);
 }
 
@@ -3128,6 +3141,7 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) tmp -= 5;
 		if (uleft && uleft->oartifact == ART_FIRST_EXCHANGE) tmp -= 5;
 		if (uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp -= 5;
+		if (u.uhs >= WEAK) tmp--;
 
 		if (PlayerBleeds > 50) tmp--;
 		if (PlayerBleeds > 100) tmp -= 2;
@@ -3542,6 +3556,8 @@ int x;
 		if (u.tsloss_dex > 0) tmp -= u.tsloss_dex;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
+		if (HWounded_legs) tmp--;
+		if (EWounded_legs) tmp--;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);
