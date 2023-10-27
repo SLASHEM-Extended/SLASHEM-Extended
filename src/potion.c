@@ -13337,8 +13337,16 @@ peffects(otmp)
 			    }
 			} else if(otmp->cursed)
 			    pline("This tastes like castor oil.");
-			else
-			    pline("That was smooth!");
+			else {
+				if (youmonst.data->msound == MS_CAR) {
+					pline("Gasoline!!");
+					good_for_you = TRUE;
+					healup(200, 0, FALSE, FALSE);
+					u.uhunger += 500;
+				} else {
+					pline("That was smooth!");
+				}
+			}
 			exercise(A_WIS, good_for_you);
 		}
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += rn1(1000,1000);

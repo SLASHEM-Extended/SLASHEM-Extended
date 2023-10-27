@@ -2652,6 +2652,7 @@ struct obj *otmp;
 #define MUSE_POT_BLOOD 46
 #define MUSE_SCR_BRANCH_TELEPORT 47
 #define MUSE_SCR_COURSE_TRAVELING 48
+#define MUSE_POT_OIL 49
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -2746,6 +2747,11 @@ struct monst *mtmp;
 	    if ((obj = m_carrying(mtmp, POT_CURE_SERIOUS_WOUNDS)) != 0) {
 		m.defensive = obj;
 		m.has_defense = MUSE_POT_CURE_SERIOUS_WOUNDS;
+		return TRUE;
+	    }
+	    if ((obj = m_carrying(mtmp, POT_OIL)) != 0 && mtmp->data->msound == MS_CAR) {
+		m.defensive = obj;
+		m.has_defense = MUSE_POT_OIL;
 		return TRUE;
 	    }
 	    if ((obj = m_carrying(mtmp, POT_CURE_WOUNDS)) != 0) {
@@ -3115,6 +3121,11 @@ struct monst *mtmp;
 		if(obj->otyp == POT_CURE_WOUNDS) {
 			m.defensive = obj;
 			m.has_defense = MUSE_POT_CURE_WOUNDS;
+		}
+		nomore(MUSE_POT_OIL);
+		if(obj->otyp == POT_OIL && mtmp->data->msound == MS_CAR) {
+			m.defensive = obj;
+			m.has_defense = MUSE_POT_OIL;
 		}
 		nomore(MUSE_SCR_POWER_HEALING);
 		if(obj->otyp == SCR_POWER_HEALING) {
@@ -4500,6 +4511,18 @@ newboss:
 			mtmp->bleedout -= 400;
 			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
 			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
+		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_POT_OIL:
+		mquaffmsg(mtmp, otmp);
+		mtmp->mhp += 200;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		if (vismon) pline("%s restored its fuel!", Monnam(mtmp));
+		if (oseen) makeknown(POT_OIL);
+		if (mtmp->bleedout) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's leak is repaired.", Monnam(mtmp));
 		}
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
@@ -11998,6 +12021,7 @@ struct obj *obj;
 			/* Monsters will pick up potions of salt water even if your snail is polymorphed,
 			 * but they'll only throw them if you're actually in snail form --Amy */
 		    (typ == POT_SALT_WATER && Race_if(PM_ELONA_SNAIL)) ||
+		    (typ == POT_OIL && mon->data->msound == MS_CAR) ||
 		    typ == POT_DIMNESS ||
 		    typ == POT_SANITY ||
 		    typ == POT_CURE_WOUNDS ||
