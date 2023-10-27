@@ -162,8 +162,8 @@ struct objclass {
 	int oc_appearindex;
 
 	/*short*/int	oc_prob;		/* probability, used in mkobj() */
-	unsigned short	oc_weight;	/* encumbrance (1 cn = 0.1 lb.) */
-	short	oc_cost;		/* base cost in shops */
+	unsigned /*short*/int	oc_weight;	/* encumbrance (1 cn = 0.1 lb.) */
+	/*short*/int	oc_cost;		/* base cost in shops */
 /* Check the AD&D rules!  The FIRST is small monster damage. */
 /* for weapons, and tools, rocks, and gems useful as weapons */
 	schar	oc_wsdam, oc_wldam;	/* max small/large monster damage */

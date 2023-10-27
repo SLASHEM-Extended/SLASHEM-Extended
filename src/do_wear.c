@@ -3774,6 +3774,12 @@ Shirt_on()
 		uarmu->hvycurse = TRUE;
 	}
 
+	if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) {
+		curse(uarmu);
+		uarmu->hvycurse = TRUE;
+		pline("Well, maybe you were here first, but you're gonna stay.");
+	}
+
 	if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN) {
 		curse(uarmu);
 		uarmu->stckcurse = TRUE;
@@ -5723,7 +5729,7 @@ boolean noisy;
 		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
-    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER)  && (otmp->otyp != OSFA_CHAIN_MAIL) && !(itemhasappearance(otmp, APP_OSFA_CLOAK)) &&
+    if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER) && !(otmp->oartifact == ART_GRADIATING_WORK && sliparm(youmonst.data)) && (otmp->otyp != OSFA_CHAIN_MAIL) && !(itemhasappearance(otmp, APP_OSFA_CLOAK)) &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
 	    (racial_exception(&youmonst, otmp) < 1)) {

@@ -2346,6 +2346,60 @@ boolean at_stairs, falling, portal;
 			(void) makemon(&mons[PM_THE_MINOTAUR_OF_THE_MAZE], 0, 0, MM_ANGRY);
 		}
 
+		if ( (In_minotaurmaze(&u.uz) || In_illusorycastle(&u.uz) || In_rivalquest(&u.uz) || In_deepmines(&u.uz) || In_emynluin(&u.uz) || In_angmar(&u.uz) ) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+
+			int attempts = 0;
+
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+
+			while (attempts++ < 50000 && (!isok(angbandx, angbandy) || (!ACCESSIBLE(levl[angbandx][angbandy].typ)) ) ) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+			}
+
+			if (isok(angbandx, angbandy)) {
+				(void) mksobj_at(TREASURE_CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			}
+
+		}
+
+		if ( (In_mines(&u.uz) || In_greencross(&u.uz) || In_hellbathroom(&u.uz) || In_sheol(&u.uz) || In_gammacaves(&u.uz) || In_bellcaves(&u.uz)) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
+
+			int attempts = 0;
+
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+
+			while (attempts++ < 50000 && (!isok(angbandx, angbandy) || (!ACCESSIBLE(levl[angbandx][angbandy].typ)) ) ) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+			}
+
+			if (isok(angbandx, angbandy)) {
+				(void) mksobj_at(LOOT_CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			}
+
+		}
+
+		if ( In_sokoban(&u.uz) && (dunlev(&u.uz) == 1 ) ) {
+
+			int attempts = 0;
+
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+
+			while (attempts++ < 50000 && (!isok(angbandx, angbandy) || (!ACCESSIBLE(levl[angbandx][angbandy].typ)) ) ) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+			}
+
+			if (isok(angbandx, angbandy)) {
+				(void) mksobj_at(LOOT_CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
+			}
+
+		}
+
 		if (In_swimmingpool(&u.uz) && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) { /* jewelry and stuff */
 			pline("Your %s tingles and you smell the presence of treasure hidden inside the water tunnels.", body_part(NOSE));
 

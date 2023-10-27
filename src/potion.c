@@ -8269,6 +8269,12 @@ nivellate()
 			upperceiling *= 3;
 			upperceiling /= 2;
 		}
+		if (uarm && uarm->oartifact == ART_ACTUAL_GRADIATING_WORK) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
+		}
 		if (Race_if(PM_HAND)) {
 			lowerceiling *= 3;
 			lowerceiling /= 2;
@@ -8705,6 +8711,10 @@ boolean guaranteed;
 			ceiling /= 2;
 		}
 		if (Race_if(PM_ZAUR)) {
+			ceiling *= 3;
+			ceiling /= 2;
+		}
+		if (uarm && uarm->oartifact == ART_ACTUAL_GRADIATING_WORK) {
 			ceiling *= 3;
 			ceiling /= 2;
 		}

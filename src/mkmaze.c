@@ -881,7 +881,7 @@ register const char *s;
 #endif
 		if (timebasedlowerchance()) {
 			mazexy_all(&mm);
-			(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
 
@@ -893,8 +893,30 @@ register const char *s;
 #endif
 			if (timebasedlowerchance()) {
 				mazexy_all(&mm);
-				(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+				(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 			}
+		}
+	}
+
+	/* full-screen mazes are capable of boring the player's ass off, so there should be at least some loot --Amy */
+#ifdef BIGSLEX
+	if (!rn2(5)) {
+		if (timebasedlowerchance()) {
+			mazexy_all(&mm);
+			(void) mksobj_at(LOOT_CHEST, mm.x, mm.y, TRUE, TRUE, FALSE);
+		}
+	}
+	if (!rn2(5)) {
+		if (timebasedlowerchance()) {
+			mazexy_all(&mm);
+			(void) mksobj_at(LOOT_CHEST, mm.x, mm.y, TRUE, TRUE, FALSE);
+		}
+	}
+#endif
+	if (!rn2(5)) {
+		if (timebasedlowerchance()) {
+			mazexy_all(&mm);
+			(void) mksobj_at(LOOT_CHEST, mm.x, mm.y, TRUE, TRUE, FALSE);
 		}
 	}
 
@@ -950,7 +972,7 @@ register const char *s;
 #endif
 		if (timebasedlowerchance()) {
 			mazexy_all(&mm);
-			(void) mkobj_at(!rn2(10) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
+			(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
 #ifdef BIGSLEX

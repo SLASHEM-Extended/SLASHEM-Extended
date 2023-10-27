@@ -2769,6 +2769,23 @@ int held;
 	current_container = obj;	/* for use by in/out_container */
 	/* from here on out, all early returns go through containerdone */
 
+	if (obj->oartifact == ART_DEMONSEAL) {
+		if (obj->invoketimer <= monstermoves) {
+			int pm;
+
+			pm = rn2(2) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+			if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
+			if (pm && (pm != NON_PM)) {
+				(void) makemon(&mons[pm], u.ux, u.uy, MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+				You("triggered an ancient trap on this container...");
+			}
+
+			int artitimeout = rnz(2000);
+			if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
+			obj->invoketimer = (monstermoves + artitimeout);
+		}
+	}
+
 	if (obj->spe == 1) {
 	    observe_quantum_cat(obj);
 	    used = 1;

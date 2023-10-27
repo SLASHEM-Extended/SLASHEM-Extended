@@ -297,6 +297,7 @@ moveloop()
 			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
 			if (issuxxor) monclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
+			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) monclock /= 3;
 
@@ -347,6 +348,7 @@ moveloop()
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) xtraclock /= 2;
 			if (issuxxor) xtraclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) xtraclock *= 2;
+			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) xtraclock *= 2;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) xtraclock /= 3;
 
@@ -7280,6 +7282,18 @@ newbossJANI:
 			u.gudrunspawncount++;
 			verbalize("I'm challenging you to a duel. Let's see if you can overcome my stalwart defenses!");
 
+		}
+
+		if (uarm && uarm->oartifact == ART_GRADIATING_WORK) {
+			if (!uarms && !uarmu && !uarmc && !uarmf && !uarmg && !uarmh) {
+				if (u.gradiatingturns < 20000) {
+					u.gradiatingturns++;
+				}
+				if (u.gradiatingturns >= 20000 && !u.gradiatingdone) {
+					u.gradiatingdone = TRUE;
+					pline("Dling-dli dling-dli! You've uncovered the secret of the gradiating work, and can now recognize detrimental food!");
+				}
+			}
 		}
 
 		if (!rn2(5000)) {
@@ -14923,6 +14937,12 @@ past4:
 
 	u.dungeongrowthhack = 0; /* should always be 0 except during saving and loading */
 
+	if (u.gradiatingturns) {
+		if (uarmu || uarms || uarmg || uarmf || uarmc || uarmh) u.gradiatingturns = 0;
+		if (!uarm) u.gradiatingturns = 0;
+		if (uarm && uarm->oartifact != ART_GRADIATING_WORK) u.gradiatingturns = 0;
+	}
+
 	if (Race_if(PM_DE_ENERGISER) && !u.deenergisedone) {
 
 		int quartinum = ART_ORB_OF_DETECTION;
@@ -15100,6 +15120,14 @@ past4:
 			u.lifesavepenallevel = 0;
 		}
 
+	}
+
+	if (occupation && occtxt && (!strcmp(occtxt, "waiting") || !strcmp(occtxt, "searching")) && multi) {
+		if (u.gradiatingturns) u.gradiatingturns = 0;
+		if (u.gradiatingdone) {
+			u.gradiatingdone = 0;
+			pline("Daedae! The gradiating work has been reset and you can no longer recognize detrimental food.");
+		}
 	}
 
 	if (practicantterror) {

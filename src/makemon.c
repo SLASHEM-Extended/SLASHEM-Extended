@@ -368,7 +368,7 @@ register struct monst *mtmp;
 	}
 
 	if (!cantweararm(mtmp->data) && !rn2(3)) { /* body armor */
-		switch (rnd(115)) {
+		switch (rnd(117)) {
 			case 1: (void) mongets(mtmp, PLATE_MAIL); break;
 			case 2: (void) mongets(mtmp, RIBBED_PLATE_MAIL); break;
 			case 3: (void) mongets(mtmp, PARTIAL_PLATE_MAIL); break;
@@ -484,6 +484,8 @@ register struct monst *mtmp;
 			case 113:
 			case 114:
 			case 115: (void) mongets(mtmp, LIGHT_MAIL); break;
+			case 116:
+			case 117: (void) mongets(mtmp, ROUND_MAIL); break;
 
 		}
 

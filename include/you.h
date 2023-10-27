@@ -613,6 +613,9 @@ struct you {
 
 	int monstermultiplier;	/* controls the spawn rate of monsters, which should fluctuate a bit */
 
+	int gradiatingturns;	/* for gradiating work artifact */
+	boolean gradiatingdone;
+
 	int menoraget;
 	int bookofthedeadget;
 	int silverbellget;
@@ -711,6 +714,7 @@ struct you {
 	int addictpersist;	/* starting as addict */
 	int demagoguepersist;	/* starting as demagogue */
 	int startscummerpersist;	/* starting as startscummer */
+	int deenergiserpersist;	/* starting as de-energiser */
 
 	boolean deenergisedone;	/* for de-energiser race */
 

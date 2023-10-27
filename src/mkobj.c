@@ -41,10 +41,10 @@ static const char * const fauxartinames[] = {
 /* [Tom] tried to fix this back up a little... */
 /* KMH, balance patch -- changed again */
 const struct icp mkobjprobs[] = {
-{129, WEAPON_CLASS},
-{ 90, ARMOR_CLASS},
+{149, WEAPON_CLASS},
+{105, ARMOR_CLASS},
 {160, FOOD_CLASS},
-{ 70, TOOL_CLASS},
+{ 75, TOOL_CLASS},
 { 30, GEM_CLASS},
 {120, POTION_CLASS},
 {120, SCROLL_CLASS},
@@ -52,7 +52,7 @@ const struct icp mkobjprobs[] = {
 { 70, WAND_CLASS},
 { 20, RING_CLASS},
 { 15, AMULET_CLASS},
-{118, COIN_CLASS},
+{ 78, COIN_CLASS},
 {  5, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
@@ -64,15 +64,15 @@ const struct icp mkobjprobs[] = {
 };
 
 const struct icp boxiprobs[] = {
-{ 99, WEAPON_CLASS},
-{ 90, ARMOR_CLASS},
+{114, WEAPON_CLASS},
+{105, ARMOR_CLASS},
 { 20, GEM_CLASS},
-{ 55, TOOL_CLASS},
+{ 75, TOOL_CLASS},
 {160, FOOD_CLASS},
 {120, POTION_CLASS},
 {120, SCROLL_CLASS},
 { 60, SPBOOK_CLASS},
-{ 84, COIN_CLASS},
+{ 34, COIN_CLASS},
 { 65, WAND_CLASS},
 { 40, RING_CLASS},
 { 20, AMULET_CLASS},
@@ -117,17 +117,17 @@ const struct icp rogueprobs[] = {
 
 const struct icp hellprobs[] = {
 {129, WEAPON_CLASS},
-{ 80, ARMOR_CLASS},
-{130, FOOD_CLASS},
-{ 60, TOOL_CLASS},
-{ 30, GEM_CLASS},
+{100, ARMOR_CLASS},
+{160, FOOD_CLASS},
+{ 80, TOOL_CLASS},
+{ 50, GEM_CLASS},
 { 90, POTION_CLASS},
 { 90, SCROLL_CLASS},
 { 50, WAND_CLASS},
 { 30, RING_CLASS},
 { 20, AMULET_CLASS},
 { 35, SPBOOK_CLASS},
-{223, COIN_CLASS},
+{133, COIN_CLASS},
 { 20, VENOM_CLASS},
 { 10, ROCK_CLASS},
 {  1, BALL_CLASS},
@@ -651,6 +651,7 @@ struct obj *box;
 				if (moves <= 1 && !in_mklev) minn = 1;
 				break;
 	case TREASURE_CHEST:	n = (ishaxor ? rnd(100) : rnd(50)); break; /* used to be rno but the rn1 BS below... --Amy */
+	case LOOT_CHEST:	n = (ishaxor ? rnd(12) : rnd(6)); break;
 	case ICE_BOX_OF_HOLDING:
 	case ICE_BOX_OF_WATERPROOFING:
 	case DISPERSION_BOX:
@@ -709,6 +710,9 @@ struct obj *box;
 	if (box->otyp == TREASURE_CHEST) {
 		minn++; n++; /* no empty treasure chests, also happened waaaaaaaay too often --Amy */
 	}
+	if (box->otyp == LOOT_CHEST) {
+		minn++; n++;
+	}
 
 	for (n = rn1(n+1 - minn, minn); n > 0; n--) {
 
@@ -733,7 +737,7 @@ struct obj *box;
 		    (void) stop_timer(MOLDY_CORPSE, (void *)otmp);
 		    (void) stop_timer(REVIVE_MON, (void *)otmp);
 		}
-	    } else if (box->otyp == TREASURE_CHEST) {
+	    } else if (box->otyp == TREASURE_CHEST || box->otyp == LOOT_CHEST) {
 		register int tprob;
 		const struct icp *iprobs = tchestprobs;
 
@@ -3107,6 +3111,12 @@ boolean shopinit;
 		case TREASURE_CHEST:
 			otmp->olocked = TRUE;
 			otmp->otrapped = rn2(5);
+			if (artif != 2) mkbox_cnts(otmp);
+			blessorcurse_on_creation(otmp, 8);
+		break;
+		case LOOT_CHEST:
+			otmp->olocked = rn2(2) ? TRUE : FALSE;
+			otmp->otrapped = rn2(2);
 			if (artif != 2) mkbox_cnts(otmp);
 			blessorcurse_on_creation(otmp, 8);
 		break;

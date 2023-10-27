@@ -11418,6 +11418,8 @@ u_init()
 	if (Role_if(PM_DEMAGOGUE)) u.demagoguepersist = 100000;
 	u.startscummerpersist = 0;
 	if (Role_if(PM_STARTSCUMMER)) u.startscummerpersist = 200000;
+	u.deenergiserpersist = 0;
+	if (Role_if(PM_DE_ENERGISER)) u.deenergiserpersist = 100000;
 
 	u.superspecialspell = -1;
 

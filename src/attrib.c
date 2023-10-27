@@ -3096,6 +3096,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) tmp += 3;
 		if (uwep && uwep->oartifact == ART_ATLUS_HEAVE) tmp += 10;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) tmp += 3;
 		if (uwep && uwep->oartifact == ART_NEEDLESSLY_MEAN) tmp += 4;

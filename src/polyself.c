@@ -1336,7 +1336,7 @@ break_armor()
 		useup(uarmu);
 	    }
 	}
-    } else if (sliparm(youmonst.data) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !Race_if(PM_TRANSFORMER) ) {
+    } else if (sliparm(youmonst.data) && !(uarm && uarm->oartifact == ART_GRADIATING_WORK) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !armorkeep && (racial_exception(&youmonst, otmp) < 1)) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls around you!");

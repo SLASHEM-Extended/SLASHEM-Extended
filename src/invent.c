@@ -13095,6 +13095,8 @@ boolean knoweverything;
 				pline("Only offers 3 AC and 1 MC (equivalent to a studded leather armor), but also poison resistance."); break;
 			case HEAVY_MAIL:
 				pline("This suit of armor weighs a hell of a lot and offers only three points of armor class."); break;
+			case ROUND_MAIL:
+				pline("Metallic body armor with rather bad AC."); break;
 			case LIGHT_MAIL:
 				pline("Light armor that provides minimal protection."); break;
 			case CLOAK_OF_PEACE:
@@ -16301,6 +16303,8 @@ boolean knoweverything;
 				pline("A self-repairing container."); break;
 			case TREASURE_CHEST:
 				pline("It is usually generated with a lot of contents, but it's also really heavy. How did you manage to pick it up?"); break;
+			case LOOT_CHEST:
+				pline("Not sure how you managed to get it into your inventory, but anyway, this chest is usually generated with a couple of items inside."); break;
 			case LARGE_BOX_OF_DIGESTION:
 				pline("Looks like an ordinary large box, until you open it to discover that all the contents have just disappeared!"); break;
 			case CHEST:
@@ -27901,6 +27905,30 @@ boolean knoweverything;
 					pline("Artifact specs: eating it conveys intrinsic magic find. This item cannot be wished for because that would be too easy."); break;
 				case ART_WIZARDLUNCH:
 					pline("Artifact specs: eating it conveys intrinsic spellboost. This item cannot be wished for because that would be too easy."); break;
+				case ART_ASSLOAD_OF_LOOT:
+					pline("Artifact specs: filled with lots of loot. You weren't supposed to be able to get this ultra-heavy item into your inventory."); break;
+				case ART_RURIHUNT:
+					pline("Artifact specs: filled with lots of loot. You weren't supposed to be able to get this ultra-heavy item into your inventory."); break;
+				case ART_DEMONSEAL:
+					pline("Artifact specs: filled with lots of loot. You weren't supposed to be able to get this ultra-heavy item into your inventory."); break;
+				case ART_DOLLAR_DEPOSIT:
+					pline("Artifact specs: contains extra stuff. I'm not sure how you managed to pick up this item."); break;
+				case ART_WEAPONMEMORY:
+					pline("Artifact specs: contains extra stuff. I'm not sure how you managed to pick up this item."); break;
+				case ART_ARMORMEMORY:
+					pline("Artifact specs: contains extra stuff. I'm not sure how you managed to pick up this item."); break;
+				case ART_GRADIATING_WORK:
+					pline("Artifact specs: hmm, it looks just like a regular suit of armor, but smaller, so you'll probably be able to wear it even if you're too small to wear armor normally..."); break; /* intentionally don't tell you the other thing it does --Amy */
+				case ART_ACTUAL_GRADIATING_WORK:
+					pline("Artifact specs: magical breathing when worn and makes you more likely to resist max HP loss from covid-19."); break;
+				case ART_JEFFERSON_S_LOOKAROUND:
+					pline("Artifact specs: displays big monsters near you when worn."); break;
+				case ART_GO_UNDER_OR_UP:
+					pline("Artifact specs: swimming and protects your inventory from water damage when worn."); break;
+				case ART_CASSERINO:
+					pline("Artifact specs: can be invoked to play blackjack."); break;
+				case ART_FIRST_THERE_WE_WERE:
+					pline("Artifact specs: +3 strength, resist fear, anna trap effect and halved monster spawn rate when worn, heavily autocurses."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -664,6 +664,9 @@ nh_timeout()
 	if (u.startscummerpersist) u.startscummerpersist--;
 	if (u.startscummerpersist < 0) u.startscummerpersist = 0; /* fail safe */
 
+	if (u.deenergiserpersist) u.deenergiserpersist--;
+	if (u.deenergiserpersist < 0) u.deenergiserpersist = 0; /* fail safe */
+
 	if (u.addictpersist) u.addictpersist--;
 	if (u.addictpersist < 0) u.addictpersist = 0; /* fail safe */
 

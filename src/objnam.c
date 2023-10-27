@@ -4156,6 +4156,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RIN_NASTINESS_RESISTANCE, "todo" },
 	{ RIN_INDIGESTION, "todo" },
 	{ LIGHT_MAIL, "todo" },
+	{ LOOT_CHEST, "todo" },
+	{ ROUND_MAIL, "todo" },
 
 	{0, "" }
 };
@@ -7466,6 +7468,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ RIN_NASTINESS_RESISTANCE, "todo" },
 	{ RIN_INDIGESTION, "todo" },
 	{ LIGHT_MAIL, "todo" },
+	{ LOOT_CHEST, "todo" },
+	{ ROUND_MAIL, "todo" },
 
 	{0, "" }
 };
@@ -10861,7 +10865,7 @@ typfnd:
 
 	/* convert magic lamps to regular lamps before lighting them or setting
 	   the charges */
-	if ((typ == MAGIC_LAMP || typ == TREASURE_CHEST)
+	if ((typ == MAGIC_LAMP || typ == TREASURE_CHEST || typ == LOOT_CHEST)
 #ifdef WIZARD
 				&& !wizard
 #endif

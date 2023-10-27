@@ -15326,6 +15326,54 @@ A("Wizardlunch",				CORPSE, /* spellboost when eaten */
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("Assload of Loot",				TREASURE_CHEST, /* contains rn1(100,100) additional items */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Rurihunt",				TREASURE_CHEST, /* contains d3 random artifacts */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100000L ),
+
+A("Demonseal",				TREASURE_CHEST, /* contains 50 items of a specific type but if you open it while it has no artifact timeout, it gets one and spawns a hostile demon lord who may be frenzied */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Dollar Deposit",				LOOT_CHEST, /* contains 10000 $ */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Weaponmemory",				LOOT_CHEST, /* contains 10 random weapons */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Armormemory",				LOOT_CHEST, /* contains 10 random armor pieces */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Gradiating Work",				ROUND_MAIL, /* can be worn even if you're too small. if you wear it for 20k turns straight and aren't wearing any other armor pieces during that time, you obtain intrinsic food appraisal but performing a multi-turn wait or search command erases it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Actual Gradiating Work",				ROUND_MAIL, /* magical breathing and 50% higher HP cap for corona when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Jefferson's Lookaround",				ROUND_MAIL, /* displays all big monsters with distu of 100 or less */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Go-Under-Or-Up",				ROUND_MAIL, /* swimming, protects stuff from getting wet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Casserino",				ROUND_MAIL, /* can be invoked to play blackjack */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("First There We Were",				T_SHIRT, /* randart2 shirt, +3 STR, resist fear, heavily autocurses, anna trap effect, halves monster spawn rate */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

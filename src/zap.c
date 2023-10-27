@@ -5019,7 +5019,7 @@ secureidchoice:
 			/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
 	
 			if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
-			if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+			if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST || acqo->otyp == LOOT_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 			if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 		    while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)
 			acqo->otyp = rnd_class(WAN_LIGHT, WAN_PSYBEAM);
@@ -11178,7 +11178,7 @@ acquireitem()
 	/* special handling to prevent wands of wishing or similarly overpowered items --Amy */
 
 	if (acqo->otyp == GOLD_PIECE) acqo->quan = rnd(1000);
-	if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
+	if (acqo->otyp == MAGIC_LAMP || acqo->otyp == TREASURE_CHEST || acqo->otyp == LOOT_CHEST) { acqo->otyp = OIL_LAMP; acqo->age = 1500L; }
 	if (acqo->otyp == MAGIC_MARKER) acqo->recharged = 1;
 
 	while(acqo->otyp == WAN_WISHING || acqo->otyp == WAN_POLYMORPH || acqo->otyp == WAN_MUTATION || acqo->otyp == WAN_ACQUIREMENT)

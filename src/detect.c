@@ -908,7 +908,7 @@ register struct obj *sobj;
 	else found = TRUE;
     }
     for (obj = fobj; obj; obj = obj->nobj) {
-	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
+	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==LOOT_CHEST || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
 	    if (obj->ox != u.ux || obj->oy != u.uy)
 		goto outtrapmap;
 	    else found = TRUE;
@@ -941,7 +941,7 @@ outtrapmap:
 	if (rn2(2) && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
-	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
+	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==TREASURE_CHEST || obj->otyp==LOOT_CHEST || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
 	if (rn2(2)) sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
 
     for (door = 0; door < doorindex; door++) {
@@ -985,7 +985,7 @@ register struct obj *sobj;
 	else found = TRUE;
     }
     for (obj = fobj; obj; obj = obj->nobj) {
-	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
+	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LOOT_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped) {
 	    if (obj->ox != u.ux || obj->oy != u.uy)
 		goto outtrapmap;
 	    else found = TRUE;
@@ -1018,7 +1018,7 @@ outtrapmap:
 	if (!rn2(4) && !(isok(ttmp->tx, ttmp->ty) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, ttmp->tx, ttmp->ty) > 401) ) && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) ) sense_trap(ttmp, 0, 0, sobj && sobj->cursed);
 
     for (obj = fobj; obj; obj = obj->nobj)
-	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
+	if ((obj->otyp==LARGE_BOX || obj->otyp==LEAD_BOX || obj->otyp==TOP_BOX || obj->otyp==CHEST || obj->otyp==NANO_CHEST || obj->otyp==TREASURE_CHEST || obj->otyp==LOOT_CHEST || obj->otyp==LARGE_BOX_OF_DIGESTION || obj->otyp==CHEST_OF_HOLDING) && obj->otrapped)
 	if (!rn2(4) && !(isok(obj->ox, obj->oy) && isok(u.ux, u.uy) && (dist2(u.ux, u.uy, obj->ox, obj->oy) > 401) ))
 		sense_trap((struct trap *)0, obj->ox, obj->oy, sobj && sobj->cursed);
 

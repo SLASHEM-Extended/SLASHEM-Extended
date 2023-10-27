@@ -654,6 +654,7 @@ init_randarts()
 	artilist[ART_ND_D___N_NDMNN_ND___NDMN_N].otyp = randartimplantX();
 	artilist[ART_WHOOSHZAP].otyp = randartwandX();
 	artilist[ART_CLOUDYBAND].otyp = randartshirtX();
+	artilist[ART_FIRST_THERE_WE_WERE].otyp = randartshirtX();
 	artilist[ART_MENSTRUATION_HURTS].otyp = randartshirtX();
 	artilist[ART_NOW_YOU_MADE_HER_SAD].otyp = randartshirtX();
 	artilist[ART_HA_HA_HA_HA___].otyp = randartshirtX();
@@ -1817,6 +1818,42 @@ register boolean mod;
 
 		    }
 
+		    if (otmp && otmp->oartifact == ART_DEMONSEAL) {
+			int maincontainerclass = WEAPON_CLASS;
+			int maincontaineramount = 50;
+
+			register struct obj *ocont;
+
+			if (!rn2(1000)) maincontainerclass = BALL_CLASS;
+			else if (!rn2(2000)) maincontainerclass = CHAIN_CLASS;
+			else if (!rn2(1000)) maincontainerclass = VENOM_CLASS;
+			else if (!rn2(1000)) maincontainerclass = ROCK_CLASS;
+			else if (!rn2(1000)) maincontainerclass = IMPLANT_CLASS;
+			else switch (rnd(11)) {
+				case 1: maincontainerclass = WEAPON_CLASS; break;
+				case 2: maincontainerclass = ARMOR_CLASS; break;
+				case 3: maincontainerclass = RING_CLASS; break;
+				case 4: maincontainerclass = AMULET_CLASS; break;
+				case 5: maincontainerclass = WAND_CLASS; break;
+				case 6: maincontainerclass = SPBOOK_CLASS; break;
+				case 7: maincontainerclass = SCROLL_CLASS; break;
+				case 8: maincontainerclass = POTION_CLASS; break;
+				case 9: maincontainerclass = TOOL_CLASS; break;
+				case 10: maincontainerclass = FOOD_CLASS; break;
+				case 11: maincontainerclass = GEM_CLASS; break;
+			}
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
 		    if (otmp && otmp->oartifact == ART_HOARDS_OF_TREASURE) {
 
 			int maincontaineramount = 50;
@@ -1834,11 +1871,73 @@ register boolean mod;
 
 		    }
 
+		    if (otmp && otmp->oartifact == ART_ASSLOAD_OF_LOOT) {
+
+			int maincontaineramount = rn1(100, 100);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(RANDOM_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_WEAPONMEMORY) {
+
+			int maincontaineramount = 10;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(WEAPON_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_ARMORMEMORY) {
+
+			int maincontaineramount = 10;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(ARMOR_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
 		    if (otmp && otmp->oartifact == ART_EMERGENCY_CASH) {
 
 			register struct obj *ocont;
 			ocont = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
 			ocont->quan = rn1(10000,10000);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_DOLLAR_DEPOSIT) {
+
+			register struct obj *ocont;
+			ocont = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
+			ocont->quan = 10000;
 			if (ocont) {
 				ocont->owt = weight(ocont);
 				(void) add_to_container(otmp, ocont, TRUE);
@@ -1859,6 +1958,28 @@ register boolean mod;
 			}
 
 			if (!havegifts) u.ugifts--;
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_RURIHUNT) {
+			register struct obj *ocont;
+
+			int ruricount = rnd(3);
+			while (ruricount > 0) {
+
+				ruricount--;
+				boolean havegifts = u.ugifts;
+
+				if (!havegifts) u.ugifts++;
+
+				ocont = mk_artifact((struct obj *)0, !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL, TRUE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+
+				if (!havegifts) u.ugifts--;
+			}
 
 		    }
 
@@ -6104,6 +6225,12 @@ newbossF:
 		}
 
 		if (obj->oartifact == ART_ROTATE_ME) {
+			play_blackjack();
+			break;
+
+		}
+
+		if (obj->oartifact == ART_CASSERINO) {
 			play_blackjack();
 			break;
 

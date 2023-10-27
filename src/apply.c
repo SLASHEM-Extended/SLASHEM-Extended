@@ -5541,6 +5541,7 @@ dyechoice:
 	case LEAD_BOX:
 	case TOP_BOX:
 	case TREASURE_CHEST:
+	case LOOT_CHEST:
 	case CHEST:
 	case NANO_CHEST:
 	case CHEST_OF_HOLDING:

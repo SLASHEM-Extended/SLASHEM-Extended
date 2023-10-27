@@ -4844,6 +4844,7 @@ boolean credit_hero;
 	/* KMH -- If we are hallucinating, we aren't sure of the object description */
 	if (Hallucination) return;
 	if (Race_if(PM_DE_ENERGISER)) return;
+	if (u.deenergiserpersist) return;
 
     if (!objects[oindx].oc_name_known) {
 	register int dindx, acls = objects[oindx].oc_class;

@@ -24158,6 +24158,7 @@ xchar x, y;
 		chance = 55;
 		break;
 	    case TREASURE_CHEST:
+	    case LOOT_CHEST:
 		chance = 0;
 		break;
 	    default:
@@ -24336,6 +24337,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_GO_UNDER_OR_UP) continue;
 		if ((obj->where != OBJ_FLOOR) && u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_WELCOME_ON_BOARD) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_UNDERWATER_LOVE) continue;
@@ -27891,6 +27893,7 @@ lava_effects()
 				if (rnd(20) < 12) continue; /* 55% chance of survival */
 				break;
 			case TREASURE_CHEST:
+			case LOOT_CHEST:
 				continue;		/* Immune, if you somehow get one into your inventory :P */
 				/*NOTREACHED*/
 				break;

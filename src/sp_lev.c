@@ -6621,7 +6621,7 @@ dlb *fd;
 #endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(!rn2(5) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
+		    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 
@@ -6633,7 +6633,7 @@ dlb *fd;
 #endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(!rn2(5) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
+		    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 	}
@@ -6695,7 +6695,7 @@ dlb *fd;
 #endif
 		if (timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(!rn2(5) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
+		    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 	    for(x = rnd((int) (12 * mapfact) / 100); x; x--) {
