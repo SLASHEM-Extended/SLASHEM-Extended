@@ -5339,6 +5339,7 @@ weight_cap()
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) carrcap += 500;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) carrcap += 1000;
 	if (RngeCarryingBoost) carrcap += 1000;
+	if (u.cnd_trophiesobtained) carrcap += (u.cnd_trophiesobtained * 50);
 	if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 50);
 	if (uarmc && uarmc->oartifact == ART_OH_MY_GOD_SPANDEX) carrcap += 200;
 
