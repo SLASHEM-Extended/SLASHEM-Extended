@@ -2981,6 +2981,8 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 			propellor = (oselect(mtmp, ARM_BLASTER));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER_HAND) {
 			propellor = (oselect(mtmp, HAND_BLASTER));
+		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BLASTER_CARC) {
+			propellor = (oselect(mtmp, CARCOSAN_STING));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_PROCESS_CARD) {
 			propellor = (oselect(mtmp, PROCESS_CARD));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_CUTTING) {
