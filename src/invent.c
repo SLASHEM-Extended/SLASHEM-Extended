@@ -28109,6 +28109,220 @@ boolean knoweverything;
 					pline("Artifact specs: can be invoked to play blackjack."); break;
 				case ART_FIRST_THERE_WE_WERE:
 					pline("Artifact specs: +3 strength, resist fear, anna trap effect and halved monster spawn rate when worn, heavily autocurses."); break;
+				case ART_BLINKBLINKBLINK__BLINKBLIN:
+					pline("Artifact specs: if you hit something by throwing it, you become invisible for 50 (more) turns."); break;
+				case ART_CRABBOMAT:
+					pline("Artifact specs: +4 damage, +d15 bleeding damage, 4 extra points of AC and 10%% chance to have prism reflection."); break;
+				case ART_SEE_THE_REST_OF_THE_WORLD:
+					pline("Artifact specs: shows the map if you're underwater, but also curses the weapon if you are underwater while it's not yet cursed."); break;
+				case ART_SCHWIUQUIEK:
+					pline("Artifact specs: +8 to-hit, +6 damage and +8 bleeding damage."); break;
+				case ART_INCORRECT_HEALING_ADJUST:
+					pline("Artifact specs: occasionally heals both you and the target monster."); break;
+				case ART_POINT_DEXTER:
+					pline("Artifact specs: +10 to-hit and damage bonus equal to your dexterity, but wielding it gives the greta trap effect permanently!"); break;
+				case ART_CLOUDCRACKER:
+					pline("Artifact specs: +4 to-hit and +4 shock damage."); break;
+				case ART_ELDRITCHKRUUN:
+					pline("Artifact specs: +10 stun damage."); break;
+				case ART_STRUCK_ON:
+					pline("Artifact specs: +6 to-hit, and throwing it deals 10 extra points of damage."); break;
+				case ART_NECMEASURE:
+					pline("Artifact specs: +6 to-hit and +6 damage, poisons targets, necromancer sacrifice gift."); break;
+				case ART_ON_CLOUD_SEVEN:
+					pline("Artifact specs: magical breathing, jumping and +2 kick damage when wielded."); break;
+				case ART_OLYMPIDE:
+					pline("Artifact specs: +5 strength when wielded, and deals 8 extra damage when thrown."); break;
+				case ART_FREAK_VERSUS_BANGER:
+					pline("Artifact specs: +20 damage, heavily autocurses, jane and greta trap effects when wielded."); break;
+				case ART_OBVIOUS_AS_FUCK:
+					pline("Artifact specs: +8 damage, reflection and resistance to gaze attacks when wielded."); break;
+				case ART_NO_PRISONERS_TAKEN:
+					pline("Artifact specs: makes you fast when wielded and deals extra damage the more wounded an enemy is."); break;
+				case ART_SCREAMOUT:
+					pline("Artifact specs: +7 to-hit and +6 stun damage, can also sometimes confuse the opponent."); break;
+				case ART_NAMED_AFTER_ITSELF:
+					pline("Artifact specs: double damage. Whoever was so weird to invent this has probably not realized that they made a sword that's basically just called 'sword' in Latin."); break;
+				case ART_SKIN_DEGREE:
+					pline("Artifact specs: +7 to-hit, swimming and unbreathing when wielded."); break;
+				case ART_KIMYO_NI_HIKARU_SONZAI:
+					pline("Artifact specs: +2 sight range when wielded."); break;
+				case ART_KOSOMUSEI:
+					pline("Artifact specs: +10 damage and multilinguitis when wielded."); break;
+				case ART_KAMI_SORI_NO_USUI_HA:
+					pline("Artifact specs: bisects targets."); break;
+				case ART_HEAVY_POLE_SKILL:
+					pline("Artifact specs: +6 damage, can be applied to hit enemies standing two squares away but if you're not at least skilled in polearms, you can't be very fast while wielding it. If you're restricted in polearms, you can't be fast either."); break;
+				case ART_ICE_TEMPLE_BACKGROUND:
+					pline("Artifact specs: +9 to-hit and +8 cold damage, 5000 turns of mariya trap effect when wielded."); break;
+				case ART_WIERD_ACCENT:
+					pline("Artifact specs: +3 damage, flying, and killing a monster restores 1 HP while you're wielding this."); break;
+				case ART_CHRISMISS:
+					pline("Artifact specs: gains significant bonus damage if you have good form VII (Vaapad) skill."); break;
+				case ART_MEGAFORCE:
+					pline("Artifact specs: improves the power of the #force command."); break;
+				case ART_LAINCHANTMENT:
+					pline("Artifact specs: double cold resistance when wielded."); break;
+				case ART_MAMBO_NUMBER_NINE:
+					pline("Artifact specs: makes you quite a bit faster when wielded, which stacks with other sources of speed."); break;
+				case ART_BYEBYE_BONES:
+					pline("Artifact specs: +14 damage."); break;
+				case ART_P_WING:
+					pline("Artifact specs: flying and very fast speed when wielded but if you're low on health, this weapon will degrade."); break;
+				case ART_WOETSCHERSMAG:
+					pline("Artifact specs: +4 damage, can be applied to hit enemies standing two squares away."); break;
+				case ART_INSECTMASHER:
+					pline("Artifact specs: +15 damage versus Team Ant, scent view when wielded and your kick cannot be clumsy."); break;
+				case ART_TANKFRIEND:
+					pline("Artifact specs: +12 damage versus birds and bats, 5 extra points of AC, pain sense when wielded and Team Ant usually spawns peaceful."); break;
+				case ART_STRECKOUT_AND_PULL:
+					pline("Artifact specs: +6 damage. You can apply this weapon to hit things standing two squares away, but only orthogonally."); break;
+				case ART_ROARBEAR:
+					pline("Artifact specs: +6 to-hit and +8 damage, aggravate monster when wielded and enemies have less AC so they're easier to hit."); break;
+				case ART_NADJA_S_BROKEN_NAIL:
+					pline("Artifact specs: double damage, resist fear when wielded."); break;
+				case ART_THOSE_LAZY_PROGRAMMERS:
+					pline("Artifact specs: +4 to-hit and +8 damage, poisons enemies, and if you have a shield, you gain 10%% extra chance to block."); break;
+				case ART_MILENA_S_MISGUIDING:
+					pline("Artifact specs: +2 to-hit and +7 fire damage, confusion, flying, full nutrients and food appraisal when wielded."); break;
+				case ART_RHALALALALALAAAAR:
+					pline("Artifact specs: +10 damage, 6 extra points of AC when wielded and if the enemy is low on health, it dies instantly."); break;
+				case ART_CLACKINDRA:
+					pline("Artifact specs: +3 multishot."); break;
+				case ART_UZ_I:
+					pline("Artifact specs: multishot bonus, but has less to-hit."); break;
+				case ART_AR_ARMALYTE:
+					pline("Artifact specs: +3 damage, +1 multishot, -2 to-hit for bullets."); break;
+				case ART_MIDDLING_PIDDLING:
+					pline("Artifact specs: +5 to-hit and double damage. You can safely enchant this up to a maximum of +20."); break;
+				case ART_SHREDSHOT:
+					pline("Artifact specs: damages target's armor on hit."); break;
+				case ART_DUSKSHREDDER:
+					pline("Artifact specs: +4 to-hit and +12 damage."); break;
+				case ART_FUCK_THE_SERVER:
+					pline("Artifact specs: +2 multishot."); break;
+				case ART_SHUGSHOG:
+					pline("Artifact specs: +20 acid damage."); break;
+				case ART_MEGICAL_STRIKE:
+					pline("Artifact specs: +5 to-hit and +11 magic damage."); break;
+				case ART_TRAP_EM_LONG:
+					pline("Artifact specs: +22 damage, but while wielding it, the game behaves as if you were playing homicider mode, and it also disables your speed for 1000 turns."); break;
+				case ART_NOW_GO_AND_CLIMB:
+					pline("Artifact specs: +7 to-hit and +3 damage, allows you to move on mountains."); break;
+				case ART_URUK_TAUNT:
+					pline("Artifact specs: +2 damage, poison resistance when wielded."); break;
+				case ART_MEAT_S_BACK_ON_THE_MENU:
+					pline("Artifact specs: +6 damage, full nutrients when wielded and monsters are more likely to drop a corpse."); break;
+				case ART_IRON_REINFORCEMENT:
+					pline("Artifact specs: double spellboost when wielded."); break;
+				case ART_YAWNEN:
+					pline("Artifact specs: +2 damage and sleep resistance when wielded."); break;
+				case ART_ALWAYS_IN_IT:
+					pline("Artifact specs: +4 damage, sight bonus and prevents items from getting wet when wielded."); break;
+				case ART_NOW_ASCEND_ALREADY:
+					pline("Artifact specs: +7 shock damage, resist cold when wielded, can be invoked for enchant armor, and this item cannot be wished for. Now that you have it, the game will probably ascend itself."); break;
+				case ART_IT_BRINGS_S:
+					pline("Artifact specs: +10 to-hit and +10 damage."); break;
+				case ART_JEAN_BAPTISTE_S_TERMINATOR:
+					pline("Artifact specs: +6 damage, beheads enemies."); break;
+				case ART_COOLSHIELDING:
+					pline("Artifact specs: +2 damage, cold immunity when wielded."); break;
+				case ART_RESOLE_THE_WOMAN_S_ASS:
+					pline("Artifact specs: +9 damage versus monsters that are always female, and hitting a farting monster with it automatically hurts the monster's butt."); break;
+				case ART_GIVE_US_A_NAME:
+					pline("Artifact specs: poisons enemies, magic find when wielded."); break;
+				case ART_ZUSE_S_COMP:
+					pline("Artifact specs: +8 to-hit, extra skill training and clairvoyance when wielded."); break;
+				case ART_DONK_O_BONK:
+					pline("Artifact specs: +8 damage, shock resistance when wielded, and every time you hit something your sanity and contamination are reduced by one."); break;
+				case ART_SILVER_ON_BLACK:
+					pline("Artifact specs: +4 damage, reflection and disintegration resistance when wielded."); break;
+				case ART_RAIDGOOD:
+					pline("Artifact specs: +7 to-hit and +6 acid damage, death resistance when wielded."); break;
+				case ART_EXTREME_BITCH:
+					pline("Artifact specs: +8 to-hit and +3 damage, quad attacks and 5000 turns of julietta trap effect when wielded."); break;
+				case ART_INRAM:
+					pline("Artifact specs: occasionally deals d20 extra points of damage, lawful."); break;
+				case ART_LORD_S_LASH:
+					pline("Artifact specs: +18 fire damage, but every time you wield it, a random dungeon level will become very dangerous!"); break;
+				case ART_KRASCHDE_GLOMAN:
+					pline("Artifact specs: +4 damage, occasionally puts enemies on a heal block if they fail a resistance check."); break;
+				case ART_OZYZEVPDWTVP:
+					pline("Artifact specs: autocurses and has reduced range and rate of fire. You can still use your hands while wielding it and bashing with it deals bonus damage. In addition to that, it subjects you to some sort of feminism trap effect. It is a sacrifice gift for the dancer class."); break;
+				case ART_FOR_THE_REAL_GAMING_EXPERI:
+					pline("Artifact specs: +20 damage, -5 to-hit, and makes you doomed for 10000 turns when wielded."); break;
+				case ART_YET_ANOTHER_USELESS_PART:
+					pline("Artifact specs: +2 to-hit and +2 damage."); break;
+				case ART_CNUTTEL_EM:
+					pline("Artifact specs: +4 to-hit and +20 damage to zombies, and makes CDDA monsters spawn more frequently while wielded."); break;
+				case ART_WAMM_BAMM:
+					pline("Artifact specs: +21 to-hit and +6 damage."); break;
+				case ART_TITANIC_STRIKE:
+					pline("Artifact specs: +8 damage, +20 strength when wielded."); break;
+				case ART_SMASH_TO_MUSH:
+					pline("Artifact specs: +6 to-hit and double damage."); break;
+				case ART_SKYSTORMER:
+					pline("Artifact specs: extra skill training when wielded, attacking in melee occasionally fires a powerful cold blast in the direction of your attack."); break;
+				case ART_ONCHANGE_STAFF:
+					pline("Artifact specs: +8 cold damage, double fire resistance when wielded, protects your items from shock and +3 intelligence."); break;
+				case ART_DISAPPEAR_OFF_THE_MAP:
+					pline("Artifact specs: +6 to-hit and +12 damage, and the damage bonus also applies to the grinding attack but wielding it gives you 10000 turns of map amnesia."); break;
+				case ART_MAERCOFOG:
+					pline("Artifact specs: double sight bonus when wielded. This item cannot be wished for."); break;
+				case ART_HK_CLEAR:
+					pline("Artifact specs: +7 to-hit and +3 damage, full nutrients and magical breathing when wielded."); break;
+				case ART_OXIDIZED_ALLOY:
+					pline("Artifact specs: +8 to-hit and +6 acid damage, acid resistance when wielded, and wielding it while it's less than 'very rusty' causes it to become very rusty."); break;
+				case ART_MEAT_SCRAPER:
+					pline("Artifact specs: double damage, +6 bleeding damage and magic find when wielded."); break;
+				case ART_FLAG_RAISED:
+					pline("Artifact specs: occasionally scares nearby monsters while wielded unless they make a saving throw."); break;
+				case ART_DEN_DAER_TJEJEN_AER_DIN_UN:
+					pline("Artifact specs: +3 to-hit and +12 damage."); break;
+				case ART_VORES_HORDER_VIL_LEMLAESTE:
+					pline("Artifact specs: +10 to-hit and +11 fire damage."); break;
+				case ART_EVA_S_COLORCHANGE:
+					pline("Artifact specs: +4 shock damage, resist sleep and +3 kick damage when wielded, becomes orange-colored upon wielding."); break;
+				case ART_FROM_NIX_COMES_NIX:
+					pline("Artifact specs: +2 to-hit and +3 damage."); break;
+				case ART_WIUNEW:
+					pline("Artifact specs: +7 to-hit, spawns with extra ammo, +3 range, and if it would have broken from throwing, there's a high chance that it doesn't."); break;
+				case ART_DOHLOW:
+					pline("Artifact specs: +12 thrown damage. This weapon spawns with extra ammo."); break;
+				case ART_GEHENNA_MODE:
+					pline("Artifact specs: +6 to-hit and +5 damage. If you're in Gehennom, throwing this weapon gives it +4 range and if you're wielding it, other ranged weapons have +3 range."); break;
+				case ART_KABOOOOOM_:
+					pline("Artifact specs: if you successfully apply it at an enemy, a fiery explosion happens on the target square."); break;
+				case ART_USEFUL_BINDLE:
+					pline("Artifact specs: +1000 carry capacity when wielded, which also applies to the maximum carry cap so you'll definitely be able to carry more crap."); break;
+				case ART_TACT_EBONY_GLASS:
+					pline("Artifact specs: disintegration and poison resistance when wielded."); break;
+				case ART_LONG_STRALE:
+					pline("Artifact specs: +6 damage and +7 bleeding damage."); break;
+				case ART_SUPAHIT:
+					pline("Artifact specs: double damage."); break;
+				case ART_HVYHIT:
+					pline("Artifact specs: +20 damage."); break;
+				case ART_HUGESTOCK:
+					pline("Artifact specs: spawns with much more ammo than normal."); break;
+				case ART_ANNOYPRICK:
+					pline("Artifact specs: +12 to-hit."); break;
+				case ART_FJELL_BARB:
+					pline("Artifact specs: lights the square where it landed, but only if it actually hits an enemy."); break;
+				case ART_WELLDER_GRANT:
+					pline("Artifact specs: +10 to-hit and +4 damage, spawns with a slightly bigger stack size."); break;
+				case ART_THUNDERING_GLAIVE:
+					pline("Artifact specs: +6 to-hit and +10 shock damage, shock resistance when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A polearm infused with the power of thunder, capable of delivering electrifying strikes to enemies. It might have the ability to stun or temporarily paralyze foes upon impact.'"); break;
+				case ART_SOUL_REAPER:
+					pline("Artifact specs: +5 to-hit and +2 drain life damage, can drain levels. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A menacing polearm with a dark aura that is said to harvest the souls of those it strikes, granting its wielder additional powers or life force with each defeated foe.'"); break;
+				case ART_FROSTBITE_PIKE:
+					pline("Artifact specs: +7 to-hit and +9 cold damage, cold resistance when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A polearm enchanted with icy magic, capable of freezing enemies on contact. It might slow down or immobilize opponents, making them easier to dispatch.'"); break;
+				case ART_DOOMSDAY_HALBERD:
+					pline("Artifact specs: beheads targets. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A legendary polearm rumored to bring doom to those it strikes. It could possess powerful area-of-effect abilities or be particularly effective against heavily armored enemies.'"); break;
+				case ART_PHOENIX_LANCE:
+					pline("Artifact specs: +4 to-hit and +14 fire damage, fire resistance when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A polearm that embodies the fiery spirit of the mythical phoenix. It might deal fire damage, ignite enemies, or even have restorative properties, allowing its wielder to heal or rejuvenate in the midst of battle.'"); break;
+				case ART_VOID_SCYTHE:
+					pline("Artifact specs: +20 to-hit and +5 damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A polearm that harnesses the power of the void, capable of tearing through reality itself. It might have the ability to ignore a portion of the enemy's defenses or possess a powerful vacuum effect, pulling enemies closer for devastating attacks.'"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
