@@ -3150,6 +3150,48 @@ elena33:
 							goto elena33;
 						}
 					}
+
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SEXY_MARY_JANE && (tmp > rnd(20+i)) ) {
+elenaSMJ:
+					u.cnd_shoedamageamount++;
+					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+
+					You("love the painful sensation as the female block heel hits your %s.", body_part(HEAD));
+					losehp(rnd(10),"a sexy mary jane",KILLED_BY);
+
+					if (multi >= 0) {
+						pline("Mmmmmmm, the massive block heel can cause such beautiful pain! You decide to just stand there and enjoy the hard impacts.");
+
+						if (isstunfish) nomul(-rnz(3), "swooning over a sexy mary jane", TRUE);
+						else nomul(-rnd(3), "swooning over a sexy mary jane", TRUE);
+
+					}
+
+						if (FemtrapActiveElena && !rn2(3)) {
+							pline("You long for more!");
+							goto elenaSMJ;
+						}
+					}
+
+					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == KITTEN_HEEL_PUMP && (tmp > rnd(20+i)) ) {
+elenaKHP:
+					u.cnd_shoedamageamount++;
+					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+					if (Role_if(PM_COURIER)) {
+						pline_The("cute pointy heel gently strokes you.");
+					} else {
+						pline("Ouch! Oof! Aaahh! You feel the cute, pointy heel boring into your %s!", body_part(HEAD));
+						drain_alla(10);
+						increasesanity(rnz(50));
+						losehp(rnd(22),"a kitten heel pump",KILLED_BY);
+					}
+
+						if (FemtrapActiveElena && !rn2(3)) {
+							pline("You long for more!");
+							goto elenaKHP;
+						}
+					}
+
 					if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && otmp->otyp == SOFT_LADY_SHOE && (tmp > rnd(20+i)) ) {
 elena34:
 					u.cnd_shoedamageamount++;

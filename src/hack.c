@@ -5284,6 +5284,7 @@ max_carr_cap()
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) maxcarrcap += 2000;
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) maxcarrcap += 1000;
+	if (uwep && uwep->otyp == BAGGY_SLING) maxcarrcap += 100;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) maxcarrcap += 1000;
 	if (RngeCarryingBoost) maxcarrcap += 1000;
 	if (u.xtralevelmult > 1) maxcarrcap += ((u.xtralevelmult - 1) * 10);
@@ -5342,6 +5343,7 @@ weight_cap()
 	if (u.cnd_trophiesobtained) carrcap += (u.cnd_trophiesobtained * 50);
 	if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 50);
 	if (uarmc && uarmc->oartifact == ART_OH_MY_GOD_SPANDEX) carrcap += 200;
+	if (uwep && uwep->otyp == BAGGY_SLING) carrcap += 250;
 
 	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 

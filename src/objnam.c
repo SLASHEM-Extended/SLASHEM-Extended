@@ -11091,7 +11091,7 @@ typfnd:
 	if (Race_if(PM_BATMAN)) {
 		if (typ == BATARANG || typ == DARK_BATARANG) maxwishamount = 7;
 	}
-	if ((typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != BATARANG) && (typ != ROCKET) && (typ != DARK_BATARANG) && ((oclass == WEAPON_CLASS && is_ammo(otmp)) || typ == ROCK || is_missile(otmp))) {
+	if ((typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != ALU_BOOMERANG) && (typ != BATARANG) && (typ != ROCKET) && (typ != DARK_BATARANG) && ((oclass == WEAPON_CLASS && is_ammo(otmp)) || typ == ROCK || is_missile(otmp))) {
 		/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
 		maxwishamount = 100;
 	}

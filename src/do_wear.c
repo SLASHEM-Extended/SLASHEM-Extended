@@ -6628,6 +6628,8 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_RES_BUT_BAD) uac += 15;
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT) uac -= 3;
+	if (uwep && uwep->otyp == BREAKING_WHEEL) uac -= 3;
+	if (u.twoweap && uswapwep && uswapwep->otyp == BREAKING_WHEEL) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
 	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) uac -= 3;
 	if (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) uac -= 5;
@@ -7160,7 +7162,7 @@ glibr()
 	}
 
 	otmp = uswapwep;
-	if (u.twoweap && otmp && (otmp->otyp != BRASS_KNUCKLES) && !(otmp->oartifact == ART_GREEN_ASSISTANT) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
+	if (u.twoweap && otmp && (otmp->otyp != BRASS_KNUCKLES) && !(otmp->oartifact == ART_GREEN_ASSISTANT) && (otmp->otyp != SUPER_KNUCKLES) && (otmp->otyp != ULTRA_KNUCKLES) && (otmp->otyp != MASTER_KNUCKLES) && (otmp->otyp != ELITE_KNUCKLES) ) {
 		otherwep = is_sword(otmp) ? c_sword :
 		    makesingular(oclass_names[(int)otmp->oclass]);
 		Your("%s %sslips from your %s.",
@@ -7175,7 +7177,7 @@ glibr()
 	otmp = uwep;
 
 	/* brass knuckles do not fall off, unless (hypothetically) you're wearing heavy ones with a STR of 1 --Amy */
-	if (otmp && (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == ELITE_KNUCKLES || otmp->oartifact == ART_GREEN_ASSISTANT) ) isknuckles = TRUE;
+	if (otmp && (otmp->otyp == BRASS_KNUCKLES || otmp->otyp == SUPER_KNUCKLES || otmp->otyp == ULTRA_KNUCKLES || otmp->otyp == MASTER_KNUCKLES || otmp->otyp == ELITE_KNUCKLES || otmp->oartifact == ART_GREEN_ASSISTANT) ) isknuckles = TRUE;
 
 	if (otmp && !welded(otmp) && !(isknuckles && ACURR(A_STR) > 1) ) {
 		const char *thiswep;

@@ -557,7 +557,7 @@ register struct monst *mtmp;
 				m_initthrow(mtmp, rn2(2000) ? RIFLE_BULLET : ANTIMATTER_RIFLE_BULLET, 25);
 			}
 		}
-		else switch (rnd(105)) {
+		else switch (rnd(113)) {
 			case 1:
 				(void) mongets(mtmp, HEAVY_MACHINE_GUN);
 				m_initthrow(mtmp, rn2(2000) ? MG_BULLET : ANTIMATTER_MG_BULLET, 50);
@@ -709,6 +709,17 @@ register struct monst *mtmp;
 			case 105:
 				(void) mongets(mtmp, PISTOL_PAIR);
 				m_initthrow(mtmp, rn2(2000) ? FIVE_SEVEN_BULLET : ANTIMATTER_FIVE_SEVEN_BULLET, 50);
+				break;
+			case 106:
+			case 107:
+			case 108:
+			case 109:
+			case 110:
+			case 111:
+			case 112:
+			case 113:
+				(void) mongets(mtmp, CARCOSAN_STING);
+				m_initthrow(mtmp, CARCOSAN_BOLT, 50);
 				break;
 		}
 
@@ -761,7 +772,7 @@ register struct monst *mtmp;
 				m_initthrow(mtmp, rn2(2000) ? RIFLE_BULLET : ANTIMATTER_RIFLE_BULLET, 25);
 			}
 		}
-		else switch (rnd(105)) {
+		else switch (rnd(113)) {
 			case 1:
 				(void) mongets(mtmp, HEAVY_MACHINE_GUN);
 				m_initthrow(mtmp, rn2(2000) ? MG_BULLET : ANTIMATTER_MG_BULLET, 50);
@@ -913,6 +924,17 @@ register struct monst *mtmp;
 			case 105:
 				(void) mongets(mtmp, PISTOL_PAIR);
 				m_initthrow(mtmp, rn2(2000) ? FIVE_SEVEN_BULLET : ANTIMATTER_FIVE_SEVEN_BULLET, 50);
+				break;
+			case 106:
+			case 107:
+			case 108:
+			case 109:
+			case 110:
+			case 111:
+			case 112:
+			case 113:
+				(void) mongets(mtmp, CARCOSAN_STING);
+				m_initthrow(mtmp, CARCOSAN_BOLT, 50);
 				break;
 		}
 

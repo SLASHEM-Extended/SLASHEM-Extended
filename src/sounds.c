@@ -5482,6 +5482,8 @@ findmorebolts:
 			if (!roxybolt) roxybolt = carrying(KOKKEN);
 			if (!roxybolt) roxybolt = carrying(POISON_BOLT);
 			if (!roxybolt) roxybolt = carrying(HEAVY_CROSSBOW_BOLT);
+			if (!roxybolt) roxybolt = carrying(SPIKY_BOLT);
+			if (!roxybolt) roxybolt = carrying(HARDENED_BOLT);
 			if (!roxybolt) roxybolt = carrying(INFERIOR_BOLT);
 			if (!roxybolt) roxybolt = carrying(ETHER_BOLT);
 			if (!roxybolt) roxybolt = carrying(MATERIAL_BOLT);

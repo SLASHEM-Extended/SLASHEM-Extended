@@ -1144,6 +1144,12 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
+				if (u.twoweap && uswapwep && uswapwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1615,6 +1621,12 @@ moveloop()
 				moveamt /= 2;
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
+				moveamt /= 2;
+
+			if (u.twoweap && uswapwep && uswapwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && !rn2(8) && moveamt > 1)
@@ -7166,6 +7178,10 @@ newbossJANI:
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = HIGHWAY;
 			}
+		}
+
+		if ((uwep && uwep->otyp == FALCHION) || (u.twoweap && uswapwep && uswapwep->otyp == FALCHION)) {
+			if (u.uprops[DEAC_FAST].intrinsic < 5) u.uprops[DEAC_FAST].intrinsic = 5;
 		}
 
 		if (uarmg && uarmg->oartifact == ART_WAND_INTO_SPELL && !rn2(100)) {

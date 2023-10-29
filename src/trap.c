@@ -2522,7 +2522,7 @@ newbossING:
 	    case ATTACKING_HEEL_TRAP:
 		{
 
-		ttmp->launch_otyp = rnd(26);
+		ttmp->launch_otyp = rnd(28);
 
 		break;
 	      }
@@ -18556,6 +18556,12 @@ skillrandomizeredo:
 				case 26:
 					projectiledamage = rnd(20) + rnd( (monster_difficulty() * 3) + 1);
 					break;
+				case 27:
+					projectiledamage = rnd(10) + rnd( monster_difficulty() + 1);
+					break;
+				case 28:
+					projectiledamage = rnd(22) + rnd( (monster_difficulty() * 3) + 1);
+					break;
 			}
 
 			if (projectiledamage > 1) {
@@ -19014,6 +19020,32 @@ skillrandomizeredo:
 					playerbleed(monster_difficulty());
 					badeffect();
 					losehp(projectiledamage,"a sharp-edged italian heel",KILLED_BY);
+
+				break;
+
+				case 27:
+					pline("Suddenly, a very sexy mary jane slams on your %s with the beautiful, massive block heel!", body_part(HEAD));
+					losehp(projectiledamage,"a very sexy mary jane",KILLED_BY);
+
+					if (multi >= 0) {
+						pline("Mmmmmmm, the massive block heel can cause such beautiful pain! You decide to just stand there and enjoy the hard impacts.");
+
+						if (isstunfish) nomul(-rnz(3), "swooning over a sexy mary jane", TRUE);
+						else nomul(-rnd(3), "swooning over a sexy mary jane", TRUE);
+
+					}
+
+				break;
+
+				case 28:
+
+					if (Role_if(PM_COURIER)) pline("A cute kitten heel shoe appears and harmlessly scratches you.");
+					else {
+						pline("Arrgh! Auugh! Oww! A cute kitten heel pump bored her incredibly lovely, pointy heel into your %s!", body_part(HEAD));
+						drain_alla(10);
+						increasesanity(rnz(50));
+						losehp(projectiledamage,"a cuuuuute kitten-heel pump",KILLED_BY);
+					}
 
 				break;
 
@@ -26511,6 +26543,8 @@ struct trap *ttmp;
 	else if (ttmp->launch_otyp == 24) cnv_trap_obj(LADY_BOOTS, 1, ttmp);
 	else if (ttmp->launch_otyp == 25) cnv_trap_obj(STILETTO_SANDALS, 1, ttmp);
 	else if (ttmp->launch_otyp == 26) cnv_trap_obj(ITALIAN_HEELS, 1, ttmp);
+	else if (ttmp->launch_otyp == 27) cnv_trap_obj(SEXY_MARY_JANE, 1, ttmp);
+	else if (ttmp->launch_otyp == 28) cnv_trap_obj(KITTEN_HEEL_PUMP, 1, ttmp);
 	else deltrap(ttmp);
 	newsym(trapx, trapy);
 	return 1;

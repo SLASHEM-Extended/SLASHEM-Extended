@@ -611,6 +611,8 @@ struct you {
 	int spellbookchance2;
 	int spellbookchance3;
 
+	int rangedreload;	/* for jumping flamer etc. */
+
 	int monstermultiplier;	/* controls the spawn rate of monsters, which should fluctuate a bit */
 
 	int gradiatingturns;	/* for gradiating work artifact */

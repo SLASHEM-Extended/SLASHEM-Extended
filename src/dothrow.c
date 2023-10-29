@@ -621,13 +621,23 @@ int thrown;
 		u.uprops[VERISIERTEFFECT].intrinsic += verisiertnumber;
 	}
 
-	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN ) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {
+	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == LEAD_UNLOADER || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == STORM_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN ) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {
 		if (launcher->otyp == SUBMACHINE_GUN) {
 			u.bulletatorwantedlevel += 3;
 			u.bulletatortimer += 300;
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 300;
 		}
+		if (launcher->otyp == LEAD_UNLOADER) {
+			u.bulletatorwantedlevel += 3;
+			u.bulletatortimer += 300;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 300;
+		}
 		if (launcher->otyp == ASSAULT_RIFLE) {
+			u.bulletatorwantedlevel += 10;
+			u.bulletatortimer += 1000;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 1000;
+		}
+		if (launcher->otyp == STORM_RIFLE) {
 			u.bulletatorwantedlevel += 10;
 			u.bulletatortimer += 1000;
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 1000;
@@ -1023,6 +1033,12 @@ dothrow()
 		}
 	}
 
+	if (u.rangedreload) {
+		You("have to reload, which is gonna take %d more turns!", u.rangedreload);
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
 	if (u.twoweap && uarms) {
 		You("are way too busy with your two weapons and shield.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -1157,6 +1173,12 @@ dofire()
 
 	if (u.twoweap && uarms) {
 		You("are way too busy with your two weapons and shield.");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return 0;
+	}
+
+	if (u.rangedreload) {
+		You("have to reload, which is gonna take %d more turns!", u.rangedreload);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 0;
 	}
@@ -2000,7 +2022,7 @@ int thrown;
 		nomul(-3, "reloading the Mosin-Nagant", TRUE);
 	}
 	if (obj && obj->otyp == JUMPING_FLAMER) {
-		nomul(-3, "reloading the jumping flamer", TRUE);
+		if (u.rangedreload < 3) u.rangedreload = 3;
 	}
 
 	if(u.uswallow) {
@@ -2072,7 +2094,7 @@ int thrown;
 	    thrownobj = (struct obj*)0;
 	    return;
 
-	} else if( (obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && !Underwater) {
+	} else if( (obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && !Underwater) {
 		if(Is_airlevel(&u.uz) || Levitation)
 		    hurtle(-u.dx, -u.dy, 1, TRUE);
 		mon = boomhit(u.dx, u.dy);
@@ -2609,6 +2631,7 @@ boolean polearming;
 	if (Race_if(PM_GERTEUT)) tmp += 5;
 
 	if (obj && obj->otyp == LASER_FLYAXE && obj->lamplit) tmp += 5;
+	if (obj && obj->otyp == DISKOS) tmp += 5;
 
 	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
 	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
@@ -2757,10 +2780,15 @@ inaccurateguns:
 		if (!rn2(2)) tmp -= rnd(10);
 	}
 	if (launcher && launcher->otyp == SUBMACHINE_GUN && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(6);
+	if (launcher && launcher->otyp == LEAD_UNLOADER && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(6);
 	if (launcher && launcher->otyp == AUTO_SHOTGUN && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(8);
 	if (launcher && launcher->otyp == POWER_CROSSBOW) tmp -= rnd(8);
 	if (launcher && launcher->otyp == PILE_BUNKER) tmp -= rnd(4);
 	if (launcher && launcher->otyp == ASSAULT_RIFLE && (launcher->altmode == WP_MODE_AUTO || (launcher->altmode == WP_MODE_BURST && !rn2(3)) ) ) {
+		tmp -= rnd(8);
+		if (!rn2(3)) tmp -= rnd(5);
+	}
+	if (launcher && launcher->otyp == STORM_RIFLE && (launcher->altmode == WP_MODE_AUTO || (launcher->altmode == WP_MODE_BURST && !rn2(3)) ) ) {
 		tmp -= rnd(8);
 		if (!rn2(3)) tmp -= rnd(5);
 	}
@@ -3383,7 +3411,7 @@ evasionchancedone:
 		    }
 		}
 	    } else {
-		if (otyp == BOOMERANG || otyp == SILVER_CHAKRAM || otyp == BATARANG || otyp == DARK_BATARANG)		/* arbitrary */
+		if (otyp == BOOMERANG || otyp == ALU_BOOMERANG || otyp == SILVER_CHAKRAM || otyp == BATARANG || otyp == DARK_BATARANG)		/* arbitrary */
 		    tmp += 4;
 		else if (throwing_weapon(obj))	/* meant to be thrown */
 		    tmp += 2;

@@ -697,6 +697,7 @@ findmorearrows:
 		if (!prcarrow) prcarrow = carrying(FAR_EAST_ARROW);
 		if (!prcarrow) prcarrow = carrying(DROVEN_ARROW);
 		if (!prcarrow) prcarrow = carrying(GOLDEN_ARROW);
+		if (!prcarrow) prcarrow = carrying(LIGHT_ARROW);
 		if (!prcarrow) prcarrow = carrying(ANCIENT_ARROW);
 		if (!prcarrow) prcarrow = carrying(BRONZE_ARROW);
 		if (!prcarrow) prcarrow = carrying(WONDER_ARROW);
@@ -15482,6 +15483,15 @@ boolean canarti;
 			break;
 		case ORCISH_SHORT_SWORD:
 			obj->otyp = SHORT_SWORD;
+			break;
+		case ORCISH_LONG_SWORD:
+			obj->otyp = LONG_SWORD;
+			break;
+		case ORCISH_SCIMITAR:
+			obj->otyp = SCIMITAR;
+			break;
+		case ORCISH_MORNING_STAR:
+			obj->otyp = MORNING_STAR;
 			break;
 		case ELVEN_SHORT_SWORD:
 		case DARK_ELVEN_SHORT_SWORD:

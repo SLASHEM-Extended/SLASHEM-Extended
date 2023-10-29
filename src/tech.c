@@ -5297,6 +5297,10 @@ breakstare:
 					haschosen = TRUE;
 					ammotype = 15;
 				}
+				else if (canblaster && yn("Do you want to create carcosan bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 17;
+				}
 			}
 
 		}
@@ -5323,6 +5327,7 @@ breakstare:
 		else if (ammotype == 14) uammo = mksobj(LASER_BEAM, TRUE, FALSE, FALSE);
 		else if (ammotype == 15) uammo = mksobj(RADIO, TRUE, FALSE, FALSE);
 		else if (ammotype == 16) uammo = mksobj(FIVE_SEVEN_BULLET, TRUE, FALSE, FALSE);
+		else if (ammotype == 17) uammo = mksobj(CARCOSAN_BOLT, TRUE, FALSE, FALSE);
 		else uammo = mksobj(PISTOL_BULLET, TRUE, FALSE, FALSE);
 		if (uammo) {
 			uammo->quan = techlevX(tech_no);
@@ -6536,7 +6541,7 @@ heelschosen:
 				struct obj *uboomerang;
 
 				pline("A boomerang is created!");
-				uboomerang = mksobj(rn2(3) ? BOOMERANG : !rn2(3) ? BATARANG : rn2(2) ? DARK_BATARANG : SILVER_CHAKRAM, TRUE, FALSE, FALSE);
+				uboomerang = mksobj(rn2(3) ? BOOMERANG : !rn2(4) ? ALU_BOOMERANG : !rn2(3) ? BATARANG : rn2(2) ? DARK_BATARANG : SILVER_CHAKRAM, TRUE, FALSE, FALSE);
 				if (uboomerang) {
 					uboomerang->quan = 1;
 					uboomerang->known = uboomerang->dknown = uboomerang->bknown = uboomerang->rknown = 1;
@@ -7930,6 +7935,10 @@ cardtrickchoice:
 					haschosen = TRUE;
 					ammotype = 1;
 				}
+				else if (yn("Do you want to create carcosan bolts?") == 'y') {
+					haschosen = TRUE;
+					ammotype = 6;
+				}
 			}
 
 			You("make some laser ammo.");
@@ -7942,6 +7951,7 @@ cardtrickchoice:
 			else if (ammotype == 4) uammo = mksobj(HEAVY_BLASTER_BOLT, TRUE, FALSE, FALSE);
 			else if (ammotype == 3) uammo = mksobj(LASER_BEAM, TRUE, FALSE, FALSE);
 			else if (ammotype == 2) uammo = mksobj(RAYGUN_BOLT, TRUE, FALSE, FALSE);
+			else if (ammotype == 6) uammo = mksobj(CARCOSAN_BOLT, TRUE, FALSE, FALSE);
 			else uammo = mksobj(RADIO, TRUE, FALSE, FALSE);
 
 			if (uammo) {
@@ -8199,13 +8209,13 @@ cardtrickchoice:
 				break;
 			}
 			if (uwep && is_bullet(uwep)) {
-				if (uwep->otyp == SMG_BULLET || uwep->otyp == ANTIMATTER_SMG_BULLET || uwep->otyp == MG_BULLET || uwep->otyp == ANTIMATTER_MG_BULLET || uwep->otyp == RIFLE_BULLET || uwep->otyp == ANTIMATTER_RIFLE_BULLET || uwep->otyp == SNIPER_BULLET || uwep->otyp == ANTIMATTER_SNIPER_BULLET || uwep->otyp == ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE || uwep->otyp == PISTOL_BULLET || uwep->otyp == SILVER_PISTOL_BULLET || uwep->otyp == LEAD_PISTOL_BULLET || uwep->otyp == FIVE_SEVEN_BULLET || uwep->otyp == SHADOW_FIVE_SEVEN_BULLET || uwep->otyp == LEAD_FIVE_SEVEN_BULLET || uwep->otyp == LEAD_SMG_BULLET || uwep->otyp == LEAD_RIFLE_BULLET || uwep->otyp == COPPER_RIFLE_BULLET || uwep->otyp == LEAD_MG_BULLET || uwep->otyp == LEAD_SNIPER_BULLET || uwep->otyp == PLATINUM_SNIPER_BULLET || uwep->otyp == LEAD_ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_PISTOL_BULLET || uwep->otyp == ANTIMATTER_FIVE_SEVEN_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == RAYGUN_BOLT || uwep->otyp == RADIO || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
+				if (uwep->otyp == SMG_BULLET || uwep->otyp == ANTIMATTER_SMG_BULLET || uwep->otyp == MG_BULLET || uwep->otyp == ANTIMATTER_MG_BULLET || uwep->otyp == RIFLE_BULLET || uwep->otyp == ANTIMATTER_RIFLE_BULLET || uwep->otyp == SNIPER_BULLET || uwep->otyp == ANTIMATTER_SNIPER_BULLET || uwep->otyp == ASSAULT_RIFLE_BULLET || uwep->otyp == LOWRATE_ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE || uwep->otyp == PISTOL_BULLET || uwep->otyp == SILVER_PISTOL_BULLET || uwep->otyp == LEAD_PISTOL_BULLET || uwep->otyp == FIVE_SEVEN_BULLET || uwep->otyp == SHADOW_FIVE_SEVEN_BULLET || uwep->otyp == LEAD_FIVE_SEVEN_BULLET || uwep->otyp == LEAD_SMG_BULLET || uwep->otyp == BRONZE_SMG_BULLET || uwep->otyp == LEAD_RIFLE_BULLET || uwep->otyp == COPPER_RIFLE_BULLET || uwep->otyp == LEAD_MG_BULLET || uwep->otyp == HOLLOW_POINT_MG_BULLET || uwep->otyp == LEAD_SNIPER_BULLET || uwep->otyp == PLATINUM_SNIPER_BULLET || uwep->otyp == LEAD_ASSAULT_RIFLE_BULLET || uwep->otyp == ANTIMATTER_PISTOL_BULLET || uwep->otyp == ANTIMATTER_FIVE_SEVEN_BULLET || uwep->otyp == BLASTER_BOLT || uwep->otyp == RAYGUN_BOLT || uwep->otyp == RADIO || uwep->otyp == HEAVY_BLASTER_BOLT || uwep->otyp == LASER_BEAM) {
 					uwep->quan += (20 + techlevX(tech_no));
 					pline("The amount of ammo was increased!");
-				} else if (uwep->otyp == BFG_AMMO) {
+				} else if (uwep->otyp == BFG_AMMO || uwep->otyp == CARCOSAN_BOLT) {
 					uwep->quan += (80 + (techlevX(tech_no) * 5));
 					pline("The amount of ammo was increased!");
-				} else if (uwep->otyp == SHOTGUN_SHELL || uwep->otyp == CHROME_PELLET || uwep->otyp == AUTO_SHOTGUN_SHELL || uwep->otyp == LEAD_SHOT || uwep->otyp == AUTO_LEAD_SHOT) {
+				} else if (uwep->otyp == SHOTGUN_SHELL || uwep->otyp == CHROME_PELLET || uwep->otyp == AUTO_SHOTGUN_SHELL || uwep->otyp == LEAD_SHOT || uwep->otyp == AUTO_LEAD_SHOT || uwep->otyp == COATED_AUTO_SHELL) {
 					uwep->quan += (10 + (techlevX(tech_no) / 2));
 					pline("The amount of ammo was increased!");
 				} else if (uwep->otyp == ROCKET) {

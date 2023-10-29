@@ -2488,10 +2488,12 @@ boolean shopinit;
 		if (otmp->otyp == SHADOW_FIVE_SEVEN_BULLET) otmp->quan += rnd(200);
 		if (otmp->otyp == ANTIMATTER_FIVE_SEVEN_BULLET) otmp->quan += rnd(160);
 		if (otmp->otyp == SMG_BULLET) otmp->quan += rnd(50);
+		if (otmp->otyp == BRONZE_SMG_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == LEAD_SMG_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == ANTIMATTER_SMG_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == MG_BULLET) otmp->quan += rnd(100);
 		if (otmp->otyp == LEAD_MG_BULLET) otmp->quan += rnd(100);
+		if (otmp->otyp == HOLLOW_POINT_MG_BULLET) otmp->quan += rnd(100);
 		if (otmp->otyp == ANTIMATTER_MG_BULLET) otmp->quan += rnd(100);
 		if (otmp->otyp == RIFLE_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == COPPER_RIFLE_BULLET) otmp->quan += rnd(50);
@@ -2502,9 +2504,11 @@ boolean shopinit;
 		if (otmp->otyp == ANTIMATTER_SNIPER_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == PLATINUM_SNIPER_BULLET) otmp->quan += rnd(50);
 		if (otmp->otyp == ASSAULT_RIFLE_BULLET) otmp->quan += rnd(75);
+		if (otmp->otyp == LOWRATE_ASSAULT_RIFLE_BULLET) otmp->quan += rnd(160);
 		if (otmp->otyp == LEAD_ASSAULT_RIFLE_BULLET) otmp->quan += rnd(75);
 		if (otmp->otyp == ANTIMATTER_ASSAULT_RIFLE_BULLE) otmp->quan += rnd(75);
 		if (otmp->otyp == BLASTER_BOLT) otmp->quan += rnd(30);
+		if (otmp->otyp == CARCOSAN_BOLT) otmp->quan += rnd(100);
 		if (otmp->otyp == RADIO) otmp->quan += rnd(30);
 		if (otmp->otyp == RAYGUN_BOLT) otmp->quan += rnd(40);
 		if (otmp->otyp == HEAVY_BLASTER_BOLT) otmp->quan += rnd(40);
@@ -2514,12 +2518,13 @@ boolean shopinit;
 		if (otmp->otyp == LEAD_SHOT) otmp->quan += rnd(20);
 		if (otmp->otyp == CHROME_PELLET) otmp->quan += rnd(20);
 		if (otmp->otyp == AUTO_LEAD_SHOT) otmp->quan += rnd(30);
+		if (otmp->otyp == COATED_AUTO_SHELL) otmp->quan += rnd(30);
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
 		if (otmp->otyp == CROSSBOW_BOLT) otmp->quan += rnd(25);
 		if (otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(75);
 		if (otmp->otyp == DROVEN_ARROW) otmp->quan += rnd(75);
 		if (otmp->otyp == INFERIOR_BOLT) otmp->quan += rnd(55);
-		if (otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == POISON_BOLT || otmp->otyp == HEAVY_CROSSBOW_BOLT || otmp->otyp == ETHER_BOLT || otmp->otyp == MATERIAL_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT) otmp->quan += rnd(50);
+		if (otmp->otyp == KOKKEN || otmp->otyp == MINERAL_BOLT || otmp->otyp == POISON_BOLT || otmp->otyp == HEAVY_CROSSBOW_BOLT || otmp->otyp == ETHER_BOLT || otmp->otyp == MATERIAL_BOLT || otmp->otyp == FLEECE_BOLT || otmp->otyp == PIN_BOLT || otmp->otyp == SPIKY_BOLT || otmp->otyp == HARDENED_BOLT) otmp->quan += rnd(50);
 		if (otmp->otyp == PAPER_ARROW || otmp->otyp == FORBIDDEN_ARROW || otmp->otyp == GOLDEN_ARROW || otmp->otyp == ANCIENT_ARROW || otmp->otyp == BRONZE_ARROW) otmp->quan += rnd(15);
 		if (otmp->otyp == YA) otmp->quan += rnd(20);
 		if (otmp->otyp == FAR_EAST_ARROW) otmp->quan += rnd(20);
@@ -2529,6 +2534,7 @@ boolean shopinit;
 		if (otmp->otyp == SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == MYSTERY_SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == TAR_STAR) otmp->quan += rnd(100);
+		if (otmp->otyp == LIGHT_STAR) otmp->quan += rnd(100);
 		if (otmp->otyp == NINJA_STAR) otmp->quan += rnd(60);
 		if (otmp->otyp == NANO_SHURIKEN) otmp->quan += rnd(100);
 		if (otmp->otyp == CUBIC_STAR) otmp->quan += rnd(100);
@@ -2560,10 +2566,10 @@ boolean shopinit;
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
 
-		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
+		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == PUNCTURING_JAVELIN || otmp->otyp == UNDERWORLD_JAVELIN || otmp->otyp == TRANSPARENCE_THROWER || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
 			otmp->quan += rnd(5);
 		}
-		if (Role_if(PM_TOSSER) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
+		if (Role_if(PM_TOSSER) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == PUNCTURING_JAVELIN || otmp->otyp == UNDERWORLD_JAVELIN || otmp->otyp == TRANSPARENCE_THROWER || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
 			otmp->quan += rnd(5);
 		}
 

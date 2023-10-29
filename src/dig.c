@@ -317,7 +317,7 @@ dig()
 	}
 
 	/* calculate digging effort */
-	bonus = 10 + rn2(5) + abon() + uwep->spe - greatest_erosionX(uwep) + increase_damage_bonus_value() + RngeBloodlust + (Drunken_boxing && Confusion) + (StrongDrunken_boxing && Confusion);
+	bonus = 4 + rn2(5) + abon() + uwep->spe - greatest_erosionX(uwep) + increase_damage_bonus_value() + RngeBloodlust + (Drunken_boxing && Confusion) + (StrongDrunken_boxing && Confusion);
 	if (uarms && uarms->oartifact == ART_TEH_BASH_R) bonus += 2;
 	if (uarmh && uarmh->oartifact == ART_HELMET_OF_DIGGING) bonus += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_DIGGER_GLOVES)) bonus += 5;
@@ -334,15 +334,29 @@ dig()
 	if (tunnels(youmonst.data)) bonus += rn2(3); /* digging monsters really should have a bonus here --Amy */
 	if (needspick(youmonst.data)) bonus += rn2(3); /* and more so if they're dedicated miners (e.g. dwarf) */
 	if (!PlayerCannotUseSkills) {
-		switch (P_SKILL(P_WEDI)) {
 
-			case P_BASIC:	bonus += 3; break;
-			case P_SKILLED:	bonus += 6; break;
-			case P_EXPERT:	bonus += 10; break;
-			case P_MASTER:	bonus += 13; break;
-			case P_GRAND_MASTER:	bonus += 16; break;
-			case P_SUPREME_MASTER:	bonus += 20; break;
-			default: break;
+		if (uwep && is_lightsaber(uwep)) {
+			switch (P_SKILL(P_WEDI)) {
+
+				case P_BASIC:	bonus += 5; break;
+				case P_SKILLED:	bonus += 10; break;
+				case P_EXPERT:	bonus += 14; break;
+				case P_MASTER:	bonus += 17; break;
+				case P_GRAND_MASTER:	bonus += 21; break;
+				case P_SUPREME_MASTER:	bonus += 25; break;
+				default: break;
+			}
+		} else {
+			switch (P_SKILL(P_WEDI)) {
+
+				case P_BASIC:	bonus += 3; break;
+				case P_SKILLED:	bonus += 6; break;
+				case P_EXPERT:	bonus += 10; break;
+				case P_MASTER:	bonus += 13; break;
+				case P_GRAND_MASTER:	bonus += 16; break;
+				case P_SUPREME_MASTER:	bonus += 20; break;
+				default: break;
+			}
 		}
 	}
 
@@ -1362,6 +1376,7 @@ struct obj *obj;
 		else if (obj->otyp == IMPACT_STAFF) pline("Dock! You hit yourself with your staff!");
 		else if (obj->otyp == BLOCK_HEELED_SANDAL) pline("Mmmmmmmm, the massive block heel hits your %s so wonderfully painfully!", body_part(HEAD));
 		else if (obj->otyp == INKA_BOOT) pline("You come right as the lovely, soft boot heel hits you.");
+		else if (obj->otyp == SEXY_MARY_JANE) pline("Wow, the area between your %s gets all wet as the fleecy-soft, massive block heel hits you!", makeplural(body_part(LEG)) );
 		else if (obj->otyp == PROSTITUTE_SHOE) pline("You have an orgasm as you hit yourself with the incredibly female prostitute shoe.");
 		else if (obj->otyp == SOFT_LADY_SHOE) pline("You feel wonderful intense pain as the incredibly soft lady shoe hits you.");
 		else if (obj->otyp == STEEL_WHIP) {

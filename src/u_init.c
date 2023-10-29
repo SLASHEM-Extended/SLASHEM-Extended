@@ -3388,6 +3388,9 @@ static struct inv_sub { int race_pm, item_otyp, subs_otyp; } inv_subs[] = {
     { PM_ORC,	DAGGER,			ORCISH_DAGGER	      },
     { PM_ORC,	SPEAR,			ORCISH_SPEAR	      },
     { PM_ORC,	SHORT_SWORD,		ORCISH_SHORT_SWORD    },
+    { PM_ORC,	SCIMITAR,		ORCISH_SCIMITAR    },
+    { PM_ORC,	LONG_SWORD,		ORCISH_LONG_SWORD    },
+    { PM_ORC,	MORNING_STAR,		ORCISH_MORNING_STAR    },
     { PM_ORC,	BOW,			ORCISH_BOW	      },
     { PM_ORC,	ARROW,			ORCISH_ARROW	      },
     { PM_ORC,	STANDARD_HELMET,			ORCISH_HELM	      },
@@ -11375,6 +11378,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.rangedreload = 0;
 	u.repunishcounter = 0;
 	u.laratraptimer = 0;
 	u.knowofthecursetimer = 0;

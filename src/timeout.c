@@ -251,6 +251,12 @@ nh_timeout()
 		if (u.inasuppression < 0) u.inasuppression = 0; /* fail safe */
 	}
 
+	if (u.rangedreload) {
+		u.rangedreload--;
+		if (u.rangedreload < 0) u.rangedreload = 0; /* fail safe */
+		if (!u.rangedreload) You("can once again use ranged weapons.");
+	}
+
 	if (u.badfcursed) {
 		u.badfcursed--;
 		if (u.badfcursed < 0) u.badfcursed = 0; /* fail safe */
@@ -1529,7 +1535,7 @@ nh_timeout()
 
 	if (!rn2(1000) && u.uprops[SENTIENT_HIGH_HEELS].extrinsic) {
 
-			switch (rnd(26)) {
+			switch (rnd(28)) {
 
 				case 1:
 
@@ -1969,6 +1975,32 @@ nh_timeout()
 					playerbleed(monster_difficulty());
 					badeffect();
 					losehp(rnd(20) + rnd( (monster_difficulty() * 3) + 1),"a sentient sharp-edged italian heel",KILLED_BY);
+
+				break;
+
+				case 27:
+					pline("Suddenly, your very sexy mary jane slams on your %s with the beautiful, massive block heel!", body_part(HEAD));
+					losehp(rnd(10)+ rnd( monster_difficulty() + 1),"sentient block-heeled mary jane",KILLED_BY_AN);
+
+					if (multi >= 0) {
+						pline("Mmmmmmm, the massive block heel can cause such beautiful pain! You decide to just stand there and enjoy the hard impacts.");
+
+						if (isstunfish) nomul(-rnz(3), "swooning over a sexy mary jane", TRUE);
+						else nomul(-rnd(3), "swooning over a sexy mary jane", TRUE);
+
+					}
+
+				break;
+
+				case 28:
+
+					if (Role_if(PM_COURIER)) pline("Your cute kitten heel shoe harmlessly scratches you.");
+					else {
+						pline("Arrgh! Auugh! Oww! Your cute kitten heel pump bored her incredibly lovely, pointy heel into your %s!", body_part(HEAD));
+						drain_alla(10);
+						increasesanity(rnz(50));
+						losehp(rnd(22) + rnd( (monster_difficulty() * 3) + 1),"a sentient kitten heel pump",KILLED_BY);
+					}
 
 				break;
 

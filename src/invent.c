@@ -8207,9 +8207,11 @@ struct obj *otmp;
 		     /* Picks, axes, pole-weapons, bullwhips */
 		    ((otmp->oclass == WEAPON_CLASS && !(u.mushroompoles && (Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M)) ) && !is_pick(otmp) &&
 		      otyp != SUBMACHINE_GUN &&
+		      otyp != LEAD_UNLOADER &&
 		      otyp != DEMON_CROSSBOW &&
 		      otyp != AUTO_SHOTGUN &&
 		      otyp != ASSAULT_RIFLE &&
+		      otyp != STORM_RIFLE &&
 		      otyp != KALASHNIKOV &&
 		      otyp != TELEPHONE &&
 		      otyp != FRAG_GRENADE &&
@@ -11625,6 +11627,184 @@ boolean knoweverything;
 				pline("Don't bother unless you're looking for a quarterstaff that does extra damage to undead and demons."); break;
 			case RUNED_ROD:
 				pline("Slightly better than a quarterstaff and made of iron, but still a weak two-handed weapon."); break;
+			case PINCER_STAFF:
+				pline("Despite the misleading name, this weapon is a trident. It has relatively good damage versus large monsters."); break;
+			case UNDERWATER_TRIDENT:
+				pline("This damaging trident grants you the ability to breathe underwater when wielded."); break;
+			case SET_OF_CROW_TALONS:
+				pline("A dagger that deals slightly above-average damage. It can be thrown."); break;
+			case BLADE_OF_PITY:
+				pline("Rather damaging for a dagger, especially against large monsters. It can be thrown."); break;
+			case PARAZONIUM:
+				pline("This powerful dagger deals rather good damage against small monsters... for a dagger at least, although other weapons are probably still stronger. It can be thrown."); break;
+			case BRONZE_DAGGER:
+				pline("Just a regular dagger made of bronze. It can be thrown."); break;
+			case FANG_OF_APEP:
+				pline("A weirdly-named knife that does more damage than a regular knife. It can be thrown."); break;
+			case STEEL_KNIFE:
+				pline("For a knife, this weapon deals solid damage. It can be thrown."); break;
+			case CONSECRATED_KNIFE:
+				pline("A very damaging knife that also has a small to-hit bonus. It can be thrown."); break;
+			case DISKOS:
+				pline("This one-handed axe has bonus to-hit and damage if you throw it."); break;
+			case QUATTUORST_AXE:
+				pline("A rather powerful two-handed axe."); break;
+			case MIRRORBLADE:
+				pline("This short sword sounds cool but isn't all that special."); break;
+			case BLADE_OF_MERCY:
+				pline("A short sword. Nothing worth writing home about."); break;
+			case BLADE_OF_GRACE:
+				pline("Yet another plain short sword."); break;
+			case GLADIUS:
+				pline("It may be a bit stronger than a regular short sword, especially against small monsters, but it's also not all that great."); break;
+			case ISAMUSEI:
+				pline("A broad sword made of steel that has good to-hit and is especially powerful against small monsters."); break;
+			case KACHISEI:
+				pline("This broad sword is made of titanium, has a to-hit bonus, and deals particularly good damage against small monsters."); break;
+			case ZANBATO:
+				pline("It sounds similar to the 'zenbuto' polearm from Dungeon Lords, but it's a rather powerful two-handed sword in this game."); break;
+			case UNNATURAL_SWORD:
+				pline("A relatively damaging two-handed sword."); break;
+			case DOUBLE_FORCE_BLADE:
+				pline("Weirdly enough, this weapon counts as a quarterstaff. It deals rather sucky damage especially when considering that you need to wield it with both hands, and the to-hit bonus doesn't make it much better, but it improves the #force extended command when wielded."); break;
+			case COBALT_STAFF:
+				pline("Low damage two-handed quarterstaff."); break;
+			case BAMBOO_STAFF:
+				pline("This relatively damaging quarterstaff would be supposed to specifically target the enemy's fingers but that isn't modelled in-game, so you can just use it as a two-handed weapon to beat up enemies."); break;
+			case BREAKER_STAFF:
+				pline("If you want a quarterstaff that deals solid damage and doesn't break easily, wield this with both hands. It can be applied to bash iron bars."); break;
+			case FEATHER_STAFF:
+				pline("A super-powerful two-handed quarterstaff that deals a lot of damage."); break;
+			case FORCE_WHIP:
+				pline("The damage of this weapon isn't all that crappy, and it has good to-hit and allows you to use the force more powerfully (use the #force command on an enemy)."); break;
+			case CHITIN_WHIP:
+				pline("A rather crappy whip-class weapon."); break;
+			case FORMICAN_WHIP:
+				pline("For a whip, this thing does okay-ish damage."); break;
+			case CLAWED_HAND:
+				pline("Claw-class weapon with solid damage against small monsters and not too terribly bad versus large monsters too."); break;
+			case BESTIAL_CLAW:
+				pline("It's a middling claw-class weapon that may prove useful in melee."); break;
+			case MEASURER_QATAR:
+				pline("Claw that deals quite good damage."); break;
+			case QUHAB:
+				pline("This claw deals rather good damage and also has a to-hit bonus."); break;
+			case SUWAYYAH:
+				pline("Very damaging claw-class weapon, it's actually top notch for a one-hander."); break;
+			case BREAKING_WHEEL:
+				pline("This paddle-class weapon is rather weak, like most weapons of that class, but slightly improves your armor class when wielded. It can be applied to bash iron bars."); break;
+			case CARCOSAN_STING:
+				pline("Well... it's a gun. However, not only does it require specific 'carcosan bolts' to fire, it also deals crap all for damage. Even a sling deals more when using proper ammo."); break;
+			case LEAD_UNLOADER:
+				pline("It's a submachine gun, which can fire SMG bullets at a rate of three per turn."); break;
+			case STORM_RIFLE:
+				pline("Uses assault rifle bullets, has a fire rate of 5 and a range of 12 squares."); break;
+			case CARCOSAN_BOLT:
+				pline("This crappy ammo is used for the carcosan sting. It deals minimal damage."); break;
+			case BRONZE_SMG_BULLET:
+				pline("Can be fired with the SMG to deal damage to enemies."); break;
+			case HOLLOW_POINT_MG_BULLET:
+				pline("Rounds for the heavy machine gun. These are optimized for accuracy, and therefore have better chances to hit the enemy compared to other types of MG ammo."); break;
+			case LOWRATE_ASSAULT_RIFLE_BULLET:
+				pline("You can fire this ammo with an assault rifle, although it deals rather low damage."); break;
+			case COATED_AUTO_SHELL:
+				pline("Shells for the auto shotgun."); break;
+			case LIGHT_ARROW:
+				pline("Very damaging arrows, which can be fired from a bow."); break;
+			case FALCHION:
+				pline("For a one-handed saber, this weapon surely deals a lot of damage, but wielding it will slow you down."); break;
+			case MOUNTAIN_SWORD:
+				pline("A saber that deals 12 points of damage, which is really good for a one-handed weapon, actually."); break;
+			case ORCISH_SCIMITAR:
+				pline("Scimitar that deals low damage."); break;
+			case STINGING_SWORD:
+				pline("This bronze scimitar deals respectable damage, or to put it in numbers, d10 versus everything."); break;
+			case ORCISH_LONG_SWORD:
+				pline("Much weaker than the regular long sword."); break;
+			case FLOWING_SWORD:
+				pline("This long sword does above-average damage."); break;
+			case ULTRA_SWORD:
+				pline("Superpowered long sword, you should probably hold on to this one."); break;
+			case HEAVY_MACE:
+				pline("It doesn't weigh that much more compared to a regular mace, but packs a bigger punch."); break;
+			case EXECUTIONER_S_MACE:
+				pline("This one-handed mace is very strong."); break;
+			case TINMACE:
+				pline("It's a mace that deals more damage than the regular one."); break;
+			case ORCISH_MORNING_STAR:
+				pline("Like most types of orcish gear, this morning star deals rather low damage."); break;
+			case TURNING_STAR:
+				pline("A morning star that has a damage output of 9 versus small and 12 versus large monsters."); break;
+			case HEAVY_WAR_HAMMER:
+				pline("One-handed hammer. While slightly stronger than the regular war hammer, it's not exactly powerful by absolute standards."); break;
+			case SEXY_MARY_JANE:
+				pline("A very cute girl shoe with a strapped buckle and a very lovely, massive block heel. Since it's just a single one, you cannot wear it on your feet; wield it as a weapon instead and smsah the enemy's skull with the wonderful high heel. It can be applied to bash iron bars."); break;
+			case KITTEN_HEEL_PUMP:
+				pline("This ladies' shoe has a cute, pointy heel. Wield it as a weapon and poke holes into monsters. It works best against small ones."); break;
+			case TRIPLE_HEADED_FLAIL:
+				pline("A flail-class weapon that deals good damage versus small monsters and has +3 to-hit built in."); break;
+			case SPIKED_CHAIN:
+				pline("A flail that isn't very strong."); break;
+			case FOOTBOW:
+				pline("This bow is a bit ligther than comparable ones, but has the same ability to fire arrows at enemies (put the arrows in your quiver, then fire away while the bow is wielded as a weapon)."); break;
+			case MASTER_KNUCKLES:
+				pline("Uses the bare-handed combat skill to deal d10 damage to enemies."); break;
+			case SHELL_CLUB:
+				pline("A crappy club-class weapon."); break;
+			case CUDGEL:
+				pline("It's just a differently-named club made of bamboo. Nothing special."); break;
+			case LIGHT_CLUB:
+				pline("Deals even less damage than a regular club, but weighs a bit less."); break;
+			case STEEL_CLUB:
+				pline("Looking for a one-handed club that deals non-sucky damage? You might just have found one."); break;
+			case HEAVENLY_BALL:
+				pline("This orb-class weapon deals a lot of damage... for an orb, at least. It's still less than a regular long sword, but like all orbs, it has the special ability to sometimes drain HP or Pw from targets to fill up yours."); break;
+			case DRAMA_ORB:
+				pline("Moderately damaging orb that can transfer HP or Pw from enemies to you sometimes."); break;
+			case MARKET_GRINDER:
+				pline("Very heavy, but can hit several enemies at once, both when bashing with it in melee and applying it at a distance of two squares."); break;
+			case GRAND_GRINDER:
+				pline("A grinder that deals quite some damage indeed. You can use it in melee to bash enemies, or apply it at a distance of two squares; every time you hit something, it may also damage some of the adjacent enemies."); break;
+			case SHICKSTAKE:
+				pline("A sticky two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case PATINA_BAR:
+				pline("A green two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case LOCHABER_AXE:
+				pline("A metallic two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case TOP_POLE:
+				pline("A top-notch two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case SVAERDSTAV:
+				pline("A swedish two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case STANGOEKSE:
+				pline("A danish two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case COBALT_SPEAR:
+				pline("This spear is made of cobalt. It can be thrown."); break;
+			case CHEAP_SPEAR:
+				pline("Rather weak weapon. It can be thrown."); break;
+			case PUNCTURING_JAVELIN:
+				pline("Deals d12 damage. It can be thrown."); break;
+			case UNDERWORLD_JAVELIN:
+				pline("It's a pretty good javelin-class weapon. It can be thrown."); break;
+			case TRANSPARENCE_THROWER:
+				pline("Very high damage output. It can be thrown."); break;
+			case AIRSTRIKE_PIKE:
+				pline("A lance, which can be applied at a range of two squares where it deals solid damage. If you use it in melee, you need to be riding or it deals crap all for damage, but if you are riding, it can randomly joust enemies to deal extra damage, with an annoying risk of breakage."); break;
+			case BAGGY_SLING:
+				pline("Wield it to fire rocks, gems and gray stones at enemies. While you're wielding it, you can also carry sligthly more than usual."); break;
+			case LIGHT_CROSSBOW:
+				pline("A crossbow that has a very slow rate of fire and can shoot crossbow bolts over a range of 10 squares, with the big advantage that it can be wielded in one hand."); break;
+			case SPIKY_BOLT:
+				pline("This crossbow bolt deals quite good damage."); break;
+			case HARDENED_BOLT:
+				pline("Very powerful, high-damage crossbow ammunition."); break;
+			case LOWLY_DART:
+				pline("You can throw these darts at enemies for low damage."); break;
+			case WOOD_DART:
+				pline("A dart, meant to be thrown, although it deals less damage than a regular one."); break;
+			case LIGHT_STAR:
+				pline("This shuriken-class weapon can be thrown and deals just a little bit more damage than a regular shuriken but lacks the to-hit bonus."); break;
+			case ALU_BOOMERANG:
+				pline("Can be thrown. If you know how its flight pattern works, it might allow you to hit monsters that would be out of range for other ranged weapons, and there's a chance that it returns to your hand. Bashing with it is ineffective and can result in the boomerang breaking."); break;
 			case VACUUM_STAFF:
 				pline("Two-handed quarterstaff with good damage output, especially against small monsters, but it also shrouds you in a magic vacuum that makes your spells less effective."); break;
 			case STAR_ROD:
@@ -12024,7 +12204,7 @@ boolean knoweverything;
 			case NINJA_STAR:
 				pline("A highly powerful shuriken that you can multishot rapidly."); break;
 			case JUMPING_FLAMER:
-				pline("Shuriken class. It can occasionally burn the target inventory and has a hell of a lot of to-hit. But no matter how skilled you are and how much multishot bonus you have, you can only throw one per turn, and will be paralyzed for 3 turns if you do!"); break;
+				pline("Shuriken class. It can occasionally burn the target inventory and has a hell of a lot of to-hit. But no matter how skilled you are and how much multishot bonus you have, you can only throw one per turn, and will be unable to use any ranged weapon for 3 turns after you've fired!"); break;
 			case CUBIC_STAR:
 				pline("Using these shuriken as a thrown weapon may prove effective against some targets."); break;
 			case MYSTERY_SHURIKEN:

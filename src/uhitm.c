@@ -2335,7 +2335,7 @@ int dieroll;
 		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
 
 		    if (!thrown && (obj == uwep || obj == uswapwep) && 
-				(obj->otyp == BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && (rnl(4) != 3) ) {
+				(obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && (rnl(4) != 3) ) {
 			boolean more_than_1 = (obj->quan > 1L);
 
 			pline("As you hit %s, %s%s %s breaks into splinters.",
@@ -2672,7 +2672,7 @@ int dieroll;
 				if (obj->otyp == AMBUSH_QATAR) tmp += rnd(10);
 			}
 
-			if (obj && (obj->otyp == BRASS_KNUCKLES || obj->otyp == SUPER_KNUCKLES || obj->otyp == ULTRA_KNUCKLES || obj->otyp == ELITE_KNUCKLES || obj->otyp == POWERFIST || obj->otyp == SATURNITE_FIST || obj->otyp == LASERFIST) && tech_inuse(T_JIU_JITSU)) {
+			if (obj && (obj->otyp == BRASS_KNUCKLES || obj->otyp == SUPER_KNUCKLES || obj->otyp == ULTRA_KNUCKLES || obj->otyp == MASTER_KNUCKLES || obj->otyp == ELITE_KNUCKLES || obj->otyp == POWERFIST || obj->otyp == SATURNITE_FIST || obj->otyp == LASERFIST) && tech_inuse(T_JIU_JITSU)) {
 				int jiuextradmg = 0;
 				if (find_mac(mon) <= -5) jiuextradmg += 2;
 				if (find_mac(mon) <= -10) jiuextradmg += 2;
@@ -2976,6 +2976,7 @@ int dieroll;
 				if ((obj->otyp == ATLATL) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == SNIPESLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == METAL_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
+				if ((obj->otyp == BAGGY_SLING) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == SHOVEL) && tech_inuse(T_FLURRY)) tmp += 2;
 				if ((obj->otyp == CATAPULT) && tech_inuse(T_FLURRY)) tmp += 5;
 				tmp++;
@@ -3030,6 +3031,9 @@ int dieroll;
 		    }
 
 			if (thrown && obj && obj->otyp == LASER_FLYAXE && obj->lamplit) tmp += 2;
+			if (thrown && obj && obj->otyp == DISKOS) {
+				tmp += 5;
+			}
 
 			if (thrown && obj && obj->otyp == HEAVY_SPEAR) {
 				if (tmp > 0) tmp *= 2;
@@ -10379,11 +10383,13 @@ bladeangerdone2:
 				if (uwep && ((objects[uwep->otyp].oc_skill == P_ORB) || (uwep->oartifact == ART_KHALIM_S_FEMUR)) ) {
 					int suckingchance = 12;
 					if (uwep && uwep->otyp == JARED_STONE) suckingchance = 11;
+					if (uwep && uwep->otyp == DRAMA_ORB) suckingchance = 11;
 					if (uwep && uwep->otyp == CIGARETTE) suckingchance = 11;
 					if (uwep && uwep->otyp == ELECTRIC_CIGARETTE) suckingchance = 10;
 					if (uwep && uwep->otyp == CIGAR) suckingchance = 10;
 					if (uwep && uwep->otyp == LIGHTBULB) suckingchance = 10;
 					if (uwep && uwep->otyp == HEATH_BALL) suckingchance = 9;
+					if (uwep && uwep->otyp == HEAVENLY_BALL) suckingchance = 8;
 					if (uwep && uwep->otyp == DIMENSIONAL_SHARD) suckingchance = 7;
 					if (uwep && uwep->otyp == CIGARETTE && !rn2(250)) {
 						You("inhale some cancerogenous smoke!");

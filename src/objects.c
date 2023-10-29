@@ -814,7 +814,7 @@ WEAPON("impact staff", (char *)0,
 	1, 0, 1, 50, 16,  5,  13,  13, 1, B,   P_QUARTERSTAFF, MT_TAR, CLR_BLACK, 15),
 WEAPON("massive staff", (char *)0,
 	1, 0, 1, 50, 500, 80, 16, 16, 0, B,   P_QUARTERSTAFF, MT_LEAD, CLR_GRAY, 30),
-WEAPON("double force-blade", "double-bladed weapon", /* úse the force when wielded */
+WEAPON("double force-blade", "double-bladed weapon", /* use the force when wielded */
 	0, 1, 1, 5, 16,  50,  9,  6, 2, S,   P_QUARTERSTAFF, MT_MESH, CLR_RED, 10),
 WEAPON("cobalt staff", (char *)0,
 	1, 0, 1, 20, 16, 12, 10, 10, 0, B,   P_QUARTERSTAFF, MT_COBALT, CLR_BLUE, 2),
