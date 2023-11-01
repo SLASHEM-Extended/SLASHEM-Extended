@@ -272,7 +272,11 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_MEASURE_SKILLING) multishot++;
 	    if (launcher && launcher->oartifact == ART_SKILLED_THROUGHLOAD) multishot++;
 	    if (launcher && launcher->oartifact == ART_LINCOLN_S_REPEATER) multishot++;
+	    if (launcher && launcher->oartifact == ART_AR_ARMALYTE) multishot++;
 	    if (launcher && launcher->oartifact == ART_LOUD_SHITTER) multishot += rn1(2, 2);
+	    if (launcher && launcher->oartifact == ART_CLACKINDRA) multishot += 3;
+	    if (launcher && launcher->oartifact == ART_UZ_I) multishot += rnd(3);
+	    if (launcher && obj && obj->oartifact == ART_FUCK_THE_SERVER) multishot += 2;
 
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
@@ -550,6 +554,10 @@ int thrown;
 		if (multishot < 1) multishot = 1;
 	    }
 	    if (launcher && launcher->otyp == SHOVEL) {
+		multishot--;
+		if (multishot < 1) multishot = 1;
+	    }
+	    if (launcher && launcher->oartifact == ART_OZYZEVPDWTVP) {
 		multishot--;
 		if (multishot < 1) multishot = 1;
 	    }
@@ -2150,6 +2158,9 @@ int thrown;
 		if (obj && obj->oartifact == ART_WAY_TOO_LONG) range += 10;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SAY__CHESS_) range += 2;
 		if (obj && obj->oartifact == ART_PEWWWWWWW) range += 15;
+		if (obj && obj->oartifact == ART_WIUNEW) range += 3;
+		if (obj && obj->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 4;
+		if (uwep && uwep->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 3;
 
 		if (!PlayerCannotUseSkills && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == KLIUSLING && launcher->lamplit) {
 			if (u.kliuskill >= 20) range++;
@@ -2198,6 +2209,9 @@ int thrown;
 		if (Race_if(PM_GERTEUT) && range > 5) range = 5;
 		if (Race_if(PM_PERVERT) && range > 2) range = 2;
 		if (launcher && launcher->otyp == SHOVEL && range > 4) range = 4;
+		if (launcher && launcher->oartifact == ART_OZYZEVPDWTVP) range -= 2;
+
+		if (range < 1) range = 1; /* fail safe */
 
 		if (Is_airlevel(&u.uz) || Levitation) {
 		    /* action, reaction... */
@@ -2726,6 +2740,10 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_XUANLONG) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_XUANLONG) tmp -= 5;
 	if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
+	if (uwep && uwep->oartifact == ART_UZ_I) tmp -= rnd(10);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UZ_I) tmp -= rnd(10);
+	if (uwep && uwep->oartifact == ART_AR_ARMALYTE) tmp -= 2;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AR_ARMALYTE) tmp -= 2;
 
 	if (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) tmp -= 5;
 
@@ -3560,6 +3578,9 @@ evasionchancedone:
 			broken = 0;
 
 		    if (obj->oartifact == ART_USE_A_LOT) {
+			if (rn2(10)) broken = 0;
+		    }
+		    if (obj->oartifact == ART_WIUNEW) {
 			if (rn2(10)) broken = 0;
 		    }
 		    if (obj->oartifact == ART_BE_CONSERVED) {

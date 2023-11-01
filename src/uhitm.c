@@ -945,6 +945,10 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_HOW_IS_THE_CAR_ROWED) tmp -= 6;
 	if (uwep && uwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
+	if (uwep && uwep->oartifact == ART_UZ_I) tmp -= rnd(10);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UZ_I) tmp -= rnd(10);
+	if (uwep && uwep->oartifact == ART_FOR_THE_REAL_GAMING_EXPERI) tmp -= 5;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOR_THE_REAL_GAMING_EXPERI) tmp -= 5;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -2260,7 +2264,9 @@ int dieroll;
 			if (obj && obj->oartifact == ART_EXCALISHIELD && tmp > 0) {
 				tmp += 6;
 			}
-
+			if (obj && obj->oartifact == ART_OZYZEVPDWTVP && tmp > 0) {
+				tmp += rn1(7, 4);
+			}
 			if (obj && obj->oartifact == ART_BASHCRASH && tmp > 0) {
 				tmp *= 2;
 			}
@@ -3723,6 +3729,11 @@ int dieroll;
 		}
 	}
 
+	if (obj && obj->oartifact == ART_KABOOOOOM_ && pieks && mon && isok(mon->mx, mon->my) ) {
+		explode(mon->mx, mon->my, ZT_SPELL(ZT_FIRE), d(2,6), WEAPON_CLASS, EXPL_FIERY);
+		if (DEADMONSTER(mon)) return FALSE;
+	}
+
 	if (thrown && launcher && obj && ammo_and_launcher(obj, launcher) && !gunused && u.uswallow) {
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
@@ -3957,6 +3968,18 @@ int dieroll;
 			}
 		}
 
+		if (obj && obj->oartifact == ART_RESOLE_THE_WOMAN_S_ASS) {
+			if (mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_QUIET || mon->data->msound == MS_FART_LOUD) {
+				if (mon->butthurt < 19) {
+					mon->butthurt++;
+					pline("%s's butt is hurt!", Monnam(mon));
+				}
+				if (mon->butthurt >= 19) {
+					pline("%s's butt is severely hurt! You should use the #force to finish %s off!", Monnam(mon), mhim(mon));
+				}
+			}
+		}
+
 		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
 
 			if (!rn2(20)) {
@@ -4100,7 +4123,10 @@ int dieroll;
 		if (wep && wep->oartifact == ART_VIOLENT_SKULL_SWORD && thrown) tmp += 10;
 
 		if (wep && wep->oartifact == ART_WU_TSCHI_ && thrown) tmp += 10;
+		if (wep && wep->oartifact == ART_STRUCK_ON && thrown) tmp += 10;
 		if (wep && wep->oartifact == ART_WUMMP && thrown) tmp += 12;
+		if (wep && wep->oartifact == ART_DOHLOW && thrown) tmp += 12;
+		if (wep && wep->oartifact == ART_OLYMPIDE && thrown) tmp += 8;
 		if (wep && wep->oartifact == ART_GOLDSTRUCK && thrown) tmp += 10;
 
 		if (uwep && uwep->oartifact == ART_HYPER_INTELLIGENCE && wep && (objects[wep->otyp].w_ammotyp == WP_SHELL) ) {
@@ -4110,6 +4136,121 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_AY_PEE_RIFLE && wep && (objects[wep->otyp].w_ammotyp == WP_BULLET_RIFLE) ) {
 			hurtmarmor(mon, AD_CORR);
 		}
+
+		if (obj && obj->oartifact == ART_SHREDSHOT && uwep && ammo_and_launcher(obj, uwep)) {
+
+			int astries = 200;
+			int diceroll;
+			int shredtype;
+			struct obj *otmpS;
+armorsmashrepeat:
+
+			diceroll = rnd(5);
+			shredtype = rnd(2);
+
+			switch (diceroll) {
+				case 1:
+					if (mon->misc_worn_check & W_ARMS) {
+					    otmpS = which_armor(mon, W_ARMS);
+
+					    if (otmpS) {
+						if (shredtype == 1 && otmpS->oeroded < MAX_ERODE) otmpS->oeroded++;
+						else if (shredtype == 2 && otmpS->oeroded2 < MAX_ERODE) otmpS->oeroded2++;
+						else if (otmpS->spe > -20) otmpS->spe--;
+					      pline("%s %s is damaged!", s_suffix(Monnam(mon)), distant_name(otmpS, xname));
+					    }
+
+					    goto armorsmashdone;
+					}
+					break;
+				case 2:
+					if (mon->misc_worn_check & W_ARMG) {
+					    otmpS = which_armor(mon, W_ARMG);
+
+					    if (otmpS) {
+						if (shredtype == 1 && otmpS->oeroded < MAX_ERODE) otmpS->oeroded++;
+						else if (shredtype == 2 && otmpS->oeroded2 < MAX_ERODE) otmpS->oeroded2++;
+						else if (otmpS->spe > -20) otmpS->spe--;
+					      pline("%s %s is damaged!", s_suffix(Monnam(mon)), distant_name(otmpS, xname));
+					    }
+
+					    goto armorsmashdone;
+					}
+					break;
+				case 3:
+					if (mon->misc_worn_check & W_ARMF) {
+					    otmpS = which_armor(mon, W_ARMF);
+
+					    if (otmpS) {
+						if (shredtype == 1 && otmpS->oeroded < MAX_ERODE) otmpS->oeroded++;
+						else if (shredtype == 2 && otmpS->oeroded2 < MAX_ERODE) otmpS->oeroded2++;
+						else if (otmpS->spe > -20) otmpS->spe--;
+					      pline("%s %s is damaged!", s_suffix(Monnam(mon)), distant_name(otmpS, xname));
+					    }
+
+					    goto armorsmashdone;
+					}
+					break;
+				case 4:
+					if (mon->misc_worn_check & W_ARMH) {
+					    otmpS = which_armor(mon, W_ARMH);
+
+					    if (otmpS) {
+						if (shredtype == 1 && otmpS->oeroded < MAX_ERODE) otmpS->oeroded++;
+						else if (shredtype == 2 && otmpS->oeroded2 < MAX_ERODE) otmpS->oeroded2++;
+						else if (otmpS->spe > -20) otmpS->spe--;
+					      pline("%s %s is damaged!", s_suffix(Monnam(mon)), distant_name(otmpS, xname));
+					    }
+
+					    goto armorsmashdone;
+					}
+					break;
+				case 5:
+					if (mon->misc_worn_check & W_ARMC) {
+					    otmpS = which_armor(mon, W_ARMC);
+
+					    if (otmpS) {
+						if (shredtype == 1 && otmpS->oeroded < MAX_ERODE) otmpS->oeroded++;
+						else if (shredtype == 2 && otmpS->oeroded2 < MAX_ERODE) otmpS->oeroded2++;
+						else if (otmpS->spe > -20) otmpS->spe--;
+					      pline("%s %s is damaged!", s_suffix(Monnam(mon)), distant_name(otmpS, xname));
+					    }
+
+					    goto armorsmashdone;
+					} else if (mon->misc_worn_check & W_ARM) {
+					    otmpS = which_armor(mon, W_ARM);
+
+					    if (otmpS) {
+						if (shredtype == 1 && otmpS->oeroded < MAX_ERODE) otmpS->oeroded++;
+						else if (shredtype == 2 && otmpS->oeroded2 < MAX_ERODE) otmpS->oeroded2++;
+						else if (otmpS->spe > -20) otmpS->spe--;
+					      pline("%s %s is damaged!", s_suffix(Monnam(mon)), distant_name(otmpS, xname));
+					    }
+
+					    goto armorsmashdone;
+					} else if (mon->misc_worn_check & W_ARMU) {
+					    otmpS = which_armor(mon, W_ARMU);
+
+					    if (otmpS) {
+						if (shredtype == 1 && otmpS->oeroded < MAX_ERODE) otmpS->oeroded++;
+						else if (shredtype == 2 && otmpS->oeroded2 < MAX_ERODE) otmpS->oeroded2++;
+						else if (otmpS->spe > -20) otmpS->spe--;
+					      pline("%s %s is damaged!", s_suffix(Monnam(mon)), distant_name(otmpS, xname));
+					    }
+
+					    goto armorsmashdone;
+					}
+					break;
+			}
+
+			if (astries > 0) {
+				astries--;
+				goto armorsmashrepeat;
+			} else pline("%s doesn't seem to be wearing any armor that can be destroyed...", Monnam(mon));
+
+		}
+
+armorsmashdone:
 
 		if (wep && wep->otyp == JUMPING_FLAMER) {
 			if (!rn2(33)) (burnarmor(mon));
@@ -4162,6 +4303,12 @@ int dieroll;
 				if (mon->mhp > 1) mon->mhp /= 2;
 				pline("%s is greatly weakened!", Monnam(mon));
 			}
+		}
+
+		if (wep && wep->oartifact == ART_NO_PRISONERS_TAKEN) {
+			if (mon->mhp < (mon->mhpmax * 3 / 4)) tmp += 6;
+			if (mon->mhp < (mon->mhpmax / 2)) tmp += 6;
+			if (mon->mhp < (mon->mhpmax / 4)) tmp += 6;
 		}
 
 		if (wep && wep->oartifact == ART_HACKNSLASH) {
@@ -4218,6 +4365,31 @@ int dieroll;
 		if (wep && wep->oartifact == ART_GAE_BUIDHE) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_SCHWIUQUIEK) {
+			mon->bleedout += 8;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+		if (wep && wep->oartifact == ART_MEAT_SCRAPER) {
+			mon->bleedout += 6;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+		if (wep && wep->oartifact == ART_LONG_STRALE) {
+			mon->bleedout += 7;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_CRABBOMAT) {
+			mon->bleedout += rnd(15);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_INCORRECT_HEALING_ADJUST && !rn2(10)) {
+			mon->mhp += 50;
+			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+			healup(50, 0, FALSE, FALSE);
+			pline("Dingdoeng! Both you and %s were healed.", mon_nam(mon));
 		}
 
 		if (wep && wep->oartifact == ART_AINTGETIN && !rn2(3)) {
@@ -4314,6 +4486,19 @@ melatechoice:
 			}
 		}
 
+		if (obj && obj->oartifact == ART_DONK_O_BONK) {
+			reducesanity(1);
+			decontaminate(1);
+		}
+
+		if (thrown && obj && obj->oartifact == ART_BLINKBLINKBLINK__BLINKBLIN) {
+			incr_itimeout(&HInvis, 50);
+		}
+
+		if (thrown && obj && obj->oartifact == ART_FJELL_BARB) {
+			if (isok(mon->mx, mon->my)) levl[mon->mx][mon->my].lit = TRUE;
+		}
+
 		if (thrown && obj && obj->oartifact == ART_MAP_END) {
 			register int mapendx, mapendy;
 			int dirx, diry;
@@ -4360,6 +4545,19 @@ melatechoice:
 			if (mon->female) mon->female = 0;
 			else mon->female = 1;
 			pline("%s undergoes gender surgery!", Monnam(mon));
+		}
+
+		if (obj && obj->oartifact == ART_CHRISMISS && !PlayerCannotUseSkills) {
+			switch (P_SKILL(P_VAAPAD)) {
+				case P_BASIC: tmp += 4; break;
+				case P_SKILLED: tmp += 8; break;
+				case P_EXPERT: tmp += 12; break;
+				case P_MASTER: tmp += 16; break;
+				case P_GRAND_MASTER: tmp += 20; break;
+				case P_SUPREME_MASTER: tmp += 24; break;
+				default: break;
+			}
+
 		}
 
 		if (thrown && obj && (obj->oartifact == ART_PAUERED_BY_THE_CAP)) {
@@ -5041,6 +5239,13 @@ melatechoice:
 	}
 
 	if (FemtrapActiveMagdalena && humanoid(mon->data) && is_female(mon->data) && tmp > 1) tmp /= 2;
+
+	if (obj && obj->oartifact == ART_RHALALALALALAAAAR && (mon->mhp > tmp) ) {
+		if ((mon->mhp - tmp) < (mon->mhpmax / 10)) {
+			tmp += 10000; /* instant death for the monster */
+			pline("Rhalalalalalaaaar!");
+		}
+	}
 
 	if (!already_killed) mon->mhp -= tmp;
 	/* adjustments might have made tmp become less than what
@@ -10269,6 +10474,10 @@ use_weapon:
 					pline("Your weapon repairs itself a bit!");
 				}
 
+				if (uwep && uwep->oartifact == ART_KRASCHDE_GLOMAN && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+					mon->healblock += 100;
+				}
+
 				if (uwep && uwep->oartifact == ART_GEB_ME_ALL_YOUR_MONEY && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 					monflee(mon, rnd(10), FALSE, FALSE);
 					pline("%s looks scared.", Monnam(mon));
@@ -10471,6 +10680,12 @@ bladeangerdone2:
 
 				if (uchain && uchain->oartifact == ART_STREEEEEAM && !rn2(20) && (u.dx || u.dy) && !u.dz) {
 					buzz(20, 6, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
+				if (uwep && uwep->oartifact == ART_SKYSTORMER && !rn2(10) && (u.dx || u.dy) && !u.dz) {
+					buzz(22, rn1(10, 10), u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;
 					if (DEADMONSTER(mon)) return FALSE;
 				}

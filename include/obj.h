@@ -223,6 +223,9 @@ struct obj {
 			 (otmp)->otyp == SPINED_BALL || \
 			 (otmp)->otyp == CHAIN_AND_SICKLE || \
 			 (otmp)->oartifact == ART_WILD_OAR || \
+			 (otmp)->oartifact == ART_WOETSCHERSMAG || \
+			 (otmp)->oartifact == ART_STRECKOUT_AND_PULL || \
+			 (otmp)->oartifact == ART_HEAVY_POLE_SKILL || \
 			 objects[(otmp)->otyp].oc_skill == P_LANCE))
 #define is_spear(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill >= P_SPEAR && \
@@ -264,7 +267,7 @@ struct obj {
 #define is_pick(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			 (otmp)->oclass == TOOL_CLASS) && \
 			 (objects[(otmp)->otyp].oc_skill == P_PICK_AXE || (otmp)->otyp == SHOVEL) )
-#define is_antibar(otmp)	((otmp)->otyp == ELECTRIC_SWORD || (otmp)->otyp == GOLDEN_SABER || (otmp)->otyp == BLOCK_HEELED_SANDAL || (otmp)->otyp == PLATINUM_SABER  || (otmp)->otyp == METAL_CLUB  || (otmp)->otyp == RADIOACTIVE_DAGGER  || (otmp)->otyp == ETERNIUM_BLADE  || (otmp)->otyp == DEVIL_STAR  || (otmp)->otyp == SEXY_MARY_JANE  || (otmp)->otyp == OBSID  || (otmp)->otyp == IMPACT_STAFF  || (otmp)->otyp == SOFT_LADY_SHOE  || (otmp)->otyp == INKA_BOOT  || (otmp)->otyp == BRIDGE_MUZZLE  || (otmp)->otyp == MALLET  || (otmp)->otyp == YATAGAN  || (otmp)->otyp == GROM_AXE  || (otmp)->otyp == HONOR_KATANA  || (otmp)->otyp == WEDGED_LITTLE_GIRL_SANDAL  || (otmp)->otyp == HUGGING_BOOT || (otmp)->otyp == DIAMOND_SMASHER  || (otmp)->otyp == BLOCK_HEELED_COMBAT_BOOT  || (otmp)->otyp == HIGH_HEELED_SANDAL  || (otmp)->otyp == SEXY_LEATHER_PUMP  || (otmp)->otyp == TORPEDO  || (otmp)->otyp == HOMING_TORPEDO  || (otmp)->otyp == STEEL_WHIP  )
+#define is_antibar(otmp)	((otmp)->otyp == ELECTRIC_SWORD || (otmp)->otyp == GOLDEN_SABER || (otmp)->otyp == BLOCK_HEELED_SANDAL || (otmp)->otyp == PLATINUM_SABER  || (otmp)->otyp == METAL_CLUB  || (otmp)->otyp == RADIOACTIVE_DAGGER  || (otmp)->otyp == ETERNIUM_BLADE  || (otmp)->otyp == DEVIL_STAR  || (otmp)->otyp == SEXY_MARY_JANE  || (otmp)->otyp == OBSID  || (otmp)->otyp == IMPACT_STAFF  || (otmp)->otyp == SOFT_LADY_SHOE  || (otmp)->otyp == INKA_BOOT  || (otmp)->otyp == BRIDGE_MUZZLE  || (otmp)->otyp == MALLET  || (otmp)->otyp == BREAKER_STAFF  || (otmp)->otyp == BREAKING_WHEEL  || (otmp)->otyp == YATAGAN  || (otmp)->otyp == GROM_AXE  || (otmp)->otyp == HONOR_KATANA  || (otmp)->otyp == WEDGED_LITTLE_GIRL_SANDAL  || (otmp)->otyp == HUGGING_BOOT || (otmp)->otyp == DIAMOND_SMASHER  || (otmp)->otyp == BLOCK_HEELED_COMBAT_BOOT  || (otmp)->otyp == HIGH_HEELED_SANDAL  || (otmp)->otyp == SEXY_LEATHER_PUMP  || (otmp)->otyp == TORPEDO  || (otmp)->otyp == HOMING_TORPEDO  || (otmp)->otyp == STEEL_WHIP  )
 
 #define ammo_and_launcher(otmp,ltmp) \
 			(is_ammo(otmp) && (ltmp) && \

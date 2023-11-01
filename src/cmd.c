@@ -7390,6 +7390,7 @@ boolean guaranteed;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
+		if (uwep && uwep->oartifact == ART_THOSE_LAZY_PROGRAMMERS) shieldblockrate += 10;
 		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));
@@ -12127,6 +12128,7 @@ int final;
 		if (uarms->oartifact == ART_CUTTING_THROUGH) shieldblockrate += 5;
 		if (uarms->oartifact == ART_LITTLE_PROTECTER) shieldblockrate += 5;
 		if (uwep && uwep->oartifact == ART_VEST_REPLACEMENT) shieldblockrate += 10;
+		if (uwep && uwep->oartifact == ART_THOSE_LAZY_PROGRAMMERS) shieldblockrate += 10;
 		if (Race_if(PM_MACTHEIST)) shieldblockrate += 10;
 
 		if (u.holyshield) shieldblockrate += (3 + spell_damage_bonus(SPE_HOLY_SHIELD));

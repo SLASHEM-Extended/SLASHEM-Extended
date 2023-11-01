@@ -168,7 +168,7 @@ does_block(x,y,lev)
 	return 1;
 
     if (lev->typ == CLOUD || lev->typ == BUBBLES || lev->typ == RAINCLOUD || lev->typ == WATER ||
-			(lev->typ == MOAT && Underwater && !Swimming))
+			(lev->typ == MOAT && Underwater && !Swimming && !(uwep && uwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD) ))
 	return 1;
 
     /* Boulders block light. */
@@ -586,7 +586,7 @@ vision_recalc(control)
     else {
 	int has_night_vision = 1;	/* hero has night vision */
 
-	if (Underwater && !Is_waterlevel(&u.uz) && (!Swimming || (uwep && uwep->oartifact == ART_SPACEL_SWIM) ) ) {
+	if (Underwater && !Is_waterlevel(&u.uz) && (!Swimming || (uwep && uwep->oartifact == ART_SPACEL_SWIM) || (uwep && uwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD) ) ) {
 	    /*
 	     * The hero is under water.  Only see surrounding locations if
 	     * they are also underwater.  This overrides night vision but
@@ -594,7 +594,8 @@ vision_recalc(control)
 	     */
 	    has_night_vision = 0;
 
-	    if (Swimming && uwep && uwep->oartifact == ART_SPACEL_SWIM) { /* originally a bug, enabled for artifact --Amy */
+	    if ((Swimming && uwep && uwep->oartifact == ART_SPACEL_SWIM) || (uwep && uwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD)) {
+		/* originally a bug, enabled for artifact --Amy */
 
 		    for (row = 0; row <= ROWNO; row++)
 			for (col = 0; col <= COLNO; col++) {
@@ -683,6 +684,7 @@ vision_recalc(control)
 	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
 	if (uwep && uwep->oartifact == ART_IS_EVERYWHERE && uwep->lamplit) efflightradius += 4;
 	if (uwep && uwep->oartifact == ART_KRART_T_T_T_T) efflightradius += 2;
+	if (uwep && uwep->oartifact == ART_KIMYO_NI_HIKARU_SONZAI) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_GIGANTIC_SUN) efflightradius += 3;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_mines(&u.uz)) efflightradius += 2;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_deepmines(&u.uz)) efflightradius += 1;

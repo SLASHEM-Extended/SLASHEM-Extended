@@ -10989,6 +10989,7 @@ int direction;
 
 	if (uwep && uwep->oartifact == ART_SMART_CLEAVER) grindingdamage += 6;
 	if (uwep && uwep->oartifact == ART_DUMBER_CLEAVER) grindingdamage += 6;
+	if (uwep && uwep->oartifact == ART_DISAPPEAR_OFF_THE_MAP) grindingdamage += rnd(12);
 
 	if (grindingdamage > 1) grindingdamage = rnd(grindingdamage);
 

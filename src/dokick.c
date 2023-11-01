@@ -54,6 +54,7 @@ register boolean clumsy;
 	if (flags.female && uwep && uwep->oartifact == ART_KICKSIN_GIRL) dmg += 5;
 	if (uarmf && uarmf->oartifact == ART_FIND_THE_COMBAT_STANCE) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) dmg += 5;
+	if (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE) dmg += 3;
 
 	if (uarmf && uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) dmg += (flags.female ? 7 : 2);
 
@@ -219,6 +220,8 @@ register boolean clumsy;
 
 	if (uwep && uwep->oartifact == ART_PEEPLUE) dmg += 2;
 
+	if (uwep && uwep->oartifact == ART_ON_CLOUD_SEVEN) dmg += 2;
+
 	if (uarmf && uarmf->oartifact == ART_EROTICLAMP && u.ustuck && !u.uswallow && !sticks(youmonst.data)) dmg += 2;
 
 	if (uarmf && uarmf->otyp == FEMININE_PUMPS && uarmf->spe >= 1 && !rn2(2))
@@ -322,6 +325,7 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
@@ -979,7 +983,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -998,6 +1002,7 @@ register xchar x, y;
 	if (uarmf && itemhasappearance(uarmf, APP_COMBAT_BOOTS) ) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
+	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;

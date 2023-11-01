@@ -3012,6 +3012,9 @@ get_flag_description_of_monster_type(struct permonst * ptr, char * description)
 	if (ptr->mflags5 & M5_CHATGPT) {
 		strcat(description, " Origin: ChatGPT.");
 	}
+	if (ptr->mflags5 & M5_CDDA) {
+		strcat(description, " Origin: Cataclysm DDA.");
+	}
 
 	
 	if (polyok(ptr)) {
@@ -29143,6 +29146,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Did the UDTV devteam really not yet fix the problem where taking a sharp turn with a vehicle can cause items to glitch in between vehicle tiles and fall out? Like, would it be so hard to check whether the normal constellation of car tiles has any 'leaks' and if not, just generally return 'FALSE' in the 'item_will_fall_out_of_vehicle()' or whatever it's called function?",
 	"Somehow, you can't eat anything. Seems that you have indigestion.",
 	"Somehow, you can't eat anything. Seems that you have indigestion. Either you fix that, or you'll eventually starve!",
+	"Careful, the lord has noticed your deed.",
+	"Careful, the lord has noticed your deed. Why isn't he spelled with a capital L? Blasphemy!",
+	"Careful, the lord has noticed your deed. This means that your divine anger has increased by one.",
 
 };
 

@@ -28149,6 +28149,8 @@ loopback:
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_LOUD) )) ct += 10;
 		if (ct > 0 && (uwep && uwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
 		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(ptr) )) ct += 10;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(ptr) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && dmgtype(ptr, AD_FEMI) )) ct += 15;
 		if (ct > 0 && (In_minusworld(&u.uz) && (ptr->mlet == S_WORM_TAIL) )) ct += 500;
 		if (ct > 0 && (In_minusworld(&u.uz) && is_randomizedmonster(ptr) )) ct += 500;
@@ -29749,6 +29751,8 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_LOUD) )) num += 10;
 		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
+		if ((uwep && uwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[last]) )) num += 10;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[last]) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[last], AD_FEMI) )) num += 15;
 		if ((In_minusworld(&u.uz) && is_randomizedmonster(&mons[last]) )) num += 500;
 		if ((In_ZAPM(&u.uz) && is_evilpatchmonster(&mons[last]) )) num += 20;
@@ -30981,6 +30985,8 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_LOUD) )) num -= 10;
 		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
+		if ((uwep && uwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[first]) )) num -= 10;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[first]) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[first], AD_FEMI) )) num -= 15;
 		if ((In_minusworld(&u.uz) && is_randomizedmonster(&mons[first]) )) num -= 500;
 		if ((In_ZAPM(&u.uz) && is_evilpatchmonster(&mons[first]) )) num -= 20;
@@ -33033,6 +33039,8 @@ register struct permonst *ptr;
 	if (uarmc && uarmc->oartifact == ART_KATHERINE_S_BEACHWEAR && flags.female && !rn2(10)) return TRUE;
 
 	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
+
+	if (uwep && uwep->oartifact == ART_TANKFRIEND && ptr->mlet == S_ANT && rn2(10)) return TRUE;
 
 	if (uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && rn2(2) && (ptr->mlet == S_DOG || ptr->mlet == S_FELINE)) return TRUE;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && rn2(2) && is_animal(ptr) ) return TRUE;

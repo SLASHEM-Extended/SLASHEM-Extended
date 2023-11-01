@@ -1138,7 +1138,7 @@ int mode;
 
 	} else if (tmpr->typ == MOUNTAIN) {
 		if (mode != DO_MOVE) return FALSE;
-		if (mode == DO_MOVE && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !Passes_walls && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER)) {
+		if (mode == DO_MOVE && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_NOW_GO_AND_CLIMB) && !Passes_walls && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER)) {
 			int climbingchance = 100;
 			if (uamul && uamul->otyp == AMULET_OF_CLIMBING) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (ublindf && ublindf->otyp == CLIMBING_SET) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
@@ -4497,8 +4497,25 @@ maybe_wail()
 	else if (PlayerHearsSoundEffects) pline(issoviet ? "Nadeyus', vy prodolzhat' deystvovat' tak glupo, potomu chto togda vy budete umirat' i pridetsya svernut' novyy kharakter. Eto budet sluzhit' vam pravil'no, vy plokhoy igrok!" : "Wueueueue-oooooooh!");
     }
 
-    if (u.uhp == 1) u.cnd_bansheecount++;
-    else u.cnd_cwnannwncount++;
+    if (u.uhp == 1) {
+	u.cnd_bansheecount++;
+	if (autismweaponcheck(ART_P_WING)) {
+		if (uwep && uwep->spe > -10) {
+			uwep->spe = -10;
+			pline("Powerup lost.");
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_P_WING && uswapwep->spe > -10) uswapwep->spe = -10;
+	}
+    } else {
+	u.cnd_cwnannwncount++;
+	if (autismweaponcheck(ART_P_WING)) {
+		if (uwep) {
+			curse(uwep);
+			pline("Powerup degraded.");
+		}
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_P_WING) curse(uswapwep);
+	}
+    }
 
     if (practicantterror && ((u.cnd_bansheecount + u.cnd_cwnannwncount) >= 5)) {
 	if (!u.pract_cwnannwn) {
@@ -5285,6 +5302,7 @@ max_carr_cap()
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) maxcarrcap += 1000;
 	if (uwep && uwep->otyp == BAGGY_SLING) maxcarrcap += 100;
+	if (uwep && uwep->oartifact == ART_USEFUL_BINDLE) maxcarrcap += 1000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) maxcarrcap += 1000;
 	if (RngeCarryingBoost) maxcarrcap += 1000;
 	if (u.xtralevelmult > 1) maxcarrcap += ((u.xtralevelmult - 1) * 10);
@@ -5344,6 +5362,7 @@ weight_cap()
 	if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 50);
 	if (uarmc && uarmc->oartifact == ART_OH_MY_GOD_SPANDEX) carrcap += 200;
 	if (uwep && uwep->otyp == BAGGY_SLING) carrcap += 250;
+	if (uwep && uwep->oartifact == ART_USEFUL_BINDLE) carrcap += 1000;
 
 	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 

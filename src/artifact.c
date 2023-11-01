@@ -37,7 +37,7 @@ STATIC_DCL int spec_applies(const struct artifact *,struct monst *);
 STATIC_DCL int spec_applies_number(const struct artifact *,struct monst *, struct obj *);
 STATIC_DCL int arti_invoke(struct obj*);
 STATIC_DCL boolean Mb_hit(struct monst *magr,struct monst *mdef,
-			  struct obj *,int *,int,BOOLEAN_P,char *);
+			  struct obj *,int *,int,BOOLEAN_P,char *, int);
 
 /* The amount added to the victim's total hit points to insure that the
    victim will be killed even after damage bonus/penalty adjustments.
@@ -2062,6 +2062,10 @@ register boolean mod;
 			otmp->quan += rn1(6,6);
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_WIUNEW) {
+			otmp->quan += rn1(4,4);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_HEAP_FROM_THE_YARD) {
 			otmp->quan += rn1(500,500);
 			otmp->owt = weight(otmp);
@@ -2072,6 +2076,10 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_LITTLE_BOY) {
 			otmp->quan += rnz(10);
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_DOHLOW) {
+			otmp->quan += 4;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_TROPICAL_WOOD_SELECTION) {
@@ -2107,6 +2115,10 @@ register boolean mod;
 			otmp->quan += 5;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_WELLDER_GRANT) {
+			otmp->quan += rn1(3, 2);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_KSSCHL__KSSCHL_) {
 			otmp->quan += 400;
 			otmp->owt = weight(otmp);
@@ -2129,6 +2141,10 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_LARGE_MAGAZINE) {
 			otmp->quan *= 3;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_HUGESTOCK) {
+			otmp->quan *= 5;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_FLIUFLIUFLIUUUUUUU_) {
@@ -2706,6 +2722,9 @@ struct monst *mtmp;
 			    retval = FALSE;
 			break;
 		case AD_MAGM:
+			if (yours ? Antimagic : resists_magm(mtmp))
+			    retval = FALSE;
+			break;
 		case AD_STUN:
 			if (yours ? Antimagic : (rn2(100) < ptr->mr))
 			    retval = FALSE;
@@ -2809,6 +2828,9 @@ struct obj *otmp;
 			    retval = FALSE;
 			break;
 		case AD_MAGM:
+			if (yours ? Antimagic : resists_magm(mtmp))
+			    retval = FALSE;
+			break;
 		case AD_STUN:
 			if (yours ? Antimagic : (rn2(100) < ptr->mr))
 			    retval = FALSE;
@@ -2861,9 +2883,13 @@ struct monst *mon;
 		switch (otmp->oartifact) {
 
 			case ART_BIDETHANDER:
+			case ART_MEAT_SCRAPER:
 			case ART_DAMNBLAST:
+			case ART_SUPAHIT:
+			case ART_NADJA_S_BROKEN_NAIL:
 			case ART_FAMOUS_LANCE:
 			case ART_EMERALD_SWORD:
+			case ART_NAMED_AFTER_ITSELF:
 			case ART_PULVERIZE_EM:
 			case ART_ROOMMATE_S_SPECIAL_IDEA:
 			case ART_MR__AHLBLOW_S_SIGNAGE:
@@ -2871,7 +2897,7 @@ struct monst *mon;
 			case ART_MARINE_THREAT_NEUTERED:
 			case ART_WILD_HEAVY_SWINGS:
 			case ART_COMPLETELY_OFF:
-				return 0;
+				return 0; /* no to-hit bonus */
 
 			default: break;
 		}
@@ -2899,16 +2925,27 @@ int tmp;
 			case ART_M__M__M_:
 			case ART_MUHISH:
 			case ART_FLIUMILL:
+			case ART_ZUSE_S_COMP:
+			case ART_SKIN_DEGREE:
 			case ART_WATERTROOPER:
 			case ART_MISS_LAUNCHER:
 			case ART_TSCHUEUU:
 			case ART_BROWNING:
+			case ART_WIUNEW:
 			case ART_HOMING_BEAM:
 			case ART_VIHAT_BAGUETTEN_BUS_STOP:
 			case ART_DIG__OF_COURSE:
 			case ART_THEO_S_BOX:
+			case ART_CRABBOMAT:
+			case ART_ANNOYPRICK:
+			case ART_STRUCK_ON:
 			case ART_WINNETOU_S_FRIEND:
-				return 0;
+				return 0; /* no damage bonus */
+
+			case ART_POINT_DEXTER: /* h@ck for dexterity-dependant damage bonus --Amy */
+				if (ACURR(A_DEX) < 1) return 1;
+				else if (ACURR(A_DEX) > 25) return rnd(25);
+				else return rnd(ACURR(A_DEX));
 
 			default: break;
 		}
@@ -3052,13 +3089,20 @@ static const char * const mb_verb[2][4] = {
 
 /* called when someone is being hit by Magicbane */
 STATIC_OVL boolean
-Mb_hit(magr, mdef, mb, dmgptr, dieroll, vis, hittee)
+Mb_hit(magr, mdef, mb, dmgptr, dieroll, vis, hittee, specialtype)
 struct monst *magr, *mdef;	/* attacker and defender */
 struct obj *mb;			/* Magicbane */
 int *dmgptr;			/* extra damage target will suffer */
 int dieroll;			/* d20 that has already scored a hit */
 boolean vis;			/* whether the action can be seen */
 char *hittee;			/* target's name: "you" or mon_nam(mdef) */
+int specialtype;			/* by Amy: additional effects for specific artifacts */
+
+/* special types:
+   0 = nothing
+   1 = the stun has 1 in 3 chance to also confuse the opponent
+*/
+
 {
     struct permonst *old_uasmon;
     const char *verb;
@@ -3186,10 +3230,13 @@ char *hittee;			/* target's name: "you" or mon_nam(mdef) */
     }
     /* stun if that was selected and a worse effect didn't occur */
     if (do_stun) {
-	if (youdefend)
+	if (youdefend) {
 	    make_stunned((HStun + 3), FALSE);
-	else
+	    if (specialtype == 1 && !rn2(3)) make_confused(HConfusion + 4, FALSE);
+	} else {
 	    mdef->mstun = 1;
+	    if (specialtype == 1 && !rn2(3)) mdef->mconf = 1;
+	}
 	/* avoid extra stun message below if we used mb_verb["stun"] above */
 	if (attack_indx == MB_INDEX_STUN) do_stun = FALSE;
     }
@@ -3250,6 +3297,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	char hittee[BUFSIZ];
 	boolean special_applies;
 	boolean willreturntrue = 0;
+	int specialtype = 0; /* for magicbane-esque artifacts --Amy */
 
 	/* monsters can smash you with e.g. Instant Death even though that's not a melee weapon, this is intentional --Amy
 	 * however, we can't allow the player's pets to smash enemies with such weapons as that would be way too OP! */
@@ -3328,8 +3376,12 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	if (attacks(AD_STUN, otmp) && dieroll <= MB_MAX_DIEROLL) {
+
+	    specialtype = 0;
+	    if (otmp->oartifact == ART_SCREAMOUT) specialtype = 1;
+
 	    /* Magicbane's special attacks (possibly modifies hittee[]) */
-	    if (Mb_hit(magr, mdef, otmp, dmgptr, dieroll, vis, hittee)) willreturntrue = 1;
+	    if (Mb_hit(magr, mdef, otmp, dmgptr, dieroll, vis, hittee, specialtype)) willreturntrue = 1;
 	}
 
 	if (!special_applies) {
@@ -3452,7 +3504,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -3506,6 +3558,15 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    willreturntrue = 1;
        }
 
+       if (otmp->oartifact == ART_INRAM && !rn2(5)) {
+	    if (youattack)
+		You("ram the heel into %s!", mon_nam(mdef));
+	    else
+		pline("%s rams the heel into %s!", Monnam(magr), hittee);
+	    *dmgptr += rnd(20);
+	    willreturntrue = 1;
+       }
+
        if (otmp->oartifact == ART_WOEBLADE && dieroll < 6) {
 	    if (youattack)
 		You("plunge the Woeblade deeply into %s!",
@@ -3545,7 +3606,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_HAHA_OWNED || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_ASHIKAGA_S_REVENGE || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_HAHA_OWNED || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_KAMI_SORI_NO_USUI_HA || otmp->oartifact == ART_ASHIKAGA_S_REVENGE || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {
@@ -4839,6 +4900,13 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_NOW_ASCEND_ALREADY) {
+
+			enchantarmor_prompt();
+
+			break;
+		}
 
 		if (obj->oartifact == ART_DOWNDRIVE) {
 

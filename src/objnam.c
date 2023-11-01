@@ -7716,7 +7716,7 @@ register int otyp;
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(otyp,Ancient_items))
 		actualn = Alternate_item_name(otyp,Ancient_items);
 
-	if (!(u.dungeongrowthhack) && uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES) && !rn2(5)) {
+	if (!(u.dungeongrowthhack) && ((uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES)) || autismweaponcheck(ART_KOSOMUSEI)) && !rn2(5)) {
 		switch (rnd(4)) {
 			case 1:
 				if (Alternate_item_name(otyp,Ancient_items)) actualn = Alternate_item_name(otyp,Ancient_items);
@@ -7924,7 +7924,7 @@ boolean showpoisoned;
 	if (Race_if(PM_ANCIENT) && !issoviet && Alternate_item_name(typ,Ancient_items))
 		actualn = Alternate_item_name(typ,Ancient_items);
 
-	if (!(u.dungeongrowthhack) && uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES) && !rn2(5)) {
+	if (!(u.dungeongrowthhack) && ((uarmg && itemhasappearance(uarmg, APP_MULTILINGUITIS_GLOVES)) || autismweaponcheck(ART_KOSOMUSEI)) && !rn2(5)) {
 		switch (rnd(4)) {
 			case 1:
 				if (Alternate_item_name(typ,Ancient_items)) actualn = Alternate_item_name(typ,Ancient_items);

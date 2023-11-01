@@ -8848,6 +8848,8 @@ SCROLL((char *)0,               "DIE HOCHZEITSMESSE  TRAU SCHAU WEM",  P_NONE,  
 SCROLL((char *)0,               "ASCMYS LTALAY WA",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "ASCLAA LTAMYY WS",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
 SCROLL((char *)0,               "WE WEAR WHAT WE WANNA WEAR",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "U AE UUAE",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "THE PROBLEM IS THAT THERE IS NO PROBLEM",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

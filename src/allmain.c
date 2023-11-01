@@ -2216,6 +2216,7 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uwep && uwep->oartifact == ART_MAMBO_NUMBER_NINE && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && !rn2(5) && uball && uwep && (uwep == uball)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && u.uinwater && (uarmf->oartifact == ART_PECTORAL_HEEL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_JUMP_HURRIES && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -3005,6 +3006,18 @@ moveloop()
 				if (!monnear(whinymon, u.ux, u.uy)) continue;
 				if(cansee(whinymon->mx,whinymon->my)) {
 					if (!resist(whinymon, SCROLL_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
+				}
+			}
+		}
+
+		if (uwep && uwep->oartifact == ART_FLAG_RAISED && !rn2(20)) {
+			register struct monst *whinymon;
+
+			for(whinymon = fmon; whinymon; whinymon = whinymon->nmon) {
+				if (DEADMONSTER(whinymon)) continue;
+				if (!monnear(whinymon, u.ux, u.uy)) continue;
+				if(cansee(whinymon->mx,whinymon->my)) {
+					if (!resist(whinymon, WEAPON_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
 				}
 			}
 		}
@@ -7183,6 +7196,9 @@ newbossJANI:
 		if ((uwep && uwep->otyp == FALCHION) || (u.twoweap && uswapwep && uswapwep->otyp == FALCHION)) {
 			if (u.uprops[DEAC_FAST].intrinsic < 5) u.uprops[DEAC_FAST].intrinsic = 5;
 		}
+		if (autismweaponcheck(ART_TRAP_EM_LONG)) {
+			if (u.uprops[DEAC_FAST].intrinsic < 1000) u.uprops[DEAC_FAST].intrinsic = 1000;
+		}
 
 		if (uarmg && uarmg->oartifact == ART_WAND_INTO_SPELL && !rn2(100)) {
 			if (P_ADVANCE(P_DEVICES) > 0) {
@@ -7292,6 +7308,9 @@ newbossJANI:
 				}
 			}
 		}
+
+		if (uwep && uwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD && Underwater && !uwep->cursed) curse(uwep);
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD && Underwater && !uswapwep->cursed) curse(uswapwep);
 
 		if (FemtrapActiveGudrun && u.ulevel >= 10 && !rn2(20000)) {
 		      (void) makemon(&mons[PM_GUDRUN_THE_FEMINIST], 0, 0, MM_ANGRY);
@@ -7491,8 +7510,24 @@ newbossSTEN:
 			if (KillerRoomEffect < 5000) KillerRoomEffect = 5000;
 		}
 
+		if (autismweaponcheck(ART_FOR_THE_REAL_GAMING_EXPERI)) {
+			if (u.badfdoomed < 10000) u.badfdoomed = 10000;
+		}
+
+		if (autismweaponcheck(ART_DISAPPEAR_OFF_THE_MAP)) {
+			if (HMap_amnesia < 10000) HMap_amnesia = 10000;
+		}
+
 		if (autismweaponcheck(ART_GORMALER)) {
 			if (FemaleTrapJil < 10000) FemaleTrapJil = 10000;
+		}
+
+		if (autismweaponcheck(ART_ICE_TEMPLE_BACKGROUND)) {
+			if (FemaleTrapMariya < 5000) FemaleTrapMariya = 5000;
+		}
+
+		if (autismweaponcheck(ART_EXTREME_BITCH)) {
+			if (FemaleTrapJulietta < 5000) FemaleTrapJulietta = 5000;
 		}
 
 		if (uwep && uwep->oartifact == ART_TWISTED_TURN && !rn2(100)) {
@@ -14922,6 +14957,9 @@ past4:
 	if (In_greencross(&u.uz) && !u.greencrossopen) u.greencrossopen = TRUE;
 	if (In_subquest(&u.uz) && !u.prematuresubquest) u.prematuresubquest = TRUE;
 	if (In_yendorian(&u.uz) && !u.prematureyendortower) u.prematureyendortower = TRUE;
+
+	if (uwep && uwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD && Underwater && !uwep->cursed) curse(uwep);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SEE_THE_REST_OF_THE_WORLD && Underwater && !uswapwep->cursed) curse(uswapwep);
 
 	if (uwep && uarmf && uarmf->oartifact == ART_DOUBTLY_POISON && is_poisonable(uwep) && !uwep->superpoison) {
 		uwep->superpoison = uwep->opoisoned = TRUE;

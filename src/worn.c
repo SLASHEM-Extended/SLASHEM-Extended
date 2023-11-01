@@ -419,6 +419,16 @@ register struct monst *mon;
 		base = 10 - acamount; /* -4 instead of -10 */
 	}
 
+	if (!mon->mtame && !mon->mpeaceful && uwep && uwep->oartifact == ART_ROARBEAR && base < 10) {
+		int acamount = base - 10;
+		if (acamount < 0) acamount *= -1;
+
+		acamount /= 2;
+
+		base = 10 - acamount;
+
+	}
+
 	/* Monsters with too good AC should not be completely unhittable. --Amy */
 	if (!rn2(20)) {
 		int absoluteac = (-(base - 10));

@@ -312,7 +312,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define isaquarian (Race_if(PM_AQUATIC_MONSTER) || flags.hybridaquarian)
 #define iscurser (Race_if(PM_CURSER) || flags.hybridcurser)
 #define ishaxor (Race_if(PM_HAXOR) || flags.hybridhaxor)
-#define ishomicider (Race_if(PM_HOMICIDER) || flags.hybridhomicider)
+#define ishomicider (Race_if(PM_HOMICIDER) || flags.hybridhomicider || (!u.dungeongrowthhack && autismweaponcheck(ART_TRAP_EM_LONG)) )
 #define issuxxor (Race_if(PM_SUXXOR) || flags.hybridsuxxor)
 #define iswarper (Race_if(PM_WARPER) || flags.hybridwarper)
 #define israndomizer (Race_if(PM_RANDOMIZER) || flags.hybridrandomizer)

@@ -3096,6 +3096,8 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uwep && uwep->oartifact == ART_OLYMPIDE) tmp += 5;
+		if (uwep && uwep->oartifact == ART_TITANIC_STRIKE) tmp += 20;
 		if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) tmp += 3;
 		if (uwep && uwep->oartifact == ART_ATLUS_HEAVE) tmp += 10;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) tmp += 3;
@@ -3449,6 +3451,7 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_GARBAGE_STAFF) tmp += 3;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 		if (x == A_WIS && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
+		if (x == A_INT && uwep && uwep->oartifact == ART_ONCHANGE_STAFF) tmp += 3;
 
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;

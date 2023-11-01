@@ -248,6 +248,7 @@
 #define is_aoemonster(ptr)	((ptr)->mflags5 & M5_AOE)
 #define is_elderscrollsmonster(ptr)	((ptr)->mflags5 & M5_ELDERSCROLLS)
 #define is_chatgptmonster(ptr)	((ptr)->mflags5 & M5_CHATGPT)
+#define is_cddamonster(ptr)	((ptr)->mflags5 & M5_CDDA)
 
 #define monsterflees(ptr)	((ptr)->mflags6 & M6_FLEE)
 #define monsterrandomwalk(ptr)	((ptr)->mflags6 & M6_RANDWALK)

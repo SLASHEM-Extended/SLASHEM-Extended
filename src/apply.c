@@ -4187,6 +4187,7 @@ use_pole (obj)
 		else if (P_SKILL(typ) <= P_SKILLED) max_range = 5;
 		else max_range = 8;
 	}
+	if (obj->oartifact == ART_STRECKOUT_AND_PULL) max_range = 4;
 
 	if (obj->otyp == NOOB_POLLAX || obj->otyp == GREAT_POLLAX) max_range += 5;
 	if (obj->otyp == YITH_TENTACLE) max_range += 2;
@@ -5528,6 +5529,15 @@ dyechoice:
 	case RAZOR_WHIP:
 	case SECRET_WHIP:
 	case SECRET_SOUND_WHIP:
+
+		if (obj->oartifact == ART_WOETSCHERSMAG) {
+			if (uwep && uwep == obj) res = use_pole(obj);
+			else {pline("You must wield this item first if you want to apply it!"); 
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+				wield_tool(obj, "swing"); }
+			break;
+		}
+
 		if (uwep && uwep == obj) res = use_whip(obj);
 		else {pline("You must wield this item first if you want to apply it!"); 
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

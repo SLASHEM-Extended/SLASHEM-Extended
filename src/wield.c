@@ -178,6 +178,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("wielded shoe is painted black!");
 	}
 
+	if (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE && objects[uwep->otyp].oc_color != CLR_ORANGE) {
+		objects[uwep->otyp].oc_color = CLR_ORANGE;
+		Your("spear is colored orange now!");
+	}
+
 	if (uwep && uwep->oartifact == ART_SPACEL_SWIM) {
 		if (objects[uwep->otyp].oc_material != MT_IRON) {
 			objects[uwep->otyp].oc_material = MT_IRON;
@@ -209,6 +214,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->otyp == HONOR_KATANA && !uwep->cursed) {
 		curse(uwep);
 		Your("katana welds itself to your %s!", body_part(HAND));
+	}
+
+	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP && !uwep->cursed) {
+		curse(uwep);
+		Your("bow becomes cursed, hahaha.");
 	}
 
 	if (uwep && uwep->oartifact == ART_GREAT_MATRON && !Role_if(PM_AMAZON) && !uwep->cursed) {
@@ -243,10 +253,26 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		uwep->hvycurse = uwep->prmcurse = TRUE;
 	}
 
+	if (uwep && uwep->oartifact == ART_LORD_S_LASH) {
+		u.lifesavepenalty++;
+		pline("Careful, the lord has noticed your deed.");
+	}
+
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
 		pline("A terrible black aura surrounds your sickle...");
+	}
+
+	if (uwep && uwep->oartifact == ART_OXIDIZED_ALLOY && uwep->oeroded < 2) {
+		uwep->oeroded = 2;
+		Your("bar is covered with rust.");
+	}
+
+	if (uwep && uwep->oartifact == ART_FREAK_VERSUS_BANGER && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = 1;
+		pline("A terrible black aura surrounds your axe...");
 	}
 
 	if (uwep && uwep->oartifact == ART_SEXCALIBUR && !uwep->hvycurse) {
@@ -411,6 +437,8 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		u.youaredead = 0;
 	}
 
+	if (uwep && uwep->oartifact == ART_POINT_DEXTER) FemaleTrapGreta |= FROMOUTSIDE;
+
 	if (uwep && uwep->oartifact == ART_GUN_CONTROL_LAWS && !uwep->cursed) {
 		curse(uwep);
 		pline("Oh no! Morgoth curses your gun as you wield it!");
@@ -488,9 +516,30 @@ swapweaponchoice:
 			pline("A terrible black aura surrounds your sickle...");
 		}
 
+		if (uswapwep && uswapwep->oartifact == ART_OXIDIZED_ALLOY && uswapwep->oeroded < 2) {
+			uswapwep->oeroded = 2;
+			Your("bar is covered with rust.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_LORD_S_LASH) {
+			u.lifesavepenalty++;
+			pline("Careful, the lord has noticed your deed.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_FREAK_VERSUS_BANGER && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = 1;
+			pline("A terrible black aura surrounds your axe...");
+		}
+
 		if (uswapwep && uswapwep->otyp == HONOR_KATANA && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("katana welds itself to your other %s!", body_part(HAND));
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_OZYZEVPDWTVP && !uswapwep->cursed) {
+			curse(uswapwep);
+			Your("bow becomes cursed, hahaha.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_BAT_FROM_BALTIMORE) {
@@ -684,7 +733,9 @@ swapweaponchoice:
 			curse(uswapwep);
 			pline("Oh no! Morgoth curses your gun as you wield it!");
 		}
-	
+
+		if (uswapwep && uswapwep->oartifact == ART_POINT_DEXTER) FemaleTrapGreta |= FROMOUTSIDE;
+
 		if (uswapwep && uswapwep->oartifact == ART_OVERHEATER && !uswapwep->cursed) {
 			curse(uswapwep);
 			pline("Your weapon becomes cursed!");
@@ -1729,6 +1780,156 @@ boolean fade_scrolls;
 	}
 }
 
+void
+enchantarmor_prompt()
+{
+	register schar s;
+	boolean special_armor;
+	boolean same_color;
+	struct obj *otmp;
+
+	if (CannotSelectItemsInPrompts) return;
+	pline("You may enchant a worn piece of armor.");
+enchantarmorchoice:
+	otmp = getobj(allnoncount, "magically enchant");
+
+	if(!otmp) {
+		if (yn("Really exit with no object selected?") == 'y')
+			pline("You just wasted the opportunity to enchant your armor.");
+		else goto enchantarmorchoice;
+		pline((!Blind) ? "Your skin glows then fades." : "Your skin feels warm for a moment.");
+		exercise(A_CON, TRUE);
+		exercise(A_STR, TRUE);
+		return;
+	}
+	if (!(otmp->owornmask & W_ARMOR) ) {
+		You("have a feeling of loss.");
+		return;
+	}
+
+	/* elven armor vibrates warningly when enchanted beyond a limit */
+	special_armor = is_elven_armor(otmp) || otmp->otyp == KYRT_SHIRT ||
+	  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
+	  (Role_if(PM_VANILLA_VALK) && otmp->otyp == GAUNTLETS_OF_POWER) ||
+	  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
+
+	    same_color =
+		(otmp->otyp == SILVER_DRAGON_SCALE_MAIL ||
+		 otmp->otyp == SILVER_DRAGON_SCALES ||
+		 otmp->otyp == SHIELD_OF_REFLECTION);
+	if (Blind) same_color = FALSE;
+
+	/* KMH -- catch underflow */
+	s = otmp->spe;
+
+	if (s > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
+
+		if (otmp->oartifact) {
+			otmp->spe = 0;
+			Your("%s violently %s%s%s for a while, then %s.", xname(otmp),
+			otense(otmp, Blind ? "vibrate" : "glow"),
+		     (!Blind && !same_color) ? " " : nul,
+		     (Blind || same_color) ? nul : NH_SILVER,
+			otense(otmp, "fade"));
+
+			return;
+		}
+
+		Your("%s violently %s%s%s for a while, then %s.",
+	     xname(otmp), otense(otmp, Blind ? "vibrate" : "glow"),
+	     (!Blind && !same_color) ? " " : nul,
+	     (Blind || same_color) ? nul :
+		hcolor(NH_SILVER),
+	     otense(otmp, "evaporate"));
+		if(is_cloak(otmp)) (void) Cloak_off();
+		if(is_boots(otmp)) (void) Boots_off();
+		if(is_helmet(otmp)) (void) Helmet_off();
+		if(is_gloves(otmp)) (void) Gloves_off();
+		if(is_shield(otmp)) (void) Shield_off();
+		if(otmp == uarm) (void) Armor_gone();
+		useup(otmp);
+		return;
+	}
+
+	if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+		if (!otmp->cursed) bless(otmp);
+		else uncurse(otmp, FALSE);
+	}
+
+	/* KMH, balance patch -- Restore the NetHack success rate */
+	/* We'll introduce a disenchantment attack later */
+	s = 1;
+	if (s >= 0 && otmp->otyp >= GRAY_DRAGON_SCALES && otmp->otyp <= YELLOW_DRAGON_SCALES) {
+		/* dragon scales get turned into dragon scale mail */
+		Your("%s merges and hardens!", xname(otmp));
+		setworn((struct obj *)0, W_ARM);
+		/* assumes same order */
+		otmp->otyp = GRAY_DRAGON_SCALE_MAIL + otmp->otyp - GRAY_DRAGON_SCALES;
+
+		if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+		otmp->known = 1;
+		setworn(otmp, W_ARM);
+		return;
+	}
+	if (s >= 0 && otmp->otyp == LIZARD_SCALES) {
+		Your("%s merges and hardens!", xname(otmp));
+		setworn((struct obj *)0, W_ARM);
+		otmp->otyp = LIZARD_SCALE_MAIL;
+
+		if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (otmp->prmcurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(10) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && otmp->hvycurse && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(3) ) {
+			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+		}
+		else if (!(otmp->prmcurse) && !(otmp->hvycurse) && !(otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) ) otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+
+		otmp->known = 1;
+		setworn(otmp, W_ARM);
+		return;
+	}
+
+	Your("%s %s%s%s%s for a %s.",
+		xname(otmp), s == 0 ? "violently " : nul,
+		otense(otmp, Blind ? "vibrate" : "glow"),
+		(!Blind && !same_color) ? " " : nul,
+		(Blind || same_color) ? nul : hcolor(NH_SILVER),
+		  (s*s>1) ? "while" : "moment");
+	otmp->cursed = ( ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && rn2(100)) || (otmp->prmcurse && rn2(10)) || (otmp->hvycurse && rn2(3)) ) ;
+	if ((!otmp->blessed) && !otmp->cursed)
+		otmp->blessed = FALSE;
+	if (s) {
+		otmp->spe += s;
+		if (Race_if(PM_SPARD) && s > 0) otmp->spe++;
+	}
+
+	if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
+	    (special_armor || !rn2(7)))
+		Your("%s suddenly %s %s.",
+			xname(otmp), otense(otmp, "vibrate"),
+			Blind ? "again" : "unexpectedly");
+
+	if (practicantterror && otmp && otmp->spe >= 5 && !u.pract_enchantarmor) {
+		pline("%s rings out: 'I told you that you may not disguise as a tank! Just for that it costs 1000 zorkmids and 1000 stones now.'", noroelaname());
+		fineforpracticant(1000, 1000, 0);
+		u.pract_enchantarmor = TRUE;
+	}
+
+}
+
 int
 chwepon(otmp, amount)
 register struct obj *otmp;
@@ -1784,7 +1985,7 @@ register int amount;
 	    return(1);
 	}
 	/* there is a (soft) upper and lower limit to uwep->spe */
-	if(((uwep->spe > (is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) && amount >= 0) || (uwep->spe < -5 && amount < 0)) && rn2(3) && !rn2(3) ) {
+	if(((uwep->spe > ((uwep->oartifact == ART_MIDDLING_PIDDLING) ? 19 : is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) && amount >= 0) || (uwep->spe < -5 && amount < 0)) && rn2(3) && !rn2(3) ) {
 
 		if (uwep->oartifact) {
 			uwep->spe = 0;
@@ -1848,7 +2049,7 @@ register int amount;
 
 	/* an elven magic clue, cookie@keebler */
 	/* elven weapons vibrate warningly when enchanted beyond a limit */
-	if ((uwep->spe > (is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) )
+	if ((uwep->spe > ((uwep->oartifact == ART_MIDDLING_PIDDLING) ? 19 : is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) )
 		&& (is_elven_weapon(uwep) || uwep->oartifact || !rn2(7)))
 	    Your("%s unexpectedly.",
 		aobjnam(uwep, "suddenly vibrate"));
@@ -1905,7 +2106,7 @@ register int amount;
 	    return(1);
 	}
 	/* there is a (soft) upper and lower limit to otmp->spe */
-	if(((otmp->spe > (is_droven_weapon(otmp) ? 10 : is_elven_weapon(otmp) ? 8 : 5) && amount >= 0) || (otmp->spe < -5 && amount < 0)) && rn2(3) && !rn2(3) ) {
+	if(((otmp->spe > ((uwep->oartifact == ART_MIDDLING_PIDDLING) ? 19 : is_droven_weapon(otmp) ? 10 : is_elven_weapon(otmp) ? 8 : 5) && amount >= 0) || (otmp->spe < -5 && amount < 0)) && rn2(3) && !rn2(3) ) {
 
 		if (otmp->oartifact) {
 			otmp->spe = 0;
@@ -1966,7 +2167,7 @@ register int amount;
 
 	/* an elven magic clue, cookie@keebler */
 	/* elven weapons vibrate warningly when enchanted beyond a limit */
-	if ((otmp->spe > (is_droven_weapon(otmp) ? 10 : is_elven_weapon(otmp) ? 8 : 5) )
+	if ((otmp->spe > ((uwep->oartifact == ART_MIDDLING_PIDDLING) ? 19 : is_droven_weapon(otmp) ? 10 : is_elven_weapon(otmp) ? 8 : 5) )
 		&& (is_elven_weapon(otmp) || otmp->oartifact || !rn2(7)))
 	    Your("%s unexpectedly.",
 		aobjnam(otmp, "suddenly vibrate"));

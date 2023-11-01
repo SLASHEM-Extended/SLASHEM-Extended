@@ -15903,6 +15903,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	if (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY && rn2(10)) return 0; /* no message */
 
+	if (uwep && uwep->oartifact == ART_OBVIOUS_AS_FUCK && rn2(4)) return 0;
+
 	if ((uarmg && itemhasappearance(uarmg, APP_MIRRORED_GLOVES) ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
 		/* cut down on message spam - only display it 1 out of 10 times --Amy */
 		if (!rn2(10)) pline("%s gazes at you, but your mirrored gloves protect you from the effects!", Monnam(mtmp));

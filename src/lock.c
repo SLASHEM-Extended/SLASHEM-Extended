@@ -938,24 +938,30 @@ doforce()		/* try to force a chest with your weapon */
 
 						case P_BASIC:
 							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(2) : 1;
+							if (uwep && uwep->oartifact == ART_CHRISMISS) dmg += rn2(2);
 							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(2);
 							break;
 						case P_SKILLED:
-							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(4) : rnd(2);								if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(4);
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(4) : rnd(2);								if (uwep && uwep->oartifact == ART_CHRISMISS) dmg += rnd(2);
+							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(4);
 							break;
 						case P_EXPERT:
-							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(6) : rnd(3);								if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(6);
+							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(6) : rnd(3);								if (uwep && uwep->oartifact == ART_CHRISMISS) dmg += rnd(3);
+							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(6);
 							break;
 						case P_MASTER:
 							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(8) : rnd(4);
+							if (uwep && uwep->oartifact == ART_CHRISMISS) dmg += rnd(4);
 							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(8);
 							break;
 						case P_GRAND_MASTER:
 							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(10) : rnd(5);
+							if (uwep && uwep->oartifact == ART_CHRISMISS) dmg += rnd(5);
 							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(10);
 							break;
 						case P_SUPREME_MASTER:
 							dmg += (uwep && is_lightsaber(uwep) && uwep->lamplit) ? rnd(12) : rnd(6);
+							if (uwep && uwep->oartifact == ART_CHRISMISS) dmg += rnd(6);
 							if (uwep && is_lightsaber(uwep) && uwep->lamplit && uwep->altmode) dmg += rnd(12);
 							break;
 						default: break;
@@ -1053,7 +1059,7 @@ doforce()		/* try to force a chest with your weapon */
 						if (u.negativeprotection > 0 && !rn2(5)) u.negativeprotection--;
 					}
 					u.cnd_forcebuttcount++;
-					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
+					if (mtmp->butthurt < 25 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						int butthurting = 5;
 						if (!PlayerCannotUseSkills) {
 							switch (P_SKILL(P_WEDI)) {
@@ -1103,7 +1109,7 @@ doforce()		/* try to force a chest with your weapon */
 						if (u.negativeprotection > 0 && !rn2(5)) u.negativeprotection--;
 					}
 					u.cnd_forcebuttcount++;
-					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
+					if (mtmp->butthurt < 25 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						int butthurting = 3;
 						if (!PlayerCannotUseSkills) {
 							switch (P_SKILL(P_WEDI)) {
@@ -1147,7 +1153,7 @@ doforce()		/* try to force a chest with your weapon */
 						if (u.negativeprotection > 0 && !rn2(5)) u.negativeprotection--;
 					}
 					u.cnd_forcebuttcount++;
-					if (mtmp->butthurt < 20 && (!rn2(3) || Role_if(PM_EMERA)) ) {
+					if (mtmp->butthurt < 25 && (!rn2(3) || Role_if(PM_EMERA)) ) {
 						int butthurting = 1;
 						if (!PlayerCannotUseSkills && !rn2(2)) {
 							switch (P_SKILL(P_WEDI)) {

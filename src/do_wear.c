@@ -6589,6 +6589,8 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TEN) uac -= 10;
 	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
+	if (uwep && uwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) uac -= 2;
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
@@ -6622,6 +6624,8 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_DUE_DUE_DUE_DUE_BRMMMMMMM) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_CAN_T_TOUCH_THIS) uac -= 10;
 	if (uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) uac -= 5;
+	if (uwep && uwep->oartifact == ART_CRABBOMAT) uac -= 4;
+	if (uwep && uwep->oartifact == ART_TANKFRIEND) uac -= 5;
 	if (uarms && uarms->oartifact == ART_YELLOW_STATUS) uac -= 1;
 	if (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) uac -= 10;
 	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
