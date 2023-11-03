@@ -1632,7 +1632,7 @@ A("Blindfold of Mispelling",			BLINDFOLD, /* confusion problem, autocurses */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("The Answer Is 42",			TOWEL, /* applying it, or putting it on, causes a random bad effect */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Penis Safety",			CONDOME,
@@ -5620,7 +5620,7 @@ A("Soundtone FM",				RADIOGLASSES, /* sound effect trap when worn */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
 A("Stable Stunt",				EYECLOSER, /* disintegration resistance */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Crawling From The Woodwork",				BOSS_VISOR, /* bosses spawn more often */
@@ -5628,7 +5628,7 @@ A("Crawling From The Woodwork",				BOSS_VISOR, /* bosses spawn more often */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
 A("Breather Show",				DRAGON_EYEPATCH, /* displays all AT_BREA monsters when worn */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("True Grime",				BINNING_KIT, /* +5 alignment and +1 max alignment every time you remove a corpse with it, and displays your current alignment and max alignment if you do */
@@ -10044,7 +10044,7 @@ A("Doorbane",				LOCK_PICK, /* doors cannot resist when wielded */
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
 A("Magic Carpet",				TOWEL, /* flying when worn */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Mantle of the Manta Ray",				OILSKIN_CLOAK, /* grants magical breathing and swimming */
@@ -15802,6 +15802,402 @@ A("Phoenix Lance",				LANCE, /* randart lance */
 A("Void Scythe",				BARDICHE, /* randart2 polearm */
 	(SPFX_RESTR), 0, 0,
 	PHYS(20, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Electronic Lock",				LOOT_CHEST, /* sets container kaboom trap to 10000 if it was lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Failprize",				TREASURE_CHEST, /* spawns empty */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Goodfilm",				EXPENSIVE_CAMERA, /* can take two photos per turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TOURIST, NON_PM, 3000L ),
+
+A("Rapidclick",				EXPENSIVE_CAMERA, /* doesn't use a turn when used while it has charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_TOURIST, NON_PM, 2000L ),
+
+A("Modern Digicam",				EXPENSIVE_CAMERA, /* spawns with 10x as many charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Loudness Amplifier",				TIN_WHISTLE, /* works on bigger distances */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Pet Come Here!",				TIN_WHISTLE, /* pet follows for a longer time after applying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Blammer of Doom",				TIN_WHISTLE, /* +10 bash damage, can use martial arts techs while wielding it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Make Broken",				BELL, /* 50% chance to not wake up monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("solvedbridge",				BELL, /* can open the drawbridge */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Hear Far And Wide",				BUGLE, /* wakes up more monsters, not just soldiers */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Taetaeraetaeae-tae",				BUGLE, /* uses a turn 50% of the time only when applied */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Invuni",				BUGLE, /* can be invoked to turn it into a unicorn horn or back into a bugle, and while it's a bugle it deals +5 bash damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("This Is Not A Drill",				BUGLE, /* frenzies soldiers when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Sack of Holding",				SACK, /* works like a boh */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Feeldasag",				SACK, /* pain sense when carried */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Oortocash",				SACK, /* spawns with rnz(2000) $ */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Booty Case",				LARGE_BOX, /* contains 3 random items in addition to its regular contents */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ironit",				LARGE_BOX, /* material becomes IRON when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Snap-Too",				LARGE_BOX, /* 1% when used that it locks itself */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Pirate Treasure",				CHEST, /* contains 6 random items in addition to its normal contents */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_KORSAIR, NON_PM, 3000L ),
+
+A("Cannotrap",				CHEST, /* if you apply it while it has a trap, the trap automatically becomes disabled */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Fuck Off Thief",				CHEST, /* resistant to being stolen by enemies */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Eatbonanza",				ICE_BOX, /* contains 5x as many corpses */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Cold-haha",				ICE_BOX, /* cold immunity when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("klueueueu",				ICE_BOX, /* +5 range when thrown, always hits the enemy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Forty Four Is Luck",				POTATO_BAG, /* contains 5 additional musable items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4444L ),
+
+A("seminarios kartoffles",				POTATO_BAG, /* waterproof */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("A Mage Did It",				POTATO_BAG, /* invoke applies a layer of grease to the bag */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Keep It Warm Inside",				OILSKIN_SACK, /* invoke uncurses the sack, or blesses if already uncursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Don't Run Out Of Halloween Material",				BAG_OF_TRICKS, /* spawns with 3x as many charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Spawn Da Killaz",				BAG_OF_TRICKS, /* if it has charges, applying it gives +5000 turns of killer spawn trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Gauntlet Abbreviation",				SKELETON_KEY, /* can be used on the gauntlet key door, clairvoyance and psi resistance when wielded */
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Vladimir Be Afraid",				SKELETON_KEY, /* double drain res when wielded */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_VAMPIRE,
+	FIRE(0, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Unbrit-sov",				SKELETON_KEY, /* keeps working when brittle, but if it becomes brittle you get 10000 turns of cursed and if it's already brittle also 10000 turns of doomed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Vanulla Score",				SKELETON_KEY, /* doesn't become brittle, but using it sets the nastiness trap timeout to 5000 if it was lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sysette's Thievingness",				SKELETON_KEY, /* wielding gives +7 kick damage and another +8 if wearing block heels, passively trains firearms 1 in 100 turns and gun control 1 in 1000, gun control is trained more slowly specifically when male (not female) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dithers Wuma",				LOCK_PICK, /* doesn't become brittle, but if it would have, +50000 turns of jette trap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Hold It Out",				LOCK_PICK, /* 20 extra AC and if you have a shield, 20% more chance to block */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jastarti",				LOCK_PICK, /* no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Silver Yendorian Express Card",				CREDIT_CARD,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ESP|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Tight Spot",				CREDIT_CARD,
+	(SPFX_RESTR|SPFX_STLTH|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Strange Lilchen",				CREDIT_CARD, /* sets jil trap to 5000 if it was lower when used, invoke can un-brittle this artifact for 10000 $ */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Getin on Vlads",				CREDIT_CARD, /* can open the doors in vlads tower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Crude Sensei",				CREDIT_CARD, /* +150% unarmed damage (when dual-wielding with other hand empty) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Complete Bugnose",				GOLD_PIECE, /* displays "Lol, you have encountered a nose!" when generated */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Lorofem",				TALLOW_CANDLE, /* +rn1(7,3) stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Widelite",				TALLOW_CANDLE, /* +1 light radius */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Mucho Talcum",				TALLOW_CANDLE, /* 3x as much duration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Couple-in-the-box",				WAX_CANDLE, /* 3x as much stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Duratex",				WAX_CANDLE, /* +4000 duration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Free From Strain",				WAX_CANDLE, /* if it's on and wielded, aggravate monster doesn't randomly summon monsters from a portal */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Galadriel's Aid",				OIL_LAMP, /* +1 radius */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Everyglass is weird",				OIL_LAMP, /* gets +5000 duration with a potion of oil */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Out-oiled",				OIL_LAMP, /* spawns empty */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kitzle The Wish Out",				MAGIC_LAMP, /* vanilla chances of getting a wish */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Illumer The Great",				MAGIC_LAMP, /* works consistently when cursed */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("You Got Me",				MAGIC_CANDLE, /* no specialties */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Firering",				MAGIC_CANDLE, /* deactivates stealth when carried */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Halloween Fuel",				BRASS_LANTERN, /* 2x as much fuel when generated */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jenny's Protecter",				BRASS_LANTERN, /* displays all MS_MOLEST when on and wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Andy's Signweiser",				BRASS_LANTERN, /* clairvoyance when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Leo Is Always High",				BRASS_LANTERN, /* funny hallu when carried, invoke for gold detection but doing so gives +2000 cop wanted level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Leli Dab",				MAGIC_WHISTLE, /* when cursed, only has 1 in 3 risk of malfunctioning */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("dbl play speed",				WOODEN_FLUTE, /* tries twice to affect the monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Hard String",				WOODEN_HARP, /* 5x less likely to break */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Change The Tune",				WOODEN_HARP, /* invoke to turn into wooden flute or back */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Bom Bom Bom",				LEATHER_DRUM, /* louder than usual */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bobobobobom",				LEATHER_DRUM, /* even louder, vuvuzela effect when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Motherfucking Bomb",				LAND_MINE, /* places a bomb when applied */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Precision Detonating Stuff",				LAND_MINE, /* you don't fumble when arming it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Clickfield",				LAND_MINE, /* generates mines in a certain radius */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Webburound",				BEARTRAP, /* generates webs on the 8 surrounding squares */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Place on top of snare",				BEARTRAP, /* can be used on a trapped square to delete the trap that is there */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("field inited, sorry",				BEARTRAP, /* spawns random traps upon generation */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Make The Fog Away",				MIRROR, /* works properly even when cursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sub-Etha",				TOWEL, /* double searching */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Total Perspective Vortex",				TOWEL, /* detect monsters, prime autocurses, starvation trap, no death drops, simeout */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Iustitia Bringer",				BLINDFOLD, /* all your weapons deal a flat +10 damage against chaotic monsters */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Seeing The Person Anyway",				BLINDFOLD, /* displays all chaotic monsters with distu of 25 or less, 2000 turns of choiceless, no prompts and goldspells */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Satan's Specific Enchantment",				LENSES, /* 5000 turns of satan trap effect */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Nutriroll",				TINNING_KIT, /* spawns with 3x as many charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Refill Properly",				TINNING_KIT, /* regains many more charges when recharged */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Corona's Toll",				MEDICAL_KIT, /* contains 3x as much stuff */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sykes's Infinity",				MEDICAL_KIT, /* contains 10x as many bandages */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Marvelous Function",				MEDICAL_KIT, /* doesn't malfunction when not cursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Sing's Stock",				CAN_OF_GREASE, /* spawns with 3x as many charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sing's Last Laugh",				CAN_OF_GREASE, /* spawns with 10x as many charges but every time you use it, a singcleaning monster is spawned somewhere */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Euro's Unwaste",				CAN_OF_GREASE, /* uses a charge 50% of the time only */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Beh, too easy",				MAGIC_MARKER, /* spawns with twice as many charges */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Write The Unknown",				MAGIC_MARKER, /* doesn't fail to write unknown scrolls, but writing any scroll with it uses 2-3 times as much ink */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Seep Into The Soul",				MAGIC_MARKER, /* every time you write it, 1 permanent damage to INT but you gain as much alla as the amount of ink you used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("End-Of-The-World Switch",				HITCHHIKER_S_GUIDE_TO_THE_GALA, /* applying it gives ragnarok timeout if none is active */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Peculiar Markings",				EGG, /* spawns with your markings */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Manylings",				EGG, /* if it hatches, spawns rnd(9) extra copies of the specified monster type */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Fertilization Fail",				EGG, /* never hatches */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Nutri-Roulette",				TIN, /* 10x as much nutrition but not below -1000 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("There Will Be Revenge",				TIN, /* eating it spawns rn1(10,10) copies of the monster somewhere */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Half Crawls Back Out",				TIN, /* the monster spawns next to you with half of its maximum HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

@@ -17104,6 +17104,8 @@ boolean knoweverything;
 			pline("DANGER: This potion brings an end. Quaff at your own peril.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_LUCKY))
 			pline("Occasionally, quaffing this potion gives a random good effect.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_CHOCOLATE))
+			pline("This potion contains tasty liquid chocolate (mmmmm)! Quaffing it may allow you to experience an exciting flavor.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DYE))
 			pline("If you quaff this potion, you may change the color of an item in your inventory to the potion's color. You can also apply it to change the color of an item without actually experiencing the potion's regular effect.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_ANTIHISTAMINE))
@@ -28323,6 +28325,204 @@ boolean knoweverything;
 					pline("Artifact specs: +4 to-hit and +14 fire damage, fire resistance when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A polearm that embodies the fiery spirit of the mythical phoenix. It might deal fire damage, ignite enemies, or even have restorative properties, allowing its wielder to heal or rejuvenate in the midst of battle.'"); break;
 				case ART_VOID_SCYTHE:
 					pline("Artifact specs: +20 to-hit and +5 damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A polearm that harnesses the power of the void, capable of tearing through reality itself. It might have the ability to ignore a portion of the enemy's defenses or possess a powerful vacuum effect, pulling enemies closer for devastating attacks.'"); break;
+				case ART_ELECTRONIC_LOCK:
+					pline("Artifact specs: not sure how you managed to get it into your inventory, but oh well, now you'll at least know what it does: whenever you open it, you get the container kaboom trap that will last for a while because that's the specific mechanism to prevent unauthorized adventurers from looting this chest."); break;
+				case ART_FAILPRIZE:
+					pline("Artifact specs: wtf how did you manage to pick it up, anyway it spawns empty."); break;
+				case ART_GOODFILM:
+					pline("Artifact specs: can photograph two monsters with a single charge, tourist sacrifice gift."); break;
+				case ART_RAPIDCLICK:
+					pline("Artifact specs: doesn't use a turn if you take a photo, tourist sacrifice gift."); break;
+				case ART_MODERN_DIGICAM:
+					pline("Artifact specs: spawns with many more charges than normal."); break;
+				case ART_LOUDNESS_AMPLIFIER:
+					pline("Artifact specs: works on a bigger distance."); break;
+				case ART_PET_COME_HERE_:
+					pline("Artifact specs: your pets stay 'whistled' for a longer time after you used this."); break;
+				case ART_BLAMMER_OF_DOOM:
+					pline("Artifact specs: +10 bashing damage, allows you to use martial arts techniques while wielding it."); break;
+				case ART_MAKE_BROKEN:
+					pline("Artifact specs: doesn't always work when used."); break;
+				case ART_SOLVEDBRIDGE:
+					pline("Artifact specs: can open (but not close) the castle drawbridge when used."); break;
+				case ART_HEAR_FAR_AND_WIDE:
+					pline("Artifact specs: wakes up everyone, not just soldiers."); break;
+				case ART_TAETAERAETAEAE_TAE:
+					pline("Artifact specs: sometimes doesn't use a turn when applied."); break;
+				case ART_INVUNI:
+					pline("Artifact specs: can be invoked to turn it into a unicorn horn or back into a bugle; while it's a bugle, it deals +5 bashing damage."); break;
+				case ART_THIS_IS_NOT_A_DRILL:
+					pline("Artifact specs: frenzies soldiers when used."); break;
+				case ART_SACK_OF_HOLDING:
+					pline("Artifact specs: modifies the weight of its contents, based on its BUC."); break;
+				case ART_FEELDASAG:
+					pline("Artifact specs: pain sense when carried."); break;
+				case ART_OORTOCASH:
+					pline("Artifact specs: spawns with a random amount of zorkmids inside."); break;
+				case ART_BOOTY_CASE:
+					pline("Artifact specs: contains more loot than normal."); break;
+				case ART_IRONIT:
+					pline("Artifact specs: its material becomes iron if you wield it."); break;
+				case ART_SNAP_TOO:
+					pline("Artifact specs: occasionally locks itself when used."); break;
+				case ART_PIRATE_TREASURE:
+					pline("Artifact specs: contains a bunch of additional items, korsair sacrifice gift."); break;
+				case ART_CANNOTRAP:
+					pline("Artifact specs: if it's trapped and you use it, the trap is automatically disarmed."); break;
+				case ART_FUCK_OFF_THIEF:
+					pline("Artifact specs: cannot be stolen by enemies."); break;
+				case ART_EATBONANZA:
+					pline("Artifact specs: contains more corpses than usual."); break;
+				case ART_COLD_HAHA:
+					pline("Artifact specs: cold immunity when wielded."); break;
+				case ART_KLUEUEUEU:
+					pline("Artifact specs: +5 range when thrown and is guaranteed to hit the enemy."); break;
+				case ART_FORTY_FOUR_IS_LUCK:
+					pline("Artifact specs: contains a bunch of extra musable items."); break;
+				case ART_SEMINARIOS_KARTOFFLES:
+					pline("Artifact specs: waterproof."); break;
+				case ART_A_MAGE_DID_IT:
+					pline("Artifact specs: can be invoked to add a layer of grease."); break;
+				case ART_KEEP_IT_WARM_INSIDE:
+					pline("Artifact specs: can be invoked to uncurse or bless it."); break;
+				case ART_DON_T_RUN_OUT_OF_HALLOWEEN:
+					pline("Artifact specs: spawns with more charges than usual."); break;
+				case ART_SPAWN_DA_KILLAZ:
+					pline("Artifact specs: applying it while it has charges gives you the killer spawn trap effect for a while."); break;
+				case ART_GAUNTLET_ABBREVIATION:
+					pline("Artifact specs: warning, clairvoyance and psi resistance when wielded, can be used on Nightmare's Gauntlet to open a specific door."); break;
+				case ART_VLADIMIR_BE_AFRAID:
+					pline("Artifact specs: +15 fire damage to V-class monsters, double drain resistance when wielded."); break;
+				case ART_UNBRIT_SOV:
+					pline("Artifact specs: can be used to pick locks even if it becomes brittle, but will cause bad things to happen."); break;
+				case ART_VANULLA_SCORE:
+					pline("Artifact specs: doesn't become brittle, but is really dangerous to use."); break;
+				case ART_SYSETTE_S_THIEVINGNESS:
+					pline("Artifact specs: wielding it greatly improves your kick damage, especially if you wear very fleecy block heels that want to be caressed <3, and passively trains firearms and gun control while you're wielding it. The latter will train less quickly if you're male."); break;
+				case ART_DITHERS_WUMA:
+					pline("Artifact specs: doesn't become brittle, but using it may subject you to the power of feminism."); break;
+				case ART_HOLD_IT_OUT:
+					pline("Artifact specs: half physical and spell damage when wielded, greatly improves your AC, and if you're wearing a shield in your other hand, it has much better chance to block."); break;
+				case ART_JASTARTI:
+					pline("Artifact specs: does nothing special."); break;
+				case ART_SILVER_YENDORIAN_EXPRESS_C:
+					pline("Artifact specs: magic resistance, ESP and half spell damage when wielded."); break;
+				case ART_TIGHT_SPOT:
+					pline("Artifact specs: stealth and teleport control when wielded."); break;
+				case ART_STRANGE_LILCHEN:
+					pline("Artifact specs: using it gives you the jil trap effect temporarily, can be invoked to pay 10000 zorkmids and remove brittleness from this item so it can pick locks again after it has stopped working."); break;
+				case ART_GETIN_ON_VLADS:
+					pline("Artifact specs: can open certain doors in Vlad's Tower."); break;
+				case ART_CRUDE_SENSEI:
+					pline("Artifact specs: if you wield it in your main hand and are dual-wielding with your other hand empty, then that other hand will deal increased unarmed damage."); break;
+				case ART_COMPLETE_BUGNOSE:
+					pline("Artifact specs: Lol, you have encountered a nose! :-)"); break;
+				case ART_LOROFEM:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_WIDELITE:
+					pline("Artifact specs: lights up a wider area."); break;
+				case ART_MUCHO_TALCUM:
+					pline("Artifact specs: lasts much longer than normal."); break;
+				case ART_COUPLE_IN_THE_BOX:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_DURATEX:
+					pline("Artifact specs: lasts much longer than normal."); break;
+				case ART_FREE_FROM_STRAIN:
+					pline("Artifact specs: if you're wielding it while it's lit, and you have aggravate monster, it prevents magic portals appearing that would otherwise spawn enemies."); break;
+				case ART_GALADRIEL_S_AID:
+					pline("Artifact specs: lights up a wider area."); break;
+				case ART_EVERYGLASS_IS_WEIRD:
+					pline("Artifact specs: if you refill it with a potion of oil, it gains much more additional fuel."); break;
+				case ART_OUT_OILED:
+					pline("Artifact specs: spawns empty, stealth when wielded."); break;
+				case ART_KITZLE_THE_WISH_OUT:
+					pline("Artifact specs: rubbing it has higher chances of giving you a wish than usual."); break;
+				case ART_ILLUMER_THE_GREAT:
+					pline("Artifact specs: doesn't fail to light if cursed."); break;
+				case ART_YOU_GOT_ME:
+					pline("Artifact specs: does nothing special."); break;
+				case ART_FIRERING:
+					pline("Artifact specs: carrying it deactivates stealth."); break;
+				case ART_HALLOWEEN_FUEL:
+					pline("Artifact specs: spawns with extra fuel."); break;
+				case ART_JENNY_S_PROTECTER:
+					pline("Artifact specs: if you wield it while it's lit, you see all molesters on the current dungeon level."); break;
+				case ART_ANDY_S_SIGNWEISER:
+					pline("Artifact specs: clairvoyance when wielded."); break;
+				case ART_LEO_IS_ALWAYS_HIGH:
+					pline("Artifact specs: changes messages to funny ones when carried, can be invoked for gold detection but doing so causes you to be chased by the Keystone Kops."); break;
+				case ART_LELI_DAB:
+					pline("Artifact specs: if it's cursed, it has a below-average chance of malfunctioning."); break;
+				case ART_DBL_PLAY_SPEED:
+					pline("Artifact specs: more likely to affect monsters."); break;
+				case ART_HARD_STRING:
+					pline("Artifact specs: less likely to break when used."); break;
+				case ART_CHANGE_THE_TUNE:
+					pline("Artifact specs: can be invoked to turn it into a different instrument."); break;
+				case ART_BOM_BOM_BOM:
+					pline("Artifact specs: makes more noise than a regular one."); break;
+				case ART_BOBOBOBOBOM:
+					pline("Artifact specs: makes extremely loud noise! But it can also aggravate monsters."); break;
+				case ART_MOTHERFUCKING_BOMB:
+					pline("Artifact specs: places a bomb instead of a mine."); break;
+				case ART_PRECISION_DETONATING_STUFF:
+					pline("Artifact specs: you won't fail when trying to arm it, so there's no risk of it going off in your hands and hurting you."); break;
+				case ART_CLICKFIELD:
+					pline("Artifact specs: if you set it, several additional mines will be placed nearby."); break;
+				case ART_WEBBUROUND:
+					pline("Artifact specs: if you place it, the resulting beartrap will be surrounded by webs."); break;
+				case ART_PLACE_ON_TOP_OF_SNARE:
+					pline("Artifact specs: can also be placed on a square that already has a trap, which will delete the previously existing trap."); break;
+				case ART_FIELD_INITED__SORRY:
+					pline("Artifact specs: heh, sorry. The field has been initialized. :-)"); break; /* intentionally doesn't tell you what happened --Amy */
+				case ART_MAKE_THE_FOG_AWAY:
+					pline("Artifact specs: doesn't fog up when cursed."); break;
+				case ART_SUB_ETHA:
+					pline("Artifact specs: double searching when worn."); break;
+				case ART_TOTAL_PERSPECTIVE_VORTEX:
+					pline("Artifact specs: allows you to see things from a completely new perspective."); break;
+				case ART_IUSTITIA_BRINGER:
+					pline("Artifact specs: while wearing it, your weapons deal much more damage to chaotic monsters."); break;
+				case ART_SEEING_THE_PERSON_ANYWAY:
+					pline("Artifact specs: displays chaotic monsters within a certain radius when worn but you'll become less capable of making decisions."); break;
+				case ART_SATAN_S_SPECIFIC_ENCHANTME:
+					pline("Artifact specs: magic resistance when worn. You feel that Satan has placed some malicious side effect on this item, though."); break;
+				case ART_NUTRIROLL:
+					pline("Artifact specs: spawns with more charges than usual."); break;
+				case ART_REFILL_PROPERLY:
+					pline("Artifact specs: recharging it gives more additional charges than usual."); break;
+				case ART_CORONA_S_TOLL:
+					pline("Artifact specs: contains more stuff."); break;
+				case ART_SYKES_S_INFINITY:
+					pline("Artifact specs: contains an (almost) infinite amount of bandages."); break;
+				case ART_MARVELOUS_FUNCTION:
+					pline("Artifact specs: as long as it's not cursed, you won't become deathly sick when using it."); break;
+				case ART_SING_S_STOCK:
+					pline("Artifact specs: spawns with more charges than usual."); break;
+				case ART_SING_S_LAST_LAUGH:
+					pline("Artifact specs: spawns with a huge amount of charges, but Sing will attempt to enslave you whenever you use it :-)"); break;
+				case ART_EURO_S_UNWASTE:
+					pline("Artifact specs: applying it won't always use a charge."); break;
+				case ART_BEH__TOO_EASY:
+					pline("Artifact specs: beh, now the game has become too easy because you have so many magic marker charges. In order to at least somewhat balance it, this item cannot be wished for."); break;
+				case ART_WRITE_THE_UNKNOWN:
+					pline("Artifact specs: can also write scrolls that you don't know yet, but uses much more ink when writing scrolls (any scrolls, including ones that you do know)."); break;
+				case ART_SEEP_INTO_THE_SOUL:
+					pline("Artifact specs: if you write something with it, your intelligence will seep right into yur soul, meaning that you lose a point of intelligence but gain alla equal to the cost of the thing you wrote."); break;
+				case ART_END_OF_THE_WORLD_SWITCH:
+					pline("Artifact specs: dare you to apply it. What's the worst that could happen? :D"); break;
+				case ART_PECULIAR_MARKINGS:
+					pline("Artifact specs: will probably hatch tame, if it does hatch in the first place."); break;
+				case ART_MANYLINGS:
+					pline("Artifact specs: This egg seems strangely big..."); break;
+				case ART_FERTILIZATION_FAIL:
+					pline("Artifact specs: An egg that never hatches, no matter what you do, so you might just as well eat it."); break;
+				case ART_NUTRI_ROULETTE:
+					pline("Artifact specs: gives much more nutrition when eaten... or makes you much more hungry if it turns out to be rotten."); break;
+				case ART_THERE_WILL_BE_REVENGE:
+					pline("Artifact specs: if this tin contains meat of a monster, and you eat it, that monster will have its revenge!"); break;
+				case ART_HALF_CRAWLS_BACK_OUT:
+					pline("Artifact specs: uhh, the contents seem to still be alive...?"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

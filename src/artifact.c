@@ -2903,8 +2903,9 @@ struct monst *mon;
 		}
 	}
 
-	if (weap && weap->attk.damn && spec_applies_number(weap, mon, otmp))
+	if (weap && weap->attk.damn && spec_applies_number(weap, mon, otmp)) {
 	    return (int)weap->attk.damn;
+	}
 	return 0;
 }
 
@@ -2952,14 +2953,15 @@ int tmp;
 	}
 
 	if (!weap || (weap->attk.adtyp == AD_PHYS && /* check for `NO_ATTK' */
-			weap->attk.damn == 0 && weap->attk.damd == 0))
+			weap->attk.damn == 0 && weap->attk.damd == 0)) {
 	    spec_dbon_applies = FALSE;
-	else
+	} else {
 	    spec_dbon_applies = spec_applies_number(weap, mon, otmp);
+	}
 
 	/* Amy edit: the fact that they always did max damage was fucked up, IMHO. */
 
-	if (spec_dbon_applies)
+	if (spec_dbon_applies) {
 
 	    if (otmp && otmp->oartifact == ART_PULVERIZE_EM) {
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
@@ -2970,6 +2972,9 @@ int tmp;
 		     * bonus for launchers.
 		     */
 		    is_launcher(otmp) ? 0 : rnd(max(tmp,1)); /* double damage was too strong --Amy */
+
+	}
+
 	return 0;
 }
 

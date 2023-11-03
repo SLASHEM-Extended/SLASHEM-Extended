@@ -11493,6 +11493,9 @@ dodrink()
 	if (itemhasappearance(otmp, APP_POTION_LUCKY) && !rn2(10)) {
 		goodeffect();
 	}
+	if (itemhasappearance(otmp, APP_POTION_CHOCOLATE)) {
+		chocolate_effect();
+	}
 	if (itemhasappearance(otmp, APP_POTION_DYE)) {
 		register struct obj *steeling;
 		if (CannotSelectItemsInPrompts) goto dyedone;

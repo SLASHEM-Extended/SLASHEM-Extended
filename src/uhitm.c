@@ -37,6 +37,9 @@ static int rolls[2][2];
 #define UWEP_ROLL	0
 #define USWAPWEP_ROLL	1
 
+#define get_artifact(o) \
+		(((o)&&(o)->oartifact) ? &artilist[(int) ((unsigned int) (o)->oartifact)] : 0)
+
 /* Used to flag attacks caused by Stormbringer's maliciousness. */
 static boolean override_confirmation = 0;
 
@@ -3558,7 +3561,7 @@ int dieroll;
 			}
 
 			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
-				tmp += 10;
+				tmp += rnd(10);
 				if (obj->spe > 0) tmp += obj->spe;
 				if (obj->oartifact == ART_DEADLY_GAMBLING) tmp += rnd(30);
 			}
@@ -3572,10 +3575,10 @@ int dieroll;
 			}
 
 			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
-				tmp += obj->spe;
+				tmp += rno(obj->spe);
 			}
 			if (obj && obj->oclass == WAND_CLASS && Race_if(PM_STICKER) && obj->spe > 0) {
-				tmp += obj->spe;
+				tmp += rno(obj->spe);
 			}
 
 			if (obj && obj->oartifact == ART_ICE_BLOCK_HARHARHARHARHAR) {
@@ -3588,6 +3591,30 @@ int dieroll;
 				if (cnt > 15) cnt = 15;
 				if (cnt < 0) cnt = 0; /* should never happen; fail safe */
 				tmp += (cnt * 2);
+
+			}
+
+			/* artifact spellbooks etc., by Amy */
+
+			if (obj->oartifact) {
+
+				boolean willartihit = FALSE;
+				register const struct artifact *weap = get_artifact(obj);
+
+				if (weap) {
+					if (weap->attk.adtyp != AD_PHYS) willartihit = TRUE;
+					if (weap->attk.damn != 0) willartihit = TRUE;
+					if (weap->attk.damd != 0) willartihit = TRUE;
+				}
+
+				if (willartihit) {
+					if (artifact_hit(&youmonst, mon, obj, &tmp, dieroll)) {
+						if(mon->mhp <= 0) /* artifact killed monster */
+							return FALSE;
+						if (tmp == 0) return TRUE;
+						hittxt = TRUE;
+					}
+				}
 
 			}
 

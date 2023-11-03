@@ -6208,7 +6208,7 @@ POTION("Mehoho Burusasan G", "blinding", 1, 0,         20, 100, CLR_BLACK, 1, 0)
 POTION("tech level up", "suffous", 1, 0,                500, 100, CLR_RED, 20, 0),
 POTION("beneficial effect", "homebrew", 1, 0,           200, 100, CLR_GREEN, 5, 0),
 POTION("random intrinsic", "finicky",   1, 0,           200, 100, CLR_BRIGHT_BLUE, 10, 0),
-POTION("training", "chocolate",         1, 0,            50, 100, CLR_BROWN, 15, 0),
+POTION("training", "chocolate",         1, 0,            50, 100, CLR_BROWN, 15, APP_POTION_CHOCOLATE),
 POTION("cure aids", "lucky",            1, 0,            10, 100, CLR_YELLOW, 30, APP_POTION_LUCKY),
 
 POTION("invisibility", "brilliant blue",1, INVIS,      3500, 100, CLR_BRIGHT_BLUE, 5, 0),
