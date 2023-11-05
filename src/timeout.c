@@ -275,7 +275,7 @@ nh_timeout()
 
 	u.barbertimer++;
 
-	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone()) {
+	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
 		if (!rn2(2500)) {
 			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);
 			if (flags.showsanity) flags.botl = 1;
@@ -4490,7 +4490,7 @@ unpoly_obj(arg, timeout)
 
 	    while (otmp->where == OBJ_CONTAINED) {
 		otmp = otmp->ocontainer;
-		if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING) {
+		if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING) {
 		    explodes = mbag_explodes(obj, depthin);
 		    break;
 		}
@@ -4502,7 +4502,7 @@ unpoly_obj(arg, timeout)
 		while (otmp2->where == OBJ_CONTAINED) {
 		    otmp2 = otmp2->ocontainer;
 
-		    if (otmp2->otyp == BAG_OF_HOLDING || otmp2->otyp == ICE_BOX_OF_HOLDING || otmp2->otyp == CHEST_OF_HOLDING) 
+		    if (otmp2->otyp == BAG_OF_HOLDING || otmp2->otyp == ICE_BOX_OF_HOLDING || otmp2->oartifact == ART_SACK_OF_HOLDING || otmp2->otyp == CHEST_OF_HOLDING) 
 			otmp = otmp2;
 		}
 		destroy_mbag(otmp, silent);
@@ -4868,6 +4868,7 @@ long timeout;
 	/* sterilized while waiting */
 	if (egg->corpsenm == NON_PM) return;
 	if (u.sterilized) return;
+	if (egg->oartifact == ART_FERTILIZATION_FAIL) return;
 
 	mon = mon2 = (struct monst *)0;
 	mnum = big_to_little(egg->corpsenm);
@@ -4878,10 +4879,13 @@ long timeout;
 	/* only can hatch when in INVENT, FLOOR, MINVENT */
 	if (get_obj_location(egg, &x, &y, 0)) {
 	    hatchcount = rnd((int)egg->quan);
+	    int actualhatchcount = hatchcount;
+	    if (egg->oartifact == ART_MANYLINGS) actualhatchcount *= rnd(9);
+
 	    cansee_hatchspot = cansee(x, y) && !silent;
 	    if (!(mons[mnum].geno & G_UNIQ) &&
 		   !(mvitals[mnum].mvflags & (G_GENOD | G_EXTINCT))) {
-		for (i = hatchcount; i > 0; i--) {
+		for (i = actualhatchcount; i > 0; i--) {
 		    if (!enexto(&cc, x, y, &mons[mnum]) ||
 			 !(mon = makemon(&mons[mnum], cc.x, cc.y, NO_MINVENT)))
 			break;
@@ -4891,7 +4895,7 @@ long timeout;
 		    /* tame if your own egg hatches while you're on the
 		       same dungeon level, or any dragon egg which hatches
 		       while it's in your inventory */
-		    if (((yours && !silent) || (carried(egg) && mon->data->mlet == S_DRAGON)) && !(uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) ) {
+		    if (((yours && !silent) || (carried(egg) && mon->data->mlet == S_DRAGON)) && !(uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) && !(egg->oartifact == ART_MANYLINGS && rn2(10)) ) {
 			if ((mon2 = tamedog(mon, (struct obj *)0, FALSE)) != 0) {
 			    mon = mon2;
 			    if (carried(egg) && mon->data->mlet != S_DRAGON)
@@ -5906,6 +5910,8 @@ begin_burn(obj, already_lit)
 		    turns = obj->age - 25L;
 		else
 		    turns = obj->age;
+
+		if (obj->oartifact == ART_GALADRIEL_S_AID) radius++;
 		break;
 
 	    case CANDELABRUM_OF_INVOCATION:

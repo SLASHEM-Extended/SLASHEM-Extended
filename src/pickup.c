@@ -1123,7 +1123,7 @@ int *wt_before, *wt_after;
     }
     wt = iw + (int)obj->owt;
     if (adjust_wt)
-	wt -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
+	wt -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING || container->oartifact == ART_SACK_OF_HOLDING) ?
 		(int)DELTA_CWT(container, obj) : (container->otyp == HANDYBAG) ? (int)HANDYBAG_CWT(container, obj) : (int)obj->owt;
 #ifndef GOLDOBJ
     if (is_gold)	/* merged gold might affect cumulative weight */
@@ -1169,7 +1169,7 @@ int *wt_before, *wt_after;
 #else
 		ow = (int)GOLD_WT(umoney + qq);
 #endif
-		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
+		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING || container->oartifact == ART_SACK_OF_HOLDING) ?
 			(int)DELTA_CWT(container, obj) : (container->otyp == HANDYBAG) ? (int)HANDYBAG_CWT(container, obj) :  (int)obj->owt;
 		if (iw + ow >= 0) break;
 		oow = ow;
@@ -1196,7 +1196,7 @@ int *wt_before, *wt_after;
 	    obj->quan = qq;
 	    obj->owt = (unsigned)(ow = weight(obj));
 	    if (adjust_wt)
-		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING) ?
+		ow -= (container->otyp == BAG_OF_HOLDING || container->otyp == ICE_BOX_OF_HOLDING || container->otyp == CHEST_OF_HOLDING || container->oartifact == ART_SACK_OF_HOLDING) ?
 			(int)DELTA_CWT(container, obj) : (container->otyp == HANDYBAG) ? (int)HANDYBAG_CWT(container, obj) :  (int)obj->owt;
 	    if (iw + ow >= 0)
 		break;
@@ -1822,7 +1822,7 @@ lootcont:
 
 		You("carefully open %s...", the(xname(cobj)));
 		if ((cobj->otyp == BAG_OF_DIGESTION || cobj->otyp == LARGE_BOX_OF_DIGESTION || cobj->otyp == ICE_BOX_OF_DIGESTION) && !timepassed) timepassed = 1;
-		if ((cobj->otyp == BAG_OF_HOLDING || cobj->otyp == CHEST_OF_HOLDING || cobj->otyp == ICE_BOX_OF_HOLDING) && cobj->cursed && !timepassed) timepassed = 1;
+		if ((cobj->otyp == BAG_OF_HOLDING || cobj->otyp == CHEST_OF_HOLDING || cobj->oartifact == ART_SACK_OF_HOLDING || cobj->otyp == ICE_BOX_OF_HOLDING) && cobj->cursed && !timepassed) timepassed = 1;
 		timepassed |= use_container(&cobj, 0); /* ATTENTION: cobj might be gone now (boh explosion) --Amy */
 
 		/* might have triggered chest trap or magic bag explosion */
@@ -2713,6 +2713,12 @@ int held;
 	    menu_on_request;
 	int monsterator = 0;
 
+	if (obj && obj->oartifact == ART_SNAP_TOO && !rn2(100)) {
+		obj->olocked = TRUE;
+		obj->obroken = FALSE;
+	}
+	if (obj && obj->oartifact == ART_CANNOTRAP) obj->otrapped = FALSE;
+
 	emptymsg[0] = '\0';
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && !(obj && obj->otyp == HANDYBAG) ) {
 		You("have no hands!");	/* not `body_part(HAND)' */
@@ -2768,6 +2774,10 @@ int held;
 
 	current_container = obj;	/* for use by in/out_container */
 	/* from here on out, all early returns go through containerdone */
+
+	if (obj->oartifact == ART_ELECTRONIC_LOCK) {
+		if (ContainerKaboom < 10000) ContainerKaboom = 10000;
+	}
 
 	if (obj->oartifact == ART_DEMONSEAL) {
 		if (obj->invoketimer <= monstermoves) {

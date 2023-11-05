@@ -167,14 +167,16 @@ int distance;
 /* Awake only soldiers of the level. */
 
 void
-awaken_soldiers()
+awaken_soldiers(awakeflag)
+int awakeflag;
 {
 	register struct monst *mtmp = fmon;
 
 	while(mtmp) {
 	    if (!DEADMONSTER(mtmp) &&
-			is_mercenary(mtmp->data) && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_EXPERIENCED_GUARD] && mtmp->data != &mons[PM_EXCEPTIONAL_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD] && mtmp->data != &mons[PM_CROUPIER] && mtmp->data != &mons[PM_MASTER_CROUPIER] && mtmp->data != &mons[PM_EXPERIENCED_CROUPIER] && mtmp->data != &mons[PM_EXCEPTIONAL_CROUPIER] && mtmp->data != &mons[PM_ELITE_CROUPIER]) {
+			((is_mercenary(mtmp->data) && mtmp->data != &mons[PM_GUARD] && mtmp->data != &mons[PM_MASTER_GUARD] && mtmp->data != &mons[PM_EXPERIENCED_GUARD] && mtmp->data != &mons[PM_EXCEPTIONAL_GUARD] && mtmp->data != &mons[PM_ELITE_GUARD] && mtmp->data != &mons[PM_CROUPIER] && mtmp->data != &mons[PM_MASTER_CROUPIER] && mtmp->data != &mons[PM_EXPERIENCED_CROUPIER] && mtmp->data != &mons[PM_EXCEPTIONAL_CROUPIER] && mtmp->data != &mons[PM_ELITE_CROUPIER]) || (awakeflag == 1)) ) {
 		mtmp->mpeaceful = mtmp->msleeping = mtmp->mfrozen = 0;
+		if (awakeflag == 2 && !mtmp->mtame) mtmp->mfrenzied = 1;
 		mtmp->masleep = 0;
 		mtmp->mcanmove = 1;
 		if (canseemon(mtmp))
@@ -431,7 +433,10 @@ struct obj *instr;
 	case PAN_PIPE: */
 	    do_spec &= (rn2(ACURR(A_DEX)) + GushLevel > (25 + rn2(40)) );
 	    pline("%s.", Tobjnam(instr, do_spec ? "trill" : "toot"));
-	    if (do_spec) charm_snakes(GushLevel * 3);
+	    if (do_spec) {
+		charm_snakes(GushLevel * 3);
+		if (instr && instr->oartifact == ART_DBL_PLAY_SPEED) charm_snakes(GushLevel * 5);
+	    }
 	    exercise(A_DEX, TRUE);
 	    break;
 	case FROST_HORN:		/* Idem wand of cold */
@@ -528,7 +533,9 @@ hornchoice:
 	case GUITAR:
 	case BUGLE:			/* Awaken & attract soldiers */
 	    You("extract a loud noise from %s.", the(xname(instr)));
-	    awaken_soldiers();
+	    if (instr && instr->oartifact == ART_HEAR_FAR_AND_WIDE) awaken_soldiers(1);
+	    else if (instr && instr->oartifact == ART_THIS_IS_NOT_A_DRILL) awaken_soldiers(2);
+	    else awaken_soldiers(0);
 	    exercise(A_WIS, FALSE);
 
 	    if (instr && instr->oartifact == ART_MESSAGE_MEGAPHONE) {
@@ -619,9 +626,20 @@ hornchoice:
 		break;
 #endif
 	case LEATHER_DRUM:		/* Awaken monsters */
+	  {
+	    int drumloudness = GushLevel * 40;
+	    if (instr->oartifact == ART_BOM_BOM_BOM) {
+		drumloudness *= 3; drumloudness /= 2;
+	    }
+	    if (instr->oartifact == ART_BOBOBOBOBOM) {
+		drumloudness *= 2;
+		wake_nearby();
+		aggravate();
+	    }
 	    You("beat a deafening row!");
-	    awaken_monsters(GushLevel * 40);
-	    Deafness += (GushLevel * 40);
+	    if (instr->oartifact == ART_BOBOBOBOBOM) pline("In fact, people will probably have heard it from ten miles away.");
+	    awaken_monsters(drumloudness);
+	    Deafness += (drumloudness);
 	    flags.soundok = 0;
 
 	    if (!obsidianprotection()) switch (rn2(52)) {
@@ -660,6 +678,7 @@ hornchoice:
 
 	    exercise(A_WIS, FALSE);
 	    break;
+	  }
 	default:
 	    impossible("What a weird instrument (%ld)!", instr->otyp);
 	    break;
@@ -687,7 +706,7 @@ struct obj *instr;
 	return(0);
     }
 
-    if ( ((instr->otyp == WOODEN_FLUTE) || (instr->otyp == TOOLED_HORN) || (instr->otyp == FOG_HORN) || (instr->otyp == WOODEN_HARP) || (instr->otyp == LEATHER_DRUM) || (instr->otyp == MAGIC_FLUTE && instr->spe < 1) || (instr->otyp == MAGIC_HARP && instr->spe < 1) || (instr->otyp == DRUM_OF_EARTHQUAKE && instr->spe < 1) || (Confusion && !Conf_resist)) && !(Role_if(PM_BARD) && rn2(100)) && !(Role_if(PM_MUSICIAN) && rn2(20)) && (!instr->oartifact || !rn2(10)) && !rn2(isfriday ? 50 : 200)) {
+    if ( ((instr->otyp == WOODEN_FLUTE) || (instr->otyp == TOOLED_HORN) || (instr->otyp == FOG_HORN) || (instr->otyp == WOODEN_HARP) || (instr->otyp == LEATHER_DRUM) || (instr->otyp == MAGIC_FLUTE && instr->spe < 1) || (instr->otyp == MAGIC_HARP && instr->spe < 1) || (instr->otyp == DRUM_OF_EARTHQUAKE && instr->spe < 1) || (Confusion && !Conf_resist)) && !(Role_if(PM_BARD) && rn2(100)) && !(Role_if(PM_MUSICIAN) && rn2(20)) && !(instr->oartifact == ART_HARD_STRING && rn2(5)) && (!instr->oartifact || !rn2(10)) && !rn2(isfriday ? 50 : 200)) {
 	useup(instr);
 	Your("instrument breaks into pieces!");
 	return 2;

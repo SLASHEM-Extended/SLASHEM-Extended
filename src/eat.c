@@ -4891,15 +4891,51 @@ opentin()		/* called during each move whilst opening a tin */
 	    tin.tin->dknown = tin.tin->known = TRUE;
 	    cprefx(tin.tin->corpsenm); cpostfx(tin.tin->corpsenm);
 
+	    if (tin.tin->oartifact == ART_THERE_WILL_BE_REVENGE) {
+		int revengespawns = rn1(10, 10);
+
+		while (revengespawns > 0) {
+			revengespawns--;
+			(void) makemon(&mons[tin.tin->corpsenm], 0, 0, NO_MM_FLAGS);
+		}
+		You_feel("that the monster you just ate wants revenge.");
+	    }
+
+	    if (tin.tin->oartifact == ART_HALF_CRAWLS_BACK_OUT) {
+			register struct monst *crawlmon;
+			crawlmon = makemon(&mons[tin.tin->corpsenm], u.ux, u.uy, MM_ADJACENTOK);
+			if (crawlmon) {
+				crawlmon->mhp = crawlmon->mhpmax / 2;
+				if (crawlmon->mhp < 1) crawlmon->mhp = 1; /* fail safe */
+				pline("As you eat the contents of the tin, half of the monster crawls back out and seems quite alive again!");
+			}
+	    }
+
 	    /* charge for one at pre-eating cost */
 	    costly_tin((const char*)0);
 
 	    /* check for vomiting added by GAN 01/16/87 */
-	    if(tintxts[r].nut < 0) {make_vomiting((long)rn1(15,10), FALSE);
-			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
-			if (!issoviet) lesshungry(tintxts[r].nut);
+	    if(tintxts[r].nut < 0) {
+		make_vomiting((long)rn1(15,10), FALSE);
+
+		int tinnut = tintxts[r].nut;
+		if (tin.tin->oartifact == ART_NUTRI_ROULETTE) {
+			tinnut *= 10;
+			if (tinnut < -1000) tinnut = -1000;
 		}
-	    else lesshungry((uarmf && uarmf->oartifact == ART_U_BE_CURRY) ? ((tintxts[r].nut) * 3) : tintxts[r].nut);
+
+		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		if (!issoviet) lesshungry(tinnut);
+	    } else {
+
+		int tinnut = tintxts[r].nut;
+		if (tin.tin->oartifact == ART_NUTRI_ROULETTE) {
+			tinnut *= 10;
+			if (tinnut < -1000) tinnut = -1000;
+		}
+
+		lesshungry((uarmf && uarmf->oartifact == ART_U_BE_CURRY) ? (tinnut * 3) : tinnut);
+	    }
 
 		if (Race_if(PM_WORM_THAT_WALKS)) { /* chance to polymorph into the tinned monster --Amy */
 			if (rn2(5) ) {
@@ -4909,7 +4945,7 @@ opentin()		/* called during each move whilst opening a tin */
 				polyself(FALSE);
 				}
 			} else polyself(FALSE);
-		}
+	    }
 
 		if (Race_if(PM_WARPER)) { /* chance to polymorph into the tinned monster --Amy */
 			if (!rn2(5) ) {
@@ -4950,7 +4986,8 @@ opentin()		/* called during each move whilst opening a tin */
 	    if (!tin.tin->cursed)
 		pline("This makes you feel like %s!",
 		      FunnyHallu ? "Swee'pea" : "Popeye");
-	    lesshungry(600);
+	    if (tin.tin->oartifact == ART_NUTRI_ROULETTE) lesshungry(6000);
+	    else lesshungry(600);
 	    gainstr(tin.tin, 0);
 	    u.uconduct.food++;
 		if (FemtrapActiveNora) {
@@ -4999,7 +5036,8 @@ opentin()		/* called during each move whilst opening a tin */
 	    pline("You'll have incessant flatulence for a while now...");
 	    FemaleTrapMaurah += rnz(500);
 
-	    lesshungry(600);
+	    if (tin.tin->oartifact == ART_NUTRI_ROULETTE) lesshungry(6000);
+	    else lesshungry(600);
 	    u.uconduct.food++;
 		if (FemtrapActiveNora) {
 			You("vomit.");
@@ -5035,7 +5073,8 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    }
 
-	    lesshungry(600);
+	    if (tin.tin->oartifact == ART_NUTRI_ROULETTE) lesshungry(6000);
+	    else lesshungry(600);
 	    u.uconduct.food++;
 		if (FemtrapActiveNora) {
 			You("vomit.");
@@ -5070,7 +5109,8 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    }
 
-	    lesshungry(600);
+	    if (tin.tin->oartifact == ART_NUTRI_ROULETTE) lesshungry(6000);
+	    else lesshungry(600);
 	    u.uconduct.food++;
 		if (FemtrapActiveNora) {
 			You("vomit.");

@@ -29149,6 +29149,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Careful, the lord has noticed your deed.",
 	"Careful, the lord has noticed your deed. Why isn't he spelled with a capital L? Blasphemy!",
 	"Careful, the lord has noticed your deed. This means that your divine anger has increased by one.",
+	"Great! Now you can see everything from a totally different perspective.",
+	"Great! Now you can see everything from a totally different perspective. Unfortunately for you though, SLEX still wants you dead.",
 
 };
 

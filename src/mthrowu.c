@@ -283,6 +283,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) shieldblockrate += 20;
 		if (uwep && uwep->oartifact == ART_SECANTED) shieldblockrate += 5;
 		if (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_BIMMSELIMMELIMM) shieldblockrate += 10;
@@ -1057,7 +1058,7 @@ int x,y;
 	}
 
 	/* D: Detonate crossbow bolts from Hellfire if they hit */
-	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || mwep->oartifact == ART_UNIDENTIFIED_HELLCAST || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
+	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || (obj && obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU) || mwep->oartifact == ART_UNIDENTIFIED_HELLCAST || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
 		  && is_ammo(obj) && ammo_and_launcher(obj, mwep)) {
 	  
 		if (cansee(bhitpos.x,bhitpos.y)) 

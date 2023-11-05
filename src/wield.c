@@ -194,6 +194,13 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		}
 	}
 
+	if (uwep && uwep->oartifact == ART_IRONIT) {
+		if (objects[uwep->otyp].oc_material != MT_IRON) {
+			objects[uwep->otyp].oc_material = MT_IRON;
+			Your("container is made of iron now.");
+		}
+	}
+
 	if (uwep && uwep->oartifact == ART_FONLAUSCHI && objects[uwep->otyp].oc_material != MT_SILK) {
 		objects[uwep->otyp].oc_material = MT_SILK;
 		Your("weapon is made of silk now.");

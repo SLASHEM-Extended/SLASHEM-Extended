@@ -1244,6 +1244,7 @@ newsym(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1288,6 +1289,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1374,6 +1376,7 @@ newsym(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1418,6 +1421,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1669,6 +1673,7 @@ newsymX(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1713,6 +1718,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1799,6 +1805,7 @@ newsymX(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
@@ -1843,6 +1850,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -3777,6 +3785,7 @@ struct monst *mon;
 	if (StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) return TRUE;
 	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) return TRUE;
+	if (uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) return TRUE;
 	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
 	if (Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) return TRUE;
@@ -3824,6 +3833,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) return TRUE;
+	if (ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) return TRUE;
 	if (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) return TRUE;
 	if (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) return TRUE;

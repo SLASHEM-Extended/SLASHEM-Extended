@@ -1992,7 +1992,7 @@ playerextrinsiccoldres()
 	if ((uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_COLD_SOUL) || (uwep && uwep->oartifact == ART_RELEASE_FROM_CARE) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
 	if ((uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uwep && uwep->oartifact == ART_ELEMENTS_TIME_THREE) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) || (uarmf && uarmf->oartifact == ART_DYKE_RESISTS) || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uarmf && uarmf->oartifact == ART_SIMPLY_WHITE) || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uwep && uwep->oartifact == ART_CUTRELEASE) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) ) return TRUE;
-	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) ) return TRUE;
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || (uwep && uwep->oartifact == ART_COLD_HAHA) ) return TRUE;
 
 	return FALSE;
 }
@@ -15839,7 +15839,7 @@ boolean canarti;
 	    puton_worn_item(obj);
 	}
 
-	if ((obj->otyp == BAG_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING) && Has_contents(obj)) {
+	if ((obj->otyp == BAG_OF_HOLDING || obj->oartifact == ART_SACK_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING) && Has_contents(obj)) {
 	    explodes = FALSE;
 
 	    for (otmp = obj->cobj; otmp; otmp = otmp->nobj)
@@ -16467,13 +16467,14 @@ dodip()
 		obj->otyp = OIL_LAMP;
 		obj->age = 0;
 	    }
-	    if (obj->age > 1000L) {
+	    if (issoviet && (obj->age > 1000L)) {
                 pline("%s %s full.", Yname2(obj), otense(obj, "are"));
 		potion->in_use = FALSE; /* didn't go poof */
 	    } else {
                 You("fill your %s with oil.", yname(obj));
 		if (!(uarmc && itemhasappearance(uarmc, APP_FUEL_CLOAK))) check_unpaid(potion);	/* Yendorian Fuel Tax */
 		obj->age += 2*potion->age;	/* burns more efficiently */
+		if (obj->oartifact == ART_EVERYGLASS_IS_WEIRD) obj->age += 5000;
 		if (issoviet && obj->age > 1500L) obj->age = 1500L;
 		useup(potion);
 		exercise(A_WIS, TRUE);
@@ -16725,7 +16726,7 @@ int kind;
 			mongone(mtmp);
 		} else {
 			verbalize("I am in your debt.  I will grant a boon!");
-			if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
+			if (!rn2(4) || (obj->oartifact == ART_KITZLE_THE_WISH_OUT) ) makewish(evilfriday ? FALSE : TRUE);
 			else othergreateffect();
 			mongone(mtmp);
 		}

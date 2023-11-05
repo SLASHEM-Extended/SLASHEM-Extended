@@ -2159,6 +2159,7 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SAY__CHESS_) range += 2;
 		if (obj && obj->oartifact == ART_PEWWWWWWW) range += 15;
 		if (obj && obj->oartifact == ART_WIUNEW) range += 3;
+		if (obj && obj->oartifact == ART_KLUEUEUEU) range += 5;
 		if (obj && obj->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 4;
 		if (uwep && uwep->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 3;
 
@@ -2707,6 +2708,7 @@ boolean polearming;
 	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 	if (bmwride(ART_ZIN_BA)) tmp += 4;
 	if (obj && obj->oartifact == ART_BLOHIT) tmp += 10;
+	if (obj && obj->oartifact == ART_KLUEUEUEU) tmp += 1000;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -3392,7 +3394,7 @@ evasionchancedone:
 
 	if (!polearming && befriend_with_obj(mon->data, obj)) goto befriended;
 
-	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) ||
+	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) || obj->oartifact == ART_KLUEUEUEU ||
 		obj->oclass == GEM_CLASS) {
 	    if (is_ammo(obj)) {
 		if (!ammo_and_launcher(obj, launcher)) {

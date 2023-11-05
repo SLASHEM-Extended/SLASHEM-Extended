@@ -58,11 +58,15 @@ use_camera(obj)
 	struct obj *obj;
 {
 	register struct monst *mtmp;
+	boolean useagain = FALSE;
 
 	if(Underwater) {
 		pline(FunnyHallu ? "You see tons of little fishes, jellyfish, seaweed and submarines..." : "Using your camera underwater would void the warranty.");
 		return(0);
 	}
+
+usecameraagain:
+
 	if(!getdir((char *)0)) return(0);
 
 	if (obj->spe <= 0) {
@@ -95,7 +99,7 @@ use_camera(obj)
 		}
 	}
 
-	if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
+	if (!useagain && (nochargechange >= rnd(10))) consume_obj_charge(obj, TRUE);
 
 	if (obj->cursed && !rn2(2)) {
 		(void) zapyourself(obj, TRUE);
@@ -122,6 +126,12 @@ use_camera(obj)
 	if (Race_if(PM_SATRE)) {
 		use_skill(P_DEVICES,1);
 		use_skill(P_DEVICES,1);
+	}
+
+	if (obj->oartifact == ART_GOODFILM && !useagain) {
+		useagain = TRUE;
+		You("can take another photo.");
+		goto usecameraagain;
 	}
 
 	return 1;
@@ -757,12 +767,13 @@ struct obj *obj;
 
 	if (obj->cursed) {
 				/* watchmen don't like that --Amy */
-				awaken_soldiers();
+				awaken_soldiers(0);
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse bodrstvuyet. Otlichno srabotano." : "KRIIIIIIIIII!");
 	} else {
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Arbitr svistnul, dazhe yesli on ne imeyet svistok." : "Pfiiiiiiet!");
 	}
 	wake_nearby();
+	if (obj->oartifact == ART_LOUDNESS_AMPLIFIER) wake_nearby();
 
 	if (obj->oartifact == ART_GUANTANAMERA) {
 		pline("The whistle plays a lullaby...");
@@ -792,8 +803,22 @@ struct obj *obj;
 			    EDOG(mtmp)->whistletime = moves;
 		    }
 		}
+	}
+
+	if (obj->oartifact == ART_PET_COME_HERE_) {
+		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (!DEADMONSTER(mtmp)) {
+
+			if (mtmp->mtame && !mtmp->isminion) {
+				int whistletimer = moves - rn1(10, 10);
+				if (whistletimer < 0) whistletimer = 0;
+			    EDOG(mtmp)->whistletime = whistletimer;
+			}
+		    }
+		}
 
 	}
+
 }
 
 STATIC_OVL void
@@ -802,7 +827,7 @@ struct obj *obj;
 {
 	register struct monst *mtmp, *nextmon;
 
-	if(obj->cursed && !rn2(2)) {
+	if(obj->cursed && !rn2((obj->oartifact == ART_LELI_DAB) ? 3 : 2)) {
 		You(FunnyHallu ? "produce a grating, annoying sound." : "produce a high-pitched humming noise.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Potomu chto vy ne mozhete igrat' der'mo." : "Dueueueueue!");
 		wake_nearby();
@@ -1175,7 +1200,7 @@ struct obj *obj;
 
 	if(!getdir((char *)0)) return 0;
 
-	if (obj->cursed && !rn2(100)) {
+	if (obj->cursed && !(obj->oartifact == ART_MAKE_THE_FOG_AWAY) && !rn2(100)) {
 		useup(obj);
 		change_luck(-2);
 		Your("mirror suddenly shatters into a thousand pieces!");
@@ -1188,7 +1213,7 @@ struct obj *obj;
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 	}
 
-	if(obj->cursed && !rn2(2)) {
+	if(obj->cursed && !(obj->oartifact == ART_MAKE_THE_FOG_AWAY) && !rn2(2)) {
 		if (vis)
 			FunnyHallu ? pline("Trippy messy rainbow colors... wow!") : pline_The("mirror fogs up and doesn't reflect!");
 		return 1;
@@ -1524,6 +1549,31 @@ struct obj **optr;
 	    makeknown(BELL_OF_OPENING);
 	    obj->known = 1;
 	}
+	if (obj->oartifact == ART_MAKE_BROKEN && !rn2(2)) wakem = FALSE;
+
+	if (obj->oartifact == ART_SOLVEDBRIDGE) {
+		if(Is_stronghold(&u.uz)) {
+			int x,y;
+			for(y=u.uy-1; y<=u.uy+1; y++) {
+			  for(x=u.ux-1; x<=u.ux+1; x++) {
+
+				if(isok(x,y)) {
+
+					if(find_drawbridge(&x,&y)) {
+					    if(levl[x][y].typ == DRAWBRIDGE_DOWN) {
+						pline("Hmm, the drawbridge doesn't seem to react.");
+					    } else {
+						open_drawbridge(x,y);
+					    }
+					    goto dbridgedone; /* wtf without that there'd be an infinite loop??? --Amy */
+					}
+				}
+			  }
+			}
+		}
+	}
+dbridgedone:
+
 	if (wakem) wake_nearby();
 }
 
@@ -1872,7 +1922,7 @@ struct obj *obj;
 		losehp(rnd(2), "igniting a cursed light source", KILLED_BY);
 	}
 
-	if (obj->cursed && !rn2(2)) {
+	if (obj->cursed && !(obj->oartifact == ART_ILLUMER_THE_GREAT) && !rn2(2)) {
 		pline("%s for a moment, then %s.",
 		      Tobjnam(obj, "flicker"), otense(obj, "die"));
 	} else {
@@ -3192,6 +3242,50 @@ struct obj *obj;
 	}
 
 	if (obj->spe > 0) {
+
+		if (obj->oartifact == ART_SING_S_LAST_LAUGH) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossSING:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) || (pm && !(type_is_pname(pm))) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+			if (pm && !(type_is_pname(pm)) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSING;
+			}
+
+			if (pm) {
+				struct monst *singbitch;
+				singbitch = makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
+				if (singbitch) singbitch->singannoyance = TRUE;
+			}
+
+			u.aggravation = 0;
+			u.mondiffhack = 0;
+
+		}
+
 		if ((obj->cursed || Fumbling) && !rn2(2)) {
 			consume_obj_charge(obj, TRUE);
 
@@ -3227,7 +3321,7 @@ struct obj *obj;
 			}
 		}
 
-		if (nochargechange > rnd(10)) consume_obj_charge(obj, TRUE);
+		if ((nochargechange > rnd(10)) && !(obj->oartifact == ART_EURO_S_UNWASTE && rn2(2)) ) consume_obj_charge(obj, TRUE);
 
 		if (stack_too_big(otmp)) {
 			pline("The amount of grease was not enough for your stack of %s!", yname(otmp));
@@ -3688,7 +3782,7 @@ struct obj *otmp;
 			"on the ladder" : "on the stairs";
 	else if (IS_FURNITURE(levl[u.ux][u.uy].typ) ||
 		IS_ROCK(levl[u.ux][u.uy].typ) ||
-		closed_door(u.ux, u.uy) || t_at(u.ux, u.uy))
+		closed_door(u.ux, u.uy) || (t_at(u.ux, u.uy) && !(otmp && otmp->oartifact == ART_PLACE_ON_TOP_OF_SNARE)) )
 	    what = "here";
 	if (what) {
 	    You_cant("set a trap %s!",what);
@@ -3725,7 +3819,7 @@ struct obj *otmp;
 	    sprintf(buf, "Continue your attempt to set %s?",
 		the(defsyms[trap_to_defsym(what_trap(ttyp))].explanation));
 	    if(yn(buf) == 'y') {
-		if (chance) {
+		if (chance && !(otmp && otmp->oartifact == ART_PRECISION_DETONATING_STUFF) ) {
 			switch(ttyp) {
 			    case LANDMINE:	/* set it off */
 			    	trapinfo.time_needed = 0;
@@ -3756,7 +3850,7 @@ int
 set_trap()
 {
 	struct obj *otmp = trapinfo.tobj;
-	struct trap *ttmp;
+	struct trap *ttmp, *ttsnare;
 	int ttyp;
 
 	if (!otmp || !carried(otmp) ||
@@ -3769,10 +3863,45 @@ set_trap()
 	if (--trapinfo.time_needed > 0) return 1;	/* still busy */
 
 	ttyp = (otmp->otyp == LAND_MINE) ? LANDMINE : BEAR_TRAP;
+
+	if (otmp && otmp->oartifact == ART_PLACE_ON_TOP_OF_SNARE && (ttsnare = t_at(u.ux, u.uy)) ) {
+		if (ttsnare->ttyp == MAGIC_PORTAL) {
+			pline("Somehow, setting the trap failed.");
+			return 0;
+		}
+		deltrap(ttsnare);
+		pline_The("existing snare disappeared!");
+	}
+
 	ttmp = maketrap(u.ux, u.uy, ttyp, 0, FALSE);
+
+	if (otmp && otmp->oartifact == ART_CLICKFIELD) {
+		int i, j, bd = 3;
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
+			if (i == u.ux && j == u.uy) continue;
+			if (!rn2(2)) continue;
+			maketrap(u.ux + i, u.uy + j, LANDMINE, 0, FALSE);
+		}
+		pline("Minefield created!");
+	}
+
+	if (otmp && otmp->oartifact == ART_WEBBUROUND) {
+		int i, j, bd = 1;
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ != ROOM && levl[u.ux + i][u.uy + j].typ != CORR) continue;					if (t_at(u.ux + i, u.uy + j)) continue;
+			if (i == u.ux && j == u.uy) continue;
+			maketrap(u.ux + i, u.uy + j, WEB, 0, FALSE);
+		}
+		pline("Webs have been created around the bear trap.");
+	}
+
 	if (ttmp && !ttmp->hiddentrap) {
 	    ttmp->tseen = 1;
 	    ttmp->madeby_u = 1;
+	    if (otmp && otmp->oartifact == ART_MOTHERFUCKING_BOMB) ttmp->launch_otyp = 33; /* see trap.c --Amy */
 	    newsym(u.ux, u.uy); /* if our hero happens to be invisible */
 	    if (*in_rooms(u.ux,u.uy,SHOPBASE)) {
 		add_damage(u.ux, u.uy, 0L);		/* schedule removal */
@@ -3786,7 +3915,7 @@ set_trap()
 	    if (!trapinfo.force_bungle)
 		You("finish arming %s.",
 			the(defsyms[trap_to_defsym(what_trap(ttyp))].explanation));
-	    if (((otmp->cursed || Fumbling) && (rnl(10) > 5)) || trapinfo.force_bungle)
+	    if (((otmp->cursed || Fumbling) && !(otmp && otmp->oartifact == ART_PRECISION_DETONATING_STUFF) && (rnl(10) > 5)) || trapinfo.force_bungle)
 		dotrap(ttmp,
 			(unsigned)(trapinfo.force_bungle ? FORCEBUNGLE : 0));
 
@@ -5630,6 +5759,12 @@ dyechoice:
 	case SKELETON_KEY:
 	case CONTROVERSY_CODE:
 	case SECRET_KEY:
+		if (obj->oartifact == ART_STRANGE_LILCHEN) {
+			if (FemaleTrapJil < 5000) FemaleTrapJil = 5000;
+		}
+		if (obj->oartifact == ART_VANULLA_SCORE) {
+			if (NastinessProblem < 5000) NastinessProblem = 5000;
+		}
 		(void) pick_lock(&obj);
 		break;
 	case STATUE:
@@ -5976,7 +6111,13 @@ dyechoice:
 		light_cocktail(obj);
 		break;
 	case EXPENSIVE_CAMERA:
-		res = use_camera(obj);
+		if (obj->oartifact == ART_RAPIDCLICK && obj->spe > 0) {
+			use_camera(obj);
+			res = 0;
+			break;
+		} else {
+			res = use_camera(obj);
+		}
 		break;
 	case TOWEL:
 		res = use_towel(obj);
@@ -6126,9 +6267,10 @@ dyechoice:
 		if (obj->oartifact == ART_PFIE_PFIEPFIE) obj->known = TRUE;
 		res = do_play_instrument(obj);
 		if (res == 2) noartispeak = TRUE; /* it broke */
+		if (res != 2 && obj && obj->oartifact == ART_TAETAERAETAEAE_TAE && rn2(2)) res = 0;
 		break;
 	case MEDICAL_KIT:        
-		if (Role_if(PM_HEALER) || Race_if(PM_HERBALIST) || (uarmf && uarmf->oartifact == ART_GOT_THAT_STARWARS_ENTRANCE) ) can_use = TRUE;
+		if (Role_if(PM_HEALER) || (obj->oartifact == ART_MARVELOUS_FUNCTION) || Race_if(PM_HERBALIST) || (uarmf && uarmf->oartifact == ART_GOT_THAT_STARWARS_ENTRANCE) ) can_use = TRUE;
 		else if ((Role_if(PM_PRIEST) || Role_if(PM_MONK) ||
 			Role_if(PM_UNDEAD_SLAYER) || Role_if(PM_SAMURAI)) &&
 			!rn2(2)) can_use = TRUE;
@@ -6775,7 +6917,11 @@ dyechoice:
 		break;
 
 	case HITCHHIKER_S_GUIDE_TO_THE_GALA:
-		if (HHallucination) {
+		if (obj->oartifact == ART_END_OF_THE_WORLD_SWITCH) {
+			if (!u.ragnaroktimer) u.ragnaroktimer = rnz(100000);
+			pline("click"); /* intentionally vague */
+			if (!rn2(5)) pline("Hmm... nothing seems to have happened.");
+		} else if (HHallucination) {
 			pline("You carelessly push the buttons. On the screen is a text ... ");
 			outrumor(-1,42,TRUE);	/* always false */
 		} else if (u.usanity < 900) {

@@ -380,15 +380,10 @@ struct obj {
 #define Is_container(o) ((o)->otyp == MEDICAL_KIT || \
 			 (o)->otyp >= LARGE_BOX && (o)->otyp <= BAG_OF_TRICKS)
 #define Is_box(otmp)	((otmp)->otyp == LARGE_BOX || (otmp)->otyp == LEAD_BOX || (otmp)->otyp == TOP_BOX || (otmp)->otyp == CHEST || (otmp)->otyp == NANO_CHEST || (otmp)->otyp == TREASURE_CHEST || (otmp)->otyp == LOOT_CHEST || (otmp)->otyp == LARGE_BOX_OF_DIGESTION || (otmp)->otyp == CHEST_OF_HOLDING)
-#ifdef WALLET_O_P
 #define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \
                          ((otmp)->oartifact && \
-                          ( (otmp)->oartifact == ART_WALLET_OF_PERSEUS || (otmp)->oartifact == ART_PRIAMOS__TREASURE || (otmp)->oartifact == ART_ONE_SIZE_FITS_EVERYTHING) ) || \
+                          ( (otmp)->oartifact == ART_WALLET_OF_PERSEUS || (otmp)->oartifact == ART_SACK_OF_HOLDING || (otmp)->oartifact == ART_PRIAMOS__TREASURE || (otmp)->oartifact == ART_ONE_SIZE_FITS_EVERYTHING) ) || \
   			             (otmp)->otyp == BAG_OF_TRICKS)
-#else
-#define Is_mbag(otmp)	((otmp)->otyp == BAG_OF_HOLDING || (otmp)->otyp == ICE_BOX_OF_HOLDING || (otmp)->otyp == CHEST_OF_HOLDING || \
-  			 (otmp)->otyp == BAG_OF_TRICKS)
-#endif
 
 /* dragon gear */
 #define Is_dragon_scales(obj)	((obj)->otyp >= GRAY_DRAGON_SCALES && \

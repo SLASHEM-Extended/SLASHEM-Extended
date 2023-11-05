@@ -395,6 +395,7 @@ found:
 	 */
 	actualcost = rn1(basecost/2,basecost/2);
 	if (isfriday && !rn2(10)) actualcost *= 2;
+	if (pen->oartifact == ART_WRITE_THE_UNKNOWN && paper->oclass == SCROLL_CLASS) actualcost *= (2 + rnd(2));
 
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
@@ -437,6 +438,7 @@ found:
 	/* can't write if we don't know it - unless we're lucky */
 	if(!(objects[new_obj->otyp].oc_name_known) &&
 	   !(objects[new_obj->otyp].oc_uname) &&
+	   !(pen->oartifact == ART_WRITE_THE_UNKNOWN && paper->oclass == SCROLL_CLASS) &&
 	   (rnl(Role_if(PM_WIZARD) ? 3 : Role_if(PM_SAGE) ? 2 : Role_if(PM_SOFTWARE_ENGINEER) ? 11 : 15))) {
 		You("%s to write that!", by_descr ? "fail" : "don't know how");
 		/* scrolls disappear, spellbooks don't */
@@ -480,6 +482,33 @@ found:
 		use_skill(P_DEVICES,10);
 	}
 	u.cnd_markercount++;
+
+	if (pen->oartifact == ART_SEEP_INTO_THE_SOUL) {
+
+		Your("intelligence seeps out of your brain and into your soul...");
+
+		if (ABASE(A_INT) < 2) {
+			u.youaredead = 1;
+			pline("Your last thought fades away.");
+			killer = "being too stupid to write";
+			killer_format = KILLED_BY;
+			done(DIED);
+			/* lifesaved */
+			pline("Unfortunately, your brain is still gone.");
+			killer = "being too stupid to write";
+			killer_format = KILLED_BY;
+			done(DIED);
+			/* lifesaved again */
+			You_feel("like a scarecrow.");
+			u.youaredead = 0;
+		} else {
+			ABASE(A_INT)--;
+			AMAX(A_INT)--;
+			flags.botl = TRUE;
+		}
+		gain_alla(actualcost);
+	}
+
 	if (evilfriday && !rn2(3)) { /* EPI that was talked about in #hardfought by several people */
 		if (!rn2(10)) {
 			if (ABASE(A_INT) < 2) {

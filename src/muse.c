@@ -3276,7 +3276,9 @@ struct monst *mtmp;
 			You_hear("a bugle playing reveille!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Nakonets soldaty uzhe ne spit. Sovetskaya vser'yez dumal, chto eto byla khoroshaya ideya, chtoby ne razbudit' ikh, yesli vy vvodite svoi baraki, NO seychas vy nakhodites' v nekotoroy ser'yeznoy boli, vy ublyudok." : "TAET-TAETAEAEAE!");
 		}
-		awaken_soldiers();
+		if (otmp && otmp->oartifact == ART_HEAR_FAR_AND_WIDE) awaken_soldiers(1);
+		else if (otmp && otmp->oartifact == ART_THIS_IS_NOT_A_DRILL) awaken_soldiers(2);
+		else awaken_soldiers(0);
 		return 2;
 	case MUSE_WAN_TELEPORTATION_SELF:
 		if ((mtmp->isshk && inhishop(mtmp))
@@ -12159,6 +12161,8 @@ struct obj *obj;
 	    	return (boolean)likes_objs(mon->data);
 	    if (typ == BAG_OF_TRICKS)
 		return TRUE;
+	    if (typ == BUGLE) /* wtf they would not pick them up in vanilla??? makes zero sense --Amy */
+		return is_mercenary(mon->data);
 	    break;
 	case FOOD_CLASS:
 	    if (typ == CORPSE)

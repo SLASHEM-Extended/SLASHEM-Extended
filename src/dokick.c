@@ -56,6 +56,11 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) dmg += 5;
 	if (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE) dmg += 3;
 
+	if (uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) {
+		dmg += 7;
+		if (PlayerInBlockHeels) dmg += 8;
+	}
+
 	if (uarmf && uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) dmg += (flags.female ? 7 : 2);
 
 	if (uarmf && uarmf->oartifact == ART_ARVOGENIA_S_BIKER_HEELS && u.usteed) dmg += 5;

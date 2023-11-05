@@ -388,6 +388,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	struct obj	*otmp;
 	struct	obj	*pick = *pickp;
 	char qbuf[QBUFSZ];
+	boolean bypassartilock = FALSE;
 
 	picktyp = pick->otyp;
 
@@ -484,7 +485,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    if(c == 'q') return(0);
 		    if(c == 'n') continue;
 
-		    if (pick->oartifact && (pick->obrittle || pick->obrittle2) ) {
+		    if (pick->oartifact && !(pick->oartifact == ART_UNBRIT_SOV) && (pick->obrittle || pick->obrittle2) ) {
 		      Your("key doesn't seem to fit.");
 			return 0;
 		    }
@@ -542,8 +543,13 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    }
 			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
 			    		(!pick->blessed || !rn2(3)) && pick->oartifact) {
-				Your("pick becomes brittle and is no longer capable of picking locks!");
-				pick->obrittle = pick->obrittle2 = 3;
+				if (pick->oartifact == ART_DITHERS_WUMA) {
+					FemaleTrapJette += 50000;
+					pline_The("power of feminism compels you.");
+				} else {
+					Your("pick becomes brittle and is no longer capable of picking locks!");
+					pick->obrittle = pick->obrittle2 = 3;
+				}
 				return(1);
 			    }
 			    ch = 4*ACURR(A_DEX) + 25*Role_if(PM_ROGUE) + 50*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
@@ -551,14 +557,18 @@ pick_lock(pickp) /* pick a lock with a given object */
 			case SKELETON_KEY:
 			case CONTROVERSY_CODE:
 			case SECRET_KEY:
-			    if(!rn2(isfriday ? 7 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    if(!rn2(isfriday ? 7 : 15) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("key becomes brittle and is no longer capable of picking locks!");
+				if (pick->oartifact == ART_UNBRIT_SOV) {
+					u.badfcursed += 10000;
+					if (pick->obrittle || pick->obrittle2) u.badfdoomed += 10000;
+				}
 				pick->obrittle = pick->obrittle2 = 3;
 				return(1);
 			    }
@@ -679,8 +689,13 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    }
 			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
 				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
-				Your("pick becomes brittle and is no longer capable of picking locks!");
-				pick->obrittle = pick->obrittle2 = 3;
+				if (pick->oartifact == ART_DITHERS_WUMA) {
+					FemaleTrapJette += 50000;
+					pline_The("power of feminism compels you.");
+				} else {
+					Your("pick becomes brittle and is no longer capable of picking locks!");
+					pick->obrittle = pick->obrittle2 = 3;
+				}
 				return(0);
 			    }
 			    ch = 3*ACURR(A_DEX) + 30*Role_if(PM_ROGUE) + 60*Role_if(PM_LOCKSMITH) + 30*Role_if(PM_CYBERNINJA);
@@ -688,14 +703,18 @@ pick_lock(pickp) /* pick a lock with a given object */
 			case SKELETON_KEY:
 			case CONTROVERSY_CODE:
 			case SECRET_KEY:
-			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("key becomes brittle and is no longer capable of picking locks!");
+				if (pick->oartifact == ART_UNBRIT_SOV) {
+					u.badfcursed += 10000;
+					if (pick->obrittle || pick->obrittle2) u.badfdoomed += 10000;
+				}
 				pick->obrittle = pick->obrittle2 = 3;
 				return(0);
 			    }
@@ -708,7 +727,18 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 		    /* ALI - Artifact doors */
 		    xlock.key = pick->oartifact;
-		    if (key && xlock.key != key) {
+
+		    /* these variable names... who the hell would expect "key" to be the one that's required and "xlock.key"
+		     * to somehow be set to "pick->oartifact", i.e. be the same that you're trying to use??? --Amy */
+		    bypassartilock = FALSE;
+		    if (key && key == ART_GAUNTLET_KEY && pick->oartifact == ART_GAUNTLET_ABBREVIATION && !In_V_tower(&u.uz)) {
+			bypassartilock = TRUE;
+		    }
+		    if (key && key == ART_KEY_OF_LAW && pick->oartifact == ART_GETIN_ON_VLADS) bypassartilock = TRUE;
+		    if (key && key == ART_KEY_OF_NEUTRALITY && pick->oartifact == ART_GETIN_ON_VLADS) bypassartilock = TRUE;
+		    if (key && key == ART_KEY_OF_CHAOS && pick->oartifact == ART_GETIN_ON_VLADS) bypassartilock = TRUE;
+
+		    if (key && (xlock.key != key) && !bypassartilock) {
 			if (picktyp == SKELETON_KEY || picktyp == CONTROVERSY_CODE || picktyp == SECRET_KEY) {
 			    Your("key doesn't seem to fit.");
 			    return(0);
@@ -718,7 +748,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 			/* artifact keys shouldn't be overpowered --Amy */
 
-		    if (!key && pick->oartifact && (pick->obrittle || pick->obrittle2) && !issoviet) {
+		    if (!key && pick->oartifact && !(pick->oartifact == ART_UNBRIT_SOV) && (pick->obrittle || pick->obrittle2) && !issoviet) {
 			    Your("key doesn't seem to fit.");
 			    return(0);
 		    }

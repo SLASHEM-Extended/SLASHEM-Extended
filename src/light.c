@@ -617,6 +617,9 @@ struct obj *obj;
      /* impossible("candlelight for %d?", obj->otyp); */
 	radius = 3;		/* lamp's value */
     }
+
+    if (obj && obj->oartifact == ART_WIDELITE) radius++;
+
     return radius;
 }
 

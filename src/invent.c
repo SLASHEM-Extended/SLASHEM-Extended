@@ -1627,6 +1627,45 @@ have_suckstonearti()
 }
 
 boolean
+have_feeldasag()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SACK && otmp->oartifact == ART_FEELDASAG)
+			return(TRUE);
+		}
+
+	return(FALSE);
+}
+
+boolean
+have_fireringcandle()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MAGIC_CANDLE && otmp->oartifact == ART_FIRERING)
+			return(TRUE);
+		}
+
+	return(FALSE);
+}
+
+boolean
+have_leohighlantern()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BRASS_LANTERN && otmp->oartifact == ART_LEO_IS_ALWAYS_HIGH)
+			return(TRUE);
+		}
+
+	return(FALSE);
+}
+
+boolean
 have_femityjewel()
 {
 	register struct obj *otmp;
@@ -21572,11 +21611,11 @@ boolean knoweverything;
 				case ART_AMULET_OF_KINGS:
 					pline("Artifact specs: can be invoked to create portals, lawful, camperstriker quest artifact."); break;
 				case ART_LONGBOW_OF_DIANA:
-					pline("Artifact specs: reflection when wielded, ESP while carried, +5 to-hit and double damage, can be invoked to create ammo, chaotic, ranger quest artifact."); break;
+					pline("Artifact specs: reflection when wielded, ESP while carried, +5 to-hit, can be invoked to create ammo, chaotic, ranger quest artifact."); break;
 				case ART_HEFFER_S_BOW:
-					pline("Artifact specs: warning, regeneration and energy regeneration when wielded, +6 to-hit and double damage, can be invoked to create ammo, lawful, druid quest artifact."); break;
+					pline("Artifact specs: warning, regeneration and energy regeneration when wielded, +6 to-hit, can be invoked to create ammo, lawful, druid quest artifact."); break;
 				case ART_GUNBOW:
-					pline("Artifact specs: half physical damage when wielded, energy regeneration and drain resistance while carried, +7 to-hit and double shock damage, can be invoked to create ammo, neutral, amazon quest artifact."); break;
+					pline("Artifact specs: half physical damage when wielded, energy regeneration and drain resistance while carried, +7 to-hit, can be invoked to create ammo, neutral, amazon quest artifact."); break;
 				case ART_MASTER_KEY_OF_THIEVERY:
 					pline("Artifact specs: warning, teleport control and half physical damage while carried, can be invoked for untrapping, chaotic, rogue quest artifact."); break;
 				case ART_NOCTURNAL_KEY:

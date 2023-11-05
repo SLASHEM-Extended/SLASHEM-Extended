@@ -317,7 +317,7 @@ nothing_to_steal:
 	tmp = 0;
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10) ) && (objects[otmp->otyp].oc_material != MT_BONE || bonestealroll) && !(otmp->stckcurse && !instasteal) && (!otmp->oinvisreal || (invisstealroll > 36)) )
+				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10) ) && (objects[otmp->otyp].oc_material != MT_BONE || bonestealroll) && !(otmp->oartifact == ART_FUCK_OFF_THIEF && !instasteal) && !(otmp->stckcurse && !instasteal) && (!otmp->oinvisreal || (invisstealroll > 36)) )
 				)
 		tmp += ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1);
@@ -325,7 +325,7 @@ nothing_to_steal:
 	tmp = rn2(tmp);
 	for(otmp = invent; otmp; otmp = otmp->nobj)
 	    if ((!uarm || otmp != uarmc) && otmp != uskin
-				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10)) && (objects[otmp->otyp].oc_material != MT_BONE || bonestealroll) && !(otmp->stckcurse && !instasteal) && (!otmp->oinvisreal || (invisstealroll > 36)) )
+				&& ((!otmp->oinvis || perceives(mtmp->data) || (invisstealroll > 10)) && (objects[otmp->otyp].oc_material != MT_BONE || bonestealroll) && !(otmp->oartifact == ART_FUCK_OFF_THIEF && !instasteal) && !(otmp->stckcurse && !instasteal) && (!otmp->oinvisreal || (invisstealroll > 36)) )
 			)
 		if((tmp -= ((otmp->owornmask &
 			(W_ARMOR | W_RING | W_AMUL | W_IMPLANT | W_TOOL)) ? 5 : 1)) < 0)

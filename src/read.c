@@ -1896,11 +1896,10 @@ int curse_bless;
 		    if (rn2(2)) n += rnd(30);
 		    if (!rn2(5)) n += rnd(50);
 
+			if (obj && obj->oartifact == ART_REFILL_PROPERLY) n *= 3;
+
 			int chrg = (int)obj->spe;
-			if ((chrg + n) > 127)
-				obj->spe = 127;
-			else
-				obj->spe += n;
+			obj->spe += n;
 
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
@@ -1913,11 +1912,10 @@ int curse_bless;
 		    n = rnd(20);		/* 10..20 */
 		    if (rn2(2)) n += rnd(30);
 
+			if (obj && obj->oartifact == ART_REFILL_PROPERLY) n *= 3;
+
 			int chrg = (int)obj->spe;
-			if ((chrg + n) > 127)
-				obj->spe = 127;
-			else
-				obj->spe += n;
+			obj->spe += n;
 
 			p_glow2(obj, NH_WHITE);
 			u.cnd_chargingcount++;
@@ -2304,7 +2302,7 @@ boolean confused;
 		}
 	}
 
-	if (n < -127) n = -127;
+	if (n < -127) n = -127; /* sanity check; greater values are possible but shouldn't be randomly generated here --Amy */
 	if (n > 127) n = 127;
 	obj->spe = n;
 	if (is_cursed) {

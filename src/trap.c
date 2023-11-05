@@ -2518,6 +2518,10 @@ newbossING:
 		break;
 	      }
 
+	    case LANDMINE:
+		ttmp->launch_otyp = 0;
+		break;
+
 	    case HEEL_TRAP:
 	    case ATTACKING_HEEL_TRAP:
 		{
@@ -22993,6 +22997,10 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			if (!rn2(50) && !(mtmp && mtmp->mtame)) deltrap(trap);
 			break;
 		case LANDMINE:
+		    {
+			int xtradamage = 0;
+			if (trap->launch_otyp == 33) xtradamage = rnd(30); /* for specific land mine artifact by Amy */
+
 			if(rn2(3))
 				break; /* monsters usually don't set it off */
 			if(is_flyer(mptr) || mtmp->egotype_flying) {
@@ -23015,7 +23023,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			if (!in_sight)
 				pline("Kaablamm!  You hear an explosion in the distance!");
 			blow_up_landmine(trap);
-			if (thitm(0, mtmp, (struct obj *)0, rnd(16), FALSE))
+			if (thitm(0, mtmp, (struct obj *)0, rnd(16) + xtradamage, FALSE))
 				trapkilled = TRUE;
 			else {
 				/* monsters recursively fall into new pit */
@@ -23029,7 +23037,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				nomovemsg="The explosion awakens you!";
 			}
 			break;
-
+		    }
 		case POLY_TRAP:
 
 			if (mtmp->isshk || mtmp->ispriest) break; /* I simply decided to make them immune, sue me :P --Amy */
@@ -24402,7 +24410,7 @@ register boolean force, here;
 			continue;
 		} else if(obj->greased) {
 			if (force || !rn2(2)) obj->greased -= 1;
-		} else if(Is_container(obj) && !Is_box(obj) && !(obj->oartifact == ART_BAG_OF_THE_HESPERIDES) && !(obj->oartifact == ART_KNOW_OF_THE_CURSE) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) && !(obj->otyp == DISPERSION_BOX) &&
+		} else if(Is_container(obj) && !Is_box(obj) && !(obj->oartifact == ART_BAG_OF_THE_HESPERIDES) && !(obj->oartifact == ART_KNOW_OF_THE_CURSE) && !(obj->oartifact == ART_SEMINARIOS_KARTOFFLES) && !(obj->otyp == ICE_BOX_OF_WATERPROOFING) && !(obj->otyp == DISPERSION_BOX) &&
 			(obj->otyp != OILSKIN_SACK || (obj->cursed && !(obj->oartifact == ART_SURFING_FUN) && !rn2(3)))) {
 			water_damage(obj->cobj, force, FALSE);
 		} else if (!force && !Race_if(PM_ANCIPITAL) && (Luck - luckpenalty + 5 + (issoviet ? 0 : rnd(20)) ) > rn2(20)) {
@@ -25549,7 +25557,11 @@ int otyp;
 int cnt;
 struct trap *ttmp;
 {
-	struct obj *otmp = mksobj(otyp, TRUE, FALSE, FALSE);
+	struct obj *otmp;
+
+	if (otyp == LAND_MINE || otyp == BEARTRAP) otmp = mksobj(otyp, TRUE, 2, FALSE);
+	else otmp = mksobj(otyp, TRUE, FALSE, FALSE);
+
 	/* [ALI] Only dart traps are capable of being poisonous */
 	if (otmp) {
 		if (!timebasedlowerchance()) {
@@ -25649,7 +25661,7 @@ boolean difficulttrap;
 		return 0;
 	}
 
-	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LAND_MINE || ttmp->ttyp == BOMB_TRAP) ) {
+	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LANDMINE || ttmp->ttyp == BOMB_TRAP) ) {
 		return 2;
 	}
 
@@ -25795,7 +25807,7 @@ struct trap *ttmp;
 {
 	int fails;
 
-	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LAND_MINE || ttmp->ttyp == BOMB_TRAP) ) fails = 2; /* guaranteed success */
+	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LANDMINE || ttmp->ttyp == BOMB_TRAP) ) fails = 2; /* guaranteed success */
 	else fails = try_disarm(ttmp, FALSE, FALSE);
 
 	if (fails < 2) return fails;
@@ -26174,7 +26186,7 @@ struct trap *ttmp;
 
 	int fails;
 
-	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LAND_MINE || ttmp->ttyp == BOMB_TRAP) ) fails = 2; /* guaranteed success */
+	if (ublindf && ublindf->oartifact == ART_COUNTER_TERRORISTS_WIN && u.ualign.type == A_LAWFUL && (ttmp->ttyp == LANDMINE || ttmp->ttyp == BOMB_TRAP) ) fails = 2; /* guaranteed success */
 	else fails = try_disarm(ttmp, FALSE, TRUE);
 
 	if (fails < 2) return fails;

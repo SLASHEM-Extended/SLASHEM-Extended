@@ -6382,7 +6382,7 @@ controlagain:
 
 		if (!rn2(Aggravate_monster ? 4 : 20)) reset_rndmonst(NON_PM);
 
-		if (IntAggravate_monster && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
+		if (IntAggravate_monster && !(uwep && uwep->oartifact == ART_FREE_FROM_STRAIN && uwep->lamplit) && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -6759,7 +6759,7 @@ newbossJANI:
 
 		}
 
-		if (ExtAggravate_monster && !rn2(StrongStealth ? 10000 : Stealth ? 5000 : 1000)) {
+		if (ExtAggravate_monster && !(uwep && uwep->oartifact == ART_FREE_FROM_STRAIN && uwep->lamplit) && !rn2(StrongStealth ? 10000 : Stealth ? 5000 : 1000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -7152,6 +7152,11 @@ newbossJANI:
 			}
 		}
 
+		if (uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) {
+			if (!rn2(100)) use_skill(P_FIREARM, 1);
+			if (!rn2(1000)) use_skill(P_GUN_CONTROL, 1);
+		}
+
 		if (autismweaponcheck(ART_MELEE_DAMMIT) && uarmf) {
 			if (uarmf->cursed && uarmf->spe > -10) uarmf->spe = -10;
 			if (!uarmf->cursed) {
@@ -7516,6 +7521,16 @@ newbossSTEN:
 
 		if (autismweaponcheck(ART_DISAPPEAR_OFF_THE_MAP)) {
 			if (HMap_amnesia < 10000) HMap_amnesia = 10000;
+		}
+
+		if (ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY) {
+			if (Choicelessness < 2000) Choicelessness = 2000;
+			if (InitializationFail < 2000) InitializationFail = 2000;
+			if (Goldspells < 2000) Goldspells = 2000;
+		}
+
+		if (ublindf && ublindf->oartifact == ART_SATAN_S_SPECIFIC_ENCHANTME) {
+			if (SatanEffect < 5000) SatanEffect = 5000;
 		}
 
 		if (autismweaponcheck(ART_GORMALER)) {

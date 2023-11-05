@@ -1068,11 +1068,14 @@ E boolean have_amateurluckstone(void);
 E boolean have_suckstonearti(void);
 E boolean have_femityjewel(void);
 E boolean have_stashitcontainer(void);
+E boolean have_feeldasag(void);
 E boolean have_oneinfourstone(void);
 E boolean have_doubleshelljewel(void);
 E boolean have_contaminatejewel(void);
 E boolean have_haveitallstone(void);
 E boolean have_sonjartifact(void);
+E boolean have_leohighlantern(void);
+E boolean have_fireringcandle(void);
 E boolean have_sleepstone(void);
 E boolean have_magicresstone(void);
 E boolean have_cursedmagicresstone(void);
@@ -2124,7 +2127,7 @@ E void monsteremptycontainers(struct monst *);
 
 /* ### music.c ### */
 
-E void awaken_soldiers(void);
+E void awaken_soldiers(int);
 E int do_play_instrument(struct obj *);
 E void do_earthquake(int);
 E void awaken_monsters(int);

@@ -1975,6 +1975,35 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_BAEFF) tmp += 8;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAEFF) tmp += 8;
 
+		if (uwep && uwep->oartifact == ART_CRUDE_SENSEI) {
+
+			tmp += rnd(2);
+			if (martial_bonus()) {
+				switch (P_SKILL(P_MARTIAL_ARTS)) {
+					case P_BASIC:		tmp +=  rnd(3); break;
+					case P_SKILLED:	tmp +=  rnd(9); break;
+					case P_EXPERT:	tmp +=  rnd(15); break;
+					case P_MASTER:	tmp +=  rnd(18); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(24); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(27); break;
+					default: tmp += 0; break;
+				}
+
+			} else {
+				switch (P_SKILL(P_BARE_HANDED_COMBAT)) {
+			
+					case P_BASIC:		tmp +=  rnd(2); break;
+					case P_SKILLED:	tmp +=  rnd(6); break;
+					case P_EXPERT:	tmp +=  rnd(9); break;
+					case P_MASTER:	tmp +=  rnd(12); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(15); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(18); break;
+					default: tmp += 0; break;
+
+				}
+			}
+		}
+
 		if (uarm && uarm->oartifact == ART_EXTRAPUGELN && !(PlayerCannotUseSkills)) {
 			if (martial_bonus()) {
 				switch (P_SKILL(P_MARTIAL_ARTS)) {
@@ -2261,11 +2290,10 @@ int dieroll;
 				You("klobbed %s, who cannot move for the time being.", mon_nam(mon));
 			}
 
+			/* reminder: this is only for ineffective weapons, not stuff like shields, whistles etc. !!! --Amy */
+
 			if (obj && obj->oartifact == ART_PING_EM_AWAY && tmp > 0) {
 				tmp += 12;
-			}
-			if (obj && obj->oartifact == ART_EXCALISHIELD && tmp > 0) {
-				tmp += 6;
 			}
 			if (obj && obj->oartifact == ART_OZYZEVPDWTVP && tmp > 0) {
 				tmp += rn1(7, 4);
@@ -3560,6 +3588,16 @@ int dieroll;
 				if (weaponsign > 0) tmp += rnd(weaponsign);
 			}
 
+			if (obj && obj->oartifact == ART_EXCALISHIELD) {
+				tmp += 6;
+			}
+			if (obj && obj->oartifact == ART_BLAMMER_OF_DOOM) {
+				tmp += 10;
+			}
+			if (obj && obj->oartifact == ART_INVUNI && obj->otyp == BUGLE) {
+				tmp += 5;
+			}
+
 			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
 				tmp += rnd(10);
 				if (obj->spe > 0) tmp += obj->spe;
@@ -4034,6 +4072,11 @@ int dieroll;
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
 		}
+
+		if (ublindf && ublindf->oartifact == ART_IUSTITIA_BRINGER && mon->data->maligntyp < 0) {
+			tmp += 10;
+		}
+
 		if (obj && obj->oartifact == ART_ORE_DEPOSIT && lithivorous(mon->data)) {
 			tmp += rnd(20);
 		}

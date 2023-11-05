@@ -5947,7 +5947,7 @@ TOOL("stethoscope", (char *)0,  1, 0, 0, 0, 2200,  0,  75, MT_IRON, HI_METAL, 1)
 TOOL("unstable stethoscope", (char *)0,  1, 0, 0, 0, 300,  0,  75, MT_VIVA, CLR_ORANGE, 1),
 TOOL("tinning kit", (char *)0,  1, 0, 0, 1, 1400, 0,  30, MT_IRON, HI_METAL, 1),
 TOOL("binning kit", (char *)0,  1, 0, 0, 1, 100, 0,  30, MT_COMPOST, CLR_BROWN, 1),
-CONTAINER("medical kit", "leather bag", 0, 0, 0, 0,  1000, 0, 500, MT_LEATHER, HI_LEATHER, 1),
+CONTAINER("medical kit", "leather bag", 0, 0, 0, 0,  1000, 30, 500, MT_LEATHER, HI_LEATHER, 1),
 
 WEPTOOL("tin opener",  (char *)0,
 	1, 0, 1, 0,  1880, 0, 30, 1,  1, 0, PIERCE, 0, MT_IRON, HI_METAL, 1),
@@ -6007,18 +6007,18 @@ TOOL("chemistry set",	"box of obscure-looking glass devices",
 /* Two pseudo tools. These can never exist outside of medical kits. */
 OBJECT(OBJ("bandage", (char *)0),
 		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_CLOTH), 0,
-		TOOL_CLASS, 0, 0, 1, 1, 0, 0, 0, 0, 0, CLR_WHITE, 1, 0),
+		TOOL_CLASS, 0, 0, 0, 1, 0, 0, 0, 0, 0, CLR_WHITE, 1, 0),
 OBJECT(OBJ("phial", (char *)0),
 		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_GLASS), 0,
-		TOOL_CLASS, 0, 0, 2, 1, 0, 0, 0, 0, 1, HI_GLASS, 1, 0),
+		TOOL_CLASS, 0, 0, 0, 1, 0, 0, 0, 0, 1, HI_GLASS, 1, 0),
 
 /* Two special unique artifact "tools" */
 OBJECT(OBJ("Candelabrum of Invocation", "candelabrum"),
 		BITS(0,0,1,0,1,0,1,1,0,0,0,0,MT_GOLD), 0,
-		TOOL_CLASS, 0, 0,10, 5000, 0, 0, 0, 0, 200, HI_GOLD, 1, 0),
+		TOOL_CLASS, 0, 0, 0, 5000, 0, 0, 0, 0, 200, HI_GOLD, 1, 0),
 OBJECT(OBJ("Bell of Opening", "silver bell"),
 		BITS(0,0,1,0,1,1,1,1,0,0,0,0,MT_SILVER), 0,
-		TOOL_CLASS, 0, 0,10, 5000, 0, 0, 0, 0, 50, HI_SILVER, 1, 0),
+		TOOL_CLASS, 0, 0, 0, 5000, 0, 0, 0, 0, 50, HI_SILVER, 1, 0),
 #undef TOOL
 #undef CONTAINER
 #undef WEPTOOL
@@ -8850,6 +8850,9 @@ SCROLL((char *)0,               "ASCLAA LTAMYY WS",  P_NONE,     1,   0, 100, CL
 SCROLL((char *)0,               "WE WEAR WHAT WE WANNA WEAR",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "U AE UUAE",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "THE PROBLEM IS THAT THERE IS NO PROBLEM",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "REAL CELTA VERSUS ABERDEEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "THE OLD LYRE AGAIN",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "KINDLY WAIT ITS DRAENGLER",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

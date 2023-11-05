@@ -1721,7 +1721,9 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
+		    if (otmp && otmp->oartifact == ART_DURATEX) otmp->age += 4000;
 		    if (otmp && otmp->oartifact == ART_OWENER) otmp->age = 0;
+		    if (otmp && otmp->oartifact == ART_OUT_OILED) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_MYSTERIOUS_SPIKES) {
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
@@ -1877,6 +1879,40 @@ register boolean mod;
 
 		    }
 
+		    if (otmp && otmp->oartifact == ART_BOOTY_CASE) {
+
+			int maincontaineramount = rnd(3);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(RANDOM_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_PIRATE_TREASURE) {
+
+			int maincontaineramount = rnd(6);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(RANDOM_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
 		    if (otmp && otmp->oartifact == ART_ASSLOAD_OF_LOOT) {
 
 			int maincontaineramount = rn1(100, 100);
@@ -1893,6 +1929,81 @@ register boolean mod;
 			}
 
 		    }
+
+		    if (otmp && otmp->oartifact == ART_CORONA_S_TOLL) {
+			int maincontaineramount = rnd(120);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mksobj(!rn2(3) ? PILL : rn2(2) ? BANDAGE : PHIAL, TRUE, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SYKES_S_INFINITY) {
+			int maincontaineramount = rnd(180);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mksobj(BANDAGE, TRUE, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_FORTY_FOUR_IS_LUCK) {
+
+			register struct obj *ocont;
+
+			int extraboxitems = 5;
+			while (extraboxitems > 0) {
+				extraboxitems--;
+				ocont = mksobj(makemusableitem(), TRUE, TRUE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_EATBONANZA) {
+
+			register struct obj *ocont;
+
+			int maincontaineramount = rnd(100);
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				register struct obj *ocont;
+				ocont = mksobj(CORPSE, TRUE, FALSE, FALSE);
+				if (ocont) {
+
+					ocont->age = 0L;
+					ocont->icedobject = TRUE;
+					if (ocont->timed) {
+					    (void) stop_timer(ROT_CORPSE, (void *)ocont);
+					    (void) stop_timer(MOLDY_CORPSE, (void *)ocont);
+					    (void) stop_timer(REVIVE_MON, (void *)ocont);
+					}
+
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+		    }
+
 
 		    if (otmp && otmp->oartifact == ART_WEAPONMEMORY) {
 
@@ -1944,6 +2055,17 @@ register boolean mod;
 			register struct obj *ocont;
 			ocont = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
 			ocont->quan = 10000;
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_OORTOCASH) {
+
+			register struct obj *ocont;
+			ocont = mksobj(GOLD_PIECE, FALSE, FALSE, FALSE);
+			ocont->quan = rnz(2000);
 			if (ocont) {
 				ocont->owt = weight(ocont);
 				(void) add_to_container(otmp, ocont, TRUE);
@@ -2054,6 +2176,28 @@ register boolean mod;
 			otmp->spe += rn1(7,7);
 			if (otmp->spe > 127) otmp->spe = 127;
 		    }
+
+		    if (otmp->oartifact == ART_PECULIAR_MARKINGS) otmp->spe = 2;
+
+		    if (otmp && otmp->oartifact == ART_MODERN_DIGICAM) {
+			otmp->spe *= 10;
+		    }
+		    if (otmp && otmp->oartifact == ART_DON_T_RUN_OUT_OF_HALLOWEEN) {
+			otmp->spe *= 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_BEH__TOO_EASY) {
+			otmp->spe *= 2;
+		    }
+		    if (otmp && otmp->oartifact == ART_NUTRIROLL) {
+			otmp->spe *= 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_SING_S_STOCK) {
+			otmp->spe *= 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_SING_S_LAST_LAUGH) {
+			otmp->spe *= 10;
+		    }
+
 		    if (otmp && otmp->oartifact == ART_BOAH_WHAT_A_STACK) {
 			otmp->quan += 200;
 			otmp->owt = weight(otmp);
@@ -2127,6 +2271,10 @@ register boolean mod;
 			otmp->quan += 400;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_LOROFEM) {
+			otmp->quan += rn1(7, 3);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_THEO_S_BOX) {
 			otmp->quan += rnd(otmp->quan * 4);
 			otmp->owt = weight(otmp);
@@ -2143,6 +2291,10 @@ register boolean mod;
 			otmp->quan *= 3;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_COUPLE_IN_THE_BOX) {
+			otmp->quan *= 3;
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_HUGESTOCK) {
 			otmp->quan *= 5;
 			otmp->owt = weight(otmp);
@@ -2154,6 +2306,16 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_KLARNIGUR) {
 			otmp->quan *= 2;
 			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_COMPLETE_BUGNOSE) {
+			pline("Lol, you have encountered a nose!");
+		    }
+		    if (otmp && otmp->oartifact == ART_FIELD_INITED__SORRY) {
+			int fieldtrapamount = rn1(11,11);
+			while (fieldtrapamount > 0) {
+				fieldtrapamount--;
+				makerandomtrap(TRUE);
+			}
 		    }
 		    if (otmp && otmp->oartifact == ART_COB_AUTO) {
 			otmp->quan *= rn1(3,3);
@@ -2169,6 +2331,8 @@ register boolean mod;
 			otmp->quan += 25;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_MUCHO_TALCUM) otmp->age *= 3;
+		    if (otmp && otmp->oartifact == ART_HALLOWEEN_FUEL) otmp->age *= 2;
 		    if (otmp && otmp->oartifact == ART_QUASIMAGICAL_SHINE) {
 			otmp->age *= 3;
 		    }
@@ -2933,6 +3097,9 @@ int tmp;
 			case ART_TSCHUEUU:
 			case ART_BROWNING:
 			case ART_WIUNEW:
+			case ART_LONGBOW_OF_DIANA:
+			case ART_HEFFER_S_BOW:
+			case ART_GUNBOW:
 			case ART_HOMING_BEAM:
 			case ART_VIHAT_BAGUETTEN_BUS_STOP:
 			case ART_DIG__OF_COURSE:
@@ -2967,11 +3134,10 @@ int tmp;
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
 	    }
 
-	    return weap->attk.damd ? rnd((int)weap->attk.damd) :
-		    /* [ALI] Unlike melee weapons, damd == 0 means no
-		     * bonus for launchers.
-		     */
-		    is_launcher(otmp) ? 0 : rnd(max(tmp,1)); /* double damage was too strong --Amy */
+		/* used to be that launchers wouldn't get double damage... but then how the hell am I supposed to make a
+		 * launcher artifact that deals double damage??? fucked-ass programmers who didn't simply make a SPFX_DBLDAMAGE
+		 * flag so that we can easily add double damage if we want it to be on an artifact... --Amy */
+	    return weap->attk.damd ? rnd((int)weap->attk.damd) : rnd(max(tmp,1)); /* double damage was too strong --Amy */
 
 	}
 
@@ -4913,6 +5079,30 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_A_MAGE_DID_IT) {
+			if (obj->greased < 3) {
+				pline("Applied a layer of grease.");
+				obj->greased++;
+			} else pline("There's already the maximum amount of grease on your bag.");
+			break;
+		}
+
+		if (obj->oartifact == ART_LEO_IS_ALWAYS_HIGH) {
+			u.copwantedlevel += 2000;
+			gold_detect(obj);
+			pline("Uh-oh, the kops must have gotten wind of your actions.");
+			break;
+		}
+
+		if (obj->oartifact == ART_STRANGE_LILCHEN) {
+			if (obj->obrittle || obj->obrittle2) {
+				u.moneydebt += 10000; /* be lenient if you don't have the required cash out in the open --Amy */
+				obj->obrittle = obj->obrittle2 = 0;
+				Your("credit card is repaired, but that costs 10000 zorkmids.");
+			}
+			break;
+		}
+
 		if (obj->oartifact == ART_DOWNDRIVE) {
 
 			if (!uinsymbiosis) {
@@ -5125,6 +5315,26 @@ protectwhatdone:
 		if (obj->oartifact == ART_TILLMANN_S_TARGET) {
 			pline("Suddenly, you gain a new companion!");
 			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+			break;
+		}
+
+		if (obj->oartifact == ART_INVUNI) {
+
+			You("try to change the instrument.");
+
+			if (obj->otyp == BUGLE) obj->otyp = UNICORN_HORN;
+			else if (obj->otyp == UNICORN_HORN) obj->otyp = BUGLE;
+
+			break;
+		}
+
+		if (obj->oartifact == ART_CHANGE_THE_TUNE) {
+
+			You("try to change the instrument.");
+
+			if (obj->otyp == WOODEN_HARP) obj->otyp = WOODEN_FLUTE;
+			else if (obj->otyp == WOODEN_FLUTE) obj->otyp = WOODEN_HARP;
+
 			break;
 		}
 
@@ -5402,6 +5612,13 @@ tscheinschroll:
 			pline("An aura surrounds your weapon...");
 			uncurse(obj, TRUE);
 			if (!obj->cursed) bless(obj);
+			break;
+		}
+
+		if (obj->oartifact == ART_KEEP_IT_WARM_INSIDE) {
+			pline("An aura surrounds your sack...");
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, TRUE);
 			break;
 		}
 

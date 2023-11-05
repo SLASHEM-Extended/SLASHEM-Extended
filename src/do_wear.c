@@ -5245,6 +5245,12 @@ register struct obj *otmp;
 		}
 	}
 
+	if (otmp && otmp->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) {
+		curse(otmp);
+		otmp->hvycurse = otmp->prmcurse = TRUE;
+		pline("Great! Now you can see everything from a totally different perspective.");
+	}
+
 	if (otmp && otmp->oartifact == ART_ANSWER_IS___) {
 		badeffect();
 	}
@@ -6583,6 +6589,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_ONE) uac -= 1;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TWO) uac -= 2;
+	if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) uac -= 20;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_THREE) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FIVE) uac -= 5;

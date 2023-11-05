@@ -575,9 +575,11 @@ mkbox_cnts(box)
 struct obj *box;
 {
 	register int n, minn = 0;
-	register struct obj *otmp;
+	register struct obj *otmp, *otmpX;
 
 	box->cobj = (struct obj *) 0;
+
+	if (box->oartifact == ART_FAILPRIZE) return;
 
 	switch (box->otyp) {
 	case POTATO_BAG:
@@ -718,6 +720,7 @@ struct obj *box;
 
 	    if (box->otyp == MEDICAL_KIT) {
 		int supplies[] = { PHIAL, BANDAGE, PILL };
+
 		if (!(otmp = mksobj(supplies[rn2(SIZE(supplies))], TRUE, TRUE, FALSE)))
 		    continue;
 		else
@@ -821,7 +824,7 @@ struct obj *box;
 		    if (otmp->quan > 2L) otmp->quan = 1L;
 		    otmp->owt = weight(otmp);
 		}
-		if (box->otyp == BAG_OF_HOLDING || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == CHEST_OF_HOLDING) {
+		if (box->otyp == BAG_OF_HOLDING || box->otyp == ICE_BOX_OF_HOLDING || box->otyp == CHEST_OF_HOLDING || box->oartifact == ART_SACK_OF_HOLDING) {
 		    if (Is_mbag(otmp)) {
 			otmp->otyp = SACK;
 			otmp->spe = 0;
@@ -4035,7 +4038,7 @@ start_corpse_timeout(body)
 			break;
 		    }
 
-		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) {
+		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
 			if (rn2(10) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {
 				action = REVIVE_MON;
 				when = 1;
@@ -4069,7 +4072,7 @@ start_corpse_timeout(body)
 			break;
 		    }
 
-		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() ) {
+		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
 			if (rn2(10) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {
 				action = REVIVE_MON;
 				when = 1;
@@ -4121,7 +4124,7 @@ register struct obj *otmp;
 	    set_moreluck();
 	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	if (otmp->otyp == FIGURINE && otmp->timed)
 	    (void) stop_timer(FIG_TRANSFORM, (void *) otmp);
@@ -4138,7 +4141,7 @@ register struct obj *otmp;
 	    set_moreluck();
 	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	if (otmp->otyp == FIGURINE && otmp->timed)
 	    (void) stop_timer(FIG_TRANSFORM, (void *) otmp);
@@ -4189,7 +4192,7 @@ register struct obj *otmp;
 	    set_moreluck();
 	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	if (otmp->otyp == FIGURINE) {
 		if (otmp->corpsenm != NON_PM
@@ -4257,7 +4260,7 @@ register struct obj *otmp;
 	    set_moreluck();
 	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 	if (otmp->otyp == FIGURINE) {
 		if (otmp->corpsenm != NON_PM
@@ -4294,7 +4297,7 @@ boolean guaranteed; /* can it work even when you have permacurse nastytrap effec
 	/* KMH, balance patch -- healthstones affect healing */
 	if (otmp->otyp == HEALTHSTONE)
 	    recalc_health();
-	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING)
+	if (otmp->otyp == BAG_OF_HOLDING || otmp->otyp == ICE_BOX_OF_HOLDING || otmp->otyp == CHEST_OF_HOLDING || otmp->oartifact == ART_SACK_OF_HOLDING)
 	    otmp->owt = weight(otmp);
 }
 
@@ -4405,7 +4408,7 @@ register struct obj *obj;
 		 *	   as cursed.
 		 */
 #define CEILDIV(x,y)	(((x)+(y)-1)/(y))	/* ceil(x/y) */
-		if (obj->otyp == BAG_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING)
+		if (obj->otyp == BAG_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->oartifact == ART_SACK_OF_HOLDING)
 			cwt = obj->cursed ? (cwt * (obj->oartifact ? 4 : 2)) :
 				CEILDIV(cwt, (obj->oartifact ? 3 : 2) * (obj->blessed ? 2 : 1));
 		if (obj->otyp == HANDYBAG) cwt = (flags.female ? (cwt * 4 / 5) : cwt );

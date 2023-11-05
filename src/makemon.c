@@ -33791,6 +33791,10 @@ struct obj *bag;
 	if (!rn2(23)) cnt += rn1(7, 1);
 	if (bag && bag->oartifact == ART_VERY_TRICKY_INDEED) cnt *= 2;
 
+	if (bag && bag->oartifact == ART_SPAWN_DA_KILLAZ) {
+		KillerRoomEffect += 5000;
+	}
+
 	while (cnt-- > 0) {
 	    if (makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS))
 		gotone = TRUE;
