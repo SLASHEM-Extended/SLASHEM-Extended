@@ -1826,6 +1826,10 @@ register boolean mod;
 
 		    }
 
+		    if (otmp && otmp->oartifact == ART_FAILPRIZE) {
+			if (Has_contents(otmp)) delete_contents(otmp);
+		    }
+
 		    if (otmp && otmp->oartifact == ART_DEMONSEAL) {
 			int maincontainerclass = WEAPON_CLASS;
 			int maincontaineramount = 50;

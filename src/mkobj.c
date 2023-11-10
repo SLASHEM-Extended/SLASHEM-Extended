@@ -579,8 +579,6 @@ struct obj *box;
 
 	box->cobj = (struct obj *) 0;
 
-	if (box->oartifact == ART_FAILPRIZE) return;
-
 	switch (box->otyp) {
 	case POTATO_BAG:
 
@@ -4408,9 +4406,15 @@ register struct obj *obj;
 		 *	   as cursed.
 		 */
 #define CEILDIV(x,y)	(((x)+(y)-1)/(y))	/* ceil(x/y) */
-		if (obj->otyp == BAG_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->oartifact == ART_SACK_OF_HOLDING)
-			cwt = obj->cursed ? (cwt * (obj->oartifact ? 4 : 2)) :
-				CEILDIV(cwt, (obj->oartifact ? 3 : 2) * (obj->blessed ? 2 : 1));
+		if (obj->otyp == BAG_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->oartifact == ART_SACK_OF_HOLDING) {
+			int cursemult = 2;
+			if (obj->oartifact && obj->oartifact != ART_SACK_OF_HOLDING) cursemult = 4;
+			int noncursemult = 2;
+			if (obj->oartifact && obj->oartifact != ART_SACK_OF_HOLDING) noncursemult = 3;
+
+			cwt = obj->cursed ? (cwt * cursemult) :
+				CEILDIV(cwt, noncursemult * (obj->blessed ? 2 : 1));
+		}
 		if (obj->otyp == HANDYBAG) cwt = (flags.female ? (cwt * 4 / 5) : cwt );
 #undef CEILDIV
 		return wt + cwt;

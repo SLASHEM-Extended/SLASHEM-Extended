@@ -8853,6 +8853,7 @@ SCROLL((char *)0,               "THE PROBLEM IS THAT THERE IS NO PROBLEM",  P_NO
 SCROLL((char *)0,               "REAL CELTA VERSUS ABERDEEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "THE OLD LYRE AGAIN",  P_NONE,     1,   0, 100, CLR_RED, 1),
 SCROLL((char *)0,               "KINDLY WAIT ITS DRAENGLER",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "WHAT DO YOU MEAN FLEECY IS NOT A COLOR  OF COURSE IT IS",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

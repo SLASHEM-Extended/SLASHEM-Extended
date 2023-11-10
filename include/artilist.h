@@ -432,7 +432,7 @@ A("Glorious Dead",			CORPSE,
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Precious Wish",			SCR_WISHING,
-	(SPFX_RESTR), (SPFX_DEFN), 0,
+	(SPFX_RESTR|SPFX_NOWISH), (SPFX_DEFN), 0,
 	NO_ATTK, NO_DFNS, CARY(AD_MAGM), 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
 A("Trolled by the RNG",			ROCK,
@@ -1788,7 +1788,7 @@ A("Bunga Bunga",			WAN_SUMMON_SEXY_GIRL, /* +5 + number of charges charisma when
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Sovetskaya Pyat' Lo Nenavidit Igroki",			WAN_DESLEXIFICATION,
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),
 
 A("Faeaeaeaeaeau",			WAN_FIRE,
@@ -13544,7 +13544,7 @@ A("Add The Missing Staircase",				LEATHER_ARMOR, /* randart2 armor, going up to 
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Tunguska Event",				SCR_WORLD_FALL, /* causes dynamite explosions that can also blow up walls and generate lava like the ragnarok effect */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 A("Library Hiding",				LEATHER_CLOAK, /* randart cloak, invisibility, this item spawns invisible */
@@ -14056,7 +14056,7 @@ A("Benny's Chip",				DATA_CHIP, /* invoke for alter reality but doing so deletes
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, PM_COURIER, NON_PM, 8000L ),
 
 A("Death Avert",				SCR_RESURRECTION, /* no specialties */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_INTEL_SCRIBE, NON_PM, 10000L ),
 
 A("Your Lucky Day",				WAN_NOTHING, /* randart2 wand; as a wandkeeper, spawns with 50 extra charges, or 3 if the wand can only be recharged once; other roles get 20 or 1 extra charges, respectively */
@@ -15804,11 +15804,11 @@ A("Void Scythe",				BARDICHE, /* randart2 polearm */
 	PHYS(20, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 A("Electronic Lock",				LOOT_CHEST, /* sets container kaboom trap to 10000 if it was lower */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
 A("Failprize",				TREASURE_CHEST, /* spawns empty */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
 
 A("Goodfilm",				EXPENSIVE_CAMERA, /* can take two photos per turn */
