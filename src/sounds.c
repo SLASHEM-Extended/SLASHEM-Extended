@@ -6074,6 +6074,9 @@ register struct monst *mtmp;
 		return;
 	}
 
+	if (mtmp->mundetected && is_hider(mtmp->data)) mtmp->mundetected = FALSE;
+	if (mtmp->mundetected && hides_under(mtmp->data)) mtmp->mundetected = FALSE;
+
 	if (FemtrapActiveLittleMarie && is_female(mtmp->data)) {
 		randomnastytrapeffect(rnz(2 + mtmp->m_lev), 1000 - mtmp->m_lev);
 	}

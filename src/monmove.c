@@ -3801,8 +3801,8 @@ register int after;
 	    return 3;			/* still eating */
 	}
 
-	if (hides_under(ptr) && OBJ_AT(mtmp->mx, mtmp->my) && rn2(10))
-	    return 0;		/* do not leave hiding place */
+	if (hides_under(ptr) && mtmp->mundetected && OBJ_AT(mtmp->mx, mtmp->my) && rn2(10))
+	    return 0;		/* do not leave hiding place - Amy edit: but don't keep camping if the player found you!! */
 
 	set_apparxy(mtmp);
 	/* where does mtmp think you are? */
