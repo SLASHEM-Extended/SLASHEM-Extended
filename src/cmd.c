@@ -7203,169 +7203,17 @@ boolean guaranteed;
 
 	if ((guaranteed || !rn2(10)) && uarms) {
 
-		switch (uarms->otyp) {
-
-		case SMALL_SHIELD:
-			shieldblockrate = 10;
-			break;
-		case ORGANOSHIELD:
-			shieldblockrate = 12;
-			break;
-		case PAPER_SHIELD:
-		case BULL_SHIELD:
-		case DIFFICULT_SHIELD:
-			shieldblockrate = 40;
-			break;
-		case SPI_IMAGE_MOOSE_SHIELD:
-			shieldblockrate = 45;
-			break;
-		case ONE_EATING_SIGN:
-			shieldblockrate = 50;
-			break;
-		case ICKY_SHIELD:
-			shieldblockrate = 0;
-			break;
-		case HEAVY_SHIELD:
-		case SHUTTER_SHIELD:
-			shieldblockrate = 10;
-			break;
-		case BARRIER_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case TROLL_SHIELD:
-		case MAGICAL_SHIELD:
-		case SPECIAL_SHIELD:
-		case WEAPON_SIGN:
-			shieldblockrate = 20;
-			break;
-		case TARRIER:
-			shieldblockrate = 25;
-			break;
-		case SHIELD_OF_PEACE:
-			shieldblockrate = 20;
-			break;
-		case ELVEN_SHIELD:
-			shieldblockrate = 20;
+		shieldblockrate = shield_block_rate(uarms);
+		if (uarms->otyp == ELVEN_SHIELD) {
 			if (Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
-			break;
-		case URUK_HAI_SHIELD:
-			shieldblockrate = 22;
+		}
+
+		if (uarms->otyp == URUK_HAI_SHIELD || uarms->otyp == ORCISH_SHIELD || uarms->otyp == ORCISH_GUARD_SHIELD) {
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
-			break;
-		case ORCISH_SHIELD:
-		case ORCISH_GUARD_SHIELD:
-			shieldblockrate = 18;
-			if (Race_if(PM_ORC)) shieldblockrate += 5;
-			break;
-		case DWARVISH_ROUNDSHIELD:
-			shieldblockrate = 24;
+		}
+		if (uarms->otyp == DWARVISH_ROUNDSHIELD) {
 			if (Race_if(PM_DWARF)) shieldblockrate += 5;
 			if (Role_if(PM_MIDGET)) shieldblockrate += 5;
-			break;
-		case LARGE_SHIELD:
-		case SHIELD:
-			shieldblockrate = 25;
-			break;
-		case STEEL_SHIELD:
-		case GRIM_SHIELD:
-		case MYSTERY_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case METEORIC_STEEL_SHIELD:
-			shieldblockrate = 32;
-			break;
-		case CRYSTAL_SHIELD:
-		case RAPIRAPI:
-		case TEZ_SHIELD:
-		case HIDE_SHIELD:
-		case GOLDEN_SHIELD:
-			shieldblockrate = 35;
-			break;
-		case SHIELD_OF_REFLECTION:
-		case SILVER_SHIELD:
-		case ANCIENT_SHIELD:
-		case MIRROR_SHIELD:
-			shieldblockrate = 25;
-			break;
-		case FLAME_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case ICE_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case LIGHTNING_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case VENOM_SHIELD:
-		case CHROME_SHIELD:
-		case ANTISHADOW_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case INVERSION_SHIELD:
-			shieldblockrate = 40;
-			break;
-		case SHIELD_OF_LIGHT:
-			shieldblockrate = 30;
-			break;
-		case SHIELD_OF_MOBILITY:
-			shieldblockrate = 30;
-			break;
-
-		case GRAY_DRAGON_SCALE_SHIELD:
-		case SILVER_DRAGON_SCALE_SHIELD:
-		case MERCURIAL_DRAGON_SCALE_SHIELD:
-		case SHIMMERING_DRAGON_SCALE_SHIELD:
-		case DEEP_DRAGON_SCALE_SHIELD:
-		case RED_DRAGON_SCALE_SHIELD:
-		case WHITE_DRAGON_SCALE_SHIELD:
-		case ORANGE_DRAGON_SCALE_SHIELD:
-		case BLACK_DRAGON_SCALE_SHIELD:
-		case BLUE_DRAGON_SCALE_SHIELD:
-		case DARK_DRAGON_SCALE_SHIELD:
-		case COPPER_DRAGON_SCALE_SHIELD:
-		case PLATINUM_DRAGON_SCALE_SHIELD:
-		case BRASS_DRAGON_SCALE_SHIELD:
-		case AMETHYST_DRAGON_SCALE_SHIELD:
-		case PURPLE_DRAGON_SCALE_SHIELD:
-		case DIAMOND_DRAGON_SCALE_SHIELD:
-		case EMERALD_DRAGON_SCALE_SHIELD:
-		case SAPPHIRE_DRAGON_SCALE_SHIELD:
-		case RUBY_DRAGON_SCALE_SHIELD:
-		case GREEN_DRAGON_SCALE_SHIELD:
-		case GOLDEN_DRAGON_SCALE_SHIELD:
-		case FEMINISM_DRAGON_SCALE_SHIELD:
-		case CANCEL_DRAGON_SCALE_SHIELD:
-		case NEGATIVE_DRAGON_SCALE_SHIELD:
-		case CORONA_DRAGON_SCALE_SHIELD:
-		case CONTRO_DRAGON_SCALE_SHIELD:
-		case MYSTERY_DRAGON_SCALE_SHIELD:
-		case HEROIC_DRAGON_SCALE_SHIELD:
-		case STONE_DRAGON_SCALE_SHIELD:
-		case CYAN_DRAGON_SCALE_SHIELD:
-		case PSYCHIC_DRAGON_SCALE_SHIELD:
-		case RAINBOW_DRAGON_SCALE_SHIELD:
-		case BLOOD_DRAGON_SCALE_SHIELD:
-		case PLAIN_DRAGON_SCALE_SHIELD:
-		case SKY_DRAGON_SCALE_SHIELD:
-		case WATER_DRAGON_SCALE_SHIELD:
-		case MAGIC_DRAGON_SCALE_SHIELD:
-		case YELLOW_DRAGON_SCALE_SHIELD:
-
-			shieldblockrate = 23;
-			break;
-
-		case EVIL_DRAGON_SCALE_SHIELD:
-
-			shieldblockrate = 33;
-			break;
-
-		case BROKEN_SHIELD:
-
-			shieldblockrate = 0;
-			break;
-
-		default: impossible("Unknown type of shield (%ld)", uarms->otyp);
-
 		}
 
 		if (!(PlayerCannotUseSkills)) {
@@ -11942,169 +11790,17 @@ int final;
 
 	if (uarms) {
 
-		switch (uarms->otyp) {
-
-		case SMALL_SHIELD:
-			shieldblockrate = 10;
-			break;
-		case ORGANOSHIELD:
-			shieldblockrate = 12;
-			break;
-		case PAPER_SHIELD:
-		case BULL_SHIELD:
-		case DIFFICULT_SHIELD:
-			shieldblockrate = 40;
-			break;
-		case SPI_IMAGE_MOOSE_SHIELD:
-			shieldblockrate = 45;
-			break;
-		case ONE_EATING_SIGN:
-			shieldblockrate = 50;
-			break;
-		case ICKY_SHIELD:
-			shieldblockrate = 0;
-			break;
-		case HEAVY_SHIELD:
-		case SHUTTER_SHIELD:
-			shieldblockrate = 10;
-			break;
-		case BARRIER_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case TROLL_SHIELD:
-		case MAGICAL_SHIELD:
-		case SPECIAL_SHIELD:
-		case WEAPON_SIGN:
-			shieldblockrate = 20;
-			break;
-		case TARRIER:
-			shieldblockrate = 25;
-			break;
-		case SHIELD_OF_PEACE:
-			shieldblockrate = 20;
-			break;
-		case ELVEN_SHIELD:
-			shieldblockrate = 20;
+		shieldblockrate = shield_block_rate(uarms);
+		if (uarms->otyp == ELVEN_SHIELD) {
 			if (Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Race_if(PM_DROW) || Role_if(PM_ELPH) || Role_if(PM_TWELPH)) shieldblockrate += 5;
-			break;
-		case URUK_HAI_SHIELD:
-			shieldblockrate = 22;
+		}
+
+		if (uarms->otyp == URUK_HAI_SHIELD || uarms->otyp == ORCISH_SHIELD || uarms->otyp == ORCISH_GUARD_SHIELD) {
 			if (Race_if(PM_ORC)) shieldblockrate += 5;
-			break;
-		case ORCISH_SHIELD:
-		case ORCISH_GUARD_SHIELD:
-			shieldblockrate = 18;
-			if (Race_if(PM_ORC)) shieldblockrate += 5;
-			break;
-		case DWARVISH_ROUNDSHIELD:
-			shieldblockrate = 24;
+		}
+		if (uarms->otyp == DWARVISH_ROUNDSHIELD) {
 			if (Race_if(PM_DWARF)) shieldblockrate += 5;
 			if (Role_if(PM_MIDGET)) shieldblockrate += 5;
-			break;
-		case LARGE_SHIELD:
-		case SHIELD:
-			shieldblockrate = 25;
-			break;
-		case STEEL_SHIELD:
-		case GRIM_SHIELD:
-		case MYSTERY_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case METEORIC_STEEL_SHIELD:
-			shieldblockrate = 32;
-			break;
-		case CRYSTAL_SHIELD:
-		case RAPIRAPI:
-		case TEZ_SHIELD:
-		case HIDE_SHIELD:
-		case GOLDEN_SHIELD:
-			shieldblockrate = 35;
-			break;
-		case SHIELD_OF_REFLECTION:
-		case SILVER_SHIELD:
-		case ANCIENT_SHIELD:
-		case MIRROR_SHIELD:
-			shieldblockrate = 25;
-			break;
-		case FLAME_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case ICE_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case LIGHTNING_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case VENOM_SHIELD:
-		case CHROME_SHIELD:
-		case ANTISHADOW_SHIELD:
-			shieldblockrate = 30;
-			break;
-		case INVERSION_SHIELD:
-			shieldblockrate = 40;
-			break;
-		case SHIELD_OF_LIGHT:
-			shieldblockrate = 30;
-			break;
-		case SHIELD_OF_MOBILITY:
-			shieldblockrate = 30;
-			break;
-
-		case GRAY_DRAGON_SCALE_SHIELD:
-		case SILVER_DRAGON_SCALE_SHIELD:
-		case MERCURIAL_DRAGON_SCALE_SHIELD:
-		case SHIMMERING_DRAGON_SCALE_SHIELD:
-		case DEEP_DRAGON_SCALE_SHIELD:
-		case RED_DRAGON_SCALE_SHIELD:
-		case WHITE_DRAGON_SCALE_SHIELD:
-		case ORANGE_DRAGON_SCALE_SHIELD:
-		case BLACK_DRAGON_SCALE_SHIELD:
-		case BLUE_DRAGON_SCALE_SHIELD:
-		case DARK_DRAGON_SCALE_SHIELD:
-		case COPPER_DRAGON_SCALE_SHIELD:
-		case PLATINUM_DRAGON_SCALE_SHIELD:
-		case BRASS_DRAGON_SCALE_SHIELD:
-		case AMETHYST_DRAGON_SCALE_SHIELD:
-		case PURPLE_DRAGON_SCALE_SHIELD:
-		case DIAMOND_DRAGON_SCALE_SHIELD:
-		case EMERALD_DRAGON_SCALE_SHIELD:
-		case SAPPHIRE_DRAGON_SCALE_SHIELD:
-		case RUBY_DRAGON_SCALE_SHIELD:
-		case GREEN_DRAGON_SCALE_SHIELD:
-		case GOLDEN_DRAGON_SCALE_SHIELD:
-		case FEMINISM_DRAGON_SCALE_SHIELD:
-		case CANCEL_DRAGON_SCALE_SHIELD:
-		case NEGATIVE_DRAGON_SCALE_SHIELD:
-		case CORONA_DRAGON_SCALE_SHIELD:
-		case CONTRO_DRAGON_SCALE_SHIELD:
-		case MYSTERY_DRAGON_SCALE_SHIELD:
-		case HEROIC_DRAGON_SCALE_SHIELD:
-		case STONE_DRAGON_SCALE_SHIELD:
-		case CYAN_DRAGON_SCALE_SHIELD:
-		case PSYCHIC_DRAGON_SCALE_SHIELD:
-		case RAINBOW_DRAGON_SCALE_SHIELD:
-		case BLOOD_DRAGON_SCALE_SHIELD:
-		case PLAIN_DRAGON_SCALE_SHIELD:
-		case SKY_DRAGON_SCALE_SHIELD:
-		case WATER_DRAGON_SCALE_SHIELD:
-		case MAGIC_DRAGON_SCALE_SHIELD:
-		case YELLOW_DRAGON_SCALE_SHIELD:
-
-			shieldblockrate = 23;
-			break;
-
-		case EVIL_DRAGON_SCALE_SHIELD:
-
-			shieldblockrate = 33;
-			break;
-
-		case BROKEN_SHIELD:
-
-			shieldblockrate = 0;
-			break;
-
-		default: shieldblockrate = 0; /* we don't want to call impossible from here --Amy */
-
 		}
 
 		if (!(PlayerCannotUseSkills)) {

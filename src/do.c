@@ -1077,6 +1077,9 @@ register struct obj *obj;
 	case AMULET_VERSUS_CURSES:
 		pline("A malignant aura surrounds the toilet for a moment, but is repelled by a magical shield.");
 		break;
+	case AMULET_OF_NAUSEA:
+		pline("Eww, it looks as if someone vomited into the toilet!");
+		break;
 	case AMULET_VERSUS_NAGGING:
 		pline("Your attempts to insult the toilet were ineffective.");
 		break;

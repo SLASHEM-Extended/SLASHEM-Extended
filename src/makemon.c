@@ -33028,6 +33028,8 @@ register struct permonst *ptr;
 
 	if (uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON && !rn2(5)) return TRUE;
 
+	if (harmoniumeffect()) return TRUE;
+
 	if (!rn2(Aggravate_monster ? 500 : 100)) return TRUE; /* low chance of getting random peaceful monsters --Amy */
 
 	/* chaotic alignment is too easy and lawful is too hard. Make it easier for neutral and especially lawful by having monsters generate peaceful more often. --Amy */

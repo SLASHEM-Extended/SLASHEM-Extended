@@ -30987,6 +30987,12 @@ register struct trobj *trop;
             if (objX->otyp == PRINTED_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
+            if (objX->otyp == WAISTCLOTH && !issoviet ) {
+                objX->cursed = TRUE;
+            }
+            if (objX->otyp == REINFORCED_SHIRT && !issoviet ) {
+                objX->cursed = TRUE;
+            }
             if (objX->otyp == FOAM_SHIRT && !issoviet ) {
                 objX->cursed = TRUE;
             }
@@ -31211,6 +31217,12 @@ register struct trobj *trop;
                 obj->cursed = TRUE;
             }
             if (obj->otyp == PRINTED_SHIRT && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == WAISTCLOTH && !issoviet ) {
+                obj->cursed = TRUE;
+            }
+            if (obj->otyp == REINFORCED_SHIRT && !issoviet ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == FOAM_SHIRT && !issoviet ) {

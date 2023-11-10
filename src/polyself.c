@@ -1213,6 +1213,9 @@ break_armor()
 
 	}
 
+	boolean facelesskeep = 0;
+	if (facelessprotection()) facelesskeep = TRUE; /* have to calculate this first, before any armor is removed --Amy */
+
 	int controllingchance = 0;
 	boolean armorkeep = 0;
 	boolean cloakkeep = 0;
@@ -1238,6 +1241,7 @@ break_armor()
 		else controllingchance *= 10;
 
 	}
+	if (facelesskeep && (controllingchance < 100)) controllingchance = 100;
 
 	if (uarm && !Race_if(PM_TRANSFORMER) && (rnd(100) < controllingchance)) {
 
@@ -1266,7 +1270,7 @@ break_armor()
 
     if (breakarm(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarm) != 0) && !(uarm && uarm->otyp == OSFA_CHAIN_MAIL) && !(uarm && uarm->oartifact == ART_WRONG_TURN) && !armorkeep) {
-	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
+	    if(otmp->oartifact || facelesskeep || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		if (donning(otmp)) cancel_don();
 		Your("armor falls off!");
 		(void) Armor_gone();
@@ -1292,7 +1296,7 @@ break_armor()
 	}
 	}
 	if (!cloakkeep && !(uarmc && itemhasappearance(uarmc, APP_OSFA_CLOAK)) && (otmp = uarmc) != 0) {
-	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
+	    if(otmp->oartifact || facelesskeep || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
 		dropx(otmp);
@@ -1316,7 +1320,7 @@ break_armor()
 	}
 	if (!shirtkeep && (otmp = uarmu) != 0) {
 
-	    if(otmp->oartifact || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
+	    if(otmp->oartifact || facelesskeep || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || (otmp->fakeartifact && rn2(2)) ) {
 		Your("shirt falls off!");
 		setworn((struct obj *)0, otmp->owornmask & W_ARMU);
 		dropx(otmp);
@@ -1376,7 +1380,7 @@ break_armor()
 	}
     }
     if ((otmp = uarmh) != 0 && !uarmh->stckcurse && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
-	    if (!otmp->cursed) {
+	    if (!otmp->cursed || facelesskeep) {
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();
 	    } else if (otmp->oartifact || (otmp->fakeartifact && rn2(2)) || (controlled_change) || (itemsurvivedestruction(otmp, 8) && !issoviet) || (Polymorph_control && !issoviet && !rn2(3)) || ((Fast || Very_fast) && !issoviet && !rn2(3)) || (StrongFast && !issoviet && !rn2(3)) || (otmp->blessed && !issoviet && !rn2(2)) || (StrongPolymorph_control && !issoviet && !rn2(3)) ) {

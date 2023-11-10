@@ -4247,6 +4247,38 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ WOOD_DART, "todo" },
 	{ LIGHT_STAR, "todo" },
 	{ ALU_BOOMERANG, "todo" },
+	{ SUNLIGHT_MAGGOT, "todo" },
+	{ TOQUE, "todo" },
+	{ HARMONIUM_HELM, "todo" },
+	{ PONTIFF_S_CROWN, "todo" },
+	{ FACELESS_HELM, "todo" },
+	{ HELM_OF_MADNESS, "todo" },
+	{ LANTERN_PLATE_MAIL, "todo" },
+	{ HIGH_ELVEN_PLATE, "todo" },
+	{ IMPERIAL_ELVEN_ARMOR, "todo" },
+	{ HARMONIUM_PLATE, "todo" },
+	{ HARMONIUM_SCALE_MAIL, "todo" },
+	{ EILISTRAN_ARMOR, "todo" },
+	{ THROWAWAY_ARMOR, "todo" },
+	{ MESH_ARMOR, "todo" },
+	{ CUIRASS_ARMOR, "todo" },
+	{ HELLFORGED_PLATE_MAIL, "todo" },
+	{ WAISTCLOTH, "todo" },
+	{ REINFORCED_SHIRT, "todo" },
+	{ SMOKY_VIOLET_FACELESS_ROBE, "todo" },
+	{ BUCKLER, "todo" },
+	{ LIGHT_SHIELD, "todo" },
+	{ RESONANT_SHIELD, "todo" },
+	{ CRINGE_SHIELD, "todo" },
+	{ BRONZE_SHIELD, "todo" },
+	{ SHELL_SHIELD, "todo" },
+	{ SUPER_SHIELD, "todo" },
+	{ TOWER_SHIELD, "todo" },
+	{ HARMONIUM_GAUNTLETS, "todo" },
+	{ ORCISH_BOOTS, "todo" },
+	{ HARMONIUM_BOOTS, "todo" },
+	{ WIND_AND_FIRE_WHEELS, "todo" },
+	{ AMULET_OF_NAUSEA, "todo" },
 
 	{0, "" }
 };
@@ -7648,6 +7680,38 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ WOOD_DART, "todo" },
 	{ LIGHT_STAR, "todo" },
 	{ ALU_BOOMERANG, "todo" },
+	{ SUNLIGHT_MAGGOT, "todo" },
+	{ TOQUE, "todo" },
+	{ HARMONIUM_HELM, "todo" },
+	{ PONTIFF_S_CROWN, "todo" },
+	{ FACELESS_HELM, "todo" },
+	{ HELM_OF_MADNESS, "todo" },
+	{ LANTERN_PLATE_MAIL, "todo" },
+	{ HIGH_ELVEN_PLATE, "todo" },
+	{ IMPERIAL_ELVEN_ARMOR, "todo" },
+	{ HARMONIUM_PLATE, "todo" },
+	{ HARMONIUM_SCALE_MAIL, "todo" },
+	{ EILISTRAN_ARMOR, "todo" },
+	{ THROWAWAY_ARMOR, "todo" },
+	{ MESH_ARMOR, "todo" },
+	{ CUIRASS_ARMOR, "todo" },
+	{ HELLFORGED_PLATE_MAIL, "todo" },
+	{ WAISTCLOTH, "todo" },
+	{ REINFORCED_SHIRT, "todo" },
+	{ SMOKY_VIOLET_FACELESS_ROBE, "todo" },
+	{ BUCKLER, "todo" },
+	{ LIGHT_SHIELD, "todo" },
+	{ RESONANT_SHIELD, "todo" },
+	{ CRINGE_SHIELD, "todo" },
+	{ BRONZE_SHIELD, "todo" },
+	{ SHELL_SHIELD, "todo" },
+	{ SUPER_SHIELD, "todo" },
+	{ TOWER_SHIELD, "todo" },
+	{ HARMONIUM_GAUNTLETS, "todo" },
+	{ ORCISH_BOOTS, "todo" },
+	{ HARMONIUM_BOOTS, "todo" },
+	{ WIND_AND_FIRE_WHEELS, "todo" },
+	{ AMULET_OF_NAUSEA, "todo" },
 
 	{0, "" }
 };
@@ -10503,7 +10567,26 @@ boolean actualwish;
 	   strncmpi(bp, "food detection", 14) &&
 	   strncmpi(bp, "ring mail", 9) &&
 	   strncmpi(bp, "studded leather arm", 19) &&
+	   strncmpi(bp, "imperial elven armor", 20) &&
+	   strncmpi(bp, "clockwork plate armor", 21) &&
+	   strncmpi(bp, "poison-repellant armor", 22) &&
+	   strncmpi(bp, "special leather armor", 21) &&
+	   strncmpi(bp, "troll leather armor", 19) &&
+	   strncmpi(bp, "metal lamellar armor", 20) &&
+	   strncmpi(bp, "cloak of armor mystery", 22) &&
 	   strncmpi(bp, "leather arm", 11) &&
+	   strncmpi(bp, "eilistran armor", 15) &&
+	   strncmpi(bp, "evil leather armor", 18) &&
+	   strncmpi(bp, "red leather armor", 17) &&
+	   strncmpi(bp, "throwaway armor", 15) &&
+	   strncmpi(bp, "barnacle armor", 14) &&
+	   strncmpi(bp, "exciting armor", 14) &&
+	   strncmpi(bp, "cuirass armor", 13) &&
+	   strncmpi(bp, "feather armor", 13) &&
+	   strncmpi(bp, "bladed armor", 12) &&
+	   strncmpi(bp, "mesh armor", 10) &&
+	   strncmpi(bp, "force armor", 11) &&
+	   strncmpi(bp, "red string", 10) &&
 	   strncmpi(bp, "tooled horn", 11) &&
 	   strncmpi(bp, "weapon sign", 11) &&
        strncmpi(bp, "graywand", 8) &&

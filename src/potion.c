@@ -7352,6 +7352,186 @@ chromeprotection()
 	return FALSE;
 }
 
+/* how much chance to block does someone's shield have? used for deflecting missile weapons --Amy */
+int
+shield_block_rate(otmp)
+struct obj *otmp;
+{
+	int shieldblockrate = 0;
+	if (!otmp) return 0; /* shouldn't happen */
+
+	switch (otmp->otyp) {
+
+		case SMALL_SHIELD:
+		case BUCKLER:
+		case LIGHT_SHIELD:
+			shieldblockrate = 10;
+			break;
+		case ORGANOSHIELD:
+			shieldblockrate = 12;
+			break;
+		case PAPER_SHIELD:
+		case BULL_SHIELD:
+		case DIFFICULT_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case SPI_IMAGE_MOOSE_SHIELD:
+			shieldblockrate = 45;
+			break;
+		case ONE_EATING_SIGN:
+			shieldblockrate = 50;
+			break;
+		case ICKY_SHIELD:
+			shieldblockrate = 0;
+			break;
+		case HEAVY_SHIELD:
+		case SHUTTER_SHIELD:
+			shieldblockrate = 10;
+			break;
+		case BARRIER_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case TROLL_SHIELD:
+		case MAGICAL_SHIELD:
+		case SPECIAL_SHIELD:
+		case WEAPON_SIGN:
+			shieldblockrate = 20;
+			break;
+		case TARRIER:
+		case SHELL_SHIELD:
+			shieldblockrate = 25;
+			break;
+		case SHIELD_OF_PEACE:
+			shieldblockrate = 20;
+			break;
+		case ELVEN_SHIELD:
+			shieldblockrate = 20;
+			break;
+		case URUK_HAI_SHIELD:
+			shieldblockrate = 22;
+			break;
+		case ORCISH_SHIELD:
+		case ORCISH_GUARD_SHIELD:
+			shieldblockrate = 18;
+			break;
+		case DWARVISH_ROUNDSHIELD:
+			shieldblockrate = 24;
+			break;
+		case LARGE_SHIELD:
+		case CRINGE_SHIELD:
+		case SHIELD:
+			shieldblockrate = 25;
+			break;
+		case STEEL_SHIELD:
+		case BRONZE_SHIELD:
+		case GRIM_SHIELD:
+		case MYSTERY_SHIELD:
+		case RESONANT_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case METEORIC_STEEL_SHIELD:
+			shieldblockrate = 32;
+			break;
+		case CRYSTAL_SHIELD:
+		case RAPIRAPI:
+		case TEZ_SHIELD:
+		case HIDE_SHIELD:
+		case SUPER_SHIELD:
+		case TOWER_SHIELD:
+		case GOLDEN_SHIELD:
+			shieldblockrate = 35;
+			break;
+		case SHIELD_OF_REFLECTION:
+		case SILVER_SHIELD:
+		case ANCIENT_SHIELD:
+		case MIRROR_SHIELD:
+			shieldblockrate = 25;
+			break;
+		case FLAME_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case ICE_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case LIGHTNING_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case VENOM_SHIELD:
+		case CHROME_SHIELD:
+		case ANTISHADOW_SHIELD:
+			shieldblockrate = 30;
+			break;
+		case INVERSION_SHIELD:
+			shieldblockrate = 40;
+			break;
+		case SHIELD_OF_LIGHT:
+			shieldblockrate = 30;
+			break;
+		case SHIELD_OF_MOBILITY:
+			shieldblockrate = 30;
+			break;
+
+		case GRAY_DRAGON_SCALE_SHIELD:
+		case SILVER_DRAGON_SCALE_SHIELD:
+		case MERCURIAL_DRAGON_SCALE_SHIELD:
+		case SHIMMERING_DRAGON_SCALE_SHIELD:
+		case DEEP_DRAGON_SCALE_SHIELD:
+		case RED_DRAGON_SCALE_SHIELD:
+		case WHITE_DRAGON_SCALE_SHIELD:
+		case ORANGE_DRAGON_SCALE_SHIELD:
+		case BLACK_DRAGON_SCALE_SHIELD:
+		case BLUE_DRAGON_SCALE_SHIELD:
+		case DARK_DRAGON_SCALE_SHIELD:
+		case COPPER_DRAGON_SCALE_SHIELD:
+		case PLATINUM_DRAGON_SCALE_SHIELD:
+		case BRASS_DRAGON_SCALE_SHIELD:
+		case AMETHYST_DRAGON_SCALE_SHIELD:
+		case PURPLE_DRAGON_SCALE_SHIELD:
+		case DIAMOND_DRAGON_SCALE_SHIELD:
+		case EMERALD_DRAGON_SCALE_SHIELD:
+		case SAPPHIRE_DRAGON_SCALE_SHIELD:
+		case RUBY_DRAGON_SCALE_SHIELD:
+		case GREEN_DRAGON_SCALE_SHIELD:
+		case GOLDEN_DRAGON_SCALE_SHIELD:
+		case FEMINISM_DRAGON_SCALE_SHIELD:
+		case CANCEL_DRAGON_SCALE_SHIELD:
+		case NEGATIVE_DRAGON_SCALE_SHIELD:
+		case CORONA_DRAGON_SCALE_SHIELD:
+		case CONTRO_DRAGON_SCALE_SHIELD:
+		case MYSTERY_DRAGON_SCALE_SHIELD:
+		case HEROIC_DRAGON_SCALE_SHIELD:
+		case STONE_DRAGON_SCALE_SHIELD:
+		case CYAN_DRAGON_SCALE_SHIELD:
+		case PSYCHIC_DRAGON_SCALE_SHIELD:
+		case RAINBOW_DRAGON_SCALE_SHIELD:
+		case BLOOD_DRAGON_SCALE_SHIELD:
+		case PLAIN_DRAGON_SCALE_SHIELD:
+		case SKY_DRAGON_SCALE_SHIELD:
+		case WATER_DRAGON_SCALE_SHIELD:
+		case MAGIC_DRAGON_SCALE_SHIELD:
+		case YELLOW_DRAGON_SCALE_SHIELD:
+
+			shieldblockrate = 23;
+			break;
+
+		case EVIL_DRAGON_SCALE_SHIELD:
+
+			shieldblockrate = 33;
+			break;
+
+		case BROKEN_SHIELD:
+
+			shieldblockrate = 0;
+			break;
+
+		default: impossible("Unknown type of shield (%ld)", uarms->otyp);
+
+	}
+
+	return shieldblockrate;
+
+}
+
 /* does your equipment made of chitin protect you from mystery? --Amy */
 boolean
 chitinprotection()
@@ -7398,6 +7578,29 @@ chitinprotection()
 	if (u.twoweap && uswapwep && objects[(uswapwep)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
 		return TRUE;
 	}
+
+	return FALSE;
+}
+
+/* does your faceless equipment allow you to keep wearing stuff when polying? return TRUE if yes --Amy */
+boolean
+facelessprotection()
+{
+	if (uarmh && uarmh->otyp == FACELESS_HELM && !rn2(10)) return TRUE;
+	if (uarm && uarm->otyp == SMOKY_VIOLET_FACELESS_ROBE && !rn2(10)) return TRUE;
+	if (uarm && itemhasappearance(uarm, APP_FACELESS_ROBE) && !rn2(10)) return TRUE;
+	return FALSE;
+}
+
+/* does your harmonium equipment cause monsters to spawn peaceful? return TRUE if yes */
+boolean
+harmoniumeffect()
+{
+	if (uarmh && uarmh->otyp == HARMONIUM_HELM && !rn2(20)) return TRUE;
+	if (uarm && uarm->otyp == HARMONIUM_PLATE && !rn2(20)) return TRUE;
+	if (uarm && uarm->otyp == HARMONIUM_SCALE_MAIL && !rn2(20)) return TRUE;
+	if (uarmg && uarmg->otyp == HARMONIUM_GAUNTLETS && !rn2(20)) return TRUE;
+	if (uarmf && uarmf->otyp == HARMONIUM_BOOTS && !rn2(20)) return TRUE;
 
 	return FALSE;
 }

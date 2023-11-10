@@ -8446,6 +8446,8 @@ register const char *let,*word;
 			|| otmp->otyp == T_SHIRT
 			|| otmp->otyp == STRIPED_SHIRT
 			|| otmp->otyp == PRINTED_SHIRT
+			|| otmp->otyp == REINFORCED_SHIRT
+			|| otmp->otyp == WAISTCLOTH
 			|| otmp->otyp == FOAM_SHIRT
 			|| otmp->otyp == CANDY_BRA
 			|| otmp->otyp == ICHCAHUIPILLI
@@ -12729,6 +12731,12 @@ boolean knoweverything;
 
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FORGETFUL_CLOAK))
 			pline("You will forget your spells more quickly while wearing this cloak.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FACELESS_ROBE))
+			pline("The special effect of this robe's randomized appearance is that there's a 5%% better chance of monsters being spawned peaceful.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HOOKED_GLOVES))
+			pline("While wearing these gloves, you can still pick up items from the ground even if your current polymorph form wouldn't normally be capable of doing so. Unfortunately, though, they don't allow you to pick up stuff if you're riding with insufficient skill.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLADED_DISKS))
+			pline("I'm sure Chris_ANG could tell you what the original intention was but here in SLEXland, these boots have razor-sharp blades protruding from the sides which allow you to deal bleeding damage to monsters by kicking them.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHANGING_CLOAK))
 			pline("It causes a weaker form of polymorphitis; wear it at your own risk!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHELL_CLOAK))
@@ -14065,6 +14073,68 @@ boolean knoweverything;
 				pline("A rather plain helmet, but its base material is different per game."); break;
 			case DROVEN_HELM:
 				pline("This helmet offers surprisingly good protection."); break;
+			case SUNLIGHT_MAGGOT:
+				pline("Not sure what the point of this item is supposed to be, but it's a type of headgear."); break;
+			case TOQUE:
+				pline("A garbage helmet with no base AC."); break;
+			case HARMONIUM_HELM:
+				pline("This helmet makes monsters spawn peaceful more often while worn."); break;
+			case PONTIFF_S_CROWN:
+				pline("Above-average AC and resistances to fire, cold and shock are granted if you wear this."); break;
+			case FACELESS_HELM:
+				pline("It's a helmet worth some AC, which also makes it so that you have a bigger chance of keeping your stuff on when you polymorph into a bad form."); break;
+			case HELM_OF_MADNESS:
+				pline("You probably don't want to wear this helmet, because it causes hallucination. It's also usually generated cursed."); break;
+			case LANTERN_PLATE_MAIL:
+				pline("Heavy plate mail that improves your vision when worn."); break;
+			case HIGH_ELVEN_PLATE:
+				pline("This suit of armor grants a lot of protection and is made of mithril."); break;
+			case IMPERIAL_ELVEN_ARMOR:
+				pline("A type of plate mail that gives 3 points of magic cancellation."); break;
+			case HARMONIUM_PLATE:
+				pline("Useful armor that makes monsters spawn peaceful more often."); break;
+			case HARMONIUM_SCALE_MAIL:
+				pline("This armor provides moderate amounts of protection and slightly increases the chance that monsters spawn peaceful."); break;
+			case EILISTRAN_ARMOR:
+				pline("Equivalent AC-wise to plate mail, this suit also allows you to walk through webs without getting stuck and alerts you to the presence of traps. Sometimes, it may even turn invisible traps visible."); break;
+			case THROWAWAY_ARMOR:
+				pline("Crap armor. Not really worth wearing unless you just can't find anything better."); break;
+			case MESH_ARMOR:
+				pline("Equivalent to studded leather armor, just with a different material."); break;
+			case CUIRASS_ARMOR:
+				pline("This suit gives the same amount of protection as splint mail."); break;
+			case HELLFORGED_PLATE_MAIL:
+				pline("Very powerful armor, giving better AC than plate mail."); break;
+			case WAISTCLOTH:
+				pline("It's a type of shirt, and can be read."); break;
+			case REINFORCED_SHIRT:
+				pline("You can equip this piece of clothing in the shirt slot, and it's worth one point of AC. It can be read."); break;
+			case SMOKY_VIOLET_FACELESS_ROBE:
+				pline("A robe with no AC. The only thing it does is to slightly increase the chance that you can keep wearing your stuff when polymorphing into a bad form, which is probably about as useless as it sounds."); break;
+			case BUCKLER:
+				pline("A low-quality shield that would be called 'Beschutzer' if there was a German version of SLEX, weil er einen vor dem Gegner beschutzt. (really, the u should be replaced by an umlaut :D)"); break;
+			case LIGHT_SHIELD:
+				pline("This lightweight shield is relatively weak."); break;
+			case RESONANT_SHIELD:
+				pline("Provides some protection from attacks, including protecting your items from cold and shock damage, and improves your chances when searching for traps but you're also deaf while wearing it."); break;
+			case CRINGE_SHIELD:
+				pline("Basically equivalent to a large shield."); break;
+			case BRONZE_SHIELD:
+				pline("Despite not looking all that special, this shield is pretty good for blocking projectiles."); break;
+			case SHELL_SHIELD:
+				pline("Shield made of the shells of mussles and stuff. It has relatively good stats."); break;
+			case SUPER_SHIELD:
+				pline("A shield that provides lots of AC and is also very good for blocking."); break;
+			case TOWER_SHIELD:
+				pline("This shield has quite good AC, one point of MC, and high chance to block."); break;
+			case HARMONIUM_GAUNTLETS:
+				pline("Wearing this pair of gauntlets makes it more likely that monsters spawn peaceful."); break;
+			case ORCISH_BOOTS:
+				pline("A pair of boots that provides a bit of AC but is otherwise unremarkable."); break;
+			case HARMONIUM_BOOTS:
+				pline("You can wear these boots to increase the chances of monsters spawning peaceful ever so slightly, and they're worth 2 AC."); break;
+			case WIND_AND_FIRE_WHEELS:
+				pline("Boots that are worth no AC but provide resistances to fire and shock."); break;
 			case FEDORA:
 				pline("While it doesn't grant armor class, this headgear can increase your luck if worn."); break;
 			case CORNUTHAUM:
@@ -16346,6 +16416,8 @@ boolean knoweverything;
 				pline("Wanna die? Wear this! :-P"); break;
 			case AMULET_OF_TIME:
 				pline("Putting this amulet on will tell you the current time, and it provides +5 charisma due to its bling value."); break;
+			case AMULET_OF_NAUSEA:
+				pline("Causes you to become nauseated every once in a while. This is generally undesirable."); break;
 			case AMULET_OF_PET_VIEW:
 				pline("A magical amulet that displays all pets on the current dungeon level."); break;
 			case AMULET_OF_MAGIC_CONTROL:

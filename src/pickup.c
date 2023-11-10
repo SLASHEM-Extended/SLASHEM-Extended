@@ -452,7 +452,7 @@ int what;		/* should be a long */
 		    check_here(FALSE);
 		    return (0);
 		}
-		if (notake(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
+		if (notake(youmonst.data) && !(uarmg && itemhasappearance(uarmg, APP_HOOKED_GLOVES)) && !Race_if(PM_TRANSFORMER) ) {
 		    if (!autopickup) {
 			You("are physically incapable of picking anything up.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

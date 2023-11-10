@@ -959,6 +959,7 @@
 #define APP_TELESCOPE 3036
 #define APP_RE_GREASING_GLOVES 3037
 #define APP_TRANSLUCENT_GLOVES 3038
+#define APP_HOOKED_GLOVES 3039
 
 #define APP_IRREGULAR_BOOTS 4000
 #define APP_WEDGE_BOOTS 4001
@@ -1119,6 +1120,7 @@
 #define APP_SLING_PUMPS 4156
 #define APP_WHITE_BUFFALO_BOOTS 4157
 #define APP_SISTER_SHOES 4158
+#define APP_BLADED_DISKS 4159
 
 #define APP_POTION_MILKY 5000
 #define APP_POTION_SMOKY 5001
@@ -1163,6 +1165,7 @@
 #define APP_CAMO_ROBE 6000
 #define APP_OCTARINE_ROBE 6001
 #define APP_ARENA_ROBE 6002
+#define APP_FACELESS_ROBE 6003
 
 /*** Where the properties come from ***/
 /* Definitions were moved here from obj.h and you.h */

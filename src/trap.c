@@ -3865,6 +3865,10 @@ unsigned trflags;
 		trap->hiddentrap = 0;
 		pline("Suddenly a trap is revealed underneath you!");
 		trap->tseen = 1;
+	} else if ((uarm && uarm->otyp == EILISTRAN_ARMOR) && !dontreveal && !rn2(20) && (trap->hiddentrap || !trap->tseen)) {
+		trap->hiddentrap = 0;
+		pline("Suddenly a trap is revealed underneath you!");
+		trap->tseen = 1;
 	}
 
 	/* KMH -- You can't escape the Sokoban level traps */
@@ -9647,7 +9651,7 @@ madnesseffect:
 			    a_your[trap->madeby_u]);
 		    break;
 		}
-		if (webmaker(youmonst.data) || Race_if(PM_SPIDERMAN) || (uarmf && itemhasappearance(uarmf, APP_SPIDER_BOOTS) ) ) {
+		if (webmaker(youmonst.data) || (uarm && uarm->otyp == EILISTRAN_ARMOR) || Race_if(PM_SPIDERMAN) || (uarmf && itemhasappearance(uarmf, APP_SPIDER_BOOTS) ) ) {
 		    if (webmsgok)
 		    	pline(trap->madeby_u ? "You take a walk on your web."
 					 : "There is a spider web here.");

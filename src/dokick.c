@@ -678,6 +678,11 @@ register boolean clumsy;
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 
+	if (uarmf && itemhasappearance(uarmf, APP_BLADED_DISKS)) {
+		mon->bleedout += rnd(5);
+		pline("Your metal blades slit %s, drawing a lot of %s!", mon_nam(mon), mbodypart(mon, BLOOD) );
+	}
+
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) {
 		mon->bleedout += rnd(10);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );

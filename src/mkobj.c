@@ -3646,6 +3646,7 @@ boolean shopinit;
 		   otmp->otyp == CLOAK_OF_STAT_LOCK ||
 		   otmp->otyp == HELM_OF_OPPOSITE_ALIGNMENT ||
 		   otmp->otyp == HELM_OF_FEAR ||
+		   otmp->otyp == HELM_OF_MADNESS ||
 		   otmp->otyp == VACUUM_HELMET ||
 		   otmp->otyp == BOOGEYMAN_HELMET ||
 		   otmp->otyp == HELM_OF_SENSORY_DEPRIVATION ||

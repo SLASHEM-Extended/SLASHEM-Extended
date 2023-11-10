@@ -142,6 +142,7 @@ Boots_on()
 	case FIRE_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
 	case RUBBER_BOOTS:
+	case ORCISH_BOOTS:
 	case LEATHER_SHOES:
 	case SNEAKERS:
 	case BOOTS_OF_PLUGSUIT:
@@ -156,12 +157,16 @@ Boots_on()
 	case BOOTS_OF_TOTAL_STABILITY:
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
+	case HARMONIUM_BOOTS:
 	case ANTI_CURSE_BOOTS:
 	case BOOTS_OF_SHOCK_RESISTANCE:
 	case BOOTS_OF_INVERSION:
 	case SKY_HIGH_HEELS:
 	case PREHISTORIC_BOOTS:
 	case SYNTHETIC_SANDALS:
+		break;
+	case WIND_AND_FIRE_WHEELS:
+		EShock_resistance |= WORN_BOOTS;
 		break;
 	case BOOTS_OF_MOLASSES:
 		pline(FunnyHallu ? "Icy legs, how cool!" : "These boots feel a little cold...");
@@ -821,6 +826,9 @@ Boots_off()
 	case STOMPING_BOOTS:
 		EAggravate_monster &= ~WORN_BOOTS;
 		break;
+	case WIND_AND_FIRE_WHEELS:
+		EShock_resistance &= ~WORN_BOOTS;
+		break;
 	case CARRYING_BOOTS:
 		vision_full_recalc = 1;
 		break;
@@ -968,6 +976,7 @@ Boots_off()
 	case STAIRWELL_STOMPING_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
 	case RUBBER_BOOTS:
+	case ORCISH_BOOTS:
 	case LEATHER_SHOES:
 	case SNEAKERS:
 	case BOOTS_OF_PLUGSUIT:
@@ -979,6 +988,7 @@ Boots_off()
 	case BOOTS_OF_TOTAL_STABILITY:
 	case BOOTS_OF_DISPLACEMENT:
 	case BOOTS_OF_SWIMMING:
+	case HARMONIUM_BOOTS:
 	case ANTI_CURSE_BOOTS:
 	case BOOTS_OF_SHOCK_RESISTANCE:
 	case BOOTS_OF_INVERSION:
@@ -2158,6 +2168,8 @@ Helmet_on()
 	case SCHOOL_CAP:
 	case CROWN:
 	case ANTENNA:
+	case TOQUE:
+	case SUNLIGHT_MAGGOT:
 	case CHAIN_COIF:
 	case COLOR_CONE:
 	case FIELD_HELM:
@@ -2211,6 +2223,9 @@ Helmet_on()
 	case TINFOIL_HELMET:
 	case PARANOIA_HELMET:
 	case WONDER_HELMET:
+	case HARMONIUM_HELM:
+	case FACELESS_HELM:
+	case HELM_OF_MADNESS:
 	case POINTED_HELMET:
 	case BOG_STANDARD_HELMET:
 		break;
@@ -2230,6 +2245,9 @@ Helmet_on()
 	case FLACK_HELMET:
 	case MINING_HELM:
 		vision_full_recalc = 1;
+		break;
+	case PONTIFF_S_CROWN:
+		makeknown(uarmh->otyp);
 		break;
 	case HELM_OF_SENSORY_DEPRIVATION:
 		if (!uarmh->cursed) {
@@ -2603,6 +2621,8 @@ Helmet_off()
 	case CROWN:
 	case ANTENNA:
 	case CHAIN_COIF:
+	case TOQUE:
+	case SUNLIGHT_MAGGOT:
 	case COLOR_CONE:
 	case FIELD_HELM:
 	case HELM_OF_SAFEGUARD:
@@ -2737,6 +2757,10 @@ Helmet_off()
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
 	case SCENTY_HELMET:
+	case HARMONIUM_HELM:
+	case PONTIFF_S_CROWN:
+	case FACELESS_HELM:
+	case HELM_OF_MADNESS:
 	case HELM_OF_MYSTERY_RES:
 	case OILSKIN_COIF:
 	case HELM_OF_ANTI_MAGIC:
@@ -2831,6 +2855,7 @@ Gloves_on()
 	case GAUNTLETS_OF_DEFUSING:
 	case GAUNTLETS_OF_SPELL_POWER:
 	case COMMANDER_GLOVES:
+	case HARMONIUM_GAUNTLETS:
 	case ROGUES_GLOVES:
 	case FIELD_GLOVES:
 	case GAUNTLETS:
@@ -3209,6 +3234,7 @@ Gloves_off()
 	case GAUNTLETS_OF_PLUGSUIT:
 	case GAUNTLETS_OF_DEFUSING:
 	case GAUNTLETS_OF_SPELL_POWER:
+	case HARMONIUM_GAUNTLETS:
 	case GAUNTLETS_OF_AUTOMATIC_SHUTDOW:
 	case ROGUES_GLOVES:
 	case COMMANDER_GLOVES:
@@ -3351,6 +3377,14 @@ Shield_on()
 
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
+	case BUCKLER:
+	case LIGHT_SHIELD:
+	case RESONANT_SHIELD:
+	case CRINGE_SHIELD:
+	case BRONZE_SHIELD:
+	case SHELL_SHIELD:
+	case SUPER_SHIELD:
+	case TOWER_SHIELD:
 	case BULL_SHIELD:
 	case ONE_EATING_SIGN:
 	case ORGANOSHIELD:
@@ -3588,6 +3622,14 @@ Shield_off()
 /*
     switch (uarms->otyp) {
 	case SMALL_SHIELD:
+	case BUCKLER:
+	case LIGHT_SHIELD:
+	case RESONANT_SHIELD:
+	case CRINGE_SHIELD:
+	case BRONZE_SHIELD:
+	case SHELL_SHIELD:
+	case SUPER_SHIELD:
+	case TOWER_SHIELD:
 	case BULL_SHIELD:
 	case ONE_EATING_SIGN:
 	case ORGANOSHIELD:
@@ -6305,6 +6347,7 @@ find_ac()
 	if (Race_if(PM_ORC) && uarm && (uarm->otyp == ORCISH_CHAIN_MAIL || uarm->otyp == ORCISH_RING_MAIL) ) uac -= 1;
 
 	if (Race_if(PM_ORC) && uarmc && uarmc->otyp == ORCISH_CLOAK ) uac -= 1;
+	if (Race_if(PM_ORC) && uarmf && uarmf->otyp == ORCISH_BOOTS ) uac -= 1;
 	if ((Race_if(PM_DWARF) || Role_if(PM_MIDGET)) && uarmc && uarmc->otyp == DWARVISH_CLOAK ) uac -= 1;
 	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && uarmc && uarmc->otyp == ELVEN_CLOAK) uac -= 1;
 	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && uarmg && uarmg->otyp == ELVEN_GAUNTLETS) uac -= 1;
@@ -6323,6 +6366,8 @@ find_ac()
 
 	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_LEATHER_HELM) uac -= 1;
 	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == ELVEN_HELM) uac -= 1;
+	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == HIGH_ELVEN_PLATE) uac -= 1;
+	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == IMPERIAL_ELVEN_ARMOR) uac -= 1;
 	if ((Race_if(PM_ELF) || Race_if(PM_PLAYER_MYRKALFR) || Role_if(PM_ELPH)) && uarmh && uarmh->otyp == HIGH_ELVEN_HELM) uac -= 1;
 	if ((Race_if(PM_GNOME) || Role_if(PM_GOLDMINER)) && uarmh && uarmh->otyp == GNOMISH_HELM) uac -= 2;
 	if (Race_if(PM_ORC) && uarmh && uarmh->otyp == ORCISH_HELM) uac -= 1;

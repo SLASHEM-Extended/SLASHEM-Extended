@@ -2692,6 +2692,8 @@ E void give_code_number(void);
 E void devil_misbehavior(void);
 E void trophy_get(void);
 
+E int shield_block_rate(struct obj *);
+
 E boolean symbiote_is_shut_down(void);
 
 E boolean player_wears_metal(void);
@@ -2713,6 +2715,8 @@ E void cure_nasty_traps(void);
 E void reset_nastinator(void);
 E void gain_nastinator(void);
 
+E boolean facelessprotection(void);
+E boolean harmoniumeffect(void);
 E boolean sandprotection(void);
 E boolean shadowprotection(void);
 E boolean obsidianprotection(void);
