@@ -2815,6 +2815,23 @@ age_spells()
 
 			}
 
+			if (!PlayerCannotUseSkills && spellmemorize(i) && P_SKILL(spell_skilltype(spellid(i))) >= P_BASIC) {
+
+				int savememochance = 0;
+
+				switch (P_SKILL(spell_skilltype(spellid(i)))) {
+					case P_BASIC: savememochance = 1; break;
+					case P_SKILLED: savememochance = 2; break;
+					case P_EXPERT: savememochance = 3; break;
+					case P_MASTER: savememochance = 4; break;
+					case P_GRAND_MASTER: savememochance = 5; break;
+					case P_SUPREME_MASTER: savememochance = 6; break;
+				}
+
+				if (savememochance > rn2(20)) continue;
+
+			}
+
 			decrnknow(i);
 		}
 
@@ -10784,6 +10801,23 @@ rerollX:
 			}
 
 			if (savememochance > rn2(10)) cyanwillgodown = FALSE;
+
+		}
+
+		if (!PlayerCannotUseSkills && spellmemorize(spell) && P_SKILL(spell_skilltype(spellid(spell))) >= P_BASIC) {
+
+			int savememochance = 0;
+
+			switch (P_SKILL(spell_skilltype(spellid(spell)))) {
+				case P_BASIC: savememochance = 1; break;
+				case P_SKILLED: savememochance = 2; break;
+				case P_EXPERT: savememochance = 3; break;
+				case P_MASTER: savememochance = 4; break;
+				case P_GRAND_MASTER: savememochance = 5; break;
+				case P_SUPREME_MASTER: savememochance = 6; break;
+			}
+
+			if (savememochance > rn2(20)) cyanwillgodown = FALSE;
 
 		}
 

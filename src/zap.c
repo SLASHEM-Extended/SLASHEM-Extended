@@ -11091,6 +11091,25 @@ int damage, tell;
 	    default:		alev = rnd(Role_if(PM_MASTERMIND) ? (GushLevel * 3 / 2) : GushLevel); break;	/* spell */
 	}
 
+	/* spellboost specifically increases likelihood for monsters to be affected by things that are *not* spells --Amy
+	 * reasoning being that spells already scale well enough and get a different kind of boost by this property */
+	if (oclass != SPBOOK_CLASS) {
+		if (Spellboost) {
+			if (alev < 10) alev++;
+			else {
+				alev *= 11;
+				alev /= 10;
+			}
+		}
+		if (StrongSpellboost) {
+			if (alev < 10) alev++;
+			else {
+				alev *= 11;
+				alev /= 10;
+			}
+		}
+	}
+
 	if (u.uprops[LOW_EFFECTS].extrinsic || LowEffects || (uamul && uamul->oartifact == ART_MYSTERIOUS_MAGIC) || have_loweffectstone() ) alev = 1;
 
 	/* defense level */
