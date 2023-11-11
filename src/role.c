@@ -11322,6 +11322,8 @@ int type;
 		}
 
 	}
+
+	flags.botl = TRUE;
 }
 
 void
@@ -11378,6 +11380,7 @@ recursioneffect()
 
 	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
 
+	flags.botl = TRUE;
 }
 
 void
@@ -11395,6 +11398,7 @@ rolerecursioneffect()
 
 	init_uasmon();
 
+	flags.botl = TRUE;
 }
 
 void
@@ -11412,6 +11416,7 @@ greenslimetransformation()
 
 	init_uasmon();
 
+	flags.botl = TRUE;
 }
 
 void
@@ -11429,6 +11434,7 @@ bindertransformation()
 
 	init_uasmon();
 
+	flags.botl = TRUE;
 }
 
 void
@@ -11446,6 +11452,7 @@ feministtransformation()
 
 	init_uasmon();
 
+	flags.botl = TRUE;
 }
 
 void
@@ -11494,6 +11501,7 @@ temprecursioneffect()
 
 	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
 
+	flags.botl = TRUE;
 }
 
 void
@@ -11517,6 +11525,7 @@ climrecursioneffect()
 
 	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
 
+	flags.botl = TRUE;
 }
 
 void
@@ -11536,6 +11545,7 @@ demagoguerecursioneffect()
 
 	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
 
+	flags.botl = TRUE;
 }
 
 void

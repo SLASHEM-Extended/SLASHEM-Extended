@@ -1870,6 +1870,7 @@ register struct obj *otmp;
     else useupf(otmp, 1L);
     exercise(A_WIS, TRUE);
 	use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 5 : 1);
+	if (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO) use_skill(P_SPIRITUALITY, Role_if(PM_PRIEST) ? 5 : 1);
 }
 
 void

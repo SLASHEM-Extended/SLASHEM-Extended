@@ -1142,6 +1142,7 @@ int mode;
 			int climbingchance = 100;
 			if (uamul && uamul->otyp == AMULET_OF_CLIMBING) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (ublindf && ublindf->otyp == CLIMBING_SET) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
+			if (uarm && uarm->oartifact == ART_GO_TO_THE_HIGH_RANGE) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (uwep && uwep->otyp == CLIMBING_STICK) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (uarmf && itemhasappearance(uarmf, APP_CLIMBING_BOOTS)) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 
@@ -5300,6 +5301,7 @@ max_carr_cap()
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) maxcarrcap += 1000;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) maxcarrcap += 2000;
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) maxcarrcap += 500;
+	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) maxcarrcap += 1000;
 	if (uwep && uwep->otyp == BAGGY_SLING) maxcarrcap += 100;
 	if (uwep && uwep->oartifact == ART_USEFUL_BINDLE) maxcarrcap += 1000;
@@ -5353,6 +5355,7 @@ weight_cap()
 	if (have_daisybag()) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
+	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) carrcap += 500;
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) carrcap += 2000;
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) carrcap += 500;

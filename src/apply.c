@@ -6236,10 +6236,11 @@ dyechoice:
 		if (use_bubble_horn(obj)) noartispeak = TRUE;
 		break;
 	case DARK_HORN:
-		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
+		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) goto undark;
 		pline("That felt evil and sinister!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Konechno, Sovetskiy sdelal eto tak, chto vy ne mozhete uvidet' bol'shinstvo monstrov pryamo seychas. Kha-kha-kha ..." : "Diedaedodiedaerr!");
 		litroomlite(FALSE);
+undark:
 		if (use_unicorn_horn(obj)) noartispeak = TRUE;
 		break;
 	case WOODEN_FLUTE:

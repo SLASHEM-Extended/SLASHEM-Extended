@@ -1601,6 +1601,18 @@ have_daisybag()
 }
 
 boolean
+have_burnerdream()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == OIL_CANDLE && otmp->oartifact == ART_BURNER_DREAM && otmp->lamplit)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_amateurluckstone()
 {
 	register struct obj *otmp;
@@ -11779,7 +11791,7 @@ boolean knoweverything;
 			case HEAVY_WAR_HAMMER:
 				pline("One-handed hammer. While slightly stronger than the regular war hammer, it's not exactly powerful by absolute standards."); break;
 			case SEXY_MARY_JANE:
-				pline("A very cute girl shoe with a strapped buckle and a very lovely, massive block heel. Since it's just a single one, you cannot wear it on your feet; wield it as a weapon instead and smsah the enemy's skull with the wonderful high heel. It can be applied to bash iron bars."); break;
+				pline("A very cute girl shoe with a strapped buckle and a very lovely, massive block heel. Since it's just a single one, you cannot wear it on your feet; wield it as a weapon instead and smash the enemy's skull with the wonderful high heel. It can be applied to bash iron bars."); break;
 			case KITTEN_HEEL_PUMP:
 				pline("This ladies' shoe has a cute, pointy heel. Wield it as a weapon and poke holes into monsters. It works best against small ones."); break;
 			case TRIPLE_HEADED_FLAIL:
@@ -28634,6 +28646,136 @@ boolean knoweverything;
 					pline("Artifact specs: if this tin contains meat of a monster, and you eat it, that monster will have its revenge!"); break;
 				case ART_HALF_CRAWLS_BACK_OUT:
 					pline("Artifact specs: uhh, the contents seem to still be alive...?"); break;
+				case ART_CRAWL_INTO_LIFE:
+					pline("Artifact specs: can be invoked to gain a random symbiote if you don't have one yet, but if you ever remove this helm while still having a symbiote, it causes the symbiote to die and you get penalized as if you had intentionally murdered it."); break;
+				case ART_MAGMA_BRINGER:
+					pline("Artifact specs: fire immunity when worn."); break;
+				case ART_IN_BALANCE:
+					pline("Artifact specs: free action when worn."); break;
+				case ART_EEOYOO_EEOYOO:
+					pline("Artifact specs: causes your prayer timeout to decrease more quickly and you also get notified if it reaches zero, and dropping stuff on altars causes your BUC knowledge to train more quickly while sacrificing corpses trains spirituality more quickly."); break;
+				case ART_FESDEBSI:
+					pline("Artifact specs: psi resistance when worn."); break;
+				case ART_SEE_THE_TOTAL:
+					pline("Artifact specs: resist confusion and stun when worn but deactivates hallucination resistance, autocurses."); break;
+				case ART_STAER_WAERS_MARCH:
+					pline("Artifact specs: while wearing it, you may, every once in a while, have a random lightsaber form skill unlock or if it rolls one that you already know, its cap may be increased. But if such a change is made, it also gives you a random hybrid race and debuffs your stats."); break;
+				case ART_BE_FAT_AND_STILL_HEALTHY:
+					pline("Artifact specs: fast speed when worn and inertia times out much more quickly."); break;
+				case ART_COMPLETELY_LIGHT:
+					pline("Artifact specs: +500 carry capacity when worn, which also increases the maximum that you can reach."); break;
+				case ART_A_WASTE:
+					pline("Artifact specs: doesn't do anything special."); break;
+				case ART_DEEEEET:
+					pline("Artifact specs: makes your AC worse by 5 points."); break;
+				case ART_WSCHIE_:
+					pline("Artifact specs: 5 extra points of AC when worn."); break;
+				case ART_DORL_TSCH:
+					pline("Artifact specs: prevents the downsides of standing in grassland while worn."); break;
+				case ART_GO_TO_THE_HIGH_RANGE:
+					pline("Artifact specs: allows you to climb mountains more quickly when worn."); break;
+				case ART_GOODNET:
+					pline("Artifact specs: 5 extra points of AC when worn."); break;
+				case ART_RESISTANT_TO_DEADGOING:
+					pline("Artifact specs: 5 extra points of AC and drain resistance when worn."); break;
+				case ART_SWORDHILTSTOP:
+					pline("Artifact specs: double half physical damage when worn."); break;
+				case ART_BEEPA_DEVICE:
+					pline("Artifact specs: 5 extra points of AC and defusing when worn."); break;
+				case ART_REMEMBERANCE___THE_BURST_T:
+					pline("Artifact specs: keen memory when worn."); break;
+				case ART_KWOURSTOMAL_:
+					pline("Artifact specs: 10 extra points of AC and very fast speed when worn, and monsters who hit you in melee may be slowed if they fail a resistance check."); break;
+				case ART_I_AM_YOUR_FALL:
+					pline("Artifact specs: very fast speed, +10 increase accuracy and +2 increase damage when worn. In order to keep the game at least somewhat balanced, this artifact cannot be wished for."); break;
+				case ART_JEANETTA_S_REVENGE:
+					pline("Artifact specs: heavily autocurses when worn and conveys fear and mystery resistance, improves your kick damage by 5 points and makes rays occasionally miss you, plus it causes the jeanetta trap effect."); break;
+				case ART_RADAR_FELL_UP:
+					pline("Artifact specs: detect monsters and unchanging when worn, prime autocurses and if you cannot be unchanging, then every time you polymorph while wearing it you receive a lot of sanity."); break;
+				case ART_ETH_ITH:
+					pline("Artifact specs: +3 increase damage when worn and monsters have their AC reduced so they're easier to hit, but you're also chased by the kops for a good long while if you put this armor on."); break;
+				case ART_COVER_THE_SEXY_BUTT:
+					pline("Artifact specs: searching bonus, trapwarping and katia trap effect when worn and improves your MC by 2."); break;
+				case ART_FRIEDERIKE_S_BUNDLING:
+					pline("Artifact specs: autocurses, friederike trap effect, fear resistance and +5 kick damage when worn. If you don't know the meltee technique when putting this shirt on, you learn it but then your acid resistance is disabled for a million turns."); break;
+				case ART_GLARINGADERNADIR:
+					pline("Artifact specs: resist confusion and psi when worn."); break;
+				case ART_DERANDERGRAAA:
+					pline("Artifact specs: resist stun and psi when worn."); break;
+				case ART_DA_PELTA:
+					pline("Artifact specs: darkness resistance when worn."); break;
+				case ART_WHY_IS_IT_INTELLIGENT:
+					pline("Artifact specs: ESP and energy regeneration when worn. For some weird reason, this is an intelligent artifact, but it doesn't have an alignment so normally it shouldn't blast you."); break;
+				case ART_BLOCKBETTER:
+					pline("Artifact specs: 5%% better chance to block."); break;
+				case ART_INSIDE_OUT:
+					pline("Artifact specs: 3 extra points of AC and light resistance when worn."); break;
+				case ART_HIGHER_TRAINING:
+					pline("Artifact specs: lets you train your stats more easily when worn."); break;
+				case ART_YOUTH_UNWORD:
+					pline("Artifact specs: improves your melee damage by 2 when worn. Is ja krinsch."); break;
+				case ART_ALWAYS_MELEE_COVER:
+					pline("Artifact specs: occasionally nullifies incoming melee damage when worn; to be precise, 1 in 5 times you would take damage in melee, you don't."); break;
+				case ART_SUPER_SKELLIE:
+					pline("Artifact specs: 5 extra points of AC and 10%% extra chance to block when worn."); break;
+				case ART_WHO_CARES_ABOUT_A_LITTLE_R:
+					pline("Artifact specs: spawns rusty, 3 extra points of AC and 15%% extra chance to block when worn."); break;
+				case ART_FITTING_COLOR:
+					pline("Artifact specs: deals thorns damage to monsters who hit you in melee."); break;
+				case ART_VITALITY_STORM:
+					pline("Artifact specs: +8 constitution, 3 extra points of AC and 2%% extra chance to block when worn."); break;
+				case ART_HEALING_WATERS:
+					pline("Artifact specs: regeneration and full nutrients when worn."); break;
+				case ART_WIDEFORCE_GRIP:
+					pline("Artifact specs: can be invoked to give you a target cursor, which you can move over an item on the floor to pick it up."); break;
+				case ART_GEHNAC:
+					pline("Artifact specs: 1 extra point of AC when worn."); break;
+				case ART_LAGOLWESH:
+					pline("Artifact specs: poison resistance when worn."); break;
+				case ART_DAJUSDUBIDAELV:
+					pline("Artifact specs: warns of elves when worn and is supposed to deal +8 kick damage; you need to see for yourself whether that bonus applies only versus elves or everything."); break;
+				case ART_NATURAL_SPRING:
+					pline("Artifact specs: flying when worn and prevents fumbling."); break;
+				case ART_STAND_TALL_IN_THE_STORM:
+					pline("Artifact specs: prevents you from being pushed back when worn."); break;
+				case ART_HEME_FLOW:
+					pline("Artifact specs: deals even more bleeding damage to monsters with a kick."); break;
+				case ART_GENDERGENDERGENDERGENDERGE:
+					pline("Artifact specs: does nothing special. It's a sacrifice gift for the genderstarist role and the name of this artifact will probably make people want to pick up a gun and shoot Amy :-P"); break;
+				case ART_GENERAL_TA_S_ANNOYANCE_FAC:
+					pline("Artifact specs: extra skill training when worn. Nobody refers to him by the name 'General Ta', he's officially called General Kwai so he gets very annoyed if someone isn't capable of using the proper name!"); break;
+				case ART_EQUIFRIEND:
+					pline("Artifact specs: contains an additional weapon and an additional armor piece."); break;
+				case ART_TOOLBOX:
+					pline("Artifact specs: contains additional tools."); break;
+				case ART_BURNER_DREAM:
+					pline("Artifact specs: spawns with extra fuel and has much bigger light radius but if it's on and in your inventory, it gives you peacevision and 5000 turns of the kristina trap effect."); break;
+				case ART_FIGHTEBOSSIT:
+					pline("Artifact specs: you shouldn't be capable of picking up this item in the first place, but anyway, the special property it has is that upon its generation a boss monster will have spawned somewhere."); break;
+				case ART_LEGENDARY_BATTLE:
+					pline("Artifact specs: err how on earth did you obtain the carry capacity to pick up this item??? Anyway, when it was generated, a boss spawner has also been placed somewhere."); break;
+				case ART_ITAK_HONE:
+					pline("Artifact specs: +2 to-hit and +4 damage, spawns with a bigger stack size. This is despite the fact that long swords normally cannot be stacked; make of that what you will."); break;
+				case ART_HAMMA_HAMMA:
+					pline("Artifact specs: can be invoked to create a randart2 hammer with +10 damage, but this artifact needs to be at least +0 and not cursed, and will become heavily cursed -5 in the process."); break;
+				case ART_HAVING_HAMMA:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_ENCHANTED__OF_DEFUSING:
+					pline("Artifact specs: 5 extra points of AC and defusing when worn."); break;
+				case ART_EVIL_MOTHER_CELINE:
+					pline("Artifact specs: +10 damage, drain and fear resistance when wielded, can mindflay monsters if you attack them in melee, but if you're wearing boots, they are destroyed outright or if they're artifact boots, they get levelported away. Because Mother Celine is evil and hates your boots."); break;
+				case ART_SPELLNOTFORGET:
+					pline("Artifact specs: keen memory when worn."); break;
+				case ART_ACIDIRGE:
+					pline("Artifact specs: +5 to-hit and +2 acid damage, acid resistance when wielded. Because someone re-interpreted Dirge (DIRGE) as an acid-based artifact weapon even though it's supposed to be poison-based."); break;
+				case ART_CELL:
+					pline("Artifact specs: +25 fire damage against undead, regeneration when wielded."); break;
+				case ART_GOOD_GAME_ZUANG_LI:
+					pline("Artifact specs: beheads enemies, ESP when wielded."); break;
+				case ART_LISE_S_UNDERWEAR:
+					pline("Artifact specs: autocurses when worn and gives the lisa trap effect, +6 charisma, engraving bug and a chance to resist disenchantment. Yes, this shirt is named after a certain 'Lise', which is a misspelling. Sue me."); break;
+				case ART_KUSE_MUSE:
+					pline("Artifact specs: heavily autocurses when worn and gives double mystery resistance and the klara trap effect. While wearing it, monsters will occasionally be given additional musable items, but don't get your hopes up: you will not get those items by killing the monsters in question. If you happen to be wearing an implant, then while you're also wearing this armor you'll benefit from the stronger effects of your implant."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

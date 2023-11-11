@@ -376,7 +376,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 				use_skill(P_SPIRITUALITY,3);
 			obj->bknown = 1;
 			/* the more items you test, the more likely you'll recognize BUC on future items --Amy */
-			if (u.bucskill < 2 || !rn2(u.bucskill)) {
+			if (u.bucskill < 2 || (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO && !rn2(u.bucskill)) || !rn2(u.bucskill)) {
 				u.bucskill++;
 				if (u.bucskill > 250) u.bucskill = 250;
 			}
@@ -387,7 +387,7 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		if (!obj->bknown && !objects[obj->otyp].oc_merge && !(LeftInventoryBug || u.uprops[LEFT_INVENTORY].extrinsic || have_leftinventorystone()) )
 			use_skill(P_SPIRITUALITY,3);
 		obj->bknown = 1;
-		if (u.bucskill < 2 || !rn2(u.bucskill)) {
+		if (u.bucskill < 2 || (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO && !rn2(u.bucskill)) || !rn2(u.bucskill)) {
 			u.bucskill++;
 			if (u.bucskill > 250) u.bucskill = 250;
 		}

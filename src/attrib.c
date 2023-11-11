@@ -2125,6 +2125,7 @@ boolean	inc_or_dec;
 
 		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : -rn2(2);
 
+		if (uarms && uarms->oartifact == ART_HIGHER_TRAINING && inc_or_dec && !rn2(2)) AEXE(i) += 1;
 		if (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY && inc_or_dec) AEXE(i) += 2;
 
 		if (Extra_wpn_practice) 
@@ -3222,6 +3223,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_BEAUTIFUL_TOPMODEL) tmp += 25;
 		if (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) tmp += 15;
+		if (uarmu && uarmu->oartifact == ART_LISE_S_UNDERWEAR) tmp += 6;
 		if (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY) tmp += 20;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LAUGH_WHEN_YOU_FALL && (multi < 0)) tmp += 5;
@@ -3600,6 +3602,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (u.combatcommand) tmp += 1;
+		if (uarms && uarms->oartifact == ART_VITALITY_STORM) tmp += 8;
 		if (uarms && uarms->oartifact == ART_FETTIS_SLOT) tmp += 3;
 		if (uwep && uwep->oartifact == ART_OGRE_POWER) tmp += 3;
 		if (Race_if(PM_URGOTH)) tmp += 3;
@@ -3880,6 +3883,7 @@ boolean displaymessage;
 		actuallimit += (powerfulimplants() ? 5 : 2);
 	}
 	if (uarm && uarm->oartifact == ART_CERNY_ && targetattr == A_CON) actuallimit += 5;
+	if (uarms && uarms->oartifact == ART_HIGHER_TRAINING) actuallimit += 2;
 
 	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone() || autismringcheck(ART_JUBILEX_S_CODE)) {
 		if (targetattr == A_STR && actuallimit >= STR19(25)) actuallimit = STR18(70);

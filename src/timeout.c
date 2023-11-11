@@ -996,7 +996,7 @@ nh_timeout()
 			}
 		}
 
-		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
+		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1156,7 +1156,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1183,7 +1183,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1318,7 +1318,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -4133,7 +4133,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
+			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */

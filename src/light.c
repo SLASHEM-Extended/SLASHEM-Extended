@@ -619,6 +619,7 @@ struct obj *obj;
     }
 
     if (obj && obj->oartifact == ART_WIDELITE) radius++;
+    if (obj && obj->oartifact == ART_BURNER_DREAM) radius += 2;
 
     return radius;
 }

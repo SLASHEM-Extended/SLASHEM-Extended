@@ -214,7 +214,7 @@ struct monst *mtmp;
 	scmresists = rn2(100) < resist_percentage;
 
 	return (boolean)((sobj_at(SCR_SCARE_MONSTER, x, y) && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !scmresists)
-			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || autismweaponcheck(ART_ELBERGOFUKYOURSELF) || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
+			 || (sengr_at("Elbereth", x, y) && !mresists && !(Conflict && rn2(StrongConflict ? 5 : 2)) && !(EngravingDoesntWork || u.uprops[ENGRAVINGBUG].extrinsic || have_engravingstone() || (uarmu && uarmu->oartifact == ART_LISE_S_UNDERWEAR) || autismweaponcheck(ART_ELBERGOFUKYOURSELF) || (uarmf && uarmf->oartifact == ART_VARIANTISH_DESIGN) ) )
 			 || (is_vampire(mtmp->data) && rn2(5)
 			     && IS_ALTAR(levl[x][y].typ)));
 }

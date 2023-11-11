@@ -116,6 +116,10 @@ const char *name;	/* if null, then format `obj' */
 		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_BLOCKBETTER) shieldblockrate += 5;
+		if (uarms->oartifact == ART_VITALITY_STORM) shieldblockrate += 2;
+		if (uarms->oartifact == ART_SUPER_SKELLIE) shieldblockrate += 10;
+		if (uarms->oartifact == ART_WHO_CARES_ABOUT_A_LITTLE_R) shieldblockrate += 15;
 		if (uarms->oartifact == ART_LOOK_HOW_IT_BLOCKS) shieldblockrate += 20;
 		if (uarms->oartifact == ART_BLOCKING_EXTREME) shieldblockrate += 10;
 		if (uarms->oartifact == ART_TSCHINGFIRM) shieldblockrate += 10;

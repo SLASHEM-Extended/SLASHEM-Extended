@@ -917,6 +917,7 @@ register struct monst *mtmp;
 	if (bmwride(ART_ZIN_BA)) tmp += 4;
 	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) tmp += 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
+	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -991,7 +992,7 @@ register struct monst *mtmp;
 
 	if (is_table(u.ux, u.uy)) tmp += 3;
 
-	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(20);
@@ -3911,6 +3912,9 @@ int dieroll;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH) tmp += 1;
 		if (bmwride(ART_ZIN_BA)) tmp += 1;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
+		if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 2;
+		if (uarm && uarm->oartifact == ART_ETH_ITH) tmp += 3;
+		if (uarms && uarms->oartifact == ART_YOUTH_UNWORD) tmp += 2;
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {
@@ -4071,6 +4075,12 @@ int dieroll;
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
+		}
+
+		if (!thrown && obj && obj->oartifact == ART_EVIL_MOTHER_CELINE) {
+			if (has_head(mon->data) && !mindless(mon->data) && !mon->egotype_undead && !((mon->misc_worn_check & W_ARMH) && rn2(8)) ) {
+				tmp += 10;
+			}
 		}
 
 		if (ublindf && ublindf->oartifact == ART_IUSTITIA_BRINGER && mon->data->maligntyp < 0) {
@@ -12123,6 +12133,7 @@ boolean ranged;
 	  case AD_DARK:
 
 		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
+		if (uarms && uarms->oartifact == ART_DA_PELTA) break;
 		/* darken your surroundings --Amy */
 		pline("A maleficient darkness comes over you.");
 		litroomlite(FALSE);

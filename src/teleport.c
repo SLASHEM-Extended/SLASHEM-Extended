@@ -2512,6 +2512,7 @@ boolean allowtrap;
 		trycnt = 0;
 
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
 
 newtry:
 		direction = rnd(8);
@@ -2568,6 +2569,7 @@ int distance;
 		trycnt = 0;
 
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
 
 newtry:
 		direction = rnd(8);
@@ -2618,6 +2620,7 @@ boolean allowtrap;
 		trycnt = 0;
 
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
 
 newtry:
 		direction = rnd(8);

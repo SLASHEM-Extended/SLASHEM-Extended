@@ -3152,7 +3152,7 @@ moveloop()
 
 		}
 
-		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone() || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) ) && !rn2(100)) {
+		if ((TrapwarpingBug || u.uprops[TRAPWARPING].extrinsic || have_trapwarpstone() || (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) ) && !rn2(100)) {
 			for(ttmp = ftrap; ttmp; ttmp = ttmp->ntrap) {
 				if (ttmp->ttyp == MAGIC_PORTAL) continue;
 				if (rn2(100)) continue;
@@ -3373,6 +3373,10 @@ moveloop()
 		}
 
 		if ((u.inertia > 1) && uamul && uamul->oartifact == ART_VARIANT_GUARD) {
+			u.inertia /= 2;
+			if (u.inertia < 0) u.inertia = 0; /* fail safe */
+		}
+		if ((u.inertia > 1) && uarm && uarmh->oartifact == ART_BE_FAT_AND_STILL_HEALTHY) {
 			u.inertia /= 2;
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 		}
@@ -7158,9 +7162,66 @@ newbossJANI:
 			}
 		}
 
+		if (uarm && uarm->oartifact == ART_KUSE_MUSE && !rn2(5000)) {
+			register struct monst *nexusmon;
+			u.mongetshack = 100;
+			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+				switch (rnd(3)) {
+					case 1:
+						(void) mongets(nexusmon, rnd_offensive_item(nexusmon));
+						break;
+					case 2:
+						(void) mongets(nexusmon, rnd_misc_item(nexusmon));
+						break;
+					case 3:
+						(void) mongets(nexusmon, rnd_defensive_item(nexusmon));
+						break;
+				}
+			}
+			u.mongetshack = 0;
+		}
+
 		if (uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) {
 			if (!rn2(100)) use_skill(P_FIREARM, 1);
 			if (!rn2(1000)) use_skill(P_GUN_CONTROL, 1);
+		}
+
+		if (uarm && uarm->oartifact == ART_STAER_WAERS_MARCH && !rn2(10000)) {
+			int skillimprove = P_SHII_CHO + rn2(10); /* random lightsaber form */
+			boolean changemake = FALSE;
+
+			if (P_MAX_SKILL(skillimprove) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(skillimprove);
+				changemake = TRUE;
+			} else if (P_MAX_SKILL(skillimprove) == P_UNSKILLED) {
+				unrestrict_weapon_skill(skillimprove);
+				P_MAX_SKILL(skillimprove) = P_BASIC;
+				changemake = TRUE;
+			} else if (rn2(2) && P_MAX_SKILL(skillimprove) == P_BASIC) {
+				P_MAX_SKILL(skillimprove) = P_SKILLED;
+				changemake = TRUE;
+			} else if (!rn2(4) && P_MAX_SKILL(skillimprove) == P_SKILLED) {
+				P_MAX_SKILL(skillimprove) = P_EXPERT;
+				changemake = TRUE;
+			} else if (!rn2(10) && P_MAX_SKILL(skillimprove) == P_EXPERT) {
+				P_MAX_SKILL(skillimprove) = P_MASTER;
+				changemake = TRUE;
+			} else if (!rn2(100) && P_MAX_SKILL(skillimprove) == P_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_GRAND_MASTER;
+				changemake = TRUE;
+			} else if (!rn2(200) && P_MAX_SKILL(skillimprove) == P_GRAND_MASTER) {
+				P_MAX_SKILL(skillimprove) = P_SUPREME_MASTER;
+				changemake = TRUE;
+			}
+
+			if (changemake) {
+				MessageSuppression += 1; /* ugly hack --Amy */
+				changehybridization(2);
+				statdebuff(); statdebuff(); statdebuff(); statdebuff(); statdebuff();
+				statdrain();
+				if (MessageSuppression > 0) MessageSuppression -= 1; /* unhack */
+				Your("lightsaber forms have improved, at the cost of stats and hybridization!");
+			}
 		}
 
 		if (autismweaponcheck(ART_MELEE_DAMMIT) && uarmf) {
@@ -7202,6 +7263,10 @@ newbossJANI:
 			if (levl[u.ux][u.uy].typ == ROOM || levl[u.ux][u.uy].typ == CORR) {
 				levl[u.ux][u.uy].typ = HIGHWAY;
 			}
+		}
+
+		if (uarm && uarm->oartifact == ART_ETH_ITH && u.copwantedlevel < 10000) {
+			u.copwantedlevel = 10000;
 		}
 
 		if ((uwep && uwep->otyp == FALCHION) || (u.twoweap && uswapwep && uswapwep->otyp == FALCHION)) {
@@ -7301,6 +7366,29 @@ newbossJANI:
 				case 4:
 					exercise(A_WIS, FALSE);
 					break;
+			}
+		}
+
+		if (autismweaponcheck(ART_EVIL_MOTHER_CELINE) && uarmf) {
+			if (uarmf->oartifact) {
+				register struct monst *offmon;
+				struct obj *sarahfootwear;
+				int mattries = 0;
+				while (uarmf && mattries++ < 50000) {
+					if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
+						sarahfootwear = uarmf;
+						setnotworn(sarahfootwear);
+						freeinv(sarahfootwear);
+						(void) mpickobj(offmon, sarahfootwear, FALSE);
+						u_teleport_monB(offmon, FALSE);
+						pline_The("evil mother Celine threw your boots away. You know that they're still somewhere, but good luck finding out where they ended up...");
+					}
+				}
+
+			} else {
+				useup(uarmf);
+				pline_The("evil mother Celine threw your boots in the trash can, and now they're lost forever.");
+				if (!rn2(3)) You("will never see them again.");
 			}
 		}
 
@@ -7541,6 +7629,10 @@ newbossSTEN:
 
 		if (autismweaponcheck(ART_GORMALER)) {
 			if (FemaleTrapJil < 10000) FemaleTrapJil = 10000;
+		}
+
+		if (have_burnerdream()) {
+			if (FemaleTrapKristina < 5000) FemaleTrapKristina = 5000;
 		}
 
 		if (autismweaponcheck(ART_ICE_TEMPLE_BACKGROUND)) {
@@ -13532,6 +13624,7 @@ pastds2:
 #endif
 
 		if ((uarmf && uarmf->oartifact == ART_DELFI_ROCKZ) && u.ublesscnt) delfirockz = TRUE;
+		if ((uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO) && u.ublesscnt) delfirockz = TRUE;
 
 		if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
 		else if (u.ublesscnt) {
@@ -13539,6 +13632,7 @@ pastds2:
 			if (uarmf && uarmf->oartifact == ART_DELFI_ROCKZ) {
 				u.ublesscnt -= 2;
 			}
+			if (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO) u.ublesscnt--;
 			if (uarm && uarm->oartifact == ART_ETERNAL_BAMMELING) u.ublesscnt--;
 			if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 

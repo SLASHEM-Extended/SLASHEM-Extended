@@ -247,6 +247,7 @@ init_randarts()
 	artilist[ART_VORPAL_EDGE].otyp = randartmeleeweapon();
 	artilist[ART_FINAL_CONSEQUENCE].otyp = randartmeleeweapon();
 	artilist[ART_DARK_MAGIC].otyp = randartsuit();
+	artilist[ART_ENCHANTED__OF_DEFUSING].otyp = randartsuit();
 	artilist[ART_COMPLETE_ARMORING].otyp = randartsuit();
 	artilist[ART_RAND_ARM].otyp = randartsuit();
 	artilist[ART_HEART_INFACT].otyp = randartsuit();
@@ -460,6 +461,8 @@ init_randarts()
 	artilist[ART_WEDIFORCE].otyp = randartvenom();
 	artilist[ART_RIDGET_PHASTO].otyp = randartvenom();
 	artilist[ART_ACIDFALL].otyp = randartlongsword();
+	artilist[ART_ACIDIRGE].otyp = randartlongsword();
+	artilist[ART_ITAK_HONE].otyp = randartlongsword();
 	artilist[ART_AVALON].otyp = randartscimitar();
 	artilist[ART_PIRATTERY].otyp = randartscimitar();
 	artilist[ART_WORSE_CARNWENNAN].otyp = randartknife();
@@ -473,6 +476,7 @@ init_randarts()
 	artilist[ART_SKULL_SWORD].otyp = randartshortsword();
 	artilist[ART_UNATTAINABLE_NINETEEN].otyp = randartshortsword();
 	artilist[ART_GNOLLBANE].otyp = randarthammer();
+	artilist[ART_HAMMA_HAMMA].otyp = randarthammer();
 	artilist[ART_EMMA_S_SYMPATHY].otyp = randarthammer();
 	artilist[ART_EMERALD_SWORD].otyp = randarttwohandedsword();
 	artilist[ART_CELESTIAL_SCEPTRE].otyp = randartmace();
@@ -592,6 +596,7 @@ init_randarts()
 	artilist[ART_CANNONEER].otyp = randartlauncherX();
 	artilist[ART_SPEEDHACK].otyp = randartlauncherX();
 	artilist[ART_RAYSWANDIR].otyp = randartquarterstaffX();
+	artilist[ART_CELL].otyp = randartquarterstaffX();
 	artilist[ART_LYST_ERG].otyp = randartquarterstaffX();
 	artilist[ART_DROWSING_ROD].otyp = randartquarterstaffX();
 	artilist[ART_PAINBOWSWANDIR].otyp = randartbowX();
@@ -600,6 +605,7 @@ init_randarts()
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
 	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
+	artilist[ART_GENDERGENDERGENDERGENDERGE].otyp = randartsuitX();
 	artilist[ART_ESPECIALLYRANDARM].otyp = randartsuitX();
 	artilist[ART_CHIP_INFACT].otyp = randartsuitX();
 	artilist[ART_AMMY_S_RNG_CHANGER].otyp = randartsuitX();
@@ -657,6 +663,7 @@ init_randarts()
 	artilist[ART_ND_D___N_NDMNN_ND___NDMN_N].otyp = randartimplantX();
 	artilist[ART_WHOOSHZAP].otyp = randartwandX();
 	artilist[ART_CLOUDYBAND].otyp = randartshirtX();
+	artilist[ART_LISE_S_UNDERWEAR].otyp = randartshirtX();
 	artilist[ART_FIRST_THERE_WE_WERE].otyp = randartshirtX();
 	artilist[ART_MENSTRUATION_HURTS].otyp = randartshirtX();
 	artilist[ART_NOW_YOU_MADE_HER_SAD].otyp = randartshirtX();
@@ -676,6 +683,7 @@ init_randarts()
 	artilist[ART_FOEOEOEOEOEOEOE].otyp = randartlauncherX();
 	artilist[ART_NEVER_WILL_THIS_BE_USEFUL].otyp = randartmeleeweaponX();
 	artilist[ART_QUARRY].otyp = randartsuitX();
+	artilist[ART_KUSE_MUSE].otyp = randartsuitX();
 	artilist[ART_NOTHING_BUT_FILLER].otyp = randartsuitX();
 	artilist[ART_CONNY_S_COMBAT_COAT].otyp = randartcloakX();
 	artilist[ART_ACIDSHOCK_CASTLECRUSHER].otyp = randartcloakX();
@@ -735,6 +743,7 @@ init_randarts()
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
 	artilist[ART_UNWIELDYTINE].otyp = randarttridentX();
 	artilist[ART_TURVANG_S_THUNDER].otyp = randarthammerX();
+	artilist[ART_HAVING_HAMMA].otyp = randarthammerX();
 	artilist[ART_SLAM_SHUT_AND_BE_DONE].otyp = randarthammerX();
 	artilist[ART_OGRE_POWER].otyp = randarthammerX();
 	artilist[ART_MORTALITY_DIAL].otyp = randartmaceX();
@@ -861,6 +870,7 @@ init_appearance_randarts()
 	artilist[ART_LEGMA].otyp = find_korean_sandals();
 	artilist[ART_BRITTA_S_MURDER_STORY].otyp = find_sling_pumps();
 	artilist[ART_TERRY_PRATCHETT_S_INGENUIT].otyp = find_octarine_robe();
+	artilist[ART_DERANDERGRAAA].otyp = find_faceless_robe();
 	artilist[ART_ARABELLA_S_SEXY_GIRL_BUTT].otyp = find_chinese_cloak();
 	artilist[ART_LONG_LASTING_JOY].otyp = find_polyform_cloak();
 	artilist[ART_LIGHT_ABSORPTION].otyp = find_absorbing_cloak();
@@ -896,6 +906,8 @@ init_appearance_randarts()
 	artilist[ART_SASSY_JULIA].otyp = find_sister_shoes();
 	artilist[ART_POCAHONTAS_HOME].otyp = find_sister_shoes();
 	artilist[ART_SOFT_ON_THE_CLOUD].otyp = find_sister_shoes();
+	artilist[ART_WIDEFORCE_GRIP].otyp = find_hooked_gloves();
+	artilist[ART_HEME_FLOW].otyp = find_bladed_disks();
 
 	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_GIVE_US_TODAY_OUR_DAILY_GA].otyp = find_bamboo_cloak();
@@ -1722,6 +1734,7 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_DURATEX) otmp->age += 4000;
+		    if (otmp && otmp->oartifact == ART_BURNER_DREAM) otmp->age += 2000;
 		    if (otmp && otmp->oartifact == ART_OWENER) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_OUT_OILED) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_MYSTERIOUS_SPIKES) {
@@ -1759,6 +1772,25 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 			if (otmp->spe > 127) otmp->spe = 127;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_FIGHTEBOSSIT) {
+			(void) makemon(specialtensmon(165), 0, 0, MM_ADJACENTOK); /* G_UNIQ */
+		    }
+
+		    if (otmp && otmp->oartifact == ART_LEGENDARY_BATTLE) {
+			int tryct = 0;
+			int x, y;
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, BOSS_SPAWNER, 0, FALSE);
+					if (wizard) pline("boss spawner at %d,%d", x, y);
+					break;
+				}
+			}
 		    }
 
 		    if (otmp && otmp->oartifact == ART_LUCKY_GENERATION) {
@@ -1828,6 +1860,37 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_FAILPRIZE) {
 			if (Has_contents(otmp)) delete_contents(otmp);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_EQUIFRIEND) {
+			register struct obj *ocont;
+			ocont = mkobj(WEAPON_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(ARMOR_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_TOOLBOX) {
+			int maincontaineramount = 3;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(TOOL_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
 		    }
 
 		    if (otmp && otmp->oartifact == ART_DEMONSEAL) {
@@ -2163,6 +2226,9 @@ register boolean mod;
 				if (!rn2(3)) otmp->oeroded = rnd(3);
 			}
 		    }
+		    if (otmp && otmp->oartifact == ART_WHO_CARES_ABOUT_A_LITTLE_R) {
+			if (otmp->oeroded < 1) otmp->oeroded = 1;
+		    }
 		    if (otmp && otmp->oartifact == ART_NOTHING_BUT_FILLER) {
 			otmp->oerodeproof = TRUE;
 			if (rn2(2)) {
@@ -2204,6 +2270,10 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_BOAH_WHAT_A_STACK) {
 			otmp->quan += 200;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_ITAK_HONE) {
+			otmp->quan += 4;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_MULTIPOT) {
@@ -3781,7 +3851,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_HAHA_OWNED || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_KAMI_SORI_NO_USUI_HA || otmp->oartifact == ART_ASHIKAGA_S_REVENGE || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_HAHA_OWNED || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_KAMI_SORI_NO_USUI_HA || otmp->oartifact == ART_ASHIKAGA_S_REVENGE || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_GOOD_GAME_ZUANG_LI || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {
@@ -5076,9 +5146,76 @@ chargingchoice:
 
 		*/
 
+		if (obj->oartifact == ART_HAMMA_HAMMA) {
+			register struct obj *otmp;
+			if (obj->cursed || obj->spe < 0) {
+				pline("Nothing happens, probably because this hammer isn't good enough.");
+				break;
+			}
+
+			artilist[ART_HAVING_HAMMA].otyp = randarthammerX();
+			curse(obj);
+			obj->hvycurse = TRUE;
+			obj->spe = -5;
+
+			otmp = mksobj(artilist[ART_HAVING_HAMMA].otyp, FALSE, FALSE, FALSE);
+
+			if (otmp) {
+
+				otmp = oname(otmp, artiname(ART_HAVING_HAMMA));
+
+				otmp->quan = 1;
+				otmp->owt = weight(otmp);
+				dropy(otmp);
+				stackobj(otmp);
+				You("created a new hammer.");
+
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_WIDEFORCE_GRIP) {
+			coord cc;
+			register struct obj *otmp;
+			pline("Where do you want to pick up an item?");
+			if (getpos(&cc, TRUE, "pick up item at which location") < 0) {
+				return(0);
+			}
+
+			if ((otmp = level.objects[cc.x][cc.y]) != 0) {
+			  if (costly_spot(cc.x, cc.y)) {
+				pline("This item is inside a grip-proof shop. Your attempt to pick it up fails.");
+				break;
+			  }
+
+			  You("pick up an object from the %s.", surface(cc.x,cc.y));
+			  (void) pickup_object(otmp, otmp->quan, TRUE, FALSE);
+			  newsym(cc.x, cc.y);
+
+			} else {
+				pline("Too bad! There's no item at that location.");
+			}
+
+			break;
+		}
+
 		if (obj->oartifact == ART_NOW_ASCEND_ALREADY) {
 
 			enchantarmor_prompt();
+
+			break;
+		}
+
+		if (obj->oartifact == ART_CRAWL_INTO_LIFE) {
+
+			if (uinsymbiosis) {
+				pline("Because you already have a symbiote, nothing happens.");
+				break;
+			}
+
+			getrandomsymbiote(FALSE, FALSE);
+			pline("Suddenly you have a symbiote!");
 
 			break;
 		}

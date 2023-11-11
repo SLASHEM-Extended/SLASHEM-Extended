@@ -2944,6 +2944,19 @@ find_octarine_robe()
 }
 
 int
+find_faceless_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FACELESS_ROBE)) return i;
+    }
+
+    impossible("faceless robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_chinese_cloak()
 {
     register int i;
@@ -3178,6 +3191,19 @@ find_velvet_gloves()
 }
 
 int
+find_hooked_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HOOKED_GLOVES)) return i;
+    }
+
+    impossible("hooked gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_velvet_pumps()
 {
     register int i;
@@ -3187,6 +3213,19 @@ find_velvet_pumps()
     }
 
     impossible("velvet pumps not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_bladed_disks()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BLADED_DISKS)) return i;
+    }
+
+    impossible("bladed disks not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

@@ -2449,6 +2449,13 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_SEE_THE_TOTAL) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Now you can see the total for a while, whether you want to or not.");
+		}
+    }
+
     if (uarmh && uarmh->oartifact == ART_HAVEWINGS) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
@@ -2597,6 +2604,30 @@ Helmet_off()
 			u.alignlim -= 4;
 			adjalign(-1000);
 		}
+    }
+
+    if (uarmh && uarmh->oartifact == ART_CRAWL_INTO_LIFE) {
+	if (uinsymbiosis) {
+		if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+			if (uarmf->spe > -1) uarmf->spe = -1;
+		}
+
+		u.usymbiote.mnum = PM_PLAYERMON;
+		u.usymbiote.mhp = 0;
+		u.usymbiote.mhpmax = 0;
+		u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+		if (flags.showsymbiotehp) flags.botl = TRUE;
+		u.cnd_symbiotesdied++;
+
+		adjalign(-50);	/* bad!! */
+		change_luck(-1);
+		if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
+		else You_hear("the studio audience applaud!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
+
+		You("no longer have a symbiote.");
+
+	}
     }
 
     takeoff_mask &= ~W_ARMH;
@@ -3806,6 +3837,26 @@ Shirt_on()
 		if (uarmu->spe < 18) uarmu->spe = 18;
 	}
 
+	if (uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING && !uarmu->cursed) {
+		curse(uarmu);
+		pline("bundlebundlebundle!");
+	}
+
+	if (uarmu->oartifact == ART_LISE_S_UNDERWEAR && !uarmu->cursed) {
+		curse(uarmu);
+		Your("shirt becomes cursed.");
+	}
+
+	if (uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING) {
+		if (!tech_known(T_MELTEE)) {
+			learntech(T_MELTEE, FROMOUTSIDE, 1);
+			u.uprops[DEAC_ACID_RES].intrinsic += 1000000;
+		    	pline("You learn the meltee technique!");
+			pline("Your acid resistance has been deactivated for a very long time.");
+		}
+
+	}
+
 	if (uarmu->oartifact == ART_GREENTOP && (objects[uarmu->otyp].oc_color != CLR_GREEN)) {
 		pline_The("shirt becomes green!");
 		objects[uarmu->otyp].oc_color = CLR_GREEN;
@@ -3966,6 +4017,21 @@ Armor_on()
 	if (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) {
 		curse(uarm);
 		uarm->hvycurse = TRUE;
+	}
+
+	if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+	}
+
+	if (uarm && uarm->oartifact == ART_KUSE_MUSE) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+	}
+
+	if (uarm && uarm->oartifact == ART_RADAR_FELL_UP) {
+		curse(uarm);
+		uarm->hvycurse = uarm->prmcurse = TRUE;
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_SUSA_MAIL) {
@@ -6619,6 +6685,7 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ENCHANTED__OF_DEFUSING) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_ROCKZ_ARMY) uac -= 10;
@@ -6634,6 +6701,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_ONE) uac -= 1;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TWO) uac -= 2;
+	if (uarms && uarms->oartifact == ART_INSIDE_OUT) uac -= 3;
 	if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) uac -= 20;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_THREE) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
@@ -6667,6 +6735,12 @@ find_ac()
 
 		}
 	}
+	if (uarm && uarm->oartifact == ART_DEEEEET) uac += 5;
+	if (uarm && uarm->oartifact == ART_WSCHIE_) uac -= 5;
+	if (uarm && uarm->oartifact == ART_GOODNET) uac -= 5;
+	if (uarm && uarm->oartifact == ART_KWOURSTOMAL_) uac -= 10;
+	if (uarm && uarm->oartifact == ART_BEEPA_DEVICE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_RESISTANT_TO_DEADGOING) uac -= 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
 	if (uwep && uwep->oartifact == ART_SECANTED) uac -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) uac -= 10;
@@ -6703,6 +6777,9 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_KATI_S_IRRESISTIBLE_STILET) uac -= 2;
 	if (uarmf && uarmf->oartifact == ART_EXCITING_SPFLOTCH) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_FOOKING_TANK) uac -= 10;
+	if (uarms && uarms->oartifact == ART_SUPER_SKELLIE) uac -= 5;
+	if (uarms && uarms->oartifact == ART_WHO_CARES_ABOUT_A_LITTLE_R) uac -= 3;
+	if (uarms && uarms->oartifact == ART_VITALITY_STORM) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_INERT_GREAVES) uac -= 4;
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
@@ -6726,6 +6803,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;
 	if (uarm && uarm->oartifact == ART_BRINGS_NOTHING) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_GEHNAC) uac -= 1;
 	if (uarm && uarm->oartifact == ART_SUSA_MAIL) uac -= 8;
 	if (uarmg && uarmg->oartifact == ART_SOME_ATTRACTION) uac -= 1;
 	if (uarm && uarm->oartifact == ART_BRINGS_WHICH) uac -= 5;

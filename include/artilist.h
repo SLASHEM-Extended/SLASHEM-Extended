@@ -16199,6 +16199,266 @@ A("Half Crawls Back Out",				TIN, /* the monster spawns next to you with half of
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
 
+A("Crawl Into Life",				SUNLIGHT_MAGGOT, /* can be invoked to gain a symbiote if you don't have one yet, but if you remove this helm, regardless of how, the symbiote dies and you get penalized as if you had murdered it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Magma Bringer",				TOQUE, /* fire immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("In Balance",				HARMONIUM_HELM, /* free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Eeoyoo Eeoyoo",				PONTIFF_S_CROWN, /* prayer timeout goes down twice as fast and tells you if it becomes zero, dropping stuff on altars trains BUC knowledge more quickly and sacrificing trains spirituality more quickly */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fesdebsi",				FACELESS_HELM, /* psi res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("See The Total",				HELM_OF_MADNESS, /* resist confusion and stun, prevents hallu res, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Staer Waers March",				IMPERIAL_ELVEN_ARMOR, /* 1 in 10000 to roll a random lightsaber form and unlock it or have a chance of increasing its cap per turn; if it does make a change, you also gain a random hybrid race permanently and get 5 AD_DEBU effects as well as one AD_STAT effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Be Fat And Still Healthy",				HARMONIUM_PLATE, /* fast speed, inertia times out very quickly */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Completely Light",				HARMONIUM_SCALE_MAIL, /* +500 carry cap and max carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("A Waste",				THROWAWAY_ARMOR, /* no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Deeeeet",				THROWAWAY_ARMOR, /* -5 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Wschie.",				THROWAWAY_ARMOR, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Dorl-Tsch",				THROWAWAY_ARMOR, /* prevents the negative effects from standing in grass */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Go To The High Range",				THROWAWAY_ARMOR, /* works like climbing set */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Goodnet",				MESH_ARMOR, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Resistant to Deadgoing",				MESH_ARMOR, /* +5 AC */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Swordhiltstop",				MESH_ARMOR, /* also gives intrinsic half physical damage */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Beepa Device",				MESH_ARMOR, /* +5 AC, defusing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Rememberance - the burst time",				MESH_ARMOR, /* keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kwourstomal!",				CUIRASS_ARMOR, /* +10 AC, very fast speed, monsters who hit you in melee must make a saving throw or be slowed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("I Am Your Fall",				CUIRASS_ARMOR, /* very fast speed, +10 increase accuracy and +2 increase damage */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Jeanetta's Revenge",				CUIRASS_ARMOR, /* heavily autocurses, jeanetta trap effect, +5 kick damage, resist fear/mystery, rays have 1 in 3 chance to miss you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Radar Fell Up",				CUIRASS_ARMOR, /* detect monsters, prime autocurses, unchanging and if you can't be unchanging, +rnz(5000) sanity whenever you polymorph */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Eth-Ith",				HELLFORGED_PLATE_MAIL, /* +3 increase damage, monsters have half as much AC, your cop wanted level is always at least 10000 while wearing this */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Cover The Sexy Butt",				WAISTCLOTH, /* katia trap effect, trapwarping, +2 MC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Friederike's Bundling",				REINFORCED_SHIRT, /* autocurses, friederike trap effect, resist fear, +5 kick damage, if you don't have the meltee technique you learn it but in that case your acid resistance is disabled for one million turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Glaringadernadir",				SMOKY_VIOLET_FACELESS_ROBE, /* resist confusion and psi */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Derandergraaa",				ROBE, /* always initialized to be faceless robe, resist stun and psi */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Da Pelta",				BUCKLER, /* AD_DARK doesn't make areas dark if it hits you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Why Is It Intelligent",				BUCKLER,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ESP|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("BlockBetter",				LIGHT_SHIELD, /* +5% chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Inside-Out",				LIGHT_SHIELD, /* resist light, +3 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Higher Training",				RESONANT_SHIELD, /* stat exercise happens more quickly and the soft caps are higher */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Youth Unword",				CRINGE_SHIELD, /* +2 increase melee damage when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Always Melee Cover",				CRINGE_SHIELD, /* 20% chance to nullify incoming melee damage (mhitu.c) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Super Skellie",				BRONZE_SHIELD, /* +5 AC, +10% chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Who cares about a little rust?",				BRONZE_SHIELD, /* spawns with one level of rust, +3 AC and +15% chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fitting Color",				BRONZE_SHIELD, /* d6 thorns in melee */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Vitality Storm",				TOWER_SHIELD, /* +8 CON, +2% chance to block, +3 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Healing Waters",				HARMONIUM_GAUNTLETS, /* full nutrients */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Wideforce Grip",				REGULAR_GLOVES, /* initialized to always be hooked gloves, can be invoked to pick up an item from a square of your choice */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gehnac",				ORCISH_BOOTS, /* +1 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Lagolwesh",				ORCISH_BOOTS,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dajusdubidaelv",				ORCISH_BOOTS,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_WARN|SPFX_DFLAG2), 0, M2_ELF,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Natural Spring",				HARMONIUM_BOOTS, /* flying, prevents fumbling */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Stand Tall In The Storm",				WIND_AND_FIRE_WHEELS, /* prevents you from being pushed back */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Heme Flow",				LOW_BOOTS, /* initialized to always be bladed disks, adds +d10 bleeding damage to the kick */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("gendergendergendergendergendergendergender",				LEATHER_ARMOR, /* randart2 armor */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GENDERSTARIST, NON_PM, 1000L ),
+
+A("General Ta's Annoyance Factor",				CUIRASS_ARMOR, /* extra skill training */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Equifriend",				POTATO_BAG, /* contains 1 extra weapon and 1 extra armor */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Toolbox",				POTATO_BAG, /* contains 3 random tools */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Burner Dream",				OIL_CANDLE, /* spawns with +2000 fuel, has +2 light radius and if it's on and in your inventory, you have peacevision and 5000 turns of kristina trap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fightebossit",				TREASURE_CHEST, /* when it's generated, a random G_UNIQ spawns somewhere */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Legendary Battle",				LOOT_CHEST, /* when it's generated, a boss spawner is placed somewhere */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Itak Hone",				LONG_SWORD, /* randart long sword, spawns with stack size of 5 */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hamma Hamma",				WAR_HAMMER, /* randart hammer, invoke to create a copy of "having hamma" which is re-initialized first but this artifact needs to be at least +0 and not cursed, and will become heavily cursed -5 in the process. */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Having Hamma",				WAR_HAMMER, /* randart2 hammer */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("enchanted, of defusing",				LEATHER_ARMOR, /* randart armor, 5 extra points of AC, defusing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Evil Mother Celine",				LACQUERED_DANCING_SHOE, /* tries to mindflay the monster, resist fear, but if you're wearing boots, they get destroyed or if they are an artifact, they're transferred to a monster and levelported away. */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Spellnotforget",				AMETHYST_DRAGON_SCALE_MAIL, /* keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Acidirge",			LONG_SWORD, /* randart long sword */
+	(SPFX_ATTK|SPFX_RESTR|SPFX_DEFN), 0, 0,
+	ACID(5,2), ACID(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Cell",				QUARTERSTAFF, /* randart2 quarterstaff */
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_REGEN), 0, (M2_UNDEAD),
+	FIRE(0, 25), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Good Game Zuang Li",				ZANBATO, /* bisects enemies */
+	(SPFX_RESTR|SPFX_ESP|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Lise's Underwear",				T_SHIRT, /* randart2 shirt, autocurses, lisa trap effect, +6 CHA, engraving bug, 50% chance to resist disenchantment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Kuse Muse",				LEATHER_ARMOR, /* randart2 suit, heavily autocurses, 1 in 5000 per turn to give musehand effect, double mystery res, klara trap effect, and if you have an implant it counts as being handicapped so you get the stronger effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -1824,6 +1824,8 @@ boolean hitsroof;
 	if (dmg > 0 && powerfulimplants() && uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) dmg += 4;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_UNUSUAL_ENCH) dmg += 1;
 	if (dmg > 0 && bmwride(ART_ZIN_BA)) dmg += 1;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) dmg += 2;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_ETH_ITH) dmg += 3;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -1954,7 +1956,7 @@ int thrown;
 	if (ACURR(A_DEX) == 1) {
 		if (!rn2(7)) misfire = TRUE;
 	}
-	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) ) {
+	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) ) {
 		if (!rn2(7)) misfire = TRUE;
 	}
 	if (obj->greased) {
@@ -2709,6 +2711,7 @@ boolean polearming;
 	if (bmwride(ART_ZIN_BA)) tmp += 4;
 	if (obj && obj->oartifact == ART_BLOHIT) tmp += 10;
 	if (obj && obj->oartifact == ART_KLUEUEUEU) tmp += 1000;
+	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -2751,7 +2754,7 @@ boolean polearming;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
-	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 
 	if (ACURR(A_DEX) < 2) tmp -= 5;
 	else if (ACURR(A_DEX) < 3) tmp -= 4;

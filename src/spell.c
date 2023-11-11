@@ -12849,7 +12849,7 @@ int spell;
 
 	if (uarmc && itemhasappearance(uarmc, APP_SHELL_CLOAK) ) chance -= 20;
 
-	if (is_grassland(u.ux, u.uy) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
+	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
 	if (Numbed) chance -= 10;
 
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */

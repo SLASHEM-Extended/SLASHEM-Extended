@@ -429,6 +429,16 @@ register struct monst *mon;
 
 	}
 
+	if (uarm && uarm->oartifact == ART_ETH_ITH && base < 10) {
+		int acamount = base - 10;
+		if (acamount < 0) acamount *= -1;
+
+		acamount /= 2;
+
+		base = 10 - acamount;
+
+	}
+
 	/* Monsters with too good AC should not be completely unhittable. --Amy */
 	if (!rn2(20)) {
 		int absoluteac = (-(base - 10));

@@ -55,6 +55,8 @@ register boolean clumsy;
 	if (uarmf && uarmf->oartifact == ART_FIND_THE_COMBAT_STANCE) dmg += 10;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) dmg += 5;
 	if (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE) dmg += 3;
+	if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE) dmg += 5;
+	if (uarmu && uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING) dmg += 5;
 
 	if (uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) {
 		dmg += 7;
@@ -681,6 +683,9 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_BLADED_DISKS)) {
 		mon->bleedout += rnd(5);
 		pline("Your metal blades slit %s, drawing a lot of %s!", mon_nam(mon), mbodypart(mon, BLOOD) );
+	}
+	if (uarmf && uarmf->oartifact == ART_HEME_FLOW) {
+		mon->bleedout += rnd(10);
 	}
 
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) {

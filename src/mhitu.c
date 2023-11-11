@@ -6899,6 +6899,7 @@ struct monst *mon;
 		if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 		if (uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 		if (uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
+		if (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) armpro += 2;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
@@ -7548,6 +7549,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
+		if (uarms && uarms->oartifact == ART_DA_PELTA) break;
 
 		/* create darkness around the player --Amy */
 		pline("That felt evil and sinister!");
@@ -12084,6 +12086,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			You_feel("a constricting darkness...");
 
 			if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
+			if (uarms && uarms->oartifact == ART_DA_PELTA) break;
 
 			/* create darkness around the player --Amy */
 			litroomlite(FALSE);
@@ -15741,7 +15744,7 @@ common:
 
 	    case AD_DARK:
 
-		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) && !(uarms && uarms->oartifact == ART_DA_PELTA) ) {
 			pline("Everything gets dark!");
 			litroomlite(FALSE);
 		}
@@ -16669,6 +16672,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 
 		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
+		if (uarms && uarms->oartifact == ART_DA_PELTA) break;
 
 		/* create darkness around the player --Amy */
 		pline("%s's sinister gaze fills your mind with dreadful, evil thoughts!", Monnam(mtmp));
@@ -19317,6 +19321,12 @@ register int n;
 		return;
 	}
 
+	if (uarms && uarms->oartifact == ART_ALWAYS_MELEE_COVER && !rn2(5)) {
+		n = 0;
+		Your("shield nullifies the damage!");
+		return;
+	}
+
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {
 		n = 0;
 		Your("tonfa nullifies the damage!");
@@ -21020,6 +21030,15 @@ register struct attack *mattk;
 		}
 	}
 
+	if (uarm && uarm->oartifact == ART_KWOURSTOMAL_) {
+		if (!resist(mtmp, WEAPON_CLASS, 0, NOTELL)) {
+			unsigned int oldspeed = mtmp->mspeed;
+			mon_adjust_speed(mtmp, -1, (struct obj *)0);
+			if (mtmp->mspeed != oldspeed && canseemon(mtmp))
+				pline("%s slows down.", Monnam(mtmp));
+		}
+	}
+
 	if (uarm && uarm->oartifact == ART_BRITNEY_S_DECEPTION) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(GushLevel) ) <= 0) {
@@ -21056,6 +21075,16 @@ register struct attack *mattk;
 	if (uwep && uwep->oartifact == ART_RHORN) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarms && uarms->oartifact == ART_FITTING_COLOR) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(6) ) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

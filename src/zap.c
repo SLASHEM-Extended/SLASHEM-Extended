@@ -2352,6 +2352,9 @@ register struct obj *obj;
 	if (uarmf && (uarmf->oartifact == ART_ANTI_DISENCHANTER) && rn2(4) )
 	    return (FALSE);
 
+	if (uarmu && uarmu->oartifact == ART_LISE_S_UNDERWEAR && rn2(2) )
+	    return FALSE;
+
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
 
@@ -2460,6 +2463,8 @@ register struct obj *obj;
 
 	if (uarmf && (uarmf->oartifact == ART_ANTI_DISENCHANTER) && rn2(4) )
 	    return (FALSE);
+	if (uarmu && uarmu->oartifact == ART_LISE_S_UNDERWEAR && rn2(2) )
+	    return FALSE;
 
 	if (obj && obj->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 	if (obj && objects[obj->otyp].oc_material == MT_TITANIUM) return FALSE;
@@ -9346,6 +9351,8 @@ xchar sx, sy;
 			dam = 0;
 		} else if (uwep && uwep->oartifact == ART_LIGHTBLOOM && rn2(20) ) {
 			dam = 0;
+		} else if (uarms && uarms->oartifact == ART_INSIDE_OUT && rn2(20) ) {
+			dam = 0;
 		} else if (uwep && uwep->otyp == PARASOL && (!rn2(2) || (uwep->oartifact == ART_MADELINE_S_GUARDIAN)) ) {
 			dam = 0;
 			pline("Thanks to your parasol, the sunlight doesn't hit you.");
@@ -9569,6 +9576,7 @@ int type;
     if (tech_inuse(T_FORCE_FIELD) && rn2(4)) {
 	return FALSE;
     }
+    if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE && !rn2(3)) return FALSE;
     if (Race_if(PM_CUPID) && !rn2(5)) return FALSE;
     if (Race_if(PM_PLAYER_ATLANTEAN) && rn2(2)) {
 	return FALSE;
