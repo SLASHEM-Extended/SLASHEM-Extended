@@ -4279,6 +4279,15 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ HARMONIUM_BOOTS, "todo" },
 	{ WIND_AND_FIRE_WHEELS, "todo" },
 	{ AMULET_OF_NAUSEA, "todo" },
+	{ SUPERPOWER_GAUNTLETS, "todo" },
+	{ GAUNTLETS_OF_PHYSICAL_SUSTENAN, "todo" },
+	{ GAUNTLETS_OF_FISTFIGHTING, "todo" },
+	{ HELM_OF_HOLDING, "todo" },
+	{ ANTIMINDFLAY_HELMET, "todo" },
+	{ GOOD_ESP_HELMET, "todo" },
+	{ SPEED_HOLDING_BOOTS, "todo" },
+	{ RIN_UPPER_ADORNMENT, "todo" },
+	{ AMULET_OF_CLEAR_MIND, "todo" },
 
 	{0, "" }
 };
@@ -7712,6 +7721,15 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ HARMONIUM_BOOTS, "todo" },
 	{ WIND_AND_FIRE_WHEELS, "todo" },
 	{ AMULET_OF_NAUSEA, "todo" },
+	{ SUPERPOWER_GAUNTLETS, "todo" },
+	{ GAUNTLETS_OF_PHYSICAL_SUSTENAN, "todo" },
+	{ GAUNTLETS_OF_FISTFIGHTING, "todo" },
+	{ HELM_OF_HOLDING, "todo" },
+	{ ANTIMINDFLAY_HELMET, "todo" },
+	{ GOOD_ESP_HELMET, "todo" },
+	{ SPEED_HOLDING_BOOTS, "todo" },
+	{ RIN_UPPER_ADORNMENT, "todo" },
+	{ AMULET_OF_CLEAR_MIND, "todo" },
 
 	{0, "" }
 };

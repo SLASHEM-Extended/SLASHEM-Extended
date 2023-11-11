@@ -17930,6 +17930,13 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "crude shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "red-lacquered boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bladed disks")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "blue gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corallized gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mercury helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "summit helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "not-slowing-down boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19309,6 +19316,13 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "crude shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "red-lacquered boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bladed disks")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "blue gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corallized gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mercury helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "summit helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "not-slowing-down boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

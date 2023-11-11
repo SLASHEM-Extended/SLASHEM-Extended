@@ -1472,6 +1472,7 @@ int
 martial_dmg()
 {
         int damage;
+	  int damagetodouble = 0;
         /* WAC   plateau at 16 if Monk and Grand Master (6d4)
                             13 if Grand Master
                             11 if Master
@@ -1506,10 +1507,14 @@ martial_dmg()
 
 	  }
 
+	damagetodouble = damage;
+
 	/* base damage calculation end; unarmed focus tech doubles this, but doesn't double the bonuses below --Amy */
 	if (tech_inuse(T_UNARMED_FOCUS)) {
-		damage *= 3;
-		damage /= 2;
+		damage += (damagetodouble / 2);
+	}
+	if (uarmg && uarmg->otyp == GAUNTLETS_OF_FISTFIGHTING) {
+		damage += damagetodouble;
 	}
 
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
@@ -1739,6 +1744,7 @@ int dieroll;
 		tmp = 0;
 		else {
 			tmp = rnd(2);
+			int damagetodouble = 0;
 
 			if (!(PlayerCannotUseSkills)) {
 
@@ -1755,10 +1761,14 @@ int dieroll;
 				}
 			}
 
+			damagetodouble = tmp;
+
 			/* base damage calculation is finished now, unarmed focus increases that amount --Amy */
 			if (tech_inuse(T_UNARMED_FOCUS)) {
-				tmp *= 3;
-				tmp /= 2;
+				tmp += (damagetodouble / 2);
+			}
+			if (uarmg && uarmg->otyp == GAUNTLETS_OF_FISTFIGHTING) {
+				tmp += damagetodouble;
 			}
 
 			if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) tmp += 1;

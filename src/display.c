@@ -1290,6 +1290,7 @@ newsym(x,y)
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1422,6 +1423,7 @@ newsym(x,y)
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1719,6 +1721,7 @@ newsymX(x,y)
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1851,6 +1854,7 @@ newsymX(x,y)
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -3834,6 +3838,7 @@ struct monst *mon;
 	if (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) return TRUE;
 	if (ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) return TRUE;
+	if (uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) return TRUE;
 	if (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) return TRUE;
 	if (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) return TRUE;

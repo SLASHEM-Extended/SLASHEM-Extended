@@ -12749,6 +12749,8 @@ boolean knoweverything;
 			pline("While wearing these gloves, you can still pick up items from the ground even if your current polymorph form wouldn't normally be capable of doing so. Unfortunately, though, they don't allow you to pick up stuff if you're riding with insufficient skill.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLADED_DISKS))
 			pline("I'm sure Chris_ANG could tell you what the original intention was but here in SLEXland, these boots have razor-sharp blades protruding from the sides which allow you to deal bleeding damage to monsters by kicking them.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NOT_SLOWING_DOWN_BOOTS))
+			pline("The randomized appearance of this pair of boots makes you highly resistant to the ultra-annoying slowness attack used by certain monsters and traps (the one that can steal your intrinsic speed). Unfortunately, you don't become completely immune just from wearing them, though.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CHANGING_CLOAK))
 			pline("It causes a weaker form of polymorphitis; wear it at your own risk!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SHELL_CLOAK))
@@ -13786,6 +13788,20 @@ boolean knoweverything;
 				pline("This cloak causes your items to lose erosionproofing over time. It grants low armor class and 3 points of magic cancellation."); break;
 			case EERIE_CLOAK:
 				pline("This cloak turns monsters into ghosts. It grants good armor class and 3 points of magic cancellation."); break;
+			case SUPERPOWER_GAUNTLETS:
+				pline("Very useful pair of gloves that increases both your strength and dexterity by their enchantment value."); break;
+			case GAUNTLETS_OF_PHYSICAL_SUSTENAN:
+				pline("While wearing these gloves, your strength and dexterity won't get damaged."); break;
+			case GAUNTLETS_OF_FISTFIGHTING:
+				pline("A pair of gauntlets for unarmed combat. It grants significant boosts to bare-handed or martial arts damage."); break;
+			case HELM_OF_HOLDING:
+				pline("If you wear this helm, your luck no longer times out at all. This applies to both positive and negative luck."); break;
+			case ANTIMINDFLAY_HELMET:
+				pline("Wearing this helmet makes you immune to the mind flayer's tentacle attack."); break;
+			case GOOD_ESP_HELMET:
+				pline("It's not strictly ESP, but while you have this helmet on, all lawful monsters within a distance of 5 squares are displayed even if you can't see them."); break;
+			case SPEED_HOLDING_BOOTS:
+				pline("While wearing these boots, your intrinsic speed cannot be stolen by the common slowness effect."); break;
 			case CLOAK_OF_NAKEDNESS:
 				pline("This cloak causes nakedness and grants 3 points of magic cancellation. If someone else than you wears it, it also grants incredibly good armor class to the wearer, nyah-nyah!"); break;
 			case COVID____COATED_CLOAK:
@@ -15568,6 +15584,8 @@ boolean knoweverything;
 
 			case RIN_ADORNMENT: 
 				pline("If you wear this ring, you will feel more charismatic."); break;
+			case RIN_UPPER_ADORNMENT: 
+				pline("This particular type of ring increases your charisma by its enchantment value and also prevents your charisma from being damaged."); break;
 			case RIN_HUNGER: 
 				pline("Put this ring on if you no longer want to be satiated. It is usually generated cursed and increases your food consumption rate."); break;
 			case RIN_DISARMING: 
@@ -16402,6 +16420,8 @@ boolean knoweverything;
 				pline("Wear this, and you will be able to control your polymorphs."); break;
 			case AMULET_OF_WARP_DIMENSION:
 				pline("This amulet reflects beams in a completely random direction."); break;
+			case AMULET_OF_CLEAR_MIND:
+				pline("As long as you have this amulet on, sanity-increasing effects will give you much less sanity than normal."); break;
 			case AMULET_OF_D_TYPE_EQUIPMENT:
 				pline("A useful amulet that grants fire resistance and also allows you to swim in lava."); break;
 			case AMULET_VERSUS_DEATH_SPELL:

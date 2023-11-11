@@ -11261,6 +11261,8 @@ int snamount;
 		snamount /= 5;
 	}
 
+	if (uamul && uamul->otyp == AMULET_OF_CLEAR_MIND) snamount /= 5;
+
 	if (Race_if(PM_HUMANOID_ANGEL) || youmonst.data->mlet == S_ANGEL) snamount *= 2;
 
 	if (YouGetLotsOfSanity) snamount *= rnd(20);

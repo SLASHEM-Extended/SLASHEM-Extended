@@ -141,6 +141,7 @@ Boots_on()
 	case KICKING_BOOTS:
 	case FIRE_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
+	case SPEED_HOLDING_BOOTS:
 	case RUBBER_BOOTS:
 	case ORCISH_BOOTS:
 	case LEATHER_SHOES:
@@ -975,6 +976,7 @@ Boots_off()
 
 	case STAIRWELL_STOMPING_BOOTS:
 	case BOOTS_OF_ACID_RESISTANCE:
+	case SPEED_HOLDING_BOOTS:
 	case RUBBER_BOOTS:
 	case ORCISH_BOOTS:
 	case LEATHER_SHOES:
@@ -2181,6 +2183,8 @@ Helmet_on()
 	case HELM_VERSUS_DEATH:
 	case HELM_OF_BEGINNER_S_LUCK:
 	case HELM_OF_FULL_NUTRITION:
+	case HELM_OF_HOLDING:
+	case ANTIMINDFLAY_HELMET:
 
 	case HELM_OF_STEEL:
 	case SEDGE_HAT:
@@ -2247,6 +2251,7 @@ Helmet_on()
 		vision_full_recalc = 1;
 		break;
 	case PONTIFF_S_CROWN:
+	case GOOD_ESP_HELMET:
 		makeknown(uarmh->otyp);
 		break;
 	case HELM_OF_SENSORY_DEPRIVATION:
@@ -2667,6 +2672,9 @@ Helmet_off()
 	case HELM_VERSUS_DEATH:
 	case HELM_OF_BEGINNER_S_LUCK:
 	case HELM_OF_FULL_NUTRITION:
+	case HELM_OF_HOLDING:
+	case ANTIMINDFLAY_HELMET:
+	case GOOD_ESP_HELMET:
 
 	case SEDGE_HAT:
 	case SKULLCAP:
@@ -2902,6 +2910,8 @@ Gloves_on()
 	case ARCANE_GAUNTLETS:
 	case PLACEHOLDER_GLOVES:
 	case PROTECTIVE_GLOVES:
+	case GAUNTLETS_OF_PHYSICAL_SUSTENAN:
+	case GAUNTLETS_OF_FISTFIGHTING:
 		break;
 	case OILSKIN_GLOVES:
 		if (!uarmg->cursed) {
@@ -3013,6 +3023,7 @@ Gloves_on()
 		makeknown(uarmg->otyp);
 		break;
 	case GAUNTLETS_OF_DEXTERITY:
+	case SUPERPOWER_GAUNTLETS:
 		makeknown(uarmg->otyp);
 		break;
 	default: impossible(unknown_type_long, c_gloves, uarmg->otyp);
@@ -3319,6 +3330,8 @@ Gloves_off()
 	case ARCANE_GAUNTLETS:
 	case PLACEHOLDER_GLOVES:
 	case PROTECTIVE_GLOVES:
+	case GAUNTLETS_OF_PHYSICAL_SUSTENAN:
+	case GAUNTLETS_OF_FISTFIGHTING:
 	    break;
 	case GAUNTLETS_OF_GOOD_FORTUNE:
 	    setworn((struct obj *)0, W_ARMG);
@@ -3340,6 +3353,7 @@ Gloves_off()
 		makeknown(uarmg->otyp);
 	    break;
 	case GAUNTLETS_OF_DEXTERITY:
+	case SUPERPOWER_GAUNTLETS:
 		makeknown(uarmg->otyp);
 	    break;
 	default: impossible(unknown_type_long, c_gloves, uarmg->otyp);
@@ -5010,6 +5024,7 @@ register struct obj *obj;
 	case RIN_GAIN_STRENGTH: /* all moved to attrib.c so we no longer have to pay attention when destroying stuff --Amy */
 	case RIN_GAIN_CONSTITUTION:
 	case RIN_ADORNMENT:
+	case RIN_UPPER_ADORNMENT:
 	case RIN_GAIN_INTELLIGENCE:
 	case RIN_GAIN_WISDOM:
 	case RIN_GAIN_DEXTERITY:
@@ -5275,6 +5290,7 @@ boolean gone;
 	case RIN_GAIN_DEXTERITY:
 	case RIN_GAIN_CONSTITUTION:
 	case RIN_ADORNMENT:
+	case RIN_UPPER_ADORNMENT:
  adjust_attrib:
 		flags.botl = 1;
 		makeknown(obj->otyp);

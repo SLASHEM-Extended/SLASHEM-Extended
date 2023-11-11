@@ -544,6 +544,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (have_maybrittclick() && is_jokemonster(mtmp->data) )
 		    ways_seen++;
+		if (uarmh && uarmh->otyp == GOOD_ESP_HELMET && mtmp->data->maligntyp > 0 && distu(mtmp->mx, mtmp->my) < 26) 
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) )
 		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mtmp->data, AD_RBRE) || dmgtype(mtmp->data, AD_RNG) ) )
@@ -803,6 +805,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mtmp->data) ) {
 			strcat(monbuf, "pokemon vision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && uarmh->otyp == GOOD_ESP_HELMET && mtmp->data->maligntyp > 0 && distu(mtmp->mx, mtmp->my) < 26){
+			strcat(monbuf, "good ESP");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mtmp->data, AD_RBRE) || dmgtype(mtmp->data, AD_RNG) ) ) {

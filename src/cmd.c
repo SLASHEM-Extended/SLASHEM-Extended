@@ -7454,6 +7454,8 @@ boolean guaranteed;
 
 	    if(uleft && uleft->otyp == RIN_ADORNMENT) adorn += uleft->spe;
 	    if(uright && uright->otyp == RIN_ADORNMENT) adorn += uright->spe;
+	    if(uleft && uleft->otyp == RIN_UPPER_ADORNMENT) adorn += uleft->spe;
+	    if(uright && uright->otyp == RIN_UPPER_ADORNMENT) adorn += uright->spe;
 	    if (adorn < 0)
 		you_are("poorly adorned");
 	    else
@@ -12015,6 +12017,8 @@ int final;
 	    int adorn = 0;
 	    if(uleft && uleft->otyp == RIN_ADORNMENT) adorn += uleft->spe;
 	    if(uright && uright->otyp == RIN_ADORNMENT) adorn += uright->spe;
+	    if(uleft && uleft->otyp == RIN_UPPER_ADORNMENT) adorn += uleft->spe;
+	    if(uright && uright->otyp == RIN_UPPER_ADORNMENT) adorn += uright->spe;
 	    if (adorn < 0)
 		dump(youwere, "poorly adorned");
 	    else

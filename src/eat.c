@@ -5922,6 +5922,7 @@ struct obj *otmp;
 		}
 		break;
 	    case RIN_ADORNMENT:
+	    case RIN_UPPER_ADORNMENT:
 		accessory_has_effect(otmp);
 		if (adjattrib(A_CHA, otmp->spe, -1, TRUE))
 		    makeknown(typ);

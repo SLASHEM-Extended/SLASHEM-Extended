@@ -2232,6 +2232,7 @@ boolean weakeffect;
 		case RIN_GAIN_INTELLIGENCE:
 		case RIN_GAIN_WISDOM:
 		case RIN_ADORNMENT:
+		case RIN_UPPER_ADORNMENT:
 			flags.botl = 1;
 			break;
 		/* case RIN_PROTECTION:  not needed */
@@ -2379,6 +2380,7 @@ register struct obj *obj;
 	case RIN_GAIN_INTELLIGENCE:
 	case RIN_GAIN_CONSTITUTION:
 	case RIN_ADORNMENT:
+	case RIN_UPPER_ADORNMENT:
 		flags.botl = 1;
 		break;
 	case RIN_PROTECTION:
@@ -2430,6 +2432,7 @@ register struct obj *obj;
 	case RIN_GAIN_INTELLIGENCE:
 	case RIN_GAIN_CONSTITUTION:
 	case RIN_ADORNMENT:
+	case RIN_UPPER_ADORNMENT:
 		flags.botl = 1;
 		break;
 	case RIN_PROTECTION:
@@ -2491,6 +2494,7 @@ register struct obj *obj;
 	case RIN_GAIN_WISDOM:
 	case RIN_GAIN_INTELLIGENCE:
 	case RIN_ADORNMENT:
+	case RIN_UPPER_ADORNMENT:
 		flags.botl = 1;
 		break;
 	case RIN_PROTECTION:
@@ -2538,6 +2542,7 @@ register struct obj *obj;
 	case RIN_GAIN_DEXTERITY:
 	case RIN_GAIN_INTELLIGENCE:
 	case RIN_ADORNMENT:
+	case RIN_UPPER_ADORNMENT:
 		flags.botl = 1;
 		break;
 	case RIN_PROTECTION:

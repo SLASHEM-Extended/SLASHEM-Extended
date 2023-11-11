@@ -2025,6 +2025,8 @@ u_slow_down()
 {
 	if (uwep && uwep->oartifact == ART_DAEFAROTH) return; /* player is immune */
 	if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) return;
+	if (uarmf && uarmf->otyp == SPEED_HOLDING_BOOTS) return;
+	if (uarmf && itemhasappearance(uarmf, APP_NOT_SLOWING_DOWN_BOOTS) && rn2(10)) return; /* 90% resistance */
 
 	HFast = 0L;
 	if (!Fast) You("slow down.");
@@ -8123,7 +8125,7 @@ dopois:
 			if (mtmp->mhp < 1) break;
 		}
 
-		if (defends(AD_DRIN, uwep) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
+		if (defends(AD_DRIN, uwep) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->otyp == ANTIMINDFLAY_HELMET) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;

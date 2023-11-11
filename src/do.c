@@ -522,6 +522,9 @@ giveback:
 		case RIN_ADORNMENT:
 		    pline_The("faucets flash brightly for a moment.");
 		    break;
+		case RIN_UPPER_ADORNMENT:
+		    pline_The("faucets flash extremely brightly for a moment.");
+		    break;
 		case RIN_REGENERATION:
 		    pline_The("sink looks as good as new.");
 		    break;
@@ -1082,6 +1085,9 @@ register struct obj *obj;
 		break;
 	case AMULET_VERSUS_NAGGING:
 		pline("Your attempts to insult the toilet were ineffective.");
+		break;
+	case AMULET_OF_CLEAR_MIND:
+		pline_The("toilet seems fully functional.");
 		break;
 	case AMULET_OF_SYMBIOTE_SAVING:
 		pline_The("flushing button is surrounded by a golden aura!");

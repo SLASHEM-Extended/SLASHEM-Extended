@@ -1805,6 +1805,15 @@ adjattrib(ndx, incr, msgflg, canresist)
 	 * also, astronauts have such extreme body training for going into space that they're able to resist */
 	if (incr < 0 && canresist) {
 
+		if (uarmg && uarmg->otyp == GAUNTLETS_OF_PHYSICAL_SUSTENAN && ((ndx == A_STR) || (ndx == A_DEX)) ) {
+			Your("gauntlets prevent the stat loss!");
+			makeknown(uarmg->otyp);
+			return FALSE;
+		}
+
+		if (uleft && uleft->otyp == RIN_UPPER_ADORNMENT && ndx == A_CHA) return FALSE;
+		if (uright && uright->otyp == RIN_UPPER_ADORNMENT && ndx == A_CHA) return FALSE;
+
 		if (Role_if(PM_ASTRONAUT) && rn2(2)) {
 			pline("Your steeled body prevents the stat loss!");
 			return FALSE;
@@ -3138,6 +3147,7 @@ int x;
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_POWER) tmp += (uarmg->spe + 3);
+		if (uarmg && uarmg->otyp == SUPERPOWER_GAUNTLETS) tmp += uarmg->spe;
 		if (uarm && uarm->otyp == ROBE_OF_WEAKNESS) tmp -= 3;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
@@ -3306,7 +3316,9 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uarmh && uarmh->otyp == CORNUTHAUM && Role_if(PM_WIZARD)) tmp += 1;
 		if (uleft && uleft->otyp == RIN_ADORNMENT) tmp += uleft->spe;
+		if (uleft && uleft->otyp == RIN_UPPER_ADORNMENT) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_ADORNMENT) tmp += uright->spe;
+		if (uright && uright->otyp == RIN_UPPER_ADORNMENT) tmp += uright->spe;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
 		if (RngeCoquetry) tmp += 5;
@@ -3532,6 +3544,7 @@ int x;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 		if (uarmg && uarmg->otyp == GAUNTLETS_OF_DEXTERITY) tmp += uarmg->spe;
+		if (uarmg && uarmg->otyp == SUPERPOWER_GAUNTLETS) tmp += uarmg->spe;
 		if (uarms && uarms->oartifact == ART_YOHUALLI_TEZCATL) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (uarmg && uarmg->oartifact == ART_A_LITTLE_SUGAR) tmp += 3;
