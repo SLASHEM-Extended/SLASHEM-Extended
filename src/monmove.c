@@ -1449,7 +1449,7 @@ register struct monst *mtmp;
 		}
 	}
 
-	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
+	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
 		pline("A horrible call rang in your head...");
 		if (have_rangcallstone() == 2) increasesanity(5);
 		else increasesanity(1);

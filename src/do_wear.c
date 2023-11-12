@@ -2489,6 +2489,12 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) {
+	curse(uarmh);
+	uarmh->hvycurse = uarmh->prmcurse = uarmh->stckcurse = TRUE;
+	pline("Attention: This crown carries an ancient Morgothian curse!");
+    }
+
     if (uarmh && uarmh->oartifact == ART_DARK_NADIR) {
 		if (!uarmh->cursed) {
 		    if (Blind)
@@ -4072,6 +4078,12 @@ Armor_on()
 		curse(uarm);
 		uarm->hvycurse = uarm->stckcurse = TRUE;
 		pline("Oh no, the armor won't come off!");
+	}
+
+	if (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+		You_feel("filled with the Black Breath...");
 	}
 
 	if (uarm && uarm->oartifact == ART_CHIP_INFACT) {
@@ -6820,6 +6832,12 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;
 	if (uarm && uarm->oartifact == ART_BRINGS_NOTHING) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_GEHNAC) uac -= 1;
+	if (uarmh && uarmh->oartifact == ART_CUMBERSOME_DESC) uac -= 1;
+	if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_DIVINE_DI) uac -= 3;
+	if (uarm && uarm->oartifact == ART_RINGED_BRASS_ARMOR) {
+		uac -= 5;
+		if (u.ualign.type == A_CHAOTIC) uac -= 5;
+	}
 	if (uarm && uarm->oartifact == ART_SUSA_MAIL) uac -= 8;
 	if (uarmg && uarmg->oartifact == ART_SOME_ATTRACTION) uac -= 1;
 	if (uarm && uarm->oartifact == ART_BRINGS_WHICH) uac -= 5;

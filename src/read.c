@@ -1388,6 +1388,20 @@ doread()
 		buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
 	}
 
+	if (scroll->oartifact == ART_DECLARATION_OF_THE_APOSTAT && !(scroll->obrittle) ) {
+		scroll->obrittle++;
+		int pickskill;
+
+		for (pickskill = 0; pickskill < P_NUM_SKILLS; pickskill++) {
+			if (pickskill > P_NONE) {
+				if (P_SKILL(pickskill) != P_ISRESTRICTED) continue;
+				P_ADVANCE(pickskill) = 0;
+			}
+		}
+		pline("Training in restricted skills nullified.");
+
+	}
+
 	if (scroll->oartifact == ART_MAPS_TO_PLAY && scroll->oclass == SCROLL_CLASS && !(scroll->obrittle) ) {
 		if (writecost(scroll) <= 50) {
 			struct obj *createdscroll;
@@ -10223,6 +10237,16 @@ randenchchoice:
 
 	case SCR_SKILL_GROWTH:
 
+		if (sobj->oartifact == ART_SEAL_OF_THE_SPIRITS) {
+			int rndskill = P_DAGGER;
+			for (rndskill = P_DAGGER; rndskill < P_NUM_SKILLS; rndskill++) {
+				P_ADVANCE(rndskill) += rnd(5);
+			}
+			pline("All of your skills are trained a bit!");
+			known = TRUE;
+
+		}
+
 		if (confused) {
 			skilltrainingdecrease(level_difficulty() + 1);
 			if (sobj->cursed) skilltrainingdecrease(level_difficulty() + 1);
@@ -10236,7 +10260,7 @@ randenchchoice:
 				for (rndskill = P_DAGGER; rndskill < P_NUM_SKILLS; rndskill++) {
 					P_ADVANCE(rndskill)++;
 				}
-				pline("All of your skills are trained by one point!");
+				if (!(sobj->oartifact == ART_SEAL_OF_THE_SPIRITS)) pline("All of your skills are trained by one point!");
 				known = TRUE;
 			}
 		}
@@ -10694,6 +10718,7 @@ armorspecchoice:
 			char buf[BUFSZ];
 
 			n = (sobj->blessed) ? rn2(5)+1 : (sobj->cursed) ? 1 : rnd(3);
+			if (sobj->oartifact == ART_PAINTING_FRAGMENT) n += rnd(5);
 			for (i=0;i<n;i++) {
 				for (j=0;j<=5;j++) {
 					if (j >= 5) {

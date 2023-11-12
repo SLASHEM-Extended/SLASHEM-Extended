@@ -16459,6 +16459,538 @@ A("Kuse Muse",				LEATHER_ARMOR, /* randart2 suit, heavily autocurses, 1 in 5000
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
 
+A("Claideamh",				FLOWING_SWORD,
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG2), 0, (M2_ELF|M2_GIANT),
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Nodensfork",				SHOOMDENT,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_WARN), 0, 0,
+	PHYS(10, 10), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Gaia's Fate",				SICKLE,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Atlantean Royal Sword",				TWO_HANDED_SWORD, /* randart two-handed sword */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 0), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
+
+A("Jinja Naginata",				LOCHABER_AXE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 12), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1200L ),
+
+A("Singing Sword",				LONG_SWORD, /* randart long sword */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	PHYS(1, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Green Dragon Crescent Blade",				PATINA_BAR, /* 20000 turns of respawn trap effect, deactivates reflection for 10k turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 25), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1200L ),
+
+A("The Pink Panther",				MORGANITE, /* trap revealing when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Lifehunt Scythe",				SCYTHE, /* drain res when wielded */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_STLTH|SPFX_DEFN), 0, 0,
+	PHYS(6, 6), DFNS(AD_COLD), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Holy Moonlight Sword",				LONG_SWORD, /* randart2 long sword */
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bloodletter",				JAGGED_STAR, /* dmg h@ck, +d12 bleeding damage */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fallingstar Mandibles",				PINCER_STAFF,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	MAGM(12, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Callandor",				CRYSTAL_SWORD, /* spellboost when wielded */
+	(SPFX_RESTR|SPFX_HSPDAM|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6660L ),
+
+A("The Unstoppable",				CROSSBOW, /* randart2 crossbow */
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 8), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Epoch's Curve",				WIND_BOW,
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	PHYS(5, 1), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Cloak of the Unheld One",				OILSKIN_CLOAK, /* free action and sleep res when worn, rang call trap effect */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4500L ),
+
+A("Cloak of the Unheld Potato",				OILSKIN_CLOAK, /* randart2 cloak, free action and sleep res when worn, rang call trap effect */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4500L ),
+
+A("Soulmirror",				LANTERN_PLATE_MAIL,
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 9000L ),
+
+A("Scorpion Carapace",				HARMONIUM_SCALE_MAIL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Golden Knight",				BUCKLER, /* +5 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("SevenLeagueBoots",				JUMPING_BOOTS, /* ultra fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Frost Treads",		 		BOOTS_OF_SAFEGUARD,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	COLD(1, 8), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Grappler's Grasp",				GAUNTLETS_OF_SWIMMING, /* prevents monsters from grabbing you */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Godhands",				SUPERPOWER_GAUNTLETS,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(20, 10), DFNS(AD_DRLI), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 7777L ),
+
+A("Wrappings of the Sacred Fist",				GAUNTLETS_OF_PHYSICAL_SUSTENAN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Helm of Undeath",				WAR_HAT, /* life saving */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2500L ),
+
+A("Apotheosis Veil",				HELM_OF_HOLDING, /* see invis, reduces hunger when spellcasting */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Enforced Mind",				ANTIMINDFLAY_HELMET, /* resist sleep and conf */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
+
+A("Ring of Thror",				RIN_UPPER_ADORNMENT, /* aggravate monster, +2 increase damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Narya",				RIN_ADORNMENT, /* randart ring, attacking in melee has 1 in 20 chance to fire a d4-strength blast of fire */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Vilya",				RIN_ADORNMENT, /* randart2 ring, magical breathing */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_WARN|SPFX_STLTH), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Lomya",				RIN_ADORNMENT, /* randart2 ring, teleportitis */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEARCH|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mantle of Wrath",				ORCISH_CLOAK, /* aggravate monster, acid res */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2500L ),
+
+A("Heart of Shadow",				MOON_AXE,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	FIRE(20, 10), DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6660L ),
+
+A("Shard from Morgoth's Crown",				RIN_ADORNMENT, /* randart ring, res shock */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Infinity's Mirrored Arc",				CYAN_DOUBLE_LIGHTSABER,
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Staff of Twelve Mirrors",				SILVER_KHAKKHARA, /* displacement */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Sesderiro",				LONG_SWORD, /* randart2 melee weapon, displacement */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	PHYS(5, 6), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("The Mirrored Mask",				HELM_OF_MYSTERY_RES,
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Sansara Mirror",				MIRRORBLADE,
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_HPHDAM), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Gleldreral",				LONG_SWORD, /* randart2 melee weapon */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_HPHDAM), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("The Spell-warded Wrappings of Nitocris",				MUMMY_WRAPPING, /* antimagic shell */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Blungnir",				ATGEIR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 12), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 8000L ),
+
+A("Hermes's Sandals",				SPEED_HOLDING_BOOTS, /* makes you very fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Poseidon's Trident",				TRIDENT, /* randart2 trident */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 1500L ),
+
+A("Feng Huo Lun",				WIND_AND_FIRE_WHEELS, /* very fast speed, flying, heavy status effects */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(1, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4500L ),
+
+A("Jin Gang Zuo",				IRON_CHAIN, /* randart2 chain, waterproofs your inventory while wielded */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4500L ),
+
+A("Ruyi Jingu Bang",				BO_STAFF,
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4500L ),
+
+A("Sickle of Thunderblasts",				SICKLE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(1, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4500L ),
+
+A("The War-helm of the Dreaming",				FACELESS_HELM, /* magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4500L ),
+
+A("Spear of Peace",				INKA_SPEAR, /* resist stun and confusion */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
+
+A("Ibite arm",				CUDGEL,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(20, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Star-emperor's Ring",				RIN_ADORNMENT, /* randart2 ring, 1 in 1000 to light up the area around you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Eye of the Oracle",				EYEBALL,
+	(SPFX_RESTR|SPFX_HSPDAM|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 500L ),
+
+A("The Macuahuitl of Quetzalcoatl",				MACUAHUITL,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 3000L ),
+
+A("The Mask of Tlaloc",				STANDARD_HELMET, /* randart2 helmet, cold and shock resistance and waterproofs your inventory when worn but traps become invisible when triggered */
+	(SPFX_RESTR|SPFX_HSPDAM|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
+
+A("Ehecailacocozcatl",				AMULET_OF_CLEAR_MIND,
+	(SPFX_RESTR|SPFX_EREGEN|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 3000L ),
+
+A("Amhimitl",				JAVELIN, /* randart javelin */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(5, 8), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("The Tecpatl of Huhetotl",				TECPATL, /* if you kill something while wielding it, reduces prayer timeout by 50 */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	PHYS(5, 8), DFNS(AD_DRLI), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
+A("The Star of Hypernotus",				AMULET_VERSUS_CURSES, /* resist confusion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2500L ),
+
+A("Avenger",				LONG_SWORD, /* randart long sword, drain res */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(1, 7), DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("The Key of Erebor",				SKELETON_KEY, /* works as a climbing set when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Death-Spear of Keptolo",				DROVEN_SPEAR,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(10, 12), DFNS(AD_MAGM), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Esscooahlipboourrr",				BASTERD_SWORD, /* heap trap while wielded */
+	(SPFX_RESTR|SPFX_SEARCH|SPFX_SEEK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	PHYS(20, 10), DFNS(AD_DRLI), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("The Robe of Closed Eyes",				ROBE, /* randart2 robe, invis, 75% chance to resist gazes */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("The Red Cords of Ilmater",				REGULAR_GLOVES, /* randart gloves, free action, stone resist */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1000L ),
+
+A("The Crown of the Percipient",				GOOD_ESP_HELMET, /* detect monsters, resist drain, stone, fire, cold, shock, sleep, magic and conf, sticky prime autocurses and carries an ancient morgothian curse */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1000L ),
+
+A("Painting Fragment",				SCR_REVERSE_IDENTIFY, /* allows you to reverse identify d5 more items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("The Profaned Greatscythe",				GIANT_SCYTHE, /* heavily autocurses, bad alignment trap, prayer timeout goes up instead of down, SOL effect, ruth trap effect and +20 spawn freq for AD_FEMI */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	FIRE(8, 30), DFNS(AD_FIRE), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Friede's Scythe",				GRAIN_SCYTHE,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	MAGM(6, 6), DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Yorshka's Spear",				HEAVY_SPEAR, /* +6 STR, DEX and WIS */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Dragonhead Shield",				STONE_DRAGON_SCALE_SHIELD, /* resist disintegration */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Crucifix of the Mad King",				HALBERD, /* makes areas dark if it hits something, like collusion knife */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
+
+A("Ringed Brass Armor",				ROUND_MAIL, /* 5 extra points of AC, or 10 if you're chaotic */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Ritual Ringed Spear",				RANDOSPEAR, /* to-hit h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("Velka's Rapier",				ARCANE_RAPIER,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	MAGM(20, 0), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("The Dragon's Heart-Stone",				BONE_FRAGMENT,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("The Steel Scales of Kurtulmak",				GRAY_DRAGON_SCALES, /* free action, slows you twice as much as spirit */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_HPHDAM|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
+
+A("The Glitterstone",				AMBER_FRAGMENT,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 80L ),
+
+A("Great Claws of Urdlen",				GAUNTLETS_OF_FISTFIGHTING,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("The Chromatic Dragon Scales",				BLACK_DRAGON_SCALES, /* res fire, cold, shock, poison, sick, acid and stone, heavily autocurses and fills you with the black breath */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("The Eye of Vecna",				EYEBALL,
+	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 500L ),
+
+A("Shadowlock",				RAPIER, /* bosses aren't uncommon while you're wielding it */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_EVIL), 0, 0,
+	PHYS(20, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 9999L ),
+
+A("Ramithaine",				FLEURE,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	PHYS(6, 1), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 3333L ),
+
+A("Thorns",				RAZOR_WHIP, /* poisons opponents */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(1, 10), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6660L ),
+
+A("Arrow of Slaying",				SILVER_ARROW,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	PHYS(20, 0), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 77L ),
+
+A("The Trusty Adventurer's Whip",				BULLWHIP, /* randart2 whip */
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Log of the Curator",				CLUB, /* randart2 club */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Fedora of the Investigator",				FEDORA,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Force Pike of the Red Guard",				FORCE_PIKE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	MAGM(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Gauntlets of the Berserker",				REGULAR_GLOVES, /* randart2 gloves, +5 STR and DEX, +10 CON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Declaration of the Apostate",				SCR_REMOVE_CURSE, /* reading sets training in all restricted skills to zero */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Soul Lens",				LENSES,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Seal of the Spirits",				SCR_SKILL_GROWTH, /* reading trains every skill by d5 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Torch of Origins",				WAN_FIRE,
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	FIRE(1, 5), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Striped Shirt of the Murderer",				STRIPED_SHIRT, /* +1000 carry cap and max carry cap, allows you to backstab opponents */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Striped Shirt of the Thief",				STRIPED_SHIRT, /* protects from theft */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Striped Shirt of the Falsely Accused",				STRIPED_SHIRT, /* double discount action, resist sleep */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Scalpel of Life and Death",				SCALPEL, /* to-hit h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Gauntlets of the Healing Hand",				REGULAR_GLOVES, /* randart2 gloves, also gives intrinsic regen */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Ring of Hygiene's Disciple",				RIN_REGENERATION, /* also gives intrinsic regen */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Cope of the Eldritch Knight",				ROBE, /* randart2 robe, spells lose memory 50% more slowly */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Shield of the Paladin",				SHIELD, /* randart2 shield, warns of undead and demons */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Booze of the Drunken Master",				POT_BOOZE, /* gives 20k turns of drunken boxing when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Khakkhara of the Monkey",				SILVER_KHAKKHARA, /* jumping */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(1, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Ruffled Shirt of the Aristocrat",				RUFFLED_SHIRT, /* see invis, resist sleep and poison */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Victorian Underwear of the Aristocrat",				VICTORIAN_UNDERWEAR, /* double magic find */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Mark of the Rightful Scion",				RIN_ADORNMENT, /* randart2 ring */
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG2), 0, M2_ORC,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Gauntlets of the Divine Disciple",				ORIHALCYON_GAUNTLETS, /* +3 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Mace of the Evangelist",				MACE, /* randart2 mace */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Dart of the Assassin",				DART, /* randart2 dart, becomes poisoned when thrown */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("The Sword of the Kleptomaniac",				SHORT_SWORD, /* randart2 short sword */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(5, 5), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Helm of the Arcane Archer",				STANDARD_HELMET, /* randart2 helmet, +1 multishot with bows */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Figurine of Pygmalion",				FIGURINE, /* stone res when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Figurine of Galatea",				FIGURINE, /* immunity to AD_SSEX when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Helm of the Ninja",				HELM_OF_OPPOSITE_ALIGNMENT, /* if your current weapon can be poisoned, it becomes so */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Towel of the Interstellar Hitchhiker",				TOWEL, /* if you wield it and your other hand is wielding a whip, the latter deals +5 damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Encyclopedia Galactica",				SPE_BLANK_PAPER, /* randart2 spellbook */
+	(SPFX_RESTR|SPFX_LUCK|SPFX_WARN|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Twig of Yggdrasil",				WAN_TELEPORTATION,
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Saddle of Brynhildr",				LEATHER_SADDLE, /* randart2 saddle, flying while riding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Staff of Wild Magic",				QUARTERSTAFF, /* randart2 quarterstaff */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_LUCK|SPFX_SEARCH), 0, 0,
+	MAGM(20, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Forge Hammer of the Artificer",				WAR_HAMMER, /* randart2 hammer, double magic find */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, M2_UNDEAD,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Bulwark of the Dwarven Defender",				DWARVISH_ROUNDSHIELD,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Hat of the Giant Killer",				GNOMISH_HELM,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Prismatic Dragon Plate",				RED_DRAGON_SCALE_MAIL, /* randart DSM, petkeeping skill trains 3x as fast */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Footprints in the Labyrinth",				LONG_SWORD, /* randart2 melee weapon, spellboost */
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Trappings of the Grave",				AMULET_OF_RESTFUL_SLEEP,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Bright Aurora",				LOW_BOOTS, /* initialized to always be not-slowing-down boots, +2 sight range, makes you very fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Pu-Pu",				GAUNTLETS_OF_FISTFIGHTING, /* 3x unarmed damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Get The Old Values Back",				SUPERPOWER_GAUNTLETS, /* +3 STR, +3 ranged to-hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Livin' It Up",				HELM_OF_HOLDING, /* double max carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Cumbersome Desc",				GOOD_ESP_HELMET, /* immune to erosion, +2 DEX, 1 extra point of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Also Not Inert",				SPEED_HOLDING_BOOTS, /* inertia times out very quickly */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

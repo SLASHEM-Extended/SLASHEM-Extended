@@ -2776,6 +2776,8 @@ age_spells()
 	if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) /* sync this with cyan spells, see below! --Amy */
 		return;
 
+	if (uarm && uarm->oartifact == ART_COPE_OF_THE_ELDRITCH_KNIGH && rn2(2)) return;
+
 	if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) return;
 
 	/* the spell color trap that causes your memory to decrease when casting shouldn't be too awfully harsh... --Amy
@@ -2996,7 +2998,7 @@ docast()
 
 	int whatreturn;
 
-	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || autismweaponcheck(ART_ARK_OF_THE_COVENANT) || autismweaponcheck(ART_ANTIMAGICBANE) ) {
+	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || autismweaponcheck(ART_ARK_OF_THE_COVENANT) || (uarmc && uarmc->oartifact == ART_SPELL_WARDED_WRAPPINGS_OF_) || autismweaponcheck(ART_ANTIMAGICBANE) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3678,21 +3680,23 @@ castanyway:
 
 	if (u.uhunger <= 2500) { /* But only if you're not satiated (see above) */
 
-	if ( role_skill == P_BASIC) {hungr *= 85; hungr /= 100;}
-	if ( role_skill == P_SKILLED) {hungr *= 70; hungr /= 100;}
-	if ( role_skill == P_EXPERT) {hungr *= 55; hungr /= 100;}
-	if ( role_skill == P_MASTER) {hungr *= 40; hungr /= 100;}
-	if ( role_skill == P_GRAND_MASTER) {hungr *= 25; hungr /= 100;}
-	if ( role_skill == P_SUPREME_MASTER) {hungr *= 10; hungr /= 100;}
+		if ( role_skill == P_BASIC) {hungr *= 85; hungr /= 100;}
+		if ( role_skill == P_SKILLED) {hungr *= 70; hungr /= 100;}
+		if ( role_skill == P_EXPERT) {hungr *= 55; hungr /= 100;}
+		if ( role_skill == P_MASTER) {hungr *= 40; hungr /= 100;}
+		if ( role_skill == P_GRAND_MASTER) {hungr *= 25; hungr /= 100;}
+		if ( role_skill == P_SUPREME_MASTER) {hungr *= 10; hungr /= 100;}
 
-	/* casting it often (and thereby keeping it in memory) should also reduce hunger... */
-	if ( spellknow(spell) >= 10000) {hungr *= 9; hungr /= 10;}
-	if ( spellknow(spell) >= 20000) {hungr *= 9; hungr /= 10;}
-	if ( spellknow(spell) >= 30000) {hungr *= 9; hungr /= 10;}
-	if ( spellknow(spell) >= 40000) {hungr *= 9; hungr /= 10;}
-	if ( spellknow(spell) >= 50000) {hungr *= 9; hungr /= 10;}
-	if ( spellknow(spell) >= 60000) {hungr *= 9; hungr /= 10;}
-	if ( spellknow(spell) >= 70000) {hungr *= 9; hungr /= 10;}
+		/* casting it often (and thereby keeping it in memory) should also reduce hunger... */
+		if ( spellknow(spell) >= 10000) {hungr *= 9; hungr /= 10;}
+		if ( spellknow(spell) >= 20000) {hungr *= 9; hungr /= 10;}
+		if ( spellknow(spell) >= 30000) {hungr *= 9; hungr /= 10;}
+		if ( spellknow(spell) >= 40000) {hungr *= 9; hungr /= 10;}
+		if ( spellknow(spell) >= 50000) {hungr *= 9; hungr /= 10;}
+		if ( spellknow(spell) >= 60000) {hungr *= 9; hungr /= 10;}
+		if ( spellknow(spell) >= 70000) {hungr *= 9; hungr /= 10;}
+
+		if (uarmh && uarmh->oartifact == ART_APOTHEOSIS_VEIL) hungr /= 2;
 
 	}
 
@@ -10784,6 +10788,7 @@ rerollX:
 		/* keep this synchronized with age_spells(), please --Amy */
 
 		if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) cyanwillgodown = FALSE;
+		if (uarm && uarm->oartifact == ART_COPE_OF_THE_ELDRITCH_KNIGH && rn2(2)) cyanwillgodown = FALSE;
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
 

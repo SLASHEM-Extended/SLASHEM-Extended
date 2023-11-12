@@ -6533,6 +6533,7 @@ int degree;
 	if (uarm && uarm->oartifact == ART_HOARDIT && skill == P_BODY_ARMOR) degree *= 2;
 
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
+	if (uarm && uarm->oartifact == ART_PRISMATIC_DRAGON_PLATE && skill == P_PETKEEPING) degree *= 3;
 	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {

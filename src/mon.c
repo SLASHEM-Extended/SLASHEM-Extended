@@ -7258,6 +7258,11 @@ xkilled(mtmp, dest)
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	if (uwep && uwep->oartifact == ART_FOR_STYGWYR_) healup(mtmp->m_lev, 0, FALSE, FALSE);
 
+	if (uwep && uwep->oartifact == ART_TECPATL_OF_HUHETOTL) {
+		u.ublesscnt -= 50;
+		if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
+	}
+
 	if (uwep && uwep->oartifact == ART_SOUL_EDGE) healup(1, 0, FALSE, FALSE);
 	if (uwep && uwep->oartifact == ART_WIERD_ACCENT) healup(1, 0, FALSE, FALSE);
 

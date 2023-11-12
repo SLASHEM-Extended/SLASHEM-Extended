@@ -1165,6 +1165,9 @@ moveloop()
 				if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
+				if (uarm && uarm->oartifact == ART_STEEL_SCALES_OF_KURTULMAK && !rn2(4) && moveamt > 1)
+					moveamt /= 2;
+
 				if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1639,6 +1642,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)
+				moveamt /= 2;
+
+			if (uarm && uarm->oartifact == ART_STEEL_SCALES_OF_KURTULMAK && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
 			if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
@@ -3377,6 +3383,10 @@ moveloop()
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 		}
 		if ((u.inertia > 1) && uarm && uarmh->oartifact == ART_BE_FAT_AND_STILL_HEALTHY) {
+			u.inertia /= 2;
+			if (u.inertia < 0) u.inertia = 0; /* fail safe */
+		}
+		if ((u.inertia > 1) && uarmf && uarmf->oartifact == ART_ALSO_NOT_INERT) {
 			u.inertia /= 2;
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 		}
@@ -7140,6 +7150,13 @@ newbossJANI:
 		if (rn2(2)) u.marleenproperties = TRUE;
 		else u.marleenproperties = FALSE;
 
+		if (uleft && uleft->oartifact == ART_STAR_EMPEROR_S_RING && !rn2(1000)) {
+			litroom(TRUE, uleft);
+		}
+		if (uright && uright->oartifact == ART_STAR_EMPEROR_S_RING && !rn2(1000)) {
+			litroom(TRUE, uright);
+		}
+
 		if (FemtrapActiveJulietta && !rn2(2000)) {
 			pline("Julietta rolls the dice to randomly select a punishment for you...");
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
@@ -7147,6 +7164,11 @@ newbossJANI:
 
 		if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && !rn2(2000) && (ABASE(A_INT) > 10)) {
 			(void) adjattrib(A_INT, -1, FALSE, TRUE);
+		}
+
+		if (autismweaponcheck(ART_GREEN_DRAGON_CRESCENT_BLAD)) {
+			if (RespawnProblem < 20000) RespawnProblem = 20000;
+			if (u.uprops[DEAC_REFLECTING].intrinsic < 10000) u.uprops[DEAC_REFLECTING].intrinsic = 10000;
 		}
 
 		if (Race_if(PM_BULDOZGAR) && !rn2(100)) wake_nearby();
@@ -11370,7 +11392,7 @@ newbossB:
 			}
 		}
 
-		if ( (have_morgothiancurse() || (uinsymbiosis && u.usymbiote.morgcurse) || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || autismweaponcheck(ART_GUN_CONTROL_LAWS) ) && !rn2(isfriday ? 200 : 500) ) { /* was 1 in 50 in ToME */
+		if ( (have_morgothiancurse() || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uinsymbiosis && u.usymbiote.morgcurse) || (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT && !Role_if(PM_TOPMODEL) ) || (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) || autismweaponcheck(ART_GUN_CONTROL_LAWS) ) && !rn2(isfriday ? 200 : 500) ) { /* was 1 in 50 in ToME */
 			switch (rnd(30)) {
 
 				case 1:
@@ -11578,7 +11600,7 @@ newboss:
 			}
 		}
 
-		if ( (have_blackbreathcurse() || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
+		if ( (have_blackbreathcurse() || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uinsymbiosis && u.usymbiote.bbcurse) || (uamul && uamul->oartifact == ART_SURTERSTAFF && !(uwep && (weapon_type(uwep) == P_QUARTERSTAFF))) ) && !rn2( (Race_if(PM_HOBBIT) || Role_if(PM_RINGSEEKER) ) ? 500 : 200) ) {
 			/* was 1 in 20 in ToME, or 1 in 50 if you were a hobbit */
 			if (!rn2(5)) { /* level drain */
 				if(!Drain_resistance || !rn2(StrongDrain_resistance ? 15 : 4) )
@@ -13626,7 +13648,7 @@ pastds2:
 		if ((uarmf && uarmf->oartifact == ART_DELFI_ROCKZ) && u.ublesscnt) delfirockz = TRUE;
 		if ((uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO) && u.ublesscnt) delfirockz = TRUE;
 
-		if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || have_antiprayerstone()) u.ublesscnt++;
+		if (NonprayerBug || u.uprops[NON_PRAYER_BUG].extrinsic || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || have_antiprayerstone()) u.ublesscnt++;
 		else if (u.ublesscnt) {
 			u.ublesscnt--;
 			if (uarmf && uarmf->oartifact == ART_DELFI_ROCKZ) {
@@ -15079,6 +15101,11 @@ past4:
 	if (uwep && uarmf && uarmf->oartifact == ART_DOUBTLY_POISON && is_poisonable(uwep) && !uwep->superpoison) {
 		uwep->superpoison = uwep->opoisoned = TRUE;
 		Your("weapon is superpoisoned.");
+	}
+
+	if (uwep && uarmh && uarmh->oartifact == ART_HELM_OF_THE_NINJA && is_poisonable(uwep) && !uwep->opoisoned) {
+		uwep->opoisoned = TRUE;
+		Your("weapon is poisoned.");
 	}
 
 	if (u.ugold < 0) { /* bug! */

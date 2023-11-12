@@ -373,7 +373,7 @@ pline VA_DECL(const char *, line)
 	if (typ == MSGTYP_NOREP && !(MommaBugEffect || u.uprops[MOMMA_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_DEINE_MUDDA) || have_mommystone()) && !autismweaponcheck(ART_BRAND_BRAND) && !(uarmf && uarmf->oartifact == ART_GRENEUVENIA_S_HUG) && !strcmp(line, prevmsg)) return;
 	putstr(WIN_MESSAGE, 0, line);
 
-	if (HeapEffectBug || u.uprops[HEAP_EFFECT].extrinsic || have_heapstone() || (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA) ) {
+	if (HeapEffectBug || u.uprops[HEAP_EFFECT].extrinsic || have_heapstone() || autismweaponcheck(ART_ESSCOOAHLIPBOOURRR) || (uarm && uarm->oartifact == ART_CANNOT_BE_HARMED_BLA_BLA) ) {
 		int heaping = rno(4);
 		if (!rn2(7)) heaping += rno(8);
 		while (heaping > 0) {

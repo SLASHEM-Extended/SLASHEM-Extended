@@ -879,12 +879,26 @@ nh_timeout()
 
 	}
 
+	if (uwep && uwep->oartifact == ART_PINK_PANTHER) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
 	if (have_superjonadabstone()) {
 
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(10000) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+		if (t && !rn2(500) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
@@ -2734,10 +2748,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) && !autismweaponcheck(ART_PROFANED_GREATSCYTHE) && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
 		u.alignlim++;
 
-	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_alignmentstone() || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
+	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_alignmentstone() || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;
 		if(u.ualign.record > u.alignlim)
 			u.ualign.record = u.alignlim;

@@ -1516,6 +1516,9 @@ martial_dmg()
 	if (uarmg && uarmg->otyp == GAUNTLETS_OF_FISTFIGHTING) {
 		damage += damagetodouble;
 	}
+	if (uarmg && uarmg->oartifact == ART_PU_PU) {
+		damage += damagetodouble;
+	}
 
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
@@ -1768,6 +1771,9 @@ int dieroll;
 				tmp += (damagetodouble / 2);
 			}
 			if (uarmg && uarmg->otyp == GAUNTLETS_OF_FISTFIGHTING) {
+				tmp += damagetodouble;
+			}
+			if (uarmg && uarmg->oartifact == ART_PU_PU) {
 				tmp += damagetodouble;
 			}
 
@@ -2550,7 +2556,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -3774,6 +3780,11 @@ int dieroll;
 		litroomlite(FALSE);
 	}
 
+	if (obj && obj->oartifact == ART_CRUCIFIX_OF_THE_MAD_KING && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+		pline("Collusion!");
+		litroomlite(FALSE);
+	}
+
 	if (obj && obj->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 		pline("Collusion!");
 		litroomlite(FALSE);
@@ -3925,6 +3936,8 @@ int dieroll;
 		if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 2;
 		if (uarm && uarm->oartifact == ART_ETH_ITH) tmp += 3;
 		if (uarms && uarms->oartifact == ART_YOUTH_UNWORD) tmp += 2;
+		if (uleft && uleft->oartifact == ART_RING_OF_THROR) tmp += 2;
+		if (uright && uright->oartifact == ART_RING_OF_THROR) tmp += 2;
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {
@@ -4085,6 +4098,10 @@ int dieroll;
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
+		}
+
+		if (!thrown && uwep && uwep->oartifact == ART_TOWEL_OF_THE_INTERSTELLAR_ && obj && objects[obj->otyp].oc_skill == P_WHIP) {
+			tmp += 5;
 		}
 
 		if (!thrown && obj && obj->oartifact == ART_EVIL_MOTHER_CELINE) {
@@ -4403,6 +4420,10 @@ armorsmashdone:
 
 		if (wep && wep->oartifact == ART_HACKNSLASH) {
 			mon->bleedout += 5;
+			pline("%s is bleeding!", Monnam(mon));
+		}
+		if (wep && wep->oartifact == ART_BLOODLETTER) {
+			mon->bleedout += rnd(12);
 			pline("%s is bleeding!", Monnam(mon));
 		}
 
@@ -10770,6 +10791,18 @@ bladeangerdone2:
 
 				if (uchain && uchain->oartifact == ART_STREEEEEAM && !rn2(20) && (u.dx || u.dy) && !u.dz) {
 					buzz(20, 6, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
+				if (uleft && uleft->oartifact == ART_NARYA && !rn2(20) && (u.dx || u.dy) && !u.dz) {
+					buzz(21, rnd(4), u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
+				if (uright && uright->oartifact == ART_NARYA && !rn2(20) && (u.dx || u.dy) && !u.dz) {
+					buzz(21, rnd(4), u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;
 					if (DEADMONSTER(mon)) return FALSE;
 				}

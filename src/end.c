@@ -1458,6 +1458,39 @@ flotationdone:
 	}
 crudeliverdone:
 
+	if ((uarmh && uarmh->oartifact == ART_HELM_OF_UNDEATH) && how <= GENOCIDED) {
+		pline("But wait...");
+		Your("helmet %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+		pline_The("armor crumbles to dust!");
+		useup(uarmh);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto undeathdone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+undeathdone:
+
 	if ((uwep && uwep->oartifact == ART_STELLARIS_MATERIA) && how <= GENOCIDED) {
 		pline("But wait...");
 		Your("weapon %s!", !Blind ? "begins to glow" : "feels warm");

@@ -7251,6 +7251,13 @@ hitmu(mtmp, mattk)
 
 			}
 
+			if (otmp && otmp->oartifact == ART_CRUCIFIX_OF_THE_MAD_KING && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
+
+				pline("Collusion!");
+				litroomlite(FALSE);
+
+			}
+
 			/* makashi monster lightsaber form - since monsters don't dual-wield, just check for
 			 * 2-handedness and shield */
 			if (otmp && is_lightsaber(otmp) && otmp->lamplit && !bimanual(otmp)) {
@@ -8756,7 +8763,7 @@ dopois:
 
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
+		if (uncancelled && !u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -9084,7 +9091,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -9184,6 +9191,7 @@ dopois:
 
 		if (flags.female && uarm && uarm->oartifact == ART_PRECIOUS_VIRGINITY) break;
 		if (uimplant && uimplant->oartifact == ART_DO_NOT_WANT_SEX) break;
+		if (uwep && uwep->oartifact == ART_FIGURINE_OF_GALATEA) break;
 		if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) break;
 		if (statsavingthrow) break;
 
@@ -12194,7 +12202,7 @@ do_stone2:
 		break;
 	    case AD_STCK:
 	    pline("You are covered with some sticky substance!");
-		if (!u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
+		if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -15910,6 +15918,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	if (uwep && uwep->oartifact == ART_OBVIOUS_AS_FUCK && rn2(4)) return 0;
 
+	if (uarm && uarm->oartifact == ART_ROBE_OF_CLOSED_EYES && rn2(4)) return 0;
+
 	if ((uarmg && itemhasappearance(uarmg, APP_MIRRORED_GLOVES) ) && !rn2(3) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
 		/* cut down on message spam - only display it 1 out of 10 times --Amy */
 		if (!rn2(10)) pline("%s gazes at you, but your mirrored gloves protect you from the effects!", Monnam(mtmp));
@@ -16524,7 +16534,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_STCK:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
 		{ 
-			if (!u.ustuck && !(uwep && uwep->oartifact == ART_FOAMONIA_WATER) && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s gazes to hold you in place!", Monnam(mtmp));
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

@@ -3217,6 +3217,19 @@ find_velvet_pumps()
 }
 
 int
+find_not_slowing_down_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_NOT_SLOWING_DOWN_BOOTS)) return i;
+    }
+
+    impossible("not-slowing-down boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_bladed_disks()
 {
     register int i;

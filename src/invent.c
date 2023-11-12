@@ -28796,6 +28796,272 @@ boolean knoweverything;
 					pline("Artifact specs: autocurses when worn and gives the lisa trap effect, +6 charisma, engraving bug and a chance to resist disenchantment. Yes, this shirt is named after a certain 'Lise', which is a misspelling. Sue me."); break;
 				case ART_KUSE_MUSE:
 					pline("Artifact specs: heavily autocurses when worn and gives double mystery resistance and the klara trap effect. While wearing it, monsters will occasionally be given additional musable items, but don't get your hopes up: you will not get those items by killing the monsters in question. If you happen to be wearing an implant, then while you're also wearing this armor you'll benefit from the stronger effects of your implant."); break;
+				case ART_CLAIDEAMH:
+					pline("Artifact specs: +5 to-hit and double damage to elves and giants, warning when wielded."); break;
+				case ART_NODENSFORK:
+					pline("Artifact specs: +10 to-hit and +10 damage, warning and shock resistance when wielded."); break;
+				case ART_GAIA_S_FATE:
+					pline("Artifact specs: +10 to-hit and +10 damage, warning when wielded."); break;
+				case ART_ATLANTEAN_ROYAL_SWORD:
+					pline("Artifact specs: +3 to-hit and double damage, neutral."); break;
+				case ART_JINJA_NAGINATA:
+					pline("Artifact specs: +4 to-hit and +12 damage, lawful."); break;
+				case ART_SINGING_SWORD:
+					pline("Artifact specs: +1 to-hit and +1 damage, regeneration when wielded."); break;
+				case ART_GREEN_DRAGON_CRESCENT_BLAD:
+					pline("Artifact specs: +1 to-hit and +25 damage, causes the respawn trap effect for 20000 turns and deactivates reflection for 10000 turns when wielded, lawful."); break;
+				case ART_PINK_PANTHER:
+					pline("Artifact specs: trap revealing when wielded."); break;
+				case ART_LIFEHUNT_SCYTHE:
+					pline("Artifact specs: +6 to-hit and +6 damage, stealth and cold resistance when wielded, beheads enemies, chaotic."); break;
+				case ART_HOLY_MOONLIGHT_SWORD:
+					pline("Artifact specs: +12 to-hit and double damage."); break;
+				case ART_BLOODLETTER:
+					pline("Artifact specs: +8 to-hit and +12 bleeding damage."); break;
+				case ART_FALLINGSTAR_MANDIBLES:
+					pline("Artifact specs: +12 to-hit and +12 magic damage."); break;
+				case ART_CALLANDOR:
+					pline("Artifact specs: half spell damage, energy regeneration and spellboost when wielded, lawful."); break;
+				case ART_UNSTOPPABLE:
+					pline("Artifact specs: +12 to-hit and +8 damage, neutral."); break;
+				case ART_EPOCH_S_CURVE:
+					pline("Artifact specs: +5 to-hit and +1 damage, teleport control when wielded, neutral."); break;
+				case ART_CLOAK_OF_THE_UNHELD_ONE:
+					pline("Artifact specs: free action, magic and sleep resistance and rang call effect when worn, neutral."); break;
+				case ART_CLOAK_OF_THE_UNHELD_POTATO:
+					pline("Artifact specs: free action, magic and sleep resistance and rang call effect when worn, neutral."); break;
+				case ART_SOULMIRROR:
+					pline("Artifact specs: reflection and drain resistance when worn, neutral."); break;
+				case ART_SCORPION_CARAPACE:
+					pline("Artifact specs: poison resistance when worn."); break;
+				case ART_GOLDEN_KNIGHT:
+					pline("Artifact specs: +5 strength when worn, neutral."); break;
+				case ART_SEVENLEAGUEBOOTS:
+					pline("Artifact specs: ultra fast speed when worn."); break;
+				case ART_FROST_TREADS:
+					pline("Artifact specs: cold resistance when worn, and the kick is supposed to have +1 to-hit and +8 cold damage."); break;
+				case ART_GRAPPLER_S_GRASP:
+					pline("Artifact specs: +1 to-hit and +6 damage, prevents monsters from grabbing you."); break;
+				case ART_GODHANDS:
+					pline("Artifact specs: +20 to-hit and +10 damage, drain resistance when worn, lawful."); break;
+				case ART_WRAPPINGS_OF_THE_SACRED_FI:
+					pline("Artifact specs: +8 to-hit and double damage."); break;
+				case ART_HELM_OF_UNDEATH:
+					pline("Artifact specs: drain resistance and life saving when worn, chaotic. Unlike dnethack, it does not transform you into a death knight when it saves your life, but it's used up in the process."); break;
+				case ART_APOTHEOSIS_VEIL:
+					pline("Artifact specs: see invisible and drain resistance when worn, and reduces the hunger caused by spellcasting."); break;
+				case ART_ENFORCED_MIND:
+					pline("Artifact specs: sleep and confusion resistance when worn, lawful."); break;
+				case ART_RING_OF_THROR:
+					pline("Artifact specs: aggravate monster and +2 increase damage when worn."); break;
+				case ART_NARYA:
+					pline("Artifact specs: fire resistance when worn, and if you attack something in melee while wielding it, you sometimes blast a bolt of fire in the direction of your attack."); break;
+				case ART_VILYA:
+					pline("Artifact specs: shock resistance, warning, stealth and magical breathing when worn."); break;
+				case ART_LOMYA:
+					pline("Artifact specs: searching, teleportitis and teleport control when worn."); break;
+				case ART_MANTLE_OF_WRATH:
+					pline("Artifact specs: half spell damage, fire and acid resistance and aggravate monster when worn, chaotic."); break;
+				case ART_HEART_OF_SHADOW:
+					pline("Artifact specs: +20 to-hit and +10 fire damage, magic resistance when wielded, chaotic."); break;
+				case ART_SHARD_FROM_MORGOTH_S_CROWN:
+					pline("Artifact specs: magic and shock resistance when worn, chaotic."); break;
+				case ART_INFINITY_S_MIRRORED_ARC:
+					pline("Artifact specs: reflection when wielded, neutral."); break;
+				case ART_STAFF_OF_TWELVE_MIRRORS:
+					pline("Artifact specs: +5 to-hit and +6 damage, reflection and displacement when wielded, neutral."); break;
+				case ART_SESDERIRO:
+					pline("Artifact specs: +5 to-hit and +6 damage, reflection and displacement when wielded, neutral."); break;
+				case ART_MIRRORED_MASK:
+					pline("Artifact specs: reflection and half spell damage when worn, neutral."); break;
+				case ART_SANSARA_MIRROR:
+					pline("Artifact specs: +8 to-hit and +8 damage, reflection and half physical damage when wielded, neutral."); break;
+				case ART_GLELDRERAL:
+					pline("Artifact specs: +8 to-hit and +8 damage, reflection and half physical damage when wielded, neutral."); break;
+				case ART_SPELL_WARDED_WRAPPINGS_OF_:
+					pline("Artifact specs: magic resistance and produces an antimagic shell when worn, neutral."); break;
+				case ART_BLUNGNIR:
+					pline("Artifact specs: +20 to-hit and +12 damage, lawful."); break;
+				case ART_HERMES_S_SANDALS:
+					pline("Artifact specs: very fast speed when worn, neutral."); break;
+				case ART_POSEIDON_S_TRIDENT:
+					pline("Artifact specs: +3 to-hit and double damage, chaotic."); break;
+				case ART_FENG_HUO_LUN:
+					pline("Artifact specs: +1 to-hit and double fire damage, very fast speed, flying and heavy status effects when worn, lawful."); break;
+				case ART_JIN_GANG_ZUO:
+					pline("Artifact specs: fire resistance and protects your inventory from water damage when wielded, neutral."); break;
+				case ART_RUYI_JINGU_BANG:
+					pline("Artifact specs: +1 to-hit and double damage, chaotic."); break;
+				case ART_SICKLE_OF_THUNDERBLASTS:
+					pline("Artifact specs: +1 to-hit and double shock damage, lawful."); break;
+				case ART_WAR_HELM_OF_THE_DREAMING:
+					pline("Artifact specs: magical breathing when worn, chaotic."); break;
+				case ART_SPEAR_OF_PEACE:
+					pline("Artifact specs: half physical and spell damage as well as resistance to stun, confusion and hallucination when wielded, neutral."); break;
+				case ART_IBITE_ARM:
+					pline("Artifact specs: +20 to-hit and double acid damage."); break;
+				case ART_STAR_EMPEROR_S_RING:
+					pline("Artifact specs: occasionally lights up the area around you while you're wearing it."); break;
+				case ART_EYE_OF_THE_ORACLE:
+					pline("Artifact specs: half spell damage and magic resistance when wielded, neutral."); break;
+				case ART_MACUAHUITL_OF_QUETZALCOATL:
+					pline("Artifact specs: +5 to-hit and double damage, beheads enemies, lawful."); break;
+				case ART_MASK_OF_TLALOC:
+					pline("Artifact specs: resistance to cold, shock and magic when worn, waterproofs your inventory and half spell damage but triggering traps causes them to become invisible. Lawful."); break;
+				case ART_EHECAILACOCOZCATL:
+					pline("Artifact specs: energy regeneration and reflection when worn, lawful."); break;
+				case ART_AMHIMITL:
+					pline("Artifact specs: +5 to-hit and +8 fire damage, neutral."); break;
+				case ART_TECPATL_OF_HUHETOTL:
+					pline("Artifact specs: +5 to-hit and +8 damage, drain resistance when wielded, and if you kill something while wielding it, your prayer timeout is reduced a bit. Chaotic."); break;
+				case ART_STAR_OF_HYPERNOTUS:
+					pline("Artifact specs: confusion resistance when worn, neutral."); break;
+				case ART_AVENGER:
+					pline("Artifact specs: +1 to-hit and +7 damage, magic and drain resistance when wielded, lawful."); break;
+				case ART_KEY_OF_EREBOR:
+					pline("Artifact specs: while wielding it, you can climb mountains more easily."); break;
+				case ART_DEATH_SPEAR_OF_KEPTOLO:
+					pline("Artifact specs: +10 to-hit and +12 damage, magic resistance when wielded, neutral."); break;
+				case ART_ESSCOOAHLIPBOOURRR:
+					pline("Artifact specs: +20 to-hit and +10 damage, searching bonus and drain resistance when wielded and causes the heap trap effect, neutral."); break;
+				case ART_ROBE_OF_CLOSED_EYES:
+					pline("Artifact specs: invisibility and makes gaze-using opponents less likely to tag you when worn, neutral."); break;
+				case ART_RED_CORDS_OF_ILMATER:
+					pline("Artifact specs: free action, drain and stone resistance when worn, lawful."); break;
+				case ART_CROWN_OF_THE_PERCIPIENT:
+					pline("Artifact specs: detect monsters and resistances to drain, stone, fire, cold, shock, hallucination, sleep, magic and confusion when worn. This artifact becomes sticky prime cursed when equipped and carries an ancient Morgothian curse. Neutral."); break;
+				case ART_PAINTING_FRAGMENT:
+					pline("Artifact specs: allows you to reverse identify more items than normal."); break;
+				case ART_PROFANED_GREATSCYTHE:
+					pline("Artifact specs: +8 to-hit and +30 fire damage, fire resistance and heavily autocurses when wielded and causes bad alignment trap, non-prayer effect, SOL and ruth trap effect, and monsters with feminism attacks spawn much more often. Lawful."); break;
+				case ART_FRIEDE_S_SCYTHE:
+					pline("Artifact specs: +6 to-hit and +6 magic damage, magic resistance when wielded, lawful."); break;
+				case ART_YORSHKA_S_SPEAR:
+					pline("Artifact specs: +6 strength, dexterity and wisdom when wielded, lawful."); break;
+				case ART_DRAGONHEAD_SHIELD:
+					pline("Artifact specs: cold and disintegration resistance when worn, lawful."); break;
+				case ART_CRUCIFIX_OF_THE_MAD_KING:
+					pline("Artifact specs: +1 to-hit and +10 damage, hitting things with it makes areas dark, neutral."); break;
+				case ART_RINGED_BRASS_ARMOR:
+					pline("Artifact specs: gives 5 extra points of AC, or 10 if you're chaotic. This artifact is also chaotic itself."); break;
+				case ART_RITUAL_RINGED_SPEAR:
+					pline("Artifact specs: double damage, chaotic."); break;
+				case ART_VELKA_S_RAPIER:
+					pline("Artifact specs: +20 to-hit and double magic damage, chaotic."); break;
+				case ART_DRAGON_S_HEART_STONE:
+					pline("Artifact specs: +10 to-hit and double fire damage."); break;
+				case ART_STEEL_SCALES_OF_KURTULMAK:
+					pline("Artifact specs: free action, reflection, fire resistance and half physical damage and slows you down quite a bit when worn, lawful."); break;
+				case ART_GLITTERSTONE:
+					pline("Artifact specs: energy regeneration when wielded, neutral."); break;
+				case ART_GREAT_CLAWS_OF_URDLEN:
+					pline("Artifact specs: +10 to-hit and +10 damage, chaotic."); break;
+				case ART_CHROMATIC_DRAGON_SCALES:
+					pline("Artifact specs: grants resistances to fire, cold, shock, poison, sickness, acid and petrification when worn, heavily autocurses and fills you with the black breath."); break;
+				case ART_EYE_OF_VECNA:
+					pline("Artifact specs: half spell damage when wielded, chaotic."); break;
+				case ART_SHADOWLOCK:
+					pline("Artifact specs: +20 to-hit and double damage, beheads enemies, causes bosses to spawn more frequently, lawful."); break;
+				case ART_RAMITHAINE:
+					pline("Artifact specs: +6 to-hit and +1 damage, beheads enemies, lawful."); break;
+				case ART_THORNS:
+					pline("Artifact specs: +1 to-hit and +10 shock damage, poisons opponents, chaotic."); break;
+				case ART_ARROW_OF_SLAYING:
+					pline("Artifact specs: +20 to-hit and double damage, beheads enemies, lawful."); break;
+				case ART_TRUSTY_ADVENTURER_S_WHIP:
+					pline("Artifact specs: +20 to-hit and +4 damage."); break;
+				case ART_LOG_OF_THE_CURATOR:
+					pline("Artifact specs: magic resistance when wielded."); break;
+				case ART_FEDORA_OF_THE_INVESTIGATOR:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_FORCE_PIKE_OF_THE_RED_GUAR:
+					pline("Artifact specs: +1 to-hit and double magic damage."); break;
+				case ART_GAUNTLETS_OF_THE_BERSERKER:
+					pline("Artifact specs: +5 strength and dexterity as well as +10 constitution when worn."); break;
+				case ART_DECLARATION_OF_THE_APOSTAT:
+					pline("Artifact specs: if you read it, all training in all restricted skills is reset to zero."); break;
+				case ART_SOUL_LENS:
+					pline("Artifact specs: warning when worn."); break;
+				case ART_SEAL_OF_THE_SPIRITS:
+					pline("Artifact specs: reading it trains every skill by a few points."); break;
+				case ART_TORCH_OF_ORIGINS:
+					pline("Artifact specs: +1 to-hit and +5 fire damage, beheads enemies, fire resistance when wielded."); break;
+				case ART_STRIPED_SHIRT_OF_THE_MURDE:
+					pline("Artifact specs: greatly increases your carry capacity and allows you to backstab enemies when worn."); break;
+				case ART_STRIPED_SHIRT_OF_THE_THIEF:
+					pline("Artifact specs: protects you from item theft when worn."); break;
+				case ART_STRIPED_SHIRT_OF_THE_FALSE:
+					pline("Artifact specs: sleep resistance and double discount action when worn."); break;
+				case ART_SCALPEL_OF_LIFE_AND_DEATH:
+					pline("Artifact specs: double damage."); break;
+				case ART_GAUNTLETS_OF_THE_HEALING_H:
+					pline("Artifact specs: double regeneration when worn."); break;
+				case ART_RING_OF_HYGIENE_S_DISCIPLE:
+					pline("Artifact specs: grants intrinsic regeneration when worn, which stacks with the extrinsic regeneration provided by the base item to make you regenerate faster."); break;
+				case ART_COPE_OF_THE_ELDRITCH_KNIGH:
+					pline("Artifact specs: while wearing it, your spells lose memory at half the normal rate."); break;
+				case ART_SHIELD_OF_THE_PALADIN:
+					pline("Artifact specs: magic resistance, warns of undead and demons when worn."); break;
+				case ART_BOOZE_OF_THE_DRUNKEN_MASTE:
+					pline("Artifact specs: quaffing it gives you the drunken boxing intrinsic for 20000 turns."); break;
+				case ART_KHAKKHARA_OF_THE_MONKEY:
+					pline("Artifact specs: +1 to-hit and +1 stun damage, jumping when wielded."); break;
+				case ART_RUFFLED_SHIRT_OF_THE_ARIST:
+					pline("Artifact specs: see invisible, sleep and poison resistance when worn."); break;
+				case ART_VICTORIAN_UNDERWEAR_OF_THE:
+					pline("Artifact specs: double magic find when worn."); break;
+				case ART_MARK_OF_THE_RIGHTFUL_SCION:
+					pline("Artifact specs: warns of orcs when worn."); break;
+				case ART_GAUNTLETS_OF_THE_DIVINE_DI:
+					pline("Artifact specs: 3 extra points of AC when worn."); break;
+				case ART_MACE_OF_THE_EVANGELIST:
+					pline("Artifact specs: +5 to-hit and double damage."); break;
+				case ART_DART_OF_THE_ASSASSIN:
+					pline("Artifact specs: becomes poisoned when thrown."); break;
+				case ART_SWORD_OF_THE_KLEPTOMANIAC:
+					pline("Artifact specs: +5 to-hit and +5 damage, magic resistance when wielded."); break;
+				case ART_HELM_OF_THE_ARCANE_ARCHER:
+					pline("Artifact specs: adds +1 multishot to bows when worn."); break;
+				case ART_FIGURINE_OF_PYGMALION:
+					pline("Artifact specs: petrification resistance when wielded."); break;
+				case ART_FIGURINE_OF_GALATEA:
+					pline("Artifact specs: immunity to foocubus sex attacks when wielded."); break;
+				case ART_HELM_OF_THE_NINJA:
+					pline("Artifact specs: automatically poisons any weapon you wield, as long as it's one that can be poisoned."); break;
+				case ART_TOWEL_OF_THE_INTERSTELLAR_:
+					pline("Artifact specs: cold resistance when worn. If you wield this in your main hand and are dual-wielding with a whip in your other hand, the whip will deal +5 damage."); break;
+				case ART_ENCYCLOPEDIA_GALACTICA:
+					pline("Artifact specs: warning, ESP and acts as a luckstone when wielded."); break;
+				case ART_TWIG_OF_YGGDRASIL:
+					pline("Artifact specs: teleport control when wielded."); break;
+				case ART_SADDLE_OF_BRYNHILDR:
+					pline("Artifact specs: riding a steed who has this saddle allows you to fly, like the valkyries in Norse mythology."); break;
+				case ART_STAFF_OF_WILD_MAGIC:
+					pline("Artifact specs: +20 to-hit and +6 magic damage, searching and acts as a luckstone when wielded."); break;
+				case ART_FORGE_HAMMER_OF_THE_ARTIFI:
+					pline("Artifact specs: +5 to-hit and double damage to undead, double magic find when wielded."); break;
+				case ART_BULWARK_OF_THE_DWARVEN_DEF:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_HAT_OF_THE_GIANT_KILLER:
+					pline("Artifact specs: half physical damage and warning when worn."); break;
+				case ART_PRISMATIC_DRAGON_PLATE:
+					pline("Artifact specs: half physical damage when worn and allows you to train the petkeeping skill much more quickly."); break;
+				case ART_FOOTPRINTS_IN_THE_LABYRINT:
+					pline("Artifact specs: +20 to-hit and +10 damage, spellboost when wielded."); break;
+				case ART_TRAPPINGS_OF_THE_GRAVE:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_BRIGHT_AURORA:
+					pline("Artifact specs: +2 sight range and makes you very fast when worn."); break;
+				case ART_PU_PU:
+					pline("Artifact specs: increases your unarmed damage even more."); break;
+				case ART_GET_THE_OLD_VALUES_BACK:
+					pline("Artifact specs: +3 strength and +3 ranged to-hit when worn."); break;
+				case ART_LIVIN__IT_UP:
+					pline("Artifact specs: doubles your maximum carry cap when worn. Attention: it does not increase your actual carry cap, so don't be surprised if there is no apparent change when you put it on. It's useful only if your actual carry cap would be higher than the maximum."); break;
+				case ART_CUMBERSOME_DESC:
+					pline("Artifact specs: cannot be eroded and provides +2 dexterity as well as one extra point of AC when worn."); break;
+				case ART_ALSO_NOT_INERT:
+					pline("Artifact specs: while wearing them, inertia times out very quickly."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

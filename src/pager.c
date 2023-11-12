@@ -482,6 +482,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data))
 		    ways_seen++;
+		if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mtmp->data))
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mtmp->data->mlet == S_DEMON)
 		    ways_seen++;
 		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
@@ -671,6 +673,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mtmp->data)) {
+			strcat(monbuf, "warned of demons");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mtmp->data)) {
 			strcat(monbuf, "warned of demons");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }

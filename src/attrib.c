@@ -1973,8 +1973,8 @@ change_luck(n)
 {
 	u.uluck += n;
 	if (u.uluck < 0 && u.uluck < LUCKMIN)	u.uluck = LUCKMIN;
-	if (!LuckLoss && !u.uprops[LUCK_LOSS].extrinsic && !have_unluckystone() && u.uluck > 0 && u.uluck > LUCKMAX)	u.uluck = LUCKMAX;
-	if ( (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || have_unluckystone()) && u.uluck > 0 && u.uluck > LUCKMAX) {
+	if (!LuckLoss && !u.uprops[LUCK_LOSS].extrinsic && !autismweaponcheck(ART_PROFANED_GREATSCYTHE) && !have_unluckystone() && u.uluck > 0 && u.uluck > LUCKMAX)	u.uluck = LUCKMAX;
+	if ( (LuckLoss || u.uprops[LUCK_LOSS].extrinsic || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || have_unluckystone()) && u.uluck > 0 && u.uluck > LUCKMAX) {
 		u.uluck = LUCKMIN;
 		You_feel("something turning around..."); /* extra vague message (evil patch idea by jonadab) */
 		u.cnd_luckrollovercount++; /* probably extremely rare, but let's track it anyway... --Amy */
@@ -3106,6 +3106,10 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
+		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_BERSERKER) tmp += 5;
+		if (uwep && uwep->oartifact == ART_YORSHKA_S_SPEAR) tmp += 6;
+		if (uarms && uarms->oartifact == ART_GOLDEN_KNIGHT) tmp += 5;
 		if (uwep && uwep->oartifact == ART_OLYMPIDE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_TITANIC_STRIKE) tmp += 20;
 		if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) tmp += 3;
@@ -3525,6 +3529,7 @@ int x;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
+		if (uarmh && uarmh->oartifact == ART_CUMBERSOME_DESC) tmp += 2;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GREYSHADE) tmp += 5;
@@ -3534,6 +3539,8 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uwep && uwep->oartifact == ART_LONGBONE_OF_BANANA) tmp += 3;
+		if (uwep && uwep->oartifact == ART_YORSHKA_S_SPEAR) tmp += 6;
+		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_BERSERKER) tmp += 5;
 		if (uwep && uwep->oartifact == ART_LONGBOW_OF_BANANA) tmp += 3;
 		if (uarm && uarm->oartifact == ART_SEE_THE_MULCH_STATE) tmp += 3;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
@@ -3614,7 +3621,9 @@ int x;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
+		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_BERSERKER) tmp += 10;
 		if (u.combatcommand) tmp += 1;
+		if (uwep && uwep->oartifact == ART_YORSHKA_S_SPEAR) tmp += 6;
 		if (uarms && uarms->oartifact == ART_VITALITY_STORM) tmp += 8;
 		if (uarms && uarms->oartifact == ART_FETTIS_SLOT) tmp += 3;
 		if (uwep && uwep->oartifact == ART_OGRE_POWER) tmp += 3;

@@ -322,6 +322,7 @@ int thrown;
 
 	    if (uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) multishot++;
 	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot++;
+	    if (uarmh && uarmh->oartifact == ART_HELM_OF_THE_ARCANE_ARCHER && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot++;
 
 	    if (launcher && objects[launcher->otyp].oc_skill == P_FIREARM && !(PlayerCannotUseSkills) && P_SKILL(P_SQUEAKING) >= P_MASTER && P_SKILL(P_GUN_CONTROL) >= P_MASTER && Upolyd) {
 			multishot++;
@@ -1826,6 +1827,8 @@ boolean hitsroof;
 	if (dmg > 0 && bmwride(ART_ZIN_BA)) dmg += 1;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) dmg += 2;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_ETH_ITH) dmg += 3;
+	if (dmg > 0 && uleft && uleft->oartifact == ART_RING_OF_THROR) dmg += 2;
+	if (dmg > 0 && uright && uright->oartifact == ART_RING_OF_THROR) dmg += 2;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -1983,6 +1986,7 @@ int thrown;
 	}
 
 	if (obj && obj->oartifact == ART_TROPICAL_WOOD_SELECTION) obj->opoisoned = 1;
+	if (obj && obj->oartifact == ART_DART_OF_THE_ASSASSIN) obj->opoisoned = 1;
 
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == POISON_BOLT) obj->opoisoned = 1;
 	if (launcher && obj && ammo_and_launcher(obj, launcher) && obj->otyp == CHROME_PELLET) obj->opoisoned = 1;
@@ -2712,6 +2716,7 @@ boolean polearming;
 	if (obj && obj->oartifact == ART_BLOHIT) tmp += 10;
 	if (obj && obj->oartifact == ART_KLUEUEUEU) tmp += 1000;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
+	if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {

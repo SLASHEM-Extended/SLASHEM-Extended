@@ -27637,7 +27637,7 @@ int mndx;
 	if (notuncommonlate > 1000) notuncommonlate = 1000;
 
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -28104,6 +28104,8 @@ loopback:
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_SHAN) )) ct += 8;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_TERR) )) ct += 10;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_FEMI) )) ct += 4;
+		if (ct > 0 && (uwep && uwep->oartifact == ART_PROFANED_GREATSCYTHE && dmgtype(ptr, AD_FEMI) )) ct += 20;
+		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_PROFANED_GREATSCYTHE && dmgtype(ptr, AD_FEMI) )) ct += 20;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_LEVI) )) ct += 7;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_MCRE) )) ct += 5;
 		if (ct > 0 && (In_illusorycastle(&u.uz) && dmgtype(ptr, AD_DEBU) )) ct += 5;
@@ -29403,7 +29405,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Race_if(PM_PLAYER_DYNAMO) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Race_if(PM_PLAYER_DYNAMO) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -29719,6 +29721,8 @@ int     spc;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_SHAN) )) num += 8;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_TERR) )) num += 10;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_FEMI) )) num += 4;
+		if ((uwep && uwep->oartifact == ART_PROFANED_GREATSCYTHE && dmgtype(&mons[last], AD_FEMI) )) num += 20;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_PROFANED_GREATSCYTHE && dmgtype(&mons[last], AD_FEMI) )) num += 20;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_LEVI) )) num += 7;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_MCRE) )) num += 5;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[last], AD_DEBU) )) num += 5;
@@ -30953,6 +30957,8 @@ int     spc;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_SHAN) )) num -= 8;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_TERR) )) num -= 10;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_FEMI) )) num -= 4;
+		if ((uwep && uwep->oartifact == ART_PROFANED_GREATSCYTHE && dmgtype(&mons[first], AD_FEMI) )) num -= 20;
+		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_PROFANED_GREATSCYTHE && dmgtype(&mons[first], AD_FEMI) )) num -= 20;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_LEVI) )) num -= 7;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_MCRE) )) num -= 5;
 		if ((In_illusorycastle(&u.uz) && dmgtype(&mons[first], AD_DEBU) )) num -= 5;

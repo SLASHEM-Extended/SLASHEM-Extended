@@ -2003,6 +2003,7 @@ burnagain:
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_CUMBERSOME_DESC ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_GOODRES_ELVEN ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
 
@@ -2139,6 +2140,7 @@ struct monst *victim;
 	if (itemhasappearance(otmp, APP_IMAGINARY_HEELS) ) vulnerable = FALSE;
 
 	if (otmp->oartifact == ART_SARTIRO ) vulnerable = FALSE;
+	if (otmp->oartifact == ART_CUMBERSOME_DESC ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_GOODRES_ELVEN ) vulnerable = FALSE;
 	if (otmp->oartifact == ART_PARTICULARLY_SOLID_SKULL ) vulnerable = FALSE;
 
@@ -3856,7 +3858,7 @@ unsigned trflags;
 	if (!is_nasty_trap(ttype) && ttype != AUTOMATIC_SWITCHER && ttype != ACTIVE_SUPERSCROLLER_TRAP && ttype != PET_TRAP && ttype != SPREADING_TRAP && ttype != ADJACENT_TRAP && ttype != SUPERTHING_TRAP && ttype != ONLY_TRAP && ttype != NTLL_TRAP && ttype != LOUDSPEAKER && ttype != ARABELLA_SPEAKER && ttype != KOP_CUBE && ttype != BOSS_SPAWNER)
 		nomul(0, 0, FALSE);
 
-	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() ) {
+	if (NownsibleEffect || u.uprops[NOWNSIBLE_EFFECT].extrinsic || have_nownsiblestone() || (uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) ) {
 		trap->tseen = 0;
 		trap->hiddentrap = 1;
 	/* dissidents want to uncover the evil plans of the government, and that includes the nasty traps they set up :P
@@ -24360,6 +24362,7 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_CUMBERSOME_DESC ) continue;
 		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
 
@@ -24381,6 +24384,8 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) continue;
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_JIN_GANG_ZUO) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_ALWAYS_IN_IT) continue;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_GO_UNDER_OR_UP) continue;
 		if ((obj->where != OBJ_FLOOR) && u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) continue;
@@ -24765,6 +24770,7 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_CUMBERSOME_DESC ) continue;
 		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
 
@@ -24842,6 +24848,7 @@ register boolean force, here;
 		if (itemhasappearance(obj, APP_IMAGINARY_HEELS) ) continue;
 
 		if (obj->oartifact == ART_SARTIRO ) continue;
+		if (obj->oartifact == ART_CUMBERSOME_DESC ) continue;
 		if (obj->oartifact == ART_GOODRES_ELVEN ) continue;
 		if (obj->oartifact == ART_PARTICULARLY_SOLID_SKULL ) continue;
 
