@@ -4910,7 +4910,7 @@ arti_invoke(obj)
 		if (!u.ataruinvoked && !exist_artifact(ETERNIUM_BLADE, artiname(ART_ATARU_TWO))) {
 			register struct obj *trophy;
 			u.ataruinvoked = TRUE;
-			trophy = mksobj(ETERNIUM_BLADE, FALSE, FALSE, FALSE);
+			trophy = mksobj(ETERNIUM_BLADE, TRUE, FALSE, FALSE);
 			if (trophy) {
 				trophy = oname(trophy, artiname(ART_ATARU_TWO));
 				dropy(trophy);
@@ -4924,7 +4924,7 @@ arti_invoke(obj)
 		if (!u.ataratarinvoked) {
 			register struct obj *trophy;
 			u.ataratarinvoked = TRUE;
-			trophy = mksobj(GREEN_LIGHTSABER, FALSE, FALSE, FALSE);
+			trophy = mksobj(GREEN_LIGHTSABER, TRUE, FALSE, FALSE);
 			if (trophy) {
 				trophy = onameX(trophy, artiname(ART_ATAR_ATAR));
 				dropy(trophy);
@@ -4938,7 +4938,7 @@ arti_invoke(obj)
 		if (!u.ataruinvoked && !exist_artifact(CRYSTAL_SWORD, artiname(ART_ATARU_ONE))) {
 			register struct obj *trophy;
 			u.ataruinvoked = TRUE;
-			trophy = mksobj(CRYSTAL_SWORD, FALSE, FALSE, FALSE);
+			trophy = mksobj(CRYSTAL_SWORD, TRUE, FALSE, FALSE);
 			if (trophy) {
 				trophy = oname(trophy, artiname(ART_ATARU_ONE));
 				dropy(trophy);
@@ -5198,7 +5198,7 @@ chargingchoice:
 			obj->hvycurse = TRUE;
 			obj->spe = -5;
 
-			otmp = mksobj(artilist[ART_HAVING_HAMMA].otyp, FALSE, FALSE, FALSE);
+			otmp = mksobj(artilist[ART_HAVING_HAMMA].otyp, TRUE, FALSE, FALSE);
 
 			if (otmp) {
 
