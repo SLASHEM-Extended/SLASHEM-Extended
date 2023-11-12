@@ -29062,6 +29062,84 @@ boolean knoweverything;
 					pline("Artifact specs: cannot be eroded and provides +2 dexterity as well as one extra point of AC when worn."); break;
 				case ART_ALSO_NOT_INERT:
 					pline("Artifact specs: while wearing them, inertia times out very quickly."); break;
+				case ART_TRIANGLE_GIRL:
+					pline("Artifact specs: if you're a female character with an experience level of 9 or lower, you get a huge increase to your carry capacity and +2 charisma as well as resistance to theft from wearing this. If you're any other character, you only get a slight increase to your carry capacity and none of the other benefits."); break;
+				case ART_COOL_MUG:
+					pline("Artifact specs: quaffing it makes you resistant to cold and fire for a good long while."); break;
+				case ART_MOST_HAIR_RAISING_COFFEE_B:
+					pline("Artifact specs: makes you invulnerable for 20 turns but also causes a lot of monsters to spawn for a while! This item cannot be wished for."); break;
+				case ART_SEEYOU_HON:
+					pline("Artifact specs: automatically identifies the potion it turns into."); break;
+				case ART_KODO_BANGO:
+					pline("Artifact specs: ansho bango no suji o oshiete kuremasu. (Yeah, hopefully you understand Japanese, otherwise you won't know what that means.)"); break;
+				case ART_MAKE_YOU_ACTUALLY_HIDDEN:
+					pline("Artifact specs: causes you to hide when quaffed, which is incredibly useful especially since you probably only have one of this potion."); break;
+				case ART_HUGGINGVALK:
+					pline("Artifact specs: summons a pet valkyrie when quaffed."); break;
+				case ART_PORTA_SHAFT:
+					pline("Artifact specs: sends you down many levels when quaffed, but beware, that only works if it's actually possible to go down from where you are."); break;
+				case ART_PLUS_ONE_LINE:
+					pline("Artifact specs: increases your maximum HP by one when quaffed."); break;
+				case ART_PLUS_TWO_LINES:
+					pline("Artifact specs: increases your maximum HP by two when quaffed."); break;
+				case ART_FULL_RECOVERY:
+					pline("Artifact specs: heals you back to full HP and gives several covid-19 shots when quaffed."); break;
+				case ART_OPACITY:
+					pline("Artifact specs: lasts for much longer, but also disables invisibility for a while when quaffed."); break;
+				case ART_ELONA_GREETING:
+					pline("Artifact specs: quaffing it additionally gives temporary resistances to death and psi as well as free action."); break;
+				case ART_PREGNANCY_ABORT:
+					pline("Artifact specs: reduces your contamination by 1000 when quaffed."); break;
+				case ART_RESTWELL:
+					pline("Artifact specs: cures sickness when quaffed."); break;
+				case ART_HUCK______:
+					pline("Artifact specs: tastes so repulsive that quaffing it makes you nauseated."); break;
+				case ART_ENERGIZER_DRINK:
+					pline("Artifact specs: gives temporary full nutrients when quaffed."); break;
+				case ART_FLUSH_PARTICLES_OUT:
+					pline("Artifact specs: reduces your sanity by 1000 when quaffed."); break;
+				case ART_TAMANA_S_SECRET_DRINK:
+					pline("Artifact specs: increases your damage output when quaffed, *permanently*. Because that is incredibly powerful, this item cannot be wished for."); break;
+				case ART_BURONDO_NO_ON_NANOKO_NO_HI:
+					pline("Artifact specs: gives a permanent +1 increase accuracy when quaffed. This item cannot be wished for."); break;
+				case ART_CODED_HEROISM:
+					pline("Artifact specs: gives temporary confusion resistance and boosts your strength when quaffed."); break;
+				case ART_ANATA_WA_SHISHIDESU_KA_:
+					pline("Artifact specs: greatly increases your maximum health, but you become DOOMED if you quaff it."); break;
+				case ART_LAWFIGHT:
+					pline("Artifact specs: summons a bunch of liches when read."); break;
+				case ART_BE_CAREFUL__THERE_EVERYWHE:
+					pline("Artifact specs: summons many more monsters than normal."); break;
+				case ART_KUROI_FUKEI_WA_KORYOTO_SHI:
+					pline("Artifact specs: causes much more terrain altering than normal."); break;
+				case ART_FUCK_YOU_DUDE_:
+					pline("Artifact specs: reading it erases all monsters on the current dungeon level who cannot be genocided. This item cannot be wished for because that would be too easy."); break;
+				case ART_OH__WHILE_WE_RE_AT_IT___:
+					pline("Artifact specs: restores all mana when read."); break;
+				case ART_FUYO_NO_WANDARANDO:
+					pline("Artifact specs: covers the entire level in ice when read."); break;
+				case ART_FUFUFUFUFU__KEKEKEKEKE___:
+					pline("Artifact specs: creates additional traps when read."); break;
+				case ART_CLONESCROLL_OF_NO_USE:
+					pline("Artifact specs: no special effect."); break;
+				case ART_BITCHES_TO_YOU_ESE:
+					pline("Artifact specs: cures all feminism trap effects when read."); break;
+				case ART_PITCH_HAD_:
+					pline("Artifact specs: haha, now you had pitch."); break;
+				case ART_HIJO_NI_HAYAI_WARUI:
+					pline("Artifact specs: causes a bunch of random bad effects when read."); break;
+				case ART_HIE_HUEHEI_FLUEMEI_SGLWLN:
+					pline("Artifact specs: +12 damage, half physical damage and regeneration but also long-lasting heavy confusion when wielded."); break;
+				case ART_DNETHACKC_NOONISHNESS:
+					pline("Artifact specs: makes it much more likely for you to find interesting items but also activates some screwery to annoy you. This shield becomes heavily sticky cursed when equipped!"); break;
+				case ART_NOZZLE_CHANGE:
+					pline("Artifact specs: poisons ammos you fire from it, but you cannot manually set the mode of fire; instead, the mode changes after each salvo you fire."); break;
+				case ART_DOES_THE_STECKING_DOSE_GO_:
+					pline("Artifact specs: +5 to-hit and +2 stun damage, and while wielding it, its enchantment value may randomly go up or down every once in a while."); break;
+				case ART_HALT_SHAMAN:
+					pline("Artifact specs: +3 to-hit and +8 damage, spellboost when wielded."); break;
+				case ART_MAGYAR_IDEA:
+					pline("Artifact specs: +4 to-hit and +20 fire damage, killer spawn effect, autocurses and every time you wield it, your contamination and sanity will increase by 100."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

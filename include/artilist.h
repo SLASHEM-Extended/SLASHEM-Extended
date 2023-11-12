@@ -16991,6 +16991,162 @@ A("Also Not Inert",				SPEED_HOLDING_BOOTS, /* inertia times out very quickly */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Triangle Girl",				MESH_ARMOR, /* +1000 carry capacity and max carry cap, and if you're a female character of XL9 or lower you'll get an additional +4000 to both and +2 CHA plus protection from theft */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Cool Mug",				POT_WINE, /* quaffing gives +10000 turns of fire and cold resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Most Hair-Raising Coffee Break Of All Time",				POT_COFFEE, /* +20 turns of invulnerability, gives you the respawn trap and verisiert trap effects for 2000 turns */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Seeyou,hon",				POT_WONDER, /* auto-identifies the potion it becomes */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Kodo Bango",				POT_TERCES_DLU, /* gives a digit of the secret code when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Make You Actually Hidden",				POT_HIDING, /* causes you to hide if quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Huggingvalk",				POT_DECOY_MAKING, /* summons a tame valkyrie when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Porta-Shaft",				POT_DOWN_LEVEL, /* sends you down like a shaft when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Plus One Line",				POT_CURE_WOUNDS, /* +1 max HP when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Plus Two Lines",				POT_CURE_SERIOUS_WOUNDS, /* +2 max HP when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Full Recovery",				POT_CURE_CRITICAL_WOUNDS, /* heals you back to full and gives 5 anti-corona effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Opacity",				POT_NIGHT_VISION, /* lasts 10x as long but also deactivates invisibility for 10k turns when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Elona Greeting",				POT_RESISTANCE, /* also gives temporary resistances to psi and death as well as free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Pregnancy Abort",				POT_POISON, /* heals 1000 points of contamination when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Restwell",				POT_RED_TEA, /* cures sickness when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Huck - ...",				POT_OOLONG_TEA, /* induces vomiting when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Energizer Drink",				POT_COCOA, /* also grants temporary full nutrients when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Flush Particles Out",				POT_GREEN_MATE, /* reduces sanity by 1000 when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Tamana's Secret Drink",				POT_TERERE, /* permanent +1 increase damage when quaffed */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Burondo no on'nanoko no himitsu no nimotsu",				POT_AOJIRU, /* permanent +1 increase accuracy when quaffed */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30000L ),
+
+A("Coded Heroism",				POT_ULTIMATE_TSUYOSHI_SPECIAL, /* gainstr(10) and 5000 turns of resist confusion when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Anata wa shishidesu ka?",				POT_MEHOHO_BURUSASAN_G, /* +100 max HP and 50000 turns of cursed/doomed when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lawfight",				SCR_COPYING, /* summons 8 random L around you when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Be careful. There everywhere.",				SCR_CREATE_VICTIM, /* summons rn1(25,25) additional monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Kuroi fukei wa koryoto shite iru",				SCR_CREATE_FACILITY, /* creates 10x as much terrain */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fuck You Dude!",				SCR_ERASURE, /* erases all monsters on the level who aren't ungenocidable */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Oh, while we're at it...",				SCR_POWER_HEALING, /* also restores all mana */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fuyo No Wandarando",				SCR_FROST, /* creates 100x as much ice terrain */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fufufufufu, kekekekeke...",				SCR_CREATE_TRAP, /* also creates 20 random traps on the current level when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Clonescroll of no use",				SCR_CREATE_SINK, /* doesn't do anything special */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Bitches to you ese",				SCR_SYMMETRY, /* cures all feminism trap effects when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Pitch had.",				SCR_CREATE_CREATE_SCROLL, /* +1000 turns of nastiness upon generation */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Hijo Ni Hayai Warui",				SCR_DESTROY_WEAPON, /* causes 5 bad effects when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("hie huehei fluemei sglwln",				BREAKING_WHEEL, /* 5000 turns of heavy confusion when wielded */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("dnethackc noonishness",				SMALL_SHIELD, /* randart2 shield, heavy sticky autocurse, dnethack cloak effect, x-race RNG changes, double magic find and adds extra chances of finding artifacts on top of that */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Nozzle Change",				LEAD_UNLOADER, /* fire mode changes after each salvo and cannot be set manually, poisons ammos */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Does the stecking dose go?",				STEEL_KNIFE, /* 1 in 1000 that its enchantment randomly goes up or down by one, with limits of +7 ... -20 */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	STUN(5, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Halt Shaman",				FLOWING_SWORD, /* spellboost */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Magyar Idea",				BULLWHIP, /* randart2 whip, killer spawn effect, autocurses and increases contamination and sanity by 100 every time you wield it */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(4, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

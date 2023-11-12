@@ -654,6 +654,7 @@ init_randarts()
 	artilist[ART_GAUNTLETS_OF_YIN_AND_YANG].otyp = randartglovesX();
 	artilist[ART_DIMVISION].otyp = randartglovesX();
 	artilist[ART_I_M_GETTING_HUNGRY].otyp = randartshieldX();
+	artilist[ART_DNETHACKC_NOONISHNESS].otyp = randartshieldX();
 	artilist[ART_SHIELD_OF_THE_PALADIN].otyp = randartshieldX();
 	artilist[ART_PROTECTION_SET].otyp = randartshieldX();
 	artilist[ART_ALTERNATE_SPELLWEAVE].otyp = randartshieldX();
@@ -847,6 +848,7 @@ init_randarts()
 	artilist[ART_SWORD_OF_THE_KLEPTOMANIAC].otyp = randartshortswordX();
 	artilist[ART_ASHIKAGA_S_REVENGE].otyp = randarttwohandedswordX();
 	artilist[ART_TSCHAPSNAP].otyp = randartwhipX();
+	artilist[ART_MAGYAR_IDEA].otyp = randartwhipX();
 	artilist[ART_TRUSTY_ADVENTURER_S_WHIP].otyp = randartwhipX();
 	artilist[ART_NEEDLESSLY_MEAN].otyp = randartwhipX();
 	artilist[ART_MOUNT_BOND].otyp = randartsaddleX();
