@@ -29140,6 +29140,42 @@ boolean knoweverything;
 					pline("Artifact specs: +3 to-hit and +8 damage, spellboost when wielded."); break;
 				case ART_MAGYAR_IDEA:
 					pline("Artifact specs: +4 to-hit and +20 fire damage, killer spawn effect, autocurses and every time you wield it, your contamination and sanity will increase by 100."); break;
+				case ART_DRAINING_ARROW:
+					pline("Artifact specs: fires an invisible beam that will permanently lower the hit points of monsters by one, and they cannot resist that effect. This happens in addition to the magic missile."); break;
+				case ART_REAL_FORCE:
+					pline("Artifact specs: can be invoked to get a target cursor, which you can move over a monster to instantly deal a bunch of damage to it, like the psycho force technique."); break;
+				case ART_KRISTIN_S_SACHTNESS:
+					pline("Artifact specs: half physical damage and acid resistance when worn, deals acid damage to monsters who hit you in melee."); break;
+				case ART_LISA_S_YELLOW_STRIPE:
+					pline("Artifact specs: acid immunity when worn."); break;
+				case ART_LEXI_S_POWERKICK:
+					pline("Artifact specs: +5 kick damage and +5 constitution when worn."); break;
+				case ART_TANJA_S_MARTIAL_PROWESS:
+					pline("Artifact specs: has a small chance (higher with better martial arts skill, and zero if you're unskilled in that) of paralyzing enemies with a kick, ignoring resistances."); break;
+				case ART_BRIGHT_WHITE:
+					pline("Artifact specs: cold immunity and dark mode when worn, can blind monsters who hit you in melee but they get a saving throw."); break;
+				case ART_JUEN_S_WEAKNESS:
+					pline("Artifact specs: +5 kick damage, +5 charisma, super regene, kristina trap effect and bad alignment when worn."); break;
+				case ART_UTE_S_GREENCHANGE:
+					pline("Artifact specs: while wearing them, you can move over farmland and are immune to poison instadeaths. They can be invoked to gain a magical property; if they already have one, doing so replaces the current property."); break;
+				case ART_FIGHTBOOST:
+					pline("Artifact specs: +5 kick damage and makes you very fast when worn."); break;
+				case ART_ENERGEEN_S:
+					pline("Artifact specs: grants fast speed when worn and occasionally makes you even faster."); break;
+				case ART_GIORDANA_S_RADIANCE:
+					pline("Artifact specs: +2 sight range when worn."); break;
+				case ART_MEASURER_TIP:
+					pline("Artifact specs: kicking a monster with them deals bleeding damage proportional to your knife skill, and also trains that on a hit."); break;
+				case ART_NAQ_QEH:
+					pline("Artifact specs: +3 charisma and autocurses when worn."); break;
+				case ART_IRIS_S_HIDDEN_ALLERGY:
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+				case ART_IRIS_S_SECRET_VULNERABILIT:
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+				case ART_IRIS_S_UNREVEALED_LOVE:
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+				case ART_IRIS_S_FAVORED_MATERIAL:
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

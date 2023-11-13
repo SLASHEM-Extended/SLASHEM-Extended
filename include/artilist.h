@@ -17147,6 +17147,86 @@ A("The Magyar Idea",				BULLWHIP, /* randart2 whip, killer spawn effect, autocur
 	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	FIRE(4, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Draining Arrow",				WAN_MAGIC_MISSILE, /* fires an invisible beam that takes off a maximum hit point of every monster that got hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Real Force",				REGULAR_GLOVES, /* randart gauntlets, invoke for psycho blast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Kristin's Sachtness",				SOFT_SNEAKERS, /* d4 passive acid damage to things meleeing you */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Lisa's Yellow Stripe",				SOFT_SNEAKERS, /* acid immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Lexi's Powerkick",				SOFT_SNEAKERS, /* +5 kick damage, +5 CON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Tanja's Martial Prowess",				SOFT_SNEAKERS, /* 1% per martial arts skill that a kick paralyzes the monster for (1 + martial arts skill level) turns, and monsters cannot resist that effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Bright White",				DANCING_SHOES, /* cold immunity, dark mode effect, monsters who melee you must make a saving throw or be blinded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Juen's Weakness",				LEATHER_PEEP_TOES, /* kristina trap effect, +5 kick damage, bad alignment, super regene and +5 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Ute's Greenchange",				LEATHER_PEEP_TOES, /* invoke gives them an item property or replaces the existing one, you can move over farmland and poison cannot instakill you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fightboost",				COMBAT_STILETTOS, /* +5 kick damage, very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Energeen's",				COMBAT_STILETTOS, /* fast speed, adds extra speed sometimes */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Giordana's Radiance",				ITALIAN_HEELS, /* +2 sight range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Measurer Tip",				ITALIAN_HEELS, /* kicking deals +d(3 * knife skill) bleeding damage and trains the knife skill */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("naQ QeH",				HELM_OF_MADNESS, /* +3 CHA, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Iris's Hidden Allergy",				LOW_BOOTS, /* initialized to always be silver filigreed stilettos */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+/* each of these four iris artifacts makes it so that you're vulnerable to silver and for every worn silver item, you get
+ * 3 extra AC, 10% reduced paralysis duration, 1% more spell memory when casting a spell, 5% reduced technique timeout
+ * and 10% chance that training a skill trains it twice as much. */
+
+A("Iris's Secret Vulnerability",				STANDARD_HELMET, /* initialized to always be echo helmet */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Iris's Unrevealed Love",				LEATHER_CLOAK, /* initialized to always be demonic cloak */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Iris's Favored Material",				REGULAR_GLOVES, /* initialized to always be spiky gloves */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+/* if you're wearing several of these Iris artifacts, which is almost impossible unless you wish for them, you get:
+ * 2 artifacts - double reflection
+ * 3 artifacts - double magic resistance
+ * 4 artifacts - double astral vision
+ * take note that this does not include the "Iris's Precious Metal" artifact, this is by design --Amy */
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

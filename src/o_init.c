@@ -2383,6 +2383,19 @@ find_bull_helmet()
 }
 
 int
+find_echo_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ECHO_HELMET)) return i;
+    }
+
+    impossible("echo helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_irregular_boots()
 {
     register int i;
@@ -2435,6 +2448,19 @@ find_ghostly_cloak()
 }
 
 int
+find_demonic_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DEMONIC_CLOAK)) return i;
+    }
+
+    impossible("demonic cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_polnish_gloves()
 {
     register int i;
@@ -2444,6 +2470,19 @@ find_polnish_gloves()
     }
 
     impossible("polnish gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_spiky_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SPIKY_GLOVES)) return i;
+    }
+
+    impossible("spiky gloves not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -4189,6 +4228,20 @@ find_filigree_stilettos()
     }
 
     impossible("filigree stilettos not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_silver_stilettos()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SILVER_STILETTOS)) return i;
+    }
+
+    impossible("silver stilettos not found?");
     return -1;	/* not 0, or caller would try again each move */
 
 }

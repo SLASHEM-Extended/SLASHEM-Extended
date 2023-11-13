@@ -314,6 +314,7 @@ init_randarts()
 	artilist[ART_THA_WALL].otyp = randartsuit();
 	artilist[ART_LLLLLLLLLLLLLM].otyp = randarthelm();
 	artilist[ART_SPELLSNIPE].otyp = randartgloves();
+	artilist[ART_REAL_FORCE].otyp = randartgloves();
 	artilist[ART_RED_CORDS_OF_ILMATER].otyp = randartgloves();
 	artilist[ART_MELUGAS_ROCKET].otyp = randartgloves();
 	artilist[ART_ARABELLA_S_GREAT_BANISHER].otyp = randartgloves();
@@ -946,6 +947,11 @@ init_appearance_randarts()
 	artilist[ART_SOFT_ON_THE_CLOUD].otyp = find_sister_shoes();
 	artilist[ART_WIDEFORCE_GRIP].otyp = find_hooked_gloves();
 	artilist[ART_HEME_FLOW].otyp = find_bladed_disks();
+
+	artilist[ART_IRIS_S_HIDDEN_ALLERGY].otyp = find_silver_stilettos();
+	artilist[ART_IRIS_S_SECRET_VULNERABILIT].otyp = find_echo_helmet();
+	artilist[ART_IRIS_S_UNREVEALED_LOVE].otyp = find_demonic_cloak();
+	artilist[ART_IRIS_S_FAVORED_MATERIAL].otyp = find_spiky_gloves();
 
 	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_GIVE_US_TODAY_OUR_DAILY_GA].otyp = find_bamboo_cloak();
