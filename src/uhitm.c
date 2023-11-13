@@ -2389,26 +2389,6 @@ int dieroll;
 		/* not gonna do that stupidity (sorry) where everything unconditionally misses 25%. --Amy 
 		 * All that we want is to periodically remind the player that they aren't using their weapon correctly. */
 
-		    if (!thrown && (obj == uwep || obj == uswapwep) && 
-				(obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && (rnl(4) != 3) ) {
-			boolean more_than_1 = (obj->quan > 1L);
-
-			pline("As you hit %s, %s%s %s breaks into splinters.",
-			      mon_nam(mon), more_than_1 ? "one of " : "",
-			      shk_your(yourbuf, obj), xname(obj));
-			if (!more_than_1) {
-			    if (obj == uwep)
-				uwepgone();   /* set unweapon */
-			    else
-				setuswapwep((struct obj *)0, FALSE);
-			}
-			useup(obj);
-			if (!more_than_1) obj = (struct obj *) 0;
-			hittxt = TRUE;
-			if (!is_shade(mdat) && !(mon->egotype_shader))
-			    tmp++;
-		   }
-
 			/* Slings were more powerful in melee than war hammers, which clearly wasn't intended. --Amy */
 
 			if (rn2(3)) {
@@ -2462,6 +2442,26 @@ int dieroll;
 				tmp += rnd(10);
 				odorobj = TRUE;
 			}
+
+		    if (!thrown && (obj == uwep || obj == uswapwep) && 
+				(obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && (rnl(4) != 3) ) {
+			boolean more_than_1 = (obj->quan > 1L);
+
+			pline("As you hit %s, %s%s %s breaks into splinters.",
+			      mon_nam(mon), more_than_1 ? "one of " : "",
+			      shk_your(yourbuf, obj), xname(obj));
+			if (!more_than_1) {
+			    if (obj == uwep)
+				uwepgone();   /* set unweapon */
+			    else
+				setuswapwep((struct obj *)0, FALSE);
+			}
+			useup(obj);
+			if (!more_than_1) obj = (struct obj *) 0;
+			hittxt = TRUE;
+			if (!is_shade(mdat) && !(mon->egotype_shader))
+			    tmp++;
+		   }
 
 		} else {
 		    tmp = dmgvalX(obj, mon);
