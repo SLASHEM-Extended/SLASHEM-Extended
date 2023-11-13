@@ -265,6 +265,18 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		pline("Careful, the lord has noticed your deed.");
 	}
 
+	if (uwep && uwep->oartifact == ART_HIE_HUEHEI_FLUEMEI_SGLWLN) {
+		if (HConfusion < 5000) HConfusion = 5000;
+		set_itimeout(&HeavyConfusion, HConfusion);
+	}
+
+	if (uwep && uwep->oartifact == ART_MAGYAR_IDEA) {
+		curse(uwep);
+		contaminate(100, TRUE);
+		increasesanity(100);
+		pline_The("magyars had an idea.");
+	}
+
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -527,6 +539,18 @@ swapweaponchoice:
 			curse(uswapwep);
 			uswapwep->hvycurse = 1;
 			pline("A terrible black aura surrounds your sickle...");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_MAGYAR_IDEA) {
+			curse(uwep);
+			contaminate(100, TRUE);
+			increasesanity(100);
+			pline_The("magyars had an idea.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_HIE_HUEHEI_FLUEMEI_SGLWLN) {
+			if (HConfusion < 5000) HConfusion = 5000;
+			set_itimeout(&HeavyConfusion, HConfusion);
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_PROFANED_GREATSCYTHE && !uswapwep->hvycurse) {

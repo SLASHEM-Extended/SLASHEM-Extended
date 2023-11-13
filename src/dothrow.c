@@ -823,6 +823,12 @@ newbossO:
 
 	if (launcher && launcher->oartifact == ART_TSCHUEUU) youmonst.movement += 6;
 
+	if (launcher && launcher->oartifact == ART_NOZZLE_CHANGE) {
+		if (launcher->altmode == WP_MODE_AUTO) launcher->altmode = WP_MODE_SINGLE;
+		else launcher->altmode = WP_MODE_AUTO;
+
+	}
+
 	if (launcher && launcher->oartifact == ART_SPEW_THE_BOW) {
 		buzz(10, rnd(4), u.ux, u.uy, u.dx, u.dy);
 	}
@@ -1981,6 +1987,9 @@ int thrown;
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
 		obj->opoisoned = 1;
 
+	if (launcher && launcher->oartifact == ART_NOZZLE_CHANGE && ammo_and_launcher(obj, launcher))
+		obj->opoisoned = 1; /* even if it cannot be poisoned, this is not a bug --Amy */
+
 	if (uarmf && uarmf->oartifact == ART_DOUBTLY_POISON && is_poisonable(obj)) {
 		obj->opoisoned = obj->superpoison = 1;
 	}
@@ -2798,7 +2807,8 @@ boolean polearming;
 	/* shooters that have innate to-hit penalty for the player go here; if you're dual-wielding two launchers
 	 * that use the same type of ammo, and the secondary one has such a penalty, it's supposed to be much higher
 	 * than if it was the primary launcher, for balance purposes, since otherwise dual-wielding assault rifles
-	 * would be far better in every way than a heavy MG! --Amy */
+	 * would be far better in every way than a heavy MG! --Amy
+	 * annoyingly, nozzle change (artifact lead unloader) has already changed its fire mode at this point... */
 
 inaccurateguns:
 	if (launcher && launcher->otyp == HYDRA_BOW) tmp -= rnd(8);
@@ -2809,6 +2819,7 @@ inaccurateguns:
 	}
 	if (launcher && launcher->otyp == SUBMACHINE_GUN && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(6);
 	if (launcher && launcher->otyp == LEAD_UNLOADER && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(6);
+	if (launcher && launcher->oartifact == ART_NOZZLE_CHANGE && launcher->altmode == WP_MODE_SINGLE) tmp -= rnd(6);
 	if (launcher && launcher->otyp == AUTO_SHOTGUN && launcher->altmode == WP_MODE_AUTO) tmp -= rnd(8);
 	if (launcher && launcher->otyp == POWER_CROSSBOW) tmp -= rnd(8);
 	if (launcher && launcher->otyp == PILE_BUNKER) tmp -= rnd(4);

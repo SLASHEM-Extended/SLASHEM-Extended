@@ -3227,6 +3227,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
 		if (uarm && uarm->oartifact == ART_TOWNIE_DUMP) tmp += 5;
 		if (uamul && uamul->oartifact == ART_DIEAMEND) tmp += 2;
+		if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LEATHER_PUMPS_OF_HORROR) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) tmp += (5 + uarmf->spe);

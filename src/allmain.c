@@ -3065,7 +3065,7 @@ moveloop()
 			u.yawmtime++;
 		}
 
-		if ((KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || have_killerroomstone()) && !rn2(2000)) {
+		if ((KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(2000)) {
 			int killerroomtype = rnd(27);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 
@@ -7169,6 +7169,14 @@ newbossJANI:
 		if (autismweaponcheck(ART_GREEN_DRAGON_CRESCENT_BLAD)) {
 			if (RespawnProblem < 20000) RespawnProblem = 20000;
 			if (u.uprops[DEAC_REFLECTING].intrinsic < 10000) u.uprops[DEAC_REFLECTING].intrinsic = 10000;
+		}
+
+		if (uwep && uwep->oartifact == ART_DOES_THE_STECKING_DOSE_GO_ && !rn2(1000)) {
+			if (rn2(2)) {
+				if (uwep->spe > -20) uwep->spe--;
+			} else {
+				if (uwep->spe < 7) uwep->spe++;
+			}
 		}
 
 		if (Race_if(PM_BULDOZGAR) && !rn2(100)) wake_nearby();

@@ -3700,6 +3700,7 @@ mon_tele:
 
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
+		if (otmp->oartifact == ART_BE_CAREFUL__THERE_EVERYWHE) cnt += rn1(25, 25);
 		mreadmsg(mtmp, otmp);
 		while(cnt--) {
 		    mon = makemon(pm, 0, 0, NO_MM_FLAGS);
@@ -7053,6 +7054,14 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
+		if (otmp->oartifact == ART_FUFUFUFUFU__KEKEKEKEKE___) {
+			int newtraps = 20;
+			while (newtraps > 0) {
+				newtraps--;
+				makerandomtrap(TRUE);
+			}
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		/* don't trigger traps that might send the player to a different level due to danger of segfaults --Amy */
@@ -7899,6 +7908,10 @@ struct monst *mtmp;
 
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
+
+		if (otmp->oartifact == ART_HIJO_NI_HAYAI_WARUI) {
+			badeffect(); badeffect(); badeffect(); badeffect(); badeffect();
+		}
 
 		otmp2 = uwep;
 		if (otmp2 && stack_too_big(otmp2)) pline("Your fingers shake violently!");

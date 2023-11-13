@@ -11935,12 +11935,31 @@ peffects(otmp)
 
 	if (otmp->otyp == POT_WONDER || otmp->otyp == POT_TERCES_DLU) {
 
+		if (otmp->oartifact == ART_KODO_BANGO) {
+
+			int codetofind = u.secretcodenumber;
+			while (codetofind < 1000) codetofind *= 10; /* to fill up digits with zeroes --Amy */
+
+			char stringcode[11] = { 0 };
+			sprintf(stringcode, "%d", codetofind);
+			int whichdigit = rn2(4);
+
+			if (wizard) pline("string is %s, code is %d", stringcode, u.secretcodenumber);
+
+			pline("One of the secret code digits is %c.", stringcode[whichdigit]);
+		}
+
 		struct obj *wonderpot;
 		wonderpot = mkobj(POTION_CLASS,FALSE, FALSE);
 		if (wonderpot) otmp->otyp = wonderpot->otyp;
 		if (otmp->otyp == GOLD_PIECE) otmp->otyp = POT_WATER; /* minimalist fix */
 		if (wonderpot) obfree(wonderpot, (struct obj *)0);
-		unkn++;
+
+		if (otmp->oartifact == ART_SEEYOU_HON) {
+			makeknown (otmp->otyp);
+		} else {
+			unkn++;
+		}
 
 	}
 
@@ -12272,6 +12291,12 @@ peffects(otmp)
 		if (Race_if(PM_RUSMOT)) u.uhunger += 100;
 		if (Role_if(PM_DRUNK)) u.uhunger += 100;
 
+		if (otmp->oartifact == ART_COOL_MUG) {
+			HFire_resistance += 10000;
+			HCold_resistance += 10000;
+			You("feel really cool.");
+		}
+
 		if (uarmc && uarmc->oartifact == ART_MOST_SCRAPPED_PERSON_IN_EX) {
 			set_itimeout(&HeavyConfusion, HConfusion);
 			u.uhunger += 100;
@@ -12391,6 +12416,15 @@ peffects(otmp)
 		break;
 	    }
 	case POT_COFFEE:
+
+		if (otmp->oartifact == ART_MOST_HAIR_RAISING_COFFEE_B) {
+			incr_itimeout(&Invulnerable, 20);
+			verisiertEffect += 2000;
+			RespawnProblem += 2000;
+			pline("This will be the most hair-raising coffee break of all time!");
+
+		}
+
 		if (otmp->cursed)
 		    pline("Yecch!  This tastes %s.",
 			  FunnyHallu ? "like sewage" : "extremely bitter");
@@ -12416,6 +12450,9 @@ peffects(otmp)
 		break;
 
 	case POT_RED_TEA:
+
+		if (otmp->oartifact == ART_RESTWELL) make_sick(0L, (char *) 0, TRUE, SICK_ALL);
+
 		if (otmp->cursed)
 		    pline("Yecch!  This tastes %s.",
 			  FunnyHallu ? "like blood.." : "awful");
@@ -12441,6 +12478,16 @@ peffects(otmp)
 		break;
 
 	case POT_OOLONG_TEA:
+
+		if (otmp->oartifact == ART_HUCK______) {
+
+			if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
+			else You_feel("like you're going to throw up.");
+
+		      make_vomiting(Vomiting+20, TRUE);
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		}
+
 		if (otmp->cursed)
 		    pline("Yecch!  This tastes %s.",
 			  FunnyHallu ? "like death" : "very rotten");
@@ -12500,6 +12547,9 @@ peffects(otmp)
 		break;
 
 	case POT_GREEN_MATE:
+
+		if (otmp->oartifact == ART_FLUSH_PARTICLES_OUT) reducesanity(1000);
+
 		if (otmp->cursed)
 		    pline("Yecch!  This tastes %s.",
 			  FunnyHallu ? "like pee" : "stale");
@@ -12525,6 +12575,12 @@ peffects(otmp)
 		break;
 
 	case POT_COCOA:
+
+		if (otmp->oartifact == ART_ENERGIZER_DRINK) {
+			HFull_nutrient += rn1(1000,1000);
+			You_feel("energized!");
+		}
+
 		if (otmp->cursed)
 		    pline("Yecch!  This tastes %s.",
 			  FunnyHallu ? "like shit" : "wretched");
@@ -12550,6 +12606,12 @@ peffects(otmp)
 		break;
 
 	case POT_TERERE:
+
+		if (otmp->oartifact == ART_TAMANA_S_SECRET_DRINK) {
+			u.udamincxtra++;
+			pline("Dlya Svyatoy Materi! Privedite yeye k slave!");
+		}
+
 		if (otmp->cursed)
 		    pline(FunnyHallu ? "This tastes like ecstasy spiked with poison." : "This tastes like stale alcohol." );
 		else
@@ -12562,6 +12624,12 @@ peffects(otmp)
 		break;
 
 	case POT_AOJIRU:
+
+		if (otmp->oartifact == ART_BURONDO_NO_ON_NANOKO_NO_HI) {
+			u.uhitincxtra++;
+			pline("Watashitachi no omodeari sukuinushi ga anata no dageki o michibiite kudasaimasu yo ni.");
+		}
+
 		if (otmp->cursed)
 		    pline(FunnyHallu ? "This tastes like something that might kill you!" : "This tastes like illegal drugs." );
 		else
@@ -12575,6 +12643,13 @@ peffects(otmp)
 
 	case POT_ULTIMATE_TSUYOSHI_SPECIAL: {
 		int time;
+
+		if (otmp->oartifact == ART_CODED_HEROISM) {
+			adjattrib(A_STR, 10, 0, TRUE);
+			incr_itimeout(&HConf_resist, 5000);
+			You_feel("heroic!");
+		}
+
 		if (otmp->cursed) {
 			pline("Ulch! What in the hell was that???");
 			adjattrib(A_CON,-1,-1, TRUE);
@@ -12595,6 +12670,20 @@ peffects(otmp)
 		}
 		} break;
 	case POT_MEHOHO_BURUSASAN_G:
+
+		if (otmp->oartifact == ART_ANATA_WA_SHISHIDESU_KA_) {
+			flags.botl = TRUE;
+			u.badfcursed += 50000;
+			u.badfdoomed += 50000;
+			u.uhpmax += 100;
+			if (Upolyd) u.mhmax += 100;
+			if (uinsymbiosis) {
+				u.usymbiote.mhpmax += 100;
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
+			pline("Great, you're not a sissy. Enjoy the trip.");
+		}
+
 		pline("%s", fauxmessage());
 		u.cnd_plineamount++;
 		if (!rn2(3)) {
@@ -12831,6 +12920,9 @@ peffects(otmp)
 	case POT_SICKNESS:
 	case POT_POISON:
 		pline("Yecch!  This stuff tastes like poison.");
+
+		if (otmp->oartifact == ART_PREGNANCY_ABORT) decontaminate(1000);
+
 		if (otmp->blessed) {
 		    pline("(But in fact it was mildly stale %s.)",
 			  fruitname(TRUE));
@@ -12939,6 +13031,12 @@ peffects(otmp)
 		   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		   HCold_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		   HShock_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+		if (otmp->oartifact == ART_ELONA_GREETING) {
+		   HPsi_resist += rn1(100,50 + 25 * bcsign(otmp) );
+		   HDeath_resistance += rn1(100,50 + 25 * bcsign(otmp) );
+		   HFree_action += rn1(100,50 + 25 * bcsign(otmp) );
+			You_feel("resistant to high elements!");
+		}
 		break;
 	case POT_INVULNERABILITY:
 		incr_itimeout(&Invulnerable, rn1(4, 8 + 4 * bcsign(otmp)));
@@ -13126,6 +13224,34 @@ peffects(otmp)
 
 		break;
 	case POT_DOWN_LEVEL:
+
+		if (otmp->oartifact == ART_PORTA_SHAFT) {
+			unkn++;
+
+			d_level dtmp;
+			register int newlevel = dunlev(&u.uz);
+
+			if (newlevel < dunlevs_in_dungeon(&u.uz)) {
+				newlevel++;
+			}
+
+			do {
+			    newlevel++;
+			} while(rn2(6) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(In_gehennom(&u.uz) && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+
+			if (In_gehennom(&u.uz) && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)) {
+				next_level(FALSE);
+				break;
+			}
+
+			dtmp.dnum = u.uz.dnum;
+			dtmp.dlevel = newlevel;
+
+			schedule_goto(&dtmp, TRUE, FALSE, 0, (char *)0, "You fell down a shaft!");
+
+			break;
+		}
+
 		if (otmp->cursed) {
 			unkn++;
 			/* they went up a level */
@@ -13254,17 +13380,29 @@ peffects(otmp)
 	case POT_CURE_WOUNDS:
 		You_feel("better.");
 		healup(d(5,6) + rnz(u.ulevel) + 5 * bcsign(otmp), 0, 0, 0);
+		if (otmp->oartifact == ART_PLUS_ONE_LINE) {
+			healup(1, 1, 0, 0);
+		}
 		exercise(A_CON, TRUE);
 		break;
 	case POT_CURE_SERIOUS_WOUNDS:
 		You_feel("much better.");
 		healup(d(6,8) + rnz(u.ulevel) + 5 * bcsign(otmp), 0, 0, 0);
+		if (otmp->oartifact == ART_PLUS_TWO_LINES) {
+			healup(2, 2, 0, 0);
+		}
 		exercise(A_CON, TRUE);
 		exercise(A_STR, TRUE);
 		break;
 	case POT_CURE_CRITICAL_WOUNDS:
 		You_feel("completely healed.");
 		healup(400 + rnz(u.ulevel),  0, 0, 0);
+		if (otmp->oartifact == ART_FULL_RECOVERY) {
+			u.uhp = u.uhpmax;
+			if (Upolyd) u.mh = u.mhmax;
+			if (uinsymbiosis) u.usymbiote.mhp = u.usymbiote.mhpmax;
+			upnivel(FALSE); upnivel(FALSE); upnivel(FALSE); upnivel(FALSE); upnivel(FALSE);
+		}
 		exercise(A_STR, TRUE);
 		exercise(A_CON, TRUE);
 		break;
@@ -13710,7 +13848,13 @@ peffects(otmp)
 			pline("Everything is visible! Whoa! Look at all the stuff!");
 		else
 			pline("Your vision range increases.");
-		incr_itimeout(&HSight_bonus, rnd(500 + 250 * bcsign(otmp) ));
+		if (otmp->oartifact == ART_OPACITY) {
+			incr_itimeout(&HSight_bonus, rnd(5000 + 2500 * bcsign(otmp) ));
+			u.uprops[DEAC_INVIS].intrinsic += 10000;
+			You("feel more exposed.");
+		} else {
+			incr_itimeout(&HSight_bonus, rnd(500 + 250 * bcsign(otmp) ));
+		}
 		vision_full_recalc = 1;
 
 		if (evilfriday && otmp->cursed) {
@@ -13770,6 +13914,21 @@ peffects(otmp)
 
 	case POT_HIDING:
 	case POT_DECOY_MAKING:
+
+		if (otmp->oartifact == ART_MAKE_YOU_ACTUALLY_HIDDEN) {
+			dohide();
+			You("hide.");
+		}
+
+		if (otmp->oartifact == ART_HUGGINGVALK) {
+			register struct monst *bossmon;
+			bossmon = makemon(&mons[PM_VALKYRIE], u.ux, u.uy, MM_ADJACENTOK);
+
+			if (bossmon) {
+				tamedog(bossmon, (struct obj *) 0, TRUE);
+			}
+
+		}
 
 		if(Confusion || Hallucination || metallivorous(youmonst.data)) {
 		    pline("This tinfoil is gnarly!");

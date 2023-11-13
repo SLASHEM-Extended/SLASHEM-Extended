@@ -5165,6 +5165,14 @@ register struct obj	*sobj;
 
 	if (sobj->otyp == SCR_COPYING) {
 
+		if (sobj->oartifact == ART_LAWFIGHT) {
+			int cnt = 8;
+			while(cnt--) {
+				makemon(mkclass(S_LICH,0), u.ux, u.uy, MM_ANGRY|MM_ADJACENTOK);
+			}
+			You("can try to fight the law, but the law will always win.");
+		}
+
 		struct obj *wonderscroll;
 		wonderscroll = mkobj(SCROLL_CLASS,FALSE, FALSE);
 		if (wonderscroll) sobj->otyp = wonderscroll->otyp;
@@ -5728,6 +5736,10 @@ destroyarmorchoice:
 	    break;
 
 	case SCR_DESTROY_WEAPON:
+
+		if (sobj->oartifact == ART_HIJO_NI_HAYAI_WARUI) {
+			badeffect(); badeffect(); badeffect(); badeffect(); badeffect();
+		}
 
 		otmp = uwep;
 
@@ -6523,7 +6535,8 @@ aliasagain:
 		int cnt = rnd(9);
 		if (confused) cnt += rnd(12);
 		if (sobj->cursed) cnt += rnd(5);
-
+		if (sobj->oartifact == ART_BE_CAREFUL__THERE_EVERYWHE) cnt += rn1(25, 25);
+	
 		if (Aggravate_monster) {
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
@@ -7959,6 +7972,14 @@ newboss:
 		break;
 
 	case SCR_CREATE_TRAP:
+
+		if (sobj->oartifact == ART_FUFUFUFUFU__KEKEKEKEKE___) {
+			int newtraps = 20;
+			while (newtraps > 0) {
+				newtraps--;
+				makerandomtrap(TRUE);
+			}
+		}
 
 		{
 		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100, TRUE);
@@ -9447,6 +9468,7 @@ newboss:
 		int randomx, randomy;
 		int randomamount = rnd(250 - 100*bcsign(sobj) );
 		if (confused) randomamount *= 5;
+		if (sobj->oartifact == ART_FUYO_NO_WANDARANDO) randomamount *= 100;
 
 		while (randomamount) {
 			randomamount--;
@@ -9473,6 +9495,7 @@ newboss:
 		int randomx, randomy;
 		int randomamount = rnd(250 - 100*bcsign(sobj) );
 		if (confused) randomamount *= 5;
+		if (sobj->oartifact == ART_KUROI_FUKEI_WA_KORYOTO_SHI) randomamount *= 10;
 		int terrainfeature;
 
 		while (randomamount) {
@@ -9982,8 +10005,13 @@ tunguskaagain:
 	case SCR_POWER_HEALING:
 		makeknown(SCR_POWER_HEALING);
 		You_feel("fully healed!");
-			u.uhp = u.uhpmax;
-			if (Upolyd) u.mh = u.mhmax;
+		u.uhp = u.uhpmax;
+		if (Upolyd) u.mh = u.mhmax;
+		if (sobj->oartifact == ART_OH__WHILE_WE_RE_AT_IT___) {
+			u.uen = u.uenmax;
+			You_feel("powered up!");
+		}
+		flags.botl = TRUE;
 		break;
 	case SCR_HEAL_OTHER:
 		makeknown(SCR_HEAL_OTHER);
@@ -10611,6 +10639,25 @@ randenchchoice:
 		break;
 	case SCR_ERASURE:
 		known = TRUE;
+
+		if (sobj->oartifact == ART_FUCK_YOU_DUDE_) {
+
+			register struct monst *mtmp, *mtmp2;
+
+			int num = 0;
+
+			for (mtmp = fmon; mtmp; mtmp = mtmp2) {
+				mtmp2 = mtmp->nmon;
+				if (mtmp->data->geno & G_GENO) {
+					mondead(mtmp);
+					num++;
+				}
+			}
+			pline("Eliminated %d monster%s.", num, plur(num));
+
+			break;
+		}
+
 		pline("Now, you can wipe out monsters!");
 		if (sobj->blessed) do_class_erasure();
 		else if (Confusion || Hallucination) undo_genocide();
@@ -11415,6 +11462,11 @@ secremchoice:
 		pline("Fearful Symmetry!");
 		if (u.totter && !sobj->cursed && !confused) u.totter = 0;
 		else u.totter = 1;
+
+		if (sobj->oartifact == ART_BITCHES_TO_YOU_ESE) {
+			cure_feminism_traps();
+			pline("Now the bitches have been shut up.");
+		}
 
 		break;
 

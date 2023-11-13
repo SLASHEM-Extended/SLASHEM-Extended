@@ -204,24 +204,23 @@ register int x;
 		tmp++;
 
 	if (isxrace) {	/* x-race is the "rng-changing race", which affects rne and thus rnz too --Amy */
-
 		while (tmp < utmp && !rn2(x) && !rn2(2) )
 			tmp++;
+	}
 
+	if (youmonst.data && uarms && uarms->oartifact == ART_DNETHACKC_NOONISHNESS) {
+		while (tmp < utmp && !rn2(x) && !rn2(2) )
+			tmp++;
 	}
 
 	if (youmonst.data && uarmc && uarmc->oartifact == ART_CHANGED_RANDOM_NUMBERS) {
-
 		while (tmp < utmp && !rn2(x) && !rn2(2) )
 			tmp++;
-
 	}
 
 	if (youmonst.data && uarm && uarm->oartifact == ART_AMMY_S_RNG_CHANGER) {
-
 		while (tmp < utmp && !rn2(x) && !rn2(2) )
 			tmp++;
-
 	}
 
 	return tmp;

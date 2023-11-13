@@ -3557,6 +3557,12 @@ Shield_on()
 		}
     }
 
+    if (uarms && uarms->oartifact == ART_DNETHACKC_NOONISHNESS) {
+	curse(uarms);
+	uarms->hvycurse = uarms->stckcurse = TRUE;
+	Your("shield is very heavily cursed!");
+    }
+
     if (uarms && uarms->oartifact == ART_CREMATED && (objects[uarms->otyp].oc_color != CLR_ORANGE)) {
 		pline_The("shield becomes orange!");
 		objects[uarms->otyp].oc_color = CLR_ORANGE;
@@ -6659,6 +6665,7 @@ find_ac()
 	}
 
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) uac += 5;
+	if (uarms && uarms->oartifact == ART_DNETHACKC_NOONISHNESS) uac += 5;
 	if (Race_if(PM_INHERITOR)) uac += 5;
 	if (RngeDnethack) uac += 5;
 	if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) uac += 5;

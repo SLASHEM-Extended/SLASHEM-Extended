@@ -5305,6 +5305,10 @@ max_carr_cap()
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) maxcarrcap += 1000;
+	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
+		maxcarrcap += 1000;
+		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;
+	}
 	if (uwep && uwep->otyp == BAGGY_SLING) maxcarrcap += 100;
 	if (uwep && uwep->oartifact == ART_USEFUL_BINDLE) maxcarrcap += 1000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) maxcarrcap += 1000;
@@ -5359,6 +5363,10 @@ weight_cap()
 	if (have_daisybag()) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
+	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
+		carrcap += 1000;
+		if (flags.female && u.ulevel < 10) carrcap += 4000;
+	}
 	if (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) carrcap += 500;
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) carrcap += 2000;

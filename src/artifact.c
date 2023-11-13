@@ -1832,6 +1832,10 @@ register boolean mod;
 			}
 		    }
 
+		    if (otmp && otmp->oartifact == ART_PITCH_HAD_) {
+			NastinessProblem += 1000; /* no message, this is intentional --Amy */
+		    }
+
 		    if (otmp && otmp->oartifact == ART_LUCKY_GENERATION) {
 			pline("Luck smiles upon you...");
 

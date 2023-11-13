@@ -1859,25 +1859,25 @@ dodown()
 					if (superdschue) {
 						do {
 						    newlevel++;
-						} while(rn2(6) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+						} while(rn2(6) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(In_gehennom(&u.uz) && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
 					} else {
 						do {
 						    newlevel++;
-						} while(rn2(2) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+						} while(rn2(2) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(In_gehennom(&u.uz) && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
 					}
 				} else {
 					if (superdschue) {
 						do {
 						    newlevel++;
-						} while(rn2(4) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+						} while(rn2(4) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(In_gehennom(&u.uz) && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
 					} else {
 						do {
 						    newlevel++;
-						} while(!rn2(4) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(Inhell && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
+						} while(!rn2(4) && (newlevel < dunlevs_in_dungeon(&u.uz)) && !(In_gehennom(&u.uz) && !u.uevent.invoked && newlevel >= (dunlevs_in_dungeon(&u.uz) - 1)) );
 					}
 				}
 
-				if (Inhell && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)) {
+				if (In_gehennom(&u.uz) && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)) {
 					next_level(!trap);
 					at_ladder = FALSE;
 					return(1);
@@ -2174,7 +2174,7 @@ boolean at_stairs, falling, portal;
 	 * comment by Amy: Yes, it definitely is. That's why I don't re-enable it...
 	 * except in evilvariant mode, because that one is deliberately designed to screw you over :P */
 
-	if ( ((Inhell && evilfriday && u.uhave.amulet && !u.freeplaymode) || (MysteriousForceActive || u.uprops[MYSTERIOUS_FORCE_EFFECT].extrinsic || have_forcestone())) && up && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
+	if ( ((In_gehennom(&u.uz) && evilfriday && u.uhave.amulet && !u.freeplaymode) || (MysteriousForceActive || u.uprops[MYSTERIOUS_FORCE_EFFECT].extrinsic || have_forcestone())) && up && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
 		if (!rn2(4)) {
 			int odds = 3 + (int)u.ualign.type;          /* 2..4 */
 

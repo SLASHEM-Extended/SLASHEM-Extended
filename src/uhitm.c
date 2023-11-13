@@ -833,6 +833,7 @@ register struct monst *mtmp;
 	if (uarmh && uarmh->oartifact == ART_NADJA_S_DARKNESS_GENERATOR) tmp += 5;
 
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK) ) tmp -= 5;
+	if (uarms && uarms->oartifact == ART_DNETHACKC_NOONISHNESS) tmp -= 5;
 	if (RngeDnethack) tmp -= 5;
 	if (Race_if(PM_INHERITOR)) tmp -= 5;
 	if (RngeUnnethack) tmp -= 10;

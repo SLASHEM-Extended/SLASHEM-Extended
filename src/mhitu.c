@@ -9091,7 +9091,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?

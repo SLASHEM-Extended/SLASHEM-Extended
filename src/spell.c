@@ -12797,6 +12797,7 @@ int spell;
 	if (Race_if(PM_VIETIS)) chance -= 20;
 
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) chance -= 10;
+	if (uarms && uarms->oartifact == ART_DNETHACKC_NOONISHNESS) chance -= 10;
 	if (RngeDnethack) chance -= 10;
 	if (Race_if(PM_INHERITOR)) chance -= 10;
 	if (RngeUnnethack) chance -= 33;

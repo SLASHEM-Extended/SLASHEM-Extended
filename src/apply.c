@@ -6896,7 +6896,13 @@ undark:
 	case DEMON_CROSSBOW:
 	case SUBMACHINE_GUN:
 	case LEAD_UNLOADER:
-		if (obj->altmode == WP_MODE_AUTO) obj-> altmode = WP_MODE_SINGLE;
+
+		if (obj->oartifact == ART_NOZZLE_CHANGE) {
+			pline("Sorry, the time for a nozzle change hasn't come yet!");
+			break;
+		}
+
+		if (obj->altmode == WP_MODE_AUTO) obj->altmode = WP_MODE_SINGLE;
 		else obj->altmode = WP_MODE_AUTO;
 		You("switch %s to %s mode.", yname(obj), 
 			(obj->altmode ? "semi-automatic" : "full automatic"));
