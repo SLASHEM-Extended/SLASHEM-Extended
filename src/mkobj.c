@@ -161,6 +161,10 @@ int artichance;
 		artichance *= 9;
 		artichance /= 10;
 	}
+	if (achieve.get_amulet) {
+		artichance *= 9;
+		artichance /= 10;
+	}
 	if (artichance < 1) artichance = 1; /* fail safe */
 
 	if (!rn2(artichance)) return TRUE;
@@ -259,8 +263,9 @@ levscalerollpast:
 	/* inspired by ais523, higher base level items shouldn't appear constantly on early dlvls --Amy
 	 * they should still have a chance of spawning, so that exploring the levels is worthwile, but we don't want them
 	 * to have the full spawn chance; level_difficulty() is actually slightly random so it can take quite a while until
-	 * a high base level item reaches its full spawn chance */
-	if ((i != GOLD_PIECE) && (objects[i].oc_minlvl > 1) ) {
+	 * a high base level item reaches its full spawn chance
+	 * late into the game (Gehennom and beyond), everything should have its full spawn chance */
+	if ((i != GOLD_PIECE) && !In_lategame(&u.uz) && (objects[i].oc_minlvl > 1) ) {
 		levscalediff = rnd(100 + level_difficulty());
 		if (!rn2(100)) levscalediff += 100;
 		int attempts = 50000;
@@ -500,8 +505,9 @@ boolean shopinit;
 
 	}
 
-	/* you get way too much useful armor... let's limit the amount by changing some into mundane ones --Amy */
-	if (oclass == ARMOR_CLASS && !isvanillaarmor(i) && rn2(2)) {
+	/* you get way too much useful armor... let's limit the amount by changing some into mundane ones --Amy
+	 * but if you've obtained the amulet already, that should no longer be the case */
+	if (oclass == ARMOR_CLASS && !achieve.get_amulet && !isvanillaarmor(i) && rn2(2)) {
 
 		int armortries = 0;
 
@@ -2625,12 +2631,12 @@ boolean shopinit;
 			otmp->opoisoned = 1;
 			if (!rn2(100)) otmp->superpoison = 1;
 		}
-		if (!rn2(400)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 100 : 400)) otmp->oerodeproof = 1;
 		if (!rn2(400)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 50 : 200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -2733,12 +2739,12 @@ boolean shopinit;
 		break;
 	    }
 		blessorcurse_on_creation(otmp, 10);
-		if (!rn2(4000)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 1000 : 4000)) otmp->oerodeproof = 1;
 		if (!rn2(4000)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 500 : 2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 		if (artif && (artif != 2) && artigenechance(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
@@ -2762,12 +2768,12 @@ boolean shopinit;
 			if (!rn2(6)) otmp->quan = rn2(5) ? 2L : rn2(4) ? rn1(5,5) : rn1(10,10);
 			else otmp->quan = 1L;
 
-			if (!rn2(1000)) otmp->oerodeproof = 1;
+			if (!rn2(achieve.get_amulet ? 250 : 1000)) otmp->oerodeproof = 1;
 			if (!rn2(1000)) {
 				if (!rn2(3)) otmp->oeroded = rnd(3);
 				if (!rn2(3)) otmp->oeroded2 = rnd(3);
 			}
-			if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+			if (!rn2(achieve.get_amulet ? 125 : 500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 			if (artif && (artif != 2) && artigenechance(50)) {
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -2884,12 +2890,12 @@ boolean shopinit;
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
-		if (!rn2(1000)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 250 : 1000)) otmp->oerodeproof = 1;
 		if (!rn2(1000)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 125 : 500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		/* Amy edit: regular rocks are so common, and we might be adding more artifact versions of those in future
 		 * versions, so we want to make sure they don't spawn literally everywhere - make them 20x less common */
@@ -3296,12 +3302,12 @@ boolean shopinit;
 		break;
 	    }
 
-		if (!rn2(800)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 200 : 800)) otmp->oerodeproof = 1;
 		if (!rn2(800)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(400)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 100 : 400)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3328,12 +3334,12 @@ boolean shopinit;
 		} else {
 			blessorcurse_on_creation(otmp, 10);
 		}
-		if (!rn2(1200)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 300 : 1200)) otmp->oerodeproof = 1;
 		if (!rn2(1200)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 150 : 600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3376,12 +3382,12 @@ boolean shopinit;
 		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);
 		} else blessorcurse_on_creation(otmp, 5);
 
-		if (!rn2(1200)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 300 : 1200)) otmp->oerodeproof = 1;
 		if (!rn2(1200)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 150 : 600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3444,12 +3450,12 @@ boolean shopinit;
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
 
-		if (!rn2(400)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 100 : 400)) otmp->oerodeproof = 1;
 		if (!rn2(400)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 50 : 200)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3530,12 +3536,12 @@ boolean shopinit;
 
 		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
-		if (!rn2(1000)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 250 : 1000)) otmp->oerodeproof = 1;
 		if (!rn2(1000)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 125 : 500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3560,12 +3566,12 @@ boolean shopinit;
 #endif
 			blessorcurse_on_creation(otmp, 4);
 
-		if (!rn2(320)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 80 : 320)) otmp->oerodeproof = 1;
 		if (!rn2(320)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(160)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 40 : 160)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3611,12 +3617,12 @@ boolean shopinit;
 		if(!rn2(3)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);
 
-		if (!rn2(200)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 50 : 200)) otmp->oerodeproof = 1;
 		if (!rn2(200)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(100)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 25 : 100)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3696,12 +3702,12 @@ boolean shopinit;
 
 		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
-		if (!rn2(80)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 20 : 80)) otmp->oerodeproof = 1;
 		if (!rn2(80)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(40)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 10 : 40)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3728,13 +3734,13 @@ boolean shopinit;
 #endif
 		}
 
-		if (!rn2(100) || (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING && !rn2(20)) ||
+		if (!rn2(100) || (In_lategame(&u.uz) && !rn2(100)) || (achieve.get_amulet && !rn2(50)) || (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING && !rn2(20)) ||
 		( (is_shirt(otmp) || otmp->otyp == WHISPERING_HELMET || otmp->otyp == MOMHAT || otmp->otyp == CAPTCHA_HELM || otmp->otyp == QUIZ_HELM || otmp->otyp == LONG_POINTY_HEELS || otmp->otyp == METER_GAUNTLETS || otmp->otyp == WEIGHTING_GAUNTLETS || otmp->otyp == BIGSCRIPT_HELM ) && !rn2(15) ) ||
 		( (otmp->otyp == WEDGE_SANDALS || otmp->otyp == REPEATABLE_BOOTS || otmp->otyp == DANCING_SHOES || otmp->otyp == ANGER_HELM || otmp->otyp == SCRIPTED_HELMET || otmp->otyp == GAUNTLETS_OF_RAINBOW_MOUD || otmp->otyp == POKELIE_GLOVES || otmp->otyp == ASS_KICKER_BOOTS || otmp->otyp == TOP_HELMET || otmp->otyp == ABCDE_HELMET || otmp->otyp == COLOR_CHANGING_CONE || otmp->otyp == SWEET_MOCASSINS || otmp->otyp == SOFT_SNEAKERS ) && !rn2(10) ) ||
 		( (otmp->otyp == CLOAK_OF_UNSPELLING || otmp->otyp == ANTI_CASTER_CLOAK || otmp->otyp == HEAVY_STATUS_CLOAK || otmp->otyp == CLOAK_OF_LUCK_NEGATION || otmp->otyp == YELLOW_SPELL_CLOAK || otmp->otyp == VULNERABILITY_CLOAK || otmp->otyp == CLOAK_OF_INVENTORYLESSNESS || otmp->otyp == CLOAK_OF_NULLIFICATION || otmp->otyp == HELM_OF_LOSE_IDENTIFICATION || otmp->otyp == HELM_OF_OBSCURED_DISPLAY || otmp->otyp == COVETED_BOOTS || otmp->otyp == LIGHTLESS_BOOTS || otmp->otyp == SELF_WILLED_HEELS || otmp->otyp == SOIL_CLINGING_BOOTS || otmp->otyp == PERMANENTLY_BLACK_SHOES || otmp->otyp == AUTOSCOOTER_HEELS || otmp->otyp == FORCEFUL_BOOTS || otmp->otyp == BUM_BUM_BOOTS || otmp->otyp == SADISTIC_BOOTS || otmp->otyp == FLUCKERING_BOOTS || otmp->otyp == SPRAP_BOOTS || otmp->otyp == FAILED_ATTEMPT_BOOTS || otmp->otyp == TECH_LOSS_HELMET || otmp->otyp == BRIGHT_CYAN_BEAUTIES || otmp->otyp == SIA_BOOTS || otmp->otyp == PLATINUM_SPELL_BOOTS || otmp->otyp == INVIS_WALKERS || otmp->otyp == NOISY_BOOTS || otmp->otyp == MORK_BOOTS || otmp->otyp == HELM_OF_THIRST || otmp->otyp == CLOCKLOAK || otmp->otyp == KILLER_HEELS || otmp->otyp == VIOLET_BEAUTY_HEELS || otmp->otyp == DARK_HAND_GLOVES || otmp->otyp == CHECKER_BOOTS || otmp->otyp == ETERNAL_LIAR_BOOTS || otmp->otyp == ELVIS_SHOES || otmp->otyp == HELM_OF_AMNESIA || otmp->otyp == BLACKY_HELMET || otmp->otyp == BLOODSUCKING_SHOES || otmp->otyp == ANTI_DRINKER_HELMET || otmp->otyp == NOKEDEX_CLOAK || otmp->otyp == CYPHER_HELM || otmp->otyp == DIZZY_HELMET || otmp->otyp == MUTING_HELM || otmp->otyp == ULCH_HELMET || otmp->otyp == GAUNTLETS_OF_BAD_CASTING || otmp->otyp == MARY_SUE_GLOVES || otmp->otyp == DIMMER_HELMET || otmp->otyp == BORDERLESS_HELMET || otmp->otyp == BROWN_SHIT_CLOAK || otmp->otyp == ANTICALL_CLOAK || otmp->otyp == YELLOW_WING || otmp->otyp == ELESDE_CLOAK || otmp->otyp == CLOAK_OF_GRAVATION || otmp->otyp == ALLPICKING_GLOVES || otmp->otyp == SILVER_SPELL_GLOVES || otmp->otyp == SPELLDRAIN_GLOVES || otmp->otyp == CLOAK_OF_NONFOLLOWING || otmp->otyp == SPELL_RETAIN_CLOAK || otmp->otyp == CLOAK_OF_FAST_DECAY || otmp->otyp == ORANGE_SPELL_GLOVES || otmp->otyp == MOJIBAKE_GLOVES || otmp->otyp == DIXPLOSION_GLOVES || otmp->otyp == LEFT_APPENDAGE_GLOVES || otmp->otyp == HELMET_OF_ANTI_SEARCHING || otmp->otyp == RARE_HELMET || otmp->otyp == OPTIONAL_HELMET || otmp->otyp == HEAVY_GRABBING_GLOVES || otmp->otyp == AIRSTEP_BOOTS || otmp->otyp == BOOTS_OF_INTERRUPTION || otmp->otyp == BLACK_SPELL_GAUNTLETS || otmp->otyp == HIGH_HEELED_SKIERS || otmp->otyp == HIGH_SCORING_HEELS || otmp->otyp == HELM_OF_STARVATION || otmp->otyp == QUAFFER_HELMET || otmp->otyp == PSEUDO_TELEPORTER_CLOAK || otmp->otyp == SNARENET_CLOAK || otmp->otyp == PINK_SPELL_CLOAK || otmp->otyp == QUAVERSAL_HELMET || otmp->otyp == HELM_OF_SHUFFLING || otmp->otyp == GOLDSPELL_HELMET || otmp->otyp == AIRHEAD_CAP || otmp->otyp == FALLOUT_HELMET || otmp->otyp == IDENTIFY_CURD_HELMET || otmp->otyp == BAEAEAEP_SPY_HELMET || otmp->otyp == CRUNCHER_HELMET || otmp->otyp == DISTORTED_GRIMACE || otmp->otyp == ELM_ET || otmp->otyp == SANEMAKER_HELMET || otmp->otyp == GRAYOUT_CLOAK || otmp->otyp == TRON_BOOTS || otmp->otyp == RED_SPELL_HEELS || otmp->otyp == KILLER_SPAWN_BOOTS || otmp->otyp == DESTRUCTIVE_HEELS || otmp->otyp == CARTRIDGE_OF_HAVING_A_HORROR || otmp->otyp == SOUND_EFFECT_HELMET || otmp->otyp == INCORRECTLY_ADJUSTED_HELMET || otmp->otyp == CLOAK_OF_RESPAWNING || otmp->otyp == HELM_OF_BAD_ALIGNMENT || otmp->otyp == SOUNDPROOF_HELMET || otmp->otyp == HELM_OF_COUNTER_ROTATION || otmp->otyp == DELIGHT_HELMET || otmp->otyp == OUT_OF_MEMORY_HELMET || otmp->otyp == FUCKUP_MELEE_GAUNTLETS || otmp->otyp == INFOLESS_HELMET || otmp->otyp == UNDETECTION_GLOVES || otmp->otyp == BLUE_SPELL_HELMET || otmp->otyp == MORE_HELMET || otmp->otyp == MESSAGE_FILTER_HELMET || otmp->otyp == FLICKER_VISOR || otmp->otyp == STORMY_CLOAK || otmp->otyp == CLOAK_OF_WRONG_ANNOUNCEMENT || otmp->otyp == BATTERY_CLOAK || otmp->otyp == NAYLIGHT_CLOAK || otmp->otyp == UNDERLAYER_CLOAK || otmp->otyp == EVENCORE_CLOAK || otmp->otyp == SCALER_MITTENS || otmp->otyp == GLOVES_OF_ENERGY_DRAINING || otmp->otyp == MENU_NOSE_GLOVES || otmp->otyp == UNWIELDY_GLOVES || otmp->otyp == ELONGATION_CLOAK || otmp->otyp == CYAN_SPELL_CLOAK || otmp->otyp == BANKING_GLOVES || otmp->otyp == DIFFICULT_GLOVES || otmp->otyp == CHAOS_GLOVES || otmp->otyp == COMPETITION_BOOTS || otmp->otyp == QUASIMODULAR_BOOTS || otmp->otyp == SINFUL_HEELS || otmp->otyp == LEVELING_GLOVES || otmp->otyp == GIMP_CLOAK || otmp->otyp == UNFAIR_ATTACK_CLOAK || otmp->otyp == CLOAK_OF_BAD_PART || otmp->otyp == ADOM_CLOAK || otmp->otyp == EMPTY_LINE_HELMET || otmp->otyp == GREEN_SPELL_HELMET || otmp->otyp == EGOIST_CLOAK || otmp->otyp == CHATBOX_CLOAK || otmp->otyp == COVID____COATED_CLOAK || otmp->otyp == HERETIC_CLOAK || otmp->otyp == EERIE_CLOAK || otmp->otyp == PETHATE_CLOAK || otmp->otyp == PET_LASHOUT_CLOAK || otmp->otyp == PETSTARVE_CLOAK || otmp->otyp == PETSCREW_CLOAK || otmp->otyp == NON_PROOF_CLOAK || otmp->otyp == CLOAK_OF_BAD_TRAPPING || otmp->otyp == CLOAK_OF_NAKEDNESS || otmp->otyp == GAUNTLETS_OF_REVERSE_ENCHANTME || otmp->otyp == CLOAK_OF_TIME || otmp->otyp == SPAWN_CLOAK || otmp->otyp == CONFUSING_GLOVES || otmp->otyp == DISENCHANTING_BOOTS || otmp->otyp == LIMITATION_BOOTS || otmp->otyp == THROUGH_THE_FLOOR_BOOTS || otmp->otyp == UNDROPPABLE_GLOVES || otmp->otyp == GAUNTLETS_OF_MISSING_INFORMATI || otmp->otyp == GAUNTLETS_OF_TRAP_CREATION || otmp->otyp == GAUNTLETS_OF_STEALING || otmp->otyp == CLOAK_OF_SUDDEN_ATTACK || otmp->otyp == TRUMP_COAT || otmp->otyp == GREYOUT_CLOAK || otmp->otyp == WHITE_SPELL_CLOAK || otmp->otyp == GAUNTLETS_OF_MISFIRING || otmp->otyp == SADO_MASO_GLOVES || otmp->otyp == FEMININE_PUMPS || otmp->otyp == LEATHER_PEEP_TOES || otmp->otyp == COMBAT_STILETTOS || otmp->otyp == LADY_BOOTS || otmp->otyp == ITALIAN_HEELS || otmp->otyp == STILETTO_SANDALS || otmp->otyp == AUTODESTRUCT_DE_VICE_BOOTS || otmp->otyp == SPEEDBUG_BOOTS || otmp->otyp == DISCONNECTED_BOOTS || otmp->otyp == BOSS_BOOTS || otmp->otyp == PET_STOMPING_PLATFORM_BOOTS || otmp->otyp == DEMENTIA_BOOTS || otmp->otyp == BOOTS_OF_FAINTING || otmp->otyp == DIFFICULT_BOOTS || otmp->otyp == BOOTS_OF_WEAKNESS || otmp->otyp == BUGXPLORE_HELMET || otmp->otyp == YAWNING_VISOR || otmp->otyp == REALLY_BAD_HELM || otmp->otyp == GRIDBUG_CONDUCT_BOOTS || otmp->otyp == STAIRWELL_STOMPING_BOOTS ) && !rn2(5) ) ||
-		(otmp->otyp == HIPPIE_HEELS || otmp->otyp == SENTIENT_HIGH_HEELED_SHOES) ) {
+		((otmp->otyp == HIPPIE_HEELS || otmp->otyp == SENTIENT_HIGH_HEELED_SHOES) && !rn2(3)) ) {
 
-			if (!rn2(3)) otmp->enchantment = randenchantment();
+			otmp->enchantment = randenchantment();
 
 		}
 
@@ -3809,12 +3815,12 @@ boolean shopinit;
 		if (otmp->otyp != WAN_WISHING && otmp->otyp != WAN_ACQUIREMENT && otmp->otyp != WAN_GENOCIDE && otmp->otyp != WAN_GAIN_LEVEL && otmp->otyp != WAN_INCREASE_MAX_HITPOINTS) otmp->recharged = 0; /* used to control recharging */
 		if (!rn2(10)) otmp->recharged = rnd(7); /* allow recharged wands to spawn --Amy */
 
-		if (!rn2(3200)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 800 : 3200)) otmp->oerodeproof = 1;
 		if (!rn2(3200)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(1600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 400 : 1600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3872,12 +3878,12 @@ boolean shopinit;
 		    blessorcurse_on_creation(otmp, 1);
 		}
 
-		if (!rn2(1000)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 250 : 1000)) otmp->oerodeproof = 1;
 		if (!rn2(1000)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 125 : 500)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3902,12 +3908,12 @@ boolean shopinit;
 		}
 	      blessorcurse_on_creation(otmp, 7);
 
-		if (!rn2(4000)) otmp->oerodeproof = 1;
+		if (!rn2(achieve.get_amulet ? 1000 : 4000)) otmp->oerodeproof = 1;
 		if (!rn2(4000)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
-		if (!rn2(2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+		if (!rn2(achieve.get_amulet ? 500 : 2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
 		if (artif && (artif != 2) && artigenechance(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
