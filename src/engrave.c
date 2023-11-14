@@ -6058,6 +6058,8 @@ static const char *epitaphs[] = {
 	"the abyss, I have looked into it and it has stared back and said things like fleecy and bundlebundlebundle", /* by Loggers */
 	"Yeah sure, some random mob spawned with a fatman, fired a mini-nuke at me, and I died instantly. Great game, 10/10 would play again.",
 	"What? A giant appendage that has 1000 million hit points and fucking kills you in 2-3 hits? What’s the name of the illegal drug that the devs have been using???",
+	"Well, of course I used the arch-vile jump on The Inmost Dens to get into the area that normally requires the blue key, after all the 'wall' is so ridiculously waist-high that it's obvious you're supposed to pass it that way! What's that you say, the devs didn't intend that and now I can't get back? Really???",
+	"Dude, if the devs didn't intend that you can bypass the blue key door with an arch-vile jump and subsequently get stuck behind it then why on earth did they make it so that you can arch-vile jump at all??? Some geniuses they are!",
 
 };
 

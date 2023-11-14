@@ -9717,6 +9717,7 @@ OBJECT(OBJ("Book of the Dead", "papyrus"),
 SPELL("blade anger",	 "THIS IS A BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
 SPELL("beamsword",	 "THIS IS ALSO A BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
 SPELL("menstruation",	 "THIS IS A SEVERE BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
+SPELL("draining arrow",	 "YOU HAVE ENCOUNTERED A BUG.",		P_ATTACK_SPELL, 0,  0, 0, 0, 0, HI_PAPER, 1),
 
 #undef SPELL
 

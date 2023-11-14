@@ -1163,9 +1163,9 @@ int mode;
 		}
 
 	} else if (tmpr->typ == FARMLAND) {
-		if (mode != DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+		if (mode != DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (WallsAreHyperBlue) {
 				You("crash into a farmland! Ouch!");
@@ -4602,6 +4602,18 @@ nomul(nval, txt, discountpossible)
 		}
 		nval *= dmgreductor;
 		nval /= 100;
+
+		if (nval > -2) nval = -2;
+	}
+
+	if (irisartiboost() && discountpossible && (nval < -1)) {
+		register int dmgreductor = 10;
+		dmgreductor -= irisartiboost();
+
+		nval *= dmgreductor;
+		nval /= 10;
+
+		if (nval > -2) nval = -2;
 	}
 
 	if (discountpossible && (nval < -2) && !rn2(10) && uarmf && itemhasappearance(uarmf, APP_PLOF_HEELS) ) {
@@ -5147,6 +5159,9 @@ int k_format; /* WAC k_format is an int */
 		n = 0;
 		Your("armor nullifies the damage!");
 	} else if (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME && !rn2(10)) {
+		n = 0;
+		Your("pair of heels nullifies the damage!");
+	} else if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && !rn2(10)) {
 		n = 0;
 		Your("pair of heels nullifies the damage!");
 	} else if (u.metalguard) {

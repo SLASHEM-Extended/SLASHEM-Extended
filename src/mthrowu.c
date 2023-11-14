@@ -528,7 +528,7 @@ shieldblockboo:
 
 		}
 
-		if (obj && objects[obj->otyp].oc_material == MT_SILVER && (hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
+		if (obj && objects[obj->otyp].oc_material == MT_SILVER && (hates_silver(youmonst.data) || (uarmf && uarmf->oartifact == ART_IRIS_S_HIDDEN_ALLERGY) || (uarmh && uarmh->oartifact == ART_IRIS_S_SECRET_VULNERABILIT) || (uarmc && uarmc->oartifact == ART_IRIS_S_UNREVEALED_LOVE) || (uarmg && uarmg->oartifact == ART_IRIS_S_FAVORED_MATERIAL) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
 			dam += rnd(20);
 			pline_The("silver sears your flesh!");
 			exercise(A_CON, FALSE);

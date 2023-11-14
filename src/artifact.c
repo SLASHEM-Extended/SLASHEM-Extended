@@ -609,6 +609,7 @@ init_randarts()
 	artilist[ART_CANNONEER].otyp = randartlauncherX();
 	artilist[ART_SPEEDHACK].otyp = randartlauncherX();
 	artilist[ART_RAYSWANDIR].otyp = randartquarterstaffX();
+	artilist[ART_MAGE_STAFF_OF_ETERNITY].otyp = randartquarterstaffX();
 	artilist[ART_STAFF_OF_WILD_MAGIC].otyp = randartquarterstaffX();
 	artilist[ART_CELL].otyp = randartquarterstaffX();
 	artilist[ART_LYST_ERG].otyp = randartquarterstaffX();
@@ -641,6 +642,7 @@ init_randarts()
 	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
 	artilist[ART_PANTAP].otyp = randartcloakX();
 	artilist[ART_RUTH_S_DARK_FORCE].otyp = randarthelmX();
+	artilist[ART_PEOPLE_DUMBING].otyp = randarthelmX();
 	artilist[ART_HELM_OF_THE_ARCANE_ARCHER].otyp = randarthelmX();
 	artilist[ART_MASK_OF_TLALOC].otyp = randarthelmX();
 	artilist[ART_HOW_CAN_ONE_PLEASE_LOOK_LI].otyp = randarthelmX();
@@ -765,6 +767,7 @@ init_randarts()
 	artilist[ART_SCHWI_SCHWI].otyp = randartorbX();
 	artilist[ART_MR__AHLBLOW_S_SIGNAGE].otyp = randartorbX();
 	artilist[ART_UNSTOPPABLE].otyp = randartcrossbowX();
+	artilist[ART_HEAVY_CROSSBOW_OF_ETERNITY].otyp = randartcrossbowX();
 	artilist[ART_CROSSBOW_OF_THE_GNOLL_LORD].otyp = randartcrossbowX();
 	artilist[ART_HOWLING_FLAIL].otyp = randartflailX();
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
@@ -824,6 +827,7 @@ init_randarts()
 	artilist[ART_GAUNTLETS_OF_THE_BERSERKER].otyp = randartglovesX();
 	artilist[ART_UNKNOWINGNESS_AS_A_WEAPON].otyp = randartglovesX();
 	artilist[ART_VIOLENT_SKULL_SWORD].otyp = randartlongswordX();
+	artilist[ART_LONG_SWORD_OF_ETERNITY].otyp = randartlongswordX();
 	artilist[ART_HOLY_MOONLIGHT_SWORD].otyp = randartlongswordX();
 	artilist[ART_GAUGE_REDUCE].otyp = randartlongswordX();
 	artilist[ART_GLAMDRING__CHINESE_BOOTLEG].otyp = randartlongswordX();
@@ -953,6 +957,7 @@ init_appearance_randarts()
 	artilist[ART_IRIS_S_UNREVEALED_LOVE].otyp = find_demonic_cloak();
 	artilist[ART_IRIS_S_FAVORED_MATERIAL].otyp = find_spiky_gloves();
 
+	artilist[ART_IRMA_S_CHOICE].otyp = find_copper_stilettos();
 	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_GIVE_US_TODAY_OUR_DAILY_GA].otyp = find_bamboo_cloak();
 	artilist[ART_JANA_S_ROULETTE_OF_LIFE].otyp = find_foundry_cloak();
@@ -3166,6 +3171,7 @@ struct monst *mon;
 
 	/* to-hit h@ck by Amy because of the brain-dead programming where PHYS(1,0) gives double damage but PHYS(0,0)
 	 * does not; how the hell am I supposed to make an artifact that only gives double damage but no to-hit??? */
+
 	if (otmp && otmp->oartifact) {
 		switch (otmp->oartifact) {
 
@@ -3187,6 +3193,10 @@ struct monst *mon;
 			case ART_WILD_HEAVY_SWINGS:
 			case ART_COMPLETELY_OFF:
 				return 0; /* no to-hit bonus */
+
+			case ART_ANTILUCKBLADE:
+				if (Luck < 0) return abs((int)Luck);
+				break;
 
 			default: break;
 		}
@@ -3235,6 +3245,14 @@ int tmp;
 			case ART_STRUCK_ON:
 			case ART_WINNETOU_S_FRIEND:
 				return 0; /* no damage bonus */
+
+			case ART_ANTILUCKBLADE: /* h@ck for luck-dependant damage bonus --Amy */
+				if (Luck < 0) {
+					int boosteramount = abs((int)Luck);
+					return rnd(boosteramount);
+				}
+				break;
+
 
 			case ART_POINT_DEXTER: /* h@ck for dexterity-dependant damage bonus --Amy */
 				if (ACURR(A_DEX) < 1) return 1;
@@ -3831,7 +3849,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 		    *dmgptr += d(3,6) + 6;
 		    break;
 		case 10:
-			if (!rn2(20) && !(!youdefend && resists_poison(mdef)) && !(youdefend && uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) ) {
+			if (!rn2(20) && !(!youdefend && resists_poison(mdef)) && !(youdefend && uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(youdefend && uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) ) {
 		    pline_The("poison was deadly...");
 		    *dmgptr = 2 *
 			    (youdefend ? Upolyd ? u.mh : u.uhp : mdef->mhp) +
@@ -5222,6 +5240,53 @@ chargingchoice:
 				stackobj(otmp);
 				You("created a new hammer.");
 
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_UTE_S_GREENCHANGE) {
+			long savewornmask;
+
+			savewornmask = obj->owornmask;
+			setworn((struct obj *)0, obj->owornmask);
+
+			obj->enchantment = randenchantment();
+
+			setworn(obj, savewornmask);
+
+			Your("peep-toes' enchantment was randomized.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_REAL_FORCE) {
+
+			coord cc;
+			struct monst *psychmonst;
+			pline("Select a monster to use psycho force");
+			cc.x = u.ux;
+			cc.y = u.uy;
+			getpos(&cc, TRUE, "the spot to attack");
+			if (cc.x == -10) return (0); /* user pressed esc */
+			psychmonst = m_at(cc.x, cc.y);
+
+			if (!psychmonst || (!canseemon(psychmonst) && !canspotmon(psychmonst))) {
+				You("don't see a monster there!");
+				return (0);
+			}
+
+			if (psychmonst) {
+				psychmonst->mcanmove = 0;
+				psychmonst->mstrategy &= ~STRAT_WAITFORU;
+				psychmonst->mfrozen = rn1(3, 3);
+
+				pline("%s sputters at the forced hold!", Monnam(psychmonst));
+				psychmonst->mhp -= rnz(50);
+				if (psychmonst->mhp < 1) {
+					pline("%s dies!", Monnam(psychmonst));
+					xkilled(psychmonst,0);
+				} else wakeup(psychmonst); /* monster becomes hostile */
 			}
 
 			break;

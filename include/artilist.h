@@ -17227,6 +17227,58 @@ A("Iris's Favored Material",				REGULAR_GLOVES, /* initialized to always be spik
  * 4 artifacts - double astral vision
  * take note that this does not include the "Iris's Precious Metal" artifact, this is by design --Amy */
 
+A("Really Wanna See Blood!",				STEEL_KNIFE, /* +rn1(11,11) bleeding damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MURDERER, NON_PM, 4000L ),
+
+A("Jana's Mud Obsession",				DANCING_SHOES, /* 10000 turns of jana trap effect, hard to destruct and kicking a monster has 5% chance to fire a strength 6 acid ray */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jenny Supersoft",				LADY_BOOTS, /* jennifer trap effect, stun resistance and prevents fumbling */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("People Dumbing",				STANDARD_HELMET, /* randart2 helmet, trap revealing and 1 in 20 that the revealed trap is no longer invisible if it was before */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_DEMAGOGUE, NON_PM, 4000L ),
+
+A("Bangbangbang",				STORM_RIFLE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 3), NO_DFNS, NO_CARY, 0, A_NONE, PM_SPACE_MARINE, NON_PM, 3500L ),
+
+A("Anti-Animal Bar",				DRAGON_SPEAR, /* +3 AC, and if you're a gladiator, your armor pieces are 50% less likely to dull */
+	(SPFX_RESTR|SPFX_DFLAG1), 0, M1_ANIMAL,
+	PHYS(2, 12), NO_DFNS, NO_CARY, 0, A_NONE, PM_GLADIATOR, NON_PM, 2000L ),
+
+A("Fyryoni",				RIN_REGENERATION, /* aggravate monster, magic find, autocurses */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, PM_GLADIATOR, NON_PM, 2500L ),
+
+A("Dressing Em",				MESH_SADDLE, /* ridden monster regenerates an additional HP per turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_LADIESMAN, NON_PM, 4000L ),
+
+A("Irma's Choice",				LOW_BOOTS, /* initialized to always be copper stilettos, 10% chance to nullify incoming damage */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, PM_LIBRARIAN, NON_PM, 7000L ),
+
+A("Antiluckblade",				BLADE_OF_GRACE, /* if your luck is negative, to-hit and damage bonuses are actually equal to the absolute value of your luck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, PM_MURDERER, NON_PM, 2500L ),
+
+A("The Mage Staff of Eternity",				QUARTERSTAFF, /* randart2 quarterstaff, see invis, infravision, boosts INT and WIS by its enchantment if positive, spellboost, -d20 melee to-hit, sticky autocurses; if you're not an unbeliever, +1000 sanity every time you wield it */
+	(SPFX_RESTR|SPFX_LUCK|SPFX_ESP|SPFX_EREGEN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
+
+A("The Long Sword of Eternity",				LONG_SWORD, /* randart2 long sword, +10 CON, cold immunity, free action, heavily autocurses, antimagic shell, see invisible, slow digestion; if you're not an unbeliever, +1000 sanity every time you wield it */
+	(SPFX_RESTR|SPFX_LUCK|SPFX_BEHEAD|SPFX_ATTK|SPFX_DEFN|SPFX_REGEN), 0, 0,
+	ELEC(0, 10), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
+
+A("The Heavy Crossbow of Eternity",				CROSSBOW, /* randart2 crossbow, heavy sticky autocurse, antimagic shell, see invisible, slow digestion, free action, very fast speed, +10 DEX, flying, +2 multishot, shock immunity, invis, resist blind and confusion, infravision; if you're not an unbeliever, +1000 sanity every time you wield it */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_LUCK|SPFX_REFLECT|SPFX_STLTH|SPFX_EVIL), 0, 0,
+	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

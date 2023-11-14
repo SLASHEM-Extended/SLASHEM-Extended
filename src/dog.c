@@ -917,6 +917,11 @@ long nmv;		/* number of moves */
 			      mtmp->mhp = mtmp->mhpmax;
 			else mtmp->mhp++;
 		}
+		if (bmwride(ART_DRESSING_EM)) {
+			if (mtmp->mhp + 1 >= mtmp->mhpmax)
+			      mtmp->mhp = mtmp->mhpmax;
+			else mtmp->mhp++;
+		}
 	}
 
 	/* good riding skill gives extra regeneration to ridden monster --Amy */

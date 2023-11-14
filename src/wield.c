@@ -277,6 +277,27 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		pline_The("magyars had an idea.");
 	}
 
+	if (uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) {
+		if (!Role_if(PM_UNBELIEVER)) increasesanity(1000);
+		curse(uwep);
+		uwep->stckcurse = TRUE;
+		Your("weapon is quite cursed now, but also very powerful!");
+	}
+
+	if (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) {
+		if (!Role_if(PM_UNBELIEVER)) increasesanity(1000);
+		curse(uwep);
+		uwep->hvycurse = TRUE;
+		Your("weapon is quite cursed now, but also very powerful!");
+	}
+
+	if (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) {
+		if (!Role_if(PM_UNBELIEVER)) increasesanity(1000);
+		curse(uwep);
+		uwep->stckcurse = uwep->hvycurse = TRUE;
+		Your("weapon is quite cursed now, but also very powerful!");
+	}
+
 	if (uwep && uwep->oartifact == ART_ALASSEA_TELEMNAR && !uwep->hvycurse) {
 		curse(uwep);
 		uwep->hvycurse = 1;
@@ -541,8 +562,29 @@ swapweaponchoice:
 			pline("A terrible black aura surrounds your sickle...");
 		}
 
+		if (uswapwep && uswapwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) {
+			if (!Role_if(PM_UNBELIEVER)) increasesanity(1000);
+			curse(uswapwep);
+			uswapwep->stckcurse = TRUE;
+			Your("weapon is quite cursed now, but also very powerful!");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) {
+			if (!Role_if(PM_UNBELIEVER)) increasesanity(1000);
+			curse(uswapwep);
+			uswapwep->hvycurse = TRUE;
+			Your("weapon is quite cursed now, but also very powerful!");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) {
+			if (!Role_if(PM_UNBELIEVER)) increasesanity(1000);
+			curse(uswapwep);
+			uswapwep->stckcurse = uswapwep->hvycurse = TRUE;
+			Your("weapon is quite cursed now, but also very powerful!");
+		}
+
 		if (uswapwep && uswapwep->oartifact == ART_MAGYAR_IDEA) {
-			curse(uwep);
+			curse(uswapwep);
 			contaminate(100, TRUE);
 			increasesanity(100);
 			pline_The("magyars had an idea.");

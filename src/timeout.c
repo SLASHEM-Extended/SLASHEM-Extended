@@ -1010,7 +1010,7 @@ nh_timeout()
 			}
 		}
 
-		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
+		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1170,7 +1170,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1197,7 +1197,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -1332,7 +1332,7 @@ nh_timeout()
 
 	}
 
-	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
+	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
 			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
@@ -2465,6 +2465,27 @@ nh_timeout()
 
 	}
 
+	if (uarmh && uarmh->oartifact == ART_PEOPLE_DUMBING) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(1000) && !t->tseen && (t->trapdiff < rnd(150))) { /* special case for hidden traps below --Amy */
+
+			if (t->hiddentrap && !t->artionce) {
+				if (!rn2(20)) t->hiddentrap = FALSE;
+				else t->artionce = TRUE;
+			}
+			if (!t->hiddentrap) {
+				t->tseen = 1;
+				u.cnd_traprevealcount++;
+				map_trap(t, TRUE);
+			}
+		}
+	    }
+
+	}
+
 	if (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TRAP_REVEALING) ) {
 
 	    struct trap *t;
@@ -2748,10 +2769,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) && !autismweaponcheck(ART_PROFANED_GREATSCYTHE) && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) && !autismweaponcheck(ART_PROFANED_GREATSCYTHE) && !(uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
 		u.alignlim++;
 
-	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_alignmentstone() || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
+	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_alignmentstone() || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;
 		if(u.ualign.record > u.alignlim)
 			u.ualign.record = u.alignlim;
@@ -4147,7 +4168,7 @@ nh_timeout()
 		case FUMBLING:
 			/* call this only when a move took place.  */
 			/* otherwise handle fumbling msgs locally. */
-			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
+			if (u.umoved && !Levitation && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS)) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && (!PlayerInHighHeels || (PlayerCannotUseSkills) || (rnd(7) > P_SKILL(P_HIGH_HEELS) ) ) ) {
 			    slip_or_trip();
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */

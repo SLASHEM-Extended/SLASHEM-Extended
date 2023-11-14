@@ -731,6 +731,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		} else if (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME && !rn2(10)) {
 		    damu = 0;
 		    Your("pair of heels nullifies the damage!");
+		} else if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && !rn2(10)) {
+		    damu = 0;
+		    Your("pair of heels nullifies the damage!");
 		} else {
 			if (Half_physical_damage && adtyp == AD_PHYS && rn2(2) ) damu = (damu+1) / 2;
 			if (StrongHalf_physical_damage && adtyp == AD_PHYS && rn2(2) ) damu = (damu+1) / 2;

@@ -11128,6 +11128,7 @@ typfnd:
 		case SPE_BOOK_OF_THE_DEAD:
 		case SPE_BLADE_ANGER:
 		case SPE_BEAMSWORD:
+		case SPE_DRAINING_ARROW:
 		case SPE_MENSTRUATION:
 		    typ = SPE_BLANK_PAPER;
 		    break;

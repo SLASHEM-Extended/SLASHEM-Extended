@@ -8715,7 +8715,7 @@ STATIC_OVL void
 knows_object(obj)
 register int obj;
 {
-	if ((obj == SPE_BEAMSWORD) || (obj == SPE_MENSTRUATION) || (obj == SPE_BLADE_ANGER)) return;
+	if ((obj == SPE_BEAMSWORD) || (obj == SPE_DRAINING_ARROW) || (obj == SPE_MENSTRUATION) || (obj == SPE_BLADE_ANGER)) return;
 
 	discover_object(obj,TRUE,FALSE);
 	objects[obj].oc_pre_discovered = 1;	/* not a "discovery" */

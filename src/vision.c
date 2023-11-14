@@ -685,6 +685,7 @@ vision_recalc(control)
 	if (uwep && uwep->oartifact == ART_IS_EVERYWHERE && uwep->lamplit) efflightradius += 4;
 	if (uwep && uwep->oartifact == ART_KRART_T_T_T_T) efflightradius += 2;
 	if (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) efflightradius += 2;
+	if (uarmf && uarmf->oartifact == ART_GIORDANA_S_RADIANCE) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_KIMYO_NI_HIKARU_SONZAI) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_GIGANTIC_SUN) efflightradius += 3;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_mines(&u.uz)) efflightradius += 2;
@@ -771,7 +772,7 @@ vision_recalc(control)
 	    }
 
 	    else if ((next_row[col] & COULD_SEE)
-				&& ( (lev->lit && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || have_darkmodestone())) || (next_row[col] & TEMP_LIT))) {
+				&& ( (lev->lit && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || have_darkmodestone())) || (next_row[col] & TEMP_LIT))) {
 		/*
 		 * We see this position because it is lit.
 		 */
@@ -785,7 +786,7 @@ vision_recalc(control)
 		     */
 		    dx = u.ux - col;	dx = sign(dx);
 		    flev = &(levl[col+dx][row+dy]);
-		    if ( (flev->lit && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || have_darkmodestone())) || next_array[row+dy][col+dx] & TEMP_LIT) {
+		    if ( (flev->lit && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || have_darkmodestone())) || next_array[row+dy][col+dx] & TEMP_LIT) {
 			next_row[col] |= IN_SIGHT;	/* we see it */
 
 			oldseenv = lev->seenv;

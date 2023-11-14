@@ -5724,6 +5724,8 @@ int degree;
 
 	if (Race_if(PM_MATRIXER)) skill = P_MATRIX(skill);
 
+	int degreebefore = degree;
+
     if (skill != P_NONE) {
 
 	if (u.demagoguepersist && !isdemagogue) {
@@ -6512,8 +6514,6 @@ int degree;
 	advance_before = can_advance(skill, FALSE);
 	if (Extra_wpn_practice) degree *= 2;
 	if (StrongExtra_wpn_practice) degree *= 2;
-	if (u.emynluincomplete && !rn2(20)) degree *= 2;
-
 	if (Role_if(PM_ANACHRONOUNBINDER) && u.acutraining > 0) degree *= 2;
 
 	if (Race_if(PM_ELONA_SNAIL)) degree *= (1 + rnd(2)); /* snail trains skills 2.5 times as fast --Amy */
@@ -6554,6 +6554,12 @@ int degree;
 	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && skill == P_HIGH_HEELS) degree *= 5;
 	if (FemtrapActiveNaomi && skill == P_HIGH_HEELS) degree *= 2;
 	if (uwep && uwep->oartifact == ART_FLINGPOWER_ && skill == P_SLING) degree *= 2;
+
+	/* boosts that shouldn't be multiplicative go here --Amy */
+	if (u.emynluincomplete && !rn2(20)) degree += degreebefore;
+	if (irisartiboost()) {
+		if (irisartiboost() > rn2(10)) degree += degreebefore;
+	}
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
 	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */

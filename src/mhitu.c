@@ -7379,7 +7379,7 @@ hitmu(mtmp, mattk)
 			}
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
-				hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) {
+				(hates_silver(youmonst.data) || (uarmf && uarmf->oartifact == ART_IRIS_S_HIDDEN_ALLERGY) || (uarmh && uarmh->oartifact == ART_IRIS_S_SECRET_VULNERABILIT) || (uarmc && uarmc->oartifact == ART_IRIS_S_UNREVEALED_LOVE) || (uarmg && uarmg->oartifact == ART_IRIS_S_FAVORED_MATERIAL) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL)) ) {
 			    pline("The silver sears your flesh!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
@@ -10756,7 +10756,7 @@ dopois:
 			} else dmg += dmgval(otmp, &youmonst);
 
 			if (objects[otmp->otyp].oc_material == MT_SILVER &&
-				hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) {
+				(hates_silver(youmonst.data) || (uarmf && uarmf->oartifact == ART_IRIS_S_HIDDEN_ALLERGY) || (uarmh && uarmh->oartifact == ART_IRIS_S_SECRET_VULNERABILIT) || (uarmc && uarmc->oartifact == ART_IRIS_S_UNREVEALED_LOVE) || (uarmg && uarmg->oartifact == ART_IRIS_S_FAVORED_MATERIAL) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL) ) ) {
 			    pline("The silver sears your flesh!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_COPPER &&
@@ -19357,6 +19357,12 @@ register int n;
 		return;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && !rn2(10)) {
+		n = 0;
+		Your("pair of heels nullifies the damage!");
+		return;
+	}
+
 	if (u.metalguard && n > 0) {
 		u.metalguard = 0;
 		n = 0;
@@ -20991,6 +20997,17 @@ register struct attack *mattk;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_KRISTIN_S_SACHTNESS && (!resists_acid(mtmp) || player_will_pierce_resistance()) ) {
+
+		pline("%s is covered with acid!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(4) ) <= 0) {
+			pline("%s dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_SISTER_S_ACID && (!resists_acid(mtmp) || player_will_pierce_resistance()) ) {
 
 		pline("%s is covered with acid!", Monnam(mtmp));
@@ -21081,6 +21098,18 @@ register struct attack *mattk;
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) {
+		if (!resist(mtmp, WEAPON_CLASS, 0, NOTELL)) {
+		    if (mtmp->mcansee)
+			pline("%s is blinded by the brightness.", Monnam(mtmp));
+		    if (mtmp->mblinded > 120) mtmp->mblinded = 127;
+		    else mtmp->mblinded += rnd(7);
+		    mtmp->mcansee = 0;
+		    mtmp->mstrategy &= ~STRAT_WAITFORU;
+
 		}
 	}
 

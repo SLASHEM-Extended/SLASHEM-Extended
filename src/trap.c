@@ -10320,7 +10320,7 @@ madnesseffect:
 				break;
 			case 3: /* holy incense */
 
-				if(is_undead(youmonst.data) || hates_silver(youmonst.data) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL)) {
+				if(is_undead(youmonst.data) || hates_silver(youmonst.data) || (uarmf && uarmf->oartifact == ART_IRIS_S_HIDDEN_ALLERGY) || (uarmh && uarmh->oartifact == ART_IRIS_S_SECRET_VULNERABILIT) || (uarmc && uarmc->oartifact == ART_IRIS_S_UNREVEALED_LOVE) || (uarmg && uarmg->oartifact == ART_IRIS_S_FAVORED_MATERIAL) || autismweaponcheck(ART_PORKMAN_S_BALLS_OF_STEEL)) {
 
 					pline("Eek - this smells like %s!", FunnyHallu ? "priest's fart" : "exocism incense");
 					losehp(projectiledamage,"holy incense",KILLED_BY);

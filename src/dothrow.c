@@ -276,6 +276,7 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_LOUD_SHITTER) multishot += rn1(2, 2);
 	    if (launcher && launcher->oartifact == ART_CLACKINDRA) multishot += 3;
 	    if (launcher && launcher->oartifact == ART_UZ_I) multishot += rnd(3);
+	    if (launcher && launcher->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) multishot += 2;
 	    if (launcher && obj && obj->oartifact == ART_FUCK_THE_SERVER) multishot += 2;
 
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;

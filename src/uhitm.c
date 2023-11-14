@@ -873,6 +873,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
 	if (uwep && uwep->oartifact == ART_WILD_WHIRLING) tmp -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WILD_WHIRLING) tmp -= 8;
+	if (uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) tmp -= rnd(20);
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (uwep && uwep->oartifact == ART_KLOBB) tmp -= 6;
@@ -4425,6 +4427,10 @@ armorsmashdone:
 		}
 		if (wep && wep->oartifact == ART_BLOODLETTER) {
 			mon->bleedout += rnd(12);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+		if (wep && wep->oartifact == ART_REALLY_WANNA_SEE_BLOOD_) {
+			mon->bleedout += rn1(11,11);
 			pline("%s is bleeding!", Monnam(mon));
 		}
 

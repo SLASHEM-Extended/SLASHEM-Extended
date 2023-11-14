@@ -2229,6 +2229,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && (uarmf->oartifact == ART_ENERGEEN_S) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_FIRST_PLACE_GUARANTEED) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_HIGHEST_FEELING) && !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -7655,6 +7656,10 @@ newbossSTEN:
 
 		if (ublindf && ublindf->oartifact == ART_SATAN_S_SPECIFIC_ENCHANTME) {
 			if (SatanEffect < 5000) SatanEffect = 5000;
+		}
+
+		if (uarmf && uarmf->oartifact == ART_JANA_S_MUD_OBSESSION) {
+			if (FemaleTrapJana < 10000) FemaleTrapJana = 10000;
 		}
 
 		if (autismweaponcheck(ART_GORMALER)) {
@@ -13907,7 +13912,7 @@ pastds2:
 			/* super regene from Elona; if it's infinite with no downside, it's OP, so we have to do something
 			 * I decided that it slowly contaminates you, works less well if you're very contaminated, and
 			 * stops working entirely if you're fatally contaminated --Amy */
-			if ( (Race_if(PM_BACTERIA) || (PlayerInSexyFlats && uarmf && uarmf->oartifact == ART_FORMO____) ) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
+			if ( (Race_if(PM_BACTERIA) || (uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) || (PlayerInSexyFlats && uarmf && uarmf->oartifact == ART_FORMO____) ) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
 				int superregeneamount = 5;
 				if (u.contamination > 200) superregeneamount = 4;
 				if (u.contamination > 400) superregeneamount = 3;

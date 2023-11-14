@@ -6521,6 +6521,18 @@ struct monst *mtmp;
 		else {
 */
 
+		if (otmp->oartifact == ART_DRAINING_ARROW) {
+			if (u.uhpmax > 1) {
+				u.uhpmax--;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			}
+			if (Upolyd && u.mhmax > 1) {
+				u.mhmax--;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+			Your("health has been drained!");
+		}
+
 		if (isevilvariant) { /* wand destruction patch, YAY - reflection does jack diddly because of course it does */
 
 			/* monsters have no wand skill in SLEX, so they just generally pierce reflection

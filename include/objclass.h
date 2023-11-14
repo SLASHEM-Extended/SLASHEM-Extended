@@ -132,7 +132,7 @@ struct objclass {
 /* all of them in mkobj.c now --Amy */
 
 #define is_unwitherable(otmp)	(objects[otmp->otyp].oc_material == MT_BRICK || objects[otmp->otyp].oc_material == MT_FIRMAMENT || (objects[otmp->otyp].oc_material == MT_ADAMANTIUM && rn2(4)) )
-#define hard_to_destruct(otmp)	((otmp->otyp == FAKE_AMULET_OF_YENDOR) || objects[otmp->otyp].oc_material == MT_ETERNIUM || objects[otmp->otyp].oc_material == MT_ALIMATHIUM || (objects[otmp->otyp].oc_material == MT_BAMBOO && !rn2(4)) || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact == ART_SOFTSTEP) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
+#define hard_to_destruct(otmp)	((otmp->otyp == FAKE_AMULET_OF_YENDOR) || objects[otmp->otyp].oc_material == MT_ETERNIUM || objects[otmp->otyp].oc_material == MT_ALIMATHIUM || otmp->oartifact == ART_JANA_S_MUD_OBSESSION || (objects[otmp->otyp].oc_material == MT_BAMBOO && !rn2(4)) || otmp->stckcurse || (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) || (otmp->oartifact == ART_SOFTSTEP) || (otmp->oartifact && otmp->cursed && (spec_ability(otmp, SPFX_EVIL)) ) )
 #define is_etheritem(otmp)	(objects[otmp->otyp].oc_material == MT_ETHER)
 #define is_meteosteelitem(otmp)	(objects[otmp->otyp].oc_material == MT_METEOSTEEL)
 #define is_mysteriousitem(otmp)	(objects[otmp->otyp].oc_material == MT_MYSTERIOUS)

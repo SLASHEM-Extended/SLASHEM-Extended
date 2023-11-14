@@ -2475,6 +2475,13 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_NAQ_QEH) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Oops, the helmet cursed itself.");
+		}
+    }
+
     if (uarmh && uarmh->oartifact == ART_FLYYYYY) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
@@ -5094,6 +5101,11 @@ register struct obj *obj;
 		Your("ring cursed itself.");
     }
 
+    if (obj->oartifact == ART_FYRYONI && !obj->cursed) {
+		curse(obj);
+		Your("ring cursed itself.");
+    }
+
     if (obj->oartifact == ART_VERSION_CONTROL) {
 		if (!obj->cursed) {
 			curse(obj);
@@ -6672,6 +6684,10 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER) uac += 10;
 	if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES) uac += 10;
 
+	if (irisartiboost()) {
+		uac -= (irisartiboost() * 3);
+	}
+
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) uac -= 10;
@@ -6839,6 +6855,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;
 	if (uarm && uarm->oartifact == ART_BRINGS_NOTHING) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_GEHNAC) uac -= 1;
+	if (uwep && uwep->oartifact == ART_ANTI_ANIMAL_BAR) uac -= 3;
 	if (uarmh && uarmh->oartifact == ART_CUMBERSOME_DESC) uac -= 1;
 	if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_DIVINE_DI) uac -= 3;
 	if (uarm && uarm->oartifact == ART_RINGED_BRASS_ARMOR) {

@@ -289,6 +289,11 @@ boolean digest_meal;
 			      mon->mhp = mon->mhpmax;
 			else mon->mhp++;
 		}
+		if (bmwride(ART_DRESSING_EM)) {
+			if (mon->mhp + 1 >= mon->mhpmax)
+			      mon->mhp = mon->mhpmax;
+			else mon->mhp++;
+		}
 
 		if (bmwride(ART_STEERING_WHEEL)) {
 			mon->mconf = FALSE;

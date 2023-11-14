@@ -677,6 +677,15 @@ armorsmashdone:
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		break;
 
+	case SPE_DRAINING_ARROW: /* placeholder for artifact wand of magic missile */
+		if (mtmp->mhpmax > 1) {
+			mtmp->mhpmax--;
+			if (mtmp->mhp > 1) mtmp->mhp--;
+			pline("%s's health is drained!", Monnam(mtmp));
+		}
+
+		break;
+
 	case SPE_BEAMSWORD: /* placeholder for beamsword */
 
 		if (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) {
@@ -3981,6 +3990,8 @@ smell:
 	case SPE_BLADE_ANGER: /* placeholder for T_BLADE_ANGER */
 		break;
 	case SPE_BEAMSWORD: /* placeholder for T_BEAMSWORD */
+		break;
+	case SPE_DRAINING_ARROW: /* placeholder for magic missile wand artifact */
 		break;
 	case SPE_MENSTRUATION: /* placeholder for natalia trap special attack */
 		break;
@@ -8025,7 +8036,7 @@ struct obj *obj;
 
 	}
 
-	if (objects[otyp].oc_dir == IMMEDIATE || obj->otyp == SPE_MENSTRUATION || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) || ( (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) ) {
+	if (objects[otyp].oc_dir == IMMEDIATE || obj->otyp == SPE_MENSTRUATION || obj->otyp == SPE_DRAINING_ARROW || (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) || ( (tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) ) {
 	    obj_zapped = FALSE;
 
 		if (obj->otyp == WAN_WIND) {
@@ -8104,6 +8115,22 @@ struct obj *obj;
 			}
 
 		else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_PSYBEAM) {
+
+			if (obj && obj->oartifact == ART_DRAINING_ARROW) {
+				struct obj *pseudo;
+				pseudo = mksobj(SPE_DRAINING_ARROW, FALSE, 2, FALSE);
+				if (!pseudo) goto drainingdone;
+				if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_DRAINING_ARROW; /* minimalist fix */
+				pseudo->quan = 20L;			/* do not let useup get it */
+				pseudo->spe = obj->spe;
+				weffects(pseudo);
+
+				if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+
+			}
+
+drainingdone:
+
 			buzz(otyp - WAN_MAGIC_MISSILE,
 		     (otyp == WAN_MAGIC_MISSILE) ? 4 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
 		     u.ux, u.uy, u.dx, u.dy);

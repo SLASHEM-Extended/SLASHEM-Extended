@@ -18217,6 +18217,8 @@ boolean knoweverything;
 				pline("An arcane book that can be read. Reciting the eldritch formulas contained therein may raise the dead, so be careful. Reading it without an imbued silver bell doesn't work at all, though."); break;
 			case SPE_BEAMSWORD:
 				pline("This item is a placeholder for the beamsword technique and the fact that you somehow have it in your inventory is a bug! Please report this to Amy including a description of what you did that resulted in you getting it."); break;
+			case SPE_DRAINING_ARROW:
+				pline("This item is a placeholder for the draining arrow wand and the fact that you somehow have it in your inventory is a bug! Please report this to Amy including a description of what you did that resulted in you getting it."); break;
 			case SPE_MENSTRUATION:
 				pline("This item is a placeholder for the natalia trap special attack and the fact that you somehow have it in your inventory is a bug! Please report this to Amy including a description of what you did that resulted in you getting it."); break;
 			case SPE_BLADE_ANGER:
@@ -29176,6 +29178,32 @@ boolean knoweverything;
 					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
 				case ART_IRIS_S_FAVORED_MATERIAL:
 					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+				case ART_REALLY_WANNA_SEE_BLOOD_:
+					pline("Artifact specs: deals quite some bleeding damage to targets, murderer sacrifice gift."); break;
+				case ART_JANA_S_MUD_OBSESSION:
+					pline("Artifact specs: gives you the jana trap effect for a while, and if you kick a monster with them, there's a small chance that you blast a ray of acid in the direction of your kick. This pair of boots is resistant to various types of item destruction."); break;
+				case ART_JENNY_SUPERSOFT:
+					pline("Artifact specs: jennifer trap effect, stun resistance and prevents fumbling when worn."); break;
+				case ART_PEOPLE_DUMBING:
+					pline("Artifact specs: trap revealing when worn, and if it tries to reveal an invisible trap there's a small chance that it becomes visible. This item is a sacrifice gift for the demagogue role."); break;
+				case ART_BANGBANGBANG:
+					pline("Artifact specs: +6 to-hit and +3 damage, space marine sacrifice gift."); break;
+				case ART_ANTI_ANIMAL_BAR:
+					pline("Artifact specs: +2 to-hit and +12 damage against animals, 3 extra points of AC when wielded and if you're a gladiator, your armor pieces are also less likely to dull in combat. Obviously, this item is a sacrifice gift for the gladiator role."); break;
+				case ART_FYRYONI:
+					pline("Artifact specs: drain resistance, aggravate monster and magic find bonus when worn, autocurses, gladiator sacrifice gift."); break;
+				case ART_DRESSING_EM:
+					pline("Artifact specs: riding a monster who is equipped with this saddle speeds up the steed's HP regeneration rate, ladiesman sacrifice gift."); break;
+				case ART_IRMA_S_CHOICE:
+					pline("Artifact specs: +2 to-hit and +2 stun damage if you kick monsters with them, occasionally nullifies incoming damage, librarian sacrifice gift."); break;
+				case ART_ANTILUCKBLADE:
+					pline("Artifact specs: +1 damage, or if your luck is negative, to-hit and damage bonuses equal to the amount of negative luck (read: this weapon becomes stronger the more unlucky you are). Murderer sacrifice gift."); break;
+				case ART_MAGE_STAFF_OF_ETERNITY:
+					pline("Artifact specs: works as a luckstone when wielded and conveys ESP, see invisible, spellboost, energy regeneration, infravision, boosts to INT and WIS if it's positively enchanted, greatly reduced melee to-hit and sticky autocurses when wielded and is an unbeliever sacrifice gift. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
+				case ART_LONG_SWORD_OF_ETERNITY:
+					pline("Artifact specs: +10 shock damage, works as a luckstone when wielded, beheads enemies and conveys fire resistance, regeneration, +10 constitution, cold immunity, free action, see invisible and slow digestion and produces an antimagic shell, heavily autocurses when wielded and is an unbeliever sacrifice gift. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
+				case ART_HEAVY_CROSSBOW_OF_ETERNITY:
+					pline("Artifact specs: +16 damage, works as a luckstone when wielded and conveys reflection, stealth, see invisible, slow digestion, free action, very fast speed, +10 DEX, flying, +2 multishot, shock immunity, invisible, resist blindness and confusion and infravision and produces an antimagic shell, heavily sticky autocurses when wielded and is an unbeliever sacrifice gift. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
