@@ -958,7 +958,7 @@ register struct monst *mtmp;
 		if (isok(mtmp->mx, mtmp->my)) levl[mtmp->mx][mtmp->my].lit = FALSE;
 	}
 
-	if (mdat == &mons[PM_ROCK_SPAWNER] || mdat == &mons[PM_LOCKER] || mdat == &mons[PM_WALLWORKER_ANT] || mdat == &mons[PM_SPIRIT_LOCKER] || mdat == &mons[PM_XORN_LOCKER]) {
+	if (mdat == &mons[PM_ROCK_SPAWNER] || mdat == &mons[PM_LOCKER] || mdat == &mons[PM_UTHGEN_RAPPER] || mdat == &mons[PM_WALLWORKER_ANT] || mdat == &mons[PM_SPIRIT_LOCKER] || mdat == &mons[PM_XORN_LOCKER]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25)) ) {
 			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ >= ICE && levl[mtmp->mx][mtmp->my].typ <= CRYPTFLOOR) || (levl[mtmp->mx][mtmp->my].typ >= AIR && levl[mtmp->mx][mtmp->my].typ <= RAINCLOUD)) {
 				levl[mtmp->mx][mtmp->my].typ = ROCKWALL;
@@ -3902,7 +3902,7 @@ register int after;
 	    goto postmov;
 	}
 
-	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
+	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&
 	   !tele_restrict(mtmp) ) {
 		(void) rloc(mtmp, FALSE);
 		mmoved = 1;

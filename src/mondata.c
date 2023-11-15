@@ -650,6 +650,7 @@ struct permonst *ptr;
     case PM_PHASE_HORN:
     case PM_MATURE_UNICORN:
     case PM_BUBBLY_UNICORN:
+    case PM_REPLICA_UNICORN:
     case PM_ALIEN_UNICORN:
     case PM_SLATE_UNICORN:
     case PM_SELF_FLAGELLATING_UNICORN:

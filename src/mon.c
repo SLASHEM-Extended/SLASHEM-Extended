@@ -639,6 +639,14 @@ register struct monst *mtmp;
 		} else
 			(void) mksobj_at(BUBBLEHORN, x, y, TRUE, FALSE, FALSE);
 		goto default_1;
+	    case PM_REPLICA_UNICORN:
+		if (mtmp->mrevived && rn2(20)) {
+			if (canseemon(mtmp))
+			   pline("%s recently regrown horn crumbles to dust.",
+				s_suffix(Monnam(mtmp)));
+		} else
+			(void) mksobj_at(REPLICA_UNICORN_HORN, x, y, TRUE, FALSE, FALSE);
+		goto default_1;
 	    case PM_SKY_UNICORN:
 		if (mtmp->mrevived && rn2(20)) {
 			if (canseemon(mtmp))

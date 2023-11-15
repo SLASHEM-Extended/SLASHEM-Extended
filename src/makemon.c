@@ -7956,6 +7956,7 @@ register struct	monst	*mtmp;
 
 		if (monsndx(ptr) == PM_ILSE_S_LADY_PUMP) (void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_HIGH_DAIMYO]) (void) mongets(mtmp, KATANA);
+		if (ptr == &mons[PM_CHEVALIER_LE_MORT]) (void) mongets(mtmp, SCYTHE);
 		if (ptr == &mons[PM_UNI_EMPRESS]) (void) mongets(mtmp, DARK_HORN);
 		if (ptr == &mons[PM_STREET_RACQUET]) (void) mongets(mtmp, BRASS_KNUCKLES);
 		if (ptr == &mons[PM_GANXTA]) (void) mongets(mtmp, BRASS_KNUCKLES);
@@ -9573,6 +9574,11 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_EXPLOSIVE_FURYBORG]) {
 			(void) mongets(mtmp, HAND_BLASTER);
 			 m_initthrow(mtmp, BLASTER_BOLT, 35);
+		}
+		if (ptr == &mons[PM_ZYTHRAK__]) {
+			(void) mongets(mtmp, LEAD_UNLOADER);
+			 m_initthrow(mtmp, BRONZE_SMG_BULLET, 40);
+			 m_initthrow(mtmp, BRONZE_SMG_BULLET, 40);
 		}
 
 		if (ptr == &mons[PM_IRIS_S_HIGH_HEELED_SANDAL]) {
@@ -11892,6 +11898,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_LANTURN_LIGHT]) (void) mongets(mtmp, POLE_LANTERN);
 		if (mtmp->data == &mons[PM_TORCHLIGHT]) (void) mongets(mtmp, LIGHTTORCH);
 		if (mtmp->data == &mons[PM_FACKLE_IN_THE_DARK]) (void) mongets(mtmp, LIGHTTORCH);
+		if (mtmp->data == &mons[PM_GEWUESSLE]) (void) mongets(mtmp, JACK_KNIFE);
 
 		if (mtmp->data == &mons[PM_DENISE_S_GIRL_SHOE]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (mtmp->data == &mons[PM_FRESH_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
@@ -14100,6 +14107,10 @@ loveheelover:
 			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 			(void) mongets(mtmp, POT_CURE_SERIOUS_WOUNDS);
 		}
+		if (ptr == &mons[PM_RUDOLF_GANGSTERHEAD]) {
+			(void) mongets(mtmp, PISTOL);
+			 m_initthrow(mtmp, LEAD_PISTOL_BULLET, 25);
+		}
 		if (ptr == &mons[PM_SCIENTITS]) {
 			(void) mongets(mtmp, CANDY_BRA);
 		}
@@ -15394,6 +15405,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SPEAR_ORC]) (void) mongets(mtmp, ORCISH_SPEAR);
 		if (mtmp->data == &mons[PM_ORC_SPEAR_CARRIER]) (void) mongets(mtmp, ORCISH_SPEAR);
 		if (mtmp->data == &mons[PM_ORC_ANTI_CAVALRY]) (void) mongets(mtmp, rnd_class(PARTISAN,BEC_DE_CORBIN));
+		if (mtmp->data == &mons[PM_BLACKLAND_ORC]) (void) mongets(mtmp, ORCISH_SCIMITAR);
+		if (mtmp->data == &mons[PM_GOBLIN_SWINGER]) (void) mongets(mtmp, ORCISH_SCIMITAR);
+		if (mtmp->data == &mons[PM_SPIKE_ORC]) (void) mongets(mtmp, ORCISH_MORNING_STAR);
+		if (mtmp->data == &mons[PM_BOOTER_ORC]) (void) mongets(mtmp, ORCISH_BOOTS);
 
 		if (ptr == &mons[PM_DARKLAND_ORC]) {
 			(void) mongets(mtmp, BOW);
