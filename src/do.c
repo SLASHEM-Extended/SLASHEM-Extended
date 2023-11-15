@@ -1987,11 +1987,30 @@ doup()
 			"swallowed" : "engulfed");
 		return(1);
 	}
-	if(near_capacity() > SLT_ENCUMBER) {
-		/* No levitation check; inv_weight() already allows for it */
-		Your("load is too heavy to climb the %s.",
-			levl[u.ux][u.uy].typ == STAIRS ? "stairs" : "ladder");
-		return(1);
+	if((near_capacity() > SLT_ENCUMBER) && !Levitation && !Flying) {
+		if (near_capacity() > MOD_ENCUMBER) {
+			/* No levitation check; inv_weight() already allows for it
+			 * Amy edit: but I don't care, and also flying should allow it too :-P */
+			Your("load is too heavy to climb the %s.",
+				levl[u.ux][u.uy].typ == STAIRS ? "stairs" : "ladder");
+			return(1);
+		} else { /* Amy change: stressed means you fall up the stairs, only strained or worse keep you from ascending */
+		    You("fall up the %s.", at_ladder ? "ladder" : "stairs");
+
+		    if (!rn2(100)) {
+			    set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(10));
+			    losehp(rnd(4), "scraping open their legs", KILLED_BY);
+			    You("scrape along the stairway steps with your %s.", body_part(LEG));
+		    }
+
+		    if (u.usteed) {
+			if (!mayfalloffsteed())
+				dismount_steed(DISMOUNT_FELL);
+		    } else
+			losehp(rnd(3), "falling upstairs", KILLED_BY);
+		    selftouch("Falling, you");
+
+		}
 	}
 	if(ledger_no(&u.uz) == 1) {
 
@@ -4609,11 +4628,12 @@ rerollchaloc:
 		    You("fly down along the %s.",
 			at_ladder ? "ladder" : "stairs");
 		else if (u.dz &&
-		    (near_capacity() > UNENCUMBERED || (Punished &&
+		    ( (near_capacity() > UNENCUMBERED && (near_capacity() > SLT_ENCUMBER || issoviet || !rn2(3)) ) || (Punished &&
 		    ((uwep != uball) || PlayerCannotUseSkills || ((P_SKILL(P_FLAIL) < P_BASIC))
             || !Role_if(PM_CONVICT)))
 		     || Fumbling || (Confusion && !Conf_resist && !rn2(20) && !Race_if(PM_ADDICT)) || (Stunned && !Stun_resist && !rn2(5) && !Race_if(PM_TUMBLRER) && !Race_if(PM_REDDITOR)) )) {
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
+		    if (issoviet && (near_capacity() > UNENCUMBERED)) pline("Teper' ty upal, potomu chto ty vsegda tak deyalesh, ty, obremenennyy pridurok. Ty deystvitel'no ne ochen' umnyy.");
 
 		    if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
 
