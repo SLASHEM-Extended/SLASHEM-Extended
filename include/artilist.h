@@ -17272,11 +17272,11 @@ A("The Mage Staff of Eternity",				QUARTERSTAFF, /* randart2 quarterstaff, see i
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
 
 A("The Long Sword of Eternity",				LONG_SWORD, /* randart2 long sword, +10 CON, cold immunity, free action, heavily autocurses, antimagic shell, see invisible, slow digestion; if you're not an unbeliever, +1000 sanity every time you wield it */
-	(SPFX_RESTR|SPFX_LUCK|SPFX_BEHEAD|SPFX_ATTK|SPFX_DEFN|SPFX_REGEN), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_LUCK|SPFX_BEHEAD|SPFX_ATTK|SPFX_DEFN|SPFX_REGEN), 0, 0,
 	ELEC(0, 10), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
 
 A("The Heavy Crossbow of Eternity",				CROSSBOW, /* randart2 crossbow, heavy sticky autocurse, antimagic shell, see invisible, slow digestion, free action, very fast speed, +10 DEX, flying, +2 multishot, shock immunity, invis, resist blind and confusion, infravision; if you're not an unbeliever, +1000 sanity every time you wield it */
-	(SPFX_RESTR|SPFX_EVIL|SPFX_LUCK|SPFX_REFLECT|SPFX_STLTH|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_LUCK|SPFX_REFLECT|SPFX_STLTH), 0, 0,
 	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */

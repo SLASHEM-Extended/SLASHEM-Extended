@@ -29171,13 +29171,37 @@ boolean knoweverything;
 				case ART_NAQ_QEH:
 					pline("Artifact specs: +3 charisma and autocurses when worn."); break;
 				case ART_IRIS_S_HIDDEN_ALLERGY:
-					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!");
+					if (irissetbonus()) {
+						if (irissetbonus() == 2) pline("Due to having two pieces of this set equipped, you have double reflection!");
+						else if (irissetbonus() == 3) pline("Due to having three pieces of this set equipped, you have double reflection and double magic resistance!");
+						else if (irissetbonus() == 4) pline("Due to having four pieces of this set equipped, you have double reflection, double magic resistance and double x-ray vision!");
+					}
+					break;
 				case ART_IRIS_S_SECRET_VULNERABILIT:
-					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!");
+					if (irissetbonus()) {
+						if (irissetbonus() == 2) pline("Due to having two pieces of this set equipped, you have double reflection!");
+						else if (irissetbonus() == 3) pline("Due to having three pieces of this set equipped, you have double reflection and double magic resistance!");
+						else if (irissetbonus() == 4) pline("Due to having four pieces of this set equipped, you have double reflection, double magic resistance and double x-ray vision!");
+					}
+					break;
 				case ART_IRIS_S_UNREVEALED_LOVE:
-					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!");
+					if (irissetbonus()) {
+						if (irissetbonus() == 2) pline("Due to having two pieces of this set equipped, you have double reflection!");
+						else if (irissetbonus() == 3) pline("Due to having three pieces of this set equipped, you have double reflection and double magic resistance!");
+						else if (irissetbonus() == 4) pline("Due to having four pieces of this set equipped, you have double reflection, double magic resistance and double x-ray vision!");
+					}
+					break;
 				case ART_IRIS_S_FAVORED_MATERIAL:
-					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!"); break;
+					pline("Artifact specs: makes you vulnerable to silver when worn, but for every worn armor piece made of silver, you gain extra AC, reduced paralysis duration, and small improvements to spell memory, technique timeouts and skill training. Wear several of these items (hidden allergy, secret vulnerability, unrevealed love and favored material) for nice set bonuses!");
+					if (irissetbonus()) {
+						if (irissetbonus() == 2) pline("Due to having two pieces of this set equipped, you have double reflection!");
+						else if (irissetbonus() == 3) pline("Due to having three pieces of this set equipped, you have double reflection and double magic resistance!");
+						else if (irissetbonus() == 4) pline("Due to having four pieces of this set equipped, you have double reflection, double magic resistance and double x-ray vision!");
+					}
+					break;
 				case ART_REALLY_WANNA_SEE_BLOOD_:
 					pline("Artifact specs: deals quite some bleeding damage to targets, murderer sacrifice gift."); break;
 				case ART_JANA_S_MUD_OBSESSION:
