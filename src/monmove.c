@@ -1460,7 +1460,7 @@ register struct monst *mtmp;
 		else increasesanity(1);
 	}
 
-	if (mdat == &mons[PM_KRINSCH_SAEIER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
+	if ((mdat == &mons[PM_KRINSCH_SAEIER] || mdat == &mons[PM_KRINSCHESTES_TSCHEILD]) && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
 		verbalize(rn2(2) ? "krinsch" : "is ja krinsch");
 	}
 	if (mdat == &mons[PM_LOSTESTER_TEENAGER] && !rn2(10) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {

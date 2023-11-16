@@ -2714,20 +2714,21 @@ douglas_adams_mon()
 struct permonst *
 beehivemon()
 {
-	int     i = rn2(113);
+	int     i = rn2(114);
 
-	if (i > 111) return((level_difficulty() > 40) ? &mons[PM_NEUROBEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 110) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_FORCE_BEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 109) return((level_difficulty() > 15) ? &mons[PM_THWARTER_BEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 107) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_BEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 106) return((level_difficulty() > 9) ? &mons[PM_HIGHBEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 105) return(((level_difficulty() > 9) && !rn2(50)) ? &mons[PM_BAN_BEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 104) return((level_difficulty() > 6) ? (rn2(5) ? &mons[PM_ZOMBEE] : &mons[PM_SPIKE_ZOMBEE]) : &mons[PM_KILLER_BEE]);
-	else if (i > 103) return((level_difficulty() > 6) ? &mons[PM_FUMBLEBEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 95) return((level_difficulty() > 6) ? &mons[PM_WING_BEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 87) return((level_difficulty() > 6) ? &mons[PM_TWIN_BEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 86) return((level_difficulty() > 6) ? &mons[PM_WEREKILLERBEE] : &mons[PM_KILLER_BEE]);
-	else if (i > 85) return((level_difficulty() > 5) ? &mons[PM_GIANT_JELLY_BEE] : &mons[PM_KILLER_BEE]);
+	if (i > 112) return((level_difficulty() > 40) ? &mons[PM_NEUROBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 111) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_FORCE_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 110) return((level_difficulty() > 15) ? &mons[PM_THWARTER_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 108) return((level_difficulty() > 15) ? &mons[PM_VORACIOUS_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 107) return((level_difficulty() > 9) ? &mons[PM_HIGHBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 106) return(((level_difficulty() > 9) && !rn2(50)) ? &mons[PM_BAN_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 105) return((level_difficulty() > 6) ? (rn2(5) ? &mons[PM_ZOMBEE] : &mons[PM_SPIKE_ZOMBEE]) : &mons[PM_KILLER_BEE]);
+	else if (i > 104) return((level_difficulty() > 6) ? &mons[PM_FUMBLEBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 96) return((level_difficulty() > 6) ? &mons[PM_WING_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 88) return((level_difficulty() > 6) ? &mons[PM_TWIN_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 87) return((level_difficulty() > 6) ? &mons[PM_WEREKILLERBEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 86) return((level_difficulty() > 5) ? &mons[PM_GIANT_JELLY_BEE] : &mons[PM_KILLER_BEE]);
+	else if (i > 85) return((level_difficulty() > 5) ? &mons[PM_CARCOSAN_BEE] : &mons[PM_KILLER_BEE]);
 	else if (i > 84) return((level_difficulty() > 5) ? &mons[PM_SPIKE_BEE] : &mons[PM_KILLER_BEE]);
 	else if (i > 74) return((level_difficulty() > 5) ? &mons[PM_GIANT_KILLER_BEE] : &mons[PM_KILLER_BEE]);
 	else if (i > 73) return((level_difficulty() > 3) ? &mons[PM_SHARP_BEE] : &mons[PM_KILLER_BEE]);
