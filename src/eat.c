@@ -1076,6 +1076,8 @@ register int pm;
 	    case PM_HUGE_LIZARD:
 	    case PM_CORK_ESPADRILLE:
 	    case PM_PACKED_LIZARD:
+	    case PM_SILILIZARD:
+	    case PM_UNSILIZARD:
 	    case PM_VERY_SLOW_HUGE_LIZARD:
 	    case PM_SAND_TIDE:
 	    case PM_O_P_E_L:
@@ -1302,6 +1304,8 @@ struct monst *mon;
 	case PM_HUGE_LIZARD:
 	    case PM_CORK_ESPADRILLE:
 	    case PM_PACKED_LIZARD:
+	    case PM_SILILIZARD:
+	    case PM_UNSILIZARD:
       case PM_VERY_SLOW_HUGE_LIZARD:
 	case PM_SAND_TIDE:
 	    case PM_O_P_E_L:
@@ -2406,6 +2410,7 @@ register int pm;
 		break;
 
 	    case PM_WRAITH:
+	    case PM_ALU_WRAITH:
 	    case PM_ZIELUF:
 	    case PM_ROTTEN_WRAITH:
 	    case PM_SPECTRAL_WRAITH:
@@ -3389,6 +3394,8 @@ register int pm;
 	    case PM_CLINGING_LIZARD:
 	    case PM_PRESSLIZARD:
 	    case PM_STATIOLIZARD:
+	    case PM_SILILIZARD:
+	    case PM_UNSILIZARD:
 	    case PM_GIBLIZARD:
 			lesshungry(20); /* fall thru */
 	    case PM_UNDEAD_COCKATRICE:
@@ -3678,6 +3685,7 @@ register int pm;
 	    case PM_SPINACH:
 	    case PM_SPINACHI:
 	    case PM_COCKERICH:
+	    case PM_STEEL_COCKATRICE:
 	    case PM_GRAVITY_CHICKEN:
 	    case PM_MEDUSA_S_PET_FISH:
 		if (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() ) break;

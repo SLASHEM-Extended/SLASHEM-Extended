@@ -4261,7 +4261,7 @@ altarfound:
 
 		    if(((likegold && otmp->oclass == COIN_CLASS) ||
 		       (likeobjs && index(practical, otmp->oclass) &&
-			(otmp->otyp != CORPSE || ((ptr->mlet == S_NYMPH || ptr == &mons[PM_GOLDEN_KNIGHT] || ptr == &mons[PM_URCAGUARY])
+			(otmp->otyp != CORPSE || ((ptr->mlet == S_NYMPH || ptr == &mons[PM_GOLDEN_KNIGHT] || ptr == &mons[PM_GOLDEN_HOLY_KNIGHT] || ptr == &mons[PM_URCAGUARY])
 			   && !is_rider(&mons[otmp->corpsenm]) && !is_deadlysin(&mons[otmp->corpsenm]) ))) ||
 		       (likemagic && index(magical, otmp->oclass)) ||
 		       (uses_items && searches_for_item(mtmp, otmp)) ||

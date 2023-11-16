@@ -5343,7 +5343,7 @@ weight_cap()
 	carrcap = 50*(ACURRSTR + ACURR(A_CON)) + 50 + 50*(u.ulevel);
 	if (Upolyd) {
 		/* consistent with can_carry() in mon.c */
-		if (youmonst.data->mlet == S_NYMPH || youmonst.data == &mons[PM_GOLDEN_KNIGHT] || youmonst.data == &mons[PM_URCAGUARY])
+		if (youmonst.data->mlet == S_NYMPH || youmonst.data == &mons[PM_GOLDEN_KNIGHT] || youmonst.data == &mons[PM_GOLDEN_HOLY_KNIGHT] || youmonst.data == &mons[PM_URCAGUARY])
 			carrcap = max_carr_cap();
 		else if (!youmonst.data->cwt)
 			carrcap = ((carrcap * (long)youmonst.data->msize) / MZ_HUMAN) + 50*(u.ulevel);
