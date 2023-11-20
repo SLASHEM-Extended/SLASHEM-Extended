@@ -269,6 +269,9 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"plant terror",
 	"poison pen letter",
 	"unarmed focus",
+	"spell spam",
+	"drop boulder",
+	"earthshake",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -325,6 +328,7 @@ static const struct innate_tech
 			 {  20, T_TERRAIN_CLEANUP, 1},
 		       {   0, 0, 0} },
 	lib_tech[] = { {   1, T_RESEARCH, 1},
+		       {   14, T_SPELL_SPAM, 1},
 		       {   20, T_RECHARGE, 1},
 		       {   20, T_WONDERSPELL, 1},
 		       {   0, 0, 0} },
@@ -371,6 +375,7 @@ static const struct innate_tech
 			 {   12, T_DECONTAMINATE, 1},
 		       {   16, T_DIAMOND_BARRIER, 1},
 		       {   20, T_ZAP_EM, 1},
+		       {   26, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 
 	ord_tech[] = { {   1, T_PRACTICE, 1},
@@ -411,6 +416,7 @@ static const struct innate_tech
 			 {   20, T_WARD_COLD, 1},
 		       {   20, T_POWER_SURGE, 1},
 		       {   20, T_EDDY_WIND, 1},
+		       {   27, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 
 	gof_tech[] = { {   1, T_DRAW_BLOOD, 1},
@@ -431,6 +437,7 @@ static const struct innate_tech
 			 {   20, T_ENT_S_POTION, 1},
 		       {   0, 0, 0} },
 	drd_tech[] = { {   7, T_ENT_S_POTION, 1},
+		       {   18, T_SPELL_SPAM, 1},
 		       {   28, T_ON_THE_SAME_TEAM, 1},
 		       {   0, 0, 0} },
 	sof_tech[] = { {   5, T_ZAP_EM, 1},
@@ -516,9 +523,12 @@ static const struct innate_tech
 			 {   12, T_SIGIL_CONTROL, 1},
 			 {   15, T_SPIRITUALITY_CHECK, 1},
 			 {   18, T_DRAW_ENERGY, 1},
+		       {   18, T_SPELL_SPAM, 1},
 			 {   20, T_SPIRIT_BOMB, 1},
 			 {   24, T_BLESSING, 1},
 			 {   28, T_SUMMON_PET, 1},
+		       {   0, 0, 0} },
+	sag_tech[] = { {   4, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 	spa_tech[] = { {   1, T_REINFORCE, 1},
 			 {   5, T_RESEARCH, 1},
@@ -563,6 +573,7 @@ static const struct innate_tech
 	mam_tech[] = { {   1, T_REINFORCE, 1},
 		       {   1, T_RESEARCH, 1},
 		       {   1, T_ZAP_EM, 1},
+		       {   1, T_SPELL_SPAM, 1},
 		       {   10, T_CONCENTRATING, 1},
 		       {   10, T_POWER_SURGE, 1},
 		       {   15, T_WONDERSPELL, 1},
@@ -597,7 +608,8 @@ static const struct innate_tech
 	roc_tech[] = { {   1, T_EGG_BOMB, 1},
 		       {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
-	cel_tech[] = { {   10, T_TERRAIN_CLEANUP, 1},
+	cel_tech[] = { {   6, T_SPELL_SPAM, 1},
+			 {   10, T_TERRAIN_CLEANUP, 1},
 			 {   24, T_PERMAMORPH, 1},
 		       {   0, 0, 0} },
 	ast_tech[] = { {   5, T_FLURRY, 1},
@@ -622,6 +634,7 @@ static const struct innate_tech
 	dea_tech[] = { {   1, T_WORLD_FALL, 1},
 		       {   1, T_RECHARGE, 1},
 		       {   1, T_BLOOD_RITUAL, 1},
+		       {   18, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 	div_tech[] = { {   15, T_POLYFORM, 1},
 		       {   0, 0, 0} },
@@ -663,12 +676,14 @@ static const struct innate_tech
 		       {   5, T_DRAW_ENERGY, 1},
 		       {   7, T_SIGIL_CONTROL, 1},
 		       {  10, T_SIGIL_TEMPEST, 1},
+		       {  10, T_SPELL_SPAM, 1},
 		       {  18, T_ROCK_TO_POISON, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
 	fla_tech[] = { {   1, T_REINFORCE, 1},
 		       {   3, T_POWER_SURGE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
+		       {   8, T_SPELL_SPAM, 1},
 		       {  10, T_SIGIL_TEMPEST, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
@@ -676,6 +691,7 @@ static const struct innate_tech
 		       {   3, T_POWER_SURGE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
 		       {   7, T_SIGIL_CONTROL, 1},
+		       {  10, T_SPELL_SPAM, 1},
 		       {  10, T_SIGIL_TEMPEST, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
 		       {   0, 0, 0} },
@@ -687,6 +703,7 @@ static const struct innate_tech
 		       {   3, T_POWER_SURGE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
 		       {   7, T_RECHARGE, 1},
+		       {   14, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 	hea_tech[] = { {   1, T_SURGERY, 1},
 		       {  10, T_ENT_S_POTION, 1},
@@ -695,6 +712,7 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	ice_tech[] = { {   1, T_REINFORCE, 1},
 		       {   5, T_DRAW_ENERGY, 1},
+		       {   8, T_SPELL_SPAM, 1},
 		       {  10, T_SIGIL_TEMPEST, 1},
 		       {  12, T_POWER_SURGE, 1},
 		       {  20, T_SIGIL_DISCHARGE, 1},
@@ -708,6 +726,7 @@ static const struct innate_tech
 	kni_tech[] = { {   1, T_TURN_UNDEAD, 1},
 		       {   1, T_HEAL_HANDS, 1},
 		       {   1, T_SHIELD_BASH, 1},
+		       {   26, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 
 	car_tech[] = { {   1, T_CARD_TRICK, 1},
@@ -797,6 +816,7 @@ static const struct innate_tech
 			 {   18, T_VANISH, 1},
 			 {   18, T_IRON_SKIN, 1},
 			 {   18, T_CONCENTRATING, 1},
+		       {   20, T_SPELL_SPAM, 1},
 			 {   24, T_TURN_UNDEAD, 1},
 			 {   30, T_BERSERK, 1},
 			 {   30, T_PRIMAL_ROAR, 1},
@@ -807,6 +827,7 @@ static const struct innate_tech
 	occ_tech[] = { {   1, T_SIGIL_DISCHARGE, 1},
 			 {   8, T_RECHARGE, 1},
 			 {   12, T_REINFORCE, 1},
+		       {   15, T_SPELL_SPAM, 1},
 			 {   16, T_RESEARCH, 1},
 			 {   18, T_SPIRITUALITY_CHECK, 1},
 			 {   20, T_BLOOD_RITUAL, 1},
@@ -817,6 +838,7 @@ static const struct innate_tech
 			 {   1, T_SIGIL_CONTROL, 1},
 			 {   5, T_WARD_COLD, 1},
 			 {   8, T_REINFORCE, 1},
+		       {   8, T_SPELL_SPAM, 1},
 			 {   10, T_WARD_ELEC, 1},
 			 {   12, T_TERRAIN_CLEANUP, 1},
 			 {   15, T_WARD_FIRE, 1},
@@ -837,6 +859,7 @@ static const struct innate_tech
 			 {   8, T_ZAP_EM, 1},
 			 {   12, T_CONCENTRATING, 1},
 		       {   16, T_SHIELD_BASH, 1},
+		       {   19, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 
 	pal_tech[] = { {   1, T_TURN_UNDEAD, 1},
@@ -923,6 +946,7 @@ static const struct innate_tech
 		       {   2, T_CHI_STRIKE, 1},
 	  	       {   4, T_CHI_HEALING, 1},
 	  	       {   6, T_E_FIST, 1},
+		       {   7, T_SPELL_SPAM, 1},
 		       {   8, T_DRAW_ENERGY, 1},
 		       {   8, T_TELEKINESIS, 1},
 		       {  10, T_G_SLAM, 1},
@@ -950,6 +974,7 @@ static const struct innate_tech
 	  	       {   16, T_E_FIST, 1},
 	  	       {   17, T_EGG_BOMB, 1},
 	  	       {   18, T_WORLD_FALL, 1},
+		       {   19, T_SPELL_SPAM, 1},
 		       {   20, T_DRAW_ENERGY, 1},
 		       {   21, T_RECHARGE, 1},
 		       {   22, T_RESEARCH, 1},
@@ -975,6 +1000,7 @@ static const struct innate_tech
 		       {   1, T_BLESSING, 1},
 		       {   1, T_PREACHING, 1},
 		       {   1, T_SPIRITUALITY_CHECK, 1},
+		       {   22, T_SPELL_SPAM, 1},
 		       {   24, T_BLOOD_RITUAL, 1},
 		       {   0, 0, 0} },
 	che_tech[] = { {   1, T_TURN_UNDEAD, 1},
@@ -986,6 +1012,7 @@ static const struct innate_tech
 	ran_tech[] = { {   1, T_FLURRY, 1},
 		       {   0, 0, 0} },
 	aug_tech[] = { {   1, T_TELEKINESIS, 1},
+		       {   1, T_SPELL_SPAM, 1},
 		       {   5, T_WONDERSPELL, 1},
 		       {   10, T_SPIRITUALITY_CHECK, 1},
 		       {   15, T_CARD_TRICK, 1},
@@ -1037,7 +1064,8 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	mas_tech[] = { {   1, T_DIAMOND_BARRIER, 1}, /* mason */
 		       {   0, 0, 0} },
-	xel_tech[] = { {   6, T_EVISCERATE, 1},
+	xel_tech[] = { { 4, T_SPELL_SPAM, 1},
+			 {   6, T_EVISCERATE, 1},
 			 {   8, T_CRIT_STRIKE, 1},
 			 {   9, T_DASH, 1},
 			 {   10, T_ZAP_EM, 1},
@@ -1119,6 +1147,30 @@ static const struct innate_tech
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	*/
+
+	she_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_SPELL_SPAM, 1},
+		       {   0, 0, 0} },
+
+	mzi_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   10, T_SPELL_SPAM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   0, 0, 0} },
+
+	bre_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_SPELL_SPAM, 1},
+		       {   0, 0, 0} },
 
 	arg_tech[] = { {   1, T_HEAL_HANDS, 1},
 		       {   1, T_PANIC_DIGGING, 1},
@@ -1418,6 +1470,7 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   10, T_BLINK, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   16, T_SPELL_SPAM, 1},
 		       {   20, T_DRAW_ENERGY, 1},
 		       {   0, 0, 0} },
 	alc_tech[] = { {   1, T_RESEARCH, 1},
@@ -1749,6 +1802,7 @@ static const struct innate_tech
 		       {   10, T_DOUBLE_TROUBLE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_WONDERSPELL, 1},
+		       {   25, T_SPELL_SPAM, 1},
 		       {   30, T_RESET_TECHNIQUE, 1},
 		       {   0, 0, 0} },
 
@@ -1954,6 +2008,7 @@ static const struct innate_tech
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_SPIRITUALITY_CHECK, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   17, T_SPELL_SPAM, 1},
 		       {   0, 0, 0} },
 
 	wrp_tech[] = { {   1, T_APPRAISAL, 1},
@@ -2021,6 +2076,7 @@ static const struct innate_tech
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   6, T_SPELL_SPAM, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   25, T_REINFORCE, 1},
 		       {   0, 0, 0} },
@@ -3486,6 +3542,18 @@ dotech()
 
 		case T_ON_THE_SAME_TEAM:
 			pline("Tries to pacify hostile neutral-aligned monsters next to you, but they get a resistance roll.");
+			break;
+
+		case T_SPELL_SPAM:
+			pline("A tech that lasts for a hundred turns or so, and while active, your spells don't lose spell memory over time, cost a bit less mana, and are more effective if they're of a type that scales with skill.");
+			break;
+
+		case T_DROP_BOULDER:
+			pline("Creates a boulder on your square when used.");
+			break;
+
+		case T_EARTHSHAKE:
+			pline("This technique mimics the scroll of earth, dropping boulders on your square and the eight squares surrounding you, but minus the effect of boulders hitting monsters.");
 			break;
 
 		case T_PERMAMORPH:
@@ -8654,6 +8722,88 @@ repairitemchoice:
 
 		}
 
+		case T_SPELL_SPAM:
+
+			num = 100 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your spells are more powerful for a while.");
+			t_timeout = rnz(12000);
+
+			break;
+
+		case T_DROP_BOULDER:
+
+			if (Is_rogue_level(&u.uz) || (In_endgame(&u.uz) && !Is_earthlevel(&u.uz))) {
+				pline("That doesn't work in this area.");
+				break;
+			}
+
+		    	if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
+				change_luck(-1);
+				pline("You cheater!");
+				if (evilfriday) u.ugangr++;
+			}
+
+			{
+				struct obj *otmp2;
+				if (isok(u.ux, u.uy)) {
+					otmp2 = mksobj(BOULDER, FALSE, FALSE, FALSE);
+					if (otmp2) {
+			    	    	    if (!flooreffects(otmp2, u.ux, u.uy, "fall")) {
+			    	    	    	place_object(otmp2, u.ux, u.uy);
+			    	    	    	stackobj(otmp2);
+			    	    	    	newsym(u.ux, u.uy);  /* map the rock */
+			    	    	    }
+					}
+				}
+				pline("Klonk!");
+			}
+
+			t_timeout = rnz(20000);
+
+			break;
+
+		case T_EARTHSHAKE:
+
+			if (Is_rogue_level(&u.uz) || (In_endgame(&u.uz) && !Is_earthlevel(&u.uz))) {
+				pline("That doesn't work in this area.");
+				break;
+			}
+
+		    	if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
+				change_luck(-1);
+				pline("You cheater!");
+				if (evilfriday) u.ugangr++;
+			}
+
+			{
+			    	register int x, y;
+				struct obj *otmp2;
+
+				int earthradius = 1;
+
+				for (x = u.ux-earthradius; x <= u.ux+earthradius; x++) {
+			    	    for (y = u.uy-earthradius; y <= u.uy+earthradius; y++) {
+					if (isok(x, y) && !IS_ROCK(levl[x][y].typ)) {
+						otmp2 = mksobj(BOULDER, FALSE, FALSE, FALSE);
+						if (otmp2) {
+				    	    	    if (!flooreffects(otmp2, x, y, "fall")) {
+				    	    	    	place_object(otmp2, x, y);
+				    	    	    	stackobj(otmp2);
+				    	    	    	newsym(x, y);  /* map the rock */
+				    	    	    }
+						}
+					}
+
+				    }
+				}
+				pline("Several boulders fall.");
+			}
+
+			t_timeout = rnz(40000);
+
+			break;
+
 		case T_PERMAMORPH:
 
 		    	if (!getdir((char *)0)) return 0;
@@ -10674,6 +10824,9 @@ tech_timeout()
 		    case T_CHI_STRIKE:
 			You_feel("the power in your hands dissipate.");
 			break;
+		    case T_SPELL_SPAM:
+			You_feel("that the spell spam power has timed out.");
+			break;
 		    case T_CHI_HEALING:
 			You_feel("the healing power dissipate.");
 			break;
@@ -10939,6 +11092,7 @@ role_tech()
 		case PM_MASON:	return (mas_tech);
 		case PM_XELNAGA:	return (xel_tech);
 		case PM_MASTERMIND:	return (mam_tech);
+		case PM_SAGE:	return (sag_tech);
 		case PM_TRANSSYLVANIAN:	return (trs_tech);
 		case PM_TOPMODEL:	return (top_tech);
 		case PM_FAILED_EXISTENCE:	return (fai_tech);
@@ -11123,6 +11277,9 @@ race_tech()
 		case PM_OCTOPODE:		return (oct_tech);
 		case PM_INKA:		return (ink_tech);
 		case PM_ARGONIAN:		return (arg_tech);
+		case PM_BRETON:		return (bre_tech);
+		case PM_MAZIN:		return (mzi_tech);
+		case PM_PLAYER_SHEEP:		return (she_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);
 		case PM_INSECTOID:		return (ins_tech);
 		case PM_KLACKON:		return (kla_tech);
@@ -12226,7 +12383,7 @@ techlvlupnew:
 void
 learnrandomregulartech()
 {
-	switch (rnd(181)) {
+	switch (rnd(189)) {
 
 		case 1: 
 		case 2: 
@@ -12633,6 +12790,14 @@ learnrandomregulartech()
 		case 187:
 			learntech_or_leveltech(T_PERMAMORPH, FROMOUTSIDE, 1);
 		    	You("learn how to perform permamorph!");
+			break;
+		case 188:
+			learntech_or_leveltech(T_SPELL_SPAM, FROMOUTSIDE, 1);
+		    	You("learn how to perform spell spam!");
+			break;
+		case 189:
+			learntech_or_leveltech(T_ROCK_TO_POISON, FROMOUTSIDE, 1);
+		    	You("learn how to perform rock-to-poison!");
 			break;
 
 		default:

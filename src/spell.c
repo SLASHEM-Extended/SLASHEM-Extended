@@ -2798,7 +2798,7 @@ age_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
 	    if (spellknow(i) ) {
 
-		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) ) {
+		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !tech_inuse(T_SPELL_SPAM) ) {
 
 			/* Memorization skill by Amy: if the spell is set to memorization mode, have a skill-based chance here
 			 * that on any given turn the spell memory will not decrease.
@@ -3402,6 +3402,10 @@ boolean atme;
 	 * lower than 0%. Reduce cost of casting the special spell to 80%! --Amy */
 	if (spellid(spell) == urole.spelspec) { if (rn2(10)) energy += 1; energy *= 4; energy /= 5; }
 	if (spellid(spell) == u.superspecialspell) { if (rn2(10)) energy += 1; energy *= 4; energy /= 5; }
+
+	if (tech_inuse(T_SPELL_SPAM) && rn2(10)) {
+		energy += 1; energy *= 9; energy /= 10;
+	}
 
 	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
 	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 3;
@@ -10801,6 +10805,7 @@ rerollX:
 		if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) cyanwillgodown = FALSE;
 		if (uarm && uarm->oartifact == ART_COPE_OF_THE_ELDRITCH_KNIGH && rn2(2)) cyanwillgodown = FALSE;
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
+		if (tech_inuse(T_SPELL_SPAM)) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
 
 		if (!PlayerCannotUseSkills && spellmemorize(spell) && P_SKILL(P_MEMORIZATION) >= P_BASIC) {

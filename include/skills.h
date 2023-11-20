@@ -50,9 +50,10 @@
 #define P_SHURIKEN			31
 #define P_BOOMERANG			32
 #define P_VENOM				33
-#define P_WHIP				34
-#define P_UNICORN_HORN			35	
-#define P_LIGHTSABER			36	/* last weapon */
+#define P_BOULDER_THROWING		34	/* can only be used by giants, or players polyd into one */
+#define P_WHIP				35
+#define P_UNICORN_HORN			36	
+#define P_LIGHTSABER			37	/* last weapon */
 #define P_FIRST_WEAPON			P_DAGGER
 #define P_LAST_WEAPON			P_LIGHTSABER
 

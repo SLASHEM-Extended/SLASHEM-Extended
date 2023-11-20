@@ -3179,8 +3179,20 @@ int dieroll;
 		} else {
 		switch(obj->otyp) {
 		    case BOULDER:		/* 1d20 */
-			tmp = thrown ? (dmgvalX(obj, mon) + GushLevel) : dmgvalX(obj, mon);
+			tmp = dmgvalX(obj, mon);
 			if (thrown && obj->oartifact == ART_BLOHIT) tmp += 10;
+			if (thrown) use_skill(P_BOULDER_THROWING, 1);
+			if (thrown && !PlayerCannotUseSkills) {
+				switch (P_SKILL(P_BOULDER_THROWING)) {
+					default: break;
+					case P_BASIC: tmp += rnd(3); break;
+					case P_SKILLED: tmp += rnd(6); break;
+					case P_EXPERT: tmp += rnd(9); break;
+					case P_MASTER: tmp += rnd(12); break;
+					case P_GRAND_MASTER: tmp += rnd(15); break;
+					case P_SUPREME_MASTER: tmp += rnd(18); break;
+				}
+			}
 			break;
 		    case HEAVY_IRON_BALL:	/* 1d25 */
 		    case REALLY_HEAVY_IRON_BALL:	/* 1d25 */

@@ -2529,6 +2529,18 @@ boolean mon_notices;
 	    break;
 	case BOULDER:
 	    tmp += 6;
+	    if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_BOULDER_THROWING)) {
+			default: break;
+			case P_BASIC: tmp += 2; break;
+			case P_SKILLED: tmp += 4; break;
+			case P_EXPERT: tmp += 6; break;
+			case P_MASTER: tmp += 8; break;
+			case P_GRAND_MASTER: tmp += 10; break;
+			case P_SUPREME_MASTER: tmp += 12; break;
+
+		}
+	    }
 	    break;
 	default:
 	    if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) || obj->oclass == GEM_CLASS)
@@ -3534,14 +3546,25 @@ evasionchancedone:
 	    if (tmp >= dieroll) {
 		exercise(A_DEX, TRUE);
 		ranged_thorns(mon);
-		(void) hmon(mon,obj,thrown?thrown:3,dieroll);
+		(void) hmon(mon, obj, thrown ? thrown : 3, dieroll);
 
 		if (obj) {
 			int bouldersplinterchance = 10;
 			if (obj->oartifact) bouldersplinterchance *= 10;
 			if (obj->cursed) bouldersplinterchance /= 2;
 			if (obj->blessed) bouldersplinterchance *= 3;
-			/* eventually there will be a boulder-throwing skill that modifies the chance --Amy */
+
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_BOULDER_THROWING)) {
+					default: break;
+					case P_BASIC: bouldersplinterchance *= 6; bouldersplinterchance /= 5; break;
+					case P_SKILLED: bouldersplinterchance *= 7; bouldersplinterchance /= 5; break;
+					case P_EXPERT: bouldersplinterchance *= 8; bouldersplinterchance /= 5; break;
+					case P_MASTER: bouldersplinterchance *= 9; bouldersplinterchance /= 5; break;
+					case P_GRAND_MASTER: bouldersplinterchance *= 10; bouldersplinterchance /= 5; break;
+					case P_SUPREME_MASTER: bouldersplinterchance *= 11; bouldersplinterchance /= 5; break;
+				}
+			}
 
 			if (!rn2(bouldersplinterchance)) {
 				pline_The("boulder shatters into fragments!");

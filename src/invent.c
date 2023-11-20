@@ -19910,7 +19910,7 @@ boolean knoweverything;
 		else { switch (obj->otyp) {
 
 			case BOULDER:
-				pline("A large boulder that weighs a ton. It can be thrown, provided you're strong enough."); break;
+				pline("A large boulder that weighs a ton. It can be thrown, provided you're strong enough, and uses the boulder-throwing skill."); break;
 			case STATUE:
 				pline("This statue depicts some sort of monster. There may be a way to make it come back to life, or you can smash it to see if it contains items.");
 #ifdef EXTENDED_INFO

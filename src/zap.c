@@ -8347,6 +8347,7 @@ register int booktype;
 	}
 	if (Spellboost) tmp++;
 	if (StrongSpellboost) tmp++;
+	if (tech_inuse(T_SPELL_SPAM)) tmp++;
 	if (uarm && uarm->oartifact == ART_POWASPEL) tmp += 4;
 
 	if (tmp > 0) tmp = rn2(tmp + 1); /* too high bonuses make spellcaster roles too powerful! --Amy */

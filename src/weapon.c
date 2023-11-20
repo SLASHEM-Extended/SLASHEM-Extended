@@ -141,6 +141,8 @@ int skill;
 			return "boomerang";
 		case P_VENOM:
 			return "venom";
+		case P_BOULDER_THROWING:
+			return "boulder-throwing";
 		case P_WHIP:
 			return "whip";
 		case P_UNICORN_HORN:
@@ -4617,6 +4619,14 @@ jediskip:
 	    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
 	    	You("learn how to perform poison pen letter!");
 	}
+	if (skill == P_BOULDER_THROWING && P_SKILL(skill) == P_SKILLED && !tech_known(T_DROP_BOULDER)) {
+	    	learntech(T_DROP_BOULDER, FROMOUTSIDE, 1);
+	    	You("learn how to perform drop boulder!");
+	}
+	if (skill == P_BOULDER_THROWING && P_SKILL(skill) == P_MASTER && !tech_known(T_EARTHSHAKE)) {
+	    	learntech(T_EARTHSHAKE, FROMOUTSIDE, 1);
+	    	You("learn how to perform earthshake!");
+	}
 	if (skill == P_DEVICES && P_SKILL(skill) == P_MASTER && P_SKILL(P_VENOM) >= P_MASTER && !tech_known(T_POISON_PEN_LETTER)) {
 	    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
 	    	You("learn how to perform poison pen letter!");
@@ -5008,6 +5018,9 @@ jediskip:
 		case P_SYMBIOSIS:
 			    HTelepat |= FROMOUTSIDE; pline("Got telepathy!"); break;
 		break;
+		case P_BOULDER_THROWING:
+			    HSpellboost |= FROMOUTSIDE; pline("Got spellboost!"); break;
+		break;
 
 		default: break;
 
@@ -5113,6 +5126,11 @@ jediskip:
 		case P_GRINDER:
 				if (!tech_known(T_PERMAMORPH)) {    	learntech(T_PERMAMORPH, FROMOUTSIDE, 1);
 			    	You("learn how to perform permamorph!");
+				}
+		break;
+		case P_BOULDER_THROWING:
+				if (!tech_known(T_SPELL_SPAM)) {    	learntech(T_SPELL_SPAM, FROMOUTSIDE, 1);
+			    	You("learn how to perform spell spam!");
 				}
 		break;
 		case P_POLEARMS:
@@ -6347,6 +6365,14 @@ int degree;
 			if (skill == P_VENOM && P_ADVANCE(P_DEVICES) == 0 && !tech_known(T_POISON_PEN_LETTER)) {
 			    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
 			    	You("learn how to perform poison pen letter!");
+			}
+			if (skill == P_BOULDER_THROWING && !tech_known(T_DROP_BOULDER)) {
+			    	learntech(T_DROP_BOULDER, FROMOUTSIDE, 1);
+			    	You("learn how to perform drop boulder!");
+			}
+			if (skill == P_BOULDER_THROWING && !tech_known(T_EARTHSHAKE)) {
+			    	learntech(T_EARTHSHAKE, FROMOUTSIDE, 1);
+			    	You("learn how to perform earthshake!");
 			}
 			if (skill == P_DEVICES && P_ADVANCE(P_VENOM) == 0 && !tech_known(T_POISON_PEN_LETTER)) {
 			    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
@@ -8056,6 +8082,7 @@ boolean extraskills;
 	if (obj->otyp == BARDING) skill = P_RIDING;
 	if (obj->otyp == MESH_SADDLE) skill = P_RIDING;
 
+	if (obj->otyp == BOULDER) skill = P_BOULDER_THROWING;
 	if (obj->otyp >= SMALL_SHIELD && obj->otyp <= SHIELD_OF_REFLECTION) skill = P_SHIELD;
 	if (obj->otyp >= PLATE_MAIL && obj->otyp <= YELLOW_DRAGON_SCALES) skill = P_BODY_ARMOR;
 	if (obj->otyp >= WAN_LIGHT && obj->otyp <= WAN_PSYBEAM) skill = P_DEVICES;
@@ -9119,6 +9146,50 @@ rerollthree:
 
 	}
 
+	if (Race_if(PM_WEAPONIZED_DINOSAUR)) {
+
+		if (P_RESTRICTED(P_BOULDER_THROWING)) {
+			P_SKILL(P_BOULDER_THROWING) = P_UNSKILLED;
+			P_ADVANCE(P_BOULDER_THROWING) = 0;
+			P_MAX_SKILL(P_BOULDER_THROWING) = P_EXPERT;
+		} else {
+			P_SKILL(P_BOULDER_THROWING) = P_BASIC;
+			if (P_MAX_SKILL(P_BOULDER_THROWING) == P_EXPERT) P_MAX_SKILL(P_BOULDER_THROWING) = P_MASTER;
+			else if (P_MAX_SKILL(P_BOULDER_THROWING) == P_MASTER) P_MAX_SKILL(P_BOULDER_THROWING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_BOULDER_THROWING) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+
+		if (P_RESTRICTED(P_BOULDER_THROWING)) {
+			P_SKILL(P_BOULDER_THROWING) = P_UNSKILLED;
+			P_ADVANCE(P_BOULDER_THROWING) = 0;
+			P_MAX_SKILL(P_BOULDER_THROWING) = P_EXPERT;
+		} else {
+			P_SKILL(P_BOULDER_THROWING) = P_BASIC;
+			if (P_MAX_SKILL(P_BOULDER_THROWING) == P_EXPERT) P_MAX_SKILL(P_BOULDER_THROWING) = P_MASTER;
+			else if (P_MAX_SKILL(P_BOULDER_THROWING) == P_MASTER) P_MAX_SKILL(P_BOULDER_THROWING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_BOULDER_THROWING) = P_SUPREME_MASTER;
+		}
+
+	}
+
+	if (Race_if(PM_GIGANT)) {
+
+		if (P_RESTRICTED(P_BOULDER_THROWING)) {
+			P_SKILL(P_BOULDER_THROWING) = P_BASIC;
+			P_ADVANCE(P_BOULDER_THROWING) = 20;
+			P_MAX_SKILL(P_BOULDER_THROWING) = P_MASTER;
+		} else {
+			P_SKILL(P_BOULDER_THROWING) = P_BASIC;
+			if (P_MAX_SKILL(P_BOULDER_THROWING) == P_EXPERT) P_MAX_SKILL(P_BOULDER_THROWING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_BOULDER_THROWING) = P_SUPREME_MASTER;
+		}
+
+	}
+
 	if (Race_if(PM_BULDOZGAR)) {
 		if (P_RESTRICTED(P_BODY_ARMOR)) {
 			P_SKILL(P_BODY_ARMOR) = P_UNSKILLED;
@@ -9131,6 +9202,16 @@ rerollthree:
 			else P_MAX_SKILL(P_BODY_ARMOR) = P_SUPREME_MASTER;
 		}
 
+		if (P_RESTRICTED(P_BOULDER_THROWING)) {
+			P_SKILL(P_BOULDER_THROWING) = P_UNSKILLED;
+			P_ADVANCE(P_BOULDER_THROWING) = 0;
+			P_MAX_SKILL(P_BOULDER_THROWING) = P_EXPERT;
+		} else {
+			P_SKILL(P_BOULDER_THROWING) = P_BASIC;
+			if (P_MAX_SKILL(P_BOULDER_THROWING) == P_EXPERT) P_MAX_SKILL(P_BOULDER_THROWING) = P_MASTER;
+			else if (P_MAX_SKILL(P_BOULDER_THROWING) == P_MASTER) P_MAX_SKILL(P_BOULDER_THROWING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_BOULDER_THROWING) = P_SUPREME_MASTER;
+		}
 
 	}
 
@@ -9994,6 +10075,12 @@ rerollthree:
 	if (P_SKILL(P_VENOM) >= P_MASTER && P_SKILL(P_DEVICES) >= P_MASTER && !tech_known(T_POISON_PEN_LETTER)) {
 	    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
 	}
+	if (P_SKILL(P_BOULDER_THROWING) >= P_SKILLED && !tech_known(T_DROP_BOULDER)) {
+	    	learntech(T_DROP_BOULDER, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BOULDER_THROWING) >= P_MASTER && !tech_known(T_EARTHSHAKE)) {
+	    	learntech(T_EARTHSHAKE, FROMOUTSIDE, 1);
+	}
 	if (P_SKILL(P_SHORT_SWORD) >= P_MASTER && !tech_known(T_UNDERTOW)) {
 	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
 	}
@@ -10340,6 +10427,9 @@ doubleskilltraining()
 	else if (P_ADVANCE(P_BOOMERANG) && !(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
 		P_ADVANCE(P_BOOMERANG) *= 2;
 		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BOULDER_THROWING) && !(P_RESTRICTED(P_BOULDER_THROWING)) && yn("Do you want to train the boulder-throwing skill?")=='y') {
+		P_ADVANCE(P_BOOMERANG) *= 2;
+		acquiredskill = 1; }
 	else if (P_ADVANCE(P_VENOM) && !(P_RESTRICTED(P_VENOM)) && yn("Do you want to train the venom skill?")=='y') {
 		P_ADVANCE(P_VENOM) *= 2;
 		acquiredskill = 1; }
@@ -10559,6 +10649,8 @@ unrestrictskillchoice()
 		    unrestrict_weapon_skill(P_SHURIKEN);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_BOOMERANG) && yn("Do you want to learn the boomerang skill?")=='y') {
 		    unrestrict_weapon_skill(P_BOOMERANG);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_BOULDER_THROWING) && yn("Do you want to learn the boulder-throwing skill?")=='y') {
+		    unrestrict_weapon_skill(P_BOULDER_THROWING);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_VENOM) && yn("Do you want to learn the venom skill?")=='y') {
 		    unrestrict_weapon_skill(P_VENOM);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_WHIP) && yn("Do you want to learn the whip skill?")=='y') {
@@ -10767,6 +10859,9 @@ int trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_BOOMERANG)) && yn("Do you want to train the boomerang skill?")=='y') {
 		P_ADVANCE(P_BOOMERANG) += trainamount;
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_BOULDER_THROWING)) && yn("Do you want to train the boulder-throwing skill?")=='y') {
+		P_ADVANCE(P_BOULDER_THROWING) += trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_VENOM)) && yn("Do you want to train the venom skill?")=='y') {
 		P_ADVANCE(P_VENOM) += trainamount;
