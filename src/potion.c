@@ -1884,6 +1884,7 @@ playerextrinsicaggravatemon()
 	if (autismringcheck(ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_SNOREFEST) || autismweaponcheck(ART_ARMORWREAKER)) return TRUE;
 	if (autismweaponcheck(ART_HARKENSTONE) || autismweaponcheck(ART_KUSANAGI_NO_TSURUGI)) return TRUE;
 	if (autismweaponcheck(ART_ARABELLA_S_ARTIFACT_CREATI)) return TRUE;
+	if (u.martialstyle == MARTIALSTYLE_KRAVMAGA) return TRUE;
 	if (autismringcheck(ART_TASTY_TAME_NASTY) || autismringcheck(ART_RING_OF_THROR)) return TRUE;
 	if (autismweaponcheck(ART_SABRINA_S_RESCUE) || (uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) || (uarmf && uarmf->oartifact == ART_BITCHSMOKE) || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || (uarmf && uarmf->oartifact == ART_NOW_YOU_ARE_HOWEVER_TO) || (uarmf && uarmf->oartifact == ART_WHINY_TEACHER_INSIDE_WOMAN) || (uarmf && uarmf->oartifact == ART_UNDEAD_STINK) || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) ) return TRUE;
 	if ((uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || (uarm && uarm->oartifact == ART_CLANKING_RATTLE) || (uarmc && uarmc->oartifact == ART_UNWERTH) || (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismweaponcheck(ART_XUANLONG) || autismweaponcheck(ART_SMASHIN) || autismweaponcheck(ART_ROARBEAR) || (uarmc && uarmc->oartifact == ART_MANTLE_OF_WRATH) ) return TRUE;
@@ -2259,6 +2260,52 @@ ghost_from_bottle()
 	make_feared(HFeared + rnd(30 + (monster_difficulty() * 3) ),TRUE);
 	nomovemsg = "You regain your composure.";
 	make_bottle(FALSE);
+}
+
+/* print the player's current martial arts style --Amy */
+char *
+currentmartialstyle()
+{
+	static char martialbuf[BUFSZ]; 
+
+	switch (u.martialstyle) {
+
+		case MARTIALSTYLE_BRAWLING:
+			sprintf(martialbuf, "brawling");
+			break;
+		case MARTIALSTYLE_JUDO:
+			sprintf(martialbuf, "judo");
+			break;
+		case MARTIALSTYLE_TAEKWONDO:
+			sprintf(martialbuf, "taekwondo");
+			break;
+		case MARTIALSTYLE_MUAYTHAI:
+			sprintf(martialbuf, "muay thai");
+			break;
+		case MARTIALSTYLE_SILAT:
+			sprintf(martialbuf, "silat");
+			break;
+		case MARTIALSTYLE_KRAVMAGA:
+			sprintf(martialbuf, "krav maga");
+			break;
+		case MARTIALSTYLE_BOJUTSU:
+			sprintf(martialbuf, "bojutsu");
+			break;
+		case MARTIALSTYLE_KUNGFU:
+			sprintf(martialbuf, "kung fu");
+			break;
+		case MARTIALSTYLE_HAIDONGGUMDO:
+			sprintf(martialbuf, "haidong gumdo");
+			break;
+
+		default:
+			impossible("weird martial arts style %d", u.martialstyle);
+			sprintf(martialbuf, "weird style");
+			break;
+	}
+
+	return martialbuf;
+
 }
 
 boolean

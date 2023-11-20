@@ -3374,6 +3374,10 @@ boolean atme;
 			energy++;
 		}
 	}
+	if (u.martialstyle == MARTIALSTYLE_MUAYTHAI) {
+		energy *= 11;
+		energy /= 10;
+	}
 	if (ACURR(A_WIS) == 2) {
 		energy *= 11;
 		energy /= 10;
@@ -12284,6 +12288,7 @@ int spell;
 
 	if (issoviet) chance -= 30;
 	if (Role_if(PM_NOOB_MODE_BARB)) chance -= 50;
+	if (u.martialstyle == MARTIALSTYLE_MUAYTHAI) chance -= 20;
 
 	if (Race_if(PM_PLAYER_SKELETON)) chance -= 50;
 

@@ -10696,19 +10696,28 @@ doprgold()
 int
 doprwep()
 {
+	/* Amy edit: if you're attacking unarmed, it should tell you what martial arts style you're using
+	 * also, special checks when using weapons for styles that require weapons */
+
     if (!uwep) {
 	if (!u.twoweap){
-	You("are empty %s.", body_part(HANDED));
+	    You("are empty %s.", body_part(HANDED));
+	    pline("Your current martial arts style is %s.", currentmartialstyle());
 	    return 0;
 	}
 	/* Avoid printing "right hand empty" and "other hand empty" */
 	if (!uswapwep) {
 	    You("are attacking with both %s.", makeplural(body_part(HAND)));
+	    pline("Your current martial arts style is %s.", currentmartialstyle());
 	    return 0;
 	}
 	Your("right %s is empty.", body_part(HAND));
+	pline("Your current martial arts style is %s.", currentmartialstyle());
     } else {
 	prinv((char *)0, uwep, 0L);
+	if (uwep && weapon_type(uwep) == P_QUARTERSTAFF && u.martialstyle == MARTIALSTYLE_BOJUTSU) pline("Your current martial arts style is bojutsu.");
+	if (uwep && uwep->otyp == JEONTU_GEOM && u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO) pline("Your current martial arts style is haidong gumdo.");
+	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) pline("Your current martial arts style is taekwondo.");
     }
     if (u.twoweap) {
     	if (uswapwep)
@@ -16695,7 +16704,7 @@ boolean knoweverything;
 			case BUDO_NO_SASU:
 				pline("Wielding this tool allows you to open tins more quickly, and if you're a supermarket cashier, you might want to use it as a weapon."); break;
 			case JEONTU_GEOM:
-				pline("A weapon-tool that allows you to open tins very quickly when wielded and uses the martial arts skill in melee, dealing respectable damage."); break;
+				pline("A weapon-tool that allows you to open tins very quickly when wielded and uses the martial arts skill in melee, dealing respectable damage. If you have the 'martial style' technique and are wielding this weapon while using it, you can switch to the 'haidong gumdo' martial arts style that boosts the power of the jeontu geom."); break;
 			case LUBRICANT_CAN:
 				pline("A charged tool that can be applied to grease your stuff. Careful, it's difficult to handle and you will occasionally hurt yourself."); break;
 			case SACK: 

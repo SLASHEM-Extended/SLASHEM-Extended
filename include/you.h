@@ -611,6 +611,17 @@ struct you {
 	int spellbookchance2;
 	int spellbookchance3;
 
+	int martialstyle;	/* for martial arts */
+#define MARTIALSTYLE_BRAWLING 0
+#define MARTIALSTYLE_JUDO 1
+#define MARTIALSTYLE_TAEKWONDO 2
+#define MARTIALSTYLE_MUAYTHAI 3
+#define MARTIALSTYLE_SILAT 4
+#define MARTIALSTYLE_KRAVMAGA 5
+#define MARTIALSTYLE_BOJUTSU 6
+#define MARTIALSTYLE_KUNGFU 7
+#define MARTIALSTYLE_HAIDONGGUMDO 8
+
 	int rangedreload;	/* for jumping flamer etc. */
 
 	int monstermultiplier;	/* controls the spawn rate of monsters, which should fluctuate a bit */

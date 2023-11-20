@@ -1551,6 +1551,10 @@ moveloop()
 
 			}
 
+			if (u.martialstyle == MARTIALSTYLE_SILAT && moveamt > 12) {
+				moveamt -= ((moveamt - 12) / 3);
+			}
+
 			if (nogoodsteed(u.usteed)) {
 				if (moveamt > 1) {
 					moveamt /= 10;
@@ -2221,6 +2225,10 @@ moveloop()
 				if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 			}
 
+			if (u.martialstyle == MARTIALSTYLE_MUAYTHAI && !uwep && (!u.twoweap || !uswapwep) && !rn2(5)) {
+				moveamt += speedbonus(moveamt, NORMAL_SPEED);
+			}
+
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_MAMBO_NUMBER_NINE && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && !rn2(5) && uball && uwep && (uwep == uball)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2295,6 +2303,11 @@ moveloop()
 				if (rn2(10)) moveamt += (moveamtdivider / 10);
 				else moveamt += (moveamtdivider / (1 + rnd(8)));
 
+			}
+
+			/* silat doesn't slow you down unconditionally, but if your speed is greater than 12, it gets reduced */
+			if (u.martialstyle == MARTIALSTYLE_SILAT && moveamt > 12) {
+				moveamt -= ((moveamt - 12) / 3); /* but not below 12 */
 			}
 
 		    } /* end adjustment for when player is not riding */
@@ -2619,6 +2632,13 @@ moveloop()
 			pushplayer(TRUE);
 			pline("*knoepp*");
 			stop_occupation();
+		}
+
+		if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
+			if (u.ustuck && !u.uswallow && !sticks(youmonst.data)) {
+				You("break the hold!");
+				setustuck(0);
+			}
 		}
 
 		if (uarmf && uarmf->oartifact == ART_CLIMATE_PROTECTION_IS_ERRI && u.copwantedlevel < 1000) {
@@ -15132,6 +15152,13 @@ past4:
 		pline("Oh no, the gods are angry at you for no real reason!");
 	}
 
+	if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
+		if (u.ustuck && !u.uswallow && !sticks(youmonst.data)) {
+			You("break the hold!");
+			setustuck(0);
+		}
+	}
+
 	if (uarm && uarm->oartifact == ART_WEGEO_ACQUA_DE_EISU_FORTE) {
 		if (isok(u.ux, u.uy) && (levl[u.ux][u.uy].typ == WATER || levl[u.ux][u.uy].typ == POOL || levl[u.ux][u.uy].typ == MOAT)) {
 			levl[u.ux][u.uy].typ = ICE;
@@ -20255,6 +20282,9 @@ contaminationcheck()
 	if (uarmu && uarmu->otyp == BAD_SHIRT && !rn2(5)) return 1;
 	if (uarm && uarm->otyp == EVIL_PLATE_MAIL && !rn2(5)) return 1;
 	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR && !rn2(5)) return 1;
+
+	/* krav maga is an all-out offensive style, but also rather exhausting to maintain */
+	if (u.martialstyle == MARTIALSTYLE_KRAVMAGA && !rn2(2)) return 1;
 
 	/* if you're in the Sewer Plant and have to breathe, your regeneration is also reduced */
 	if (In_sewerplant(&u.uz) && rn2(2) && !Breathless) return 1;

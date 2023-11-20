@@ -5511,6 +5511,11 @@ inv_weight()
 
 	if (uinsymbiosis) wt += symbioteweight(u.usymbiote.mnum);
 
+	if (u.martialstyle == MARTIALSTYLE_SILAT) {
+		wt *= 3;
+		wt /= 2;
+	}
+
 	if (BurdenedState) wt *= 2;
 	if (StrongBurdenedState) {
 	/* add 2000 more, unless you have a low cap because being insta-overloaded with no way to fix it ain't fun --Amy */

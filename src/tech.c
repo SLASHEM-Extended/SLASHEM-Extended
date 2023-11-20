@@ -272,6 +272,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"spell spam",
 	"drop boulder",
 	"earthshake",
+	"martial style",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3554,6 +3555,10 @@ dotech()
 
 		case T_EARTHSHAKE:
 			pline("This technique mimics the scroll of earth, dropping boulders on your square and the eight squares surrounding you, but minus the effect of boulders hitting monsters.");
+			break;
+
+		case T_MARTIAL_STYLE:
+			pline("A must have for martial arts users, this technique lets you switch to different martial arts styles. Depending on your skill levels, certain ones are available, plus brawling, which is the default. All other styles have upsides and downsides, so choose wisely, because the only way to switch is by using this tech again! Also, most of these styles work only if you're fighting bare-handed.");
 			break;
 
 		case T_PERMAMORPH:
@@ -8763,6 +8768,54 @@ repairitemchoice:
 
 			break;
 
+		case T_MARTIAL_STYLE:
+
+			{
+				boolean madechoice = 0;
+
+				if (PlayerCannotUseSkills) {
+					t_timeout = rnz(8000);
+					pline("Somehow, nothing happens.");
+					break;
+				}
+
+				pline("Your current martial arts style is %s.", currentmartialstyle());
+
+				pline("Choose a martial arts style. The prompt will loop until you actually make a choice.");
+
+				while (madechoice == 0) {
+
+					if (yn("Switch to the 'brawling' style (default martial arts style, no special effects)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_BRAWLING;
+					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC && yn("Switch to the 'judo' style (break holding attacks, boosts dexterity, more frequency for special martial arts strikes, reduces your damage output)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_JUDO;
+					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_SKILLED && yn("Switch to the 'taekwondo' style (powers up your kick attack, can block projectiles if both of your hands are free, can also be used while wielding a weapon, your melee attacks have reduced to-hit)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_TAEKWONDO;
+					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT && yn("Switch to the 'muay thai' style (speeds you up, boosts unarmed damage, makes your AC worse, your spells fail more often and are more expensive, your ranged weapons have reduced to-hit)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_MUAYTHAI;
+					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_MASTER && yn("Switch to the 'silat' style (boosts unarmed to-hit, unarmed attacks can sometimes stun opponents, improves your AC, makes your inventory weigh more and slows you down slightly)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_SILAT;
+					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER && yn("Switch to the 'krav maga' style (greatly boosts unarmed damage, causes aggravate monster, reduces your regeneration rate and can send enemies into a frenzy)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_KRAVMAGA;
+					} else if (P_SKILL(P_QUARTERSTAFF) >= P_MASTER && yn("Switch to the 'bojutsu' style (requires quarterstaff, allows you to block projectiles with the staff, boosts your AC and allows you to sometimes evade rays, reduces your melee damage output)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_BOJUTSU;
+					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT && P_SKILL(P_BARE_HANDED_COMBAT) >= P_EXPERT && yn("Switch to the 'kung fu' style (slightly improves your unarmed and kick damage and boosts unarmed to-hit, kick hits enemies more often, your weapons are less effective)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_KUNGFU;
+					} else if (uwep && uwep->otyp == JEONTU_GEOM && yn("Switch to the 'haidong gumdo' style (requires jeontu geom, boosts melee damage and to-hit and allows you to use martial arts techniques while wielding a jeontu geom, reduces your melee to-hit whenever you're not wielding a jeontu geom)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_HAIDONGGUMDO;
+					} else if (yn("Do you choose to not switch your style after all?")=='y') {
+						madechoice = 1;
+					}
+
+				}
+
+				pline("Your new martial arts style is %s.", currentmartialstyle());
+			}
+
+			t_timeout = rnz(8000);
+
+			break;
+
 		case T_EARTHSHAKE:
 
 			if (Is_rogue_level(&u.uz) || (In_endgame(&u.uz) && !Is_earthlevel(&u.uz))) {
@@ -12821,6 +12874,8 @@ canuseunarmedtechs()
 
 	/* supermarket cashier can use martial arts moves with all tin openers because he knows "tin-fu" */
 	if (uwep && Role_if(PM_SUPERMARKET_CASHIER) && (uwep->otyp == LASER_TIN_OPENER || uwep->otyp == TIN_OPENER || uwep->otyp == BUDO_NO_SASU || uwep->otyp == JEONTU_GEOM) ) return TRUE;
+
+	if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) return TRUE;
 
 	/* everyone else needs to be bare-handed */
 	if (uwep) return FALSE;

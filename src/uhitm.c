@@ -815,6 +815,8 @@ register struct monst *mtmp;
 	if (uwep && tech_inuse(T_UNARMED_FOCUS)) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && tech_inuse(T_UNARMED_FOCUS)) tmp -= rnd(20);
 
+	if (u.martialstyle == MARTIALSTYLE_KUNGFU && (uwep || (u.twoweap && uswapwep)) ) tmp -= rnd(20);
+
 	if (u.twoweap && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_ATARU)) {
 
@@ -921,6 +923,26 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) tmp += 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
+	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) tmp -= rnd(10);
+	if (u.martialstyle == MARTIALSTYLE_SILAT && !uwep && (!u.twoweap || !uswapwep)) tmp += rn1(6, 6);
+	if (u.martialstyle == MARTIALSTYLE_KUNGFU && !uwep && (!u.twoweap || !uswapwep)) tmp += 5;
+	if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
+		tmp += 5;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_MARTIAL_ARTS)) {
+
+				case P_BASIC:	tmp +=  2; break;
+				case P_SKILLED:	tmp +=  4; break;
+				case P_EXPERT:	tmp +=  6; break;
+				case P_MASTER:	tmp +=  8; break;
+				case P_GRAND_MASTER:	tmp +=  10; break;
+				case P_SUPREME_MASTER:	tmp +=  12; break;
+				default: tmp += 0; break;
+			}
+
+		}
+	}
+	if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && !(uwep && uwep->otyp == JEONTU_GEOM)) tmp -= 10;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -1525,6 +1547,8 @@ martial_dmg()
 
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
+	if (u.martialstyle == MARTIALSTYLE_KRAVMAGA) damage += rn1(5, 5);
+
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
@@ -1782,6 +1806,8 @@ int dieroll;
 
 			if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) tmp += 1;
 
+			if (u.martialstyle == MARTIALSTYLE_KRAVMAGA) tmp += rn1(5, 5);
+
 			if (uarmg && uarmg->oartifact == ART_BOX_FIST) tmp += 5;
 			if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) tmp += 5;
 			if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) tmp += 5;
@@ -1853,6 +1879,22 @@ int dieroll;
 
 	    } /* end bare-handed combat skill */
 
+		/* multipliers should come first --Amy */
+
+		if (u.martialstyle == MARTIALSTYLE_MUAYTHAI && tmp > 0) {
+			tmp *= 13;
+			tmp /= 10;
+		}
+
+		if (u.martialstyle == MARTIALSTYLE_KRAVMAGA && tmp > 0 && !rn2(5)) {
+			tmp *= 2;
+		}
+
+		if (u.martialstyle == MARTIALSTYLE_KUNGFU && tmp > 0) {
+			tmp *= 11;
+			tmp /= 10;
+		}
+
 		if (Role_if(PM_XELNAGA)) tmp += rnd(4);
 		if (Race_if(PM_KHAJIIT)) tmp += rnd(4);
 		if (Race_if(PM_FENEK)) tmp += rnd(2);
@@ -1865,6 +1907,19 @@ int dieroll;
 				mon->mblinded = rnd(10);
 				You("slammed the dazzling light to %s!", mon_nam(mon));
 			}
+		}
+
+		if (u.martialstyle == MARTIALSTYLE_KRAVMAGA && !rn2(20)) {
+			if (!mon->mfrenzied) {
+				mon->mtame = mon->mpeaceful = FALSE;
+				mon->mfrenzied = TRUE;
+				pline("%s is frenzied!", Monnam(mon));
+			}
+		}
+
+		if (u.martialstyle == MARTIALSTYLE_SILAT && !rn2(10)) {
+			pline_The("hard strike stuns %s!", mon_nam(mon));
+			mon->mstun = TRUE;
 		}
 
 		if (uamul && uamul->oartifact == ART_BAKURETU_KEN && !rn2(5)) {
@@ -2052,6 +2107,12 @@ int dieroll;
 		}
 
 		if (uarmf && uarmf->oartifact == ART_FINGERNAIL_FRONT && (!uarmg || FingerlessGloves) ) tmp += 3;
+
+		if (u.martialstyle == MARTIALSTYLE_JUDO && tmp > 1) {
+			tmp *= 4;
+			tmp /= 5;
+			if (tmp < 1) tmp = 1;
+		}
 
 	    valid_weapon_attack = (tmp > 0);
 
@@ -3953,6 +4014,22 @@ int dieroll;
 		if (uarms && uarms->oartifact == ART_YOUTH_UNWORD) tmp += 2;
 		if (uleft && uleft->oartifact == ART_RING_OF_THROR) tmp += 2;
 		if (uright && uright->oartifact == ART_RING_OF_THROR) tmp += 2;
+		if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
+			tmp += 5;
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_MARTIAL_ARTS)) {
+
+					case P_BASIC:	tmp +=  1; break;
+					case P_SKILLED:	tmp +=  2; break;
+					case P_EXPERT:	tmp +=  3; break;
+					case P_MASTER:	tmp +=  4; break;
+					case P_GRAND_MASTER:	tmp +=  5; break;
+					case P_SUPREME_MASTER:	tmp +=  6; break;
+					default: tmp += 0; break;
+				}
+
+			}
+		}
 
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {
@@ -5251,12 +5328,16 @@ melatechoice:
         }
 
 	/* Special monk strikes */
-	if (Role_if(PM_MONK) && !Upolyd && !thrown && no_obj &&
+	if ( (Role_if(PM_MONK) || (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) ) && !Upolyd && !thrown && no_obj &&
 		(!uarm || (uarm && uarm->oartifact == ART_HA_MONK) || (uarm && uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
 	    canhitmon = rnd(500);
+	    if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
+		canhitmon /= 5;
+		if (canhitmon < 1) canhitmon = 1;
+	    }
 	    if (canhitmon < (GushLevel / 8) && !thick_skinned(mdat)) {
 		if (canspotmon(mon))
 		    You("strike %s extremely hard!", mon_nam(mon));
@@ -5347,6 +5428,11 @@ melatechoice:
 	/* skull swords don't want to be used in melee */
 	if (!thrown && obj && obj->oartifact == ART_SKULL_SWORD) tmp /= 2;
 	if (!thrown && obj && obj->oartifact == ART_VIOLENT_SKULL_SWORD) tmp /= 2;
+
+	if (u.martialstyle == MARTIALSTYLE_BOJUTSU && obj && weapon_type(obj) == P_QUARTERSTAFF && !thrown) {
+		tmp *= 2;
+		tmp /= 3;
+	}
 
 	/* heavy two-handed weapons are bad versus tiny enemies (hard to effectively hit a tiny monster with a huge weapon) */
 	if (!thrown && obj && is_heavyweapon(obj) && verysmall(mon->data) && tmp > 1) {

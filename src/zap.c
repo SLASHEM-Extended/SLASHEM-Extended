@@ -9610,6 +9610,7 @@ int type;
 	return FALSE;
     }
     if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE && !rn2(3)) return FALSE;
+    if (u.martialstyle == MARTIALSTYLE_BOJUTSU && uwep && weapon_type(uwep) == P_QUARTERSTAFF && !rn2(5)) return FALSE;
     if (Race_if(PM_CUPID) && !rn2(5)) return FALSE;
     if (Race_if(PM_PLAYER_ATLANTEAN) && rn2(2)) {
 	return FALSE;

@@ -6385,6 +6385,8 @@ find_ac()
 	if(uarmg) uac -= ARM_BONUS(uarmg);
 	if(uarmu) uac -= ARM_BONUS(uarmu);
 
+	int valuetoboost;
+
 	/* implants are mainly meant for those who lack hands --Amy */
 	if(uimplant) uac -= ( (powerfulimplants() || ARM_BONUS(uimplant) < 1) ? ARM_BONUS_IMPLANT(uimplant) : (ARM_BONUS_IMPLANT(uimplant) / 2));
 
@@ -7114,32 +7116,51 @@ find_ac()
 	/* Harlow - make sure it doesn't wrap around ;) */
 	uac = (uac < UAC_MIN ? UAC_MIN : (uac > UAC_LIM ? UAC_LIM : uac));
 
+	valuetoboost = -(uac - 10);
+
+	/* percentage-based AC boosts go here --Amy
+	 * they shouldn't stack multiplicatively or things could get really out of hand */
+
 	if (Race_if(PM_ITAQUE)) {
-		int difference = (-(uac - 10));
+		int difference = valuetoboost;
 		difference = difference / 10;
 		if (difference > 0) uac -= difference;
 
 	}
 
+	if (u.martialstyle == MARTIALSTYLE_SILAT && !uwep && (!u.twoweap || !uswapwep)) {
+		int difference = valuetoboost;
+		difference = difference / 10;
+		if (difference > 0) uac -= difference;
+	}
+
+	if (u.martialstyle == MARTIALSTYLE_BOJUTSU && uwep && weapon_type(uwep) == P_QUARTERSTAFF) {
+		int difference = valuetoboost;
+		difference = difference / 3;
+		if (difference > 0) uac -= difference;
+	}
+
 	if (Race_if(PM_ZAUR)) {
-		int difference = (-(uac - 10));
+		int difference = valuetoboost;
 		difference = difference / 10;
 		if (difference > 0) uac -= difference;
 
 	}
 
 	if (Race_if(PM_BABYLONIAN)) {
-		int difference = (-(uac - 10));
+		int difference = valuetoboost;
 		if (difference > 0) uac -= difference;
 
 	}
 
 	if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) {
-		int difference = (-(uac - 10));
+		int difference = valuetoboost;
 		difference = difference / 10;
 		if (difference > 0) uac -= difference;
 
 	}
+
+	/* percentage-based AC maluses go here --Amy */
 
 	if (u.berserktime) {
 		int difference = (-(uac - 10));
@@ -7181,6 +7202,14 @@ find_ac()
 		difference = difference / 4;
 		if (difference > 0) uac = 10 - difference;
 		
+	}
+
+	if (u.martialstyle == MARTIALSTYLE_MUAYTHAI) {
+		int difference = (-(uac - 10));
+		difference *= 7;
+		difference /= 10;
+		if (difference > 0) uac = 10 - difference;
+
 	}
 
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TUNA_CANNON) {

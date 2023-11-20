@@ -3574,6 +3574,20 @@ int x;
 		if (uright && uright->oartifact == ART_SECOND_EXCHANGE) tmp += 5;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
+		if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
+			tmp += 4;
+			if (!(PlayerCannotUseSkills)) {
+				switch (P_SKILL(P_MARTIAL_ARTS)) {
+					case P_BASIC: tmp += 1; break;
+					case P_SKILLED: tmp += 2; break;
+					case P_EXPERT: tmp += 3; break;
+					case P_MASTER: tmp += 4; break;
+					case P_GRAND_MASTER: tmp += 5; break;
+					case P_SUPREME_MASTER: tmp += 6; break;
+				}
+			}
+		}
+
 		if (FemtrapActiveThai) tmp -= 2;
 		if (PlayerBleeds > 100) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;

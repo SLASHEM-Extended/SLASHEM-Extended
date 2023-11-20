@@ -2776,6 +2776,7 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UZ_I) tmp -= rnd(10);
 	if (uwep && uwep->oartifact == ART_AR_ARMALYTE) tmp -= 2;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_AR_ARMALYTE) tmp -= 2;
+	if (u.martialstyle == MARTIALSTYLE_MUAYTHAI) tmp -= 5;
 
 	if (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) tmp -= 5;
 
@@ -2883,6 +2884,7 @@ inaccurateguns:
 	}
 
 	if (tech_inuse(T_UNARMED_FOCUS)) tmp -= rnd(20);
+	if (u.martialstyle == MARTIALSTYLE_KUNGFU) tmp -= rnd(20);
 
 	/* quarterback is highly skilled at shooting small round objects --Amy */
 	if (Role_if(PM_QUARTERBACK) && objects[obj->otyp].oc_skill == -P_SLING) tmp += rn1(5, 5);

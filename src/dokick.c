@@ -61,6 +61,10 @@ register boolean clumsy;
 	if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE) dmg += 5;
 	if (uarmu && uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING) dmg += 5;
 
+	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) {
+		dmg += (1 + (GushLevel / 3));
+	}
+
 	if (uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) {
 		dmg += 7;
 		if (PlayerInBlockHeels) dmg += 8;
@@ -348,6 +352,7 @@ register boolean clumsy;
 	if (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS)) dmg *= 2;
 
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
+	if (u.martialstyle == MARTIALSTYLE_KUNGFU && !rn2(3)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
@@ -473,6 +478,10 @@ register boolean clumsy;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) dmg *= 2;
+	if (u.martialstyle == MARTIALSTYLE_KUNGFU) {
+		dmg *= 11;
+		dmg /= 10;
+	}
 
 	/*if (dmg > 127) dmg = 127;*/ /* sanity check... but not actually needed --Amy */
 
@@ -494,7 +503,7 @@ register boolean clumsy;
 		showdmg(dmg);
 #endif
 	}
-	if (mon->mhp > 0 && (martial() || (uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) || (uarmf && itemhasappearance(uarmf, APP_WHITE_BUFFALO_BOOTS)) ) && !bigmonst(mon->data) && !rn2(3) &&
+	if (mon->mhp > 0 && (martial() || (uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) || (uarmf && itemhasappearance(uarmf, APP_WHITE_BUFFALO_BOOTS)) ) && !bigmonst(mon->data) && !rn2(u.martialstyle == MARTIALSTYLE_TAEKWONDO ? 2 : 3) &&
 	    mon->mcanmove && mon != u.ustuck && !mon->mtrapped) {
 		/* see if the monster has a place to move into */
 		mdx = mon->mx + u.dx;
@@ -1065,6 +1074,7 @@ register xchar x, y;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
 
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
+	if (u.martialstyle == MARTIALSTYLE_KUNGFU && !rn2(3)) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_JUMP_KICK_ACTION) clumsy = FALSE;
@@ -1074,7 +1084,7 @@ register xchar x, y;
 doit:
 	You("kick %s.", mon_nam(mon));
 	wakeup(mon);
-	if(!rn2(clumsy ? 3 : 4) && (clumsy || !bigmonst(mon->data)) &&
+	if(!rn2(clumsy ? 3 : 4) && (u.martialstyle != MARTIALSTYLE_KUNGFU || rn2(4)) && (clumsy || !bigmonst(mon->data)) &&
 	   mon->mcansee && !mon->mtrapped && !thick_skinned(mon->data) &&
 	   mon->data->mlet != S_EEL && haseyes(mon->data) && mon->mcanmove &&
 	   !mon->mstun && !mon->mconf && !mon->msleeping &&

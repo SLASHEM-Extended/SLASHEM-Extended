@@ -84,6 +84,35 @@ const char *name;	/* if null, then format `obj' */
 	if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER)) ) {
 		shieldblockrate += 25;
 	}
+	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO && !uwep && !uarms && (!u.twoweap || !uswapwep) ) {
+		shieldblockrate = 20;
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_MARTIAL_ARTS)) {
+				case P_BASIC: shieldblockrate += 5; break;
+				case P_SKILLED: shieldblockrate += 10; break;
+				case P_EXPERT: shieldblockrate += 13; break;
+				case P_MASTER: shieldblockrate += 16; break;
+				case P_GRAND_MASTER: shieldblockrate += 20; break;
+				case P_SUPREME_MASTER: shieldblockrate += 25; break;
+			}
+
+		}
+	}
+
+	if (u.martialstyle == MARTIALSTYLE_BOJUTSU && uwep && weapon_type(uwep) == P_QUARTERSTAFF) {
+		shieldblockrate = 25;
+		if (uwep->spe > 0) shieldblockrate += (uwep->spe * 2);
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_QUARTERSTAFF)) {
+				case P_BASIC: shieldblockrate += 2; break;
+				case P_SKILLED: shieldblockrate += 4; break;
+				case P_EXPERT: shieldblockrate += 6; break;
+				case P_MASTER: shieldblockrate += 8; break;
+				case P_GRAND_MASTER: shieldblockrate += 10; break;
+				case P_SUPREME_MASTER: shieldblockrate += 12; break;
+			}
+		}
+	}
 
 	if (uarms) {
 
@@ -313,7 +342,17 @@ const char *name;	/* if null, then format `obj' */
 
 	} else if (!rn2(extrachance) && (rnd(100) < shieldblockrate) ) {
 
-			if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER) ) ) {
+			if (u.martialstyle == MARTIALSTYLE_TAEKWONDO && !uwep && !uarms && (!u.twoweap || !uswapwep)) {
+
+				Your("fists block a projectile.");
+				use_skill(P_MARTIAL_ARTS, 1);
+
+			} else if (u.martialstyle == MARTIALSTYLE_BOJUTSU && uwep && weapon_type(uwep) == P_QUARTERSTAFF) {
+
+				Your("quarterstaff blocks a projectile.");
+				use_skill(P_QUARTERSTAFF, 1);
+
+			} else if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER) ) ) {
 
 				Your("weapons block a projectile.");
 				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);

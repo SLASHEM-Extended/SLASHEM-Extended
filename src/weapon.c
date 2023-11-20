@@ -4694,6 +4694,11 @@ jediskip:
 	    	You("learn how to perform use the force luke!");
 	}
 
+	if (skill == P_MARTIAL_ARTS && P_SKILL(skill) == P_BASIC && !tech_known(T_MARTIAL_STYLE)) {
+	    	learntech(T_MARTIAL_STYLE, FROMOUTSIDE, 1);
+		You("learn how to perform martial style!");
+	}
+
 	if (skill == P_ORB && P_SKILL(skill) == P_BASIC && !tech_known(T_PACIFY)) {
 	    	learntech(T_PACIFY, FROMOUTSIDE, 1);
 	    	You("learn how to perform pacify!");
@@ -6417,6 +6422,10 @@ int degree;
 			if (skill == P_PETKEEPING && P_ADVANCE(P_SYMBIOSIS) == 0 && !tech_known(T_GENERATE_OFFSPRING)) {
 			    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
 			    	You("learn how to perform generate offspring!");
+			}
+			if (skill == P_MARTIAL_ARTS && !tech_known(T_MARTIAL_STYLE)) {
+			    	learntech(T_MARTIAL_STYLE, FROMOUTSIDE, 1);
+				You("learn how to perform martial style!");
 			}
 			if (skill == P_ORB && !tech_known(T_PACIFY)) {
 			    	learntech(T_PACIFY, FROMOUTSIDE, 1);
@@ -10101,6 +10110,10 @@ rerollthree:
 	}
 	if (P_SKILL(P_SYMBIOSIS) >= P_MASTER && P_SKILL(P_PETKEEPING) >= P_MASTER && !tech_known(T_GENERATE_OFFSPRING)) {
 	    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC && !tech_known(T_MARTIAL_STYLE)) {
+	    	learntech(T_MARTIAL_STYLE, FROMOUTSIDE, 1);
 	}
 
 	if (P_SKILL(P_ORB) >= P_BASIC && !tech_known(T_PACIFY)) {

@@ -11411,6 +11411,8 @@ u_init()
 	u.havebeeninludios = 0;
 	u.maxrndmonstchoicecount = 0;
 
+	u.martialstyle = MARTIALSTYLE_BRAWLING; /* can be changed with martial style tech */
+
 	u.coronations = 0;
 	u.inasuppression = 0;
 	u.conclusiocount = 0;

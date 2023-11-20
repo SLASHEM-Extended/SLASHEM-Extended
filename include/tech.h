@@ -308,10 +308,12 @@ struct blitz_tab {
 #define T_DROP_BOULDER	226
 #define T_EARTHSHAKE	227
 
-#define T_JEDI_JUMP	228 /* lvlup */
-#define T_CHARGE_SABER	229 /* lvlup */
-#define T_TELEKINESIS	230 /* lvlup */
+#define T_MARTIAL_STYLE	228
+
+#define T_JEDI_JUMP	229 /* lvlup */
+#define T_CHARGE_SABER	230 /* lvlup */
+#define T_TELEKINESIS	231 /* lvlup */
  
-#define MAXTECH 231
+#define MAXTECH 232
 
 #endif /* TECH_H */

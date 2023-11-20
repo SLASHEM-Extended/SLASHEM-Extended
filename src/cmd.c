@@ -3351,6 +3351,11 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) ) {
+		sprintf(buf, " '%s'", currentmartialstyle());
+		enl_msg("Your current martial arts style ", "is", "was", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) ) {
 		sprintf(buf, " %d", u.casinochips);
 		enl_msg("Your amount of casino chips ", "is", "was", buf);
 	}
@@ -8133,6 +8138,9 @@ int final;
 
 	sprintf(buf, " '%s", bundledescription());
 	dump("  Your hairstyle was", buf);
+
+	sprintf(buf, " '%s'", currentmartialstyle());
+	dump("  Your current martial arts style was", buf);
 
 	sprintf(buf, " %d", u.casinochips);
 	dump("  Your amount of casino chips was", buf);
