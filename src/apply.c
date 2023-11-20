@@ -5839,6 +5839,7 @@ dyechoice:
 	case LEATHER_SADDLE:
 	case INKA_SADDLE:
 	case TANK_SADDLE:
+	case BARDING:
 	case MESH_SADDLE:
 		res = use_saddle(obj);
 		break;

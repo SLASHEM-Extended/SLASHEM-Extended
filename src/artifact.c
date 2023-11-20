@@ -291,6 +291,7 @@ init_randarts()
 	artilist[ART_IT_POWER_KNOEPP].otyp = randartsuit();
 	artilist[ART_DON_SUICUNE_USED_SELFDESTR].otyp = randartsuit();
 	artilist[ART_WONDERCLOAK].otyp = randartcloak();
+	artilist[ART_GLAE].otyp = randartmeleeweapon();
 	artilist[ART_FIRM_TOP].otyp = randartcloak();
 	artilist[ART_SHROUD].otyp = randartcloak();
 	artilist[ART_PREIM_OH].otyp = randartcloak();
@@ -5215,6 +5216,22 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_GLAE) {
+
+			long savewornmask;
+
+			savewornmask = obj->owornmask;
+			setworn((struct obj *)0, obj->owornmask);
+
+			obj->otyp = randartmeleeweapon();
+
+			setworn(obj, savewornmask);
+
+			Your("weapon morphs...");
+
+			break;
+		}
 
 		if (obj->oartifact == ART_HAMMA_HAMMA) {
 			register struct obj *otmp;

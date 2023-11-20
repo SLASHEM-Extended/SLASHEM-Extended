@@ -16888,31 +16888,33 @@ boolean knoweverything;
 				pline("A tool that can be used to photograph monsters."); break;
 			case MIRROR: 
 				pline("Some monsters may be scared if you apply a mirror at them, and gaze-based attacks may be reflected."); break;
-			case CRYSTAL_BALL: 
+			case CRYSTAL_BALL:
 				pline("Applying a crystal ball can be dangerous, but if it works, you may search for a glyph."); break;
-			case LENSES: 
+			case LENSES:
 				pline("A weird tool that can be put on to improve the player's ability to search for things."); break;
-			case BLINDFOLD: 
+			case BLINDFOLD:
 				pline("Putting on this tool prevents you from seeing."); break;
-			case CONDOME: 
+			case CONDOME:
 				pline("Wear this to prevent diseases from sexual encounters!"); break;
-			case TOWEL: 
+			case TOWEL:
 #ifdef PHANTOM_CRASH_BUG
 				pline("Possible uses include: covering your eyes, wiping your hands, throwing it at a monster or wielding it as a melee weapon."); break;
 #else
 				pline("According to Douglas Adams, you can do a lot of stuff with a towel. Possible uses include: covering your eyes, wiping your hands, throwing it at a monster or wielding it as a melee weapon. See for yourself if you find any of these useful. :-)"); break;
 #endif
-			case LEATHER_SADDLE: 
+			case LEATHER_SADDLE:
 				pline("Applying this at a tame monster may allow you to ride it. The more tame a monster is, the more likely you are to succeed in saddling it."); break;
-			case INKA_SADDLE: 
+			case INKA_SADDLE:
 				pline("This saddle allows for easy riding of tame monsters if you apply it. Careful: getting off your steed will have negative consequences."); break;
-			case TANK_SADDLE: 
+			case TANK_SADDLE:
 				pline("Use this saddle on a pet, and then you can ride it. Due to the heavy plating, it also improves the pet's AC by 5 points."); break;
-			case MESH_SADDLE: 
+			case BARDING:
+				pline("This saddle can be applied to put it on a monster, and if the monster is a pet you can then ride it. The special effect of this type of saddle is that the pet gains 3 points of AC and you gain one."); break;
+			case MESH_SADDLE:
 				pline("Saddle your pet with this saddle in order to be able to ride it. This particular type of saddle provides MC1 while riding, just in case you're not wearing any MC-granting equipment."); break;
-			case UNSTABLE_STETHOSCOPE: 
+			case UNSTABLE_STETHOSCOPE:
 				pline("A stethoscope that occasionally reveals more information."); break;
-			case LEATHER_LEASH: 
+			case LEATHER_LEASH:
 				pline("This tool can be applied at a tame monster to force it to follow you. Or that's what it *should* do, if pets weren't so goddamn stupid."); break;
 			case INKA_LEASH: 
 				pline("This tool can be applied at a tame monster to force it to follow you. If the pet falls behind, it attempts to teleport to you."); break;
@@ -17251,6 +17253,8 @@ boolean knoweverything;
 			pline("DANGER: This potion brings an end. Quaff at your own peril.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_LUCKY))
 			pline("Occasionally, quaffing this potion gives a random good effect.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_POISONED))
+			pline("The act of quaffing this potion will poison you.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_CHOCOLATE))
 			pline("This potion contains tasty liquid chocolate (mmmmm)! Quaffing it may allow you to experience an exciting flavor.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DYE))
@@ -17423,6 +17427,8 @@ boolean knoweverything;
 				pline("Quaffing this potion shows all monsters on the current dungeon level to you."); break;
 			case POT_OBJECT_DETECTION:
 				pline("A potion that reveals objects on the current level if quaffed."); break;
+			case POT_REFLECTION:
+				pline("If you quaff this potion, you can reflect rays for a while."); break;
 			case POT_ENLIGHTENMENT:
 				pline("When quaffed, this potion displays a lot of information about your character, including whether you can pray to your god."); break;
 			case POT_FULL_HEALING:
@@ -29232,6 +29238,14 @@ boolean knoweverything;
 					pline("Artifact specs: +10 shock damage, works as a luckstone when wielded, beheads enemies and conveys fire resistance, regeneration, +10 constitution, cold immunity, free action, see invisible and slow digestion and produces an antimagic shell, heavily autocurses when wielded and is an unbeliever sacrifice gift. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
 				case ART_HEAVY_CROSSBOW_OF_ETERNITY:
 					pline("Artifact specs: +16 damage, works as a luckstone when wielded and conveys reflection, stealth, see invisible, slow digestion, free action, very fast speed, +10 DEX, flying, +2 multishot, shock immunity, invisible, resist blindness and confusion and infravision and produces an antimagic shell, heavily sticky autocurses when wielded and is an unbeliever sacrifice gift. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
+				case ART_SPIKED_BARDING:
+					pline("Artifact specs: riding a monster with this saddle makes you immune to being engulfed, which is actually really powerful considering it'll make a whole bunch of monsters entirely irrelevant, including air elementals."); break;
+				case ART_PLATED_BARDING:
+					pline("Artifact specs: grants you some extra AC if you're riding a monster with this saddle."); break;
+				case ART_SENATOR_S_SPEED:
+					pline("Artifact specs: protects both you and the steed from slowness effects."); break;
+				case ART_GLAE:
+					pline("Artifact specs: +5 to-hit and +10 damage, can be invoked to change its base type to a random melee weapon type."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

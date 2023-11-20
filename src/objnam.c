@@ -4101,6 +4101,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ COPPER_PLATE_MAIL, "todo" },
 	{ GOLDEN_SHIELD, "todo" },
 	{ TANK_SADDLE, "todo" },
+	{ BARDING, "todo" },
 	{ MESH_SADDLE, "todo" },
 	{ ADAMANT_LEASH, "todo" },
 	{ SPE_LOOT_IMPROVEMENT, "todo" },
@@ -4288,6 +4289,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPEED_HOLDING_BOOTS, "todo" },
 	{ RIN_UPPER_ADORNMENT, "todo" },
 	{ AMULET_OF_CLEAR_MIND, "todo" },
+	{ POT_REFLECTION, "todo" },
 
 	{0, "" }
 };
@@ -7543,6 +7545,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ COPPER_PLATE_MAIL, "todo" },
 	{ GOLDEN_SHIELD, "todo" },
 	{ TANK_SADDLE, "todo" },
+	{ BARDING, "todo" },
 	{ MESH_SADDLE, "todo" },
 	{ ADAMANT_LEASH, "todo" },
 	{ SPE_LOOT_IMPROVEMENT, "todo" },
@@ -7730,6 +7733,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPEED_HOLDING_BOOTS, "todo" },
 	{ RIN_UPPER_ADORNMENT, "todo" },
 	{ AMULET_OF_CLEAR_MIND, "todo" },
+	{ POT_REFLECTION, "todo" },
 
 	{0, "" }
 };

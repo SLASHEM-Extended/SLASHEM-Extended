@@ -2026,6 +2026,7 @@ u_slow_down()
 	if (uwep && uwep->oartifact == ART_DAEFAROTH) return; /* player is immune */
 	if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) return;
 	if (uarmf && uarmf->otyp == SPEED_HOLDING_BOOTS) return;
+	if (bmwride(ART_SENATOR_S_SPEED)) return;
 	if (uarmf && itemhasappearance(uarmf, APP_NOT_SLOWING_DOWN_BOOTS) && rn2(10)) return; /* 90% resistance */
 
 	HFast = 0L;
@@ -11014,6 +11015,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	if (!u.uswallow) {	/* swallows you */
 		if (youmonst.data->msize >= MZ_HUGE && mtmp->data->msize < MZ_HUGE) return(0);
 		if (uwep && uwep->oartifact == ART_PEEPLUE) return(0);
+		if (bmwride(ART_SPIKED_BARDING)) return(0);
 		if ((uleft && uleft->otyp == RIN_INDIGESTION) || (uright && uright->otyp == RIN_INDIGESTION)) return(0);
 		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
 		    sobj_at(BOULDER, u.ux, u.uy))

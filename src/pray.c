@@ -216,6 +216,7 @@ in_trouble()
 	    if (Cursed_obj(otmp, LEATHER_SADDLE)) return TROUBLE_SADDLE;
 	    if (Cursed_obj(otmp, INKA_SADDLE)) return TROUBLE_SADDLE;
 	    if (Cursed_obj(otmp, TANK_SADDLE)) return TROUBLE_SADDLE;
+	    if (Cursed_obj(otmp, BARDING)) return TROUBLE_SADDLE;
 	    if (Cursed_obj(otmp, MESH_SADDLE)) return TROUBLE_SADDLE;
 	}
 

@@ -17279,6 +17279,22 @@ A("The Heavy Crossbow of Eternity",				CROSSBOW, /* randart2 crossbow, heavy sti
 	(SPFX_RESTR|SPFX_EVIL|SPFX_LUCK|SPFX_REFLECT|SPFX_STLTH), 0, 0,
 	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
 
+A("Spiked Barding",				BARDING, /* prevents engulfing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Plated Barding",				BARDING, /* +2 AC for player */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Senator's Speed",				BARDING, /* you and the steed are immune to slowing effects "%s doesn't slow down!" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("GLAE",				LONG_SWORD, /* randart melee weapon, invoke rerolls base item */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -8053,6 +8053,7 @@ boolean extraskills;
 	if (obj->otyp == LEATHER_SADDLE) skill = P_RIDING;
 	if (obj->otyp == INKA_SADDLE) skill = P_RIDING;
 	if (obj->otyp == TANK_SADDLE) skill = P_RIDING;
+	if (obj->otyp == BARDING) skill = P_RIDING;
 	if (obj->otyp == MESH_SADDLE) skill = P_RIDING;
 
 	if (obj->otyp >= SMALL_SHIELD && obj->otyp <= SHIELD_OF_REFLECTION) skill = P_SHIELD;

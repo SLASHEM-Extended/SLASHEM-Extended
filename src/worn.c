@@ -183,6 +183,11 @@ struct obj *obj;	/* item to make known if effect can be seen */
     boolean give_msg = !in_mklev, petrify = FALSE;
     unsigned int oldspeed = mon->mspeed;
 
+    if (mercedesride(ART_SENATOR_S_SPEED, mon) && adjust < 0) {
+	pline("%s doesn't slow down!", Monnam(mon));
+	return;
+    }
+
     switch (adjust) {
      case  2:
 	mon->permspeed = MFAST;
@@ -360,6 +365,8 @@ boolean on, silently;
 	    dismount_steed(DISMOUNT_FELL);
 	if (!on && mon == u.usteed && obj->otyp == TANK_SADDLE)
 	    dismount_steed(DISMOUNT_FELL);
+	if (!on && mon == u.usteed && obj->otyp == BARDING)
+	    dismount_steed(DISMOUNT_FELL);
 	if (!on && mon == u.usteed && obj->otyp == MESH_SADDLE)
 	    dismount_steed(DISMOUNT_FELL);
 
@@ -395,6 +402,7 @@ register struct monst *mon;
 	}
 
 	if (fordride(TANK_SADDLE, mon)) base -= 5;
+	if (fordride(BARDING, mon)) base -= 3;
 
 	if (mercedesride(ART_DEATH_SQUAD_MOBILE, mon)) base -= 5;
 

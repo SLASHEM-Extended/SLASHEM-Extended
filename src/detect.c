@@ -1622,7 +1622,7 @@ finditX()	/* returns number of things found */
 	int num = 0;
 
 	if(u.uswallow) return(0);
-	do_clear_area(u.ux, u.uy, 4, findoneX, (void *) &num);
+	do_clear_area(u.ux, u.uy, 4 + rn2(2), findoneX, (void *) &num);
 	return(num);
 }
 

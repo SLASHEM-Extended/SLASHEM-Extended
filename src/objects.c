@@ -6012,8 +6012,9 @@ TOOL("defusing box", (char *)0,      1, 0, 0, 0,  200,  0,   200, MT_MINERAL, CL
 TOOL("soft chastity belt", (char *)0,      1, 0, 0, 0,   10,  0,   5, MT_SILK, CLR_WHITE, 1),
 
 /* leather saddle = first saddle */
-TOOL("leather saddle", "saddle", 0, 0, 0, 0, 2650,0, 150, MT_LEATHER, HI_LEATHER, 1),
+TOOL("leather saddle", "saddle", 0, 0, 0, 0, 2450,0, 150, MT_LEATHER, HI_LEATHER, 1),
 TOOL("tank saddle", "saddle", 0, 0, 0, 0, 100,0, 150, MT_TITANIUM, HI_LEATHER, 40),
+TOOL("barding", "saddle", 0, 0, 0, 0, 200,0, 150, MT_STEEL, HI_LEATHER, 30),
 TOOL("mesh saddle", "saddle", 0, 0, 0, 0, 250,0, 150, MT_MESH, HI_LEATHER, 15),
 TOOL("inka saddle", "saddle",   0, 0, 0, 0, 500,0, 150, MT_INKA, HI_LEATHER, 20),
 /* inka saddle = last saddle */
@@ -6293,9 +6294,10 @@ POTION("training", "chocolate",         1, 0,            50, 100, CLR_BROWN, 15,
 POTION("cure aids", "lucky",            1, 0,            10, 100, CLR_YELLOW, 30, APP_POTION_LUCKY),
 
 POTION("invisibility", "brilliant blue",1, INVIS,      3500, 100, CLR_BRIGHT_BLUE, 5, 0),
-POTION("monster detection", "bubbly",   1, 0,          3450, 100, CLR_WHITE, 1, 0),
+POTION("monster detection", "bubbly",   1, 0,          3250, 100, CLR_WHITE, 1, 0),
 POTION("object detection", "smoky",     1, 0,          3300, 100, CLR_GRAY, 1, APP_POTION_SMOKY),
 POTION("enlightenment", "swirly",       1, 0,          2000, 100, CLR_BROWN, 5, 0),
+POTION("reflection", "poisoned",        1, REFLECTING,  200, 100, CLR_GREEN, 20, APP_POTION_POISONED),
 POTION("full healing",  "black",        1, 0,          3500, 100, CLR_BLACK, 10, 0),
 POTION("levitation", "cyan",            1, LEVITATION, 3600, 100, CLR_CYAN, 1, 0),
 POTION("polymorph", "golden",           1, 0,          900, 100, CLR_YELLOW, 20, 0),

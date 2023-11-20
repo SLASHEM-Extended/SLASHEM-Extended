@@ -9894,7 +9894,7 @@ tunguskaagain:
 		break;
 	case SPE_IDENTIFY:
 		if (confused) break;
-		if (!rn2(100)) {
+		if (!rn2(1000)) {
 
 			forget(3);
 			pline("Oh, no! Your mind has gone blank!");
@@ -9941,7 +9941,7 @@ tunguskaagain:
 		if(invent && !confused) {
 		    identify_pack(cval, 0, sobj->otyp == SPE_IDENTIFY ? TRUE : FALSE);
 		}
-		if (!rn2(5) && sobj->otyp == SPE_IDENTIFY) {
+		if (!rn2(8) && sobj->otyp == SPE_IDENTIFY) {
 			pline("The spell backlashes!");
 			badeffect();
 		}

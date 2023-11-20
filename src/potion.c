@@ -11737,6 +11737,18 @@ dodrink()
 	if (itemhasappearance(otmp, APP_POTION_LUCKY) && !rn2(10)) {
 		goodeffect();
 	}
+	if (itemhasappearance(otmp, APP_POTION_POISONED)) {
+		pline("That potion was poisoned!");
+		if (Poison_resistance && (StrongPoison_resistance || rn2(10)) ) {
+			pline("It might have been concocted at the nearby %s farm.", fruitname(FALSE));
+			losehp(rnd(4), "poisoned potion", KILLED_BY_AN);
+		} else {
+			losestr(rnd(4), TRUE);
+			if (!rn2(20)) losestr(rnd(3), TRUE);
+			losehp(rnd(10),"poisoned potion", KILLED_BY);
+			exercise(A_CON, FALSE);
+		}
+	}
 	if (itemhasappearance(otmp, APP_POTION_CHOCOLATE)) {
 		chocolate_effect();
 	}
@@ -12344,6 +12356,28 @@ peffects(otmp)
 			multi = -rnd(15);
 			nomovemsg = "You awake with a headache.";
 		}
+		break;
+
+	case POT_REFLECTION:
+		if (otmp->cursed && evilfriday) {
+			u.uprops[DEAC_REFLECTING].intrinsic += rnz(5000);
+			if (HReflecting & INTRINSIC) {
+				HReflecting &= ~INTRINSIC;
+				You_feel("less reflexive!");
+			}
+			if (HReflecting & TIMEOUT) {
+				HReflecting &= ~TIMEOUT;
+				You_feel("less reflexive!");
+			}
+			You_feel("unreflexive!");
+		} else {
+			int reflectdur = rn1(250,250);
+			if (otmp->cursed) reflectdur /= 2;
+			if (otmp->blessed) reflectdur *= rn1(2, 2);
+			incr_itimeout(&HReflecting, reflectdur);
+			You_feel("reflexive!");
+		}
+
 		break;
 	case POT_ENLIGHTENMENT:
 		if(otmp->cursed) {
