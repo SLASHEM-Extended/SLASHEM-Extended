@@ -6052,6 +6052,9 @@ static const char *epitaphs[] = {
 	"Well, of course I used the arch-vile jump on The Inmost Dens to get into the area that normally requires the blue key, after all the 'wall' is so ridiculously waist-high that it's obvious you're supposed to pass it that way! What's that you say, the devs didn't intend that and now I can't get back? Really???",
 	"Dude, if the devs didn't intend that you can bypass the blue key door with an arch-vile jump and subsequently get stuck behind it then why on earth did they make it so that you can arch-vile jump at all??? Some geniuses they are!",
 	"Yes, of course SLEX is a work in progress and if someone abuses obviously unintended exploits to score an easy ascension, I reserve the right to fix that. Who are you to demand that I leave such loopholes in the game for all eternity???",
+	"Nooooooo! Amy nerfed the light spell and now it only lights up the square you're standing on!!! Like what the hell, why would someone nerf THAT?! I'll never play this game again, Soviet5lo made a much better variant that is lots more fun to play!",
+	"WHAT? Amy you fucked up, surely force bolt isn't supposed to be a motherfucking level FOUR spell??? Lady, it was a level 1 spell for centuries!!!!!!! It sure wasn't overpowered! Now that it's level four, few chars can even cast it and those who can are no longer capable of spamming it because it costs far too much Pw! Revert that nerf or I'll round up a mob of thousands of SLEX players to form a mass protest!",
+	"Amy you are the worst game developer in existence, my gnomish wizards were having difficulty getting started already but now you made it so that I no longer start with force bolt and instead have to struggle through the early game with a uselessly weak magic bolt spell that cannot even break doors or boulders??? #ragequit forever, I shouldn't have come back in the first place but now I'm really gone for good.",
 
 };
 

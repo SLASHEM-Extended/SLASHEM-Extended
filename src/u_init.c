@@ -766,7 +766,7 @@ static struct trobj Rocker[] = {
 	{ SLING, 2, WEAPON_CLASS, 1, 1 },
 	{ WOODEN_HARP, UNDEF_SPE, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ PICK_AXE, 1, TOOL_CLASS, 1, 1 },
-	{ SPE_FORCE_BOLT, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
+	{ SPE_MAGIC_BOLT, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -2087,7 +2087,7 @@ static struct trobj Sage[] = {
 	{ MACE, 1, WEAPON_CLASS, 1, 1 },
 	{ ROBE, 2, ARMOR_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 2, UNDEF_BLESS },
-	{ SPE_FORCE_BOLT, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
+	{ SPE_MAGIC_BOLT, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ SPE_HEALING, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 2, 1 },
@@ -11716,7 +11716,7 @@ u_init()
 		switch (rnd(5)) {   
 		    case 1: Augurer[AUG_BOOK].trotyp = SPE_CAUSE_FEAR; break;
 		    case 2: Augurer[AUG_BOOK].trotyp = SPE_CONFUSE_MONSTER; break;
-		    case 3: Augurer[AUG_BOOK].trotyp = SPE_LIGHT; break;
+		    case 3: Augurer[AUG_BOOK].trotyp = SPE_LIGHT_AREA; break;
 		    case 4: Augurer[AUG_BOOK].trotyp = SPE_KNOCK; break;
 		    case 5: Augurer[AUG_BOOK].trotyp = (!rn2(3) ? SPE_SLEEP : !rn2(2) ? SPE_IDENTIFY : SPE_MAGIC_MAPPING); break;
 		    default: break;
@@ -12410,7 +12410,7 @@ u_init()
 		break;
 	case PM_NECROMANCER:
 		switch (rnd(5)) {   
-                    case 1: Necromancer[N_BOOK].trotyp = SPE_FORCE_BOLT; break;
+                    case 1: Necromancer[N_BOOK].trotyp = SPE_MAGIC_BOLT; break;
                     case 2: Necromancer[N_BOOK].trotyp = SPE_KNOCK; break;
                     case 3: Necromancer[N_BOOK].trotyp = SPE_MAGIC_MISSILE; break;
                     case 4: Necromancer[N_BOOK].trotyp = SPE_CREATE_MONSTER; break;
@@ -12593,7 +12593,7 @@ u_init()
 		    case 1: GangScholar[GSC_BOOK].trotyp = SPE_CREATE_MONSTER; break;
 		    case 2: GangScholar[GSC_BOOK].trotyp = SPE_HEALING; break;
 		    case 3: GangScholar[GSC_BOOK].trotyp = SPE_EXTRA_HEALING; break;
-		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT; break;
+		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT_AREA; break;
 		    case 5: GangScholar[GSC_BOOK].trotyp = SPE_CLAIRVOYANCE; break;
 		    case 6: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
 		    case 7: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_TREASURE; break;
@@ -12624,7 +12624,7 @@ u_init()
 
 	case PM_PRIEST:
 		switch (rnd(9)) {
-		    case 1: Priest[P_BOOK].trotyp = SPE_FORCE_BOLT; break;
+		    case 1: Priest[P_BOOK].trotyp = SPE_MAGIC_BOLT; break;
 		    case 2: Priest[P_BOOK].trotyp = SPE_SLEEP; break;
 		    case 3: Priest[P_BOOK].trotyp = SPE_RESIST_POISON; break;
 		    case 4: Priest[P_BOOK].trotyp = SPE_RESIST_SLEEP; break;
@@ -13241,7 +13241,7 @@ u_init()
 		break;
 	case PM_WIZARD:
 		switch (rnd(2)) {                
-		    case 1: Wizard[W_BOOK1].trotyp = SPE_FORCE_BOLT; break;
+		    case 1: Wizard[W_BOOK1].trotyp = SPE_MAGIC_BOLT; break;
 		    case 2: Wizard[W_BOOK1].trotyp = SPE_SLEEP; break;
 		    default: break;
 		}
@@ -14177,7 +14177,7 @@ u_init()
 		switch (rnd(5)) {   
 		    case 1: Augurer[AUG_BOOK].trotyp = SPE_CAUSE_FEAR; break;
 		    case 2: Augurer[AUG_BOOK].trotyp = SPE_CONFUSE_MONSTER; break;
-		    case 3: Augurer[AUG_BOOK].trotyp = SPE_LIGHT; break;
+		    case 3: Augurer[AUG_BOOK].trotyp = SPE_LIGHT_AREA; break;
 		    case 4: Augurer[AUG_BOOK].trotyp = SPE_KNOCK; break;
 		    case 5: Augurer[AUG_BOOK].trotyp = (!rn2(3) ? SPE_SLEEP : !rn2(2) ? SPE_IDENTIFY : SPE_MAGIC_MAPPING); break;
 		    default: break;
@@ -14637,7 +14637,7 @@ u_init()
 		break;
 	case 61:
 		switch (rnd(5)) {   
-                    case 1: Necromancer[N_BOOK].trotyp = SPE_FORCE_BOLT; break;
+                    case 1: Necromancer[N_BOOK].trotyp = SPE_MAGIC_BOLT; break;
                     case 2: Necromancer[N_BOOK].trotyp = SPE_KNOCK; break;
                     case 3: Necromancer[N_BOOK].trotyp = SPE_MAGIC_MISSILE; break;
                     case 4: Necromancer[N_BOOK].trotyp = SPE_CREATE_MONSTER; break;
@@ -14691,7 +14691,7 @@ u_init()
 
 	case 65:
 		switch (rnd(9)) {   
-		    case 1: Priest[P_BOOK].trotyp = SPE_FORCE_BOLT; break;
+		    case 1: Priest[P_BOOK].trotyp = SPE_MAGIC_BOLT; break;
 		    case 2: Priest[P_BOOK].trotyp = SPE_SLEEP; break;
 		    case 3: Priest[P_BOOK].trotyp = SPE_RESIST_POISON; break;
 		    case 4: Priest[P_BOOK].trotyp = SPE_RESIST_SLEEP; break;
@@ -14913,7 +14913,7 @@ u_init()
 		break;
 	case 88:
 		switch (rnd(2)) {                
-		    case 1: Wizard[W_BOOK1].trotyp = SPE_FORCE_BOLT; break;
+		    case 1: Wizard[W_BOOK1].trotyp = SPE_MAGIC_BOLT; break;
 		    case 2: Wizard[W_BOOK1].trotyp = SPE_SLEEP; break;
 		    default: break;
 		}
@@ -15412,7 +15412,7 @@ u_init()
 		    case 1: GangScholar[GSC_BOOK].trotyp = SPE_CREATE_MONSTER; break;
 		    case 2: GangScholar[GSC_BOOK].trotyp = SPE_HEALING; break;
 		    case 3: GangScholar[GSC_BOOK].trotyp = SPE_EXTRA_HEALING; break;
-		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT; break;
+		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT_AREA; break;
 		    case 5: GangScholar[GSC_BOOK].trotyp = SPE_CLAIRVOYANCE; break;
 		    case 6: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
 		    case 7: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_TREASURE; break;
@@ -15894,7 +15894,7 @@ u_init()
 		switch (rnd(5)) {   
 		    case 1: Augurer[AUG_BOOK].trotyp = SPE_CAUSE_FEAR; break;
 		    case 2: Augurer[AUG_BOOK].trotyp = SPE_CONFUSE_MONSTER; break;
-		    case 3: Augurer[AUG_BOOK].trotyp = SPE_LIGHT; break;
+		    case 3: Augurer[AUG_BOOK].trotyp = SPE_LIGHT_AREA; break;
 		    case 4: Augurer[AUG_BOOK].trotyp = SPE_KNOCK; break;
 		    case 5: Augurer[AUG_BOOK].trotyp = (!rn2(3) ? SPE_SLEEP : !rn2(2) ? SPE_IDENTIFY : SPE_MAGIC_MAPPING); break;
 		    default: break;
@@ -16354,7 +16354,7 @@ u_init()
 		break;
 	case 61:
 		switch (rnd(5)) {   
-                    case 1: Necromancer[N_BOOK].trotyp = SPE_FORCE_BOLT; break;
+                    case 1: Necromancer[N_BOOK].trotyp = SPE_MAGIC_BOLT; break;
                     case 2: Necromancer[N_BOOK].trotyp = SPE_KNOCK; break;
                     case 3: Necromancer[N_BOOK].trotyp = SPE_MAGIC_MISSILE; break;
                     case 4: Necromancer[N_BOOK].trotyp = SPE_CREATE_MONSTER; break;
@@ -16408,7 +16408,7 @@ u_init()
 
 	case 65:
 		switch (rnd(9)) {   
-		    case 1: Priest[P_BOOK].trotyp = SPE_FORCE_BOLT; break;
+		    case 1: Priest[P_BOOK].trotyp = SPE_MAGIC_BOLT; break;
 		    case 2: Priest[P_BOOK].trotyp = SPE_SLEEP; break;
 		    case 3: Priest[P_BOOK].trotyp = SPE_RESIST_POISON; break;
 		    case 4: Priest[P_BOOK].trotyp = SPE_RESIST_SLEEP; break;
@@ -16630,7 +16630,7 @@ u_init()
 		break;
 	case 88:
 		switch (rnd(2)) {                
-		    case 1: Wizard[W_BOOK1].trotyp = SPE_FORCE_BOLT; break;
+		    case 1: Wizard[W_BOOK1].trotyp = SPE_MAGIC_BOLT; break;
 		    case 2: Wizard[W_BOOK1].trotyp = SPE_SLEEP; break;
 		    default: break;
 		}
@@ -17129,7 +17129,7 @@ u_init()
 		    case 1: GangScholar[GSC_BOOK].trotyp = SPE_CREATE_MONSTER; break;
 		    case 2: GangScholar[GSC_BOOK].trotyp = SPE_HEALING; break;
 		    case 3: GangScholar[GSC_BOOK].trotyp = SPE_EXTRA_HEALING; break;
-		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT; break;
+		    case 4: GangScholar[GSC_BOOK].trotyp = SPE_LIGHT_AREA; break;
 		    case 5: GangScholar[GSC_BOOK].trotyp = SPE_CLAIRVOYANCE; break;
 		    case 6: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_MONSTERS; break;
 		    case 7: GangScholar[GSC_BOOK].trotyp = SPE_DETECT_TREASURE; break;

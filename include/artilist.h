@@ -29,6 +29,7 @@ static const char *artifact_names[] = {
 #define     STUN(a,b)	{0,AD_STUN,a,b}		/* magical attack */
 #define     ACID(a,b)	{0,AD_ACID,a,b}
 #define	MAGM(a,b)	{0,AD_MAGM,a,b}
+/* if new types are added, keep randartiattacktype() in rnd.c synced --Amy */
 
 STATIC_OVL NEARDATA struct artifact artilist_pre[] = {
 #endif	/* MAKEDEFS_C */
@@ -17294,6 +17295,26 @@ A("Senator's Speed",				BARDING, /* you and the steed are immune to slowing effe
 A("GLAE",				LONG_SWORD, /* randart melee weapon, invoke rerolls base item */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("IGTOS Corp, Inc.",				LONG_SWORD, /* randart2 melee weapon, initialized d8 to-hit, d8 damage, random elemental attack */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Postscheme M",				LONG_SWORD, /* randart melee weapon, initialized d11 to-hit, d15 damage, random elemental attack */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	PHYS(11, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Angular Sign",				KITE_SHIELD, /* resist fire, cold, shock and poison */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Angular Angularity",				KITE_SHIELD, /* 5 extra AC and +1 MC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Shield of the Chevalier, who is not called Paladin regardless of what the type of ice block thinks",	KITE_SHIELD, /* warns of undead and demons */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

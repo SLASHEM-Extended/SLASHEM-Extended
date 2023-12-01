@@ -16984,6 +16984,8 @@ boolean new_game;	/* false => restoring an old game */
 
 	obj_descr[SPE_LOOT_IMPROVEMENT].oc_name = "todo";
 	obj_descr[SPE_MYSTERY_PROTECTION].oc_name = "todo";
+	obj_descr[SPE_MAGIC_BOLT].oc_name = "todo";
+	obj_descr[SPE_LIGHT_AREA].oc_name = "todo";
 
 	{
 
@@ -18009,6 +18011,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "summit helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "not-slowing-down boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dragon-shaped shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -18369,6 +18372,8 @@ boolean new_game;	/* false => restoring an old game */
 
 	obj_descr[SPE_LOOT_IMPROVEMENT].oc_name = "todo";
 	obj_descr[SPE_MYSTERY_PROTECTION].oc_name = "todo";
+	obj_descr[SPE_MAGIC_BOLT].oc_name = "todo";
+	obj_descr[SPE_LIGHT_AREA].oc_name = "todo";
 
 	{
 
@@ -19395,6 +19400,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "summit helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "not-slowing-down boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dragon-shaped shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

@@ -2800,6 +2800,15 @@ age_spells()
 
 		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !tech_inuse(T_SPELL_SPAM) ) {
 
+			/* 10000 turns is nothing compared to the length of the game; have it last longer, please! --Amy */
+			if (spellmemorize(i) && !rn2(2)) continue;
+
+			/* higher intelligence was doing nothing??? come on! --Amy */
+			if (spellmemorize(i) && ACURR(A_INT) > 14) {
+				int intelsave = ACURR(A_INT) - 14;
+				if (intelsave > rn2(66)) continue;
+			}
+
 			/* Memorization skill by Amy: if the spell is set to memorization mode, have a skill-based chance here
 			 * that on any given turn the spell memory will not decrease.
 			 * cyan spells uses the same calculation below, any changes need to go into that function as well */
@@ -3427,7 +3436,6 @@ boolean atme;
 	if (spellid(spell) == SPE_FIXING) energy *= 3;
 	if (spellid(spell) == SPE_CONVERGE_BREATH) energy *= 4;
 	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
-	if (spellid(spell) == SPE_FORCE_BOLT) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_WATER_FLAME) { energy *= 3; energy /= 2;}
 	if (spellid(spell) == SPE_FIREBALL) energy *= 2;
@@ -4109,7 +4117,7 @@ castanyway:
 	case SPE_CANCELLATION:
 	case SPE_VANISHING:
 	case SPE_FINGER_OF_DEATH:
-	case SPE_LIGHT:
+	case SPE_LIGHT_AREA:
 	case SPE_DARKNESS:
 	case SPE_DETECT_UNSEEN:
 	case SPE_HEALING:
@@ -4620,6 +4628,13 @@ bucchoice:
 			}
 		}
 
+		break;
+
+	case SPE_LIGHT:
+		if (isok(u.ux, u.uy)) {
+			levl[u.ux][u.uy].lit = TRUE;
+			pline("A light shines on your location.");
+		}
 		break;
 
 	case SPE_TECH_BOOST:
@@ -10406,7 +10421,7 @@ controlagain:
 		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
 			mtmp = make_helper((pseudo->otyp == SPE_FLAME_SPHERE) ?
-					PM_FLAMING_SPHERE : PM_FREEZING_SPHERE, u.ux, u.uy);
+					PM_SUMMONED_FLAMING_SPHERE : PM_SUMMONED_FREEZING_SPHERE, u.ux, u.uy);
 			if (!mtmp) continue;
 			mtmp->mtame = 10;
 			mtmp->mhpmax = mtmp->mhp = 1;
@@ -10426,7 +10441,7 @@ controlagain:
 
 		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
-			mtmp = make_helper(PM_SHOCKING_SPHERE, u.ux, u.uy);
+			mtmp = make_helper(PM_SUMMONED_SHOCKING_SPHERE, u.ux, u.uy);
 			if (!mtmp) continue;
 			mtmp->mtame = 10;
 			mtmp->mhpmax = mtmp->mhp = 1;
@@ -10446,7 +10461,7 @@ controlagain:
 
 		if (rn2(3) && role_skill >= P_SKILLED) cnt += rnd(role_skill - P_BASIC);
 		while(cnt--) {
-			mtmp = make_helper(PM_ACID_SPHERE, u.ux, u.uy);
+			mtmp = make_helper(PM_SUMMONED_ACID_SPHERE, u.ux, u.uy);
 			if (!mtmp) continue;
 			mtmp->mtame = 10;
 			mtmp->mhpmax = mtmp->mhp = 1;
@@ -10740,6 +10755,29 @@ rerollX:
 				castboost /= 100;
 			}
 
+		/* if a spell is down to low memory, then casting it successfully saves it from being immediately forgotten */
+			if (spellknow(spell) < 5000) {
+				if (spellknow(spell) < 100) {
+					castboost *= 7;
+					castboost /= 4;
+				} else if (spellknow(spell) < 1000) {
+					castboost *= 3;
+					castboost /= 2;
+				} else if (spellknow(spell) < 2000) {
+					castboost *= 7;
+					castboost /= 5;
+				} else if (spellknow(spell) < 3000) {
+					castboost *= 13;
+					castboost /= 10;
+				} else if (spellknow(spell) < 4000) {
+					castboost *= 6;
+					castboost /= 5;
+				} else if (spellknow(spell) < 5000) {
+					castboost *= 11;
+					castboost /= 10;
+				}
+			}
+
 			if (!PlayerCannotUseSkills) {
 
 				switch (P_SKILL(P_MEMORIZATION)) {
@@ -10811,6 +10849,13 @@ rerollX:
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
 		if (tech_inuse(T_SPELL_SPAM)) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
+
+		if (!rn2(2) && spellmemorize(spell)) cyanwillgodown = FALSE;
+
+		if (spellmemorize(spell) && ACURR(A_INT) > 14) {
+			int intelsave = ACURR(A_INT) - 14;
+			if (intelsave > rn2(66)) cyanwillgodown = FALSE;
+		}
 
 		if (!PlayerCannotUseSkills && spellmemorize(spell) && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 

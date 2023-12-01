@@ -3446,6 +3446,7 @@ Shield_on()
 	case BULL_SHIELD:
 	case ONE_EATING_SIGN:
 	case ORGANOSHIELD:
+	case KITE_SHIELD:
 	case ELVEN_SHIELD:
 	case URUK_HAI_SHIELD:
 	case ORCISH_SHIELD:
@@ -3697,6 +3698,7 @@ Shield_off()
 	case BULL_SHIELD:
 	case ONE_EATING_SIGN:
 	case ORGANOSHIELD:
+	case KITE_SHIELD:
 	case ELVEN_SHIELD:
 	case URUK_HAI_SHIELD:
 	case ORCISH_SHIELD:
@@ -6709,6 +6711,7 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_I_M_A_BITCH__DEAL_WITH_IT) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) uac -= 5;
 	if (uleft && uleft->oartifact == ART_CRYLOCK) uac -= 10;
+	if (uarms && uarms->oartifact == ART_ANGULAR_ANGULARITY) uac -= 5;
 	if (uright && uright->oartifact == ART_CRYLOCK) uac -= 10;
 	if (uleft && uleft->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;
 	if (uright && uright->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;

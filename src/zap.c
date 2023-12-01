@@ -624,6 +624,7 @@ armorsmashdone:
 
 		dmg = 2;
 		dmg += skilldmg;
+		if (canseemon(mtmp)) pline("%s is doused.", Monnam(mtmp));
 		if (resists_cold(mtmp)) {
 			pline("%s is burned by the watery flame!", Monnam(mtmp));
 			dmg += (rnd(u.ulevel) + skilldmg);
@@ -911,7 +912,8 @@ armorsmashdone:
 		reveal_invis = TRUE;
 		if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(u.ulevel))) ) {
 			dmg = d(4,12) + rnz(u.ulevel);
-			if (otyp == SPE_GRAVITY_BEAM && !rn2(3)) dmg = d(4,12) + rnd(u.ulevel);
+			if (otyp == SPE_GRAVITY_BEAM) dmg = d(4,12) + rnd(u.ulevel);
+			if (otyp == SPE_GRAVITY_BEAM && !rn2(3)) dmg = d(2,12) + rnd(u.ulevel);
 			if (otyp == SPE_GRAVITY_BEAM && !rn2(3) && dmg > 1) dmg = rnd(dmg);
 			if (bigmonst(mtmp->data)) dmg += rnd(6);
 			if (mtmp->data->msize >= MZ_HUGE) dmg += rnd(12);
@@ -936,15 +938,29 @@ armorsmashdone:
 		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(u.ulevel))) ) {
 			dmg = d(2,12) + rnd(u.ulevel);
 			if (otyp == WAN_STRIKING) dmg += rnz(u.ulevel);
-			/* teh hardcore nerf by Amy - force bolt is just plain too strong */
-			if (otyp == SPE_FORCE_BOLT && rn2(3)) dmg = rnd(12) + rnd(u.ulevel);
-			if (otyp == SPE_FORCE_BOLT && rn2(2) && dmg > 1) dmg = rnd(dmg);
+			if (otyp == SPE_FORCE_BOLT && !rn2(3)) dmg = d(2,8) + rnd(u.ulevel);
+			if (otyp == SPE_FORCE_BOLT && !rn2(3) && dmg > 1) dmg = rnd(dmg);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			hit(zap_type_text, mtmp, exclam(dmg));
 			(void) resist(mtmp, otmp->oclass, dmg, TELL);
 		} else miss(zap_type_text, mtmp);
 		makeknown(otyp);
+		break;
+	case SPE_MAGIC_BOLT:
+		reveal_invis = TRUE;
+		if (resists_magm(mtmp)) {	/* match effect on player */
+			shieldeff(mtmp->mx, mtmp->my);
+			break;	/* skip makeknown */
+		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(u.ulevel))) ) {
+			dmg = rnd(18) + rnd(u.ulevel);
+			if (rn2(3)) dmg = rnd(12) + rnd(u.ulevel);
+			if (rn2(2) && dmg > 1) dmg = rnd(dmg);
+			if(dbldam) dmg *= 2;
+			dmg += skilldmg;
+			hit(zap_type_text, mtmp, exclam(dmg));
+			(void) resist(mtmp, otmp->oclass, dmg, TELL);
+		} else miss(zap_type_text, mtmp);
 		break;
 	case WAN_CLONE_MONSTER:
 		clone_mon(mtmp, 0, 0);
@@ -3822,6 +3838,7 @@ struct obj *obj, *otmp;
 	case SPE_AURORA_BEAM:
 	case SPE_CHAOS_BOLT:
 	case SPE_HELLISH_BOLT:
+	case SPE_MAGIC_BOLT:
 		res = 0;
 		break;
 	case SPE_DISINTEGRATION:
@@ -4894,7 +4911,7 @@ secureidchoice:
 		break;
 
 		case WAN_LIGHT:
-		case SPE_LIGHT:
+		case SPE_LIGHT_AREA:
 			litroom(TRUE,obj);
 			if (!Blind) known = TRUE;
 			break;
@@ -5796,6 +5813,7 @@ boolean ordinary;
 		case WAN_STRIKING:
 		    makeknown(WAN_STRIKING);
 		case SPE_FORCE_BOLT:
+		case SPE_MAGIC_BOLT:
 		    if(Antimagic && !Race_if(PM_KUTAR) && rn2(StrongAntimagic ? 20 : 5)) {
 			shieldeff(u.ux, u.uy);
 			pline("Boing!");
@@ -7554,6 +7572,7 @@ struct obj *obj;	/* wand or spell */
 		case SPE_MUTATION:
 		case WAN_STRIKING:
 		case SPE_FORCE_BOLT:
+		case SPE_MAGIC_BOLT:
 		case SPE_CHAOS_BOLT:
 		case SPE_HELLISH_BOLT:
 		case WAN_SLOW_MONSTER:
@@ -7821,6 +7840,7 @@ struct obj *obj;	/* wand or spell */
 	    }
 	    break;
 	case SPE_WATER_BOLT:
+	case SPE_MAGIC_BOLT:
 		break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:

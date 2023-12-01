@@ -3800,6 +3800,33 @@ randartvenomX()
 	return result;
 }
 
+int
+randartiattacktype()
+{
+	int result;
+	switch (rnd(8)) {
+		default:
+		case 1:
+			result = AD_PHYS; break;
+		case 2:
+			result = AD_DRLI; break;
+		case 3:
+			result = AD_COLD; break;
+		case 4:
+			result = AD_FIRE; break;
+		case 5:
+			result = AD_ELEC; break;
+		case 6:
+			result = AD_STUN; break;
+		case 7:
+			result = AD_ACID; break;
+		case 8:
+			result = AD_MAGM; break;
+	}
+
+	return result;
+}
+
 void
 deacrandomintrinsic(amount)
 register int amount;

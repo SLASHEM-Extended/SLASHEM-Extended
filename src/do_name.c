@@ -1309,6 +1309,38 @@ playerweaponname()
 }
 
 char *
+elementdamagedesc(artinum)
+int artinum;
+{
+	static char elemtypedesc[BUFSZ];
+
+	sprintf(elemtypedesc, "physical");
+
+	switch (artilist[artinum].attk.adtyp) {
+		default:
+		case AD_PHYS:
+			sprintf(elemtypedesc, "physical"); break;
+		case AD_DRLI:
+			sprintf(elemtypedesc, "drain life"); break;
+		case AD_FIRE:
+			sprintf(elemtypedesc, "fire"); break;
+		case AD_COLD:
+			sprintf(elemtypedesc, "cold"); break;
+		case AD_ELEC:
+			sprintf(elemtypedesc, "shock"); break;
+		case AD_ACID:
+			sprintf(elemtypedesc, "acid"); break;
+		case AD_MAGM:
+			sprintf(elemtypedesc, "magic"); break;
+		case AD_STUN:
+			sprintf(elemtypedesc, "stun"); break;
+	}
+
+	return elemtypedesc;
+
+}
+
+char *
 bundledescription()
 {
 	static char pantsbuf[BUFSZ]; 

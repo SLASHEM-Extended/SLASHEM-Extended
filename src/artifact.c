@@ -234,6 +234,7 @@ init_randarts()
 
 	artilist[ART_SOULCALIBUR].otyp = randartmeleeweapon();
 	artilist[ART_GRISGREN].otyp = randartmeleeweapon();
+	artilist[ART_POSTSCHEME_M].otyp = randartmeleeweapon();
 	artilist[ART_WINTERHOLD_S_KEEP].otyp = randartmeleeweapon();
 	artilist[ART_DAT_S_GOD].otyp = randartmeleeweapon();
 	artilist[ART_HER_UNREACHABLE_BROOK].otyp = randartmeleeweapon();
@@ -556,6 +557,7 @@ init_randarts()
 	artilist[ART_HOHO_DINGO].otyp = randartbootsX();
 	artilist[ART_HIGHWAY_FIGHTER].otyp = randartbootsX();
 	artilist[ART_SESDERIRO].otyp = randartmeleeweaponX();
+	artilist[ART_IGTOS_CORP__INC_].otyp = randartmeleeweaponX();
 	artilist[ART_FOOTPRINTS_IN_THE_LABYRINT].otyp = randartmeleeweaponX();
 	artilist[ART_GLELDRERAL].otyp = randartmeleeweaponX();
 	artilist[ART_FIREPROOF_WALL].otyp = randartmeleeweaponX();
@@ -862,6 +864,14 @@ init_randarts()
 	artilist[ART_ANNOYING_PET_MONITOR].otyp = randartleashX();
 
 	artilist[ART_ELLI_S_PSEUDOBAND_OF_POS].otyp = randartmeleeweaponX();
+
+	artilist[ART_IGTOS_CORP__INC_].attk.adtyp = randartiattacktype();
+	artilist[ART_IGTOS_CORP__INC_].attk.damn = rnd(8);
+	artilist[ART_IGTOS_CORP__INC_].attk.damd = rnd(8);
+
+	artilist[ART_POSTSCHEME_M].attk.adtyp = randartiattacktype();
+	artilist[ART_POSTSCHEME_M].attk.damn = rnd(11);
+	artilist[ART_POSTSCHEME_M].attk.damd = rnd(15);
 
 	init_appearance_randarts();
 

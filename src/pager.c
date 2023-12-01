@@ -484,6 +484,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mtmp->data))
 		    ways_seen++;
+		if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mtmp->data))
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mtmp->data->mlet == S_DEMON)
 		    ways_seen++;
 		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
@@ -677,6 +679,10 @@ lookat(x, y, buf, monbuf)
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mtmp->data)) {
+			strcat(monbuf, "warned of demons");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mtmp->data)) {
 			strcat(monbuf, "warned of demons");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -29163,6 +29169,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Careful, the lord has noticed your deed. This means that your divine anger has increased by one.",
 	"Great! Now you can see everything from a totally different perspective.",
 	"Great! Now you can see everything from a totally different perspective. Unfortunately for you though, SLEX still wants you dead.",
+	"A light shines on your location.",
+	"A light shines on your location. This means that you cast the light spell, which used to light up an entire area but now only lights up the square you're on, which is very useless.",
 
 };
 

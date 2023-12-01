@@ -4290,6 +4290,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RIN_UPPER_ADORNMENT, "todo" },
 	{ AMULET_OF_CLEAR_MIND, "todo" },
 	{ POT_REFLECTION, "todo" },
+	{ SPE_MAGIC_BOLT, "todo" },
+	{ SPE_LIGHT_AREA, "todo" },
+	{ KITE_SHIELD, "todo" },
 
 	{0, "" }
 };
@@ -7734,6 +7737,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ RIN_UPPER_ADORNMENT, "todo" },
 	{ AMULET_OF_CLEAR_MIND, "todo" },
 	{ POT_REFLECTION, "todo" },
+	{ SPE_MAGIC_BOLT, "todo" },
+	{ SPE_LIGHT_AREA, "todo" },
+	{ KITE_SHIELD, "todo" },
 
 	{0, "" }
 };

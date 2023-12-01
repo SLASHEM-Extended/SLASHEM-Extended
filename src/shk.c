@@ -3693,6 +3693,7 @@ boolean catchup;	/* restoring a level */
 
 	    if ((ttmp->ttyp != RUST_TRAP
 					|| shkp->data == &mons[PM_FLAMING_SPHERE]
+					|| shkp->data == &mons[PM_SUMMONED_FLAMING_SPHERE]
 					|| shkp->data == &mons[PM_IRON_GOLEM])
 				&& ttmp->ttyp != STATUE_TRAP
 				&& ttmp->ttyp != SHIT_TRAP

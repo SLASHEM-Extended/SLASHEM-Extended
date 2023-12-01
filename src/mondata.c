@@ -2140,6 +2140,7 @@ struct attack *mattk;
 
     switch (monsndx(mptr)) {
     case PM_FLAMING_SPHERE:
+    case PM_SUMMONED_FLAMING_SPHERE:
     case PM_FIRE_VORTEX:
     case PM_FIRE_ELEMENTAL:
     case PM_SALAMANDER:

@@ -482,6 +482,7 @@ E struct obj *realloc_obj(struct obj *, int, void *, int, const char *);
 E char *coyotename(struct monst *,char *);
 E char *pantsdescription(struct monst *);
 E char *bundledescription(void);
+E char *elementdamagedesc(int);
 
 E char *playerweaponname(void);
 
@@ -3087,6 +3088,8 @@ E int randomfeminismtraptype(void);
 
 E int randartbadgraystone(void);
 E int randartfeminismjewel(void);
+
+E int randartiattacktype(void);
 
 E void deacrandomintrinsic(int);
 E int goodimplanteffect(struct obj *);

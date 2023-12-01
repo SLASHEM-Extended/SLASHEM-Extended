@@ -14577,6 +14577,8 @@ boolean knoweverything;
 				pline("A good shield that offers solid armor class."); break;
 			case ORGANOSHIELD:
 				pline("It's similar to the small shield, but with slightly better chance to block."); break;
+			case KITE_SHIELD:
+				pline("Pretty good shield all around."); break;
 			case BULL_SHIELD:
 				pline("If you can handle the extreme weight, this shield offers ultra-high armor class, 2 points of magic cancellation, and awesome chance to block."); break;
 			case ONE_EATING_SIGN:
@@ -17909,7 +17911,9 @@ boolean knoweverything;
 		else { switch (obj->otyp) {
 
 			case SPE_FORCE_BOLT:
-				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features."); break;
+				pline("A spell that fires an invisible beam. It can damage monsters, items and certain dungeon features. This spell used to be a basic level 1 spell that was rather common, but that has been adjusted for balance reasons."); break;
+			case SPE_MAGIC_BOLT:
+				pline("A spell that fires an invisible beam. It used to be the force bolt spell, but was weakened and now only hits monsters; the old force bolt spell still exists too, but has been adjusted for balance reasons."); break;
 			case SPE_CREATE_MONSTER:
 				pline("Casting this spell summons random monsters. Beware, it also backfires sometimes. The summoned monster has a chance of being frenzied too, and in order to prevent the inevitable abuse, it increases your prayer timeout and reduces your alignment record so you can't simply create endless sacrifice fodder. Any monster summoned by this spell will not drop its items upon death."); break;
 			case SPE_DRAIN_LIFE:
@@ -17949,6 +17953,8 @@ boolean knoweverything;
 			case SPE_CREATE_FAMILIAR:
 				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware... and it also increases your prayer timeout and reduces alignment record, for good measure. Any monster summoned by this spell will not drop its items upon death."); break;
 			case SPE_LIGHT:
+				pline("A spell that lights up your current location. Annoyed that it no longer lights up areas around you? You need the 'light area' spell for that."); break;
+			case SPE_LIGHT_AREA:
 				pline("A spell that lights up dark areas."); break;
 			case SPE_DETECT_MONSTERS:
 				pline("Allows you to see some of the monsters on the current dungeon level, but only those who aren't more than 10 squares away."); break;
@@ -29255,6 +29261,16 @@ boolean knoweverything;
 					pline("Artifact specs: protects both you and the steed from slowness effects."); break;
 				case ART_GLAE:
 					pline("Artifact specs: +5 to-hit and +10 damage, can be invoked to change its base type to a random melee weapon type."); break;
+				case ART_IGTOS_CORP__INC_:
+					pline("Artifact specs: +%d to-hit and +%d %s damage.", artilist[obj->oartifact].attk.damn, artilist[obj->oartifact].attk.damd, elementdamagedesc(obj->oartifact) ); break;
+				case ART_POSTSCHEME_M:
+					pline("Artifact specs: +%d to-hit and +%d %s damage.", artilist[obj->oartifact].attk.damn, artilist[obj->oartifact].attk.damd, elementdamagedesc(obj->oartifact) ); break;
+				case ART_ANGULAR_SIGN:
+					pline("Artifact specs: resist fire, cold, shock and poison when worn."); break;
+				case ART_ANGULAR_ANGULARITY:
+					pline("Artifact specs: improves AC by 5 points and MC by one point when worn."); break;
+				case ART_SHIELD_OF_THE_CHEVALIER__W:
+					pline("Artifact specs: magic resistance, warns of undead and demons when worn. The type of ice block renamed the SLEX original 'chevalier' role to paladin, which is really nonsensical because there's also an actual paladin role. Here in the land of SLEX, the names stay the way they were intended."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

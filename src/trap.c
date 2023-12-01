@@ -4962,7 +4962,7 @@ dothetrap:
 		    if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
 		    losehp(dam, "rusting away", KILLED_BY);
 		    break;
-		} else if (u.umonnum == PM_FLAMING_SPHERE) {
+		} else if (u.umonnum == PM_FLAMING_SPHERE || u.umonnum == PM_SUMMONED_FLAMING_SPHERE) {
 		    int dam = u.mhmax;
 
 		    pline("%s you!", A_gush_of_water_hits);
@@ -21242,7 +21242,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				mondied(mtmp);
 				if (mtmp->mhp <= 0)
 					trapkilled = TRUE;
-			} else if (mptr == &mons[PM_FLAMING_SPHERE]) {
+			} else if (mptr == &mons[PM_FLAMING_SPHERE] || mptr == &mons[PM_SUMMONED_FLAMING_SPHERE]) {
 				if (in_sight)
 				    pline("%s is extinguished!", Monnam(mtmp));
 				mondied(mtmp);

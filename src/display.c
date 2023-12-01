@@ -1213,6 +1213,7 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
+		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
@@ -1347,6 +1348,7 @@ newsym(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
+		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
@@ -1646,6 +1648,7 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
+		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
@@ -1780,6 +1783,7 @@ newsymX(x,y)
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
+		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
@@ -3764,6 +3768,7 @@ struct monst *mon;
 	if (uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) return TRUE;
 	if (Role_if(PM_PALADIN) && is_demon(mon->data) ) return TRUE;
 	if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) return TRUE;
+	if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) return TRUE;
 	if (Race_if(PM_VORTEX) && unsolid(mon->data) ) return TRUE;

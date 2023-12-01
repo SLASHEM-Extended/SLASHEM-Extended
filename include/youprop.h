@@ -1250,7 +1250,7 @@
 
 #define HUndead_warning		u.uprops[WARN_UNDEAD].intrinsic
 #define EUndead_warning		u.uprops[WARN_UNDEAD].extrinsic
-#define Undead_warning		(HUndead_warning || EUndead_warning || (uarmh && uarmh->oartifact == ART_ALL_SEEING_EYE_OF_THE_FLY) || (uarm && uarm->oartifact == ART_CRYPT_SMELL) || (uarmf && uarmf->oartifact == ART_UNDEAD_STINK) || (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN) || (uwep && uwep->oartifact == ART_SEARSHARP) || (uwep && uwep->oartifact == ART_LOVEMECHAIN) || (uwep && uwep->oartifact == ART_VLADSBANE) || (uarmh && uarmh->oartifact == ART_FLUE_FLUE_FLUEFLUE_FLUE) || (uarmh && uarmh->oartifact == ART_CONTROLLER_HAT))
+#define Undead_warning		(HUndead_warning || EUndead_warning || (uarmh && uarmh->oartifact == ART_ALL_SEEING_EYE_OF_THE_FLY) || (uarm && uarm->oartifact == ART_CRYPT_SMELL) || (uarmf && uarmf->oartifact == ART_UNDEAD_STINK) || (uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN) || (uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W) || (uwep && uwep->oartifact == ART_SEARSHARP) || (uwep && uwep->oartifact == ART_LOVEMECHAIN) || (uwep && uwep->oartifact == ART_VLADSBANE) || (uarmh && uarmh->oartifact == ART_FLUE_FLUE_FLUEFLUE_FLUE) || (uarmh && uarmh->oartifact == ART_CONTROLLER_HAT))
 
 #define HSearching		u.uprops[SEARCHING].intrinsic
 #define ESearching		u.uprops[SEARCHING].extrinsic

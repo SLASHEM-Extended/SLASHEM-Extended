@@ -86,6 +86,7 @@
 				 (ptr) == &mons[PM_FIRE_ELEMENTAL] || (ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
 #define flaming(ptr)		((ptr) == &mons[PM_FIRE_VORTEX] || \
 				 (ptr) == &mons[PM_FLAMING_SPHERE] || \
+				 (ptr) == &mons[PM_SUMMONED_FLAMING_SPHERE] || \
 				 (ptr) == &mons[PM_FIRE_ELEMENTAL] || \
 				 (ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL] || \
 				 (ptr) == &mons[PM_CHARMANDER] || (ptr) == &mons[PM_CHARMELEON] || (ptr) == &mons[PM_FIRE_GOLEM] || (ptr) == &mons[PM_CHARIZARD] || (ptr) == &mons[PM_SALAMANDER] || (ptr) == &mons[PM_PORTER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_HEAVY_GIRL] || (ptr) == &mons[PM_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_BURNER] || (ptr) == &mons[PM_ROCK_EATER] || (ptr) == &mons[PM_STONE_ELEMENTAL] || (ptr) == &mons[PM_MAGMA_ELEMENTAL] || (ptr) == &mons[PM_FLYING_ASSHOLE] || (ptr) == &mons[PM_MAGNO_FLIER] || (ptr) == &mons[PM_ELDER_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FISSURE_FISHER] || (ptr) == &mons[PM_SPEED_PHOTON] || (ptr) == &mons[PM_AIRCRAFT_CARRIER] || (ptr) == &mons[PM_FIRE_SPIRIT] || (ptr) == &mons[PM_HEIKE] || (ptr) == &mons[PM_GREATER_PLASMA_ELEMENTAL] || (ptr) == &mons[PM_VOLCANIC_ELEMENTAL] || (ptr) == &mons[PM_THEMATIC_FIRE_ELEMENTAL] || (ptr) == &mons[PM_FLAME_ATRONACH] || (ptr) == &mons[PM_LAVA_GOLEM] || (ptr) == &mons[PM_BURNING_MONSTER] || (ptr) == &mons[PM_BURNING_BRUTE] || (ptr) == &mons[PM_SWEEPING_FIRE_VORTEX] || (ptr) == &mons[PM_HEAT_VORTEX] || (ptr) == &mons[PM_DANCING_FLAME] || (ptr) == &mons[PM_MAGMA_VORTEX] || (ptr) == &mons[PM_PLASMA_VORTEX] || (ptr) == &mons[PM_HOT_LAVA_BLOB] || (ptr) == &mons[PM_LAVA_MONSTER] || (ptr) == &mons[PM_VOLCANIC_GRUE] || (ptr) == &mons[PM_LAVA_WALL] || (ptr) == &mons[PM_LAVA_TURRET])
@@ -338,6 +339,7 @@
 				 ((ptr) == &mons[PM_GLOSSO_GOBY]) ? 2 : \
 				 ((ptr) == &mons[PM_GLAMOROUS_GOBY]) ? 2 : \
 				 ((ptr) == &mons[PM_FLAMING_SPHERE]) ? 1 : \
+				 ((ptr) == &mons[PM_SUMMONED_FLAMING_SPHERE]) ? 1 : \
 				 ((ptr) == &mons[PM_CAVE_EXPLORER]) ? 1 : \
 				 ((ptr) == &mons[PM_TORCH_CONVERTER]) ? 1 : \
 				 ((ptr) == &mons[PM_BLORCHING_DARKBREAD_ZURTY]) ? 1 : \
@@ -400,6 +402,7 @@
 /* could probably add more */
 #define likes_fire(ptr)		((ptr) == &mons[PM_FIRE_VORTEX] || \
 				  (ptr) == &mons[PM_FLAMING_SPHERE] || \
+				  (ptr) == &mons[PM_SUMMONED_FLAMING_SPHERE] || \
 				  (ptr) == &mons[PM_FIRE_VAMPIRE] || \
 				 likes_lava(ptr))
 
