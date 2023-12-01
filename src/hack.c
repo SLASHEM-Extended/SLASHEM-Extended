@@ -5137,6 +5137,8 @@ int k_format; /* WAC k_format is an int */
 
 	if (Race_if(PM_SHELL) && !Upolyd && n > 1) n /= 2;
 
+	if (u.martialstyle == MARTIALSTYLE_SILAT && !rn2(5) && !uwep && (!u.twoweap || !uswapwep) && n > 1) n /= 2;
+
 	if (isfriday && !rn2(50)) n += rnd(n);
 
 	/* [max] Invulnerable no dmg */

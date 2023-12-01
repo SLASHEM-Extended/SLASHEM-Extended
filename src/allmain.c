@@ -2634,7 +2634,7 @@ moveloop()
 			stop_occupation();
 		}
 
-		if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
+		if (u.martialstyle == MARTIALSTYLE_JUDO && (multi >= 0) && !uwep && (!u.twoweap || !uswapwep)) {
 			if (u.ustuck && !u.uswallow && !sticks(youmonst.data)) {
 				You("break the hold!");
 				setustuck(0);
@@ -15157,7 +15157,7 @@ past4:
 		pline("Oh no, the gods are angry at you for no real reason!");
 	}
 
-	if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
+	if (u.martialstyle == MARTIALSTYLE_JUDO && (multi >= 0) && !uwep && (!u.twoweap || !uswapwep)) {
 		if (u.ustuck && !u.uswallow && !sticks(youmonst.data)) {
 			You("break the hold!");
 			setustuck(0);

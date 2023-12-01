@@ -19327,6 +19327,8 @@ register int n;
 
 	if (Race_if(PM_SHELL) && !Upolyd && n > 1) n /= 2;
 
+	if (u.martialstyle == MARTIALSTYLE_SILAT && !rn2(5) && !uwep && (!u.twoweap || !uswapwep) && n > 1) n /= 2;
+
 	if (isfriday && !rn2(50)) n += rnd(n);
 
 	if (Invulnerable || (uarmc && uarmc->oartifact == ART_NOTONHEAD && !rn2(10)) || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (uarm && uarm->oartifact == ART_GODLY_PROTECT && !rn2(5)) || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) n=0;

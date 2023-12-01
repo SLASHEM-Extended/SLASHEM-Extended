@@ -7586,10 +7586,15 @@ struct obj *otmp;
 
 }
 
-/* does your equipment made of chitin protect you from mystery? --Amy */
+/* does your equipment made of chitin protect you from mystery? --Amy
+ * for ease of implementation, silat martial arts style's pseudo-mystery resistance is also handled here */
 boolean
 chitinprotection()
 {
+	if (u.martialstyle == MARTIALSTYLE_SILAT && !rn2(20) && !uwep && (!u.twoweap || !uswapwep)) {
+		return TRUE;
+	}
+
 	if (uarm && objects[(uarm)->otyp].oc_material == MT_CHITIN && !rn2(20)) {
 		return TRUE;
 	}

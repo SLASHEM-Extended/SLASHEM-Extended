@@ -707,6 +707,8 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		if (Race_if(PM_SHELL) && !Upolyd && damu > 1) damu /= 2;
 
+		if (u.martialstyle == MARTIALSTYLE_SILAT && !rn2(5) && !uwep && (!u.twoweap || !uswapwep) && damu > 1) damu /= 2;
+
 		if (isfriday && !rn2(50)) damu += rnd(damu);
 
 		if (Invulnerable || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
