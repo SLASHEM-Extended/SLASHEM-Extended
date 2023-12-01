@@ -3725,6 +3725,7 @@ register int pm;
 	    case PM_DARK_HEALER:
 	    case PM_DARAKU_SHITA_KANKOSHI:
 	    case PM_DARK_SISTER:
+	    case PM_BRITTA_S_SEXY_PUMP:
 	    case PM_OTOKO_NO_IMOTO_WA_SO_YOBA_RETE_IMASEN:
 		You_feel("as if you have been corrupted.");
 		litroomlite(TRUE);

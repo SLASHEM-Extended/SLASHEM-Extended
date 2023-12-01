@@ -8074,6 +8074,16 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, BRASS_KNUCKLES);
 			(void) mongets(mtmp, KNIFE);
 		}
+		if (ptr == &mons[PM_ANGULAR_DESCRIBE_GIRL]) {
+			(void) mongets(mtmp, KITE_SHIELD);
+			(void) mongets(mtmp, WEDGED_LITTLE_GIRL_SANDAL); /* M4_HAMMERSANDAL */
+		}
+		if (ptr == &mons[PM_WOMAN_WHO_LIKES_TO_KICK_HER_ENEMY]) {
+			(void) mongets(mtmp, KITE_SHIELD);
+			(void) mongets(mtmp, LEATHER_JACKET);
+			(void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
+			(void) mongets(mtmp, HIGH_HEELED_SANDAL); /* M4_HAMMERSANDAL */
+		}
 		if (ptr == &mons[PM_WARRIOR_APPRENTICE]) {
 			(void) mongets(mtmp, TRASH_SWORD);
 			(void) mongets(mtmp, BUCKLER);
@@ -10412,6 +10422,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BEARD_SHEARER]) (void) mongets(mtmp, SCALPEL);
 		if (mtmp->data == &mons[PM_TALONED_CROW]) (void) mongets(mtmp, SET_OF_CROW_TALONS);
 		if (mtmp->data == &mons[PM_RASANDE_KRIGSHERRE]) (void) mongets(mtmp, SVAERDSTAV);
+		if (mtmp->data == &mons[PM_POKEZUPFI]) (void) mongets(mtmp, DOGSHIT_BOOT);
 
 		if (mtmp->data == &mons[PM_POLE_DUCK]) {
 			(void) mongets(mtmp, RUBBER_HOSE);
@@ -10904,6 +10915,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_MICHELLE]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_EIGHTY_POWER_RUBBER]) (void) mongets(mtmp, UNICORN_HORN);
 
+		if (ptr == &mons[PM_LASER_SHARCHON]) {
+			(void) mongets(mtmp, HAND_BLASTER);
+	  		m_initthrow(mtmp, BLASTER_BOLT, 40);
+		}
 		if (ptr == &mons[PM_KNOLLER]) {
 			(void) mongets(mtmp, SAWED_OFF_SHOTGUN);
 			 m_initthrow(mtmp, LEAD_SHOT, 30);
@@ -12016,6 +12031,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_CYAN_NAGA]) (void) mongets(mtmp, CYAN_DOUBLE_LIGHTSABER);
 		if (mtmp->data == &mons[PM_SERPENT_S_KEEPER]) (void) mongets(mtmp, SCR_LOCKOUT);
 		if (mtmp->data == &mons[PM_SNAKE_INQUISITOR]) (void) mongets(mtmp, TRIDENT);
+		if (mtmp->data == &mons[PM_BRITTA]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (mtmp->data == &mons[PM_NOBLE_CHILD]) {
 			int gemamount = rnd(3);
@@ -18252,6 +18268,10 @@ loveheelover:
 				}
 			}
 		}
+		if (ptr == &mons[PM_HALF_BENTER]) {
+			(void) mongets(mtmp, PAPER_SHIELD);
+			(void) mongets(mtmp, LEATHER_JACKET);
+		}
 		if (ptr == &mons[PM_BONEWHEEL_XORN]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 40);
@@ -19272,6 +19292,8 @@ loveheelover:
 		if (ptr == &mons[PM_EDDOMINA]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
 		if (ptr == &mons[PM_LANE_MUGGER]) (void) mongets(mtmp, KNIFE);
 		if (ptr == &mons[PM_MERCYLADY]) (void) mongets(mtmp, BLADE_OF_MERCY);
+		if (ptr == &mons[PM_SHIELD_KITE]) (void) mongets(mtmp, KITE_SHIELD);
+		if (ptr == &mons[PM_SHIELD_DRAGON]) (void) mongets(mtmp, KITE_SHIELD);
 
 		if (ptr == &mons[PM_BANDANA_ROCKZ]) {
 			  if ((find_strip_bandana()) != -1) (void)mongets(mtmp, find_strip_bandana());
@@ -34230,7 +34252,7 @@ assign_sym:
 		appear = S_hcdoor;
 	}
 
-	if (mtmp->data == &mons[PM_BLACK_SPACE_GHOST]) {
+	if (mtmp->data == &mons[PM_BLACK_SPACE_GHOST] || mtmp->data == &mons[PM_VANILLA_GHOST] || mtmp->data == &mons[PM_VANILLAOID_GHOST]) {
 		s_sym = MAXOCLASSES;
 		ap_type = M_AP_FURNITURE;
 		appear = S_stone;
