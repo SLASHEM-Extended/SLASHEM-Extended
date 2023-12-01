@@ -6055,6 +6055,7 @@ static const char *epitaphs[] = {
 	"Nooooooo! Amy nerfed the light spell and now it only lights up the square you're standing on!!! Like what the hell, why would someone nerf THAT?! I'll never play this game again, Soviet5lo made a much better variant that is lots more fun to play!",
 	"WHAT? Amy you fucked up, surely force bolt isn't supposed to be a motherfucking level FOUR spell??? Lady, it was a level 1 spell for centuries!!!!!!! It sure wasn't overpowered! Now that it's level four, few chars can even cast it and those who can are no longer capable of spamming it because it costs far too much Pw! Revert that nerf or I'll round up a mob of thousands of SLEX players to form a mass protest!",
 	"Amy you are the worst game developer in existence, my gnomish wizards were having difficulty getting started already but now you made it so that I no longer start with force bolt and instead have to struggle through the early game with a uselessly weak magic bolt spell that cannot even break doors or boulders??? #ragequit forever, I shouldn't have come back in the first place but now I'm really gone for good.",
+	"Amy you dick without a brain, how dimwitted do you have to be to increase the mana cost for ctrl-t teleportitis to a HUNDRED??? like, do you even play the game, do you know how that is far too expensive when the spell costs only 30 mana? if you do not revert that change I'll stop playing the game for good and also tell all my friends to avoid it like the biblical plague!",
 
 };
 
