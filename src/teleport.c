@@ -1004,7 +1004,7 @@ boolean costly;
 
 	    if ((!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Race_if(PM_RODNEYAN) ? 1 : Role_if(PM_WIZARD) ? 8 : 12) && !can_teleport(youmonst.data))) && !(uarmf && uarmf->oartifact == ART_HAWAIIAN_KAMEHAMEHA) && !(uarmh && uarmh->oartifact == ART_TRIP_TERRAIN)) {
 		/* Try to use teleport away spell. */
-		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion)
+		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion && !costly)
 		    for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
 			if (spl_book[sp_no].sp_id == SPE_TELEPORT_AWAY) {
 				castit = TRUE;
@@ -1027,7 +1027,7 @@ boolean costly;
 		reallycostly = TRUE; /* no trap, and using teleportitis at will */
 	    }
 
-	    if (u.uhunger <= 10 || ACURR(A_STR) < 6) {
+	    if ( (u.uhunger <= (costly ? 100 : 30)) || ACURR(A_STR) < 6) {
 #ifdef WIZARD
 		if (!wizard) {
 #endif
@@ -1040,8 +1040,9 @@ boolean costly;
 	    }
 
 	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5;
-		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
-		if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
+	    if (costly) energy = 100;
+	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
+	    if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
 	    if (u.uen < energy) {
 #ifdef WIZARD
 		if (wizard)
@@ -1089,7 +1090,7 @@ boolean costly;
 		You("%s", shudder_for_moment);
 		return(0);
 	}
-	if (!trap) morehungry(10);
+	if (!trap) morehungry(costly ? 100 : 30);
 	return(1);
 }
 
