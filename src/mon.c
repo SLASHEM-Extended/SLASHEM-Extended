@@ -241,6 +241,7 @@ int mndx;
 	case PM_CHAMECHAUN:	mcham = CHAM_CHAMECHAUN; break;
 	case PM_METAMORPHOSE:	mcham = CHAM_METAMORPHOSE; break;
 	case PM_GHELEON:	mcham = CHAM_GHELEON; break;
+	case PM_LAMECHAM:	mcham = CHAM_LAMECHAM; break;
 	case PM_SHAPESHIFTING_EXPERTISE:	mcham = CHAM_SHAPESHIFTING_EXPERTISE; break;
 	case PM_RAINBOW_SPHERE:	mcham = CHAM_RAINBOW_SPHERE; break;
 	case PM_ELONA_BADGER:	mcham = CHAM_ELONA_BADGER; break;
@@ -375,6 +376,7 @@ STATIC_VAR int cham_to_pm[] = {
 		PM_RAINBOW_SPHERE,
 		PM_SHAPESHIFTING_EXPERTISE,
 		PM_EACH_UISGE,
+		PM_LAMECHAM,
 		PM_GIANT_CHAMELEON,
 };
 
@@ -622,6 +624,9 @@ register struct monst *mtmp;
 	    case PM_ARCANE_LIGHT_UNICORN:
 	    case PM_ARCANE_MEDIUM_UNICORN:
 	    case PM_ARCANE_EVIL_UNICORN:
+	    case PM_BLACK_MAGICORN:
+	    case PM_GRAY_MAGICORN:
+	    case PM_WHITE_MAGICORN:
 		if (mtmp->mrevived && rn2(20)) {
 			if (canseemon(mtmp))
 			   pline("%s recently regrown horn crumbles to dust.",
@@ -2337,6 +2342,8 @@ mcalcdistress()
 {
     struct monst *mtmp;
 
+    int chameleonchance = 6;
+
     for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	if (DEADMONSTER(mtmp)) continue;
 
@@ -2352,9 +2359,13 @@ mcalcdistress()
 	/* regenerate hit points */
 	mon_regen(mtmp, FALSE);
 
+	chameleonchance = 6;
+	if (mtmp->cham && mtmp->cham == CHAM_ZRUTINATOR) chameleonchance = 100;
+	if (mtmp->cham && mtmp->cham == CHAM_LAMECHAM) chameleonchance = 30;
+
 	/* possibly polymorph shapechangers and lycanthropes
 	 * Amy edit: zrutinator (Rodney's special pet) has a low polymorph chance; he likes to be in his natural form */
-	if (mtmp->cham && !rn2(mtmp->cham == CHAM_ZRUTINATOR ? 100 : 6) && !Protection_from_shape_changers)
+	if (mtmp->cham && !rn2(chameleonchance) && !Protection_from_shape_changers)
 	    (void) mon_spec_poly(mtmp, (struct permonst *)0, 0L, FALSE,
 		    cansee(mtmp->mx,mtmp->my) && flags.verbose, FALSE, FALSE);
 	were_change(mtmp);
@@ -8972,6 +8983,7 @@ struct monst *mon;
 	case CHAM_CHAMECHAUN: chambaselvl = 6; break;
 	case CHAM_METAL_DOPPELGANGER: chambaselvl = 9; break;
 	case CHAM_GHELEON: chambaselvl = 6; break;
+	case CHAM_LAMECHAM: chambaselvl = 6; break;
 	case CHAM_SHAPESHIFTING_EXPERTISE: chambaselvl = 9; break;
 	case CHAM_RAINBOW_SPHERE: chambaselvl = 10; break;
 	case CHAM_ELONA_BADGER: chambaselvl = 23; break;
@@ -9548,6 +9560,7 @@ rainbowchoice:
 	    case CHAM_COMMA_CHAMELEON:
 	    case CHAM_CHAMECHAUN:
 	    case CHAM_GHELEON:
+	    case CHAM_LAMECHAM:
 	    case CHAM_ELONA_BADGER:
 	    case CHAM_COCKAMELEON:
 	    case CHAM_CHANGELING:

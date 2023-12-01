@@ -143,7 +143,8 @@ struct monst {
 #define CHAM_RAINBOW_SPHERE		63	/* exploding */
 #define CHAM_SHAPESHIFTING_EXPERTISE		64	/* random */
 #define CHAM_EACH_UISGE		65	/* animal */
-#define CHAM_GIANT_CHAMELEON		66	/* animal */
+#define CHAM_LAMECHAM		66	/* animal */
+#define CHAM_GIANT_CHAMELEON		67	/* animal */
 #define CHAM_MAX_INDX		CHAM_GIANT_CHAMELEON
 	Bitfield(mundetected,1);	/* not seen in present hiding place */
 				/* implies one of M1_CONCEAL or M1_HIDE,

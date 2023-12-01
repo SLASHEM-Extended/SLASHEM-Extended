@@ -3230,6 +3230,8 @@ register int pm;
 		give_code_number();
 		break;
 	    case PM_STALKER:
+	    case PM_WEAKERER_STALKER:
+	    case PM_ROAMING_STALKER:
 	    case PM_FORCE_STALKER:
 	    case PM_LANTERN_STALKER:
 	    case PM_GREEN_STALKER:
@@ -3465,6 +3467,7 @@ register int pm;
 	    case PM_METAMORPHOSE:
 	    case PM_UNIQUE_SHIFTER:
 	    case PM_GHELEON:
+	    case PM_LAMECHAM:
 	    case PM_SHAPESHIFTING_EXPERTISE:
 	    case PM_RAINBOW_SPHERE:
 	    case PM_ELONA_BADGER:

@@ -14174,6 +14174,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BOXIT_CUBE]) (void) mongets(mtmp, LARGE_BOX);
 		if (mtmp->data == &mons[PM_POTATO_CUBE]) (void) mongets(mtmp, POTATO_BAG);
 		if (mtmp->data == &mons[PM_UPCUTTER]) (void) mongets(mtmp, KNIFE);
+		if (mtmp->data == &mons[PM_HIGH_HEEL_CUBE]) (void)mongets(mtmp, ITALIAN_HEELS); /* M4_SANDALS */
 
 		if (ptr == &mons[PM_DEEPSPAWN]) {
 			(void) mongets(mtmp, WAN_CREATE_MONSTER);
@@ -26427,6 +26428,8 @@ register int	mmflags;
 			if (mtmp->data == &mons[PM_FATA_MORGANA]) set_mimic_sym(mtmp);
 			if (mndx == PM_YERLES_CYBORG_SOLDIER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (mndx == PM_TANJA_CYBORG_SOLDIER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_TRAPCASHER) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
+			if (mndx == PM_NOW_UR_BROKE_LUL) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			break;
 		case S_ZOMBIE:
 			if (mtmp->data == &mons[PM_ALIENATED_UFO_PART]) set_mimic_sym(mtmp);
@@ -27263,7 +27266,7 @@ register int	mmflags;
 
 		case S_LIGHT:
 		case S_ELEMENTAL:
-			if (mndx == PM_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_LANTERN_STALKER || mndx == PM_GREEN_STALKER || mndx == PM_YELLOW_STALKER || mndx == PM_RED_STALKER || mndx == PM_WHITE_STALKER || mndx == PM_CYAN_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_SCHEDAU_STALKER || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_INVIS_SCORER || mndx == PM_INVIS_SAMER || mndx == PM_ILLUSION_WEAVER || mndx == PM_MIRAGE_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_PAIN_MISTER || mndx == PM_BLACK_LIGHT || mndx == PM_WEREBLACKLIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_BLACK_BULB || mndx == PM_BLACK_BOOMER || mndx == PM_BLACK_STAR || mndx == PM_BLACK_BEAM || mndx == PM_BLACK_RAY || mndx == PM_POLTERGEIST || mndx == PM_WERESTALKER || mndx == PM_YLVA_STALKER) {
+			if (mndx == PM_STALKER || mndx == PM_WEAKERER_STALKER || mndx == PM_ROAMING_STALKER || mndx == PM_FORCE_STALKER || mndx == PM_LANTERN_STALKER || mndx == PM_GREEN_STALKER || mndx == PM_YELLOW_STALKER || mndx == PM_RED_STALKER || mndx == PM_WHITE_STALKER || mndx == PM_CYAN_STALKER || mndx == PM_STONE_STALKER || mndx == PM_THE_HIDDEN || mndx == PM_INVISIBLE_BADGUY || mndx == PM_UNSEEN_POTATO || mndx == PM_CAMOUFLAGED_WATCHER || mndx == PM_UNSEEN_SERVANT || mndx == PM_SCHEDAU_STALKER || mndx == PM_HIDDEN_TRACKER || mndx == PM_SILENT_KILLER || mndx == PM_INVIS_SCORER || mndx == PM_INVIS_SAMER || mndx == PM_ILLUSION_WEAVER || mndx == PM_MIRAGE_WEAVER || mndx == PM_PAIN_MASTER || mndx == PM_PAIN_MISTER || mndx == PM_BLACK_LIGHT || mndx == PM_WEREBLACKLIGHT || mndx == PM_CHEATING_BLACK_LIGHT || mndx == PM_INVISIBLE_SPIRIT || mndx == PM_BLACK_LASER || mndx == PM_BLACK_BULB || mndx == PM_BLACK_BOOMER || mndx == PM_BLACK_STAR || mndx == PM_BLACK_BEAM || mndx == PM_BLACK_RAY || mndx == PM_POLTERGEIST || mndx == PM_WERESTALKER || mndx == PM_YLVA_STALKER) {
 			    mtmp->perminvis = TRUE;
 			    mtmp->minvis = TRUE;
 			}
