@@ -24480,8 +24480,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"The performaid crab pulls monsters through a portal.",
 	"The demonic crab fires a massive, dreadful beam from his pincers!",
 	"A primal evil lurks here.",
-	"SCREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!"
-	"The blade twirls her sword"
+	"SCREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE!!!!!!!!!!!!!!!!!!!!!!!!",
+	"The blade twirls her sword",
 	"Your nothing but a joke.",
 	"I shal aid you master!",
 	"You hear the rattling of a massive skeleton...",
@@ -25831,7 +25831,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your body feels like you were having an orgasm.",
 	"Your body feels like you were having an orgasm. This is because there actually is something inside you...",
 	"Your symbiote feels deathly cold!",
-	"You feel like you have a heart attack!"
+	"You feel like you have a heart attack!",
 	"You sap some of your health, and transfer it to your symbiote!",
 	"You sap some of your health, and transfer it to your symbiote! However your symbiote has so little hit points that it'll probably die anyway.",
 	"You sap some of your health, and transfer it to your symbiote! But sadly you didn't watch out, and accidentally transferred more HP than you actually had. Do you want your possessions identified?",
@@ -26661,7 +26661,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"Lydia scratches your butt-ugly business shoes with her high heels. Serves you right for wearing them, you should don some good-looking pair instead.",
 	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse.",
 	"Oh whoops, your footwear welds itself to your feet. This might be the result of a curse. (Thank you, Captain Obvious.)",
-	"Your stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers."
+	"Your stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers.",
 	"You slip with your stiletto heels and crash into the floor. Ouch! Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?",
 	"Incoming message for Player 1. The message is from 'Elena'. It reads: 'I'm a very attractive young woman, and I enjoy acting like one.'",
 	"the orc blockes your skill with its expert!",
@@ -28316,9 +28316,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your inventory is gone.",
 	"Your inventory is gone. This is the effect when someone reads the scroll 'Huro Haehae', which transforms each of your items or item stacks to a randomly generated monster and then teleports said monster to another dungeon level, so you'll never get them back.",
 	"You see a rothe blow by in the wind.",
-	"You have a sinking feeling for a moment, then it passes."
-	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view."
-	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view, which will be the case very rarely. For example, by messing with a fountain in a dark room while there's a pet a couple squares away from you."
+	"You have a sinking feeling for a moment, then it passes.",
+	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view.",
+	"You have a sinking feeling for a moment, then it passes. This message appears if your pet manages to drown while outside your view, which will be the case very rarely. For example, by messing with a fountain in a dark room while there's a pet a couple squares away from you.",
 	"You hear otherworldly noises.",
 	"You hear noises that are obviously not from this world.",
 	"the lightly injured soldier hit's you with a heavily damaged rust monster! your moderately rusted armor is severely more damaged! you are now relatively banged up.",

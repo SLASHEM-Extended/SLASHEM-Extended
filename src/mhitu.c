@@ -12089,6 +12089,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			/* hurt the player's hands --Amy */
 			incr_itimeout(&Glib, tmp);
+			flags.botl = TRUE;
 			break;
 
 	    case AD_DARK:
@@ -16673,10 +16674,11 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(10)) )
  		{
 
-		/* hurt the player's hands --Amy */
-		pline("%s telepathically twists your hands!", Monnam(mtmp));
-		    stop_occupation();
-		incr_itimeout(&Glib, dmgplus );
+			/* hurt the player's hands --Amy */
+			pline("%s telepathically twists your hands!", Monnam(mtmp));
+			stop_occupation();
+			incr_itimeout(&Glib, dmgplus );
+			flags.botl = TRUE;
 
 		}
 		break;

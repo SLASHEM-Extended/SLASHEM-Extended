@@ -3592,7 +3592,6 @@ static const char *epitaphs[] = {
 	"Someone set us up the bomb!",
 	"Take my stuff, I don't need it anymore",
 	"Taking a year dead for tax reasons",
-	"The reports of my demise are completely accurate",
 	"(This space for sale)",
 	"This was actually just a pit, but since there was a corpse, we filled it",
 	"This way to the crypt",
@@ -3889,15 +3888,7 @@ static const char *epitaphs[] = {
 	/* from http://www.alt.org/nethack/addmsgs/viewmsgs.php */
 	"Balin, son of Fundin, Lord of Moria",
 	"Memento mori",
-	"Help! I'm trapped in a gravestone factory!",
-	"This grave is reserved - for you!",
-	"This gravestone does not indicate a bones file.",
-	"This space for rent; go to http://www.alt.org/nethack/addmsgs/"
-	"Here lies Sgeo, killed while reading a gravestone.",
 	"Quidquid Latine dictum sit, altum videtur.",
-	"Death is but a door. Time is but a window. I'll be back!",
-	"The reports of my demise are completely accurate.",
-	"Bulk deals on gravestones - Die today!",
 
 	/* from UnNetHack */
 	"Hack 1984-1985",
@@ -6060,6 +6051,7 @@ static const char *epitaphs[] = {
 	"What? A giant appendage that has 1000 million hit points and fucking kills you in 2-3 hits? What’s the name of the illegal drug that the devs have been using???",
 	"Well, of course I used the arch-vile jump on The Inmost Dens to get into the area that normally requires the blue key, after all the 'wall' is so ridiculously waist-high that it's obvious you're supposed to pass it that way! What's that you say, the devs didn't intend that and now I can't get back? Really???",
 	"Dude, if the devs didn't intend that you can bypass the blue key door with an arch-vile jump and subsequently get stuck behind it then why on earth did they make it so that you can arch-vile jump at all??? Some geniuses they are!",
+	"Yes, of course SLEX is a work in progress and if someone abuses obviously unintended exploits to score an easy ascension, I reserve the right to fix that. Who are you to demand that I leave such loopholes in the game for all eternity???",
 
 };
 
