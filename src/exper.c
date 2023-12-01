@@ -463,6 +463,7 @@ boolean incr;	/* true iff via incremental experience growth */
 		u.xtralevelmult++;
 		u.cnd_overlevelcount++;
 		u.weapon_slots++; /* leveling past 30 can keep giving you skill slots --Amy */
+		techlevelup(); /* and also improve your techniques --Amy */
 	}
 
 	if (u.ulevel < MAXULEV) {
