@@ -13507,6 +13507,7 @@ skillmultiplyagain:
 		{
 			register struct trap *twlk;
 			int wantx, wanty;
+			int oldposx, oldposy;
 			boolean canbeinawall = FALSE;
 			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
@@ -13549,8 +13550,12 @@ skillmultiplyagain:
 				if (!isok(wantx, wanty)) continue;
 				if ((levl[wantx][wanty].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(wantx, wanty)) continue;
+				oldposx = twlk->tx;
+				oldposy = twlk->ty;
 				twlk->tx = wantx;
 				twlk->ty = wanty;
+				if (isok(oldposx, oldposy)) newsym(oldposx,oldposy);
+				if (isok(twlk->tx, twlk->ty)) newsym(twlk->tx,twlk->ty);
 			}
 			You("stepped on a trigger!");
 			pline("There are several grinding and grating sounds.");
@@ -14644,6 +14649,7 @@ callingoutdone:
 
 			register struct trap *twlk;
 			int wantx, wanty;
+			int oldposx, oldposy;
 			boolean canbeinawall = FALSE;
 			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
@@ -14656,8 +14662,12 @@ callingoutdone:
 				if (!isok(wantx, wanty)) continue;
 				if ((levl[wantx][wanty].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(wantx, wanty)) continue;
+				oldposx = twlk->tx;
+				oldposy = twlk->ty;
 				twlk->tx = wantx;
 				twlk->ty = wanty;
+				if (isok(oldposx, oldposy)) newsym(oldposx,oldposy);
+				if (isok(twlk->tx, twlk->ty)) newsym(twlk->tx,twlk->ty);
 			}
 			You("stepped on a trigger!");
 			pline("A morphing sound can be heard.");

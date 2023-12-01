@@ -4064,6 +4064,7 @@ newbossKTA:
 			if (ttmp && (ttmp->ttyp == PERSISTENT_FART_TRAP || ttmp->ttyp == ATTACKING_HEEL_TRAP)) {
 
 				int wantx, wanty;
+				int oldposx, oldposy;
 				boolean canbeinawall = FALSE;
 				if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
@@ -4071,8 +4072,12 @@ newbossKTA:
 				wanty = rn2(ROWNO);
 
 				if (isok(wantx, wanty) && !t_at(wantx, wanty) && !((levl[wantx][wanty].typ <= DBWALL) && !canbeinawall) ) {
+					oldposx = ttmp->tx;
+					oldposy = ttmp->ty;
 					ttmp->tx = wantx;
 					ttmp->ty = wanty;
+					if (isok(oldposx, oldposy)) newsym(oldposx,oldposy);
+					if (isok(ttmp->tx, ttmp->ty)) newsym(ttmp->tx,ttmp->ty);
 				}
 
 				if (ttmp->tx == u.ux && ttmp->ty == u.uy) dotrap(ttmp, 0);
