@@ -551,17 +551,28 @@ boolean forcecontrol;
 	else if ((Polymorph_control || forcecontrol) && !u.wormpolymorph && rn2(StrongPolymorph_control ? 5 : 3)) {
 
 		boolean hasfailed = FALSE;
+		boolean invalidpolymorph = FALSE;
 
 		do {
 			getlin("Become what kind of monster? [type the name]",
 				buf);
 			mntmp = name_to_mon(buf);
+
+			if (mntmp >= LOW_PM && !polyok(&mons[mntmp]) && !your_race(&mons[mntmp])) {
+				invalidpolymorph = TRUE;
+				/* mother fucker, if I'm in wizard mode I damn well can poly into invalid stuff! --Amy */
+				if (wizard && yn("Invalid polymorph form, do you want to force the polymorph to happen anyway?") == 'y') {
+					u.wormpolymorph = mntmp;
+					invalidpolymorph = FALSE;
+				}
+			}
+
 			if (mntmp < LOW_PM)
 				pline("I've never heard of such monsters.");
 			/* Note:  humans are illegal as monsters, but an
 			 * illegal monster forces newman(), which is what we
 			 * want if they specified a human.... */
-			else if (!polyok(&mons[mntmp]) && !your_race(&mons[mntmp]))
+			else if (invalidpolymorph)
 				You("cannot polymorph into that.");
 
 			/* taking on high-level forms sometimes fails, especially if your level is low --Amy */
@@ -809,6 +820,8 @@ int
 polymon(mntmp)	/* returns 1 if polymorph successful */
 int	mntmp;
 {
+	int duratoincrease;
+
 	boolean sticky = sticks(youmonst.data) && u.ustuck && !u.uswallow,
 		was_blind = !!Blind, dochange = FALSE;
 	boolean could_pass_walls = Passes_walls;
@@ -1049,26 +1062,32 @@ int	mntmp;
 
 	}
 
+	if (Race_if(PM_WARPER)) u.mtimedone /= 2;
+
+	/* multiplicative bonuses come here, and shouldn't affect each other exponentially --Amy */
+
+	duratoincrease = u.mtimedone;
+
 	/* Moulds suck way too much. Let's allow them to stay polymorphed for a longer time. --Amy */
 	/* Worms too. Their polymorph time depends on the monster's level though. */
 
 	if ( (u.ulevel * 2) < mlvl && (Race_if(PM_MOULD) || Race_if(PM_DEATHMOLD) || Race_if(PM_MISSINGNO) || Race_if(PM_WORM_THAT_WALKS) ) ) {
+		u.mtimedone += rnz((u.ulevel * 2) + 1);
 
-	u.mtimedone = u.mtimedone + (rnz((u.ulevel * 2) + 1));
-
-	u.mtimedone = u.mtimedone * 2;
+		u.mtimedone += duratoincrease;
 	}
 
-	if (uarmc && uarmc->oartifact == ART_LONG_LASTING_JOY) u.mtimedone *= (2 + rn2(2));
+	if (uarmc && uarmc->oartifact == ART_LONG_LASTING_JOY) u.mtimedone += (duratoincrease * rnd(2));;
 
-	if (ishaxor) u.mtimedone *= 2;
-	if (Race_if(PM_WARPER)) u.mtimedone /= 2;
+	if (ishaxor) u.mtimedone += duratoincrease;
 
 	/* WAC Doppelgangers can stay much longer in a form they know well */
 	if ((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) && mvitals[mntmp].eaten) {
-		u.mtimedone *= 2;
+		u.mtimedone += duratoincrease;
 		u.mtimedone += mvitals[mntmp].eaten;
 	}
+
+	if (wizard && yn("Do you want to increase your polymorph duration by 10000 turns?") == 'y') u.mtimedone += 10000;
 
 	if (uskin && mntmp != armor_to_dragon(uskin->otyp))
 		skinback(FALSE);
