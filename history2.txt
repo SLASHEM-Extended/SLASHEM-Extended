@@ -1,6 +1,94 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.7 - October 2023
+- Added a system where the player may "recall" (or return) to certain specific, previously visited dungeon levels. Like Angband, Elona and similar games, the effect takes a couple of turns until it actually levelports the player to the destination level.
+- Wizard mode now allows the player to polymorph into invalid monster forms and increase the polymorph duration, for testing purposes.
+- Added a potential fix for the problem where pets would sometimes drop their weapon upon saving and loading the game.
+- Fixed a crash if the guardian angel on the Astral Plane failed to get a silver saber.
+- The Ctrl-T command to invoke teleportitis at will is more costly and can no longer try to cast the teleport away spell.
+- Leveling past XL30 now boosts the level of a random technique by one every time.
+- If a trap moves, it now correctly updates vision of the squares affected.
+- The player can now choose between various martial arts styles which affect bare-handed combat or, in some cases, weapon combat (usually with specific weapons).
+- Added a new boulder-throwing skill, which can only be used by giant players.
+- Players who are burdened (but not stressed) no longer fall down the stairs every time, but only sometimes, and being stressed doesn't prevent moving up stairs.
+- Late into the game, good items should now be more common.
+- Fixed a crash bug with the boomerang, which was inadvertently introduced by an earlier change.
+- Fixed certain artifact invocation effects that generated items without initializing the generated items properly.
+- Concealing and hiding monsters now become aggressive when wounded. They used to just sit there and let players pelt them to death.
+- Spell memory is much easier to gain and also lasts a lot longer now.
+- For every trophy the player scores, the carry cap is increased a bit now.
+- Potions of oil can now heal cars.
+- Improved loot in various places, especially full-screen mazes.
+- Chatting to a shiny monster now gives a dialogue that allows the player to turn them into a pet.
+- Fixed a bug where the wounded legs effect could reduce the player character's dexterity permanently, and possibly multiple times with no way to fix it.
+- Shirts are no longer guaranteed to rip to pieces when the player character polymorphs into a dragon due to wearing dragon scales.
+- The monster spawn rate can now occasionally fluctuate between higher and lower values.
+
+2.8.6 - August 2023
+- Racial artifacts that belong to a race that "hates" the current player character are no longer impossible to spawn as sacrifice gifts, just a lot less likely than other artifacts.
+- Fixed a bug where the wand of charging was too strong.
+- The game no longer refuses to load a savegame just because it belonged to a different user.
+- Toned down the effects of the katharina trap.
+- Fixed an oversight where lich race player characters were dealing too much damage in melee.
+- Monsters no longer use amulets of life saving. Instead, there is an amulet of monster saving that specifically saves monsters from death.
+- Monsters who had their levels boosted beyond their base level no longer give excessive amounts of experience when killed.
+- The player will now fail to move through diagonal passages when their carried weight exceeds the current maximum possible carry cap; previously, it happened when having more than 5000 units of weight, even if the limit was higher.
+- Boulders can now break when the player throws them at a monster, and they are no longer weightless for a giant player.
+- Certain playable races with speed boosts no longer boost the character's speed while polymorphed.
+- Added saving throws to item destruction caused by jousting, polymorphing into big monsters, or being disintegrated. Previously, those effects were destroying the affected items unconditionally.
+- Reaching certain in-game milestones now rewards players with additional skill points.
+- Fixed a vanilla oversight that caused non-charged rings to never spawn blessed for some reason.
+- Clairvoyance now reveals a much smaller area of the map, and carrying the Amulet of Yendor no longer gives that property.
+- In evilvariant mode, dungeons that go up (like Sokoban) now increase their level difficulty the lower the displayed depth is (feature from the variant that calls itself Nethack 3.7).
+- Spells no longer act as blessed consumables, and the remove curse spell can no longer uncurse wielded items that aren't weapons.
+- It now takes more item weight to reach stressed, strained etc. levels of encumbrance, meaning the player can generally carry more.
+- Added several new in/extrinsics.
+- Fixed errors with artifact crysknives that caused them to sometimes not have their artifact properties.
+- Tried again to fix the bug where monsters could occasionally be both hostile and tame at the same time, hopefully really fixing it this time.
+- Rebalanced the damage of various types of firearm ammo.
+- Fixed a long-standing bug where the yokuda race's intrinsics and several other effects were improperly changed to the redguard's.
+- Added a bunch of new item materials.
+- Improved the dialogue when chatting to a metal mafia member.
+- Fixed a previously introduced bug that made disintegration beams damage the player twice.
+- Fixed some diagonal passages in certain special levels.
+- The more trophies the player obtains, the more likely items are now to spawn with their enchantment or BUC known.
+- Fixed potential exploits where players could get the stat boosts from rings or cornuthaums permanently.
+- Artifacts that were supposed to give stun resistance now actually do so. Also, players have a chance of being able to pick up an artifact that would normally "evade their grasp", but it may take a couple attempts.
+- The #overview command now prints the current level's annotation, if present.
+- Pets no longer attack roaming priests or shopkeepers.
+- Certain methods of taming monsters will now fail when used on very high-level creatures.
+- Further reduced the density of random terrain in the illusory castle.
+- More types of helmet now protect the player from falling objects.
+- Using recursion while starting as certain roles or races will cause their downsides to continue for a while now.
+- Quaffing from fountains can cause a much wider variety of negative effects now.
+- Shopkeepers no longer automatically become angry when teleporting, but only if the hero teleported them.
+- Bashing enemies with ammo for ranged weapons can train the skill now, and the same is true when throwing ammo or launchers.
+- Slightly reduced the average level difficulty early in the game.
+- If the player suffers from spell amnesia while having no spells memorized, they suffer from magic vacuum instead.
+- Monsters use gaze attacks against pets less often.
+- Nerfed the fixing and stone to flesh spells, and casting acid-elemental spells at yourself while you're turning to stone damages your maximum HP.
+- Cancelling a saddled monster can cancel its saddle, to provide a way to lift the saddle's curse without having to kill the monster.
+- The amulet of unchanging no longer illogically cures sliming.
+- Upon reaching certain in-game milestones, specific artifacts that cannot generate randomly will become capable of doing so.
+- Changed the timeouts for several techniques.
+
 2.8.5 - June 2023
+- Dungeon levels have more interesting features in general, and holy water is a bit more common.
+- Monsters can now use crossaligned artifacts with no trouble, and also artifacts that slay the specific monster type.
+- More corpse types are now capable of boosting the player's stats when eaten.
+- Added a failsafe to banishment to hopefully ensure that the player doesn't get a turn before actually getting banished.
+- Fixed a bug where whistles and steeds could interact improperly.
+- Fixed some potential problem with the #adjust command.
+- Fixed a vanilla bug where it was sometimes possible to drop a cursed leash with an attached pet.
+- Fixed a vanilla bug where monsters wouldn't always deliberately trigger a trap even if they should.
+- Fixed vision recalculation when a stick of dynamite blows up a wall.
+- The reinforce memory technique now works also if the target spell has more than 10% memory left.
+- Semi-polymorph control is no longer available if the player character is of a race that cannot have polymorph control.
+- Toned down the power of the symbiosis skill.
+- The tumblrer, hypothermic and addict races can no longer resist the status effect that they have permanently.
+- Fixed the loophole where breaking an artifact boulder could result in lots of artifact rocks of the same type.
+- Fixed erroneous calculations for polearm ranges of certain weapons.
+- Fixed a bug where recursion wouldn't correctly re-initialize some aspects of the player character.
 - Half spell damage now greatly reduces the risk that a death ray instakills the player.
 - The player can no longer simply drop the Amulet of Yendor by wielding it and then obtaining slippery fingers or polymorphing into something that cannot wield a 
 weapon.
