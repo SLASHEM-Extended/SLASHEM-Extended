@@ -544,7 +544,8 @@ maeney:
 	/* Horses already wear a saddle */
 	if ((pettype == PM_PONY || pettype == PM_PEGASUS || pettype == PM_GREEN_NIGHTMARE || pettype == PM_SPEEDHORSE) && !!(otmp = mksobj(Race_if(PM_INKA) ? INKA_SADDLE : LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
 	    if (mpickobj(mtmp, otmp, TRUE)) {
-		impossible("merged saddle?");
+		/*impossible("merged saddle?")*/
+		; /* do nothing; unlike vanilla, this is something that can happen --Amy */
 		} else {
 	    mtmp->misc_worn_check |= W_SADDLE;
 	    otmp->dknown = otmp->bknown = otmp->rknown = 1;
