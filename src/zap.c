@@ -9968,7 +9968,7 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 	 * so I just decide that special reflection amulets "overwrite" standard reflection. --Amy
 	 * prism takes precedence over warp reflection, which takes precedence over "regular" reflection */
 
-			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_spectrumplinggem() || (moves & 10 == 0 && uwep && uwep->oartifact == ART_CRABBOMAT) || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarms && uarms->oartifact == ART_ANGULARITY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_SCHWI_SCHWI) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
+			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_spectrumplinggem() || (moves % 10 == 0 && uwep && uwep->oartifact == ART_CRABBOMAT) || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarms && uarms->oartifact == ART_ANGULARITY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_SCHWI_SCHWI) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
 
 			    if (dx && dy) {
 
