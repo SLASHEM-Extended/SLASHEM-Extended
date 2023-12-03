@@ -17533,6 +17533,8 @@ boolean knoweverything;
 				pline("Reading this scroll allows you to detect comestibles on the current level. It also fills your stomach a little."); break;
 			case SCR_GOLD_DETECTION:
 				pline("All piles of gold on the entire level are revealed to you if you read this."); break;
+			case SCR_RETURN:
+				pline("Creates a return field when read, and you can choose a destination to be levelported to. Of course the normal restrictions apply, meaning that this works only if you can actually levelport. It takes a while for the return to kick in, and the available destinations are 'waypoint' levels that you've already visited."); break;
 			case SCR_IDENTIFY:
 				pline("You may identify one or more objects if you use this scroll."); break;
 			case SCR_INVENTORY_ID:
@@ -17936,6 +17938,8 @@ boolean knoweverything;
 				pline("If you successfully cast this spell, your hallucinations will end, or at least have their duration reduced. On very rare occasions this spell can backfire."); break;
 			case SPE_CURE_CONFUSION:
 				pline("A spell that can be successfully cast even while confused, and that's also the reason why one would cast it in the first place since it cures the confusion status. Long-lasting confusion effects will merely be shortened. On very rare occasions this spell can backfire."); break;
+			case SPE_RETURN:
+				pline("Casting this spell lets you return to a previously visited area of your choice, provided that you're not prevented from levelporting. It takes a while for this spell to take effect, and every cast will reduce your maximum Pw by up to 3!"); break;
 			case SPE_CURE_STUN:
 				pline("By casting this spell, you can get rid of the stun condition. If you have a long-lasting stun effect, every cast will reduce its duration until it reaches zero. On very rare occasions this spell can backfire."); break;
 			case SPE_GENOCIDE:
@@ -29271,6 +29275,12 @@ boolean knoweverything;
 					pline("Artifact specs: improves AC by 5 points and MC by one point when worn."); break;
 				case ART_SHIELD_OF_THE_CHEVALIER__W:
 					pline("Artifact specs: magic resistance, warns of undead and demons when worn. The type of ice block renamed the SLEX original 'chevalier' role to paladin, which is really nonsensical because there's also an actual paladin role. Here in the land of SLEX, the names stay the way they were intended."); break;
+				case ART_BACKLASHPROTECT:
+					pline("Artifact specs: gives much more spell memory when read."); break;
+				case ART_RANOFRIT:
+					pline("Artifact specs: can be invoked to return to a previously visited 'waypoint' level, just like reading the scroll, but only has 10%% chance that the scroll is used up. If you foolishly read it instead, it's still guaranteed to be used up, so be wise, use #invoke!"); break;
+				case ART_DO_STAY_A_WHILE_:
+					pline("Artifact specs: can be invoked for return, which is to say, gives you a choice of various dungeon levels that you can return to, but it takes at least 50 turns for that effect to actually kick in. Every time you use this invocation, there's a chance that the armor is used up, and if it isn't, it becomes heavily cursed and gains a point of enchantment (but not beyond +20)."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -6494,6 +6494,12 @@ boolean guaranteed;
 		you_are(buf);
 	}
 
+	if (u.returntimer) {
+		sprintf(buf, "waiting to be recalled.");
+	    	sprintf(eos(buf), " (%d)", u.returntimer);
+		you_are(buf);
+	}
+
 	if (Role_if(PM_HUSSY)) {
 	    	sprintf(buf, "%ld ", (u.hussyhurtturn - moves));
 		sprintf(eos(buf), "turns left to hit a guy.");
@@ -11090,6 +11096,12 @@ int final;
 	}
 	if (u.homosexual == 2) {
 	    	sprintf(buf, "homosexual");
+		dump(youwere, buf);
+	}
+
+	if (u.returntimer) {
+		sprintf(buf, "waiting to be recalled.");
+	    	sprintf(eos(buf), " (%d)", u.returntimer);
 		dump(youwere, buf);
 	}
 

@@ -608,6 +608,164 @@ nh_timeout()
 		}
 	}
 
+	if (u.returntimer) {
+		u.returntimer--;
+		if (u.returntimer < 0) u.returntimer = 0; /* fail safe */
+
+		if (u.returntimer == 0) {
+			if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+				pline("A portal opens, but something prevents you from entering it... and it closes again.");
+			} else if (playerlevelportdisabled()) {
+				pline("A portal opens before you.");
+				pline("But you cannot return right now.");
+			} else {
+				d_level dtmp;
+
+				switch (u.returndestination) {
+
+					default:
+					case 1:
+						dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
+						dtmp.dlevel = 1;
+						break;
+					case 2:
+						dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
+						dtmp.dlevel = 14;
+						break;
+					case 3:
+						dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
+						dtmp.dlevel = 29;
+						break;
+					case 4:
+						dtmp.dnum = dname_to_dnum("The Dungeons of Doom");
+						dtmp.dlevel = 44;
+						break;
+					case 5:
+						dtmp.dnum = dname_to_dnum("Gehennom");
+						dtmp.dlevel = 3;
+						break;
+					case 6:
+						dtmp.dnum = dname_to_dnum("Gehennom");
+						dtmp.dlevel = 24;
+						break;
+					case 7:
+						dtmp.dnum = dname_to_dnum("Gehennom");
+						dtmp.dlevel = 45;
+						break;
+					case 8:
+						dtmp.dnum = dname_to_dnum("The Gnomish Mines");
+						dtmp.dlevel = 7;
+						break;
+					case 9:
+						dtmp.dnum = dname_to_dnum("Illusory Castle");
+						dtmp.dlevel = 11;
+						break;
+					case 10:
+						dtmp.dnum = dname_to_dnum("Illusory Castle");
+						dtmp.dlevel = 22;
+						break;
+					case 11:
+						dtmp.dnum = dname_to_dnum("Deep Mines");
+						dtmp.dlevel = 11;
+						break;
+					case 12:
+						dtmp.dnum = dname_to_dnum("Deep Mines");
+						dtmp.dlevel = 22;
+						break;
+					case 13:
+						dtmp.dnum = dname_to_dnum("Space Base");
+						dtmp.dlevel = 6;
+						break;
+					case 14:
+						dtmp.dnum = dname_to_dnum("Angmar");
+						dtmp.dlevel = 7;
+						break;
+					case 15:
+						dtmp.dnum = dname_to_dnum("Emyn Luin");
+						dtmp.dlevel = 10;
+						break;
+					case 16:
+						dtmp.dnum = dname_to_dnum("Swimming Pool");
+						dtmp.dlevel = 8;
+						break;
+					case 17:
+						dtmp.dnum = dname_to_dnum("Green Cross");
+						dtmp.dlevel = 13;
+						break;
+					case 18:
+						dtmp.dnum = dname_to_dnum("Green Cross");
+						dtmp.dlevel = 28;
+						break;
+					case 19:
+						dtmp.dnum = dname_to_dnum("Green Cross");
+						dtmp.dlevel = 43;
+						break;
+					case 20:
+						dtmp.dnum = dname_to_dnum("Green Cross");
+						dtmp.dlevel = 58;
+						break;
+					case 21:
+						dtmp.dnum = dname_to_dnum("Minotaur Maze");
+						dtmp.dlevel = 11;
+						break;
+					case 22:
+						dtmp.dnum = dname_to_dnum("Minotaur Maze");
+						dtmp.dlevel = 22;
+						break;
+					case 23:
+						dtmp.dnum = dname_to_dnum("Sheol");
+						dtmp.dlevel = 5;
+						break;
+					case 24:
+						dtmp.dnum = dname_to_dnum("Sheol");
+						dtmp.dlevel = 20;
+						break;
+					case 25:
+						dtmp.dnum = dname_to_dnum("Yendorian Tower");
+						dtmp.dlevel = 4;
+						break;
+					case 26:
+						dtmp.dnum = dname_to_dnum("Yendorian Tower");
+						dtmp.dlevel = 19;
+						break;
+					case 27:
+						dtmp.dnum = dname_to_dnum("Yendorian Tower");
+						dtmp.dlevel = 34;
+						break;
+					case 28:
+						dtmp.dnum = dname_to_dnum("Yendorian Tower");
+						dtmp.dlevel = 49;
+						break;
+					case 29:
+						dtmp.dnum = dname_to_dnum("Yendorian Tower");
+						dtmp.dlevel = 64;
+						break;
+					case 30:
+						dtmp.dnum = dname_to_dnum("Yendorian Tower");
+						dtmp.dlevel = 79;
+						break;
+					case 31:
+						dtmp.dnum = dname_to_dnum("Yendorian Tower");
+						dtmp.dlevel = 94;
+						break;
+					case 99999:
+						dtmp.dnum = dname_to_dnum("Gehennom");
+						dtmp.dlevel = 12;
+						break;
+
+				}
+
+				schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+
+				if (multi >= 0) nomul(-2, "being returned", FALSE);
+
+				pline("A portal opens before you.");
+				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+			}
+		}
+	}
+
 	if (u.demagoguerecursiontime) {
 
 		if (u.demagoguerecursiontime < 0) u.demagoguerecursiontime = 1; /* fail safe */

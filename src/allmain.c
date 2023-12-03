@@ -9904,6 +9904,127 @@ newbossX:
 			pline("You've escaped from the spaceship. From now on, the level difficulty will be using the actual depth, even if you return to the Space Base. Your ability to level teleport was restored.");
 		}
 
+		if (In_dod(&u.uz) && (dunlev(&u.uz) == 14) && !u.returndest_dod14) {
+			u.returndest_dod14 = TRUE;
+			You("have reached a waypoint: 'Dungeons of Doom, level 14'!");
+		}
+		if (In_dod(&u.uz) && (dunlev(&u.uz) == 29) && !u.returndest_dod29) {
+			u.returndest_dod29 = TRUE;
+			You("have reached a waypoint: 'Dungeons of Doom, level 29'!");
+		}
+		if (In_dod(&u.uz) && (dunlev(&u.uz) == 44) && !u.returndest_dod44) {
+			u.returndest_dod44 = TRUE;
+			You("have reached a waypoint: 'Dungeons of Doom, level 44'!");
+		}
+		if (In_gehennom(&u.uz) && (dunlev(&u.uz) == 3) && !u.returndest_geh53) {
+			u.returndest_geh53 = TRUE;
+			You("have reached a waypoint: 'Gehennom, level 53'!");
+		}
+		if (In_gehennom(&u.uz) && (dunlev(&u.uz) == 24) && !u.returndest_geh74) {
+			u.returndest_geh74 = TRUE;
+			You("have reached a waypoint: 'Gehennom, level 74'!");
+		}
+		if (In_gehennom(&u.uz) && (dunlev(&u.uz) == 45) && !u.returndest_geh95) {
+			u.returndest_geh95 = TRUE;
+			You("have reached a waypoint: 'Gehennom, level 95'!");
+		}
+		if (In_mines(&u.uz) && (dunlev(&u.uz) == 7) && !u.returndest_min7) {
+			u.returndest_min7 = TRUE;
+			You("have reached a waypoint: 'Gnomish Mines, level 7'!");
+		}
+		if (In_illusorycastle(&u.uz) && (dunlev(&u.uz) == 11) && !u.returndest_ill11) {
+			u.returndest_ill11 = TRUE;
+			You("have reached a waypoint: 'Illusory Castle, level 11'!");
+		}
+		if (In_illusorycastle(&u.uz) && (dunlev(&u.uz) == 22) && !u.returndest_ill22) {
+			u.returndest_ill22 = TRUE;
+			You("have reached a waypoint: 'Illusory Castle, level 22'!");
+		}
+		if (In_deepmines(&u.uz) && (dunlev(&u.uz) == 11) && !u.returndest_dee11) {
+			u.returndest_dee11 = TRUE;
+			You("have reached a waypoint: 'Deep Mines, level 11'!");
+		}
+		if (In_deepmines(&u.uz) && (dunlev(&u.uz) == 22) && !u.returndest_dee22) {
+			u.returndest_dee22 = TRUE;
+			You("have reached a waypoint: 'Deep Mines, level 22'!");
+		}
+		if (In_spacebase(&u.uz) && (dunlev(&u.uz) == 6) && !u.returndest_spa6) {
+			u.returndest_spa6 = TRUE;
+			You("have reached a waypoint: 'Space Base, level 6'!");
+		}
+		if (In_angmar(&u.uz) && (dunlev(&u.uz) == 7) && !u.returndest_ang7) {
+			u.returndest_ang7 = TRUE;
+			You("have reached a waypoint: 'Angmar, level 7'!");
+		}
+		if (In_emynluin(&u.uz) && (dunlev(&u.uz) == 10) && !u.returndest_emy10) {
+			u.returndest_emy10 = TRUE;
+			You("have reached a waypoint: 'Emyn Luin, level 10'!");
+		}
+		if (In_swimmingpool(&u.uz) && (dunlev(&u.uz) == 8) && !u.returndest_swi8) {
+			u.returndest_swi8 = TRUE;
+			You("have reached a waypoint: 'Swimming Pools, level 8'!");
+		}
+		if (In_greencross(&u.uz) && (dunlev(&u.uz) == 13) && !u.returndest_gre13) {
+			u.returndest_gre13 = TRUE;
+			You("have reached a waypoint: 'Green Cross, level 13'!");
+		}
+		if (In_greencross(&u.uz) && (dunlev(&u.uz) == 28) && !u.returndest_gre28) {
+			u.returndest_gre28 = TRUE;
+			You("have reached a waypoint: 'Green Cross, level 28'!");
+		}
+		if (In_greencross(&u.uz) && (dunlev(&u.uz) == 43) && !u.returndest_gre43) {
+			u.returndest_gre43 = TRUE;
+			You("have reached a waypoint: 'Green Cross, level 43'!");
+		}
+		if (In_greencross(&u.uz) && (dunlev(&u.uz) == 58) && !u.returndest_gre58) {
+			u.returndest_gre58 = TRUE;
+			You("have reached a waypoint: 'Green Cross, level 58'!");
+		}
+		if (In_minotaurmaze(&u.uz) && (dunlev(&u.uz) == 11) && !u.returndest_maz11) {
+			u.returndest_maz11 = TRUE;
+			You("have reached a waypoint: 'Minotaur Maze, level 11'!");
+		}
+		if (In_minotaurmaze(&u.uz) && (dunlev(&u.uz) == 22) && !u.returndest_maz22) {
+			u.returndest_maz22 = TRUE;
+			You("have reached a waypoint: 'Minotaur Maze, level 22'!");
+		}
+		if (In_sheol(&u.uz) && (dunlev(&u.uz) == 5) && !u.returndest_she5) {
+			u.returndest_she5 = TRUE;
+			You("have reached a waypoint: 'Sheol, level 5'!");
+		}
+		if (In_sheol(&u.uz) && (dunlev(&u.uz) == 20) && !u.returndest_she20) {
+			u.returndest_she20 = TRUE;
+			You("have reached a waypoint: 'Sheol, level 20'!");
+		}
+		if (In_yendorian(&u.uz) && (dunlev(&u.uz) == 4) && !u.returndest_yen4) {
+			u.returndest_yen4 = TRUE;
+			You("have reached a waypoint: 'Yendorian Tower, level 4'!");
+		}
+		if (In_yendorian(&u.uz) && (dunlev(&u.uz) == 19) && !u.returndest_yen19) {
+			u.returndest_yen19 = TRUE;
+			You("have reached a waypoint: 'Yendorian Tower, level 19'!");
+		}
+		if (In_yendorian(&u.uz) && (dunlev(&u.uz) == 34) && !u.returndest_yen34) {
+			u.returndest_yen34 = TRUE;
+			You("have reached a waypoint: 'Yendorian Tower, level 34'!");
+		}
+		if (In_yendorian(&u.uz) && (dunlev(&u.uz) == 49) && !u.returndest_yen49) {
+			u.returndest_yen49 = TRUE;
+			You("have reached a waypoint: 'Yendorian Tower, level 49'!");
+		}
+		if (In_yendorian(&u.uz) && (dunlev(&u.uz) == 64) && !u.returndest_yen64) {
+			u.returndest_yen64 = TRUE;
+			You("have reached a waypoint: 'Yendorian Tower, level 64'!");
+		}
+		if (In_yendorian(&u.uz) && (dunlev(&u.uz) == 79) && !u.returndest_yen79) {
+			u.returndest_yen79 = TRUE;
+			You("have reached a waypoint: 'Yendorian Tower, level 79'!");
+		}
+		if (In_yendorian(&u.uz) && (dunlev(&u.uz) == 94) && !u.returndest_yen94) {
+			u.returndest_yen94 = TRUE;
+			You("have reached a waypoint: 'Yendorian Tower, level 94'!");
+		}
+
 		if (In_sewerplant(&u.uz) && !u.sewerplantcomplete && (dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) ) {
 			u.sewerplantcomplete = 1;
 		      (void) safe_teleds_normalterrain(FALSE);
@@ -16986,6 +17107,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MYSTERY_PROTECTION].oc_name = "todo";
 	obj_descr[SPE_MAGIC_BOLT].oc_name = "todo";
 	obj_descr[SPE_LIGHT_AREA].oc_name = "todo";
+	obj_descr[SPE_RETURN].oc_name = "todo";
 
 	{
 
@@ -18374,6 +18496,7 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MYSTERY_PROTECTION].oc_name = "todo";
 	obj_descr[SPE_MAGIC_BOLT].oc_name = "todo";
 	obj_descr[SPE_LIGHT_AREA].oc_name = "todo";
+	obj_descr[SPE_RETURN].oc_name = "todo";
 
 	{
 

@@ -17316,6 +17316,18 @@ A("The Shield of the Chevalier, who is not called Paladin regardless of what the
 	(SPFX_RESTR|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("BacklashProtect",				SPE_RETURN, /* gives +400% spell memory when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ranofrit",				SCR_RETURN, /* can be invoked for return, 1 in 10 chance that doing so uses up the scroll */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Do stay a while!",				SCALE_MAIL, /* can be invoked for return, but doing so has 1 in 10 chance that the armor is used up and if it's not, it becomes heavily cursed and gains +1 up to a maximum of +20 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

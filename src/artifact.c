@@ -5243,6 +5243,40 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_RANOFRIT) {
+
+			if (!rn2(10)) useupall(obj);
+
+			if (u.returntimer) {
+				u.returntimer = 0;
+				pline_The("air around you gradually loses power.");
+			} else {
+				setupreturn(0);
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_DO_STAY_A_WHILE_) {
+
+			if (!rn2(10)) {
+				useupall(obj);
+			} else {
+				curse(obj);
+				obj->hvycurse = TRUE;
+				if (obj->spe < 20) obj->spe++;
+			}
+
+			if (u.returntimer) {
+				u.returntimer = 0;
+				pline_The("air around you gradually loses power.");
+			} else {
+				setupreturn(0);
+			}
+
+			break;
+		}
+
 		if (obj->oartifact == ART_HAMMA_HAMMA) {
 			register struct obj *otmp;
 			if (obj->cursed || obj->spe < 0) {
@@ -6642,6 +6676,8 @@ greenchoice:
 
 		if (obj->oartifact == ART_GO_AWAY_TYPE_OF_ARMS) {
 			register struct monst *typeofarms;
+
+			useupall(obj);
 
 		    	if (!getdir((char *)0)) break;
 			if (!u.dx && !u.dy) {

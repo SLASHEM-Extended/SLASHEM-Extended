@@ -155,6 +155,7 @@ static struct trobj Librarian[] = {
 	{ SPE_BLANK_PAPER, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },        
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, 1 },        
 	{ SCR_BLANK_PAPER, UNDEF_SPE, SCROLL_CLASS, 5, 1 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -204,6 +205,7 @@ static struct trobj Supermarket[] = {
 	{ TIN_OPENER, 0, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ POT_FRUIT_JUICE, 0, POTION_CLASS, 3, UNDEF_BLESS },
 	{ POT_BOOZE, 0, POTION_CLASS, 2, UNDEF_BLESS },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -213,6 +215,7 @@ static struct trobj Scribe[] = {
 	{ SCR_BLANK_PAPER, UNDEF_SPE, SCROLL_CLASS, 5, UNDEF_BLESS },
 	{ DAGGER, 2, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ CLOAK_OF_DISPLACEMENT, 0, ARMOR_CLASS, 1, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -231,6 +234,7 @@ static struct trobj Barbarian[] = {
 	{ AXE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ RING_MAIL, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ FOOD_RATION, 0, FOOD_CLASS, 2, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -376,6 +380,7 @@ static struct trobj OccultMaster[] = {
 	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 2, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ SCR_STINKING_CLOUD, 0, SCROLL_CLASS, 1, 1 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
   	{ 0, 0, 0, 0, 0 }
 };
 
@@ -453,6 +458,7 @@ static struct trobj WildTalent[] = {
 	{ UNDEF_TYP, UNDEF_SPE, RANDOM_CLASS, 1, 0 },
 	{ UNDEF_TYP, UNDEF_SPE, RANDOM_CLASS, 1, 0 },
 	{ UNDEF_TYP, UNDEF_SPE, RANDOM_CLASS, 1, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
 
   	{ 0, 0, 0, 0, 0 }
 };
@@ -715,6 +721,7 @@ static struct trobj CellarChild[] = {
 	{ FROST_HORN, UNDEF_SPE, TOOL_CLASS, 1, 0 },
 	{ CHARGER, UNDEF_SPE, TOOL_CLASS, 1, 0 },
 	{ WAN_IDENTIFY, 5, WAND_CLASS, 1, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 2, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1115,6 +1122,7 @@ static struct trobj Symbiant[] = {
 	{ MACE, 0, WEAPON_CLASS, 1, 0 },
 	{ LIZARD_SCALES, 0, ARMOR_CLASS, 1, 0 },
 	{ DRAGON_HORNED_HEADPIECE, 0, ARMOR_CLASS, 1, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 2, 0 },
 
 	{ 0, 0, 0, 0, 0 }
 };
@@ -1154,6 +1162,7 @@ static struct trobj Diablist[] = {
 	{ LEATHER_ARMOR, 0, ARMOR_CLASS, 1, 0 },
 	{ POT_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
 	{ SCR_IDENTIFY, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 3, UNDEF_BLESS },
 
 	{ 0, 0, 0, 0, 0 }
 };
@@ -1306,6 +1315,7 @@ static struct trobj Paladin[] = {
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
 	{ FOOD_RATION, 0, FOOD_CLASS, 4, UNDEF_BLESS },
 	{ RIN_WARNING, 0, RING_CLASS, 1, UNDEF_BLESS },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
 
 	{ 0, 0, 0, 0, 0 }
 };
@@ -1527,6 +1537,7 @@ static struct trobj Amazon[] = {
 	{ FOOD_RATION, 0, FOOD_CLASS, 2, 1 },
 	{ POT_HEALING, 0, POTION_CLASS, 4, UNDEF_BLESS },
 	{ SCR_TELEPORTATION, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1536,6 +1547,7 @@ static struct trobj Druid[] = {
 	{ ARROW, UNDEF_SPE, WEAPON_CLASS, 50, UNDEF_BLESS },
 	{ SPE_CREATE_FAMILIAR, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
 	{ SPE_CHARM_MONSTER, UNDEF_SPE, SPBOOK_CLASS, 1, UNDEF_BLESS },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1580,6 +1592,7 @@ static struct trobj Necromancer[] = {
 		/* KMH -- ...and the matching wand for the inexperienced */
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ PICK_AXE, 0, TOOL_CLASS, 1, UNDEF_BLESS },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1906,6 +1919,7 @@ static struct trobj Weirdboy[] = {
 	{ POT_JOLT_COLA, 0, POTION_CLASS, 2, 0 },
 	{ POT_HEALING, 0, POTION_CLASS, 1, 0 },
 	{ POT_CURE_INSANITY, 0, POTION_CLASS, 1, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1920,6 +1934,7 @@ static struct trobj Astronaut[] = {
 	{ MAGIC_CANDLE, 0, TOOL_CLASS, 1, 0 },
 	{ RAD_X, 0, TOOL_CLASS, 1, 0 },
 	{ RADAWAY, 0, TOOL_CLASS, 1, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -1978,6 +1993,7 @@ static struct trobj Unbeliever[] = {
 	{ BLACK_AESTIVALIS, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ CHAIN_MAIL, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ FOOD_RATION, 0, FOOD_CLASS, 1, 0 },
+	{ SCR_RETURN, 0, SCROLL_CLASS, 3, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -2402,6 +2418,11 @@ static struct trobj MaiaWand[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 
+static struct trobj MaiaScroll[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
 static struct trobj AutomatonItem[] = {
 	{ POT_OIL, 0, POTION_CLASS, 1, 0 },
 	{ 0, 0, 0, 0, 0 }
@@ -2498,6 +2519,46 @@ static struct trobj AngbandItem[] = {
 
 static struct trobj AngbandItemB[] = {
 	{ SCR_TELEPORTATION, 0, SCROLL_CLASS, 2, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj AngbandItemC[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 2, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj DeathmoldItem[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj DunadanItem[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj ThunderlordItem[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 2, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj SatreItem[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 3, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj TonberryItem[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 3, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj KlackonItem[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 1, 0 },
+	{ 0, 0, 0, 0, 0 }
+};
+
+static struct trobj KutarItem[] = {
+	{ SCR_RETURN, 0, SCROLL_CLASS, 2, 0 },
 	{ 0, 0, 0, 0, 0 }
 };
 
@@ -17563,6 +17624,37 @@ u_init()
 
 		ini_inv(AngbandItem);
 		ini_inv(AngbandItemB);
+		ini_inv(AngbandItemC);
+
+	   break;
+
+	case PM_DEATHMOLD:
+
+		ini_inv(DeathmoldItem);
+
+	   break;
+
+	case PM_DUNADAN:
+
+		ini_inv(DunadanItem);
+
+	   break;
+
+	case PM_THUNDERLORD:
+
+		ini_inv(ThunderlordItem);
+
+	   break;
+
+	case PM_KLACKON:
+
+		ini_inv(KlackonItem);
+
+	   break;
+
+	case PM_KUTAR:
+
+		ini_inv(KutarItem);
 
 	   break;
 
@@ -17694,11 +17786,18 @@ u_init()
 	case PM_NAVI:
           ini_inv(NaviItem);
 		break;
+	case PM_SATRE:
+          ini_inv(SatreItem);
+		break;
+	case PM_TONBERRY:
+          ini_inv(TonberryItem);
+		break;
 	case PM_UNGENOMOLD:
           ini_inv(UngMoldWand);
 		break;
 	case PM_MAIA:
           ini_inv(MaiaWand);
+          ini_inv(MaiaScroll);
 		break;
 	case PM_STICKER:
           ini_inv(StickerItem);

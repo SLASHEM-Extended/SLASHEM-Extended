@@ -130,6 +130,7 @@ register struct obj *otmp;
 	case SCR_COURSE_TRAVELING:
 	case SCR_HEAL_OTHER:
 	case SCR_REGULAR_MATERIAL:
+	case SCR_RETURN:
 		return(20);
 	/* KMH, balance patch -- more useful scrolls cost more */
 	case SCR_STINKING_CLOUD:

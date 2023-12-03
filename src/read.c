@@ -1214,6 +1214,7 @@ doread()
 			case SCR_COURSE_TRAVELING:
 			case SCR_HEAL_OTHER:
 			case SCR_REGULAR_MATERIAL:
+			case SCR_RETURN:
 				cartochance = 25;
 				if (!PlayerCannotUseSkills) switch (P_SKILL(P_DEVICES)) {
 					case P_BASIC: cartochance = 27; break;
@@ -6848,6 +6849,24 @@ materialchoice1:
 
 		break;
 
+	case SCR_RETURN:
+
+		if (u.returntimer) {
+			u.returntimer = 0;
+			pline_The("air around you gradually loses power.");
+			break;
+		}
+
+		if (confused) {
+			if (sobj->cursed) setupreturn(2);
+			else setupreturn(1);
+			break;
+		}
+		if (evilfriday && sobj->cursed) setupreturn(1);
+		else setupreturn(0);
+
+		break;
+
 	case SCR_REGULAR_MATERIAL:
 
 		if (CannotSelectItemsInPrompts) break;
@@ -9924,7 +9943,7 @@ tunguskaagain:
 			You("identify this as an identify scroll.");
 		else
 			pline("This is an identify scroll.");
-		if (sobj->blessed || (!sobj->cursed && !rn2(3))) {
+		if (sobj->blessed || (!sobj->cursed && !rn2(2))) {
 			cval = rn2(4);
 			if (sobj->blessed && !rn2(3) && cval) cval += rnz(2);
 			/* Note: if rn2(5)==0, identify all items */

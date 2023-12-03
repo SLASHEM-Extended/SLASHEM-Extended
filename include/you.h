@@ -437,6 +437,41 @@ struct you {
 	int alwaysinvisible;	/* evil patch idea by alpha123 - monster class that's always invisible */
 	int alwayshidden;
 
+	int returntimer;		/* for scroll/spell of return */
+	int returndestination;
+
+	/* amy keyword: "newdungeons";   dungeons of doom, level 1 is always available */
+	boolean returndest_dod14;	/* dungeons of doom, level 14 */
+	boolean returndest_dod29;	/* dungeons of doom, level 29 */
+	boolean returndest_dod44;	/* dungeons of doom, level 44 */
+	boolean returndest_geh53;	/* gehennom, level 53 */
+	boolean returndest_geh74;	/* gehennom, level 74 */
+	boolean returndest_geh95;	/* gehennom, level 95 */
+	boolean returndest_min7;	/* gnomish mines, level 7 */
+	boolean returndest_ill11;	/* illusory castle, level 11 */
+	boolean returndest_ill22;	/* illusory castle, level 22 */
+	boolean returndest_dee11;	/* deep mines, level 11 */
+	boolean returndest_dee22;	/* deep mines, level 22 */
+	boolean returndest_spa6;	/* space base, level 6 */
+	boolean returndest_ang7;	/* angmar, level 7 */
+	boolean returndest_emy10;	/* emyn luin, level 10 */
+	boolean returndest_swi8;	/* swimming pool, level 8 */
+	boolean returndest_gre13;	/* green cross, level 13 */
+	boolean returndest_gre28;	/* green cross, level 28 */
+	boolean returndest_gre43;	/* green cross, level 43 */
+	boolean returndest_gre58;	/* green cross, level 58 */
+	boolean returndest_maz11;	/* minotaur maze, level 11 */
+	boolean returndest_maz22;	/* minotaur maze, level 22 */
+	boolean returndest_she5;	/* sheol, level 5 */
+	boolean returndest_she20;	/* sheol, level 20 */
+	boolean returndest_yen4;	/* yendorian tower, level 4 */
+	boolean returndest_yen19;	/* yendorian tower, level 19 */
+	boolean returndest_yen34;	/* yendorian tower, level 34 */
+	boolean returndest_yen49;	/* yendorian tower, level 49 */
+	boolean returndest_yen64;	/* yendorian tower, level 64 */
+	boolean returndest_yen79;	/* yendorian tower, level 79 */
+	boolean returndest_yen94;	/* yendorian tower, level 94 */
+
 	int minimalism;		/* chance that an item is generated is only 1 in X for minimalist race */
 
 	int frequentmonster;	/* evil patch idea by Amy - monster class that is generated more often */

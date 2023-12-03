@@ -4293,6 +4293,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_MAGIC_BOLT, "todo" },
 	{ SPE_LIGHT_AREA, "todo" },
 	{ KITE_SHIELD, "todo" },
+	{ SCR_RETURN, "todo" },
+	{ SPE_RETURN, "todo" },
 
 	{0, "" }
 };
@@ -7740,6 +7742,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_MAGIC_BOLT, "todo" },
 	{ SPE_LIGHT_AREA, "todo" },
 	{ KITE_SHIELD, "todo" },
+	{ SCR_RETURN, "todo" },
+	{ SPE_RETURN, "todo" },
 
 	{0, "" }
 };

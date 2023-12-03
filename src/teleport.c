@@ -2500,6 +2500,260 @@ boolean give_feedback;
 	return TRUE;
 }
 
+/* scroll/spell/whatever of return: lets the player choose a previously visited dungeon level to return to --Amy */
+void
+setupreturn(returntype)
+int returntype; /* 0 = let player choose, 1 = let RNG choose, 2 = destination is specifically level 62 of Gehennom */
+{
+	int possiblechoices = 1;
+
+	/* have the amulet? then sorry, pal, it won't work at all --Amy */
+	if ((u.uhave.amulet && !u.freeplaymode) || (u.usteed && mon_has_amulet(u.usteed))) {
+		pline_The("charge is absorbed by the amulet!");
+		return;
+	}
+	/* otherwise, set up return; if you're prevented from levelporting at the time it triggers, it fizzles */
+
+	u.returntimer = rn1(50, 50);
+	u.returndestination = 1; /* fail safe: Dungeons of Doom, level 1 */
+
+	if (returntype == 2) {
+		u.returndestination = 99999; /* Gehennom, level 62, eevn if you've not been there yet */
+		You_feel("the air change around you..."); /* intentionally says "change", not "charge" */
+		return;
+	}
+
+	if (returntype == 0) pline("Pick a destination to return to. The prompt will loop until you actually make a choice.");
+
+	if (returntype == 0) {
+returnagain:
+		if (yn("Dungeons of Doom, level 1?") == 'y') {
+			u.returndestination = 1;
+			goto madeachoice;
+		} else if (u.returndest_dod14 && yn("Dungeons of Doom, level 14?") == 'y') {
+			u.returndestination = 2;
+			goto madeachoice;
+		} else if (u.returndest_dod29 && yn("Dungeons of Doom, level 29?") == 'y') {
+			u.returndestination = 3;
+			goto madeachoice;
+		} else if (u.returndest_dod44 && yn("Dungeons of Doom, level 44?") == 'y') {
+			u.returndestination = 4;
+			goto madeachoice;
+		} else if (u.returndest_geh53 && yn("Gehennom, level 53?") == 'y') {
+			u.returndestination = 5;
+			goto madeachoice;
+		} else if (u.returndest_geh74 && yn("Gehennom, level 74?") == 'y') {
+			u.returndestination = 6;
+			goto madeachoice;
+		} else if (u.returndest_geh95 && yn("Gehennom, level 95?") == 'y') {
+			u.returndestination = 7;
+			goto madeachoice;
+		} else if (u.returndest_min7 && yn("Gnomish Mines, level 7?") == 'y') {
+			u.returndestination = 8;
+			goto madeachoice;
+		} else if (u.returndest_ill11 && yn("Illusory Castle, level 11?") == 'y') {
+			u.returndestination = 9;
+			goto madeachoice;
+		} else if (u.returndest_ill22 && yn("Illusory Castle, level 22?") == 'y') {
+			u.returndestination = 10;
+			goto madeachoice;
+		} else if (u.returndest_dee11 && yn("Deep Mines, level 11?") == 'y') {
+			u.returndestination = 11;
+			goto madeachoice;
+		} else if (u.returndest_dee22 && yn("Deep Mines, level 22?") == 'y') {
+			u.returndestination = 12;
+			goto madeachoice;
+		} else if (u.returndest_spa6 && yn("Space Base, level 6?") == 'y') {
+			u.returndestination = 13;
+			goto madeachoice;
+		} else if (u.returndest_ang7 && yn("Angmar, level 7?") == 'y') {
+			u.returndestination = 14;
+			goto madeachoice;
+		} else if (u.returndest_emy10 && yn("Emyn Luin, level 10?") == 'y') {
+			u.returndestination = 15;
+			goto madeachoice;
+		} else if (u.returndest_swi8 && yn("Swimming Pools, level 8?") == 'y') {
+			u.returndestination = 16;
+			goto madeachoice;
+		} else if (u.returndest_gre13 && yn("Green Cross, level 13?") == 'y') {
+			u.returndestination = 17;
+			goto madeachoice;
+		} else if (u.returndest_gre28 && yn("Green Cross, level 28?") == 'y') {
+			u.returndestination = 18;
+			goto madeachoice;
+		} else if (u.returndest_gre43 && yn("Green Cross, level 43?") == 'y') {
+			u.returndestination = 19;
+			goto madeachoice;
+		} else if (u.returndest_gre58 && yn("Green Cross, level 58?") == 'y') {
+			u.returndestination = 20;
+			goto madeachoice;
+		} else if (u.returndest_maz11 && yn("Minotaur Maze, level 11?") == 'y') {
+			u.returndestination = 21;
+			goto madeachoice;
+		} else if (u.returndest_maz22 && yn("Minotaur Maze, level 22?") == 'y') {
+			u.returndestination = 22;
+			goto madeachoice;
+		} else if (u.returndest_she5 && yn("Sheol, level 5?") == 'y') {
+			u.returndestination = 23;
+			goto madeachoice;
+		} else if (u.returndest_she20 && yn("Sheol, level 20?") == 'y') {
+			u.returndestination = 24;
+			goto madeachoice;
+		} else if (u.returndest_yen4 && yn("Yendorian Tower, level 4?") == 'y') {
+			u.returndestination = 25;
+			goto madeachoice;
+		} else if (u.returndest_yen19 && yn("Yendorian Tower, level 19?") == 'y') {
+			u.returndestination = 26;
+			goto madeachoice;
+		} else if (u.returndest_yen34 && yn("Yendorian Tower, level 34?") == 'y') {
+			u.returndestination = 27;
+			goto madeachoice;
+		} else if (u.returndest_yen49 && yn("Yendorian Tower, level 49?") == 'y') {
+			u.returndestination = 28;
+			goto madeachoice;
+		} else if (u.returndest_yen64 && yn("Yendorian Tower, level 64?") == 'y') {
+			u.returndestination = 29;
+			goto madeachoice;
+		} else if (u.returndest_yen79 && yn("Yendorian Tower, level 79?") == 'y') {
+			u.returndestination = 30;
+			goto madeachoice;
+		} else if (u.returndest_yen94 && yn("Yendorian Tower, level 94?") == 'y') {
+			u.returndestination = 31;
+			goto madeachoice;
+		} else goto returnagain;
+	}
+
+	if (returntype == 1) {
+		u.returndestination = 1;
+		possiblechoices = 1;
+		if (u.returndest_dod14) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 2;
+		}
+		if (u.returndest_dod29) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 3;
+		}
+		if (u.returndest_dod44) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 4;
+		}
+		if (u.returndest_geh53) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 5;
+		}
+		if (u.returndest_geh74) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 6;
+		}
+		if (u.returndest_geh95) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 7;
+		}
+		if (u.returndest_min7) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 8;
+		}
+		if (u.returndest_ill11) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 9;
+		}
+		if (u.returndest_ill22) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 10;
+		}
+		if (u.returndest_dee11) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 11;
+		}
+		if (u.returndest_dee22) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 12;
+		}
+		if (u.returndest_spa6) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 13;
+		}
+		if (u.returndest_ang7) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 14;
+		}
+		if (u.returndest_emy10) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 15;
+		}
+		if (u.returndest_swi8) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 16;
+		}
+		if (u.returndest_gre13) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 17;
+		}
+		if (u.returndest_gre28) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 18;
+		}
+		if (u.returndest_gre43) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 19;
+		}
+		if (u.returndest_gre58) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 20;
+		}
+		if (u.returndest_maz11) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 21;
+		}
+		if (u.returndest_maz22) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 22;
+		}
+		if (u.returndest_she5) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 23;
+		}
+		if (u.returndest_she20) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 24;
+		}
+		if (u.returndest_yen4) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 25;
+		}
+		if (u.returndest_yen19) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 26;
+		}
+		if (u.returndest_yen34) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 27;
+		}
+		if (u.returndest_yen49) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 28;
+		}
+		if (u.returndest_yen64) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 29;
+		}
+		if (u.returndest_yen79) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 30;
+		}
+		if (u.returndest_yen94) {
+			possiblechoices++;
+			if (!rn2(possiblechoices)) u.returndestination = 31;
+		}
+	}
+
+madeachoice:
+	You_feel("the air charge around you..."); /* here it says "charge", this isn't a mistake */
+
+	return; /* todo */
+}
+
 /* A function that pushes the player around, mainly to be used by ranged attackers so they can get a shot. --Amy
  * "allowtrap" should be FALSE if it's the result of a monster attack, because otherwise we could get segfaults
  * and bus errors when the trap moves you off the level before the monster's attack routine is finished! */

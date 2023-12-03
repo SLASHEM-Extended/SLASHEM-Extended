@@ -6531,7 +6531,8 @@ SCROLL("taming",                "PRIRUTSENIE",          P_ENCHANTMENT_SPELL, 1, 
 SCROLL("light",                 "VERR YED HORRE",       P_DIVINATION_SPELL, 1,  1500, 100, CLR_BLACK, 1),
 SCROLL("food detection",        "YUM YUM",              P_DIVINATION_SPELL, 1,  1300, 100, CLR_YELLOW, 1),
 SCROLL("gold detection",        "THARR",                P_DIVINATION_SPELL, 1, 2200, 100, CLR_BROWN, 1),
-SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 14640, 100, CLR_GREEN, 3),
+SCROLL("identify",              "KERNOD WEL",           P_DIVINATION_SPELL, 1, 12640, 100, CLR_GREEN, 3),
+SCROLL("return",      "YOU FEEL THE AIR CHANGE AROUND YOU",           P_OCCULT_SPELL, 1, 2000, 100, CLR_CYAN, 6),
 SCROLL("secure identify",       "LARGE ALARM ALL PERSONNEL EVACUATE THE AREA IMMEDIATELY", P_DIVINATION_SPELL, 1, 500, 100, CLR_RED, 25),
 SCROLL("inventory id",              "NOW YOU SEE IT",           P_DIVINATION_SPELL, 1,  500, 100, CLR_YELLOW, 30),
 SCROLL("magic mapping",         "ELAM EBOW",            P_DIVINATION_SPELL, 1,  3300, 100, CLR_CYAN, 8),
@@ -8952,6 +8953,8 @@ SCROLL((char *)0,               "ONCE UPON A TIME THE BROTHERHOOD WAS CALLED LOS
 SCROLL((char *)0,               "LET THE SWEET WOMAN GENTLY STOMP YOU WITH HER SOFT PUMPS",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "YOU CAN PLAY AS A TRANNY IN SAINTS ROW 2",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "JOHNNY GAT SHITS ON THE HAUGHTY JUDGE BITCHS CORPSE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "OH MEIN GOTT WIR GENDERN WIR SIND SO COOL",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "FUCK PRICE IDENTIFICATION",  P_NONE,     1,   0, 100, CLR_RED, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
@@ -8965,7 +8968,7 @@ SCROLL("blank paper",           "unlabeled",            P_NONE, 0, 2800, 100, CL
 #undef SCROLL
 
 /* spell books ...
- * Amy edit: always cost 500 because fuck price identification :P */
+ * Amy edit: always cost 200 because fuck price identification :P */
 #define SPELL(name,desc,sub,prob,delay,level,mgc,dir,color,minlvl) OBJECT( \
 		OBJ(name,desc), BITS(0,0,1,0,mgc,1,0,0,0,0,dir,sub,MT_PAPER), 0, \
 		SPBOOK_CLASS, prob, delay, \
@@ -9204,6 +9207,7 @@ SPELL("command demon",    "gehenna",     P_OCCULT_SPELL, 100,  13, 6, 1, NODIR, 
 SPELL("fire golem",    "jetting",        P_OCCULT_SPELL, 100,  10, 6, 1, NODIR,     CLR_ORANGE, 30),
 SPELL("disruption shield", "disrupted",  P_OCCULT_SPELL, 100,   9, 6, 1, NODIR,     CLR_GREEN, 30),
 SPELL("tracker",    "pigtail",           P_OCCULT_SPELL, 100,  10, 6, 1, NODIR,     CLR_BRIGHT_MAGENTA, 30),
+SPELL("return",    "potatoey",           P_OCCULT_SPELL, 100,   6, 6, 1, NODIR,     CLR_YELLOW, 30),
 SPELL("contingency",    "difficult",     P_OCCULT_SPELL, 100,  40, 6, 1, NODIR,     CLR_BRIGHT_CYAN, 30),
 SPELL("inertia control",    "crashy",    P_OCCULT_SPELL, 100,  12, 6, 1, NODIR,     CLR_RED, 30),
 SPELL("one point shoot",    "magnum",    P_OCCULT_SPELL, 100,  15, 6, 1, NODIR,     CLR_GRAY, 30),
@@ -9217,7 +9221,7 @@ SPELL("possession", "possessive",        P_OCCULT_SPELL, 100,  20, 7, 1, NODIR, 
 SPELL("nexus field",    "talkative",     P_OCCULT_SPELL, 100,  17, 7, 1, NODIR,     CLR_YELLOW, 40),
 SPELL("stinking cloud",   "vaporized",   P_OCCULT_SPELL, 100,  10, 7, 1, NODIR,     CLR_BRIGHT_GREEN, 40),
 SPELL("create familiar", "glittering",   P_OCCULT_SPELL, 200,   7, 7, 1, NODIR,     CLR_WHITE, 40),
-SPELL("forbidden knowledge", "uninscribed", P_OCCULT_SPELL,   100, 1, 7, 1, NODIR,  CLR_WHITE, 40),
+SPELL("forbidden knowledge", "uninscribed", P_OCCULT_SPELL, 50, 1, 7, 1, NODIR,  CLR_WHITE, 40),
 SPELL("free action",    "serif",         P_OCCULT_SPELL, 100,  11, 7, 1, NODIR,     CLR_GRAY, 40),
 SPELL("redemption",    "sweet",          P_OCCULT_SPELL, 100,  12, 7, 1, NODIR,     CLR_MAGENTA, 40),
 SPELL("loot improvement", "bugfixed",    P_OCCULT_SPELL,  10,  20, 7, 1, NODIR,     CLR_MAGENTA, 40),
@@ -9227,7 +9231,7 @@ SPELL("particle cannon",   "commanded",  P_OCCULT_SPELL, 100,  25, 7, 1, IMMEDIA
 SPELL("clone monster",      "multiple",  P_OCCULT_SPELL,  90,  50, 8, 1, IMMEDIATE, CLR_CYAN, 50),
 SPELL("time stop",     "continued",      P_OCCULT_SPELL,  50,  20, 8, 1, NODIR,     CLR_GRAY, 50),
 SPELL("alter reality",   "mysterious",   P_OCCULT_SPELL,  50,  16, 8, 1, NODIR,     CLR_WHITE, 50),
-SPELL("terror",    "conspiratory",       P_OCCULT_SPELL, 100,  20, 8, 1, NODIR,     CLR_CYAN, 50),
+SPELL("terror",    "conspiratory",       P_OCCULT_SPELL,  50,  20, 8, 1, NODIR,     CLR_CYAN, 50),
 SPELL("trap disarming",    "listening",  P_OCCULT_SPELL, 100,  25, 8, 1, NODIR,     CLR_BRIGHT_BLUE, 50),
 SPELL("switcheroo",    "amazing",        P_OCCULT_SPELL,  50,  25, 8, 1, NODIR,     CLR_RED, 50),
 SPELL("whispers from beyond", "detestable", P_OCCULT_SPELL, 30, 25, 8, 1, NODIR,    CLR_MAGENTA, 50),

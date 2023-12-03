@@ -2224,6 +2224,10 @@ learn()
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
 			    }
+			    if (book->oartifact == ART_BACKLASHPROTECT) {
+				boostknow(i, 40000);
+				pline_The("spell has a lot of memory now.");
+			    }
 			    if (book->oartifact == ART_MULTIPLY_ME) {
 				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 				pline_The("spell memory bonus was multiplied!");
@@ -2346,6 +2350,10 @@ learn()
 				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
+			}
+			if (book->oartifact == ART_BACKLASHPROTECT) {
+				boostknow(i, 40000);
+				pline_The("spell has a lot of memory now.");
 			}
 			if (book->oartifact == ART_MULTIPLY_ME) {
 				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
@@ -5027,6 +5035,22 @@ aulechoice:
 			}
 
 		}
+
+		break;
+
+	case SPE_RETURN:
+
+		if (u.returntimer) {
+			u.returntimer = 0;
+			pline_The("air around you gradually loses power.");
+			break; /* be lenient, damage Pw only if you're not already returning --Amy */
+		}
+
+		u.uenmax -= rnd(3);
+		if (u.uenmax < 0) u.uenmax = 0;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+		setupreturn(0);
 
 		break;
 

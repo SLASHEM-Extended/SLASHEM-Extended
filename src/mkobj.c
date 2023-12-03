@@ -656,18 +656,34 @@ struct obj *box;
 
 		n = (ishaxor ? rnd(2) : rn2(2)); break;
 		break;
-	case MEDICAL_KIT:	n = (ishaxor ? 120 : 60);
-				/* Initial inventory, no empty medical kits */
-				if (moves <= 1 && !in_mklev) minn = 1;
-				break;
-	case TREASURE_CHEST:	n = (ishaxor ? rnd(100) : rnd(50)); break; /* used to be rno but the rn1 BS below... --Amy */
-	case LOOT_CHEST:	n = (ishaxor ? rnd(12) : rnd(6)); break;
+	case MEDICAL_KIT:
+		n = (ishaxor ? 120 : 60);
+		/* Initial inventory, no empty medical kits */
+		if (moves <= 1 && !in_mklev) minn = 1;
+		break;
+	case TREASURE_CHEST:
+		n = (ishaxor ? rnd(100) : rnd(50));
+		if (!rn2(5)) {
+			otmp = mksobj(SCR_RETURN, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->owt = weight(otmp);
+				(void) add_to_container(box, otmp, TRUE);
+			}
+		}
+		break; /* used to be rno but the rn1 BS below... --Amy */
+	case LOOT_CHEST:
+		n = (ishaxor ? rnd(12) : rnd(6));
+		break;
 	case ICE_BOX_OF_HOLDING:
 	case ICE_BOX_OF_WATERPROOFING:
 	case DISPERSION_BOX:
-	case ICE_BOX:		n = (ishaxor ? 40 : 20); break;
+	case ICE_BOX:
+		n = (ishaxor ? 40 : 20);
+		break;
 	case CHEST_OF_HOLDING:
-	case NANO_CHEST:	n = (ishaxor ? rnd(10) : rnd(5)); break;
+	case NANO_CHEST:
+		n = (ishaxor ? rnd(10) : rnd(5));
+		break;
 
 	case CHEST:		
 		n = (ishaxor ? rnd(10) : rnd(5));
@@ -691,21 +707,33 @@ struct obj *box;
 
 		break;
 
-	case LARGE_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
-	case LEAD_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
-	case TOP_BOX:		n = (ishaxor ? rnd(6) : rnd(3)); break;
+	case LARGE_BOX:
+		n = (ishaxor ? rnd(6) : rnd(3));
+		break;
+	case LEAD_BOX:
+		n = (ishaxor ? rnd(6) : rnd(3));
+		break;
+	case TOP_BOX:
+		n = (ishaxor ? rnd(6) : rnd(3));
+		break;
 	case SACK:
 	case HANDYBAG:
 	case OILSKIN_SACK:
 	case TITAN_SACK:
-				/* initial inventory: sack starts out empty */
-				if (moves <= 1 && !in_mklev) { n = 0; break; }
-				/*else FALLTHRU*/
-	case BAG_OF_HOLDING:	n = (ishaxor ? rnd(2) : rn2(2)); break;
+			/* initial inventory: sack starts out empty */
+		if (moves <= 1 && !in_mklev) {
+			n = 0; break;
+		}
+			/*else FALLTHRU*/
+	case BAG_OF_HOLDING:
+		n = (ishaxor ? rnd(2) : rn2(2));
+		break;
 	case LARGE_BOX_OF_DIGESTION:
 	case ICE_BOX_OF_DIGESTION:
 	case BAG_OF_DIGESTION:		/* makes sense, doesn't it ? */
-	default:		n = 0; break;
+	default:
+		n = 0;
+		break;
 	}
 
 	/* it is soooooooo stOOOOOOOOOOOpid that 9 out of 10 containers are empty even if a nonzero number for n was rolled!
