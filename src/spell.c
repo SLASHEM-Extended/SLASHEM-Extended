@@ -4067,6 +4067,7 @@ castanyway:
 		} /* else fall through... */
 	/* these spells are all duplicates of wand effects */
 	case SPE_FORCE_BOLT:
+	case SPE_MAGIC_BOLT:
 	case SPE_WATER_BOLT:
 	case SPE_MULTIBEAM:
 	case SPE_CALL_THE_ELEMENTS:
@@ -10724,6 +10725,7 @@ rerollX:
 	if (!SpellColorCyan && !(pseudo && pseudo->otyp == SPE_ADD_SPELL_MEMORY) ) {
 
 		int castboost = Race_if(PM_DUNADAN) ? DUNADAN_CAST_BOOST : CAST_BOOST;
+		int baseboost = castboost; /* because multiplicative bonuses shouldn't exponentially increase it --Amy */
 		boolean canboostmore = TRUE;
 
 		if (pseudo) {
@@ -10751,72 +10753,64 @@ rerollX:
 		if (canboostmore) {
 
 			if (irisartiboost()) {
-				castboost *= (100 + irisartiboost());
-				castboost /= 100;
+
+				castboost += (baseboost * irisartiboost() / 100);
+
 			}
 
 		/* if a spell is down to low memory, then casting it successfully saves it from being immediately forgotten */
 			if (spellknow(spell) < 5000) {
 				if (spellknow(spell) < 100) {
-					castboost *= 7;
-					castboost /= 4;
+					castboost += (baseboost * 75 / 100);
 				} else if (spellknow(spell) < 1000) {
-					castboost *= 3;
-					castboost /= 2;
+					castboost += (baseboost * 50 / 100);
 				} else if (spellknow(spell) < 2000) {
-					castboost *= 7;
-					castboost /= 5;
+					castboost += (baseboost * 40 / 100);
 				} else if (spellknow(spell) < 3000) {
-					castboost *= 13;
-					castboost /= 10;
+					castboost += (baseboost * 30 / 100);
 				} else if (spellknow(spell) < 4000) {
-					castboost *= 6;
-					castboost /= 5;
+					castboost += (baseboost * 20 / 100);
 				} else if (spellknow(spell) < 5000) {
-					castboost *= 11;
-					castboost /= 10;
+					castboost += (baseboost * 10 / 100);
 				}
 			}
+
+			if (Spellboost) castboost += (baseboost * 10 / 100);
+			if (StrongSpellboost) castboost += (baseboost * 10 / 100);
+			if (tech_inuse(T_SPELL_SPAM)) castboost += (baseboost * 10 / 100);
 
 			if (!PlayerCannotUseSkills) {
 
 				switch (P_SKILL(P_MEMORIZATION)) {
-					case P_BASIC: castboost *= 21; castboost /= 20; break;
-					case P_SKILLED: castboost *= 22; castboost /= 20; break;
-					case P_EXPERT: castboost *= 23; castboost /= 20; break;
-					case P_MASTER: castboost *= 24; castboost /= 20; break;
-					case P_GRAND_MASTER: castboost *= 25; castboost /= 20; break;
-					case P_SUPREME_MASTER: castboost *= 26; castboost /= 20; break;
+					case P_BASIC: castboost += (baseboost * 5 / 100); break;
+					case P_SKILLED: castboost += (baseboost * 10 / 100); break;
+					case P_EXPERT: castboost += (baseboost * 15 / 100); break;
+					case P_MASTER: castboost += (baseboost * 20 / 100); break;
+					case P_GRAND_MASTER: castboost += (baseboost * 25 / 100); break;
+					case P_SUPREME_MASTER: castboost += (baseboost * 30 / 100); break;
 				}
 			}
 
 			if (spellev(spell) >= 2 && !rn2(2)) {
-				castboost *= 11;
-				castboost /= 10;
+				castboost += (baseboost * 10 / 100);
 			}
 			if (spellev(spell) >= 3 && !rn2(2)) {
-				castboost *= 12;
-				castboost /= 11;
+				castboost += (baseboost * 9 / 100);
 			}
 			if (spellev(spell) >= 4 && !rn2(2)) {
-				castboost *= 13;
-				castboost /= 12;
+				castboost += (baseboost * 8 / 100);
 			}
 			if (spellev(spell) >= 5 && !rn2(2)) {
-				castboost *= 15;
-				castboost /= 14;
+				castboost += (baseboost * 7 / 100);
 			}
 			if (spellev(spell) >= 6 && !rn2(2)) {
-				castboost *= 17;
-				castboost /= 16;
+				castboost += (baseboost * 6 / 100);
 			}
 			if (spellev(spell) >= 7 && !rn2(2)) {
-				castboost *= 18;
-				castboost /= 17;
+				castboost += (baseboost * 5 / 100);
 			}
 			if (spellev(spell) >= 8 && !rn2(2)) {
-				castboost *= 20;
-				castboost /= 19;
+				castboost += (baseboost * 4 / 100);
 			}
 		}
 
