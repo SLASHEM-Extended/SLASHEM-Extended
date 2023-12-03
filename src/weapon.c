@@ -3387,6 +3387,13 @@ register struct monst *mon;
 
 	/* This case actually should never happen */
 	if (mon->weapon_check == NO_WEAPON_WANTED) return 0;
+
+	/* was probably meant to be that the caller has to make sure it's something else, but... --Amy */
+	if (mon->weapon_check == NEED_WEAPON) {
+		if (MON_WEP(mon)) return 0;
+		else mon->weapon_check = NEED_HTH_WEAPON;
+	}
+
 	switch(mon->weapon_check) {
 		case NEED_HTH_WEAPON:
 			obj = select_hwep(mon);

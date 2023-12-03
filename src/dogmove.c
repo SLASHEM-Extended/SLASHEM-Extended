@@ -520,6 +520,7 @@ int udist;
 #endif
 	    if (!rn2(udist+1) || !rn2(edog->apport))
 		if(rn2(10) < edog->apport){
+		    mon_wield_item(mtmp); /* to hopefully fix the GIGAbug where pets would drop their weapon upon save and restore --Amy */
 		    relobj(mtmp, (int)mtmp->minvis, TRUE);
 		    if(edog->apport > 1) edog->apport--;
 		    edog->dropdist = udist;		/* hpscdi!jon */
