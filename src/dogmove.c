@@ -149,7 +149,10 @@ struct obj *obj;
 	     * eat.c.  (This also applies to pets eating gold.)
 	     */
 	    mtmp->meating = obj->owt/20 + 1;
+	    /* problem discovered by potato44: very heavy items like boulders could "paralyze" the pet for 100s of turns */
+	    if (mtmp->meating > 50) mtmp->meating = 50;
 	    nutrit = 5*(objects[obj->otyp].oc_nutrition + 1);
+	    if (nutrit > 25000) nutrit = 25000; /* don't make boulders and stuff give 100k+ nutrition --Amy */
 		/* old factor restored by Amy; the +1 is so that zero-weight objects don't give zero nutrition */
 	}
 	use_skill(P_PETKEEPING,1);

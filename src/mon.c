@@ -2607,6 +2607,7 @@ meatmetal(mtmp)
 		    u.cnd_moneatmetal++;
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
+		    if (mtmp->data->msound == MS_METALMAFIA && mtmp->meating > 1) mtmp->meating = 1; /* not really eating it */
 		    /* Heal up to the object's weight in hp */
 		    if (mtmp->mhp < mtmp->mhpmax) {
 			mtmp->mhp += objects[otmp->otyp].oc_weight;
