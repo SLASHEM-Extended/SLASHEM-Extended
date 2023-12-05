@@ -879,22 +879,21 @@ register const char *s;
 #else
 	for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
 #endif
-		if (timebasedlowerchance()) {
+		if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
 			mazexy_all(&mm);
 			(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
 
-	if (moves == 1 && !rn2(2)) { /* some earlygame help... --Amy */
+	if (moves == 1) { /* some earlygame help... --Amy */
 #ifdef BIGSLEX
 		for(x = (rn2(4) ? rn1(12,24) : rn1(24, 48)); x; x--) {
 #else
 		for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
 #endif
-			if (timebasedlowerchance()) {
-				mazexy_all(&mm);
-				(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
-			}
+			/* no timebasedlowerchance, this is not a mistake */
+			mazexy_all(&mm);
+			(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}
 	}
 
@@ -970,7 +969,7 @@ register const char *s;
 #else
 	for(x = (rn2(4) ? rn1(8,16) : rn1(16, 32)); x; x--) {
 #endif
-		if (timebasedlowerchance()) {
+		if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
 			mazexy_all(&mm);
 			(void) mkobj_at(!rn2(25) ? GEM_CLASS : 0, mm.x, mm.y, TRUE, FALSE);
 		}

@@ -4177,7 +4177,7 @@ schar ftyp, btyp;
 
 			if(!rn2(ishaxor ? 38 : 75))
 				(void) mksobj_at(BOULDER, xx, yy, TRUE, FALSE, FALSE);
-			else if(!rn2(ishaxor ? 20 : 40) && timebasedlowerchance())
+			else if(!rn2(ishaxor ? 20 : 40) && (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance() ) )
 				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
 			else if(moves == 1 && !rn2(60)) /* some earlygame help... --Amy */
 				(void) mkobj_at(0, xx, yy, TRUE, FALSE);
@@ -6619,22 +6619,21 @@ dlb *fd;
 #else
 	    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
 #endif
-		if (timebasedlowerchance()) {
+		if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
 		    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}
 	    }
 
-	if (moves == 1 && !rn2(2)) { /* some earlygame help... --Amy */
+	if (moves == 1) { /* some earlygame help... --Amy */
 #ifdef BIGSLEX
 	    for(x = rnd((int) ((rn2(4) ? 30 : 60) * mapfact) / 100); x; x--) {
 #else
 	    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
 #endif
-		if (timebasedlowerchance()) {
-		    maze1xy(&mm, DRY);
-		    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
-		}
+		/* not affected by timebasedlowerchance() */
+		maze1xy(&mm, DRY);
+		(void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 	    }
 	}
 
@@ -6693,7 +6692,7 @@ dlb *fd;
 #else
 	    for(x = rnd((int) ((rn2(4) ? 20 : 40) * mapfact) / 100); x; x--) {
 #endif
-		if (timebasedlowerchance()) {
+		if (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) {
 		    maze1xy(&mm, DRY);
 		    (void) mkobj_at(!rn2(25) ? GEM_CLASS : RANDOM_CLASS, mm.x, mm.y, TRUE, FALSE);
 		}

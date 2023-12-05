@@ -1386,7 +1386,7 @@ int trap_type;
 
 		    if (!level.flags.noteleport && !Race_if(PM_STABILISATOR))
 			(void) mksobj_at(SCR_TELEPORTATION, xx, yy+dy, TRUE, FALSE, FALSE);
-		    if (!rn2(3) && timebasedlowerchance()) (void) mkobj_at(0, xx, yy+dy, TRUE, FALSE);
+		    if (!rn2(3) && (timebasedlowerchance() || timebasedlowerchance()) ) (void) mkobj_at(0, xx, yy+dy, TRUE, FALSE);
 		}
 	    }
 	    return;
@@ -12588,7 +12588,7 @@ skip1:
 #endif
 
 /* STEPHEN WHITE'S NEW CODE */
-		if(!rn2(3) && timebasedlowerchance()) {
+		if(!rn2(3) && (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) ) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -12600,7 +12600,7 @@ skip1:
 		    }
 		}
 
-		if(ishaxor && timebasedlowerchance() && !rn2(3)) {
+		if(ishaxor && (timebasedlowerchance() || timebasedlowerchance() || timebasedlowerchance()) && !rn2(3)) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -12613,7 +12613,7 @@ skip1:
 		}
 
 		/* some earlygame help... --Amy */
-		if (moves == 1 && timebasedlowerchance() && !rn2(2)) {
+		if (moves == 1 && !rn2(2)) {
 		    (void) mkobj_at(0, somex(croom), somey(croom), TRUE, FALSE);
 		    tryct = 0;
 		    while(!rn2(3)) {
@@ -13464,7 +13464,7 @@ mineralize()
 			    }
 		    }
 		}
-		if ((rn2(1500) < objprob) && !rn2(10) && (depth(&u.uz) > rn2(100)) && timebasedlowerchance()) {
+		if ((rn2(1500) < objprob) && !rn2(10) && (depth(&u.uz) > rn2(100)) && (timebasedlowerchance() || timebasedlowerchance()) ) {
 		    for (cnt = rnd(2 + dunlev(&u.uz) / 3); cnt > 0; cnt--)
 			if ((otmp = mkobj(RANDOM_CLASS, FALSE, FALSE)) != 0) {
 			    if (otmp->otyp == ROCK) {

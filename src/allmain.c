@@ -20219,8 +20219,8 @@ timebasedlowerchance()
 	/* if you're in a lategame dungeon, or doubly so if you've completed the invocation, we assume that you've already
 	 * obtained 2000 of everything so you probably don't need that much extra loot :-P --Amy */
 
-	if (u.uevent.invoked && (rnd(10) > 3)) return FALSE;
-	if (!(u.uevent.invoked) && !(flags.wonderland && !(u.wonderlandescape)) && In_lategame(&u.uz) && !rn2(5)) return FALSE;
+	if (u.uevent.invoked && !rn2(3) ) return FALSE;
+	if (!(u.uevent.invoked) && !(flags.wonderland && !(u.wonderlandescape)) && In_lategame(&u.uz) && !rn2(7)) return FALSE;
 
 	int chance = isdroughter ? 115 : 133;
 	chance -= (moves * 100 / u.monstertimefinish);
@@ -20332,7 +20332,7 @@ timebasedlowerchance()
 		}
 	}
 
-	if (In_quest(&u.uz)) {
+	if (In_quest(&u.uz) && !rn2(2)) {
 		if (isdroughter) {
 			chance /= 2;
 		} else {
@@ -20340,7 +20340,7 @@ timebasedlowerchance()
 		}
 	}
 
-	if ((In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) && !rn2(2)) {
+	if ((In_sheol(&u.uz) || In_angmar(&u.uz) || In_swimmingpool(&u.uz) || In_hellbathroom(&u.uz) || In_gehennom(&u.uz) || In_frnkn(&u.uz)) && !rn2(3)) {
 		if (isdroughter) {
 			chance /= rnd(2);
 		} else {
@@ -20349,7 +20349,7 @@ timebasedlowerchance()
 		}
 	}
 
-	if (In_yendorian(&u.uz) && !(flags.wonderland && !(u.wonderlandescape)) && !rn2(2) ) {
+	if (In_yendorian(&u.uz) && !(flags.wonderland && !(u.wonderlandescape)) && !rn2(3) ) {
 		if (isdroughter) {
 			chance /= rnd(3);
 		} else {
@@ -20358,7 +20358,7 @@ timebasedlowerchance()
 		}
 	}
 
-	if ((In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) && !rn2(2) ) {
+	if ((In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz)) && !rn2(4) ) {
 		if (isdroughter) {
 			chance /= rnd(3);
 		} else {
@@ -20367,7 +20367,16 @@ timebasedlowerchance()
 		}
 	}
 
-	if (In_rivalquest(&u.uz) || In_subquest(&u.uz) || In_bellcaves(&u.uz)) {
+	if ((In_voiddungeon(&u.uz) || In_netherrealm(&u.uz)) && !rn2(2) ) {
+		if (isdroughter) {
+			chance /= rnd(3);
+		} else {
+			chance *= 3;
+			chance /= rn1(3,3);
+		}
+	}
+
+	if ((In_rivalquest(&u.uz) || In_subquest(&u.uz) || In_bellcaves(&u.uz)) && rn2(3)) {
 		if (isdroughter) {
 			chance /= 5;
 		} else {
@@ -20382,9 +20391,8 @@ timebasedlowerchance()
 	} else {
 		if (chance < 10) chance = 10; /* always at least a 10% chance of getting it --Amy */
 	}
-	/* edit: actually 9%, i.e. the rnd below is not a typo */
 
-	if (chance > rnd(100)) return(TRUE); /* the effect will happen despite the lower chance */
+	if (chance > rn2(100)) return(TRUE); /* the effect will happen despite the lower chance */
 	else return(FALSE);
 }
 

@@ -25580,6 +25580,7 @@ int cnt;
 struct trap *ttmp;
 {
 	struct obj *otmp;
+	int cc, dd;
 
 	if (otyp == LAND_MINE || otyp == BEARTRAP) otmp = mksobj(otyp, TRUE, 2, FALSE);
 	else otmp = mksobj(otyp, TRUE, FALSE, FALSE);
@@ -25603,8 +25604,10 @@ struct trap *ttmp;
 		}
 	/* careful: otmp might have been freed */
 	}
-	newsym(ttmp->tx, ttmp->ty);
+	cc = ttmp->tx;
+	dd = ttmp->ty;
 	deltrap(ttmp); /* ttmp is also freed at this point */
+	newsym(cc, dd);
 }
 
 /* while attempting to disarm an adjacent trap, we've fallen into it */
