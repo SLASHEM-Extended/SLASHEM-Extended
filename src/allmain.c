@@ -13989,8 +13989,7 @@ pastds2:
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			    }
 			} else if (Regeneration ||
-			     (efflev <= 9 &&
-			      !(moves % ((MAXULEV+12) / ( (GushLevel / 2) + 5) + 1)))) {
+			     (!(moves % (42 / (GushLevel / 2) + 6))) ) {
 			    flags.botl = 1;
 			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp++;
@@ -14148,8 +14147,8 @@ pastds2:
 				((Energy_regeneration && !rn2(StrongEnergy_regeneration ? 2 : 3)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
-				(!(moves % ((MAXULEV - (GushLevel / 2)) *
-				(Role_if(PM_WIZARD) ? 3 : 4) / 6)))))) {
+				(!(moves % ((25 - (GushLevel / 2)) *
+				(Role_if(PM_WIZARD) ? 3 : rn1(2, 3)) / 6)))))) {
 			u.uen += rn1((int)(ACURR(A_WIS) + ACURR(A_INT)) / 15 + 1,1);
 			if (Race_if(PM_PIERCER)) u.uen += rn1((int)(ACURR(A_WIS) + ACURR(A_INT)) / 15 + 1,1);
 
@@ -14204,7 +14203,7 @@ pastds2:
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(70 - (GushLevel * 2)) ) {
+			if (!Burned && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(40 - GushLevel) ) {
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
