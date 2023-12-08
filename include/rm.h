@@ -1016,49 +1016,60 @@
 
 #define S_fuck_over_trap	798
 
-#define S_timerun_trap		799
+#define S_dagger_trap		799
+#define S_razor_trap		800
+#define S_phosgene_trap		801
+#define S_chloroform_trap		802
+#define S_corrosion_trap		803
+#define S_flame_trap		804
+#define S_wither_trap		805
+#define S_phaseport_trap		806
+#define S_phasebeam_trap		807
+#define S_vulnerate_trap		808
+
+#define S_timerun_trap		809
 
 /* end traps, begin special effects */
 
-#define S_vbeam		800	/* The 4 zap beam symbols.  Do NOT separate. */
-#define S_hbeam		801	/* To change order or add, see function     */
-#define S_lslant	802	/* zapdir_to_glyph() in display.c.	    */
-#define S_rslant	803
-#define S_digbeam	804	/* dig beam symbol */
-#define S_flashbeam	805	/* camera flash symbol */
-#define S_boomleft	806	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	807	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		808	/* 4 magic shield glyphs */
-#define S_ss2		809
-#define S_ss3		810
-#define S_ss4		811
+#define S_vbeam		810	/* The 4 zap beam symbols.  Do NOT separate. */
+#define S_hbeam		811	/* To change order or add, see function     */
+#define S_lslant	812	/* zapdir_to_glyph() in display.c.	    */
+#define S_rslant	813
+#define S_digbeam	814	/* dig beam symbol */
+#define S_flashbeam	815	/* camera flash symbol */
+#define S_boomleft	816	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	817	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		818	/* 4 magic shield glyphs */
+#define S_ss2		819
+#define S_ss3		820
+#define S_ss4		821
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		812	/* swallow top left [1]			*/
-#define S_sw_tc		813	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		814	/* swallow top right [3]		*/
-#define S_sw_ml		815	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		816	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		817	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		818	/* swallow bottom center [8]		*/
-#define S_sw_br		819	/* swallow bottom right [9]		*/
+#define S_sw_tl		822	/* swallow top left [1]			*/
+#define S_sw_tc		823	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		824	/* swallow top right [3]		*/
+#define S_sw_ml		825	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		826	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		827	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		828	/* swallow bottom center [8]		*/
+#define S_sw_br		829	/* swallow bottom right [9]		*/
 
-#define S_explode1	820	/* explosion top left			*/
-#define S_explode2	821	/* explosion top center			*/
-#define S_explode3	822	/* explosion top right		 Ex.	*/
-#define S_explode4	823	/* explosion middle left		*/
-#define S_explode5	824	/* explosion middle center	 /-\	*/
-#define S_explode6	825	/* explosion middle right	 |@|	*/
-#define S_explode7	826	/* explosion bottom left	 \-/	*/
-#define S_explode8	827	/* explosion bottom center		*/
-#define S_explode9	828	/* explosion bottom right		*/
+#define S_explode1	830	/* explosion top left			*/
+#define S_explode2	831	/* explosion top center			*/
+#define S_explode3	832	/* explosion top right		 Ex.	*/
+#define S_explode4	833	/* explosion middle left		*/
+#define S_explode5	834	/* explosion middle center	 /-\	*/
+#define S_explode6	835	/* explosion middle right	 |@|	*/
+#define S_explode7	836	/* explosion bottom left	 \-/	*/
+#define S_explode8	837	/* explosion bottom center		*/
+#define S_explode9	838	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	829 	/* maximum number of mapped characters */
+#define MAXPCHARS	839 	/* maximum number of mapped characters */
 #define MAXDCHARS	75	/* maximum of mapped dungeon characters */
-#define MAXTCHARS	725	/* maximum of mapped trap characters */
+#define MAXTCHARS	735	/* maximum of mapped trap characters */
 #define MAXECHARS       29      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 

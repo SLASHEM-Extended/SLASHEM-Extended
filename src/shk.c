@@ -3955,7 +3955,16 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != AIRSTRIKE_TRAP
 				&& ttmp->ttyp != DYNAMITE_TRAP
 				&& ttmp->ttyp != MALEVOLENCE_TRAP
+				&& ttmp->ttyp != CORROSION_TRAP
+				&& ttmp->ttyp != FLAME_TRAP
 				&& ttmp->ttyp != LEAFLET_TRAP
+				&& ttmp->ttyp != RAZOR_TRAP
+				&& ttmp->ttyp != PHOSGENE_TRAP
+				&& ttmp->ttyp != CHLOROFORM_TRAP
+				&& ttmp->ttyp != WITHER_TRAP
+				&& ttmp->ttyp != PHASEPORTER
+				&& ttmp->ttyp != PHASE_BEAMER
+				&& ttmp->ttyp != VULNERATE_TRAP
 				&& ttmp->ttyp != TENTADEEP_TRAP
 				&& ttmp->ttyp != STATHALF_TRAP
 				&& ttmp->ttyp != CUTSTAT_TRAP

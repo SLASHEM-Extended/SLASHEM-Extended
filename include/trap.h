@@ -816,12 +816,23 @@ extern struct trap *ftrap;
 #define BURDEN_TRAP 718
 #define MAGIC_VACUUM_TRAP 719
 
-#define TANJA_TRAP	720
-#define SONJA_TRAP	721
+#define TANJA_TRAP 720
+#define SONJA_TRAP 721
 #define RHEA_TRAP	722
 #define LARA_TRAP	723
 
 #define FUCK_OVER_TRAP 724
+
+#define DAGGER_TRAP 725
+#define RAZOR_TRAP 726
+#define PHOSGENE_TRAP 727
+#define CHLOROFORM_TRAP 728
+#define CORROSION_TRAP 729
+#define FLAME_TRAP 730
+#define WITHER_TRAP 731
+#define PHASEPORTER 732
+#define PHASE_BEAMER 733
+#define VULNERATE_TRAP 734
 
 /* todo area
 
@@ -920,8 +931,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	725
+#define TIMERUN_TRAP	735
 
-#define TRAPNUM 726
+#define TRAPNUM 736
 
 #endif /* TRAP_H */

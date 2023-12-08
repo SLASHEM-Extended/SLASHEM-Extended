@@ -5379,7 +5379,7 @@ greasingdone:
 
 		}
 
-		if (FemtrapActiveMaurah && !rn2(100)) {
+		if (FemtrapActiveMaurah && !rn2(500)) {
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
 			u.cnd_fartingcount++;
@@ -11174,6 +11174,8 @@ newbossB:
 					if (hussytraptype == BRANCH_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
 					if (hussytraptype == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban_real(&u.uz) ) ) hussytraptype = ANTI_MAGIC;
 					if (hussytraptype == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) hussytraptype = SQKY_BOARD;
+					if (hussytraptype == PHASEPORTER && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) hussytraptype = SQKY_BOARD;
+					if (hussytraptype == PHASE_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) hussytraptype = SQKY_BOARD;
 					if (hussytraptype == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) hussytraptype = SQKY_BOARD;
 					if ((hussytraptype == TRAPDOOR || hussytraptype == HOLE || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) hussytraptype = ROCKTRAP;
 					if (hussytraptype == ACTIVE_SUPERSCROLLER_TRAP) hussytraptype = SUPERSCROLLER_TRAP;

@@ -3803,6 +3803,15 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != DYNAMITE_TRAP
 				&& ttmp->ttyp != MALEVOLENCE_TRAP
 				&& ttmp->ttyp != LEAFLET_TRAP
+				&& ttmp->ttyp != CORROSION_TRAP
+				&& ttmp->ttyp != FLAME_TRAP
+				&& ttmp->ttyp != RAZOR_TRAP
+				&& ttmp->ttyp != PHOSGENE_TRAP
+				&& ttmp->ttyp != CHLOROFORM_TRAP
+				&& ttmp->ttyp != WITHER_TRAP
+				&& ttmp->ttyp != PHASEPORTER
+				&& ttmp->ttyp != PHASE_BEAMER
+				&& ttmp->ttyp != VULNERATE_TRAP
 				&& ttmp->ttyp != TENTADEEP_TRAP
 				&& ttmp->ttyp != STATHALF_TRAP
 				&& ttmp->ttyp != CUTSTAT_TRAP
@@ -5250,6 +5259,8 @@ register struct monst *mtmp;
 					if (rtrap == BRANCH_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) rtrap = ANTI_MAGIC;
 					if (rtrap == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) rtrap = SQKY_BOARD;
+					if (rtrap == PHASEPORTER && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) rtrap = SQKY_BOARD;
+					if (rtrap == PHASE_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) rtrap = SQKY_BOARD;
 					if (rtrap == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) rtrap = SQKY_BOARD;
 					if ((rtrap == TRAPDOOR || rtrap == HOLE || rtrap == SHAFT_TRAP || rtrap == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) rtrap = ROCKTRAP;
 					if (rtrap == ACTIVE_SUPERSCROLLER_TRAP) rtrap = SUPERSCROLLER_TRAP;

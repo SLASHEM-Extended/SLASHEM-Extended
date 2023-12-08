@@ -2041,6 +2041,8 @@ dospinweb()
 		case TELEP_TRAP:
 		case BEAMER_TRAP:
 		case LEVEL_TELEP:
+		case PHASEPORTER:
+		case PHASE_BEAMER:
 		case LEVEL_BEAMER:
 		case NEXUS_TRAP:
 		case MAGIC_PORTAL:
@@ -2472,6 +2474,14 @@ dospinweb()
 		case RARE_SPAWN_TRAP:
 		case YOU_ARE_AN_IDIOT_TRAP:
 		case NASTYCURSE_TRAP:
+		case DAGGER_TRAP:
+		case RAZOR_TRAP:
+		case PHOSGENE_TRAP:
+		case CHLOROFORM_TRAP:
+		case CORROSION_TRAP:
+		case FLAME_TRAP:
+		case WITHER_TRAP:
+		case VULNERATE_TRAP:
 
 		case INSTANASTY_TRAP:
 		case SKILL_POINT_LOSS_TRAP:

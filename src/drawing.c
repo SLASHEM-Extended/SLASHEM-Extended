@@ -1058,6 +1058,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 
 	{'^', "fuck over trap", C(CLR_YELLOW)},	/* trap */
 
+	{'^', "dagger trap", C(CLR_CYAN)},	/* trap */
+	{'^', "razor trap", C(CLR_RED)},	/* trap */
+	{'^', "phosgene trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "chloroform trap", C(CLR_CYAN)},	/* trap */
+	{'^', "corrosion trap", C(CLR_GREEN)},	/* trap */
+	{'^', "flame trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "wither trap", C(CLR_WHITE)},	/* trap */
+	{'^', "phaseporter", C(CLR_MAGENTA)},	/* trap */
+	{'^', "phase beamer", C(CLR_MAGENTA)},	/* trap */
+	{'^', "vulnerate trap", C(CLR_YELLOW)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1943,6 +1954,17 @@ static uchar ibm_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_fuck_over_trap),
 
+	g_FILLER(S_dagger_trap),
+	g_FILLER(S_razor_trap),
+	g_FILLER(S_phosgene_trap),
+	g_FILLER(S_chloroform_trap),
+	g_FILLER(S_corrosion_trap),
+	g_FILLER(S_flame_trap),
+	g_FILLER(S_wither_trap),
+	g_FILLER(S_phaseport_trap),
+	g_FILLER(S_phasebeam_trap),
+	g_FILLER(S_vulnerate_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2816,6 +2838,17 @@ static uchar dec_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_fuck_over_trap),
 
+	g_FILLER(S_dagger_trap),
+	g_FILLER(S_razor_trap),
+	g_FILLER(S_phosgene_trap),
+	g_FILLER(S_chloroform_trap),
+	g_FILLER(S_corrosion_trap),
+	g_FILLER(S_flame_trap),
+	g_FILLER(S_wither_trap),
+	g_FILLER(S_phaseport_trap),
+	g_FILLER(S_phasebeam_trap),
+	g_FILLER(S_vulnerate_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3685,6 +3718,17 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_lara_trap),
 
 	g_FILLER(S_fuck_over_trap),
+
+	g_FILLER(S_dagger_trap),
+	g_FILLER(S_razor_trap),
+	g_FILLER(S_phosgene_trap),
+	g_FILLER(S_chloroform_trap),
+	g_FILLER(S_corrosion_trap),
+	g_FILLER(S_flame_trap),
+	g_FILLER(S_wither_trap),
+	g_FILLER(S_phaseport_trap),
+	g_FILLER(S_phasebeam_trap),
+	g_FILLER(S_vulnerate_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4556,6 +4600,17 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_lara_trap),
 
 	g_FILLER(S_fuck_over_trap),
+
+	g_FILLER(S_dagger_trap),
+	g_FILLER(S_razor_trap),
+	g_FILLER(S_phosgene_trap),
+	g_FILLER(S_chloroform_trap),
+	g_FILLER(S_corrosion_trap),
+	g_FILLER(S_flame_trap),
+	g_FILLER(S_wither_trap),
+	g_FILLER(S_phaseport_trap),
+	g_FILLER(S_phasebeam_trap),
+	g_FILLER(S_vulnerate_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5637,7 +5692,18 @@ boolean is_rlevel;
 
 	    showsyms[S_fuck_over_trap] = 0x04;
 
-	    showsyms[S_timerun_trap] = 0x04;
+	    showsyms[S_dagger_trap] = 0x04;
+	    showsyms[S_razor_trap] = 0x04;
+	    showsyms[S_phosgene_trap] = 0x04;
+	    showsyms[S_chloroform_trap] = 0x04;
+	    showsyms[S_corrosion_trap] = 0x04;
+	    showsyms[S_flame_trap] = 0x04;
+	    showsyms[S_wither_trap] = 0x04;
+	    showsyms[S_phaseport_trap] = 0x04;
+	    showsyms[S_phasebeam_trap] = 0x04;
+	    showsyms[S_vulnerate_trap] = 0x04;
+
+ 	    showsyms[S_timerun_trap] = 0x04;
 
 	    } /* epyx mode */
 

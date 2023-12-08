@@ -646,6 +646,8 @@ rndtrap()
 			if (tndx == SLINGSHOT_TRAP) ct += 2;
 			if (tndx == WALL_TRAP) ct += 1;
 			if (tndx == MACE_TRAP) ct += 1;
+			if (tndx == DAGGER_TRAP) ct += 4;
+			if (tndx == PHASEPORTER) ct += 1;
 
 			rndtrap_state.choice_count += ct;
 			rndtrap_state.tchoices[tndx] = ct;
@@ -712,6 +714,12 @@ selecttrap:
 			if (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) )  goto selecttrap;
 			break;
 	     case TELEP_TRAP:
+			if (level.flags.noteleport || Race_if(PM_STABILISATOR)) goto selecttrap;
+			break;
+	     case PHASEPORTER:
+			if (level.flags.noteleport || Race_if(PM_STABILISATOR)) goto selecttrap;
+			break;
+	     case PHASE_BEAMER:
 			if (level.flags.noteleport || Race_if(PM_STABILISATOR)) goto selecttrap;
 			break;
 	     case BEAMER_TRAP:
@@ -2174,6 +2182,9 @@ selecttrap:
 	    case CANCELLATION_TRAP:
 		if (rn2(evilfriday ? 5 : 25) && !NastyTrapNation) goto selecttrap;
 			break;
+	    case WITHER_TRAP:
+		if (rn2(evilfriday ? 5 : 20) && !NastyTrapNation) goto selecttrap;
+			break;
 	    case HOSTILITY_TRAP:
 		if (rn2(evilfriday ? 2 : 4) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -2185,6 +2196,15 @@ selecttrap:
 			break;
 	    case GUILLOTINE_TRAP:
 		if (rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap;
+			break;
+	    case PHOSGENE_TRAP:
+		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+			break;
+	    case VULNERATE_TRAP:
+		if (rn2(evilfriday ? 2 : 3) && !NastyTrapNation) goto selecttrap;
+			break;
+	    case CHLOROFORM_TRAP:
+		if (rn2(evilfriday ? 2 : 4) && !NastyTrapNation) goto selecttrap;
 			break;
 	    case BISECTION_TRAP:
 		if (rn2(evilfriday ? 10 : 200) && !NastyTrapNation) goto selecttrap;

@@ -40,6 +40,7 @@ STATIC_DCL int disarm_spined_ball(struct trap *);
 STATIC_DCL int disarm_pendulum(struct trap *);
 STATIC_DCL int disarm_difficult_trap(struct trap *);
 STATIC_DCL int disarm_mace_trap(struct trap *);
+STATIC_DCL int disarm_dagger_trap(struct trap *);
 STATIC_DCL int disarm_fire_trap(struct trap *);
 STATIC_DCL int disarm_landmine(struct trap *);
 STATIC_DCL int disarm_squeaky_board(struct trap *);
@@ -2309,6 +2310,8 @@ boolean givehp;
 		if (typ == BRANCH_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
 		if (typ == NEXUS_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR) || Is_knox(&u.uz) || Is_blackmarket(&u.uz) || Is_aligned_quest(&u.uz) || In_endgame(&u.uz) || In_sokoban(&u.uz) ) ) typ = ANTI_MAGIC;
 		if (typ == TELEP_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
+		if (typ == PHASEPORTER && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
+		if (typ == PHASE_BEAMER && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
 		if (typ == BEAMER_TRAP && (level.flags.noteleport || Race_if(PM_STABILISATOR)) ) typ = SQKY_BOARD;
 		if ((typ == TRAPDOOR || typ == HOLE || typ == SHAFT_TRAP || typ == CURRENT_SHAFT) && !Can_fall_thru(&u.uz) && !Is_stronghold(&u.uz) ) typ = ROCKTRAP;
 		if (typ == ACTIVE_SUPERSCROLLER_TRAP) typ = SUPERSCROLLER_TRAP;
@@ -3471,6 +3474,8 @@ int traptype;
 		case SLINGSHOT_TRAP:
 		case WALL_TRAP:
 		case MACE_TRAP:
+		case DAGGER_TRAP:
+		case PHASEPORTER:
 
 			return TRUE;
 
@@ -4821,6 +4826,34 @@ dothetrap:
 		set_wounded_legs(RIGHT_SIDE, HWounded_legs + rnz(50));
 		break;
 
+	    case CHLOROFORM_TRAP:
+		seetrap(trap);
+
+		if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+			pline("The gas asphyxiates you!");
+			losehp(rnd(u.ulevel * 3), "suffocating in a gas trap", KILLED_BY);
+		}
+
+		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(2) ) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+
+		if (RngeGasFiltering && !rn2(2)) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+
+		if((Sleep_resistance && rn2(StrongSleep_resistance ? 5 : 3)) || breathless(youmonst.data)) {
+		    You("are enveloped in a cloud of gas!");
+		    break;
+		}
+		pline("A cloud of gas puts you to sleep!");
+		fall_asleep(-rnd(45 + rnd((monster_difficulty() / 2) + 1) ), TRUE);
+		(void) steedintrap(trap, (struct obj *)0);
+
+		break;
+
 	    case SLP_GAS_TRAP:
 		seetrap(trap);
 
@@ -5018,6 +5051,126 @@ dothetrap:
 
 		break;
 
+	    case CORROSION_TRAP:
+
+		seetrap(trap);
+		pline("A gush of acid hits you!");
+
+		switch (rn2(5)) {
+		    case 0:
+			pline("The acid lands on your %s!", body_part(HEAD));
+			(void) rust_dmg(uarmh, "helmet", 3, TRUE, &youmonst);
+			break;
+		    case 1:
+			pline("The acid lands on your left %s!", body_part(ARM));
+			if (rust_dmg(uarms, "shield", 3, TRUE, &youmonst))
+			    break;
+			if (u.twoweap || (uwep && bimanual(uwep))) {
+			    otmp = u.twoweap ? uswapwep : uwep;
+			    if (otmp && !snuff_lit(otmp))
+				(void) rust_dmg(otmp, "weapon", 3, TRUE, &youmonst);
+			}
+glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 3, TRUE, &youmonst);
+			/* Not "metal gauntlets" since it gets called
+			 * even if it's leather for the message
+			 */
+			break;
+		    case 2:
+			pline("The acid lands on your right %s!", body_part(ARM));
+			if (uwep && !snuff_lit(uwep))
+				(void) rust_dmg(uwep, "weapon", 3, TRUE, &youmonst);
+			goto glovecheck;
+		    default:
+			if (uarmc)
+			    (void) rust_dmg(uarmc, cloak_simple_name(uarmc),
+						3, TRUE, &youmonst);
+			else if (uarm)
+			    (void) rust_dmg(uarm, "armor", 3, TRUE, &youmonst);
+			else if (uarmu)
+			    (void) rust_dmg(uarmu, "shirt", 3, TRUE, &youmonst);
+		}
+		update_inventory();
+
+		break;
+
+	    case FLAME_TRAP:
+
+		seetrap(trap);
+		You("are engulfed in flames!");
+
+		switch (rn2(5)) {
+		    case 0:
+			(void) rust_dmg(uarmh, "helmet", 0, TRUE, &youmonst);
+			break;
+		    case 1:
+			if (rust_dmg(uarms, "shield", 0, TRUE, &youmonst))
+			    break;
+			if (u.twoweap || (uwep && bimanual(uwep))) {
+			    otmp = u.twoweap ? uswapwep : uwep;
+			    if (otmp && !snuff_lit(otmp))
+				(void) rust_dmg(otmp, "weapon", 0, TRUE, &youmonst);
+			}
+glovecheckX:		(void) rust_dmg(uarmg, "gauntlets", 0, TRUE, &youmonst);
+			/* Not "metal gauntlets" since it gets called
+			 * even if it's leather for the message
+			 */
+			break;
+		    case 2:
+			if (uwep && !snuff_lit(uwep))
+				(void) rust_dmg(uwep, "weapon", 0, TRUE, &youmonst);
+			goto glovecheckX;
+		    default:
+			if (uarmc)
+			    (void) rust_dmg(uarmc, cloak_simple_name(uarmc),
+						0, TRUE, &youmonst);
+			else if (uarm)
+			    (void) rust_dmg(uarm, "armor", 0, TRUE, &youmonst);
+			else if (uarmu)
+			    (void) rust_dmg(uarmu, "shirt", 0, TRUE, &youmonst);
+		}
+		update_inventory();
+
+		break;
+
+	    case WITHER_TRAP:
+
+		seetrap(trap);
+		You("are covered with antimatter!");
+
+		switch (rn2(5)) {
+		    case 0:
+			(void) wither_dmg(uarmh, "helmet", rn2(4), TRUE, &youmonst);
+			break;
+		    case 1:
+			if (wither_dmg(uarms, "shield", rn2(4), TRUE, &youmonst))
+			    break;
+			if (u.twoweap || (uwep && bimanual(uwep))) {
+			    otmp = u.twoweap ? uswapwep : uwep;
+			    if (otmp && !snuff_lit(otmp))
+				(void) wither_dmg(otmp, "weapon", rn2(4), TRUE, &youmonst);
+			}
+glovecheckY:		(void) wither_dmg(uarmg, "gauntlets", rn2(4), TRUE, &youmonst);
+			/* Not "metal gauntlets" since it gets called
+			 * even if it's leather for the message
+			 */
+			break;
+		    case 2:
+			if (uwep && !snuff_lit(uwep))
+				(void) wither_dmg(uwep, "weapon", rn2(4), TRUE, &youmonst);
+			goto glovecheckY;
+		    default:
+			if (uarmc)
+			    (void) wither_dmg(uarmc, cloak_simple_name(uarmc),
+						0, TRUE, &youmonst);
+			else if (uarm)
+			    (void) wither_dmg(uarm, "armor", rn2(4), TRUE, &youmonst);
+			else if (uarmu)
+			    (void) wither_dmg(uarmu, "shirt", rn2(4), TRUE, &youmonst);
+		}
+		update_inventory();
+
+		break;
+
 	    case RUST_TRAP:
 		seetrap(trap);
 		if (u.umonnum == PM_IRON_GOLEM) {
@@ -5065,7 +5218,7 @@ dothetrap:
 			    if (otmp && !snuff_lit(otmp))
 				erode_obj(otmp, FALSE, TRUE);
 			}
-glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
+glovecheckZ:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 			/* Not "metal gauntlets" since it gets called
 			 * even if it's leather for the message
 			 */
@@ -5075,7 +5228,7 @@ glovecheck:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 				    body_part(ARM));
 			if (uwep && !snuff_lit(uwep))
 			    erode_obj(uwep, FALSE, TRUE);
-			goto glovecheck;
+			goto glovecheckZ;
 		    default:
 			pline("%s you!", A_gush_of_water_hits);
 			for (otmp=invent; otmp; otmp = otmp->nobj)
@@ -9151,6 +9304,20 @@ newbossPENT:
 		verbalize("Ha ha ha ha! Wa ha ha ha! You are so doomed!");
 
 		}
+
+		break;
+
+	    case PHASE_BEAMER:
+		seetrap(trap);
+		safe_teledsPD(0);
+		You("triggered a phase teleport trap!");
+
+		break;
+
+	    case PHASEPORTER:
+		seetrap(trap);
+		phase_door(0);
+		You("triggered a phase teleport trap!");
 
 		break;
 
@@ -13492,6 +13659,33 @@ madnesseffect:
 
 			break;
 
+		case DAGGER_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A dagger swings through your body.");
+			} else {
+				int projectiledamage = rnd(4)+ rnd( (monster_difficulty() / 5) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a dagger!");
+				losehp(projectiledamage,"dagger trap",KILLED_BY_AN);
+			}
+
+			break;
+
 		case WALL_TRAP:
 			You("stepped on a trigger!");
 
@@ -15090,6 +15284,26 @@ callingoutdone:
 
 			incr_itimeout(&HFuckOverEffect, rnd(10) + rnd(monster_difficulty() * 200) );
 			You("are gonna get fucked over!");
+
+			break;
+
+		case VULNERATE_TRAP:
+
+			pline("Uh-oh, should have watched your step...");
+			seetrap(trap);
+
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+			deacrandomintrinsic(rnz( (monster_difficulty() * 10) + 1));
+
+			break;
+
+		case RAZOR_TRAP:
+			seetrap(trap);
+			pline("A razor-sharp blade slits you!");
+			playerbleed(rnd(monster_difficulty() * 5));
 
 			break;
 
@@ -19438,6 +19652,17 @@ skillrandomizeredo:
 		}
 		 break;
 
+		 case PHOSGENE_TRAP:
+			pline("CLICK! You have triggered a trap!");
+			seetrap(trap);
+			pline("Phosgene gas blows in your %s!", body_part(FACE) ); /* unbreathing doesn't help --Amy */
+
+			You_feel("very poisoned...");
+		      poisoned("gas", rn2(A_MAX), "phosgene trap", 5);
+		      poisoned("gas", rn2(A_MAX), "phosgene trap", 5);
+			playerbleed(rnd(monster_difficulty() * 2));
+		 break;
+
 		 case NEST_TRAP:
 
 			deltrap(trap); /* triggers only once */
@@ -22353,6 +22578,16 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case SKILL_UPORDOWN_TRAP:
 		case SKILL_RANDOMIZE_TRAP:
  		case MACE_TRAP:
+ 		case DAGGER_TRAP:
+ 		case RAZOR_TRAP:
+ 		case PHOSGENE_TRAP:
+ 		case CHLOROFORM_TRAP:
+ 		case CORROSION_TRAP:
+ 		case FLAME_TRAP:
+ 		case WITHER_TRAP:
+ 		case PHASEPORTER:
+ 		case PHASE_BEAMER:
+ 		case VULNERATE_TRAP:
 
 		case SKILL_MULTIPLY_TRAP:
 		case TRAPWALK_TRAP:
@@ -25508,9 +25743,12 @@ struct trap *ttmp;
 	if (ttmp->ttyp == SPEAR_TRAP) chance = 15;
 	if (ttmp->ttyp == ROLLING_BOULDER_TRAP) chance = 10;
 	if (ttmp->ttyp == SLP_GAS_TRAP) chance = 12;
+	if (ttmp->ttyp == CHLOROFORM_TRAP) chance = 20;
 	if (ttmp->ttyp == POISON_GAS_TRAP) chance = 12;
 	if (ttmp->ttyp == SLOW_GAS_TRAP) chance = 12;
 	if (ttmp->ttyp == TELEP_TRAP) chance = 8;
+	if (ttmp->ttyp == PHASEPORTER) chance = 8;
+	if (ttmp->ttyp == PHASE_BEAMER) chance = 8;
 	if (ttmp->ttyp == BEAMER_TRAP) chance = 8;
 	if (ttmp->ttyp == LEVEL_TELEP) chance = 20;
 	if (ttmp->ttyp == LEVEL_BEAMER) chance = 20;
@@ -25537,6 +25775,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == NEGATIVE_TRAP) chance = 10;
 	if (ttmp->ttyp == MAGIC_CANCELLATION_TRAP) chance = 14;
 	if (ttmp->ttyp == CYANIDE_TRAP) chance = 40;
+	if (ttmp->ttyp == PHOSGENE_TRAP) chance = 30;
 	if (ttmp->ttyp == LASER_TRAP) chance = 16;
 	if (ttmp->ttyp == CONFUSE_TRAP) chance = 10;
 	if (ttmp->ttyp == STUN_TRAP) chance = 10;
@@ -25562,6 +25801,9 @@ struct trap *ttmp;
 	if (ttmp->ttyp == NOISE_TRAP) chance = 10;
 	if (ttmp->ttyp == GLUE_TRAP) chance = 50;
 	if (ttmp->ttyp == VOLT_TRAP) chance = 24;
+	if (ttmp->ttyp == CORROSION_TRAP) chance = 6;
+	if (ttmp->ttyp == WITHER_TRAP) chance = 30;
+	if (ttmp->ttyp == FLAME_TRAP) chance = 6;
 	if (ttmp->ttyp == BANANA_TRAP) chance = 8;
 	if (ttmp->ttyp == FALLING_TUB_TRAP) chance = 26;
 	if (ttmp->ttyp == ALARM) chance = 20;
@@ -25604,6 +25846,8 @@ struct trap *ttmp;
 	if (ttmp->ttyp == WINCE_TRAP) chance = 10;
 	if (ttmp->ttyp == FUCK_OVER_TRAP) chance = 20;
 	if (ttmp->ttyp == BURDEN_TRAP) chance = 20;
+	if (ttmp->ttyp == RAZOR_TRAP) chance = 16;
+	if (ttmp->ttyp == VULNERATE_TRAP) chance = 20;
 	if (ttmp->ttyp == MAGIC_VACUUM_TRAP) chance = 16;
 	if (ttmp->ttyp == ALIGNMENT_TRASH_TRAP) chance = 20;
 	if (ttmp->ttyp == DOGSIDE_TRAP) chance = 20;
@@ -26066,6 +26310,8 @@ struct trap *ttmp;
 			multiplier = 3; break;
 		case SLP_GAS_TRAP:
 			multiplier = 5; break;
+		case CHLOROFORM_TRAP:
+			multiplier = 12; break;
 		case TELEP_TRAP:
 			multiplier = 3; break;
 		case LEVEL_TELEP:
@@ -26104,6 +26350,8 @@ struct trap *ttmp;
 			multiplier = 15; break;
 		case CYANIDE_TRAP:
 			multiplier = 40; break;
+		case PHOSGENE_TRAP:
+			multiplier = 30; break;
 		case LASER_TRAP:
 			multiplier = 10; break;
 		case CONFUSE_TRAP:
@@ -26172,6 +26420,8 @@ struct trap *ttmp;
 			multiplier = 12; break;
 		case CANNON_TRAP:
 			multiplier = 25; break;
+		case WITHER_TRAP:
+			multiplier = 30; break;
 		case FUMAROLE:
 			multiplier = 10; break;
 		case FUMBLING_TRAP:
@@ -26190,6 +26440,10 @@ struct trap *ttmp;
 			multiplier = 3; break;
 		case LEVEL_BEAMER:
 			multiplier = 8; break;
+		case PHASEPORTER:
+			multiplier = 3; break;
+		case PHASE_BEAMER:
+			multiplier = 3; break;
 		case PIERCING_BEAM_TRAP:
 			multiplier = 30; break;
 		case WRENCHING_TRAP:
@@ -26258,6 +26512,10 @@ struct trap *ttmp;
 			multiplier = 10; break;
 		case MAGIC_VACUUM_TRAP:
 			multiplier = 9; break;
+		case RAZOR_TRAP:
+			multiplier = 9; break;
+		case VULNERATE_TRAP:
+			multiplier = 18; break;
 		case BURDEN_TRAP:
 			multiplier = 10; break;
 		case ALIGNMENT_TRASH_TRAP:
@@ -26323,6 +26581,30 @@ struct trap *ttmp;
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(MACE, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_dagger_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(DAGGER, 1, ttmp);
 	newsym(trapx, trapy);
 	return 1;
 }
@@ -27051,6 +27333,8 @@ boolean force;
 				return disarm_pendulum(ttmp);
 			case MACE_TRAP:
 				return disarm_mace_trap(ttmp);
+			case DAGGER_TRAP:
+				return disarm_dagger_trap(ttmp);
 			case FIRE_TRAP:
 				return disarm_fire_trap(ttmp);
 			case PIT:
@@ -27092,6 +27376,7 @@ boolean force;
 			case SPEAR_TRAP:
 			case ROLLING_BOULDER_TRAP:
 			case SLP_GAS_TRAP:
+			case CHLOROFORM_TRAP:
 			case TELEP_TRAP:
 			case LEVEL_TELEP:
 			case STATUE_TRAP:
@@ -27111,6 +27396,7 @@ boolean force;
 			case LOCK_TRAP:
 			case MAGIC_CANCELLATION_TRAP:
 			case CYANIDE_TRAP:
+			case PHOSGENE_TRAP:
 			case LASER_TRAP:
 			case CONFUSE_TRAP:
 			case STUN_TRAP:
@@ -27139,6 +27425,9 @@ boolean force;
 			case NOISE_TRAP:
 			case GLUE_TRAP:
 			case VOLT_TRAP:
+			case CORROSION_TRAP:
+			case WITHER_TRAP:
+			case FLAME_TRAP:
 			case BANANA_TRAP:
 			case FALLING_TUB_TRAP:
 			case ALARM:
@@ -27153,6 +27442,8 @@ boolean force;
 			case BOWEL_CRAMPS_TRAP:
 			case SINCOUNT_TRAP:
 			case BEAMER_TRAP:
+			case PHASEPORTER:
+			case PHASE_BEAMER:
 			case LEVEL_BEAMER:
 			case PIERCING_BEAM_TRAP:
 			case WRENCHING_TRAP:
@@ -27189,6 +27480,8 @@ boolean force;
 			case WINCE_TRAP:
 			case BURDEN_TRAP:
 			case MAGIC_VACUUM_TRAP:
+			case RAZOR_TRAP:
+			case VULNERATE_TRAP:
 			case ALIGNMENT_TRASH_TRAP:
 			case DOGSIDE_TRAP:
 			case BANKRUPT_TRAP:

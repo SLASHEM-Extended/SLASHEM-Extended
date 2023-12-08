@@ -883,6 +883,17 @@ static struct {
 
 	{ "fuck over", FUCK_OVER_TRAP },
 
+	{ "daggertrap", DAGGER_TRAP },
+	{ "razor", RAZOR_TRAP },
+	{ "phosgene", PHOSGENE_TRAP },
+	{ "chloroform", CHLOROFORM_TRAP },
+	{ "corrosion", CORROSION_TRAP },
+	{ "flame", FLAME_TRAP },
+	{ "wither", WITHER_TRAP },
+	{ "phaseporter", PHASEPORTER },
+	{ "phasebeamer", PHASE_BEAMER },
+	{ "vulnerate", VULNERATE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };
