@@ -3475,6 +3475,28 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_ONCHANGE_STAFF) tmp += 3;
 		if (uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY && uwep->spe > 0) tmp += uwep->spe;
 
+		if (x == A_WIS && uarmf && uarmf->otyp == HEEL_WISE_SHOES && !(PlayerCannotUseSkills)) {
+
+			switch (P_SKILL(P_HIGH_HEELS)) {
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += 2; break;
+				case P_EXPERT: tmp += 3; break;
+				case P_MASTER: tmp += 4; break;
+				case P_GRAND_MASTER: tmp += 5; break;
+				case P_SUPREME_MASTER: tmp += 6; break;
+			}
+			switch (P_SKILL(P_STILETTO_HEELS)) {
+				case P_BASIC: tmp += 1; break;
+				case P_SKILLED: tmp += 2; break;
+				case P_EXPERT: tmp += 3; break;
+				case P_MASTER: tmp += 4; break;
+				case P_GRAND_MASTER: tmp += 5; break;
+				case P_SUPREME_MASTER: tmp += 6; break;
+			}
+
+		}
+
+
 		if (uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) tmp -= 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp -= 2;

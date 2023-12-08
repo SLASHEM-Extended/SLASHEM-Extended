@@ -7850,9 +7850,11 @@ revid_end:
 			{
 				int inerduration = rnz(1000);
 				int nastyfects = rnd(5);
-				u.uprops[DEAC_FAST].intrinsic += inerduration;
-				u.inertia += inerduration;
-				You_feel("lethargic...");
+				if (!inertiaprotection()) {
+					u.uprops[DEAC_FAST].intrinsic += inerduration;
+					u.inertia += inerduration;
+					You_feel("lethargic...");
+				}
 				while (nastyfects > 0) {
 					nastyfects--;
 					badeffect();
@@ -9404,6 +9406,16 @@ repairitemchoice:
 						hiddenpowertype = SCR_ARTIFACT_CREATION; break;
 					case P_WEDI:
 						hiddenpowertype = WAN_CLONE_MONSTER; break;
+					case P_STILETTO_HEELS:
+						hiddenpowertype = WAN_STERILIZE; break;
+					case P_CONE_HEELS:
+						hiddenpowertype = POT_INVULNERABILITY; break;
+					case P_BLOCK_HEELS:
+						hiddenpowertype = SCR_WONDER; break;
+					case P_WEDGE_HEELS:
+						hiddenpowertype = SCR_RETURN; break;
+					case P_BOULDER_THROWING:
+						hiddenpowertype = SCR_BOSS_COMPANION; break;
 					case P_MARTIAL_ARTS:
 						hiddenpowertype = WAN_CHARGING; break;
 					case P_TWO_WEAPON_COMBAT:

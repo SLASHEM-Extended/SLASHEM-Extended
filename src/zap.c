@@ -3591,7 +3591,7 @@ struct obj *obj, *otmp;
 			pline_The("chain is separated from the ball.");
 			if (uchain && uchain->owt > 0) {
 				IncreasedGravity += uchain->owt;
-				u.inertia += (uchain->owt / 10);
+				u.inertia += (uchain->owt / 10); /* cannot be resisted (intentional) --Amy */
 				You("are temporarily slowed by the weight of the chain.");
 			}
 			unpunish();
@@ -7306,6 +7306,8 @@ boolean ordinary;
 
 		case WAN_INERTIA:
 		case SPE_INERTIA:
+
+			if (inertiaprotection()) break;
 
 			u_slow_down();
 			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);

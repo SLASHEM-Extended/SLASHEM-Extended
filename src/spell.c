@@ -6732,9 +6732,11 @@ secureidchoice:
 		    }
 		}
 
-		u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 3);
-		pline(u.inertia ? "You slow down even more due to the rain." : "You slow down greatly due to the rain.");
-		u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+		if (!inertiaprotection()) {
+			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 3);
+			pline(u.inertia ? "You slow down even more due to the rain." : "You slow down greatly due to the rain.");
+			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+		}
 
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 

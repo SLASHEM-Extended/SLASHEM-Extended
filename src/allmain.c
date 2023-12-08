@@ -3403,7 +3403,7 @@ moveloop()
 			u.inertia /= 2;
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 		}
-		if ((u.inertia > 1) && uarm && uarmh->oartifact == ART_BE_FAT_AND_STILL_HEALTHY) {
+		if ((u.inertia > 1) && uarm && uarm->oartifact == ART_BE_FAT_AND_STILL_HEALTHY) {
 			u.inertia /= 2;
 			if (u.inertia < 0) u.inertia = 0; /* fail safe */
 		}
@@ -5396,7 +5396,7 @@ greasingdone:
 
 		}
 
-		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE && uarmu->cursed && !rn2(1000)) {
+		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE && uarmu->cursed && !inertiaprotection() && !rn2(1000)) {
 			u.inertia += rnd(50);
 			Your("butt feels sore...");
 		}
@@ -16549,6 +16549,11 @@ aliasagain:
 	u.lightsabermax9 = (P_SKILL(P_VAAPAD) >= P_BASIC) ? P_SKILL(P_VAAPAD) : 1;
 	u.lightsabermax10 = (P_SKILL(P_WEDI) >= P_BASIC) ? P_SKILL(P_WEDI) : 1;
 
+	u.heelmax1 = (P_SKILL(P_STILETTO_HEELS) >= P_BASIC) ? P_SKILL(P_STILETTO_HEELS) : 1;
+	u.heelmax2 = (P_SKILL(P_CONE_HEELS) >= P_BASIC) ? P_SKILL(P_CONE_HEELS) : 1;
+	u.heelmax3 = (P_SKILL(P_BLOCK_HEELS) >= P_BASIC) ? P_SKILL(P_BLOCK_HEELS) : 1;
+	u.heelmax4 = (P_SKILL(P_WEDGE_HEELS) >= P_BASIC) ? P_SKILL(P_WEDGE_HEELS) : 1;
+
 	/* Success! */
 	welcome(TRUE);
 
@@ -18135,6 +18140,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "not-slowing-down boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dragon-shaped shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "light metal gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mesh gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanic shoes")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19525,6 +19533,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "deep helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "not-slowing-down boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dragon-shaped shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "light metal gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mesh gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanic shoes")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

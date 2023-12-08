@@ -1027,7 +1027,7 @@ elenass:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || (footwear && footwear->otyp == NAOMI_STILETTOS) || (footwear && itemhasappearance(footwear, APP_PISTOL_BOOTS)) || (footwear && footwear->otyp == KILLER_HEELS) || (footwear && footwear->otyp == FEMMY_STILETTO_BOOTS) || (randomsexyheels == 19) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO] || mtmp->data == &mons[PM_WERECOMBATSTILETTO] || mtmp->data == &mons[PM_HUMAN_WERECOMBATSTILETTO]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == COMBAT_STILETTOS) || (footwear && footwear->otyp == NAOMI_STILETTOS) || (footwear && footwear->otyp == HEEL_WISE_SHOES) || (footwear && itemhasappearance(footwear, APP_PISTOL_BOOTS)) || (footwear && footwear->otyp == KILLER_HEELS) || (footwear && footwear->otyp == FEMMY_STILETTO_BOOTS) || (randomsexyheels == 19) || mtmp->data == &mons[PM_ANIMATED_COMBAT_STILETTO] || mtmp->data == &mons[PM_WERECOMBATSTILETTO] || mtmp->data == &mons[PM_HUMAN_WERECOMBATSTILETTO]) ) {
 elena15:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -5966,7 +5966,7 @@ newboss:
 
 	if (evilfriday && mtmp->data->mlet == S_GHOST) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
-			if (foundyou && tmp > (j = rnd(20+i))) {
+			if (foundyou && !inertiaprotection() && tmp > (j = rnd(20+i))) {
 				pline("%s ages you!", Monnam(mtmp));
 			      u_slow_down();
 				u.uprops[DEAC_FAST].intrinsic += ((mtmp->m_lev + 2) * 4);
@@ -9816,6 +9816,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
+		if (inertiaprotection()) break;
 	      u_slow_down();
 		u.uprops[DEAC_FAST].intrinsic += ((dmg + 2) * 10);
 		pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
@@ -10347,7 +10348,7 @@ dopois:
 		if (uncancelled && HFast && !defends(AD_SLOW, uwep) && !rn2(4)) {
 		    u_slow_down();
 
-			if (Race_if(PM_SPIRIT) && !rn2(3)) {
+			if (Race_if(PM_SPIRIT) && !inertiaprotection() && !rn2(3)) {
 				u.uprops[DEAC_FAST].intrinsic += ((dmg + 2) * 10);
 				pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
 				u.inertia += (dmg + 2);
@@ -11771,7 +11772,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			if (HFast && !defends(AD_SLOW, uwep) && !rn2(4)) {
 			    u_slow_down();
 
-			    if (Race_if(PM_SPIRIT) && !rn2(3)) {
+			    if (Race_if(PM_SPIRIT) && !inertiaprotection() && !rn2(3)) {
 				u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
 				pline(u.inertia ? "You feel almost unable to move..." : "You feel very lethargic...");
 				u.inertia += (tmp + 2);
@@ -12583,6 +12584,7 @@ do_stone2:
 
 	    case AD_INER:
 		if (mtmp->mcan) break;
+		if (inertiaprotection()) break;
 	      u_slow_down();
 		u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
 		pline(u.inertia ? "You feel almost unable to move..." : "You feel very lethargic...");
@@ -14415,7 +14417,7 @@ common:
 		if (HFast && !defends(AD_SLOW, uwep)) {
 		    u_slow_down();
 
-		    if (Race_if(PM_SPIRIT) && !rn2(3)) {
+		    if (Race_if(PM_SPIRIT) && !inertiaprotection() && !rn2(3)) {
 			u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
 			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
 			u.inertia += (tmp + 2);
@@ -15154,6 +15156,12 @@ common:
 		break;
 
 	    case AD_INER:
+
+		if (inertiaprotection()) {
+			mdamageu(mtmp, tmp);
+			break;
+		}
+
 	      u_slow_down();
 		u.uprops[DEAC_FAST].intrinsic += ((tmp + 2) * 10);
 		pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
@@ -17816,7 +17824,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_INER:
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
-			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(35))) {
+			mtmp->mcansee && !mtmp->mspec_used && !inertiaprotection() && (issoviet || !rn2(35))) {
 		    pline("%s gazes at you, and your body doesn't feel like moving around anymore...", Monnam(mtmp));
 		    stop_occupation();
 	      u_slow_down();
@@ -18242,7 +18250,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 		    u_slow_down();
 
-			if (Race_if(PM_SPIRIT) && !rn2(3)) {
+			if (Race_if(PM_SPIRIT) && !inertiaprotection() && !rn2(3)) {
 				u.uprops[DEAC_FAST].intrinsic += ((dmgplus + 2) * 10);
 				pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
 				u.inertia += (dmgplus + 2);

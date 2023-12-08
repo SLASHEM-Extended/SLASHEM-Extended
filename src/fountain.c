@@ -589,8 +589,10 @@ drinkfountain()
 					pline("A feeling of pain shoots into your body, and doesn't seem to be going away any time soon! Why did you quaff from a fountain in the first place? Some genius you are!");
 					break;
 				case 3:
-					u.inertia += rnz(1000);
-					pline("E v e r y t h i n g   i s   m o v i n g   i n   s l o w   m o t i o n . . .   Y o u   g e t   t h e   f e e l i n g   t h a t   f o u n t a i n   q u a f f i n g   i s   b a d .");
+					if (!inertiaprotection()) {
+						u.inertia += rnz(1000);
+						pline("E v e r y t h i n g   i s   m o v i n g   i n   s l o w   m o t i o n . . .   Y o u   g e t   t h e   f e e l i n g   t h a t   f o u n t a i n   q u a f f i n g   i s   b a d .");
+					}
 					break;
 				case 4:
 					incr_itimeout(&HMap_amnesia, rnz(100 * (monster_difficulty() + 1) ) );

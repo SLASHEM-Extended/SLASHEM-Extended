@@ -6313,7 +6313,7 @@ register struct obj *otmp;
 
 			/* In FIQhack, monsters with wands of slow monster will 0wn you by making you super slow.
 			 * It's largely like the wand of inertia, so have it work like the wand of inertia in the evil variant */
-			if (isevilvariant) {
+			if (isevilvariant && !inertiaprotection()) {
 				u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
 				pline(u.inertia ? "You feel even slower." : "You become super slow thanks to the wand destruction patch.");
 				u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
@@ -6340,6 +6340,9 @@ register struct obj *otmp;
 		break;
 	case WAN_INERTIA:
 		if (mtmp == &youmonst) {
+
+			if (inertiaprotection()) break;
+
 			u_slow_down();
 			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
 			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");

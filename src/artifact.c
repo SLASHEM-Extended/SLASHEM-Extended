@@ -7192,7 +7192,7 @@ bangbagchoice:
 		goto_level(&newlev, FALSE, FALSE, FALSE);
 	    }
 	    if (obj && obj->oartifact == ART_BIZARRO_ORGASMATRON) {
-		if (u.bizarrotries > 2) {
+		if ((u.bizarrotries > 2) && !inertiaprotection()) {
 			u.uprops[DEAC_FAST].intrinsic += ((u.bizarrotries - 2) * 500);
 			pline("Due to overexertion and too many orgasms, you feel very lethargic...");
 			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");

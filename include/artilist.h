@@ -17328,6 +17328,18 @@ A("Do stay a while!",				SCALE_MAIL, /* can be invoked for return, but doing so 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("No Little Bit Of Wisdom",				HEEL_WISE_SHOES, /* sustain ability */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Infection Chain Break",				DISINFECTANT_GLOVES, /* resist poison and sickness */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Nightly Highway",				HYPERSONIC_GLOVES, /* if it's nighttime, you have fast speed, otherwise you can hide underneath items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

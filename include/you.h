@@ -1866,6 +1866,11 @@ struct you {
 	int lightsabermax9;
 	int lightsabermax10;
 
+	int heelmax1;	/* your highest value you ever had in a high heel type */
+	int heelmax2;
+	int heelmax3;
+	int heelmax4;
+
 	int pervertsex;	/* pervert needs to have sex often enough or get debuffs */
 	int pervertpray;	/* same for praying (and yes, the gods can still get angry :P) */
 

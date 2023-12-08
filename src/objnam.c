@@ -4295,6 +4295,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ KITE_SHIELD, "todo" },
 	{ SCR_RETURN, "todo" },
 	{ SPE_RETURN, "todo" },
+	{ DISINFECTANT_GLOVES, "todo" },
+	{ HYPERSONIC_GLOVES, "todo" },
+	{ HEEL_WISE_SHOES, "todo" },
 
 	{0, "" }
 };
@@ -7744,6 +7747,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ KITE_SHIELD, "todo" },
 	{ SCR_RETURN, "todo" },
 	{ SPE_RETURN, "todo" },
+	{ DISINFECTANT_GLOVES, "todo" },
+	{ HYPERSONIC_GLOVES, "todo" },
+	{ HEEL_WISE_SHOES, "todo" },
 
 	{0, "" }
 };

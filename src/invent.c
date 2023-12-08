@@ -10863,7 +10863,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
+	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 
@@ -13815,6 +13815,12 @@ boolean knoweverything;
 				pline("It's not strictly ESP, but while you have this helmet on, all lawful monsters within a distance of 5 squares are displayed even if you can't see them."); break;
 			case SPEED_HOLDING_BOOTS:
 				pline("While wearing these boots, your intrinsic speed cannot be stolen by the common slowness effect."); break;
+			case DISINFECTANT_GLOVES:
+				pline("Gloves covered with disinfectant. They provide some resistance to covid-19."); break;
+			case HYPERSONIC_GLOVES:
+				pline("This super-powerful pair of gloves makes it so that inertia effects will only affect you half of the time!"); break;
+			case HEEL_WISE_SHOES:
+				pline("A pair of stiletto heels that improves your wisdom depending on your skill level with them."); break;
 			case CLOAK_OF_NAKEDNESS:
 				pline("This cloak causes nakedness and grants 3 points of magic cancellation. If someone else than you wears it, it also grants incredibly good armor class to the wearer, nyah-nyah!"); break;
 			case COVID____COATED_CLOAK:
@@ -29281,6 +29287,12 @@ boolean knoweverything;
 					pline("Artifact specs: can be invoked to return to a previously visited 'waypoint' level, just like reading the scroll, but only has 10%% chance that the scroll is used up. If you foolishly read it instead, it's still guaranteed to be used up, so be wise, use #invoke!"); break;
 				case ART_DO_STAY_A_WHILE_:
 					pline("Artifact specs: can be invoked for return, which is to say, gives you a choice of various dungeon levels that you can return to, but it takes at least 50 turns for that effect to actually kick in. Every time you use this invocation, there's a chance that the armor is used up, and if it isn't, it becomes heavily cursed and gains a point of enchantment (but not beyond +20)."); break;
+				case ART_NO_LITTLE_BIT_OF_WISDOM:
+					pline("Artifact specs: sustain ability when worn."); break;
+				case ART_INFECTION_CHAIN_BREAK:
+					pline("Artifact specs: poison and sickness resistance when worn."); break;
+				case ART_NIGHTLY_HIGHWAY:
+					pline("Artifact specs: if it's nighttime while you're wearing it, you have fast speed, otherwise you have the ability to hide underneath items."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

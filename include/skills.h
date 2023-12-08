@@ -103,9 +103,14 @@
 #define P_VAAPAD	(P_LAST_SPELL + 28)
 #define P_WEDI	(P_LAST_SPELL + 29)
 
-#define P_MARTIAL_ARTS		(P_LAST_SPELL + 30) /* WAC used to be role distinguishes */
-#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 31) /* Finally implemented */
-#define P_RIDING		(P_LAST_SPELL + 32) /* How well you control your steed */
+#define P_STILETTO_HEELS	(P_LAST_SPELL + 30)
+#define P_CONE_HEELS	(P_LAST_SPELL + 31)
+#define P_BLOCK_HEELS	(P_LAST_SPELL + 32)
+#define P_WEDGE_HEELS	(P_LAST_SPELL + 33)
+
+#define P_MARTIAL_ARTS		(P_LAST_SPELL + 34) /* WAC used to be role distinguishes */
+#define P_TWO_WEAPON_COMBAT	(P_LAST_SPELL + 35) /* Finally implemented */
+#define P_RIDING		(P_LAST_SPELL + 36) /* How well you control your steed */
 #define P_LAST_H_TO_H		P_RIDING
 #define P_FIRST_H_TO_H		P_BARE_HANDED_COMBAT
 
@@ -157,13 +162,17 @@
 #define PN_JUYO		(-43)
 #define PN_VAAPAD		(-44)
 #define PN_WEDI		(-45)
-#define PN_MARTIAL_ARTS		(-46)
-#define PN_RIDING		(-47)
-#define PN_TWO_WEAPONS		(-48)
-#define PN_LIGHTSABER		(-49)
-#define PN_ORB		(-50)
-#define PN_CLAW		(-51)
-#define PN_GRINDER		(-52)
+#define PN_STILETTO_HEELS		(-46)
+#define PN_CONE_HEELS		(-47)
+#define PN_BLOCK_HEELS		(-48)
+#define PN_WEDGE_HEELS		(-49)
+#define PN_MARTIAL_ARTS		(-50)
+#define PN_RIDING		(-51)
+#define PN_TWO_WEAPONS		(-52)
+#define PN_LIGHTSABER		(-53)
+#define PN_ORB		(-54)
+#define PN_CLAW		(-55)
+#define PN_GRINDER		(-56)
 
 /*
  * These are the standard weapon skill levels.  It is important that

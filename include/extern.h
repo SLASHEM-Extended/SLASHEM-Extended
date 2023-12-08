@@ -2733,6 +2733,7 @@ E boolean sandprotection(void);
 E boolean shadowprotection(void);
 E boolean obsidianprotection(void);
 E boolean chromeprotection(void);
+E boolean inertiaprotection(void);
 E boolean chitinprotection(void);
 E int irisartiboost(void);
 E int irissetbonus(void);

@@ -3411,7 +3411,7 @@ int *fail_reason;
 	}
 	/* avoid hiding under nothing */
 	if (x == u.ux && y == u.uy &&
-		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
+		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
 	    u.uundetected = 0;
 
 	if (fail_reason) *fail_reason = AS_OK;
@@ -5854,8 +5854,10 @@ newegomon:
 						pline("A feeling of pain shoots into your body, and doesn't seem to be going away any time soon! Why did you quaff from a fountain in the first place? Some genius you are!");
 						break;
 					case 3:
-						u.inertia += rnz(1000);
-						pline("E v e r y t h i n g   i s   m o v i n g   i n   s l o w   m o t i o n . . .   Y o u   g e t   t h e   f e e l i n g   t h a t   f o u n t a i n   q u a f f i n g   i s   b a d .");
+						if (!inertiaprotection()) {
+							u.inertia += rnz(1000);
+							pline("E v e r y t h i n g   i s   m o v i n g   i n   s l o w   m o t i o n . . .   Y o u   g e t   t h e   f e e l i n g   t h a t   f o u n t a i n   q u a f f i n g   i s   b a d .");
+						}
 						break;
 					case 4:
 						incr_itimeout(&HMap_amnesia, rnz(100 * (monster_difficulty() + 1) ) );
@@ -9533,6 +9535,7 @@ newbossPENT:
 	    case INERTIA_TRAP:
 		pline("You stepped on a trigger!");
 		seetrap(trap);
+		if (inertiaprotection()) break;
 	      u_slow_down();
 		u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
 		pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
@@ -10801,7 +10804,9 @@ madnesseffect:
 
 		}
 
-		u.inertia += (rnd(4) + rnd( (monster_difficulty() / 6) + 1));
+		if (!inertiaprotection()) {
+			u.inertia += (rnd(4) + rnd( (monster_difficulty() / 6) + 1));
+		}
 
 		break;
 

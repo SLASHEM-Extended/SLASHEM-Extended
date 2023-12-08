@@ -227,6 +227,14 @@ int skill;
 			return "form VII (Vaapad)";
 		case P_WEDI:
 			return "form VIII (Wedi)";
+		case P_STILETTO_HEELS:
+			return "type 1: stiletto heels";
+		case P_CONE_HEELS:
+			return "type 2: cone heels";
+		case P_BLOCK_HEELS:
+			return "type 3: block heels";
+		case P_WEDGE_HEELS:
+			return "type 4: wedge heels";
 		case P_MARTIAL_ARTS:
 			return "martial arts";
 		case P_TWO_WEAPON_COMBAT:
@@ -4009,6 +4017,35 @@ int skill;
 	if (skill == P_WEDI && (P_SKILL(P_WEDI) + 1) > u.lightsabermax10) {
 		u.lightsabermax10 = (P_SKILL(P_WEDI) + 1);
 		if (!issoviet && rn2(Role_if(PM_HEDDERJEDI) ? 5 : Role_if(PM_JEDI) ? 4 : Role_if(PM_SHADOW_JEDI) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+
+	if (skill == P_STILETTO_HEELS && (P_SKILL(P_STILETTO_HEELS) + 1) > u.heelmax1) {
+		u.heelmax1 = (P_SKILL(P_STILETTO_HEELS) + 1);
+		if (!issoviet && rn2(Role_if(PM_TRANSVESTITE) ? 4 : Role_if(PM_TRANSSYLVANIAN) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_CONE_HEELS && (P_SKILL(P_CONE_HEELS) + 1) > u.heelmax2) {
+		u.heelmax2 = (P_SKILL(P_CONE_HEELS) + 1);
+		if (!issoviet && rn2(Role_if(PM_TRANSVESTITE) ? 4 : Role_if(PM_TRANSSYLVANIAN) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_BLOCK_HEELS && (P_SKILL(P_BLOCK_HEELS) + 1) > u.heelmax3) {
+		u.heelmax3 = (P_SKILL(P_BLOCK_HEELS) + 1);
+		if (!issoviet && rn2(Role_if(PM_TRANSVESTITE) ? 4 : Role_if(PM_TRANSSYLVANIAN) ? 4 : 2)) {
+			You("got that skill without using up a skill point!");
+			goto jediskip;
+		}
+	}
+	if (skill == P_WEDGE_HEELS && (P_SKILL(P_WEDGE_HEELS) + 1) > u.heelmax4) {
+		u.heelmax4 = (P_SKILL(P_WEDGE_HEELS) + 1);
+		if (!issoviet && rn2(Role_if(PM_TRANSVESTITE) ? 4 : Role_if(PM_TRANSSYLVANIAN) ? 4 : 2)) {
 			You("got that skill without using up a skill point!");
 			goto jediskip;
 		}
@@ -8182,6 +8219,12 @@ boolean extraskills;
 		if (obj->otyp == SWITCHER) skill = P_VAAPAD;
 		if (obj->otyp == PACK_OF_FLOPPIES) skill = P_WEDI;
 		if (obj->otyp == INTELLIGENCE_PACK) skill = P_JUYO;
+		if (obj->otyp == CREDIT_CARD) skill = P_STILETTO_HEELS;
+		if (obj->otyp == DATA_CHIP) skill = P_STILETTO_HEELS;
+		if (obj->otyp == BLESSER) skill = P_CONE_HEELS;
+		if (obj->otyp == SKELETON_KEY) skill = P_BLOCK_HEELS;
+		if (obj->otyp == SECRET_KEY) skill = P_BLOCK_HEELS;
+		if (obj->otyp == CASINO_CHIP) skill = P_WEDGE_HEELS;
 
 		if (skill == P_NONE) { /* gifts should always be able to unlock a skill; random if none is associated --Amy */
 			skill = randomgoodskill();
@@ -8193,7 +8236,7 @@ boolean extraskills;
 
 	if (obj->oclass == IMPLANT_CLASS) skill = P_IMPLANTS;
 
-	if (obj->otyp == WEDGE_SANDALS || obj->otyp == FEMININE_PUMPS || obj->otyp == LEATHER_PEEP_TOES || obj->otyp == HIPPIE_HEELS || obj->otyp == PET_STOMPING_PLATFORM_BOOTS || obj->otyp == SENTIENT_HIGH_HEELED_SHOES || obj->otyp == ATSUZOKO_BOOTS || obj->otyp == COMBAT_STILETTOS || obj->otyp == ITALIAN_HEELS || obj->otyp == LADY_BOOTS || obj->otyp == STILETTO_SANDALS || obj->otyp == HIGH_STILETTOS || obj->otyp == UNFAIR_STILETTOS || obj->otyp == SKY_HIGH_HEELS || obj->otyp == SINFUL_HEELS || obj->otyp == COVETED_BOOTS || obj->otyp == BUM_BUM_BOOTS || obj->otyp == SELF_WILLED_HEELS || obj->otyp == HIGH_HEELED_SKIERS || obj->otyp == RED_SPELL_HEELS || obj->otyp == DESTRUCTIVE_HEELS || obj->otyp == LONG_POINTY_HEELS || obj->otyp == VIOLET_BEAUTY_HEELS || obj->otyp == AUTOSCOOTER_HEELS || obj->otyp == KILLER_HEELS || obj->otyp == HIGH_SCORING_HEELS || obj->otyp == FEMMY_STILETTO_BOOTS || obj->otyp == MADELEINE_PLATEAU_BOOTS || obj->otyp == WENDY_LEATHER_PUMPS || obj->otyp == KATHARINA_PLATFORM_BOOTS || obj->otyp == ELENA_COMBAT_BOOTS || obj->otyp == THAI_COMBAT_BOOTS || obj->otyp == NADJA_BUCKLED_LADY_SHOES || obj->otyp == SANDRA_COMBAT_BOOTS || obj->otyp == NATALJE_BLOCK_HEEL_SANDALS || obj->otyp == MELTEM_COMBAT_BOOTS || obj->otyp == CLAUDIA_WOODEN_SANDALS || obj->otyp == NELLY_LADY_PUMPS || obj->otyp == EVELINE_WEDGE_SANDALS || obj->otyp == JUEN_PEEP_TOES || obj->otyp == JULIETTA_PEEP_TOES || obj->otyp == KRISTIN_COMBAT_BOOTS || obj->otyp == RUEA_COMBAT_BOOTS || obj->otyp == DORA_COMBAT_BOOTS || obj->otyp == JETTE_COMBAT_BOOTS || obj->otyp == SING_PLATFORM_BOOTS || obj->otyp == VICTORIA_COMBAT_BOOTS || obj->otyp == MELISSA_WEDGE_BOOTS || obj->otyp == ANITA_LADY_PUMPS || obj->otyp == HENRIETTA_COMBAT_BOOTS || obj->otyp == VERENA_STILETTO_SANDALS || obj->otyp == KSENIA_PLATFORM_SANDALS || obj->otyp == LYDIA_LADY_PUMPS || obj->otyp == CONNY_COMBAT_BOOTS || obj->otyp == KATIA_COMBAT_BOOTS || obj->otyp == MARIYA_COMBAT_BOOTS || obj->otyp == ELISE_HIPPIE_HEELS || obj->otyp == RONJA_COMBAT_BOOTS || obj->otyp == NAOMI_STILETTOS || obj->otyp == ARIANE_COMBAT_BOOTS || obj->otyp == JOHANNA_COMBAT_BOOTS || obj->otyp == INGE_COMBAT_BOOTS || obj->otyp == LARISSA_PLATFORM_BOOTS || obj->otyp == NORA_COMBAT_BOOTS || obj->otyp == NATALIA_WEDGE_SANDALS || obj->otyp == IRINA_WEDGE_SANDALS || obj->otyp == SUSANNE_COMBAT_BOOTS || obj->otyp == LISA_COMBAT_BOOTS || obj->otyp == BRIDGHITTE_SKI_HEELS || obj->otyp == JULIA_COMBAT_BOOTS || obj->otyp == NICOLE_COMBAT_BOOTS || obj->otyp == RITA_STILETTOS || obj->otyp == JANINA_LADY_PUMPS || obj->otyp == RHEA_LADY_PUMPS || obj->otyp == KATRIN_COMBAT_BOOTS || obj->otyp == GUDRUN_WEDGE_SANDALS || obj->otyp == ELLA_WEDGE_SANDALS || obj->otyp == JASIEEN_WEDGE_SANDALS || obj->otyp == MANUELA_COMBAT_BOOTS || obj->otyp == JENNIFER_COMBAT_BOOTS || obj->otyp == ANTJE_COMBAT_BOOTS || obj->otyp == MAGDALENA_COMBAT_BOOTS || obj->otyp == MARLEEN_COMBAT_BOOTS || obj->otyp == KERSTIN_COMBAT_BOOTS || obj->otyp == LARA_COMBAT_BOOTS || obj->otyp == PATRICIA_STEEL_CAPPED_SANDALS || obj->otyp == ANNEMARIE_PLATFORM_SANDALS || obj->otyp == NADINE_STILETTO_SANDALS || obj->otyp == KLARA_PLATFORM_SANDALS || obj->otyp == UTE_PLATFORM_SANDALS) skill = P_HIGH_HEELS;
+	if (obj->otyp == WEDGE_SANDALS || obj->otyp == FEMININE_PUMPS || obj->otyp == LEATHER_PEEP_TOES || obj->otyp == HIPPIE_HEELS || obj->otyp == PET_STOMPING_PLATFORM_BOOTS || obj->otyp == SENTIENT_HIGH_HEELED_SHOES || obj->otyp == ATSUZOKO_BOOTS || obj->otyp == COMBAT_STILETTOS || obj->otyp == HEEL_WISE_SHOES || obj->otyp == ITALIAN_HEELS || obj->otyp == LADY_BOOTS || obj->otyp == STILETTO_SANDALS || obj->otyp == HIGH_STILETTOS || obj->otyp == UNFAIR_STILETTOS || obj->otyp == SKY_HIGH_HEELS || obj->otyp == SINFUL_HEELS || obj->otyp == COVETED_BOOTS || obj->otyp == BUM_BUM_BOOTS || obj->otyp == SELF_WILLED_HEELS || obj->otyp == HIGH_HEELED_SKIERS || obj->otyp == RED_SPELL_HEELS || obj->otyp == DESTRUCTIVE_HEELS || obj->otyp == LONG_POINTY_HEELS || obj->otyp == VIOLET_BEAUTY_HEELS || obj->otyp == AUTOSCOOTER_HEELS || obj->otyp == KILLER_HEELS || obj->otyp == HIGH_SCORING_HEELS || obj->otyp == FEMMY_STILETTO_BOOTS || obj->otyp == MADELEINE_PLATEAU_BOOTS || obj->otyp == WENDY_LEATHER_PUMPS || obj->otyp == KATHARINA_PLATFORM_BOOTS || obj->otyp == ELENA_COMBAT_BOOTS || obj->otyp == THAI_COMBAT_BOOTS || obj->otyp == NADJA_BUCKLED_LADY_SHOES || obj->otyp == SANDRA_COMBAT_BOOTS || obj->otyp == NATALJE_BLOCK_HEEL_SANDALS || obj->otyp == MELTEM_COMBAT_BOOTS || obj->otyp == CLAUDIA_WOODEN_SANDALS || obj->otyp == NELLY_LADY_PUMPS || obj->otyp == EVELINE_WEDGE_SANDALS || obj->otyp == JUEN_PEEP_TOES || obj->otyp == JULIETTA_PEEP_TOES || obj->otyp == KRISTIN_COMBAT_BOOTS || obj->otyp == RUEA_COMBAT_BOOTS || obj->otyp == DORA_COMBAT_BOOTS || obj->otyp == JETTE_COMBAT_BOOTS || obj->otyp == SING_PLATFORM_BOOTS || obj->otyp == VICTORIA_COMBAT_BOOTS || obj->otyp == MELISSA_WEDGE_BOOTS || obj->otyp == ANITA_LADY_PUMPS || obj->otyp == HENRIETTA_COMBAT_BOOTS || obj->otyp == VERENA_STILETTO_SANDALS || obj->otyp == KSENIA_PLATFORM_SANDALS || obj->otyp == LYDIA_LADY_PUMPS || obj->otyp == CONNY_COMBAT_BOOTS || obj->otyp == KATIA_COMBAT_BOOTS || obj->otyp == MARIYA_COMBAT_BOOTS || obj->otyp == ELISE_HIPPIE_HEELS || obj->otyp == RONJA_COMBAT_BOOTS || obj->otyp == NAOMI_STILETTOS || obj->otyp == ARIANE_COMBAT_BOOTS || obj->otyp == JOHANNA_COMBAT_BOOTS || obj->otyp == INGE_COMBAT_BOOTS || obj->otyp == LARISSA_PLATFORM_BOOTS || obj->otyp == NORA_COMBAT_BOOTS || obj->otyp == NATALIA_WEDGE_SANDALS || obj->otyp == IRINA_WEDGE_SANDALS || obj->otyp == SUSANNE_COMBAT_BOOTS || obj->otyp == LISA_COMBAT_BOOTS || obj->otyp == BRIDGHITTE_SKI_HEELS || obj->otyp == JULIA_COMBAT_BOOTS || obj->otyp == NICOLE_COMBAT_BOOTS || obj->otyp == RITA_STILETTOS || obj->otyp == JANINA_LADY_PUMPS || obj->otyp == RHEA_LADY_PUMPS || obj->otyp == KATRIN_COMBAT_BOOTS || obj->otyp == GUDRUN_WEDGE_SANDALS || obj->otyp == ELLA_WEDGE_SANDALS || obj->otyp == JASIEEN_WEDGE_SANDALS || obj->otyp == MANUELA_COMBAT_BOOTS || obj->otyp == JENNIFER_COMBAT_BOOTS || obj->otyp == ANTJE_COMBAT_BOOTS || obj->otyp == MAGDALENA_COMBAT_BOOTS || obj->otyp == MARLEEN_COMBAT_BOOTS || obj->otyp == KERSTIN_COMBAT_BOOTS || obj->otyp == LARA_COMBAT_BOOTS || obj->otyp == PATRICIA_STEEL_CAPPED_SANDALS || obj->otyp == ANNEMARIE_PLATFORM_SANDALS || obj->otyp == NADINE_STILETTO_SANDALS || obj->otyp == KLARA_PLATFORM_SANDALS || obj->otyp == UTE_PLATFORM_SANDALS) skill = P_HIGH_HEELS;
 
 	if (obj->otyp == RUBBER_BOOTS || obj->otyp == SNEAKERS || obj->otyp == DANCING_SHOES || obj->otyp == SWEET_MOCASSINS || obj->otyp == SOFT_SNEAKERS || obj->otyp == RUTH_SNEAKERS || obj->otyp == ROLLER_BLADE || obj->otyp == DIFFICULT_BOOTS || obj->otyp == AIRSTEP_BOOTS || obj->otyp == SYNTHETIC_SANDALS || obj->otyp == BRIGHT_CYAN_BEAUTIES || obj->otyp == MARLENA_HIKING_BOOTS || obj->otyp == ANASTASIA_DANCING_SHOES || obj->otyp == FRIEDERIKE_DANCING_SHOES || obj->otyp == JESSICA_LADY_SHOES || obj->otyp == SOLVEJG_MOCASSINS || obj->otyp == ELIF_SNEAKERS || obj->otyp == JEANETTA_GIRL_BOOTS || obj->otyp == YVONNE_GIRL_SNEAKERS || obj->otyp == MAURAH_HUGGING_BOOTS || obj->otyp == SARAH_HUGGING_BOOTS || obj->otyp == LUDGERA_HIKING_BOOTS || obj->otyp == KATI_GIRL_BOOTS || obj->otyp == KARIN_LADY_SANDALS || obj->otyp == LAURA_WINTER_BOOTS || obj->otyp == KRISTINA_PLATFORM_SNEAKERS || obj->otyp == LOU_SNEAKERS || obj->otyp == YASAMAN_LEATHER_BOOTS || obj->otyp == MAY_BRITT_SANDALS || obj->otyp == ALMUT_SNEAKERS || obj->otyp == ARABELLA_HUGGING_BOOTS || obj->otyp == ANTJE_SNEAKERS || obj->otyp == JIL_VELCRO_SHOES || obj->otyp == JANA_SNEAKERS || obj->otyp == TANJA_SNEAKERS || obj->otyp == SONJA_SNEAKERS || obj->otyp == ANNA_HUGGING_BOOTS || obj->otyp == LUISA_HUGGING_BOOTS || obj->otyp == LISELOTTE_HUGGING_BOOTS || obj->otyp == GRETA_HUGGING_BOOTS || obj->otyp == JANE_HUGGING_BOOTS || obj->otyp == SUE_LYN_WINTER_BOOTS || obj->otyp == CHARLOTTE_HUGGING_BOOTS || obj->otyp == HANNAH_CUDDLE_BOOTS || obj->otyp == LITTLE_MARIE_HUGGING_BOOTS || obj->otyp == KERSTIN_WOODEN_SANDALS || obj->otyp == KERSTIN_SNEAKERS || obj->otyp == INA_HUGGING_BOOTS) skill = P_SEXY_FLATS;
 
@@ -8456,16 +8499,19 @@ releasetryagain:
 rerollone:
 		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
 		if (skilltochange >= P_SHII_CHO && skilltochange <= P_WEDI && rn2(10)) goto rerollone;
+		if (skilltochange >= P_STILETTO_HEELS && skilltochange <= P_WEDGE_HEELS && rn2(4)) goto rerollone;
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_BASIC;
 rerolltwo:
 		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
 		if (skilltochange >= P_SHII_CHO && skilltochange <= P_WEDI && rn2(10)) goto rerolltwo;
+		if (skilltochange >= P_STILETTO_HEELS && skilltochange <= P_WEDGE_HEELS && rn2(4)) goto rerolltwo;
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_SKILLED;
 rerollthree:
 		skilltochange = P_FIRST_H_TO_H + rn2((P_LAST_H_TO_H - P_FIRST_H_TO_H) + 1);
 		if (skilltochange >= P_SHII_CHO && skilltochange <= P_WEDI && rn2(10)) goto rerollthree;
+		if (skilltochange >= P_STILETTO_HEELS && skilltochange <= P_WEDGE_HEELS && rn2(4)) goto rerollthree;
 		unrestrict_weapon_skill(skilltochange);
 		P_MAX_SKILL(skilltochange) = P_EXPERT;
 
@@ -10582,6 +10628,18 @@ doubleskilltraining()
 	else if (P_ADVANCE(P_WEDI) && !(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
 		P_ADVANCE(P_WEDI) *= 2;
 		acquiredskill = 1; }
+	else if (P_ADVANCE(P_STILETTO_HEELS) && !(P_RESTRICTED(P_STILETTO_HEELS)) && yn("Do you want to train the type 1: stiletto heels skill?")=='y') {
+		P_ADVANCE(P_STILETTO_HEELS) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_CONE_HEELS) && !(P_RESTRICTED(P_CONE_HEELS)) && yn("Do you want to train the type 2: cone heels skill?")=='y') {
+		P_ADVANCE(P_CONE_HEELS) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_BLOCK_HEELS) && !(P_RESTRICTED(P_BLOCK_HEELS)) && yn("Do you want to train the type 3: block heels skill?")=='y') {
+		P_ADVANCE(P_BLOCK_HEELS) *= 2;
+		acquiredskill = 1; }
+	else if (P_ADVANCE(P_WEDGE_HEELS) && !(P_RESTRICTED(P_WEDGE_HEELS)) && yn("Do you want to train the type 4: wedge heels skill?")=='y') {
+		P_ADVANCE(P_WEDGE_HEELS) *= 2;
+		acquiredskill = 1; }
 	else if (P_ADVANCE(P_BARE_HANDED_COMBAT) && !(P_RESTRICTED(P_BARE_HANDED_COMBAT)) && yn("Do you want to train the bare-handed combat skill?")=='y') {
 		P_ADVANCE(P_BARE_HANDED_COMBAT) *= 2;
 		acquiredskill = 1; }
@@ -10759,6 +10817,14 @@ unrestrictskillchoice()
 		    unrestrict_weapon_skill(P_VAAPAD);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_WEDI) && yn("Do you want to learn the form VIII (Wedi) skill?")=='y') {
 		    unrestrict_weapon_skill(P_WEDI);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_STILETTO_HEELS) && yn("Do you want to learn the type 1: stiletto heels skill?")=='y') {
+		    unrestrict_weapon_skill(P_STILETTO_HEELS);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_CONE_HEELS) && yn("Do you want to learn the type 2: cone heels skill?")=='y') {
+		    unrestrict_weapon_skill(P_CONE_HEELS);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_BLOCK_HEELS) && yn("Do you want to learn the type 3: block heels skill?")=='y') {
+		    unrestrict_weapon_skill(P_BLOCK_HEELS);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_WEDGE_HEELS) && yn("Do you want to learn the type 4: wedge heels skill?")=='y') {
+		    unrestrict_weapon_skill(P_WEDGE_HEELS);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_BARE_HANDED_COMBAT) && yn("Do you want to learn the bare-handed combat skill?")=='y') {
 		    unrestrict_weapon_skill(P_BARE_HANDED_COMBAT);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_MARTIAL_ARTS) && yn("Do you want to learn the martial arts skill?")=='y') {
@@ -11014,6 +11080,18 @@ int trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_WEDI)) && yn("Do you want to train the form VIII (Wedi) skill?")=='y') {
 		P_ADVANCE(P_WEDI) += trainamount;
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_STILETTO_HEELS)) && yn("Do you want to train the type 1: stiletto heels skill?")=='y') {
+		P_ADVANCE(P_STILETTO_HEELS) += trainamount;
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_CONE_HEELS)) && yn("Do you want to train the type 2: cone heels skill?")=='y') {
+		P_ADVANCE(P_CONE_HEELS) += trainamount;
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_BLOCK_HEELS)) && yn("Do you want to train the type 3: block heels skill?")=='y') {
+		P_ADVANCE(P_BLOCK_HEELS) += trainamount;
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_WEDGE_HEELS)) && yn("Do you want to train the type 4: wedge heels skill?")=='y') {
+		P_ADVANCE(P_WEDGE_HEELS) += trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_BARE_HANDED_COMBAT)) && yn("Do you want to train the bare-handed combat skill?")=='y') {
 		P_ADVANCE(P_BARE_HANDED_COMBAT) += trainamount;
