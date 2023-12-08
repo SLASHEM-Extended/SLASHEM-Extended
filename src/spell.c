@@ -6190,7 +6190,7 @@ newbossPENT:
 						y = rn2(ROWNO);
 
 						if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
+								ttmp = maketrap(x, y, rndtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;
@@ -8509,7 +8509,7 @@ whisperchoice:
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-			      rtrap = randomtrap();
+			      rtrap = rndtrap();
 
 				ttmp = maketrap(u.ux + i, u.uy + j, rtrap, 100, FALSE);
 				if (ttmp && !rn2(10)) ttmp->hiddentrap = TRUE;

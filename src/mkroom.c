@@ -3349,7 +3349,7 @@ mktraproom()
     if(!(sroom = pick_room(FALSE))) return;
 
     sroom->rtype = TRAPROOM;
-	rtrap = randomtrap();
+	rtrap = rndtrap();
 
 	if (!rn2(4)) randomnes = 1;
 
@@ -3361,7 +3361,7 @@ mktraproom()
 		if((levl[sx][sy].typ > DBWALL) && !t_at(sx,sy) /*&& !nexttodoor(sx,sy)*/) {
 		    if(rn2(5)) 
 				(void) maketrap(sx, sy, rtrap, 100, TRUE);
-			if (randomnes == 1) rtrap = randomtrap();
+			if (randomnes == 1) rtrap = rndtrap();
 		}
 
 }
@@ -3579,7 +3579,7 @@ mkrampageroom()
 		}
 
 		if (!rn2(3)) (void) mksobj_at(BOULDER, sx, sy, TRUE, FALSE, FALSE);
-		if (!rn2(3)) (void) maketrap(sx, sy, randomtrap(), 100, TRUE);
+		if (!rn2(3)) (void) maketrap(sx, sy, rndtrap(), 100, TRUE);
 	}
 
 
@@ -3724,7 +3724,7 @@ mkriverroom()
 		levl[sx][sy].typ = typ;
 		if (typ == FOUNTAIN) 	level.flags.nfountains++;
 		if (typ == SINK) 	level.flags.nsinks++;
-		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, randomtrap(), 100, TRUE);
+		if(Role_if(PM_CAMPERSTRIKER) && !rn2(50)) (void) maketrap(sx, sy, rndtrap(), 100, TRUE);
 		}
 
 	level.flags.has_riverroom = 1;

@@ -2276,7 +2276,7 @@ boolean givehp;
 {
 
 	int rtrap;
-	rtrap = randomtrap();
+	rtrap = rndtrap();
 	maketrap(x,y,rtrap,100,givehp);
 	return;
 
@@ -2291,7 +2291,7 @@ boolean givehp;
 	register struct rm *lev;
 	register boolean oldplace;
 
-	if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && (rnd(u.freqtrapbonus + 200) > 200)) {
+	if (typ != MAGIC_PORTAL && (rn2(100) < replacechance) && (rnd(u.freqtrapbonus + 1000) > 1000)) {
 		typ = u.frequenttrap;
 		if (typ == MAGIC_PORTAL) typ = ROCKTRAP;
 		if (typ == S_PRESSING_TRAP) typ = ROCKTRAP;
@@ -3414,6 +3414,73 @@ int *fail_reason;
 	if (fail_reason) *fail_reason = AS_OK;
 	return mon;
 	}
+
+/* is a given trap considered a "common trap"? --Amy */
+boolean
+is_common_trap(traptype)
+int traptype;
+{
+	switch (traptype) {
+
+		case ARROW_TRAP:
+		case DART_TRAP:
+		case ROCKTRAP:
+		case SQKY_BOARD:
+		case BEAR_TRAP:
+		case LANDMINE:
+		case ROLLING_BOULDER_TRAP:
+		case SLP_GAS_TRAP:
+		case RUST_TRAP:
+		case FIRE_TRAP:
+		case PIT:
+		case SPIKED_PIT:
+		case HOLE:
+		case TRAPDOOR:
+		case TELEP_TRAP:
+		case LEVEL_TELEP:
+		case WEB:
+		case STATUE_TRAP:
+		case MAGIC_TRAP:
+		case ANTI_MAGIC:
+		case POLY_TRAP:
+		case ICE_TRAP:
+		case SPEAR_TRAP:
+		case SHIT_TRAP:
+		case GLYPH_OF_WARDING:
+		case SCYTHING_BLADE:
+		case BOLT_TRAP:
+		case ACID_POOL:
+		case WATER_POOL:
+		case POISON_GAS_TRAP:
+		case SLOW_GAS_TRAP:
+		case SHOCK_TRAP:
+		case UNKNOWN_TRAP:
+		case THROWING_STAR_TRAP:
+		case LOUDSPEAKER:
+		case LASER_TRAP:
+		case CONFUSE_TRAP:
+		case STUN_TRAP:
+		case HALLUCINATION_TRAP:
+		case NUMBNESS_TRAP:
+		case FREEZING_TRAP:
+		case BURNING_TRAP:
+		case FEAR_TRAP:
+		case BLINDNESS_TRAP:
+		case SPINED_BALL_TRAP:
+		case BANANA_TRAP:
+		case SLINGSHOT_TRAP:
+		case WALL_TRAP:
+		case MACE_TRAP:
+
+			return TRUE;
+
+		default:
+			return FALSE;
+	}
+
+	return FALSE;
+
+}
 
 /* is a given trap considered a "nasty trap"? --Amy */
 boolean
@@ -7228,7 +7295,7 @@ newbossPENT:
 						y = rn2(ROWNO);
 
 						if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
+								ttmp = maketrap(x, y, rndtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;
@@ -11073,7 +11140,7 @@ madnesseffect:
 			deltrap(trap);
 
 			int rtrap;
-		      rtrap = randomtrap();
+		      rtrap = rndtrap();
 
 			(void) maketrap(u.ux, u.uy, rtrap, 100, cangivehp);
 
@@ -13569,7 +13636,7 @@ skillmultiplyagain:
 			int i, j;
 			boolean canbeinawall = FALSE;
 			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
-			int clustertype = randomtrap();
+			int clustertype = rndtrap();
 			int actualtraptype = clustertype;
 
 			deltrap(trap);
@@ -13583,7 +13650,7 @@ skillmultiplyagain:
 				if (t_at(cx + i, cy + j)) continue;
 
 				actualtraptype = clustertype;
-				if (!rn2(10)) actualtraptype = randomtrap();
+				if (!rn2(10)) actualtraptype = rndtrap();
 
 				if (rn2(5)) (void) maketrap(cx + i, cy + j, actualtraptype, 0, TRUE);
 			}
@@ -13613,7 +13680,7 @@ skillmultiplyagain:
 				if ((levl[cx + i][cy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(cx + i, cy + j)) continue;
 
-				if (rn2(5)) (void) maketrap(cx + i, cy + j, randomtrap(), 100, TRUE);
+				if (rn2(5)) (void) maketrap(cx + i, cy + j, rndtrap(), 100, TRUE);
 			}
 
 			You("stepped on a trigger!");
@@ -13630,7 +13697,7 @@ skillmultiplyagain:
 			int monicidenum = 0;
 			for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
 				if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon) ) ) {
-					(void) maketrap(nexusmon->mx, nexusmon->my, randomtrap(), 100, FALSE);
+					(void) maketrap(nexusmon->mx, nexusmon->my, rndtrap(), 100, FALSE);
 					monicidenum++;
 				}
 			}
@@ -13660,7 +13727,7 @@ skillmultiplyagain:
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-				if (rn2(5)) (void) maketrap(u.ux + i, u.uy + j, randomtrap(), 100, TRUE);
+				if (rn2(5)) (void) maketrap(u.ux + i, u.uy + j, rndtrap(), 100, TRUE);
 			}
 
 			You("feel endangered!!");
@@ -14833,7 +14900,7 @@ callingoutdone:
 
 						if (isok(leafletx, leaflety)) {
 							if (!rn2(5) && !t_at(leafletx, leaflety)) {
-								maketrap(leafletx, leaflety, randomtrap(), 100, FALSE);
+								maketrap(leafletx, leaflety, rndtrap(), 100, FALSE);
 							}
 							if (!rn2(25)) {
 								(void) mkobj_at(0, leafletx, leaflety, TRUE, FALSE);
@@ -18095,7 +18162,7 @@ skillrandomizeredo:
 					if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 					if (t_at(u.ux + i, u.uy + j)) continue;
 	
-				      rtrap = randomtrap();
+				      rtrap = rndtrap();
 	
 					(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, FALSE);
 				}
@@ -19621,7 +19688,7 @@ skillrandomizeredo:
 
 			{
 
-				register int fillertraptype = randomtrap();
+				register int fillertraptype = rndtrap();
 				register int filleramount = 4 + rnd(21);
 				if (!rn2(5)) filleramount += rnd(25);
 				if (!rn2(25)) filleramount += rnz(100);
@@ -27286,7 +27353,7 @@ boolean disarm;
 	if (!rn2(10) || evilfriday) {
 
 		if (isok(u.ux, u.uy) && !(t_at(u.ux, u.uy)) ) {
-			ttmp = maketrap(u.ux, u.uy, randomtrap(), 100, FALSE);
+			ttmp = maketrap(u.ux, u.uy, rndtrap(), 100, FALSE);
 			if (ttmp) {
 				ttmp->tseen = 0;
 				ttmp->hiddentrap = 1;
@@ -27303,7 +27370,7 @@ boolean disarm;
 			y = rn2(ROWNO);
 
 			if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
-					ttmp = maketrap(x, y, randomtrap(), 0, FALSE);
+					ttmp = maketrap(x, y, rndtrap(), 0, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;
 					ttmp->hiddentrap = 1;
@@ -27644,7 +27711,7 @@ boulderdone:
 			if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 			if (t_at(u.ux + i, u.uy + j)) continue;
 
-			ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100, FALSE);
+			ttmp = maketrap(u.ux + i, u.uy + j, rndtrap(), 100, FALSE);
 			if (ttmp) {
 				ttmp->tseen = 0;
 				ttmp->hiddentrap = 1;
@@ -27659,7 +27726,7 @@ boulderdone:
 			y = rn2(ROWNO);
 
 			if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-					ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
+					ttmp = maketrap(x, y, rndtrap(), 100, FALSE);
 				if (ttmp) {
 					ttmp->tseen = 0;
 					ttmp->hiddentrap = 1;

@@ -2927,7 +2927,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
-					rtrap = randomtrap();
+					rtrap = rndtrap();
 
 					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
@@ -3055,7 +3055,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
-					rtrap = randomtrap();
+					rtrap = rndtrap();
 
 					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
@@ -3179,7 +3179,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
-					rtrap = randomtrap();
+					rtrap = rndtrap();
 
 					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
@@ -3299,7 +3299,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
-					rtrap = randomtrap();
+					rtrap = rndtrap();
 
 					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}
@@ -3419,7 +3419,7 @@ rerollchaloc:
 
 					if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
-					rtrap = randomtrap();
+					rtrap = rndtrap();
 
 					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 					}

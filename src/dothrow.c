@@ -764,7 +764,7 @@ newbossO:
 			y = rn2(ROWNO);
 
 			if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
-				(void) maketrap(x, y, randomtrap(), 100, FALSE);
+				(void) maketrap(x, y, rndtrap(), 100, FALSE);
 				break;
 				}
 		}

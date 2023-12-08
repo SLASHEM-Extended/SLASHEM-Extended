@@ -25440,7 +25440,7 @@ register int	mmflags;
 		(void) maketrap(x, y, HOLE, 10, TRUE);
 
 	if (ptr == &mons[PM_TRAP_MASTER] && isok(x, y) && !(t_at(x, y)) )
-		(void) maketrap(x, y, randomtrap(), 100, TRUE);
+		(void) maketrap(x, y, rndtrap(), 100, TRUE);
 
 	if (ptr == &mons[PM_ELONIC_MINE_DOG] && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, LANDMINE, 10, TRUE);
@@ -25460,7 +25460,7 @@ register int	mmflags;
 	if (!rn2( ( (uarmg && uarmg->oartifact == ART_EXPERTENGAME_THE_ENTIRE_LE) ? 10 : (uarmg && uarmg->oartifact == ART_DIFFICULTY__) ? 10 : Race_if(PM_DEVELOPER) ? 25 : Race_if(PM_DROW) ? 100 : 500) ) && allow_special && isok(x, y) && !(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) && !(t_at(x, y))  ) {
 		int rtrap;
 
-		rtrap = randomtrap();
+		rtrap = rndtrap();
 
 		(void) maketrap(x, y, rtrap, 100, TRUE);
 
@@ -25473,7 +25473,7 @@ register int	mmflags;
 
 		if (!rn2(200 / reduceramount)) {
 			int rtrap;
-			rtrap = randomtrap();
+			rtrap = rndtrap();
 			(void) maketrap(x, y, rtrap, 100, TRUE);
 		}
 
@@ -25483,7 +25483,7 @@ register int	mmflags;
 
 		int rtrap;
 
-		rtrap = randomtrap();
+		rtrap = rndtrap();
 
 		(void) maketrap(x, y, rtrap, 100, FALSE);
 

@@ -2847,7 +2847,7 @@ badeffect()
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-			      rtrap = randomtrap();
+			      rtrap = rndtrap();
 				if (!rn2(20)) makerandomtrap(TRUE);
 
 				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
@@ -4348,7 +4348,7 @@ reallybadeffect()
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-			      rtrap = randomtrap();
+			      rtrap = rndtrap();
 				if (!rn2(20)) makerandomtrap(TRUE);
 
 				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);

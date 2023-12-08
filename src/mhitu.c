@@ -8378,7 +8378,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 
 		break;
@@ -11838,7 +11838,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			break;
 
 	      case AD_TRAP:
-			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, rndtrap(), 0, FALSE);
 			else makerandomtrap(FALSE);
 
 			break;
@@ -13946,7 +13946,7 @@ common:
 		break;
 
 	    case AD_TRAP:
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 
 		mdamageu(mtmp, tmp);
@@ -16573,7 +16573,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
  		{
 			pline("%s cackles fiendishly.", Monnam(mtmp));
 			stop_occupation();
-			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, rndtrap(), 0, FALSE);
 			else makerandomtrap(FALSE);
 		}
 		break;
@@ -21692,7 +21692,7 @@ dothepassive:
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 	    case AD_TRAP:
-		if (t_at(mtmp->mx, mtmp->my) == 0) (void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 0, FALSE);
+		if (t_at(mtmp->mx, mtmp->my) == 0) (void) maketrap(mtmp->mx, mtmp->my, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 
 		break;

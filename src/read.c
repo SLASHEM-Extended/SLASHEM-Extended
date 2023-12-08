@@ -7972,7 +7972,7 @@ newboss:
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-			      rtrap = randomtrap();
+			      rtrap = rndtrap();
 
 				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}
@@ -8001,7 +8001,7 @@ newboss:
 		}
 
 		{
-		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100, TRUE);
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, rndtrap(), 100, TRUE);
 		if (ttmp2) dotrap(ttmp2, 0);
 		}
 

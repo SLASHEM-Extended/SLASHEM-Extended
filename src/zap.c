@@ -4250,7 +4250,7 @@ register struct obj *obj;
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-			      rtrap = randomtrap();
+			      rtrap = rndtrap();
 
 				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}

@@ -7042,7 +7042,7 @@ struct monst *mtmp;
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-			      rtrap = randomtrap();
+			      rtrap = rndtrap();
 
 				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}
@@ -7079,7 +7079,7 @@ struct monst *mtmp;
 		/* don't trigger traps that might send the player to a different level due to danger of segfaults --Amy */
 
 		{
-		struct trap *ttmp2 = maketrap(u.ux, u.uy, randomtrap(), 100, TRUE);
+		struct trap *ttmp2 = maketrap(u.ux, u.uy, rndtrap(), 100, TRUE);
 		if (ttmp2 && (ttmp2->ttyp != HOLE) && (ttmp2->ttyp != TRAPDOOR) && (ttmp2->ttyp != LEVEL_TELEP) && (ttmp2->ttyp != LEVEL_BEAMER) && (ttmp2->ttyp != BRANCH_TELEPORTER) && (ttmp2->ttyp != BRANCH_BEAMER) && (ttmp2->ttyp != WRONG_STAIRS) && (ttmp2->ttyp != NEXUS_TRAP) && (ttmp2->ttyp != MAGIC_PORTAL) && (ttmp2->ttyp != UNKNOWN_TRAP) && (ttmp2->ttyp != WARP_ZONE) && (ttmp2->ttyp != SHAFT_TRAP) && (ttmp2->ttyp != CURRENT_SHAFT) ) dotrap(ttmp2, 0);
 		}
 
@@ -9144,7 +9144,7 @@ newboss:
 				if ((levl[u.ux + i][u.uy + j].typ <= DBWALL) && !canbeinawall) continue;
 				if (t_at(u.ux + i, u.uy + j)) continue;
 
-			      rtrap = randomtrap();
+			      rtrap = rndtrap();
 
 				(void) maketrap(u.ux + i, u.uy + j, rtrap, 100, TRUE);
 			}

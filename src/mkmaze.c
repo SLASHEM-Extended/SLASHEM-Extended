@@ -954,9 +954,9 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 #ifdef BIGSLEX
-	for(x = (rn2(2) ? rn1(84, 98) : rn2(4) ? rn1(21,24) : rn1(42, 49)); x; x--) {
+	for(x = (!rn2(6) ? rn1(84, 98) : rn2(4) ? rn1(21,24) : rn1(42, 49)); x; x--) {
 #else
-	for(x = (rn2(2) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
+	for(x = (!rn2(6) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);
@@ -1009,9 +1009,9 @@ register const char *s;
 		(void) mkgold(0L,mm.x,mm.y);
 	}
 #ifdef BIGSLEX
-	for(x = (rn2(2) ? rn1(84, 98) : rn2(4) ? rn1(21,24) : rn1(42, 49)); x; x--) {
+	for(x = (!rn2(6) ? rn1(84, 98) : rn2(4) ? rn1(21,24) : rn1(42, 49)); x; x--) {
 #else
-	for(x = (rn2(2) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
+	for(x = (!rn2(6) ? rn1(24, 28) : rn2(4) ? rn1(6,7) : rn1(12, 14)); x; x--) {
 #endif
 		if (!(depth(&u.uz) == 1 && In_dod(&u.uz) && rn2(3)) && !(depth(&u.uz) == 2 && In_dod(&u.uz) && rn2(2)) ) {
 			mktrap(0,1,(struct mkroom *) 0, (coord*) 0, TRUE);

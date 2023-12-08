@@ -3187,7 +3187,7 @@ moveloop()
 				int dd = ttmp->ty;
 				boolean trapseen = ttmp->tseen;
 				deltrap(ttmp);
-				ttmp = maketrap(cc, dd, randomtrap(), 100, FALSE);
+				ttmp = maketrap(cc, dd, rndtrap(), 100, FALSE);
 				if (ttmp && trapseen) ttmp->tseen = TRUE;
 			}
 		}
@@ -4440,7 +4440,7 @@ newbossS:
 			}
 
 			if (ttmp && ttmp->ttyp == ADJACENT_TRAP && !(t_at(u.ux, u.uy)) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
-				maketrap(u.ux, u.uy, randomtrap(), 100, FALSE);
+				maketrap(u.ux, u.uy, rndtrap(), 100, FALSE);
 			}
 
 			if (ttmp && ttmp->ttyp == SUPERTHING_TRAP && (multi >= 0) && (distu(ttmp->tx, ttmp->ty) < 4 ) ) {
@@ -5062,7 +5062,7 @@ greasingdone:
 					if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
 					if (t_at(u.ux + i, u.uy + j)) continue;
 
-					ttmp = maketrap(u.ux + i, u.uy + j, randomtrap(), 100, FALSE);
+					ttmp = maketrap(u.ux + i, u.uy + j, rndtrap(), 100, FALSE);
 					if (ttmp) {
 						ttmp->tseen = 0;
 						ttmp->hiddentrap = 1;
@@ -5077,7 +5077,7 @@ greasingdone:
 					y = rn2(ROWNO);
 
 					if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
-							ttmp = maketrap(x, y, randomtrap(), 100, FALSE);
+							ttmp = maketrap(x, y, rndtrap(), 100, FALSE);
 						if (ttmp) {
 							ttmp->tseen = 0;
 							ttmp->hiddentrap = 1;
@@ -11031,7 +11031,7 @@ newbossB:
 			y = rn2(ROWNO);
 
 			if (isok(x, y) && !(t_at(x, y)) ) {
-				(void) maketrap(x, y, randomtrap(), 0, FALSE);
+				(void) maketrap(x, y, rndtrap(), 0, FALSE);
 				}
 			u.arabellahack = 0;
 
@@ -13989,7 +13989,7 @@ pastds2:
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 			    }
 			} else if (Regeneration ||
-			     (!(moves % (42 / (GushLevel / 2) + 6))) ) {
+			     (!(moves % (42 / ((GushLevel / 2) + 6) ))) ) {
 			    flags.botl = 1;
 			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck() && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
 					u.uhp++;
@@ -15472,7 +15472,7 @@ past4:
 
 				if (angbandx && angbandy && isok(angbandx, angbandy) && ((levl[angbandx][angbandy].typ > DBWALL) || canbeinawall) && !(t_at(angbandx, angbandy)) ) {
 
-					rtrap = randomtrap();
+					rtrap = rndtrap();
 					(void) maketrap(angbandx, angbandy, rtrap, 100, TRUE);
 				}
 			}

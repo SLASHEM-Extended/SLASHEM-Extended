@@ -5513,7 +5513,7 @@ physical:
 		break;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 
 		break;
@@ -7616,7 +7616,7 @@ int attnumber;
 		if (!rn2(issoviet ? 2 : 8)) makerandomtrap(FALSE);
 		break;
 	    case AD_TRAP:
-		if (t_at(magr->mx, magr->my) == 0) (void) maketrap(magr->mx, magr->my, randomtrap(), 0, FALSE);
+		if (t_at(magr->mx, magr->my) == 0) (void) maketrap(magr->mx, magr->my, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 
 		break;

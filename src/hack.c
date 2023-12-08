@@ -717,7 +717,7 @@ moverock()
 		lastmovetime = moves;
 
 		if (otmp && otmp->oartifact == ART_ENTRAP_THE_UNWARY && !rn2(100)) {
-			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+			if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, rndtrap(), 0, FALSE);
 		}
 
 		if (otmp && otmp->oartifact == ART_SIGNAL_TONE) {
@@ -1260,7 +1260,7 @@ int mode;
 					pline("Jana is laughing at you because there was a cursed called hidden underneath the wall.");
 				}
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
-				maketrap(ux+dx, uy+dy, randomtrap(), 100, TRUE);
+				maketrap(ux+dx, uy+dy, rndtrap(), 100, TRUE);
 			} else if (!rn2(20) && isok(ux+dx, uy+dy)) {
 				pline("There was a monster hidden underneath the wall!");
 				makemon((struct permonst *)0, ux+dx, uy+dy, MM_ADJACENTOK);

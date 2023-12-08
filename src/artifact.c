@@ -4812,7 +4812,7 @@ newboss:
 						y = rn2(ROWNO);
 
 						if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
-								ttmp = maketrap(x, y, randomtrap(), 0, TRUE);
+								ttmp = maketrap(x, y, rndtrap(), 0, TRUE);
 							if (ttmp) {
 								ttmp->tseen = 0;
 								ttmp->hiddentrap = 1;

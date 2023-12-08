@@ -1425,7 +1425,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_DEVIOUS_TRAP_INSTALLER] && !rn2(5)) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
+				(void) maketrap(mtmp->mx, mtmp->my, rndtrap(), 100, FALSE);
 			}
 		}
 	}
@@ -1433,7 +1433,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_LITTLE_HIDDEN_BOX]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
+				(void) maketrap(mtmp->mx, mtmp->my, rndtrap(), 100, FALSE);
 			}
 		}
 	}
@@ -1441,7 +1441,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_XTRA_WEBBER] && !rn2(3)) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
+				(void) maketrap(mtmp->mx, mtmp->my, rndtrap(), 100, FALSE);
 			}
 		}
 	}
@@ -1449,7 +1449,7 @@ register struct monst *mtmp;
 	if (mdat == &mons[PM_SUPERREGENEBOROS]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (!(t_at(mtmp->mx, mtmp->my))) {
-				(void) maketrap(mtmp->mx, mtmp->my, randomtrap(), 100, FALSE);
+				(void) maketrap(mtmp->mx, mtmp->my, rndtrap(), 100, FALSE);
 			}
 		}
 	}

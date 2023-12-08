@@ -3843,7 +3843,7 @@ int dieroll;
 	if (obj && obj->oartifact == ART_LUCKLESS_FOLLY && Luck > 0) tmp -= Luck;
 
 	if (thrown && obj && (obj->oartifact == ART_TRAPPERATE) && isok(mon->mx, mon->my) && !(t_at(mon->mx, mon->my)) ) {
-		(void) maketrap(mon->mx, mon->my, randomtrap(), 100, TRUE);
+		(void) maketrap(mon->mx, mon->my, rndtrap(), 100, TRUE);
 	}
 
 	if (thrown && obj && (obj->oartifact == ART_FEMMY_LOVES_YOU) ) {
@@ -8051,7 +8051,7 @@ register struct attack *mattk;
 		break;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 
 		break;
@@ -8965,7 +8965,7 @@ register struct attack *mattk;
 		goto common;
 
 	    case AD_TRAP:
-		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, randomtrap(), 0, FALSE);
+		if (t_at(mdef->mx, mdef->my) == 0) (void) maketrap(mdef->mx, mdef->my, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 		goto common;
 		break;
@@ -12729,7 +12729,7 @@ boolean ranged;
 		break;
 
 	  case AD_TRAP:
-		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, randomtrap(), 0, FALSE);
+		if (t_at(u.ux, u.uy) == 0) (void) maketrap(u.ux, u.uy, rndtrap(), 0, FALSE);
 		else makerandomtrap(FALSE);
 
 	  break;

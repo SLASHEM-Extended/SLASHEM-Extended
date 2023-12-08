@@ -3310,7 +3310,7 @@ E void create_secret_door(struct mkroom *,XCHAR_P);
 E boolean dig_corridor(coord *,coord *,BOOLEAN_P,SCHAR_P,SCHAR_P);
 E void fill_room(struct mkroom *,BOOLEAN_P);
 E boolean load_special(const char *);
-E int randomtrap(void);
+E int rndtrap(void);
 E void makerandomtrap(BOOLEAN_P);
 E void makeinvisotrap(void);
 E void makegirlytrap(void);
@@ -3550,6 +3550,7 @@ E boolean wither_dmg(struct obj *,const char *,int,BOOLEAN_P,struct monst *);
 E void dofiretrap(struct obj *);
 
 E boolean is_nasty_trap(int);
+E boolean is_common_trap(int);
 E void nofunwalltrigger(int, int);
 
 E int yawm_distance(void);
