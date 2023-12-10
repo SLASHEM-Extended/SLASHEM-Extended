@@ -1144,6 +1144,9 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
+				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
+					moveamt /= 2;
+
 				if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1628,6 +1631,9 @@ moveloop()
 				moveamt /= 2;
 
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
+				moveamt /= 2;
+
+			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
@@ -2287,6 +2293,20 @@ moveloop()
 
 			if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL) {
 			    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			}
+
+			if (PlayerInStilettoHeels && !PlayerCannotUseSkills && moveamt < 12) {
+				switch (P_SKILL(P_STILETTO_HEELS)) {
+					default: break;
+					case P_BASIC: if (!rn2(10)) moveamt += 1; break;
+					case P_SKILLED: if (!rn2(5)) moveamt += 2; break;
+					case P_EXPERT: if (rnd(10) < 4) moveamt += 3; break;
+					case P_MASTER: if (rnd(10) < 5) moveamt += 4; break;
+					case P_GRAND_MASTER: if (!rn2(2)) moveamt += 5; break;
+					case P_SUPREME_MASTER: if (rnd(10) < 7) moveamt += 6; break;
+				}
+
+				if (moveamt > 12) moveamt = 12;
 			}
 
 			/* clockwork gets bullshit downside: I know this is heavy-handed, but they're just plain too strong

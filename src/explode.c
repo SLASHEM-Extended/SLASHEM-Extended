@@ -724,6 +724,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		    damu = 0;
 		    Your("implant nullifies the damage!");
+		} else if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {
+		    damu = 0;
+		    Your("cone heels nullify the damage!");
 		} else if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {
 		    damu = 0;
 		    Your("tonfa nullifies the damage!");

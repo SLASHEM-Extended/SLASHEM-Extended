@@ -1202,9 +1202,59 @@ nh_timeout()
 		pline("Well, you don't really feel comfortable with those columnar heels. They slow you down even though they're very pretty, and people might laugh at you.");
 	}
 
+	if (u.umoved && !rn2(flags.female ? 2000 : 1000) && PlayerInConeHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_CONE_HEELS) == P_ISRESTRICTED) ) {
+		if (uarmf->spe > -20) {
+			uarmf->spe--;
+			Your("cone heels degrade because you don't know how to walk in them properly.");
+		} else {
+			useup(uarmf);
+			Your("cone heels suddenly shatter because you kept damaging the heels on the floor, and now they're unusable.");
+		}
+	}
+
+	if (u.umoved && !rn2(flags.female ? 500 : 250) && PlayerInBlockHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
+		wake_nearby();
+		pline("As you take your step, a loud, distorted 'KLACK' sound can be heard, caused by you accidentally stomping your block heel on the floor way too hard. Certainly everyone in the vicinity was alerted to your presence now.");
+	}
+
+	if (u.umoved && !rn2(2000) && PlayerInWedgeHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
+		pline("Eep, you accidentally stepped into shit with your wedge heels!");
+		doshittrap((struct obj *)0);
+	}
+
 	if (u.umoved && PlayerInHighHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
-		if (PlayerInStilettoHeels && !rn2(100) && multi >= 0) {
+		boolean highheelfail = TRUE;
+
+		/* have the specific heel type skill? great, then the failures happen less often */
+		if (!PlayerCannotUseSkills) {
+			if (PlayerInStilettoHeels && P_MAX_SKILL(P_STILETTO_HEELS) != P_ISRESTRICTED) {
+				if (P_SKILL(P_STILETTO_HEELS) < P_BASIC && rn2(10)) highheelfail = FALSE;
+				else if (P_SKILL(P_STILETTO_HEELS) == P_BASIC && rn2(20)) highheelfail = FALSE;
+				else if (P_SKILL(P_STILETTO_HEELS) == P_SKILLED && rn2(50)) highheelfail = FALSE;
+				else if (P_SKILL(P_STILETTO_HEELS) > P_SKILLED) highheelfail = FALSE;
+			}
+			if (PlayerInConeHeels && P_MAX_SKILL(P_CONE_HEELS) != P_ISRESTRICTED) {
+				if (P_SKILL(P_CONE_HEELS) < P_BASIC && rn2(10)) highheelfail = FALSE;
+				else if (P_SKILL(P_CONE_HEELS) == P_BASIC && rn2(20)) highheelfail = FALSE;
+				else if (P_SKILL(P_CONE_HEELS) == P_SKILLED && rn2(50)) highheelfail = FALSE;
+				else if (P_SKILL(P_CONE_HEELS) > P_SKILLED) highheelfail = FALSE;
+			}
+			if (PlayerInBlockHeels && P_MAX_SKILL(P_BLOCK_HEELS) != P_ISRESTRICTED) {
+				if (P_SKILL(P_BLOCK_HEELS) < P_BASIC && rn2(10)) highheelfail = FALSE;
+				else if (P_SKILL(P_BLOCK_HEELS) == P_BASIC && rn2(20)) highheelfail = FALSE;
+				else if (P_SKILL(P_BLOCK_HEELS) == P_SKILLED && rn2(50)) highheelfail = FALSE;
+				else if (P_SKILL(P_BLOCK_HEELS) > P_SKILLED) highheelfail = FALSE;
+			}
+			if (PlayerInWedgeHeels && P_MAX_SKILL(P_WEDGE_HEELS) != P_ISRESTRICTED) {
+				if (P_SKILL(P_WEDGE_HEELS) < P_BASIC && rn2(10)) highheelfail = FALSE;
+				else if (P_SKILL(P_WEDGE_HEELS) == P_BASIC && rn2(20)) highheelfail = FALSE;
+				else if (P_SKILL(P_WEDGE_HEELS) == P_SKILLED && rn2(50)) highheelfail = FALSE;
+				else if (P_SKILL(P_WEDGE_HEELS) > P_SKILLED) highheelfail = FALSE;
+			}
+		}
+
+		if (PlayerInStilettoHeels && highheelfail && !rn2(100) && multi >= 0) {
 			You("slip with your stiletto heels and crash into the floor. Ouch!");
 			if (isstunfish) nomul(-(rnz(10) ), "prone from wiping out with their stilettos", TRUE);
 			else nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
@@ -1222,7 +1272,7 @@ nh_timeout()
 		    }
 
 		}
-		if (PlayerInConeHeels && !rn2(500) && !(uarmf && itemhasappearance(uarmf, APP_FEELGOOD_HEELS) ) ) {
+		if (PlayerInConeHeels && highheelfail && !rn2(500) && !(uarmf && itemhasappearance(uarmf, APP_FEELGOOD_HEELS) ) ) {
 			/* This is the one that will make players 'female dog' at me. Because it's evil. --Amy */
 
 			register struct obj *otmpi, *otmpii;
@@ -1270,12 +1320,12 @@ nh_timeout()
 		    if (numdroppeditems) scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
 
 		}
-		if (PlayerInBlockHeels && !rn2(250)) {
+		if (PlayerInBlockHeels && highheelfail && !rn2(250)) {
 			pline("Being unused to wearing block heels, you painfully sprain your ankle.");
 			set_wounded_legs(rn2(2) ? LEFT_SIDE : RIGHT_SIDE, HWounded_legs + rnd(20));
 
 		}
-		if (PlayerInWedgeHeels && !rn2(50) && multi >= 0) {
+		if (PlayerInWedgeHeels && highheelfail && !rn2(50) && multi >= 0) {
 			You("trip over your own wedge heels.");
 			nomul(-2, "stumbling with wedge heels", TRUE);
 			nomovemsg = "";

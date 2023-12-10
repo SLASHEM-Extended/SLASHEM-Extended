@@ -1502,6 +1502,10 @@ struct you {
 	long ugallop;
 	int urideturns;
 	int uhighheelturns;
+	int ustilettoheelturns;
+	int uconeheelturns;
+	int ublockheelturns;
+	int uwedgeheelturns;
 	int usexyflatturns;
 	int ugeneralcombatturns;
 	int utwohandedcombatturns;
@@ -1925,6 +1929,8 @@ struct you {
 	int polgoskill;
 	int firgaturns;
 	int firgaskill;
+	int columnarturns;	/* inofficial high heel type that also doesn't appear as regular skill */
+	int columnarskill;
 
 	int nataliacyclestart;	/* for natalia trap: starts at rn2(2800) */
 	int nataliacycletimer;

@@ -2873,6 +2873,65 @@ peacedisplace:
 	    use_skill(P_HIGH_HEELS, 1);
 	}
 
+	if (PlayerInColumnarHeels) {
+
+		/* an odd one: male characters can train it faster, lacking the high heels skill makes it slower, and if
+		 * you're female without the high heels skill you cannot train it at all --Amy */
+
+		int columnarneeded = 150;
+		boolean cancolumnar = TRUE;
+		if (flags.female) columnarneeded = 500;
+
+		if (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) {
+			if (flags.female) cancolumnar = FALSE;
+			else columnarneeded = 500;
+		}
+
+		u.columnarturns++;
+		if (cancolumnar && (u.columnarturns >= columnarneeded)) {
+			u.columnarturns = 0;
+			u.columnarskill++;
+			if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
+			if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
+			if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");
+			if (u.columnarskill == 1280) You("are now more skilled in type 5: columnar heels.");
+			if (u.columnarskill == 2560) You("are now more skilled in type 5: columnar heels.");
+			if (u.columnarskill == 4320) You("are now most skilled in type 5: columnar heels.");
+		}
+	}
+
+	if (PlayerInStilettoHeels) {
+		u.ustilettoheelturns++;
+		if (u.ustilettoheelturns >= ((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 350 : 2500) ) {
+			u.ustilettoheelturns = 0;
+			use_skill(P_STILETTO_HEELS, 1);
+		}
+	}
+
+	if (PlayerInConeHeels) {
+		u.uconeheelturns++;
+		if (u.uconeheelturns >= ((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 200 : 500) ) {
+			u.uconeheelturns = 0;
+			use_skill(P_CONE_HEELS, 1);
+		}
+	}
+
+	if (PlayerInBlockHeels) {
+		u.ublockheelturns++;
+		if (u.ublockheelturns >= 250) {
+			u.ublockheelturns = 0;
+			use_skill(P_BLOCK_HEELS, 1);
+		}
+	}
+
+	if (PlayerInWedgeHeels) {
+		u.uwedgeheelturns++;
+		if (u.uwedgeheelturns >= 200) {
+			u.uwedgeheelturns = 0;
+			use_skill(P_WEDGE_HEELS, 1);
+		}
+	}
+
 	/* exercising sexy flats does too, especially if you're male */
 	if (PlayerInSexyFlats && (flags.female || !rn2(5)) && (u.usexyflatturns++ >= 50)) {
 	    u.usexyflatturns = 0;
@@ -4606,6 +4665,22 @@ nomul(nval, txt, discountpossible)
 		if (nval > -2) nval = -2;
 	}
 
+	if (PlayerInColumnarHeels && discountpossible && (nval < -1)) {
+		register int dmgreductor = 100;
+		if (u.columnarskill >= 20) dmgreductor -= 10;
+		if (u.columnarskill >= 160) dmgreductor -= 10;
+		if (u.columnarskill >= 540) dmgreductor -= 10;
+		if (u.columnarskill >= 1280) dmgreductor -= 10;
+		if (u.columnarskill >= 2560) dmgreductor -= 10;
+		if (u.columnarskill >= 4320) dmgreductor -= 10;
+
+		nval *= dmgreductor;
+		nval /= 100;
+
+		if (nval > -2) nval = -2;
+
+	}
+
 	if (irisartiboost() && discountpossible && (nval < -1)) {
 		register int dmgreductor = 10;
 		dmgreductor -= irisartiboost();
@@ -5154,6 +5229,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		n = 0;
 		Your("implant nullifies the damage!");
+	} else if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {
+		n = 0;
+		Your("cone heels nullify the damage!");
 	} else if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {
 		n = 0;
 		Your("tonfa nullifies the damage!");

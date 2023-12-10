@@ -29171,6 +29171,13 @@ static NEARDATA const char * const fake_plines[] = {
 	"Great! Now you can see everything from a totally different perspective. Unfortunately for you though, SLEX still wants you dead.",
 	"A light shines on your location.",
 	"A light shines on your location. This means that you cast the light spell, which used to light up an entire area but now only lights up the square you're on, which is very useless.",
+	"Your cone heels degrade because you don't know how to walk in them properly.",
+	"Your cone heels suddenly shatter because you kept damaging the heels on the floor, and now they're unusable.",
+	"Your cone heels suddenly shatter because you kept damaging the heels on the floor, and now they're unusable. Maybe you should have worn block heels instead, which are much easier to walk around in.",
+	"As you take your step, a loud, distorted 'KLACK' sound can be heard, caused by you accidentally stomping your block heel on the floor way too hard. Certainly everyone in the vicinity was alerted to your presence now.",
+	"Eep, you accidentally stepped into shit with your wedge heels!",
+	"Eep, you accidentally stepped into shit with your wedge heels! Can't you pay attention when walking around?",
+	"Eep, you accidentally stepped into shit with your wedge heels! But at least there are no treaded wedge heels, so cleaning them should go relatively fast.",
 
 };
 

@@ -942,6 +942,18 @@ register struct monst *mtmp;
 
 		}
 	}
+	if (PlayerInWedgeHeels && !PlayerCannotUseSkills) {
+		switch (P_SKILL(P_WEDGE_HEELS)) {
+			default: break;
+			case P_BASIC: tmp += 1; break;
+			case P_SKILLED: tmp += 2; break;
+			case P_EXPERT: tmp += 3; break;
+			case P_MASTER: tmp += 4; break;
+			case P_GRAND_MASTER: tmp += 5; break;
+			case P_SUPREME_MASTER: tmp += 6; break;
+		}
+	}
+
 	if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && !(uwep && uwep->otyp == JEONTU_GEOM)) tmp -= 10;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {

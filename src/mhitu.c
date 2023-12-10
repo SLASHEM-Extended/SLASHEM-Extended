@@ -6975,6 +6975,19 @@ hitmu(mtmp, mattk)
 			}
 		if (sexyflatchance > rn2(100)) statsavingthrow = 1;
 	}
+	if (!PlayerCannotUseSkills && PlayerInBlockHeels) {
+		int blockheelchance = 0;
+		switch (P_SKILL(P_BLOCK_HEELS)) {
+			case P_BASIC: blockheelchance = 5; break;
+			case P_SKILLED: blockheelchance = 10; break;
+			case P_EXPERT: blockheelchance = 15; break;
+			case P_MASTER: blockheelchance = 20; break;
+			case P_GRAND_MASTER: blockheelchance = 25; break;
+			case P_SUPREME_MASTER: blockheelchance = 30; break;
+			}
+		if (blockheelchance > rn2(100)) statsavingthrow = 1;
+
+	}
 
 	register struct engr *ep = engr_at(u.ux,u.uy);
 	int dmg, armpro, permdmg;
@@ -19375,6 +19388,12 @@ register int n;
 	if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && !rn2(10)) {
 		n = 0;
 		Your("pair of heels nullifies the damage!");
+		return;
+	}
+
+	if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {
+		n = 0;
+		Your("cone heels nullify the damage!");
 		return;
 	}
 

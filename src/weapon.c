@@ -5684,6 +5684,9 @@ restrpasstwo:
 			sprintf(buf2, "form XIII (Firga) %s %d",
 			    (u.firgaskill >= 4320) ? "Supreme Master" : (u.firgaskill >= 2500) ? "Grand Master" : (u.firgaskill >= 1280) ? "Master" : (u.firgaskill >= 540) ? "Expert" : (u.firgaskill >= 160) ? "Skilled" : (u.firgaskill >= 20) ? "Basic" : "Unskilled", u.firgaskill);
 			dump("    ",buf2);
+			sprintf(buf2, "type 5: columnar heels %s %d",
+			    (u.columnarskill >= 4320) ? "Supreme Master" : (u.columnarskill >= 2500) ? "Grand Master" : (u.columnarskill >= 1280) ? "Master" : (u.columnarskill >= 540) ? "Expert" : (u.columnarskill >= 160) ? "Skilled" : (u.columnarskill >= 20) ? "Basic" : "Unskilled", u.columnarskill);
+			dump("    ",buf2);
 			logged=TRUE;
 
 		} else {
@@ -5709,6 +5712,10 @@ restrpasstwo:
 			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 			sprintf(buf, "  form XIII (Firga) %s %d",
 			    (u.firgaskill >= 4320) ? "Supreme Master" : (u.firgaskill >= 2500) ? "Grand Master" : (u.firgaskill >= 1280) ? "Master" : (u.firgaskill >= 540) ? "Expert" : (u.firgaskill >= 160) ? "Skilled" : (u.firgaskill >= 20) ? "Basic" : "Unskilled", u.firgaskill);
+			any.a_int = 0;
+			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+			sprintf(buf, "  type 5: columnar heels %s %d",
+			    (u.columnarskill >= 4320) ? "Supreme Master" : (u.columnarskill >= 2500) ? "Grand Master" : (u.columnarskill >= 1280) ? "Master" : (u.columnarskill >= 540) ? "Expert" : (u.columnarskill >= 160) ? "Skilled" : (u.columnarskill >= 20) ? "Basic" : "Unskilled", u.columnarskill);
 			any.a_int = 0;
 			add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
 
@@ -11420,6 +11427,7 @@ dataskilldecrease()
 	u.aldebaranskill = 0;
 	u.polgoskill = 0;
 	u.firgaskill = 0;
+	u.columnarskill = 0;
 
 }
 
@@ -11755,6 +11763,11 @@ int lossamount;
 		u.firgaskill -= lossamount;
 		if (u.firgaskill < 0) u.firgaskill = 0;
 		Your("form XIII (Firga) skill deteriorates.");
+	}
+	if (!rn2(500)) {
+		u.columnarskill -= lossamount;
+		if (u.columnarskill < 0) u.columnarskill = 0;
+		Your("type 5: columnar heels skill deteriorates.");
 	}
 
 }

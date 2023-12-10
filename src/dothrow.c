@@ -2740,6 +2740,18 @@ boolean polearming;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 	if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
 
+	if (PlayerInWedgeHeels && !PlayerCannotUseSkills) {
+		switch (P_SKILL(P_WEDGE_HEELS)) {
+			default: break;
+			case P_BASIC: tmp += 1; break;
+			case P_SKILLED: tmp += 2; break;
+			case P_EXPERT: tmp += 3; break;
+			case P_MASTER: tmp += 4; break;
+			case P_GRAND_MASTER: tmp += 5; break;
+			case P_SUPREME_MASTER: tmp += 6; break;
+		}
+	}
+
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
 			if (P_SKILL(P_FIREARM) < P_BASIC) tmp += 6;
