@@ -1696,6 +1696,8 @@ Cloak_on()
 		curse(uarmc);
 	}
 
+	if (uarmc && uarmc->oartifact == ART_EASIFY_THE_GAME && uarmc->spe < 3) uarmc->spe = 3;
+
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_OVERCOAT) {
 		pline("Bad for you - you just cursed yourself with Ina's anorexia. :-(");
 		curse(uarmc);
@@ -5091,6 +5093,11 @@ register struct obj *obj;
 		    update_inventory();
 		}
 		break;
+    }
+
+    if (obj->oartifact == ART_KIM_S_COLOR && (objects[obj->otyp].oc_material != MT_SILVER)) {
+		pline_The("ring is made of silver now.");
+		objects[obj->otyp].oc_material = MT_SILVER;
     }
 
     if (obj->oartifact == ART_RING_OF_WOE) {

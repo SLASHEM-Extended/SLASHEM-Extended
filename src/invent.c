@@ -10872,11 +10872,8 @@ long numused;
 
 #ifdef OVL1
 
-/*
- * Conversion from a class to a string for printing.
- * This must match the object class order.
- */
-STATIC_VAR NEARDATA const char *names[] = { 0,
+/* needed in other files too --Amy */
+const char *objtypenames[] = { 0,
 	"Illegal objects", "Weapons", "Armor", "Rings", "Amulets", "Implants",
 	"Tools", "Comestibles", "Potions", "Scrolls", "Spellbooks",
 	"Wands", "Coins", "Gems", "Boulders/Statues", "Iron balls",
@@ -10907,11 +10904,11 @@ boolean unpaid,showsym;
 	unsigned len;
 
 	if (oclass)
-	    class_name = names[oclass];
+	    class_name = objtypenames[oclass];
 	else if ((pos = index(oth_symbols, let)) != 0)
 	    class_name = oth_names[pos - oth_symbols];
 	else
-	    class_name = names[0];
+	    class_name = objtypenames[0];
 
 	len = strlen(class_name) + (unpaid ? sizeof "unpaid_" : sizeof "") +
 	    ((oclass && showsym) ? strlen(ocsymformat) : 0);
@@ -29293,6 +29290,32 @@ boolean knoweverything;
 					pline("Artifact specs: poison and sickness resistance when worn."); break;
 				case ART_NIGHTLY_HIGHWAY:
 					pline("Artifact specs: if it's nighttime while you're wearing it, you have fast speed, otherwise you have the ability to hide underneath items."); break;
+				case ART_MOUTHS_CRADLE:
+					pline("Artifact specs: full nutrients when worn. The name is totally not inspired by a song from a popular Icelandic artist :-)"); break;
+				case ART_KIM_S_COLOR:
+					pline("Artifact specs: becomes silver when worn, can be invoked to roll a random base item type whose material is also changed to silver."); break;
+				case ART_TWO_RING:
+					pline("Artifact specs: drain resistance when worn."); break;
+				case ART_CAN_T_FIND_ME:
+					pline("Artifact specs: double invisibility when worn."); break;
+				case ART_NEXTMISSION:
+					pline("Artifact specs: can be invoked for return."); break;
+				case ART_CASHWAD:
+					pline("Artifact specs: does nothing special, but is worth a lot of money."); break;
+				case ART_NOT_AN_EYE:
+					pline("Artifact specs: energy regeneration when worn."); break;
+				case ART_HALFET:
+					pline("Artifact specs: half spell damage when worn."); break;
+				case ART_WOOU_OEEI:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_PROTECTOR_NO____:
+					pline("Artifact specs: psi resistance and fully protects you from mind flayer blasts when worn."); break;
+				case ART_DOUBLE_PLUS_GOOD:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_EASIFY_THE_GAME:
+					pline("Artifact specs: if you put it on while its enchantment value is less than +3, it becomes +3."); break;
+				case ART_MFFAP:
+					pline("Artifact specs: +4 damage, and digging out a wall tile occasionally puts a landmine on the dug out square which counts as having been set by you."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

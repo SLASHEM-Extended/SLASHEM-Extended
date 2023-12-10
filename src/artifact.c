@@ -784,6 +784,7 @@ init_randarts()
 	artilist[ART_OGRE_POWER].otyp = randarthammerX();
 	artilist[ART_MORTALITY_DIAL].otyp = randartmaceX();
 	artilist[ART_ARK_OF_THE_COVENANT].otyp = randartpickaxeX();
+	artilist[ART_MFFAP].otyp = randartpickaxeX();
 	artilist[ART_NOTHING_FOR_IT].otyp = randartpickaxeX();
 	artilist[ART_REPAIR_YOUR_BRAIN].otyp = randartpickaxeX();
 	artilist[ART_FAMOUS_LANCE].otyp = randartlanceX();
@@ -5227,6 +5228,18 @@ chargingchoice:
 
 		*/
 
+		if (obj->oartifact == ART_KIM_S_COLOR) {
+
+			int objtomodify;
+			objtomodify = -1;
+	/* we roll until we get an item that can be randomly generated and is not a gold piece or other weird thing --Amy */
+			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
+			objects[objtomodify].oc_material = MT_SILVER;
+			pline("%s (%s) is made of silver now.", obj_descr[objtomodify].oc_name, objtypenames[objects[objtomodify].oc_class]);
+
+			break;
+		}
+
 		if (obj->oartifact == ART_GLAE) {
 
 			long savewornmask;
@@ -5241,6 +5254,19 @@ chargingchoice:
 			Your("weapon morphs...");
 
 			break;
+		}
+
+		if (obj->oartifact == ART_NEXTMISSION) {
+
+			if (u.returntimer) {
+				u.returntimer = 0;
+				pline_The("air around you gradually loses power.");
+			} else {
+				setupreturn(0);
+			}
+
+			break;
+
 		}
 
 		if (obj->oartifact == ART_RANOFRIT) {

@@ -17340,6 +17340,58 @@ A("Nightly Highway",				HYPERSONIC_GLOVES, /* if it's nighttime, you have fast s
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Mouths Cradle",				RIN_SICKNESS_RESISTANCE, /* full nutrients */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kim's Color",				RIN_SICKNESS_RESISTANCE, /* material becomes SILVER when worn, can be invoked to turn a random base item type to silver */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Two Ring",				RIN_INVISIBILITY,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Can't Find Me",				RIN_INVISIBILITY, /* also provides intrinsic invis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nextmission",				AMULET_OF_DRAIN_RESISTANCE, /* can be invoked for return */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cashwad",				AMULET_OF_DRAIN_RESISTANCE, /* no effect, just worth a lot of money */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Not An Eye",				AMULET_OF_ESP,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Halfet",				AMULET_OF_ESP,
+	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Woou-oeei",				AMULET_OF_ESP,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Protector No. 23",				HELM_OF_TELEPATHY, /* protects you from mind flayer blasts, resist psi */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Double Plus Good",				CLOAK_OF_MAGIC_RESISTANCE, /* mystery resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Easify The Game",				CLOAK_OF_MAGIC_RESISTANCE, /* becomes +3 when worn if it was lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("MFFAP",				PICK_AXE, /* randart2 pick-axe, 1 in 20 times you dig out a wall it gets a landmine trap that counts as if you had set it */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

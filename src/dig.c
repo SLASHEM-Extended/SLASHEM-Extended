@@ -652,6 +652,20 @@ newbossMETALMAFIA:
 			    digtxt = "You succeed in cutting away some rock.";
 			    u.cnd_diggingamount++;
 			    lev->typ = CORR;
+
+				if (uwep && uwep->oartifact == ART_MFFAP && !rn2(20)) {
+					struct trap *extramine;
+					if (!t_at(dpx, dpy)) {
+						extramine = maketrap(dpx, dpy, LANDMINE, 0, FALSE);
+						if (extramine) {
+							extramine->tseen = TRUE;
+							extramine->hiddentrap = FALSE;
+							extramine->madeby_u = TRUE;
+							pline("CLICK! A mine has been set!");
+						}
+					}
+				}
+
 				if (uwep && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {
 					use_skill(P_WEDI, 1);
 				}

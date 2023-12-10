@@ -1045,6 +1045,7 @@ E struct obj *carrying(int);
 E struct obj *carryingarti(int);
 E struct obj *carryingappearance(int);
 E boolean itemsurvivedestruction(struct obj *, int);
+E const char *objtypenames[];
 
 E boolean haveartileash(int);
 

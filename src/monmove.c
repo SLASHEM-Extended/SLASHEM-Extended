@@ -2870,7 +2870,7 @@ convertdone:
 		if ( (mtmp->mpeaceful || (Psi_resist && rn2(StrongPsi_resist ? 100 : 20) ) ) &&
 		    (!Conflict || resist(mtmp, RING_CLASS, 0, 0))) {
 			pline("It feels quite soothing.");
-		} else if (uarmh && uarmh->oartifact == ART_NOTKNOW_EY) {
+		} else if ((uarmh && uarmh->oartifact == ART_NOTKNOW_EY) || (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____)) {
 			pline("But it doesn't affect you.");
 		} else {
 			if (!mtmp->mpeaceful) maybehackimplant();
