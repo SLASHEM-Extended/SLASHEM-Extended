@@ -514,14 +514,14 @@ dig()
 
 			    }
 
-			    if (!rn2(20)) { /* summon the tree squad! --Amy */
+			    if (!rn2(50)) { /* summon the tree squad! --Amy */
 
 				coord cc, dd;
 				int cx,cy;
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
-				int tsdamount = rnd(10);
-				if (!rn2(10)) tsdamount += rnd(20);
+				int tsdamount = rnd(4);
+				if (!rn2(10)) tsdamount += rnd(8);
 
 				u.aggravation = 1;
 				reset_rndmonst(NON_PM);

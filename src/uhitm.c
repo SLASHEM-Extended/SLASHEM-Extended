@@ -3536,21 +3536,23 @@ int dieroll;
 				if (!rn2(obj->oartifact ? 1000 : 100)) {
 
 					/* amateurhour wants garlicators to punish players who constantly use garlic */
-					int garlicatormon = PM_LOWER_GARLICATOR;
-					if (level_difficulty() > 9) garlicatormon = PM_GARLICATOR;
-					if (level_difficulty() > 19) garlicatormon = PM_STRONGER_GARLICATOR;
-					if (level_difficulty() > 29) garlicatormon = PM_VERY_STRONG_GARLICATOR;
-					if (level_difficulty() > 49) garlicatormon = PM_EXTRA_STRONG_GARLICATOR;
-					register struct monst *garlicone;
+					if (!rn2(100)) { /* but they should be really rare, because garlic isn't that strong --Amy */
+						int garlicatormon = PM_LOWER_GARLICATOR;
+						if (level_difficulty() > 9) garlicatormon = PM_GARLICATOR;
+						if (level_difficulty() > 19) garlicatormon = PM_STRONGER_GARLICATOR;
+						if (level_difficulty() > 29) garlicatormon = PM_VERY_STRONG_GARLICATOR;
+						if (level_difficulty() > 49) garlicatormon = PM_EXTRA_STRONG_GARLICATOR;
+						register struct monst *garlicone;
 
-					garlicone = makemon(&mons[garlicatormon], 0, 0, MM_ADJACENTOK|MM_ANGRY);
-					if (garlicone) {
-						makemon(&mons[garlicatormon], garlicone->mx, garlicone->my, MM_ADJACENTOK|MM_ANGRY);
-						makemon(&mons[garlicatormon], garlicone->mx, garlicone->my, MM_ADJACENTOK|MM_ANGRY);
-					}
+						garlicone = makemon(&mons[garlicatormon], 0, 0, MM_ADJACENTOK|MM_ANGRY);
+						if (garlicone) {
+							makemon(&mons[garlicatormon], garlicone->mx, garlicone->my, MM_ADJACENTOK|MM_ANGRY);
+							makemon(&mons[garlicatormon], garlicone->mx, garlicone->my, MM_ADJACENTOK|MM_ANGRY);
+						}
 
-					if (!rn2(20) && (mvitals[PM_ROSY__PRINCESS_OF_GARLIC].born == 0) && level_difficulty() > 29) {
-						(void) makemon(&mons[PM_ROSY__PRINCESS_OF_GARLIC], 0, 0, MM_ADJACENTOK|MM_ANGRY);
+						if (!rn2(20) && (mvitals[PM_ROSY__PRINCESS_OF_GARLIC].born == 0) && level_difficulty() > 29) {
+							(void) makemon(&mons[PM_ROSY__PRINCESS_OF_GARLIC], 0, 0, MM_ADJACENTOK|MM_ANGRY);
+						}
 					}
 
 					if (!rn2(2)) {

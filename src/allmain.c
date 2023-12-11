@@ -5475,18 +5475,21 @@ greasingdone:
 		}
 
 		if (u.fluidatorwantedlevel > 100) {
-			int fluidatorchance = 500;
-			if (u.fluidatorwantedlevel > 500) fluidatorchance = 400;
-			if (u.fluidatorwantedlevel > 1000) fluidatorchance = 300;
-			if (u.fluidatorwantedlevel > 2000) fluidatorchance = 200;
-			if (u.fluidatorwantedlevel > 5000) fluidatorchance = 100;
+			int fluidatorchance = 2500;
+			if (u.fluidatorwantedlevel > 500) fluidatorchance = 2000;
+			if (u.fluidatorwantedlevel > 1000) fluidatorchance = 1500;
+			if (u.fluidatorwantedlevel > 2000) fluidatorchance = 1000;
+			if (u.fluidatorwantedlevel > 5000) fluidatorchance = 1500;
+			if (u.fluidatorwantedlevel > 10000) fluidatorchance = 1000;
+			if (u.fluidatorwantedlevel > 20000) fluidatorchance = 500;
 
 			if ((uarms && uarms->oartifact == ART_FLUIDSHIELD) || RngeFluidatorReduction) fluidatorchance *= 10;
 
 			if (!rn2(fluidatorchance)) {
 				register struct monst *fluidone;
 				int aggroamount = 1;
-				if (!rn2(10)) aggroamount += rnd(10);
+				if (!rn2(10)) aggroamount += rnd(5);
+				if (!rn2(100)) aggroamount += rnd(5);
 				boolean onefluiddone = FALSE;
 
 				int samefluidator = rn2(2);
@@ -5549,7 +5552,7 @@ newbossFLUID:
 
 		}
 
-		if (u.bulletatorwantedlevel && !rn2(250)) {
+		if (u.bulletatorwantedlevel && !rn2(1000)) {
 
 			int bulletatortype = rnd(2);
 
@@ -5562,18 +5565,19 @@ newbossFLUID:
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 
-			int maxaggro = 10;
+			int maxaggro = 5;
 
-			if (P_MAX_SKILL(P_FIREARM) != P_ISRESTRICTED) maxaggro -= 3;
+			if (P_MAX_SKILL(P_FIREARM) != P_ISRESTRICTED) maxaggro -= 2;
 			if (P_MAX_SKILL(P_GUN_CONTROL) != P_ISRESTRICTED) maxaggro -= 2;
 			if ((P_MAX_SKILL(P_FIREARM) != P_ISRESTRICTED) && (P_MAX_SKILL(P_GUN_CONTROL) != P_ISRESTRICTED)) {
 				maxaggro = rnd(maxaggro);
 			}
+			if (maxaggro < 1) maxaggro = 1;
 
 			int aggroamount = min(u.bulletatorwantedlevel, maxaggro);
 
+			u.bulletatorwantedlevel -= rnd(5);
 
-			u.bulletatorwantedlevel -= aggroamount;
 			if (u.bulletatorwantedlevel < 0) u.bulletatorwantedlevel = 0; /* fail safe */
 
 			while (aggroamount) {
@@ -5615,7 +5619,7 @@ newbossBULL:
 
 		}
 
-		if (u.pompejiwantedlevel && !rn2(500)) {
+		if (u.pompejiwantedlevel && !rn2(2500)) {
 
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
@@ -5662,11 +5666,11 @@ newbossPOMP:
 				u.mondiffhack = 0;
 			}
 
-			if (!rn2(10)) {
+			if (!rn2(100)) {
 				(void) makemon( ((level_difficulty() + u.pompejipermanentrecord) > 79) ? &mons[PM_XRP_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 59) ? &mons[PM_SEP_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 39) ? &mons[PM_MST_PUNISHER] : ((level_difficulty() + u.pompejipermanentrecord) > 19) ? &mons[PM_EXP_PUNISHER] : &mons[PM_SHP_PUNISHER], 0, 0, MM_ADJACENTOK|MM_ANGRY);
 			}
 
-			if (!rn2(10)) u.pompejiwantedlevel--;
+			if (!rn2(2)) u.pompejiwantedlevel--;
 			if (u.pompejiwantedlevel < 0) u.pompejiwantedlevel = 0; /* fail safe */
 
 			u.aggravation = 0;
