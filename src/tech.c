@@ -13345,7 +13345,7 @@ canuseunarmedtechs()
 	/* everyone else needs to be bare-handed */
 	if (uwep) return FALSE;
 
-	return FALSE;
+	return TRUE;
 }
 
 void
