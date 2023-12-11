@@ -1730,6 +1730,9 @@ struct you {
 	int combostrike;	/* for technique */
 	boolean comboactive;
 
+	int femcombostrike;
+	boolean femcomboactive;
+
 	int dancercombostrike;
 	boolean dancercomboactive;
 

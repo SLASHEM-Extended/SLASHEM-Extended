@@ -273,6 +273,20 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"drop boulder",
 	"earthshake",
 	"martial style",
+	"sprint",
+	"skull crush",
+	"female combo",
+	"docklock",
+	"bitch posing",
+	"sexy stand",
+	"marathon",
+	"perfume stride",
+	"naughty heelot",
+	"extreme sturdiness",
+	"butt protection",
+	"profiling",
+	"star heel swap",
+	"heel stab",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -3551,6 +3565,49 @@ dotech()
 
 		case T_DROP_BOULDER:
 			pline("Creates a boulder on your square when used.");
+			break;
+
+		case T_SPRINT:
+			pline("Requires you to wear stiletto heels, and makes you super fast for a couple of turns when used, but it only affects movement. Other actions still happen at your regular speed.");
+			break;
+		case T_SKULL_CRUSH:
+			pline("This technique can only be used when you're wearing stiletto heels. After using it, you have a couple of turns to find a paralyzed monster that has a head and is not a boss, and then you can kick that monster to kill it instantly! For best results, have a way of paralyzing opponents ready.");
+			break;
+		case T_FEMALE_COMBO:
+			pline("Requires cone heels to be worn, and once activated, you have to kick a monster every turn or the technique will end. Every kick that hits an enemy while the female combo is active will deal more damage than the previous one.");
+			break;
+		case T_DOCKLOCK:
+			pline("Creates a sexy leather pump with positive enchantment, which is a hammer-class weapon that you can wield and bash enemies with. While this technique is active, the sexy leather pump will do bonus damage against enemies who have a head and can also occasionally paralyze them.");
+			break;
+		case T_BITCH_POSING:
+			pline("This technique works only while you're wearing block heels. If they're negatively enchanted, they lose some negative enchantment, otherwise there's a chance for the heels to gain a point of enchantment up to a maximum of +7. Additionally, monsters who are at most 3 squares away from you have to make saving throws or be turned peaceful.");
+			break;
+		case T_SEXY_STAND:
+			pline("Lasts for a while, but works only if you wear block heels. While active, you have intrinsic free action and if you still get paralyzed, the paralysis will time out very quickly.");
+			break;
+		case T_MARATHON:
+			pline("This technique lasts for quite a while, but doesn't do anything unless you're wearing wedge heels. If you are, your movement is faster than normal.");
+			break;
+		case T_PERFUME_STRIDE:
+			pline("Requires you to be wearing wedge heels, which become sticky heavily cursed upon using this technique, and a tame perfume monster is summoned. The technique then lasts for a while and as long as it's still active, you cannot take your heels off, even if you manage to uncurse them.");
+			break;
+		case T_NAUGHTY_HEELOT:
+			pline("This technique lasts for quite a while. When active, a pair of shoes that has a randomized appearance counting as cone heels and a base type counting as stiletto heels (or the other way around) allows you to use both of those skills at the same time. You'd have to get pretty lucky to find such a pair of shoes, though.");
+			break;
+		case T_EXTREME_STURDINESS:
+			pline("Works while you're wearing either block or wedge heels, lasts for a bunch of turns, and gives you a 50%% chance of not taking damage whenever something tries to damage you.");
+			break;
+		case T_BUTT_PROTECTION:
+			pline("If you're wearing cone heels, this technique will last for a while and as long as it's active, any male monster that hits you in melee takes some damage in return, provided it has legs that can be scratched by your heels. The more often such a monster is hit by that damage, the higher the amount of damage that it takes.");
+			break;
+		case T_PROFILING:
+			pline("Allows you to enchant a pair of block-heeled boots that you're wearing, up to a maximum of +5, but you can't just use it an infinite amount of times on the same pair. Eventually, it'll stop working for a particular pair of boots, although you can still use it on others.");
+			break;
+		case T_STAR_HEEL_SWAP:
+			pline("You must be wearing a pair of wedge heels and have a morning star wielded in your main hand if you want to use this technique. Then, what happens is that these two items swap their enchantment value and BUC.");
+			break;
+		case T_HEEL_STAB:
+			pline("You can only use this technique if you're wearing a pair of stiletto heels and wielding a knife. Then, it'll last a while, and your knife will gain a +5 damage bonus, plus the enchantment value of your boots if that's higher than 0.");
 			break;
 
 		case T_EARTHSHAKE:
@@ -8818,6 +8875,369 @@ repairitemchoice:
 
 			break;
 
+		case T_SPRINT:
+			if (!PlayerInStilettoHeels) {
+				pline("That doesn't work without stiletto heels!");
+				break;
+			}
+
+			num = 50 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You start sprinting with your heels.");
+
+			t_timeout = rnz(10000);
+			break;
+		case T_SKULL_CRUSH:
+			if (!PlayerInStilettoHeels) {
+				pline("That doesn't work without stiletto heels!");
+				break;
+			}
+
+			num = 20;
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Quick! Paralyze an opponent and then kick him to death! You have 20 turns to do so!");
+
+			t_timeout = rnz(50000);
+			break;
+		case T_FEMALE_COMBO:
+			if (!PlayerInConeHeels) {
+				pline("That doesn't work without cone heels!");
+				break;
+			}
+
+			num = 50 + (techlevX(tech_no));
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You start your female combo. Now make sure you kick an enemy every turn to keep the combo going!");
+
+			u.femcombostrike = 2;
+			u.femcomboactive = TRUE;
+
+			t_timeout = rnz(5000);
+			break;
+		case T_DOCKLOCK:
+		{
+			struct obj *uammo;
+
+			num = 100 + (techlevX(tech_no) * 3);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Yay, now you can bash enemies with a sexy leather pump! (Be sure to pick it up from the floor.)");
+
+			uammo = mksobj(SEXY_LEATHER_PUMP, TRUE, FALSE, FALSE);
+			if (uammo) {
+				uammo->quan = 1;
+				uammo->known = uammo->dknown = uammo->bknown = uammo->rknown = 1;
+				uammo->spe = rnd(7);
+				uammo->cursed = uammo->hvycurse = uammo->stckcurse = uammo->prmcurse = uammo->bbrcurse = uammo->morgcurse = uammo->evilcurse = FALSE;
+				uammo->owt = weight(uammo);
+				dropy(uammo);
+				stackobj(uammo);
+			}
+
+			t_timeout = rnz(20000);
+		}
+			break;
+		case T_BITCH_POSING:
+			if (!PlayerInBlockHeels) {
+				pline("That doesn't work without block heels!");
+				break;
+			}
+
+			if (uarmf->spe < 0) {
+				int sperepair = abs(uarmf->spe);
+				sperepair = rnd(sperepair);
+				uarmf->spe += sperepair;
+				Your("heels got repaired!");
+			} else {
+				if (uarmf && uarmf->spe < 2) {
+					uarmf->spe++;
+				} else if (uarmf && uarmf->spe < 8 && !rn2(uarmf->spe) ) {
+					uarmf->spe++;
+				}
+				Your("heels shine for a moment.");
+			}
+
+		{
+			int i, j;
+			struct monst *rainedmon;
+
+			for (i = -3; i <= 3; i++) for(j = -3; j <= 3; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+
+				if ( (rainedmon = m_at(u.ux + i, u.uy + j)) != 0) {
+					if (rainedmon->mpeaceful || rainedmon->mtame || rainedmon->mfrenzied) continue;
+					if (resist(rainedmon, WEAPON_CLASS, 0, NOTELL) && resist(rainedmon, WEAPON_CLASS, 0, NOTELL) && resist(rainedmon, WEAPON_CLASS, 0, NOTELL) ) continue;
+					rainedmon->mpeaceful = TRUE;
+					pline("%s cannot resist your sexy pose and is charmed!", Monnam(rainedmon));
+				}
+
+			}
+
+		}
+
+			t_timeout = rnz(8000);
+			break;
+		case T_SEXY_STAND:
+			if (!PlayerInBlockHeels) {
+				pline("That doesn't work without block heels!");
+				break;
+			}
+
+			num = 200 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You perform a sexy stand.");
+
+			t_timeout = rnz(20000);
+			break;
+		case T_MARATHON:
+			if (!PlayerInWedgeHeels) {
+				pline("That doesn't work without wedge heels!");
+				break;
+			}
+
+			num = 1000 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You're starting to run a marathon.");
+
+			t_timeout = rnz(30000);
+			break;
+		case T_PERFUME_STRIDE:
+			if (!PlayerInWedgeHeels) {
+				pline("That doesn't work without wedge heels!");
+				break;
+			}
+			if (!uarmf) {
+				pline("Where the hell are your shoes???"); /* shouldn't happen, but just making sure --Amy */
+				break;
+			}
+
+			num = 500 - (techlevX(tech_no) * 5);
+			if (num < 50) num = 50;
+		    	techt_inuse(tech_no) = num + 1;
+			pline("A perfume companion starts to follow you, but now you're obligated to wear your heels for a while.");
+
+			curse(uarmf);
+			uarmf->hvycurse = uarmf->stckcurse = TRUE;
+
+		{
+			int attempts = 0;
+			register struct permonst *ptrZ;
+			register struct monst *bossmon;
+
+perfumestriding:
+
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !(ptrZ->msound == MS_STENCH))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->msound == MS_STENCH) {
+				bossmon = makemon(ptrZ, u.ux, u.uy, NO_MM_FLAGS);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto perfumestriding;
+			}
+
+			if (bossmon) {
+				tamedog(bossmon, (struct obj *) 0, TRUE);
+			}
+			u.mondiffhack = 0;
+
+		}
+
+			t_timeout = rnz(16000);
+			break;
+		case T_NAUGHTY_HEELOT:
+
+			num = 1000 + (techlevX(tech_no) * 10);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You become the naughty heelot.");
+
+			if (!PlayerInConeHeels && !PlayerInStilettoHeels) pline("But without the proper shoes, that won't do jack squat.");
+			else if (!PlayerInConeHeels || !PlayerInStilettoHeels) pline("Seems like your current footwear isn't eligible for that, though, so you'd better find the right pair, fast.");
+			/* still allows the player to use the tech, this is not a mistake --Amy */
+
+			t_timeout = rnz(10000);
+			break;
+		case T_EXTREME_STURDINESS:
+			if (!PlayerInWedgeHeels && !PlayerInBlockHeels) {
+				pline("You need to either wear wedge or block heels for that!");
+				break;
+			}
+
+			num = 50 + (techlevX(tech_no));
+		    	techt_inuse(tech_no) = num + 1;
+			pline("You become extremely sturdy!");
+
+			t_timeout = rnz(20000);
+			break;
+		case T_BUTT_PROTECTION:
+			if (!PlayerInConeHeels) {
+				pline("That doesn't work without cone heels!");
+				break;
+			}
+
+			num = 50 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your butt is protected now.");
+
+			t_timeout = rnz(10000);
+			break;
+		case T_PROFILING:
+			if (!PlayerInBlockHeels) {
+				pline("That doesn't work without block heels!");
+				break;
+			}
+			if (!uarmf) {
+				pline("Where the hell are your shoes???"); /* shouldn't happen, but just making sure --Amy */
+				break;
+			}
+
+			if (uarmf->obrittle >= 3 || uarmf->obrittle2 >= 3) {
+				pline("Your pair of heels is maximally profiled already! Any more and you'd risk breaking them!");
+				break;
+			}
+			if (uarmf->spe >= 5) {
+				pline("It wouldn't make sense to add more profiling to this pair of boots.");
+				break;
+			}
+			uarmf->spe++;
+			if (rn2(2)) uarmf->obrittle++;
+			else uarmf->obrittle2++;
+			pline("You added some profiling to your boots.");
+
+			t_timeout = rnz(8000);
+			break;
+		case T_STAR_HEEL_SWAP:
+			if (!PlayerInWedgeHeels) {
+				pline("That doesn't work without wedge heels!");
+				break;
+			}
+			if (!uarmf) {
+				pline("Where the hell are your shoes???"); /* shouldn't happen, but just making sure --Amy */
+				break;
+			}
+			if (!uwep) {
+				pline("That doesn't work without a weapon!");
+				return 0;
+			}
+			if (uwep && weapon_type(uwep) != P_MORNING_STAR) {
+				pline("That only works if your wielded weapon is a morning star, and currently it's not!");
+				return 0;
+			}
+
+		{
+			int knifeenchant = uwep->spe;
+			int heelsenchant = uarmf->spe;
+			int knifebuc = 0;
+			int heelsbuc = 0;
+
+			/* now for a system that will make every C programmer's skin crawl... :-P --Amy */
+			if (uwep->blessed) knifebuc = 1;
+			if (uwep->cursed) knifebuc = 2;
+			if (uwep->hvycurse) knifebuc = 3;
+			if (uwep->prmcurse) knifebuc = 4;
+			if (uwep->stckcurse) knifebuc += 10;
+			if (uwep->bbrcurse) knifebuc += 100;
+			if (uwep->morgcurse) knifebuc += 1000;
+			if (uwep->evilcurse) knifebuc += 10000;
+
+			if (uarmf->blessed) heelsbuc = 1;
+			if (uarmf->cursed) heelsbuc = 2;
+			if (uarmf->hvycurse) heelsbuc = 3;
+			if (uarmf->prmcurse) heelsbuc = 4;
+			if (uarmf->stckcurse) heelsbuc += 10;
+			if (uarmf->bbrcurse) heelsbuc += 100;
+			if (uarmf->morgcurse) heelsbuc += 1000;
+			if (uarmf->evilcurse) heelsbuc += 10000;
+
+			uwep->spe = heelsenchant;
+			uarmf->spe = knifeenchant;
+
+			uwep->blessed = uwep->cursed = uwep->hvycurse = uwep->prmcurse = uwep->stckcurse = uwep->morgcurse = uwep->bbrcurse = uwep->evilcurse = 0;
+			uarmf->blessed = uarmf->cursed = uarmf->hvycurse = uarmf->prmcurse = uarmf->stckcurse = uarmf->morgcurse = uarmf->bbrcurse = uarmf->evilcurse = 0;
+
+			if (knifebuc == 1) uarmf->blessed = TRUE;
+			else {
+				if (knifebuc >= 10000) {
+					knifebuc -= 10000;
+					uarmf->cursed = uarmf->hvycurse = uarmf->prmcurse = uarmf->evilcurse = TRUE;
+				}
+				if (knifebuc >= 1000) {
+					knifebuc -= 1000;
+					uarmf->cursed = uarmf->hvycurse = uarmf->prmcurse = uarmf->morgcurse = TRUE;
+				}
+				if (knifebuc >= 100) {
+					knifebuc -= 100;
+					uarmf->cursed = uarmf->hvycurse = uarmf->prmcurse = uarmf->bbrcurse = TRUE;
+				}
+				if (knifebuc >= 10) {
+					knifebuc -= 10;
+					uarmf->cursed = uarmf->stckcurse = TRUE;
+				}
+				if (knifebuc >= 2) {
+					uarmf->cursed = TRUE;
+					if (knifebuc >= 3) uarmf->hvycurse = TRUE;
+					if (knifebuc >= 4) uarmf->prmcurse = TRUE;
+				}
+			}
+
+			if (heelsbuc == 1) uwep->blessed = TRUE;
+			else {
+				if (heelsbuc >= 10000) {
+					heelsbuc -= 10000;
+					uwep->cursed = uwep->hvycurse = uwep->prmcurse = uwep->evilcurse = TRUE;
+				}
+				if (heelsbuc >= 1000) {
+					heelsbuc -= 1000;
+					uwep->cursed = uwep->hvycurse = uwep->prmcurse = uwep->morgcurse = TRUE;
+				}
+				if (heelsbuc >= 100) {
+					heelsbuc -= 100;
+					uwep->cursed = uwep->hvycurse = uwep->prmcurse = uwep->bbrcurse = TRUE;
+				}
+				if (heelsbuc >= 10) {
+					heelsbuc -= 10;
+					uwep->cursed = uwep->stckcurse = TRUE;
+				}
+				if (heelsbuc >= 2) {
+					uwep->cursed = TRUE;
+					if (heelsbuc >= 3) uwep->hvycurse = TRUE;
+					if (heelsbuc >= 4) uwep->prmcurse = TRUE;
+				}
+			}
+
+			pline("Enchantments and BUC of your knife and heels have been swapped.");
+
+		}
+
+			t_timeout = rnz(9000);
+			break;
+		case T_HEEL_STAB:
+			if (!PlayerInStilettoHeels) {
+				pline("That doesn't work without stiletto heels!");
+				break;
+			}
+			if (!uwep) {
+				pline("That doesn't work without a weapon!");
+				return 0;
+			}
+			if (uwep && weapon_type(uwep) != P_KNIFE) {
+				pline("That only works if your wielded weapon is a knife, and currently it's not!");
+				return 0;
+			}
+
+			num = 100 + (techlevX(tech_no) * 2);
+		    	techt_inuse(tech_no) = num + 1;
+			pline("Your heel-shaped knife can stab enemies much more effectively now.");
+
+			t_timeout = rnz(6000);
+			break;
+
 		case T_EARTHSHAKE:
 
 			if (Is_rogue_level(&u.uz) || (In_endgame(&u.uz) && !Is_earthlevel(&u.uz))) {
@@ -10979,6 +11399,39 @@ tech_timeout()
 			break;
 		    case T_HIGH_HEELED_SNEAKERS:
 			pline("You can no longer use the sexy flats skill while wearing high heels.");
+			break;
+		    case T_SPRINT:
+			pline("Your sprint ends.");
+			break;
+		    case T_SKULL_CRUSH:
+			pline("You waited too long, and can no longer crush an opponent's skull!");
+			break;
+		    case T_FEMALE_COMBO:
+			pline("Your female combo has ended.");
+			break;
+		    case T_DOCKLOCK:
+			pline("You're done bashing enemies' heads with your heels.");
+			break;
+		    case T_SEXY_STAND:
+			pline("You've finished your sexy stand.");
+			break;
+		    case T_MARATHON:
+			pline("You've been running for far too long, and decide that you need a rest.");
+			break;
+		    case T_PERFUME_STRIDE:
+			pline("Finally, you can take your heels off again. Beware that unless you uncursed them, you probably still can't.");
+			break;
+		    case T_NAUGHTY_HEELOT:
+			pline("You're done playing the naughty heelot.");
+			break;
+		    case T_EXTREME_STURDINESS:
+			pline("Your GOI has expired. Or, in human-readable terms, your extreme sturdiness ends and you need to be more careful again.");
+			break;
+		    case T_BUTT_PROTECTION:
+			pline("Your butt is no longer protected.");
+			break;
+		    case T_HEEL_STAB:
+			pline("You can no longer stab enemies with your heel.");
 			break;
 		    case T_USE_THE_FORCE_LUKE:
 			pline("Sorry Luke, but you can no longer use the force with extra effectivity.");

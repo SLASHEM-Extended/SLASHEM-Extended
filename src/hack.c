@@ -4739,6 +4739,10 @@ newbossLARA:
 	/* Discount action will halve paralysis duration, but some paralysis sources ignore it --Amy */
 	if (Discount_action && discountpossible && (nval < -1)) nval /= 2;
 	if (StrongDiscount_action && discountpossible && (nval < -1)) nval /= 2;
+
+	/* at most 2 turns with sexy stand tech, as long as it's a resistable kind of paralysis --Amy */
+	if (tech_inuse(T_SEXY_STAND) && PlayerInBlockHeels && discountpossible && (nval < -2)) nval = -2;
+
 	multi = nval;
 	if (multi < 0) flags.botl = 1;
 	if (txt && txt[0])
@@ -5217,7 +5221,7 @@ int k_format; /* WAC k_format is an int */
 	if (isfriday && !rn2(50)) n += rnd(n);
 
 	/* [max] Invulnerable no dmg */
-	if (Invulnerable || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+	if (Invulnerable || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 		n = 0;
 		pline("You are unharmed!");
 		/* NOTE: DO NOT RETURN - losehp is also called to check for death 

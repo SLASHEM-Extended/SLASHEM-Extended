@@ -380,6 +380,15 @@ register boolean clumsy;
 		pline("*plof*");
 	}
 
+	if (u.femcombostrike && PlayerInConeHeels) {
+		dmg += u.femcombostrike;
+		pline("You scratch %s for %d extra damage!", mon_nam(mon), u.femcombostrike);
+	}
+	if (tech_inuse(T_FEMALE_COMBO) && PlayerInConeHeels) {
+		u.femcombostrike += 2;
+		u.femcomboactive = TRUE;
+	}
+
 	if (uarmh && uarmh->oartifact == ART_NYPHERISBANE && (mon->data->mlet == S_SNAKE || mon->data->mlet == S_NAGA) ) {
 		You("totally stomp that stupid snake.");
 		dmg += 100;
@@ -799,6 +808,14 @@ register boolean clumsy;
 		mon->mstrategy &= ~STRAT_WAITFORU;
 
 		stopsingletechnique(T_ASIAN_KICK);
+
+	}
+
+	if (PlayerInStilettoHeels && has_head(mon->data) && !(mon->data->geno & G_UNIQ) && !mon->mcanmove && tech_inuse(T_SKULL_CRUSH)) {
+
+		stopsingletechnique(T_SKULL_CRUSH);
+		mon->mhp = -1; /* instadeath */
+		Your("stiletto heels penetrate %s's skull, splitting it in two.", mon_nam(mon));
 
 	}
 

@@ -711,7 +711,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 		if (isfriday && !rn2(50)) damu += rnd(damu);
 
-		if (Invulnerable || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+		if (Invulnerable || (uarmf && uarmf->oartifact == ART_GODLY_POSTMAN && !rn2(10)) || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 		    damu = 0;
 		    You("are unharmed!");
 		} else if (StrongWonderlegs && !rn2(10) && Wounded_legs) {

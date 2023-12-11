@@ -4671,6 +4671,104 @@ jediskip:
 	    	learntech(T_EARTHSHAKE, FROMOUTSIDE, 1);
 	    	You("learn how to perform earthshake!");
 	}
+	if (skill == P_STILETTO_HEELS && P_SKILL(skill) == P_EXPERT && !tech_known(T_SPRINT)) {
+	    	learntech(T_SPRINT, FROMOUTSIDE, 1);
+	    	You("learn how to perform sprint!");
+	}
+	if (skill == P_STILETTO_HEELS && P_SKILL(skill) == P_MASTER && !tech_known(T_SKULL_CRUSH)) {
+	    	learntech(T_SKULL_CRUSH, FROMOUTSIDE, 1);
+	    	You("learn how to perform skull crush!");
+	}
+	if (skill == P_CONE_HEELS && P_SKILL(skill) == P_SKILLED && !tech_known(T_FEMALE_COMBO)) {
+	    	learntech(T_FEMALE_COMBO, FROMOUTSIDE, 1);
+	    	You("learn how to perform female combo!");
+	}
+	if (skill == P_CONE_HEELS && P_SKILL(skill) == P_MASTER && !tech_known(T_DOCKLOCK)) {
+	    	learntech(T_DOCKLOCK, FROMOUTSIDE, 1);
+	    	You("learn how to perform docklock!");
+	}
+	if (skill == P_BLOCK_HEELS && P_SKILL(skill) == P_EXPERT && !tech_known(T_BITCH_POSING)) {
+	    	learntech(T_BITCH_POSING, FROMOUTSIDE, 1);
+	    	You("learn how to perform bitch posing!");
+	}
+	if (skill == P_BLOCK_HEELS && P_SKILL(skill) == P_GRAND_MASTER && !tech_known(T_SEXY_STAND)) {
+	    	learntech(T_SEXY_STAND, FROMOUTSIDE, 1);
+	    	You("learn how to perform sexy stand!");
+	}
+	if (skill == P_WEDGE_HEELS && P_SKILL(skill) == P_SKILLED && !tech_known(T_MARATHON)) {
+	    	learntech(T_MARATHON, FROMOUTSIDE, 1);
+	    	You("learn how to perform marathon!");
+	}
+	if (skill == P_WEDGE_HEELS && P_SKILL(skill) == P_EXPERT && !tech_known(T_PERFUME_STRIDE)) {
+	    	learntech(T_PERFUME_STRIDE, FROMOUTSIDE, 1);
+	    	You("learn how to perform perfume stride!");
+	}
+
+	if (skill == P_STILETTO_HEELS && P_SKILL(skill) == P_MASTER && P_SKILL(P_CONE_HEELS) >= P_EXPERT && !tech_known(T_NAUGHTY_HEELOT)) {
+	    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+	    	You("learn how to perform naughty heelot!");
+	}
+	if (skill == P_CONE_HEELS && P_SKILL(skill) == P_MASTER && P_SKILL(P_STILETTO_HEELS) >= P_EXPERT && !tech_known(T_NAUGHTY_HEELOT)) {
+	    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+	    	You("learn how to perform naughty heelot!");
+	}
+	if (skill == P_STILETTO_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CONE_HEELS) >= P_MASTER && !tech_known(T_NAUGHTY_HEELOT)) {
+	    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+	    	You("learn how to perform naughty heelot!");
+	}
+	if (skill == P_CONE_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_STILETTO_HEELS) >= P_MASTER && !tech_known(T_NAUGHTY_HEELOT)) {
+	    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+	    	You("learn how to perform naughty heelot!");
+	}
+	if (skill == P_BLOCK_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_WEDGE_HEELS) >= P_EXPERT && !tech_known(T_EXTREME_STURDINESS)) {
+	    	learntech(T_EXTREME_STURDINESS, FROMOUTSIDE, 1);
+	    	You("learn how to perform extreme sturdiness!");
+	}
+	if (skill == P_WEDGE_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_BLOCK_HEELS) >= P_EXPERT && !tech_known(T_EXTREME_STURDINESS)) {
+	    	learntech(T_EXTREME_STURDINESS, FROMOUTSIDE, 1);
+	    	You("learn how to perform extreme sturdiness!");
+	}
+	if (skill == P_CONE_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_TRIDENT) >= P_EXPERT && !tech_known(T_BUTT_PROTECTION)) {
+	    	learntech(T_BUTT_PROTECTION, FROMOUTSIDE, 1);
+	    	You("learn how to perform butt protection!");
+	}
+	if (skill == P_TRIDENT && P_SKILL(skill) == P_EXPERT && P_SKILL(P_CONE_HEELS) >= P_EXPERT && !tech_known(T_BUTT_PROTECTION)) {
+	    	learntech(T_BUTT_PROTECTION, FROMOUTSIDE, 1);
+	    	You("learn how to perform butt protection!");
+	}
+	if (skill == P_BLOCK_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MACE) >= P_EXPERT && !tech_known(T_PROFILING)) {
+	    	learntech(T_PROFILING, FROMOUTSIDE, 1);
+	    	You("learn how to perform profiling!");
+	}
+	if (skill == P_MACE && P_SKILL(skill) == P_EXPERT && P_SKILL(P_BLOCK_HEELS) >= P_EXPERT && !tech_known(T_PROFILING)) {
+	    	learntech(T_PROFILING, FROMOUTSIDE, 1);
+	    	You("learn how to perform profiling!");
+	}
+	if (skill == P_WEDGE_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_MORNING_STAR) >= P_EXPERT && !tech_known(T_STAR_HEEL_SWAP)) {
+	    	learntech(T_STAR_HEEL_SWAP, FROMOUTSIDE, 1);
+	    	You("learn how to perform star heel swap!");
+	}
+	if (skill == P_MORNING_STAR && P_SKILL(skill) == P_EXPERT && P_SKILL(P_WEDGE_HEELS) >= P_EXPERT && !tech_known(T_STAR_HEEL_SWAP)) {
+	    	learntech(T_STAR_HEEL_SWAP, FROMOUTSIDE, 1);
+	    	You("learn how to perform star heel swap!");
+	}
+	if (skill == P_STILETTO_HEELS && P_SKILL(skill) == P_EXPERT && P_SKILL(P_KNIFE) >= P_MASTER && !tech_known(T_HEEL_STAB)) {
+	    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
+	    	You("learn how to perform heel stab!");
+	}
+	if (skill == P_STILETTO_HEELS && P_SKILL(skill) == P_MASTER && P_SKILL(P_KNIFE) >= P_EXPERT && !tech_known(T_HEEL_STAB)) {
+	    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
+	    	You("learn how to perform heel stab!");
+	}
+	if (skill == P_KNIFE && P_SKILL(skill) == P_EXPERT && P_SKILL(P_STILETTO_HEELS) >= P_MASTER && !tech_known(T_HEEL_STAB)) {
+	    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
+	    	You("learn how to perform heel stab!");
+	}
+	if (skill == P_KNIFE && P_SKILL(skill) == P_MASTER && P_SKILL(P_STILETTO_HEELS) >= P_EXPERT && !tech_known(T_HEEL_STAB)) {
+	    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
+	    	You("learn how to perform heel stab!");
+	}
+
 	if (skill == P_DEVICES && P_SKILL(skill) == P_MASTER && P_SKILL(P_VENOM) >= P_MASTER && !tech_known(T_POISON_PEN_LETTER)) {
 	    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
 	    	You("learn how to perform poison pen letter!");
@@ -6430,6 +6528,88 @@ int degree;
 			    	learntech(T_EARTHSHAKE, FROMOUTSIDE, 1);
 			    	You("learn how to perform earthshake!");
 			}
+			if (skill == P_STILETTO_HEELS && !tech_known(T_SPRINT)) {
+			    	learntech(T_SPRINT, FROMOUTSIDE, 1);
+			    	You("learn how to perform sprint!");
+			}
+			if (skill == P_STILETTO_HEELS && !tech_known(T_SKULL_CRUSH)) {
+			    	learntech(T_SKULL_CRUSH, FROMOUTSIDE, 1);
+			    	You("learn how to perform skull crush!");
+			}
+			if (skill == P_CONE_HEELS && !tech_known(T_FEMALE_COMBO)) {
+			    	learntech(T_FEMALE_COMBO, FROMOUTSIDE, 1);
+			    	You("learn how to perform female combo!");
+			}
+			if (skill == P_CONE_HEELS && !tech_known(T_DOCKLOCK)) {
+			    	learntech(T_DOCKLOCK, FROMOUTSIDE, 1);
+			    	You("learn how to perform docklock!");
+			}
+			if (skill == P_BLOCK_HEELS && !tech_known(T_BITCH_POSING)) {
+			    	learntech(T_BITCH_POSING, FROMOUTSIDE, 1);
+			    	You("learn how to perform bitch posing!");
+			}
+			if (skill == P_BLOCK_HEELS && !tech_known(T_SEXY_STAND)) {
+			    	learntech(T_SEXY_STAND, FROMOUTSIDE, 1);
+			    	You("learn how to perform sexy stand!");
+			}
+			if (skill == P_WEDGE_HEELS && !tech_known(T_MARATHON)) {
+			    	learntech(T_MARATHON, FROMOUTSIDE, 1);
+			    	You("learn how to perform marathon!");
+			}
+			if (skill == P_WEDGE_HEELS && !tech_known(T_PERFUME_STRIDE)) {
+			    	learntech(T_PERFUME_STRIDE, FROMOUTSIDE, 1);
+			    	You("learn how to perform perfume stride!");
+			}
+
+			if (skill == P_STILETTO_HEELS && P_ADVANCE(P_CONE_HEELS) == 0 && !tech_known(T_NAUGHTY_HEELOT)) {
+			    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+			    	You("learn how to perform naughty heelot!");
+			}
+			if (skill == P_CONE_HEELS && P_ADVANCE(P_STILETTO_HEELS) == 0 && !tech_known(T_NAUGHTY_HEELOT)) {
+			    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+			    	You("learn how to perform naughty heelot!");
+			}
+			if (skill == P_BLOCK_HEELS && P_ADVANCE(P_WEDGE_HEELS) == 0 && !tech_known(T_EXTREME_STURDINESS)) {
+			    	learntech(T_EXTREME_STURDINESS, FROMOUTSIDE, 1);
+			    	You("learn how to perform extreme sturdiness!");
+			}
+			if (skill == P_WEDGE_HEELS && P_ADVANCE(P_BLOCK_HEELS) == 0 && !tech_known(T_EXTREME_STURDINESS)) {
+			    	learntech(T_EXTREME_STURDINESS, FROMOUTSIDE, 1);
+			    	You("learn how to perform extreme sturdiness!");
+			}
+			if (skill == P_CONE_HEELS && P_ADVANCE(P_TRIDENT) == 0 && !tech_known(T_BUTT_PROTECTION)) {
+			    	learntech(T_BUTT_PROTECTION, FROMOUTSIDE, 1);
+			    	You("learn how to perform butt protection!");
+			}
+			if (skill == P_TRIDENT && P_ADVANCE(P_CONE_HEELS) == 0 && !tech_known(T_BUTT_PROTECTION)) {
+			    	learntech(T_BUTT_PROTECTION, FROMOUTSIDE, 1);
+			    	You("learn how to perform butt protection!");
+			}
+			if (skill == P_BLOCK_HEELS && P_ADVANCE(P_MACE) == 0 && !tech_known(T_PROFILING)) {
+			    	learntech(T_PROFILING, FROMOUTSIDE, 1);
+			    	You("learn how to perform profiling!");
+			}
+			if (skill == P_MACE && P_ADVANCE(P_BLOCK_HEELS) == 0 && !tech_known(T_PROFILING)) {
+			    	learntech(T_PROFILING, FROMOUTSIDE, 1);
+			    	You("learn how to perform profiling!");
+			}
+			if (skill == P_WEDGE_HEELS && P_ADVANCE(P_MORNING_STAR) == 0 && !tech_known(T_STAR_HEEL_SWAP)) {
+			    	learntech(T_STAR_HEEL_SWAP, FROMOUTSIDE, 1);
+			    	You("learn how to perform star heel swap!");
+			}
+			if (skill == P_MORNING_STAR && P_ADVANCE(P_WEDGE_HEELS) == 0 && !tech_known(T_STAR_HEEL_SWAP)) {
+			    	learntech(T_STAR_HEEL_SWAP, FROMOUTSIDE, 1);
+			    	You("learn how to perform star heel swap!");
+			}
+			if (skill == P_STILETTO_HEELS && P_ADVANCE(P_KNIFE) == 0 && !tech_known(T_HEEL_STAB)) {
+			    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
+			    	You("learn how to perform heel stab!");
+			}
+			if (skill == P_KNIFE && P_ADVANCE(P_STILETTO_HEELS) == 0 && !tech_known(T_HEEL_STAB)) {
+			    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
+			    	You("learn how to perform heel stab!");
+			}
+
 			if (skill == P_DEVICES && P_ADVANCE(P_VENOM) == 0 && !tech_known(T_POISON_PEN_LETTER)) {
 			    	learntech(T_POISON_PEN_LETTER, FROMOUTSIDE, 1);
 			    	You("learn how to perform poison pen letter!");
@@ -10150,6 +10330,32 @@ rerollthree:
 	if (P_SKILL(P_BOULDER_THROWING) >= P_MASTER && !tech_known(T_EARTHSHAKE)) {
 	    	learntech(T_EARTHSHAKE, FROMOUTSIDE, 1);
 	}
+
+	if (P_SKILL(P_STILETTO_HEELS) >= P_EXPERT && !tech_known(T_SPRINT)) {
+	    	learntech(T_SPRINT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_STILETTO_HEELS) >= P_MASTER && !tech_known(T_SKULL_CRUSH)) {
+	    	learntech(T_SKULL_CRUSH, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CONE_HEELS) >= P_SKILLED && !tech_known(T_FEMALE_COMBO)) {
+	    	learntech(T_FEMALE_COMBO, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CONE_HEELS) >= P_MASTER && !tech_known(T_DOCKLOCK)) {
+	    	learntech(T_DOCKLOCK, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BLOCK_HEELS) >= P_EXPERT && !tech_known(T_BITCH_POSING)) {
+	    	learntech(T_BITCH_POSING, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BLOCK_HEELS) >= P_GRAND_MASTER && !tech_known(T_SEXY_STAND)) {
+	    	learntech(T_SEXY_STAND, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WEDGE_HEELS) >= P_SKILLED && !tech_known(T_MARATHON)) {
+	    	learntech(T_MARATHON, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WEDGE_HEELS) >= P_EXPERT && !tech_known(T_PERFUME_STRIDE)) {
+	    	learntech(T_PERFUME_STRIDE, FROMOUTSIDE, 1);
+	}
+
 	if (P_SKILL(P_SHORT_SWORD) >= P_MASTER && !tech_known(T_UNDERTOW)) {
 	    	learntech(T_UNDERTOW, FROMOUTSIDE, 1);
 	}
@@ -10170,6 +10376,31 @@ rerollthree:
 	}
 	if (P_SKILL(P_SYMBIOSIS) >= P_MASTER && P_SKILL(P_PETKEEPING) >= P_MASTER && !tech_known(T_GENERATE_OFFSPRING)) {
 	    	learntech(T_GENERATE_OFFSPRING, FROMOUTSIDE, 1);
+	}
+
+	if (P_SKILL(P_STILETTO_HEELS) >= P_MASTER && P_SKILL(P_CONE_HEELS) >= P_EXPERT && !tech_known(T_NAUGHTY_HEELOT)) {
+	    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CONE_HEELS) >= P_MASTER && P_SKILL(P_STILETTO_HEELS) >= P_EXPERT && !tech_known(T_NAUGHTY_HEELOT)) {
+	    	learntech(T_NAUGHTY_HEELOT, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BLOCK_HEELS) >= P_EXPERT && P_SKILL(P_WEDGE_HEELS) >= P_EXPERT && !tech_known(T_EXTREME_STURDINESS)) {
+	    	learntech(T_EXTREME_STURDINESS, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_CONE_HEELS) >= P_EXPERT && P_SKILL(P_TRIDENT) >= P_EXPERT && !tech_known(T_BUTT_PROTECTION)) {
+	    	learntech(T_BUTT_PROTECTION, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_BLOCK_HEELS) >= P_EXPERT && P_SKILL(P_MACE) >= P_EXPERT && !tech_known(T_PROFILING)) {
+	    	learntech(T_PROFILING, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_WEDGE_HEELS) > P_EXPERT && P_SKILL(P_MORNING_STAR) >= P_EXPERT && !tech_known(T_STAR_HEEL_SWAP)) {
+	    	learntech(T_STAR_HEEL_SWAP, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_STILETTO_HEELS) >= P_EXPERT && P_SKILL(P_KNIFE) >= P_MASTER && !tech_known(T_HEEL_STAB)) {
+	    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
+	}
+	if (P_SKILL(P_KNIFE) >= P_EXPERT && P_SKILL(P_STILETTO_HEELS) >= P_MASTER && !tech_known(T_HEEL_STAB)) {
+	    	learntech(T_HEEL_STAB, FROMOUTSIDE, 1);
 	}
 
 	if (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC && !tech_known(T_MARTIAL_STYLE)) {

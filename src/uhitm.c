@@ -4043,6 +4043,11 @@ int dieroll;
 			}
 		}
 
+		if (PlayerInStilettoHeels && tech_inuse(T_HEEL_STAB) && obj && weapon_type(obj) == P_KNIFE && !thrown) {
+			tmp += 5;
+			if (uarmf && uarmf->spe > 0) tmp += uarmf->spe;
+		}
+
 		if (uwep && uwep->oartifact == ART_AK_____) {
 			if (!PlayerCannotUseSkills) {
 				if (P_SKILL(P_FIREARM) < P_BASIC) tmp += 3;
@@ -4520,6 +4525,19 @@ armorsmashdone:
 			if (mon->mhp < (mon->mhpmax * 3 / 4)) tmp += 6;
 			if (mon->mhp < (mon->mhpmax / 2)) tmp += 6;
 			if (mon->mhp < (mon->mhpmax / 4)) tmp += 6;
+		}
+
+		if (tech_inuse(T_DOCKLOCK) && wep && wep->otyp == SEXY_LEATHER_PUMP && !thrown && has_head(mon->data)) {
+			tmp += rn1(5, 5);
+			pline(!rn2(2) ? "Dock!" : "Klock!");
+
+			if (!rn2(10) && mon->mcanmove) {
+				mon->mfrozen = rn1(3, 3);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s can't fight back!", Monnam(mon));
+			}
+
 		}
 
 		if (wep && wep->oartifact == ART_HACKNSLASH) {
@@ -13549,7 +13567,7 @@ boolean ranged;
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+            } else if (Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {
@@ -13593,7 +13611,7 @@ boolean ranged;
 		if (Disint_resistance && rn2(StrongDisint_resistance ? 1000 : 100) && !(evilfriday && (uarms || uarmc || uarm || uarmu))) {
 		    You("are mildly shaked.");
 		    break;
-            } else if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+            } else if (Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
                 pline("You are unharmed!");
                 break;
 		} else if (uarms) {

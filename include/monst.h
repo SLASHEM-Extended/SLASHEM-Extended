@@ -67,6 +67,7 @@ struct monst {
 	int lisapantscolor;	/* for lisa trap effect */
 	int lisapantstype;
 	boolean lisaseen;
+	int legdamage;	/* for butt protection technique */
 
 	Bitfield(female,1);	/* is female */
 	Bitfield(minvis,1);	/* currently invisible */

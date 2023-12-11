@@ -3978,7 +3978,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			goto beheadingdone;
 		} else {
 			/* Invulnerable player won't be bisected */
-			if (bigmonst(youmonst.data) || (uwep && uwep->oartifact == ART_KATANA_OF_MASAMUNE) || StrongDiminishedBleeding || Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+			if (bigmonst(youmonst.data) || (uwep && uwep->oartifact == ART_KATANA_OF_MASAMUNE) || StrongDiminishedBleeding || Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("%s cuts deeply into you!",
 				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
@@ -4096,7 +4096,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				goto beheadingdone;
 			}
 			*dmgptr = 2 * (Upolyd ? u.mh : u.uhp) + FATAL_DAMAGE_MODIFIER;
-			if (Invulnerable || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+			if (Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("%s slices into your %s.", wepdesc, body_part(NECK));
 				willreturntrue = 1;
 				goto beheadingdone;

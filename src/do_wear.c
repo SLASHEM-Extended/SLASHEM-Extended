@@ -7532,6 +7532,11 @@ register struct obj *otmp;
 		}
 	}
 
+	if (tech_inuse(T_PERFUME_STRIDE) && uarmf && (otmp == uarmf)) {
+		pline("Nope. You're on a perfume stride, you cannot take your heels off now.");
+		return 0;
+	}
+
 	/* implant check */
 	if (otmp == uimplant) {
 

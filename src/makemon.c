@@ -25352,6 +25352,7 @@ register int	mmflags;
 	mtmp->lisaseen = FALSE;
 	mtmp->codeguessed = FALSE;
 	mtmp->flagged_for_death = FALSE;
+	mtmp->legdamage = 0;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
 	if (have_movemorkstone() == 2) mtmp->movement += rnd(24);

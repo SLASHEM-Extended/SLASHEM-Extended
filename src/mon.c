@@ -8235,7 +8235,7 @@ int  typ, fatal;
 	}
 	i = rn2(fatal + 20*thrown_weapon);
 	if(i == 0 && (!Poison_resistance || (Race_if(PM_VIETIS) && !StrongPoison_resistance)) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) && typ != A_CHA && !rn2((Race_if(PM_VIETIS) && !Poison_resistance) ? 10 : 100)) {
-		if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) )
+		if (Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) )
 		   pline("You are unharmed!");
 		else {
 		u.uhp = -1;

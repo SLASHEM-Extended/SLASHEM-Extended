@@ -740,7 +740,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 		break;
 	    case AD_DISN:
 		verbalize("Avada Kedavra!");
-		if((Antimagic && rn2(StrongAntimagic ? 20 : 5) ) || nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance || Invulnerable || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+		if((Antimagic && rn2(StrongAntimagic ? 20 : 5) ) || nonliving(youmonst.data) || is_demon(youmonst.data) || Death_resistance || Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (StrongWonderlegs && !rn2(10) && Wounded_legs) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 			shieldeff(u.ux, u.uy);
 			pline("But you resist the effects.");
 			dmg = 0;

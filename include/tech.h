@@ -310,10 +310,25 @@ struct blitz_tab {
 
 #define T_MARTIAL_STYLE	228
 
-#define T_JEDI_JUMP	229 /* lvlup */
-#define T_CHARGE_SABER	230 /* lvlup */
-#define T_TELEKINESIS	231 /* lvlup */
+#define T_SPRINT	229
+#define T_SKULL_CRUSH	230
+#define T_FEMALE_COMBO	231
+#define T_DOCKLOCK	232
+#define T_BITCH_POSING	233
+#define T_SEXY_STAND	234
+#define T_MARATHON	235
+#define T_PERFUME_STRIDE	236
+#define T_NAUGHTY_HEELOT	237
+#define T_EXTREME_STURDINESS	238
+#define T_BUTT_PROTECTION	239
+#define T_PROFILING	240
+#define T_STAR_HEEL_SWAP	241
+#define T_HEEL_STAB	242
+
+#define T_JEDI_JUMP	243 /* lvlup */
+#define T_CHARGE_SABER	244 /* lvlup */
+#define T_TELEKINESIS	245 /* lvlup */
  
-#define MAXTECH 232
+#define MAXTECH 246
 
 #endif /* TECH_H */

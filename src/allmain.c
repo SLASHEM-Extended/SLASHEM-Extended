@@ -191,6 +191,17 @@ moveloop()
 			u.comboactive = u.combostrike = 0;
 		}
 
+		if (tech_inuse(T_FEMALE_COMBO)) {
+			if (u.femcomboactive) u.femcomboactive = FALSE;
+			else {
+				u.femcomboactive = u.femcombostrike = 0;
+				stopsingletechnique(T_FEMALE_COMBO);
+				pline("Since you failed to kick an enemy in your last action, your combo ends prematurely!");
+			}
+		} else { /* female combo inactive - clear any combo flags that might still be present */
+			u.femcomboactive = u.femcombostrike = 0;
+		}
+
 		if (Role_if(PM_DANCER)) {
 			if (u.dancercomboactive) u.dancercomboactive = FALSE;
 			else if (u.dancercombostrike > 0) {
@@ -1483,6 +1494,13 @@ moveloop()
 				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
 			}
 
+			if (PlayerInWedgeHeels && tech_inuse(T_MARATHON) && u.umoved) {
+				oldspeed = moveamt;
+				moveamt *= 3;
+				moveamt /= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
+			}
+
 			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
 				moveamt *= 2;
 			}
@@ -2128,6 +2146,19 @@ moveloop()
 				oldspeed = moveamt;
 				moveamt *= 2;
 				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
+			if (PlayerInStilettoHeels && tech_inuse(T_SPRINT) && u.umoved) {
+				oldspeed = moveamt;
+				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
+			if (PlayerInWedgeHeels && tech_inuse(T_MARATHON) && u.umoved) {
+				oldspeed = moveamt;
+				moveamt *= 3;
+				moveamt /= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 			}
 
 			/* metals are even faster but take greatly increased damage --Amy */

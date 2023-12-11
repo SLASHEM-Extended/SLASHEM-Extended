@@ -11730,6 +11730,9 @@ u_init()
 	u.bizarrotries = 0;
 	u.comboactive = 0;
 
+	u.femcombostrike = 0;
+	u.femcomboactive = 0;
+
 	u.dancercombostrike = 0;
 	u.dancercomboactive = 0;
 

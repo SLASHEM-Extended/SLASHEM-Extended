@@ -179,7 +179,7 @@
 
 #define PlayerInStilettoHeels	(!CanHaveColumnarHeels && CanHaveStilettoHeels)
 
-#define PlayerInConeHeels	(!CanHaveColumnarHeels && !CanHaveStilettoHeels && CanHaveConeHeels)
+#define PlayerInConeHeels	(!CanHaveColumnarHeels && (!CanHaveStilettoHeels || tech_inuse(T_NAUGHTY_HEELOT)) && CanHaveConeHeels)
 
 #define PlayerInBlockHeels	(!CanHaveColumnarHeels && !CanHaveStilettoHeels && !CanHaveConeHeels && CanHaveBlockHeels)
 
@@ -1590,7 +1590,7 @@
 
 #define HFree_action	u.uprops[FREE_ACTION].intrinsic
 #define EFree_action	u.uprops[FREE_ACTION].extrinsic
-#define IntFree_action	(HFree_action || (uwep && uwep->oartifact == ART_YES_OCCIFER) || FemtrapActiveNatalje || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) )
+#define IntFree_action	(HFree_action || (tech_inuse(T_SEXY_STAND) && PlayerInBlockHeels) || (uwep && uwep->oartifact == ART_YES_OCCIFER) || FemtrapActiveNatalje || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) )
 #define ExtFree_action	(playerextrinsicfreeaction())
 
 #define Free_action		(((IntFree_action && u.nonintrinsicproperty != FREE_ACTION) || (ExtFree_action && u.nonextrinsicproperty != FREE_ACTION)) && !NoFree_action) /* [Tom] */
