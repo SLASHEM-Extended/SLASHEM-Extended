@@ -9366,9 +9366,6 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		attrcurse();
-		while (rn2(3)) {
-			attrcurse();
-		}
 
 		if (oseen) makeknown(WAN_REMOVE_RESISTANCE);
 

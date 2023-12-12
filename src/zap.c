@@ -4423,9 +4423,6 @@ secureidchoice:
 		case WAN_REMOVE_RESISTANCE:
 
 			attrcurse();
-			while (rn2(3)) {
-				attrcurse();
-			}
 
 		break;
 
