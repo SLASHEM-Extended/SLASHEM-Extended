@@ -4902,7 +4902,10 @@ void
 randomfeminismtrap(duration)
 int duration;
 {
-	if (FemtrapActiveRosa) duration *= 5;
+	if (FemtrapActiveRosa) {
+		duration *= 5;
+		if (SuperFemtrapRosa) duration *= 2;
+	}
 
 	switch (rnd(102)) {
 		case 1:

@@ -6078,11 +6078,12 @@ register struct monst *mtmp;
 	if (mtmp->mundetected && hides_under(mtmp->data)) mtmp->mundetected = FALSE;
 
 	if (FemtrapActiveLittleMarie && is_female(mtmp->data)) {
-		randomnastytrapeffect(rnz(2 + mtmp->m_lev), 1000 - mtmp->m_lev);
+		if (SuperFemtrapLittleMarie) randomnastytrapeffect(rnz(2 + (mtmp->m_lev * 2)), 1000 - (mtmp->m_lev * 2));
+		else randomnastytrapeffect(rnz(2 + mtmp->m_lev), 1000 - mtmp->m_lev);
 		u.cnd_littlemarietrapcnt++;
 	}
 
-	if (FemtrapActiveSonja && !mtmp->mpeaceful && !mtmp->mtame && !rn2(10) && is_female(mtmp->data)) {
+	if (FemtrapActiveSonja && !mtmp->mpeaceful && !mtmp->mtame && !rn2(SuperFemtrapSonja ? 5 : 10) && is_female(mtmp->data)) {
 		incr_itimeout(&HAggravate_monster, (mtmp->m_lev * 5) + 1);
 		You_feel("that monsters are aware of your presence.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Dazhe sovetskaya Pyat' Lo obostryayetsya v vashem nizkom igrovom masterstve." : "Woaaaaaah!");

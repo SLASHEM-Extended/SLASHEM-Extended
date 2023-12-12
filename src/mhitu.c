@@ -1459,7 +1459,7 @@ elena23:
 
 			if (!rn2(250)) pushplayer(FALSE);
 
-			if (FemtrapActiveKsenia && !kseniakick && spawnswithsandals(mtmp->data) ) {
+			if (FemtrapActiveKsenia && (!SuperFemtrapKsenia || mtmp->mfrenzied || !rn2(3)) && !kseniakick && spawnswithsandals(mtmp->data) ) {
 
 				if (!mtmp->mfrenzied) {
 
@@ -1468,6 +1468,10 @@ elena23:
 					strcpy(qbuf,"Do you want to allow the pretty sandal to kick you again?");
 					if ((c = yn_function(qbuf, ynqchars, 'y')) != 'n') {
 						kseniakick = TRUE;
+						if (!SuperFemtrapKsenia && !rn2(20)) {
+							mtmp->mpeaceful = TRUE;
+							pline("The pretty sandal is very pleased, and decides to be nice to you.");
+						}
 						goto kseniaagain;
 					} else {
 						mtmp->mtame = FALSE;
@@ -2494,7 +2498,7 @@ mattacku(mtmp)
 	if (mtmp->crapbonus) tmp += rno(mtmp->crapbonus);
 	if (is_table(mtmp->mx, mtmp->my)) tmp += 3;
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && attacktype(mtmp->data, AT_KICK) && FemtrapActiveMadeleine) tmp += rnd(100);
-	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp += rnd(20);
+	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp += rnd(SuperFemtrapWendy ? 20 : 10);
 
 	if (!rn2(20)) tmp += 20; /* "natural 20" like in D&D --Amy */
 
@@ -3621,7 +3625,8 @@ elena37:
 				default: break;
 			}
 		}
-		a->damn = 2;
+		if (SuperFemtrapTanja) a->damn = 2;
+		else a->damn = 1;
 		a->damd = (1 + (mtmp->m_lev * 2));
 
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||

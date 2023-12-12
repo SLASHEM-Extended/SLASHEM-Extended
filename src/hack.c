@@ -4729,6 +4729,7 @@ newbossLARA:
 
 		if (laramon) {
 			laramon->laramonst = TRUE;
+			u.laratraptimer = (SuperFemtrapLara ? 200 : 1000);
 		}
 
 		u.aggravation = 0;

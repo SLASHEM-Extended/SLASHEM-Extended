@@ -7728,6 +7728,7 @@ struct obj *weapon;
 
 	if (FemtrapActivePatricia && weapon && (objects[weapon->otyp].oc_dir == 0 ) ) {
 		bonus += 10;
+		if (SuperFemtrapPatricia) bonus += rnd(5);
 	}
 
 	if (!(PlayerCannotUseSkills)) {

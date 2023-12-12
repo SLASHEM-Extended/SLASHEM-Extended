@@ -6893,7 +6893,7 @@ find_ac()
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 	if (bmwride(ART_PLATED_BARDING)) uac -= 2;
 	if (bmwride(ART_DEATH_SQUAD_MOBILE)) uac -= 5;
-	if (FemtrapActivePatricia) uac -= 3;
+	if (FemtrapActivePatricia) uac -= (SuperFemtrapPatricia ? 6 : 3);
 	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) uac -= 5;
 	if (uwep && uwep->oartifact == ART_MJOLLNIR) uac += 10;

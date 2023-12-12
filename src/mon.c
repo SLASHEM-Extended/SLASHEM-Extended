@@ -2007,7 +2007,7 @@ register struct monst *mtmp;
 		if (cansee(mtmp->mx, mtmp->my)) pline("%s cures the well of its poison!", Monnam(mtmp));
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && !rn2(10) && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemtrapActiveKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemtrapActiveThai ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && !rn2(SuperFemtrapKatharina ? 5 : 10) && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemtrapActiveKatharina) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemtrapActiveThai ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
@@ -2067,7 +2067,7 @@ register struct monst *mtmp;
 	if (!rn2(10)) increasesanity(1);
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && !rn2(10) && FemtrapActiveKlara && spawnswithsandals(mtmp->data) && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemtrapActiveKatharina) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && !rn2(SuperFemtrapKatharina ? 5 : 10) && FemtrapActiveKlara && spawnswithsandals(mtmp->data) && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || FemtrapActiveKatharina) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces crapping noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
@@ -2275,7 +2275,7 @@ struct monst *mon;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
 	}
-	if (FemtrapActiveEveline && humanoid(mon->data) && is_female(mon->data) && (mmove > 0)) {
+	if (FemtrapActiveEveline && humanoid(mon->data) && (!rn2(2) || SuperFemtrapEveline) && is_female(mon->data) && (mmove > 0)) {
 		mmove *= 3;
 		if (mmove == 3) mmove = 4;
 		mmove /= 2;
@@ -2371,7 +2371,7 @@ mcalcdistress()
 	were_change(mtmp);
 
 	if (FemtrapActiveYasaman) {
-		if ( (rn2(100) > mtmp->data->mr) && (mtmp->oldmonnm == monsndx(mtmp->data)) && !(mtmp->isshk) && !(mtmp->isgd) && !(mtmp->ispriest) && !(mtmp->isminion) && !(mtmp->isgyp) && !(mtmp->data->geno & G_UNIQ) && !rn2(10000) && !resist(mtmp, WAND_CLASS, 0, NOTELL) ) {
+		if ( (rn2(100) > mtmp->data->mr) && (mtmp->oldmonnm == monsndx(mtmp->data)) && !(mtmp->isshk) && !(mtmp->isgd) && !(mtmp->ispriest) && !(mtmp->isminion) && !(mtmp->isgyp) && !(mtmp->data->geno & G_UNIQ) && !rn2(SuperFemtrapYasaman ? 3333 : 10000) && !resist(mtmp, WAND_CLASS, 0, NOTELL) ) {
 			int mndx;
 			struct permonst *pm;
 yasichoice:
@@ -4725,7 +4725,7 @@ struct monst *mtmp;
 		} else
 			return;
 
-	} else if (FemtrapActiveMarike && rn2(5) && !mtmp->mpeaceful && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
+	} else if (FemtrapActiveMarike && rn2(SuperFemtrapMarike ? 5 : 2) && !mtmp->mpeaceful && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
 		visible = u.uswallow && u.ustuck == mtmp ||
 			cansee(mtmp->mx, mtmp->my);
 		if (visible) {

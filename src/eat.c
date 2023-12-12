@@ -3705,7 +3705,7 @@ register int pm;
 	    case PM_KATOISEFUL:
 	    case PM_MURDATRICE:
 		pline("You'll have incessant flatulence for a while now...");
-		FemaleTrapMaurah += rnz(2000);
+		FemaleTrapMaurah += rnz(20000);
 		CrapEffect += rnz(50 * (monster_difficulty() + 1));
 		break;
 
@@ -5047,7 +5047,7 @@ opentin()		/* called during each move whilst opening a tin */
 
 	    }
 	    pline("You'll have incessant flatulence for a while now...");
-	    FemaleTrapMaurah += rnz(500);
+	    FemaleTrapMaurah += rnz(5000);
 
 	    if (tin.tin->oartifact == ART_NUTRI_ROULETTE) lesshungry(6000);
 	    else lesshungry(600);

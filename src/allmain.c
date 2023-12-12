@@ -1207,7 +1207,7 @@ moveloop()
 				if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (FemtrapActivePatricia && !rn2(8) && moveamt > 1 && u.umoved && u.dx && u.dy)
+				if (FemtrapActivePatricia && !rn2(SuperFemtrapPatricia ? 6 : 8) && moveamt > 1 && u.umoved && u.dx && u.dy)
 					moveamt /= 2;
 
 				if (uwep && uwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
@@ -1700,7 +1700,7 @@ moveloop()
 			if (uarmf && uarmf->oartifact == ART_DARK_BALL_OF_LIGHT && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
-			if (FemtrapActivePatricia && !rn2(8) && moveamt > 1 && u.umoved && u.dx && u.dy)
+			if (FemtrapActivePatricia && !rn2(SuperFemtrapPatricia ? 6 : 8) && moveamt > 1 && u.umoved && u.dx && u.dy)
 				moveamt /= 2;
 
 			if (uwep && uwep->otyp == CIRCULAR_SAW && !rn2(8) && moveamt > 1)
@@ -4025,7 +4025,7 @@ moveloop()
 			nomul(-(u.stasistime), "frozen in stasis", FALSE);
 		}
 
-		if (FemtrapActiveMariya && !rn2(10) && multi < 0) {
+		if (FemtrapActiveMariya && !rn2(SuperFemtrapMariya ? 5 : 10) && multi < 0) {
 			register struct monst *mariyamon;
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -4067,7 +4067,7 @@ newbossMYA:
 
 					if (isok(katiax, katiay) && IS_TOILET(levl[katiax][katiay].typ)) {
 
-						if (!rn2(1000) && (dist2(katiax, katiay, u.ux, u.uy) <= (BOLT_LIM * BOLT_LIM)) ) {
+						if (!rn2(SuperFemtrapKatia ? 500 : 1000) && (dist2(katiax, katiay, u.ux, u.uy) <= (BOLT_LIM * BOLT_LIM)) ) {
 							struct permonst *pm = 0;
 							int attempts = 0;
 
@@ -4612,7 +4612,7 @@ trapsdone:
 			}
 		}
 
-		if (FemtrapActiveJennifer && !rn2(1000)) {
+		if (FemtrapActiveJennifer && !rn2(SuperFemtrapJennifer ? 1000 : 2000)) {
 			register struct monst *jennymon;
 
 			struct permonst *pm = 0;
@@ -5430,7 +5430,7 @@ greasingdone:
 
 		}
 
-		if (FemtrapActiveMaurah && !rn2(500)) {
+		if (FemtrapActiveMaurah && !rn2(SuperFemtrapMaurah ? 500 : 1000)) {
 
 			pline("Suddenly, you produce beautiful farting noises with your sexy butt.");
 			u.cnd_fartingcount++;
@@ -5462,7 +5462,7 @@ greasingdone:
 
 		}
 
-		if (FemtrapActiveSarah && !rn2(250)) {
+		if (FemtrapActiveSarah && !rn2(SuperFemtrapSarah ? 1000 : 2000)) {
 
 			int x, y;
 			x = rn1(COLNO-3,2);
@@ -5726,7 +5726,7 @@ newbossPOMP:
 			u.ragnaroktimer = rnz(100000);
 		}
 
-		if (FemtrapActiveClaudia && !rn2(100)) {
+		if (FemtrapActiveClaudia && !rn2(SuperFemtrapClaudia ? 50 : 100)) {
 
 			int x, y;
 			x = rn1(COLNO-3,2);
@@ -5759,7 +5759,7 @@ newbossPOMP:
 
 		}
 
-		if (FemtrapActiveMayBritt && !rn2(2500)) {
+		if (FemtrapActiveMayBritt && !rn2(SuperFemtrapMayBritt ? 2500 : 5000)) {
 
 			register struct monst *offmon;
 			struct permonst *pm = 0;
@@ -5855,7 +5855,10 @@ newbossUTE:
 				goto newbossUTE;
 			}
 
-			if (pm) (makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK));
+			if (pm) {
+				(void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK);
+				if (SuperFemtrapUte) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED|MM_XFRENZIED|MM_ADJACENTOK);
+			}
 
 			u.aggravation = 0;
 			u.heavyaggravation = 0;
@@ -5902,7 +5905,7 @@ newbossUTE:
 
 		}
 
-		if (FemtrapActiveFriederike && !rn2(1000)) {
+		if (FemtrapActiveFriederike && !rn2(SuperFemtrapFriederike ? 1000 : 2000)) {
 
 			u.cnd_friederiketrapcnt++;
 
@@ -5962,7 +5965,7 @@ newbossUTE:
 			}
 		}
 
-		if (FemtrapActiveVerena && !rn2(1000) && (u.uhp > (u.uhpmax / 2)) ) {
+		if (FemtrapActiveVerena && !rn2(SuperFemtrapVerena ? 500 : 1000) && (u.uhp > (u.uhpmax / 2)) ) {
 
 			u.cnd_verenatrapcnt++;
 			switch (rnd(5)) {
@@ -6001,7 +6004,7 @@ newbossUTE:
 			healup( ( (level_difficulty() * 3) + 5), 0, FALSE, FALSE);
 		}
 
-		if (FemtrapActiveElif && !rn2(100)) {
+		if (FemtrapActiveElif && !rn2(SuperFemtrapElif ? 250 : 500)) {
 
 			u.cnd_eliftrapcnt++;
 
@@ -6400,7 +6403,7 @@ controlagain:
 			Your("weapon spontaneously disintegrates!");
 		}
 
-		if (u.umoved && FemtrapActiveBridghitte && !rn2(500)) {
+		if (u.umoved && FemtrapActiveBridghitte && !rn2(SuperFemtrapBridghitte ? 250 : 500)) {
 
 			if (!(t_at(u.ux, u.uy) )) {
 				register struct trap *bridghittetrap;
@@ -6530,7 +6533,7 @@ controlagain:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
-		if (!rn2(2000) && FemtrapActiveManuela ) {
+		if (!rn2(SuperFemtrapManuela ? 1000 : 2000) && FemtrapActiveManuela ) {
 			u.aggravation = 1;
 			u.heavyaggravation = 1;
 
@@ -6601,7 +6604,7 @@ newbossNATA:
 			u.mondiffhack = 0;
 		}
 
-		if (!rn2(5000) && FemtrapActiveSusanne ) {
+		if (!rn2(SuperFemtrapSusanne ? 5000 : 10000) && FemtrapActiveSusanne ) {
 			u.aggravation = 1;
 			u.heavyaggravation = 1;
 			DifficultyIncreased += 1;
@@ -6646,7 +6649,7 @@ newbossSUSA:
 			stop_occupation();
 		}
 
-		if (!rn2(1000) && FemtrapActiveKerstin ) {
+		if (!rn2(SuperFemtrapKerstin ? 500 : 1000) && FemtrapActiveKerstin ) {
 
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -6689,7 +6692,7 @@ newbossKERSTIN:
 
 		}
 
-		if (!rn2(2000) && FemtrapActiveKsenia ) {
+		if (!rn2(SuperFemtrapKsenia ? 1000 : 2000) && FemtrapActiveKsenia ) {
 
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -6724,7 +6727,7 @@ newbossKSENIA:
 
 		}
 
-		if (!rn2(10000) && FemtrapActiveKlara ) {
+		if (!rn2(SuperFemtrapKlara ? 5000 : 10000) && FemtrapActiveKlara ) {
 
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -6827,7 +6830,7 @@ newbossKLARA:
 
 		}
 
-		if (FemtrapActiveJanina && !rn2(1000)) {
+		if (FemtrapActiveJanina && !rn2(SuperFemtrapJanina ? 500 : 1000)) {
 			int aggroamount = rnd(10);
 			if (isfriday) aggroamount *= 2;
 			reset_rndmonst(NON_PM);
@@ -7241,6 +7244,7 @@ newbossJANI:
 
 		if (rn2(2)) u.marleenproperties = TRUE;
 		else u.marleenproperties = FALSE;
+		if (SuperFemtrapMarleen && rn2(2)) u.marleenproperties = TRUE;
 
 		if (uleft && uleft->oartifact == ART_STAR_EMPEROR_S_RING && !rn2(1000)) {
 			litroom(TRUE, uleft);
@@ -7249,7 +7253,7 @@ newbossJANI:
 			litroom(TRUE, uright);
 		}
 
-		if (FemtrapActiveJulietta && !rn2(2000)) {
+		if (FemtrapActiveJulietta && !rn2(SuperFemtrapJulietta ? 1000 : 2000)) {
 			pline("Julietta rolls the dice to randomly select a punishment for you...");
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 		}
@@ -8001,7 +8005,7 @@ newbossSF:
 
 		}
 
-		if (FemtrapActiveJohanna && !rn2(1000)) {
+		if (FemtrapActiveJohanna && !rn2(SuperFemtrapJohanna ? 500 : 1000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8034,7 +8038,7 @@ newbossJOH:
 
 		}
 
-		if (FemtrapActiveRuea && !rn2(1000)) {
+		if (FemtrapActiveRuea && !rn2(SuperFemtrapRuea ? 500 : 1000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8069,7 +8073,7 @@ newbossCONV:
 
 		}
 
-		if (FemtrapActiveSing && !rn2(1000)) {
+		if (FemtrapActiveSing && !rn2(2000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8112,6 +8116,45 @@ newbossSING:
 
 		}
 
+		if (FemtrapActiveSing && SuperFemtrapSing && !rn2(2000)) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+newbossSUPERSING:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_SHOE )) ) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossSUPERSING;
+			}
+			if (pm && !(pm->msound == MS_SHOE) && rn2(50) ) {
+				attempts = 0;
+				goto newbossSUPERSING;
+			}
+
+			if (pm) {
+				struct monst *singbitch;
+				singbitch = makemon(pm, 0, 0, MM_ANGRY); /* not frenzied --Amy */
+				if (singbitch) singbitch->singannoyance = TRUE;
+			}
+
+			u.aggravation = 0;
+			u.mondiffhack = 0;
+
+		}
+
 		if (FemtrapActiveIrina && !rn2(10000)) {
 
 			if (Aggravate_monster) {
@@ -8138,7 +8181,7 @@ newbossSING:
 
 		}
 
-		if (FemtrapActiveLuisa && !rn2(2000)) {
+		if (FemtrapActiveLuisa && !rn2(SuperFemtrapLuisa ? 2000 : 4000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8179,7 +8222,7 @@ newbossLUISA:
 
 		}
 
-		if (FemtrapActiveLiselotte && !rn2(4000)) {
+		if (FemtrapActiveLiselotte && !rn2(SuperFemtrapLiselotte ? 2000 : 4000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8230,7 +8273,7 @@ newbossLILO:
 
 		}
 
-		if (FemtrapActiveGreta && !rn2(2500)) {
+		if (FemtrapActiveGreta && !rn2(SuperFemtrapGreta ? 1250 : 2500)) {
 			d_level flev;
 			int gretatype = rnd(4);
 			if (gretatype == 1) gretatype = 333; /* MS_STENCH */
@@ -8274,7 +8317,7 @@ newbossLILO:
 
 		}
 
-		if (FemtrapActiveCharlotte && !rn2(3000)) {
+		if (FemtrapActiveCharlotte && !rn2(SuperFemtrapCharlotte ? 3000 : 6000)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -8328,7 +8371,7 @@ newbossLILO:
 
 		}
 
-		if (FemtrapActiveVictoria && !rn2(5000)) {
+		if (FemtrapActiveVictoria && !rn2(SuperFemtrapVictoria ? 2500 : 5000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8367,7 +8410,7 @@ newbossATHL:
 
 		}
 
-		if (FemtrapActiveJil && !rn2(1000)) {
+		if (FemtrapActiveJil && !rn2(SuperFemtrapJil ? 500 : 1000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -10435,7 +10478,7 @@ newbossX:
 			u.youaredead = 0;
 		}
 
-		if (FemtrapActiveFemmy && !rn2(500) ) {
+		if (FemtrapActiveFemmy && !rn2(SuperFemtrapFemmy ? 1000 : 2000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -10469,7 +10512,7 @@ newbossZ:
 
 		}
 
-		if (FemtrapActiveLudgera && !rn2(500) ) {
+		if (FemtrapActiveLudgera && !rn2(SuperFemtrapLudgera ? 500 : 1000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -11076,7 +11119,7 @@ newbossB:
 			(void) maketrap(u.ux, u.uy, FIRE_TRAP, 0, FALSE);
 		}
 
-		if (FemtrapActiveElise && !rn2(500)) {
+		if (FemtrapActiveElise && !rn2(SuperFemtrapElise ? 500 : 1000)) {
 			int x, y;
 
 			x = rn1(COLNO-3,2);
@@ -11088,7 +11131,7 @@ newbossB:
 		}
 
 		u.arabellahack = 0; /* fail safe */
-		if (FemtrapActiveArabella && !rn2(100)) {
+		if (FemtrapActiveArabella && !rn2(SuperFemtrapArabella ? 500 : 1000)) {
 			u.arabellahack = 1;
 
 			int x, y;
@@ -11098,7 +11141,7 @@ newbossB:
 
 			if (isok(x, y) && !(t_at(x, y)) ) {
 				(void) maketrap(x, y, rndtrap(), 0, FALSE);
-				}
+			}
 			u.arabellahack = 0;
 
 		}
@@ -11108,7 +11151,7 @@ newbossB:
 			Your("stuff has withered. God are you a wasteful player, you should stop playing with Lou's dirty sneakers.");
 		}
 
-		if (FemtrapActiveJana && !rn2(200)) {
+		if (FemtrapActiveJana && !rn2(SuperFemtrapJana ? 100 : 200)) {
 
 			int tryct = 0;
 			int x, y;
@@ -11144,7 +11187,7 @@ newbossB:
 			}
 		}
 
-		if (FemtrapActiveLarissa && !rn2(1000) && !(u.larissatimer) ) {
+		if (FemtrapActiveLarissa && !rn2(SuperFemtrapLarissa ? 1000 : 2000) && !(u.larissatimer) ) {
 			struct trap *larissatrap;
 			int tryct = 0;
 			int x, y;
@@ -11439,7 +11482,7 @@ newbossB:
 			}
 		}
 
-		if (FemtrapActiveFemmy && !rn2(200)) {
+		if (FemtrapActiveFemmy && !rn2(SuperFemtrapFemmy ? 500 : 1000)) {
 
 			int tryct = 0;
 			int x, y;
@@ -11496,7 +11539,7 @@ newbossB:
 
 		}
 
-		if (FemtrapActiveFemmy && !rn2(200)) {
+		if (FemtrapActiveFemmy && !rn2(SuperFemtrapFemmy ? 500 : 1000)) {
 
 			int tryct = 0;
 			int x, y;
@@ -11532,7 +11575,7 @@ newbossB:
 			}
 		}
 
-		if (FemtrapActiveAnastasia && !rn2(250) ) {
+		if (FemtrapActiveAnastasia && !rn2(SuperFemtrapAnastasia ? 250 : 500) ) {
 			int tryct = 0;
 			int x, y;
 			boolean canbeinawall = FALSE;
@@ -20541,7 +20584,8 @@ int x, y;
 	if (MON_AT(x, y)) return FALSE;
 
 	int i, j;
-	for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+	int nic = (SuperFemtrapNicole ? 2 : 1);
+	for (i = -nic; i <= nic; i++) for(j = -nic; j <= nic; j++) {
 		if (!isok(x + i, y + j)) continue;
 		if ((nicolemon = level.monsters[x + i][y + j]) != (struct monst *)0 ) {
 			if (nicolemon && nicolemon->female && humanoid(nicolemon->data)) return TRUE;

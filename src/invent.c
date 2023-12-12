@@ -1765,1328 +1765,1484 @@ have_sonjartifact()
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapfemmy()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FEMMY_S_JEWEL)
+		if(otmp->otyp == FEMMY_S_JEWEL) {
+			if (otmp->oartifact == ART_HOW_DEEP_CAN_YOU_SINK_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(1)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmadeleine()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MADELEINE_S_JEWEL)
+		if(otmp->otyp == MADELEINE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(2)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmarlena()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARLENA_S_JEWEL)
+		if(otmp->otyp == MARLENA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(3)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapanastasia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANASTASIA_S_JEWEL)
+		if(otmp->otyp == ANASTASIA_S_JEWEL) {
+			if (otmp->oartifact == ART_FEELS_GOOD_ENOUGH_TO_DO_IT) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(4)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjessica()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JESSICA_S_JEWEL)
+		if(otmp->otyp == JESSICA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(5)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapsolvejg()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SOLVEJG_S_JEWEL)
+		if(otmp->otyp == SOLVEJG_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(6)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapwendy()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == WENDY_S_JEWEL)
+		if(otmp->otyp == WENDY_S_JEWEL) {
+			if (otmp->oartifact == ART_MARIO_AND_LUIGI_WILL_FAIL_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(7)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkatharina()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATHARINA_S_JEWEL)
+		if(otmp->otyp == KATHARINA_S_JEWEL) {
+			if (otmp->oartifact == ART_QUEWUEWUE_QUEUEUEUEK_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(8)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapelena()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELENA_S_JEWEL)
+		if(otmp->otyp == ELENA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(9)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapthai()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == THAI_S_JEWEL)
+		if(otmp->otyp == THAI_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(10)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapelif()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELIF_S_JEWEL)
+		if(otmp->otyp == ELIF_S_JEWEL) {
+			if (otmp->oartifact == ART_NON_ASIAN_WOMAN_WITH_AN_AS) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(11)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnadja()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NADJA_S_JEWEL)
+		if(otmp->otyp == NADJA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(12)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapsandra()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SANDRA_S_JEWEL)
+		if(otmp->otyp == SANDRA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(13)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnatalje()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NATALJE_S_JEWEL)
+		if(otmp->otyp == NATALJE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(14)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjeanetta()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JEANETTA_S_JEWEL)
+		if(otmp->otyp == JEANETTA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(15)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapyvonne()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YVONNE_S_JEWEL)
+		if(otmp->otyp == YVONNE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(16)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmaurah()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAURAH_S_JEWEL)
+		if(otmp->otyp == MAURAH_S_JEWEL) {
+			if (otmp->oartifact == ART_ONION_CAKE_EAT) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(17)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmeltem()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MELTEM_S_JEWEL)
+		if(otmp->otyp == MELTEM_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(18)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapsarah()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SARAH_S_JEWEL)
+		if(otmp->otyp == SARAH_S_JEWEL) {
+			if (otmp->oartifact == ART_AIRTIGHT_WAR_MATERIAL) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(19)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapclaudia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CLAUDIA_S_JEWEL)
+		if(otmp->otyp == CLAUDIA_S_JEWEL) {
+			if (otmp->oartifact == ART_ON_THE_WATERFRONT) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(20)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapludgera()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LUDGERA_S_JEWEL)
+		if(otmp->otyp == LUDGERA_S_JEWEL) {
+			if (otmp->oartifact == ART_DISGUSTING_HIGHLY_THREE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(21)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkati()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATI_S_JEWEL)
+		if(otmp->otyp == KATI_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(22)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnelly()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NELLY_S_JEWEL)
+		if(otmp->otyp == NELLY_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(23)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapeveline()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == EVELINE_S_JEWEL)
+		if(otmp->otyp == EVELINE_S_JEWEL) {
+			if (otmp->oartifact == ART_GREETLETS_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(24)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkarin()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KARIN_S_JEWEL)
+		if(otmp->otyp == KARIN_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(25)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjuen()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JUEN_S_JEWEL)
+		if(otmp->otyp == JUEN_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(26)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkristina()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KRISTINA_S_JEWEL)
+		if(otmp->otyp == KRISTINA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(27)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraplou()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LOU_S_JEWEL)
+		if(otmp->otyp == LOU_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(28)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapalmut()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ALMUT_S_JEWEL)
+		if(otmp->otyp == ALMUT_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(29)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjulietta()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JULIETTA_S_JEWEL)
+		if(otmp->otyp == JULIETTA_S_JEWEL) {
+			if (otmp->oartifact == ART_LA_MADEMOISELLE_REGNE_SUR_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(30)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraparabella()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ARABELLA_S_JEWEL)
+		if(otmp->otyp == ARABELLA_S_JEWEL) {
+			if (otmp->oartifact == ART_MODDED_THE_DUNGEON_DEFINIT) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(31)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkristin()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KRISTIN_S_JEWEL)
+		if(otmp->otyp == KRISTIN_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(32)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapanna()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANNA_S_JEWEL)
+		if(otmp->otyp == ANNA_S_JEWEL) {
+			if (otmp->oartifact == ART_LITTLE_FLASK_OF_PERFUME) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(33)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapruea()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RUEA_S_JEWEL)
+		if(otmp->otyp == RUEA_S_JEWEL) {
+			if (otmp->oartifact == ART_ISLAM_A_GECECEKSINIZ_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(34)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapdora()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == DORA_S_JEWEL)
+		if(otmp->otyp == DORA_S_JEWEL) {
+			if (otmp->oartifact == ART_FUCKING_BIRDS__MAN_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(35)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmarike()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARIKE_S_JEWEL)
+		if(otmp->otyp == MARIKE_S_JEWEL) {
+			if (otmp->oartifact == ART_LITTLE_GIRL_OF_AMBER) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(36)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjette()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JETTE_S_JEWEL)
+		if(otmp->otyp == JETTE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(37)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapina()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INA_S_JEWEL)
+		if(otmp->otyp == INA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(38)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapsing()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SING_S_JEWEL)
+		if(otmp->otyp == SING_S_JEWEL) {
+			if (otmp->oartifact == ART_BONUS_CLEANING_ROUND) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(39)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapvictoria()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VICTORIA_S_JEWEL)
+		if(otmp->otyp == VICTORIA_S_JEWEL) {
+			if (otmp->oartifact == ART_RUSSIAN_KARATE_WOMAN) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(40)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmelissa()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MELISSA_S_JEWEL)
+		if(otmp->otyp == MELISSA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(41)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapanita()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANITA_S_JEWEL)
+		if(otmp->otyp == ANITA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(42)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraphenrietta()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HENRIETTA_S_JEWEL)
+		if(otmp->otyp == HENRIETTA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(43)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapverena()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == VERENA_S_JEWEL)
+		if(otmp->otyp == VERENA_S_JEWEL) {
+			if (otmp->oartifact == ART_SILLY__FREE_LIKE_A_BIRD___) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(44)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapannemarie()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANNEMARIE_S_JEWEL)
+		if(otmp->otyp == ANNEMARIE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(45)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjil()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JIL_S_JEWEL)
+		if(otmp->otyp == JIL_S_JEWEL) {
+			if (otmp->oartifact == ART_ODORANT_SOCKS) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(46)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjana()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JANA_S_JEWEL)
+		if(otmp->otyp == JANA_S_JEWEL) {
+			if (otmp->oartifact == ART_WON_T_EVER_FIND_HER) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(47)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkatrin()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATRIN_S_JEWEL)
+		if(otmp->otyp == KATRIN_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(48)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapgudrun()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GUDRUN_S_JEWEL)
+		if(otmp->otyp == GUDRUN_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(49)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapella()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELLA_S_JEWEL)
+		if(otmp->otyp == ELLA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(50)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmanuela()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MANUELA_S_JEWEL)
+		if(otmp->otyp == MANUELA_S_JEWEL) {
+			if (otmp->oartifact == ART_SHOULD_SMASH_YOU_AGAIN_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(51)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjennifer()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JENNIFER_S_JEWEL)
+		if(otmp->otyp == JENNIFER_S_JEWEL) {
+			if (otmp->oartifact == ART_DARKNESS_STORM__SURE_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(52)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrappatricia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == PATRICIA_S_JEWEL)
+		if(otmp->otyp == PATRICIA_S_JEWEL) {
+			if (otmp->oartifact == ART_GLUTTONY_IS_THE_MOST_FUN_D) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(53)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapantje()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTJE_S_JEWEL)
+		if(otmp->otyp == ANTJE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(54)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapantjex()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ANTJE_S_SECOND_JEWEL)
+		if(otmp->otyp == ANTJE_S_SECOND_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(55)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkerstin()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KERSTIN_S_JEWEL)
+		if(otmp->otyp == KERSTIN_S_JEWEL) {
+			if (otmp->oartifact == ART_LIVE_ON_THE_LAND) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(56)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraplaura()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LAURA_S_JEWEL)
+		if(otmp->otyp == LAURA_S_JEWEL) {
+			if (otmp->oartifact == ART_WHAT_IF_THE_CUSHION___) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(57)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraplarissa()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LARISSA_S_JEWEL)
+		if(otmp->otyp == LARISSA_S_JEWEL) {
+			if (otmp->oartifact == ART_CLEANPUTTER_S_WIN) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(58)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnora()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NORA_S_JEWEL)
+		if(otmp->otyp == NORA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(59)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnatalia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NATALIA_S_JEWEL)
+		if(otmp->otyp == NATALIA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(60)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapsusanne()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SUSANNE_S_JEWEL)
+		if(otmp->otyp == SUSANNE_S_JEWEL) {
+			if (otmp->oartifact == ART_PRETTY__BUT_POWERFUL_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(61)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraplisa()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LISA_S_JEWEL)
+		if(otmp->otyp == LISA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(62)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapbridghitte()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == BRIDGHITTE_S_JEWEL)
+		if(otmp->otyp == BRIDGHITTE_S_JEWEL) {
+			if (otmp->oartifact == ART_SKIERS_ON_THE_BRIDGE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(63)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjulia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JULIA_S_JEWEL)
+		if(otmp->otyp == JULIA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(64)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnicole()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NICOLE_S_JEWEL)
+		if(otmp->otyp == NICOLE_S_JEWEL) {
+			if (otmp->oartifact == ART_ABSORB_LIKE_A_HOLE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(65)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraprita()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RITA_S_JEWEL)
+		if(otmp->otyp == RITA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(66)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjanina()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JANINA_S_JEWEL)
+		if(otmp->otyp == JANINA_S_JEWEL) {
+			if (otmp->oartifact == ART_SEARCHANEK__MISSING_DISPLA) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(67)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraprosa()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ROSA_S_JEWEL)
+		if(otmp->otyp == ROSA_S_JEWEL) {
+			if (otmp->oartifact == ART_PAMELA_ROSAN) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(68)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapksenia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KSENIA_S_JEWEL)
+		if(otmp->otyp == KSENIA_S_JEWEL) {
+			if (otmp->oartifact == ART_ONA_NE_BERET_VSE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(69)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraplydia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LYDIA_S_JEWEL)
+		if(otmp->otyp == LYDIA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(70)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapconny()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CONNY_S_JEWEL)
+		if(otmp->otyp == CONNY_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(71)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapkatia()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KATIA_S_JEWEL)
+		if(otmp->otyp == KATIA_S_JEWEL) {
+			if (otmp->oartifact == ART_SHE_S_INCREDIBLY_SEXY) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(72)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmariya()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARIYA_S_JEWEL)
+		if(otmp->otyp == MARIYA_S_JEWEL) {
+			if (otmp->oartifact == ART_PRRRRRRRRRRRRRRRRRRRROOOOO) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(73)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapelise()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ELISE_S_JEWEL)
+		if(otmp->otyp == ELISE_S_JEWEL) {
+			if (otmp->oartifact == ART_GREEN_IS_THE_COLOR_OF_FEMI) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(74)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapronja()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RONJA_S_JEWEL)
+		if(otmp->otyp == RONJA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(75)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapariane()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == ARIANE_S_JEWEL)
+		if(otmp->otyp == ARIANE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(76)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjohanna()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JOHANNA_S_JEWEL)
+		if(otmp->otyp == JOHANNA_S_JEWEL) {
+			if (otmp->oartifact == ART_WHERE_HAS_SHE_GONE_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(77)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapinge()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == INGE_S_JEWEL)
+		if(otmp->otyp == INGE_S_JEWEL) {
+			if (otmp->oartifact == ART______________THE_SPACES_AR) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(78)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapruth()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RUTH_S_JEWEL)
+		if(otmp->otyp == RUTH_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(79)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmagdalena()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAGDALENA_S_JEWEL)
+		if(otmp->otyp == MAGDALENA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(80)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmarleen()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MARLEEN_S_JEWEL)
+		if(otmp->otyp == MARLEEN_S_JEWEL) {
+			if (otmp->oartifact == ART_HOW_COULD_SHE_FALL_FOR_THE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(81)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapklara()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == KLARA_S_JEWEL)
+		if(otmp->otyp == KLARA_S_JEWEL) {
+			if (otmp->oartifact == ART_KLACK__KLACK_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(82)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapfriederike()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == FRIEDERIKE_S_JEWEL)
+		if(otmp->otyp == FRIEDERIKE_S_JEWEL) {
+			if (otmp->oartifact == ART_FACE_DISAPPEARS_IN_HER_BUN) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(83)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnaomi()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NAOMI_S_JEWEL)
+		if(otmp->otyp == NAOMI_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(84)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapute()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == UTE_S_JEWEL)
+		if(otmp->otyp == UTE_S_JEWEL) {
+			if (otmp->oartifact == ART_PROTECT_HER_BLUE_FOOTWEAR) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(85)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjasieen()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JASIEEN_S_JEWEL)
+		if(otmp->otyp == JASIEEN_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(86)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapyasaman()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == YASAMAN_S_JEWEL)
+		if(otmp->otyp == YASAMAN_S_JEWEL) {
+			if (otmp->oartifact == ART_INHALE_THE_PERSIAN_VAPORS) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(87)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapmaybritt()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == MAY_BRITT_S_JEWEL)
+		if(otmp->otyp == MAY_BRITT_S_JEWEL) {
+			if (otmp->oartifact == ART_TYPE_OF_ICE_BLOCK_S_LITTLE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(88)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapnadine()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == NADINE_S_JEWEL)
+		if(otmp->otyp == NADINE_S_JEWEL) {
+			if (otmp->oartifact == ART_SWOONELNADINE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(89)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapluisa()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LUISA_S_JEWEL)
+		if(otmp->otyp == LUISA_S_JEWEL) {
+			if (otmp->oartifact == ART_SASSY_SMALL_ONE___) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(90)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapirina()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == IRINA_S_JEWEL)
+		if(otmp->otyp == IRINA_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(91)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapliselotte()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LISELOTTE_S_JEWEL)
+		if(otmp->otyp == LISELOTTE_S_JEWEL) {
+			if (otmp->oartifact == ART_CUTE_FACIAL_EXPRESSION) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(92)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapgreta()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == GRETA_S_JEWEL)
+		if(otmp->otyp == GRETA_S_JEWEL) {
+			if (otmp->oartifact == ART_NU_AER_DU_DOED__I_NAMN_AV_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(93)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapjane()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == JANE_S_JEWEL)
+		if(otmp->otyp == JANE_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(94)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapsuelyn()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SUE_LYN_S_JEWEL)
+		if(otmp->otyp == SUE_LYN_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(95)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapcharlotte()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == CHARLOTTE_S_JEWEL)
+		if(otmp->otyp == CHARLOTTE_S_JEWEL) {
+			if (otmp->oartifact == ART_SEND_IN_THE_HORDE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(96)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraphannah()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == HANNAH_S_JEWEL)
+		if(otmp->otyp == HANNAH_S_JEWEL) {
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(97)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraplittlemarie()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LITTLE_MARIE_S_JEWEL)
+		if(otmp->otyp == LITTLE_MARIE_S_JEWEL) {
+			if (otmp->oartifact == ART_YOU_WON_T_STOP_US__PERIOD_) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(98)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraptanja()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TANJA_S_JEWEL)
+		if(otmp->otyp == TANJA_S_JEWEL) {
+			if (otmp->oartifact == ART_FLEEEEEEECY) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(99)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtrapsonja()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == SONJA_S_JEWEL)
+		if(otmp->otyp == SONJA_S_JEWEL) {
+			if (otmp->oartifact == ART_PRETEND_THAT_SOME_GUY_BROK) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(100)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraprhea()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == RHEA_S_JEWEL)
+		if(otmp->otyp == RHEA_S_JEWEL) {
+			if (otmp->oartifact == ART_EN_DAN_WIS_SING_WIS_SING_W) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(101)) return TRUE;
 	return(FALSE);
 }
 
-boolean
+int
 have_femtraplara()
 {
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == LARA_S_JEWEL)
+		if(otmp->otyp == LARA_S_JEWEL) {
+			if (otmp->oartifact == ART_EVEN_THE_BLOCK_HEEL_IS_TRE) return 2;
 			return(TRUE);
 		}
+	}
 	if (feminizecheck(102)) return TRUE;
 	return(FALSE);
 }
@@ -29316,6 +29472,114 @@ boolean knoweverything;
 					pline("Artifact specs: if you put it on while its enchantment value is less than +3, it becomes +3."); break;
 				case ART_MFFAP:
 					pline("Artifact specs: +4 damage, and digging out a wall tile occasionally puts a landmine on the dug out square which counts as having been set by you."); break;
+				case ART_INHALE_THE_PERSIAN_VAPORS:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Monsters will perform the special polymorph effect three times as often."); break;
+				case ART_PAMELA_ROSAN:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Feminism traps will again last twice as much, on top of the other multipliers."); break;
+				case ART_HOW_DEEP_CAN_YOU_SINK_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Feminine dungeon elements spawn twice as often."); break;
+				case ART_FEELS_GOOD_ENOUGH_TO_DO_IT:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Heaps of shit spawn twice as fast."); break;
+				case ART_MARIO_AND_LUIGI_WILL_FAIL_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Female opponents are even harder for you to defeat."); break;
+				case ART_QUEWUEWUE_QUEUEUEUEK_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Squeaking monsters can fart at an even greater distance and also like to use toilets more often."); break;
+				case ART_NON_ASIAN_WOMAN_WITH_AN_AS:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Elif will play with you twice as often."); break;
+				case ART_ONION_CAKE_EAT:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: You will have to fart twice as often."); break;
+				case ART_AIRTIGHT_WAR_MATERIAL:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: You will produce stinking clouds twice as often."); break;
+				case ART_ON_THE_WATERFRONT:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Clouds with monsters generate twice as much."); break;
+				case ART_DISGUSTING_HIGHLY_THREE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Monsters with loud farting noises spawn twice as often."); break;
+				case ART_GREETLETS_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Female monsters move even faster."); break;
+				case ART_LA_MADEMOISELLE_REGNE_SUR_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Julietta punishes you with random feminism trap effects twice as often."); break;
+				case ART_MODDED_THE_DUNGEON_DEFINIT:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Arabella places traps twice as often."); break;
+				case ART_LITTLE_FLASK_OF_PERFUME:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Perfume monsters spawn four times as often."); break;
+				case ART_ISLAM_A_GECECEKSINIZ_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Conversion monsters spawn twice as often."); break;
+				case ART_FUCKING_BIRDS__MAN_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The evil shoe-hating birds spawn more than three times as often."); break;
+				case ART_LITTLE_GIRL_OF_AMBER:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Farting monsters spawn five times as often and are even less likely to die when you kill them."); break;
+				case ART_BONUS_CLEANING_ROUND:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Sing will force you to clean shoes more often, and she also has a wider variety of shoe types available."); break;
+				case ART_RUSSIAN_KARATE_WOMAN:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Karate women spawn 2-3 times more often."); break;
+				case ART_SILLY__FREE_LIKE_A_BIRD___:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Verena annoys you twice as often."); break;
+				case ART_ODORANT_SOCKS:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Socks spawn 2-4 times more often."); break;
+				case ART_WON_T_EVER_FIND_HER:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Grave walls are being erected twice as fast."); break;
+				case ART_SHOULD_SMASH_YOU_AGAIN_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The angry block-heeled females spawn 2-5 times as often."); break;
+				case ART_DARKNESS_STORM__SURE_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Monsters with unhearable farting attacks spawn twice as often."); break;
+				case ART_GLUTTONY_IS_THE_MOST_FUN_D:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: You become even fatter."); break;
+				case ART_LIVE_ON_THE_LAND:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The various shoe monsters spawn twice as often."); break;
+				case ART_WHAT_IF_THE_CUSHION___:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Clothing monsters spawn twice as often."); break;
+				case ART_CLEANPUTTER_S_WIN:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: You have to step into shit twice as often."); break;
+				case ART_PRETTY__BUT_POWERFUL_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Boss women spawn twice as often."); break;
+				case ART_SKIERS_ON_THE_BRIDGE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Shit traps appear twice as often."); break;
+				case ART_ABSORB_LIKE_A_HOLE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Women are surrounded by an even bigger shroud of darkness."); break;
+				case ART_SEARCHANEK__MISSING_DISPLA:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Pants spawn twice as often."); break;
+				case ART_ONA_NE_BERET_VSE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Sandals spawn twice as often and kick you even more powerfully."); break;
+				case ART_SHE_S_INCREDIBLY_SEXY:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The crapping monsters spawn twice as often."); break;
+				case ART_PRRRRRRRRRRRRRRRRRRRROOOOO:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The farting monsters spawn twice as often."); break;
+				case ART_GREEN_IS_THE_COLOR_OF_FEMI:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Feminism traps spawn twice as often."); break;
+				case ART_WHERE_HAS_SHE_GONE_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Shoe monsters spawn twice as often."); break;
+				case ART______________THE_SPACES_AR:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Farting monsters on traps spawn four times as often."); break;
+				case ART_HOW_COULD_SHE_FALL_FOR_THE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Female monsters are even more resilient to damage."); break;
+				case ART_KLACK__KLACK_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: High-heeled monsters spawn twice as often."); break;
+				case ART_FACE_DISAPPEARS_IN_HER_BUN:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Friederike has fun with you twice as often."); break;
+				case ART_PROTECT_HER_BLUE_FOOTWEAR:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The patriarch will also bring his brother along to fight you."); break;
+				case ART_TYPE_OF_ICE_BLOCK_S_LITTLE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The little girls will steal your items twice as often."); break;
+				case ART_SWOONELNADINE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Feminism monsters spawn 2.5 times as often."); break;
+				case ART_SASSY_SMALL_ONE___:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The attacking girl boots spawn twice as often."); break;
+				case ART_CUTE_FACIAL_EXPRESSION:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The evasive girl boots spawn twice as often."); break;
+				case ART_NU_AER_DU_DOED__I_NAMN_AV_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Hordes of dangerous monsters spawn twice as often."); break;
+				case ART_SEND_IN_THE_HORDE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Monsters with obstructive scrolls spawn twice as often."); break;
+				case ART_YOU_WON_T_STOP_US__PERIOD_:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The nasty trap effects when you attack a female monster last twice as long."); break;
+				case ART_FLEEEEEEECY:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Sneakers deal even more damage to you with their melee attack."); break;
+				case ART_PRETEND_THAT_SOME_GUY_BROK:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Female monsters call for help more often when you attack them."); break;
+				case ART_EN_DAN_WIS_SING_WIS_SING_W:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Perfume monsters spawn twice as often."); break;
+				case ART_EVEN_THE_BLOCK_HEEL_IS_TRE:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The block heels wait for a lesser amount of time before they attack you again."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

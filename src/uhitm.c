@@ -1034,7 +1034,7 @@ register struct monst *mtmp;
 	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
-	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(20);
+	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(SuperFemtrapWendy ? 20 : 10);
 
 	if (uwep && uwep->oartifact == ART_LUCKLESS_FOLLY && (Luck > 0)) tmp -= Luck;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUCKLESS_FOLLY && (Luck > 0)) tmp -= Luck;
@@ -10920,6 +10920,7 @@ bladeangerdone2:
 
 				if (FemtrapActivePatricia && uwep && (objects[uwep->otyp].oc_dir == 0 ) && !rn2(uwep->oartifact ? 150 : 30) ) {
 					uwep->spe--;
+					if (SuperFemtrapPatricia) uwep->spe--;
 					pline("Your weapon degrades.");
 					if (uwep->spe < -20) {
 						useupall(uwep);
@@ -11031,6 +11032,7 @@ bladeangerdone2:
 
 				if (FemtrapActivePatricia && u.twoweap && uswapwep && (objects[uswapwep->otyp].oc_dir == 0 ) && !rn2(uswapwep->oartifact ? 150 : 30) ) {
 					uswapwep->spe--;
+					if (SuperFemtrapPatricia) uswapwep->spe--;
 					pline("Your weapon degrades.");
 					if (uswapwep->spe < -20) {
 						useupall(uswapwep);

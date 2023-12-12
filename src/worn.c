@@ -406,7 +406,10 @@ register struct monst *mon;
 
 	if (mercedesride(ART_DEATH_SQUAD_MOBILE, mon)) base -= 5;
 
-	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) ) base -= (10 + mon->m_lev);
+	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) ) {
+		if (SuperFemtrapMarleen) base -= (10 + mon->m_lev);
+		else base -= mon->m_lev;
+	}
 
 	for (obj = mon->minvent; obj; obj = obj->nobj) {
 	    if (obj->owornmask & mwflags)

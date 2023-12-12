@@ -2346,7 +2346,7 @@ boolean givehp;
 	}
 	ttmp->ttyp = typ;
 
-	if (ttmp && FemtrapActiveInge && !rn2(100)) {
+	if (ttmp && FemtrapActiveInge && !rn2(SuperFemtrapInge ? 25 : 100)) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -3896,7 +3896,10 @@ unsigned trflags;
 
 	femmytrapdur = (Role_if(PM_LADIESMAN) ? 5 : Role_if(PM_SEXYMATE) ? 10 : 20);
 
-	if (FemtrapActiveRosa) femmytrapdur *= 5;
+	if (FemtrapActiveRosa) {
+		femmytrapdur *= 5;
+		if (SuperFemtrapRosa) femmytrapdur *= 2;
+	}
 	if (!rn2(2)) femmytrapdur /= 2;
 	if (!rn2(5)) femmytrapdur /= 3;
 	if (!rn2(20)) femmytrapdur /= 5;
