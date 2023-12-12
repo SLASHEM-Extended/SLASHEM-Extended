@@ -419,6 +419,7 @@ static struct {
 	{ "femmy", FEMMY_TRAP },
 	{ "madeleine", MADELEINE_TRAP },
 	{ "marlena", MARLENA_TRAP },
+	{ "sabrina", SABRINA_TRAP },
 	{ "anastasia", ANASTASIA_TRAP },
 	{ "filler", FILLER_TRAP },
 	{ "toxic venom", TOXIC_VENOM_TRAP },
@@ -893,6 +894,8 @@ static struct {
 	{ "phaseporter", PHASEPORTER },
 	{ "phasebeamer", PHASE_BEAMER },
 	{ "vulnerate", VULNERATE_TRAP },
+
+	{ "epvi", EPVI_TRAP },
 
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }

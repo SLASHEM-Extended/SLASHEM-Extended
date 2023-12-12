@@ -1037,6 +1037,11 @@ doread()
 		}
 	}
 
+	if (EpviProblemActive && scroll && (objects[scroll->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
+
 	if (ACURR(A_INT) == 1 && !rn2(4) && scroll->oclass == SCROLL_CLASS) {
 
 		pline("%s", generate_garbage_string());

@@ -5526,6 +5526,11 @@ dozap()
 
 	if (CurseAsYouUse && obj && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != BELL_OF_OPENING) curse(obj);
 
+	if (EpviProblemActive && obj && (objects[obj->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
+
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
 		nomul(-(rnd(5)), "zapping a wand", TRUE);
 	}

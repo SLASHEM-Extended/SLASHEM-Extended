@@ -3657,6 +3657,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ ANASTASIA_S_JEWEL, "Anastasia dragotsennost'" },
 	{ JESSICA_S_JEWEL, "Jessica dragotsennost'" },
 	{ MARLENA_S_JEWEL, "Marlena dragotsennost'" },
+	{ SABRINA_S_JEWEL, "Sabrina dragotsennost'" },
 	{ TANJA_S_JEWEL, "Tanja dragotsennost'" },
 	{ SONJA_S_JEWEL, "Sonja dragotsennost'" },
 	{ RHEA_S_JEWEL, "Rhea dragotsennost'" },
@@ -4298,6 +4299,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ DISINFECTANT_GLOVES, "todo" },
 	{ HYPERSONIC_GLOVES, "todo" },
 	{ HEEL_WISE_SHOES, "todo" },
+	{ EPVI_STONE, "todo" },
+	{ EPVI_SLIPPERS, "todo" },
+	{ SABRINA_PLATFORM_BOOTS, "todo" },
 
 	{0, "" }
 };
@@ -7108,6 +7112,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ANASTASIA_S_JEWEL, "Anastasia marvarid" },
 	{ JESSICA_S_JEWEL, "Jessica marvarid" },
 	{ MARLENA_S_JEWEL, "Marlena marvarid" },
+	{ SABRINA_S_JEWEL, "Sabrina marvarid" },
 	{ TANJA_S_JEWEL, "Tanja marvarid" },
 	{ SONJA_S_JEWEL, "Sonja marvarid" },
 	{ RHEA_S_JEWEL, "Rhea marvarid" },
@@ -7750,6 +7755,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ DISINFECTANT_GLOVES, "todo" },
 	{ HYPERSONIC_GLOVES, "todo" },
 	{ HEEL_WISE_SHOES, "todo" },
+	{ EPVI_STONE, "todo" },
+	{ EPVI_SLIPPERS, "todo" },
+	{ SABRINA_PLATFORM_BOOTS, "todo" },
 
 	{0, "" }
 };

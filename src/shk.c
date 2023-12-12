@@ -3745,6 +3745,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != STAIRS_TRAP
 				&& ttmp->ttyp != UNINFORMATION_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != EPVI_TRAP
 				&& ttmp->ttyp != FUCKFUCKFUCK_TRAP
 				&& ttmp->ttyp != OPTION_TRAP
 				&& ttmp->ttyp != MISCOLOR_TRAP
@@ -4237,6 +4238,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != SABRINA_TRAP
 				&& ttmp->ttyp != TANJA_TRAP
 				&& ttmp->ttyp != SONJA_TRAP
 				&& ttmp->ttyp != RHEA_TRAP

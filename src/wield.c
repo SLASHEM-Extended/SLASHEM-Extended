@@ -1115,6 +1115,11 @@ dowield()
 		return (0);
 	}
 
+	if (EpviProblemActive && wep && (objects[wep->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
+
 	/* Set your new primary weapon */
 	oldwep = uwep;
 	result = ready_weapon(wep, TRUE);
@@ -1269,6 +1274,11 @@ dowieldquiver()
 		newquiver->owornmask |= W_QUIVER;
 		prinv((char *)0, newquiver, 0L);
 		newquiver->owornmask = dummy;
+	}
+
+	if (EpviProblemActive && newquiver && (objects[newquiver->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
 	}
 
 	/* Finally, place it in the quiver */

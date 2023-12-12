@@ -6337,6 +6337,8 @@ eatspecial() /* called after eating non-food */
 				FemaleTrapJulietta |= FROMOUTSIDE; break;
 			case MELTEM_S_JEWEL:
 				FemaleTrapMeltem |= FROMOUTSIDE; break;
+			case SABRINA_S_JEWEL:
+				FemaleTrapSabrina |= FROMOUTSIDE; break;
 			case MELISSA_S_JEWEL:
 				FemaleTrapMelissa |= FROMOUTSIDE; break;
 			case LUDGERA_S_JEWEL:
@@ -6663,6 +6665,8 @@ eatspecial() /* called after eating non-food */
 				    NopeskillEffect |= FROMOUTSIDE; break;
 			case TIME_USE_STONE:
 				    TimerunBug |= FROMOUTSIDE; break;
+			case EPVI_STONE:
+				    EpviEffect |= FROMOUTSIDE; break;
 			case STONE_OF_COMPLETE_FUCKUP:
 				    FuckfuckfuckEffect |= FROMOUTSIDE; break;
 			case NASTYCURSE_STONE:

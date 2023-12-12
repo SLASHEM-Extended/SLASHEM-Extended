@@ -758,6 +758,9 @@ struct you {
 	int soviettemporary;	/* for fleecey light */
 	int evilvartemporary;	/* for fleecey light */
 
+	int sabrinaturns;		/* for sabrina trap effect */
+	boolean sabrinaactive;
+
 	int tumblrerpersist;	/* starting as tumblrer */
 	int addictpersist;	/* starting as addict */
 	int demagoguepersist;	/* starting as demagogue */
@@ -1047,6 +1050,7 @@ struct you {
 	boolean nastinator268;
 	boolean nastinator269;
 	boolean nastinator270;
+	boolean nastinator271;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;

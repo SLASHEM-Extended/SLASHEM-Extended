@@ -251,6 +251,11 @@ nh_timeout()
 		if (u.inasuppression < 0) u.inasuppression = 0; /* fail safe */
 	}
 
+	if (u.sabrinaturns) {
+		u.sabrinaturns--;
+		if (u.sabrinaturns < 0) u.sabrinaturns = 0; /* fail safe */
+	}
+
 	if (u.rangedreload) {
 		u.rangedreload--;
 		if (u.rangedreload < 0) u.rangedreload = 0; /* fail safe */
@@ -3449,6 +3454,12 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_SABRINA:
+
+			pline("Finally, those angry women gave up their attempts to chase you. Ideally you'll want to keep wearing Sabrina's boots anyway.");
 
 		 break;
 

@@ -17610,6 +17610,18 @@ A("Even the block heel is treaded!",				LARA_S_JEWEL,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 /* end superfeminism jewels */
 
+A("You really have a total damage huhuhu",				GOTHIC_PLATE_MAIL, /* spellboost, mystery and psi resist, full nutrients, epvi effect, one rainbow effect, tez effect, sabrina trap effect, heavily autocurses; taking it off gives you a cop wanted level of rnz(5000) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Modern Slavery",				EPVI_SLIPPERS, /* putting them on gives you the levelscaler and beacher hybrid races permanently */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Soft Cow Dung",				SABRINA_PLATFORM_BOOTS, /* anastasia trap effect, every level of erosion on them gives you 3 extra points of AC and they're hard to destruct */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

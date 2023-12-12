@@ -2604,6 +2604,78 @@ moveloop()
 			}
 		}
 
+		if (FemtrapActiveSabrina) {
+
+			/* spawn a platform boot monster only if the trap hasn't been active intermittently, and only if enough
+			 * time has passed - while the trap effect goes on, you're supposed to keep her alive! --Amy */
+
+			if (!u.sabrinaactive && !u.sabrinaturns) {
+				struct obj *osaddle;
+				u.sabrinaactive = TRUE;
+				u.sabrinaturns = 5000;
+
+				register struct monst *blonde;
+				blonde = makemon(&mons[PM_SABRINA_S_PLATEAU_BOOT], u.ux, u.uy, 0);
+				if (blonde) {
+					blonde->isegotype = 1;
+					blonde->egotype_steed = 1;
+					blonde->noegodesc = blonde->noegodisplay = TRUE;
+					blonde->mfrenzied = FALSE;
+					blonde->mpeaceful = TRUE; /* not tame, but can still be ridden thanks to the egotype */
+
+					if (!!(osaddle = mksobj(LEATHER_SADDLE, TRUE, FALSE, FALSE))) {
+						if (mpickobj(blonde, osaddle, TRUE)) { /* gold piece (e.g. minimalist) --Amy */
+							if (wizard) impossible("merged saddle?");
+						} else {
+							blonde->misc_worn_check |= W_SADDLE;
+							osaddle->dknown = osaddle->bknown = osaddle->rknown = 1;
+							osaddle->owornmask = W_SADDLE;
+							osaddle->leashmon = blonde->m_id;
+							update_mon_intrinsics(blonde, osaddle, TRUE, TRUE);
+						}
+					}
+
+					pline("There! Sabrina's plateau boot is waiting for you! Quick, hop on via the #ride command!");
+				}
+
+			}
+
+			if (u.usteed && u.usteed->data == &mons[PM_SABRINA_S_PLATEAU_BOOT]) {
+
+				u.aggravation = 1;
+
+				if (!rn2(2000)) {
+					if (xupstair) {
+						(void) makemon(specialtensmon(111), xupstair, yupstair, MM_ADJACENTOK|MM_ANGRY|MM_XFRENZIED); /* M2_FEMALE */
+					} else {
+						(void) makemon(specialtensmon(111), 0, 0, MM_ADJACENTOK|MM_ANGRY|MM_XFRENZIED);
+					}
+				}
+
+				u.aggravation = 0;
+
+			} else {
+
+				u.aggravation = 1;
+				u.heavyaggravation = 1;
+
+				if (!rn2(200)) {
+					if (xupstair) {
+						(void) makemon(specialtensmon(111), xupstair, yupstair, MM_ADJACENTOK|MM_ANGRY|MM_XFRENZIED); /* M2_FEMALE */
+					} else {
+						(void) makemon(specialtensmon(111), 0, 0, MM_ADJACENTOK|MM_ANGRY|MM_XFRENZIED);
+					}
+				}
+
+				u.aggravation = 0;
+				u.heavyaggravation = 0;
+
+
+			}
+		}
+
+		if (!FemtrapActiveSabrina && u.sabrinaactive) u.sabrinaactive = FALSE;
+
 		if (uamul && uamul->oartifact == ART_CURSE_THE_TIME_SHIFT && !rn2(10000)) {
 			monstermoves += 1000;
 			moves += 1000;
@@ -7557,7 +7629,7 @@ newbossJANI:
 		}
 
 		if (!rn2(5000)) {
-			u.startscummereffect = rnd(270); /* timerun effect */
+			u.startscummereffect = rnd(271); /* timerun effect */
 		}
 
 		if (FemtrapActiveElla && u.ulevel >= 10 && !rn2(20000)) {
@@ -8607,8 +8679,8 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.contamjeweleffect = rnd(102); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -15875,7 +15947,7 @@ past4:
 		if (!u.miscolornumber) u.miscolornumber = rnd(15);
 	} else u.miscolornumber = 0;
 
-	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW) ) {
+	if (OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW) || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) ) {
 		if (!u.onerainbownumber) u.onerainbownumber = rnd(15);
 	} else u.onerainbownumber = 0;
 
@@ -18252,6 +18324,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "light metal gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mesh gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanic shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "firm boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "holu shoes")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19645,6 +19719,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "light metal gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mesh gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanic shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "firm boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "holu shoes")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

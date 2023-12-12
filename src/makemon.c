@@ -7877,7 +7877,7 @@ register struct monst *mtmp;
 	}
 
 	if (FemtrapActiveRhea && mtmp->data->msound == MS_STENCH) {
-		u.mongetshack = 100;
+		u.mongetshack = 100; /* "aetheric" items that don't drop */
 		(void)mongets(mtmp, WILDHILD_BOW);
 		m_initthrow(mtmp, ODOR_SHOT, 50);
 		m_initthrow(mtmp, ODOR_SHOT, 50);
@@ -14803,6 +14803,12 @@ loveheelover:
 				(void) mpickobj(mtmp, otmp, TRUE);
 			}
 
+		}
+
+		if (ptr == &mons[PM_SILLY_FEMMY]) {
+			u.mongetshack = 100;
+			(void)mongets(mtmp, SABRINA_PLATFORM_BOOTS);
+			u.mongetshack = 0;
 		}
 
 		if (ptr == &mons[PM_WOODFALL_CATTLE]) {

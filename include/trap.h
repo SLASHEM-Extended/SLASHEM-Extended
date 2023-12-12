@@ -834,6 +834,10 @@ extern struct trap *ftrap;
 #define PHASE_BEAMER 733
 #define VULNERATE_TRAP 734
 
+#define EPVI_TRAP 735
+
+#define SABRINA_TRAP 736
+
 /* todo area
 
 normal ones:
@@ -880,7 +884,6 @@ nasty traps:
 #define PERMA_STATUS_TRAP
 #define DO_YOU_HAVE_A_PIN_TRAP
 #define COSTLY_FAILURE_TRAP
-#define EPVI_TRAP
 #define PERSISTENT_TRAIL_TRAP
 #define INVENTORY_SIZE_TRAP
 #define CONTAINER_SIZE_TRAP
@@ -931,8 +934,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	735
+#define TIMERUN_TRAP	737
 
-#define TRAPNUM 736
+#define TRAPNUM 738
 
 #endif /* TRAP_H */

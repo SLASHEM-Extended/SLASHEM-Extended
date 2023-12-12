@@ -3637,6 +3637,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != DSCHUEUEUET_TRAP
 				&& ttmp->ttyp != NOPESKILL_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != EPVI_TRAP
 				&& ttmp->ttyp != FUCKFUCKFUCK_TRAP
 				&& ttmp->ttyp != REAL_LIE_TRAP
 				&& ttmp->ttyp != ESCAPE_PAST_TRAP
@@ -4131,6 +4132,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != SABRINA_TRAP
 				&& ttmp->ttyp != TANJA_TRAP
 				&& ttmp->ttyp != SONJA_TRAP
 				&& ttmp->ttyp != RHEA_TRAP

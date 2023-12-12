@@ -59,7 +59,7 @@ int n;
 	if (everythingfleecy()) color = rnd(15);
 	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
-	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 		if (color > 0 && color < 16) {
 			color++;
@@ -91,7 +91,7 @@ int n;
 	if (everythingfleecy()) color = rnd(15);
 	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
-	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 		if (color > 0 && color < 16) {
 			color++;
@@ -145,7 +145,7 @@ int n;
 	if (everythingfleecy()) color = rnd(15);
 	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
-	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 		if (color > 0 && color < 16) {
 			color++;
@@ -206,7 +206,7 @@ int n;
 	if (everythingfleecy()) color = rnd(15);
 	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
-	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 		if (color > 0 && color < 16) {
 			color++;
@@ -275,7 +275,7 @@ int n;
 	if (everythingfleecy()) color = rnd(15);
 	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
-	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 		if (color > 0 && color < 16) {
 			color++;
@@ -308,7 +308,7 @@ int n;
 	if (everythingfleecy()) color = rnd(15);
 	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
-	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 		if (color > 0 && color < 16) {
 			color++;
@@ -341,7 +341,7 @@ int n;
 	if (everythingfleecy()) color = rnd(15);
 	if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 	if (uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK) && !rn2(5) ) color = rnd(15);
-	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+	if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 	if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 		if (color > 0 && color < 16) {
 			color++;
@@ -1686,7 +1686,7 @@ unsigned *ospecial;
 		if ((uarmc && itemhasappearance(uarmc, APP_FLEECELING_CLOAK)) && !rn2(5) ) color = rnd(15);
 		if (uarmg && uarmg->oartifact == ART_JONADAB_S_KEYCODE && !rn2(5)) color = rnd(15);
 		if (everythingfleecy()) color = rnd(15);
-		if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
+		if ((OneRainbowEffect || u.uprops[ONE_RAINBOW_EFFECT].extrinsic || have_onerainbowstone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || autismweaponcheck(ART_TASTE_THE_RAINBOW)) && (color == u.onerainbownumber) ) color = rnd(15);
 		if (uamul && uamul->oartifact == ART_SUPER_GRAPHICS_CARD_BUG) {
 			if (color > 0 && color < 16) {
 				color++;

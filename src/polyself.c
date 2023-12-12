@@ -2208,6 +2208,7 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case SABRINA_TRAP:
 		case TANJA_TRAP:
 		case SONJA_TRAP:
 		case RHEA_TRAP:
@@ -2528,6 +2529,7 @@ dospinweb()
 		case BISHOP_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case EPVI_TRAP:
 		case FUCKFUCKFUCK_TRAP:
 		case OPTION_TRAP:
 		case MISCOLOR_TRAP:

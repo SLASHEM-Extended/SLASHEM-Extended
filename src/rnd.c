@@ -1190,7 +1190,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(272)) {
+		switch (rnd(273)) {
 
 			case 1: return SPELLS_LOST;
 			case 2: return CASTER_PROBLEM;
@@ -1465,6 +1465,7 @@ randenchantment()
 			case 270: return DSCHUEUEUET_EFFECT;
 			case 271: return NOPESKILL_EFFECT;
 			case 272: return FUCKFUCKFUCK_EFFECT;
+			case 273: return EPVI_EFFECT;
 			default: return POISON_RES;
 
 		}
@@ -1870,7 +1871,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(272)) {
+	switch (rnd(273)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2144,6 +2145,7 @@ randnastyenchantment()
 			case 270: return DSCHUEUEUET_EFFECT;
 			case 271: return NOPESKILL_EFFECT;
 			case 272: return FUCKFUCKFUCK_EFFECT;
+			case 273: return EPVI_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2154,7 +2156,7 @@ randnastyenchantment()
 int
 randfemienchantment()
 {
-		switch (rnd(102)) {
+		switch (rnd(103)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -2257,6 +2259,7 @@ randfemienchantment()
 			case 100: return FEMTRAP_SONJA;
 			case 101: return FEMTRAP_RHEA;
 			case 102: return FEMTRAP_LARA;
+			case 103: return FEMTRAP_SABRINA;
 		}
 
 	return FEMTRAP_ELISE; /* appease compiler */
@@ -2443,7 +2446,7 @@ randominsidetrap()
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(200)) return INSTANASTY_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(272)) {
+	else switch (rnd(273)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2717,6 +2720,7 @@ randominsidetrap()
 		case 270: return DSCHUEUEUET_TRAP;
 		case 271: return NOPESKILL_TRAP;
 		case 272: return FUCKFUCKFUCK_TRAP;
+		case 273: return EPVI_TRAP;
 
 	}
 
@@ -4350,7 +4354,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(270)) {
+			switch (rnd(271)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4892,6 +4896,8 @@ getnastytrapintrinsic()
 				    NopeskillEffect |= FROMOUTSIDE; break;
 				case 270:
 				    FuckfuckfuckEffect |= FROMOUTSIDE; break;
+				case 271:
+				    EpviEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -4907,7 +4913,7 @@ int duration;
 		if (SuperFemtrapRosa) duration *= 2;
 	}
 
-	switch (rnd(102)) {
+	switch (rnd(103)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -5320,6 +5326,10 @@ int duration;
 			if (!FemtrapActiveRuth) pline("You look forward to being attacked by treaded block heel boots while you're bound to a stick.");
 			FemaleTrapLara += duration;
 			break;
+		case 103:
+			if (!FemtrapActiveRuth) pline("Wear Sabrina's platform boots! Now! You just know that if you don't, some angry women will try to kill you.");
+			FemaleTrapSabrina += duration;
+			break;
 	}
 }
 
@@ -5330,7 +5340,7 @@ int duration, blackngvar;
 		if (YouAreScrewedEternally) duration *= 20;
 		if (LongScrewupXtra) duration *= 10;
 
-		switch (rnd(270)) {
+		switch (rnd(271)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -5631,6 +5641,7 @@ int duration, blackngvar;
 			case 268: DschueueuetEffect += rnz(duration); break;
 			case 269: NopeskillEffect += rnz(duration); break;
 			case 270: FuckfuckfuckEffect += rnz(duration); break;
+			case 271: EpviEffect += rnz(duration); break;
 
 		}
 
@@ -5940,6 +5951,7 @@ int efftype, nastyduration, blackngvar;
 		case 268: DschueueuetEffect += rnz(nastyduration); break;
 		case 269: NopeskillEffect += rnz(nastyduration); break;
 		case 270: FuckfuckfuckEffect += rnz(nastyduration); break;
+		case 271: EpviEffect += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);
@@ -5988,7 +6000,7 @@ boolean withtroves;
 int
 randomfeminismtraptype() /* keyword "marlena" */
 {
-	switch (rnd(102)) {
+	switch (rnd(103)) {
 			case 1: return FEMMY_TRAP;
 			case 2: return MADELEINE_TRAP;
 			case 3: return MARLENA_TRAP;
@@ -6091,6 +6103,7 @@ randomfeminismtraptype() /* keyword "marlena" */
 			case 100: return SONJA_TRAP;
 			case 101: return RHEA_TRAP;
 			case 102: return LARA_TRAP;
+			case 103: return SABRINA_TRAP;
 	}
 	return INGE_TRAP; /* fail safe */
 

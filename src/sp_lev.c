@@ -897,6 +897,9 @@ selecttrap:
 		    case FUCKFUCKFUCK_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;
+		    case EPVI_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
+			break;
 		    case OPTION_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 20 : 40 )) goto selecttrap;
 			break;
@@ -1846,6 +1849,9 @@ selecttrap:
 			break;
 		    case MARLENA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case SABRINA_TRAP:
+			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(25) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case TANJA_TRAP:
 			if (!Role_if(PM_FEMINIST) && !Role_if(PM_EMERA) && !FemtrapActiveJette && rn2(5) && !NastyTrapNation) goto selecttrap;

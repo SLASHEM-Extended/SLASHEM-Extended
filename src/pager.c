@@ -29178,6 +29178,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Eep, you accidentally stepped into shit with your wedge heels!",
 	"Eep, you accidentally stepped into shit with your wedge heels! Can't you pay attention when walking around?",
 	"Eep, you accidentally stepped into shit with your wedge heels! But at least there are no treaded wedge heels, so cleaning them should go relatively fast.",
+	"Wear Sabrina's platform boots! Now! You just know that if you don't, some angry women will try to kill you.",
+	"Finally, those angry women gave up their attempts to chase you. Ideally you'll want to keep wearing Sabrina's boots anyway.",
 
 };
 

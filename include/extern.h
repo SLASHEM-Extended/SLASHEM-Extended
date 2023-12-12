@@ -1200,7 +1200,8 @@ E int have_autocursestone(void);
 E int have_highlevelstone(void);
 E int have_spellforgettingstone(void);
 E int have_soundeffectstone(void);
-E int have_timerunstone(void);
+E int have_timerunstone(void); /* Amy note: some nasty traps have "supernasty" versions */
+E int have_epvistone(void);
 E int have_nastycursestone(void);
 E int have_fuckfuckfuckstone(void);
 
@@ -1387,6 +1388,7 @@ E int have_covidstone(void);
 E int have_femtrapfemmy(void);
 E int have_femtrapmadeleine(void);
 E int have_femtrapmarlena(void);
+E int have_femtrapsabrina(void);
 E int have_femtrapsonja(void);
 E int have_femtraprhea(void);
 E int have_femtraptanja(void);

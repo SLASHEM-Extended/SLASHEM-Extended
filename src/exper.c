@@ -1070,6 +1070,9 @@ exprecalc(void)
 					case 102:
 						pline("You receive an elaborate auspicious message: At experience level %d, being paralyzed can cause treaded high heels to attack you intermittently.", displaycheck);
 						break;
+					case 103:
+						pline("You receive an elaborate auspicious message: At experience level %d, you're supposed to wear Sabrina's platform boots, and are chased by angry women. If you don't wear the boots, you won't be able to defeat the women, hahaha!", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 
@@ -1126,6 +1129,10 @@ climdone:
 					case 11:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, your techniques will occasionally receive increased timeouts.");
 						else pline("Your auspices say: 4 11");
+						break;
+					case 12:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 4, you can no longer use items whose level is higher than yours.");
+						else pline("Your auspices say: 4 12");
 						break;
 				}
 

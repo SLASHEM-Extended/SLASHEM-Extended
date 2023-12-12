@@ -3247,6 +3247,20 @@ have_femtraplara()
 	return(FALSE);
 }
 
+int
+have_femtrapsabrina()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SABRINA_S_JEWEL) {
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(103)) return TRUE;
+	return(FALSE);
+}
+
 boolean
 have_primecurse()
 {
@@ -5473,7 +5487,7 @@ have_timerunstone()
 	register struct obj *otmp;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
-		if(otmp->otyp == TIME_USE_STONE) {
+		if(otmp->otyp == TIME_USE_STONE) { /* Amy note: femauspices for certain nasty traps */
 			return(TRUE);
 		}
 	}
@@ -8233,6 +8247,21 @@ have_fuckfuckfuckstone()
 	return(FALSE);
 }
 
+int
+have_epvistone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == EPVI_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator271) return TRUE;
+	if (sjwcheck(271)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 4 && u.femauspices4 == 12) return TRUE;
+	return(FALSE);
+}
 
 
 
@@ -14996,6 +15025,8 @@ boolean knoweverything;
 				pline("This footwear is very sexy despite being flat, and causes bright cyan spells. They provide good AC and 3 points of magic cancellation."); break;
 			case SIA_BOOTS:
 				pline("This footwear gives the satanic effect of paralyzing you for one turn whenever you change dungeon levels. They provide low AC and 3 points of magic cancellation."); break;
+			case EPVI_SLIPPERS:
+				pline("This footwear prevents you from using items whose level is higher than yours. They provide good AC and 2 points of magic cancellation."); break;
 			case PLATINUM_SPELL_BOOTS:
 				pline("This footwear causes platinum spells. They provide moderate AC and medium magic cancellation."); break;
 			case INVIS_WALKERS:
@@ -15068,6 +15099,8 @@ boolean knoweverything;
 				pline("An incredibly tender pair of pink cone heels. They carry Wendy's curse, and have 1 AC and 0 MC."); break;
 			case KATHARINA_PLATFORM_BOOTS:
 				pline("You immediately fall in love with these white-cyan platform boots; since there is no 'platform boots' skill, they count as wedge heels instead. They carry Katharina's curse, and have 4 AC and 1 MC."); break;
+			case SABRINA_PLATFORM_BOOTS:
+				pline("A rather erotic pair of boots with thick platform soles, which count as wedge heels They carry Sabrina's curse, and have 3 AC and 0 MC."); break;
 			case ELENA_COMBAT_BOOTS:
 				pline("A very sexy pair of black lady boots with block heels. They carry Elena's curse, and have 3 AC and 3 MC."); break;
 			case THAI_COMBAT_BOOTS:
@@ -19390,6 +19423,8 @@ boolean knoweverything;
 				pline("While having this jewel in your inventory, you're afflicted with Julietta's curse. It autocurses and cannot be dropped while cursed."); break;
 			case MELTEM_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Meltem's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SABRINA_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Sabrina's curse. It autocurses and cannot be dropped while cursed."); break;
 			case MELISSA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Melissa's curse. It autocurses and cannot be dropped while cursed."); break;
 			case LUDGERA_S_JEWEL:
@@ -19592,6 +19627,8 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes your projectiles to always misfire."); break;
 		 	case STONE_OF_PERMANENCE:
 				pline("A stone that curses itself and causes rapid dungeon regrowth."); break;
+		 	case EPVI_STONE:
+				pline("A stone that curses itself and causes you to be unable to use high-level items."); break;
 		 	case STONE_OF_COMPLETE_FUCKUP:
 				pline("A stone that curses itself and causes variantthatcallsitself3.7-style BUC fuckery."); break;
 

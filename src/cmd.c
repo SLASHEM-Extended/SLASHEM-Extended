@@ -4327,6 +4327,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (EpviEffect || u.uprops[EPVI_EFFECT].extrinsic || have_epvistone())) {
+		sprintf(buf, "the following problem: Items whose level is higher than yours are unusable.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", EpviEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone())) {
 		sprintf(buf, "the following problem: Items lose their BUC identification like they do in the variant that calls itself 3.7 and don't stack properly.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FuckfuckfuckEffect);
@@ -5830,6 +5836,12 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && FemtrapActiveMarlena) {
 		sprintf(buf, "possessed by the ghost of Marlena.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapMarlena);
+		you_are(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && FemtrapActiveSabrina) {
+		sprintf(buf, "possessed by the ghost of Sabrina.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", FemaleTrapSabrina);
 		you_are(buf);
 	}
 
@@ -8985,6 +8997,11 @@ int final;
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
 		dump(youhad, buf);
 	}
+	if (EpviEffect || u.uprops[EPVI_EFFECT].extrinsic || have_epvistone()) {
+		sprintf(buf, "the following problem: Items whose level is higher than yours are unusable.");
+	      sprintf(eos(buf), " (%ld)", EpviEffect);
+		dump(youhad, buf);
+	}
 	if (FuckfuckfuckEffect || u.uprops[FUCKFUCKFUCK_EFFECT].extrinsic || have_fuckfuckfuckstone()) {
 		sprintf(buf, "the following problem: Items lose their BUC identification like they do in the variant that calls itself 3.7 and don't stack properly.");
 	      sprintf(eos(buf), " (%ld)", FuckfuckfuckEffect);
@@ -10436,6 +10453,12 @@ int final;
 	if (FemtrapActiveMarlena) {
 		sprintf(buf, "possessed by the ghost of Marlena.");
 	      sprintf(eos(buf), " (%ld)", FemaleTrapMarlena);
+		dump(youwere, buf);
+	}
+
+	if (FemtrapActiveSabrina) {
+		sprintf(buf, "possessed by the ghost of Sabrina.");
+	      sprintf(eos(buf), " (%ld)", FemaleTrapSabrina);
 		dump(youwere, buf);
 	}
 

@@ -1100,6 +1100,11 @@ dothrow()
 	}
 #endif
 
+	if (EpviProblemActive && obj && (objects[obj->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
+
 	/* kludge to work around parse()'s pre-decrement of 'multi' */
 	shotlimit = (multi || save_cm) ? multi + 1 : 0;
 
@@ -1230,6 +1235,11 @@ dofire()
 		return(0);
 	}
 #endif
+
+	if (EpviProblemActive && uquiver && (objects[uquiver->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
 
 	if(check_capacity((char *)0)) return(0);
 	if (!uquiver) {

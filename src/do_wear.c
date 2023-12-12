@@ -192,6 +192,7 @@ Boots_on()
 	case BOOTS_OF_FAINTING:
 	case DIFFICULT_BOOTS:
 	case BOOTS_OF_WEAKNESS:
+	case EPVI_SLIPPERS:
 	case GRIDBUG_CONDUCT_BOOTS:
 	case DISENCHANTING_BOOTS:
 	case LIMITATION_BOOTS:
@@ -301,6 +302,7 @@ Boots_on()
 	case SOLVEJG_MOCASSINS:
 	case WENDY_LEATHER_PUMPS:
 	case KATHARINA_PLATFORM_BOOTS:
+	case SABRINA_PLATFORM_BOOTS:
 	case ELENA_COMBAT_BOOTS:
 	case THAI_COMBAT_BOOTS:
 	case ELIF_SNEAKERS:
@@ -480,6 +482,25 @@ Boots_on()
 		uarmf->hvycurse = TRUE;
 		/* no message (intentional) --Amy */
 	}
+    }
+
+    if (uarmf && uarmf->oartifact == ART_MODERN_SLAVERY) {
+	if (!flags.hybridbeacher) {
+		flags.hybridbeacher = TRUE;
+		flags.hybridization++;
+
+		if (!(quest_status.killed_nemesis)) {
+			pline("%s thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", noroelaname(), playeraliasname);
+		}
+
+	}
+	if (!flags.hybridlevelscaler) {
+		flags.hybridlevelscaler = TRUE;
+		flags.hybridization++;
+	}
+
+	pline("Welcome to modern slavery.");
+
     }
 
     if (uarmf && itemhasappearance(uarmf, APP_VELCRO_BOOTS) ) {
@@ -930,6 +951,7 @@ Boots_off()
 	case BOOTS_OF_FAINTING:
 	case DIFFICULT_BOOTS:
 	case BOOTS_OF_WEAKNESS:
+	case EPVI_SLIPPERS:
 	case GRIDBUG_CONDUCT_BOOTS:
 	case DISENCHANTING_BOOTS:
 	case LIMITATION_BOOTS:
@@ -1013,6 +1035,7 @@ Boots_off()
 	case SOLVEJG_MOCASSINS:
 	case WENDY_LEATHER_PUMPS:
 	case KATHARINA_PLATFORM_BOOTS:
+	case SABRINA_PLATFORM_BOOTS:
 	case ELENA_COMBAT_BOOTS:
 	case THAI_COMBAT_BOOTS:
 	case ELIF_SNEAKERS:
@@ -4149,6 +4172,12 @@ Armor_on()
 		curse(uarm);
 	}
 
+	if (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+		pline("You really have a total damage, huhuhu.");
+	}
+
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ABSOLUTE_MONSTER_MAIL) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
@@ -4298,6 +4327,12 @@ sexysqueaking:
 int
 Armor_off()
 {
+
+    if (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) {
+	u.copwantedlevel += rnz(5000);
+	pline("Now the kops are after you, because you weren't supposed to take that armor off.");
+    }
+
     takeoff_mask &= ~W_ARM;
     setworn((struct obj *)0, W_ARM);
     cancelled_don = FALSE;
@@ -5904,6 +5939,11 @@ boolean noisy;
 		if (yn("The uncommon size of your dufflepud feet means that wearing boots of any kind will be awkward, causing you to move at half speed. Really wear them?") != 'y') return 0;
 	}
 
+	if (EpviProblemActive && noisy && otmp && (objects[otmp->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
+
     if (which && (cantweararm(youmonst.data) || (Race_if(PM_CHIROPTERAN) && !Upolyd) || (Race_if(PM_PLAYER_MUSHROOM) && !Upolyd) ) && !Race_if(PM_TRANSFORMER) && !(otmp->oartifact == ART_GRADIATING_WORK && sliparm(youmonst.data)) && (otmp->otyp != OSFA_CHAIN_MAIL) && !(itemhasappearance(otmp, APP_OSFA_CLOAK)) &&
 	    /* same exception for cloaks as used in m_dowear() */
 	    (which != c_cloak || youmonst.data->msize != MZ_SMALL) &&
@@ -6214,6 +6254,12 @@ doputon()
 		weldmsg(otmp);
 		return(0);
 	}
+
+	if (EpviProblemActive && otmp && (objects[otmp->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
+
 	if(otmp == uwep)
 		setuwep((struct obj *)0, TRUE, TRUE);
 	if(otmp == uswapwep)
@@ -7005,6 +7051,11 @@ find_ac()
 			uac += (uarmg->oeroded * 2);
 			uac += (uarmg->oeroded2 * 2);
 		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SOFT_COW_DUNG) {
+		uac -= (uarmf->oeroded * 3);
+		uac -= (uarmf->oeroded2 * 3);
 	}
 
 	if (uarmc && objects[(uarmc)->otyp].oc_material == MT_VIVA) {

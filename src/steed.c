@@ -310,6 +310,10 @@ use_saddle(otmp)
 	if (Role_if(PM_TRANSVESTITE) || Role_if(PM_TOPMODEL))
 	    chance += 50;
 
+	if (FemtrapActiveSabrina && mtmp->data == &mons[PM_SABRINA_S_PLATEAU_BOOT]) {
+		chance += 100;
+	}
+
 	if (otmp && otmp->otyp == INKA_SADDLE) chance += 100;
 
 	if (PlayerCannotUseSkills) chance -= 20;
@@ -535,7 +539,7 @@ mount_steed(mtmp, force)
 	    return (FALSE);
 	}
 
-	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && !(Role_if(PM_JOCKEY) && !rn2(5)) && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && mtmp->mtame && !(--mtmp->mtame)) {
+	if (!force && !(otmp && otmp->otyp == INKA_SADDLE) && !(FemtrapActiveSabrina && mtmp->data == &mons[PM_SABRINA_S_PLATEAU_BOOT]) && !(Role_if(PM_JOCKEY) && !rn2(5)) && !Role_if(PM_KNIGHT) && !Role_if(PM_CHEVALIER) && mtmp->mtame && !(--mtmp->mtame)) {
 	    /* no longer tame */
 	    newsym(mtmp->mx, mtmp->my);
 	    pline("%s resists%s!", Monnam(mtmp),

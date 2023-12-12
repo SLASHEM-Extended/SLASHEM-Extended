@@ -5538,6 +5538,11 @@ doapply()
 		}
 	}
 
+	if (EpviProblemActive && obj && (objects[obj->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
+		verbalize("I cannot use that yet.");
+		return(0);
+	}
+
 	if (CurseAsYouUse && obj && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != BELL_OF_OPENING) curse(obj);
 
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
@@ -6494,6 +6499,7 @@ undark:
 	case KATHARINA_S_JEWEL:
 	case JULIETTA_S_JEWEL:
 	case MELTEM_S_JEWEL:
+	case SABRINA_S_JEWEL:
 	case MELISSA_S_JEWEL:
 	case LUDGERA_S_JEWEL:
 	case YVONNE_S_JEWEL:
@@ -6710,6 +6716,7 @@ undark:
  	case SHIT_STONE:
  	case STONE_OF_MISFIRING:
  	case STONE_OF_PERMANENCE:
+ 	case EPVI_STONE:
  	case STONE_OF_COMPLETE_FUCKUP:
 
 	case DISCONNECT_STONE:
