@@ -33858,7 +33858,7 @@ register struct monst *mtmp;
 
 			ap_type = M_AP_FURNITURE;
 
-			switch (rnd(50)) {
+			switch (rnd(52)) {
 
 				case 1:		appear = S_stone; break;
 				case 2:		appear = S_bars; break;
@@ -33910,6 +33910,8 @@ register struct monst *mtmp;
 				case 48:		appear = S_pentagram; break;
 				case 49:		appear = S_carvedbed; break;
 				case 50:		appear = S_grayglyph; break;
+				case 51:		appear = S_dnstair; break;
+				case 52:		appear = S_upstair; break;
 				default:		appear = S_stone; break;
 
 			}
@@ -33921,7 +33923,65 @@ register struct monst *mtmp;
 		s_sym = syms[rn2((int)sizeof(syms))];
 		if (s_sym >= MAXOCLASSES) {
 			ap_type = M_AP_FURNITURE;
-			appear = s_sym == MAXOCLASSES ? S_upstair : S_dnstair;
+
+			switch (rnd(52)) {
+
+				case 1:		appear = S_stone; break;
+				case 2:		appear = S_bars; break;
+				case 3:		appear = S_tree; break;
+				case 4:		appear = S_room; break;
+				case 5:		appear = S_darkroom; break;
+				case 6:		appear = S_corr; break;
+				case 7:		appear = S_litcorr; break;
+				case 8:		appear = S_altar; break;
+				case 9:		appear = S_grave; break;
+				case 10:		appear = S_throne; break;
+				case 11:		appear = S_sink; break;
+				case 12:		appear = S_fountain; break;
+				case 13:		appear = S_toilet; break;
+				case 14:		appear = S_pool; break;
+				case 15:		appear = S_ice; break;
+				case 16:		appear = S_lava; break;
+				case 17:		appear = S_air; break;
+				case 18:		appear = S_cloud; break;
+				case 19:		appear = S_water; break;
+				case 20:		appear = S_gravewall; break;
+				case 21:		appear = S_rockwall; break;
+				case 22:		appear = S_tunnelwall; break;
+				case 23:		appear = S_farmland; break;
+				case 24:		appear = S_mountain; break;
+				case 25:		appear = S_watertunnel; break;
+				case 26:		appear = S_crystalwater; break;
+				case 27:		appear = S_moorland; break;
+				case 28:		appear = S_urinelake; break;
+				case 29:		appear = S_shiftingsand; break;
+				case 30:		appear = S_styxriver; break;
+				case 31:		appear = S_well; break;
+				case 32:		appear = S_poisonedwell; break;
+				case 33:		appear = S_wagon; break;
+				case 34:		appear = S_burningwagon; break;
+				case 35:		appear = S_woodentable; break;
+				case 36:		appear = S_strawmattress; break;
+				case 37:		appear = S_snow; break;
+				case 38:		appear = S_ash; break;
+				case 39:		appear = S_sand; break;
+				case 40:		appear = S_pavedfloor; break;
+				case 41:		appear = S_highway; break;
+				case 42:		appear = S_grassland; break;
+				case 43:		appear = S_nethermist; break;
+				case 44:		appear = S_stalactite; break;
+				case 45:		appear = S_cryptfloor; break;
+				case 46:		appear = S_bubbles; break;
+				case 47:		appear = S_raincloud; break;
+				case 48:		appear = S_pentagram; break;
+				case 49:		appear = S_carvedbed; break;
+				case 50:		appear = S_grayglyph; break;
+				case 51:		appear = S_dnstair; break;
+				case 52:		appear = S_upstair; break;
+				default:		appear = S_stone; break;
+
+			}
+
 		} else if (s_sym == COIN_CLASS) {
 			ap_type = M_AP_OBJECT;
 			appear = GOLD_PIECE;
@@ -33930,7 +33990,7 @@ register struct monst *mtmp;
 			if (s_sym == S_MIMIC_DEF) {
 				appear = STRANGE_OBJECT;
 			} else {
-				otmp = mkobj( (char) s_sym, FALSE, FALSE );
+				otmp = mkobj( (char) s_sym, 2, FALSE );
 				if (otmp) {
 					appear = otmp->otyp;
 					/* make sure container contents are free'ed */
@@ -33982,7 +34042,7 @@ assign_sym:
 
 			ap_type = M_AP_FURNITURE;
 
-			switch (rnd(50)) {
+			switch (rnd(52)) {
 
 				case 1:		appear = S_stone; break;
 				case 2:		appear = S_bars; break;
@@ -34034,6 +34094,8 @@ assign_sym:
 				case 48:		appear = S_pentagram; break;
 				case 49:		appear = S_carvedbed; break;
 				case 50:		appear = S_grayglyph; break;
+				case 51:		appear = S_dnstair; break;
+				case 52:		appear = S_upstair; break;
 				default:		appear = S_stone; break;
 
 			}
@@ -34042,7 +34104,67 @@ assign_sym:
 
 		else if (s_sym >= MAXOCLASSES) {
 			ap_type = M_AP_FURNITURE;
-			appear = s_sym == MAXOCLASSES ? S_upstair : S_dnstair;
+
+			ap_type = M_AP_FURNITURE;
+
+			switch (rnd(52)) {
+
+				case 1:		appear = S_stone; break;
+				case 2:		appear = S_bars; break;
+				case 3:		appear = S_tree; break;
+				case 4:		appear = S_room; break;
+				case 5:		appear = S_darkroom; break;
+				case 6:		appear = S_corr; break;
+				case 7:		appear = S_litcorr; break;
+				case 8:		appear = S_altar; break;
+				case 9:		appear = S_grave; break;
+				case 10:		appear = S_throne; break;
+				case 11:		appear = S_sink; break;
+				case 12:		appear = S_fountain; break;
+				case 13:		appear = S_toilet; break;
+				case 14:		appear = S_pool; break;
+				case 15:		appear = S_ice; break;
+				case 16:		appear = S_lava; break;
+				case 17:		appear = S_air; break;
+				case 18:		appear = S_cloud; break;
+				case 19:		appear = S_water; break;
+				case 20:		appear = S_gravewall; break;
+				case 21:		appear = S_rockwall; break;
+				case 22:		appear = S_tunnelwall; break;
+				case 23:		appear = S_farmland; break;
+				case 24:		appear = S_mountain; break;
+				case 25:		appear = S_watertunnel; break;
+				case 26:		appear = S_crystalwater; break;
+				case 27:		appear = S_moorland; break;
+				case 28:		appear = S_urinelake; break;
+				case 29:		appear = S_shiftingsand; break;
+				case 30:		appear = S_styxriver; break;
+				case 31:		appear = S_well; break;
+				case 32:		appear = S_poisonedwell; break;
+				case 33:		appear = S_wagon; break;
+				case 34:		appear = S_burningwagon; break;
+				case 35:		appear = S_woodentable; break;
+				case 36:		appear = S_strawmattress; break;
+				case 37:		appear = S_snow; break;
+				case 38:		appear = S_ash; break;
+				case 39:		appear = S_sand; break;
+				case 40:		appear = S_pavedfloor; break;
+				case 41:		appear = S_highway; break;
+				case 42:		appear = S_grassland; break;
+				case 43:		appear = S_nethermist; break;
+				case 44:		appear = S_stalactite; break;
+				case 45:		appear = S_cryptfloor; break;
+				case 46:		appear = S_bubbles; break;
+				case 47:		appear = S_raincloud; break;
+				case 48:		appear = S_pentagram; break;
+				case 49:		appear = S_carvedbed; break;
+				case 50:		appear = S_grayglyph; break;
+				case 51:		appear = S_dnstair; break;
+				case 52:		appear = S_upstair; break;
+				default:		appear = S_stone; break;
+
+			}
+
 		} else if (s_sym == COIN_CLASS) {
 			ap_type = M_AP_OBJECT;
 			appear = GOLD_PIECE;
@@ -34051,7 +34173,7 @@ assign_sym:
 			if (s_sym == S_MIMIC_DEF) {
 				appear = STRANGE_OBJECT;
 			} else {
-				otmp = mkobj( (char) s_sym, FALSE, FALSE );
+				otmp = mkobj( (char) s_sym, 2, FALSE );
 				if (otmp) {
 					appear = otmp->otyp;
 					/* make sure container contents are free'ed */
