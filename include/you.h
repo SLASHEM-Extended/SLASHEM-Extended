@@ -2107,6 +2107,20 @@ struct you {
 	int cnd_singhelped;	/* how many pairs of shoes you cleaned for Sing */
 	int cnd_singrefused;	/* how many times you refused to clear a pair of shoes for Sing */
 	int cnd_trophiesobtained;	/* how many trophies you scored */
+	int cnd_eliftrapcnt;	/* how many times the elif trap caused an effect */
+	int cnd_nadjatrapcnt;	/* how many times the nadja trap caused female monsters to retaliate */
+	int cnd_nataljetrapcnt;	/* how many times the natalje trap caused you to get hurt */
+	int cnd_doratrapcnt;	/* how many times the dora trap caused your boots to get damaged */
+	int cnd_verenatrapcnt;	/* how many times the verena trap caused an effect */
+	int cnd_antjetrapcnt;	/* how many times you played the antje minigame */
+	int cnd_larissatrapcnt;	/* how many times the larissa trap forced you to step into shit */
+	int cnd_juliatrapcnt;	/* how many times the julia trap caused you to fumble your attack */
+	int cnd_ritatrapcnt;	/* how many times the rita trap allowed monsters to trigger traps for you */
+	int cnd_klaratrapcnt;	/* how many times the klara trap caused noises */
+	int cnd_friederiketrapcnt;	/* how many times the friederike trap caused an effect */
+	int cnd_utetrapcnt;	/* how many times the ute trap caused you to wear missys */
+	int cnd_maybritttrapcnt;	/* how many times the may-britt trap stole your items */
+	int cnd_littlemarietrapcnt;	/* how many times the little marie trap afflicted you with a trap effect */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

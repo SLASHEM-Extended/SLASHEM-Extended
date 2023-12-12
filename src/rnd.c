@@ -5325,7 +5325,7 @@ randomnastytrapeffect(duration, blackngvar)
 int duration, blackngvar;
 {
 		if (YouAreScrewedEternally) duration *= 20;
-		if (have_longscrewupstone() == 2) duration *= 10;
+		if (LongScrewupXtra) duration *= 10;
 
 		switch (rnd(270)) {
 

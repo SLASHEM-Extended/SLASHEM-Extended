@@ -3878,7 +3878,7 @@ unsigned trflags;
 	if (!nastytrapdur) nastytrapdur = 50; /* fail safe */
 
 	if (YouAreScrewedEternally) nastytrapdur *= 20;
-	if (have_longscrewupstone() == 2) nastytrapdur *= 10;
+	if (LongScrewupXtra) nastytrapdur *= 10;
 
 	if (uleft && uleft->otyp == RIN_NASTINESS_RESISTANCE) {
 		nastytrapdur *= 9;
@@ -9029,6 +9029,7 @@ newbossPENT:
 
 			if (u.larissatimer) {
 				u.larissatimer = 0;
+				u.cnd_larissatrapcnt++; /* counts only if you actually obey the command to step into shit --Amy */
 				if (!larissashoes) {
 					statdrain();
 					You("were told that you should be wearing shoes when stepping into shit, but you just didn't want to listen...");
@@ -22636,12 +22637,14 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 			if (FemtrapActiveRita && !FemaleTrapFemmy) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MADELEINE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMadeleine) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RUTH_TRAP:
@@ -22649,600 +22652,700 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				/* no message
 				 * if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!"); */
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MAGDALENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMagdalena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARLEEN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarleen) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KLARA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKlara) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case FRIEDERIKE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapFriederike) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NAOMI_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNaomi) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case UTE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapUte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JASIEEN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJasieen) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case YASAMAN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapYasaman) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MAY_BRITT_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMayBritt) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARLENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarlena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case TANJA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapTanja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SONJA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSonja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RHEA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapRhea) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LARA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLara) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NADINE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNadine) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LUISA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLuisa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case IRINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapIrina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LISELOTTE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLiselotte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case GRETA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapGreta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JANE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJane) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SUE_LYN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSueLyn) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CHARLOTTE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapCharlotte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case HANNAH_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapHannah) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LITTLE_MARIE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLittleMarie) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KSENIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKsenia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LYDIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLydia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CONNY_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapConny) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKatia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARIYA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMariya) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELISE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElise) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RONJA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapRonja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ARIANE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAriane) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JOHANNA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJohanna) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case INGE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapInge) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ROSA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapRosa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JANINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJanina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KRISTIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKristin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANNA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnna) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RUEA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapRuea) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case DORA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapDora) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MARIKE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMarike) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JETTE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJette) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case INA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapIna) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SING_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSing) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case VICTORIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapVictoria) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MELISSA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMelissa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANITA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnita) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case HENRIETTA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapHenrietta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case VERENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapVerena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ARABELLA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapArabella) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NELLY_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNelly) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case EVELINE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapEveline) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KARIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKarin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JUEN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJuen) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KRISTINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKristina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ALMUT_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAlmut) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JULIETTA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJulietta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LOU_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLou) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANASTASIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnastasia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JESSICA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJessica) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SOLVEJG_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSolvejg) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case WENDY_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapWendy) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATHARINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKatharina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELENA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElena) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case THAI_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapThai) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELIF_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElif) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NADJA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNadja) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SANDRA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSandra) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NATALJE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNatalje) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JEANETTA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJeanetta) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case YVONNE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapYvonne) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MAURAH_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMaurah) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MELTEM_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapMeltem) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANNEMARIE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAnnemarie) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JIL_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJil) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JANA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJana) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATRIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKatrin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case GUDRUN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapGudrun) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ELLA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapElla) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case MANUELA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapManuela) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JENNIFER_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJennifer) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case PATRICIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapPatricia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANTJE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapAntje) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case ANTJE_TRAP_X:
 			if (FemtrapActiveRita && !FemaleTrapAntjeX) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KERSTIN_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKerstin) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LAURA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLaura) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LARISSA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLarissa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NORA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNora) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NATALIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNatalia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SUSANNE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSusanne) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LISA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLisa) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case BRIDGHITTE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapBridghitte) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case JULIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapJulia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case NICOLE_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapNicole) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case RITA_TRAP: /* always triggered by monsters */
 			if (!FemaleTrapRita) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case SARAH_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSarah) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case CLAUDIA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapClaudia) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case LUDGERA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapLudgera) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 		case KATI_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapKati) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
 				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
 			}
 			break;
 
@@ -28177,7 +28280,7 @@ int x, y;
 		}
 
 		if (!extralongsqueak()) {
-			if (have_funwallstone() == 2) reallybadeffect();
+			if (FunwallXtra) reallybadeffect();
 			else badeffect();
 		}
 

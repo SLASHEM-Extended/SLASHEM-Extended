@@ -13595,6 +13595,62 @@ int final;
 		sprintf(buf, "%d trophies", u.cnd_trophiesobtained);
 		enl_msg(You_, "obtained ", "obtained ", buf);
 	}
+	if (u.cnd_eliftrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_eliftrapcnt, plur(u.cnd_eliftrapcnt));
+		enl_msg(You_, "enjoyed Elif's treatment ", "enjoyed Elif's treatment ", buf);
+	}
+	if (u.cnd_nadjatrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_nadjatrapcnt, plur(u.cnd_nadjatrapcnt));
+		enl_msg(You_, "angered the women ", "angered the women ", buf);
+	}
+	if (u.cnd_nataljetrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_nataljetrapcnt, plur(u.cnd_nataljetrapcnt));
+		enl_msg(You_, "failed to dance properly ", "failed to dance properly ", buf);
+	}
+	if (u.cnd_doratrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_doratrapcnt, plur(u.cnd_doratrapcnt));
+		enl_msg(You_, "had your shoes damaged by evil birds ", "had your shoes damaged by evil birds ", buf);
+	}
+	if (u.cnd_verenatrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_verenatrapcnt, plur(u.cnd_verenatrapcnt));
+		enl_msg(You_, "were annoyed by Verena ", "were annoyed by Verena ", buf);
+	}
+	if (u.cnd_antjetrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_antjetrapcnt, plur(u.cnd_antjetrapcnt));
+		enl_msg(You_, "visited the public toilet ", "visited the public toilet ", buf);
+	}
+	if (u.cnd_larissatrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_larissatrapcnt, plur(u.cnd_larissatrapcnt));
+		enl_msg(You_, "were forced to step into shit ", "were forced to step into shit ", buf);
+	}
+	if (u.cnd_juliatrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_juliatrapcnt, plur(u.cnd_juliatrapcnt));
+		enl_msg(You_, "were prevented from attacking women ", "were prevented from attacking women ", buf);
+	}
+	if (u.cnd_ritatrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_ritatrapcnt, plur(u.cnd_ritatrapcnt));
+		enl_msg(You_, "had monsters trigger feminism traps for you ", "had monsters trigger feminism traps for you ", buf);
+	}
+	if (u.cnd_klaratrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_klaratrapcnt, plur(u.cnd_klaratrapcnt));
+		enl_msg(You_, "heard clacking high heel noises ", "heard clacking high heel noises ", buf);
+	}
+	if (u.cnd_friederiketrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_friederiketrapcnt, plur(u.cnd_friederiketrapcnt));
+		enl_msg(You_, "were bundled by Friederike ", "were bundled by Friederike ", buf);
+	}
+	if (u.cnd_utetrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_utetrapcnt, plur(u.cnd_utetrapcnt));
+		enl_msg(You_, "had your shoes turn into beautiful missys ", "had your shoes turn into beautiful missys ", buf);
+	}
+	if (u.cnd_maybritttrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_maybritttrapcnt, plur(u.cnd_maybritttrapcnt));
+		enl_msg(You_, "had May-Britt steal your items ", "had May-Britt steal your items ", buf);
+	}
+	if (u.cnd_littlemarietrapcnt && final) {
+		sprintf(buf, "%d time%s", u.cnd_littlemarietrapcnt, plur(u.cnd_littlemarietrapcnt));
+		enl_msg(You_, "triggered the girls' nasty shield ", "triggered the girls' nasty shield ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -14203,6 +14259,48 @@ int final;
 
 	sprintf(buf, "%d trophies", u.cnd_trophiesobtained);
 	dump("  You obtained ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_eliftrapcnt, plur(u.cnd_eliftrapcnt));
+	dump("  You enjoyed Elif's treatment ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_nadjatrapcnt, plur(u.cnd_nadjatrapcnt));
+	dump("  You angered the women ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_nataljetrapcnt, plur(u.cnd_nataljetrapcnt));
+	dump("  You failed to dance properly ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_doratrapcnt, plur(u.cnd_doratrapcnt));
+	dump("  You had your shoes damaged by evil birds ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_verenatrapcnt, plur(u.cnd_verenatrapcnt));
+	dump("  You were annoyed by Verena ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_antjetrapcnt, plur(u.cnd_antjetrapcnt));
+	dump("  You visited the public toilet ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_larissatrapcnt, plur(u.cnd_larissatrapcnt));
+	dump("  You were forced to step into shit ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_juliatrapcnt, plur(u.cnd_juliatrapcnt));
+	dump("  You were prevented from attacking women ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_ritatrapcnt, plur(u.cnd_ritatrapcnt));
+	dump("  You had monsters trigger feminism traps for you ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_klaratrapcnt, plur(u.cnd_klaratrapcnt));
+	dump("  You heard clacking high heel noises ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_friederiketrapcnt, plur(u.cnd_friederiketrapcnt));
+	dump("  You were bundled by Friederike ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_utetrapcnt, plur(u.cnd_utetrapcnt));
+	dump("  You had your shoes turn into beautiful missys ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_maybritttrapcnt, plur(u.cnd_maybritttrapcnt));
+	dump("  You had May-Britt steal your items ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_littlemarietrapcnt, plur(u.cnd_littlemarietrapcnt));
+	dump("  You triggered the girls' nasty shield ", buf);
 
 	dump("", "");
 }
@@ -15361,7 +15459,7 @@ register char *cmd;
 		cmd = parse();
 	}
 
-	if (*cmd && (LagBugEffect || u.uprops[LAG_BUG].extrinsic || have_lagstone()) && !rn2((have_lagstone() == 2) ? 2 : 3) ) {
+	if (*cmd && (LagBugEffect || u.uprops[LAG_BUG].extrinsic || have_lagstone()) && !rn2(LagEffectXtra ? 2 : 3) ) {
 		flags.move = FALSE;
 		return;
 

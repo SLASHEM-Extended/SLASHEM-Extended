@@ -2415,7 +2415,7 @@ moveloop()
 
 			/* fluctuating speed - sadly jonadab never fully disclosed how that bug worked in fourk... */
 		    if ((FluctuatingSpeed || u.uprops[FLUCTUATING_SPEED].extrinsic || have_fluctuatingspeedstone()) && moveamt > 0) {
-			if (have_fluctuatingspeedstone() == 2) {
+			if (FluctuatingSpeedXtra) {
 				if ((moves % 36) < 10) {
 					moveamt /= 12;
 					if (moveamt < 1) moveamt = 1;
@@ -2713,17 +2713,17 @@ moveloop()
 			}
 		}
 
-		if (OptionBugEffect && !rn2((have_optionstone() == 2) ? 200 : 1000)) {
+		if (OptionBugEffect && !rn2(OptionChangeXtra ? 200 : 1000)) {
 			randomoptionchange();
 		}
-		if (u.uprops[OPTION_BUG_EFFECT].extrinsic && !rn2((have_optionstone() == 2) ? 200 : 1000)) {
+		if (u.uprops[OPTION_BUG_EFFECT].extrinsic && !rn2(OptionChangeXtra ? 200 : 1000)) {
 			randomoptionchange();
 		}
-		if (have_optionstone() && !rn2((have_optionstone() == 2) ? 200 : 1000)) {
+		if (have_optionstone() && !rn2(OptionChangeXtra ? 200 : 1000)) {
 			randomoptionchange();
 		}
 
-		if (ProoflossEffect && !rn2((have_prooflossstone() == 2) ? 50 : 500)) {
+		if (ProoflossEffect && !rn2(ProofLossXtra ? 50 : 500)) {
 			register struct obj *unproof;
 
 			pline("A brown glow surrounds you...");
@@ -2732,7 +2732,7 @@ moveloop()
 
 		}
 
-		if (u.uprops[PROOFLOSS_EFFECT].extrinsic && !rn2((have_prooflossstone() == 2) ? 50 : 500)) {
+		if (u.uprops[PROOFLOSS_EFFECT].extrinsic && !rn2(ProofLossXtra ? 50 : 500)) {
 			register struct obj *unproof;
 
 			pline("A brown glow surrounds you...");
@@ -2741,7 +2741,7 @@ moveloop()
 
 		}
 
-		if (have_prooflossstone() && !rn2((have_prooflossstone() == 2) ? 50 : 500)) {
+		if (have_prooflossstone() && !rn2(ProofLossXtra ? 50 : 500)) {
 			register struct obj *unproof;
 
 			pline("A brown glow surrounds you...");
@@ -2750,7 +2750,7 @@ moveloop()
 
 		}
 
-		if (UnInvisEffect && !rn2((have_uninvisstone() == 2) ? 50 : 500)) {
+		if (UnInvisEffect && !rn2(UnInvisXtra ? 50 : 500)) {
 			register struct obj *objX, *objX2;
 
 			pline("You are surrounded by a translucent glow!");
@@ -2761,7 +2761,7 @@ moveloop()
 
 		}
 
-		if (u.uprops[UN_INVIS_EFFECT].extrinsic && !rn2((have_uninvisstone() == 2) ? 50 : 500)) {
+		if (u.uprops[UN_INVIS_EFFECT].extrinsic && !rn2(UnInvisXtra ? 50 : 500)) {
 			register struct obj *objX, *objX2;
 
 			pline("You are surrounded by a translucent glow!");
@@ -2772,7 +2772,7 @@ moveloop()
 
 		}
 
-		if (have_uninvisstone() && !rn2((have_uninvisstone() == 2) ? 50 : 500)) {
+		if (have_uninvisstone() && !rn2(UnInvisXtra ? 50 : 500)) {
 			register struct obj *objX, *objX2;
 
 			pline("You are surrounded by a translucent glow!");
@@ -4869,7 +4869,7 @@ greasingdone:
 
 			int manleroldx = u.manlerx, manleroldy = u.manlery;
 
-			if (!rn2( (have_manlerstone() == 2) ? 2 : 5)) {
+			if (!rn2(ManlerXtra ? 2 : 5)) {
 				if (u.ux < u.manlerx && u.ux >= 1) u.manlerx--;
 				else if (u.ux > u.manlerx && u.ux <= COLNO-1) u.manlerx++;
 
@@ -4971,7 +4971,7 @@ greasingdone:
 
 		if (SkillLossEffect || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || u.uprops[SKILL_LOSS_EFFECT].extrinsic || have_skilllossstone()) {
 			skillcaploss_severe();
-			if (have_skilllossstone() == 2) {
+			if (SkillLossXtra) {
 				skillcaploss_severe();
 				skillcaploss_severe();
 			}
@@ -4995,63 +4995,63 @@ greasingdone:
 		}
 
 		if (RecurringSpellLoss && !rn2(1000)) {
-			if (have_recurringspelllossstone() == 2) spellmemoryloss((level_difficulty() * rnd(15)) + 1);
+			if (RecurringSpellLossXtra) spellmemoryloss((level_difficulty() * rnd(15)) + 1);
 			else spellmemoryloss((level_difficulty() * rnd(3)) + 1);
 		}
 
 		if (u.uprops[RECURRING_SPELL_LOSS].extrinsic && !rn2(1000)) {
-			if (have_recurringspelllossstone() == 2) spellmemoryloss((level_difficulty() * rnd(15)) + 1);
+			if (RecurringSpellLossXtra) spellmemoryloss((level_difficulty() * rnd(15)) + 1);
 			else spellmemoryloss((level_difficulty() * rnd(3)) + 1);
 		}
 
 		if (have_recurringspelllossstone() && !rn2(1000)) {
-			if (have_recurringspelllossstone() == 2) spellmemoryloss((level_difficulty() * rnd(15)) + 1);
+			if (RecurringSpellLossXtra) spellmemoryloss((level_difficulty() * rnd(15)) + 1);
 			else spellmemoryloss((level_difficulty() * rnd(3)) + 1);
 		}
 
 		if (TechoutBug && !rn2(1000)) {
-			if (have_techoutstone() == 2) techcapincrease((level_difficulty() + 1) * rnd(750));
+			if (TechoutXtra) techcapincrease((level_difficulty() + 1) * rnd(750));
 			else techcapincrease((level_difficulty() + 1) * rnd(150));
 		}
 
 		if (u.uprops[TECHOUT_BUG].extrinsic && !rn2(1000)) {
-			if (have_techoutstone() == 2) techcapincrease((level_difficulty() + 1) * rnd(750));
+			if (TechoutXtra) techcapincrease((level_difficulty() + 1) * rnd(750));
 			else techcapincrease((level_difficulty() + 1) * rnd(150));
 		}
 
 		if (have_techoutstone() && !rn2(1000)) {
-			if (have_techoutstone() == 2) techcapincrease((level_difficulty() + 1) * rnd(750));
+			if (TechoutXtra) techcapincrease((level_difficulty() + 1) * rnd(750));
 			else techcapincrease((level_difficulty() + 1) * rnd(150));
 		}
 
-		if (StatDecay && !rn2((have_statdecaystone() == 2) ? 200 : 1000)) {
+		if (StatDecay && !rn2(StatDecayXtra ? 200 : 1000)) {
 			statdrain();
 		}
 
-		if (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO && !rn2((have_statdecaystone() == 2) ? 200 : 1000)) {
+		if (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO && !rn2(StatDecayXtra ? 200 : 1000)) {
 			statdrain();
 		}
 
-		if (u.uprops[STAT_DECAY].extrinsic && !rn2((have_statdecaystone() == 2) ? 200 : 1000)) {
+		if (u.uprops[STAT_DECAY].extrinsic && !rn2(StatDecayXtra ? 200 : 1000)) {
 			statdrain();
 		}
 
-		if (have_statdecaystone() && !rn2((have_statdecaystone() == 2) ? 200 : 1000)) {
+		if (have_statdecaystone() && !rn2(StatDecayXtra ? 200 : 1000)) {
 			statdrain();
 		}
 
 		if (AntitrainingEffect && !rn2(1000)) {
-			if (have_antitrainingstone() == 2) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
 			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
 		}
 
 		if (u.uprops[ANTI_TRAINING_EFFECT].extrinsic && !rn2(1000)) {
-			if (have_antitrainingstone() == 2) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
 			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
 		}
 
 		if (have_antitrainingstone() && !rn2(1000)) {
-			if (have_antitrainingstone() == 2) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
+			if (AntiTrainingXtra) skilltrainingdecrease((level_difficulty() * rnd(15)) + 1);
 			else skilltrainingdecrease((level_difficulty() * rnd(3)) + 1);
 		}
 
@@ -5104,7 +5104,7 @@ greasingdone:
 		}
 
 		if (DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
-			if (IS_DOOR(levl[u.ux][u.uy].typ) && (!rn2(10) || (have_doorningstone() == 2) ) && u.umoved && !(t_at(u.ux, u.uy)) ) {
+			if (IS_DOOR(levl[u.ux][u.uy].typ) && (!rn2(10) || DoorningXtra) && u.umoved && !(t_at(u.ux, u.uy)) ) {
 
 				int i, j;
 
@@ -5759,7 +5759,7 @@ newbossPOMP:
 
 		}
 
-		if (FemtrapActiveMayBritt && !rn2(1000)) {
+		if (FemtrapActiveMayBritt && !rn2(2500)) {
 
 			register struct monst *offmon;
 			struct permonst *pm = 0;
@@ -5802,6 +5802,7 @@ newbossMAYBRITT:
 							char bufof[BUFSZ];
 							bufof[0] = '\0';
 							steal(offmon, bufof, TRUE, TRUE);
+							u.cnd_maybritttrapcnt++;
 							inventcount--;
 						}
 						if (rn2(2)) {
@@ -5894,6 +5895,7 @@ newbossUTE:
 					curse(utefootwear);
 					utefootwear->hvycurse = utefootwear->stckcurse = TRUE;
 					pline("Wow, suddenly you're wearing some beautiful missys!");
+					u.cnd_utetrapcnt++; /* only counts how often your shoes transform into missys --Amy */
 				}
 
 			}
@@ -5901,6 +5903,9 @@ newbossUTE:
 		}
 
 		if (FemtrapActiveFriederike && !rn2(1000)) {
+
+			u.cnd_friederiketrapcnt++;
+
 			switch (rnd(4)) {
 				case 1:
 					if (!uarmf) break;
@@ -5958,6 +5963,8 @@ newbossUTE:
 		}
 
 		if (FemtrapActiveVerena && !rn2(1000) && (u.uhp > (u.uhpmax / 2)) ) {
+
+			u.cnd_verenatrapcnt++;
 			switch (rnd(5)) {
 				case 1:
 					pline("Verena thunders her black stiletto heel on your head incredibly painfully.");
@@ -5989,11 +5996,14 @@ newbossUTE:
 		}
 
 		if (FemtrapActiveVerena && !rn2(100) && (u.uhp <= (u.uhpmax / 5)) ) {
+			u.cnd_verenatrapcnt++;
 			pline("Verena announces: 'Oh no, you're badly hurt! Here, let me caress you a bit, does that make it feel better?'");
 			healup( ( (level_difficulty() * 3) + 5), 0, FALSE, FALSE);
 		}
 
 		if (FemtrapActiveElif && !rn2(100)) {
+
+			u.cnd_eliftrapcnt++;
 
 			switch (rnd(4)) {
 
@@ -6051,6 +6061,7 @@ newbossUTE:
 				u.nataljetrapx = u.ux;
 				u.nataljetrapy = u.uy;
 				pline("Oh no! You were standing still for too long, and are horribly scarred by a bunch of female painted asian toenails. Your sexy high heels are also damaged.");
+				u.cnd_nataljetrapcnt++;
 
 				stop_occupation();
 
@@ -6344,7 +6355,7 @@ controlagain:
 				}
 			}
 		}
-		if ( Itemcursing && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if ( Itemcursing && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -6353,7 +6364,7 @@ controlagain:
 
 		}
 
-		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -6362,7 +6373,7 @@ controlagain:
 
 		}
 
-		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -9172,43 +9183,43 @@ newbossO:
 			bad_artifact();
 		}
 
-		if (!rn2((have_evilpatchstone() == 2) ? 666 : 2000) && EvilPatchEffect) {
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && EvilPatchEffect) {
 			
 			getnastytrapintrinsic();
 
 		}
 
-		if (!rn2((have_evilpatchstone() == 2) ? 666 : 2000) && uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
 			
 			getnastytrapintrinsic();
 
 		}
 
-		if (!rn2((have_evilpatchstone() == 2) ? 666 : 2000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) {
 
 			getnastytrapintrinsic();
 
 		}
 
-		if (!rn2((have_evilpatchstone() == 2) ? 666 : 2000) && uwep && uwep->oartifact == ART_RIDGET_PHASTO) {
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && uwep && uwep->oartifact == ART_RIDGET_PHASTO) {
 			
 			getnastytrapintrinsic();
 
 		}
 
-		if (!rn2((have_evilpatchstone() == 2) ? 666 : 2000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_RIDGET_PHASTO) {
 
 			getnastytrapintrinsic();
 
 		}
 
-		if (!rn2((have_evilpatchstone() == 2) ? 666 : 2000) && u.uprops[EVIL_PATCH_EFFECT].extrinsic) {
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && u.uprops[EVIL_PATCH_EFFECT].extrinsic) {
 			
 			getnastytrapintrinsic();
 
 		}
 
-		if (!rn2((have_evilpatchstone() == 2) ? 666 : 2000) && have_evilpatchstone()) {
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && have_evilpatchstone()) {
 			
 			getnastytrapintrinsic();
 
@@ -9222,23 +9233,23 @@ newbossO:
 			bad_artifact();
 		}
 
-		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && CovidTrapEffect) {
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && CovidTrapEffect) {
 			nivellate();
 		}
-		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && uwep && uwep->oartifact == ART_ARABELLA_S_THINNER) {
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && uwep && uwep->oartifact == ART_ARABELLA_S_THINNER) {
 			nivellate();
 		}
-		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_THINNER) {
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_THINNER) {
 			nivellate();
 		}
-		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && u.uprops[COVID_TRAP_EFFECT].extrinsic) {
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && u.uprops[COVID_TRAP_EFFECT].extrinsic) {
 			nivellate();
 		}
-		if (!rn2((have_covidstone() == 2) ? 20 : 1000) && have_covidstone()) {
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && have_covidstone()) {
 			nivellate();
 		}
 
-		if (!rn2((have_horrorstone() == 2) ? 100 : 200) && HorrorBugEffect) {
+		if (!rn2(HorrorEffectXtra ? 100 : 200) && HorrorBugEffect) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
@@ -9272,7 +9283,7 @@ newbossO:
 
 		}
 
-		if (!rn2((have_horrorstone() == 2) ? 100 : 200) && uarmc && uarmc->oartifact == ART_INSANE_MIND_SCREW) {
+		if (!rn2(HorrorEffectXtra ? 100 : 200) && uarmc && uarmc->oartifact == ART_INSANE_MIND_SCREW) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
@@ -9306,7 +9317,7 @@ newbossO:
 
 		}
 
-		if (!rn2((have_horrorstone() == 2) ? 100 : 200) && u.uprops[HORROR_BUG].extrinsic) {
+		if (!rn2(HorrorEffectXtra ? 100 : 200) && u.uprops[HORROR_BUG].extrinsic) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
@@ -9340,7 +9351,7 @@ newbossO:
 
 		}
 
-		if (!rn2((have_horrorstone() == 2) ? 100 : 200) && uwep && uwep->oartifact == ART_WHAW_WHAW) {
+		if (!rn2(HorrorEffectXtra ? 100 : 200) && uwep && uwep->oartifact == ART_WHAW_WHAW) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
@@ -9374,7 +9385,7 @@ newbossO:
 
 		}
 
-		if (!rn2((have_horrorstone() == 2) ? 100 : 200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) {
+		if (!rn2(HorrorEffectXtra ? 100 : 200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
@@ -9408,7 +9419,7 @@ newbossO:
 
 		}
 
-		if (!rn2((have_horrorstone() == 2) ? 100 : 200) && have_horrorstone()) {
+		if (!rn2(HorrorEffectXtra ? 100 : 200) && have_horrorstone()) {
 
 			int lcount = rnd(monster_difficulty() ) + 1;
 
@@ -9538,7 +9549,7 @@ newbossO:
 		if (UndressingEffect || u.uprops[UNDRESSING_EFFECT].extrinsic || have_undressingstone()) {
 
 			int undresschance = 10000;
-			if (have_undressingstone() == 2) undresschance /= 5;
+			if (UndressingXtra) undresschance /= 5;
 
 			if (!rn2(undresschance) && uwep && !(uwep->cursed)) {
 				setnotworn(uwep);
@@ -9596,7 +9607,7 @@ newbossO:
 			if (u.trontrapdirection > 0 && (u.trontrapturn + 1) < moves) u.trontrapdirection = -1;
 		}
 
-		if (DestructionEffect && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (DestructionEffect && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -9619,7 +9630,7 @@ newbossO:
 			}
 		}
 
-		if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_ && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_ && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -9642,7 +9653,7 @@ newbossO:
 			}
 		}
 
-		if (uwep && uwep->oartifact == ART_SOL_VALTIVA && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (uwep && uwep->oartifact == ART_SOL_VALTIVA && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -9665,7 +9676,7 @@ newbossO:
 			}
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SOL_VALTIVA && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SOL_VALTIVA && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -9688,7 +9699,7 @@ newbossO:
 			}
 		}
 
-		if (u.uprops[DESTRUCTION_EFFECT].extrinsic && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (u.uprops[DESTRUCTION_EFFECT].extrinsic && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -9711,7 +9722,7 @@ newbossO:
 			}
 		}
 
-		if (have_destructionstone() && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (have_destructionstone() && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -9734,7 +9745,7 @@ newbossO:
 			}
 		}
 
-		if (uwep && uwep->oartifact == ART_FLAME_EATER && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (uwep && uwep->oartifact == ART_FLAME_EATER && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -9757,7 +9768,7 @@ newbossO:
 			}
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FLAME_EATER && !rn2((have_destructionstone() == 2) ? 20 : 100)) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FLAME_EATER && !rn2(DestructionEffXtra ? 20 : 100)) {
 			switch (rnd(4)) {
 				case 1:
 					(void) burnarmor(&youmonst);
@@ -10804,7 +10815,7 @@ newbossB:
 
 		}
 
-		if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (uarmf && uarmf->oartifact == ART_CURSING_ANOMALY && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -10813,7 +10824,7 @@ newbossB:
 
 		}
 
-		if (uarmf && uarmf->oartifact == ART_AMY_LOVES_AUTOCURSING_ITEM && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (uarmf && uarmf->oartifact == ART_AMY_LOVES_AUTOCURSING_ITEM && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -10822,7 +10833,7 @@ newbossB:
 
 		}
 
-		if ( Role_if(PM_TRANSSYLVANIAN) && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if ( Role_if(PM_TRANSSYLVANIAN) && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -10831,7 +10842,7 @@ newbossB:
 
 		}
 
-		if ( have_cursingstone() && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if ( have_cursingstone() && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -10840,7 +10851,7 @@ newbossB:
 
 		}
 
-		if ( uleft && uleft->oartifact == ART_ARABELLA_S_RADAR && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if ( uleft && uleft->oartifact == ART_ARABELLA_S_RADAR && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -10849,7 +10860,7 @@ newbossB:
 
 		}
 
-		if ( uright && uright->oartifact == ART_ARABELLA_S_RADAR && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if ( uright && uright->oartifact == ART_ARABELLA_S_RADAR && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -10858,7 +10869,7 @@ newbossB:
 
 		}
 
-		if ( (have_primecurse() || (uinsymbiosis && u.usymbiote.prmcurse)) && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if ( (have_primecurse() || (uinsymbiosis && u.usymbiote.prmcurse)) && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -10867,7 +10878,7 @@ newbossB:
 
 		}
 
-		if (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -11149,9 +11160,9 @@ newbossB:
 						larissatrap->tseen = TRUE; /* always visible */
 						larissatrap->hiddentrap = FALSE;
 #ifdef BIGSLEX
-						u.larissatimer = 750;
+						u.larissatimer = 1000;
 #else
-						u.larissatimer = 250;
+						u.larissatimer = 500;
 #endif
 						pline("Something commands you to step into dog shit within %d turns, and if you don't comply, bad things will happen!", u.larissatimer);
 						if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -11837,7 +11848,7 @@ newboss:
 			}
 		}
 
-		if (WrapoverEffect && !rn2((have_wrapoverstone() == 2) ? 40 : 200)) {
+		if (WrapoverEffect && !rn2(WrapOverXtra ? 40 : 200)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11846,7 +11857,7 @@ newboss:
 
 		}
 
-		if (u.uprops[WRAPOVER_EFFECT].extrinsic && !rn2((have_wrapoverstone() == 2) ? 40 : 200)) {
+		if (u.uprops[WRAPOVER_EFFECT].extrinsic && !rn2(WrapOverXtra ? 40 : 200)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11855,7 +11866,7 @@ newboss:
 
 		}
 
-		if (have_wrapoverstone() && !rn2((have_wrapoverstone() == 2) ? 40 : 200)) {
+		if (have_wrapoverstone() && !rn2(WrapOverXtra ? 40 : 200)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11864,7 +11875,7 @@ newboss:
 
 		}
 
-		if (RecurringDisenchant && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (RecurringDisenchant && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11882,7 +11893,7 @@ newboss:
 
 		}
 
-		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11893,7 +11904,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11904,7 +11915,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11915,7 +11926,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11926,7 +11937,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11937,7 +11948,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (u.uprops[RECURRING_DISENCHANT].extrinsic && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (u.uprops[RECURRING_DISENCHANT].extrinsic && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11948,7 +11959,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (uarmg && uarmg->oartifact == ART_DISENCHANTING_BLACKNESS && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (uarmg && uarmg->oartifact == ART_DISENCHANTING_BLACKNESS && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11959,7 +11970,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11970,7 +11981,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (have_disenchantmentstone() && !rn2((have_disenchantmentstone() == 2) ? 200 : 1000)) {
+		if (have_disenchantmentstone() && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
@@ -11981,7 +11992,7 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
-		if (ChaosTerrain && (!rn2(5) || (have_chaosterrainstone() == 2) ) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+		if (ChaosTerrain && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -12232,7 +12243,7 @@ newboss:
 			}
 		}
 
-		if (u.uprops[CHAOS_TERRAIN].extrinsic && (!rn2(5) || (have_chaosterrainstone() == 2) ) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
+		if (u.uprops[CHAOS_TERRAIN].extrinsic && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -12247,7 +12258,7 @@ newboss:
 
 		}
 
-		if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && (!rn2(5) || (have_chaosterrainstone() == 2) ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
+		if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -12262,7 +12273,7 @@ newboss:
 
 		}
 
-		if (have_chaosterrainstone() && (!rn2(5) || (have_chaosterrainstone() == 2) ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
+		if (have_chaosterrainstone() && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -12277,7 +12288,7 @@ newboss:
 
 		}
 
-		if (uwep && uwep->oartifact == ART_PROZACELF_S_POOPDECK && (!rn2(5) || (have_chaosterrainstone() == 2) ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
+		if (uwep && uwep->oartifact == ART_PROZACELF_S_POOPDECK && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -12292,7 +12303,7 @@ newboss:
 
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_PROZACELF_S_POOPDECK && (!rn2(5) || (have_chaosterrainstone() == 2) ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_PROZACELF_S_POOPDECK && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);
@@ -12307,47 +12318,47 @@ newboss:
 
 		}
 
-		if (RecurringAmnesia && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (RecurringAmnesia && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (uarmh && uarmh->oartifact == ART_DIADEM_OF_AMNESIA && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (uarmh && uarmh->oartifact == ART_DIADEM_OF_AMNESIA && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (uwep && uwep->oartifact == ART_FADING_FROM_MEMORY && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (uwep && uwep->oartifact == ART_FADING_FROM_MEMORY && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FADING_FROM_MEMORY && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FADING_FROM_MEMORY && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (uarmh && uarmh->oartifact == ART_TIARA_OF_AMNESIA && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (uarmh && uarmh->oartifact == ART_TIARA_OF_AMNESIA && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (have_amnesiastone() && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (have_amnesiastone() && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (u.uprops[RECURRING_AMNESIA].extrinsic && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (u.uprops[RECURRING_AMNESIA].extrinsic && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
 
-		if (uarm && uarm->oartifact == ART_KLAER_OV && !rn2((have_amnesiastone() == 2) ? 200 : 1000)) {
+		if (uarm && uarm->oartifact == ART_KLAER_OV && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
 			forget(1 + rn2(5));
 		}
@@ -12377,7 +12388,7 @@ newboss:
 			forget(1 + rn2(5));
 		}
 
-		if (u.uprops[ITEMCURSING].extrinsic && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (u.uprops[ITEMCURSING].extrinsic && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -12386,7 +12397,7 @@ newboss:
 
 		}
 
-		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (uwep && uwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -12395,7 +12406,7 @@ newboss:
 
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KUSANAGI_NO_TSURUGI && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -12404,7 +12415,7 @@ newboss:
 
 		}
 
-		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (uwep && uwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -12413,7 +12424,7 @@ newboss:
 
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2((have_cursingstone() == 2) ? 200 : 1000) ) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_ARTIFACT_CREATI && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
@@ -12682,19 +12693,19 @@ newboss:
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
 			      otmpii = otmpi->nobj;
 	
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->bknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->dknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->rknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->known = FALSE;
 					u.cnd_unidentifycount++;
 				}
@@ -12709,19 +12720,19 @@ newboss:
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
 			      otmpii = otmpi->nobj;
 	
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->bknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->dknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->rknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->known = FALSE;
 					u.cnd_unidentifycount++;
 				}
@@ -12736,19 +12747,19 @@ newboss:
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
 			      otmpii = otmpi->nobj;
 	
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->bknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->dknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->rknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->known = FALSE;
 					u.cnd_unidentifycount++;
 				}
@@ -13106,19 +13117,19 @@ newboss:
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
 			      otmpii = otmpi->nobj;
 	
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->bknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->dknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->rknown = FALSE;
 					u.cnd_unidentifycount++;
 				}
-				if (!rn2((have_unidentifystone() == 2) ? 800 : 4000)) {
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
 					otmpi->known = FALSE;
 					u.cnd_unidentifycount++;
 				}
@@ -15871,7 +15882,7 @@ past4:
 		if (!rn2(3)) {
 			lagamount = rn2(9) ? 0 : 1;
 		}
-		if (have_latencystone() == 2) {
+		if (LatencyEffectXtra) {
 			if (!rn2(2)) lagamount *= 2;
 			if (!rn2(5)) lagamount *= rnd(3);
 		}
@@ -20732,6 +20743,8 @@ antjeminigame()
 	char choicethreebuf[BUFSZ];
 	char choicefourbuf[BUFSZ];
 	char choicefivebuf[BUFSZ];
+
+	u.cnd_antjetrapcnt++;
 
 antjenewturn:
 	sprintf(choiceonebuf, "choice 1");

@@ -504,7 +504,7 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uwep);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uwep->cursed = uwep->hvycurse = TRUE;
 				if (!rn2(5)) uwep->prmcurse = TRUE;
@@ -835,7 +835,7 @@ swapweaponchoice:
 		if (uswapwep && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 			curse(uswapwep);
 
-			if (have_autocursestone() == 2) {
+			if (AutocursingXtra) {
 				if (!rn2(2)) {
 					uswapwep->cursed = uswapwep->hvycurse = TRUE;
 					if (!rn2(5)) uswapwep->prmcurse = TRUE;

@@ -741,7 +741,7 @@ Boots_on()
 	if (uarmf && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uarmf);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uarmf->cursed = uarmf->hvycurse = TRUE;
 				if (!rn2(5)) uarmf->prmcurse = TRUE;
@@ -1828,7 +1828,7 @@ Cloak_on()
 	if (uarmc && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uarmc);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uarmc->cursed = uarmc->hvycurse = TRUE;
 				if (!rn2(5)) uarmc->prmcurse = TRUE;
@@ -2596,7 +2596,7 @@ Helmet_on()
 	if (uarmh && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uarmh);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uarmh->cursed = uarmh->hvycurse = TRUE;
 				if (!rn2(5)) uarmh->prmcurse = TRUE;
@@ -3215,7 +3215,7 @@ Gloves_on()
 	if (uarmg && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uarmg);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uarmg->cursed = uarmg->hvycurse = TRUE;
 				if (!rn2(5)) uarmg->prmcurse = TRUE;
@@ -3671,7 +3671,7 @@ Shield_on()
 	if (uarms && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uarms);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uarms->cursed = uarms->hvycurse = TRUE;
 				if (!rn2(5)) uarms->prmcurse = TRUE;
@@ -3931,7 +3931,7 @@ Shirt_on()
 	if (uarmu && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uarmu);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uarmu->cursed = uarmu->hvycurse = TRUE;
 				if (!rn2(5)) uarmu->prmcurse = TRUE;
@@ -4278,7 +4278,7 @@ sexysqueaking:
 	if (uarm && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uarm);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uarm->cursed = uarm->hvycurse = TRUE;
 				if (!rn2(5)) uarm->prmcurse = TRUE;
@@ -4609,7 +4609,7 @@ Amulet_on()
 	if (uamul && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uamul);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uamul->cursed = uamul->hvycurse = TRUE;
 				if (!rn2(5)) uamul->prmcurse = TRUE;
@@ -4821,7 +4821,7 @@ Implant_on()
 	if (uimplant && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(uimplant);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				uimplant->cursed = uimplant->hvycurse = TRUE;
 				if (!rn2(5)) uimplant->prmcurse = TRUE;
@@ -5217,7 +5217,7 @@ register struct obj *obj;
 	if (obj && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(obj);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				obj->cursed = obj->hvycurse = TRUE;
 				if (!rn2(5)) obj->prmcurse = TRUE;
@@ -5444,7 +5444,7 @@ register struct obj *otmp;
 	if (otmp && (AutocursingEquipment || u.uprops[AUTOCURSE_EQUIP].extrinsic || have_autocursestone())) {
 		curse(otmp);
 
-		if (have_autocursestone() == 2) {
+		if (AutocursingXtra) {
 			if (!rn2(2)) {
 				otmp->cursed = otmp->hvycurse = TRUE;
 				if (!rn2(5)) otmp->prmcurse = TRUE;

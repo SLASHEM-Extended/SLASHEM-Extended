@@ -1381,7 +1381,7 @@ register struct obj *obj;
 	    if (!can_reach_floor()) {
 		if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismringcheck(ART_ARABELLA_S_RADAR) ) {
 			curse(obj);
-			if (have_dropcursestone() == 2) {
+			if (DropcurseXtra) {
 				if (!rn2(2)) {
 					obj->cursed = obj->hvycurse = TRUE;
 					if (!rn2(5)) obj->prmcurse = TRUE;
@@ -1412,7 +1412,7 @@ register struct obj *obj;
 	if (u.uprops[DROPCURSES_EFFECT].extrinsic || Dropcurses || have_dropcursestone() || autismringcheck(ART_ARABELLA_S_RADAR) ) {
 		curse(obj);
 
-		if (have_dropcursestone() == 2) {
+		if (DropcurseXtra) {
 			if (!rn2(2)) {
 				obj->cursed = obj->hvycurse = TRUE;
 				if (!rn2(5)) obj->prmcurse = TRUE;
@@ -1855,7 +1855,7 @@ dodown()
 					newlevel++;
 				}
 
-				if ((uarmf && uarmf->oartifact == ART_PARTICULARLY_HEAVY_STONE) || (have_dschueueuetstone() == 2) ) {
+				if (DschueueuetXtra) {
 					if (superdschue) {
 						do {
 						    newlevel++;
@@ -4809,7 +4809,7 @@ rerollchaloc:
 	}
 
 	if (SatanEffect || u.uprops[SATAN_EFFECT].extrinsic || have_satanstone()) {
-		if (have_satanstone() == 2) {
+		if (SatanEffectXtra) {
 			nomul(-(rn1(5, 5)), "paralyzed by Satan", TRUE);
 		} else {
 			nomul(-2, "paralyzed by Satan", TRUE);

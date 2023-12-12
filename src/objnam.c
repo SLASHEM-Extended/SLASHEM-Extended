@@ -8044,7 +8044,7 @@ boolean showpoisoned;
 	}
 
 	if (!dn && restoring) dn = "???";
-	if (have_uninformationstone() == 2) dn = "???";
+	if (UninformationXtra) dn = "???";
 	buf[0] = '\0';
 	/*
 	 * clean up known when it's tied to oc_name_known, eg after AD_DRIN
@@ -8389,7 +8389,7 @@ boolean showpoisoned;
 		sprintf(buf,"glorkum %d %d %d", obj->oclass, typ, obj->spe);
 	}
 
-	if (have_uninformationstone() == 2) {
+	if (UninformationXtra) {
 		sprintf(buf, "???");
 	}
 

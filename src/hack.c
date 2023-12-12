@@ -466,7 +466,7 @@ trap_of_walls:
 
 	if (update) {
 
-		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uimplant && uimplant->oartifact == ART_THEY_RE_REALLY_AFTER_ME) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2((have_wallstone() == 2) ? 500 : 100)) {
+		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uimplant && uimplant->oartifact == ART_THEY_RE_REALLY_AFTER_ME) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(WallRegrowXtra ? 500 : 100)) {
 			secretcorr = FALSE;
 			goto trap_of_walls;
 		}
@@ -4867,7 +4867,7 @@ boolean tellplayer;
 	if (Race_if(PM_HUMANOID_ANGEL)) amount *= 2;
 	/* It is also widely known that the angel race is teh uber pwnz0r and has almost no downsides, so I added one here */
 
-	if (have_falloutstone() == 2) amount *= 2;
+	if (FalloutEffectXtra) amount *= 2;
 
 	/* Contamination resistance divides incoming contamination by 5, but not below 1 */
 	if (Cont_resist && amount > 1) {
@@ -5347,7 +5347,7 @@ int k_format; /* WAC k_format is an int */
 
 	if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
 
-		if ((have_limitationstone() == 2) && (n > 0)) u.ascensiontimelimit -= (n * 10);
+		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
 	}

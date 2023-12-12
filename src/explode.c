@@ -843,7 +843,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (isangbander && (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) && (PlayerHearsSoundEffects)) pline(issoviet ? "Umeret' glupyy igrok ublyudka!" : "TSCHINGTSCHINGTSCHINGTSCHING!");
 
 		if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) || have_limitationstone() ) {
-			if ((have_limitationstone() == 2) && (damu > 0)) u.ascensiontimelimit -= (damu * 10);
+			if (LimitationXtra && (damu > 0)) u.ascensiontimelimit -= (damu * 10);
 			else if (damu > 0) u.ascensiontimelimit -= damu;
 			if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
 		}

@@ -25355,7 +25355,7 @@ register int	mmflags;
 	mtmp->legdamage = 0;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
-	if (have_movemorkstone() == 2) mtmp->movement += rnd(24);
+	if (MoveMorkXtra) mtmp->movement += rnd(24);
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
 	if (FemtrapActiveKsenia && spawnswithsandals(mtmp->data)) mtmp->movement += 12;
 

@@ -6079,6 +6079,7 @@ register struct monst *mtmp;
 
 	if (FemtrapActiveLittleMarie && is_female(mtmp->data)) {
 		randomnastytrapeffect(rnz(2 + mtmp->m_lev), 1000 - mtmp->m_lev);
+		u.cnd_littlemarietrapcnt++;
 	}
 
 	if (FemtrapActiveSonja && !mtmp->mpeaceful && !mtmp->mtame && !rn2(10) && is_female(mtmp->data)) {

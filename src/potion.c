@@ -7215,7 +7215,7 @@ grayoutobscuration()
 	if (((moves + 2) % 15) == 0) return TRUE;
 	if (((moves + 3) % 15) == 0) return TRUE;
 	if (((moves + 4) % 15) == 0) return TRUE;
-	if (have_grayoutstone() == 2) {
+	if (GrayoutXtra) {
 		if (((moves + 5) % 15) == 0) return TRUE;
 		if (((moves + 6) % 15) == 0) return TRUE;
 		if (((moves + 7) % 15) == 0) return TRUE;

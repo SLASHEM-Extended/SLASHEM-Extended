@@ -849,25 +849,25 @@ nh_timeout()
 
 	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !autismweaponcheck(ART_SACRIFICE_TONFA) && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
-	if (!rn2((have_intrinsiclossstone() == 2) ? 200 : 1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
-	if (!rn2((have_intrinsiclossstone() == 2) ? 200 : 1000) && u.uprops[INTRINSIC_LOSS].extrinsic && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && u.uprops[INTRINSIC_LOSS].extrinsic && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
-	if (!rn2((have_intrinsiclossstone() == 2) ? 200 : 1000) && (uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && (uimplant && uimplant->oartifact == ART_LAUGHING_AT_MIDNIGHT) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
 	}
 
-	if (!rn2((have_intrinsiclossstone() == 2) ? 200 : 1000) && IntrinsicLossProblem && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && IntrinsicLossProblem && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
@@ -878,7 +878,7 @@ nh_timeout()
 		if (u.bulletatortimer < 0) u.bulletatortimer = 0;
 	}
 
-	if (!rn2((have_intrinsiclossstone() == 2) ? 200 : 1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();
@@ -1658,97 +1658,97 @@ nh_timeout()
 		pline("%s", line);
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && TrapCreationProblem) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && TrapCreationProblem) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && have_trapcreationstone() ) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && have_trapcreationstone() ) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME ) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME ) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 100 : 200) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
+	if (!rn2(TrapCreationXtra ? 100 : 200) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
 		makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 1000 : 2000) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && u.uprops[AUTOMATIC_TRAP_CREATION].extrinsic) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 1000 : 2000) && TrapCreationProblem) {
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && TrapCreationProblem) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 1000 : 2000) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && uarmu && uarmu->oartifact == ART_TIE_DYE_SHIRT_OF_SHAMBHALA) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 1000 : 2000) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && uarmu && uarmu->oartifact == ART_TRAP_DUNGEON_OF_SHAMBHALA) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 1000 : 2000) && have_trapcreationstone() ) {
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && have_trapcreationstone() ) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 1000 : 2000) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 
 	}
 
-	if (!rn2((have_trapcreationstone() == 2) ? 1000 : 2000) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && uright && uright->oartifact == ART_HENRIETTA_S_MAGICAL_AID ) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
@@ -2234,21 +2234,21 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_vulnerabilitystone() == 2) ? 25 : 250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
+	if (!rn2(VulnerabilityXtra ? 25 : 250) && u.uprops[REPEATING_VULNERABILITY].extrinsic) {
 
 		deacrandomintrinsic(rnz(200));
 	}
 
-	if (!rn2((have_vulnerabilitystone() == 2) ? 25 : 250) && (uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) ) {
+	if (!rn2(VulnerabilityXtra ? 25 : 250) && (uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) ) {
 		deacrandomintrinsic(rnz(200));
 	}
 
-	if (!rn2((have_vulnerabilitystone() == 2) ? 25 : 250) && AutomaticVulnerabilitiy) {
+	if (!rn2(VulnerabilityXtra ? 25 : 250) && AutomaticVulnerabilitiy) {
 
 		deacrandomintrinsic(rnz(200));
 	}
 
-	if (!rn2((have_vulnerabilitystone() == 2) ? 25 : 250) && have_vulnerabilitystone() ) {
+	if (!rn2(VulnerabilityXtra ? 25 : 250) && have_vulnerabilitystone() ) {
 
 		deacrandomintrinsic(rnz(200));
 	}
@@ -2259,7 +2259,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2((have_itemportstone() == 2) ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -2313,7 +2313,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2((have_itemportstone() == 2) ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -2367,7 +2367,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2((have_itemportstone() == 2) ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -2421,7 +2421,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2((have_itemportstone() == 2) ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -2475,7 +2475,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2((have_itemportstone() == 2) ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -2529,7 +2529,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2((have_itemportstone() == 2) ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -2583,7 +2583,7 @@ nh_timeout()
 		    for (otmpi = invent; otmpi; otmpi = otmpii) {
 		      otmpii = otmpi->nobj;
 
-			if (!rn2((have_itemportstone() == 2) ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
+			if (!rn2(ItemportingXtra ? 5000 : 10000) && (otmpi->otyp != AMULET_OF_ITEM_TELEPORTATION) && !(otmpi->oartifact == ART_SCHWUEU) && !(otmpi->oartifact == ART_HERSAY_PRICE) && (otmpi->otyp != ITEM_TELEPORTING_STONE) && !(otmpi->oartifact == ART_SARAH_S_GRANNY_WEAR) && !(objects[otmpi->otyp].oc_material == MT_BONE && rn2(10)) && !stack_too_big(otmpi) ) {
 
 				if (otmpi->owornmask & W_ARMOR) {
 				    if (otmpi == uskin) {
@@ -2736,7 +2736,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && Race_if(PM_WEAPON_TRAPPER)) { /* Harder than hard race that gets random nasty trap effects. --Amy */
+	if (!rn2(NastinessXtra ? 200 : 1000) && Race_if(PM_WEAPON_TRAPPER)) { /* Harder than hard race that gets random nasty trap effects. --Amy */
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2774,7 +2774,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && u.uprops[NASTINESS_EFFECTS].extrinsic) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && u.uprops[NASTINESS_EFFECTS].extrinsic) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2787,7 +2787,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && (u.startscummerpersist || Race_if(PM_STARTSCUMMER)) ) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && (u.startscummerpersist || Race_if(PM_STARTSCUMMER)) ) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2800,7 +2800,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uimplant && uimplant->oartifact == ART_ETHERATORGARDEN) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2813,7 +2813,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uarmf && uarmf->oartifact == ART_NASTIST) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uarmf && uarmf->oartifact == ART_NASTIST) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2826,7 +2826,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2839,7 +2839,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uwep && uwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uwep && uwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2852,7 +2852,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && u.twoweap && uswapwep && uswapwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2865,7 +2865,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2878,7 +2878,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uarm && uarm->oartifact == ART_DON_SUICUNE_USED_SELFDESTR) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2891,7 +2891,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && NastinessProblem) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && NastinessProblem) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2904,7 +2904,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uimplant && uimplant->oartifact == ART_CLEAR_CATASTROPHE) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uimplant && uimplant->oartifact == ART_CLEAR_CATASTROPHE) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2917,7 +2917,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2930,7 +2930,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uamul && uamul->oartifact == ART_SATAN_S_FINAL_TRICK) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uamul && uamul->oartifact == ART_SATAN_S_FINAL_TRICK) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2943,7 +2943,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && have_nastystone() ) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && have_nastystone() ) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -2956,7 +2956,7 @@ nh_timeout()
 
 	}
 
-	if (!rn2((have_nastystone() == 2) ? 200 : 1000) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) {
+	if (!rn2(NastinessXtra ? 200 : 1000) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */

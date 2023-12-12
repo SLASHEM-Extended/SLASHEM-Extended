@@ -111,6 +111,7 @@ on the first floor, especially when you're playing as something with drain resis
 			if (FemtrapActiveDora && uarmf && (mtmp->data->msound == MS_SQEEK)) {
 				if (PlayerInHighHeels && !rn2(15)) {
 					pline("The asshole claws damage your pretty high heels!");
+					u.cnd_doratrapcnt++;
 					if (!rn2(2)) {
 						if (uarmf->oeroded < MAX_ERODE) uarmf->oeroded++;
 						else {
@@ -128,6 +129,7 @@ on the first floor, especially when you're playing as something with drain resis
 					}
 				} else if (!PlayerInHighHeels && !rn2(100)) {
 					pline("The claws damage your footwear!");
+					u.cnd_doratrapcnt++;
 					if (!rn2(2)) {
 						if (uarmf->oeroded < MAX_ERODE) uarmf->oeroded++;
 						else {
@@ -5996,7 +5998,7 @@ newboss:
 
 	if (MikraEffect || u.uprops[MIKRA_EFFECT].extrinsic || have_ubergodstone()) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
-			if (foundyou && !rn2((have_ubergodstone() == 2) ? 20 : 100) && tmp > (j = rnd(20+i))) {
+			if (foundyou && !rn2(UbergodXtra ? 20 : 100) && tmp > (j = rnd(20+i))) {
 				struct trap *ttmp2 = maketrap(u.ux, u.uy, FARTING_WEB, 0, FALSE);
 				if (ttmp2) {
 					pline("Mikraanesis laughs because you've been caught.");
@@ -7088,13 +7090,13 @@ hitmu(mtmp, mattk)
 
 	if (mattk->aatyp == AT_SPIT && atttyp == AD_TCKL) atttyp = AD_PHYS; /* manticore fix */
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttyp == AD_PHYS && !rn2((have_secretattackstone() == 2) ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttyp == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE || atttyp == AD_PHYS) {
 			atttyp = randattack(); }
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttyp == AD_PHYS && !rn2((have_unfairattackstone() == 2) ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttyp == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE || atttyp == AD_PHYS) {
 			atttyp = rn2(AD_ENDS); }
 
@@ -9498,7 +9500,7 @@ dopois:
 
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (dmg * 3);
 
 			specificnastytrapeffect(midentity, nastyduration, blackngvar);
@@ -9516,7 +9518,7 @@ dopois:
 		{
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (dmg * 3);
 
 			specificnastytrapeffect(u.adrunsattack, nastyduration, blackngvar);
@@ -11099,13 +11101,13 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypA = reallie(atttypA);
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypA == AD_PHYS && !rn2((have_secretattackstone() == 2) ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypA == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE || atttypA == AD_PHYS) {
 			atttypA = randattack(); }
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypA == AD_PHYS && !rn2((have_unfairattackstone() == 2) ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypA == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE || atttypA == AD_PHYS) {
 			atttypA = rn2(AD_ENDS); }
 
@@ -11682,7 +11684,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(midentity, nastyduration, blackngvar);
@@ -11696,7 +11698,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(u.adrunsattack, nastyduration, blackngvar);
@@ -13622,13 +13624,13 @@ boolean ufound;
 
 	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypC = reallie(atttypC);
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypC == AD_PHYS && !rn2((have_secretattackstone() == 2) ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypC == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE || atttypC == AD_PHYS) {
 			atttypC = randattack(); }
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypC == AD_PHYS && !rn2((have_unfairattackstone() == 2) ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypC == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE || atttypC == AD_PHYS) {
 			atttypC = rn2(AD_ENDS); }
 
@@ -13892,7 +13894,7 @@ common:
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(midentity, nastyduration, blackngvar);
@@ -13906,7 +13908,7 @@ common:
 		{
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(u.adrunsattack, nastyduration, blackngvar);
@@ -15894,13 +15896,13 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypB = reallie(atttypB);
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypB == AD_PHYS && !rn2((have_secretattackstone() == 2) ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypB == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE || atttypB == AD_PHYS) {
 			atttypB = randattack(); }
 
 	}
 
-	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypB == AD_PHYS && !rn2((have_unfairattackstone() == 2) ? 20 : 100)) {
+	if ((UnfairAttackBug || u.uprops[UNFAIR_ATTACK_BUG].extrinsic || have_unfairattackstone()) && atttypB == AD_PHYS && !rn2(UnfairAttackXtra ? 20 : 100)) {
 		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE || atttypB == AD_PHYS) {
 			atttypB = rn2(AD_ENDS); }
 
@@ -18475,7 +18477,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (dmgplus * 3);
 
 			specificnastytrapeffect(midentity, nastyduration, blackngvar);
@@ -18492,7 +18494,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (dmgplus * 3);
 
 			specificnastytrapeffect(u.adrunsattack, nastyduration, blackngvar);
@@ -19541,7 +19543,7 @@ register int n;
 	}
 
 	if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
-		if ((have_limitationstone() == 2) && (n > 0)) u.ascensiontimelimit -= (n * 10);
+		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
 	}

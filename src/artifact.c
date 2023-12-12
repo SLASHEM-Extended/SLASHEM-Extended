@@ -1499,7 +1499,7 @@ bad_artifact()
 			if (!rn2(3)) otmp->cursed = otmp->stckcurse = TRUE;
 		}
 
-		if (have_artificialstone() == 2) {
+		if (ArtificialXtra) {
 			if (!rn2(2)) {
 				otmp->cursed = otmp->hvycurse = TRUE;
 				if (!rn2(5)) otmp->prmcurse = TRUE;
@@ -1704,7 +1704,7 @@ bad_artifact_xtra()
 			if (!rn2(3)) otmp->cursed = otmp->stckcurse = TRUE;
 		}
 
-		if (have_artificialstone() == 2) {
+		if (ArtificialXtra) {
 			if (!rn2(2)) {
 				otmp->cursed = otmp->hvycurse = TRUE;
 				if (!rn2(5)) otmp->prmcurse = TRUE;

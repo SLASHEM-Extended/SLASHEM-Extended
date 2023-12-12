@@ -420,6 +420,8 @@ struct monst *mtmp;
 
 	if (FemtrapActiveNadja && mtmp->female && humanoid(mtmp->data)) {
 
+		u.cnd_nadjatrapcnt++;
+
 		pline("%s is really angry about the fact that you tried to hit her, and uses a pair of buckled shoes to scratch up and down your %s, ripping a lot of skin to shreds.", Monnam(mtmp), body_part(LEG));
 
 		/* this can now increase the player's legscratching variable. Since the damage you take depends on how much
@@ -1280,6 +1282,7 @@ register struct monst *mtmp;
 	}
 
 	if (FemtrapActiveJulia && !rn2(5) && mtmp->female && humanoid(mtmp->data) ) {
+		u.cnd_juliatrapcnt++;
 		You("are held back by the referee, who states that it's unfair of you to try to attack %s!", mon_nam(mtmp));
 		return(FALSE);
 	}
@@ -11875,7 +11878,7 @@ boolean ranged;
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(midentity, nastyduration, blackngvar);
@@ -11889,7 +11892,7 @@ boolean ranged;
 		{
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
-			if (have_longscrewupstone() == 2) nastyduration *= 10;
+			if (LongScrewupXtra) nastyduration *= 10;
 			register int blackngvar = 1000 - (tmp * 3);
 
 			specificnastytrapeffect(u.adrunsattack, nastyduration, blackngvar);

@@ -1825,7 +1825,7 @@ struct obj *obj;
 			pline("Unfortunately, you don't know how to use that tool.");
 			return;
 		}
-		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && (have_unknowledgestone() == 2) &&  (!obj->known || !obj->rknown || !obj->dknown || !obj->bknown) )	{
+		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && UnKnowledgeXtra &&  (!obj->known || !obj->rknown || !obj->dknown || !obj->bknown) )	{
 			pline("Unfortunately, you don't know how to use that tool.");
 			return;
 		}
@@ -5532,7 +5532,7 @@ doapply()
 			pline("Unfortunately you don't know how to use that item.");
 			return(0);
 		}
-		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && (have_unknowledgestone() == 2) &&  (!obj->known || !obj->rknown || !obj->dknown || !obj->bknown) )	{
+		if (obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != BELL_OF_OPENING && UnKnowledgeXtra &&  (!obj->known || !obj->rknown || !obj->dknown || !obj->bknown) )	{
 			pline("Unfortunately, you don't know how to use that tool.");
 			return(0);
 		}

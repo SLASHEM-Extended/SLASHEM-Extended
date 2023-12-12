@@ -919,6 +919,7 @@ register struct monst *mtmp;
 		struct obj *footwear = which_armor(mtmp, W_ARMF);
 		if (footwear && ishighheeled(footwear) && !rn2(50) && (distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) ) {
 			You_hear(mtmp->female ? "clacking noises." : "distorted clacking noises.");
+			u.cnd_klaratrapcnt++;
 		}
 	}
 
@@ -1456,7 +1457,7 @@ register struct monst *mtmp;
 
 	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
 		pline("A horrible call rang in your head...");
-		if (have_rangcallstone() == 2) increasesanity(5);
+		if (RangCallXtra) increasesanity(5);
 		else increasesanity(1);
 	}
 
@@ -1491,7 +1492,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2((have_wakeupcallstone() == 2) ? 1000 : 10000)) {
+	if ((WakeupCallBug || (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(WakeupCallXtra ? 1000 : 10000)) {
 		wakeup(mtmp);
 	}
 
@@ -2039,7 +2040,7 @@ newbossSING:
 	}
 
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
-	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2((have_monnoisestone() == 2) ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (mdat->msound) {
 
 			case MS_PRIEST:
