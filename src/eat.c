@@ -6667,6 +6667,8 @@ eatspecial() /* called after eating non-food */
 				    TimerunBug |= FROMOUTSIDE; break;
 			case EPVI_STONE:
 				    EpviEffect |= FROMOUTSIDE; break;
+			case AEFDE_STONE:
+				    AefdeEffect |= FROMOUTSIDE; break;
 			case STONE_OF_COMPLETE_FUCKUP:
 				    FuckfuckfuckEffect |= FROMOUTSIDE; break;
 			case NASTYCURSE_STONE:

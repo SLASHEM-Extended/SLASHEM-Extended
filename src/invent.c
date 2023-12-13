@@ -8263,6 +8263,21 @@ have_epvistone()
 	return(FALSE);
 }
 
+int
+have_aefdestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == AEFDE_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator272) return TRUE;
+	if (sjwcheck(272)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 8) return TRUE;
+	return(FALSE);
+}
 
 
 struct obj *
@@ -13232,6 +13247,8 @@ boolean knoweverything;
 			pline("If you're attacked by a mind flayer while wearing this helmet, the helmet will retaliate with its spikes.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TECHNICAL_HELMET))
 			pline("Wearing this helmet increases your techniques' effective level by one, but not beyond 50.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_COSMETIC_HELMET))
+			pline("A nice-looking helmet that grants +1 charisma when worn.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_THICK_BOOTS))
 			pline("A pair of boots that offers full protection against xans.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SAND_ALS))
@@ -14489,6 +14506,8 @@ boolean knoweverything;
 				pline("This helmet gives 10 squares of astral vision, but all nasty traps inside that radius trigger automatically. It has very good AC and 3 points of magic cancellation."); break;
 			case YAWNING_VISOR:
 				pline("This helmet gradually reduces the area you see the longer you don't trigger any traps. It has low AC and medium magic cancellation."); break;
+			case FISHINGHAIL_MET:
+				pline("This helmet causes chaotic monsters to teleport randomly and transform floor into other terrain. It has low AC and 5 points of magic cancellation."); break;
 			case REALLY_BAD_HELM:
 				pline("This helmet worsens bad effects. It has good AC and 4 points of magic cancellation."); break;
 
@@ -20055,6 +20074,8 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes your options to change over time."); break;
 			case MISCOLOR_STONE:
 				pline("A stone that curses itself and causes the game to be miscolored."); break;
+			case AEFDE_STONE:
+				pline("A stone that curses itself and causes chaotic monsters to behave chaotically."); break;
 			case ONE_RAINBOW_STONE:
 				pline("A stone that curses itself and causes one color to become a rainbow."); break;
 			case COLORSHIFT_STONE:
@@ -29617,6 +29638,18 @@ boolean knoweverything;
 					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Perfume monsters spawn twice as often."); break;
 				case ART_EVEN_THE_BLOCK_HEEL_IS_TRE:
 					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: The block heels wait for a lesser amount of time before they attack you again."); break;
+				case ART_YOU_REALLY_HAVE_A_TOTAL_DA:
+					pline("Artifact specs: spellboost, resist mystery and psi, full nutrients, epvi, one rainbow, tezcatlipoca and sabrina trap effect and heavily autocurses when worn. If you take it off, you'll be chased by the kops."); break;
+				case ART_MODERN_SLAVERY:
+					pline("Artifact specs: if you put them on, you get the levelscaler and beacher hybrid races permanently."); break;
+				case ART_SOFT_COW_DUNG:
+					pline("Artifact specs: they want to step into shit, because then they'll give you more AC than normal! Which means in game terms: heaps of shit spawn more often and you trigger them even if you fly, and the more eroded this pair of boots is, the more AC it gives."); break;
+				case ART_PETRI_HAS_LEFT_US:
+					pline("Artifact specs: while wearing it, if you enter a new dungeon level that has water or lava, there's no fishes specifically spawned there (unless it's a special level that forces them to spawn)."); break;
+				case ART_BECAUSE_YOU_LOSE:
+					pline("Artifact specs: ESP, clairvoyance, double infravision, double sight bonus, monster respawn and aefde trap effects when worn, heavily autocurses."); break;
+				case ART_ADORNING_BUNDLE:
+					pline("Artifact specs: lisa trap effect when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

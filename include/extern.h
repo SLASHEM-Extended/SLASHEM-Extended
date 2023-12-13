@@ -1202,6 +1202,7 @@ E int have_spellforgettingstone(void);
 E int have_soundeffectstone(void);
 E int have_timerunstone(void); /* Amy note: some nasty traps have "supernasty" versions */
 E int have_epvistone(void);
+E int have_aefdestone(void);
 E int have_nastycursestone(void);
 E int have_fuckfuckfuckstone(void);
 
@@ -2208,6 +2209,7 @@ E int find_fingerless_gloves(void);
 E int find_mantle_of_coat(void);
 E int find_everlasting_boots(void);
 E int find_fatal_gloves(void);
+E int find_cosmetic_helmet(void);
 E int find_beautiful_heels(void);
 E int find_homicidal_cloak(void);
 E int find_castlevania_boots(void);

@@ -4327,6 +4327,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (AefdeEffect || u.uprops[AEFDE_EFFECT].extrinsic || have_aefdestone())) {
+		sprintf(buf, "the following problem: Some chaotic dudes are trying to mess up the dungeon.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", AefdeEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (EpviEffect || u.uprops[EPVI_EFFECT].extrinsic || have_epvistone())) {
 		sprintf(buf, "the following problem: Items whose level is higher than yours are unusable.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", EpviEffect);
@@ -8995,6 +9001,11 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (AefdeEffect || u.uprops[AEFDE_EFFECT].extrinsic || have_aefdestone()) {
+		sprintf(buf, "the following problem: Some chaotic dudes are trying to mess up the dungeon.");
+		sprintf(eos(buf), " (%ld)", AefdeEffect);
 		dump(youhad, buf);
 	}
 	if (EpviEffect || u.uprops[EPVI_EFFECT].extrinsic || have_epvistone()) {

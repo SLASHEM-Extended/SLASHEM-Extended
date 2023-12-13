@@ -1067,6 +1067,21 @@ register struct monst *mtmp;
 		}
 	}
 
+	if (AefdeActive && (mtmp->data->maligntyp < 0) && !rn2(25)) {
+		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
+			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR) {
+				int wallclass = randomwalltype();
+
+				if (wallclass != TREE || (levl[mtmp->mx][mtmp->my].wall_info & W_NONDIGGABLE) == 0) levl[mtmp->mx][mtmp->my].typ = wallclass;
+				blockorunblock_point(mtmp->mx,mtmp->my);
+				if(cansee(mtmp->mx,mtmp->my)) {
+					newsym(mtmp->mx,mtmp->my);
+				}
+			}
+		}
+
+	}
+
 	if (mdat == &mons[PM_TERRAINDRIPPER]) {
 		if (isok(mtmp->mx, mtmp->my) && (!In_sokoban(&u.uz) || !rn2(25))) {
 			if (levl[mtmp->mx][mtmp->my].typ == ROOM || levl[mtmp->mx][mtmp->my].typ == CORR || (levl[mtmp->mx][mtmp->my].typ <= ROCKWALL && ((levl[mtmp->mx][mtmp->my].wall_info & W_NONDIGGABLE) == 0) ) ) {
@@ -3901,6 +3916,12 @@ register int after;
 		mnexto(mtmp);
 	    mmoved = 1;
 	    goto postmov;
+	}
+
+	if (AefdeActive && (mtmp->data->maligntyp < 0) && !rn2(100) && !tele_restrict(mtmp)) {
+		(void) rloc(mtmp, FALSE);
+		mmoved = 1;
+		goto postmov;
 	}
 
 	if ((ptr == &mons[PM_ASIMA] || ptr == &mons[PM_UTHGEN_RAPPER] || ptr == &mons[PM_YOUR_MAP_SHOWS_] || ptr == &mons[PM_FLEETFOOT] || ptr == &mons[PM_BEARER_OF_BAD_NEWS]) && !rn2(25) && !mtmp->mcan &&

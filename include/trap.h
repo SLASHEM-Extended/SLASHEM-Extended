@@ -838,6 +838,8 @@ extern struct trap *ftrap;
 
 #define SABRINA_TRAP 736
 
+#define AEFDE_TRAP 737
+
 /* todo area
 
 normal ones:
@@ -910,7 +912,6 @@ nasty traps:
 #define IDENTITY_TRAP
 #define WAIT_TRAP
 #define EROSATING_TRAP
-#define WE_SELECT_NOW_THE_AEFDE_TRAP
 #define BOUND_DAY_CHOICE_TRAP
 #define CASTING_LIMIT_TRAP
 #define FICKYOU_TRAP
@@ -934,8 +935,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	737
+#define TIMERUN_TRAP	738
 
-#define TRAPNUM 738
+#define TRAPNUM 739
 
 #endif /* TRAP_H */

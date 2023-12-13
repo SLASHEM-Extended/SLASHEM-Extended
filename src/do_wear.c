@@ -2432,6 +2432,7 @@ Helmet_on()
 	case MORE_HELMET:
 	case BUGXPLORE_HELMET:
 	case YAWNING_VISOR:
+	case FISHINGHAIL_MET:
 	case REALLY_BAD_HELM:
 	
 	case DUMMY_HELMET_A:
@@ -2786,6 +2787,7 @@ Helmet_off()
 	case BLUE_SPELL_HELMET:
 	case BUGXPLORE_HELMET:
 	case YAWNING_VISOR:
+	case FISHINGHAIL_MET:
 	case REALLY_BAD_HELM:
 	case MORE_HELMET:
 
@@ -4176,6 +4178,12 @@ Armor_on()
 		curse(uarm);
 		uarm->hvycurse = TRUE;
 		pline("You really have a total damage, huhuhu.");
+	}
+
+	if (uarm && uarm->oartifact == ART_BECAUSE_YOU_LOSE) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+		pline("The armor became heavily cursed (because you lose).");
 	}
 
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_ABSOLUTE_MONSTER_MAIL) {

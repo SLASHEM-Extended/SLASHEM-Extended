@@ -3860,6 +3860,42 @@ moveloop()
 			walscholarmessage();
 		}
 
+		if (AefdeActive && !rn2(1000)) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+
+newbossAEFDE:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->maligntyp < 0 ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossAEFDE;
+			}
+			if (pm && !(pm->maligntyp < 0) && rn2(50) ) {
+				attempts = 0;
+				goto newbossAEFDE;
+			}
+
+			(void) makemon(pm, 0, 0, MM_ADJACENTOK);
+
+			u.mondiffhack = 0;
+
+			u.aggravation = 0;
+
+		}
+
 		if (practicantterror && In_voiddungeon(&u.uz) && u.pract_void && (moves > u.pract_voidtimer)) {
 			if (!u.pract_voidinitial) {
 				pline("%s thunders: 'I called the kops. Get out of the void you fucking maggot or the police will give you a life-long sentence in jail!'", noroelaname());
@@ -7629,7 +7665,7 @@ newbossJANI:
 		}
 
 		if (!rn2(5000)) {
-			u.startscummereffect = rnd(271); /* timerun effect */
+			u.startscummereffect = rnd(272); /* timerun effect */
 		}
 
 		if (FemtrapActiveElla && u.ulevel >= 10 && !rn2(20000)) {
@@ -18326,6 +18362,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanic shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "firm boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "holu shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cosmetic helmet")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19721,6 +19758,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanic shoes")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "firm boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "holu shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cosmetic helmet")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

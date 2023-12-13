@@ -896,6 +896,7 @@ static struct {
 	{ "vulnerate", VULNERATE_TRAP },
 
 	{ "epvi", EPVI_TRAP },
+	{ "aefde", AEFDE_TRAP },
 
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }

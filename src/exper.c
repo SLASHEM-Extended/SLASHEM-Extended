@@ -1430,6 +1430,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, monster attacks use exploding dice to determine their damage.");
 						else pline("Your auspices say: 17 7");
 						break;
+					case 8:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, chaotic monsters will live up to their alignment by making the dungeon more chaotic.");
+						else pline("Your auspices say: 17 8");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 19) {

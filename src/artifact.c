@@ -970,6 +970,7 @@ init_appearance_randarts()
 	artilist[ART_IRIS_S_FAVORED_MATERIAL].otyp = find_spiky_gloves();
 
 	artilist[ART_IRMA_S_CHOICE].otyp = find_copper_stilettos();
+	artilist[ART_ADORNING_BUNDLE].otyp = find_cosmetic_helmet();
 	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_GIVE_US_TODAY_OUR_DAILY_GA].otyp = find_bamboo_cloak();
 	artilist[ART_JANA_S_ROULETTE_OF_LIFE].otyp = find_foundry_cloak();

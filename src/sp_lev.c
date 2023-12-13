@@ -894,6 +894,9 @@ selecttrap:
 	     case TIMERUN_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 15 : 30 )) goto selecttrap;
 			break;
+	     case AEFDE_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 22 : 45 )) goto selecttrap;
+			break;
 		    case FUCKFUCKFUCK_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20 )) goto selecttrap;
 			break;

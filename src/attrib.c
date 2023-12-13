@@ -3269,6 +3269,7 @@ int x;
 		if (uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) tmp += 5;
 		if (uarmf && itemhasappearance(uarmf, APP_ICEBLOCK_HEELS)) tmp += 2;
 		if (uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) tmp += 1;
+		if (uarmh && itemhasappearance(uarmh, APP_COSMETIC_HELMET)) tmp += 1;
 		if (uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) tmp += 2;
 		if (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) tmp += 10;
 		if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) tmp += 5;

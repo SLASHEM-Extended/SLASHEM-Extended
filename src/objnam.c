@@ -4302,6 +4302,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ EPVI_STONE, "todo" },
 	{ EPVI_SLIPPERS, "todo" },
 	{ SABRINA_PLATFORM_BOOTS, "todo" },
+	{ AEFDE_STONE, "todo" },
+	{ FISHINGHAIL_MET, "todo" },
 
 	{0, "" }
 };
@@ -7758,6 +7760,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ EPVI_STONE, "todo" },
 	{ EPVI_SLIPPERS, "todo" },
 	{ SABRINA_PLATFORM_BOOTS, "todo" },
+	{ AEFDE_STONE, "todo" },
+	{ FISHINGHAIL_MET, "todo" },
 
 	{0, "" }
 };

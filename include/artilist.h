@@ -17622,6 +17622,18 @@ A("Soft Cow Dung",				SABRINA_PLATFORM_BOOTS, /* anastasia trap effect, every le
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Petri Has Left Us",				FISHINGHAIL_MET, /* entering a new dungeon level does not spawn semicolons or flying fishes on water/lava */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Because You Lose",				BANDED_MAIL, /* heavily autocurses, clairvoyance, monster respawn, aefde, double infravision, double sight bonus */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Adorning Bundle",				STANDARD_HELMET, /* initialized to always be cosmetic helmet, lisa trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

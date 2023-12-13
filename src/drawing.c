@@ -1073,6 +1073,8 @@ const struct symdef defsyms[MAXPCHARS] = {
 
 	{'^', "sabrina trap", C(CLR_BLUE)},	/* trap */
 
+	{'^', "we select now the aefde trap", C(CLR_CYAN)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1973,6 +1975,8 @@ static uchar ibm_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_sabrina_trap),
 
+	g_FILLER(S_aefde_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2861,6 +2865,8 @@ static uchar dec_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_sabrina_trap),
 
+	g_FILLER(S_aefde_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3745,6 +3751,8 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_epvi_trap),
 
 	g_FILLER(S_sabrina_trap),
+
+	g_FILLER(S_aefde_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4631,6 +4639,8 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_epvi_trap),
 
 	g_FILLER(S_sabrina_trap),
+
+	g_FILLER(S_aefde_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5726,6 +5736,8 @@ boolean is_rlevel;
 	    showsyms[S_epvi_trap] = 0x04;
 
 	    showsyms[S_sabrina_trap] = 0x04;
+
+	    showsyms[S_aefde_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 
