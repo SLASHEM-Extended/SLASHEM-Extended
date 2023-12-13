@@ -4304,6 +4304,16 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SABRINA_PLATFORM_BOOTS, "todo" },
 	{ AEFDE_STONE, "todo" },
 	{ FISHINGHAIL_MET, "todo" },
+	{ SPE_MEDIUM_HEALING, "todo" },
+	{ SPE_STRONG_HEALING, "todo" },
+	{ SPE_SUPER_HEALING, "todo" },
+	{ SPE_HEALING_RAIN, "todo" },
+	{ SPE_TELEPORT_SELF, "todo" },
+	{ WAN_MEDIUM_HEALING, "todo" },
+	{ WAN_STRONG_HEALING, "todo" },
+	{ WAN_SUPER_HEALING, "todo" },
+	{ WAN_TELEPORT_SELF, "todo" },
+
 
 	{0, "" }
 };
@@ -7762,6 +7772,15 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SABRINA_PLATFORM_BOOTS, "todo" },
 	{ AEFDE_STONE, "todo" },
 	{ FISHINGHAIL_MET, "todo" },
+	{ SPE_MEDIUM_HEALING, "todo" },
+	{ SPE_STRONG_HEALING, "todo" },
+	{ SPE_SUPER_HEALING, "todo" },
+	{ SPE_HEALING_RAIN, "todo" },
+	{ SPE_TELEPORT_SELF, "todo" },
+	{ WAN_MEDIUM_HEALING, "todo" },
+	{ WAN_STRONG_HEALING, "todo" },
+	{ WAN_SUPER_HEALING, "todo" },
+	{ WAN_TELEPORT_SELF, "todo" },
 
 	{0, "" }
 };

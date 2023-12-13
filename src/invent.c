@@ -18710,6 +18710,16 @@ boolean knoweverything;
 				pline("A low-damage attack spell that cannot be resisted."); break;
 			case SPE_ENERGY_BOLT:
 				pline("A medium-damage attack spell that cannot be resisted."); break;
+			case SPE_MEDIUM_HEALING:
+				pline("A moderately powerful healing spell that cannot be directed, meaning it'll always target your character. If you're riding, your steed may also be healed a bit."); break;
+			case SPE_STRONG_HEALING:
+				pline("This healing spell is quite potent, and specifically heals you (as well as your steed if you have one)."); break;
+			case SPE_SUPER_HEALING:
+				pline("Very powerful healing spell. It doesn't have a direction, so you cannot heal others with it; the effect always works on you and your steed."); break;
+			case SPE_HEALING_RAIN:
+				pline("Casting this spell heals both you and all nearby allies."); break;
+			case SPE_TELEPORT_SELF:
+				pline("Cast this spell if you want to teleport around the dungeon. Careful, it has a chance of backfiring."); break;
 			case SPE_ACID_INGESTION:
 				pline("This spell creates acid in your mouth, which you will then swallow, resulting in damage unless you're acid resistant. Use it to cure petrification. Beware: it will also randomly drain your maximum health or temporarily reduce your protection!"); break;
 			case SPE_INDUCE_VOMITING:
@@ -18867,23 +18877,31 @@ boolean knoweverything;
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
-			case WAN_LIGHT: 
+			case WAN_LIGHT:
 				pline("Zapping this wand will illuminate your surroundings."); break;
 			case WAN_BLEEDING:
 				pline("If anyone zaps this wand, you will bleed. No, you cannot use it on hostile monsters."); break;
 			case WAN_UNDRESSING:
 				pline("Zapping this wand will remove one of your worn pieces of equipment, chosen randomly, but it will never pick a cursed one. If a monster zaps the wand, it will also remove your equipment. There is no way to use it against monsters."); break;
-			case WAN_NOTHING: 
+			case WAN_NOTHING:
 				pline("A wand that does nothing at all."); break;
-			case WAN_SHARE_PAIN: 
+			case WAN_SHARE_PAIN:
 				pline("This wand can be zapped at monsters to deal fractional damage to them, but beware! You will take the same amount of damage and you *can* die if it's too high!"); break;
-			case WAN_ENLIGHTENMENT: 
+			case WAN_ENLIGHTENMENT:
 				pline("If you zap this wand, you can see some clues about your status, e.g. alignment, whether it is safe to pray and if your luck is positive or negative."); break;
-			case WAN_HEALING: 
+			case WAN_HEALING:
 				pline("Zapping this wand at a living creature will heal it. You can also zap yourself with it."); break;
-			case WAN_STAT_REDUCTION: 
+			case WAN_MEDIUM_HEALING:
+				pline("Casting this wand will heal you for a bit, and unlike the regular healing wand it still does so even if you're confused and stunned."); break;
+			case WAN_STRONG_HEALING:
+				pline("Non-directional wand that restores quite a bit of your health."); break;
+			case WAN_SUPER_HEALING:
+				pline("This wand heals a lot of damage that you've taken."); break;
+			case WAN_TELEPORT_SELF:
+				pline("Zap this wand in order to teleport. Of course, you have to be able to actually teleport, so don't waste the charges on a no-teleport level."); break;
+			case WAN_STAT_REDUCTION:
 				pline("Randomly decreases one of your stats for a while. Yes, it always targets you, because monsters don't have stats anyway."); break;
-			case WAN_LOCKING: 
+			case WAN_LOCKING:
 				pline("If you zap this wand at something that can be locked, e.g. a door or chest, it will be locked. It can also transform broken doorways into fully functional locked doors and open floor into walls."); break;
 			case WAN_MAKE_INVISIBLE: 
 				pline("Zap this wand at something to make that 'something' invisible!"); break;
@@ -29650,6 +29668,14 @@ boolean knoweverything;
 					pline("Artifact specs: ESP, clairvoyance, double infravision, double sight bonus, monster respawn and aefde trap effects when worn, heavily autocurses."); break;
 				case ART_ADORNING_BUNDLE:
 					pline("Artifact specs: lisa trap effect when worn."); break;
+				case ART_ODINA_S_WAND:
+					pline("Artifact specs: cures sickness when zapped."); break;
+				case ART_CURE_OF_ERIS:
+					pline("Artifact specs: cures sickness and blindness when zapped."); break;
+				case ART_JUA__JURE_OR_WHATEVER:
+					pline("Artifact specs: cures sickness, blindness and confusion when zapped."); break;
+				case ART_HEALING_RAIN_OBTAINED:
+					pline("Artifact specs: successfully reading it teaches you the 'healing rain' spell, or if you already know it, increases its spell memory."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

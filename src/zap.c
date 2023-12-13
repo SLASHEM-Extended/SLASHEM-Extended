@@ -4975,6 +4975,69 @@ secureidchoice:
 		case WAN_CREATE_HORDE:
 			known = create_critters(rn1(7,6), (struct permonst *)0);
 			break;
+		case WAN_TELEPORT_SELF:
+			known = TRUE;
+			tele();
+			break;
+		case WAN_MEDIUM_HEALING:
+			You_feel("healthier!");
+			healup( d(5,8) + rnz(u.ulevel),0,0,0);
+			exercise(A_STR, TRUE);
+			known = TRUE;
+
+			if (u.usteed) {
+				u.usteed->mhp += d(2, 16);
+				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+				pline("%s looks healthier.", Monnam(u.usteed));
+			}
+
+			if (obj->oartifact == ART_ODINA_S_WAND) {
+				make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+			}
+
+			break;
+		case WAN_STRONG_HEALING:
+			You_feel("much more healthy!");
+			healup(d(8,12) + rnz(u.ulevel),0,0,0);
+			make_hallucinated(0L,TRUE,0L);
+			exercise(A_STR, TRUE);
+			exercise(A_CON, TRUE);
+			known = TRUE;
+
+			if (u.usteed) {
+				u.usteed->mhp += d(4, 12);
+				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+				pline("%s looks healthier.", Monnam(u.usteed));
+			}
+
+			if (obj->oartifact == ART_CURE_OF_ERIS) {
+				make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+				make_blinded(0L,FALSE);
+			}
+
+			break;
+		case WAN_SUPER_HEALING:
+			You_feel("healthy again!");
+			healup(d(13,20) + rnz(u.ulevel),0,0,0);
+			make_hallucinated(0L,TRUE,0L);
+			exercise(A_STR, TRUE);
+			exercise(A_CON, TRUE);
+			known = TRUE;
+
+			if (u.usteed) {
+				u.usteed->mhp += d(13, 10);
+				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+				pline("%s looks healthier.", Monnam(u.usteed));
+			}
+
+			if (obj->oartifact == ART_JUA__JURE_OR_WHATEVER) {
+				make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+				make_blinded(0L,FALSE);
+				make_confused(0L,TRUE);
+			}
+
+
+			break;
 		case WAN_WISHING:
 			known = TRUE;
 

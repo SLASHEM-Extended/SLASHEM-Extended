@@ -2653,6 +2653,10 @@ struct obj *otmp;
 #define MUSE_SCR_BRANCH_TELEPORT 47
 #define MUSE_SCR_COURSE_TRAVELING 48
 #define MUSE_POT_OIL 49
+#define MUSE_WAN_SUPER_HEALING 50
+#define MUSE_WAN_STRONG_HEALING 51
+#define MUSE_WAN_MEDIUM_HEALING 52
+#define MUSE_WAN_TELEPORT_SELF 53
 /*
 #define MUSE_INNATE_TPT 9999
  * We cannot use this.  Since monsters get unlimited teleportation, if they
@@ -2977,6 +2981,13 @@ struct monst *mtmp;
 				: MUSE_WAN_TELEPORTATION_SELF;
 		    }
 		}
+		nomore(MUSE_WAN_TELEPORT_SELF);
+		if(obj->otyp == WAN_TELEPORT_SELF && obj->spe > 0 && !mtmp->isgd && !(mtmp->isshk && inhishop(mtmp)) && !mtmp->ispriest && !mon_has_amulet(mtmp)) {
+		    if (!level.flags.noteleport && !Race_if(PM_STABILISATOR) && !u.antitelespelltimeout) {
+			m.defensive = obj;
+			m.has_defense = MUSE_WAN_TELEPORT_SELF;
+		    }
+		}
 		nomore(MUSE_SCR_TELEPORTATION);
 		if(obj->otyp == SCR_TELEPORTATION && mtmp->mcansee
 		   && haseyes(mtmp->data)
@@ -3157,6 +3168,21 @@ struct monst *mtmp;
 			m.defensive = obj;
 			m.has_defense = MUSE_WAN_FULL_HEALING;
 		}
+		nomore(MUSE_WAN_MEDIUM_HEALING);
+		if(obj->otyp == WAN_MEDIUM_HEALING && obj->spe > 0) {
+			m.defensive = obj;
+			m.has_defense = MUSE_WAN_MEDIUM_HEALING;
+		}
+		nomore(MUSE_WAN_STRONG_HEALING);
+		if(obj->otyp == WAN_STRONG_HEALING && obj->spe > 0) {
+			m.defensive = obj;
+			m.has_defense = MUSE_WAN_STRONG_HEALING;
+		}
+		nomore(MUSE_WAN_SUPER_HEALING);
+		if(obj->otyp == WAN_SUPER_HEALING && obj->spe > 0) {
+			m.defensive = obj;
+			m.has_defense = MUSE_WAN_SUPER_HEALING;
+		}
 		nomore(MUSE_POT_VAMPIRE_BLOOD);
 		if(is_vampire(mtmp->data) && obj->otyp == POT_VAMPIRE_BLOOD) {
 			m.defensive = obj;
@@ -3295,6 +3321,32 @@ mon_tele:
 		    /* monster learns that teleportation isn't useful here */
 		    /*if (level.flags.noteleport)
 			mtmp->mtrapseen |= (1 << (TELEP_TRAP-1));*/
+		    return 2;
+		}
+		if ((
+#if 0
+			mon_has_amulet(mtmp) ||
+#endif
+			On_W_tower_level(&u.uz)) && !rn2(3)) {
+		    if (vismon)
+			pline("%s seems disoriented for a moment.",
+				Monnam(mtmp));
+		    return 2;
+		}
+		if (oseen && how) makeknown(how);
+		(void) rloc(mtmp, FALSE);
+		return 2;
+	case MUSE_WAN_TELEPORT_SELF:
+		if ((mtmp->isshk && inhishop(mtmp))
+		       || mtmp->isgd || mtmp->ispriest) return 2;
+		m_flee(mtmp);
+		mzapmsg(mtmp, otmp, TRUE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		how = WAN_TELEPORT_SELF;
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		if (tele_restrict(mtmp)) {	/* mysterious force... */
+		    if (vismon && how)		/* mentions 'teleport' */
+			makeknown(how);
 		    return 2;
 		}
 		if ((
@@ -4365,6 +4417,64 @@ newboss:
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		return 2;
 
+	case MUSE_WAN_MEDIUM_HEALING:
+		mzapmsg(mtmp, otmp, TRUE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		i = d(5,3) + 7 * !!bcsign(otmp);
+		mtmp->mhp += i;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
+		if (!otmp->cursed) mtmp->mcansee = 1;
+		if (vismon) pline("%s begins to look better.", Monnam(mtmp));
+		if (oseen) makeknown(WAN_MEDIUM_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_WAN_STRONG_HEALING:
+		mzapmsg(mtmp, otmp, TRUE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		i = d(5,6) + 15 * !!bcsign(otmp);
+		mtmp->mhp += i;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
+		if (!otmp->cursed) mtmp->mcansee = 1;
+		if (vismon) pline("%s begins to look better.", Monnam(mtmp));
+		if (oseen) makeknown(WAN_STRONG_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+	case MUSE_WAN_SUPER_HEALING:
+		mzapmsg(mtmp, otmp, TRUE);
+		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		i = d(5,12) + 30 * !!bcsign(otmp);
+		mtmp->mhp += i;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
+		if (!otmp->cursed) mtmp->mcansee = 1;
+		if (vismon) pline("%s begins to look better.", Monnam(mtmp));
+		if (oseen) makeknown(WAN_SUPER_HEALING);
+		if (mtmp->bleedout && mtmp->bleedout <= i) {
+			mtmp->bleedout = 0;
+			if (vismon) pline("%s's bleeding stops.", Monnam(mtmp));
+		} else if (mtmp->bleedout) {
+			mtmp->bleedout -= i;
+			if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* should never happen */
+			if (vismon) pline("%s's bleeding diminishes.", Monnam(mtmp));
+		}
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		return 2;
+
 	case MUSE_SCR_HEALING:
 
 		mreadmsg(mtmp, otmp);
@@ -4690,7 +4800,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(38)) {
+	switch (rn2(42)) {
 
 		case 0: return SCR_TELEPORTATION;
 		case 1: return POT_HEALING;
@@ -4730,6 +4840,10 @@ struct monst *mtmp;
 		case 35: return SCR_EXTRA_HEALING;
 		case 36: return POT_BLOOD;
 		case 37: return SCR_COURSE_TRAVELING;
+		case 38: return WAN_MEDIUM_HEALING;
+		case 39: return WAN_STRONG_HEALING;
+		case 40: return WAN_SUPER_HEALING;
+		case 41: return WAN_TELEPORT_SELF;
 	}
 	/*NOTREACHED*/
 	return 0;
@@ -11969,6 +12083,10 @@ struct obj *obj;
 		    typ == WAN_INERTIA	||
 		    typ == WAN_FEAR	||
 		    typ == WAN_HEALING ||
+		    typ == WAN_MEDIUM_HEALING ||
+		    typ == WAN_STRONG_HEALING ||
+		    typ == WAN_SUPER_HEALING ||
+		    typ == WAN_TELEPORT_SELF ||
 		    typ == WAN_CLONE_MONSTER ||
 		    typ == WAN_EXTRA_HEALING ||
 		    typ == WAN_FULL_HEALING ||

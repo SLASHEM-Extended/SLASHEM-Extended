@@ -10410,7 +10410,7 @@ randenchchoice:
 			pline("The scroll was cursed! You lose a lot of knowledge...");
 			break;
 		}
-		wonderspell();
+		wonderspell(-1);
 
 		break;
 	case SCR_AMNESIA:

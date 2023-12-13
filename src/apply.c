@@ -5157,6 +5157,9 @@ wand_explode(obj, hero_broke)
     case WAN_HEALING:
     case WAN_EXTRA_HEALING:
     case WAN_FULL_HEALING:
+    case WAN_MEDIUM_HEALING:
+    case WAN_STRONG_HEALING:
+    case WAN_SUPER_HEALING:
 		dmg = 0;
 		break;
     default:

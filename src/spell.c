@@ -2228,6 +2228,9 @@ learn()
 				boostknow(i, 40000);
 				pline_The("spell has a lot of memory now.");
 			    }
+			    if (book->oartifact == ART_HEALING_RAIN_OBTAINED) {
+				wonderspell(SPE_HEALING_RAIN);
+			    }
 			    if (book->oartifact == ART_MULTIPLY_ME) {
 				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 				pline_The("spell memory bonus was multiplied!");
@@ -2350,6 +2353,9 @@ learn()
 				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
+			}
+			if (book->oartifact == ART_HEALING_RAIN_OBTAINED) {
+				wonderspell(SPE_HEALING_RAIN);
 			}
 			if (book->oartifact == ART_BACKLASHPROTECT) {
 				boostknow(i, 40000);
@@ -6175,7 +6181,7 @@ newbossPENT:
 
 					break;
 				case 24:
-					wonderspell();
+					wonderspell(-1);
 					break;
 				case 25:
 
@@ -7457,6 +7463,109 @@ whisperchoice:
 			pline("The spell backlashes!");
 			badeffect();
 		}
+
+		break;
+
+	case SPE_TELEPORT_SELF:
+		tele();
+		if (!rn2(10)) {
+			pline("The spell backlashes!");
+			badeffect();
+		}
+
+		break;
+
+	case SPE_MEDIUM_HEALING:
+	{
+		int healamount = d(2, 10) + 5 + (!rn2(3) ? 0 : rnd(rnz(u.ulevel)) );
+		if (healamount > 1 && !rn2(2)) healamount /= 2;
+
+		healup(healamount, 0, FALSE, FALSE);
+
+		You_feel("healthier!");
+
+		if (u.usteed) {
+			u.usteed->mhp += rnd(12);
+			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+			pline("%s looks healthier.", Monnam(u.usteed));
+
+		}
+
+	}
+
+		break;
+
+	case SPE_STRONG_HEALING:
+	{
+		int healamount = d(5, 10) + 10 + (rn2(3) ? 0 : rnz(u.ulevel) );
+		if (healamount > 1 && !rn2(2)) healamount /= 2;
+
+		healup(healamount, 0, FALSE, FALSE);
+
+		You_feel("much more healthy!");
+
+		if (u.usteed) {
+			u.usteed->mhp += d(5, 5);
+			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+			pline("%s looks healthier.", Monnam(u.usteed));
+
+		}
+
+	}
+
+		break;
+
+	case SPE_SUPER_HEALING:
+	{
+		int healamount = d(13, 10) + 13 + (rn2(2) ? 0 : rnz(u.ulevel) );
+		if (healamount > 1 && !rn2(2)) healamount /= 2;
+
+		healup(healamount, 0, FALSE, FALSE);
+
+		You_feel("healthy again!");
+
+		if (u.usteed) {
+			u.usteed->mhp += d(5, 13);
+			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+			pline("%s looks healthier.", Monnam(u.usteed));
+
+		}
+
+	}
+
+		break;
+
+	case SPE_HEALING_RAIN:
+
+	{
+		struct monst *hrmon;
+
+		int healamount = d(2, 10) + 5 + (!rn2(3) ? 0 : rnd(rnz(u.ulevel)) );
+		if (healamount > 1 && !rn2(2)) healamount /= 2;
+
+		healup(healamount, 0, FALSE, FALSE);
+
+		You_feel("healthier!");
+
+		if (u.usteed) {
+			u.usteed->mhp += rnd(12);
+			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
+			pline("%s looks healthier.", Monnam(u.usteed));
+
+		}
+
+		for (hrmon = fmon; hrmon; hrmon = hrmon->nmon) {
+			if (DEADMONSTER(hrmon)) continue;
+			if (distu(hrmon->mx,hrmon->my) > 9) continue;
+			if (!hrmon->mtame) continue;
+
+			hrmon->mhp += rnd(12);
+			if (hrmon->mhp > hrmon->mhpmax) hrmon->mhp = hrmon->mhpmax;
+			pline("%s looks healthier.", Monnam(hrmon));
+
+		}
+
+	}
 
 		break;
 
@@ -13317,10 +13426,15 @@ mastermindsave()
 
 }
 
+/* learn a random spell ("whichspell" == -1) or a specific one ("whichspell" = ID of the book) --Amy */
 void
-wonderspell()
+wonderspell(whichspell)
+int whichspell;
 {
 	register int randomspell = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
+
+	if (whichspell != -1) randomspell = whichspell;
+
 	char splname[BUFSZ];
 	int i;
 

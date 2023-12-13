@@ -7440,7 +7440,7 @@ newbossPENT:
 
 					break;
 				case 24:
-					wonderspell();
+					wonderspell(-1);
 					break;
 				case 25:
 
@@ -15789,7 +15789,7 @@ callingoutdone:
 			deltrap(trap);
 			forget(ALL_SPELLS);
 			forget(ALL_SPELLS);
-			wonderspell();
+			wonderspell(-1);
 			break;
 
 		case SKILL_SWAP_TRAP:

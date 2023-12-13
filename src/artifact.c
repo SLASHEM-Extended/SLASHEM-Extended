@@ -4799,7 +4799,7 @@ newboss:
 
 					break;
 				case 24:
-					wonderspell();
+					wonderspell(-1);
 					break;
 				case 25:
 

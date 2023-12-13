@@ -17331,6 +17331,11 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MAGIC_BOLT].oc_name = "todo";
 	obj_descr[SPE_LIGHT_AREA].oc_name = "todo";
 	obj_descr[SPE_RETURN].oc_name = "todo";
+	obj_descr[SPE_MEDIUM_HEALING].oc_name = "todo";
+	obj_descr[SPE_STRONG_HEALING].oc_name = "todo";
+	obj_descr[SPE_SUPER_HEALING].oc_name = "todo";
+	obj_descr[SPE_HEALING_RAIN].oc_name = "todo";
+	obj_descr[SPE_TELEPORT_SELF].oc_name = "todo";
 
 	{
 
@@ -18726,6 +18731,11 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_MAGIC_BOLT].oc_name = "todo";
 	obj_descr[SPE_LIGHT_AREA].oc_name = "todo";
 	obj_descr[SPE_RETURN].oc_name = "todo";
+	obj_descr[SPE_MEDIUM_HEALING].oc_name = "todo";
+	obj_descr[SPE_STRONG_HEALING].oc_name = "todo";
+	obj_descr[SPE_SUPER_HEALING].oc_name = "todo";
+	obj_descr[SPE_HEALING_RAIN].oc_name = "todo";
+	obj_descr[SPE_TELEPORT_SELF].oc_name = "todo";
 
 	{
 

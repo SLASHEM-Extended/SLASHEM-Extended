@@ -3347,7 +3347,7 @@ E boolean addsomespellmemory(void);
 E boolean addsomespellmemoryX(void);
 E void initialspell(struct obj *);
 E void castinertiaspell(void);
-E void wonderspell(void);
+E void wonderspell(int);
 E int isqrt(int);
 E boolean mastermindsave(void);
 E void removeforgottenspell(void);

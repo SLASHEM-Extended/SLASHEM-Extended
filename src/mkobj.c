@@ -896,7 +896,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(165)) {
+	switch (rnd(167)) {
 
 		case 1:
 			return ATHAME;
@@ -1155,6 +1155,10 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return GAUNTLETS_OF_MYSTERY_RESISTANC;
 		case 165:
 			return RIN_MYSTERY_RESISTANCE;
+		case 166:
+			return WAN_STRONG_HEALING;
+		case 167:
+			return WAN_TELEPORT_SELF;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}
@@ -1504,7 +1508,7 @@ nastymusableitem() /* select the ID number of an item that the monsters may use 
 int
 makemusableitem() /* select the ID number of a musable item --Amy */
 {
-	switch (rnd(320)) {
+	switch (rnd(324)) {
 
 		case 1: return WAN_SLEEP;
 		case 2: return WAN_FIREBALL;
@@ -1826,6 +1830,10 @@ makemusableitem() /* select the ID number of a musable item --Amy */
 		case 318: return WAN_GAIN_LEVEL;
 		case 319: return WAN_INCREASE_MAX_HITPOINTS;
 		case 320: return SCR_COURSE_TRAVELING;
+		case 321: return WAN_MEDIUM_HEALING;
+		case 322: return WAN_STRONG_HEALING;
+		case 323: return WAN_SUPER_HEALING;
+		case 324: return WAN_TELEPORT_SELF;
 		default: return WAN_MAGIC_MISSILE;
 
 	}
@@ -1838,7 +1846,7 @@ int
 makegreatitem() /* select the ID number of an item that might be very useful for you --Amy */
 {
 
-	switch (rnd(182)) {
+	switch (rnd(183)) {
 		case 1:
 			return TOOTH_OF_AN_ALGOLIAN_SUNTIGER;
 		case 2:
@@ -2203,6 +2211,8 @@ makegreatitem() /* select the ID number of an item that might be very useful for
 			return SCR_EXTRA_SKILL_POINT;
 		case 182:
 			return COMBINATION_CLOAK;
+		case 183:
+			return WAN_SUPER_HEALING;
 		default: /* fail safe */
 			return SCR_IDENTIFY;
 

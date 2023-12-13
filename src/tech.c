@@ -5849,7 +5849,7 @@ chargingchoice:
 		break;
 
 	    case T_WONDERSPELL:
-		wonderspell();
+		wonderspell(-1);
 	      t_timeout = rnz(10000);
 		break;
 
@@ -7918,7 +7918,7 @@ revid_end:
 				}
 
 			}
-			wonderspell();
+			wonderspell(-1);
 			t_timeout = rnz(15000);
 			break;
 

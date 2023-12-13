@@ -2001,6 +2001,10 @@ doengrave()
 		    case WAN_BAD_LUCK:
 		    case WAN_REMOVE_RESISTANCE:
 		    case WAN_CORROSION:
+		    case WAN_MEDIUM_HEALING:
+		    case WAN_STRONG_HEALING:
+		    case WAN_SUPER_HEALING:
+		    case WAN_TELEPORT_SELF:
 		    case WAN_CHAOS_TERRAIN:
 		    case WAN_FLEECY_TERRAIN:
 		    case WAN_STAT_REDUCTION:

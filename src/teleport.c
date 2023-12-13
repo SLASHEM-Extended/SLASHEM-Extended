@@ -1004,12 +1004,18 @@ boolean costly;
 
 	    if ((!Teleportation || (u.ulevel < (Race_if(PM_LICH_WARRIOR) ? 1 : Race_if(PM_RODNEYAN) ? 1 : Role_if(PM_WIZARD) ? 8 : 12) && !can_teleport(youmonst.data))) && !(uarmf && uarmf->oartifact == ART_HAWAIIAN_KAMEHAMEHA) && !(uarmh && uarmh->oartifact == ART_TRIP_TERRAIN)) {
 		/* Try to use teleport away spell. */
-		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion && !costly)
-		    for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
+		if (objects[SPE_TELEPORT_AWAY].oc_name_known && !Confusion && !costly) {
+		    for (sp_no = 0; sp_no < MAXSPELL; sp_no++) {
 			if (spl_book[sp_no].sp_id == SPE_TELEPORT_AWAY) {
 				castit = TRUE;
 				break;
 			}
+			if (spl_book[sp_no].sp_id == SPE_TELEPORT_SELF) {
+				castit = TRUE;
+				break;
+			}
+		    }
+		}
 #ifdef WIZARD
 		if (!wizard) {
 #endif
@@ -1039,7 +1045,7 @@ boolean costly;
 #endif
 	    }
 
-	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5;
+	    energy = objects[SPE_TELEPORT_AWAY].oc_level * 5; /* even if it was teleport self (arbitrary) --Amy */
 	    if (costly) energy = 100;
 	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
 	    if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
