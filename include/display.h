@@ -67,18 +67,9 @@
  * The caller must check for invisibility (invisible monsters are also
  * invisible to infravision), because this is usually called from within
  * canseemon() or canspotmon() which already check that.
+ * Amy note: night vision goggles also use this codepath, but see all the monsters
  */
-#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
-
-/*
- * see_with_infrared()
- *
- * This function is true if the player can see a monster using infravision.
- * The caller must check for invisibility (invisible monsters are also
- * invisible to infravision), because this is usually called from within
- * canseemon() or canspotmon() which already check that.
- */
-#define see_with_infrared(mon) (!Blind && Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
+#define see_with_infrared(mon) (!Blind && ((Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data)) || (ublindf && ublindf->otyp == NIGHT_VISION_GOGGLES) ) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
 
 
 /*

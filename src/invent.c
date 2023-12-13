@@ -8432,7 +8432,7 @@ struct obj *otmp;
                 else if ((putting_on(word) &&
 		    ((otmp->oclass == FOOD_CLASS && otmp->otyp != MEAT_RING) ||
 		    (otmp->oclass == TOOL_CLASS &&
-		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != DEFUSING_BOX && otyp != LENSES && otyp != RADIOGLASSES && otyp != SHIELD_PATE_GLASSES && otyp != BOSS_VISOR)))
+		     otyp != BLINDFOLD && otyp != EYECLOSER && otyp != DRAGON_EYEPATCH && otyp != CONDOME && otyp != SOFT_CHASTITY_BELT && otyp != TOWEL && otyp != CLIMBING_SET && otyp != DEFUSING_BOX && otyp != LENSES && otyp != RADIOGLASSES && otyp != SHIELD_PATE_GLASSES && otyp != BOSS_VISOR && otyp != NIGHT_VISION_GOGGLES)))
 /*add check for improving*/
                 || ( (!strcmp(word, "wield") || !strcmp(word, "improve")) &&
 		    (otmp->oclass == TOOL_CLASS && !is_weptool(otmp)))
@@ -8984,7 +8984,7 @@ struct obj *otmp;
 		s1 = "T", s2 = "take", s3 = " off";
 	} else if ((ocls == RING_CLASS || otyp == MEAT_RING) ||
 		ocls == AMULET_CLASS || ocls == IMPLANT_CLASS ||
-		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == DEFUSING_BOX || otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR)) {
+		(otyp == BLINDFOLD || otyp == EYECLOSER || otyp == DRAGON_EYEPATCH || otyp == CONDOME || otyp == SOFT_CHASTITY_BELT || otyp == TOWEL || otyp == CLIMBING_SET || otyp == DEFUSING_BOX || otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR || otyp == NIGHT_VISION_GOGGLES)) {
 	    if (!strcmp(word, "wear"))
 		s1 = "P", s2 = "put", s3 = " on";
 	    else if (!strcmp(word, "take off"))
@@ -8994,7 +8994,7 @@ struct obj *otmp;
 	    what = "that";
 	    /* quantity for armor and accessory objects is always 1,
 	       but some things should be referred to as plural */
-	    if (otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR || is_gloves(otmp) || is_boots(otmp))
+	    if (otyp == LENSES || otyp == RADIOGLASSES || otyp == SHIELD_PATE_GLASSES || otyp == BOSS_VISOR || otyp == NIGHT_VISION_GOGGLES || is_gloves(otmp) || is_boots(otmp))
 		what = "those";
 	    pline("Use the '%s' command to %s %s%s.", s1, s2, what, s3);
 	} else {
@@ -10918,6 +10918,7 @@ doprwep()
 	if (uwep && weapon_type(uwep) == P_QUARTERSTAFF && u.martialstyle == MARTIALSTYLE_BOJUTSU) pline("Your current martial arts style is bojutsu.");
 	if (uwep && uwep->otyp == JEONTU_GEOM && u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO) pline("Your current martial arts style is haidong gumdo.");
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) pline("Your current martial arts style is taekwondo.");
+	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA) pline("Your current martial arts style is capoeira.");
     }
     if (u.twoweap) {
     	if (uswapwep)
@@ -13351,6 +13352,8 @@ boolean knoweverything;
 			pline("These stiletto heels deal extra damage when kicking, based on your short sword skill, and train that.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLOCKCHOC_BOOTS))
 			pline("A very lovely pair of block-heeled combat boots that can also be eaten, which may give one of a variety of effects.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PARTICULARLY_TERRIBLE_BOOTS))
+			pline("This pair of red boots has columnar heels, which look incredibly sexy. The name is based on the comment from Amy's roommate when she saw them for the first time.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SISTER_SHOES))
 			pline("These brown combat boots have black block heels, which look incredibly lovely! If you kick an enemy, you scratch them with your heels to cause bleeding damage.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLATFORM_SNEAKERS))
@@ -14361,6 +14364,8 @@ boolean knoweverything;
 				pline("A low-quality shield that would be called 'Beschutzer' if there was a German version of SLEX, weil er einen vor dem Gegner beschutzt. (really, the u should be replaced by an umlaut :D)"); break;
 			case LIGHT_SHIELD:
 				pline("This lightweight shield is relatively weak."); break;
+			case COMPLETE_BLOCKAGE_SHIELD:
+				pline("An incredibly powerful shield that can block a lot of attacks and makes it so that monsters will almost always to fail their attempt to use more than their first attack in melee, but it's also really bulky. As a result, your melee attacks deal much less damage, your ranged weapons have a lot less multishot, and your spells fail half of the time."); break;
 			case RESONANT_SHIELD:
 				pline("Provides some protection from attacks, including protecting your items from cold and shock damage, and improves your chances when searching for traps but you're also deaf while wearing it."); break;
 			case CRINGE_SHIELD:
@@ -15333,6 +15338,8 @@ boolean knoweverything;
 				pline("Don't put these boots on unless you want to fumble around. That said, at least they aren't usually generated cursed. And they're incredibly high-heeled stilettos too."); break;
 			case RUBBER_BOOTS:
 				pline("A normal pair of boots made of plastic. They count as sexy flats."); break;
+			case EGGKICK_SHOES:
+				pline("These sneakers look like they absolutely want to kick male persons in the nuts! And they're also rather sexy, so they use the sexy flats skill."); break;
 			case LEATHER_SHOES:
 				pline("Just some plain old slippers."); break;
 			case SNEAKERS:
@@ -16904,6 +16911,8 @@ boolean knoweverything;
 				pline("It can be applied to cause blindness. While you are wearing it, you will also be stealthy."); break;
 			case BOSS_VISOR:
 				pline("Wearing these lenses will not only improve your chances to find something when using the search command, it also displays covetous monsters!"); break;
+			case NIGHT_VISION_GOGGLES:
+				pline("A tool that is worn on the eyes, and lets you see things at a distance but makes everything display green. It also screws with your spells for some reason, and reduces your Pw regeneration rate."); break;
 			case DRAGON_EYEPATCH:
 				pline("A blindfold that grants reflection when worn. Put it on to blind yourself, and take it off to stop the blindness."); break;
 			case SOFT_CHASTITY_BELT:
@@ -17202,6 +17211,8 @@ boolean knoweverything;
 				pline("Using this tool will boost your intelligence by one point (make sure you're not wearing an item that gives sustain ability). If you're of the sustainer race, it boosts your wisdom instead."); break;
 			case INFUSION:
 				pline("A one-use tool that improves your maximum HP and Pw by one each."); break;
+			case ACID_SYRINGE:
+				pline("Use this tool to inject some acid into your body. This is useful for fixing petrification, but may deal a bit of damage to you. Also, it can only be used once."); break;
 			case CASINO_CHIP:
 				pline("If you apply this chip, it adds itself to your collection of casino chips, allowing you to play Black Jack without having to waste your hard-earned zorkmids."); break;
 			case BLESSER:
@@ -17599,6 +17610,8 @@ boolean knoweverything;
 				pline("Attacking a monster with this potion puts it to sleep. You can also quaff it yourself if you want to sleep for some reason."); break;
 			case POT_CLAIRVOYANCE:
 				pline("A potion that grants temporary clairvoyance if you quaff it."); break;
+			case POT_BOOST:
+				pline("Makes you super powerful for a while: your strength and dexterity are much higher, and you gain bonuses to damage and accuracy for as long as the effect of this potion is active."); break;
 			case POT_CONFUSION:
 				pline("You can drink this potion if you want to get confused, or hurl it at a monster instead."); break;
 			case POT_HALLUCINATION:
@@ -29676,6 +29689,14 @@ boolean knoweverything;
 					pline("Artifact specs: cures sickness, blindness and confusion when zapped."); break;
 				case ART_HEALING_RAIN_OBTAINED:
 					pline("Artifact specs: successfully reading it teaches you the 'healing rain' spell, or if you already know it, increases its spell memory."); break;
+				case ART_YO_WHAZZAH:
+					pline("Artifact specs: may be used several times before it disappears."); break;
+				case ART_IT_BE_NITE:
+					pline("Artifact specs: makes the entire level unlit constantly, causes monsters to be shortsighted and autocurses when worn."); break;
+				case ART_FANNY_S_ANNOYANCE:
+					pline("Artifact specs: resist fear and drain life, antje trap effect, allows you to train the martial arts skill twice as fast, can be invoked to change your martial arts style to a random one."); break;
+				case ART_SHE_S_NOT_FORGOTTEN:
+					pline("Artifact specs: johanna trap effect when worn and allows you to resist item theft."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

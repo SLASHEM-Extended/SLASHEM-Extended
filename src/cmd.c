@@ -4016,6 +4016,12 @@ boolean guaranteed;
 		you_can(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && u.boosttimer) {
+		sprintf(buf, "boosted");
+		if (!rn2(10)) sprintf(eos(buf), " (%d)", u.boosttimer);
+		you_are(buf);
+	}
+
 	/*** Troubles ***/
 
 	if ((guaranteed || !rn2(10)) && multi) {
@@ -8685,6 +8691,12 @@ int final;
 		sprintf(buf, "recognize detrimental food");
 	      sprintf(eos(buf), " (%d)", u.urealedibility);
 		dump(youcould, buf);
+	}
+
+	if (u.boosttimer) {
+		sprintf(buf, "boosted");
+		sprintf(eos(buf), " (%d)", u.boosttimer);
+		dump(youwere, buf);
 	}
 
 	/*** Troubles ***/

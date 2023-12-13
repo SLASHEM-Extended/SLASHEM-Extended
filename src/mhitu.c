@@ -748,7 +748,7 @@ elena11:
 			}
 
 			/* hippie heels use M4_BLOCKHEELBOOTS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || (footwear && footwear->otyp == ELISE_HIPPIE_HEELS) || (footwear && itemhasappearance(footwear, APP_LOLITA_BOOTS)) || (footwear && itemhasappearance(footwear, APP_HOMO_SHOES)) || (footwear && itemhasappearance(footwear, APP_EROTIC_BOOTS)) || (footwear && itemhasappearance(footwear, APP_SUPER_COMFY_HEELS)) || (footwear && itemhasappearance(footwear, APP_SPUTA_BOOTS)) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE] || (randomsexyheels == 13) || mtmp->data == &mons[PM_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HUMAN_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HIPPIE_HEEL_BOOT] || mtmp->data == &mons[PM_SPIDER_FAGUS] || mtmp->data == &mons[PM_BULLETATOR_WHORE] || mtmp->data == &mons[PM_LUISA_S_SPUTA_FLOWING_BLOCK_HEEL_BOOT]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIPPIE_HEELS) || (footwear && footwear->otyp == ELISE_HIPPIE_HEELS) || (footwear && itemhasappearance(footwear, APP_LOLITA_BOOTS)) || (footwear && itemhasappearance(footwear, APP_HOMO_SHOES)) || (footwear && itemhasappearance(footwear, APP_PARTICULARLY_TERRIBLE_BOOTS)) || (footwear && itemhasappearance(footwear, APP_EROTIC_BOOTS)) || (footwear && itemhasappearance(footwear, APP_SUPER_COMFY_HEELS)) || (footwear && itemhasappearance(footwear, APP_SPUTA_BOOTS)) || mtmp->data == &mons[PM_ANIMATED_PROSTITUTE_SHOE] || (randomsexyheels == 13) || mtmp->data == &mons[PM_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HUMAN_WEREPROSTITUTESHOE] || mtmp->data == &mons[PM_HIPPIE_HEEL_BOOT] || mtmp->data == &mons[PM_SPIDER_FAGUS] || mtmp->data == &mons[PM_BULLETATOR_WHORE] || mtmp->data == &mons[PM_LUISA_S_SPUTA_FLOWING_BLOCK_HEEL_BOOT]) ) {
 elena12:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -2251,6 +2251,8 @@ mattacku(mtmp)
 	int hittmp;
 	int mlevfortohit;
 
+	int numberofattacks = NATTK;
+
 	boolean canweaphit = TRUE;
 
 	/* you can attack land-based monsters while underwater, so why should YOU be protected from THEIR attacks??? --Amy */
@@ -2655,7 +2657,11 @@ mattacku(mtmp)
 		if (foo != 0) return(foo==1);
 	}
 
-	for(i = 0; i < NATTK; i++) {
+	/* complete blockage shield means 90% chance that monsters can only use their first attack against you --Amy */
+	numberofattacks = NATTK;
+	if (uarms && uarms->otyp == COMPLETE_BLOCKAGE_SHIELD && rn2(10)) numberofattacks = 1;
+
+	for(i = 0; i < numberofattacks; i++) {
 
 	    sum[i] = 0;
 	    mattk = getmattk(mdat, i, sum, &alt_attk);
@@ -9113,7 +9119,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?

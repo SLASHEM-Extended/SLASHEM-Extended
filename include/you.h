@@ -656,6 +656,7 @@ struct you {
 #define MARTIALSTYLE_BOJUTSU 6
 #define MARTIALSTYLE_KUNGFU 7
 #define MARTIALSTYLE_HAIDONGGUMDO 8
+#define MARTIALSTYLE_CAPOEIRA 9
 
 	int rangedreload;	/* for jumping flamer etc. */
 
@@ -1618,6 +1619,11 @@ struct you {
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;
 
+	int capoeiraturns;
+	int capoeirax, capoeiray;
+
+	boolean capoeiracheck; /* did you move on your next turn? (eligible for a bonus on your next action) */
+
 	int contamination;	/* weeping angel, but also other effects */
 	int alla;	/* for MS_ALLA */
 
@@ -1892,6 +1898,7 @@ struct you {
 	int gaugetimer;	/* one point shoot and particle cannon require 50 turns to reload */
 	int battertimer;	/* battering ram requires 2 turns to reload */
 	int combatcommand;	/* spell that temporarily gives +1 all stats */
+	int boosttimer;	/* potion of boost */
 
 	int conclusiocount;	/* to check whether Mr. Conclusio can spawn */
 

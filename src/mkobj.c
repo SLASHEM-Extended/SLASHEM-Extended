@@ -896,7 +896,7 @@ int
 usefulitem() /* select the ID number of an item that may be useful for the player --Amy */
 {
 
-	switch (rnd(167)) {
+	switch (rnd(168)) {
 
 		case 1:
 			return ATHAME;
@@ -1159,6 +1159,8 @@ usefulitem() /* select the ID number of an item that may be useful for the playe
 			return WAN_STRONG_HEALING;
 		case 167:
 			return WAN_TELEPORT_SELF;
+		case 168:
+			return ACID_SYRINGE;
 		default: /* fail safe */
 			return POT_FULL_HEALING;
 	}

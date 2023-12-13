@@ -8865,6 +8865,7 @@ repairitemchoice:
 					} else if (yn("Do you choose to not switch your style after all?")=='y') {
 						madechoice = 1;
 					}
+					/* capoeira cannot be selected, this is on purpose --Amy */
 
 				}
 

@@ -1327,6 +1327,7 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_EROTIC_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BLOCKCHOC_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SISTER_SHOES)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PARTICULARLY_TERRIBLE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_ICEBLOCK_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_ORGASM_PUMPS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SUPERHARD_SANDALS)) return TRUE;
@@ -1483,6 +1484,7 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_EROTIC_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_BLOCKCHOC_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SISTER_SHOES)) return TRUE;
+		if (itemhasappearance(otmp, APP_PARTICULARLY_TERRIBLE_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_ICEBLOCK_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_ORGASM_PUMPS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SUPERHARD_SANDALS)) return TRUE;
@@ -1562,6 +1564,7 @@ int number;
 		if (itemnumwithappearance(number, APP_EROTIC_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_BLOCKCHOC_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SISTER_SHOES)) return TRUE;
+		if (itemnumwithappearance(number, APP_PARTICULARLY_TERRIBLE_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_ICEBLOCK_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_ORGASM_PUMPS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SUPERHARD_SANDALS)) return TRUE;
@@ -1625,7 +1628,7 @@ playerwearssexyflats()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
+	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == EGGKICK_SHOES) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1689,6 +1692,7 @@ maybecolumnarheels()
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_PARTICULARLY_TERRIBLE_BOOTS)) return TRUE;
 	}
 
 	if (uarmf->oartifact == ART_DAT_NIGGA_S_GOT_DA_BLING) return TRUE;
@@ -2304,6 +2308,9 @@ currentmartialstyle()
 			break;
 		case MARTIALSTYLE_HAIDONGGUMDO:
 			sprintf(martialbuf, "haidong gumdo");
+			break;
+		case MARTIALSTYLE_CAPOEIRA:
+			sprintf(martialbuf, "capoeira");
 			break;
 
 		default:
@@ -7456,6 +7463,7 @@ struct obj *otmp;
 		case PAPER_SHIELD:
 		case BULL_SHIELD:
 		case DIFFICULT_SHIELD:
+		case COMPLETE_BLOCKAGE_SHIELD:
 			shieldblockrate = 40;
 			break;
 		case SPI_IMAGE_MOOSE_SHIELD:
@@ -8187,6 +8195,48 @@ dropitemattack()
 			if (Levitation) scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_DESTROY,0);
 			else scatter(u.ux,u.uy,10,VIS_EFFECTS,0); /* don't destroy fragile stuff (unless levitating) */
 	    }
+
+}
+
+/* select random martial arts style for the player; this can also select ones that you can't choose yourself --Amy */
+void
+randommartialstyle()
+{
+	switch (rnd(10)) {
+		default:
+		case 1:
+			u.martialstyle = MARTIALSTYLE_BRAWLING;
+			break;
+		case 2:
+			u.martialstyle = MARTIALSTYLE_JUDO;
+			break;
+		case 3:
+			u.martialstyle = MARTIALSTYLE_TAEKWONDO;
+			break;
+		case 4:
+			u.martialstyle = MARTIALSTYLE_MUAYTHAI;
+			break;
+		case 5:
+			u.martialstyle = MARTIALSTYLE_SILAT;
+			break;
+		case 6:
+			u.martialstyle = MARTIALSTYLE_KRAVMAGA;
+			break;
+		case 7:
+			u.martialstyle = MARTIALSTYLE_BOJUTSU;
+			break;
+		case 8:
+			u.martialstyle = MARTIALSTYLE_KUNGFU;
+			break;
+		case 9:
+			u.martialstyle = MARTIALSTYLE_HAIDONGGUMDO;
+			break;
+		case 10:
+			u.martialstyle = MARTIALSTYLE_CAPOEIRA;
+			break;
+	}
+
+	pline("Your new martial arts style is %s.", currentmartialstyle());
 
 }
 
@@ -12975,6 +13025,18 @@ peffects(otmp)
 		doubleskilltraining();
 		break;
 
+	case POT_BOOST:
+	{
+		int boostduration = rn1(100,100);
+		if (otmp->cursed) boostduration = rn1(50,50);
+		if (otmp->blessed) boostduration = rn1(150,150);
+
+		u.boosttimer += boostduration;
+		You("gain massive power.");
+	}
+
+		break;
+
 	case POT_TECH_LEVEL_UP:
 		if(otmp->cursed) {
 			unkn++;
@@ -16360,7 +16422,7 @@ boolean canarti;
 	    if (owornmask & W_ARMU && !is_shirt(obj))
 		owornmask &= ~W_ARMU;
 	    if (owornmask & W_TOOL && obj->otyp != BLINDFOLD && obj->otyp != CLIMBING_SET && obj->otyp != DEFUSING_BOX && obj->otyp != EYECLOSER && obj->otyp != DRAGON_EYEPATCH && obj->otyp != CONDOME && obj->otyp != SOFT_CHASTITY_BELT &&
-	      obj->otyp != TOWEL && obj->otyp != LENSES && obj->otyp != RADIOGLASSES && obj->otyp != SHIELD_PATE_GLASSES && obj->otyp != BOSS_VISOR && obj->otyp != BOSS_VISOR)
+	      obj->otyp != TOWEL && obj->otyp != LENSES && obj->otyp != RADIOGLASSES && obj->otyp != SHIELD_PATE_GLASSES && obj->otyp != BOSS_VISOR && obj->otyp != NIGHT_VISION_GOGGLES && obj->otyp != DEFUSING_BOX)
 		owornmask &= ~W_TOOL;
 	    otyp2 = obj->otyp;
 	    obj->otyp = otyp;

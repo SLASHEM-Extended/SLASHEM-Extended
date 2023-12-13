@@ -17650,6 +17650,22 @@ A("Healing Rain Obtained",				SPE_STRONG_HEALING, /* successfully reading it tea
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Yo Whazzah",				ACID_SYRINGE, /* is used up with 1 in 5 chance only */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("It Be Nite",				NIGHT_VISION_GOGGLES, /* autocurses, entire level constantly becomes unlit, monsters are short-sighted */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fanny's Annoyance",				EGGKICK_SHOES, /* antje trap effect, resist fear, martial arts skill trains twice as fast, can be invoked to change your martial arts style to a random one */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("She's Not Forgotten",				LOW_BOOTS, /* initialized to always be particularly terrible boots, johanna trap effect, you resist theft like a nymph */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

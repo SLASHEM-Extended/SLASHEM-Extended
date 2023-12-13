@@ -13054,6 +13054,7 @@ int spell;
 	if (Numbed) chance -= 10;
 
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */
+	if (uarms && uarms->otyp == COMPLETE_BLOCKAGE_SHIELD) chance /= 2;
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY) {
 		chance *= 5;
 		chance /= 6;

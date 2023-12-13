@@ -33541,6 +33541,10 @@ register struct permonst *ptr;
 	if (Race_if(PM_DUTHOL) && !rn2(2)) return FALSE;
 	if (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && !rn2(2)) return FALSE;
 
+	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA) { /* sons of samedi = green, everyone else hates you --Amy */
+		if (ptr->mcolor != CLR_GREEN && ptr->mcolor != CLR_BRIGHT_GREEN) return FALSE;
+	}
+
 	if (ACURR(A_CHA) < 3 && !rn2(10)) return FALSE;
 
 	if (Race_if(PM_ALBAE) || Race_if(PM_IRAHA) || Race_if(PM_NEMESIS) || Race_if(PM_RODNEYAN) || issoviet || Role_if(PM_MURDERER) || Role_if(PM_FAILED_EXISTENCE) ) return FALSE; /* albae are hated by all other races --Amy */

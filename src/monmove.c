@@ -4111,7 +4111,7 @@ altarfound:
 		boolean should_see = (couldsee(omx, omy) &&
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
-				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : 100) ));
+				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : 100) ));
 
 		if (astralspecial) should_see = TRUE;
 
@@ -4386,7 +4386,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */

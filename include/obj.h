@@ -347,6 +347,7 @@ struct obj {
 				|| (otmp)->otyp == DRAGON_EYEPATCH\
 				|| (otmp)->otyp == LENSES\
 				|| (otmp)->otyp == BOSS_VISOR\
+				|| (otmp)->otyp == NIGHT_VISION_GOGGLES\
 				|| (otmp)->otyp == SHIELD_PATE_GLASSES\
 				|| (otmp)->otyp == RADIOGLASSES)
 
@@ -360,6 +361,7 @@ struct obj {
 				|| o == DRAGON_EYEPATCH\
 				|| o == LENSES\
 				|| o == BOSS_VISOR\
+				|| o == NIGHT_VISION_GOGGLES\
 				|| o == SHIELD_PATE_GLASSES\
 				|| o == RADIOGLASSES)
 

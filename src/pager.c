@@ -29180,6 +29180,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Eep, you accidentally stepped into shit with your wedge heels! But at least there are no treaded wedge heels, so cleaning them should go relatively fast.",
 	"Wear Sabrina's platform boots! Now! You just know that if you don't, some angry women will try to kill you.",
 	"Finally, those angry women gave up their attempts to chase you. Ideally you'll want to keep wearing Sabrina's boots anyway.",
+	"You gain massive power.",
+	"You gain massive power. Now your attacks deal so much damage that even the strongest foes die very quickly, and no matter how much armor they have, you'll hit every time.",
 
 };
 

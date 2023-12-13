@@ -4313,7 +4313,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ WAN_STRONG_HEALING, "todo" },
 	{ WAN_SUPER_HEALING, "todo" },
 	{ WAN_TELEPORT_SELF, "todo" },
-
+	{ ACID_SYRINGE, "todo" },
+	{ NIGHT_VISION_GOGGLES, "todo" },
+	{ COMPLETE_BLOCKAGE_SHIELD, "todo" },
+	{ EGGKICK_SHOES, "todo" },
+	{ POT_BOOST, "todo" },
 
 	{0, "" }
 };
@@ -7781,6 +7785,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ WAN_STRONG_HEALING, "todo" },
 	{ WAN_SUPER_HEALING, "todo" },
 	{ WAN_TELEPORT_SELF, "todo" },
+	{ ACID_SYRINGE, "todo" },
+	{ NIGHT_VISION_GOGGLES, "todo" },
+	{ COMPLETE_BLOCKAGE_SHIELD, "todo" },
+	{ EGGKICK_SHOES, "todo" },
+	{ POT_BOOST, "todo" },
 
 	{0, "" }
 };

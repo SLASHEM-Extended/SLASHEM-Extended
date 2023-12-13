@@ -245,6 +245,10 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->otyp == EGGKICK_SHOES && humanoid(mon->data) && !(mon->female) && !is_neuter(mon->data) ) {
+		dmg += 5;
+	}
+
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) dmg += 2;
 
 	if (uwep && uwep->oartifact == ART_PEEPLUE) dmg += 2;
@@ -699,6 +703,13 @@ register boolean clumsy;
 		mon->mfrozen = rnd(10);
 		mon->mstrategy &= ~STRAT_WAITFORU;
 
+	}
+
+	if (uarmf && uarmf->otyp == EGGKICK_SHOES && mon->mcanmove && humanoid(mon->data) && !(mon->female) && !is_neuter(mon->data) && !rn2(20) ) {
+		pline("Score! %s's nuts got squeezed very painfully by your kick!", Monnam(mon));
+		mon->mcanmove = 0;
+		mon->mfrozen = rnd(10);
+		mon->mstrategy &= ~STRAT_WAITFORU;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && !rn2(5) && !(mon->female) && !is_neuter(mon->data) && mon->mcanmove) {

@@ -701,6 +701,8 @@ register struct monst *mtmp;
 
 	}
 
+	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA && (moves > (u.capoeiraturns + 9)) ) tmp -= 5;
+
 	if (uwep && uwep->oartifact == ART_TYPICAL_ORC && u.twoweap) {
 		tmp += 4;
 		if (uswapwep && uswapwep->oartifact == ART_TYPICAL_ORC) tmp += 10;
@@ -916,6 +918,7 @@ register struct monst *mtmp;
 	if (uarmg && uarmg->oartifact == ART_PLUS_TO_HIT) tmp += 5;
 	if (uarm && uarm->oartifact == ART_WU_WU && u.twoweap) tmp += 4;
 	if (uarmh && uarmh->oartifact == ART_BE_THE_LITE) tmp += 1;
+	if (u.boosttimer) tmp += 5;
 	if (uarms && uarms->oartifact == ART_RONDITSCH) tmp += 1;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NIOBE_S_ANGER) tmp += 4;
 	if (uwep && objects[uwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
@@ -944,6 +947,11 @@ register struct monst *mtmp;
 
 		}
 	}
+
+	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA && u.capoeiracheck && !uwep && (!u.twoweap || !uswapwep)) {
+		tmp += rnd(10);
+	}
+
 	if (PlayerInWedgeHeels && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_WEDGE_HEELS)) {
 			default: break;
@@ -1570,6 +1578,9 @@ martial_dmg()
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) damage += 10;
 	if (uarm && uarm->oartifact == ART_MONKSTERMAN) damage += 5;
 	if (RngeMaritalArts) damage += 5;
+	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA && u.capoeiracheck) {
+		damage += rnd((u.ulevel / 3) + 1);
+	}
 
 	if (Glib_combat && IsGlib) {
 
@@ -1828,6 +1839,10 @@ int dieroll;
 			if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) tmp += 5;
 			if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) tmp += 10;
 			if (uarm && uarm->oartifact == ART_MONKSTERMAN) tmp += 5;
+
+			if (u.martialstyle == MARTIALSTYLE_CAPOEIRA && u.capoeiracheck) {
+				tmp += rnd((u.ulevel / 3) + 1);
+			}
 
 			if (uarmc && itemhasappearance(uarmc, APP_BOXING_GOWN)) tmp += 2;
 
@@ -3969,6 +3984,7 @@ int dieroll;
 		if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) tmp += 3;
 		tmp += (Drunken_boxing && Confusion);
+		if (u.boosttimer) tmp += 2;
 		tmp += (StrongDrunken_boxing && Confusion);
 		if (StrongFear_factor && Feared) tmp += rnd(5);
 		if (RngeBloodlust) tmp += 1;
@@ -5467,6 +5483,10 @@ melatechoice:
 	if (u.martialstyle == MARTIALSTYLE_BOJUTSU && obj && weapon_type(obj) == P_QUARTERSTAFF && !thrown) {
 		tmp *= 2;
 		tmp /= 3;
+	}
+
+	if (uarms && uarms->otyp == COMPLETE_BLOCKAGE_SHIELD && !thrown && tmp > 1) {
+		tmp /= 2;
 	}
 
 	/* heavy two-handed weapons are bad versus tiny enemies (hard to effectively hit a tiny monster with a huge weapon) */

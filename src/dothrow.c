@@ -567,6 +567,11 @@ int thrown;
 		multishot /= 2;
 		if (multishot < 1) multishot = 1;
 	    }
+	    if (uarms && uarms->otyp == COMPLETE_BLOCKAGE_SHIELD) {
+		multishot /= 2;
+		multishot--;
+		if (multishot < 1) multishot = 1;
+	    }
 
 	    /* Rate of fire is intrinsic to the weapon - cannot be user selected
 	     * except via altmode
@@ -1814,6 +1819,7 @@ boolean hitsroof;
 	if (dmg > 0) dmg += (Drunken_boxing && Confusion);
 	if (dmg > 0) dmg += (StrongDrunken_boxing && Confusion);
 	if (RngeBloodlust && dmg > 0) dmg++;
+	if (dmg > 0 && u.boosttimer) dmg += 2;
 	if (dmg > 0 && uarms && uarms->oartifact == ART_TEH_BASH_R) dmg += 2;
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_DUFFDUFFDUFF) dmg += 3;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_RAAAAAAAARRRRRRGH) dmg += 5;
@@ -2716,6 +2722,7 @@ boolean polearming;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
+	if (u.boosttimer) tmp += 5;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 	if (uwep && uwep->oartifact == ART_JUSTICE_FOR_GARLIC) tmp += 5;
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;

@@ -392,6 +392,12 @@ nh_timeout()
 		if (PlayerBleeds < 0) PlayerBleeds = 0; /* fail safe */
 	}
 
+	if (u.boosttimer) {
+		u.boosttimer--;
+		if (!u.boosttimer) pline_The("boost power ends.");
+		if (u.boosttimer < 0) u.boosttimer = 0; /* fail safe */
+	}
+
 	if (u.echolocationspell) {
 		u.echolocationspell--;
 		if (!u.echolocationspell) You("no longer have echolocation.");

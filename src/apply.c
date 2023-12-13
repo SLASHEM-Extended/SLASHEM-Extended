@@ -164,7 +164,7 @@ use_towel(obj)
 			      (old ? "has more" : "now has"));
 			make_blinded(Blinded + (long)u.ucreamed - old, TRUE);
 		    } else {
-			const char *what = (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == SHIELD_PATE_GLASSES || ublindf->otyp == BOSS_VISOR) ?
+			const char *what = (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == SHIELD_PATE_GLASSES || ublindf->otyp == BOSS_VISOR || ublindf->otyp == NIGHT_VISION_GOGGLES) ?
 					    "lenses" : "blindfold";
 			if (ublindf->cursed) {
 			    You("push your %s %s.", what,
@@ -5339,6 +5339,7 @@ potion_charge_cost(struct obj *pot)
 	case POT_ESP: cost += 1; break;
 	case POT_GAIN_ENERGY: cost += 1; break;
 	case POT_GAIN_HEALTH: cost += 3; break;
+	case POT_BOOST: cost += 3; break;
 	case POT_INVISIBILITY: cost += 1; break;
 	case POT_SEE_INVISIBLE: cost += 1; break;
 	case POT_CURE_CRITICAL_WOUNDS: cost += 2; break;
@@ -5625,6 +5626,7 @@ dyechoice:
 	case RADIOGLASSES:
 	case SHIELD_PATE_GLASSES:
 	case BOSS_VISOR:
+	case NIGHT_VISION_GOGGLES:
 	case CONDOME:
 	case CLIMBING_SET:
 	case DEFUSING_BOX:
@@ -7056,6 +7058,26 @@ materialchoice:
 
 		res = use_symbiote(obj);
 		noartispeak = TRUE;
+		break;
+
+	case ACID_SYRINGE:
+
+		noartispeak = TRUE;
+
+		if (obj && obj->oartifact == ART_YO_WHAZZAH) {
+			if (!rn2(5)) delobj(obj);
+			else pline_The("syringe's contents aren't used up yet!");
+		} else {
+			delobj(obj);
+		}
+
+		if (!Acid_resistance) {
+			pline("Ugghh, your %s burns!", body_part(BLOOD));
+			losehp(d(2, 2), "acid injection", KILLED_BY_AN);
+		}
+
+		if (Stoned) fix_petrification();
+
 		break;
 
 	case INFUSION:

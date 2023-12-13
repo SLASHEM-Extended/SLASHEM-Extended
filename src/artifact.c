@@ -908,6 +908,7 @@ init_appearance_randarts()
 	artilist[ART_SPREAD_YOUR_LEGS_WIDE].otyp = find_grey_shaded_gloves();
 	artilist[ART_GREEB].otyp = find_weeb_cloak();
 	artilist[ART_PRINCE_OF_PERSIA].otyp = find_persian_boots();
+	artilist[ART_SHE_S_NOT_FORGOTTEN].otyp = find_terrible_boots();
 	artilist[ART_ANASTASIA_S_PLAYFULNESS].otyp = find_hugging_boots();
 	artilist[ART_KATIE_MELUA_S_FEMALE_WEAPO].otyp = find_fleecy_boots();
 	artilist[ART_LISSIE_S_SHEAGENTUR].otyp = find_fleecy_boots();
@@ -5237,6 +5238,13 @@ chargingchoice:
 			while ( (objtomodify == -1) || (objtomodify == GOLD_PIECE) || (objtomodify == STRANGE_OBJECT) || (objtomodify == AMULET_OF_YENDOR) || (objtomodify == CANDELABRUM_OF_INVOCATION) || (objtomodify == BELL_OF_OPENING) || (objtomodify == SPE_BOOK_OF_THE_DEAD) || (objects[objtomodify].oc_prob < 1) ) objtomodify = rn2(NUM_OBJECTS);
 			objects[objtomodify].oc_material = MT_SILVER;
 			pline("%s (%s) is made of silver now.", obj_descr[objtomodify].oc_name, objtypenames[objects[objtomodify].oc_class]);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_FANNY_S_ANNOYANCE) {
+
+			randommartialstyle();
 
 			break;
 		}

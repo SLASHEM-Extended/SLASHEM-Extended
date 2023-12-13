@@ -167,6 +167,9 @@ Boots_on()
 	case PREHISTORIC_BOOTS:
 	case SYNTHETIC_SANDALS:
 		break;
+	case EGGKICK_SHOES:
+		makeknown(uarmf->otyp);
+		break;
 	case WIND_AND_FIRE_WHEELS:
 		EShock_resistance |= WORN_BOOTS;
 		break;
@@ -1024,6 +1027,7 @@ Boots_off()
 	case UNFAIR_STILETTOS:
 	case SKY_HIGH_HEELS:
 	case PREHISTORIC_BOOTS:
+	case EGGKICK_SHOES:
 	case SYNTHETIC_SANDALS:
 	case PLASTEEL_BOOTS:
 
@@ -3471,6 +3475,7 @@ Shield_on()
 	case BUCKLER:
 	case LIGHT_SHIELD:
 	case RESONANT_SHIELD:
+	case COMPLETE_BLOCKAGE_SHIELD:
 	case CRINGE_SHIELD:
 	case BRONZE_SHIELD:
 	case SHELL_SHIELD:
@@ -3723,6 +3728,7 @@ Shield_off()
 	case BUCKLER:
 	case LIGHT_SHIELD:
 	case RESONANT_SHIELD:
+	case COMPLETE_BLOCKAGE_SHIELD:
 	case CRINGE_SHIELD:
 	case BRONZE_SHIELD:
 	case SHELL_SHIELD:
@@ -5457,6 +5463,13 @@ register struct obj *otmp;
 		}
 	}
 
+	if (otmp && otmp->oartifact == ART_IT_BE_NITE) {
+		if (!otmp->cursed) {
+			curse(otmp);
+			pline("The goggles became cursed, and now it be nite.");
+		}
+	}
+
 	if (otmp && otmp->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) {
 		curse(otmp);
 		otmp->hvycurse = otmp->prmcurse = TRUE;
@@ -5517,7 +5530,7 @@ register struct obj *otmp;
 	    if (was_blind) {
 		/* "still cannot see" makes no sense when removing lenses
 		   since they can't have been the cause of your blindness */
-		if (otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR)
+		if (otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != NIGHT_VISION_GOGGLES)
 		    You("still cannot see.");
 	    } else {
 		changed = TRUE;	/* !was_blind */
@@ -6371,11 +6384,11 @@ doputon()
 			else if (ublindf->otyp == DEFUSING_BOX)
 					already_wearing("a defusing box");
 			else if (ublindf->otyp == BLINDFOLD || ublindf->otyp == EYECLOSER || ublindf->otyp == DRAGON_EYEPATCH) {
-				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == SHIELD_PATE_GLASSES || otmp->otyp == BOSS_VISOR)
+				if (otmp->otyp == LENSES || otmp->otyp == RADIOGLASSES || otmp->otyp == SHIELD_PATE_GLASSES || otmp->otyp == BOSS_VISOR || otmp->otyp == NIGHT_VISION_GOGGLES)
 					already_wearing2("lenses", "a blindfold");
 				else
 					already_wearing("a blindfold");
-			} else if (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == SHIELD_PATE_GLASSES || ublindf->otyp == BOSS_VISOR) {
+			} else if (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == SHIELD_PATE_GLASSES || ublindf->otyp == BOSS_VISOR || ublindf->otyp == NIGHT_VISION_GOGGLES) {
 				if (otmp->otyp == BLINDFOLD || otmp->otyp == EYECLOSER || otmp->otyp == DRAGON_EYEPATCH)
 					already_wearing2("a blindfold", "some lenses");
 				else
@@ -6757,6 +6770,21 @@ find_ac()
 
 	if (irisartiboost()) {
 		uac -= (irisartiboost() * 3);
+	}
+
+	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA && u.umoved) {
+		uac -= 5;
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_MARTIAL_ARTS)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 2; break;
+				case P_EXPERT: uac -= 3; break;
+				case P_MASTER: uac -= 4; break;
+				case P_GRAND_MASTER: uac -= 5; break;
+				case P_SUPREME_MASTER: uac -= 6; break;
+			}
+
+		}
 	}
 
 	if (uarm && uarm->oartifact == ART_PROTECTION_WITH_A_PRICE) uac -= 5;
@@ -7270,6 +7298,13 @@ find_ac()
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
 		
+	}
+
+	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA && (moves > (u.capoeiraturns + 9)) ) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
+
 	}
 
 	if (uwep && uwep->oartifact == ART_TUNA_CANNON) {
