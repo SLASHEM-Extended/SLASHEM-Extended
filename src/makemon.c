@@ -29772,9 +29772,9 @@ loopback:
 		if (ct > 0 && (FemtrapActiveLaura && (ptr->msound == MS_SHOE))) ct += (SuperFemtrapLaura ? 100 : 50);
 		if (ct > 0 && u.pompejiwantedlevel && (ptr->msound == MS_POMPEJI)) ct += min(1000, u.pompejiwantedlevel);
 		if (ct > 0 && (u.bulletatorwantedlevel || u.bulletatortimer) && (ptr->msound == MS_BULLETATOR)) {
-			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) ct += 3;
-			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 2;
-			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 20;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) ct += 2;
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 1;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) ct += 5;
 		}
 
 		if (ct > 0 && RngeExtinction && mvitals[mndx].born) ct += mvitals[mndx].born;
@@ -31351,9 +31351,9 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[last].msound == MS_SHOE))) num += (SuperFemtrapLaura ? 100 : 50);
 		if (u.pompejiwantedlevel && (mons[last].msound == MS_POMPEJI)) num += min(1000, u.pompejiwantedlevel);
 		if ((u.bulletatorwantedlevel || u.bulletatortimer) && (mons[last].msound == MS_BULLETATOR)) {
-			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num += 3;
-			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 2;
-			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 20;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num += 2;
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 1;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num += 5;
 		}
 
 		if (monster_with_trait(&mons[last], u.frequenttrait1)) num += u.freqtraitbonus1;
@@ -32588,9 +32588,9 @@ int     spc;
 		if ((FemtrapActiveLaura && (mons[first].msound == MS_SHOE))) num -= (SuperFemtrapLaura ? 100 : 50);
 		if (u.pompejiwantedlevel && (mons[first].msound == MS_POMPEJI)) num -= min(1000, u.pompejiwantedlevel);
 		if ((u.bulletatorwantedlevel || u.bulletatortimer) && (mons[first].msound == MS_BULLETATOR)) {
-			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num -= 3;
-			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 2;
-			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 20;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED) num -= 2;
+			if (P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 1;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) num -= 5;
 		}
 
 		if (monster_with_trait(&mons[first], u.frequenttrait1)) num -= u.freqtraitbonus1;
