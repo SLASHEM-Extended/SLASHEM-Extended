@@ -1326,6 +1326,10 @@ const struct innate {
 		     {   11, &(HSearching), "perceptive", "unaware", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	sdi_abil[] = { {   4, &(HFast), "quick", "slow", TRUE },
+			 {	20, &(HSick_resistance), "immune to diseases", "no longer immune to diseases", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	hob_abil[] = { {  1, &(HStealth), "", "", TRUE },
 		     {   7, &(HFast), "quick", "slow", TRUE },
 		     {  15, &(HMagicFindBonus), "capable of finding magical items", "less capable of finding magical items", TRUE },
@@ -2872,6 +2876,7 @@ int oldlevel, newlevel;
 	case PM_LIZARDMAN:         rabil = liz_abil;	break;
 	case PM_WEAPON_BUG:         rabil = grd_abil;	break;
 	case PM_HOBBIT:		rabil = hob_abil;	break;
+	case PM_SAMEDI:		rabil = sdi_abil;	break;
 	case PM_ORC:            rabil = orc_abil;	break;
 	case PM_HUMAN_WEREWOLF:	rabil = lyc_abil;	break;
 	case PM_FENEK:	rabil = fen_abil;	break;

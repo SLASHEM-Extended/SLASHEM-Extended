@@ -8236,6 +8236,12 @@ randommartialstyle()
 			break;
 	}
 
+	if (Race_if(PM_SAMEDI)) {
+		u.martialstyle = MARTIALSTYLE_CAPOEIRA;
+		pline("The Sons of Samedi are permanently locked into the capoeira martial arts style!");
+		return;
+	}
+
 	pline("Your new martial arts style is %s.", currentmartialstyle());
 
 }

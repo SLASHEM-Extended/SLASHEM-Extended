@@ -33542,7 +33542,7 @@ register struct permonst *ptr;
 	if (uarmc && uarmc->oartifact == ART_RAMMING_SUPPORT_RIPPAGE && !rn2(2)) return FALSE;
 
 	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA) { /* sons of samedi = green, everyone else hates you --Amy */
-		if (ptr->mcolor != CLR_GREEN && ptr->mcolor != CLR_BRIGHT_GREEN) return FALSE;
+		if ((ptr->mcolor != CLR_GREEN) && (ptr->mcolor != CLR_BRIGHT_GREEN)) return FALSE;
 	}
 
 	if (ACURR(A_CHA) < 3 && !rn2(10)) return FALSE;

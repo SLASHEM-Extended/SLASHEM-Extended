@@ -122,6 +122,7 @@ cannibal_allowed()
 		case PM_ZAUR:
 		case PM_WYLVAN:
 		case PM_KLACKON:
+		case PM_SAMEDI:
 		case PM_KUTAR:
 		case PM_TONBERRY:
 		case PM_PLAYER_GLORKUM:

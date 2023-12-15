@@ -263,6 +263,7 @@ canofferownrace()
 		case PM_WYLVAN:
 		case PM_KOBOLT:
 		case PM_MOULD:
+		case PM_SAMEDI:
 		case PM_HUMANLIKE_DRAGON:
 		case PM_HUMANLIKE_NAGA:
 		case PM_MISSINGNO:

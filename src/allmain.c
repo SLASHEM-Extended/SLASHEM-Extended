@@ -2676,6 +2676,8 @@ moveloop()
 
 		if (!FemtrapActiveSabrina && u.sabrinaactive) u.sabrinaactive = FALSE;
 
+		if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
+
 		if (uamul && uamul->oartifact == ART_CURSE_THE_TIME_SHIFT && !rn2(10000)) {
 			monstermoves += 1000;
 			moves += 1000;
@@ -15480,6 +15482,8 @@ past4:
 	u.fungalsandals = FALSE;
 
 	kill_deathmarked_monsters();
+
+	if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
 
 	if (!(uwep && uwep->oartifact == ART_GORMALER)) u.gormalerturns = 0;
 

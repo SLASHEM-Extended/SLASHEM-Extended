@@ -1163,6 +1163,19 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	*/
 
+	sdi_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_BLITZ, 1},
+		       {   1, T_PUMMEL, 1},
+		       {   10, T_DASH, 1},
+		       {   12, T_G_SLAM, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_DRAW_ENERGY, 1},
+		       {   25, T_SPIRIT_BOMB, 1},
+		       {   0, 0, 0} },
+
 	she_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -8832,6 +8845,12 @@ repairitemchoice:
 			{
 				boolean madechoice = 0;
 
+				if (Race_if(PM_SAMEDI)) {
+					u.martialstyle = MARTIALSTYLE_CAPOEIRA;
+					pline("The Sons of Samedi are permanently locked into the capoeira martial arts style!");
+					return 0;
+				}
+
 				if (PlayerCannotUseSkills) {
 					t_timeout = rnz(8000);
 					pline("Somehow, nothing happens.");
@@ -11799,6 +11818,7 @@ race_tech()
 		case PM_BRETON:		return (bre_tech);
 		case PM_MAZIN:		return (mzi_tech);
 		case PM_PLAYER_SHEEP:		return (she_tech);
+		case PM_SAMEDI:		return (sdi_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);
 		case PM_INSECTOID:		return (ins_tech);
 		case PM_KLACKON:		return (kla_tech);

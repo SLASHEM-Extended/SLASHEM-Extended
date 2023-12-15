@@ -2032,6 +2032,7 @@ u_slow_down()
 	if (uwep && uwep->oartifact == ART_DAEFAROTH) return; /* player is immune */
 	if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) return;
 	if (uarmf && uarmf->otyp == SPEED_HOLDING_BOOTS) return;
+	if (Race_if(PM_SAMEDI)) return;
 	if (bmwride(ART_SENATOR_S_SPEED)) return;
 	if (uarmf && itemhasappearance(uarmf, APP_NOT_SLOWING_DOWN_BOOTS) && rn2(10)) return; /* 90% resistance */
 

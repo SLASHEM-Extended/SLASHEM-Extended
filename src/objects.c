@@ -8977,6 +8977,7 @@ SCROLL((char *)0,               "FUCK PRICE IDENTIFICATION",  P_NONE,     1,   0
 SCROLL((char *)0,               "DIFFICULTY LEVEL  ERE HIT BY A PERCENTI",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "THE GAME OVERHEATS AT TOO HIGH DIFFICULTY LEVELS",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 SCROLL((char *)0,               "SET THE DIFFICULTY HIGH ENOUGH AND MONSTERS WILL SPAWN TENS OF THOUSANDS OF GOLD",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "THE LOELOELOE WILL SOON LUELUELUE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
