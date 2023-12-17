@@ -773,6 +773,12 @@ nh_timeout()
 				pline("A portal opens before you.");
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
+				if (practicantterror) {
+					pline("%s thunders: 'That's not an allowed form of transportation! Are you really too lazy to take the elevator or the stairs? Well wait, I'll ground you for that offense. And additionally you also pay 10000 zorkmids to me!'", noroelaname());
+					fineforpracticant(10000, 0, 0);
+					NoReturnEffect += rnz(10000);
+				}
+
 			}
 		}
 	}

@@ -6169,7 +6169,7 @@ newbossUTE:
 				u.capoeiray = u.uy;
 			}
 
-			if (moves > (u.capoeiraturns + 9)) pline("Standing still for that long isn't conducive to the capoeira style.");
+			if (moves == (u.capoeiraturns + 10)) pline("Standing still for that long isn't conducive to the capoeira style.");
 		}
 
 		if (FemtrapActiveNatalje) {
