@@ -548,6 +548,7 @@ bot1()
 		if (flags.hybridkillfiller) sprintf(nb = eos(nb), "k");
 		if (flags.hybridbadstatter) sprintf(nb = eos(nb), "y");
 		if (flags.hybriddroughter) sprintf(nb = eos(nb), "w");
+		if (flags.hybridvanillaoid) sprintf(nb = eos(nb), "j");
 	}
 
 	if (flags.showscore)

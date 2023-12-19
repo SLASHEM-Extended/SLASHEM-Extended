@@ -8484,6 +8484,15 @@ matrixredo:
 	    skill = class_skill->skill;
 	    skmax = class_skill->skmax;
 
+	    /* vanillaoid race by Amy: has "vanilla" caps for skills, i.e. they can be capped at basic or skilled */
+	    if (isvanillaoid && class_skill->skvan > 0) {
+
+		if (class_skill->skvan > 0 && skmax >= P_MASTER) impossible("role skill cap too high for vanillaoid");
+
+		if (class_skill->skvan == 1 && skmax > P_BASIC) skmax = P_BASIC;
+		if (class_skill->skvan == 2 && skmax > P_SKILLED) skmax = P_SKILLED;
+	    }
+
 	    if (Race_if(PM_RELEASIER)) {
 releasetryagain:
 			skilltoswap = rnd(P_NUM_SKILLS - 1);

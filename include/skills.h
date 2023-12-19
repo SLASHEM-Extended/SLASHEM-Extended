@@ -220,6 +220,7 @@ struct skills {
 struct def_skill {
 	xchar skill;
 	xchar skmax;
+	xchar skvan; /* 1 = vanillaoid capped at basic, 2 = skilled, 0 = unchanged */
 };
 
 /* these roles qualify for a martial arts bonus */
