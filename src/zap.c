@@ -158,6 +158,8 @@ struct obj *otmp;
 	if (u.uswallow && mtmp == u.ustuck)
 	    reveal_invis = FALSE;
 
+	if (skilldmg < 0) skilldmg = 0; /* fail safe */
+
 	ranged_thorns(mtmp);
 
 	switch(otyp) {
@@ -666,6 +668,15 @@ armorsmashdone:
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
+		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+		break;
+
+	case SPE_ULTRA_P:
+		dmg = d(4, 7);
+		if (u.ulevel > 5) dmg += rnd(u.ulevel / 2);
+		if (dbldam) dmg *= 2;
+		dmg += (skilldmg * rnd(3));
+		if (canseemon(mtmp)) pline("%s is blasted!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 		break;
 
@@ -3800,6 +3811,7 @@ struct obj *obj, *otmp;
 	case SPE_BUBBLEBEAM:
 	case WAN_DREAM_EATER:
 	case SPE_MANA_BOLT:
+	case SPE_ULTRA_P:
 	case SPE_SNIPER_BEAM:
 	case SPE_BLINDING_RAY:
 	case SPE_ENERGY_BOLT:
@@ -5915,6 +5927,10 @@ boolean ordinary;
 			pline("You are irradiated with energy!");
 		      damage = d(2, 4);
 			break;
+		case SPE_ULTRA_P:
+			pline("You are blasted!");
+		      damage = d(4, 7);
+			break;
 		case SPE_ENERGY_BOLT:
 			pline("You are irradiated with energy!");
 		      damage = d(8, 4);
@@ -6559,6 +6575,7 @@ boolean ordinary;
 		case WAN_FIRE:
 		    makeknown(WAN_FIRE);
 		case SPE_FIRE_BOLT:
+		case SPE_DEFENSIVE_FIREBALL:
 		case FIRE_HORN:
 		    if (Fire_resistance) {
 			shieldeff(u.ux, u.uy);
@@ -7689,6 +7706,7 @@ struct obj *obj;	/* wand or spell */
 		case SPE_BUBBLING_HOLE:
 		case SPE_WATER_FLAME:
 		case SPE_MANA_BOLT:
+		case SPE_ULTRA_P:
 		case SPE_SNIPER_BEAM:
 		case SPE_BLINDING_RAY:
 		case SPE_ENERGY_BOLT:
@@ -8084,6 +8102,8 @@ struct obj *obj;
 		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_FIRE_BOLT)
 		skilldmg = spell_damage_bonus(obj->otyp);
+	if (otyp == SPE_DEFENSIVE_FIREBALL)
+		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_CALL_THE_ELEMENTS)
 		skilldmg = spell_damage_bonus(obj->otyp);
 	if (otyp == SPE_MULTIBEAM)
@@ -8285,6 +8305,11 @@ drainingdone:
 
 	    else if (otyp == SPE_FIRE_BOLT) {
 		buzz((int)(21), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+
+	    }
+
+	    else if (otyp == SPE_DEFENSIVE_FIREBALL) {
+		buzz((int)(11), (u.ulevel / 3) + rnd(6) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -10866,7 +10891,7 @@ register int osym, dmgtyp;
 
 			if (osym==SCROLL_CLASS && obj->oartifact)
 			skip++;
-		    if (obj->otyp == SCR_FIRE || obj->otyp == POT_FIRE || obj->otyp == SPE_FIREBALL || obj->otyp == SPE_INFERNO || obj->otyp == SPE_FIRE_BOLT || obj->otyp == SPE_FIRE_GOLEM)
+		    if (obj->otyp == SCR_FIRE || obj->otyp == POT_FIRE || obj->otyp == SPE_FIREBALL || obj->otyp == SPE_INFERNO || obj->otyp == SPE_FIRE_BOLT || obj->otyp == SPE_DEFENSIVE_FIREBALL || obj->otyp == SPE_FIRE_GOLEM)
 			skip++;
 		    if (obj->otyp == SPE_BOOK_OF_THE_DEAD) {
 			skip++;

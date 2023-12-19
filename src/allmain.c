@@ -17363,6 +17363,9 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_SUPER_HEALING].oc_name = "todo";
 	obj_descr[SPE_HEALING_RAIN].oc_name = "todo";
 	obj_descr[SPE_TELEPORT_SELF].oc_name = "todo";
+	obj_descr[SPE_DEFENSIVE_FIREBALL].oc_name = "todo";
+	obj_descr[SPE_ULTRA_P].oc_name = "todo";
+	obj_descr[SPE_FORCIBLE_MOVE].oc_name = "todo";
 
 	{
 
@@ -18765,6 +18768,9 @@ boolean new_game;	/* false => restoring an old game */
 	obj_descr[SPE_SUPER_HEALING].oc_name = "todo";
 	obj_descr[SPE_HEALING_RAIN].oc_name = "todo";
 	obj_descr[SPE_TELEPORT_SELF].oc_name = "todo";
+	obj_descr[SPE_DEFENSIVE_FIREBALL].oc_name = "todo";
+	obj_descr[SPE_ULTRA_P].oc_name = "todo";
+	obj_descr[SPE_FORCIBLE_MOVE].oc_name = "todo";
 
 	{
 

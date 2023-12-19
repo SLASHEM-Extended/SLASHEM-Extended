@@ -4318,6 +4318,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ COMPLETE_BLOCKAGE_SHIELD, "todo" },
 	{ EGGKICK_SHOES, "todo" },
 	{ POT_BOOST, "todo" },
+	{ SPE_DEFENSIVE_FIREBALL, "todo" },
+	{ SPE_ULTRA_P, "todo" },
+	{ SPE_FORCIBLE_MOVE, "todo" },
 
 	{0, "" }
 };
@@ -7790,6 +7793,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ COMPLETE_BLOCKAGE_SHIELD, "todo" },
 	{ EGGKICK_SHOES, "todo" },
 	{ POT_BOOST, "todo" },
+	{ SPE_DEFENSIVE_FIREBALL, "todo" },
+	{ SPE_ULTRA_P, "todo" },
+	{ SPE_FORCIBLE_MOVE, "todo" },
 
 	{0, "" }
 };

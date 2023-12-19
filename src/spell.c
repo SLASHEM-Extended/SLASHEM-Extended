@@ -3383,7 +3383,7 @@ boolean atme;
 	} else if (spellknow(spell) <= 1000) {
 	    Your("knowledge of this spell is growing faint.");
 	}
-	energy = (spellev(spell) * 5);    /* 5 <= energy <= 35 */
+	energy = manacost(spellid(spell));
 	if (SpellColorYellow) energy *= 2;
 	if (SpellColorWhite) energy *= 4;
 
@@ -3433,37 +3433,6 @@ boolean atme;
 	if (tech_inuse(T_SPELL_SPAM) && rn2(10)) {
 		energy += 1; energy *= 9; energy /= 10;
 	}
-
-	/* Some spells are just plain too powerful, and need to be nerfed. Sorry. --Amy */
-	if (spellid(spell) == SPE_FINGER_OF_DEATH) energy *= 3;
-	if (spellid(spell) == SPE_TIME) energy *= 4;
-	if (spellid(spell) == SPE_INERTIA) energy *= 4;
-	if (spellid(spell) == SPE_TIME_STOP) energy *= 5;
-	if (spellid(spell) == SPE_PARALYSIS) energy *= 2;
-	if (spellid(spell) == SPE_HELLISH_BOLT) energy *= 2;
-	if (spellid(spell) == SPE_PETRIFY) energy *= 4;
-	if (spellid(spell) == SPE_JUMPING) energy *= 5;
-	if (spellid(spell) == SPE_ARMOR_SMASH) { energy *= 5; energy /= 3; }
-	if (spellid(spell) == SPE_GODMODE) { energy *= 5; energy /= 2;}
-	if (spellid(spell) == SPE_DISINTEGRATION) energy *= 5;
-	if (spellid(spell) == SPE_DISINTEGRATION_BEAM) energy *= 5;
-	if (spellid(spell) == SPE_FIXING) energy *= 3;
-	if (spellid(spell) == SPE_CONVERGE_BREATH) energy *= 4;
-	if (spellid(spell) == SPE_CHROMATIC_BEAM) { energy *= 10; energy /= 7;}
-	if (spellid(spell) == SPE_HEALING) { energy *= 3; energy /= 2;}
-	if (spellid(spell) == SPE_WATER_FLAME) { energy *= 3; energy /= 2;}
-	if (spellid(spell) == SPE_FIREBALL) energy *= 2;
-	if (spellid(spell) == SPE_SHINING_WAVE) energy *= 5;
-	if (spellid(spell) == SPE_RELOCATION) energy *= 5;
-	if (spellid(spell) == SPE_FIRE_BOLT) { energy *= 3; energy /= 2;}
-	if (spellid(spell) == SPE_CONE_OF_COLD) { energy *= 3; energy /= 2;}
-	if (spellid(spell) == SPE_MULTIBEAM) { energy *= 6; energy /= 5;}
-	if (spellid(spell) == SPE_CALL_THE_ELEMENTS) { energy *= 7; energy /= 4;}
-	if (spellid(spell) == SPE_INFERNO) { energy *= 3; energy /= 2;}
-	if (spellid(spell) == SPE_ICE_BEAM) { energy *= 3; energy /= 2;}
-	if (spellid(spell) == SPE_HYPER_BEAM) { energy *= 4; energy /= 3;}
-	if (spellid(spell) == SPE_ELEMENTAL_BEAM) { energy *= 6; energy /= 5;}
-	if (spellid(spell) == SPE_NATURE_BEAM) { energy *= 5; energy /= 4;}
 
 	/* slight mana cost decrease if you're very skilled, to make skill matter more --Amy */
 	if (role_skill == P_SKILLED) { if (rn2(10)) energy += 1; energy *= 19; energy /= 20;}
@@ -4086,6 +4055,7 @@ castanyway:
 	case SPE_MULTIBEAM:
 	case SPE_CALL_THE_ELEMENTS:
 	case SPE_MANA_BOLT:
+	case SPE_ULTRA_P:
 	case SPE_SNIPER_BEAM:
 	case SPE_BLINDING_RAY:
 	case SPE_ENERGY_BOLT:
@@ -4153,8 +4123,40 @@ castanyway:
 	case SPE_PETRIFY:
 	case SPE_WIND:
 	case SPE_FIRE_BOLT:
+	case SPE_DEFENSIVE_FIREBALL:
 	case SPE_HYPER_BEAM:
 	case SPE_PARALYSIS:
+
+		if (pseudo->otyp == SPE_ULTRA_P) {
+
+			if(!Levitation) {
+				HLevitation = 1;
+				float_up();
+				HLevitation = 0;
+			}
+
+			incr_itimeout(&HLevitation, rn1(30, 10));
+			spoteffects(FALSE);	/* for sinks */
+		}
+
+		if (pseudo->otyp == SPE_DEFENSIVE_FIREBALL) {
+			boolean fireballfail = FALSE;
+			int i, j, bd = 1;
+			struct monst *mtmp;
+			for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+					if (!mtmp->mpeaceful && !mtmp->mtame) {
+						fireballfail = TRUE;
+					}
+				}
+			}
+
+			if (fireballfail) {
+				You("are interrupted!");
+				break;
+			}
+		}
 
 		if (pseudo->otyp == SPE_BATTERING_RAM) {
 			if (u.battertimer) {
@@ -9753,6 +9755,19 @@ controlagain:
 	case SPE_PROTECTION:
 		cast_protection();
 		break;
+
+	case SPE_FORCIBLE_MOVE:
+
+		if (!jump(-5)) {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+		break;
+
 	case SPE_JUMPING:
 		if (!jump(max(role_skill,1))) {
 			pline("%s", nothing_happens);
@@ -11627,19 +11642,20 @@ int specialmenutype;
 	 * in the window-ports (say via a tab character).
 	 */
 	if (!iflags.menu_tab_sep)
-		sprintf(buf, "%-20s     Level  %-10s Fail  Memory", "    Name", " Category");
+		sprintf(buf, "%-20s     Level  Pw  %-10s Fail  Memory", "    Name", " Category");
 	else
-		sprintf(buf, "Name\tLevel\t Category\tFail");
+		sprintf(buf, "Name\tLevel\tPw\t Category\tFail");
 	if (flags.menu_style == MENU_TRADITIONAL)
 		strcat(buf, iflags.menu_tab_sep ? "\tKey" : "  Key");
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, buf, MENU_UNSELECTED);
 	if (!SpellLoss && !u.uprops[SPELLS_LOST].extrinsic && !have_spelllossstone()) {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 		sprintf(buf, iflags.menu_tab_sep ?
-			"%s\t%-d%s\t%s%s\t%-d%%" : "%-20s  %2d%s%s  %-8s %4d%%"
+			"%s\t%-d%s\t%s%s %d\t%-d%%" : "%-20s  %2d%s%s %3d  %-8s %4d%%"
 			"   %3d%%",
 			spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
 			spellmemorize(i) ? "+" : "-",
+			manacost(spellid(i)),
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 
@@ -11790,13 +11806,14 @@ dump_spells()
 	}
 	dump("", "Spells known in the end");
 
-	sprintf(buf, "%-20s   Level    %-10s Fail  Memory", "    Name", " Category");
+	sprintf(buf, "%-20s   Level  Pw  %-10s Fail  Memory", "    Name", " Category");
 	dump("  ",buf);
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
-		sprintf(buf, "%c - %-20s  %2d%s%s  %-8s %4d%%  %3d%%",
+		sprintf(buf, "%c - %-19s %2d%s%s %3d  %-8s %4d%%  %3d%%",
 			spellet(i), spellname(i), spellev(i),
 			((spellknow(i) > 1000) || SpellColorCyan) ? " " : (spellknow(i) ? "!" : "*"),
 			spellmemorize(i) ? "+" : "-",
+			manacost(spellid(i)),
 			spelltypemnemonic(spell_skilltype(spellid(i))),
 			SpellColorBlack ? 0 : (100 - percent_success(i)),
 			SpellColorCyan ? 100 : issoviet ? 0 : (spellknow(i) * 100 + (KEEN-1)) / KEEN);
@@ -13425,6 +13442,52 @@ mastermindsave()
 
 	return FALSE;
 
+}
+
+/* calculation for mana cost, externalized --Amy */
+int
+manacost(spellnum)
+int spellnum;
+{
+	int energy = (objects[spellnum].oc_level * 5);
+	if (energy < 5) energy = 5; /* fail safe */
+
+	switch (spellnum) {
+		case SPE_FINGER_OF_DEATH: energy *= 3; break;
+		case SPE_TIME: energy *= 4; break;
+		case SPE_INERTIA: energy *= 4; break;
+		case SPE_TIME_STOP: energy *= 5; break;
+		case SPE_PARALYSIS: energy *= 2; break;
+		case SPE_HELLISH_BOLT: energy *= 2; break;
+		case SPE_PETRIFY: energy *= 4; break;
+		case SPE_JUMPING: energy *= 5; break;
+		case SPE_ARMOR_SMASH: energy *= 5; energy /= 3; break;
+		case SPE_GODMODE: energy *= 5; energy /= 2; break;
+		case SPE_DISINTEGRATION: energy *= 5; break;
+		case SPE_DISINTEGRATION_BEAM: energy *= 5; break;
+		case SPE_FIXING: energy *= 3; break;
+		case SPE_CONVERGE_BREATH: energy *= 4; break;
+		case SPE_CHROMATIC_BEAM: energy *= 10; energy /= 7; break;
+		case SPE_HEALING: energy *= 3; energy /= 2; break;
+		case SPE_WATER_FLAME: energy *= 3; energy /= 2; break;
+		case SPE_FIREBALL: energy *= 2; break;
+		case SPE_SHINING_WAVE: energy *= 5; break;
+		case SPE_RELOCATION: energy *= 5; break;
+		case SPE_FIRE_BOLT: energy *= 3; energy /= 2; break;
+		case SPE_DEFENSIVE_FIREBALL: energy *= 3; energy /= 2; break;
+		case SPE_CONE_OF_COLD: energy *= 3; energy /= 2; break;
+		case SPE_MULTIBEAM: energy *= 6; energy /= 5; break;
+		case SPE_CALL_THE_ELEMENTS: energy *= 7; energy /= 4; break;
+		case SPE_INFERNO: energy *= 3; energy /= 2; break;
+		case SPE_ICE_BEAM: energy *= 3; energy /= 2; break;
+		case SPE_HYPER_BEAM: energy *= 4; energy /= 3; break;
+		case SPE_ELEMENTAL_BEAM: energy *= 6; energy /= 5; break;
+		case SPE_NATURE_BEAM: energy *= 5; energy /= 4; break;
+		case SPE_ULTRA_P: energy *= 3; energy /= 2; break;
+		default: break;
+	}
+
+	return energy;
 }
 
 /* learn a random spell ("whichspell" == -1) or a specific one ("whichspell" = ID of the book) --Amy */

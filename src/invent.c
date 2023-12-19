@@ -18369,7 +18369,7 @@ boolean knoweverything;
 			case SPE_RESIST_PETRIFICATION:
 				pline("This spell provides temporary petrification resistance when cast."); break;
 			case SPE_JUMPING:
-				pline("Casting this spell allows you to jump to a nearby empty location. There are some rules to consider though, e.g. the square must be lit and there needs to be a clear path between you and your location."); break;
+				pline("Casting this spell allows you to jump to a nearby empty location. There are some rules to consider though, e.g. the square must be lit and there needs to be a clear path between you and your location. Also, this spell costs a lot of mana."); break;
 			case SPE_HASTE_SELF:
 				pline("This spell allows you to move at very fast speed for a period of time."); break;
 			case SPE_ENLIGHTEN:
@@ -18380,6 +18380,12 @@ boolean knoweverything;
 				pline("Awesome power - this spell fires disintegration beams that can instakill monsters!"); break;
 			case SPE_FIRE_BOLT:
 				pline("Shoots a stream of fire at monsters."); break;
+			case SPE_DEFENSIVE_FIREBALL:
+				pline("Normally, the fireball spell is there for attacking enemies, but for some reason, this version counts as a protection spell and can be interrupted if there's a hostile monster next to you. If that happens, you just wasted your mana for nothing at all. On the bright side, it deals more damage than the standard fireball spell."); break;
+			case SPE_ULTRA_P:
+				pline("A weird spell, which causes you to both levitate and fire a magical projectile in a direction of your choice. The damage of that projectile is unresistable."); break;
+			case SPE_FORCIBLE_MOVE:
+				pline("This spell moves you to an adjacent square of your choice, meaning it's a weaker form of jumping. On the bright side, it also costs less mana than jumping."); break;
 			case SPE_FLYING:
 				pline("Wanna fly for a while? Then cast this, and you'll be able to pass over water and lava for a period of time while still being able to pick up stuff."); break;
 			case SPE_CHROMATIC_BEAM:

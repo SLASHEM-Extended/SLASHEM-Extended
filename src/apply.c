@@ -2155,10 +2155,16 @@ dojump()
 
 int
 jump(magic)
-int magic; /* 0=Physical, otherwise skill level */
+int magic; /* 0=Physical, otherwise skill level; -5 = forcible move spell with very low range */
 {
 	coord cc;
 	struct trap *trap;
+
+	boolean minijump = FALSE;
+	if (magic == -5) {
+		minijump = TRUE;
+		magic = 1;
+	}
 
 	int jumpcost = 10;
 	if (uarmf && uarmf->oartifact == ART_WORLD_CLASS_JUMP) {
@@ -2276,6 +2282,9 @@ int magic; /* 0=Physical, otherwise skill level */
 		 * horse.  After all, what shape is the knight piece in chess?
 		 */
 		pline(FunnyHallu ? "The referee suggests you to try another move!" : "Illegal move!");
+		return 0;
+	} else if (minijump && distu(cc.x, cc.y) > 2) {
+		pline(FunnyHallu ? "Now that would be a world-class jump." : "Too far!");
 		return 0;
 	} else if (distu(cc.x, cc.y) > (magic ? (6 + magic * 3 + (StrongJumping ? 3 : 0) ) : StrongJumping ? 12 : 9)) {
 		pline(FunnyHallu ? "Now that would be a world-class jump." : "Too far!");
