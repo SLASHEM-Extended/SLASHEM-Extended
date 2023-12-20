@@ -2032,6 +2032,7 @@ u_slow_down()
 	if (uwep && uwep->oartifact == ART_DAEFAROTH) return; /* player is immune */
 	if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) return;
 	if (uarmf && uarmf->otyp == SPEED_HOLDING_BOOTS) return;
+	if (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) return;
 	if (Race_if(PM_SAMEDI)) return;
 	if (bmwride(ART_SENATOR_S_SPEED)) return;
 	if (uarmf && itemhasappearance(uarmf, APP_NOT_SLOWING_DOWN_BOOTS) && rn2(10)) return; /* 90% resistance */
@@ -7458,6 +7459,18 @@ hitmu(mtmp, mattk)
 					Monnam(mtmp));
 				dmg += rnd(6);
 			    }
+
+			    if (otmp->oartifact == ART_VAMPDOAING && rn2(2)) {
+				    u.youaredead = 1;
+				    pline("%s plunges the stake into your heart.", Monnam(mtmp));
+				    killer = "a wooden stake in the heart.";
+				    killer_format = KILLED_BY_AN;
+				    u.ugrave_arise = NON_PM; /* No corpse */
+				    done(DIED);
+				    u.youaredead = 0;
+
+			    }
+
 			}
 
 			if (otmp->opoisoned) {
@@ -8184,8 +8197,8 @@ dopois:
 		    mtmp->mconf = 0;
 		}
 
-		if (Half_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
-		if (StrongHalf_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
+		if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg+1) / 2;
+		if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg+1) / 2;
 		mdamageu(mtmp, dmg);
 
 		if (!uarmh || uarmh->otyp != DUNCE_CAP) {
@@ -10814,20 +10827,20 @@ dopois:
 				is_vampire(youmonst.data)) {
 			    if (otmp->oartifact == ART_STAKE_OF_VAN_HELSING) {
 				if (!rn2(10)) {
-					u.youaredead = 1;
+				    u.youaredead = 1;
 				    pline("%s plunges the stake into your heart.",
 					    Monnam(mtmp));
 				    killer = "a wooden stake in the heart.";
 				    killer_format = KILLED_BY_AN;
 				    u.ugrave_arise = NON_PM; /* No corpse */
 				    done(DIED);
-					u.youaredead = 0;
+				    u.youaredead = 0;
 				} else {
 				    pline("%s drives the stake into you.",
 					    Monnam(mtmp));
 				    dmg += rnd(6) + 2;
 				}
-			    }else if (otmp->oartifact == ART_VAMPIRE_KILLER) {
+			    } else if (otmp->oartifact == ART_VAMPIRE_KILLER) {
 				pline("%s whips you good!",
 					Monnam(mtmp));
 				dmg += rnd(6);
@@ -10836,6 +10849,18 @@ dopois:
 					Monnam(mtmp));
 				dmg += rnd(6);
 			    }
+
+			    if (otmp->oartifact == ART_VAMPDOAING && rn2(2)) {
+				    u.youaredead = 1;
+				    pline("%s plunges the stake into your heart.", Monnam(mtmp));
+				    killer = "a wooden stake in the heart.";
+				    killer_format = KILLED_BY_AN;
+				    u.ugrave_arise = NON_PM; /* No corpse */
+				    done(DIED);
+				    u.youaredead = 0;
+
+			    }
+
 			}
 
 			if (otmp->opoisoned) {
@@ -10953,13 +10978,13 @@ dopois:
 	}
 
 	if(dmg) {
-	    if ( (Half_physical_damage && rn2(2)) 
+	    if ( (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) 
 					/* Mitre of Holiness */
 		|| (Role_if(PM_PRIEST) && uarmh && is_quest_artifact(uarmh) &&
 		    (is_undead(mtmp->data) || is_demon(mtmp->data))))
 		dmg = (dmg+1) / 2;
 
-		if (StrongHalf_physical_damage && rn2(2)) dmg = (dmg+1) / 2;
+		if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg+1) / 2;
 
 	    if (permdmg) {	/* Death's life force drain */
 		int lowerlimit, *hpmax_p;
@@ -13580,8 +13605,8 @@ do_stone2:
 		randattackA = 0;
 	}*/
 
-	if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
-	if (StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+	if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
+	if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
 
 	mdamageu(mtmp, tmp);
 	if (tmp) stop_occupation();
@@ -13825,8 +13850,8 @@ common:
 		        if (flags.verbose) You("get blasted!");
 		    }
 		    if (mattk->adtyp == AD_FIRE) burn_away_slime();
-		    if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
-		    if (StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+		    if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
+		    if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
 		    mdamageu(mtmp, tmp);
 		}
 		break;
@@ -19405,6 +19430,12 @@ register int n;
 		return;
 	}
 
+	if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && !rn2(10)) {
+		n = 0;
+		Your("soft lady shoe nullifies the damage!");
+		return;
+	}
+
 	if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {
 		n = 0;
 		Your("cone heels nullify the damage!");
@@ -19459,6 +19490,12 @@ register int n;
 		if (overlevelled > 0) {
 			monsterdamagebonus += overlevelled;
 		}
+	}
+
+	if (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES && !rn2(100)) {
+		if (rn2(4)) badeffect();
+		else if (rn2(25)) goodeffect();
+		else reallybadeffect();
 	}
 
 	if (mtmp->egotype_champion) monsterdamagebonus += 25;
@@ -20031,8 +20068,8 @@ skiptreason:
 				You_feel("exhausted.");
 			        exercise(A_STR, FALSE);
 				tmp = rn1(10, 6);
-				if(Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
-				if(StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+				if(Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
+				if(StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
 				losehp(tmp, "exhaustion", KILLED_BY);
 				break;
 			}
@@ -22125,6 +22162,8 @@ register struct monst *mtmp;
 {
 	boolean extraannoying = !rn2(5);
 
+	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) return 0;
+
 	pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
 
 	if (treadedshoemonster(mtmp->data)) pline("Ugh, treaded soles. Cleaning them will be a shitload of work (literally).");
@@ -22156,6 +22195,10 @@ register struct monst *mtmp;
 		mtmp->mfrenzied = TRUE;
 		mtmp->singannoyance = FALSE;
 		u.cnd_singrefused++;
+		if (autismweaponcheck(ART_TONA_S_GAMES)) {
+			gain_alla(100);
+			You_feel("that you made the right choice.");
+		}
 
 	      register struct monst *mtmp2;
 		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {

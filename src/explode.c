@@ -739,9 +739,12 @@ boolean yours; /* is it your fault (for killing monsters) */
 		} else if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && !rn2(10)) {
 		    damu = 0;
 		    Your("pair of heels nullifies the damage!");
+		} else if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && !rn2(10)) {
+		    damu = 0;
+		    Your("soft lady shoe nullifies the damage!");
 		} else {
-			if (Half_physical_damage && adtyp == AD_PHYS && rn2(2) ) damu = (damu+1) / 2;
-			if (StrongHalf_physical_damage && adtyp == AD_PHYS && rn2(2) ) damu = (damu+1) / 2;
+			if (Half_physical_damage && adtyp == AD_PHYS && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) damu = (damu+1) / 2;
+			if (StrongHalf_physical_damage && adtyp == AD_PHYS && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) damu = (damu+1) / 2;
 		}
 
 		if (adtyp == AD_FIRE) {if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (void) burnarmor(&youmonst);}

@@ -653,8 +653,8 @@ shieldblockboo:
 			else if (is_polearm && !rn2(2) && (tlev > 10) ) dam += rnd(tlev - 10);
 			else if (!is_bulletammo && (tlev > 10) && !rn2(3)) dam += rnd(tlev - 10);
 
-			if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
-			if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
+			if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
+			if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
 
 			if (dam && u.uac < /*-1*/0) { /* AC protects against this damage now, at least a bit --Amy */
 

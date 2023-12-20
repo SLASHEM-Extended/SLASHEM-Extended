@@ -33673,6 +33673,10 @@ register struct permonst *ptr;
 	if (ptr->mlet == S_DEMON && (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) && rn2(10)) return TRUE;
 	if (ptr->mlet == S_DEMON && (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION) && rn2(20)) return TRUE;
 
+	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_ && ptr->msound == MS_SING) return TRUE;
+
+	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_ && !always_hostile(ptr) && rn2(2)) return TRUE;
+
 	if (!always_hostile(ptr) && Race_if(PM_ANGBANDER) && !Role_if(PM_CONVICT) && rn2(2)) return TRUE;
 
 	if (telepathic(ptr) && Race_if(PM_LEVITATOR) && !Role_if(PM_CONVICT) && rn2(100)) return TRUE;

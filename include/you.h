@@ -1477,6 +1477,7 @@ struct you {
 
 	boolean ataruinvoked;
 	boolean ataratarinvoked;
+	boolean cathletteinvoked;
 
 	int nurseextracost;	/* for chat-to-nurses functionality */
 	int nursedecontamcost;	/* ditto */

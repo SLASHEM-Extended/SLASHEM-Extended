@@ -11542,7 +11542,7 @@ boolean knoweverything;
 			case DARK_ELVEN_DAGGER:
 				pline("A good dagger that does respectable damage. It can be thrown."); break;
 			case WOODEN_STAKE:
-				pline("A quite powerful dagger. It can be thrown."); break;
+				pline("A quite powerful dagger. If you've got enough skill with it, you can instakill vampires by stabbing them. It can be thrown."); break;
 			case GREAT_DAGGER:
 				pline("Used to be the strongest dagger in the game, but now gets surpassed by droven daggers. Still stronger than the average dagger though. It can be thrown."); break;
 			case WORM_TOOTH:
@@ -29703,6 +29703,90 @@ boolean knoweverything;
 					pline("Artifact specs: resist fear and drain life, antje trap effect, allows you to train the martial arts skill twice as fast, can be invoked to change your martial arts style to a random one."); break;
 				case ART_SHE_S_NOT_FORGOTTEN:
 					pline("Artifact specs: johanna trap effect when worn and allows you to resist item theft."); break;
+				case ART_SERRABIM:
+					pline("Artifact specs: +12 to-hit and +8 damage."); break;
+				case ART_FEUBURN:
+					pline("Artifact specs: +6 to-hit and +9 fire damage, improves your sight range by one when wielded."); break;
+				case ART_JULIA_S_KOPWHACKER:
+					pline("Artifact specs: +20 to-hit and +20 damage to kops, can behead enemies."); break;
+				case ART_SAT___TRASHING:
+					pline("Artifact specs: +12 damage, can drain enemies, autocurses and choicelessness when wielded."); break;
+				case ART_DJA_A_A_A_UEUEUEI:
+					pline("Artifact specs: the first time you equip this weapon, your quarterstaff skill cap is increased by one."); break;
+				case ART_TURNINGIKE:
+					pline("Artifact specs: +6 damage, very fast speed when wielded."); break;
+				case ART_COME_ON__FIGHT_:
+					pline("Artifact specs: +5 to-hit and +7 damage."); break;
+				case ART_STEALTHY_EAR:
+					pline("Artifact specs: +2 to-hit and +2 cold damage, stealth and scent view when wielded."); break;
+				case ART_VAMPDOAING:
+					pline("Artifact specs: has a much higher chance of instakilling vampires."); break;
+				case ART_AELOE:
+					pline("Artifact specs: +20 damage to undead."); break;
+				case ART_SUPERCHANT:
+					pline("Artifact specs: +10 to-hit and +10 damage, 10 extra points of AC when wielded."); break;
+				case ART_SPECIFI_X_:
+					pline("Artifact specs: +15 to-hit and double damage versus giants, undead and demons, and while wielding it, you have +10 intelligence as well as +5 strength and constitution."); break;
+				case ART_GOOTE_UTE:
+					pline("Artifact specs: +6 to-hit and +11 cold damage, cold immunity when wielded and causes you to be affected by the ute trap effect for a while."); break;
+				case ART_RITA_S_DIAMOGIGGLING:
+					pline("Artifact specs: +10 to-hit and +8 stun damage, can be invoked for digging rays in all directions. Hihihi. Rita finds it funny. Hell, you might even find more diamonds!"); break;
+				case ART_____SUICIDE:
+					pline("Artifact specs: can be invoked for final explosion, which hits all enemies in an 11x11 area centered on you, dealing massive damage to them that cannot be resisted. The problem is that if you use this ability, you explode, which means that you die, so you'd better do this only if you have life saving."); break;
+				case ART_LARISSA_S_REVENGE:
+					pline("Artifact specs: +10 to-hit and +4 damage, rots the enemy's armor when hitting."); break;
+				case ART_MAILIE_S_SELF_CENTRATION:
+					pline("Artifact specs: half physical damage, double discount action, reduces your melee damage output by 3, autocurses when wielded, doubles your HP caps for corona (i.e. makes you more resistant to corona) and protects you from slowing effects."); break;
+				case ART_WHISPERWIND_CLOAK:
+					pline("Artifact specs: double stealth, double invisibility and fast speed when worn and protects you from sandstorms and snowstorms. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'This ethereal cloak shimmers with a faint breeze that seems to carry whispers. It grants the wearer the ability to move silently and swiftly, making them nearly undetectable.'"); break;
+				case ART_SOULREAPER_SCYTHE:
+					pline("Artifact specs: +10 drain life damage, can drain enemies, +8 strength when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'This menacing scythe is adorned with eerie runes that pulse with dark energy. It is said to harvest the very souls of those it strikes, granting immense power to its wielder.'"); break;
+				case ART_AETHERIAL_SHARD:
+					pline("Artifact specs: magic resistance and prime autocurses when worn, can be invoked for phasing. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'This radiant amulet holds a fragment of the celestial realms. It emits a soft, otherworldly glow and grants the ability to phase through solid matter.'"); break;
+				case ART_CHAOSWEAVER_ROBES:
+					pline("Artifact specs: grants resistances to fire, cold, shock and poison and boosts the power of your spells. If a monster hits you while you're wearing these, occasionally random good or bad stuff may happen. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'These flowing robes are woven from a chaotic fabric, constantly shifting in color and pattern. They grant the ability to manipulate chaos, distorting reality around the wearer.'"); break;
+				case ART_EYES_OF_THE_ORACLE:
+					pline("Artifact specs: searching bonus, sight bonus and see invisible when worn, can be invoked to see timeout information that can otherwise only be accessed in wizard mode. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'These mystical glasses grant the wearer heightened perception and insight. They reveal hidden secrets and grant glimpses into the future.'"); break;
+				case ART_MANY_DIOPTRIES:
+					pline("Artifact specs: infravision when worn."); break;
+				case ART_STRIKE_OVER_THE_EARS:
+					pline("Artifact specs: blindness resistance, double prices in shops and autocurses when worn."); break;
+				case ART_GIRLWHACK:
+					pline("Artifact specs: +3 damage."); break;
+				case ART_LOVE_THE_COLOR_PURPLE:
+					pline("Artifact specs: +2 to-hit and +1 stun damage, and the color of this lovely sandal becomes pink upon wielding, making it look very girly and cuuuuute."); break;
+				case ART_SOOTHE_:
+					pline("Artifact specs: half physical damage when wielded and makes it so that the half physical damage actually works every time (normally it'd only apply 50%% of the time!)."); break;
+				case ART_THROW_ALL_THE_CASH_AWAY:
+					pline("Artifact specs: bank trap effect and +5 charisma when wielded, and while you keep wielding it there's a tiny little chance that it tries to charm nearby enemies."); break;
+				case ART_DAMN_HARD:
+					pline("Artifact specs: +10 damage, becomes erosionproof when wielded and is resistant to many forms of item destruction."); break;
+				case ART_DUEUEUEUEU:
+					pline("Artifact specs: +8 damage, and may occasionally paralyze enemies in melee who fail to make a resistance roll."); break;
+				case ART_CUTE_JAPANESE_FEET:
+					pline("Artifact specs: sometimes allows you to avoid triggering a trap while wielded."); break;
+				case ART_BONUS_VERSUS_ALMOST_ALL:
+					pline("Artifact specs: +12 damage to animals and humanoids."); break;
+				case ART_AP_:
+					pline("Artifact specs: as long as you're wielding it, you can freely hit monsters that require a +X enchanted weapon, even if your current weapon has too little enchantment, and you're also able to hit shades with non-silver weapons."); break;
+				case ART_BEBE_S_BABE:
+					pline("Artifact specs: +5 to-hit and +10 damage, reflection when wielded. The damage type of this weapon is constantly re-randomized."); break;
+				case ART_TONA_S_GAMES:
+					pline("Artifact specs: +12 to-hit, heavily autocurses, rots enemy armor on a hit, sing trap effect and if you refuse to clean the shoes you gain 100 lines of alla. If you're wearing block or wedge heels, you have 10 extra points of AC, resist death and disintegration, free action and discount action. If you're wearing cone or stiletto heels, you have double mystery resistance and deal extra bleeding damage to enemies with a kick."); break;
+				case ART_ONE_CATHLETTE:
+					pline("Artifact specs: +8 damage, aggravate monster, hitting an enemy can occasionally cause random good things to happen and may confuse monsters who don't resist. You can invoke this artifact to generate another copy of it, but this can only be done once per game."); break;
+				case ART_CLOTZY_FREE:
+					pline("Artifact specs: if you wield this weapon in your main hand and you're neither dual-wielding nor wearing a shield, it deals +d20 damage, and even more if you have good form II (Makashi) skill."); break;
+				case ART_DEVIOUS_DILJER:
+					pline("Artifact specs: poisons enemies."); break;
+				case ART_RED_TREAD:
+					pline("Artifact specs: deals quite a lot of bleeding damage to enemies."); break;
+				case ART_ETERNAL_LONGING:
+					pline("Artifact specs: occasionally nullifies incoming damage while wielded, but you'll long to see the beautiful girls..."); break;
+				case ART_RUINED_ANTJEN:
+					pline("Artifact specs: +8 damage, aggravate monster, disintegration resistance, +3 strength and increased chance of landing a critical hit when wielded."); break;
+				case ART_KATI_GAVE_YOU_THE_ENGLISH_:
+					pline("Artifact specs: randomly has up to +17 damage, rerolled every turn. Upon wielding it, you get afflicted with the corona nastytrap effect permanently. This weapon autocurses, but you won't have unusable hands even if your other hand is wearing a cursed shield. Hitting an enemy with it can rot its armor. Sing won't force you to clean shoes, and quite a lot of monsters have a higher chance of spawning peaceful. This weapon grants you super regene and if your health is below one quarter, half physical and spell damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

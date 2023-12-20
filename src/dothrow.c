@@ -1892,8 +1892,8 @@ boolean hitsroof;
 	if (uarm && uarm->oartifact == ART_POWASPEL) dmg -= 3;
 
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
-	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
-	if (StrongHalf_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg + 1) / 2;
+	if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg + 1) / 2;
 
 	if (uarmh) {
 	    if (less_damage && dmg < (Upolyd ? u.mh : u.uhp)) {

@@ -6872,8 +6872,8 @@ boolean was_swallowed;			/* digestion */
 			      body_part(STOMACH));
 			sprintf(killer_buf, "%s explosion",
 				s_suffix(mdat->mname));
-			if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
-			if (StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
+			if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
 			losehp(tmp, killer_buf, KILLED_BY_AN);
 		    } else {
 			if (flags.soundok) You_hear("an explosion.");
@@ -6905,8 +6905,8 @@ boolean was_swallowed;			/* digestion */
 			      body_part(STOMACH));
 			sprintf(killer_buf, "%s explosion",
 				s_suffix(mdat->mname));
-			if (Half_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
-			if (StrongHalf_physical_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
+			if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) tmp = (tmp+1) / 2;
 			losehp(tmp, killer_buf, KILLED_BY_AN);
 		    } else {
 			if (flags.soundok) You_hear("an explosion.");
@@ -8257,14 +8257,14 @@ int  typ, fatal;
 statchangedone:
 		/* still does damage --Amy */
 		i = thrown_weapon ? rnd(6) : rn1(10,6);
-		if(Half_physical_damage && rn2(2) ) i = (i+1) / 2;
-		if(StrongHalf_physical_damage && rn2(2) ) i = (i+1) / 2;
+		if(Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) i = (i+1) / 2;
+		if(StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) i = (i+1) / 2;
 		losehp(i, pname, kprefix);
 
 	} else {
 		i = thrown_weapon ? rnd(6) : rn1(10,6);
-		if(Half_physical_damage && rn2(2) ) i = (i+1) / 2;
-		if(StrongHalf_physical_damage && rn2(2) ) i = (i+1) / 2;
+		if(Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) i = (i+1) / 2;
+		if(StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) i = (i+1) / 2;
 		losehp(i, pname, kprefix);
 	}
 	if(u.uhp < 1) {

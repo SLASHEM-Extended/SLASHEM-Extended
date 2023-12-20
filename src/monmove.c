@@ -1834,7 +1834,7 @@ register struct monst *mtmp;
 		katiclean(mtmp);
 	}
 
-	if ((mdat->msound == MS_SING || mtmp->egotype_singagent) && !u.singtrapocc && !u.katitrapocc && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->singability) {
+	if ((mdat->msound == MS_SING || mtmp->egotype_singagent) && !(uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) && !u.singtrapocc && !u.katitrapocc && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->singability) {
 
 		int attempts = 0;
 		struct permonst *pm = 0;

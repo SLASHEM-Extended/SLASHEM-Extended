@@ -13389,10 +13389,13 @@ mineralize()
 	}
 
 	if (ishaxor) {
+		goldprob *= 2;
+		gemprob *= 2;
+		objprob *= 2;
+	}
 
-	goldprob *= 2;
-	gemprob *= 2;
-	objprob *= 2;
+	if (uwep && uwep->oartifact == ART_RITA_S_DIAMOGIGGLING) {
+		gemprob *= rn1(2,2);
 	}
 
 	/*

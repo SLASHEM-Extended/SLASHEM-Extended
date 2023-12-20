@@ -678,10 +678,10 @@ vision_recalc(control)
 	if (uwep && uwep->oartifact == ART_WONDERLIGHT) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_SEEVEEN) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_NURSING_THE_FLAME) efflightradius += 1;
+	if (uwep && uwep->oartifact == ART_FEUBURN) efflightradius += 1;
 	if (uwep && uwep->oartifact == ART_DARKLITE && uwep->lamplit) efflightradius += 2;
 	if (uwep && uwep->oartifact == ART_ULTRA_ANNOYANCE) efflightradius += 2;
 	if (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) efflightradius += 2;
-	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
 	if (uwep && uwep->oartifact == ART_IS_EVERYWHERE && uwep->lamplit) efflightradius += 4;
 	if (uwep && uwep->oartifact == ART_KRART_T_T_T_T) efflightradius += 2;
 	if (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) efflightradius += 2;
@@ -690,6 +690,8 @@ vision_recalc(control)
 	if (uwep && uwep->oartifact == ART_GIGANTIC_SUN) efflightradius += 3;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_mines(&u.uz)) efflightradius += 2;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_deepmines(&u.uz)) efflightradius += 1;
+
+	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
 
 	if (efflightradius > MAX_RADIUS) efflightradius = MAX_RADIUS; /* fail safe, why isn't that present in vanilla --Amy */
 

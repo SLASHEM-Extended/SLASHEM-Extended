@@ -1547,6 +1547,7 @@ freehand()
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP) return 1;
+	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) return 1;
 
 	return(!uwep || !welded(uwep) ||
 	   (!bimanual(uwep) && (!uarms || !uarms->cursed)));
@@ -1566,6 +1567,7 @@ freehandX()
 	if (uwep && uwep->oartifact == ART_BARDICHE_ASSALT) return 1;
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP) return 1;
+	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) return 1;
 
 	if (!PlayerCannotUseSkills) {
 

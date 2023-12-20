@@ -3354,8 +3354,8 @@ stillinwater:;
 			    if (molev > 5) molev -= ((molev - 4) * 2 / 3);
 			    if (molev < 1) molev = 1;
 			    dmg = d(molev,6);
-			    if(Half_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
-			    if(StrongHalf_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
+			    if(Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg+1) / 2;
+			    if(StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg+1) / 2;
 			    mdamageu(mtmp, dmg);
 			}
 			break;
@@ -3373,8 +3373,8 @@ stillinwater:;
 				You("are hit by %s!",
 				x_monnam(mtmp, ARTICLE_A, "falling", 0, TRUE));
 				dmg = d(10, 10);
-				if(Half_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
-				if(StrongHalf_physical_damage && rn2(2) ) dmg = (dmg+1) / 2;
+				if(Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg+1) / 2;
+				if(StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg+1) / 2;
 				if (uarmh) dmg = (dmg+1) / 2;
 				mdamageu(mtmp, dmg);
 
@@ -5249,6 +5249,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && !rn2(10)) {
 		n = 0;
 		Your("pair of heels nullifies the damage!");
+	} else if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && !rn2(10)) {
+		n = 0;
+		Your("soft lady shoe nullifies the damage!");
 	} else if (u.metalguard) {
 		u.metalguard = 0;
 		n = 0;

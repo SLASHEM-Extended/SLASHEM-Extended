@@ -422,7 +422,7 @@ register boolean clumsy;
 		uarmf->blessed)
 	    blessed_foot_damage = 1;
 
-	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) && !blessed_foot_damage) {
+	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) && !blessed_foot_damage) {
 	    pline_The("%s.", kick_passes_thru);
 	    /* doesn't exercise skill or abuse alignment or frighten pet,
 	       and shades have no passive counterattack */
@@ -748,6 +748,11 @@ register boolean clumsy;
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 
+	if (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInConeHeels || PlayerInStilettoHeels) ) {
+		mon->bleedout += rnd(10);
+		pline("Your razor-sharp high heels scratch up and down %s's %s, drawing %s!", mon_nam(mon), makeplural(mbodypart(mon, LEG)), mbodypart(mon, BLOOD) );
+	}
+
 	if (uarmf && itemhasappearance(uarmf, APP_BLADED_DISKS)) {
 		mon->bleedout += rnd(5);
 		pline("Your metal blades slit %s, drawing a lot of %s!", mon_nam(mon), mbodypart(mon, BLOOD) );
@@ -987,7 +992,7 @@ register xchar x, y;
 		/* we only care about kicking attacks here */
 		if (uattk->aatyp != AT_KICK) continue;
 
-		if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) && (!uarmf || !uarmf->blessed)) {
+		if ( (is_shade(mon->data) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) && (!uarmf || !uarmf->blessed)) {
 		    /* doesn't matter whether it would have hit or missed,
 		       and shades have no passive counterattack */
 		    Your("%s %s.", kick_passes_thru, mon_nam(mon));
@@ -1022,6 +1027,7 @@ register xchar x, y;
 	if (need_three(mon))  canhitmon = 3; 
 	if (need_four(mon))   canhitmon = 4;         
 	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
+	if (uwep && uwep->oartifact == ART_AP_) canhitmon = 0;
 
 	if (Role_if(PM_MONK) && !Upolyd) {
 		if (!uwep && !uarm && !uarms) objenchant = GushLevel / 4;

@@ -2678,6 +2678,22 @@ moveloop()
 
 		if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
 
+		if (autismweaponcheck(ART_BEBE_S_BABE)) {
+			artilist[ART_BEBE_S_BABE].attk.adtyp = randartiattacktype();
+		}
+
+		if (autismweaponcheck(ART_KATI_GAVE_YOU_THE_ENGLISH_)) {
+			artilist[ART_KATI_GAVE_YOU_THE_ENGLISH_].attk.damd = rnd(17);
+		}
+
+		if (uwep && uwep->oartifact == ART_THROW_ALL_THE_CASH_AWAY && !rn2(1000)) {
+		    struct obj pseudo;
+
+		    pseudo = zeroobj;	/* neither cursed nor blessed */
+		    pseudo.otyp = SCR_TAMING;
+		    (void) seffects(&pseudo);
+		}
+
 		if (uamul && uamul->oartifact == ART_CURSE_THE_TIME_SHIFT && !rn2(10000)) {
 			monstermoves += 1000;
 			moves += 1000;
@@ -4104,7 +4120,7 @@ newbossAEFDE:
 			}
 		}
 
-		if ((LongingEffect || u.uprops[LONGING_EFFECT].extrinsic || have_longingstone()) && !rn2(50)) {
+		if ((LongingEffect || u.uprops[LONGING_EFFECT].extrinsic || have_longingstone() || autismweaponcheck(ART_ETERNAL_LONGING) ) && !rn2(50)) {
 			longingtrapeffect();
 		}
 
@@ -7878,6 +7894,14 @@ newbossSTEN:
 			if (Goldspells < 2000) Goldspells = 2000;
 		}
 
+		if (autismweaponcheck(ART_GOOTE_UTE)) {
+			if (FemaleTrapUte < 5000) FemaleTrapUte = 5000;
+		}
+
+		if (autismweaponcheck(ART_RITA_S_DIAMOGIGGLING)) {
+			if (FemaleTrapRita < 10000) FemaleTrapRita = 10000;
+		}
+
 		if (ublindf && ublindf->oartifact == ART_SATAN_S_SPECIFIC_ENCHANTME) {
 			if (SatanEffect < 5000) SatanEffect = 5000;
 		}
@@ -11090,7 +11114,7 @@ newbossB:
 			levl[u.ux][u.uy].typ = POOL;
 		}
 
-		if (is_sand(u.ux, u.uy) && !u.uswallow && !(FemtrapActiveAntje && PlayerInBlockHeels) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
+		if (is_sand(u.ux, u.uy) && !u.uswallow && !(FemtrapActiveAntje && PlayerInBlockHeels) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !sandprotection() && !rn2(isfriday ? 10 : 20)) {
 			You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
 			make_blinded(Blinded + rnd(5),FALSE);
 		}
@@ -11107,7 +11131,7 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !ColdImmunity && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !ColdImmunity && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
@@ -14297,7 +14321,7 @@ pastds2:
 			/* super regene from Elona; if it's infinite with no downside, it's OP, so we have to do something
 			 * I decided that it slowly contaminates you, works less well if you're very contaminated, and
 			 * stops working entirely if you're fatally contaminated --Amy */
-			if ( (Race_if(PM_BACTERIA) || (uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) || (PlayerInSexyFlats && uarmf && uarmf->oartifact == ART_FORMO____) ) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
+			if ( (Race_if(PM_BACTERIA) || (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) || (uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) || (PlayerInSexyFlats && uarmf && uarmf->oartifact == ART_FORMO____) ) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
 				int superregeneamount = 5;
 				if (u.contamination > 200) superregeneamount = 4;
 				if (u.contamination > 400) superregeneamount = 3;
@@ -16161,7 +16185,7 @@ past4:
 		else You("paid some of your debts, but still have to pay %d zorkmids.", u.moneydebt);
 	}
 
-	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || autismweaponcheck(ART_THROW_ALL_THE_CASH_AWAY) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 

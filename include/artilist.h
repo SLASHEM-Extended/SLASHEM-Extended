@@ -17666,6 +17666,174 @@ A("She's Not Forgotten",				LOW_BOOTS, /* initialized to always be particularly 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Serrabim",				JAGGED_STAR,
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Feuburn",				JAGGED_STAR, /* +1 sight range */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(6, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Julia's Kopwhacker",				BLOCK_HEELED_COMBAT_BOOT,
+	(SPFX_RESTR|SPFX_DCLAS|SPFX_BEHEAD), 0, (S_KOP),
+	PHYS(20, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sat24 Trashing",				BLOCK_HEELED_COMBAT_BOOT, /* autocurses, choicelessness */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Dja-a-a-a-ueueuei",				BATTLE_STAFF, /* the first time you equip it, your quarterstaff skill cap increases by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Turningike",				ROTATING_CHAIN, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Come on, fight!",				ELVEN_BROADSWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Stealthy Ear",				ELVEN_BROADSWORD, /* scent view */
+	(SPFX_RESTR|SPFX_STLTH|SPFX_ATTK), 0, 0,
+	COLD(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("vampdoaing",				WOODEN_STAKE, /* chance to instakill vampires is 50% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("aeloe",				WOODEN_STAKE,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_UNDEAD),
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Superchant",				LASER_SWORD, /* 10 bonus AC */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Specifi X3",				LASER_SWORD, /* +10 INT, +5 STR/CON */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_GIANT|M2_UNDEAD|M2_DEMON),
+	PHYS(15, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Goote Ute",				HIGH_HEELED_SANDAL, /* 5000 turns of ute trap effect, cold immunity */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	COLD(6, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Rita's Diamogiggling",				HIGH_HEELED_SANDAL, /* 10000 turns of rita trap effect, newly generated levels have more hidden gems, invoke for digging rays in all directions */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	STUN(10, 8), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("110 Suicide",				SCOURGE, /* invoke for final explosion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Larissa's Revenge",				STURDY_PLATEAU_BOOT_FOR_GIRLS, /* rots the enemy's armor on a hit */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Mailie's Self-Centration",				STURDY_PLATEAU_BOOT_FOR_GIRLS, /* -3 melee to-damage, autocurses, doubles corona HP caps, double discount action, protects from slowing */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Whisperwind Cloak",				LEATHER_CLOAK, /* randart cloak, also grants intrinsic stealth, fast speed and double invis, sand/snowstorms cannot affect you */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Soulreaper Scythe",				GIANT_SCYTHE, /* +8 STR */
+	(SPFX_RESTR|SPFX_DRLI|SPFX_ATTK), 0, 0,
+	DRLI(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Aetherial Shard",				AMULET_OF_INCREASED_FREQUENCY, /* prime autocurses */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, PHASING, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Chaosweaver Robes",				ROBE, /* randart2 robe, resist cold, fire, shock and poison, spellboost, every time you get hit in melee there's a 1% chance that something happens, which is 75% random bad effect, 24% random good effect and 1% really bad effect. */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Eyes of the Oracle",				LENSES, /* sight bonus, see invis, invoke calls wiztimeout even if you're not in wizard mode */
+	(SPFX_RESTR|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 40000L ),
+
+A("Many Dioptries",				LENSES, /* infravision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Strike Over The Ears",				LENSES, /* double prices in shops, autocurses, blindness resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Girlwhack",				WEDGED_LITTLE_GIRL_SANDAL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Love The Color Purple",				WEDGED_LITTLE_GIRL_SANDAL, /* becomes CLR_BRIGHT_MAGENTA when wielded */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(2, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Soothe.",				SOFT_GIRL_SNEAKER, /* half physical damage works every time */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Throw All The Cash Away",				SOFT_GIRL_SNEAKER, /* bank trap effect, +5 CHA, 1 in 1000 to replicate scroll of taming like the invoke */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Damn Hard",				HUGGING_BOOT, /* 10% extra chance for critical hits, becomes erosionproof when wielded and is hard to destruct */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Dueueueueu",				WOODEN_GETA, /* 10% chance that the enemy has to make a saving throw or becomes paralyzed for rn1(4,3) turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Cute Japanese Feet",				WOODEN_GETA, /* 50% chance to not trigger a trap, and if you do successfully avoid a trap that way, there's a 75% chance (100% if the trap was already visible) for a message */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bonus Versus Almost All",				INKA_BOOT,
+	(SPFX_RESTR|SPFX_DFLAG1), 0, (M1_ANIMAL|M1_HUMANOID),
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("AP!",				INKA_BOOT, /* while you're wielding it, monsters that need +X weapons to hit can be hit by you even if the weapons aren't sufficiently enchanted, and shades can be hurt by non-silver weapons */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Bebe's Babe",				STEEL_CAPPED_SANDAL, /* melee attack type is re-randomized every turn you're wielding it */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_REFLECT), 0, 0,
+	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
+
+A("Tona's Games",				SEXY_MARY_JANE, /* heavily autocurses, dmg h@ck, rots enemy's armor, sing trap effect and every time you refuse you gain 100 alla; if you're wearing block or wedge heels you have 10 extra AC, resist death and disint, free action and discount action; if you're wearing cone or stiletto heels, you have double mystery resist and kicking an enemy deals +d10 bleeding damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(12, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("One Cathlette",				KITTEN_HEEL_PUMP, /* can be invoked to create a copy of this artifact as long as this invocation has not been done yet, aggravate monster, hitting an enemy has 1 in 200 chance of giving a random good effect and 5% that the enemy has to either make a saving throw or become confused */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Clotzy free",				LACQUERED_DANCING_SHOE, /* if your other hand is free, +d20 damage and +(makashi skill) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Devious Diljer",				SPIKED_BATTLE_BOOT, /* deals poison damage like dirge */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Red Tread",				SPIKED_BATTLE_BOOT, /* +d17 bleeding damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Eternal Longing",				SOFT_LADY_SHOE, /* longing trap effect, 10% chance to nullify incoming damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ruined Antjen",				DOGSHIT_BOOT, /* aggravate monster, resist disint, 5% extra critical hit chance, +3 STR */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kati Gave You The English Flu",				DOGSHIT_BOOT, /* permanently gives you the corona nastytrap effect when wielded, autocurses and prevents you from getting unusable hands, damage value is re-initialized as d17 every turn, rots the enemy's armor on a hit, MS_SING and similar don't force you to clean shoes and all MS_SING generally spawn peaceful, monsters who aren't M2_HOSTILE have 50% chance of spawning peaceful, super regene, if you're below 25% health you have half physical and spell damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 17), NO_DFNS, NO_CARY, HEALING, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

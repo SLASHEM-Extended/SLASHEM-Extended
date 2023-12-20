@@ -3929,6 +3929,11 @@ unsigned trflags;
 	/* Traps are 50% more likely to fail for a pickpocket */
 	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && ttype != MAGIC_PORTAL && rn2(2)) return;
 
+	if (!In_sokoban(&u.uz) && uwep && uwep->oartifact == ART_CUTE_JAPANESE_FEET && rn2(2) && ttype != MAGIC_PORTAL) {
+		if ((trap && trap->tseen) || rn2(4)) You("avoid a trap!");
+		return;
+	}
+
 	/* Players could deduce the position of a nasty trap by running in a corridor. This would probably come into effect
 	 * rarely, but the fact that it was possible at all was unintentional, so I'm closing this loophole just to cover
 	 * my butt. Nasty traps are supposed to be really difficult to spot! --Amy */
@@ -5183,8 +5188,8 @@ glovecheckY:		(void) wither_dmg(uarmg, "gauntlets", rn2(4), TRUE, &youmonst);
 
 		    pline("%s you!", A_gush_of_water_hits);
 		    You("are covered with rust!");
-		    if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
-		    if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
+		    if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
+		    if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
 		    losehp(dam, "rusting away", KILLED_BY);
 		    break;
 		} else if (u.umonnum == PM_FLAMING_SPHERE || u.umonnum == PM_SUMMONED_FLAMING_SPHERE) {
@@ -5192,8 +5197,8 @@ glovecheckY:		(void) wither_dmg(uarmg, "gauntlets", rn2(4), TRUE, &youmonst);
 
 		    pline("%s you!", A_gush_of_water_hits);
 		    You("are extinguished!");
-		    if (Half_physical_damage && rn2(2) ) dam = (dam+1) / 2;
-		    if (StrongHalf_physical_damage && rn2(2) ) dam = (dam+1) / 2;
+		    if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
+		    if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dam = (dam+1) / 2;
 		    losehp(dam, "drenching", KILLED_BY);
 		    break;
 		} else if (splittinggremlin(youmonst.data) && rn2(3)) {

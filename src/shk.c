@@ -2384,6 +2384,7 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 
 	if (Race_if(PM_DUTHOL)) tmp *= 2L;
 	if (Role_if(PM_OTAKU)) tmp += tmp / 3L; /* bad at making deals */
+	if (ublindf && ublindf->oartifact == ART_STRIKE_OVER_THE_EARS) tmp *= 2;
 
 	if (u.usteed && uarm && uarm->oartifact == ART_FAER_ME) tmp -= tmp / 4L;
 
@@ -7056,6 +7057,8 @@ shk_smooth_charge(pcharge, lower, upper)
 	/* samurais are from out of town... */
 	if (Role_if(PM_SAMURAI)) *pcharge *= 2L;
 	if (uarmf && uarmf->oartifact == ART_CARMARK) *pcharge *= 2L;
+
+	if (ublindf && ublindf->oartifact == ART_STRIKE_OVER_THE_EARS) *pcharge *= 2;
 
 	if (Is_blackmarket(&u.uz)) *pcharge *= 3;
 	/* Skip upper stuff? */

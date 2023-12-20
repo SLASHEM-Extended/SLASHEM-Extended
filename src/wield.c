@@ -178,6 +178,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("wielded shoe is painted black!");
 	}
 
+	if (uwep && uwep->oartifact == ART_LOVE_THE_COLOR_PURPLE && objects[uwep->otyp].oc_color != CLR_BRIGHT_MAGENTA) {
+		objects[uwep->otyp].oc_color = CLR_BRIGHT_MAGENTA;
+		Your("cuuuuute girl sandal is pink now! Awwww <3 <3 <3 So lovely!");
+	}
+
 	if (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE && objects[uwep->otyp].oc_color != CLR_ORANGE) {
 		objects[uwep->otyp].oc_color = CLR_ORANGE;
 		Your("spear is colored orange now!");
@@ -255,9 +260,30 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		pline("Whoops, your weapon became cursed.");
 	}
 
+	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) {
+		CovidTrapEffect |= FROMOUTSIDE;
+		You("are infected with the English flu! Oh no!!");
+		if (!uwep->cursed) curse(uwep);
+	}
+
+	if (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, your weapon became cursed.");
+	}
+	if (uwep && uwep->oartifact == ART_SAT___TRASHING && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, your weapon became cursed.");
+	}
+
 	if (uwep && uwep->oartifact == ART_ARABELLA_S_THINNER) {
 		curse(uwep);
 		uwep->hvycurse = uwep->prmcurse = TRUE;
+	}
+
+	if (uwep && uwep->oartifact == ART_TONA_S_GAMES && !uwep->hvycurse) {
+		curse(uwep);
+		uwep->hvycurse = TRUE;
+		pline("Now you gotta play Tona's games.");
 	}
 
 	if (uwep && uwep->oartifact == ART_LORD_S_LASH) {
@@ -366,6 +392,8 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		if (uwep->spe < 9) uwep->spe = 9;
 	}
 
+	if (uwep && uwep->oartifact == ART_DAMN_HARD) uwep->oerodeproof = TRUE;
+
 	if (uwep && uwep->oartifact == ART_KLONG_RIGHT) {
 		uwep->oerodeproof = TRUE;
 		uwep->oeroded = uwep->oeroded2 = FALSE;
@@ -405,6 +433,35 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		curse(uwep);
 		uwep->hvycurse = 1;
 		pline("A terrible black aura surrounds your sword...");
+	}
+
+	if (uwep && uwep->oartifact == ART_DJA_A_A_A_UEUEUEI && !uwep->nemtrident) {
+		uwep->nemtrident = TRUE;
+
+		if (P_MAX_SKILL(P_QUARTERSTAFF) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_QUARTERSTAFF);
+			pline("You can now learn the quarterstaff skill!");
+		} else if (P_MAX_SKILL(P_QUARTERSTAFF) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_QUARTERSTAFF);
+			pline("You can now learn the quarterstaff skill!");
+			P_MAX_SKILL(P_QUARTERSTAFF) = P_BASIC;
+		} else if (P_MAX_SKILL(P_QUARTERSTAFF) == P_BASIC) {
+			P_MAX_SKILL(P_QUARTERSTAFF) = P_SKILLED;
+			pline("You can now become skilled with quarterstaves!");
+		} else if (P_MAX_SKILL(P_QUARTERSTAFF) == P_SKILLED) {
+			P_MAX_SKILL(P_QUARTERSTAFF) = P_EXPERT;
+			pline("You can now become expert with quarterstaves!");
+		} else if (P_MAX_SKILL(P_QUARTERSTAFF) == P_EXPERT) {
+			P_MAX_SKILL(P_QUARTERSTAFF) = P_MASTER;
+			pline("You can now become master with quarterstaves!");
+		} else if (P_MAX_SKILL(P_QUARTERSTAFF) == P_MASTER) {
+			P_MAX_SKILL(P_QUARTERSTAFF) = P_GRAND_MASTER;
+			pline("You can now become grand master with quarterstaves!");
+		} else if (P_MAX_SKILL(P_QUARTERSTAFF) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_QUARTERSTAFF) = P_SUPREME_MASTER;
+			pline("You can now become supreme master with quarterstaves!");
+		} else pline("Sadly your knowledge of the quarterstaff skill is already maxed.");
+
 	}
 
 	if (uwep && uwep->oartifact == ART_ARABELLA_S_MELEE_POWER) {
@@ -659,9 +716,30 @@ swapweaponchoice:
 			pline("Whoops, your secondary weapon became cursed.");
 		}
 
+		if (uswapwep && uswapwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) {
+			CovidTrapEffect |= FROMOUTSIDE;
+			You("are infected with the English flu! Oh no!!");
+			if (!uswapwep->cursed) curse(uswapwep);
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_MAILIE_S_SELF_CENTRATION && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, your secondary weapon became cursed.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_SAT___TRASHING && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, your secondary weapon became cursed.");
+		}
+
 		if (uswapwep && uswapwep->oartifact == ART_ARABELLA_S_THINNER) {
 			curse(uswapwep);
 			uswapwep->hvycurse = uswapwep->prmcurse = TRUE;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_TONA_S_GAMES && !uswapwep->hvycurse) {
+			curse(uswapwep);
+			uswapwep->hvycurse = TRUE;
+			pline("Now you gotta play Tona's games.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_SEXCALIBUR && !uswapwep->hvycurse) {

@@ -292,6 +292,7 @@ init_randarts()
 	artilist[ART_IT_POWER_KNOEPP].otyp = randartsuit();
 	artilist[ART_DON_SUICUNE_USED_SELFDESTR].otyp = randartsuit();
 	artilist[ART_WONDERCLOAK].otyp = randartcloak();
+	artilist[ART_WHISPERWIND_CLOAK].otyp = randartcloak();
 	artilist[ART_GLAE].otyp = randartmeleeweapon();
 	artilist[ART_FIRM_TOP].otyp = randartcloak();
 	artilist[ART_SHROUD].otyp = randartcloak();
@@ -640,6 +641,7 @@ init_randarts()
 	artilist[ART_RITA_S_TENDER_STILETTOS].otyp = randartbootsX();
 	artilist[ART_EROTIC_STAT_TRAIN].otyp = randartbootsX();
 	artilist[ART_SPECIAL_ROBUNG].otyp = randartrobeX();
+	artilist[ART_CHAOSWEAVER_ROBES].otyp = randartrobeX();
 	artilist[ART_COPE_OF_THE_ELDRITCH_KNIGH].otyp = randartrobeX();
 	artilist[ART_ROBE_OF_CLOSED_EYES].otyp = randartrobeX();
 	artilist[ART_HALF_MOON_TONIGHT].otyp = randartcloakX();
@@ -3251,6 +3253,7 @@ int tmp;
 			case ART_HEFFER_S_BOW:
 			case ART_GUNBOW:
 			case ART_HOMING_BEAM:
+			case ART_TONA_S_GAMES:
 			case ART_VIHAT_BAGUETTEN_BUS_STOP:
 			case ART_DIG__OF_COURSE:
 			case ART_THEO_S_BOX:
@@ -3833,7 +3836,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -4978,6 +4981,20 @@ arti_invoke(obj)
 		return 1;
 	}
 
+	if (obj->oartifact == ART_ONE_CATHLETTE) {
+		if (!u.cathletteinvoked) {
+			register struct obj *trophy;
+			u.cathletteinvoked = TRUE;
+			trophy = mksobj(KITTEN_HEEL_PUMP, TRUE, FALSE, FALSE);
+			if (trophy) {
+				trophy = onameX(trophy, artiname(ART_ONE_CATHLETTE));
+				dropy(trophy);
+			}
+			pline("Another copy of this artifact was dropped on the floor.");
+		} else pline("Since this invocation has already been done, it cannot be performed again.");
+		return 1;
+	}
+
 	if (obj->oartifact == ART_ATARU_TWO) {
 		if (!u.ataruinvoked && !exist_artifact(CRYSTAL_SWORD, artiname(ART_ATARU_ONE))) {
 			register struct obj *trophy;
@@ -5245,6 +5262,47 @@ chargingchoice:
 		if (obj->oartifact == ART_FANNY_S_ANNOYANCE) {
 
 			randommartialstyle();
+
+			break;
+		}
+
+		if (obj->oartifact == ART_EYES_OF_THE_ORACLE) {
+			You("gain a bit of the Oracle's secret knowledge...");
+			wiz_timeout_queue(); /* yes, this is a wizard mode command, I know --Amy */
+			break;
+		}
+
+		if (obj->oartifact == ART_RITA_S_DIAMOGIGGLING) {
+			stardigging();
+			break;
+		}
+
+		if (obj->oartifact == ART_____SUICIDE) {
+
+			int i, j, bd = 5;
+			struct monst *mtmp;
+
+			u.youaredead = 1;
+			pline("%s used EXPLOSION!", playeraliasname);
+
+			for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+					mtmp->mhp -= rnd(u.uhpmax * 10);
+					pline("%s is hit by the explosion!", Monnam(mtmp));
+					if (mtmp->mhp <= 0) {
+						pline("%s is killed!", Monnam(mtmp));
+						xkilled(mtmp, 0);
+					} else wakeup(mtmp); /* monster becomes hostile */
+				}
+
+			}
+
+			killer = "exploding";
+			killer_format = KILLED_BY;
+			done(DIED);
+			u.youaredead = 0;
+			/* No, being polymorphed does not save you. If it did, this arti would be rendered overpowered. --Amy */
 
 			break;
 		}

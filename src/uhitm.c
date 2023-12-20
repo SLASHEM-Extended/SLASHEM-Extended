@@ -1731,6 +1731,7 @@ int dieroll;
 	if (need_three(mon))  canhitmon = 3;
 	if (need_four(mon))   canhitmon = 4;
 	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
+	if (uwep && uwep->oartifact == ART_AP_) canhitmon = 0;
 
 	/*
 	 * If you are a creature that can hit as a +2 weapon, then YOU can
@@ -1762,7 +1763,7 @@ int dieroll;
 	    noeffect = objenchant < canhitmon && !(uarmg && uarmg->spe >= canhitmon) && (issoviet || rn2(isfriday ? 5 : 3));
 
 	    if (martial_bonus()) {
-		if (is_shade(mdat) || mon->egotype_shader) {
+		if ((is_shade(mdat) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_)) {
 		    tmp = rn2(3);
 		} else {
 		    tmp = martial_dmg();
@@ -1796,7 +1797,7 @@ int dieroll;
 		}
 
 	    } else { /* bare-handed combat skill */
-	    if (is_shade(mdat) || mon->egotype_shader)
+	    if ((is_shade(mdat) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_))
 		tmp = 0;
 		else {
 			tmp = rnd(2);
@@ -2312,7 +2313,7 @@ int dieroll;
 		    (thrown == 2 && is_ammo(obj) && 
 		    	!ammo_and_launcher(obj, launcher))) {
 		    /* then do only 1-2 points of damage */
-		    if ((is_shade(mdat) || mon->egotype_shader) && objects[obj->otyp].oc_material != MT_SILVER && objects[obj->otyp].oc_material != MT_ARCANIUM)
+		    if ((is_shade(mdat) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) && objects[obj->otyp].oc_material != MT_SILVER && objects[obj->otyp].oc_material != MT_ARCANIUM)
 			tmp = 0;
 		    else
 			tmp = rnd(2);
@@ -4021,6 +4022,8 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KLOBB) tmp -= 6;
 		if (uwep && uwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_EXCALIPOOR) tmp -= 9;
+		if (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) tmp -= 3;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) tmp -= 3;
 		if (uwep && uwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VLADSBANE) tmp -= 5;
 		if (uwep && uwep->oartifact == ART_CHARGING_MADE_EASY) tmp -= 5;
@@ -4574,7 +4577,19 @@ armorsmashdone:
 			pline("%s is bleeding!", Monnam(mon));
 		}
 
+		if (wep && wep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) {
+			hurtmarmor(mon, AD_DCAY);
+		}
+
 		if (wep && wep->oartifact == ART_STAFF_OF_ROT) {
+			hurtmarmor(mon, AD_DCAY);
+		}
+
+		if (wep && wep->oartifact == ART_TONA_S_GAMES) {
+			hurtmarmor(mon, AD_DCAY);
+		}
+
+		if (wep && wep->oartifact == ART_LARISSA_S_REVENGE) {
 			hurtmarmor(mon, AD_DCAY);
 		}
 
@@ -4675,9 +4690,33 @@ armorsmashdone:
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
 		}
+
 		if (wep && wep->oartifact == ART_ILJA_S_ASSHOLERY && has_head(mon->data) && !(mon->misc_worn_check & W_ARMH) && !thrown) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_RED_TREAD && !thrown) {
+			mon->bleedout += rnd(17);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_ONE_CATHLETTE && !thrown && !rn2(200)) goodeffect();
+
+		if (wep && wep->oartifact == ART_ONE_CATHLETTE && !thrown && !rn2(20)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mconf = TRUE;
+				pline("%s is pained!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_DUEUEUEUEU && !thrown && mon->mcanmove && !rn2(10)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mfrozen = rn1(2,2);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s drops helplessly to the floor!", Monnam(mon));
+			}
 		}
 
 		if (wep && wep->oartifact == ART_HAMSTRUNG_FOUR_SURE && mon->mcanmove && !rn2(3)) {
@@ -4692,7 +4731,6 @@ armorsmashdone:
 				mon->mcansee = 0;
 				mon->mblinded = rnd(10);
 				pline("%s is blinded by your spray!", Monnam(mon));
-
 			}
 		}
 		if (wep && wep->oartifact == ART_YOU_LIL_PUSSY && mon->mcanmove && !rn2(3)) {
@@ -5357,8 +5395,7 @@ melatechoice:
               || (!(PlayerCannotUseSkills) && (P_SKILL(weapon_type(obj)) >= P_EXPERT))
               || obj->oartifact == ART_STAKE_OF_VAN_HELSING) {
                 if (!rn2(10)) {
-                    You("plunge your stake into the heart of %s.",
-                        mon_nam(mon));
+                    You("plunge your stake into the heart of %s.", mon_nam(mon));
                     vapekilled = TRUE;
                 } else {
                     You("drive your stake into %s.", mon_nam(mon));
@@ -5376,6 +5413,12 @@ melatechoice:
                 hittxt = TRUE;
 
             }
+
+		if (obj->oartifact == ART_VAMPDOAING && rn2(2)) {
+			You("plunge your stake into the heart of %s.", mon_nam(mon));
+			vapekilled = TRUE;
+		}
+
         }
 
 	/* Special monk strikes */
@@ -7218,6 +7261,9 @@ struct obj *obj;
 	    || objects[obj->otyp].oc_material == MT_ARCANIUM
 	    || objects[obj->otyp].oc_material == MT_SILVER)
 		return TRUE;
+
+	if (uwep && uwep->oartifact == ART_AP_) return TRUE; /* artifact that ignores the shade's immunity to non-silver */
+
 	return FALSE;
 }
 
@@ -7486,7 +7532,7 @@ register struct attack *mattk;
 	if (hit_as_three(&youmonst))  enchantlvl = 3; 
 	if (hit_as_four(&youmonst))   enchantlvl = 4;         
 
-	if (!(uarmf && uarmf->oartifact == ART_KILLCAP)) {
+	if (!(uarmf && uarmf->oartifact == ART_KILLCAP) && !(uwep && uwep->oartifact == ART_AP_) ) {
 		if (need_one(mdef)   && enchantlvl < 1 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 		if (need_two(mdef)   && enchantlvl < 2 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 		if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
@@ -7622,7 +7668,7 @@ register struct attack *mattk;
 		    if(uwep) tmp = 0;
 		} else if(mattk->aatyp == AT_KICK) {
 		    if(thick_skinned(mdef->data) && tmp) tmp = 1;
-		    if((is_shade(mdef->data) || mdef->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) ) {
+		    if((is_shade(mdef->data) || mdef->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) ) {
 			if (!(uarmf && uarmf->blessed)) {
 			    impossible("bad shade attack function flow?");
 			    tmp = 0;
@@ -11135,7 +11181,7 @@ bladeangerdone2:
 			    }
 			    wakeup(mon);
 			    /* maybe this check should be in damageum()? */
-			    if ((is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) &&
+			    if ((is_shade(mon->data) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) &&
 					!(mattk->aatyp == AT_KICK &&
 					    uarmf && uarmf->blessed)) {
 				Your("attack passes harmlessly through %s.",
@@ -11178,7 +11224,7 @@ bladeangerdone2:
 			 */
 			dhit = 1;
 			wakeup(mon);
-			if (is_shade(mon->data) || mon->egotype_shader)
+			if ((is_shade(mon->data) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) )
 			    Your("hug passes harmlessly through %s.",
 				mon_nam(mon));
 			else if (!sticks(mon->data) && !u.uswallow) {
@@ -11206,7 +11252,7 @@ bladeangerdone2:
 		case AT_ENGL:
 			if((dhit = (tmp > (dieroll = rnd(20+i))))) {
 				wakeup(mon);
-				if (is_shade(mon->data) || mon->egotype_shader)
+				if ((is_shade(mon->data) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) )
 				    Your("attempt to surround %s is harmless.",
 					mon_nam(mon));
 				else {

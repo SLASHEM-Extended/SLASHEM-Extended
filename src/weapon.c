@@ -1160,6 +1160,7 @@ struct monst *mon;
 
 		}
 	}
+	if (uwep && uwep->oartifact == ART_DAMN_HARD && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_THE_TWELVE && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_IT && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_DACHA_DACHA_DACHA && !rn2(10)) willcriticalhit = TRUE;
@@ -1167,6 +1168,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA && !rn2(20)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_RUINED_ANTJEN && !rn2(20)) willcriticalhit = TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
 	/* end critical hit chance calculation */
@@ -7675,6 +7677,20 @@ struct obj *weapon;
 
 	if (uwep && weapon && (uwep == weapon) && weapon->otyp == FLAME_MOUNTAIN && !uarms && !u.twoweap) {
 		bonus += rnd(10);
+	}
+
+	if (uwep && weapon && (uwep == weapon) && weapon->oartifact == ART_CLOTZY_FREE && !uarms && !u.twoweap) {
+		bonus += rnd(20);
+		switch (P_SKILL(P_MAKASHI)) {
+
+			case P_BASIC:	bonus += 1; break;
+			case P_SKILLED:	bonus += 2; break;
+			case P_EXPERT:	bonus += 3; break;
+			case P_MASTER:	bonus += 4; break;
+			case P_GRAND_MASTER:	bonus += 5; break;
+			case P_SUPREME_MASTER:	bonus += 6; break;
+			default: bonus += 0; break;
+		}
 	}
 
 	if (!(PlayerCannotUseSkills) && uwep && is_lightsaber(uwep) && (weapon->lamplit || Role_if(PM_SHADOW_JEDI)) && u.twoweap && uswapwep && is_lightsaber(uswapwep) && (uswapwep->lamplit || Role_if(PM_SHADOW_JEDI)) ) {

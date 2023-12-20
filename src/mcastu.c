@@ -1667,8 +1667,8 @@ int spellnum;
 		if (level.flags.lethe) lethe_damage(invent, FALSE, FALSE);
 	}
 	if (Burned) make_burned(0L, TRUE); /* you're enveloped in water, so the burn disappears */
-	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
-	if (StrongHalf_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg + 1) / 2;
+	if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg + 1) / 2;
 	break;
 
 	case 20:
@@ -1693,8 +1693,8 @@ int spellnum;
 	pline("You are caught in an antimatter storm!");
 	dmg = d(8, 6);
 	withering_damage(invent, FALSE, FALSE); /* This can potentially damage all of your inventory items. --Amy */
-	if (Half_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
-	if (StrongHalf_physical_damage && rn2(2) ) dmg = (dmg + 1) / 2;
+	if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg + 1) / 2;
+	if (StrongHalf_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg + 1) / 2;
 
 	break;
 

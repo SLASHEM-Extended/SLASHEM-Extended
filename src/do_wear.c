@@ -4651,6 +4651,12 @@ Amulet_on()
 		if (!uamul->cursed) curse(uamul);
     }
 
+    if (uamul && uamul->oartifact == ART_AETHERIAL_SHARD) {
+		curse(uamul);
+		uamul->hvycurse = uamul->prmcurse = TRUE;
+		pline_The("aetherial shard glows and pulsates!");
+    }
+
     if (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) {
 		if (!uamul->cursed) curse(uamul);
     }
@@ -6863,6 +6869,7 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) uac -= 2;
+	if (uwep && uwep->oartifact == ART_SUPERCHANT) uac -= 10;
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
@@ -6975,6 +6982,7 @@ find_ac()
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
 	if (bmwride(ART_PLATED_BARDING)) uac -= 2;
 	if (bmwride(ART_DEATH_SQUAD_MOBILE)) uac -= 5;
+	if (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) uac -= 10;
 	if (FemtrapActivePatricia) uac -= (SuperFemtrapPatricia ? 6 : 3);
 	if (uarm && uarm->oartifact == ART_ELMHERE && multi < 0) uac -= 5;
 	if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) uac -= 5;
