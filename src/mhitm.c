@@ -4457,7 +4457,7 @@ physical:
 			    /* WAC -- or using a pole at short range... */
 			    (is_pole(otmp))) {
 			    /* then do only 1-2 points of damage */
-			    if ( (is_shade(pd) || (mdef && mdef->egotype_shader)) && objects[otmp->otyp].oc_material != MT_SILVER && objects[otmp->otyp].oc_material != MT_ARCANIUM)
+			    if ( (is_shade(pd) || (mdef && mdef->egotype_shader)) && !(uwep && uwep->oartifact == ART_AP_) && objects[otmp->otyp].oc_material != MT_SILVER && objects[otmp->otyp].oc_material != MT_ARCANIUM)
 				tmp = 0;
 			    else
 				tmp = rnd(2);
@@ -4469,7 +4469,7 @@ physical:
 				useup(otmp);
 				otmp = (struct obj *) 0;
 				possibly_unwield(mtmp);
-				if (!is_shade(pd) && !(mdef && mdef->egotype_shader) )
+				if ((!is_shade(pd) && !(mdef && mdef->egotype_shader)) || (uwep && uwep->oartifact == ART_AP_) )
 				    tmp++;
 		    	    }
 #endif

@@ -415,7 +415,7 @@ register boolean clumsy;
 	}
 
 	/* attacking a shade is useless */
-	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) )
+	if ( (is_shade(mon->data) || mon->egotype_shader) && !(uwep && uwep->oartifact == ART_AP_) && !(uarmf && (objects[uarmf->otyp].oc_material == MT_SILVER || objects[uarmf->otyp].oc_material == MT_ARCANIUM)) )
 	    dmg = 0;
 
 	if ((is_undead(mon->data) || is_demon(mon->data)) && uarmf &&
