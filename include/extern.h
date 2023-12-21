@@ -3356,6 +3356,7 @@ E void removeforgottenspell(void);
 E void evilspellforget(void);
 E int dodeletespell(void);
 E void extramemory(void);
+E int manacost(int);
 
 /* ### steal.c ### */
 
