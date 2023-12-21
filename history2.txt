@@ -1,6 +1,20 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.8 - December 2023
+- Base Pw costs of spells are displayed in the spell menu now.
+- Added capoeira as a hidden martial arts style.
+- Fixed an age-old issue where the wand of remove resistance would typically try to remove several intrinsics from the player with a single zap.
+- Some feminism traps have stronger versions of their effects now.
+- Rebalanced the level difficulty, especially later into the game, to hopefully prevent the game from bombarding the player with endless amounts of high-level supermonsters.
+- Rebalanced bulletator, fluidator, garlicator, pompeji etc. squads, they were too deadly.
+- Added new skills for the different types of high heels.
+- Overhauled the system for choosing random traps, to reduce the proliferation of really annoying or dangerous ones.
+
 2.8.7 - October 2023
+- Re-adjusted the player's HP and Pw regeneration rates somewhat.
+- Overhauled the loot reduction chances in the late game.
+- Fixed an oversight that prevented items from being dipped into water tunnels.
+- Fixed issues where monsters would sometimes take very long to eat specific items. This was particularly annoying for pets.
 - Added a system where the player may "recall" (or return) to certain specific, previously visited dungeon levels. Like Angband, Elona and similar games, the effect takes a couple of turns until it actually levelports the player to the destination level.
 - Wizard mode now allows the player to polymorph into invalid monster forms and increase the polymorph duration, for testing purposes.
 - Added a potential fix for the problem where pets would sometimes drop their weapon upon saving and loading the game.
