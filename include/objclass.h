@@ -114,7 +114,7 @@ struct objclass {
 #define MT_STEEL		65	/* metallic */
 #define MT_TITANIUM	66		/* metallic */
 #define MT_ADAMANTIUM		67	/* organic */
-#define MT_ALIMATHIUM		68	/* organic */
+#define MT_ALIMATHIUM		68	/* inedible */
 #define LASTMATERIAL	MT_ALIMATHIUM
 /* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 

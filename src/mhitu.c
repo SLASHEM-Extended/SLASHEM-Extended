@@ -19240,6 +19240,13 @@ register int n;
 
 	}
 
+	if (youmonst.m_ap_type == M_AP_OBJECT && (multi < 0)) {
+		You("took damage, and therefore stopped mimicking an object!");
+		unmul((char *)0);	/* immediately stop mimicking */
+		youmonst.m_ap_type = M_AP_NOTHING;
+		youmonst.mappearance = 0;
+	}
+
 	if (uimplant && uimplant->oartifact == ART_NO_ABNORMAL_FUTURE) {
 		if (!rn2(20)) witherarmor();
 		if (!rn2(500)) antimatter_damage(invent, FALSE, FALSE);

@@ -566,6 +566,14 @@ boolean yours; /* is it your fault (for killing monsters) */
 	if (u.detonationhack) uhurt = FALSE;
 	
 	if (uhurt) {
+
+		if (youmonst.m_ap_type == M_AP_OBJECT && (multi < 0)) {
+			You("took damage, and therefore stopped mimicking an object!");
+			unmul((char *)0);	/* immediately stop mimicking */
+			youmonst.m_ap_type = M_AP_NOTHING;
+			youmonst.mappearance = 0;
+		}
+
 		/* [ALI] Give message if it's a weapon (grenade) exploding */
 		if ((type >= 0 || adtyp == AD_PHYS || olet == WEAPON_CLASS) &&
 		    /* gas spores */

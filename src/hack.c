@@ -5091,6 +5091,14 @@ int k_format; /* WAC k_format is an int */
 
 	}
 
+	if (youmonst.m_ap_type == M_AP_OBJECT && (multi < 0)) { /* bullshit! you should stop mimicking in that case! --Amy */
+		You("took damage, and therefore stopped mimicking an object!");
+		unmul((char *)0);	/* immediately stop mimicking */
+		youmonst.m_ap_type = M_AP_NOTHING;
+		youmonst.mappearance = 0;
+		/* after all, you just took damage, so no sense in continuing to pretend that you're a stupid orange */
+	}
+
 	if (uarms && uarms->oartifact == ART_OF_VOIDING && n > 0) {
 		n -= rnd(2);
 		if (n < 1) n = 1;
