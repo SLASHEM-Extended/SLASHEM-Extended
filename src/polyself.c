@@ -1891,12 +1891,15 @@ dospit()
 	struct obj *otmp;
 	struct attack *mattk;
 	int spitcost = 10;
+	int squeakamount = 0;
 
 	mattk = attacktype_fordmg(youmonst.data, AT_SPIT, AD_ANY);
 	if (!mattk && uactivesymbiosis && !PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) mattk = attacktype_fordmg(&mons[u.usymbiote.mnum], AT_SPIT, AD_ANY);
 
 	if (mattk && mattk->adtyp == AD_TCKL) spitcost = 30;
 	if (mattk && mattk->adtyp == AD_DRLI) spitcost = 50;
+
+	squeakamount = spitcost;
 
 	if (!PlayerCannotUseSkills) {
 		switch (P_SKILL(P_SQUEAKING)) {
@@ -1950,6 +1953,10 @@ dospit()
 	    otmp->owt = weight(otmp);
 	    /*otmp->spe = 1;*/ /* to indicate it's yours */
 	    throwit(otmp, 0L, FALSE, 0);
+	}
+	while (squeakamount > 20) {
+		use_skill(P_SQUEAKING, 1);
+		squeakamount -= 20;
 	}
 	use_skill(P_SQUEAKING, 1);
 	return(1);
@@ -3080,14 +3087,39 @@ dohide()
 {
 	boolean ismimic = youmonst.data->mlet == S_MIMIC;
 
+	/* costs mana if you're mimicking, but not if you're merely hiding --Amy */
+	int hidingcost = 25;
+
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_SQUEAKING)) {
+	      	case P_BASIC:	hidingcost = 24; break;
+	      	case P_SKILLED:	hidingcost = 23; break;
+	      	case P_EXPERT:	hidingcost = 22; break;
+	      	case P_MASTER:	hidingcost = 21; break;
+	      	case P_GRAND_MASTER:	hidingcost = 20; break;
+	      	case P_SUPREME_MASTER:	hidingcost = 19; break;
+	      	default: break;
+		}
+	}
+
 	if (u.uundetected || (ismimic && youmonst.m_ap_type != M_AP_NOTHING)) {
 		You("are already hiding.");
 		return(0);
 	}
 	if (ismimic) {
+
+		if (u.uen < hidingcost) {
+		    You("lack the required %d mana to mimic an object.", hidingcost);
+		    return(0);
+		}
+		u.uen -= hidingcost;
+
 		/* should bring up a dialog "what would you like to imitate?" */
 		youmonst.m_ap_type = M_AP_OBJECT;
 		youmonst.mappearance = STRANGE_OBJECT;
+
+		use_skill(P_SQUEAKING, 2); /* trains squeaking only if you used mana */
+
 	} else
 		u.uundetected = 1;
 	newsym(u.ux,u.uy);

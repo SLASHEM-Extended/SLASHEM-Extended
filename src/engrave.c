@@ -6092,6 +6092,7 @@ static const char *epitaphs[] = {
 	"Here lies the deity Lucy from DCSS, who was somehow renamed to Lugonu because 'omg a name that could be interpreted as being female, that may not be!'.",
 	"Here lies some mundane item or other feature from DCSS, e.g. a wand of cold or scroll of teleport. You could really insert anything here, because no matter what it is, it got removed in some patch for no real reason.",
 	"Here lies the song 'Fuck You' by CeeLo Green. Someone apparently thought that the presence of the F-word was offensive and therefore censored it (changing it to 'Forget You' in the process), which is so very petty because there was nothing wrong with the original version of the song.",
+	"What the hell, I ate a mimic and then teleportitis took me to a square with a stalactite and because I was flying, the stalactite did 10-20 damage to me every turn yet my stupid char just would not stop mimicking and so I died with no way to prevent it!", /* happened to Amy */
 
 };
 
