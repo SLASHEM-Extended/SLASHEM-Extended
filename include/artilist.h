@@ -17834,6 +17834,42 @@ A("Kati Gave You The English Flu",				DOGSHIT_BOOT, /* permanently gives you the
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 17), NO_DFNS, NO_CARY, HEALING, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Iced Out Computer On A Chain",				HEAVY_IRON_BALL, /* randart heavy iron ball, by Demo, wielding it or being punished with it grants keen memory */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("umeng flyer, umeng hider, umeng undeaddemon mindless.",				UMENG_STONE, /* gives the longer message */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Wolloh Lengwitsch",				UMENG_CLOAK, /* stronger version of umeng trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Every Other Amulet Is This",				AMULET_OF_TOTAL_BURDEN, /* (regular) burden effect when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Tontank",				TOO_HEAVY_PLATE, /* 10 extra points of AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gunnem Down",				LEATHER_CLOAK, /* initialized to always be quantity cloak, monsters also spawn with more ranged weapon ammo */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Goodfood",				LEATHER_CLOAK, /* initialized to always be quantity cloak, food also spawns in bigger stacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kratschem Hard",				RIN_HEAVY_ATTACK, /* mean burden effect, +3 increase accuracy and +2 increase damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Minimal Mini-Me",				ELIF_S_JEWEL, /* randart feminism gem, carrcap effect, minimalism, monster spawn rate is 3x lower, double full nutrients, exp bonus, faster skill training, keen memory, double technicality, can be invoked to gain +1 for weapon/enchant/BUC knowledge up to a maximum of 250 */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_HPHDAM|SPFX_EREGEN), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -11547,6 +11547,37 @@ morezapping:
 
 }
 
+/* halve memory of a randomly selected spell with nonzero memory --Amy */
+void
+spellmemoryhalve()
+{
+	int n, thisone, choicenumber, spell, nzap;
+
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n) {
+		thisone = -1;
+		choicenumber = 0;
+		for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			if ((spellknow(n) > 0) && (!choicenumber || (!rn2(choicenumber + 1))) ) {
+				thisone = n;
+			}
+			if (spellknow(n) > 0) choicenumber++;
+		}
+
+		if (choicenumber > 0 && thisone >= 0) {
+			spl_book[thisone].sp_know /= 2;
+			if (spellknow(thisone) < 0) {
+				spl_book[thisone].sp_know = 0;
+				pline("You lose all knowledge of the %s spell!", spellname(thisone));
+			}
+			else pline("Your knowledge of the %s spell is cut in half!", spellname(thisone));
+		}
+
+	}
+
+}
+
 /* the '+' command -- view known spells */
 int
 dovspell()

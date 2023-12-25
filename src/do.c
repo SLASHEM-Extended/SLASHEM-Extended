@@ -187,7 +187,7 @@ const char *verb;
 		return TRUE;
 	else if (obj->otyp == BOULDER && (t = t_at(x,y)) != 0 &&
 		 (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || 
-			t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == ACID_PIT || t->ttyp == SHAFT_TRAP || t->ttyp == CURRENT_SHAFT
+			t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == HYPOXIC_PIT || t->ttyp == ACID_PIT || t->ttyp == SHAFT_TRAP || t->ttyp == CURRENT_SHAFT
 			|| t->ttyp == TRAPDOOR || t->ttyp == HOLE)) {
 		if (((mtmp = m_at(x, y)) && mtmp->mtrapped) ||
 			(u.utrap && u.ux == x && u.uy == y)) {
@@ -255,7 +255,7 @@ const char *verb;
 		(!u.utrap || u.utraptype != TT_PIT) &&
 		(t = t_at(x,y)) != 0 && t->tseen &&
 			(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM
-			|| t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == ACID_PIT)) {
+			|| t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == HYPOXIC_PIT || t->ttyp == ACID_PIT)) {
 		/* you escaped a pit and are standing on the precipice */
 		if (Blind && flags.soundok)
 			You_hear("%s %s downwards.",
@@ -1134,6 +1134,9 @@ register struct obj *obj;
 	case AMULET_OF_ANTI_EXPERIENCE:
 		pline_The("toilet seems to be impossible to improve.");
 		break;
+	case AMULET_OF_TOTAL_BURDEN:
+		pline_The("toilet seems to be weighed down as if it was made of incredibly heavy material.");
+		break;
 	case AMULET_OF_STONE:
 		pline_The("toilet seems to be made of stone.");
 		break;
@@ -1767,7 +1770,7 @@ dodown()
 			|| !Can_fall_thru(&u.uz) ) {
 
 			/* allow the > key to go down into a pit. But only if it really is one! --Amy */
-			if ((trap = t_at(u.ux,u.uy)) && (trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SPIKED_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT) && !u.utrap) {
+			if ((trap = t_at(u.ux,u.uy)) && (trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == GIANT_CHASM || trap->ttyp == SPIKED_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == HYPOXIC_PIT || trap->ttyp == ACID_PIT) && !u.utrap) {
 				You("carefully ease yourself into the %spit.", (trap->ttyp == SPIKED_PIT) ? "spiked " : "");
 
 				int effdex = ACURR(A_DEX) - 2;

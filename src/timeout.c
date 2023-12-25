@@ -833,6 +833,12 @@ nh_timeout()
 
 	if (u.fumbleduration) u.fumbleduration--;
 	if (u.fumbleduration < 0) u.fumbleduration = 0; /* fail safe */
+
+	if (u.restfulsleepduration) {
+		u.restfulsleepduration--;
+		if (u.restfulsleepduration < 0) u.restfulsleepduration = 0; /* fail safe */
+	}
+
 	if (u.antimagicshell) {
 		u.antimagicshell--;
 		if (!u.antimagicshell) pline("You no longer produce an anti-magic shell.");

@@ -309,6 +309,7 @@ moveloop()
 			if (issuxxor) monclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
+			if (have_minimejewel()) monclock *= 3;
 
 			if (Race_if(PM_DEVELOPER) && ((u.ulevel > 9) || (moves > 10000)) ) monclock /= 3;
 
@@ -358,6 +359,7 @@ moveloop()
 			if (Race_if(PM_RODNEYAN)) xtraclock /= 4;
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) xtraclock /= 2;
 			if (issuxxor) xtraclock *= 2;
+			if (have_minimejewel()) xtraclock *= 3;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) xtraclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) xtraclock *= 2;
 
@@ -7702,7 +7704,7 @@ newbossJANI:
 		}
 
 		if (!rn2(5000)) {
-			u.startscummereffect = rnd(272); /* timerun effect */
+			u.startscummereffect = rnd(275); /* timerun effect */
 		}
 
 		if (FemtrapActiveElla && u.ulevel >= 10 && !rn2(20000)) {
@@ -11423,7 +11425,7 @@ newbossB:
 					if (hussytraptype == MAGIC_PORTAL) hussytraptype = ROCKTRAP;
 					if (hussytraptype == WISHING_TRAP) hussytraptype = BLINDNESS_TRAP;
 					if (hussytraptype == S_PRESSING_TRAP) hussytraptype = ROCKTRAP;
-					if (In_sokoban(&u.uz) && rn2(10) && (hussytraptype == HOLE || hussytraptype == TRAPDOOR || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT || hussytraptype == PIT || hussytraptype == SPIKED_PIT || hussytraptype == GIANT_CHASM || hussytraptype == SHIT_PIT || hussytraptype == MANA_PIT || hussytraptype == ANOXIC_PIT || hussytraptype == ACID_PIT)) hussytraptype = ROCKTRAP;
+					if (In_sokoban(&u.uz) && rn2(10) && (hussytraptype == HOLE || hussytraptype == TRAPDOOR || hussytraptype == SHAFT_TRAP || hussytraptype == CURRENT_SHAFT || hussytraptype == PIT || hussytraptype == SPIKED_PIT || hussytraptype == GIANT_CHASM || hussytraptype == SHIT_PIT || hussytraptype == MANA_PIT || hussytraptype == ANOXIC_PIT || hussytraptype == HYPOXIC_PIT || hussytraptype == ACID_PIT)) hussytraptype = ROCKTRAP;
 					if (In_sokoban(&u.uz) && rn2(100) && hussytraptype == NUPESELL_TRAP) hussytraptype = FIRE_TRAP;
 					if (hussytraptype == ELDER_TENTACLING_TRAP) hussytraptype = FIRE_TRAP;
 					if (hussytraptype == DATA_DELETE_TRAP) hussytraptype = RUST_TRAP;
@@ -13925,12 +13927,19 @@ pastds2:
 			losehp(u.ulevel * 3, "being stuck in an anoxic pit", KILLED_BY);
 		}
 
+		if (u.utrap && (ttmp = t_at(u.ux, u.uy)) && ttmp && ttmp->ttyp == HYPOXIC_PIT && !Breathless) {
+			pline("The air in the hypoxic pit contains insufficient amounts of oxygen, and your health deteriorates!");
+			if (FunnyHallu) pline("(At least it's not an anoxic pit, which would be completely devoid of oxygen.)");
+			losehp(u.ulevel, "being stuck in a hypoxic pit", KILLED_BY);
+		}
+
 		/* jonadab invented the anoxic pit, and later changed the name to hypoxic pit for whatever reason, which
 		 * sounds much less badass than anoxic pit. I (Amy) learned Ancient Greek in school, so I know what those names
 		 * mean. Anoxic means "does not contain oxygen AT ALL", and will therefore suffocate you very quickly, while
 		 * hypoxic only means "contains a little less oxygen than regular air". While that will still suffocate you
 		 * after a while (I seem to recall humans need about 15% oxygen content in air to breathe), it certainly
-		 * makes the trap sound less powerful and dangerous than it really is, so I'll call it anoxic pit. */
+		 * makes the trap sound less powerful and dangerous than it really is, so I'll call it anoxic pit.
+		 * edit: actually, I just decided that there'll be a hypoxic pit as well, which deals less damage */
 
 		if (u.utrap && (ttmp = t_at(u.ux, u.uy)) && ttmp && ttmp->ttyp == ACID_PIT) {
 			You("are covered with acid!");
@@ -18425,6 +18434,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cosmetic helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pavise shield")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "particularly terrible boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "quantity cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19831,6 +19841,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "cosmetic helmet")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "pavise shield")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "particularly terrible boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "quantity cloak")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

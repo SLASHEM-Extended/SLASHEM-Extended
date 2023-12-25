@@ -194,6 +194,10 @@ int otyp,oquan;
 		if (!rn2(50)) otmp->quan += rnz(otmp->quan + 3);
 		if (!rn2(200)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 	}
+	if (uarmc && uarmc->oartifact == ART_GUNNEM_DOWN && !rn2(3)) {
+		otmp->quan += rnd(otmp->quan);
+	}
+
 	otmp->owt = weight(otmp);
 	if (otyp == ORCISH_ARROW) otmp->opoisoned = TRUE;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_POISON_ARROW_FROG]) otmp->opoisoned = TRUE;

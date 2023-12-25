@@ -1434,6 +1434,14 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, chaotic monsters will live up to their alignment by making the dungeon more chaotic.");
 						else pline("Your auspices say: 17 8");
 						break;
+					case 9:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, you're permanently burdened even if your inventory is empty.");
+						else pline("Your auspices say: 17 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, your carry capacity can never be higher than 500.");
+						else pline("Your auspices say: 17 10");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 19) {

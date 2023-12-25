@@ -1694,6 +1694,18 @@ have_femityjewel()
 }
 
 boolean
+have_minimejewel()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_MINIMAL_MINI_ME)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_stashitcontainer()
 {
 	register struct obj *otmp;
@@ -8279,6 +8291,54 @@ have_aefdestone()
 	return(FALSE);
 }
 
+int
+have_meanburdenstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MEAN_BURDEN_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator273) return TRUE;
+	if (sjwcheck(273)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 9) return TRUE;
+	return(FALSE);
+}
+
+int
+have_carrcapstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == CARRCAP_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator274) return TRUE;
+	if (sjwcheck(274)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 10) return TRUE;
+	return(FALSE);
+}
+
+int
+have_umengstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == UMENG_STONE) {
+			if (otmp->oartifact == ART_UMENG_FLYER__UMENG_HIDER__) return 2;
+			return(TRUE);
+		}
+	}
+	if (u.nastinator275) return TRUE;
+	if (sjwcheck(275)) return TRUE;
+	return(FALSE);
+}
+
 
 struct obj *
 o_on(id, objchn)
@@ -12853,6 +12913,8 @@ boolean knoweverything;
 			pline("If you hear the cockatrice's hissing, you will often turn to stone. But this lithic cloak allows you to resist most of the time.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TANKINI))
 			pline("Yeah, I know, it's silly because this piece of clothing is certainly not armored... but it still provides one additional point of AC in addition to the amount given by the base item type.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_QUANTITY_CLOAK))
+			pline("Special type of cloak that makes ammo spawn in bigger stacks sometimes.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MIRRORED_GLOVES))
 			pline("A pair of gloves that's like a mirror. Monsters that try to use their gaze on you will sometimes gaze at the gloves, keeping you safe from the effects.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VISORED_HELMET))
@@ -13707,6 +13769,8 @@ boolean knoweverything;
 				pline("Do you want to be able to damage those assholes who are immune to fire, cold, shock, poison or acid? With this robe, there's a small chance that your elemental attacks will bypass the opponent's resistance and damages him anyway!"); break;
 			case ROBE_OF_SPELL_BOOSTING:
 				pline("A robe that boosts the power of certain spells (e.g. damage-dealing or healing spells)."); break;
+			case TOO_HEAVY_PLATE:
+				pline("This is a bad armor. You might think that its great AC and 2 points of magic cancellation are useful, however you'll not be able to carry much at all while wearing it."); break;
 			case ROBE_OF_DESTINY:
 				pline("This robe makes it so that monsters will always spawn with a level that is at least the current monster difficulty. It gives 5 points of armor class and no magic cancellation."); break;
 			case ROBE_OF_STASIS:
@@ -14001,6 +14065,8 @@ boolean knoweverything;
 				pline("This cloak causes your pets to occasionally get hit with random bad effects. It grants low armor class and 3 points of magic cancellation."); break;
 			case NON_PROOF_CLOAK:
 				pline("This cloak causes your items to lose erosionproofing over time. It grants low armor class and 3 points of magic cancellation."); break;
+			case UMENG_CLOAK:
+				pline("This cloak has the cosmetic effect of making the top line say 'umeng'. It grants no armor class and no magic cancellation."); break;
 			case EERIE_CLOAK:
 				pline("This cloak turns monsters into ghosts. It grants good armor class and 3 points of magic cancellation."); break;
 			case SUPERPOWER_GAUNTLETS:
@@ -16731,6 +16797,8 @@ boolean knoweverything;
 				pline("This amulet causes items to autocurse whenever you drop them."); break;
 			case AMULET_OF_ANTI_EXPERIENCE:
 				pline("This amulet makes you lose the ability to gain experience."); break;
+			case AMULET_OF_TOTAL_BURDEN:
+				pline("This amulet makes you constantly burdened."); break;
 			case AMULET_OF_HOSTILITY:
 				pline("This amulet causes all newly generated monsters to be hostile."); break;
 			case AMULET_OF_SANITY_TREBLE:
@@ -20042,6 +20110,12 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes you to lose turns if you attack in melee, unless you use a prefix."); break;
 			case AUTOMORE_STONE:
 				pline("A stone that curses itself and causes --More-- prompts to disappear."); break;
+			case MEAN_BURDEN_STONE:
+				pline("A stone that curses itself and causes you to be burdened at all times."); break;
+			case CARRCAP_STONE:
+				pline("A stone that curses itself and causes your carry capacity to become almost as shitty as it is in vanilla nethack."); break;
+			case UMENG_STONE:
+				pline("A stone that curses itself and causes the top line to always say 'umeng'."); break;
 			case UNFAIR_ATTACK_STONE:
 				pline("A stone that curses itself and causes monsters to use unfair attacks."); break;
 
@@ -29787,6 +29861,24 @@ boolean knoweverything;
 					pline("Artifact specs: +8 damage, aggravate monster, disintegration resistance, +3 strength and increased chance of landing a critical hit when wielded."); break;
 				case ART_KATI_GAVE_YOU_THE_ENGLISH_:
 					pline("Artifact specs: randomly has up to +17 damage, rerolled every turn. Upon wielding it, you get afflicted with the corona nastytrap effect permanently. This weapon autocurses, but you won't have unusable hands even if your other hand is wearing a cursed shield. Hitting an enemy with it can rot its armor. Sing won't force you to clean shoes, and quite a lot of monsters have a higher chance of spawning peaceful. This weapon grants you super regene and if your health is below one quarter, half physical and spell damage."); break;
+				case ART_ICED_OUT_COMPUTER_ON_A_CHA:
+					pline("Artifact specs: +6 shock damage, wielding it or being punished with it grants keen memory."); break;
+				case ART_UMENG_FLYER__UMENG_HIDER__:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_WOLLOH_LENGWITSCH:
+					pline("Artifact specs: gives longer 'umeng' messages."); break;
+				case ART_EVERY_OTHER_AMULET_IS_THIS:
+					pline("Artifact specs: burden when worn, which is in addition to the 'mean burden' effect caused by the base item."); break;
+				case ART_TONTANK:
+					pline("Artifact specs: improves your AC by 10 points when worn."); break;
+				case ART_GUNNEM_DOWN:
+					pline("Artifact specs: monsters with ranged weapons spawn with more ammo while you're wearing this."); break;
+				case ART_GOODFOOD:
+					pline("Artifact specs: food spawns in bigger stacks while you're wearing this."); break;
+				case ART_KRATSCHEM_HARD:
+					pline("Artifact specs: mean burden effect, +3 increase accuracy and +2 increase damage when worn."); break;
+				case ART_MINIMAL_MINI_ME:
+					pline("Artifact specs: oh so much :D It gives the following properties while carried in your inventory: half physical damage, energy regeneration, carrcap effect, minimalism, 3x reduced monster spawn rate, double full nutrients, experience bonus, faster skill training, keen memory and double technicality. And if that wasn't enough, you can also invoke it to increase your item enchantment/BUC knowledge."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

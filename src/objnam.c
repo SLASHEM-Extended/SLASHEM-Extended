@@ -4321,6 +4321,12 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SPE_DEFENSIVE_FIREBALL, "todo" },
 	{ SPE_ULTRA_P, "todo" },
 	{ SPE_FORCIBLE_MOVE, "todo" },
+	{ MEAN_BURDEN_STONE, "todo" },
+	{ CARRCAP_STONE, "todo" },
+	{ UMENG_STONE, "todo" },
+	{ AMULET_OF_TOTAL_BURDEN, "todo" },
+	{ TOO_HEAVY_PLATE, "todo" },
+	{ UMENG_CLOAK, "todo" },
 
 	{0, "" }
 };
@@ -7796,6 +7802,12 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ SPE_DEFENSIVE_FIREBALL, "todo" },
 	{ SPE_ULTRA_P, "todo" },
 	{ SPE_FORCIBLE_MOVE, "todo" },
+	{ MEAN_BURDEN_STONE, "todo" },
+	{ CARRCAP_STONE, "todo" },
+	{ UMENG_STONE, "todo" },
+	{ AMULET_OF_TOTAL_BURDEN, "todo" },
+	{ TOO_HEAVY_PLATE, "todo" },
+	{ UMENG_CLOAK, "todo" },
 
 	{0, "" }
 };

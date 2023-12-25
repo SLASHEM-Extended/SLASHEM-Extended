@@ -3822,6 +3822,27 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != NASTYCURSE_TRAP
 				&& ttmp->ttyp != REPEATING_NASTYCURSE_TRAP
 
+				&& ttmp->ttyp != FALLING_ROCK_COLD
+				&& ttmp->ttyp != RETURN_TRAP
+				&& ttmp->ttyp != INTRINSIC_STEAL_TRAP
+				&& ttmp->ttyp != SCORE_AXE_TRAP
+				&& ttmp->ttyp != SCORE_DRAIN_TRAP
+				&& ttmp->ttyp != SINGLE_UNIDENTIFY_TRAP
+				&& ttmp->ttyp != UNLUCKY_TRAP
+				&& ttmp->ttyp != ALIGNMENT_REDUCTION_TRAP
+				&& ttmp->ttyp != MALIGNANT_TRAP
+				&& ttmp->ttyp != STAT_DAMAGE_TRAP
+				&& ttmp->ttyp != HALF_MEMORY_TRAP
+				&& ttmp->ttyp != HALF_TRAINING_TRAP
+				&& ttmp->ttyp != DEBUFF_TRAP
+				&& ttmp->ttyp != TRIP_ONCE_TRAP
+				&& ttmp->ttyp != NARCOLEPSY_TRAP
+				&& ttmp->ttyp != MARTIAL_ARTS_TRAP
+
+				&& ttmp->ttyp != MEAN_BURDEN_TRAP
+				&& ttmp->ttyp != CARRCAP_TRAP
+				&& ttmp->ttyp != UMENG_TRAP
+
 				&& ttmp->ttyp != SKILL_POINT_LOSS_TRAP
 				&& ttmp->ttyp != PERFECT_MATCH_TRAP
 				&& ttmp->ttyp != DUMBIE_LIGHTSABER_TRAP
@@ -4276,6 +4297,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				    && ttmp->ttyp != SHIT_PIT
 				    && ttmp->ttyp != MANA_PIT
 				    && ttmp->ttyp != ANOXIC_PIT
+				    && ttmp->ttyp != HYPOXIC_PIT
 				    && ttmp->ttyp != ACID_PIT
 				    && ttmp->ttyp != SHAFT_TRAP
 				    && ttmp->ttyp != TRAPDOOR
@@ -4320,7 +4342,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				 * make sure they don't constantly fall into sokoban holes */
 				if (rn2(3) || (In_sokoban(&u.uz) && rn2(25) && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT
 				    || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT
-				    || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == TRAPDOOR
+				    || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == HYPOXIC_PIT || ttmp->ttyp == ACID_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == TRAPDOOR
 				    || ttmp->ttyp == HOLE) ) )
 				    continue;
 			    }
@@ -5249,7 +5271,7 @@ register struct monst *mtmp;
 					if (rtrap == MAGIC_PORTAL) rtrap = ROCKTRAP;
 					if (rtrap == S_PRESSING_TRAP) rtrap = ROCKTRAP;
 					if (rtrap == WISHING_TRAP) rtrap = BLINDNESS_TRAP;
-					if (In_sokoban(&u.uz) && rn2(10) && (rtrap == HOLE || rtrap == TRAPDOOR || rtrap == SHAFT_TRAP || rtrap == CURRENT_SHAFT || rtrap == PIT || rtrap == SPIKED_PIT || rtrap == GIANT_CHASM || rtrap == SHIT_PIT || rtrap == MANA_PIT || rtrap == ANOXIC_PIT || rtrap == ACID_PIT)) rtrap = ROCKTRAP;
+					if (In_sokoban(&u.uz) && rn2(10) && (rtrap == HOLE || rtrap == TRAPDOOR || rtrap == SHAFT_TRAP || rtrap == CURRENT_SHAFT || rtrap == PIT || rtrap == SPIKED_PIT || rtrap == GIANT_CHASM || rtrap == SHIT_PIT || rtrap == MANA_PIT || rtrap == ANOXIC_PIT || rtrap == HYPOXIC_PIT || rtrap == ACID_PIT)) rtrap = ROCKTRAP;
 					if (In_sokoban(&u.uz) && rn2(100) && rtrap == NUPESELL_TRAP) rtrap = FIRE_TRAP;
 					if (rtrap == ELDER_TENTACLING_TRAP) rtrap = FIRE_TRAP;
 					if (rtrap == DATA_DELETE_TRAP) rtrap = RUST_TRAP;
@@ -7407,7 +7429,7 @@ xkilled(mtmp, dest)
 	}
 
 	if (mtmp->mtrapped && (t = t_at(x, y)) != 0 &&
-		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == ACID_PIT) &&
+		(t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == HYPOXIC_PIT || t->ttyp == ACID_PIT) &&
 		sobj_at(BOULDER, x, y))
 	    dest |= 2;     /*
 			    * Prevent corpses/treasure being created "on top"

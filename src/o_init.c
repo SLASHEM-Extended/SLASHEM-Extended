@@ -3334,6 +3334,19 @@ find_cloister_cloak()
 }
 
 int
+find_quantity_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_QUANTITY_CLOAK)) return i;
+    }
+
+    impossible("quantity cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_shemagh()
 {
     register int i;

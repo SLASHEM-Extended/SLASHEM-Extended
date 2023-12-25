@@ -11071,7 +11071,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		if (uwep && uwep->oartifact == ART_PEEPLUE) return(0);
 		if (bmwride(ART_SPIKED_BARDING)) return(0);
 		if ((uleft && uleft->otyp == RIN_INDIGESTION) || (uright && uright->otyp == RIN_INDIGESTION)) return(0);
-		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
+		if ((t && ((t->ttyp == PIT) || (t->ttyp == SPIKED_PIT) || (t->ttyp == GIANT_CHASM) || (t->ttyp == SHIT_PIT) || (t->ttyp == MANA_PIT) || (t->ttyp == ANOXIC_PIT) || (t->ttyp == HYPOXIC_PIT) || (t->ttyp == ACID_PIT) )) &&
 		    sobj_at(BOULDER, u.ux, u.uy))
 			return(0);
 
@@ -20805,6 +20805,12 @@ stdcontracting:
             if (slextest(4000, 20000)) {
 		stdmsg("selective inertia");
                 u.uprops[TIMERUN_BUG].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            if (slextest(8000, 40000)) {
+		stdmsg("weaker back");
+                u.uprops[MEAN_BURDEN_EFFECT].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 

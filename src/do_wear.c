@@ -1377,6 +1377,7 @@ Cloak_on()
 	case PETSTARVE_CLOAK:
 	case PETSCREW_CLOAK:
 	case NON_PROOF_CLOAK:
+	case UMENG_CLOAK:
 	case CLOAK_OF_NAKEDNESS:
 	case COVID____COATED_CLOAK:
 
@@ -2068,6 +2069,7 @@ Cloak_off()
 	case PETSTARVE_CLOAK:
 	case PETSCREW_CLOAK:
 	case NON_PROOF_CLOAK:
+	case UMENG_CLOAK:
 	case CLOAK_OF_NAKEDNESS:
 	case COVID____COATED_CLOAK:
 
@@ -4033,6 +4035,9 @@ Armor_on()
 	if (uarm && uarm->otyp == ROBE_OF_DESTINY) {
 		if (!uarm->cursed) curse(uarm);
 	}
+	if (uarm && uarm->otyp == TOO_HEAVY_PLATE) {
+		if (!uarm->cursed) curse(uarm);
+	}
 	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR) {
 		if (!uarm->cursed) curse(uarm);
 	}
@@ -4460,6 +4465,7 @@ Amulet_on()
 	case AMULET_OF_DIRECTIONAL_SWAP:
 	case AMULET_OF_SUDDEN_CURSE:
 	case AMULET_OF_ANTI_EXPERIENCE:
+	case AMULET_OF_TOTAL_BURDEN:
 	case AMULET_OF_ITEM_TELEPORTATION:
 	case AMULET_OF_PREMATURE_DEATH:
 	case AMULET_OF_DANGER:
@@ -4748,7 +4754,7 @@ Amulet_off()
 		break;
 	case AMULET_OF_RESTFUL_SLEEP:
 		setworn((struct obj *)0, W_AMUL);
-		if (!ESleeping && !(HSleeping & INTRINSIC) && !Race_if(PM_KOBOLT))
+		if (!ESleeping && !(HSleeping & INTRINSIC) && !u.restfulsleepduration && !Race_if(PM_KOBOLT))
 			HSleeping = 0;
 		return;
 	case AMULET_OF_DATA_STORAGE:
@@ -5066,7 +5072,7 @@ register struct obj *obj;
 		break;
 
 	case RIN_SLEEPING:        
-		if Race_if(PM_KOBOLT) break;
+		if (Race_if(PM_KOBOLT)) break;
 		HSleeping = rnd(1000);
 		break;
 	case RIN_INDIGESTION:
@@ -5340,7 +5346,7 @@ boolean gone;
 		healup(0, 0, TRUE, FALSE);
 		break;
 	case RIN_SLEEPING:
-		if (!ESleeping && !(HSleeping & INTRINSIC) && !Race_if(PM_KOBOLT))
+		if (!ESleeping && !(HSleeping & INTRINSIC) && !u.restfulsleepduration && !Race_if(PM_KOBOLT))
 			HSleeping = 0;
 		break;
 	case RIN_INDIGESTION:
@@ -6856,6 +6862,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_TONTANK) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_ONE) uac -= 1;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TWO) uac -= 2;
 	if (uarms && uarms->oartifact == ART_INSIDE_OUT) uac -= 3;

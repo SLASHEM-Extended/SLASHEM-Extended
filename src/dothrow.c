@@ -1510,7 +1510,7 @@ hurtle_step(arg, x, y)
     		return FALSE;
 	} else if (ttmp->ttyp == FIRE_TRAP) {
     		dotrap(ttmp,0);
-	} else if ((ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT ||
+	} else if ((ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == HYPOXIC_PIT || ttmp->ttyp == ACID_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT ||
 		    ttmp->ttyp == HOLE || ttmp->ttyp == TRAPDOOR) &&
 		   In_sokoban(&u.uz)) {
 		/* Air currents overcome the recoil */
@@ -1860,6 +1860,8 @@ boolean hitsroof;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_ETH_ITH) dmg += 3;
 	if (dmg > 0 && uleft && uleft->oartifact == ART_RING_OF_THROR) dmg += 2;
 	if (dmg > 0 && uright && uright->oartifact == ART_RING_OF_THROR) dmg += 2;
+	if (dmg > 0 && uleft && uleft->oartifact == ART_KRATSCHEM_HARD) dmg += 2;
+	if (dmg > 0 && uright && uright->oartifact == ART_KRATSCHEM_HARD) dmg += 2;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -2764,6 +2766,9 @@ boolean polearming;
 	if (obj && obj->oartifact == ART_KLUEUEUEU) tmp += 1000;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 	if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
+
+	if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
+	if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
 
 	if (PlayerInWedgeHeels && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_WEDGE_HEELS)) {

@@ -3976,6 +3976,26 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != NASTYCURSE_TRAP
 				&& ttmp->ttyp != REPEATING_NASTYCURSE_TRAP
 
+				&& ttmp->ttyp != FALLING_ROCK_COLD
+				&& ttmp->ttyp != RETURN_TRAP
+				&& ttmp->ttyp != INTRINSIC_STEAL_TRAP
+				&& ttmp->ttyp != SCORE_AXE_TRAP
+				&& ttmp->ttyp != SCORE_DRAIN_TRAP
+				&& ttmp->ttyp != SINGLE_UNIDENTIFY_TRAP
+				&& ttmp->ttyp != UNLUCKY_TRAP
+				&& ttmp->ttyp != ALIGNMENT_REDUCTION_TRAP
+				&& ttmp->ttyp != MALIGNANT_TRAP
+				&& ttmp->ttyp != STAT_DAMAGE_TRAP
+				&& ttmp->ttyp != HALF_MEMORY_TRAP
+				&& ttmp->ttyp != HALF_TRAINING_TRAP
+				&& ttmp->ttyp != DEBUFF_TRAP
+				&& ttmp->ttyp != TRIP_ONCE_TRAP
+				&& ttmp->ttyp != NARCOLEPSY_TRAP
+				&& ttmp->ttyp != MARTIAL_ARTS_TRAP
+
+				&& ttmp->ttyp != MEAN_BURDEN_TRAP
+				&& ttmp->ttyp != CARRCAP_TRAP
+				&& ttmp->ttyp != UMENG_TRAP
 				&& ttmp->ttyp != HYBRID_TRAP
 				&& ttmp->ttyp != SHAPECHANGE_TRAP
 				&& ttmp->ttyp != MELTEM_TRAP

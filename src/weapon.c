@@ -2818,7 +2818,7 @@ static NEARDATA const int rwep[] =
 	GREEN_SPELL_STONE, EVC_STONE, UNDERLAID_STONE, DAMAGE_METER_STONE, WEIGHT_STONE, INFOFUCK_STONE,
 	BLACK_SPELL_STONE, CYAN_SPELL_STONE, HEAP_STONE, BLUE_SPELL_STONE, TRON_STONE, RED_SPELL_STONE,
 	TOO_HEAVY_STONE, ELONGATED_STONE, WRAPOVER_STONE, DESTRUCTION_STONE, MELEE_PREFIX_STONE,
-	AUTOMORE_STONE, UNFAIR_ATTACK_STONE,
+	AUTOMORE_STONE, UNFAIR_ATTACK_STONE, UMENG_STONE, CARRCAP_STONE, MEAN_BURDEN_STONE,
 
 	DISCONNECT_STONE, SCREW_STONE, BOSSFIGHT_STONE, ENTIRE_LEVEL_STONE, BONE_STONE,
 	AUTOCURSE_STONE, HIGHLEVEL_STONE, SPELL_MEMORY_STONE, SOUND_EFFECT_STONE,
@@ -11781,6 +11781,30 @@ eviltryagain:
 
 	if (!P_RESTRICTED(pickskill)) {
 		pline("Your %s skill falls off, and you're much less skilled than before.", wpskillname(pickskill));
+
+		skill_sanity_check(pickskill);
+
+	}
+
+}
+
+/* halve player's training amount in a random skill --Amy */
+void
+skilltraininghalve()
+{
+	int pickskill, tryct, tryct2, i, lossamount;
+
+eviltryagain:
+	pickskill = rnd(P_RIDING);
+
+	lossamount = (P_ADVANCE(pickskill) / 2);
+	if (lossamount < 1) lossamount = 1;
+
+	if ((P_ADVANCE(pickskill)) < lossamount) P_ADVANCE(pickskill) = 0;
+	else P_ADVANCE(pickskill) -= lossamount;
+
+	if (!P_RESTRICTED(pickskill)) {
+		pline("Your %s skill training was cut in half!", wpskillname(pickskill));
 
 		skill_sanity_check(pickskill);
 

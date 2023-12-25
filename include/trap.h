@@ -840,6 +840,28 @@ extern struct trap *ftrap;
 
 #define AEFDE_TRAP 737
 
+#define FALLING_ROCK_COLD 738
+#define RETURN_TRAP 739
+#define INTRINSIC_STEAL_TRAP 740
+#define SCORE_AXE_TRAP 741
+#define SCORE_DRAIN_TRAP 742
+#define SINGLE_UNIDENTIFY_TRAP 743
+#define HYPOXIC_PIT 744
+#define UNLUCKY_TRAP 745
+#define ALIGNMENT_REDUCTION_TRAP 746
+#define MALIGNANT_TRAP 747
+#define STAT_DAMAGE_TRAP 748
+#define HALF_MEMORY_TRAP 749
+#define HALF_TRAINING_TRAP 750
+#define DEBUFF_TRAP 751
+#define TRIP_ONCE_TRAP 752
+#define NARCOLEPSY_TRAP 753
+#define MARTIAL_ARTS_TRAP 754
+
+#define MEAN_BURDEN_TRAP 755
+#define CARRCAP_TRAP 756
+#define UMENG_TRAP 757
+
 /* todo area
 
 normal ones:
@@ -855,15 +877,12 @@ nasty traps:
 
 #define EVIL_MIRROR_TRAP
 #define SPELL_COOLDOWN_TRAP
-#define MEAN_BURDEN_TRAP
-#define CARRCAP_TRAP
 #define ACTION_TIMEOUT_TRAP
 #define KILLCAM_TRAP
 #define RATCH_TRAP
 #define AUTO_ENHANCE_TRAP
 #define CURSOR_FAILURE_TRAP
 #define DRUNK_CURSOR_TRAP
-#define UMENG_TRAP
 #define JETLAG_TRAP
 #define HARDSHIP_TRAP
 #define MONEYSAP_TRAP
@@ -935,8 +954,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	738
+#define TIMERUN_TRAP	758
 
-#define TRAPNUM 739
+#define TRAPNUM 759
 
 #endif /* TRAP_H */

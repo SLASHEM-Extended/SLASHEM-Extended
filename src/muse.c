@@ -2939,7 +2939,7 @@ struct monst *mtmp;
 
 	/* kludge to cut down on trap destruction (particularly portals) */
 	t = t_at(x,y);
-	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == ACID_PIT ||
+	if (t && (t->ttyp == PIT || t->ttyp == SPIKED_PIT || t->ttyp == GIANT_CHASM || t->ttyp == SHIT_PIT || t->ttyp == MANA_PIT || t->ttyp == ANOXIC_PIT || t->ttyp == HYPOXIC_PIT || t->ttyp == ACID_PIT ||
 		  t->ttyp == WEB || t->ttyp == BEAR_TRAP))
 		t = 0;		/* ok for monster to dig here */
 

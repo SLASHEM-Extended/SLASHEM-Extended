@@ -2617,6 +2617,13 @@ boolean shopinit;
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
 
+		if (uarmc && itemhasappearance(uarmc, APP_QUANTITY_CLOAK) && !rn2(3) && is_multigen(otmp)) {
+			otmp->quan += rnd(otmp->quan);
+		}
+		if (uarmc && itemhasappearance(uarmc, APP_QUANTITY_CLOAK) && !rn2(20) && is_lower_multigen(otmp)) {
+			otmp->quan += rnd(otmp->quan);
+		}
+
 		if (Race_if(PM_JAVA) && (otmp->otyp == JAVELIN || otmp->otyp == ASBESTOS_JAVELIN || otmp->otyp == STACK_JAVELIN || otmp->otyp == SPIRIT_THROWER || otmp->otyp == COURSE_JAVELIN || otmp->otyp == PUNCTURING_JAVELIN || otmp->otyp == UNDERWORLD_JAVELIN || otmp->otyp == TRANSPARENCE_THROWER || otmp->otyp == BRICK_MISSILE || otmp->otyp == TORPEDO || otmp->otyp == HOMING_TORPEDO)) {
 			otmp->quan += rnd(5);
 		}
@@ -2752,6 +2759,11 @@ boolean shopinit;
 			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
+
+		if (uarmc && uarmc->oartifact == ART_GOODFOOD && !rn2(3) ) {
+			otmp->quan += rnd(otmp->quan);
+		}
+
 		blessorcurse_on_creation(otmp, 10);
 		break;
 	    case APPLE:
@@ -2775,6 +2787,11 @@ boolean shopinit;
 			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
+
+		if (uarmc && uarmc->oartifact == ART_GOODFOOD && !rn2(3) ) {
+			otmp->quan += rnd(otmp->quan);
+		}
+
 		blessorcurse_on_creation(otmp, 10);
 		break;
 	    }
@@ -2897,6 +2914,10 @@ boolean shopinit;
 			otmp->quan += rnd(otmp->quan);
 			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+
+		if (uarmc && itemhasappearance(uarmc, APP_QUANTITY_CLOAK) && !rn2(3)) {
+			otmp->quan += rnd(otmp->quan);
 		}
 
 		if(!rn2(ishaxor ? 4 : 8)) {
@@ -3488,6 +3509,10 @@ boolean shopinit;
 			otmp->quan += rnd(otmp->quan);
 			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
+		}
+
+		if (uarmc && itemhasappearance(uarmc, APP_QUANTITY_CLOAK) && !rn2(3) && is_lower_multigen(otmp)) {
+			otmp->quan += rnd(otmp->quan);
 		}
 
 		if (!rn2(achieve.get_amulet ? 100 : 400)) otmp->oerodeproof = 1;

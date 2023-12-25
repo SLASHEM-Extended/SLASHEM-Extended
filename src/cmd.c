@@ -1645,7 +1645,7 @@ domonability()
 		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 
 			if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
-				if (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HOLE || ttmp->ttyp == TRAPDOOR || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT || ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT) {
+				if (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HOLE || ttmp->ttyp == TRAPDOOR || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT || ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == HYPOXIC_PIT || ttmp->ttyp == ACID_PIT) {
 					undtrpcnt++;
 					continue;
 				}
@@ -4330,6 +4330,24 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone())) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", TimerunBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MeanBurdenEffect || u.uprops[MEAN_BURDEN_EFFECT].extrinsic || have_meanburdenstone())) {
+		sprintf(buf, "the following problem: You're always at least burdened.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", MeanBurdenEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone())) {
+		sprintf(buf, "the following problem: Your carry capacity is shit.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", CarrcapEffect);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (UmengEffect || u.uprops[UMENG_EFFECT].extrinsic || have_umengstone())) {
+		sprintf(buf, "the following problem: The top line always says 'umeng'.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", UmengEffect);
 		you_have(buf);
 	}
 
@@ -9013,6 +9031,21 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (MeanBurdenEffect || u.uprops[MEAN_BURDEN_EFFECT].extrinsic || have_meanburdenstone()) {
+		sprintf(buf, "the following problem: You're always at least burdened.");
+		sprintf(eos(buf), " (%ld)", MeanBurdenEffect);
+		dump(youhad, buf);
+	}
+	if (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone()) {
+		sprintf(buf, "the following problem: Your carry capacity is shit.");
+		sprintf(eos(buf), " (%ld)", CarrcapEffect);
+		dump(youhad, buf);
+	}
+	if (UmengEffect || u.uprops[UMENG_EFFECT].extrinsic || have_umengstone()) {
+		sprintf(buf, "the following problem: The top line always says 'umeng'.");
+		sprintf(eos(buf), " (%ld)", UmengEffect);
 		dump(youhad, buf);
 	}
 	if (AefdeEffect || u.uprops[AEFDE_EFFECT].extrinsic || have_aefdestone()) {

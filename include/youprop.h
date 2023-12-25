@@ -219,6 +219,7 @@
 #define DschueueuetXtra	((have_dschueueuetstone() == 2) || (uarmf && uarmf->oartifact == ART_PARTICULARLY_HEAVY_STONE) )
 #define NopeskillXtra	((have_nopeskillstone() == 2))
 #define FuckfuckfuckXtra	((have_fuckfuckfuckstone() == 2))
+#define UmengXtra	((have_umengstone() == 2) || (uarmc && uarmc->oartifact == ART_WOLLOH_LENGWITSCH) )
 
 /* There used to be long-ass macros here but I think they're causing out of memory errors, so they became functions --Amy */
 #define PlayerInHighHeels	(playerwearshighheels())
@@ -579,6 +580,10 @@
 #define ArtiblastEffect		u.uprops[ARTIBLAST_EFFECT].intrinsic
 #define RepeatingNastycurseEffect		u.uprops[REPEATING_NASTYCURSE_EFFECT].intrinsic
 #define FuckfuckfuckEffect		u.uprops[FUCKFUCKFUCK_EFFECT].intrinsic
+
+#define MeanBurdenEffect		u.uprops[MEAN_BURDEN_EFFECT].intrinsic
+#define CarrcapEffect		u.uprops[CARRCAP_EFFECT].intrinsic
+#define UmengEffect		u.uprops[UMENG_EFFECT].intrinsic
 
 #define OptionBugEffect		u.uprops[OPTION_BUG_EFFECT].intrinsic
 #define MiscolorEffect		u.uprops[MISCOLOR_EFFECT].intrinsic
@@ -1453,7 +1458,7 @@
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
 #define EExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].extrinsic
 #define IntExtra_wpn_practice	(HExtra_wpn_practice || (uimplant && objects[uimplant->otyp].oc_material == MT_MENGETIUM) || have_superjonadabstone())
-#define ExtExtra_wpn_practice	(EExtra_wpn_practice || have_superjonadabstone() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ZUSE_S_COMP) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || (uarm && uarm->oartifact == ART_GENERAL_TA_S_ANNOYANCE_FAC) || (uwep && uwep->oartifact == ART_SKYSTORMER) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
+#define ExtExtra_wpn_practice	(EExtra_wpn_practice || have_superjonadabstone() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_FASTPLANT) || (uwep && uwep->oartifact == ART_ZUSE_S_COMP) || (uwep && uwep->oartifact == ART_ARABELLA_S_BLACK_PRONG) || have_minimejewel() || (uarm && uarm->oartifact == ART_GENERAL_TA_S_ANNOYANCE_FAC) || (uwep && uwep->oartifact == ART_SKYSTORMER) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == EXTRA_WEAPON_PRACTICE) ) || (uarm && uarm->oartifact == ART_EVERYTHING_COMES_WITH_A_CO) || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) || (uarmc && uarmc->oartifact == ART_SKILLS_BEAT_STATS) || (uarm && uarm->oartifact == ART_MOTHERFUCKER_TROPHY) )
 
 #define Extra_wpn_practice	(IntExtra_wpn_practice || ExtExtra_wpn_practice)
 #define StrongExtra_wpn_practice	(IntExtra_wpn_practice && ExtExtra_wpn_practice && Extra_wpn_practice)
@@ -1728,7 +1733,7 @@
 #define HKeen_memory		u.uprops[KEEN_MEMORY].intrinsic
 #define EKeen_memory		u.uprops[KEEN_MEMORY].extrinsic
 #define IntKeen_memory	(HKeen_memory || (ublindf && objects[ublindf->otyp].oc_material == MT_MENGETIUM) || (youmonst.data->mlet == S_QUADRUPED))
-#define ExtKeen_memory	(EKeen_memory || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == KEEN_MEMORY) ) || (uarmu && uarmu->oartifact == ART_MEMORIAL_GARMENTS) || (uarmc && uarmc->oartifact == ART_MEMORY_AID) || (uarmc && uarmc->oartifact == ART_REMEMBERING_THE_BAD_TIMES) || (uarmf && uarmf->oartifact == ART_DESERT_MEDITATION) || (uarmh && uarmh->oartifact == ART_VERY_MEMORY) || (uarm && uarm->oartifact == ART_SPELLNOTFORGET) || (uwep && uwep->oartifact == ART_DESSESGA) || (uwep && uwep->oartifact == ART_FADING_FROM_MEMORY) || (uarm && uarm->oartifact == ART_REMEMBERANCE___THE_BURST_T) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SARREFREE) || (uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT) || (uarmh && uarmh->oartifact == ART_TRANSMEMORIZER) || (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || (uamul && uamul->oartifact == ART_COMPUTER_AMULET) )
+#define ExtKeen_memory	(EKeen_memory || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == KEEN_MEMORY) ) || (uarmu && uarmu->oartifact == ART_MEMORIAL_GARMENTS) || (uarmc && uarmc->oartifact == ART_MEMORY_AID) || (uarmc && uarmc->oartifact == ART_REMEMBERING_THE_BAD_TIMES) || (uarmf && uarmf->oartifact == ART_DESERT_MEDITATION) || (uarmh && uarmh->oartifact == ART_VERY_MEMORY) || have_minimejewel() || (uwep && uwep->oartifact == ART_ICED_OUT_COMPUTER_ON_A_CHA) || (uball && uball->oartifact == ART_ICED_OUT_COMPUTER_ON_A_CHA) || (uarm && uarm->oartifact == ART_SPELLNOTFORGET) || (uwep && uwep->oartifact == ART_DESSESGA) || (uwep && uwep->oartifact == ART_FADING_FROM_MEMORY) || (uarm && uarm->oartifact == ART_REMEMBERANCE___THE_BURST_T) || (uarms && uarms->oartifact == ART_GOLDEN_DAWN) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SARREFREE) || (uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT) || (uarmh && uarmh->oartifact == ART_TRANSMEMORIZER) || (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR) || (uarms && uarms->oartifact == ART_GREXIT_IS_NEAR) || (uamul && uamul->oartifact == ART_COMPUTER_AMULET) )
 
 #define Keen_memory		(((IntKeen_memory && u.nonintrinsicproperty != KEEN_MEMORY) || (ExtKeen_memory && u.nonextrinsicproperty != KEEN_MEMORY)) && !Role_if(PM_NOOB_MODE_BARB) && !NoKeen_memory)
 #define StrongKeen_memory	(IntKeen_memory && ExtKeen_memory && Keen_memory && u.nondoubleproperty != KEEN_MEMORY)
@@ -1837,8 +1842,8 @@
 
 #define HFull_nutrient		u.uprops[FULL_NUTRIENT].intrinsic
 #define EFull_nutrient		u.uprops[FULL_NUTRIENT].extrinsic
-#define IntFull_nutrient	(HFull_nutrient)
-#define ExtFull_nutrient	(EFull_nutrient || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmf && uarmf->oartifact == ART_BEAUTYQUEAK) || (uarmf && uarmf->oartifact == ART_SWEET_CHERRY) || (uarmh && uarmh->oartifact == ART_POURRI_R_) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX) || (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) || (uwep && uwep->oartifact == ART_SMOKING_SQUIRREL) || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || (uarmg && uarmg->oartifact == ART_HEALING_WATERS) || (uwep && uwep->oartifact == ART_HK_CLEAR) || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (uwep && uwep->oartifact == ART_MILENA_S_MISGUIDING) || (uwep && uwep->oartifact == ART_MEAT_S_BACK_ON_THE_MENU) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || autismringcheck(ART_MOUTHS_CRADLE) || (uimplant && uimplant->oartifact == ART_ENTEROGASTER_ALTO) || (uwep && uwep->oartifact == ART_CALF_CUTLET_WITHOUT_BEOD) || (uwep && uwep->oartifact == ART_DUMPSTERMAN) || (uwep && uwep->oartifact == ART_VIHAT_BAGUETTEN_BUS_STOP) || (uwep && uwep->oartifact == ART_EDERGRADE) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarmf && uarmf->oartifact == ART_U_BE_CURRY) || (uwep && uwep->oartifact == ART_GIANT_MEAT_STICK) || (uwep && uwep->oartifact == ART_CUTRITION) || autismringcheck(ART_RELIABLE_TRINSICS) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == FULL_NUTRIENT) ) )
+#define IntFull_nutrient	(HFull_nutrient || have_minimejewel() )
+#define ExtFull_nutrient	(EFull_nutrient || have_minimejewel() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmf && uarmf->oartifact == ART_BEAUTYQUEAK) || (uarmf && uarmf->oartifact == ART_SWEET_CHERRY) || (uarmh && uarmh->oartifact == ART_POURRI_R_) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX) || (uarmh && uarmh->oartifact == ART_NUTRITION_AND_DIETETICS) || (uwep && uwep->oartifact == ART_SMOKING_SQUIRREL) || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || (uarmg && uarmg->oartifact == ART_HEALING_WATERS) || (uwep && uwep->oartifact == ART_HK_CLEAR) || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (uwep && uwep->oartifact == ART_MILENA_S_MISGUIDING) || (uwep && uwep->oartifact == ART_MEAT_S_BACK_ON_THE_MENU) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || autismringcheck(ART_MOUTHS_CRADLE) || (uimplant && uimplant->oartifact == ART_ENTEROGASTER_ALTO) || (uwep && uwep->oartifact == ART_CALF_CUTLET_WITHOUT_BEOD) || (uwep && uwep->oartifact == ART_DUMPSTERMAN) || (uwep && uwep->oartifact == ART_VIHAT_BAGUETTEN_BUS_STOP) || (uwep && uwep->oartifact == ART_EDERGRADE) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarmf && uarmf->oartifact == ART_U_BE_CURRY) || (uwep && uwep->oartifact == ART_GIANT_MEAT_STICK) || (uwep && uwep->oartifact == ART_CUTRITION) || autismringcheck(ART_RELIABLE_TRINSICS) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == FULL_NUTRIENT) ) )
 
 #define Full_nutrient		(((IntFull_nutrient && u.nonintrinsicproperty != FULL_NUTRIENT) || (ExtFull_nutrient && u.nonextrinsicproperty != FULL_NUTRIENT)) && !Race_if(PM_PERVERT) && !NoFull_nutrient)
 #define StrongFull_nutrient	(IntFull_nutrient && ExtFull_nutrient && Full_nutrient && u.nondoubleproperty != FULL_NUTRIENT)
@@ -1847,8 +1852,8 @@
 
 #define HTechnicality		u.uprops[TECHNICALITY].intrinsic
 #define ETechnicality		u.uprops[TECHNICALITY].extrinsic
-#define IntTechnicality	(HTechnicality)
-#define ExtTechnicality	(ETechnicality || (uwep && uwep->oartifact == ART_TECHCTION) || (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) || (uamul && uamul->oartifact == ART_ON_TRANCE) || (Role_if(PM_ASSASSIN) && uwep && uwep->oartifact == ART_FINAL_DOOR_SOLUTION) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN) || (uarm && uarm->oartifact == ART_TECH_IT_UP) || (uwep && uwep->oartifact == ART_TODAY_S_REPAIR) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SYMPLANT) || (uarmc && uarmc->oartifact == ART_HITEC_NEO) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uwep && uwep->oartifact == ART_PSI_TEC) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TECHNICALITY) ) )
+#define IntTechnicality	(HTechnicality || have_minimejewel() )
+#define ExtTechnicality	(ETechnicality || have_minimejewel() || (uwep && uwep->oartifact == ART_TECHCTION) || (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) || (uamul && uamul->oartifact == ART_ON_TRANCE) || (Role_if(PM_ASSASSIN) && uwep && uwep->oartifact == ART_FINAL_DOOR_SOLUTION) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN) || (uarm && uarm->oartifact == ART_TECH_IT_UP) || (uwep && uwep->oartifact == ART_TODAY_S_REPAIR) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SYMPLANT) || (uarmc && uarmc->oartifact == ART_HITEC_NEO) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uwep && uwep->oartifact == ART_PSI_TEC) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TECHNICALITY) ) )
 
 #define Technicality		(((IntTechnicality && u.nonintrinsicproperty != TECHNICALITY) || (ExtTechnicality && u.nonextrinsicproperty != TECHNICALITY)) && !NoTechnicality)
 #define StrongTechnicality	(IntTechnicality && ExtTechnicality && Technicality && u.nondoubleproperty != TECHNICALITY)
@@ -1890,7 +1895,7 @@
 #define HExpBoost		u.uprops[EXP_BOOST].intrinsic
 #define EExpBoost		u.uprops[EXP_BOOST].extrinsic
 #define IntExpBoost	(HExpBoost)
-#define ExtExpBoost	(EExpBoost || (uwep && uwep->oartifact == ART_DOUBLE_MYSTERY) || autismringcheck(ART_RING_OF_FAST_LIVING))
+#define ExtExpBoost	(EExpBoost || have_minimejewel() || (uwep && uwep->oartifact == ART_DOUBLE_MYSTERY) || autismringcheck(ART_RING_OF_FAST_LIVING))
 
 #define ExpBoost		(((IntExpBoost && u.nonintrinsicproperty != EXP_BOOST) || (ExtExpBoost && u.nonextrinsicproperty != EXP_BOOST)) && !NoExpBoost)
 #define StrongExpBoost	(IntExpBoost && ExtExpBoost && ExpBoost && u.nondoubleproperty != EXP_BOOST)
@@ -1934,7 +1939,7 @@
 #define HBurdenedState		u.uprops[BURDENED_STATE].intrinsic
 #define EBurdenedState		u.uprops[BURDENED_STATE].extrinsic
 #define IntBurdenedState	(HBurdenedState || issoviet)
-#define ExtBurdenedState	(EBurdenedState || (uarms && uarms->oartifact == ART_ITS_NO_GOOD) || autismweaponcheck(ART_INDOBURDENIA_VIRII) || (uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) )
+#define ExtBurdenedState	(EBurdenedState || (uarms && uarms->oartifact == ART_ITS_NO_GOOD) || autismweaponcheck(ART_INDOBURDENIA_VIRII) || (uamul && uamul->oartifact == ART_EVERY_OTHER_AMULET_IS_THIS) || (uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) )
 #define BurdenedState		(IntBurdenedState || ExtBurdenedState )
 #define StrongBurdenedState		(IntBurdenedState && ExtBurdenedState && BurdenedState)
 

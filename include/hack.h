@@ -324,7 +324,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define issokosolver (Race_if(PM_SOKOSOLVER) || flags.hybridsokosolver)
 #define isspecialist (Race_if(PM_SPECIALIST) || flags.hybridspecialist)
 #define isamerican (Race_if(PM_AMERICAN) || flags.hybridamerican)
-#define isminimalist (Race_if(PM_MINIMALIST) || flags.hybridminimalist)
+#define isminimalist (Race_if(PM_MINIMALIST) || flags.hybridminimalist || (!u.dungeongrowthhack && have_minimejewel() ) )
 #define isnastinator (Race_if(PM_NASTINATOR) || flags.hybridnastinator)
 #define isrougelike (Race_if(PM_ROUGELIKE) || flags.hybridrougelike)
 #define issegfaulter (Race_if(PM_SEGFAULTER) || flags.hybridsegfaulter)

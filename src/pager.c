@@ -314,7 +314,7 @@ lookat(x, y, buf, monbuf)
 		int tt = t ? t->ttyp : NO_TRAP;
 
 		/* newsym lets you know of the trap, so mention it here */
-		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT || tt == MANA_PIT || tt == ANOXIC_PIT || tt == ACID_PIT ||
+		if (tt == BEAR_TRAP || tt == PIT || tt == SHIT_PIT || tt == MANA_PIT || tt == ANOXIC_PIT || tt == HYPOXIC_PIT || tt == ACID_PIT ||
 			tt == SPIKED_PIT || tt == GIANT_CHASM || tt == WEB)
 		    sprintf(eos(buf), ", trapped in %s",
 			    an(defsyms[trap_to_defsym(tt)].explanation));

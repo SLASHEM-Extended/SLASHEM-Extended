@@ -443,12 +443,14 @@ init_randarts()
 	artilist[ART_ONE_IN_FOUR].otyp = randartbadgraystone();
 	artilist[ART_HAVE_IT_ALL_BUT_NOT_GET].otyp = randartbadgraystone();
 	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
+	artilist[ART_MINIMAL_MINI_ME].otyp = randartfeminismjewel();
 	artilist[ART_DOUBLESHELL].otyp = randartfeminismjewel();
 	artilist[ART_NOT_GONNA_CONTAMINATE].otyp = randartfeminismjewel();
 	artilist[ART_JYL__NOT_XLATED_CALL_KEN].otyp = randartfeminismjewel();
 	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
 	artilist[ART_PHILOSOPHER_S_STONE].otyp = randartfeminismjewel();
 	artilist[ART_VAPER_BAPER].otyp = randartball();
+	artilist[ART_ICED_OUT_COMPUTER_ON_A_CHA].otyp = randartball();
 	artilist[ART_DOCKEM_GOOD].otyp = randartball();
 	artilist[ART_ARABELLA_S_THINNER].otyp = randartball();
 	artilist[ART_YES_OCCIFER].otyp = randartchain();
@@ -1026,6 +1028,8 @@ init_appearance_randarts()
 	artilist[ART_BOWSER_S_FUN_ARENA].otyp = find_volcanic_cloak();
 	artilist[ART_BILLS_PAID].otyp = find_fuel_cloak();
 	artilist[ART_FINDING_THYSELF].otyp = find_cloister_cloak();
+	artilist[ART_GUNNEM_DOWN].otyp = find_quantity_cloak();
+	artilist[ART_GOODFOOD].otyp = find_quantity_cloak();
 	artilist[ART_SALADIN_S_DESERT_FOX].otyp = find_shemagh();
 	artilist[ART_JAMILA_S_BELIEF].otyp = find_shemagh();
 	artilist[ART_SLIPPING_SUCKING].otyp = find_serrated_helmet();
@@ -5262,6 +5266,19 @@ chargingchoice:
 		if (obj->oartifact == ART_FANNY_S_ANNOYANCE) {
 
 			randommartialstyle();
+
+			break;
+		}
+
+		if (obj->oartifact == ART_MINIMAL_MINI_ME) {
+
+			u.enchantrecskill++;
+			if (u.enchantrecskill > 250) u.enchantrecskill = 250;
+			u.weapchantrecskill++;
+			if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+			u.bucskill++;
+			if (u.bucskill > 250) u.bucskill = 250;
+			You_feel("more knowledgable about equipment!");
 
 			break;
 		}

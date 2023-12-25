@@ -1190,286 +1190,7 @@ randenchantment()
 
 	if (!rn2(20)) {
 
-		switch (rnd(274)) {
-
-			case 1: return SPELLS_LOST;
-			case 2: return CASTER_PROBLEM;
-			case 3: return STATUS_FAILURE;
-			case 4: return LUCK_LOSS;
-			case 5: return YELLOW_SPELLS;
-			case 6: return REPEATING_VULNERABILITY;
-			case 7: return INVENTORY_LOST;
-			case 8: return RESPAWN_BUG;
-			case 9: return VERISIERTEFFECT;
-			case 10: return LEVELBUG;
-			case 11: return ALWAYS_EGOTYPES;
-			case 12: return FAST_FORWARD;
-			case 13: return UNIDENTIFY;
-			case 14: return DISPLAY_LOST;
-			case 15: return THIRST;
-			case 16: return BLACK_NG_WALLS;
-			case 17: return DSTW_BUG;
-			case 18: return RANDOM_RUMORS;
-			case 19: return ROT_THIRTEEN;
-			case 20: return ALIGNMENT_FAILURE;
-			case 21: return DEAFNESS;
-			case 22: return MEMORY_LOST;
-			case 23: return FARLOOK_BUG;
-			case 24: return CAPTCHA;
-			case 25: return RECURRING_AMNESIA;
-			case 26: return SENSORY_DEPRIVATION;
-			case 27: return BIGSCRIPT;
-			case 28: return QUIZZES;
-			case 29: return MAPBUG;
-			case 30: return MUTENESS;
-			case 31: return FOOD_IS_ROTTEN;
-			case 32: return MENU_LOST;
-			case 33: return FREE_HAND_LOST;
-			case 34: return CONFUSION_PROBLEM;
-			case 35: return DROP_BUG;
-			case 36: return UNINFORMATION;
-			case 37: return AUTOMATIC_TRAP_CREATION;
-			case 38: return SHADES_OF_GREY;
-			case 39: return BANKBUG;
-			case 40: return TECHBUG;
-			case 41: return CHAOS_TERRAIN;
-			case 42: return AUTO_DESTRUCT;
-			case 43: return SPEED_BUG;
-			case 44: return FAINT_ACTIVE;
-			case 45: return DIFFICULTY_INCREASED;
-			case 46: return WEAKNESS_PROBLEM;
-			case 47: return BISHOP_GRIDBUG;
-			case 48: return STAIRSTRAP;
-			case 49: return RECURRING_DISENCHANT;
-			case 50: return ITEMCURSING;
-			case 51: return FAST_METABOLISM;
-			case 52: return INTRINSIC_LOSS;
-			case 53: return BLOOD_LOSS;
-			case 54: return NASTINESS_EFFECTS;
-			case 55: return BAD_EFFECTS;
-			case 56: return ENGRAVINGBUG;
-			case 57: return SUPERSCROLLER_ACTIVE;
-			case 58: return SKILL_DEACTIVATED;
-			case 59: return STATS_LOWERED;
-			case 60: return TRAINING_DEACTIVATED;
-			case 61: return EXERCISE_DEACTIVATED;
-			case 62: return NORETURN;
-			case 63: return RMB_LOST;
-			case 64: return TELEPORTING_ITEMS;
-			case 65: return MAGIC_DEVICE_BUG;
-			case 66: return BOOKBUG;
-			case 67: return RANDOM_MESSAGES;
-			case 68: return DESECRATION;
-			case 69: return STARVATION_EFFECT;
-			case 70: return NO_DROPS_EFFECT;
-			case 71: return LOW_EFFECTS;
-			case 72: return INVIS_TRAPS_EFFECT;
-			case 73: return GHOST_WORLD;
-			case 74: return DEHYDRATION;
-			case 75: return HATE_TRAP_EFFECT;
-			case 76: return TOTTER_EFFECT;
-			case 77: return NONINTRINSIC_EFFECT;
-			case 78: return DROPCURSES_EFFECT;
-			case 79: return NAKEDNESS;
-			case 80: return ANTILEVELING;
-			case 81: return ITEM_STEALING_EFFECT;
-			case 82: return REBELLION_EFFECT;
-			case 83: return CRAP_EFFECT;
-			case 84: return PROJECTILES_MISFIRE;
-			case 85: return WALL_TRAP_EFFECT;
-			case 86: return TURNLIMITATION;
-			case 87: return WEAKSIGHT;
-			case 88: return DISCONNECTED_STAIRS;
-			case 89: return INTERFACE_SCREW;
-			case 90: return BOSSFIGHT;
-			case 91: return ENTIRE_LEVEL;
-			case 92: return BONES_CHANGE;
-			case 93: return AUTOCURSE_EQUIP;
-			case 94: return HIGHLEVEL_STATUS;
-			case 95: return SPELL_FORGETTING;
-			case 96: return SOUND_EFFECT_BUG;
-			case 97: return TIMERUN_BUG;
-
-			case 98: return LOOTCUT_BUG;
-			case 99: return MONSTER_SPEED_BUG;
-			case 100: return SCALING_BUG;
-			case 101: return ENMITY_BUG;
-			case 102: return WHITE_SPELLS;
-			case 103: return COMPLETE_GRAY_SPELLS;
-			case 104: return QUASAR_BUG;
-			case 105: return MOMMA_BUG;
-			case 106: return HORROR_BUG;
-			case 107: return ARTIFICER_BUG;
-			case 108: return WEREFORM_BUG;
-			case 109: return NON_PRAYER_BUG;
-			case 110: return EVIL_PATCH_EFFECT;
-			case 111: return HARD_MODE_EFFECT;
-			case 112: return SECRET_ATTACK_BUG;
-			case 113: return EATER_BUG;
-			case 114: return COVETOUSNESS_BUG;
-			case 115: return NOT_SEEN_BUG;
-			case 116: return DARK_MODE_BUG;
-			case 117: return ANTISEARCH_EFFECT;
-			case 118: return HOMICIDE_EFFECT;
-			case 119: return NASTY_NATION_BUG;
-			case 120: return WAKEUP_CALL_BUG;
-			case 121: return GRAYOUT_BUG;
-			case 122: return GRAY_CENTER_BUG;
-			case 123: return CHECKERBOARD_BUG;
-			case 124: return CLOCKWISE_SPIN_BUG;
-			case 125: return COUNTERCLOCKWISE_SPIN_BUG;
-			case 126: return LAG_BUG;
-			case 127: return BLESSCURSE_EFFECT;
-			case 128: return DE_LIGHT_BUG;
-			case 129: return DISCHARGE_BUG;
-			case 130: return TRASHING_EFFECT;
-			case 131: return FILTERING_BUG;
-			case 132: return DEFORMATTING_BUG;
-			case 133: return FLICKER_STRIP_BUG;
-			case 134: return UNDRESSING_EFFECT;
-			case 135: return HYPERBLUEWALL_BUG;
-			case 136: return NOLITE_BUG;
-			case 137: return PARANOIA_BUG;
-			case 138: return FLEECESCRIPT_BUG;
-			case 139: return INTERRUPT_EFFECT;
-			case 140: return DUSTBIN_BUG;
-			case 141: return MANA_BATTERY_BUG;
-			case 142: return MONSTERFINGERS_EFFECT;
-			case 143: return MISCAST_BUG;
-			case 144: return MESSAGE_SUPPRESSION_BUG;
-			case 145: return STUCK_ANNOUNCEMENT_BUG;
-			case 146: return BLOODTHIRSTY_EFFECT;
-			case 147: return MAXIMUM_DAMAGE_BUG;
-			case 148: return LATENCY_BUG;
-			case 149: return STARLIT_BUG;
-			case 150: return KNOWLEDGE_BUG;
-			case 151: return HIGHSCORE_BUG;
-			case 152: return PINK_SPELLS;
-			case 153: return GREEN_SPELLS;
-			case 154: return EVC_EFFECT;
-			case 155: return UNDERLAYER_BUG;
-			case 156: return DAMAGE_METER_BUG;
-			case 157: return ARBITRARY_WEIGHT_BUG;
-			case 158: return FUCKED_INFO_BUG;
-			case 159: return BLACK_SPELLS;
-			case 160: return CYAN_SPELLS;
-			case 161: return HEAP_EFFECT;
-			case 162: return BLUE_SPELLS;
-			case 163: return TRON_EFFECT;
-			case 164: return RED_SPELLS;
-			case 165: return TOO_HEAVY_EFFECT;
-			case 166: return ELONGATION_BUG;
-			case 167: return WRAPOVER_EFFECT;
-			case 168: return DESTRUCTION_EFFECT;
-			case 169: return MELEE_PREFIX_BUG;
-			case 170: return AUTOMORE_BUG;
-			case 171: return UNFAIR_ATTACK_BUG;
-			case 172: return ORANGE_SPELLS;
-			case 173: return VIOLET_SPELLS;
-			case 174: return LONGING_EFFECT;
-			case 175: return CURSED_PARTS;
-			case 176: return QUAVERSAL;
-			case 177: return APPEARANCE_SHUFFLING;
-			case 178: return BROWN_SPELLS;
-			case 179: return CHOICELESSNESS;
-			case 180: return GOLDSPELLS;
-			case 181: return DEPROVEMENT;
-			case 182: return INITIALIZATION_FAIL;
-			case 183: return GUSHLUSH;
-			case 184: return SOILTYPE;
-			case 185: return DANGEROUS_TERRAINS;
-			case 186: return FALLOUT_EFFECT;
-			case 187: return MOJIBAKE;
-			case 188: return GRAVATION;
-			case 189: return UNCALLED_EFFECT;
-			case 190: return EXPLODING_DICE;
-			case 191: return PERMACURSE_EFFECT;
-			case 192: return SHROUDED_IDENTITY;
-			case 193: return FEELER_GAUGES;
-			case 194: return LONG_SCREWUP;
-			case 195: return WING_YELLOW_GLYPHS;
-			case 196: return LIFE_SAVING_BUG;
-			case 197: return CURSEUSE_EFFECT;
-			case 198: return CUT_NUTRITION;
-			case 199: return SKILL_LOSS_EFFECT;
-			case 200: return AUTOPILOT_EFFECT;
-			case 201: return MYSTERIOUS_FORCE_EFFECT;
-			case 202: return MONSTER_GLYPH_BUG;
-			case 203: return CHANGING_DIRECTIVES;
-			case 204: return CONTAINER_KABOOM;
-			case 205: return STEAL_DEGRADING;
-			case 206: return LEFT_INVENTORY;
-			case 207: return FLUCTUATING_SPEED;
-			case 208: return TARMU_STROKING_NORA;
-			case 209: return FAILURE_EFFECTS;
-			case 210: return BRIGHT_CYAN_SPELLS;
-			case 211: return FREQUENTATION_SPAWNS;
-			case 212: return PET_AI_SCREWED;
-			case 213: return SATAN_EFFECT;
-			case 214: return REMEMBERANCE_EFFECT;
-			case 215: return POKELIE_EFFECT;
-			case 216: return AUTOPICKUP_ALWAYS;
-			case 217: return DYWYPI_PROBLEM;
-			case 218: return SILVER_SPELLS;
-			case 219: return METAL_SPELLS;
-			case 220: return PLATINUM_SPELLS;
-			case 221: return MANLER_EFFECT;
-			case 222: return DOORNING_EFFECT;
-			case 223: return NOWNSIBLE_EFFECT;
-			case 224: return ELM_STREET_EFFECT;
-			case 225: return MONNOISE_EFFECT;
-			case 226: return RANG_CALL_EFFECT;
-			case 227: return RECURRING_SPELL_LOSS;
-			case 228: return ANTI_TRAINING_EFFECT;
-			case 229: return TECHOUT_BUG;
-			case 230: return STAT_DECAY;
-			case 231: return MOVEMORKING;
-			case 232: return BAD_PARTS;
-			case 233: return COMPLETELY_BAD_PARTS;
-			case 234: return EVIL_VARIANT_ACTIVE;
-			case 235: return SANITY_TREBLE_EFFECT;
-			case 236: return STAT_DECREASE_BUG;
-			case 237: return SIMEOUT_BUG;
-			case 238: return GIANT_EXPLORER;
-			case 239: return YAWM_EFFECT;
-			case 240: return TRAPWARPING;
-			case 241: return ENTHU_EFFECT;
-			case 242: return MIKRA_EFFECT;
-			case 243: return GOTS_TOO_GOOD_EFFECT;
-			case 244: return NO_FUN_WALLS;
-			case 245: return CRADLE_CHAOS_EFFECT;
-			case 246: return TEZ_EFFECT;
-			case 247: return KILLER_ROOM_EFFECT;
-			case 248: return REALLY_BAD_TRAP_EFFECT;
-			case 249: return COVID_TRAP_EFFECT;
-			case 250: return ARTIBLAST_EFFECT;
-			case 251: return REPEATING_NASTYCURSE_EFFECT;
-			case 252: return REAL_LIE_EFFECT;
-			case 253: return ESCAPE_PAST_EFFECT;
-			case 254: return PETHATE_EFFECT;
-			case 255: return PET_LASHOUT_EFFECT;
-			case 256: return PETSTARVE_EFFECT;
-			case 257: return PETSCREW_EFFECT;
-			case 258: return TECH_LOSS_EFFECT;
-			case 259: return PROOFLOSS_EFFECT;
-			case 260: return UN_INVIS_EFFECT;
-			case 261: return DETECTATION_EFFECT;
-			case 262: return OPTION_BUG_EFFECT;
-			case 263: return MISCOLOR_EFFECT;
-			case 264: return ONE_RAINBOW_EFFECT;
-			case 265: return COLORSHIFT_EFFECT;
-			case 266: return TOP_LINE_EFFECT;
-			case 267: return CAPS_BUG_EFFECT;
-			case 268: return UN_KNOWLEDGE_EFFECT;
-			case 269: return DARKHANCE_EFFECT;
-			case 270: return DSCHUEUEUET_EFFECT;
-			case 271: return NOPESKILL_EFFECT;
-			case 272: return FUCKFUCKFUCK_EFFECT;
-			case 273: return EPVI_EFFECT;
-			case 274: return AEFDE_EFFECT;
-			default: return POISON_RES;
-
-		}
+		return randnastyenchantment();
 
 	} else if (!rn2(15)) {
 
@@ -1872,7 +1593,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(274)) {
+	switch (rnd(277)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -2148,6 +1869,9 @@ randnastyenchantment()
 			case 272: return FUCKFUCKFUCK_EFFECT;
 			case 273: return EPVI_EFFECT;
 			case 274: return AEFDE_EFFECT;
+			case 275: return MEAN_BURDEN_EFFECT;
+			case 276: return CARRCAP_EFFECT;
+			case 277: return UMENG_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2448,7 +2172,7 @@ randominsidetrap()
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(200)) return INSTANASTY_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(274)) {
+	else switch (rnd(277)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2724,6 +2448,9 @@ randominsidetrap()
 		case 272: return FUCKFUCKFUCK_TRAP;
 		case 273: return EPVI_TRAP;
 		case 274: return AEFDE_TRAP;
+		case 275: return MEAN_BURDEN_TRAP;
+		case 276: return CARRCAP_TRAP;
+		case 277: return UMENG_TRAP;
 
 	}
 
@@ -4357,7 +4084,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(272)) {
+			switch (rnd(275)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4903,6 +4630,12 @@ getnastytrapintrinsic()
 				    EpviEffect |= FROMOUTSIDE; break;
 				case 272:
 				    AefdeEffect |= FROMOUTSIDE; break;
+				case 273:
+				    MeanBurdenEffect |= FROMOUTSIDE; break;
+				case 274:
+				    CarrcapEffect |= FROMOUTSIDE; break;
+				case 275:
+				    UmengEffect |= FROMOUTSIDE; break;
 
 
 			}
@@ -5345,7 +5078,7 @@ int duration, blackngvar;
 		if (YouAreScrewedEternally) duration *= 20;
 		if (LongScrewupXtra) duration *= 10;
 
-		switch (rnd(272)) {
+		switch (rnd(275)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -5648,6 +5381,9 @@ int duration, blackngvar;
 			case 270: FuckfuckfuckEffect += rnz(duration); break;
 			case 271: EpviEffect += rnz(duration); break;
 			case 272: AefdeEffect += rnz(duration); break;
+			case 273: MeanBurdenEffect += rnz(duration); break;
+			case 274: CarrcapEffect += rnz(duration); break;
+			case 275: UmengEffect += rnz(duration); break;
 
 		}
 
@@ -5959,6 +5695,9 @@ int efftype, nastyduration, blackngvar;
 		case 270: FuckfuckfuckEffect += rnz(nastyduration); break;
 		case 271: EpviEffect += rnz(nastyduration); break;
 		case 272: AefdeEffect += rnz(nastyduration); break;
+		case 273: MeanBurdenEffect += rnz(nastyduration); break;
+		case 274: CarrcapEffect += rnz(nastyduration); break;
+		case 275: UmengEffect += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

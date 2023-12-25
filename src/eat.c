@@ -6052,7 +6052,7 @@ struct obj *otmp;
 	    case RIN_SLEEPING:
 		if (!(HSleeping & FROMOUTSIDE))
 		    accessory_has_effect(otmp);
-		HSleeping = FROMOUTSIDE | rnd(1000);
+		if (!Race_if(PM_KOBOLT)) HSleeping = FROMOUTSIDE | rnd(1000);
 		break;
 	    case AMULET_OF_FUMBLING: /* another bad idea! */
 		if (!(HFumbling & FROMOUTSIDE))
@@ -6838,6 +6838,12 @@ eatspecial() /* called after eating non-food */
 				    DestructionEffect |= FROMOUTSIDE; break;
 			case MELEE_PREFIX_STONE:
 				    MeleePrefixBug |= FROMOUTSIDE; break;
+			case MEAN_BURDEN_STONE:
+				    MeanBurdenEffect |= FROMOUTSIDE; break;
+			case CARRCAP_STONE:
+				    CarrcapEffect |= FROMOUTSIDE; break;
+			case UMENG_STONE:
+				    UmengEffect |= FROMOUTSIDE; break;
 			case AUTOMORE_STONE:
 				    AutomoreBug |= FROMOUTSIDE; break;
 			case UNFAIR_ATTACK_STONE:

@@ -750,6 +750,7 @@ struct you {
 	int shaperoomchance;	/* to control the chance of irregular rooms */
 
 	int fumbleduration;	/* for wand of fumbling */
+	int restfulsleepduration;	/* for narcolepsy trap */
 	int antimagicshell;	/* for scroll of antimagic */
 
 	int stonedchilltimer;	/* to control whether you get the damage reduction */
@@ -1053,6 +1054,9 @@ struct you {
 	boolean nastinator270;
 	boolean nastinator271;
 	boolean nastinator272;
+	boolean nastinator273;
+	boolean nastinator274;
+	boolean nastinator275;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;

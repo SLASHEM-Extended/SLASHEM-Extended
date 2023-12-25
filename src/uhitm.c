@@ -925,6 +925,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_ADAMANTIUM) tmp += 2;
 	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 	if (bmwride(ART_ZIN_BA)) tmp += 4;
+	if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
+	if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
 	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) tmp += 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
@@ -4050,6 +4052,8 @@ int dieroll;
 		if (uarms && uarms->oartifact == ART_YOUTH_UNWORD) tmp += 2;
 		if (uleft && uleft->oartifact == ART_RING_OF_THROR) tmp += 2;
 		if (uright && uright->oartifact == ART_RING_OF_THROR) tmp += 2;
+		if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 2;
+		if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 2;
 		if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
 			tmp += 5;
 			if (!PlayerCannotUseSkills) {

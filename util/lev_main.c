@@ -898,6 +898,28 @@ static struct {
 	{ "epvi", EPVI_TRAP },
 	{ "aefde", AEFDE_TRAP },
 
+	{ "falling rock cold", FALLING_ROCK_COLD },
+	{ "return", RETURN_TRAP },
+	{ "intrinsic steal", INTRINSIC_STEAL_TRAP },
+	{ "score axe", SCORE_AXE_TRAP },
+	{ "score drain", SCORE_DRAIN_TRAP },
+	{ "single unidentify", SINGLE_UNIDENTIFY_TRAP },
+	{ "hypoxic pit", HYPOXIC_PIT },
+	{ "unlucky", UNLUCKY_TRAP },
+	{ "alignment reduction", ALIGNMENT_REDUCTION_TRAP },
+	{ "malignant", MALIGNANT_TRAP },
+	{ "stat damage", STAT_DAMAGE_TRAP },
+	{ "half memory", HALF_MEMORY_TRAP },
+	{ "half training", HALF_TRAINING_TRAP },
+	{ "debuff", DEBUFF_TRAP },
+	{ "trip once", TRIP_ONCE_TRAP },
+	{ "narcolepsy", NARCOLEPSY_TRAP },
+	{ "martial arts", MARTIAL_ARTS_TRAP },
+
+	{ "mean burden", MEAN_BURDEN_TRAP },
+	{ "carrcap", CARRCAP_TRAP },
+	{ "umeng", UMENG_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

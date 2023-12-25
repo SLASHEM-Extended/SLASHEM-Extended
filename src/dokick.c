@@ -1424,7 +1424,7 @@ xchar x, y;
 		return(0);
 
 	if ((trap = t_at(x,y)) != 0 &&
-			(((trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == ACID_PIT ||
+			(((trap->ttyp == PIT || trap->ttyp == SHIT_PIT || trap->ttyp == MANA_PIT || trap->ttyp == ANOXIC_PIT || trap->ttyp == HYPOXIC_PIT || trap->ttyp == ACID_PIT ||
 			   trap->ttyp == SPIKED_PIT || trap->ttyp == GIANT_CHASM) && !Passes_walls) ||
 			 trap->ttyp == WEB)) {
 		if (!trap->tseen && !trap->hiddentrap) find_trap(trap);

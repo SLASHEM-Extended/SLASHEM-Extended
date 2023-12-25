@@ -13841,7 +13841,7 @@ boolean cangivehp;
 	    m = *tm;
 	else {
 	    register int tryct = 0;
-	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == MANA_PIT || kind == ANOXIC_PIT || kind == ACID_PIT || kind == SHAFT_TRAP || kind == CURRENT_SHAFT ||
+	    boolean avoid_boulder = (kind == PIT || kind == SPIKED_PIT || kind == GIANT_CHASM || kind == SHIT_PIT || kind == MANA_PIT || kind == ANOXIC_PIT || kind == HYPOXIC_PIT || kind == ACID_PIT || kind == SHAFT_TRAP || kind == CURRENT_SHAFT ||
 				     kind == TRAPDOOR || kind == HOLE);
 
 	    do {

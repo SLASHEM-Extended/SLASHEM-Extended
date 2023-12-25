@@ -2035,6 +2035,7 @@ dospinweb()
 		case SHIT_PIT:
 		case MANA_PIT:
 		case ANOXIC_PIT:
+		case HYPOXIC_PIT:
 		case ACID_PIT:
 		case SPIKED_PIT: You("spin a web, covering up the pit.");
 			deltrap(ttmp);
@@ -2491,6 +2492,23 @@ dospinweb()
 		case WITHER_TRAP:
 		case VULNERATE_TRAP:
 
+		case FALLING_ROCK_COLD:
+		case RETURN_TRAP:
+		case INTRINSIC_STEAL_TRAP:
+		case SCORE_AXE_TRAP:
+		case SCORE_DRAIN_TRAP:
+		case SINGLE_UNIDENTIFY_TRAP:
+		case UNLUCKY_TRAP:
+		case ALIGNMENT_REDUCTION_TRAP:
+		case MALIGNANT_TRAP:
+		case STAT_DAMAGE_TRAP:
+		case HALF_MEMORY_TRAP:
+		case HALF_TRAINING_TRAP:
+		case DEBUFF_TRAP:
+		case TRIP_ONCE_TRAP:
+		case NARCOLEPSY_TRAP:
+		case MARTIAL_ARTS_TRAP:
+
 		case INSTANASTY_TRAP:
 		case SKILL_POINT_LOSS_TRAP:
 		case PERFECT_MATCH_TRAP:
@@ -2536,6 +2554,9 @@ dospinweb()
 		case BISHOP_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case MEAN_BURDEN_TRAP:
+		case CARRCAP_TRAP:
+		case UMENG_TRAP:
 		case AEFDE_TRAP:
 		case EPVI_TRAP:
 		case FUCKFUCKFUCK_TRAP:

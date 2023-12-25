@@ -586,7 +586,7 @@ rndtrap()
 
 		tndx = ARROW_TRAP;
 
-		/* use a rndmonst-like function to select a random trap with weighted probabilities --Amy */
+		/* Amy: use a rndmonst-like function to select a random trap with weighted probabilities, keyword "newtraps" */
 		for (; tndx < TRAPNUM; tndx++) {
 			ct = 0;
 
@@ -644,10 +644,14 @@ rndtrap()
 			if (tndx == SPINED_BALL_TRAP) ct += 1;
 			if (tndx == BANANA_TRAP) ct += 1;
 			if (tndx == SLINGSHOT_TRAP) ct += 2;
+			if (tndx == TRIP_ONCE_TRAP) ct += 2;
 			if (tndx == WALL_TRAP) ct += 1;
 			if (tndx == MACE_TRAP) ct += 1;
 			if (tndx == DAGGER_TRAP) ct += 4;
+			if (tndx == SCORE_DRAIN_TRAP) ct += 4;
+			if (tndx == DEBUFF_TRAP) ct += 4;
 			if (tndx == PHASEPORTER) ct += 1;
+			if (tndx == STAT_DAMAGE_TRAP) ct += 2;
 
 			rndtrap_state.choice_count += ct;
 			rndtrap_state.tchoices[tndx] = ct;
@@ -741,6 +745,9 @@ selecttrap:
 	     case RMB_LOSS_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) goto selecttrap;
 			break;
+	     case UMENG_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && !Role_if(PM_SPACEWARS_FIGHTER) && rn2(2)) goto selecttrap;
+			break;
 	     case DISPLAY_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 2 : 3)) goto selecttrap;
 			break;
@@ -753,7 +760,13 @@ selecttrap:
 	     case AUTO_DESTRUCT_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) goto selecttrap;
 			break;
+	     case MEAN_BURDEN_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 5 : 10)) goto selecttrap;
+			break;
 	     case MEMORY_TRAP:
+			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) goto selecttrap;
+			break;
+	     case CARRCAP_TRAP:
 			if (!Role_if(PM_CAMPERSTRIKER) && !u.arabellahack && !NastyTrapNation && rn2(Role_if(PM_SPACEWARS_FIGHTER) ? 10 : 20)) goto selecttrap;
 			break;
 	     case INVENTORY_TRAP:
@@ -1712,8 +1725,14 @@ selecttrap:
 	    case SHAPECHANGE_TRAP:
 		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 		break;
+	    case INTRINSIC_STEAL_TRAP:
+		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+		break;
 	    case CATACLYSM_TRAP:
 		if (rn2(evilfriday ? 10 : 100) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case SCORE_AXE_TRAP:
+		if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 		break;
 	    case KILL_SYMBIOTE_TRAP:
 		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
@@ -1744,11 +1763,23 @@ selecttrap:
 	    case DUMBIE_LIGHTSABER_TRAP:
 		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 		break;
+	    case SINGLE_UNIDENTIFY_TRAP:
+		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+		break;
 	    case WRONG_STAIRS:
 		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 		break;
 	    case AMNESIA_SWITCH_TRAP:
 		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case HALF_MEMORY_TRAP:
+		if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case HALF_TRAINING_TRAP:
+		if (rn2(evilfriday ? 5 : 20) && !NastyTrapNation) goto selecttrap;
+		break;
+	    case MARTIAL_ARTS_TRAP:
+		if (rn2(evilfriday ? 5 : 20) && !NastyTrapNation) goto selecttrap;
 		break;
 	    case DATA_DELETE_TRAP:
 		if (rn2(evilfriday ? 1000 : 10000)) goto selecttrap;
@@ -1776,6 +1807,9 @@ selecttrap:
 			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
 	     case MIND_WIPE_TRAP:
+			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
+			break;
+	     case RETURN_TRAP:
 			if (rn2(evilfriday ? 2 : 10) && !NastyTrapNation) goto selecttrap;
 			break;
 	     case GATEWAY_FROM_HELL:
@@ -1819,6 +1853,9 @@ selecttrap:
 		    case BACK_TO_START_TRAP:
 			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
+		    case FALLING_ROCK_COLD:
+			if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
+			break;
 		    case NEMESIS_TRAP:
 			if (rn2(evilfriday ? 10 : 50) && !NastyTrapNation) goto selecttrap;
 			break;
@@ -1840,6 +1877,10 @@ selecttrap:
 		    case ANOXIC_PIT:
 			if (In_sokoban(&u.uz) && rn2(10)) goto selecttrap;
 			if ((rn2(3) && !evilfriday) && !NastyTrapNation) goto selecttrap;
+			break;
+		    case HYPOXIC_PIT:
+			if (In_sokoban(&u.uz) && rn2(4)) goto selecttrap;
+			if ((rn2(2) && !evilfriday) && !NastyTrapNation) goto selecttrap;
 			break;
 		    case ARABELLA_SPEAKER:
 			if (rn2(10) && !NastyTrapNation) goto selecttrap;
@@ -6287,7 +6328,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == HYPOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap, 100, TRUE);
@@ -6347,7 +6388,7 @@ dlb *fd;
 		    maze1xy(&mm, DRY);
 		    trytrap = rndtrap();
 		    if (sobj_at(BOULDER, mm.x, mm.y))
-			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
+			while (trytrap == PIT || trytrap == SPIKED_PIT || trytrap == GIANT_CHASM || trytrap == SHIT_PIT || trytrap == MANA_PIT || trytrap == ANOXIC_PIT || trytrap == HYPOXIC_PIT || trytrap == ACID_PIT || trytrap == SHAFT_TRAP || trytrap == CURRENT_SHAFT ||
 				trytrap == TRAPDOOR || trytrap == HOLE)
 			    trytrap = rndtrap();
 		    (void) maketrap(mm.x, mm.y, trytrap, 100, TRUE);

@@ -390,7 +390,7 @@ dig()
 		if (digging.effort <= 50 ||
 		    is_lightsaber(uwep) ||
 		    ((ttmp = t_at(dpx,dpy)) != 0 &&
-			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT ||
+			(ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == HYPOXIC_PIT || ttmp->ttyp == ACID_PIT || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT ||
 			 ttmp->ttyp == TRAPDOOR || ttmp->ttyp == HOLE)))
 		    return(1);
 
@@ -1069,7 +1069,7 @@ boolean pit_only;
 		}
 
 	} else if ((boulder_here = sobj_at(BOULDER, u.ux, u.uy)) != 0) {
-		if (ttmp && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == ACID_PIT) &&
+		if (ttmp && (ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == HYPOXIC_PIT || ttmp->ttyp == ACID_PIT) &&
 		    rn2(2)) {
 			pline_The("boulder settles into the pit.");
 			ttmp->ttyp = PIT;	 /* crush spikes */

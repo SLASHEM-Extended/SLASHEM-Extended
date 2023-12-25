@@ -345,6 +345,11 @@ pline VA_DECL(const char *, line)
 
 	  }
 
+	  if ( (UmengEffect || u.uprops[UMENG_EFFECT].extrinsic || have_umengstone() ) && !program_state.in_impossible && (strlen(line)<(BUFSZ-20)) ) {
+		     if (UmengXtra) line = replace(line,",",", alter ich hab umeng geschrieben", FALSE);
+		     else line = replace(line,",",", umeng", FALSE);
+	  }
+
 #if defined(DUMP_LOG)
 	if (DUMPMSGS > 0 && !program_state.gameover) {
 		/* count identical messages */
@@ -1138,10 +1143,10 @@ char *replace(st, orig, repl, extratest)
 const char *st, *orig, *repl;
 boolean extratest;
 {
-        char *buffer;
+	char *buffer;
 	char *ch;
-        char *tmp;
-        int i;  
+	char *tmp;
+	int i;
 
         /* Direct speach ? (cheapest test, and only once ) */
         /*"Thou art doomed, scapegrace!" */
@@ -1160,6 +1165,13 @@ REPEAT:
         if( (tmp = strstr(st,"wolloh,")) ) return st;
         if( (tmp = strstr(st,"wolloh.")) ) return st;
         if( (tmp = strstr(st,"wolloh!")) ) return st;
+	}
+
+	if ( (UmengEffect || u.uprops[UMENG_EFFECT].extrinsic || have_umengstone() ) ) {
+
+		if( (tmp = strstr(st,"umeng")) ) return st;
+		if( (tmp = strstr(st,"alter ich hab umeng geschrieben")) ) return st;
+
 	}
 
         /* You read "eyelbereth" */

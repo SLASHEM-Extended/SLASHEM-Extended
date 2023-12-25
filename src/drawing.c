@@ -1075,6 +1075,27 @@ const struct symdef defsyms[MAXPCHARS] = {
 
 	{'^', "we select now the aefde trap", C(CLR_CYAN)},	/* trap */
 
+	{'^', "falling rock cold", C(CLR_CYAN)},	/* trap */
+	{'^', "return trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "intrinsic steal trap", C(CLR_BRIGHT_GREEN)},	/* trap */
+	{'^', "score axe trap", C(CLR_GRAY)},	/* trap */
+	{'^', "score drain trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "single unidentify trap", C(CLR_BLACK)},	/* trap */
+	{'^', "hypoxic pit", C(CLR_BLACK)},	/* trap */
+	{'^', "unlucky trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "alignment reduction trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "malignant trap", C(CLR_BLACK)},	/* trap */
+	{'^', "stat damage trap", C(CLR_RED)},	/* trap */
+	{'^', "half memory trap", C(CLR_GRAY)},	/* trap */
+	{'^', "half training trap", C(CLR_BROWN)},	/* trap */
+	{'^', "debuff trap", C(CLR_CYAN)},	/* trap */
+	{'^', "trip once trap", C(CLR_GREEN)},	/* trap */
+	{'^', "narcolepsy trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "martial arts trap", C(CLR_WHITE)},	/* trap */
+	{'^', "mean burden trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "carrcap trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+	{'^', "umeng trap", C(CLR_MAGENTA)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -1977,6 +1998,27 @@ static uchar ibm_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_aefde_trap),
 
+	g_FILLER(S_falling_rock_cold_trap),
+	g_FILLER(S_return_trap),
+	g_FILLER(S_intrinsic_steal_trap),
+	g_FILLER(S_score_axe_trap),
+	g_FILLER(S_score_drain_trap),
+	g_FILLER(S_single_unidentify_trap),
+	g_FILLER(S_hypoxic_pit),
+	g_FILLER(S_unlucky_trap),
+	g_FILLER(S_alignment_reduction_trap),
+	g_FILLER(S_malignant_trap),
+	g_FILLER(S_stat_damage_trap),
+	g_FILLER(S_half_memory_trap),
+	g_FILLER(S_half_training_trap),
+	g_FILLER(S_debuff_trap),
+	g_FILLER(S_trip_once_trap),
+	g_FILLER(S_narcolepsy_trap),
+	g_FILLER(S_martial_arts_trap),
+	g_FILLER(S_mean_burden_trap),
+	g_FILLER(S_carrcap_trap),
+	g_FILLER(S_umeng_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2867,6 +2909,27 @@ static uchar dec_graphics[MAXPCHARS] = {
 
 	g_FILLER(S_aefde_trap),
 
+	g_FILLER(S_falling_rock_cold_trap),
+	g_FILLER(S_return_trap),
+	g_FILLER(S_intrinsic_steal_trap),
+	g_FILLER(S_score_axe_trap),
+	g_FILLER(S_score_drain_trap),
+	g_FILLER(S_single_unidentify_trap),
+	g_FILLER(S_hypoxic_pit),
+	g_FILLER(S_unlucky_trap),
+	g_FILLER(S_alignment_reduction_trap),
+	g_FILLER(S_malignant_trap),
+	g_FILLER(S_stat_damage_trap),
+	g_FILLER(S_half_memory_trap),
+	g_FILLER(S_half_training_trap),
+	g_FILLER(S_debuff_trap),
+	g_FILLER(S_trip_once_trap),
+	g_FILLER(S_narcolepsy_trap),
+	g_FILLER(S_martial_arts_trap),
+	g_FILLER(S_mean_burden_trap),
+	g_FILLER(S_carrcap_trap),
+	g_FILLER(S_umeng_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3753,6 +3816,27 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_sabrina_trap),
 
 	g_FILLER(S_aefde_trap),
+
+	g_FILLER(S_falling_rock_cold_trap),
+	g_FILLER(S_return_trap),
+	g_FILLER(S_intrinsic_steal_trap),
+	g_FILLER(S_score_axe_trap),
+	g_FILLER(S_score_drain_trap),
+	g_FILLER(S_single_unidentify_trap),
+	g_FILLER(S_hypoxic_pit),
+	g_FILLER(S_unlucky_trap),
+	g_FILLER(S_alignment_reduction_trap),
+	g_FILLER(S_malignant_trap),
+	g_FILLER(S_stat_damage_trap),
+	g_FILLER(S_half_memory_trap),
+	g_FILLER(S_half_training_trap),
+	g_FILLER(S_debuff_trap),
+	g_FILLER(S_trip_once_trap),
+	g_FILLER(S_narcolepsy_trap),
+	g_FILLER(S_martial_arts_trap),
+	g_FILLER(S_mean_burden_trap),
+	g_FILLER(S_carrcap_trap),
+	g_FILLER(S_umeng_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4641,6 +4725,27 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_sabrina_trap),
 
 	g_FILLER(S_aefde_trap),
+
+	g_FILLER(S_falling_rock_cold_trap),
+	g_FILLER(S_return_trap),
+	g_FILLER(S_intrinsic_steal_trap),
+	g_FILLER(S_score_axe_trap),
+	g_FILLER(S_score_drain_trap),
+	g_FILLER(S_single_unidentify_trap),
+	g_FILLER(S_hypoxic_pit),
+	g_FILLER(S_unlucky_trap),
+	g_FILLER(S_alignment_reduction_trap),
+	g_FILLER(S_malignant_trap),
+	g_FILLER(S_stat_damage_trap),
+	g_FILLER(S_half_memory_trap),
+	g_FILLER(S_half_training_trap),
+	g_FILLER(S_debuff_trap),
+	g_FILLER(S_trip_once_trap),
+	g_FILLER(S_narcolepsy_trap),
+	g_FILLER(S_martial_arts_trap),
+	g_FILLER(S_mean_burden_trap),
+	g_FILLER(S_carrcap_trap),
+	g_FILLER(S_umeng_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5738,6 +5843,27 @@ boolean is_rlevel;
 	    showsyms[S_sabrina_trap] = 0x04;
 
 	    showsyms[S_aefde_trap] = 0x04;
+
+	    showsyms[S_falling_rock_cold_trap] = 0x04;
+	    showsyms[S_return_trap] = 0x04;
+	    showsyms[S_intrinsic_steal_trap] = 0x04;
+	    showsyms[S_score_axe_trap] = 0x04;
+	    showsyms[S_score_drain_trap] = 0x04;
+	    showsyms[S_single_unidentify_trap] = 0x04;
+	    showsyms[S_hypoxic_pit] = 0x04;
+	    showsyms[S_unlucky_trap] = 0x04;
+	    showsyms[S_alignment_reduction_trap] = 0x04;
+	    showsyms[S_malignant_trap] = 0x04;
+	    showsyms[S_stat_damage_trap] = 0x04;
+	    showsyms[S_half_memory_trap] = 0x04;
+	    showsyms[S_half_training_trap] = 0x04;
+	    showsyms[S_debuff_trap] = 0x04;
+	    showsyms[S_trip_once_trap] = 0x04;
+	    showsyms[S_narcolepsy_trap] = 0x04;
+	    showsyms[S_martial_arts_trap] = 0x04;
+	    showsyms[S_mean_burden_trap] = 0x04;
+	    showsyms[S_carrcap_trap] = 0x04;
+	    showsyms[S_umeng_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 
