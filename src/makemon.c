@@ -9670,6 +9670,9 @@ register struct	monst	*mtmp;
 			 m_initthrow(mtmp, BRONZE_SMG_BULLET, 40);
 			 m_initthrow(mtmp, BRONZE_SMG_BULLET, 40);
 		}
+		if (mtmp->data == &mons[PM_FIERY_MAGYAR_LADY]) {
+			 (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
+		}
 
 		if (ptr == &mons[PM_IRIS_S_HIGH_HEELED_SANDAL]) {
 			(void) mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
@@ -18042,6 +18045,10 @@ loveheelover:
 		if (ptr == &mons[PM_NOOB_ANGEL]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, JUNK_METAL, 5);
+		}
+		if (ptr == &mons[PM_ANGEL_WITH_THE_SHOTGUN]) {
+			(void) mongets(mtmp, SHOTGUN);
+			 m_initthrow(mtmp, SHOTGUN_SHELL, 30);
 		}
 		if (ptr == &mons[PM_BOON_ANGEL]) {
 			(void) mongets(mtmp, SLING);

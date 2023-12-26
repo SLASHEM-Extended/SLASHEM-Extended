@@ -19208,7 +19208,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
             if (!rn2(5)) mdamageu(mtmp, (1 + dmgplus));
 		}
 		break;
-	    default: /*impossible*/pline("Gaze attack %d?", mattk->adtyp);
+	    default:
+		if (wizard) pline("Gaze attack %d?", mattk->adtyp);
 		break;
 	}
 
