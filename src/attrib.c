@@ -3341,8 +3341,10 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uarmh && uarmh->otyp == CORNUTHAUM && Role_if(PM_WIZARD)) tmp += 1;
 		if (uleft && uleft->otyp == RIN_ADORNMENT && !(uleft->oartifact == ART_NIX_) ) tmp += uleft->spe;
+		if (uleft && uleft->otyp == RIN_ADORNMENT && (uleft->oartifact == ART_DOUBLE_ADORNING) ) tmp += uleft->spe;
 		if (uleft && uleft->otyp == RIN_UPPER_ADORNMENT) tmp += uleft->spe;
 		if (uright && uright->otyp == RIN_ADORNMENT && !(uright->oartifact == ART_NIX_)) tmp += uright->spe;
+		if (uright && uright->otyp == RIN_ADORNMENT && (uright->oartifact == ART_DOUBLE_ADORNING) ) tmp += uright->spe;
 		if (uright && uright->otyp == RIN_UPPER_ADORNMENT) tmp += uright->spe;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
@@ -3523,6 +3525,9 @@ int x;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MINOPOWER) tmp -= 3;
 		if (x == A_INT && uwep && uwep->oartifact == ART_SKAZKA_OB_DURAKE) tmp -= 3;
 		if (x == A_INT && u.twoweap && uswapwep && uswapwep->oartifact == ART_SKAZKA_OB_DURAKE) tmp -= 3;
+
+		if (x == A_INT && uwep && uwep->oartifact == ART_DAEMEL) tmp -= 2;
+		if (x == A_INT && u.twoweap && uswapwep && uswapwep->oartifact == ART_DAEMEL) tmp -= 2;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
@@ -4013,6 +4018,9 @@ boolean displaymessage;
 	}
 	if (uarm && uarm->oartifact == ART_CERNY_ && targetattr == A_CON) actuallimit += 5;
 	if (uarms && uarms->oartifact == ART_HIGHER_TRAINING) actuallimit += 2;
+
+	if (targetattr == A_INT && uwep && uwep->oartifact == ART_DAEMEL) actuallimit -= 5;
+	if (targetattr == A_INT && u.twoweap && uswapwep && uswapwep->oartifact == ART_DAEMEL) actuallimit -= 5;
 
 	if (StatDecreaseBug || u.uprops[STAT_DECREASE_BUG].extrinsic || have_statdecreasestone() || autismringcheck(ART_JUBILEX_S_CODE)) {
 		if (targetattr == A_STR && actuallimit >= STR19(25)) actuallimit = STR18(70);

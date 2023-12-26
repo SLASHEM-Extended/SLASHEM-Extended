@@ -2269,6 +2269,7 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uwep && uwep->oartifact == ART_DAEMEL && !rn2(10) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_MAMBO_NUMBER_NINE && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && !rn2(5) && uball && uwep && (uwep == uball)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && u.uinwater && (uarmf->oartifact == ART_PECTORAL_HEEL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -7398,6 +7399,12 @@ newbossJANI:
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 		}
 
+		if (uwep && uwep->oartifact == ART_DAEMEL && !rn2(1000)) {
+			u.ugold += rnd(50);
+			pline("Someone gave you a bit of money, you Daemel.");
+			flags.botl = TRUE;
+		}
+
 		if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && !rn2(2000) && (ABASE(A_INT) > 10)) {
 			(void) adjattrib(A_INT, -1, FALSE, TRUE);
 		}
@@ -7789,6 +7796,92 @@ newbossF:
 			if (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH) && rn2(50) ) {
 				attempts = 0;
 				goto newbossF;
+			}
+
+			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
+			u.cnd_aggravateamount++;
+			u.mondiffhack = 0;
+
+			} /* while (aggroamount) */
+
+			u.aggravation = 0;
+
+			pline("Several angry females come out of a portal.");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
+		if (uwep && uwep->oartifact == ART_WOMAN_UP_CJ && !rn2(10000)) {
+
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+			aggroamount--;
+
+newbossWUC:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossWUC;
+			}
+			if (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH) && rn2(50) ) {
+				attempts = 0;
+				goto newbossWUC;
+			}
+
+			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);
+			u.cnd_aggravateamount++;
+			u.mondiffhack = 0;
+
+			} /* while (aggroamount) */
+
+			u.aggravation = 0;
+
+			pline("Several angry females come out of a portal.");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WOMAN_UP_CJ && !rn2(10000)) {
+
+			int aggroamount = rnd(6);
+			if (isfriday) aggroamount *= 2;
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+			while (aggroamount) {
+
+			int attempts = 0;
+			struct permonst *pm = 0;
+			aggroamount--;
+
+newbossWUCX:
+			do {
+				pm = rndmonst();
+				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!pm || (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH ))) && attempts < 50000);
+
+			if (!pm && rn2(50) ) {
+				attempts = 0;
+				goto newbossWUCX;
+			}
+			if (pm && !(pm->msound == MS_FART_LOUD || pm->msound == MS_FART_NORMAL || pm->msound == MS_FART_QUIET || pm->msound == MS_STENCH) && rn2(50) ) {
+				attempts = 0;
+				goto newbossWUCX;
 			}
 
 			if (pm) (void) makemon(pm, u.ux, u.uy, MM_ANGRY);

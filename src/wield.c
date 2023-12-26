@@ -259,6 +259,14 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		curse(uwep);
 		pline("Whoops, your weapon became cursed.");
 	}
+	if (uwep && uwep->oartifact == ART_WOMAN_UP_CJ && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, your weapon became cursed.");
+	}
+	if (uwep && uwep->oartifact == ART_POST_OFFICE_COURSE && !uwep->cursed) {
+		curse(uwep);
+		pline("Whoops, your weapon became cursed.");
+	}
 
 	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) {
 		CovidTrapEffect |= FROMOUTSIDE;
@@ -712,6 +720,14 @@ swapweaponchoice:
 			pline("Raaaaaaahhh, your weapon became cursed!");
 		}
 		if (uswapwep && uswapwep->oartifact == ART_SIYID && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, your secondary weapon became cursed.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_WOMAN_UP_CJ && !uswapwep->cursed) {
+			curse(uswapwep);
+			pline("Whoops, your secondary weapon became cursed.");
+		}
+		if (uswapwep && uswapwep->oartifact == ART_POST_OFFICE_COURSE && !uswapwep->cursed) {
 			curse(uswapwep);
 			pline("Whoops, your secondary weapon became cursed.");
 		}

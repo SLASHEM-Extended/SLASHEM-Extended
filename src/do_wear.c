@@ -3267,6 +3267,46 @@ Gloves_on()
 
 	if (uarmg && uarmg->spe > -10 && (TrashingBugEffect || u.uprops[TRASHING_EFFECT].extrinsic || have_trashstone())) uarmg->spe--;
 
+	if (uarmg && uarmg->oartifact == ART_TURN_INTO_THE_NORM && uarmg->otyp != REGULAR_GLOVES ) {
+		long savewornmask;
+		register struct obj *weargloves;
+
+		int glovesi, glovesj;
+		short sw;
+		int color;
+
+		weargloves = uarmg;
+
+		savewornmask = weargloves->owornmask;
+		setworn((struct obj *)0, weargloves->owornmask);
+
+		glovesi = weargloves->otyp;
+		glovesj = REGULAR_GLOVES;
+
+		sw = objects[glovesj].oc_descr_idx;
+		objects[glovesj].oc_descr_idx = objects[glovesi].oc_descr_idx;
+		objects[glovesi].oc_descr_idx = sw;
+		sw = objects[glovesj].oc_tough;
+		objects[glovesj].oc_tough = objects[glovesi].oc_tough;
+		objects[glovesi].oc_tough = sw;
+		color = objects[glovesj].oc_color;
+		objects[glovesj].oc_color = objects[glovesi].oc_color;
+		objects[glovesi].oc_color = color;
+		color = objects[glovesj].oc_appearindex;
+		objects[glovesj].oc_appearindex = objects[glovesi].oc_appearindex;
+		objects[glovesi].oc_appearindex = color;
+		color = objects[glovesj].oc_material;
+		objects[glovesj].oc_material = objects[glovesi].oc_material;
+		objects[glovesi].oc_material = color;
+
+		weargloves->otyp = REGULAR_GLOVES;
+
+		setworn(weargloves, savewornmask);
+
+		Your("gloves turned into the norm.");
+
+	}
+
     return 0;
 }
 
@@ -6913,6 +6953,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_DEEEEET) uac += 5;
 	if (uarm && uarm->oartifact == ART_WSCHIE_) uac -= 5;
 	if (uarmg && uarmg->otyp == GAUNTLETS_OF_ARMORING && uarmg->spe > 0) uac -= uarmg->spe;
+	if (uarmg && uarmg->oartifact == ART_ELTRA_ENCHANTMENT && uarmg->spe > 0) uac -= uarmg->spe;
 	if (uarm && uarm->oartifact == ART_GOODNET) uac -= 5;
 	if (uarm && uarm->oartifact == ART_KWOURSTOMAL_) uac -= 10;
 	if (uarm && uarm->oartifact == ART_BEEPA_DEVICE) uac -= 5;

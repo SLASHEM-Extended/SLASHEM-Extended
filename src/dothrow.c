@@ -636,6 +636,12 @@ int thrown;
 		u.uprops[VERISIERTEFFECT].intrinsic += verisiertnumber;
 	}
 
+	if (launcher && launcher->oartifact == ART_POST_OFFICE_COURSE) {
+		int postofficenumber = multishot;
+		adjalign(-postofficenumber);
+		u.alignlim -= postofficenumber;
+	}
+
 	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == LEAD_UNLOADER || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == STORM_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN ) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {
 		if (launcher->otyp == SUBMACHINE_GUN) {
 			u.bulletatorwantedlevel += 1;
@@ -3200,9 +3206,12 @@ evasionchancedone:
 
 		disttmp = 3 - distmin(u.ux, u.uy, mon->mx, mon->my);
 		if(disttmp < -4) disttmp = -4;
+
+		if (uarmg && uarmg->oartifact == ART_SNIPE_EVERYTHING && disttmp < 0) disttmp = 0;
+
 		tmp += disttmp;
 
-		if (distmin(u.ux, u.uy, mon->mx, mon->my) > 3) {
+		if ((distmin(u.ux, u.uy, mon->mx, mon->my) > 3) && !(uarmg && uarmg->oartifact == ART_SNIPE_EVERYTHING) ) {
 
 			switch (distmin(u.ux, u.uy, mon->mx, mon->my)) {
 

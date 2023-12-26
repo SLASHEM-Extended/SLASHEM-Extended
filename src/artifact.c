@@ -926,6 +926,7 @@ init_appearance_randarts()
 	artilist[ART_COCKUETRY].otyp = find_fingerless_gloves();
 	artilist[ART_PERCENTIOEOEPSPERCENTD_THI].otyp = find_mantle_of_coat();
 	artilist[ART_PEEPING_GROOVE].otyp = find_fatal_gloves();
+	artilist[ART_TURN_INTO_THE_NORM].otyp = find_leather_gloves();
 	artilist[ART_RARE_ASIAN_LADY].otyp = find_beautiful_heels();
 	artilist[ART_JANA_S_FAIRNESS_CUP].otyp = find_homicidal_cloak();
 	artilist[ART_OUT_OF_TIME].otyp = find_castlevania_boots();
@@ -3213,6 +3214,7 @@ struct monst *mon;
 			case ART_EMERALD_SWORD:
 			case ART_NAMED_AFTER_ITSELF:
 			case ART_PULVERIZE_EM:
+			case ART_POST_OFFICE_COURSE:
 			case ART_ROOMMATE_S_SPECIAL_IDEA:
 			case ART_MR__AHLBLOW_S_SIGNAGE:
 			case ART_DO_YOU_EVEN_LIFT:
@@ -5273,6 +5275,27 @@ chargingchoice:
 		if (obj->oartifact == ART_FANNY_S_ANNOYANCE) {
 
 			randommartialstyle();
+
+			break;
+		}
+
+		if (obj->oartifact == ART_TURN_INTO_LEATHER) {
+
+			if (!find_leather_gloves()) {
+				pline("Oops, something went wrong! Sorry!");
+				break;
+			}
+
+			long savewornmask;
+
+			savewornmask = obj->owornmask;
+			setworn((struct obj *)0, obj->owornmask);
+
+			obj->otyp = find_leather_gloves();
+
+			setworn(obj, savewornmask);
+
+			Your("gloves turned into leather!");
 
 			break;
 		}

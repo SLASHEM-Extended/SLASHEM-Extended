@@ -2195,6 +2195,7 @@ E int find_fin_boots(void);
 E int find_profiled_boots(void);
 E int find_void_cloak(void);
 E int find_grey_shaded_gloves(void);
+E int find_leather_gloves(void);
 E int find_spiky_gloves(void);
 E int find_weeb_cloak(void);
 E int find_persian_boots(void);

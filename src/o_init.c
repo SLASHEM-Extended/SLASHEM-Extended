@@ -2565,6 +2565,19 @@ find_grey_shaded_gloves()
 }
 
 int
+find_leather_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_LEATHER_GLOVES)) return i;
+    }
+
+    impossible("leather gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_weeb_cloak()
 {
     register int i;

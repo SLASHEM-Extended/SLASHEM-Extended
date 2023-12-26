@@ -17914,6 +17914,42 @@ A("nix.",				RIN_ADORNMENT, /* doesn't modify your CHA */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
 
+A("Double Adorning",				RIN_ADORNMENT, /* gives double bonus (or malus) to CHA, and if it's not negatively enchanted, protects from item theft like nymph */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Snipe Everything",				GAUNTLETS_OF_TRUE_AIM, /* ranged weapons don't have reduced to-hit at long distances */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Eltra Enchantment",				GAUNTLETS_OF_ARMORING, /* if positively enchanted, gives +spe extra AC again */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Turn Into The Norm",				REGULAR_GLOVES, /* initialized to always be leather gloves, base item becomes regular gloves when equipped and the appearances are swapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Turn Into Leather",				REGULAR_GLOVES, /* invoke to turn the base item into whatever is the pair of leather gloves */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("The Post Office Course",				ASSAULT_RIFLE, /* to-hit h@ck, autocurses, hate trap, rebellion, wakeup call and enmity, and every bullet you fire from it gives -1 alignment and max alignment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("One-Free",				HELMET_OF_SAVING, /* life saving if not brittle, and becomes so if it saves you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Daemel",				TEACHING_STAFF, /* very fast and adds extra speed sometimes, 1 in 1000 per turn to gain d50 zorkmids, everything is gendered like genderstarist role, -2 INT and reduces INT soft cap by 5 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Woman Up CJ",				CANE, /* feminist aggravation 1 in 10000 turns, autocurses */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DFLAG2|SPFX_WARN), 0, (M2_FEMALE),
+	PHYS(0, 18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

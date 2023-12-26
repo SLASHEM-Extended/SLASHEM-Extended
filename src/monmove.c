@@ -1507,7 +1507,7 @@ register struct monst *mtmp;
 
 	}
 
-	if ((WakeupCallBug || (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(WakeupCallXtra ? 1000 : 10000)) {
+	if ((WakeupCallBug || (uarm && uarm->oartifact == ART_THERE_GOES_SHE_TO) || u.uprops[WAKEUP_CALL_BUG].extrinsic || have_wakeupcallstone() || autismweaponcheck(ART_POST_OFFICE_COURSE) || (uarm && uarm->oartifact == ART_ALTADOON_HERMA_MORA) || (uarmf && uarmf->oartifact == ART_CAMELIC_SCENT) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || autismweaponcheck(ART_DRAMA_STAFF) || autismweaponcheck(ART_MASSIVE_BUT_LOVELY) || Race_if(PM_SERB)) && mtmp->mpeaceful && !mtmp->mtame && !rn2(WakeupCallXtra ? 1000 : 10000)) {
 		wakeup(mtmp);
 	}
 

@@ -845,7 +845,7 @@ register struct monst *mtmp;
 		if (mtmp->data == &mons[PM_ULTRA_EVIL_QUASIT]) hasbeenbetrayed = 1;
 		if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(3)) hasbeenbetrayed = 1;
 		if (Role_if(PM_FAILED_EXISTENCE)) hasbeenbetrayed = 1;
-		if (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS)) hasbeenbetrayed = 1;
+		if (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || autismweaponcheck(ART_POST_OFFICE_COURSE) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS)) hasbeenbetrayed = 1;
 		if (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) hasbeenbetrayed = 1;
 		if (mtmp->m_lev >= 40) hasbeenbetrayed = 1;
 	}
@@ -857,7 +857,7 @@ register struct monst *mtmp;
 		if (!rn2(5)) hasbeenbetrayed = 2;
 		if (Race_if(PM_CELTIC)) hasbeenbetrayed = 2;
 		if (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) hasbeenbetrayed = 2;
-		if (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS)) hasbeenbetrayed = 2;
+		if (u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || autismweaponcheck(ART_POST_OFFICE_COURSE) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS)) hasbeenbetrayed = 2;
 		if (is_jonadabmonster(mtmp->data)) hasbeenbetrayed = 2;
 		if (isfriday && !rn2(10)) hasbeenbetrayed = 2;
 		if (mtmp->data->mlevel >= 50) hasbeenbetrayed = 2;
@@ -1004,7 +1004,7 @@ register int after;	/* this is extra fast monster movement */
 		if (betrayed(mtmp)) return 1;
 		if (betrayed(mtmp)) return 1;
 	}
-	if ((u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) && !rn2(85) && betrayed(mtmp)) return 1;
+	if ((u.uprops[REBELLION_EFFECT].extrinsic || Rebellions || have_rebelstone() || autismweaponcheck(ART_POST_OFFICE_COURSE) || (uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) ) && !rn2(85) && betrayed(mtmp)) return 1;
 	if (Role_if(PM_UNDEAD_SLAYER) && is_undead(mtmp->data)) return 1;
 
 	/* If you abused your pet, it will _very_ slowly time out. --Amy */

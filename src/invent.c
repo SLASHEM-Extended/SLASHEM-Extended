@@ -29923,6 +29923,24 @@ boolean knoweverything;
 					pline("Artifact specs: double energy regeneration and double manaleech when worn, lawful, spellmaster quest artifact."); break;
 				case ART_NIX_:
 					pline("Artifact specs: doesn't modify your charisma, even if the base item type normally would."); break;
+				case ART_DOUBLE_ADORNING:
+					pline("Artifact specs: doubles CHA bonus/malus when worn. If it's not negatively enchanted, it also gives resistance against item-stealing attacks."); break;
+				case ART_SNIPE_EVERYTHING:
+					pline("Artifact specs: while wearing them, your ranged weapons' to-hit doesn't decline the farther away a target is."); break;
+				case ART_ELTRA_ENCHANTMENT:
+					pline("Artifact specs: triples AC bonuses from its enchantment value (if positive)."); break;
+				case ART_TURN_INTO_THE_NORM:
+					pline("Artifact specs: putting them on changes them to regular gloves."); break;
+				case ART_TURN_INTO_LEATHER:
+					pline("Artifact specs: can be invoked to turn them into whatever base item happens to be a pair of leather gloves."); break;
+				case ART_POST_OFFICE_COURSE:
+					pline("Artifact specs: double damage, autocurses, hate, rebellion, wakeup call and enmity when wielded, and every bullet you fire from it reduces your alignment and maximum alignment. Because going postal isn't nice, due to it usually resulting in a lot of dead people."); break;
+				case ART_ONE_FREE:
+					pline("Artifact specs: life saving when worn. It isn't used up when it saves your life, but won't be capable of saving you again. %s", (obj->obrittle) ? "In fact, its life saving capability has already been used up." : "Currently, this artifact is still capable of saving your life."); break;
+				case ART_DAEMEL:
+					pline("Artifact specs: makes you very fast and adds extra speed on top of that, and while wielding it, you occasionally gain money out of thin air, but your intelligence and its soft cap are reduced and everything is gendered, you Daemel. :-P"); break;
+				case ART_WOMAN_UP_CJ:
+					pline("Artifact specs: +18 damage against monsters that are always female, warning when wielded, autocurses and causes feminist aggravation."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
