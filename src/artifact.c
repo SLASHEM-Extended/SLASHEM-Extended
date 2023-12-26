@@ -372,6 +372,7 @@ init_randarts()
 	artilist[ART_ARABELLA_S_ARTIFACT_CREATI].otyp = randartmeleeweapon();
 	artilist[ART_VERSUS_ELECTRICALLY_BASED_].otyp = randartmeleeweapon();
 	artilist[ART_ULTRA_ANNOYANCE].otyp = randartpolearm();
+	artilist[ART_CHATGPT_S_FREEZE].otyp = randartpolearm();
 	artilist[ART_THUNDERING_GLAIVE].otyp = randartpolearm();
 	artilist[ART_FROSTBITE_PIKE].otyp = randartpolearm();
 	artilist[ART_FINALLY__A_USABLE_POLEARM_].otyp = randartpolearm();
@@ -461,6 +462,7 @@ init_randarts()
 	artilist[ART_MACHINE_THAT_GOES_PLING].otyp = randartgem();
 	artilist[ART_COCKBANGER_ARMOR].otyp = randartsuit();
 	artilist[ART_TAVION_S_CHARGE].otyp = randartlightsaber();
+	artilist[ART_LORD_SIDIOUS__SECRET_WEAPO].otyp = randartlightsaber();
 	artilist[ART_FOR_STYGWYR_].otyp = randartlightsaber();
 	artilist[ART_LIGHT_____STATED_].otyp = randartlightsaber();
 	artilist[ART_OWENER].otyp = randartlightsaber();
@@ -502,6 +504,7 @@ init_randarts()
 	artilist[ART_PSI_STAFF].otyp = randartquarterstaff();
 	artilist[ART_LANCE_ARMSTRONG].otyp = randartlance();
 	artilist[ART_GOLIATHBANE].otyp = randartsling();
+	artilist[ART_VITRIOL_FROM_THE_LAB].otyp = randartsling();
 	artilist[ART_FIREBIRD].otyp = randartboomerang();
 	artilist[ART_STEAMBRINGER].otyp = randartbroadsword();
 	artilist[ART_PENDULUM_OF_BALANCE].otyp = randartmace();
@@ -521,6 +524,7 @@ init_randarts()
 	artilist[ART_ENRAI].otyp = randartpolearm();
 	artilist[ART_PRINCIPIUM_INCERTI].otyp = randartpolearm();
 	artilist[ART_BOW_OF_HERCULES].otyp = randartbow();
+	artilist[ART_BIBLICAL_PLAGUE].otyp = randartbow();
 	artilist[ART_DOLORES__WINNING_STRAT].otyp = randartbow();
 	artilist[ART_GRADIUS].otyp = randartshortsword();
 	artilist[ART_U_TSCHELLI].otyp = randartpaddle();
@@ -759,11 +763,13 @@ init_randarts()
 	artilist[ART_GANTULETS_OF_MISPEALING].otyp = randartglovesX();
 	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
 	artilist[ART_ENCYCLOPEDIA_GALACTICA].otyp = randartspellbookX();
-	artilist[ART_DESANN_S_WRATH].otyp = randartlightsaberX();
 	artilist[ART_HENRIETTENFORCE].otyp = randartlightsaberX();
+	artilist[ART_RISE_OF_VENTRESS].otyp = randartlightsaberX();
+	artilist[ART_DESANN_S_WRATH].otyp = randartlightsaberX();
 	artilist[ART_DONGOR].otyp = randartvenomX();
 	artilist[ART_STAB_ALL_OVER].otyp = randartunihornX();
 	artilist[ART_HOL_ON_MAN].otyp = randartvenomX();
+	artilist[ART_CHOCKERSHOCKER].otyp = randartpolearmX();
 	artilist[ART_POWER_POLE].otyp = randartpolearmX();
 	artilist[ART_BALANCE_PSEUDOSHIELD].otyp = randartquarterstaffX();
 	artilist[ART_STAFF_OF_ROT].otyp = randartquarterstaffX();
@@ -774,6 +780,7 @@ init_randarts()
 	artilist[ART_SCHWI_SCHWI].otyp = randartorbX();
 	artilist[ART_MR__AHLBLOW_S_SIGNAGE].otyp = randartorbX();
 	artilist[ART_UNSTOPPABLE].otyp = randartcrossbowX();
+	artilist[ART_EVERCONSUMING_HELLFIRE].otyp = randartcrossbowX();
 	artilist[ART_HEAVY_CROSSBOW_OF_ETERNITY].otyp = randartcrossbowX();
 	artilist[ART_CROSSBOW_OF_THE_GNOLL_LORD].otyp = randartcrossbowX();
 	artilist[ART_HOWLING_FLAIL].otyp = randartflailX();
@@ -3840,7 +3847,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));

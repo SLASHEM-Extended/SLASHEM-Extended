@@ -2010,7 +2010,7 @@ int thrown;
 	if ((obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) misfire = TRUE;
 
 	/* KMH -- Handle Plague here */
-	if (launcher && (launcher->oartifact == ART_PLAGUE || launcher->oartifact == ART_BOW_OF_HERCULES) &&
+	if (launcher && (launcher->oartifact == ART_PLAGUE || launcher->oartifact == ART_BIBLICAL_PLAGUE || launcher->oartifact == ART_BOW_OF_HERCULES) &&
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
 		obj->opoisoned = 1;
 
@@ -3393,7 +3393,7 @@ evasionchancedone:
 
 		/* Detonate bolts shot by Hellfire */
 		if (ammo_and_launcher(obj, launcher) &&
-			(launcher->oartifact == ART_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
+			(launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
 		    if (cansee(bhitpos.x,bhitpos.y)) 
 			pline("%s explodes in a ball of fire!", Doname2(obj));
 		    else You_hear("an explosion");
@@ -3417,7 +3417,7 @@ evasionchancedone:
 			(!objects[otyp].oc_magic || !rn2(5) )))	/* also low chance for loadstones etc. to disappear */
 			|| (obj->oartifact == ART_HOUCHOU)
 			/* WAC catch Hellfire */
-			|| (launcher && (launcher->oartifact == ART_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
+			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))
 		   ) {
 		    /* we were breaking 2/3 of everything unconditionally.

@@ -7902,6 +7902,11 @@ newbossSTEN:
 			if (FemaleTrapUte < 5000) FemaleTrapUte = 5000;
 		}
 
+		if (autismweaponcheck(ART_RISE_OF_VENTRESS)) {
+			if (FemaleTrapJulietta < 20000) FemaleTrapJulietta = 20000;
+			if (KillerRoomEffect < 10000) KillerRoomEffect = 10000;
+		}
+
 		if (autismweaponcheck(ART_RITA_S_DIAMOGIGGLING)) {
 			if (FemaleTrapRita < 10000) FemaleTrapRita = 10000;
 		}

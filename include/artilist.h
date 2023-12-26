@@ -17870,6 +17870,46 @@ A("Minimal Mini-Me",				ELIF_S_JEWEL, /* randart feminism gem, carrcap effect, m
 	(SPFX_RESTR|SPFX_EVIL), (SPFX_HPHDAM|SPFX_EREGEN), 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Jonadab's Great Bash",				CROSSBOW, /* bonus also applies when bashing */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Biblical Plague",				BOW, /* randart bow, poisons arrows, bashing deals poison damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Everconsuming Hellfire",				CROSSBOW, /* randart2 crossbow, ammo explodes, bonus also applies when bashing */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("FIRE L-E-A-D-E-R",				PARTISAN, /* bonus also applies when bashing */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(9, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5600L ),
+
+A("Vitriol from the lab",				SLING, /* randart sling, bonus also applies when bashing */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("ChatGPT's Freeze",				PARTISAN, /* randart polearm, bonus also applies when bashing */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	COLD(8, 5), DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("ChockerShocker",				PARTISAN, /* randart2 polearm, bonus also applies when bashing */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(2, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Darth's Voremuzzle",				RED_LIGHTSABER, /* bonus also applies when bashing */
+	(SPFX_RESTR|SPFX_DRLI|SPFX_ATTK), 0, 0,
+	DRLI(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lord Sidious' Secret Weapon",				RED_LIGHTSABER, /* randart lightsaber, bonus also applies when bashing */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(4, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Rise of Ventress",				RED_LIGHTSABER, /* randart2 lightsaber, bonus also applies when bashing, 20000 turns of julietta trap effect and 10000 turns of killer spawn effect when wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

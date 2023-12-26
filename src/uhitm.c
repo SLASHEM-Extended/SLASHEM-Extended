@@ -2404,7 +2404,38 @@ int dieroll;
 				You("klobbed %s, who cannot move for the time being.", mon_nam(mon));
 			}
 
-			/* reminder: this is only for ineffective weapons, not stuff like shields, whistles etc. !!! --Amy */
+			/* reminder: this is only for ineffective weapons, not stuff like shields, whistles etc. !!! --Amy
+			 * artifacts that deal their bonus damage even when bashing have to go here */
+
+			if (obj->oartifact) {
+
+				boolean willartibash = FALSE;
+
+				switch (obj->oartifact) {
+
+					case ART_JONADAB_S_GREAT_BASH:
+					case ART_EVERCONSUMING_HELLFIRE:
+					case ART_FIRE_L_E_A_D_E_R:
+					case ART_VITRIOL_FROM_THE_LAB:
+					case ART_CHATGPT_S_FREEZE:
+					case ART_CHOCKERSHOCKER:
+					case ART_BIBLICAL_PLAGUE:
+					case ART_DARTH_S_VOREMUZZLE:
+					case ART_LORD_SIDIOUS__SECRET_WEAPO:
+					case ART_RISE_OF_VENTRESS:
+						willartibash = TRUE;
+						break;
+
+					default: break;
+				}
+
+				if (willartibash && artifact_hit(&youmonst, mon, obj, &tmp, dieroll)) {
+					if(mon->mhp <= 0) /* artifact killed monster */
+						return FALSE;
+					if (tmp == 0) return TRUE;
+					hittxt = TRUE;
+				}
+			}
 
 			if (obj && obj->oartifact == ART_PING_EM_AWAY && tmp > 0) {
 				tmp += 12;
