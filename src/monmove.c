@@ -2410,7 +2410,7 @@ newbossSING:
 		}
 	}
 
-	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(10)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
+	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(10)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
 
 		conversionsermon();
 
@@ -2480,7 +2480,7 @@ newbossSING:
 
 convertdone:
 
-	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(4)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
+	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(4)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
 
 		wouwoutaunt();
 		u.cnd_wouwoucount++;

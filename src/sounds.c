@@ -4488,7 +4488,7 @@ metalmafiaagain:
 
 			break;
 
-		} else if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (have_hardcoreaddiction() && rn2(10)) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
+		} else if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN) || (have_hardcoreaddiction() && rn2(10)) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
 
 			break;
 
@@ -4551,7 +4551,7 @@ metalmafiaagain:
 				pline("%s grunts long and deeply.", Monnam(mtmp));
 			else if (mtmp->mconf || mtmp->mflee || mtmp->mtrapped)
 				pline("%s spins %s %s wildly.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, HEAD));
-			else if (Race_if(PM_TURMENE) || Race_if(PM_EGYMID) || Race_if(PM_PERVERT) || Race_if(PM_HC_ALIEN))
+			else if (Race_if(PM_TURMENE) || Race_if(PM_EGYMID) || Race_if(PM_PERVERT) || Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN))
 				pline("%s nods approvingly.", Monnam(mtmp));
 			else
 				pline("%s makes an approving gesture, but doesn't deign to talk to you.", Monnam(mtmp));
@@ -4560,13 +4560,13 @@ metalmafiaagain:
 
 		if (mtmp->mpeaceful) {
 
-			if (Race_if(PM_TURMENE) || Race_if(PM_EGYMID) || Race_if(PM_PERVERT) || Race_if(PM_HC_ALIEN)) pline("%s looks at you for a moment.", Monnam(mtmp));
+			if (Race_if(PM_TURMENE) || Race_if(PM_EGYMID) || Race_if(PM_PERVERT) || Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN)) pline("%s looks at you for a moment.", Monnam(mtmp));
 			else pline("%s does not deign to look at you, let alone talk to you.", Monnam(mtmp));
 			break;
 
 		}
 
-		if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || (have_hardcoreaddiction() && rn2(4)) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
+		if (Race_if(PM_TURMENE) || Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN) || (have_hardcoreaddiction() && rn2(4)) || (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF)) {
 			break;
 		}
 

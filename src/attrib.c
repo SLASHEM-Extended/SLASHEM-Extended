@@ -1708,6 +1708,12 @@ const struct innate {
 	woo_abil[] = { {  1, &(HScentView), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
+	sly_abil[] = { {  1, &(HFire_resistance), "", "", TRUE },
+			 {  1, &(HSick_resistance), "", "", TRUE },
+		     {  1, &(HFear_resistance), "", "", TRUE },
+		     {   1, &(HPoison_resistance), "", "", TRUE },
+		     {   0, 0, 0, 0, 0 } },
+
 	wis_abil[] = { {  1, &(HControlMagic), "", "", TRUE },
 		     {   0, 0, 0, 0, 0 } },
 
@@ -2886,6 +2892,7 @@ int oldlevel, newlevel;
 	case PM_ARMED_COCKATRICE:	rabil = coc_abil;	break;
 	case PM_NORD:	rabil = nor_abil;	break;
 	case PM_SEA_ELF:	rabil = sea_abil;	break;
+	case PM_SLYER_ALIEN:	rabil = sly_abil;	break;
 	case PM_DEEP_ELF:	rabil = dee_abil;	break;
 	case PM_SYLPH:	rabil = syl_abil;	break;
 	case PM_BULDOZGAR:	rabil = bga_abil;	break;

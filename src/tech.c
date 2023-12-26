@@ -287,6 +287,7 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"profiling",
 	"star heel swap",
 	"heel stab",
+	"hardcore alienization",
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
@@ -608,6 +609,7 @@ static const struct innate_tech
 			 {   9, T_SUMMON_TEAM_ANT, 1},
 			 {   10, T_CARD_TRICK, 1},
 		       {   11, T_CALM_STEED, 1},
+		       {   14, T_HARDCORE_ALIENIZATION, 1},
 		       {   17, T_RAISE_ZOMBIES, 1},
 		       {   18, T_DIAMOND_BARRIER, 1},
 		       {   19, T_CHI_STRIKE, 1},
@@ -1163,6 +1165,14 @@ static const struct innate_tech
 		       {   0, 0, 0} },
 	*/
 
+	red_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   18, T_HARDCORE_ALIENIZATION, 1},
+		       {   0, 0, 0} },
+
 	sdi_tech[] = { {   1, T_APPRAISAL, 1},
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
@@ -1219,6 +1229,15 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_PREACHING, 1},
+		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   20, T_HARDCORE_ALIENIZATION, 1},
+		       {   0, 0, 0} },
+	sly_tech[] = { {   1, T_APPRAISAL, 1},
+		       {   1, T_PANIC_DIGGING, 1},
+		       {   1, T_PHASE_DOOR, 1},
+		       {   1, T_INVOKE_DEITY, 1},
+		       {   1, T_PREACHING, 1},
+		       {   1, T_HARDCORE_ALIENIZATION, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 	azt_tech[] = { {   1, T_APPRAISAL, 1},
@@ -1896,6 +1915,7 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_CREATE_AMMO, 1},
+		       {   12, T_HARDCORE_ALIENIZATION, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   0, 0, 0} },
 
@@ -1992,6 +2012,7 @@ static const struct innate_tech
 		       {   1, T_PANIC_DIGGING, 1},
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
+		       {   4, T_HARDCORE_ALIENIZATION, 1},
 		       {   5, T_ROCK_TO_POISON, 1},
 		       {   12, T_CREATE_AMMO, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
@@ -2054,6 +2075,7 @@ static const struct innate_tech
 		       {   1, T_ZAP_EM, 1},
 		       {   1, T_PREACHING, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
+		       {   25, T_HARDCORE_ALIENIZATION, 1},
 		       {   0, 0, 0} },
 
 	nem_tech[] = { {   1, T_APPRAISAL, 1},
@@ -2164,6 +2186,7 @@ static const struct innate_tech
 		       {   1, T_PHASE_DOOR, 1},
 		       {   1, T_INVOKE_DEITY, 1},
 		       {   1, T_CALM_STEED, 1},
+		       {   1, T_HARDCORE_ALIENIZATION, 1},
 		       {   5, T_WARD_FIRE, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_SPIRITUALITY_CHECK, 1},
@@ -2206,6 +2229,7 @@ static const struct innate_tech
 		       {   1, T_CALM_STEED, 1},
 		       {   15, T_SECURE_IDENTIFY, 1},
 		       {   20, T_TERRAIN_CLEANUP, 1},
+		       {   24, T_HARDCORE_ALIENIZATION, 1},
 		       {   0, 0, 0} },
 
 	rus_tech[] = { {   1, T_APPRAISAL, 1},
@@ -3633,6 +3657,10 @@ dotech()
 
 		case T_PERMAMORPH:
 			pline("This powerful technique lets you target an adjacent monster and tries to polymorph it, although it can resist via monster magic resistance and those that have player-style magic resistance are outright immune. If you're successful in polymorphing it, the monster's polymorph will be semi-permanent.");
+			break;
+
+		case T_HARDCORE_ALIENIZATION:
+			pline("Creates a shemagh out of thin air and forces you to wear it, unequipping any other helmet-slot item you may be wearing.");
 			break;
 
 		case T_PACIFY:
@@ -9299,6 +9327,32 @@ perfumestriding:
 
 			break;
 
+		case T_HARDCORE_ALIENIZATION:
+		{
+			register struct obj *shemagh;
+
+			if ((find_shemagh()) != -1) {
+				shemagh = mksobj(find_shemagh(), TRUE, FALSE, FALSE);
+
+				if (shemagh) {
+					if (is_helmet(shemagh)) {
+						if (uarmh) remove_worn_item(uarmh, TRUE);
+						setworn(shemagh, W_ARMH);
+						Helmet_on();
+						if (shemagh) curse(shemagh);
+						You("are wearing a shemagh now.");
+					} else {
+						pline("Somehow, no shemagh was created!");
+					}
+				}
+			}
+
+		}		
+
+			t_timeout = rnz(20000);
+
+			break;
+
 		case T_PERMAMORPH:
 
 		    	if (!getdir((char *)0)) return 0;
@@ -11742,6 +11796,7 @@ race_tech()
 		case PM_DOPPELGANGER:	return (dop_tech);
 		case PM_AZTPOK:	return (azt_tech);
 		case PM_HC_ALIEN:	return (hca_tech);
+		case PM_SLYER_ALIEN:	return (sly_tech);
 		case PM_DWARF:		return (dwa_tech);
 		case PM_ELF:
 		case PM_PLAYER_MYRKALFR:
@@ -11819,6 +11874,7 @@ race_tech()
 		case PM_MAZIN:		return (mzi_tech);
 		case PM_PLAYER_SHEEP:		return (she_tech);
 		case PM_SAMEDI:		return (sdi_tech);
+		case PM_REDGUARD:		return (red_tech);
 		case PM_ARMED_COCKATRICE:		return (coc_tech);
 		case PM_INSECTOID:		return (ins_tech);
 		case PM_KLACKON:		return (kla_tech);
@@ -12922,7 +12978,7 @@ techlvlupnew:
 void
 learnrandomregulartech()
 {
-	switch (rnd(189)) {
+	switch (rnd(190)) {
 
 		case 1: 
 		case 2: 
@@ -13337,6 +13393,10 @@ learnrandomregulartech()
 		case 189:
 			learntech_or_leveltech(T_ROCK_TO_POISON, FROMOUTSIDE, 1);
 		    	You("learn how to perform rock-to-poison!");
+			break;
+		case 190:
+			learntech_or_leveltech(T_HARDCORE_ALIENIZATION, FROMOUTSIDE, 1);
+		    	You("learn how to perform hardcore alienization!");
 			break;
 
 		default:

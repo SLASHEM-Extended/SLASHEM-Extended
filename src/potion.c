@@ -1869,6 +1869,7 @@ playerextrinsicaggravatemon()
 	if (RngePunishment) return TRUE;
 	if (FemtrapActiveSolvejg) return TRUE;
 	if (Race_if(PM_HC_ALIEN) && !flags.female) return TRUE;
+	if (Race_if(PM_SLYER_ALIEN) && !flags.female) return TRUE;
 
 	if (uarmc && itemhasappearance(uarmc, APP_AVENGER_CLOAK)) return TRUE;
 

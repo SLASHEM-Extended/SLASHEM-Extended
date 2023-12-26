@@ -7032,7 +7032,7 @@ newbossJANI:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
-		if (Race_if(PM_HC_ALIEN) && !flags.female && !rn2(StrongStealth ? 3000 : Stealth ? 2000 : 1000)) {
+		if ((Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN)) && !flags.female && !rn2(StrongStealth ? 3000 : Stealth ? 2000 : 1000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -9803,7 +9803,7 @@ newbossO:
 			u.pinkspelldirection = rnd(8);
 		}
 
-		if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) {
+		if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || Race_if(PM_SLYER_ALIEN) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) {
 			if (u.trontrapdirection > 0 && (u.trontrapturn + 1) < moves) u.trontrapdirection = -1;
 		}
 
@@ -15518,6 +15518,14 @@ past4:
 
 	kill_deathmarked_monsters();
 
+	if (Race_if(PM_SLYER_ALIEN) && !flags.female) {
+		u.usanity += 500;
+		pline("You're not allowed to be male as a slyer alien!");
+		change_sex();
+		flags.botl = 1;
+
+	}
+
 	if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
 
 	if (!(uwep && uwep->oartifact == ART_GORMALER)) u.gormalerturns = 0;
@@ -20041,6 +20049,14 @@ boolean new_game;	/* false => restoring an old game */
 	}
 
 	if (Race_if(PM_HC_ALIEN) && new_game && !flags.female) {
+		makeknown(AMULET_OF_CHANGE);
+		pline("The gods don't allow you to be male.");
+		change_sex();
+		flags.botl = 1;
+
+	}
+
+	if (Race_if(PM_SLYER_ALIEN) && new_game && !flags.female) {
 		makeknown(AMULET_OF_CHANGE);
 		pline("The gods don't allow you to be male.");
 		change_sex();

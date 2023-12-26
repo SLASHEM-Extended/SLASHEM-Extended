@@ -438,6 +438,10 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
 	}	\
+	if (Race_if(PM_SLYER_ALIEN) && !facingtile(x, y)) {	\
+	show_glyph(x, y, cmap_to_glyph(S_stone));	\
+	return;	\
+	}	\
 	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {	\
 	show_glyph(x, y, cmap_to_glyph(S_stone));	\
 	return;	\
@@ -527,6 +531,10 @@ int memory_glyph(x, y)
 	}
 
 	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) && !facingtile(x, y)) {
+	return cmap_to_glyph(S_stone);
+	}
+
+	if (Race_if(PM_SLYER_ALIEN) && !facingtile(x, y)) {
 	return cmap_to_glyph(S_stone);
 	}
 
@@ -1088,6 +1096,11 @@ newsym(x,y)
 	return;
 	}
 
+	if (Race_if(PM_SLYER_ALIEN) && !facingtile(x, y)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
 	if (!u.seesilverspell && SpellColorSilver && !isimportantlocation(x, y)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
@@ -1519,6 +1532,11 @@ newsymX(x,y)
 	}
 
 	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) && !facingtile(x, y)) {
+	show_glyph(x, y, cmap_to_glyph(S_stone));
+	return;
+	}
+
+	if (Race_if(PM_SLYER_ALIEN) && !facingtile(x, y)) {
 	show_glyph(x, y, cmap_to_glyph(S_stone));
 	return;
 	}

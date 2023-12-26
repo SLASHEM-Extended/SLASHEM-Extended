@@ -2849,7 +2849,7 @@ peacedisplace:
 	u.ux += u.dx;
 	u.uy += u.dy;
 
-	if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) {
+	if (TronEffect || u.uprops[TRON_EFFECT].extrinsic || have_tronstone() || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || Race_if(PM_SLYER_ALIEN) ) {
 		if (u.dx == 1 && !u.dy) u.trontrapdirection = 1; /* east */
 		else if (u.dx == 1 && u.dy == 1) u.trontrapdirection = 2; /* southeast */
 		else if (!u.dx && u.dy == -1) u.trontrapdirection = 3; /* north */

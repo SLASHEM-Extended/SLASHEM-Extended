@@ -18199,6 +18199,7 @@ u_init()
 	case PM_DEVELOPER: racebounus = rnz(15); break;
 	case PM_LOWER_ENT: racebounus = rnz(12); break;
 	case PM_HC_ALIEN: racebounus = rnz(12); break;
+	case PM_SLYER_ALIEN: racebounus = rnz(12); break;
 	case PM_MANSTER: racebounus = rnz(12); break;
 	case PM_RETICULAN: racebounus = rnz(15); break;
 	case PM_NEMESIS: racebounus = rnz(15); break;

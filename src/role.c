@@ -8728,6 +8728,21 @@ const struct Race races[] = {
 	{  0, 0,  0, 0,  0, 0 },	/* Hit points */
 	{  0, 0,  0, 0,  0, 0 }		/* Energy */
 },
+{	"slyer alien", "slyer alien", "slyered people", "Sly",
+	{0, 0},
+	PM_SLYER_ALIEN, NON_PM, PM_HUMAN_MUMMY, PM_HUMAN_ZOMBIE,
+	MH_HUMAN | ROLE_MALE|ROLE_FEMALE |
+	  ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	MH_HUMAN, 0, MH_GNOME|MH_ORC,
+	/*    Str     Int Wis Dex Con Cha */
+	{      3,      3,  3,  3,  3,  3 },
+	{ STR19(25), 125, 125, 125, 125, 125 },
+	/* new limit values for the six attributes by Amy */
+	{  STR18(100), 20, 25, 18, 18, 3 },
+	/* Init   Lower  Higher */
+	{  3, 0,  0, 3,  3, 0 },	/* Hit points */
+	{  2, 0,  2, 0,  5, 0 }		/* Energy */
+},
 {	"snail", "snail", "snailing", "Snl",
 	{0, 0},
 	PM_ELONA_SNAIL, NON_PM, PM_ELF_MUMMY, PM_ELF_ZOMBIE,

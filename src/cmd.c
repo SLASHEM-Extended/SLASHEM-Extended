@@ -1685,7 +1685,7 @@ domonability()
 	    return 1;
 	} else if ( (youmonst.data->msound == MS_CONVERT || (Race_if(PM_TURMENE) && !Upolyd) || (Race_if(PM_EGYMID) && !Upolyd) || (Race_if(PM_PERVERT) && !Upolyd) || (Race_if(PM_IRAHA) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_CONVERT )) && yn("Do you want to preach conversion sermon?")=='y' ) {
 		playermsconvert();
-	} else if ((youmonst.data->msound == MS_HCALIEN || (Race_if(PM_HC_ALIEN) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_HCALIEN )) && yn("Do you want to chant a wouwou taunt?")=='y' ) {
+	} else if ((youmonst.data->msound == MS_HCALIEN || (Race_if(PM_HC_ALIEN) && !Upolyd) || (Race_if(PM_SLYER_ALIEN) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_HCALIEN )) && yn("Do you want to chant a wouwou taunt?")=='y' ) {
 		playerwouwoutaunt();
 	} else if ((youmonst.data->msound == MS_WHORE || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_WHORE )) && yn("Do you want to use your sexiness against the monsters?")=='y' ) {
 		playerwhoretalk();
@@ -16033,7 +16033,7 @@ char sym;
 
 	}
 
-	if (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) {
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || Race_if(PM_SLYER_ALIEN)) {
 		boolean directionallowed = TRUE;
 
 		switch (u.trontrapdirection) {
