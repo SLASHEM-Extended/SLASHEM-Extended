@@ -29879,6 +29879,32 @@ boolean knoweverything;
 					pline("Artifact specs: mean burden effect, +3 increase accuracy and +2 increase damage when worn."); break;
 				case ART_MINIMAL_MINI_ME:
 					pline("Artifact specs: oh so much :D It gives the following properties while carried in your inventory: half physical damage, energy regeneration, carrcap effect, minimalism, 3x reduced monster spawn rate, double full nutrients, experience bonus, faster skill training, keen memory and double technicality. And if that wasn't enough, you can also invoke it to increase your item enchantment/BUC knowledge."); break;
+				case ART_JONADAB_S_GREAT_BASH:
+					pline("Artifact specs: +5 to-hit and double damage. The bonus also applies when bashing with this weapon."); break;
+				case ART_BIBLICAL_PLAGUE:
+					pline("Artifact specs: poisons arrows fired from it, bashing monsters with it deals poison damage."); break;
+				case ART_EVERCONSUMING_HELLFIRE:
+					pline("Artifact specs: +5 to-hit and +8 fire damage, ammos fired from it explode when hitting something. The fire damage bonus also applies if you bash with this weapon."); break;
+				case ART_FIRE_L_E_A_D_E_R:
+					pline("Artifact specs: +9 to-hit and +12 fire damage. The bonus also applies when bashing with this weapon."); break;
+				case ART_VITRIOL_FROM_THE_LAB:
+					pline("Artifact specs: +6 to-hit and +6 acid damage. The bonus also applies when bashing with this weapon."); break;
+				case ART_CHATGPT_S_FREEZE:
+					pline("Artifact specs: +8 to-hit and +5 cold damage, cold resistance while wielded. The cold damage bonus also applies if you bash with this weapon. Despite its name, this artifact was not actually created by ChatGPT; it's an Amy original."); break;
+				case ART_CHOCKERSHOCKER:
+					pline("Artifact specs: +2 to-hit and +11 damage. The bonus also applies when bashing with this weapon."); break;
+				case ART_DARTH_S_VOREMUZZLE:
+					pline("Artifact specs: +2 to-hit and +2 drain life damage, can drain levels from enemies. The bonus also applies when bashing with this weapon."); break;
+				case ART_LORD_SIDIOUS__SECRET_WEAPO:
+					pline("Artifact specs: +4 to-hit and +9 fire damage. The bonus also applies when bashing with this weapon."); break;
+				case ART_RISE_OF_VENTRESS:
+					pline("Artifact specs: +20 damage, which also applies when bashing with this weapon. However, equipping it gives you the julietta trap effect and killer spawn effect for a good long while to come."); break;
+				case ART_CORONA_OF_THE_ELEMENT:
+					pline("Artifact specs: double technicality when worn, neutral, alltecher quest artifact."); break;
+				case ART_HUUUUUGE_POWER:
+					pline("Artifact specs: double energy regeneration and double manaleech when worn, lawful, spellmaster quest artifact."); break;
+				case ART_NIX_:
+					pline("Artifact specs: doesn't modify your charisma, even if the base item type normally would."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

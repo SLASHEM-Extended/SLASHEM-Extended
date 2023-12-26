@@ -354,7 +354,7 @@ spec_levs: ../util/lev_comp \
 	Drag.des Carto.des Dancer.des Shoefe.des Secret.des \
 	Prever.des Diabl.des Butt.des Halfba.des Noob.des \
 	Woman.des Climac.des Slave.des Hedder.des Vanilla.des \
-	Shadow.des Jockey.des
+	Shadow.des Jockey.des Alltech.des Spellmas.des
 
 	../util/lev_comp Abuser.des
 	../util/lev_comp Acid.des
@@ -494,6 +494,8 @@ spec_levs: ../util/lev_comp \
 	../util/lev_comp Quarter.des
 	../util/lev_comp Mastermi.des
 	../util/lev_comp Tosser.des
+	../util/lev_comp Alltech.des
+	../util/lev_comp Spellmas.des
 	../util/lev_comp Symbia.des
 	../util/lev_comp Pract.des
 	../util/lev_comp Millsw.des

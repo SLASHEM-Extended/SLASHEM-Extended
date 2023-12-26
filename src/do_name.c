@@ -6310,6 +6310,26 @@ static const char * const bogusmons[] = {
 	"Mounted Thunder",
 	"Sunset Horseman",
 	"Bill Shoemaker", "Lester Piggott", "John Velazquez", /* famous jockeys */
+	"Apprentice Caster",
+	"Spell Retainer",
+	"Magicspammer",
+	"Continuous Caster",
+	"Cast Master",
+	"Master of Magic",
+	"Grandmaster of Magic",
+	"Spellmaster of the Universe",
+	"Walking Book Of All Spells",
+	"The Sexy Maidens", "The Sassy Girls", "The Indomitable Women", /* Amy original: "equality world" */
+	"Technology Researcher",
+	"Resourceful Explorer",
+	"Versatile Allrounder",
+	"Many-Sided Student",
+	"Multifunction Organism",
+	"Eclectic Expert",
+	"Super-Generalist",
+	"Special Technique Master",
+	"Technical Chameleon",
+	"Earnest Dejesus", "_Madelene Thursday Lo", "Gray Hayes", /* CDDA */
 
 };
 

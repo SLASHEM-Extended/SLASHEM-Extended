@@ -16006,6 +16006,17 @@ past4:
 		skillcaploss_specific(P_RIDING);
 	}
 
+	if (Role_if(PM_SPELLMASTER) || u.spellmasterpersist) {
+		int spellmasterskilltolose;
+
+		spellmasterskilltolose = P_DAGGER;
+		while (spellmasterskilltolose < P_NUM_SKILLS) {
+			if ((spellmasterskilltolose < P_FIRST_SPELL || spellmasterskilltolose > P_LAST_SPELL) && P_MAX_SKILL(spellmasterskilltolose) >= P_BASIC) skillcaploss_specific(spellmasterskilltolose);
+			spellmasterskilltolose++;
+		}
+
+	}
+
 	if (Role_if(PM_NOOB_MODE_BARB) && P_MAX_SKILL(P_MEMORIZATION) >= P_BASIC) {
 		skillcaploss_specific(P_MEMORIZATION);
 	}
@@ -20058,6 +20069,29 @@ boolean new_game;	/* false => restoring an old game */
 		pline("The gods don't allow you to be male.");
 		change_sex();
 		flags.botl = 1;
+
+	}
+
+	if (Role_if(PM_SPELLMASTER) && new_game) {
+
+		int spellmasternum = SPE_FORCE_BOLT;
+
+		while (spellmasternum <= SPE_PSYBEAM) {
+
+			initialwonderspell(spellmasternum);
+			spellmasternum++;
+		}
+
+	}
+
+	if (Role_if(PM_ALLTECHER) && new_game) {
+
+		int alltechertech = T_BERSERK;
+
+		while (alltechertech < MAXTECH) {
+			learntech(alltechertech, FROMOUTSIDE, 1);
+			alltechertech++;
+		}
 
 	}
 

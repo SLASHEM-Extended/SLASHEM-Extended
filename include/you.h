@@ -768,6 +768,8 @@ struct you {
 	int demagoguepersist;	/* starting as demagogue */
 	int startscummerpersist;	/* starting as startscummer */
 	int deenergiserpersist;	/* starting as de-energiser */
+	int spellmasterpersist;	/* starting as spellmaster */
+	int alltecherpersist;	/* starting as alltecher */
 
 	boolean deenergisedone;	/* for de-energiser race */
 

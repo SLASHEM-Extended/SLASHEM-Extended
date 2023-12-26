@@ -3516,7 +3516,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(860)) { /* keyword "newroles" */
+		switch (rnd(870)) { /* keyword "newroles" */
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -4378,6 +4378,16 @@ ghnhom2:
 			case 858: makemaz("Joc-3"); return;
 			case 859: makemaz("Joc-4"); return;
 			case 860: makemaz("Joc-5"); return;
+			case 861: makemaz("All-1"); return;
+			case 862: makemaz("All-2"); return;
+			case 863: makemaz("All-3"); return;
+			case 864: makemaz("All-4"); return;
+			case 865: makemaz("All-5"); return;
+			case 866: makemaz("Spe-1"); return;
+			case 867: makemaz("Spe-2"); return;
+			case 868: makemaz("Spe-3"); return;
+			case 869: makemaz("Spe-4"); return;
+			case 870: makemaz("Spe-5"); return;
 
 		}
 		break;
@@ -5573,7 +5583,7 @@ ghnhom2:
 	    case 92:
 	    case 93:
 
-		switch (rnd(860)) {
+		switch (rnd(870)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -6435,6 +6445,16 @@ ghnhom2:
 			case 858: makemaz("Joc-8"); return;
 			case 859: makemaz("Joc-9"); return;
 			case 860: makemaz("Joc-0"); return;
+			case 861: makemaz("All-6"); return;
+			case 862: makemaz("All-7"); return;
+			case 863: makemaz("All-8"); return;
+			case 864: makemaz("All-9"); return;
+			case 865: makemaz("All-0"); return;
+			case 866: makemaz("Spe-6"); return;
+			case 867: makemaz("Spe-7"); return;
+			case 868: makemaz("Spe-8"); return;
+			case 869: makemaz("Spe-9"); return;
+			case 870: makemaz("Spe-0"); return;
 		}
 		break;
 
@@ -8069,7 +8089,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(860)) {
+		switch (rnd(870)) {
 
 			case 1: makemaz("Aci-1"); return;
 			case 2: makemaz("Aci-2"); return;
@@ -8931,6 +8951,16 @@ ghnhom4:
 			case 858: makemaz("Joc-3"); return;
 			case 859: makemaz("Joc-4"); return;
 			case 860: makemaz("Joc-5"); return;
+			case 861: makemaz("All-1"); return;
+			case 862: makemaz("All-2"); return;
+			case 863: makemaz("All-3"); return;
+			case 864: makemaz("All-4"); return;
+			case 865: makemaz("All-5"); return;
+			case 866: makemaz("Spe-1"); return;
+			case 867: makemaz("Spe-2"); return;
+			case 868: makemaz("Spe-3"); return;
+			case 869: makemaz("Spe-4"); return;
+			case 870: makemaz("Spe-5"); return;
 		}
 		break;
 
@@ -10118,7 +10148,7 @@ ghnhom4:
 	    case 92:
 	    case 93:
 
-		switch (rnd(860)) {
+		switch (rnd(870)) {
 
 			case 1: makemaz("Aci-6"); return;
 			case 2: makemaz("Aci-7"); return;
@@ -10980,6 +11010,16 @@ ghnhom4:
 			case 858: makemaz("Joc-8"); return;
 			case 859: makemaz("Joc-9"); return;
 			case 860: makemaz("Joc-0"); return;
+			case 861: makemaz("All-6"); return;
+			case 862: makemaz("All-7"); return;
+			case 863: makemaz("All-8"); return;
+			case 864: makemaz("All-9"); return;
+			case 865: makemaz("All-0"); return;
+			case 866: makemaz("Spe-6"); return;
+			case 867: makemaz("Spe-7"); return;
+			case 868: makemaz("Spe-8"); return;
+			case 869: makemaz("Spe-9"); return;
+			case 870: makemaz("Spe-0"); return;
 		}
 		break;
 

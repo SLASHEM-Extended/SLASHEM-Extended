@@ -17910,6 +17910,10 @@ A("Rise of Ventress",				RED_LIGHTSABER, /* randart2 lightsaber, bonus also appl
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
+A("nix.",				RIN_ADORNMENT, /* doesn't modify your CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
@@ -18894,9 +18898,18 @@ A("Sabrina's Rescue",				STURDY_PLATEAU_BOOT_FOR_GIRLS, /* aggravate monster whe
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL|SPFX_HPHDAM|SPFX_WARN|SPFX_ATTK|SPFX_EVIL), 0, 0,
 	ACID(4, 12), NO_DFNS, NO_CARY, DRAGON_BREATH, A_LAWFUL, PM_SINGSLAVE, NON_PM, 18000L ),
 
+A("Corona of the Element",				RIN_ADORNMENT, /* double technicality */
+	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, PM_ALLTECHER, NON_PM, 2000L ),
+
+A("Huuuuuge Power",				AMULET_OF_POWER, /* double eregen and manaleech */
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, PM_SPELLMASTER, NON_PM, 10000L ),
+
 A("Penumbral Lasso",				LANCE, /* if it would break from jousting, it might not */
 	(SPFX_NOGEN|SPFX_RESTR|SPFX_INTEL), 0, 0,
 	PHYS(0, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_LAWFUL, PM_JOCKEY, NON_PM, 4000L ),
+
 
 /* Penumbral Lasso must be last!!! */
 

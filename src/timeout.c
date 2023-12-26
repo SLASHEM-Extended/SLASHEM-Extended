@@ -854,6 +854,12 @@ nh_timeout()
 	if (u.deenergiserpersist) u.deenergiserpersist--;
 	if (u.deenergiserpersist < 0) u.deenergiserpersist = 0; /* fail safe */
 
+	if (u.spellmasterpersist) u.spellmasterpersist--;
+	if (u.spellmasterpersist < 0) u.spellmasterpersist = 0; /* fail safe */
+
+	if (u.alltecherpersist) u.alltecherpersist--;
+	if (u.alltecherpersist < 0) u.alltecherpersist = 0; /* fail safe */
+
 	if (u.addictpersist) u.addictpersist--;
 	if (u.addictpersist < 0) u.addictpersist = 0; /* fail safe */
 

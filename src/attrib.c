@@ -3340,9 +3340,9 @@ int x;
 		if (have_superjonadabstone()) tmp += 10;
 		if (uimplant && uimplant->oartifact == ART_DUNGEON_BOSS__WITH_SHARP_S) tmp += (powerfulimplants() ? 2 : 1);
 		if (uarmh && uarmh->otyp == CORNUTHAUM && Role_if(PM_WIZARD)) tmp += 1;
-		if (uleft && uleft->otyp == RIN_ADORNMENT) tmp += uleft->spe;
+		if (uleft && uleft->otyp == RIN_ADORNMENT && !(uleft->oartifact == ART_NIX_) ) tmp += uleft->spe;
 		if (uleft && uleft->otyp == RIN_UPPER_ADORNMENT) tmp += uleft->spe;
-		if (uright && uright->otyp == RIN_ADORNMENT) tmp += uright->spe;
+		if (uright && uright->otyp == RIN_ADORNMENT && !(uright->oartifact == ART_NIX_)) tmp += uright->spe;
 		if (uright && uright->otyp == RIN_UPPER_ADORNMENT) tmp += uright->spe;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 

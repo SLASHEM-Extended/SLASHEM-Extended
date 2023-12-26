@@ -8453,6 +8453,10 @@ nivellate()
 			lowerceiling /= 2;
 			upperceiling /= 2;
 		}
+		if (Role_if(PM_SPELLMASTER)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
 		if (Role_if(PM_UNBELIEVER)) {
 			lowerceiling *= 2;
 			upperceiling *= 2;
@@ -8702,6 +8706,10 @@ nivellate()
 			lowerceiling /= 5;
 			upperceiling /= 5;
 		}
+		if (Role_if(PM_SPELLMASTER)) {
+			lowerceiling *= 5;
+			upperceiling *= 5;
+		}
 		if (Role_if(PM_NOOB_MODE_BARB)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
@@ -8918,6 +8926,9 @@ boolean guaranteed;
 		if (Role_if(PM_DRUID)) {
 			ceiling /= 2;
 		}
+		if (Role_if(PM_SPELLMASTER)) {
+			ceiling /= 2;
+		}
 		if (Role_if(PM_DANCER)) {
 			ceiling /= 2;
 		}
@@ -9109,6 +9120,9 @@ boolean guaranteed;
 		}
 		if (Role_if(PM_UNBELIEVER)) {
 			ceiling /= 5;
+		}
+		if (Role_if(PM_SPELLMASTER)) {
+			ceiling *= 5;
 		}
 		if (Role_if(PM_NOOB_MODE_BARB)) {
 			ceiling /= 2;

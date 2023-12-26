@@ -1170,7 +1170,7 @@
 
 #define HHunger			u.uprops[HUNGER].intrinsic
 #define EHunger			u.uprops[HUNGER].extrinsic
-#define IntHunger	(HHunger || (uarm && uarm->oartifact == ART_COAL_PEER) || Race_if(PM_GIGANT) || Race_if(PM_GAVIL))
+#define IntHunger	(HHunger || Role_if(PM_ALLTECHER) || u.alltecherpersist || (uarm && uarm->oartifact == ART_COAL_PEER) || Race_if(PM_GIGANT) || Race_if(PM_GAVIL))
 #define ExtHunger	(EHunger || (uarm && uarm->oartifact == ART_COAL_PEER) || (uarmc && uarmc->oartifact == ART_INA_S_LAB_COAT) || autismweaponcheck(ART_GIANT_MEAT_STICK) || autismweaponcheck(ART_CALF_CUTLET_WITHOUT_BEOD) || autismweaponcheck(ART_GUARDIAN_OF_ARANOCH) || (uarmc && uarmc->oartifact == ART_INA_S_OVERCOAT) || (uarmh && uarmh->oartifact == ART_DRINK_COCA_COLA) || (uarmh && uarmh->oartifact == ART_HAMBURG_ONE) || (uarmc && uarmc->oartifact == ART_FULLY_LIONIZED) || (uarmc && uarmc->oartifact == ART_FAST_CAMO_PREDATOR) || autismringcheck(ART_RING_OF_WOE) || (uimplant && uimplant->oartifact == ART_BUCKET_HOUSE) || autismweaponcheck(ART_PICK_OF_THE_GRAVE) )
 
 #define Hunger			(IntHunger || ExtHunger)
@@ -1332,8 +1332,8 @@
 
 #define HManaleech	u.uprops[MANALEECH].intrinsic
 #define EManaleech	u.uprops[MANALEECH].extrinsic
-#define IntManaleech	(HManaleech)
-#define ExtManaleech	(EManaleech || (uwep && uwep->oartifact == ART_MANA_EATER) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MANALEECH) ) || (uarmu && uarmu->oartifact == ART_VICTORIA_IS_EVIL_BUT_PRETT) || (uarmu && uarmu->oartifact == ART_NATALIA_IS_LOVELY_BUT_DANG) || (uarmf && uarmf->oartifact == ART_HIT_THEIR_HANDS) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarm && uarm->oartifact == ART_SILKS_OF_THE_VICTOR) || (uarm && flags.female && uarm->oartifact == ART_PRETTY_LITTLE_MAGICAL_GIRL) || (uarmh && uarmh->oartifact == ART_REFUEL_BADLY) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || (uamul && uamul->oartifact == ART_MADMAN_S_POWER) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) )
+#define IntManaleech	(HManaleech || (uamul && uamul->oartifact == ART_HUUUUUGE_POWER) )
+#define ExtManaleech	(EManaleech || (uamul && uamul->oartifact == ART_HUUUUUGE_POWER) || (uwep && uwep->oartifact == ART_MANA_EATER) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == MANALEECH) ) || (uarmu && uarmu->oartifact == ART_VICTORIA_IS_EVIL_BUT_PRETT) || (uarmu && uarmu->oartifact == ART_NATALIA_IS_LOVELY_BUT_DANG) || (uarmf && uarmf->oartifact == ART_HIT_THEIR_HANDS) || (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) || (uarm && uarm->oartifact == ART_SILKS_OF_THE_VICTOR) || (uarm && flags.female && uarm->oartifact == ART_PRETTY_LITTLE_MAGICAL_GIRL) || (uarmh && uarmh->oartifact == ART_REFUEL_BADLY) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || (uamul && uamul->oartifact == ART_MADMAN_S_POWER) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) )
 
 #define Manaleech		(((IntManaleech && u.nonintrinsicproperty != MANALEECH) || (ExtManaleech && u.nonextrinsicproperty != MANALEECH)) && !NoManaleech)
 #define StrongManaleech	(IntManaleech && ExtManaleech && Manaleech && u.nondoubleproperty != MANALEECH)
@@ -1647,7 +1647,7 @@
 
 #define HEnergy_regeneration	u.uprops[ENERGY_REGENERATION].intrinsic
 #define EEnergy_regeneration	u.uprops[ENERGY_REGENERATION].extrinsic
-#define IntEnergy_regeneration	(HEnergy_regeneration || (Race_if(PM_REDGUARD)) )
+#define IntEnergy_regeneration	(HEnergy_regeneration || (uamul && uamul->oartifact == ART_HUUUUUGE_POWER) || (Race_if(PM_REDGUARD)) )
 #define ExtEnergy_regeneration	(EEnergy_regeneration || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == ENERGY_REGENERATION) ) )
 
 #define Energy_regeneration	(((IntEnergy_regeneration && u.nonintrinsicproperty != ENERGY_REGENERATION) || (ExtEnergy_regeneration && u.nonextrinsicproperty != ENERGY_REGENERATION)) && !NoEnergy_regeneration && !Race_if(PM_SYLPH) )
@@ -1852,8 +1852,8 @@
 
 #define HTechnicality		u.uprops[TECHNICALITY].intrinsic
 #define ETechnicality		u.uprops[TECHNICALITY].extrinsic
-#define IntTechnicality	(HTechnicality || have_minimejewel() )
-#define ExtTechnicality	(ETechnicality || have_minimejewel() || (uwep && uwep->oartifact == ART_TECHCTION) || (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) || (uamul && uamul->oartifact == ART_ON_TRANCE) || (Role_if(PM_ASSASSIN) && uwep && uwep->oartifact == ART_FINAL_DOOR_SOLUTION) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN) || (uarm && uarm->oartifact == ART_TECH_IT_UP) || (uwep && uwep->oartifact == ART_TODAY_S_REPAIR) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SYMPLANT) || (uarmc && uarmc->oartifact == ART_HITEC_NEO) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uwep && uwep->oartifact == ART_PSI_TEC) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TECHNICALITY) ) )
+#define IntTechnicality	(HTechnicality || have_minimejewel() || autismringcheck(ART_CORONA_OF_THE_ELEMENT) )
+#define ExtTechnicality	(ETechnicality || have_minimejewel() || autismringcheck(ART_CORONA_OF_THE_ELEMENT) || (uwep && uwep->oartifact == ART_TECHCTION) || (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) || (uamul && uamul->oartifact == ART_ON_TRANCE) || (Role_if(PM_ASSASSIN) && uwep && uwep->oartifact == ART_FINAL_DOOR_SOLUTION) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN) || (uarm && uarm->oartifact == ART_TECH_IT_UP) || (uwep && uwep->oartifact == ART_TODAY_S_REPAIR) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SYMPLANT) || (uarmc && uarmc->oartifact == ART_HITEC_NEO) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uwep && uwep->oartifact == ART_PSI_TEC) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TECHNICALITY) ) )
 
 #define Technicality		(((IntTechnicality && u.nonintrinsicproperty != TECHNICALITY) || (ExtTechnicality && u.nonextrinsicproperty != TECHNICALITY)) && !NoTechnicality)
 #define StrongTechnicality	(IntTechnicality && ExtTechnicality && Technicality && u.nondoubleproperty != TECHNICALITY)
@@ -1914,14 +1914,14 @@
 
 #define HInvertedState		u.uprops[INVERT_STATE].intrinsic
 #define EInvertedState		u.uprops[INVERT_STATE].extrinsic
-#define IntInvertedState	(HInvertedState || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 5)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 5)) ) )
+#define IntInvertedState	(HInvertedState || Role_if(PM_ALLTECHER) || u.alltecherpersist || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 5)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 5)) ) )
 #define ExtInvertedState	(EInvertedState || autismweaponcheck(ART_AK_____) )
 #define InvertedState		((IntInvertedState || ExtInvertedState) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_EXCHANGER) )
 #define StrongInvertedState		(IntInvertedState && ExtInvertedState && InvertedState)
 
 #define HWinceState		u.uprops[WINCE_STATE].intrinsic
 #define EWinceState		u.uprops[WINCE_STATE].extrinsic
-#define IntWinceState		(HWinceState || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 2)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 2)) ) )
+#define IntWinceState		(HWinceState || Role_if(PM_ALLTECHER) || u.alltecherpersist || (Race_if(PM_RETICULAN) && (u.uhp < (u.uhpmax / 2)) ) || (Race_if(PM_RETICULAN) && Upolyd && (u.mh < (u.mhmax / 2)) ) )
 #define ExtWinceState		(EWinceState || (uarm && uarm->oartifact == ART_AMMY_S_WAIL) )
 #define WinceState		(IntWinceState || ExtWinceState )
 #define StrongWinceState		(IntWinceState && ExtWinceState && WinceState)
@@ -1945,7 +1945,7 @@
 
 #define HMagicVacuum		u.uprops[MAGIC_VACUUM].intrinsic
 #define EMagicVacuum		u.uprops[MAGIC_VACUUM].extrinsic
-#define IntMagicVacuum	(HMagicVacuum)
+#define IntMagicVacuum	(HMagicVacuum || Role_if(PM_ALLTECHER) || u.alltecherpersist )
 #define ExtMagicVacuum	(EMagicVacuum || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || autismweaponcheck(ART_ARABELLA_S_THINNER) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
 #define MagicVacuum		(IntMagicVacuum || ExtMagicVacuum )
 #define StrongMagicVacuum		(IntMagicVacuum && ExtMagicVacuum && MagicVacuum)

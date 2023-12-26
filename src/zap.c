@@ -11244,7 +11244,7 @@ int damage, tell;
 	    case SCROLL_CLASS:	alev =  9 + (Role_if(PM_INTEL_SCRIBE) ? GushLevel : Role_if(PM_LIBRARIAN) ? (GushLevel / 2) : (GushLevel / 3));	 break;
 	    case POTION_CLASS:	alev =  6 + (Role_if(PM_DRUNK) ? GushLevel : (Role_if(PM_SCIENTIST) || Race_if(PM_ALCHEMIST)) ? (GushLevel / 2) : (GushLevel / 4));	 break;
 	    case RING_CLASS:	alev =  5 + (Role_if(PM_LADIESMAN) ? (GushLevel / 2) : (Role_if(PM_DOLL_MISTRESS) || Role_if(PM_DISSIDENT)) ? (GushLevel / 3) : (GushLevel / 5));	 break;
-	    default:		alev = rnd(Role_if(PM_MASTERMIND) ? (GushLevel * 3 / 2) : GushLevel); break;	/* spell */
+	    default:		alev = rnd(Role_if(PM_MASTERMIND) ? (GushLevel * 3 / 2) : Role_if(PM_SPELLMASTER) ? (GushLevel * 3 / 2) : GushLevel); break;	/* spell */
 	}
 
 	/* spellboost specifically increases likelihood for monsters to be affected by things that are *not* spells --Amy

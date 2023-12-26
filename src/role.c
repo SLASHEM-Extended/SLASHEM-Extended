@@ -123,6 +123,36 @@ const struct Role roles[] = {
 	6, 12, A_INT, SPE_MAGICTORCH, -4, 30
 },
 
+{	{ "Alltecher", 0 }, {
+	{ "Technology Researcher", 0 },
+	{ "Resourceful Explorer", 0 },
+	{ "Versatile Allrounder", 0 },
+	{ "Many-Sided Student", 0 },
+	{ "Multifunction Organism", 0 },
+	{ "Eclectic Expert", 0 },
+	{ "Super-Generalist", 0 },
+	{ "Special Technique Master", 0 },
+	{ "Technical Chameleon", 0 } },
+	"Earnest Dejesus", "_Madelene Thursday Lo", "Gray Hayes", /* CDDA */
+	"All", "Techonology Park", "Climate HQ",
+	PM_ALLTECHER, NON_PM, PM_UNDEAD_ALLTECHER, NON_PM, NON_PM,
+	PM_VAIN_PRINCIPAL, PM_HUNTER, PM_SASSY_LUISA, PM_NEW_FARMER_HUSSY,
+	PM_SAUCY_FEMMY, PM_SASSY_LASSY, S_RUSTMONST, S_FLYFISH,
+	ART_CORONA_OF_THE_ELEMENT, /* ring of technicality */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC |
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */
+	{  3,  3,  3,  3,  3,  3 },
+	{ 18, 16, 16, 16, 18, 16 },
+	/* new limit values for the six attributes by Amy */
+	{  6,  6,  6,  6,  6,  6 },
+	/* Init   Lower  Higher */
+	{ 14, 0, 0, 0, 0, 0 }, /* Hit points */
+	{  2, 0, 0, 0, 0, 0 },10, /* Energy */
+	-10, 12, 0,
+	5, 14, A_INT, SPE_TECH_BOOST, -4, 25
+},
+
 {	{"Altmer", 0}, {
 	{"Cantrip Caster",    0},
 	{"Stunted Magician",       0},
@@ -4432,6 +4462,38 @@ const struct Role roles[] = {
 	{ 19, 0,  0, 8,  2, 0 },	/* Hit points */
 	{ 10, 4,  0, 1,  0, 2 },10,	/* Energy */
 	10, 8,-2, 0,  9, A_INT, SPE_DETECT_MONSTERS,     -4, 100
+},
+
+{	{"Spellmaster", 0}, {
+	{"Apprentice Caster",         0},
+	{"Spell Retainer",       0},
+	{"Magicspammer",       0},
+	{"Continuous Caster",     0},
+	{"Cast Master",       0},
+	{"Master of Magic",      0},
+	{"Grandmaster of Magic",   0},
+	{"Spellmaster of the Universe", 0},
+	{"Walking Book Of All Spells",  0} },
+	"_The Sexy Maidens", "_The Sassy Girls", "_The Indomitable Women", /* Amy original: "equality world" */
+	"Spe", "Spellmastery Base", "Weaponlord Base",
+	PM_SPELLMASTER, NON_PM, PM_SPELLMASTER, NON_PM, NON_PM,
+	PM_SUPREME_SPELLCASTER, PM_ATTENDANT, PM_INTENDONER, PM_INTENTIONALER,
+	PM_REMEMBERED_UFO_PART, PM_SPELLZAP_TURRET, S_GIANT, S_TURRET,
+
+	ART_HUUUUUGE_POWER, /* amulet of power */
+	MH_HUMAN|MH_ELF|MH_DWARF|MH_GNOME|MH_HOBBIT|MH_VAMPIRE|MH_WERE|MH_ORC | 
+	ROLE_MALE|ROLE_FEMALE|ROLE_LAWFUL|ROLE_NEUTRAL|ROLE_CHAOTIC,
+	/* Str Int Wis Dex Con Cha */  /* Direct copy from Wizard */
+	/*{   7, 10,  7,  7,  7,  7 },*/
+	{   3,  3,  3,  3,  3,  3 },
+	{   5, 35, 35, 10, 5, 10 },
+	/* new limit values for the six attributes by Amy */
+	{   4, 18, 18,  4,  4,  4 },
+	/* Init   Lower  Higher */
+	{  9, 0,  0, 0,  0, 0 },	/* Hit points */
+	{ 40, 10, 0, 10, 0, 10},16,	/* Energy */
+	-10, 0, -4, 
+	0, 3, A_INT, SPE_RAGNAROK,        -4, 500 /* From old role.c */
 },
 
 {	{"Stormboy", 0}, {

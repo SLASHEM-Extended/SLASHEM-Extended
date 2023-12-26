@@ -13228,16 +13228,25 @@ boolean initial; /* FALSE if you knew the spell before, otherwise TRUE; reductio
 
 }
 
-/* Learn a spell during creation of the initial inventory */
+/* oh my god why oh why does that have to depend on an actual item, why can't we use the item's ID --Amy */
 void
 initialspell(obj)
 struct obj *obj;
 {
+	initialwonderspell(obj->otyp);
+}
+
+
+/* Learn a spell during creation of the initial inventory */
+void
+initialwonderspell(wospelnum)
+int wospelnum;
+{
 	int i;
 
 	for (i = 0; i < MAXSPELL; i++) {
-	    if (spellid(i) == obj->otyp) { /* not a bug - after all, you might e.g. play a haxor --Amy */
-	    	/* pline("Error: Spell %s already known.", OBJ_NAME(objects[obj->otyp])); */
+	    if (spellid(i) == wospelnum) { /* not a bug - after all, you might e.g. play a haxor --Amy */
+	    	/* pline("Error: Spell %s already known.", OBJ_NAME(objects[wospelnum])); */
 
 		/* In Soviet Russia, enhancements aren't a thing. In fact, they don't even know how to spell the word 'enhancement'. Therefore, if someone goes ahead and suggests an enhancement that consists of double spellbooks giving twice the starting spellcasting memory, they say NOPE THAT IS INCOMPATIBLE WITH COMMUNISM and refuse to implement it. --Amy */
 		if (!issoviet) {
@@ -13255,8 +13264,8 @@ struct obj *obj;
 	         return;
 	    }
 	    if (spellid(i) == NO_SPELL)  {
-	        spl_book[i].sp_id = obj->otyp;
-	        spl_book[i].sp_lev = objects[obj->otyp].oc_level;
+	        spl_book[i].sp_id = wospelnum;
+	        spl_book[i].sp_lev = objects[wospelnum].oc_level;
 		  spl_book[i].sp_memorize = TRUE;
 	        incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
