@@ -8074,6 +8074,19 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_BUDDLER]) (void) mongets(mtmp, SHOVEL);
 		if (ptr == &mons[PM_TOOL_SUPPLIER]) (void) mongets(mtmp, SHOVEL);
 		if (ptr == &mons[PM_IMPALAZON]) (void) mongets(mtmp, SUPERHEAVY_SPEAR);
+		if (ptr == &mons[PM_FRONTAL_TEACHER]) (void) mongets(mtmp, TEACHING_STAFF);
+		if (ptr == &mons[PM_DOMESTIC_ABUSER]) (void) mongets(mtmp, CANE);
+
+		if (ptr == &mons[PM_MEMBER_OF_THE_WOMEN_S_GANG]) {
+			if (!rn2(3)) {
+				(void) mongets(mtmp, CANE);
+			} else if (!rn2(2)) {
+				(void) mongets(mtmp, KNIFE);
+			} else {
+				(void) mongets(mtmp, PISTOL);
+		  		m_initthrow(mtmp, PISTOL_BULLET, 20);
+			}
+		}
 
 		if (ptr == &mons[PM_GANG_SCIENTIST]) {
 	  		m_initthrow(mtmp, FLAMETHROWER, 8);

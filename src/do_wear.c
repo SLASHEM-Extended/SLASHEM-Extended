@@ -2243,6 +2243,7 @@ Helmet_on()
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
 	case SCENTY_HELMET:
+	case HELMET_OF_SAVING:
 	case HELM_OF_MYSTERY_RES:
 	case OILSKIN_COIF:
 	case HELM_OF_ANTI_MAGIC:
@@ -2844,6 +2845,7 @@ Helmet_off()
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
 	case SCENTY_HELMET:
+	case HELMET_OF_SAVING:
 	case HARMONIUM_HELM:
 	case PONTIFF_S_CROWN:
 	case FACELESS_HELM:
@@ -3057,6 +3059,11 @@ Gloves_on()
 	case GAUNTLETS_OF_AUTOMATIC_SHUTDOW:
 		makeknown(uarmg->otyp);
 		pline("It seems that these gauntlets have a button on one side.");
+		break;
+
+	case GAUNTLETS_OF_TRUE_AIM:
+	case GAUNTLETS_OF_ARMORING:
+		makeknown(uarmg->otyp);
 		break;
 
 	case GAUNTLETS_OF_SWIMMING:
@@ -3384,6 +3391,8 @@ Gloves_off()
 	case PROTECTIVE_GLOVES:
 	case GAUNTLETS_OF_PHYSICAL_SUSTENAN:
 	case GAUNTLETS_OF_FISTFIGHTING:
+	case GAUNTLETS_OF_TRUE_AIM:
+	case GAUNTLETS_OF_ARMORING:
 	    break;
 	case GAUNTLETS_OF_GOOD_FORTUNE:
 	    setworn((struct obj *)0, W_ARMG);
@@ -6903,6 +6912,7 @@ find_ac()
 	if (opelride(BARDING)) uac -= 1;
 	if (uarm && uarm->oartifact == ART_DEEEEET) uac += 5;
 	if (uarm && uarm->oartifact == ART_WSCHIE_) uac -= 5;
+	if (uarmg && uarmg->otyp == GAUNTLETS_OF_ARMORING && uarmg->spe > 0) uac -= uarmg->spe;
 	if (uarm && uarm->oartifact == ART_GOODNET) uac -= 5;
 	if (uarm && uarm->oartifact == ART_KWOURSTOMAL_) uac -= 10;
 	if (uarm && uarm->oartifact == ART_BEEPA_DEVICE) uac -= 5;

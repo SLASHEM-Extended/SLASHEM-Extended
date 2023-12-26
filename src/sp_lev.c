@@ -4531,9 +4531,13 @@ retryrandtype:
 			    (void) makemon(mkclass(S_EEL,0), sx, sy, NO_MM_FLAGS);
 			    eelct++;
 			}
-		    } else
+		    } else {
 			if(!rn2(10))	/* swamps tend to be moldy */
 			    (void) makemon(mkclass(S_FUNGUS,0), sx, sy, NO_MM_FLAGS);
+
+			if (!rn2(ishaxor ? 25 : 50))
+			    (void) mksobj_at(BLACK_HENBANE, sx, sy, TRUE, FALSE, FALSE);
+		    }
 		}
 
 	}

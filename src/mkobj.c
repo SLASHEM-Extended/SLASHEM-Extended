@@ -2794,7 +2794,7 @@ boolean shopinit;
 
 		blessorcurse_on_creation(otmp, 10);
 		break;
-	    }
+	    } /* end switch statement */
 		blessorcurse_on_creation(otmp, 10);
 		if (!rn2(achieve.get_amulet ? 1000 : 4000)) otmp->oerodeproof = 1;
 		if (!rn2(4000)) {
@@ -3774,6 +3774,8 @@ boolean shopinit;
 		}
 		if (!rn2(achieve.get_amulet ? 10 : 40)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
+		if (itemhasappearance(otmp, APP_ANTISUCK_HELMET)) otmp->greased = rnd(3);
+
 		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
@@ -4511,7 +4513,7 @@ register struct obj *obj;
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,LEMON,CHERRY};
-static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
+static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,BLACK_HENBANE,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
 /* rare fruits added by Amy, of course they don't grow in Soviet Russia, it's too cold there because the type of ice block
  * brings winter - he's like "Väterchen Frost" :-P */
 

@@ -9335,16 +9335,23 @@ perfumestriding:
 				shemagh = mksobj(find_shemagh(), TRUE, FALSE, FALSE);
 
 				if (shemagh) {
-					if (is_helmet(shemagh)) {
-						if (uarmh) remove_worn_item(uarmh, TRUE);
-						setworn(shemagh, W_ARMH);
-						Helmet_on();
-						if (shemagh) curse(shemagh);
-						You("are wearing a shemagh now.");
-					} else {
-						pline("Somehow, no shemagh was created!");
-					}
-				}
+
+					(void) pickup_object(shemagh, shemagh->quan, TRUE, TRUE);
+
+					if (shemagh) {
+
+						if (is_helmet(shemagh)) {
+							if (uarmh) remove_worn_item(uarmh, TRUE);
+							setworn(shemagh, W_ARMH);
+							Helmet_on();
+							if (shemagh) curse(shemagh);
+							You("are wearing a shemagh now.");
+						} else {
+							pline("Somehow, no shemagh was created!");
+						}
+
+					} else pline("Somehow, it failed.");
+				} else pline("Something has gone wrong...");
 			}
 
 		}		

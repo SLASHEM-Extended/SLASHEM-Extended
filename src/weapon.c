@@ -1102,6 +1102,8 @@ struct monst *mon;
 	    /* whips for lashing people's asses :P */
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN) bonus += 1;
 
+	    if (otmp->otyp == CANE && ptr->mlet == S_HUMAN) bonus += 5;
+
 	    /* high heels will absolutely wreck the elder priest */
 	    if ((otmp->otyp == WEDGED_LITTLE_GIRL_SANDAL || otmp->otyp == STURDY_PLATEAU_BOOT_FOR_GIRLS || otmp->otyp == HUGGING_BOOT || otmp->otyp == BLOCK_HEELED_COMBAT_BOOT || otmp->otyp == WOODEN_GETA || otmp->otyp == LACQUERED_DANCING_SHOE || otmp->otyp == HIGH_HEELED_SANDAL || otmp->otyp == SEXY_LEATHER_PUMP || otmp->otyp == SEXY_MARY_JANE || otmp->otyp == KITTEN_HEEL_PUMP || otmp->otyp == STICKSHOE || otmp->otyp == SPIKED_BATTLE_BOOT || otmp->otyp == INKA_BOOT || otmp->otyp == SOFT_LADY_SHOE || otmp->otyp == STEEL_CAPPED_SANDAL || otmp->otyp == BLOCK_HEELED_SANDAL || otmp->otyp == PROSTITUTE_SHOE || otmp->otyp == DOGSHIT_BOOT) && (mon->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_])) bonus += 50;
 
@@ -2699,6 +2701,17 @@ struct monst *mon;
 	    if (objects[otmp->otyp].oc_skill == P_WHIP && ptr->mlet == S_HUMAN && (P_SKILL(P_WHIP) == P_SUPREME_MASTER)) bonus += rnd(5);
 		}
 
+	    if (otmp->otyp == CANE && ptr->mlet == S_HUMAN) bonus += 5;
+
+		if (!(PlayerCannotUseSkills)) {
+	    if (otmp->otyp == CANE && ptr->mlet == S_HUMAN && (P_SKILL(P_PADDLE) == P_SKILLED)) bonus += rnd(2);
+	    if (otmp->otyp == CANE && ptr->mlet == S_HUMAN && (P_SKILL(P_PADDLE) == P_EXPERT)) bonus += rnd(4);
+	    if (otmp->otyp == CANE && ptr->mlet == S_HUMAN && (P_SKILL(P_PADDLE) == P_MASTER)) bonus += rnd(6);
+	    if (otmp->otyp == CANE && ptr->mlet == S_HUMAN && (P_SKILL(P_PADDLE) == P_GRAND_MASTER)) bonus += rnd(7);
+	    if (otmp->otyp == CANE && ptr->mlet == S_HUMAN && (P_SKILL(P_PADDLE) == P_SUPREME_MASTER)) bonus += rnd(9);
+		}
+
+
 		if (objects[otmp->otyp].oc_skill == P_WHIP && uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) bonus += 10;
 
 	    /* high heels will absolutely wreck the elder priest */
@@ -3266,10 +3279,10 @@ static const NEARDATA short hwep[] = {
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET, HEAVY_SPEAR,
 	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, JARED_STONE, KLIUSLING,
 	  TELEPHONE, FUTON_SWATTER, MAGICAL_PAINTBRUSH, BREAKING_WHEEL, ORCISH_SCIMITAR,
-	  BROOM, MOP, ORNATE_MACE, CONTROVERSY_CODE, STEEL_KNIFE,
+	  BROOM, MOP, ORNATE_MACE, CONTROVERSY_CODE, STEEL_KNIFE, CANE,
 
 	  HEAVENLY_WHIP, VIPERWHIP, ETHER_WHIP, BULLETPROOF_CHAINWHIP, INKA_SHACKLE, RUBBER_HOSE, SECRET_WHIP,
-	  WAR_HAMMER, MITHRIL_WHIP, CHAINWHIP, FLAME_WHIP, ROSE_WHIP, TINSEL_LONGSWORD,
+	  WAR_HAMMER, MITHRIL_WHIP, CHAINWHIP, FLAME_WHIP, ROSE_WHIP, TINSEL_LONGSWORD, TEACHING_STAFF,
 	  SILVER_DAGGER, ELVEN_DAGGER, WOODEN_STAKE, WONDER_DAGGER, DAGGER, ELITE_KNUCKLES, PARRY_SWORD,
 	  ORCISH_DAGGER, NOVICE_HAMMER, RAZOR_WHIP, MYSTERIOUS_PICK, UNWIELDY_PICK, MASTER_KNUCKLES,
 	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, CERAMIC_KNIFE, BUBBLEHORN, EAGLE_BALL, FANG_OF_APEP,

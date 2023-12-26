@@ -1983,7 +1983,7 @@ int thrown;
 	}
 
 	boolean misfire = FALSE;
-	if (obj->cursed) {
+	if (obj->cursed && !(uarmg && uarmg->otyp == GAUNTLETS_OF_TRUE_AIM) && !(uarmg && itemhasappearance(uarmg, APP_SUREFIRE_GLOVES)) ) {
 		if (!rn2(7)) misfire = TRUE;
 	}
 	if (obj->otyp == FLIMSY_DART) {
@@ -2704,6 +2704,11 @@ boolean polearming;
 
 	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
 	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
+	if (uarmg && itemhasappearance(uarmg, APP_SUREFIRE_GLOVES)) tmp += 2;
+	if (uarmg && uarmg->otyp == GAUNTLETS_OF_TRUE_AIM) {
+		tmp += 2;
+		if (uarmg->spe > 0) tmp += uarmg->spe;
+	}
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
@@ -3248,6 +3253,9 @@ evasionchancedone:
 	    case GAUNTLETS_OF_FREE_ACTION:
 	    case ELVEN_GAUNTLETS:
 		tmp += 1;
+		break;
+	    case GAUNTLETS_OF_TRUE_AIM:
+		tmp += 2;
 		break;
 	    case REGULAR_GLOVES:
 	    case GAUNTLETS_OF_SWIMMING:            

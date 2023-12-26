@@ -1229,7 +1229,19 @@ cgrfinished:
 			goldlim -= i;
 			if (rn2(4)) (void) mkgold(1, sx, sy); /* don't spawn endless amounts of gold --Amy */
 			else (void) mkgold((long) rn1(i, 10), sx, sy);
+
+			if((type == LEPREHALL) && !rn2(ishaxor ? 50 : 100))
+			    (void) mksobj_at(BLACK_HENBANE, sx, sy, TRUE, FALSE, FALSE);
+
 			break;
+
+		    case BADFOODSHOP:
+
+			if(!rn2(ishaxor ? 20 : 40))
+			    (void) mksobj_at(BLACK_HENBANE, sx, sy, TRUE, FALSE, FALSE);
+
+			break;
+
 		    case MORGUE:
 			if(!rn2(5))
 			    (void) mk_tt_object(CORPSE, sx, sy);
@@ -2073,9 +2085,14 @@ mkswamp()	/* Michiel Huisjes & Fred de Wilde */
 			    (void) makemon(mkclass(S_EEL,0), sx, sy, NO_MM_FLAGS);
 			    eelct++;
 			}
-		    } else
+		    } else {
 			if(!rn2(10))	/* swamps tend to be moldy */
 			    (void) makemon(mkclass(S_FUNGUS,0), sx, sy, NO_MM_FLAGS);
+
+			if (!rn2(ishaxor ? 25 : 50))
+			    (void) mksobj_at(BLACK_HENBANE, sx, sy, TRUE, FALSE, FALSE);
+
+		    }
 		}
 		level.flags.has_swamp = 1;
 	}

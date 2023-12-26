@@ -7162,6 +7162,32 @@ register struct obj *otmp;
 		make_stunned(0L, TRUE);
 		break;
 
+	    case BLACK_HENBANE:
+
+		You("have the bitter, acidic taste of alkaloids in your mouth...");
+
+		if (ABASE(A_STR) < AMAX(A_STR)) {
+			ABASE(A_STR)++;
+			You_feel("strong!");
+		}
+
+		u.uprops[DEAC_POISON_RES].intrinsic += rnz(500);
+
+		flags.botl = TRUE;
+
+		break;
+
+	    case DIGESTION_CAKE:
+
+		You("eat the little cake.");
+
+		if (Vomiting) {
+			make_vomiting(0L, TRUE);
+			pline("Phew, the nausea has gone away.");
+		}
+
+		break;
+
 	    case MAGIC_BANANA: /* cure all */
 		make_confused(0L, TRUE);
 		make_stunned(0L, TRUE);

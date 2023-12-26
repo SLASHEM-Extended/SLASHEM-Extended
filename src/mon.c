@@ -3056,7 +3056,7 @@ mpickgold(mtmp)
 	register struct obj *gold;
 	int mat_idx;
 
-	if (DEADMONSTER(mtmp)) return FALSE; /* hopefully prevent stupid bugs --Amy */
+	if (DEADMONSTER(mtmp)) return; /* hopefully prevent stupid bugs --Amy */
 
 	if ((gold = g_at(mtmp->mx, mtmp->my)) != 0) {
 

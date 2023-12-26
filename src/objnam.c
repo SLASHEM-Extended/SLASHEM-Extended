@@ -718,6 +718,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ BANDAGE, "hotai" },
 	{ BASEBALL_BAT, "jo" },	/* Close enough, club is a bokken for now */
 	{ BATTLE_AXE, "batoruakkusu" },
+	{ BLACK_HENBANE, "burakkunaitoshedo" },
 	{ BLINDFOLD, "mekakushi" },
 	{ BOW, "dai-kyu" }, /* Nethack-- */
 	{ BRASS_LANTERN, "toro" },
@@ -4327,6 +4328,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ AMULET_OF_TOTAL_BURDEN, "todo" },
 	{ TOO_HEAVY_PLATE, "todo" },
 	{ UMENG_CLOAK, "todo" },
+	{ GAUNTLETS_OF_TRUE_AIM, "todo" },
+	{ GAUNTLETS_OF_ARMORING, "todo" },
+	{ BLACK_HENBANE, "todo" },
+	{ DIGESTION_CAKE, "todo" },
+	{ HELMET_OF_SAVING, "todo" },
+	{ TEACHING_STAFF, "todo" },
+	{ CANE, "todo" },
 
 	{0, "" }
 };
@@ -7808,6 +7816,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_TOTAL_BURDEN, "todo" },
 	{ TOO_HEAVY_PLATE, "todo" },
 	{ UMENG_CLOAK, "todo" },
+	{ GAUNTLETS_OF_TRUE_AIM, "todo" },
+	{ GAUNTLETS_OF_ARMORING, "todo" },
+	{ BLACK_HENBANE, "todo" },
+	{ DIGESTION_CAKE, "todo" },
+	{ HELMET_OF_SAVING, "todo" },
+	{ TEACHING_STAFF, "todo" },
+	{ CANE, "todo" },
 
 	{0, "" }
 };
@@ -10676,6 +10691,7 @@ boolean actualwish;
 	   strncmpi(bp, "red leather armor", 17) &&
 	   strncmpi(bp, "throwaway armor", 15) &&
 	   strncmpi(bp, "barnacle armor", 14) &&
+	   strncmpi(bp, "gauntlets of armoring", 21) &&
 	   strncmpi(bp, "exciting armor", 14) &&
 	   strncmpi(bp, "cuirass armor", 13) &&
 	   strncmpi(bp, "feather armor", 13) &&

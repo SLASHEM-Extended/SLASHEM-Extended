@@ -1791,6 +1791,39 @@ thirddone:
 	}
 versusinstadone:
 
+	if ((uarmh && uarmh->otyp == HELMET_OF_SAVING) && (u.uhp > 0) && (u.uhpmax > 0) && how < GENOCIDED) {
+		pline("But wait...");
+		Your("helmet %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+		pline_The("helmet is blown away!");
+		useup(uarmh);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto helmsavingdone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+helmsavingdone:
+
 	if ((uarmf && uarmf->oartifact == ART_DON_T_DIE_WHILE_IN_THERE) && (u.uhp > 0) && (u.uhpmax > 0) && how < GENOCIDED) {
 		boolean overshoesave = FALSE;
 		if (In_greencross(&u.uz) || In_mainframe(&u.uz) || In_gammacaves(&u.uz) || In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || In_subquest(&u.uz) || In_rivalquest(&u.uz) || In_yendorian(&u.uz) || In_bellcaves(&u.uz)) overshoesave = TRUE;

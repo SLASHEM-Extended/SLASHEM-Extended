@@ -12391,6 +12391,10 @@ boolean knoweverything;
 				pline("A heavy two-handed staff that doesn't do all that much damage."); break;
 			case MASSAGER:
 				pline("This is yet another quarterstaff. It deals more damage to small monsters than large ones and has a minor to-hit bonus, but requires two hands to use."); break;
+			case TEACHING_STAFF:
+				pline("A rather weak two-handed weapon that has high bonuses for the chance to hit."); break;
+			case CANE:
+				pline("This paddle deals bonus damage versus @-class monsters, and rather sucky damage versus everything else."); break;
 			case PENIS_POLE:
 				pline("A phallus-shaped two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case GARDEN_FORK:
@@ -13483,6 +13487,10 @@ boolean knoweverything;
 			pline("Sexy flats with treaded soles.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SWEATY_SHOES))
 			pline("This pair of shoes is too narrow, causing your feet to sweat enormously. If you wear them for a prolonged time, taking them off will release a stinking cloud.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SUREFIRE_GLOVES))
+			pline("A pair of gloves that improves the to-hit of your ranged weapons and makes it so that cursed ones won't misfire.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANTISUCK_HELMET))
+			pline("This helmet spawns greased, offering some protection from mind flayers.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LEATHER_FLEECE_BOOTS))
 			pline("A pair of sexy flats that provides half physical damage while you're paralyzed, to reduce the odds of you being killed during paralysis. Don't worry, they don't actually cause paralysis, they just give a benefit if something does paralyze you.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FLUFFY_SANDALS))
@@ -14071,6 +14079,10 @@ boolean knoweverything;
 				pline("This cloak turns monsters into ghosts. It grants good armor class and 3 points of magic cancellation."); break;
 			case SUPERPOWER_GAUNTLETS:
 				pline("Very useful pair of gloves that increases both your strength and dexterity by their enchantment value."); break;
+			case GAUNTLETS_OF_TRUE_AIM:
+				pline("This pair of gloves gives you a boost to your ranged weapon to-hit, bigger if the gloves are positively enchanted, and makes cursed ammo not misfire."); break;
+			case GAUNTLETS_OF_ARMORING:
+				pline("These gauntlets are very strongly armored, and therefore give more AC than regular ones. In particular, every point of enchantment on this pair is worth 2 AC."); break;
 			case GAUNTLETS_OF_PHYSICAL_SUSTENAN:
 				pline("While wearing these gloves, your strength and dexterity won't get damaged."); break;
 			case GAUNTLETS_OF_FISTFIGHTING:
@@ -14079,6 +14091,8 @@ boolean knoweverything;
 				pline("If you wear this helm, your luck no longer times out at all. This applies to both positive and negative luck."); break;
 			case ANTIMINDFLAY_HELMET:
 				pline("Wearing this helmet makes you immune to the mind flayer's tentacle attack."); break;
+			case HELMET_OF_SAVING:
+				pline("A helmet that prevents you from being instakilled, saving your life if you do suffer an instadeath. However, if that happens, the helmet is used up."); break;
 			case GOOD_ESP_HELMET:
 				pline("It's not strictly ESP, but while you have this helmet on, all lawful monsters within a distance of 5 squares are displayed even if you can't see them."); break;
 			case SPEED_HOLDING_BOOTS:
@@ -17372,67 +17386,71 @@ boolean knoweverything;
 				pline("This is a type of food that can be eaten by vegetarians, and it can also be used to keep vampires away from you."); break;
 			case SPRIG_OF_WOLFSBANE: 
 				pline("If you're having trouble with lycanthropes infecting you, eating this vegetarian piece of food will cure you."); break;
-			case APPLE: 
+			case APPLE:
 				pline("A vegetarian type of food that cures numbness."); break;
-			case CARROT: 
+			case CARROT:
 				pline("A vegetarian type of food that cures blindness."); break;
-			case PEAR: 
+			case PEAR:
 				pline("A vegetarian type of food that cures stunning."); break;
-			case ASIAN_PEAR: 
+			case ASIAN_PEAR:
 				pline("A vegetarian type of food that cures stunning and confusion."); break;
-			case CHERRY: 
+			case CHERRY:
 				pline("A vegetarian type of food that cures bleeding."); break;
-			case LEMON: 
+			case LEMON:
 				pline("A vegetarian type of food that cures fear."); break;
-			case BANANA: 
+			case BANANA:
 				pline("A vegetarian type of food that cures hallucination."); break;
-			case ORANGE: 
+			case ORANGE:
 				pline("A vegetarian type of food that cures freezing."); break;
-			case MUSHROOM: 
+			case MUSHROOM:
 				pline("Sometimes, you can get random effects from eating this vegetarian food item."); break;
-			case MELON: 
+			case MELON:
 				pline("A vegetarian type of food that cures confusion."); break;
-			case SLIME_MOLD: 
+			case SLIME_MOLD:
 				pline("This type of vegetarian food provides good nutrition and can be renamed. Default name is 'slime mold'."); break;
-			case PEANUT_BAG: 
+			case PEANUT_BAG:
 				pline("This vegetarian food item provides lots of nutrition."); break;
 			case LUMP_OF_ROYAL_JELLY:
 				pline("Eating this vegetarian food item can increase your strength."); break;
 			case HONEYCOMB:
 				pline("A rare type of food, usually found in beehives, which can increase a random stat when eaten. It breaks vegan but not vegetarian conduct."); break;
-			case CREAM_PIE: 
+			case CREAM_PIE:
 				pline("A vegetarian type of food that cures burns and dimness. It can also be thrown to blind enemies."); break;
-			case SANDWICH: 
+			case SANDWICH:
 				pline("A meaty food item that provides moderate amounts of nutrition."); break;
-			case CANDY_BAR: 
+			case CANDY_BAR:
 				pline("Eating this provides moderate amounts of nutrition without violating vegetarian conduct."); break;
-			case FORTUNE_COOKIE: 
+			case FORTUNE_COOKIE:
 				pline("You may get a message if you eat this vegetarian food item."); break;
-			case PANCAKE: 
+			case BLACK_HENBANE:
+				pline("A vegetarian food that is actually poisonous, being from a member of the nightshade family of plants. If you eat it, you'll restore a lost point of strength, but your poison resistance is deactivated for a while."); break;
+			case DIGESTION_CAKE:
+				pline("Eat this if you're nauseated, and the nausea will go away. It provides minimal amounts of nutrition and can be eaten by vegetarians."); break;
+			case PANCAKE:
 				pline("This vegetarian type of food provides relatively good nutrition."); break;
-			case UGH_MEMORY_TO_CREATE_INVENTORY: 
+			case UGH_MEMORY_TO_CREATE_INVENTORY:
 				pline("An edible item with an unknown effect. It might not be a good idea to eat it."); break;
-			case TORTILLA: 
+			case TORTILLA:
 				pline("A rarely seen vegetarian food item that provides relatively little nutrition."); break;
-			case TWELVE_COURSE_DINNER: 
+			case TWELVE_COURSE_DINNER:
 				pline("A very filling meal, but it also takes a long time to consume."); break;
-			case CHEESE: 
+			case CHEESE:
 				pline("Can be used to tame rats. It can be eaten by vegetarians but not by vegans. Not that anyone is likely to care."); break;
-			case PILL: 
+			case PILL:
 				pline("Swallowing this thing is like playing russian roulette. You may get lucky and experience a good effect but you might also get something really bad instead."); break;
-			case HOLY_WAFER: 
+			case HOLY_WAFER:
 				pline("A vegetarian type of food that is relatively filling and can cure certain negative effects."); break;
-			case LEMBAS_WAFER: 
+			case LEMBAS_WAFER:
 				pline("A type of 'elven' bread that is more filling than any real-world vegetarian food can ever be."); break;
-			case CRAM_RATION: 
+			case CRAM_RATION:
 				pline("A bland ration of vegetarian food."); break;
-			case FOOD_RATION: 
+			case FOOD_RATION:
 				pline("A very filling ration of food. For some weird reason this counts as vegetarian food even though we all know that in real life, only food containing meat can ever satiate your stomach."); break;
-			case HACKER_S_FOOD: 
+			case HACKER_S_FOOD:
 				pline("This vegetarian food ration can be eaten in one turn."); break;
-			case K_RATION: 
+			case K_RATION:
 				pline("Soldiers often carry these rations that can be eaten in one turn. For some reason they contain no meat - if I were a soldier in real life I'd be pissed if they won't serve meat!"); break;
-			case C_RATION: 
+			case C_RATION:
 				pline("Soldiers often carry these rations that can be eaten in one turn. For some reason they contain no meat - how can any real-life soldiers even concentrate on their tasks if they ain't getting no real food?"); break;
 			case TIN: 
 #ifdef PHANTOM_CRASH_BUG
