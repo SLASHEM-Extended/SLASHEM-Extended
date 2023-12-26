@@ -4287,7 +4287,7 @@ newboss:
 			return 2;
 		}
 		m_flee(mtmp);
-		if (Inhell && mon_has_amulet(mtmp) && !rn2(4) &&
+		if (In_gehennom(&u.uz) && mon_has_amulet(mtmp) && !rn2(4) &&
 			(dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz) - 3)) {
 		    if (vismon) pline(
      "As %s climbs the stairs, a mysterious force momentarily surrounds %s...",

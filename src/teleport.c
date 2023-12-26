@@ -1357,7 +1357,7 @@ level_tele()
 #ifdef WIZARD
 		if (!wizard)
 #endif
-	    if (Inhell && !u.uevent.invoked &&
+	    if (In_gehennom(&u.uz) && !u.uevent.invoked &&
 			newlev >= (dungeons[u.uz.dnum].depth_start +
 					dunlevs_in_dungeon(&u.uz) - 1)) {
 # ifdef WIZARD
@@ -1925,7 +1925,7 @@ random_teleport_level()
 		(dungeons[u.uz.dnum].depth_start - 1);
 
 	/* can't reach the Sanctum if the invocation hasn't been performed */
-	if (Inhell && !u.uevent.invoked) max_depth -= 1;
+	if (In_gehennom(&u.uz) && !u.uevent.invoked) max_depth -= 1;
 
 	/* Get a random value relative to the current dungeon */
 	/* Range is 1 to current+3, current not counting */
@@ -2048,7 +2048,7 @@ random_banish_level()
 	max_depth = dunlevs_in_dungeon(&u.uz) +
 		(dungeons[u.uz.dnum].depth_start - 1);
 	/* can't reach the Sanctum, no matter if invocation or not */
-	if (Inhell) max_depth -= 1;
+	if (In_gehennom(&u.uz)) max_depth -= 1;
 
 	/* Get a random value relative to the current dungeon */
 
