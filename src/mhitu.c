@@ -9521,7 +9521,7 @@ dopois:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 249) midentity -= 249; /* monstercolor! */
+			while (midentity > 275) midentity -= 275; /* timerun! */
 
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -11717,7 +11717,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 249) midentity -= 249; /* monstercolor! */
+			while (midentity > 275) midentity -= 275; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -13927,7 +13927,7 @@ common:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 249) midentity -= 249; /* monstercolor! */
+			while (midentity > 275) midentity -= 275; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -18510,7 +18510,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 249) midentity -= 249; /* monstercolor! */
+			while (midentity > 275) midentity -= 275; /* timerun! */
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;

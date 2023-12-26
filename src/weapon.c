@@ -2734,7 +2734,7 @@ struct monst *mon;
 		tmp *= 2;
 	}
 
-	if (Race_if(PM_JAPURA) && (is_angbandmonster(mon->data) || is_cowmonster(mon->data) || is_animemonster(mon->data) || is_steammonster(mon->data) || is_dlordsmonster(mon->data) || is_dnethackmonster(mon->data) || is_jokemonster(mon->data) || is_diablomonster(mon->data) || is_jonadabmonster(mon->data) || is_evilpatchmonster(mon->data) || is_elonamonster(mon->data) || is_aoemonster(mon->data) || is_elderscrollsmonster(mon->data) ) ) {
+	if (Race_if(PM_JAPURA) && (is_angbandmonster(mon->data) || is_cowmonster(mon->data) || is_animemonster(mon->data) || is_steammonster(mon->data) || is_dlordsmonster(mon->data) || is_dnethackmonster(mon->data) || is_jokemonster(mon->data) || is_diablomonster(mon->data) || is_jonadabmonster(mon->data) || is_evilpatchmonster(mon->data) || is_elonamonster(mon->data) || is_aoemonster(mon->data) || is_elderscrollsmonster(mon->data) || is_chatgptmonster(mon->data) || is_cddamonster(mon->data) ) ) {
 		tmp *= 2;
 	}
 
@@ -12133,7 +12133,7 @@ int lossamount;
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(432);
+			monstercolor = rnd(434);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 

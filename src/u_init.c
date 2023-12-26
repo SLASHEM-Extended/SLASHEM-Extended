@@ -9722,7 +9722,7 @@ u_init()
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(432); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(434); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -9761,7 +9761,7 @@ u_init()
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(432);
+		u.frequenttrait2 = rnd(434);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -9783,7 +9783,7 @@ u_init()
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(432);
+		u.frequenttrait3 = rnd(434);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -9805,7 +9805,7 @@ u_init()
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(432);
+		u.frequenttrait4 = rnd(434);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -9827,7 +9827,7 @@ u_init()
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(432);
+		u.frequenttrait5 = rnd(434);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -9849,7 +9849,7 @@ u_init()
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(432);
+		u.frequenttrait6 = rnd(434);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -9871,7 +9871,7 @@ u_init()
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(432);
+		u.frequenttrait7 = rnd(434);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -9893,7 +9893,7 @@ u_init()
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(432);
+		u.frequenttrait8 = rnd(434);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -9915,7 +9915,7 @@ u_init()
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(432);
+		u.frequenttrait9 = rnd(434);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -9937,7 +9937,7 @@ u_init()
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(432);
+		u.frequenttrait10 = rnd(434);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;
@@ -32268,7 +32268,7 @@ int realityflag;
 
 	register int traitamount = rnd(10); /* pick an # of monster traits that are more common --Amy */
 
-	u.frequenttrait1 = rnd(432); /* same as monstercolor function */
+	u.frequenttrait1 = rnd(434); /* same as monstercolor function */
 	u.freqtraitbonus1 = rne(4);
 	if (!rn2(5)) u.freqtraitbonus1 += rne(3);
 	if (!rn2(3)) u.freqtraitbonus1 *= 2;
@@ -32307,7 +32307,7 @@ int realityflag;
 
 	if (traitamount >= 2) {
 
-		u.frequenttrait2 = rnd(432);
+		u.frequenttrait2 = rnd(434);
 		u.freqtraitbonus2 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus2 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus2 *= 2;
@@ -32329,7 +32329,7 @@ int realityflag;
 
 	if (traitamount >= 3) {
 
-		u.frequenttrait3 = rnd(432);
+		u.frequenttrait3 = rnd(434);
 		u.freqtraitbonus3 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus3 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus3 *= 2;
@@ -32351,7 +32351,7 @@ int realityflag;
 
 	if (traitamount >= 4) {
 
-		u.frequenttrait4 = rnd(432);
+		u.frequenttrait4 = rnd(434);
 		u.freqtraitbonus4 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus4 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus4 *= 2;
@@ -32373,7 +32373,7 @@ int realityflag;
 
 	if (traitamount >= 5) {
 
-		u.frequenttrait5 = rnd(432);
+		u.frequenttrait5 = rnd(434);
 		u.freqtraitbonus5 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus5 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus5 *= 2;
@@ -32395,7 +32395,7 @@ int realityflag;
 
 	if (traitamount >= 6) {
 
-		u.frequenttrait6 = rnd(432);
+		u.frequenttrait6 = rnd(434);
 		u.freqtraitbonus6 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus6 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus6 *= 2;
@@ -32417,7 +32417,7 @@ int realityflag;
 
 	if (traitamount >= 7) {
 
-		u.frequenttrait7 = rnd(432);
+		u.frequenttrait7 = rnd(434);
 		u.freqtraitbonus7 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus7 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus7 *= 2;
@@ -32439,7 +32439,7 @@ int realityflag;
 
 	if (traitamount >= 8) {
 
-		u.frequenttrait8 = rnd(432);
+		u.frequenttrait8 = rnd(434);
 		u.freqtraitbonus8 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus8 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus8 *= 2;
@@ -32461,7 +32461,7 @@ int realityflag;
 
 	if (traitamount >= 9) {
 
-		u.frequenttrait9 = rnd(432);
+		u.frequenttrait9 = rnd(434);
 		u.freqtraitbonus9 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus9 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus9 *= 2;
@@ -32483,7 +32483,7 @@ int realityflag;
 
 	if (traitamount >= 10) {
 
-		u.frequenttrait10 = rnd(432);
+		u.frequenttrait10 = rnd(434);
 		u.freqtraitbonus10 = rne(4);
 		if (!rn2(5)) u.freqtraitbonus10 += rne(3);
 		if (!rn2(3)) u.freqtraitbonus10 *= 2;

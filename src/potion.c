@@ -10973,7 +10973,7 @@ int specialtype;
 
 		else {
 
-			monstercolor = rnd(432);
+			monstercolor = rnd(434);
 
 			for (i = 0; i < randsp; i++) {
 

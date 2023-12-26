@@ -11946,7 +11946,7 @@ boolean ranged;
 		{
 			register int midentity = mon->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 249) midentity -= 249; /* monstercolor! */
+			while (midentity > 275) midentity -= 275; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;

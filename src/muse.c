@@ -3964,7 +3964,7 @@ mon_tele:
 		} else if (spawntype == 3) {
 			monstercolor = rnd(15);
 		} else {
-			monstercolor = rnd(432);
+			monstercolor = rnd(434);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
@@ -11595,7 +11595,7 @@ newboss:
 		} else if (spawntype == 3) {
 			monstercolor = rnd(15);
 		} else {
-			monstercolor = rnd(432);
+			monstercolor = rnd(434);
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);

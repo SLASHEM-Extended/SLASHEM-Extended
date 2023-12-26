@@ -977,7 +977,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(432);
+				monstercolor = rnd(434);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
 
@@ -1039,7 +1039,7 @@ moveloop()
 				if (!rn2(100)) randsp *= 3;
 				if (!rn2(1000)) randsp *= 5;
 				if (!rn2(10000)) randsp *= 10;
-				monstercolor = rnd(432);
+				monstercolor = rnd(434);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
@@ -3230,7 +3230,7 @@ moveloop()
 		}
 
 		if ((KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(2000)) {
-			int killerroomtype = rnd(27);
+			int killerroomtype = rnd(28);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 
 			if (Aggravate_monster) {
@@ -3310,6 +3310,8 @@ moveloop()
 						killermonster = illusionmon(); break;
 					case 27:
 						killermonster = specialtensmon(327); break;
+					case 28:
+						killermonster = specialtensmon(434); break;
 					default:
 						killermonster = &mons[PM_ANT]; break;
 				}
@@ -4601,7 +4603,7 @@ newbossS:
 								ttmp->launch_otyp = rnd(186); /* monster glyph (weighted chance) */
 								break;
 							case 3:
-								ttmp->launch_otyp = rnd(432); /* monstercolor function */
+								ttmp->launch_otyp = rnd(434); /* monstercolor function */
 								break;
 							default:
 								impossible("monster generator with bad launch type %d!", ttmp->launch.x);
@@ -6449,7 +6451,7 @@ controlagain:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(432);
+			monstercolor = rnd(434);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -7279,7 +7281,7 @@ newbossJANI:
 			if (!rn2(100)) randsp *= 3;
 			if (!rn2(1000)) randsp *= 5;
 			if (!rn2(10000)) randsp *= 10;
-			monstercolor = rnd(432);
+			monstercolor = rnd(434);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
 
@@ -16070,7 +16072,7 @@ past4:
 
 	/* Frequentation spawn should be a different trait every time you get the effect --Amy */
 	if (FrequentationSpawns || u.uprops[FREQUENTATION_SPAWNS].extrinsic || have_frequentationspawnstone()) {
-		u.frequentationtrait = rnd(432); /* same as monstercolor function */
+		u.frequentationtrait = rnd(434); /* same as monstercolor function */
 	} else {
 		u.frequentationtrait = 0;
 	}
