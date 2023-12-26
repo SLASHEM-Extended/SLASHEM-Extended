@@ -6959,13 +6959,13 @@ newbossF:
 		}
 
 		if (obj->oartifact == ART_ROTATE_ME) {
-			play_blackjack();
+			play_blackjack(TRUE);
 			break;
 
 		}
 
 		if (obj->oartifact == ART_CASSERINO) {
-			play_blackjack();
+			play_blackjack(TRUE);
 			break;
 
 		}

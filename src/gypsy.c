@@ -939,14 +939,17 @@ blackjack_card()
  * the player's luck stat can slightly affect the chance that the dealer cheats
  * heavily inspired by Elona, but the implementation is my own --Amy */
 int
-play_blackjack()
+play_blackjack(forfree)
+boolean forfree; /* if this is true, you don't have to pay; for artifact invokes etc. */
 {
 	int dealercheatchance = 10;
 	int playerblackjackwins = 0;
 	int disappearchance = 10;
 	struct obj *blackjackreward;
 
-	if (u.casinochips) {
+	if (forfree) {
+		You("start a round of blackjack at Fortune Cookie Casino.");
+	} else if (u.casinochips) {
 		if (yn("Play blackjack? (use a casino chip)") != 'y') {
 			return 0;
 		}

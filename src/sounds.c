@@ -4185,7 +4185,7 @@ metalmafiaagain:
 			boolean willdisappear = 0;
 			int returnvalue = 0;
 			verbalize("Hello sir, welcome to 'Fortune Cookie' casino!"); /* from Elona, where they always say 'sir' even if you're female */
-			returnvalue = play_blackjack();
+			returnvalue = play_blackjack(FALSE);
 			if (returnvalue == 2) willdisappear = 1;
 			if (returnvalue >= 1 && (mtmp->data == &mons[PM_CROUPIER] || mtmp->data == &mons[PM_MASTER_CROUPIER] || mtmp->data == &mons[PM_EXPERIENCED_CROUPIER] || mtmp->data == &mons[PM_EXCEPTIONAL_CROUPIER] || mtmp->data == &mons[PM_ELITE_CROUPIER]) ) {
 			/* you played, so the croupier should become peaceful; other MS_CASINO monsters don't care */

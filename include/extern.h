@@ -919,7 +919,7 @@ E void whetstone_toilet_effects(struct obj *);
 
 E void gypsy_init(struct monst *);
 E void gypsy_chat(struct monst *);
-E int play_blackjack(void);
+E int play_blackjack(BOOLEAN_P);
 E int blackjack_card(void);
 
 /* ### hack.c ### */
