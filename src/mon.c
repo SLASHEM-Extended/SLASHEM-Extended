@@ -3054,6 +3054,8 @@ mpickgold(mtmp)
 	register struct obj *gold;
 	int mat_idx;
 
+	if (DEADMONSTER(mtmp)) return FALSE; /* hopefully prevent stupid bugs --Amy */
+
 	if ((gold = g_at(mtmp->mx, mtmp->my)) != 0) {
 
 	/* Amy edit: pets shouldn't be able to simply pick up the 10k you used for credit cloning, you lame ass... */
@@ -3097,6 +3099,8 @@ mpickstuff(mtmp, str)
 	register struct obj *otmp, *otmp2;
 
 	int dogquan = 5 * mtmp->m_lev; /* halved by Amy, see also dogmove.c */
+
+	if (DEADMONSTER(mtmp)) return FALSE; /* hopefully prevent stupid bugs --Amy */
 
 /*	prevent shopkeepers from leaving the door of their shop */
 	if(mtmp->isshk && inhishop(mtmp)) return FALSE;
