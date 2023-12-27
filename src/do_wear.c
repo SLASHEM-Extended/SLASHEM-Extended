@@ -521,6 +521,11 @@ Boots_on()
 		objects[uarmf->otyp].oc_material = MT_SHADOWSTUFF;
     }
 
+    if (uarmf && uarmf->oartifact == ART_IRIS_S_THUNDER && (objects[uarmf->otyp].oc_material != MT_SILVER)) {
+		pline_The("boots are made of silver now.");
+		objects[uarmf->otyp].oc_material = MT_SILVER;
+    }
+
     if (uarmf && !Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) {
 		if (!(u.monstertimefinish % 20)) { /* 1 in 20 games */
 			bindertransformation();

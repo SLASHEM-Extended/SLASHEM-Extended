@@ -1305,11 +1305,13 @@ have_loadstone()
 }
 
 boolean
-evades_destruction(otmp)
+evades_destruction(otmp) /* return TRUE if the item is indestructible */
 register struct obj *otmp;
 {
 
 	if (!otmp) return FALSE; /* shouldn't happen */
+
+	if (otmp->oartifact == ART_EVERLASTING_HEELS) return TRUE;
 
 	switch (otmp->otyp) {
 
@@ -29961,6 +29963,36 @@ boolean knoweverything;
 					pline("Artifact specs: makes you very fast and adds extra speed on top of that, and while wielding it, you occasionally gain money out of thin air, but your intelligence and its soft cap are reduced and everything is gendered, you Daemel. :-P"); break;
 				case ART_WOMAN_UP_CJ:
 					pline("Artifact specs: +18 damage against monsters that are always female, warning when wielded, autocurses and causes feminist aggravation."); break;
+				case ART_NATAS_IS_BACK:
+					pline("Artifact specs: satan trap effect, magic find, very fast speed, greatly increased carry capacity and disables disintegration resistance when worn."); break;
+				case ART_ISSEGADA_KEN:
+					pline("Artifact specs: +10 damage, +3 dexterity."); break;
+				case ART_FUHITSUYONA_HAMETSU_NO_GAR:
+					pline("Artifact specs: drain resistance when wielded, does extra damage sometimes."); break;
+				case ART_ATLAS_WEIGHT_CRUNCH:
+					pline("Artifact specs: +4 strength and quite a bunch of extra carry capacity when worn, including a boost to the possible maximum value."); break;
+				case ART_AMULET_OF_INGWE:
+					pline("Artifact specs: searching, acid resistance and free action when worn."); break;
+				case ART_IRIS_S_THUNDER:
+					pline("Artifact specs: +3 charisma, can be invoked to fire a lightning bolt in a direction of your choice. When putting them on, the material of this pair of boots becomes silver."); break;
+				case ART_FLEEC_LIE:
+					pline("Artifact specs: half physical damage and cold immunity when worn."); break;
+				case ART_HEIKE_S_BIGOTRY:
+					pline("Artifact specs: +12 acid damage, acid immunity, double discount action and resist fear when worn."); break;
+				case ART_EVERLASTING_HEELS:
+					pline("Artifact specs: indestructible."); break;
+				case ART_UPPERWEAVER_S_THREAD:
+					pline("Artifact specs: sight bonus when worn. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A possible English translation that is different from the German name 'Oberachern-Bindfaden' could be 'Upperweaver's Thread.' '"); break;
+				case ART_THREADS_OF_PROTECTION:
+					pline("Artifact specs: half physical and half spell damage when worn. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The wearer of the Upperweaver's Robe gains enhanced protection against physical and magical attacks. It provides a significant boost to their overall defense, reducing incoming damage by a percentage.'"); break;
+				case ART_WEAVING_WARD:
+					pline("Artifact specs: can be invoked for a few turns of invulnerability. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Once per day, the wearer can activate the robe's power to create a magical barrier that protects them and their allies. This ward blocks incoming spells and projectiles, providing temporary immunity to ranged attacks and spells for a limited duration.'"); break;
+				case ART_ARCANE_STITCHING:
+					pline("Artifact specs: repairs any erosion or negative enchantment value automatically. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The robe possesses a unique ability to mend itself. When damaged, the threads of the Upperweaver's Robe magically reknit, repairing any tears or cuts. This effect triggers automatically, ensuring the robe remains in pristine condition.'"); break;
+				case ART_THREADWEAVER_S_BLESSING:
+					pline("Artifact specs: double spellboost when worn. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The Upperweaver's Robe enhances the wearer's magical abilities. It boosts their spellcasting potential, increasing the potency, duration, or range of their spells, depending on their magical discipline.'"); break;
+				case ART_CLOAK_OF_SHADOWS:
+					pline("Artifact specs: stealth and invisibility when worn. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'By activating this ability, the wearer can shroud themselves in an ethereal cloak of shadows, granting them temporary invisibility for a short period. While invisible, they gain advantages in stealth, making it easier to move unnoticed and perform sneak attacks.' Note: unlike that original idea, this artifact has those powers permanently."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

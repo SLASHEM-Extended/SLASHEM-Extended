@@ -647,6 +647,7 @@ init_randarts()
 	artilist[ART_RITA_S_TENDER_STILETTOS].otyp = randartbootsX();
 	artilist[ART_EROTIC_STAT_TRAIN].otyp = randartbootsX();
 	artilist[ART_SPECIAL_ROBUNG].otyp = randartrobeX();
+	artilist[ART_UPPERWEAVER_S_THREAD].otyp = randartrobeX();
 	artilist[ART_CHAOSWEAVER_ROBES].otyp = randartrobeX();
 	artilist[ART_COPE_OF_THE_ELDRITCH_KNIGH].otyp = randartrobeX();
 	artilist[ART_ROBE_OF_CLOSED_EYES].otyp = randartrobeX();
@@ -983,6 +984,8 @@ init_appearance_randarts()
 	artilist[ART_IRIS_S_FAVORED_MATERIAL].otyp = find_spiky_gloves();
 
 	artilist[ART_IRMA_S_CHOICE].otyp = find_copper_stilettos();
+	artilist[ART_EVERLASTING_HEELS].otyp = find_diamond_stilettos();
+	artilist[ART_HEIKE_S_BIGOTRY].otyp = find_heeled_hugging_boots();
 	artilist[ART_ADORNING_BUNDLE].otyp = find_cosmetic_helmet();
 	artilist[ART_GO_ON_A_SURVEY_RECREATION].otyp = find_warning_coat();
 	artilist[ART_GIVE_US_TODAY_OUR_DAILY_GA].otyp = find_bamboo_cloak();
@@ -3903,6 +3906,18 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    willreturntrue = 1;
        }
 
+       if (otmp->oartifact == ART_FUHITSUYONA_HAMETSU_NO_GAR && dieroll < 6) {
+	    if (youattack)
+		You("plunge the sword deeply into %s!",
+			mon_nam(mdef));
+	    else
+		pline("%s plunges the sword deeply into %s!",
+			Monnam(magr), hittee);
+		if (youattack && (PlayerHearsSoundEffects)) pline(issoviet ? "Tak chto vy dumayete, vy mozhete bit' igru tol'ko potomu, chto vy nashli artefakt. Bednyy zabluzhdayutsya dusha." : "Doaaaaaai!");
+	    *dmgptr += rnd(4) * 5;
+	    willreturntrue = 1;
+       }
+
        if (otmp->oartifact == ART_INRAM && !rn2(5)) {
 	    if (youattack)
 		You("ram the heel into %s!", mon_nam(mdef));
@@ -5272,6 +5287,13 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_WEAVING_WARD) {
+
+			incr_itimeout(&Invulnerable, rn1(3,3));
+			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+			break;
+		}
+
 		if (obj->oartifact == ART_FANNY_S_ANNOYANCE) {
 
 			randommartialstyle();
@@ -5279,9 +5301,17 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_IRIS_S_THUNDER) {
+
+			getdir(NULL);
+			buzz(15,10,u.ux,u.uy,u.dx,u.dy); /* 15 = lightning */
+
+			break;
+		}
+
 		if (obj->oartifact == ART_TURN_INTO_LEATHER) {
 
-			if (!find_leather_gloves()) {
+			if (find_leather_gloves() == -1) {
 				pline("Oops, something went wrong! Sorry!");
 				break;
 			}

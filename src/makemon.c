@@ -8012,6 +8012,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_GIRL_OUTSIDE_GANG]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 		if (ptr == &mons[PM_YOUR_SISTER]) (void) mongets(mtmp, SWEET_MOCASSINS);
 		if (ptr == &mons[PM_ARMED_MOON_ELF]) (void) mongets(mtmp, MOON_AXE);
+		if (ptr == &mons[PM_FUTURE_NUN]) (void) mongets(mtmp, POT_GREASE);
 		if (ptr == &mons[PM_ARYTOS_CAR]) (void) mongets(mtmp, PICK_AXE);
 		if (ptr == &mons[PM_GRUDGING_DARK_RONIN]) (void) mongets(mtmp, OSBANE_KATANA);
 		if (ptr == &mons[PM_TANKWIELDER]) (void) mongets(mtmp, BIDENHANDER);
@@ -12057,6 +12058,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SNAKE_INQUISITOR]) (void) mongets(mtmp, TRIDENT);
 		if (mtmp->data == &mons[PM_BRITTA]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
+		if (ptr == &mons[PM_BIGHEADED_TEACHER_OFFICE_PRACTICANT]) {
+			if ((find_heeled_hugging_boots()) != -1) (void)mongets(mtmp, find_heeled_hugging_boots());
+		}
+
 		if (mtmp->data == &mons[PM_NOBLE_CHILD]) {
 			int gemamount = rnd(3);
 			while (gemamount) {
@@ -13388,6 +13393,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_POLYMORPHINATOR]) (void) mongets(mtmp, WAN_POLYMORPH);
 		if (mtmp->data == &mons[PM_RARE_ARMOR_WEARER]) (void) mongets(mtmp, OLD_MAIL);
 		if (mtmp->data == &mons[PM_POWERED_PACI_FIST]) (void) mongets(mtmp, POWERFIST);
+		if (mtmp->data == &mons[PM_EXTRA_GLIBBERY_GLOMPER]) (void) mongets(mtmp, POT_GREASE);
 		if (ptr == &mons[PM_MILITARY_PUTIT]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, PISTOL_BULLET, 15);
@@ -14000,6 +14006,9 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BLACKLIGHT_MONSTER]) (void) mongets(mtmp, BLACK_LIGHTSABER);
 		if (mtmp->data == &mons[PM_GRAVEWALL_FEMMY]) (void) mongets(mtmp, SCR_GRAVE);
 		if (mtmp->data == &mons[PM_SHOE_SHOPPER]) (void) mongets(mtmp, SEXY_MARY_JANE);
+		if (mtmp->data == &mons[PM_SLIP_MONSTER]) (void) mongets(mtmp, POT_GREASE);
+		if (mtmp->data == &mons[PM_NASTY_SNARK]) (void) mongets(mtmp, POT_GREASE);
+		if (mtmp->data == &mons[PM_LORE_BOOJUM]) (void) mongets(mtmp, POT_GREASE);
 		if(ptr == &mons[PM_ASIATIC_FEMMY]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
 			(void) mongets(mtmp, LEATHER_PEEP_TOES);
@@ -19177,6 +19186,10 @@ loveheelover:
 		if (ptr == &mons[PM_PUMPS_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_TAEKWONDO_FEMMY]) (void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
 		if (ptr == &mons[PM_SCARAB_GUARDIAN]) (void) mongets(mtmp, SHIELD);
+
+		if (ptr == &mons[PM_MISUSED_BEAUTY_IN_BUFFALO_BOOTS]) {
+			if ((find_white_buffalo_boots()) != -1) (void)mongets(mtmp, find_white_buffalo_boots());
+		}
 
 		if (mtmp->data == &mons[PM_NESTING_SPIDER]) { 
 			struct obj *otmpX = mksobj(EGG,TRUE,FALSE, FALSE);

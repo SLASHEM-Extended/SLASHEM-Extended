@@ -5420,6 +5420,8 @@ max_carr_cap()
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) maxcarrcap += 1000;
+	if (uarm && uarm->oartifact == ART_NATAS_IS_BACK) maxcarrcap += 2000;
+	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) maxcarrcap += 2000;
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		maxcarrcap += 1000;
 		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;
@@ -5478,6 +5480,8 @@ weight_cap()
 	if (have_daisybag()) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COLLECTING_EXPANSION) carrcap += 2000;
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
+	if (uarm && uarm->oartifact == ART_NATAS_IS_BACK) carrcap += 2000;
+	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;

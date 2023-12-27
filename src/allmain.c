@@ -3665,6 +3665,12 @@ moveloop()
 			}
 		}
 
+		if (uarm && uarm->oartifact == ART_ARCANE_STITCHING) {
+			if (uarm->spe < 0) uarm->spe = 0;
+			if (uarm->oeroded) uarm->oeroded = 0;
+			if (uarm->oeroded2) uarm->oeroded2 = 0;
+		}
+
 		if (FaintActive && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");

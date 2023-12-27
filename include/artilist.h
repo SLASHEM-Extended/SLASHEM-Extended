@@ -17950,6 +17950,66 @@ A("Woman Up CJ",				CANE, /* feminist aggravation 1 in 10000 turns, autocurses *
 	(SPFX_RESTR|SPFX_EVIL|SPFX_DFLAG2|SPFX_WARN), 0, (M2_FEMALE),
 	PHYS(0, 18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
+A("Natas Is Back",				SATANIC_ARMOR, /* satan effectmagic find, very fast speed, +2000 carry cap and max carry cap, disables disint res */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Issegada-ken",				ISAMUSEI, /* +3 DEX */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fuhitsuyona Hametsu No Gara",				KACHISEI, /* does extra damage like doomblade */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Atlas Weight Crunch",				AMULET_OF_PHYSICAL_BOOST, /* +4 STR, +1000 carry cap, +2000 max carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Amulet of Ingwe",				AMULET_OF_MENTAL_BOOST, /* free action */
+	(SPFX_RESTR|SPFX_SEARCH|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Iris's Thunder",				SHOCK_ISOLATED_HEELS, /* material becomes SILVER when equipped, +3 CHA, can be invoked for strength 10 lightning bolt */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Fleec-lie",				FLEECLE_SHOES, /* cold immunity */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Heike's Bigotry",				LOW_BOOTS, /* initialized to always be high-heeled hugging boots, acid immunity, double discount action, resist fear */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	ACID(0, 12), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
+
+A("Everlasting Heels",				LOW_BOOTS, /* initialized to always be diamond stilettos, indestructible if you're not in a 'game over' state */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Upperweaver's Thread",				ROBE, /* randart2 robe, sight bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Threads of Protection",				UPPERWEAVER_S_ROBE,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Weaving Ward",				UPPERWEAVER_S_ROBE, /* invoke for rn1(3,3) turns of invulnerability */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Arcane Stitching",				UPPERWEAVER_S_ROBE, /* removes negative enchantment or erosion every turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Threadweaver's Blessing",				UPPERWEAVER_S_ROBE, /* double spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Cloak of Shadows",				UPPERWEAVER_S_ROBE, /* invis */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

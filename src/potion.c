@@ -1976,7 +1976,7 @@ playerextrinsicfreeaction()
 	if ((uarm && uarm->oartifact == ART_OKAY__YOU_WIN_ && uwep && objects[(uwep)->otyp].oc_material == MT_COPPER) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FREE_FOR_ENOUGH) || (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) || (uarmf && uarmf->oartifact == ART_WAITING_TIMEOUT) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || tech_inuse(T_POWERFUL_AURA) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || (uwep && uwep->oartifact == ART_BLU_TOE) ) return TRUE;
 	if ((uarmg && uarmg->oartifact == ART_A_LITTLE_SUGAR) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarmu && uarmu->oartifact == ART_THEY_ALL_FEEL_FLEECY) || (uarmh && uarmh->oartifact == ART_IN_BALANCE) || (uwep && uwep->oartifact == ART_YES_OCCIFER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GOOSCH_HIDARI) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarm && uarm->oartifact == ART_STEEL_SCALES_OF_KURTULMAK) || (uarmg && uarmg->oartifact == ART_RED_CORDS_OF_ILMATER) || (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) ) return TRUE;
-	if ( (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) ) return TRUE;
+	if ( (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uamul && uamul->oartifact == ART_AMULET_OF_INGWE) ) return TRUE;
 
 	return FALSE;
 }
@@ -2084,7 +2084,7 @@ playerextrinsicspeed()
 	if ((Role_if(PM_TRANSVESTITE) && PlayerInHighHeels) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_MAREYOUNGWOMAN_ACTION && (is_pool(u.ux, u.uy) || (levl[u.ux][u.uy].typ == FOUNTAIN)) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) ) return TRUE;
 
 	return FALSE;
 }
@@ -16673,7 +16673,7 @@ dodip()
 			if (obj->greased >= 3) obj->greased = 3;
 			else obj->greased++;
 
-			pline("%s %s with a translucent gleam.", Your_buf, aobjnam(obj, "shine"));
+			pline("Your %s with a translucent gleam.", aobjnam(obj, "shine"));
 
 		} else {
 			pline("Unfortunately, the stack was too big, so nothing happened.");
@@ -16979,7 +16979,7 @@ poof:
 			if (obj->greased >= 3) obj->greased = 3;
 			else obj->greased++;
 
-			pline("%s %s with a translucent gleam.", Your_buf, aobjnam(obj, "shine"));
+			pline("Your %s with a translucent gleam.", aobjnam(obj, "shine"));
 
 		} else {
 			pline("Unfortunately, the stack was too big, so nothing happened.");

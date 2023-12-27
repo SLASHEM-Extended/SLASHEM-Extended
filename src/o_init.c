@@ -2788,6 +2788,19 @@ find_hugging_boots()
 }
 
 int
+find_heeled_hugging_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HEELED_HUGGING_BOOTS)) return i;
+    }
+
+    impossible("high-heeled hugging boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_plateau_boots()
 {
     register int i;
@@ -4307,7 +4320,21 @@ find_copper_stilettos()
 	if (itemnumwithappearance(i, APP_COPPER_STILETTOS)) return i;
     }
 
-    impossible("copperstilettos not found?");
+    impossible("copper stilettos not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_diamond_stilettos()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DIAMOND_STILETTOS)) return i;
+    }
+
+    impossible("diamond stilettos not found?");
     return -1;	/* not 0, or caller would try again each move */
 
 }
