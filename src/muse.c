@@ -5015,6 +5015,7 @@ struct monst *mtmp;
 #define MUSE_SCR_VISIBLE_ITEM 163
 #define MUSE_POT_NITROGLYCERIN 164
 #define MUSE_DEATH_HORN 165
+#define MUSE_POT_GREASE 166
 
 /* Select an offensive item/action for a monster.  Returns TRUE iff one is
  * found.
@@ -5291,6 +5292,11 @@ struct monst *mtmp;
 		if(obj->otyp == POT_STUNNING) {
 			m.offensive = obj;
 			m.has_offense = MUSE_POT_STUNNING;
+		}
+		nomore(MUSE_POT_GREASE);
+		if(obj->otyp == POT_GREASE) {
+			m.offensive = obj;
+			m.has_offense = MUSE_POT_GREASE;
 		}
 		nomore(MUSE_POT_ICE);
 		if(obj->otyp == POT_ICE) {
@@ -10307,6 +10313,7 @@ xxx_noobj:
 	case MUSE_POT_SLIME:
 	case MUSE_POT_CANCELLATION:
 	case MUSE_POT_STUNNING:
+	case MUSE_POT_GREASE:
 		/* Note: this setting of dknown doesn't suffice.  A monster
 		 * which is out of sight might throw and it hits something _in_
 		 * sight, a problem not existing with wands because wand rays
@@ -10386,7 +10393,7 @@ struct monst *mtmp;
 			|| pm->mlet == S_GHOST
 			|| pm->mlet == S_KOP
 		) && issoviet) return 0;
-	switch (rn2(269)) {
+	switch (rn2(270)) {
 
 		case 0: return WAN_DEATH;
 		case 1: return WAN_SLEEP;
@@ -10657,6 +10664,7 @@ struct monst *mtmp;
 		case 266: return WAN_STAT_REDUCTION;
 		case 267: return SCR_VISIBLE_ITEM;
 		case 268: return DEATH_HORN;
+		case 269: return POT_GREASE;
 
 	}
 	/*NOTREACHED*/
@@ -10669,7 +10677,7 @@ struct monst *mtmp;
 {
 	struct permonst *pm = mtmp->data;
 
-	switch (rn2(88)) {
+	switch (rn2(91)) {
 
 		case 0: return POT_PARALYSIS;
 		case 1: return POT_BLINDNESS;
@@ -10759,6 +10767,9 @@ struct monst *mtmp;
 		case 85: return POT_SANITY;
 		case 86: return POT_SANITY;
 		case 87: return POT_SANITY;
+		case 88: return POT_GREASE;
+		case 89: return POT_GREASE;
+		case 90: return POT_GREASE;
 
 	}
 	/*NOTREACHED*/
@@ -12155,6 +12166,7 @@ struct obj *obj;
 		    typ == POT_RADIUM ||
 		    typ == POT_HALLUCINATION ||
 		    typ == POT_STUNNING ||
+		    typ == POT_GREASE ||
 		    typ == POT_NUMBNESS ||
 		    typ == POT_SLIME ||
 		    typ == POT_URINE ||

@@ -3121,6 +3121,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
 		if (uwep && uwep->oartifact == ART_RUINED_ANTJEN) tmp += 3;
 		if (uwep && uwep->oartifact == ART_SOULREAPER_SCYTHE) tmp += 8;
+		if (uamul && uamul->otyp == AMULET_OF_PHYSICAL_BOOST) tmp += 3;
 		if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
 		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_BERSERKER) tmp += 5;
 		if (uwep && uwep->oartifact == ART_YORSHKA_S_SPEAR) tmp += 6;
@@ -3241,6 +3242,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LYDIA_S_SEXYROOM) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
+		if (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_NAQ_QEH) tmp += 3;
 		if (uarm && uarm->oartifact == ART_TOWNIE_DUMP) tmp += 5;
 		if (uwep && uwep->oartifact == ART_THROW_ALL_THE_CASH_AWAY) tmp += 5;
@@ -3495,6 +3497,7 @@ int x;
 		if (x == A_WIS && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_ONCHANGE_STAFF) tmp += 3;
 		if (uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY && uwep->spe > 0) tmp += uwep->spe;
+		if (uamul && uamul->otyp == AMULET_OF_MENTAL_BOOST) tmp += 3;
 
 		if (x == A_WIS && uarmf && uarmf->otyp == HEEL_WISE_SHOES && !(PlayerCannotUseSkills)) {
 
@@ -3583,6 +3586,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
 		if (u.boosttimer) tmp += 10;
+		if (uamul && uamul->otyp == AMULET_OF_PHYSICAL_BOOST) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GREYSHADE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) tmp += 10;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SABER_TONFA) tmp += 5;

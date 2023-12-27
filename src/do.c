@@ -1018,6 +1018,12 @@ register struct obj *obj;
 	case AMULET_OF_AUTOMATIC_SHUTDOWN:
 		pline_The("toilet flushes, but then the water flow stops suddenly!");
 		break;
+	case AMULET_OF_PHYSICAL_BOOST:
+		pline_The("toilet seems very hard and rigid!");
+		break;
+	case AMULET_OF_MENTAL_BOOST:
+		pline_The("toilet seems highly intelligent!");
+		break;
 	case AMULET_OF_MENTAL_STABILITY:
 		pline_The("toilet seems to be operating steadily.");
 		break;

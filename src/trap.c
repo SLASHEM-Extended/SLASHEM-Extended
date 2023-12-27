@@ -1828,6 +1828,7 @@ struct monst *victim;
 
 	if (victim == &youmonst && steelbreak()) return 0;
 	if (victim == &youmonst && FireImmunity) return 0;
+	if (victim == &youmonst && uarm && uarm->otyp == SATANIC_ARMOR) return 0;
 	if (victim == &youmonst && uarm && uarm->oartifact == ART_DARK_L) return 0;
 
 	if ((victim == &youmonst) && !rn2(2) ) make_burned(HBurned + rnd(20 + (monster_difficulty() * 5) ),TRUE);
@@ -1861,7 +1862,7 @@ struct monst *victim;
 	    return TRUE;
 	case 2:
 	    item = (victim == &youmonst) ? uarms : which_armor(victim, W_ARMS);
-	    if (!burn_dmg(item, "wooden shield")) continue;
+	    if (!burn_dmg(item, "shield")) continue;
 	    break;
 	case 3:
 	    item = (victim == &youmonst) ? uarmg : which_armor(victim, W_ARMG);
@@ -9035,7 +9036,7 @@ newbossPENT:
 		{
 			boolean larissashoes = (uarmf ? TRUE : FALSE);
 
-			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 			    if (!already_seen && rn2(3)) break;
 			    seetrap(trap);
 			    pline("%s %s on the ground below you.",

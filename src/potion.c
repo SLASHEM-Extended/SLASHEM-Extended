@@ -206,6 +206,7 @@ struct obj *otmp;
 		case POT_HALLUCINATION:
 		case POT_ICE:
 		case POT_STUNNING:
+		case POT_GREASE:
 		case POT_NUMBNESS:
 		case POT_URINE:
 		case POT_CANCELLATION:
@@ -438,6 +439,7 @@ int number;
 		case POT_HALLUCINATION:
 		case POT_ICE:
 		case POT_STUNNING:
+		case POT_GREASE:
 		case POT_NUMBNESS:
 		case POT_URINE:
 		case POT_CANCELLATION:
@@ -1303,7 +1305,7 @@ playerwearshighheels()
 
 	if (uwep && uwep->oartifact == ART_GAYGUN) return TRUE;
 
-	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == IRINA_WEDGE_SANDALS) || (uarmf->otyp == BRIDGHITTE_SKI_HEELS) || (uarmf->otyp == NATALIA_WEDGE_SANDALS) || (uarmf->otyp == GUDRUN_WEDGE_SANDALS) || (uarmf->otyp == ELLA_WEDGE_SANDALS) || (uarmf->otyp == ANNEMARIE_PLATFORM_SANDALS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == SABRINA_PLATFORM_BOOTS) || (uarmf->otyp == LARISSA_PLATFORM_BOOTS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == MANUELA_COMBAT_BOOTS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf && RngeIrregularity) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_UPWARD_HEELS) || (uarmf->oartifact == ART_PECTORAL_HEEL) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) || (uarmf->oartifact == ART_DAT_NIGGA_S_GOT_DA_BLING) || (uarmf->oartifact == ART_HEELMARJI) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == HEEL_WISE_SHOES) || (uarmf->otyp == RITA_STILETTOS) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == PATRICIA_STEEL_CAPPED_SANDALS) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == KATRIN_COMBAT_BOOTS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == RUEA_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JENNIFER_COMBAT_BOOTS) || (uarmf->otyp == JULIA_COMBAT_BOOTS) || (uarmf->otyp == NICOLE_COMBAT_BOOTS) || (uarmf->otyp == LISA_COMBAT_BOOTS) || (uarmf->otyp == SUSANNE_COMBAT_BOOTS) || (uarmf->otyp == NORA_COMBAT_BOOTS) || (uarmf->otyp == ANTJE_COMBAT_BOOTS) || (uarmf->otyp == KERSTIN_COMBAT_BOOTS) || (uarmf->otyp == LARA_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == SING_PLATFORM_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == MELISSA_WEDGE_BOOTS) || (uarmf->otyp == ANITA_LADY_PUMPS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == VERENA_STILETTO_SANDALS) || (uarmf->otyp == NADINE_STILETTO_SANDALS) || (uarmf->otyp == KSENIA_PLATFORM_SANDALS) || (uarmf->otyp == LYDIA_LADY_PUMPS) || (uarmf->otyp == JANINA_LADY_PUMPS) || (uarmf->otyp == CONNY_COMBAT_BOOTS) || (uarmf->otyp == KATIA_COMBAT_BOOTS) || (uarmf->otyp == MARIYA_COMBAT_BOOTS) || (uarmf->otyp == MAGDALENA_COMBAT_BOOTS) || (uarmf->otyp == MARLEEN_COMBAT_BOOTS) || (uarmf->otyp == KLARA_PLATFORM_SANDALS) || (uarmf->otyp == UTE_PLATFORM_SANDALS) || (uarmf->otyp == JASIEEN_WEDGE_SANDALS) || (uarmf->otyp == NAOMI_STILETTOS) || (uarmf->otyp == ELISE_HIPPIE_HEELS) || (uarmf->otyp == RONJA_COMBAT_BOOTS) || (uarmf->otyp == ARIANE_COMBAT_BOOTS) || (uarmf->otyp == JOHANNA_COMBAT_BOOTS) || (uarmf->otyp == INGE_COMBAT_BOOTS)) return TRUE;
+	if ((uarmf->otyp == WEDGE_SANDALS) || (uarmf->otyp == EVELINE_WEDGE_SANDALS) || (uarmf->otyp == IRINA_WEDGE_SANDALS) || (uarmf->otyp == BRIDGHITTE_SKI_HEELS) || (uarmf->otyp == NATALIA_WEDGE_SANDALS) || (uarmf->otyp == GUDRUN_WEDGE_SANDALS) || (uarmf->otyp == ELLA_WEDGE_SANDALS) || (uarmf->otyp == ANNEMARIE_PLATFORM_SANDALS) || (uarmf->otyp == BUM_BUM_BOOTS) || (uarmf->otyp == MADELEINE_PLATEAU_BOOTS) || (uarmf->otyp == KATHARINA_PLATFORM_BOOTS) || (uarmf->otyp == SABRINA_PLATFORM_BOOTS) || (uarmf->otyp == LARISSA_PLATFORM_BOOTS) || (uarmf->otyp == FEMININE_PUMPS) || (uarmf->otyp == LEATHER_PEEP_TOES) || (uarmf->otyp == WENDY_LEATHER_PUMPS) || (uarmf->otyp == MANUELA_COMBAT_BOOTS) || (uarmf->otyp == NELLY_LADY_PUMPS) || (uarmf->otyp == SANDRA_COMBAT_BOOTS) || (uarmf->otyp == CLAUDIA_WOODEN_SANDALS) || (uarmf && RngeIrregularity) || (uarmf->otyp == HIPPIE_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_UPWARD_HEELS) || (uarmf->oartifact == ART_PECTORAL_HEEL) || (uarmf->oartifact == ART_ABSURD_HEELED_TILESET) || (uarmf->oartifact == ART_FANNY_S_BROOK_THAT_YOU_MIS) || (uarmf->oartifact == ART_DAT_NIGGA_S_GOT_DA_BLING) || (uarmf->oartifact == ART_HEELMARJI) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->oartifact == ART_KATIE_MELUA_S_FEMALE_WEAPO) || (uarmf->oartifact == ART_ARVOGENIA_S_HIGH_HEELSES) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_RITA_S_TENDER_STILETTOS) || (uarmf->oartifact == ART_ELENETTES) || (uarmf->oartifact == ART_ANASTASIA_S_UNEXPECTED_ABI) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (Role_if(PM_BINDER) && uarmf->oartifact == ART_BINDER_CRASH) || (uarmf->otyp == PET_STOMPING_PLATFORM_BOOTS) || (uarmf->otyp == SENTIENT_HIGH_HEELED_SHOES) || (uarmf->otyp == ATSUZOKO_BOOTS) || (uarmf->otyp == COMBAT_STILETTOS) || (uarmf->otyp == HEEL_WISE_SHOES) || (uarmf->otyp == RITA_STILETTOS) || (uarmf->otyp == FEMMY_STILETTO_BOOTS) || (uarmf->otyp == JUEN_PEEP_TOES) || (uarmf->otyp == PATRICIA_STEEL_CAPPED_SANDALS) || (uarmf->otyp == JULIETTA_PEEP_TOES) || (uarmf->otyp == ITALIAN_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == SHOCK_ISOLATED_HEELS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == KATRIN_COMBAT_BOOTS) || (uarmf->otyp == STILETTO_SANDALS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == HIGH_STILETTOS) || (uarmf->otyp == HIGH_HEELED_SKIERS) || (uarmf->otyp == UNFAIR_STILETTOS) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SKY_HIGH_HEELS) || (uarmf->otyp == RED_SPELL_HEELS) || (uarmf->otyp == DESTRUCTIVE_HEELS) || (uarmf->otyp == LONG_POINTY_HEELS) || (uarmf->otyp == VIOLET_BEAUTY_HEELS) || (uarmf->otyp == AUTOSCOOTER_HEELS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == KILLER_HEELS) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == RUEA_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JENNIFER_COMBAT_BOOTS) || (uarmf->otyp == JULIA_COMBAT_BOOTS) || (uarmf->otyp == NICOLE_COMBAT_BOOTS) || (uarmf->otyp == LISA_COMBAT_BOOTS) || (uarmf->otyp == SUSANNE_COMBAT_BOOTS) || (uarmf->otyp == NORA_COMBAT_BOOTS) || (uarmf->otyp == ANTJE_COMBAT_BOOTS) || (uarmf->otyp == KERSTIN_COMBAT_BOOTS) || (uarmf->otyp == LARA_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == SING_PLATFORM_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == MELISSA_WEDGE_BOOTS) || (uarmf->otyp == ANITA_LADY_PUMPS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == VERENA_STILETTO_SANDALS) || (uarmf->otyp == NADINE_STILETTO_SANDALS) || (uarmf->otyp == KSENIA_PLATFORM_SANDALS) || (uarmf->otyp == LYDIA_LADY_PUMPS) || (uarmf->otyp == JANINA_LADY_PUMPS) || (uarmf->otyp == CONNY_COMBAT_BOOTS) || (uarmf->otyp == KATIA_COMBAT_BOOTS) || (uarmf->otyp == MARIYA_COMBAT_BOOTS) || (uarmf->otyp == MAGDALENA_COMBAT_BOOTS) || (uarmf->otyp == MARLEEN_COMBAT_BOOTS) || (uarmf->otyp == KLARA_PLATFORM_SANDALS) || (uarmf->otyp == UTE_PLATFORM_SANDALS) || (uarmf->otyp == JASIEEN_WEDGE_SANDALS) || (uarmf->otyp == NAOMI_STILETTOS) || (uarmf->otyp == ELISE_HIPPIE_HEELS) || (uarmf->otyp == RONJA_COMBAT_BOOTS) || (uarmf->otyp == ARIANE_COMBAT_BOOTS) || (uarmf->otyp == JOHANNA_COMBAT_BOOTS) || (uarmf->otyp == INGE_COMBAT_BOOTS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1321,6 +1323,7 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_ANKLE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SHADOWY_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_DYKE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BEAUTIFUL_HEELS)) return TRUE;
@@ -1344,6 +1347,7 @@ playerwearshighheels()
 		if (itemhasappearance(uarmf, APP_BAYONET_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PARAGRAPH_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_COPPER_STILETTOS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_DIAMOND_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PISTOL_BOOTS)) return TRUE;
@@ -1461,7 +1465,7 @@ struct obj *otmp;
 
 	if (!otmp) return FALSE;
 
-	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == EVELINE_WEDGE_SANDALS || (otmp)->otyp == IRINA_WEDGE_SANDALS || (otmp)->otyp == BRIDGHITTE_SKI_HEELS || (otmp)->otyp == NATALIA_WEDGE_SANDALS || (otmp)->otyp == GUDRUN_WEDGE_SANDALS || (otmp)->otyp == ELLA_WEDGE_SANDALS || (otmp)->otyp == ANNEMARIE_PLATFORM_SANDALS || (otmp)->otyp == MADELEINE_PLATEAU_BOOTS || (otmp)->otyp == KATHARINA_PLATFORM_BOOTS || (otmp)->otyp == SABRINA_PLATFORM_BOOTS || (otmp)->otyp == LARISSA_PLATFORM_BOOTS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == WENDY_LEATHER_PUMPS || (otmp)->otyp == MANUELA_COMBAT_BOOTS || (otmp)->otyp == NELLY_LADY_PUMPS || (otmp)->otyp == CLAUDIA_WOODEN_SANDALS || (otmp)->otyp == SANDRA_COMBAT_BOOTS || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == JUEN_PEEP_TOES || (otmp)->otyp == HEEL_WISE_SHOES || (otmp)->otyp == JULIETTA_PEEP_TOES || (otmp)->otyp == FEMMY_STILETTO_BOOTS || (otmp)->otyp == PATRICIA_STEEL_CAPPED_SANDALS || (otmp)->otyp == LADY_BOOTS || (otmp)->otyp == RITA_STILETTOS || (otmp)->otyp == ELENA_COMBAT_BOOTS || (otmp)->otyp == NADJA_BUCKLED_LADY_SHOES || (otmp)->otyp == THAI_COMBAT_BOOTS || (otmp)->otyp == KATRIN_COMBAT_BOOTS || (otmp)->otyp == MELTEM_COMBAT_BOOTS || (otmp)->otyp == NATALJE_BLOCK_HEEL_SANDALS || (otmp)->otyp == ITALIAN_HEELS || (otmp)->otyp == STILETTO_SANDALS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS || (otmp)->otyp == KRISTIN_COMBAT_BOOTS || (otmp)->otyp == RUEA_COMBAT_BOOTS || (otmp)->otyp == DORA_COMBAT_BOOTS || (otmp)->otyp == JENNIFER_COMBAT_BOOTS || (otmp)->otyp == JULIA_COMBAT_BOOTS || (otmp)->otyp == NICOLE_COMBAT_BOOTS || (otmp)->otyp == LISA_COMBAT_BOOTS || (otmp)->otyp == SUSANNE_COMBAT_BOOTS || (otmp)->otyp == NORA_COMBAT_BOOTS || (otmp)->otyp == ANTJE_COMBAT_BOOTS || (otmp)->otyp == KERSTIN_COMBAT_BOOTS || (otmp)->otyp == LARA_COMBAT_BOOTS || (otmp)->otyp == JETTE_COMBAT_BOOTS || (otmp)->otyp == SING_PLATFORM_BOOTS || (otmp)->otyp == VICTORIA_COMBAT_BOOTS || (otmp)->otyp == MELISSA_WEDGE_BOOTS || (otmp)->otyp == ANITA_LADY_PUMPS || (otmp)->otyp == HENRIETTA_COMBAT_BOOTS || (otmp)->otyp == VERENA_STILETTO_SANDALS || (otmp)->otyp == NADINE_STILETTO_SANDALS || (otmp)->otyp == KSENIA_PLATFORM_SANDALS || (otmp)->otyp == LYDIA_LADY_PUMPS || (otmp)->otyp == JANINA_LADY_PUMPS || (otmp)->otyp == CONNY_COMBAT_BOOTS || (otmp)->otyp == KATIA_COMBAT_BOOTS || (otmp)->otyp == MARIYA_COMBAT_BOOTS || (otmp)->otyp == ELISE_HIPPIE_HEELS || (otmp)->otyp == RONJA_COMBAT_BOOTS || (otmp)->otyp == ARIANE_COMBAT_BOOTS || (otmp)->otyp == MAGDALENA_COMBAT_BOOTS || (otmp)->otyp == MARLEEN_COMBAT_BOOTS || (otmp)->otyp == KLARA_PLATFORM_SANDALS || (otmp)->otyp == UTE_PLATFORM_SANDALS || (otmp)->otyp == JASIEEN_WEDGE_SANDALS || (otmp)->otyp == NAOMI_STILETTOS || (otmp)->otyp == JOHANNA_COMBAT_BOOTS || (otmp)->otyp == INGE_COMBAT_BOOTS) return TRUE;
+	if ((otmp)->otyp == WEDGE_SANDALS || (otmp)->otyp == EVELINE_WEDGE_SANDALS || (otmp)->otyp == IRINA_WEDGE_SANDALS || (otmp)->otyp == BRIDGHITTE_SKI_HEELS || (otmp)->otyp == NATALIA_WEDGE_SANDALS || (otmp)->otyp == GUDRUN_WEDGE_SANDALS || (otmp)->otyp == ELLA_WEDGE_SANDALS || (otmp)->otyp == ANNEMARIE_PLATFORM_SANDALS || (otmp)->otyp == MADELEINE_PLATEAU_BOOTS || (otmp)->otyp == KATHARINA_PLATFORM_BOOTS || (otmp)->otyp == SABRINA_PLATFORM_BOOTS || (otmp)->otyp == LARISSA_PLATFORM_BOOTS || (otmp)->otyp == BUM_BUM_BOOTS || (otmp)->otyp == FEMININE_PUMPS || (otmp)->otyp == LEATHER_PEEP_TOES || (otmp)->otyp == WENDY_LEATHER_PUMPS || (otmp)->otyp == MANUELA_COMBAT_BOOTS || (otmp)->otyp == NELLY_LADY_PUMPS || (otmp)->otyp == CLAUDIA_WOODEN_SANDALS || (otmp)->otyp == SANDRA_COMBAT_BOOTS || (otmp)->otyp == HIPPIE_HEELS || (otmp)->otyp == SELF_WILLED_HEELS || (otmp)->otyp == PET_STOMPING_PLATFORM_BOOTS || (otmp)->otyp == SENTIENT_HIGH_HEELED_SHOES || (otmp)->otyp == ATSUZOKO_BOOTS || (otmp)->otyp == COMBAT_STILETTOS || (otmp)->otyp == JUEN_PEEP_TOES || (otmp)->otyp == HEEL_WISE_SHOES || (otmp)->otyp == JULIETTA_PEEP_TOES || (otmp)->otyp == FEMMY_STILETTO_BOOTS || (otmp)->otyp == PATRICIA_STEEL_CAPPED_SANDALS || (otmp)->otyp == LADY_BOOTS || (otmp)->otyp == RITA_STILETTOS || (otmp)->otyp == ELENA_COMBAT_BOOTS || (otmp)->otyp == NADJA_BUCKLED_LADY_SHOES || (otmp)->otyp == THAI_COMBAT_BOOTS || (otmp)->otyp == SHOCK_ISOLATED_HEELS || (otmp)->otyp == KATRIN_COMBAT_BOOTS || (otmp)->otyp == MELTEM_COMBAT_BOOTS || (otmp)->otyp == NATALJE_BLOCK_HEEL_SANDALS || (otmp)->otyp == ITALIAN_HEELS || (otmp)->otyp == STILETTO_SANDALS || (otmp)->otyp == HIGH_STILETTOS || (otmp)->otyp == HIGH_HEELED_SKIERS || (otmp)->otyp == UNFAIR_STILETTOS || (otmp)->otyp == COVETED_BOOTS || (otmp)->otyp == SKY_HIGH_HEELS || (otmp)->otyp == RED_SPELL_HEELS || (otmp)->otyp == VIOLET_BEAUTY_HEELS || (otmp)->otyp == AUTOSCOOTER_HEELS || (otmp)->otyp == DESTRUCTIVE_HEELS || (otmp)->otyp == SINFUL_HEELS || (otmp)->otyp == LONG_POINTY_HEELS || (otmp)->otyp == KILLER_HEELS || (otmp)->otyp == HIGH_SCORING_HEELS || (otmp)->otyp == KRISTIN_COMBAT_BOOTS || (otmp)->otyp == RUEA_COMBAT_BOOTS || (otmp)->otyp == DORA_COMBAT_BOOTS || (otmp)->otyp == JENNIFER_COMBAT_BOOTS || (otmp)->otyp == JULIA_COMBAT_BOOTS || (otmp)->otyp == NICOLE_COMBAT_BOOTS || (otmp)->otyp == LISA_COMBAT_BOOTS || (otmp)->otyp == SUSANNE_COMBAT_BOOTS || (otmp)->otyp == NORA_COMBAT_BOOTS || (otmp)->otyp == ANTJE_COMBAT_BOOTS || (otmp)->otyp == KERSTIN_COMBAT_BOOTS || (otmp)->otyp == LARA_COMBAT_BOOTS || (otmp)->otyp == JETTE_COMBAT_BOOTS || (otmp)->otyp == SING_PLATFORM_BOOTS || (otmp)->otyp == VICTORIA_COMBAT_BOOTS || (otmp)->otyp == MELISSA_WEDGE_BOOTS || (otmp)->otyp == ANITA_LADY_PUMPS || (otmp)->otyp == HENRIETTA_COMBAT_BOOTS || (otmp)->otyp == VERENA_STILETTO_SANDALS || (otmp)->otyp == NADINE_STILETTO_SANDALS || (otmp)->otyp == KSENIA_PLATFORM_SANDALS || (otmp)->otyp == LYDIA_LADY_PUMPS || (otmp)->otyp == JANINA_LADY_PUMPS || (otmp)->otyp == CONNY_COMBAT_BOOTS || (otmp)->otyp == KATIA_COMBAT_BOOTS || (otmp)->otyp == MARIYA_COMBAT_BOOTS || (otmp)->otyp == ELISE_HIPPIE_HEELS || (otmp)->otyp == RONJA_COMBAT_BOOTS || (otmp)->otyp == ARIANE_COMBAT_BOOTS || (otmp)->otyp == MAGDALENA_COMBAT_BOOTS || (otmp)->otyp == MARLEEN_COMBAT_BOOTS || (otmp)->otyp == KLARA_PLATFORM_SANDALS || (otmp)->otyp == UTE_PLATFORM_SANDALS || (otmp)->otyp == JASIEEN_WEDGE_SANDALS || (otmp)->otyp == NAOMI_STILETTOS || (otmp)->otyp == JOHANNA_COMBAT_BOOTS || (otmp)->otyp == INGE_COMBAT_BOOTS) return TRUE;
 
 	if (OBJ_DESCR(objects[otmp->otyp])) {
 		if (itemhasappearance(otmp, APP_IRREGULAR_BOOTS)) return TRUE;
@@ -1478,6 +1482,7 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_ANKLE_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SHADOWY_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(otmp, APP_HEELED_HUGGING_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_DYKE_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemhasappearance(otmp, APP_BEAUTIFUL_HEELS)) return TRUE;
@@ -1501,6 +1506,7 @@ struct obj *otmp;
 		if (itemhasappearance(otmp, APP_BAYONET_HEELS)) return TRUE;
 		if (itemhasappearance(otmp, APP_PARAGRAPH_SANDALS)) return TRUE;
 		if (itemhasappearance(otmp, APP_COPPER_STILETTOS)) return TRUE;
+		if (itemhasappearance(otmp, APP_DIAMOND_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(otmp, APP_PISTOL_BOOTS)) return TRUE;
@@ -1540,7 +1546,7 @@ boolean
 ishighheeledb(number)
 int number;
 {
-	if (number == WEDGE_SANDALS || number == EVELINE_WEDGE_SANDALS || number == IRINA_WEDGE_SANDALS || number == BRIDGHITTE_SKI_HEELS || number == NATALIA_WEDGE_SANDALS || number == GUDRUN_WEDGE_SANDALS || number == ELLA_WEDGE_SANDALS || number == ANNEMARIE_PLATFORM_SANDALS || number == MADELEINE_PLATEAU_BOOTS || number == KATHARINA_PLATFORM_BOOTS || number == SABRINA_PLATFORM_BOOTS || number == LARISSA_PLATFORM_BOOTS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == WENDY_LEATHER_PUMPS || number == NELLY_LADY_PUMPS || number == CLAUDIA_WOODEN_SANDALS || number == MANUELA_COMBAT_BOOTS || number == SANDRA_COMBAT_BOOTS || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == JUEN_PEEP_TOES || number == HEEL_WISE_SHOES || number == JULIETTA_PEEP_TOES || number == PATRICIA_STEEL_CAPPED_SANDALS || number == FEMMY_STILETTO_BOOTS || number == ITALIAN_HEELS || number == RITA_STILETTOS || number == LADY_BOOTS || number == ELENA_COMBAT_BOOTS || number == NADJA_BUCKLED_LADY_SHOES || number == THAI_COMBAT_BOOTS || number == MELTEM_COMBAT_BOOTS || number == KATRIN_COMBAT_BOOTS || number == NATALJE_BLOCK_HEEL_SANDALS || number == STILETTO_SANDALS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS || number == KRISTIN_COMBAT_BOOTS || number == RUEA_COMBAT_BOOTS || number == DORA_COMBAT_BOOTS || number == JULIA_COMBAT_BOOTS || number == NICOLE_COMBAT_BOOTS || number == NORA_COMBAT_BOOTS || number == LISA_COMBAT_BOOTS || number == SUSANNE_COMBAT_BOOTS || number == ANTJE_COMBAT_BOOTS || number == KERSTIN_COMBAT_BOOTS || number == LARA_COMBAT_BOOTS || number == JETTE_COMBAT_BOOTS || number == JENNIFER_COMBAT_BOOTS || number == SING_PLATFORM_BOOTS || number == VICTORIA_COMBAT_BOOTS || number == MELISSA_WEDGE_BOOTS || number == ANITA_LADY_PUMPS || number == HENRIETTA_COMBAT_BOOTS || number == VERENA_STILETTO_SANDALS || number == NADINE_STILETTO_SANDALS || number == KSENIA_PLATFORM_SANDALS || number == LYDIA_LADY_PUMPS || number == JANINA_LADY_PUMPS || number == CONNY_COMBAT_BOOTS || number == KATIA_COMBAT_BOOTS || number == MARIYA_COMBAT_BOOTS || number == ELISE_HIPPIE_HEELS || number == RONJA_COMBAT_BOOTS || number == ARIANE_COMBAT_BOOTS || number == MAGDALENA_COMBAT_BOOTS || number == MARLEEN_COMBAT_BOOTS || number == KLARA_PLATFORM_SANDALS || number == UTE_PLATFORM_SANDALS || number == JASIEEN_WEDGE_SANDALS || number == NAOMI_STILETTOS || number == JOHANNA_COMBAT_BOOTS || number == INGE_COMBAT_BOOTS) return TRUE;
+	if (number == WEDGE_SANDALS || number == EVELINE_WEDGE_SANDALS || number == IRINA_WEDGE_SANDALS || number == BRIDGHITTE_SKI_HEELS || number == NATALIA_WEDGE_SANDALS || number == GUDRUN_WEDGE_SANDALS || number == ELLA_WEDGE_SANDALS || number == ANNEMARIE_PLATFORM_SANDALS || number == MADELEINE_PLATEAU_BOOTS || number == KATHARINA_PLATFORM_BOOTS || number == SABRINA_PLATFORM_BOOTS || number == LARISSA_PLATFORM_BOOTS || number == BUM_BUM_BOOTS || number == FEMININE_PUMPS || number == LEATHER_PEEP_TOES || number == WENDY_LEATHER_PUMPS || number == NELLY_LADY_PUMPS || number == CLAUDIA_WOODEN_SANDALS || number == MANUELA_COMBAT_BOOTS || number == SANDRA_COMBAT_BOOTS || number == HIPPIE_HEELS || number == SELF_WILLED_HEELS || number == PET_STOMPING_PLATFORM_BOOTS || number == SENTIENT_HIGH_HEELED_SHOES || number == ATSUZOKO_BOOTS || number == COMBAT_STILETTOS || number == JUEN_PEEP_TOES || number == HEEL_WISE_SHOES || number == JULIETTA_PEEP_TOES || number == PATRICIA_STEEL_CAPPED_SANDALS || number == FEMMY_STILETTO_BOOTS || number == ITALIAN_HEELS || number == RITA_STILETTOS || number == LADY_BOOTS || number == ELENA_COMBAT_BOOTS || number == NADJA_BUCKLED_LADY_SHOES || number == THAI_COMBAT_BOOTS|| number == SHOCK_ISOLATED_HEELS || number == MELTEM_COMBAT_BOOTS || number == KATRIN_COMBAT_BOOTS || number == NATALJE_BLOCK_HEEL_SANDALS || number == STILETTO_SANDALS || number == HIGH_STILETTOS || number == HIGH_HEELED_SKIERS || number == UNFAIR_STILETTOS || number == COVETED_BOOTS || number == SKY_HIGH_HEELS || number == RED_SPELL_HEELS || number == VIOLET_BEAUTY_HEELS || number == AUTOSCOOTER_HEELS || number == DESTRUCTIVE_HEELS || number == SINFUL_HEELS || number == LONG_POINTY_HEELS || number == KILLER_HEELS || number == HIGH_SCORING_HEELS || number == KRISTIN_COMBAT_BOOTS || number == RUEA_COMBAT_BOOTS || number == DORA_COMBAT_BOOTS || number == JULIA_COMBAT_BOOTS || number == NICOLE_COMBAT_BOOTS || number == NORA_COMBAT_BOOTS || number == LISA_COMBAT_BOOTS || number == SUSANNE_COMBAT_BOOTS || number == ANTJE_COMBAT_BOOTS || number == KERSTIN_COMBAT_BOOTS || number == LARA_COMBAT_BOOTS || number == JETTE_COMBAT_BOOTS || number == JENNIFER_COMBAT_BOOTS || number == SING_PLATFORM_BOOTS || number == VICTORIA_COMBAT_BOOTS || number == MELISSA_WEDGE_BOOTS || number == ANITA_LADY_PUMPS || number == HENRIETTA_COMBAT_BOOTS || number == VERENA_STILETTO_SANDALS || number == NADINE_STILETTO_SANDALS || number == KSENIA_PLATFORM_SANDALS || number == LYDIA_LADY_PUMPS || number == JANINA_LADY_PUMPS || number == CONNY_COMBAT_BOOTS || number == KATIA_COMBAT_BOOTS || number == MARIYA_COMBAT_BOOTS || number == ELISE_HIPPIE_HEELS || number == RONJA_COMBAT_BOOTS || number == ARIANE_COMBAT_BOOTS || number == MAGDALENA_COMBAT_BOOTS || number == MARLEEN_COMBAT_BOOTS || number == KLARA_PLATFORM_SANDALS || number == UTE_PLATFORM_SANDALS || number == JASIEEN_WEDGE_SANDALS || number == NAOMI_STILETTOS || number == JOHANNA_COMBAT_BOOTS || number == INGE_COMBAT_BOOTS) return TRUE;
 
 	if (OBJ_DESCR(objects[number])) {
 
@@ -1558,6 +1564,7 @@ int number;
 		if (itemnumwithappearance(number, APP_ANKLE_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SHADOWY_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemnumwithappearance(number, APP_HEELED_HUGGING_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_DYKE_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemnumwithappearance(number, APP_BEAUTIFUL_HEELS)) return TRUE;
@@ -1581,6 +1588,7 @@ int number;
 		if (itemnumwithappearance(number, APP_BAYONET_HEELS)) return TRUE;
 		if (itemnumwithappearance(number, APP_PARAGRAPH_SANDALS)) return TRUE;
 		if (itemnumwithappearance(number, APP_COPPER_STILETTOS)) return TRUE;
+		if (itemnumwithappearance(number, APP_DIAMOND_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemnumwithappearance(number, APP_PISTOL_BOOTS)) return TRUE;
@@ -1628,7 +1636,7 @@ playerwearssexyflats()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == EGGKICK_SHOES) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
+	if ((uarmf->otyp == RUBBER_BOOTS) || (uarmf->otyp == EGGKICK_SHOES) || (uarmf->otyp == FLEECLE_SHOES) || (uarmf->otyp == ANASTASIA_DANCING_SHOES) || (uarmf->otyp == FRIEDERIKE_DANCING_SHOES) || (uarmf->otyp == YVONNE_GIRL_SNEAKERS) || (uarmf->otyp == ELIF_SNEAKERS) || (uarmf->otyp == ANTJE_SNEAKERS) || (uarmf->otyp == KERSTIN_WOODEN_SANDALS) || (uarmf->otyp == JANA_SNEAKERS) || (uarmf->otyp == TANJA_SNEAKERS) || (uarmf->otyp == SONJA_SNEAKERS) || (uarmf->otyp == JIL_VELCRO_SHOES) || (uarmf->otyp == LOU_SNEAKERS) || (uarmf->otyp == RUTH_SNEAKERS) || (uarmf->otyp == YASAMAN_LEATHER_BOOTS) || (uarmf->otyp == MAY_BRITT_SANDALS) || (uarmf->otyp == KERSTIN_SNEAKERS) || (uarmf->otyp == ALMUT_SNEAKERS) || (uarmf->otyp == KRISTINA_PLATFORM_SNEAKERS) || (uarmf->otyp == KARIN_LADY_SANDALS) || (uarmf->otyp == SNEAKERS) || (uarmf->otyp == MAURAH_HUGGING_BOOTS) || (uarmf->otyp == SARAH_HUGGING_BOOTS) || (uarmf->otyp == ARABELLA_HUGGING_BOOTS) || (uarmf->otyp == LUISA_HUGGING_BOOTS) || (uarmf->otyp == LISELOTTE_HUGGING_BOOTS) || (uarmf->otyp == GRETA_HUGGING_BOOTS) || (uarmf->otyp == JANE_HUGGING_BOOTS) || (uarmf->otyp == SUE_LYN_WINTER_BOOTS) || (uarmf->otyp == CHARLOTTE_HUGGING_BOOTS) || (uarmf->otyp == HANNAH_CUDDLE_BOOTS) || (uarmf->otyp == LITTLE_MARIE_HUGGING_BOOTS) || (uarmf->otyp == LUDGERA_HIKING_BOOTS) || (uarmf->otyp == BRIGHT_CYAN_BEAUTIES) || (uarmf->otyp == LAURA_WINTER_BOOTS) || (uarmf->otyp == DANCING_SHOES) || (uarmf->otyp == JESSICA_LADY_SHOES) || (uarmf->otyp == SOLVEJG_MOCASSINS) || (uarmf->otyp == SWEET_MOCASSINS) || (uarmf->otyp == SOFT_SNEAKERS) || (uarmf->otyp == KATI_GIRL_BOOTS) || (uarmf->otyp == MARLENA_HIKING_BOOTS) || (uarmf->otyp == ROLLER_BLADE) || (uarmf->otyp == JEANETTA_GIRL_BOOTS) || (uarmf->otyp == DIFFICULT_BOOTS) || (uarmf->otyp == AIRSTEP_BOOTS) || (uarmf->otyp == ANNA_HUGGING_BOOTS) || (uarmf->otyp == INA_HUGGING_BOOTS) || (uarmf->otyp == SYNTHETIC_SANDALS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
@@ -1725,6 +1733,7 @@ maybestilettoheels()
 		if (itemhasappearance(uarmf, APP_BAYONET_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PARAGRAPH_SANDALS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_COPPER_STILETTOS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_DIAMOND_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PLATINUM_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_SILVER_STILETTOS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PISTOL_BOOTS)) return TRUE;
@@ -1785,12 +1794,13 @@ maybeblockheels()
 	if (!uarmf) return FALSE;
 	/* uarmf is definitely defined now */
 
-	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == KATRIN_COMBAT_BOOTS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JULIA_COMBAT_BOOTS) || (uarmf->otyp == NICOLE_COMBAT_BOOTS) || (uarmf->otyp == LISA_COMBAT_BOOTS) || (uarmf->otyp == SUSANNE_COMBAT_BOOTS) || (uarmf->otyp == NORA_COMBAT_BOOTS) || (uarmf->otyp == ANTJE_COMBAT_BOOTS) || (uarmf->otyp == KERSTIN_COMBAT_BOOTS) || (uarmf->otyp == LARA_COMBAT_BOOTS) || (uarmf->otyp == JENNIFER_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == KSENIA_PLATFORM_SANDALS) || (uarmf->otyp == CONNY_COMBAT_BOOTS) || (uarmf->otyp == KATIA_COMBAT_BOOTS) || (uarmf->otyp == MARIYA_COMBAT_BOOTS) || (uarmf->otyp == ELISE_HIPPIE_HEELS) || (uarmf->otyp == RONJA_COMBAT_BOOTS) || (uarmf->otyp == ARIANE_COMBAT_BOOTS) || (uarmf->otyp == JOHANNA_COMBAT_BOOTS) || (uarmf->otyp == MAGDALENA_COMBAT_BOOTS) || (uarmf->otyp == MARLEEN_COMBAT_BOOTS) || (uarmf->otyp == INGE_COMBAT_BOOTS)) return TRUE;
+	if ((uarmf->otyp == HIPPIE_HEELS) || (uarmf->oartifact == ART_SWARM_SOFT_HIGH_HEELS) || (uarmf->otyp == SELF_WILLED_HEELS) || (uarmf->oartifact == ART_MANUELA_S_UNKNOWN_HEELS) || (uarmf->oartifact == ART_HIGH_HEELED_HUG) || (uarmf->otyp == COVETED_BOOTS) || (uarmf->otyp == SINFUL_HEELS) || (uarmf->otyp == LADY_BOOTS) || (uarmf->otyp == ELENA_COMBAT_BOOTS) || (uarmf->otyp == THAI_COMBAT_BOOTS) || (uarmf->otyp == SHOCK_ISOLATED_HEELS) || (uarmf->otyp == MELTEM_COMBAT_BOOTS) || (uarmf->otyp == KATRIN_COMBAT_BOOTS) || (uarmf->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (uarmf->otyp == NADJA_BUCKLED_LADY_SHOES) || (uarmf->otyp == HIGH_SCORING_HEELS) || (uarmf->otyp == KRISTIN_COMBAT_BOOTS) || (uarmf->otyp == DORA_COMBAT_BOOTS) || (uarmf->otyp == JULIA_COMBAT_BOOTS) || (uarmf->otyp == NICOLE_COMBAT_BOOTS) || (uarmf->otyp == LISA_COMBAT_BOOTS) || (uarmf->otyp == SUSANNE_COMBAT_BOOTS) || (uarmf->otyp == NORA_COMBAT_BOOTS) || (uarmf->otyp == ANTJE_COMBAT_BOOTS) || (uarmf->otyp == KERSTIN_COMBAT_BOOTS) || (uarmf->otyp == LARA_COMBAT_BOOTS) || (uarmf->otyp == JENNIFER_COMBAT_BOOTS) || (uarmf->otyp == JETTE_COMBAT_BOOTS) || (uarmf->otyp == VICTORIA_COMBAT_BOOTS) || (uarmf->otyp == HENRIETTA_COMBAT_BOOTS) || (uarmf->otyp == KSENIA_PLATFORM_SANDALS) || (uarmf->otyp == CONNY_COMBAT_BOOTS) || (uarmf->otyp == KATIA_COMBAT_BOOTS) || (uarmf->otyp == MARIYA_COMBAT_BOOTS) || (uarmf->otyp == ELISE_HIPPIE_HEELS) || (uarmf->otyp == RONJA_COMBAT_BOOTS) || (uarmf->otyp == ARIANE_COMBAT_BOOTS) || (uarmf->otyp == JOHANNA_COMBAT_BOOTS) || (uarmf->otyp == MAGDALENA_COMBAT_BOOTS) || (uarmf->otyp == MARLEEN_COMBAT_BOOTS) || (uarmf->otyp == INGE_COMBAT_BOOTS)) return TRUE;
 
 	if (OBJ_DESCR(objects[uarmf->otyp])) {
 
 		if (itemhasappearance(uarmf, APP_CLUNKY_HEELS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_BLOCK_HEELED_BOOTS)) return TRUE;
+		if (itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_DYKE_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_CUDDLE_CLOTH_BOOTS)) return TRUE;
 		if (itemhasappearance(uarmf, APP_PLOF_HEELS)) return TRUE;
@@ -12339,6 +12349,11 @@ peffects(otmp)
 					    rn1(35, 80 - 25 * bcsign(otmp))), FALSE);
 
 		break;
+	case POT_GREASE:
+		incr_itimeout(&Glib, rn1(100, 100 - 50 * bcsign(otmp)) );
+		Your("%s become very slippery!", makeplural(body_part(HAND)) );
+
+		break;
 	case POT_NUMBNESS:
 		if(!Numbed) {
 		    if (FunnyHallu) {
@@ -15051,6 +15066,12 @@ register struct obj *obj;
 			pline("You stagger a bit...");
 		make_stunned(itimeout_incr(HStun, rnd(15)), FALSE);
 		break;
+	case POT_GREASE:
+
+		incr_itimeout(&Glib, rnd(30));
+		Your("%s become very slippery!", makeplural(body_part(HAND)) );
+
+		break;
 	case POT_NUMBNESS:
 		if(!Numbed)
 			pline("You're feeling a little numb!");
@@ -16646,6 +16667,27 @@ dodip()
 		return 0;
 	}
 
+	if (potion && itemhasappearance(potion, APP_POTION_SPORKY)) {
+
+		if (!stack_too_big(obj)) {
+			if (obj->greased >= 3) obj->greased = 3;
+			else obj->greased++;
+
+			pline("%s %s with a translucent gleam.", Your_buf, aobjnam(obj, "shine"));
+
+		} else {
+			pline("Unfortunately, the stack was too big, so nothing happened.");
+		}
+
+		useup(potion);
+		update_inventory();
+		exercise(A_WIS, TRUE);
+		u.cnd_alchemycount++;
+		use_skill(P_DEVICES, 1);
+		return(1);
+
+	}
+
 	if(potion->otyp != POT_WATER && obj->otyp == POT_WATER) {
 	  /* swap roles, to ensure symmetry */
 	  struct obj *otmp = potion;
@@ -16666,7 +16708,7 @@ dodip()
 				if (!stack_too_big(obj)) uncurse(obj, FALSE);
 				else pline("Unfortunately, the stack was too big, so nothing happened.");
 				obj->bknown=1;
-	poof:
+poof:
 				if(!(objects[potion->otyp].oc_name_known) &&
 				   !(objects[potion->otyp].oc_uname))
 					docall(potion);
@@ -16930,6 +16972,20 @@ dodip()
 		}
 		goto poof;
 	    }
+	}
+
+	if (potion->otyp == POT_GREASE) {
+		if (!stack_too_big(obj)) {
+			if (obj->greased >= 3) obj->greased = 3;
+			else obj->greased++;
+
+			pline("%s %s with a translucent gleam.", Your_buf, aobjnam(obj, "shine"));
+
+		} else {
+			pline("Unfortunately, the stack was too big, so nothing happened.");
+		}
+
+		goto poof;
 	}
 
 	if(is_poisonable(obj)) {

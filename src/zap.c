@@ -10749,6 +10749,11 @@ register int osym, dmgtyp;
 	    switch(dmgtyp) {
 		case AD_COLD:
 
+			if (uarm && uarm->otyp == SATANIC_ARMOR) {
+				skip++;
+				break;
+			}
+
 			if (objects[obj->otyp].oc_material == MT_ALIMATHIUM) {
 				skip++;
 				break;
@@ -10860,6 +10865,11 @@ register int osym, dmgtyp;
 		    break;
 		case AD_FIRE:
 		    xresist = (Fire_resistance && obj->oclass != POTION_CLASS);
+
+			if (uarm && uarm->otyp == SATANIC_ARMOR) {
+				skip++;
+				break;
+			}
 
 			if (objects[obj->otyp].oc_material == MT_ALIMATHIUM) {
 				skip++;

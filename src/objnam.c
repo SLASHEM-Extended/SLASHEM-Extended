@@ -4335,6 +4335,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ HELMET_OF_SAVING, "todo" },
 	{ TEACHING_STAFF, "todo" },
 	{ CANE, "todo" },
+	{ SATANIC_ARMOR, "todo" },
+	{ UPPERWEAVER_S_ROBE, "todo" },
+	{ SHOCK_ISOLATED_HEELS, "todo" },
+	{ FLEECLE_SHOES, "todo" },
+	{ POT_GREASE, "todo" },
+	{ AMULET_OF_PHYSICAL_BOOST, "todo" },
+	{ AMULET_OF_MENTAL_BOOST, "todo" },
 
 	{0, "" }
 };
@@ -7823,6 +7830,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ HELMET_OF_SAVING, "todo" },
 	{ TEACHING_STAFF, "todo" },
 	{ CANE, "todo" },
+	{ SATANIC_ARMOR, "todo" },
+	{ UPPERWEAVER_S_ROBE, "todo" },
+	{ SHOCK_ISOLATED_HEELS, "todo" },
+	{ FLEECLE_SHOES, "todo" },
+	{ POT_GREASE, "todo" },
+	{ AMULET_OF_PHYSICAL_BOOST, "todo" },
+	{ AMULET_OF_MENTAL_BOOST, "todo" },
 
 	{0, "" }
 };
@@ -10682,6 +10696,7 @@ boolean actualwish;
 	   strncmpi(bp, "clockwork plate armor", 21) &&
 	   strncmpi(bp, "poison-repellant armor", 22) &&
 	   strncmpi(bp, "special leather armor", 21) &&
+	   strncmpi(bp, "satanic armor", 12) &&
 	   strncmpi(bp, "troll leather armor", 19) &&
 	   strncmpi(bp, "metal lamellar armor", 20) &&
 	   strncmpi(bp, "cloak of armor mystery", 22) &&

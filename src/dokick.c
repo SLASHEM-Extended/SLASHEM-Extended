@@ -60,6 +60,10 @@ register boolean clumsy;
 	if (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE) dmg += 3;
 	if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE) dmg += 5;
 	if (uarmu && uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING) dmg += 5;
+	if (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) {
+		dmg += 2;
+		if (verysmall(mon->data)) dmg += 5;
+	}
 
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) {
 		dmg += (1 + (GushLevel / 3));

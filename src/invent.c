@@ -13289,6 +13289,10 @@ boolean knoweverything;
 			pline("A pair of cone-heeled pumps that greatly increases your charisma and makes royal monsters spawn peaceful more often, but monsters with lash, sting or scratch attacks are spawned more often and deal more damage to you while wearing them.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BALLET_HEELS))
 			pline("This pair of stilettos is a trap. They slow you down when you wear them.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HEELED_HUGGING_BOOTS))
+			pline("Very sexy lady boots with treaded block heels. They love to step into shit because they know that you want to clean them again and again.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DIAMOND_STILETTOS))
+			pline("This pair of stiletto heels looks like it must be worth a fortune.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_STEEL_TOED_BOOTS))
 			pline("Kicking a monster with these boots deals an extra point of kicking damage.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MARJI_SHOES))
@@ -14195,6 +14199,14 @@ boolean knoweverything;
 				pline("Very useful cloak that grants 3 points of magic cancellation and manaleech."); break;
 			case FILLER_CLOAK:
 				pline("This cloak gives 3 points of magic cancellation and nothing else."); break;
+			case SATANIC_ARMOR:
+				pline("Very weak suit of armor, however wearing it protects your items from cold and fire, so it might be worthwile early on until you find a real armor."); break;
+			case UPPERWEAVER_S_ROBE:
+				pline("Robe that provides sight bonus when worn. It was created by honorary SLEX devteam member ChatGPT, who has this to say: 'Upperweaver's Robe is a flowing garment made of shimmering silk, adorned with intricate patterns and adorned with silver threads. It emanates a faint, otherworldly glow, suggesting its magical nature.'"); break;
+			case SHOCK_ISOLATED_HEELS:
+				pline("These block heels prevent you from having shock resistance when worn, because while the heels themselves are protected from shock, it means that the electric current cannot easily get out of your body. They boost your charisma and kick damage. In particular, kicking tiny-sized enemies with them deals quite some bonus damage."); break;
+			case FLEECLE_SHOES:
+				pline("A pair of sexy flats. If their randomized appearance isn't high-heeled, they provide half physical damage."); break;
 
 			case LETHE_CLOAK:
 				pline("3 points of magic cancellation, but putting it on causes amnesia once."); break;
@@ -16715,6 +16727,10 @@ boolean knoweverything;
 				pline("If you wear this amulet, you can detect the presence of covetous monsters."); break;
 			case AMULET_OF_FLYING:
 				pline("Wearing this amulet allows the wearer to fly."); break;
+			case AMULET_OF_PHYSICAL_BOOST:
+				pline("Grants +3 strength and dexterity when worn."); break;
+			case AMULET_OF_MENTAL_BOOST:
+				pline("Grants +3 intelligence and wisdom when worn."); break;
 			case AMULET_OF_LIFE_SAVING:
 				pline("You can survive death once if you wear this amulet. It will disintegrate if it saves your life."); break;
 			case AMULET_OF_MONSTER_SAVING:
@@ -17562,6 +17578,8 @@ boolean knoweverything;
 			pline("A wine ghost may live in this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_FUMING))
 			pline("A marid may live in this potion.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_SPORKY))
+			pline("This potion is greasy. Dipping an item into it uses up the potion, applies a layer of grease to the dipped item, and does NOT process the regular effect of the potion, so keep that in mind when dip-testing your potions. You also cannot use it for alchemy, unless you dip some other potion into this one.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_DIMLY_SHINING))
 			pline("A demon may live in this potion.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POTION_GASEOUS))
@@ -17650,6 +17668,8 @@ boolean knoweverything;
 				pline("Quaffing this potion can reduce your level."); break;
 			case POT_KEEN_MEMORY:
 				pline("You'll get temporary resistance to amnesia by quaffing this."); break;
+			case POT_GREASE:
+				pline("Drinking this potion gives you slippery hands, which is probably undesirable. The intended use is to dip items into it to grease them."); break;
 			case POT_NIGHT_VISION:
 				pline("Increases your sight radius for a period of time."); break;
 			case POT_RESISTANCE:
