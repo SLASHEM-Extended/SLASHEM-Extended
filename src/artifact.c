@@ -6056,7 +6056,7 @@ tscheinschroll:
 		}
 
 		if (obj->oartifact == ART_KAZAANA) {
-			forget(3);
+			forget(3, FALSE);
 			Your("memory is deleted.");
 			break;
 		}

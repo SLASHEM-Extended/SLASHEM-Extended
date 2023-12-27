@@ -1101,7 +1101,7 @@ int mode;
 						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
-						forget(1 + rn2(5));
+						forget(1 + rn2(5), FALSE);
 					}
 				}
 
@@ -1178,7 +1178,7 @@ int mode;
 						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
-						forget(1 + rn2(5));
+						forget(1 + rn2(5), FALSE);
 					}
 				}
 			} else {
@@ -1204,7 +1204,7 @@ int mode;
 						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
-						forget(1 + rn2(5));
+						forget(1 + rn2(5), FALSE);
 					}
 				}
 			} else {
@@ -1312,7 +1312,7 @@ walscholardone:
 						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
-						forget(1 + rn2(5));
+						forget(1 + rn2(5), FALSE);
 					}
 				}
 			} else {
@@ -1358,7 +1358,7 @@ walscholardone:
 							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
-							forget(1 + rn2(5));
+							forget(1 + rn2(5), FALSE);
 						}
 					}
 				} else pline("There is a tree in the way!");
@@ -1380,7 +1380,7 @@ walscholardone:
 						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
-							forget(1 + rn2(5));
+							forget(1 + rn2(5), FALSE);
 						}
 					}
 				} else pline("There is a wall in the way!");
@@ -1435,7 +1435,7 @@ walscholardone:
 						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 					} else {
 						You_feel("dizzy!");
-						forget(1 + rn2(5));
+						forget(1 + rn2(5), FALSE);
 					}
 				}
 			}
@@ -1468,7 +1468,7 @@ walscholardone:
 							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
 						} else {
 							You_feel("dizzy!");
-							forget(1 + rn2(5));
+							forget(1 + rn2(5), FALSE);
 						}
 					}
 				}

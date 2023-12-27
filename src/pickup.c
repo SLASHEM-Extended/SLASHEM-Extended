@@ -1515,7 +1515,7 @@ boolean alwaysflag;	/* force the item to be picked up even if it burdens you --A
 	} else  if (obj->otyp == SCR_INSTANT_AMNESIA) {
 
 		useupf(obj, obj->quan);
-		forget(ALL_SPELLS|ALL_MAP);
+		forget(ALL_SPELLS|ALL_MAP, FALSE);
 		pline("If ever I should forget, May God make me more wretched Than ever I have been yet!");
 		return 1;	/* tried to pick something up and failed, but
 				   don't want to terminate pickup loop yet   */

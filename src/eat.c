@@ -4467,7 +4467,7 @@ register int pm;
 		if (dmgtype(ptr, AD_AMNE)) {
 		    pline("The taste reminds you of Maud... oh wait, how come you can't remember anything?!");
 		    maprot();
-		    if (!rn2(3)) forget(1 + rn2(5));
+		    if (!rn2(3)) forget(1 + rn2(5), FALSE);
 		}
 
 	/* Nastiness monsters are definitely not good to eat either. --Amy */
@@ -7718,7 +7718,7 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_MIND_CLEARED_OFF) {
 		if (u.usanity > 0) reducesanity(u.usanity);
 		incr_itimeout(&HPsi_resist, rnz(10000));
-		forget(27);
+		forget(27, FALSE);
 		Your("mind clears"); /* missing period is intentional */
 	}
 

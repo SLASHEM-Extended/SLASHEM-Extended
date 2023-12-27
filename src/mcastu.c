@@ -718,7 +718,7 @@ castmu(mtmp, mattk, thinks_it_foundyou, foundyou)
 
 		}
 		if (!rn2(200)) {
-			forget(rnd(5));
+			forget(rnd(5), FALSE);
 			pline("You forget some important things...");
 		}
 		if (!rn2(200)) {
@@ -1802,7 +1802,7 @@ int spellnum;
 		}
 
 		/* amnesia - evil patch idea by jonadab */
-		forget(3);
+		forget(3, FALSE);
 		{
 		if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 			pline("As your mind turns inward on itself, you forget everything else.");

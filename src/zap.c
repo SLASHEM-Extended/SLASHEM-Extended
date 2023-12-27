@@ -4364,7 +4364,7 @@ newboss:
 			else
 			    You_feel("your memories dissolve.");
 
-			forget( ALL_SPELLS | ALL_MAP);
+			forget( (ALL_SPELLS | ALL_MAP), FALSE);
 			known = TRUE;
 		    exercise(A_WIS, FALSE);
 
@@ -5181,7 +5181,7 @@ secureidchoice:
 			break;
 		case SPE_AMNESIA:
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 			break;
 		case WAN_MAGIC_MAPPING:
 			known = TRUE;
@@ -6290,7 +6290,7 @@ boolean ordinary;
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200)) {
@@ -6351,7 +6351,7 @@ boolean ordinary;
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200)) {
@@ -6419,7 +6419,7 @@ boolean ordinary;
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200)) {
@@ -9551,7 +9551,7 @@ xchar sx, sy;
 
 		}
 		if (!rn2(200)) {
-			forget(rnd(5));
+			forget(rnd(5), FALSE);
 			pline("You forget some important things...");
 		}
 		if (!rn2(200)) {
@@ -11473,7 +11473,7 @@ retry:
 	    if (!rn2(100)) {
 		pline("Whoops... you wish you hadn't forgotten to think about Maud from all the thinking about what to wish for.");		
 		if (FunnyHallu) pline("You also wish you were able to remember that you suffer from amnesia.");
-		forget(1 + rn2(5));
+		forget(1 + rn2(5), FALSE);
 	    }
 	}
 }

@@ -13735,6 +13735,14 @@ int final;
 		sprintf(buf, "%d time%s", u.cnd_littlemarietrapcnt, plur(u.cnd_littlemarietrapcnt));
 		enl_msg(You_, "triggered the girls' nasty shield ", "triggered the girls' nasty shield ", buf);
 	}
+	if (u.cnd_escapepastcount) {
+		sprintf(buf, "%d time%s (hint: doing that too often can result in you skipping crucially important messages and being screwed over unexpectedly)", u.cnd_escapepastcount, plur(u.cnd_escapepastcount));
+		enl_msg(You_, "escaped past messages ", "escaped past messages ", buf);
+	}
+	if (u.cnd_cheaterprayer) {
+		sprintf(buf, "%d time%s", u.cnd_cheaterprayer, plur(u.cnd_cheaterprayer));
+		enl_msg(You_, "used the cheater prayer ", "used the cheater prayer ", buf);
+	}
 
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
@@ -14385,6 +14393,12 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_littlemarietrapcnt, plur(u.cnd_littlemarietrapcnt));
 	dump("  You triggered the girls' nasty shield ", buf);
+
+	sprintf(buf, "%d time%s (hint: doing that too often can result in you skipping crucially important messages and being screwed over unexpectedly)", u.cnd_escapepastcount, plur(u.cnd_escapepastcount));
+	dump("  You escaped past messages ", buf);
+
+	sprintf(buf, "%d time%s", u.cnd_cheaterprayer, plur(u.cnd_cheaterprayer));
+	dump("  You used the cheater prayer ", buf);
 
 	dump("", "");
 }

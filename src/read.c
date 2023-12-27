@@ -2389,15 +2389,18 @@ randomize(indices, count)
 
 /* Forget % of known objects. */
 void
-forget_objects(percent)
+forget_objects(percent, guaranteed)
 	int percent;
+	boolean guaranteed;
 {
 	int i, count;
 	int indices[NUM_OBJECTS];
 
-	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
-	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
-	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
+	if (!guaranteed) {
+		if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
+		if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
+	}
 
 	if (isfriday) {
 		percent *= 2;
@@ -2423,7 +2426,7 @@ forget_objects(percent)
 
 	/* forget first % of randomized indices */
 	count = ((count * percent) + 50) / 100;
-	if (count > 1) count /= 2; /* another nerf by Amy */
+	if (!guaranteed && (count > 1)) count /= 2; /* another nerf by Amy */
 	for (i = 0; i < count; i++)
 	    forget_single_object(indices[i]);
 
@@ -2515,8 +2518,9 @@ forget_traps()
  * except this one.
  */
 void
-forget_levels(percent)
+forget_levels(percent, guaranteed)
 	int percent;
+	boolean guaranteed;
 {
 	int i, count;
 	xchar  maxl, this_lev;
@@ -2533,9 +2537,11 @@ forget_levels(percent)
 		if (percent > 100) percent = 100;
 	}
 
-	if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
-	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
-	if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
+	if (!guaranteed) {
+		if (Keen_memory && rn2(StrongKeen_memory ? 20 : 4)) return;
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_UNFORGETTABLE_EVENT && rn2(10)) return;
+		if (Role_if(PM_MASTERMIND) && mastermindsave()) return;
+	}
 
 	if (percent <= 0 || percent > 100) {
 	    impossible("forget_levels: bad percent %d", percent);
@@ -2566,7 +2572,7 @@ forget_levels(percent)
 
 	/* forget first % of randomized indices */
 	count = ((count * percent) + 50) / 100;
-	if (count > 1) count /= 2; /* another nerf by Amy */
+	if (!guaranteed && (count > 1)) count /= 2; /* another nerf by Amy */
 	for (i = 0; i < count; i++) {
 	    level_info[indices[i]].flags |= FORGOTTEN;
 	    forget_mapseen(indices[i]);
@@ -2587,8 +2593,9 @@ forget_levels(percent)
  *	howmuch & ALL_SPELLS	= forget all spells
  */
 void
-forget(howmuch)
+forget(howmuch, guaranteed)
 int howmuch;
+boolean guaranteed;
 {
 
 	if (uarmf && uarmf->oartifact == ART_MARJI_JANA && !rn2(100)) {
@@ -2620,10 +2627,10 @@ int howmuch;
 	if (!rn2(20) && u.bucskill > 0) u.bucskill--;
 
 	/* 1 in 3 chance of forgetting some levels */
-	if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));
+	if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), guaranteed);
 
 	/* 1 in 5 chance of forgeting some objects */
-	if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));
+	if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), guaranteed);
 
 	if (howmuch & ALL_SPELLS) losespells();
 	/*
@@ -9920,7 +9927,7 @@ tunguskaagain:
 		if (confused) break;
 		if (!rn2(1000)) {
 
-			forget(3);
+			forget(3, FALSE);
 			pline("Oh, no! Your mind has gone blank!");
 			return(1);
 		}
@@ -9931,7 +9938,7 @@ tunguskaagain:
 		/* known = TRUE; */
 
 		if (evilfriday && sobj->cursed && confused) { /* thanks Porkman */
-			forget(rnd(10));
+			forget(rnd(10), FALSE);
 			You("forget everything else while identifying this as an identify scroll.");
 			break;
 		}
@@ -10406,7 +10413,7 @@ randenchchoice:
 		}
 
 		if (sobj->cursed) {
-			forget(ALL_SPELLS|ALL_MAP);
+			forget((ALL_SPELLS|ALL_MAP), FALSE);
 			pline("The scroll was cursed! You lose a lot of knowledge...");
 			break;
 		}
@@ -10415,8 +10422,8 @@ randenchchoice:
 		break;
 	case SCR_AMNESIA:
 		known = TRUE;
-		forget(	(!sobj->blessed ? ALL_SPELLS : 0) |
-			(!confused || sobj->cursed ? ALL_MAP : 0) );
+		forget( (	(!sobj->blessed ? ALL_SPELLS : 0) |
+			(!confused || sobj->cursed ? ALL_MAP : 0)), FALSE );
 		if (FunnyHallu) /* Ommmmmm! */
 			Your("mind releases itself from mundane concerns.");
 		else if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
@@ -10430,8 +10437,8 @@ randenchchoice:
 	case SCR_INSTANT_AMNESIA:
 		known = FALSE;
 		/* not known! You forget about this scroll while reading it :D --Amy */
-		forget(	(!sobj->blessed ? ALL_SPELLS : 0) |
-			(!confused || sobj->cursed ? ALL_MAP : 0) );
+		forget( (	(!sobj->blessed ? ALL_SPELLS : 0) |
+			(!confused || sobj->cursed ? ALL_MAP : 0)), FALSE );
 		if (FunnyHallu) /* Ommmmmm! */
 			Your("mind releases itself from mundane concerns.");
 		else if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))

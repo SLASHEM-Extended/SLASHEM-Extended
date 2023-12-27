@@ -3119,8 +3119,8 @@ elena30:
 					/* adjattrib gives dunce cap message when appropriate */
 					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
 					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
-					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
 
 						}
@@ -4642,7 +4642,7 @@ elena37:
 					(void) adjattrib(rn2(A_MAX), -3, FALSE, TRUE);
 					break;
 				case 24: /* amnesia, magnitude 1-3 */
-					forget(rnd(3));
+					forget(rnd(3), FALSE);
 					break;
 				case 25: /* summon "cyberdemon" */
 					{
@@ -6482,7 +6482,7 @@ newboss:
 				(void) adjattrib(A_INT, -i, 1, TRUE);
 				while(i-- > 0){
 					if (!rn2(2)) losexp("brain damage",FALSE,TRUE);
-					forget(10);	/* lose 10% of memory per point lost*/
+					forget(10, FALSE);	/* lose 10% of memory per point lost*/
 					exercise(A_WIS, FALSE);
 				}
 				//begin moved brain removal messages
@@ -7621,8 +7621,8 @@ hitmu(mtmp, mattk)
 			while( ABASE(A_WIS) > ATTRABSMIN(A_WIS) && wdmg > 0){
 				wdmg--;
 				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
-				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
-				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				forget_levels(1, FALSE);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1, FALSE);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
 			}
 			if(AMAX(A_WIS) > ATTRABSMIN(A_WIS) && 
@@ -8249,8 +8249,8 @@ dopois:
 		/* adjattrib gives dunce cap message when appropriate */
 		if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
 		else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
-		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 		exercise(A_WIS, FALSE);
 		break;
 	    case AD_PLYS:
@@ -9692,8 +9692,8 @@ dopois:
 			pline("Sparkling water washes over you!");
 			lethe_damage(invent, FALSE, FALSE);
 			if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 		}
 		break;
 
@@ -10242,7 +10242,7 @@ dopois:
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
@@ -11314,7 +11314,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
@@ -12456,8 +12456,8 @@ do_stone2:
 			while( ABASE(A_WIS) > ATTRABSMIN(A_WIS) && wdmg > 0){
 				wdmg--;
 				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
-				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
-				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				forget_levels(1, FALSE);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1, FALSE);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
 			}
 			if(AMAX(A_WIS) > ATTRABSMIN(A_WIS) && 
@@ -12787,8 +12787,8 @@ do_stone2:
 			pline("You sparkle!");
 			lethe_damage(invent, FALSE, FALSE);
 			if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 		}
 		break;
 
@@ -13465,8 +13465,8 @@ do_stone2:
 
 			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
 			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
-			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 			exercise(A_WIS, FALSE);
 		    } else tmp = 0;
 		    break;
@@ -15071,8 +15071,8 @@ common:
 		pline("Sparkling water washes over you!");
 		lethe_damage(invent, FALSE, FALSE);
 		if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
-		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 		break;
 
 	    case AD_CNCL:
@@ -15634,8 +15634,8 @@ common:
 		/* adjattrib gives dunce cap message when appropriate */
 		if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
 		else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
-		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+		if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+		if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 		exercise(A_WIS, FALSE);
 		break;
 
@@ -15679,7 +15679,7 @@ common:
 
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
@@ -15781,8 +15781,8 @@ common:
 			while( ABASE(A_WIS) > ATTRABSMIN(A_WIS) && wdmg > 0){
 				wdmg--;
 				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
-				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
-				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				forget_levels(1, FALSE);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1, FALSE);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
 			}
 			if(AMAX(A_WIS) > ATTRABSMIN(A_WIS) && 
@@ -16403,7 +16403,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200) && (u.urmaxlvlUP >= 2)) {
@@ -17357,8 +17357,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			pline("You sparkle!");
 			lethe_damage(invent, FALSE, FALSE);
 			if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 		}
 		}
 		break;
@@ -18228,8 +18228,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			while( ABASE(A_WIS) > ATTRABSMIN(A_WIS) && wdmg > 0){
 				wdmg--;
 				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
-				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
-				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				forget_levels(1, FALSE);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1, FALSE);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
 			}
 			if(AMAX(A_WIS) > ATTRABSMIN(A_WIS) && 

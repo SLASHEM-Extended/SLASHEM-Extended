@@ -552,14 +552,14 @@ drinkfountain()
 			} else {
 				You("cannot remember quaffing from the fountain.");
 				if (FunnyHallu) You("also cannot remember who Maud is supposed to be.");
-				forget(1 + rn2(5));
+				forget(1 + rn2(5), FALSE);
 			}
 
 			break;
 
 		case 32:
 			if (!rn2(5)) {
-				forget(rnd(20));
+				forget(rnd(20), FALSE);
 				You_feel("a loss of memory. Maybe you shouldn't have quaffed from the fountain.");
 				if (!rn2(10)) pline("In fact, maybe you shouldn't be quaffing from fountains at all if you want to live.");
 			} else {
@@ -630,7 +630,7 @@ drinkfountain()
 	if (level.flags.lethe) { /* bad idea! */
 		You_feel("the lethe waters running down your throat...");
 		You_feel("dizzy!");
-		forget(1 + rn2(5));
+		forget(1 + rn2(5), FALSE);
 	}
 
 	if (uarmc && uarmc->oartifact == ART_JANA_S_ROULETTE_OF_LIFE && !rn2(100)) {

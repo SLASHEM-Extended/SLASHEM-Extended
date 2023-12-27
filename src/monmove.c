@@ -2903,7 +2903,7 @@ convertdone:
 				if (Half_spell_damage && rn2(2) ) dmg = (dmg+1) / 2;
 				if (StrongHalf_spell_damage && rn2(2) ) dmg = (dmg+1) / 2;
 				if (!rn2(100)) { /* evil patch idea by jonadab: 1% chance of causing amnesia */
-					forget(1 + rn2(5));
+					forget(1 + rn2(5), FALSE);
 				}
 				/* evil patch idea by Amy: chance of causing other adverse effects, like ToME eldritch horror */
 				if (!rn2(100)) {

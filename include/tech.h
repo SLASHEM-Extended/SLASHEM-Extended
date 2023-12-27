@@ -15,6 +15,7 @@ struct tech {
 	int       t_lev;                 /* power level 
 					    *   This is the level 
 					    *   you were when you got the tech
+					    * note by Amy: higher levels mean a lower displayed level in the menu!!!
 				            */
 	
 	int         t_tout;                /* timeout - time until tech can be 

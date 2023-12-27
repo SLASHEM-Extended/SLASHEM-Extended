@@ -9348,7 +9348,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		You_feel("dizzy!");
-		forget(1 + rn2(5));
+		forget(1 + rn2(5), FALSE);
 
 		if (oseen) makeknown(WAN_AMNESIA);
 
@@ -9452,7 +9452,7 @@ newboss:
 		mreadmsg(mtmp, otmp);
 
 		You_feel("dizzy!");
-		forget(1 + rn2(5));
+		forget(1 + rn2(5), FALSE);
 
 		makeknown(otmp->otyp); /* do this after you forgot stuff */
 

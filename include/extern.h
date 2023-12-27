@@ -2879,9 +2879,9 @@ E boolean is_chargeable(struct obj *);
 E boolean is_enchantable(struct obj *);
 E void recharge(struct obj *,int);
 E void randomenchant(struct obj *,int,BOOLEAN_P);
-E void forget(int);
-E void forget_objects(int);
-E void forget_levels(int);
+E void forget(int, BOOLEAN_P);
+E void forget_objects(int, BOOLEAN_P);
+E void forget_levels(int, BOOLEAN_P);
 E void forget_traps(void);
 E void forget_map(int);
 E void maprot(void);
@@ -3363,6 +3363,7 @@ E boolean mastermindsave(void);
 E void removeforgottenspell(void);
 E void evilspellforget(void);
 E int dodeletespell(void);
+E void delete_all_spells(void);
 E void extramemory(void);
 E int manacost(int);
 
@@ -3443,6 +3444,7 @@ E void techlevelspecific(int);
 E void learnrandomregulartech(void);
 E void resettechniqueextra(void);
 E boolean canuseunarmedtechs(void);
+E void drain_all_techs(void);
 
 /* ### teleport.c ### */
 

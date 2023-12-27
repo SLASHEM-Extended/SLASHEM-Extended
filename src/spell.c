@@ -2419,7 +2419,7 @@ learn()
 			makeknown((int)booktype);
 			if (booktype == SPE_AMNESIA) {
 				You_feel("dizzy!");
-				forget(ALL_MAP);
+				forget(ALL_MAP, FALSE);
 			}
 
 			if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
@@ -4391,7 +4391,7 @@ magicalenergychoice:
 		break;
 	case SPE_AMNESIA:
 		You_feel("dizzy!");
-		forget(1 + rn2(5));
+		forget(1 + rn2(5), FALSE);
 		break;
 	case SPE_AGGRAVATE_MONSTER:
 		You_feel("that monsters are aware of your presence.");
@@ -13484,6 +13484,18 @@ mastermindsave()
 
 }
 
+/* lose all spells unconditionally --Amy */
+void
+delete_all_spells()
+{
+	int n;
+
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+	    spellid(n) = NO_SPELL;
+	}
+
+}
+
 /* calculation for mana cost, externalized --Amy */
 int
 manacost(spellnum)
@@ -13608,7 +13620,7 @@ int whichspell;
 
 			if (randomspell == SPE_AMNESIA) {
 				You_feel("dizzy!");
-				forget(ALL_MAP);
+				forget(ALL_MAP, FALSE);
 			}
 
 			if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {

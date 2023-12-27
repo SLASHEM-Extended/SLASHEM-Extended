@@ -12913,6 +12913,22 @@ techdrainrll()
 
 }
 
+/* drain all of the player's techniques by one level --Amy */
+void
+drain_all_techs()
+{
+	int i;
+	for (i = 0; i < MAXTECH; i++) {
+
+		if (tech_list[i].t_id == NO_TECH) break;
+
+		if (tech_list[i].t_lev < 130) {
+			tech_list[i].t_lev += 1;
+		}
+	}
+
+}
+
 void
 techlevelup()
 {

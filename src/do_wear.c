@@ -1497,7 +1497,7 @@ Cloak_on()
 		break;
 
 	case LETHE_CLOAK:
-		forget(ALL_SPELLS|ALL_MAP);
+		forget(ALL_SPELLS|ALL_MAP, FALSE);
 		You_feel("dizzy!");
 		break;
 	case CLOAK_OF_POLYMORPH:

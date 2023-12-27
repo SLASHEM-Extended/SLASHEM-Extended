@@ -5817,7 +5817,7 @@ newegomon:
 				} else {
 					You("cannot remember quaffing from the fountain.");
 					if (FunnyHallu) You("also cannot remember who Maud is supposed to be.");
-					forget(1 + rn2(5));
+					forget(1 + rn2(5), FALSE);
 				}
 				break;
 
@@ -5844,7 +5844,7 @@ newegomon:
 				break;
 			case 28:
 				if (!rn2(5)) {
-					forget(rnd(20));
+					forget(rnd(20), FALSE);
 					You_feel("a loss of memory. Maybe you shouldn't have quaffed from the fountain.");
 					if (!rn2(10)) pline("In fact, maybe you shouldn't be quaffing from fountains at all if you want to live.");
 				} else {
@@ -7720,7 +7720,7 @@ newbossPENT:
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200) && (u.urmaxlvlUP >= 2) ) {
@@ -9871,7 +9871,7 @@ madnesseffect:
 		pline("CLICK! You have triggered a trap!");
 		seetrap(trap);
 
-		forget(3);
+		forget(3, FALSE);
 		{
 		if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 			pline("As your mind turns inward on itself, you forget everything else.");
@@ -15829,8 +15829,8 @@ callingoutdone:
 		case AMNESIA_SWITCH_TRAP:
 			pline("CLICK! You have triggered a trap!");
 			deltrap(trap);
-			forget(ALL_SPELLS);
-			forget(ALL_SPELLS);
+			forget(ALL_SPELLS, FALSE);
+			forget(ALL_SPELLS, FALSE);
 			wonderspell(-1);
 			break;
 
@@ -19195,8 +19195,8 @@ skillrandomizeredo:
 					/* adjattrib gives dunce cap message when appropriate */
 					if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
 					else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
-					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+					if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+					if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 					exercise(A_WIS, FALSE);
 
 						}
@@ -25802,7 +25802,7 @@ drown()
 	if (level.flags.lethe) {
 	    /* Bad idea */
 	    You_feel("the sparkling waters of the Lethe sweep away your cares!");
-	    forget(5); /* used to be 25 --Amy */
+	    forget(5, FALSE); /* used to be 25 --Amy */
 	}
 
 	if ((!StrongSwimming || !rn2(10)) && !(u.usteed && is_swimmer(u.usteed->data)) && (!StrongMagical_breathing || !rn2(10))) {
@@ -25999,7 +25999,7 @@ crystaldrown()
 	if (level.flags.lethe) {
 	    /* Bad idea */
 	    You_feel("the sparkling waters of the Lethe sweep away your cares!");
-	    forget(5); /* used to be 25 --Amy */
+	    forget(5, FALSE); /* used to be 25 --Amy */
 	}
 
 	if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {

@@ -2911,6 +2911,156 @@ dopray()
 {
     /* Confirm accidental slips of Alt-P */
 
+	if (near_capacity() >= OVERLOADED) { /* cheater prayer by Amy, so you can save yourself from a starlightstone etc. */
+
+		/* the cheater prayer ALWAYS works, even if you cannot pray for whatever reason */
+
+		struct obj *otmpi, *otmpii;
+		boolean cheaterprayerworked = FALSE;
+
+		if (yn("You're overloaded, and can attempt to do a cheater prayer to fix that. This works independently of the gods and is guaranteed to work but gives VERY HEAVY DOWNSIDES. Are you sure you want to do that?") == 'y') {
+
+			if (yn("ATTENTION! You will lose maximum HP and Pw, have ALL spells erased, all techniques lose a level, and the gods will become really angry and everything. Are you SURE you want to do a cheater prayer?") == 'y') {
+
+			   if (yn("ATTENTION!!! You'll also be doomed for a LOOOOONG time, and forget ALL dungeon levels and item identities. Are you *SURE* you *REALLY* want to do a cheater prayer?") == 'y') {
+
+				if (practicantterror) {
+					pline("%s thunders: 'Cheating is not permitted! 20000 zorkmids, and don't you dare complain, cheater.'", noroelaname());
+					fineforpracticant(20000, 0, 0);
+				}
+
+				u.uhpmax -= 20;
+				if (u.uhpmax < 1) u.uhpmax = 1;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				u.uenmax -= 20;
+				if (u.uenmax < 1) u.uenmax = 1;
+				if (u.uen > u.uenmax) u.uen = u.uhpmax;
+
+				delete_all_spells();
+				drain_all_techs();
+
+				u.badfcursed += 100000;
+				u.badfdoomed += 100000;
+
+				u.ugangr += 10;
+				adjalign(-1000);
+				u.ualign.sins += 10;
+				u.alignlim -= 10;
+
+				forget_levels(100, TRUE);
+				forget_objects(100, TRUE);
+
+				u.cnd_cheaterprayer++; /* not "gnostic" because this is a special form of prayer */
+
+				/* find the first really heavy (weight of 1000 or more) item and delete it */
+
+				for (otmpi = invent; otmpi; otmpi = otmpii) {
+			 		otmpii = otmpi->nobj;
+
+					if (otmpi->owt >= 1000) {
+						setnotworn(otmpi);
+						cheaterprayerworked = TRUE;
+
+						if (evades_destruction(otmpi) ) {
+							dropx(otmpi);
+							pline("A very heavy item has been dropped from your inventory. It would have been destroyed, but it was indestructible.");
+						} else {
+							/* if it's a bag of holding or other container, scatter the contents first --Amy */
+							if (Has_contents(otmpi)) {
+								dump_container(otmpi, FALSE, u.ux, u.uy);
+								scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
+							}
+							/* and if it still somehow has contents now, delete them */
+							if (Has_contents(otmpi)) delete_contents(otmpi);
+							useup(otmpi);
+							pline("A very heavy item has been erased from your inventory.");
+						}
+
+						break;
+					}
+
+				}
+
+				/* no such item? then, kill the player's symbiote if it's weighty */
+
+				if (!cheaterprayerworked) {
+					if (uinsymbiosis && (symbioteweight(u.usymbiote.mnum) >= 100)) {
+						cheaterprayerworked = TRUE;
+						u.usymbiote.active = 0;
+						u.usymbiote.mnum = PM_PLAYERMON;
+						u.usymbiote.mhp = 0;
+						u.usymbiote.mhpmax = 0;
+						u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+						u.cnd_symbiotesdied++;
+						Your("symbiote disappears into the ether.");
+
+					}
+				}
+
+				/* no symbiote either? remove gravity or ground weight, if present */
+
+				if (!cheaterprayerworked) {
+					if (u.graundweight) {
+						cheaterprayerworked = TRUE;
+						u.graundweight = 0;
+						Your("dead weight has been removed.");
+					}
+					if (IncreasedGravity) {
+						cheaterprayerworked = TRUE;
+						IncreasedGravity = 0;
+						pline("Now the gravity has been normalized again.");
+					}
+				}
+
+				/* still overloaded? delete a not-that-heavy-but-still-relatively-heavy item */
+
+				if (!cheaterprayerworked) {
+					for (otmpi = invent; otmpi; otmpi = otmpii) {
+				 		otmpii = otmpi->nobj;
+
+						if (otmpi->owt >= 100) {
+							setnotworn(otmpi);
+							cheaterprayerworked = TRUE;
+
+							if (evades_destruction(otmpi) ) {
+								dropx(otmpi);
+								pline("A heavy item has been dropped from your inventory. It would have been destroyed, but it was indestructible.");
+							} else {
+								/* if it's a bag of holding or other container, scatter the contents first --Amy */
+								if (Has_contents(otmpi)) {
+									dump_container(otmpi, FALSE, u.ux, u.uy);
+									scatter(u.ux,u.uy,10,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,0);
+								}
+								/* and if it still somehow has contents now, delete them */
+								if (Has_contents(otmpi)) delete_contents(otmpi);
+								useup(otmpi);
+								pline("A heavy item has been erased from your inventory.");
+							}
+
+							break;
+						}
+
+					}
+
+				}
+
+				/* still overloaded? tough luck :( */
+
+				if (!cheaterprayerworked) {
+					pline("Unfortunately, the cheater prayer could not fix your troubles...");
+				}
+
+				flags.botl = TRUE;
+
+				return 1; /* don't run the code for regular prayer if you used the cheater prayer! --Amy */
+
+			   }
+
+			}
+
+		}
+	}
+
     if (have_superjonadabstone()) {
 
 	if (can_pray(FALSE) && !u.ugangr) godvoice(u.ualign.type, "Ah yes, my scholar, pray to me and I will lend thee my helping hand!");

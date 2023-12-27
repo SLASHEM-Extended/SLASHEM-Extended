@@ -2141,6 +2141,7 @@ struct you {
 	int cnd_maybritttrapcnt;	/* how many times the may-britt trap stole your items */
 	int cnd_littlemarietrapcnt;	/* how many times the little marie trap afflicted you with a trap effect */
 	int cnd_escapepastcount;	/* how many times you skipped past messages with escape */
+	int cnd_cheaterprayer;	/* how many times you used the cheater prayer */
 
 	struct symbiotemon usymbiote;	/* for the symbiosis skill */
 	int symbioteaggressivity;	/* how often your symbiote attacks or takes damage */

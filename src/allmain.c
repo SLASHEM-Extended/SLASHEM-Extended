@@ -11980,7 +11980,7 @@ newbossB:
 					(void) adjattrib(rn2(A_MAX), -5, FALSE, TRUE);
 					break;
 				case 24: /* amnesia, magnitude 3 */
-					forget(3);
+					forget(3, TRUE);
 					break;
 				case 25:
 				case 26:
@@ -12078,7 +12078,7 @@ newbossB:
 					(void) adjattrib(rn2(A_MAX), -3, FALSE, TRUE);
 					break;
 				case 24: /* amnesia, magnitude 1-3 */
-					forget(rnd(3));
+					forget(rnd(3), FALSE);
 					break;
 				case 25: /* summon "cyberdemon" */
 					{
@@ -12618,72 +12618,72 @@ newboss:
 
 		if (RecurringAmnesia && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (uarmh && uarmh->oartifact == ART_DIADEM_OF_AMNESIA && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (uwep && uwep->oartifact == ART_FADING_FROM_MEMORY && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FADING_FROM_MEMORY && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (uarmh && uarmh->oartifact == ART_TIARA_OF_AMNESIA && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (have_amnesiastone() && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (u.uprops[RECURRING_AMNESIA].extrinsic && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (uarmh && uarmh->oartifact == ART_DRELITT && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (uarm && uarm->oartifact == ART_KLAER_OV && !rn2(AmnesiaRecurrXtra ? 200 : 1000)) {
 			You_feel("dizzy!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if ((uwep && uwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
 			Your("evil female battle boot drills into your mind with its spikes!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_EVIL_MINDDRILL) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
 			Your("evil female battle boot drills into your mind with its spikes!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if ((uwep && uwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
 			Your("mind clears unexpectedly!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_SANDRA_S_SECRET_WEAPON) && has_head(youmonst.data) && !Role_if(PM_COURIER) && !rn2(200)) {
 			Your("mind clears unexpectedly!");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (uarmc && uarmc->oartifact == ART_WATERS_OF_OBLIVION && !rn2(1000)) {
 			You("suddenly forget what you were doing. Maybe your thoughts ended up in the realms of Oblivion, who knows?");
-			forget(1 + rn2(5));
+			forget(1 + rn2(5), FALSE);
 		}
 
 		if (u.uprops[ITEMCURSING].extrinsic && !rn2(CursingThingsXtra ? 200 : 1000) ) {
@@ -20688,6 +20688,10 @@ timebasedlowerchance()
 	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
 	if (AssholeModeActive) return FALSE; /* unconditional failure if you're playing asshole mode */
 
+	if (u.cnd_cheaterprayer) { /* unconditional failure if you've cheated */
+		if (rnd(10 + u.cnd_cheaterprayer) > 10) return FALSE; /* fail more often the more cheater prayers you used */
+	}
+
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) return TRUE; /* always generate the item */
 
 	/* if you're in a lategame dungeon, or doubly so if you've completed the invocation, we assume that you've already
@@ -22079,8 +22083,8 @@ newturn:
 
 					} else {
 						adjattrib(A_INT, -rnd(2), FALSE, TRUE);
-						if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));
-						if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));
+						if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);
+						if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);
 						exercise(A_WIS, FALSE);
 					}
 

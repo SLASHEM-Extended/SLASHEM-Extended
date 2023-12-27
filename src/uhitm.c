@@ -12285,8 +12285,8 @@ boolean ranged;
 			pline("Sparkling water splashes over you!");
 			lethe_damage(invent, FALSE, FALSE);
 			if (!rn2(3)) actual_lethe_damage(invent, FALSE, FALSE);
-			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 		}
 		break;
 	    case AD_WET:
@@ -12529,8 +12529,8 @@ boolean ranged;
 
 			if (!rn2(10)) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
 			else if (!rn2(2)) (void) adjattrib(A_INT, -1, FALSE, TRUE);
-			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of levels */
-			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10));	/* lose memory of 25% of objects */
+			if (!rn2(issoviet ? 2 : 3)) forget_levels(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of levels */
+			if (!rn2(issoviet ? 3 : 5)) forget_objects(rnd(issoviet ? 25 : 10), FALSE);	/* lose memory of 25% of objects */
 			exercise(A_WIS, FALSE);
 		    } else tmp = 0;
 
@@ -12805,7 +12805,7 @@ boolean ranged;
 	
 			}
 			if (!rn2(200)) {
-				forget(rnd(5));
+				forget(rnd(5), FALSE);
 				pline("You forget some important things...");
 			}
 			if (!rn2(200)) {
@@ -13961,8 +13961,8 @@ boolean ranged;
 			while( ABASE(A_WIS) > ATTRABSMIN(A_WIS) && wdmg > 0){
 				wdmg--;
 				(void) adjattrib(A_WIS, -1, TRUE, TRUE);
-				forget_levels(1);	/* lose memory of 1% of levels per point lost*/
-				forget_objects(1);	/* lose memory of 1% of objects per point lost*/
+				forget_levels(1, FALSE);	/* lose memory of 1% of levels per point lost*/
+				forget_objects(1, FALSE);	/* lose memory of 1% of objects per point lost*/
 				exercise(A_WIS, FALSE);
 			}
 			if(AMAX(A_WIS) > ATTRABSMIN(A_WIS) && 

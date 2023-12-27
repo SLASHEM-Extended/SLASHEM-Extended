@@ -3398,8 +3398,8 @@ badeffect()
 
 		case 336:
 
-			forget(3);
-			if (!rn2(10)) forget(rnd(25));
+			forget(3, FALSE);
+			if (!rn2(10)) forget(rnd(25), FALSE);
 			{
 			if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 				pline("Suddenly, your mind turns inward on itself!");
@@ -4781,8 +4781,8 @@ reallybadeffect()
 
 		case 64:
 
-			forget(3);
-			if (!rn2(10)) forget(rnd(25));
+			forget(3, FALSE);
+			if (!rn2(10)) forget(rnd(25), FALSE);
 			{
 			if (!strncmpi(plname, "Maud", 4) || !strncmpi(plalias, "Maud", 4))
 				pline("Suddenly, your mind turns inward on itself!");
@@ -9314,9 +9314,9 @@ datadeleteattack()
 
 
 		case 1: /* very strong amnesia effect - let that poor sap forget a whole lot of stuff */
-			forget(rn2(10) ? 35 : 100);
-			forget_levels(rn2(10) ? 35 : 100);
-			forget_objects(rn2(10) ? 35 : 100);
+			forget(rn2(10) ? 35 : 100, TRUE);
+			forget_levels(rn2(10) ? 35 : 100, TRUE);
+			forget_objects(rn2(10) ? 35 : 100, TRUE);
 			u.bucskill = 0;
 			u.enchantrecskill = 0;
 			u.weapchantrecskill = 0;
@@ -11631,7 +11631,7 @@ dodrink()
 		if (level.flags.lethe) {
 			pline("Whoops, you forgot that it contains lethe water.");
 			if (FunnyHallu) pline("You also forgot whether lethe water can cause amnesia.");
-			forget(ALL_SPELLS | ALL_MAP);
+			forget((ALL_SPELLS | ALL_MAP), FALSE);
 		}
 
 		morehungry(-50);
@@ -11683,7 +11683,7 @@ dodrink()
 		if (level.flags.lethe) {
 			pline("Whoops, you forgot that it contains lethe water.");
 			if (FunnyHallu) pline("You also forgot whether lethe water can cause amnesia.");
-			forget(ALL_SPELLS | ALL_MAP);
+			forget((ALL_SPELLS | ALL_MAP), FALSE);
 		}
 
 		morehungry(-50);
@@ -11767,7 +11767,7 @@ dodrink()
 
 			pline("In any case, you apparently forgot that it causes amnesia.");
 			if (FunnyHallu) pline("You also forgot about Maud.");
-			forget(rnd(10));
+			forget(rnd(10), FALSE);
 
 		}
 
@@ -12396,7 +12396,7 @@ peffects(otmp)
 	case POT_AMNESIA:
 		pline(FunnyHallu? "This tastes like champagne!" :
 			"This liquid bubbles and fizzes as you drink it.");
-		forget((!otmp->blessed? ALL_SPELLS : 0) | ALL_MAP);
+		forget( ((!otmp->blessed? ALL_SPELLS : 0) | ALL_MAP), FALSE);
 		if (FunnyHallu)
 		    pline("Hakuna matata!");
 		else
@@ -13155,7 +13155,7 @@ peffects(otmp)
 		}
 
 		if (otmp->cursed && evilfriday) {
-			forget(3);
+			forget(3, FALSE);
 		}
 
 		if (monster_detect(otmp, 0))
@@ -13165,7 +13165,7 @@ peffects(otmp)
 	case POT_OBJECT_DETECTION:
 	case SPE_DETECT_TREASURE:
 		if (otmp->cursed && evilfriday) {
-			forget(3);
+			forget(3, FALSE);
 		}
 
 		if (object_detect(otmp, 0))
@@ -14782,7 +14782,7 @@ boolean your_fault;
 		    if (your_fault) {
 			if (canseemon(mon)) 
 			    pline("%s laughs at you!", Monnam(mon));
-			forget(1);
+			forget(1, FALSE);
 		    }
 		    break;
 
@@ -15132,7 +15132,7 @@ register struct obj *obj;
 		    losehp(d(1,6),"potion of amnesia", KILLED_BY_AN);
 		}
 		You_feel("dizzy!");
-		forget(1 + rn2(5));
+		forget(1 + rn2(5), FALSE);
 		break;
 	case POT_ACID:
 		if (Stoned) fix_petrification();
@@ -15620,7 +15620,7 @@ boolean amnesia;
 			       "elementary chemistry", KILLED_BY);
 			if (amnesia) {
 			    You_feel("a momentary lapse of reason!");
-			    forget(2 + rn2(3));
+			    forget(2 + rn2(3), FALSE);
 			}
 			makeknown(obj->otyp);
 			used = TRUE;
