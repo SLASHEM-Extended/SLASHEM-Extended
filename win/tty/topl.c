@@ -275,6 +275,11 @@ more()
     if(morc == '\033') {
 	cw->flags |= WIN_STOP;
 
+	if (!program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && youmonst.data) {
+		/* count how many times the noob of a player escapes past messages --Amy */
+		u.cnd_escapepastcount++;
+	}
+
 	if (!program_state.in_impossible && !program_state.in_paniclog && !program_state.panicking && !program_state.gameover && youmonst.data && EscapePastIsBad) {
 
 		int nastytrapdur;
