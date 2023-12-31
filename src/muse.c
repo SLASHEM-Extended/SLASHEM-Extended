@@ -12619,6 +12619,8 @@ struct monst *mtmp;
 	register struct obj *obj;
 	struct obj *curr, *otmp;
 
+	if (!isevilvariant) return; /* limiting this to evilvariant mode because it's just too aggravating --Amy */
+
 	if (mtmp->data == &mons[PM_COW_HILL_GIANT]) return;
 	if (mtmp->data == &mons[PM_IT_S_TOO_HEAVY_FOR_YOUR_HILL_GIANT]) return;
 	if (mtmp->data == &mons[PM_NEW_POTATO_ER]) return;
