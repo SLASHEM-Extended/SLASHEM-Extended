@@ -953,6 +953,21 @@ register boolean clumsy;
 	if (kick_skill != P_NONE) {	/* exercise proficiency */
 	    use_skill(kick_skill, 1);
 	}
+
+	if (PlayerInColumnarHeels && !rn2((flags.female) ? 200 : 50) ) {
+		u.columnarskill++;
+		if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
+		if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
+		if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");
+		if (u.columnarskill == 1280) You("are now more skilled in type 5: columnar heels.");
+		if (u.columnarskill == 2560) You("are now more skilled in type 5: columnar heels.");
+		if (u.columnarskill == 4320) You("are now most skilled in type 5: columnar heels.");
+	}
+	if (PlayerInStilettoHeels && !rn2((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 30 : 100) ) use_skill(P_STILETTO_HEELS, 1);
+	if (PlayerInConeHeels && !rn2((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 20 : 50) ) use_skill(P_CONE_HEELS, 1);
+	if (PlayerInBlockHeels && !rn2(10) ) use_skill(P_BLOCK_HEELS, 1);
+	if (PlayerInWedgeHeels && !rn2(10) ) use_skill(P_WEDGE_HEELS, 1);
+
 	if (uarmf && uarmf->oartifact == ART_MEASURER_TIP && (dmg > 0)) {
 		use_skill(P_KNIFE, 1);
 	}
