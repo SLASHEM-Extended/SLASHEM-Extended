@@ -170,6 +170,7 @@ Boots_on()
 	case SYNTHETIC_SANDALS:
 		break;
 	case EGGKICK_SHOES:
+	case COMMANDER_HEELS:
 		makeknown(uarmf->otyp);
 		break;
 	case WIND_AND_FIRE_WHEELS:
@@ -462,6 +463,10 @@ Boots_on()
 		}
 		break;
 	default: impossible(unknown_type_long, c_boots, uarmf->otyp);
+    }
+
+    if (uarmf && itemhasappearance(uarmf, APP_WARM_WERDING_BOOTS) ) {
+	makeknown(uarmf->otyp);
     }
 
     if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarmf && objects[uarmf->otyp].oc_color == CLR_RED && uarmf->spe < 0) uarmf->spe++;
@@ -1037,6 +1042,7 @@ Boots_off()
 	case PREHISTORIC_BOOTS:
 	case FLEECLE_SHOES:
 	case EGGKICK_SHOES:
+	case COMMANDER_HEELS:
 	case SYNTHETIC_SANDALS:
 	case PLASTEEL_BOOTS:
 
@@ -4072,6 +4078,7 @@ Armor_on()
 		case ROBE_OF_PROTECTION:
 		case ROBE_OF_DEFENSE:
 		case ROBE_OF_WEAKNESS:
+		case JEDI_ROBE:
 			makeknown(uarm->otyp);
 			break;
 	}
@@ -4682,6 +4689,9 @@ Amulet_on()
 		break;
 	case AMULET_OF_MENTAL_BOOST:
 		makeknown(AMULET_OF_MENTAL_BOOST);
+		break;
+	case AMULET_OF_THE_MATRIX:
+		makeknown(AMULET_OF_THE_MATRIX);
 		break;
 	case AMULET_OF_YENDOR:
 		break;
@@ -6724,6 +6734,29 @@ find_ac()
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_WE_ARE__TRANNIES && !flags.female) {
+		uac -= 5;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_HIGH_HEELS)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 2; break;
+				case P_EXPERT: uac -= 3; break;
+				case P_MASTER: uac -= 4; break;
+				case P_GRAND_MASTER: uac -= 5; break;
+				case P_SUPREME_MASTER: uac -= 6; break;
+			}
+			switch (P_SKILL(P_BLOCK_HEELS)) {
+				case P_BASIC: uac -= 1; break;
+				case P_SKILLED: uac -= 2; break;
+				case P_EXPERT: uac -= 3; break;
+				case P_MASTER: uac -= 4; break;
+				case P_GRAND_MASTER: uac -= 5; break;
+				case P_SUPREME_MASTER: uac -= 6; break;
+			}
+
+		}
+	}
+
 	if (PlayerInSexyFlats && !(PlayerCannotUseSkills)) { /* extra AC --Amy */
 
 		switch (P_SKILL(P_SEXY_FLATS)) {
@@ -6921,6 +6954,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
+	if (uarm && uarm->oartifact == ART_THIS_DEMO_IS_UNINSPIRED) uac -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) uac -= 10;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) uac -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
@@ -6935,6 +6969,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FIVE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TEN) uac -= 10;
+	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) ) uac -= 3;
 	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
 	if (uwep && uwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
@@ -7014,6 +7049,7 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_VITALITY_STORM) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_AA_S_CRASHING_TRAGEDY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_INERT_GREAVES) uac -= 4;
+	if (uamul && uamul->otyp == AMULET_OF_THE_MATRIX) uac -= 2;
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) uac -= 5;
 	if (Race_if(PM_HYPOTHERMIC) && uarmc) uac -= 3;

@@ -719,6 +719,8 @@ register char oclass;
 	objects[DUMMY_CLOAK_AW].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 	objects[DUMMY_CLOAK_AX].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
 
+	objects[RANDOM_JACKET].a_ac = rnd(10);
+
 	objects[IMPLANT_OF_ABSORPTION].a_ac = rnd(10);
 	objects[IMPLANT_OF_PUNCTURING].a_ac = rnd(10);
 	objects[IMPLANT_OF_CRAFTSMANSHIP].a_ac = rnd(10);

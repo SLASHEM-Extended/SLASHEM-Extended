@@ -4342,6 +4342,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ POT_GREASE, "todo" },
 	{ AMULET_OF_PHYSICAL_BOOST, "todo" },
 	{ AMULET_OF_MENTAL_BOOST, "todo" },
+	{ AMULET_OF_THE_MATRIX, "todo" },
+	{ DARK_LIGHTSABER, "todo" },
+	{ JEDI_ROBE, "todo" },
+	{ RANDOM_JACKET, "todo" },
+	{ COMMANDER_HEELS, "todo" },
 
 	{0, "" }
 };
@@ -7837,6 +7842,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ POT_GREASE, "todo" },
 	{ AMULET_OF_PHYSICAL_BOOST, "todo" },
 	{ AMULET_OF_MENTAL_BOOST, "todo" },
+	{ AMULET_OF_THE_MATRIX, "todo" },
+	{ DARK_LIGHTSABER, "todo" },
+	{ JEDI_ROBE, "todo" },
+	{ RANDOM_JACKET, "todo" },
+	{ COMMANDER_HEELS, "todo" },
 
 	{0, "" }
 };

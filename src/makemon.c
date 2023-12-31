@@ -1991,7 +1991,7 @@ register struct monst *mtmp;
 			case PM_JEDI:
 			case PM_SHADOW_JEDI:
 			case PM_HEDDERJEDI:
-			  switch(rnd(12)){
+			  switch(rnd(13)){
 			    case 1: mongets(mtmp, RED_LIGHTSABER); break;
 			    case 2: mongets(mtmp, BLUE_LIGHTSABER); break;
 			    case 3: mongets(mtmp, GREEN_LIGHTSABER); break;
@@ -2004,6 +2004,7 @@ register struct monst *mtmp;
 			    case 10: mongets(mtmp, ORANGE_LIGHTSABER); break;
 			    case 11: mongets(mtmp, BLACK_LIGHTSABER); break;
 			    case 12: mongets(mtmp, CYAN_DOUBLE_LIGHTSABER); break;
+			    case 13: mongets(mtmp, DARK_LIGHTSABER); break;
 			    default: break;
 			  }
 			  break;

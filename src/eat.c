@@ -273,6 +273,8 @@ register struct obj *obj;
 		return TRUE;
 	if (uwep && uwep->oartifact == ART_FERRUM_D && is_metallic(obj) && !obj->oerodeproof)
 		return TRUE;
+	if (uarm && uarm->oartifact == ART_PYROCLASTINATE && is_metallic(obj) && !obj->oerodeproof)
+		return TRUE;
 
 	/* lithivores can eat stone; erosionproofing makes it impossible now --Amy */
 	if (lithivorous(youmonst.data) && is_lithic(obj) && !obj->oerodeproof )

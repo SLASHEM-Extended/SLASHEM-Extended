@@ -930,9 +930,12 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) tmp += 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
+	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
+
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) tmp -= rnd(10);
 	if (u.martialstyle == MARTIALSTYLE_SILAT && !uwep && (!u.twoweap || !uswapwep)) tmp += rn1(6, 6);
 	if (u.martialstyle == MARTIALSTYLE_KUNGFU && !uwep && (!u.twoweap || !uswapwep)) tmp += 5;
+
 	if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
 		tmp += 5;
 		if (!PlayerCannotUseSkills) {
@@ -4085,6 +4088,8 @@ int dieroll;
 		if (uright && uright->oartifact == ART_RING_OF_THROR) tmp += 2;
 		if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 2;
 		if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 2;
+		if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
+
 		if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
 			tmp += 5;
 			if (!PlayerCannotUseSkills) {
@@ -5025,6 +5030,19 @@ melatechoice:
 	    /* [this assumes that `!thrown' implies wielded...] */
 	    wtype = weapon_type(wep);
 	    if (thrwwep) wtype = weapon_type(thrwwep);
+
+	    /* dark lightsaber uses energy slowly while lit but faster if you hit with it --Amy */
+	    if (wep && (wep->otyp == DARK_LIGHTSABER || wep->oartifact == ART_CHRIS_S_TWIT_APOSTROPH || wep->oartifact == ART_BURN_FASTER) && wep->lamplit) {
+		wep->age -= 1;
+		if (wep->age < 0) wep->age = 0;
+	    }
+	    if (wep && wep->oartifact == ART_BURN_FASTER && wep->lamplit) {
+		wep->age -= 4;
+		if (wep->age < 0) wep->age = 0;
+		u.uhunger -= 5;
+		newuhs(TRUE);
+	    }
+
 	    if (!(mon->egotype_flickerer) && !noeffect && !(mon->data == &mons[PM_LITTLE_POISON_IVY] || mon->data == &mons[PM_CRITICALLY_INJURED_PERCENTS] || mon->data == &mons[PM_SUPERDEEP_TYPE] || mon->data == &mons[PM_AGULA] || mon->data == &mons[PM_DTTN_ERROR] || mon->data == &mons[PM_FLUIDATOR_IVE] || mon->data == &mons[PM_MISTER_GRIBBS] || mon->data == &mons[PM_AMBER_FEMMY] || mon->data == &mons[PM_IMMUNITY_VIRUS] || mon->data == &mons[PM_UNGENOCIDABLE_VAMPSHIFTER] || mon->data == &mons[PM_TERRIFYING_POISON_IVY] || mon->data == &mons[PM_GIRL_WITH_THE_MOST_BEAUTIFUL_SHOES_IN_THE_WORLD] || mon->data == &mons[PM_IMMOVABLE_OBSTACLE] || mon->data == &mons[PM_INVINCIBLE_HAEN] || mon->data == &mons[PM_CHAREY] || mon->data == &mons[PM_INVENTOR_OF_THE_SISTER_COMBAT_BOOTS] || mon->data == &mons[PM_SWEET_ASIAN_POISON_IVY] || mon->data == &mons[PM_ARABELLA_SHOE] || mon->data == &mons[PM_ANASTASIA_SHOE] || mon->data == &mons[PM_HENRIETTA_SHOE] || mon->data == &mons[PM_KATRIN_SHOE] || mon->data == &mons[PM_JANA_SHOE] || mon->data == &mons[PM_FIRST_DUNVEGAN] || mon->data == &mons[PM_PERCENTI_HAS_LOST___] || mon->data == &mons[PM_PERCENTI_IS_IMMUNE_TO_THE_ATTACK_]) ) {
 		    if (thrown || !u.twoweap || !rn2(2)) {
 			use_skill(wtype, 1);

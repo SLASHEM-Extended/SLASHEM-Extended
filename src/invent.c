@@ -13009,6 +13009,8 @@ boolean knoweverything;
 			pline("If you want to turn into a sweet asian amazon, wear these multicolored sweeties. They make you more resistant to fire and also confer weak displacement, but monsters will hit you more often in melee. Also, wearing them trains the sexy flats skill.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GENTLE_BOOTS))
 			pline("These boots are soooooo gentle! Wearing them will use the sexy flats skill.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WARM_WERDING_BOOTS))
+			pline("As soon as you put on this pair of boots, its base type identifies itself.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLED_BOOTS))
 			pline("A pair of boots that counts as sexy flats (as long as its base type isn't high-heeled), because admit it, the buckles look very sexy <3");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SPIDER_BOOTS))
@@ -13017,6 +13019,8 @@ boolean knoweverything;
 			pline("A robe in urban camo colors that makes you more difficult to spot for your enemies.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_OCTARINE_ROBE))
 			pline("This robe is imbued with special magic. Sometimes it will send beams back at whoever fired them.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POWERSAVE_ROBE))
+			pline("Wearing this robe reduces the rate of energy usage for all of your lightsabers.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ARENA_ROBE))
 			pline("Wearing this robe increases your unarmed damage by one point. If you're a gladiator, it additionally increases all melee damage you deal by one (additional) point.");
 
@@ -14205,10 +14209,16 @@ boolean knoweverything;
 				pline("Very weak suit of armor, however wearing it protects your items from cold and fire, so it might be worthwile early on until you find a real armor."); break;
 			case UPPERWEAVER_S_ROBE:
 				pline("Robe that provides sight bonus when worn. It was created by honorary SLEX devteam member ChatGPT, who has this to say: 'Upperweaver's Robe is a flowing garment made of shimmering silk, adorned with intricate patterns and adorned with silver threads. It emanates a faint, otherworldly glow, suggesting its magical nature.'"); break;
+			case JEDI_ROBE:
+				pline("This type of robe is particularly good for lightsaber combat, because it grants 3 extra points of AC whenever you're wielding a lightsaber and if the lightsaber is additionally turned on, it gains +1 to-hit and damage."); break;
 			case SHOCK_ISOLATED_HEELS:
 				pline("These block heels prevent you from having shock resistance when worn, because while the heels themselves are protected from shock, it means that the electric current cannot easily get out of your body. They boost your charisma and kick damage. In particular, kicking tiny-sized enemies with them deals quite some bonus damage."); break;
 			case FLEECLE_SHOES:
 				pline("A pair of sexy flats. If their randomized appearance isn't high-heeled, they provide half physical damage."); break;
+			case RANDOM_JACKET:
+				pline("The base amount of AC granted by this jacket is %d.", objects[RANDOM_JACKET].a_ac); break;
+			case COMMANDER_HEELS:
+				pline("Block-heeled combat boots that grant an aura of power to the wearer. While wearing them, all of your stats are increased by one."); break;
 
 			case LETHE_CLOAK:
 				pline("3 points of magic cancellation, but putting it on causes amnesia once."); break;
@@ -16733,6 +16743,8 @@ boolean knoweverything;
 				pline("Grants +3 strength and dexterity when worn."); break;
 			case AMULET_OF_MENTAL_BOOST:
 				pline("Grants +3 intelligence and wisdom when worn."); break;
+			case AMULET_OF_THE_MATRIX:
+				pline("This type of amulet was suggested by Demo. It grants 2 points of AC when worn and doubles the damage reduction granted by good (read: highly negative) AC values, so you'd best wear a bunch of powerful armor with it."); break;
 			case AMULET_OF_LIFE_SAVING:
 				pline("You can survive death once if you wear this amulet. It will disintegrate if it saves your life."); break;
 			case AMULET_OF_MONSTER_SAVING:
@@ -17165,6 +17177,8 @@ boolean knoweverything;
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
 			case RED_LIGHTSABER:
 				pline("This lightsaber does random damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving."); break;
+			case DARK_LIGHTSABER:
+				pline("This lightsaber does low damage, but it needs to be turned on in order to work. An activated lightsaber is good for engraving. It has a significant to-hit bonus and drains power at one third of the normal rate, but every time you hit something with it, an additional unit of charge is used up."); break;
 			case BLACK_LIGHTSABER:
 				pline("This lightsaber does random damage, but it needs to be turned on in order to work and it also deals less damage than most other lightsaber types. An activated lightsaber is good for engraving."); break;
 			case RED_DOUBLE_LIGHTSABER:
@@ -29993,6 +30007,18 @@ boolean knoweverything;
 					pline("Artifact specs: double spellboost when worn. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The Upperweaver's Robe enhances the wearer's magical abilities. It boosts their spellcasting potential, increasing the potency, duration, or range of their spells, depending on their magical discipline.'"); break;
 				case ART_CLOAK_OF_SHADOWS:
 					pline("Artifact specs: stealth and invisibility when worn. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'By activating this ability, the wearer can shroud themselves in an ethereal cloak of shadows, granting them temporary invisibility for a short period. While invisible, they gain advantages in stealth, making it easier to move unnoticed and perform sneak attacks.' Note: unlike that original idea, this artifact has those powers permanently."); break;
+				case ART_DRMI:
+					pline("Artifact specs: half physical and spell damage when worn."); break;
+				case ART_CHRIS_S_TWIT_APOSTROPH:
+					pline("Artifact specs: uses up lightsaber power extremely slowly if you don't attack stuff with it."); break;
+				case ART_BURN_FASTER:
+					pline("Artifact specs: +22 fire damage, hitting things uses up much more power and also 5 points of nutrition, makes you burned while wielded and you'll remain burned for a while after unwielding it, plus you'll also wince for a couple turns."); break;
+				case ART_PYROCLASTINATE:
+					pline("Artifact specs: fire resistance and allows you to eat metal when worn."); break;
+				case ART_WE_ARE__TRANNIES:
+					pline("Artifact specs: your axes do extra damage and your firearms have more to-hit while wearing it, and if you're male, you gain a bunch of extra AC, more if your high heels or block heels skills are higher."); break;
+				case ART_THIS_DEMO_IS_UNINSPIRED:
+					pline("Artifact specs: because this Demo guy is so uninspired and didn't want to make an artifact for the jacket he suggested, Amy had to make one, which just gives 5 extra points of AC."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

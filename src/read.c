@@ -2030,6 +2030,7 @@ int curse_bless;
 	    case ORANGE_LIGHTSABER:
 	    case BLACK_LIGHTSABER:
 	    case BLUE_LIGHTSABER:
+	    case DARK_LIGHTSABER:
 	    case LASERFIST:
 	    case LASER_TIN_OPENER:
 	    case MYSTERY_LIGHTSABER:

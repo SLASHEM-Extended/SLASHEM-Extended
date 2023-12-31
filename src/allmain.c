@@ -3647,6 +3647,11 @@ moveloop()
 
 		if (have_appearanceshufflingstone() && !rn2(2000)) initobjectsamnesia();
 
+		if (autismweaponcheck(ART_BURN_FASTER)) {
+			if (HBurned < 20) HBurned = 20;
+			if (HWinceState < 200) HWinceState = 200;
+		}
+
 		if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) {
 			if (!u.fumbleduration) {
 				HFumbling = FROMOUTSIDE | rnd(5);
@@ -8111,7 +8116,7 @@ newbossSTEN:
 		}
 
 		if (uwep && uwep->oartifact == ART_SWITCH_TO_ANOTHER && !rn2(1000)) {
-			switch (rnd(31)) {
+			switch (rnd(32)) {
 				case 1: uwep->otyp = GREEN_LIGHTSABER; break;
 				case 2: uwep->otyp = BLUE_LIGHTSABER; break;
 				case 3: uwep->otyp = RED_LIGHTSABER; break;
@@ -8143,6 +8148,7 @@ newbossSTEN:
 				case 29: uwep->otyp = PINK_LIGHTSWORD; break;
 				case 30: uwep->otyp = LASER_FLYAXE; break;
 				case 31: uwep->otyp = PINK_DOUBLE_LIGHTSWORD; break;
+				case 32: uwep->otyp = DARK_LIGHTSABER; break;
 			}
 			if (bimanual(uwep)) {
 				if (uswapwep) uswapwepgone();
@@ -18566,6 +18572,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "edible robe")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled hugging boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "diamond delicately filigreed stilettos")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "powersave robe")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "warm-werding boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19979,6 +19987,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "edible robe")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-heeled hugging boots")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "diamond delicately filigreed stilettos")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "powersave robe")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "warm-werding boots")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

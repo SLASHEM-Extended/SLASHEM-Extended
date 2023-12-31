@@ -1024,6 +1024,10 @@ register struct obj *obj;
 	case AMULET_OF_MENTAL_BOOST:
 		pline_The("toilet seems highly intelligent!");
 		break;
+	case AMULET_OF_THE_MATRIX:
+		if (rn2(2)) You_feel("like taking the blue pill and pretending that the toilet is always clean and tidy.");
+		else You_feel("like taking the red pill and realizing that the toilet is always filthy and unclean.");
+		break;
 	case AMULET_OF_MENTAL_STABILITY:
 		pline_The("toilet seems to be operating steadily.");
 		break;

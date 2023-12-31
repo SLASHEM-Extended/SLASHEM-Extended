@@ -5514,9 +5514,12 @@ long timeout;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
+		if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_CHRIS_S_TWIT_APOSTROPH && rn2(6)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
@@ -5825,6 +5828,7 @@ long timeout;
 	    case ORANGE_LIGHTSABER: 
 	    case BLACK_LIGHTSABER: 
 	    case BLUE_LIGHTSABER:
+	    case DARK_LIGHTSABER:
 	    case LASERFIST:
 	    case LASER_TIN_OPENER:
 	    case LASER_SWORD:
@@ -6012,9 +6016,12 @@ begin_burn(obj, already_lit)
 
 			if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 			if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+			if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
+			if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
 			if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 			if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+			if (obj->oartifact == ART_CHRIS_S_TWIT_APOSTROPH && rn2(6)) willdrainenergy = FALSE;
 			if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 			if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 			if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
@@ -6077,9 +6084,12 @@ begin_burn(obj, already_lit)
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
+		if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_CHRIS_S_TWIT_APOSTROPH && rn2(6)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && uarm->oartifact == ART_BOBAIS && !rn2(5)) willdrainenergy = FALSE;
 		if (uwep && uswapwep && u.twoweap && uwep->oartifact == ART_ATAR_ATAR && uswapwep->oartifact == ART_ATAR_ATAR) {
@@ -6144,6 +6154,7 @@ begin_burn(obj, already_lit)
 	    case LIGHTWHIP:
 	    case ELECTRIC_CIGARETTE:
 	    case BLUE_LIGHTSABER:
+	    case DARK_LIGHTSABER:
 	    case LASERFIST:
 	    case LASER_TIN_OPENER:
 	    case HEAVY_LASER_BALL:
@@ -6241,9 +6252,12 @@ begin_burn(obj, already_lit)
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
+		if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == LASER_TIN_OPENER && rn2(2)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_OWENER && rn2(2)) willdrainenergy = FALSE;
+		if (obj->oartifact == ART_CHRIS_S_TWIT_APOSTROPH && rn2(6)) willdrainenergy = FALSE;
 		if (obj->oartifact == ART_BLAG_LITE && rn2(2)) willdrainenergy = FALSE;
 		if (tech_inuse(T_PIRATE_BROTHERING) && uwep && is_lightsaber(uwep) && uswapwep && weapon_type(uswapwep) == P_SCIMITAR && u.twoweap) {
 			willdrainenergy = FALSE;
@@ -6960,10 +6974,10 @@ long adj;
       timer->timeout--;
 
       if (timer->timeout <= monstermoves) {
-	if (timer->kind == TIMER_OBJECT) ((struct obj *)arg)->timed--;
-	(*timeout_funcs[func_index].f)(arg, timer->timeout);
-	free((void *) timer);
-	break;
+		if (timer->kind == TIMER_OBJECT) ((struct obj *)arg)->timed--;
+		(*timeout_funcs[func_index].f)(arg, timer->timeout);
+		free((void *) timer);
+		break;
       }
     }
 

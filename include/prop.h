@@ -1142,6 +1142,7 @@
 #define APP_PARTICULARLY_TERRIBLE_BOOTS 4161
 #define APP_DIAMOND_STILETTOS 4162
 #define APP_HEELED_HUGGING_BOOTS 4163
+#define APP_WARM_WERDING_BOOTS 4164
 
 #define APP_POTION_MILKY 5000
 #define APP_POTION_SMOKY 5001
@@ -1189,6 +1190,7 @@
 #define APP_OCTARINE_ROBE 6001
 #define APP_ARENA_ROBE 6002
 #define APP_FACELESS_ROBE 6003
+#define APP_POWERSAVE_ROBE 6004
 
 /*** Where the properties come from ***/
 /* Definitions were moved here from obj.h and you.h */

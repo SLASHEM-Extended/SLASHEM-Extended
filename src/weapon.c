@@ -634,6 +634,7 @@ struct monst *mon;
 		case LASERFIST:  tmp += rnd(13); break;
 		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
+		case DARK_LIGHTSABER:   tmp += rnd(4); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(12); break;
 		case LASER_CHAIN:   tmp += rnd(12); break;
 		case LASER_SWORD:   tmp += rnd(12); break;
@@ -754,6 +755,7 @@ struct monst *mon;
 		case LASERFIST:  tmp += rnd(13); break;
 		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
+		case DARK_LIGHTSABER:   tmp += rnd(4); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(8); break;
 		case LASER_CHAIN:   tmp += rnd(8); break;
 		case LASER_SWORD:   tmp += rnd(8); break;
@@ -1249,6 +1251,7 @@ struct monst *mon;
 		case LASERFIST:  tmp += rnd(13); break;
 		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(12); break;
+		case DARK_LIGHTSABER:   tmp += rnd(4); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(12); break;
 		case LASER_CHAIN:   tmp += rnd(12); break;
 		case LASER_SWORD:   tmp += rnd(12); break;
@@ -1369,6 +1372,7 @@ struct monst *mon;
 		case LASERFIST:  tmp += rnd(13); break;
 		case LASER_TIN_OPENER:  tmp += rnd(5); break;
 		case BLUE_LIGHTSABER:   tmp += rnd(8); break;
+		case DARK_LIGHTSABER:   tmp += rnd(4); break;
 		case HEAVY_LASER_BALL:   tmp += rnd(8); break;
 		case LASER_CHAIN:   tmp += rnd(8); break;
 		case LASER_SWORD:   tmp += rnd(8); break;
@@ -2597,6 +2601,10 @@ struct monst *mon;
 
 	    } /* player cannot use skills check */
 
+		if (uarmf && uarmf->oartifact == ART_WE_ARE__TRANNIES && (objects[otmp->otyp].oc_skill == P_AXE)) {
+			bonus += rnd(5);
+		}
+
 		if (uarmh && uarmh->oartifact == ART_WAR_MASK_OF_DURIN && (objects[otmp->otyp].oc_skill == P_AXE)) {
 			bonus += 5;
 		}
@@ -3231,7 +3239,7 @@ static const NEARDATA short hwep[] = {
 	  ICKY_BLADE, WILD_BLADE, HEAVY_LONG_SWORD, MAIN_SWORD, BRICK_MISSILE, VARIED_GRINDER,
 	  LONG_SWORD, OBSID, TRIPLE_HEADED_FLAIL, PUNCTURING_JAVELIN, UNDERWORLD_JAVELIN, COURSE_JAVELIN,
 	  SPIRIT_THROWER, IMPACT_STAFF, BO_STAFF, BREAKER_STAFF,
-	  WALKING_STICK, SPIKERACK, CUDSWORD,
+	  WALKING_STICK, SPIKERACK, CUDSWORD, DARK_LIGHTSABER,
 	  DROVEN_SPEAR, MEATSWORD, BIDENHANDER, DIAMOND_SMASHER, GRINDER, SATURNITE_FIST,
 
 	  DISGUSTING_CHAIN, GRANITE_SCOURGE, ELYSIUM_SCOURGE, SCOURGE, CHROME_SCOURGE, SHADOW_SCOURGE, COPPER_SCOURGE,
@@ -8454,7 +8462,7 @@ boolean extraskills;
 
 	if (obj->oclass == IMPLANT_CLASS) skill = P_IMPLANTS;
 
-	if (obj->otyp == WEDGE_SANDALS || obj->otyp == FEMININE_PUMPS || obj->otyp == LEATHER_PEEP_TOES || obj->otyp == HIPPIE_HEELS || obj->otyp == PET_STOMPING_PLATFORM_BOOTS || obj->otyp == SENTIENT_HIGH_HEELED_SHOES || obj->otyp == ATSUZOKO_BOOTS || obj->otyp == COMBAT_STILETTOS || obj->otyp == HEEL_WISE_SHOES || obj->otyp == ITALIAN_HEELS || obj->otyp == LADY_BOOTS || obj->otyp == STILETTO_SANDALS || obj->otyp == HIGH_STILETTOS || obj->otyp == UNFAIR_STILETTOS || obj->otyp == SKY_HIGH_HEELS || obj->otyp == SINFUL_HEELS || obj->otyp == COVETED_BOOTS || obj->otyp == BUM_BUM_BOOTS || obj->otyp == SELF_WILLED_HEELS || obj->otyp == HIGH_HEELED_SKIERS || obj->otyp == RED_SPELL_HEELS || obj->otyp == DESTRUCTIVE_HEELS || obj->otyp == LONG_POINTY_HEELS || obj->otyp == VIOLET_BEAUTY_HEELS || obj->otyp == AUTOSCOOTER_HEELS || obj->otyp == KILLER_HEELS || obj->otyp == HIGH_SCORING_HEELS || obj->otyp == FEMMY_STILETTO_BOOTS || obj->otyp == MADELEINE_PLATEAU_BOOTS || obj->otyp == WENDY_LEATHER_PUMPS || obj->otyp == KATHARINA_PLATFORM_BOOTS || obj->otyp == SABRINA_PLATFORM_BOOTS || obj->otyp == ELENA_COMBAT_BOOTS || obj->otyp == THAI_COMBAT_BOOTS || obj->otyp == SHOCK_ISOLATED_HEELS || obj->otyp == NADJA_BUCKLED_LADY_SHOES || obj->otyp == SANDRA_COMBAT_BOOTS || obj->otyp == NATALJE_BLOCK_HEEL_SANDALS || obj->otyp == MELTEM_COMBAT_BOOTS || obj->otyp == CLAUDIA_WOODEN_SANDALS || obj->otyp == NELLY_LADY_PUMPS || obj->otyp == EVELINE_WEDGE_SANDALS || obj->otyp == JUEN_PEEP_TOES || obj->otyp == JULIETTA_PEEP_TOES || obj->otyp == KRISTIN_COMBAT_BOOTS || obj->otyp == RUEA_COMBAT_BOOTS || obj->otyp == DORA_COMBAT_BOOTS || obj->otyp == JETTE_COMBAT_BOOTS || obj->otyp == SING_PLATFORM_BOOTS || obj->otyp == VICTORIA_COMBAT_BOOTS || obj->otyp == MELISSA_WEDGE_BOOTS || obj->otyp == ANITA_LADY_PUMPS || obj->otyp == HENRIETTA_COMBAT_BOOTS || obj->otyp == VERENA_STILETTO_SANDALS || obj->otyp == KSENIA_PLATFORM_SANDALS || obj->otyp == LYDIA_LADY_PUMPS || obj->otyp == CONNY_COMBAT_BOOTS || obj->otyp == KATIA_COMBAT_BOOTS || obj->otyp == MARIYA_COMBAT_BOOTS || obj->otyp == ELISE_HIPPIE_HEELS || obj->otyp == RONJA_COMBAT_BOOTS || obj->otyp == NAOMI_STILETTOS || obj->otyp == ARIANE_COMBAT_BOOTS || obj->otyp == JOHANNA_COMBAT_BOOTS || obj->otyp == INGE_COMBAT_BOOTS || obj->otyp == LARISSA_PLATFORM_BOOTS || obj->otyp == NORA_COMBAT_BOOTS || obj->otyp == NATALIA_WEDGE_SANDALS || obj->otyp == IRINA_WEDGE_SANDALS || obj->otyp == SUSANNE_COMBAT_BOOTS || obj->otyp == LISA_COMBAT_BOOTS || obj->otyp == BRIDGHITTE_SKI_HEELS || obj->otyp == JULIA_COMBAT_BOOTS || obj->otyp == NICOLE_COMBAT_BOOTS || obj->otyp == RITA_STILETTOS || obj->otyp == JANINA_LADY_PUMPS || obj->otyp == RHEA_LADY_PUMPS || obj->otyp == KATRIN_COMBAT_BOOTS || obj->otyp == GUDRUN_WEDGE_SANDALS || obj->otyp == ELLA_WEDGE_SANDALS || obj->otyp == JASIEEN_WEDGE_SANDALS || obj->otyp == MANUELA_COMBAT_BOOTS || obj->otyp == JENNIFER_COMBAT_BOOTS || obj->otyp == ANTJE_COMBAT_BOOTS || obj->otyp == MAGDALENA_COMBAT_BOOTS || obj->otyp == MARLEEN_COMBAT_BOOTS || obj->otyp == KERSTIN_COMBAT_BOOTS || obj->otyp == LARA_COMBAT_BOOTS || obj->otyp == PATRICIA_STEEL_CAPPED_SANDALS || obj->otyp == ANNEMARIE_PLATFORM_SANDALS || obj->otyp == NADINE_STILETTO_SANDALS || obj->otyp == KLARA_PLATFORM_SANDALS || obj->otyp == UTE_PLATFORM_SANDALS) skill = P_HIGH_HEELS;
+	if (obj->otyp == WEDGE_SANDALS || obj->otyp == FEMININE_PUMPS || obj->otyp == LEATHER_PEEP_TOES || obj->otyp == HIPPIE_HEELS || obj->otyp == PET_STOMPING_PLATFORM_BOOTS || obj->otyp == SENTIENT_HIGH_HEELED_SHOES || obj->otyp == ATSUZOKO_BOOTS || obj->otyp == COMBAT_STILETTOS || obj->otyp == HEEL_WISE_SHOES || obj->otyp == ITALIAN_HEELS || obj->otyp == LADY_BOOTS || obj->otyp == STILETTO_SANDALS || obj->otyp == HIGH_STILETTOS || obj->otyp == UNFAIR_STILETTOS || obj->otyp == SKY_HIGH_HEELS || obj->otyp == SINFUL_HEELS || obj->otyp == COVETED_BOOTS || obj->otyp == BUM_BUM_BOOTS || obj->otyp == SELF_WILLED_HEELS || obj->otyp == COMMANDER_HEELS || obj->otyp == HIGH_HEELED_SKIERS || obj->otyp == RED_SPELL_HEELS || obj->otyp == DESTRUCTIVE_HEELS || obj->otyp == LONG_POINTY_HEELS || obj->otyp == VIOLET_BEAUTY_HEELS || obj->otyp == AUTOSCOOTER_HEELS || obj->otyp == KILLER_HEELS || obj->otyp == HIGH_SCORING_HEELS || obj->otyp == FEMMY_STILETTO_BOOTS || obj->otyp == MADELEINE_PLATEAU_BOOTS || obj->otyp == WENDY_LEATHER_PUMPS || obj->otyp == KATHARINA_PLATFORM_BOOTS || obj->otyp == SABRINA_PLATFORM_BOOTS || obj->otyp == ELENA_COMBAT_BOOTS || obj->otyp == THAI_COMBAT_BOOTS || obj->otyp == SHOCK_ISOLATED_HEELS || obj->otyp == NADJA_BUCKLED_LADY_SHOES || obj->otyp == SANDRA_COMBAT_BOOTS || obj->otyp == NATALJE_BLOCK_HEEL_SANDALS || obj->otyp == MELTEM_COMBAT_BOOTS || obj->otyp == CLAUDIA_WOODEN_SANDALS || obj->otyp == NELLY_LADY_PUMPS || obj->otyp == EVELINE_WEDGE_SANDALS || obj->otyp == JUEN_PEEP_TOES || obj->otyp == JULIETTA_PEEP_TOES || obj->otyp == KRISTIN_COMBAT_BOOTS || obj->otyp == RUEA_COMBAT_BOOTS || obj->otyp == DORA_COMBAT_BOOTS || obj->otyp == JETTE_COMBAT_BOOTS || obj->otyp == SING_PLATFORM_BOOTS || obj->otyp == VICTORIA_COMBAT_BOOTS || obj->otyp == MELISSA_WEDGE_BOOTS || obj->otyp == ANITA_LADY_PUMPS || obj->otyp == HENRIETTA_COMBAT_BOOTS || obj->otyp == VERENA_STILETTO_SANDALS || obj->otyp == KSENIA_PLATFORM_SANDALS || obj->otyp == LYDIA_LADY_PUMPS || obj->otyp == CONNY_COMBAT_BOOTS || obj->otyp == KATIA_COMBAT_BOOTS || obj->otyp == MARIYA_COMBAT_BOOTS || obj->otyp == ELISE_HIPPIE_HEELS || obj->otyp == RONJA_COMBAT_BOOTS || obj->otyp == NAOMI_STILETTOS || obj->otyp == ARIANE_COMBAT_BOOTS || obj->otyp == JOHANNA_COMBAT_BOOTS || obj->otyp == INGE_COMBAT_BOOTS || obj->otyp == LARISSA_PLATFORM_BOOTS || obj->otyp == NORA_COMBAT_BOOTS || obj->otyp == NATALIA_WEDGE_SANDALS || obj->otyp == IRINA_WEDGE_SANDALS || obj->otyp == SUSANNE_COMBAT_BOOTS || obj->otyp == LISA_COMBAT_BOOTS || obj->otyp == BRIDGHITTE_SKI_HEELS || obj->otyp == JULIA_COMBAT_BOOTS || obj->otyp == NICOLE_COMBAT_BOOTS || obj->otyp == RITA_STILETTOS || obj->otyp == JANINA_LADY_PUMPS || obj->otyp == RHEA_LADY_PUMPS || obj->otyp == KATRIN_COMBAT_BOOTS || obj->otyp == GUDRUN_WEDGE_SANDALS || obj->otyp == ELLA_WEDGE_SANDALS || obj->otyp == JASIEEN_WEDGE_SANDALS || obj->otyp == MANUELA_COMBAT_BOOTS || obj->otyp == JENNIFER_COMBAT_BOOTS || obj->otyp == ANTJE_COMBAT_BOOTS || obj->otyp == MAGDALENA_COMBAT_BOOTS || obj->otyp == MARLEEN_COMBAT_BOOTS || obj->otyp == KERSTIN_COMBAT_BOOTS || obj->otyp == LARA_COMBAT_BOOTS || obj->otyp == PATRICIA_STEEL_CAPPED_SANDALS || obj->otyp == ANNEMARIE_PLATFORM_SANDALS || obj->otyp == NADINE_STILETTO_SANDALS || obj->otyp == KLARA_PLATFORM_SANDALS || obj->otyp == UTE_PLATFORM_SANDALS) skill = P_HIGH_HEELS;
 
 	if (obj->otyp == RUBBER_BOOTS || obj->otyp == EGGKICK_SHOES || obj->otyp == FLEECLE_SHOES || obj->otyp == SNEAKERS || obj->otyp == DANCING_SHOES || obj->otyp == SWEET_MOCASSINS || obj->otyp == SOFT_SNEAKERS || obj->otyp == RUTH_SNEAKERS || obj->otyp == ROLLER_BLADE || obj->otyp == DIFFICULT_BOOTS || obj->otyp == AIRSTEP_BOOTS || obj->otyp == SYNTHETIC_SANDALS || obj->otyp == BRIGHT_CYAN_BEAUTIES || obj->otyp == MARLENA_HIKING_BOOTS || obj->otyp == ANASTASIA_DANCING_SHOES || obj->otyp == FRIEDERIKE_DANCING_SHOES || obj->otyp == JESSICA_LADY_SHOES || obj->otyp == SOLVEJG_MOCASSINS || obj->otyp == ELIF_SNEAKERS || obj->otyp == JEANETTA_GIRL_BOOTS || obj->otyp == YVONNE_GIRL_SNEAKERS || obj->otyp == MAURAH_HUGGING_BOOTS || obj->otyp == SARAH_HUGGING_BOOTS || obj->otyp == LUDGERA_HIKING_BOOTS || obj->otyp == KATI_GIRL_BOOTS || obj->otyp == KARIN_LADY_SANDALS || obj->otyp == LAURA_WINTER_BOOTS || obj->otyp == KRISTINA_PLATFORM_SNEAKERS || obj->otyp == LOU_SNEAKERS || obj->otyp == YASAMAN_LEATHER_BOOTS || obj->otyp == MAY_BRITT_SANDALS || obj->otyp == ALMUT_SNEAKERS || obj->otyp == ARABELLA_HUGGING_BOOTS || obj->otyp == ANTJE_SNEAKERS || obj->otyp == JIL_VELCRO_SHOES || obj->otyp == JANA_SNEAKERS || obj->otyp == TANJA_SNEAKERS || obj->otyp == SONJA_SNEAKERS || obj->otyp == ANNA_HUGGING_BOOTS || obj->otyp == LUISA_HUGGING_BOOTS || obj->otyp == LISELOTTE_HUGGING_BOOTS || obj->otyp == GRETA_HUGGING_BOOTS || obj->otyp == JANE_HUGGING_BOOTS || obj->otyp == SUE_LYN_WINTER_BOOTS || obj->otyp == CHARLOTTE_HUGGING_BOOTS || obj->otyp == HANNAH_CUDDLE_BOOTS || obj->otyp == LITTLE_MARIE_HUGGING_BOOTS || obj->otyp == KERSTIN_WOODEN_SANDALS || obj->otyp == KERSTIN_SNEAKERS || obj->otyp == INA_HUGGING_BOOTS) skill = P_SEXY_FLATS;
 

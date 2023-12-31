@@ -418,7 +418,7 @@
 
 #define HBurned		u.uprops[BURNED].intrinsic
 #define EBurned		u.uprops[BURNED].extrinsic
-#define Burned		(HBurned || EBurned || HeavyBurned || Race_if(PM_BURNINATOR) || (uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) || (uarms && uarms->oartifact == ART_BURNING_DISK) )
+#define Burned		(HBurned || EBurned || HeavyBurned || Race_if(PM_BURNINATOR) || (uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) || autismweaponcheck(ART_BURN_FASTER) || (uarms && uarms->oartifact == ART_BURNING_DISK) )
 #define HeavyBurned		u.uprops[HEAVY_BURNED].intrinsic
 
 #define HDimmed		u.uprops[DIMMED].intrinsic

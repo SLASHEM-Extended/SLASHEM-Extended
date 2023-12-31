@@ -2708,6 +2708,8 @@ boolean polearming;
 	if (obj && obj->otyp == LASER_FLYAXE && obj->lamplit) tmp += 5;
 	if (obj && obj->otyp == DISKOS) tmp += 5;
 
+	if (uarmf && uarmf->oartifact == ART_WE_ARE__TRANNIES && gunused) tmp += rnd(10);
+
 	if (uarmg && itemhasappearance(uarmg, APP_UNCANNY_GLOVES)) tmp += 1;
 	if (uarmg && itemhasappearance(uarmg, APP_SLAYING_GLOVES)) tmp += 1;
 	if (uarmg && itemhasappearance(uarmg, APP_SUREFIRE_GLOVES)) tmp += 2;

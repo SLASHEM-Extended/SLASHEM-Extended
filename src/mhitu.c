@@ -978,7 +978,7 @@ elena14:
 			}
 
 			/* lady boots use M4_BLOCKHEELBOOTS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS) || (footwear && footwear->otyp == NADJA_BUCKLED_LADY_SHOES) || (FemtrapActiveKerstin && spawnswithblockheels(mtmp->data) ) || (footwear && footwear->otyp == LISA_COMBAT_BOOTS) || (footwear && footwear->otyp == MAGDALENA_COMBAT_BOOTS) || (footwear && footwear->otyp == SELF_WILLED_HEELS) || (footwear && itemhasappearance(footwear, APP_DYKE_BOOTS)) || (footwear && itemhasappearance(footwear, APP_ICEBLOCK_HEELS)) || (footwear && itemhasappearance(footwear, APP_SISTER_SHOES)) || (randomsexyheels == 16) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_ERIKA_S_HIGH_HEELED_SANDAL] || mtmp->data == &mons[PM_CHEATING_BLOCK_HEEL_BOOT] || mtmp->data == &mons[PM_CHEAP_BLOCK_HEEL_BOOT] || mtmp->data == &mons[PM_STAIRWELL_HEEL_BOOT] || mtmp->data == &mons[PM_CORNELIA_S_EROTIC_BLOCK_HEEL_SANDAL] || mtmp->data == &mons[PM_CUTE_BLOCK_HEEL_SANDAL] || mtmp->data == &mons[PM_ANIMATED_LADY_BOOT] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == LADY_BOOTS) || (footwear && footwear->otyp == NADJA_BUCKLED_LADY_SHOES) || (FemtrapActiveKerstin && spawnswithblockheels(mtmp->data) ) || (footwear && footwear->otyp == LISA_COMBAT_BOOTS) || (footwear && footwear->otyp == MAGDALENA_COMBAT_BOOTS) || (footwear && footwear->otyp == SELF_WILLED_HEELS) || (footwear && footwear->otyp == COMMANDER_HEELS) || (footwear && itemhasappearance(footwear, APP_DYKE_BOOTS)) || (footwear && itemhasappearance(footwear, APP_ICEBLOCK_HEELS)) || (footwear && itemhasappearance(footwear, APP_SISTER_SHOES)) || (randomsexyheels == 16) || mtmp->data == &mons[PM_FOURFOLD_SHOE_ENEMY] || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_ERIKA_S_HIGH_HEELED_SANDAL] || mtmp->data == &mons[PM_CHEATING_BLOCK_HEEL_BOOT] || mtmp->data == &mons[PM_CHEAP_BLOCK_HEEL_BOOT] || mtmp->data == &mons[PM_STAIRWELL_HEEL_BOOT] || mtmp->data == &mons[PM_CORNELIA_S_EROTIC_BLOCK_HEEL_SANDAL] || mtmp->data == &mons[PM_CUTE_BLOCK_HEEL_SANDAL] || mtmp->data == &mons[PM_ANIMATED_LADY_BOOT] ) ) {
 elenalady:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -10956,11 +10956,14 @@ dopois:
 		if (tempval > (issoviet ? 20 : 50)) tempval = (issoviet ? 20 : 50); /* max limit increased --Amy */
 
 		if (uarmf && itemhasappearance(uarmf, APP_HEROINE_MOCASSINS)) tempval *= 2;
-
 		if (uarmf && uarmf->oartifact == ART_INDIAN_SMOKE_SYMBOL) tempval *= 2;
+		if (uamul && uamul->otyp == AMULET_OF_THE_MATRIX) tempval *= 2;
+
 		if (Conflict) tempval /= 2; /* conflict is so powerful that it requires a bunch of nerfs --Amy */
 		if (Race_if(PM_SPARD)) tempval /= 2;
 		if (StrongConflict) tempval /= 2; /* conflict is so powerful that it requires a bunch of nerfs --Amy */
+
+		if (tempval > 50) tempval = 50; /* absolute limit --Amy */
 
 		/* Amy edit: high AC is just far too strong, especially against already weak monsters! */
 		if (issoviet) {

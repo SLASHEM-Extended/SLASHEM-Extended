@@ -18010,6 +18010,30 @@ A("Cloak of Shadows",				UPPERWEAVER_S_ROBE, /* invis */
 	(SPFX_RESTR|SPFX_STLTH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("DRMI",				AMULET_OF_THE_MATRIX,
+	(SPFX_RESTR|SPFX_HSPDAM|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Chris's Twit Apostroph",				DARK_LIGHTSABER, /* additionally only 1 in 6 chance to lose power (on top of existing low chance) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Burn Faster",				DARK_LIGHTSABER, /* needs 5 power and nutrition every time you hit something with it while it's lit, burn while wielded, and your burn timeout is always at least 20 while your wince timeout is always at least 200 */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(0, 22), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Pyroclastinate",				JEDI_ROBE, /* you can eat metal while wearing it */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("We are  trannies",				COMMANDER_HEELS, /* axes do +d5 damage and firearms have +d10 to-hit while wearing them, and if you're male you have 5 extra AC and one more for every level in high heels or block heels */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("This Demo Is Uninspired",				RANDOM_JACKET, /* 5 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
