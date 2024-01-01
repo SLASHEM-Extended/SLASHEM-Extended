@@ -12103,6 +12103,18 @@ boolean knoweverything;
 				pline("A swedish two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
 			case STANGOEKSE:
 				pline("A danish two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case TOMAHAWK:
+				pline("Good one-handed axe, suitable for throwing because your axe skill gives bonuses to thrown damage."); break;
+			case BONE_SCYTHE:
+				pline("A bony two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case TRISHULA:
+				pline("A strong one-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case SHAKUJO:
+				pline("Some shitty two-handed quarterstaff. Even a regular quarterstaff does more damage."); break;
+			case LAJATANG:
+				pline("While this two-handed quarterstaff does crap melee damage, you can also apply it to hit monsters standing two tiles away, and doing so gives damage bonuses depending on your skill level."); break;
+			case SUPERWEAPON:
+				pline("A spear. It deals quite some extra melee damage and has bonuses versus xorns. It can be thrown."); break;
 			case COBALT_SPEAR:
 				pline("This spear is made of cobalt. It can be thrown."); break;
 			case CHEAP_SPEAR:
@@ -12851,6 +12863,34 @@ boolean knoweverything;
 			pline("The epitome of beauty and elegance, these very high stiletto boots even allow you to walk on ice without slipping.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CLUNKY_HEELS))
 			pline("You notice that these boots are characterized by extra thick, clunky block heels.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_CRITICAL_GLOVES))
+			pline("This pair of gloves improves your chance to land critical hits.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SPEEDY_GLOVES))
+			pline("A very useful randomized appearance pair of gloves that makes you fast.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ATLAS_GLOVES))
+			pline("This pair of gloves improves your strength by 3.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_AIR_CLOAK))
+			pline("A very useful randomized appearance cloak that grants magical breathing.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_KEVLAR_CLOAK))
+			pline("While wearing this cloak, you can sometimes deflect ranged weapon attacks.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VINDALE_CLOAK))
+			pline("Not sure exactly how it works, but this type of cloak makes you resist contamination one out of two times.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TT_HELMET))
+			pline("Tinfoil-covered helmet, for protection from mind waves (emitted by purple h, for example).");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_A_HEELS))
+			pline("A pair of stiletto heels. They're so clunky that if you try to kick a monster with them, you may randomly miss.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ALLIGATOR_PUMPS))
+			pline("Very rarely, kicking a monster with these cone heels will cause the alligator to swallow the monster instantly, but only if it's small enough and not a boss.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_REPAIR_WORTHY_BOOTS))
+			pline("These boots start out eroded.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HAMMER_SHOES))
+			pline("A red pair of block-heeled boots. You can wield them as a weapon, which causes them to deal 10 bashing damage, and more if your block heels skill is higher.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_PLATFORM_FLEECIES))
+			pline("These platform boots count as wedge heels, even though the entire 'cloud sole' is 6-7 cm in height. They slightly speed up your HP and Pw regeneration rates, but walking in them will eventually degrade them, possibly to the point where they break.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_RETRACTABLE_BLOCK_HEELS))
+			pline("It's a pair of block-heeled boots, but the heels can also be retracted if you lack the high heels skill. This means that as long as their base type doesn't override the block heels, you can wear them without penalties even if you lack the high heels skills.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_INSTAFEMINISM_SHOES))
+			pline("Haaaaaaa, ha ha ha ha ha :D Whenever these stiletto heels are generated, you get a random feminism trap effect! Hahaha!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ANKLE_BOOTS))
 			pline("Ankle boots are a type of high-heeled footwear with cone heels.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BLOCK_HEELED_BOOTS))
@@ -13885,6 +13925,10 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as sustain ability."); break;
 			case CONTRO_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as control magic."); break;
+			case NOPE_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as improving your MC by 2."); break;
+			case CRYSTALLINE_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as boosting all your stats by one."); break;
 			case MYSTERY_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as mystery resistance."); break;
 			case HEROIC_DRAGON_SCALE_MAIL: 
@@ -13957,10 +14001,14 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as 5 points of magic cancellation."); break;
 			case NEGATIVE_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as death resistance."); break;
-			case CORONA_DRAGON_SCALES: 
+			case CORONA_DRAGON_SCALES:
 				pline("This armor offers moderate protection as well as sustain ability."); break;
-			case CONTRO_DRAGON_SCALES: 
+			case CONTRO_DRAGON_SCALES:
 				pline("This armor offers moderate protection as well as control magic."); break;
+			case NOPE_DRAGON_SCALES:
+				pline("This armor offers moderate protection as well as improving your MC by 2."); break;
+			case CRYSTALLINE_DRAGON_SCALES:
+				pline("This armor offers moderate protection as well as boosting all your stats by one."); break;
 			case MYSTERY_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as mystery resistance."); break;
 			case HEROIC_DRAGON_SCALES: 
@@ -14056,6 +14104,82 @@ boolean knoweverything;
 				pline("This cloak causes yellow spells. It grants great armor class and 8 points of magic cancellation."); break;
 			case VULNERABILITY_CLOAK:
 				pline("This cloak causes vulnerability. It grants low armor class and 5 points of magic cancellation."); break;
+
+			case GAUNTLETS_OF_PARALYSIS_ANNOUNC:
+				pline("When you get paraylzed while wearing this pair of gloves, you'll be told how long the paralysis will last. Obviously that's not all too useful since you're a sitting duck anyway."); break;
+			case VERY_SPECIFIC_GLOVES:
+				pline("A pair of gloves that autocurses when worn, but while wearing them, the 'slippery hands' effect instantly times out whenever you get hit with it. Yeah, that's very specific."); break;
+			case WOWEE_GAUNTLETS:
+				pline("When spawned, this pair of gloves usually has a positive enchantment value. Apart from that they're plain."); break;
+			case GAUNTLETS_OF_SPEED:
+				pline("Makes you very fast when worn."); break;
+			case CRITICAL_GAUNTLETS:
+				pline("While wearing these gloves, you land critical hits more often."); break;
+			case MAGIC_BRACERS:
+				pline("A pair of gauntlets with infravision, because they have a built-in telescope."); break;
+			case GAUNTLETS_OF_CELERITY:
+				pline("While wearing these gloves, you have fast speed."); break;
+			case TORNISTER_CLOAK:
+				pline("Increases your carry capacity by 500 units when worn, and has 3 points of magic cancellation."); break;
+			case CLOAK_OF_THEFT_PREVENTION:
+				pline("This cloak grants 3 points of magic cancellation and makes it so that monsters who try to steal your gold or items will fail sometimes."); break;
+			case SPIRIT_CLOTH:
+				pline("Boosts your speed on top of any other speed boosts that you may have, and grants 3 points of magic cancellation."); break;
+			case WAND_QUIVER_CLOAK:
+				pline("While wearing this cloak, zapping a wand will occasionally not consume a turn. It also grants 3 points of magic cancellation."); break;
+			case KEVLAR_VEST:
+				pline("Gives a 1 in 5 chance to deflect ranged weapon attacks, and grants 3 points of magic cancellation."); break;
+			case UTILITY_CLOAK:
+				pline("A cloak that grants 3 points of magic cancellation and gives the special effect that manipulating a container sometimes doesn't use a turn."); break;
+			case HELM_OF_UNLIVING_ESP:
+				pline("Shows all golems in a pretty big radius around you when worn, and mindless monsters who are close by."); break;
+			case FAIRY_HAT:
+				pline("Unlike Elona, where this base item is total garbage, here in SLEX it grants a powerful effect: 50%% chance to avoid random bad effects!"); break;
+			case GANGSTER_CAP:
+				pline("While wearing this cap, you can misbehave with less consequences: if you lose alignment, you generally lose less alignment on average, and actions that increase your sin counter won't always do so."); break;
+			case LUCKY_MUSHROOM:
+				pline("A very rare helmet that improves your luck by 5 points when worn!"); break;
+			case OMEGA_HEELS:
+				pline("This pair of cone heels has the ultimate property of letting you lifesave if your reason of death was something other than HP loss. However, if they do lifesave you, they drain 2 experience levels and permanently lose all of your stats by one, and if any stat was already at the minimum, they can't save you. Unlike many other lifesaving items, they are *not* destroyed when they save you, so they can potentially save you several times."); break;
+			case BUOYANT_BOOTS:
+				pline("Super-waterwalking boots that allow you to not only walk on water, but also protect from moorland and other types of dangerous terrain, and to top it off, they prevent you from triggering ground-based traps!"); break;
+			case ANTI_DROWNING_BOOTS:
+				pline("Wearing these boots prevents you from drowning in water and also makes it so that monsters with wrap attacks cannot drown you. The latter applies to all sorts of terrain that monsters can drown you in."); break;
+			case FLECHETTE_BOOTS:
+				pline("These boots give you a reasonably good chance to evade ranged weapon attacks, and if someone attacks you in melee, the spikes will retaliate and damage the attacker."); break;
+			case PERMANENCE_BOOTS:
+				pline("A pair of shoes that boosts your constitution by a significant amount. The enchantment value is added on top of the flat bonus."); break;
+			case FIRE_BRIGADE_HEELS:
+				pline("These stiletto heels allow you to disarm fire traps without needing to use an item. They're based on real-life firefighters, who obviously wear stilettos at all times :D"); break;
+			case BORING_BLOCK_HEELS:
+				pline("Just a pair of block-heeled boots."); break;
+			case SEVEN_LEAGUE_BOOTS:
+				pline("Multi-move commands will allow you to move faster while you're wearing these. In Elona they would display 'increases your travelling speed'."); break;
+			case PRINCESSEN_SHOES:
+				pline("Cone-heeled princess shoes which look really cute. You can sidestep melee attacks with them, but your AC will be worse, meaning they're probably most useful if you have bad AC to begin with."); break;
+			case COMBAT_WEDGES:
+				pline("This is a high-heeled pair of kicking boots. You'll be able to kick monsters very powerfully with the massive wedge heels."); break;
+			case CATWALK_SANDALS:
+				pline("A very specific pair of block-heeled sandals. They give you resistance to both stun and confusion, but you cannot have any sort of speed trinsic while wearing them and aren't capable of blocking projectiles, plus they halve your AC so you get hit much more often. You'll want to don them specifically when you need the resistances."); break;
+			case SLEEP_INDUCTION_BOOTS:
+				pline("Yaaaaawn... even looking at these boots makes you drowsy, but wearing them definitely causes you to fall asleep intermittently because they just look so dull. On the bright side, kicking someone can release sleep gas that also puts monsters to sleep."); break;
+			case DIDIER_SACHS_SHOES:
+				pline("An incredibly expensive pair of stiletto heels. You could get the same type of shoes for a fraction of the price, but oh well. 99%% of the price comes from the 'Didier Sachs' label and 1%% is for the actual material and manufacturing costs."); break;
+			case BASIC_SHOES:
+				pline("A pair of block-heeled boots. They look very fleecy <3"); break;
+			case CLOGS:
+				pline("Such a cuuuuuute pair of wooden clogs <3! They count as sexy flats, and while wearing them, stepping into a heap of shit doesn't affect you because the thick soles are immune."); break;
+			case BULLETPROOF_VEST:
+				pline("Super useful lightweight suit with lots of armor class and protection against ranged weapons."); break;
+			case METEORIC_STEEL_PLATE_ARMOR:
+				pline("This suit of plate mail is made of a very powerful material and reduces the amount of physical damage you take, making it really useful."); break;
+			case SHIELDBOAT:
+				pline("A shield that lets you walk on water, moorland and other terrain."); break;
+			case NULLIFICATION_SHIELD:
+				pline("This shield occasionally nullifies damage you take."); break;
+			case STORM_SHIELD:
+				pline("Very high chance to block, but it makes your AC a bit worse when equipped."); break;
+
 			case CLOAK_OF_INVENTORYLESSNESS: 
 				pline("This cloak causes inventory loss. It grants incredibly great armor class and 9 points of magic cancellation."); break;
 			case CLOAK_OF_RESPAWNING: 
@@ -15010,9 +15134,13 @@ boolean knoweverything;
 			case CORONA_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides sustain ability as well as protection."); break;
 			case CONTRO_DRAGON_SCALE_SHIELD: 
-				pline("A shield made from dragon hide that provides control magic as well as control magic."); break;
+				pline("A shield made from dragon hide that provides control magic as well as protection."); break;
+			case NOPE_DRAGON_SCALE_SHIELD:
+				pline("TA shield made from dragon hide that provides protection as well as improving your MC by 2."); break;
+			case CRYSTALLINE_DRAGON_SCALE_SHIEL:
+				pline("A shield made from dragon hide that provides protection as well as boosting all your stats by one."); break;
 			case MYSTERY_DRAGON_SCALE_SHIELD: 
-				pline("A shield made from dragon hide that provides mystery resistance as well as control magic."); break;
+				pline("A shield made from dragon hide that provides mystery resistance as well as protection."); break;
 			case HEROIC_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides diminished bleeding as well as protection."); break;
 			case STONE_DRAGON_SCALE_SHIELD:
@@ -15937,6 +16065,18 @@ boolean knoweverything;
 				pline("You will hallucinate as long as you wear this ring. Putting it on causes it to autocurse."); break;
 			case RIN_INTRINSIC_LOSS:
 				pline("This ring can cause intrinsic loss."); break;
+			case RIN_AURORA:
+				pline("Protects you from bad weather, and also grants confusion resistance but makes you deaf while worn."); break;
+			case RIN_SPEEDY_TRINKET:
+				pline("Wearing this ring gives you the 'fast' property that increases your speed."); break;
+			case RIN_RUIN:
+				pline("While wearing this ring, you have a very small chance of launching psionic missiles when you attack in melee."); break;
+			case RIN_ALIGNMENT:
+				pline("This ring has an enchantment value. The higher it is, the more likely your maximum alignment will go up over time. If it's negatively enchanted, your maximum alignment can also go down over time."); break;
+			case RIN__G:
+				pline("If this ring is positively enchanted, your mobile phone can occasionally reveal parts of the current map. But if it's negatively enchanted, the e-smog will slowly drain your soul!"); break;
+			case RIN_HONORED_SPEED:
+				pline("The higher the enchantment on this ring, the more speed bonus it grants. Watch out, a negatively enchanted one will actually reduce your speed."); break;
 			case RIN_ARTIFACT_BLASTING:
 				pline("This ring causes artifacts to blast you."); break;
 			case RIN_DIMINISHED_BLEEDING:
@@ -16935,6 +17075,18 @@ boolean knoweverything;
 				pline("Put on this amulet to get confusion resistance."); break;
 			case AMULET_OF_CONTAMINATION_RESIST:
 				pline("This rare amulet greatly reduces the effect of contamination on you."); break;
+			case AMULET_OF_FLIPPING:
+				pline("Depending on its BUC, this amulet either boosts or reduces all of your stats. While wearing it, its BUC can randomly change. Uncursed and blessed are good, cursed is bad (obviously)."); break;
+			case AMULET_OF_THORNS:
+				pline("Wearing this amulet allows you to deal passive damage to monsters who hit you in melee."); break;
+			case AMULET_OF_SUSTAINED_MIND:
+				pline("While wearing this amulet, your intelligence and wisdom are protected from effects that reduce them."); break;
+			case AMULET_OF_SPECIAL_SHIELDING:
+				pline("Grants a special type of protection similar to mystery resistance, allowing you to sometimes resist perfume and certain other annoying attacks."); break;
+			case AMULET_OF_VOMIT_PUMP:
+				pline("If you're satiated while wearing this amulet, you vomit and become paralyzed for a few turns."); break;
+			case AMULET_OF_X:
+				pline("A very arcane type of amulet. No one really knows what it does..."); break;
 
 			case AMULET_OF_INFINITY: 
 				pline("This is a special amulet, because nobody knows the effect in advance - but you now know that it is %s!", enchname(objects[AMULET_OF_INFINITY].oc_oprop) ); break;

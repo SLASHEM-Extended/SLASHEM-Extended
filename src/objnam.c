@@ -4347,6 +4347,67 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ JEDI_ROBE, "todo" },
 	{ RANDOM_JACKET, "todo" },
 	{ COMMANDER_HEELS, "todo" },
+	{ GAUNTLETS_OF_PARALYSIS_ANNOUNC, "todo" },
+	{ VERY_SPECIFIC_GLOVES, "todo" },
+	{ WOWEE_GAUNTLETS, "todo" },
+	{ GAUNTLETS_OF_SPEED, "todo" },
+	{ CRITICAL_GAUNTLETS, "todo" },
+	{ MAGIC_BRACERS, "todo" },
+	{ GAUNTLETS_OF_CELERITY, "todo" },
+	{ TORNISTER_CLOAK, "todo" },
+	{ CLOAK_OF_THEFT_PREVENTION, "todo" },
+	{ SPIRIT_CLOTH, "todo" },
+	{ WAND_QUIVER_CLOAK, "todo" },
+	{ KEVLAR_VEST, "todo" },
+	{ UTILITY_CLOAK, "todo" },
+	{ HELM_OF_UNLIVING_ESP, "todo" },
+	{ FAIRY_HAT, "todo" },
+	{ GANGSTER_CAP, "todo" },
+	{ LUCKY_MUSHROOM, "todo" },
+	{ OMEGA_HEELS, "todo" },
+	{ BUOYANT_BOOTS, "todo" },
+	{ ANTI_DROWNING_BOOTS, "todo" },
+	{ FLECHETTE_BOOTS, "todo" },
+	{ PERMANENCE_BOOTS, "todo" },
+	{ FIRE_BRIGADE_HEELS, "todo" },
+	{ BORING_BLOCK_HEELS, "todo" },
+	{ SEVEN_LEAGUE_BOOTS, "todo" },
+	{ PRINCESSEN_SHOES, "todo" },
+	{ COMBAT_WEDGES, "todo" },
+	{ CATWALK_SANDALS, "todo" },
+	{ SLEEP_INDUCTION_BOOTS, "todo" },
+	{ DIDIER_SACHS_SHOES, "todo" },
+	{ BASIC_SHOES, "todo" },
+	{ CLOGS, "todo" },
+	{ BULLETPROOF_VEST, "todo" },
+	{ METEORIC_STEEL_PLATE_ARMOR, "todo" },
+	{ SHIELDBOAT, "todo" },
+	{ NULLIFICATION_SHIELD, "todo" },
+	{ STORM_SHIELD, "todo" },
+	{ TOMAHAWK, "todo" },
+	{ BONE_SCYTHE, "todo" },
+	{ TRISHULA, "todo" },
+	{ SHAKUJO, "todo" },
+	{ LAJATANG, "todo" },
+	{ SUPERWEAPON, "todo" },
+	{ RIN_AURORA, "todo" },
+	{ RIN_SPEEDY_TRINKET, "todo" },
+	{ RIN_RUIN, "todo" },
+	{ RIN_ALIGNMENT, "todo" },
+	{ RIN__G, "todo" },
+	{ RIN_HONORED_SPEED, "todo" },
+	{ AMULET_OF_FLIPPING, "todo" },
+	{ AMULET_OF_THORNS, "todo" },
+	{ AMULET_OF_SUSTAINED_MIND, "todo" },
+	{ AMULET_OF_SPECIAL_SHIELDING, "todo" },
+	{ AMULET_OF_VOMIT_PUMP, "todo" },
+	{ AMULET_OF_X, "todo" },
+	{ NOPE_DRAGON_SCALE_MAIL, "todo" },
+	{ CRYSTALLINE_DRAGON_SCALE_MAIL, "todo" },
+	{ NOPE_DRAGON_SCALES, "todo" },
+	{ CRYSTALLINE_DRAGON_SCALES, "todo" },
+	{ NOPE_DRAGON_SCALE_SHIELD, "todo" },
+	{ CRYSTALLINE_DRAGON_SCALE_SHIEL, "todo" },
 
 	{0, "" }
 };
@@ -7847,6 +7908,67 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ JEDI_ROBE, "todo" },
 	{ RANDOM_JACKET, "todo" },
 	{ COMMANDER_HEELS, "todo" },
+	{ GAUNTLETS_OF_PARALYSIS_ANNOUNC, "todo" },
+	{ VERY_SPECIFIC_GLOVES, "todo" },
+	{ WOWEE_GAUNTLETS, "todo" },
+	{ GAUNTLETS_OF_SPEED, "todo" },
+	{ CRITICAL_GAUNTLETS, "todo" },
+	{ MAGIC_BRACERS, "todo" },
+	{ GAUNTLETS_OF_CELERITY, "todo" },
+	{ TORNISTER_CLOAK, "todo" },
+	{ CLOAK_OF_THEFT_PREVENTION, "todo" },
+	{ SPIRIT_CLOTH, "todo" },
+	{ WAND_QUIVER_CLOAK, "todo" },
+	{ KEVLAR_VEST, "todo" },
+	{ UTILITY_CLOAK, "todo" },
+	{ HELM_OF_UNLIVING_ESP, "todo" },
+	{ FAIRY_HAT, "todo" },
+	{ GANGSTER_CAP, "todo" },
+	{ LUCKY_MUSHROOM, "todo" },
+	{ OMEGA_HEELS, "todo" },
+	{ BUOYANT_BOOTS, "todo" },
+	{ ANTI_DROWNING_BOOTS, "todo" },
+	{ FLECHETTE_BOOTS, "todo" },
+	{ PERMANENCE_BOOTS, "todo" },
+	{ FIRE_BRIGADE_HEELS, "todo" },
+	{ BORING_BLOCK_HEELS, "todo" },
+	{ SEVEN_LEAGUE_BOOTS, "todo" },
+	{ PRINCESSEN_SHOES, "todo" },
+	{ COMBAT_WEDGES, "todo" },
+	{ CATWALK_SANDALS, "todo" },
+	{ SLEEP_INDUCTION_BOOTS, "todo" },
+	{ DIDIER_SACHS_SHOES, "todo" },
+	{ BASIC_SHOES, "todo" },
+	{ CLOGS, "todo" },
+	{ BULLETPROOF_VEST, "todo" },
+	{ METEORIC_STEEL_PLATE_ARMOR, "todo" },
+	{ SHIELDBOAT, "todo" },
+	{ NULLIFICATION_SHIELD, "todo" },
+	{ STORM_SHIELD, "todo" },
+	{ TOMAHAWK, "todo" },
+	{ BONE_SCYTHE, "todo" },
+	{ TRISHULA, "todo" },
+	{ SHAKUJO, "todo" },
+	{ LAJATANG, "todo" },
+	{ SUPERWEAPON, "todo" },
+	{ RIN_AURORA, "todo" },
+	{ RIN_SPEEDY_TRINKET, "todo" },
+	{ RIN_RUIN, "todo" },
+	{ RIN_ALIGNMENT, "todo" },
+	{ RIN__G, "todo" },
+	{ RIN_HONORED_SPEED, "todo" },
+	{ AMULET_OF_FLIPPING, "todo" },
+	{ AMULET_OF_THORNS, "todo" },
+	{ AMULET_OF_SUSTAINED_MIND, "todo" },
+	{ AMULET_OF_SPECIAL_SHIELDING, "todo" },
+	{ AMULET_OF_VOMIT_PUMP, "todo" },
+	{ AMULET_OF_X, "todo" },
+	{ NOPE_DRAGON_SCALE_MAIL, "todo" },
+	{ CRYSTALLINE_DRAGON_SCALE_MAIL, "todo" },
+	{ NOPE_DRAGON_SCALES, "todo" },
+	{ CRYSTALLINE_DRAGON_SCALES, "todo" },
+	{ NOPE_DRAGON_SCALE_SHIELD, "todo" },
+	{ CRYSTALLINE_DRAGON_SCALE_SHIEL, "todo" },
 
 	{0, "" }
 };
@@ -7994,11 +8116,18 @@ register int otyp;
 	if(nn) {
 	    if (ocl->oc_unique)
 		strcpy(buf, actualn); /* avoid spellbook of Book of the Dead */
-	    /* KMH -- "mood ring" instead of "ring of mood" */
+	    /* KMH -- "mood ring" instead of "ring of mood"
+	     * Amy: aurora ring, impact ring, honored speed ring */
 	    else if (otyp == RIN_MOOD)
 		sprintf(buf, "%s ring", actualn);
 	    else if (otyp == RIN_IMPACT)
 		sprintf(buf, "%s ring", actualn);
+	    else if (otyp == RIN_AURORA)
+		sprintf(buf, "%s ring", actualn);
+	    else if (otyp == RIN_HONORED_SPEED)
+		sprintf(buf, "%s ring", actualn);
+	    else if (otyp == RIN_SPEEDY_TRINKET) /* Amy: just "speedy trinket", without "ring" */
+		sprintf(buf, "%s", actualn);
 	    else
 		sprintf(eos(buf), " of %s", actualn);
 	}
@@ -10706,7 +10835,8 @@ boolean actualwish;
 	   strncmpi(bp, "clockwork plate armor", 21) &&
 	   strncmpi(bp, "poison-repellant armor", 22) &&
 	   strncmpi(bp, "special leather armor", 21) &&
-	   strncmpi(bp, "satanic armor", 12) &&
+	   strncmpi(bp, "satanic armor", 13) &&
+	   strncmpi(bp, "superweapon", 11) &&
 	   strncmpi(bp, "troll leather armor", 19) &&
 	   strncmpi(bp, "metal lamellar armor", 20) &&
 	   strncmpi(bp, "cloak of armor mystery", 22) &&

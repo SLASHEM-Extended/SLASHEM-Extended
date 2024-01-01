@@ -18574,6 +18574,38 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "diamond delicately filigreed stilettos")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "powersave robe")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "warm-werding boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "greenish gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mercury gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-value gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "light blue gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "critical gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "atlas gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "speedy gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "quicksilver cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "superior cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "air cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "kevlar cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vindale cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corallized helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tin helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "23 helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "a-heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "low-value shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tinsel shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alligator pumps")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "repair-worthy boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hammer shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "platform fleecies")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "retractable block heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "instafeminism shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boring shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "uninspired shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wild leather shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "very expensive shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nope dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "crystalline dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -19989,6 +20021,38 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "diamond delicately filigreed stilettos")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "powersave robe")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "warm-werding boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "greenish gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "mercury gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "high-value gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "light blue gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "critical gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "atlas gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "speedy gloves")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "quicksilver cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "superior cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "air cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "kevlar cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "vindale cloak")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "corallized helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tin helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bronze helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "23 helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "a-heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "low-value shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tinsel shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "alligator pumps")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "repair-worthy boots")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "hammer shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "platform fleecies")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "retractable block heels")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "instafeminism shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "boring shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "uninspired shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "wild leather shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "very expensive shoes")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nope dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "crystalline dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
