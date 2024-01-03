@@ -456,6 +456,10 @@ shieldblockboo:
 			pline_The("armor deflects the shot.");
 			return(0);
 
+	} else if (uarmc && itemhasappearance(uarmc, APP_KEVLAR_CLOAK) && !rn2(10)) {
+			pline_The("kevlar cloak deflects the projectile.");
+			return(0);
+
 	} else if (Race_if(PM_CUPID) && !rn2(5)) {
 
 			if(Blind || !flags.verbose) You("sidestep a projectile.");

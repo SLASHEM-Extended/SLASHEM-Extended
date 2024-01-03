@@ -4895,6 +4895,11 @@ boolean tellplayer;
 		return;
 	}
 
+	if (uarmc && itemhasappearance(uarmc, APP_VINDALE_CLOAK) && rn2(2)) {
+		if (tellplayer) pline("The contamination is absorbed by the cloak!");
+		return;
+	}
+
 	/* Mercury amulets in particular offer a bit of protection, but not other mercury equipment --Amy */
 	if (uamul && objects[uamul->otyp].oc_material == MT_MERCURIAL && !rn2(10)) {
 		if (tellplayer) pline("Your mercury amulet prevents you from being contaminated!");

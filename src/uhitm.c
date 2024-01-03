@@ -3750,6 +3750,20 @@ int dieroll;
 				if (weaponsign > 0) tmp += rnd(weaponsign);
 			}
 
+			if (obj && itemhasappearance(obj, APP_HAMMER_SHOES)) {
+				tmp += 10;
+				if (!(PlayerCannotUseSkills)) {
+					switch (P_SKILL(P_BLOCK_HEELS)) {
+						case P_BASIC: tmp += rnd(2); break;
+						case P_SKILLED: tmp += rnd(4); break;
+						case P_EXPERT: tmp += rnd(6); break;
+						case P_MASTER: tmp += rnd(8); break;
+						case P_GRAND_MASTER: tmp += rnd(10); break;
+						case P_SUPREME_MASTER: tmp += rnd(12); break;
+					}
+				}
+			}
+
 			if (obj && obj->oartifact == ART_EXCALISHIELD) {
 				tmp += 6;
 			}

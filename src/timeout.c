@@ -1225,6 +1225,17 @@ nh_timeout()
 
 	}
 
+	if (u.umoved && uarmf && itemhasappearance(uarmf, APP_PLATFORM_FLEECIES) && !rn2(4000)) {
+		if (uarmf->spe > -20) {
+			uarmf->spe--;
+			if (uarmf->spe > -2) pline("Oh no! You've discovered a crack in the sole of your boot! They must have been damaged from continuous use...");
+			else pline("Oh no, you've discovered yet another crack in the sole of your boot! It seems they're just not made for long walks in the dungeon...");
+		} else {
+			useup(uarmf);
+			pline("Poooooouch, a sharp crack appears in the sole of your boot, causing it to break in half. Your boots are now completely unusable.");
+		}
+	}
+
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
 
 	if (u.umoved && !rn2(500) && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
@@ -1242,8 +1253,12 @@ nh_timeout()
 	}
 
 	if (u.umoved && !rn2(flags.female ? 500 : 250) && PlayerInBlockHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
-		wake_nearby();
-		pline("As you take your step, a loud, distorted 'KLACK' sound can be heard, caused by you accidentally stomping your block heel on the floor way too hard. Certainly everyone in the vicinity was alerted to your presence now.");
+		if (uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
+			; /* do nothing */
+		} else {
+			wake_nearby();
+			pline("As you take your step, a loud, distorted 'KLACK' sound can be heard, caused by you accidentally stomping your block heel on the floor way too hard. Certainly everyone in the vicinity was alerted to your presence now.");
+		}
 	}
 
 	if (u.umoved && !rn2(2000) && PlayerInWedgeHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
@@ -1254,6 +1269,10 @@ nh_timeout()
 	if (u.umoved && PlayerInHighHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
 		boolean highheelfail = TRUE;
+
+		if (PlayerInBlockHeels && uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
+			highheelfail = FALSE;
+		}
 
 		/* have the specific heel type skill? great, then the failures happen less often */
 		if (!PlayerCannotUseSkills) {

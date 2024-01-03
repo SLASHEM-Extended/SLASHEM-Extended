@@ -14400,6 +14400,19 @@ pastds2:
 				}
 			}
 
+			if (uarmf && itemhasappearance(uarmf, APP_PLATFORM_FLEECIES) && !rn2(10)) {
+				u.uhp++;
+				if (Race_if(PM_PIERCER)) u.uhp++;
+				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+
+				if (Upolyd) {
+					u.mh++;
+					if (Race_if(PM_PIERCER)) u.mh++;
+					if(u.mh > u.mhmax) u.mh = u.mhmax;
+				}
+
+			}
+
 			if (uwep && uwep->oartifact == ART_CRYSPEAR) {
 				u.uhp += 1;
 				if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -14593,6 +14606,10 @@ pastds2:
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
+			}
+
+			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && uarmf && itemhasappearance(uarmf, APP_PLATFORM_FLEECIES) && !rn2(10)) {
+
 			}
 
 		/* leveling up will give a small boost to mana regeneration now --Amy */

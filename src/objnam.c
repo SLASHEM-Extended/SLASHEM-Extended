@@ -8646,7 +8646,7 @@ register struct obj *obj;
 	register char *buf = &(bufr[PREFIX]);   /* leave room for "17 -3 " */
 
 	if (Hallucination && !StrongHallu_party && !program_state.gameover) {
-		hobj = mkobj(obj->oclass, 2, FALSE);
+		hobj = mkobj(obj->oclass, 3, FALSE); /* 3 = don't run instafeminism shoes and similar code */
 		if (hobj) {
 			hobj->quan = obj->quan;
 			/* WAC clean up */

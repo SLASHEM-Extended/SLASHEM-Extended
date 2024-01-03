@@ -80,7 +80,15 @@ register boolean clumsy;
 
 	if (Race_if(PM_TAYIIN)) dmg += 2;
 
-	if (uarmf && uarmf->oartifact == ART_SCRATCH_THE_SHRED && mon->mhp < (mon->mhpmax / 10) ) dmg += 10000;
+	if (uarmf && uarmf->oartifact == ART_SCRATCH_THE_SHRED && mon->mhp < (mon->mhpmax / 10) ) {
+		You("scratch the last shred away.");
+		dmg += 10000;
+	}
+
+	if (uarmf && itemhasappearance(uarmf, APP_ALLIGATOR_PUMPS) && !rn2(1000) && !(mon->data->geno & G_UNIQ) && !bigmonst(mon->data) ) {
+		pline("*gulp*");
+		dmg += 10000;
+	}
 
 	if (uarmf && uarmf->oartifact == ART_SAY_THE_WRONG_LINE && humanoid(mon->data) && !(mon->female) ) {
 		dmg += 2;
@@ -1167,6 +1175,12 @@ doit:
 		    }
 		}
 	}
+
+	if (uarmf && itemhasappearance(uarmf, APP_A_HEELS) && !rn2(10)) {
+		pline("%s simply evades your clunky stiletto heels!", Monnam(mon));
+		return;
+	}
+
 	kickdmg(mon, clumsy);
 
 	if (uarmf && uarmf->oartifact == ART_JANA_S_MUD_OBSESSION && !rn2(20)) {

@@ -3120,6 +3120,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
 		if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) tmp += 4;
+		if (uarmg && itemhasappearance(uarmg, APP_ATLAS_GLOVES)) tmp += 3;
 		if (uarmf && uarmf->otyp == COMMANDER_HEELS) tmp += 1;
 		if (uwep && uwep->oartifact == ART_RUINED_ANTJEN) tmp += 3;
 		if (uwep && uwep->oartifact == ART_SOULREAPER_SCYTHE) tmp += 8;

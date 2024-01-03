@@ -206,6 +206,7 @@ boolean shopinit;
  * 0 = usually don't make item into an artifact, but retain a very low chance
  * 1 = normal chance of making the item into an artifact
  * 2 = absolutely never make the item into an artifact, and also don't make contents if it's a container
+ * 3 = absolutely never make the item into an artifact, don't make contents if it's a container, and don't run some other code
  */
 
 int
@@ -4091,6 +4092,22 @@ boolean shopinit;
 		}
 		if (!rn2(100)) otmp->oeroded = rn2(4);
 		if (!rn2(100)) otmp->oeroded2 = rn2(4);
+	}
+
+	if (otmp && itemhasappearance(otmp, APP_REPAIR_WORTHY_BOOTS)) {
+		if (!rn2(3)) otmp->oeroded = rnd(3);
+		else if (!rn2(2)) otmp->oeroded2 = rnd(3);
+		else {
+			otmp->oeroded = rnd(3);
+			otmp->oeroded2 = rnd(3);
+		}
+	}
+
+	if ((artif != 3) && otmp && itemhasappearance(otmp, APP_INSTAFEMINISM_SHOES)) {
+		if (!FemtrapActiveRuth) pline("Ha ha ha...");
+		randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
+		if (!FemtrapActiveRuth) pline("The woman is laughing loudly because you were unable to avoid that effect.");
+
 	}
 
 	/* nice patch idea by Amy - sometimes have items start out with partial identification */

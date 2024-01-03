@@ -1173,6 +1173,7 @@ struct monst *mon;
 	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_RUINED_ANTJEN && !rn2(20)) willcriticalhit = TRUE;
+	if (uarmg && itemhasappearance(uarmg, APP_CRITICAL_GLOVES) && !rn2(10)) willcriticalhit = TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
 	/* end critical hit chance calculation */
