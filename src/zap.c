@@ -3341,6 +3341,10 @@ poly_obj(obj, id, degradation)
 	case POTION_CLASS:
 	    while (otmp->otyp == POT_POLYMORPH || otmp->otyp == POT_MUTATION)
 		otmp->otyp = rnd_class(POT_GAIN_ABILITY, POT_WATER);
+
+		/* Amy edit: you can't just change the type of potion without checking for oil!!! */
+		if (otmp->otyp == POT_OIL) otmp->age = MAX_OIL_IN_FLASK;
+
 	    break;
 
 	case SCROLL_CLASS:

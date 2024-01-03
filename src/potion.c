@@ -16922,6 +16922,8 @@ poof:
 				  struct obj *otmp;
 				  otmp = mkobj(POTION_CLASS,FALSE, FALSE);
 				  obj->otyp = otmp->otyp;
+				  /* once again the dev team didn't think of everything... --Amy */
+				  if (obj->otyp == POT_OIL) obj->age = MAX_OIL_IN_FLASK;
 				  obfree(otmp, (struct obj *)0);
 				}
 				break;

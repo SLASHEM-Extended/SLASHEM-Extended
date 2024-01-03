@@ -25318,9 +25318,11 @@ register boolean force, here;
 			    switch (obj->otyp) {
 			    case MAGIC_LAMP:
 				obj->otyp = OIL_LAMP;
+				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
 				break;
 			    case MAGIC_CANDLE:
 				obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
+				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
 				break;
 			    case MAGIC_WHISTLE:
 				obj->otyp = TIN_WHISTLE;
@@ -25476,9 +25478,11 @@ register boolean force, here;
 			    switch (obj->otyp) {
 			    case MAGIC_LAMP:
 				obj->otyp = OIL_LAMP;
+				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
 				break;
 			    case MAGIC_CANDLE:
 				obj->otyp = rn2(2)? WAX_CANDLE : TALLOW_CANDLE;
+				obj->age = 0; /* fixing a very obvious slashem bug... --Amy */
 				break;
 			    case MAGIC_WHISTLE:
 				obj->otyp = TIN_WHISTLE;

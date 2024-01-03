@@ -2528,6 +2528,83 @@ boolean shopinit;
 		impossible("Error: mksobj() let value is invalid! Debug info for Amy: %d, %d, %d, %d, let %c", otyp, (int) init, artif, (int) shopinit, let);
 	}
 
+	/* failsafe by Amy to make sure that all "aged" objects are still getting their correct age even if the item is being
+	 * created without initialization, so that they don't miraculously have an age of 100k if generated at T:100k
+	 * we're using fixed, not randomized values here; all we care about is that these items aren't bugged */
+	if (!init) {
+
+		switch (otmp->otyp) {
+
+			case POT_OIL:
+				otmp->age = MAX_OIL_IN_FLASK;	/* amount of oil */
+				break;
+			case STICK_OF_DYNAMITE:
+				otmp->age = rn2(10) + 10;
+				break;
+			case TALLOW_CANDLE:
+			case WAX_CANDLE:
+			case JAPAN_WAX_CANDLE:
+			case OIL_CANDLE:
+			case UNSPECIFIED_CANDLE:
+			case SPECIFIC_CANDLE:
+			case __CANDLE:
+			case NATURAL_CANDLE:
+			case UNAFFECTED_CANDLE:
+			case GENERAL_CANDLE:
+				otmp->age = 2000;
+				break;
+			case TORCH:
+				otmp->age = (long) rn1(300,600);
+				break;
+			case BRASS_LANTERN:
+			case OIL_LAMP:
+				otmp->age = (long) rn1(500,1000);
+				break;
+			case DIM_LANTERN:
+				otmp->age = (long) rn1(2500,5000);
+				break;
+			case RED_DOUBLE_LIGHTSABER:
+			case CYAN_DOUBLE_LIGHTSABER:
+			case LASERDENT:
+			case LASER_FLYAXE:
+			case PINK_DOUBLE_LIGHTSWORD:
+			case LASERXBOW:
+			case SITH_STAFF:
+			case LASER_POLE:
+			case WHITE_DOUBLE_LIGHTSABER:
+			case STARWARS_MACE:
+			case KLIUSLING:
+			case LASER_SWORD:
+			case LIGHTTORCH:
+			case PINK_LIGHTSWORD:
+			case BEAMSWORD:
+			case GREEN_LIGHTSABER:
+			case ORANGE_LIGHTSABER:
+			case BLACK_LIGHTSABER:
+			case BLUE_LIGHTSABER:
+			case DARK_LIGHTSABER:
+			case LASERFIST:
+			case LASER_TIN_OPENER:
+			case MYSTERY_LIGHTSABER:
+			case VIOLET_LIGHTSABER:
+			case WHITE_LIGHTSABER:
+			case YELLOW_LIGHTSABER:
+			case RAINBOW_LIGHTSABER:
+			case RED_LIGHTSABER:
+			case LASER_SWATTER:
+			case NANO_HAMMER:
+			case LIGHTWHIP:
+			case ELECTRIC_CIGARETTE:
+				otmp->age = (long) rn1(1000,1000);
+				break;
+			case HEAVY_LASER_BALL:
+			case LASER_CHAIN:
+				otmp->age = (long) rn1(500,1000);
+				break;
+		}
+
+	}
+
 	if (init) switch (let) {
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */                   
 	case WEAPON_CLASS:

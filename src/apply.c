@@ -6407,7 +6407,12 @@ undark:
 			/* KMH, balance patch -- rewritten */
 			while ((otmp->otyp == POT_SICKNESS) || (otmp->otyp == POT_POISON) ||
 					objects[otmp->otyp].oc_magic)
-			    otmp->otyp = rnd_class(POT_BOOZE, POT_WATER);
+			    otmp->otyp = rnd_class(POT_BOOZE, POT_AMNESIA);
+
+			/* Amy: lol as if you could just change the potion's type post-creation. if it originally wasn't oil,
+			 * and then becomes oil, it'll not have this bit set properly! */
+			if (otmp->otyp == POT_OIL) otmp->age = MAX_OIL_IN_FLASK;
+
 			what = "A potion";
 		    } else {
 			otmp = mkobj(FOOD_CLASS, FALSE, FALSE);
