@@ -335,6 +335,7 @@ E int openit(void);
 E void find_trap(struct trap *);
 E int dosearch0(int);
 E int dosearch(void);
+E void displayrandomtiles(int);
 E void sokoban_detect(void);
 /* KMH -- Sokoban levels */
 E void sokoban_detect(void);

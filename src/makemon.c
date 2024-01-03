@@ -27557,6 +27557,14 @@ register int	mmflags;
 			if (ptr == &mons[PM_SUPER_STEALTHER]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE; mtmp->minvisreal = TRUE;}
 			if (mndx == PM_COVER_UP) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 
+			if (mtmp->data == &mons[PM_FRYGUY]) {
+				(void) makemon(&mons[PM_HUGE_FLAMING_SPHERE], mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_XFRENZIED);
+				(void) makemon(&mons[PM_HUGE_FLAMING_SPHERE], mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_XFRENZIED);
+				(void) makemon(&mons[PM_HUGE_FLAMING_SPHERE], mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_XFRENZIED);
+				(void) makemon(&mons[PM_HUGE_FLAMING_SPHERE], mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_XFRENZIED);
+			}
+
+
 			if (mtmp->data == &mons[PM_DIABLO_PLAYER]) {
 				int spawnnumber = rn1(10, 3);
 				while (spawnnumber > 0) {

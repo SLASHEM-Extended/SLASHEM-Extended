@@ -539,8 +539,23 @@ giveback:
 		    pline_The("water's power seems %ser now.",
 			(obj->spe<0) ? "small" : "great");
 		    break;
+		case RIN_HONORED_SPEED:
+		    pline_The("water's speed seems %ser now.",
+			(obj->spe<0) ? "small" : "great");
+		    break;
+		case RIN_ALIGNMENT:
+		    pline_The("water flow seems more %s.",
+			(obj->spe<0) ? "shaky" : "serene");
+		    break;
 		case RIN_CONFUSION_RESISTANCE:
 		    pline_The("water flow seems straighter now.");
+		    break;
+		case RIN__G:
+			if (obj->spe < 0) pline_The("water looks as if it might be contaminated!");
+			else pline("There are little sparks in the water.");
+		    break;
+		case RIN_AURORA:
+		    pline_The("sink glows orange for a moment.");
 		    break;
 		case RIN_RESTRATION:
 		    pline_The("drain stops vibrating for a moment.");
@@ -616,6 +631,9 @@ giveback:
 	      case RIN_WINCING:
 		    pline("The sink winces in pain!");
 		    break;
+	      case RIN_RUIN:
+		    pline("The water turns purple for a moment!");
+		    break;
 	      case RIN_ILLNESS:
 		    pline("The sink is overgrown with fungus.");
 		    break;
@@ -624,6 +642,9 @@ giveback:
 		    break;
 	      case RIN_ALACRITY:
 		    pline("The water flow becomes extremely fast for a moment!");
+		    break;
+	      case RIN_SPEEDY_TRINKET:
+		    pline("The water flow becomes very fast for a moment!");
 		    break;
 	      case RIN_NASTINESS:
 		    pline("The water looks extremely disgusting for a moment.");
@@ -1052,6 +1073,24 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_TELEPORT_CONTROL:
 		pline_The("toilet seems to be beamed aboard somewhere.");
+		break;
+	case AMULET_OF_FLIPPING:
+		pline_The("toilet seems to be upside down!");
+		break;
+	case AMULET_OF_THORNS:
+		pline_The("toilet seems to grow thorns!");
+		break;
+	case AMULET_OF_SUSTAINED_MIND:
+		pline_The("toilet seems very well-built.");
+		break;
+	case AMULET_OF_SPECIAL_SHIELDING:
+		pline_The("toilet is surrounded by a shimmering sphere!");
+		break;
+	case AMULET_OF_VOMIT_PUMP:
+		pline_The("toilet water suddenly becomes really icky, almost as if someone had vomited into it...");
+		break;
+	case AMULET_OF_X:
+		You_feel("like posting a short message about the toilet on an online messaging service.");
 		break;
 	case AMULET_OF_PRISM:
 		pline_The("toilet sparkles in rainbow colors!");

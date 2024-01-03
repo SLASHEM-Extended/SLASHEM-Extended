@@ -252,6 +252,10 @@ boolean digest_meal;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
 
+	if (mon->data == &mons[PM_SLOWLY_GROWING_ROCK] && !rn2(500)) {
+		if (mon->mhpmax < 400) mon->mhpmax++;
+	}
+
 	/* super regene */
 	if (mon->data == &mons[PM_MESHERA_ALPHA_DEFORMED_ANGEL] || mon->data == &mons[PM_TESTER] || mon->data == &mons[PM_TEA_HUSSY] || mon->data == &mons[PM_OUROBOROS] || mon->data == &mons[PM_SUPER_FAST_REGENERATING_TROLL] || mon->data == &mons[PM_OLOG_THAT_COULD_HAVE_BEEN] || mon->data == &mons[PM_GENUINE_PREHISTORIC_FISH] || mon->data == &mons[PM_BILLION_YEAR_FISH] || mon->data == &mons[PM_DEEP_ROCK] || mon->data == &mons[PM_UNITDEAD_QUEEN] || mon->data == &mons[PM_UNITDEAD_KING] || mon->data == &mons[PM_REGULUS_THE_ALTERED] || mon->data == &mons[PM_SELF_HEALER] || mon->data == &mons[PM_ZANAN_ENHANCED_SOLDIER] || mon->data == &mons[PM_VANESSA_ENHANCED_SOLDIER] || mon->data == &mons[PM_BRITTA_S_SEXY_PUMP] || mon->data == &mons[PM_SUPERREGENEBOROS] || mon->data == &mons[PM_TELHUREZA_HOUSE_GUARD] || mon->data == &mons[PM_JUERE_DEMON_SOLDIER] || mon->data == &mons[PM_MAUA_YA_KIAJEMI_YA_KUELEA] || mon->data == &mons[PM_DIGGING_ON_FARMER] || mon->data == &mons[PM_JENNIFER_DEMON_SOLDIER] || mon->data == &mons[PM_ARIANE__LADY_OF_THE_ELEMENTS] || mon->data == &mons[PM_RENAI_OVER_MESHERA] || mon->data == &mons[PM_PATIENT_ZERO] || mon->data == &mons[PM_MISSU] ) {
 		mon->mhp += 20;
@@ -2437,6 +2441,7 @@ newbossSING:
 			if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) goto convertdone;
 			if (uwep && uwep->oartifact == ART_CRONVERT && rn2(10)) goto convertdone;
 			if (uarmf && uarmf->oartifact == ART_EXHAUST_DAMAGE) goto convertdone;
+			if (uamul && uamul->otyp == AMULET_OF_SPECIAL_SHIELDING && rn2(3)) goto convertdone;
 
 			You_feel("less faithful!");
 
@@ -2507,6 +2512,7 @@ convertdone:
 
 			if (MysteryResist && !rn2(StrongMysteryResist ? 3 : 5)) wouwouresisted = TRUE;
 			if (chitinprotection() && !rn2(5)) wouwouresisted = TRUE;
+			if (uamul && uamul->otyp == AMULET_OF_SPECIAL_SHIELDING && rn2(3)) wouwouresisted = TRUE;
 
 			if (!wouwouresisted) {
 
@@ -2769,6 +2775,7 @@ convertdone:
 
 		if (MysteryResist && !rn2(StrongMysteryResist ? 3 : 5)) wouwouresisted = TRUE;
 		if (chitinprotection() && !rn2(5)) wouwouresisted = TRUE;
+		if (uamul && uamul->otyp == AMULET_OF_SPECIAL_SHIELDING && rn2(3)) wouwouresisted = TRUE;
 
 		if (!wouwouresisted) {
 

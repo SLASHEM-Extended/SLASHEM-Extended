@@ -8580,6 +8580,12 @@ boolean showpoisoned;
 				sprintf(buf, "%s ring", actualn);
 			else if (typ == RIN_IMPACT)
 				sprintf(buf, "%s ring", actualn);
+			else if (typ == RIN_AURORA)
+				sprintf(buf, "%s ring", actualn);
+			else if (typ == RIN_HONORED_SPEED)
+				sprintf(buf, "%s ring", actualn);
+			else if (typ == RIN_SPEEDY_TRINKET) /* Amy: just "speedy trinket", without "ring" */
+				sprintf(buf, "%s", actualn);
 			else
 			sprintf(buf, "ring of %s", actualn);
 

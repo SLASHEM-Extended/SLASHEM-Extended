@@ -2329,6 +2329,15 @@ moveloop()
 			    if (rn2(3) == 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
+			if (uleft && uleft->otyp == RIN_HONORED_SPEED && !rn2(5)) {
+				moveamt += uleft->spe;
+				if (moveamt < 0) moveamt = 0;
+			}
+			if (uright && uright->otyp == RIN_HONORED_SPEED && !rn2(5)) {
+				moveamt += uright->spe;
+				if (moveamt < 0) moveamt = 0;
+			}
+
 			if (PlayerInStilettoHeels && !PlayerCannotUseSkills && moveamt < 12) {
 				switch (P_SKILL(P_STILETTO_HEELS)) {
 					default: break;
@@ -2751,6 +2760,17 @@ moveloop()
 		if (uarm && uarm->oartifact == ART_YOU_ARE_UGLY && !rn2(2000)) {
 			You("feel ugly...");
 			(void) adjattrib(A_CHA, -1, 0, TRUE);
+		}
+
+		if (uamul && uamul->otyp == AMULET_OF_FLIPPING && !rn2(1000)) {
+			boolean goupordown = rn2(2);
+			if (goupordown) {
+				if (uamul->cursed) uncurse(uamul, TRUE);
+				else bless(uamul);
+			} else {
+				if (uamul->blessed) unbless(uamul);
+				else curse(uamul);
+			}
 		}
 
 		if (uarm && uarm->oartifact == ART_IT_POWER_KNOEPP && !rn2(100)) {
@@ -7405,6 +7425,40 @@ newbossJANI:
 			litroom(TRUE, uright);
 		}
 
+		if (uleft && uleft->otyp == RIN__G && !rn2(1000)) {
+			if (uleft->spe < 0) {
+				drain_alla(abs(uleft->spe));
+				pline("Oh no! Your left ring is contaminating you with e-smog!");
+			} else if (uleft->spe > 0) {
+				int fivegamount = 2;
+				int fivegmultiplier = uleft->spe;
+				while (fivegmultiplier > 1) {
+					fivegamount *= 2;
+					fivegmultiplier--;
+				}
+				if (fivegamount > 0) {
+					displayrandomtiles(fivegamount);
+				}
+			}
+		}
+
+		if (uright && uright->otyp == RIN__G && !rn2(1000)) {
+			if (uright->spe < 0) {
+				drain_alla(abs(uright->spe));
+				pline("Oh no! Your right ring is contaminating you with e-smog!");
+			} else if (uright->spe > 0) {
+				int fivegamount = 2;
+				int fivegmultiplier = uright->spe;
+				while (fivegmultiplier > 1) {
+					fivegamount *= 2;
+					fivegmultiplier--;
+				}
+				if (fivegamount > 0) {
+					displayrandomtiles(fivegamount);
+				}
+			}
+		}
+
 		if (FemtrapActiveJulietta && !rn2(SuperFemtrapJulietta ? 1000 : 2000)) {
 			pline("Julietta rolls the dice to randomly select a punishment for you...");
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
@@ -7418,6 +7472,16 @@ newbossJANI:
 
 		if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && !rn2(2000) && (ABASE(A_INT) > 10)) {
 			(void) adjattrib(A_INT, -1, FALSE, TRUE);
+		}
+
+		if (uamul && uamul->otyp == AMULET_OF_VOMIT_PUMP && multi >= 0 && u.uhs == SATIATED) {
+
+			pline("Suddenly, you have to vomit.");
+			makeknown(uamul->otyp);
+			stop_occupation();
+			nomul(-2, "vomiting", TRUE);
+			vomit();
+			morehungry(250);
 		}
 
 		if (autismweaponcheck(ART_GREEN_DRAGON_CRESCENT_BLAD)) {
@@ -11245,13 +11309,13 @@ newbossB:
 
 		}
 
-		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !ColdImmunity && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
+		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(Cold_resistance && rn2(StrongCold_resistance ? 10 : 3)) && !ColdImmunity && !rn2(isfriday ? 10 : 20) && (Flying || Levitation)) {
 			You("are caught in a snowstorm!");
 			make_stunned(Stunned + rnd(5),FALSE);
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -11301,7 +11365,7 @@ newbossB:
 			flags.botl = TRUE;
 		}
 
-		if (is_raincloud(u.ux, u.uy) && !u.uswallow && !(uarmh && uarmh->oartifact == ART_PROTECT_FROM_HEAVY_RAIN) ) {
+		if (is_raincloud(u.ux, u.uy) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !u.uswallow && !(uarmh && uarmh->oartifact == ART_PROTECT_FROM_HEAVY_RAIN) ) {
 
 			if (level.flags.lethe) pline("Sparkling rain washes over you.");
 			else pline("Rain washes over you.");

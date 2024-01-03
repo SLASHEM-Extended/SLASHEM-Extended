@@ -3620,6 +3620,8 @@ Shield_on()
 	case NEGATIVE_DRAGON_SCALE_SHIELD:
 	case CORONA_DRAGON_SCALE_SHIELD:
 	case CONTRO_DRAGON_SCALE_SHIELD:
+	case NOPE_DRAGON_SCALE_SHIELD:
+	case CRYSTALLINE_DRAGON_SCALE_SHIELD:
 	case MYSTERY_DRAGON_SCALE_SHIELD:
 	case HEROIC_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
@@ -3874,6 +3876,8 @@ Shield_off()
 	case NEGATIVE_DRAGON_SCALE_SHIELD:
 	case CORONA_DRAGON_SCALE_SHIELD:
 	case CONTRO_DRAGON_SCALE_SHIELD:
+	case NOPE_DRAGON_SCALE_SHIELD:
+	case CRYSTALLINE_DRAGON_SCALE_SHIELD:
 	case MYSTERY_DRAGON_SCALE_SHIELD:
 	case HEROIC_DRAGON_SCALE_SHIELD:
 	case STONE_DRAGON_SCALE_SHIELD:
@@ -4684,6 +4688,9 @@ Amulet_on()
 	case AMULET_OF_GUARDING:
 		makeknown(AMULET_OF_GUARDING);
 		break;
+	case AMULET_OF_FLIPPING:
+		makeknown(AMULET_OF_FLIPPING);
+		break;
 	case AMULET_OF_PHYSICAL_BOOST:
 		makeknown(AMULET_OF_PHYSICAL_BOOST);
 		break;
@@ -5482,6 +5489,13 @@ boolean gone;
 	case RIN_INCREASE_DAMAGE:
 		break;
 	case RIN_HEAVY_ATTACK:
+		break;
+	case RIN_HONORED_SPEED:
+		if (obj->spe) {
+			makeknown(RIN_HONORED_SPEED);
+			obj->known = 1;
+			update_inventory();
+		}
 		break;
 	case RIN_PROTECTION:
 		/* might have forgotten it due to amnesia */

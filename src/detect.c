@@ -612,6 +612,31 @@ int		class;		/* an object class, 0 for all */
     return 0;
 }
 
+/* function by Amy: reveal "tileamount" random tiles on the current level */
+void
+displayrandomtiles(tileamount)
+int tileamount;
+{
+	int zx, zy;
+
+	if (tileamount > 100000) tileamount = 100000; /* sanity check */
+
+	if (tileamount < 0) {
+		impossible("displayrandomtiles called with wrong argument %d?", tileamount);
+		return;
+	}
+
+	while (tileamount > 0) {
+		tileamount--;
+
+		zx = rn2(COLNO);
+		zy = rn2(ROWNO);
+
+		if (isok(zx, zy)) show_map_spot(zx, zy);
+	}
+	pline("Part of the map has been revealed!");
+}
+
 /*
  * Used for artifact effects.  Returns:
  *

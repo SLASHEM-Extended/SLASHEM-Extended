@@ -25173,7 +25173,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarmc && itemhasappearance(uarmc, APP_WETSUIT)) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FOAMONIA_WATER ) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
-		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
+		if ((obj->where != OBJ_FLOOR) && powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_JIN_GANG_ZUO) continue;
@@ -25195,6 +25195,8 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && tech_inuse(T_SILENT_OCEAN)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_STEERBOAT) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) continue;
+		if ((obj->where != OBJ_FLOOR) && uleft && uleft->otyp == RIN_AURORA) continue;
+		if ((obj->where != OBJ_FLOOR) && uright && uright->otyp == RIN_AURORA) continue;
 
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_VIKING) && (rn2(50) < u.ulevel) ) continue;
 

@@ -6919,6 +6919,9 @@ struct monst *mon;
 		if (uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 		if (uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 		if (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) armpro += 2;
+		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
+		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;
+		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
@@ -21219,6 +21222,16 @@ register struct attack *mattk;
 	if (uwep && uwep->oartifact == ART_RHORN) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(u.ulevel) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uamul && uamul->otyp == AMULET_OF_THORNS) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(4)) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

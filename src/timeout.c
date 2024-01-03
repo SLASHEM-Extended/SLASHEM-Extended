@@ -3034,6 +3034,27 @@ nh_timeout()
 			u.ualign.record = u.alignlim;
 	}
 
+	if ((uleft && uleft->otyp == RIN_ALIGNMENT) || (uright && uright->otyp == RIN_ALIGNMENT)) {
+		int alignbonusvalue = 0;
+		if (uleft && uleft->otyp == RIN_ALIGNMENT) alignbonusvalue += uleft->spe;
+		if (uright && uright->otyp == RIN_ALIGNMENT) alignbonusvalue += uright->spe;
+
+		if (alignbonusvalue > 0) {
+
+			if ((u.alignlim < 20) || (u.alignlim >= 20 && (rnd(u.alignlim) < 20) ) ) {
+				if (rn2(200) > alignbonusvalue) u.alignlim++;
+			}
+
+		} else {
+			if (rn2(200) > abs(alignbonusvalue )) {
+				u.alignlim--;
+				if(u.ualign.record > u.alignlim)
+					u.ualign.record = u.alignlim;
+			}
+		}
+
+	}
+
 	/* Nymph race randomly gets punished --Amy */
 	if (!rn2(2000) && Race_if(PM_NYMPH)) {
 		punishx();
@@ -6459,7 +6480,7 @@ do_storms()
     if(levl[u.ux][u.uy].typ == CLOUD) {
 	/* inside a cloud during a thunder storm is deafening */
 	pline("Kaboom!!!  Boom!!  Boom!!");
-	if(!u.uinvulnerable) {
+	if(!u.uinvulnerable && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) ) {
 	    stop_occupation();
 	    nomul(-3, "hiding from thunderstorm", TRUE);
 	    nomovemsg = 0;

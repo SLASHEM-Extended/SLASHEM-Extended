@@ -11069,6 +11069,19 @@ bladeangerdone2:
 					if (DEADMONSTER(mon)) return FALSE;
 				}
 
+				if (uleft && uleft->otyp == RIN_RUIN && !rn2(1000) && (u.dx || u.dy) && !u.dz) {
+					buzz(29, GushLevel, u.ux, u.uy, u.dx, u.dy);
+					buzz(20, GushLevel, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+				if (uright && uright->otyp == RIN_RUIN && !rn2(1000) && (u.dx || u.dy) && !u.dz) {
+					buzz(29, GushLevel, u.ux, u.uy, u.dx, u.dy);
+					buzz(20, GushLevel, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
 				if (uleft && uleft->oartifact == ART_NARYA && !rn2(20) && (u.dx || u.dy) && !u.dz) {
 					buzz(21, rnd(4), u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;

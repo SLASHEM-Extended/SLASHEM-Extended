@@ -6834,6 +6834,7 @@ int degree;
 		else if (P_ADVANCE(skill) >= 160) degree *= 3;
 		else if (P_ADVANCE(skill) >= 20) degree *= 2;
 	}
+	if ((skill == u.hiddenpowerskill) && uamul && uamul->otyp == AMULET_OF_X) degree *= 5;
 	if (Race_if(PM_EGYMID) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_ITAQUE) && !rn2(10)) degree *= 2;
 	if (uwep && uwep->oartifact == ART_GEOLOGY_RULES_THE_WORLD && skill == P_PICK_AXE) degree *= 3;

@@ -1821,6 +1821,12 @@ adjattrib(ndx, incr, msgflg, canresist)
 			return FALSE;
 		}
 
+		if (uamul && uamul->otyp == AMULET_OF_SUSTAINED_MIND && ((ndx == A_INT) || (ndx == A_WIS)) ) {
+			Your("amulet prevents the stat loss!");
+			makeknown(uamul->otyp);
+			return FALSE;
+		}
+
 		if (uleft && uleft->otyp == RIN_UPPER_ADORNMENT && ndx == A_CHA) return FALSE;
 		if (uright && uright->otyp == RIN_UPPER_ADORNMENT && ndx == A_CHA) return FALSE;
 
@@ -3103,6 +3109,19 @@ int x;
 		if (uright && uright->oartifact == ART_CATHAN_S_SIGIL) tmp += (3 + uright->spe);
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
 		if (uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) tmp += 1;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
+		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;
+		if (uamul && uamul->otyp == AMULET_OF_FLIPPING) {
+			if (uamul->blessed) tmp++;
+			if (!uamul->cursed) tmp++;
+			if (uamul->cursed) tmp--;
+			if (uamul->hvycurse) tmp--;
+			if (uamul->prmcurse) tmp--;
+			if (uamul->evilcurse) tmp--;
+			if (uamul->bbrcurse) tmp--;
+			if (uamul->morgcurse) tmp--;
+		}
 		if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) tmp += 5;
 		if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp += 5;
@@ -3285,6 +3304,19 @@ int x;
 		if (flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp += 5;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp -= 5;
 		if (!flags.female && uarmu && uarmu->oartifact == ART_FEMINIST_GIRL_S_PURPLE_WEA) tmp -= 5;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
+		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;
+		if (uamul && uamul->otyp == AMULET_OF_FLIPPING) {
+			if (uamul->blessed) tmp++;
+			if (!uamul->cursed) tmp++;
+			if (uamul->cursed) tmp--;
+			if (uamul->hvycurse) tmp--;
+			if (uamul->prmcurse) tmp--;
+			if (uamul->evilcurse) tmp--;
+			if (uamul->bbrcurse) tmp--;
+			if (uamul->morgcurse) tmp--;
+		}
 		if (uarmu && uarmu->oartifact == ART_BIENVENIDO_A_MIAMI) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_MASSIVE_IRON_CROWN_OF_MORG) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) tmp += 5;
@@ -3500,6 +3532,19 @@ int x;
 		if (x == A_INT && uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_GARBAGE_STAFF) tmp += 3;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
+		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;
+		if (uamul && uamul->otyp == AMULET_OF_FLIPPING) {
+			if (uamul->blessed) tmp++;
+			if (!uamul->cursed) tmp++;
+			if (uamul->cursed) tmp--;
+			if (uamul->hvycurse) tmp--;
+			if (uamul->prmcurse) tmp--;
+			if (uamul->evilcurse) tmp--;
+			if (uamul->bbrcurse) tmp--;
+			if (uamul->morgcurse) tmp--;
+		}
 		if (x == A_WIS && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_ONCHANGE_STAFF) tmp += 3;
 		if (uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY && uwep->spe > 0) tmp += uwep->spe;
@@ -3610,6 +3655,19 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uleft && uleft->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
+		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;
+		if (uamul && uamul->otyp == AMULET_OF_FLIPPING) {
+			if (uamul->blessed) tmp++;
+			if (!uamul->cursed) tmp++;
+			if (uamul->cursed) tmp--;
+			if (uamul->hvycurse) tmp--;
+			if (uamul->prmcurse) tmp--;
+			if (uamul->evilcurse) tmp--;
+			if (uamul->bbrcurse) tmp--;
+			if (uamul->morgcurse) tmp--;
+		}
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
@@ -3746,6 +3804,19 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) tmp += 2;
 		if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_BERSERKER) tmp += 10;
 		if (uwep && uwep->oartifact == ART_SPECIFI_X_) tmp += 5;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
+		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
+		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;
+		if (uamul && uamul->otyp == AMULET_OF_FLIPPING) {
+			if (uamul->blessed) tmp++;
+			if (!uamul->cursed) tmp++;
+			if (uamul->cursed) tmp--;
+			if (uamul->hvycurse) tmp--;
+			if (uamul->prmcurse) tmp--;
+			if (uamul->evilcurse) tmp--;
+			if (uamul->bbrcurse) tmp--;
+			if (uamul->morgcurse) tmp--;
+		}
 		if (u.combatcommand) tmp += 1;
 		if (uwep && uwep->oartifact == ART_YORSHKA_S_SPEAR) tmp += 6;
 		if (uarms && uarms->oartifact == ART_VITALITY_STORM) tmp += 8;
