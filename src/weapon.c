@@ -279,6 +279,7 @@ struct monst *mon;
 
 	/* KMH, balance patch -- new macro */
 	if (is_spear(otmp) && index(kebabable, ptr->mlet)) tmp += 2;
+	if (otmp->otyp == SUPERWEAPON && index(kebabable, ptr->mlet)) tmp += 5;
 
 	/* iron chains give bonus versus thick-skinned monsters --Amy */
 	if (otmp->otyp == TINSEL_CHAIN && thick_skinned(ptr)) tmp += 2;
@@ -387,7 +388,7 @@ struct monst *mon;
 	/* polearms versus golems and designated steeds */
 	if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN)) tmp += 3;
 
-	if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) tmp += 10;
+	if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD) tmp += 10;
 
 	/* electric sword versus quantum mechanic */
 	if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) tmp += 10;
@@ -614,6 +615,7 @@ struct monst *mon;
 		case BATTLE_AXE:
 		case BARDICHE:
 		case SCYTHE:
+		case BONE_SCYTHE:
 		case STYGIAN_PIKE:
 		case MANCATCHER:
 		case MARE_TRIDENT:
@@ -730,6 +732,7 @@ struct monst *mon;
 		case BATTLE_AXE:
 		case BARDICHE:
 		case SCYTHE:
+		case BONE_SCYTHE:
 		case BILL_GUISARME:
 		case GUISARME:
 		case LUCERN_HAMMER:
@@ -904,6 +907,8 @@ struct monst *mon;
 			bonus += 3;
 
 	    if (is_spear(otmp) && index(kebabable, ptr->mlet)) bonus += rnd(2) ;
+
+	    if (otmp->otyp == SUPERWEAPON && index(kebabable, ptr->mlet)) bonus += rnd(5);
 
 	    /* iron chains give bonus versus thick-skinned monsters --Amy */
 		if (otmp->otyp == TINSEL_CHAIN && thick_skinned(ptr)) bonus += rnd(2);
@@ -1085,7 +1090,7 @@ struct monst *mon;
 	    /* polearms versus golems */
 	    if (objects[otmp->otyp].oc_skill == P_POLEARMS && (ptr->mlet == S_GOLEM || ptr->mlet == S_CENTAUR || ptr->mlet == S_UNICORN) ) bonus += rnd(2);
 
-	    if ((otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
+	    if ((otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
 
 	    /* electric sword versus quantum mechanic */
 	    if (otmp->otyp == ELECTRIC_SWORD && ptr->mlet == S_QUANTMECH) bonus += rnd(10);
@@ -1138,6 +1143,7 @@ struct monst *mon;
 	return(tmp);
 }
 
+/* dmgval but with additional bonuses, used when the player attacks things with a weapon --Amy */
 int
 dmgvalX(otmp, mon)
 struct obj *otmp;
@@ -1232,6 +1238,7 @@ struct monst *mon;
 		case BATTLE_AXE:
 		case BARDICHE:
 		case SCYTHE:
+		case BONE_SCYTHE:
 		case STYGIAN_PIKE:
 		case MANCATCHER:
 		case MARE_TRIDENT:
@@ -1348,6 +1355,7 @@ struct monst *mon;
 		case BATTLE_AXE:
 		case BARDICHE:
 		case SCYTHE:
+		case BONE_SCYTHE:
 		case BILL_GUISARME:
 		case GUISARME:
 		case LUCERN_HAMMER:
@@ -1523,6 +1531,23 @@ struct monst *mon;
 			bonus += 3;
 
 	    if (is_spear(otmp) && index(kebabable, ptr->mlet)) bonus += rnd(2) ;
+
+	    if (otmp->otyp == SUPERWEAPON && index(kebabable, ptr->mlet)) {
+		bonus += rnd(5);
+		if (!(PlayerCannotUseSkills) && !Race_if(PM_BABYLONIAN)) {
+			switch (P_SKILL(P_SPEAR)) {
+				case P_BASIC:	bonus += rnd(2); break;
+				case P_SKILLED:	bonus += rnd(4); break;
+				case P_EXPERT:	bonus += rnd(6); break;
+				case P_MASTER:	bonus += rnd(8); break;
+				case P_GRAND_MASTER:	bonus += rnd(10); break;
+				case P_SUPREME_MASTER:	bonus += rnd(12); break;
+				default: tmp += 0; break;
+
+			}
+
+		}
+	    }
 
 	    /* iron chains give bonus versus thick-skinned monsters --Amy */
 		if (otmp->otyp == TINSEL_CHAIN && thick_skinned(ptr)) bonus += rnd(2);
@@ -2623,15 +2648,15 @@ struct monst *mon;
 
 		}
 
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD) bonus += rnd(10);
 
 		if (!(PlayerCannotUseSkills)) {
 
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(3);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(5);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(7);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(10);
-	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(12);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SKILLED)) bonus += rnd(3);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_EXPERT)) bonus += rnd(5);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_MASTER)) bonus += rnd(7);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_GRAND_MASTER)) bonus += rnd(10);
+	    if ( (otmp->otyp == SICKLE || otmp->otyp == ELVEN_SICKLE || otmp->otyp == TRISHULA || otmp->otyp == SCYTHE || otmp->otyp == BONE_SCYTHE) && ptr->mlet == S_BAD_FOOD && (P_SKILL(P_POLEARMS) == P_SUPREME_MASTER)) bonus += rnd(12);
 		}
 
 	    /* electric sword versus quantum mechanic */
@@ -2883,7 +2908,7 @@ static NEARDATA const int rwep[] =
 	PUNCTURING_JAVELIN, UNDERWORLD_JAVELIN,
 	COURSE_JAVELIN, SPIRIT_THROWER, DROVEN_SPEAR, ATGEIR, DRAGON_SPEAR, NINJA_STAR, BLADE_OF_PITY, PARAZONIUM,
 	DWARVISH_SPEAR, SILVER_SPEAR, INKA_SPEAR, ELVEN_SPEAR, ASBESTOS_JAVELIN, STACK_JAVELIN, WINDMILL_BLADE,
-	FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, RANDOSPEAR, SILK_SPEAR, SPEAR, COBALT_SPEAR,
+	FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, RANDOSPEAR, SILK_SPEAR, SPEAR, COBALT_SPEAR, SUPERWEAPON,
 	ORCISH_SPEAR, CRAPPY_SPEAR,
 	JAVELIN, NEEDLE, MYSTERY_SHURIKEN, NANO_SHURIKEN, CUBIC_STAR, LIGHT_STAR, TAR_STAR, SHURIKEN, CHEAP_SPEAR,
 	DROVEN_ARROW, GOLDEN_ARROW, ANCIENT_ARROW, BRONZE_ARROW, HEAVY_SPEAR,
@@ -2921,7 +2946,8 @@ static NEARDATA const int pwep[] =
 	NANO_POLE, BOHEMIAN_EAR_SPOON, VOULGE, RANSEUR, GUISARME, GRAIN_SCYTHE, LEADBAR, VARIED_GRINDER, STANGOEKSE,
 	BLACK_HALBERD, GARDEN_FORK, PITCHFORK, STICKSHOE, GRINDER, CIGAR, PATINA_BAR,
 	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, ETERNAL_POLE, LONG_POLE, SHARP_POLE, PENIS_POLE, PIKE,
-	PARTISAN, ELVEN_LANCE, SCYTHE, ELVEN_SICKLE, SICKLE, SPEC_LANCE, BRONZE_LANCE, LANCE, LASER_CHAIN,
+	PARTISAN, ELVEN_LANCE, BONE_SCYTHE, SCYTHE, TRISHULA, LAJATANG,
+	ELVEN_SICKLE, SICKLE, SPEC_LANCE, BRONZE_LANCE, LANCE, LASER_CHAIN,
 	NOOB_POLLAX, PARASOL, UMBRELLA, CHAIN_AND_SICKLE, SPINED_BALL, REACH_TRIDENT, ANCUS, BLOW_AKLYS, AKLYS
 };
 
@@ -3269,21 +3295,22 @@ static const NEARDATA short hwep[] = {
   	  MORNING_STAR, GREAT_HOUCHOU, ORCISH_LONG_SWORD, ORCISH_MORNING_STAR,
 	  DARK_ELVEN_SHORT_SWORD, HIGH_ELVEN_WARSWORD, ELVEN_SHORT_SWORD, DARKNESS_CLUB, STEEL_CLUB,
   	  DWARVISH_SHORT_SWORD, SUGUHANOKEN, SHORT_SWORD, METAL_CLUB, KNOUT, RIDING_CROP, IRON_BAR, TUBING_PLIERS,
-	  ORCISH_SHORT_SWORD, ELVEN_MACE, PLASTIC_MACE, BRONZE_MACE, HEATH_BALL, KAMEREL_VAJRA, QUALITY_AXE, DISKOS,
+	  ORCISH_SHORT_SWORD, ELVEN_MACE, PLASTIC_MACE, BRONZE_MACE, HEATH_BALL, KAMEREL_VAJRA, QUALITY_AXE,
+	  TOMAHAWK, DISKOS,
 	  MACE, MOON_AXE, OBSIDIAN_AXE, SPIRIT_AXE, SHARP_AXE, AXE, DRAGON_SPEAR, DWARVISH_SPEAR, FORCE_WHIP,
 	  SILVER_SPEAR, BELL_CLAWS, GLADIUS, CLAWED_HAND, SUWAYYAH, QUHAB, MEASURER_QATAR,
 	  INKA_SPEAR, ELVEN_SPEAR, FLINT_SPEAR, NANO_PICK, SHORT_BLADE, SAND_SWORD,
 	  MIRRORBLADE, BLADE_OF_MERCY, BLADE_OF_GRACE, LIGHTBULB, CESTUS, KHOPESH,
 	  BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, RANDOSPEAR, MAGISWORD, DRAMA_ORB,
-	  SILK_SPEAR, COBALT_SPEAR, SPEAR, ORCISH_SPEAR, CRAPPY_SPEAR,
+	  SILK_SPEAR, COBALT_SPEAR, SPEAR, SUPERWEAPON, ORCISH_SPEAR, CRAPPY_SPEAR,
 	  LOWER_ARM_BLADE, CAMO_QATAR, BESTIAL_CLAW, CHEAP_SPEAR,
 	  STAR_ROD, RUNED_ROD, SPIKED_CHAIN, WEIGHTED_FLAIL, FLAIL, FLOGGER, CHAIN_AND_SICKLE, BULLWHIP, CHITIN_WHIP,
 	  ASBESTOS_JAVELIN, STACK_JAVELIN,
 	  FIRE_STICK, COBALT_STAFF, TROUTSTAFF, FLINDBAR, QUARTERSTAFF,
-	  RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, FOAMY_STAFF,
+	  RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, FOAMY_STAFF, SHAKUJO,
 	  MASSAGER, INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, MACUAHUITL, PAPER_SWORD, QATAR, CLIMBING_STICK,
 	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD, TONFA, CONSECRATED_KNIFE,
-	  NATURAL_STICK, BONE_CLUB, SHELL_CLUB, CUDGEL,
+	  NATURAL_STICK, BONE_CLUB, SHELL_CLUB, CUDGEL, LAJATANG,
 	  CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR, CONUNDRUM_PICK, BRONZE_DAGGER, LIGHT_CLUB,
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET, HEAVY_SPEAR,
 	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, JARED_STONE, KLIUSLING,
@@ -3471,6 +3498,7 @@ register struct monst *mon;
 			if (!obj) obj = m_carrying(mon, SPIRIT_AXE);
 			if (!obj) obj = m_carrying(mon, SHARP_AXE);
 			if (!obj) obj = m_carrying(mon, DISKOS);
+			if (!obj) obj = m_carrying(mon, TOMAHAWK);
 			if (!obj) obj = m_carrying(mon, QUALITY_AXE);
 			if (!obj) obj = m_carrying(mon, INFERNAL_AXE);
 			if (!obj) obj = m_carrying(mon, NANO_AXE);
@@ -3501,6 +3529,7 @@ register struct monst *mon;
 			    if (!obj) obj = m_carrying(mon, SPIRIT_AXE);
 			    if (!obj) obj = m_carrying(mon, SHARP_AXE);
 			    if (!obj) obj = m_carrying(mon, DISKOS);
+			    if (!obj) obj = m_carrying(mon, TOMAHAWK);
 			    if (!obj) obj = m_carrying(mon, QUALITY_AXE);
 			    if (!obj) obj = m_carrying(mon, INFERNAL_AXE);
 			    if (!obj) obj = m_carrying(mon, NANO_AXE);

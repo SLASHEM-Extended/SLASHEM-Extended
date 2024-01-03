@@ -1711,11 +1711,12 @@ int dieroll;
 	if (thrown && obj->otyp == ROCK) stupidrock = 1;
 
 	boolean pieks = 0;
-	if (thrown == 1 && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
-	if (thrown == 1 && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
-	if (thrown == 1 && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
-	if (thrown == 1 && obj->otyp == GRAPPLING_HOOK) pieks = 1;
-	if (thrown == 1 && obj->otyp == JACK_KNIFE) pieks = 1;
+	if (obj && thrown == 1 && objects[obj->otyp].oc_skill == P_POLEARMS) pieks = 1;
+	if (obj && thrown == 1 && objects[obj->otyp].oc_skill == P_LANCE) pieks = 1;
+	if (obj && thrown == 1 && objects[obj->otyp].oc_skill == P_GRINDER) pieks = 1;
+	if (obj && thrown == 1 && obj->otyp == GRAPPLING_HOOK) pieks = 1;
+	if (obj && thrown == 1 && obj->otyp == JACK_KNIFE) pieks = 1;
+	if (obj && thrown == 1 && obj->otyp == LAJATANG) pieks = 1;
 
 	if (thrown == 1) launcher = uwep;
 	else if (thrown == 2) launcher = uswapwep;
@@ -1724,8 +1725,8 @@ int dieroll;
 
 	boolean gunused = 0;
 	boolean crossbowused = 0;
-	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
-	if (launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_CROSSBOW) crossbowused = 1;
+	if (obj && launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_FIREARM) gunused = 1;
+	if (obj && launcher && ammo_and_launcher(obj, launcher) && objects[launcher->otyp].oc_skill == P_CROSSBOW) crossbowused = 1;
 
 	objenchant = !thrown && no_obj || obj->spe < 0 ? 0 : obj->spe;
 
@@ -3219,6 +3220,18 @@ int dieroll;
 			if (thrown && obj && obj->otyp == DISKOS) {
 				tmp += 5;
 			}
+			if (thrown && obj && obj->otyp == TOMAHAWK && !PlayerCannotUseSkills) {
+				switch (P_SKILL(P_AXE)) {
+					default: break;
+					case P_BASIC: tmp += 2; break;
+					case P_SKILLED: tmp += 4; break;
+					case P_EXPERT: tmp += 6; break;
+					case P_MASTER: tmp += 8; break;
+					case P_GRAND_MASTER: tmp += 10; break;
+					case P_SUPREME_MASTER: tmp += 12; break;
+				}
+
+			}
 
 			if (thrown && obj && obj->otyp == HEAVY_SPEAR) {
 				if (tmp > 0) tmp *= 2;
@@ -4103,6 +4116,24 @@ int dieroll;
 		if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 2;
 		if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 2;
 		if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
+		if (!thrown && obj && obj->otyp == SUPERWEAPON) tmp += 5;
+
+		if (pieks && obj && obj->otyp == LAJATANG) {
+			tmp += 5;
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_QUARTERSTAFF)) {
+
+					case P_BASIC:	tmp +=  1; break;
+					case P_SKILLED:	tmp +=  rnd(3); break;
+					case P_EXPERT:	tmp +=  rnd(5); break;
+					case P_MASTER:	tmp +=  rnd(8); break;
+					case P_GRAND_MASTER:	tmp +=  rnd(11); break;
+					case P_SUPREME_MASTER:	tmp +=  rnd(14); break;
+					default: tmp += 0; break;
+				}
+
+			}
+		}
 
 		if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
 			tmp += 5;

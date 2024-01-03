@@ -228,7 +228,7 @@ const char *name;	/* if null, then format `obj' */
 	is_acid = (obj && obj->otyp == ACID_VENOM);
 	is_tailspike = (obj && obj->otyp == TAIL_SPIKES);
 	is_egg = (obj && obj->otyp == EGG);
-	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == REACH_TRIDENT || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE || obj->otyp == LASER_CHAIN));
+	is_polearm = (obj && (objects[obj->otyp].oc_skill == P_POLEARMS || objects[obj->otyp].oc_skill == P_LANCE || objects[obj->otyp].oc_skill == P_GRINDER || obj->otyp == AKLYS || obj->otyp == BLOW_AKLYS || obj->otyp == REACH_TRIDENT || obj->otyp == SPINED_BALL || obj->otyp == CHAIN_AND_SICKLE || obj->otyp == LAJATANG || obj->otyp == LASER_CHAIN));
 	is_thrown_weapon = (obj && (objects[obj->otyp].oc_skill == P_DART || objects[obj->otyp].oc_skill == P_SHURIKEN || objects[obj->otyp].oc_skill == -P_DART || objects[obj->otyp].oc_skill == -P_SHURIKEN) );
 	is_bulletammo = (obj && obj->otyp >= PISTOL_BULLET && obj->otyp <= GAS_GRENADE);
 

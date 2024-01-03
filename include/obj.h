@@ -222,6 +222,7 @@ struct obj {
 			 (otmp)->otyp == REACH_TRIDENT || \
 			 (otmp)->otyp == SPINED_BALL || \
 			 (otmp)->otyp == CHAIN_AND_SICKLE || \
+			 (otmp)->otyp == LAJATANG || \
 			 (otmp)->oartifact == ART_WILD_OAR || \
 			 (otmp)->oartifact == ART_WOETSCHERSMAG || \
 			 (otmp)->oartifact == ART_STRECKOUT_AND_PULL || \

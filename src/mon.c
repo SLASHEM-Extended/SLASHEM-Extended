@@ -3399,7 +3399,7 @@ mfndpos(mon, poss, info, flag)
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, ETERNIUM_MATTOCK) &&
 			   !which_armor(mon, W_ARMS)) );
-		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, SHARP_AXE) || m_carrying(mon, QUALITY_AXE) || m_carrying(mon, DISKOS) || m_carrying(mon, INFERNAL_AXE) || m_carrying(mon, NANO_AXE) || m_carrying(mon, TUBING_PLIERS) ||
+		treeok = (m_carrying(mon, AXE) || m_carrying(mon, OBSIDIAN_AXE) || m_carrying(mon, SPIRIT_AXE) || m_carrying(mon, SHARP_AXE) || m_carrying(mon, QUALITY_AXE) || m_carrying(mon, DISKOS) || m_carrying(mon, TOMAHAWK) || m_carrying(mon, INFERNAL_AXE) || m_carrying(mon, NANO_AXE) || m_carrying(mon, TUBING_PLIERS) ||
 			  (m_carrying(mon, BATTLE_AXE) &&
 			   !which_armor(mon, W_ARMS)) ||
 			  (m_carrying(mon, MOON_AXE) &&
