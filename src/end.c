@@ -1964,6 +1964,55 @@ implantdone:
 
 implantdone2:
 
+	if ((uarmf && uarmf->otyp == OMEGA_HEELS) && u.ulevel >= 3 && ABASE(A_STR) > 1 && ABASE(A_DEX) > 1 && ABASE(A_CON) > 1 && ABASE(A_INT) > 1 && ABASE(A_WIS) > 1 && ABASE(A_CHA) > 1 && (u.uhp > 0) && (u.uhpmax > 0) && how < GENOCIDED) {
+
+		pline("But wait...");
+
+		    losexp("omega heels", TRUE, FALSE);
+		    losexp("omega heels", TRUE, FALSE);
+			ABASE(A_STR) -= 1;
+			AMAX(A_STR) -= 1;
+			ABASE(A_DEX) -= 1;
+			AMAX(A_DEX) -= 1;
+			ABASE(A_INT) -= 1;
+			AMAX(A_INT) -= 1;
+			ABASE(A_WIS) -= 1;
+			AMAX(A_WIS) -= 1;
+			ABASE(A_CON) -= 1;
+			AMAX(A_CON) -= 1;
+			ABASE(A_CHA) -= 1;
+			AMAX(A_CHA) -= 1;
+			flags.botl = TRUE;
+
+		Your("pair of boots %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto omegadone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+omegadone:
+
 	if (MenuIsBugged && how < GENOCIDED) {
 		pline("But wait! You still have the menu bug!");
 

@@ -2532,7 +2532,7 @@ newbossING:
 	    case ATTACKING_HEEL_TRAP:
 		{
 
-		ttmp->launch_otyp = rnd(28);
+		ttmp->launch_otyp = rnd(31);
 
 		break;
 	      }
@@ -3400,7 +3400,7 @@ int *fail_reason;
 	    if (historic) {
 		    You_feel("guilty that the historic statue is now gone.");
 		    adjalign(-10);
-			u.ualign.sins++;
+			increasesincounter(1);
 			u.alignlim--;
 	    }
 	} else if (cause == ANIMATE_SHATTER)
@@ -4748,7 +4748,7 @@ dothetrap:
 		break;
 
 	    case SQKY_BOARD:	    /* stepped on a squeaky board */
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 		    if (!Blind) {
 			seetrap(trap);
 			if (FunnyHallu)
@@ -4785,7 +4785,7 @@ dothetrap:
 		break;
 
 	    case BEAR_TRAP:
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break;
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break;
 		seetrap(trap);
 		if(amorphous(youmonst.data) || is_whirly(youmonst.data) ||
 						    unsolid(youmonst.data)) {
@@ -4976,7 +4976,7 @@ dothetrap:
 
 	    case ACID_POOL:
 
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -5022,7 +5022,7 @@ dothetrap:
 
 	    case WATER_POOL:
 
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -7826,7 +7826,7 @@ newbossPENT:
 
 	    case QUICKSAND_TRAP:
 
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 
 			if (rn2(10)) break;
 			else pline("You are pulled downwards...");
@@ -8128,7 +8128,7 @@ newbossPENT:
 		seetrap(trap);
 		pline("CLICK! You have triggered a trap!");
 
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-5);
 
@@ -9036,7 +9036,7 @@ newbossPENT:
 		{
 			boolean larissashoes = (uarmf ? TRUE : FALSE);
 
-			if ((Levitation || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+			if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 			    if (!already_seen && rn2(3)) break;
 			    seetrap(trap);
 			    pline("%s %s on the ground below you.",
@@ -9045,7 +9045,13 @@ newbossPENT:
 			} 
 
 			seetrap(trap);
-			doshittrap((struct obj *)0);
+
+			if (uarmf && uarmf->otyp == CLOGS) {
+				You("stepped into a heap of shit, but thankfully it cannot affect your clogs.");
+				break; /* doesn't help with larissa trap, this is by design */
+			} else {
+				doshittrap((struct obj *)0);
+			}
 
 			if (u.larissatimer) {
 				u.larissatimer = 0;
@@ -9078,7 +9084,7 @@ newbossPENT:
 		if (uarmf && uarmf->oartifact == ART_BEWARE_OF_THE_PITFALL) break; /* yes, even in sokoban! */
 
 		/* KMH -- You can't escape the Sokoban level traps */
-		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && (Levitation || Flying)) break;
+		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && (Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying)) break;
 
 		if (ttype == SHIT_PIT && (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS))) break;
 
@@ -10157,7 +10163,7 @@ madnesseffect:
 
 		unsigned steed_mid = 0;
 		struct obj *saddle = 0;
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s in a pile of soil below you.",
@@ -10472,7 +10478,7 @@ madnesseffect:
 		break;
 
 	    case TURN_TABLE:
-		if ( ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) || unsolid(youmonst.data)) break;
+		if ( ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) || unsolid(youmonst.data)) break;
 
 		i = rn2(15);
 		if (trap->once && i < 1) {
@@ -10697,7 +10703,7 @@ madnesseffect:
 		break;
 
 	    case BANANA_TRAP:
-		if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break;
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break;
 		trap->once = 1;
 		seetrap(trap);
 
@@ -18874,6 +18880,10 @@ skillrandomizeredo:
 		{
 			int projectiledamage = 1;
 			int randomkick = rnd(15);
+
+			register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+			const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+
 			switch (trap->launch_otyp) {
 				case 1:
 					projectiledamage = rnd(10)+ rnd(monster_difficulty() + 1);
@@ -18959,6 +18969,15 @@ skillrandomizeredo:
 					break;
 				case 28:
 					projectiledamage = rnd(22) + rnd( (monster_difficulty() * 3) + 1);
+					break;
+				case 29:
+					projectiledamage = rnd(20) + rnd( (monster_difficulty() * 2) + 1);
+					break;
+				case 30:
+					projectiledamage = rnd(20)+  rnd( (monster_difficulty() * 2) + 1);
+					break;
+				case 31:
+					projectiledamage = rnd(5) + rnd( monster_difficulty() + 1);
 					break;
 			}
 
@@ -19057,8 +19076,6 @@ skillrandomizeredo:
 
 				losehp(u.legscratching, "bloody leg scratches", KILLED_BY);
 				u.legscratching++;
-				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
-				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
 			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
@@ -19292,8 +19309,6 @@ skillrandomizeredo:
 					if (randomkick == 2) {
 						pline("A red whore boot jams your %ss!", body_part(TOE));
 
-						register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
-						const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
 				    		set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 				    		exercise(A_STR, FALSE);
 				    		exercise(A_DEX, FALSE);
@@ -19446,6 +19461,44 @@ skillrandomizeredo:
 					}
 
 				break;
+
+				case 29:
+					pline("A cute wooden clog slams into your shins very painfully!");
+					losehp(projectiledamage,"cute girl clog",KILLED_BY_AN);
+					break;
+
+				case 30:
+
+				pline("A lacquered pump suddenly scratches up and down your %ss!", body_part(LEG) );
+
+				losehp(projectiledamage,"lacquered pump",KILLED_BY_AN);
+
+				if (u.legscratching <= 5)
+			    	    pline("It stings a little.");
+				else if (u.legscratching <= 10)
+			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+				else if (u.legscratching <= 20)
+				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
+				else if (u.legscratching <= 40)
+				    pline("You can feel the heel scratching on your shin bone! It hurts and bleeds a lot!");
+				else
+				    pline("You watch in shock as your blood is squirting everywhere, all the while feeling the razor-sharp high heel mercilessly opening your %ss!", body_part(LEG));
+
+				losehp(u.legscratching, "bloody leg scratches", KILLED_BY);
+				u.legscratching++;
+			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
+			    exercise(A_STR, FALSE);
+			    exercise(A_DEX, FALSE);
+
+					break;
+
+				case 31:
+
+					pline("A block-heeled lady boot suddenly scratches over your %s with the lovely heel!", body_part(LEG));
+					playerbleed(monster_difficulty());
+					losehp(projectiledamage,"a sharp-edged block-heeled boot",KILLED_BY);
+
+					break;
 
 				default:
 					impossible("heel trap type %d used", trap->launch_otyp);
@@ -25838,7 +25891,7 @@ drown()
 		unleash_all();
 	}
 
-	if (Amphibious || Breathless || Swimming) {
+	if (Amphibious || Breathless || Swimming || (uarmf && uarmf->otyp == ANTI_DROWNING_BOOTS) ) {
 		if (Amphibious) {
 			if (flags.verbose)
 				pline("But you aren't drowning.");
@@ -26001,7 +26054,7 @@ crystaldrown()
 	int i, x, y;
 	const char *sparkle = level.flags.lethe? "sparkling " : "";
 
-	if (Swimming || Amphibious || Breathless) inpool_ok = TRUE;
+	if (Swimming || Amphibious || Breathless || (uarmf && uarmf->otyp == ANTI_DROWNING_BOOTS) ) inpool_ok = TRUE;
 
 	if (level.flags.lethe) {
 	    /* Bad idea */
@@ -27452,6 +27505,9 @@ struct trap *ttmp;
 	else if (ttmp->launch_otyp == 26) cnv_trap_obj(ITALIAN_HEELS, 1, ttmp);
 	else if (ttmp->launch_otyp == 27) cnv_trap_obj(SEXY_MARY_JANE, 1, ttmp);
 	else if (ttmp->launch_otyp == 28) cnv_trap_obj(KITTEN_HEEL_PUMP, 1, ttmp);
+	else if (ttmp->launch_otyp == 29) cnv_trap_obj(CLOGS, 1, ttmp);
+	else if (ttmp->launch_otyp == 30) cnv_trap_obj(DIDIER_SACHS_SHOES, 1, ttmp);
+	else if (ttmp->launch_otyp == 31) cnv_trap_obj(BASIC_SHOES, 1, ttmp);
 	else deltrap(ttmp);
 	newsym(trapx, trapy);
 	return 1;
@@ -27469,26 +27525,36 @@ struct trap *ttmp;
 {
 	int fails;
 	struct obj *obj;
-	boolean bad_tool;
+	boolean bad_tool = FALSE;
+	boolean bypasstool = FALSE;
 
-	obj = getobj(disarmpotion, "untrap with");
-	if (!obj) return 0;
-
-	if (obj->otyp == POT_OIL)
-	{
-		Your("potion of oil explodes!");
-		splatter_burning_oil(ttmp->tx,ttmp->ty);
-		delobj(obj);
-		return 1;
+	if (uarmf && uarmf->otyp == FIRE_BRIGADE_HEELS) {
+		bypasstool = TRUE;
+		bad_tool = FALSE;
 	}
 
-	bad_tool = (obj->cursed ||
-				(obj->otyp != POT_WATER));
+	if (!bypasstool) {
+		obj = getobj(disarmpotion, "untrap with");
+		if (!obj) return 0;
+
+		if (obj->otyp == POT_OIL) {
+			Your("potion of oil explodes!");
+			splatter_burning_oil(ttmp->tx,ttmp->ty);
+			delobj(obj);
+			return 1;
+		}
+
+		bad_tool = (obj->cursed || (obj->otyp != POT_WATER));
+
+	}
+
 	fails = try_disarm(ttmp, bad_tool, FALSE);
 	if (fails < 2) return fails;
 
-	useup(obj);
-	makeknown(POT_WATER);
+	if (!bypasstool) { /* caution: if "bypasstool" is true, obj is undefined --Amy */
+		useup(obj);
+		makeknown(POT_WATER);
+	}
 	You("manage to extinguish the pilot light!");
 	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);

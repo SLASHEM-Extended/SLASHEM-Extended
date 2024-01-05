@@ -2037,6 +2037,7 @@ set_moreluck()
 	else if (luckbon >= 0 && u.moreluckpts > 3) u.moreluck = LUCKADD;
 	else u.moreluck = -LUCKADD;
 	if (uwep && uwep->oartifact == ART_WIRE_OF_LUCK) u.moreluck += 5;
+	if (uarmh && uarmh->otyp == LUCKY_MUSHROOM) u.moreluck += 5;
 	if (have_amateurluckstone()) u.moreluck += 5;
 	if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) u.moreluck += 5;
 	if (have_suckstonearti()) u.moreluck += 5;
@@ -3796,6 +3797,7 @@ int x;
 		if (bmwride(ART_PANZER_TANK)) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (uarmf && uarmf->otyp == PERMANENCE_BOOTS) tmp += (uarmf->spe + 5);
 		if (uarmf && uarmf->oartifact == ART_LEXI_S_POWERKICK) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_SHROUD) tmp += 7;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
@@ -3913,6 +3915,15 @@ acurrstr()
 #endif /* OVL0 */
 #ifdef OVL2
 
+void
+increasesincounter(n)
+register int n;
+{
+	if (uarmh && uarmh->otyp == GANGSTER_CAP && rn2(2)) return;
+	
+	u.ualign.sins += n;
+}
+
 /* avoid possible problems with alignment overflow, and provide a centralized
  * location for any future alignment limits
  */
@@ -3929,7 +3940,7 @@ register int n;
 
 	if (Race_if(PM_SINNER) && n < 0) {
 		n *= 10;
-		u.ualign.sins += 1; 
+		increasesincounter(1);
 		u.alignlim -= 1;
 	}
 	if (Race_if(PM_KORONST) && n < 0) n *= 3;
@@ -3940,6 +3951,11 @@ register int n;
 		else n *= 2;
 
 		if (powerfulimplants()) u.alignlim += 1;
+	}
+
+	if (uarmh && uarmh->otyp == GANGSTER_CAP && n < 0) {
+		n /= 2;
+		if (n >= 0) n = -1; /* don't reduce below -1 --Amy */
 	}
 
 	register int newalign = u.ualign.record + n;

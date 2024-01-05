@@ -872,6 +872,7 @@ static struct trobj Zookeeper[] = {
 };
 static struct trobj Firefighter[] = {
 	{ AXE, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
+	{ FIRE_BRIGADE_HEELS, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ POT_WATER, 0, POTION_CLASS, 5, 0 },
 	{ SCR_FIRE, UNDEF_SPE, SCROLL_CLASS, 4, UNDEF_BLESS },
 	{ WAN_FIRE, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
@@ -11976,7 +11977,7 @@ u_init()
 	case PM_BINDER:
 		ini_inv(Binder);
 		skill_init(Skill_Bin);
-	  u.ualign.sins += 16; /*One transgression is all it takes*/
+	  increasesincounter(16); /*One transgression is all it takes*/
 	  u.alignlim -= 16;
 	    change_luck(-1); /*One resurection or two rehumanizations is all it takes*/
 		break;
@@ -12172,7 +12173,7 @@ u_init()
         knows_object(SKELETON_KEY);
         knows_object(GRAPPLING_HOOK);
         skill_init(Skill_Con);
-	  u.ualign.sins += 16; /* You have sinned */
+	  increasesincounter(16); /* You have sinned */
 	  u.alignlim -= 16;
         u.uhunger = 550;  /* On the verge of hungry */
     	/* u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] =
@@ -12222,7 +12223,7 @@ u_init()
 
         ini_inv(Murderer);
         skill_init(Skill_Mur);
-	  u.ualign.sins += 16; /* You have sinned */
+	  increasesincounter(16); /* You have sinned */
 	  u.alignlim -= 16;
         u.uhunger = 550;  /* On the verge of hungry */
         urace.hatemask |= urace.lovemask;   /* Hated by the race's allies */
@@ -14440,7 +14441,7 @@ u_init()
 		break;
 	case 4:
 		ini_inv(Binder);
-	  u.ualign.sins += 16; /*One transgression is all it takes*/
+	  increasesincounter(16); /*One transgression is all it takes*/
 	  u.alignlim -= 16;
 	    change_luck(-1); /*One resurection or two rehumanizations is all it takes*/
 		break;
@@ -14575,7 +14576,7 @@ u_init()
         ini_inv(Convict);
         knows_object(SKELETON_KEY);
         knows_object(GRAPPLING_HOOK);
-	  u.ualign.sins += 16; /* You have sinned */
+	  increasesincounter(16); /* You have sinned */
 	  u.alignlim -= 16;
         u.uhunger = 550;  /* On the verge of hungry */
     	/* u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] =
@@ -15243,7 +15244,7 @@ u_init()
 		}
 
 	        ini_inv(Murderer);
-		  u.ualign.sins += 16; /* You have sinned */
+		  increasesincounter(16); /* You have sinned */
 		  u.alignlim -= 16;
 	        u.uhunger = 550;  /* On the verge of hungry */
 	        urace.hatemask |= urace.lovemask;   /* Hated by the race's allies */
@@ -16168,7 +16169,7 @@ u_init()
 		break;
 	case 4:
 		ini_inv(Binder);
-	  u.ualign.sins += 16; /*One transgression is all it takes*/
+	  increasesincounter(16); /*One transgression is all it takes*/
 	  u.alignlim -= 16;
 	    change_luck(-1); /*One resurection or two rehumanizations is all it takes*/
 		break;
@@ -16303,7 +16304,7 @@ u_init()
         ini_inv(Convict);
         knows_object(SKELETON_KEY);
         knows_object(GRAPPLING_HOOK);
-	  u.ualign.sins += 16; /* You have sinned */
+	  increasesincounter(16); /* You have sinned */
 	  u.alignlim -= 16;
         u.uhunger = 550;  /* On the verge of hungry */
     	/* u.ualignbase[A_CURRENT] = u.ualignbase[A_ORIGINAL] =
@@ -16971,7 +16972,7 @@ u_init()
 		}
 
 	        ini_inv(Murderer);
-		  u.ualign.sins += 16; /* You have sinned */
+		  increasesincounter(16); /* You have sinned */
 		  u.alignlim -= 16;
 	        u.uhunger = 550;  /* On the verge of hungry */
 	        urace.hatemask |= urace.lovemask;   /* Hated by the race's allies */
@@ -17892,7 +17893,7 @@ u_init()
 	case PM_VAMPIRE:
 	    /* Vampires start off with gods not as pleased, luck penalty */
 	    adjalign(-5); 
-	    u.ualign.sins += 5;
+	    increasesincounter(5);
 	    u.alignlim -= 5;
 	    change_luck(-1);
 		{
@@ -17911,21 +17912,21 @@ u_init()
 	    break;
 	case PM_VAMGOYLE:
 	    adjalign(-5);
-	    u.ualign.sins += 5;
+	    increasesincounter(5);
 	    u.alignlim -= 5;
 	    change_luck(-1);
 	    break;
 
 	case PM_SINNER:
 	    adjalign(-100);
-	    u.ualign.sins += 100;
+	    increasesincounter(100);
 	    u.alignlim -= 100;
 	    change_luck(-1);
 	    break;
 
 	case PM_SUCKING_FIEND:
 	    adjalign(-5);
-	    u.ualign.sins += 5;
+	    increasesincounter(5);
 	    u.alignlim -= 5;
 	    change_luck(-1);
 

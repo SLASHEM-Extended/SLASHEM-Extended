@@ -135,6 +135,7 @@ E int newhp(void);
 E schar acurr(int);
 E schar acurrstr(void);
 E void adjalign(int);
+E void increasesincounter(int);
 /* KMH, balance patch -- new function */
 E void recalc_health(void);
 E int recalc_mana(void);

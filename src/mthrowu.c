@@ -207,6 +207,7 @@ const char *name;	/* if null, then format `obj' */
 		/* If you're berserk, you cannot block at all. We will still show your actual chance to block in enlightenment,
 		   so this line should not be copied over to cmd.c --Amy */
 		if (u.berserktime) shieldblockrate = 0;
+		if (uarmf && uarmf->otyp == CATWALK_SANDALS) shieldblockrate = 0;
 
 	}
 
@@ -458,6 +459,20 @@ shieldblockboo:
 
 	} else if (uarmc && itemhasappearance(uarmc, APP_KEVLAR_CLOAK) && !rn2(10)) {
 			pline_The("kevlar cloak deflects the projectile.");
+			return(0);
+
+	} else if (uarmc && uarmc->otyp == KEVLAR_VEST && !rn2(5)) {
+			pline_The("kevlar vest deflects the projectile.");
+			makeknown(KEVLAR_VEST);
+			return(0);
+
+	} else if (uarm && uarm->otyp == BULLETPROOF_VEST && !rn2(3) ) {
+			pline_The("bulletproof vest deflects the projectile.");
+			return(0);
+
+	} else if (uarmf && uarmf->otyp == FLECHETTE_BOOTS && !rn2(5) ) {
+			if(Blind || !flags.verbose) You("sidestep a projectile.");
+			else You("sidestep %s.", onm);
 			return(0);
 
 	} else if (Race_if(PM_CUPID) && !rn2(5)) {

@@ -355,7 +355,7 @@ register struct monst *mtmp;
 			case 21:
 			case 22:
 			case 23: (void) mongets(mtmp, SNEAKERS); break;
-			case 24: switch (rnd(8)) {
+			case 24: switch (rnd(13)) {
 				case 1: (void) mongets(mtmp, WEDGE_SANDALS); break;
 				case 2: (void) mongets(mtmp, DANCING_SHOES); break;
 				case 3: (void) mongets(mtmp, SWEET_MOCASSINS); break;
@@ -364,7 +364,13 @@ register struct monst *mtmp;
 				case 6: (void) mongets(mtmp, LEATHER_PEEP_TOES); break;
 				case 7: (void) mongets(mtmp, HIPPIE_HEELS); break;
 				case 8: (void) mongets(mtmp, COMBAT_STILETTOS); break;
+				case 9: (void) mongets(mtmp, rn2(200) ? LADY_BOOTS : DIDIER_SACHS_SHOES); break;
+				case 10: (void) mongets(mtmp, BASIC_SHOES); break;
+				case 11: (void) mongets(mtmp, CLOGS); break;
+				case 12: (void) mongets(mtmp, STILETTO_SANDALS); break;
+				case 13: (void) mongets(mtmp, ITALIAN_HEELS); break;
 				}
+				break;
 			case 25: (void) mongets(mtmp, BOOTS_OF_PLUGSUIT); break;
 			case 26: (void) mongets(mtmp, FIELD_BOOTS); break;
 

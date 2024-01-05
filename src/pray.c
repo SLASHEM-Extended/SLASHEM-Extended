@@ -2944,7 +2944,7 @@ dopray()
 
 				u.ugangr += 10;
 				adjalign(-1000);
-				u.ualign.sins += 10;
+				increasesincounter(10);
 				u.alignlim -= 10;
 
 				forget_levels(100, TRUE);

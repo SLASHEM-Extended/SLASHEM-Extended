@@ -523,49 +523,49 @@ register struct monst *mtmp;
 /*	attacking peaceful creatures is bad for the samurai's giri */
 	if (Role_if(PM_SAMURAI) && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
 	if (uwep && uwep->otyp == HONOR_KATANA && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
 	if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
 	if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
 	if (uwep && uwep->oartifact == ART_SAKUSHNIR && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && mtmp->mpeaceful) {
 	    You("dishonorably attack the innocent!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
@@ -573,25 +573,25 @@ register struct monst *mtmp;
 /* as well as for the way of the Jedi */
 	if (Role_if(PM_JEDI) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 	if (Role_if(PM_SHADOW_JEDI) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 	if (Role_if(PM_HEDDERJEDI) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
 	if (Race_if(PM_BORG) && mtmp->mpeaceful) {
 	    You("violate the way of the Jedi!");
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    adjalign(-5);
 	}
@@ -5280,49 +5280,49 @@ melatechoice:
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-sgn(u.ualign.type));
 		adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    }
 	    if (uwep && uwep->otyp == HONOR_KATANA && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-sgn(u.ualign.type));
 		adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    }
 	    if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-sgn(u.ualign.type));
 		adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    }
 	    if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    }
 	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    }
 	    if (uwep && uwep->oartifact == ART_SAKUSHNIR && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    }
 	    if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SAKUSHNIR && !Race_if(PM_IRAHA) && !Race_if(PM_POISONER)) {
 		You("dishonorably use a poisoned weapon!");
 		adjalign(-1);
 		adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	    }
 	    if ((u.ualign.type == A_LAWFUL) && !Race_if(PM_POISONER) && !Race_if(PM_IRAHA)) {
@@ -5682,7 +5682,7 @@ melatechoice:
 			/* make_sick(Sick ? Sick/2L + 1L : (long)rn1(ACURR(A_CON), 40),
 			0, TRUE, SICK_NONVOMITABLE); */
 		      (void) difeasemu(mon->data); /* hopefully stopping those annoying pudding farmers! */
-			u.ualign.sins++; /* adding even more punishment for lame farmers */
+			increasesincounter(1); /* adding even more punishment for lame farmers */
 			u.alignlim--;
 			hittxt = TRUE;
 		}
@@ -12083,7 +12083,7 @@ boolean ranged;
 	    case AD_SIN:
 
 		You("committed the sin of attacking %s!", mon_nam(mon));
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-5);
 

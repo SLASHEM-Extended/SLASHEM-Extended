@@ -131,6 +131,9 @@ Boots_on()
 	case DANCING_SHOES:
 	case SWEET_MOCASSINS:
 	case SOFT_SNEAKERS:
+	case CLOGS:
+	case BASIC_SHOES:
+	case DIDIER_SACHS_SHOES:
 	case LEATHER_PEEP_TOES:
 	case COMBAT_STILETTOS:
 	case HEEL_WISE_SHOES:
@@ -168,9 +171,21 @@ Boots_on()
 	case PREHISTORIC_BOOTS:
 	case SHOCK_ISOLATED_HEELS:
 	case SYNTHETIC_SANDALS:
+	case OMEGA_HEELS:
+	case BUOYANT_BOOTS:
+	case ANTI_DROWNING_BOOTS:
+	case FIRE_BRIGADE_HEELS:
+	case COMBAT_WEDGES:
 		break;
+
+	case BORING_BLOCK_HEELS:
+	case SEVEN_LEAGUE_BOOTS:
+	case PRINCESSEN_SHOES:
+	case FLECHETTE_BOOTS:
+	case CATWALK_SANDALS:
 	case EGGKICK_SHOES:
 	case COMMANDER_HEELS:
+	case PERMANENCE_BOOTS:
 		makeknown(uarmf->otyp);
 		break;
 	case WIND_AND_FIRE_WHEELS:
@@ -187,6 +202,11 @@ Boots_on()
 		if (flags.female) pline("You're dressed like a '69 whore!");
 		else pline("You're dressed like a frickin' hardrocker!");
 	    if (!uarmf->cursed) {curse(uarmf); pline("The highly erotic boots weld themselves to your feet!");}
+		break;
+
+	case SLEEP_INDUCTION_BOOTS:
+		if (Race_if(PM_KOBOLT)) break;
+		if (!HSleeping) HSleeping = rnd(1000);
 		break;
 
 	case AUTODESTRUCT_DE_VICE_BOOTS:
@@ -895,6 +915,9 @@ Boots_off()
 	case DANCING_SHOES:
 	case SWEET_MOCASSINS:
 	case SOFT_SNEAKERS:
+	case CLOGS:
+	case BASIC_SHOES:
+	case DIDIER_SACHS_SHOES:
 	case LEATHER_PEEP_TOES:
 	case COMBAT_STILETTOS:
 	case HEEL_WISE_SHOES:
@@ -1045,6 +1068,17 @@ Boots_off()
 	case COMMANDER_HEELS:
 	case SYNTHETIC_SANDALS:
 	case PLASTEEL_BOOTS:
+	case OMEGA_HEELS:
+	case BUOYANT_BOOTS:
+	case ANTI_DROWNING_BOOTS:
+	case FLECHETTE_BOOTS:
+	case PERMANENCE_BOOTS:
+	case FIRE_BRIGADE_HEELS:
+	case BORING_BLOCK_HEELS:
+	case SEVEN_LEAGUE_BOOTS:
+	case PRINCESSEN_SHOES:
+	case COMBAT_WEDGES:
+	case CATWALK_SANDALS:
 
 	case FEMMY_STILETTO_BOOTS:
 	case MADELEINE_PLATEAU_BOOTS:
@@ -1157,6 +1191,11 @@ Boots_off()
 		pline("You decide you had enough of those hallucination-inducing boots.");
 		break;
 
+	case SLEEP_INDUCTION_BOOTS:
+		if (!ESleeping && !(HSleeping & INTRINSIC) && !u.restfulsleepduration && !Race_if(PM_KOBOLT))
+			HSleeping = 0;
+		break;
+
 	case OVER_SHOES:
 		if (!cancelled_don && footwear) {
 			footwear->otyp = BROKEN_BOOTS;
@@ -1233,6 +1272,9 @@ Cloak_on()
 	case KITCHEN_APRON:
 	case FRILLED_APRON:
 	case SUPER_MANTLE:
+	case CLOAK_OF_THEFT_PREVENTION:
+	case SPIRIT_CLOTH:
+	case KEVLAR_VEST:
 	case WINGS_OF_ANGEL:
 	case DUMMY_WINGS:
 	case FUR:
@@ -1314,6 +1356,13 @@ Cloak_on()
 	case CLOAK_OF_PREMATURE_DEATH:
 	case ANTIDEATH_CLOAK:
 		break;
+
+	case WAND_QUIVER_CLOAK:
+	case UTILITY_CLOAK:
+	case TORNISTER_CLOAK:
+		makeknown(uarmc->otyp);
+		break;
+
 	case CLOAK_OF_FUMBLING:
 		if (!oldprop && !(HFumbling & ~TIMEOUT))
 			incr_itimeout(&HFumbling, rnd(20));
@@ -1928,6 +1977,12 @@ Cloak_off()
 	case CLOAK_OF_COAGULATION:
 	case CLOAK_OF_SCENT:
 	case FILLER_CLOAK:
+	case TORNISTER_CLOAK:
+	case CLOAK_OF_THEFT_PREVENTION:
+	case SPIRIT_CLOTH:
+	case WAND_QUIVER_CLOAK:
+	case KEVLAR_VEST:
+	case UTILITY_CLOAK:
 
 	case LETHE_CLOAK:
 	case CLOAK_OF_MAP_AMNESIA:
@@ -2281,6 +2336,10 @@ Helmet_on()
 	case HELM_OF_MADNESS:
 	case POINTED_HELMET:
 	case BOG_STANDARD_HELMET:
+	case HELM_OF_UNLIVING_ESP:
+	case FAIRY_HAT:
+	case GANGSTER_CAP:
+	case LUCKY_MUSHROOM:
 		break;
 
 	case BOBBLE_HAT:
@@ -2663,12 +2722,12 @@ int
 Helmet_off()
 {
     if (uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) {
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-200);
 		pline("Taking off your headgear is a terribly bad idea, and the gods will certainly not be pleased!");
 		if (HardcoreAlienMode) {
-			u.ualign.sins += 4;
+			increasesincounter(4);
 			u.alignlim -= 4;
 			adjalign(-1000);
 		}
@@ -2737,6 +2796,10 @@ Helmet_off()
 	case HELM_OF_FULL_NUTRITION:
 	case HELM_OF_HOLDING:
 	case ANTIMINDFLAY_HELMET:
+	case HELM_OF_UNLIVING_ESP:
+	case FAIRY_HAT:
+	case GANGSTER_CAP:
+	case LUCKY_MUSHROOM:
 	case GOOD_ESP_HELMET:
 
 	case SEDGE_HAT:
@@ -2951,6 +3014,13 @@ Gloves_on()
 	case GAUNTLETS_OF_SLOWING:
 	case GAUNTLETS_OF_REFLECTION:
 	case GAUNTLETS_OF_ELEMENTAL_POWER:
+	case GAUNTLETS_OF_PARALYSIS_ANNOUNC:
+	case VERY_SPECIFIC_GLOVES:
+	case WOWEE_GAUNTLETS:
+	case GAUNTLETS_OF_SPEED:
+	case CRITICAL_GAUNTLETS:
+	case MAGIC_BRACERS:
+	case GAUNTLETS_OF_CELERITY:
 	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
@@ -3343,6 +3413,13 @@ Gloves_off()
 	case GAUNTLETS_OF_TYPING:
 	case GAUNTLETS_OF_REFLECTION:
 	case GAUNTLETS_OF_ELEMENTAL_POWER:
+	case GAUNTLETS_OF_PARALYSIS_ANNOUNC:
+	case VERY_SPECIFIC_GLOVES:
+	case WOWEE_GAUNTLETS:
+	case GAUNTLETS_OF_SPEED:
+	case CRITICAL_GAUNTLETS:
+	case MAGIC_BRACERS:
+	case GAUNTLETS_OF_CELERITY:
 	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_SLOWING:
 	case MENU_NOSE_GLOVES:
@@ -3549,6 +3626,9 @@ Shield_on()
 	case TOWER_SHIELD:
 	case BULL_SHIELD:
 	case ONE_EATING_SIGN:
+	case SHIELDBOAT:
+	case NULLIFICATION_SHIELD:
+	case STORM_SHIELD:
 	case ORGANOSHIELD:
 	case KITE_SHIELD:
 	case ELVEN_SHIELD:
@@ -3804,6 +3884,9 @@ Shield_off()
 	case TOWER_SHIELD:
 	case BULL_SHIELD:
 	case ONE_EATING_SIGN:
+	case SHIELDBOAT:
+	case NULLIFICATION_SHIELD:
+	case STORM_SHIELD:
 	case ORGANOSHIELD:
 	case KITE_SHIELD:
 	case ELVEN_SHIELD:
@@ -4674,9 +4757,11 @@ Amulet_on()
 				nomul(-sleeptime, "taking a refreshing nap", FALSE);
 				u.usleep = 1;
 				nomovemsg = "You wake up from your refreshing nap.";
-		HSleeping = rnd(1000);
+			if (!HSleeping) HSleeping = rnd(1000);
 			}                
-		} else HSleeping = rnd(1000);
+		} else {
+			if (!HSleeping) HSleeping = rnd(1000);
+		}
 		break;
 	case AMULET_OF_DATA_STORAGE:
 		You_feel("full of knowledge.");
@@ -5154,7 +5239,7 @@ register struct obj *obj;
 
 	case RIN_SLEEPING:        
 		if (Race_if(PM_KOBOLT)) break;
-		HSleeping = rnd(1000);
+		if (!HSleeping) HSleeping = rnd(1000);
 		break;
 	case RIN_INDIGESTION:
 		/*incr_itimeout(&HIndigestion, rnd(20));*/
@@ -7100,6 +7185,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_DUEUEUEUET) uac += 5;
 	if (uarm && uarm->oartifact == ART_GLORKUM________) uac -= 5;
 	if (uarm && uarm->oartifact == ART_FEILJUR) uac += 5;
+	if (uarms && uarms->otyp == STORM_SHIELD) uac += 2;
 	if (uarmf && uarmf->oartifact == ART_OH_MAN_BORING) uac -= 1;
 	if (uarmf && uarmf->oartifact == ART_STERDYNES) uac -= 1;
 	if (bmwride(ART_PANZER_TANK)) uac -= 10;
@@ -7410,6 +7496,13 @@ find_ac()
 		if (difference > 0) uac = 10 - difference;
 	}
 
+	if (uarmf && uarmf->otyp == PRINCESSEN_SHOES) {
+		int difference = (-(uac - 10));
+		difference *= 4;
+		difference /= 5;
+		if (difference > 0) uac = 10 - difference;
+	}
+
 	if (uarm && uarm->oartifact == ART_AMMY_S_BAND) {
 		int difference = (-(uac - 10));
 		difference *= 2;
@@ -7479,6 +7572,12 @@ find_ac()
 		difference = difference / 2;
 		if (difference > 0) uac = 10 - difference;
 		
+	}
+
+	if (uarmf && uarmf->otyp == CATWALK_SANDALS) {
+		int difference = (-(uac - 10));
+		difference = difference / 2;
+		if (difference > 0) uac = 10 - difference;
 	}
 
 	if (uwep && uwep->oartifact == ART_ICE_PILLAR) {

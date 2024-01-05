@@ -6094,6 +6094,10 @@ static const char *epitaphs[] = {
 	"Here lies the song 'Fuck You' by CeeLo Green. Someone apparently thought that the presence of the F-word was offensive and therefore censored it (changing it to 'Forget You' in the process), which is so very petty because there was nothing wrong with the original version of the song.",
 	"What the hell, I ate a mimic and then teleportitis took me to a square with a stalactite and because I was flying, the stalactite did 10-20 damage to me every turn yet my stupid char just would not stop mimicking and so I died with no way to prevent it!", /* happened to Amy */
 	"Used the cheater prayer to get rid of that shitty loadboulder. What else could I have done? But, the negative effects are just too detrimental and so I died shortly after, with no chance despite no longer being overloaded.",
+	"how do i move, number pad keys arent doing anything, stupid game always says count:22222 or some such garbage, unplayable",
+	"fuck this stupid game, help displays 200 silly commands that i dont need and says number pad moves me but it doesnt it always says count:444 and doesnt work, unplayable game, gonna play dcss instead",
+	"couldnt figure out how to move after 5 minutes, i kept pressing number pad keys and nothing worked, if i cant even move the entire game has got to suck so ill play my favorite roguelike again and just file this 'slex' thing in the dust bin",
+	"yeah the game said something about going through an options menu and pressing this button and changing that option so that i can move with the number pad, i did all that and it still didnt work, gonna play a different game that has playable controls",
 
 };
 

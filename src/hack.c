@@ -1242,7 +1242,7 @@ int mode;
 			if (Role_if(PM_WALSCHOLAR)) {
 				You_feel("like a miserably hussy.");
 				if (FunnyHallu) pline("Maybe you should buy a bottle of drum stint reluctance perfume.");
-				u.ualign.sins++;
+				increasesincounter(1);
 				u.alignlim--;
 				adjalign(-10);
 			}
@@ -1300,7 +1300,7 @@ walscholardone:
 		}
 
 		/* if you just ate it, you shouldn't crash into a no-longer-existing rock part above the tunnel */
-		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation) && (levl[x][y].typ == WATERTUNNEL) ) {
+		if (mode == DO_MOVE && !Passes_walls && (Flying || Levitation || Wwalking) && (levl[x][y].typ == WATERTUNNEL) ) {
 
 			if (WallsAreHyperBlue) {
 				You("crash into a water tunnel! Ouch!");
@@ -1317,7 +1317,9 @@ walscholardone:
 				}
 			} else {
 				if (Levitation) pline("While levitating, you cannot enter the water tunnel.");
-				else pline("While flying, you cannot enter the water tunnel.");
+				else if (Flying) pline("While flying, you cannot enter the water tunnel.");
+				else if (Wwalking) You("don't seem to fit into the water tunnel.");
+				else pline("Something prevents you from entering the water tunnel.");
 			}
 
 			return FALSE;
@@ -4748,6 +4750,10 @@ newbossLARA:
 	/* at most 2 turns with sexy stand tech, as long as it's a resistable kind of paralysis --Amy */
 	if (tech_inuse(T_SEXY_STAND) && PlayerInBlockHeels && discountpossible && (nval < -2)) nval = -2;
 
+	if (uarmg && uarmg->otyp == GAUNTLETS_OF_PARALYSIS_ANNOUNC && nval < 0) {
+		pline("You've been paralyzed for %d turns.", abs(nval));
+	}
+
 	multi = nval;
 	if (multi < 0) flags.botl = 1;
 	if (txt && txt[0])
@@ -5248,6 +5254,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (StrongWonderlegs && !rn2(10) && Wounded_legs) {
 		n = 0;
 		pline("You are unharmed!");
+	} else if (uarms && uarms->otyp == NULLIFICATION_SHIELD && !rn2(20) ) {
+	    	n = 0;
+		Your("shield nullifies the damage!");
 	} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		n = 0;
 		Your("implant nullifies the damage!");
@@ -5426,6 +5435,7 @@ max_carr_cap()
 	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) maxcarrcap += 1000;
 	if (uarm && uarm->oartifact == ART_NATAS_IS_BACK) maxcarrcap += 2000;
+	if (uarmc && uarmc->otyp == TORNISTER_CLOAK) maxcarrcap += 500;
 	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) maxcarrcap += 2000;
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		maxcarrcap += 1000;
@@ -5494,6 +5504,7 @@ weight_cap()
 	if (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) carrcap += 500;
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) carrcap += 2000;
+	if (uarmc && uarmc->otyp == TORNISTER_CLOAK) carrcap += 500;
 	if (uwep && uwep->oartifact == ART_FIRST_CARRYING_BOX) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_AND_LONGITUDE) carrcap += 500;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) carrcap += 1000;

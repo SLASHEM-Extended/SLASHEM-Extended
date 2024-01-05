@@ -4904,7 +4904,7 @@ register struct monst *mtmp;
 	}
 
 	if (mtmp->handytime) {
-		u.ualign.sins += 3;
+		increasesincounter(3);
 		u.alignlim -= 3;
 		adjalign(-100);
 		change_luck(-3);
@@ -5458,7 +5458,7 @@ newbossSING:
 
 	if (tmp == PM_SUPER_SLOW_TURTLE) {
 		adjalign(-100);
-		u.ualign.sins += 5;
+		increasesincounter(5);
 		u.alignlim -= 5;
 		You_feel("really bad about the death of this turtle...");
 	}
@@ -5466,7 +5466,7 @@ newbossSING:
 	if(tmp == PM_ANASTASIA_STEELE) { /* very bad! */
 
 		change_luck(-10);
-		u.ualign.sins += 20;
+		increasesincounter(20);
 		u.alignlim -= 20;
 		adjalign(-200);
 		u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++; u.ugangr++;
@@ -7902,7 +7902,7 @@ cleanup:
 
 	    You(FunnyHallu ? "feel very bad for killing your future wife." : "feel very bad for killing a defenseless woman.");
 	    adjalign(-25);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		change_luck(-1);
 
@@ -7913,7 +7913,7 @@ cleanup:
 
 	    FunnyHallu ? You_feel("very bad for killing your future %s.", flags.female ? "husband" : "wife") : You_feel("very bad for killing a defenseless %s.", flags.female ? "man" : "woman");
 	    adjalign(-25);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		change_luck(-1);
 
@@ -7935,14 +7935,17 @@ cleanup:
 		}
 
 		if (Role_if(PM_PALADIN)) { /* more severe murderer penalties */
-			u.ualign.sins += 5;
+			increasesincounter(5);
 			u.alignlim -= 5;
 			change_luck(-1);
 			adjalign(-50);
 		}
 
-		if(u.ualign.type == A_LAWFUL) { u.ualign.sins += 3; u.alignlim -= 3;} /*fall through*/
-		u.ualign.sins += 2;
+		if(u.ualign.type == A_LAWFUL) {
+			increasesincounter(3);
+			u.alignlim -= 3;
+		} /*fall through*/
+		increasesincounter(2);
 		u.alignlim -= 2;
 		if (Blind && !Blind_telepat)
 		    see_monsters(); /* Can't sense monsters any more. */
@@ -7959,7 +7962,7 @@ cleanup:
 	if ( (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER)) && mdat == &mons[PM_TOPMODEL]) { /* very bad idea! --Amy */
 		You_feel("guilty for killing an innocent girl.");
 		change_luck(-5);
-		u.ualign.sins += 10;
+		increasesincounter(10);
 		u.alignlim -= 10;
 		adjalign(-50);
 		u.ugangr++; u.ugangr++; u.ugangr++;

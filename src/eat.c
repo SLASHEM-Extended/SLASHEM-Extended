@@ -1144,7 +1144,7 @@ register int pm;
 		pline("A voice booms out:");
 		verbalize("How darest thou eat Cato's girlfriend!");
 		change_luck(-5);
-		u.ualign.sins += 10; 
+		increasesincounter(10); 
 		u.alignlim -= 10;
 		adjalign(-50);
 		u.ugangr++; u.ugangr++; u.ugangr++;

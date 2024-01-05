@@ -10843,8 +10843,10 @@ boolean actualwish;
 	   strncmpi(bp, "special leather armor", 21) &&
 	   strncmpi(bp, "satanic armor", 13) &&
 	   strncmpi(bp, "superweapon", 11) &&
+	   strncmpi(bp, "wand quiver cloak", 17) &&
 	   strncmpi(bp, "troll leather armor", 19) &&
 	   strncmpi(bp, "metal lamellar armor", 20) &&
+	   strncmpi(bp, "meteoric steel plate armor", 26) &&
 	   strncmpi(bp, "cloak of armor mystery", 22) &&
 	   strncmpi(bp, "leather arm", 11) &&
 	   strncmpi(bp, "eilistran armor", 15) &&

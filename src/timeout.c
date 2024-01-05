@@ -1805,7 +1805,10 @@ nh_timeout()
 
 	if (!rn2(1000) && u.uprops[SENTIENT_HIGH_HEELS].extrinsic) {
 
-			switch (rnd(28)) {
+			register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
+			const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
+
+			switch (rnd(31)) {
 
 				case 1:
 
@@ -1884,8 +1887,6 @@ nh_timeout()
 
 				losehp(u.legscratching, "terrible leg scratches", KILLED_BY);
 				u.legscratching++;
-				register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
-				  const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
 			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 			    exercise(A_STR, FALSE);
 			    exercise(A_DEX, FALSE);
@@ -2119,8 +2120,6 @@ nh_timeout()
 					if (randomkick == 2) {
 						pline("Your red whore boot jams your %ss!", body_part(TOE));
 
-						register long side = rn2(2) ? RIGHT_SIDE : LEFT_SIDE;
-						const char *sidestr = (side == RIGHT_SIDE) ? "right" : "left";
 				    		set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
 				    		exercise(A_STR, FALSE);
 				    		exercise(A_DEX, FALSE);
@@ -2273,6 +2272,46 @@ nh_timeout()
 					}
 
 				break;
+
+				case 29:
+
+					pline("Your cute wooden clog slams into your shins very painfully!");
+					losehp(rnd(20) + rnd( (monster_difficulty() * 2) + 1), "a sentient girl clog",KILLED_BY);
+
+					break;
+
+				case 30:
+
+				pline("Your beautiful high heels suddenly scratch up and down your %ss!", body_part(LEG) );
+
+				losehp(rnd(20)+ rnd( (monster_difficulty() * 2) + 1),"sentient lacquered pump",KILLED_BY_AN);
+
+				if (u.legscratching <= 5)
+			    	    pline("It stings a little.");
+				else if (u.legscratching <= 10)
+			    	    pline("It hurts quite a bit as some of your skin is scraped off!");
+				else if (u.legscratching <= 20)
+				    pline("Blood drips from your %s as the heel scratches over your open wounds!", body_part(LEG));
+				else if (u.legscratching <= 40)
+				    pline("You can feel the heel scratching on your shin bone! It hurts and bleeds a lot!");
+				else
+				    pline("You watch in shock as your blood is squirting everywhere, all the while feeling the razor-sharp high heel mercilessly opening your %ss!", body_part(LEG));
+
+				losehp(u.legscratching, "terrible leg scratches", KILLED_BY);
+				u.legscratching++;
+			    set_wounded_legs(side, HWounded_legs + rnd(60-ACURR(A_DEX)));
+			    exercise(A_STR, FALSE);
+			    exercise(A_DEX, FALSE);
+
+					break;
+
+				case 31:
+
+					pline("Your block-heeled lady boot suddenly scratches over your %s with the lovely heel!", body_part(LEG));
+					playerbleed(monster_difficulty());
+					losehp(rnd(5) + rnd( monster_difficulty() + 1),"a sentient block-heeled boot",KILLED_BY);
+
+					break;
 
 				default:
 					impossible("nonexistant sentient high heels effect used");

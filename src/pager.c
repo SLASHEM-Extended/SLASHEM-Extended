@@ -538,6 +538,10 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
+		if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mtmp->data->mlet == S_GOLEM && distu(mtmp->mx, mtmp->my) < 626)
+		    ways_seen++;
+		if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mtmp->data->mlet != S_GOLEM && mindless(mtmp->data) && distu(mtmp->mx, mtmp->my) < 26)
+		    ways_seen++;
 		if (Burnopathy && Burned && infravision(mtmp->data) && distu(mtmp->mx, mtmp->my) < (StrongBurnopathy ? 170 : 101) )
 		    ways_seen++;
 		if (Dimmopathy && Dimmed && mtmp->m_lev > u.ulevel && distu(mtmp->mx, mtmp->my) < (StrongDimmopathy ? 226 : 101) )
@@ -789,6 +793,14 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) ) {
 			strcat(monbuf, "echolocation");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mtmp->data->mlet == S_GOLEM && distu(mtmp->mx, mtmp->my) < 626) {
+			strcat(monbuf, "unliving ESP");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mtmp->data->mlet != S_GOLEM && mindless(mtmp->data) && distu(mtmp->mx, mtmp->my) < 26) {
+			strcat(monbuf, "unliving ESP");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE ) {

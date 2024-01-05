@@ -577,7 +577,7 @@ struct monst *shkp;
 		adjalign(-sgn(u.ualign.type));
 		You_feel("like an evil rogue.");
 		if (u.ualign.type == A_LAWFUL) {
-			u.ualign.sins++;
+			increasesincounter(1);
 			u.alignlim--;
 		}
 	}

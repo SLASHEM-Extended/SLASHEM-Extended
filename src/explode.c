@@ -729,6 +729,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    u.metalguard = 0;
 		    damu = 0;
 		    Your("metal guard prevents the damage!");
+		} else if (uarms && uarms->otyp == NULLIFICATION_SHIELD && !rn2(20) ) {
+		    damu = 0;
+		    Your("shield nullifies the damage!");
 		} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
 		    damu = 0;
 		    Your("implant nullifies the damage!");

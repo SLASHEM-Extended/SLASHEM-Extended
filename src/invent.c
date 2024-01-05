@@ -14140,7 +14140,7 @@ boolean knoweverything;
 			case LUCKY_MUSHROOM:
 				pline("A very rare helmet that improves your luck by 5 points when worn!"); break;
 			case OMEGA_HEELS:
-				pline("This pair of cone heels has the ultimate property of letting you lifesave if your reason of death was something other than HP loss. However, if they do lifesave you, they drain 2 experience levels and permanently lose all of your stats by one, and if any stat was already at the minimum, they can't save you. Unlike many other lifesaving items, they are *not* destroyed when they save you, so they can potentially save you several times."); break;
+				pline("This pair of cone heels has the ultimate property of letting you lifesave if your reason of death was something other than HP loss. However, if they do lifesave you, they drain 2 experience levels and permanently reduce all of your stats by one, and if any stat was already at the minimum, they can't save you. Unlike many other lifesaving items, they are *not* destroyed when they save you, so they can potentially save you several times."); break;
 			case BUOYANT_BOOTS:
 				pline("Super-waterwalking boots that allow you to not only walk on water, but also protect from moorland and other types of dangerous terrain, and to top it off, they prevent you from triggering ground-based traps!"); break;
 			case ANTI_DROWNING_BOOTS:
@@ -14174,7 +14174,7 @@ boolean knoweverything;
 			case METEORIC_STEEL_PLATE_ARMOR:
 				pline("This suit of plate mail is made of a very powerful material and reduces the amount of physical damage you take, making it really useful."); break;
 			case SHIELDBOAT:
-				pline("A shield that lets you walk on water, moorland and other terrain."); break;
+				pline("A shield that lets you walk on water, moorland, styx rivers and urine lakes."); break;
 			case NULLIFICATION_SHIELD:
 				pline("This shield occasionally nullifies damage you take."); break;
 			case STORM_SHIELD:

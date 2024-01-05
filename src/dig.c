@@ -466,7 +466,7 @@ dig()
 			    if (Role_if(PM_BOSMER)) { /* you have angered Yavanna... */
 				You("violated the sanctity of the grove!");
 				adjalign(-10);
-				u.ualign.sins++;
+				increasesincounter(1);
 				u.alignlim--;
 				u.treesquadwantedlevel += 1000;
 			    }
@@ -1167,56 +1167,56 @@ dig_up_grave()
 	exercise(A_WIS, FALSE);
 	if (uwep && uwep->oartifact == ART_JAPANESE_WOMEN) {
 	    adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN) {
 	    adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
 	if (uwep && uwep->oartifact == ART_SAKUSHNIR) {
 	    adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SAKUSHNIR) {
 	    adjalign(-5);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
 	if (Role_if(PM_ARCHEOLOGIST)) {
 	    adjalign(-sgn(u.ualign.type)*3);
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-5);
 	    You_feel("like a despicable grave-robber!");
 	}
 	if (Role_if(PM_SAMURAI)) {
 	    adjalign(-sgn(u.ualign.type)*5); /* stiffer penalty */
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
 	if (uwep && uwep->otyp == HONOR_KATANA) {
 	    adjalign(-sgn(u.ualign.type)*5); /* stiffer penalty */
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");
 	}
 	if (u.twoweap && uswapwep && uswapwep->otyp == HONOR_KATANA) {
 	    adjalign(-sgn(u.ualign.type)*5); /* stiffer penalty */
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 		adjalign(-10);
 	    You("disturb the honorable dead!");

@@ -7,7 +7,7 @@
 
 #define is_bigfoot(x)	((x) == &mons[PM_SASQUATCH])
 #define martial()	(martial_bonus() || is_bigfoot(youmonst.data) || \
-		(uarmf && uarmf->otyp == KICKING_BOOTS) || (uarmf && uarmf->otyp == STOMPING_BOOTS) )
+		(uarmf && uarmf->otyp == KICKING_BOOTS) || (uarmf && uarmf->otyp == COMBAT_WEDGES) || (uarmf && uarmf->otyp == STOMPING_BOOTS) )
 
 static NEARDATA struct rm *maploc;
 static NEARDATA const char *gate_str;
@@ -103,6 +103,8 @@ register boolean clumsy;
 
 	if (uarmf && uarmf->otyp == KICKING_BOOTS)
 	    dmg += 5;
+	if (uarmf && uarmf->otyp == COMBAT_WEDGES)
+	    dmg += 5;
 	if (uarmf && uarmf->otyp == STOMPING_BOOTS)
 	    dmg += 7;
 	if (RngeKicking) dmg += 5;
@@ -114,6 +116,12 @@ register boolean clumsy;
 		if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 5;
 		if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 6;
 		if (uarmf && (uarmf->otyp == KICKING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 8;
+
+		if (uarmf && (uarmf->otyp == COMBAT_WEDGES) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
+		if (uarmf && (uarmf->otyp == COMBAT_WEDGES) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 3;
+		if (uarmf && (uarmf->otyp == COMBAT_WEDGES) && P_SKILL(P_MARTIAL_ARTS) == P_MASTER) dmg += 5;
+		if (uarmf && (uarmf->otyp == COMBAT_WEDGES) && P_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) dmg += 6;
+		if (uarmf && (uarmf->otyp == COMBAT_WEDGES) && P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER) dmg += 8;
 
 		if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_SKILLED) dmg += 2;
 		if (uarmf && (uarmf->otyp == STOMPING_BOOTS) && P_SKILL(P_MARTIAL_ARTS) == P_EXPERT) dmg += 4;
@@ -347,12 +355,12 @@ register boolean clumsy;
 		if (uarmf && uarmf->oartifact == ART_SHARP_EDGED_AND_DANGEROUS) {
 
 			if (!u.ualign.sins || (u.ualign.sins && !rn2(u.ualign.sins))) {
-				u.ualign.sins++;
+				increasesincounter(1);
 				u.alignlim--;
 				pline("Using such a dangerous pair of boots without permission is very sinful.");
 			}
 		} else {
-			u.ualign.sins++;
+			increasesincounter(1);
 			u.alignlim--;
 			pline("Using such a dangerous pair of boots without permission is very sinful.");
 		}
@@ -1187,6 +1195,9 @@ doit:
 		buzz(27, 6, u.ux,u.uy,u.dx,u.dy); /* 27 = acid blast */
 	}
 
+	if (uarmf && uarmf->otyp == SLEEP_INDUCTION_BOOTS && !rn2(10))
+		buzz(23, 4, u.ux,u.uy,u.dx,u.dy); /* 23 = sleep ray */
+
 	return;
 }
 
@@ -1828,7 +1839,7 @@ dokick()
 	}
 
 	/* KMH -- Kicking boots always succeed */
-	if (uarmf && ((uarmf->otyp == KICKING_BOOTS) || (uarmf->otyp == STOMPING_BOOTS)) )
+	if (uarmf && ((uarmf->otyp == KICKING_BOOTS) || (uarmf->otyp == COMBAT_WEDGES) || (uarmf->otyp == STOMPING_BOOTS)) )
 	    avrg_attrib = 99;
 	else
 	    avrg_attrib = (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3;

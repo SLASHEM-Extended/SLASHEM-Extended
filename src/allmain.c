@@ -2229,6 +2229,13 @@ moveloop()
 				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 			}
 
+			if (flags.mv && uarmf && uarmf->otyp == SEVEN_LEAGUE_BOOTS) {
+				oldspeed = moveamt;
+				moveamt *= 3;
+				moveamt /= 2;
+				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
+			}
+
 			if (uarmf && uarmf->oartifact == ART_JASIEEN_S_FEAR) {
 				oldspeed = moveamt;
 				moveamt *= 3;
@@ -2277,6 +2284,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmc && (uarmc->otyp == SPIRIT_CLOTH) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_ENERGEEN_S) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_FIRST_PLACE_GUARANTEED) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -5480,7 +5488,7 @@ greasingdone:
 			pline("But you were such a bitch and crapped on the lid!");
 			use_skill(P_SQUEAKING, 10);
 			adjalign(-20);
-			u.ualign.sins++;
+			increasesincounter(1);
 			u.alignlim--;
 
 		}
@@ -11323,7 +11331,7 @@ newbossB:
 
 		if (is_styxriver(u.ux, u.uy) && !u.uswallow) {
 
-			if ((!Flying && !Levitation && !(u.usteed && is_swimmer(u.usteed->data)) ) || !rn2(5)) {
+			if ((!Flying && !Levitation && !(uarmf && uarmf->otyp == BUOYANT_BOOTS) && !(uarms && uarms->otyp == SHIELDBOAT) && !(u.usteed && is_swimmer(u.usteed->data)) ) || !rn2(5)) {
 				Norep("Continued exposure to the Styx River will cause contamination.");
 				contaminate(rnd(10 + level_difficulty()), TRUE);
 				stop_occupation();
@@ -11348,7 +11356,7 @@ newbossB:
 
 		}
 
-		if (is_moorland(u.ux, u.uy) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
+		if (is_moorland(u.ux, u.uy) && !(uarmf && uarmf->otyp == BUOYANT_BOOTS) && !(uarms && uarms->otyp == SHIELDBOAT) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !(uarmf && itemhasappearance(uarmf, APP_MUD_BOOTS)) && !Flying && !Levitation && !Race_if(PM_BOVER)) {
 			Norep("Swimming in moorland causes continuous damage.");
 			losehp(rnd(5 + (level_difficulty() / 5)), "swimming in moorland", KILLED_BY);
 			stop_occupation();
@@ -11387,7 +11395,7 @@ newbossB:
 
 		}
 
-		if (is_urinelake(u.ux, u.uy) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !Flying && !Levitation) {
+		if (is_urinelake(u.ux, u.uy) && !(uarmf && uarmf->otyp == BUOYANT_BOOTS) && !(uarms && uarms->otyp == SHIELDBOAT) && !u.uswallow && !(u.usteed && is_swimmer(u.usteed->data)) && !Flying && !Levitation) {
 
 			stop_occupation();
 			if (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record > 0) {
@@ -13158,7 +13166,7 @@ newboss:
 				u.ublesscnt += rnz(300);
 				change_luck(-1);
 
-				u.ualign.sins++;
+				increasesincounter(1);
 				u.alignlim--;
 			      adjalign(-10);
 
@@ -13392,7 +13400,7 @@ newboss:
 				u.ublesscnt += rnz(300);
 				change_luck(-1);
 
-				u.ualign.sins++;
+				increasesincounter(1);
 				u.alignlim--;
 			      adjalign(-10);
 
@@ -13441,7 +13449,7 @@ newboss:
 				u.ublesscnt += rnz(300);
 				change_luck(-1);
 
-				u.ualign.sins++;
+				increasesincounter(1);
 				u.alignlim--;
 			      adjalign(-10);
 
@@ -14152,8 +14160,16 @@ pastds2:
 		    }
 		}
 
-		    if (flags.bypasses) clear_bypasses();
-		    if(IsGlib) glibr();
+		if (IsGlib && uarmg && uarmg->otyp == VERY_SPECIFIC_GLOVES) {
+			Glib = 0;
+			if (!IsGlib) {
+				makeknown(VERY_SPECIFIC_GLOVES);
+				Your("%s are instantly cleaned!", makeplural(body_part(HAND)) );
+			}
+		}
+
+		if (flags.bypasses) clear_bypasses();
+		if(IsGlib) glibr();
 
 		if (ACURR(A_STR) == 1 && uwep && !welded(uwep) && uwep->owt >= 100) {
 			Norep("Your weapon is too heavy for you.");
@@ -20501,7 +20517,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.ublesscnt += rnz(2000);
 		change_luck(-3);
 
-		u.ualign.sins += 5;
+		increasesincounter(5);
 		u.alignlim -= 5;
 	      adjalign(-100);
 
@@ -20602,7 +20618,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.ublesscnt += rnz(300);
 		change_luck(-1);
 
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	      adjalign(-10);
 
@@ -20641,7 +20657,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.ublesscnt += rnz(300);
 		change_luck(-1);
 
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	      adjalign(-10);
 
@@ -20681,7 +20697,7 @@ boolean new_game;	/* false => restoring an old game */
 		u.ublesscnt += rnz(300);
 		change_luck(-1);
 
-		u.ualign.sins++;
+		increasesincounter(1);
 		u.alignlim--;
 	      adjalign(-10);
 
@@ -21791,7 +21807,7 @@ antjenewturn:
 							pline("You don't have a penis, so you cannot do that! Silly woman!");
 						} else {
 							adjalign(-1000);
-							u.ualign.sins += 50;
+							increasesincounter(50);
 							u.alignlim -= 50;
 							u.ugangr += 15;
 
@@ -21805,7 +21821,7 @@ antjenewturn:
 					case 5:
 						if (!u.berserktime) u.berserktime = 25;
 						adjalign(-50);
-						u.ualign.sins++;
+						increasesincounter(1);
 						u.alignlim--;
 
 						if (!rn2(20)) u.copwantedlevel += rnz(u.ualign.sins + 1);
@@ -22179,7 +22195,7 @@ newturn:
 								pline(flags.female ? "With your vagina, you start peeing into the sexy leather pumps." : "You put your penis over the sexy leather pumps and start urinating into them.");
 								pumpsdefiled = 1;
 
-								u.ualign.sins++;
+								increasesincounter(1);
 								u.alignlim--;
 							      adjalign(-1000);
 

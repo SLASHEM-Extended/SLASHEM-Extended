@@ -48,6 +48,11 @@ register struct monst *mtmp;
 	register struct obj *gold = g_at(u.ux, u.uy);
 	register long tmp;
 
+	if (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION && rn2(10)) {
+		You("guard your wallet from a thief.");
+		return;
+	}
+
 	if (gold && !(gold == uchain) && !(gold == uball) && ( !u.ugold || gold->quan > u.ugold || !rn2(5))) {
 	    mtmp->mgold += gold->quan;
 	    delobj(gold);
