@@ -62,6 +62,13 @@ b j n   1 2 3           g<dir>:   run in direction <dir> until something
                                     case means the Control key, not a caret)
  >  down                m<dir>:   move without picking up objects
                         F<dir>:   fight even if you don't sense a monster
+
+PRESS SHIFT-O TO OPEN THE OPTIONS MENU! THIS LETS YOU TURN ON THE NUMBER PAD!
+
+I REPEAT: PRESS SHIFT-O TO OPEN THE OPTIONS MENU!
+DO THAT DURING THE FIRST 50 TURNS TO BE ASKED WHETHER YOU WANT TO TURN ON
+THE NUMBER PAD SO YOU DON'T HAVE TO SEARCH FOR THE OPTION MANUALLY
+
                 With the qwertz_layout option, the y and z keys are swapped.
                 If the number_pad option is set, the number keys move instead.
                 Depending on the platform, Shift number (on the numberpad),
