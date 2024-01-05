@@ -15922,10 +15922,12 @@ walkwalkwalk:
 		 * probably don't know how to change it and end up escaping out of the options menu, which is
 		 * never a good idea because it discards all changes you made. So yeah. */
 
-		/* I also made the message display at most 5 times per game to make it not too intrusive --Amy */
+		/* I also made the message display at most 5 times per game to make it not too intrusive --Amy
+		 * and only if at most 50 turns have passed; if you've played for more than that, you probably know how to
+		 * set up the controls properly because you'll probably have moved 50 times by that time :-P */
 
 		if (moves < 50 && !(iflags.num_pad) && iflags.numpadmessage) {
-			if (yn("You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
+			if (yn("Invalid command, possibly you tried to use the number pad to move? You might want to turn on the number pad, which is done by opening the options with shift-O and navigating to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 2. Alternatively, you can also turn on the number pad by adding this line to your options file: OPTIONS=number_pad:2 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
 				iflags.numpadmessage = FALSE;
 				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
 			} else {
@@ -15933,12 +15935,13 @@ walkwalkwalk:
 					iflags.num_pad = 2;
 					iflags.num_pad_mode = 1;
 					iflags.numpadmessage = FALSE;
+					pline("Number pad is ON now. You should add the following line to your configuration file to have it be turned on by default: OPTIONS=number_pad:2");
 				}
 			}
 			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
 		}
 		else if (moves < 50 && iflags.num_pad && iflags.numpadmessage) {
-			if (yn("The number pad is currently on. If for some reason you want to turn it off and use vikeys instead, open the options with shift-O and navigate to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 0. Alternatively, you can also turn off the number pad by adding this line to your options file: OPTIONS=number_pad:0 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
+			if (yn("Invalid command, possibly you tried to use vikeys to move? The number pad is currently on. If for some reason you want to turn it off and use vikeys instead, open the options with shift-O and navigate to the number_pad entry (it's not between null and perm_invent, you have to scroll further down to the compound options). Toggle that with the appropriate letter key and hit spacebar (not escape!) until the number_pad dialog comes up, and set it to 0. Alternatively, you can also turn off the number pad by adding this line to your options file: OPTIONS=number_pad:0 (probably requires you to start a new game). (Press y to disable this message)") == 'y') {
 				iflags.numpadmessage = FALSE;
 				pline("In order to turn the message off for all subsequent games too, add OPTIONS=nonumpadmessage to your configuration file.");
 			} else {
@@ -15946,6 +15949,7 @@ walkwalkwalk:
 					iflags.num_pad = 0;
 					iflags.num_pad_mode = 0;
 					iflags.numpadmessage = FALSE;
+					pline("Number pad is OFF now. You should add the following line to your configuration file to have it be turned on by default: OPTIONS=number_pad:0");
 				}
 			}
 			if (u.annoyingmessages++ > 5) iflags.numpadmessage = FALSE;
@@ -16492,6 +16496,21 @@ parse()
 		if (foo >= '0' && foo <= '9') {
 		    multi = 10 * multi + foo - '0';
 		    if (multi < 0 || multi >= LARGEST_INT) multi = LARGEST_INT;
+
+			/* still not accessible enough for newbies; numpad users should have a chance of figuring out how to
+			 * move around without having to guess where the option is! --Amy */
+			if (moves < 50 && !(iflags.num_pad) && iflags.numpadmessage) {
+				if(yn("You might be trying to move with the number pad keys, which due to stupid default settings is currently deactivated. Press the 'y' key now if you want to turn on the number pad so you can actually move around!") == 'y') {
+					iflags.num_pad = 2;
+					iflags.num_pad_mode = 1;
+					iflags.numpadmessage = FALSE;
+					pline("Number pad activated! You should add the following line to your configuration file: OPTIONS=number_pad:2 - that way, the number pad will be on by default, allowing you to play properly.");
+				} else {
+					pline("Seems like you want to play with vikeys. If you find this reminder message annoying, and as a no-numpad-user you probably do, here's how you can disable it: add OPTIONS=nonumpadmessage to your configuration file.");
+					iflags.numpadmessage = FALSE;
+				}
+			}
+
 		    if (multi > 9) {
 			clear_nhwindow(WIN_MESSAGE);
 			sprintf(in_line, "Count: %d", multi);

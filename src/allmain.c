@@ -17233,6 +17233,10 @@ boolean new_game;	/* false => restoring an old game */
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
 
+	if (new_game && !(iflags.num_pad) && iflags.numpadmessage) {
+		pline("IMPORTANT ADVICE FOR NEWBIES: The default control scheme on this server is vikeys (hjklyubn), which is borderline unplayable :-P You may want to switch to the *number pad*. I've created an easy way to achieve that: press Shift-O during the first 50 game turns to get a dialogue that allows you to switch, then you no longer need to wonder why the number pad keys only display 'Count: 22222' or some such garbage, but will be able to actually move. Seasoned players may add OPTIONS=number_pad:2 to their config file to turn the number pad on by default, or OPTIONS=nonumpadmessage to turn this reminder message off.");
+	}
+
 	/* MOTD for public server */
 
 #ifdef BIGSLEX
