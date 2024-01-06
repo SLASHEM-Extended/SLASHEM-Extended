@@ -977,6 +977,18 @@ init_appearance_randarts()
 	artilist[ART_SOFT_ON_THE_CLOUD].otyp = find_sister_shoes();
 	artilist[ART_WIDEFORCE_GRIP].otyp = find_hooked_gloves();
 	artilist[ART_HEME_FLOW].otyp = find_bladed_disks();
+	artilist[ART_CRUSH_THE_OPPOSITION].otyp = find_atlas_gloves();
+	artilist[ART_JURE_DE_LO].otyp = find_speedy_gloves();
+	artilist[ART_CHEATER_S_PROSPERING].otyp = find_air_cloak();
+	artilist[ART_EREA_S_HERITAGE].otyp = find_vindale_cloak();
+	artilist[ART_ALIEN_MINDWAVE].otyp = find_23_helmet();
+	artilist[ART_REVELATION____VERSE__].otyp = find_a_heels();
+	artilist[ART_GLENCHECK_EATING].otyp = find_alligator_pumps();
+	artilist[ART_KLOCKING_NOISE].otyp = find_hammer_shoes();
+	artilist[ART_SABRINA_S_FREEDOM].otyp = find_platform_fleecies();
+	artilist[ART_EVIL_HAIRTEAR].otyp = find_platform_fleecies();
+	artilist[ART_SANDRA_S_MEGAPOWER].otyp = find_retractable_block_heels();
+	artilist[ART_WELL__MIGHT_AS_WELL_WEAR_T].otyp = find_instafeminism_shoes();
 
 	artilist[ART_IRIS_S_HIDDEN_ALLERGY].otyp = find_silver_stilettos();
 	artilist[ART_IRIS_S_SECRET_VULNERABILIT].otyp = find_echo_helmet();

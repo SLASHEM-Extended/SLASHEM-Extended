@@ -3284,6 +3284,32 @@ find_hooked_gloves()
 }
 
 int
+find_atlas_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ATLAS_GLOVES)) return i;
+    }
+
+    impossible("atlas gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_speedy_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SPEEDY_GLOVES)) return i;
+    }
+
+    impossible("speedy gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_velvet_pumps()
 {
     register int i;
@@ -3332,6 +3358,32 @@ find_volcanic_cloak()
     }
 
     impossible("volcanic cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_air_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_AIR_CLOAK)) return i;
+    }
+
+    impossible("air cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_vindale_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_VINDALE_CLOAK)) return i;
+    }
+
+    impossible("vindale cloak not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -3397,6 +3449,19 @@ find_visored_helmet()
     }
 
     impossible("visored helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_23_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_TT_HELMET)) return i;
+    }
+
+    impossible("23 helmet not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -3475,6 +3540,19 @@ find_shadowy_heels()
     }
 
     impossible("shadowy heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_a_heels()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_A_HEELS)) return i;
+    }
+
+    impossible("a-heels not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -4051,6 +4129,19 @@ find_orgasm_pumps()
 }
 
 int
+find_alligator_pumps()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ALLIGATOR_PUMPS)) return i;
+    }
+
+    impossible("alligator pumps not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_worn_out_sneakers()
 {
     register int i;
@@ -4164,6 +4255,19 @@ find_marji_shoes()
     }
 
     impossible("marji shoes not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_hammer_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HAMMER_SHOES)) return i;
+    }
+
+    impossible("hammer shoes not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -4861,6 +4965,20 @@ find_platform_sneakers()
 }
 
 int
+find_platform_fleecies()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_PLATFORM_FLEECIES)) return i;
+    }
+
+    impossible("platform fleecies not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
 find_iceblock_heels()
 {
     register int i;
@@ -4875,6 +4993,20 @@ find_iceblock_heels()
 }
 
 int
+find_retractable_block_heels()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_RETRACTABLE_BLOCK_HEELS)) return i;
+    }
+
+    impossible("retractable block heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
 find_paragraph_shoes()
 {
     register int i;
@@ -4884,6 +5016,20 @@ find_paragraph_shoes()
     }
 
     impossible("paragraph shoes not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_instafeminism_shoes()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_INSTAFEMINISM_SHOES)) return i;
+    }
+
+    impossible("instafeminism shoes not found?");
     return -1;	/* not 0, or caller would try again each move */
 
 }

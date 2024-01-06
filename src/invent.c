@@ -12646,13 +12646,13 @@ boolean knoweverything;
 				pline("An atomic weapon of mass destruction, this bad boy will fire a heck of a lot of green beams (BFG ammo) per turn. If you can hit with it, you'll be capable of bringing even the strongest monsters down to their knees."); break;
 #endif
 			case HAND_BLASTER:
-				pline("A low-range energy gun with a fairly good rate of fire."); break;
+				pline("A low-range energy gun with a fairly good rate of fire. It can only fire regular blaster bolts."); break;
 			case ARM_BLASTER:
-				pline("PEW PEW PEW! This gun fires streams of laser ammo at your enemies, albeit with a low accuracy."); break;
+				pline("PEW PEW PEW! This gun fires streams of laser ammo at your enemies, albeit with a low accuracy. You need to fire heavy blaster bolts from it (specifically, any other type of ammo doesn't work)."); break;
 			case CUTTING_LASER:
-				pline("If you need an energy gun capable of hitting enemies standing up to 3 squares away, this thing might be useful. Don't try to shoot monsters standing any farther away though."); break;
+				pline("If you need an energy gun capable of hitting enemies standing up to 3 squares away, this thing might be useful. Don't try to shoot monsters standing any farther away though. The only ammo compatible with this gun is the laser beam."); break;
 			case RAYGUN:
-				pline("This energy gun shoots laser ammo at a good rate of fire over medium distances."); break;
+				pline("This energy gun shoots raygun bolts at a good rate of fire over medium distances. Don't try to fire any other type of ammo from it, because that won't work; you need raygun bolts."); break;
 			case SUBMACHINE_GUN:
 				pline("An automatic firearm that can fire three bullets in a single round of combat. Its spread makes it slightly harder to hit things with it though."); break;
 			case HEAVY_MACHINE_GUN:
@@ -30170,7 +30170,176 @@ boolean knoweverything;
 				case ART_WE_ARE__TRANNIES:
 					pline("Artifact specs: your axes do extra damage and your firearms have more to-hit while wearing it, and if you're male, you gain a bunch of extra AC, more if your high heels or block heels skills are higher."); break;
 				case ART_THIS_DEMO_IS_UNINSPIRED:
-					pline("Artifact specs: because this Demo guy is so uninspired and didn't want to make an artifact for the jacket he suggested, Amy had to make one, which just gives 5 extra points of AC."); break;
+					pline("Artifact specs: because this Demo guy was originally uninspired and didn't want to make an artifact for the jacket he suggested, Amy had to make one, which just gives 5 extra points of AC. (By now, Demo did actually come up with one, which is incidentally very similar to this one.)"); break;
+				case ART_NOPE_OUT_OF_PARA:
+					pline("Artifact specs: as long as they don't have an artifact timeout, you may opt out of getting paralyzed if you otherwise would have, but doing so sets a timeout so you won't be able to use that power again until the timeout ends."); break;
+				case ART_LONG_RANGE_BALLISTICS:
+					pline("Artifact specs: +8 fire damage, +5 range and +10 to-hit if you throw it."); break;
+				case ART_RESIST_INERTIA:
+					pline("Artifact specs: reduces the slowdown effect if you're suffering from inertia, meaning you'll be slowed down a bit less."); break;
+				case ART_ZERO_SUIT:
+					pline("Artifact specs: while wearing it, all of your ranged weapons have +1 multishot. Did you know that Samus looks very sexy in this suit? <3"); break;
+				case ART_CERBERUS_BAND:
+					pline("Artifact specs: very fast speed, +3 to-hit and 3 extra points of AC when worn."); break;
+				case ART_DOOM_FOR_EVERYONE_ELSE:
+					pline("Artifact specs: if this artifact is erosionproof, it won't change its BUC randomly over time."); break;
+				case ART_BILL_S_CHIP:
+					pline("Artifact specs: grants detect monsters when worn. Of course, this comes with some heavy downsides."); break;
+				case ART_CIGIT:
+					pline("Artifact specs: becomes sticky prime cursed when worn. If you're wearing it, this description will tell you what the hidden power skill is. %s.", (uamul && uamul->oartifact == ART_CIGIT) ? wpskillname(u.hiddenpowerskill) : "But you're not wearing it."); break;
+				case ART_NUKE_OPTION:
+					pline("Artifact specs: +20 fire damage. It brings an end."); break;
+				case ART_SCUDDER:
+					pline("Artifact specs: can be invoked for several dynamite explosions."); break;
+				case ART_FLOATING_PARTICLE:
+					pline("Artifact specs: covers the screen in floating particles, attacking in melee fires magic missiles in the direction of your attack."); break;
+				case ART_KRISTA_S_CLEAR_MIND:
+					pline("Artifact specs: +15 intelligence when wielded, can be invoked for full healing."); break;
+				case ART_JACK_IT_JACKET:
+					pline("Artifact specs: boosts your AC by its base AC value again. This artifact was created by Demo."); break;
+				case ART_PSEUDO_MAGIC_LAMP:
+					pline("Artifact specs: spawns with a whole lot of extra fuel, but every time you turn it on, your movement is restricted to orthogonal directions for a while. This artifact was inspired by potato44."); break;
+				case ART__K_CJZ_OEAL_I_NE___P_OAMBO: /* displays only garble, this is intentional --Amy */
+					pline("sssssssssssslllllllllllllll-sssssssssssssdmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-nnnnnnnnnnnnnnn-mmmmmmmmmmmmmmmmmmmm-nnnnnnnnnnnnn-mmmmmmm-d-dmmmm-");
+					pline("nnnnnnnkrrrkrrbbmmmmmmmmdnndnnnnnnnnndeeeenmnmnmnmmmmmmmmschhhhhhhhddddddddddd-dddddddd");
+					pline("dddddmmmnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmnnnnnnnnnnnnnnnschschschmmmmmmmmmmmnnnnnnnnnnnnnnooooooooooooschschschkrrr-BEEP-BEEP-BEEP-BEEP-BEEP-BEEP-BEEP-");
+					pline("schschschkrkrkrkrkrkrkrkrzzzzzzzzzzzzzzzzzzppppschschschschrrrrrrrrrrrrrrrrrrrrrrrrrrrfoefoefoefoeoeoeoeoeoeoeoeoeoe");
+					pline("schschschkrrrrrrrrrrrrroeoeoeoeoeoeoeoeoeoeoeoeoeoeoeschhhhhhhhhhhhhhhhdnnnnnn-dnnnnnnnroeoeoeoeoeoeoeoeoeoeoeoeoebiiiiiiiiiiiiiikrtkrtkrtkrtkrtkrtkrtkrt");
+					break;
+				case ART_NATALIA_S_GREAT_LUCK:
+					pline("Artifact specs: +5 luck, prevents good luck from timing out and double magic find when worn."); break;
+				case ART_FUXTRACHAG:
+					pline("Artifact specs: slows down the rate of lightsaber power consumption, jedi sacrifice gift."); break;
+				case ART_TIGHT_GRIP:
+					pline("Artifact specs: while wearing them, all weapons you equip will autocurse."); break;
+				case ART_WHOA_DOUBLE___:
+					pline("Artifact specs: spawns with even more enchantment."); break;
+				case ART_START_WITH_EVERYTHING:
+					pline("Artifact specs: spawns erosionproof, fully greased and with a random property."); break;
+				case ART_CRUSH_THE_OPPOSITION:
+					pline("Artifact specs: +10 strength when worn."); break;
+				case ART_JURE_DE_LO:
+					pline("Artifact specs: while wearing them, newly generated items will spawn with their + or BUC known more often."); break;
+				case ART_CHEATER_S_PROSPERING:
+					pline("Artifact specs: ESP when worn. If you successfully wish for this artifact, you gain 1000 lines of alla."); break;
+				case ART_EREA_S_HERITAGE:
+					pline("Artifact specs: contamination resistance when worn. The misspelling has been brought to you by Dr. Ano Nerfer."); break;
+				case ART_ALIEN_MINDWAVE:
+					pline("Artifact specs: double psi resistance when worn."); break;
+				case ART_REVELATION____VERSE__:
+					pline("Artifact specs: full nutrients when worn, and quaffing anything gives you extra nutrition."); break;
+				case ART_GLENCHECK_EATING:
+					pline("Artifact specs: +16 kick damage versus @-class monsters."); break;
+				case ART_KLOCKING_NOISE:
+					pline("Artifact specs: +2 increase damage when wielded. Yes, this is a rare occasion where wielding an armor-slot item will actually give bonuses. Wearing them does not give the damage bonus."); break;
+				case ART_SABRINA_S_FREEDOM:
+					pline("Artifact specs: confusion resistance and sabrina trap effect when worn."); break;
+				case ART_EVIL_HAIRTEAR:
+					pline("Artifact specs: becomes white when worn, you take maximum damage and your kick cannot be clumsy while wearing them, can be invoked for create familiar but doing so heavily curses the boots."); break;
+				case ART_SANDRA_S_MEGAPOWER:
+					pline("Artifact specs: +6 kick damage, petrification resistance when worn."); break;
+				case ART_WELL__MIGHT_AS_WELL_WEAR_T:
+					pline("Artifact specs: huahahahaha now you're afflicted with feminism for a really long time :D They grant resist psi and drain life when worn and boost your AC by 10 points, plus they make you slightly faster, but you'll have at least 10000 turns of the jette trap effect every time you put them on."); break;
+				case ART_FARTUBE:
+					pline("Artifact specs: greatly increases your sight range when worn."); break;
+				case ART_FARERTUBE:
+					pline("Artifact specs: giant explorer when worn, autocurses."); break;
+				case ART_STALKY:
+					pline("Artifact specs: resist poison and sickness when worn."); break;
+				case ART_FIELD_MARS_RESOUNDS:
+					pline("Artifact specs: soldiers spawn peaceful more often while wearing it and you can tame them by bribing them."); break;
+				case ART_KILO_MEGA_GIGA_TERA_PETA_E:
+					pline("Artifact specs: displays all kops and tree squads when worn."); break;
+				case ART_EXCITEMENT_OF_HAX:
+					pline("Artifact specs: resist drain life, diminished bleeding, +3 dexterity and +4 wisdom when worn and your shield skill trains twice as fast."); break;
+				case ART_BROTHER_S_CAVALRY:
+					pline("Artifact specs: grants bonuses only when riding, namely, 5 extra points of AC and slightly faster speed for your steed."); break;
+				case ART_CAP_OF_THENGEL:
+					pline("Artifact specs: +3 wisdom and charisma, resist confusion and acts as a luckstone when worn."); break;
+				case ART_MUTATIONPREVENT:
+					pline("Artifact specs: if you would be polymorphed while wearing them, you sometimes aren't. Caution: if you're playing a polymorphitis race or are otherwise forced to repeatedly polymorph, this will do nothing because that would be too easy!"); break;
+				case ART_B_A_L_L_A_S:
+					pline("Artifact specs: boosts your firearm to-hit by 3, chaotic. If you are chaotic too, wearing it further reduces alignment reductions, meaning that things which reduce your alignment will reduce it by less."); break;
+				case ART_SEXY_PUMPS_OF_RAGNAROK:
+					pline("Artifact specs: +20 kick damage with a randomized element every time you kick something with them, but the kick also brings an end."); break;
+				case ART_DONTNEED__HAH:
+					pline("Artifact specs: flying when worn. Which may well make many of the base item's traits superfluous."); break;
+				case ART_FULL_PROTECTION_FROM_WATER:
+					pline("Artifact specs: prevents your items from getting wet while worn."); break;
+				case ART_LONGSPIKE:
+					pline("Artifact specs: can be invoked for magic missiles in all directions."); break;
+				case ART_STANDARDRESE:
+					pline("Artifact specs: resist fire, cold and shock when worn."); break;
+				case ART______DEGREES:
+					pline("Artifact specs: fire immunity when worn, firefighter sacrifice gift."); break;
+				case ART_SYLVIE_S_YAWN:
+					pline("Artifact specs: sleep resistance when worn."); break;
+				case ART_SUPERIOR_MY_ASS:
+					pline("Artifact specs: 1 extra point of AC when worn."); break;
+				case ART_JOHANETTA_S_TITLE:
+					pline("Artifact specs: kick does +4 stun damage, and wearing them also grants reflection, +4 strength and aggravate monster."); break;
+				case ART_HISPANA_S_MURMUR:
+					pline("Artifact specs: stealth when worn."); break;
+				case ART_HELP_PEOPLE_AND_YOURSELF:
+					pline("Artifact specs: regeneration, simeout and +5 charisma when worn."); break;
+				case ART_ASIAKICK:
+					pline("Artifact specs: if you're at least skilled with stiletto heels, then wearing them teaches you the 'asian kick' technique."); break;
+				case ART_KRISTIN_S_CHEAP_EDGE:
+					pline("Artifact specs: kicking an enemy with them deals bleeding damage."); break;
+				case ART_JENNIFER_S_FLEECE:
+					pline("Artifact specs: death resistance when worn."); break;
+				case ART_MELTEM_S_FEELING:
+					pline("Artifact specs: 3 extra points of AC and +2 dexterity when worn."); break;
+				case ART_MARIYA_S_SEXYCHARM:
+					pline("Artifact specs: mariya trap effect, autocurses, disintegration resistance and +5 charisma when worn and intelligent enemies who don't resist may be reluctant to approach you."); break;
+				case ART_CLAUDIA_S_GIRL_KICK:
+					pline("Artifact specs: +12 kick damage."); break;
+				case ART_SOFTWOOD:
+					pline("Artifact specs: disintegration resistance when worn."); break;
+				case ART_SINGHETA:
+					pline("Artifact specs: +6 kick damage, heavily autocurse when worn, sing trap effect and kicking an enemy with them will paralyze it unless the target makes a saving throw."); break;
+				case ART_VENGEANCE_OF_ETERNITY:
+					pline("Artifact specs: fire and stun resistance, free action and teleportitis when worn."); break;
+				case ART_ENCHANTED_SUPERSPANDEX:
+					pline("Artifact specs: 5 extra points of AC and acid resistance when worn."); break;
+				case ART_PLANK_OF_CARNEADES:
+					pline("Artifact specs: swimming, +9 constitution, occasionally nullifies damage you take."); break;
+				case ART_MODIFIERS_OF_MIGHT:
+					pline("Artifact specs: half physical and spell damage when worn."); break;
+				case ART_ENIRHS_MOD:
+					pline("Artifact specs: can be invoked to halve the current HP of all visible monsters and also yourself. If you do that, your character's name will be reversed and you become inverted for 10000 turns."); break;
+				case ART_CHATGPT_S_GENERATION:
+					pline("Artifact specs: +20 to-hit and +5 damage. ChatGPT didn't make this specific artifact, but it's based on one he created."); break;
+				case ART_SOULSCOLLECTING:
+					pline("Artifact specs: +6 drain life damage, can drain levels from targets, +8 strength when wielded."); break;
+				case ART_THREEPOINT_PRONG:
+					pline("Artifact specs: +5 to-hit and double damage."); break;
+				case ART_CHRIS_S_SPIGGL:
+					pline("Artifact specs: +5 to-hit and double damage, reflection and displacement when wielded."); break;
+				case ART_PLUSPLUSPLUS_____EH__JUST_:
+					pline("Artifact specs: +12 shock damage. Not sure whether there are any fixed artifact lajatangs in DCSS, but oh well."); break;
+				case ART_BRIGHT_OVERWHELMING:
+					pline("Artifact specs: grants resistances to blindness and stun when worn."); break;
+				case ART_GANDALF_S_BOOST:
+					pline("Artifact specs: can be invoked for energy boost."); break;
+				case ART_GODLY_ESCHUTCHEON:
+					pline("Artifact specs: boosts your AC by its enchantment value. If that is negative, it makes your AC worse (predictably)."); break;
+				case ART_GOD_STAT:
+					pline("Artifact specs: very fast speed when worn. This can stack with the boosts from the ring's enchantment."); break;
+				case ART_RING_OF_EXTRA_ATTACKS:
+					pline("Artifact specs: double attacks when worn."); break;
+				case ART_THAT_S_SUCH_A_BUG:
+					pline("Artifact specs: quad attacks when worn, and causes all kinds of random effects."); break;
+				case ART_GRAY_ENPROTECTION:
+					pline("Artifact specs: keen memory when worn."); break;
+				case ART_GIBE_DE_MYST:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_MAGICAL_SPELLING:
+					pline("Artifact specs: magical breathing when worn."); break;
+				case ART_EITHER_INTELLIGENT_OR_FAIR:
+					pline("Artifact specs: heavily autocurses, +2 increase damage when worn, chaotic. If you're also chaotic, it gives bad alignment, otherwise it reduces your intelligence by 10. Because you can only be either intelligent or fair, not both."); break;
+				case ART_MISSING_LETTER_D:
+					pline("Artifact specs: while worn, this shield is always at least burnt. It boosts your multishot with slings and greatly reduces the odds that your sling ammo mulches upon hitting an enemy."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
