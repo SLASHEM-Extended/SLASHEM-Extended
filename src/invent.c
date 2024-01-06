@@ -3425,7 +3425,7 @@ sjwcheck(nastynumber)
 int nastynumber;
 {
 	int sjwlevel;
-	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !Race_if(PM_STARTSCUMMER) && !u.startscummerpersist && !autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
+	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !(uarmf && uarmf->oartifact == ART__K_CJZ_OEAL_I_NE___P_OAMBO) && !Race_if(PM_STARTSCUMMER) && !u.startscummerpersist && !autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
 
 	sjwlevel = u.ulevel + u.xtralevelmult - 1; /* because u.xtralevelmult starts at 1, not 0 */
 
@@ -3443,6 +3443,10 @@ int nastynumber;
 		if (u.ulevel >= 20 && u.dorian20 == nastynumber) return TRUE;
 		if (u.ulevel >= 24 && u.dorian24 == nastynumber) return TRUE;
 		if (u.ulevel >= 28 && u.dorian28 == nastynumber) return TRUE;
+	}
+
+	if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
+		if (u.catwalknastytrap == nastynumber) return TRUE;
 	}
 
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) || autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) ) {
@@ -30199,7 +30203,7 @@ boolean knoweverything;
 					pline("Artifact specs: boosts your AC by its base AC value again. This artifact was created by Demo."); break;
 				case ART_PSEUDO_MAGIC_LAMP:
 					pline("Artifact specs: spawns with a whole lot of extra fuel, but every time you turn it on, your movement is restricted to orthogonal directions for a while. This artifact was inspired by potato44."); break;
-				case ART__K_CJZ_OEAL_I_NE___P_OAMBO: /* displays only garble, this is intentional --Amy */
+				case ART__K_FCJZ_OEAL_I_NE___P_OAMB: /* displays only garble, this is intentional --Amy */
 					pline("sssssssssssslllllllllllllll-sssssssssssssdmmmmmmmmmmmmmmmmmmmmmmmmmmmmm-nnnnnnnnnnnnnnn-mmmmmmmmmmmmmmmmmmmm-nnnnnnnnnnnnn-mmmmmmm-d-dmmmm-");
 					pline("nnnnnnnkrrrkrrbbmmmmmmmmdnndnnnnnnnnndeeeenmnmnmnmmmmmmmmschhhhhhhhddddddddddd-dddddddd");
 					pline("dddddmmmnnnnnnnnnnnnnnnnmmmmmmmmmmmmmmnnnnnnnnnnnnnnnschschschmmmmmmmmmmmnnnnnnnnnnnnnnooooooooooooschschschkrrr-BEEP-BEEP-BEEP-BEEP-BEEP-BEEP-BEEP-");

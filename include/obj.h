@@ -207,6 +207,12 @@ struct obj {
 #define is_blade(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill >= P_DAGGER && \
 			 objects[(otmp)->otyp].oc_skill <= P_SABER)
+#define can_weld(otmp)	((otmp)->oclass == WEAPON_CLASS \
+				|| is_weptool(otmp) \
+				|| (otmp)->oclass == BALL_CLASS \
+				|| (otmp)->oclass == GEM_CLASS \
+				|| (otmp)->oclass == VENOM_CLASS \
+				|| (otmp)->oclass == CHAIN_CLASS)
 #define is_pole(otmp)	(((otmp)->oclass == WEAPON_CLASS || \
 			(otmp)->oclass == TOOL_CLASS) && \
 			 ((otmp)->otyp == CIGAR || objects[(otmp)->otyp].oc_skill == P_POLEARMS || \

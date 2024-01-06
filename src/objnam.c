@@ -11825,6 +11825,10 @@ typfnd:
 	otmp->owt = weight(otmp);
 	if (very && otmp->otyp == HEAVY_IRON_BALL) otmp->owt += 600;
 	if (otmp && otmp->oartifact == ART_MATIA_SEIBUN_JUYO) otmp->obrittle = TRUE;
+	if (otmp && otmp->oartifact == ART_CHEATER_S_PROSPERING) {
+		gain_alla(1000);
+		pline("Seems that cheaters do prosper after all.");
+	}
 
 	return(otmp);
 }

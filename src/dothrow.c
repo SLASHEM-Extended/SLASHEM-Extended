@@ -83,6 +83,7 @@ int thrown;
 
 	if (RngeMultishot) multishot++;
 	if (Race_if(PM_SPARD)) multishot += rnd(4);
+	if (uarmf && uarmf->oartifact == ART_ZERO_SUIT) multishot += 1;
 	if (uarmh && uarmh->oartifact == ART_VIRUS_ATTACK) multishot += 1;
 	if (uarmh && uarmh->oartifact == ART_SURFACE_TO_AIR_SITE) multishot += 1;
 	if (uwep && uwep->oartifact == ART_LASER_PALADIN) multishot += 1;
@@ -1811,6 +1812,7 @@ boolean hitsroof;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_SUDUNSEL) dmg += 2;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_KLOCKING_NOISE) dmg += 2;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALES) dmg += 1;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) dmg += 1;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) dmg += 1;
@@ -2202,6 +2204,7 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == BLUE_BOW && obj) range += 1;
 		if (launcher && ammo_and_launcher(obj, launcher) && launcher->oartifact == ART_TSCHUEUU && obj) range += 10;
 		if (launcher && (ammo_and_launcher(obj, launcher) && !(launcher && launcher->otyp == LASERXBOW && !launcher->lamplit) ) && obj && obj->otyp == ETHER_BOLT) range += 2;
+		if (obj && obj->oartifact == ART_LONG_RANGE_BALLISTICS) range += 5;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPESNIPESNIPE) range += 5;
 		if (obj && obj->oartifact == ART_WAY_TOO_LONG) range += 10;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SAY__CHESS_) range += 2;
@@ -2709,6 +2712,9 @@ boolean polearming;
 	if (obj && obj->otyp == LASER_FLYAXE && obj->lamplit) tmp += 5;
 	if (obj && obj->otyp == DISKOS) tmp += 5;
 	if (obj && obj->otyp == TOMAHAWK) tmp += 5;
+	if (obj && obj->oartifact == ART_LONG_RANGE_BALLISTICS) tmp += 10;
+
+	if (uarmh && uarmh->oartifact == ART_B_A_L_L_A_S && gunused) tmp += 3;
 
 	if (uarmf && uarmf->oartifact == ART_WE_ARE__TRANNIES && gunused) tmp += rnd(10);
 
@@ -2781,6 +2787,8 @@ boolean polearming;
 	if (obj && obj->oartifact == ART_KLUEUEUEU) tmp += 1000;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 	if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
+	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
 
 	if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
 	if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 3;

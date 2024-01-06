@@ -466,7 +466,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_stone));			\
 	return;								\
 	}								\
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || (uimplant && uimplant->oartifact == ART_ND___NND_D___NDMD__DM_D_D_) || Race_if(PM_RELEASIER)) && !rn2(MojibakeXtra ? 3 : 10)) { 	\
+	if (StupidMojibake && !rn2(MojibakeXtra ? 3 : 10)) { 	\
 	show_glyph(x, y, randomglyph() );			\
 	return;								\
 	}								\
@@ -558,7 +558,7 @@ int memory_glyph(x, y)
 
 	if (Yawming && (distu(x,y) > yawm_distance())) { return cmap_to_glyph(S_stone); }
 
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || (uimplant && uimplant->oartifact == ART_ND___NND_D___NDMD__DM_D_D_) || Race_if(PM_RELEASIER)) && !rn2(MojibakeXtra ? 3 : 10)) {
+	if (StupidMojibake && !rn2(MojibakeXtra ? 3 : 10)) {
 	return randomglyph();
 	}
 
@@ -1131,7 +1131,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || (uimplant && uimplant->oartifact == ART_ND___NND_D___NDMD__DM_D_D_) || Race_if(PM_RELEASIER)) && !rn2(MojibakeXtra ? 3 : 10)) {
+	if (StupidMojibake && !rn2(MojibakeXtra ? 3 : 10)) {
 	show_glyph(x, y, randomglyph());
 	return;
 	}
@@ -1306,6 +1306,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -1443,6 +1444,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -1575,7 +1577,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || (uimplant && uimplant->oartifact == ART_ND___NND_D___NDMD__DM_D_D_) || Race_if(PM_RELEASIER)) && !rn2(MojibakeXtra ? 3 : 10)) {
+	if (StupidMojibake && !rn2(MojibakeXtra ? 3 : 10)) {
 	show_glyph(x, y, randomglyph());
 	return;
 	}
@@ -1750,6 +1752,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -1887,6 +1890,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -3875,6 +3879,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) return TRUE;
 	if (ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) return TRUE;

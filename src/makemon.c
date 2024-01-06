@@ -33753,6 +33753,8 @@ register struct permonst *ptr;
 	if (uwep && uwep->oartifact == ART_ORANGERY && rn2(10) && (ptr->mcolor == CLR_ORANGE) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_LIGHT_OF_DECEPTION && !rn2(10)) return TRUE;
 
+	if (uarmc && uarmc->oartifact == ART_FIELD_MARS_RESOUNDS && rn2(2) && is_mercenary(ptr) ) return TRUE;
+
 	if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && (is_lord(ptr) && !rn2(5)) ) return TRUE;
 	if ((uarmg && itemhasappearance(uarmg, APP_PRINCESS_GLOVES)) && (is_prince(ptr) && !rn2(2)) ) return TRUE;
 

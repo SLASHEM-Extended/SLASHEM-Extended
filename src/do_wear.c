@@ -592,6 +592,11 @@ Boots_on()
 		objects[uarmf->otyp].oc_color = CLR_GREEN;
     }
 
+    if (uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR && (objects[uarmf->otyp].oc_color != CLR_WHITE)) {
+		pline_The("pair of platform fleecies becomes white!");
+		objects[uarmf->otyp].oc_color = CLR_WHITE;
+    }
+
     if (uarmf && uarmf->oartifact == ART_NANCY_S_ASSISTANCE && (objects[uarmf->otyp].oc_color != CLR_RED)) {
 		pline_The("pair of heels becomes red!");
 		objects[uarmf->otyp].oc_color = CLR_RED;
@@ -3017,10 +3022,8 @@ Gloves_on()
 	case GAUNTLETS_OF_PARALYSIS_ANNOUNC:
 	case VERY_SPECIFIC_GLOVES:
 	case WOWEE_GAUNTLETS:
-	case GAUNTLETS_OF_SPEED:
 	case CRITICAL_GAUNTLETS:
 	case MAGIC_BRACERS:
-	case GAUNTLETS_OF_CELERITY:
 	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
@@ -3146,6 +3149,8 @@ Gloves_on()
 		pline("It seems that these gauntlets have a button on one side.");
 		break;
 
+	case GAUNTLETS_OF_SPEED:
+	case GAUNTLETS_OF_CELERITY:
 	case GAUNTLETS_OF_TRUE_AIM:
 	case GAUNTLETS_OF_ARMORING:
 		makeknown(uarmg->otyp);
@@ -4823,6 +4828,11 @@ Amulet_on()
 		if (!uamul->cursed) curse(uamul);
     }
 
+    if (uamul && uamul->oartifact == ART_CIGIT) {
+		curse(uamul);
+		uamul->hvycurse = uamul->prmcurse = uamul->stckcurse = TRUE;
+    }
+
     if (uamul && uamul->oartifact == ART_AETHERIAL_SHARD) {
 		curse(uamul);
 		uamul->hvycurse = uamul->prmcurse = TRUE;
@@ -5331,6 +5341,12 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = obj->prmcurse = 1;
 		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
+    }
+
+    if (obj->oartifact == ART_BILL_S_CHIP) {
+		curse(obj);
+		obj->hvycurse = obj->prmcurse = 1;
+		pline("The chip implanted itself in your body.");
     }
 
     if (obj->oartifact == ART_PRAEFAME && !obj->cursed) {
@@ -7054,11 +7070,13 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
 	if (uarm && uarm->oartifact == ART_THIS_DEMO_IS_UNINSPIRED) uac -= 5;
+	if (uarm && uarm->oartifact == ART_JACK_IT_JACKET) uac -= objects[uarm->otyp].a_ac;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) uac -= 10;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) uac -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmf && uarmf->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) uac -= 10;
 	if (uarm && uarm->oartifact == ART_TONTANK) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_ONE) uac -= 1;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TWO) uac -= 2;
@@ -7083,6 +7101,8 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;
 	if (uarm && uarm->oartifact == ART_OOOOOOH) uac -= 5;
+	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) uac -= 3;
+	if (uright && uright->oartifact == ART_CERBERUS_BAND) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
 	if (uarmc && uarmc->oartifact == ART_THAT_S_ARMOR) {
 		uac -= 5;
@@ -7166,6 +7186,7 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) uac -= 20;
 	if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) uac -= 10;
 	if (uarm && uarm->oartifact == ART_UPPER_RUM) uac -= 10;
+	if (uarmc && uarmc->oartifact == ART_BROTHER_S_CAVALRY && u.usteed) uac -= 5;
 	if (uarm && uarm->oartifact == ART_MADE_OF_IRON) uac -= 10;
 	if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BEGINNER_SUIT) uac -= 5;

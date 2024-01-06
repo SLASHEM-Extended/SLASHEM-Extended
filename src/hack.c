@@ -4754,6 +4754,16 @@ newbossLARA:
 		pline("You've been paralyzed for %d turns.", abs(nval));
 	}
 
+	if (uarmg && uarmg->oartifact == ART_NOPE_OUT_OF_PARA && nval < 0 && discountpossible && (uarmg->invoketimer <= monstermoves) ) {
+		if (yn("Nope out of the paralysis?") == 'y') {
+
+			int artitimeout = rnz(2000);
+			if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
+			uarmg->invoketimer = (monstermoves + artitimeout);
+			return;
+		}
+	}
+
 	multi = nval;
 	if (multi < 0) flags.botl = 1;
 	if (txt && txt[0])

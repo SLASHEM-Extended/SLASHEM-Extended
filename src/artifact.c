@@ -1830,6 +1830,10 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_BURNER_DREAM) otmp->age += 2000;
 		    if (otmp && otmp->oartifact == ART_OWENER) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_OUT_OILED) otmp->age = 0;
+		    if (otmp && otmp->oartifact == ART_PSEUDO_MAGIC_LAMP) {
+			otmp->age *= 10;
+			otmp->age += rnz(10000);
+		    }
 		    if (otmp && otmp->oartifact == ART_MYSTERIOUS_SPIKES) {
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
@@ -1864,7 +1868,12 @@ register boolean mod;
 			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
-			if (otmp->spe > 127) otmp->spe = 127;
+		    }
+		    if (otmp && otmp->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) {
+			FemaleTrapJette += 50000;
+		    }
+		    if (otmp && otmp->oartifact == ART_WHOA_DOUBLE___) {
+			otmp->spe += rnd(10);
 		    }
 
 		    if (otmp && otmp->oartifact == ART_FIGHTEBOSSIT) {
@@ -2277,7 +2286,6 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_BAEAU) {
 			otmp->spe += rnd(10);
-			if (otmp->spe > 127) otmp->spe = 127;
 		    }
 		    if (otmp && otmp->oartifact == ART_YOUR_LUCKY_DAY) {
 			switch (otmp->otyp) {
@@ -2287,17 +2295,14 @@ register boolean mod;
 				case WAN_GAIN_LEVEL:
 				case WAN_INCREASE_MAX_HITPOINTS:
 					otmp->spe += Role_if(PM_WANDKEEPER) ? 3 : 1;
-					if (otmp->spe > 127) otmp->spe = 127;
 					break;
 				default:
 					otmp->spe += Role_if(PM_WANDKEEPER) ? 50 : 20;
-					if (otmp->spe > 127) otmp->spe = 127;
 					break;
 			}
 		    }
 		    if (otmp && otmp->oartifact == ART_TADA) {
 			otmp->spe += 10;
-			if (otmp->spe > 127) otmp->spe = 127;
 		    }
 		    if (otmp && otmp->oartifact == ART_LIBRARY_HIDING) {
 			otmp->oinvis = TRUE;
@@ -2310,6 +2315,11 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_SUK_ME_HAHAHAHAHAH) {
 			otmp->greased = rnd(3);
+		    }
+		    if (otmp && otmp->oartifact == ART_START_WITH_EVERYTHING) {
+			otmp->greased = 3;
+			otmp->oerodeproof = TRUE;
+			otmp->enchantment = randenchantment();
 		    }
 		    if (otmp && otmp->oartifact == ART_WEAR_OFF_THE_DAMN_RNG) {
 			otmp->greased = 3;
@@ -2341,7 +2351,6 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_STRONG_) {
 			otmp->spe += rn1(7,7);
-			if (otmp->spe > 127) otmp->spe = 127;
 		    }
 
 		    if (otmp->oartifact == ART_PECULIAR_MARKINGS) otmp->spe = 2;
@@ -5299,6 +5308,49 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_EVIL_HAIRTEAR) {
+			curse(obj);
+			obj->hvycurse = TRUE;
+
+			make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_SCUDDER) {
+
+			struct obj *dynamite;
+			coord cc;
+			int tunguskas = 8;
+
+			pline_The("multi-round missiles have been launched.");
+
+tunguskaagain:
+			cc.x = rn1(COLNO-3,2);
+			cc.y = rn2(ROWNO);
+			dynamite = mksobj_at(STICK_OF_DYNAMITE, cc.x, cc.y, TRUE, FALSE, FALSE);
+
+			if (dynamite) {
+				u.dynamitehack = TRUE;
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
+				}
+				u.dynamitehack = FALSE;
+			}
+			if (tunguskas > 0) {
+				tunguskas--;
+				goto tunguskaagain;
+			}
+
+
+			break;
+		}
+
 		if (obj->oartifact == ART_WEAVING_WARD) {
 
 			incr_itimeout(&Invulnerable, rn1(3,3));
@@ -5317,6 +5369,21 @@ chargingchoice:
 
 			getdir(NULL);
 			buzz(15,10,u.ux,u.uy,u.dx,u.dy); /* 15 = lightning */
+
+			break;
+		}
+
+		if (obj->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
+
+			if (u.alla < 101) {
+				break;
+			}
+
+			u.alla -= 100; /* not "drain_alla" */
+			You("only have %d alla remaining!", u.alla);
+
+			getdir(NULL);
+			buzz(24,6,u.ux,u.uy,u.dx,u.dy); /* 24 = disintegration beam */
 
 			break;
 		}
@@ -6368,7 +6435,7 @@ callingoutdone:
 			break;
 		}
 
-		if (obj->oartifact == ART_DINGDOENG_) {
+		if (obj->oartifact == ART_DINGDOENG_ || obj->oartifact == ART_KRISTA_S_CLEAR_MIND) {
 			You_feel("healthier!");
 			if (powerfulimplants() || !obj->obrittle) {
 				u.uhp = u.uhpmax;

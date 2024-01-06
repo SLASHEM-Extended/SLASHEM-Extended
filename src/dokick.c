@@ -383,6 +383,7 @@ register boolean clumsy;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) clumsy = FALSE;
 
 	/* excessive wt affects dex, so it affects dmg */
 	if (clumsy) dmg /= 2;
@@ -1118,7 +1119,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -1140,6 +1141,7 @@ register xchar x, y;
 	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_FRONT_TARGET) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES) clumsy = FALSE;
+	if (uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_BLU_TOE) clumsy = FALSE;
 
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
@@ -1365,8 +1367,13 @@ register struct obj *gold;
 #endif
 			    mtmp->mpeaceful = TRUE;
 
-	/* politicians have a chance of taming soldiers with a bribe; the tamedog code handles the actual success rate */
-				if (Role_if(PM_POLITICIAN)) 	(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+/* Amy: politicians have a chance of taming soldiers with a bribe; the tamedog code handles the actual success rate */
+
+			    if (uarmc && uarmc->oartifact == ART_FIELD_MARS_RESOUNDS) {
+				(void) tamedog(mtmp, (struct obj *) 0, TRUE); /* guaranteed because powerful artifact --Amy */
+			    } else if (Role_if(PM_POLITICIAN)) {
+				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			    }
 			}
 		     }
 		     if (mtmp->mpeaceful)

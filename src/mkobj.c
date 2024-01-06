@@ -4120,9 +4120,9 @@ boolean shopinit;
 	if (otmp && otmp->oclass != COIN_CLASS && trophylevel()) otmp->known = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && trophylevel()) otmp->dknown = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && trophylevel()) otmp->bknown = TRUE;
-	if (otmp && otmp->oclass != COIN_CLASS && (u.bucskill > rn2(400)) ) otmp->bknown = TRUE;
-	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) == P_NONE && (u.enchantrecskill > rn2(400)) ) otmp->known = TRUE;
-	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) != P_NONE && (u.weapchantrecskill > rn2(400)) ) otmp->known = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && (bucreclevel() > rn2(400)) ) otmp->bknown = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) == P_NONE && (enchantreclevel() > rn2(400)) ) otmp->known = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) != P_NONE && (weapchantreclevel() > rn2(400)) ) otmp->known = TRUE;
 
 	if (otmp && otmp->oclass != COIN_CLASS && (otmp->otyp == TIN || otmp->otyp == EGG) && !rn2(100 - (u.ulevel * (ishaxor ? 2 : 1) ) )) otmp->known = TRUE;
 

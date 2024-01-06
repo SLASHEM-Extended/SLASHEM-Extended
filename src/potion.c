@@ -1987,7 +1987,7 @@ playerextrinsicstoneres()
 	if ((uwep && uwep->oartifact == ART_HERITAGE_DIGGER) || (uarm && uarm->oartifact == ART_LU_NONNAME) || (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR) || (uarmf && uarmf->oartifact == ART_AS_STRONG_AS_BOOTS) || (uwep && uwep->oartifact == ART_RESIST_AGAINST_ITS_DAMAGE) || (uarmf && uarmf->oartifact == ART_PLAYING_ANASTASIA) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uarms && uarms->oartifact == ART_AEGIS)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uwep && uwep->oartifact == ART_STAHNGNIR_S_GIANT_CRUSHER) || (uarmf && uarmf->oartifact == ART_SANDALMENS && !flags.female) || (uarmf && uarmf->oartifact == ART_PRETTY_ROOMMAID) || (uarmf && uarmf->oartifact == ART_NASTIST) || (uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER) || (uarmh && uarmh->oartifact == ART_JESTES_TAKA_KURWA)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uwep && uwep->oartifact == ART_HELIOKOPIS_S_WIZARDING_AID) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) || (uwep && uwep->oartifact == ART_SWORD_OF_BHELEU) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD)) return TRUE;
-	if ((uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uarmg && uarmg->oartifact == ART_RED_CORDS_OF_ILMATER) || (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uwep && uwep->oartifact == ART_FIGURINE_OF_PYGMALION) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS)) return TRUE;
+	if ((uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uarmg && uarmg->oartifact == ART_RED_CORDS_OF_ILMATER) || (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmf && uarmf->oartifact == ART_SANDRA_S_MEGAPOWER) || (uwep && uwep->oartifact == ART_FIGURINE_OF_PYGMALION) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS)) return TRUE;
 
 	return FALSE;
 }
@@ -2114,7 +2114,7 @@ playerextrinsicspeed()
 	if ((Role_if(PM_TRANSVESTITE) && PlayerInHighHeels) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_MAREYOUNGWOMAN_ACTION && (is_pool(u.ux, u.uy) || (levl[u.ux][u.uy].typ == FOUNTAIN)) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) ) return TRUE;
 
 	return FALSE;
 }
@@ -11653,6 +11653,10 @@ dodrink()
 			morehungry(-10);
 		}
 
+		if (uarmf && uarmf->oartifact == ART_REVELATION____VERSE__) {
+			morehungry(-10);
+		}
+
 		if (RngeLiquidDiet) {
 			morehungry(-10);
 		}
@@ -11782,6 +11786,10 @@ dodrink()
 			morehungry(-10);
 		}
 
+		if (uarmf && uarmf->oartifact == ART_REVELATION____VERSE__) {
+			morehungry(-10);
+		}
+
 		if (RngeLiquidDiet) {
 			morehungry(-10);
 		}
@@ -11795,6 +11803,10 @@ dodrink()
 		}
 
 		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
+			morehungry(-10);
+		}
+
+		if (uarmf && uarmf->oartifact == ART_REVELATION____VERSE__) {
 			morehungry(-10);
 		}
 
@@ -11833,6 +11845,10 @@ dodrink()
 		}
 
 		if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
+			morehungry(-10);
+		}
+
+		if (uarmf && uarmf->oartifact == ART_REVELATION____VERSE__) {
 			morehungry(-10);
 		}
 
@@ -12124,6 +12140,10 @@ register struct obj *otmp;
 	}
 
 	if (uarmh && itemhasappearance(uarmh, APP_WATER_PIPE_HELMET) ) {
+		morehungry(-10);
+	}
+
+	if (uarmf && uarmf->oartifact == ART_REVELATION____VERSE__) {
 		morehungry(-10);
 	}
 
@@ -17404,6 +17424,42 @@ trophylevel()
 	int itidchance = 0;
 	itidchance += u.ulevel; /* doesn't help to level past 30 (intentional) */
 	itidchance += u.cnd_trophiesobtained;
+	if (itidchance > 250) itidchance = 250;
+	if (itidchance > rn2(400)) return TRUE;
+
+	return FALSE;
+}
+
+boolean
+bucreclevel()
+{
+	int itidchance = 0;
+	itidchance += u.bucskill;
+	if (uarmg && uarmg->oartifact == ART_JURE_DE_LO) itidchance += 100;
+	if (itidchance > 250) itidchance = 250;
+	if (itidchance > rn2(400)) return TRUE;
+
+	return FALSE;
+}
+
+boolean
+enchantreclevel()
+{
+	int itidchance = 0;
+	itidchance += u.enchantrecskill;
+	if (uarmg && uarmg->oartifact == ART_JURE_DE_LO) itidchance += 100;
+	if (itidchance > 250) itidchance = 250;
+	if (itidchance > rn2(400)) return TRUE;
+
+	return FALSE;
+}
+
+boolean
+weapchantreclevel()
+{
+	int itidchance = 0;
+	itidchance += u.weapchantrecskill;
+	if (uarmg && uarmg->oartifact == ART_JURE_DE_LO) itidchance += 100;
 	if (itidchance > 250) itidchance = 250;
 	if (itidchance > rn2(400)) return TRUE;
 

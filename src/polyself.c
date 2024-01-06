@@ -346,6 +346,13 @@ boolean forcecontrol;
 		if (!wizard || !forcecontrol) return;
 	}
 
+	if (!CannotBeUnchanging && uarmh && uarmh->oartifact == ART_MUTATIONPREVENT && rn2(2)) {
+		if (!wizard || !forcecontrol) {
+			Your("hat prevents the polymorph!");
+			return;
+		}
+	}
+
 	if (Race_if(PM_MOULD) || Race_if(PM_TRANSFORMER) || Race_if(PM_POLYINITOR) || Race_if(PM_DESTABILIZER) || Race_if(PM_WORM_THAT_WALKS) || Race_if(PM_WARPER) || Race_if(PM_MISSINGNO) || Race_if(PM_UNGENOMOLD) || Race_if(PM_DEATHMOLD) || Race_if(PM_AK_THIEF_IS_DEAD_) ) {
 		canhavesemicontrol = FALSE;
 	}

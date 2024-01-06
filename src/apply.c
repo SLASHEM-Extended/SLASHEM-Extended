@@ -1929,6 +1929,7 @@ struct obj *obj;
 		if(obj->otyp == OIL_LAMP || obj->otyp == MAGIC_LAMP || obj->otyp == BRASS_LANTERN || obj->otyp == DIM_LANTERN) {
 		    check_unpaid(obj);
 		    pline("%s lamp is now on.", Shk_Your(buf, obj));
+		    if (obj->oartifact == ART_PSEUDO_MAGIC_LAMP) BishopGridbug += rnz(5000);
 		} else if (obj->otyp == TORCH) {
 		    check_unpaid(obj);
 		    pline("%s flame%s burn%s%s",

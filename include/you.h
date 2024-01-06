@@ -1376,6 +1376,8 @@ struct you {
 	int sjwL59E6;
 	int sjwL59E7;
 
+	int catwalknastytrap;
+
 	int dorian4;
 	int dorian8;
 	int dorian12;

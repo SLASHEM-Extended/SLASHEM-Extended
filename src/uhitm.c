@@ -873,6 +873,8 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
@@ -4047,6 +4049,7 @@ int dieroll;
 		if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 		if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 		if (uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) tmp += 3;
+		if (dmg > 0 && uwep && uwep->oartifact == ART_KLOCKING_NOISE) tmp += 2;
 		tmp += (Drunken_boxing && Confusion);
 		if (u.boosttimer) tmp += 2;
 		tmp += (StrongDrunken_boxing && Confusion);
@@ -4878,6 +4881,11 @@ melatechoice:
 
 		if (thrown && obj && obj->oartifact == ART_FJELL_BARB) {
 			if (isok(mon->mx, mon->my)) levl[mon->mx][mon->my].lit = TRUE;
+		}
+
+		if (obj && obj->oartifact == ART_NUKE_OPTION) {
+			ragnarok(FALSE);
+			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MAP_END) {
@@ -11131,6 +11139,12 @@ bladeangerdone2:
 					if (DEADMONSTER(mon)) return FALSE;
 				}
 
+				if (uwep && uwep->oartifact == ART_FLOATING_PARTICLE && (u.dx || u.dy) && !u.dz) {
+					buzz(20, rnd(4), u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
 				if (uwep && uwep->oartifact == ART_LIGHTBLOOM && !rn2(100) && (u.dx || u.dy) && !u.dz) {
 					buzz(18, 3, u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;
@@ -11575,7 +11589,7 @@ boolean ranged;
 	else
 	    tmp = 0;
 
-	if (MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON)) {
+	if (YouTakeMaximumDamage) {
 		if (ptr->mattk[i].damn)
 		    tmp = (int)ptr->mattk[i].damn * (int)ptr->mattk[i].damd;
 		else if(ptr->mattk[i].damd)

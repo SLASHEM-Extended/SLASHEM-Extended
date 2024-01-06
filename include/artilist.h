@@ -18090,7 +18090,7 @@ A("Pseudo-Magic Lamp",				OIL_LAMP, /* by potato44, spawns with 10x as much char
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
-A("7K\fcJz1oeAL.I|Ne...p6oAmBO-OFFOxo1U",				CATWALK_SANDALS, /* you always have some nastytrap effect that changes every turn, can be invoked to spend 100 alla and fire a disintegration beam in a direction of your choice, description only shows gibberish */
+A("7K+fcJz1oeAL.I|Ne...p6oAmBO-OFFOxo1U",				CATWALK_SANDALS, /* you always have some nastytrap effect that changes every turn, can be invoked to spend 100 alla and fire a disintegration beam in a direction of your choice, description only shows gibberish */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
 

@@ -1422,7 +1422,7 @@ moveloop()
 				if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && u.umoved && moveamt > 1) {
 					moveamt /= 2;
 				}
-				if (u.inertia && moveamt > 1) {
+				if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
 					moveamt /= 2;
 				}
 				if (Race_if(PM_TURTLE) && moveamt > 1) {
@@ -1490,6 +1490,10 @@ moveloop()
 
 			/* speed boosts while riding go here */
 
+			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
+				moveamt *= 2;
+			}
+
 			if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
 				oldspeed = moveamt;
 				moveamt *= 2;
@@ -1503,8 +1507,8 @@ moveloop()
 				if (moveamt > (oldspeed + 12)) moveamt = (oldspeed + 12);
 			}
 
-			if (Race_if(PM_PIECE) && ((u.dx && !u.dy) || (!u.dx && u.dy)) && !rn2(4)) {
-				moveamt *= 2;
+			if (uarmc && (uarmc->oartifact == ART_BROTHER_S_CAVALRY) && !rn2(10)) {
+				moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
 			if (u.usteed) {
@@ -1956,7 +1960,7 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
-			if (u.inertia && moveamt > 1) {
+			if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* inert characters move at half speed --Amy */
 			}
@@ -2284,6 +2288,8 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmc && (uarmc->oartifact == ART_BROTHER_S_CAVALRY && u.usteed) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && (uarmf->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmc && (uarmc->otyp == SPIRIT_CLOTH) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_ENERGEEN_S) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2624,6 +2630,10 @@ moveloop()
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
+			u.catwalknastytrap = rnd(275); /* timerun */
+		}
+
 		if (FemtrapActiveSabrina) {
 
 			/* spawn a platform boot monster only if the trap hasn't been active intermittently, and only if enough
@@ -2770,7 +2780,7 @@ moveloop()
 			(void) adjattrib(A_CHA, -1, 0, TRUE);
 		}
 
-		if (uamul && uamul->otyp == AMULET_OF_FLIPPING && !rn2(1000)) {
+		if (uamul && uamul->otyp == AMULET_OF_FLIPPING && !(uamul->oartifact == ART_DOOM_FOR_EVERYONE_ELSE && uamul->oerodeproof) && !rn2(1000)) {
 			boolean goupordown = rn2(2);
 			if (goupordown) {
 				if (uamul->cursed) uncurse(uamul, TRUE);
@@ -3801,6 +3811,28 @@ moveloop()
 		}
 
 		if ((uright && uright->oartifact == ART_BLIND_PILOT) && !rn2(100) && multi >= 0) {
+
+			You("faint from exertion.");
+			flags.soundok = 0;
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if ((uleft && uleft->oartifact == ART_BILL_S_CHIP) && !rn2(100) && multi >= 0) {
+
+			You("faint from exertion.");
+			flags.soundok = 0;
+			if (isstunfish) nomul(-(rnz(5)), "fainted from exertion", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from exertion", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
+		if ((uright && uright->oartifact == ART_BILL_S_CHIP) && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");
 			flags.soundok = 0;
@@ -8936,6 +8968,8 @@ newbossRLR:
 
 		if (autismweaponcheck(ART_HER_UNREACHABLE_BROOK) && FemaleTrapJette < 1000) FemaleTrapJette = 1000;
 
+		if (uarmf && uarmf->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T && FemaleTrapJette < 10000) FemaleTrapJette = 10000;
+
 		if (autismweaponcheck(ART_HENRIETTENFORCE) && FemaleTrapHenrietta < 1000) FemaleTrapHenrietta = 1000;
 
 		if (autismweaponcheck(ART_HENRIETTENFORCE) && !(HAggravate_monster & FROMOUTSIDE) ) HAggravate_monster |= FROMOUTSIDE;
@@ -9618,6 +9652,13 @@ newbossO:
 		if (!rn2(CovidEffectXtra ? 20 : 1000) && CovidTrapEffect) {
 			nivellate();
 		}
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && uleft && uleft->oartifact == ART_BILL_S_CHIP) {
+			nivellate();
+		}
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && uright && uright->oartifact == ART_BILL_S_CHIP) {
+			nivellate();
+		}
+
 		if (!rn2(CovidEffectXtra ? 20 : 1000) && uwep && uwep->oartifact == ART_ARABELLA_S_THINNER) {
 			nivellate();
 		}
@@ -10195,7 +10236,12 @@ newbossO:
 			randomcuss();
 		}
 
-		if (uarmg && uarmg->oartifact == ART_WHINY_MARY && uwep && !(uwep->cursed)) {
+		if (uarmg && uarmg->oartifact == ART_WHINY_MARY && uwep && can_weld(uwep) && !(uwep->cursed)) {
+			curse(uwep);
+			Your("weapon welds itself to your %s!", makeplural(body_part(HAND)));
+		}
+
+		if (uarmg && uarmg->oartifact == ART_TIGHT_GRIP && uwep && can_weld(uwep) && !(uwep->cursed)) {
 			curse(uwep);
 			Your("weapon welds itself to your %s!", makeplural(body_part(HAND)));
 		}

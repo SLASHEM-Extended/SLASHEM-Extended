@@ -602,6 +602,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) )
 		    ways_seen++;
+		if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mtmp->data->mlet == S_KOP || mtmp->data->msound == MS_TREESQUAD) )
+		    ways_seen++;
 		if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG)
 		    ways_seen++;
 		if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mtmp->data->mlet == S_NYMPH) )
@@ -927,6 +929,10 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "FD Deth");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
+		    if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mtmp->data->mlet == S_KOP || mtmp->data->msound == MS_TREESQUAD) ) {
+			strcat(monbuf, "theft prevention");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
 		    if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG) {
 			strcat(monbuf, "doggo friendship");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -969,7 +975,7 @@ lookat(x, y, buf, monbuf)
 	} else
 	    strcpy(buf, distant_name(otmp, xname));
 
-	if ((!(MojibakeEffect || u.uprops[MOJIBAKE].extrinsic || have_mojibakestone() || (uimplant && uimplant->oartifact == ART_ND___NND_D___NDMD__DM_D_D_) || Race_if(PM_RELEASIER))) || levl[x][y].seenv ) {
+	if (!StupidMojibake || levl[x][y].seenv ) {
 		if (IS_TREE(levl[x][y].typ))
 		    strcat(buf, " stuck in a tree"); 
 		else if (IS_IRONBAR(levl[x][y].typ))

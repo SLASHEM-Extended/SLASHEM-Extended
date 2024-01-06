@@ -2038,6 +2038,7 @@ set_moreluck()
 	else u.moreluck = -LUCKADD;
 	if (uwep && uwep->oartifact == ART_WIRE_OF_LUCK) u.moreluck += 5;
 	if (uarmh && uarmh->otyp == LUCKY_MUSHROOM) u.moreluck += 5;
+	if (uarmf && uarmf->oartifact == ART_NATALIA_S_GREAT_LUCK) u.moreluck += 5;
 	if (have_amateurluckstone()) u.moreluck += 5;
 	if (uarmf && uarmf->oartifact == ART_HAPPY_CLOUD) u.moreluck += 5;
 	if (have_suckstonearti()) u.moreluck += 5;
@@ -3140,6 +3141,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
 		if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) tmp += 4;
+		if (uarmg && uarmg->oartifact == ART_CRUSH_THE_OPPOSITION) tmp += 10;
 		if (uarmg && itemhasappearance(uarmg, APP_ATLAS_GLOVES)) tmp += 3;
 		if (uarmf && uarmf->otyp == COMMANDER_HEELS) tmp += 1;
 		if (uwep && uwep->oartifact == ART_RUINED_ANTJEN) tmp += 3;
@@ -3266,6 +3268,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LYDIA_S_SEXYROOM) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_IRIS_S_THUNDER) tmp += 3;
+		if (uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
 		if (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) tmp += 2;
 		if (uarmf && uarmf->otyp == COMMANDER_HEELS) tmp += 1;
 		if (uarmh && uarmh->oartifact == ART_NAQ_QEH) tmp += 3;
@@ -3496,6 +3499,7 @@ int x;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) tmp += 2;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
+		if (x == A_WIS && uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
 		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;
 		if (x == A_WIS && Race_if(PM_MAZIN)) tmp += 1;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
@@ -3517,6 +3521,7 @@ int x;
 		if (Race_if(PM_WYLVAN)) tmp += 1;
 		if (x == A_INT && uamul && uamul->oartifact == ART_KLENSCHGOR) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_HYPER_INTELLIGENCE) tmp += 7;
+		if (x == A_WIS && uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX) tmp += 4;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (x == A_INT && uarms && uarms->oartifact == ART_YELLOW_STATUS) tmp += 2;
 		if (have_superjonadabstone()) tmp += 10;
@@ -3532,6 +3537,7 @@ int x;
 		if (x == A_INT && uleft && uleft->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
 		if (x == A_INT && uright && uright->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_GARBAGE_STAFF) tmp += 3;
+		if (x == A_INT && uwep && uwep->oartifact == ART_KRISTA_S_CLEAR_MIND) tmp += 15;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
@@ -3637,6 +3643,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_CUMBERSOME_DESC) tmp += 2;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
+		if (uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX) tmp += 3;
 		if (u.boosttimer) tmp += 10;
 		if (uwep && uwep->oartifact == ART_ISSEGADA_KEN) tmp += 3;
 		if (uamul && uamul->otyp == AMULET_OF_PHYSICAL_BOOST) tmp += 3;
@@ -3954,6 +3961,11 @@ register int n;
 	}
 
 	if (uarmh && uarmh->otyp == GANGSTER_CAP && n < 0) {
+		n /= 2;
+		if (n >= 0) n = -1; /* don't reduce below -1 --Amy */
+	}
+
+	if (uarmh && uarmh->oartifact == ART_B_A_L_L_A_S && n < 0 && u.ualign.type == A_CHAOTIC) {
 		n /= 2;
 		if (n >= 0) n = -1; /* don't reduce below -1 --Amy */
 	}

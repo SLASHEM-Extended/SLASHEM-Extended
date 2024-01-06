@@ -3444,9 +3444,12 @@ nh_timeout()
 	 * Luck is based at 0 usually, +1 if a full moon and -1 on Friday 13th
 	 */
 	    register int time_luck = stone_luck(FALSE);
+	    boolean holdpositive = FALSE; /* other effects that keep your good luck from timing out --Amy */
+	    if (uarmf && uarmf->oartifact == ART_NATALIA_S_GREAT_LUCK) holdpositive = TRUE;
+
 	    boolean nostone = !carrying(LUCKSTONE) && !stone_luck(TRUE);
 
-	    if(u.uluck > baseluck && (nostone || time_luck < 0 || !rn2(10) )) /* now luck will also time out if you do have a luckstone; it just times out more slowly --Amy */
+	    if(u.uluck > baseluck && ( ((nostone || time_luck < 0) && !holdpositive) || !rn2(10) )) /* now luck will also time out if you do have a luckstone; it just times out more slowly --Amy */
 		u.uluck--;
 	    else if(u.uluck < baseluck && (!isfriday || !rn2(2)) && (nostone || time_luck > 0 || !rn2(10) ))
 		u.uluck++;
@@ -5593,6 +5596,7 @@ long timeout;
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (uarmf && uarmf->oartifact == ART_FUXTRACHAG && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
@@ -6095,6 +6099,7 @@ begin_burn(obj, already_lit)
 
 			if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 			if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+			if (uarmf && uarmf->oartifact == ART_FUXTRACHAG && rn2(2)) willdrainenergy = FALSE;
 			if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 			if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 			if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
@@ -6163,6 +6168,7 @@ begin_burn(obj, already_lit)
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (uarmf && uarmf->oartifact == ART_FUXTRACHAG && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
@@ -6331,6 +6337,7 @@ begin_burn(obj, already_lit)
 
 		if (uarms && uarms->oartifact == ART_THERMO_NUCLEAR_CHAMBER && rn2(3)) willdrainenergy = FALSE;
 		if (uarms && uarms->oartifact == ART_SUPER_ENERGY_LINES && rn2(2)) willdrainenergy = FALSE;
+		if (uarmf && uarmf->oartifact == ART_FUXTRACHAG && rn2(2)) willdrainenergy = FALSE;
 		if (uarm && itemhasappearance(uarm, APP_POWERSAVE_ROBE) && !rn2(10)) willdrainenergy = FALSE;
 		if (obj->otyp == HEAVY_LASER_BALL && rn2(3)) willdrainenergy = FALSE;
 		if (obj->otyp == DARK_LIGHTSABER && rn2(3)) willdrainenergy = FALSE;
