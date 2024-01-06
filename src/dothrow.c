@@ -282,6 +282,8 @@ int thrown;
 
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
+	    if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot += 2;
+
 	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->invoketimer <= monstermoves) ) {
 		int artitimeout = rnz(2000);
 		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */
@@ -1870,6 +1872,7 @@ boolean hitsroof;
 	if (dmg > 0 && uright && uright->oartifact == ART_RING_OF_THROR) dmg += 2;
 	if (dmg > 0 && uleft && uleft->oartifact == ART_KRATSCHEM_HARD) dmg += 2;
 	if (dmg > 0 && uright && uright->oartifact == ART_KRATSCHEM_HARD) dmg += 2;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_EITHER_INTELLIGENT_OR_FAIR) dmg += 2;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -3521,6 +3524,8 @@ evasionchancedone:
 			}
 
 		    if (objects[otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && broken && !rn2(2))
+			broken = 0;
+		    if (objects[otyp].oc_skill == -P_SLING && uarms && uarms->oartifact == ART_MISSING_LETTER_D && broken && rn2(4))
 			broken = 0;
 		    if (objects[otyp].oc_material == MT_MINERAL && uarm && uarm->oartifact == ART_QUARRY && broken && !rn2(2))
 			broken = 0;

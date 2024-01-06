@@ -514,6 +514,16 @@ Boots_on()
 	}
     }
 
+    if (uarmf && uarmf->oartifact == ART_MARIYA_S_SEXYCHARM) {
+	if (!uarmf->cursed) curse(uarmf);
+    }
+
+    if (uarmf && uarmf->oartifact == ART_SINGHETA) {
+	curse(uarmf);
+	uarmf->hvycurse = uarmf->stckcurse = TRUE;
+	Your("clogs are very heavily cursed!");
+    }
+
     if (uarmf && uarmf->oartifact == ART_MODERN_SLAVERY) {
 	if (!flags.hybridbeacher) {
 		flags.hybridbeacher = TRUE;
@@ -1289,7 +1299,7 @@ Cloak_on()
 	case CLOAK_OF_DIMNESS:
 	case CLOAK_OF_CONTAMINATION_RESISTA:
 	case DISPLACER_BEAST_HIDE:
-	case THE_NEMEAN_LION_HIDE:
+	case NEMEAN_LION_HIDE:
 	case CLOAK_OF_SPRAY:
 	case CLOAK_OF_FLAME:
 	case CLOAK_OF_INSULATION:
@@ -2203,7 +2213,7 @@ Cloak_off()
 	case CLOAK_OF_VACUUM:
 	case CLOAK_OF_CONTAMINATION_RESISTA:
 	case DISPLACER_BEAST_HIDE:
-	case THE_NEMEAN_LION_HIDE:
+	case NEMEAN_LION_HIDE:
 	case CLOAK_OF_SPRAY:
 	case CLOAK_OF_FLAME:
 	case CLOAK_OF_INSULATION:
@@ -3335,6 +3345,10 @@ Gloves_on()
 		 * your money... and since "banishmentitis" isn't a thing, you gain levelteleportitis instead. --Amy */
     }
 
+    if (uarmg && uarmg->oartifact == ART_FARERTUBE) {
+		curse(uarmg);
+    }
+
     if (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) {
 		if (!uarmg->cursed) curse(uarmg);
 		uarmg->hvycurse = 1;
@@ -4253,6 +4267,12 @@ Armor_on()
 	if (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) {
 		curse(uarm);
 		uarm->hvycurse = TRUE;
+	}
+
+	if (uarm && uarm->oartifact == ART_EITHER_INTELLIGENT_OR_FAIR) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+		pline("Well, you can only be either intelligent or fair now.");
 	}
 
 	if (uarm && uarm->oartifact == ART_JEANETTA_S_REVENGE) {
@@ -5347,6 +5367,11 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = obj->prmcurse = 1;
 		pline("The chip implanted itself in your body.");
+    }
+
+    if (obj->oartifact == ART_THAT_S_SUCH_A_BUG && !obj->cursed) {
+		curse(obj);
+		pline("As a penalty for trying to exploit bugs, your ring becomes cursed!");
     }
 
     if (obj->oartifact == ART_PRAEFAME && !obj->cursed) {
@@ -7034,6 +7059,8 @@ find_ac()
 	if (uright && uright->oartifact == ART_CRYLOCK) uac -= 10;
 	if (uleft && uleft->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;
 	if (uright && uright->oartifact == ART_SCRAWNY_PIPSQUEAK) uac -= 5;
+	if (uleft && uleft->oartifact == ART_GODLY_ESCHUTCHEON) uac -= uleft->spe;
+	if (uright && uright->oartifact == ART_GODLY_ESCHUTCHEON) uac -= uright->spe;
 	if (uwep && uwep->oartifact == ART_ACTA_METALLURGICA_VOL___) uac -= 5;
 	if (uwep && uwep->oartifact == ART_PARRYINGSTAFF) uac -= 7;
 	if (uwep && uwep->oartifact == ART_ALIETTA_S_PARASOL) uac -= 7;
@@ -7076,6 +7103,8 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmc && uarmc->oartifact == ART_HERACLES_PRIZE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ENCHANTED_SUPERSPANDEX) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) uac -= 10;
 	if (uarm && uarm->oartifact == ART_TONTANK) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_ONE) uac -= 1;
@@ -7101,6 +7130,7 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;
 	if (uarm && uarm->oartifact == ART_OOOOOOH) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_MELTEM_S_FEELING) uac -= 3;
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) uac -= 3;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_LAURA_S_SWIMSUIT) uac += 5;
@@ -7141,6 +7171,7 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_YELLOW_STATUS) uac -= 1;
 	if (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) uac -= 10;
 	if (uamul && uamul->oartifact == ART_WOUUU) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_SUPERIOR_MY_ASS) uac -= 1;
 	if (uarm && uarm->oartifact == ART_RES_BUT_BAD) uac += 15;
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT) uac -= 3;

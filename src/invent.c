@@ -3425,7 +3425,7 @@ sjwcheck(nastynumber)
 int nastynumber;
 {
 	int sjwlevel;
-	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !(uarmf && uarmf->oartifact == ART__K_CJZ_OEAL_I_NE___P_OAMBO) && !Race_if(PM_STARTSCUMMER) && !u.startscummerpersist && !autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
+	if (!Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !(uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) && !Race_if(PM_STARTSCUMMER) && !u.startscummerpersist && !autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) && !isdorian) return FALSE;
 
 	sjwlevel = u.ulevel + u.xtralevelmult - 1; /* because u.xtralevelmult starts at 1, not 0 */
 
@@ -14519,7 +14519,7 @@ boolean knoweverything;
 				pline("It's the hide of some wild animal that offers very little protection."); break;
 			case DISPLACER_BEAST_HIDE:
 				pline("A cloak that offers no magic cancellation but grants displacement to the wearer."); break;
-			case THE_NEMEAN_LION_HIDE:
+			case NEMEAN_LION_HIDE:
 				pline("This might actually be an ascension kit quality cloak. Good armor class, 3 points of magic cancellation and stun resistance!"); break;
 			case CLOAK_OF_SPRAY:
 				pline("A fire-resistant cloak that unfortunately only offers medium magic cancellation."); break;
@@ -30344,6 +30344,8 @@ boolean knoweverything;
 					pline("Artifact specs: heavily autocurses, +2 increase damage when worn, chaotic. If you're also chaotic, it gives bad alignment, otherwise it reduces your intelligence by 10. Because you can only be either intelligent or fair, not both."); break;
 				case ART_MISSING_LETTER_D:
 					pline("Artifact specs: while worn, this shield is always at least burnt. It boosts your multishot with slings and greatly reduces the odds that your sling ammo mulches upon hitting an enemy."); break;
+				case ART_HERACLES_PRIZE:
+					pline("Artifact specs: boosts your AC by 5 points when worn and can be invoked for a few turns of invulnerability. This artifact was created by potato44."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

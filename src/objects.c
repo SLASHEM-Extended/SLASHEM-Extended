@@ -2004,7 +2004,7 @@ CLOAK("hide", (char *)0,
 
 CLOAK("displacer beast hide", (char *)0,
 		1, 0,	DISPLACED,  20, 0, 20, 40,  9, 0, MT_LEATHER, CLR_BRIGHT_BLUE, 25, 0),
-CLOAK("The Nemean Lion hide", (char *)0,
+CLOAK("Nemean Lion hide", (char *)0,
 		1, 0,	STUN_RES,   20, 0, 20,1000, 7, 3, MT_LEATHER, HI_LEATHER, 40, 0),
 
 /* With shuffled appearances... */

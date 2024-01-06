@@ -19423,13 +19423,13 @@ register int n;
 		return;
 	}
 
-	if (uarms && uarms->oartifact == ART_ALWAYS_MELEE_COVER && !rn2(5)) {
+	if (uarms && uarms->oartifact == ART_ALWAYS_MELEE_COVER && n > 0 && !rn2(5)) {
 		n = 0;
 		Your("shield nullifies the damage!");
 		return;
 	}
 
-	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("tonfa nullifies the damage!");
 		return;
@@ -19441,25 +19441,31 @@ register int n;
 		return;
 	}
 
-	if (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME && !rn2(10)) {
+	if (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("pair of heels nullifies the damage!");
 		return;
 	}
 
-	if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && !rn2(10)) {
+	if (uarmf && uarmf->oartifact == ART_IRMA_S_CHOICE && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("pair of heels nullifies the damage!");
 		return;
 	}
 
-	if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && !rn2(10)) {
+	if (uarms && uarms->oartifact == ART_PLANK_OF_CARNEADES && n > 0 && !rn2(10)) {
+		n = 0;
+		Your("shield nullifies the damage!");
+		return;
+	}
+
+	if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("soft lady shoe nullifies the damage!");
 		return;
 	}
 
-	if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {
+	if (PlayerInConeHeels && !PlayerCannotUseSkills && n > 0 && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {
 		n = 0;
 		Your("cone heels nullify the damage!");
 		return;

@@ -3038,7 +3038,7 @@ A("Fast Camo Predator",				DISPLACER_BEAST_HIDE, /* speed and hunger */
 	(SPFX_RESTR|SPFX_STLTH|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Predatory Stability",				THE_NEMEAN_LION_HIDE, /* free action */
+A("Predatory Stability",				NEMEAN_LION_HIDE, /* free action */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
 
@@ -18361,6 +18361,10 @@ A("Either Intelligent Or Fair",				NOPE_DRAGON_SCALE_MAIL, /* heavily autocurses
 A("Missing Letter D",				CRYSTALLINE_DRAGON_SCALE_SHIEL, /* always at least burnt while you're wearing it, +2 multishot with slings and 75% unconditional chance that if ammo fired from your sling would have mulched, it doesn't */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Heracles Prize",				NEMEAN_LION_HIDE, /* by potato44, 5 extra points of AC, can be invoked for rn1(3,3) turns of invulnerability */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

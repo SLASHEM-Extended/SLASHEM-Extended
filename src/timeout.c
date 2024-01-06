@@ -280,7 +280,7 @@ nh_timeout()
 
 	u.barbertimer++;
 
-	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
+	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (uarmf && uarmf->oartifact == ART_HELP_PEOPLE_AND_YOURSELF) || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
 		if (!rn2(2500)) {
 			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);
 			if (flags.showsanity) flags.botl = 1;
@@ -1660,6 +1660,10 @@ nh_timeout()
 
 	if (!rn2(200) && have_badeffectstone() ) badeffect();
 
+	if (!rn2(200) && uleft && uleft->oartifact == ART_THAT_S_SUCH_A_BUG) badeffect();
+
+	if (!rn2(200) && uright && uright->oartifact == ART_THAT_S_SUCH_A_BUG) badeffect();
+
 	if (!rn2(200) && uwep && uwep->oartifact == ART_BAT_FROM_BALTIMORE) badeffect();
 
 	if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_BAT_FROM_BALTIMORE) badeffect();
@@ -1669,6 +1673,10 @@ nh_timeout()
 	if (!rn2(200) && u.twoweap && uswapwep && uswapwep->oartifact == ART_WHAW_WHAW) badeffect();
 
 	if (!rn2(200) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) badeffect();
+
+	if (!rn2(5000) && uleft && uleft->oartifact == ART_THAT_S_SUCH_A_BUG) goodeffect();
+
+	if (!rn2(5000) && uright && uright->oartifact == ART_THAT_S_SUCH_A_BUG) goodeffect();
 
 	if (!rn2(100) && u.uprops[RANDOM_RUMORS].extrinsic) {
 		const char *line;
@@ -2900,6 +2908,32 @@ nh_timeout()
 
 	}
 
+	if (!rn2(NastinessXtra ? 200 : 1000) && uleft && uleft->oartifact == ART_THAT_S_SUCH_A_BUG) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
+	if (!rn2(NastinessXtra ? 200 : 1000) && uright && uright->oartifact == ART_THAT_S_SUCH_A_BUG) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
 	if (!rn2(NastinessXtra ? 200 : 1000) && uarmf && uarmf->oartifact == ART_NASTIST) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
@@ -3064,10 +3098,10 @@ nh_timeout()
 
 	/* Max alignment record moved from align.h, so we can make it into a dynamic function --Amy */
 
-	if (!AlignmentProblem && !u.uprops[ALIGNMENT_FAILURE].extrinsic && !have_alignmentstone() && !(uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) && !autismweaponcheck(ART_PROFANED_GREATSCYTHE) && !(uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) && !(uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) && !(uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
+	if (!HaveTheAlignmentProblem && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) && ((u.alignlim < 20) ? (TRUE) : (rnd(u.alignlim) < 20) ) )
 		u.alignlim++;
 
-	if ( (AlignmentProblem || u.uprops[ALIGNMENT_FAILURE].extrinsic || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_alignmentstone() || autismweaponcheck(ART_PROFANED_GREATSCYTHE) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) || (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER) ) && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
+	if (HaveTheAlignmentProblem && !rn2(Race_if(PM_UNALIGNMENT_THING) ? 50 : 200) ) {
 		u.alignlim--;
 		if(u.ualign.record > u.alignlim)
 			u.ualign.record = u.alignlim;

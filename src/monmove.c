@@ -4416,6 +4416,12 @@ altarfound:
 
 	if (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING && appr == 1 && !mtmp->mtame && !mtmp->mpeaceful && !rn2(3)) appr = 0;
 
+	if (uarmf && uarmf->oartifact == ART_MARIYA_S_SEXYCHARM && (humanoid(mtmp->data) || is_animal(mtmp->data)) && !rn2(2)) {
+		if (!resist(mtmp, ARMOR_CLASS, 0, 0)) {
+			appr = -1;
+		}
+	}
+
 	if (uarm && uarm->oartifact == ART_AND_HOW_SHE_IS_CURSED) {
 		if (appr == 1 && !rn2(5)) appr = 0;
 		if (!rn2(20)) appr = -1;

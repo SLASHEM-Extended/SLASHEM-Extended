@@ -265,6 +265,15 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_SINGHETA && mon->mcanmove) {
+		if (!resist(mon, ARMOR_CLASS, 0, NOTELL)) {
+			mon->mcanmove = 0;
+			mon->mfrozen = 2;
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("%s can't fight back!", Monnam(mon));
+		}
+	}
+
 	if (uarmf && uarmf->otyp == EGGKICK_SHOES && humanoid(mon->data) && !(mon->female) && !is_neuter(mon->data) ) {
 		dmg += 5;
 	}
@@ -405,6 +414,12 @@ register boolean clumsy;
 		pline("*plof*");
 	}
 
+	if (uarmf && uarmf->oartifact == ART_SEXY_PUMPS_OF_RAGNAROK) {
+
+		ragnarok(FALSE);
+		if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+	}
+
 	if (u.femcombostrike && PlayerInConeHeels) {
 		dmg += u.femcombostrike;
 		pline("You scratch %s for %d extra damage!", mon_nam(mon), u.femcombostrike);
@@ -481,15 +496,23 @@ register boolean clumsy;
 				if (artifact_hit(&youmonst, mon, uarmf, &dmg, rnd(20)) ) {
 					if(mon->mhp <= 0) /* artifact killed monster */
 						return;
-					if (dmg == 0) return;
 				}
 			}
 
 		    dmg += weapon_dam_bonus((struct obj *)0);
 			/* marital arts skill is supposed to improve this!!! --Amy */
 		    if (P_SKILL(P_MARTIAL_ARTS) > 0) dmg += (rnd(P_SKILL(P_MARTIAL_ARTS)) * rno(2));
+		} else {
+
+			if(uarmf && uarmf->oartifact) {
+				if (artifact_hit(&youmonst, mon, uarmf, &dmg, rnd(20)) ) {
+					if(mon->mhp <= 0) /* artifact killed monster */
+						return;
+				}
+			}
+
+			if (dmg > 0) kick_skill = P_MARTIAL_ARTS; /* so that acu can unlock it if he wants to */
 		}
-		else if (dmg > 0) kick_skill = P_MARTIAL_ARTS; /* so that acu can unlock it if he wants to */
 		/* a good kick exercises your dex */
 		exercise(A_DEX, TRUE);
 	}
@@ -766,6 +789,11 @@ register boolean clumsy;
 
 	if (uarmf && itemhasappearance(uarmf, APP_SISTER_SHOES)) {
 		mon->bleedout += rnd(5);
+		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+	}
+
+	if (uarmf && uarmf->oartifact == ART_KRISTIN_S_CHEAP_EDGE) {
+		mon->bleedout += rnd(4);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 

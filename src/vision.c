@@ -690,7 +690,7 @@ vision_recalc(control)
 	if (uwep && uwep->oartifact == ART_GIGANTIC_SUN) efflightradius += 3;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_mines(&u.uz)) efflightradius += 2;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_deepmines(&u.uz)) efflightradius += 1;
-	if (uarmf && uarmf->oartifact == ART_FARTUBE) efflightradius += 9;
+	if (uarmg && uarmg->oartifact == ART_FARTUBE) efflightradius += 9;
 
 	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
 

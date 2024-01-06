@@ -2803,6 +2803,7 @@ E boolean playerextrinsiccoldres(void);
 E boolean playerextrinsicshockres(void);
 E boolean playerextrinsicpoisonres(void);
 E boolean playerextrinsicspeed(void);
+E boolean playerextrinsicflying(void);
 E boolean playerextrinsicsleepres(void);
 E boolean playerextrinsicdisintres(void);
 E boolean playerextrinsicstoneres(void);

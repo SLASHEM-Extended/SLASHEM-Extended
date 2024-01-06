@@ -2634,6 +2634,8 @@ moveloop()
 			u.catwalknastytrap = rnd(275); /* timerun */
 		}
 
+		if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && !uarms->oeroded) uarms->oeroded = 1;
+
 		if (FemtrapActiveSabrina) {
 
 			/* spawn a platform boot monster only if the trap hasn't been active intermittently, and only if enough
@@ -2712,6 +2714,10 @@ moveloop()
 			artilist[ART_BEBE_S_BABE].attk.adtyp = randartiattacktype();
 		}
 
+		if (uarmf && uarmf->oartifact == ART_SEXY_PUMPS_OF_RAGNAROK) {
+			artilist[ART_SEXY_PUMPS_OF_RAGNAROK].attk.adtyp = randartiattacktype();
+		}
+
 		if (autismweaponcheck(ART_KATI_GAVE_YOU_THE_ENGLISH_)) {
 			artilist[ART_KATI_GAVE_YOU_THE_ENGLISH_].attk.damd = rnd(17);
 		}
@@ -2739,6 +2745,14 @@ moveloop()
 
 		if (uarm && uarm->oartifact == ART_SEVEBREAKYOU__SEVEBREAK_ && !rn2(200)) {
 			adjalign(1);
+		}
+
+		if (uarmf && uarmf->oartifact == ART_ASIAKICK && P_SKILL(P_STILETTO_HEELS) >= P_SKILLED) {
+			if (!tech_known(T_ASIAN_KICK)) {
+			    	learntech(T_ASIAN_KICK, FROMOUTSIDE, 1);
+			    	pline("Suddenly, you know how to use the asian kick technique!");
+			}
+
 		}
 
 		if (uarm && uarm->oartifact == ART_DUH_BEWEGEO_ZISCH && !rn2(100)) {

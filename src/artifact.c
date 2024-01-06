@@ -5317,6 +5317,43 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_ENIRHS_MOD) {
+
+			char aliasbuf[2048];	/* Buffer for alias name */
+
+			if (u.uhp < 2) {
+				You("lack the health required to do that.");
+				break;
+			}
+			u.uhp /= 2;
+			if (Upolyd) {
+				u.mh /= 2;
+				if (u.mh < 1) u.mh = 1;
+			}
+			flags.botl = TRUE;
+
+			(void) strncpy(aliasbuf, playeraliasname, sizeof(aliasbuf));
+			reversestring(aliasbuf);
+			strcpy(plalias, aliasbuf);
+			(void) strncpy(u.aliasname, aliasbuf, sizeof(u.aliasname));
+
+			make_inverted(HInvertedState + 10000);
+
+			You("don't feel like yourself.");
+
+			for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+				if (DEADMONSTER(mtmp)) continue;
+				/* The eye is never blind ... */
+				if (couldsee(mtmp->mx, mtmp->my) && !is_undead(mtmp->data)) {
+				    pline("%s screams in agony!", Monnam(mtmp));
+				    mtmp->mhp -= (mtmp->mhp / 2);
+				    if (mtmp->mhp < 1) mtmp->mhp = 1;
+				}
+			}
+
+			break;
+		}
+
 		if (obj->oartifact == ART_SCUDDER) {
 
 			struct obj *dynamite;
@@ -5352,6 +5389,13 @@ tunguskaagain:
 		}
 
 		if (obj->oartifact == ART_WEAVING_WARD) {
+
+			incr_itimeout(&Invulnerable, rn1(3,3));
+			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+			break;
+		}
+
+		if (obj->oartifact == ART_HERACLES_PRIZE) {
 
 			incr_itimeout(&Invulnerable, rn1(3,3));
 			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
@@ -6215,6 +6259,20 @@ tscheinschroll:
 			buzz(10, 1, u.ux, u.uy, -1, -1);
 			buzz(10, 1, u.ux, u.uy, 1, -1);
 			buzz(10, 1, u.ux, u.uy, 0, -1);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_LONGSPIKE) {
+
+			buzz(10, 4, u.ux, u.uy, -1, 0);
+			buzz(10, 4, u.ux, u.uy, 1, 0);
+			buzz(10, 4, u.ux, u.uy, -1, 1);
+			buzz(10, 4, u.ux, u.uy, 1, 1);
+			buzz(10, 4, u.ux, u.uy, 0, 1);
+			buzz(10, 4, u.ux, u.uy, -1, -1);
+			buzz(10, 4, u.ux, u.uy, 1, -1);
+			buzz(10, 4, u.ux, u.uy, 0, -1);
 
 			break;
 		}
