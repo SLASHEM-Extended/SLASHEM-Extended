@@ -2889,7 +2889,9 @@ swingweapon:
 
 					if (!blue_on_blue(mtmp) && (!didrangedattack || issoviet) ) {
 						if (issoviet && (didrangedattack == 1)) {
-							pline("Monstry mogut strelyat' iz neskol'kikh vidov oruzhiya dal'nego boya za odin khod, kho-kha-kha, ya takoy smeshnoy! Podpis': tip ledyanoy glyby.");
+							if (!rn2(100) && couldsee(mtmp->mx, mtmp->my)) {
+								pline("Monstry mogut strelyat' iz neskol'kikh vidov oruzhiya dal'nego boya za odin khod, kho-kha-kha, ya takoy smeshnoy! Podpis': tip ledyanoy glyby.");
+							}
 							didrangedattack = 2;
 						}
 						thrwmu(mtmp);
