@@ -937,9 +937,22 @@ bot2str(char *newbot2)
 
 #ifdef REALTIME_ON_BOTL
   if(iflags.showrealtime) {
-    time_t currenttime = get_realtime();
-    sprintf(nb = eos(nb), " %ld:%2.2ld", currenttime / 3600, 
-                                       (currenttime % 3600) / 60);
+	/* somehow, without the gameover check, the displayed amount would be doubled upon getting a game over --Amy
+	 * this used to have no real effect but now we want to display the realtime amount in the dumplog */
+
+	if (program_state.gameover) {
+
+		time_t currenttime = (long)realtime_data.realtime;
+
+		sprintf(nb = eos(nb), " %ld:%2.2ld", currenttime / 3600, (currenttime % 3600) / 60);
+
+	} else {
+
+		time_t currenttime = get_realtime();
+		sprintf(nb = eos(nb), " %ld:%2.2ld", currenttime / 3600, (currenttime % 3600) / 60);
+
+	}
+
   }
 #endif
 

@@ -12318,14 +12318,22 @@ int final;
 	sprintf(buf, "spell retention for remembering %d spells", urole.spelrete);
 	dump(youhad, buf);
 
-	    sprintf(buf, "Your pantheon consisted of %s, %s and %s", align_gname(A_LAWFUL), align_gname(A_NEUTRAL), align_gname(A_CHAOTIC) );
-	    dump("  ", buf);
+	sprintf(buf, "Your pantheon consisted of %s, %s and %s", align_gname(A_LAWFUL), align_gname(A_NEUTRAL), align_gname(A_CHAOTIC) );
+	dump("  ", buf);
 
-	    sprintf(buf, "Your deity was %s", u_gname());
-	    dump("  ", buf);
+	sprintf(buf, "Your deity was %s", u_gname());
+	dump("  ", buf);
 
-	    getversionstring(buf);
-	    dump("  The version you were playing was: ", buf);
+	getversionstring(buf);
+	dump("  The version you were playing was: ", buf);
+
+#ifdef REALTIME_ON_BOTL
+	time_t currenttime = realtime_data.realtime;
+
+	sprintf(buf, "You played for %ld:%2.2ld:%2.2ld hours (this value may or may not be correct)", currenttime / 3600, (currenttime % 3600) / 60, currenttime % 60);
+	dump("  ", buf);
+
+#endif
 
 	if (u.ugangr) {
 	    sprintf(buf, " %sangry with you",
