@@ -3081,7 +3081,7 @@ dotech()
 			break;
 
 		case T_POLYFORM:
-			pline("You can use this technique for an uncontrolled random polymorph.");
+			pline("You can use this technique for an uncontrolled random polymorph. It can turn you into monsters that are normally not a valid polymorph form, but you cannot make those polymorphs permanent via an amulet of unchanging because that would be too easy.");
 			break;
 
 		case T_CONCENTRATING:

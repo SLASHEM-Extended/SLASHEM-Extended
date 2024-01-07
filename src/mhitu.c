@@ -506,7 +506,7 @@ elena2:
 
 			}
 
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || (footwear && itemhasappearance(footwear, APP_FAILED_SHOES)) || (footwear && itemhasappearance(footwear, APP_BAYONET_HEELS)) || (randomsexyheels == 4) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO] || mtmp->data == &mons[PM_WEREUNFAIRSTILETTO] || mtmp->data == &mons[PM_BERBAL] || mtmp->data == &mons[PM_KITTEN_HEEL_SLINGBACK] || mtmp->data == &mons[PM_NUTCRUNCHER_BITCH] || mtmp->data == &mons[PM_HUMAN_WEREUNFAIRSTILETTO]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == UNFAIR_STILETTOS) || (footwear && footwear->otyp == FEMININE_STILETTOS) || (footwear && itemhasappearance(footwear, APP_FAILED_SHOES)) || (footwear && itemhasappearance(footwear, APP_BAYONET_HEELS)) || (randomsexyheels == 4) || mtmp->data == &mons[PM_ANIMATED_UNFAIR_STILETTO] || mtmp->data == &mons[PM_WEREUNFAIRSTILETTO] || mtmp->data == &mons[PM_BERBAL] || mtmp->data == &mons[PM_KITTEN_HEEL_SLINGBACK] || mtmp->data == &mons[PM_NUTCRUNCHER_BITCH] || mtmp->data == &mons[PM_HUMAN_WEREUNFAIRSTILETTO]) ) {
 elena3:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();

@@ -431,6 +431,7 @@ register struct monst *mtmp;
 	    case PM_GREEN_DRAGON:
 	    case PM_GOLDEN_DRAGON:
 	    case PM_FEMINISM_DRAGON:
+	    case PM_MAIDRAGON:
 	    case PM_CANCEL_DRAGON:
 	    case PM_NEGATIVE_DRAGON:
 	    case PM_CORONA_DRAGON:
@@ -483,6 +484,7 @@ register struct monst *mtmp;
 	    case PM_GREEN_DRAGOM:
 	    case PM_GOLDEN_DRAGOM:
 	    case PM_FEMINISM_DRAGOM:
+	    case PM_MAIDRAGOM:
 	    case PM_CANCEL_DRAGOM:
 	    case PM_NEGATIVE_DRAGOM:
 	    case PM_CORONA_DRAGOM:

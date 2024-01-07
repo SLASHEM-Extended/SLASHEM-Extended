@@ -459,6 +459,9 @@ giveback:
 	    case RIN_SHOCK_RESISTANCE:
 		pline("Static electricity surrounds the sink.");
 		break;
+	    case RIN_FEMINISM:
+		pline_The("sink suddenly emits the rosy scent of perfume!");
+		break;
 	    case RIN_CONFLICT:
 		You_hear("loud noises coming from the drain.");
 		break;
@@ -1029,6 +1032,10 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_LEECH:
 		pline_The("toilet seems to be drawing energy from the surroundings.");
+		break;
+	case AMULET_OF_FEMINISM:
+		pline_The("toilet seems to be made for women only!");
+		if (!flags.female) pline("Better clear out before some angry lady attacks you for being on the wrong toilet...");
 		break;
 	case AMULET_OF_DANGER:
 		You("suddenly develop a fear of toilets!");

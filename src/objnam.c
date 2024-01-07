@@ -4409,6 +4409,17 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ NOPE_DRAGON_SCALE_SHIELD, "todo" },
 	{ CRYSTALLINE_DRAGON_SCALE_SHIEL, "todo" },
 
+	{ MAIDRAGON_SCALE_MAIL, "todo" },
+	{ MAIDRAGON_SCALES, "todo" },
+	{ MAIDRAGON_SCALE_SHIELD, "todo" },
+	{ ROBE_OF_FEMINISM, "todo" },
+	{ FEMINISM_CLOAK, "todo" },
+	{ FEMINISM_HELMET, "todo" },
+	{ FEMALE_GLOVES, "todo" },
+	{ FEMININE_STILETTOS, "todo" },
+	{ RIN_FEMINISM, "todo" },
+	{ AMULET_OF_FEMINISM, "todo" },
+
 	{0, "" }
 };
 
@@ -7969,6 +7980,16 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CRYSTALLINE_DRAGON_SCALES, "todo" },
 	{ NOPE_DRAGON_SCALE_SHIELD, "todo" },
 	{ CRYSTALLINE_DRAGON_SCALE_SHIEL, "todo" },
+	{ MAIDRAGON_SCALE_MAIL, "todo" },
+	{ MAIDRAGON_SCALES, "todo" },
+	{ MAIDRAGON_SCALE_SHIELD, "todo" },
+	{ ROBE_OF_FEMINISM, "todo" },
+	{ FEMINISM_CLOAK, "todo" },
+	{ FEMINISM_HELMET, "todo" },
+	{ FEMALE_GLOVES, "todo" },
+	{ FEMININE_STILETTOS, "todo" },
+	{ RIN_FEMINISM, "todo" },
+	{ AMULET_OF_FEMINISM, "todo" },
 
 	{0, "" }
 };

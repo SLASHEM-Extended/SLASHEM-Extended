@@ -13835,6 +13835,8 @@ boolean knoweverything;
 				pline("This is a bad armor. You might think that its great AC and 2 points of magic cancellation are useful, however you'll not be able to carry much at all while wearing it."); break;
 			case ROBE_OF_DESTINY:
 				pline("This robe makes it so that monsters will always spawn with a level that is at least the current monster difficulty. It gives 5 points of armor class and no magic cancellation."); break;
+			case ROBE_OF_FEMINISM:
+				pline("A robe with good AC and 2 points of MC, but it also causes %s.", enchname(objects[ROBE_OF_FEMINISM].oc_oprop)); break;
 			case ROBE_OF_STASIS:
 				pline("A robe that prevents you from polymorphing."); break;
 			case ROBE_OF_PUGILISM:
@@ -13911,41 +13913,43 @@ boolean knoweverything;
 				pline("This armor offers great protection as well as %s.", enchname(objects[DIAMOND_DRAGON_SCALE_MAIL].oc_oprop) ); break;
 			case EMERALD_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as %s.", enchname(objects[EMERALD_DRAGON_SCALE_MAIL].oc_oprop) ); break;
-			case SAPPHIRE_DRAGON_SCALE_MAIL: 
+			case SAPPHIRE_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as %s.", enchname(objects[SAPPHIRE_DRAGON_SCALE_MAIL].oc_oprop) ); break;
-			case RUBY_DRAGON_SCALE_MAIL: 
+			case RUBY_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as %s.", enchname(objects[RUBY_DRAGON_SCALE_MAIL].oc_oprop) ); break;
-			case GREEN_DRAGON_SCALE_MAIL: 
+			case GREEN_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as poison resistance."); break;
-			case GOLDEN_DRAGON_SCALE_MAIL: 
+			case GOLDEN_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as sickness resistance."); break;
-			case FEMINISM_DRAGON_SCALE_MAIL: 
+			case FEMINISM_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as scent view."); break;
-			case CANCEL_DRAGON_SCALE_MAIL: 
+			case MAIDRAGON_SCALE_MAIL:
+				pline("This armor offers great protection as well as %s.", enchname(objects[MAIDRAGON_SCALE_MAIL].oc_oprop)); break;
+			case CANCEL_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as 5 points of magic cancellation."); break;
-			case NEGATIVE_DRAGON_SCALE_MAIL: 
+			case NEGATIVE_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as death resistance."); break;
-			case CORONA_DRAGON_SCALE_MAIL: 
+			case CORONA_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as sustain ability."); break;
-			case CONTRO_DRAGON_SCALE_MAIL: 
+			case CONTRO_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as control magic."); break;
-			case NOPE_DRAGON_SCALE_MAIL: 
+			case NOPE_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as improving your MC by 2."); break;
-			case CRYSTALLINE_DRAGON_SCALE_MAIL: 
+			case CRYSTALLINE_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as boosting all your stats by one."); break;
-			case MYSTERY_DRAGON_SCALE_MAIL: 
+			case MYSTERY_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as mystery resistance."); break;
-			case HEROIC_DRAGON_SCALE_MAIL: 
+			case HEROIC_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as diminished bleeding."); break;
-			case STONE_DRAGON_SCALE_MAIL: 
+			case STONE_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as petrification resistance."); break;
-			case CYAN_DRAGON_SCALE_MAIL: 
+			case CYAN_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as fear resistance."); break;
-			case PSYCHIC_DRAGON_SCALE_MAIL: 
+			case PSYCHIC_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as ESP."); break;
-			case YELLOW_DRAGON_SCALE_MAIL: 
+			case YELLOW_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as acid resistance."); break;
-			case RAINBOW_DRAGON_SCALE_MAIL: 
+			case RAINBOW_DRAGON_SCALE_MAIL:
 				pline("This armor offers great protection as well as resistance to spell damage."); break;
 			case BLOOD_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as resistance to normal damage."); break;
@@ -14001,6 +14005,8 @@ boolean knoweverything;
 				pline("This armor offers moderate protection as well as sickness resistance."); break;
 			case FEMINISM_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as scent view."); break;
+			case MAIDRAGON_SCALES:
+				pline("This armor offers moderate protection as well as %s.", enchname(objects[MAIDRAGON_SCALES].oc_oprop)); break;
 			case CANCEL_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as 5 points of magic cancellation."); break;
 			case NEGATIVE_DRAGON_SCALES: 
@@ -14127,6 +14133,14 @@ boolean knoweverything;
 				pline("Increases your carry capacity by 500 units when worn, and has 3 points of magic cancellation."); break;
 			case CLOAK_OF_THEFT_PREVENTION:
 				pline("This cloak grants 3 points of magic cancellation and makes it so that monsters who try to steal your gold or items will fail sometimes."); break;
+			case FEMINISM_CLOAK:
+				pline("Above-average amounts of AC and 3 points of magic cancellation, but this cloak causes %s when equipped.", enchname(objects[FEMINISM_CLOAK].oc_oprop)); break;
+			case FEMINISM_HELMET:
+				pline("While this helmet has good AC and medium magic cancellation, it's cursed with a feminism effect, specifically %s.", enchname(objects[FEMINISM_HELMET].oc_oprop)); break;
+			case FEMALE_GLOVES:
+				pline("These gauntlets have good stats, including 2 points of magic cancellation and a minor bonus to the accuracy of bows. However, the downside is they're also carrying %s.", enchname(objects[FEMALE_GLOVES].oc_oprop)); break;
+			case FEMININE_STILETTOS:
+				pline("High-heeled stiletto boots with good armor class and medium magic cancellation, but the downside is that wearing them gives you %s.", enchname(objects[FEMININE_STILETTOS].oc_oprop)); break;
 			case SPIRIT_CLOTH:
 				pline("Boosts your speed on top of any other speed boosts that you may have, and grants 3 points of magic cancellation."); break;
 			case WAND_QUIVER_CLOAK:
@@ -15131,6 +15145,8 @@ boolean knoweverything;
 				pline("A shield made from dragon hide that provides sickness resistance as well as protection."); break;
 			case FEMINISM_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides scent view as well as protection."); break;
+			case MAIDRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides %s as well as protection.", enchname(objects[MAIDRAGON_SCALE_SHIELD].oc_oprop)); break;
 			case CANCEL_DRAGON_SCALE_SHIELD: 
 				pline("A shield made from dragon hide that provides 5 points of magic cancellation as well as protection."); break;
 			case NEGATIVE_DRAGON_SCALE_SHIELD: 
@@ -16075,6 +16091,8 @@ boolean knoweverything;
 				pline("Wearing this ring gives you the 'fast' property that increases your speed."); break;
 			case RIN_RUIN:
 				pline("While wearing this ring, you have a very small chance of launching psionic missiles when you attack in melee."); break;
+			case RIN_FEMINISM:
+				pline("Autocursing ring that afflicts you with %s.", enchname(objects[RIN_FEMINISM].oc_oprop)); break;
 			case RIN_ALIGNMENT:
 				pline("This ring has an enchantment value. The higher it is, the more likely your maximum alignment will go up over time. If it's negatively enchanted, your maximum alignment can also go down over time."); break;
 			case RIN__G:
@@ -16933,6 +16951,8 @@ boolean knoweverything;
 				pline("If you wear this amulet, you only have 10 turns to live before it kills you. It is usually generated cursed."); break;
 			case AMULET_OF_PREMATURE_DEATH:
 				pline("Wanna die? Wear this! :-P"); break;
+			case AMULET_OF_FEMINISM:
+				pline("This amulet curses itself when equipped and also subjects you to %s.", enchname(objects[AMULET_OF_FEMINISM].oc_oprop)); break;
 			case AMULET_OF_TIME:
 				pline("Putting this amulet on will tell you the current time, and it provides +5 charisma due to its bling value."); break;
 			case AMULET_OF_NAUSEA:
@@ -18866,7 +18886,7 @@ boolean knoweverything;
 			case SPE_LOCK_MANIPULATION:
 				pline("Cast this spell at doors and chests to manipulate their 'locked' status. You may occasionally get container trap effects though."); break;
 			case SPE_POLYFORM:
-				pline("A completely random polymorph will affect you if you cast this. It can occasionally backfire, and often the duration of this polymorph is not very long."); break;
+				pline("A completely random polymorph will affect you if you cast this. It can occasionally backfire, and often the duration of this polymorph is not very long. Don't try to prolong the duration of these polymorphs via the amulet of unchanging, because that won't work."); break;
 			case SPE_MESSAGE:
 				pline("Displays a random message when cast."); break;
 			case SPE_RUMOR:

@@ -178,6 +178,13 @@ Boots_on()
 	case COMBAT_WEDGES:
 		break;
 
+	case FEMININE_STILETTOS:
+		if (!uarmf->cursed) {
+			curse(uarmf);
+			pline("Oh whoops, your boots weld themselves to your %s. This might be the result of a curse.%s", makeplural(body_part(FOOT)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		}
+		break;
+
 	case BORING_BLOCK_HEELS:
 	case SEVEN_LEAGUE_BOOTS:
 	case PRINCESSEN_SHOES:
@@ -1200,6 +1207,7 @@ Boots_off()
 	case JASIEEN_WEDGE_SANDALS:
 	case YASAMAN_LEATHER_BOOTS:
 	case MAY_BRITT_SANDALS:
+	case FEMININE_STILETTOS:
 		break;
 	case HIPPIE_HEELS:
 
@@ -1682,6 +1690,12 @@ Cloak_on()
 		break;
 	case CLOAK_OF_ESCALATION:
 		u.chokhmahdamage += rnd(5);
+		break;
+	case FEMINISM_CLOAK:
+		if (!uarmc->cursed) {
+			curse(uarmc);
+			pline("Oh whoops, your cloak welds itself to your body. This might be the result of a curse.%s", FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		}
 		break;
 	case CLOAK_OF_MAGICAL_DRAINAGE:
 		drain_en(rnd(u.ulevel) + 1 + rnd(monster_difficulty() + 1));
@@ -2166,6 +2180,7 @@ Cloak_off()
 	case CLOAK_OF_NONFOLLOWING:
 	case SPELL_RETAIN_CLOAK:
 	case CLOAK_OF_FAST_DECAY:
+	case FEMINISM_CLOAK:
 
 	case WHITE_SPELL_CLOAK:
 	case GREYOUT_CLOAK:
@@ -2355,6 +2370,13 @@ Helmet_on()
 	case FAIRY_HAT:
 	case GANGSTER_CAP:
 	case LUCKY_MUSHROOM:
+		break;
+
+	case FEMINISM_HELMET:
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Oh whoops, your helmet welds itself to your %s. This might be the result of a curse.%s", body_part(HEAD), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		}
 		break;
 
 	case BOBBLE_HAT:
@@ -2896,6 +2918,7 @@ Helmet_off()
 	case HELM_OF_BAD_ALIGNMENT:
 	case SOUNDPROOF_HELMET:
 	case OUT_OF_MEMORY_HELMET:
+	case FEMINISM_HELMET:
 	case DUMMY_HELMET_A:
 	case DUMMY_HELMET_B:
 	case DUMMY_HELMET_C:
@@ -3063,6 +3086,14 @@ Gloves_on()
 	case GAUNTLETS_OF_PHYSICAL_SUSTENAN:
 	case GAUNTLETS_OF_FISTFIGHTING:
 		break;
+
+	case FEMALE_GLOVES:
+		if (!uarmg->cursed) {
+			curse(uarmg);
+			pline("Oh whoops, your gloves weld themselves to your %s. This might be the result of a curse.%s", makeplural(body_part(HAND)), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		}
+		break;
+
 	case OILSKIN_GLOVES:
 		if (!uarmg->cursed) {
 		    if (Blind)
@@ -3466,6 +3497,7 @@ Gloves_off()
 	case GAUNTLETS_OF_REVERSE_ENCHANTME:
 	case FUCKUP_MELEE_GAUNTLETS:
 	case UNDETECTION_GLOVES:
+	case FEMALE_GLOVES:
 
 	case ORANGE_SPELL_GLOVES:
 	case MOJIBAKE_GLOVES:
@@ -3715,6 +3747,7 @@ Shield_on()
 	case GREEN_DRAGON_SCALE_SHIELD:
 	case GOLDEN_DRAGON_SCALE_SHIELD:
 	case FEMINISM_DRAGON_SCALE_SHIELD:
+	case MAIDRAGON_SCALE_SHIELD:
 	case CANCEL_DRAGON_SCALE_SHIELD:
 	case NEGATIVE_DRAGON_SCALE_SHIELD:
 	case CORONA_DRAGON_SCALE_SHIELD:
@@ -3743,6 +3776,10 @@ Shield_on()
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarms && objects[uarms->otyp].oc_color == CLR_RED && uarms->spe < 0) uarms->spe++;
 
 	if (uarms && uarms->otyp == EVIL_DRAGON_SCALE_SHIELD) curse(uarms);
+	if (uarms && uarms->otyp == MAIDRAGON_SCALE_SHIELD && !uarms->cursed) {
+		pline("Oh whoops, your shield welds itself to your %s. This might be the result of a curse.%s", body_part(HAND), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		curse(uarms);
+	}
 	if (uarms && uarms->otyp == DIFFICULT_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == TEZ_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == SPI_IMAGE_MOOSE_SHIELD) curse(uarms);
@@ -3974,6 +4011,7 @@ Shield_off()
 	case GREEN_DRAGON_SCALE_SHIELD:
 	case GOLDEN_DRAGON_SCALE_SHIELD:
 	case FEMINISM_DRAGON_SCALE_SHIELD:
+	case MAIDRAGON_SCALE_SHIELD:
 	case CANCEL_DRAGON_SCALE_SHIELD:
 	case NEGATIVE_DRAGON_SCALE_SHIELD:
 	case CORONA_DRAGON_SCALE_SHIELD:
@@ -4196,6 +4234,18 @@ Armor_on()
 	}
 	if (uarm && uarm->otyp == EVIL_DRAGON_SCALE_MAIL) {
 		if (!uarm->cursed) curse(uarm);
+	}
+	if (uarm && uarm->otyp == ROBE_OF_FEMINISM && !uarm->cursed) {
+		pline("Oh whoops, your suit welds itself to your body. This might be the result of a curse.%s", FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		curse(uarm);
+	}
+	if (uarm && uarm->otyp == MAIDRAGON_SCALE_MAIL && !uarm->cursed) {
+		pline("Oh whoops, your suit welds itself to your body. This might be the result of a curse.%s", FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		curse(uarm);
+	}
+	if (uarm && uarm->otyp == MAIDRAGON_SCALES && !uarm->cursed) {
+		pline("Oh whoops, your suit welds itself to your body. This might be the result of a curse.%s", FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		curse(uarm);
 	}
 	if (uarm && uarm->otyp == EVIL_DRAGON_SCALES) {
 		if (!uarm->cursed) curse(uarm);
@@ -4622,6 +4672,13 @@ Amulet_on()
 	case AMULET_OF_FUCKING:
 		You_feel("being fucked over.");
 		makeknown(AMULET_OF_FUCKING);
+		break;
+
+	case AMULET_OF_FEMINISM:
+		if (!uamul->cursed) {
+			curse(uamul);
+			pline("Oh whoops, your amulet welds itself to your %s. This might be the result of a curse.%s", body_part(NECK), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		}
 		break;
 
 	case AMULET_OF_TIME:
@@ -5327,6 +5384,13 @@ register struct obj *obj;
 		break;
 	case RIN_INCREASE_ACCURACY:	/* KMH - edited by Amy, moved to a function in weapon.c */
 		break;
+	case RIN_FEMINISM:
+		if (!obj->cursed) {
+			curse(obj);
+			pline("Oh whoops, your ring welds itself to your %s. This might be the result of a curse.%s", body_part(FINGER), FunnyHallu ? " (Thank you, Captain Obvious.)" : "" );
+		}
+		break;
+
 	case RIN_INCREASE_DAMAGE:
 		break;
 	case RIN_HEAVY_ATTACK:

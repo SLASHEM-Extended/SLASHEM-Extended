@@ -3276,6 +3276,7 @@ evasionchancedone:
 		break;
 	    case GAUNTLETS_OF_FREE_ACTION:
 	    case ELVEN_GAUNTLETS:
+	    case FEMALE_GLOVES:
 		tmp += 1;
 		break;
 	    case GAUNTLETS_OF_TRUE_AIM:

@@ -659,6 +659,17 @@ register char oclass;
 	objects[EVIL_GLOVES].oc_oprop = randnastyenchantment();
 	objects[UNFAIR_STILETTOS].oc_oprop = randnastyenchantment();
 
+	objects[MAIDRAGON_SCALE_MAIL].oc_oprop = randfemienchantment();
+	objects[MAIDRAGON_SCALES].oc_oprop = randfemienchantment();
+	objects[MAIDRAGON_SCALE_SHIELD].oc_oprop = randfemienchantment();
+	objects[ROBE_OF_FEMINISM].oc_oprop = randfemienchantment();
+	objects[FEMINISM_CLOAK].oc_oprop = randfemienchantment();
+	objects[FEMINISM_HELMET].oc_oprop = randfemienchantment();
+	objects[FEMALE_GLOVES].oc_oprop = randfemienchantment();
+	objects[FEMININE_STILETTOS].oc_oprop = randfemienchantment();
+	objects[RIN_FEMINISM].oc_oprop = randfemienchantment();
+	objects[AMULET_OF_FEMINISM].oc_oprop = randfemienchantment();
+
 	objects[MAGICAL_SHIELD].oc_oprop = randenchantment();
 	objects[EVIL_DRAGON_SCALE_MAIL].oc_oprop = randnastyenchantment();
 	objects[EVIL_DRAGON_SCALES].oc_oprop = randnastyenchantment();
