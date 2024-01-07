@@ -1,6 +1,21 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.8.9 - December 2023
+- The dumplog also displays the elapsed realtime since the start of the game now.
+- Tried to add more hints for new players to guide them to the option that turns the number pad on. Hopefully seasoned players will also read the part where it tells them how to turn those messages off.
+- Fixed several vanilla and SLASH'EM bugs where timed items (e.g. oil lamps or potions of oil) weren't getting their age variable set correctly.
+- The new high heel type skills can now also be trained by kicking an enemy with the appropriate type of footwear.
+- Monsters will now only empty containers on the ground if the player is playing evilvariant mode.
+- When being completely overloaded, the player now has the ability to attempt a cheater prayer (but can also still use a regular prayer).
+- The game now counts how many times the player escapes past messages, and displays them in the conduct screen.
+- Artifacts that invoke for blackjack don't require zorkmids to play now.
+- Hopefully fixed the issue where dead monsters could sometimes still pick up items and swallow them (because the monster was no longer there, so there was no way to kill it and make it drop the items).
+- Fixed some issues where functions that were supposed to run in the Gehennom subdungeon specifically, were also running in other subdungeons flagged as "hellish".
+
 2.8.8 - December 2023
+- Purposefully mimicking something via the #monster command costs mana now and can train the squeaking skill.
+- If you're mimicking something as a result of having eaten a mimic, and you get hurt, you immediately stop mimicking now.
+- Fixed errors where weapons that are supposed to be capable of hurting shades didn't always do so.
 - Base Pw costs of spells are displayed in the spell menu now.
 - Added capoeira as a hidden martial arts style.
 - Fixed an age-old issue where the wand of remove resistance would typically try to remove several intrinsics from the player with a single zap.
