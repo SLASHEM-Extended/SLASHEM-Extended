@@ -2131,7 +2131,7 @@ playerextrinsicspeed()
 	if ((Role_if(PM_TRANSVESTITE) && PlayerInHighHeels) || (Role_if(PM_TOPMODEL) && PlayerInHighHeels) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_MAREYOUNGWOMAN_ACTION && (is_pool(u.ux, u.uy) || (levl[u.ux][u.uy].typ == FOUNTAIN)) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) || (uarm && uarm->oartifact == ART_AGILITATE) ) return TRUE;
 
 	return FALSE;
 }
@@ -8700,6 +8700,10 @@ nivellate()
 			upperceiling *= 6;
 			upperceiling /= 5;
 		}
+		if (uarmf && uarmf->oartifact == ART_MASK_OFF) {
+			upperceiling *= 2;
+			lowerceiling *= 2;
+		}
 		if (uarm && uarm->oartifact == ART_CERNY_) {
 			lowerceiling *= 3;
 			lowerceiling /= 2;
@@ -8892,6 +8896,10 @@ nivellate()
 			lowerceiling /= 2;
 			upperceiling *= 3;
 			upperceiling /= 2;
+		}
+		if (uarmf && uarmf->oartifact == ART_MASK_OFF) {
+			upperceiling *= 2;
+			lowerceiling *= 2;
 		}
 		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
 			lowerceiling *= 6;
@@ -9113,6 +9121,9 @@ boolean guaranteed;
 			ceiling *= 9;
 			ceiling /= 10;
 		}
+		if (uarmf && uarmf->oartifact == ART_MASK_OFF) {
+			ceiling *= 2;
+		}
 		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
 			ceiling *= 6;
 			ceiling /= 5;
@@ -9268,6 +9279,9 @@ boolean guaranteed;
 		if (Race_if(PM_WISP)) {
 			ceiling *= 4;
 			ceiling /= 3;
+		}
+		if (uarmf && uarmf->oartifact == ART_MASK_OFF) {
+			ceiling *= 2;
 		}
 		if (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) {
 			ceiling *= 6;

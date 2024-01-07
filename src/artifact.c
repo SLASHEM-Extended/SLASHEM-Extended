@@ -1125,6 +1125,23 @@ init_appearance_randarts()
 	artilist[ART_SMILE_Z].otyp = find_missys();
 	artilist[ART_SECRET_RAINBOW].otyp = find_missys();
 	artilist[ART_YELLY].otyp = find_missys();
+	artilist[ART_DEATHHEAD].otyp = find_missys();
+	artilist[ART_MASK_OFF].otyp = find_missys();
+	artilist[ART_SPARKLING_GOLD].otyp = find_missys();
+	artilist[ART_PURPLE_SANDSTORM].otyp = find_missys();
+	artilist[ART_SQUARE_ZONE].otyp = find_missys();
+	artilist[ART_CUTE_JEANS].otyp = find_missys();
+	artilist[ART_LOVELY_CORNFLOWER].otyp = find_missys();
+	artilist[ART_GHETTO_ROCKZ].otyp = find_missys();
+	artilist[ART_LAST_UNICORN].otyp = find_missys();
+	artilist[ART_JUNGLE_LOVE].otyp = find_missys();
+	artilist[ART_FRESH_PINK].otyp = find_missys();
+	artilist[ART_BLUE_BLOSSOM].otyp = find_missys();
+	artilist[ART_SIXX_PAXX].otyp = find_missys();
+	artilist[ART_NEXT_LEVEL].otyp = find_missys();
+	artilist[ART_PATCHWORK].otyp = find_missys();
+	artilist[ART_MAGIC_BUTTERFLY].otyp = find_missys();
+	artilist[ART_TOXIC_PINK].otyp = find_missys();
 	artilist[ART_SPACE_SHUTTLE].otyp = find_missys();
 	artilist[ART_ART_ROCKZ].otyp = find_missys();
 	artilist[ART_COVER_UP].otyp = find_missys();
@@ -3873,7 +3890,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));

@@ -245,7 +245,7 @@ on the first floor, especially when you're playing as something with drain resis
 kseniaagain:
 
 			pline("%s kicks you%c", Monnam(mtmp),
-				    thick_skinned(youmonst.data) ? '.' : (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) ? '.' : (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) ? '.' : (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) ? '.' : Race_if(PM_DUTHOL) ? '.' : (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ? '.'  : (uarms && uarms->oartifact == ART_FETTIS_SLOT) ? '.' : (FemtrapActivePatricia) ? '.' : '!');
+				    thick_skinned(youmonst.data) ? '.' : YouBecameThickSkinned ? '.' : '!');
 
 			if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveJeanetta) {
 				pline("%s uses her cute little boots to scrape a bit of skin off your %s!", Monnam(mtmp), body_part(LEG));
@@ -2687,7 +2687,7 @@ mattacku(mtmp)
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
 				    if ( (mattk->aatyp != AT_KICK || !rn2(5)) ||
-					    (!thick_skinned(youmonst.data) && !(FemtrapActivePatricia) && !(uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) && !Race_if(PM_DUTHOL) && !(uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) && !(uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) && !(uarms && uarms->oartifact == ART_FETTIS_SLOT) && !(uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) ) )
+					    (!thick_skinned(youmonst.data) && !YouBecameThickSkinned) )
 					sum[i] = hitmu(mtmp, mattk);
 				} else
 				    missmu(mtmp, tmp, j, mattk);
@@ -6922,6 +6922,7 @@ struct monst *mon;
 		if (uarmc && uarmc->oartifact == ART_RESISTANT_PUNCHING_BAG) armpro++;
 		if (uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
 		if (uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) armpro++;
+		if (uamul && uamul->oartifact == ART_GIT_DE_PRO) armpro++;
 		if (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) armpro += 2;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;

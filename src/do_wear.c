@@ -7160,6 +7160,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
+	if (uamul && uamul->oartifact == ART_GIT_DE_PRO) uac -= 2;
 	if (uarm && uarm->oartifact == ART_THIS_DEMO_IS_UNINSPIRED) uac -= 5;
 	if (uarm && uarm->oartifact == ART_JACK_IT_JACKET) uac -= objects[uarm->otyp].a_ac;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) uac -= 10;

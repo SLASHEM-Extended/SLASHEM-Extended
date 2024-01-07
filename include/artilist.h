@@ -18366,6 +18366,106 @@ A("Heracles Prize",				NEMEAN_LION_HIDE, /* by potato44, 5 extra points of AC, c
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("Don't Take No Shit",				MAIDRAGON_SCALES,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Agilitate",				ROBE_OF_FEMINISM, /* very fast speed, +7 DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Fluffy Padding",				FEMINISM_CLOAK,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rainbow Cap",				FEMINISM_HELMET,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Soft To The Touch",				FEMALE_GLOVES, /* +5 increase accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nutimpale",				FEMININE_STILETTOS,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DFLAG2|SPFX_ATTK), 0, (M2_MALE),
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Get Engaged",				RIN_FEMINISM, /* if you're female, M2_MALE have 20% chance of spawning peaceful, otherwise M2_FEMALE do */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Git De Pro",				AMULET_OF_FEMINISM, /* boosts AC by 2 and MC by 1 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Deathhead",				LOW_BOOTS, /* initialized to always be missys, life saving (and are used up if they do save you) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Mask Off",				LOW_BOOTS, /* initialized to always be missys, doubles corona limits */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Sparkling Gold",				LOW_BOOTS, /* initialized to always be missys, doubles randomly spawned gold */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Purple Sandstorm",				LOW_BOOTS, /* initialized to always be missys, confusion resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Square Zone",				LOW_BOOTS, /* initialized to always be missys, echolocation */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Cute Jeans",				LOW_BOOTS, /* initialized to always be missys, pain sense */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Lovely Cornflower",				LOW_BOOTS, /* initialized to always be missys, magic find */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Ghetto Rockz",				LOW_BOOTS, /* initialized to always be missys, defusing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Last Unicorn",				LOW_BOOTS, /* initialized to always be missys */
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Jungle Love",				LOW_BOOTS, /* initialized to always be missys, diminished bleeding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Fresh Pink",				LOW_BOOTS, /* initialized to always be missys, spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Blue Blossom",				LOW_BOOTS, /* initialized to always be missys, control magic */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Sixx Paxx",				LOW_BOOTS, /* initialized to always be missys, makes you thick-skinned */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Next Level",				LOW_BOOTS, /* initialized to always be missys, exp boost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Patchwork",				LOW_BOOTS, /* initialized to always be missys, technicality */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Magic Butterfly",				LOW_BOOTS, /* initialized to always be missys, mystery resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
+A("Toxic Pink",				LOW_BOOTS, /* initialized to always be missys, poisons enemies with a kick */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

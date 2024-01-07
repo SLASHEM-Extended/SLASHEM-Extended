@@ -30366,6 +30366,56 @@ boolean knoweverything;
 					pline("Artifact specs: while worn, this shield is always at least burnt. It boosts your multishot with slings and greatly reduces the odds that your sling ammo mulches upon hitting an enemy."); break;
 				case ART_HERACLES_PRIZE:
 					pline("Artifact specs: boosts your AC by 5 points when worn and can be invoked for a few turns of invulnerability. This artifact was created by potato44."); break;
+				case ART_DON_T_TAKE_NO_SHIT:
+					pline("Artifact specs: magic resistance and half physical damage when worn."); break;
+				case ART_AGILITATE:
+					pline("Artifact specs: very fast speed and +7 dexterity when worn."); break;
+				case ART_FLUFFY_PADDING:
+					pline("Artifact specs: half physical damage when worn."); break;
+				case ART_RAINBOW_CAP:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_SOFT_TO_THE_TOUCH:
+					pline("Artifact specs: +5 increase accuracy when worn."); break;
+				case ART_NUTIMPALE:
+					pline("Artifact specs: kicking an always-male monster with them deals +20 damage."); break;
+				case ART_GET_ENGAGED:
+					pline("Artifact specs: monsters of the opposite gender of your character are more likely to spawn peaceful while wearing it."); break;
+				case ART_GIT_DE_PRO:
+					pline("Artifact specs: boosts your AC by 2 and your MC by 1 when worn."); break;
+				case ART_DEATHHEAD:
+					pline("Artifact specs: life saving when worn. If they do save your life, they're used up."); break;
+				case ART_MASK_OFF:
+					pline("Artifact specs: doubles your limits for corona when worn, i.e. you become less susceptible to covid-19."); break;
+				case ART_SPARKLING_GOLD:
+					pline("Artifact specs: while wearing them, randomly spawned piles of gold have more gold in them on average."); break;
+				case ART_PURPLE_SANDSTORM:
+					pline("Artifact specs: confusion resistance when worn."); break;
+				case ART_SQUARE_ZONE:
+					pline("Artifact specs: echolocation when worn."); break;
+				case ART_CUTE_JEANS:
+					pline("Artifact specs: pain sense when worn."); break;
+				case ART_LOVELY_CORNFLOWER:
+					pline("Artifact specs: magic find when worn."); break;
+				case ART_GHETTO_ROCKZ:
+					pline("Artifact specs: defusing when worn."); break;
+				case ART_LAST_UNICORN:
+					pline("Artifact specs: acts as a luckstone when worn."); break;
+				case ART_JUNGLE_LOVE:
+					pline("Artifact specs: diminished bleeding when worn."); break;
+				case ART_FRESH_PINK:
+					pline("Artifact specs: spellboost when worn."); break;
+				case ART_BLUE_BLOSSOM:
+					pline("Artifact specs: control magic when worn."); break;
+				case ART_SIXX_PAXX:
+					pline("Artifact specs: makes you thick-skinned when worn."); break;
+				case ART_NEXT_LEVEL:
+					pline("Artifact specs: EXP boost when worn."); break;
+				case ART_PATCHWORK:
+					pline("Artifact specs: technicality when worn."); break;
+				case ART_MAGIC_BUTTERFLY:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_TOXIC_PINK:
+					pline("Artifact specs: kicking an enemy with them will deal poison damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

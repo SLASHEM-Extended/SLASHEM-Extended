@@ -813,6 +813,7 @@ struct obj *box;
 			}
 			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
 			if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) otmp->quan *= 3;
+			if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) otmp->quan *= 2;
 			if (uleft && uleft->oartifact == ART_WELLTRAVEL) {
 				otmp->quan *= 3; otmp->quan /= 2;
 			}
@@ -850,6 +851,7 @@ struct obj *box;
 
 			if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) otmp->quan *= 2;
 			if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) otmp->quan *= 3;
+			if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) otmp->quan *= 2;
 
 		    otmp->owt = weight(otmp);
 
@@ -4649,6 +4651,7 @@ int x, y;
 
 	if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) amount *= 2;
 	if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) amount *= 3;
+	if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) amount *= 2;
 
 	if (RngeWealth) amount *= (1 + rnd(2)); /* 2.5 times as much gold on average --Amy */
 	if (uarmf && uarmf->oartifact == ART_PRACTICLASSY) amount *= 2;

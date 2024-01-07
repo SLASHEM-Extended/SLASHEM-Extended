@@ -3651,6 +3651,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_AMATEURSPORTS) tmp += 3;
 		if (uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX) tmp += 3;
 		if (u.boosttimer) tmp += 10;
+		if (uarm && uarm->oartifact == ART_AGILITATE) tmp += 7;
 		if (uwep && uwep->oartifact == ART_ISSEGADA_KEN) tmp += 3;
 		if (uamul && uamul->otyp == AMULET_OF_PHYSICAL_BOOST) tmp += 3;
 		if (uarm && uarm->oartifact == ART_GREYSHADE) tmp += 5;

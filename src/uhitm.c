@@ -928,6 +928,7 @@ register struct monst *mtmp;
 	if (uimplant && uimplant->oartifact == ART_I_M_GONNA_CRUSH_YA_) tmp += 4;
 	if (bmwride(ART_ZIN_BA)) tmp += 4;
 	if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
+	if (uarmg && uarmg->oartifact == ART_SOFT_TO_THE_TOUCH) tmp += 5;
 	if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
 	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) tmp += 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;

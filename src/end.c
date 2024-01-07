@@ -1623,6 +1623,39 @@ tillmanndone:
 	}
 postmandone:
 
+	if ((uarmf && uarmf->oartifact == ART_DEATHHEAD) && how <= GENOCIDED) {
+		pline("But wait...");
+		Your("pair of boots %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+		pline_The("boots crumble to dust!");
+		useup(uarmf);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto deathheaddone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+deathheaddone:
+
 	if ((uarmf && uarmf->oartifact == ART_PLAY_THE_GAME_YOURSELF) && how <= GENOCIDED) {
 		pline("But wait...");
 		Your("pair of boots %s!", !Blind ? "begins to glow" : "feels warm");

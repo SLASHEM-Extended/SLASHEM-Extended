@@ -2750,6 +2750,7 @@ boolean polearming;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (u.boosttimer) tmp += 5;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
+	if (uarmg && uarmg->oartifact == ART_SOFT_TO_THE_TOUCH) tmp += 5;
 	if (uwep && uwep->oartifact == ART_JUSTICE_FOR_GARLIC) tmp += 5;
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
