@@ -19362,6 +19362,12 @@ loveheelover:
 			  if ((find_strip_bandana()) != -1) (void)mongets(mtmp, find_strip_bandana());
 		}
 
+		if (ptr == &mons[PM_NEXT_LEVEL]) {
+			u.mongetshack = 100;
+			(void) mongets(mtmp, WAN_GAIN_LEVEL);
+			u.mongetshack = 0;
+		}
+
 		if (ptr == &mons[PM_BRAZEN_GANG_HUSSY]) {
 			  if ((find_hugging_boots()) != -1) (void)mongets(mtmp, find_hugging_boots());
 			(void) mongets(mtmp, QUATTUORST_AXE);

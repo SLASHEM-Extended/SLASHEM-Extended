@@ -642,6 +642,7 @@ register struct monst *mtmp;
 		goto default_1;
 	    case PM_TITAN_UNICORN:
 	    case PM_ALLA_UNICORN:
+	    case PM_LAST_UNICORN:
 		if (mtmp->mrevived && rn2(20)) {
 			if (canseemon(mtmp))
 			   pline("%s recently regrown horn crumbles to dust.",
