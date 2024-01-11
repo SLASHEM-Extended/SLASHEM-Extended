@@ -852,7 +852,7 @@ register struct monst *mtmp;
 	/* and unlike a normal mon_nam, use "saddled" even if it has a name */
 	strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
 	    (SUPPRESS_IT|SUPPRESS_INVISIBLE), FALSE));
-	sprintf(eos(monnambuf), " (%s)", Hallucination ? "sparkly dood" : mtmp->data->mname);
+	sprintf(eos(monnambuf), " (%s)", Hallucination ? "sparkly dood" : sanityrandomname() ? rndmonnam() : mtmp->data->mname);
 
 	pline("%s%s.", monnambuf, info);
 
@@ -935,7 +935,7 @@ register struct monst *mtmp;
 	/* and unlike a normal mon_nam, use "saddled" even if it has a name */
 	strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
 	    (SUPPRESS_IT|SUPPRESS_INVISIBLE), FALSE));
-	sprintf(eos(monnambuf), " (%s)", Hallucination ? "sparkly dood" : mtmp->data->mname);
+	sprintf(eos(monnambuf), " (%s)", Hallucination ? "sparkly dood" : sanityrandomname() ? rndmonnam() : mtmp->data->mname);
 
 	pline("Status of %s (%s):  Level %d  HP %d(%d)  Pw %d(%d)  AC %d%s.",
 		monnambuf,
@@ -1019,7 +1019,7 @@ register struct monst *mtmp;
 	/* and unlike a normal mon_nam, use "saddled" even if it has a name */
 	strcpy(monnambuf, x_monnam(mtmp, ARTICLE_THE, (char *)0,
 	    (SUPPRESS_IT|SUPPRESS_INVISIBLE), FALSE));
-	sprintf(eos(monnambuf), " (%s)", Hallucination ? "sparkly dood" : mtmp->data->mname);
+	sprintf(eos(monnambuf), " (%s)", Hallucination ? "sparkly dood" : sanityrandomname() ? rndmonnam() : mtmp->data->mname);
 
 	pline("Status of %s (%s):  Level %d  HP %d(%d)  Pw %d(%d)  AC %d%s.",
 		monnambuf,

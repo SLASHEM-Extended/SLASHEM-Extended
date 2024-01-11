@@ -1031,7 +1031,7 @@ boolean pets_only;	/* true for ascension or final escape */
 	    if (u.freeplaytransit && !mtmp->mtame) continue;
 
 	    if (mtmp && !program_state.gameover && !u.freeplaytransit && isok(u.ux, u.uy) && extraradius && mtmp->mtame && levl_follower(mtmp) && (distu(mtmp->mx, mtmp->my) < (4 + extraradius))) {
-		sprintf(qbuf, "You can take %s (%s) with you. Do it?", noit_mon_nam(mtmp), Hallucination ? "sparkly dood" : mtmp->data->mname);
+		sprintf(qbuf, "You can take %s (%s) with you. Do it?", noit_mon_nam(mtmp), Hallucination ? "sparkly dood" : sanityrandomname() ? rndmonnam() : mtmp->data->mname);
 		qbufdefined = 1;
 	    }
 

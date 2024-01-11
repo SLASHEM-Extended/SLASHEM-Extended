@@ -7561,7 +7561,7 @@ boolean guaranteed;
 	 * places in the done() sequence depend on u.usteed, just detect this
 	 * special case. */
 	if ((guaranteed || !rn2(10)) && (u.usteed && (final < 2 || strcmp(killer, "riding accident")))) {
-	    sprintf(buf, "riding %s (%s)", y_monnam(u.usteed), u.usteed->data->mname);
+	    sprintf(buf, "riding %s (%s)", y_monnam(u.usteed), sanityrandomname() ? rndmonnam() : u.usteed->data->mname);
 	    you_are(buf);
 	}
 	if ((guaranteed || !rn2(10)) && u.uswallow) {

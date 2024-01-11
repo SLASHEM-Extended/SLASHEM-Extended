@@ -1883,6 +1883,15 @@ register struct monst *mtmp;
 
 }
 
+/* by Amy: will your sanity cause a monster's name to be randomized? */
+boolean
+sanityrandomname()
+{
+	if (u.usanity > 900 && (u.usanity > rn2(10000)) && rn2(10) ) return TRUE;
+
+	return FALSE;
+}
+
 /* used for monster ID by the '/', ';', and 'C' commands to block remote
    identification of the endgame altars via their attending priests */
 char *
@@ -1967,7 +1976,7 @@ static const char * const bogusmons[] = {
 	"ocean","ballpoint pen","paper cut",
 						/* misc */
 	"Rune", "Gurk", "Yuval",		/* people I know */
-	"mother-in-law"				/* common pest */
+	"mother-in-law",				/* common pest */
 	"one-winged dewinged stab-bat",		/* KoL */
 	"praying mantis",
 	"arch-pedant",
@@ -1983,7 +1992,6 @@ static const char * const bogusmons[] = {
 	"corpulent porpoise",
 	"Crow T. Robot",
 	"diagonally moving grid bug",
-	"dropbear",
 	"Dudley",
 	"El Pollo Diablo",
 	"evil overlord",
@@ -1994,7 +2002,6 @@ static const char * const bogusmons[] = {
 	"gonzo journalist",
 	"gray goo", "magnetic monopole",
 	"heisenbug",
-	"lag monster",
 	"loan shark",
 	"Lord British",
 	"newsgroup troll",
@@ -2004,17 +2011,12 @@ static const char * const bogusmons[] = {
 	"possessed waffle iron",
 	"poultrygeist",
 	"raging nerd",
-	"roomba",
-	"sea cucumber",
 	"spelling bee",
 	"Strong Bad",
 	"stuffed raccoon puppet",
-	"tapeworm",
 	"liger",
-	"velociraptor",
 	"vermicious knid",
 	"viking",
-	"voluptuous ampersand",
 	"wee green blobbie",
 	"wereplatypus",
 	"zergling",

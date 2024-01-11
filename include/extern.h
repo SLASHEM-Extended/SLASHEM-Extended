@@ -488,6 +488,8 @@ E char *elementdamagedesc(int);
 
 E char *playerweaponname(void);
 
+E boolean sanityrandomname(void);
+
 /* ### do_wear.c ### */
 
 E int Armor_on(void);

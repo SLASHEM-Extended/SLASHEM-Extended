@@ -128,7 +128,7 @@ lookat(x, y, buf, monbuf)
 	if (u.usteed) {
 	    char steedbuf[BUFSZ];
 
-	    sprintf(steedbuf, ", mounted on %s (%s)", y_monnam(u.usteed), Hallucination ? "sparkly dood" : u.usteed->data->mname);
+	    sprintf(steedbuf, ", mounted on %s (%s)", y_monnam(u.usteed), Hallucination ? "sparkly dood" : sanityrandomname() ? rndmonnam() : u.usteed->data->mname);
 	    /* assert((sizeof buf >= strlen(buf)+strlen(steedbuf)+1); */
 	    strcat(buf, steedbuf);
 	}
@@ -947,7 +947,7 @@ lookat(x, y, buf, monbuf)
 			if (Hallucination)
 				strcat(monbuf, "paranoid delusion");
 			else {
-				sprintf(wbuf, "warned of %s",
+				sprintf(wbuf, "warned of %s", sanityrandomname() ? makeplural(rndmonnam()) : 
 					makeplural(mtmp->data->mname));
 		    		strcat(monbuf, wbuf);
 		    	}

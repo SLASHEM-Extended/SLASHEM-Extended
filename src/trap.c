@@ -20033,6 +20033,7 @@ skillrandomizeredo:
 
 			HFumbling = FROMOUTSIDE | rnd(5);
 			incr_itimeout(&HFumbling, 5);
+			u.fumbleduration += 5;
 			You("are about to trip.");
 
 			break;
