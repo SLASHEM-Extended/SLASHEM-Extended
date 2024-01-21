@@ -13770,6 +13770,7 @@ madnesseffect:
 			if ( !(levl[u.ux][u.uy].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(levl[u.ux][u.uy].wall_info & W_NONDIGGABLE) && levl[u.ux][u.uy].typ != STAIRS && levl[u.ux][u.uy].typ != LADDER ) {
 				levl[u.ux][u.uy].typ = ROCKWALL;
 				pline("Suddenly there's a wall!");
+				blockorunblock_point(u.ux,u.uy);
 			} else {
 				pline("But it didn't do anything.");
 			}
