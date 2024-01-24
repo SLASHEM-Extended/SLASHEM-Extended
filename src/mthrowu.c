@@ -320,6 +320,10 @@ const char *name;	/* if null, then format `obj' */
 
 	}
 
+	/* don't let the player become completely impervious --Amy */
+	if (shieldblockrate > 75) shieldblockrate = 75;
+	if (saberblockrate > 95) saberblockrate = 95;
+
 	if((u.uac + tlev <= rnd(20)) && (!rn2(StrongConflict ? 5 : Conflict ? 4 : 3))) {
 		if(Blind || !flags.verbose) pline("It misses.");
 		else You("are almost hit by %s.", onm);
@@ -1153,6 +1157,8 @@ boolean verbose;  /* give message(s) even when you can't see what happened */
 
 		if (shieldblockrate && (blocker->spe > 0)) shieldblockrate += (blocker->spe * 2);
 		if (blocker->blessed) shieldblockrate += 5;
+
+		if (shieldblockrate > 75) shieldblockrate = 75;
 
 		if (blocker->otyp == BROKEN_SHIELD) shieldblockrate = 0;
 
