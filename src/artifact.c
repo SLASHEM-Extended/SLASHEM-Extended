@@ -2963,6 +2963,7 @@ touch_artifact(obj,mon)
 	if (!issoviet && (u.ulevel < 10)) { /* picking up unknown artifacts should not be a crapshoot for low-level chars. --Amy */
 		dmg *= u.ulevel;
 		dmg /= 10;
+		if (dmg < 1) dmg = 1;
 	}
 
 	/* having the artiblast nastytrap means that blast shielding doesn't prevent artifact blasts, but since we don't
@@ -2970,6 +2971,13 @@ touch_artifact(obj,mon)
 
 	if ((ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || have_blaststone()) && RngeBlastShielding) {
 		dmg /= 2;
+		if (dmg < 1) dmg = 1;
+	}
+
+	/* the blasts are just too goddamn annoying, and all they really do is blow your symbiote to smithereens... so, I
+	 * decided that they deal much less damage, unless you have the nastytrap effect or soviet mode. --Amy */
+	if (!(ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || have_blaststone()) && !issoviet) {
+		dmg /= (self_willed ? 4 : 6);
 		if (dmg < 1) dmg = 1;
 	}
 
