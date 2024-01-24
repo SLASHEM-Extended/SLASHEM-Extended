@@ -1157,7 +1157,7 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
+				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
@@ -1172,7 +1172,7 @@ moveloop()
 				if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
 					moveamt /= 2;
 
-				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
+				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
 				if (Race_if(PM_PLAYER_ZRUTY) && !rn2(3) && moveamt > 1)
@@ -1657,7 +1657,7 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
-			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
+			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
@@ -1672,7 +1672,7 @@ moveloop()
 			if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
 				moveamt /= 2;
 
-			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
+			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)

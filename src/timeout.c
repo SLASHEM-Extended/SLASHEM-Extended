@@ -1242,7 +1242,7 @@ nh_timeout()
 		pline("Well, you don't really feel comfortable with those columnar heels. They slow you down even though they're very pretty, and people might laugh at you.");
 	}
 
-	if (u.umoved && !rn2(flags.female ? 2000 : 1000) && PlayerInConeHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_CONE_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(flags.female ? 2000 : 1000) && (rnd(u.ulevel) < 11) && PlayerInConeHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_CONE_HEELS) == P_ISRESTRICTED) ) {
 		if (uarmf->spe > -20) {
 			uarmf->spe--;
 			Your("cone heels degrade because you don't know how to walk in them properly.");
@@ -1252,7 +1252,7 @@ nh_timeout()
 		}
 	}
 
-	if (u.umoved && !rn2(flags.female ? 500 : 250) && PlayerInBlockHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(flags.female ? 500 : 250) && (rnd(u.ulevel) < 11) && PlayerInBlockHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
 		if (uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
 			; /* do nothing */
 		} else {
@@ -1261,7 +1261,7 @@ nh_timeout()
 		}
 	}
 
-	if (u.umoved && !rn2(2000) && PlayerInWedgeHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(2000) && PlayerInWedgeHeels && (rnd(u.ulevel) < 11) && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
 		pline("Eep, you accidentally stepped into shit with your wedge heels!");
 		doshittrap((struct obj *)0);
 	}
@@ -1269,6 +1269,8 @@ nh_timeout()
 	if (u.umoved && PlayerInHighHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
 		boolean highheelfail = TRUE;
+
+		if (rnd(u.ulevel) > 10) highheelfail = FALSE;
 
 		if (PlayerInBlockHeels && uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
 			highheelfail = FALSE;
