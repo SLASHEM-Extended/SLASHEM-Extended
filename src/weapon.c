@@ -520,6 +520,24 @@ struct monst *mon;
 
 	}
 
+	/* dual-wielding with an offhand weapon meant to be offhanded? then, the dual-wielding skill gives bonuses --Amy */
+
+	if (u.twoweap && uswapwep && otmp && !(PlayerCannotUseSkills) && (otmp == uswapwep)) {
+		if (objects[otmp->otyp].oc_skill == P_DAGGER || objects[otmp->otyp].oc_skill == P_KNIFE || objects[otmp->otyp].oc_skill == P_SHORT_SWORD || objects[otmp->otyp].oc_skill == P_SCIMITAR || objects[otmp->otyp].oc_skill == P_SABER || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_ORB || objects[otmp->otyp].oc_skill == P_CLAW) {
+			switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
+
+				case P_BASIC:	tmp +=  1; break;
+				case P_SKILLED:	tmp +=  2; break;
+				case P_EXPERT:	tmp +=  3; break;
+				case P_MASTER:	tmp +=  4; break;
+				case P_GRAND_MASTER:	tmp +=  5; break;
+				case P_SUPREME_MASTER:	tmp +=  6; break;
+				default: tmp += 0; break;
+			}
+
+		}
+	}
+
 	/* Check specially named weapon "to hit" bonuses */
 	if (otmp->oartifact) tmp += spec_abon(otmp, mon);
 
@@ -7664,6 +7682,23 @@ struct obj *weapon;
 	    case P_GRAND_MASTER:bonus +=  rnd(4); break;
 	    case P_SUPREME_MASTER:bonus +=  rnd(5); break;
 	    default: bonus += 0; break;
+		}
+	}
+
+	/* dual-wielding with an offhand weapon meant to be offhanded? then, the dual-wielding skill gives bonuses --Amy */
+	if (u.twoweap && uswapwep && weapon && !(PlayerCannotUseSkills) && (weapon == uswapwep)) {
+		if (objects[weapon->otyp].oc_skill == P_DAGGER || objects[weapon->otyp].oc_skill == P_KNIFE || objects[weapon->otyp].oc_skill == P_SHORT_SWORD || objects[weapon->otyp].oc_skill == P_SCIMITAR || objects[weapon->otyp].oc_skill == P_SABER || objects[weapon->otyp].oc_skill == P_PADDLE || objects[weapon->otyp].oc_skill == P_ORB || objects[weapon->otyp].oc_skill == P_CLAW) {
+			switch (P_SKILL(P_TWO_WEAPON_COMBAT)) {
+
+				case P_BASIC:	bonus +=  1; break;
+				case P_SKILLED:	bonus +=  rno(2); break;
+				case P_EXPERT:	bonus +=  rno(3); break;
+				case P_MASTER:	bonus +=  rno(4); break;
+				case P_GRAND_MASTER:	bonus +=  rno(5); break;
+				case P_SUPREME_MASTER:	bonus +=  rno(6); break;
+				default: bonus += 0; break;
+			}
+
 		}
 	}
 
