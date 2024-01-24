@@ -14700,6 +14700,14 @@ pastds2:
 		    }
 
 			/* nice patch addition by Amy - sometimes regenerate more */
+
+			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && ( (rn2(StrongEnergy_regeneration ? 150 : Energy_regeneration ? 225 : 300)) < u.ulevel) && (u.uen < u.uenmax)) {
+				u.uen++;
+				if (Race_if(PM_PIERCER)) u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+			}
+
 			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax)) {
 
 				u.uen += rnz(2 + GushLevel);
