@@ -198,7 +198,9 @@ getlock()
 		if(iflags.window_inited) {
 		    c = yn_function("There is already a game in progress under your name.  Destroy old game [y], Recover it [r], Cancel [n] ?", "ynr", 'n');
 		} else {
-		    (void) printf("\nThere is already a game in progress under your name. Do what?\n");
+		    (void) printf("\nATTENTION: Your game seems to have crashed. This is a SEVERE BUG.\n");
+		    (void) printf("\nYou ***MUST*** report this incident to Amy or your account will be suspended.\n");
+		    (void) printf("\nDo what with the crashed game? (in the case of doubt, choose 'r')\n");
 		    (void) printf("\n  y - Destroy old game?");
 		    (void) printf("\n  r - Try to recover it?");
 		    (void) printf("\n  n - Cancel");
@@ -207,7 +209,7 @@ getlock()
 		    do {
 			c = getchar();
 		    } while (!index("rRyYnN", c) && c != -1);
-		    (void) printf("\e[7A"); /* cursor up 7 */
+		    (void) printf("\e[9A"); /* cursor up 9 */
 		    (void) printf("\e[J"); /* clear from cursor down */
 		}
 		if (c == 'r' || c == 'R') {
@@ -217,7 +219,7 @@ getlock()
 		    if (restore_savefile(lock, fqn_prefix[SAVEPREFIX]) == 0) {
 #endif
 			const char *msg = "Automatical recovery of save file successful! "
-			    "Press any key to continue ...\n";
+			    "Press any key to continue and REPORT THIS INCIDENT TO AMY IMMEDIATELY.\n";
 			fflush(stdout);
 			if (iflags.window_inited) {
 			    pline("%s", msg);
@@ -235,12 +237,12 @@ getlock()
 			} else {
 			    (void) printf("\nRecovery failed.  In some cases this problem can disappear if you wait");
 			    (void) printf("\na few minutes and try again, but often this error needs manual intervention.");
-			    (void) printf("\nIn the case of doubt, please contact the server administrator.");
+			    (void) printf("\nYou are OBLIGATED to notify the server administrator about this incident!");
 			    (void) fflush(stdout);
 			    c = getchar();
 			}
 
-			error("Recovery failed. Terminating now. Please contact the server admin if the problem persists.");
+			error("Recovery failed. Terminating now. Please contact the server admin about this problem. NOW.");
 		    }
 		} else if (c == 'y' || c == 'Y') {
 

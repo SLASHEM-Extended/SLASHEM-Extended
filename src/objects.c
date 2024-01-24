@@ -9140,6 +9140,20 @@ SCROLL((char *)0,               "THE GAME OVERHEATS AT TOO HIGH DIFFICULTY LEVEL
 SCROLL((char *)0,               "SET THE DIFFICULTY HIGH ENOUGH AND MONSTERS WILL SPAWN TENS OF THOUSANDS OF GOLD",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
 SCROLL((char *)0,               "THE LOELOELOE WILL SOON LUELUELUE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
 SCROLL((char *)0,               "ROSAHAEN GOTTEMBERG ET AL",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "RB 26 TRAVELS FROM HEILBRONN TO KOELN",  P_NONE,     1,   0, 100, CLR_RED, 1),
+SCROLL((char *)0,               "DER ZUG NAMENS ARTILLERIE FAEHRT NACH DROGERIEPARK",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "STEHLEN IST SELIGER DENN NEHMEN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "O WENNS EINMAL NICHT SO SAUKALT WAER",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "FERZ MIT KRICKE",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "UFONEM HABEO RUFISSIMA",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "GU DUSCHIE",  P_NONE,     1,   0, 100, CLR_MAGENTA, 1),
+SCROLL((char *)0,               "RECTOPEDIA",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "SCROLL THAT DOESNT ALWAYS HAVE THE SAME BORING COLOR",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
+SCROLL((char *)0,               "WE GOTTA STOP THE LOS CARNALES",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "RIO GRANDE RIVER",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "LUZ IS WEARING LAST SEASONS HEELS",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "EVERY ONCE IN A WHILE A GROUP OF PIMPS SPAWNS",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "THE STRIPPER GIRLS ALWAYS USE DEFAULT COLORS FOR THEIR PLATFORM SHOES",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

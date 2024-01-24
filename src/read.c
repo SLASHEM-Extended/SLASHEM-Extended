@@ -973,6 +973,7 @@ doread()
 	"People like you are the reason why I need to fireproof my game against all sorts of lame exploits.",
 	"I just realized that my alarm clock will ring tomorrow at 11 o'clock which is exactly 11 hours and 11 minutes from now!",
 	"Dear missy <3, did you know that the only reason I ordered your beautiful shoes is because I want to scratch up and down my legs with the tender stiletto heels again and again, very painfully?",
+	"My soul has suffered from a seemingly irreparable rift when I was eleven. It took 26 years for that rift to finally heal, but it happened.",
 
 	    };
 	    char buf[BUFSZ];

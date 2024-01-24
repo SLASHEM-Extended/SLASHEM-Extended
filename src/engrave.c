@@ -1090,6 +1090,7 @@ static const char *random_mesg[] = {
 	"They say that Pale Night's real name is Claudia.",
 	"They say that Pale Night is capable of assuming the body and shape of a mortal, which is why she might pretend that her name was Claudia.",
 	"You think SLEX is just a game, punk? Well you'll be in for a rude surprise, because SLEX is serious business and will fuck you up and kill your character if you don't put in the effort for playing properly.",
+	"Invocans tam damnum sanescit, te velocissimum facit et sic duratione tutelam eiicit.",
 
 };
 
@@ -6098,6 +6099,20 @@ static const char *epitaphs[] = {
 	"fuck this stupid game, help displays 200 silly commands that i dont need and says number pad moves me but it doesnt it always says count:444 and doesnt work, unplayable game, gonna play dcss instead",
 	"couldnt figure out how to move after 5 minutes, i kept pressing number pad keys and nothing worked, if i cant even move the entire game has got to suck so ill play my favorite roguelike again and just file this 'slex' thing in the dust bin",
 	"yeah the game said something about going through an options menu and pressing this button and changing that option so that i can move with the number pad, i did all that and it still didnt work, gonna play a different game that has playable controls",
+	"Courage is when you don't run away from a difficult situation. Foolhardiness is when you still don't run away even after the situation has turned lethal.",
+	"Boo, the shifting sands shouldn't say it kills you by suffocation.  Seems like bs since I went and put on my amulet of magical breathing and everything  :(",
+	"Here lies Tanya Winters. Despite her name, she was not a fleece-Tanja, and her last mistake was to immediately pull a Krukov and open fire at her former boss, Benjamin King. Who then proceeded to gun her down and throw her out of a window.",
+	"Here lies Warren Williams. He didn't realize that one does not fuck with Benjamin King, and as a result, Warren's car burst into flames with him inside. When that STILL didn't kill Warren, Tanya then appeared, turned on him, and shot him in the head.",
+	"Here lies Angelo Lopez. While he realized that the Los Carnales were going down, his airplane got shot up by the Saints before it could take off, and Angelo was caught in the explosion and died instantly.",
+	"Here lies Hector Lopez. McManus said hello.",
+	"Here lies Victor Rodriguez. He thought that the Los Carnales could beat the Saints, but ended up getting pumped full of bullets and died.",
+	"Here lies a bag filled with last season's heels, which Luz had to leave behind when Angelo called her and said that she needed to hurry to the airport. Since the flight got 'cancelled' by a rocket launcher fired by the boss of the Saints, Luz is still around somewhere, so if you find these beautiful heels, please return them to her <3",
+	"RIP colorful stripper girl platform shoes, due to a bug they always wear default-colored ones which look really goofy. Editing the game data files does not work, the shoes don't want to become pink or cyan. :-(",
+	"RIP any random character who got taken as a human shield by the boss of the Saints in the second game. Why on earth the programmers didn't code in a 'release' button, we will never know, but you can only either execute the human shield or throw them against an obstacle, which usually kills them. (Hint: get next to a car and try to enter it, THAT somehow releases the NPC.)",
+	"RIP super-powerful magical cloak, some random monster had a scroll of destroy armor and read it.",
+	"RIP meteoric steel shield, a black dragon breathed disintegration at it.",
+	"RIP flying boots of blindness resistance, a sword flowey tagged them with a nastycurse attack and now they're flying boots of quasar vision instead.",
+	"Here lies the word 'dick' in the Kelis song 'Trick Me'. It's incredible how every word in every song that could be considered even vaguely offensive gets censored.",
 
 };
 
