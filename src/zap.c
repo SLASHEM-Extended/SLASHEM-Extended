@@ -662,9 +662,17 @@ armorsmashdone:
 		break;
 
 	case SPE_MANA_BOLT:
+		dmg = d(2, 8);
+		if (u.ulevel > 5) dmg += rnd(u.ulevel / 3);
+		if(dbldam) dmg *= 2;
+		dmg += skilldmg;
+		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
+		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
+		break;
+
 	case SPE_SNIPER_BEAM:
-		dmg = d(2, 4);
-		if (u.ulevel > 5) dmg += rnd(u.ulevel / 6);
+		dmg = d(4, 8);
+		if (u.ulevel > 5) dmg += rnd(u.ulevel / 2);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
@@ -737,8 +745,8 @@ armorsmashdone:
 		break;
 
 	case SPE_ENERGY_BOLT:
-		dmg = d(8, 4);
-		if (u.ulevel > 1) dmg += rnd(u.ulevel / 2);
+		dmg = d(8, 8);
+		if (u.ulevel > 1) dmg += rnd(u.ulevel);
 		if(dbldam) dmg *= 2;
 		dmg += (skilldmg * 4);
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));

@@ -10236,6 +10236,7 @@ newbossO:
 		if ((uarmc && itemhasappearance(uarmc, APP_ROADMAP_CLOAK)) && !rn2(10000)) {
 			if (!HConfusion) HConfusion = 1;
 			do_mappingX();
+			do_mappingX();
 		}
 
 		if (Role_if(PM_KURWA) && !rn2(2000)) { /* re-randomize object appearances */

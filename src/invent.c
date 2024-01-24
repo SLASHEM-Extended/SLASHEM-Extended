@@ -18479,7 +18479,7 @@ boolean knoweverything;
 			case SPE_CREATE_FAMILIAR:
 				pline("Casting this spell sometimes summons a monster that fights on your side. It has a high chance of summoning a hostile creature instead, so beware... and it also increases your prayer timeout and reduces alignment record, for good measure. Any monster summoned by this spell will not drop its items upon death."); break;
 			case SPE_LIGHT:
-				pline("A spell that lights up your current location. Annoyed that it no longer lights up areas around you? You need the 'light area' spell for that."); break;
+				pline("A spell that lights up your current location, and the four squares orthogonally adjacent. Annoyed that it no longer lights up bigger areas around you? You need the 'light area' spell for that."); break;
 			case SPE_LIGHT_AREA:
 				pline("A spell that lights up dark areas."); break;
 			case SPE_DETECT_MONSTERS:

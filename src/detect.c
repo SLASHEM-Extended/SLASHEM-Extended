@@ -1280,7 +1280,7 @@ register int x, y;
 {
     register struct rm *lev;
 
-    if (rn2(7)) return;
+    if (rn2(10)) return;
 
     if (isfriday && !rn2(10)) return;
 
@@ -1407,10 +1407,10 @@ do_vicinity_map()
     }
 
     register int zx, zy;
-    int lo_y = (u.uy-4 < 0 ? 0 : u.uy-4),
-	hi_y = (u.uy+5 > ROWNO ? ROWNO : u.uy+5),
-	lo_x = (u.ux-4 < 1 ? 1 : u.ux-4),	/* avoid column 0 */
-	hi_x = (u.ux+5 > COLNO ? COLNO : u.ux+5);
+    int lo_y = (u.uy-6 < 0 ? 0 : u.uy-6),
+	hi_y = (u.uy+7 > ROWNO ? ROWNO : u.uy+7),
+	lo_x = (u.ux-6 < 1 ? 1 : u.ux-6),	/* avoid column 0 */
+	hi_x = (u.ux+7 > COLNO ? COLNO : u.ux+7);
 
     for (zx = lo_x; zx < hi_x; zx++)
 	for (zy = lo_y; zy < hi_y; zy++)
@@ -1434,10 +1434,10 @@ do_vicinity_mapX()
     }
 
     register int zx, zy;
-    int lo_y = (u.uy-3 < 0 ? 0 : u.uy-3),
-	hi_y = (u.uy+4 > ROWNO ? ROWNO : u.uy+4),
-	lo_x = (u.ux-3 < 1 ? 1 : u.ux-3),	/* avoid column 0 */
-	hi_x = (u.ux+4 > COLNO ? COLNO : u.ux+4);
+    int lo_y = (u.uy-4 < 0 ? 0 : u.uy-4),
+	hi_y = (u.uy+5 > ROWNO ? ROWNO : u.uy+5),
+	lo_x = (u.ux-4 < 1 ? 1 : u.ux-4),	/* avoid column 0 */
+	hi_x = (u.ux+5 > COLNO ? COLNO : u.ux+5);
 
     for (zx = lo_x; zx < hi_x; zx++)
 	for (zy = lo_y; zy < hi_y; zy++)
@@ -1478,6 +1478,20 @@ void * num;
 	register struct trap *ttmp;
 	register struct monst *mtmp;
 
+	int trapfindchance = 150;
+
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_SEARCHING)) {
+			default: break;
+			case P_BASIC: trapfindchance = 160; break;
+			case P_SKILLED: trapfindchance = 170; break;
+			case P_EXPERT: trapfindchance = 180; break;
+			case P_MASTER: trapfindchance = 200; break;
+			case P_GRAND_MASTER: trapfindchance = 225; break;
+			case P_SUPREME_MASTER: trapfindchance = 250; break;
+		}
+	}
+
 	if(levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
@@ -1498,7 +1512,13 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if ((ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP && ttmp->ttyp != SATATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(trapfindchance)) && (!isfriday || (ttmp->trapdiff < rnd(trapfindchance))) && (ttmp->trapdiff < rnd(trapfindchance)) && ttmp->ttyp != STATUE_TRAP && ttmp->ttyp != SATATUE_TRAP) {
+
+			if (!ttmp->tdetected && !rn2(3)) {
+				use_skill(P_SEARCHING,1);
+				ttmp->tdetected = TRUE;
+			}
+
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;
@@ -1532,6 +1552,20 @@ void * num;
 	register struct trap *ttmp;
 	register struct monst *mtmp;
 
+	int trapfindchance = 150;
+
+	if (!(PlayerCannotUseSkills)) {
+		switch (P_SKILL(P_SEARCHING)) {
+			default: break;
+			case P_BASIC: trapfindchance = 160; break;
+			case P_SKILLED: trapfindchance = 170; break;
+			case P_EXPERT: trapfindchance = 180; break;
+			case P_MASTER: trapfindchance = 200; break;
+			case P_GRAND_MASTER: trapfindchance = 225; break;
+			case P_SUPREME_MASTER: trapfindchance = 250; break;
+		}
+	}
+
 	if(!rn2(3) && levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
@@ -1552,7 +1586,13 @@ void * num;
 		newsym(zx, zy);
 		(*(int*)num)++;
 	} else if (!rn2(3) && (ttmp = t_at(zx, zy)) != 0) {
-		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(150)) && (!isfriday || (ttmp->trapdiff < rnd(150))) && (ttmp->trapdiff < rnd(150)) && ttmp->ttyp != STATUE_TRAP && ttmp->ttyp != SATATUE_TRAP) {
+		if(!ttmp->tseen && !ttmp->hiddentrap && (ttmp->trapdiff < rnd(trapfindchance)) && (!isfriday || (ttmp->trapdiff < rnd(trapfindchance))) && (ttmp->trapdiff < rnd(trapfindchance)) && ttmp->ttyp != STATUE_TRAP && ttmp->ttyp != SATATUE_TRAP) {
+
+			if (!ttmp->tdetected && !rn2(3)) {
+				use_skill(P_SEARCHING,1);
+				ttmp->tdetected = TRUE;
+			}
+
 			ttmp->tseen = 1;
 			newsym(zx,zy);
 			(*(int*)num)++;

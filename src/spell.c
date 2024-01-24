@@ -4652,6 +4652,18 @@ bucchoice:
 			levl[u.ux][u.uy].lit = TRUE;
 			pline("A light shines on your location.");
 		}
+		if (isok(u.ux, u.uy + 1)) {
+			levl[u.ux][u.uy + 1].lit = TRUE;
+		}
+		if (isok(u.ux, u.uy - 1)) {
+			levl[u.ux][u.uy - 1].lit = TRUE;
+		}
+		if (isok(u.ux + 1, u.uy)) {
+			levl[u.ux + 1][u.uy].lit = TRUE;
+		}
+		if (isok(u.ux - 1, u.uy)) {
+			levl[u.ux - 1][u.uy].lit = TRUE;
+		}
 		break;
 
 	case SPE_TECH_BOOST:
