@@ -2793,6 +2793,10 @@ boolean polearming;
 	if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (u.ulevel >= 8) tmp++;
+	if (u.ulevel >= 16) tmp++;
+	if (u.ulevel >= 24) tmp++;
+	if (u.ulevel >= 30) tmp++;
 
 	if (uleft && uleft->oartifact == ART_KRATSCHEM_HARD) tmp += 3;
 	if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 3;

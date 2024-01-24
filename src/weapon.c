@@ -7289,10 +7289,10 @@ struct obj *weapon;
 		    case P_UNSKILLED:	bonus = -2; break;
 		    case P_BASIC:	bonus =  0; break;
 		    case P_SKILLED:	bonus =  1 + rn2(2); break;
-		    case P_EXPERT:	bonus =  1 + rn2(4); break;
-		    case P_MASTER:	bonus =  1 + rn2(6); break;
-		    case P_GRAND_MASTER:bonus =  1 + rn2(10); break;
-		    case P_SUPREME_MASTER:bonus =  1 + rn2(13); break;
+		    case P_EXPERT:	bonus =  1 + rn2(3); break;
+		    case P_MASTER:	bonus =  1 + rn2(5); break;
+		    case P_GRAND_MASTER:bonus =  1 + rn2(7); break;
+		    case P_SUPREME_MASTER:bonus =  1 + rn2(10); break;
 		} else switch (P_SKILL(type)) {
 		    default: impossible("weapon_dam_bonus: bad skill %d",P_SKILL(type));
 			     /* fall through */
@@ -7306,6 +7306,12 @@ struct obj *weapon;
 		    case P_SUPREME_MASTER:bonus =  1 + rn2(5); break;
 		}
 	}
+
+	if (u.ulevel >= 30) bonus += rnd(4);
+	else if (u.ulevel >= 24) bonus += rnd(3);
+	else if (u.ulevel >= 16) bonus += rnd(2);
+	else if (u.ulevel >= 8) bonus += 1;
+
 #if 0
     } else if (type == P_TWO_WEAPON_COMBAT) {
 	skill = P_SKILL(P_TWO_WEAPON_COMBAT);

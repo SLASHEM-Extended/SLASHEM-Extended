@@ -934,6 +934,14 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
+	if (u.ulevel >= 8) tmp++;
+	if (u.ulevel >= 16) tmp++;
+	if (u.ulevel >= 24) tmp++;
+	if (u.ulevel >= 30) tmp++;
+	if (!uwep && (!u.twoweap || !uswapwep)) {
+		if (u.ulevel >= 16) tmp++;
+		if (u.ulevel >= 24) tmp++;
+	}
 
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) tmp -= rnd(10);
 	if (u.martialstyle == MARTIALSTYLE_SILAT && !uwep && (!u.twoweap || !uswapwep)) tmp += rn1(6, 6);
@@ -1563,6 +1571,11 @@ martial_dmg()
 
 	  }
 
+	if (u.ulevel >= 30) damage += rnd(4);
+	else if (u.ulevel >= 24) damage += rnd(3);
+	else if (u.ulevel >= 16) damage += rnd(2);
+	else if (u.ulevel >= 8) damage += 1;
+
 	damagetodouble = damage;
 
 	/* base damage calculation end; unarmed focus tech doubles this, but doesn't double the bonuses below --Amy */
@@ -1821,11 +1834,16 @@ int dieroll;
 					case P_BASIC:	tmp += 1; break;
 					case P_SKILLED:	tmp += rnd(3); break;
 					case P_EXPERT:	tmp += rnd(6); break;
-					case P_MASTER:	tmp += rnd(10); break;
-					case P_GRAND_MASTER:	tmp += rnd(15); break;
-					case P_SUPREME_MASTER:	tmp += rnd(20); break;
+					case P_MASTER:	tmp += rnd(9); break;
+					case P_GRAND_MASTER:	tmp += rnd(13); break;
+					case P_SUPREME_MASTER:	tmp += rnd(18); break;
 				}
 			}
+
+			if (u.ulevel >= 30) tmp += rno(4);
+			else if (u.ulevel >= 24) tmp += rno(3);
+			else if (u.ulevel >= 16) tmp += rno(2);
+			else if (u.ulevel >= 8) tmp += 1;
 
 			damagetodouble = tmp;
 
@@ -9726,7 +9744,7 @@ register int roll;
 
 	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
-		switch (rnd(839)) {
+		switch (rnd(840)) {
 
 		case 1: pline("%s cringes from your strike behind its %sshield.", Monnam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
 		case 2: pline("You smash into %s's %sshield, striking sparks.", mon_nam(mdef), which_armor(mdef, W_ARMS) ? "" : "nonexistant "); break;
@@ -10575,6 +10593,7 @@ register int roll;
 		case 837: pline("Since you're a lamer who has abused various game-breaking exploits in the past, you automiss %s now. Serves you right.", mon_nam(mdef)); break;
 		case 838: pline("Until you tell Amy about your lame autowin exploit that involves abusing a loophole in the game which is certainly not meant to be there, you'll always miss %s no matter what, so better confess your sins to the developer so she can patch out the bad bug.", mon_nam(mdef)); break;
 		case 839: pline("With your fatman, you fire a mini-nuke at %s... but since you're such a horribly bad shot, you miss, meaning you've just wasted your super precious ammo for nothing at all.", mon_nam(mdef)); break;
+		case 840: pline("%s threatens 'I'm gonna rob out your %s!'", Monnam(mdef), makeplural(body_part(EYE)) ); break;
 
 		default: pline("You missed %s!", mon_nam(mdef)); break;
 

@@ -3602,6 +3602,9 @@ boolean atme;
 				case 16: hungr /= 4; break;
 				case 15: hungr /= 2; break;
 			}
+
+		/* if you're supposed to get hungry, then it shouldn't be reduced to zero --Amy */
+		if (hungr < 1) hungr = 1;
 	}
 	else
 		hungr = 0;
@@ -3683,14 +3686,16 @@ castanyway:
 
 	/* come on, you should be able to cast using less nutrition if your skill is higher! --Amy */
 
-	if (u.uhunger <= 2500) { /* But only if you're not satiated (see above) */
+	if ((hungr > 0) && (u.uhunger <= 2500)) { /* But only if you're not satiated (see above) */
 
-		if ( role_skill == P_BASIC) {hungr *= 85; hungr /= 100;}
-		if ( role_skill == P_SKILLED) {hungr *= 70; hungr /= 100;}
-		if ( role_skill == P_EXPERT) {hungr *= 55; hungr /= 100;}
-		if ( role_skill == P_MASTER) {hungr *= 40; hungr /= 100;}
-		if ( role_skill == P_GRAND_MASTER) {hungr *= 25; hungr /= 100;}
-		if ( role_skill == P_SUPREME_MASTER) {hungr *= 10; hungr /= 100;}
+		if (!PlayerCannotUseSkills) {
+			if ( role_skill == P_BASIC) {hungr *= 85; hungr /= 100;}
+			if ( role_skill == P_SKILLED) {hungr *= 70; hungr /= 100;}
+			if ( role_skill == P_EXPERT) {hungr *= 55; hungr /= 100;}
+			if ( role_skill == P_MASTER) {hungr *= 40; hungr /= 100;}
+			if ( role_skill == P_GRAND_MASTER) {hungr *= 25; hungr /= 100;}
+			if ( role_skill == P_SUPREME_MASTER) {hungr *= 10; hungr /= 100;}
+		}
 
 		/* casting it often (and thereby keeping it in memory) should also reduce hunger... */
 		if ( spellknow(spell) >= 10000) {hungr *= 9; hungr /= 10;}
@@ -3703,6 +3708,13 @@ castanyway:
 
 		if (uarmh && uarmh->oartifact == ART_APOTHEOSIS_VEIL) hungr /= 2;
 
+		/* higher XL should help, reducing it to 40% of the normal value at max XL --Amy */
+		if (u.ulevel > 10) {
+			hungr *= (100 - ((u.ulevel - 10) * 3));
+			hungr /= 100;
+		}
+
+		if (hungr < 1) hungr = 1;
 	}
 
 	if (SpellColorBlue) hungr += 100;

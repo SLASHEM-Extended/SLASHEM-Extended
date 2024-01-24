@@ -7069,6 +7069,22 @@ find_ac()
 
 	}
 
+	/* AC bonus if you have many armor pieces: up to 7 points with full gear at XL30 --Amy */
+	if (u.ulevel >= 8) {
+		int armoramount = 0;
+		if (uarms) armoramount++;
+		if (uarm) armoramount++;
+		if (uarmc) armoramount++;
+		if (uarmu) armoramount++;
+		if (uarmh) armoramount++;
+		if (uarmg) armoramount++;
+		if (uarmf) armoramount++;
+
+		armoramount *= u.ulevel;
+		armoramount /= 30;
+		if (armoramount > 0) uac -= armoramount;
+	}
+
 	if (uarmc && itemhasappearance(uarmc, APP_MANTLE_OF_COAT)) {
 		uac -= 5;
 	}
