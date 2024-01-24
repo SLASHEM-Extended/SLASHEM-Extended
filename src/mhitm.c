@@ -592,7 +592,7 @@ mattackm(magr, mdef)
 	    case AT_BREA:
 	    case AT_SPIT:
 
-		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
+		if (range && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
 		    strike = 0;
 		    attk = 0;
 		    norangepassive = TRUE;
@@ -642,10 +642,11 @@ mattackm(magr, mdef)
 
 	    case AT_MAGC:
 
-		if (range && mdef->mtame && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
+		if (range && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE) ) {
 		    strike = 0;
 		    attk = 0;
 		    norangepassive = TRUE;
+
 		    break;
 
 		}
@@ -714,9 +715,16 @@ mattackm(magr, mdef)
 
 meleeattack:
 		/* Nymph that teleported away on first attack? */
-		if ((distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1) && mattk->aatyp != AT_BREA && mattk->aatyp != AT_SPIT && mattk->aatyp != AT_MAGC && (mattk->aatyp != AT_BEAM || (mattk->aatyp == AT_BEAM && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE)) ) ) {
+		if ((distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1) && mattk->aatyp != AT_BREA && mattk->aatyp != AT_SPIT && mattk->aatyp != AT_MAGC ) {
 		    strike = 0;
 		    break;
+		}
+
+		/* is the monster lined up? if not, the attack always fails */
+		if ((distmin(magr->mx,magr->my,mdef->mx,mdef->my) > 1) && !linedup(magr->mx,magr->my,mdef->mx,mdef->my, FALSE)) {
+		    strike = 0;
+		    break;
+
 		}
 
 		/* Monsters won't attack cockatrices physically if they
@@ -793,6 +801,8 @@ meleeattack:
 	    case AT_EXPL:
 		if (!magr->mtame && rn2(20)) break; /* we want the things to explode at YOU! Since monsters are immune to quite some attack types anyway, and the exploding lights would just suicide without causing any effect. --Amy */
 
+		if (!monnear(magr, mdef->mx, mdef->my)) break; /* we don't want them to suddenly warp and explode in someone's face --Amy */
+
 		res[i] = explmm(magr, mdef, mattk);
 		if (res[i] == MM_MISS) { /* cancelled--no attack */
 		    strike = 0;
@@ -806,6 +816,9 @@ meleeattack:
 		    strike = 0;
 		    break;
 		}
+
+		if (!monnear(magr, mdef->mx, mdef->my)) break; /* we don't want them to suddenly warp and engulf someone from far away --Amy */
+
 		/* Engulfing attacks are directed at the hero if
 		 * possible. -dlc
 		 */
