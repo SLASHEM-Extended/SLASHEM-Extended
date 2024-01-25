@@ -434,6 +434,19 @@ newexplevel()
 	}
 }
 
+/* for calculations where stuff is supposed to get better late into the game, so that the char doesn't suck --Amy
+ * "boostmult" is a multiplier that determines how much of an impact the boost value has */
+int
+boosted_ulevel(boostmult)
+int boostmult;
+{
+	int boostedlevel = u.ulevel;
+
+	boostedlevel += (boost_power_value() * boostmult);
+
+	return boostedlevel;
+}
+
 /* if your level is rather high already, gain level effects shouldn't always give you a full level --Amy
  * important: increase u.uexp value even when you have anti-experience! */
 void

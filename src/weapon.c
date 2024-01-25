@@ -2794,6 +2794,10 @@ struct monst *mon;
 		if (tmp < 1) tmp = 1;
 	}
 
+	if (boost_power_value()) {
+		tmp += (tmp * (boost_power_value() * 3) / 100);
+	}
+
 	if (willcriticalhit) {
 		pline("Critical hit!");
 		u.cnd_criticalcount++;

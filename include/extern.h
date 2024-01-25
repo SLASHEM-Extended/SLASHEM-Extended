@@ -816,6 +816,7 @@ E void pluslvl(BOOLEAN_P);
 E long rndexp(BOOLEAN_P);
 E void exprecalc(void);
 E void gainlevelmaybe(void);
+E int boosted_ulevel(int);
 
 /* ### explode.c ### */
 
@@ -2716,6 +2717,7 @@ E void gain_alla(int);
 E void drain_alla(int);
 E boolean conundrumbreak(void);
 E boolean steelbreak(void);
+E int boost_power_value(void);
 E void statdrain(void);
 E void nastytrapcurse(void);
 E void shank_player(void);
@@ -2977,6 +2979,7 @@ E int rn3(int);
 E int rnl(int);
 E int rnd(int);
 E int rno(int);
+E int rndrnz(int);
 E int d(int,int);
 E int rne(int);
 E int rnz(int);

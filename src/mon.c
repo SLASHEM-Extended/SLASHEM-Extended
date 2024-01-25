@@ -10674,6 +10674,10 @@ symbiotemelee()
 
 	if (have_luckypack()) symchance += 5;
 
+	symchance += boost_power_value();
+
+	if (symchance > 50) symchance = 50; /* fail safe */
+
 	if (rn2(100) < symchance) return TRUE;
 	return FALSE;
 }
@@ -10747,6 +10751,10 @@ symbiotepassive()
 	}
 
 	if (have_luckypack()) symchance += 5;
+
+	symchance += boost_power_value();
+
+	if (symchance > 75) symchance = 75; /* fail safe */
 
 	if (rn2(100) < symchance) return TRUE;
 	return FALSE;

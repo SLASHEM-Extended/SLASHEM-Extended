@@ -1589,6 +1589,10 @@ martial_dmg()
 		damage += damagetodouble;
 	}
 
+	if (boost_power_value()) {
+		damage += (damagetodouble * (boost_power_value() * 3) / 100);
+	}
+
 	if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) damage += 1;
 
 	if (u.martialstyle == MARTIALSTYLE_KRAVMAGA) damage += rn1(5, 5);
@@ -1856,6 +1860,10 @@ int dieroll;
 			}
 			if (uarmg && uarmg->oartifact == ART_PU_PU) {
 				tmp += damagetodouble;
+			}
+
+			if (boost_power_value()) {
+				tmp += (damagetodouble * (boost_power_value() * 3) / 100);
 			}
 
 			if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) tmp += 1;
@@ -7737,6 +7745,8 @@ register struct attack *mattk;
 		if (overlevelled > 0) {
 			youdamagebonus += overlevelled;
 		}
+
+		youdamagebonus += (boost_power_value() * 2);
 
 		if (ACURR(A_STR) > 12) { /* strength shouldn't be completely irrelevant for non-weapon attacks! --Amy */
 			if (ACURR(A_STR) == 13) youdamagebonus += 1;

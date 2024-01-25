@@ -1593,6 +1593,20 @@ moveloop()
 		    {
 			moveamt = youmonst.data->mmove;
 
+			/* special calculations for lategame: base speed can randomly be higher, but not above 15 --Amy */
+			if (boost_power_value() && !is_nonmoving(youmonst.data) ) { /* and no boost if polyd into sessile mon */
+				int basebonus = 0;
+				int basechances = boost_power_value();
+				while (basechances > 0) {
+					basechances--;
+					if (!rn2(4)) basebonus++;
+				}
+				if (moveamt < 15) {
+					moveamt += basebonus;
+					if (moveamt > 15) moveamt = 15;
+				}
+			}
+
 			register int polymultiplier = 5;
 			register int speedreduction;
 
@@ -2046,6 +2060,8 @@ moveloop()
 
 			if (moveamt < 0) moveamt = 0;
 
+			/* speed boosts while not riding go here */
+
 			if (Very_fast && !YouHaveTheSpeedBug) {	/* speed boots or potion */
 			    /* average movement is 1.67 times normal */
 			    if ((StrongFast || rn2(3)) && (!Race_if(PM_FRO) || !rn2(2)) && (!Race_if(PM_MACTHEIST) || !rn2(2)) ) {
@@ -2060,8 +2076,6 @@ moveloop()
 			if (Fear_factor && Feared) {
 			    if (rn2(3) != 0) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
-
-			/* speed boosts while not riding go here */
 
 			if (u.usteed) {
 
@@ -14290,7 +14304,7 @@ pastds2:
 				if (symmuchregrate > 1) symmuchregrate /= 2;
 			}
 
-			if (regenerates(&mons[u.usymbiote.mnum]) || !rn2(symregenrate)) {
+			if (regenerates(&mons[u.usymbiote.mnum]) || (rn2(33) < boost_power_value()) || !rn2(symregenrate)) {
 				if (u.usymbiote.mhp < u.usymbiote.mhpmax) {
 					u.usymbiote.mhp++;
 					if (u.usymbiote.mhp > u.usymbiote.mhpmax) u.usymbiote.mhp = u.usymbiote.mhpmax;

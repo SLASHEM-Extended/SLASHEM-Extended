@@ -4158,6 +4158,8 @@ mdamagem(magr, mdef, mattk)
 
 	}
 
+	if (magr->mtame && !mdef->mtame) petdamagebonus += (boost_power_value() * 3);
+
 	if (magr->mtame && !mdef->mtame && (magr->data->mlet == S_QUADRUPED) && Race_if(PM_ENGCHIP)) {
 		petdamagebonus += 25;
 	}
@@ -4212,7 +4214,7 @@ mdamagem(magr, mdef, mattk)
 	/* tame bosses are simply better --Amy */
 	if (magr->mtame && !mdef->mtame && (magr->data->geno & G_UNIQ)) petdamagebonus += 25;
 
-	if (petdamagebonus > 100 && (tmp > 1 || (tmp == 1 && petdamagebonus >= 150) )) {
+	if (petdamagebonus > 100 && magr->mtame && (tmp > 1 || (tmp == 1 && petdamagebonus >= 150) )) {
 
 		tmp *= petdamagebonus;
 		tmp /= 100;

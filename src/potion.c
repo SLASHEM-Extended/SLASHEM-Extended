@@ -8719,6 +8719,13 @@ nivellate()
 			upperceiling /= 2;
 		}
 
+		if (boost_power_value() > 0) {
+			upperceiling *= (100 + (boost_power_value() * 3) );
+			upperceiling /= 100;
+			lowerceiling *= (100 + (boost_power_value() * 3) );
+			lowerceiling /= 100;
+		}
+
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
 
@@ -8910,6 +8917,13 @@ nivellate()
 		if (autismweaponcheck(ART_ARABELLA_S_THINNER)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
+		}
+
+		if (boost_power_value() > 0) {
+			upperceiling *= (100 + (boost_power_value() * 3) );
+			upperceiling /= 100;
+			lowerceiling *= (100 + (boost_power_value() * 3) );
+			lowerceiling /= 100;
 		}
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
@@ -9139,6 +9153,11 @@ boolean guaranteed;
 			ceiling /= 2;
 		}
 
+		if (boost_power_value() > 0) {
+			ceiling *= (100 + (boost_power_value() * 3) );
+			ceiling /= 100;
+		}
+
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
 		if (u.uhpmax < ceiling) {
@@ -9289,6 +9308,11 @@ boolean guaranteed;
 		}
 		if (autismweaponcheck(ART_ARABELLA_S_THINNER)) {
 			ceiling /= 2;
+		}
+
+		if (boost_power_value() > 0) {
+			ceiling *= (100 + (boost_power_value() * 3) );
+			ceiling /= 100;
 		}
 
 		if (ceiling < 10) ceiling = 10; /* fail safe */
@@ -11380,6 +11404,34 @@ steelbreak()
 	return TRUE;
 }
 
+/* value to add to certain other values, for boosting late-game player characters and reducing reliance on skills --Amy */
+int
+boost_power_value()
+{
+	int boostvalue = 0;
+
+	/* potion of boost gives a big, temporary bonus */
+	if (u.boosttimer) boostvalue += 5;
+
+	/* very high XL gives bonuses */
+	if (u.ulevel >= 20) boostvalue++;
+	if (u.ulevel >= 25) boostvalue++;
+	if (u.ulevel >= 30) boostvalue++;
+
+	/* the three macguffins give bonuses */
+	if (u.silverbellget) boostvalue++;
+	if (u.menoraget) boostvalue++;
+	if (u.bookofthedeadget) boostvalue++;
+
+	/* the amulet gives a big bonus since getting it means you've reached the final stretch
+	 * also, lore-wise we might say that having touched the amulet infuses you with power */
+	if (achieve.get_amulet) boostvalue += 3;
+
+	if (boostvalue < 0) boostvalue = 0; /* fail safe */
+
+	return boostvalue;
+}
+
 /* sanity - yes it's not a bug that you start at 0 sanity and gradually become more sane :P --Amy */
 void
 increasesanity(snamount)
@@ -11732,7 +11784,7 @@ dodrink()
 			morehungry(-10);
 		}
 		reducesanity(10);
-		healup(d(2,6) + rnz(u.ulevel), 0, FALSE, FALSE);
+		healup(d(2,6) + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
 
 		{
 			int i, ii, lim;
@@ -12620,7 +12672,7 @@ peffects(otmp)
 		if (!otmp->blessed)
 		    make_confused(itimeout_incr(HConfusion, d(3,8)), FALSE);
 		/* the whiskey makes us feel better */
-		if (!otmp->odiluted) healup(Role_if(PM_DRUNK) ? rnz(20 + u.ulevel) : 1, 0, FALSE, FALSE);
+		if (!otmp->odiluted) healup(Role_if(PM_DRUNK) ? rnz(20 + boosted_ulevel(1)) : 1, 0, FALSE, FALSE);
 		u.uhunger += 10 * (2 + bcsign(otmp));
 		if (Race_if(PM_CLOCKWORK_AUTOMATON)) u.uhunger += 200;
 		if (Race_if(PM_RUSMOT)) u.uhunger += 100;
@@ -13680,7 +13732,7 @@ peffects(otmp)
 		break;
 	case POT_HEALING:
 		You_feel("better.");
-		healup(d(5,6) + rnz(u.ulevel) + 5 * bcsign(otmp),
+		healup(d(5,6) + rnz(boosted_ulevel(1)) + 5 * bcsign(otmp),
 		       otmp->blessed ? 2 : !otmp->cursed ? 1 : 0, 1+1*!!otmp->blessed, !otmp->cursed);
 
 		if (evilfriday && otmp->cursed) {
@@ -13715,7 +13767,7 @@ peffects(otmp)
 
 		}
 
-		healup(d(6,8) + rnz(u.ulevel) + 5 * bcsign(otmp),
+		healup(d(6,8) + rnz(boosted_ulevel(2)) + 5 * bcsign(otmp),
 		       otmp->blessed ? 5 : !otmp->cursed ? 2 : 0,
 		       !otmp->cursed, TRUE);
 		if (evilfriday && otmp->cursed) {
@@ -13730,7 +13782,7 @@ peffects(otmp)
 		break;
 	case POT_FULL_HEALING:
 		You_feel("completely healed.");
-		healup(400 + rnz(u.ulevel), 4+4*bcsign(otmp), !otmp->cursed, TRUE);
+		healup(400 + rnz(boosted_ulevel(5)), 4+4*bcsign(otmp), !otmp->cursed, TRUE);
 		if (evilfriday && otmp->cursed) {
 			u.uhpmax -= 4;
 			if (u.uhpmax < 1) u.uhpmax = 1;
@@ -13750,7 +13802,7 @@ peffects(otmp)
 		break;
 	case POT_CURE_WOUNDS:
 		You_feel("better.");
-		healup(d(5,6) + rnz(u.ulevel) + 5 * bcsign(otmp), 0, 0, 0);
+		healup(d(5,6) + rnz(boosted_ulevel(1)) + 5 * bcsign(otmp), 0, 0, 0);
 		if (otmp->oartifact == ART_PLUS_ONE_LINE) {
 			healup(1, 1, 0, 0);
 		}
@@ -13758,7 +13810,7 @@ peffects(otmp)
 		break;
 	case POT_CURE_SERIOUS_WOUNDS:
 		You_feel("much better.");
-		healup(d(6,8) + rnz(u.ulevel) + 5 * bcsign(otmp), 0, 0, 0);
+		healup(d(6,8) + rnz(boosted_ulevel(2)) + 5 * bcsign(otmp), 0, 0, 0);
 		if (otmp->oartifact == ART_PLUS_TWO_LINES) {
 			healup(2, 2, 0, 0);
 		}
@@ -13767,7 +13819,7 @@ peffects(otmp)
 		break;
 	case POT_CURE_CRITICAL_WOUNDS:
 		You_feel("completely healed.");
-		healup(400 + rnz(u.ulevel),  0, 0, 0);
+		healup(400 + rnz(boosted_ulevel(5)), 0, 0, 0);
 		if (otmp->oartifact == ART_FULL_RECOVERY) {
 			u.uhp = u.uhpmax;
 			if (Upolyd) u.mh = u.mhmax;
@@ -13813,7 +13865,7 @@ peffects(otmp)
 			    You_feel("lackluster.");
 			else
 			    pline("Magical energies course through your body.");
-			num = rnd(25) + rnz(u.ulevel) + 5 * otmp->blessed + 10;                        
+			num = rnd(25) + rnz(boosted_ulevel(1)) + 5 * otmp->blessed + 10;                        
 			num2 = rnd(2) + 2 * otmp->blessed + 1;
 			u.uenmax += (otmp->cursed) ? -num2 : num2;
 			u.uen += (otmp->cursed) ? -num : num;

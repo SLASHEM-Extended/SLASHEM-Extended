@@ -11174,11 +11174,11 @@ extrachargechoice:
 	  }
 
         if (!can_limitbreak())
-	    techtout(tech_no) = (t_timeout * (100 - techlevX(tech_no))/100);
+	    techtout(tech_no) = (t_timeout * (100 - min(techlevX(tech_no), 50)) / 100);
 	  else if (!rn2(3))
-	    techtout(tech_no) = (t_timeout * (100 - techlevX(tech_no))/300);
+	    techtout(tech_no) = (t_timeout * (100 - min(techlevX(tech_no), 50)) / 300);
 	  else if (!rn2(2))
-	    techtout(tech_no) = (t_timeout * (100 - techlevX(tech_no))/1000);
+	    techtout(tech_no) = (t_timeout * (100 - min(techlevX(tech_no), 50)) / 1000);
 	/* limit break can be used for endless exploits, so this fix was urgently necessary... --Amy */
 
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
@@ -12126,6 +12126,8 @@ int tech;
 		finaltechlevel += 3;
 	}
 	if (uarmh && itemhasappearance(uarmh, APP_TECHNICAL_HELMET)) finaltechlevel++;
+
+	finaltechlevel += (boost_power_value() * 2);
 
 	if (finaltechlevel > 50) finaltechlevel = 50; /* fail safe */
 	return finaltechlevel;

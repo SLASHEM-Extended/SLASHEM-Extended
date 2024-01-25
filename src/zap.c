@@ -166,9 +166,9 @@ struct obj *otmp;
 
 	case WAN_GOOD_NIGHT:
 	case SPE_GOOD_NIGHT:
-		dmg = d(2,12) + rnz(u.ulevel);
-		if (otyp == SPE_GOOD_NIGHT) dmg = d(2,12) + rnd(u.ulevel);
-		if (otyp == WAN_GOOD_NIGHT) dmg += rnz(u.ulevel);
+		dmg = d(2,12) + rnz(boosted_ulevel(1));
+		if (otyp == SPE_GOOD_NIGHT) dmg = d(2,12) + rnd(boosted_ulevel(1));
+		if (otyp == WAN_GOOD_NIGHT) dmg += rnz(boosted_ulevel(1));
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		if (mtmp->data->maligntyp > 0) dmg *= 10;
@@ -188,8 +188,8 @@ struct obj *otmp;
 		if (breathless(mtmp->data) || is_swimmer(mtmp->data) || amphibious(mtmp->data)) {
 			if (canseemon(mtmp)) pline("%s is unaffected!", Monnam(mtmp));
 		} else {
-			dmg = d(4,12) + rnz(u.ulevel);
-			if (otyp == SPE_BUBBLEBEAM) dmg = d(4,12) + rnd(u.ulevel);
+			dmg = d(4,12) + rnz(boosted_ulevel(1));
+			if (otyp == SPE_BUBBLEBEAM) dmg = d(4,12) + rnd(boosted_ulevel(1));
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s is immersed in a water bubble!", Monnam(mtmp));
@@ -205,7 +205,7 @@ struct obj *otmp;
 		if (mtmp && (mtmp->data->geno & G_UNIQ) && rn2(3)) willbepushed = FALSE;
 		if (mtmp && (mtmp->data->msize >= MZ_HUGE)) willbepushed = FALSE;
 
-		dmg = d(10, 10) + rnd(u.ulevel * 4);
+		dmg = d(10, 10) + rnd(boosted_ulevel(1) * 4);
 
 		if (distu(mtmp->mx, mtmp->my) > 3) {
 			wake = FALSE;
@@ -245,11 +245,11 @@ struct obj *otmp;
 			if (u.uhp < (u.uhpmax * 1 / 5)) streambonus = 75;
 			if (u.uhp < (u.uhpmax * 1 / 10)) streambonus = 100;
 
-			dmg = d(4,10) + rnd(u.ulevel) + (spell_damage_bonus(SPE_BLOOD_STREAM) * 3);
+			dmg = d(4,10) + rnd(boosted_ulevel(1)) + (spell_damage_bonus(SPE_BLOOD_STREAM) * 3);
 			dmg *= (100 + streambonus);
 			dmg /= 100;
 			if (flags.female) {
-				dmg += rnd(rnz(u.ulevel));
+				dmg += rndrnz(boosted_ulevel(1));
 				dmg *= 6;
 				dmg /= 5;
 			}
@@ -277,7 +277,7 @@ struct obj *otmp;
 			if (u.uhp < (u.uhpmax * 1 / 5)) streambonus = 55;
 			if (u.uhp < (u.uhpmax * 1 / 10)) streambonus = 75;
 
-			dmg = d(2,10) + rnd(u.ulevel); /* no spell level bonus, not really a spell */
+			dmg = d(2,10) + rnd(boosted_ulevel(1)); /* no spell level bonus, not really a spell */
 			dmg *= (100 + streambonus);
 			dmg /= 100;
 			if (dmg > 0) {
@@ -296,7 +296,7 @@ struct obj *otmp;
 			break;
 		}
 
-		dmg = d(4,12) + rnd(u.ulevel * rnd(3));
+		dmg = d(4,12) + rnd(boosted_ulevel(1) * rnd(3));
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 
@@ -330,7 +330,7 @@ struct obj *otmp;
 			dmg = d(5 + spell_damage_bonus(SPE_SHINING_WAVE), wavebonus);
 			dmg *= (flags.female ? rno(2) : rnd(3)); /* gotta do enough damage to make it worth the cost */
 			if (!flags.female) {
-				dmg += rnd(rnz(u.ulevel * 4));
+				dmg += rndrnz(boosted_ulevel(1) * 4);
 			}
 
 			if (resists_magm(mtmp)) {
@@ -396,7 +396,7 @@ struct obj *otmp;
 			break;
 		}
 
-		dmg = d(6,18) + rnd(u.ulevel * 2);
+		dmg = d(6,18) + rnd(boosted_ulevel(1) * 2);
 		dmg += (skilldmg * 5);
 		if (amorphous(mtmp->data)) dmg /= rn1(3, 3);
 		if (noncorporeal(mtmp->data)) dmg = 0;
@@ -418,11 +418,11 @@ struct obj *otmp;
 		}
 		if (!which_armor(mtmp, W_ARMH)) {
 			pline("Your rock hits %s's %s!", mon_nam(mtmp), mbodypart(mtmp, HEAD));
-			dmg += (10 + rnd(u.ulevel) + skilldmg);
+			dmg += (10 + rnd(boosted_ulevel(1)) + skilldmg);
 		}
 		if (!resists_elec(mtmp) || player_will_pierce_resistance()) {
 			pline("%s is electrified!", Monnam(mtmp));
-			dmg += (10 + rnd(u.ulevel) + skilldmg);
+			dmg += (10 + rnd(boosted_ulevel(1)) + skilldmg);
 		}
 		if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 
@@ -451,7 +451,7 @@ struct obj *otmp;
 skipmsg:
 			pline("%s hits %s %s on the ceiling.", Monnam(mtmp), mhis(mtmp), mbodypart(mtmp, HEAD));
 
-			dmg = d(10, 20) + rnz(u.ulevel * 5);
+			dmg = d(10, 20) + rnz(boosted_ulevel(1) * 5);
 
 			if (dmg > 0) (void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 
@@ -473,9 +473,9 @@ skipmsg:
 			break;
 		}
 
-		dmg = rnd(10) + rnd(u.ulevel * rnd(2)) + skilldmg;
+		dmg = rnd(10) + rnd(boosted_ulevel(1) * rnd(2)) + skilldmg;
 		if (humanoid(mtmp->data)) {
-			dmg += rnd(u.ulevel);
+			dmg += rnd(boosted_ulevel(1));
 			pline("%s is gasping for air!", Monnam(mtmp));
 		} else pline("%s is being strangled.", Monnam(mtmp));
 
@@ -629,11 +629,11 @@ armorsmashdone:
 		if (canseemon(mtmp)) pline("%s is doused.", Monnam(mtmp));
 		if (resists_cold(mtmp)) {
 			pline("%s is burned by the watery flame!", Monnam(mtmp));
-			dmg += (rnd(u.ulevel) + skilldmg);
+			dmg += (rnd(boosted_ulevel(1)) + skilldmg);
 		}
 		if (resists_fire(mtmp)) {
 			pline("%s is cooled by the watery flame!", Monnam(mtmp));
-			dmg += (rnd(u.ulevel) + skilldmg);
+			dmg += (rnd(boosted_ulevel(1)) + skilldmg);
 		}
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
 
@@ -642,8 +642,8 @@ armorsmashdone:
 	case WAN_DREAM_EATER:
 	case SPE_DREAM_EATER:
 		if (!(mtmp->mcanmove)) {
-			dmg = d(8,12) + rnz(u.ulevel * 3);
-			if (otyp == SPE_DREAM_EATER) dmg = d(8,12) + rnd(u.ulevel * 3);
+			dmg = d(8,12) + rnz(boosted_ulevel(1) * 3);
+			if (otyp == SPE_DREAM_EATER) dmg = d(8,12) + rnd(boosted_ulevel(1) * 3);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s's dream is eaten!", Monnam(mtmp));
@@ -663,7 +663,7 @@ armorsmashdone:
 
 	case SPE_MANA_BOLT:
 		dmg = d(2, 8);
-		if (u.ulevel > 5) dmg += rnd(u.ulevel / 3);
+		if (u.ulevel > 5) dmg += rnd(boosted_ulevel(1) / 3);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
@@ -672,7 +672,7 @@ armorsmashdone:
 
 	case SPE_SNIPER_BEAM:
 		dmg = d(4, 8);
-		if (u.ulevel > 5) dmg += rnd(u.ulevel / 2);
+		if (u.ulevel > 5) dmg += rnd(boosted_ulevel(1) / 2);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
@@ -681,7 +681,7 @@ armorsmashdone:
 
 	case SPE_ULTRA_P:
 		dmg = d(4, 7);
-		if (u.ulevel > 5) dmg += rnd(u.ulevel / 2);
+		if (u.ulevel > 5) dmg += rnd(boosted_ulevel(1) / 2);
 		if (dbldam) dmg *= 2;
 		dmg += (skilldmg * rnd(3));
 		if (canseemon(mtmp)) pline("%s is blasted!", Monnam(mtmp));
@@ -690,7 +690,7 @@ armorsmashdone:
 
 	case SPE_PARTICLE_CANNON:
 		dmg = d(5, 10);
-		dmg += rnd(u.ulevel * rno(3));
+		dmg += rnd(boosted_ulevel(1) * rno(3));
 		if(dbldam) dmg *= 2;
 		dmg += (skilldmg * rnd(10));
 		if (canseemon(mtmp)) pline("%s is caught in the particle beam!", Monnam(mtmp));
@@ -746,7 +746,7 @@ armorsmashdone:
 
 	case SPE_ENERGY_BOLT:
 		dmg = d(8, 8);
-		if (u.ulevel > 1) dmg += rnd(u.ulevel);
+		if (u.ulevel > 1) dmg += rnd(boosted_ulevel(1));
 		if(dbldam) dmg *= 2;
 		dmg += (skilldmg * 4);
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
@@ -755,9 +755,9 @@ armorsmashdone:
 
 	case WAN_CHLOROFORM:
 	case SPE_CHLOROFORM:
-		dmg = d(2, 9) + (rnz(u.ulevel) / 2);
-		if (otyp == SPE_CHLOROFORM) dmg = d(2, 9) + (rnd(u.ulevel) / 2);
-		if (otyp == WAN_CHLOROFORM) dmg += (rnz(u.ulevel) / 2);
+		dmg = d(2, 9) + (rnz(boosted_ulevel(1)) / 2);
+		if (otyp == SPE_CHLOROFORM) dmg = d(2, 9) + (rnd(boosted_ulevel(1)) / 2);
+		if (otyp == WAN_CHLOROFORM) dmg += (rnz(boosted_ulevel(1)) / 2);
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is enveloped in a cloud of gas!", Monnam(mtmp));
@@ -929,15 +929,15 @@ armorsmashdone:
 	case SPE_GRAVITY_BEAM:
 		zap_type_text = "gravity beam";
 		reveal_invis = TRUE;
-		if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(u.ulevel))) ) {
-			dmg = d(4,12) + rnz(u.ulevel);
-			if (otyp == SPE_GRAVITY_BEAM) dmg = d(4,12) + rnd(u.ulevel);
-			if (otyp == SPE_GRAVITY_BEAM && !rn2(3)) dmg = d(2,12) + rnd(u.ulevel);
+		if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(boosted_ulevel(1)))) ) {
+			dmg = d(4,12) + rnz(boosted_ulevel(1));
+			if (otyp == SPE_GRAVITY_BEAM) dmg = d(4,12) + rnd(boosted_ulevel(1));
+			if (otyp == SPE_GRAVITY_BEAM && !rn2(3)) dmg = d(2,12) + rnd(boosted_ulevel(1));
 			if (otyp == SPE_GRAVITY_BEAM && !rn2(3) && dmg > 1) dmg = rnd(dmg);
 			if (bigmonst(mtmp->data)) dmg += rnd(6);
 			if (mtmp->data->msize >= MZ_HUGE) dmg += rnd(12);
 			if (mtmp->data->msize >= MZ_GIGANTIC) dmg += rnd(18);
-			if (otyp == WAN_GRAVITY_BEAM) dmg += rnz(u.ulevel * 2);
+			if (otyp == WAN_GRAVITY_BEAM) dmg += rnz(boosted_ulevel(1) * 2);
 			if(dbldam) dmg *= 2;
 			dmg += (skilldmg * 2);
 			hit(zap_type_text, mtmp, exclam(dmg));
@@ -954,10 +954,10 @@ armorsmashdone:
 		if (resists_magm(mtmp)) {	/* match effect on player */
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
-		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(u.ulevel))) ) {
-			dmg = d(2,12) + rnd(u.ulevel);
-			if (otyp == WAN_STRIKING) dmg += rnz(u.ulevel);
-			if (otyp == SPE_FORCE_BOLT && !rn2(3)) dmg = d(2,8) + rnd(u.ulevel);
+		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(boosted_ulevel(1)))) ) {
+			dmg = d(2,12) + rnd(boosted_ulevel(1));
+			if (otyp == WAN_STRIKING) dmg += rnz(boosted_ulevel(1));
+			if (otyp == SPE_FORCE_BOLT && !rn2(3)) dmg = d(2,8) + rnd(boosted_ulevel(1));
 			if (otyp == SPE_FORCE_BOLT && !rn2(3) && dmg > 1) dmg = rnd(dmg);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
@@ -971,9 +971,9 @@ armorsmashdone:
 		if (resists_magm(mtmp)) {	/* match effect on player */
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
-		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(u.ulevel))) ) {
-			dmg = rnd(18) + rnd(u.ulevel);
-			if (rn2(3)) dmg = rnd(12) + rnd(u.ulevel);
+		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(boosted_ulevel(1)))) ) {
+			dmg = rnd(18) + rnd(boosted_ulevel(1));
+			if (rn2(3)) dmg = rnd(12) + rnd(boosted_ulevel(1));
 			if (rn2(2) && dmg > 1) dmg = rnd(dmg);
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
@@ -1026,7 +1026,7 @@ armorsmashdone:
 			shieldeff(mtmp->mx, mtmp->my);
 		    break;
 		}
-		dmg = d(3,10) + rnz(u.ulevel);
+		dmg = d(3,10) + rnz(boosted_ulevel(2));
 		dmg += skilldmg;
 		hit(zap_type_text, mtmp, exclam(dmg));
 		(void) resist(mtmp, otmp->oclass, dmg, TELL);
@@ -1049,7 +1049,7 @@ armorsmashdone:
 			shieldeff(mtmp->mx, mtmp->my);
 		    break;
 		}
-		dmg = d(6,10) + rnz(u.ulevel) + rnz(u.ulevel);
+		dmg = d(6,10) + rnz(boosted_ulevel(3)) + rnz(boosted_ulevel(3));
 		dmg += (skilldmg * 2);
 		hit(zap_type_text, mtmp, exclam(dmg));
 		(void) resist(mtmp, otmp->oclass, dmg, TELL);
@@ -1127,11 +1127,11 @@ armorsmashdone:
 			reveal_invis = TRUE;
 			wake = TRUE;
 			dmg = rnd(8);
-			dmg += rnd(u.ulevel);
+			dmg += rnd(boosted_ulevel(1));
 			if(dbldam) dmg *= 2;
 			dmg += skilldmg;
 			if (otyp == WAN_UNDEAD_TURNING) {
-				dmg += rnz(u.ulevel);
+				dmg += rnz(boosted_ulevel(1));
 				dmg *= (2 + rn2(2));
 			}
 			flags.bypasses = TRUE;	/* for make_corpse() */
@@ -1484,17 +1484,30 @@ armorsmashdone:
 
 		int healamount = 0;
 
-		healamount +=
 		  /* [ALI] FIXME: Makes no sense that cursed wands are more
 		   * effective than uncursed wands. This behaviour dates
 		   * right back to Slash v3 (and probably to v1).
 		   */
-		  (otyp == WAN_HEALING ? (d(5,2) + rnz(u.ulevel) + 5 * !!bcsign(otmp)) :
-		  otyp == WAN_EXTRA_HEALING ? (d(5,4) + rnz(u.ulevel) + rnz(u.ulevel) + 10 * !!bcsign(otmp)) :
-		  otyp == WAN_FULL_HEALING ? (d(5,8) + rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel) + 20 * !!bcsign(otmp)) :
-		  otyp == SPE_HEALING ? (rnd(10) + 4 + (rn2(2) ? 0 : rnd(rnz(u.ulevel))) ): 
-		  otyp == SPE_EXTRA_HEALING ? (rnd(20) + 6 + rnd(rnz(u.ulevel) + (rn2(2) ? rnd(u.ulevel) : rnz(u.ulevel)) )) : 
-		  (rnd(60) + 20 + rnd(rnz(u.ulevel) + rnz(u.ulevel) + rnz(u.ulevel))) ) ;
+
+		if (otyp == WAN_HEALING) healamount += (d(5,2) + rnz(boosted_ulevel(1)) + 5 * !!bcsign(otmp));
+		if (otyp == WAN_EXTRA_HEALING) healamount += (d(5,4) + rnz(boosted_ulevel(2)) + rnz(boosted_ulevel(2)) + 10 * !!bcsign(otmp));
+		if (otyp == WAN_FULL_HEALING) healamount += (d(5,8) + rnz(boosted_ulevel(5)) + rnz(boosted_ulevel(5)) + rnz(boosted_ulevel(5)) + 20 * !!bcsign(otmp));
+
+		if (otyp == SPE_HEALING) {
+			healamount += (rnd(10) + 4);
+			if (rn2(2)) {
+				healamount += rndrnz(boosted_ulevel(1));
+			}
+		}
+		if (otyp == SPE_EXTRA_HEALING) {
+			healamount += (rnd(20) + 6 + rndrnz(boosted_ulevel(2)) );
+			if (rn2(2)) {
+				healamount += rnd(boosted_ulevel(2));
+			} else {
+				healamount += rnz(boosted_ulevel(2));
+			}
+		}
+		if (otyp == SPE_FULL_HEALING) healamount += (rnd(60) + 20 + rndrnz(boosted_ulevel(5)) + rnz(boosted_ulevel(5)) + rnz(boosted_ulevel(5)) );
 
 		if ((otyp == SPE_HEALING || otyp == SPE_EXTRA_HEALING || otyp == SPE_FULL_HEALING) && healamount > 1 && rn2(2)) healamount /= 2;
 
@@ -5005,7 +5018,7 @@ secureidchoice:
 			break;
 		case WAN_MEDIUM_HEALING:
 			You_feel("healthier!");
-			healup( d(5,8) + rnz(u.ulevel),0,0,0);
+			healup( d(5,8) + rnz(boosted_ulevel(1)),0,0,0);
 			exercise(A_STR, TRUE);
 			known = TRUE;
 
@@ -5022,7 +5035,7 @@ secureidchoice:
 			break;
 		case WAN_STRONG_HEALING:
 			You_feel("much more healthy!");
-			healup(d(8,12) + rnz(u.ulevel),0,0,0);
+			healup(d(8,12) + rnz(boosted_ulevel(2)),0,0,0);
 			make_hallucinated(0L,TRUE,0L);
 			exercise(A_STR, TRUE);
 			exercise(A_CON, TRUE);
@@ -5042,7 +5055,7 @@ secureidchoice:
 			break;
 		case WAN_SUPER_HEALING:
 			You_feel("healthy again!");
-			healup(d(13,20) + rnz(u.ulevel),0,0,0);
+			healup(d(13,20) + rnz(boosted_ulevel(4)),0,0,0);
 			make_hallucinated(0L,TRUE,0L);
 			exercise(A_STR, TRUE);
 			exercise(A_CON, TRUE);
@@ -5372,9 +5385,9 @@ controlagain:
 		case WAN_MANA:
 			known = TRUE;
 			You_feel("full of mystic power!");
-			if (!rn2(20)) u.uen += (400 + rnz(u.ulevel));
-			else if (!rn2(5)) u.uen += (d(6,8) + rnz(u.ulevel));
-			else u.uen += (d(5,6) + rnz(u.ulevel));
+			if (!rn2(20)) u.uen += (400 + rnz(boosted_ulevel(5)));
+			else if (!rn2(5)) u.uen += (d(6,8) + rnz(boosted_ulevel(2)));
+			else u.uen += (d(5,6) + rnz(boosted_ulevel(1)));
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 			break;
 		case WAN_REMOVE_CURSE:
@@ -7300,13 +7313,13 @@ boolean ordinary;
 		break;
 		case WAN_HEALING:
 		   You("begin to feel better.");
-		   healup( d(5,6) + rnz(u.ulevel),0,0,0);
+		   healup( d(5,6) + rnz(boosted_ulevel(1)),0,0,0);
 		   exercise(A_STR, TRUE);
 		   makeknown(WAN_HEALING);
 		break;
 		case WAN_EXTRA_HEALING:
 		   You_feel("much better.");
-		   healup(d(6,8) + rnz(u.ulevel),0,0,0);
+		   healup(d(6,8) + rnz(boosted_ulevel(2)),0,0,0);
 		   make_hallucinated(0L,TRUE,0L);
 		   exercise(A_STR, TRUE);
 		   exercise(A_CON, TRUE);
@@ -7314,7 +7327,7 @@ boolean ordinary;
 		break;
 		case WAN_FULL_HEALING:
 		   You_feel("restored to health.");
-		   healup(d(10,20) + rnz(u.ulevel),0,0,0);
+		   healup(d(10,20) + rnz(boosted_ulevel(5)),0,0,0);
 		   make_hallucinated(0L,TRUE,0L);
 		   exercise(A_STR, TRUE);
 		   exercise(A_CON, TRUE);
@@ -7478,7 +7491,7 @@ boolean ordinary;
 		case SPE_HEALING:
 			{
 
-			int healamount = rnd(10) + 4 + (rn2(2) ? 0 : rnd(rnz(u.ulevel)) );
+			int healamount = rnd(10) + 4 + (rn2(2) ? 0 : rndrnz(boosted_ulevel(1)) );
 			if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 			healup(healamount, 0, FALSE, FALSE);
@@ -7492,7 +7505,7 @@ boolean ordinary;
 		case SPE_EXTRA_HEALING:
 			{
 
-			int healamount = (d(3,8) + 6 + rnd(rnz(u.ulevel)) );
+			int healamount = (d(3,8) + 6 + rndrnz(boosted_ulevel(2) ) );
 			if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 			healup(healamount, 0, FALSE, FALSE);
@@ -7505,7 +7518,7 @@ boolean ordinary;
 
 		case SPE_FULL_HEALING:
 			{
-			int healamount = (d(10,10) + rnz(u.ulevel) + (rn2(2) ? 0 : rnz(u.ulevel)) );
+			int healamount = (d(10,10) + rnz(boosted_ulevel(5) ) + (rn2(2) ? 0 : rnz(boosted_ulevel(5) )) );
 			if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		    healup(healamount, 0, FALSE, FALSE);
@@ -8222,10 +8235,10 @@ struct obj *obj;
 				You("yell \"%s\"",yell_types[otyp - SPE_MAGIC_MISSILE]);
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 				buzz(ZT_MEGA(otyp - SPE_MAGIC_MISSILE),
-						u.ulevel/2 + 1 + skilldmg,
+						(boosted_ulevel(1) / 2) + 1 + skilldmg,
 						u.ux, u.uy, u.dx, u.dy);
 			} else if (otyp == SPE_SLEEP) { /* way too uber, needs nerf badly --Amy */
-				int sleepnerfamount = ((u.ulevel / 2) + 1 + skilldmg);
+				int sleepnerfamount = (( boosted_ulevel(1) / 2) + 1 + skilldmg);
 				if (sleepnerfamount > 1) sleepnerfamount /= 2;
 				if (sleepnerfamount > 1 && !rn2(2)) {
 					sleepnerfamount /= 2;
@@ -8233,7 +8246,7 @@ struct obj *obj;
 				}
 				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), sleepnerfamount, u.ux, u.uy, u.dx, u.dy);
 			} else { /* zap a "normal" spell */
-				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+				buzz(ZT_SPELL(otyp - SPE_MAGIC_MISSILE), ( boosted_ulevel(1) / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 			}
 
 		else if (otyp >= WAN_MAGIC_MISSILE && otyp <= WAN_PSYBEAM) {
@@ -8254,177 +8267,177 @@ struct obj *obj;
 drainingdone:
 
 			buzz(otyp - WAN_MAGIC_MISSILE,
-		     (otyp == WAN_MAGIC_MISSILE) ? 4 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5),
+		     (otyp == WAN_MAGIC_MISSILE) ? 4 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) : 6 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5),
 		     u.ux, u.uy, u.dx, u.dy);
 	    }
 
 	    else if (otyp == WAN_POISON) {
-		buzz((int)(26), 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(26), 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_HYPER_BEAM) {
-		buzz((int)(20), 6 + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(20), 6 + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_HYPER_BEAM) {
-		buzz((int)(20), (u.ulevel * 7 / 10) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(20), ((boosted_ulevel(1)) * 7 / 10) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_CHROMATIC_BEAM) {
 		int damagetype = 20 + rn2(9);
-		buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) : damagetype == 20 ? 2 + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) + (rnz(u.ulevel) / 10) : damagetype == 28 ? 8 + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) + (rnz(u.ulevel) / 4) : 6 + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5) + (rnz(u.ulevel) / 5), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) : damagetype == 20 ? 2 + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) : damagetype == 28 ? 8 + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) : 6 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_CHROMATIC_BEAM) {
 		int damagetype = 20 + rn2(9);
-		buzz((int)(damagetype), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_CONVERGE_BREATH) {
 		int damagetype = 20 + rn2(9);
-		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(damagetype), (u.ulevel / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 10) + rnd(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_ELEMENTAL_BEAM) {
 		int damagetype = !rn2(4) ? 21 : !rn2(3) ? 22 : !rn2(2) ? 25 : 26;
-		buzz((int)(damagetype), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_NATURE_BEAM) {
 		int damagetype = !rn2(4) ? 21 : !rn2(3) ? 22 : !rn2(2) ? 25 : 26;
-		buzz((int)(damagetype), (u.ulevel / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(damagetype), (boosted_ulevel(1) / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_DISINTEGRATION_BEAM) {
-		buzz((int)(24), 7 + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6) + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(24), 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_DISINTEGRATION_BEAM) {
-		buzz((int)(24), 7 + (rnz(u.ulevel) / 6), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(24), 7 + (rnz(boosted_ulevel(1)) / 6), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_FIRE_BOLT) {
-		buzz((int)(21), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (boosted_ulevel(1) / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_DEFENSIVE_FIREBALL) {
-		buzz((int)(11), (u.ulevel / 3) + rnd(6) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(11), (boosted_ulevel(1) / 3) + rnd(6) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_NETHER_BEAM) {
-		buzz((int)(29), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(29), (boosted_ulevel(1) / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_NETHER_BEAM) {
-		buzz((int)(29), 7 + (rnz(u.ulevel) / 2), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(29), 7 + (rnz(boosted_ulevel(1)) / 2), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_AURORA_BEAM) {
-		buzz((int)(28), (u.ulevel / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(28), (boosted_ulevel(1) / 4) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_AURORA_BEAM) {
-		buzz((int)(28), 8 + (rnz(u.ulevel) * 3 / 2), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(28), 8 + (rnz(boosted_ulevel(1)) * 3 / 2), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_INFERNO) {
-		buzz((int)(21), (u.ulevel / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (boosted_ulevel(1) / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_INFERNO) {
-		buzz((int)(21), 12 + rnz(u.ulevel), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_ICE_BEAM) {
-		buzz((int)(22), (u.ulevel / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(22), (boosted_ulevel(1) / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_MULTIBEAM) {
-		buzz((int)(22), (u.ulevel / (7 + rn2(2))) + rn2(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(21), (u.ulevel / (7 + rn2(2))) + rn2(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(25), (u.ulevel / (7 + rn2(2))) + rn2(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(22), (boosted_ulevel(1) / (7 + rn2(2))) + rn2(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (boosted_ulevel(1) / (7 + rn2(2))) + rn2(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(25), (boosted_ulevel(1) / (7 + rn2(2))) + rn2(2) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_CALL_THE_ELEMENTS) {
-		buzz((int)(22), (u.ulevel / 4) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(21), (u.ulevel / 4) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
-		buzz((int)(25), (u.ulevel / 4) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(22), (boosted_ulevel(1) / 4) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(21), (boosted_ulevel(1) / 4) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(25), (boosted_ulevel(1) / 4) + 1 + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_ICE_BEAM) {
-		buzz((int)(22), 12 + rnz(u.ulevel), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(22), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_THUNDER) {
-		buzz((int)(25), (u.ulevel / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(25), (boosted_ulevel(1) / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_THUNDER) {
-		buzz((int)(25), 12 + rnz(u.ulevel), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(25), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_SLUDGE) {
-		buzz((int)(27), (u.ulevel / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(27), (boosted_ulevel(1) / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_SLUDGE) {
-		buzz((int)(27), 12 + rnz(u.ulevel), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(27), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_TOXIC) {
-		buzz((int)(26), (u.ulevel / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(26), (boosted_ulevel(1) / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_TOXIC) {
-		buzz((int)(26), 12 + rnz(u.ulevel), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(26), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == SPE_CHLOROFORM) {
-		buzz((int)(23), (u.ulevel / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(23), (boosted_ulevel(1) / 2) + rnd(4) + skilldmg, u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_CHLOROFORM) {
-		buzz((int)(23), 12 + rnz(u.ulevel), u.ux, u.uy, u.dx, u.dy);
+		buzz((int)(23), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
 	    else if (otyp == WAN_VENOM_SCATTERING) {
 
-		buzz(36, 7 + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3) + (rnz(u.ulevel) / 3), u.ux, u.uy, u.dx, u.dy);
+		buzz(36, 7 + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3), u.ux, u.uy, u.dx, u.dy);
 
 	    }
 
@@ -9681,7 +9694,7 @@ int type;
 {
     int chance = rn2(20);
     int spell_bonus = type ? spell_hit_bonus(type) : 0;
-    if (!issoviet && !rn2(2)) spell_bonus += rnd(GushLevel); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
+    if (!issoviet && !rn2(2)) spell_bonus += rnd(GushLevel + boost_power_value()); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
     if (!issoviet && !rn2(2)) spell_bonus += rnd(ACURR(A_DEX));
 	/* In Soviet Russia, nobody needs a spell bonus of any kind. It's cool if your death rays miss Rodney 90% of the
 	 * time! And it's also cool if your wands of magic missile are absolute trash in the late game! --Amy */

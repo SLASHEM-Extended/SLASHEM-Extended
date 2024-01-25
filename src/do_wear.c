@@ -6732,6 +6732,17 @@ struct obj *obj;
 		armoringvalue -= min((int)greatest_erosionX(obj),objects[(obj)->otyp].a_ac);
 	}
 
+	if (boost_power_value()) {
+		if (uarms && (obj == uarms)) {
+			armoringvalue *= (10 + boost_power_value());
+			armoringvalue /= 10;
+		}
+		if (uarm && (obj == uarm)) {
+			armoringvalue *= (30 + boost_power_value());
+			armoringvalue /= 30;
+		}
+	}
+
 	if (obj->otyp == BROKEN_BOOTS && armoringvalue > 0) armoringvalue = 0;
 	if (obj->otyp == RUSTED_MAIL && armoringvalue > 0) armoringvalue = 0;
 	if (obj->otyp == RIPPED_CLOAK && armoringvalue > 0) armoringvalue = 0;

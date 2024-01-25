@@ -1492,6 +1492,11 @@ void * num;
 		}
 	}
 
+	trapfindchance += (boost_power_value() * 3);
+
+	/* there should be at least some stat that makes it more likely to find a trap! --Amy */
+	if (ACURR(A_WIS) > 14) trapfindchance += (ACURR(A_WIS) - 14);
+
 	if(levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */
 		You("find a secret door!");
@@ -1565,6 +1570,11 @@ void * num;
 			case P_SUPREME_MASTER: trapfindchance = 250; break;
 		}
 	}
+
+	trapfindchance += (boost_power_value() * 3);
+
+	/* there should be at least some stat that makes it more likely to find a trap! --Amy */
+	if (ACURR(A_WIS) > 14) trapfindchance += (ACURR(A_WIS) - 14);
 
 	if(!rn2(3) && levl[zx][zy].typ == SDOOR) {
 		cvt_sdoor_to_door(&levl[zx][zy]);	/* .typ = DOOR */

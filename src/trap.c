@@ -26267,6 +26267,11 @@ struct trap *ttmp;
 {
 	int chance = 3;
 
+	int bonuschance = boost_power_value();
+
+	/* wtf, NO stat gives a bonus to success chance at all??? what even IS THIS --Amy */
+	if (ACURR(A_DEX) > 14) bonuschance += (ACURR(A_DEX) - 14);
+
 	/* Only spiders know how to deal with webs reliably */
 	if ((ttmp->ttyp == WEB || ttmp->ttyp == FARTING_WEB) && !webmaker(youmonst.data) && !Race_if(PM_SPIDERMAN) )
 	 	chance = 30;
@@ -26424,6 +26429,12 @@ struct trap *ttmp;
 	    if (rn2(2 * MAXULEV) < u.ulevel) chance--;
 	    if (u.uhave.questart && chance > 1) chance--;
 	} else if (Role_if(PM_RANGER) && chance > 1) chance--;
+
+	if (bonuschance && chance > 2) {
+		chance *= (50 - min(bonuschance, 30) );
+		chance /= 50;
+		if (chance < 2) chance = 2;
+	}
 
 	if (StrongDefusing && !rn2(2) && chance > 2) {
 		chance -= rn2((chance / 2) + 1);

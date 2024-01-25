@@ -74,6 +74,23 @@ register int x;
 #endif
 }
 
+/* instead of doing rnd(rnz(x)), let's do that via a single function that performs rnz first, then rnd on the result */
+int
+rndrnz(x)
+register int x;
+{
+	int y;
+
+	if (x <= 0) {
+		impossible("rndrnz(%d) attempted - returning zero", x);
+		return(0);
+	}
+
+	y = rnz(x);
+	y = rnd(y);
+	return (y);
+}
+
 int
 rn3(x)		/* like rn2, but the result is more likely to be a lower number --Amy */
 register int x;

@@ -383,6 +383,12 @@ boolean digest_meal;
 				else mon->mhp++;
 			}
 
+			if (rn2(50) < boost_power_value()) {
+				if (mon->mhp + 1 >= mon->mhpmax)
+				      mon->mhp = mon->mhpmax;
+				else mon->mhp++;
+			}
+
 			switch (P_SKILL(P_PETKEEPING)) {
 				default: break;
 				case P_BASIC: 

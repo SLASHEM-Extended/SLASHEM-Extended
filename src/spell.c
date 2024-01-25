@@ -3714,6 +3714,11 @@ castanyway:
 			hungr /= 100;
 		}
 
+		if (boost_power_value()) {
+			hungr *= (100 - (boost_power_value() * 3) );
+			hungr /= 100;
+		}
+
 		if (hungr < 1) hungr = 1;
 	}
 
@@ -4469,7 +4474,7 @@ manloop:
 				if (levl[u.ux + i][u.uy + j].typ == RAINCLOUD) {
 
 					levl[u.ux + i][u.uy + j].typ = CORR;
-					explode(u.ux + i, u.uy + j, ZT_FIRE, rnd(u.ulevel * 3), WAND_CLASS, EXPL_FIERY);
+					explode(u.ux + i, u.uy + j, ZT_FIRE, rnd(boosted_ulevel(1) * 3), WAND_CLASS, EXPL_FIERY);
 
 				}
 
@@ -5106,7 +5111,7 @@ aulechoice:
 
 			    if (!sensemon(nexusmon) && !canseemon(nexusmon)) continue;
 
-				nexusmon->mhp -= (d(10, 10 + (spell_damage_bonus(spellid(spell)) * 5) ) + rnd(u.ulevel * 5));
+				nexusmon->mhp -= (d(10, 10 + (spell_damage_bonus(spellid(spell)) * 5) ) + rnd(boosted_ulevel(1) * 5));
 				if (nexusmon->mhp <= 0) {
 					xkilled(nexusmon, 0);
 					pline("%s is crushed flat!", Monnam(nexusmon));
@@ -5373,7 +5378,7 @@ aulechoice:
 		}
 		pline("You ram into %s with your %spenis.", mon_nam(u.ustuck), flags.female ? "nonexistant " : "");
 		if (u.ustuck->mpeaceful && !(u.ustuck->mtame)) u.ustuck->mpeaceful = 0; /* monster becomes hostile */
-		u.ustuck->mhp -= d(flags.female ? 2 : 5, 5 + spell_damage_bonus(SPE_GOUGE_DICK) + rno(u.ulevel));
+		u.ustuck->mhp -= d(flags.female ? 2 : 5, 5 + spell_damage_bonus(SPE_GOUGE_DICK) + rno(boosted_ulevel(1)));
 		u.ustuck->mcanmove = 0;
 		u.ustuck->mfrozen = rn1(5,5);
 		u.ustuck->mstrategy &= ~STRAT_WAITFORU;
@@ -7474,7 +7479,7 @@ whisperchoice:
 	case SPE_SYMHEAL:
 		if (uinsymbiosis) {
 			int healamount;
-			healamount = (rnd(10) + 4 + (spell_damage_bonus(spellid(spell)) * 2) + rnd(rnz(u.ulevel)));
+			healamount = (rnd(10) + 4 + (spell_damage_bonus(spellid(spell)) * 2) + rndrnz(boosted_ulevel(1)));
 			if (healamount > 1) healamount /= 2;
 			Your("symbiote seems healthier!");
 			u.usymbiote.mhp += healamount;
@@ -7503,7 +7508,7 @@ whisperchoice:
 
 	case SPE_MEDIUM_HEALING:
 	{
-		int healamount = d(2, 10) + 5 + (!rn2(3) ? 0 : rnd(rnz(u.ulevel)) );
+		int healamount = d(2, 10) + 5 + (!rn2(3) ? 0 : rndrnz(boosted_ulevel(1)) );
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
@@ -7523,7 +7528,7 @@ whisperchoice:
 
 	case SPE_STRONG_HEALING:
 	{
-		int healamount = d(5, 10) + 10 + (rn2(3) ? 0 : rnz(u.ulevel) );
+		int healamount = d(5, 10) + 10 + (rn2(3) ? 0 : rnz(boosted_ulevel(2)) );
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
@@ -7543,7 +7548,7 @@ whisperchoice:
 
 	case SPE_SUPER_HEALING:
 	{
-		int healamount = d(13, 10) + 13 + (rn2(2) ? 0 : rnz(u.ulevel) );
+		int healamount = d(13, 10) + 13 + (rn2(2) ? 0 : rnz(boosted_ulevel(4)) );
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
@@ -7566,7 +7571,7 @@ whisperchoice:
 	{
 		struct monst *hrmon;
 
-		int healamount = d(2, 10) + 5 + (!rn2(3) ? 0 : rnd(rnz(u.ulevel)) );
+		int healamount = d(2, 10) + 5 + (!rn2(3) ? 0 : rndrnz(boosted_ulevel(1)) );
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
@@ -8080,7 +8085,7 @@ whisperchoice:
 
 		    }
 
-		    int healamount = (d(6,8) + rnd(rnz(u.ulevel)) );
+		    int healamount = (d(6,8) + rndrnz(boosted_ulevel(1)) );
 		    if (healamount > 1) healamount /= 2;
 
 		    healup(healamount,0,0,0);
