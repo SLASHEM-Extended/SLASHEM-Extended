@@ -6100,7 +6100,7 @@ static const char *epitaphs[] = {
 	"couldnt figure out how to move after 5 minutes, i kept pressing number pad keys and nothing worked, if i cant even move the entire game has got to suck so ill play my favorite roguelike again and just file this 'slex' thing in the dust bin",
 	"yeah the game said something about going through an options menu and pressing this button and changing that option so that i can move with the number pad, i did all that and it still didnt work, gonna play a different game that has playable controls",
 	"Courage is when you don't run away from a difficult situation. Foolhardiness is when you still don't run away even after the situation has turned lethal.",
-	"Boo, the shifting sands shouldn't say it kills you by suffocation.  Seems like bs since I went and put on my amulet of magical breathing and everything  :(",
+	"Boo, the shifting sands shouldn't say it kills you by suffocation.  Seems like bs since I went and put on my amulet of magical breathing and everything  :(", /* sorry but the message says very clearly that you WILL die if you stay in there, should have listened --Amy */
 	"Here lies Tanya Winters. Despite her name, she was not a fleece-Tanja, and her last mistake was to immediately pull a Krukov and open fire at her former boss, Benjamin King. Who then proceeded to gun her down and throw her out of a window.",
 	"Here lies Warren Williams. He didn't realize that one does not fuck with Benjamin King, and as a result, Warren's car burst into flames with him inside. When that STILL didn't kill Warren, Tanya then appeared, turned on him, and shot him in the head.",
 	"Here lies Angelo Lopez. While he realized that the Los Carnales were going down, his airplane got shot up by the Saints before it could take off, and Angelo was caught in the explosion and died instantly.",
@@ -6113,6 +6113,11 @@ static const char *epitaphs[] = {
 	"RIP meteoric steel shield, a black dragon breathed disintegration at it.",
 	"RIP flying boots of blindness resistance, a sword flowey tagged them with a nastycurse attack and now they're flying boots of quasar vision instead.",
 	"Here lies the word 'dick' in the Kelis song 'Trick Me'. It's incredible how every word in every song that could be considered even vaguely offensive gets censored.",
+	"Here lies Lin. She got shot by that asshole Sharp and since that wasn't enough for that motherfucker, he then drowned her body in the sea.",
+	"Here lies William Sharp. Despite having murdered an innocuous girl in cold blood, and in an extremely gruesome way no less, all that happened was that he got shot to death, which is a far too good-natured kind of death for such a motherfucker.",
+	"Here lies Joseph Price. For the final boss of the Westside Rollerz, his death was actually rather anti-climactic: the Saints leader just shot up his truck and Price exploded.",
+	"Here lies Chief Monroe. He thought he could fuck with the Saints just because he was the chief of police, but the Saints weren't buying that shit and blew Monroe's car to kingdom come with him inside.",
+	"Here lies Alderman Hughes. Motherfucker of a politician REALLY thought he could just take out the Third Street Saints after they had managed to finally rub out the other gangs and attain supremacy over Stilwater... but then Hughes' yacht blew up, and the tie-wearing asshole was disintegrated into a fine mist.",
 
 };
 

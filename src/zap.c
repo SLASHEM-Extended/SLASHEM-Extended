@@ -7769,6 +7769,8 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 	    You(!FunnyHallu? "are covered in sparkling lights!"
 			      : "are enveloped by psychedelic fireworks!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
+
+		stop_occupation(); /* reeeeeally stupid if you e.g. read a book and get zapped 20 times --Amy */
 	}
 
 	if (youdefend ? (!youattack && ((Antimagic && rn2(StrongAntimagic ? 20 : 5)) || (chitinprotection() && rn2(3)) || (MysteryResist && rn2(3)) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CANC___ && rn2(10)) || (StrongMysteryResist && rn2(3)) ) ) /* no longer complete protection --Amy */
