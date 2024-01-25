@@ -963,6 +963,11 @@ doforce()		/* try to force a chest with your weapon */
 					dmg += rnd(2 * u.ulevel);
 				}
 
+				if (u.ulevel >= 30) dmg += rnd(4);
+				else if (u.ulevel >= 24) dmg += rnd(3);
+				else if (u.ulevel >= 16) dmg += rnd(2);
+				else if (u.ulevel >= 8) dmg += 1;
+
 				if (!PlayerCannotUseSkills) {
 					switch (P_SKILL(P_WEDI)) { /* again, bigger boosts if you use both blades --Amy */
 

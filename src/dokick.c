@@ -65,6 +65,11 @@ register boolean clumsy;
 		if (verysmall(mon->data)) dmg += 5;
 	}
 
+	if (u.ulevel >= 30) dmg += rnd(4);
+	else if (u.ulevel >= 24) dmg += rnd(3);
+	else if (u.ulevel >= 16) dmg += rnd(2);
+	else if (u.ulevel >= 8) dmg += 1;
+
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) {
 		dmg += (1 + (GushLevel / 3));
 	}
