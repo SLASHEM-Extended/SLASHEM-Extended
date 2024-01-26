@@ -15980,6 +15980,10 @@ boolean amnesia;
 			    /* Magic flutes sound normal again... */
 			    downgrade_obj(obj, WOODEN_FLUTE, &used);
 			    break;
+			case PAN_PIPE_OF_THE_SEWERS:
+			case PAN_PIPE_OF_SUMMONING:
+			    downgrade_obj(obj, PAN_PIPE, &used);
+			    break;
 			case MAGIC_HARP:
 			    /* Magic harps sound normal again... */
 			    downgrade_obj(obj, WOODEN_HARP, &used);
@@ -16447,6 +16451,14 @@ boolean canarti;
 		case WOODEN_FLUTE:
 			obj->otyp = MAGIC_FLUTE;
 			obj->spe = rn1(5,10);
+			break;
+		case PAN_PIPE:
+			obj->otyp = rn2(2) ? PAN_PIPE_OF_SUMMONING : PAN_PIPE_OF_THE_SEWERS;
+			obj->spe = rn1(5,10);
+			break;
+		case PAN_PIPE_OF_SUMMONING:
+		case PAN_PIPE_OF_THE_SEWERS:
+			obj->otyp = PAN_PIPE;
 			break;
 		case MAGIC_FLUTE:
 			obj->otyp = WOODEN_FLUTE;

@@ -542,6 +542,10 @@ int thrown;
 		multishot -= 2;
 		if (multishot < 1) multishot = 1;
 	    }
+	    if (launcher && launcher->otyp == BLADE_BOW) {
+		multishot -= 2;
+		if (multishot < 1) multishot = 1;
+	    }
 	    if (obj && obj->otyp == HEAVY_SPEAR) {
 		multishot -= 2;
 		if (multishot < 1) multishot = 1;
@@ -4033,6 +4037,9 @@ boolean in_view;
 		case LENSES:
 		case MIRROR:
 		case CRYSTAL_BALL:
+		case ORB_OF_CHARGING:
+		case ORB_OF_ENCHANTMENT:
+		case ORB_OF_DESTRUCTION:
 		case EXPENSIVE_CAMERA:
 			to_pieces = " into a thousand pieces";
 			/*FALLTHRU*/

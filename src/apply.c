@@ -6147,58 +6147,84 @@ dyechoice:
 	case CRYSTAL_BALL:
 		if (use_crystal_ball(obj)) noartispeak = TRUE;
 		break;
-/* STEPHEN WHITE'S NEW CODE */
-/* KMH, balance patch -- source of abuse */
-#if 0
+/* STEPHEN WHITE'S NEW CODE
+ * KMH, balance patch -- source of abuse
+ * Amy edit: we can balance it! for example, by making orbs of charging much more limited */
 	case ORB_OF_ENCHANTMENT:
 	    if(obj->spe > 0) {
-		
+
 		check_unpaid(obj);
-		if(uwep && (uwep->oclass == WEAPON_CLASS ||
-			    uwep->otyp == PICK_AXE ||
-			    uwep->otyp == UNICORN_HORN)) {
-		if (uwep->spe < 5) {
-		if (obj->blessed) {
-				if (!Blind) pline("Your %s glows silver.",xname(uwep));
-				uwep->spe += rnd(2);
-		} else if (obj->cursed) {                               
-				if (!Blind) pline("Your %s glows black.",xname(uwep));
-				uwep->spe -= rnd(2);
-		} else {
-				if (rn2(3)) {
-					if (!Blind) pline("Your %s glows bright for a moment." ,xname(uwep));
-					uwep->spe += 1;
+		if (uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep) ) ) {
+
+			if (stack_too_big(uwep)) {
+				pline("Unfortunately your stack of weapons was too big and therefore nothing happens.");
+			} else if (uwep->spe < 5) {
+				if (obj->blessed) {
+					if (!Blind) pline("Your %s glows silver.",xname(uwep));
+					uwep->spe += rnd(2);
+				} else if (obj->cursed) {                               
+					if (!Blind) pline("Your %s glows black.",xname(uwep));
+					uwep->spe -= rnd(2);
 				} else {
-					if (!Blind) pline("Your %s glows dark for a moment." ,xname(uwep));
-					uwep->spe -= 1;
+					if (rn2(3)) {
+						if (!Blind) pline("Your %s glows bright for a moment." ,xname(uwep));
+						uwep->spe += 1;
+					} else {
+						if (!Blind) pline("Your %s glows dark for a moment." ,xname(uwep));
+						uwep->spe -= 1;
+					}
 				}
+
+				if (uwep->spe > 5) uwep->spe = 5;
+
+			} else {
+				pline("Nothing seems to happen.");                
+			}
+		} else {
+			pline("The orb glows for a moment, then fades.");
 		}
-		} else pline("Nothing seems to happen.");                
-		
-		if (uwep->spe > 5) uwep->spe = 5;
-				
-		} else pline("The orb glows for a moment, then fades.");
-		consume_obj_charge(obj, FALSE);
-	    
+
+		int nochargechange = 10;
+		if (!(PlayerCannotUseSkills)) {
+			switch (P_SKILL(P_DEVICES)) {
+				default: break;
+				case P_BASIC: nochargechange = 9; break;
+				case P_SKILLED: nochargechange = 8; break;
+				case P_EXPERT: nochargechange = 7; break;
+				case P_MASTER: nochargechange = 6; break;
+				case P_GRAND_MASTER: nochargechange = 5; break;
+				case P_SUPREME_MASTER: nochargechange = 4; break;
+			}
+		}
+
+		if (nochargechange >= rnd(10)) consume_obj_charge(obj, FALSE);
+
 	    } else pline("This orb is burnt out.");
 	    break;
 	case ORB_OF_CHARGING:
 		if(obj->spe > 0) {
+
 			register struct obj *otmp;
 			makeknown(ORB_OF_CHARGING);
+			/* always uses up a charge because this thing can only be recharged once --Amy */
 			consume_obj_charge(obj, TRUE);
 			otmp = getobj(all_count, "charge");
 			if (!otmp) break;
 			recharge(otmp, obj->cursed ? -1 : (obj->blessed ? 1 : 0));
-		} else pline("This orb is burnt out.");
+		} else {
+			pline("This orb is burnt out.");
+		}
 		break;
 	case ORB_OF_DESTRUCTION:
-		useup(obj);
-		pline("As you activate the orb, it explodes!");
-		explode(u.ux, u.uy, ZT_SPELL(ZT_MAGIC_MISSILE), d(12,6), WAND_CLASS);
-		check_unpaid(obj);
+		{
+			int explodestrength = min(u.ulevel, 12); /* avoid poison pill problem --Amy */
+			noartispeak = TRUE;
+			useup(obj);
+			pline("As you activate the orb, it explodes!");
+			explode(u.ux, u.uy, ZT_SPELL(ZT_MAGIC_MISSILE), d(explodestrength,6), WAND_CLASS, EXPL_MAGICAL);
+			check_unpaid(obj);
+		}
 		break;
-#endif
 	case MAGIC_MARKER:
 		res = dowrite(obj);
 		break;
@@ -6283,10 +6309,10 @@ undark:
 	case BUGLE:
 	case LEATHER_DRUM:
 	case DRUM_OF_EARTHQUAKE:
-	/* KMH, balance patch -- removed
+	/* KMH, balance patch -- removed, but re-inserted by Amy */
 	case PAN_PIPE_OF_SUMMONING:                
 	case PAN_PIPE_OF_THE_SEWERS:
-	case PAN_PIPE:*/
+	case PAN_PIPE:
 		if (obj->oartifact == ART_PFIE_PFIEPFIE) obj->known = TRUE;
 		res = do_play_instrument(obj);
 		if (res == 2) noartispeak = TRUE; /* it broke */

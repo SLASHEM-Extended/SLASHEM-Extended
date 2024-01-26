@@ -429,8 +429,9 @@ struct obj *instr;
 		break;
 	    } /* else FALLTHRU */
 	case WOODEN_FLUTE:		/* May charm snakes */
-	/* KMH, balance patch -- removed
-	case PAN_PIPE: */
+	/* KMH, balance patch -- removed, but re-inserted by Amy */
+	case PAN_PIPE:
+panpipeduedeldiedue:
 	    do_spec &= (rn2(ACURR(A_DEX)) + GushLevel > (25 + rn2(40)) );
 	    pline("%s.", Tobjnam(instr, do_spec ? "trill" : "toot"));
 	    if (do_spec) {
@@ -600,31 +601,61 @@ hornchoice:
 		makeknown(DRUM_OF_EARTHQUAKE);
 		break;
 	    } /* else FALLTHRU */
-	/* KMH, balance patch -- removed (in the wrong place anyways) */
-#if 0
+	/* KMH, balance patch -- removed (in the wrong place anyways)
+	 * Amy edit: added back in, and a fallthrough wouldn't work anyway due to two different magical pan pipes */
 	case PAN_PIPE_OF_SUMMONING: /* yikes! */
-	    if (instr->spe > 0) {
+	    if (do_spec && instr->spe > 0) {
+
 		register int cnt = 1;
-		instr->spe--;
-		cnt += rn2(4) + 3;
+
+		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
+		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
+		}
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
+		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
+			use_skill(P_DEVICES,9);
+
+		cnt += (rn2(4) + 3);
 		while(cnt--)
 		(void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
 	    }
+	    else goto panpipeduedeldiedue;
 		break;
 	case PAN_PIPE_OF_THE_SEWERS:
-	    You("call out the rats!");
-	    if (instr->spe > 0) {
+	    if (do_spec && instr->spe > 0) {
+
 		register int cnt = 1;
-		register struct monst *mtmp;
-		instr->spe--;
-		cnt += rn2(4) + 3;
-		while(cnt--) {
-		mtmp = makemon(&mons[PM_SEWER_RAT], u.ux, u.uy, NO_MM_FLAGS);
-		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+
+		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
+		use_skill(P_DEVICES,1);
+		if (Race_if(PM_FAWN)) {
+			use_skill(P_DEVICES,1);
 		}
-	     }
+		if (Race_if(PM_SATRE)) {
+			use_skill(P_DEVICES,1);
+			use_skill(P_DEVICES,1);
+		}
+		if (uarmh && itemhasappearance(uarmh, APP_MUSICAL_HELMET) )
+			use_skill(P_DEVICES,9);
+
+		You("call out the rats!");
+		register struct monst *mtmp;
+
+		cnt += (rn2(2) + 2); /* reduced by Amy */
+		while(cnt--) {
+			/* Amy change: instead of super-useless sewer rats, summon random r-class monsters, please */
+			mtmp = makemon(mkclass(S_RODENT,0), u.ux, u.uy, NO_MM_FLAGS);
+			/* Amy change: BUC should determine likelihood of tame ones */
+			if (mtmp && !instr->cursed && (!rn2(3) || instr->blessed) ) (void) tamedog(mtmp, (struct obj *) 0, FALSE);
+		}
+	    }
+	    else goto panpipeduedeldiedue;
 		break;
-#endif
 	case LEATHER_DRUM:		/* Awaken monsters */
 	  {
 	    int drumloudness = GushLevel * 40;
@@ -706,7 +737,7 @@ struct obj *instr;
 	return(0);
     }
 
-    if ( ((instr->otyp == WOODEN_FLUTE) || (instr->otyp == TOOLED_HORN) || (instr->otyp == FOG_HORN) || (instr->otyp == WOODEN_HARP) || (instr->otyp == LEATHER_DRUM) || (instr->otyp == MAGIC_FLUTE && instr->spe < 1) || (instr->otyp == MAGIC_HARP && instr->spe < 1) || (instr->otyp == DRUM_OF_EARTHQUAKE && instr->spe < 1) || (Confusion && !Conf_resist)) && !(Role_if(PM_BARD) && rn2(100)) && !(Role_if(PM_MUSICIAN) && rn2(20)) && !(instr->oartifact == ART_HARD_STRING && rn2(5)) && (!instr->oartifact || !rn2(10)) && !rn2(isfriday ? 50 : 200)) {
+    if ( ((instr->otyp == WOODEN_FLUTE) || (instr->otyp == PAN_PIPE) || (instr->otyp == TOOLED_HORN) || (instr->otyp == FOG_HORN) || (instr->otyp == WOODEN_HARP) || (instr->otyp == LEATHER_DRUM) || (instr->otyp == MAGIC_FLUTE && instr->spe < 1) || (instr->otyp == PAN_PIPE_OF_SUMMONING && instr->spe < 1) || (instr->otyp == PAN_PIPE_OF_THE_SEWERS && instr->spe < 1) || (instr->otyp == MAGIC_HARP && instr->spe < 1) || (instr->otyp == DRUM_OF_EARTHQUAKE && instr->spe < 1) || (Confusion && !Conf_resist)) && !(Role_if(PM_BARD) && rn2(100)) && !(Role_if(PM_MUSICIAN) && rn2(20)) && !(instr->oartifact == ART_HARD_STRING && rn2(5)) && (!instr->oartifact || !rn2(10)) && !rn2(isfriday ? 50 : 200)) {
 	useup(instr);
 	Your("instrument breaks into pieces!");
 	return 2;
@@ -893,6 +924,9 @@ char	*buf;
 	{
 	case WOODEN_FLUTE:
 	case MAGIC_FLUTE:
+	case PAN_PIPE:
+	case PAN_PIPE_OF_SUMMONING:
+	case PAN_PIPE_OF_THE_SEWERS:
 	    (void) write(fd, ">ol", 1); /* up one octave & lock */
 	    break;
 	case TOOLED_HORN:
@@ -969,6 +1003,9 @@ char	*buf;
     {
 	case WOODEN_FLUTE:
 	case MAGIC_FLUTE:
+	case PAN_PIPE:
+	case PAN_PIPE_OF_SUMMONING:
+	case PAN_PIPE_OF_THE_SEWERS:
 	    playstring(">ol", 1); /* up one octave & lock */
 	    break;
 	case TOOLED_HORN:

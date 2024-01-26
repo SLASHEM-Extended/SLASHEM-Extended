@@ -1198,6 +1198,9 @@ cgrfinished:
 			if(!rn2(5))
 			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE, FALSE);
 
+			if(!rn2(25))
+			    (void) mksobj_at(MEADOWFOAM, sx, sy, TRUE, FALSE, FALSE);
+
 			break;
 
 		    case HELLPIT:

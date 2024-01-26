@@ -1140,18 +1140,19 @@ WEAPON("spec lance", (char *)0,
 /* KMH, balance patch -- damage of launchers restored to d2 big and small */
 /* orcish bow must be first */
 BOW("orcish bow", "crude bow",	0, 1, 800, 12, 60, 0, MT_WOOD, P_BOW, CLR_BLACK, 1),
-BOW("bow", (char *)0,			1, 1, 1190, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 3),
-BOW("blue bow", (char *)0,		1, 1, 100, 12, 60, 0, MT_SHADOWSTUFF, P_BOW, CLR_BRIGHT_BLUE, 25),
+BOW("bow", (char *)0,			1, 1, 1140, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 3),
+BOW("blue bow", (char *)0,		1, 1, 100, 12, 70, 0, MT_SHADOWSTUFF, P_BOW, CLR_BRIGHT_BLUE, 25),
 BOW("meta bow", (char *)0,		1, 1, 300, 12, 60, 0, MT_WOOD, P_BOW, CLR_CYAN, 3),
-BOW("wind bow", (char *)0,		1, 1, 100, 12, 60, 0, MT_ETHER, P_BOW, HI_WOOD, 20), /* very fast speed when wielded */
-BOW("compost bow", (char *)0,		1, 1, 180, 12, 60, 0, MT_COMPOST, P_BOW, CLR_BROWN, 8),
+BOW("wind bow", (char *)0,		1, 1, 100, 12, 90, 0, MT_ETHER, P_BOW, HI_WOOD, 20), /* very fast speed when wielded */
+BOW("blade bow", (char *)0,		1, 1, 50, 16, 75, 0, MT_MESH, P_BOW, CLR_GRAY, 12),
+BOW("compost bow", (char *)0,		1, 1, 180, 12, 70, 0, MT_COMPOST, P_BOW, CLR_BROWN, 8),
 BOW("elven bow", "runed bow",	0, 1, 640, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 6),
 BOW("dark elven bow",  "black runed bow", 0, 1, 200, 12, 60, 1, MT_WOOD, P_BOW, CLR_BLACK, 12),
-BOW("footbow", "warped bow",		0, 1,  50, 8, 60, 0, MT_SHELL, P_BOW, CLR_WHITE, 2),
+BOW("footbow", "warped bow",		0, 1,  50, 8, 40, 0, MT_SHELL, P_BOW, CLR_WHITE, 2),
 BOW("yumi", "long bow",			0, 1, 200, 12, 60, 0, MT_WOOD, P_BOW, HI_WOOD, 5),
-BOW("droven bow", "spider-legged bow",	0, 0, 100, 12, 60, 5, MT_GLASS, P_BOW, CLR_BLACK, 25),
-BOW("hydra bow", (char *)0,	1, 1, 100, 12, 60, 0, MT_WOOD, P_BOW, CLR_BROWN, 50),
-BOW("wildhild bow", (char *)0,	1, 1, 10, 12, 60, 0, MT_SILK, P_BOW, CLR_WHITE, 20),
+BOW("droven bow", "spider-legged bow",	0, 0, 100, 12, 80, 5, MT_GLASS, P_BOW, CLR_BLACK, 25),
+BOW("hydra bow", (char *)0,	1, 1, 100, 12, 200, 0, MT_WOOD, P_BOW, CLR_BROWN, 50),
+BOW("wildhild bow", (char *)0,	1, 1, 10, 12, 120, 0, MT_SILK, P_BOW, CLR_WHITE, 20),
 /* wildhild bow must be last */
 
 /* orcish arrow must be first arrow */
@@ -1645,7 +1646,7 @@ ARMOR("bronze plate mail", (char *)0,
 ARMOR("copper plate mail", (char *)0,
 	1, 0, 1, 0,	200, 5, 200, 600,  1, 2, ARM_SUIT, MT_COPPER, HI_COPPER, 32, 0),
 ARMOR("splint mail", (char *)0,
-	1, 0, 1, 0,	3046, 5, 160,  80,  2, 1, ARM_SUIT, MT_IRON, HI_METAL, 30, 0),
+	1, 0, 1, 0,	3000, 5, 160,  80,  2, 1, ARM_SUIT, MT_IRON, HI_METAL, 30, 0),
 ARMOR("barnacle armor", (char *)0,
 	1, 0, 1, 0,	200, 5, 160, 150,  2, 1, ARM_SUIT, MT_CONUNDRUM, CLR_GRAY, 35, 0),
 ARMOR("tapered mail", (char *)0,
@@ -1657,7 +1658,7 @@ ARMOR("oliharcon splint mail", (char *)0,
 ARMOR("cuirass armor", (char *)0,
 	1, 0, 1, 0, 200, 5, 160,  80,  2, 1, ARM_SUIT, MT_GREEN_STEEL, CLR_GREEN, 30, 0),
 ARMOR("banded mail", (char *)0,
-	1, 0, 1, 0,	3167, 5, 160,  90,  3, 0, ARM_SUIT, MT_IRON, HI_METAL, 26, 0),
+	1, 0, 1, 0,	3153, 5, 160,  90,  3, 0, ARM_SUIT, MT_IRON, HI_METAL, 26, 0),
 ARMOR("rusted mail", (char *)0,
 	1, 0, 1, 0,	100, 5, 120,  1,  10, 0, ARM_SUIT, MT_SCRAP, CLR_GRAY, 1, 0),
 ARMOR("stripe mail", (char *)0,
@@ -1788,6 +1789,8 @@ ARMOR("special camouflaged clothes", "camouflage patterned clothes",
 	0, 1, 0, DISPLACED,20, 3, 6,   5,  7, 0, ARM_SUIT, MT_PLASTIC, CLR_BROWN, 30, 0),
 ARMOR("shoulder rings", "strange rings",
 	0, 0, 0, 0,	 20, 1, 	 70, 280, 7, 2, ARM_SUIT, MT_MITHRIL, CLR_YELLOW, 5, 0),
+ARMOR("asbestos jacket", (char *)0,
+	1, 0, 0, FIRE_RES, 10, 2, 10, 500,  9, 0, ARM_SUIT, MT_ADAMANTIUM, CLR_BLACK, 60, 0),
 ARMOR("leather jacket", (char *)0,
 	1, 0, 0, 0,	1048, 0,	12,  10,  9, 0, ARM_SUIT, MT_LEATHER, CLR_BLACK, 1, 0),
 
@@ -2922,6 +2925,10 @@ GLOVES("critical gauntlets", "critical gloves",
 		0, 1,  0,	20, 1, 4, 50,  9, 0, MT_METAL, CLR_GRAY, 15, APP_CRITICAL_GLOVES),
 GLOVES("magic bracers", "atlas gloves", /* random appearance gives +3 STR */
 		0, 1,  INFRAVISION,	100, 1, 4, 50,  9, 0, MT_TITANIUM, CLR_ORANGE, 5, APP_ATLAS_GLOVES),
+GLOVES("bracers of defense", "falconry gloves",
+		0, 1,  0,	40, 1, 4, 50,  8, 0, MT_LEATHER, CLR_BLUE, 12, APP_FALCONRY_GLOVES),
+GLOVES("bracers of absorption", "latex gloves",
+		0, 1,  0,	10, 1, 4, 50,  9, 0, MT_PLASTIC, CLR_YELLOW, 18, APP_LATEX_GLOVES),
 GLOVES("gauntlets of celerity", "speedy gloves",
 		0, 1,  0,	100, 1, 4, 50,  9, 0, MT_FIRMAMENT, CLR_WHITE, 10, APP_SPEEDY_GLOVES),
 
@@ -5990,13 +5997,16 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  1000, 0,  40, MT_COPPER, CLR_YELLOW
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3433,  0,  10, MT_METAL, HI_METAL, 1),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3363,  0,  10, MT_METAL, HI_METAL, 1),
 TOOL("grass whistle", "whistle",  0, 0, 0, 0, 600,  0,  10, MT_WOOD, HI_METAL, 1),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 2400,  0,  10, MT_METAL, HI_METAL, 10),
 TOOL("dark magic whistle", "whistle",0, 0, 1, 0, 100,  0,  10, MT_METAL, HI_METAL, 20),
 /* "If tin whistles are made out of tin, what do they make foghorns out of?" */
 TOOL("wooden flute", "flute",   0, 0, 0, 0,  200,  0,  50, MT_WOOD, HI_WOOD, 5),
 TOOL("magic flute", "flute",    0, 0, 1, 1,  100,  0,  50, MT_WOOD, HI_WOOD, 20),
+TOOL("pan pipe", "set of pipes",   0, 0, 0, 0,  50,  0,  50, MT_WOOD, HI_WOOD, 5),
+TOOL("pan pipe of summoning", "set of pipes",    0, 0, 1, 1,  10,  0,  50, MT_WOOD, HI_WOOD, 10),
+TOOL("pan pipe of the sewers", "set of pipes",    0, 0, 1, 1,  10,  0,  50, MT_WOOD, HI_WOOD, 7),
 TOOL("tooled horn", "horn",     0, 0, 0, 0,  180, 0,  50, MT_BONE, CLR_WHITE, 1),
 TOOL("fog horn", "horn",        0, 0, 0, 0,   20, 0,  50, MT_MYSTERIOUS, CLR_WHITE, 1),
 TOOL("frost horn", "horn",      0, 0, 1, 1,  100, 0,  50, MT_BONE, CLR_WHITE, 5),
@@ -6005,7 +6015,7 @@ TOOL("tempest horn", "horn",    0, 0, 1, 1,   20, 0,  50, MT_BONE, CLR_WHITE, 5)
 TOOL("ether horn", "horn",      0, 0, 1, 1,   10, 0,  50, MT_ETHER, CLR_WHITE, 5), /* shoots magic missiles */
 TOOL("shadow horn", "horn",     0, 0, 1, 1,   10, 0,  50, MT_SHADOWSTUFF, CLR_WHITE, 5), /* shoots acid */
 TOOL("chrome horn", "horn",     0, 0, 1, 1,   50, 0,  50, MT_CHROME, CLR_WHITE, 5), /* shoots poison */
-TOOL("death horn", "horn",     0, 0, 1, 1,    1, 0,  50, MT_OBSIDIAN, CLR_BLACK, 50), /* shoots disintegration */
+TOOL("death horn", "horn",     0, 0, 1, 1,    1, 0,  50, MT_OBSIDIAN, CLR_WHITE, 50), /* shoots disintegration */
 TOOL("horn of plenty", "horn",  0, 0, 1, 1,  100, 0,  50, MT_BONE, CLR_WHITE, 25),
 TOOL("wooden harp", "harp",     0, 0, 0, 0,  200, 0,  50, MT_WOOD, HI_WOOD, 8),
 TOOL("magic harp", "harp",      0, 0, 1, 1,  100, 0,  50, MT_WOOD, HI_WOOD, 30),
@@ -6163,17 +6173,14 @@ WEPTOOL("mystery lightsaber",  "lightsaber",
 /* Other tools */
 TOOL("expensive camera", (char *)0, 1, 0, 0, 1,  1000, 0, 200, MT_PLASTIC, CLR_BLACK, 1),
 TOOL("mirror", "looking glass", 0, 0, 0, 0,  1260, 0,  10, MT_GLASS, HI_SILVER, 1),
-TOOL("crystal ball", "glass orb", 0, 0, 1, 1,  1000, 0,  60, MT_GLASS, HI_GLASS, 1),
-#if 0
+TOOL("crystal ball", "glass orb", 0, 0, 1, 1,  850, 0,  60, MT_GLASS, HI_GLASS, 1),
 /* STEPHEN WHITE'S NEW CODE */
 /* KMH -- removed because there's potential for abuse */
-TOOL("orb of enchantment", "glass orb",
-				0, 0, 1, 1,   5, 0, 750, MT_GLASS, HI_GLASS),
-TOOL("orb of charging", "glass orb",
-				0, 0, 1, 1,   5, 0, 750, MT_GLASS, HI_GLASS),
-TOOL("orb of destruction", "glass orb",
-				0, 0, 0, 0,   5, 0, 750, MT_GLASS, HI_GLASS),
-#endif
+/* Amy edit: added back in because I'm certain they can be balanced :-P */
+TOOL("orb of enchantment", "glass orb", 0, 0, 1, 1,   50, 0, 60, MT_GLASS, HI_GLASS, 10),
+TOOL("orb of charging", "glass orb", 0, 0, 1, 1,   50, 0, 60, MT_GLASS, HI_GLASS, 20),
+TOOL("orb of destruction", "glass orb", 0, 0, 0, 0,   50, 0, 60, MT_GLASS, HI_GLASS, 0),
+
 TOOL("lenses", (char *)0,	1, 0, 0, 0,   455,  0,  80, MT_GLASS, HI_GLASS, 1),
 TOOL("shield pate glasses", (char *)0,	1, 0, 0, 0,    45,  0, 100, MT_GLASS, CLR_BLUE, 20),
 TOOL("radioglasses", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_VIVA, CLR_ORANGE, 1),
@@ -6340,6 +6347,8 @@ FOOD("orange",              2000, 1,  0, 0, MT_VEGGY, 120, CLR_ORANGE, 1),
 FOOD("mushroom",             100, 1,  0, 0, MT_VEGGY, 130, CLR_BLACK, 1),
 FOOD("melon",               1900, 1,  0, 0, MT_VEGGY, 175, CLR_BRIGHT_GREEN, 1),
 FOOD("black henbane",	     200, 1,  0, 0, MT_VEGGY, 100, CLR_BLACK, 1),
+FOOD("meadowfoam",	     100, 1,  0, 0, MT_VEGGY, 100, CLR_YELLOW, 1),
+FOOD("motherwort",	     100, 1,  0, 0, MT_VEGGY,  50, CLR_WHITE, 1),
 FOOD("slime mold",          7500, 1,  0, 0, MT_VEGGY, 250, HI_ORGANIC, 1),
 FOOD("peanut bag",	     500, 3,  0, 0, MT_VEGGY, 800, HI_ORGANIC, 1),
 
@@ -6402,7 +6411,7 @@ FOOD("food ration",        10000, 5, 0, 0, MT_VEGGY, 1000, HI_ORGANIC, 1),
 FOOD("Hacker's Food",	     100, 1, 0, 0, MT_VEGGY, 800, HI_METAL, 1),
 FOOD("K-ration",             100, 1, 0, 0, MT_VEGGY, 400, HI_ORGANIC, 1),
 FOOD("C-ration",             100, 1, 0, 0, MT_VEGGY, 300, HI_ORGANIC, 1),
-FOOD("tin",                10000, 0, 0, 1, MT_METAL,   0, HI_METAL, 1),
+FOOD("tin",                 9800, 0, 0, 1, MT_METAL,   0, HI_METAL, 1),
 #undef FOOD
 
 /* tin must be last, see makemon.c */

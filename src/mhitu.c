@@ -146,7 +146,7 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
-			if ((flags.female && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) ) { 
+			if ((flags.female && !(uarmg && itemhasappearance(uarmg, APP_FALCONRY_GLOVES) && rn2(5) ) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) ) { 
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s gently strokes and squeezes your breasts, and you are sexually aroused by the soft touch.", Monnam(mtmp));
@@ -391,7 +391,7 @@ kseniaagain:
 				if (!rn2(20)) badeffect();
 			}
 
-			if ( ((!flags.female && !(uarmu && uarmu->oartifact == ART_LUISA_S_FELLOW_FEELING) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
+			if ( ((!flags.female && !(uarmg && itemhasappearance(uarmg, APP_LATEX_GLOVES) && rn2(5) ) && !(uarmu && uarmu->oartifact == ART_LUISA_S_FELLOW_FEELING) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s powerfully kicks you in the nuts, and you moan in lust because you love the pain.", Monnam(mtmp));
@@ -10963,6 +10963,8 @@ dopois:
 		tempval = rnd((effectiveac / (issoviet ? 5 : 4)) + 1);
 		if (tempval < 1)  tempval = 1;
 		if (tempval > (issoviet ? 20 : 50)) tempval = (issoviet ? 20 : 50); /* max limit increased --Amy */
+
+		if (uarmg && uarmg->otyp == BRACERS_OF_ABSORPTION && uarmg->spe > 0) tempval += uarmg->spe;
 
 		if (uarmf && itemhasappearance(uarmf, APP_HEROINE_MOCASSINS)) tempval *= 2;
 		if (uarmf && uarmf->oartifact == ART_INDIAN_SMOKE_SYMBOL) tempval *= 2;

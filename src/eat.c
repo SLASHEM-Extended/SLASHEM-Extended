@@ -7164,6 +7164,18 @@ register struct obj *otmp;
 		make_stunned(0L, TRUE);
 		break;
 
+	    case MEADOWFOAM:
+		pline("Hmm, this plant doesn't taste all that bad.");
+		reducesanity(100);
+
+		break;
+
+	    case MOTHERWORT:
+		pline("These roots are rather crunchy!");
+		decontaminate(100);
+
+		break;
+
 	    case BLACK_HENBANE:
 
 		You("have the bitter, acidic taste of alkaloids in your mouth...");

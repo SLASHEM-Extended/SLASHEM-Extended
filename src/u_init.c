@@ -17711,7 +17711,7 @@ u_init()
 	     */
 	    if (Role_if(PM_PRIEST) || Role_if(PM_WIZARD)) {
 		static int trotyp[] = {
-		    WOODEN_FLUTE, TOOLED_HORN, WOODEN_HARP,
+		    WOODEN_FLUTE, TOOLED_HORN, WOODEN_HARP, PAN_PIPE,
 		    BELL, BUGLE, LEATHER_DRUM
 		};
 		Instrument[0].trotyp = trotyp[rn2(SIZE(trotyp))];

@@ -25389,6 +25389,11 @@ register boolean force, here;
 				obj->otyp = WOODEN_FLUTE;
 				obj->spe  = 0;
 				break;	
+			    case PAN_PIPE_OF_THE_SEWERS:
+			    case PAN_PIPE_OF_SUMMONING:
+				obj->otyp = PAN_PIPE;
+				obj->spe  = 0;
+				break;
 			    case MAGIC_HARP:
 				obj->otyp = WOODEN_HARP;
 				obj->spe  = 0;
@@ -25549,6 +25554,11 @@ register boolean force, here;
 				obj->otyp = WOODEN_FLUTE;
 				obj->spe  = 0;
 				break;	
+			    case PAN_PIPE_OF_THE_SEWERS:
+			    case PAN_PIPE_OF_SUMMONING:
+				obj->otyp = PAN_PIPE;
+				obj->spe  = 0;
+				break;
 			    case MAGIC_HARP:
 				obj->otyp = WOODEN_HARP;
 				obj->spe  = 0;

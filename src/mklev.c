@@ -13028,6 +13028,14 @@ mineralize()
 		if (((levl[x][y].typ == POOL && !rn2(150)) || (levl[x][y].typ == MOAT && !rn2(50))) && timebasedlowerchance())
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE, FALSE);
 
+		/* meadowfoam grows in grassy areas --Amy */
+		if ((levl[x][y].typ == GRASSLAND && !rn2(200)) && timebasedlowerchance())
+	    	    (void)mksobj_at(MEADOWFOAM, x, y, TRUE, FALSE, FALSE);
+
+		/* motherwort grows in the mountains --Amy */
+		if ((levl[x][y].typ == MOUNTAIN && !rn2(300)) && timebasedlowerchance())
+	    	    (void)mksobj_at(MOTHERWORT, x, y, TRUE, FALSE, FALSE);
+
 		/* locate level for camperstriker role should be filled end to end with traps on trees */
 		if (levl[x][y].typ == TREE && Role_if(PM_CAMPERSTRIKER) && !rn2(10) && Is_qlocate(&u.uz) )
 			makerandomtrap_at(x, y, TRUE);

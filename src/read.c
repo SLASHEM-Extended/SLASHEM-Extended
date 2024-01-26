@@ -2115,7 +2115,7 @@ int curse_bless;
 
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {
-		    obj->spe = 6;
+		    obj->spe += rnd(3);
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2124,7 +2124,52 @@ int curse_bless;
 				else uncurse(obj, FALSE);
 			}
 		} else {
-		    if (obj->spe < 5) {
+		    if (obj->spe < 10) {
+			obj->spe++;
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+			p_glow1(obj);
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
+		    } else {
+				pline("%s", nothing_happens);
+				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+					pline("Oh wait, actually something bad happens...");
+					badeffect();
+				}
+		    }
+		}
+		break;
+
+	    case ORB_OF_ENCHANTMENT:
+	    case ORB_OF_CHARGING:
+
+		n = (int)obj->recharged;
+		if (n > 0 && rn2(3) && (n * n * n > rn2(9*9*9))) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+		if (obj->otyp == ORB_OF_CHARGING && n > 1) {
+			Your("%s glows violently and evaporates!", xname(obj));
+			useup(obj);
+		    return;
+		}
+
+		if (is_cursed) stripspe(obj);
+		else if (is_blessed) {
+		    obj->spe += 2;
+		    p_glow2(obj, NH_BLUE);
+			u.cnd_chargingcount++;
+			use_skill(P_DEVICES, rnd(10));
+			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
+				if (!obj->cursed) bless(obj);
+				else uncurse(obj, FALSE);
+			}
+		} else {
+		    if (obj->spe < 10) {
 			obj->spe++;
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2214,6 +2259,8 @@ int curse_bless;
 		}
 		break;
 	    case MAGIC_FLUTE:
+	    case PAN_PIPE_OF_SUMMONING:
+	    case PAN_PIPE_OF_THE_SEWERS:
 	    case MAGIC_HARP:
 	    case FROST_HORN:
 	    case TEMPEST_HORN:

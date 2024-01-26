@@ -5593,8 +5593,8 @@ boolean altusage; /* some items have an "alternate" use with different cost */
 		  otmp->otyp == HORN_OF_PLENTY) {
 		tmp /= 5L;
 	} else if(otmp->otyp == CRYSTAL_BALL ||		 /* 1 - 5 */
-		  /*otmp->otyp == ORB_OF_ENCHANTMENT ||                  
-		  otmp->otyp == ORB_OF_CHARGING ||*/
+		  otmp->otyp == ORB_OF_ENCHANTMENT ||                  
+		  otmp->otyp == ORB_OF_CHARGING ||
 		  otmp->otyp == OIL_LAMP ||		 /* 1 - 10 */
 		  otmp->otyp == BRASS_LANTERN ||
 		  otmp->otyp == DIM_LANTERN ||

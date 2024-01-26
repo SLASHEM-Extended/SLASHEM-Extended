@@ -8557,7 +8557,8 @@ struct obj *otmp;
 		|| (!strcmp(word, "invoke") &&
 		    (!otmp->oartifact && !otmp->fakeartifact && !objects[otyp].oc_unique &&
 		     (otyp != FAKE_AMULET_OF_YENDOR || otmp->known) &&
-		     otyp != CRYSTAL_BALL &&	/* #invoke synonym for apply */
+		     otyp != CRYSTAL_BALL && otyp != ORB_OF_CHARGING && otyp != ORB_OF_ENCHANTMENT &&
+		     otyp != ORB_OF_DESTRUCTION &&	/* #invoke synonym for apply */
 		   /* note: presenting the possibility of invoking non-artifact
 		      mirrors and/or lamps is a simply a cruel deception... */
 		     otyp != MIRROR && otyp != MAGIC_LAMP &&
@@ -12481,6 +12482,8 @@ boolean knoweverything;
 				pline("A slightly stronger version of the lance, this thing can be applied to hit monsters that don't stand right next to you. While riding, you can joust monsters with it by performing standard melee attacks but sometimes the lance breaks if you do so."); break;
 			case COMPOST_BOW:
 				pline("It can be used to fire arrows. If you fire forbidden arrows from it, you can fire more of them in a single turn."); break;
+			case BLADE_BOW:
+				pline("With this bow, you can fire arrows at enemies albeit at a rather low rate of fire. Unlike other bows, you can fire at point blank without the penalties that you'd get when using other types of bow."); break;
 			case FORBIDDEN_ARROW:
 				pline("An arrow type that can be fired with a bow. If you fire it with a compost bow, you can fire more of them in a single turn."); break;
 			case WILDHILD_BOW:
@@ -12873,6 +12876,10 @@ boolean knoweverything;
 			pline("A very useful randomized appearance pair of gloves that makes you fast.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ATLAS_GLOVES))
 			pline("This pair of gloves improves your strength by 3.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FALCONRY_GLOVES))
+			pline("A pair of gloves that protects you against claw attacks, at least if you're female.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LATEX_GLOVES))
+			pline("With this pair of gloves, you can protect your most sensitive body parts, meaning that enemies are less likely to manage to kick you in the nuts. This does nothing if you don't actually have nuts.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_AIR_CLOAK))
 			pline("A very useful randomized appearance cloak that grants magical breathing.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_KEVLAR_CLOAK))
@@ -13777,49 +13784,51 @@ boolean knoweverything;
 				pline("A low-weight suit of armor that offers moderate protection and 3 points of magic cancellation."); break;
 			case DARK_ELVEN_MITHRIL_COAT: 
 				pline("This is one of the best suits of armor that is not a dragon scale mail, and provides 3 points of magic cancellation."); break;
-			case ELVEN_MITHRIL_COAT: 
+			case ELVEN_MITHRIL_COAT:
 				pline("A low-weight suit of armor that offers good protection and 3 points of magic cancellation."); break;
-			case GNOMISH_SUIT: 
+			case GNOMISH_SUIT:
 				pline("This suit of armor offers very little protection."); break;
-			case ELVEN_TOGA: 
+			case ELVEN_TOGA:
 				pline("Light armor that gives medium magic cancellation."); break;
-			case NOBLE_S_DRESS: 
+			case NOBLE_S_DRESS:
 				pline("A tank made of mineral that can be worn for great protection and 3 points of magic cancellation."); break;
-			case CONSORT_S_SUIT: 
+			case CONSORT_S_SUIT:
 				pline("Low-protection armor. It gives MC though."); break;
-			case FORCE_ARMOR: 
+			case FORCE_ARMOR:
 				pline("Looking for light armor that still gives 3 points of magic cancellation? Then this is for you."); break;
-			case HEALER_UNIFORM: 
+			case HEALER_UNIFORM:
 				pline("Nothing special, although I might make this thing do something if you're actually playing a healer."); break;
-			case JUMPSUIT: 
+			case JUMPSUIT:
 				pline("Reflection and MC3! This thing's overpowered, I tell ya!"); break;
-			case CHAIN_MAIL: 
+			case CHAIN_MAIL:
 				pline("A moderately good suit of armor."); break;
-			case DROVEN_CHAIN_MAIL: 
+			case DROVEN_CHAIN_MAIL:
 				pline("Less protection than regular chain mail but better magic cancellation."); break;
-			case ORCISH_CHAIN_MAIL: 
+			case ORCISH_CHAIN_MAIL:
 				pline("A crappier version of regular chain mail that offers mediocre protection."); break;
-			case SCALE_MAIL: 
+			case SCALE_MAIL:
 				pline("A medium-weight metallic suit of armor that offers mediocre protection."); break;
-			case STUDDED_LEATHER_ARMOR: 
+			case STUDDED_LEATHER_ARMOR:
 				pline("This is a suit of armor made of leather that offers some protection."); break;
-			case RING_MAIL: 
+			case RING_MAIL:
 				pline("A metallic suit of armor that offers little protection."); break;
-			case ORCISH_RING_MAIL: 
+			case ORCISH_RING_MAIL:
 				pline("This suit of metal armor offers very little protection."); break;
-			case LEATHER_ARMOR: 
+			case LEATHER_ARMOR:
 				pline("A basic suit of armor that offers little protection."); break;
-			case TROLL_LEATHER_ARMOR: 
+			case TROLL_LEATHER_ARMOR:
 				pline("A suit of armor that offers little protection, but also regenerates your hit points much faster."); break;
-			case LEATHER_JACKET: 
+			case LEATHER_JACKET:
 				pline("This thing is only useful if you don't have a better suit of armor."); break;
-			case GENTLEMAN_S_SUIT: 
+			case ASBESTOS_JACKET:
+				pline("While this suit is rather bad for armor class, it makes you completely immune to fire!"); break;
+			case GENTLEMAN_S_SUIT:
 				pline("You should wear this only if you lack a real armor, for it only gives low magic cancellation and nothing else."); break;
-			case GENTLEWOMAN_S_DRESS: 
+			case GENTLEWOMAN_S_DRESS:
 				pline("If you're having no luck finding something with 3 points of magic cancellation, this can be used as a substitute. It only grants a single point of AC though, which is really bad for a body armor."); break;
-			case STRAITJACKET: 
+			case STRAITJACKET:
 				pline("Bad AC and medium magic cancellation aren't good enough to make this 'armor' worth using IMHO, plus you'll look like a retard if you wear it."); break;
-			case CURING_UNIFORM: 
+			case CURING_UNIFORM:
 				pline("One of Chris_ANG's overpowered creations, this uniform grants sickness resistance. However, there is a dragon scale mail that gives the same property and much more AC. :D"); break;
 			case HAWAIIAN_SHORTS:
 				pline("A totally useless armor that grants absolutely nothing. Bonus points if it is cursed and prevents you from wearing an actual armor."); break;
@@ -14127,6 +14136,10 @@ boolean knoweverything;
 				pline("While wearing these gloves, you land critical hits more often."); break;
 			case MAGIC_BRACERS:
 				pline("A pair of gauntlets with infravision, because they have a built-in telescope."); break;
+			case BRACERS_OF_DEFENSE:
+				pline("Counts as gauntlets, and gives bonus AC that is better the higher your experience level is, capping out at 5 extra points if you're XL30."); break;
+			case BRACERS_OF_ABSORPTION:
+				pline("If this pair of gloves is positively enchanted, it reduces incoming melee damage by its enchantment value (but not below 1)."); break;
 			case GAUNTLETS_OF_CELERITY:
 				pline("While wearing these gloves, you have fast speed."); break;
 			case TORNISTER_CLOAK:
@@ -17253,33 +17266,39 @@ boolean knoweverything;
 				pline("Don't ask why it's called that. It is functionally identical to the other non-magical candles."); break;
 			case GENERAL_CANDLE: 
 				pline("This candle is rare but not really different from other types of candle - light it to see in the dark."); break;
-			case NATURAL_CANDLE: 
+			case NATURAL_CANDLE:
 				pline("A candle made of 100%% natural materials that you can light."); break;
-			case UNSPECIFIED_CANDLE: 
+			case UNSPECIFIED_CANDLE:
 				pline("No one really knows what this candle is made of but it can be lit."); break;
-			case MAGIC_CANDLE: 
+			case MAGIC_CANDLE:
 				pline("A permanent light source that might be useful in dark areas."); break;
-			case OIL_LAMP: 
+			case OIL_LAMP:
 				pline("This lamp can be lit to provide a big radius of light for a while. Oil runs out after some time but can be refilled."); break;
-			case BRASS_LANTERN: 
+			case BRASS_LANTERN:
 				pline("A mobile light source that lasts for quite a while."); break;
-			case DIM_LANTERN: 
+			case DIM_LANTERN:
 				pline("This light source lasts for a good while if you apply it. However, recharging it is rather useless because it adds less additional turns of fuel compared to the brass lantern."); break;
-			case MAGIC_LAMP: 
+			case MAGIC_LAMP:
 				pline("This lamp won't ever go out, and according to certain fairy tales, it might be inhabited by a genie."); break;
-			case TIN_WHISTLE: 
+			case TIN_WHISTLE:
 				pline("Supposed to make your pets follow more closely, but it rarely does anything."); break;
-			case MAGIC_WHISTLE: 
+			case MAGIC_WHISTLE:
 				pline("One blow of this powerful whistle will instantly summon all your pets."); break;
-			case DARK_MAGIC_WHISTLE: 
+			case DARK_MAGIC_WHISTLE:
 				pline("An evil whistle that sends your pets away from you, but it only works on those adjacent to you."); break;
-			case WOODEN_FLUTE: 
+			case WOODEN_FLUTE:
 				pline("If you're good enough at it, you may use this instrument to calm snakes."); break;
-			case MAGIC_FLUTE: 
+			case PAN_PIPE:
+				pline("Functionally identical to the wooden flute, this instrument may calm snakes."); break;
+			case PAN_PIPE_OF_SUMMONING:
+				pline("A charged, magical instrument that summons monsters."); break;
+			case PAN_PIPE_OF_THE_SEWERS:
+				pline("Playing this musical instrument while it has charges will summon rodents. They may sometimes be generated tame, especially if the pan pipe is blessed."); break;
+			case MAGIC_FLUTE:
 				pline("An instrument that generates charming sounds to lull your enemies into sleeping."); break;
-			case TOOLED_HORN: 
+			case TOOLED_HORN:
 				pline("A noisy instrument that will wake up monsters. Sometimes it will scare them, too. But it will always cause nasty side effects for you so be careful!"); break;
-			case FROST_HORN: 
+			case FROST_HORN:
 				pline("This instrument can shoot bolts of ice."); break;
 			case TEMPEST_HORN: 
 				pline("This instrument can shoot bolts of electricity."); break;
@@ -17411,6 +17430,12 @@ boolean knoweverything;
 				pline("Some monsters may be scared if you apply a mirror at them, and gaze-based attacks may be reflected."); break;
 			case CRYSTAL_BALL:
 				pline("Applying a crystal ball can be dangerous, but if it works, you may search for a glyph."); break;
+			case ORB_OF_ENCHANTMENT:
+				pline("This orb enchants your currently wielded weapon, which must be an item that actually counts as a weapon (or weapon-tool; stuff like iron balls or gems qualifies), but only if there are charges left. It cannot enchant items that are already +5 or higher. Also, deviously enough, an uncursed orb can also randomly disenchant your weapon so you'd be wise to bless it first."); break;
+			case ORB_OF_CHARGING:
+				pline("Not at all overpowered, this magical tool can be applied to recharge your items and if the orb is blessed, it'll actually perform blessed charging. However, it only works while the orb itself has charges left. Also, it can only be recharged once."); break;
+			case ORB_OF_DESTRUCTION:
+				pline("Probably meant to make it more dangerous to apply unidentified orbs, trying to apply this one causes it to explode and damage you."); break;
 			case LENSES:
 				pline("A weird tool that can be put on to improve the player's ability to search for things."); break;
 			case BLINDFOLD:
@@ -17630,6 +17655,10 @@ boolean knoweverything;
 				pline("Eating this provides moderate amounts of nutrition without violating vegetarian conduct."); break;
 			case FORTUNE_COOKIE:
 				pline("You may get a message if you eat this vegetarian food item."); break;
+			case MEADOWFOAM:
+				pline("This plant-based type of food reduces your sanity when eaten."); break;
+			case MOTHERWORT:
+				pline("A type of plant food that reduces your contamination if you eat it."); break;
 			case BLACK_HENBANE:
 				pline("A vegetarian food that is actually poisonous, being from a member of the nightshade family of plants. If you eat it, you'll restore a lost point of strength, but your poison resistance is deactivated for a while."); break;
 			case DIGESTION_CAKE:

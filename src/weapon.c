@@ -3093,6 +3093,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		  if (!propellor) propellor = (oselect(mtmp, DARK_ELVEN_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, COMPOST_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, WIND_BOW));
+		  if (!propellor) propellor = (oselect(mtmp, BLADE_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, BLUE_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, META_BOW));
 		  if (!propellor) propellor = (oselect(mtmp, BOW));
@@ -8464,6 +8465,9 @@ boolean extraskills;
 	if (obj->otyp == FIGURINE) skill = P_PETKEEPING;
 	if (obj->otyp == WOODEN_FLUTE) skill = P_PETKEEPING;
 	if (obj->otyp == MAGIC_FLUTE) skill = P_PETKEEPING;
+	if (obj->otyp == PAN_PIPE) skill = P_PETKEEPING;
+	if (obj->otyp == PAN_PIPE_OF_SUMMONING) skill = P_PETKEEPING;
+	if (obj->otyp == PAN_PIPE_OF_THE_SEWERS) skill = P_PETKEEPING;
 	if (obj->otyp == WOODEN_HARP) skill = P_PETKEEPING;
 	if (obj->otyp == MAGIC_HARP) skill = P_PETKEEPING;
 	if (obj->otyp == MANACLOAK) skill = P_MEMORIZATION;

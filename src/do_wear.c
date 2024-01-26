@@ -3057,6 +3057,8 @@ Gloves_on()
 	case WOWEE_GAUNTLETS:
 	case CRITICAL_GAUNTLETS:
 	case MAGIC_BRACERS:
+	case BRACERS_OF_DEFENSE:
+	case BRACERS_OF_ABSORPTION:
 	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_PANIC:
 	case GAUNTLETS_OF_THE_FORCE:
@@ -3469,6 +3471,8 @@ Gloves_off()
 	case GAUNTLETS_OF_SPEED:
 	case CRITICAL_GAUNTLETS:
 	case MAGIC_BRACERS:
+	case BRACERS_OF_DEFENSE:
+	case BRACERS_OF_ABSORPTION:
 	case GAUNTLETS_OF_CELERITY:
 	case ORIHALCYON_GAUNTLETS:
 	case GAUNTLETS_OF_SLOWING:
@@ -7195,6 +7199,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmg && uarmg->otyp == BRACERS_OF_DEFENSE) uac -= (u.ulevel / 6);
 	if (uarmc && uarmc->oartifact == ART_HERACLES_PRIZE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ENCHANTED_SUPERSPANDEX) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) uac -= 10;

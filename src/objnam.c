@@ -4420,6 +4420,19 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ ORB_OF_DESTRUCTION, "todo" },
+	{ ORB_OF_ENCHANTMENT, "todo" },
+	{ ORB_OF_CHARGING, "todo" },
+	{ PAN_PIPE, "todo" },
+	{ PAN_PIPE_OF_SUMMONING, "todo" },
+	{ PAN_PIPE_OF_THE_SEWERS, "todo" },
+	{ BRACERS_OF_DEFENSE, "todo" },
+	{ BRACERS_OF_ABSORPTION, "todo" },
+	{ ASBESTOS_JACKET, "todo" },
+	{ BLADE_BOW, "todo" },
+	{ MEADOWFOAM, "todo" },
+	{ MOTHERWORT, "todo" },
+
 	{0, "" }
 };
 
@@ -7990,6 +8003,19 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMULET_OF_FEMINISM, "amulet of feminizm" },
 
 	/* todo area */
+
+	{ ORB_OF_DESTRUCTION, "todo" },
+	{ ORB_OF_ENCHANTMENT, "todo" },
+	{ ORB_OF_CHARGING, "todo" },
+	{ PAN_PIPE, "todo" },
+	{ PAN_PIPE_OF_SUMMONING, "todo" },
+	{ PAN_PIPE_OF_THE_SEWERS, "todo" },
+	{ BRACERS_OF_DEFENSE, "todo" },
+	{ BRACERS_OF_ABSORPTION, "todo" },
+	{ ASBESTOS_JACKET, "todo" },
+	{ BLADE_BOW, "todo" },
+	{ MEADOWFOAM, "todo" },
+	{ MOTHERWORT, "todo" },
 
 	{0, "" }
 };

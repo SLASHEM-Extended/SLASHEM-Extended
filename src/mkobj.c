@@ -3339,23 +3339,32 @@ boolean shopinit;
 			otmp->spe = rnd(ishaxor ? 70 : 35);
 			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 10);
-					break;
-		/* KMH, balance patch -- removed to prevent abuse
-		case ORB_OF_DESTRUCTION:blessorcurse_on_creation(otmp, 2);
-					break;
-		case ORB_OF_CHARGING:   otmp->spe = rnd(10) + 5;
-					blessorcurse_on_creation(otmp, 2);
-					break;
-		case ORB_OF_ENCHANTMENT:otmp->spe = rnd(3) + 1;
-					blessorcurse_on_creation(otmp, 2);
-					break;*/
+			break;
+		/* KMH, balance patch -- removed to prevent abuse, but added back in by Amy because the OPness can be fixed */
+		case ORB_OF_DESTRUCTION:
+			otmp->recharged = 0;
+			if(!rn2(5)) otmp->recharged = rnd(7);
+			blessorcurse_on_creation(otmp, 2);
+			break;
+		case ORB_OF_CHARGING:
+			otmp->recharged = 0;
+			if(rn2(5)) otmp->recharged = rnd(7);
+			otmp->spe = rnd(3) + 1; /* wtf that was way too high a value! no wonder KMH thought it was overpowered */
+			otmp->spe -= rn2(3);
+			blessorcurse_on_creation(otmp, 2);
+			break;
+		case ORB_OF_ENCHANTMENT:
+			otmp->spe = rnd(3) + 1;
+			otmp->spe -= rn2(3);
+			blessorcurse_on_creation(otmp, 2);
+			break;
 		case CRYSTAL_BALL:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rn1(10,3);
 			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 2);
-					break;
+			break;
 		case HORN_OF_PLENTY:
 		case BAG_OF_TRICKS:
 			otmp->recharged = 0;
@@ -3363,22 +3372,23 @@ boolean shopinit;
 			otmp->spe = rnd(30);
 			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 5);
-					break;
+			break;
  		case CHEMISTRY_SET:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 80 : 40);
 			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp,4);
- 					break;
-		case FIGURINE:	{	int tryct2 = 0;
-					do
-					    otmp->corpsenm = rndmonnum();
-					while(is_human(&mons[otmp->corpsenm]) && !rn2(5)
-						&& tryct2++ < 30); /* come on, human figurines should be possible! --Amy */
-					blessorcurse_on_creation(otmp, 4);
-					break;
-				}
+ 			break;
+		case FIGURINE:	{
+				int tryct2 = 0;
+				do
+				    otmp->corpsenm = rndmonnum();
+				while(is_human(&mons[otmp->corpsenm]) && !rn2(5)
+					&& tryct2++ < 30); /* come on, human figurines should be possible! --Amy */
+				blessorcurse_on_creation(otmp, 4);
+				break;
+			}
 		case ENERGY_SAP:
 			{
 				int tryct2 = 0;
@@ -3389,7 +3399,7 @@ boolean shopinit;
 			}
 		case BELL_OF_OPENING:
 			otmp->spe = (ishaxor ? 60 : 30);
-					break;
+			break;
 		case MAGIC_FLUTE:
 		case MAGIC_HARP:
 		case FROST_HORN:
@@ -3399,15 +3409,15 @@ boolean shopinit;
 		case CHROME_HORN:
 		case FIRE_HORN:
 		case DRUM_OF_EARTHQUAKE:
-		/* KMH, balance patch -- removed
+		/* KMH, balance patch -- removed, but re-inserted by Amy */
 		case PAN_PIPE_OF_SUMMONING:
-		case PAN_PIPE_OF_THE_SEWERS: */
+		case PAN_PIPE_OF_THE_SEWERS:
 			otmp->recharged = 0;
 			if(!rn2(5)) otmp->recharged = rnd(7);
 			otmp->spe = rnd(ishaxor ? 30 : 15);
 			otmp->spe -= rn2(3);
 			blessorcurse_on_creation(otmp, 10);
-					break;
+			break;
 		default: /* all the other tools --Amy */
 		if(!rn2(ishaxor ? 3 : 6)) {
 			otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3417,8 +3427,9 @@ boolean shopinit;
 			if (rn2(10)) curse_on_creation(otmp);
 			 else	blessorcurse_on_creation(otmp, 3);
 			otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
-		} else	blessorcurse_on_creation(otmp, 10);
-
+		} else {
+			blessorcurse_on_creation(otmp, 10);
+		}
 		if (MagicFindBonus && !rn2(6) && otmp->spe == 0) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -4613,7 +4624,7 @@ register struct obj *obj;
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,LEMON,CHERRY};
-static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,BLACK_HENBANE,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
+static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,BLACK_HENBANE,MOTHERWORT,MEADOWFOAM,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
 /* rare fruits added by Amy, of course they don't grow in Soviet Russia, it's too cold there because the type of ice block
  * brings winter - he's like "Väterchen Frost" :-P */
 
