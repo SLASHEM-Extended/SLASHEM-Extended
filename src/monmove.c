@@ -4230,7 +4230,7 @@ altarfound:
 							    ) {
 	    boolean in_line = lined_up(mtmp) &&
 		(distmin(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <=
-		    (throws_rocks(youmonst.data) ? 20 : ACURRSTR/2+1)
+		    ( (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) ? 20 : ACURRSTR/2+1)
 		);
 
 	    if (appr != 1 || !in_line) {

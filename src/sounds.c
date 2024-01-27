@@ -6904,8 +6904,7 @@ dochat()
             (void) tamedog(mtmp, (struct obj *) 0, FALSE);
         } else {
             if (rnl(10) > 8) {
-                pline("%s unfortunately ignores your overtures.",
-                 Monnam(mtmp));
+                pline("%s unfortunately ignores your overtures.", Monnam(mtmp));
                 return 1;
             }
             if (!mtmp->mfrenzied) mtmp->mpeaceful = 1;
@@ -6944,11 +6943,9 @@ dochat()
 
 		if (yn("Tame the vortex?") == 'y') {
 
-	      pline("You attempt to tame %s.",mon_nam(mtmp) );
-
-		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
-
-	        return 1;
+		      pline("You attempt to tame %s.",mon_nam(mtmp) );
+			(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			return 1;
 		}
 	}
 
@@ -6956,13 +6953,13 @@ dochat()
 
 		if (yn("Recruit this officer of the law?") == 'y') {
 
-	      pline("You convince %s to join your cause.",mon_nam(mtmp) );
-		morehungry(100);
+		      pline("You convince %s to join your cause.",mon_nam(mtmp) );
+			morehungry(100);
 
-		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
-		use_skill(P_SQUEAKING, 1);
+			(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+			use_skill(P_SQUEAKING, 1);
 
-	        return 1;
+			return 1;
 		}
 	}
 
@@ -7001,16 +6998,17 @@ dochat()
 
 		if (yn("Seduce this pretty lady?") == 'y') {
 
-	      pline("You attempt to seduce %s.",mon_nam(mtmp) );
+		      pline("You attempt to seduce %s.",mon_nam(mtmp) );
 
-            mtmp->mpeaceful = 1; /* they will always become at least peaceful. --Amy */
-            set_malign(mtmp);
+	            mtmp->mpeaceful = 1; /* they will always become at least peaceful. --Amy */
+	            set_malign(mtmp);
 
-		if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) /* higher level monsters are less likely to be affected --Amy*/
+			/* higher level monsters are less likely to be affected --Amy */
+			if (mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) {
+				(void) tamedog(mtmp, (struct obj *) 0, TRUE);
+			}
 
-		(void) tamedog(mtmp, (struct obj *) 0, TRUE);
-
-	        return 1;
+			return 1;
 		}
 	}
 
@@ -7042,20 +7040,38 @@ dochat()
 
 		if (yn("Use the Emperor's Voice?") == 'y') {
 
-	      verbalize("%s", !rn2(3) ? "By the power of His Holiness Titus Medes, I beseech thee - stop thine combat actions!" : !rn2(2) ? "Long live Martin Septim! Thou shall surrender lest I smite thee!" : "The Emperor will spare thy life if thou stoppest fighting!");
-		morehungry(100);
-		use_skill(P_SQUEAKING, 1);
+		      verbalize("%s", !rn2(3) ? "By the power of His Holiness Titus Medes, I beseech thee - stop thine combat actions!" : !rn2(2) ? "Long live Martin Septim! Thou shall surrender lest I smite thee!" : "The Emperor will spare thy life if thou stoppest fighting!");
+			morehungry(100);
+			use_skill(P_SQUEAKING, 1);
 
-		if (!mtmp->mfrenzied && mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
+			/* higher level monsters are less likely to be affected --Amy */
+			if (!mtmp->mfrenzied && mtmp->m_lev < rnd(50) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) {
+		            mtmp->mpeaceful = 1;
+		            set_malign(mtmp);
+				pline("%s is convinced by your sermon, and no longer views you as an enemy!",l_monnam(mtmp));
+			}
 
-            mtmp->mpeaceful = 1;
-            set_malign(mtmp);
-		pline("%s is convinced by your sermon, and no longer views you as an enemy!",l_monnam(mtmp));
+			return 1;
+
+		}
+    }
+
+    if (uarmg && uarmg->oartifact == ART_VULTUREHANDLER && mtmp->data->mlet == S_BAT && !is_bat(mtmp->data) && !mtmp->mpeaceful && !mtmp->mfrenzied && !mtmp->mtame) {
+		if (yn("Try to pacify the bird?") == 'y') {
+
+		      pline("You try to calm %s.", mon_nam(mtmp) );
+
+			if (!rn2(4)) {
+				if (!resist(mtmp, RING_CLASS, 0, NOTELL)) {
+					mtmp->mpeaceful = TRUE;
+					pline("%s seems calmer.", Monnam(mtmp));
+				}
+			}
+
+			return 1;
+
 		}
 
-        return 1;
-
-		}
     }
 
     if (Race_if(PM_MUMMY) && mtmp->mnum != quest_info(MS_NEMESIS) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 7) && !(mtmp->data->geno & G_UNIQ) &&
@@ -7063,21 +7079,20 @@ dochat()
 
 		if (yn("Try to tame this undead monster?") == 'y') {
 
-	      pline("You frantically chant at %s.",mon_nam(mtmp) );
-		morehungry(500);
-		use_skill(P_SQUEAKING, rnd(5));
+		      pline("You frantically chant at %s.",mon_nam(mtmp) );
+			morehungry(500);
+			use_skill(P_SQUEAKING, rnd(5));
 
-		if (mtmp->m_lev < rnd(100) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) { /* higher level monsters are less likely to be affected --Amy*/
+			/* higher level monsters are less likely to be affected --Amy */
+			if (mtmp->m_lev < rnd(100) && rn2(u.ulevel + 2) && (rn2(3) || ((rnd(30 - ACURR(A_CHA))) < 4)) ) {
 
-	    /*maybe_tame(mtmp, sobj);*/
-		(void) tamedog(mtmp, (struct obj *) 0, FALSE);
-		}
+				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			}
 
-        return 1;
+			return 1;
 
 		}
     }
-
 
     return domonnoise(mtmp);
 }

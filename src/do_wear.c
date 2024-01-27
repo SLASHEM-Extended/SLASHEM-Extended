@@ -7251,6 +7251,7 @@ find_ac()
 	if (uarmg && uarmg->otyp == GAUNTLETS_OF_ARMORING && uarmg->spe > 0) uac -= uarmg->spe;
 	if (uarmg && uarmg->oartifact == ART_ELTRA_ENCHANTMENT && uarmg->spe > 0) uac -= uarmg->spe;
 	if (uarm && uarm->oartifact == ART_GOODNET) uac -= 5;
+	if (uarmg && uarmg->oartifact == ART_ELTRA_BAUBLE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_KWOURSTOMAL_) uac -= 10;
 	if (uarm && uarm->oartifact == ART_BEEPA_DEVICE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_RESISTANT_TO_DEADGOING) uac -= 5;

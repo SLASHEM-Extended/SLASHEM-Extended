@@ -807,6 +807,11 @@ nh_timeout()
 		if (u.elberethcheese < 0) u.elberethcheese = 0; /* fail safe */
 	}
 
+	if (uarmg && uarmg->oartifact == ART_TECH_OF_X && u.elberethcheese && !rn2(1000)) {
+		u.elberethcheese--;
+		if (u.elberethcheese < 0) u.elberethcheese = 0; /* fail safe */
+	}
+
 	if (u.roxannemode && u.roxannetimer) {
 		u.roxannetimer--;
 		if (u.roxannetimer < 0) u.roxannetimer = 0; /* fail safe */

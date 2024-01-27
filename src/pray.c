@@ -178,7 +178,7 @@ in_trouble()
 	for (i= -1; i<=1; i++) for(j= -1; j<=1; j++) {
 		if (!i && !j) continue; /* thanks Patric Mueller for this fix. It is implemented in vanilla but not in SLASH'EM for some reason, so I'll add it here. --Amy */
 		if (!isok(u.ux+i, u.uy+j) || IS_ROCK(levl[u.ux+i][u.uy+j].typ)
-		    || (blocked_boulder(i,j) && !throws_rocks(youmonst.data)))
+		    || (blocked_boulder(i,j) && !throws_rocks(youmonst.data) && !(uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) ))
 			count++;
 	}
 	if (count /*=*/>= 8 && !Passes_walls) /* bugfix, no longer necessary (see above) but I'll keep it anyway --Amy */

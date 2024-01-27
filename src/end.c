@@ -1358,6 +1358,10 @@ feliddone:
 oneupdone:
 
 	if ((Second_chance || Lifesaved) && how <= GENOCIDED) {
+
+		boolean genomold = FALSE;
+		if (uamul && uamul->oartifact == ART_REAL_GENOMOLD) genomold = TRUE;
+
 		pline("But wait...");
 		makeknown(Lifesaved ? AMULET_OF_LIFE_SAVING : AMULET_OF_SECOND_CHANCE);
 		Your("%s %s!", Lifesaved ? "medallion" : "amulet",
@@ -1376,7 +1380,19 @@ oneupdone:
 		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
 		savelife(how);
 		u.lifesavepenalty++;
-		if (how == GENOCIDED)
+
+		if (genomold && (how == GENOCIDED)) {
+			if (Race_if(PM_UNGENOMOLD)) {
+				polyself(FALSE);
+			} else {
+				mvitals[urole.malenum].mvflags &= ~G_GENOD;
+				mvitals[urace.malenum].mvflags &= ~G_GENOD;
+				if (urole.femalenum != NON_PM) mvitals[urole.femalenum].mvflags &= ~G_GENOD;
+				if (urace.femalenum != NON_PM) mvitals[urace.femalenum].mvflags &= ~G_GENOD;
+			}
+		}
+
+		if (!genomold && (how == GENOCIDED))
 			pline("Unfortunately you are still genocided...");
 		else {
 

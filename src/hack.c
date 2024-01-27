@@ -709,7 +709,7 @@ moverock()
 		if (!u.usteed) {
 		  if (moves > lastmovetime+2 || moves < lastmovetime)
 		    pline("With %s effort you move %s.",
-			  throws_rocks(youmonst.data) ? "little" : "great",
+			  (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) ? "little" : "great",
 			  the(xname(otmp)));
 		  if (!rn2(50) || (otmp->oartifact == ART_COOL_DUMBBELL) ) exercise(A_STR, TRUE);
 		} else 
@@ -754,7 +754,7 @@ moverock()
 	    You("try to move %s, but in vain.", the(xname(otmp)));
 		 if (Blind) feel_location(sx,sy);
 	cannot_push:
-	    if (throws_rocks(youmonst.data)) {
+	    if (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) ) {
 		if (u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) {
 		    You("aren't skilled enough to %s %s from %s.",
 			(flags.pickup && !In_sokoban(&u.uz))
@@ -5611,7 +5611,7 @@ inv_weight()
 #endif
 	while (otmp) {
 #ifndef GOLDOBJ
-		if ( (otmp->otyp != BOULDER && otmp->otyp != LOADBOULDER) || !throws_rocks(youmonst.data))
+		if ( (otmp->otyp != BOULDER && otmp->otyp != LOADBOULDER) || (!throws_rocks(youmonst.data) && !(uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) )
 #else
 		if (otmp->oclass == COIN_CLASS)
 			wt += (int)(((long)otmp->quan + 50L) / /*100L*/10000L);
@@ -5620,10 +5620,10 @@ inv_weight()
 			wt += otmp->owt;
 
 		/* boulders shouldn't be completely weightless as a giant! --Amy */
-		if (throws_rocks(youmonst.data) && (otmp->otyp == BOULDER)) {
+		if ( (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) && (otmp->otyp == BOULDER)) {
 			wt += 500;
 		}
-		if (throws_rocks(youmonst.data) && (otmp->otyp == LOADBOULDER)) {
+		if ( (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) && (otmp->otyp == LOADBOULDER)) {
 			wt += 5000;
 		}
 

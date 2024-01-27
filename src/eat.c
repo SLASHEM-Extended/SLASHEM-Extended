@@ -7374,6 +7374,16 @@ register struct obj *otmp;
 		pline("It tasted like seventh heaven!");
 	}
 
+	if (otmp && otmp->oartifact == ART_FACE_THE_THING_THAT_SHOULD) {
+		reducesanity(1000);
+		You("successfully drained yourself of your sanity.");
+	}
+
+	if (otmp && otmp->oartifact == ART_BIRTH_HELP) {
+		decontaminate(flags.female ? 1000 : 500);
+		pline(flags.female ? "Now you're really ready to give birth to a child." : "Feels pretty good overall.");
+	}
+
 	if (otmp && otmp->oartifact == ART_STAY_FULL_FOR_A_WEEK) {
 		lesshungry(7000);
 		pline("Okay, now you really don't need any food for a good long while.");

@@ -1273,7 +1273,8 @@ boolean alwaysflag;
 	return -1;
     }
     if (obj->otyp == LOADSTONE || obj->otyp == LOADBOULDER || obj->otyp == STARLIGHTSTONE || alwaysflag ||
-	    (obj->otyp == BOULDER && throws_rocks(youmonst.data)) || (obj->oartifact && arti_is_evil(obj)) )
+	    (obj->otyp == BOULDER && (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) ) ||
+	    (obj->oartifact && arti_is_evil(obj)) )
 	return 1;		/* lift regardless of current situation */
 
     *cnt_p = carry_count(obj, container, *cnt_p, telekinesis, &old_wt, &new_wt);

@@ -625,6 +625,7 @@ init_randarts()
 	artilist[ART_LYST_ERG].otyp = randartquarterstaffX();
 	artilist[ART_DROWSING_ROD].otyp = randartquarterstaffX();
 	artilist[ART_PAINBOWSWANDIR].otyp = randartbowX();
+	artilist[ART_KRASCHEEP].otyp = randartbowX();
 	artilist[ART_ARROW_RAIN].otyp = randartbowX();
 	artilist[ART_EARTH_GAS_GUN].otyp = randartlauncherX();
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
@@ -853,6 +854,7 @@ init_randarts()
 	artilist[ART_VILEA_S_SECRET].otyp = randartclawX();
 	artilist[ART_SUPERSTAB].otyp = randartclawX();
 	artilist[ART_VORPAL_RULER].otyp = randartsaberX();
+	artilist[ART_VENERATION_SABRE].otyp = randartsaberX();
 	artilist[ART_BLOOD_SMEARED_SAW].otyp = randartgrinderX();
 	artilist[ART_NAIL_IMPACT].otyp = randartknucklesX();
 	artilist[ART_SIGMUND_S_SMALL_LOAD].otyp = randartcrossbowboltX();
@@ -910,6 +912,10 @@ init_appearance_randarts()
 	artilist[ART_NUMBER___].otyp = find_aluminium_helmet();
 	artilist[ART_HAUNTNIGHT].otyp = find_ghostly_cloak();
 	artilist[ART_LORSKEL_S_SPECIAL_PROTECTI].otyp = find_polnish_gloves();
+	artilist[ART_VULTUREHANDLER].otyp = find_falconry_gloves();
+	artilist[ART_MOUNTAIN_FISTS].otyp = find_fencing_gloves();
+	artilist[ART_STORMING_FISTS].otyp = find_critical_gloves();
+	artilist[ART_TECH_OF_X].otyp = find_latex_gloves();
 	artilist[ART_ROBBERY_GONE_RIGHT].otyp = find_polnish_gloves();
 	artilist[ART_JOSEFINE_S_EVILNESS].otyp = find_velcro_boots();
 	artilist[ART_WHINY_MARY].otyp = find_clumsy_gloves();
@@ -1885,6 +1891,13 @@ register boolean mod;
 			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+		    if (otmp && otmp->oartifact == ART_SAVOS__SAGERY) {
+			otmp->spe += 2;
+		    }
+		    if (otmp && otmp->oartifact == ART_PWNZORCHANT) {
+			if (otmp->spe > 0) otmp->spe *= 2;
+			otmp->spe += 3;
 		    }
 		    if (otmp && otmp->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) {
 			FemaleTrapJette += 50000;
@@ -5428,6 +5441,13 @@ tunguskaagain:
 		}
 
 		if (obj->oartifact == ART_FANNY_S_ANNOYANCE) {
+
+			randommartialstyle();
+
+			break;
+		}
+
+		if (obj->oartifact == ART_TSUNAMI_FISTS) {
 
 			randommartialstyle();
 

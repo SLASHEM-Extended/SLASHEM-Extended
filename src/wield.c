@@ -127,6 +127,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		uwep->spe = 3;
 	}
 
+	if (uwep && uwep->oartifact == ART_FEETSERN) {
+		u.martialstyle = MARTIALSTYLE_TAEKWONDO;
+		Your("martial style is 'taekwondo' now.");
+	}
+
 	if (uwep && uwep->oartifact == ART_BAT_FROM_BALTIMORE) {
 		if (CurseuseEffect < 5000L) CurseuseEffect = 5000L;
 		if (AutocursingEquipment < 5000L) AutocursingEquipment = 5000L;
@@ -229,6 +234,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	}
 
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP && !uwep->cursed) {
+		curse(uwep);
+		Your("bow becomes cursed, hahaha.");
+	}
+
+	if (uwep && uwep->oartifact == ART_KRASCHEEP && !uwep->cursed) {
 		curse(uwep);
 		Your("bow becomes cursed, hahaha.");
 	}
@@ -688,6 +698,11 @@ swapweaponchoice:
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_OZYZEVPDWTVP && !uswapwep->cursed) {
+			curse(uswapwep);
+			Your("bow becomes cursed, hahaha.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_KRASCHEEP && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("bow becomes cursed, hahaha.");
 		}

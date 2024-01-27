@@ -2152,7 +2152,7 @@ int curse_bless;
 			useup(obj);
 		    return;
 		}
-		if (obj->otyp == ORB_OF_CHARGING && n > 1) {
+		if (obj->otyp == ORB_OF_CHARGING && !(obj->oartifact == ART_SAVOS__SAGERY && Role_if(PM_AUGURER)) && n > 1) {
 			Your("%s glows violently and evaporates!", xname(obj));
 			useup(obj);
 		    return;

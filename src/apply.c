@@ -6217,11 +6217,32 @@ dyechoice:
 		break;
 	case ORB_OF_DESTRUCTION:
 		{
+			boolean extrakaboom = FALSE;
+			if (obj->oartifact == ART_CAEAUWAESH_) extrakaboom = TRUE;
+
 			int explodestrength = min(u.ulevel, 12); /* avoid poison pill problem --Amy */
 			noartispeak = TRUE;
 			useup(obj);
 			pline("As you activate the orb, it explodes!");
 			explode(u.ux, u.uy, ZT_SPELL(ZT_MAGIC_MISSILE), d(explodestrength,6), WAND_CLASS, EXPL_MAGICAL);
+
+			if (extrakaboom) {
+				coord cc;
+				int kaboomxtras = 10;
+				pline("Kaboomboom-booooooom!");
+
+				while (kaboomxtras > 0) {
+					kaboomxtras--;
+					cc.x = rn1(COLNO-3,2);
+					cc.y = rn2(ROWNO);
+
+					explode(cc.x, cc.y, ZT_SPELL(ZT_MAGIC_MISSILE), d(explodestrength,6), WAND_CLASS, EXPL_MAGICAL);
+
+				}
+				pline("CAEAUWAESH!");
+
+			}
+
 			check_unpaid(obj);
 		}
 		break;
@@ -6239,7 +6260,7 @@ dyechoice:
 		if(flags.verbose)
 			pline("In order to eat, use the 'e' command.");
 		if(obj != uwep)
-    pline("Opening the tin will be much easier if you wield the tin opener.");
+			pline("Opening the tin will be much easier if you wield the tin opener.");
 		goto xit;
 
 	case FIGURINE:

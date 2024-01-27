@@ -8681,7 +8681,7 @@ register const char *let,*word;
 
 	/* another ugly check: show boulders (not statues) */
 	if(*let == WEAPON_CLASS &&
-	   !strcmp(word, "throw") && throws_rocks(youmonst.data))
+	   !strcmp(word, "throw") && (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) )
 	    useboulder = TRUE;
 
 	if(allownone) *bp++ = '-';
@@ -30445,6 +30445,64 @@ boolean knoweverything;
 					pline("Artifact specs: mystery resistance when worn."); break;
 				case ART_TOXIC_PINK:
 					pline("Artifact specs: kicking an enemy with them will deal poison damage."); break;
+				case ART_VULTUREHANDLER:
+					pline("Artifact specs: while wearing them, chatting to a bird may pacify it, but with a relatively low success chance. Be aware that this specifically means birds, not all B-class monsters; those that count as bats will just ignore your attempts."); break;
+				case ART_TECH_OF_X:
+					pline("Artifact specs: while wearing them, any reduction in Elbereth effectiveness that you may have will time out more quickly than normal."); break;
+				case ART_VERY_HOT_IN_HERE:
+					pline("Artifact specs: double cold resistance when worn, firefighter sacrifice gift."); break;
+				case ART_ELTRA_BAUBLE:
+					pline("Artifact specs: boosts your AC by 5 points when worn."); break;
+				case ART_ENNUI_STOICISM:
+					pline("Artifact specs: lightning immunity when worn."); break;
+				case ART_MEFAN_S_FRUSTRATION:
+					pline("Artifact specs: if you play it while it still has charges, you gain some money."); break;
+				case ART_CAEAUWAESH_:
+					pline("Artifact specs: applying it causes a bunch of additional explosions on random tiles."); break;
+				case ART_SACMATERIAL:
+					pline("Artifact specs: if you play it while it still has charges, you gain a point of luck."); break;
+				case ART_FRANTIC_HELLA:
+					pline("Artifact specs: +6 damage. This bonus also applies when bashing with it."); break;
+				case ART_HECTIC_OH_YEAH:
+					pline("Artifact specs: makes you ultra fast when wielded."); break;
+				case ART_KRASCHEEP:
+					pline("Artifact specs: autocurses and can be fired at point blank without penalties."); break;
+				case ART_LUMA_S_LUV:
+					pline("Artifact specs: drain resistance when worn."); break;
+				case ART_REAL_GENOMOLD:
+					pline("Artifact specs: can save your life even if you die from being genocided, usually by ungenociding you."); break;
+				case ART_WILDFIRE_FISTS:
+					pline("Artifact specs: +8 fire damage, energy regeneration when worn."); break;
+				case ART_MOUNTAIN_FISTS:
+					pline("Artifact specs: half physical damage when worn and allows you to pick up and throw boulders."); break;
+				case ART_TSUNAMI_FISTS:
+					pline("Artifact specs: makes you very fast when wielded, can be invoked to change your martial arts style to a random one."); break;
+				case ART_STORMING_FISTS:
+					pline("Artifact specs: +9 shock damage, displacement when worn."); break;
+				case ART_PWNZORCHANT:
+					pline("Artifact specs: generates with a bigger amount of charges."); break;
+				case ART_BACK_NOTATION:
+					pline("Artifact specs: +10 damage when bashing monsters with it."); break;
+				case ART_FACE_THE_THING_THAT_SHOULD:
+					pline("Artifact specs: reduces sanity by an additional 1000 when consumed."); break;
+				case ART_BIRTH_HELP:
+					pline("Artifact specs: reduces contamination by more than the normal value; the boost in potency is higher if you're female because this herb is meant to specifically help women deal with childbirth-related pain."); break;
+				case ART_FIRE_DAGGER:
+					pline("Artifact specs: +4 to-hit and +4 fire damage, cold resistance when wielded, lawful."); break;
+				case ART_FIREBITER:
+					pline("Artifact specs: +5 to-hit and +5 fire damage, fire resistance when wielded, lawful."); break;
+				case ART_HOLY_SWORD:
+					pline("Artifact specs: +10 to-hit and +20 damage versus undead, magic resistance when wielded, lawful, undead slayer sacrifice gift."); break;
+				case ART_VENERATION_SABRE:
+					pline("Artifact specs: +10 to-hit and +10 damage against crossaligned monsters, magic resistance when wielded, lawful."); break;
+				case ART_SNATCHES_OF_SONG:
+					pline("Artifact specs: monsters summoned by it may sometimes be tame as long as this instrument isn't cursed, and if it's blessed the chance is highest. This artifact is a sacrifice gift for the musician role."); break;
+				case ART_SAVOS__SAGERY:
+					pline("Artifact specs: spawns with additional charges and if you're an augurer, you can recharge it several times. It is a sacrifice gift for the augurer role."); break;
+				case ART_FEETSERN:
+					pline("Artifact specs: +5 kick damage when wielded and as soon as you wield it, your martial arts style is changed to 'taekwondo' automatically."); break;
+				case ART_WHOLZ_WALTZ:
+					pline("Artifact specs: if you're dual-wielding and this is your primary weapon, your melee attacks have +5 to-hit and damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

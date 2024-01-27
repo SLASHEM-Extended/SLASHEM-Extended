@@ -9282,8 +9282,8 @@ ring:
 	  /* [max] weight inventory */
 
 	objowt = obj->owt;
-	if (throws_rocks(youmonst.data) && obj->otyp == BOULDER) objowt = 500;
-	if (throws_rocks(youmonst.data) && obj->otyp == LOADBOULDER) objowt = 5000;
+	if ( (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) && obj->otyp == BOULDER) objowt = 500;
+	if ( (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS)) && obj->otyp == LOADBOULDER) objowt = 5000;
 
 	if ((obj->otyp <= ACID_VENOM) /* && (obj->otyp != CHEST) && (obj->otyp != LARGE_BOX) && (obj->otyp != LEAD_BOX) && (obj->otyp != TOP_BOX) && */
 && (obj->otyp != LUCKSTONE) && (obj->otyp != HEALTHSTONE) && (obj->otyp != LOADSTONE) && (obj->otyp != TOUCHSTONE)

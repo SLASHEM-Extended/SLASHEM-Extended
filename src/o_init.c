@@ -2487,6 +2487,58 @@ find_polnish_gloves()
 }
 
 int
+find_fencing_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FENCING_GLOVES)) return i;
+    }
+
+    impossible("fencing gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_critical_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_CRITICAL_GLOVES)) return i;
+    }
+
+    impossible("critical gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_falconry_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FALCONRY_GLOVES)) return i;
+    }
+
+    impossible("falconry gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_latex_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_LATEX_GLOVES)) return i;
+    }
+
+    impossible("latex gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_spiky_gloves()
 {
     register int i;

@@ -18466,6 +18466,122 @@ A("Toxic Pink",				LOW_BOOTS, /* initialized to always be missys, poisons enemie
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
 
+A("Vulturehandler",				REGULAR_GLOVES, /* initialized to always be falconry gloves, chatting to a S_BAT that isn't M4_BAT has 25% chance that the monster has to make a saving throw or become peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Tech-of-X",				REGULAR_GLOVES, /* initialized to always be latex gloves, 1 in 1000 per turn that the "elbereth effectiveness reduction" is reduced by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Very Hot In Here",				ASBESTOS_JACKET, /* also gives intrinsic cold resistance */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, PM_FIREFIGHTER, NON_PM, 8000L ),
+
+A("The Eltra Bauble",				BRACERS_OF_DEFENSE, /* 5 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ennui Stoicism",				BRACERS_OF_ABSORPTION, /* lightning immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Mefan's Frustration",				PAN_PIPE_OF_THE_SEWERS, /* applying it while it has charges gives 300 zorkmids */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Caeauwaesh!",				ORB_OF_DESTRUCTION, /* applying it additionally gives 10 magical explosions with same strength as the regular one but on random tiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4444L ),
+
+A("SacMaterial",				PAN_PIPE_OF_SUMMONING, /* applying it while it has charges gives +1 luck */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Frantic Hella",				BLADE_BOW, /* bonus also applies when bashing */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Hectic Oh Yeah",				BLADE_BOW, /* intrinsic and extrinsic speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Krascheep",				BOW, /* randart2 bow, autocurses, can fire at point blank without penalties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Luma's Luv",				RIN_SUSTAIN_ABILITY,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Real Genomold",				AMULET_OF_LIFE_SAVING, /* if you die from being genocided, you become ungenocided or if you're an ungenomold, you immediately get polymorphed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wildfire Fists",				GAUNTLETS_OF_FREE_ACTION,
+	(SPFX_RESTR|SPFX_EREGEN|SPFX_ATTK), 0, 0,
+	FIRE(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mountain Fists",				REGULAR_GLOVES, /* initalized to always be fencing gloves, allows you to pick up and throw boulders like a giant */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tsunami Fists",				CRITICAL_GAUNTLETS, /* very fast speed, invoke to change your martial arts style to a random one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Storming Fists",				REGULAR_GLOVES, /* initialized to always be critical gloves, displacement */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(0, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("PwnzorChant",				ORB_OF_ENCHANTMENT, /* generated with 2x as many charges and +3 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Back Notation",				PAN_PIPE, /* +10 bashing damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Face The Thing That Should Not Be",				MEADOWFOAM, /* reduces sanity by an additional 1000 when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Birth Help",				MOTHERWORT, /* reduces contamination by an additional 500 if you're male or 1000 if female */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Fire Dagger",				DAGGER,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	FIRE(4, 4), DFNS(AD_COLD), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 500L ),
+
+A("Firebiter",			AXE,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	FIRE(5,5),	FIRE(0,0),	NO_CARY,	0, A_LAWFUL, NON_PM, NON_PM, 1500L ),
+
+A("The Holy Sword",				SILVER_SABER,
+	(SPFX_RESTR|SPFX_INTEL|SPFX_DFLAG2|SPFX_DEFN), 0, (M2_UNDEAD),
+	PHYS(10,20), DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, PM_UNDEAD_SLAYER, NON_PM, 4000L ),
+
+A("Veneration Sabre",				LEATHER_SABER, /* randart2 saber */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_DALIGN|SPFX_DEFN), 0, 0,
+	PHYS(10,10), DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Snatches of Song",				PAN_PIPE_OF_SUMMONING, /* summoned monsters may be tame depending on BUC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_MUSICIAN, NON_PM, 3000L ),
+
+A("Savos' Sagery",				ORB_OF_CHARGING, /* spawns with +2 charges and if you're an augurer, it can be recharged several times */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_AUGURER, NON_PM, 3000L ),
+
+A("Feetsern",				PAN_PIPE, /* +5 kick damage when wielded and wielding it automatically sets your martial arts style to "taekwondo" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wholz Waltz",				PAN_PIPE, /* if dual-wielding, grants +5 to-hit and damage to melee attacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

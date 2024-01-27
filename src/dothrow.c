@@ -163,12 +163,12 @@ int thrown;
 	}
 	/* Since it's almost impossible to get 25 strength in slex, valkyries can simply throw Mjollnir at all times --Amy */
 	if ((obj->oartifact == ART_MJOLLNIR && !Role_if(PM_VALKYRIE) && !Role_if(PM_VANILLA_VALK) && ACURR(A_STR) < STR19(25))
-	   || (obj->otyp == BOULDER && !throws_rocks(youmonst.data))) {
+	   || (obj->otyp == BOULDER && !throws_rocks(youmonst.data) && !(uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) )) {
 		pline("It's too heavy.");
 		return(1);
 	}
 	if ((obj->oartifact == ART_OTHER_MJOLLNIR && !Role_if(PM_VALKYRIE) && !Role_if(PM_VANILLA_VALK) && ACURR(A_STR) < STR19(25))
-	   || (obj->otyp == BOULDER && !throws_rocks(youmonst.data))) {
+	   || (obj->otyp == BOULDER && !throws_rocks(youmonst.data) && !(uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) )) {
 		pline("It's too heavy.");
 		return(1);
 	}

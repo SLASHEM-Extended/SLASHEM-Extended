@@ -934,6 +934,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 5;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
+	if (u.twoweap && uwep && uwep->oartifact == ART_WHOLZ_WALTZ) tmp += 5;
+
 	if (u.ulevel >= 8) tmp++;
 	if (u.ulevel >= 16) tmp++;
 	if (u.ulevel >= 24) tmp++;
@@ -2450,6 +2452,7 @@ int dieroll;
 					case ART_EVERCONSUMING_HELLFIRE:
 					case ART_FIRE_L_E_A_D_E_R:
 					case ART_VITRIOL_FROM_THE_LAB:
+					case ART_FRANTIC_HELLA:
 					case ART_CHATGPT_S_FREEZE:
 					case ART_CHOCKERSHOCKER:
 					case ART_BIBLICAL_PLAGUE:
@@ -3812,6 +3815,9 @@ int dieroll;
 			if (obj && obj->oartifact == ART_BLAMMER_OF_DOOM) {
 				tmp += 10;
 			}
+			if (obj && obj->oartifact == ART_BACK_NOTATION) {
+				tmp += 10;
+			}
 			if (obj && obj->oartifact == ART_INVUNI && obj->otyp == BUGLE) {
 				tmp += 5;
 			}
@@ -4003,7 +4009,7 @@ int dieroll;
 
 	if (thrown && !stupidrock && !gunused && !pieks && rn2(2)) get_dmg_bonus = 0;
 
-	if (thrown && launcher && launcher->otyp != BLADE_BOW && (launcher->otyp != ART_DOLORES__WINNING_STRAT) && obj && ammo_and_launcher(obj, launcher) && !gunused && (distmin(u.ux, u.uy, mon->mx, mon->my) == 1)) {
+	if (thrown && launcher && launcher->otyp != BLADE_BOW && (launcher->oartifact != ART_DOLORES__WINNING_STRAT) && (launcher->oartifact != ART_KRASCHEEP) && obj && ammo_and_launcher(obj, launcher) && !gunused && (distmin(u.ux, u.uy, mon->mx, mon->my) == 1)) {
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
 		if (flags.bash_reminder && !rn2(10)) pline("Firing that weapon at point blank range is not very effective...");
@@ -4022,7 +4028,7 @@ int dieroll;
 		if (DEADMONSTER(mon)) return FALSE;
 	}
 
-	if (thrown && launcher && launcher->otyp != BLADE_BOW && obj && ammo_and_launcher(obj, launcher) && !gunused && u.uswallow) {
+	if (thrown && launcher && launcher->otyp != BLADE_BOW && (launcher->oartifact != ART_KRASCHEEP) && obj && ammo_and_launcher(obj, launcher) && !gunused && u.uswallow) {
 		get_dmg_bonus = 0;
 		if (tmp > 1) tmp /= 2;
 		if (flags.bash_reminder && !rn2(10)) You("can't fire that weapon effectively while engulfed...");
@@ -4148,6 +4154,7 @@ int dieroll;
 		if (uright && uright->oartifact == ART_KRATSCHEM_HARD) tmp += 2;
 		if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
 		if (!thrown && obj && obj->otyp == SUPERWEAPON) tmp += 5;
+		if (!thrown && u.twoweap && uwep && uwep->oartifact == ART_WHOLZ_WALTZ) tmp += 5;
 
 		if (pieks && obj && obj->otyp == LAJATANG) {
 			tmp += 5;

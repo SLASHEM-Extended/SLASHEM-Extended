@@ -607,6 +607,12 @@ hornchoice:
 	    if (do_spec && instr->spe > 0) {
 
 		register int cnt = 1;
+		register struct monst *mtmp;
+
+		if (instr->oartifact == ART_SACMATERIAL) {
+			change_luck(1);
+			You_feel("lucky.");
+		}
 
 		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
 		use_skill(P_DEVICES,1);
@@ -621,8 +627,13 @@ hornchoice:
 			use_skill(P_DEVICES,9);
 
 		cnt += (rn2(4) + 3);
-		while(cnt--)
-		(void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
+		while(cnt--) {
+			mtmp = makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
+
+			if (mtmp && instr->oartifact == ART_SNATCHES_OF_SONG && !instr->cursed && (!rn2(3) || instr->blessed) ) {
+				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			}
+		}
 	    }
 	    else goto panpipeduedeldiedue;
 		break;
@@ -630,6 +641,11 @@ hornchoice:
 	    if (do_spec && instr->spe > 0) {
 
 		register int cnt = 1;
+
+		if (instr->oartifact == ART_MEFAN_S_FRUSTRATION) {
+			u.ugold += 300;
+			You("gain some money for your performance!");
+		}
 
 		if (nochargechange >= rnd(10)) consume_obj_charge(instr, TRUE);
 		use_skill(P_DEVICES,1);
@@ -651,7 +667,9 @@ hornchoice:
 			/* Amy change: instead of super-useless sewer rats, summon random r-class monsters, please */
 			mtmp = makemon(mkclass(S_RODENT,0), u.ux, u.uy, NO_MM_FLAGS);
 			/* Amy change: BUC should determine likelihood of tame ones */
-			if (mtmp && !instr->cursed && (!rn2(3) || instr->blessed) ) (void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			if (mtmp && !instr->cursed && (!rn2(3) || instr->blessed) ) {
+				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			}
 		}
 	    }
 	    else goto panpipeduedeldiedue;
