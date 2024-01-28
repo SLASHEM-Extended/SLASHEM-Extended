@@ -9343,9 +9343,12 @@ struct obj *otmp;
 boolean ignore_oquan;	/* to force singular */
 {
 	char *nambuf = nextobuf();
+	int mndx = otmp->corpsenm;
+	const char *mname = (mndx != NON_PM) ? mons[mndx].mname : "thing"; /* shouldn't happen */
 
-	sprintf(nambuf, "%s corpse",
-		mons[Hallucination ? rndmonnum() : otmp->corpsenm].mname);
+	if (type_is_pname(&mons[mndx])) mname = s_suffix(mname);
+
+	sprintf(nambuf, "%s corpse", Hallucination ? mons[rndmonnum()].mname : mname);
 
 	if (ignore_oquan || otmp->quan < 2)
 	    return nambuf;

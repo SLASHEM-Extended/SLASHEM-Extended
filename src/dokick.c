@@ -2750,7 +2750,7 @@ long num;
 	sprintf(obuf, "%s%s",
 		 (otmp->otyp == CORPSE &&
 			type_is_pname(&mons[otmp->corpsenm])) ? "" : "The ",
-		 xname(otmp));
+		 cxname(otmp));
 
 	if(num) { /* means: other objects are impacted */
 	    sprintf(eos(obuf), " %s %s object%s",
