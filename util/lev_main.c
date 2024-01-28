@@ -1047,6 +1047,8 @@ static struct {
 	{ "rock shop",	 ROCKSSHOP },
 	{ "wierd shop",	 WIERDSHOP },
 	{ "zorkmid shop",	 ZORKSHOP },
+	{ "health food shop",	 HEALTHFOODSHOP },
+	{ "fast food shop",	 FASTFOODSHOP },
 	{ "random shop",	 RANDOMSHOP },
 	{ "candle shop", CANDLESHOP },
 	{ "black market", BLACKSHOP },

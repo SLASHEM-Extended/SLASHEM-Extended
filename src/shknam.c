@@ -381,7 +381,7 @@ const struct shclass shtypes[] = {
 	{"weapons outlet", WEAPON_CLASS, 17, D_SHOP, {
 	    {80, WEAPON_CLASS}, {3, -PISTOL_BULLET}, {1, -ASSAULT_RIFLE_BULLET}, {3, -RIFLE_BULLET}, {2, -SMG_BULLET}, {1, -SILVER_PISTOL_BULLET},
 	    {10, ARMOR_CLASS}, {0, 0}}, shkweapons},
-	{"delicatessen", FOOD_CLASS, 4, D_SHOP,
+	{"delicatessen", FOOD_CLASS, 2, D_SHOP,
 	    {{83, FOOD_CLASS}, {5, -POT_FRUIT_JUICE}, {4, -POT_BOOZE},
 	     {5, -POT_WATER}, {3, -ICE_BOX}}, shkfoods},
 	{"jewelers", RING_CLASS, 3, D_SHOP,
@@ -436,6 +436,12 @@ const struct shclass shtypes[] = {
 
 	{"zorkmid store", RANDOM_CLASS, 1,
 	    D_SHOP, {{100, COIN_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
+
+	{"health food store", FOOD_CLASS, 1, D_SHOP, {
+	    {20, -EUCALYPTUS_LEAF}, {9, -CLOVE_OF_GARLIC}, {9, -SPRIG_OF_WOLFSBANE}, {8, -MEADOWFOAM}, {8, -MOTHERWORT}, {8, -WATER_HYACINTH}, {10, -LICHOR}, {10, -AMBROSIA}, {5, -LUMP_OF_ROYAL_JELLY}, {1, -HONEYCOMB}, {4, -DIGESTION_CAKE}, {8, -MAGIC_BANANA}, {0, 0}}, shkfoods},
+
+	{"fast food store", FOOD_CLASS, 1, D_SHOP, {
+	    {10, -SANDWICH}, {10, -PANCAKE}, {10, -TORTILLA}, {10, -PASTA}, {40, -SLICE_OF_PIZZA}, {10, -LUNCH_OF_BOILED_EGG}, {10, -PIZZA}, {0, 0}}, shkfoods},
 
 	{"random store", RANDOM_CLASS, 0,
 	    D_SHOP, {{100, COIN_CLASS}, {0, 0}, {0, 0}}, shkgeneral},

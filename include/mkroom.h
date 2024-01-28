@@ -31,7 +31,7 @@ struct shclass {
 	struct itp {
 	    int iprob;		/* probability of an item type */
 	    int itype;		/* item type: if >=0 a class, if < 0 a specific item */
-	} iprobs[20];
+	} iprobs[100]; /* we don't want to run out of array elements --Amy */
 	const char * const *shknms;	/* list of shopkeeper names for this type */
 };
 
@@ -173,8 +173,10 @@ extern NEARDATA struct door doors[DOORMAX];
 #define ROCKSSHOP       (SHOPBASE+18)
 #define WIERDSHOP       (SHOPBASE+19)
 #define ZORKSHOP       (SHOPBASE+20)
-#define RANDOMSHOP       (SHOPBASE+21)
-#define UNIQUESHOP      (SHOPBASE+22)      /* shops here & above not randomly gen'd. */
+#define HEALTHFOODSHOP       (SHOPBASE+21)	/* from *shudder* nethack 3.7, with adjustments --Amy */
+#define FASTFOODSHOP       (SHOPBASE+22)		/* pizza and stuff --Amy */
+#define RANDOMSHOP       (SHOPBASE+23)
+#define UNIQUESHOP      (SHOPBASE+24)      /* shops here & above not randomly gen'd. */
 #define CANDLESHOP      (UNIQUESHOP)
 #define BLACKSHOP       (UNIQUESHOP+1)
 #define MAXRTYPE        (UNIQUESHOP+1)      /* maximum valid room type */

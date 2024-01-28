@@ -4221,7 +4221,9 @@ retryrandtype:
 			case 65:
 				croom->rtype = WEAPONSHOP; break;
 			case 66:
+				croom->rtype = HEALTHFOODSHOP; break;
 			case 67:
+				croom->rtype = FASTFOODSHOP; break;
 			case 68:
 			case 69:
 				croom->rtype = FOODSHOP; break;
