@@ -90,7 +90,7 @@ unsigned gpflags;
 	    }
 	}
 	if (!ACCESSIBLE(levl[x][y].typ) ) {
-		if (!(is_waterypool(x,y) && !u.roommatehack && (ignorewater || crystalornot))) return -1;
+		if (!is_farmland(x,y) && !(is_waterypool(x,y) && !u.roommatehack && (ignorewater || crystalornot))) return -1;
 	}
 
 	if (closed_door(x, y) && (!mdat || !amorphous(mdat)))
