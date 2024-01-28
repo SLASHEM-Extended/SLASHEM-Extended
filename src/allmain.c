@@ -1134,6 +1134,38 @@ moveloop()
 					moveamt /= 12;
 				}
 
+				if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
+					if (moveamt > 12) moveamt /= 2;
+					else if (moveamt > 6) moveamt = 6;
+					else if (moveamt > 1) moveamt--;
+				}
+
+				if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 6) {
+					moveamt /= 2;
+					if (moveamt < 6) moveamt = 6;
+				}
+
+				if (YouHaveTheSpeedBug && moveamt > 1) {
+					if (rn2(5)) moveamt *= rnd(5);
+					moveamt /= rnd(6);
+					if (!rn2(5)) moveamt /= 2;
+				}
+
+				if (YouHaveTheSpeedBug && moveamt > 6 && StrongFast) {
+					if (rn2(5)) moveamt *= rnd(5);
+					moveamt /= rnd(6);
+					if (!rn2(5)) moveamt /= 2;
+					if (moveamt < 6) moveamt = 6;
+				}
+
+				if (Very_fast && YouHaveTheSpeedBug && rn2(4) && rn2(4) && moveamt > 6 ) {
+					moveamt /= 2;
+					if (moveamt < 6) moveamt = 6;
+				} else if (Fast && YouHaveTheSpeedBug && !rn2(4) && moveamt > 6 ) {
+					moveamt /= 2;
+					if (moveamt < 6) moveamt = 6;
+				}
+
 				if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1334,10 +1366,6 @@ moveloop()
 					if (!rn2(10))
 					moveamt = 0;
 				}
-				if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 1) {
-					moveamt /= 2;
-				}
-
 				if (Race_if(PM_PIECE) && u.dx && u.dy && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
@@ -1422,9 +1450,6 @@ moveloop()
 				if ((uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) && u.umoved && moveamt > 1) {
 					moveamt /= 2;
 				}
-				if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
-					moveamt /= 2;
-				}
 				if (Race_if(PM_TURTLE) && moveamt > 1) {
 					moveamt /= 2;
 				}
@@ -1469,23 +1494,6 @@ moveloop()
 					moveamt /= 2;
 				}
 
-				if (YouHaveTheSpeedBug && moveamt > 1) {
-					if (rn2(5)) moveamt *= rnd(5);
-					moveamt /= rnd(6);
-					if (!rn2(5)) moveamt /= 2;
-				}
-
-				if (YouHaveTheSpeedBug && moveamt > 1 && StrongFast) {
-					if (rn2(5)) moveamt *= rnd(5);
-					moveamt /= rnd(6);
-					if (!rn2(5)) moveamt /= 2;
-				}
-
-				if (Very_fast && YouHaveTheSpeedBug && rn2(4) && rn2(4) && moveamt > 1 ) {
-					moveamt /= 2;
-				} else if (Fast && YouHaveTheSpeedBug && !rn2(4) && moveamt > 1 ) {
-					moveamt /= 2;
-				}
 			} /* reduced chance for slowdown end */
 
 			/* speed boosts while riding go here */
@@ -1639,9 +1647,51 @@ moveloop()
 				moveamt += 12;
 			}
 
-			if (youmonst.data->mmove == 0 && !rn2(2)) moveamt += 1; /* be lenient if an ungenomold player is unlucky 		 * enough to poly into a red mold or something like that. Otherwise they would simply die with no chance.
-		 * see hack.c code that still prevents movement if polymorphed into something sessile.
-		 * Also, you're still slower than a lichen (speed 1), so this should be ok. */
+			if (youmonst.data->mmove == 0 && !rn2(2)) moveamt += 1;
+		 /* be lenient if an ungenomold player is unlucky enough to poly into a red mold or something like that.
+		  * Otherwise they would simply die with no chance. see hack.c code that still prevents movement if polymorphed
+		  * into something sessile. Also, you're still slower than a lichen (speed 1), so this should be ok.
+		  * if you actually are an ungenomold, you should at least have a chance of using #youpoly again --Amy */
+
+			if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
+				if (youmonst.data->mmove > 1 || !rn2(2)) { /* inert characters move at half speed --Amy */
+					if (moveamt > 12) moveamt /= 2;
+					else if (moveamt > 6) moveamt = 6; /* some sanity checks to make it not too crippling... */
+					else if (moveamt > 1) moveamt--;
+				}
+			}
+
+			if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 6) {
+				if (youmonst.data->mmove > 1 || !rn2(2)) {
+					moveamt /= 2; /* frozen characters move at half speed --Amy */
+					if (moveamt < 6) moveamt = 6; /* but don't slow them down too much, please! */
+				}
+			}
+
+			if (YouHaveTheSpeedBug && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
+				if (rn2(5)) moveamt *= rnd(5);
+				moveamt /= rnd(6);
+				if (!rn2(5)) moveamt /= 2;
+			}
+
+			if (YouHaveTheSpeedBug && moveamt > 6 && StrongFast) {
+				if (rn2(5)) moveamt *= rnd(5);
+				moveamt /= rnd(6);
+				if (!rn2(5)) moveamt /= 2;
+				if (moveamt < 6) moveamt = 6; /* don't slow them down too much, please! */
+			}
+
+			/* speed bug reverses speed effects --Amy */
+			if (Very_fast && YouHaveTheSpeedBug && rn2(4) && rn2(4) && moveamt > 6 ) {	/* speed boots or potion */
+			    /* average movement is 0.5625 times normal */
+				moveamt /= 2;
+				if (moveamt < 6) moveamt = 6; /* don't slow them down too much, please! */
+
+			} else if (Fast && YouHaveTheSpeedBug && !rn2(4) && moveamt > 6 ) {
+			    /* average movement is 0.75 times normal */
+				moveamt /= 2;
+				if (moveamt < 6) moveamt = 6; /* don't slow them down too much, please! */
+			}
 
 			if (Race_if(PM_ASGARDIAN) && !rn2(20) && moveamt > 1) /* Asgardians are slower sometimes, this is intentional. --Amy */
 				moveamt /= 2;
@@ -1864,10 +1914,6 @@ moveloop()
 				if ( (youmonst.data->mmove > 1 || !rn2(2)) && !rn2(10))
 				moveamt = 0; /* numbed characters sometimes miss turns --Amy */
 			}
-			if (Frozen && (!((uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS)) ) || !rn2(3)) && moveamt > 1) {
-				if (youmonst.data->mmove > 1 || !rn2(2))
-				moveamt /= 2; /* frozen characters move at half speed --Amy */
-			}
 
 			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 					static boolean canwalkonsnow = 0;
@@ -1974,10 +2020,6 @@ moveloop()
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
-			if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
-				if (youmonst.data->mmove > 1 || !rn2(2))
-				moveamt /= 2; /* inert characters move at half speed --Amy */
-			}
 			if (Race_if(PM_TURTLE) && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* turtles are very slow too --Amy */
@@ -2032,30 +2074,6 @@ moveloop()
 			if (u.hanguppenalty && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2; /* punishment for attempting hangup cheat --Amy */
-			}
-
-			if (YouHaveTheSpeedBug && moveamt > 1) { /* speed bug messes up the player's speed --Amy */
-				if (rn2(5)) moveamt *= rnd(5);
-				moveamt /= rnd(6);
-				if (!rn2(5)) moveamt /= 2;
-			}
-
-			if (YouHaveTheSpeedBug && moveamt > 1 && StrongFast) {
-				if (rn2(5)) moveamt *= rnd(5);
-				moveamt /= rnd(6);
-				if (!rn2(5)) moveamt /= 2;
-			}
-
-			/* speed bug reverses speed effects --Amy */
-			if (Very_fast && YouHaveTheSpeedBug && rn2(4) && rn2(4) && moveamt > 1 ) {	/* speed boots or potion */
-			    /* average movement is 0.5625 times normal */
-
-				moveamt /= 2;
-
-			} else if (Fast && YouHaveTheSpeedBug && !rn2(4) && moveamt > 1 ) {
-			    /* average movement is 0.75 times normal */
-
-				moveamt /= 2;
 			}
 
 			if (moveamt < 0) moveamt = 0;
