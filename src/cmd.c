@@ -13752,6 +13752,136 @@ int final;
 		enl_msg(You_, "used the cheater prayer ", "used the cheater prayer ", buf);
 	}
 
+	if (achieve.get_bell) {
+		you_have_X("obtained the silver bell");
+	}
+	if (achieve.enter_gehennom) {
+		you_have_X("entered Gehennom via the front entrance");
+	}
+	if (achieve.get_candelabrum) {
+		you_have_X("obtained the candelabrum");
+	}
+	if (achieve.get_book) {
+		you_have_X("obtained the papyrus book");
+	}
+	if (achieve.perform_invocation) {
+		you_have_X("performed the invocation");
+	}
+	if (achieve.get_amulet) {
+		you_have_X("obtained the Amulet of Yendor");
+	}
+	if (achieve.ascended) {
+		you_have_X("ascended");
+	}
+	if (achieve.get_luckstone) {
+		you_have_X("obtained the Mines End luckstone");
+	}
+	if (achieve.finish_sokoban) {
+		you_have_X("finished Sokoban");
+	}
+	if (achieve.killed_medusa) {
+		you_have_X("killed Medusa");
+	}
+	if (achieve.killed_nightmare) {
+		you_have_X("killed Nightmare");
+	}
+	if (achieve.killed_vecna) {
+		you_have_X("killed Vecna");
+	}
+	if (achieve.killed_beholder) {
+		you_have_X("killed Beholder");
+	}
+	if (achieve.killed_ruggo) {
+		you_have_X("killed Ruggo the Gnome King");
+	}
+	if (achieve.killed_kroo) {
+		you_have_X("killed Kroo the Kobold King");
+	}
+	if (achieve.killed_grund) {
+		you_have_X("killed Grund the Orc King");
+	}
+	if (achieve.killed_largestgiant) {
+		you_have_X("killed the Largest Giant");
+	}
+	if (achieve.killed_shelob) {
+		you_have_X("killed Shelob");
+	}
+	if (achieve.killed_girtab) {
+		you_have_X("killed Girtab");
+	}
+	if (achieve.killed_aphrodite) {
+		you_have_X("killed Aphrodite");
+	}
+	if (achieve.killed_frankenstein) {
+		you_have_X("killed Frankenstein");
+	}
+	if (achieve.killed_croesus) {
+		you_have_X("killed Croesus");
+	}
+	if (achieve.killed_dagon) {
+		you_have_X("killed Father Dagon");
+	}
+	if (achieve.killed_hydra) {
+		you_have_X("killed Mother Hydra");
+	}
+	if (achieve.imbued_bell) {
+		you_have_X("imbued the silver bell");
+	}
+	if (achieve.imbued_amulet) {
+		you_have_X("imbued the Amulet of Yendor");
+	}
+	if (achieveX.killed_elderpriest) {
+		you_have_X("killed an elder priest");
+	}
+	if (achieveX.killed_glassgolem) {
+		you_have_X("killed the motherfucker glass golem");
+	}
+	if (achieveX.killed_tiksrvzllat) {
+		you_have_X("killed Tiksrvzllat");
+	}
+	if (achieveX.killed_bofh) {
+		you_have_X("killed the BOFH");
+	}
+	if (achieveX.swimmingpool_cleared) {
+		you_have_X("completed the Swimming Pools");
+	}
+	if (achieveX.killed_katia) {
+		you_have_X("killed Erogenous Katia");
+	}
+	if (achieveX.killed_witchking) {
+		you_have_X("killed the Witch-King of Angmar");
+	}
+	if (achieveX.get_magresstone) {
+		you_have_X("obtained the Deep Mines End stone of magic resistance");
+	}
+	if (achieveX.devnull_complete) {
+		you_have_X("completed all the Devnull challenges");
+	}
+	if (achieveX.killed_minotaur) {
+		you_have_X("killed the Minotaur of the Maze");
+	}
+	if (achieveX.killed_kalwina) {
+		you_have_X("killed Kalwina");
+	}
+	if (achieveX.killed_stahngnir) {
+		you_have_X("killed Lord Stahngnir");
+	}
+	if (achieveX.killed_ariane) {
+		you_have_X("killed Lady Ariane");
+	}
+	if (achieveX.completed_rivalquest) {
+		you_have_X("completed the rival quest");
+	}
+	if (achieveX.completed_minusworld) {
+		you_have_X("completed the Minus World");
+	}
+	if (achieveX.killed_vera) {
+		you_have_X("killed Vera the Ice Queen");
+	}
+	if (achieveX.killed_elaine) {
+		you_have_X("killed Elaine the Enchantress");
+	}
+
 	/* Pop up the window and wait for a key */
 	display_nhwindow(en_win, TRUE);
 	destroy_nhwindow(en_win);
@@ -14407,6 +14537,136 @@ int final;
 
 	sprintf(buf, "%d time%s", u.cnd_cheaterprayer, plur(u.cnd_cheaterprayer));
 	dump("  You used the cheater prayer ", buf);
+
+	if (achieve.get_bell) {
+		dump("", "  You obtained the silver bell");
+	}
+	if (achieve.enter_gehennom) {
+		dump("", "  You entered Gehennom via the front entrance");
+	}
+	if (achieve.get_candelabrum) {
+		dump("", "  You obtained the candelabrum");
+	}
+	if (achieve.get_book) {
+		dump("", "  You obtained the papyrus book");
+	}
+	if (achieve.perform_invocation) {
+		dump("", "  You performed the invocation");
+	}
+	if (achieve.get_amulet) {
+		dump("", "  You obtained the Amulet of Yendor");
+	}
+	if (achieve.ascended) {
+		dump("", "  You ascended");
+	}
+	if (achieve.get_luckstone) {
+		dump("", "  You obtained the Mines End luckstone");
+	}
+	if (achieve.finish_sokoban) {
+		dump("", "  You finished Sokoban");
+	}
+	if (achieve.killed_medusa) {
+		dump("", "  You killed Medusa");
+	}
+	if (achieve.killed_nightmare) {
+		dump("", "  You killed Nightmare");
+	}
+	if (achieve.killed_vecna) {
+		dump("", "  You killed Vecna");
+	}
+	if (achieve.killed_beholder) {
+		dump("", "  You killed Beholder");
+	}
+	if (achieve.killed_ruggo) {
+		dump("", "  You killed Ruggo the Gnome King");
+	}
+	if (achieve.killed_kroo) {
+		dump("", "  You killed Kroo the Kobold King");
+	}
+	if (achieve.killed_grund) {
+		dump("", "  You killed Grund the Orc King");
+	}
+	if (achieve.killed_largestgiant) {
+		dump("", "  You killed the Largest Giant");
+	}
+	if (achieve.killed_shelob) {
+		dump("", "  You killed Shelob");
+	}
+	if (achieve.killed_girtab) {
+		dump("", "  You killed Girtab");
+	}
+	if (achieve.killed_aphrodite) {
+		dump("", "  You killed Aphrodite");
+	}
+	if (achieve.killed_frankenstein) {
+		dump("", "  You killed Frankenstein");
+	}
+	if (achieve.killed_croesus) {
+		dump("", "  You killed Croesus");
+	}
+	if (achieve.killed_dagon) {
+		dump("", "  You killed Father Dagon");
+	}
+	if (achieve.killed_hydra) {
+		dump("", "  You killed Mother Hydra");
+	}
+	if (achieve.imbued_bell) {
+		dump("", "  You imbued the silver bell");
+	}
+	if (achieve.imbued_amulet) {
+		dump("", "  You imbued the Amulet of Yendor");
+	}
+	if (achieveX.killed_elderpriest) {
+		dump("", "  You killed an elder priest");
+	}
+	if (achieveX.killed_glassgolem) {
+		dump("", "  You killed the motherfucker glass golem");
+	}
+	if (achieveX.killed_tiksrvzllat) {
+		dump("", "  You killed Tiksrvzllat");
+	}
+	if (achieveX.killed_bofh) {
+		dump("", "  You killed the BOFH");
+	}
+	if (achieveX.swimmingpool_cleared) {
+		dump("", "  You completed the Swimming Pools");
+	}
+	if (achieveX.killed_katia) {
+		dump("", "  You killed Erogenous Katia");
+	}
+	if (achieveX.killed_witchking) {
+		dump("", "  You killed the Witch-King of Angmar");
+	}
+	if (achieveX.get_magresstone) {
+		dump("", "  You obtained the Deep Mines End stone of magic resistance");
+	}
+	if (achieveX.devnull_complete) {
+		dump("", "  You completed all the Devnull challenges");
+	}
+	if (achieveX.killed_minotaur) {
+		dump("", "  You killed the Minotaur of the Maze");
+	}
+	if (achieveX.killed_kalwina) {
+		dump("", "  You killed Kalwina");
+	}
+	if (achieveX.killed_stahngnir) {
+		dump("", "  You killed Lord Stahngnir");
+	}
+	if (achieveX.killed_ariane) {
+		dump("", "  You killed Lady Ariane");
+	}
+	if (achieveX.completed_rivalquest) {
+		dump("", "  You completed the rival quest");
+	}
+	if (achieveX.completed_minusworld) {
+		dump("", "  You completed the Minus World");
+	}
+	if (achieveX.killed_vera) {
+		dump("", "  You killed Vera the Ice Queen");
+	}
+	if (achieveX.killed_elaine) {
+		dump("", "  You killed Elaine the Enchantress");
+	}
 
 	dump("", "");
 }
