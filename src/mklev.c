@@ -13027,6 +13027,8 @@ mineralize()
 		/* Since you can now pick up items from the bottom with swimming, let's reduce the amount of kelp --Amy */
 		if (((levl[x][y].typ == POOL && !rn2(150)) || (levl[x][y].typ == MOAT && !rn2(50))) && timebasedlowerchance())
 	    	    (void)mksobj_at(KELP_FROND, x, y, TRUE, FALSE, FALSE);
+		if (((levl[x][y].typ == POOL && !rn2(1500)) || (levl[x][y].typ == MOAT && !rn2(500))) && timebasedlowerchance())
+	    	    (void)mksobj_at(WATER_HYACINTH, x, y, TRUE, FALSE, FALSE);
 
 		/* meadowfoam grows in grassy areas --Amy */
 		if ((levl[x][y].typ == GRASSLAND && !rn2(200)) && timebasedlowerchance())

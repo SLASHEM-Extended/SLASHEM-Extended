@@ -7170,6 +7170,104 @@ register struct obj *otmp;
 
 		break;
 
+	    case WATER_HYACINTH:
+		if (u.inertia) {
+			if (u.inertia < 101) {
+				u.inertia = 0;
+				You("don't feel lazy anymore!");
+			} else if (u.inertia < 201) {
+				u.inertia -= 100;
+				You_feel("a bit less lazy.");
+			} else {
+				u.inertia /= 2;
+				You_feel("a bit less lazy.");
+			}
+		}
+
+		break;
+
+	    case SPIDDAL_STICK:
+
+		pline(FunnyHallu ? "Urgh - that tastes like cactus juice with full-length thorns in it!" : "Ecch - that must have been poisonous!");
+		if(!Poison_resistance) {
+		    if (!rn2(2)) losestr(rnd(2), TRUE);
+		    if (!rn2(15)) losestr(rnd(2), TRUE);
+		    if (issoviet) {
+				losestr(rnd(5), TRUE);
+				pline("On, on, ty otravilsya i, veroyatno, poteryal silu! Nay khe khe!");
+		    }
+		    losehp(rnd(15), xname(otmp), KILLED_BY_AN);
+		} else
+		    You("seem unaffected by the poison.");
+
+		if (HWinceState & TIMEOUT) {
+			int wincecure = (HWinceState & TIMEOUT);
+			if (wincecure > 200) wincecure = 200;
+
+			HWinceState -= wincecure;
+
+			if (!HWinceState) {
+				You("no longer have to wince.");
+			} else {
+				You("seem to be wincing a bit less.");
+			}
+		}
+
+		break;
+
+	    case HARRADA:
+
+		make_burned(HBurned + rnd(150), TRUE);
+
+		if (HInvertedState & TIMEOUT) {
+			int invertcure = (HInvertedState & TIMEOUT);
+			if (invertcure > 1000) invertcure = 1000;
+
+			HInvertedState -= invertcure;
+
+			if (!HInvertedState) {
+				You("manage to stand up.");
+			} else {
+				You("feel a bit better, but cannot stand up yet.");
+			}
+		}
+
+		break;
+
+	    case LICHOR:
+
+		if (HMagicVacuum & TIMEOUT) {
+			int vacuumcure = (HMagicVacuum & TIMEOUT);
+			if (vacuumcure > 1000) vacuumcure = 1000;
+
+			HMagicVacuum -= vacuumcure;
+
+			if (!HMagicVacuum) {
+				You("feel capable of casting magic effectively again.");
+			} else {
+				You("feel that the magic vacuum will end sooner now.");
+			}
+		}
+
+		break;
+
+	    case AMBROSIA:
+
+		if (HBurdenedState & TIMEOUT) {
+			int burdencure = (HBurdenedState & TIMEOUT);
+			if (burdencure > 2500) burdencure = 2500;
+
+			HBurdenedState -= burdencure;
+
+			if (!HBurdenedState) {
+				You("feel lighter!");
+			} else {
+				You("still feel burdened, but hope that it'll end soon.");
+			}
+		}
+
+		break;
+
 	    case MOTHERWORT:
 		pline("These roots are rather crunchy!");
 		decontaminate(100);

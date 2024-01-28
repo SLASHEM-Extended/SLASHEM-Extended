@@ -5375,7 +5375,7 @@ chargingchoice:
 			strcpy(plalias, aliasbuf);
 			(void) strncpy(u.aliasname, aliasbuf, sizeof(u.aliasname));
 
-			make_inverted(HInvertedState + 10000);
+			make_inverted((HInvertedState & TIMEOUT) + 10000);
 
 			You("don't feel like yourself.");
 

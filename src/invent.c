@@ -17626,6 +17626,16 @@ boolean knoweverything;
 				pline("This plant-based type of food reduces your sanity when eaten."); break;
 			case MOTHERWORT:
 				pline("A type of plant food that reduces your contamination if you eat it."); break;
+			case LICHOR:
+				pline("This magical plant normally grows only in Mankar Camoran's silly paradise. It provides good nutrition and can help you overcome the effects of a temporary magic vacuum."); break;
+			case AMBROSIA:
+				pline("This magical plant normally grows only in Mankar Camoran's silly paradise. It provides good nutrition and can help you overcome the effects of temporary burden."); break;
+			case WATER_HYACINTH:
+				pline("Eating this plant is particularly helpful if you're suffering from inertia."); break;
+			case SPIDDAL_STICK:
+				pline("A poisonous plant from the realms of Oblivion. Eating it will poison you unless you're resistant, but it can help you overcome the wincing status effect as long as you're suffering from a temporary version of it."); break;
+			case HARRADA:
+				pline("Eating this plant from the realms of Oblivion will burn you. However, if you're currently inverted and that status effect is of a temporary kind, it may be cured, or at least have its duration greatly reduced."); break;
 			case BLACK_HENBANE:
 				pline("A vegetarian food that is actually poisonous, being from a member of the nightshade family of plants. If you eat it, you'll restore a lost point of strength, but your poison resistance is deactivated for a while."); break;
 			case DIGESTION_CAKE:

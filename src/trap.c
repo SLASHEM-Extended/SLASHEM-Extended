@@ -5866,11 +5866,11 @@ newegomon:
 				switch (rnd(7)) {
 
 					case 1:
-						make_inverted(rnz(5000));
+						make_inverted((HInvertedState & TIMEOUT) + rnz(5000));
 						pline("Well uhh, seems you're walking upside down. Shoulda stayed away from the stupid fountain.");
 						break;
 					case 2:
-						make_wincing(rnz(50000)); /* no, this number is not a typo --Amy */
+						make_wincing((HWinceState & TIMEOUT) + rnz(50000)); /* no, this number is not a typo --Amy */
 						pline("A feeling of pain shoots into your body, and doesn't seem to be going away any time soon! Why did you quaff from a fountain in the first place? Some genius you are!");
 						break;
 					case 3:
@@ -5885,12 +5885,12 @@ newegomon:
 						if (!rn2(5)) pline("An inner voice tells you that you should finally stop the bad habit of fountain quaffing or your characters will keep dying.");
 						break;
 					case 5:
-						make_magicvacuum(rnz(5000));
+						make_magicvacuum((HMagicVacuum & TIMEOUT) + rnz(5000));
 						pline("A dark void enters your %s. Whatever was in the water, it wasn't healthy, and if your intelligence is above 3, you will now stop quaffing from fountains for the rest of your SLEX playing career.", body_part(HEAD));
 						if (ACURR(A_INT) < 4) pline("Sadly, you seem to be very stupid though, so you'll continue quaffing and wonder why your chars keep dying.");
 						break;
 					case 6:
-						make_burdened(rnz(5000));
+						make_burdened((HBurdenedState & TIMEOUT) + rnz(5000));
 						pline("Now you're burdened because you didn't get the memo that you *do not quaff from fountains*. Your fault.");
 						break;
 					case 7:
@@ -15345,7 +15345,7 @@ callingoutdone:
 			pline("A stroboscope light surrounds you...");
 			seetrap(trap);
 
-			make_inverted(HInvertedState + rnd(10) + rnd(monster_difficulty() * 10) );
+			make_inverted((HInvertedState & TIMEOUT) + rnd(10) + rnd(monster_difficulty() * 10) );
 
 			break;
 
@@ -15354,7 +15354,7 @@ callingoutdone:
 			pline("A fiery light surrounds you...");
 			seetrap(trap);
 
-			make_wincing(HWinceState + rnd(10) + rnd(monster_difficulty() * 20) );
+			make_wincing((HWinceState & TIMEOUT) + rnd(10) + rnd(monster_difficulty() * 20) );
 
 			break;
 
@@ -15393,7 +15393,7 @@ callingoutdone:
 			pline("A gray light surrounds you...");
 			seetrap(trap);
 
-			make_burdened(HBurdenedState + rnd(10) + rnd(monster_difficulty() * 100) );
+			make_burdened((HBurdenedState & TIMEOUT) + rnd(10) + rnd(monster_difficulty() * 100) );
 
 			break;
 
@@ -15402,7 +15402,7 @@ callingoutdone:
 			pline("A black light surrounds you...");
 			seetrap(trap);
 
-			make_magicvacuum(HMagicVacuum + rnd(10) + rnd(monster_difficulty() * 100) );
+			make_magicvacuum((HMagicVacuum & TIMEOUT) + rnd(10) + rnd(monster_difficulty() * 100) );
 
 			break;
 

@@ -4100,20 +4100,20 @@ newoffmon:
 
 		case 509:
 		case 510:
-			make_wincing(HWinceState + rnz(1500));
+			make_wincing((HWinceState & TIMEOUT) + rnz(1500));
 			break;
 
 		case 511:
 		case 512:
-			make_inverted(HInvertedState + rnz(150));
+			make_inverted((HInvertedState & TIMEOUT) + rnz(150));
 			break;
 
 		case 513:
-			make_burdened(HBurdenedState + rnz(1500));
+			make_burdened((HBurdenedState & TIMEOUT) + rnz(1500));
 			break;
 
 		case 514:
-			make_magicvacuum(HMagicVacuum + rnz(1500));
+			make_magicvacuum((HMagicVacuum & TIMEOUT) + rnz(1500));
 			break;
 
 		case 515:
@@ -5372,19 +5372,19 @@ newoffmonX:
 			break;
 
 		case 123:
-			make_wincing(HWinceState + rnz(1500));
+			make_wincing((HWinceState & TIMEOUT) + rnz(1500));
 			break;
 
 		case 124:
-			make_inverted(HInvertedState + rnz(150));
+			make_inverted((HInvertedState & TIMEOUT) + rnz(150));
 			break;
 
 		case 125:
-			make_burdened(HBurdenedState + rnz(1500));
+			make_burdened((HBurdenedState & TIMEOUT) + rnz(1500));
 			break;
 
 		case 126:
-			make_magicvacuum(HMagicVacuum + rnz(1500));
+			make_magicvacuum((HMagicVacuum & TIMEOUT) + rnz(1500));
 			break;
 
 		case 127:

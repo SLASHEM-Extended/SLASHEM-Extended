@@ -6315,7 +6315,7 @@ OBJECT(OBJ("Bell of Opening", "silver bell"),
 /* tripe ration must be first, see makemon.c */
 
 /* Meat */
-FOOD("tripe ration",        19320, 2, 0, 0, MT_FLESH, 250, CLR_BROWN, 1),
+FOOD("tripe ration",        18920, 2, 0, 0, MT_FLESH, 250, CLR_BROWN, 1),
 FOOD("corpse",              5000, 1,  0, 0, MT_FLESH,   0, CLR_BROWN, 1),
 FOOD("egg",                 7000, 1,  0, 1, MT_FLESH,  100, CLR_WHITE, 1),
 FOOD("meatball",             100, 1,  0, 0, MT_FLESH,   10, CLR_BROWN, 1),
@@ -6349,6 +6349,11 @@ FOOD("melon",               1900, 1,  0, 0, MT_VEGGY, 175, CLR_BRIGHT_GREEN, 1),
 FOOD("black henbane",	     200, 1,  0, 0, MT_VEGGY, 100, CLR_BLACK, 1),
 FOOD("meadowfoam",	     100, 1,  0, 0, MT_VEGGY, 100, CLR_YELLOW, 1),
 FOOD("motherwort",	     100, 1,  0, 0, MT_VEGGY,  50, CLR_WHITE, 1),
+FOOD("water hyacinth",	     500, 1,  0, 0, MT_VEGGY, 200, CLR_GREEN, 1),
+FOOD("spiddal stick",	      50, 1,  0, 0, MT_VEGGY, 100, CLR_YELLOW, 1),
+FOOD("harrada",	            50, 1,  0, 0, MT_VEGGY, 100, CLR_BROWN, 1),
+FOOD("lichor",	           200, 1,  0, 0, MT_VEGGY, 500, CLR_BRIGHT_GREEN, 1),
+FOOD("ambrosia",	           200, 1,  0, 0, MT_VEGGY, 500, CLR_BRIGHT_MAGENTA, 1),
 FOOD("slime mold",          7500, 1,  0, 0, MT_VEGGY, 250, HI_ORGANIC, 1),
 FOOD("peanut bag",	     500, 3,  0, 0, MT_VEGGY, 800, HI_ORGANIC, 1),
 
@@ -6411,7 +6416,7 @@ FOOD("food ration",        10000, 5, 0, 0, MT_VEGGY, 1000, HI_ORGANIC, 1),
 FOOD("Hacker's Food",	     100, 1, 0, 0, MT_VEGGY, 800, HI_METAL, 1),
 FOOD("K-ration",             100, 1, 0, 0, MT_VEGGY, 400, HI_ORGANIC, 1),
 FOOD("C-ration",             100, 1, 0, 0, MT_VEGGY, 300, HI_ORGANIC, 1),
-FOOD("tin",                 9800, 0, 0, 1, MT_METAL,   0, HI_METAL, 1),
+FOOD("tin",                 9200, 0, 0, 1, MT_METAL,   0, HI_METAL, 1),
 #undef FOOD
 
 /* tin must be last, see makemon.c */

@@ -7378,8 +7378,16 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && (Blind_telepat || Unblind_telepat) && StrongTelepat) you_are("very telepathic");
 	if ((guaranteed || !rn2(10)) && Map_amnesia) enl_msg(You_, "have", "had", StrongMap_amnesia ? " total map amnesia" : " map amnesia");
 
-	if ((guaranteed || !rn2(10)) && InvertedState) enl_msg(You_, "are", "were", StrongInvertedState ? " completely inverted" : " inverted");
-	if ((guaranteed || !rn2(10)) && WinceState) enl_msg(You_, "are", "were", StrongWinceState ? " wincing painfully" : " wincing");
+	if ((guaranteed || !rn2(10)) && InvertedState) {
+		sprintf(buf, StrongInvertedState ? "completely inverted" : "inverted");
+		if (wizard) sprintf(eos(buf), " (%d)", HInvertedState);
+		you_are(buf);
+	}
+	if ((guaranteed || !rn2(10)) && WinceState) {
+		sprintf(buf, StrongWinceState ? "wincing painfully" : "wincing");
+		if (wizard) sprintf(eos(buf), " (%d)", HWinceState);
+		you_are(buf);
+	}
 	if ((guaranteed || !rn2(10)) && BurdenedState) enl_msg(You_, "are", "were", StrongBurdenedState ? " heavily burdened" : " burdened");
 	if ((guaranteed || !rn2(10)) && MagicVacuum) enl_msg(You_, "are", "were", StrongMagicVacuum ? " suffering from a complete magic vacuum" : " suffering from a magic vacuum");
 	if ((guaranteed || !rn2(10)) && FuckOverEffect) enl_msg(You_, "are", "were", StrongFuckOverEffect ? " being totally fucked over" : " being fucked over");
@@ -12017,8 +12025,18 @@ int final;
 	if (Manaleech && StrongManaleech) dump("  ", "You leeched a lot of mana");
 	if (Peacevision) dump("  ", StrongPeacevision ? "You recognized peaceful creatures and other stuff" : "You recognized peaceful creatures");
 	if (Map_amnesia) dump("  ", StrongMap_amnesia ? "You had total map amnesia" : "You had map amnesia");
-	if (InvertedState) dump("  ", StrongInvertedState ? "You were completely inverted" : "You were inverted");
-	if (WinceState) dump("  ", StrongWinceState ? "You were wincing painfully" : "You were wincing");
+
+	if (InvertedState) {
+		sprintf(buf, StrongInvertedState ? "completely inverted" : "inverted");
+		sprintf(eos(buf), " (%d)", HInvertedState);
+		dump(youwere, buf);
+	}
+	if (WinceState) {
+		sprintf(buf, StrongWinceState ? "wincing painfully" : "wincing");
+		sprintf(eos(buf), " (%d)", HWinceState);
+		dump(youwere, buf);
+	}
+
 	if (BurdenedState) dump("  ", StrongBurdenedState ? "You were heavily burdened" : "You were burdened");
 	if (MagicVacuum) dump("  ", StrongMagicVacuum ? "You were suffering from a complete magic vacuum" : "You were suffering from a magic vacuum");
 	if (FuckOverEffect) dump("  ", StrongFuckOverEffect ? "You were being totally fucked over" : "You were being fucked over");

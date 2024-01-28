@@ -11280,7 +11280,7 @@ losespells()
 
 	/* have no spells? well then... magic vacuum :P --Amy */
 	if (spellid(0) == NO_SPELL) {
-		make_magicvacuum(HMagicVacuum + rnd(10) + rnd(monster_difficulty() * 100) );
+		make_magicvacuum((HMagicVacuum & TIMEOUT) + rnd(10) + rnd(monster_difficulty() * 100) );
 	}
 
 	/* reduce memory of one known spell that still has memory left --Amy */

@@ -2961,7 +2961,7 @@ convertdone:
 				}
 				losehp(dmg, "psychic blast", KILLED_BY_AN);
 				if (!rn2(25)) increasesanity(rnz(5));
-				make_magicvacuum(HMagicVacuum + rnd((mtmp->m_lev * 10) + 1) );
+				make_magicvacuum((HMagicVacuum & TIMEOUT) + rnd((mtmp->m_lev * 10) + 1) );
 
 				stop_occupation();
 			}

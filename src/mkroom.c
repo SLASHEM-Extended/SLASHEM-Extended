@@ -1207,6 +1207,10 @@ cgrfinished:
 			if(!rn2(2) && (levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR)) {
 				levl[sx][sy].typ = LAVAPOOL;
 			}
+			if (!rn2(10) && levl[sx][sy].typ != LAVAPOOL) {
+				makemon(&mons[rn2(2) ? PM_SPIDDAL_STICK : PM_HARRADA], sx, sy, MM_ADJACENTOK);
+			}
+
 			if (!rn2(10) && !(t_at(sx,sy))) {
 				(void) maketrap(sx, sy, FIRE_TRAP, 100, TRUE);
 			}

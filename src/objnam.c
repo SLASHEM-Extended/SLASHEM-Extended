@@ -4432,6 +4432,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ BLADE_BOW, "todo" },
 	{ MEADOWFOAM, "todo" },
 	{ MOTHERWORT, "todo" },
+	{ WATER_HYACINTH, "todo" },
+	{ SPIDDAL_STICK, "todo" },
+	{ HARRADA, "todo" },
+	{ LICHOR, "todo" },
+	{ AMBROSIA, "todo" },
 
 	{0, "" }
 };
@@ -8016,6 +8021,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ BLADE_BOW, "todo" },
 	{ MEADOWFOAM, "todo" },
 	{ MOTHERWORT, "todo" },
+	{ WATER_HYACINTH, "todo" },
+	{ SPIDDAL_STICK, "todo" },
+	{ HARRADA, "todo" },
+	{ LICHOR, "todo" },
+	{ AMBROSIA, "todo" },
 
 	{0, "" }
 };

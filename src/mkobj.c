@@ -2855,6 +2855,7 @@ boolean shopinit;
 	    case CHERRY:
 	    case ASIAN_PEAR:
 	    case BANANA:
+	    case WATER_HYACINTH:
 	    case LEMON:
 	    case ORANGE:
 	    case MELON:
@@ -4624,7 +4625,7 @@ register struct obj *obj;
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,LEMON,CHERRY};
-static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,BLACK_HENBANE,MOTHERWORT,MEADOWFOAM,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
+static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,BLACK_HENBANE,MOTHERWORT,LICHOR,AMBROSIA,WATER_HYACINTH,SPIDDAL_STICK,HARRADA,MEADOWFOAM,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
 /* rare fruits added by Amy, of course they don't grow in Soviet Russia, it's too cold there because the type of ice block
  * brings winter - he's like "Väterchen Frost" :-P */
 

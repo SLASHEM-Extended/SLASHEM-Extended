@@ -754,6 +754,14 @@ register struct monst *mtmp;
 		(void) mksobj_at(EGG, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
 		return (struct obj *)0;
+	    case PM_SPIDDAL_STICK:
+		(void) mksobj_at(SPIDDAL_STICK, x, y, TRUE, FALSE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
+	    case PM_HARRADA:
+		(void) mksobj_at(HARRADA, x, y, TRUE, FALSE, FALSE);
+		newsym(x, y);
+		return (struct obj *)0;
 	    case PM_INTELLIMIND_FLAYER:
 		if (!mtmp->mrevived) (void) mksobj_at(INTELLIGENCE_PACK, x, y, TRUE, FALSE, FALSE);
 		newsym(x, y);
