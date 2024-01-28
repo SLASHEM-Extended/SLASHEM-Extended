@@ -9341,6 +9341,7 @@ newbossPENT:
 		seetrap(trap);
 		safe_teledsPD(0);
 		You("triggered a phase teleport trap!");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		break;
 
@@ -9348,6 +9349,7 @@ newbossPENT:
 		seetrap(trap);
 		phase_door(0);
 		You("triggered a phase teleport trap!");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		break;
 
