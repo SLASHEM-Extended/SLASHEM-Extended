@@ -793,6 +793,9 @@ boolean talk;
 	}
 
 	set_itimeout(&HConfusion, xtime);
+
+	if (!xtime) HConfusion &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "Huh? Who? Where? What? Is something going on?" : "You're badly confused!");
 		set_itimeout(&HeavyConfusion, xtime);
@@ -824,6 +827,9 @@ boolean talk;
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
 
 	set_itimeout(&HStun, xtime);
+
+	if (!xtime) HStun &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "It's all wobbly! The world keeps on turning and spinning around..." : "You're badly staggering!");
 		set_itimeout(&HeavyStunned, xtime);
@@ -851,6 +857,9 @@ boolean talk;
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
 
 	set_itimeout(&HNumbed, xtime);
+
+	if (!xtime) HNumbed &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "You can't move! Okay, you can, but it's very difficult..." : "You feel badly numbed!");
 		set_itimeout(&HeavyNumbed, xtime);
@@ -884,6 +893,9 @@ boolean talk;
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
 
 	set_itimeout(&HFeared, xtime);
+
+	if (!xtime) HFeared &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "ARRRRRGH! HELP! THERE'S A CRAZY AXE-SWINGING MURDERER CHASING AFTER YOU! RUN!!!" : "You're trembling heavily!");
 		set_itimeout(&HeavyFeared, xtime);
@@ -912,6 +924,9 @@ boolean talk;
 	if (xtime && Burned) make_burned(0L, TRUE);
 
 	set_itimeout(&HFrozen, xtime);
+
+	if (!xtime) HFrozen &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "So many ice-cream cones, and they're all supposed to belong to you... let's eat!" : "The ice is really freezing you rigid!");
 		set_itimeout(&HeavyFrozen, xtime);
@@ -953,6 +968,9 @@ boolean talk;
 	}
 
 	set_itimeout(&HBurned, xtime);
+
+	if (!xtime) HBurned &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "Uhh... the fire's getting a little bit too hot, even for your tastes!" : "You're badly burned!");
 		set_itimeout(&HeavyBurned, xtime);
@@ -979,6 +997,9 @@ boolean talk;
 	if ((!xtime && old) || (xtime && !old)) flags.botl = TRUE;
 
 	set_itimeout(&HDimmed, xtime);
+
+	if (!xtime) HDimmed &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "Life has no more meaning. Your wife has run away, your children are dead and people are setting fire to your home right now." : "You're badly dimmed!");
 		set_itimeout(&HeavyDimmed, xtime);
@@ -1280,6 +1301,9 @@ boolean talk;
 	}
 
 	set_itimeout(&Blinded, xtime);
+
+	if (!xtime) Blinded &= ~INTRINSIC;
+
 	if (xtime && !rn2(1000)) {
 		pline(FunnyHallu ? "Aww, even the images in your mind have disappeared!" : "The darkness seems definite and impenetrable!");
 		set_itimeout(&HeavyBlind, xtime);
@@ -2245,6 +2269,7 @@ long mask;	/* nonzero if resistance status should change by mask */
 	    if (!EHalluc_resistance && (!!HHallucination != !!xtime))
 		changed = TRUE;
 	    set_itimeout(&HHallucination, xtime);
+		if (!xtime) HHallucination &= ~INTRINSIC;
 		if (xtime && !rn2(1000)) {
 			pline("Now that was some fucked up shit you did there, huh? But who cares? Let's enjoy the colors!");
 			set_itimeout(&HeavyHallu, xtime);
