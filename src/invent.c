@@ -30480,6 +30480,12 @@ boolean knoweverything;
 					pline("Artifact specs: +5 kick damage when wielded and as soon as you wield it, your martial arts style is changed to 'taekwondo' automatically."); break;
 				case ART_WHOLZ_WALTZ:
 					pline("Artifact specs: if you're dual-wielding and this is your primary weapon, your melee attacks have +5 to-hit and damage."); break;
+				case ART_PLEINLY:
+					pline("Artifact specs: looks goofy, causing monsters to make fun of you, but shopkeepers will give you better prices."); break;
+				case ART_FONEUZIK:
+					pline("Artifact specs: food appraisal when worn."); break;
+				case ART_KEISERTOWN_GARDEN:
+					pline("Artifact specs: eating it will cure inertia, guaranteed, no matter how long it would have lasted."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

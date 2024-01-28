@@ -3545,6 +3545,21 @@ toofar:
 		if (Role_if(PM_CELLAR_CHILD)) losehp(monster_difficulty(),"monsters making fun of the shoes",KILLED_BY);
 	    }
 
+	    if (inrange && uarmu && uarmu->oartifact == ART_PLEINLY && !mtmp->mpeaceful && humanoid(mtmp->data) && !rn2(100)) {
+		static const char *pleinlymsgs[] = {
+			"lol what a stupid shirt",
+			"are you kidding with that lame-ass outfit?",
+			"who would wear that???",
+			"did you really waste all your money on such a silly shirt?",
+			"why don't you wear some proper clothes instead",
+		};
+
+		verbalize("%s", pleinlymsgs[rn2(SIZE(pleinlymsgs))]);
+
+		make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+
+	    }
+
 	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(50) && flags.female && mtmp->female) {
 		verbalize("haha look at that bitch with those silly heels");
 		if (!rn2(3)) verbalize("she can't even walk in them, lol");

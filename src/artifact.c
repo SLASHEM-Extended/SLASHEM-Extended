@@ -270,6 +270,7 @@ init_randarts()
 	artilist[ART_FLAM_R].otyp = randartlauncher();
 	artilist[ART_SURESHOT].otyp = randartlauncher();
 	artilist[ART_STINGWING].otyp = randartmissile();
+	artilist[ART_PLEINLY].otyp = randartshirt();
 	artilist[ART_NOBILE_MOBILITY].otyp = randartshirt();
 	artilist[ART_ALL_IN_ONE_EFF].otyp = randartshirt();
 	artilist[ART_TILLMANN_S_TARGET].otyp = randartshirt();
@@ -304,6 +305,7 @@ init_randarts()
 	artilist[ART_GROUNDBUMMER].otyp = randartcloak();
 	artilist[ART_RITA_S_LOVELY_OVERGARMENT].otyp = randartcloak();
 	artilist[ART_LUNAR_ECLIPSE_TONIGHT].otyp = randartcloak();
+	artilist[ART_FONEUZIK].otyp = randarthelm();
 	artilist[ART_LORSKEL_S_SPEED].otyp = randarthelm();
 	artilist[ART_HEAD_W].otyp = randarthelm();
 	artilist[ART_EFFICIENT_SHARING].otyp = randarthelm();

@@ -2386,7 +2386,8 @@ register struct monst *shkp;	/* if angry, impose a surcharge */
 	if (Role_if(PM_OTAKU)) tmp += tmp / 3L; /* bad at making deals */
 	if (ublindf && ublindf->oartifact == ART_STRIKE_OVER_THE_EARS) tmp *= 2;
 
-	if (u.usteed && uarm && uarm->oartifact == ART_FAER_ME) tmp -= tmp / 4L;
+	if (u.usteed && uarm && uarm->oartifact == ART_FAER_ME) tmp -= (tmp / 4L);
+	if (uarmu && uarmu->oartifact == ART_PLEINLY) tmp -= (tmp / 4L);
 
 	if (ACURR(A_CHA) > 18)		tmp /= 2L;
 	else if (ACURR(A_CHA) > 17)	tmp -= tmp / 3L;

@@ -7477,6 +7477,11 @@ register struct obj *otmp;
 		You("successfully drained yourself of your sanity.");
 	}
 
+	if (otmp && otmp->oartifact == ART_KEISERTOWN_GARDEN) {
+		u.inertia = 0;
+		You("are no longer afflicted with inertia.");
+	}
+
 	if (otmp && otmp->oartifact == ART_BIRTH_HELP) {
 		decontaminate(flags.female ? 1000 : 500);
 		pline(flags.female ? "Now you're really ready to give birth to a child." : "Feels pretty good overall.");
@@ -8310,7 +8315,7 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 
-	if (u.urealedibility || Role_if(PM_COOK) || (uwep && uwep->oartifact == ART_MILENA_S_MISGUIDING) || u.gradiatingdone || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uamul && uamul->oartifact == ART_FINETUNING) ) {
+	if (u.urealedibility || Role_if(PM_COOK) || (uarmh && uarmh->oartifact == ART_FONEUZIK) || (uwep && uwep->oartifact == ART_MILENA_S_MISGUIDING) || u.gradiatingdone || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uamul && uamul->oartifact == ART_FINETUNING) ) {
 		int res = edibility_prompts(otmp);
 		if (res) {
 		    if (u.urealedibility) {
