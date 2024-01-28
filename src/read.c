@@ -49,130 +49,7 @@ static void undo_genocide(void);
 
 STATIC_PTR void set_lit(int,int,void *);
 
-int
-doread()
-{
-	register struct obj *scroll;
-	register boolean confused;
-	char class_list[SIZE(readable) + 3];
-	char *cp = class_list;
-	struct engr *ep = engr_at(u.ux, u.uy);
-	boolean cant_see = Blind;
-	struct obj otemp;
-
-	/* cartomancer can sometimes keep a scroll after reading it --Amy */
-	boolean cartokeep = FALSE;
-	int cartochance = 0;
-
-	*cp++ = ALL_CLASSES;
-	*cp++ = ALLOW_FLOOROBJ;
-	if (!u.uswallow && ep && ep->engr_txt[0])
-	    *cp++ = ALLOW_THISPLACE;
-	strcpy(cp, readable);
-
-	known = FALSE;
-	if(check_capacity((char *)0)) return (0);
-	scroll = getobj(class_list, "read");
-	if(!scroll) return(0);
-
-	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
-		nomul(-(rnd(5)), "reading a scroll", TRUE);
-	}
-
-	if (scroll == &thisplace) {
-	    (void) sense_engr_at(u.ux, u.uy, TRUE);
-	    return 0;
-	}
-
-	if ((scroll->oinvis && !See_invisible) || scroll->oinvisreal)
-	    cant_see = TRUE;
-
-	/* KMH -- some rings can be read, even while illiterate */
-	if (scroll->oclass == RING_CLASS) {
-	    const char *clr = (char *)0;
-
-	    if (cant_see) {
-		You("cannot see it!");
-		return 0;
-	    }
-	    if (scroll->where != OBJ_INVENT || !(scroll->owornmask & W_RING)) {
-		pline(FunnyHallu ? "The writing is so small, you'd need to take a closer look..." : "Perhaps you should put it on first.");
-		return 0;
-	    }
-	    if (scroll->dknown && objects[scroll->otyp].oc_name_known)
-		switch (scroll->otyp) {
-#if 0	/* Not yet supported under 3.3.1 style warning system */
-		    case RIN_WARNING:
-			if (warnlevel >= 100)
-			    clr = "light blue";
-			else if (warnlevel >= SIZE(warnings))
-			    clr = warnings[SIZE(warnings)-1];
-			else
-			    clr = warnings[warnlevel];
-			break;
-#endif
-		    case RIN_MOOD:
-			if (u.ualign.record >= DEVOUT)
-			    clr = "green";	/* well-pleased */
-			else if (u.ualign.record >= STRIDENT)
-			    clr = "yellow";	/* pleased */
-			else if (u.ualign.record > 0)
-			    clr = "orange";	/* satisfied */
-			else
-			    clr = "red";	/* you've been naughty */
-			break;
-		    default:
-			break;
-		}
-	    if (!clr)
-		pline("There seems to be nothing special about this ring.");
-	    else if (scroll->cursed)
-		pline("It appears dark.");
-	    else
-		pline("It glows %s!", hcolor(clr));
-	    return 1;
-	}
-
-	/* outrumor has its own blindness check */
-	if(scroll->otyp == FORTUNE_COOKIE) {
-	    long save_Blinded = Blinded;
-	    if(flags.verbose)
-		You("break up the cookie and throw away the pieces.");
-
-	    if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
-		pline("Because you can't read, that scrap of paper is of no real use to you.");
-		return 1;
-	    }
-
-	    Blinded = cant_see;	/* Treat invisible fortunes as if blind */
-	    outrumor(bcsign(scroll), BY_COOKIE, FALSE);
-	    Blinded = save_Blinded;
-	    if (!cant_see) u.uconduct.literate++;
-	    if (carried(scroll)) useup(scroll);
-	    else useupf(scroll, 1L);
-	    return(1);
-	} else if (scroll->otyp == T_SHIRT || scroll->otyp == HAWAIIAN_SHIRT || scroll->otyp == BLACK_DRESS
-	|| scroll->otyp == STRIPED_SHIRT || scroll->otyp == BODYGLOVE || scroll->otyp == CASTSHIRT || scroll->otyp == BAD_SHIRT || scroll->otyp == CHANTER_SHIRT || scroll->otyp == KYRT_SHIRT || scroll->otyp == WOOLEN_SHIRT || scroll->otyp == METAL_SHIRT || scroll->otyp == RED_STRING || scroll->otyp == YOGA_PANTS || scroll->otyp == GREEN_GOWN
-	|| scroll->otyp == BEAUTIFUL_SHIRT || scroll->otyp == PETA_COMPLIANT_SHIRT || scroll->otyp == TOILET_ROLL || scroll->otyp == RADIOACTIVE_UNDERGARMENT
-	|| scroll->otyp == PRINTED_SHIRT || scroll->otyp == REINFORCED_SHIRT || scroll->otyp == FOAM_SHIRT || scroll->otyp == PETRIFYIUM_BRA || scroll->otyp == FLEECY_CORSET || scroll->otyp == FISHNET || scroll->otyp == WAISTCLOTH || scroll->otyp == BATH_TOWEL || scroll->otyp == CANDY_BRA || scroll->otyp == ICHCAHUIPILLI
-	|| scroll->otyp == PLUGSUIT || scroll->otyp == SWIMSUIT || scroll->otyp == MEN_S_UNDERWEAR
-	|| scroll->otyp == VICTORIAN_UNDERWEAR || scroll->otyp == RUFFLED_SHIRT) {
-
-	    if (scroll->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
-		if (!Stoned) {
-			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
-			else {
-				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
-				u.cnd_stoningcount++;
-				pline("Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone.");
-			}
-		}
-		sprintf(killer_buf, "wearing a petrifyium bra");
-		delayed_killer = killer_buf;
-
-	    }
-
-	    static const char *shirt_msgs[] = { /* Scott Bigham */
+static const char *actualshirtmessages[] = { /* Scott Bigham */
     "I explored the Dungeons of Doom and all I got was this lousy T-shirt!",
     "Is that Mjollnir in your pocket or are you just happy to see me?",
     "It's not the size of your sword, it's how #enhance'd you are with it.",
@@ -975,7 +852,133 @@ doread()
 	"Dear missy <3, did you know that the only reason I ordered your beautiful shoes is because I want to scratch up and down my legs with the tender stiletto heels again and again, very painfully?",
 	"My soul has suffered from a seemingly irreparable rift when I was eleven. It took 26 years for that rift to finally heal, but it happened.",
 
-	    };
+};
+
+const char *
+tshirt_text(otmp)
+struct obj *otmp;
+{
+	return (actualshirtmessages[otmp->shirtmessage % SIZE(actualshirtmessages)] );
+}
+
+int
+doread()
+{
+	register struct obj *scroll;
+	register boolean confused;
+	char class_list[SIZE(readable) + 3];
+	char *cp = class_list;
+	struct engr *ep = engr_at(u.ux, u.uy);
+	boolean cant_see = Blind;
+	struct obj otemp;
+
+	/* cartomancer can sometimes keep a scroll after reading it --Amy */
+	boolean cartokeep = FALSE;
+	int cartochance = 0;
+
+	*cp++ = ALL_CLASSES;
+	*cp++ = ALLOW_FLOOROBJ;
+	if (!u.uswallow && ep && ep->engr_txt[0])
+	    *cp++ = ALLOW_THISPLACE;
+	strcpy(cp, readable);
+
+	known = FALSE;
+	if(check_capacity((char *)0)) return (0);
+	scroll = getobj(class_list, "read");
+	if(!scroll) return(0);
+
+	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
+		nomul(-(rnd(5)), "reading a scroll", TRUE);
+	}
+
+	if (scroll == &thisplace) {
+	    (void) sense_engr_at(u.ux, u.uy, TRUE);
+	    return 0;
+	}
+
+	if ((scroll->oinvis && !See_invisible) || scroll->oinvisreal)
+	    cant_see = TRUE;
+
+	/* KMH -- some rings can be read, even while illiterate */
+	if (scroll->oclass == RING_CLASS) {
+	    const char *clr = (char *)0;
+
+	    if (cant_see) {
+		You("cannot see it!");
+		return 0;
+	    }
+	    if (scroll->where != OBJ_INVENT || !(scroll->owornmask & W_RING)) {
+		pline(FunnyHallu ? "The writing is so small, you'd need to take a closer look..." : "Perhaps you should put it on first.");
+		return 0;
+	    }
+	    if (scroll->dknown && objects[scroll->otyp].oc_name_known)
+		switch (scroll->otyp) {
+#if 0	/* Not yet supported under 3.3.1 style warning system */
+		    case RIN_WARNING:
+			if (warnlevel >= 100)
+			    clr = "light blue";
+			else if (warnlevel >= SIZE(warnings))
+			    clr = warnings[SIZE(warnings)-1];
+			else
+			    clr = warnings[warnlevel];
+			break;
+#endif
+		    case RIN_MOOD:
+			if (u.ualign.record >= DEVOUT)
+			    clr = "green";	/* well-pleased */
+			else if (u.ualign.record >= STRIDENT)
+			    clr = "yellow";	/* pleased */
+			else if (u.ualign.record > 0)
+			    clr = "orange";	/* satisfied */
+			else
+			    clr = "red";	/* you've been naughty */
+			break;
+		    default:
+			break;
+		}
+	    if (!clr)
+		pline("There seems to be nothing special about this ring.");
+	    else if (scroll->cursed)
+		pline("It appears dark.");
+	    else
+		pline("It glows %s!", hcolor(clr));
+	    return 1;
+	}
+
+	/* outrumor has its own blindness check */
+	if(scroll->otyp == FORTUNE_COOKIE) {
+	    long save_Blinded = Blinded;
+	    if(flags.verbose)
+		You("break up the cookie and throw away the pieces.");
+
+	    if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+		pline("Because you can't read, that scrap of paper is of no real use to you.");
+		return 1;
+	    }
+
+	    Blinded = cant_see;	/* Treat invisible fortunes as if blind */
+	    outrumor(bcsign(scroll), BY_COOKIE, FALSE);
+	    Blinded = save_Blinded;
+	    if (!cant_see) u.uconduct.literate++;
+	    if (carried(scroll)) useup(scroll);
+	    else useupf(scroll, 1L);
+	    return(1);
+	} else if (readableshirt(scroll->otyp)) {
+
+	    if (scroll->otyp == PETRIFYIUM_BRA && (!Stone_resistance || (!IntStone_resistance && !rn2(20))) && !(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM)) ) {
+		if (!Stoned) {
+			if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
+			else {
+				Stoned = Race_if(PM_EROSATOR) ? 3 : 7;
+				u.cnd_stoningcount++;
+				pline("Eep - you gazed at the image of Medusa that is drawn on the front side of your bra! You start turning to stone.");
+			}
+		}
+		sprintf(killer_buf, "wearing a petrifyium bra");
+		delayed_killer = killer_buf;
+
+	    }
+
 	    char buf[BUFSZ];
 	    int erosion;
 
@@ -990,7 +993,7 @@ doread()
 	    u.uconduct.literate++;
 	    if(flags.verbose)
 		pline("It reads:");
-	    strcpy(buf, shirt_msgs[scroll->shirtmessage % SIZE(shirt_msgs)]);
+	    strcpy(buf, tshirt_text(scroll) /*shirt_msgs[scroll->shirtmessage % SIZE(shirt_msgs)]*/ );
 	    erosion = greatest_erosion(scroll);
 	    if (erosion)
 		wipeout_text(buf,

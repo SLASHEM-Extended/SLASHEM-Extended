@@ -8674,6 +8674,12 @@ boolean showpoisoned;
 
 	if ((obj->quan != 1L) && !PlayerUninformation) strcpy(buf, makeplural(buf));
 
+	if (readableshirt(obj->otyp) && program_state.gameover) {
+
+        sprintf(eos(buf), " with text \"%s\"", tshirt_text(obj));
+
+	}
+
 	if (obj->onamelth && obj->dknown && !PlayerUninformation) {
 		strcat(buf, " named ");
 nameit:

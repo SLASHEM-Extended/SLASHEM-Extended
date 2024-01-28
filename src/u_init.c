@@ -31314,105 +31314,10 @@ register struct trobj *trop;
 
 	/* "Shirts for roles shouldn't be cursed in init. The only shirt that should be cursed is the striped shirt." In Soviet Russia, tourists want to be able to take off their shirt because they got kind of annoyed at shopkeepers overcharging them. Apparently, they always want things to be as easy as they can be. All the other tourists will have to find another way to deal with the shirt though. --Amy */
 
-            if (objX->otyp == VICTORIAN_UNDERWEAR && !issoviet ) {
+            if (is_shirt(objX) && !issoviet ) {
                 objX->cursed = TRUE;
             }
-            if (objX->otyp == T_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == HAWAIIAN_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == BLACK_DRESS && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == CHANTER_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == BAD_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == BODYGLOVE && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == CASTSHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == BEAUTIFUL_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == TOILET_ROLL && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == PETA_COMPLIANT_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == RADIOACTIVE_UNDERGARMENT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == KYRT_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == WOOLEN_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == METAL_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == RED_STRING && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == YOGA_PANTS && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == GREEN_GOWN && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == PRINTED_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == WAISTCLOTH && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == REINFORCED_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == FOAM_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == CRUMBLED_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == CANDY_BRA && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == ICHCAHUIPILLI && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == PETRIFYIUM_BRA && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == FLEECY_CORSET && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == FISHNET && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == BATH_TOWEL && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == PLUGSUIT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == SWIMSUIT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == MEN_S_UNDERWEAR && !issoviet ) {
-                objX->cursed = TRUE;
-            }
-            if (objX->otyp == RUFFLED_SHIRT && !issoviet ) {
-                objX->cursed = TRUE;
-            }
+
             if (objX->otyp == LOADSTONE ) {
                 objX->cursed = TRUE;
             }
@@ -31541,108 +31446,14 @@ register struct trobj *trop;
 
 		} /* haxor, i.e. objX code */
 
-
+		/* all shirts start out cursed, except in soviet mode; this e.g. prevents tourists from taking off their
+		 * starting shirt and thereby circumventing the intended shopkeeper markup, but the type of ice block
+		 * obviously doesn't realize that and just revertrevertreverts this "because Amy made this change"... */
 
             if (obj->otyp == STRIPED_SHIRT ) {
                 obj->cursed = TRUE;
             }
-            if (obj->otyp == VICTORIAN_UNDERWEAR && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == T_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == HAWAIIAN_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == BLACK_DRESS && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == BAD_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == CHANTER_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == BODYGLOVE && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == CASTSHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == BEAUTIFUL_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == PETA_COMPLIANT_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == TOILET_ROLL && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == RADIOACTIVE_UNDERGARMENT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == KYRT_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == WOOLEN_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == METAL_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == RED_STRING && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == YOGA_PANTS && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == GREEN_GOWN && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == PRINTED_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == WAISTCLOTH && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == REINFORCED_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == FOAM_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == CRUMBLED_SHIRT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == CANDY_BRA && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == ICHCAHUIPILLI && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == PETRIFYIUM_BRA && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == FLEECY_CORSET && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == FISHNET && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == BATH_TOWEL && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == PLUGSUIT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == SWIMSUIT && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == MEN_S_UNDERWEAR && !issoviet ) {
-                obj->cursed = TRUE;
-            }
-            if (obj->otyp == RUFFLED_SHIRT && !issoviet ) {
+            if (is_shirt(obj) && !issoviet ) {
                 obj->cursed = TRUE;
             }
             if (obj->otyp == LOADSTONE ) {

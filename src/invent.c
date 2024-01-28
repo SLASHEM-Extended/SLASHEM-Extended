@@ -8725,41 +8725,8 @@ register const char *let,*word;
 
 		/* "ugly check" for reading fortune cookies, part 2 */
 		if ((!strcmp(word, "read") &&
-		    (otmp->otyp == FORTUNE_COOKIE
-			|| otmp->otyp == T_SHIRT
-			|| otmp->otyp == STRIPED_SHIRT
-			|| otmp->otyp == PRINTED_SHIRT
-			|| otmp->otyp == REINFORCED_SHIRT
-			|| otmp->otyp == WAISTCLOTH
-			|| otmp->otyp == FOAM_SHIRT
-			|| otmp->otyp == CANDY_BRA
-			|| otmp->otyp == ICHCAHUIPILLI
-			|| otmp->otyp == PETRIFYIUM_BRA
-			|| otmp->otyp == FLEECY_CORSET
-			|| otmp->otyp == FISHNET
-			|| otmp->otyp == BATH_TOWEL
-			|| otmp->otyp == PLUGSUIT
-			|| otmp->otyp == SWIMSUIT
-			|| otmp->otyp == MEN_S_UNDERWEAR
-			|| otmp->otyp == HAWAIIAN_SHIRT
-			|| otmp->otyp == BLACK_DRESS
-			|| otmp->otyp == CHANTER_SHIRT
-			|| otmp->otyp == BAD_SHIRT
-			|| otmp->otyp == BODYGLOVE
-			|| otmp->otyp == CASTSHIRT
-			|| otmp->otyp == BEAUTIFUL_SHIRT
-			|| otmp->otyp == TOILET_ROLL
-			|| otmp->otyp == PETA_COMPLIANT_SHIRT
-			|| otmp->otyp == RADIOACTIVE_UNDERGARMENT
-			|| otmp->otyp == KYRT_SHIRT
-			|| otmp->otyp == WOOLEN_SHIRT
-			|| otmp->otyp == RED_STRING
-			|| otmp->otyp == METAL_SHIRT
-			|| otmp->otyp == YOGA_PANTS
-			|| otmp->otyp == GREEN_GOWN
-			|| otmp->otyp == RUFFLED_SHIRT
-			|| otmp->otyp == VICTORIAN_UNDERWEAR
-		    )))
+		    (otmp->otyp == FORTUNE_COOKIE || readableshirt(otmp->otyp))
+			))
 			allowall = TRUE;
 	    }
 

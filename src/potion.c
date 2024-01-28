@@ -6333,6 +6333,53 @@ secremchoice:
 
 }
 
+/* can an item be read as a shirt? checks ID of base item --Amy */
+boolean
+readableshirt(onum)
+int onum;
+{
+	/* some of these wouldn't realistically have text on them but I DON'T CARE :-P variety ftw! --Amy */
+
+	switch (onum) {
+		case T_SHIRT:
+		case HAWAIIAN_SHIRT:
+		case BLACK_DRESS:
+		case STRIPED_SHIRT:
+		case BODYGLOVE:
+		case CASTSHIRT:
+		case BAD_SHIRT:
+		case CHANTER_SHIRT:
+		case KYRT_SHIRT:
+		case WOOLEN_SHIRT:
+		case METAL_SHIRT:
+		case RED_STRING:
+		case YOGA_PANTS:
+		case GREEN_GOWN:
+		case BEAUTIFUL_SHIRT:
+		case PETA_COMPLIANT_SHIRT:
+		case TOILET_ROLL:
+		case RADIOACTIVE_UNDERGARMENT:
+		case PRINTED_SHIRT:
+		case REINFORCED_SHIRT:
+		case FOAM_SHIRT:
+		case PETRIFYIUM_BRA:
+		case FLEECY_CORSET:
+		case FISHNET:
+		case WAISTCLOTH:
+		case BATH_TOWEL:
+		case CANDY_BRA:
+		case ICHCAHUIPILLI:
+		case PLUGSUIT:
+		case SWIMSUIT:
+		case MEN_S_UNDERWEAR:
+		case VICTORIAN_UNDERWEAR:
+		case RUFFLED_SHIRT:
+			return TRUE;
+	}
+
+	return FALSE;
+}
+
 void
 cure_feminism_traps()
 {
