@@ -1346,6 +1346,8 @@ register struct obj *gold;
 			   goldreqd = 100L;
 			else if (mtmp->data == &mons[PM_VIKING_SOLDIER])
 			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_VANGUARD_TROOPER])
+			   goldreqd = 100L;
 			else if (mtmp->data == &mons[PM_SWAMP_SOLDIER])
 			   goldreqd = 100L;
 			else if (mtmp->data == &mons[PM_JAVA_SOLDIER])
@@ -1357,6 +1359,8 @@ register struct obj *gold;
 			else if (mtmp->data == &mons[PM_EXTRATERRESTRIAL_SERGEANT])
 			   goldreqd = 250L;
 			else if (mtmp->data == &mons[PM_MINOAN_SERGEANT])
+			   goldreqd = 250L;
+			else if (mtmp->data == &mons[PM_SHADOW_COMMANDO])
 			   goldreqd = 250L;
 			else if (mtmp->data == &mons[PM_ASS_RIMMING_RAMMER])
 			   goldreqd = 250L;
@@ -1380,7 +1384,11 @@ register struct obj *gold;
 			   goldreqd = 500L;
 			else if (mtmp->data == &mons[PM_ROMAN_LIEUTENANT])
 			   goldreqd = 500L;
+			else if (mtmp->data == &mons[PM_ELITE_SENTINEL])
+			   goldreqd = 500L;
 			else if (mtmp->data == &mons[PM_CAPTAIN])
+			   goldreqd = 750L;
+			else if (mtmp->data == &mons[PM_IRONCLAD_WARRIOR])
 			   goldreqd = 750L;
 			else if (mtmp->data == &mons[PM_GOTHIC_CAPTAIN])
 			   goldreqd = 750L;
@@ -1390,6 +1398,38 @@ register struct obj *gold;
 			   goldreqd = 1000L;
 			else if (mtmp->data == &mons[PM_PRISON_GUARD])
 			   goldreqd = 200L;
+			else if (mtmp->data == &mons[PM_STORMBREAKER_INFANTRY])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_VENOMOUS_OPERATIVE])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_CHAOS_REAVER])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_NOVA_SHOCK_TROOPER])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_LUNAR_WARDEN])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_DREADNOUGHT_MARINE])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_ARCTIC_BLADESTORM])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_RADIANT_GUARDIAN])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_EMBERSTRIKE_GUNNER])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_THUNDERCLAP_TROOPER])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_CELESTIAL_PARAGON])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_SOULFIRE_SENTINEL])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_SPECTRAL_ENFORCER])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_ABYSSAL_LEGIONNAIRE])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_CYBERNETIC_VANGUARD])
+			   goldreqd = 1000L;
+			else if (mtmp->data == &mons[PM_ASTRAL_BLADEMASTER])
+			   goldreqd = 1000L;
 
 			if (goldreqd && !mtmp->mfrenzied) {
 #ifndef GOLDOBJ

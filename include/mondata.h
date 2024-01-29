@@ -306,6 +306,7 @@
 				 ((ptr) == &mons[PM_GREATER_FIRE_ELEMENTAL]) ? 3 : \
 				 ((ptr) == &mons[PM_RADIANT_ARCHON]) ? 3 : \
 				 ((ptr) == &mons[PM_PHANTOM_LUMINA]) ? 3 : \
+				 ((ptr) == &mons[PM_RADIANT_GUARDIAN]) ? 3 : \
 				 ((ptr) == &mons[PM_GLOW_FLY]) ? 3 : \
 				 ((ptr) == &mons[PM_SABINE_S_BLOCK_HEELED_BRIDAL_PUMP]) ? 4 : \
 				 ((ptr) == &mons[PM_LIGHT_SHAPE]) ? 3 : \

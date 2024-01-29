@@ -1794,6 +1794,105 @@ register struct monst *mtmp;
 			  	(void) mongets(mtmp, GAS_GRENADE);
 			  }
 			  break;
+
+			case PM_VANGUARD_TROOPER:
+			  w1 = BOW;
+			  m_initthrow(mtmp, ARROW, 20);
+			  w2 = rn2(2) ? SPEAR : BROADSWORD;
+			  break;
+			case PM_SHADOW_COMMANDO:
+			  m_initthrow(mtmp, SHURIKEN, 30);
+			  w2 = DARKNESS_CLUB;
+			  break;
+			case PM_ELITE_SENTINEL:
+			  w1 = CROSSBOW;
+			  m_initthrow(mtmp, HEAVY_CROSSBOW_BOLT, 40);
+			  w2 = HEAVY_LONG_SWORD;
+			  break;
+			case PM_IRONCLAD_WARRIOR:
+			  w1 = HEAVY_MACHINE_GUN;
+			  m_initthrow(mtmp, MG_BULLET, 50);
+			  m_initthrow(mtmp, MG_BULLET, 50);
+			  m_initthrow(mtmp, MG_BULLET, 50);
+			  w2 = BASTERD_SWORD;
+			  break;
+			case PM_STORMBREAKER_INFANTRY:
+			  w1 = SUBMACHINE_GUN;
+			  m_initthrow(mtmp, SMG_BULLET, 30);
+			  m_initthrow(mtmp, SMG_BULLET, 30);
+			  w2 = LAJATANG;
+			  break;
+			case PM_VENOMOUS_OPERATIVE:
+			  w1 = CROSSBOW;
+			  m_initthrow(mtmp, POISON_BOLT, 50);
+			  w2 = ORCISH_LONG_SWORD;
+			  break;
+			case PM_CHAOS_REAVER:
+			  m_initthrow(mtmp, JAVELIN, 20);
+			  w2 = COLLUSION_KNIFE;
+			  break;
+			case PM_NOVA_SHOCK_TROOPER:
+			  w1 = SUBMACHINE_GUN;
+			  m_initthrow(mtmp, SMG_BULLET, 30);
+			  m_initthrow(mtmp, SMG_BULLET, 30);
+			  w2 = VIPERWHIP;
+			  break;
+			case PM_LUNAR_WARDEN:
+			  w1 = PISTOL;
+			  m_initthrow(mtmp, PISTOL_BULLET, 40);
+			  w2 = MOON_AXE;
+			  break;
+			case PM_DREADNOUGHT_MARINE:
+			  w1 = ROCKET_LAUNCHER;
+			  m_initthrow(mtmp, ROCKET, 5);
+			  w2 = MARE_TRIDENT;
+			  break;
+			case PM_ARCTIC_BLADESTORM:
+			  m_initthrow(mtmp, SPIKE, 50);
+			  m_initthrow(mtmp, SPIKE, 50);
+			  w2 = rn2(2) ? FLEURE : WHITE_FLOWER_SWORD;
+			  break;
+			case PM_RADIANT_GUARDIAN:
+			  w2 = rnd_class(LONG_SWORD,GREAT_HOUCHOU);
+			  break;
+			case PM_EMBERSTRIKE_GUNNER:
+			  w1 = ASSAULT_RIFLE;
+			  m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			  m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			  w2 = FIRE_HOOK;
+			  break;
+			case PM_THUNDERCLAP_TROOPER:
+			  w1 = BRONZE_LANCE;
+			  w2 = GLADIUS;
+			  break;
+			case PM_CELESTIAL_PARAGON:
+			  w1 = CELESTIAL_POLE;
+			  w2 = HEATH_BALL;
+			  break;
+			case PM_SOULFIRE_SENTINEL:
+			  w1 = BONE_SCYTHE;
+			  w2 = SPECIAL_MOP;
+			  break;
+			case PM_SPECTRAL_ENFORCER:
+			  w1 = GRINDER;
+			  w2 = RUBBER_HOSE;
+			  break;
+			case PM_ABYSSAL_LEGIONNAIRE:
+			  w1 = ASSAULT_RIFLE;
+			  m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			  m_initthrow(mtmp, ASSAULT_RIFLE_BULLET, 50);
+			  w2 = STEEL_CLUB;
+			  break;
+			case PM_CYBERNETIC_VANGUARD:
+			  w1 = PISTOL;
+			  m_initthrow(mtmp, PISTOL_BULLET, 50);
+			  w2 = MOUNTAIN_SWORD;
+			  break;
+			case PM_ASTRAL_BLADEMASTER:
+			  w1 = rnd_class(LONG_SWORD,GREAT_HOUCHOU);
+			  w2 = rnd_class(LONG_SWORD,GREAT_HOUCHOU);
+			  break;
+
 			case PM_ROMAN_LIEUTENANT:
 			  if (rn2(2)) {
 			  	w1 = HEAVY_MACHINE_GUN;
@@ -9522,6 +9621,26 @@ register struct	monst	*mtmp;
 			case PM_YAMATO_LIEUTENANT: mac = -2; break;
 			case PM_CARTHAGE_LIEUTENANT: mac = -2; break;
 			case PM_ROMAN_LIEUTENANT: mac = -2; break;
+			case PM_VANGUARD_TROOPER: mac = 3; break;
+			case PM_SHADOW_COMMANDO: mac = 0; break;
+			case PM_ELITE_SENTINEL: mac = -1; break;
+			case PM_IRONCLAD_WARRIOR: mac = -3; break;
+			case PM_STORMBREAKER_INFANTRY: mac = -3; break;
+			case PM_VENOMOUS_OPERATIVE: mac = -3; break;
+			case PM_CHAOS_REAVER: mac = -3; break;
+			case PM_NOVA_SHOCK_TROOPER: mac = -3; break;
+			case PM_LUNAR_WARDEN: mac = -3; break;
+			case PM_DREADNOUGHT_MARINE: mac = -3; break;
+			case PM_ARCTIC_BLADESTORM: mac = -3; break;
+			case PM_RADIANT_GUARDIAN: mac = -3; break;
+			case PM_EMBERSTRIKE_GUNNER: mac = -3; break;
+			case PM_THUNDERCLAP_TROOPER: mac = -3; break;
+			case PM_CELESTIAL_PARAGON: mac = -3; break;
+			case PM_SOULFIRE_SENTINEL: mac = -3; break;
+			case PM_SPECTRAL_ENFORCER: mac = -3; break;
+			case PM_ABYSSAL_LEGIONNAIRE: mac = -3; break;
+			case PM_CYBERNETIC_VANGUARD: mac = -3; break;
+			case PM_ASTRAL_BLADEMASTER: mac = -3; break;
 			case PM_CAPTAIN: mac = -3; break;
 			case PM_COMMANDER_IN_CHIEF: mac = -3; break;
 			case PM_GOTHIC_CAPTAIN: mac = -3; break;

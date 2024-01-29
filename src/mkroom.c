@@ -2970,6 +2970,73 @@ squadmon()		/* return soldier types. */
 		goto gotone;
 	}
 
+	if (!rn2(100)) { /* ChatGPT soldier types; higher-level ones are very powerful and therefore should be rare --Amy */
+chatgptsoldiers:
+		switch (rnd(20)) {
+			case 1:
+				mndx = PM_VANGUARD_TROOPER;
+				break;
+			case 2:
+				mndx = PM_SHADOW_COMMANDO;
+				break;
+			case 3:
+				mndx = PM_ELITE_SENTINEL;
+				break;
+			case 4:
+				mndx = rn2(2) ? PM_VANGUARD_TROOPER : PM_ELITE_SENTINEL;
+				break;
+			case 5:
+				mndx = rn2(3) ? PM_VANGUARD_TROOPER : PM_STORMBREAKER_INFANTRY;
+				break;
+			case 6:
+				mndx = (rn2(3) || (level_difficulty() < 11) ) ? PM_VANGUARD_TROOPER : PM_VENOMOUS_OPERATIVE;
+				break;
+			case 7:
+				mndx = (rn2(5) || (level_difficulty() < 13) ) ? PM_VANGUARD_TROOPER : PM_CHAOS_REAVER;
+				break;
+			case 8:
+				mndx = (rn2(5) || (level_difficulty() < 15) ) ? PM_VANGUARD_TROOPER : PM_NOVA_SHOCK_TROOPER;
+				break;
+			case 9:
+				mndx = (rn2(7) || (level_difficulty() < 17) ) ? PM_VANGUARD_TROOPER : PM_LUNAR_WARDEN;
+				break;
+			case 10:
+				mndx = (rn2(7) || (level_difficulty() < 21) ) ? PM_VANGUARD_TROOPER : PM_DREADNOUGHT_MARINE;
+				break;
+			case 11:
+				mndx = (rn2(10) || (level_difficulty() < 26) ) ? PM_VANGUARD_TROOPER : PM_ARCTIC_BLADESTORM;
+				break;
+			case 12:
+				mndx = (rn2(10) || (level_difficulty() < 31) ) ? PM_VANGUARD_TROOPER : PM_RADIANT_GUARDIAN;
+				break;
+			case 13:
+				mndx = (rn2(15) || (level_difficulty() < 36) ) ? PM_VANGUARD_TROOPER : PM_EMBERSTRIKE_GUNNER;
+				break;
+			case 14:
+				mndx = (rn2(15) || (level_difficulty() < 41) ) ? PM_VANGUARD_TROOPER : PM_THUNDERCLAP_TROOPER;
+				break;
+			case 15:
+				mndx = (rn2(21) || (level_difficulty() < 46) ) ? PM_VANGUARD_TROOPER : PM_CELESTIAL_PARAGON;
+				break;
+			case 16:
+				mndx = (rn2(21) || (level_difficulty() < 51) ) ? PM_VANGUARD_TROOPER : PM_SOULFIRE_SENTINEL;
+				break;
+			case 17:
+				mndx = (rn2(30) || (level_difficulty() < 53) ) ? PM_VANGUARD_TROOPER : PM_SPECTRAL_ENFORCER;
+				break;
+			case 18:
+				mndx = (rn2(30) || (level_difficulty() < 55) ) ? PM_VANGUARD_TROOPER : PM_ABYSSAL_LEGIONNAIRE;
+				break;
+			case 19:
+				mndx = (rn2(50) || (level_difficulty() < 56) ) ? PM_VANGUARD_TROOPER : PM_CYBERNETIC_VANGUARD;
+				break;
+			case 20:
+				mndx = (rn2(70) || (level_difficulty() < 57) ) ? PM_VANGUARD_TROOPER : PM_ASTRAL_BLADEMASTER;
+				break;
+		}
+		goto gotone;
+	}
+
 	if (sel_prob < 81) {
 		switch (rnd(21)) {
 			case 1: mndx = PM_SOLDIER; break;
@@ -3018,10 +3085,17 @@ squadmon()		/* return soldier types. */
 		}
 		goto gotone;
 	}
+
+	/* instead of hundreds of captains, let's also spawn some of the ChatGPT ones --Amy */
+	if (!rn2(2)) goto chatgptsoldiers;
+
+	/* generals are the very high-level soldier type; they should be rare --Amy */
 	if (sel_prob > 120 && !rn2(3)) {
 		mndx = PM_GENERAL;
 		goto gotone;
 	}
+
+	/* if we got here, the difficulty level is high enough, so make a captain --Amy */
 	switch (rnd(3)) {
 		case 1: mndx = PM_CAPTAIN; break;
 		case 2: mndx = PM_GOTHIC_CAPTAIN; break;
