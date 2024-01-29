@@ -3286,6 +3286,10 @@ toofar:
 
 	    }
 
+	    if (inrange && (mdat == &mons[PM_TRANS_INCLUSIONARY_RADICAL_MISOGYNIST]) && !rn2(10) ) {
+		verbalize("trans women are also women and therefore belong in the kitchen"); /* literal quote by kerio */
+	    }
+
 	    if (inrange && (mdat == &mons[PM_NETHACKWIKI_ANTI_SLEX_WORKER] || mdat == &mons[PM_NETHACKWIKI_ANTI_SLEX_WORKER__] || mdat == &mons[PM_NETHACKWIKI_ANTI_SLEX_WORKER_WITH_POWER]) && !mtmp->mpeaceful && !rn2(5) ) {
 		static const char *nhworker_msgs[] = {
 			"that page had slex info in it... emphasis on had! hahahahaha!",
@@ -4101,6 +4105,7 @@ altarfound:
 	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DRUG_ADDICTED_BANG_PIN) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HIGH_PROSTITUTE_OF_MOLOCH) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LIQUOR_CORPSE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_SWIMMING_TRUNKS) mtmp->mconf = 1;
@@ -4416,9 +4421,8 @@ altarfound:
 	    /* allow monsters be shortsighted on some levels for balance */
 	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
-
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
-		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FIGHTING_ENTITY] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
+		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FIGHTING_ENTITY] || ptr == &mons[PM_PERSON_WHO_IS_REALLY_AFTER_YOU__NO__YOU_RE_NOT_PARANOID_] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;
 
 	if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(3) ) appr = 1; 
 

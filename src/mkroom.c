@@ -2894,7 +2894,7 @@ realzoomon()
 		}
 	}
 
-	int     i = rn2(60) + rn2(3*level_difficulty());
+	int     i = rn2(60 + (3*level_difficulty()) );
 	if (i > 175 && !rn2(50))    return(&mons[PM_JUMBO_THE_ELEPHANT]);
 	else if (i > 115)       return(&mons[PM_MASTODON]);
 	else if (i > 85)        return(&mons[PM_PYTHON]);
@@ -3172,7 +3172,7 @@ lettersaladmon()
 struct permonst *
 doomsquadmon()
 {
-	int     i = rn2(60) + rn2(3*level_difficulty());
+	int     i = rn2(60 + (3*level_difficulty()) );
 
 	int depthuz;
 

@@ -10384,7 +10384,7 @@ struct monst *mtmp;
 
 int
 rnd_offensive_item_new(mtmp)
-/* edit by Amy: keep rnd_offensive_potion() (see below) updated when adding new potion types */
+/* edit by Amy: keep rnd_offensive_potion() and rnd_offensive_wand() (see below) updated when adding new potion types */
 struct monst *mtmp;
 {
 	struct permonst *pm = mtmp->data;
@@ -10666,11 +10666,14 @@ struct monst *mtmp;
 		case 268: return DEATH_HORN;
 		case 269: return POT_GREASE;
 
+		/* reminder to keep the below functions synced!! --Amy */
+
 	}
 	/*NOTREACHED*/
 	return 0;
 }
 
+/* monster specifically gets a potion for throwing --Amy */
 int
 rnd_offensive_potion(mtmp)
 struct monst *mtmp;
@@ -10774,6 +10777,129 @@ struct monst *mtmp;
 	}
 	/*NOTREACHED*/
 	return 0;
+}
+
+/* monster specifically gets a wand that can be used offensively */
+int
+rnd_offensive_wand(mtmp)
+struct monst *mtmp;
+{
+	struct permonst *pm = mtmp->data;
+
+	switch (rn2(107)) {
+
+		case 0: return WAN_DEATH;
+		case 1: return WAN_SLEEP;
+		case 2: return WAN_FIREBALL;
+		case 3: return WAN_FIRE;
+		case 4: return WAN_COLD;
+		case 5: return WAN_LIGHTNING;
+		case 6: return WAN_MAGIC_MISSILE;
+		case 7: return WAN_STRIKING;
+		case 8: return WAN_DRAINING;
+		case 9: return WAN_CANCELLATION;
+		case 10: return WAN_ACID;
+		case 11: return WAN_TRAP_CREATION;
+		case 12: return WAN_SOLAR_BEAM;
+		case 13: return (rn2(10) ? WAN_MAGIC_MISSILE : WAN_BANISHMENT);
+		case 14: return WAN_BAD_EFFECT;
+		case 15: return WAN_SLOW_MONSTER;
+		case 16: return WAN_FEAR;
+		case 17: return WAN_STONING;
+		case 18: return WAN_DISINTEGRATION;
+		case 19: return WAN_PARALYSIS;
+		case 20: return WAN_CURSE_ITEMS;
+		case 21: return WAN_AMNESIA;
+		case 22: return WAN_BAD_LUCK;
+		case 23: return WAN_REMOVE_RESISTANCE;
+		case 24: return WAN_CORROSION;
+		case 25: return WAN_FUMBLING;
+		case 26: return WAN_STARVATION;
+		case 27: return WAN_PUNISHMENT;
+		case 28: return WAN_MAKE_VISIBLE;
+		case 29: return WAN_REDUCE_MAX_HITPOINTS;
+		case 30: return WAN_CONFUSION;
+		case 31: return WAN_SLIMING;
+		case 32: return WAN_LYCANTHROPY;
+		case 33: return WAN_SUMMON_SEXY_GIRL;
+		case 34: return WAN_POISON;
+		case 35: return WAN_DISINTEGRATION_BEAM;
+		case 36: return WAN_CHROMATIC_BEAM;
+		case 37: return WAN_STUN_MONSTER;
+		case 38: return WAN_TIDAL_WAVE;
+		case 39: return WAN_DRAIN_MANA;
+		case 40: return WAN_FINGER_BENDING;
+		case 41: return WAN_IMMOBILITY;
+		case 42: return WAN_EGOISM;
+		case 43: return WAN_SIN;
+		case 44: return WAN_INERTIA;
+		case 45: return WAN_TIME;
+		case 46: return WAN_LEVITATION;
+		case 47: return WAN_PSYBEAM;
+		case 48: return WAN_HYPER_BEAM;
+		case 49: return WAN_STRIKING;
+		case 50: return WAN_MAGIC_MISSILE;
+		case 51: return WAN_SLEEP;
+		case 52: return WAN_FIRE;
+		case 53: return WAN_COLD;
+		case 54: return WAN_STRIKING;
+		case 55: return WAN_MAGIC_MISSILE;
+		case 56: return WAN_SLEEP;
+		case 57: return WAN_FIRE;
+		case 58: return WAN_COLD;
+		case 59: return WAN_STRIKING;
+		case 60: return WAN_MAGIC_MISSILE;
+		case 61: return WAN_SLEEP;
+		case 62: return WAN_FIRE;
+		case 63: return WAN_COLD;
+		case 64: return WAN_STRIKING;
+		case 65: return WAN_MAGIC_MISSILE;
+		case 66: return WAN_SLEEP;
+		case 67: return WAN_FIRE;
+		case 68: return WAN_COLD;
+		case 69: return WAN_STRIKING;
+		case 70: return WAN_MAGIC_MISSILE;
+		case 71: return WAN_SLEEP;
+		case 72: return WAN_FIRE;
+		case 73: return WAN_COLD;
+		case 74: return WAN_LIGHTNING;
+		case 75: return WAN_LIGHTNING;
+		case 76: return WAN_LIGHTNING;
+		case 77: return WAN_LIGHTNING;
+		case 78: return WAN_LIGHTNING;
+		case 79: return WAN_STRIKING;
+		case 80: return WAN_MAGIC_MISSILE;
+		case 81: return WAN_SLEEP;
+		case 82: return WAN_FIRE;
+		case 83: return WAN_COLD;
+		case 84: return WAN_LIGHTNING;
+		case 85: return WAN_INFERNO;
+		case 86: return WAN_ICE_BEAM;
+		case 87: return WAN_THUNDER;
+		case 88: return WAN_SLUDGE;
+		case 89: return WAN_TOXIC;
+		case 90: return WAN_NETHER_BEAM;
+		case 91: return WAN_AURORA_BEAM;
+		case 92: return WAN_GRAVITY_BEAM;
+		case 93: return WAN_CHLOROFORM;
+		case 94: return WAN_DREAM_EATER;
+		case 95: return WAN_BUBBLEBEAM;
+		case 96: return WAN_GOOD_NIGHT;
+		case 97: return WAN_INSANITY;
+		case 98: return WAN_BAD_EQUIPMENT;
+		case 99: return WAN_DISENCHANTMENT;
+		case 100: return WAN_TREMBLING;
+		case 101: return WAN_CONTAMINATION;
+		case 102: return WAN_CHAOS_TERRAIN;
+		case 103: return WAN_FLEECY_TERRAIN;
+		case 104: return WAN_BLEEDING;
+		case 105: return WAN_UNDRESSING;
+		case 106: return WAN_STAT_REDUCTION;
+
+	}
+	/*NOTREACHED*/
+	return 0;
+
 }
 
 #define MUSE_POT_GAIN_LEVEL 1

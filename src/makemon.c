@@ -8010,6 +8010,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RIGHTSMASH_GANGSTER]) (void) mongets(mtmp, SUPER_KNUCKLES);
 		if (ptr == &mons[PM_BOXER]) (void) mongets(mtmp, LARGE_BOX);
 		if (ptr == &mons[PM_CHESTER]) (void) mongets(mtmp, CHEST);
+		if (ptr == &mons[PM_WITCHCRAFT_LANDLADY]) (void) mongets(mtmp, BROOM);
 		if (ptr == &mons[PM_MURRY_OLD_LADY]) (void) mongets(mtmp, UMBRELLA);
 		if (ptr == &mons[PM_SUNBATH_WOMAN]) (void) mongets(mtmp, PARASOL);
 		if (ptr == &mons[PM_LAVISHAS]) (void) mongets(mtmp, WAN_SUMMON_UNDEAD);
@@ -10144,6 +10145,9 @@ loveheelover:
 		break;
 
 	    case S_FELINE:
+
+		if (mtmp->data == &mons[PM_LIBERA_MIDALLE_CAT]) (void) mongets(mtmp, IRON_CHAIN);
+
 		if (mtmp->data == &mons[PM_CUTCAT]) {
 			 (void) mongets(mtmp, CUTTING_LASER);
 			 m_initthrow(mtmp, LASER_BEAM, 50);
@@ -18430,6 +18434,10 @@ loveheelover:
 			(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 		}
 
+		if (ptr == &mons[PM_DICKWAGON]) {
+			(void) mongets(mtmp, rnd_offensive_wand(mtmp));
+		}
+
 		if (ptr == &mons[PM_MOAI]) {
 			(void) mongets(mtmp, HAND_BLASTER);
 			m_initthrow(mtmp, BLASTER_BOLT, 30);
@@ -18676,6 +18684,7 @@ loveheelover:
 		if (ptr == &mons[PM_SHOVEL_DWARF]) (void) mongets(mtmp, SHOVEL);
 		if (ptr == &mons[PM_HOBBIT_BUDDLER]) (void) mongets(mtmp, SHOVEL);
 		if (ptr == &mons[PM_COB_DWARF]) (void) mongets(mtmp, UNWIELDY_PICK);
+		if (ptr == &mons[PM_JUDITH_S_RED_LEATHER_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_OLD_RED_GHAR]) {
 			(void) mongets(mtmp, POT_CONFUSION);
@@ -34362,6 +34371,10 @@ assign_sym:
 		appear = S_tree;
 	}
 	if (mtmp->data == &mons[PM_PREPARED_CHILDREN_S_CAR]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_wagon;
+	}
+	if (mtmp->data == &mons[PM_DICKWAGON]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_wagon;
 	}

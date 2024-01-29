@@ -2130,6 +2130,7 @@ E int use_offensive(struct monst *);
 E int rnd_offensive_item(struct monst *);
 E int rnd_offensive_item_new(struct monst *);
 E int rnd_offensive_potion(struct monst *);
+E int rnd_offensive_wand(struct monst *);
 E boolean find_misc(struct monst *);
 E int use_misc(struct monst *);
 E int rnd_misc_item(struct monst *);
