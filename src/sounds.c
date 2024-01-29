@@ -1732,23 +1732,45 @@ register struct monst *mtmp;
 	case MS_FEARHARE:
 		ret = "is seriously afraid!";
 		break;
-
 	case MS_OE:
-	case MS_NASTYTRAP:
-	case MS_FEMI:
+		ret = "seems fearful!";
+		break;
 	case MS_BAN:
+		ret = "shouts 'I'll disappear if this continues!'";
+		break;
 	case MS_TALONCOMPANY:
+		ret = "shouts 'Damn, I'm hit!'";
+		break;
 	case MS_REGULATOR:
+		ret = "shouts 'Damn, I'm hit!'";
+		break;
 	case MS_RAIDER:
+		ret = "shouts 'Stand still for once!'";
+		break;
 	case MS_ENCLAVE:
+		ret = "shouts 'Ten-four! Target in sight!'";
+		break;
 	case MS_MUTANT:
+		ret = "shouts 'I'm gonna eat your arms when you're dead, little human!'";
+		break;
 	case MS_MYTHICALDAWN:
-	case MS_BOS:
-	case MS_OUTCAST:
+		ret = "mutters 'The paradise awaits me...'";
+		break;
 	case MS_DREMORA:
-	case MS_GENDER:
+		ret = "shouts 'Wince, failure!'";
+		break;
+	case MS_BOS:
+		ret = "shouts 'Are you really trying to mess with the Brotherhood?'";
+		break;
+	case MS_OUTCAST:
+		ret = "shouts 'Been a long time since I last killed someone!'";
+		break;
 	case MS_AMNESIA:
+		ret = "mutters 'Huh, I think someone just attacked me.'";
+		break;
 	case MS_SHIVERINGESLES:
+		ret = "announces 'Widerliche Tergens sind das. Heffin sie alle.'";
+		break;
 	case MS_ANOREXIA:
 	case MS_BULIMIA:
 	case MS_GRAKA:
@@ -2020,23 +2042,45 @@ register struct monst *mtmp;
 	case MS_FEARHARE:
 		ret = "screams 'Ah! I'm endangered! Screw that, I'm outta here!'";
 		break;
-
 	case MS_OE:
-	case MS_NASTYTRAP:
-	case MS_FEMI:
+		ret = "feels in danger";
+		break;
 	case MS_BAN:
+		ret = "shouts 'Emergency! Gotta get away from here!'";
+		break;
 	case MS_TALONCOMPANY:
+		ret = "laughs 'I like it if they fight back!'";
+		break;
 	case MS_REGULATOR:
+		ret = "shouts 'You can't escape the law!'";
+		break;
 	case MS_RAIDER:
+		ret = "shouts 'Fresh blood, just waiting to be spilled!'";
+		break;
 	case MS_ENCLAVE:
+		ret = "shouts 'Security breach!'";
+		break;
 	case MS_MUTANT:
+		ret = "mutters 'Just get close... I'll tear off your legs...'";
+		break;
 	case MS_MYTHICALDAWN:
-	case MS_BOS:
-	case MS_OUTCAST:
+		ret = "announces 'I don't fear death.'";
+		break;
 	case MS_DREMORA:
-	case MS_GENDER:
+		ret = "shouts 'You'll be my next trophy, scapegrace!'";
+		break;
+	case MS_BOS:
+		ret = "shouts 'Evil-doer, I shall purge you from this world!'";
+		break;
+	case MS_OUTCAST:
+		ret = "shouts 'What the hell do you think you're doing?!'";
+		break;
 	case MS_AMNESIA:
+		ret = "grumbles 'Hmm, I think I've just been wounded!'";
+		break;
 	case MS_SHIVERINGESLES:
+		ret = "grumbles 'Ich werde den Finduh kalikraken. Ehrlich. Darauf koennt Ihr terraten!'";
+		break;
 	case MS_ANOREXIA:
 	case MS_BULIMIA:
 	case MS_GRAKA:
@@ -2295,23 +2339,45 @@ register struct monst *mtmp;
 	case MS_FEARHARE:
 		ret = "screams 'Get me away from here, I don't have a good feeling about this place!'";
 		break;
-
 	case MS_OE:
-	case MS_NASTYTRAP:
-	case MS_FEMI:
+		ret = "feels like there's a beartrap or landmine nearby!";
+		break;
 	case MS_BAN:
+		ret = "says 'Are you sure we should stay here?'";
+		break;
 	case MS_TALONCOMPANY:
+		ret = "shouts 'Take cover! Ass grenade!'";
+		break;
 	case MS_REGULATOR:
+		ret = "shouts 'Grenade!'";
+		break;
 	case MS_RAIDER:
+		ret = "screams 'Oh, green nines!'";
+		break;
 	case MS_ENCLAVE:
+		ret = "announces 'Explosion imminent!'";
+		break;
 	case MS_MUTANT:
+		ret = "announces 'Hot potato!'";
+		break;
 	case MS_MYTHICALDAWN:
-	case MS_BOS:
-	case MS_OUTCAST:
+		ret = "announces 'Only the chosen ones will survive purgatory.'";
+		break;
 	case MS_DREMORA:
-	case MS_GENDER:
+		ret = "announces 'Be quick, mortal.'";
+		break;
+	case MS_BOS:
+		ret = "announces 'Be careful, there may be traps.'";
+		break;
+	case MS_OUTCAST:
+		ret = "shouts 'Watch out, they placed a bomb!'";
+		break;
 	case MS_AMNESIA:
+		ret = "doesn't seem to remember whether there were traps here.";
+		break;
 	case MS_SHIVERINGESLES:
+		ret = "Gorbeln. Koennt Ihr sie nicht gorbeln hoeren?";
+		break;
 	case MS_ANOREXIA:
 	case MS_BULIMIA:
 	case MS_GRAKA:
@@ -3747,23 +3813,250 @@ repairitemchoice:
 		}
 		else verbl_msg = "Are you crazy? Well, neglecting to wear safety gear does verge on the edge of lunacy... anyway, stop attacking me, immediately!";
 		break;
-
 	case MS_OE:
-	case MS_NASTYTRAP:
-	case MS_FEMI:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Need healing!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Need food!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Lead the way!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "What's going on?";
+		}
+		else verbl_msg = "Enemy!";
+		break;
 	case MS_BAN:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I'll get out of this area soon.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Give me something to eat!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "I'll follow you for now.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "This area seems reasonably safe.";
+		}
+		else verbl_msg = "Get away from me!";
+		break;
 	case MS_TALONCOMPANY:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "This ain't what I signed up for!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Food! Get me some fucking food!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Yeah?";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Hello.";
+		}
+		else verbl_msg = "You're dead!";
+		break;
 	case MS_REGULATOR:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "This ain't what I signed up for!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Gotta eat another donut, I'm hungry!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Yeah?";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Hello.";
+		}
+		else verbl_msg = "Well what do we have here, the Vault rogues are back.";
+		break;
 	case MS_RAIDER:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Oh God, I don't want to die!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Where's the damn meat shipment?";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Shh, not so loud. The others shouldn't notice that I'm doing business with you.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Well, if that ain't a very alive horn ox!";
+		}
+		else verbl_msg = "Hahahahahahaha! Time to kill!";
+		break;
 	case MS_ENCLAVE:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Retreat and regroup!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Need a C-ration!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Greetings, commander.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Hello.";
+		}
+		else verbl_msg = "Attack is continued!";
+		break;
 	case MS_MUTANT:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Please... rescue me...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Almost no green stuff left...";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "What's going on?";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "I seem to remember something... from before. I knew a woman... or maybe I *WAS* one...";
+		}
+		else verbl_msg = "Hahahahahahaha! Let's play, little human!";
+		break;
 	case MS_MYTHICALDAWN:
-	case MS_BOS:
-	case MS_OUTCAST:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "The old Tamriel still has some power left!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Once I'm in paradise I'll eat lichor and ambrosia in great profusion!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "We will hunt those accursed Blades.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Lord Dagon will walk the earth again!";
+		}
+		else verbl_msg = "You're weak, just like the gods you pray to.";
+		break;
 	case MS_DREMORA:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Stop stealing my air.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Dark and deep!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Heel, doggie!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Begone, mortal.";
+		}
+		else verbl_msg = "On your knees, coward!";
+		break;
+	case MS_BOS:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Damn, I'm gonna have to contact Scribe Jameson, for the scrolls...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "I need a lunch break.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Greetings.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Don't worry, you're safe in our presence.";
+		}
+		else verbl_msg = "Enemy contact!";
+		break;
+	case MS_OUTCAST:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I'm about to expire!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Gonna have to eat a lot!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Don't ever forget the fire that forged you, or you're lost.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Casdin made the right choice when he left Lyons' little group of do-gooders.";
+		}
+		else verbl_msg = "Old man, kiss my ass!"; /* referring to Elder Lyons, not your player character */
+		break;
 	case MS_GENDER:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I may die, but let everyone know that I'm %s!", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "This %s needs something to eat!", is_neuter(mtmp->data) ? "neutrum" : mtmp->female ? "woman" : "man";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Do you like the fact that you have a %s ally?", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Hey look at me! I'm %s!", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male";
+		}
+		else verbl_msg = "You're gonna lose to a %s!", is_neuter(mtmp->data) ? "neutrum" : mtmp->female ? "girl" : "boy";
+		break;
 	case MS_AMNESIA:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Forget about it.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Hmm, I forgot what I'm supposed to do when my stomach growls...";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Hey, what do you want from me, I don't know you!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "I don't remember seeing you before.";
+		}
+		else verbl_msg = "Huh, who are you?";
+		break;
 	case MS_SHIVERINGESLES:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Ich habe den Zaxer gesehen. Und ich habe ihn gemaggt. Ach, fribbel!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Gebt ihnen Gargen zum Emmet.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Grundi Obelisken! Immer tetteraten sie Ritter und Festars. Verwendet den Dookas, um sie in Ordnung zu bringen.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mstun) {
+			verbl_msg = "Ich wette einen Quintat, dass sie ipanaten koennen.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mtrapped) {
+			verbl_msg = "Dunkel-dunkel. Wir haben einen Zeffel geyingt.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mcan) {
+			verbl_msg = "Zeut Femul dimat! Ich boestle, bevor ich redauple.";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mblinded) {
+			verbl_msg = "Sagt dem Dagen Bescheid! Dem Dagen! Karn Himmel relft schon.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Nehmt Zickel. Niemand macht rebbi Zickel heutzutage.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Gal bursten es.";
+		}
+		else verbl_msg = "Uungor spredet, er 'tschaui.' Spredet mit Uungor. Ihr sterfeht mich? Spredet mit Uungor! Gebt Freund Pennigkeit in Uungors Ratzepueklo.";
+		break;
 	case MS_ANOREXIA:
 	case MS_BULIMIA:
 	case MS_GRAKA:
@@ -4627,7 +4920,9 @@ metalmafiaagain:
 		break;
 	    }
 	    /* else FALLTHRU */
+	case MS_NASTYTRAP:
 	case MS_HUMANOID:
+	case MS_FEMI:
 	    if (!mtmp->mpeaceful) {
 		if (In_endgame(&u.uz) && is_mplayer(ptr)) {
 		    mplayer_talk(mtmp);
@@ -5448,20 +5743,8 @@ noservices:
 			break;
 		}
 
-		{
-		static const char *pupil_msgs[] = {
-			"Today no homework ... *please*",
-			"six times nine is ... um ... uh ... ... forty-two",
-			"you ... Strange word",	/* You're not expected to understand this ... */
-			"Bugger off!",
-			"*uck off!",
-			"What are the newest news about the Super Information Highway?",
-			"What do you want?",
-			"Do the world a favour---jump out of the 20th story of the Uni-Center!",
-		};
+		pupiltaunt();
 
-		verbalize("%s", pupil_msgs[rn2(SIZE(pupil_msgs))]);
-		}
 		break;
 
 	case MS_WHORE:
@@ -5558,72 +5841,8 @@ findmorebolts:
 			break;
 		}
 
-		{
-		static const char *whore_msgs[] = { /* These are obviously inspired by the GTA series --Amy */
-			"Come to Momma.",
-			"I'm gonna call my pimp.",
-			"You picked the wrong bitch.",
-			"You're just another sorry ass!",
-			"Hey, this is my first night!",
-			"You know, I used to be a marine before the OP.", /* Vice City */
-			"Cocksucker!",
-			"I'll kick your nuts flat!", /* yes the PC can be female, but who cares? */
-			"I'm no slut, I just need the money!",
-			"I'll be sitting on you in a second.",
-			"You think I can't mess you up?",
-			"Die in a pool of your own blood.",
-			"Get ready for an ass-kicking.",
-			"You want me to whoop you?",
-			"You want some? I'll give you some!",
-			"Enjoy this stiletto.",
-			"If I don't kill you, my parents will.",
-			"I know kickboxing.",
-			"I'm a black belt in karate.",
-			"My hands are lethal weapons.",
-			"I'll kick your teeth in.",
-			"Would you really hit a woman?",
-			"I've killed hundreds of pigs like you!",
-			"I'm gonna open up a can of whoopass on you now!",
-			"Girls can fight too!",
-			"Beating on girls, right?",
-			"I have no problem kicking you in the nuts.",
-			"I'll slap you silly.",
-			"My pimp will take care of you.",
-			"You're messing with an angry bitch!",
-			"Another asshole with a problem!",
-			"You think cause I'm a girl I can't fight?",
-			"You call that 'fighting'?",
-			"I'm gonna stomp your balls!",
-			"I'm a lady but I can fight.",
-			"I'm an innocent virgin!",
-			"You just made me break a nail!",
-			"I'm expecting an apology!",
-			"You insult my womanhood.",
-			"You disgust me.",
-			"Oh yeah baby, let's brawl.",
-			"Think you're hard hitting a woman?",
-			"You want my heel in your ass?",
-			"This is gonna hurt!",
-			"Ass-kicking runs in my family.",
-			"How about a free face-lift?",
-			"Watch those shoes, girl.",
-			"Oh my god, watch the pumps!",
-			"You're ruining the ambience.",
-			"I love it when it gets violent.",
-			"I'm totally spitting in your drink.",
-			"Can you put lotion on the back of my leg?",
-			"I can kick, you know.",
-			"You fight like a girl.",
-			"What are you wearing?!",
-			"Let's scrap you, buster.",
-			"Still sleepy, sister?",
-			"I'm gonna slap you so hard you're gonna cry!",
-			"Oh what's the matter baby, gonna cry?",
-			"Now I have to get another panic here!",
-		};
+		if (!mtmp->mpeaceful) prostitutetaunt();
 
-		if (!mtmp->mpeaceful) verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);
-		}
 		break;
 
 	case MS_SUPERMAN:
@@ -5696,48 +5915,8 @@ findmorebolts:
 			break;
 		}
 
-		{
-	   	 static const char *teacher_msgs[] = {
-			"No chance! Every day you'll get homework!",
-			"Is it really true? Does really _everybody_ have the homework?",
-			"That usage of the word 'goes' does harm to my ears!",
-			"Your attitude is really unacceptable!",
-			"The \"Stigel-Brauerei\" was founded 1492. Well, in that year was that affair with that guy, Columbus, but that really isn't important.",
-			"Why are you going? I'm only 20 minutes late!",
-			"Where's your problem? I'll be happy to help you",
-			"You didn't understand? Then let's begin again ... (*sigh*)",
-			"No homework yet? - This can be changed!",
-			"Overbecks - das Ueberbier",
-			"How about dehydrating carbonhydrates today?",
-			"Back when I was a pupil, the following thing happened ...",
-			"Back when I was studying chemistry, the following thing happened ...",
-			"... dann ist die Scheisse am dampfen",
-			"NIKI forever!",
-			"Pascal forever!",
-			"Yes ... I know that everything is easier in C, but I simply love Pascal ...",
-			"You have Str:0 (at most), so bugger off!",
-			"Do it - who cares about the odd broken bone?",
-			"You are sick because you were running for 30 minutes? So run another hour!",
-			"Shall I help you? (takes the whip)",
-			"We'll do that diagonally. *grin* (wipes sweat off head)",
-			"*grin*",
-			"You know, (*grin*) we'll have to do something now! (*grin*)",
-			"How about a pupil experiment - cut off your ears?",
-			"Yet another pupil experiment: the consequences of KCN ingested.",
-			"Don't expect to get away without homework!",
-			"No homework in the holidays? You must have something to do, after all!",
-			"The low level of you all is really beyond acception!",
-			"There was endless work in the supervision and administration of the farm ...",
-			/* it's really a shame that I can't think of more messages for him */
-			"I expect you to do your homework _regularly_ and _carefully_!",
-			"The level of work is really very low nowadays!",
-			"In _our_ times pupils were real pupils and teachers were real teachers!",
-			"Back when pupils where real pupils and teachers were real teachers, everything was better!",
-		};
+		teachertaunt();
 
-		verbalize("%s", teacher_msgs[rn2(SIZE(teacher_msgs))]);
-
-		}
 		break;
 
 	case MS_PRINCIPAL:
@@ -5751,16 +5930,8 @@ findmorebolts:
 			break;
 		}
 
-		{
-		static const char *principal_msgs[] = {
-		"What's up?",
-		"I really feel sick - there are so many things to do!",
-		"Help me, I faint!",
-		"We'll do that in groups of one person!",
-		};
+		principaltaunt();
 
-		verbalize("%s", principal_msgs[rn2(SIZE(principal_msgs))]);
-		}
 		break;
 
 	case MS_BOSS:
@@ -6252,23 +6423,11 @@ register struct monst *mtmp;
 		case MS_FEARHARE:
 		case MS_CODE:
 		case MS_BULLETATOR:
+		case MS_OE:
+		case MS_NASTYTRAP:
+		case MS_FEMI:
 
-			case MS_OE: /* todo all the way down */
-			case MS_NASTYTRAP:
-			case MS_FEMI:
-			case MS_BAN:
-			case MS_TALONCOMPANY:
-			case MS_REGULATOR:
-			case MS_RAIDER:
-			case MS_ENCLAVE:
-			case MS_MUTANT:
-			case MS_MYTHICALDAWN:
-			case MS_BOS:
-			case MS_OUTCAST:
-			case MS_DREMORA:
-			case MS_GENDER:
-			case MS_AMNESIA:
-			case MS_SHIVERINGESLES:
+		/* todo all the way down */
 			case MS_ANOREXIA:
 			case MS_BULIMIA:
 			case MS_GRAKA:
@@ -6313,6 +6472,162 @@ register struct monst *mtmp;
 					break;
 			}
 			break;
+		case MS_SHIVERINGESLES:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Sie sterben schnell, wenn man sie jenijakt. Jenijak! Jenijak!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Sendockel den Klen. Verstanden? Den Klen!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s groans 'Fribbel! Einfach fribbel!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_GENDER:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Help! I'm %s and got attacked!'", Monnam(mtmp), is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male");
+					break;
+				case 2:
+					pline("%s shouts 'Someone must rescue me, I'm a very important %s!'", Monnam(mtmp), is_neuter(mtmp->data) ? "neutrum" : mtmp->female ? "woman" : "man");
+					break;
+				case 3:
+					pline("%s groans 'I don't wanna die a virgin...'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_OUTCAST:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'What the heck?'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Outcasts, attack my target!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s groans 'Casdin shall avenge me...'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_AMNESIA:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Something just hurt me!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Ah! I think I just got stabbed! But I don't remember by whom!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s groans 'Oh... think I need to perform first aid... but I forgot how that works...'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_BOS:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'I got hit!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'They hit me in the chest!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s groans 'Argh... I'm not gonna make it...'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_DREMORA:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'I'll banish you!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Beg, milkface!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Break apart! Shatter!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_MYTHICALDAWN:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Dawn is breaking!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Lord Dagon awaits your soul in Oblivion!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'The time of purgatory is drawing near!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_BAN:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'This area isn't safe!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Why did I come here? Should have picked another dungeon level!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s screams 'This is insane! I'll warp to a different level!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_MUTANT:
+			switch (distresslevel) {
+				case 1:
+					pline("%s screams 'Ahh, the %s!'", Monnam(mtmp), mbodypart(mtmp, LEG));
+					break;
+				case 2:
+					pline("%s screams 'Paaaaaaaain!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s roars 'Gueueueaaaarrrrrrr!!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_ENCLAVE:
+			switch (distresslevel) {
+				case 1:
+					pline("%s screams 'Medic!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s screams 'My %s!'", Monnam(mtmp), !rn2(4) ? mbodypart(mtmp, LEG) : !rn2(3) ? mbodypart(mtmp, ARM) : rn2(2) ? mbodypart(mtmp, HEAD) : mbodypart(mtmp, EYE) );
+					break;
+				case 3:
+					pline("%s mutters 'For... Eden.'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_TALONCOMPANY:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Don't mess with the Talons!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Fuck that shit!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Retreat, fucking shit, retreat!!'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_REGULATOR:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'The law will always win!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Arrh!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s shouts 'Retreat!'", Monnam(mtmp));
+					break;
+			}
+			break;
 		case MS_HUMANOID:
 			switch (distresslevel) {
 				case 1:
@@ -6336,6 +6651,19 @@ register struct monst *mtmp;
 					break;
 				case 3:
 					pline("%s groans 'You cannot stop the metal mafia...'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_RAIDER:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'Should have stayed in bed instead of playing superhero!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'Muck!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s sobs 'No, please don't kill me!'", Monnam(mtmp));
 					break;
 			}
 			break;
@@ -7662,6 +7990,158 @@ supermantaunt()
 
 }
 
+void
+prostitutetaunt()
+{
+	static const char *whore_msgs[] = { /* These are obviously inspired by the GTA series --Amy */
+		"Come to Momma.",
+		"I'm gonna call my pimp.",
+		"You picked the wrong bitch.",
+		"You're just another sorry ass!",
+		"Hey, this is my first night!",
+		"You know, I used to be a marine before the OP.", /* Vice City */
+		"Cocksucker!",
+		"I'll kick your nuts flat!", /* yes the PC can be female, but who cares? */
+		"I'm no slut, I just need the money!",
+		"I'll be sitting on you in a second.",
+		"You think I can't mess you up?",
+		"Die in a pool of your own blood.",
+		"Get ready for an ass-kicking.",
+		"You want me to whoop you?",
+		"You want some? I'll give you some!",
+		"Enjoy this stiletto.",
+		"If I don't kill you, my parents will.",
+		"I know kickboxing.",
+		"I'm a black belt in karate.",
+		"My hands are lethal weapons.",
+		"I'll kick your teeth in.",
+		"Would you really hit a woman?",
+		"I've killed hundreds of pigs like you!",
+		"I'm gonna open up a can of whoopass on you now!",
+		"Girls can fight too!",
+		"Beating on girls, right?",
+		"I have no problem kicking you in the nuts.",
+		"I'll slap you silly.",
+		"My pimp will take care of you.",
+		"You're messing with an angry bitch!",
+		"Another asshole with a problem!",
+		"You think cause I'm a girl I can't fight?",
+		"You call that 'fighting'?",
+		"I'm gonna stomp your balls!",
+		"I'm a lady but I can fight.",
+		"I'm an innocent virgin!",
+		"You just made me break a nail!",
+		"I'm expecting an apology!",
+		"You insult my womanhood.",
+		"You disgust me.",
+		"Oh yeah baby, let's brawl.",
+		"Think you're hard hitting a woman?",
+		"You want my heel in your ass?",
+		"This is gonna hurt!",
+		"Ass-kicking runs in my family.",
+		"How about a free face-lift?",
+		"Watch those shoes, girl.",
+		"Oh my god, watch the pumps!",
+		"You're ruining the ambience.",
+		"I love it when it gets violent.",
+		"I'm totally spitting in your drink.",
+		"Can you put lotion on the back of my leg?",
+		"I can kick, you know.",
+		"You fight like a girl.",
+		"What are you wearing?!",
+		"Let's scrap you, buster.",
+		"Still sleepy, sister?",
+		"I'm gonna slap you so hard you're gonna cry!",
+		"Oh what's the matter baby, gonna cry?",
+		"Now I have to get another panic here!",
+		"You can't beat me. I'm empowered.",
+		"Hitting me does not make you any less of a loser.",
+		"Are you sorry now?",
+		"Don't mess with a lifestyle doll.",
+		"Accept your punishment!",
+		"You can't hit me, I'm a lady!",
+		"I'm gonna beat me just like I beat my children!",
+	};
+
+	verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);
+
+}
+
+void
+principaltaunt()
+{
+	static const char *principal_msgs[] = {
+		"What's up?",
+		"I really feel sick - there are so many things to do!",
+		"Help me, I faint!",
+		"We'll do that in groups of one person!",
+	};
+
+	verbalize("%s", principal_msgs[rn2(SIZE(principal_msgs))]);
+}
+
+void
+pupiltaunt()
+{
+	static const char *pupil_msgs[] = {
+		"Today no homework ... *please*",
+		"six times nine is ... um ... uh ... ... forty-two",
+		"you ... Strange word",	/* You're not expected to understand this ... */
+		"Bugger off!",
+		"*uck off!",
+		"What are the newest news about the Super Information Highway?",
+		"What do you want?",
+		"Do the world a favour---jump out of the 20th story of the Uni-Center!",
+	};
+
+	verbalize("%s", pupil_msgs[rn2(SIZE(pupil_msgs))]);
+
+}
+
+void
+teachertaunt()
+{
+   	 static const char *teacher_msgs[] = {
+		"No chance! Every day you'll get homework!",
+		"Is it really true? Does really _everybody_ have the homework?",
+		"That usage of the word 'goes' does harm to my ears!",
+		"Your attitude is really unacceptable!",
+		"The \"Stigel-Brauerei\" was founded 1492. Well, in that year was that affair with that guy, Columbus, but that really isn't important.",
+		"Why are you going? I'm only 20 minutes late!",
+		"Where's your problem? I'll be happy to help you",
+		"You didn't understand? Then let's begin again ... (*sigh*)",
+		"No homework yet? - This can be changed!",
+		"Overbecks - das Ueberbier",
+		"How about dehydrating carbonhydrates today?",
+		"Back when I was a pupil, the following thing happened ...",
+		"Back when I was studying chemistry, the following thing happened ...",
+		"... dann ist die Scheisse am dampfen",
+		"NIKI forever!",
+		"Pascal forever!",
+		"Yes ... I know that everything is easier in C, but I simply love Pascal ...",
+		"You have Str:0 (at most), so bugger off!",
+		"Do it - who cares about the odd broken bone?",
+		"You are sick because you were running for 30 minutes? So run another hour!",
+		"Shall I help you? (takes the whip)",
+		"We'll do that diagonally. *grin* (wipes sweat off head)",
+		"*grin*",
+		"You know, (*grin*) we'll have to do something now! (*grin*)",
+		"How about a pupil experiment - cut off your ears?",
+		"Yet another pupil experiment: the consequences of KCN ingested.",
+		"Don't expect to get away without homework!",
+		"No homework in the holidays? You must have something to do, after all!",
+		"The low level of you all is really beyond acception!",
+		"There was endless work in the supervision and administration of the farm ...",
+		/* it's really a shame that I can't think of more messages for him */
+		"I expect you to do your homework _regularly_ and _carefully_!",
+		"The level of work is really very low nowadays!",
+		"In _our_ times pupils were real pupils and teachers were real teachers!",
+		"Back when pupils where real pupils and teachers were real teachers, everything was better!",
+	};
+
+	verbalize("%s", teacher_msgs[rn2(SIZE(teacher_msgs))]);
+
+}
 #endif /* OVLB */
 
 /*sounds.c*/

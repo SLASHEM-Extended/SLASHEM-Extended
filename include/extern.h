@@ -3341,6 +3341,10 @@ E void playerrattlebones(void);
 E void conversionsermon(void);
 E void wouwoutaunt(void);
 E void supermantaunt(void);
+E void prostitutetaunt(void);
+E void principaltaunt(void);
+E void pupiltaunt(void);
+E void teachertaunt(void);
 E void monster_pain(struct monst *);
 
 /* ### sys/msdos/sound.c ### */

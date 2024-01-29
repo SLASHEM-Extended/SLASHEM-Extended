@@ -2217,57 +2217,6 @@ newbossSING:
 			case MS_DEAD:
 				verbalize("Man I don't want to fight you. Can't you just go away and leave me alone?");
 				break;
-
-			case MS_OE:
-			case MS_NASTYTRAP:
-			case MS_FEMI:
-			case MS_BAN:
-			case MS_TALONCOMPANY:
-			case MS_REGULATOR:
-			case MS_RAIDER:
-			case MS_ENCLAVE:
-			case MS_MUTANT:
-			case MS_MYTHICALDAWN:
-			case MS_BOS:
-			case MS_OUTCAST:
-			case MS_DREMORA:
-			case MS_GENDER:
-			case MS_AMNESIA:
-			case MS_SHIVERINGESLES:
-			case MS_ANOREXIA:
-			case MS_BULIMIA:
-			case MS_GRAKA:
-			case MS_TEMPER:
-			case MS_BLANKER:
-			case MS_CONDESCEND:
-			case MS_MOLEST:
-			case MS_MODALSHOP:
-			case MS_GAGA:
-			case MS_SHOCKTROOPER:
-			case MS_TRIP:
-			case MS_AETHERIC:
-			case MS_COMMON:
-			case MS_PIRATE:
-			case MS_BUSY:
-			case MS_HIRE:
-			case MS_JAM:
-			case MS_LOWPRIORITY:
-			case MS_ARMORER:
-			case MS_BEG:
-			case MS_OMEN:
-			case MS_NEWS:
-			case MS_MIDI:
-			case MS_SILLY:
-			case MS_HERCULES:
-			case MS_CRYTHROAT:
-			case MS_SPEEDBUG:
-			case MS_HOOT:
-			case MS_RUSTLE:
-			case MS_SEMEN:
-			case MS_SCIENTIST:
-				/* todo */
-				verbalize("My sound has not been coded yet.");
-				break;
 			case MS_FEARHARE:
 				verbalize("Oh no! The player character is coming to get me! I should probably flee!");
 				break;
@@ -2295,6 +2244,90 @@ newbossSING:
 				break;
 			case MS_WOLLOH:
 				verbalize("Wolloh age, I'ma beat you up wolloh!");
+				break;
+			case MS_TALONCOMPANY:
+				verbalize("Talon Company!");
+				break;
+			case MS_REGULATOR:
+				verbalize("I want that head on a fucking plate!");
+				break;
+			case MS_RAIDER:
+				verbalize("You n'wah!");
+				break;
+			case MS_ENCLAVE:
+				verbalize("For President Eden!");
+				break;
+			case MS_MUTANT:
+				verbalize("I will soon have you killed, little human!");
+				break;
+			case MS_MYTHICALDAWN:
+				verbalize("Be glad that you won't live to see Lord Dagon's arrival.");
+				break;
+			case MS_BOS:
+				if (canseemon(mtmp)) pline("%s chants a prayer!", Monnam(mtmp));
+				else You_hear("someone praying!");
+				break;
+			case MS_OUTCAST:
+				verbalize("Attack! Attack!");
+				break;
+			case MS_DREMORA:
+				verbalize("You shouldn't even be here, mortal. Your blood will be spilled, and your flesh is mine!");
+				break;
+			case MS_SHIVERINGESLES:
+				verbalize("Rani Ruh! Rani Ruh!");
+				break;
+			case MS_ANOREXIA:
+				verbalize("You! Please! Tell me I look skinny!");
+				break;
+			case MS_BULIMIA:
+				verbalize("You didn't see my teeth. Understood? Woe to you if you tell anyone...");
+				break;
+			case MS_TEMPER:
+				verbalize("RAAAAARGH! I'm gonna crush ya!");
+				break;
+			case MS_CONDESCEND:
+				verbalize("Heh, a tin can like you is no match for me anyway...");
+				break;
+			case MS_MOLEST:
+				verbalize(flags.female ? "You're fair game to me, woman!" : "Have you seen any sexy women lately?");
+				break;
+			case MS_SHOCKTROOPER:
+				verbalize("pur thirv pur kss kss");
+				break;
+			case MS_PIRATE:
+				verbalize("Arrrr gon' rape ye!");
+				break;
+			case MS_ARMORER:
+				verbalize("I'll smash you!");
+				break;
+			case MS_BEG:
+				verbalize("Give me some money please!");
+				break;
+			case MS_MIDI:
+				pline("klick klack - klick klack");
+				break;
+			case MS_SILLY:
+				verbalize("Bundle in the face hang!");
+				break;
+			case MS_HERCULES:
+				verbalize("You're no match for me.");
+				break;
+			case MS_CRYTHROAT:
+				verbalize("NOOOOO I DO NOT WANT");
+				break;
+			case MS_HOOT:
+				if (canseemon(mtmp)) pline("%s hoots!", Monnam(mtmp));
+				else You_hear("a hooting sound!");
+				break;
+			case MS_RUSTLE:
+				if (canseemon(mtmp)) pline("%s rustles!", Monnam(mtmp));
+				else You_hear("a rustling sound!");
+				break;
+			case MS_SEMEN:
+				verbalize(flags.female ? "I'll ejaculate my semen into your vagina." : "Damn, why can't you be female, you asshole?");
+				break;
+			case MS_SCIENTIST:
+				verbalize("I'll plug my quantum harmonizer into your photon resonance chamber!");
 				break;
 			case MS_GAARDIEN:
 				verbalize("Why is that weirdo over there not doing %s job?", flags.female ? "her" : "his");
@@ -3576,121 +3609,42 @@ toofar:
 		adjattrib(A_CHA, -1, FALSE, TRUE);
 	    }
 
-	    if(inrange && mtmp->data->msound == MS_CUSS && !mtmp->mpeaceful &&
-		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
-	    cuss(mtmp);
+	    if(inrange && mtmp->data->msound == MS_CUSS && !mtmp->mpeaceful && !rn2(5))
+		    cuss(mtmp);
 
-	    if(inrange && mtmp->data->msound == MS_PUPIL && !mtmp->mpeaceful &&
-		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+	    if(inrange && mtmp->data->msound == MS_PUPIL && !mtmp->mpeaceful && !rn2(5)) {
+		pupiltaunt();
+	    }
 
-		{
-		static const char *pupil_msgs[] = {
-			"Today no homework ... *please*",
-			"six times nine is ... um ... uh ... ... forty-two",
-			"you ... Strange word",	/* You're not expected to understand this ... */
-			"Bugger off!",
-			"*uck off!",
-			"What are the newest news about the Super Information Highway?",
-			"What do you want?",
-			"Do the world a favour---jump out of the 20th story of the Uni-Center!",
-		};
-
-		verbalize("%s", pupil_msgs[rn2(SIZE(pupil_msgs))]);
-		}
-
-	    if(inrange && mtmp->data->msound == MS_WHORE && !mtmp->mpeaceful &&
-		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+	    if(inrange && mtmp->data->msound == MS_WHORE && !mtmp->mpeaceful && !rn2(5))
 
 		{
-		static const char *whore_msgs[] = { /* These are obviously inspired by the GTA series --Amy */
-			"Come to Momma.",
-			"I'm gonna call my pimp.",
-			"You picked the wrong bitch.",
-			"You're just another sorry ass!",
-			"Hey, this is my first night!",
-			"You know, I used to be a marine before the OP.", /* Vice City */
-			"Cocksucker!",
-			"I'll kick your nuts flat!", /* yes the PC can be female, but who cares? */
-			"I'm no slut, I just need the money!",
-			"I'll be sitting on you in a second.",
-			"You think I can't mess you up?",
-			"Die in a pool of your own blood.",
-			"Get ready for an ass-kicking.",
-			"You want me to whoop you?",
-			"You want some? I'll give you some!",
-			"Enjoy this stiletto.",
-			"If I don't kill you, my parents will.",
-			"I know kickboxing.",
-			"I'm a black belt in karate.",
-			"My hands are lethal weapons.",
-			"I'll kick your teeth in.",
-			"Would you really hit a woman?",
-			"I've killed hundreds of pigs like you!",
-			"I'm gonna open up a can of whoopass on you now!",
-			"Girls can fight too!",
-			"Beating on girls, right?",
-			"I have no problem kicking you in the nuts.",
-			"I'll slap you silly.",
-			"My pimp will take care of you.",
-			"You're messing with an angry bitch!",
-			"Another asshole with a problem!",
-			"You think cause I'm a girl I can't fight?",
-			"You call that 'fighting'?",
-			"I'm gonna stomp your balls!",
-			"I'm a lady but I can fight.",
-			"I'm an innocent virgin!",
-			"You just made me break a nail!",
-			"I'm expecting an apology!",
-			"You insult my womanhood.",
-			"You disgust me.",
-			"Oh yeah baby, let's brawl.",
-			"Think you're hard hitting a woman?",
-			"You want my heel in your ass?",
-			"This is gonna hurt!",
-			"Ass-kicking runs in my family.",
-			"How about a free face-lift?",
-			"Watch those shoes, girl.",
-			"Oh my god, watch the pumps!",
-			"You're ruining the ambience.",
-			"I love it when it gets violent.",
-			"I'm totally spitting in your drink.",
-			"Can you put lotion on the back of my leg?",
-			"I can kick, you know.",
-			"You fight like a girl.",
-			"What are you wearing?!",
-			"Let's scrap you, buster.",
-			"Still sleepy, sister?",
-			"I'm gonna slap you so hard you're gonna cry!",
-			"Oh what's the matter baby, gonna cry?",
-			"Now I have to get another panic here!",
-		};
 
-		verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);
+			prostitutetaunt();
+			armpro = magic_negation(&youmonst);
+			armprolimit = 75;
+			if (!(PlayerCannotUseSkills)) {
 
-		armpro = magic_negation(&youmonst);
-		armprolimit = 75;
-		if (!(PlayerCannotUseSkills)) {
-
-			switch (P_SKILL(P_SPIRITUALITY)) {
-				default: armprolimit = 75; break;
-				case P_BASIC: armprolimit = 78; break;
-				case P_SKILLED: armprolimit = 81; break;
-				case P_EXPERT: armprolimit = 84; break;
-				case P_MASTER: armprolimit = 87; break;
-				case P_GRAND_MASTER: armprolimit = 90; break;
-				case P_SUPREME_MASTER: armprolimit = 93; break;
+				switch (P_SKILL(P_SPIRITUALITY)) {
+					default: armprolimit = 75; break;
+					case P_BASIC: armprolimit = 78; break;
+					case P_SKILLED: armprolimit = 81; break;
+					case P_EXPERT: armprolimit = 84; break;
+					case P_MASTER: armprolimit = 87; break;
+					case P_GRAND_MASTER: armprolimit = 90; break;
+					case P_SUPREME_MASTER: armprolimit = 93; break;
+				}
 			}
-		}
 
-		if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
-			make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
-		}
+			if ((rn2(3) >= armpro) || ((rnd(100) > armprolimit) && ((armpro < 4) || (rnd(armpro) < 4) ) ) ) {
+				make_dimmed(HDimmed + rnd(10) + rnd(monster_difficulty() + 1), TRUE);
+			}
 
-		if (uarmf && uarmf->oartifact == ART_AERES_RUNNING_SHOES) {
-			make_feared(HFeared + rnz(1000),FALSE);
-			set_itimeout(&HeavyFeared, HFeared);
-			pline("Oh no, the mean prostitute wants to kick you! Help!");
-		}
+			if (uarmf && uarmf->oartifact == ART_AERES_RUNNING_SHOES) {
+				make_feared(HFeared + rnz(1000),FALSE);
+				set_itimeout(&HeavyFeared, HFeared);
+				pline("Oh no, the mean prostitute wants to kick you! Help!");
+			}
 
 		}
 
@@ -3704,65 +3658,16 @@ toofar:
 			stop_occupation();
 		}
 
-	    if(inrange && mtmp->data->msound == MS_PRINCIPAL && !mtmp->mpeaceful &&
-		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+	    if(inrange && mtmp->data->msound == MS_PRINCIPAL && !mtmp->mpeaceful && !rn2(5)) {
 
-		{
-		static const char *principal_msgs[] = {
-		"What's up?",
-		"I really feel sick - there are so many things to do!",
-		"Help me, I faint!",
-		"We'll do that in groups of one person!",
-		};
+		principaltaunt();
 
-		verbalize("%s", principal_msgs[rn2(SIZE(principal_msgs))]);
-		}
+	    }
 
-	    if(inrange && mtmp->data->msound == MS_TEACHER && !mtmp->mpeaceful &&
-		/*couldsee(mtmp->mx, mtmp->my) && !mtmp->minvis &&*/ !rn2(5))
+	    if(inrange && mtmp->data->msound == MS_TEACHER && !mtmp->mpeaceful && !rn2(5)) {
 
-		{
-	   	 static const char *teacher_msgs[] = {
-			"No chance! Every day you'll get homework!",
-			"Is it really true? Does really _everybody_ have the homework?",
-			"That usage of the word 'goes' does harm to my ears!",
-			"Your attitude is really unacceptable!",
-			"The \"Stigel-Brauerei\" was founded 1492. Well, in that year was that affair with that guy, Columbus, but that really isn't important.",
-			"Why are you going? I'm only 20 minutes late!",
-			"Where's your problem? I'll be happy to help you",
-			"You didn't understand? Then let's begin again ... (*sigh*)",
-			"No homework yet? - This can be changed!",
-			"Overbecks - das Ueberbier",
-			"How about dehydrating carbonhydrates today?",
-			"Back when I was a pupil, the following thing happened ...",
-			"Back when I was studying chemistry, the following thing happened ...",
-			"... dann ist die Scheisse am dampfen",
-			"NIKI forever!",
-			"Pascal forever!",
-			"Yes ... I know that everything is easier in C, but I simply love Pascal ...",
-			"You have Str:0 (at most), so bugger off!",
-			"Do it - who cares about the odd broken bone?",
-			"You are sick because you were running for 30 minutes? So run another hour!",
-			"Shall I help you? (takes the whip)",
-			"We'll do that diagonally. *grin* (wipes sweat off head)",
-			"*grin*",
-			"You know, (*grin*) we'll have to do something now! (*grin*)",
-			"How about a pupil experiment - cut off your ears?",
-			"Yet another pupil experiment: the consequences of KCN ingested.",
-			"Don't expect to get away without homework!",
-			"No homework in the holidays? You must have something to do, after all!",
-			"The low level of you all is really beyond acception!",
-			"There was endless work in the supervision and administration of the farm ...",
-			/* it's really a shame that I can't think of more messages for him */
-			"I expect you to do your homework _regularly_ and _carefully_!",
-			"The level of work is really very low nowadays!",
-			"In _our_ times pupils were real pupils and teachers were real teachers!",
-			"Back when pupils where real pupils and teachers were real teachers, everything was better!",
-		};
-
-		verbalize("%s", teacher_msgs[rn2(SIZE(teacher_msgs))]);
-
-		}
+		teachertaunt();
+	    }
 
 	return(tmp == 2);
 }
