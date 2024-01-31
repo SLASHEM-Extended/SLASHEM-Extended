@@ -1,6 +1,26 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.0 - January 2024
+- The deadly sins and stronger versions of the alignment quest bosses are less powerful now.
+- If the player is polymorphed into something blind, they now have a way of detecting certain monsters.
+- Added two new types of shop that can appear randomly.
+- Fixed bugs where the player could be afflicted with status effects permanently with no way of curing them.
+- Shirts display their text in the dumplog now.
+- The player's achievements are displayed in the conduct screen now.
+- Fixed several bugs where farmland was still behaving like walls.
+- Added a --More-- prompt to phase traps.
+- Fixed a bug where unique monsters' corpses dropped down a staircase wouldn't display their name correctly.
+- Being cancelled now stops the player's occupation.
+- Quite a bunch of aspects now gain bonuses from experience level and also from reaching certain in-game milestones, so lategame characters should suck a bit less.
+- The chance to block a projectile is capped now and can no longer reach 100%, so as to not render the character completely impervious to missile attacks.
+- Higher experience levels should cause the character to get hit by high heel failure effects less often.
+- Certain lightweight weapon types now get bonuses if they're offhanded by a dual-wielding character.
+- Gave back some overnerfs with regard to spells.
+- Fixed (hopefully) several issues where monster-versus-monster combat, particularly when pets are involved, wasn't handled correctly.
+- Artifact blasts do less damage now.
+
 2.8.9 - December 2023
+- Fixed the bug where wall traps wouldn't correctly set the created wall as "cannot be seen through".
 - The dumplog also displays the elapsed realtime since the start of the game now.
 - Tried to add more hints for new players to guide them to the option that turns the number pad on. Hopefully seasoned players will also read the part where it tells them how to turn those messages off.
 - Fixed several vanilla and SLASH'EM bugs where timed items (e.g. oil lamps or potions of oil) weren't getting their age variable set correctly.
