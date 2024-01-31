@@ -6118,6 +6118,8 @@ static const char *epitaphs[] = {
 	"Here lies Joseph Price. For the final boss of the Westside Rollerz, his death was actually rather anti-climactic: the Saints leader just shot up his truck and Price exploded.",
 	"Here lies Chief Monroe. He thought he could fuck with the Saints just because he was the chief of police, but the Saints weren't buying that shit and blew Monroe's car to kingdom come with him inside.",
 	"Here lies Alderman Hughes. Motherfucker of a politician REALLY thought he could just take out the Third Street Saints after they had managed to finally rub out the other gangs and attain supremacy over Stilwater... but then Hughes' yacht blew up, and the tie-wearing asshole was disintegrated into a fine mist.",
+	"Bullshit! There's nothing that you can do if Greed steals your box and empties it on the floor! Even if you get most of the items back, he still has the box so you have to either leave them on the ground for any asshole to grab, or risk having like 30 or so items stolen PER HIT.",
+	"Bleeeeeh, Greed just didn't want to stay dead and then I somehow had the autopickup nastytrap which worked on his fucking corpse too, and ultimately he killed me!", /* these last two happened to Amy */
 
 };
 
