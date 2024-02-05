@@ -1716,6 +1716,12 @@ char * plbuf;
 	win = create_nhwindow(NHW_MENU);
 	start_menu(win);
 	any.a_void = 0;         /* zero out all bits */
+
+	/* handhold players who are acting spectacularly stupid --Amy */
+	add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "Scroll with the space bar or the > key, NOT the arrow keys!", MENU_UNSELECTED);
+	add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, " ", MENU_UNSELECTED);
+
 	for (i = 0; roles[i].name.m; i++) {
 	    if (ok_role(i, flags.initrace, flags.initgend,
 						flags.initalign)) {
@@ -1798,6 +1804,11 @@ char * plbuf;
 	    win = create_nhwindow(NHW_MENU);
 	    start_menu(win);
 	    any.a_void = 0;         /* zero out all bits */
+
+	    add_menu(win, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "Scroll with the space bar or the > key, NOT the arrow keys!", MENU_UNSELECTED);
+	    add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE, " ", MENU_UNSELECTED);
+
 	    for (i = 0; races[i].noun; i++)
 		if (ok_race(flags.initrole, i, flags.initgend,
 						flags.initalign)) {

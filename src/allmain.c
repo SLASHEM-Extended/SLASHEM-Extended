@@ -18810,12 +18810,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "layered helmet")) OBJ_DESCR(objects[i]) = "mnogosloynyy shlem";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "all-terrain gloves")) OBJ_DESCR(objects[i]) = "vezdekhodnyye perchatki";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "house shoes")) OBJ_DESCR(objects[i]) = "dom obuv'";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "set of pipes")) OBJ_DESCR(objects[i]) = "nabor trub";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "falconry gloves")) OBJ_DESCR(objects[i]) = "perchatki dlya sokolinoy okhoty";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latex gloves")) OBJ_DESCR(objects[i]) = "rezinovyye perchatki";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "set of pipes")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "falconry gloves")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latex gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -20265,12 +20264,11 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "layered helmet")) OBJ_DESCR(objects[i]) = "qatlamli dubulg'a";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "all-terrain gloves")) OBJ_DESCR(objects[i]) = "butun er usti qo'lqoplari";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "house shoes")) OBJ_DESCR(objects[i]) = "uy poyabzali";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "set of pipes")) OBJ_DESCR(objects[i]) = "quvurlar to'plami";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "falconry gloves")) OBJ_DESCR(objects[i]) = "lochin qo'lqoplari";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latex gloves")) OBJ_DESCR(objects[i]) = "lateks qo'lqoplar";
 
 		/* todo area */
-
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "set of pipes")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "falconry gloves")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latex gloves")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}

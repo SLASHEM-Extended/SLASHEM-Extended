@@ -40,6 +40,7 @@ STATIC_DCL void accessory_has_effect(struct obj *);
 STATIC_DCL void fpostfx(struct obj *);
 STATIC_DCL int bite(void);
 STATIC_DCL int edibility_prompts(struct obj *);
+STATIC_DCL int will_you_eat_prompts(struct obj *);
 STATIC_DCL int rottenfood(struct obj *);
 STATIC_DCL void eatspecial(void);
 STATIC_DCL void eataccessory(struct obj *);
@@ -5551,6 +5552,10 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 	        otmp->oeaten = drainlevel(otmp);
 	} else if (!is_vampire(youmonst.data)) {
 	    boolean pname = type_is_pname(&mons[mnum]);
+
+	    boolean canbedelicious = TRUE;
+	    if (u.uhs == SATIATED) canbedelicious = FALSE;
+
 	    pline("%s%s %s!",
 		  !uniq ? "This " : !pname ? "The " : "",
 		  uniq && pname ?
@@ -5558,7 +5563,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 		  (vegan(&mons[mnum]) ?
 		   (!carnivorous(youmonst.data) && herbivorous(youmonst.data)) :
 		   (carnivorous(youmonst.data) && !herbivorous(youmonst.data)))
-		  ? "is delicious" : "tastes terrible");
+		  ? (canbedelicious ? "is delicious" : "tastes so-so") : "tastes terrible");
 	}
 
 	/* WAC Track food types eaten */
@@ -5711,9 +5716,15 @@ struct obj *otmp;
 		}
 		break;
 	    case MUSHROOM:
+		{
+		 boolean canbedelicious = TRUE;
+		 if (u.uhs == SATIATED) canbedelicious = FALSE;
+
 	       pline("This %s is %s", singular(otmp, xname),
 	       otmp->cursed ? (FunnyHallu ? "far-out!" : "terrible!") :
-		      FunnyHallu ? "groovy!" : "delicious!");
+		 canbedelicious ? (FunnyHallu ? "groovy!" : "delicious!") :
+					FunnyHallu ? "hairy." : "so-so.");
+		}
 		switch(rn2(10))
 		{
 		   case 0:
@@ -5848,6 +5859,10 @@ struct obj *otmp;
 			}
 		} else {
 		    boolean bad_for_you;
+
+		    boolean canbedelicious = TRUE;
+		    if (u.uhs == SATIATED) canbedelicious = FALSE;
+
  give_feedback:
 		    bad_for_you = otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone() || (otmp->otyp == CHARRED_BREAD) ||
 		      ((Race_if(PM_HUMAN_WEREWOLF) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_)) &&
@@ -5858,7 +5873,8 @@ struct obj *otmp;
 		      || otmp->otyp == K_RATION
 		      || otmp->otyp == C_RATION)
 		      ? (FunnyHallu ? "enjoyable." : "bland.") :
-		      FunnyHallu ? "gnarly!" : "delicious!");
+		      canbedelicious ? (FunnyHallu ? "gnarly!" : "delicious!") :
+						FunnyHallu ? "hairy." : "so-so." );
 		}
 
 		break;
@@ -8098,6 +8114,25 @@ register struct obj *otmp;
 
 	return;
 }
+
+STATIC_OVL int
+will_you_eat_prompts(otmp)
+struct obj *otmp;
+{
+	char buf[BUFSZ];
+
+	/* from nethack fourk, ask satiated player whether they really want to eat to reduce potential for stupid YASD --Amy */
+	if (u.uhs == SATIATED) {
+		sprintf(buf, "You don't really feel like eating anything right now. Eat anyway?");
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+		/* after all, who had the genius idea to make it so that all you get is a (potentially colored, but still)
+		 * "Satiated" indicator on the bottom status line that's easily overlooked in the heat of battle? */
+	}
+
+	return 0;
+}
+
 /*
  * return 0 if the food was not dangerous.
  * return 1 if the food was dangerous and you chose to stop.
@@ -8315,6 +8350,15 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 
+	/* ask satiated players as long as no nasty traps make it impossible to see that you're satiated --Amy */
+	if (!YouAreThirsty && !DisplayDoesNotGo) {
+		int res = will_you_eat_prompts(otmp);
+		if (res) {
+		    if (res == 1) return 0;
+		}
+
+	}
+
 	if (u.urealedibility || Role_if(PM_COOK) || (uarmh && uarmh->oartifact == ART_FONEUZIK) || (uwep && uwep->oartifact == ART_MILENA_S_MISGUIDING) || u.gradiatingdone || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uamul && uamul->oartifact == ART_FINETUNING) ) {
 		int res = edibility_prompts(otmp);
 		if (res) {
@@ -8461,7 +8505,6 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		}
 		gluttonous();
 
-	    
 	    if (otmp->cursed || FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone())
 		(void) rottenfood(otmp);
 
@@ -8478,9 +8521,19 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 		} else
 		    You("seem unaffected by the poison.");
 	    } else if (!otmp->cursed && material != MT_SECREE && material != MT_ETHER && !(FoodIsAlwaysRotten || u.uprops[FOOD_IS_ROTTEN].extrinsic || have_rottenstone()) ) {
-		pline("This %s is delicious!",
+
+		/* it's silly if something that you're going to choke over (with potentially deadly consequences) is
+		 * labelled as "delicious"... so if you're already satiated, use a more sensible word --Amy */
+
+		if (u.uhs == SATIATED) {
+			pline("This %s tastes so-so.",
 		      otmp->oclass == COIN_CLASS ? foodword(otmp) :
 		      singular(otmp, xname));
+		} else {
+			pline("This %s is delicious!",
+		      otmp->oclass == COIN_CLASS ? foodword(otmp) :
+		      singular(otmp, xname));
+		}
 	    }
 
 	    if (material == MT_SECREE) {

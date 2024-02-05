@@ -4186,6 +4186,8 @@ start_corpse_timeout(body)
 #define TAINT_AGE (50L)		/* age when corpses go bad */
 #define TROLL_REVIVE_CHANCE 37	/* 1/37 chance for 50 turns ~ 75% chance */
 #define TROLL_REVIVE_LATE_CHANCE 300	/* 1/300 chance for 200 turns ~ 49% chance */
+#define SIN_REVIVE_CHANCE 24	/* 1/24 chance for 30 turns ~ 72% chance */
+#define SIN_REVIVE_LATE_CHANCE 400	/* 1/400 chance for 200 turns ~ 40% chance */
 #define MOLD_REVIVE_CHANCE 23	/*  1/23 chance for 50 turns ~ 90% chance */
 #define MOLDY_CHANCE 900	/*  1/290 chance for 200 turns ~ 50% chance, but edited by Amy to be much more rare, actual chance about 20% now */
 #define ROT_AGE (250L)		/* age when corpses rot away */
@@ -4211,16 +4213,42 @@ start_corpse_timeout(body)
 		for (when = 12L; when < 500L; when++)
 		    if (!rn2(3)) break;
 
-	} else if ((mons[body->corpsenm].mlet == S_TROLL && !body->norevive) || is_deadlysin(&mons[body->corpsenm]) )  {
+	} else if (is_deadlysin(&mons[body->corpsenm]) )  {
 		long age;
 		for (age = TAINT_AGE + 1; age <= ROT_AGE; age++)
-		    if (!rn2(TROLL_REVIVE_LATE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE) ) {	/* troll revives */
+		    if (!rn2(SIN_REVIVE_LATE_CHANCE) ) { /* sin revives */
+			action = REVIVE_MON;
+			when = age;
+			break;
+		    }
+		/* sins shouldn't resurrect instantly after being killed! --Amy */
+		for (age = 2; age <= TAINT_AGE; age++)
+		    if (!rn2(SIN_REVIVE_CHANCE) && age >= 20) { /* sin revives */
+			action = REVIVE_MON;
+			when = age;
+			break;
+		    }
+
+		if (u.uprops[STARVATION_EFFECT].extrinsic || StarvationEffect || (uarmc && uarmc->oartifact == ART_FEMMY_FATALE) || have_starvationstone() || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
+			if (rn2(10)) {
+				action = REVIVE_MON;
+				when = 1;
+			} else {
+				action = ROT_CORPSE;
+				when = 1;
+			}
+		}
+
+	} else if ((mons[body->corpsenm].mlet == S_TROLL && !body->norevive) )  {
+		long age;
+		for (age = TAINT_AGE + 1; age <= ROT_AGE; age++)
+		    if (!rn2(TROLL_REVIVE_LATE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE) ) { /* troll revives */
 			action = REVIVE_MON;
 			when = age;
 			break;
 		    }
 		for (age = 2; age <= TAINT_AGE; age++)
-		    if (!rn2(TROLL_REVIVE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE)) {	/* troll revives */
+		    if (!rn2(TROLL_REVIVE_CHANCE) && !(uwep && uwep->oartifact == ART_ZOMBIEBANE) ) { /* troll revives */
 			action = REVIVE_MON;
 			when = age;
 			break;

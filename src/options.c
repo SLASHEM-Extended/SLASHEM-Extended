@@ -3678,6 +3678,19 @@ doset()
 	start_menu(tmpwin);
 
 	any.a_void = 0;
+
+	/* I'm just so sick of seeing players spend half an hour staring at the boolean options when all they want to do is
+	 * obviously to turn the goddamn number pad on. --Amy */
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "IMPORTANT: The number_pad option is all the way down at the compound options,", MENU_UNSELECTED);
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "so scroll down there if you want to turn the number pad on!!!", MENU_UNSELECTED);
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "Scroll with the space bar or the > key, NOT the arrow keys!", MENU_UNSELECTED);
+
+ add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,
+		 " ", MENU_UNSELECTED);
+
  add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
 		 "Booleans (selecting will toggle value):", MENU_UNSELECTED);
 	any.a_int = 0;
