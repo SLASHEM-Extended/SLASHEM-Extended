@@ -1004,7 +1004,6 @@ boolean so;
 	    else
 		strcpy(linebuf3, bp+1);
 
-	    strcpy(linebuf3, bp+1);
 	    *bp = 0;
 	    if (so) {
 		while (bp < linebuf + (COLNO-1)) *bp++ = ' ';
