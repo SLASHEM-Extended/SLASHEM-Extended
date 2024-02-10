@@ -995,6 +995,13 @@ boolean so;
 	    /* special case: if about to wrap in the middle of maximum
 	       dungeon depth reached, wrap in front of it instead */
 	    if (bp > linebuf + 5 && !strncmp(bp - 5, " [max", 5)) bp -= 5;
+
+	    /* gigabug from vanilla: infinite loop if the line is too long, fix from the variant that calls itself 3.7 */
+	    if (*bp != ' ')
+		strcpy(linebuf3, bp);
+	    else
+		strcpy(linebuf3, bp+1);
+
 	    strcpy(linebuf3, bp+1);
 	    *bp = 0;
 	    if (so) {
