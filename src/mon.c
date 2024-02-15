@@ -613,6 +613,9 @@ register struct monst *mtmp;
 	    case PM_BIG_GRAY_UNICORN:
 	    case PM_BIG_BLACK_UNICORN:
 	    case PM_SQUIRRELHORN:
+	    case PM_REGULAR_GIRL_SNEAKER:
+	    case PM_EXCEPTIONAL_GIRL_SNEAKER:
+	    case PM_ELITE_GIRL_SNEAKER:
 	    case PM_YUNICOR_LIZARD:
 	    case PM_GOOD_BLUE_UNICORN:
 	    case PM_FADING_GRAY_UNICORN:

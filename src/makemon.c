@@ -12098,6 +12098,10 @@ loveheelover:
 			(void) mongets(mtmp, CROSSBOW);
 			 m_initthrow(mtmp, CROSSBOW_BOLT, 20);
 		}
+		if (ptr == &mons[PM_SHRUBBERLING]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 50);
+		}
 		if (ptr == &mons[PM_EREGK]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, LARGE_SHIELD);
