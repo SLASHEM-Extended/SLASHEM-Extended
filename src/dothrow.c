@@ -2226,7 +2226,7 @@ int thrown;
 			if (u.kliuskill >= 160) range++;
 			if (u.kliuskill >= 540) range++;
 			if (u.kliuskill >= 1280) range++;
-			if (u.kliuskill >= 2560) range++;
+			if (u.kliuskill >= 2500) range++;
 			if (u.kliuskill >= 4320) range++;
 		}
 

@@ -4303,7 +4303,7 @@ doinvoke()
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(29)) {
+			} else switch (rnd(30)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -4956,6 +4956,9 @@ newboss:
 
 					}
 					break;
+				case 30:
+					boostknownskillcap();
+					break;
 				default:
 					impossible("undefined pentagram effect");
 					break;
@@ -4963,6 +4966,12 @@ newboss:
 			}
 
 			if (!rn2(6) && IS_PENTAGRAM(levl[u.ux][u.uy].typ)) {
+
+				if (wizard) {
+					if (yn("Make the pentagram fade?") == 'n')
+					return 1;
+				}
+
 				levl[u.ux][u.uy].typ = ROOM;
 				pline_The("pentagram fades away completely.");
 				newsym(u.ux,u.uy);

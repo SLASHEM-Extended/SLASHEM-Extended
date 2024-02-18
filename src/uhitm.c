@@ -2516,7 +2516,7 @@ int dieroll;
 							if (u.hunkskill == 160) You("are now more skilled in form IX (Hunk).");
 							if (u.hunkskill == 540) You("are now more skilled in form IX (Hunk).");
 							if (u.hunkskill == 1280) You("are now more skilled in form IX (Hunk).");
-							if (u.hunkskill == 2560) You("are now more skilled in form IX (Hunk).");
+							if (u.hunkskill == 2500) You("are now more skilled in form IX (Hunk).");
 							if (u.hunkskill == 4320) You("are now most skilled in form IX (Hunk).");
 						}
 					}
@@ -5295,7 +5295,7 @@ melatechoice:
 							if (u.kliuskill == 160) You("are now more skilled in form X (Kliu).");
 							if (u.kliuskill == 540) You("are now more skilled in form X (Kliu).");
 							if (u.kliuskill == 1280) You("are now more skilled in form X (Kliu).");
-							if (u.kliuskill == 2560) You("are now more skilled in form X (Kliu).");
+							if (u.kliuskill == 2500) You("are now more skilled in form X (Kliu).");
 							if (u.kliuskill == 4320) You("are now most skilled in form X (Kliu).");
 						}
 					}

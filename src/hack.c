@@ -2901,7 +2901,7 @@ peacedisplace:
 			if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
 			if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");
 			if (u.columnarskill == 1280) You("are now more skilled in type 5: columnar heels.");
-			if (u.columnarskill == 2560) You("are now more skilled in type 5: columnar heels.");
+			if (u.columnarskill == 2500) You("are now more skilled in type 5: columnar heels.");
 			if (u.columnarskill == 4320) You("are now most skilled in type 5: columnar heels.");
 		}
 	}
@@ -4677,7 +4677,7 @@ nomul(nval, txt, discountpossible)
 		if (u.columnarskill >= 160) dmgreductor -= 10;
 		if (u.columnarskill >= 540) dmgreductor -= 10;
 		if (u.columnarskill >= 1280) dmgreductor -= 10;
-		if (u.columnarskill >= 2560) dmgreductor -= 10;
+		if (u.columnarskill >= 2500) dmgreductor -= 10;
 		if (u.columnarskill >= 4320) dmgreductor -= 10;
 
 		nval *= dmgreductor;

@@ -7382,7 +7382,7 @@ xkilled(mtmp, dest)
 					if (u.aldebaranskill == 160) You("are now more skilled in form XI (Aldebaran).");
 					if (u.aldebaranskill == 540) You("are now more skilled in form XI (Aldebaran).");
 					if (u.aldebaranskill == 1280) You("are now more skilled in form XI (Aldebaran).");
-					if (u.aldebaranskill == 2560) You("are now more skilled in form XI (Aldebaran).");
+					if (u.aldebaranskill == 2500) You("are now more skilled in form XI (Aldebaran).");
 					if (u.aldebaranskill == 4320) You("are now most skilled in form XI (Aldebaran).");
 				}
 			}

@@ -8357,7 +8357,7 @@ newbossBUTT:
 					if (u.polgoskill == 160) You("are now more skilled in form XII (Polgo).");
 					if (u.polgoskill == 540) You("are now more skilled in form XII (Polgo).");
 					if (u.polgoskill == 1280) You("are now more skilled in form XII (Polgo).");
-					if (u.polgoskill == 2560) You("are now more skilled in form XII (Polgo).");
+					if (u.polgoskill == 2500) You("are now more skilled in form XII (Polgo).");
 					if (u.polgoskill == 4320) You("are now most skilled in form XII (Polgo).");
 				}
 			}
@@ -8381,7 +8381,7 @@ newbossBUTT:
 						if (u.firgaskill == 160) You("are now more skilled in form XIII (Firga).");
 						if (u.firgaskill == 540) You("are now more skilled in form XIII (Firga).");
 						if (u.firgaskill == 1280) You("are now more skilled in form XIII (Firga).");
-						if (u.firgaskill == 2560) You("are now more skilled in form XIII (Firga).");
+						if (u.firgaskill == 2500) You("are now more skilled in form XIII (Firga).");
 						if (u.firgaskill == 4320) You("are now most skilled in form XIII (Firga).");
 					}
 				}

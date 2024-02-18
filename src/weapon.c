@@ -6914,7 +6914,7 @@ int degree;
 	if (((skill == P_SQUEAKING && !flags.female) || (skill == P_GUN_CONTROL && !(uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) && flags.female) || (skill == P_GUN_CONTROL && uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS && !flags.female) ) && !Role_if(PM_GENDERSTARIST)) {
 		int advchance = 1;
 		if (P_ADVANCE(skill) >= 4320) advchance = 21;
-		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
+		else if (P_ADVANCE(skill) >= 2500) advchance = 13;
 		else if (P_ADVANCE(skill) >= 1280) advchance = 8;
 		else if (P_ADVANCE(skill) >= 540) advchance = 5;
 		else if (P_ADVANCE(skill) >= 160) advchance = 3;
@@ -6926,7 +6926,7 @@ int degree;
 	if (((skill == P_ORB && u.ualign.type != A_LAWFUL) || (skill == P_CLAW && u.ualign.type != A_NEUTRAL) || (skill == P_GRINDER && u.ualign.type != A_CHAOTIC)) && !Role_if(PM_DIABLIST) ) {
 		int advchance = 1;
 		if (P_ADVANCE(skill) >= 4320) advchance = 21;
-		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
+		else if (P_ADVANCE(skill) >= 2500) advchance = 13;
 		else if (P_ADVANCE(skill) >= 1280) advchance = 8;
 		else if (P_ADVANCE(skill) >= 540) advchance = 5;
 		else if (P_ADVANCE(skill) >= 160) advchance = 3;
@@ -6937,7 +6937,7 @@ int degree;
 	if (Race_if(PM_CARTHAGE) && skill != P_LANCE && skill != P_RIDING) {
 		int advchance = 1;
 		if (P_ADVANCE(skill) >= 4320) advchance = 6;
-		else if (P_ADVANCE(skill) >= 2560) advchance = 5;
+		else if (P_ADVANCE(skill) >= 2500) advchance = 5;
 		else if (P_ADVANCE(skill) >= 1280) advchance = 4;
 		else if (P_ADVANCE(skill) >= 540) advchance = 3;
 		else if (P_ADVANCE(skill) >= 160) advchance = 2;
@@ -6980,7 +6980,7 @@ int degree;
 	if (skill == u.slowtrainingskill) { /* If this stacks with squeaking or gun control, that's a feature :P --Amy */
 		int advchance = 1;
 		if (P_ADVANCE(skill) >= 4320) advchance = 21;
-		else if (P_ADVANCE(skill) >= 2560) advchance = 13;
+		else if (P_ADVANCE(skill) >= 2500) advchance = 13;
 		else if (P_ADVANCE(skill) >= 1280) advchance = 8;
 		else if (P_ADVANCE(skill) >= 540) advchance = 5;
 		else if (P_ADVANCE(skill) >= 160) advchance = 3;
@@ -10900,6 +10900,84 @@ practice()
 	You("finish your practice session.");
 	use_skill(weapon_type(uwep), 5); /* Amy edit: waaaaaay too easy to max out the skill with the SLASH'EM values! */
 	return(0);
+}
+
+/* pick the most-trained non-restricted skill and boost its cap by one --Amy
+ * supreme master cannot be increased further, skills capped at (grand) master are rarely eligible for balance reasons
+ * if your training amount was higher than the current cap, set it back to the amount for that cap so that you still
+ * have to actually train the skill to the new cap */
+void
+boostknownskillcap()
+{
+	int maxtrainingamount = 0;
+	int skillnumber = 0;
+	int actualskillselection = 0;
+	int amountofpossibleskills = 1;
+	boolean somethingeligible = FALSE;
+	int i;
+	int maxcapincrease = !rn2(50) ? 2 : !rn2(5) ? 1 : 0;
+	/* 2 = everything eligible, 1 = skill with cap of master or lower is eligible,
+	 * 0 = skill with cap of expert or lower is eligible */
+
+boostskillagain:
+	somethingeligible = FALSE;
+	for (i = 0; i < P_NUM_SKILLS; i++) {
+		if (P_SKILL(i) == P_ISRESTRICTED) continue;
+		if (P_MAX_SKILL(i) >= P_SUPREME_MASTER) continue;
+		if (maxcapincrease < 2 && P_MAX_SKILL(i) >= P_GRAND_MASTER) continue;
+		if (maxcapincrease < 1 && P_MAX_SKILL(i) >= P_MASTER) continue;
+
+		/* have a skill with the right cap? then don't reroll */
+		somethingeligible = TRUE;
+
+		if (P_ADVANCE(i) > 0 && P_ADVANCE(i) >= maxtrainingamount) {
+			if (P_ADVANCE(i) > maxtrainingamount) {
+				amountofpossibleskills = 1;
+				skillnumber = i;
+				maxtrainingamount = P_ADVANCE(i);
+			} else if (!rn2(amountofpossibleskills + 1)) {
+				amountofpossibleskills++;
+				skillnumber = i;
+			} else {
+				amountofpossibleskills++;
+			}
+		}
+	}
+	if (!somethingeligible && (skillnumber <= 0)) {
+		if (maxcapincrease == 0) {
+			maxcapincrease = 1;
+			goto boostskillagain;
+		}
+		if (maxcapincrease == 1) {
+			maxcapincrease = 2;
+			goto boostskillagain;
+		}
+	}
+
+	if (skillnumber > 0 && maxtrainingamount > 0) {
+
+		if (P_MAX_SKILL(skillnumber) == P_BASIC) {
+			P_MAX_SKILL(skillnumber) = P_SKILLED;
+			if (P_ADVANCE(skillnumber) > 20) P_ADVANCE(skillnumber) = 20;
+			pline("Your %s cap has been increased to Skilled.", wpskillname(skillnumber));
+		} else if (P_MAX_SKILL(skillnumber) == P_SKILLED) {
+			P_MAX_SKILL(skillnumber) = P_EXPERT;
+			if (P_ADVANCE(skillnumber) > 160) P_ADVANCE(skillnumber) = 160;
+			pline("Your %s cap has been increased to Expert.", wpskillname(skillnumber));
+		} else if (P_MAX_SKILL(skillnumber) == P_EXPERT) {
+			P_MAX_SKILL(skillnumber) = P_MASTER;
+			if (P_ADVANCE(skillnumber) > 540) P_ADVANCE(skillnumber) = 540;
+			pline("Your %s cap has been increased to Master.", wpskillname(skillnumber));
+		} else if (P_MAX_SKILL(skillnumber) == P_MASTER) {
+			P_MAX_SKILL(skillnumber) = P_GRAND_MASTER;
+			if (P_ADVANCE(skillnumber) > 1280) P_ADVANCE(skillnumber) = 1280;
+			pline("Your %s cap has been increased to Grand Master.", wpskillname(skillnumber));
+		} else if (P_MAX_SKILL(skillnumber) == P_GRAND_MASTER) {
+			P_MAX_SKILL(skillnumber) = P_SUPREME_MASTER;
+			if (P_ADVANCE(skillnumber) > 2500) P_ADVANCE(skillnumber) = 2500;
+			pline("Your %s cap has been increased to Supreme Master.", wpskillname(skillnumber));
+		}
+	}
 }
 
 void

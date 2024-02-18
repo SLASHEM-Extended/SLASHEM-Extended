@@ -6312,7 +6312,7 @@ secremchoice:
 
 	} else { /* "uber rare" effects - extremely powerful stuff goes here */
 
-		switch (rnd(7)) {
+		switch (rnd(8)) {
 
 			case 1: /* 1-UP */
 				u.extralives++;
@@ -6350,7 +6350,9 @@ secremchoice:
 			case 7: /* cure nasty trap effects */
 				cure_nasty_traps(); /* no message on purpose */
 				break;
-
+			case 8: /* boost the cap of a known, well-trained skill */
+				boostknownskillcap();
+				break;
 		}
 
 

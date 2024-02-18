@@ -5626,7 +5626,7 @@ addspmagain:
 			if (rn2(3)) {
 				pline("Your mana increases.");
 				u.uenmax++;
-			} else switch (rnd(29)) {
+			} else switch (rnd(30)) {
 
 				case 1:
 					HTeleport_control += 2;
@@ -6275,6 +6275,9 @@ newbossPENT:
 					}
 
 					}
+					break;
+				case 30:
+					boostknownskillcap();
 					break;
 				default:
 					impossible("undefined pentagram effect");

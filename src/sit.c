@@ -747,10 +747,22 @@ secureidchoice:
 	    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 
 	    if (!rn2(6) && IS_THRONE(levl[u.ux][u.uy].typ)) {
+
+		boolean thronewillvanish = TRUE;
+
+		if (wizard) {
+			if (yn("Make the throne vanish?") == 'n')
+				thronewillvanish = FALSE;
+		}
+
 		/* may have teleported */
-		levl[u.ux][u.uy].typ = ROOM;
-		pline_The("throne vanishes in a puff of logic.");
-		newsym(u.ux,u.uy);
+
+		if (thronewillvanish) {
+
+			levl[u.ux][u.uy].typ = ROOM;
+			pline_The("throne vanishes in a puff of logic.");
+			newsym(u.ux,u.uy);
+		}
 	    }
 
 	} else if (lays_eggs(youmonst.data)) {

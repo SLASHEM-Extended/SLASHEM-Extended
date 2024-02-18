@@ -1011,7 +1011,7 @@ register boolean clumsy;
 		if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 1280) You("are now more skilled in type 5: columnar heels.");
-		if (u.columnarskill == 2560) You("are now more skilled in type 5: columnar heels.");
+		if (u.columnarskill == 2500) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 4320) You("are now most skilled in type 5: columnar heels.");
 	}
 	if (PlayerInStilettoHeels && !rn2((flags.female || Role_if(PM_TRANSVESTITE) || Role_if(PM_TRANSSYLVANIAN)) ? 30 : 100) ) use_skill(P_STILETTO_HEELS, 1);
