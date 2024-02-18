@@ -1090,6 +1090,10 @@ blackjackwin:
 	/* every win gives a random weapon or armor piece */
 	blackjackreward = mkobj(rn2(2) ? ARMOR_CLASS : WEAPON_CLASS, TRUE, FALSE);
 	if (blackjackreward) {
+		/* unlike Elona, where you get one single such reward piece of equipment with its quality scaling with the
+		 * amount of consecutive wins, here you get an item for every win, but the enchantment value can randomly be
+		 * higher the more consecutive wins you scored --Amy */
+		blackjackreward->spe += rn2(playerblackjackwins + 1);
 		dropy(blackjackreward);
 	}
 
