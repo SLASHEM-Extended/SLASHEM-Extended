@@ -12102,6 +12102,14 @@ loveheelover:
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, ROCK, 50);
 		}
+		if (ptr == &mons[PM_SHRUBLING]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 50);
+		}
+		if (ptr == &mons[PM_SHRUBBIT]) {
+			(void) mongets(mtmp, SLING);
+			 m_initthrow(mtmp, ROCK, 50);
+		}
 		if (ptr == &mons[PM_EREGK]) {
 			(void) mongets(mtmp, LONG_SWORD);
 			(void) mongets(mtmp, LARGE_SHIELD);
