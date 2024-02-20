@@ -1511,52 +1511,8 @@ domonability()
 {
 	char buf[BUFSZ];
 
-	if (uinsymbiosis && yn("Do you want to check your symbiote's stats?")=='y') {
-		pline("Current symbiote is %s. Health: %d(%d). BUC: %s%s%s%s%s. ", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
-#ifdef EXTENDED_INFO
-		if (u.shutdowntime) pline("Your symbiote has been shut down for %d turns.", u.shutdowntime);
-		corpsepager(u.usymbiote.mnum);
-#endif
-		return FALSE;
-	}
-	else if (uinsymbiosis && yn("Do you want to kill your symbiote?")=='y') {
-		if (u.usymbiote.cursed) {
-			You("can't. It's cursed.");
-			return TRUE;
-		}
-		getlin("Attention: This action causes an alignment and luck penalty; if you want to replace your symbiote with a different one, just use your preferred method of obtaining a new symbiote instead. Do you really want to murder your symbiote? [yes/no]?",buf);
-		(void) lcase (buf);
-		if (!(strcmp (buf, "yes"))) {
-
-			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
-				if (uarmf->spe > -1) uarmf->spe = -1;
-			}
-
-			u.usymbiote.active = 0;
-			u.usymbiote.mnum = PM_PLAYERMON;
-			u.usymbiote.mhp = 0;
-			u.usymbiote.mhpmax = 0;
-			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
-			if (flags.showsymbiotehp) flags.botl = TRUE;
-			u.cnd_symbiotesdied++;
-
-			adjalign(-50);	/* bad!! */
-			change_luck(-1);
-			if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
-			else You_hear("the studio audience applaud!");
-			if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
-
-			You("no longer have a symbiote.");
-			use_skill(P_SQUEAKING, 2);
-
-			return TRUE;
-		}
-
-		return FALSE;
-	}
-
 	/* snail can't equip pick-axes, so should be able to dig without one from time to time --Amy */
-	else if (Race_if(PM_ELONA_SNAIL) && !u.snaildigging && yn("Do you want to fire a digging ray?")=='y' ) {
+	if (Race_if(PM_ELONA_SNAIL) && !u.snaildigging && yn("Do you want to fire a digging ray?")=='y' ) {
 		u.snaildigging = rnz(1000);
 		if (!PlayerCannotUseSkills && u.snaildigging >= 2) {
 			switch (P_SKILL(P_SQUEAKING)) {
@@ -2181,6 +2137,54 @@ flowannoyance:
 			}
 		}
 		demagoguerecursioneffect();
+
+	/* symbiote check should come last because how often do you need that, really? --Amy */
+
+	} else if (uinsymbiosis && yn("Do you want to check your symbiote's stats?")=='y') {
+		pline("Current symbiote is %s. Health: %d(%d). BUC: %s%s%s%s%s. ", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
+#ifdef EXTENDED_INFO
+		if (u.shutdowntime) pline("Your symbiote has been shut down for %d turns.", u.shutdowntime);
+		corpsepager(u.usymbiote.mnum);
+#endif
+		return FALSE;
+	}
+	else if (uinsymbiosis && yn("Do you want to kill your symbiote?")=='y') {
+		if (u.usymbiote.cursed) {
+			You("can't. It's cursed.");
+			return TRUE;
+		}
+		/* that a player would *really* be stupid enough to not at least TRY to use a method for obtaining a new one...
+		 * oh well, I guess it should be made obvious because nowadays players always need handholding --Amy */
+		getlin("Attention: This action causes an alignment and luck penalty; if you want to replace your symbiote with a different one, just use your preferred method of obtaining a new symbiote instead. Do you really want to murder your symbiote? [yes/no]?",buf);
+		(void) lcase (buf);
+		if (!(strcmp (buf, "yes"))) {
+
+			if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+				if (uarmf->spe > -1) uarmf->spe = -1;
+			}
+
+			u.usymbiote.active = 0;
+			u.usymbiote.mnum = PM_PLAYERMON;
+			u.usymbiote.mhp = 0;
+			u.usymbiote.mhpmax = 0;
+			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+			u.cnd_symbiotesdied++;
+
+			adjalign(-50);	/* bad!! */
+			change_luck(-1);
+			if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
+			else You_hear("the studio audience applaud!");
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
+
+			You("no longer have a symbiote.");
+			use_skill(P_SQUEAKING, 2);
+
+			return TRUE;
+		}
+
+		return FALSE;
+
 	} else if (Upolyd)
 		pline("Any (other) special ability you may have is purely reflexive.");
 	else You("don't have another special ability in your normal form!");

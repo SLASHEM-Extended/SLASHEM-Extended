@@ -3784,6 +3784,14 @@ doset()
 	for (i = 0; i < PREFIX_COUNT; i++)
 		doset_add_menu(tmpwin, fqn_prefix_names[i], 0);
 #endif
+
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,
+		 " ", MENU_UNSELECTED);
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "Attention: DO NOT press ESC here or you'll cancel your changes!!", MENU_UNSELECTED);
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
+		 "Scroll out of the menu via spacebar or > to save your changes!!!", MENU_UNSELECTED);
+
 	end_menu(tmpwin, "Set what options?");
 	need_redraw = FALSE;
 	if ((pick_cnt = select_menu(tmpwin, PICK_ANY, &pick_list)) > 0) {
