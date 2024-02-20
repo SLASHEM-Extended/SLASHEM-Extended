@@ -1348,6 +1348,26 @@ register struct obj *gold;
 			   goldreqd = 100L;
 			else if (mtmp->data == &mons[PM_VANGUARD_TROOPER])
 			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_INFANTRY_RECRUIT])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_LEGIONARY_GRUNT])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_MILITANT_TROOPER])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_RIFLEMAN_PRIVATE])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_FOOTMAN_CONSCRIPT])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_GUARDSMAN_TRAINEE])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_FUSILIER_ROOKIE])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_SPEARMAN_RECRUIT])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_ARCHER_CADET])
+			   goldreqd = 100L;
+			else if (mtmp->data == &mons[PM_KUNG_FU_JESTER])
+			   goldreqd = 100L;
 			else if (mtmp->data == &mons[PM_SWAMP_SOLDIER])
 			   goldreqd = 100L;
 			else if (mtmp->data == &mons[PM_JAVA_SOLDIER])

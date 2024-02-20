@@ -15036,7 +15036,7 @@ boolean knoweverything;
 			case GRIM_SHIELD:
 				pline("A reasonably good shield that gives a point of magic cancellation and can even be used when you're equipped with a two-handed weapon or using two weapons at once."); break;
 			case LARGE_SHIELD:
-				pline("A shield made of iron with a very good armor value."); break;
+				pline("A shield made of iron with mediocre armor value and 2 points of magic cancellation."); break;
 			case DWARVISH_ROUNDSHIELD:
 				pline("This shield offers very good protection."); break;
 			case FLAME_SHIELD:

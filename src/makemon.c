@@ -1800,6 +1800,58 @@ register struct monst *mtmp;
 			  m_initthrow(mtmp, ARROW, 20);
 			  w2 = rn2(2) ? SPEAR : BROADSWORD;
 			  break;
+			case PM_INFANTRY_RECRUIT:
+			  w1 = FLINTLOCK;
+			  m_initthrow(mtmp, PISTOL_BULLET, 20);
+			  w2 = SHORT_SWORD;
+			  break;
+			case PM_LEGIONARY_GRUNT:
+			  w2 = LONG_SWORD;
+			  break;
+			case PM_MILITANT_TROOPER:
+			  w1 = PISTOL;
+			  m_initthrow(mtmp, PISTOL_BULLET, 20);
+			  w2 = BROADSWORD;
+			  break;
+			case PM_RIFLEMAN_PRIVATE:
+			  w1 = RIFLE;
+			  m_initthrow(mtmp, RIFLE_BULLET, 25);
+			  w2 = KNIFE;
+			  break;
+			case PM_FOOTMAN_CONSCRIPT:
+			  w1 = BOW;
+			  m_initthrow(mtmp, ARROW, 20);
+			  (void) mongets(mtmp, STUDDED_LEATHER_ARMOR);
+			  w2 = SCIMITAR;
+			  break;
+			case PM_GUARDSMAN_TRAINEE:
+			  w1 = rnd_class(PARTISAN,BEC_DE_CORBIN);
+			  (void) mongets(mtmp, STANDARD_HELMET);
+			  w2 = IRON_SABER;
+			  break;
+			case PM_FUSILIER_ROOKIE:
+			  m_initthrow(mtmp, DART, 20);
+			  (void) mongets(mtmp, BUCKLER);
+			  w2 = CANE;
+			  break;
+			case PM_SPEARMAN_RECRUIT:
+			  m_initthrow(mtmp, JAVELIN, 3);
+			  w2 = SPEAR;
+			  break;
+			case PM_ARCHER_CADET:
+			  w1 = BOW;
+			  m_initthrow(mtmp, ARROW, 20);
+			  m_initthrow(mtmp, ARROW, 20);
+			  w2 = MORNING_STAR;
+			  (void) mongets(mtmp, HIGH_BOOTS);
+			  break;
+			case PM_KUNG_FU_JESTER:
+			  w1 = SLING;
+			  m_initthrow(mtmp, rnd_class(DILITHIUM_CRYSTAL,LUCKSTONE-1), 4);
+			  w2 = rnd_class(WEDGED_LITTLE_GIRL_SANDAL,PROSTITUTE_SHOE);
+			  (void) mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
+			  break;
+
 			case PM_SHADOW_COMMANDO:
 			  m_initthrow(mtmp, SHURIKEN, 30);
 			  w2 = DARKNESS_CLUB;
@@ -4309,7 +4361,7 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, PISTOL);
 		     (void)mongets(mtmp, KNIFE);
 			 m_initthrow(mtmp, PISTOL_BULLET, 50);
-			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,COMBAT_STILETTOS));
+			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
 
 		   break;
 
@@ -4338,8 +4390,8 @@ register struct monst *mtmp;
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		     if (!rn2(400)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 
-			(void) mongets(mtmp, rnd_class(WEDGED_LITTLE_GIRL_SANDAL,SPIKED_BATTLE_BOOT));
-			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,COMBAT_STILETTOS));
+			(void) mongets(mtmp, rnd_class(WEDGED_LITTLE_GIRL_SANDAL,PROSTITUTE_SHOE));
+			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
 
 		   break;
 
@@ -4371,7 +4423,7 @@ register struct monst *mtmp;
 		     (void)mongets(mtmp, KNIFE);
 		     (void)mongets(mtmp, RIFLE);
 			 m_initthrow(mtmp, RIFLE_BULLET, 50);
-			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,COMBAT_STILETTOS));
+			(void) mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
 
 		   break;
 
@@ -9621,7 +9673,17 @@ register struct	monst	*mtmp;
 			case PM_YAMATO_LIEUTENANT: mac = -2; break;
 			case PM_CARTHAGE_LIEUTENANT: mac = -2; break;
 			case PM_ROMAN_LIEUTENANT: mac = -2; break;
+			case PM_KUNG_FU_JESTER: mac = 3; break;
 			case PM_VANGUARD_TROOPER: mac = 3; break;
+			case PM_INFANTRY_RECRUIT: mac = 3; break;
+			case PM_LEGIONARY_GRUNT: mac = 3; break;
+			case PM_MILITANT_TROOPER: mac = 3; break;
+			case PM_RIFLEMAN_PRIVATE: mac = 3; break;
+			case PM_FOOTMAN_CONSCRIPT: mac = 3; break;
+			case PM_GUARDSMAN_TRAINEE: mac = 3; break;
+			case PM_FUSILIER_ROOKIE: mac = 3; break;
+			case PM_SPEARMAN_RECRUIT: mac = 3; break;
+			case PM_ARCHER_CADET: mac = 3; break;
 			case PM_SHADOW_COMMANDO: mac = 0; break;
 			case PM_ELITE_SENTINEL: mac = -1; break;
 			case PM_IRONCLAD_WARRIOR: mac = -3; break;
@@ -10485,6 +10547,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_WRIST_TENGU]) (void) mongets(mtmp, LOWER_ARM_BLADE);
 		if (mtmp->data == &mons[PM_EASTERN_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_UNLUCKY_GIRL]) (void) mongets(mtmp, DOGSHIT_BOOT);
+		if (mtmp->data == &mons[PM_DAITENGU]) (void) mongets(mtmp, TWO_HANDED_SWORD);
 
 		if (ptr == &mons[PM_ARENA_IMP]) {
 			(void) mongets(mtmp, SLING);
@@ -21576,6 +21639,12 @@ loveheelover:
 
 	}
 
+	if (ptr == &mons[PM_KOTENGU]) {
+
+		mtmp->crapbonus += 10;
+
+	}
+
 	if (ptr == &mons[PM_KEIKI__AKA_AKA]) {
 
 		mtmp->crapbonus += 20;
@@ -28309,8 +28378,16 @@ int
 mbirth_limit(mndx)
 int mndx;
 {
-	/* assert(MAXMONNO < 255); */
-	return (mndx == PM_NAZGUL ? 9 : mndx == PM_ERINYS ? 3 : MAXMONNO); 
+	if (mndx == PM_NAZGUL) return 9;
+	if (mndx == PM_ERINYS) return 3;
+	if (mndx == PM_UBEROID_ERINYS) return 3;
+	if (mndx == PM_UBER_ERINYS) return 3;
+	if (mndx == PM_GIGANTO_ERINYS) return 3;
+	if (mndx == PM_ERROR_ERINYS) return 3;
+	if (mndx == PM_ENVIOUS_ERINYS) return 3;
+
+	return MAXMONNO;
+
 }
 
 /* used for wand/scroll/spell of create monster */
