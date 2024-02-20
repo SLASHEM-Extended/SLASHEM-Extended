@@ -11618,6 +11618,7 @@ u_init()
 	u.sweatyshoetimer = 0;
 	u.stonedchilltimer = 0;
 	u.moneydebt = 0;
+	u.superdebt = 0;
 	u.havebeeninludios = 0;
 	u.maxrndmonstchoicecount = 0;
 

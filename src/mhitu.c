@@ -9856,8 +9856,8 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
-		u.moneydebt += ((dmg + 2) * rnd(100));
-		You("have to pay %d zorkmids to the bank.", u.moneydebt);
+		addplayerdebt((dmg + 2) * rnd(100), FALSE);
+		You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
 
 		break;
 
@@ -12643,8 +12643,8 @@ do_stone2:
 
 	    case AD_DEBT:
 
-		u.moneydebt += ((tmp + 2) * rnd(100));
-		You("have to pay %d zorkmids to the bank.", u.moneydebt);
+		addplayerdebt((tmp + 2) * rnd(100), FALSE);
+		You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
 
 		break;
 
@@ -15207,8 +15207,8 @@ common:
 
 	    case AD_DEBT:
 
-		u.moneydebt += ((tmp + 2) * rnd(100));
-		You("have to pay %d zorkmids to the bank.", u.moneydebt);
+		addplayerdebt((tmp + 2) * rnd(100), FALSE);
+		You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
 	      mdamageu(mtmp, tmp);
 
 		break;
@@ -17867,8 +17867,8 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			pline("%s looks like a tax-a-driver!", Monnam(mtmp));
 			stop_occupation();
-			u.moneydebt += ((dmgplus + 2) * rnd(100));
-			You("have to pay %d zorkmids to the bank.", u.moneydebt);
+			addplayerdebt((dmgplus + 2) * rnd(100), FALSE);
+			You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
 		}
 
 		break;
@@ -22073,8 +22073,8 @@ singcleaning()
 					u.ugold -= 50;
 					pline("Sing takes your 50 euros and hands you a new can of shoe polish.");
 				} else {
-					u.moneydebt += 50;
-					pline("Your debts have increased by 50 euros and amount to %d now, and Sing hands you a new can of shoe polish.", u.moneydebt);
+					addplayerdebt(50, TRUE);
+					pline("Your debts have increased by 50 euros and amount to %d now, and Sing hands you a new can of shoe polish.", u.moneydebt + u.superdebt);
 				}
 
 			} else {

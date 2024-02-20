@@ -5764,7 +5764,8 @@ tunguskaagain:
 
 		if (obj->oartifact == ART_STRANGE_LILCHEN) {
 			if (obj->obrittle || obj->obrittle2) {
-				u.moneydebt += 10000; /* be lenient if you don't have the required cash out in the open --Amy */
+				/* be lenient if you don't have the required cash out in the open --Amy */
+				addplayerdebt(10000, TRUE); /* cannot resist, cannot get the money back */
 				obj->obrittle = obj->obrittle2 = 0;
 				Your("credit card is repaired, but that costs 10000 zorkmids.");
 			}

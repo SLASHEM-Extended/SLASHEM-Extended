@@ -15089,7 +15089,7 @@ callingoutdone:
 				int tenth;
 				tenth = u.ugold + hidden_gold();
 				if (tenth > 0 && (u.moneydebt < tenth) ) {
-					u.moneydebt += tenth;
+					addplayerdebt(tenth, FALSE);
 					You("have to pay all of your money to the bank.");
 				} else {
 					You("are already bankrupt.");
@@ -15324,7 +15324,7 @@ callingoutdone:
 				if (tenth > 0 && (u.moneydebt < tenth) ) {
 					tenth /= 10;
 					if (tenth < 1) tenth = 1;
-					u.moneydebt += tenth;
+					addplayerdebt(tenth, FALSE);
 					You("have to pay one tenth of your money to the bank.");
 				} else {
 					You("don't have to pay tax.");
@@ -15338,8 +15338,8 @@ callingoutdone:
 			You("stepped on a trigger!");
 			seetrap(trap);
 
-			u.moneydebt += ((level_difficulty() + 2) * rnd(100));
-			You("have to pay %d zorkmids to the bank.", u.moneydebt);
+			addplayerdebt((level_difficulty() + 2) * rnd(100), FALSE);
+			You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
 
 			break;
 

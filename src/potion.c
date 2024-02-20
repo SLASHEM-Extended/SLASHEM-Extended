@@ -7923,6 +7923,18 @@ shadowprotection()
 	return FALSE;
 }
 
+void
+addplayerdebt(debtamount, guaranteed)
+int debtamount;
+boolean guaranteed;
+{
+	if (guaranteed) {
+		u.superdebt += debtamount;
+	} else {
+		u.moneydebt += debtamount;
+	}
+}
+
 int
 irisartiboost()
 {

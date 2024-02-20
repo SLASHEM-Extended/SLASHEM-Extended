@@ -217,7 +217,11 @@ register struct monst *mtmp;
 	/* This isn't _that_ much better than the old way, but it removes
 	 * the trivial case of people being able to bribe demons with 
 	 * 10 gold pieces to bypass him.  You can still carry lots of gold,
-	 * of course, but at least now you have to lug it with you. */
+	 * of course, but at least now you have to lug it with you.
+	 * Amy edit: if you're a smart game developer like me, you figure out a way for the player to pay with stashed gold
+	 * so you no longer accidentally anger the lord just because you forgot to take the stupid gold out first :P
+	 * (like, did it really require someone with such a high IQ as myself to have such an obvious idea that should
+	 * really be a no-brainer to everyone who has ever interacted with one of those lords????) */
 
 	cash = rnz(15000);
 	if (isfriday) cash *= 2;
@@ -225,28 +229,34 @@ register struct monst *mtmp;
 	demand = (cash * (rnd(80) + 20 * Athome)) /
 	    (100 * (1 + (sgn(u.ualign.type) == sgn(mtmp->data->maligntyp))));
 
-/*	if (!demand) {		 you have no gold */
+	/* always make a demand, even if you have no gold, because you can pay with money in your container --Amy */
+	{
+		int tenth;
+		tenth = u.ugold + hidden_gold();
+		if (u.moneydebt) tenth -= u.moneydebt;
+		if (u.superdebt) tenth -= u.superdebt;
+		if (tenth < 0) tenth = 0;
+		if (tenth > (u.ugold + hidden_gold()) ) tenth = 0; /* fail safe for overflows */
 
-	if (
-#ifndef GOLDOBJ
-			u.ugold == 0
-#else
-			money_cnt(invent) == 0
-#endif
-			) {						  /* you have no gold */
-
-	    mtmp->mpeaceful = 0;
-	    set_malign(mtmp);
-	    return 0;
-	} else {
 	    /* make sure that the demand is unmeetable if the monster
 	       has the Amulet, preventing monster from being satisified
 	       and removed from the game (along with said Amulet...) */
 	    if (mon_has_amulet(mtmp))
-		demand = cash + 9999999;
+		demand = cash + 99999999;
 
 	    pline("%s demands %ld %s for safe passage.",
 		  Amonnam(mtmp), demand, currency(demand));
+
+	    /* it's ultra dumb if you have to carry the money out in the open! be able to pay with money in a box! --Amy */
+	    if ((u.ugold < demand) && (tenth >= demand)) {
+		pline("%s offers you a deal to pay off the demand of %ld %s later when you can afford it.", Amonnam(mtmp), demand, currency(demand) );
+		if (yn("Accept the deal?") == 'y') {
+			addplayerdebt(demand, TRUE);
+			pline("%s vanishes, laughing about cowardly mortals.", Amonnam(mtmp));
+			mongone(mtmp);
+			return(1);
+		}
+	    }
 
 	    if ((offer = bribe(mtmp)) >= demand) {
 		pline("%s vanishes, laughing about cowardly mortals.",

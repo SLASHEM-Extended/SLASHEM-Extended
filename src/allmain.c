@@ -16519,8 +16519,22 @@ past4:
 			u.bankcashamount += debtamount;
 			u.moneydebt = 0;
 		}
-		if (!u.moneydebt) Your("debt has been erased.");
-		else You("paid some of your debts, but still have to pay %d zorkmids.", u.moneydebt);
+		if (!u.moneydebt && !u.superdebt) Your("debt has been erased.");
+		else You("paid some of your debts, but still have to pay %d zorkmids.", (u.moneydebt + u.superdebt) );
+	}
+
+	/* superdebt is like regular debt but unresistable and the money is paid "to the void" as opposed to a bank --Amy */
+	if (u.superdebt && u.ugold) {
+		int debtamount = u.superdebt;
+		if (u.ugold < debtamount) {
+			u.superdebt -= u.ugold;
+			u.ugold = 0;
+		} else {
+			u.ugold -= debtamount;
+			u.superdebt = 0;
+		}
+		if (!u.moneydebt && !u.superdebt) Your("debt has been erased.");
+		else You("paid some of your debts, but still have to pay %d zorkmids.", (u.moneydebt + u.superdebt) );
 	}
 
 	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || autismweaponcheck(ART_THROW_ALL_THE_CASH_AWAY) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {

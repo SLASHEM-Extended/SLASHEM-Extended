@@ -12247,8 +12247,8 @@ boolean ranged;
 
 	    case AD_DEBT:
 
-		u.moneydebt += ((tmp + 2) * rnd(100));
-		You("have to pay %d zorkmids to the bank.", u.moneydebt);
+		addplayerdebt((tmp + 2) * rnd(100), FALSE);
+		You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
 		break;
 
 	    case AD_WNCE:

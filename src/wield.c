@@ -2412,9 +2412,9 @@ register struct obj *obj;
 boolean put_away;
 {
     if (obj && obj->oartifact == ART_HYPER_INTELLIGENCE) {
-	if (u.moneydebt < 10000000) { /* filthy exploit exploiter who thinks he can overflow the counter! FU! --Amy */
-		u.moneydebt += rnd(100);
-		Your("debts have increased to %d because you're not allowed to put this weapon away.", u.moneydebt);
+	if (u.superdebt < 10000000) { /* filthy exploit exploiter who thinks he can overflow the counter! FU! --Amy */
+		addplayerdebt(rnd(100), TRUE);
+		Your("debts have increased to %d because you're not allowed to put this weapon away.", u.moneydebt + u.superdebt);
 	}
     }
 
