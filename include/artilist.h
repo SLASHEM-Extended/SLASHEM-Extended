@@ -18615,15 +18615,15 @@ A("Car Safety",				SEATBELT_SADDLE, /* if the ridden monster is a MS_CAR, chance
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Implantology",				RUGGED_SACK, /* contains d3 random implants */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Venostash",				RUGGED_SACK, /* contains d5 random venoms */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Spellibrary",				RUGGED_SACK, /* contains d3 random spellbooks */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 A("Make-Ace",				RUGGED_SACK, /* when wielded, increase damage by rn1(4,5) but only for melee attacks */
