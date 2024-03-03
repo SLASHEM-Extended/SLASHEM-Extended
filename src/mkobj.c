@@ -3764,8 +3764,8 @@ boolean shopinit;
 	case SPBOOK_CLASS:
 		/* WAC charged books are easier to read */
 		if (otmp->otyp != SPE_BOOK_OF_THE_DEAD) {
-			if (!rn2(3)) otmp->spe = rnd(ishaxor ? 10 : 5);
-			else if (rn2(5)) otmp->spe = rnd(ishaxor ? 6 : 3);
+			if (!rn2(2)) otmp->spe = rnd(ishaxor ? 10 : 5);
+			else if (rn2(8)) otmp->spe = rnd(ishaxor ? 6 : 3);
 			else otmp->spe = rnd(ishaxor ? 4 : 2);
 			if (!rn2(10)) otmp->spe -= rnd(4);
 		}
@@ -3775,7 +3775,7 @@ boolean shopinit;
 		}
 
 		otmp->recharged = 0;
-		if(!rn2(3)) otmp->recharged = rnd(7);
+		if(!rn2(5)) otmp->recharged = rnd(7);
 		blessorcurse_on_creation(otmp, 17);
 
 		if (!rn2(achieve.get_amulet ? 50 : 200)) otmp->oerodeproof = 1;

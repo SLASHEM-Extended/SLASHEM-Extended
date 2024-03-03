@@ -244,10 +244,9 @@ struct obj *spellbook;
 {
 	boolean gone = FALSE;
 
-	if (!rn2(5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+	if (!rn2(50) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 	    spellbook->in_use = TRUE;	/* in case called from learn */
-	    pline(
-	"Being confused you have difficulties in controlling your actions.");
+	    pline("Being confused you have difficulties in controlling your actions.");
 	    display_nhwindow(WIN_MESSAGE, FALSE);
 	    You("accidentally tear the spellbook to pieces.");
 	    if (!objects[spellbook->otyp].oc_name_known &&
@@ -2117,7 +2116,7 @@ learn()
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
 
-	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 100 : 10) ) {		/* became confused while learning */
+	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 500 : 50) ) {		/* became confused while learning */
 
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
@@ -2658,7 +2657,7 @@ register struct obj *spellbook;
 
 		    }
 		    delay = 0;
-		    if(gone || (spellbook->spe < 0) || !rn2(3)) {
+		    if(gone || (spellbook->spe < 0) || !rn2(5)) {
 			if (!gone && !(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook crumbles to dust!");
 			else if (!(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook has been destroyed.");
 			if (!objects[spellbook->otyp].oc_name_known &&
@@ -2669,7 +2668,7 @@ register struct obj *spellbook;
 		    } else
 			spellbook->in_use = FALSE;
 		    return(1);
-		} else if (confused && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 50 : 5) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+		} else if (confused && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 250 : 50) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 		    if (!confused_book(spellbook)) {
 			spellbook->in_use = FALSE;
 		    }
