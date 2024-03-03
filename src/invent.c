@@ -11883,6 +11883,8 @@ boolean knoweverything;
 				pline("A strong flail that does good damage and has good to-hit. It can be applied to bash iron bars."); break;
 			case WAR_HAMMER: 
 				pline("A relatively weak hammer."); break;
+			case BALLPEEN_HAMMER: 
+				pline("A very weak hammer."); break;
 			case MARBLE_CHUNK:
 				pline("This massive one-handed hammer deals quite good damage."); break;
 			case SLEDGE_HAMMER:
@@ -17204,7 +17206,9 @@ boolean knoweverything;
 			case OILSKIN_SACK:
 				pline("A useful container that protects its contents from water."); break;
 			case POTATO_BAG:
-				pline("The 'Kartoffelsack' is just a regular sack, but it usually spawns with a musable item inside."); break;
+				pline("The 'Kartoffelsack' is just a regular sack, but it usually spawns with a musable item inside and occasionally also contains other useful stuff."); break;
+			case RUGGED_SACK:
+				pline("The 'Rucksack' is just a regular sack, but it usually spawns with one or more randomized items inside."); break;
 			case BAG_OF_HOLDING: 
 				pline("Items that are in this container have an altered weight. Be careful - nesting bags of holding will cause them to explode, and there are certain items that may not be put in either."); break;
 			case BAG_OF_DIGESTION: 
@@ -17425,6 +17429,8 @@ boolean knoweverything;
 				pline("This saddle can be applied to put it on a monster, and if the monster is a pet you can then ride it. The special effect of this type of saddle is that the pet gains 3 points of AC and you gain one."); break;
 			case MESH_SADDLE:
 				pline("Saddle your pet with this saddle in order to be able to ride it. This particular type of saddle provides MC1 while riding, just in case you're not wearing any MC-granting equipment."); break;
+			case SEATBELT_SADDLE:
+				pline("This saddle has to be applied to a monster if you want to ride it; in most cases, the monster has to be tame so that you can actually ride it. Due to the seatbelt, you're much less likely to fall off your steed while riding."); break;
 			case UNSTABLE_STETHOSCOPE:
 				pline("A stethoscope that occasionally reveals more information."); break;
 			case LEATHER_LEASH:
@@ -30486,6 +30492,74 @@ boolean knoweverything;
 					pline("Artifact specs: food appraisal when worn."); break;
 				case ART_KEISERTOWN_GARDEN:
 					pline("Artifact specs: eating it will cure inertia, guaranteed, no matter how long it would have lasted."); break;
+				case ART_UMBIRE_S_MICERY:
+					pline("Artifact specs: +2 damage."); break;
+				case ART_SQUIRTEMIN:
+					pline("Artifact specs: hitting a monster with it will blind it if it fails a resistance check."); break;
+				case ART_BURGLED_NIGHT_SCYTHE:
+					pline("Artifact specs: +12 damage, makes areas dark if you hit something, dark mode and can also be applied at squares that you cannot see."); break;
+				case ART_RULES_MAKE_SENSE:
+					pline("Artifact specs: makes it even more likely that you manage to stay mounted if something tries to dismount you."); break;
+				case ART_CAR_SAFETY:
+					pline("Artifact specs: if you put this saddle on a monster that counts as a car, then the saving throw when something tries to dismount you is guaranteed to succeed."); break;
+				case ART_IMPLANTOLOGY:
+					pline("Artifact specs: contains some implants."); break;
+				case ART_VENOSTASH:
+					pline("Artifact specs: contains some venoms."); break;
+				case ART_SPELLIBRARY:
+					pline("Artifact specs: contains some spellbooks."); break;
+				case ART_MAKE_ACE:
+					pline("Artifact specs: wielding it increases your melee damage output by 5-8, which is most useful if you're dual-wielding because it'll apply to your off-hand weapon too."); break;
+				case ART_GAYIFIED:
+					pline("Artifact specs: makes you very fast when worn. Based on the variant that calls itself 3.7 where blue dragon scale mail somehow grants speed even though blue dragons are not associated with that property."); break;
+				case ART_THEY_RE_INTO_SOME_KINKY_ST:
+					pline("Artifact specs: drain resistance when worn. Based on the variant that calls itself 3.7 where black dragon scale mail somehow grants drain resistance even though black dragons are not associated with that property."); break;
+				case ART_DOUBLEGREEN_WARD:
+					pline("Artifact specs: sickness resistance when worn. Based on the variant that calls itself 3.7 where green dragon scale mail somehow grants sickness resistance even though green dragons are not associated with that property."); break;
+				case ART_BLINGEYE:
+					pline("Artifact specs: hallucination resistance when worn. Based on the variant that calls itself 3.7 where golden dragon scale mail somehow grants hallucination resistance even though golden dragons are not associated with that property."); break;
+				case ART_THEY_SMOKED_POT_:
+					pline("Artifact specs: free action when worn. Based on the variant that calls itself 3.7 where orange dragon scale mail somehow grants free action even though orange dragons are not associated with that property."); break;
+				case ART_VISIBILITY_INVERTED:
+					pline("Artifact specs: infravision when worn. Based on the variant that calls itself 3.7 where red dragon scale mail somehow grants infravision even though red dragons are not associated with that property."); break;
+				case ART_OMG_UBER_IMBA___:
+					pline("Artifact specs: slow digestion when worn. Based on the variant that calls itself 3.7 where white dragon scale mail somehow grants slow digestion even though white dragons are not associated with that property."); break;
+				case ART_HOHO_WE_R_TEH_L__T_PROGRAM:
+					pline("Artifact specs: stone resistance when worn. Based on the variant that calls itself 3.7 where yellow dragon scale mail somehow grants stone resistance even though yellow dragons are not associated with that property."); break;
+				case ART_MAKE_IT_EASY:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_LIKE_A_ROCK_IN_THE_WAVE:
+					pline("Artifact specs: while wearing it, random bad effects fail to affect you half of the time."); break;
+				case ART_THEY_WON_T_SEE_ME___:
+					pline("Artifact specs: while worn, monsters occasionally act as if they were short-sighted because you're harder to see with those very dark-colored scales."); break;
+				case ART_VERY_SEXUAL:
+					pline("Artifact specs: mystery resistance when worn. Yeah, this artifact should have had some effect associated with BDSM but I just couldn't think of any. Sorry."); break;
+				case ART_OGROTIC_CHANT:
+					pline("Artifact specs: fire immunity when worn."); break;
+				case ART_WELL_AT_LEAST_THE_AC_IS_GO:
+					pline("Artifact specs: 10 extra points of AC when worn."); break;
+				case ART_PORKSTA_S_CHANCE:
+					pline("Artifact specs: ESP when worn."); break;
+				case ART_DURANIUM:
+					pline("Artifact specs: acts as a luckstone when worn."); break;
+				case ART_GLIEIEAROUN:
+					pline("Artifact specs: energy regeneration when worn."); break;
+				case ART_PUMP_TOO_LATE:
+					pline("Artifact specs: regeneration when worn."); break;
+				case ART_WHOA_THAT_S_THE_ONE_:
+					pline("Artifact specs: 30 extra points of AC, jette and rosa trap effects when worn."); break;
+				case ART_DEATH_IS_OVERRATED_ANYWAY:
+					pline("Artifact specs: death resistance when worn."); break;
+				case ART_CUDDLE_CHALLENGE:
+					pline("Artifact specs: gudrun trap effect when worn."); break;
+				case ART_ICE_FROM_THE_NORTH:
+					pline("Artifact specs: ella trap effect when worn."); break;
+				case ART_FROM_MASHHAD_TO_AHVAZ:
+					pline("Artifact specs: yasaman trap effect when worn."); break;
+				case ART_CAUTERIZER:
+					pline("Artifact specs: +4 to-hit and +8 fire damage, lawful."); break;
+				case ART_LOGGERS_S_OVERKILL:
+					pline("Artifact specs: +7 damage, waterwalking and magical breathing when wielded."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -110,7 +110,7 @@ boolean
 can_saddle(mtmp)
 	struct monst *mtmp;
 {
-	if (!issoviet) return 1; /*just remove all those annoying restrictions and allow everything to be saddled --Amy*/
+	if (!issoviet) return 1; /* just remove all those annoying restrictions and allow everything to be saddled --Amy */
 	struct permonst *ptr = mtmp->data;
 
 	return (index(steeds, ptr->mlet) && (ptr->msize >= MZ_MEDIUM) &&
@@ -121,33 +121,39 @@ can_saddle(mtmp)
 
 /* high skill should allow the player to have a saving throw against falling off --Amy
  * not all instances of falling off the steed will allow you to do this though, and since I follow the rule that no skills
- * may make things harder for you, you'll always have a chance of falling off anyway (hint: cursed saddle).
+ * may make things harder for you, you'll always have a chance of falling off anyway just in case you specifically WANT
+ * to be thrown off the steed (hint: cursed saddle and player would want to unmount but cannot).
  * returns 0 if the player failed the check and will fall off, 1 if the saving throw was successful and you stay mounted */
 boolean
 mayfalloffsteed()
 {
 	int ridesavingthrow = 0;
+	int spcsavingthrow = 0;
 	char buf[BUFSZ];
 
-	if (PlayerCannotUseSkills) goto skillcheckdone;
+	if (opelride(SEATBELT_SADDLE)) {
+		spcsavingthrow = 75;
+		if (bmwride(ART_RULES_MAKE_SENSE)) spcsavingthrow = 90;
+		if (bmwride(ART_CAR_SAFETY) && u.usteed && u.usteed->data->msound == MS_CAR) spcsavingthrow = 100;
+	}
 
-	if (Race_if(PM_PERVERT)) {
-		switch (P_SKILL(P_RIDING)) {
-
-			case P_SKILLED: ridesavingthrow = 56; break;
-			case P_EXPERT: ridesavingthrow = 67; break;
-			case P_MASTER: ridesavingthrow = 89; break;
-			case P_GRAND_MASTER: ridesavingthrow = 96; break;
-			case P_SUPREME_MASTER: ridesavingthrow = 101; break;
-		}
-	} else {
-		switch (P_SKILL(P_RIDING)) {
-
-			case P_SKILLED: ridesavingthrow = 11; break;
-			case P_EXPERT: ridesavingthrow = 34; break;
-			case P_MASTER: ridesavingthrow = 76; break;
-			case P_GRAND_MASTER: ridesavingthrow = 91; break;
-			case P_SUPREME_MASTER: ridesavingthrow = 101; break;
+	if (!PlayerCannotUseSkills) {
+		if (Race_if(PM_PERVERT)) {
+			switch (P_SKILL(P_RIDING)) {
+				case P_SKILLED: ridesavingthrow = 56; break;
+				case P_EXPERT: ridesavingthrow = 67; break;
+				case P_MASTER: ridesavingthrow = 89; break;
+				case P_GRAND_MASTER: ridesavingthrow = 96; break;
+				case P_SUPREME_MASTER: ridesavingthrow = 101; break;
+			}
+		} else {
+			switch (P_SKILL(P_RIDING)) {
+				case P_SKILLED: ridesavingthrow = 11; break;
+				case P_EXPERT: ridesavingthrow = 34; break;
+				case P_MASTER: ridesavingthrow = 76; break;
+				case P_GRAND_MASTER: ridesavingthrow = 91; break;
+				case P_SUPREME_MASTER: ridesavingthrow = 101; break;
+			}
 		}
 	}
 
@@ -155,11 +161,11 @@ skillcheckdone:
 
 	if (Role_if(PM_JOCKEY)) ridesavingthrow += ((100 - ridesavingthrow) / 2);
 
-	if (ridesavingthrow > 0) {
+	if ((ridesavingthrow > 0) || (spcsavingthrow > 0)) {
 		getlin ("Uh-oh! You're about to fall off your steed! Attempt a saving throw? [y/yes/no]",buf);
 		(void) lcase (buf);
 		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) {
-			if (ridesavingthrow > rnd(100)) {
+			if ((ridesavingthrow > rnd(100)) || (spcsavingthrow > rnd(100)) ) {
 				pline("Success! You've managed to stay mounted.");
 				return TRUE;
 			} else {

@@ -657,6 +657,33 @@ struct obj *box;
 
 		n = (ishaxor ? rnd(2) : rn2(2)); break;
 		break;
+
+	case RUGGED_SACK:
+
+		/* any random class from WEAPON_CLASS to VENOM_CLASS */
+		otmp = mkobj(WEAPON_CLASS + rn2(17), TRUE, FALSE);
+		if (otmp) {
+			otmp->owt = weight(otmp);
+			(void) add_to_container(box, otmp, TRUE);
+		}
+		if (rn2(3)) {
+			otmp = mkobj(WEAPON_CLASS + rn2(17), TRUE, FALSE);
+			if (otmp) {
+				otmp->owt = weight(otmp);
+				(void) add_to_container(box, otmp, TRUE);
+			}
+			if (rn2(2)) {
+				otmp = mkobj(WEAPON_CLASS + rn2(17), TRUE, FALSE);
+				if (otmp) {
+					otmp->owt = weight(otmp);
+					(void) add_to_container(box, otmp, TRUE);
+				}
+			}
+		}
+
+		n = (ishaxor ? rnd(2) : rn2(2)); break;
+		break;
+
 	case MEDICAL_KIT:
 		n = (ishaxor ? 120 : 60);
 		/* Initial inventory, no empty medical kits */
@@ -3300,6 +3327,7 @@ boolean shopinit;
 		case OILSKIN_SACK:
 		case TITAN_SACK:
 		case POTATO_BAG:
+		case RUGGED_SACK:
 		case HANDYBAG:
 		case BAG_OF_HOLDING:
 		case MEDICAL_KIT:

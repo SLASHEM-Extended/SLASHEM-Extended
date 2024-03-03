@@ -851,6 +851,9 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"I just realized that my alarm clock will ring tomorrow at 11 o'clock which is exactly 11 hours and 11 minutes from now!",
 	"Dear missy <3, did you know that the only reason I ordered your beautiful shoes is because I want to scratch up and down my legs with the tender stiletto heels again and again, very painfully?",
 	"My soul has suffered from a seemingly irreparable rift when I was eleven. It took 26 years for that rift to finally heal, but it happened.",
+	"If it's possible to be prejudiced, it should also be possible to be afterjudiced.",
+	"Life is too short to be anything but happy.",
+	"Life is too short and since you have to work many many hours per day just to be able to pay the rent and other stuff, it's even shorter! Damn!",
 
 };
 

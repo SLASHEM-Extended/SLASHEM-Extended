@@ -7191,6 +7191,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
 	if (uarm && uarm->oartifact == ART_ROCKET_IMPULSE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_STRONG_ENCHANTMENT) uac -= 10;
+	if (uarm && uarm->oartifact == ART_WHOA_THAT_S_THE_ONE_) uac -= 30;
 	if (uamul && uamul->oartifact == ART_GIT_DE_PRO) uac -= 2;
 	if (uarm && uarm->oartifact == ART_THIS_DEMO_IS_UNINSPIRED) uac -= 5;
 	if (uarm && uarm->oartifact == ART_JACK_IT_JACKET) uac -= objects[uarm->otyp].a_ac;
@@ -7199,6 +7200,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_WELL_AT_LEAST_THE_AC_IS_GO) uac -= 10;
 	if (uarmg && uarmg->otyp == BRACERS_OF_DEFENSE) uac -= (u.ulevel / 6);
 	if (uarmc && uarmc->oartifact == ART_HERACLES_PRIZE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ENCHANTED_SUPERSPANDEX) uac -= 5;

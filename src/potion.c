@@ -2012,7 +2012,7 @@ playerextrinsicstoneres()
 	if ((uwep && uwep->oartifact == ART_HERITAGE_DIGGER) || (uarm && uarm->oartifact == ART_LU_NONNAME) || (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR) || (uarmf && uarmf->oartifact == ART_AS_STRONG_AS_BOOTS) || (uwep && uwep->oartifact == ART_RESIST_AGAINST_ITS_DAMAGE) || (uarmf && uarmf->oartifact == ART_PLAYING_ANASTASIA) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uarms && uarms->oartifact == ART_AEGIS)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_CORINA_S_UNFAIR_SCRATCHER) || (uwep && uwep->oartifact == ART_STAHNGNIR_S_GIANT_CRUSHER) || (uarmf && uarmf->oartifact == ART_SANDALMENS && !flags.female) || (uarmf && uarmf->oartifact == ART_PRETTY_ROOMMAID) || (uarmf && uarmf->oartifact == ART_NASTIST) || (uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER) || (uarmh && uarmh->oartifact == ART_JESTES_TAKA_KURWA)) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_YET_ANOTHER_STUPID_IDEA) || (uwep && uwep->oartifact == ART_HELIOKOPIS_S_WIZARDING_AID) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uarmf && uarmf->oartifact == ART_STONEWALL_CHECKERBOARD_DIS) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) || (uwep && uwep->oartifact == ART_SWORD_OF_BHELEU) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD)) return TRUE;
-	if ((uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uarmg && uarmg->oartifact == ART_RED_CORDS_OF_ILMATER) || (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmf && uarmf->oartifact == ART_SANDRA_S_MEGAPOWER) || (uwep && uwep->oartifact == ART_FIGURINE_OF_PYGMALION) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS)) return TRUE;
+	if ((uarmc && uarmc->oartifact == ART_INA_S_SORROW && u.uhunger < 0) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uarmg && uarmg->oartifact == ART_RED_CORDS_OF_ILMATER) || (uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmf && uarmf->oartifact == ART_SANDRA_S_MEGAPOWER) || (uwep && uwep->oartifact == ART_FIGURINE_OF_PYGMALION) || (uarm && uarm->oartifact == ART_HOHO_WE_R_TEH_L__T_PROGRAM) || (uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS)) return TRUE;
 
 	return FALSE;
 }
@@ -2031,7 +2031,7 @@ playerextrinsicfreeaction()
 	if ((uarm && uarm->oartifact == ART_OKAY__YOU_WIN_ && uwep && objects[(uwep)->otyp].oc_material == MT_COPPER) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FREE_FOR_ENOUGH) || (uarmf && uarmf->oartifact == ART_MANDY_S_ROUGH_BEAUTY) || (uarmf && uarmf->oartifact == ART_WAITING_TIMEOUT) || (uamul && uamul->oartifact == ART_BALLSY_BASTARD) || tech_inuse(T_POWERFUL_AURA) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || (uwep && uwep->oartifact == ART_SOURCE_CODES_OF_WORK_AVOID) || (uwep && uwep->oartifact == ART_BLU_TOE) ) return TRUE;
 	if ((uarmg && uarmg->oartifact == ART_A_LITTLE_SUGAR) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarmu && uarmu->oartifact == ART_THEY_ALL_FEEL_FLEECY) || (uarmh && uarmh->oartifact == ART_IN_BALANCE) || (uwep && uwep->oartifact == ART_YES_OCCIFER) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_GOOSCH_HIDARI) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarm && uarm->oartifact == ART_STEEL_SCALES_OF_KURTULMAK) || (uarmg && uarmg->oartifact == ART_RED_CORDS_OF_ILMATER) || (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) ) return TRUE;
-	if ( (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uamul && uamul->oartifact == ART_AMULET_OF_INGWE) || (uarm && uarm->oartifact == ART_VENGEANCE_OF_ETERNITY) ) return TRUE;
+	if ( (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uamul && uamul->oartifact == ART_AMULET_OF_INGWE) || (uarm && uarm->oartifact == ART_THEY_SMOKED_POT_) || (uarm && uarm->oartifact == ART_VENGEANCE_OF_ETERNITY) ) return TRUE;
 
 	return FALSE;
 }
@@ -2157,7 +2157,7 @@ playerextrinsicspeed()
 	if (uarmf && uarmf->oartifact == ART_MAREYOUNGWOMAN_ACTION && (is_pool(u.ux, u.uy) || (levl[u.ux][u.uy].typ == FOUNTAIN)) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
 	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) || (uarm && uarm->oartifact == ART_AGILITATE) || (uwep && uwep->oartifact == ART_HECTIC_OH_YEAH) ) return TRUE;
-	if ( (uarmg && uarmg->oartifact == ART_TSUNAMI_FISTS) ) return TRUE;
+	if ( (uarmg && uarmg->oartifact == ART_TSUNAMI_FISTS) || (uarm && uarm->oartifact == ART_GAYIFIED) ) return TRUE;
 
 	return FALSE;
 }
@@ -2490,6 +2490,11 @@ badeffect()
 	if (uarmh && uarmh->otyp == FAIRY_HAT && rn2(2)) {
 		makeknown(FAIRY_HAT);
 		pline("Your fairy hat prevents the bad effect!");
+		return;
+	}
+
+	if (uarm && uarm->oartifact == ART_LIKE_A_ROCK_IN_THE_WAVE && rn2(2)) {
+		pline("Your set of dragon scales prevents the bad effect!");
 		return;
 	}
 
@@ -4164,6 +4169,11 @@ reallybadeffect()
 	if (uarmh && uarmh->otyp == FAIRY_HAT && rn2(2)) {
 		makeknown(FAIRY_HAT);
 		pline("Your fairy hat prevents the bad effect!");
+		return;
+	}
+
+	if (uarm && uarm->oartifact == ART_LIKE_A_ROCK_IN_THE_WAVE && rn2(2)) {
+		pline("Your set of dragon scales prevents the bad effect!");
 		return;
 	}
 
@@ -7188,6 +7198,8 @@ boolean guaranteed;
 	if (!rn2(5)) DifficultyIncreased += rnz(100);
 	if (!rn2(5)) HighlevelStatus += rnz(100);
 	if (!rn2(5)) EntireLevelMode += rnz(100);
+
+	incr_itimeout(&HFuckOverEffect, rnz(100) );
 
 	pline("Let's Ragnarok!");
 	u.cnd_ragnarokamount++;

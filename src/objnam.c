@@ -4438,6 +4438,10 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ RUGGED_SACK, "" },
+	{ SEATBELT_SADDLE, "" },
+	{ BALLPEEN_HAMMER, "" },
+
 	{0, "" }
 };
 
@@ -8026,6 +8030,10 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ AMBROSIA, "yunon afsonalarida ilohlar taomi" },
 
 	/* todo area */
+
+	{ RUGGED_SACK, "" },
+	{ SEATBELT_SADDLE, "" },
+	{ BALLPEEN_HAMMER, "" },
 
 	{0, "" }
 };

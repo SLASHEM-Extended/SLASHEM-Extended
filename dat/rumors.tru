@@ -2608,7 +2608,7 @@ They say that the "haidong gumdo" martial arts style boosts your damage and to-h
 They say that the "capoeira" martial arts style cannot be selected with the martial style technique and may only be activated at random.
 They say that the "capoeira" martial arts style boosts your AC after you've moved, and your unarmed attacks if you use them directly after having moved, but your AC and to-hit plummets if you stand still too much and everyone except the Sons of Samedi will try to kill you.
 Force bolt is a level 4 spell that can break doors, boulders and drawbridges, and also deals relatively good damage to monsters who aren't magic resistant.
-The light spell can only light up your current location; if you want to light up an entire area at once, you need to cast the light area spell.
+The light spell can only light up your current location and the orthogonally adjacent tiles; if you want to light up an entire area at once, you need to cast the light area spell.
 They say that the columnar type of heels can be trained more quickly by male characters.
 They say that the better your columnar heels skill is, the shorter you'll be paralyzed while wearing them.
 They say that if you're good at using stiletto heels, they reduce the magnitude of slowness effects affecting you.

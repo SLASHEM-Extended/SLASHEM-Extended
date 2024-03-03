@@ -4353,7 +4353,7 @@ use_pole (obj)
 	} else if (distu(cc.x, cc.y) < min_range) {
 	    pline(FunnyHallu ? "Your stick's too long, it seems!" : "Too close!");
 	    return (res);
-	} else if (!cansee(cc.x, cc.y) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) && !(obj->oartifact == ART_HIT_A_CORNER) && obj->otyp != DARK_BAR &&
+	} else if (!cansee(cc.x, cc.y) && !(obj->oartifact == ART_FOOK_THE_OBSTACLES) && !(obj->oartifact == ART_HIT_A_CORNER) && !(obj->oartifact == ART_BURGLED_NIGHT_SCYTHE) && obj->otyp != DARK_BAR &&
 		   ((mtmp = m_at(cc.x, cc.y)) == (struct monst *)0 || !canseemon(mtmp))) {
 	    You(cant_see_spot);
 	    return (res);
@@ -5716,6 +5716,7 @@ dyechoice:
 	case OILSKIN_SACK:
 	case TITAN_SACK:
 	case POTATO_BAG:
+	case RUGGED_SACK:
 	case HANDYBAG:
 		if ((obj->otyp == BAG_OF_HOLDING || obj->otyp == CHEST_OF_HOLDING || obj->otyp == ICE_BOX_OF_HOLDING) && obj->cursed) {
 			use_container(&obj, 1);
@@ -5861,6 +5862,7 @@ dyechoice:
 	case TANK_SADDLE:
 	case BARDING:
 	case MESH_SADDLE:
+	case SEATBELT_SADDLE:
 		res = use_saddle(obj);
 		break;
 	case MAGIC_WHISTLE:

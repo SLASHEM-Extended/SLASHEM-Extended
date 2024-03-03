@@ -3484,7 +3484,7 @@ poly_obj(obj, id, degradation)
 	else {
 	/* preserve the mask in case being used by something else */
 	otmp->owornmask = obj->owornmask;
-	    if (otmp->owornmask & W_SADDLE && otmp->otyp != LEATHER_SADDLE && otmp->otyp != INKA_SADDLE && otmp->otyp != TANK_SADDLE && otmp->otyp != BARDING && otmp->otyp != MESH_SADDLE) {
+	    if (otmp->owornmask & W_SADDLE && otmp->otyp != LEATHER_SADDLE && otmp->otyp != INKA_SADDLE && otmp->otyp != TANK_SADDLE && otmp->otyp != BARDING && otmp->otyp != MESH_SADDLE && otmp->otyp != SEATBELT_SADDLE) {
 		struct monst *mtmp = obj->ocarry;
 		dismount_steed(DISMOUNT_THROWN);
 		otmp->owornmask &= ~W_SADDLE;

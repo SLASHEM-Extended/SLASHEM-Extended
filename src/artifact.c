@@ -545,9 +545,12 @@ init_randarts()
 	artilist[ART_REGROWN_RESOURCE].otyp = randartjavelin();
 	artilist[ART_NINJINGY].otyp = randartshuriken();
 	artilist[ART_LET_IT_STAY].otyp = randartdragonscales();
+	artilist[ART_ICE_FROM_THE_NORTH].otyp = randartdragonscales();
 	artilist[ART_HA_MONK].otyp = randartdragonscalemail();
+	artilist[ART_CUDDLE_CHALLENGE].otyp = randartdragonscalemail();
 	artilist[ART_PRISMATIC_DRAGON_PLATE].otyp = randartdragonscalemail();
 	artilist[ART_IT_IS_COMPLETE_NOW].otyp = randartdragonscaleshield();
+	artilist[ART_FROM_MASHHAD_TO_AHVAZ].otyp = randartdragonscaleshield();
 	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
 	artilist[ART_ZIN_BA].otyp = randartsaddle();
 	artilist[ART_INFINITE_RANGE].otyp = randartleash();
@@ -791,6 +794,7 @@ init_randarts()
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
 	artilist[ART_MACE_OF_THE_EVANGELIST].otyp = randartmaceX();
 	artilist[ART_UNWIELDYTINE].otyp = randarttridentX();
+	artilist[ART_LOGGERS_S_OVERKILL].otyp = randarttridentX();
 	artilist[ART_POSEIDON_S_TRIDENT].otyp = randarttridentX();
 	artilist[ART_TURVANG_S_THUNDER].otyp = randarthammerX();
 	artilist[ART_FORGE_HAMMER_OF_THE_ARTIFI].otyp = randarthammerX();
@@ -2023,6 +2027,54 @@ register boolean mod;
 			while (maincontaineramount > 0) {
 				maincontaineramount--;
 				ocont = mkobj(TOOL_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_IMPLANTOLOGY) {
+			int maincontaineramount = rnd(3);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(IMPLANT_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SPELLIBRARY) {
+			int maincontaineramount = rnd(3);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(SPBOOK_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_VENOSTASH) {
+			int maincontaineramount = rnd(5);
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(VENOM_CLASS, FALSE, FALSE);
 				if (ocont) {
 					ocont->owt = weight(ocont);
 					(void) add_to_container(otmp, ocont, TRUE);

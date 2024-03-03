@@ -218,6 +218,7 @@ in_trouble()
 	    if (Cursed_obj(otmp, TANK_SADDLE)) return TROUBLE_SADDLE;
 	    if (Cursed_obj(otmp, BARDING)) return TROUBLE_SADDLE;
 	    if (Cursed_obj(otmp, MESH_SADDLE)) return TROUBLE_SADDLE;
+	    if (Cursed_obj(otmp, SEATBELT_SADDLE)) return TROUBLE_SADDLE;
 	}
 
 	if (Blinded > 1 && haseyes(youmonst.data)) return(TROUBLE_BLIND);

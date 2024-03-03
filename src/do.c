@@ -2540,7 +2540,7 @@ boolean at_stairs, falling, portal;
 		/* some help for beginning characters because not having a container is just sucky --Amy */
 		if (depth(&u.uz) >= 1 && depth(&u.uz) <= 5 && !issoviet && !rn2(5)) {
 			angbandx = rn1(COLNO-3,2);
-			angbandy = rn2(ROWNO);
+			angbandy = rn2(ROWNO); /* can be in a wall (not a bug) */
 			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
 			while (!rn2(3)) {
 				angbandx = rn1(COLNO-3,2);
@@ -2550,7 +2550,7 @@ boolean at_stairs, falling, portal;
 		}
 		if (iszapem && In_spacebase(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet && !rn2(5)) {
 			angbandx = rn1(COLNO-3,2);
-			angbandy = rn2(ROWNO);
+			angbandy = rn2(ROWNO); /* can be in a wall (not a bug) */
 			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
 			while (!rn2(3)) {
 				angbandx = rn1(COLNO-3,2);
@@ -2560,7 +2560,7 @@ boolean at_stairs, falling, portal;
 		}
 		if (u.preversionmode && In_greencross(&u.uz) && dunlev(&u.uz) <= 5 && !issoviet && !rn2(5)) {
 			angbandx = rn1(COLNO-3,2);
-			angbandy = rn2(ROWNO);
+			angbandy = rn2(ROWNO); /* can be in a wall (not a bug) */
 			(void) mksobj_at(CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
 			while (!rn2(3)) {
 				angbandx = rn1(COLNO-3,2);
@@ -2572,13 +2572,27 @@ boolean at_stairs, falling, portal;
 		/* occasionally make a potato bag (contains a musable item) or very rarely a treasure chest --Amy */
 		if (!(In_endgame(&u.uz)) && !issoviet && !rn2(10)) {
 			angbandx = rn1(COLNO-3,2);
-			angbandy = rn2(ROWNO);
+			angbandy = rn2(ROWNO); /* can be in a wall (not a bug) */
 			(void) mksobj_at(rn2(100) ? POTATO_BAG : TREASURE_CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
 			while (!rn2(5)) {
 				angbandx = rn1(COLNO-3,2);
 				angbandy = rn2(ROWNO);
 				(void) mksobj_at(rn2(100) ? POTATO_BAG : TREASURE_CHEST, angbandx, angbandy, TRUE, TRUE, FALSE);
 			}
+		}
+
+		/* occasionally make a rugged sack (contains randomized items) --Amy */
+		if (!(In_endgame(&u.uz)) && !issoviet && !rn2(10)) {
+			int attempts = 0;
+			angbandx = rn1(COLNO-3,2);
+			angbandy = rn2(ROWNO);
+
+			while (attempts++ < 50000 && (!isok(angbandx, angbandy) || (!ACCESSIBLE(levl[angbandx][angbandy].typ)) ) ) {
+				angbandx = rn1(COLNO-3,2);
+				angbandy = rn2(ROWNO);
+			}
+
+			(void) mksobj_at(RUGGED_SACK, angbandx, angbandy, TRUE, TRUE, FALSE);
 		}
 
 		/* bossrusher race: spawn a boss at a random location whenever you enter a new level --Amy */

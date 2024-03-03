@@ -7296,6 +7296,13 @@ hitmu(mtmp, mattk)
 
 			}
 
+			if (otmp && otmp->oartifact == ART_BURGLED_NIGHT_SCYTHE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
+
+				pline("Collusion!");
+				litroomlite(FALSE);
+
+			}
+
 			/* makashi monster lightsaber form - since monsters don't dual-wield, just check for
 			 * 2-handedness and shield */
 			if (otmp && is_lightsaber(otmp) && otmp->lamplit && !bimanual(otmp)) {

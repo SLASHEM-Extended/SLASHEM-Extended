@@ -3992,6 +3992,11 @@ int dieroll;
 		litroomlite(FALSE);
 	}
 
+	if (obj && obj->oartifact == ART_BURGLED_NIGHT_SCYTHE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+		pline("Collusion!");
+		litroomlite(FALSE);
+	}
+
 	if (obj && obj->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 		pline("Collusion!");
 		litroomlite(FALSE);
@@ -4155,6 +4160,7 @@ int dieroll;
 		if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
 		if (!thrown && obj && obj->otyp == SUPERWEAPON) tmp += 5;
 		if (!thrown && u.twoweap && uwep && uwep->oartifact == ART_WHOLZ_WALTZ) tmp += 5;
+		if (!thrown && uwep && uwep->oartifact == ART_MAKE_ACE) tmp += rn1(4,5);
 
 		if (pieks && obj && obj->otyp == LAJATANG) {
 			tmp += 5;
@@ -4342,6 +4348,12 @@ int dieroll;
 			mon->mblinded = rnd(10);
 			pline("%s is stolped by you!", Monnam(mon));
 
+		}
+
+		if (obj && obj->oartifact == ART_SQUIRTEMIN && mon->mcansee && !resist(mon, WEAPON_CLASS, 0, NOTELL) && !resists_blnd(mon) ) {
+			mon->mcansee = 0;
+			mon->mblinded = rnd(10);
+			pline("%s is blinded!", Monnam(mon));
 		}
 
 		if (obj && obj->oartifact == ART_VERSUS_ELECTRICALLY_BASED_ && (dmgtype(mon->data, AD_ELEC) || dmgtype(mon->data, AD_MALK) ) ) {

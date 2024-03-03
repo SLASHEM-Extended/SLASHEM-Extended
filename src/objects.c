@@ -707,7 +707,7 @@ WEAPON("spiked chain", (char *)0,
 	1, 0, 0,  10, 20, 80, 7, 8, 1, S,   P_FLAIL, MT_COBALT, HI_METAL, 2),
 
 WEAPON("knout", (char *)0,
-	1, 0, 0, 600, 7, 10,  9,  6, 2, B,   P_FLAIL, MT_IRON, HI_METAL, 5),
+	1, 0, 0, 500, 7, 10,  9,  6, 2, B,   P_FLAIL, MT_IRON, HI_METAL, 5),
 WEAPON("riding crop", (char *)0,
 	1, 0, 0, 140, 7, 10,  9,  6, 2, B,   P_FLAIL, MT_LEATHER, CLR_BROWN, 5),
 
@@ -719,6 +719,8 @@ WEAPON("obsid", (char *)0,
 WEAPON("war hammer", (char *)0,
 	1, 0, 0, 782, 20,  5,  7,  7, 0, B,   P_HAMMER, MT_IRON, HI_METAL, 1),
 	/* +1 small */
+WEAPON("ballpeen hammer", (char *)0, /* +1 small */
+	1, 0, 0, 100, 4,  2,  4,  4, 0, B,   P_HAMMER, MT_SCRAP, CLR_BLUE, 1),
 WEAPON("air pressure hammer", (char *)0,
 	1, 0, 0, 20,  30,  40,  12,  9, 0, B,   P_HAMMER, MT_PWN_BUBBLE, CLR_WHITE, 20),
 WEAPON("bridge muzzle", (char *)0,
@@ -5959,6 +5961,7 @@ CONTAINER("ice box of digestion", "cooling box", 0, 0, 0, 1,   20,400,  42, MT_P
 CONTAINER("dispersion box", "liquid box",         0, 0, 0, 1,  3, 400,  200, MT_LIQUID, CLR_WHITE, 1), /* waterproof, cannot be emptied by monsters */
 CONTAINER("sack", "bag",                0, 0, 0, 0, 2500, 5, 30, MT_CLOTH, HI_CLOTH, 1),
 CONTAINER("potato bag", (char *)0,      1, 0, 0, 0,  250, 20, 40, MT_ARCANIUM, CLR_BRIGHT_BLUE, 5),
+CONTAINER("rugged sack", (char *)0,      1, 0, 0, 0,  200, 8, 20, MT_MESH, CLR_BLACK, 3),
 CONTAINER("handybag", (char *)0,      1, 0, 0, 0,  200, 2, 100, MT_LEATHER, CLR_BROWN, 10), /* can be used without hands; as a female char, contents weigh less */
 CONTAINER("oilskin sack", "bag",        0, 0, 0, 0, 2000, 5, 30, MT_CLOTH, HI_CLOTH, 5),
 CONTAINER("titan sack", "bag",          0, 0, 0, 0,   50, 5, 100, MT_TITANIUM, HI_CLOTH, 30),
@@ -5997,7 +6000,7 @@ TOOL("magic lamp", "lamp",      0, 0, 1, 0,  1000, 0,  40, MT_COPPER, CLR_YELLOW
 
 /* Instruments */
 /* KMH -- made less common */
-TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3363,  0,  10, MT_METAL, HI_METAL, 1),
+TOOL("tin whistle", "whistle",  0, 0, 0, 0, 3263,  0,  10, MT_METAL, HI_METAL, 1),
 TOOL("grass whistle", "whistle",  0, 0, 0, 0, 600,  0,  10, MT_WOOD, HI_METAL, 1),
 TOOL("magic whistle", "whistle",0, 0, 1, 0, 2400,  0,  10, MT_METAL, HI_METAL, 10),
 TOOL("dark magic whistle", "whistle",0, 0, 1, 0, 100,  0,  10, MT_METAL, HI_METAL, 20),
@@ -6032,7 +6035,7 @@ TOOL("beartrap", (char *)0,     1, 0, 0, 0,  100,20,  60, MT_IRON, HI_METAL, 1),
 /* Added by Tsanth, in homage to Final Fantasy 2 */
 /* KMH -- Not randomly generated (no damage!) */
 WEPTOOL("spoon", (char *)0,
-	1, 0, 0, 0,  100,  1, 5000,  0,  0, 0, WHACK,  -P_DART, MT_PLATINUM, HI_METAL, 1),
+	1, 0, 0, 0,  100,  0, 5000,  0,  0, 0, WHACK,  -P_DART, MT_PLATINUM, HI_METAL, 1),
 
 /* pick-axes, regular one has to be first */
 WEPTOOL("pick-axe", (char *)0,
@@ -6186,7 +6189,7 @@ TOOL("shield pate glasses", (char *)0,	1, 0, 0, 0,    45,  0, 100, MT_GLASS, CLR
 TOOL("radioglasses", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_VIVA, CLR_ORANGE, 1),
 TOOL("boss visor", (char *)0, 1, 0, 0, 0, 300,  0,  200, MT_ARCANIUM, CLR_BRIGHT_MAGENTA, 10),
 TOOL("night vision goggles", (char *)0, 1, 0, 0, 0, 100,  0,  300, MT_OBSIDIAN, CLR_BRIGHT_GREEN, 6),
-TOOL("blindfold", (char *)0,    1, 0, 0, 0, 2700,  0,  20, MT_CLOTH, CLR_BLACK, 1),
+TOOL("blindfold", (char *)0,    1, 0, 0, 0, 2600,  0,  20, MT_CLOTH, CLR_BLACK, 1),
 TOOL("eyecloser", (char *)0, 1, 0, 0, 0, 300,  0,  20, MT_INKA, CLR_BROWN, 1),
 TOOL("dragon eyepatch", (char *)0, 1, 0, 0, 0, 300,  0,  20, MT_DRAGON_HIDE, CLR_BRIGHT_BLUE, 10),
 TOOL("towel", (char *)0,        1, 0, 0, 0, 1500,  0,  50, MT_CLOTH, CLR_MAGENTA, 1),
@@ -6196,8 +6199,9 @@ TOOL("defusing box", (char *)0,      1, 0, 0, 0,  200,  0,   200, MT_MINERAL, CL
 TOOL("soft chastity belt", (char *)0,      1, 0, 0, 0,   10,  0,   5, MT_SILK, CLR_WHITE, 1),
 
 /* leather saddle = first saddle */
-TOOL("leather saddle", "saddle", 0, 0, 0, 0, 2450,0, 150, MT_LEATHER, HI_LEATHER, 1),
+TOOL("leather saddle", "saddle", 0, 0, 0, 0, 2150,0, 150, MT_LEATHER, HI_LEATHER, 1),
 TOOL("tank saddle", "saddle", 0, 0, 0, 0, 100,0, 150, MT_TITANIUM, HI_LEATHER, 40),
+TOOL("seatbelt saddle", "saddle", 0, 0, 0, 0, 300, 0, 150, MT_FOAM, HI_LEATHER, 20),
 TOOL("barding", "saddle", 0, 0, 0, 0, 200,0, 150, MT_STEEL, HI_LEATHER, 30),
 TOOL("mesh saddle", "saddle", 0, 0, 0, 0, 250,0, 150, MT_MESH, HI_LEATHER, 15),
 TOOL("inka saddle", "saddle",   0, 0, 0, 0, 500,0, 150, MT_INKA, HI_LEATHER, 20),

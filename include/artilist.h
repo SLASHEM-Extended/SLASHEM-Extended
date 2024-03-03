@@ -18594,6 +18594,142 @@ A("Keisertown Garden",				WATER_HYACINTH, /* cures all inertia when eaten */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
+A("Umbire's Micery",				BALLPEEN_HAMMER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Squirtemin",				BALLPEEN_HAMMER, /* if the monster fails a resistance check, it gets blinded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Burgled Night Scythe",				BONE_SCYTHE, /* dark mode, can also hit squares that you cannot see and makes areas dark if it hits something */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Rules Make Sense",				SEATBELT_SADDLE, /* chance to make the saving throw is 90% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Car Safety",				SEATBELT_SADDLE, /* if the ridden monster is a MS_CAR, chance to make the saving throw is 100% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Implantology",				RUGGED_SACK, /* contains d3 random implants */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Venostash",				RUGGED_SACK, /* contains d5 random venoms */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Spellibrary",				RUGGED_SACK, /* contains d3 random spellbooks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Make-Ace",				RUGGED_SACK, /* when wielded, increase damage by rn1(4,5) but only for melee attacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gayified",				BLUE_DRAGON_SCALE_MAIL, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("They're Into Some Kinky Stuff",				BLACK_DRAGON_SCALE_MAIL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Doublegreen Ward",				GREEN_DRAGON_SCALES, /* sick res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Blingeye",				GOLDEN_DRAGON_SCALE_SHIELD,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("They smoked pot!",				ORANGE_DRAGON_SCALES, /* free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Visibility Inverted",				RED_DRAGON_SCALE_MAIL, /* infravision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Omg uber imba!!!",				WHITE_DRAGON_SCALE_SHIELD, /* slow digestion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hoho We R Teh L33t Programm0rZ!!!!!111",				YELLOW_DRAGON_SCALES, /* stone res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Make It Easy",				SHIMMERING_DRAGON_SCALE_SHIELD,
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Like A Rock In The Wave",				DEEP_DRAGON_SCALES, /* 50% chance to resist bad effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("They won't see me...",				DARK_DRAGON_SCALES, /* 25% chance for monsters to be shortsighted */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Very Sexual",				BRASS_DRAGON_SCALE_MAIL, /* mystery resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ogrotic Chant",				RUBY_DRAGON_SCALE_SHIELD, /* fire immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Well at least the AC is good...",				NEGATIVE_DRAGON_SCALE_MAIL, /* 10 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Porksta's Chance",				HEROIC_DRAGON_SCALE_SHIELD,
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Duranium",				CYAN_DRAGON_SCALES,
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Glieiearoun",				RAINBOW_DRAGON_SCALES,
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Pump Too Late",				BLOOD_DRAGON_SCALE_SHIELD,
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Whoa that's the one.",				EVIL_DRAGON_SCALES, /* 30 extra points of AC, jette and rosa trap effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Death is overrated anyway",				MAGIC_DRAGON_SCALE_MAIL, /* death resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cuddle Challenge",				RED_DRAGON_SCALE_MAIL, /* randart DSM, gudrun trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ice from the North",				RED_DRAGON_SCALES, /* randart dragon scales, ella trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("From Mashhad to Ahvaz",				RED_DRAGON_SCALE_SHIELD, /* randart DSS, yasaman trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cauterizer",				STILETTO, /* by Umbire, but originally based on the "Fire Dagger" artifact */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(4, 8), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2000L ),
+
+A("Loggers's Overkill",				TRIDENT, /* randart2 trident, waterwalking, magical breathing */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
