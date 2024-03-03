@@ -11904,7 +11904,7 @@ MONSTER[10%]:'.',"percents-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
 
-MONSTER:'&',"Depression",random,hostile
+MONSTER[20%]:'&',"Depression",random,hostile
 
 TRAP:"death trap", random
 TRAP:"drain trap", random
@@ -12061,7 +12061,7 @@ MONSTER[10%]:'.',"percents-$$$-NIX",random,hostile
 
 MONSTER[50%]:':',"arch-newt",(19,09),hostile
 
-MONSTER:'&',"Depression",random,hostile
+MONSTER[20%]:'&',"Depression",random,hostile
 
 TRAP:"death trap", random
 TRAP:"drain trap", random

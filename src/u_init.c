@@ -23977,30 +23977,46 @@ u_init()
 	splicemonb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	splicemonb->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	if (!rn2(10)) {
-	attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
-	attkptr->aatyp = AT_MAGC; /* well, at least one out of ten games he does */
-	attkptr->adtyp = AD_DISN; /* as a tribute to that fallthrough "bug" where he got a touch of death --Amy */
-	attkptr->damn = 2;
-	attkptr->damd = 6;
+	attkptr = &deathraylord->mattk[4];
+	attkptr->aatyp = AT_NONE;
+	attkptr->adtyp = AD_PHYS;
+	attkptr->damn = 0;
+	attkptr->damd = 0;
+
+	if (!rn2(50)) {
+		attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
+		attkptr->aatyp = AT_MAGC; /* well, at least one out of ten games he does */
+		attkptr->adtyp = AD_DISN; /* as a tribute to that fallthrough "bug" where he got a touch of death --Amy */
+		attkptr->damn = 2;
+		attkptr->damd = 6;
 	}
 
 	lolirace->msound = !rn2(3) ? MS_FART_NORMAL : !rn2(2) ? MS_FART_QUIET : MS_FART_LOUD;
 
-	if (!rn2(10)) {
-	attkptr = &coldlord->mattk[1]; /* evil patch idea by irinya: because nobody actually knows how much damage Asmodeus's cold attack does, it's been bumped up to 60d6 */
-	attkptr->damn = 60;
+	attkptr = &coldlord->mattk[1];
+	attkptr->damn = 6;
+
+	if (!rn2(50)) {
+		attkptr = &coldlord->mattk[1]; /* evil patch idea by irinya: because nobody actually knows how much damage Asmodeus's cold attack does, it's been bumped up to 60d6 */
+		attkptr->damn = 60;
 	}
 
 	/* evil patch idea by hackedhead: rider-gating */
 	/* evil patch idea by Wooble: make the riders covetous */
 
-	if (!rn2(10)) riderone->mflags2 |= M2_DEMON;
-	if (!rn2(10)) riderone->mflags3 |= M3_WANTSBOOK;
-	if (!rn2(10)) ridertwo->mflags2 |= M2_DEMON;
-	if (!rn2(10)) ridertwo->mflags3 |= M3_WANTSBOOK;
-	if (!rn2(10)) riderthree->mflags2 |= M2_DEMON;
-	if (!rn2(10)) riderthree->mflags3 |= M3_WANTSBOOK;
+	riderone->mflags2 &= ~M2_DEMON;
+	riderone->mflags3 &= ~M3_WANTSBOOK;
+	ridertwo->mflags2 &= ~M2_DEMON;
+	ridertwo->mflags3 &= ~M3_WANTSBOOK;
+	riderthree->mflags2 &= ~M2_DEMON;
+	riderthree->mflags3 &= ~M3_WANTSBOOK;
+
+	if (!rn2(50)) riderone->mflags2 |= M2_DEMON;
+	if (!rn2(50)) riderone->mflags3 |= M3_WANTSBOOK;
+	if (!rn2(50)) ridertwo->mflags2 |= M2_DEMON;
+	if (!rn2(50)) ridertwo->mflags3 |= M3_WANTSBOOK;
+	if (!rn2(50)) riderthree->mflags2 |= M2_DEMON;
+	if (!rn2(50)) riderthree->mflags3 |= M3_WANTSBOOK;
 
 	/* the multicolor grue has a AD_RBRE breath attack, but there is no AD_RBRE for melee attacks (yet).
 	 * So we're just giving it some random damage types for its melee and passive attack. --Amy */
@@ -39537,30 +39553,46 @@ int realityflag;
 	splicemonb->mflags2 &= ~M2_WERE;				/* no lycanthropes */
 	splicemonb->mflags2 &= ~M2_PNAME;				/* not a proper name */
 
-	if (!rn2(10)) {
-	attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
-	attkptr->aatyp = AT_MAGC; /* well, at least one out of ten games he does */
-	attkptr->adtyp = AD_DISN; /* as a tribute to that fallthrough "bug" where he got a touch of death --Amy */
-	attkptr->damn = 2;
-	attkptr->damd = 6;
+	attkptr = &deathraylord->mattk[4];
+	attkptr->aatyp = AT_NONE;
+	attkptr->adtyp = AD_PHYS;
+	attkptr->damn = 0;
+	attkptr->damd = 0;
+
+	if (!rn2(50)) {
+		attkptr = &deathraylord->mattk[4]; /* Yeenoghu gets finger of death */
+		attkptr->aatyp = AT_MAGC; /* well, at least one out of ten games he does */
+		attkptr->adtyp = AD_DISN; /* as a tribute to that fallthrough "bug" where he got a touch of death --Amy */
+		attkptr->damn = 2;
+		attkptr->damd = 6;
 	}
 
 	lolirace->msound = !rn2(3) ? MS_FART_NORMAL : !rn2(2) ? MS_FART_QUIET : MS_FART_LOUD;
 
-	if (!rn2(10)) {
-	attkptr = &coldlord->mattk[1]; /* evil patch idea by irinya: because nobody actually knows how much damage Asmodeus's cold attack does, it's been bumped up to 60d6 */
-	attkptr->damn = 60;
+	attkptr = &coldlord->mattk[1];
+	attkptr->damn = 6;
+
+	if (!rn2(50)) {
+		attkptr = &coldlord->mattk[1]; /* evil patch idea by irinya: because nobody actually knows how much damage Asmodeus's cold attack does, it's been bumped up to 60d6 */
+		attkptr->damn = 60;
 	}
 
 	/* evil patch idea by hackedhead: rider-gating */
 	/* evil patch idea by Wooble: make the riders covetous */
 
-	if (!rn2(10)) riderone->mflags2 |= M2_DEMON;
-	if (!rn2(10)) riderone->mflags3 |= M3_WANTSBOOK;
-	if (!rn2(10)) ridertwo->mflags2 |= M2_DEMON;
-	if (!rn2(10)) ridertwo->mflags3 |= M3_WANTSBOOK;
-	if (!rn2(10)) riderthree->mflags2 |= M2_DEMON;
-	if (!rn2(10)) riderthree->mflags3 |= M3_WANTSBOOK;
+	riderone->mflags2 &= ~M2_DEMON;
+	riderone->mflags3 &= ~M3_WANTSBOOK;
+	ridertwo->mflags2 &= ~M2_DEMON;
+	ridertwo->mflags3 &= ~M3_WANTSBOOK;
+	riderthree->mflags2 &= ~M2_DEMON;
+	riderthree->mflags3 &= ~M3_WANTSBOOK;
+
+	if (!rn2(50)) riderone->mflags2 |= M2_DEMON;
+	if (!rn2(50)) riderone->mflags3 |= M3_WANTSBOOK;
+	if (!rn2(50)) ridertwo->mflags2 |= M2_DEMON;
+	if (!rn2(50)) ridertwo->mflags3 |= M3_WANTSBOOK;
+	if (!rn2(50)) riderthree->mflags2 |= M2_DEMON;
+	if (!rn2(50)) riderthree->mflags3 |= M3_WANTSBOOK;
 
 	/* the multicolor grue has a AD_RBRE breath attack, but there is no AD_RBRE for melee attacks (yet).
 	 * So we're just giving it some random damage types for its melee and passive attack. --Amy */
