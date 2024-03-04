@@ -1512,12 +1512,18 @@ struct obj *obj;
 	    const char *result = (char *)0;
 
 	    otmp2 = otmp->nobj;
+
+	    /* Amy edit: way too harsh to constantly break all those potions. it's also dumb that this function is called
+	     * both by kicking the container (you have to be stupid enough to do that on purpose) and also by dropping it
+	     * down a staircase or while levitating (can happen by accident)... I'd like to make it so that kicking it has
+	     * way more of a chance that the items break, but oh well */
+
 	    if ((objects[otmp->otyp].oc_material == MT_GLASS || objects[otmp->otyp].oc_material == MT_OBSIDIAN || is_vitric(otmp)) &&
-		otmp->oclass != GEM_CLASS && !obj_resists(otmp, 33, 100) && !stack_too_big(otmp)) {
+		otmp->oclass != GEM_CLASS && !rn2(otmp->oerodeproof ? 100 : 20) && !obj_resists(otmp, 33, 100) && !stack_too_big(otmp)) {
 		result = "shatter";
-	    } else if (otmp->otyp == EGG && !rn2(3) && !stack_too_big(otmp)) {
+	    } else if (otmp->otyp == EGG && !rn2(otmp->oerodeproof ? 100 : 20) && !stack_too_big(otmp)) {
 		result = "cracking";
-	    } else if (evilfriday && !obj_resists(otmp, 50, 100) && !stack_too_big(otmp)) {
+	    } else if (evilfriday && !rn2(otmp->oerodeproof ? 10 : 2) && !obj_resists(otmp, 50, 100) && !stack_too_big(otmp)) {
 		result = "breaking sound, followed by evil laughter";
 	    }
 	    if (result) {
@@ -2714,8 +2720,9 @@ boolean shop_floor_obj;
 	if (otmp == uswapwep) setuswapwep((struct obj *)0, FALSE);
 	if (otmp == uquiver) setuqwep((struct obj *)0);
 
-	/* some things break rather than ship */
-	if (breaktest(otmp)) {
+	/* some things break rather than ship
+	 * Amy edit: but it shouldn't happen all the damn time!! */
+	if (!rn2(otmp->oerodeproof ? 100 : 20) && breaktest(otmp)) {
 	    const char *result;
 
 	    if (objects[otmp->otyp].oc_material == MT_GLASS || objects[otmp->otyp].oc_material == MT_OBSIDIAN || is_vitric(otmp) || otmp->otyp == EXPENSIVE_CAMERA )

@@ -1328,8 +1328,10 @@ register struct obj *obj;
 	else
 		pline("%s hit%s the %s.", Doname2(obj),
 		      (obj->quan == 1L) ? "s" : "", surface(u.ux,u.uy));
-
-	if (hero_breaks(obj, u.ux, u.uy, TRUE)) return;
+	/* waaaaaaaaaaay too big a penalty to lose ALL potions unconditionally --Amy */
+	if (!rn2(obj->oerodeproof ? 100 : 20)) {
+		if (hero_breaks(obj, u.ux, u.uy, TRUE)) return;
+	}
 	if (ship_object(obj, u.ux, u.uy, FALSE)) return;
 	dropy(obj);
 	if (!u.uswallow) container_impact_dmg(obj);

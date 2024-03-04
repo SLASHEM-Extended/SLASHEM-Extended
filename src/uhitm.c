@@ -3265,6 +3265,14 @@ int dieroll;
 
 			}
 
+			/* bonuses for wimpy autobreaking bolts/arrows --Amy */
+			if (thrown && obj && obj->otyp == DROVEN_BOLT) {
+				tmp += rnd(10);
+			}
+			if (thrown && obj && obj->otyp == DROVEN_ARROW) {
+				tmp += rnd(10);
+			}
+
 			if (thrown && obj && obj->otyp == HEAVY_SPEAR) {
 				if (tmp > 0) tmp *= 2;
 			}
