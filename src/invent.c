@@ -30560,6 +30560,16 @@ boolean knoweverything;
 					pline("Artifact specs: +4 to-hit and +8 fire damage, lawful."); break;
 				case ART_LOGGERS_S_OVERKILL:
 					pline("Artifact specs: +7 damage, waterwalking and magical breathing when wielded."); break;
+				case ART_Z_K_A_C:
+					pline("Artifact specs: +3 damage."); break;
+				case ART_ZGKGAGC:
+					pline("Artifact specs: +7 to-hit and +2 damage."); break;
+				case ART_WAS_TIPPT_DAS_DENN_IMMER_D:
+					pline("Artifact specs: double attacks when wielded."); break;
+				case ART_EFFECTERF:
+					pline("Artifact specs: applying it has a vanishingly small chance to increase its enchantment value."); break;
+				case ART_BELLY_W:
+					pline("Artifact specs: slow digestion, hunger and protects from item theft when worn. If you're satiated, you randomly faint and if you're oversatiated, you constantly take damage."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

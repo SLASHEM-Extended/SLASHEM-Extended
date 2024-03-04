@@ -18615,15 +18615,15 @@ A("Car Safety",				SEATBELT_SADDLE, /* if the ridden monster is a MS_CAR, chance
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
 A("Implantology",				RUGGED_SACK, /* contains d3 random implants */
-	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Venostash",				RUGGED_SACK, /* contains d5 random venoms */
-	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
 A("Spellibrary",				RUGGED_SACK, /* contains d3 random spellbooks */
-	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 A("Make-Ace",				RUGGED_SACK, /* when wielded, increase damage by rn1(4,5) but only for melee attacks */
@@ -18729,6 +18729,26 @@ A("Cauterizer",				STILETTO, /* by Umbire, but originally based on the "Fire Dag
 A("Loggers's Overkill",				TRIDENT, /* randart2 trident, waterwalking, magical breathing */
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("z-k-a-c",				REPLICA_UNICORN_HORN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("zgkgagc",				REPLICA_UNICORN_HORN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Was tippt das denn immer doppelt",				REPLICA_UNICORN_HORN, /* double attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("effecterf",				REPLICA_UNICORN_HORN, /* 1 in 1000 when applied to gain a point of enchantment up to a maximum of +15 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Belly-W",				LEATHER_ARMOR, /* randart2 armor, slow digestion, hunger, protects from theft like a nymph, random fainting if you're satiated, d5 damage per turn to you if oversatiated */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

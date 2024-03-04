@@ -3771,6 +3771,24 @@ moveloop()
 
 		}
 
+		if (uarm && uarm->oartifact == ART_BELLY_W && u.uhunger >= 4500) {
+
+			Your("belly aches as if it's gonna burst!");
+			losehp(rnd(5), "their own belly exploding", KILLED_BY);
+
+		}
+
+		if (uarm && uarm->oartifact == ART_BELLY_W && u.uhs == SATIATED && !rn2(100) && multi >= 0) {
+
+			You("faint because your belly is too full.");
+			flags.soundok = 0;
+			if (isstunfish) nomul(-(rnz(5)), "fainted from a full belly", TRUE);
+			else nomul(-(rn1(4,1) ), "fainted from a full belly", TRUE);
+			nomovemsg = "You regain consciousness.";
+			afternmv = unfaintX;
+
+		}
+
 		if (uarm && uarm->oartifact == ART_ELMHERE && !rn2(100) && multi >= 0) {
 
 			You("faint from exertion.");

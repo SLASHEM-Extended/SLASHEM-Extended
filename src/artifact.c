@@ -635,9 +635,10 @@ init_randarts()
 	artilist[ART_EARTH_GAS_GUN].otyp = randartlauncherX();
 	artilist[ART_FIRE_ALREADY].otyp = randartmissileX();
 	artilist[ART_HUMAN_WIPEOUT].otyp = randartmeleeweaponX();
-	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
-	artilist[ART_GENDERGENDERGENDERGENDERGE].otyp = randartsuitX();
 	artilist[ART_ESPECIALLYRANDARM].otyp = randartsuitX();
+	artilist[ART_SPLINTER_ARMAMENT].otyp = randartsuitX();
+	artilist[ART_BELLY_W].otyp = randartsuitX();
+	artilist[ART_GENDERGENDERGENDERGENDERGE].otyp = randartsuitX();
 	artilist[ART_CHIP_INFACT].otyp = randartsuitX();
 	artilist[ART_AMMY_S_RNG_CHANGER].otyp = randartsuitX();
 	artilist[ART_ADD_THE_MISSING_STAIRCASE].otyp = randartsuitX();

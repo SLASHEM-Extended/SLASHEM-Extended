@@ -2698,6 +2698,11 @@ struct obj *obj;
 		aggravate();
 	}
 
+	if (obj && obj->oartifact == ART_EFFECTERF && obj->spe < 15 && !rn2(1000)) {
+		obj->spe++;
+		Your("unicorn horn seems more effective.");
+	}
+
 	/* higher unihorn skill makes it a bit less likely to break --Amy */
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_UNICORN_HORN)) {
