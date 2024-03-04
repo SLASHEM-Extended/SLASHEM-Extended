@@ -29822,7 +29822,7 @@ boolean knoweverything;
 				case ART_ANTILUCKBLADE:
 					pline("Artifact specs: +1 damage, or if your luck is negative, to-hit and damage bonuses equal to the amount of negative luck (read: this weapon becomes stronger the more unlucky you are). Murderer sacrifice gift."); break;
 				case ART_MAGE_STAFF_OF_ETERNITY:
-					pline("Artifact specs: works as a luckstone when wielded and conveys ESP, see invisible, spellboost, energy regeneration, infravision, boosts to INT and WIS if it's positively enchanted, greatly reduced melee to-hit and sticky autocurses when wielded and is an unbeliever sacrifice gift. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
+					pline("Artifact specs: works as a luckstone when wielded and conveys ESP, see invisible, spellboost, energy regeneration, infravision, boosts to INT and WIS if it's positively enchanted, greatly reduced melee to-hit and sticky autocurses when wielded and is an unbeliever sacrifice gift. While wielding it, you can cast spells even if it's cursed, and it also allows the unbeliever role to cast. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
 				case ART_LONG_SWORD_OF_ETERNITY:
 					pline("Artifact specs: +10 shock damage, works as a luckstone when wielded, beheads enemies and conveys fire resistance, regeneration, +10 constitution, cold immunity, free action, see invisible and slow digestion and produces an antimagic shell, heavily autocurses when wielded and is an unbeliever sacrifice gift. If you wield it without being an unbeliever, your sanity also increases by 1000."); break;
 				case ART_HEAVY_CROSSBOW_OF_ETERNITY:

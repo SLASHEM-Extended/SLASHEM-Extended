@@ -3026,7 +3026,7 @@ docast()
 
 	/* Amy note: use autismweaponcheck and not uwep here!!! after all, this is a *negative* effect */
 
-	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || autismweaponcheck(ART_LONG_SWORD_OF_ETERNITY) || autismweaponcheck(ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || Role_if(PM_UNBELIEVER) || autismweaponcheck(ART_ARK_OF_THE_COVENANT) || (uarmc && uarmc->oartifact == ART_SPELL_WARDED_WRAPPINGS_OF_) || autismweaponcheck(ART_ANTIMAGICBANE) ) {
+	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || autismweaponcheck(ART_LONG_SWORD_OF_ETERNITY) || autismweaponcheck(ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || (Role_if(PM_UNBELIEVER) && !(uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) ) || autismweaponcheck(ART_ARK_OF_THE_COVENANT) || (uarmc && uarmc->oartifact == ART_SPELL_WARDED_WRAPPINGS_OF_) || autismweaponcheck(ART_ANTIMAGICBANE) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3551,7 +3551,7 @@ boolean atme;
 		"Your concentration falters while carrying so much stuff.")) {
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	    return (1);
-	} else if (!freehandX() && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
+	} else if (!freehandX() && !(uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) && !(Role_if(PM_CELLAR_CHILD) && uwep && (weapon_type(uwep) == P_QUARTERSTAFF)) ) {
 		Your("arms are not free to cast!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);

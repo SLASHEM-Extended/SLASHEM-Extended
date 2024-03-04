@@ -17393,7 +17393,7 @@ boolean new_game;	/* false => restoring an old game */
 	if (new_game) pline("Message of the day: This is a reminder that you should be playing the game on a terminal with the dimensions 125x45. If you haven't already, open your terminal settings NOW and change it to 125x45 or you'll keep wondering why the bottom status line disappears or gets cut off when it gets too long! Use exactly 125x45 for best results, any other dimensions and it won't work properly!");
 
 #else
-	if (new_game) pline("Message of the day: Sorry for all the savebreak updates lately, it's the only way I can make sure the version of the game on this server is up to date because our multiversioning script is malfunctioning. If you had a previous game on the old version, please use 'Play Slash'EM Extended old version' from the launch menu. In case that still doesn't bring your old game back, contact me on the IRC or Reddit and I'll find a way to restore your game :-) Sincerely, Amy.");
+	if (new_game) pline("Message of the day: Sorry for all the savebreak updates lately, if you had a previous game on the old version, please use 'Play Slash'EM Extended old version' from the launch menu. Contact me on the IRC or Reddit if nothing works. Special message to mal4ikkarate: sorry for the configuration incompatibility, I was just in the process of updating the version when you started that character ;)");
 
 #endif
 

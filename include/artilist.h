@@ -17268,7 +17268,7 @@ A("Antiluckblade",				BLADE_OF_GRACE, /* if your luck is negative, to-hit and da
 	(SPFX_RESTR), 0, 0,
 	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, PM_MURDERER, NON_PM, 2500L ),
 
-A("The Mage Staff of Eternity",				QUARTERSTAFF, /* randart2 quarterstaff, see invis, infravision, boosts INT and WIS by its enchantment if positive, spellboost, -d20 melee to-hit, sticky autocurses; if you're not an unbeliever, +1000 sanity every time you wield it */
+A("The Mage Staff of Eternity",				QUARTERSTAFF, /* randart2 quarterstaff, see invis, infravision, boosts INT and WIS by its enchantment if positive, spellboost, -d20 melee to-hit, sticky autocurses, allows unbelievers to cast and everyone to also cast while it's cursed; if you're not an unbeliever, +1000 sanity every time you wield it */
 	(SPFX_RESTR|SPFX_LUCK|SPFX_ESP|SPFX_EREGEN|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_UNBELIEVER, NON_PM, 20000L ),
 
