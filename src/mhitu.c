@@ -2031,6 +2031,7 @@ u_slow_down()
 {
 	if (uwep && uwep->oartifact == ART_DAEFAROTH) return; /* player is immune */
 	if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) return;
+	if (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) return;
 	if (uarmf && uarmf->otyp == SPEED_HOLDING_BOOTS) return;
 	if (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) return;
 	if (Race_if(PM_SAMEDI)) return;
@@ -7297,6 +7298,13 @@ hitmu(mtmp, mattk)
 			}
 
 			if (otmp && otmp->oartifact == ART_BURGLED_NIGHT_SCYTHE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
+
+				pline("Collusion!");
+				litroomlite(FALSE);
+
+			}
+
+			if (otmp && otmp->oartifact == ART_DARK_CLAYMORE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 
 				pline("Collusion!");
 				litroomlite(FALSE);

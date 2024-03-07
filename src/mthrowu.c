@@ -1558,6 +1558,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				pline("Collusion!");
 				litroomlite(FALSE);
 		    }
+		    if (hitu && singleobj->oartifact == ART_DARK_CLAYMORE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+				pline("Collusion!");
+				litroomlite(FALSE);
+		    }
 		    if (hitu && singleobj->otyp == DARKNESS_CLUB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 				pline("Collusion!");
 				litroomlite(FALSE);

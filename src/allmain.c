@@ -1469,6 +1469,9 @@ moveloop()
 				if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH && moveamt > 1) {
 					moveamt /= 2;
 				}
+				if (uarm && uarm->oartifact == ART_WEB_OF_HOHOTH && moveamt > 1) {
+					moveamt /= 2;
+				}
 				if (uarm && uarm->oartifact == ART_ROFLCOPTER_WEB && moveamt > 1) {
 					moveamt /= 2;
 				}
@@ -2042,6 +2045,10 @@ moveloop()
 				moveamt /= 2; /* transsylvanian has to wear heels at all times --Amy */
 			}
 			if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2))
+				moveamt /= 2;
+			}
+			if (uarm && uarm->oartifact == ART_WEB_OF_HOHOTH && moveamt > 1) {
 				if (youmonst.data->mmove > 1 || !rn2(2))
 				moveamt /= 2;
 			}
@@ -7587,6 +7594,16 @@ newbossJANI:
 			nomul(-2, "vomiting", TRUE);
 			vomit();
 			morehungry(250);
+		}
+
+		if (autismweaponcheck(ART_AMALGAMATED_SKIES)) {
+			if (NastynationBug < 20000) NastynationBug = 20000;
+			if (FemaleTrapLittleMarie < 20000) FemaleTrapLittleMarie = 20000;
+		}
+
+		if (autismweaponcheck(ART_ABSURD_OVERPOWEREDNESS)) {
+			if (FemaleTrapArabella < 20000) FemaleTrapArabella = 20000;
+			if (u.uprops[INVERT_STATE].intrinsic < 20000) u.uprops[INVERT_STATE].intrinsic = 20000;
 		}
 
 		if (autismweaponcheck(ART_GREEN_DRAGON_CRESCENT_BLAD)) {

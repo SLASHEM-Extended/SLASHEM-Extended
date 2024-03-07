@@ -30570,6 +30570,42 @@ boolean knoweverything;
 					pline("Artifact specs: applying it has a vanishingly small chance to increase its enchantment value."); break;
 				case ART_BELLY_W:
 					pline("Artifact specs: slow digestion, hunger and protects from item theft when worn. If you're satiated, you randomly faint and if you're oversatiated, you constantly take damage."); break;
+				case ART_MAYHEM:
+					pline("Artifact specs: +12 damage against undead, warning when worn, chaotic."); break;
+				case ART_GRAVE_ROUSE:
+					pline("Artifact specs: +12 damage against undead, warning when worn, chaotic."); break;
+				case ART_LOAD_BRAND:
+					pline("Artifact specs: +5 to-hit and +10 damage, protection and half physical damage when wielded."); break;
+				case ART_NERF_BRAND:
+					pline("Artifact specs: +5 to-hit and +10 damage, protection and half physical damage when wielded."); break;
+				case ART_NOT_AT_ALL_OP:
+					pline("Artifact specs: +14 damage."); break;
+				case ART_LENSES_OF_TRUTH:
+					pline("Artifact specs: searching and see invisible when worn."); break;
+				case ART_SILVER_SKY:
+					pline("Artifact specs: +1 to-hit and +12 damage, beheads enemies, magic resistance when wielded."); break;
+				case ART_CHRISTIAN_SKY:
+					pline("Artifact specs: +1 to-hit and +12 damage, beheads enemies, magic resistance when wielded."); break;
+				case ART_SKY_REFLECTED:
+					pline("Artifact specs: +8 to-hit and +1 damage, reflection when wielded."); break;
+				case ART_POTATO_SKY:
+					pline("Artifact specs: +8 to-hit and +1 damage, reflection when wielded."); break;
+				case ART_AMALGAMATED_SKIES:
+					pline("Artifact specs: +8 to-hit and +12 damage, beheads enemies, reflection, magic resistance and free action when wielded and because that would be truly OP without a downside, wielding it gives nastination and the little marie trap effect for 20k turns."); break;
+				case ART_ABSURD_OVERPOWEREDNESS:
+					pline("Artifact specs: +8 to-hit and +12 damage, beheads enemies, reflection, magic resistance and free action when wielded and because that would be truly OP without a downside, wielding it gives inversion and the arabella trap effect for 20k turns."); break;
+				case ART_DARK_CLAYMORE:
+					pline("Artifact specs: +1 to-hit and +6 damage, makes areas dark when hitting enemies, mounting a steed doesn't reduce tameness while you're wielding it, chaotic."); break;
+				case ART_WEB_OF_HOHOTH:
+					pline("Artifact specs: magic and drain resistance when worn, boosts spellcasting chances, warns of elves, minions and demons and halves your speed, chaotic."); break;
+				case ART_ENSNARED_MIND:
+					pline("Artifact specs: resist sleep and confusion when worn, lawful."); break;
+				case ART_SUPERPATHY:
+					pline("Artifact specs: also conveys intrinsic telepathy while worn."); break;
+				case ART_FOR_ONCE_MOVING_SWIFTLY:
+					pline("Artifact specs: very fast speed when worn."); break;
+				case ART_GO_MIEFTLY_THEN_QUEUE__DAE:
+					pline("Artifact specs: very fast speed and protects you from slowing effects when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

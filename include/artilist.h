@@ -18750,6 +18750,79 @@ A("Belly-W",				LEATHER_ARMOR, /* randart2 armor, slow digestion, hunger, protec
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("Mayhem",				STOMPING_BOOTS,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_WARN|SPFX_DFLAG2), 0, (M2_UNDEAD),
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Grave Rouse",				LOW_BOOTS, /* randart2 boots */
+	(SPFX_RESTR|SPFX_WARN|SPFX_DFLAG2), 0, (M2_UNDEAD),
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Load Brand",				HEAVY_LONG_SWORD,
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_PROTEC), 0, 0,
+	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Nerf Brand",				LONG_SWORD, /* randart melee weapon */
+	(SPFX_RESTR|SPFX_HPHDAM|SPFX_PROTEC), 0, 0,
+	PHYS(5, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Not At All OP",				HEAVY_LONG_SWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lenses of Truth",				LENSES, /* see invis */
+	(SPFX_RESTR|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Silver Sky",				LONG_SWORD, /* randart long sword */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DEFN), 0, 0,
+	PHYS(1, 12), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Christian Sky",				LONG_SWORD, /* randart2 melee weapon */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DEFN), 0, 0,
+	PHYS(1, 12), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Sky Reflected",				BROADSWORD, /* randart broadsword */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	PHYS(8, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Potato Sky",				BROADSWORD, /* randart2 melee weapon */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	PHYS(8, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Amalgamated Skies",				TWO_HANDED_SWORD, /* randart two-handed sword, free action, 20k turns of nastynation and little marie trap effect when wielded because holy hell is that thing OP!!! */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_REFLECT|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	PHYS(8, 12), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Absurd Overpoweredness",				TWO_HANDED_SWORD, /* randart2 melee weapon, free action, 20k turns of arabella trap effect and inversion when wielded because holy hell is that thing OP!!! */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_REFLECT|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	PHYS(8, 12), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Dark Claymore",				TWO_HANDED_SWORD, /* randart2 two-handed sword, mounting a steed doesn't reduce tameness, makes areas dark on a hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 6), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4000L ),
+
+A("The Web of Hohoth",	ELVEN_TOGA,  /* spellcasting chance bonus like web of lolth, magic resistance and half speed when worn */
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_INTEL|SPFX_WARN|SPFX_EVIL), 0, (M2_ELF|M2_MINION|M2_DEMON),
+	NO_ATTK,	DRLI(0,0),	NO_CARY,
+	0,	A_CHAOTIC, NON_PM, NON_PM, 2000L), 
+
+A("Ensnared Mind",				HELM_OF_TELEPATHY, /* resist sleep and conf */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2500L ),
+
+A("SUPERpathy",				HELM_OF_TELEPATHY, /* also conveys intrinsic telepathy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("For Once Moving Swiftly",				ELVEN_TOGA, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Go Mieftly Then Queue (daedaedae)",				LEATHER_ARMOR, /* randart2 armor, very fast speed and protects from AD_SLOW */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

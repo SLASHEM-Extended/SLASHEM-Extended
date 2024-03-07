@@ -12345,6 +12345,7 @@ int spell;
 	if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SPELL_POWER) splcaster -= 3;
 	if (uarm && uarm->oartifact == ART_SPIDERSILK) splcaster -= 3;
 	if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH) splcaster -= 3;
+	if (uarm && uarm->oartifact == ART_WEB_OF_HOHOTH) splcaster -= 3;
 	if (uwep && uwep->oartifact == ART_ARYFAERN_KERYM) splcaster -= 3;
 
 	if (Role_if(PM_PALADIN)) splcaster -= 3; /* it is assumed some of their power is granted by the Lord of Light himself */
