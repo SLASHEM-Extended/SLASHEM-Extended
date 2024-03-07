@@ -15038,6 +15038,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_UNMOUNT_VIPER]) (void) mongets(mtmp, BARDICHE);
 		if (mtmp->data == &mons[PM_FLOWING_SNAKE]) (void) mongets(mtmp, FLOWING_SWORD);
 		if (mtmp->data == &mons[PM_FLUVSNAKE]) (void) mongets(mtmp, FLOWING_SWORD);
+		if (mtmp->data == &mons[PM_SEEA]) (void) mongets(mtmp, CIGARETTE);
 		if (mtmp->data == &mons[PM_SORC_D_AVANT_LANCER]) (void) mongets(mtmp, LANCE);
 		if (mtmp->data == &mons[PM_SORC_D_AVANT_ASSASSIN]) {
 			otmp = mksobj(IRON_SABER, FALSE, FALSE, FALSE);
@@ -17773,6 +17774,7 @@ loveheelover:
 		if(ptr == &mons[PM_ALINA_FLAX]) (void) mongets(mtmp, SCALPEL);
 		if(ptr == &mons[PM_SEXY_CLAUDIA]) (void) mongets(mtmp, WOODEN_GETA); /* M4_HAMMERSANDAL */
 		if(ptr == &mons[PM_PAJIDA]) (void) mongets(mtmp, UNFAIR_STILETTOS);
+		if(ptr == &mons[PM_AURA_LOIS]) (void) mongets(mtmp, COMBAT_STILETTOS);
 		if(ptr == &mons[PM_DEATHWATCH_ELITE]) (void) mongets(mtmp, TSURUGI);
 		if(ptr == &mons[PM_SILVER_LADY_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(ptr == &mons[PM_WHIP_DEMON]) (void) mongets(mtmp, CHITIN_WHIP);
@@ -21634,6 +21636,12 @@ loveheelover:
 	}
 
 	if (ptr == &mons[PM_YOUNG_PRACTICANT_BRIDE]) {
+
+		mtmp->crapbonus += 10;
+
+	}
+
+	if (ptr == &mons[PM_EROGENOUS_BRAT]) {
 
 		mtmp->crapbonus += 10;
 
