@@ -698,7 +698,7 @@ register char *enterstring;
 		       *mattockB = carrying(SOFT_MATTOCK),
 			 *mattockC = carrying(ETERNIUM_MATTOCK);
 
-	    if (pick || pickB || pickC || pickD || pickE || pickF || pickG || pickH || mattock || mattockB || mattockC) {
+	    if (pick || pickB || pickC || pickD || pickE || pickF || pickG || pickH || pickI || mattock || mattockB || mattockC) {
 		cnt = 1;
 		if (pick && mattock) {	/* carrying both types */
 		    tool = "digging tool";
