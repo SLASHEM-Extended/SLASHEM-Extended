@@ -2463,9 +2463,12 @@ rodneydone:
 	}
 
 	if (how == ASCENDED) {
+
+		u.weapon_slots += 20;
+
 		/* Amy edit: allow the player to keep their character and go on playing if they ascend! */
 freeplaycheck:
-		if (yn("CONGRATULATIONS!!! You've beaten the game. You can go on playing now if you want. Do you want to keep playing your character?") == 'y') {
+		if (yn("CONGRATULATIONS!!! You've beaten the game. You can go on playing now if you want, and will gain 20 additional skill slots as a reward. Do you want to keep playing your character?") == 'y') {
 
 			getlin ("You decided to keep playing your character. Please confirm your choice with yes [y/yes/no]",buf);
 			(void) lcase (buf);
@@ -2502,8 +2505,8 @@ die:
 		if (havestartscummed) {
 			killer_format = KILLED_BY;
 			killer = "start scumming";
+			if (!rn2(20)) pline("Dude, startscumming is so lame. Play the game properly instead!");
 		}
-		if (!rn2(20)) pline("Dude, startscumming is so lame. Play the game properly instead!");
 	}
 
 	if(u.uhpmax <= 0) u.uhpmax = 1; /* fixing a VERY annoying dump_techniques SIGFPE */
