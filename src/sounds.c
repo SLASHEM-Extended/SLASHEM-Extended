@@ -1586,6 +1586,9 @@ register struct monst *mtmp;
 	    break;
 	case MS_BARK:
 	case MS_GROWL:
+	case MS_GRAKA:
+	case MS_TEMPER:
+	case MS_TRIP:
 	    ret = "growls";
 	    break;
 	case MS_ROAR:
@@ -1772,16 +1775,27 @@ register struct monst *mtmp;
 		ret = "announces 'Widerliche Tergens sind das. Heffin sie alle.'";
 		break;
 	case MS_ANOREXIA:
+		ret = "mumbles 'Ah, who cares, I'm gonna die anyway.'";
+		break;
 	case MS_BULIMIA:
-	case MS_GRAKA:
-	case MS_TEMPER:
+		ret = "shouts 'I will kill you! I swear, if you don't leave NOW I'll really kill you!'";
+		break;
 	case MS_BLANKER:
+		ret = "shouts 'Now I'm gonna disenchant all your armor.'";
+		break;
 	case MS_CONDESCEND:
+		ret = "laughs 'You're no match for me.'";
+		break;
 	case MS_MOLEST:
-	case MS_MODALSHOP:
-	case MS_GAGA:
+		if (flags.female) ret = "laughs 'Now I'll rape you, little girl.'";
+		else ret = "sneers 'Fucking man, begone!'";
+		break;
 	case MS_SHOCKTROOPER:
-	case MS_TRIP:
+		ret = "says 'ku kur ku'";
+		break;
+	case MS_GAGA:
+		ret = "screams 'You violated my gender!!!!!!!111'";
+		break;
 	case MS_AETHERIC:
 	case MS_COMMON:
 	case MS_PIRATE:
@@ -1802,6 +1816,7 @@ register struct monst *mtmp;
 	case MS_RUSTLE:
 	case MS_SEMEN:
 	case MS_SCIENTIST:
+	case MS_MODALSHOP:
 		/* todo */
 		ret = "Unfinished sound effect.";
 		break;
@@ -1912,6 +1927,9 @@ register struct monst *mtmp;
 	    break;
 	case MS_BARK:
 	case MS_GROWL:
+	case MS_GRAKA:
+	case MS_TEMPER:
+	case MS_TRIP:
 	ret = "yelps";
 	    break;
 	case MS_ROAR:
@@ -2082,16 +2100,27 @@ register struct monst *mtmp;
 		ret = "grumbles 'Ich werde den Finduh kalikraken. Ehrlich. Darauf koennt Ihr terraten!'";
 		break;
 	case MS_ANOREXIA:
+		ret = "mutters 'This is all worthless.'";
+		break;
 	case MS_BULIMIA:
-	case MS_GRAKA:
-	case MS_TEMPER:
+		ret = "growls 'Do that one more time and I'll slit your throat!'";
+		break;
 	case MS_BLANKER:
+		ret = "growls 'Leave me alone or I'll cast destroy armor at you.'";
+		break;
 	case MS_CONDESCEND:
+		ret = "snickers 'Does that little adventurer really think they can match my skill?'";
+		break;
 	case MS_MOLEST:
-	case MS_MODALSHOP:
-	case MS_GAGA:
+		if (flags.female) ret = "snickers 'You really want me to play with the orifice between your legs, huh, girl?'";
+		else ret = "shouts 'Asshole dude! Leave me the fuck alone!'";
+		break;
 	case MS_SHOCKTROOPER:
-	case MS_TRIP:
+		ret = "says 'dup dup'";
+		break;
+	case MS_GAGA:
+		ret = "shouts 'Did you just assume my gender?'";
+		break;
 	case MS_AETHERIC:
 	case MS_COMMON:
 	case MS_PIRATE:
@@ -2112,6 +2141,7 @@ register struct monst *mtmp;
 	case MS_RUSTLE:
 	case MS_SEMEN:
 	case MS_SCIENTIST:
+	case MS_MODALSHOP:
 		/* todo */
 		ret = "Unfinished sound effect.";
 		break;
@@ -2221,6 +2251,9 @@ register struct monst *mtmp;
     switch (mtmp->data->msound) {
 	case MS_MEW:
 	case MS_GROWL:
+	case MS_GRAKA:
+	case MS_TEMPER:
+	case MS_TRIP:
 	ret = "whimpers";
 	    break;
 	case MS_BARK:
@@ -2376,19 +2409,30 @@ register struct monst *mtmp;
 		ret = "doesn't seem to remember whether there were traps here.";
 		break;
 	case MS_SHIVERINGESLES:
-		ret = "Gorbeln. Koennt Ihr sie nicht gorbeln hoeren?";
+		ret = "says 'Gorbeln. Koennt Ihr sie nicht gorbeln hoeren?'";
 		break;
 	case MS_ANOREXIA:
+		ret = "says 'Stay away from the food.'";
+		break;
 	case MS_BULIMIA:
-	case MS_GRAKA:
-	case MS_TEMPER:
+		ret = "says 'Don't step on that plate!'";
+		break;
 	case MS_BLANKER:
+		ret = "shouts 'There, an anti-magic trap!'";
+		break;
 	case MS_CONDESCEND:
+		ret = "whispers 'Watch out, that one floor tile is a different shade of color from the rest.'";
+		break;
 	case MS_MOLEST:
-	case MS_MODALSHOP:
-	case MS_GAGA:
+		if (flags.female) ret = "laughs 'Please, girl, step into the insemination trap for me!'";
+		else ret = "shouts 'Watch out man, a trap!'";
+		break;
 	case MS_SHOCKTROOPER:
-	case MS_TRIP:
+		ret = "says 'dup blis dup'";
+		break;
+	case MS_GAGA:
+		ret = "mutters 'Some bigot must have placed a trap there!'";
+		break;
 	case MS_AETHERIC:
 	case MS_COMMON:
 	case MS_PIRATE:
@@ -2409,6 +2453,7 @@ register struct monst *mtmp;
 	case MS_RUSTLE:
 	case MS_SEMEN:
 	case MS_SCIENTIST:
+	case MS_MODALSHOP:
 		/* todo */
 		ret = "Unfinished sound effect.";
 		break;
@@ -4058,16 +4103,138 @@ repairitemchoice:
 		else verbl_msg = "Uungor spredet, er 'tschaui.' Spredet mit Uungor. Ihr sterfeht mich? Spredet mit Uungor! Gebt Freund Pennigkeit in Uungors Ratzepueklo.";
 		break;
 	case MS_ANOREXIA:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Can't I just abstain from eating in peace?";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "I'm still not skinny enough!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Do you think I'm skinny and beautiful?";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Please don't tell me I'm fat!";
+		}
+		else verbl_msg = "You think I'm fat, I know it.";
+		break;
 	case MS_BULIMIA:
-	case MS_GRAKA:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Fuck the whole world!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "I need to eat a lot!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "I'm happy and feeling fine!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Nice day today, huh?";
+		}
+		else verbl_msg = "Don't you DARE comment on my teeth!";
+		break;
 	case MS_TEMPER:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Need healing!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Hungry!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Sup!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Eh!";
+		}
+		else verbl_msg = "GRR!";
+		break;
 	case MS_BLANKER:
+		/* todo */
+		break;
 	case MS_CONDESCEND:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I'm not gonna die! I'll just heal!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Once I've eaten, I'll finish off my enemy!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "You're my subordinate, just obey my command and everything is fine.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Oh, what a cute little specimen you are.";
+		}
+		else verbl_msg = "You will fall like wheat before my sword.";
+		break;
 	case MS_MOLEST:
-	case MS_MODALSHOP:
-	case MS_GAGA:
+		if (flags.female) {
+			if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+				verbl_msg = "I'm not gonna go down like that! My penis still has lots of semen left for inseminating women!";
+				break;
+			}
+			if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+				verbl_msg = "Hey, girl! Make me a sandwich, will ya?";
+				break;
+			}
+			if (mtmp->mtame) {
+				verbl_msg = "Oh girl, I'm looking forward to landing you in bed tonight...";
+			} else if (mtmp->mpeaceful) {
+				verbl_msg = "Do you like it if I massage your buttocks with my hands?";
+			}
+			else verbl_msg = "Now my penis will penetrate your vagina, girl. Hehehehehe.";
+		} else {
+			if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+				verbl_msg = "Gah why the hell do there have to be so many men on this planet FUCK THAT SHIT!";
+				break;
+			}
+			if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+				verbl_msg = "Bring me some food, fast!";
+				break;
+			}
+			if (mtmp->mtame) {
+				verbl_msg = "Gah, why do you have to be a man?";
+			} else if (mtmp->mpeaceful) {
+				verbl_msg = "You're not interesting to me because you have a penis.";
+			}
+			else verbl_msg = "God, why are you male? Ah well, I'll just get rid of you real quick and then I'll find some girls to play with!";
+		}
+
+		break;
 	case MS_SHOCKTROOPER:
-	case MS_TRIP:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "ka ga blis blis ka";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "puh pur hyu ka";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "kss wirt ras";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "kss kyur kiml";
+		}
+		else verbl_msg = "kiml kiml";
+		break;
+	case MS_GAGA:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "The LGBTIQ+ community will avenge me...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Can you procure some food that's suitable for my gender?";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Always be aware of my gender.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Hey, did I tell you about my gender yet?";
+		}
+		else verbl_msg = "You have to use the correct pronouns when talking to me!!!!!";
+		break;
 	case MS_AETHERIC:
 	case MS_COMMON:
 	case MS_PIRATE:
@@ -4088,6 +4255,7 @@ repairitemchoice:
 	case MS_RUSTLE:
 	case MS_SEMEN:
 	case MS_SCIENTIST:
+	case MS_MODALSHOP:
 		/* todo */
 		verbl_msg = "The sound effect of this monster has not been implemented yet.";
 		break;
@@ -4921,7 +5089,9 @@ metalmafiaagain:
 	    }
 	    /* else FALLTHRU */
 	case MS_NASTYTRAP:
+	case MS_GRAKA:
 	case MS_HUMANOID:
+	case MS_TRIP:
 	case MS_FEMI:
 	    if (!mtmp->mpeaceful) {
 		if (In_endgame(&u.uz) && is_mplayer(ptr)) {
@@ -6426,19 +6596,14 @@ register struct monst *mtmp;
 		case MS_OE:
 		case MS_NASTYTRAP:
 		case MS_FEMI:
+		case MS_ANOREXIA:
+		case MS_BULIMIA:
+		case MS_GRAKA:
+		case MS_BLANKER:
+		case MS_CONDESCEND:
+		case MS_TRIP:
 
 		/* todo all the way down */
-			case MS_ANOREXIA:
-			case MS_BULIMIA:
-			case MS_GRAKA:
-			case MS_TEMPER:
-			case MS_BLANKER:
-			case MS_CONDESCEND:
-			case MS_MOLEST:
-			case MS_MODALSHOP:
-			case MS_GAGA:
-			case MS_SHOCKTROOPER:
-			case MS_TRIP:
 			case MS_AETHERIC:
 			case MS_COMMON:
 			case MS_PIRATE:
@@ -6458,6 +6623,7 @@ register struct monst *mtmp;
 			case MS_HOOT:
 			case MS_RUSTLE:
 			case MS_SEMEN:
+			case MS_MODALSHOP:
 			case MS_SCIENTIST: /* todo all the way up */
 
 			switch (distresslevel) {
@@ -6469,6 +6635,62 @@ register struct monst *mtmp;
 					break;
 				case 3:
 					pline("%s is severely hurt!", Monnam(mtmp));
+					break;
+			}
+			break;
+
+		case MS_GAGA:
+			switch (distresslevel) {
+				case 1:
+					verbalize("Do you not recognize the fact that I'm %s?", mongenderidentity(mtmp));
+					break;
+				case 2:
+					verbalize("This %s is not amused!", mongenderidentity(mtmp));
+					break;
+				case 3:
+					verbalize("One day all the members of the LGBTIQ+ community are gonna cancel you, and then everyone will treat me as a respected %s!", mongenderidentity(mtmp));
+					break;
+			}
+			break;
+		case MS_SHOCKTROOPER:
+			switch (distresslevel) {
+				case 1:
+					verbalize("mub puh mub dit dit");
+					break;
+				case 2:
+					verbalize("dit kss kss");
+					break;
+				case 3:
+					verbalize("kss dit dit kss");
+					break;
+			}
+			break;
+		case MS_MOLEST:
+			switch (distresslevel) {
+				case 1:
+					if (flags.female) pline("%s shouts 'I'm gonna fuck you for that, bitch!'", Monnam(mtmp));
+					else pline("%s shouts 'Bastard!'", Monnam(mtmp));
+					break;
+				case 2:
+					if (flags.female) pline("%s shouts 'My penis will thrust into your vagina again and again, you slut!'", Monnam(mtmp));
+					else pline("%s shouts 'Motherfucker, I'll polish your kisser!'", Monnam(mtmp));
+					break;
+				case 3:
+					if (flags.female) pline("%s screams 'No woman gets away from me! You will be made pregnant by my dick, no matter what you devil's whore try to do!'", Monnam(mtmp));
+					else pline("%s screams 'Fuck Fuck Fuck why does that asshole have to be a man why can't I get a woman instead I'd so totally rape her into submission fuuuuuck...'", Monnam(mtmp));
+					break;
+			}
+			break;
+		case MS_TEMPER:
+			switch (distresslevel) {
+				case 1:
+					pline("%s shouts 'You'll die!'", Monnam(mtmp));
+					break;
+				case 2:
+					pline("%s shouts 'I'ma smash you for this!'", Monnam(mtmp));
+					break;
+				case 3:
+					pline("%s screams 'FUCK YOU ASSHOLE!!!'", Monnam(mtmp));
 					break;
 			}
 			break;

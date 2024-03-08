@@ -25635,6 +25635,7 @@ register int	mmflags;
 	mtmp->infravisble = rn2(3);
 	mtmp->lisapantscolor = rnd(19);
 	mtmp->lisapantstype = rnd(18);
+	mtmp->genderidentity = rnd(32);
 	mtmp->lisaseen = FALSE;
 	mtmp->codeguessed = FALSE;
 	mtmp->flagged_for_death = FALSE;

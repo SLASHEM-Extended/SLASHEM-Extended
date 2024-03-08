@@ -1742,6 +1742,126 @@ bundledescription()
 
 }
 
+/* fueled by seething rage the hordes will descend upon Amy for adding this... and all just because she's using the term
+ * "gender" properly (there are only two genders) and calls these what they are: gender identities, of which there could
+ * in theory be as many as there are people in the world, or possibly even more
+ * IMHO the main reason why people keep calling these "genders" is because gender identity is too clunky a term, and
+ * therefore they're "simplifying" by calling them genders, just like 99.9% of people who release games on steam are
+ * tagging them "roguelike" even if the game isn't even remotely similar to the original game Rogue because it would be
+ * too difficult to label them as roguelite or roguelikelike or whatever... */
+char *
+mongenderidentity(mtmp)
+register struct monst *mtmp;
+{
+	static char pantsbuf[BUFSZ]; 
+
+	switch (mtmp->genderidentity) {
+
+		default:
+			sprintf(pantsbuf, "nonspecific");
+			break;
+		case 1:
+			sprintf(pantsbuf, "female");
+			break;
+		case 2:
+			sprintf(pantsbuf, "male");
+			break;
+		case 3:
+			sprintf(pantsbuf, "transgender female");
+			break;
+		case 4:
+			sprintf(pantsbuf, "transgender male");
+			break;
+		case 5:
+			sprintf(pantsbuf, "trans female");
+			break;
+		case 6:
+			sprintf(pantsbuf, "trans male");
+			break;
+		case 7:
+			sprintf(pantsbuf, "trans");
+			break;
+		case 8:
+			sprintf(pantsbuf, "female to male");
+			break;
+		case 9:
+			sprintf(pantsbuf, "male to female");
+			break;
+		case 10:
+			sprintf(pantsbuf, "transsexual");
+			break;
+		case 11:
+			sprintf(pantsbuf, "cisgender");
+			break;
+		case 12:
+			sprintf(pantsbuf, "cis female");
+			break;
+		case 13:
+			sprintf(pantsbuf, "cis male");
+			break;
+		case 14:
+			sprintf(pantsbuf, "gender non-conforming");
+			break;
+		case 15:
+			sprintf(pantsbuf, "no gender");
+			break;
+		case 16:
+			sprintf(pantsbuf, "nonbinary");
+			break;
+		case 17:
+			sprintf(pantsbuf, "neutrois");
+			break;
+		case 18:
+			sprintf(pantsbuf, "genderfluid");
+			break;
+		case 19:
+			sprintf(pantsbuf, "genderqueer");
+			break;
+		case 20:
+			sprintf(pantsbuf, "demigender");
+			break;
+		case 21:
+			sprintf(pantsbuf, "demigirl");
+			break;
+		case 22:
+			sprintf(pantsbuf, "demiboy");
+			break;
+		case 23:
+			sprintf(pantsbuf, "agender");
+			break;
+		case 24:
+			sprintf(pantsbuf, "intergender");
+			break;
+		case 25:
+			sprintf(pantsbuf, "intersex");
+			break;
+		case 26:
+			sprintf(pantsbuf, "pangender");
+			break;
+		case 27:
+			sprintf(pantsbuf, "poligender");
+			break;
+		case 28:
+			sprintf(pantsbuf, "omnigender");
+			break;
+		case 29:
+			sprintf(pantsbuf, "bigender");
+			break;
+		case 30:
+			sprintf(pantsbuf, "androgyne");
+			break;
+		case 31:
+			sprintf(pantsbuf, "third gender");
+			break;
+		case 32:
+			sprintf(pantsbuf, "trigender");
+			break;
+
+	}
+
+	return pantsbuf;
+}
+
 char *
 pantsdescription(mtmp)
 register struct monst *mtmp;

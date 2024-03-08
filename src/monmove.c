@@ -2300,6 +2300,9 @@ newbossSING:
 			case MS_ARMORER:
 				verbalize("I'll smash you!");
 				break;
+			case MS_GAGA:
+				verbalize("Woe to you if you don't address me as a %s!", mongenderidentity(mtmp) );
+				break;
 			case MS_BEG:
 				verbalize("Give me some money please!");
 				break;
