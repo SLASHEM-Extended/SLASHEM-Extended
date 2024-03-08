@@ -114,13 +114,14 @@ struct objclass {
 #define MT_STEEL		65	/* metallic */
 #define MT_TITANIUM	66		/* metallic */
 #define MT_ADAMANTIUM		67	/* organic */
-#define MT_ALIMATHIUM		68	/* inedible */
+#define MT_LACQUER		68	/* organic */
+#define MT_ALIMATHIUM		69	/* inedible */
 #define LASTMATERIAL	MT_ALIMATHIUM
 /* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 
 /* and *change it in this motherfucking file too!!!* especially the definitions just below */
 
-#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_CELESTIUM || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_CHITIN || objects[(otmp)->otyp].oc_material == MT_ADAMANTIUM || objects[(otmp)->otyp].oc_material == MT_MESH || objects[(otmp)->otyp].oc_material == MT_BAMBOO || objects[(otmp)->otyp].oc_material == MT_FILM || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
+#define is_organic(otmp)	(objects[(otmp)->otyp].oc_material <= MT_WOOD || objects[(otmp)->otyp].oc_material == MT_DRAGON_HIDE || objects[(otmp)->otyp].oc_material == MT_CELESTIUM || objects[(otmp)->otyp].oc_material == MT_INKA || objects[(otmp)->otyp].oc_material == MT_SILK || objects[(otmp)->otyp].oc_material == MT_CHITIN || objects[(otmp)->otyp].oc_material == MT_ADAMANTIUM || objects[(otmp)->otyp].oc_material == MT_MESH || objects[(otmp)->otyp].oc_material == MT_BAMBOO || objects[(otmp)->otyp].oc_material == MT_FILM || objects[(otmp)->otyp].oc_material == MT_LACQUER || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_SECREE || objects[(otmp)->otyp].oc_material == MT_COMPOST)
 
 #define is_metallic(otmp)	((objects[(otmp)->otyp].oc_material >= MT_IRON && \
 				 objects[(otmp)->otyp].oc_material <= MT_MITHRIL) || objects[(otmp)->otyp].oc_material == MT_VIVA || objects[(otmp)->otyp].oc_material == MT_ETHER || objects[(otmp)->otyp].oc_material == MT_METEOSTEEL || objects[(otmp)->otyp].oc_material == MT_MERCURIAL || objects[(otmp)->otyp].oc_material == MT_GREEN_STEEL || objects[(otmp)->otyp].oc_material == MT_POURPOOR || objects[(otmp)->otyp].oc_material == MT_ALKALINE || objects[(otmp)->otyp].oc_material == MT_SINNUM || objects[(otmp)->otyp].oc_material == MT_SCRAP || objects[(otmp)->otyp].oc_material == MT_ALUMEN || objects[(otmp)->otyp].oc_material == MT_ALLOY || objects[(otmp)->otyp].oc_material == MT_TINSEL || objects[(otmp)->otyp].oc_material == MT_LEAD || objects[(otmp)->otyp].oc_material == MT_BRONZE || objects[(otmp)->otyp].oc_material == MT_CHROME || objects[(otmp)->otyp].oc_material == MT_COBALT || objects[(otmp)->otyp].oc_material == MT_TINSEL || objects[(otmp)->otyp].oc_material == MT_STEEL || objects[(otmp)->otyp].oc_material == MT_TITANIUM)

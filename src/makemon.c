@@ -363,7 +363,7 @@ register struct monst *mtmp;
 				case 5: (void) mongets(mtmp, FEMININE_PUMPS); break;
 				case 6: (void) mongets(mtmp, LEATHER_PEEP_TOES); break;
 				case 7: (void) mongets(mtmp, HIPPIE_HEELS); break;
-				case 8: (void) mongets(mtmp, COMBAT_STILETTOS); break;
+				case 8: (void) mongets(mtmp, rn2(200) ? COMBAT_STILETTOS : MEN_S_HIGH_HEELS); break;
 				case 9: (void) mongets(mtmp, rn2(200) ? LADY_BOOTS : DIDIER_SACHS_SHOES); break;
 				case 10: (void) mongets(mtmp, BASIC_SHOES); break;
 				case 11: (void) mongets(mtmp, CLOGS); break;
@@ -8198,6 +8198,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_NOBLER_WOMAN]) (void) mongets(mtmp, FLEECY_CORSET);
 		if (ptr == &mons[PM_BIONDI_BARBARIAN]) (void) mongets(mtmp, GRINDER);
 		if (ptr == &mons[PM_ELVEN_CANCERFAG]) (void) mongets(mtmp, CIGARETTE);
+		if (ptr == &mons[PM_OBVIOUS_TRANNY]) (void) mongets(mtmp, MEN_S_HIGH_HEELS);
 		if (ptr == &mons[PM_SLYER_ALIEN]) {
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
 		}

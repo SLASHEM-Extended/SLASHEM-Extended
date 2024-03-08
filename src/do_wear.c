@@ -134,6 +134,7 @@ Boots_on()
 	case CLOGS:
 	case BASIC_SHOES:
 	case DIDIER_SACHS_SHOES:
+	case MEN_S_HIGH_HEELS:
 	case LEATHER_PEEP_TOES:
 	case COMBAT_STILETTOS:
 	case HEEL_WISE_SHOES:
@@ -940,6 +941,7 @@ Boots_off()
 	case CLOGS:
 	case BASIC_SHOES:
 	case DIDIER_SACHS_SHOES:
+	case MEN_S_HIGH_HEELS:
 	case LEATHER_PEEP_TOES:
 	case COMBAT_STILETTOS:
 	case HEEL_WISE_SHOES:
@@ -7200,6 +7202,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_DREAD_PELT) uac -= 8;
 	if (uarm && uarm->oartifact == ART_WELL_AT_LEAST_THE_AC_IS_GO) uac -= 10;
 	if (uarmg && uarmg->otyp == BRACERS_OF_DEFENSE) uac -= (u.ulevel / 6);
 	if (uarmc && uarmc->oartifact == ART_HERACLES_PRIZE) uac -= 5;

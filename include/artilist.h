@@ -18823,6 +18823,30 @@ A("Go Mieftly Then Queue (daedaedae)",				LEATHER_ARMOR, /* randart2 armor, very
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
+A("campercampercampercampercamper",				MEN_S_HIGH_HEELS, /* makes you immune to cancellation and if u.umoved is 0, your MC is at least 10 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7550L ),
+
+A("John's Redblock",				MEN_S_HIGH_HEELS, /* double resist fire, your kick cannot be clumsy */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Catalin's Robbery",				MEN_S_HIGH_HEELS, /* resist psi and if you're male they also grant reflection, invoking while you don't have a symbiote gives a sucker fungus if your XL is 9 or lower, otherwise a taker fungus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dread Pelt",				LACQUERED_PLATE_MAIL, /* discount action, 8 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("165 Dur",				LACQUERED_PLATE_MAIL, /* resist contamination, if you'd lose alla there's a 2 in 3 chance that you don't */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Kamakura-bori",				LACQUERED_PLATE_MAIL, /* renames items to japanese, 20% better spellcasting chances, protects items from water damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

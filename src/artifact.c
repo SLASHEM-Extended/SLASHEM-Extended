@@ -5408,6 +5408,26 @@ chargingchoice:
 
 		*/
 
+		if (obj->oartifact == ART_CATALIN_S_ROBBERY) {
+
+			if (uinsymbiosis) {
+				pline("Because you already have a symbiote, nothing happens.");
+				break;
+			}
+
+			u.usymbiote.active = 1;
+			u.usymbiote.mnum = (u.ulevel < 10) ? PM_SUCKER_FUNGUS : PM_TAKER_FUNGUS;
+			u.usymbiote.mhpmax = (u.ulevel < 10) ? 16 : 128;
+			u.usymbiote.mhp = (u.ulevel < 10) ? 16 : 128;
+			u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+
+			pline("Suddenly you have a symbiote!");
+			pline("Use #monster to manage your symbiote.");
+			if (flags.showsymbiotehp) flags.botl = TRUE;
+
+			break;
+		}
+
 		if (obj->oartifact == ART_KIM_S_COLOR) {
 
 			int objtomodify;

@@ -25241,6 +25241,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_JIN_GANG_ZUO) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_ALWAYS_IN_IT) continue;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_GO_UNDER_OR_UP) continue;
+		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_KAMAKURA_BORI) continue;
 		if ((obj->where != OBJ_FLOOR) && u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_WELCOME_ON_BOARD) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_UNDERWATER_LOVE) continue;

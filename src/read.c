@@ -6955,7 +6955,7 @@ materialchoice2:
 				break;
 			} else {
 				int changematerial;
-				switch (rnd(21)) {
+				switch (rnd(22)) {
 					case 1: changematerial = MT_MYSTERIOUS; break;
 					case 2: changematerial = MT_WOOD; break;
 					case 3: changematerial = MT_BONE; break;
@@ -6977,6 +6977,7 @@ materialchoice2:
 					case 19: changematerial = MT_MERCURIAL; break;
 					case 20: changematerial = MT_MESH; break;
 					case 21: changematerial = MT_STEEL; break;
+					case 22: changematerial = MT_LACQUER; break;
 					default: changematerial = MT_METAL; break;
 				}
 				objects[otmpC->otyp].oc_material = changematerial;

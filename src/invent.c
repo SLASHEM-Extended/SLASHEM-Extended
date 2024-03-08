@@ -13711,6 +13711,8 @@ boolean knoweverything;
 				pline("A very heavy suit of armor that offers good protection."); break;
 			case BRONZE_PLATE_MAIL:
 				pline("This suit of armor is inferior to regular plate mail."); break;
+			case LACQUERED_PLATE_MAIL:
+				pline("Very good suit of armor, although it might dull quickly and then it's not so good anymore."); break;
 			case COPPER_PLATE_MAIL:
 				pline("It's the old bronze plate mail, now with better magic cancellation, so it might actually be worth using. Especially since it's made of copper, which can't rust."); break;
 			case SPLINT_MAIL:
@@ -14167,6 +14169,8 @@ boolean knoweverything;
 				pline("An incredibly expensive pair of stiletto heels. You could get the same type of shoes for a fraction of the price, but oh well. 99%% of the price comes from the 'Didier Sachs' label and 1%% is for the actual material and manufacturing costs."); break;
 			case BASIC_SHOES:
 				pline("A pair of block-heeled boots. They look very fleecy <3"); break;
+			case MEN_S_HIGH_HEELS:
+				pline("These boots have columnar heels. Of course you can wear them regardless of your gender, but they're primarily meant to be worn by men :-P And they have quite good AC."); break;
 			case CLOGS:
 				pline("Such a cuuuuuute pair of wooden clogs <3! They count as sexy flats, and while wearing them, stepping into a heap of shit doesn't affect you because the thick soles are immune."); break;
 			case BULLETPROOF_VEST:
@@ -30606,6 +30610,18 @@ boolean knoweverything;
 					pline("Artifact specs: very fast speed when worn."); break;
 				case ART_GO_MIEFTLY_THEN_QUEUE__DAE:
 					pline("Artifact specs: very fast speed and protects you from slowing effects when worn."); break;
+				case ART_CAMPERCAMPERCAMPERCAMPERCA:
+					pline("Artifact specs: immunity to cancellation when worn and if you don't move, you have lots of magic cancellation."); break;
+				case ART_JOHN_S_REDBLOCK:
+					pline("Artifact specs: double resist fire and your kick cannot be clumsy while wearing them."); break;
+				case ART_CATALIN_S_ROBBERY:
+					pline("Artifact specs: resist psi while worn and if you're male, reflection. Can be invoked to get a fungus with item-stealing attacks as a symbiote, as long as you don't have a symbiote yet; if your experience level is below 10, the fungus will be weaker."); break;
+				case ART_DREAD_PELT:
+					pline("Artifact specs: discount action and 8 extra points of AC when worn."); break;
+				case ART_____DUR:
+					pline("Artifact specs: contamination resistance when worn and allows you to resist effects that drain your alla 2 out of 3 times."); break;
+				case ART_KAMAKURA_BORI:
+					pline("Artifact specs: fire resistance, 20%% boost to spellcasting chances, protects items from water damage and renames items to japanese when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

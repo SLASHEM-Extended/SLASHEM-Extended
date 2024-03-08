@@ -1044,7 +1044,7 @@ elena15:
 			}
 
 			/* beautiful heels use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || (randomsexyheels == 20) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_PLOF_ANJE] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && itemhasappearance(footwear, APP_BEAUTIFUL_HEELS) ) || (randomsexyheels == 20) || (footwear && footwear->otyp == MEN_S_HIGH_HEELS) || mtmp->data == &mons[PM_ANIMATED_BEAUTIFUL_SANDAL] || mtmp->data == &mons[PM_COLUMNAR_HEEL_SHOE] || mtmp->data == &mons[PM_PLOF_ANJE] || mtmp->data == &mons[PM_STEFANJE] || mtmp->data == &mons[PM_OFFICER_HANH] ) ) {
 elena16:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -6912,6 +6912,7 @@ struct monst *mon;
 		if (uarm && uarm->oartifact == ART_GREYSHADE && armpro < 4) armpro = 4;
 		if (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH && armpro < 5) armpro = 5;
 		if (uarmc && uarmc->oartifact == ART_FASCEND && armpro < 10) armpro = 10;
+		if (uarmf && uarmf->oartifact == ART_CAMPERCAMPERCAMPERCAMPERCA && armpro < 10 && !u.umoved) armpro = 10;
 		if (numberofwornadamantiumarmor() && (armpro < numberofwornadamantiumarmor())) armpro = numberofwornadamantiumarmor();
 
 		if (u.magicshield) armpro += 1;

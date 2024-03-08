@@ -12628,6 +12628,7 @@ int spell;
 	if (uarmc && uarmc->oartifact == ART_SHROUD) chance += 10;
 	if (have_magicrystal()) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
+	if (uarm && uarm->oartifact == ART_KAMAKURA_BORI) chance += 20;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;

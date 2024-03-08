@@ -4441,6 +4441,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RUGGED_SACK, "" },
 	{ SEATBELT_SADDLE, "" },
 	{ BALLPEEN_HAMMER, "" },
+	{ LACQUERED_PLATE_MAIL, "" },
+	{ MEN_S_HIGH_HEELS, "" },
 
 	{0, "" }
 };
@@ -8034,6 +8036,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ RUGGED_SACK, "" },
 	{ SEATBELT_SADDLE, "" },
 	{ BALLPEEN_HAMMER, "" },
+	{ LACQUERED_PLATE_MAIL, "" },
+	{ MEN_S_HIGH_HEELS, "" },
 
 	{0, "" }
 };
@@ -8094,6 +8098,8 @@ register int otyp;
 	if (Role_if(PM_OTAKU) && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && Alternate_item_name(otyp,Japanese_items))
+		actualn = Alternate_item_name(otyp,Japanese_items);
+	if (uarm && uarm->oartifact == ART_KAMAKURA_BORI && Alternate_item_name(otyp,Japanese_items))
 		actualn = Alternate_item_name(otyp,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) && !issoviet && Alternate_item_name(otyp,Pirate_items))
 		actualn = Alternate_item_name(otyp,Pirate_items);
@@ -8309,6 +8315,8 @@ boolean showpoisoned;
 	if (Role_if(PM_OTAKU) && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if (uarmf && uarmf->oartifact == ART_EIMI_WA_BAKADESU && Alternate_item_name(typ,Japanese_items))
+		actualn = Alternate_item_name(typ,Japanese_items);
+	if (uarm && uarm->oartifact == ART_KAMAKURA_BORI && Alternate_item_name(typ,Japanese_items))
 		actualn = Alternate_item_name(typ,Japanese_items);
 	if ( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) && !issoviet && Alternate_item_name(typ,Pirate_items))
 		actualn = Alternate_item_name(typ,Pirate_items);
@@ -8938,6 +8946,7 @@ register struct obj *obj;
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GOLD) strcat(prefix,"g-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLATINUM) strcat(prefix,"P-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_ALIMATHIUM) strcat(prefix,"Q-");
+		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_LACQUER) strcat(prefix,"q-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_MITHRIL) strcat(prefix,"M-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_PLASTIC) strcat(prefix,"p-");
 		if (obj->dknown && (nn || (obj->oclass != TOOL_CLASS && obj->oclass != GEM_CLASS)) && flags.materialglyph && objects[obj->otyp].oc_material == MT_GEMSTONE) strcat(prefix,"$ ");

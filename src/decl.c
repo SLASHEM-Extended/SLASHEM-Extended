@@ -308,7 +308,7 @@ const char *materialnm[] = {
 	"chitin", "shell", "green steel", "mercurial", "firmament", 
 	"bamboo", "cobalt", "coral", "sinnum", "bronze", 
 	"alumen", "mesh", "steel", "titanium", "adamantium", 
-	"alimathium", 
+	"lacquer", "alimathium", 
 };
 
 /* Vision */

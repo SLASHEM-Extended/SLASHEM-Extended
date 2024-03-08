@@ -2750,6 +2750,10 @@ create_polymon(obj, okind)
 	    pm_index = PM_BRONZE_GOLEM;
 	    material = "bronze ";
 	    break;
+	case MT_LACQUER:
+	    pm_index = PM_LACQUER_GOLEM;
+	    material = "lacquer ";
+	    break;
 	case MT_CHITIN:
 	    pm_index = PM_CHITIN_GOLEM;
 	    material = "chitin ";
@@ -7784,6 +7788,8 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vy ne poteryayete vse soprotivleniya i vashi detali bol'she ne zakoldovannyy ili zaryazheny, tak chto vy mozhete tochno tak zhe otkazat'sya, vy retard." : "Bimmselbimmselbimmselbimmselbimmsel!");
 
 		stop_occupation(); /* reeeeeally stupid if you e.g. read a book and get zapped 20 times --Amy */
+
+		if (uarmf && uarmf->oartifact == ART_CAMPERCAMPERCAMPERCAMPERCA) return FALSE; /* player is immune */
 	}
 
 	if (youdefend ? (!youattack && ((Antimagic && rn2(StrongAntimagic ? 20 : 5)) || (chitinprotection() && rn2(3)) || (MysteryResist && rn2(3)) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CANC___ && rn2(10)) || (StrongMysteryResist && rn2(3)) ) ) /* no longer complete protection --Amy */
