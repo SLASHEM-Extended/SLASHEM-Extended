@@ -26679,6 +26679,9 @@ int
 disarm_holdingtrap(ttmp) /* Helge Hafting */
 struct trap *ttmp;
 {
+	boolean trapmadebyyou = FALSE;
+	if (ttmp->madeby_u) trapmadebyyou = TRUE;
+
 	struct monst *mtmp;
 	int fails = try_disarm(ttmp, FALSE, FALSE);
 
@@ -26707,8 +26710,9 @@ struct trap *ttmp;
 			deltrap(ttmp);
 			u.cnd_untrapamount++;
 		}
+		/* ttmp is probably undefined at this point!!! */
 
-		if (!ttmp->madeby_u) {
+		if (!trapmadebyyou) {
 			more_experienced(5 * (deepest_lev_reached(FALSE) + 1),0);
 			newexplevel();
 		}
