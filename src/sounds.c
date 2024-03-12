@@ -1796,22 +1796,29 @@ register struct monst *mtmp;
 	case MS_GAGA:
 		ret = "screams 'You violated my gender!!!!!!!111'";
 		break;
-	case MS_AETHERIC:
 	case MS_COMMON:
+		ret = "screams 'I was seriously abused!'";
+		break;
 	case MS_PIRATE:
-	case MS_BUSY:
-	case MS_HIRE:
-	case MS_JAM:
-	case MS_LOWPRIORITY:
-	case MS_ARMORER:
+		ret = "shouts 'Gonna cleave ye to the brisket!'";
+		break;
+	case MS_SILLY:
+		ret = "shouts 'Your ass will come out of the back!'";
+		break;
+	case MS_MIDI:
+		ret = "makes a frenzied clamping sound";
+		break;
+	case MS_HERCULES:
+		ret = "laughs 'You're no match for me, wimp.'";
+		break;
 	case MS_BEG:
+		ret = "screams 'You're cruel.'";
+		break;
+	case MS_HIRE:
+	case MS_ARMORER:
 	case MS_OMEN:
 	case MS_NEWS:
-	case MS_MIDI:
-	case MS_SILLY:
-	case MS_HERCULES:
 	case MS_CRYTHROAT:
-	case MS_SPEEDBUG:
 	case MS_HOOT:
 	case MS_RUSTLE:
 	case MS_SEMEN:
@@ -2121,22 +2128,29 @@ register struct monst *mtmp;
 	case MS_GAGA:
 		ret = "shouts 'Did you just assume my gender?'";
 		break;
-	case MS_AETHERIC:
 	case MS_COMMON:
+		ret = "shouts 'I have been mistreated!'";
+		break;
 	case MS_PIRATE:
-	case MS_BUSY:
-	case MS_HIRE:
-	case MS_JAM:
-	case MS_LOWPRIORITY:
-	case MS_ARMORER:
+		ret = "shouts 'Hang'em from the yardarm!'";
+		break;
+	case MS_SILLY:
+		ret = "shouts 'Penis masturbation! Titty fuck!'";
+		break;
+	case MS_MIDI:
+		ret = "drums rapidly";
+		break;
+	case MS_HERCULES:
+		ret = "sneers 'If you do that again I'll force you to clean the stables.'";
+		break;
 	case MS_BEG:
+		ret = "sighs 'Beggars always cry...'";
+		break;
+	case MS_HIRE:
+	case MS_ARMORER:
 	case MS_OMEN:
 	case MS_NEWS:
-	case MS_MIDI:
-	case MS_SILLY:
-	case MS_HERCULES:
 	case MS_CRYTHROAT:
-	case MS_SPEEDBUG:
 	case MS_HOOT:
 	case MS_RUSTLE:
 	case MS_SEMEN:
@@ -2433,22 +2447,29 @@ register struct monst *mtmp;
 	case MS_GAGA:
 		ret = "mutters 'Some bigot must have placed a trap there!'";
 		break;
-	case MS_AETHERIC:
 	case MS_COMMON:
+		ret = "says 'I sense a trap nearby.'";
+		break;
 	case MS_PIRATE:
-	case MS_BUSY:
-	case MS_HIRE:
-	case MS_JAM:
-	case MS_LOWPRIORITY:
-	case MS_ARMORER:
+		ret = "says 'Avast, they runnin' a rig on ye!'";
+		break;
+	case MS_SILLY:
+		ret = "grins 'I see an angular sign and a socketed angular sign.'";
+		break;
+	case MS_MIDI:
+		ret = "pings with an annoyingly high pitch";
+		break;
+	case MS_HERCULES:
+		ret = "remarks 'This must be another one of those divine tasks.'";
+		break;
 	case MS_BEG:
+		ret = "shouts 'Someone wants to kill me!'";
+		break;
+	case MS_HIRE:
+	case MS_ARMORER:
 	case MS_OMEN:
 	case MS_NEWS:
-	case MS_MIDI:
-	case MS_SILLY:
-	case MS_HERCULES:
 	case MS_CRYTHROAT:
-	case MS_SPEEDBUG:
 	case MS_HOOT:
 	case MS_RUSTLE:
 	case MS_SEMEN:
@@ -4235,22 +4256,122 @@ repairitemchoice:
 		}
 		else verbl_msg = "You have to use the correct pronouns when talking to me!!!!!";
 		break;
-	case MS_AETHERIC:
 	case MS_COMMON:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "My health is low!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "I need to eat something!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Hello, friend.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Greetings, adventurer.";
+		}
+		else verbl_msg = "You are my enemy.";
+		break;
 	case MS_PIRATE:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Blow me down!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Splice the mainbrace!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Weigh anchor and hoist the mizzen!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Yo Ho Ho!";
+		}
+		else verbl_msg = "Scurvy dog!";
+		break;
 	case MS_BUSY:
-	case MS_HIRE:
-	case MS_JAM:
-	case MS_LOWPRIORITY:
-	case MS_ARMORER:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I can't do this anymore...";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Quick lunchbreak before I get back to work!";
+			break;
+		}
+		else verbl_msg = "I'm very busy! Please don't disturb me!";
+		break;
+	case MS_SILLY:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Soon I will go dead, but bring myself back into the play.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Now I need to eat a food ration that contains meat, because I don't have an eating disorder.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Do you want me to alternate between massaging your nuts and kicking them?";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "The block heels are made of cuddle cloth!";
+		}
+		else verbl_msg = "Now I will pull you the pants down!";
+		break;
+	case MS_MIDI:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "rnn rnn rnn RNN RNN RNN!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "deeeeeeeee, dededidadaDEEEEEEE-daaaaa-deeeeee!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "klimpklamp";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "klampklimpklamp";
+		}
+		else verbl_msg = "klilili!";
+		break;
+	case MS_HERCULES:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Impossible. I cannot fail.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Even I have to eat something from time to time. So, where can we get some meat?";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "With your assistance, we will overcome all the obstacles.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Hey, I'm on a task given to me by the gods themselves!";
+		}
+		else verbl_msg = "You won't stop me! I'm a God, you puny mortal!";
+		break;
 	case MS_BEG:
+		verbalize("Hey, I have no money to buy food, will you spare %d zorkmids, noble adventurer?", mtmp->m_lev + u.ulevel);
+		if (u.ugold >= (mtmp->m_lev + u.ulevel)) {
+			if (yn("Give the beggar some cash?") == 'y') {
+				verbalize("Thanks! I'll never forget this.");
+				u.ugold -= (mtmp->m_lev + u.ulevel);
+				if (!mtmp->mpeaceful) {
+					mtmp->mpeaceful = TRUE;
+					mtmp->mfrenzied = FALSE;
+				}
+				if (Race_if(PM_HUMANOID_DEVIL)) devil_misbehavior();
+				else if (u.ualign.type != A_CHAOTIC) adjalign(1);
+			} else {
+				verbalize("You're so cheap!");
+			}
+		} else {
+			pline("But you don't have enough money.");
+		}
+
+		break;
+	case MS_HIRE:
+	case MS_ARMORER:
 	case MS_OMEN:
 	case MS_NEWS:
-	case MS_MIDI:
-	case MS_SILLY:
-	case MS_HERCULES:
 	case MS_CRYTHROAT:
-	case MS_SPEEDBUG:
 	case MS_HOOT:
 	case MS_RUSTLE:
 	case MS_SEMEN:
@@ -5090,7 +5211,11 @@ metalmafiaagain:
 	    /* else FALLTHRU */
 	case MS_NASTYTRAP:
 	case MS_GRAKA:
+	case MS_JAM:
 	case MS_HUMANOID:
+	case MS_SPEEDBUG:
+	case MS_LOWPRIORITY:
+	case MS_AETHERIC:
 	case MS_TRIP:
 	case MS_FEMI:
 	    if (!mtmp->mpeaceful) {
@@ -6602,24 +6727,20 @@ register struct monst *mtmp;
 		case MS_BLANKER:
 		case MS_CONDESCEND:
 		case MS_TRIP:
+		case MS_COMMON:
+		case MS_AETHERIC:
+		case MS_BUSY:
+		case MS_JAM:
+		case MS_LOWPRIORITY:
+		case MS_SPEEDBUG:
+		case MS_BEG:
 
 		/* todo all the way down */
-			case MS_AETHERIC:
-			case MS_COMMON:
-			case MS_PIRATE:
-			case MS_BUSY:
 			case MS_HIRE:
-			case MS_JAM:
-			case MS_LOWPRIORITY:
 			case MS_ARMORER:
-			case MS_BEG:
 			case MS_OMEN:
 			case MS_NEWS:
-			case MS_MIDI:
-			case MS_SILLY:
-			case MS_HERCULES:
 			case MS_CRYTHROAT:
-			case MS_SPEEDBUG:
 			case MS_HOOT:
 			case MS_RUSTLE:
 			case MS_SEMEN:
@@ -6639,6 +6760,58 @@ register struct monst *mtmp;
 			}
 			break;
 
+		case MS_HERCULES:
+			switch (distresslevel) {
+				case 1:
+					verbalize("That's just a flesh wound...");
+					break;
+				case 2:
+					verbalize("I underestimated you, but you'll still fall before my sword!");
+					break;
+				case 3:
+					verbalize("The gods will grant me the strength to overcome this difficult opponent...");
+					break;
+			}
+			break;
+		case MS_SILLY:
+			switch (distresslevel) {
+				case 1:
+					verbalize("My vital signs are dropping!");
+					break;
+				case 2:
+					verbalize("Uhh, that might require a tetanus shot. Speaking of which, my last vaccination was more than 10 years ago...");
+					break;
+				case 3:
+					verbalize("Hey! Why is this HEV suit beeping constantly? That's so annoying!");
+					break;
+			}
+			break;
+		case MS_MIDI:
+			switch (distresslevel) {
+				case 1:
+					verbalize("Dadadiededada-dedidada-diededada-dedidada...");
+					break;
+				case 2:
+					verbalize("La laaaaaa, lalala-laaaaaa...");
+					break;
+				case 3:
+					verbalize("nananananinenananoe!");
+					break;
+			}
+			break;
+		case MS_PIRATE:
+			switch (distresslevel) {
+				case 1:
+					verbalize("Scuttle that landlubber!");
+					break;
+				case 2:
+					verbalize("Gonna keelhaul ye!");
+					break;
+				case 3:
+					verbalize("Ye'r gonna dance with Jack Ketch!");
+					break;
+			}
+			break;
 		case MS_GAGA:
 			switch (distresslevel) {
 				case 1:
