@@ -977,7 +977,12 @@ boolean put_away;
 		You("are empty %s.", body_part(HANDED));
 
 		/* BUG: doing this while the secondary hand has a lit lightsaber doesn't turn it off! fix that! --Amy */
-		if (u.twoweap && uswapwep) unwield(uswapwep, TRUE);
+		if (u.twoweap && uswapwep) {
+			if (yn("Unwield your secondary weapon too?") == 'y') {
+				unwield(uswapwep, TRUE);
+				untwoweapon();
+			}
+		}
 
 		setuwep((struct obj *) 0, put_away, TRUE);
 
@@ -1234,7 +1239,7 @@ dowield()
 	result = ready_weapon(wep, TRUE);
 	if (flags.pushweapon && oldwep && uwep != oldwep)
 		setuswapwep(oldwep, TRUE);
-	untwoweapon();
+	if (uwep && bimanual(uwep)) untwoweapon();
 	if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) (void)doredraw();
 
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_REAL_TIME_SWITCHING) return 0;
@@ -1294,8 +1299,13 @@ doswapweapon()
 	/* Unwield your current secondary weapon */
 	oldwep = uwep;
 	oldswap = uswapwep;
-	if (uswapwep)
+	if (uswapwep) {
 		unwield(uswapwep, FALSE);
+		if (wizard) pline("swapweapon was unwielded.");
+	}
+	if (u.twoweap) {
+		if (wizard) pline("twoweap was forcibly set to zero.");
+	}
 	u.twoweap = 0;
 	setuswapwep((struct obj *) 0, FALSE);
 
@@ -1502,7 +1512,7 @@ const char *verb;	/* "rub",&c */
     }
     if (uwep != obj) return FALSE;	/* rewielded old object after dying */
     /* applying weapon or tool that gets wielded ends two-weapon combat */
-    if (u.twoweap)
+    if (u.twoweap && uwep && bimanual(uwep))
 	untwoweapon();
     if (obj->oclass != WEAPON_CLASS && !is_weptool(obj))
 	unweapon = TRUE;
@@ -1730,6 +1740,9 @@ untwoweapon()
 		if (uswapwep)
 		    unwield(uswapwep, TRUE);
 		u.twoweap = FALSE;
+
+		if (wizard) pline("untwoweapon was called");
+
 		update_inventory();
 	}
 	return;

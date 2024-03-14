@@ -67,7 +67,7 @@ long mask;
 		if(oobj && !(oobj->owornmask & wp->w_mask))
 			pline("Setworn: mask = %ld.", wp->w_mask);
 		if(oobj) {
-		    if (u.twoweap && (oobj->owornmask & (W_WEP|W_SWAPWEP))) {
+		    if (u.twoweap && (oobj->owornmask & (W_WEP|W_SWAPWEP)) && uwep && bimanual(uwep) ) {
 			if (uswapwep)
 			    unwield(uswapwep, FALSE);
 			u.twoweap = 0;
@@ -138,7 +138,7 @@ register struct obj *obj;
 	if (obj == uwep || obj == uswapwep) {
 	    if (uswapwep)
 		unwield(uswapwep, FALSE);
-	    u.twoweap = 0;
+	    if (uwep && bimanual(uwep)) u.twoweap = 0;
 	}
 	for(wp = worn; wp->w_mask; wp++)
 	    if(obj == *(wp->w_obj)) {
