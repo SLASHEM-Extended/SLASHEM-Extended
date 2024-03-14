@@ -920,6 +920,17 @@ static struct {
 	{ "carrcap", CARRCAP_TRAP },
 	{ "umeng", UMENG_TRAP },
 
+	{ "spell cooldown", SPELL_COOLDOWN_TRAP },
+	{ "turbodull", TURBODULL_TRAP },
+	{ "reddam", REDDAM_TRAP },
+	{ "redinc", REDINC_TRAP },
+	{ "mulch", MULCH_TRAP },
+	{ "inaccuracy", INACCURACY_TRAP },
+	{ "monster multishot", MONSTER_MULTISHOT_TRAP },
+	{ "have a pin", DO_YOU_HAVE_A_PIN_TRAP },
+	{ "costly failure", COSTLY_FAILURE_TRAP },
+	{ "inventory size", INVENTORY_SIZE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

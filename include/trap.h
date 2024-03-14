@@ -862,6 +862,17 @@ extern struct trap *ftrap;
 #define CARRCAP_TRAP 756
 #define UMENG_TRAP 757
 
+#define SPELL_COOLDOWN_TRAP 758
+#define TURBODULL_TRAP 759
+#define REDDAM_TRAP 760
+#define REDINC_TRAP 761
+#define MULCH_TRAP 762
+#define INACCURACY_TRAP 763
+#define MONSTER_MULTISHOT_TRAP 764
+#define DO_YOU_HAVE_A_PIN_TRAP 765
+#define COSTLY_FAILURE_TRAP 766
+#define INVENTORY_SIZE_TRAP 767
+
 /* todo area
 
 normal ones:
@@ -876,7 +887,6 @@ good traps:
 nasty traps:
 
 #define EVIL_MIRROR_TRAP
-#define SPELL_COOLDOWN_TRAP
 #define ACTION_TIMEOUT_TRAP
 #define KILLCAM_TRAP
 #define RATCH_TRAP
@@ -887,26 +897,17 @@ nasty traps:
 #define HARDSHIP_TRAP
 #define MONEYSAP_TRAP
 #define DROPPORT_TRAP
-#define TURBODULL_TRAP
 #define CONTAINER_SPILL_TRAP
 #define ANTIMATTER_TRAP
 #define TELEPORTING_TRAPS_TRAP
-#define REDDAM_TRAP
-#define REDINC_TRAP
 #define HARDEST_LAST_LINE_TRAP
 #define SUFFIX_TRAP
 #define ECHOLESS_TRAP
 #define NUPESELL_TRAP
-#define MULCH_TRAP
-#define INACCURACY_TRAP
-#define MONSTER_MULTISHOT_TRAP
 #define BLINKING_LIGHT_TRAP
 #define WOEFFOEFF_TRAP
 #define PERMA_STATUS_TRAP
-#define DO_YOU_HAVE_A_PIN_TRAP
-#define COSTLY_FAILURE_TRAP
 #define PERSISTENT_TRAIL_TRAP
-#define INVENTORY_SIZE_TRAP
 #define CONTAINER_SIZE_TRAP
 #define VANILLA_SPELL_TRAP
 #define STACK_TRAP
@@ -954,8 +955,8 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	758
+#define TIMERUN_TRAP	768
 
-#define TRAPNUM 759
+#define TRAPNUM 769
 
 #endif /* TRAP_H */

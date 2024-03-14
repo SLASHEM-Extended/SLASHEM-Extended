@@ -1060,6 +1060,16 @@ struct you {
 	boolean nastinator273;
 	boolean nastinator274;
 	boolean nastinator275;
+	boolean nastinator276;
+	boolean nastinator277;
+	boolean nastinator278;
+	boolean nastinator279;
+	boolean nastinator280;
+	boolean nastinator281;
+	boolean nastinator282;
+	boolean nastinator283;
+	boolean nastinator284;
+	boolean nastinator285;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;

@@ -9546,7 +9546,7 @@ dopois:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 275) midentity -= 275; /* timerun! */
+			while (midentity > 285) midentity -= 285; /* timerun! */
 
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -11747,7 +11747,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 275) midentity -= 275; /* timerun! */
+			while (midentity > 285) midentity -= 285; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -13957,7 +13957,7 @@ common:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 275) midentity -= 275; /* timerun! */
+			while (midentity > 285) midentity -= 285; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -18540,7 +18540,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 275) midentity -= 275; /* timerun! */
+			while (midentity > 285) midentity -= 285; /* timerun! */
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -20854,6 +20854,12 @@ stdcontracting:
             if (slextest(8000, 40000)) {
 		stdmsg("weaker back");
                 u.uprops[MEAN_BURDEN_EFFECT].intrinsic |= FROMOUTSIDE;
+		increasesanity(rnz((monster_difficulty() * 5) + 1));
+            }
+
+            if (slextest(8000, 40000)) {
+		stdmsg("aimlessness");
+                u.uprops[INACCURACY_TRAP].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 

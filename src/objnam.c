@@ -4438,11 +4438,32 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
-	{ RUGGED_SACK, "" },
-	{ SEATBELT_SADDLE, "" },
-	{ BALLPEEN_HAMMER, "" },
-	{ LACQUERED_PLATE_MAIL, "" },
-	{ MEN_S_HIGH_HEELS, "" },
+	{ RUGGED_SACK, "todo" },
+	{ SEATBELT_SADDLE, "todo" },
+	{ BALLPEEN_HAMMER, "todo" },
+	{ LACQUERED_PLATE_MAIL, "todo" },
+	{ MEN_S_HIGH_HEELS, "todo" },
+
+	{ MULCH_STONE, "todo" },
+	{ SPELL_COOLDOWN_STONE, "todo" },
+	{ HAVE_A_PIN_STONE, "todo" },
+	{ TURBODULL_STONE, "todo" },
+	{ INACCURACY_STONE, "todo" },
+	{ INVENTORY_SIZE_STONE, "todo" },
+	{ COSTLY_FAILURE_STONE, "todo" },
+	{ REDDAM_STONE, "todo" },
+	{ REDINC_STONE, "todo" },
+	{ MONSTER_MULTISHOT_STONE, "todo" },
+	{ MULCHER_SUIT, "todo" },
+	{ VANCIAN_CLOAK, "todo" },
+	{ CHOICE_O_MATE_CLOAK, "todo" },
+	{ DULLER_GLOVES, "todo" },
+	{ INACCURATE_GLOVES, "todo" },
+	{ SIZE_REDUCTION_SHIELD, "todo" },
+	{ COSTLY_FAILURE_HELMET, "todo" },
+	{ RIN_REDUCE_DAMAGE, "todo" },
+	{ RIN_REDUCE_ACCURACY, "todo" },
+	{ AMULET_OF_MONSTER_MULTISHOT, "amulet of todo" },
 
 	{0, "" }
 };
@@ -8033,11 +8054,32 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	/* todo area */
 
-	{ RUGGED_SACK, "" },
-	{ SEATBELT_SADDLE, "" },
-	{ BALLPEEN_HAMMER, "" },
-	{ LACQUERED_PLATE_MAIL, "" },
-	{ MEN_S_HIGH_HEELS, "" },
+	{ RUGGED_SACK, "todo" },
+	{ SEATBELT_SADDLE, "todo" },
+	{ BALLPEEN_HAMMER, "todo" },
+	{ LACQUERED_PLATE_MAIL, "todo" },
+	{ MEN_S_HIGH_HEELS, "todo" },
+
+	{ MULCH_STONE, "todo" },
+	{ SPELL_COOLDOWN_STONE, "todo" },
+	{ HAVE_A_PIN_STONE, "todo" },
+	{ TURBODULL_STONE, "todo" },
+	{ INACCURACY_STONE, "todo" },
+	{ INVENTORY_SIZE_STONE, "todo" },
+	{ COSTLY_FAILURE_STONE, "todo" },
+	{ REDDAM_STONE, "todo" },
+	{ REDINC_STONE, "todo" },
+	{ MONSTER_MULTISHOT_STONE, "todo" },
+	{ MULCHER_SUIT, "todo" },
+	{ VANCIAN_CLOAK, "todo" },
+	{ CHOICE_O_MATE_CLOAK, "todo" },
+	{ DULLER_GLOVES, "todo" },
+	{ INACCURATE_GLOVES, "todo" },
+	{ SIZE_REDUCTION_SHIELD, "todo" },
+	{ COSTLY_FAILURE_HELMET, "todo" },
+	{ RIN_REDUCE_DAMAGE, "todo" },
+	{ RIN_REDUCE_ACCURACY, "todo" },
+	{ AMULET_OF_MONSTER_MULTISHOT, "amulet of todo" },
 
 	{0, "" }
 };

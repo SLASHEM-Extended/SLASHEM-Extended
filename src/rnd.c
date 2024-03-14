@@ -1610,7 +1610,7 @@ randenchantment()
 int
 randnastyenchantment()
 {
-	switch (rnd(277)) {
+	switch (rnd(287)) {
 
 		case 1: return SPELLS_LOST;
 		case 2: return CASTER_PROBLEM;
@@ -1889,6 +1889,16 @@ randnastyenchantment()
 			case 275: return MEAN_BURDEN_EFFECT;
 			case 276: return CARRCAP_EFFECT;
 			case 277: return UMENG_EFFECT;
+			case 278: return MULCH_BUG;
+			case 279: return SPELL_COOLDOWN_BUG;
+			case 280: return HAVE_A_PIN_BUG;
+			case 281: return TURBODULL_BUG;
+			case 282: return INACCURACY_BUG;
+			case 283: return INVENTORY_SIZE_BUG;
+			case 284: return COSTLY_FAILURE_BUG;
+			case 285: return REDDAM_BUG;
+			case 286: return REDINC_BUG;
+			case 287: return MONSTER_MULTISHOT_EFFECT;
 	}
 
 	/* appease compiler, we should never end up here */
@@ -2189,7 +2199,7 @@ randominsidetrap()
 	else if (!rn2(100)) return SUPERTHING_TRAP;
 	else if (!rn2(200)) return INSTANASTY_TRAP;
 	else if (!rn2(2000)) return AUTOMATIC_SWITCHER;
-	else switch (rnd(277)) {
+	else switch (rnd(287)) {
 		case 1: return RMB_LOSS_TRAP;
 		case 2: return UNINFORMATION_TRAP;
 		case 3: return BIGSCRIPT_TRAP;
@@ -2468,6 +2478,16 @@ randominsidetrap()
 		case 275: return MEAN_BURDEN_TRAP;
 		case 276: return CARRCAP_TRAP;
 		case 277: return UMENG_TRAP;
+		case 278: return SPELL_COOLDOWN_TRAP;
+		case 279: return TURBODULL_TRAP;
+		case 280: return REDDAM_TRAP;
+		case 281: return REDINC_TRAP;
+		case 282: return MULCH_TRAP;
+		case 283: return INACCURACY_TRAP;
+		case 284: return MONSTER_MULTISHOT_TRAP;
+		case 285: return DO_YOU_HAVE_A_PIN_TRAP;
+		case 286: return COSTLY_FAILURE_TRAP;
+		case 287: return INVENTORY_SIZE_TRAP;
 
 	}
 
@@ -4101,7 +4121,7 @@ struct obj *obj;
 void
 getnastytrapintrinsic()
 {
-			switch (rnd(275)) {
+			switch (rnd(285)) {
 
 				case 1: 
 				    SpeedBug |= FROMOUTSIDE; break;
@@ -4653,6 +4673,26 @@ getnastytrapintrinsic()
 				    CarrcapEffect |= FROMOUTSIDE; break;
 				case 275:
 				    UmengEffect |= FROMOUTSIDE; break;
+				case 276:
+				    MulchBug |= FROMOUTSIDE; break;
+				case 277:
+				    SpellCooldownBug |= FROMOUTSIDE; break;
+				case 278:
+				    HaveAPinBug |= FROMOUTSIDE; break;
+				case 279:
+				    TurbodullBug |= FROMOUTSIDE; break;
+				case 280:
+				    InaccuracyBug |= FROMOUTSIDE; break;
+				case 281:
+				    InventorySizeBug |= FROMOUTSIDE; break;
+				case 282:
+				    CostlyFailureBug |= FROMOUTSIDE; break;
+				case 283:
+				    ReddamBug |= FROMOUTSIDE; break;
+				case 284:
+				    RedincBug |= FROMOUTSIDE; break;
+				case 285:
+				    MonsterMultishotBug |= FROMOUTSIDE; break;
 
 
 			}
@@ -5095,7 +5135,7 @@ int duration, blackngvar;
 		if (YouAreScrewedEternally) duration *= 20;
 		if (LongScrewupXtra) duration *= 10;
 
-		switch (rnd(275)) {
+		switch (rnd(285)) {
 
 			case 1: RMBLoss += rnz(duration); break;
 			case 2: NoDropProblem += rnz(duration); break;
@@ -5401,6 +5441,16 @@ int duration, blackngvar;
 			case 273: MeanBurdenEffect += rnz(duration); break;
 			case 274: CarrcapEffect += rnz(duration); break;
 			case 275: UmengEffect += rnz(duration); break;
+			case 276: MulchBug += rnz(duration); break;
+			case 277: SpellCooldownBug += rnz(duration); break;
+			case 278: HaveAPinBug += rnz(duration); break;
+			case 279: TurbodullBug += rnz(duration); break;
+			case 280: InaccuracyBug += rnz(duration); break;
+			case 281: InventorySizeBug += rnz(duration); break;
+			case 282: CostlyFailureBug += rnz(duration); break;
+			case 283: ReddamBug += rnz(duration); break;
+			case 284: RedincBug += rnz(duration); break;
+			case 285: MonsterMultishotBug += rnz(duration); break;
 
 		}
 
@@ -5715,6 +5765,16 @@ int efftype, nastyduration, blackngvar;
 		case 273: MeanBurdenEffect += rnz(nastyduration); break;
 		case 274: CarrcapEffect += rnz(nastyduration); break;
 		case 275: UmengEffect += rnz(nastyduration); break;
+		case 276: MulchBug += rnz(nastyduration); break;
+		case 277: SpellCooldownBug += rnz(nastyduration); break;
+		case 278: HaveAPinBug += rnz(nastyduration); break;
+		case 279: TurbodullBug += rnz(nastyduration); break;
+		case 280: InaccuracyBug += rnz(nastyduration); break;
+		case 281: InventorySizeBug += rnz(nastyduration); break;
+		case 282: CostlyFailureBug += rnz(nastyduration); break;
+		case 283: ReddamBug += rnz(nastyduration); break;
+		case 284: RedincBug += rnz(nastyduration); break;
+		case 285: MonsterMultishotBug += rnz(nastyduration); break;
 
 		default:
 			impossible("efftype %d called in specificnastytrapeffect()", efftype);

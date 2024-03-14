@@ -1096,6 +1096,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "carrcap trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'^', "umeng trap", C(CLR_MAGENTA)},	/* trap */
 
+	{'^', "spell cooldown trap", C(CLR_BLUE)},	/* trap */
+	{'^', "turbodull trap", C(CLR_GRAY)},	/* trap */
+	{'^', "reddam trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "redinc trap", C(CLR_ORANGE)},	/* trap */
+	{'^', "mulch trap", C(CLR_GRAY)},	/* trap */
+	{'^', "inaccuracy trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "monster multishot trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "do you have a pin trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "costly failure trap", C(CLR_RED)},	/* trap */
+	{'^', "inventory size trap", C(CLR_YELLOW)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -2019,6 +2030,17 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_carrcap_trap),
 	g_FILLER(S_umeng_trap),
 
+	g_FILLER(S_spell_cooldown_trap),
+	g_FILLER(S_turbodull_trap),
+	g_FILLER(S_reddam_trap),
+	g_FILLER(S_redinc_trap),
+	g_FILLER(S_mulch_trap),
+	g_FILLER(S_inaccuracy_trap),
+	g_FILLER(S_monster_multishot_trap),
+	g_FILLER(S_have_a_pin_trap),
+	g_FILLER(S_costly_failure_trap),
+	g_FILLER(S_inventory_size_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2930,6 +2952,17 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_carrcap_trap),
 	g_FILLER(S_umeng_trap),
 
+	g_FILLER(S_spell_cooldown_trap),
+	g_FILLER(S_turbodull_trap),
+	g_FILLER(S_reddam_trap),
+	g_FILLER(S_redinc_trap),
+	g_FILLER(S_mulch_trap),
+	g_FILLER(S_inaccuracy_trap),
+	g_FILLER(S_monster_multishot_trap),
+	g_FILLER(S_have_a_pin_trap),
+	g_FILLER(S_costly_failure_trap),
+	g_FILLER(S_inventory_size_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3837,6 +3870,17 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_mean_burden_trap),
 	g_FILLER(S_carrcap_trap),
 	g_FILLER(S_umeng_trap),
+
+	g_FILLER(S_spell_cooldown_trap),
+	g_FILLER(S_turbodull_trap),
+	g_FILLER(S_reddam_trap),
+	g_FILLER(S_redinc_trap),
+	g_FILLER(S_mulch_trap),
+	g_FILLER(S_inaccuracy_trap),
+	g_FILLER(S_monster_multishot_trap),
+	g_FILLER(S_have_a_pin_trap),
+	g_FILLER(S_costly_failure_trap),
+	g_FILLER(S_inventory_size_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4746,6 +4790,17 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_mean_burden_trap),
 	g_FILLER(S_carrcap_trap),
 	g_FILLER(S_umeng_trap),
+
+	g_FILLER(S_spell_cooldown_trap),
+	g_FILLER(S_turbodull_trap),
+	g_FILLER(S_reddam_trap),
+	g_FILLER(S_redinc_trap),
+	g_FILLER(S_mulch_trap),
+	g_FILLER(S_inaccuracy_trap),
+	g_FILLER(S_monster_multishot_trap),
+	g_FILLER(S_have_a_pin_trap),
+	g_FILLER(S_costly_failure_trap),
+	g_FILLER(S_inventory_size_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5864,6 +5919,17 @@ boolean is_rlevel;
 	    showsyms[S_mean_burden_trap] = 0x04;
 	    showsyms[S_carrcap_trap] = 0x04;
 	    showsyms[S_umeng_trap] = 0x04;
+
+	    showsyms[S_spell_cooldown_trap] = 0x04;
+	    showsyms[S_turbodull_trap] = 0x04;
+	    showsyms[S_reddam_trap] = 0x04;
+	    showsyms[S_redinc_trap] = 0x04;
+	    showsyms[S_mulch_trap] = 0x04;
+	    showsyms[S_inaccuracy_trap] = 0x04;
+	    showsyms[S_monster_multishot_trap] = 0x04;
+	    showsyms[S_have_a_pin_trap] = 0x04;
+	    showsyms[S_costly_failure_trap] = 0x04;
+	    showsyms[S_inventory_size_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 

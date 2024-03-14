@@ -1457,6 +1457,8 @@ Cloak_on()
 	case ADOM_CLOAK:
 	case SPAWN_CLOAK:
 	case EGOIST_CLOAK:
+	case VANCIAN_CLOAK:
+	case CHOICE_O_MATE_CLOAK:
 	case CLOAK_OF_TIME:
 	case CHATBOX_CLOAK:
 	case HERETIC_CLOAK:
@@ -2161,6 +2163,8 @@ Cloak_off()
 	case ADOM_CLOAK:
 	case SPAWN_CLOAK:
 	case EGOIST_CLOAK:
+	case VANCIAN_CLOAK:
+	case CHOICE_O_MATE_CLOAK:
 	case CLOAK_OF_TIME:
 	case CHATBOX_CLOAK:
 	case HERETIC_CLOAK:
@@ -2502,6 +2506,7 @@ Helmet_on()
 	case WHISPERING_HELMET:
 	case TECH_LOSS_HELMET:
 	case CYPHER_HELM:
+	case COSTLY_FAILURE_HELMET:
 	case ANGER_HELM:
 	case BIGSCRIPT_HELM:
 	case QUIZ_HELM:
@@ -2885,6 +2890,7 @@ Helmet_off()
 	case WHISPERING_HELMET:
 	case TECH_LOSS_HELMET:
 	case CYPHER_HELM:
+	case COSTLY_FAILURE_HELMET:
 	case ANGER_HELM:
 	case BIGSCRIPT_HELM:
 	case QUIZ_HELM:
@@ -3112,6 +3118,8 @@ Gloves_on()
 	case DARK_HAND_GLOVES:
 	case GAUNTLETS_OF_RAINBOW_MOUD:
 	case UNWIELDY_GLOVES:
+	case DULLER_GLOVES:
+	case INACCURATE_GLOVES:
 	case CONFUSING_GLOVES:
 	case UNDROPPABLE_GLOVES:
 	case GAUNTLETS_OF_MISSING_INFORMATI:
@@ -3482,6 +3490,8 @@ Gloves_off()
 	case DARK_HAND_GLOVES:
 	case GAUNTLETS_OF_RAINBOW_MOUD:
 	case UNWIELDY_GLOVES:
+	case DULLER_GLOVES:
+	case INACCURATE_GLOVES:
 	case CONFUSING_GLOVES:
 	case UNDROPPABLE_GLOVES:
 	case GAUNTLETS_OF_MISSING_INFORMATI:
@@ -3722,6 +3732,7 @@ Shield_on()
 	case DIFFICULT_SHIELD:
 	case TEZ_SHIELD:
 	case SPI_IMAGE_MOOSE_SHIELD:
+	case SIZE_REDUCTION_SHIELD:
 	case SPECIAL_SHIELD:
 	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:
@@ -3789,6 +3800,7 @@ Shield_on()
 	if (uarms && uarms->otyp == DIFFICULT_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == TEZ_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == SPI_IMAGE_MOOSE_SHIELD) curse(uarms);
+	if (uarms && uarms->otyp == SIZE_REDUCTION_SHIELD) curse(uarms);
 	if (uarms && uarms->otyp == SHUTTER_SHIELD) {
 		Your("shield becomes cursed.");
 		curse(uarms);
@@ -3986,6 +3998,7 @@ Shield_off()
 	case DIFFICULT_SHIELD:
 	case TEZ_SHIELD:
 	case SPI_IMAGE_MOOSE_SHIELD:
+	case SIZE_REDUCTION_SHIELD:
 	case SPECIAL_SHIELD:
 	case MAGICAL_SHIELD:
 	case SHIELD_OF_PEACE:
@@ -4263,6 +4276,9 @@ Armor_on()
 		if (!uarm->cursed) curse(uarm);
 	}
 	if (uarm && uarm->otyp == TOO_HEAVY_PLATE) {
+		if (!uarm->cursed) curse(uarm);
+	}
+	if (uarm && uarm->otyp == MULCHER_SUIT) {
 		if (!uarm->cursed) curse(uarm);
 	}
 	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR) {
@@ -4704,6 +4720,7 @@ Amulet_on()
 	case AMULET_OF_WEAK_MAGIC:
 	case AMULET_OF_DIRECTIONAL_SWAP:
 	case AMULET_OF_SUDDEN_CURSE:
+	case AMULET_OF_MONSTER_MULTISHOT:
 	case AMULET_OF_ANTI_EXPERIENCE:
 	case AMULET_OF_TOTAL_BURDEN:
 	case AMULET_OF_ITEM_TELEPORTATION:
@@ -5290,6 +5307,8 @@ register struct obj *obj;
 	case RIN_INCESSANT_FARTING:
 	case RIN_LAMITY:
 	case RIN_WALLFARTING:
+	case RIN_REDUCE_DAMAGE:
+	case RIN_REDUCE_ACCURACY:
 
 	case RIN_LOOTCUT:
 	case RIN_FORM_SHIFTING:

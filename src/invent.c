@@ -8345,6 +8345,160 @@ have_umengstone()
 	return(FALSE);
 }
 
+int
+have_spellcooldownstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SPELL_COOLDOWN_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator276) return TRUE;
+	if (sjwcheck(276)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 22 && u.femauspices22 == 13) return TRUE;
+	return(FALSE);
+}
+
+int
+have_turbodullstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == TURBODULL_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator277) return TRUE;
+	if (sjwcheck(277)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 28 && u.femauspices28 == 10) return TRUE;
+	return(FALSE);
+}
+
+int
+have_reddamstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == REDDAM_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator278) return TRUE;
+	if (sjwcheck(278)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_redincstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == REDINC_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator279) return TRUE;
+	if (sjwcheck(279)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_mulchstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MULCH_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator280) return TRUE;
+	if (sjwcheck(280)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 11) return TRUE;
+	return(FALSE);
+}
+
+int
+have_inaccuracystone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == INACCURACY_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator281) return TRUE;
+	if (sjwcheck(281)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_monstermultishotstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == MONSTER_MULTISHOT_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator282) return TRUE;
+	if (sjwcheck(282)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_haveapinstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == HAVE_A_PIN_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator283) return TRUE;
+	if (sjwcheck(283)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_costlyfailurestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == COSTLY_FAILURE_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator284) return TRUE;
+	if (sjwcheck(284)) return TRUE;
+	return(FALSE);
+}
+
+int
+have_inventorysizestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == INVENTORY_SIZE_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator285) return TRUE;
+	if (sjwcheck(285)) return TRUE;
+	if (Role_if(PM_FEMINIST) && u.urmaxlvlUP >= 17 && u.femauspices17 == 12) return TRUE;
+	return(FALSE);
+}
+
 
 struct obj *
 o_on(id, objchn)
@@ -12845,6 +12999,12 @@ boolean knoweverything;
 			pline("A very useful randomized appearance pair of gloves that makes you fast.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ATLAS_GLOVES))
 			pline("This pair of gloves improves your strength by 3.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLOAK))
+			pline("Upon spawning, the BUC of this cloak is known.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DEXTROUS_GLOVES))
+			pline("A pair of gloves that improves your dexterity by 3.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_NIMBLE_GLOVES))
+			pline("While wearing these gloves, your ranged weapons have significant bonus to-hit.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FALCONRY_GLOVES))
 			pline("A pair of gloves that protects you against claw attacks, at least if you're female.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_LATEX_GLOVES))
@@ -13813,6 +13973,8 @@ boolean knoweverything;
 				pline("A robe that boosts the power of certain spells (e.g. damage-dealing or healing spells)."); break;
 			case TOO_HEAVY_PLATE:
 				pline("This is a bad armor. You might think that its great AC and 2 points of magic cancellation are useful, however you'll not be able to carry much at all while wearing it."); break;
+			case MULCHER_SUIT:
+				pline("Grants 14 points of AC and 2 points of MC. However, your ranged weapon ammo will constantly mulch while wearing it."); break;
 			case ROBE_OF_DESTINY:
 				pline("This robe makes it so that monsters will always spawn with a level that is at least the current monster difficulty. It gives 5 points of armor class and no magic cancellation."); break;
 			case ROBE_OF_FEMINISM:
@@ -14194,6 +14356,10 @@ boolean knoweverything;
 				pline("This cloak causes faster respawn. It grants good armor class and low magic cancellation."); break;
 			case EGOIST_CLOAK: 
 				pline("This cloak causes egotype monster spawns. It grants mediocre armor class and low magic cancellation."); break;
+			case VANCIAN_CLOAK: 
+				pline("This cloak causes spell cooldown. It grants medium armor class and 4 points of magic cancellation."); break;
+			case CHOICE_O_MATE_CLOAK: 
+				pline("This cloak causes HP and Pw regeneration troubles. It grants relatively good armor class and 3 points of magic cancellation."); break;
 			case CLOAK_OF_TIME:
 				pline("This cloak causes faster passing of time. It grants very good armor class and medium magic cancellation."); break;
 
@@ -14710,6 +14876,8 @@ boolean knoweverything;
 				pline("This helmet causes your technique menu to not display anything. It has low AC and no magic cancellation."); break;
 			case CYPHER_HELM:
 				pline("This helmet initiates a cipher. It has very good AC and 3 points of magic cancellation."); break;
+			case COSTLY_FAILURE_HELMET:
+				pline("This helmet makes spell failures more costly. It has low AC and 2 points of magic cancellation."); break;
 
 			case MOMHAT:
 				pline("This helmet insults your momma. It has almost no AC and no magic cancellation."); break;
@@ -14920,6 +15088,10 @@ boolean knoweverything;
 				pline("This pair of gloves causes menu bugs. They provide moderately good AC and medium magic cancellation."); break;
 			case DARK_HAND_GLOVES:
 				pline("This pair of gloves causes the enhance menu to not display anything. They provide low AC and no magic cancellation."); break;
+			case DULLER_GLOVES:
+				pline("This pair of gloves causes your items to dull rapidly. They provide mediocre AC and no magic cancellation."); break;
+			case INACCURATE_GLOVES:
+				pline("This pair of gloves causes wands, spells, thrown potions and similar stuff to become inaccurate. They provide a few points of AC and medium magic cancellation."); break;
 			case GAUNTLETS_OF_RAINBOW_MOUD:
 				pline("This pair of gloves causes some color to become fleecy. They provide low AC and no magic cancellation."); break;
 			case UNWIELDY_GLOVES:
@@ -15061,6 +15233,8 @@ boolean knoweverything;
 				pline("This shield turns monsters opaque. It has low armor class and low magic cancellation."); break;
 			case SPI_IMAGE_MOOSE_SHIELD:
 				pline("This shield causes your armor pieces to become cursed with Team Nastytrap. It has excellent armor class and 3 points of magic cancellation."); break;
+			case SIZE_REDUCTION_SHIELD:
+				pline("This shield prevents you from having more than 52 items in your inventory. It has great armor class and 2 points of magic cancellation."); break;
 			case RAPIRAPI:
 				pline("This is a good shield made of mineral."); break;
 			case HIDE_SHIELD:
@@ -16109,6 +16283,10 @@ boolean knoweverything;
 				pline("This ring slows you down if you're near full health."); break;
 			case RIN_WALLFARTING:
 				pline("This ring causes walls to fart at you if you accidentally bump into them."); break;
+			case RIN_REDUCE_DAMAGE:
+				pline("This ring causes your damage output to be reduced."); break;
+			case RIN_REDUCE_ACCURACY:
+				pline("This ring causes your accuracy to be reduced."); break;
 			case RIN_ENSNARING:
 				pline("This ring causes traps to become invisible."); break;
 			case RIN_VISIBLE_BECOMING:
@@ -16989,6 +17167,8 @@ boolean knoweverything;
 				pline("This amulet causes totter."); break;
 			case AMULET_OF_SUDDEN_CURSE:
 				pline("This amulet causes items to autocurse whenever you drop them."); break;
+			case AMULET_OF_MONSTER_MULTISHOT:
+				pline("This amulet causes monsters to multishot their ranged weapons."); break;
 			case AMULET_OF_ANTI_EXPERIENCE:
 				pline("This amulet makes you lose the ability to gain experience."); break;
 			case AMULET_OF_TOTAL_BURDEN:
@@ -20451,6 +20631,26 @@ boolean knoweverything;
 				pline("A stone that curses itself and causes your skills to be drained when you try to enhance them."); break;
 			case TIME_USE_STONE:
 				pline("A stone that curses itself and causes every action to take time."); break;
+			case MULCH_STONE:
+				pline("A stone that curses itself and causes your ammo to mulch every time."); break;
+			case SPELL_COOLDOWN_STONE:
+				pline("A stone that curses itself and causes spell cooldown."); break;
+			case HAVE_A_PIN_STONE:
+				pline("A stone that curses itself and causes your HP and Pw to regenerate less."); break;
+			case TURBODULL_STONE:
+				pline("A stone that curses itself and causes your equipment to dull quickly."); break;
+			case INACCURACY_STONE:
+				pline("A stone that curses itself and causes your ray wands and spells as well as potions and other stuff to hit targets less often."); break;
+			case INVENTORY_SIZE_STONE:
+				pline("A stone that curses itself and causes your inventory size to become limited."); break;
+			case COSTLY_FAILURE_STONE:
+				pline("A stone that curses itself and causes spell failures to cost the full amount of mana."); break;
+			case REDDAM_STONE:
+				pline("A stone that curses itself and causes a reduction to your damage output."); break;
+			case REDINC_STONE:
+				pline("A stone that curses itself and causes a reduction to your accuracy."); break;
+			case MONSTER_MULTISHOT_STONE:
+				pline("A stone that curses itself and causes monsters to multishot their ranged weapons."); break;
 			case REAL_LIE_STONE:
 				pline("A stone that curses itself and causes the pokedex to display wrong attacks that are sometimes actually used."); break;
 			case ESCAPE_PAST_STONE:

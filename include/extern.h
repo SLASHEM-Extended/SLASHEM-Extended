@@ -1216,6 +1216,17 @@ E int have_aefdestone(void);
 E int have_nastycursestone(void);
 E int have_fuckfuckfuckstone(void);
 
+E int have_spellcooldownstone(void);
+E int have_turbodullstone(void);
+E int have_reddamstone(void);
+E int have_redincstone(void);
+E int have_mulchstone(void);
+E int have_inaccuracystone(void);
+E int have_monstermultishotstone(void);
+E int have_haveapinstone(void);
+E int have_costlyfailurestone(void);
+E int have_inventorysizestone(void);
+
 E int have_optionstone(void);
 E int have_miscolorstone(void);
 E int have_onerainbowstone(void);

@@ -4341,6 +4341,66 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone())) {
+		sprintf(buf, "the following problem: Your ranged weapon ammo mulches every time.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", MulchBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (SpellCooldownBug || u.uprops[SPELL_COOLDOWN_BUG].extrinsic || have_spellcooldownstone())) {
+		sprintf(buf, "the following problem: Whenever you cast a spell, you have to wait for a couple turns until you can cast another.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", SpellCooldownBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (HaveAPinBug || u.uprops[HAVE_A_PIN_BUG].extrinsic || have_haveapinstone())) {
+		sprintf(buf, "the following problem: Your HP and Pw cannot regenerate beyond the cap of the other.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", HaveAPinBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (TurbodullBug || u.uprops[TURBODULL_BUG].extrinsic || have_turbodullstone())) {
+		sprintf(buf, "the following problem: Your equipment dulls much more quickly.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", TurbodullBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (InaccuracyBug || u.uprops[INACCURACY_BUG].extrinsic || have_inaccuracystone())) {
+		sprintf(buf, "the following problem: Your ray wands and spells, thrown potions and similar stuff hit the enemy much less often.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", InaccuracyBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (InventorySizeBug || u.uprops[INVENTORY_SIZE_BUG].extrinsic || have_inventorysizestone())) {
+		sprintf(buf, "the following problem: You cannot have more than a certain amount of items in your open inventory.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", InventorySizeBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (CostlyFailureBug || u.uprops[COSTLY_FAILURE_BUG].extrinsic || have_costlyfailurestone())) {
+		sprintf(buf, "the following problem: Failing to cast a spell uses up the full amount of mana.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", CostlyFailureBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (ReddamBug || u.uprops[REDDAM_BUG].extrinsic || have_reddamstone())) {
+		sprintf(buf, "the following problem: Your damage has been reduced.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", ReddamBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (RedincBug || u.uprops[REDINC_BUG].extrinsic || have_redincstone())) {
+		sprintf(buf, "the following problem: Your to-hit has been reduced..");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", RedincBug);
+		you_have(buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (MonsterMultishotBug || u.uprops[MONSTER_MULTISHOT_EFFECT].extrinsic || have_monstermultishotstone())) {
+		sprintf(buf, "the following problem: Monsters can multishot their ranged weapons.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", MonsterMultishotBug);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (MeanBurdenEffect || u.uprops[MEAN_BURDEN_EFFECT].extrinsic || have_meanburdenstone())) {
 		sprintf(buf, "the following problem: You're always at least burdened.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", MeanBurdenEffect);
@@ -9047,6 +9107,56 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone()) {
+		sprintf(buf, "the following problem: Your ranged weapon ammo mulches every time.");
+		sprintf(eos(buf), " (%ld)", MulchBug);
+		dump(youhad, buf);
+	}
+	if (SpellCooldownBug || u.uprops[SPELL_COOLDOWN_BUG].extrinsic || have_spellcooldownstone()) {
+		sprintf(buf, "the following problem: Whenever you cast a spell, you have to wait for a couple turns until you can cast another.");
+		sprintf(eos(buf), " (%ld)", SpellCooldownBug);
+		dump(youhad, buf);
+	}
+	if (HaveAPinBug || u.uprops[HAVE_A_PIN_BUG].extrinsic || have_haveapinstone()) {
+		sprintf(buf, "the following problem: Your HP and Pw cannot regenerate beyond the cap of the other.");
+		sprintf(eos(buf), " (%ld)", HaveAPinBug);
+		dump(youhad, buf);
+	}
+	if (TurbodullBug || u.uprops[TURBODULL_BUG].extrinsic || have_turbodullstone()) {
+		sprintf(buf, "the following problem: Your equipment dulls much more quickly.");
+		sprintf(eos(buf), " (%ld)", TurbodullBug);
+		dump(youhad, buf);
+	}
+	if (InaccuracyBug || u.uprops[INACCURACY_BUG].extrinsic || have_inaccuracystone()) {
+		sprintf(buf, "the following problem: Your ray wands and spells, thrown potions and similar stuff hit the enemy much less often.");
+		sprintf(eos(buf), " (%ld)", InaccuracyBug);
+		dump(youhad, buf);
+	}
+	if (InventorySizeBug || u.uprops[INVENTORY_SIZE_BUG].extrinsic || have_inventorysizestone()) {
+		sprintf(buf, "the following problem: You cannot have more than a certain amount of items in your open inventory.");
+		sprintf(eos(buf), " (%ld)", InventorySizeBug);
+		dump(youhad, buf);
+	}
+	if (CostlyFailureBug || u.uprops[COSTLY_FAILURE_BUG].extrinsic || have_costlyfailurestone()) {
+		sprintf(buf, "the following problem: Failing to cast a spell uses up the full amount of mana.");
+		sprintf(eos(buf), " (%ld)", CostlyFailureBug);
+		dump(youhad, buf);
+	}
+	if (ReddamBug || u.uprops[REDDAM_BUG].extrinsic || have_reddamstone()) {
+		sprintf(buf, "the following problem: Your damage has been reduced.");
+		sprintf(eos(buf), " (%ld)", ReddamBug);
+		dump(youhad, buf);
+	}
+	if (RedincBug || u.uprops[REDINC_BUG].extrinsic || have_redincstone()) {
+		sprintf(buf, "the following problem: Your to-hit has been reduced..");
+		sprintf(eos(buf), " (%ld)", RedincBug);
+		dump(youhad, buf);
+	}
+	if (MonsterMultishotBug || u.uprops[MONSTER_MULTISHOT_EFFECT].extrinsic || have_monstermultishotstone()) {
+		sprintf(buf, "the following problem: Monsters can multishot their ranged weapons.");
+		sprintf(eos(buf), " (%ld)", MonsterMultishotBug);
 		dump(youhad, buf);
 	}
 	if (MeanBurdenEffect || u.uprops[MEAN_BURDEN_EFFECT].extrinsic || have_meanburdenstone()) {

@@ -589,6 +589,17 @@
 #define RepeatingNastycurseEffect		u.uprops[REPEATING_NASTYCURSE_EFFECT].intrinsic
 #define FuckfuckfuckEffect		u.uprops[FUCKFUCKFUCK_EFFECT].intrinsic
 
+#define MulchBug		u.uprops[MULCH_BUG].intrinsic
+#define SpellCooldownBug		u.uprops[SPELL_COOLDOWN_BUG].intrinsic
+#define HaveAPinBug		u.uprops[HAVE_A_PIN_BUG].intrinsic
+#define TurbodullBug		u.uprops[TURBODULL_BUG].intrinsic
+#define InaccuracyBug		u.uprops[INACCURACY_BUG].intrinsic
+#define InventorySizeBug		u.uprops[INVENTORY_SIZE_BUG].intrinsic
+#define CostlyFailureBug		u.uprops[COSTLY_FAILURE_BUG].intrinsic
+#define ReddamBug		u.uprops[REDDAM_BUG].intrinsic
+#define RedincBug		u.uprops[REDINC_BUG].intrinsic
+#define MonsterMultishotBug		u.uprops[MONSTER_MULTISHOT_EFFECT].intrinsic
+
 #define MeanBurdenEffect		u.uprops[MEAN_BURDEN_EFFECT].intrinsic
 #define CarrcapEffect		u.uprops[CARRCAP_EFFECT].intrinsic
 #define UmengEffect		u.uprops[UMENG_EFFECT].intrinsic

@@ -3661,6 +3661,16 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != DSCHUEUEUET_TRAP
 				&& ttmp->ttyp != NOPESKILL_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != SPELL_COOLDOWN_TRAP
+				&& ttmp->ttyp != TURBODULL_TRAP
+				&& ttmp->ttyp != REDDAM_TRAP
+				&& ttmp->ttyp != REDINC_TRAP
+				&& ttmp->ttyp != MULCH_TRAP
+				&& ttmp->ttyp != INACCURACY_TRAP
+				&& ttmp->ttyp != MONSTER_MULTISHOT_TRAP
+				&& ttmp->ttyp != DO_YOU_HAVE_A_PIN_TRAP
+				&& ttmp->ttyp != COSTLY_FAILURE_TRAP
+				&& ttmp->ttyp != INVENTORY_SIZE_TRAP
 				&& ttmp->ttyp != AEFDE_TRAP
 				&& ttmp->ttyp != EPVI_TRAP
 				&& ttmp->ttyp != FUCKFUCKFUCK_TRAP

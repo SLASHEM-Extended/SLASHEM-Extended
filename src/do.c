@@ -703,6 +703,12 @@ giveback:
 		case RIN_WALLFARTING:
 		    pline("Suddenly, the sink's walls start squeaking!");
 		    break;
+		case RIN_REDUCE_DAMAGE:
+		    pline("It seems that the water's flow has become very weak.");
+		    break;
+		case RIN_REDUCE_ACCURACY:
+		    pline("It seems that the water just won't hit the drain anymore.");
+		    break;
 		case RIN_FAST_METABOLISM:
 		    pline("The water vanishes down the drain incredibly quickly!");
 		    break;
@@ -1186,6 +1192,9 @@ register struct obj *obj;
 		break;
 	case AMULET_OF_SUDDEN_CURSE:
 		pline_The("toilet is surrounded by a malignant aura.");
+		break;
+	case AMULET_OF_MONSTER_MULTISHOT:
+		pline_The("toilet flushes rapidly several times in succession!");
 		break;
 	case AMULET_OF_ANTI_EXPERIENCE:
 		pline_The("toilet seems to be impossible to improve.");

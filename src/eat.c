@@ -6684,6 +6684,26 @@ eatspecial() /* called after eating non-food */
 				    NopeskillEffect |= FROMOUTSIDE; break;
 			case TIME_USE_STONE:
 				    TimerunBug |= FROMOUTSIDE; break;
+			case MULCH_STONE:
+				    MulchBug |= FROMOUTSIDE; break;
+			case SPELL_COOLDOWN_STONE:
+				    SpellCooldownBug |= FROMOUTSIDE; break;
+			case HAVE_A_PIN_STONE:
+				    HaveAPinBug |= FROMOUTSIDE; break;
+			case TURBODULL_STONE:
+				    TurbodullBug |= FROMOUTSIDE; break;
+			case INACCURACY_STONE:
+				    InaccuracyBug |= FROMOUTSIDE; break;
+			case INVENTORY_SIZE_STONE:
+				    InventorySizeBug |= FROMOUTSIDE; break;
+			case COSTLY_FAILURE_STONE:
+				    CostlyFailureBug |= FROMOUTSIDE; break;
+			case REDDAM_STONE:
+				    ReddamBug |= FROMOUTSIDE; break;
+			case REDINC_STONE:
+				    RedincBug |= FROMOUTSIDE; break;
+			case MONSTER_MULTISHOT_STONE:
+				    MonsterMultishotBug |= FROMOUTSIDE; break;
 			case EPVI_STONE:
 				    EpviEffect |= FROMOUTSIDE; break;
 			case AEFDE_STONE:

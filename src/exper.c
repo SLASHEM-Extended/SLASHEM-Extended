@@ -1455,6 +1455,14 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, your carry capacity can never be higher than 500.");
 						else pline("Your auspices say: 17 10");
 						break;
+					case 11:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, your ranged weapon ammo mulches every time you fire.");
+						else pline("Your auspices say: 17 11");
+						break;
+					case 12:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 17, your main inventory is limited to 52 items.");
+						else pline("Your auspices say: 17 12");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 19) {
@@ -1551,6 +1559,10 @@ climdone:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, enhancing a skill drains its amount of training and if that puts it below the threshold for enhancing it, you cannot enhance it after all.");
 						else pline("Your auspices say: 22 12");
 						break;
+					case 13:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 22, casting a spell puts you on a cooldown until you can cast again.");
+						else pline("Your auspices say: 22 13");
+						break;
 				}
 
 			} else if (u.urmaxlvlUP == 24) {
@@ -1634,6 +1646,10 @@ climdone:
 					case 9:
 						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, the presence of bosses causes a horrible call to ring in your head.");
 						else pline("Your auspices say: 28 9");
+						break;
+					case 10:
+						if (femintcheck) pline("You receive an elaborate auspicious message: At experience level 28, your equipment will dull much more quickly.");
+						else pline("Your auspices say: 28 10");
 						break;
 				}
 
