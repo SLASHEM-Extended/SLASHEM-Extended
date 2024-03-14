@@ -854,6 +854,8 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"If it's possible to be prejudiced, it should also be possible to be afterjudiced.",
 	"Life is too short to be anything but happy.",
 	"Life is too short and since you have to work many many hours per day just to be able to pay the rent and other stuff, it's even shorter! Damn!",
+	"purists pursue perfect preponderance pertaining punctuating particles", /* by aoei */
+	"alliteration is admittedly an abundance of amusement", /* by Umbire */
 
 };
 

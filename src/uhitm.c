@@ -10315,7 +10315,7 @@ register int roll;
 		case 525: pline("%s doesn't feel like helping you and therefore decides that this time your attack misses.", u_gname()); break;
 		case 526: pline("%s has just decided to send bad luck your way, and here's the first sign of it: you missed %s even though normally you should have hit.", (!rn2(3) ? align_gname(A_LAWFUL) : rn2(2) ? align_gname(A_NEUTRAL) : align_gname(A_CHAOTIC)), mon_nam(mdef)); break;
 		case 527: pline("%s demands that you use 'xe/xir' pronouns when addressing it, and while you ponder the meaning of that, your opening for an attack has ceased to exist.", Monnam(mdef)); break;
-		case 528: pline("You use your %s to feel up the tender %s. It feels very fleecy, but that doesn't actually help you win the fight...", makeplural(body_part(HAND)), mon_nam(mdef)); break;
+		case 528: pline("You use your %s to feel up the tender %s. It feels very fleecy, but that doesn't actually help you win the fight...", makeplural(body_part(HAND)), m_monnam(mdef)); break;
 		case 529: pline("You spontaneously decide to kiss %s in the middle of the fight, but %s disgustedly brushes you away.", mon_nam(mdef), mhe(mdef)); break;
 		case 530: pline("You can't resist %s's tender butt cheeks, and start showering them with kisses. But %s actually wants to kill you and abuses the fact that you forgot to watch your defenses.", mon_nam(mdef), mon_nam(mdef)); break;
 		case 531: pline("You're like the bride on the wedding night - can't seem to find the hole!"); break;
