@@ -6237,6 +6237,7 @@ newbossUTE:
 					}
 					break;
 			}
+			stop_occupation();
 		}
 
 		if (FemtrapActiveVerena && !rn2(SuperFemtrapVerena ? 500 : 1000) && (u.uhp > (u.uhpmax / 2)) ) {
@@ -6270,6 +6271,7 @@ newbossUTE:
 					break;
 
 			}
+			stop_occupation();
 		}
 
 		if (FemtrapActiveVerena && !rn2(100) && (u.uhp <= (u.uhpmax / 5)) ) {
@@ -6315,7 +6317,7 @@ newbossUTE:
 					break;
 
 			}
-
+			stop_occupation();
 		}
 
 		if (u.swappositioncount) {
