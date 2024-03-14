@@ -924,23 +924,26 @@ struct mkroom *sroom;
 			}
 
 			if (!rn2(20) || (sx == tx && sy == ty) ) {
-				switch (rnd(8)) {
-					case 1:
-						levl[sx][sy].typ = FOUNTAIN; break;
-					case 2:
-						levl[sx][sy].typ = SINK; break;
-					case 3:
-						levl[sx][sy].typ = TOILET; break;
-					case 4:
-						levl[sx][sy].typ = GRAVE; break;
-					case 5:
-						levl[sx][sy].typ = WELL; break;
-					case 6:
-						levl[sx][sy].typ = WAGON; break;
-					case 7:
-						levl[sx][sy].typ = WOODENTABLE; break;
-					case 8:
-						levl[sx][sy].typ = STRAWMATTRESS; break;
+
+				if (!ISSTAIRORLADDER(levl[sx][sy].typ) ) {
+					switch (rnd(8)) {
+						case 1:
+							levl[sx][sy].typ = FOUNTAIN; break;
+						case 2:
+							levl[sx][sy].typ = SINK; break;
+						case 3:
+							levl[sx][sy].typ = TOILET; break;
+						case 4:
+							levl[sx][sy].typ = GRAVE; break;
+						case 5:
+							levl[sx][sy].typ = WELL; break;
+						case 6:
+							levl[sx][sy].typ = WAGON; break;
+						case 7:
+							levl[sx][sy].typ = WOODENTABLE; break;
+						case 8:
+							levl[sx][sy].typ = STRAWMATTRESS; break;
+					}
 				}
 			}
 
@@ -1009,25 +1012,26 @@ cgrfinished:
 		    case THE_AREA_ROOM:
 
 			if (sx == tx && sy == ty) {
-				switch (rnd(4)) {
-					case 1:
-						levl[sx][sy].typ = PENTAGRAM; break;
-					case 2:
-						levl[sx][sy].typ = FOUNTAIN; break;
-					case 3:
-						levl[sx][sy].typ = THRONE; break;
-					case 4:
-						levl[sx][sy].typ = ALTAR; break;
-						levl[sx][sy].altarmask = Align2amask( A_NONE );
+				if (!ISSTAIRORLADDER(levl[sx][sy].typ) ) {
+					switch (rnd(4)) {
+						case 1:
+							levl[sx][sy].typ = PENTAGRAM; break;
+						case 2:
+							levl[sx][sy].typ = FOUNTAIN; break;
+						case 3:
+							levl[sx][sy].typ = THRONE; break;
+						case 4:
+							levl[sx][sy].typ = ALTAR; break;
+							levl[sx][sy].altarmask = Align2amask( A_NONE );
 
-						register struct obj *altarwater;
-						altarwater = mksobj_at(POT_WATER, sx, sy, FALSE, FALSE, FALSE);
-						if (altarwater) {
+							register struct obj *altarwater;
+							altarwater = mksobj_at(POT_WATER, sx, sy, FALSE, FALSE, FALSE);
+							if (altarwater) {
 
-							if (!rn2(5)) curse(altarwater);
-							else bless(altarwater);
-						}
-
+								if (!rn2(5)) curse(altarwater);
+								else bless(altarwater);
+							}
+					}
 				}
 			}
 
@@ -1155,7 +1159,7 @@ cgrfinished:
 			break;
 
 		    case PRISONCHAMBER:
-			if (sx == tx && sy == ty && levl[sx][sy].typ != STAIRS && levl[sx][sy].typ != LADDER) {
+			if (sx == tx && sy == ty && !ISSTAIRORLADDER(levl[sx][sy].typ) ) {
 				levl[sx][sy].typ = ALTAR;
 				levl[sx][sy].altarmask = Align2amask( A_NONE );
 
@@ -1448,7 +1452,7 @@ cgrfinished:
 	      case GIANTCOURT:
 		{
 		  struct obj *chest;
-		  levl[tx][ty].typ = THRONE;
+		  if (!ISSTAIRORLADDER(levl[tx][ty].typ)) levl[tx][ty].typ = THRONE;
 		  if (somexy(sroom, &mm)) {
 			  (void) mkgold((long) rn1(50 * level_difficulty(),10), mm.x, mm.y);
 			  /* the royal coffers */
@@ -1480,23 +1484,26 @@ cgrfinished:
 	      case RUINEDCHURCH:
 
 		  if (somexy(sroom, &mm)) {
-			levl[mm.x][mm.y].typ = ALTAR;
-			switch (rnd(4)) {
+
+			if (!ISSTAIRORLADDER(levl[mm.x][mm.y].typ) ) {
+				levl[mm.x][mm.y].typ = ALTAR;
+				switch (rnd(4)) {
 	
-				case 1: levl[mm.x][mm.y].altarmask = Align2amask( A_LAWFUL ); break;
-				case 2: levl[mm.x][mm.y].altarmask = Align2amask( A_NEUTRAL ); break;
-				case 3: levl[mm.x][mm.y].altarmask = Align2amask( A_CHAOTIC ); break;
-				case 4: levl[mm.x][mm.y].altarmask = Align2amask( A_NONE ); break;
+					case 1: levl[mm.x][mm.y].altarmask = Align2amask( A_LAWFUL ); break;
+					case 2: levl[mm.x][mm.y].altarmask = Align2amask( A_NEUTRAL ); break;
+					case 3: levl[mm.x][mm.y].altarmask = Align2amask( A_CHAOTIC ); break;
+					case 4: levl[mm.x][mm.y].altarmask = Align2amask( A_NONE ); break;
 
-			}
+				}
 
-			if (!rn2(10)) {
-				register struct obj *altarwater;
-				altarwater = mksobj_at(POT_WATER, mm.x, mm.y, FALSE, FALSE, FALSE);
-				if (altarwater) {
+				if (!rn2(10)) {
+					register struct obj *altarwater;
+					altarwater = mksobj_at(POT_WATER, mm.x, mm.y, FALSE, FALSE, FALSE);
+					if (altarwater) {
 
-					if (Amask2align(levl[mm.x][mm.y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
-					else bless(altarwater);
+						if (Amask2align(levl[mm.x][mm.y].altarmask) == A_NONE && !rn2(5)) curse(altarwater);
+						else bless(altarwater);
+					}
 				}
 			}
 

@@ -12108,7 +12108,7 @@ MAP
 ENDMAP
 
 # the antechamber
-REGION:(01,01,02,01),unlit,"ordinary",filled,true
+#REGION:(01,01,02,01),unlit,"ordinary",filled,true
 # the actual school
 REGION:(13,01,74,18),lit,"ordinary"
 # the gym
@@ -12581,7 +12581,7 @@ MAP
 ENDMAP
 
 # the antechamber
-REGION:(01,01,02,01),unlit,"ordinary",filled,true
+#REGION:(01,01,02,01),unlit,"ordinary",filled,true
 # the actual school
 REGION:(13,01,74,18),lit,"ordinary"
 # the gym
@@ -13054,7 +13054,7 @@ MAP
 ENDMAP
 
 # the antechamber
-REGION:(01,01,02,01),unlit,"ordinary",filled,true
+#REGION:(01,01,02,01),unlit,"ordinary",filled,true
 # the actual school
 REGION:(13,01,74,18),lit,"ordinary"
 # the gym
@@ -13527,7 +13527,7 @@ MAP
 ENDMAP
 
 # the antechamber
-REGION:(01,01,02,01),unlit,"ordinary",filled,true
+#REGION:(01,01,02,01),unlit,"ordinary",filled,true
 # the actual school
 REGION:(13,01,74,18),lit,"ordinary"
 # the gym
@@ -14053,7 +14053,7 @@ MAP
 ENDMAP
 
 # the antechamber
-REGION:(01,01,02,01),unlit,"ordinary",filled,true
+#REGION:(01,01,02,01),unlit,"ordinary",filled,true
 # the actual school
 REGION:(13,01,74,18),lit,"ordinary"
 # the gym

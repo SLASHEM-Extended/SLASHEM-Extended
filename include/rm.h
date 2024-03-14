@@ -127,6 +127,7 @@
 #define IS_SINK(typ)	((typ) == SINK)
 #define IS_TOILET(typ)  ((typ) == TOILET)
 #define IS_GRAVE(typ)	((typ) == GRAVE)
+#define ISSTAIRORLADDER(typ)	((typ) == STAIRS || (typ) == LADDER)
 #define IS_ALTAR(typ)	((typ) == ALTAR)
 #define IS_DRAWBRIDGE(typ) ((typ) == DRAWBRIDGE_UP || (typ) == DRAWBRIDGE_DOWN)
 #define IS_FURNITURE(typ) ((typ) >= STAIRS && (typ) <= STRAWMATTRESS)
