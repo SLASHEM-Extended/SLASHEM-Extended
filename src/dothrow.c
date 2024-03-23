@@ -3573,6 +3573,9 @@ evasionchancedone:
 			else broken = 0;
 		    }
 
+		    /* mulch nastytrap: ammo breaks unconditionally no matter what --Amy */
+		    if (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone()) broken = 1;
+
 		    if (broken) {
 			if (*u.ushops)
 			    check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
@@ -3667,7 +3670,7 @@ evasionchancedone:
 	    }
 
 	} else if ((otyp == EGG || otyp == CREAM_PIE) &&
-		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* F this stupidity. Sorry. --Amy */
+		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || (tmp >= rnd(20) && !PlayersRaysAreInaccurate) )) { /* F this stupidity. Sorry. --Amy */
 
 		ranged_thorns(mon);
 		(void) hmon(mon, obj, thrown?thrown:3,dieroll);
@@ -3680,7 +3683,7 @@ evasionchancedone:
 	    return 1;	/* hmon used it up */
 
 	} else if (obj->oclass == POTION_CLASS &&
-		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || tmp >= rnd(20) )) { /* The damn things missed way too often. */
+		(guaranteed_hit || ACURR(A_DEX) > rnd(25) || (tmp >= rnd(20) && !PlayersRaysAreInaccurate) )) { /* The damn things missed way too often. */
 	    ranged_thorns(mon);
 	    potionhit(mon, obj, TRUE);
 	    return 1;

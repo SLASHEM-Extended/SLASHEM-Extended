@@ -856,6 +856,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"Life is too short and since you have to work many many hours per day just to be able to pay the rent and other stuff, it's even shorter! Damn!",
 	"purists pursue perfect preponderance pertaining punctuating particles", /* by aoei */
 	"alliteration is admittedly an abundance of amusement", /* by Umbire */
+	"If an employer forces his employees to wear high heels at work, he is guilty of bodily injury. And if that rule is enforced only for female employees, he is additionally guilty of discrimination based on gender.",
 
 };
 

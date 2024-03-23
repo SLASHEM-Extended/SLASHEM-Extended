@@ -97,6 +97,8 @@
 #define TopLineIsFleecy		(TopLineEffect || u.uprops[TOP_LINE_EFFECT].extrinsic || have_toplinestone())
 #define DarkHanceScreen		(DarkhanceEffect || u.uprops[DARKHANCE_EFFECT].extrinsic || have_darkhancestone())
 
+#define FailuresAreCostly	(CostlyFailureBug || u.uprops[COSTLY_FAILURE_BUG].extrinsic || have_costlyfailurestone())
+
 #define YouTakeMaximumDamage		(MaximumDamageBug || u.uprops[MAXIMUM_DAMAGE_BUG].extrinsic || have_maximumdamagestone() || autismweaponcheck(ART_OUCHFIRE) || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) || autismweaponcheck(ART_TUNA_CANNON) || (uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) )
 
 #define YouBecameThickSkinned		( (uwep && uwep->oartifact == ART_ETRUSCIAN_SWIMMING_LESSON) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || (uwep && uwep->oartifact == ART_PATRICIA_S_FEMININITY) || (uarms && uarms->oartifact == ART_FETTIS_SLOT) || (uarmf && uarmf->oartifact == ART_SIXX_PAXX) || FemtrapActivePatricia || Race_if(PM_DUTHOL) )
@@ -116,6 +118,8 @@
 #define TheInfoIsFucked	(FuckedInfoBug || u.uprops[FUCKED_INFO_BUG].extrinsic || have_infofuckstone())
 
 #define FingerlessGloves	(uarmg && (itemhasappearance(uarmg, APP_FINGERLESS_GLOVES) || itemhasappearance(uarmg, APP_SILK_FINGERLINGS)) )
+
+#define InventorySizeLimited		(InventorySizeBug || u.uprops[INVENTORY_SIZE_BUG].extrinsic || have_inventorysizestone())
 
 #define PlayerHearsSoundEffects	(SoundEffectBug || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || u.uprops[SOUND_EFFECT_BUG].extrinsic || haveartileash(ART_ANNOYING_PET_MONITOR) || (ublindf && ublindf->oartifact == ART_SOUNDTONE_FM) || have_soundeffectstone() || (uarmu && uarmu->oartifact == ART_CAPITAL_RAP) )
 
@@ -144,6 +148,8 @@
 #define YouHaveTheSpeedBug	(Race_if(PM_PLAYER_MECHANIC) || SpeedBug || u.uprops[SPEED_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_UNEVEN_ENGINE) || (uarm && uarm->oartifact == ART_HUNKSTERMAN) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) || (uarmf && uarmf->oartifact == ART_BUGBOOTS_OF_ERRORNESS) || have_speedbugstone())
 
 #define YouAreThirsty	(Thirst || u.uprops[THIRST].extrinsic || have_thirststone() || autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY))
+
+#define PlayersRaysAreInaccurate	(InaccuracyBug || u.uprops[INACCURACY_BUG].extrinsic || have_inaccuracystone())
 
 #define YouAreScrewedEternally (LongScrewup || u.uprops[LONG_SCREWUP].extrinsic || have_longscrewupstone())
 
@@ -228,6 +234,9 @@
 #define NopeskillXtra	((have_nopeskillstone() == 2))
 #define FuckfuckfuckXtra	((have_fuckfuckfuckstone() == 2))
 #define UmengXtra	((have_umengstone() == 2) || (uarmc && uarmc->oartifact == ART_WOLLOH_LENGWITSCH) )
+#define SpellCooldownXtra	((have_spellcooldownstone() == 2))
+#define TurbodullXtra	((have_turbodullstone() == 2))
+#define InventorySizeXtra	((have_inventorysizestone() == 2))
 
 /* There used to be long-ass macros here but I think they're causing out of memory errors, so they became functions --Amy */
 #define PlayerInHighHeels	(playerwearshighheels())

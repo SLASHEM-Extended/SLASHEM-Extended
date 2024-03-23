@@ -2746,6 +2746,9 @@ moveloop()
 			}
 		}
 
+		if (!rn2(10000)) u.reddamamount = rne(2);
+		if (!rn2(10000)) u.redincamount = rne(2);
+
 		if (!FemtrapActiveSabrina && u.sabrinaactive) u.sabrinaactive = FALSE;
 
 		if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
@@ -21247,6 +21250,15 @@ contaminationcheck(conttype)
 int conttype; /* 1 = HP, 2 = Pw */
 {
 	if (ublindf && (ublindf->otyp == NIGHT_VISION_GOGGLES) && (conttype == 2) && rn2(2)) return TRUE;
+
+	/* "do you have a pin" trap: if your HP isn't lower than your max Pw, or your Pw isn't lower than your max HP,
+	 * then it doesn't regenerate */
+	if (HaveAPinBug || u.uprops[HAVE_A_PIN_BUG].extrinsic || have_haveapinstone()) {
+		if (conttype == 1 && u.uhp >= u.uenmax) return TRUE;
+		if (conttype == 2 && u.uen >= u.uhpmax) return TRUE;
+		if (conttype == 1 && Upolyd && u.mh >= u.uenmax) return TRUE;
+		if (conttype == 2 && Upolyd && u.uen >= u.mhmax) return TRUE;
+	}
 
 	/* piercer only regenerates when hidden */
 	if (Race_if(PM_PIERCER) && !u.uundetected) return TRUE;

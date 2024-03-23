@@ -592,8 +592,14 @@ nh_timeout()
 
 	if (u.tunnelized) {
 		u.tunnelized--;
-		if (u.tunnelized< 0) u.tunnelized = 0; /* fail safe */
+		if (u.tunnelized < 0) u.tunnelized = 0; /* fail safe */
 		if (!u.tunnelized) pline("You get the tunneling dirt off your clothes.");
+	}
+
+	if (u.spellcooldown) {
+		u.spellcooldown--;
+		if (u.spellcooldown < 0) u.spellcooldown = 0; /* fail safe */
+		if (!u.spellcooldown) You("can cast spells again.");
 	}
 
 	if (u.temprecursiontime) {

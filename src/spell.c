@@ -3555,6 +3555,10 @@ boolean atme;
 		Your("arms are not free to cast!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
+	} else if (u.spellcooldown > 0) {
+		pline("Spell cooldown. Wait %d more turns.", u.spellcooldown);
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return (0);
 	} else if ((Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) && rn2(10)) {
 		pline("You're muted, and fail to cast the spell!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3786,6 +3790,13 @@ castanyway:
 		}
 	}
 
+	if (SpellCooldownBug || u.uprops[SPELL_COOLDOWN_BUG].extrinsic || have_spellcooldownstone()) {
+		if (!u.spellcooldown) {
+			u.spellcooldown = SpellCooldownXtra ? rnz(100) : rnz(10);
+			Your("spellcasting has been put on a timer of %d turns.", u.spellcooldown);
+		}
+	}
+
 	if (SpellColorPink) {
 		pline("%s", fauxmessage());
 		u.cnd_plineamount++;
@@ -3825,6 +3836,8 @@ castanyway:
 	if (isevilvariant && youmonst.data->msound == MS_JAPANESE) {
 		if (strstri(spellname(spell), "r") != 0) {
 
+			register int confusedcost;
+
 			pline("You can't spell the letter 'r', and therefore fail to cast the spell correctly.");
 			u.cnd_spellfailcount++;
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3834,7 +3847,8 @@ castanyway:
 			}
 			if (SpellColorSilver) u.seesilverspell = 0;
 
-			register int confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+			if (FailuresAreCostly) confusedcost = energy;
+			else confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
 
 			u.uen -= confusedcost;
 
@@ -3847,6 +3861,9 @@ castanyway:
 	}
 
 	if ( (confused && spellid(spell) != SPE_CURE_CONFUSION && spellid(spell) != SPE_CURE_RANDOM_STATUS && (confusionchance < rnd(100)) && (!StrongConf_resist || !rn2(3)) && rn2(Conf_resist ? 5 : 10) ) || (rnd(100) > chance)) {
+
+		register int confusedcost;
+
 		if (!issoviet) pline("You fail to cast the spell correctly.");
 		else pline("HA HA HA HA HA, tip bloka l'da sdelal vy ne zaklinaniye!");
 		u.cnd_spellfailcount++;
@@ -3864,7 +3881,8 @@ castanyway:
 
 		/* Higher spellcasting skills mean failure takes less mana. --Amy */
 
-		register int confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+		if (FailuresAreCostly) confusedcost = energy;
+		else confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
 
 		u.uen -= confusedcost;
 
@@ -3877,6 +3895,9 @@ castanyway:
 	if (u.tremblingamount) {
 		int tremblechance = (u.tremblingamount * 5 / 2);
 		if (rn2(100) < rnd(tremblechance)) {
+
+			int confusedcost;
+
 			You("screw up while casting the spell...");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 			u.cnd_spellfailcount++;
@@ -3888,7 +3909,8 @@ castanyway:
 
 			if (SpellColorSilver) u.seesilverspell = 0;
 
-			register int confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
+			if (FailuresAreCostly) confusedcost = energy;
+			else confusedcost = ((energy * 50 / ((role_skill == P_SUPREME_MASTER) ? 240 : (role_skill == P_GRAND_MASTER) ? 220 : (role_skill == P_MASTER) ? 200 : (role_skill == P_EXPERT) ? 180 : (role_skill == P_SKILLED) ? 160 : (role_skill == P_BASIC) ? 140 : 120)) + 1);
 
 			u.uen -= confusedcost;
 

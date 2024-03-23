@@ -4384,13 +4384,13 @@ boolean guaranteed;
 	}
 
 	if ((guaranteed || !rn2(10)) && (ReddamBug || u.uprops[REDDAM_BUG].extrinsic || have_reddamstone())) {
-		sprintf(buf, "the following problem: Your damage has been reduced.");
+		sprintf(buf, "the following problem: Your damage has been reduced by %d.", u.reddamamount);
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", ReddamBug);
 		you_have(buf);
 	}
 
 	if ((guaranteed || !rn2(10)) && (RedincBug || u.uprops[REDINC_BUG].extrinsic || have_redincstone())) {
-		sprintf(buf, "the following problem: Your to-hit has been reduced..");
+		sprintf(buf, "the following problem: Your to-hit has been reduced by %d.", u.redincamount);
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", RedincBug);
 		you_have(buf);
 	}
@@ -9145,12 +9145,12 @@ int final;
 		dump(youhad, buf);
 	}
 	if (ReddamBug || u.uprops[REDDAM_BUG].extrinsic || have_reddamstone()) {
-		sprintf(buf, "the following problem: Your damage has been reduced.");
+		sprintf(buf, "the following problem: Your damage has been reduced by %d.", u.reddamamount);
 		sprintf(eos(buf), " (%ld)", ReddamBug);
 		dump(youhad, buf);
 	}
 	if (RedincBug || u.uprops[REDINC_BUG].extrinsic || have_redincstone()) {
-		sprintf(buf, "the following problem: Your to-hit has been reduced..");
+		sprintf(buf, "the following problem: Your to-hit has been reduced by %d.", u.redincamount);
 		sprintf(eos(buf), " (%ld)", RedincBug);
 		dump(youhad, buf);
 	}

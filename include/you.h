@@ -703,6 +703,10 @@ struct you {
 
 	int maxrndmonstchoicecount;	/* for rndmonst() in makemon.c */
 
+	int spellcooldown;	/* for spell cooldown nastytrap */
+	int reddamamount;	/* for reddam nastytrap */
+	int redincamount;	/* for redinc nastytrap */
+
 	int greencrosschance;
 	boolean greencrossopen;
 

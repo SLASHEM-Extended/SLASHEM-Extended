@@ -11605,6 +11605,9 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.reddamamount = rne(2);
+	u.redincamount = rne(2);
+	u.spellcooldown = 0;
 	u.capoeiraturns = 0;
 	u.sabrinaturns = 0;
 	u.sabrinaactive = FALSE;

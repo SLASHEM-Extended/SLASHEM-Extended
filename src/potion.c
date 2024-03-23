@@ -8037,7 +8037,7 @@ boolean
 weaponwilldull(dwpn)
 register struct obj *dwpn;
 {
-	int dullchance = 1000;
+	int dullchance = 1000; /* 1 in X chance that the item will dull */
 	int minenchant = 0; /* spe must be greater than this */
 
 	if (!dwpn) return FALSE;
@@ -8049,6 +8049,9 @@ register struct obj *dwpn;
 	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) minenchant -= 2;
 
 	if (objects[dwpn->otyp].oc_material == MT_LACQUER) minenchant -= 3;
+
+	if (TurbodullBug || u.uprops[TURBODULL_BUG].extrinsic || have_turbodullstone()) minenchant -= 5;
+	if (TurbodullXtra) minenchant -= 15;
 
 	if (dwpn->otyp >= WEDGED_LITTLE_GIRL_SANDAL && dwpn->otyp <= PROSTITUTE_SHOE && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN) && !Role_if(PM_SHOE_FETISHIST)) minenchant--;
 
@@ -8067,6 +8070,8 @@ register struct obj *dwpn;
 	if (objects[dwpn->otyp].oc_material == MT_LACQUER) dullchance /= 5;
 	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_CORAL) dullchance /= 2;
+	if (TurbodullBug || u.uprops[TURBODULL_BUG].extrinsic || have_turbodullstone()) dullchance /= 5;
+	if (TurbodullXtra) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_ADAMANTIUM) dullchance *= 4;
 	if (objects[dwpn->otyp].oc_material == MT_ALIMATHIUM) dullchance *= 10;
 
@@ -8094,7 +8099,7 @@ boolean
 armorwilldull(dwpn)
 register struct obj *dwpn;
 {
-	int dullchance = 1000;
+	int dullchance = 1000; /* 1 in X chance that the item will dull */
 	int minenchant = 0; /* spe must be greater than this */
 
 	if (!dwpn) return FALSE;
@@ -8107,6 +8112,9 @@ register struct obj *dwpn;
 
 	if (objects[dwpn->otyp].oc_material == MT_CERAMIC) minenchant -= 10;
 
+	if (TurbodullBug || u.uprops[TURBODULL_BUG].extrinsic || have_turbodullstone()) minenchant -= 5;
+	if (TurbodullXtra) minenchant -= 15;
+
 	if (Race_if(PM_RUSMOT)) minenchant -= 5;
 
 	if (dwpn->spe <= minenchant) return FALSE;
@@ -8118,6 +8126,8 @@ register struct obj *dwpn;
 	if (objects[dwpn->otyp].oc_material == MT_LACQUER) dullchance /= 5;
 	if (objects[dwpn->otyp].oc_material == MT_BAMBOO) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_CORAL) dullchance /= 2;
+	if (TurbodullBug || u.uprops[TURBODULL_BUG].extrinsic || have_turbodullstone()) dullchance /= 5;
+	if (TurbodullXtra) dullchance /= 2;
 	if (objects[dwpn->otyp].oc_material == MT_ADAMANTIUM) dullchance *= 4;
 	if (objects[dwpn->otyp].oc_material == MT_ALIMATHIUM) dullchance *= 10;
 

@@ -1285,10 +1285,10 @@ boolean alwaysflag;
  * If you REALLY want the limit to come back for some weird reason, enable the knapsacklimit option */
 
 #ifndef GOLDOBJ
-    } else if (flags.knapsacklimit && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && obj->oclass != COIN_CLASS && inv_cnt() >= 52 &&
+    } else if ((flags.knapsacklimit || InventorySizeLimited) && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && obj->oclass != COIN_CLASS && inv_cnt() >= (InventorySizeXtra ? 26 : 52) &&
 		!merge_choice(invent, obj)) {
 #else
-    } else if (flags.knapsacklimit && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && inv_cnt() >= 52 && !merge_choice(invent, obj)) {
+    } else if ((flags.knapsacklimit || InventorySizeLimited) && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj) && inv_cnt() >= (InventorySizeXtra ? 26 : 52) && !merge_choice(invent, obj)) {
 #endif
 	Your("knapsack cannot accommodate any more items.");
 	result = -1;	/* nothing lifted */

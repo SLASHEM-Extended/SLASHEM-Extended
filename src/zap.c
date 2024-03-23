@@ -929,7 +929,7 @@ armorsmashdone:
 	case SPE_GRAVITY_BEAM:
 		zap_type_text = "gravity beam";
 		reveal_invis = TRUE;
-		if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(boosted_ulevel(1)))) ) {
+		if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + (PlayersRaysAreInaccurate ? 0 : rnz(boosted_ulevel(1)) ) )) ) {
 			dmg = d(4,12) + rnz(boosted_ulevel(1));
 			if (otyp == SPE_GRAVITY_BEAM) dmg = d(4,12) + rnd(boosted_ulevel(1));
 			if (otyp == SPE_GRAVITY_BEAM && !rn2(3)) dmg = d(2,12) + rnd(boosted_ulevel(1));
@@ -954,7 +954,7 @@ armorsmashdone:
 		if (resists_magm(mtmp)) {	/* match effect on player */
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
-		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(boosted_ulevel(1)))) ) {
+		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + (PlayersRaysAreInaccurate ? 0 : rnz(boosted_ulevel(1)) ) )) ) {
 			dmg = d(2,12) + rnd(boosted_ulevel(1));
 			if (otyp == WAN_STRIKING) dmg += rnz(boosted_ulevel(1));
 			if (otyp == SPE_FORCE_BOLT && !rn2(3)) dmg = d(2,8) + rnd(boosted_ulevel(1));
@@ -971,7 +971,7 @@ armorsmashdone:
 		if (resists_magm(mtmp)) {	/* match effect on player */
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
-		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + rnz(boosted_ulevel(1)))) ) {
+		} else if (u.uswallow || (rnd(20) < (10 + find_mac(mtmp) + (PlayersRaysAreInaccurate ? 0 : rnz(boosted_ulevel(1)) ) )) ) {
 			dmg = rnd(18) + rnd(boosted_ulevel(1));
 			if (rn2(3)) dmg = rnd(12) + rnd(boosted_ulevel(1));
 			if (rn2(2) && dmg > 1) dmg = rnd(dmg);
@@ -8541,6 +8541,8 @@ int skill;
     else
 	hit_bon += dex - 14; /* Even increment for dextrous heroes (see weapon.c abon) */
 
+    if (PlayersRaysAreInaccurate) hit_bon -= rn1(11,11);
+
     return hit_bon;
 }
 
@@ -9700,8 +9702,8 @@ int type;
 {
     int chance = rn2(20);
     int spell_bonus = type ? spell_hit_bonus(type) : 0;
-    if (!issoviet && !rn2(2)) spell_bonus += rnd(GushLevel + boost_power_value()); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
-    if (!issoviet && !rn2(2)) spell_bonus += rnd(ACURR(A_DEX));
+    if (!issoviet && !rn2(2) && !PlayersRaysAreInaccurate) spell_bonus += rnd(GushLevel + boost_power_value()); /* otherwise, monsters with good AC are just way too hard to hit --Amy */
+    if (!issoviet && !rn2(2) && !PlayersRaysAreInaccurate) spell_bonus += rnd(ACURR(A_DEX));
 	/* In Soviet Russia, nobody needs a spell bonus of any kind. It's cool if your death rays miss Rodney 90% of the
 	 * time! And it's also cool if your wands of magic missile are absolute trash in the late game! --Amy */
 

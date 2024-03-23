@@ -1837,6 +1837,13 @@ struct monst *mtmp;
 	    if (is_prince(mtmp->data)) multishot += 2;
 	    else if (is_lord(mtmp->data)) multishot++;
 
+	    if (MonsterMultishotBug || u.uprops[MONSTER_MULTISHOT_EFFECT].extrinsic || have_monstermultishotstone()) {
+		int multishotbonus = (mtmp->m_lev / 3);
+		if (multishotbonus < 1) multishotbonus = 1; /* fail safe */
+		multishotbonus = rno(multishotbonus);
+		multishot += multishotbonus;
+	    }
+
 		/* strong, nasty or high-level monsters can also shoot more --Amy */
 		if (mtmp->m_lev >= 10 && strongmonst(mtmp->data) && !rn2(3)) multishot++;
 		if (mtmp->m_lev >= 10 && strongmonst(mtmp->data) && !rn2(9)) multishot++;

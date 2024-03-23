@@ -12401,6 +12401,7 @@ increase_damage_bonus_value()
 	if (uleft && uleft->otyp == RIN_HEAVY_ATTACK) damagebonusvalue += uleft->spe;
 	if (uright && uright->otyp == RIN_HEAVY_ATTACK) damagebonusvalue += uright->spe;
 	if (u.udamincxtra) damagebonusvalue += u.udamincxtra;
+	if (ReddamBug || u.uprops[REDDAM_BUG].extrinsic || have_reddamstone()) damagebonusvalue -= u.reddamamount;
 
 	return damagebonusvalue;
 }
@@ -12414,6 +12415,7 @@ increase_accuracy_bonus_value()
 	if (uleft && uleft->otyp == RIN_HEAVY_ATTACK) accbonusvalue += uleft->spe;
 	if (uright && uright->otyp == RIN_HEAVY_ATTACK) accbonusvalue += uright->spe;
 	if (u.uhitincxtra) accbonusvalue += u.uhitincxtra;
+	if (RedincBug || u.uprops[REDINC_BUG].extrinsic || have_redincstone()) accbonusvalue -= u.redincamount;
 
 	return accbonusvalue;
 }

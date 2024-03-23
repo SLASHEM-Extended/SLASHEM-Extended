@@ -744,7 +744,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 	    if (drop_arg) drop_arg = strcpy(buf, drop_arg);
 
 	    obj = addinv(obj);
-	    if ( ( (inv_cnt() > 52 && flags.knapsacklimit) || (near_capacity() > prev_encumbr))
+	    if ( ( (inv_cnt() > 52 && (flags.knapsacklimit || InventorySizeLimited) ) || (InventorySizeXtra && inv_cnt() > 26) || (near_capacity() > prev_encumbr))
 		    && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj)
 		) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
@@ -835,7 +835,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 		return obj;
 		}
 
-	    if ( ( (inv_cnt() > 52 && flags.knapsacklimit) || (near_capacity() > prev_encumbr))
+	    if ( ( (inv_cnt() > 52 && (flags.knapsacklimit || InventorySizeLimited) ) || (InventorySizeXtra && inv_cnt() > 26) || (near_capacity() > prev_encumbr))
 		    && obj->otyp != LOADSTONE && obj->otyp != HEALTHSTONE && obj->otyp != LUCKSTONE && obj->otyp != MANASTONE && obj->otyp != SLEEPSTONE && obj->otyp != LOADBOULDER && obj->otyp != STARLIGHTSTONE && obj->otyp != STONE_OF_MAGIC_RESISTANCE && !is_nastygraystone(obj) && !is_feminismstone(obj)
 		) {
 		if (drop_fmt) pline(drop_fmt, drop_arg);
