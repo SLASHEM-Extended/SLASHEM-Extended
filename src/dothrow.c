@@ -384,6 +384,8 @@ int thrown;
 
 	    if (uarmc && uarmc->oartifact == ART_PALEOLITHIC_ELBOW_CONTRACT && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 5;
 
+	    if (uamul && uamul->oartifact == ART_WILDWEST_LAW && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += 1;
+
 	    /* 1/3 of object enchantment */
 	    if (launcher && launcher->spe > 1)
 		multishot += (long) rounddiv(launcher->spe,3);
@@ -1878,7 +1880,10 @@ boolean hitsroof;
 	if (dmg > 0 && uright && uright->oartifact == ART_RING_OF_THROR) dmg += 2;
 	if (dmg > 0 && uleft && uleft->oartifact == ART_KRATSCHEM_HARD) dmg += 2;
 	if (dmg > 0 && uright && uright->oartifact == ART_KRATSCHEM_HARD) dmg += 2;
+	if (dmg > 0 && uleft && uleft->oartifact == ART_WILDFIST) dmg += 4;
+	if (dmg > 0 && uright && uright->oartifact == ART_WILDFIST) dmg += 4;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_EITHER_INTELLIGENT_OR_FAIR) dmg += 2;
+	if (dmg > 0 && uarmg && uarmg->oartifact == ART_DOCHGOGRAP) dmg += 2;
 
 	if (dmg > 0 && uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -2799,6 +2804,9 @@ boolean polearming;
 	if (uarmg && uarmg->oartifact == ART_GET_THE_OLD_VALUES_BACK) tmp += 3;
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
+	if (uright && uright->oartifact == ART_CHERRYTAPPER) tmp += 10;
+	if (uarmg && uarmg->oartifact == ART_DOCHGOGRAP) tmp += 4;
 	if (u.ulevel >= 8) tmp++;
 	if (u.ulevel >= 16) tmp++;
 	if (u.ulevel >= 24) tmp++;
@@ -3574,7 +3582,7 @@ evasionchancedone:
 		    }
 
 		    /* mulch nastytrap: ammo breaks unconditionally no matter what --Amy */
-		    if (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone()) broken = 1;
+		    if (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone() || autismweaponcheck(ART_PIN_EM_ONCE) ) broken = 1;
 
 		    if (broken) {
 			if (*u.ushops)

@@ -446,9 +446,10 @@ init_randarts()
 	artilist[ART_CURSED_WITH_THE_WORST].otyp = randartbadgraystone();
 	artilist[ART_ONE_IN_FOUR].otyp = randartbadgraystone();
 	artilist[ART_HAVE_IT_ALL_BUT_NOT_GET].otyp = randartbadgraystone();
+	artilist[ART_DOUBLESHELL].otyp = randartfeminismjewel();
+	artilist[ART_HOW_LONG_LASTS_IT_].otyp = randartfeminismjewel();
 	artilist[ART_FEMITY_SOLVE].otyp = randartfeminismjewel();
 	artilist[ART_MINIMAL_MINI_ME].otyp = randartfeminismjewel();
-	artilist[ART_DOUBLESHELL].otyp = randartfeminismjewel();
 	artilist[ART_NOT_GONNA_CONTAMINATE].otyp = randartfeminismjewel();
 	artilist[ART_JYL__NOT_XLATED_CALL_KEN].otyp = randartfeminismjewel();
 	artilist[ART_QUE_TANGHERISONJA].otyp = randartfeminismjewel();
@@ -519,8 +520,9 @@ init_randarts()
 	artilist[ART_STONEBITER].otyp = randartpickaxe();
 	artilist[ART_Y_SWORD].otyp = randartpickaxe();
 	artilist[ART_HIBERNIA_SKIRIMI].otyp = randartpickaxe();
-	artilist[ART_SOUTHERN_CROSS].otyp = randartcrossbow();
 	artilist[ART_TSCHUEUU].otyp = randartcrossbow();
+	artilist[ART_PIN_EM_ONCE].otyp = randartcrossbow();
+	artilist[ART_SOUTHERN_CROSS].otyp = randartcrossbow();
 	artilist[ART_SNATCHER].otyp = randartshortsword();
 	artilist[ART_LUX_REGINA].otyp = randartflail();
 	artilist[ART_REGINA_LUX].otyp = randartmorningstar();
@@ -5407,6 +5409,24 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_HOW_LONG_LASTS_IT_) {
+			if (TurbodullBug & FROMOUTSIDE) {
+				pline_The("invoke failed because the conditions are not met.");
+				break;
+			}
+			TurbodullBug |= FROMOUTSIDE;
+			if (uarm && uarm->spe < 7) uarm->spe++;
+			if (uarmc && uarmc->spe < 7) uarm->spe++;
+			if (uarms && uarms->spe < 7) uarm->spe++;
+			if (uarmf && uarmf->spe < 7) uarm->spe++;
+			if (uarmu && uarmu->spe < 7) uarm->spe++;
+			if (uarmg && uarmg->spe < 7) uarm->spe++;
+			if (uarmh && uarmh->spe < 7) uarm->spe++;
+			Your("armor pieces have been enchanted, but now your equipment will dull quickly.");
+
+			break;
+		}
 
 		if (obj->oartifact == ART_CATALIN_S_ROBBERY) {
 

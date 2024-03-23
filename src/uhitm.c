@@ -875,6 +875,8 @@ register struct monst *mtmp;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
+	if (uright && uright->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_DESANN_S_WRATH) tmp -= 8;
@@ -935,6 +937,7 @@ register struct monst *mtmp;
 	if (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) tmp += 10;
 	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
 	if (u.twoweap && uwep && uwep->oartifact == ART_WHOLZ_WALTZ) tmp += 5;
+	if (uarmg && uarmg->oartifact == ART_DOCHGOGRAP) tmp += 4;
 
 	if (u.ulevel >= 8) tmp++;
 	if (u.ulevel >= 16) tmp++;
@@ -4174,6 +4177,9 @@ int dieroll;
 		if (!thrown && obj && obj->otyp == SUPERWEAPON) tmp += 5;
 		if (!thrown && u.twoweap && uwep && uwep->oartifact == ART_WHOLZ_WALTZ) tmp += 5;
 		if (!thrown && uwep && uwep->oartifact == ART_MAKE_ACE) tmp += rn1(4,5);
+		if (uarmg && uarmg->oartifact == ART_DOCHGOGRAP) tmp += 2;
+		if (uleft && uleft->oartifact == ART_WILDFIST) tmp += 4;
+		if (uright && uright->oartifact == ART_WILDFIST) tmp += 4;
 
 		if (pieks && obj && obj->otyp == LAJATANG) {
 			tmp += 5;

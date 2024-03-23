@@ -5288,6 +5288,9 @@ int k_format; /* WAC k_format is an int */
 	} else if (uarms && uarms->oartifact == ART_PLANK_OF_CARNEADES && !rn2(10)) {
 		n = 0;
 		Your("shield nullifies the damage!");
+	} else if (uarms && uarms->oartifact == ART_DOUBLEBLANK && !rn2(10)) {
+		n = 0;
+		Your("shield nullifies the damage!");
 	} else if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && !rn2(10)) {
 		n = 0;
 		Your("soft lady shoe nullifies the damage!");

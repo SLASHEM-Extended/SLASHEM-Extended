@@ -9530,6 +9530,8 @@ xchar sx, sy;
 
 		if (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER && rn2(20) ) {
 			dam = 0;
+		} else if (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS && rn2(20) ) {
+			dam = 0;
 		} else if (Race_if(PM_SAMEDI) && rn2(20) ) {
 			dam = 0;
 		} else if (uwep && uwep->oartifact == ART_LIGHTBLOOM && rn2(20) ) {

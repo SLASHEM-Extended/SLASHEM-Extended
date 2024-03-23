@@ -8352,6 +8352,7 @@ have_spellcooldownstone()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SPELL_COOLDOWN_STONE) {
+			if (otmp->oartifact == ART_DND_NO_ONE_IS_GETTING) return 2;
 			return(TRUE);
 		}
 	}
@@ -8368,6 +8369,7 @@ have_turbodullstone()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TURBODULL_STONE) {
+			if (otmp->oartifact == ART_EVERYTHING_IS_SHOT_TWO_SHI) return 2;
 			return(TRUE);
 		}
 	}
@@ -8490,6 +8492,7 @@ have_inventorysizestone()
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == INVENTORY_SIZE_STONE) {
+			if (otmp->oartifact == ART_SATAN_S_SPECIAL_CONDUCT) return 2;
 			return(TRUE);
 		}
 	}
@@ -26054,7 +26057,7 @@ boolean knoweverything;
 				case ART_WELLTRAVEL:
 					pline("Artifact specs: while wearing it, randomly generated gold stacks have more gold in them."); break;
 				case ART_YOHUALLI_TEZCATL:
-					pline("Artifact specs: +2 dexterity, magic and blindness resistance and half spell damage when worn, can be invoked to fix all status effects that a unicorn horn would fix."); break;
+					pline("Artifact specs: +2 dexterity, magic and blindness resistance and half spell damage when worn, monsters occasionally spawn frenzied and when they do they'll have lots of maximum health, can be invoked to fix all status effects that a unicorn horn would fix."); break;
 				case ART_TRULY_MAGNIFIED:
 					pline("Artifact specs: clairvoyance when worn, multiplies the amount of monsters in the faux killer rooms by up to 3."); break;
 				case ART_SOARUP:
@@ -30822,6 +30825,34 @@ boolean knoweverything;
 					pline("Artifact specs: contamination resistance when worn and allows you to resist effects that drain your alla 2 out of 3 times."); break;
 				case ART_KAMAKURA_BORI:
 					pline("Artifact specs: fire resistance, 20%% boost to spellcasting chances, protects items from water damage and renames items to japanese when worn."); break;
+				case ART_DND_NO_ONE_IS_GETTING:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_EVERYTHING_IS_SHOT_TWO_SHI:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_SATAN_S_SPECIAL_CONDUCT:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_READ_UP_ON_IT:
+					pline("Artifact specs: greatly increases the spell memory you gain from reading books."); break;
+				case ART_CHERRYTAPPER:
+					pline("Artifact specs: +10 increase accuracy when worn."); break;
+				case ART_BACKOBLOK:
+					pline("Artifact specs: reflection and 50%% chance to avoid hostile projectiles when worn."); break;
+				case ART_NUTKNU_KOLAS:
+					pline("Artifact specs: choiceless and resistance to fire, cold, shock, poison, acid, sleep, drain, light and psi when worn."); break;
+				case ART_DOCHGOGRAP:
+					pline("Artifact specs: +2 increase damage and +4 increase accuracy when worn."); break;
+				case ART_DOUBLEBLANK:
+					pline("Artifact specs: half physical damage and occasionally nullifies damage when worn."); break;
+				case ART_DREHTURN:
+					pline("Artifact specs: stealth, 10%% better spellcasting chances, resistance piercing, spellboost, red spells and +5 charisma when worn."); break;
+				case ART_WILDFIST:
+					pline("Artifact specs: +4 increase damage and very fast speed when worn."); break;
+				case ART_WILDWEST_LAW:
+					pline("Artifact specs: while wearing it, monsters spawn with guns more often, and you have +1 multishot with worns."); break;
+				case ART_PIN_EM_ONCE:
+					pline("Artifact specs: +20 damage, mulch trap effect when wielded."); break;
+				case ART_HOW_LONG_LASTS_IT_:
+					pline("Artifact specs: can be invoked to increase the enchantment value on all your armor pieces by one (up to a maximum of +7) but using this invoke gives you the turbodull nastytrap effect permanently. If you already have that nastytrap effect as an intrinsic, the invoke does not work."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

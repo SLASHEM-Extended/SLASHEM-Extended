@@ -16555,7 +16555,7 @@ const char *s;
 	char buf[BUFSZ];
 
 	/* choicelessness by Amy; it would be far too evil to unconditionally prevent you from choosing... */
-	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone() || autismweaponcheck(ART_FOOK_THE_OBSTACLES) || autismweaponcheck(ART_SAT___TRASHING) ) {
+	if (Choicelessness || u.uprops[CHOICELESSNESS].extrinsic || have_choicelessstone() || autismweaponcheck(ART_FOOK_THE_OBSTACLES) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || autismweaponcheck(ART_SAT___TRASHING) ) {
 		int choicelesschance;
 		choicelesschance = 20 + (u.uen * 80 / u.uenmax);
 		if (choicelesschance < 20) choicelesschance = 20;

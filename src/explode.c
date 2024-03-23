@@ -753,6 +753,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		} else if (uarms && uarms->oartifact == ART_PLANK_OF_CARNEADES && !rn2(10)) {
 		    damu = 0;
 		    Your("shield nullifies the damage!");
+		} else if (uarms && uarms->oartifact == ART_DOUBLEBLANK && !rn2(10)) {
+		    damu = 0;
+		    Your("shield nullifies the damage!");
 		} else if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && !rn2(10)) {
 		    damu = 0;
 		    Your("soft lady shoe nullifies the damage!");

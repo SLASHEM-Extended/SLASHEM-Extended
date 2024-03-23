@@ -2264,6 +2264,7 @@ learn()
 				}
 			    }
 			    if (u.emynluincomplete) boostknow(i, 1000);
+			    if (uarmc && uarmc->oartifact == ART_READ_UP_ON_IT) boostknow(i, 20000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
 			    book->spestudied++;
@@ -2325,6 +2326,7 @@ learn()
 			u.cnd_spellbookcount++;
 			incrnknow(i, TRUE);
 			if (u.emynluincomplete) boostknow(i, 1000);
+			if (uarmc && uarmc->oartifact == ART_READ_UP_ON_IT) boostknow(i, 20000);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
 			book->spestudied++;
@@ -12651,6 +12653,7 @@ int spell;
 	if (have_magicrystal()) chance += 5;
 	if (uarmh && uarmh->oartifact == ART_ALL_THE_BETTER_SPELLING) chance += 5;
 	if (uarm && uarm->oartifact == ART_KAMAKURA_BORI) chance += 20;
+	if (uarmh && uarmh->oartifact == ART_DREHTURN) chance += 10;
 
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;

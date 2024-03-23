@@ -773,7 +773,7 @@ register struct monst *mtmp;
 
 	if (needspick(ptr) && !rn2(40) ) (void) mongets(mtmp, PICK_AXE);
 
-	if (uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(mtmp->data)) {
+	if ((uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(mtmp->data)) || (uamul && uamul->oartifact == ART_WILDWEST_LAW) ) {
 		if (rn2(3)) {
 			if (rn2(5)) {
 				(void) mongets(mtmp, PISTOL);
@@ -25537,8 +25537,16 @@ register int	mmflags;
 
 	if (!mtmp->mpeaceful && ACURR(A_CHA) == 1 && !rn2(10)) mtmp->mfrenzied = TRUE;
 
-	if (mmflags & MM_XFRENZIED) {
+	if (uarms && uarms->oartifact == ART_YOHUALLI_TEZCATL && !rn2(10)) {
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
+		mtmp->mfrenzied = TRUE;
+		if (mtmp->mhpmax < u.uhpmax) {
+			mtmp->mhpmax = u.uhpmax;
+			if (mtmp->mhp < mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+		}
+	}
+
+	if (mmflags & MM_XFRENZIED) {
 		mtmp->mfrenzied = TRUE;
 	}
 	if (ptr == &mons[PM_ROTATING_THROUGH_UNICORN]) {

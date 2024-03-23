@@ -29234,7 +29234,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You are now permanently locked into the Capoeira martial arts style, which means that everyone except the Sons of Samedi wants you dead and also you become much weaker if you don't shuffle your position once every couple of turns.",
 	"When the Amy was little, and learned that seemingly only women can wear high heels, that revelation was too much for her brain to handle, and she was traumatized for decades. In order to finally overcome that trauma, she decided to do something really drastic: she wore only high heels for a year straight, flat shoes were not allowed during that year. And now, she has made her peace with the high-heeled shoes at last.",
 	"You have to climb the Nanga Parbat mountain, over the course of 12 individual legs, and if you end up unable to complete even a SINGLE one of those legs due to exhaustion, regardless of how many you've already completed, you lose the game immediately.",
-
+	"Your armor pieces have been enchanted, but now your equipment will dull quickly.",
 };
 
 const char *

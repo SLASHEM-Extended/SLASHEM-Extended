@@ -441,6 +441,12 @@ shieldblockboo:
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (uarm && uarm->oartifact == ART_BACKOBLOK && !rn2(2)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
 	} else if (powerfulimplants() && (!rn2(extrachance) || !rn2(extrachance) || !rn2(extrachance)) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");

@@ -9384,7 +9384,7 @@ A("Welltravel",				RIN_WALLFARTING, /* randomly generated gold stacks have 50% m
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Yohualli Tezcatl",				TEZ_SHIELD, /* +2 DEX, blindness resistance, invoke to fix all status effects */
+A("Yohualli Tezcatl",				TEZ_SHIELD, /* +2 DEX, blindness resistance, invoke to fix all status effects, monsters have 10% chance of spawning frenzied and when they do, their HP is at least your maximum */
 	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_HSPDAM), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
 
@@ -18846,6 +18846,62 @@ A("165 Dur",				LACQUERED_PLATE_MAIL, /* resist contamination, if you'd lose all
 A("Kamakura-bori",				LACQUERED_PLATE_MAIL, /* renames items to japanese, 20% better spellcasting chances, protects items from water damage */
 	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("DND No One Is Getting",				SPELL_COOLDOWN_STONE, /* longer cooldown */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Everything Is Shot Two Shit",				TURBODULL_STONE, /* stuff dulls even more often */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Satan's Special Conduct",				INVENTORY_SIZE_STONE, /* even smaller inventory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Read Up On It",				VANCIAN_CLOAK, /* reading a spellbook gives 3x as much spell memory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Cherrytapper",				RIN_REDUCE_DAMAGE, /* +10 increase accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Backoblok",				MULCHER_SUIT, /* 50% chance to avoid projectiles fired at you */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Nutknu Kolas",				CHOICE_O_MATE_CLOAK, /* choicelessness, resist fire, cold, shock, poison, acid, sleep, drain, light and psi */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Dochgograp",				DULLER_GLOVES, /* +2 increase damage, +4 increase accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Doubleblank",				SIZE_REDUCTION_SHIELD, /* 10% chance to nullify incoming damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Drehturn",				COSTLY_FAILURE_HELMET, /* 10% better casting chance, resistance piercing, spellboost, red spells, +5 CHA */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Wildfist",				RIN_REDUCE_ACCURACY, /* +4 increase damage, very fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Wildwest Law",				AMULET_OF_MONSTER_MULTISHOT, /* monsters spawn with guns more often and you have +1 multishot with guns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Pin Em Once",				CROSSBOW, /* randart crossbow, mulch trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("How long lasts it?",				ELIF_S_JEWEL, /* randart feminism jewel, invoking gives +1 (up to a max of +7) on all equipped armor pieces but also permanent turbodull effect; if already under a permanent turbodull effect, the invoke does nothing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

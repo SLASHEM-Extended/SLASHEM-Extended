@@ -19480,6 +19480,12 @@ register int n;
 		return;
 	}
 
+	if (uarms && uarms->oartifact == ART_DOUBLEBLANK && n > 0 && !rn2(10)) {
+		n = 0;
+		Your("shield nullifies the damage!");
+		return;
+	}
+
 	if (uwep && uwep->oartifact == ART_ETERNAL_LONGING && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("soft lady shoe nullifies the damage!");
