@@ -2818,6 +2818,9 @@ age_spells()
 			/* 10000 turns is nothing compared to the length of the game; have it last longer, please! --Amy */
 			if (spellmemorize(i) && !rn2(2)) continue;
 
+			/* higher spell retention means your char is more of a caster and should therefore benefit --Amy */
+			if (spellmemorize(i) && (rnd(urole.spelrete + 100) > 100) ) continue;
+
 			/* higher intelligence was doing nothing??? come on! --Amy */
 			if (spellmemorize(i) && ACURR(A_INT) > 14) {
 				int intelsave = ACURR(A_INT) - 14;
@@ -11048,6 +11051,7 @@ rerollX:
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
 		if (tech_inuse(T_SPELL_SPAM)) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
+		if (rnd(urole.spelrete + 100) > 100) cyanwillgodown = FALSE;
 
 		if (!rn2(2) && spellmemorize(spell)) cyanwillgodown = FALSE;
 
