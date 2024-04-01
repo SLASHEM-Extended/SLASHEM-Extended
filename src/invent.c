@@ -9881,7 +9881,7 @@ ddoinv()
 	if (!c) return 0;
 	for (otmp = invent; otmp; otmp = otmp->nobj)
 		if (otmp->invlet == c) break;
-	if (otmp) return itemactions(otmp, FALSE);
+	if (otmp) return itemactions(otmp, FALSE, FALSE);
 	return 0;
 
 }
@@ -11669,23 +11669,28 @@ boolean as_if_seen;
 
 /* Itemactions function stolen from Unnethack. I'll just print info about the item though. --Amy */
 int
-itemactions(obj, knoweverything)
+itemactions(obj, knoweverything, obscurefirst)
 struct obj *obj;
-boolean knoweverything;
+boolean knoweverything; /* don't give "you haven't identified this item yet" if this is true */
+boolean obscurefirst; /* skip the screen that gives the item class description */
 {
 
 	if (Hallucination && !StrongHallu_party && !knoweverything) {
 
-	pline("%s - This item radiates in an array of beautiful colors. It's very mesmerizing.",xname(obj) );
+		if (!obscurefirst) {
+			pline("%s - This item radiates in an array of beautiful colors. It's very mesmerizing.",xname(obj) );
+		} else pline("Very colorful item, probably highly useful.");
 
-	return 0;
+		return 0;
 	}
 
 	if (PlayerUninformation && !knoweverything) {
 
-	pline("%s - This is the best item in the game if you know how to use it. Good luck making it work!",xname(obj) );
+		if (!obscurefirst) {
+			pline("%s - This is the best item in the game if you know how to use it. Good luck making it work!",xname(obj) );
+		} else pline("It's the best item that exists.");
 
-	return 0;
+		return 0;
 
 	}
 
@@ -11698,11 +11703,13 @@ boolean knoweverything;
 	switch (obj->oclass) {
 
 		case WEAPON_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown" );
-#else
-		pline("%s - This is a weapon. Color: %s. Material: %s. Appearance: %s. Skill: %s. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", wpskillname(objects[obj->otyp].oc_subtyp) );
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a weapon. Color: %s. Material: %s. Appearance: %s. Skill: %s. You can wield it to attack enemies. Some weapons are also suitable for throwing.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", wpskillname(objects[obj->otyp].oc_subtyp) );
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { 
 
@@ -12980,11 +12987,12 @@ boolean knoweverything;
 		break;
 
 		case ARMOR_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. Slot: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", is_shield(obj) ? "shield" : is_helmet(obj) ? "helmet" : is_boots(obj) ? "boots" : is_gloves(obj) ? "gloves" : is_cloak(obj) ? "cloak" : is_shirt(obj) ? "shirt" : is_suit(obj) ? "suit" : "weird slot (this may be a bug)");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a piece of armor. Color: %s. Material: %s. Appearance: %s. Slot: %s. It can be worn for protection (armor class, magic cancellation etc.).",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", is_shield(obj) ? "shield" : is_helmet(obj) ? "helmet" : is_boots(obj) ? "boots" : is_gloves(obj) ? "gloves" : is_cloak(obj) ? "cloak" : is_shirt(obj) ? "shirt" : is_suit(obj) ? "suit" : "weird slot (this may be a bug)");
+
+		}
 
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_IRREGULAR_BOOTS))
 			pline("These boots have weird-shaped high heels, which look a bit like a wedge heel with part of it cut out, which can occasionally cause you to fumble. But while you're wearing them, the turn counter advances at half the normal speed.");
@@ -16222,11 +16230,13 @@ boolean knoweverything;
 		break;
 
 		case RING_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a ring. Color: %s. Material: %s. Appearance: %s. You can wear a maximum of two rings; they will often have some sort of magical effect if worn. Every worn ring will cause you to go hungry a little bit faster. Dropping a ring on a sink will cause it to disappear while providing you with a clue to its nature.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a ring. Color: %s. Material: %s. Appearance: %s. You can wear a maximum of two rings; they will often have some sort of magical effect if worn. Every worn ring will cause you to go hungry a little bit faster. Dropping a ring on a sink will cause it to disappear while providing you with a clue to its nature.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -16488,7 +16498,11 @@ boolean knoweverything;
 
 		case IMPLANT_CLASS:
 
-		pline("%s - This is an implant. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect and armor class, but they're hard to identify and may autocurse when worn. Also, unless your skill is high enough, you might not be able to take them off even when they're uncursed. If you don't have hands, you get extra bonus AC and intrinsics from wearing one. Wearing them while having hands gives weaker AC bonuses, and if you're additionally restricted at implants they may actually make your AC worse if you're not in a handless form!",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+		if (!obscurefirst) {
+
+			pline("%s - This is an implant. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect and armor class, but they're hard to identify and may autocurse when worn. Also, unless your skill is high enough, you might not be able to take them off even when they're uncursed. If you don't have hands, you get extra bonus AC and intrinsics from wearing one. Wearing them while having hands gives weaker AC bonuses, and if you're additionally restricted at implants they may actually make your AC worse if you're not in a handless form!",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
 
 		if (nn && powerfulimplants() && (uimplant && obj == uimplant) ) pline("As long as you're in a form without hands (your current form qualifies), wearing this implant grants %s.", enchname(goodimplanteffect(uimplant)) );
 
@@ -17019,16 +17033,17 @@ boolean knoweverything;
 
 		case AMULET_CLASS:
 
-
 		if (obj->otyp == FAKE_AMULET_OF_YENDOR || obj->otyp == AMULET_OF_YENDOR) {
-		pline("This is the amulet of Yendor, a very powerful talisman that radiates power. In order to ascend with it, you need to fully imbue it, which is done in the Yendorian Tower, accessed by a portal from Moloch's Sanctum. Find and use all three special staircases in the Yendorian Tower to imbue the Amulet."); break;
+
+			pline("This is the amulet of Yendor, a very mighty talisman that radiates power. In order to ascend with it, you need to fully imbue it, which is done in the Yendorian Tower, accessed by a portal from Moloch's Sanctum. Find and use all three special staircases in the Yendorian Tower to imbue the Amulet."); break;
 
 		} else {
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is an amulet. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect, but you will go hungry a little bit faster if you are wearing an amulet.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+			if (!obscurefirst) {
+
+				pline("%s - This is an amulet. Color: %s. Material: %s. Appearance: %s. It can be worn for some magical effect, but you will go hungry a little bit faster if you are wearing an amulet.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+			}
 		}
 
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
@@ -17298,11 +17313,13 @@ boolean knoweverything;
 		break;
 
 		case TOOL_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a tool. Color: %s. Material: %s. Appearance: %s. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a tool. Color: %s. Material: %s. Appearance: %s. Most tools can be applied for an effect; some are also useful when wielded.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -17737,11 +17754,13 @@ boolean knoweverything;
 		break;
 
 		case FOOD_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a comestible. Color: %s. Material: %s. Appearance: %s. It can be eaten.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a comestible. Color: %s. Material: %s. Appearance: %s. It can be eaten.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -17951,11 +17970,13 @@ boolean knoweverything;
 		break;
 
 		case POTION_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a potion. Color: %s. Material: %s. Appearance: %s. You can quaff it to experience its effects, but it's also possible to throw potions at monsters or bash them with it in melee.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && (itemhasappearance(obj, APP_POTION_MILKY) || itemhasappearance(obj, APP_POTION_GHOSTLY) || itemhasappearance(obj, APP_POTION_HALLOWED) || itemhasappearance(obj, APP_POTION_CAMPING) || itemhasappearance(obj, APP_POTION_SPIRITUAL)) )
 			pline("Careful, sometimes a ghost may come out if you quaff this potion.");
 
@@ -18226,11 +18247,13 @@ boolean knoweverything;
 		break;
 
 		case SCROLL_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a scroll. Color: %s. Material: %s. Appearance: %s. Reading it has a magic effect and uses up the scroll; some scroll effects are different if they are read while you are confused.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a scroll. Color: %s. Material: %s. Appearance: %s. Reading it has a magic effect and uses up the scroll; some scroll effects are different if they are read while you are confused.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -18625,11 +18648,13 @@ boolean knoweverything;
 		break;
 
 		case SPBOOK_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s. Spell level: %d. Spell school: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", nn ? objects[obj->otyp].oc_level : 0,  nn ? wpskillname(objects[obj->otyp].oc_subtyp) : "unknown");
-#else
-		pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Spell level: %d. Spell school: %s. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", nn ? objects[obj->otyp].oc_level : 0,  nn ? wpskillname(objects[obj->otyp].oc_subtyp) : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a spellbook. Color: %s. Material: %s. Appearance: %s. Spell level: %d. Spell school: %s. Reading it allows you to learn a new spell permanently, or refresh your memory if you already know the spell.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown", nn ? objects[obj->otyp].oc_level : 0,  nn ? wpskillname(objects[obj->otyp].oc_subtyp) : "unknown");
+
+		}
+
 		if ((!nn) && (!knoweverything)) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -19385,11 +19410,13 @@ boolean knoweverything;
 		break;
 
 		case WAND_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a wand. Color: %s. Material: %s. Appearance: %s. It can be zapped for an effect; some wands will have a direction that you may choose. However, you can also apply wands to break them and release the energy contained therein, which has effects similar to what the wand normally does, or engrave with them which may give you some clues about what the wand actually does.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a wand. Color: %s. Material: %s. Appearance: %s. It can be zapped for an effect; some wands will have a direction that you may choose. However, you can also apply wands to break them and release the energy contained therein, which has effects similar to what the wand normally does, or engrave with them which may give you some clues about what the wand actually does.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -19680,7 +19707,11 @@ boolean knoweverything;
 		break;
 
 		case COIN_CLASS:
-		pline("%s - This is a coin. ",xname(obj) );
+
+		if (!obscurefirst) {
+			pline("%s - This is a coin. ",xname(obj) );
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -19695,11 +19726,13 @@ boolean knoweverything;
 		break;
 
 		case GEM_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a gem. Color: %s. Material: %s. Appearance: %s. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a gem. Color: %s. Material: %s. Appearance: %s. Some of them increase your score at the end of the game, provided you didn't die, and since ascension is next to impossible, you'll probably not care about score anyway. However, they can also be used as sling ammunition, some gray stones may have certain special effects, and throwing gems to unicorns can increase your luck.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", (nn && obj->dknown) ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -20697,11 +20730,13 @@ boolean knoweverything;
 		break;
 
 		case ROCK_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
-#else
-		pline("%s - This is a boulder or statue. Color: %s. Material: %s. Appearance: %s. Boulders can be thrown and are difficult to get past if they're just lying around on the floor, while statues may be reanimated or smashed.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a boulder or statue. Color: %s. Material: %s. Appearance: %s. Boulders can be thrown and are difficult to get past if they're just lying around on the floor, while statues may be reanimated or smashed.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -20722,11 +20757,13 @@ boolean knoweverything;
 		break;
 
 		case BALL_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
-#else
-		pline("%s - This is an iron ball. Color: %s. Material: %s. Appearance: %s. You can be chained to one, in which case it will follow you around, but it can also be used as a weapon that uses the flail skill.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is an iron ball. Color: %s. Material: %s. Appearance: %s. You can be chained to one, in which case it will follow you around, but it can also be used as a weapon that uses the flail skill.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? obj_descr[obj->otyp].oc_name : "unknown" );
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -20889,11 +20926,13 @@ boolean knoweverything;
 		break;
 
 		case CHAIN_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is an iron chain. Color: %s. Material: %s. Appearance: %s. They are lightweight flail-class weapons that can be used in melee; if you're punished, one will be created to chain you to an iron ball, but iron chains created by punishment cannot be picked up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is an iron chain. Color: %s. Material: %s. Appearance: %s. They are lightweight flail-class weapons that can be used in melee; if you're punished, one will be created to chain you to an iron ball, but iron chains created by punishment cannot be picked up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -21053,11 +21092,13 @@ boolean knoweverything;
 		break;
 
 		case VENOM_CLASS:
-#ifdef PHANTOM_CRASH_BUG
-		pline("%s - Color: %s. Material: %s. Appearance: %s.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#else
-		pline("%s - This is a splash of venom. Color: %s. Material: %s. Appearance: %s. It can be used in melee or for throwing, but either of those actions will probably use it up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
-#endif
+
+		if (!obscurefirst) {
+
+			pline("%s - This is a splash of venom. Color: %s. Material: %s. Appearance: %s. It can be used in melee or for throwing, but either of those actions will probably use it up.",xname(obj), obj->dknown ? c_obj_colors[objects[obj->otyp].oc_color] : "unknown", obj->dknown ? materialnm[objects[obj->otyp].oc_material] : "unknown", obj->dknown ? dn : "unknown");
+
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
@@ -21080,12 +21121,16 @@ boolean knoweverything;
 		break;
 
 		case ILLOBJ_CLASS:
-		pline("%s - This is an illegal object. You shouldn't be able to get these at all.",xname(obj) );
+
+		if (!obscurefirst) {
+			pline("%s - This is an illegal object. You shouldn't be able to get these at all.",xname(obj) );
+		}
+
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
 			case STRANGE_OBJECT: 
-				pline("A strange object that actually has no business being in your inventory. Well, at least it's not a glorkum instead. :-)"); break;
+				pline("A strange object that actually has no business being in your inventory. It might in fact be a glorkum, which probably indicates a bug in the game and Amy would like to know how you obtained it because it might have to be fixed."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
 

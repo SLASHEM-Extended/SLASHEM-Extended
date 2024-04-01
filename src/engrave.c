@@ -6120,6 +6120,26 @@ static const char *epitaphs[] = {
 	"Here lies Alderman Hughes. Motherfucker of a politician REALLY thought he could just take out the Third Street Saints after they had managed to finally rub out the other gangs and attain supremacy over Stilwater... but then Hughes' yacht blew up, and the tie-wearing asshole was disintegrated into a fine mist.",
 	"Bullshit! There's nothing that you can do if Greed steals your box and empties it on the floor! Even if you get most of the items back, he still has the box so you have to either leave them on the ground for any asshole to grab, or risk having like 30 or so items stolen PER HIT.",
 	"Bleeeeeh, Greed just didn't want to stay dead and then I somehow had the autopickup nastytrap which worked on his fucking corpse too, and ultimately he killed me!", /* these last two happened to Amy */
+	"My guy was watching the lovely girl futilely try to kick him with her platform shoes but then suddenly he started walking like he was on autopilot, and even when the girl caught up and started kicking the crap out of him with her very cuuuuute platform boots, he still continued walking and eventually got his butt kicked.",
+	"This guy just couldn't resist the girlful kicks placed into his shins by the lovely cyan platform girl boots, and eventually got bludgeoned by them in a very female way. <3",
+	"Here lies a feminist, whose random level 8 nasty trap turned out to be rot13 making the game nearly unplayable.",
+	"Here lies a feminist, whose random level 6 nasty trap turned out to be low local memory making the game nearly unplayable.",
+	"FUCK nasty traps FUCK who created them FUCK FUCK FUCK those horrible interface screws are unplayable FUUUUUUUCK!",
+	"Man, if I ever get the developer into my fingers who added nasty traps to SLEX...",
+	"Nooooo, not the heap trap... every other nasty trap type I could have handled but not that one, #quit",
+	"Goddamn secret attack nastytrap, that bastard monster used a lethe attack on me even though it doesn't actually have that and now way too much of my stuff has been irreparably damaged!",
+	"Nooooooo, the assiebassie of a spider grue, of course he was in the water and I fell in! Now all my stuff has been rusted because of that bastard!",
+	"Here lies a random boss monster from Diablo 2. This boss's special ability was 'extra dead'. Meaning the boss died before the player even had a chance to highlight it and see its characteristics. :-P",
+	"Here lies Thrower, a (surprise!) throwing weapon barbarian. In act 3 of nightmare he ran completely out of ammo and just picked up that long sword off the ground and waded in swinging, which was just as effective as his high-level throwing weapons, meaning all those skill points turned out to be obsolete so he retired.",
+	"Here lies Ribinak, defiance paladin. Baal used his Agent Orange three times in a row and the stupid healing potion was way too slow, a reju potion would have saved him but the player mistyped.",
+	"Here lies any vanilla Diablo 2 character ever because the super dumbie healing potions are soooooooo sloooooooooooow!!! Even the strongest one heals maybe 40 HP/second while the hungry dead potatoes in act 1 hell deal like 200 damage per hit and come in groups.",
+	"Here lies Hotfoot, fire sorceress. Her spirit wilted under the shackles of the spell timer system, and she died from complications of indigestion (too much candy).",
+	"Here lies the pre-1.09 frozen orb skill of Diablo 2. Back in the day, you'd be able to spam your soso's spells like you were supposed to, but suddenly Buggard got scared of graphics-intensive spells so they put looooong stupid timers on all of them because 'it might cause the game to lag for those whose processor power is capped at 166 MHz'.",
+	"Here lies any hardcore Diablo 2 character ever, killed by a boss with nose enchantment. Yeah, I know, it's actually called 'fire enchanted' but the damage done by the boss's death explosion can be wildly off the charts and kill even the most virile barbarian ubertank instantly.",
+	"Here lies any hardcore Diablo 2 character ever, killed by a MLEB (multiple shots lightning enchanted boss). That said, I guess with a bunch of lightning absorb they could have survived it, but not everyone is lucky enough to find Thundergod's Vigor.",
+	"It's a lot of fun to watch your guy in GTA San Andreas repeatedly get stomped by a lovely girl until your HP bar is empty, particularly if the girl in question is wearing pretty high-heeled shoes!",
+	"The sweet prostitutes in GTA3 can repeately knee you in the nuts very painfully, and it's really exciting to let them do that until your guy's HP runs out!",
+	"Wow, it's sooooo sexy to watch the scantily clad beach girls in GTA Vice City repeatedly push the player character through the area with their lovely bathing sandals, because they can kick very powerfully and eventually defeat the player!",
 
 };
 

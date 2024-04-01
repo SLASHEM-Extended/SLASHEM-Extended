@@ -7909,7 +7909,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ POT_REFLECTION, "aks ettirish" },
 	{ SPE_MAGIC_BOLT, "sirli murvat" },
 	{ SPE_LIGHT_AREA, "yorug'lik maydoni" },
-	{ KITE_SHIELD, "uçurtma qalqoni" },
+	{ KITE_SHIELD, "ucurtma qalqoni" },
 	{ SCR_RETURN, "qaytish" },
 	{ SPE_RETURN, "qaytish" },
 	{ DISINFECTANT_GLOVES, "dezinfektsiyali qo'lqoplar" },

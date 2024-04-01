@@ -1093,7 +1093,7 @@ E boolean have_loadboulder(void);
 E boolean have_starlightstone(void);
 E boolean sjwcheck(int);
 E boolean feminizecheck(int);
-E int itemactions(struct obj *,BOOLEAN_P);
+E int itemactions(struct obj *,BOOLEAN_P,BOOLEAN_P);
 E boolean have_hungerhealer(void);
 
 E int dostackmark(void);

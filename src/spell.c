@@ -11842,7 +11842,7 @@ int specialmenutype;
 			return dospellmenu(prompt, splaction, spell_no, specialmenutype);
 		}
 
-		(void) itemactions(pseudo, TRUE);
+		(void) itemactions(pseudo, TRUE, TRUE);
 		obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
 		return dospellmenu(prompt, splaction, spell_no, specialmenutype);
 	}
