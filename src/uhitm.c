@@ -3833,25 +3833,36 @@ int dieroll;
 				tmp += 5;
 			}
 
+			/* artifact spellbooks get up to +d10 --Amy */
 			if (obj && obj->oclass == SPBOOK_CLASS && obj->oartifact) {
-				tmp += rnd(10);
-				if (obj->spe > 0) tmp += obj->spe;
+				int spbdmgboost = 1;
+				if (obj->spe > 0) spbdmgboost += obj->spe;
+				if (spbdmgboost > 10) spbdmgboost = 10;
+				tmp += rnd(spbdmgboost);
 				if (obj->oartifact == ART_DEADLY_GAMBLING) tmp += rnd(30);
 			}
 
 			if (obj && obj->oclass == SPBOOK_CLASS && Role_if(PM_LIBRARIAN)) {
-				if (obj->spe > 0) tmp += obj->spe;
+				int spbdmgboost = 1;
+				if (obj->spe > 0) spbdmgboost += obj->spe;
+				if (spbdmgboost > 10) spbdmgboost = 10;
+				tmp += rnd(spbdmgboost);
 			}
 
 			if (obj && obj->oartifact == ART_FOR_THE_PERMABLIND_POTATO && !obj->dknown) {
 				tmp += 20;
 			}
 
+			/* artifact wands get up to +rno(10) --Amy */
 			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
-				tmp += rno(obj->spe);
+				int spbdmgboost = 0;
+				if (obj->spe > 0) spbdmgboost += obj->spe;
+				if (spbdmgboost > 0) tmp += rno(spbdmgboost);
 			}
 			if (obj && obj->oclass == WAND_CLASS && Race_if(PM_STICKER) && obj->spe > 0) {
-				tmp += rno(obj->spe);
+				int spbdmgboost = 0;
+				if (obj->spe > 0) spbdmgboost += obj->spe;
+				if (spbdmgboost > 0) tmp += rno(spbdmgboost);
 			}
 
 			if (obj && obj->oartifact == ART_ICE_BLOCK_HARHARHARHARHAR) {

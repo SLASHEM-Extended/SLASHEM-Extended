@@ -1709,11 +1709,14 @@ int curse_bless;
 		n = (lim == 2) ? 2 : (lim == 3) ? 3 : (is_blessed ? rn1(5, lim + 1 - 5) : rnd(lim) ) ;
 		/*if (!is_blessed) {enspe = rnd(n); n = enspe;}*/ /* no longer needed */
 
-		if (obj->spe < n) { obj->spe = rnd(n);
-		if (is_blessed && obj->spe < n && rn2(3) ) obj->spe = n;
-		}
+		/* Amy edit: it really is stupid if you get better results when emptying the wand first. */
+		obj->spe += (is_blessed && rn2(3)) ? n : rnd(n);
 
-		if (Role_if(PM_WANDKEEPER) && obj->spe < 100) obj->spe += ((obj->otyp == WAN_WISHING) ? 1 : (obj->otyp == WAN_CHARGING || obj->otyp == WAN_BAD_EQUIPMENT || obj->otyp == WAN_ACQUIREMENT ) ? rnd(3) : (obj->otyp == WAN_GENOCIDE) ? rnd(4) : (obj->otyp == WAN_GAIN_LEVEL) ? rnd(5) : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? rnd(6) : rnd(10));
+/*		if (obj->spe < n) { obj->spe = rnd(n);
+		if (is_blessed && obj->spe < n && rn2(3) ) obj->spe = n;
+		}*/
+
+		if (Role_if(PM_WANDKEEPER)) obj->spe += ((obj->otyp == WAN_WISHING) ? 1 : (obj->otyp == WAN_CHARGING || obj->otyp == WAN_BAD_EQUIPMENT || obj->otyp == WAN_ACQUIREMENT ) ? rnd(3) : (obj->otyp == WAN_GENOCIDE) ? rnd(4) : (obj->otyp == WAN_GAIN_LEVEL) ? rnd(5) : (obj->otyp == WAN_INCREASE_MAX_HITPOINTS) ? rnd(6) : rnd(10));
 
 		/* let's make charging a bit more useful, considering wands spawn with less charges now --Amy */
 		/*else*/ obj->spe += obj->recharged; /* cannot be higher than 1 for wishing/charging anyway */
@@ -1784,7 +1787,7 @@ int curse_bless;
 		if (fewchargesadded) n = (is_blessed) ? rnd(2) : 1;
 		else n = (is_blessed) ? rnd(5) : rnd(3);
 		obj->spe += n;
-		if (obj->spe > 100) obj->spe = 100; /* upper limit */
+		/* if (obj->spe > 100) obj->spe = 100; */ /* upper limit */
 		if (obj->spe >= 5) p_glow2(obj, NH_BLUE);
 		else p_glow1(obj);
 		u.cnd_chargingcount++;
@@ -1880,7 +1883,7 @@ int curse_bless;
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) obj->spe += rnd(30);
 		else obj->spe += 10;
-		if (obj->spe > 100) obj->spe = 100;
+		/*if (obj->spe > 100) obj->spe = 100;*/
 		if (!is_cursed) {
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2124,8 +2127,8 @@ int curse_bless;
 
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {
-		    obj->spe += rnd(3);
-		    p_glow2(obj, NH_BLUE);
+			obj->spe += rnd(3);
+			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
@@ -2133,7 +2136,6 @@ int curse_bless;
 				else uncurse(obj, FALSE);
 			}
 		} else {
-		    if (obj->spe < 10) {
 			obj->spe++;
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2142,13 +2144,6 @@ int curse_bless;
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
 			}
-		    } else {
-				pline("%s", nothing_happens);
-				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
-					pline("Oh wait, actually something bad happens...");
-					badeffect();
-				}
-		    }
 		}
 		break;
 
@@ -2169,8 +2164,8 @@ int curse_bless;
 
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {
-		    obj->spe += 2;
-		    p_glow2(obj, NH_BLUE);
+			obj->spe += 2;
+			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
 			if (obj && objects[(obj)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(obj)) {
@@ -2178,7 +2173,6 @@ int curse_bless;
 				else uncurse(obj, FALSE);
 			}
 		} else {
-		    if (obj->spe < 10) {
 			obj->spe++;
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2187,13 +2181,6 @@ int curse_bless;
 				if (!obj->cursed) bless(obj);
 				else uncurse(obj, FALSE);
 			}
-		    } else {
-				pline("%s", nothing_happens);
-				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
-					pline("Oh wait, actually something bad happens...");
-					badeffect();
-				}
-		    }
 		}
 		break;
 
@@ -2210,7 +2197,7 @@ int curse_bless;
 		if (is_cursed) stripspe(obj);
 		else if (is_blessed) {
 			obj->spe += rnd(30);
-			if (obj->spe > 100) obj->spe = 100;
+			/*if (obj->spe > 100) obj->spe = 100;*/
 			p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2220,7 +2207,7 @@ int curse_bless;
 			}
 		} else {
 			obj->spe += rnd(20);
-			if (obj->spe > 100) obj->spe = 100;
+			/*if (obj->spe > 100) obj->spe = 100;*/
 			p_glow1(obj);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2247,7 +2234,7 @@ int curse_bless;
 
 			obj->spe += rnd(10);
 
-		    if (obj->spe > 117) obj->spe = 117;
+		    /*if (obj->spe > 117) obj->spe = 117;*/
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2257,7 +2244,7 @@ int curse_bless;
 			}
 		} else {
 		    obj->spe += rnd(5);
-		    if (obj->spe > 117) obj->spe = 117;
+		    /*if (obj->spe > 117) obj->spe = 117;*/
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2298,7 +2285,7 @@ int curse_bless;
 		} else if (is_blessed) {
 		    obj->spe += d(2,4);
 		    if (obj->oartifact == ART_TADA) obj->spe += d(2,4);
-		    if (obj->spe > 20) obj->spe = 20;
+		    /*if (obj->spe > 20) obj->spe = 20;*/
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
@@ -2309,7 +2296,7 @@ int curse_bless;
 		} else {
 		    obj->spe += rnd(4);
 		    if (obj->oartifact == ART_TADA) obj->spe += rnd(4);
-		    if (obj->spe > 20) obj->spe = 20;
+		    /*if (obj->spe > 20) obj->spe = 20;*/
 		    p_glow1(obj);
 			u.cnd_chargingcount++;
 			use_skill(P_DEVICES, rnd(10));
