@@ -4633,6 +4633,8 @@ struct permonst *mptr;	/* reflects mtmp->data _prior_ to mtmp's death */
 	    /* to prevent an infinite relobj-flooreffects-hmon-killed loop */
 	mtmp->mtrapped = 0;
 	mtmp->mhp = 0; /* simplify some tests: force mhp to 0 */
+	if (mtmp->iswiz) wizdead();
+	if (mtmp->data->msound == MS_NEMESIS && mtmp->mnum >= PM_LORD_CARNARVON && mtmp->mnum <= PM_UPPER_BULL) nemdead();
 	relobj(mtmp, 0, FALSE);
 	remove_monster(mtmp->mx, mtmp->my);
 	if (emits_light(mptr))
@@ -5477,8 +5479,10 @@ newbossSING:
 		(void) makemon(&mons[PM_BIG_BULLETATOR_T],0,0,NO_MM_FLAGS);
 	}
 
+	/* apparently this is only in m_detach() now --Amy
 	if(mtmp->iswiz) wizdead();
 	if(mtmp->data->msound == MS_NEMESIS && mtmp->mnum >= PM_LORD_CARNARVON && mtmp->mnum <= PM_UPPER_BULL) nemdead();
+	*/
 
 	if (tmp == PM_SUPER_SLOW_TURTLE) {
 		adjalign(-100);

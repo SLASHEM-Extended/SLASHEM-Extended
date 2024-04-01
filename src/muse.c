@@ -4279,8 +4279,11 @@ newboss:
 		 * player stranded.
 		 */
 		if (ledger_no(&u.uz) == 1) {
-			if (mon_has_special(mtmp))
+			/* from the variant that calls itself 3.7: wizard of yendor cannot escape
+			 * this applies even if there are two because harharhar :-P --Amy */
+			if (mon_has_special(mtmp) || mtmp->iswiz) {
 				return 0;
+			}
 			if (vismon)
 			    pline("%s escapes the dungeon!", Monnam(mtmp));
 			mongone(mtmp);
