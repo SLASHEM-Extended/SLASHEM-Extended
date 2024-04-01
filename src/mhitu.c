@@ -7623,8 +7623,7 @@ hitmu(mtmp, mattk)
 		if (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) dmg *= 2;
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
-		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
-		if (uarms && uarms->oartifact == ART_DA_PELTA) break;
+		if (resistdarknesseffect()) break;
 
 		/* create darkness around the player --Amy */
 		pline("That felt evil and sinister!");
@@ -9158,7 +9157,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -12182,8 +12181,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 			You_feel("a constricting darkness...");
 
-			if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
-			if (uarms && uarms->oartifact == ART_DA_PELTA) break;
+			if (resistdarknesseffect()) break;
 
 			/* create darkness around the player --Amy */
 			litroomlite(FALSE);
@@ -15848,7 +15846,7 @@ common:
 
 	    case AD_DARK:
 
-		if (!(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) && !(uarms && uarms->oartifact == ART_DA_PELTA) ) {
+		if (!resistdarknesseffect()) {
 			pline("Everything gets dark!");
 			litroomlite(FALSE);
 		}
@@ -16778,8 +16776,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		if (!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || !rn2(4)) )
  		{
 
-		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
-		if (uarms && uarms->oartifact == ART_DA_PELTA) break;
+		if (resistdarknesseffect()) break;
 
 		/* create darkness around the player --Amy */
 		pline("%s's sinister gaze fills your mind with dreadful, evil thoughts!", Monnam(mtmp));
@@ -19386,6 +19383,20 @@ register int n;
 		if (n < 1) n = 1;
 	}
 
+	if (n > 0 && uarm && uarm->oartifact == ART_KRAH_HOOOOO) {
+		n++;
+		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
+	if (n > 0 && uarms && uarms->oartifact == ART_AL_UD) {
+		n++;
+		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
 	/* very early on, low-level characters should be more survivable
 	 * this can certainly be exploited in some way; if players start exploiting it I'll have to fix it
 	 * but it should fix the annoying problem where you often instadie to a trap while your max HP are bad --Amy */
@@ -19480,6 +19491,12 @@ register int n;
 		return;
 	}
 
+	if (uarms && uarms->oartifact == ART_AL_UD && n > 0 && !rn2(10)) {
+		n = 0;
+		Your("shield nullifies the damage!");
+		return;
+	}
+
 	if (uarms && uarms->oartifact == ART_DOUBLEBLANK && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("shield nullifies the damage!");
@@ -19508,6 +19525,15 @@ register int n;
 	if (n == 0) {
 		pline("You are unharmed.");
 		return;
+	}
+
+	if (uarms && uarms->oartifact == ART_POFFGO && n > 1) {
+		n -= 2;
+		if (n < 1) n = 1;
+	}
+	if (uarm && uarm->oartifact == ART_PROTPOW && n > 1) {
+		n -= 1;
+		if (n < 1) n = 1;
 	}
 
 	if (uarmf && uarmf->oartifact == ART_STAR_SOLES) enchrequired = 1;
@@ -21264,6 +21290,26 @@ register struct attack *mattk;
 		    mtmp->mcansee = 0;
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 
+		}
+	}
+
+	if (uarmh && uarmh->oartifact == ART_FIVE_HORNED_HELM) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(6) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarms && uarms->oartifact == ART_SHIELD_OF_THORN) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(16) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
 		}
 	}
 

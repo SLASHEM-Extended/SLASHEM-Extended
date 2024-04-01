@@ -675,6 +675,20 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (damu < 1) damu = 1;
 		}
 
+		if (damu > 0 && uarm && uarm->oartifact == ART_KRAH_HOOOOO) {
+			damu++;
+			damu *= 9;
+			damu /= 10;
+			if (damu < 1) damu = 1;
+		}
+
+		if (damu > 0 && uarms && uarms->oartifact == ART_AL_UD) {
+			damu++;
+			damu *= 9;
+			damu /= 10;
+			if (damu < 1) damu = 1;
+		}
+
 		/* very early on, low-level characters should be more survivable
 		 * this can certainly be exploited in some way; if players start exploiting it I'll have to fix it
 		 * but it should fix the annoying problem where you often instadie to a trap while your max HP are bad --Amy */
@@ -751,6 +765,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    damu = 0;
 		    Your("pair of heels nullifies the damage!");
 		} else if (uarms && uarms->oartifact == ART_PLANK_OF_CARNEADES && !rn2(10)) {
+		    damu = 0;
+		    Your("shield nullifies the damage!");
+		} else if (uarms && uarms->oartifact == ART_AL_UD && !rn2(10)) {
 		    damu = 0;
 		    Your("shield nullifies the damage!");
 		} else if (uarms && uarms->oartifact == ART_DOUBLEBLANK && !rn2(10)) {

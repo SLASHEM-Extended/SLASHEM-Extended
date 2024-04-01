@@ -18903,6 +18903,258 @@ A("How long lasts it?",				ELIF_S_JEWEL, /* randart feminism jewel, invoking giv
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Elara's Agility",				REGULAR_GLOVES, /* initialized to always be dextrous gloves, super lara trap effect, +5 DEX, ultra fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Poffgo",				RED_DRAGON_SCALE_SHIELD, /* randart DSS, mhitu damage versus player reduced by 2 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("ProtPow",				RED_DRAGON_SCALE_MAIL, /* randart DSM, mhitu damage versus player reduced by 1, +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Krah Hooooo",				RED_DRAGON_SCALES, /* randart dragon scales, 10% reduced damage taken */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Get The Buc(k)",				LEATHER_CLOAK, /* initialized to always be buckloak, 1 in 4 chance for items to spawn with their BUC known */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fright Prawn",				FRAG_GRENADE, /* +1 multishot when thrown */
+	(SPFX_RESTR|SPFX_DFLAG1|SPFX_DEFN), 0, M1_FLY,
+	PHYS(0, 15), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Brutish Claymore",				TWO_HANDED_SWORD, /* randart two-handed sword, unchanging, halves monster AC and +5% critical chance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Pure Black Diablo",				LONG_SWORD, /* randart2 long sword, fast speed, free action, 1 in 100 on a hit to stop time for rn1(2,2) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hiryu-To",				KATANA, /* +6 CON */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_DCLAS), 0, S_DRAGON,
+	ELEC(4, 12), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Flying Dragon Sword",				LONG_SWORD, /* randart long sword, +6 CON */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_DCLAS), 0, S_DRAGON,
+	ELEC(4, 12), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Mournblade",				LONG_SWORD, /* randart melee weapon, slows targets who don't resist */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	DRLI(4, 8), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sword That Ends All",				LONG_SWORD, /* randart2 long sword, brings an end */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Shining Silver Katana",				KATANA, /* discount action, halves monster AC, resist confusion */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Zantetsu",				LONG_SWORD, /* randart2 melee weapon, discount action, halves monster AC, resist confusion */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Dragon Slayer",				ETHER_SAW,
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_DRAGON,
+	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Two-Edged Great Sword",				TWO_HANDED_SWORD,  /* randart2 two-handed sword */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_DRAGON,
+	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Axe of Destruction",				AXE, /* randart2 axe, +20% chance for critical hits */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Frisia's Tail",				QUARTERSTAFF, /* randart2 quarterstaff, brings an end, weighs 500 more, +20 INT, confuses enemies who don't resist */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Cat's Tail",				PARTISAN, /* randart2 polearm, brings an end, weighs 500 more, +20 INT, confuses enemies who don't resist */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Kumiromi Scythe",				GRAIN_SCYTHE, /* +3 STR, sickness resist and +4 or so obsidian protection if possible */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Scythe of Void",				SCYTHE, /* spellboost, flying, 10000 turns of heavy caster */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Scythe that sings death",				BONE_SCYTHE, /* spellboost, flying, 10000 turns of heavy caster */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Blood Moon",				CLUB, /* randart club, resist fear and conf, 5000 turns of muteness */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	FIRE(0, 9), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Bloody Mace",				MACE, /* randart mace, resist fear and conf, 5000 turns of muteness */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	FIRE(0, 9), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Gaia Hammer",				WAR_HAMMER, /* randart2 hammer, psi res, +6 STR, halves enemy AC */ 
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Holy Lance",				LANCE, /* curse resistance, +6 WIS */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Holy Rance",				LANCE, /* randart2 lance, curse resistance, +6 WIS */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cursed Halberd",				HALBERD, /* resist fear, 1 in 100 when hitting to stop time for rn1(2,2) turns */
+	(SPFX_RESTR|SPFX_DRLI|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	DRLI(0, 4), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Rankis",				HALBERD, /* randart2 polearm, resist fear, 1 in 100 when hitting to stop time for rn1(2,2) turns */
+	(SPFX_RESTR|SPFX_DRLI|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	DRLI(0, 4), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Elemental Staff",				QUARTERSTAFF, /* randart2 quarterstaff, resist fire, cold and shock, damage element changes every turn and can be cold, fire or shock */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(2, 13), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Shivering Staff",				QUARTERSTAFF, /* randart quarterstaff, spellboost, +4 INT, 1 in 10 to paralyze enemies who fail to resist and 1 in 5 to confuse them */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Staff of Insanity",				QUARTERSTAFF, /* randart2 quarterstaff, spellboost, +4 INT, 1 in 10 to paralyze enemies who fail to resist and 1 in 5 to confuse them */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ether Dagger",				DAGGER, /* randart dagger, becomes MT_ETHER upon generating, resist piercing */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ELEC(2, 8), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("dagger surrounded by wind",				DAGGER, /* randart2 dagger, becomes MT_ETHER upon generating, resist piercing */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ELEC(2, 8), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lucky Dagger",				WONDER_DAGGER, /* see invis, protects from theft, slows enemies who fail to resist */
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Thin Dagger",				DAGGER, /* randart2 dagger, see invis, protects from theft, slows enemies who fail to resist */
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bow of Vinderre",				YUMI, /* ammos deal extra poison damage, +4 DEX */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Shaking Bow",				BOW, /* randart2 bow, ammos deal extra poison damage, +4 DEX */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Unique Wind Bow",				WIND_BOW, /* ultra fast speed */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(2, 4), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("bow surrounded by wind",				BOW, /* randart2 bow, becomes MT_ETHER when generated, ultra fast speed */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(2, 4), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kill Kill Piano",				PIANO, /* +10% critical hit chance, -2 CHA, damage type changes each turn */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Shena's Panty",				BOW, /* randart launcher, +4 CHA, cont res, firing has 1 in 100 chance to stop time for rn1(2,2) turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Scentful Panty",				BOW, /* randart2 launcher, +4 CHA, cont res, firing has 1 in 100 chance to stop time for rn1(2,2) turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Vanilla Rock",				ROCK,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 120L ),
+
+A("Shining Rock",				ROCK, /* randart2 gem */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 120L ),
+
+A("Mauser C96 Custom",				PISTOL, /* see invis, dmg h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gun of Genocide",				RAYGUN, /* 30% or so obsidian protection, deafness */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Winchester Premium",				SHOTGUN, /* curse resistance, monsters cannot cast spells, deafness for 5k turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sea angeranchor",				AXE, /* randart axe, -20 to-hit, +d10 bleeding damage to enemies, +7 STR/CON, +30% critical hits, protects from thieves, resist confusion, 20k turns of extragravate nastytrap */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Fune no ikari",				AXE, /* randart2 axe, -20 to-hit, +d10 bleeding damage to enemies, +7 STR/CON, +30% critical hits, protects from thieves, resist confusion, 20k turns of extragravate nastytrap */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Five Horned Helm",				STANDARD_HELMET, /* randart2 helmet, unchanging, double attacks, +d6 thorns damage, gives messages when your alignment record changes */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sage's Helm",				STANDARD_HELMET, /* randart helmet, resist confusion, see invis */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Purple Arbalest",				AMULET_OF_ESP, /* randart amulet, +1 multishot with all ranged weapons and another +1 with crossbows */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Begger's Pendant",				AMULET_OF_ESP, /* randart amulet, protects you from thieves, +4 CHA, 20% chance to not get sanity if you otherwise would */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Twin Edge",				AMULET_OF_ESP, /* randart2 amulet, double attacks, +4 to-hit and +2 damage when dual-wielding */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Unknown Shell",				AMULET_OF_ESP, /* randart2 amulet, deafness, prayer can give indications whether it's safe */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Al'ud",				SHIELD, /* randart2 shield, 10% chance to nullify damage, 10% damage reduction, +4 AC, -3 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Shield of Thorn",				SHIELD, /* randart shield, d16 thorns, discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Palmia Pride",				RIN_ADORNMENT, /* randart ring, protects from thieves, fast speed, +5 CHA, +4 AC, 10% chance to resist darkness effects */
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ring of Steel Dragon",				RIN_ADORNMENT, /* randart2 ring, speed bug, fast speed, resist elec, sick and fear, free action, +3 STR, +100 carry cap */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Gloves of Vesda",				REGULAR_GLOVES, /* randart2 gloves, protects potions from cold, +3 STR, resist confusion, halves enemy AC */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_LUCK), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Crimson Plate",				T_SHIRT, /* randart2 shirt, diminished bleeding, resist fire */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Light Dal-i-thalion",				LOW_BOOTS, /* randart2 boots, +2 DEX, curse resistance, gallop bonus when riding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

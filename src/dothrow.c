@@ -298,6 +298,7 @@ int thrown;
 	    if (obj && obj->otyp == FLAMETHROWER) multishot += 4;
 	    if (obj && obj->oartifact == ART_POEPOEPOEPOEOEU_) multishot += 4;
 	    if (obj && obj->oartifact == ART_MRLS) multishot += 1;
+	    if (obj && obj->oartifact == ART_FRIGHT_PRAWN) multishot += 1;
 	    if (obj && obj->oartifact == ART_WASHINGTON_S_CAPPER) multishot += 1;
 	    if (uarmh && uarmh->oartifact == ART_GIVE_THE_BONUS_STUFF) multishot += 1;
 
@@ -323,6 +324,9 @@ int thrown;
 
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
+
+	    if (uamul && uamul->oartifact == ART_PURPLE_ARBALEST && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) multishot++;
+	    if (uamul && uamul->oartifact == ART_PURPLE_ARBALEST) multishot++;
 
 	    if (uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) multishot++;
 	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BIUUU_ && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot++;
@@ -856,6 +860,16 @@ newbossO:
 		if (launcher->altmode == WP_MODE_AUTO) launcher->altmode = WP_MODE_SINGLE;
 		else launcher->altmode = WP_MODE_AUTO;
 
+	}
+
+	if (launcher && launcher->oartifact == ART_SHENA_S_PANTY && !rn2(100)) {
+		TimeStopped += rn1(2,2);
+		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+	}
+
+	if (launcher && launcher->oartifact == ART_SCENTFUL_PANTY && !rn2(100)) {
+		TimeStopped += rn1(2,2);
+		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 	}
 
 	if (launcher && launcher->oartifact == ART_SPEW_THE_BOW) {
@@ -2032,7 +2046,7 @@ int thrown;
 	if ((obj->oartifact == ART_COMPLETELY_OFF) || (obj->oartifact == ART_FLUSCH) || (obj->oartifact == ART_STREW_ANYWHERE) || u.uprops[PROJECTILES_MISFIRE].extrinsic || ProjectilesMisfire || have_misfirestone() ) misfire = TRUE;
 
 	/* KMH -- Handle Plague here */
-	if (launcher && (launcher->oartifact == ART_PLAGUE || launcher->oartifact == ART_BIBLICAL_PLAGUE || launcher->oartifact == ART_BOW_OF_HERCULES) &&
+	if (launcher && (launcher->oartifact == ART_PLAGUE || launcher->oartifact == ART_BOW_OF_VINDERRE || launcher->oartifact == ART_SHAKING_BOW || launcher->oartifact == ART_BIBLICAL_PLAGUE || launcher->oartifact == ART_BOW_OF_HERCULES) &&
 			ammo_and_launcher(obj, launcher) && is_poisonable(obj))
 		obj->opoisoned = 1;
 

@@ -1193,13 +1193,18 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_THE_TWELVE && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_FULLY_ON_IT && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_DACHA_DACHA_DACHA && !rn2(10)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_KILL_KILL_PIANO && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_RUINED_ANTJEN && !rn2(20)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_BRUTISH_CLAYMORE && !rn2(20)) willcriticalhit = TRUE;
 	if (uarmg && itemhasappearance(uarmg, APP_CRITICAL_GLOVES) && !rn2(10)) willcriticalhit = TRUE;
 	if (uarmg && uarmg->otyp == CRITICAL_GAUNTLETS && !rn2(10)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_AXE_OF_DESTRUCTION && !rn2(5)) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR && (rnd(10) < 4) ) willcriticalhit = TRUE;
+	if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI && (rnd(10) < 4) ) willcriticalhit = TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
 	/* end critical hit chance calculation */

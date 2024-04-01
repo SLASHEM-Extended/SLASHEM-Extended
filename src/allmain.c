@@ -2757,6 +2757,14 @@ moveloop()
 			artilist[ART_BEBE_S_BABE].attk.adtyp = randartiattacktype();
 		}
 
+		if (autismweaponcheck(ART_KILL_KILL_PIANO)) {
+			artilist[ART_KILL_KILL_PIANO].attk.adtyp = randartiattacktype();
+		}
+
+		if (autismweaponcheck(ART_ELEMENTAL_STAFF)) {
+			artilist[ART_ELEMENTAL_STAFF].attk.adtyp = !rn2(3) ? AD_FIRE : !rn2(2) ? AD_COLD : AD_ELEC;
+		}
+
 		if (uarmf && uarmf->oartifact == ART_SEXY_PUMPS_OF_RAGNAROK) {
 			artilist[ART_SEXY_PUMPS_OF_RAGNAROK].attk.adtyp = randartiattacktype();
 		}
@@ -7604,6 +7612,31 @@ newbossJANI:
 		if (autismweaponcheck(ART_AMALGAMATED_SKIES)) {
 			if (NastynationBug < 20000) NastynationBug = 20000;
 			if (FemaleTrapLittleMarie < 20000) FemaleTrapLittleMarie = 20000;
+		}
+
+		if (autismweaponcheck(ART_SCYTHE_OF_VOID)) {
+			if (CasterProblem < 10000) CasterProblem = 10000;
+		}
+		if (autismweaponcheck(ART_SCYTHE_THAT_SINGS_DEATH)) {
+			if (CasterProblem < 10000) CasterProblem = 10000;
+		}
+
+		if (autismweaponcheck(ART_BLOOD_MOON)) {
+			if (Muteness < 5000) Muteness = 5000;
+		}
+		if (autismweaponcheck(ART_BLOODY_MACE)) {
+			if (Muteness < 5000) Muteness = 5000;
+		}
+
+		if (autismweaponcheck(ART_SEA_ANGERANCHOR)) {
+			if (GravationEffect < 20000) GravationEffect = 20000;
+		}
+		if (autismweaponcheck(ART_FUNE_NO_IKARI)) {
+			if (GravationEffect < 20000) GravationEffect = 20000;
+		}
+
+		if (autismweaponcheck(ART_WINCHESTER_PREMIUM)) {
+			if (Deafness < 5000) Deafness = 5000;
 		}
 
 		if (autismweaponcheck(ART_ABSURD_OVERPOWEREDNESS)) {

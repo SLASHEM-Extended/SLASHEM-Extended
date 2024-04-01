@@ -7220,7 +7220,11 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) uac -= 3;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
+	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uleft && uleft->oartifact == ART_PALMIA_PRIDE) uac -= 4;
+	if (uright && uright->oartifact == ART_PALMIA_PRIDE) uac -= 4;
+	if (uarm && uarm->oartifact == ART_PROTPOW) uac -= 5;
 	if (uarm && uarm->oartifact == ART_DREAD_PELT) uac -= 8;
 	if (uarm && uarm->oartifact == ART_WELL_AT_LEAST_THE_AC_IS_GO) uac -= 10;
 	if (uarmg && uarmg->otyp == BRACERS_OF_DEFENSE) uac -= (u.ulevel / 6);

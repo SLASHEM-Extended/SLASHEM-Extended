@@ -938,6 +938,7 @@ register struct monst *mtmp;
 	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) && uwep->lamplit ) tmp += 1;
 	if (u.twoweap && uwep && uwep->oartifact == ART_WHOLZ_WALTZ) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_DOCHGOGRAP) tmp += 4;
+	if (uamul && uamul->oartifact == ART_TWIN_EDGE && u.twoweap) tmp += 4;
 
 	if (u.ulevel >= 8) tmp++;
 	if (u.ulevel >= 16) tmp++;
@@ -1021,6 +1022,10 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_UZ_I) tmp -= rnd(10);
 	if (uwep && uwep->oartifact == ART_FOR_THE_REAL_GAMING_EXPERI) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FOR_THE_REAL_GAMING_EXPERI) tmp -= 5;
+	if (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) tmp -= 20;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SEA_ANGERANCHOR) tmp -= 20;
+	if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) tmp -= 20;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FUNE_NO_IKARI) tmp -= 20;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -4163,6 +4168,7 @@ int dieroll;
 		if (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) tmp += 2;
 		if (!thrown && uarmg && uarmg->oartifact == ART_SUPERHEAVYKLONK) tmp += 4;
 		if (uarmg && uarmg->oartifact == ART_UNKNOWINGNESS_AS_A_WEAPON && !(objects[uarmg->otyp].oc_name_known)) tmp += 5;
+		if (!thrown && uamul && uamul->oartifact == ART_TWIN_EDGE && u.twoweap) tmp += 2;
 		if (uwep && uwep->oartifact == ART_BUCK_SHOT && !uwep->bknown) tmp += 2;
 		if (uwep && uwep->oartifact == ART_FALCO_S_ORB) tmp += 1;
 		if (uarm && uarm->oartifact == ART_EITHER_INTELLIGENT_OR_FAIR) tmp += 2;
@@ -4392,6 +4398,21 @@ int dieroll;
 
 		if (!thrown && obj && obj->oartifact == ART_UP_DOWN_STAB && isok(mon->mx, mon->my) && ((levl[mon->mx][mon->my].typ == WOODENTABLE) || (levl[mon->mx][mon->my].typ == POOL) || (levl[mon->mx][mon->my].typ == MOAT) || (levl[mon->mx][mon->my].typ == WATER) ) ) {
 			tmp += 20;
+		}
+
+		if (obj && obj->oartifact == ART_PURE_BLACK_DIABLO && !rn2(100)) {
+			TimeStopped += rn1(2,2);
+			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+		}
+
+		if (obj && obj->oartifact == ART_CURSED_HALBERD && !rn2(100)) {
+			TimeStopped += rn1(2,2);
+			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+		}
+
+		if (obj && obj->oartifact == ART_RANKIS && !rn2(100)) {
+			TimeStopped += rn1(2,2);
+			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
@@ -4733,6 +4754,14 @@ armorsmashdone:
 			mon->bleedout += 5;
 			pline("%s is bleeding!", Monnam(mon));
 		}
+		if (wep && wep->oartifact == ART_SEA_ANGERANCHOR) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+		if (wep && wep->oartifact == ART_FUNE_NO_IKARI) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
 		if (wep && wep->oartifact == ART_BLOODLETTER) {
 			mon->bleedout += rnd(12);
 			pline("%s is bleeding!", Monnam(mon));
@@ -4875,6 +4904,52 @@ armorsmashdone:
 			}
 		}
 
+		if (wep && wep->oartifact == ART_SHIVERING_STAFF && !rn2(5)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				if (!mon->mconf) pline("%s is confused!", Monnam(mon));
+				mon->mconf = TRUE;
+			}
+		}
+
+		if (wep && wep->oartifact == ART_STAFF_OF_INSANITY && !rn2(5)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				if (!mon->mconf) pline("%s is confused!", Monnam(mon));
+				mon->mconf = TRUE;
+			}
+		}
+
+		if (wep && wep->oartifact == ART_SHIVERING_STAFF && mon->mcanmove && !rn2(10)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mfrozen = rn1(3, 3);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s is paralyzed!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_STAFF_OF_INSANITY && mon->mcanmove && !rn2(10)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mfrozen = rn1(3, 3);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s is paralyzed!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_FRISIA_S_TAIL) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				if (!mon->mconf) pline("%s is confused!", Monnam(mon));
+				mon->mconf = TRUE;
+			}
+		}
+
+		if (wep && wep->oartifact == ART_CAT_S_TAIL) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				if (!mon->mconf) pline("%s is confused!", Monnam(mon));
+				mon->mconf = TRUE;
+			}
+		}
+
 		if (wep && wep->oartifact == ART_DUEUEUEUEU && !thrown && mon->mcanmove && !rn2(10)) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 				mon->mfrozen = rn1(2,2);
@@ -4908,6 +4983,15 @@ armorsmashdone:
 		}
 
 		if (wep && wep->oartifact == ART_BOHEM_FUELKANAL && !rn2(100)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+		if (wep && wep->oartifact == ART_MOURNBLADE) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+		if (wep && wep->oartifact == ART_LUCKY_DAGGER) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+		if (wep && wep->oartifact == ART_THIN_DAGGER) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
 		}
 
@@ -4965,6 +5049,21 @@ melatechoice:
 			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		}
 
+		if (wep && wep->oartifact == ART_FRISIA_S_TAIL) {
+			ragnarok(FALSE);
+			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		}
+
+		if (wep && wep->oartifact == ART_CAT_S_TAIL) {
+			ragnarok(FALSE);
+			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		}
+
+		if (wep && wep->oartifact == ART_SWORD_THAT_ENDS_ALL) {
+			ragnarok(FALSE);
+			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		}
+
 		if (thrown && obj && obj->oartifact == ART_MAP_END) {
 			register int mapendx, mapendy;
 			int dirx, diry;
@@ -5013,7 +5112,7 @@ melatechoice:
 			pline("%s undergoes gender surgery!", Monnam(mon));
 		}
 
-		if (obj && obj->oartifact == ART_CHRISMISS && !PlayerCannotUseSkills) {
+		if (wep && wep->oartifact == ART_CHRISMISS && !PlayerCannotUseSkills) {
 			switch (P_SKILL(P_VAAPAD)) {
 				case P_BASIC: tmp += 4; break;
 				case P_SKILLED: tmp += 8; break;
@@ -12589,8 +12688,8 @@ boolean ranged;
 	    break;
 	  case AD_DARK:
 
-		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) break;
-		if (uarms && uarms->oartifact == ART_DA_PELTA) break;
+		if (resistdarknesseffect()) break;
+
 		/* darken your surroundings --Amy */
 		pline("A maleficient darkness comes over you.");
 		litroomlite(FALSE);

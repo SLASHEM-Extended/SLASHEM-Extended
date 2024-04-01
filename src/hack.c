@@ -5210,6 +5210,20 @@ int k_format; /* WAC k_format is an int */
 		if (n < 1) n = 1;
 	}
 
+	if (n > 0 && uarm && uarm->oartifact == ART_KRAH_HOOOOO) {
+		n++;
+		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
+	if (n > 0 && uarms && uarms->oartifact == ART_AL_UD) {
+		n++;
+		n *= 9;
+		n /= 10;
+		if (n < 1) n = 1;
+	}
+
 	/* very early on, low-level characters should be more survivable
 	 * this can certainly be exploited in some way; if players start exploiting it I'll have to fix it
 	 * but it should fix the annoying problem where you often instadie to a trap while your max HP are bad --Amy */
@@ -5286,6 +5300,9 @@ int k_format; /* WAC k_format is an int */
 		n = 0;
 		Your("pair of heels nullifies the damage!");
 	} else if (uarms && uarms->oartifact == ART_PLANK_OF_CARNEADES && !rn2(10)) {
+		n = 0;
+		Your("shield nullifies the damage!");
+	} else if (uarms && uarms->oartifact == ART_AL_UD && !rn2(10)) {
 		n = 0;
 		Your("shield nullifies the damage!");
 	} else if (uarms && uarms->oartifact == ART_DOUBLEBLANK && !rn2(10)) {
@@ -5517,6 +5534,8 @@ weight_cap()
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;
 	}
+	if (uleft && uleft->oartifact == ART_RING_OF_STEEL_DRAGON) carrcap += 100;
+	if (uright && uright->oartifact == ART_RING_OF_STEEL_DRAGON) carrcap += 100;
 	if (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_COMPLETELY_LIGHT) carrcap += 500;
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) carrcap += 2000;
@@ -5641,6 +5660,10 @@ inv_weight()
 	if (have_stashitcontainer()) wt += 1000;
 	if (uwep && uwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) wt += 500;
+	if (uwep && uwep->oartifact == ART_FRISIA_S_TAIL) wt += 500;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FRISIA_S_TAIL) wt += 500;
+	if (uwep && uwep->oartifact == ART_CAT_S_TAIL) wt += 500;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CAT_S_TAIL) wt += 500;
 	if (uwep && uwep->oartifact == ART_OTHER_MJOLLNIR) wt += 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OTHER_MJOLLNIR) wt += 500;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE) wt += 200;

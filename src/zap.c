@@ -5333,6 +5333,10 @@ controlagain:
 
 			You_feel("an anti-sexual aura.");
 			u.sterilized = 20 + rnd(60);
+			if (wizard) {
+				if (yn("Wanna sterilize for 10000 more turns?") == 'y') u.sterilized += 10000;
+				else if (yn("Wanna un-sterilize?") == 'y') u.sterilized = 0;
+			}
 
 			break;
 
@@ -10823,6 +10827,11 @@ register int osym, dmgtyp;
 			}
 
 		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {
+				skip++;
+				break;
+			}
+
+		    if (uarmg && uarmg->oartifact == ART_GLOVES_OF_VESDA) {
 				skip++;
 				break;
 			}

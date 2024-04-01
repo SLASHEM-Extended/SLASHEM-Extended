@@ -30898,6 +30898,132 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +20 damage, mulch trap effect when wielded."); break;
 				case ART_HOW_LONG_LASTS_IT_:
 					pline("Artifact specs: can be invoked to increase the enchantment value on all your armor pieces by one (up to a maximum of +7) but using this invoke gives you the turbodull nastytrap effect permanently. If you already have that nastytrap effect as an intrinsic, the invoke does not work."); break;
+				case ART_ELARA_S_AGILITY:
+					pline("Artifact specs: +5 dexterity, ultra fast speed and stronger version of lara trap effect when worn."); break;
+				case ART_POFFGO:
+					pline("Artifact specs: reduces combat damage taken by 2."); break;
+				case ART_PROTPOW:
+					pline("Artifact specs: reduces combat damage taken by 1 and improves your AC by 5."); break;
+				case ART_KRAH_HOOOOO:
+					pline("Artifact specs: half physical damage and reduces damage you take by 10%%."); break;
+				case ART_GET_THE_BUC_K_:
+					pline("Artifact specs: while wearing it, items have a sizable extra chance of spawning with their BUC known."); break;
+				case ART_FRIGHT_PRAWN:
+					pline("Artifact specs: +15 damage to flying enemies, fire resistance when wielded, firing them gives a +1 multishot bonus."); break;
+				case ART_BRUTISH_CLAYMORE:
+					pline("Artifact specs: unchanging, halves enemy AC and boosts your critical hit chance when wielded."); break;
+				case ART_PURE_BLACK_DIABLO:
+					pline("Artifact specs: fast speed, free action, occasionally stops time when hitting an enemy."); break;
+				case ART_HIRYU_TO:
+					pline("Artifact specs: +4 to-hit and +12 shock damage against dragons, fire resistance and +6 constitution when wielded."); break;
+				case ART_FLYING_DRAGON_SWORD:
+					pline("Artifact specs: +4 to-hit and +12 shock damage against dragons, fire resistance and +6 constitution when wielded."); break;
+				case ART_MOURNBLADE:
+					pline("Artifact specs: +4 to-hit and +8 drain damage, drain resistance when wielded, can slow down enemies who fail to resist."); break;
+				case ART_SWORD_THAT_ENDS_ALL:
+					pline("Artifact specs: +2 to-hit and +18 damage. It brings an end."); break;
+				case ART_SHINING_SILVER_KATANA:
+					pline("Artifact specs: +7 to-hit and +7 damage, discount action, halves enemy AC and resist confusion when wielded."); break;
+				case ART_ZANTETSU:
+					pline("Artifact specs: +7 to-hit and +7 damage, discount action, halves enemy AC and resist confusion when wielded."); break;
+				case ART_DRAGON_SLAYER:
+					pline("Artifact specs: +10 to-hit and +20 damage versus dragons."); break;
+				case ART_TWO_EDGED_GREAT_SWORD:
+					pline("Artifact specs: +10 to-hit and +20 damage versus dragons."); break;
+				case ART_AXE_OF_DESTRUCTION:
+					pline("Artifact specs: +8 damage, 20%% extra chance of critical hits."); break;
+				case ART_FRISIA_S_TAIL:
+					pline("Artifact specs: +14 damage, beheads enemies, +20 INT, can confuse enemies who fail a resistance check, weighs 500 extra units and brings an end."); break;
+				case ART_CAT_S_TAIL:
+					pline("Artifact specs: +14 damage, beheads enemies, +20 INT, can confuse enemies who fail a resistance check, weighs 500 extra units and brings an end."); break;
+				case ART_KUMIROMI_SCYTHE:
+					pline("Artifact specs: beheads enemies, +3 strength, sickness resistance and sometimes protects you from chaos effects when wielded."); break;
+				case ART_SCYTHE_OF_VOID:
+					pline("Artifact specs: magic resistance, spellboost and flying when wielded, beheads enemies, gives you the heavy caster effect for 10000 turns."); break;
+				case ART_SCYTHE_THAT_SINGS_DEATH:
+					pline("Artifact specs: magic resistance, spellboost and flying when wielded, beheads enemies, gives you the heavy caster effect for 10000 turns."); break;
+				case ART_BLOOD_MOON:
+					pline("Artifact specs: +9 fire damage, resist fear, confusion and drain when wielded, wielding it causes you to become mute for a while."); break;
+				case ART_BLOODY_MACE:
+					pline("Artifact specs: +9 fire damage, resist fear, confusion and drain when wielded, wielding it causes you to become mute for a while."); break;
+				case ART_GAIA_HAMMER:
+					pline("Artifact specs: +12 damage, psi resistance, +6 strength and halves enemy AC when wielded."); break;
+				case ART_HOLY_LANCE:
+					pline("Artifact specs: regeneration, curse resistance and +6 wisdom when wielded."); break;
+				case ART_HOLY_RANCE:
+					pline("Artifact specs: regeneration, curse resistance and +6 wisdom when wielded. Of course the Japanese translators can't tell whether a word is spelled with 'l' or 'r' :-)"); break;
+				case ART_CURSED_HALBERD:
+					pline("Artifact specs: +4 drain life damage, can drain levels from enemies, drain and fear resistance when wielded, occasionally stops time when hitting a target."); break;
+				case ART_RANKIS:
+					pline("Artifact specs: +4 drain life damage, can drain levels from enemies, drain and fear resistance when wielded, occasionally stops time when hitting a target."); break;
+				case ART_ELEMENTAL_STAFF:
+					pline("Artifact specs: +2 to-hit and +13 damage, with the damage element randomly rolled from fire, cold or shock. Wielding it also grants resistances to those three elements."); break;
+				case ART_SHIVERING_STAFF:
+					pline("Artifact specs: +8 damage, spellboost, +4 intelligence and can occasionally confuse or paralyze enemies on a hit."); break;
+				case ART_STAFF_OF_INSANITY:
+					pline("Artifact specs: +8 damage, spellboost, +4 intelligence and can occasionally confuse or paralyze enemies on a hit."); break;
+				case ART_ETHER_DAGGER:
+					pline("Artifact specs: +2 to-hit and +8 shock damage, shock resistance and resist piercing when wielded, and the material of this dagger is changed to 'ether' upon generation."); break;
+				case ART_DAGGER_SURROUNDED_BY_WIND:
+					pline("Artifact specs: +2 to-hit and +8 shock damage, shock resistance and resist piercing when wielded, and the material of this dagger is changed to 'ether' upon generation."); break;
+				case ART_LUCKY_DAGGER:
+					pline("Artifact specs: acts as a luckstone when wielded and conveys see invisible and theft protection, can slow enemies who fail to resist."); break;
+				case ART_THIN_DAGGER:
+					pline("Artifact specs: acts as a luckstone when wielded and conveys see invisible and theft protection, can slow enemies who fail to resist."); break;
+				case ART_BOW_OF_VINDERRE:
+					pline("Artifact specs: poison resistance and +4 dexterity when wielded, poisons arrows that you fire from it."); break;
+				case ART_SHAKING_BOW:
+					pline("Artifact specs: poison resistance and +4 dexterity when wielded,poisons arrows that you fire from it."); break;
+				case ART_UNIQUE_WIND_BOW:
+					pline("Artifact specs: +2 to-hit and +4 damage, shock resistance and ultra fast speed when wielded."); break;
+				case ART_BOW_SURROUNDED_BY_WIND:
+					pline("Artifact specs: +2 to-hit and +4 damage, shock resistance and ultra fast speed when wielded. The material of this bow is changed to 'ether' upon generation."); break;
+				case ART_KILL_KILL_PIANO:
+					pline("Artifact specs: +8 damage with the damage type randomized on every hit, increased critical hit chance and -2 charisma when wielded."); break;
+				case ART_SHENA_S_PANTY:
+					pline("Artifact specs: +5 damage, +4 charisma and contamination resistance when wielded, firing may occasionally stop time."); break;
+				case ART_SCENTFUL_PANTY:
+					pline("Artifact specs: +5 damage, +4 charisma and contamination resistance when wielded, firing may occasionally stop time."); break;
+				case ART_VANILLA_ROCK:
+					pline("Artifact specs: +12 damage."); break;
+				case ART_SHINING_ROCK:
+					pline("Artifact specs: +12 damage."); break;
+				case ART_MAUSER_C___CUSTOM:
+					pline("Artifact specs: +10 to-hit, see invisible when wielded."); break;
+				case ART_GUN_OF_GENOCIDE:
+					pline("Artifact specs: +12 damage, deafness and 30%% chaos protection when wielded."); break;
+				case ART_WINCHESTER_PREMIUM:
+					pline("Artifact specs: +1 to-hit and +10 damage, curse resistance and prevents monster spellcasting when wielded but also makes you deaf for a while."); break;
+				case ART_SEA_ANGERANCHOR:
+					pline("Artifact specs: cold resistance, +7 strength and constitution, protection from thieves, confusion resistance and long-lasting super aggravation effect when wielded, beheads enemies, -20 to-hit, 30%% extra critical hit chance and can cause monsters to bleed when hit."); break;
+				case ART_FUNE_NO_IKARI:
+					pline("Artifact specs: cold resistance, +7 strength and constitution, protection from thieves, confusion resistance and long-lasting super aggravation effect when wielded, beheads enemies, -20 to-hit, 30%% extra critical hit chance and can cause monsters to bleed when hit."); break;
+				case ART_FIVE_HORNED_HELM:
+					pline("Artifact specs: unchanging, double attacks, deals thorns damage to monsters attacking you in melee and notifies you if your alignment record changes when worn."); break;
+				case ART_SAGE_S_HELM:
+					pline("Artifact specs: resist confusion and magic when worn, see invisible."); break;
+				case ART_PURPLE_ARBALEST:
+					pline("Artifact specs: improves your multishot by one for all ranged weapons and by one more if you're using a crossbow."); break;
+				case ART_BEGGER_S_PENDANT:
+					pline("Artifact specs: protects you from thieves when worn and +4 charisma as well as a chance to not receive sanity if you otherwise would."); break;
+				case ART_TWIN_EDGE:
+					pline("Artifact specs: double attacks, and if you're dual-wielding, +4 to-hit and +2 damage in melee."); break;
+				case ART_UNKNOWN_SHELL:
+					pline("Artifact specs: deafness when worn and attempting to pray may tell you whether it's safe to do so."); break;
+				case ART_AL_UD:
+					pline("Artifact specs: occasionally nullifies damage taken, reduces incoming damage by 10%%, 4 extra points of AC and -3 charisma when worn."); break;
+				case ART_SHIELD_OF_THORN:
+					pline("Artifact specs: discount action and deals large amounts of thorns damage to enemies attacking you in melee."); break;
+				case ART_PALMIA_PRIDE:
+					pline("Artifact specs: acts as a luckstone when worn and protects you from thieves, fast speed, +5 charisma, 4 extra points of AC and occasionally prevents darkness effects."); break;
+				case ART_RING_OF_STEEL_DRAGON:
+					pline("Artifact specs: resist shock, sickness, fear and magic when worn and free action, +3 strength, +100 carry capacity, fast speed and speed bug."); break;
+				case ART_GLOVES_OF_VESDA:
+					pline("Artifact specs: resist confusion and fire when worn, acts as a luckstone, protects potions from cold, +3 strength and halves enemy AC."); break;
+				case ART_CRIMSON_PLATE:
+					pline("Artifact specs: resist drain and fire when worn, diminished bleeding."); break;
+				case ART_LIGHT_DAL_I_THALION:
+					pline("Artifact specs: +2 dexterity and curse resistance when worn, plus if you're riding, your steed is constantly galloping allowing you to travel faster than normal."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

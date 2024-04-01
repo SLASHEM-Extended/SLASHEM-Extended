@@ -1362,7 +1362,7 @@ m_throw(mon, x, y, dx, dy, range, obj)
 	
 	/* D: Special launcher effects */
 	if (mwep && is_ammo(singleobj) && ammo_and_launcher(singleobj, mwep)) {
-	    if ((mwep->oartifact == ART_PLAGUE || mwep->oartifact == ART_BIBLICAL_PLAGUE || mwep->oartifact == ART_BOW_OF_HERCULES) && is_poisonable(singleobj))
+	    if ((mwep->oartifact == ART_PLAGUE || mwep->oartifact == ART_BOW_OF_VINDERRE || mwep->oartifact == ART_SHAKING_BOW || mwep->oartifact == ART_BIBLICAL_PLAGUE || mwep->oartifact == ART_BOW_OF_HERCULES) && is_poisonable(singleobj))
 			singleobj->opoisoned = 1;
 
 	    /* D: Hellfire is handled in drop_throw */

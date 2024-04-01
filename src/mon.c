@@ -2262,7 +2262,7 @@ struct monst *mon;
 	mmove = (4 * mmove + 2) / 3;
 
     if (mon == u.usteed) {
-	if (u.ugallop && flags.mv) {
+	if ( (u.ugallop || (uarmf && uarmf->oartifact == ART_LIGHT_DAL_I_THALION)) && flags.mv) {
 	    /* average movement is 1.50 times normal */
 	    mmove = ((rn2(2) ? 4 : 5) * mmove) / 3;
 	}

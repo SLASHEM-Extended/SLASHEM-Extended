@@ -442,6 +442,56 @@ register struct monst *mon;
 
 	}
 
+	if (!mon->mtame && !mon->mpeaceful && uwep && uwep->oartifact == ART_BRUTISH_CLAYMORE && base < 10) {
+		int acamount = base - 10;
+		if (acamount < 0) acamount *= -1;
+
+		acamount /= 2;
+
+		base = 10 - acamount;
+
+	}
+
+	if (!mon->mtame && !mon->mpeaceful && uwep && uwep->oartifact == ART_GAIA_HAMMER && base < 10) {
+		int acamount = base - 10;
+		if (acamount < 0) acamount *= -1;
+
+		acamount /= 2;
+
+		base = 10 - acamount;
+
+	}
+
+	if (!mon->mtame && !mon->mpeaceful && uwep && uwep->oartifact == ART_SHINING_SILVER_KATANA && base < 10) {
+		int acamount = base - 10;
+		if (acamount < 0) acamount *= -1;
+
+		acamount /= 2;
+
+		base = 10 - acamount;
+
+	}
+
+	if (!mon->mtame && !mon->mpeaceful && uwep && uwep->oartifact == ART_ZANTETSU && base < 10) {
+		int acamount = base - 10;
+		if (acamount < 0) acamount *= -1;
+
+		acamount /= 2;
+
+		base = 10 - acamount;
+
+	}
+
+	if (!mon->mtame && !mon->mpeaceful && uarmg && uarmg->oartifact == ART_GLOVES_OF_VESDA && base < 10) {
+		int acamount = base - 10;
+		if (acamount < 0) acamount *= -1;
+
+		acamount /= 2;
+
+		base = 10 - acamount;
+
+	}
+
 	if (uarm && uarm->oartifact == ART_ETH_ITH && base < 10) {
 		int acamount = base - 10;
 		if (acamount < 0) acamount *= -1;

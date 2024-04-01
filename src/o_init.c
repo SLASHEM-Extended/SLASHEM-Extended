@@ -3048,6 +3048,19 @@ find_english_gloves()
 }
 
 int
+find_dextrous_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DEXTROUS_GLOVES)) return i;
+    }
+
+    impossible("dextrous gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_korean_sandals()
 {
     register int i;
@@ -3109,6 +3122,19 @@ find_chinese_cloak()
     }
 
     impossible("chinese cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_buckloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BUCKLOAK)) return i;
+    }
+
+    impossible("buckloak not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
