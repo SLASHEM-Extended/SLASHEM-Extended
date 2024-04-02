@@ -1497,6 +1497,7 @@
 #define ExtDeath_resistance	(playerextrinsicdeathres())
 
 #define Death_resistance	(HDeath_resistance || EDeath_resistance)
+#define StrongDeath_resistance	(IntDeath_resistance && ExtDeath_resistance && Death_resistance)
 
 #define PlayerResistsDeathRays	(Death_resistance || Antimagic)
 

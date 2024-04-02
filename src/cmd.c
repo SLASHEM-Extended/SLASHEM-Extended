@@ -7677,7 +7677,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && ExpBoost) you_have(StrongExpBoost ? "a strong experience boost" : "an experience boost");
 	if ((guaranteed || !rn2(10)) && Psi_resist) you_have(StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if ((guaranteed || !rn2(10)) && Extra_wpn_practice) enl_msg("You ", "can", "could", StrongExtra_wpn_practice ? " train skills and attributes much faster" : " train skills and attributes faster");
-	if ((guaranteed || !rn2(10)) && Death_resistance) you_have("resistance to death rays");
+	if ((guaranteed || !rn2(10)) && Death_resistance) you_have(StrongDeath_resistance ? "total resistance to death rays" : "resistance to death rays");
 	if ((guaranteed || !rn2(10)) && Double_attack) you_have(StrongDouble_attack ? "super double attacks" : "double attacks");
 	if ((guaranteed || !rn2(10)) && Quad_attack) you_have(StrongQuad_attack ? "super quad attacks" : "quad attacks");
 
@@ -12340,7 +12340,7 @@ int final;
 	if (ExpBoost) dump(youhad, StrongExpBoost ? "a strong experience boost" : "an experience boost");
 	if (Psi_resist) dump(youhad, StrongPsi_resist ? "double psi resistance" : "psi resistance");
 	if (Extra_wpn_practice) dump("  ", StrongExtra_wpn_practice ? "You could train skills and attributes much faster" : "You could train skills and attributes faster");
-	if (Death_resistance) dump(youhad, "resistance to death rays");
+	if (Death_resistance) dump(youhad, StrongDeath_resistance ? "total resistance to death rays" : "resistance to death rays");
 	if (Double_attack) dump(youhad, StrongDouble_attack ? "super double attacks" : "double attacks");
 	if (Quad_attack) dump(youhad, StrongQuad_attack ? "super quad attacks" : "quad attacks");
 

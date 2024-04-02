@@ -8635,6 +8635,11 @@ nivellate()
 	int upperceiling = 1;
 	int reduceamount = 1;
 
+	if (StrongDeath_resistance && rn2(5)) {
+		Your("body just shakes off the covid-19 pathogens.");
+		return;
+	}
+
 	if (uarmh && uarmh->oartifact == ART_FFP___MASK && rn2(5)) {
 		pline("That butt-ugly mask prevented the corona viri from infecting you.");
 		return;
@@ -8754,6 +8759,12 @@ nivellate()
 		if (uright && uright->oartifact == ART_HITPOINT_BOOSTER) {
 			lowerceiling *= 2;
 			upperceiling *= 2;
+		}
+		if (StrongDeath_resistance) {
+			lowerceiling *= 3;
+			lowerceiling /= 2;
+			upperceiling *= 3;
+			upperceiling /= 2;
 		}
 		if (Role_if(PM_DRUID)) {
 			lowerceiling /= 2;
@@ -9257,6 +9268,10 @@ boolean guaranteed;
 		}
 		if (uright && uright->oartifact == ART_HITPOINT_BOOSTER) {
 			ceiling *= 2;
+		}
+		if (StrongDeath_resistance) {
+			ceiling *= 3;
+			ceiling /= 2;
 		}
 		if (Role_if(PM_BLEEDER)) {
 			ceiling *= 2;
