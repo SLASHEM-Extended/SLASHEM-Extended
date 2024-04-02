@@ -1,6 +1,31 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.2 - March 2024
+- There is now an extra effect if the player has both in- and extrinsic death resistance. Previously, that property was somehow lacking a "double effect".
+- Added a new "karate" martial arts style.
+- Fixed the oddity where blindfold-slot wearable items would always display a "You have been wearing <foo>" message when they got removed, even if the removal was due to an item-stealing monster, item teleportation effect or the like.
+- Wands and spellbooks are much less likely to spawn cancelled now.
+- Ported a fix from the variant that calls itself 3.7 to prevent players from getting rid of Rodney permanently via luring him to the dlvl1 upstair.
+- Recharging an item should no longer factor in the item's previous charge count.
+- Spell retention now factors into the calculation for spell memory decay: higher retention causes spells to last longer.
+- Tried to add proper support for bright colors; whether that works remains to be seen.
+- Removed an information leak with spell descriptions.
+- Some trap effects improperly didn't stop the player's occupation, now they do.
+- If the player switches weapons while dual-wielding, the character no longer automatically switches to single weapon mode as long as the new main weapon is also one-handed.
+- Fixed bugged special rooms that could cause stairs to be overridden by other terrain.
+- Fixed a possible crash bug with holding traps, which may have been inadvertently caused by some earlier commit.
+- Added a new material for items, "lacquer".
+- If the player ascends and decides to go on playing in freeplay mode, a bunch of skill points is given as a reward now.
+
+2.9.1 - February 2024
+- Glass and obsidian items are less likely to break in situations where it's not the player's fault that they got impacted.
+- Depression, the Riders, Yeenoghu and Asmodeus have been toned down.
+- Spellbooks now spawn with a higher average amount of charges and are less likely to be destroyed upon failed readings.
+- It is now possible to pay demon lords with money in the character's container.
+- Blackjack now rewards higher-enchanted gear the more games a player wins in succession.
+
 2.9.0 - January 2024
+- Fixed a vanilla bug that could cause the game to hang during the post-game wrapup if a character got killed by a monster with a long name.
 - The deadly sins and stronger versions of the alignment quest bosses are less powerful now.
 - If the player is polymorphed into something blind, they now have a way of detecting certain monsters.
 - Added two new types of shop that can appear randomly.
