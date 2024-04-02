@@ -1039,13 +1039,13 @@ init_hilite()
 		/* Use proper bright colors if terminal supports them. */
 		scratch = tparm(setf, ti_map[c]|BRIGHT);
 		hilites[c|BRIGHT] = (char *) alloc(strlen(scratch) + 1);
-		Strcpy(hilites[c|BRIGHT], scratch);
+		strcpy(hilites[c|BRIGHT], scratch);
 	    } else {
 		/* For terminals supporting only 8 colors, use bold + color for bright colors. */
 		if (c != CLR_BLACK) {
 			hilites[c|BRIGHT] = (char*) alloc(strlen(scratch)+strlen(MD)+1);
-			Strcpy(hilites[c|BRIGHT], MD);
-			Strcat(hilites[c|BRIGHT], scratch);
+			strcpy(hilites[c|BRIGHT], MD);
+			strcat(hilites[c|BRIGHT], scratch);
 		}
 	    }
 
