@@ -172,7 +172,7 @@ use_towel(obj)
 			} else {
 			    struct obj *saved_ublindf = ublindf;
 			    You("push your %s off.", what);
-			    Blindf_off(ublindf);
+			    Blindf_off(ublindf, TRUE);
 			    dropx(saved_ublindf);
 			}
 		    }
@@ -5647,7 +5647,7 @@ dyechoice:
 	case DEFUSING_BOX:
 	case SOFT_CHASTITY_BELT:
 		if (obj == ublindf) {
-		    if (!cursed(obj)) Blindf_off(obj);
+		    if (!cursed(obj)) Blindf_off(obj, TRUE);
 		} else if (!ublindf)
 		    Blindf_on(obj);
 		else You("are already %s.",

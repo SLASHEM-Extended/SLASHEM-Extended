@@ -5865,31 +5865,33 @@ register struct obj *otmp;
 }
 
 void
-Blindf_off(otmp)
+Blindf_off(otmp, givemessage)
 register struct obj *otmp;
+boolean givemessage; /* "you were wearing a blindfold" shouldn't appear if it e.g. got stolen --Amy */
 {
 	boolean was_blind = Blind, changed = FALSE;
 
 	takeoff_mask &= ~W_TOOL;
 	setworn((struct obj *)0, otmp->owornmask);
-	off_msg(otmp);
+	if (givemessage) off_msg(otmp);
 
 	if (Blind) {
 	    if (was_blind) {
 		/* "still cannot see" makes no sense when removing lenses
 		   since they can't have been the cause of your blindness */
-		if (otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != NIGHT_VISION_GOGGLES)
-		    You("still cannot see.");
+		if (otmp->otyp != LENSES && otmp->otyp != RADIOGLASSES && otmp->otyp != SHIELD_PATE_GLASSES && otmp->otyp != BOSS_VISOR && otmp->otyp != NIGHT_VISION_GOGGLES) {
+		    if (givemessage) You("still cannot see.");
+		}
 	    } else {
 		changed = TRUE;	/* !was_blind */
 		/* "You were wearing the Eyes of the Overworld." */
-		You_cant("see anything now!");
+		if (givemessage) You_cant("see anything now!");
 		/* set ball&chain variables before the hero goes blind */
 		if (Punished) set_bc(0);
 	    }
 	} else if (was_blind) {
 	    changed = TRUE;	/* !Blind */
-	    You("can see again.");
+	    if (givemessage) You("can see again.");
 	}
 	if (changed) {
 	    /* blindness has just been toggled */
@@ -6103,7 +6105,7 @@ doremring()
 		Implant_off();
 		off_msg(otmp);
 	} else if (otmp == ublindf) {
-		Blindf_off(otmp);	/* does its own off_msg */
+		Blindf_off(otmp, TRUE);	/* does its own off_msg */
 	} else {
 		impossible("removing strange accessory?");
 	}
@@ -8300,7 +8302,7 @@ do_takeoff()
 	  otmp = uright;
 	  if(!cursed(otmp)) Ring_off(uright);
 	} else if (taking_off == WORN_BLINDF) {
-	  if (!cursed(ublindf)) Blindf_off(ublindf);
+	  if (!cursed(ublindf)) Blindf_off(ublindf, TRUE);
 	} else impossible("do_takeoff: taking off %lx", taking_off);
 
 	return(otmp);

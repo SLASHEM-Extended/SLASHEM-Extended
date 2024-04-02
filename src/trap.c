@@ -7908,7 +7908,7 @@ newbossPENT:
 				} else if (otmpi ->owornmask & W_RING) {
 				    Ring_gone(otmpi);
 				} else if (otmpi ->owornmask & W_TOOL) {
-				    Blindf_off(otmpi);
+				    Blindf_off(otmpi, FALSE);
 				} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
 				    if (otmpi == uwep)
 					uwepgone();
@@ -8412,7 +8412,7 @@ newbossPENT:
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
-						    Blindf_off(otmpi);
+						    Blindf_off(otmpi, FALSE);
 						} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
 						    if (otmpi == uwep)
 							uwepgone();
@@ -10927,7 +10927,7 @@ madnesseffect:
 					} else if (otmp ->owornmask & W_RING) {
 					    Ring_gone(otmp);
 					} else if (otmp ->owornmask & W_TOOL) {
-					    Blindf_off(otmp);
+					    Blindf_off(otmp, FALSE);
 					} else if (otmp ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
 					    if (otmp == uwep)
 						uwepgone();
@@ -11022,7 +11022,7 @@ madnesseffect:
 					} else if (otmp ->owornmask & W_RING) {
 					    Ring_gone(otmp);
 					} else if (otmp ->owornmask & W_TOOL) {
-					    Blindf_off(otmp);
+					    Blindf_off(otmp, FALSE);
 					} else if (otmp ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
 					    if (otmp == uwep)
 						uwepgone();
@@ -29034,7 +29034,7 @@ lava_effects()
 		    else if(obj == uarmu) setnotworn(obj);
 		    else if(obj == uleft) Ring_gone(obj);
 		    else if(obj == uright) Ring_gone(obj);
-		    else if(obj == ublindf) Blindf_off(obj);
+		    else if(obj == ublindf) Blindf_off(obj, FALSE);
 		    else if(obj == uamul) Amulet_off();
 		    else if(obj == uimplant) Implant_off();
 		    else if(obj == uwep) uwepgone();

@@ -524,7 +524,7 @@ E void Ring_on(struct obj *);
 E void Ring_off(struct obj *);
 E void Ring_gone(struct obj *);
 E void Blindf_on(struct obj *);
-E void Blindf_off(struct obj *);
+E void Blindf_off(struct obj *, BOOLEAN_P);
 E int dotakeoff(void);
 E int doremring(void);
 E int cursed(struct obj *);

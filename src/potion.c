@@ -4118,7 +4118,7 @@ newoffmon:
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
-						    Blindf_off(otmpi);
+						    Blindf_off(otmpi, FALSE);
 						} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
 						    if (otmpi == uwep)
 							uwepgone();
@@ -5420,7 +5420,7 @@ newoffmonX:
 						} else if (otmpi ->owornmask & W_RING) {
 						    Ring_gone(otmpi);
 						} else if (otmpi ->owornmask & W_TOOL) {
-						    Blindf_off(otmpi);
+						    Blindf_off(otmpi, FALSE);
 						} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
 						    if (otmpi == uwep)
 							uwepgone();
@@ -8572,7 +8572,7 @@ metalmafiaattack()
 			} else if (otmpi ->owornmask & W_RING) {
 			    Ring_gone(otmpi);
 			} else if (otmpi ->owornmask & W_TOOL) {
-			    Blindf_off(otmpi);
+			    Blindf_off(otmpi, FALSE);
 			} else if (otmpi ->owornmask & (W_WEP|W_SWAPWEP|W_QUIVER)) {
 			    if (otmpi == uwep)
 				uwepgone();
