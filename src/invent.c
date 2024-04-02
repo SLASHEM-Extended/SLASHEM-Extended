@@ -11109,6 +11109,7 @@ doprwep()
 	if (uwep && weapon_type(uwep) == P_QUARTERSTAFF && u.martialstyle == MARTIALSTYLE_BOJUTSU) pline("Your current martial arts style is bojutsu.");
 	if (uwep && uwep->otyp == JEONTU_GEOM && u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO) pline("Your current martial arts style is haidong gumdo.");
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) pline("Your current martial arts style is taekwondo.");
+	if (u.martialstyle == MARTIALSTYLE_KARATE) pline("Your current martial arts style is karate.");
 	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA) pline("Your current martial arts style is capoeira.");
     }
     if (u.twoweap) {

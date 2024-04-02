@@ -2484,6 +2484,9 @@ currentmartialstyle()
 		case MARTIALSTYLE_CAPOEIRA:
 			sprintf(martialbuf, "capoeira");
 			break;
+		case MARTIALSTYLE_KARATE:
+			sprintf(martialbuf, "karate");
+			break;
 
 		default:
 			impossible("weird martial arts style %d", u.martialstyle);
@@ -2573,6 +2576,11 @@ badeffect()
 	struct obj *otmp;
 	int nastytrapdur;
 	int blackngdur;
+
+	if (u.martialstyle == MARTIALSTYLE_KARATE && !uwep && (!u.twoweap || !uswapwep) && !rn2(5) ) {
+		pline("Your karate training prevents the bad effect!");
+		return;
+	}
 
 	if (uarmh && uarmh->otyp == FAIRY_HAT && rn2(2)) {
 		makeknown(FAIRY_HAT);
@@ -4256,6 +4264,11 @@ reallybadeffect()
 	if (uarmh && uarmh->otyp == FAIRY_HAT && rn2(2)) {
 		makeknown(FAIRY_HAT);
 		pline("Your fairy hat prevents the bad effect!");
+		return;
+	}
+
+	if (u.martialstyle == MARTIALSTYLE_KARATE && !uwep && (!u.twoweap || !uswapwep) && !rn2(5) ) {
+		pline("Your karate training prevents the bad effect!");
 		return;
 	}
 
@@ -8495,7 +8508,7 @@ dropitemattack()
 void
 randommartialstyle()
 {
-	switch (rnd(10)) {
+	switch (rnd(11)) {
 		default:
 		case 1:
 			u.martialstyle = MARTIALSTYLE_BRAWLING;
@@ -8526,6 +8539,9 @@ randommartialstyle()
 			break;
 		case 10:
 			u.martialstyle = MARTIALSTYLE_CAPOEIRA;
+			break;
+		case 11:
+			u.martialstyle = MARTIALSTYLE_KARATE;
 			break;
 	}
 

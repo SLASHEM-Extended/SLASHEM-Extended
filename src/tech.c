@@ -8909,6 +8909,8 @@ repairitemchoice:
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_KUNGFU;
 					} else if (uwep && uwep->otyp == JEONTU_GEOM && yn("Switch to the 'haidong gumdo' style (requires jeontu geom, boosts melee damage and to-hit and allows you to use martial arts techniques while wielding a jeontu geom, reduces your melee to-hit whenever you're not wielding a jeontu geom)?")=='y') {
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_HAIDONGGUMDO;
+					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_EXPERT && P_SKILL(P_GENERAL_COMBAT) >= P_EXPERT && yn("Switch to the 'karate' style (higher unarmed to-hit, kick cannot be clumsy and not be dodged, can occasionally avoid bad effects, aggravates monsters, reduces your ability to use weapons?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_KARATE;
 					} else if (yn("Do you choose to not switch your style after all?")=='y') {
 						madechoice = 1;
 					}

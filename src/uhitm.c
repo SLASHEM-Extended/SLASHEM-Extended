@@ -820,6 +820,7 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && tech_inuse(T_UNARMED_FOCUS)) tmp -= rnd(20);
 
 	if (u.martialstyle == MARTIALSTYLE_KUNGFU && (uwep || (u.twoweap && uswapwep)) ) tmp -= rnd(20);
+	if (u.martialstyle == MARTIALSTYLE_KARATE && (uwep || (u.twoweap && uswapwep)) ) tmp -= 5;
 
 	if (u.twoweap && !PlayerCannotUseSkills) {
 		switch (P_SKILL(P_ATARU)) {
@@ -939,6 +940,10 @@ register struct monst *mtmp;
 	if (u.twoweap && uwep && uwep->oartifact == ART_WHOLZ_WALTZ) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_DOCHGOGRAP) tmp += 4;
 	if (uamul && uamul->oartifact == ART_TWIN_EDGE && u.twoweap) tmp += 4;
+
+	if (u.martialstyle == MARTIALSTYLE_KARATE) {
+		if (!uwep && (!u.twoweap || !uswapwep)) tmp += 5;
+	}
 
 	if (u.ulevel >= 8) tmp++;
 	if (u.ulevel >= 16) tmp++;
@@ -4261,6 +4266,7 @@ int dieroll;
 		if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;
 		if (uwep && uwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BEEEEEEEP) tmp -= 3;
+		if (u.martialstyle == MARTIALSTYLE_KARATE && obj) tmp -= 2;
 
 		if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 

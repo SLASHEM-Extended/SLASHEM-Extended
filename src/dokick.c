@@ -392,6 +392,7 @@ register boolean clumsy;
 
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 	if (u.martialstyle == MARTIALSTYLE_KUNGFU && !rn2(3)) clumsy = FALSE;
+	if (u.martialstyle == MARTIALSTYLE_KARATE) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) clumsy = FALSE;
 	if (uwep && uwep->oartifact == ART_INSECTMASHER) clumsy = FALSE;
@@ -1071,6 +1072,10 @@ register xchar x, y;
 		} else if (tmp > (roll = rnd(20))) {
 		    You("kick %s.", mon_nam(mon));
 		    wakeup(mon);
+		    if (u.martialstyle == MARTIALSTYLE_KARATE) {
+			if (!rn2(10)) aggravate();
+			wake_nearby();
+		    }
 		    sum = damageum(mon, uattk);
 		    (void)passive(mon, (boolean)(sum > 0), (sum != 2), AT_KICK, FALSE);
 		    if (sum == 2)
@@ -1154,7 +1159,7 @@ register xchar x, y;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) i += 6000;
 
-	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && !(uarmf && uarmf->oartifact == ART_JOHN_S_REDBLOCK) && !(uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
+	if((i < (j*3)/10) && !(uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) && !(uwep && uwep->oartifact == ART_INSECTMASHER) && !(uwep && uwep->oartifact == ART_BLU_TOE) && !(uarmf && uarmf->oartifact == ART_FRONT_TARGET) && !(uarmf && uarmf->oartifact == ART_ELENETTES) && u.martialstyle != MARTIALSTYLE_KARATE && !(uarmf && uarmf->oartifact == ART_JOHN_S_REDBLOCK) && !(uarmf && uarmf->oartifact == ART_EVIL_HAIRTEAR) && !(uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) ) {
 		if((!rn2((i < j/10) ? 2 : (i < j/5) ? 3 : 4)) || (isfriday && !rn2(5))) {
 			if(martial() && !rn2(isfriday ? 10 : 2)) goto doit;
 			Your("clumsy kick does no damage.");
@@ -1182,6 +1187,7 @@ register xchar x, y;
 
 	if (uarmf && itemhasappearance(uarmf, APP_CALF_LEATHER_SANDALS)) clumsy = FALSE;
 	if (u.martialstyle == MARTIALSTYLE_KUNGFU && !rn2(3)) clumsy = FALSE;
+	if (u.martialstyle == MARTIALSTYLE_KARATE) clumsy = FALSE;
 
 	if (uarmf && uarmf->oartifact == ART_KYLIE_LUM_S_SNAKESKIN_BOOT) clumsy = FALSE;
 	if (uarmf && uarmf->oartifact == ART_JUMP_KICK_ACTION) clumsy = FALSE;
@@ -1193,7 +1199,7 @@ doit:
 	wakeup(mon);
 	if(!rn2(clumsy ? 3 : 4) && (u.martialstyle != MARTIALSTYLE_KUNGFU || rn2(4)) && (clumsy || !bigmonst(mon->data)) &&
 	   mon->mcansee && !mon->mtrapped && !thick_skinned(mon->data) &&
-	   mon->data->mlet != S_EEL && haseyes(mon->data) && mon->mcanmove &&
+	   mon->data->mlet != S_EEL && u.martialstyle != MARTIALSTYLE_KARATE && haseyes(mon->data) && mon->mcanmove &&
 	   !mon->mstun && !mon->mconf && !mon->msleeping &&
 	   mon->data->mmove >= 12) {
 		if(!nohands(mon->data) && !rn2(martial() ? 5 : 3)) {
@@ -2361,6 +2367,16 @@ ouch:
 
 			if (Role_if(PM_QUARTERBACK)) { /* expert at kicking and thus doesn't take damage, from PRIME --Amy */
 				pline("Thump - you kicked an obstacle.");
+
+				if (Blind) feel_location(x,y); /* we know we hit it */
+				if (is_drawbridge_wall(x,y) >= 0) {
+					pline_The("drawbridge is unaffected.");
+					/* update maploc to refer to the drawbridge */
+					(void) find_drawbridge(&x,&y);
+					maploc = &levl[x][y];
+				}
+				if(Is_airlevel(&u.uz) || Levitation)
+					hurtle(-u.dx, -u.dy, rn1(2,4), TRUE); /* assume it's heavy */
 				return(1);
 			}
 
@@ -2374,8 +2390,8 @@ ouch:
 			(void) find_drawbridge(&x,&y);
 			maploc = &levl[x][y];
 		    }
-		    if(!rn2(3)) set_wounded_legs(RIGHT_SIDE, HWounded_legs + 5 + rnd(5));
-		    losehp(rnd(ACURR(A_CON) > 15 ? 3 : 5), kickstr(buf),
+		    if(!rn2(u.martialstyle == MARTIALSTYLE_KARATE ? 20 : 3)) set_wounded_legs(RIGHT_SIDE, HWounded_legs + 5 + rnd(5));
+		    losehp(rnd( (u.martialstyle == MARTIALSTYLE_KARATE) ? 1 : (ACURR(A_CON) > 15) ? 3 : 5), kickstr(buf),
 			KILLED_BY);
 		    if(Is_airlevel(&u.uz) || Levitation)
 			hurtle(-u.dx, -u.dy, rn1(2,4), TRUE); /* assume it's heavy */
