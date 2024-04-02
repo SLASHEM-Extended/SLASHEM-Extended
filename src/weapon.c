@@ -6889,6 +6889,7 @@ int degree;
 	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX && skill == P_SHIELD) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
+	if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE && skill == P_SORESU) degree *= 3;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
 		else if (P_ADVANCE(skill) >= 2500) degree *= 6;
@@ -6900,6 +6901,11 @@ int degree;
 	if ((skill == u.hiddenpowerskill) && uamul && uamul->otyp == AMULET_OF_X) degree *= 5;
 	if (Race_if(PM_EGYMID) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_ITAQUE) && !rn2(10)) degree *= 2;
+	if (uamul && uamul->oartifact == ART_REGGIE_S_POINTSTEP) {
+		if (skill == P_HIGH_HEELS) degree *= 2;
+		if (skill == P_SEXY_FLATS) degree *= 2;
+		if (skill >= P_STILETTO_HEELS && skill <= P_WEDGE_HEELS) degree *= 3;
+	}
 	if (uwep && uwep->oartifact == ART_GEOLOGY_RULES_THE_WORLD && skill == P_PICK_AXE) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_FINDING_THYSELF && skill == P_SPIRITUALITY) degree *= 5;
 	if (uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA && skill == P_HIGH_HEELS) degree *= 2;

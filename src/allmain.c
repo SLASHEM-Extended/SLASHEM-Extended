@@ -2328,6 +2328,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_LULWY_S_TRICK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_VRRRRRRRRRRRR) && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmh && (uarmh->oartifact == ART_LORSKEL_S_SPEED) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uarmf && (uarmf->oartifact == ART_DAPHNE_S_BOREDOM) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmc && (uarmc->oartifact == ART_BROTHER_S_CAVALRY && u.usteed) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && (uarmf->oartifact == ART_WELL__MIGHT_AS_WELL_WEAR_T) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmc && (uarmc->otyp == SPIRIT_CLOTH) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -5309,6 +5310,11 @@ greasingdone:
 			else techcapincrease((level_difficulty() + 1) * rnd(150));
 		}
 
+		if ((uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) && !rn2(1000)) {
+			if (TechoutXtra) techcapincrease((level_difficulty() + 1) * rnd(750));
+			else techcapincrease((level_difficulty() + 1) * rnd(150));
+		}
+
 		if (StatDecay && !rn2(StatDecayXtra ? 200 : 1000)) {
 			statdrain();
 		}
@@ -5428,6 +5434,10 @@ greasingdone:
 		}
 
 		if (have_falloutstone() && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
+		if (uarmg && uarmg->oartifact == ART_SIRINE_S_MELLOW_LOOK && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
 
@@ -7588,6 +7598,8 @@ newbossJANI:
 			pline("Julietta rolls the dice to randomly select a punishment for you...");
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 		}
+
+		if (uarmf && uarmf->oartifact == ART_ARMY_CAMO && !uarmf->oerodeproof) uarmf->oerodeproof = TRUE;
 
 		if (uwep && uwep->oartifact == ART_DAEMEL && !rn2(1000)) {
 			u.ugold += rnd(50);
@@ -12424,6 +12436,15 @@ newboss:
 
 		}
 
+		if (uarmc && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING && !rn2(WrapOverXtra ? 40 : 200)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(200)) (void) drain_item_reverse(otmpE);
+			}
+
+		}
+
 		if (RecurringDisenchant && !rn2(DisenchantRepXtra ? 200 : 1000)) {
 
 			struct obj *otmpE;
@@ -16073,6 +16094,10 @@ past4:
 		}
 		if (PlayerHasGiantExplorer && (u.xray_range < 10)) u.xray_range = 10;
 
+		if (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH && u.uhs >= FAINTING) u.xray_range += 10;
+
+		if (u.xray_range > 15) u.xray_range = 15; /* fail safe */
+
 		if (astralstate != u.xray_range) {
 			vision_full_recalc = 1;
 		}
@@ -16611,7 +16636,7 @@ past4:
 		else You("paid some of your debts, but still have to pay %d zorkmids.", (u.moneydebt + u.superdebt) );
 	}
 
-	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || autismweaponcheck(ART_THROW_ALL_THE_CASH_AWAY) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {
+	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || autismweaponcheck(ART_THROW_ALL_THE_CASH_AWAY) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || autismringcheck(ART_WEDDING_WASTED) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {
 
 		if (!u.bankcashlimit) u.bankcashlimit = rnz(1000 * (monster_difficulty() + 1 + (long)mvitals[PM_ARABELLA_THE_MONEY_THIEF].born));
 
@@ -17308,8 +17333,10 @@ boolean new_game;	/* false => restoring an old game */
 		return;
 	}
 
-	if (new_game && (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone())) {
-		nomul(-2, "acclimating in the dungeon", FALSE);
+	if (new_game && (Movemork || u.uprops[MOVEMORKING].extrinsic || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) || have_movemorkstone())) {
+		int morkpara = 2;
+		if (MoveMorkXtra) morkpara += rnd(2);
+		nomul(-morkpara, "acclimating in the dungeon", FALSE);
 		nomovemsg = "You are now ready to explore the dungeon.";
 	}
 

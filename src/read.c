@@ -6069,6 +6069,10 @@ proofarmorchoice:
 		pline("You gain the ability to eat through solid rock.");
 		/* reading another will restart the countdown rather than add to the duration --Amy */
 		u.geolysis = 10 + rnd(20);
+		if (sobj && sobj->oartifact == ART_DRIP_DROP____DRIP_DROP___) {
+			u.geolysis += rnz(200);
+			pline("And that ability will last for a generous amount of turns.");
+		}
 
 	      break;
 
@@ -10547,12 +10551,12 @@ randenchchoice:
 	    	pline_The("%s rumbles %s you!", ceiling(u.ux,u.uy),
 	    			sobj->blessed ? "around" : "above");
 	    	known = 1;
-	    	if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-			{change_luck(-1);
+	    	if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+			change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;
-			}
-			/* Sokoban guilt */
+		}
+		/* Sokoban guilt */
 
 	    	/* Loop through the surrounding squares */
 	    	if (!sobj->cursed || (sobj->oartifact == ART_RUMPLE_RUMPLE) ) for (x = u.ux-earthradius; x <= u.ux+earthradius; x++) {

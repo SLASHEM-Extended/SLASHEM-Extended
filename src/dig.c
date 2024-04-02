@@ -617,11 +617,11 @@ newbossMETALMAFIA:
 
 			    }
 
-			    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-				{change_luck(-1);
+			    if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+				change_luck(-1);
 				pline("You cheater!");
 				if (evilfriday) u.ugangr++;
-				}
+			    }
 
 			    if (!issoviet || !rn2(10)) lev->typ = ROOM;
 			    else {
@@ -1756,11 +1756,11 @@ nextiteration:
                 if (otmp->otyp == BOULDER) {
 		    delobj(otmp);
 		    /* A little Sokoban guilt... */
-		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-			{change_luck(-1);
+		    if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+			change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;
-			}
+		    }
 		    unblock_point(zx, zy);
 		    newsym(zx, zy);
 		    pline_The("boulder is vaporized!");
@@ -1994,11 +1994,11 @@ boolean bigrange;
                 if (otmp->otyp == BOULDER) {
 		    delobj(otmp);
 		    /* A little Sokoban guilt... */
-		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-			{change_luck(-1);
+		    if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+			change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;
-			}
+		    }
 		    unblock_point(zx, zy);
 		    newsym(zx, zy);
 		    pline_The("boulder is vaporized!");

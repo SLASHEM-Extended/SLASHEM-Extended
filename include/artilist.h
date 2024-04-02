@@ -19155,6 +19155,158 @@ A("Light Dal-i-thalion",				LOW_BOOTS, /* randart2 boots, +2 DEX, curse resistan
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Jennifer's Freedom",				SNEAKERS, /* darkness attacks cannot affect you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sarah's Replacement",				SNEAKERS, /* resist cold, shock and sickness */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Zura's Dresscode",				ROBE, /* randart robe, super monnoise, +5 CHA, 3 extra points of AC, soresu skill trains three times as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tejus' Vacancy",				STANDARD_HELMET, /* randart helmet, super turn limitation, double half spell damage */
+	(SPFX_RESTR|SPFX_HSPDAM|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Daphne's Boredom",				BOOTS_OF_DISPLACEMENT, /* super ludgera trap effect, resist sleep, adds extra speed sometimes */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jabone's Color Change",				COLOR_CHANGING_CONE, /* super wall growth, double drain res, resist poison */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sirine's Mellow Look",				MARY_SUE_GLOVES, /* super fallout effect, double free action, resist fear */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Arviat's Load",				AMULET_OF_CLIMBING, /* carrcap, super techout, flying, magic find, defusing, 5 extra points of AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Axelle's Chain",				IRON_CHAIN, /* randart2 chain, super mariya trap effect, sight bonus */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 19), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Croque Ford",				RIN_CONFLICT, /* super trap creation, +4 all stats, swimming and protects items from water */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Wedding Wasted",				RIN_CONFLICT, /* bank trap effect, autocurses, +4 melee damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Have Full Sway",				RIN_CONFLICT, /* double control magic */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Hitpoint Booster",				RIN_GAIN_CONSTITUTION, /* doubles HP cap for corona, heavy sticky autocurse, leveling up grants 2 extra max HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Near Overlook",				RIN_GAIN_DEXTERITY, /* zap.c ray wands hit much more often, spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("But You Must",				RIN_GAIN_STRENGTH, /* resist sleep, free action, discount action, heavily autocurses */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Soko Busta",				AMULET_OF_REFLECTION, /* prevents luck loss when cheating in sokoban */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Reggie's Pointstep",				AMULET_OF_REFLECTION, /* super luisa trap effect, high heels and sexy flats train 2x as fast, high heel forms train 3x as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("No Such Thing As Better Amulets",				AMULET_OF_REFLECTION, /* +1 increase melee damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Console Trophy",				AMULET_OF_REFLECTION, /* resist fear */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("HoldyMany",				BAG_OF_HOLDING, /* contains 5 random items */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("kilililili kili",				BAG_OF_HOLDING, /* contains a heavily cursed scroll of wishing */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("MegakitRoofTM",				BAG_OF_HOLDING, /* contains 2 scrolls of relocation, 5 scrolls of return, a potion of down level, 3 potions of gain level and a wand of trap disarming */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Spread-And-Soar",				AMULET_OF_FLYING, /* 3 extra points of AC */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fun.all",				AMULET_VERSUS_STONE, /* funny hallu messages */
+	(SPFX_RESTR|SPFX_HALRES|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Hiba Chiba",				AMULET_OF_SWIMMING, /* super greta trap, kristina trap, stone res, +5 luck and positive luck never times out */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Clancy's Furtiveness",				CLOAK_OF_FREEDOM, /* super nicole trap effect, allows you to backstab enemies and extra chance for monsters to not wake up like vietis */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Name Rescue",				TIGER_CLOAK, /* all "f" normally spawn peaceful and can be tamed with food */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("East Party",				LION_CLOAK, /* clairvoyance, red monsters spawn 80% peaceful and 10% tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Cayleen's Blush",				HIDE_SHIELD, /* super movemork, detect monsters if you're oversatiated and +10 astral vision radius if fainting, heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ishita's Overwhelming",				LEATHER_CLOAK, /* initialized to always be petrified cloak, autocurses, super wrapover, 10 extra points of AC, +3 STR and DEX, +5 ranged to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lois's Chill",				LOW_BOOTS, /* initialized to always be winter boots, heavily autocurses, super laura trap effect, cold immunity, if you lose alignment you lose only one third as much (but at least 1) */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	COLD(0, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Ronika's Norm",				SWEET_MOCASSINS, /* super elise trap, 2 extra points of AC, +1 CHA/DEX */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK|SPFX_DEFN|SPFX_SEEK), 0, 0,
+	PHYS(0, 1), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1700L ),
+
+A("Army Camo",				FIELD_BOOTS, /* if you're wearing them, they automatically become erosionproof (again) */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Drip drop... Drip drop...",				SCR_GEOLYSIS, /* lasts for rnz(200) more turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("*dideldideldideldideldidel*",				WAN_SPELLBINDER, /* zapping while it has charges restores 100 Pw */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Sheerfrost",				ANHYDRITE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(0, 18), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 350L ),
+
+A("Maeve's Opulence",				HEAVY_CLAY_BALL, /* super patricia trap effect, +10 AC, double regeneration, hunger */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	PHYS(0, 8), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Clelia's Tongue Breaker",				CRUNCHER_HELMET, /* super bridghitte trap, muteness, +4 WIS, -3 CHA, aggravate monster, teleportitis */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

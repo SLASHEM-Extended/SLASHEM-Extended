@@ -466,7 +466,7 @@ trap_of_walls:
 
 	if (update) {
 
-		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uimplant && uimplant->oartifact == ART_THEY_RE_REALLY_AFTER_ME) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(WallRegrowXtra ? 500 : 100)) {
+		if ((u.uprops[WALL_TRAP_EFFECT].extrinsic || WallTrapping || have_wallstone() || (uarmh && uarmh->oartifact == ART_JABONE_S_COLOR_CHANGE) || (uarmg && uarmg->oartifact == ART_STOUT_IMMURRING) || (uarmc && uarmc->oartifact == ART_MOST_CHARISMATIC_PRESIDENT) || (uimplant && uimplant->oartifact == ART_THEY_RE_REALLY_AFTER_ME) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) && rn2(WallRegrowXtra ? 500 : 100)) {
 			secretcorr = FALSE;
 			goto trap_of_walls;
 		}
@@ -768,11 +768,11 @@ moverock()
 		if (yn("Do it?") != 'y')
 		return (-1);
 
-		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-			{change_luck(-1);
+		    if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+			change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;
-			}
+		    }
 			/* Sokoban guilt */
 		    break;
 		}
@@ -785,12 +785,12 @@ moverock()
 		|| verysmall(youmonst.data))) {
 
 		if (yn("However, you can squeeze yourself into a small opening. Do it?") != 'y')
-		return (-1);
+			return (-1);
 		else {
-		if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-			{change_luck(-1);
-			pline("You cheater!");
-			if (evilfriday) u.ugangr++;
+			if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+				change_luck(-1);
+				pline("You cheater!");
+				if (evilfriday) u.ugangr++;
 			}
 			/* Sokoban guilt */
 		break;
@@ -5408,7 +5408,7 @@ int k_format; /* WAC k_format is an int */
 	}
 #endif
 
-	if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
+	if (u.uprops[TURNLIMITATION].extrinsic || (uarmh && uarmh->oartifact == ART_TEJUS__VACANCY) || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
 
 		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;
@@ -5605,7 +5605,7 @@ weight_cap()
 	if(carrcap > (max_carr_cap())) carrcap = max_carr_cap();
 
 	/* the "fuck you Amy, your weight limits are as shitty as vanilla nethack's" effect :-P */
-	if (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone() || have_minimejewel() ) {
+	if (CarrcapEffect || u.uprops[CARRCAP_EFFECT].extrinsic || have_carrcapstone() || (uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) || have_minimejewel() ) {
 		if (carrcap > 500) carrcap = 500;
 	}
 

@@ -7447,7 +7447,7 @@ dochat()
 
     boolean eligiblesymbio = FALSE;
 
-    if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) {
+    if (Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone() || (uarmh && uarmh->oartifact == ART_CLELIA_S_TONGUE_BREAKER) ) {
 	pline("You're muted!");
 	if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	return(0);

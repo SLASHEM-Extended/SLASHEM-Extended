@@ -4561,11 +4561,11 @@ secureidchoice:
 		    }
 
 		    /* A little Sokoban guilt... */
-		    if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-			{change_luck(-1);
+		    if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+			change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;
-			}
+		    }
 		    You("reform!");
 		    teleds(cc.x, cc.y, FALSE);
 		    nomul(-1, "liquid leaping", TRUE);
@@ -8843,7 +8843,7 @@ repairitemchoice:
 				break;
 			}
 
-		    	if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
+		    	if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
 				change_luck(-1);
 				pline("You cheater!");
 				if (evilfriday) u.ugangr++;
@@ -9293,7 +9293,7 @@ perfumestriding:
 				break;
 			}
 
-		    	if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
+		    	if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
 				change_luck(-1);
 				pline("You cheater!");
 				if (evilfriday) u.ugangr++;

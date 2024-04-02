@@ -3564,7 +3564,7 @@ boolean atme;
 		pline("Spell cooldown. Wait %d more turns.", u.spellcooldown);
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return (0);
-	} else if ((Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone()) && rn2(10)) {
+	} else if ((Muteness || u.uprops[MUTENESS].extrinsic || have_mutenessstone() || (uarmh && uarmh->oartifact == ART_CLELIA_S_TONGUE_BREAKER) ) && rn2(10)) {
 		pline("You're muted, and fail to cast the spell!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		u.uen -= rnd(20); /* arbitrary; you're supposed to still be able to cast a little sometimes --Amy */
@@ -4316,7 +4316,7 @@ magicalenergychoice:
 			pushplayer(TRUE);
 			pline("The winds hurt you!");
 			losehp(rnd(10), "winds", KILLED_BY);
-			if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
+			if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
 				change_luck(-1);
 				pline("You cheater!");
 				if (evilfriday) u.ugangr++;
@@ -8735,7 +8735,7 @@ whisperchoice:
 			You_hear("air current noises.");
 
 		pushplayer(TRUE);
-		if (In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
+		if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
 			change_luck(-1);
 			pline("You cheater!");
 			if (evilfriday) u.ugangr++;

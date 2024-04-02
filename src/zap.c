@@ -3131,12 +3131,12 @@ poly_obj(obj, id, degradation)
 	if (obj->otyp == AMULET_OF_UNCHANGING)
 	    return obj;
 
-	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) )
-		{change_luck(-1);
+	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !playercancheatinsoko()) {
+		change_luck(-1);
 		pline("You cheater!");
 		if (evilfriday) u.ugangr++;
-		}
-	    /* Sokoban guilt */
+	}
+	/* Sokoban guilt */
 #ifdef WIZARD
 	otmp = (struct obj *)0;
 	if (id == STRANGE_OBJECT && wizard && Polymorph_control) {
@@ -5297,6 +5297,13 @@ secureidchoice:
 				u.spellbinder5 = -1;
 				u.spellbinder6 = -1;
 				u.spellbinder7 = -1;
+
+				if (obj->oartifact == ART__DIDELDIDELDIDELDIDELDIDEL) {
+					You_feel("full of mystic power!");
+					u.uen += 100;
+					if (u.uen > u.uenmax) u.uen = u.uenmax;
+					flags.botl = TRUE;
+				}
 
 				pline("You may cast %d more spells.", u.spellbinder);
 
@@ -8545,6 +8552,9 @@ int skill;
     else
 	hit_bon += dex - 14; /* Even increment for dextrous heroes (see weapon.c abon) */
 
+    if (uleft && uleft->oartifact == ART_NEAR_OVERLOOK) hit_bon += 20;
+    if (uright && uright->oartifact == ART_NEAR_OVERLOOK) hit_bon += 20;
+
     if (PlayersRaysAreInaccurate) hit_bon -= rn1(11,11);
 
     return hit_bon;
@@ -10637,7 +10647,7 @@ register struct obj *obj;		   /* no texts here! */
 	if (obj && obj->oartifact == ART_BREAK_INTO_PIECES) breakintopieces = TRUE;
 
 	/* A little Sokoban guilt... */
-	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving && !(uwep && uwep->oartifact == ART_HOPE_OF_SOKOBAN && rn2(3)) ) {
+	if (obj->otyp == BOULDER && In_sokoban(&u.uz) && !flags.mon_moving && !playercancheatinsoko()) {
 		change_luck(-1);
 		pline("You cheater!");
 		if (evilfriday) u.ugangr++;

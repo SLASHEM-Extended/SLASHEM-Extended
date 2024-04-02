@@ -2591,6 +2591,19 @@ find_fin_boots()
 }
 
 int
+find_winter_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_WINTER_BOOTS)) return i;
+    }
+
+    impossible("winter boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_profiled_boots()
 {
     register int i;
@@ -2613,6 +2626,19 @@ find_void_cloak()
     }
 
     impossible("void cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_petrified_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_PETRIFIED_CLOAK)) return i;
+    }
+
+    impossible("petrified cloak not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

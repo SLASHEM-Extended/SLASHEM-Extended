@@ -31024,6 +31024,82 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: resist drain and fire when worn, diminished bleeding."); break;
 				case ART_LIGHT_DAL_I_THALION:
 					pline("Artifact specs: +2 dexterity and curse resistance when worn, plus if you're riding, your steed is constantly galloping allowing you to travel faster than normal."); break;
+				case ART_JENNIFER_S_FREEDOM:
+					pline("Artifact specs: prevents darkness attacks from affecting you when worn."); break;
+				case ART_SARAH_S_REPLACEMENT:
+					pline("Artifact specs: resist cold, shock and sickness when worn."); break;
+				case ART_ZURA_S_DRESSCODE:
+					pline("Artifact specs: monsters make noises all the damn time while you're wearing it and +5 charisma, 3 extra points of AC and the form III (Soresu) skill trains three times as fast."); break;
+				case ART_TEJUS__VACANCY:
+					pline("Artifact specs: double half spell damage and harsher version of turn limitation when worn."); break;
+				case ART_DAPHNE_S_BOREDOM:
+					pline("Artifact specs: resist sleep, stronger version of ludgera trap effect and makes you slightly faster when worn."); break;
+				case ART_JABONE_S_COLOR_CHANGE:
+					pline("Artifact specs: double drain resistance, poison resistance and extra fast wall trap effect when worn."); break;
+				case ART_SIRINE_S_MELLOW_LOOK:
+					pline("Artifact specs: ESP, warning, fear resistance, double free action and total fallout when worn. You wanna grow a third leg?"); break;
+				case ART_ARVIAT_S_LOAD:
+					pline("Artifact specs: carry cap reduction, super fast techout, flying, magic find, defusing and 5 extra points of AC when worn."); break;
+				case ART_AXELLE_S_CHAIN:
+					pline("Artifact specs: +19 damage, sight bonus, stronger version of mariya trap effect when wielded."); break;
+				case ART_CROQUE_FORD:
+					pline("Artifact specs: very fast trap creation, +4 all stats, swimming and protects your items from water when worn."); break;
+				case ART_WEDDING_WASTED:
+					pline("Artifact specs: bank trap, +4 melee damage, autocurses when worn."); break;
+				case ART_HAVE_FULL_SWAY:
+					pline("Artifact specs: reflection and double control magic when worn."); break;
+				case ART_HITPOINT_BOOSTER:
+					pline("Artifact specs: heavily sticky autocurses and doubles your HP caps for covid-19 affects, leveling up while wearing it grants some extra maximum HP."); break;
+				case ART_NEAR_OVERLOOK:
+					pline("Artifact specs: spellboost when worn and your ray wands/spells are much more likely to hit the target."); break;
+				case ART_BUT_YOU_MUST:
+					pline("Artifact specs: resist sleep, free and discount action, heavily autocurses when worn."); break;
+				case ART_SOKO_BUSTA:
+					pline("Artifact specs: while wearing it, cheating in Sokoban doesn't reduce your luck. But it's rather unlikely that you obtain this before you're done with soko."); break;
+				case ART_REGGIE_S_POINTSTEP:
+					pline("Artifact specs: stronger version of luisa trap effect when worn and the high heels and sexy flats skills train twice as fast, specific high heel form skills train 3x as fast."); break;
+				case ART_NO_SUCH_THING_AS_BETTER_AM:
+					pline("Artifact specs: +1 increase melee damage when worn."); break;
+				case ART_CONSOLE_TROPHY:
+					pline("Artifact specs: resist fear when worn."); break;
+				case ART_HOLDYMANY:
+					pline("Artifact specs: contains a bunch of additional items when generated."); break;
+				case ART_KILILILILI_KILI:
+					pline("Artifact specs: may contain something very useful."); break;
+				case ART_MEGAKITROOFTM:
+					pline("Artifact specs: contains a kit of useful items including 2 scrolls of relocation, 5 scrolls of return, a potion of down level, 3 potions of gain level and a wand of trap disarming. You should #name any that your character doesn't recognize, so you know what they are."); break;
+				case ART_SPREAD_AND_SOAR:
+					pline("Artifact specs: poison resistance and 3 extra points of AC when worn."); break;
+				case ART_FUN_ALL:
+					pline("Artifact specs: hallucination resistance and makes messages more funny when worn."); break;
+				case ART_HIBA_CHIBA:
+					pline("Artifact specs: kristina trap effect, stronger version of greta trap effect, petrification resistance and +5 luck when worn and fully prevents positive luck from timing out."); break;
+				case ART_CLANCY_S_FURTIVENESS:
+					pline("Artifact specs: stealth when worn and makes monsters extra unlikely to wake up, lets you backstab enemies and causes the stronger version of the nicole trap effect."); break;
+				case ART_NAME_RESCUE:
+					pline("Artifact specs: while wearing it, felines usually spawn peaceful and you can tame them with thrown food."); break;
+				case ART_EAST_PARTY:
+					pline("Artifact specs: clairvoyance when worn, red-colored monsters are likely to spawn peaceful and occasionally tame."); break;
+				case ART_CAYLEEN_S_BLUSH:
+					pline("Artifact specs: causes monsters to generate with excessive amounts of movement energy when worn. If you're oversatiated, you have detect monsters and if you're fainting, you gain radius 10 astral vision. This item heavily autocurses."); break;
+				case ART_ISHITA_S_OVERWHELMING:
+					pline("Artifact specs: autocurses when worn and causes your equipment's positive enchantments to wrap over particularly often. It also grants 10 extra points of AC, +3 strength and dexterity and a +5 to-hit bonus for your ranged attacks."); break;
+				case ART_LOIS_S_CHILL:
+					pline("Artifact specs: +3 cold damage, heavily autocurses, stronger version of laura trap effect, cold immunity and if you lose alignment while wearing it, the amount of alignment loss is greatly reduced."); break;
+				case ART_RONIKA_S_NORM:
+					pline("Artifact specs: +1 damage, fire resistance, searching bonus, stronger version of elise trap effect, 2 extra points of AC and +1 charisma and dexterity when worn."); break;
+				case ART_ARMY_CAMO:
+					pline("Artifact specs: stealth when worn and automatically become erosionproof while you're wearing them."); break;
+				case ART_DRIP_DROP____DRIP_DROP___:
+					pline("Artifact specs: reading it gives you a much longer-lasting geolysis effect compared to a non-artifact version of this scroll."); break;
+				case ART__DIDELDIDELDIDELDIDELDIDEL:
+					pline("Artifact specs: zapping it while it has charges restores your Pw by 100 points first, and then processes its normal effect."); break;
+				case ART_SHEERFROST:
+					pline("Artifact specs: +18 cold damage."); break;
+				case ART_MAEVE_S_OPULENCE:
+					pline("Artifact specs: +8 damage, drain resistance, double regeneration, hunger, stronger version of the patricia trap effect and 10 extra points of AC when wielded."); break;
+				case ART_CLELIA_S_TONGUE_BREAKER:
+					pline("Artifact specs: searching bonus, stronger version of bridghitte trap effect, muteness, +4 wisdom, -3 charisma, aggravate monster and teleportitis when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

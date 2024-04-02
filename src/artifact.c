@@ -309,6 +309,7 @@ init_randarts()
 	artilist[ART_RITA_S_LOVELY_OVERGARMENT].otyp = randartcloak();
 	artilist[ART_LUNAR_ECLIPSE_TONIGHT].otyp = randartcloak();
 	artilist[ART_FONEUZIK].otyp = randarthelm();
+	artilist[ART_TEJUS__VACANCY].otyp = randarthelm();
 	artilist[ART_SAGE_S_HELM].otyp = randarthelm();
 	artilist[ART_LORSKEL_S_SPEED].otyp = randarthelm();
 	artilist[ART_HEAD_W].otyp = randarthelm();
@@ -550,6 +551,7 @@ init_randarts()
 	artilist[ART_DOLORES__WINNING_STRAT].otyp = randartbow();
 	artilist[ART_GRADIUS].otyp = randartshortsword();
 	artilist[ART_U_TSCHELLI].otyp = randartpaddle();
+	artilist[ART_ZURA_S_DRESSCODE].otyp = randartrobe();
 	artilist[ART_ALTADOON_HERMA_MORA].otyp = randartrobe();
 	artilist[ART_ETERNAL_BAMMELING].otyp = randartrobe();
 	artilist[ART_VIHAT_BAGUETTEN_BUS_STOP].otyp = randartclaw();
@@ -805,6 +807,7 @@ init_randarts()
 	artilist[ART_KLONG_RIGHT].otyp = randartballX();
 	artilist[ART_GORMALER].otyp = randartballX();
 	artilist[ART_SIYID].otyp = randartchainX();
+	artilist[ART_AXELLE_S_CHAIN].otyp = randartchainX();
 	artilist[ART_JIN_GANG_ZUO].otyp = randartchainX();
 	artilist[ART_HAMSTRUNG_FOUR_SURE].otyp = randartchainX();
 	artilist[ART_RACE_ALONG_THE_HIGHWAY].otyp = randartchainX();
@@ -983,6 +986,8 @@ init_appearance_randarts()
 	artilist[ART_JOSEFINE_S_EVILNESS].otyp = find_velcro_boots();
 	artilist[ART_WHINY_MARY].otyp = find_clumsy_gloves();
 	artilist[ART_WARP_SPEED].otyp = find_fin_boots();
+	artilist[ART_LOIS_S_CHILL].otyp = find_winter_boots();
+	artilist[ART_ISHITA_S_OVERWHELMING].otyp = find_petrified_cloak();
 	artilist[ART_PECTORAL_HEEL].otyp = find_fin_boots();
 	artilist[ART_GRENEUVENIA_S_HUG].otyp = find_profiled_boots();
 	artilist[ART_SHELLY].otyp = find_void_cloak();
@@ -2225,6 +2230,75 @@ register boolean mod;
 					ocont->owt = weight(ocont);
 					(void) add_to_container(otmp, ocont, TRUE);
 				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_HOLDYMANY) {
+
+			int maincontaineramount = 5;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(RANDOM_CLASS, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_KILILILILI_KILI) {
+			register struct obj *ocont;
+
+			ocont = mksobj(SCR_WISHING, TRUE, FALSE, FALSE);
+			if (ocont) {
+				curse(ocont);
+				ocont->hvycurse = TRUE;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_MEGAKITROOFTM) {
+			register struct obj *ocont;
+
+			ocont = mksobj(SCR_RELOCATION, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->quan = 2;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+			ocont = mksobj(SCR_RETURN, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->quan = 5;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+			ocont = mksobj(POT_DOWN_LEVEL, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->quan = 1;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+			ocont = mksobj(POT_GAIN_LEVEL, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->quan = 3;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+			ocont = mksobj(WAN_TRAP_DISARMING, TRUE, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
 			}
 
 		    }

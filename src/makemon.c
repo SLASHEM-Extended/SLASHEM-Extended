@@ -25649,7 +25649,7 @@ register int	mmflags;
 	mtmp->flagged_for_death = FALSE;
 	mtmp->legdamage = 0;
 
-	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone()) mtmp->movement += 12;
+	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
 	if (MoveMorkXtra) mtmp->movement += rnd(24);
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
 	if (FemtrapActiveKsenia && spawnswithsandals(mtmp->data)) mtmp->movement += 12;
@@ -28276,6 +28276,10 @@ register int	mmflags;
 	}
 
 	if (!rn2(10) && !monster_is_revived && uamul && uamul->oartifact == ART_MAX_ONE_GRAY && mtmp->data->mcolor == CLR_GRAY) {
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
+	}
+
+	if (!rn2(10) && !monster_is_revived && uarmc && uarmc->oartifact == ART_EAST_PARTY && mtmp->data->mcolor == CLR_RED) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
@@ -33896,6 +33900,10 @@ register struct permonst *ptr;
 	aligntyp mal = ptr->maligntyp, ual = u.ualign.type;
 
 	if (always_peaceful(ptr)) return TRUE;
+
+	if (uarmc && uarmc->oartifact == ART_NAME_RESCUE && ptr->mlet == S_FELINE) return TRUE;
+
+	if (uarmc && uarmc->oartifact == ART_EAST_PARTY && (ptr->mcolor == CLR_RED) && rn2(5)) return TRUE;
 
 	if (uarmf && uarmf->oartifact == ART_VERY_NICE_PERSON && !rn2(5)) return TRUE;
 

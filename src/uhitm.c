@@ -2728,7 +2728,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -4136,6 +4136,7 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (!thrown && Race_if(PM_TURMENE) && tmp > 0) tmp -= 2;
+		if (!thrown && uamul && uamul->oartifact == ART_NO_SUCH_THING_AS_BETTER_AM) tmp += 1;
 		if (Race_if(PM_SERB)) tmp += 1;
 		if (Race_if(PM_MONGUNG)) tmp += 3;
 		if (Race_if(PM_RUSMOT)) tmp += 2;
@@ -4153,6 +4154,8 @@ int dieroll;
 		if (!thrown && uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp += 5;
 		if (thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp -= 2;
 		if (!thrown && uarmh && uarmh->oartifact == ART_WAITING_FOR_MELEE) tmp += 2;
+		if (!thrown && uleft && uleft->oartifact == ART_WEDDING_WASTED) tmp += 4;
+		if (!thrown && uright && uright->oartifact == ART_WEDDING_WASTED) tmp += 4;
 		if (bmwride(ART_KERSTIN_S_COWBOY_BOOST)) tmp += 2;
 		if (uwep && uwep->oartifact == ART_KLOBB) tmp -= 6;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_KLOBB) tmp -= 6;

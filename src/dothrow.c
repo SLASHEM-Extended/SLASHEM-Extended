@@ -2820,6 +2820,7 @@ boolean polearming;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uright && uright->oartifact == ART_CHERRYTAPPER) tmp += 10;
+	if (uarmc && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_DOCHGOGRAP) tmp += 4;
 	if (u.ulevel >= 8) tmp++;
 	if (u.ulevel >= 16) tmp++;

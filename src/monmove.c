@@ -463,7 +463,7 @@ disturb(mtmp)
 	 *	Aggravate or mon is (dog or human) or
 	 *	    (1/7 and mon is not mimicing furniture or object)
 	 */
-	if(couldsee(mtmp->mx,mtmp->my) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) &&
+	if(couldsee(mtmp->mx,mtmp->my) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && rn2(3)) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) &&
 		distu(mtmp->mx,mtmp->my) <= 100 &&
 		(!Stealth || (Stealth && !StrongStealth && !rn2(5)) || (Aggravate_monster && !rn2(3) ) || (mtmp->data == &mons[PM_ETTIN] && rn2(10))) &&
 		(!(mtmp->data->mlet == S_NYMPH
@@ -2065,7 +2065,7 @@ newbossSING:
 	}
 
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
-	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (mdat->msound) {
 
 			case MS_PRIEST:

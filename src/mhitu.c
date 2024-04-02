@@ -19673,7 +19673,7 @@ register int n;
 		You("become invulnerable!");
 	}
 
-	if (u.uprops[TURNLIMITATION].extrinsic || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
+	if (u.uprops[TURNLIMITATION].extrinsic || (uarmh && uarmh->oartifact == ART_TEJUS__VACANCY) || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
 		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;

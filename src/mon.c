@@ -8806,7 +8806,7 @@ wake_nearby()
 	if (stealthchance > 0) stealthchance = rnd(stealthchance); /* some randomness */
 
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
+	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && rn2(3)) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
 
 		if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
 
@@ -8817,7 +8817,7 @@ wake_nearby()
 	}
 
 	if (!rn2(250)) for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) ) {
+	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && rn2(3)) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) ) {
 		if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
 
 		mtmp->msleeping = 0;
@@ -8838,7 +8838,7 @@ register int x, y, distance;
 	int wakedistance;
 
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
-		if (!DEADMONSTER(mtmp) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
+		if (!DEADMONSTER(mtmp) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && rn2(3)) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
 				 dist2(mtmp->mx, mtmp->my, x, y) < distance)) {
 
 			if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */

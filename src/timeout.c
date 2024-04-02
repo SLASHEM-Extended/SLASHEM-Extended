@@ -1757,6 +1757,12 @@ nh_timeout()
 
 	}
 
+	if (!rn2(TrapCreationXtra ? 100 : 200) && autismringcheck(ART_CROQUE_FORD) ) {
+
+		makerandomtrap(FALSE);
+
+	}
+
 	if (!rn2(TrapCreationXtra ? 100 : 200) && uarmf && uarmf->oartifact == ART_ELENA_S_EPITOME ) {
 
 		makerandomtrap(FALSE);
@@ -1804,6 +1810,13 @@ nh_timeout()
 	}
 
 	if (!rn2(TrapCreationXtra ? 1000 : 2000) && have_trapcreationstone() ) {
+
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
+
+	}
+
+	if (!rn2(TrapCreationXtra ? 1000 : 2000) && autismringcheck(ART_CROQUE_FORD) ) {
 
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
 		makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE); makerandomtrap(FALSE);
@@ -3491,15 +3504,19 @@ nh_timeout()
 	 * Luck is based at 0 usually, +1 if a full moon and -1 on Friday 13th
 	 */
 	    register int time_luck = stone_luck(FALSE);
-	    boolean holdpositive = FALSE; /* other effects that keep your good luck from timing out --Amy */
-	    if (uarmf && uarmf->oartifact == ART_NATALIA_S_GREAT_LUCK) holdpositive = TRUE;
+	    int holdpositive = 0; /* other effects that keep your good luck from timing out --Amy */
+	    /* if this is 1, act like blessed luckstone; if it's 2, good luck doesn't time out at all */
+	    if (uarmf && uarmf->oartifact == ART_NATALIA_S_GREAT_LUCK) holdpositive = 1;
+	    if (uamul && uamul->oartifact == ART_HIBA_CHIBA) holdpositive = 2;
 
 	    boolean nostone = !carrying(LUCKSTONE) && !stone_luck(TRUE);
 
-	    if(u.uluck > baseluck && ( ((nostone || time_luck < 0) && !holdpositive) || !rn2(10) )) /* now luck will also time out if you do have a luckstone; it just times out more slowly --Amy */
-		u.uluck--;
-	    else if(u.uluck < baseluck && (!isfriday || !rn2(2)) && (nostone || time_luck > 0 || !rn2(10) ))
+	    /* now luck will also time out if you do have a luckstone; it just times out more slowly --Amy */
+	    if (u.uluck > baseluck && ( ((nostone || time_luck < 0) && !holdpositive) || !rn2(10) )) {
+		if (holdpositive != 2) u.uluck--;
+	    } else if (u.uluck < baseluck && (!isfriday || !rn2(2)) && (nostone || time_luck > 0 || !rn2(10) )) {
 		u.uluck++;
+	    }
 	}
 
 	/* WAC -- check for timeout of specials */

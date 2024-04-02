@@ -532,6 +532,12 @@ Boots_on()
 	Your("clogs are very heavily cursed!");
     }
 
+    if (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) {
+	curse(uarmf);
+	uarmf->hvycurse = TRUE;
+	Your("boots feel ice-cold!");
+    }
+
     if (uarmf && uarmf->oartifact == ART_MODERN_SLAVERY) {
 	if (!flags.hybridbeacher) {
 		flags.hybridbeacher = TRUE;
@@ -1839,6 +1845,11 @@ Cloak_on()
 	}
 
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_ARABELLA_S_SEXY_GIRL_BUTT) {
+		curse(uarmc);
+	}
+
+	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) {
+		pline("Now your cloak is cursed.");
 		curse(uarmc);
 	}
 
@@ -3831,6 +3842,12 @@ Shield_on()
 	Your("shield is very heavily cursed!");
     }
 
+    if (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) {
+	curse(uarms);
+	uarms->hvycurse = TRUE;
+	Your("shield is heavily cursed!");
+    }
+
     if (uarms && uarms->oartifact == ART_CREMATED && (objects[uarms->otyp].oc_color != CLR_ORANGE)) {
 		pline_The("shield becomes orange!");
 		objects[uarms->otyp].oc_color = CLR_ORANGE;
@@ -5476,6 +5493,22 @@ register struct obj *obj;
     if (obj->oartifact == ART_FYRYONI && !obj->cursed) {
 		curse(obj);
 		Your("ring cursed itself.");
+    }
+
+    if (obj->oartifact == ART_WEDDING_WASTED && !obj->cursed) {
+		curse(obj);
+		pline("Now your wedding was wasted.");
+    }
+
+    if (obj->oartifact == ART_HITPOINT_BOOSTER) {
+		curse(obj);
+		obj->hvycurse = obj->stckcurse = TRUE;
+    }
+
+    if (obj->oartifact == ART_BUT_YOU_MUST) {
+		curse(obj);
+		obj->hvycurse = TRUE;
+		pline("But you must keep wearing this ring.");
     }
 
     if (obj->oartifact == ART_VERSION_CONTROL) {
@@ -7222,6 +7255,12 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uwep && uwep->oartifact == ART_MAEVE_S_OPULENCE) uac -= 10;
+	if (uarmf && uarmf->oartifact == ART_RONIKA_S_NORM) uac -= 2;
+	if (uarmc && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) uac -= 10;
+	if (uamul && uamul->oartifact == ART_SPREAD_AND_SOAR) uac -= 3;
+	if (uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) uac -= 3;
 	if (uleft && uleft->oartifact == ART_PALMIA_PRIDE) uac -= 4;
 	if (uright && uright->oartifact == ART_PALMIA_PRIDE) uac -= 4;
 	if (uarm && uarm->oartifact == ART_PROTPOW) uac -= 5;
