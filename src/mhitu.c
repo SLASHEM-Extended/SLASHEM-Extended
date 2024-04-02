@@ -20891,7 +20891,7 @@ stdcontracting:
 
             if (slextest(8000, 40000)) {
 		stdmsg("aimlessness");
-                u.uprops[INACCURACY_TRAP].intrinsic |= FROMOUTSIDE;
+                u.uprops[INACCURACY_BUG].intrinsic |= FROMOUTSIDE;
 		increasesanity(rnz((monster_difficulty() * 5) + 1));
             }
 
