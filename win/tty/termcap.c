@@ -1035,7 +1035,7 @@ init_hilite()
 #ifndef VIDEOSHADES
 	    }
 #endif
-	    if (colors >= 16) {
+	    if (tgetnum("Co") >= 16) {
 		/* Use proper bright colors if terminal supports them. */
 		scratch = tparm(setf, ti_map[c]|BRIGHT);
 		hilites[c|BRIGHT] = (char *) alloc(strlen(scratch) + 1);
