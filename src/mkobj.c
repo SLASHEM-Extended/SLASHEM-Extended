@@ -3795,7 +3795,10 @@ boolean shopinit;
 			if (!rn2(2)) otmp->spe = rnd(ishaxor ? 10 : 5);
 			else if (rn2(8)) otmp->spe = rnd(ishaxor ? 6 : 3);
 			else otmp->spe = rnd(ishaxor ? 4 : 2);
-			if (!rn2(10)) otmp->spe -= rnd(4);
+			if (!rn2(10)) {
+				otmp->spe -= rnd(4);
+				if (otmp->spe < 0 && rn2(10)) otmp->spe = 0;
+			}
 		}
 
 		if ((otmp->spe > 0) && !rn2(6) && In_lategame(&u.uz)) {
@@ -4008,7 +4011,10 @@ boolean shopinit;
 
 		} else if (rn2(10) && !ishaxor) otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 20 : (objects[otmp->otyp].oc_dir == IMMEDIATE) ? 12 : 10);
 			else otmp->spe = rnd( (objects[otmp->otyp].oc_dir == NODIR) ? 40 : (objects[otmp->otyp].oc_dir == IMMEDIATE) ? 24 : 20); /* low chance for extra charges --Amy */
-		if (!rn2(3) && !issoviet) otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
+		if (!rn2(3) && !issoviet) {
+			otmp->spe -= rnd(3); /* allow random useless wands to spawn --Amy */
+			if (otmp->spe < 0 && rn2(8)) otmp->spe = 0;
+		}
 		/* "Remove chance of non-charged wands spawning." In Soviet Russia, players don't realize that a lower chance of finding useful stuff makes the game more interesting. The pre-cancelled wands are actually there for a reason: that way, players trying to zap-identify can randomly vaporize their wands if they happen to be cancelled, making identification more useful! --Amy */
 
 		/* in the late game, wands may generate with more charges but only if they're a type that can be recharged
