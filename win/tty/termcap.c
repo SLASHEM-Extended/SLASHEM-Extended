@@ -1046,6 +1046,7 @@ init_hilite()
 			hilites[c|BRIGHT] = (char*) alloc(strlen(scratch)+strlen(MD)+1);
 			Strcpy(hilites[c|BRIGHT], MD);
 			Strcat(hilites[c|BRIGHT], scratch);
+		}
 	    }
 
 	}
