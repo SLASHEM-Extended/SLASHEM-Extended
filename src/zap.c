@@ -141,6 +141,7 @@ struct obj *otmp;
 	boolean reveal_invis = FALSE;
 	boolean dbldam = Role_if(PM_KNIGHT) && u.uhave.questart;
 	int dmg, otyp = otmp->otyp;
+	int owandclass = otmp->oclass;
 	int hurtlex,hurtley;
 	const char *zap_type_text = "spell";
 	struct obj *obj;
@@ -943,7 +944,7 @@ armorsmashdone:
 			hit(zap_type_text, mtmp, exclam(dmg));
 			(void) resist(mtmp, otmp->oclass, dmg, TELL);
 		} else miss(zap_type_text, mtmp);
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 
 	case WAN_STRIKING:
@@ -964,7 +965,7 @@ armorsmashdone:
 			hit(zap_type_text, mtmp, exclam(dmg));
 			(void) resist(mtmp, otmp->oclass, dmg, TELL);
 		} else miss(zap_type_text, mtmp);
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 	case SPE_MAGIC_BOLT:
 		reveal_invis = TRUE;
@@ -983,7 +984,7 @@ armorsmashdone:
 		break;
 	case WAN_CLONE_MONSTER:
 		clone_mon(mtmp, 0, 0);
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 	case SPE_CLONE_MONSTER:
 		clone_mon(mtmp, 0, 0);
@@ -1154,7 +1155,7 @@ armorsmashdone:
 		    if (mtmp->cham == CHAM_ORDINARY && !rn2(25)) {
 			if (canseemon(mtmp)) {
 			    pline("%s shudders!", Monnam(mtmp));
-			    makeknown(otyp);
+			    if (owandclass == WAND_CLASS) makeknown(otyp);
 			}
 			/* dropped inventory shouldn't be hit by this zap */
 			for (obj = mtmp->minvent; obj; obj = obj->nobj)
@@ -1165,8 +1166,9 @@ armorsmashdone:
 		    } else if (mon_spec_poly(mtmp, (struct permonst *)0, 0L,
 			    (otyp != POT_POLYMORPH), canseemon(mtmp), FALSE,
 			    TRUE)) {
-			if (!Hallucination && canspotmon(mtmp))
-			    makeknown(otyp);
+			if (!Hallucination && canspotmon(mtmp)) {
+			    if (owandclass == WAND_CLASS) makeknown(otyp);
+			}
 		    }
 		}
 		break;
@@ -1341,7 +1343,7 @@ armorsmashdone:
 		mon_set_minvis(mtmp);
 		if (!oldinvis && knowninvisible(mtmp)) {
 		    pline("%s turns transparent!", nambuf);
-		    makeknown(otyp);
+		    if (owandclass == WAND_CLASS) makeknown(otyp);
 		}
 		break;
 	    }
@@ -1357,7 +1359,7 @@ armorsmashdone:
 		newsym(mtmp->mx, mtmp->my);		/* make it appear */
 		if (oldinvis) {
 		    pline("%s becomes visible!", nambuf);
-		    makeknown(otyp);
+		    if (owandclass == WAND_CLASS) makeknown(otyp);
 		}
 		break;
 	    }
@@ -1368,7 +1370,7 @@ armorsmashdone:
 			mtmp->mstun = TRUE;
 			if (canseemon(mtmp)) {
 				pline("%s trembles.",Monnam(mtmp));
-			      makeknown(otyp);
+			      if (owandclass == WAND_CLASS) makeknown(otyp);
 			}
 		}
 
@@ -1426,14 +1428,14 @@ armorsmashdone:
 		/*[Sakusha] add and change message*/
 		pline_The("damage reversed to you!");
 		losehp(dmg,"excessive reverse damage",KILLED_BY);
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 
 	case WAN_PROBING:
 		reveal_invis = TRUE;
 		wake = FALSE;
 		probe_monster(mtmp);
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 
 	case SPE_FINGER:
@@ -1546,7 +1548,7 @@ armorsmashdone:
 			    "looks" : "begins to look",
 			  (otyp == SPE_EXTRA_HEALING ||
 			   otyp == WAN_EXTRA_HEALING) ? " much" : "" );
-		    makeknown(otyp);
+		    if (owandclass == WAND_CLASS) makeknown(otyp);
 		}
 		/* Healing pets is a good thing ... */
 		if (mtmp->mtame || mtmp->mpeaceful) {
@@ -1566,7 +1568,7 @@ armorsmashdone:
 		break;
 	case WAN_LIGHT:	/* (broken wand) */
 		if (flash_hits_mon(mtmp, otmp)) {
-		    makeknown(WAN_LIGHT);
+		    if (owandclass == WAND_CLASS) makeknown(WAN_LIGHT);
 		    reveal_invis = TRUE;
 		}
 		break;
@@ -1576,7 +1578,9 @@ armorsmashdone:
 		reveal_invis = TRUE;
 		if (sleep_monst(mtmp, d(1 + otmp->spe, 12), WAND_CLASS))
 		    slept_monst(mtmp);
-		if (!Blind) makeknown(WAN_SLEEP);
+		if (!Blind) {
+			if (owandclass == WAND_CLASS) makeknown(WAN_SLEEP);
+		}
 		break;
 	case SPE_STONE_TO_FLESH:
 	case WAN_STONE_TO_FLESH:
@@ -1622,7 +1626,7 @@ armorsmashdone:
 					pline("%s suddenly seems weaker!", Monnam(mtmp));
 			}
 		}
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 
 	case WAN_DESLEXIFICATION:
@@ -1650,7 +1654,7 @@ armorsmashdone:
 
 		}
 
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 
 	case SPE_TIME:
@@ -1669,7 +1673,7 @@ armorsmashdone:
 			if (canseemon(mtmp))
 				pline("%s suddenly seems weaker!", Monnam(mtmp));
 		}
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 	case WAN_REDUCE_MAX_HITPOINTS:
 		dmg = rnd(8);
@@ -1704,7 +1708,7 @@ armorsmashdone:
 		else if (hurtley) { hurtlex = rnd(3)-2; }
 		pline("%s is blown around!",Monnam(mtmp));
 		mhurtle(mtmp,hurtlex,hurtley,dmg);
-		makeknown(otyp);
+		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 	default:
 		impossible("What an interesting effect (%d)", otyp);
@@ -3636,7 +3640,7 @@ struct obj *obj, *otmp;
 			}
 			unpunish();
 		    }
-		    makeknown(otmp->otyp);
+		    if (otmp->oclass == WAND_CLASS) makeknown(otmp->otyp);
 		} else
 		    res = 0;
 	} else
@@ -3662,8 +3666,9 @@ struct obj *obj, *otmp;
 		if (Is_box(obj)) (void) boxlock(obj, otmp);
 
 		if (obj_shudders(obj)) {
-		    if (cansee(obj->ox, obj->oy))
-			makeknown(otmp->otyp);
+		    if (cansee(obj->ox, obj->oy)) {
+			if (otmp->oclass == WAND_CLASS) makeknown(otmp->otyp);
+		    }
 		    do_osshock(obj);
 		    break;
 		} else if (rn2(2) && obj_shudders(obj)) { /* huge nerf by Amy */
@@ -3691,7 +3696,9 @@ struct obj *obj, *otmp;
 		    }
 		    res = 1;
 		}
-		if (res) makeknown(WAN_PROBING);
+		if (res) {
+			if (otmp->oclass == WAND_CLASS) makeknown(WAN_PROBING);
+		}
 		break;
 	case WAN_STRIKING:
 	case SPE_FORCE_BOLT:
@@ -3709,7 +3716,7 @@ struct obj *obj, *otmp;
 			res = 0;
 		}
 		/* BUG[?]: shouldn't this depend upon you seeing it happen? */
-		makeknown(otmp->otyp);
+		if (otmp->oclass == WAND_CLASS) makeknown(otmp->otyp);
 		break;
 	case WAN_CANCELLATION:
 		cancel_item(obj, FALSE);
@@ -3800,7 +3807,7 @@ struct obj *obj, *otmp;
 			res = boxlock(obj, otmp);
 		else
 			res = 0;
-		if (res /* && otmp->oclass == WAND_CLASS */)
+		if (res && (otmp->oclass == WAND_CLASS))
 			makeknown(otmp->otyp);
 		break;
 	case SPE_WATER_BOLT:
@@ -4043,7 +4050,7 @@ smell:
 		refresh_y = obj->oy;
 		scatter(obj->ox,obj->oy,4,VIS_EFFECTS|MAY_HIT|MAY_DESTROY|MAY_FRACTURE,(struct obj*)0);
 		newsym(refresh_x,refresh_y);
-		makeknown(otmp->otyp);
+		if (otmp->oclass == WAND_CLASS) makeknown(otmp->otyp);
 		break;
 	case SPE_BLADE_ANGER: /* placeholder for T_BLADE_ANGER */
 		break;
@@ -5594,7 +5601,7 @@ chargingchoice:
 			break;
 	}
 	if (obj && known && !objects[obj->otyp].oc_name_known) {
-		makeknown(obj->otyp);
+		if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
 		more_experienced(0,10);
 	}
 }
@@ -7397,7 +7404,7 @@ boolean ordinary;
 		case SPE_SLOW_MONSTER:
 		    if(HFast & (TIMEOUT | INTRINSIC)) {
 			u_slow_down();
-			makeknown(obj->otyp);
+			if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
 		    }
 		    break;
 
@@ -7405,7 +7412,6 @@ boolean ordinary;
 			if (!rn2(2)) {
 			    if(HFast & (TIMEOUT | INTRINSIC)) {
 				u_slow_down();
-				makeknown(obj->otyp);
 			    }
 			} else {
 				if(Wounded_legs && !u.usteed	/* heal_legs() would heal steeds legs */
@@ -7436,13 +7442,13 @@ boolean ordinary;
 			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
 			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
 			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
-			makeknown(obj->otyp);
+			if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
 
 		    break;
 		case WAN_TELEPORTATION:
 		case SPE_TELEPORT_AWAY:
 		    tele();
-			makeknown(obj->otyp);
+			if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
 		    break;
 		case WAN_BANISHMENT:
 			makeknown(obj->otyp);
@@ -7485,7 +7491,7 @@ boolean ordinary;
 		    killer = buf;
 		    You("irradiate yourself with pure energy!");
 		    You("die.");
-		    makeknown(obj->otyp);
+		    if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
 			/* They might survive with an amulet of life saving */
 		    done(DIED);
 			u.youaredead = 0;
@@ -7664,7 +7670,7 @@ struct obj *obj;	/* wand or spell */
 			    tele();
 			    if(Teleport_control || !couldsee(u.ux0, u.uy0) ||
 				(distu(u.ux0, u.uy0) >= 16))
-					makeknown(obj->otyp);
+					/*makeknown(obj->otyp)*/ ;
 			    steedhit = TRUE;
 			}
 		    break;
@@ -8128,6 +8134,7 @@ weffects(obj)
 struct obj *obj;
 {
 	int otyp = obj->otyp;
+	int owandclass = obj->oclass;
 	boolean disclose = FALSE, was_unkn = !objects[otyp].oc_name_known;
 	int skilldmg = 0; /*WAC - Skills damage bonus*/
 
@@ -8463,7 +8470,7 @@ drainingdone:
 	    disclose = TRUE;
 	}
 	if (disclose && was_unkn) {
-	    makeknown(otyp);
+	    if (owandclass == WAND_CLASS) makeknown(otyp);
 	    more_experienced(0,10);
 	}
 	return;
@@ -8697,16 +8704,17 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 		    case WAN_OPENING:
 		    case SPE_KNOCK:
 			if (is_db_wall(bhitpos.x, bhitpos.y)) {
-			    if (cansee(x,y) || cansee(bhitpos.x,bhitpos.y))
-				makeknown(obj->otyp);
+			    if (cansee(x,y) || cansee(bhitpos.x,bhitpos.y)) {
+				if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
+			    }
 			    open_drawbridge(x,y);
 			}
 			break;
 		    case WAN_LOCKING:
 		    case SPE_WIZARD_LOCK:
-			if ((cansee(x,y) || cansee(bhitpos.x, bhitpos.y))
-			    && levl[x][y].typ == DRAWBRIDGE_DOWN)
-			    makeknown(obj->otyp);
+			if ((cansee(x,y) || cansee(bhitpos.x, bhitpos.y)) && levl[x][y].typ == DRAWBRIDGE_DOWN) {
+			    if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
+			}
 			close_drawbridge(x,y);
 			break;
 
@@ -8714,17 +8722,11 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 
 			if (!rn2(2)) {
 				if (is_db_wall(bhitpos.x, bhitpos.y)) {
-				    if (cansee(x,y) || cansee(bhitpos.x,bhitpos.y))
-					makeknown(obj->otyp);
 				    open_drawbridge(x,y);
 				}
 
 			} else {
-				if ((cansee(x,y) || cansee(bhitpos.x, bhitpos.y))
-				    && levl[x][y].typ == DRAWBRIDGE_DOWN)
-				    makeknown(obj->otyp);
 				close_drawbridge(x,y);
-
 			}
 
 			break;
@@ -8737,7 +8739,7 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 			 case SPE_WIND:
 			if (typ != DRAWBRIDGE_UP)
 			    destroy_drawbridge(x,y);
-			makeknown(obj->otyp);
+			if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
 			break;
 		}
 
@@ -8889,9 +8891,9 @@ notamonster:
 		case WAN_WIND:
 		case SPE_WIND:
 		    if (doorlock(obj, bhitpos.x, bhitpos.y)) {
-			if (cansee(bhitpos.x, bhitpos.y) ||
-			    (obj->otyp == WAN_STRIKING))
-			    makeknown(obj->otyp);
+			if (cansee(bhitpos.x, bhitpos.y) || (obj->otyp == WAN_STRIKING)) {
+			    if (obj->oclass == WAND_CLASS) makeknown(obj->otyp);
+			}
 			if (levl[bhitpos.x][bhitpos.y].doormask == D_BROKEN
 			    && *in_rooms(bhitpos.x, bhitpos.y, SHOPBASE)) {
 			    shopdoor = TRUE;

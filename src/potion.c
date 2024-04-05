@@ -12514,7 +12514,7 @@ register struct obj *otmp;
 	    You("have a %s feeling for a moment, then it passes.",
 		  FunnyHallu ? "normal" : "peculiar");
 	}
-	if(otmp && otmp->dknown && !objects[otmp->otyp].oc_name_known) {
+	if(otmp && otmp->dknown && !objects[otmp->otyp].oc_name_known && otmp->oclass == POTION_CLASS) {
 		if(!unkn) {
 			makeknown(otmp->otyp);
 			more_experienced(0,10);
@@ -12610,7 +12610,7 @@ peffects(otmp)
 		if (wonderpot) obfree(wonderpot, (struct obj *)0);
 
 		if (otmp->oartifact == ART_SEEYOU_HON) {
-			makeknown (otmp->otyp);
+			makeknown(otmp->otyp);
 		} else {
 			unkn++;
 		}
@@ -12679,7 +12679,7 @@ peffects(otmp)
 		}
 		break;
 	case POT_HALLUCINATION:
-            makeknown (POT_HALLUCINATION);
+            makeknown(POT_HALLUCINATION);
 		if (Hallucination || Halluc_resistance) nothing++;
 		else makeknown(otmp->otyp);
 		(void) make_hallucinated(itimeout_incr(HHallucination,

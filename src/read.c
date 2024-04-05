@@ -1553,7 +1553,7 @@ designyourowndone:
 			return(1);
 		}
 
-		if(!objects[scroll->otyp].oc_name_known) {
+		if(!objects[scroll->otyp].oc_name_known && scroll->oclass == SCROLL_CLASS) {
 		    if(known) {
 			makeknown(scroll->otyp);
 			more_experienced(0,10);
