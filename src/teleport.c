@@ -500,6 +500,7 @@ boolean trapok;
 	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || Race_if(PM_KORONST) || (issoviet && (Swimming || Amphibious) ) )) return FALSE;
 	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
 	if (is_watertunnel(x,y) && !(Levitation || Flying || (issoviet && (Swimming || Amphibious) ))) return FALSE;
+	if (is_farmland(x,y) && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
@@ -541,6 +542,7 @@ boolean trapok;
 	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || Race_if(PM_KORONST))) return FALSE;
 	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
 	if (is_watertunnel(x,y) && !(Levitation || Flying)) return FALSE;
+	if (is_farmland(x,y) && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
@@ -563,6 +565,7 @@ boolean trapok;
 	if (is_waterypool(x, y) && !(HLevitation || Flying || Wwalking || Race_if(PM_KORONST))) return FALSE;
 	if (is_watertunnel(x,y) && (Levitation || Flying) && !Passes_walls) return FALSE;
 	if (is_watertunnel(x,y) && !(Levitation || Flying)) return FALSE;
+	if (is_farmland(x,y) && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
 	if (!tele_jump_ok(u.ux, u.uy, x, y)) return FALSE;
 	if (!in_out_region(x, y)) return FALSE;
