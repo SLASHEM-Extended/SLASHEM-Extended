@@ -4916,11 +4916,14 @@ do_break_wand(obj)
 {
     char confirm[QBUFSZ], the_wand[BUFSZ];
 
+    pline("Attention! You are about to break %s!", yname(obj));
+    getlin ("Do you really want to break it? [yes/no]", confirm);
+
+    if (strcmp (confirm, "yes")) {
+	return 0;
+    }
+
     strcpy(the_wand, yname(obj));
-    sprintf(confirm, "Are you really sure you want to break %s?",
-	safe_qbuf("", sizeof("Are you really sure you want to break ?"),
-				the_wand, ysimple_name(obj), "the wand"));
-    if (yn(confirm) == 'n' ) return 0;
 
     if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	You_cant("break %s without hands!", the_wand);
