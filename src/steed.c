@@ -819,7 +819,7 @@ dismount_steed(reason)
 		} else
 			You("dismount %s.", mon_nam(mtmp));
 	}
-	if (otmp && otmp->otyp == INKA_SADDLE) {
+	if (!program_state.gameover && otmp && otmp->otyp == INKA_SADDLE) {
 		pline("The inka saddle tries unsuccessfully to prevent you from getting off your steed, and rips off your skin in the process...");
 		pline("You and your steed are severely hurt!");
 		losehp(rnd(u.ulevel * 5), "inka saddle", KILLED_BY_AN);

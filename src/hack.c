@@ -5105,6 +5105,12 @@ register int n;
 register const char *knam;
 int k_format; /* WAC k_format is an int */
 {
+	/* don't kill the player again if they're dead! --Amy */
+	if (program_state.gameover) {
+		impossible("player took %d damage despite being already dead?!", n);
+		return;
+	}
+
 	if (flags.iwbtg) {
 		u.youaredead = 1;
 		killer_format = k_format;
