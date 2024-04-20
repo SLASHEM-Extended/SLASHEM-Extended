@@ -5304,8 +5304,6 @@ boolean credit_hero;
 {
 	/* KMH -- If we are hallucinating, we aren't sure of the object description */
 	if (Hallucination) return;
-	if (Race_if(PM_DE_ENERGISER)) return;
-	if (u.deenergiserpersist) return;
 
     if (!objects[oindx].oc_name_known) {
 	register int dindx, acls = objects[oindx].oc_class;
@@ -5317,6 +5315,9 @@ boolean credit_hero;
 	for (dindx = bases[acls]; disco[dindx] != 0; dindx++)
 	    if (disco[dindx] == oindx) break;
 	disco[dindx] = oindx;
+
+	if (Race_if(PM_DE_ENERGISER)) return;
+	if (u.deenergiserpersist) return;
 
 	if (mark_as_known) {
 	    objects[oindx].oc_name_known = 1;

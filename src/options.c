@@ -3785,6 +3785,8 @@ doset()
 		doset_add_menu(tmpwin, fqn_prefix_names[i], 0);
 #endif
 
+	any.a_void = 0;
+
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE,
 		 " ", MENU_UNSELECTED);
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, iflags.menu_headings,
