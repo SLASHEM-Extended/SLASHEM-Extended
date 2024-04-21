@@ -11,7 +11,7 @@
 /* #define DEBUG */		/* turn on for diagnostics */
 
 static boolean gettech(int *);
-static boolean dotechmenu(int, int *);
+static boolean dotechmenu(int, int *, int);
 static void doblitzlist(void);
 static int techeffects(int);
 static int mon_to_zombie(int);
@@ -37,6 +37,8 @@ static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allnoncount[] = { ALL_CLASSES, 0 };
 static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+
+static int tech_in_memory;
 
 /* 
  * Do try to keep the names <= 25 chars long, or else the
@@ -2580,24 +2582,32 @@ gettech(tech_no)
                 You("don't know that technique.");
 	    }
 	}
-        return dotechmenu(PICK_ONE, tech_no);
+        return dotechmenu(PICK_ONE, tech_no, 0);
 }
 
 static boolean
-dotechmenu(how, tech_no)
+dotechmenu(how, tech_no, specialmenutype)
 	int how;
-        int *tech_no;
+	int *tech_no;
+	int specialmenutype; /* 0 = use techs, 1 = sort techs, 2 = pick tech to swap with */
 {
 	winid tmpwin;
 	int i, n, len, longest, techs_useable, tlevel;
+	int splnum, othnum;
 	char buf[BUFSZ], let = 'a';
 	const char *prefix;
 	menu_item *selected;
 	anything any;
 
+restartmenu:
+	let = 'a';
+
 	tmpwin = create_nhwindow(NHW_MENU);
 	start_menu(tmpwin);
 	any.a_void = 0;         /* zero out all bits */
+
+	tech_in_memory = -2;
+	struct tech spl_tmp;
 
 	techs_useable = 0;
 
@@ -2692,24 +2702,75 @@ dotechmenu(how, tech_no)
 	    if (let == 'Z') let = 'a';
 	}
 
-	if (!techs_useable) 
+	if (specialmenutype == 0) { /* option for sorting your techs */
+		any.a_int = -1;	/* must be non-zero */
+		add_menu(tmpwin, NO_GLYPH, &any, '?', 0, ATR_NONE, "Sort techs", MENU_UNSELECTED);
+	}
+
+	if (!techs_useable)
 	    how = PICK_NONE;
 
 	/* Amy addition: if you are on the vibrating square, print a special message. The reason for it being that
 	 * #technique is one of the commands that ALWAYS works, no matter which nasty traps you have. Yes, there is a trap
 	 * that prevents the techniques from actually working, but the menu can be accessed anyway, and therefore it's
 	 * always possible in theory (he he) to find the VS no matter which, or how many(!!!), interface screws are active */
-	end_menu(tmpwin, (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)) ? "You're standing on the vibrating square." : how == PICK_ONE ? "Choose a technique" :
+	end_menu(tmpwin, (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)) ? "You're standing on the vibrating square." : (specialmenutype == 1) ? "Pick tech to sort" : (specialmenutype == 2) ? "Swap with which tech?" : how == PICK_ONE ? "Choose a technique" :
 					   "Currently known techniques");
 
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
 	if (n > 0) {
+
+	    if (selected[0].item.a_int == -1) {
+		free((void *)selected);
+		return dotechmenu(PICK_ONE, tech_no, 1);
+	    }
+
 	    int selection = selected[0].item.a_int - 1;
 	    if (selection < 0) { /* shouldn't happen, but according to amateurhour it can... so he fixed it --Amy */
 		    free((void *)selected);
 		    return FALSE;
 	    }
+
+	    /* sort techniques, by Amy, with code shamelessly copied/adjusted from spell.c */
+	    if (specialmenutype == 1) {
+		splnum = selected[0].item.a_int - 1;
+		dotechmenu(PICK_ONE, tech_no, 2);
+		othnum = tech_in_memory;
+
+		/*pline("nums to swap: %d, %d", splnum, othnum);*/
+
+		if (techid(splnum) <= NO_TECH) {
+			pline("Invalid first tech. Aborting.");
+			free((void *)selected);
+			return FALSE;
+		}
+		if (techid(othnum) <= NO_TECH) {
+			pline("Invalid second tech. Aborting.");
+			free((void *)selected);
+			return FALSE;
+		}
+
+		spl_tmp = tech_list[splnum];
+		tech_list[splnum] = tech_list[othnum];
+		tech_list[othnum] = spl_tmp;
+
+		free((void *)selected);
+
+		goto restartmenu;
+
+		return FALSE;
+	    }
+
+	    if (specialmenutype == 2) {
+
+		tech_in_memory = selected[0].item.a_int - 1;
+
+		free((void *)selected);
+
+		return FALSE;
+	    }
+
 	    *tech_no = selection;
 	    free((void *)selected);
 	    return TRUE;
