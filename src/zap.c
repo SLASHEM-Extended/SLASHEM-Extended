@@ -11058,8 +11058,8 @@ register int osym, dmgtyp;
 		}
 
 		if (obj->in_use) --quan; /* one will be used up elsewhere */
-		for(i = cnt = 0L; i < quan; i++)
-		    if(!rn2(10) && (rnd(20 + Luck) < 15) && (rnd(20 + Luck) < 15) ) cnt++;
+		for(i = cnt = 0L; i < quan; i++) /* note by Amy: potions were too fragile, give saving throw */
+		    if(!rn2(10) && !(obj->oclass == POTION_CLASS && rn2(3)) && (rnd(20 + Luck) < 15) && (rnd(20 + Luck) < 15) ) cnt++;
 
 		if(!cnt) continue;
 		if(cnt == quan)	mult = "Your";
