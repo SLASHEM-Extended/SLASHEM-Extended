@@ -1979,7 +1979,7 @@
 
 #define HMagicVacuum		u.uprops[MAGIC_VACUUM].intrinsic
 #define EMagicVacuum		u.uprops[MAGIC_VACUUM].extrinsic
-#define IntMagicVacuum	(HMagicVacuum || Role_if(PM_ALLTECHER) || u.alltecherpersist )
+#define IntMagicVacuum	(HMagicVacuum || u.martialstyle == MARTIALSTYLE_WRESTLING || Role_if(PM_ALLTECHER) || u.alltecherpersist )
 #define ExtMagicVacuum	(EMagicVacuum || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || autismweaponcheck(ART_ARABELLA_S_THINNER) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
 #define MagicVacuum		(IntMagicVacuum || ExtMagicVacuum )
 #define StrongMagicVacuum		(IntMagicVacuum && ExtMagicVacuum && MagicVacuum)
@@ -1996,7 +1996,7 @@
 
 #define HFuckOverEffect		u.uprops[FUCK_OVER].intrinsic
 #define EFuckOverEffect		u.uprops[FUCK_OVER].extrinsic
-#define IntFuckOverEffect	(HFuckOverEffect || (u.startscummerpersist && u.ulevel >= 20) || (Race_if(PM_STARTSCUMMER) && u.ulevel >= 20) )
+#define IntFuckOverEffect	(HFuckOverEffect || u.martialstyle == MARTIALSTYLE_WRESTLING || (u.startscummerpersist && u.ulevel >= 20) || (Race_if(PM_STARTSCUMMER) && u.ulevel >= 20) )
 #define ExtFuckOverEffect	(EFuckOverEffect || (u.startscummerpersist && u.ulevel >= 20) || (Race_if(PM_STARTSCUMMER) && u.ulevel >= 20) || (uamul && uamul->oartifact == ART_NUCLEAR_WORTH) || (uarmh && uarmh->oartifact == ART_HOW_CAN_ONE_PLEASE_LOOK_LI) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || autismweaponcheck(ART_SKODIT) || (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF) || autismweaponcheck(ART_NOTHING_FOR_IT) || Race_if(PM_RODNEYAN) || (uarm && uarm->oartifact == ART_WELL_FUCK) || (uarmc && uarmc->oartifact == ART_SHROUD) )
 
 #define FuckOverEffect		(IntFuckOverEffect || ExtFuckOverEffect)

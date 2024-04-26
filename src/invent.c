@@ -11111,6 +11111,7 @@ doprwep()
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) pline("Your current martial arts style is taekwondo.");
 	if (u.martialstyle == MARTIALSTYLE_KARATE) pline("Your current martial arts style is karate.");
 	if (u.martialstyle == MARTIALSTYLE_CAPOEIRA) pline("Your current martial arts style is capoeira.");
+	if (u.martialstyle == MARTIALSTYLE_WRESTLING) pline("Your current martial arts style is wrestling.");
     }
     if (u.twoweap) {
     	if (uswapwep)

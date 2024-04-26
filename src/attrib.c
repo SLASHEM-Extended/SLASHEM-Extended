@@ -3182,6 +3182,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
+		if (u.martialstyle == MARTIALSTYLE_WRESTLING) tmp += 1;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_JOHANETTA_S_TITLE) tmp += 4;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
@@ -3648,6 +3649,7 @@ int x;
 		if (u.tsloss_wis > 0 && x == A_WIS) tmp -= u.tsloss_wis;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
+		if (u.martialstyle == MARTIALSTYLE_WRESTLING) tmp -= 1;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);
@@ -3716,6 +3718,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_SEE_THE_MULCH_STATE) tmp += 3;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uleft && uleft->oartifact == ART_SPEECHBREAK) tmp += 5;
+		if (u.martialstyle == MARTIALSTYLE_WRESTLING) tmp += 1;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
@@ -3825,6 +3828,7 @@ int x;
 		if (isbadstatter) tmp -= 2;
 		if (HWounded_legs) tmp--;
 		if (EWounded_legs) tmp--;
+		if (u.martialstyle == MARTIALSTYLE_MARSHALARTS) tmp -= 3;
 
 		if (FemtrapActiveNora && u.uhunger > 500) {
 			int norahunger = (u.uhunger - 500);

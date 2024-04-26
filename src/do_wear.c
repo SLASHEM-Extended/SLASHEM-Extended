@@ -6864,8 +6864,8 @@ find_ac()
 	else if (ACURR(A_DEX) < 24) uac -= 9;
 	else uac -= 10;
 
-	if (Role_if(PM_MONK) && !uwep && (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) ||
-		(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms) {
+	if (Role_if(PM_MONK) && !uwep && (!uarm || (u.martialstyle == MARTIALSTYLE_MARSHALARTS) || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) ||
+		(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) && (!uarms || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) ) {
 /*WAC cap off the Monk's ac bonus to -11 */
             if (u.ulevel > 18) uac -= 11;
             else uac -= (u.ulevel / 2) + 2;

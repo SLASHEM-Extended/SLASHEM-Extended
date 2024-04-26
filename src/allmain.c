@@ -3334,7 +3334,7 @@ moveloop()
 			u.yawmtime++;
 		}
 
-		if ((KillerRoomEffect || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(2000)) {
+		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(2000)) {
 			int killerroomtype = rnd(28);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 

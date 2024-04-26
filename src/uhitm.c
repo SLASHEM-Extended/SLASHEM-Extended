@@ -656,8 +656,8 @@ register struct monst *mtmp;
 #endif
 
 	if(Role_if(PM_MONK) && !Upolyd) {
-		if(!uwep && (!u.twoweap || !uswapwep) && !uarms && 
-		  (!uarm || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA && 
+		if(!uwep && (!u.twoweap || !uswapwep) && (!uarms || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) && 
+		  (!uarm || (u.martialstyle == MARTIALSTYLE_MARSHALARTS) || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA && 
 		  	uarm->otyp <= ROBE_OF_WEAKNESS)))
 		  	
 		  tmp += (GushLevel / 3) + 2;
@@ -1577,7 +1577,7 @@ martial_dmg()
 
 	  if (!Role_if(PM_HALF_BAKED)) {
 
-	        if(( (!uarm && rn2(2)) || (uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms) && (damage > 1))
+	        if(( (!uarm && rn2(2)) || u.martialstyle == MARTIALSTYLE_MARSHALARTS || (uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms || u.martialstyle == MARTIALSTYLE_MARSHALARTS) && (damage > 1))
 	                damage += rnd(damage);
 	        else {
 			if (damage > 1) damage += rnd(2);
@@ -5714,8 +5714,8 @@ melatechoice:
 
 	/* Special monk strikes */
 	if ( (Role_if(PM_MONK) || (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) ) && !Upolyd && !thrown && no_obj &&
-		(!uarm || (uarm && uarm->oartifact == ART_HA_MONK) || (uarm && uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA &&
-		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
+		(!uarm || (u.martialstyle == MARTIALSTYLE_MARSHALARTS) || (uarm && uarm->oartifact == ART_HA_MONK) || (uarm && uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA &&
+		 uarm->otyp <= ROBE_OF_WEAKNESS)) && (!uarms || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
 	    canhitmon = rnd(500);
@@ -10833,6 +10833,9 @@ register int tmp;
 	boolean carthageattack = FALSE;
 	if (Race_if(PM_CARTHAGE) && u.usteed) carthageattack = TRUE;
 	boolean carthageprocess = FALSE;
+	boolean wrestleattack = FALSE;
+	boolean wrestleprocess = FALSE;
+	if (!rn2(3) && u.twoweap && (!uwep || !uswapwep) && u.martialstyle == MARTIALSTYLE_WRESTLING) wrestleattack = TRUE;
 
 	/* don't give the extra weapon attacks every time if your natural form has more than two --Amy */
 	int weaponiteration = 0;
@@ -10847,6 +10850,7 @@ register int tmp;
 
 symbiotejump:
 carthagejump:
+wrestlejump:
 	for(i = 0; i < NATTK; i++) {
 	    mhit = 0; /* Clear all previous attacks */
 
@@ -10856,7 +10860,7 @@ carthagejump:
 	    if (symbioteprocess && !symbiotenomore && !uactivesymbiosis) continue;
 	    if (carthageprocess && !(Race_if(PM_CARTHAGE) && u.usteed)) continue;
 
-	    mattk = getmattk(carthageprocess ? &mons[PM_CARTHAGE_DUMMY] : (symbioteprocess && !symbiotenomore) ? &mons[u.usymbiote.mnum] : youmonst.data, i, sum, &alt_attk);
+	    mattk = getmattk(wrestleprocess ? &mons[PM_WRESTLE_DUMMY] : carthageprocess ? &mons[PM_CARTHAGE_DUMMY] : (symbioteprocess && !symbiotenomore) ? &mons[u.usymbiote.mnum] : youmonst.data, i, sum, &alt_attk);
 
 	    switch(mattk->aatyp) {
 		case AT_WEAP:
@@ -11704,6 +11708,7 @@ bladeangerdone2:
 	}
 
 	if (carthageattack && !carthageprocess && Race_if(PM_CARTHAGE) && u.usteed) {
+		carthageattack = FALSE;
 		carthageprocess = TRUE;
 		symbiotenomore = TRUE;
 
@@ -11712,6 +11717,16 @@ bladeangerdone2:
 		carthageattk->damd = u.ulevel;
 
 		goto carthagejump;
+	}
+
+	if (wrestleattack && u.twoweap && (!uwep || !uswapwep) && u.martialstyle == MARTIALSTYLE_WRESTLING) {
+
+		wrestleprocess = TRUE;
+		wrestleattack = FALSE;
+		symbiotenomore = TRUE;
+		carthageattack = FALSE;
+
+		goto wrestlejump;
 	}
 
 	u.symbioteattacking = FALSE;
