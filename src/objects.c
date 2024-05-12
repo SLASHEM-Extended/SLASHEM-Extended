@@ -9218,6 +9218,7 @@ SCROLL((char *)0,               "RIO GRANDE RIVER",  P_NONE,     1,   0, 100, CL
 SCROLL((char *)0,               "LUZ IS WEARING LAST SEASONS HEELS",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "EVERY ONCE IN A WHILE A GROUP OF PIMPS SPAWNS",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "THE STRIPPER GIRLS ALWAYS USE DEFAULT COLORS FOR THEIR PLATFORM SHOES",  P_NONE,     1,   0, 100, CLR_GREEN, 1),
+SCROLL((char *)0,               "UP UP WITH FILLE IS KILL SHIT",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

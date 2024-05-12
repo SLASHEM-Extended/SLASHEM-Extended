@@ -17780,6 +17780,7 @@ loveheelover:
 		if(ptr == &mons[PM_SILVER_LADY_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(ptr == &mons[PM_WHIP_DEMON]) (void) mongets(mtmp, CHITIN_WHIP);
 		if(ptr == &mons[PM_FLAILER_DEMON]) (void) mongets(mtmp, SPIKED_CHAIN);
+		if(ptr == &mons[PM_JANELITH]) (void) mongets(mtmp, SEXY_MARY_JANE);
 
 		if(ptr == &mons[PM_KYLE_KATARN]) (void) mongets(mtmp, BLUE_LIGHTSABER);
 		if(ptr == &mons[PM_TAVION]) (void) mongets(mtmp, WHITE_DOUBLE_LIGHTSABER);
