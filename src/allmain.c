@@ -17460,7 +17460,11 @@ boolean new_game;	/* false => restoring an old game */
 #ifdef PHANTOM_CRASH_BUG
 	if (new_game) pline("Welcome to SLASH'EM Extended! For game discussion, bug reports etc. join the #slashemextended or #em.slashem.me IRC channel on Libera. :-) --Amy");
 #else
-	if (new_game) pline("You are playing '%s' on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Libera. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!", VERSION_ID);
+	if (new_game) {
+		char versbuf[BUFSZ];
+		getversionstring(versbuf);
+		pline("You are playing '%s' on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Libera. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!", versbuf);
+	}
 #ifdef BIGSLEX
 	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
 #endif /* BIGSLEX */
