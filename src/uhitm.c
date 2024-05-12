@@ -4044,6 +4044,22 @@ int dieroll;
 		pline("The boomerang degrades.");
 	}
 
+	/* boomerangs shouldn't be completely endless --Amy */
+	if (thrown && obj && ((objects[obj->otyp].oc_skill == P_BOOMERANG) || (objects[obj->otyp].oc_skill == -P_BOOMERANG)) ) {
+		if (!rn2(1000) && (!obj->oartifact || !rn2(10)) ) {
+			if (obj->spe > -20) {
+				obj->spe -= rnd(10);
+				Your("boomerang degrades.");
+			} else {
+				obj->otyp = BROKEN_SWORD; /* destroying it outright causes a panic, annoyingly enough */
+				obj->owt = weight(obj);
+				Your("boomerang is destroyed.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper', kogda eta shtuka nakonets-to ischezla, eto spravedlivo dlya togo, chtoby byt' takim ekspluatatorom eksploytov, tip ledyanoy glyby govorit KHARKHARKHAR KHARKHAR KHAR!!!" : "Dae-ae-ae-ae-aeaeaeaei.");
+				return FALSE;
+			}
+		}
+	}
+
 	/****** NOTE: perhaps obj is undefined!! (if !thrown && BOOMERANG)
 	 *      *OR* if attacking bare-handed!! */
 

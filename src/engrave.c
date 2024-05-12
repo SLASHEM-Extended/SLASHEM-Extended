@@ -6140,6 +6140,7 @@ static const char *epitaphs[] = {
 	"It's a lot of fun to watch your guy in GTA San Andreas repeatedly get stomped by a lovely girl until your HP bar is empty, particularly if the girl in question is wearing pretty high-heeled shoes!",
 	"The sweet prostitutes in GTA3 can repeately knee you in the nuts very painfully, and it's really exciting to let them do that until your guy's HP runs out!",
 	"Wow, it's sooooo sexy to watch the scantily clad beach girls in GTA Vice City repeatedly push the player character through the area with their lovely bathing sandals, because they can kick very powerfully and eventually defeat the player!",
+	"FUK U AMY why did you make it so that my boomerang suddenly turns from +4 to -4 YOU SUCK",
 
 };
 
