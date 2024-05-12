@@ -10835,7 +10835,7 @@ register int tmp;
 	boolean carthageprocess = FALSE;
 	boolean wrestleattack = FALSE;
 	boolean wrestleprocess = FALSE;
-	if (!rn2(3) && u.twoweap && (!uwep || !uswapwep) && u.martialstyle == MARTIALSTYLE_WRESTLING) wrestleattack = TRUE;
+	if (u.twoweap && (!uwep || !uswapwep) && u.martialstyle == MARTIALSTYLE_WRESTLING) wrestleattack = TRUE;
 
 	/* don't give the extra weapon attacks every time if your natural form has more than two --Amy */
 	int weaponiteration = 0;
