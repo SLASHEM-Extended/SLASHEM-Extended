@@ -11969,6 +11969,7 @@ boolean ranged;
 		You("float up, against an obstacle! Ouch!");
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, tmp);
+		flags.botl = TRUE;
 		mdamageu(mon, tmp);
 
 		break;

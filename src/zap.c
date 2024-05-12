@@ -5288,6 +5288,7 @@ secureidchoice:
 		case WAN_LEVITATION:
 			known = TRUE;
 			incr_itimeout(&HLevitation, rnd(100) );
+			flags.botl = TRUE;
 			pline("You float up!");
 			break;
 

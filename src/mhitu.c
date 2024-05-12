@@ -7949,6 +7949,7 @@ hitmu(mtmp, mattk)
 		You("float up!");
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, dmg);
+		flags.botl = TRUE;
 
 		break;
 
@@ -11492,6 +11493,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			You("float up!");
 			HLevitation &= ~I_SPECIAL;
 			incr_itimeout(&HLevitation, tmp);
+			flags.botl = TRUE;
 
 		break;
 
@@ -14734,6 +14736,7 @@ common:
 		You("float up!");
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, tmp);
+		flags.botl = TRUE;
 
 		break;
 
@@ -18770,6 +18773,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			You("float up!");
 			HLevitation &= ~I_SPECIAL;
 			incr_itimeout(&HLevitation, dmgplus);
+			flags.botl = TRUE;
 		}
 
 		break;

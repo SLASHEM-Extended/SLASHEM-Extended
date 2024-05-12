@@ -902,6 +902,7 @@ int spellnum;
 	pline(FunnyHallu ? "Wow... you're suddenly walking on air!" : "You float up!");
 	HLevitation &= ~I_SPECIAL;
 	incr_itimeout(&HLevitation, rnz(50));
+	flags.botl = TRUE;
 
 	dmg = 0;
 	break;

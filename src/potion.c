@@ -2844,9 +2844,10 @@ badeffect()
 		case 104:
 		case 105:
 		case 106:
-		pline("You float up!");
-		HLevitation &= ~I_SPECIAL;
-		incr_itimeout(&HLevitation, rnz(50));
+			pline("You float up!");
+			HLevitation &= ~I_SPECIAL;
+			incr_itimeout(&HLevitation, rnz(50));
+			flags.botl = TRUE;
 
 		break;
 
@@ -4422,9 +4423,10 @@ reallybadeffect()
 		break;
 
 		case 13:
-		pline("You float up!");
-		HLevitation &= ~I_SPECIAL;
-		incr_itimeout(&HLevitation, rnz(50));
+			pline("You float up!");
+			HLevitation &= ~I_SPECIAL;
+			incr_itimeout(&HLevitation, rnz(50));
+			flags.botl = TRUE;
 
 		break;
 
@@ -14142,6 +14144,7 @@ peffects(otmp)
 		    HLevitation |= I_SPECIAL;
 		} else incr_itimeout(&HLevitation, rn1((otmp->otyp == SPE_LEVITATION) ? 30 : 140,10));
 		spoteffects(FALSE);	/* for sinks */
+		flags.botl = TRUE;
 		break;
 	case POT_GAIN_ENERGY:			/* M. Stephenson */
 		{       register int num , num2;

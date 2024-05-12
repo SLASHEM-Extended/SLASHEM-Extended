@@ -4179,6 +4179,7 @@ castanyway:
 			}
 
 			incr_itimeout(&HLevitation, rn1(30, 10));
+			flags.botl = TRUE;
 			spoteffects(FALSE);	/* for sinks */
 		}
 

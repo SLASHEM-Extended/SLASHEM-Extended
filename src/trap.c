@@ -4834,6 +4834,7 @@ dothetrap:
 
 		HLevitation &= ~I_SPECIAL;
 		incr_itimeout(&HLevitation, rnz(50));
+		flags.botl = TRUE;
 
 		break;
 

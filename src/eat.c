@@ -5948,6 +5948,7 @@ struct obj *otmp;
 		    if (!Levitation) {
 			float_up();
 			incr_itimeout(&HLevitation, d(10,20));
+			flags.botl = TRUE;
 			makeknown(typ);
 		    }
 		    break;

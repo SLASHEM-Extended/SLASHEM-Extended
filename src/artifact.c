@@ -6044,6 +6044,7 @@ tunguskaagain:
 
 			incr_itimeout(&HLevitation, rnz(250));
 			HLevitation |= I_SPECIAL;
+			flags.botl = TRUE;
 
 			You_feel("protected!");
 			You("float into the air!");

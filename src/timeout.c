@@ -4468,6 +4468,7 @@ nh_timeout()
 			break;
 		case LEVITATION:
 			(void) float_down(I_SPECIAL|TIMEOUT, 0L);
+			flags.botl = TRUE;
 			break;
 		case FLYING:
 			if (!Flying)

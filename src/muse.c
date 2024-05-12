@@ -9344,6 +9344,7 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		incr_itimeout(&HLevitation, rnd(100) );
+		flags.botl = TRUE;
 		pline("You float up!");
 
 		if (oseen) makeknown(WAN_LEVITATION);
