@@ -3238,12 +3238,8 @@ int x;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_JAPANESE_WOMEN && tmp > 14) tmp = 14;
 		if (uarmf && uarmf->oartifact == ART_SKIN_AND_BONE && tmp > 6) tmp = 6;
 		if (autismweaponcheck(ART_MR__AHLBLOW_S_SIGNAGE) && tmp > 5) tmp = 5;
-		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (FemtrapActiveIna) tmp -= 3;
-		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
-		if (have_lowstatstone()) tmp -= 10;
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_str > 0) tmp -= u.tsloss_str;
 
@@ -3259,6 +3255,11 @@ int x;
 				tmp--;
 			}
 		}
+
+		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
+		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
 
 	} else if (x == A_CHA) {
 		/*if (tmp < 18 && (youmonst.data && youmonst.data->mlet == S_NYMPH ||
@@ -3468,11 +3469,7 @@ int x;
 
 		}
 
-		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
-		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
-		if (have_lowstatstone()) tmp -= 10;
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= 10;
 		if (uarmf && itemhasappearance(uarmf, APP_VELCRO_SANDALS)) tmp -= 5;
 		if (uarmf && itemhasappearance(uarmf, APP_BUSINESS_SHOES)) tmp -= 5;
 		if (uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) tmp -= 5;
@@ -3509,6 +3506,11 @@ int x;
 
 		/* having a hemorrhage means you don't look so good... --Amy */
 		if (PlayerBleeds > 100) tmp--;
+
+		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
+		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
 
 	} else if (x == A_INT || x == A_WIS) {
 		/* yes, this may raise int/wis if player is sufficiently
@@ -3637,12 +3639,8 @@ int x;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
-		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
 		if (uarmf && uarmf->oartifact == ART_KILLCAP && x == A_INT) tmp -= 2;
-		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
-		if (have_lowstatstone()) tmp -= 10;
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= 10;
 		if (PlayerBleeds > 100) tmp -= 2;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_int > 0 && x == A_INT) tmp -= u.tsloss_int;
@@ -3659,6 +3657,11 @@ int x;
 			tmp--;
 			tmp -= norahunger;
 		}
+
+		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
+		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
 
 		if (autismweaponcheck(ART_MCCAULEY_S_INTELLIGENCE) && tmp > 6 && x == A_INT) tmp = 6;
 		if (uarmf && uarmf->oartifact == ART_KILLCAP && tmp > 6) tmp = 6;
@@ -3817,11 +3820,7 @@ int x;
 		if (PlayerBleeds > 100) tmp -= 2;
 		if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT && tmp > 12) tmp = 12;
 		if (uarmf && uarmf->oartifact == ART_SKIN_AND_BONE && tmp > 6) tmp = 6;
-		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
-		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
-		if (have_lowstatstone()) tmp -= 10;
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_dex > 0) tmp -= u.tsloss_dex;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
@@ -3838,6 +3837,11 @@ int x;
 			tmp--;
 			tmp -= norahunger;
 		}
+
+		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
+		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
 
 	} else { /* A_CON */
 
@@ -3938,17 +3942,18 @@ int x;
 			tmp -= norahunger;
 		}
 
-		if (AllStatsAreLower) tmp -= 10;
 		if (uarmf && uarmf->oartifact == ART_STAR_SOLES) tmp -= 2;
-		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= 10;
-		if (have_lowstatstone()) tmp -= 10;
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= 10;
 		if (Race_if(PM_HUMANOID_ANGEL)) tmp -= angelshadowstuff();
 		if (u.tsloss_con > 0) tmp -= u.tsloss_con;
 		if (Race_if(PM_LOWER_ENT) && Burned) tmp -= 2;
 		if (isbadstatter) tmp -= 2;
 		if (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
+
+		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
+		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
 
 	}
 
