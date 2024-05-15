@@ -4053,6 +4053,7 @@ int dieroll;
 			} else {
 				obj->otyp = BROKEN_SWORD; /* destroying it outright causes a panic, annoyingly enough */
 				obj->owt = weight(obj);
+				obj->mstartinventX = TRUE;
 				Your("boomerang is destroyed.");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper', kogda eta shtuka nakonets-to ischezla, eto spravedlivo dlya togo, chtoby byt' takim ekspluatatorom eksploytov, tip ledyanoy glyby govorit KHARKHARKHAR KHARKHAR KHAR!!!" : "Dae-ae-ae-ae-aeaeaeaei.");
 				return FALSE;
