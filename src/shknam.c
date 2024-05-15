@@ -438,7 +438,7 @@ const struct shclass shtypes[] = {
 	    D_SHOP, {{100, COIN_CLASS}, {0, 0}, {0, 0}}, shkgeneral},
 
 	{"health food store", FOOD_CLASS, 1, D_SHOP, {
-	    {20, -EUCALYPTUS_LEAF}, {9, -CLOVE_OF_GARLIC}, {9, -SPRIG_OF_WOLFSBANE}, {8, -MEADOWFOAM}, {8, -MOTHERWORT}, {8, -WATER_HYACINTH}, {10, -LICHOR}, {10, -AMBROSIA}, {5, -LUMP_OF_ROYAL_JELLY}, {1, -HONEYCOMB}, {4, -DIGESTION_CAKE}, {8, -MAGIC_BANANA}, {0, 0}}, shkfoods},
+	    {20, -EUCALYPTUS_LEAF}, {9, -CLOVE_OF_GARLIC}, {9, -SPRIG_OF_WOLFSBANE}, {8, -MEADOWFOAM}, {8, -MOTHERWORT}, {8, -WATER_HYACINTH}, {8, -LICHOR}, {8, -AMBROSIA}, {5, -LUMP_OF_ROYAL_JELLY}, {1, -HONEYCOMB}, {4, -DIGESTION_CAKE}, {8, -MAGIC_BANANA}, {4, -VERMILION_SPONGE}, {0, 0}}, shkfoods},
 
 	{"fast food store", FOOD_CLASS, 1, D_SHOP, {
 	    {10, -SANDWICH}, {10, -PANCAKE}, {10, -TORTILLA}, {10, -PASTA}, {40, -SLICE_OF_PIZZA}, {10, -LUNCH_OF_BOILED_EGG}, {10, -PIZZA}, {0, 0}}, shkfoods},

@@ -4687,7 +4687,7 @@ register struct obj *obj;
 }
 
 static int treefruits[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,LEMON,CHERRY};
-static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,BLACK_HENBANE,MOTHERWORT,LICHOR,AMBROSIA,WATER_HYACINTH,SPIDDAL_STICK,HARRADA,MEADOWFOAM,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
+static int treefruitsX[] = {APPLE,ORANGE,PEAR,BANANA,EUCALYPTUS_LEAF,CHERRY,ASIAN_PEAR,BLACK_HENBANE,MOTHERWORT,VERMILION_SPONGE,LICHOR,AMBROSIA,WATER_HYACINTH,SPIDDAL_STICK,HARRADA,MEADOWFOAM,LEMON,MELON,SLIME_MOLD,LUMP_OF_ROYAL_JELLY,HONEYCOMB,WATERMELON,WHITE_PEACH,MAGIC_BANANA};
 /* rare fruits added by Amy, of course they don't grow in Soviet Russia, it's too cold there because the type of ice block
  * brings winter - he's like "Väterchen Frost" :-P */
 
@@ -4708,27 +4708,34 @@ int x, y;
 {
     register struct obj *gold = g_at(x,y);
 
+    int amtdbl; /* so that gold multipliers aren't multiplying each other --Amy */
+
     if (amount <= 0L) {
 	amount = (long)(1 + rnd(level_difficulty()+2) * rnd(10));
 	if (!rn2(2)) amount += (long)(1 + rnd(level_difficulty()+2) * rnd(10));
 
+	amtdbl = amount;
+
 	if (Race_if(PM_VENTURE_CAPITALIST)) {	/* they get extra money, idea by deepy */
 
-		if (rn2(2)) amount *= 2;
-		if (!rn2(5)) amount *= 3;
-		if (!rn2(20)) amount *= 5;
-		if (!rn2(200)) amount *= 10;
-		if (!rn2(1000)) amount *= 20;
-		if (!rn2(5000)) amount *= 50;
-		if (!rn2(25000)) amount *= 100;
+		if (rn2(2)) amount += amtdbl;
+		if (!rn2(5)) amount += (amtdbl * 2);
+		if (!rn2(20)) amount += (amtdbl * 4);
+		if (!rn2(200)) amount += (amtdbl * 9);
+		if (!rn2(1000)) amount += (amtdbl * 19);
+		if (!rn2(5000)) amount += (amtdbl * 49);
+		if (!rn2(25000)) amount += (amtdbl * 99);
 	}
 
-	if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) amount *= 2;
-	if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) amount *= 3;
-	if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) amount *= 2;
+	if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) amount += amtdbl;
+	if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) amount += (amtdbl * 2);
+	if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) amount += amtdbl;
+	if (uwep && uwep->oartifact == ART_CLAW_OF_GIERZAHN) amount += amtdbl;
 
-	if (RngeWealth) amount *= (1 + rnd(2)); /* 2.5 times as much gold on average --Amy */
-	if (uarmf && uarmf->oartifact == ART_PRACTICLASSY) amount *= 2;
+	if (RngeWealth) { /* 2.5 times as much gold on average --Amy */
+		if (rn2(3)) amount += (amtdbl * rnd(2));
+	}
+	if (uarmf && uarmf->oartifact == ART_PRACTICLASSY) amount += amtdbl;
     }
 
     if (gold) {

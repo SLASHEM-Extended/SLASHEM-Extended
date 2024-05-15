@@ -1294,6 +1294,8 @@ cgrfinished:
 		    case FUNGUSFARM:
 			if (!rn2(25)) /* lowered chance --Amy */
 			    (void) mksobj_at(SLIME_MOLD, sx, sy, TRUE, FALSE, FALSE);
+			if (!rn2(75))
+			    (void) mksobj_at(VERMILION_SPONGE, sx, sy, TRUE, FALSE, FALSE);
 			if (!rn2(100))
 			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE, FALSE);
 			break;

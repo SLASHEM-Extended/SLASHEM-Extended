@@ -4110,6 +4110,65 @@ uhpmax()
 	return (Upolyd ? u.mhmax : u.uhpmax);
 }
 
+/* restore one point of a drained stat (select one at random if several are drained) --Amy */
+void
+restore_drained_stat()
+{
+	int whichstat = rnd(6);
+	int attempts = 6;
+	while (attempts > 0) {
+
+		switch (whichstat) {
+			case 1:
+				if (u.tsloss_str > 0) {
+					u.tsloss_str--;
+					You_feel("stronger!");
+					return;
+				}
+				break;
+			case 2:
+				if (u.tsloss_dex > 0) {
+					u.tsloss_dex--;
+					You_feel("nimbler!");
+					return;
+				}
+				break;
+			case 3:
+				if (u.tsloss_con > 0) {
+					u.tsloss_con--;
+					You_feel("hardier!");
+					return;
+				}
+				break;
+			case 4:
+				if (u.tsloss_wis > 0) {
+					u.tsloss_wis--;
+					You_feel("wiser!");
+					return;
+				}
+				break;
+			case 5:
+				if (u.tsloss_int > 0) {
+					u.tsloss_int--;
+					You_feel("smarter!");
+					return;
+				}
+				break;
+			case 6:
+				if (u.tsloss_cha > 0) {
+					u.tsloss_cha--;
+					You_feel("prettier!");
+					return;
+				}
+				break;
+		}
+		attempts--;
+		whichstat++;
+		if (whichstat > 6) whichstat = 1;
+	}
+
+}
+
 /* Will you get an attribute increase for the target attribute? --Amy */
 boolean
 attr_will_go_up(targetattr, displaymessage)

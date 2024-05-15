@@ -17537,6 +17537,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A tool that you can apply to cure various afflictions, although this particular one has a low chance of success. It can also be used as a weapon but deals absolutely crap damage, however unlike all the other unicorn horns it can be wielded one-handed."); break;
 			case BUBBLEHORN:
 				pline("This two-handed unicorn horn does very bad melee damage. Its actual purpose is to be applied to fix lost stats; a positively enchanted one may also increase the user's stats."); break;
+			case BRICK_HORN:
+				pline("Two-handed unicorn horn that deals d13 damage when used as a weapon. If you apply it, a temporarily drained stat may be recovered by one point."); break;
 			case ARCANE_HORN:
 				pline("This unicorn horn is a two-handed melee weapon that cannot be applied (unlike the regular unicorn horn). Instead, in order to fix troubles with it, you have to hit a monster in melee with it."); break;
 			case TORCH: 
@@ -17840,6 +17842,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This plant-based type of food reduces your sanity when eaten."); break;
 			case MOTHERWORT:
 				pline("A type of plant food that reduces your contamination if you eat it."); break;
+			case VERMILION_SPONGE:
+				pline("This type of mushroom can be eaten to restore a temporarily drained stat by one point. If several of your stats have been temporarily drained, it selects one at random."); break;
 			case LICHOR:
 				pline("This magical plant normally grows only in Mankar Camoran's silly paradise. It provides good nutrition and can help you overcome the effects of a temporary magic vacuum."); break;
 			case AMBROSIA:
@@ -31102,6 +31106,14 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +8 damage, drain resistance, double regeneration, hunger, stronger version of the patricia trap effect and 10 extra points of AC when wielded."); break;
 				case ART_CLELIA_S_TONGUE_BREAKER:
 					pline("Artifact specs: searching bonus, stronger version of bridghitte trap effect, muteness, +4 wisdom, -3 charisma, aggravate monster and teleportitis when worn."); break;
+				case ART_LEYAWIIN__SWAMPY:
+					pline("Artifact specs: eating it will restore all of your temporarily drained stats."); break;
+				case ART_SLAMBASH:
+					pline("Artifact specs: +12 damage."); break;
+				case ART_FOOK_YOO_FOR_DRAINING_ME:
+					pline("Artifact specs: successfully applying it will restore all of your temporarily drained stats."); break;
+				case ART_CLAW_OF_GIERZAHN:
+					pline("Artifact specs: doubles randomly spawned gold."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -58,6 +58,7 @@ E boolean snuff_lit(struct obj *);
 E boolean catch_lit(struct obj *);
 E boolean use_unicorn_horn(struct obj *);
 E boolean use_bubble_horn(struct obj *);
+E boolean use_brick_horn(struct obj *);
 E boolean tinnable(struct obj *);
 E void reset_trapset(void);
 E void fig_transform(void *, long);
@@ -141,6 +142,7 @@ E void recalc_health(void);
 E int recalc_mana(void);
 E boolean attr_will_go_up(int, BOOLEAN_P);
 E void bodymorph(void);
+E void restore_drained_stat(void);
 
 /* ### ball.c ### */
 

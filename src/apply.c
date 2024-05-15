@@ -3018,6 +3018,56 @@ fixthings:
 	return 0;
 }
 
+/* brick horn: restore temporarily drained stats, so that you don't have to wait them out --Amy */
+boolean
+use_brick_horn(obj)
+struct obj *obj;
+{
+	if (obj && obj->cursed) {
+		(void) adjattrib(rn2(A_MAX), -1, FALSE, TRUE);
+		return 0;
+	}
+
+	if (u.tsloss_str || u.tsloss_dex || u.tsloss_con || u.tsloss_wis || u.tsloss_int || u.tsloss_cha) {
+
+		obj->spe--;
+		if (obj->spe < 0) {
+			int randospe = abs(obj->spe);
+			if (randospe > rnd(20)) {
+				useup(obj);
+				pline(FunnyHallu ? "Suddenly, you hold some fine powder in your hands. Maybe you can smoke that for the extra kick?" : "The horn suddenly turns to dust.");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Podelom tebe, ty vechnyy neudachnik." : "Krrrrrtsch!");
+				return 1;
+			}
+		}
+
+		if (obj && obj->oartifact == ART_FOOK_YOO_FOR_DRAINING_ME) {
+			u.tsloss_str = 0;
+			u.tsloss_dex = 0;
+			u.tsloss_con = 0;
+			u.tsloss_int = 0;
+			u.tsloss_wis = 0;
+			u.tsloss_cha = 0;
+			You_feel("restored.");
+		}
+
+		restore_drained_stat();
+
+		return 0;
+
+	} else {
+		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
+	}
+
+	/* the function has to return something; 0 means the horn is still there */
+	return 0;
+}
+
+/* bubblehorn: restore damaged stats like regular horn, but not fix status effects */
 boolean
 use_bubble_horn(obj)
 struct obj *obj;
@@ -3064,6 +3114,13 @@ struct obj *obj;
 			}
 		}
 		return 0;
+	} else {
+		pline("%s", nothing_happens);
+		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+			pline("Oh wait, actually something bad happens...");
+			badeffect();
+		}
+
 	}
 
 	if (obj->spe > 0) {
@@ -6313,6 +6370,9 @@ dyechoice:
 		break;
 	case BUBBLEHORN:
 		if (use_bubble_horn(obj)) noartispeak = TRUE;
+		break;
+	case BRICK_HORN:
+		if (use_brick_horn(obj)) noartispeak = TRUE;
 		break;
 	case DARK_HORN:
 		if (Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) goto undark;

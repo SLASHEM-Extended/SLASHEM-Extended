@@ -8161,6 +8161,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_RIGHTSMASH_GANGSTER]) (void) mongets(mtmp, SUPER_KNUCKLES);
 		if (ptr == &mons[PM_BOXER]) (void) mongets(mtmp, LARGE_BOX);
 		if (ptr == &mons[PM_CHESTER]) (void) mongets(mtmp, CHEST);
+		if (ptr == &mons[PM_BRICKER]) (void) mongets(mtmp, BRICK_HORN);
 		if (ptr == &mons[PM_WITCHCRAFT_LANDLADY]) (void) mongets(mtmp, BROOM);
 		if (ptr == &mons[PM_MURRY_OLD_LADY]) (void) mongets(mtmp, UMBRELLA);
 		if (ptr == &mons[PM_SUNBATH_WOMAN]) (void) mongets(mtmp, PARASOL);
@@ -14859,6 +14860,10 @@ loveheelover:
 		if (mtmp->data == &mons[PM_WIMPDAG_BANGER]) {
 			(void) mongets(mtmp, UNICORN_HORN);
 			m_initthrow(mtmp, ORCISH_DAGGER, 5);
+		}
+		if (mtmp->data == &mons[PM_BRICK_BANGER]) {
+			(void) mongets(mtmp, BRICK_HORN);
+			m_initthrow(mtmp, BRICK_MISSILE, 4);
 		}
 		if (mtmp->data == &mons[PM_BUBBLE_BANGER]) {
 			(void) mongets(mtmp, BUBBLEHORN);

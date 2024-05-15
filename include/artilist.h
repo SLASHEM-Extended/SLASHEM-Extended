@@ -19307,6 +19307,22 @@ A("Clelia's Tongue Breaker",				CRUNCHER_HELMET, /* super bridghitte trap, muten
 	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Leyawiin, swampy",				VERMILION_SPONGE, /* restore all drained stats when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 250L ),
+
+A("Slambash",				BRICK_HORN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("fook yoo for draining me",				BRICK_HORN, /* applying restores all drained stats */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Claw of Gierzahn",				QATAR, /* randart claw, doubles random gold drops */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

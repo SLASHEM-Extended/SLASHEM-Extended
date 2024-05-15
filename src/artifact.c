@@ -555,6 +555,7 @@ init_randarts()
 	artilist[ART_ALTADOON_HERMA_MORA].otyp = randartrobe();
 	artilist[ART_ETERNAL_BAMMELING].otyp = randartrobe();
 	artilist[ART_VIHAT_BAGUETTEN_BUS_STOP].otyp = randartclaw();
+	artilist[ART_CLAW_OF_GIERZAHN].otyp = randartclaw();
 	artilist[ART_UT_RULER].otyp = randartsaber();
 	artilist[ART_BREAD_FOR_THE_WORLD].otyp = randartgrinder();
 	artilist[ART_MANABOOST].otyp = randartorb();

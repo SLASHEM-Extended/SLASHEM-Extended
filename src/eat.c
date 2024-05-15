@@ -7311,6 +7311,12 @@ register struct obj *otmp;
 
 		break;
 
+	    case VERMILION_SPONGE:
+		pline("Quite tasty!");
+		restore_drained_stat();
+
+		break;
+
 	    case BLACK_HENBANE:
 
 		You("have the bitter, acidic taste of alkaloids in your mouth...");
@@ -7714,6 +7720,16 @@ register struct obj *otmp;
 		pline("Beware, there are many changes of balance and sexually arousing content.");
 
 		u.aggravation = 0;
+	}
+
+	if (otmp && otmp->oartifact == ART_LEYAWIIN__SWAMPY) {
+		u.tsloss_str = 0;
+		u.tsloss_dex = 0;
+		u.tsloss_con = 0;
+		u.tsloss_int = 0;
+		u.tsloss_wis = 0;
+		u.tsloss_cha = 0;
+		You_feel("restored.");
 	}
 
 	if (otmp && otmp->oartifact == ART_NANIKA_GA_OKOTTA) {

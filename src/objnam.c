@@ -4465,6 +4465,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ RIN_REDUCE_ACCURACY, "todo" },
 	{ AMULET_OF_MONSTER_MULTISHOT, "amulet of todo" },
 
+	{ VERMILION_SPONGE, "todo" },
+	{ BRICK_HORN, "todo" },
+
 	{0, "" }
 };
 
@@ -8080,6 +8083,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ RIN_REDUCE_DAMAGE, "todo" },
 	{ RIN_REDUCE_ACCURACY, "todo" },
 	{ AMULET_OF_MONSTER_MULTISHOT, "amulet of todo" },
+
+	{ VERMILION_SPONGE, "todo" },
+	{ BRICK_HORN, "todo" },
 
 	{0, "" }
 };
