@@ -648,6 +648,14 @@ rndtrap()
 			if (tndx == WALL_TRAP) ct += 1;
 			if (tndx == MACE_TRAP) ct += 1;
 			if (tndx == DAGGER_TRAP) ct += 4;
+			if (tndx == KNIFE_TRAP) ct += 4;
+			if (tndx == SPIKE_TRAP) ct += 2;
+			if (tndx == PAPER_ARROW_TRAP) ct += 5;
+			if (tndx == RED_DAMAGE_TRAP) ct += 4;
+			if (tndx == BLUE_DAMAGE_TRAP) ct += 4;
+			if (tndx == YELLOW_DAMAGE_TRAP) ct += 4;
+			if (tndx == GREEN_DAMAGE_TRAP) ct += 4;
+			if (tndx == WHITE_DAMAGE_TRAP) ct += 4;
 			if (tndx == SCORE_DRAIN_TRAP) ct += 4;
 			if (tndx == DEBUFF_TRAP) ct += 4;
 			if (tndx == PHASEPORTER) ct += 1;
@@ -2282,6 +2290,9 @@ selecttrap:
 			break;
 	    case VULNERATE_TRAP:
 		if (rn2(evilfriday ? 2 : 3) && !NastyTrapNation) goto selecttrap;
+			break;
+	    case MULTI_DEBUFF_TRAP:
+		if (rn2(evilfriday ? 2 : 5) && !NastyTrapNation) goto selecttrap;
 			break;
 	    case CHLOROFORM_TRAP:
 		if (rn2(evilfriday ? 2 : 4) && !NastyTrapNation) goto selecttrap;

@@ -29238,6 +29238,20 @@ static NEARDATA const char * const fake_plines[] = {
 	"Your armor pieces have been enchanted, but now your equipment will dull quickly.",
 	"Your body just shakes off the covid-19 pathogens.",
 	"Your body just shakes off the covid-19 pathogens. (If only it was that easy in real life...)",
+	"Whoops, suddenly you're exposed to lightning!",
+	"Whoops, suddenly you're exposed to lightning! Your ring of levitation breaks apart and explodes!",
+	"Whoops, suddenly you're exposed to fire!",
+	"Whoops, suddenly you're exposed to fire! Your scroll of genocide burns up!",
+	"Whoops, suddenly you're exposed to cold!",
+	"Whoops, suddenly you're exposed to cold! Your potion of full healing freezes and shatters!",
+	"Whoops, suddenly you're exposed to acid!",
+	"Whoops, suddenly you're exposed to acid! Your cloak corrodes further!",
+	"Whoops, suddenly you're exposed to poison!",
+	"Whoops, suddenly you're exposed to poison! The poison was deadly... Do you want your possessions identified? DYWYPI?",
+	"A monster is summoned!",
+	"A monster is summoned! Thankfully, it's peaceful so you don't have to worry about it trying to kill you.",
+	"A monster is summoned! And it's hellishly out of depth, meaning you'll probably get owned now!",
+
 };
 
 const char *

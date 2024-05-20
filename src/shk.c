@@ -3979,6 +3979,13 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != PHASEPORTER
 				&& ttmp->ttyp != PHASE_BEAMER
 				&& ttmp->ttyp != VULNERATE_TRAP
+				&& ttmp->ttyp != MULTI_DEBUFF_TRAP
+				&& ttmp->ttyp != SUMMON_MONSTER_TRAP
+				&& ttmp->ttyp != RED_DAMAGE_TRAP
+				&& ttmp->ttyp != GREEN_DAMAGE_TRAP
+				&& ttmp->ttyp != YELLOW_DAMAGE_TRAP
+				&& ttmp->ttyp != WHITE_DAMAGE_TRAP
+				&& ttmp->ttyp != BLUE_DAMAGE_TRAP
 				&& ttmp->ttyp != TENTADEEP_TRAP
 				&& ttmp->ttyp != STATHALF_TRAP
 				&& ttmp->ttyp != CUTSTAT_TRAP

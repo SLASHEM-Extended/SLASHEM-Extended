@@ -3878,6 +3878,15 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != HALF_MEMORY_TRAP
 				&& ttmp->ttyp != HALF_TRAINING_TRAP
 				&& ttmp->ttyp != DEBUFF_TRAP
+
+				&& ttmp->ttyp != MULTI_DEBUFF_TRAP
+				&& ttmp->ttyp != SUMMON_MONSTER_TRAP
+				&& ttmp->ttyp != RED_DAMAGE_TRAP
+				&& ttmp->ttyp != GREEN_DAMAGE_TRAP
+				&& ttmp->ttyp != YELLOW_DAMAGE_TRAP
+				&& ttmp->ttyp != WHITE_DAMAGE_TRAP
+				&& ttmp->ttyp != BLUE_DAMAGE_TRAP
+
 				&& ttmp->ttyp != TRIP_ONCE_TRAP
 				&& ttmp->ttyp != NARCOLEPSY_TRAP
 				&& ttmp->ttyp != MARTIAL_ARTS_TRAP

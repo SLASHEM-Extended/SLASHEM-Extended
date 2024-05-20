@@ -1107,6 +1107,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "costly failure trap", C(CLR_RED)},	/* trap */
 	{'^', "inventory size trap", C(CLR_YELLOW)},	/* trap */
 
+	{'^', "spike trap", C(CLR_WHITE)},	/* trap */
+	{'^', "paper arrow trap", C(CLR_WHITE)},	/* trap */
+	{'^', "knife trap", C(CLR_CYAN)},	/* trap */
+	{'^', "summon monster trap", C(CLR_MAGENTA)},	/* trap */
+	{'^', "red damage trap", C(CLR_RED)},	/* trap */
+	{'^', "green damage trap", C(CLR_GREEN)},	/* trap */
+	{'^', "yellow damage trap", C(CLR_YELLOW)},	/* trap */
+	{'^', "white damage trap", C(CLR_WHITE)},	/* trap */
+	{'^', "blue damage trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+	{'^', "multi debuff trap", C(CLR_BRIGHT_CYAN)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -2041,6 +2052,17 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_costly_failure_trap),
 	g_FILLER(S_inventory_size_trap),
 
+	g_FILLER(S_spike_trap),
+	g_FILLER(S_paper_arrow_trap),
+	g_FILLER(S_knife_trap),
+	g_FILLER(S_summon_monster_trap),
+	g_FILLER(S_red_damage_trap),
+	g_FILLER(S_green_damage_trap),
+	g_FILLER(S_yellow_damage_trap),
+	g_FILLER(S_white_damage_trap),
+	g_FILLER(S_blue_damage_trap),
+	g_FILLER(S_multi_debuff_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2963,6 +2985,17 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_costly_failure_trap),
 	g_FILLER(S_inventory_size_trap),
 
+	g_FILLER(S_spike_trap),
+	g_FILLER(S_paper_arrow_trap),
+	g_FILLER(S_knife_trap),
+	g_FILLER(S_summon_monster_trap),
+	g_FILLER(S_red_damage_trap),
+	g_FILLER(S_green_damage_trap),
+	g_FILLER(S_yellow_damage_trap),
+	g_FILLER(S_white_damage_trap),
+	g_FILLER(S_blue_damage_trap),
+	g_FILLER(S_multi_debuff_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3881,6 +3914,17 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_have_a_pin_trap),
 	g_FILLER(S_costly_failure_trap),
 	g_FILLER(S_inventory_size_trap),
+
+	g_FILLER(S_spike_trap),
+	g_FILLER(S_paper_arrow_trap),
+	g_FILLER(S_knife_trap),
+	g_FILLER(S_summon_monster_trap),
+	g_FILLER(S_red_damage_trap),
+	g_FILLER(S_green_damage_trap),
+	g_FILLER(S_yellow_damage_trap),
+	g_FILLER(S_white_damage_trap),
+	g_FILLER(S_blue_damage_trap),
+	g_FILLER(S_multi_debuff_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4801,6 +4845,17 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_have_a_pin_trap),
 	g_FILLER(S_costly_failure_trap),
 	g_FILLER(S_inventory_size_trap),
+
+	g_FILLER(S_spike_trap),
+	g_FILLER(S_paper_arrow_trap),
+	g_FILLER(S_knife_trap),
+	g_FILLER(S_summon_monster_trap),
+	g_FILLER(S_red_damage_trap),
+	g_FILLER(S_green_damage_trap),
+	g_FILLER(S_yellow_damage_trap),
+	g_FILLER(S_white_damage_trap),
+	g_FILLER(S_blue_damage_trap),
+	g_FILLER(S_multi_debuff_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5930,6 +5985,17 @@ boolean is_rlevel;
 	    showsyms[S_have_a_pin_trap] = 0x04;
 	    showsyms[S_costly_failure_trap] = 0x04;
 	    showsyms[S_inventory_size_trap] = 0x04;
+
+	    showsyms[S_spike_trap] = 0x04;
+	    showsyms[S_paper_arrow_trap] = 0x04;
+	    showsyms[S_knife_trap] = 0x04;
+	    showsyms[S_summon_monster_trap] = 0x04;
+	    showsyms[S_red_damage_trap] = 0x04;
+	    showsyms[S_green_damage_trap] = 0x04;
+	    showsyms[S_yellow_damage_trap] = 0x04;
+	    showsyms[S_white_damage_trap] = 0x04;
+	    showsyms[S_blue_damage_trap] = 0x04;
+	    showsyms[S_multi_debuff_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 

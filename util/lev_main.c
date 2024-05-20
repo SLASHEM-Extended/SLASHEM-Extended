@@ -931,6 +931,17 @@ static struct {
 	{ "costly failure", COSTLY_FAILURE_TRAP },
 	{ "inventory size", INVENTORY_SIZE_TRAP },
 
+	{ "spike", SPIKE_TRAP },
+	{ "paper arrow", PAPER_ARROW_TRAP },
+	{ "knife", KNIFE_TRAP },
+	{ "summon monster", SUMMON_MONSTER_TRAP },
+	{ "red damage", RED_DAMAGE_TRAP },
+	{ "green damage", GREEN_DAMAGE_TRAP },
+	{ "yellow damage", YELLOW_DAMAGE_TRAP },
+	{ "white damage", WHITE_DAMAGE_TRAP },
+	{ "blue damage", BLUE_DAMAGE_TRAP },
+	{ "multi debuff", MULTI_DEBUFF_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

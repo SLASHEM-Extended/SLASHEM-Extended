@@ -41,6 +41,7 @@ STATIC_DCL int disarm_pendulum(struct trap *);
 STATIC_DCL int disarm_difficult_trap(struct trap *);
 STATIC_DCL int disarm_mace_trap(struct trap *);
 STATIC_DCL int disarm_dagger_trap(struct trap *);
+STATIC_DCL int disarm_knife_trap(struct trap *);
 STATIC_DCL int disarm_fire_trap(struct trap *);
 STATIC_DCL int disarm_landmine(struct trap *);
 STATIC_DCL int disarm_squeaky_board(struct trap *);
@@ -3483,6 +3484,14 @@ int traptype;
 		case SCORE_DRAIN_TRAP:
 		case DEBUFF_TRAP:
 		case STAT_DAMAGE_TRAP:
+		case KNIFE_TRAP:
+		case SPIKE_TRAP:
+		case PAPER_ARROW_TRAP:
+		case RED_DAMAGE_TRAP:
+		case BLUE_DAMAGE_TRAP:
+		case YELLOW_DAMAGE_TRAP:
+		case GREEN_DAMAGE_TRAP:
+		case WHITE_DAMAGE_TRAP:
 
 			return TRUE;
 
@@ -4115,6 +4124,51 @@ dothetrap:
 		}
 		break;
 
+	    case PAPER_ARROW_TRAP:
+		if (trap->once && !rn2(15)) {
+		    You_hear("a loud click!");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("An arrow shoots out at you!");
+		otmp = mksobj(PAPER_ARROW, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			otmp->opoisoned = 0;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
+			else
+			if (thitu(6 + rnd((monster_difficulty() / 2) + 1), projectiledamage + rnd((monster_difficulty() / 2) + 1) , otmp, "arrow")) {
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+		break;
+
 	    case POISON_ARROW_TRAP:
 		if (trap->once && !rn2(15)) {
 		    You_hear("a loud click!");
@@ -4493,6 +4547,52 @@ dothetrap:
 			if (thitu(7 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "little dart")) {
 			    if (otmp->opoisoned)
 				poisoned("dart", A_CON, "little dart", -10);
+			    obfree(otmp, (struct obj *)0);
+			} else if (!timebasedlowerchance()) {
+			    obfree(otmp, (struct obj *)0);
+			} else {
+			    place_object(otmp, u.ux, u.uy);
+			    if (!Blind) otmp->dknown = 1;
+			    stackobj(otmp);
+			    newsym(u.ux, u.uy);
+			}
+		}
+		break;
+	    case SPIKE_TRAP:
+		if (trap->once && !rn2(15)) {
+		    You_hear("a soft click.");
+		    deltrap(trap);
+		    newsym(u.ux,u.uy);
+		    break;
+		}
+		trap->once = 1;
+		seetrap(trap);
+		pline("A little spike shoots out at you!");
+		otmp = mksobj(SPIKE, TRUE, FALSE, FALSE);
+		if (otmp) {
+			int projectiledamage = dmgval(otmp, &youmonst);
+			if (projectiledamage > 1) {
+				if (u.ulevel == 1) projectiledamage /= 2;
+				else if (u.ulevel == 2) {
+					projectiledamage *= 2;
+					projectiledamage /= 3;
+				} else if (u.ulevel == 3) {
+					projectiledamage *= 3;
+					projectiledamage /= 4;
+				} else if (u.ulevel == 4) {
+					projectiledamage *= 4;
+					projectiledamage /= 5;
+				}
+			}
+
+			otmp->quan = 1L;
+			otmp->owt = weight(otmp);
+			if (!rn2(6) && !(uarmf && uarmf->oartifact == ART_DAROH_NO) ) otmp->opoisoned = 1;
+			if (u.usteed && will_hit_steed() && steedintrap(trap, otmp)) /* nothing */;
+			else
+			if (thitu(7 + rnd((monster_difficulty() / 3) + 1), projectiledamage + rnd((monster_difficulty() / 3) + 1), otmp, "little spike")) {
+			    if (otmp->opoisoned)
+				poisoned("spike", A_CON, "little spike", -10);
 			    obfree(otmp, (struct obj *)0);
 			} else if (!timebasedlowerchance()) {
 			    obfree(otmp, (struct obj *)0);
@@ -13851,6 +13951,33 @@ madnesseffect:
 
 			break;
 
+		case KNIFE_TRAP:
+			seetrap(trap);
+
+			if (unsolid(youmonst.data)) {
+				pline("A knife swings through your body.");
+			} else {
+				int projectiledamage = rnd(3)+ rnd( (monster_difficulty() / 5) + 1);
+				if (projectiledamage > 1) {
+					if (u.ulevel == 1) projectiledamage /= 2;
+					else if (u.ulevel == 2) {
+						projectiledamage *= 2;
+						projectiledamage /= 3;
+					} else if (u.ulevel == 3) {
+						projectiledamage *= 3;
+						projectiledamage /= 4;
+					} else if (u.ulevel == 4) {
+						projectiledamage *= 4;
+						projectiledamage /= 5;
+					}
+				}
+
+				pline("You are hit by a knife!");
+				losehp(projectiledamage,"knife trap",KILLED_BY_AN);
+			}
+
+			break;
+
 		case WALL_TRAP:
 			You("stepped on a trigger!");
 
@@ -20108,7 +20235,102 @@ skillrandomizeredo:
 			else skilltraininghalve();
 
 			break;
-		 case DEBUFF_TRAP:
+
+		 case SUMMON_MONSTER_TRAP:
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			pline("You stepped on a trigger!");
+			deltrap(trap); /* only triggers once */
+
+			(void) makemon((struct permonst *) 0, u.ux, u.uy, NO_MM_FLAGS);
+			pline("A monster is summoned!");
+
+			u.aggravation = 0;
+
+			break;
+		 case RED_DAMAGE_TRAP:
+			{
+				seetrap(trap);
+				pline("Whoops, suddenly you're exposed to fire!");
+	
+				int dmg = (d(2, 4) + rnd((monster_difficulty() / 3) + 1));
+				if (Fire_resistance) dmg /= 2;
+				if (StrongFire_resistance) dmg /= 2;
+				if (dmg < 1) dmg = 1;
+				if (FireImmunity) dmg = 0;
+
+				if (dmg) losehp(dmg, "red damage", KILLED_BY);
+				else pline("It doesn't seem to harm you.");
+			}
+			break;
+		 case GREEN_DAMAGE_TRAP:
+			{
+				seetrap(trap);
+				pline("Whoops, suddenly you're exposed to poison!");
+	
+				int dmg = (d(2, 4) + rnd((monster_difficulty() / 3) + 1));
+				if (Poison_resistance) dmg /= 2;
+				if (StrongPoison_resistance) dmg /= 2;
+				if (dmg < 1) dmg = 1;
+
+				if (dmg) losehp(dmg, "green damage", KILLED_BY);
+				else pline("It doesn't seem to harm you.");
+
+			}
+			break;
+		 case YELLOW_DAMAGE_TRAP:
+			{
+				seetrap(trap);
+				pline("Whoops, suddenly you're exposed to acid!");
+	
+				int dmg = (d(2, 4) + rnd((monster_difficulty() / 3) + 1));
+				if (Acid_resistance) dmg /= 2;
+				if (StrongAcid_resistance) dmg /= 2;
+				if (dmg < 1) dmg = 1;
+				if (AcidImmunity) dmg = 0;
+
+				if (dmg) losehp(dmg, "yellow damage", KILLED_BY);
+				else pline("It doesn't seem to harm you.");
+
+			}
+			break;
+		 case BLUE_DAMAGE_TRAP:
+			{
+				seetrap(trap);
+				pline("Whoops, suddenly you're exposed to lightning!");
+	
+				int dmg = (d(2, 4) + rnd((monster_difficulty() / 3) + 1));
+				if (Shock_resistance) dmg /= 2;
+				if (StrongShock_resistance) dmg /= 2;
+				if (dmg < 1) dmg = 1;
+				if (ShockImmunity) dmg = 0;
+
+				if (dmg) losehp(dmg, "blue damage", KILLED_BY);
+				else pline("It doesn't seem to harm you.");
+
+			}
+			break;
+		 case WHITE_DAMAGE_TRAP:
+			{
+				seetrap(trap);
+				pline("Whoops, suddenly you're exposed to cold!");
+	
+				int dmg = (d(2, 4) + rnd((monster_difficulty() / 3) + 1));
+				if (Cold_resistance) dmg /= 2;
+				if (StrongCold_resistance) dmg /= 2;
+				if (dmg < 1) dmg = 1;
+				if (ColdImmunity) dmg = 0;
+
+				if (dmg) losehp(dmg, "white damage", KILLED_BY);
+				else pline("It doesn't seem to harm you.");
+
+			}
+			break;
+		 case MULTI_DEBUFF_TRAP:
 
 			pline("You stepped on a trigger!");
 
@@ -20123,6 +20345,16 @@ skillrandomizeredo:
 			}
 
 			break;
+
+		 case DEBUFF_TRAP:
+
+			pline("You stepped on a trigger!");
+
+			seetrap(trap);
+			statdebuff();
+
+			break;
+
 		 case TRIP_ONCE_TRAP:
 
 			pline("Uh-oh, should have watched your step...");
@@ -20977,6 +21209,14 @@ struct obj *otmp;
 			if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			steedhit = TRUE;
 			break;
+		case PAPER_ARROW_TRAP:
+			if(!otmp) {
+				impossible("steed hit by non-existant arrow?");
+				return 0;
+			}
+			if (thitm(6, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			steedhit = TRUE;
+			break;
 		case POISON_ARROW_TRAP:
 			if(!otmp) {
 				impossible("steed hit by non-existant arrow?");
@@ -21028,6 +21268,14 @@ struct obj *otmp;
 		case DART_TRAP:
 			if(!otmp) {
 				impossible("steed hit by non-existant dart?");
+				return 0;
+			}
+			if (thitm(7, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			steedhit = TRUE;
+			break;
+		case SPIKE_TRAP:
+			if(!otmp) {
+				impossible("steed hit by non-existant spike?");
 				return 0;
 			}
 			if (thitm(7, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
@@ -21665,6 +21913,25 @@ register struct monst *mtmp;
 				if (thitm(8, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
 			}
 			break;
+		case PAPER_ARROW_TRAP:
+			if (trap->once && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("%s triggers a trap but nothing happens.",
+				      Monnam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(PAPER_ARROW, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				otmp->opoisoned = 0;
+				if (in_sight) seetrap(trap);
+				if (thitm(6, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
+			break;
 		case POISON_ARROW_TRAP:
 			if (trap->once && !rn2(15)) {
 			    if (in_sight && see_it)
@@ -21790,6 +22057,25 @@ register struct monst *mtmp;
 			}
 			trap->once = 1;
 			otmp = mksobj(DART, TRUE, FALSE, FALSE);
+			if (otmp) {
+				otmp->quan = 1L;
+				otmp->owt = weight(otmp);
+				if (!rn2(6)) otmp->opoisoned = 1;
+				if (in_sight) seetrap(trap);
+				if (thitm(7, mtmp, otmp, 0, FALSE)) trapkilled = TRUE;
+			}
+			break;
+		case SPIKE_TRAP:
+			if (trap->once && !rn2(15)) {
+			    if (in_sight && see_it)
+				pline("%s triggers a trap but nothing happens.",
+				      Monnam(mtmp));
+			    deltrap(trap);
+			    newsym(mtmp->mx, mtmp->my);
+			    break;
+			}
+			trap->once = 1;
+			otmp = mksobj(SPIKE, TRUE, FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = 1L;
 				otmp->owt = weight(otmp);
@@ -23094,6 +23380,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case SKILL_RANDOMIZE_TRAP:
  		case MACE_TRAP:
  		case DAGGER_TRAP:
+ 		case KNIFE_TRAP:
  		case RAZOR_TRAP:
  		case PHOSGENE_TRAP:
  		case CHLOROFORM_TRAP:
@@ -23119,6 +23406,13 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case TRIP_ONCE_TRAP:
 		case NARCOLEPSY_TRAP:
 		case MARTIAL_ARTS_TRAP:
+		case SUMMON_MONSTER_TRAP:
+		case RED_DAMAGE_TRAP:
+		case GREEN_DAMAGE_TRAP:
+		case YELLOW_DAMAGE_TRAP:
+		case WHITE_DAMAGE_TRAP:
+		case BLUE_DAMAGE_TRAP:
+		case MULTI_DEBUFF_TRAP:
 
 		case SKILL_MULTIPLY_TRAP:
 		case TRAPWALK_TRAP:
@@ -26402,6 +26696,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == SCYTHING_BLADE) chance = 4;
 
 	if (ttmp->ttyp == ROCKTRAP) chance = 5;
+	if (ttmp->ttyp == SUMMON_MONSTER_TRAP) chance = 5;
 	if (ttmp->ttyp == CALTROPS_TRAP) chance = 7;
 	if (ttmp->ttyp == VENOM_SPRINKLER) chance = 20;
 	if (ttmp->ttyp == SPEAR_TRAP) chance = 15;
@@ -26431,6 +26726,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == MAGIC_BEAM_TRAP) chance = 20;
 	if (ttmp->ttyp == PIERCING_BEAM_TRAP) chance = 20;
 	if (ttmp->ttyp == SHIT_TRAP) chance = 10;
+	if (ttmp->ttyp == MULTI_DEBUFF_TRAP) chance = 12;
 	if (ttmp->ttyp == ANIMATION_TRAP) chance = 15;
 	if (ttmp->ttyp == RETURN_TRAP) chance = 15;
 
@@ -27192,6 +27488,8 @@ struct trap *ttmp;
 			multiplier = 10; break;
 		case CORONA_TRAP:
 			multiplier = 8; break;
+		case MULTI_DEBUFF_TRAP:
+			multiplier = 8; break;
 		case UNPROOFING_TRAP:
 			multiplier = 12; break;
 		case VISIBILITY_TRAP:
@@ -27315,6 +27613,30 @@ struct trap *ttmp;
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	cnv_trap_obj(DAGGER, 1, ttmp);
+	newsym(trapx, trapy);
+	return 1;
+}
+
+int
+disarm_knife_trap(ttmp)
+struct trap *ttmp;
+{
+	xchar trapx = ttmp->tx, trapy = ttmp->ty;
+	int fails = try_disarm(ttmp, FALSE, FALSE);
+
+	if (fails < 2) return fails;
+	You("disarm the trap!");
+	u.cnd_untrapamount++;
+	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+	mightbooststat(A_DEX);
+	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
+		u.uhpmax += 3;
+		if (Upolyd) u.mhmax += 3;
+		flags.botl = TRUE;
+	}
+	newexplevel();
+	if (u.ualign.type == A_LAWFUL) adjalign(1);
+	cnv_trap_obj(KNIFE, 1, ttmp);
 	newsym(trapx, trapy);
 	return 1;
 }
@@ -27999,6 +28321,8 @@ boolean force;
 				return disarm_squeaky_board(ttmp);
 			case DART_TRAP:
 				return disarm_shooting_trap(ttmp, DART);
+			case SPIKE_TRAP:
+				return disarm_shooting_trap(ttmp, SPIKE);
 			case SLINGSHOT_TRAP:
 				return disarm_shooting_trap(ttmp, ROCK);
 			case THROWING_STAR_TRAP:
@@ -28008,6 +28332,8 @@ boolean force;
 				return disarm_heel_trap(ttmp);
 			case ARROW_TRAP:
 				return disarm_shooting_trap(ttmp, ARROW);
+			case PAPER_ARROW_TRAP:
+				return disarm_shooting_trap(ttmp, PAPER_ARROW);
 			case POISON_ARROW_TRAP:
 				return disarm_shooting_trap(ttmp, ARROW);
 			case BOLT_TRAP:
@@ -28059,6 +28385,8 @@ boolean force;
 				return disarm_mace_trap(ttmp);
 			case DAGGER_TRAP:
 				return disarm_dagger_trap(ttmp);
+			case KNIFE_TRAP:
+				return disarm_knife_trap(ttmp);
 			case FIRE_TRAP:
 				return disarm_fire_trap(ttmp);
 			case PIT:
@@ -28227,6 +28555,13 @@ boolean force;
 			case BANKRUPT_TRAP:
 			case MALEVOLENCE_TRAP:
 			case STATHALF_TRAP:
+			case SUMMON_MONSTER_TRAP:
+			case RED_DAMAGE_TRAP:
+			case GREEN_DAMAGE_TRAP:
+			case YELLOW_DAMAGE_TRAP:
+			case WHITE_DAMAGE_TRAP:
+			case BLUE_DAMAGE_TRAP:
+			case MULTI_DEBUFF_TRAP:
 			case CUTSTAT_TRAP:
 				if (Defusing) return disarm_difficult_trap(ttmp);
 				else {

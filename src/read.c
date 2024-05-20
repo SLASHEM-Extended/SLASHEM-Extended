@@ -8055,9 +8055,9 @@ newboss:
 	case SCR_CREATE_TRAP:
 
 		if (sobj->oartifact == ART_FUFUFUFUFU__KEKEKEKEKE___) {
-			int newtraps = 20;
-			while (newtraps > 0) {
-				newtraps--;
+			int nuutraps = 20;
+			while (nuutraps > 0) {
+				nuutraps--;
 				makerandomtrap(TRUE);
 			}
 		}
