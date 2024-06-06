@@ -4467,6 +4467,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ VERMILION_SPONGE, "todo" },
 	{ BRICK_HORN, "todo" },
+	{ SWAMP_TENTACLE, "todo" },
 
 	{0, "" }
 };
@@ -8086,6 +8087,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ VERMILION_SPONGE, "todo" },
 	{ BRICK_HORN, "todo" },
+	{ SWAMP_TENTACLE, "todo" },
 
 	{0, "" }
 };

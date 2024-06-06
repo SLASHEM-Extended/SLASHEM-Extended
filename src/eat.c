@@ -7311,6 +7311,19 @@ register struct obj *otmp;
 
 		break;
 
+	    case SWAMP_TENTACLE:
+		pline("Quite bizarre taste...");
+		if (MCReduction) {
+			MCReduction -= 5000;
+			if (MCReduction < 0) MCReduction = 0;
+			if (MCReduction) Your("magic cancellation seems to work a bit better again.");
+			else Your("magic cancellation seems to work correctly again.");
+		}
+	      make_vomiting(Vomiting+20, TRUE); /* yes, you'll vomit a second time unless you cure it --Amy */
+		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+
+		break;
+
 	    case VERMILION_SPONGE:
 		pline("Quite tasty!");
 		restore_drained_stat();
@@ -7528,6 +7541,11 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_BIRTH_HELP) {
 		decontaminate(flags.female ? 1000 : 500);
 		pline(flags.female ? "Now you're really ready to give birth to a child." : "Feels pretty good overall.");
+	}
+
+	if (otmp && otmp->oartifact == ART_DEFORMED_SWAMP_TENTACLE) {
+		gain_alla(100);
+		Your("soul seems more nourished now.");
 	}
 
 	if (otmp && otmp->oartifact == ART_STAY_FULL_FOR_A_WEEK) {

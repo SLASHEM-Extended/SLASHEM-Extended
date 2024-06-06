@@ -17842,6 +17842,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This plant-based type of food reduces your sanity when eaten."); break;
 			case MOTHERWORT:
 				pline("A type of plant food that reduces your contamination if you eat it."); break;
+			case SWAMP_TENTACLE:
+				pline("If you swallow this not very tasty vegetarian food, your magic cancellation may be repaired a bit if it wasn't working correctly anymore. However, you'll also become nauseated."); break;
 			case VERMILION_SPONGE:
 				pline("This type of mushroom can be eaten to restore a temporarily drained stat by one point. If several of your stats have been temporarily drained, it selects one at random."); break;
 			case LICHOR:
@@ -31114,6 +31116,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: successfully applying it will restore all of your temporarily drained stats."); break;
 				case ART_CLAW_OF_GIERZAHN:
 					pline("Artifact specs: doubles randomly spawned gold."); break;
+				case ART_DEFORMED_SWAMP_TENTACLE:
+					pline("Artifact specs: boosts your alla when eaten."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -6367,7 +6367,7 @@ OBJECT(OBJ("Bell of Opening", "silver bell"),
 /* tripe ration must be first, see makemon.c */
 
 /* Meat */
-FOOD("tripe ration",        18820, 2, 0, 0, MT_FLESH, 250, CLR_BROWN, 1),
+FOOD("tripe ration",        18720, 2, 0, 0, MT_FLESH, 250, CLR_BROWN, 1),
 FOOD("corpse",              5000, 1,  0, 0, MT_FLESH,   0, CLR_BROWN, 1),
 FOOD("egg",                 7000, 1,  0, 1, MT_FLESH,  100, CLR_WHITE, 1),
 FOOD("meatball",             100, 1,  0, 0, MT_FLESH,   10, CLR_BROWN, 1),
@@ -6402,6 +6402,7 @@ FOOD("black henbane",	     200, 1,  0, 0, MT_VEGGY, 100, CLR_BLACK, 1),
 FOOD("meadowfoam",	     100, 1,  0, 0, MT_VEGGY, 100, CLR_YELLOW, 1),
 FOOD("motherwort",	     100, 1,  0, 0, MT_VEGGY,  50, CLR_WHITE, 1),
 FOOD("vermilion sponge",     100, 1,  0, 0, MT_VEGGY, 250, CLR_RED, 1),
+FOOD("swamp tentacle",	     100, 1,  0, 0, MT_VEGGY,  50, CLR_GRAY, 1),
 FOOD("water hyacinth",	     500, 1,  0, 0, MT_VEGGY, 200, CLR_GREEN, 1),
 FOOD("spiddal stick",	      50, 1,  0, 0, MT_VEGGY, 100, CLR_YELLOW, 1),
 FOOD("harrada",	            50, 1,  0, 0, MT_VEGGY, 100, CLR_BROWN, 1),

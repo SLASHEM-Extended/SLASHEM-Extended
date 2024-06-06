@@ -4580,6 +4580,8 @@ retryrandtype:
 
 			if (!rn2(ishaxor ? 25 : 50))
 			    (void) mksobj_at(BLACK_HENBANE, sx, sy, TRUE, FALSE, FALSE);
+			if (!rn2(ishaxor ? 500 : 1000))
+			    (void) mksobj_at(SWAMP_TENTACLE, sx, sy, TRUE, FALSE, FALSE);
 		    }
 		}
 
