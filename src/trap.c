@@ -28274,6 +28274,27 @@ boolean force;
 	char the_trap[BUFSZ], qbuf[QBUFSZ];
 	int containercnt = 0;
 
+	int findingchance = u.ulevel;
+	int realfindchance = 99;
+	boolean dofindit = FALSE;
+	if (!PlayerCannotUseSkills) {
+		switch (P_SKILL(P_SEARCHING)) {
+			default: break;
+			case P_BASIC: findingchance += 1; break;
+			case P_SKILLED: findingchance += 2; break;
+			case P_EXPERT: findingchance += 3; break;
+			case P_MASTER: findingchance += 4; break;
+			case P_GRAND_MASTER: findingchance += 5; break;
+			case P_SUPREME_MASTER: findingchance += 6; break;
+		}
+	}
+
+	realfindchance = (MAXULEV + 1 - (issoviet ? findingchance : rn2(findingchance) ) );
+
+	if (realfindchance < 1) realfindchance = 1;
+
+	if (rn2(realfindchance) < 10) dofindit = TRUE;
+
 	if(!getdir((char *)0)) return(0);
 	x = u.ux + u.dx;
 	y = u.uy + u.dy;
@@ -28585,6 +28606,7 @@ boolean force;
 	if(!u.dx && !u.dy) {
 	    for(otmp = level.objects[x][y]; otmp; otmp = otmp->nexthere)
 		if(Is_box(otmp)) {
+
 		    sprintf(qbuf, "There is %s here. Check it for traps?",
 			safe_qbuf("", sizeof("There is  here. Check it for traps?"),
 				doname(otmp), an(simple_typename(otmp->otyp)), "a box"));
@@ -28597,8 +28619,7 @@ boolean force;
 				mon_nam(u.usteed));
 			return(0);
 		    }
-		    if((otmp->otrapped && (force || (!confused
-				&& rn2(MAXULEV + 1 - (issoviet ? u.ulevel : rn2(u.ulevel) ) ) < 10)))
+		    if( (otmp->otrapped && (force || (!confused && dofindit)))
 		       || (!force && confused && !rn2(3))) {
 			if (!issoviet) You("find a trap on %s!", the(xname(otmp)));
 			else pline("Tip bloka l'da polozhit' lovushku na etoy grudi, no on takzhe sdelal eto tak, chto vy vsegda mozhete nayti yego, chto v etom sluchaye vy sdelali.");
@@ -28667,9 +28688,15 @@ boolean force;
 		return(0);
 	}
 
-	if ((levl[x][y].doormask & D_TRAPPED
-	     && (force ||
-		 (!confused && rn2(MAXULEV - u.ulevel + 11) < 10)))
+	dofindit = FALSE;
+
+	realfindchance = (MAXULEV + 1 - (issoviet ? findingchance : rn2(findingchance) ) );
+
+	if (realfindchance < 1) realfindchance = 1;
+
+	if (rn2(realfindchance) < 10) dofindit = TRUE;
+
+	if ( (levl[x][y].doormask & D_TRAPPED && (force || (!confused && dofindit)))
 	    || (!force && confused && !rn2(3))) {
 		You("find a trap on the door!");
 		exercise(A_WIS, TRUE);
