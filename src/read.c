@@ -857,6 +857,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"purists pursue perfect preponderance pertaining punctuating particles", /* by aoei */
 	"alliteration is admittedly an abundance of amusement", /* by Umbire */
 	"If an employer forces his employees to wear high heels at work, he is guilty of bodily injury. And if that rule is enforced only for female employees, he is additionally guilty of discrimination based on gender.",
+	"Thaumaturgy is overrated anyway, real magic happens on the catwalk.",
 
 };
 
