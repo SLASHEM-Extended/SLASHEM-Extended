@@ -4463,7 +4463,11 @@ nh_timeout()
 				else You("fall asleep.");
 				sleeptime = rnd(20);
 				fall_asleep(-sleeptime, TRUE);
-				HSleeping += sleeptime + rnd(1000);
+				/* have to make *sure* you're still supposed to be falling asleep --Amy */
+				if (PlayerWillFallAsleep) {
+					HSleeping += (sleeptime + rnd(1000));
+				}
+				/* otherwise, the HSleeping intrinsic will be 0 now */
 			}
 			break;
 		case LEVITATION:
