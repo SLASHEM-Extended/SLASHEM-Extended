@@ -1490,6 +1490,8 @@ struct you {
 	int nonintrinsicproperty;
 	int nondoubleproperty;
 
+	int portalmalfunction;	/* anti-portaldancing feature by Amy */
+
 	boolean temprecursion; /* temporary recursion trap */
 	int oldrecursionrole;
 	int oldrecursionrace;

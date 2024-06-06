@@ -10471,13 +10471,19 @@ madnesseffect:
 		 * is reigned in by my stairs trap code) is cheating in any way, no, for them it's completely legal to
 		 * lure out the Ludios soldiers one by one. Sigh. --Amy */
 
-		if (!rn2(10) && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || !strcmp(dungeons[u.uz.dnum].dname, "Rival Quest") || In_quest(&u.uz)) ) {
+		/* portals malfunctioning is a feature primarily for preventing silly abuses; if it's more than 20 turns
+		 * that you last used a portal, you probably haven't been engaging in such abuse so it'll always work
+		 * only if that 20-turns timeout hasn't passed yet and you try to use a portal again, it can malfunction */
+
+		if (!rn2(10) && u.portalmalfunction && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || !strcmp(dungeons[u.uz.dnum].dname, "Rival Quest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it malfunctions!");
 			pushplayer(TRUE);
-		} else if (rn2(3) && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || !strcmp(dungeons[u.uz.dnum].dname, "Rival Quest") || In_quest(&u.uz)) ) {
+		} else if (rn2(3) && u.portalmalfunction && !issoviet && (In_Devnull(&u.uz) || In_greencross(&u.uz) || Is_blackmarket(&u.uz) || !strcmp(dungeons[u.uz.dnum].dname, "Fort Ludios") || !strcmp(dungeons[u.uz.dnum].dname, "Lawful Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Neutral Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Chaotic Quest") || !strcmp(dungeons[u.uz.dnum].dname, "Yendorian Tower") || !strcmp(dungeons[u.uz.dnum].dname, "The Subquest") || !strcmp(dungeons[u.uz.dnum].dname, "Rival Quest") || In_quest(&u.uz)) ) {
 			pline("You trigger a magic portal, but it doesn't seem to work!");
-		} else
-		domagicportal(trap);
+		} else {
+			if (!u.portalmalfunction) u.portalmalfunction = 20;
+			domagicportal(trap);
+		}
 		break;
 
 		 case SPEAR_TRAP:

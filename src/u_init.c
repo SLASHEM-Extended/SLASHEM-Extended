@@ -11201,6 +11201,8 @@ u_init()
 	u.nonintrinsicproperty = -1;
 	u.nondoubleproperty = -1;
 
+	u.portalmalfunction = 0;
+
 	if (!rn2(2)) u.impossibleproperty = randomdisableproperty();
 	if (!rn2(2)) u.nonextrinsicproperty = randomdisableproperty();
 	if (!rn2(2)) u.nonintrinsicproperty = randomdisableproperty();

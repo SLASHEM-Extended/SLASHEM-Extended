@@ -568,6 +568,11 @@ nh_timeout()
 		if (!u.egglayingtimeout) pline("You are capable of laying eggs again.");
 	}
 
+	if (u.portalmalfunction) {
+		u.portalmalfunction--;
+		if (u.portalmalfunction < 0) u.portalmalfunction = 0; /* fail safe */
+	}
+
 	if (u.snaildigging) {
 		u.snaildigging--;
 		if (u.snaildigging < 0) u.snaildigging = 0; /* fail safe */
