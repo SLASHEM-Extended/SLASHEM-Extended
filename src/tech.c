@@ -2488,7 +2488,9 @@ learntech(tech, mask, tlevel)
 	     * yourself and thereby lost knowledge of the tech. This is to prevent drain-for-gain exploits at XL15 - players
 	     * would certainly find out that you can use secure identify indefinitely that way... --Amy */
 	}
-	else if (tlevel < 0) {
+	else if (/*tlevel < 0*/FALSE) {
+		/* Amy: losing techs is deactivated since it interacts strangely with the ability to sort techs
+		 * now, if you get drained, the tech will just display "Beyond recall" and be unusable */
 
 	    if (i < 0 || !(tech_list[i].t_intrinsic & mask)) {
 		pline("Tech not known."); /* can happen with recursion --Amy */
@@ -2526,8 +2528,8 @@ learntech(tech, mask, tlevel)
 			tech_list[i].t_lev = tlevel;
 		}
 	}
-	else
-	    impossible("Invalid Tech Level!");
+	/*else
+	    impossible("Invalid Tech Level!");*/
 }
 
 /*
