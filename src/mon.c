@@ -8482,7 +8482,8 @@ sarahdone:
 		}
 		if (uarmf && uarmf->oartifact == ART_ELENA_S_REWARD) {
 			gain_alla(5);
-			u.usanity += 5; /* doesn't cause bad side effects */
+			increasesanity_noeffect(5, TRUE); /* doesn't cause bad side effects */
+			flags.botl = TRUE;
 			if (!rn2(20) && multi >= 0) {
 				nomul(-20, "unconscious from inhaling too much farting gas", TRUE);
 

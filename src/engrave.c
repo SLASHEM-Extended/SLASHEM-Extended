@@ -6141,6 +6141,10 @@ static const char *epitaphs[] = {
 	"The sweet prostitutes in GTA3 can repeately knee you in the nuts very painfully, and it's really exciting to let them do that until your guy's HP runs out!",
 	"Wow, it's sooooo sexy to watch the scantily clad beach girls in GTA Vice City repeatedly push the player character through the area with their lovely bathing sandals, because they can kick very powerfully and eventually defeat the player!",
 	"FUK U AMY why did you make it so that my boomerang suddenly turns from +4 to -4 YOU SUCK",
+	"ugghh amy why did the shopkeeper become hostile when I picked up the chest with his goods after picking up 200 individually named rocks from his shop that's like so stupid, you shouldn't fix exploits, you should let players exploit the game to their heart's content",
+	"Here lies Mitchell the Unplayable Mage, a mahou shonen cast cause critical wounds twice in rapid succession and the player was playing too fast, otherwise a healing potion would have been quaffed after the first cast.", /* happened to Amy in ToME-SX */
+	"Arrgh why did Sophia have to miss with her kick attack, I wanted to have the full length of my leg slit open by her razor-sharp stiletto heels and bleed spectacularly to death but now the wimpy white wolf killed me instead!", /* Amy goofing around in ToME-SX */
+	"Mirilith the Queen of Arda, she danced until the end of time with her maid Klara whose black high-heeled sandals are very beautiful <3",
 
 };
 

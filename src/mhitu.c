@@ -22227,8 +22227,6 @@ singcleaning()
 		}
 
 		if (u.singtraphighheel && !rn2(50)) {
-			u.usanity += rnd(10);
-			flags.botl = TRUE;
 			switch (rnd(4)) {
 				case 1:
 					pline("That stupid woman, why couldn't she watch out where she steps with her damn high heels?"); break;
@@ -22239,6 +22237,7 @@ singcleaning()
 				case 4:
 					pline("You really hate that woman for making her high heels dirty like that. Like, it almost feels as if she did that on purpose because she knew that someone would be stupid enough to try to clean them by hand."); break;
 			}
+			increasesanity_noeffect(rnd(10), TRUE);
 		}
 
 		if (u.singtrapcowdung && !rn2(200)) {

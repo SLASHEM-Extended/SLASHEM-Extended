@@ -974,6 +974,7 @@ E int max_capacity(void);
 E boolean check_capacity(const char *);
 E int inv_cnt(void);
 E void contaminate(int, BOOLEAN_P);
+E void contaminate_noresist(int, BOOLEAN_P);
 E void decontaminate(int);
 E void reducesanity(int);
 #ifdef GOLDOBJ
@@ -2738,6 +2739,7 @@ E void bad_equipment_lightsaber(void);
 E void bad_equipment_femshoes(void);
 E void bad_equipment_implant(void);
 E void increasesanity(int);
+E void increasesanity_noeffect(int, BOOLEAN_P);
 E void gain_alla(int);
 E void drain_alla(int);
 E boolean conundrumbreak(void);

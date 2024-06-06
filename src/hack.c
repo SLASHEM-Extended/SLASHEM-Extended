@@ -5063,6 +5063,49 @@ boolean tellplayer;
 	/* Actual contamination effects are handled in attrib.c */
 }
 
+/* contaminate player but without chance for them to resist */
+void
+contaminate_noresist(amount, tellplayer)
+register int amount;
+boolean tellplayer;
+{
+	int precheckamount;
+
+	if (flags.female) {
+		while (!rn2(5)) amount *= 2;
+	}
+
+	if (Race_if(PM_HUMANOID_ANGEL)) amount *= 2;
+
+	if (FalloutEffectXtra) amount *= 2;
+
+	if (isfriday && !rn2(5)) amount *= 2;
+
+	precheckamount = u.contamination;
+
+	u.contamination += amount;
+
+	if (u.contamination >= 100 && u.contamination < 200 && precheckamount < 100) pline(FunnyHallu ? "Your body itches comfortably." : "You are now afflicted with minor contamination.");
+	if (u.contamination >= 200 && u.contamination < 400 && precheckamount < 200) pline(FunnyHallu ? "The itching on your body increases." : "You are now afflicted with light contamination.");
+	if (u.contamination >= 400 && u.contamination < 600 && precheckamount < 400) pline(FunnyHallu ? "You seem to be developing ulcers." : "You are now afflicted with contamination.");
+	if (u.contamination >= 600 && u.contamination < 800 && precheckamount < 600) pline(FunnyHallu ? "You feel like your digestive tract started to digest itself." : "You are now afflicted with severe contamination.");
+	if (u.contamination >= 800 && u.contamination < 1000 && precheckamount < 800) pline(FunnyHallu ? "You feel that your body is consuming itself from within." : "You are now afflicted with lethal contamination.");
+	if (u.contamination >= 1000 && precheckamount < 1000) pline(FunnyHallu ? "You feel terminally ill. Something tells you that you only have three days to live." : "You are now afflicted with fatal contamination. Seek medical attention immediately.");
+
+	/* if you got told that you were contaminated, and wisdom is low, give a warning --Amy */
+	if (tellplayer) {
+		if (ABASE(A_WIS) < 2) {
+			pline("DANGER!!! Your wisdom is critically low and you're very likely to die from the contamination! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+		} else if (ABASE(A_WIS) < 4) {
+			pline("Watch out!! Your wisdom is very low, the contamination may well reduce it below 1 and then you die! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+		} else if (ABASE(A_WIS) < 6) {
+			pline("Warning! Your wisdom is low and if the contamination causes it to fall below 1, you die! You can cure it by using a scroll or wand of remove curse, or by successfully praying on a coaligned altar. Amnesia may also help in a pinch, or you may buy a decontamination service from a nurse.");
+		}
+	}
+
+	/* Actual contamination effects are handled in attrib.c */
+}
+
 void
 decontaminate(amount)
 register int amount;

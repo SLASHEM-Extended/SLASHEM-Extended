@@ -10234,7 +10234,7 @@ controlagain:
 		else n = 50;	/* Unskilled or restricted */
 		if (!rn2(n)) {
 			gainlevelmaybe();
-			u.usanity += rnz(1000); /* doesn't give bad effects --Amy */
+			increasesanity_noeffect(rnz(1000), TRUE); /* doesn't give bad effects --Amy */
 			flags.botl = TRUE;
 		} else
 		    pline("Too bad - it didn't work!");

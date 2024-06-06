@@ -4854,8 +4854,9 @@ trapsdone:
 		/* using other roles' quest artifacts (e.g. by wishing for them) gives downsides --Amy */
 		if (!rn2(100) && foreignartifactcount() > 0) {
 			contaminate(foreignartifactcount(), FALSE);
-			u.usanity += (YouGetLotsOfSanity ? (foreignartifactcount() * rnd(20)) : foreignartifactcount());
+			increasesanity_noeffect(foreignartifactcount(), FALSE);
 			adjalign(-(foreignartifactcount()));
+			flags.botl = 1;
 		}
 		/* I don't want to ban wishing for quest artifacts like some variants do, because that's too arbitrary.
 		 * But some of them are really very powerful, and you shouldn't be able to easily become OP if you get a wish */
@@ -5536,7 +5537,10 @@ greasingdone:
 		}
 
 		/* in evilvariant mode you always have at least 100 sanity --Amy */
-		if (isevilvariant && u.usanity < 100) u.usanity += 100;
+		if (isevilvariant && u.usanity < 100) {
+			increasesanity_noeffect(100, FALSE);
+			flags.botl = 1;
+		}
 
 		if (!rn2(isfriday ? 2000 : 5000)) {
 
@@ -8339,10 +8343,10 @@ newbossSTEN:
 		}
 
 		if (uwep && uwep->oartifact == ART_APPLY_B) {
-			u.usanity++;
+			increasesanity_noeffect(1, FALSE);
 		}
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_APPLY_B) {
-			u.usanity++;
+			increasesanity_noeffect(1, FALSE);
 		}
 
 		if (uwep && uwep->oartifact == ART_CONSTANT_CHANGE && uwep->lamplit) {
@@ -15922,7 +15926,7 @@ past4:
 	kill_deathmarked_monsters();
 
 	if (Race_if(PM_SLYER_ALIEN) && !flags.female) {
-		u.usanity += 500;
+		increasesanity_noeffect(500, TRUE);
 		pline("You're not allowed to be male as a slyer alien!");
 		change_sex();
 		flags.botl = 1;
@@ -21884,8 +21888,8 @@ antjenewturn:
 						break;
 					case 5:
 						playeraroused = TRUE;
-						u.usanity += rnd(25); /* not increasesanity() */
 						pline("It is incredibly sexy to be feeling up Antje's buttocks while she fully craps on the toilet lid. Somehow, though, your brain has difficulties trying to handle this sight.");
+						increasesanity_noeffect(rnd(25), TRUE);
 						break;
 				}
 			} else {

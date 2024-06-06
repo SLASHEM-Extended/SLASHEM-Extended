@@ -6070,8 +6070,9 @@ tunguskaagain:
 		if (obj->oartifact == ART_MOIST_CHERRY) {
 
 			if (!Role_if(PM_BLEEDER)) {
-				u.usanity += PlayerBleeds; /* cannot resist */
-				u.contamination += PlayerBleeds;
+				increasesanity_noeffect(PlayerBleeds, TRUE);
+				contaminate_noresist(PlayerBleeds, TRUE);
+				flags.botl = TRUE;
 			}
 
 			if (PlayerBleeds) {

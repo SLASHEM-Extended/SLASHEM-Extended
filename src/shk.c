@@ -2639,10 +2639,16 @@ register boolean dummy;
 
 	if (ESHK(shkp)->billct == BILLSZ) {
 		You("got that for free!");
-		if (!rn2(5) && shkp->mpeaceful) {
+		if ( (!rn2(5) || (Is_container(obj)) ) && shkp->mpeaceful) {
 			verbalize("That's it, thief! I'm calling the kops!");
 			call_kops(shkp, FALSE);
 			hot_pursuit(shkp);
+		}
+		if (!(shkp->mpeaceful)) {
+			increasesanity_noeffect(10, FALSE);
+			contaminate_noresist(10, FALSE);
+			Norep("You feel much less hale than before.");
+			flags.botl = TRUE;
 		}
 		return;
 	}
@@ -2771,10 +2777,16 @@ register boolean ininv, dummy, silent;
 
 	if(ESHK(shkp)->billct == BILLSZ) {
 		You("got that for free!");
-		if (!rn2(5) && shkp->mpeaceful) {
+		if ( (!rn2(5) || (Is_container(obj)) ) && shkp->mpeaceful) {
 			verbalize("That's it, thief! I'm calling the kops!");
 			call_kops(shkp, FALSE);
 			hot_pursuit(shkp);
+		}
+		if (!(shkp->mpeaceful)) {
+			increasesanity_noeffect(10, FALSE);
+			contaminate_noresist(10, FALSE);
+			Norep("You feel much less hale than before.");
+			flags.botl = TRUE;
 		}
 		return;
 	}

@@ -282,8 +282,7 @@ nh_timeout()
 
 	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (uarmf && uarmf->oartifact == ART_HELP_PEOPLE_AND_YOURSELF) || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
 		if (!rn2(2500)) {
-			u.usanity += (YouGetLotsOfSanity ? rnd(20) : 1);
-			if (flags.showsanity) flags.botl = 1;
+			increasesanity_noeffect(1, FALSE);
 		}
 	} else if (u.usanity && !isevilvariant && !rn2(isfriday ? 2500 : 1000)) {
 		u.usanity--;

@@ -11940,6 +11940,43 @@ int snamount;
 
 }
 
+/* increase sanity but without side effects and also without a way for the player to resist */
+void
+increasesanity_noeffect(snamount, givemessage)
+int snamount;
+boolean givemessage;
+{
+	if (Race_if(PM_HUMANOID_ANGEL) || youmonst.data->mlet == S_ANGEL) snamount *= 2;
+
+	if (YouGetLotsOfSanity) snamount *= rnd(20);
+
+	if (snamount < 1) snamount = 1;
+
+	u.usanity += snamount;
+	if (givemessage) {
+		if (snamount < 10) pline("Your sanity increases.");
+		else if (snamount < 100) pline("Your sanity increases greatly.");
+		else if (snamount < 1000) pline("Your sanity increases tremendously.");
+		else pline("Your sanity increases gigantically.");
+
+		if (u.usanity > 900) {
+			if (u.usanity <= 9000) You("begin to view the world as the terrible place it really is.");
+			/* there should be some effect here but hell if I remember what it was supposed to be! */
+		}
+
+		if (u.usanity > 9000) {
+			You("realize in shock that this dungeon is a truly atrocious place.");
+		}
+
+		if (u.usanity > 90000) {
+			pline("In fact, you're certain that the apocalypse is near as there's murder and pillaging taking place everywhere.");
+		}
+	}
+
+	if (flags.showsanity) flags.botl = TRUE;
+
+}
+
 void
 gain_alla(bonusamount)
 int bonusamount;
