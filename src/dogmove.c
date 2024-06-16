@@ -1312,8 +1312,11 @@ register int after;	/* this is extra fast monster movement */
 			} else {
 			    /* 1/40 chance of stepping on it anyway, in case
 			     * it has to pass one to follow the player...
+			     * Amy edit: also give a really low chance for the pet to whimper even when not leashed
 			     */
 			    if (flags.soundok && uarmf && uarmf->oartifact == ART_HOUSE_ANIMAL_WARNER) whimper(mtmp);
+			    else if (!rn2(50)) whimper(mtmp);
+
 			    if (trap->tseen && rn2(40)) continue;
 			}
 		    }

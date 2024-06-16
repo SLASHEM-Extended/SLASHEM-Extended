@@ -8254,6 +8254,14 @@ register struct	monst	*mtmp;
 			}
 		}
 
+		if (ptr == &mons[PM_ASS_COWBOY]) {
+			(void) mongets(mtmp, BULLWHIP);
+			(void) mongets(mtmp, FLINTLOCK);
+			(void) mongets(mtmp, FEDORA);
+	  		m_initthrow(mtmp, PISTOL_BULLET, 20);
+
+		}
+
 		if (ptr == &mons[PM_GANG_SCIENTIST]) {
 	  		m_initthrow(mtmp, FLAMETHROWER, 8);
 		}
@@ -12019,6 +12027,16 @@ loveheelover:
 			m_initthrow(mtmp, ARROW, 50);
 		}
 
+		if (mtmp->data == &mons[PM_KRISTINA]) {
+			(void)mongets(mtmp, CIGARETTE);
+			(void)mongets(mtmp, POT_CURE_CRITICAL_WOUNDS);
+			(void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
+		}
+
+		if (mtmp->data == &mons[PM_KRISTINA_S_THICK_SOLE_SNEAKER]) {
+			(void) mongets(mtmp, SOFT_SNEAKERS); /* M4_SNEAKERS */
+		}
+
 		if (mtmp->data == &mons[PM_WILD_HILD]) {
 			(void)mongets(mtmp, WILDHILD_BOW);
 			m_initthrow(mtmp, ODOR_SHOT, 50);
@@ -13606,6 +13624,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_RARE_ARMOR_WEARER]) (void) mongets(mtmp, OLD_MAIL);
 		if (mtmp->data == &mons[PM_POWERED_PACI_FIST]) (void) mongets(mtmp, POWERFIST);
 		if (mtmp->data == &mons[PM_EXTRA_GLIBBERY_GLOMPER]) (void) mongets(mtmp, POT_GREASE);
+		if (mtmp->data == &mons[PM_PIERSKAY_BIER_NAH]) (void) mongets(mtmp, POT_CONFUSION);
 		if (ptr == &mons[PM_MILITARY_PUTIT]) {
 		  	(void) mongets(mtmp, FLINTLOCK);
 		  	m_initthrow(mtmp, PISTOL_BULLET, 15);
@@ -18631,6 +18650,7 @@ loveheelover:
 	    case S_WALLMONST:
 		if (mtmp->data == &mons[PM_UNEXPECTED_LIGHT]) (void) mongets(mtmp, LASER_SWATTER);
 		if (mtmp->data == &mons[PM_DAMGE_INSTEAD_OF_DUNGEON]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_WELLY_VIAL]) (void) mongets(mtmp, POT_CURE_CRITICAL_WOUNDS);
 
 		if (ptr == &mons[PM_CORNELIA_S_EROTIC_BLOCK_HEEL_SANDAL]) {
 			(void) mongets(mtmp, SCR_COURSE_TRAVELING);
@@ -34605,6 +34625,10 @@ assign_sym:
 	if (mtmp->data == &mons[PM_JANA_SHOE]) {
 		ap_type = M_AP_FURNITURE;
 		appear = S_gravewall;
+	}
+	if (mtmp->data == &mons[PM_KILLGRASS] || mtmp->data == &mons[PM_EXTRACTOR_KILLGRASS]) {
+		ap_type = M_AP_FURNITURE;
+		appear = S_grassland;
 	}
 	if (mtmp->data == &mons[PM_TREEENT]) {
 		ap_type = M_AP_FURNITURE;

@@ -858,6 +858,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"alliteration is admittedly an abundance of amusement", /* by Umbire */
 	"If an employer forces his employees to wear high heels at work, he is guilty of bodily injury. And if that rule is enforced only for female employees, he is additionally guilty of discrimination based on gender.",
 	"Thaumaturgy is overrated anyway, real magic happens on the catwalk.",
+	"'But it's not thematic' my ass. I don't want a game that is 100%% thematic, I want a game that is 100%% fun.",
 
 };
 

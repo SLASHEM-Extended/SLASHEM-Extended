@@ -1844,7 +1844,7 @@ register struct monst *mtmp;
 		ret = "doesn't show a visible reaction";
 		break;
 	case MS_SISSY:
-		ret = "whines 'owwww %s has me pain-done!'";
+		verbalize("owwww %s has me pain-done!", playeraliasname);
 		break;
 	case MS_SING:
 		ret = "shouts 'Stop that! You're not allowed to use those girl boots against me!'";
