@@ -288,7 +288,7 @@ register boolean special;
 	    mtmp->mpeaceful = 0;
 	    set_malign(mtmp); /* peaceful may have changed again */
 
-	    switch(monsndx(ptr)) {
+	    switch(monsndx(ptr)) { /* keyword "newroles" */
 		case PM_ARCHEOLOGIST:
 		case PM_UNDEAD_ARCHEOLOGIST:
 		    if (rn2(2)) weapon = BULLWHIP;
@@ -693,8 +693,7 @@ register boolean special;
 		case PM_UNDEAD_MONK:
 		case PM_UNDEAD_PSION:
 		    weapon = STRANGE_OBJECT;
-		    armor = STRANGE_OBJECT;
-		    cloak = ROBE;
+		    armor = ROBE;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
 		case PM_HALF_BAKED:
@@ -824,13 +823,21 @@ register boolean special;
 		case PM_UNDEAD_SHOE_FETISHIST:
 		    weapon = PROSTITUTE_SHOE;
 		    break;
+		case PM_ALLTECHER:
+		case PM_UNDEAD_ALLTECHER:
+		    weapon = MACE;
+		    break;
+		case PM_SPELLMASTER:
+		case PM_UNDEAD_SPELLMASTER:
+		    weapon = QUARTERSTAFF;
+		    break;
 		case PM_PRIEST:
 		case PM_PRIESTESS:
 		case PM_UNDEAD_PRIEST:
 		case PM_UNDEAD_PRIESTESS:
 		    if (rn2(2)) weapon = MACE;
-		    if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
-		    if (rn2(4)) cloak = ROBE;
+		    if (rn2(4)) armor = ROBE;
+		    else if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    if (rn2(4)) helm = rn2(2) ? HELM_OF_BRILLIANCE : HELM_OF_TELEPATHY;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
@@ -1009,7 +1016,7 @@ register boolean special;
 		    helm = STRANGE_OBJECT;
 		    shield = STRANGE_OBJECT;
 		    break;
-		default: impossible("bad mplayer monster");
+		default: impossible("bad mplayer monster %d", monsndx(ptr));
 		    weapon = /*0*/LONG_SWORD;
 		    break;
 	    }
