@@ -2639,6 +2639,11 @@ restartmenu:
 		techs_useable++;
 		prefix = "";
 		any.a_int = i + 1;
+	    } else if (specialmenutype) {
+		/* can always select if we're sorting */
+		techs_useable++;
+		prefix = "";
+		any.a_int = i + 1;
 	    } else {
 		prefix = "    ";
 		any.a_int = 0;
@@ -2699,7 +2704,7 @@ restartmenu:
 			techtout(i) > 100 ? "Reloading" : "Soon");
 
 	    add_menu(tmpwin, NO_GLYPH, &any,
-		    (tlevel <= 0) ? 0 : (techtout(i) && !(TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) && !wizard) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
+		    (specialmenutype) ? let : (tlevel <= 0) ? 0 : (techtout(i) && !(TechLossEffect || u.uprops[TECH_LOSS_EFFECT].extrinsic || have_techlossstone()) && !wizard) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
 	    if (let++ == 'z') let = 'A';
 	    if (let == 'Z') let = 'a';
 	}
@@ -3961,15 +3966,18 @@ int tech_no;
 	    pline("This technique is already active!");
 	    return (0);
 	}
-        if (techtout(tech_no) /*&& !can_limitbreak()*/) {
-	    You("have to wait %s before using your technique again.",
-                (techtout(tech_no) > 100) ?
-                        "for a while" : "a little longer");
+	if (techtout(tech_no) /*&& !can_limitbreak()*/) {
+		You("have to wait %s before using your technique again.",
+		(techtout(tech_no) > 100) ? "for a while" : "a little longer");
 #ifdef WIZARD
-            if (!wizard || (yn("Use technique anyways?") == 'n'))
+		if (!wizard || (yn("Use technique anyways?") == 'n'))
 #endif
-                return(0);
-        }
+		return(0);
+	}
+	if (techlev(tech_no) <= 0) {
+		You("can't use that technique anymore.");
+		return(0);
+	}
 
 	if ((TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) && (rn2(10) || TechBugXtra ) ) {
 
