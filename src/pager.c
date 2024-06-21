@@ -5767,6 +5767,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli vy stolknetes' s monstrami na rannem etape, oni vsegda smogut imet' maksimal'no vozmozhnyy uroven', dazhe yesli eto vpolne mozhet privesti k tomu, chto vas ub'yut, potomu chto vy igrayete ne v tom rezhime. Vina.",
 "Yesli vy naydete artefakt s nepravil'nym vyravnivaniyem, vy nichego ne smozhete sdelat'. Eto ne pozvolit vam yego zabrat'. Potomu chto tip ledyanoy glyby KHARKHAR-KHARKHAR KHAR samyy luchshiy!",
 "Vash bumerang slomayetsya, i sovetskaya ledyanaya glyba budet GROMKO SMEYAT'SYA MUA KHA KHA!",
+"Kreml' ne pozvolit nikomu uznat' summu obvineniy, ob''yavlennykh v den' otkrytiya, potomu chto grazhdanskiye litsa, imeyushchiye dostup k etoy informatsii, budut obvineny v gosudarstvennoy izmene.",
 };
 
 static NEARDATA const char * const practicantlines[] = {

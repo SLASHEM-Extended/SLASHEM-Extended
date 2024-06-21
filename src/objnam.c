@@ -8400,9 +8400,11 @@ boolean showpoisoned;
 	 * This is only required for unique objects since the article
 	 * printed for the object is tied to the combination of the two
 	 * and printing the wrong article gives away information.
+	 * Amy edit: not needed, except in Soviet Russia where this old relic is from, because the Kreml (which is called
+	 * "Kremlin" in English, I know...) will do everything in their power to prevent the loss of relics.
 	 */
 
-	if (!nn && ocl->oc_uses_known && ocl->oc_unique) obj->known = 0;
+	if (issoviet && !nn && ocl->oc_uses_known && ocl->oc_unique) obj->known = 0;
 	if (!Blind && ((!obj->oinvis || See_invisible) && !obj->oinvisreal) ) obj->dknown = TRUE;
 	if (Role_if(PM_PRIEST) || Role_if(PM_NECROMANCER) || Role_if(PM_CHEVALIER) || Race_if(PM_VEELA)) obj->bknown = TRUE;
 
@@ -9226,8 +9228,11 @@ plus:
 charges:
 		if (Hallucination)
 			break;
-		if(obj->known || Role_if(PM_WANDKEEPER) ) /* The charges and recharge count of wands are automatically known by the wandkeeper class. */
+
+		/* The charges and recharge count of wands are automatically known by the wandkeeper class. */
+		if(obj->known || Role_if(PM_WANDKEEPER) ) {
 		    sprintf(eos(bp), " (%d:%d)", (int)obj->recharged, obj->spe);
+		}
 		break;
 	case POTION_CLASS:
 		if (Hallucination)
