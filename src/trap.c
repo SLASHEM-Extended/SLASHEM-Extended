@@ -26770,7 +26770,15 @@ struct trap *ttmp;
 	if (ttmp->ttyp == ELEMENTAL_TRAP) chance = 10;
 	if (ttmp->ttyp == ESCALATING_TRAP) chance = 16;
 	if (ttmp->ttyp == MANA_TRAP) chance = 12;
+	if (ttmp->ttyp == SIN_TRAP) chance = 30;
+	if (ttmp->ttyp == DESTROY_ARMOR_TRAP) chance = 30;
+	if (ttmp->ttyp == DIVINE_ANGER_TRAP) chance = 30;
 	if (ttmp->ttyp == CANCELLATION_TRAP) chance = 24;
+	if (ttmp->ttyp == SLIME_TRAP) chance = 25;
+	if (ttmp->ttyp == TIME_TRAP) chance = 30;
+	if (ttmp->ttyp == PARALYSIS_TRAP) chance = 30;
+	if (ttmp->ttyp == PETRIFICATION_TRAP) chance = 30;
+	if (ttmp->ttyp == INERTIA_TRAP) chance = 30;
 	if (ttmp->ttyp == HOSTILITY_TRAP) chance = 16;
 	if (ttmp->ttyp == FALLING_BOULDER_TRAP) chance = 30;
 	if (ttmp->ttyp == OUT_OF_MAGIC_TRAP) chance = 18;
@@ -26780,6 +26788,11 @@ struct trap *ttmp;
 	if (ttmp->ttyp == NOISE_TRAP) chance = 10;
 	if (ttmp->ttyp == GLUE_TRAP) chance = 50;
 	if (ttmp->ttyp == VOLT_TRAP) chance = 24;
+	if (ttmp->ttyp == DEATH_TRAP) chance = 100;
+	if (ttmp->ttyp == PESTILENCE_TRAP) chance = 100;
+	if (ttmp->ttyp == FAMINE_TRAP) chance = 100;
+	if (ttmp->ttyp == GUILLOTINE_TRAP) chance = 50;
+	if (ttmp->ttyp == BISECTION_TRAP) chance = 50;
 	if (ttmp->ttyp == CORROSION_TRAP) chance = 6;
 	if (ttmp->ttyp == WITHER_TRAP) chance = 30;
 	if (ttmp->ttyp == FLAME_TRAP) chance = 6;
@@ -27382,6 +27395,12 @@ struct trap *ttmp;
 			multiplier = 10; break;
 		case MANA_TRAP:
 			multiplier = 5; break;
+		case SIN_TRAP:
+			multiplier = 40; break;
+		case DESTROY_ARMOR_TRAP:
+			multiplier = 25; break;
+		case DIVINE_ANGER_TRAP:
+			multiplier = 50; break;
 		case ALIGNMENT_REDUCTION_TRAP:
 			multiplier = 5; break;
 		case GENETIC_TRAP:
@@ -27410,6 +27429,16 @@ struct trap *ttmp;
 			multiplier = 8; break;
 		case VOLT_TRAP:
 			multiplier = 12; break;
+		case DEATH_TRAP:
+			multiplier = 50; break;
+		case PESTILENCE_TRAP:
+			multiplier = 50; break;
+		case FAMINE_TRAP:
+			multiplier = 50; break;
+		case GUILLOTINE_TRAP:
+			multiplier = 40; break;
+		case BISECTION_TRAP:
+			multiplier = 40; break;
 		case BANANA_TRAP:
 			multiplier = 3; break;
 		case FALLING_TUB_TRAP:
@@ -27481,6 +27510,16 @@ struct trap *ttmp;
 		case SKILLCAP_TRAP:
 			multiplier = 16; break;
 		case PERMANENT_STAT_DAMAGE_TRAP:
+			multiplier = 35; break;
+		case SLIME_TRAP:
+			multiplier = 25; break;
+		case PETRIFICATION_TRAP:
+			multiplier = 35; break;
+		case TIME_TRAP:
+			multiplier = 35; break;
+		case PARALYSIS_TRAP:
+			multiplier = 30; break;
+		case INERTIA_TRAP:
 			multiplier = 35; break;
 		case MIGUC_TRAP:
 			multiplier = 8; break;
@@ -28508,6 +28547,9 @@ boolean force;
 			case ESCALATING_TRAP:
 			case NEGATIVE_TRAP:
 			case MANA_TRAP:
+			case SIN_TRAP:
+			case DESTROY_ARMOR_TRAP:
+			case DIVINE_ANGER_TRAP:
 			case GENETIC_TRAP:
 			case MISSINGNO_TRAP:
 			case CANCELLATION_TRAP:
@@ -28520,6 +28562,11 @@ boolean force;
 			case NOISE_TRAP:
 			case GLUE_TRAP:
 			case VOLT_TRAP:
+			case DEATH_TRAP:
+			case PESTILENCE_TRAP:
+			case FAMINE_TRAP:
+			case GUILLOTINE_TRAP:
+			case BISECTION_TRAP:
 			case CORROSION_TRAP:
 			case WITHER_TRAP:
 			case FLAME_TRAP:
@@ -28553,6 +28600,11 @@ boolean force;
 			case SKILL_REDUCTION_TRAP:
 			case SKILLCAP_TRAP:
 			case PERMANENT_STAT_DAMAGE_TRAP:
+			case PETRIFICATION_TRAP:
+			case SLIME_TRAP:
+			case TIME_TRAP:
+			case PARALYSIS_TRAP:
+			case INERTIA_TRAP:
 			case MIGUC_TRAP:
 			case SATATUE_TRAP:
 			case DIRECTIVE_TRAP:
