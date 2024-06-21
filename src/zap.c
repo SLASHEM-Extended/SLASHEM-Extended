@@ -1917,6 +1917,12 @@ boolean revived;
 		mtmp2->mblinded = 0;
 		mtmp2->mstun = 0;
 		mtmp2->mconf = 0;
+		/* new flags by Amy */
+		mtmp2->hominglazer = 0;
+		mtmp2->ogrethief = 0;
+		mtmp2->bleedout = 0;
+		mtmp2->healblock = 0;
+		mtmp2->inertia = 0;
 		replmon(mtmp,mtmp2);
 		newsym(mtmp2->mx, mtmp2->my);	/* Might now be invisible */
 	}
