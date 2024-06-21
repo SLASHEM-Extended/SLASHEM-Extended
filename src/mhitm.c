@@ -6645,7 +6645,13 @@ physical:
 
 	    if (mdef->mhp > 0) return 0; /* mdef lifesaved */
 
-	    if (magr->mhp > 0 && magr->mtame) use_skill(P_PETKEEPING,1);
+	    if (magr->mhp > 0 && magr->mtame) {
+		use_skill(P_PETKEEPING,1);
+		/* note by Amy: it's dumb if inediate pets can never gain tameness! have a (really low) chance */
+		if (!rn2(100)) {
+			if (magr->mtame < 20 && !FemtrapActiveAntje) magr->mtame++;
+		}
+	    }
 
 	    if (mattk->adtyp == AD_DGST) {
 		/* various checks similar to dog_eat and meatobj.
