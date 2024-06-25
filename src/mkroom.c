@@ -413,6 +413,10 @@ mkshop()
 	}
 #endif
 	for(sroom = &rooms[0]; ; sroom++){
+
+		register int area = (sroom->hx - sroom->lx + 1)
+			   * (sroom->hy - sroom->ly + 1);
+
 		if(sroom->hx < 0) return;
 		if(sroom - rooms >= nroom) {
 			pline("rooms not closed by -1?");
@@ -421,6 +425,15 @@ mkshop()
 		if(sroom->rtype != OROOM) continue;
 		if(has_dnstairs(sroom) || has_upstairs(sroom))
 			continue;
+
+		/* note by Amy: it's totally imba if you get big-ass shops so often, so make them rare */
+		if ((area > 1) && (rnd(area) > 50))
+			continue;
+		if ((area > 1) && (rnd(area) > 100))
+			continue;
+		if ((area > 1) && (rnd(area) > 200))
+			continue;
+
 		if(
 #ifdef WIZARD
 		   (wizard && ep && sroom->doorct != 0) ||

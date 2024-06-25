@@ -2807,8 +2807,8 @@ boolean anywhere;
 			    dx = dy = 1;
 			else {
 #ifdef BIGSLEX
-				dx = 2 + rn2((hx-lx > 28) ? 20 : 12);
-				dy = 2 + rn2(6);
+				dx = 2 + rn2((hx-lx > 28) ? 20 : 14);
+				dy = 2 + rn2(9);
 
 				if (!rn2(500) && trycnt < 200) dx += rnd(160);
 				if (!rn2(500) && trycnt < 200) dy += rnd(48);
@@ -2818,6 +2818,9 @@ boolean anywhere;
 
 				if (!rn2(5) && trycnt < 200) dx += rnd(30);
 				if (!rn2(5) && trycnt < 200) dy += rnd(10);
+
+				if (!rn2(3) && trycnt < 200) dx += rnd(10);
+				if (!rn2(3) && trycnt < 200) dy += rnd(5);
 #else
 				dx = 2 + rn2((hx-lx > 28) ? 12 : 8);
 				dy = 2 + rn2(4);
