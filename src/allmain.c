@@ -10530,6 +10530,11 @@ newbossX:
 			}
 		}
 
+		if (In_dod(&u.uz) && (dunlev(&u.uz) == 1) && (flags.lostsoul || flags.uberlostsoul) && !(u.lostsoulescape) ) {
+			u.lostsoulescape = TRUE;
+			pline("You've escaped from the Halls of Mandos! Your ability to level teleport was restored.");
+		}
+
 		if (!In_ZAPM(&u.uz) && iszapem && !(u.zapemescape)) {
 			u.zapemescape = TRUE;
 			pline("You've escaped from the spaceship. From now on, the level difficulty will be using the actual depth, even if you return to the Space Base. Your ability to level teleport was restored.");

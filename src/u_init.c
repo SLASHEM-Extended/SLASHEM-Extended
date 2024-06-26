@@ -11577,6 +11577,7 @@ u_init()
 
 	u.wonderlandescape = 0;
 	u.zapemescape = 0;
+	u.lostsoulescape = 0;
 	u.preversionescape = 0;
 
 	u.felidlives = 9;

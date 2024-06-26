@@ -29,10 +29,10 @@ d_level *lev;
 		|| (iszapem && !(u.zapemescape) && In_spacebase(lev) && lev->dlevel < 3)
 		|| (u.preversionmode && !u.preversionescape && In_greencross(lev) && lev->dlevel < 3)
 		|| (u.freeplaymode) /* otherwise you could just kill yourself on purpose to give ascension kits to chars */
-		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level) - 1) )
-		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level)) )
-		|| (flags.lostsoul && In_dod(lev) && lev->dlevel == (depth(&medusa_level) + 1) )
-		|| (flags.uberlostsoul && In_gehennom(lev) && (lev->dlevel == 23 || lev->dlevel == 24 || lev->dlevel == 25))
+		|| (flags.lostsoul && !(u.lostsoulescape) && In_dod(lev) && lev->dlevel == (depth(&medusa_level) - 1) )
+		|| (flags.lostsoul && !(u.lostsoulescape) && In_dod(lev) && lev->dlevel == (depth(&medusa_level)) )
+		|| (flags.lostsoul && !(u.lostsoulescape) && In_dod(lev) && lev->dlevel == (depth(&medusa_level) + 1) )
+		|| (flags.uberlostsoul && !(u.lostsoulescape) && In_gehennom(lev) && (lev->dlevel == 23 || lev->dlevel == 24 || lev->dlevel == 25))
 		   /* no bones on the last or multiway branch levels */
 		   /* in any dungeon (level 1 isn't multiway).       */
 		|| (Is_botlevel(lev) && In_V_tower(lev) ) || (Is_branchlev(lev) && lev->dlevel > 1 && !In_sokoban(lev) && !In_towndungeon(lev) )

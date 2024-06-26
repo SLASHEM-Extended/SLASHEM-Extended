@@ -1729,6 +1729,7 @@ struct you {
 
 	boolean wonderlandescape;	/* wonderland mode player made it to the portal */
 	boolean zapemescape;	/* zapm mode player made it to the portal */
+	boolean lostsoulescape;	/* (uber)lost soul player made it to dlvl1 */
 
 	boolean preversionmode;	/* decided at game start: true if you're a preversioner */
 	boolean preversionescape;	/* preversion mode made it to deepest green cross level */

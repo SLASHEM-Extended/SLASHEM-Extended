@@ -1938,7 +1938,7 @@ d_level	*lev;
 boolean
 playerlevelportdisabled()
 {
-	if (flags.lostsoul || flags.uberlostsoul) return TRUE;
+	if ((flags.lostsoul || flags.uberlostsoul) && !(u.lostsoulescape) ) return TRUE;
 	if (flags.wonderland && !(u.wonderlandescape)) return TRUE;
 	if (iszapem && !(u.zapemescape)) return TRUE;
 	if (u.preversionmode && !u.preversionescape) return TRUE;
