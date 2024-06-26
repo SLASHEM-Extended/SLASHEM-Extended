@@ -2493,6 +2493,12 @@ currentmartialstyle()
 		case MARTIALSTYLE_WRESTLING:
 			sprintf(martialbuf, "wrestling");
 			break;
+		case MARTIALSTYLE_KOBUDO:
+			sprintf(martialbuf, "kobudo");
+			break;
+		case MARTIALSTYLE_BOOYAKASHA:
+			sprintf(martialbuf, "booyakasha");
+			break;
 
 		default:
 			impossible("weird martial arts style %d", u.martialstyle);
@@ -8516,7 +8522,7 @@ dropitemattack()
 void
 randommartialstyle()
 {
-	switch (rnd(13)) {
+	switch (rnd(15)) {
 		default:
 		case 1:
 			u.martialstyle = MARTIALSTYLE_BRAWLING;
@@ -8556,6 +8562,12 @@ randommartialstyle()
 			break;
 		case 13:
 			u.martialstyle = MARTIALSTYLE_WRESTLING;
+			break;
+		case 14:
+			u.martialstyle = MARTIALSTYLE_KOBUDO;
+			break;
+		case 15:
+			u.martialstyle = MARTIALSTYLE_BOOYAKASHA;
 			break;
 	}
 

@@ -3636,6 +3636,7 @@ int x;
 
 		if (x == A_INT && uwep && uwep->oartifact == ART_DAEMEL) tmp -= 2;
 		if (x == A_INT && u.twoweap && uswapwep && uswapwep->oartifact == ART_DAEMEL) tmp -= 2;
+		if (u.martialstyle == MARTIALSTYLE_BOOYAKASHA) tmp -= 5;
 
 		if (x == A_INT && Race_if(PM_HUMAN_MONKEY) && tmp > 9) tmp = 9;
 		if (uarmh && uarmh->oartifact == ART_DUNCE_POUNCE && tmp > 6) tmp = 6;
@@ -3949,6 +3950,7 @@ int x;
 		if (isbadstatter) tmp -= 2;
 		if (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) tmp -= 5;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
+		if (u.martialstyle == MARTIALSTYLE_BOOYAKASHA) tmp -= 5;
 
 		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
 		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
@@ -4022,6 +4024,7 @@ register int n;
 	}
 	if (Race_if(PM_KORONST) && n < 0) n *= 3;
 	if (Race_if(PM_BABYLONIAN) && n > 0 && rn2(2)) n *= 2;
+	if (u.martialstyle == MARTIALSTYLE_BOOYAKASHA && n < 0) n *= 2;
 
 	if (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER && n > 0) {
 		if (powerfulimplants()) n *= 5;

@@ -661,6 +661,8 @@ struct you {
 #define MARTIALSTYLE_KARATE 10
 #define MARTIALSTYLE_MARSHALARTS 11
 #define MARTIALSTYLE_WRESTLING 12
+#define MARTIALSTYLE_KOBUDO 13
+#define MARTIALSTYLE_BOOYAKASHA 14
 
 	int rangedreload;	/* for jumping flamer etc. */
 
@@ -1779,6 +1781,9 @@ struct you {
 
 	int dachacombostrike;
 	boolean dachacomboactive;
+
+	int booyacombostrike;
+	boolean booyacomboactive;
 
 	int steedhitchance;	/* default 25%, can be changed via directive */
 

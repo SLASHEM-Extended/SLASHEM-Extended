@@ -8986,6 +8986,10 @@ repairitemchoice:
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_MARSHALARTS;
 					} else if (P_SKILL(P_TWO_WEAPON_COMBAT) >= P_SKILLED && (P_SKILL(P_MARTIAL_ARTS) >= P_SKILLED || P_SKILL(P_BARE_HANDED_COMBAT) >= P_SKILLED) && yn("Switch to the 'wrestling' style (dual-wielding with at least one hand free occasionally paralyzes enemies, better STR/DEX, less INT/WIS, magic vacuum, fuck over and killer spawns)?")=='y') {
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_WRESTLING;
+					} else if (P_SKILL(P_FLAIL) >= P_MASTER && yn("Switch to the 'kobudo' style (bonus damage with iron chains and they occasionally debuff enemies, reduced melee to-hit)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_KOBUDO;
+					} else if (P_SKILL(P_BARE_HANDED_COMBAT) >= P_SKILLED && yn("Switch to the 'booyakasha' style (knuckles deal more damage on consecutive hits, teleport control while wielding knuckles, resist fear, reduces INT, CON and WIS, doubles alignment losses)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_BOOYAKASHA;
 					} else if (yn("Do you choose to not switch your style after all?")=='y') {
 						madechoice = 1;
 					}

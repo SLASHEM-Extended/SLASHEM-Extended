@@ -11107,6 +11107,8 @@ doprwep()
     } else {
 	prinv((char *)0, uwep, 0L);
 	if (uwep && weapon_type(uwep) == P_QUARTERSTAFF && u.martialstyle == MARTIALSTYLE_BOJUTSU) pline("Your current martial arts style is bojutsu.");
+	if (uwep && weapon_type(uwep) == P_FLAIL && u.martialstyle == MARTIALSTYLE_KOBUDO) pline("Your current martial arts style is kobudo.");
+	if (uwep && weapon_type(uwep) == P_BARE_HANDED_COMBAT && u.martialstyle == MARTIALSTYLE_BOOYAKASHA) pline("Your current martial arts style is booyakasha.");
 	if (uwep && uwep->otyp == JEONTU_GEOM && u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO) pline("Your current martial arts style is haidong gumdo.");
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO) pline("Your current martial arts style is taekwondo.");
 	if (u.martialstyle == MARTIALSTYLE_KARATE) pline("Your current martial arts style is karate.");

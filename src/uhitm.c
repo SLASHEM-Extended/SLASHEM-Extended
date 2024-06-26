@@ -992,6 +992,7 @@ register struct monst *mtmp;
 	}
 
 	if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && !(uwep && uwep->otyp == JEONTU_GEOM)) tmp -= 10;
+	if (u.martialstyle == MARTIALSTYLE_KOBUDO) tmp -= 5;
 
 	if (uwep && uwep->oartifact == ART_AK_____) {
 		if (!PlayerCannotUseSkills) {
@@ -4001,6 +4002,22 @@ int dieroll;
 		}
 	}
 
+	if (uwep && uwep->otyp >= BRASS_KNUCKLES && uwep->otyp <= ELITE_KNUCKLES && u.martialstyle == MARTIALSTYLE_BOOYAKASHA) {
+		tmp++; /* make sure the style does something even if you aren't using combos --Amy */
+
+		tmp += u.booyacombostrike;
+		if (u.booyacombostrike) {
+			pline("+%d combo!", u.booyacombostrike);
+			u.booyacombostrike++;
+			u.booyacomboactive = TRUE;
+		} else {
+			You("start your combo.");
+			u.booyacombostrike++;
+			u.booyacomboactive = TRUE;
+		}
+
+	}
+
 	/* negative effects go here --Amy */
 
 	if (obj && obj->oartifact == ART_LUCKLESS_FOLLY && Luck > 0) tmp -= Luck;
@@ -4393,6 +4410,17 @@ int dieroll;
 				if (mon->butthurt >= 19) {
 					pline("%s's butt is severely hurt! You should use the #force to finish %s off!", Monnam(mon), mhim(mon));
 				}
+			}
+		}
+
+		if (u.martialstyle == MARTIALSTYLE_KOBUDO && obj && obj->oclass == CHAIN_CLASS && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
+			if (!rn2(5)) {
+				mon->healblock += rn1(10,10);
+				pline("%s is hit hard!", Monnam(mon));
+			}
+			if (!rn2(100)) {
+				(void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+				pline("%s is cancelled!", Monnam(mon));
 			}
 		}
 

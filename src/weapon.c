@@ -1506,6 +1506,9 @@ struct monst *mon;
 		otmp->oclass == BALL_CLASS || otmp->oclass == CHAIN_CLASS || otmp->oclass == VENOM_CLASS) {
 	    int bonus = 0;
 
+	    if (u.martialstyle == MARTIALSTYLE_KOBUDO && otmp->oclass == CHAIN_CLASS)
+		bonus += rnd(10);
+
 	    if (otmp->blessed && (is_undead(ptr) || is_demon(ptr)))
 		bonus += rnd(4);
 	    if (is_axe(otmp) && is_wooden(ptr))

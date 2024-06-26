@@ -391,7 +391,7 @@
 
 #define HFear_resistance	u.uprops[FEAR_RES].intrinsic
 #define EFear_resistance	u.uprops[FEAR_RES].extrinsic
-#define IntFear_resistance	(HFear_resistance || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST))
+#define IntFear_resistance	(HFear_resistance || (u.martialstyle == MARTIALSTYLE_BOOYAKASHA) || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST))
 #define ExtFear_resistance	(playerextrinsicfearres())
 
 #define Fear_resistance		(((IntFear_resistance && u.nonintrinsicproperty != FEAR_RES) || (ExtFear_resistance && u.nonextrinsicproperty != FEAR_RES)) && !NoFear_resistance)
@@ -1541,7 +1541,7 @@
 
 #define HTeleport_control	u.uprops[TELEPORT_CONTROL].intrinsic
 #define ETeleport_control	u.uprops[TELEPORT_CONTROL].extrinsic
-#define IntTeleport_control	(HTeleport_control || (uleft && objects[uleft->otyp].oc_material == MT_MENGETIUM) || control_teleport(youmonst.data))
+#define IntTeleport_control	(HTeleport_control || (u.martialstyle == MARTIALSTYLE_BOOYAKASHA && uwep && uwep->otyp >= BRASS_KNUCKLES && uwep->otyp <= ELITE_KNUCKLES) || (uleft && objects[uleft->otyp].oc_material == MT_MENGETIUM) || control_teleport(youmonst.data))
 #define ExtTeleport_control	(ETeleport_control || (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == TELEPORT_CONTROL) ) )
 
 #define Teleport_control	(((IntTeleport_control && u.nonintrinsicproperty != TELEPORT_CONTROL) || (ExtTeleport_control && u.nonextrinsicproperty != TELEPORT_CONTROL)) && !Race_if(PM_MAIA) && !(u.uprops[STORM_HELM].extrinsic) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !NoTeleport_control)

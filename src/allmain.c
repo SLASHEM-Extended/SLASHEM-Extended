@@ -221,6 +221,13 @@ moveloop()
 			pline("Since you failed to hit something in your last action, your combo ends!");
 		}
 
+		if (u.booyacomboactive) {
+			u.booyacomboactive = FALSE;
+		} else if (u.booyacombostrike > 0) {
+			u.booyacombostrike = 0;
+			pline("Since you failed to hit something in your last action, your combo ends!");
+		}
+
 		u.polyprotected = 0;
 		u.aggravation = 0;
 		u.heavyaggravation = 0;
