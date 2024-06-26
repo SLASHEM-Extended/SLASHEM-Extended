@@ -651,6 +651,7 @@ rndtrap()
 			if (tndx == KNIFE_TRAP) ct += 4;
 			if (tndx == SPIKE_TRAP) ct += 2;
 			if (tndx == PAPER_ARROW_TRAP) ct += 5;
+			if (tndx == MAGIC_DAMAGE_TRAP) ct += 4;
 			if (tndx == RED_DAMAGE_TRAP) ct += 4;
 			if (tndx == BLUE_DAMAGE_TRAP) ct += 4;
 			if (tndx == YELLOW_DAMAGE_TRAP) ct += 4;

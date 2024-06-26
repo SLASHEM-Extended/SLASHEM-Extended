@@ -3487,6 +3487,7 @@ int traptype;
 		case KNIFE_TRAP:
 		case SPIKE_TRAP:
 		case PAPER_ARROW_TRAP:
+		case MAGIC_DAMAGE_TRAP:
 		case RED_DAMAGE_TRAP:
 		case BLUE_DAMAGE_TRAP:
 		case YELLOW_DAMAGE_TRAP:
@@ -20258,6 +20259,22 @@ skillrandomizeredo:
 			u.aggravation = 0;
 
 			break;
+		 case MAGIC_DAMAGE_TRAP:
+			{
+				seetrap(trap);
+				pline("Whoops, suddenly you're exposed to magic!");
+	
+				int dmg = (d(2, 4) + rnd((monster_difficulty() / 3) + 1));
+				if (Antimagic) dmg /= 2;
+				if (StrongAntimagic) dmg /= 2;
+				if (MysteryResist) dmg /= 2;
+				if (StrongMysteryResist) dmg /= 2;
+				if (dmg < 1) dmg = 1;
+
+				if (dmg) losehp(dmg, "magic damage", KILLED_BY);
+				else pline("It doesn't seem to harm you.");
+			}
+			break;
 		 case RED_DAMAGE_TRAP:
 			{
 				seetrap(trap);
@@ -23413,6 +23430,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case NARCOLEPSY_TRAP:
 		case MARTIAL_ARTS_TRAP:
 		case SUMMON_MONSTER_TRAP:
+		case MAGIC_DAMAGE_TRAP:
 		case RED_DAMAGE_TRAP:
 		case GREEN_DAMAGE_TRAP:
 		case YELLOW_DAMAGE_TRAP:
@@ -28635,6 +28653,7 @@ boolean force;
 			case MALEVOLENCE_TRAP:
 			case STATHALF_TRAP:
 			case SUMMON_MONSTER_TRAP:
+			case MAGIC_DAMAGE_TRAP:
 			case RED_DAMAGE_TRAP:
 			case GREEN_DAMAGE_TRAP:
 			case YELLOW_DAMAGE_TRAP:

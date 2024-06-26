@@ -942,6 +942,8 @@ static struct {
 	{ "blue damage", BLUE_DAMAGE_TRAP },
 	{ "multi debuff", MULTI_DEBUFF_TRAP },
 
+	{ "magic damage", MAGIC_DAMAGE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

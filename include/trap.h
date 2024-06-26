@@ -884,6 +884,8 @@ extern struct trap *ftrap;
 #define BLUE_DAMAGE_TRAP 776
 #define MULTI_DEBUFF_TRAP 777
 
+#define MAGIC_DAMAGE_TRAP 778
+
 /* todo area
 
 normal ones:
@@ -966,9 +968,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	778
+#define TIMERUN_TRAP	779
 
-#define TRAPNUM 779
+#define TRAPNUM 780
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

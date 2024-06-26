@@ -1118,6 +1118,8 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'^', "blue damage trap", C(CLR_BRIGHT_BLUE)},	/* trap */
 	{'^', "multi debuff trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 
+	{'^', "magic damage trap", C(CLR_BRIGHT_BLUE)},	/* trap */
+
 	{'^', "timerun trap", C(CLR_BRIGHT_CYAN)},	/* trap */
 	{'|', "wall",		C(CLR_GRAY)},	/* vbeam */
 	{'-', "wall",		C(CLR_GRAY)},	/* hbeam */
@@ -2063,6 +2065,8 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_blue_damage_trap),
 	g_FILLER(S_multi_debuff_trap),
 
+	g_FILLER(S_magic_damage_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xb3,	/* S_vbeam:	meta-3, vertical rule */
 	0xc4,	/* S_hbeam:	meta-D, horizontal rule */
@@ -2996,6 +3000,8 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_blue_damage_trap),
 	g_FILLER(S_multi_debuff_trap),
 
+	g_FILLER(S_magic_damage_trap),
+
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
 	0xf1,	/* S_hbeam:	meta-q, horizontal rule */
@@ -3925,6 +3931,8 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_white_damage_trap),
 	g_FILLER(S_blue_damage_trap),
 	g_FILLER(S_multi_debuff_trap),
+
+	g_FILLER(S_magic_damage_trap),
 
 	g_FILLER(S_timerun_trap),
 	0xf8,	/* S_vbeam:	meta-x, vertical rule */
@@ -4856,6 +4864,8 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_white_damage_trap),
 	g_FILLER(S_blue_damage_trap),
 	g_FILLER(S_multi_debuff_trap),
+
+	g_FILLER(S_magic_damage_trap),
 
 	g_FILLER(S_timerun_trap),
 
@@ -5996,6 +6006,8 @@ boolean is_rlevel;
 	    showsyms[S_white_damage_trap] = 0x04;
 	    showsyms[S_blue_damage_trap] = 0x04;
 	    showsyms[S_multi_debuff_trap] = 0x04;
+
+	    showsyms[S_magic_damage_trap] = 0x04;
 
  	    showsyms[S_timerun_trap] = 0x04;
 

@@ -3993,6 +3993,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != VULNERATE_TRAP
 				&& ttmp->ttyp != MULTI_DEBUFF_TRAP
 				&& ttmp->ttyp != SUMMON_MONSTER_TRAP
+				&& ttmp->ttyp != MAGIC_DAMAGE_TRAP
 				&& ttmp->ttyp != RED_DAMAGE_TRAP
 				&& ttmp->ttyp != GREEN_DAMAGE_TRAP
 				&& ttmp->ttyp != YELLOW_DAMAGE_TRAP
