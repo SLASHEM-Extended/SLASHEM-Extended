@@ -1098,10 +1098,10 @@ register xchar x, y;
 
 	/*STEPHEN WHITE'S NEW CODE */
 	canhitmon = 0;
-	if (need_one(mon))    canhitmon = 1; 
-	if (need_two(mon))    canhitmon = 2;         
-	if (need_three(mon))  canhitmon = 3; 
-	if (need_four(mon))   canhitmon = 4;         
+	if (need_one(mon))    canhitmon += 1; 
+	if (need_two(mon))    canhitmon += 2;         
+	if (need_three(mon))  canhitmon += 3; 
+	if (need_four(mon))   canhitmon += 4;         
 	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
 	if (uwep && uwep->oartifact == ART_AP_) canhitmon = 0;
 

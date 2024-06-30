@@ -1768,10 +1768,10 @@ int dieroll;
 
 	if (obj && obj->otyp == BROKEN_SWORD && objenchant > 0) objenchant = 0;
 
-	if (need_one(mon))    canhitmon = 1;
-	if (need_two(mon))    canhitmon = 2;
-	if (need_three(mon))  canhitmon = 3;
-	if (need_four(mon))   canhitmon = 4;
+	if (need_one(mon))    canhitmon += 1;
+	if (need_two(mon))    canhitmon += 2;
+	if (need_three(mon))  canhitmon += 3;
+	if (need_four(mon))   canhitmon += 4;
 	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
 	if (uwep && uwep->oartifact == ART_AP_) canhitmon = 0;
 
@@ -1782,15 +1782,11 @@ int dieroll;
 
 	if (Upolyd) {       /* Is Upolyd correct? */
 	    /* a monster that needs a +1 weapon to hit it hits as a +1 weapon... */
-	    if (need_one(&youmonst))		objenchant = 1;
-	    if (need_two(&youmonst))		objenchant = 2;
-	    if (need_three(&youmonst))		objenchant = 3;
-	    if (need_four(&youmonst))		objenchant = 4;
 	    /* overridden by specific flags */
-	    if (hit_as_one(&youmonst))		objenchant = 1;
-	    if (hit_as_two(&youmonst))		objenchant = 2;
-	    if (hit_as_three(&youmonst))	objenchant = 3;
-	    if (hit_as_four(&youmonst))		objenchant = 4;
+	    if (need_one(&youmonst) || hit_as_one(&youmonst))		objenchant += 1;
+	    if (need_two(&youmonst) || hit_as_two(&youmonst))		objenchant += 2;
+	    if (need_three(&youmonst) || hit_as_three(&youmonst))		objenchant += 3;
+	    if (need_four(&youmonst) || hit_as_four(&youmonst))		objenchant += 4;
 	}
 
 	unconventional[0] = '\0';
@@ -7851,7 +7847,7 @@ register struct attack *mattk;
 	register int	tmp = d((int)mattk->damn, (int)mattk->damd);
 	int armpro;
 	boolean negated;
-	register int    enchantlvl = 0;
+	register int    enchantlvl = 0, needlvl = 0;
 	boolean noeffect = FALSE;
 
 	int youdamagebonus;
@@ -7863,16 +7859,18 @@ register struct attack *mattk;
 	/* since hero can't be cancelled, only defender's armor applies */
 	negated = !((rn2(3) >= armpro) || !rn2(50));
 
-	if (hit_as_one(&youmonst))    enchantlvl = 1; 
-	if (hit_as_two(&youmonst))    enchantlvl = 2;         
-	if (hit_as_three(&youmonst))  enchantlvl = 3; 
-	if (hit_as_four(&youmonst))   enchantlvl = 4;         
+	if (hit_as_one(&youmonst))    enchantlvl += 1; 
+	if (hit_as_two(&youmonst))    enchantlvl += 2;         
+	if (hit_as_three(&youmonst))  enchantlvl += 3; 
+	if (hit_as_four(&youmonst))   enchantlvl += 4;         
+
+	if (need_one(mdef)) needlvl += 1;
+	if (need_two(mdef)) needlvl += 2;
+	if (need_three(mdef)) needlvl += 3;
+	if (need_four(mdef)) needlvl += 4;
 
 	if (!(uarmf && uarmf->oartifact == ART_KILLCAP) && !(uwep && uwep->oartifact == ART_AP_) ) {
-		if (need_one(mdef)   && enchantlvl < 1 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
-		if (need_two(mdef)   && enchantlvl < 2 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
-		if (need_three(mdef) && enchantlvl < 3 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
-		if (need_four(mdef)  && enchantlvl < 4 && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
+		if ((needlvl > enchantlvl) && rn2(isfriday ? 5 : 3)) noeffect = TRUE;
 	}
 
 	/* summoning demons should only happen while polymorphed or being certain races, otherwise there's bugs --Amy */

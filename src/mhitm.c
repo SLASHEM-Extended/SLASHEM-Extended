@@ -4105,10 +4105,10 @@ mdamagem(magr, mdef, mattk)
 	}
 
 	canhitmon = 0;
-	if (need_one(mdef))    canhitmon = 1;
-	if (need_two(mdef))    canhitmon = 2;
-	if (need_three(mdef))  canhitmon = 3;
-	if (need_four(mdef))   canhitmon = 4;
+	if (need_one(mdef))    canhitmon += 1;
+	if (need_two(mdef))    canhitmon += 2;
+	if (need_three(mdef))  canhitmon += 3;
+	if (need_four(mdef))   canhitmon += 4;
 	if (uarmf && uarmf->oartifact == ART_KILLCAP) canhitmon = 0;
 
 	if (mattk->aatyp == AT_WEAP && otmp) {
@@ -4122,15 +4122,11 @@ mdamagem(magr, mdef, mattk)
 	} else objenchant = 0;
 
 	/* a monster that needs a +1 weapon to hit it hits as a +1 weapon... */
-	if (need_one(magr))    objenchant = 1;
-	if (need_two(magr))    objenchant = 2;
-	if (need_three(magr))  objenchant = 3;
-	if (need_four(magr))   objenchant = 4;
 	/* overridden by specific flags */
-	if (hit_as_one(magr))    objenchant = 1;
-	if (hit_as_two(magr))    objenchant = 2;
-	if (hit_as_three(magr))  objenchant = 3;
-	if (hit_as_four(magr))   objenchant = 4;
+	if (need_one(magr) || hit_as_one(magr))    objenchant += 1;
+	if (need_two(magr) || hit_as_two(magr))    objenchant += 2;
+	if (need_three(magr) || hit_as_three(magr))  objenchant += 3;
+	if (need_four(magr) || hit_as_four(magr))   objenchant += 4;
 
 	if (objenchant < canhitmon && !rn2(3)) nohit = TRUE;
 

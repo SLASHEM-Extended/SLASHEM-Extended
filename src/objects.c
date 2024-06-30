@@ -9242,6 +9242,11 @@ SCROLL((char *)0,               "MAGES ARE ALWAYS AT LEAST PART TIME THAUMATURGI
 SCROLL((char *)0,               "QUEEN OF SELF INSERTS",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "SALB CALCONIX",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "O AHONDA IRA",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "REOGRANIZAIOTNSADBLEANHSD",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "EGOTYPES FOR ALL ITEMS",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "ALCHEMY IS FOR PEOPLE WHO HAVE NO LIFE",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
+SCROLL((char *)0,               "ITS IMPOSSIBLE TO MAKE RUNECRAFT BALANCED",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
+SCROLL((char *)0,               "SUMMONING IS FOR CHEESE WEASELS",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
