@@ -75,6 +75,7 @@ struct obj {
 	Bitfield(dknown,1);	/* color or text known */
 	Bitfield(bknown,1);	/* blessing or curse known */
 	Bitfield(rknown,1);	/* rustproof or not known */
+	Bitfield(wornknown,1);	/* item has been worn at least once --Amy */
 	Bitfield(petmarked,1);	/* pets will not drop this --Amy */
 	Bitfield(nemtrident,1);	/* nemesis race PC has wielded this --Amy */
 	Bitfield(objwassold,1);	/* to thwart endless credit cloning */

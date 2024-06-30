@@ -9101,7 +9101,7 @@ register struct obj *obj;
 		strcat(prefix, flags.simpledescs ? "ench " : "enchanted ");
 	}
 
-	if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
+	if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->wornknown && obj->known && !(PlayerUninformation) ) {
 		sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
 	}
 

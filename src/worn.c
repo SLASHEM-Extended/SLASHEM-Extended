@@ -120,6 +120,7 @@ long mask;
 		}
 	    }
 	}
+	if (obj) obj->wornknown = TRUE;
 	update_inventory();
 }
 

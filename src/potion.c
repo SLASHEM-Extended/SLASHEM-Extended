@@ -11526,7 +11526,7 @@ nastytrapcurse()
 	long savewornmask;
 
 	while (tryct++ < 1000) {
-		switch (rnd(7)) {
+		switch (rnd(12)) {
 			case 1:
 				if (uarmc) {
 					tryct = 5000;
@@ -11567,6 +11567,36 @@ nastytrapcurse()
 				if (uarmg) {
 					tryct = 5000;
 					ntobj = uarmg;
+				}
+				break;
+			case 8:
+				if (uleft) {
+					tryct = 5000;
+					ntobj = uleft;
+				}
+				break;
+			case 9:
+				if (uright) {
+					tryct = 5000;
+					ntobj = uright;
+				}
+				break;
+			case 10:
+				if (uamul) {
+					tryct = 5000;
+					ntobj = uamul;
+				}
+				break;
+			case 11:
+				if (uimplant) {
+					tryct = 5000;
+					ntobj = uimplant;
+				}
+				break;
+			case 12:
+				if (ublindf) {
+					tryct = 5000;
+					ntobj = ublindf;
 				}
 				break;
 		}

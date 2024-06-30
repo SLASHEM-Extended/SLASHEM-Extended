@@ -2431,6 +2431,8 @@ boolean shopinit;
 	int mndx, tryct;
 	struct obj *otmp;
 
+	boolean willhaveenchantment = 0;
+
 	if (otyp >= NUM_OBJECTS) {
 		impossible("Error: mksobj() called with invalid object type %d! Debug info for Amy: %d, %d, %d", otyp, (int) init, artif, (int) shopinit);
 		otyp = GOLD_PIECE;
@@ -3485,7 +3487,7 @@ boolean shopinit;
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
-	    }
+	    } /* end switch statement */
 
 		if (!rn2(achieve.get_amulet ? 200 : 800)) otmp->oerodeproof = 1;
 		if (!rn2(800)) {
@@ -3493,6 +3495,12 @@ boolean shopinit;
 			if (!rn2(3)) otmp->oeroded2 = rnd(3);
 		}
 		if (!rn2(achieve.get_amulet ? 100 : 400)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
+
+		if (is_blindfold_slot(otmp)) {
+			if (!rn2(100)) willhaveenchantment = TRUE;
+			if (In_lategame(&u.uz) && !rn2(100)) willhaveenchantment = TRUE;
+			if (achieve.get_amulet && !rn2(50)) willhaveenchantment = TRUE;
+		}
 
 		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3502,6 +3510,10 @@ boolean shopinit;
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
+		}
+
+		if (willhaveenchantment) {
+			otmp->enchantment = randenchantment();
 		}
 
 	    break;
@@ -3526,6 +3538,55 @@ boolean shopinit;
 		}
 		if (!rn2(achieve.get_amulet ? 150 : 600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
+		if (!rn2(100)) willhaveenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveenchantment = TRUE;
+
+		switch (otmp->otyp) {
+			default: break;
+			case AMULET_OF_BONES:
+				if (!rn2(15)) willhaveenchantment = TRUE;
+				break;
+			case AMULET_OF_TRAP_WARPING:
+			case AMULET_OF_HI_LEVEL_CASTING:
+			case AMULET_OF_RMB_LOSS:
+			case AMULET_OF_ITEM_TELEPORTATION:
+			case AMULET_OF_EXPLOSION:
+			case AMULET_OF_WRONG_SEEING:
+			case AMULET_OF_DIRECTIONAL_SWAP:
+			case AMULET_OF_SUDDEN_CURSE:
+			case AMULET_OF_MONSTER_MULTISHOT:
+			case AMULET_OF_ANTI_EXPERIENCE:
+			case AMULET_OF_TOTAL_BURDEN:
+			case AMULET_OF_SCREWY_INTERFACE:
+			case AMULET_OF_SPELL_FORGETTING:
+			case AMULET_OF_ANTI_TELEPORTATION:
+			case AMULET_OF_ESCAPE_PROBLEM:
+			case AMULET_OF_MISCOLORATION:
+			case AMULET_OF_LOST_KNOWLEDGE:
+			case AMULET_OF_SEVERE_FUCKUP:
+			case AMULET_OF_ITEM_INSECURITY:
+			case AMULET_OF_STOPPED_EVOLUTION:
+			case AMULET_OF_INITIALIZATION_FAILU:
+			case AMULET_OF_REAL_SCREWERY:
+			case AMULET_OF_ENEMY_SAVING:
+			case AMULET_OF_INCREASED_FREQUENCY:
+			case AMULET_OF_SPELL_METAL:
+			case AMULET_OF_TECHOUT:
+			case AMULET_OF_BAD_PART:
+			case AMULET_OF_EVIL_VARIANT:
+			case AMULET_OF_SANITY_TREBLE:
+			case AMULET_OF_HOSTILITY:
+			case AMULET_OF_EVIL_CRAFTING:
+			case AMULET_OF_EDIBILITY:
+			case AMULET_OF_WAKING:
+			case AMULET_OF_TRASH:
+			case AMULET_OF_UNDRESSING:
+			case AMULET_OF_STARLIGHT:
+				if (!rn2(5)) willhaveenchantment = TRUE;
+				break;
+		}
+
 		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
@@ -3534,6 +3595,10 @@ boolean shopinit;
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
 			otmp->fakeartifact = 1;
 			if (artif != 2) u.fakeartifacts++;
+		}
+
+		if (willhaveenchantment) {
+			otmp->enchantment = randenchantment();
 		}
 
 		break;
@@ -3574,6 +3639,10 @@ boolean shopinit;
 		}
 		if (!rn2(achieve.get_amulet ? 150 : 600)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 
+		if (!rn2(100)) willhaveenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveenchantment = TRUE;
+
 		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
@@ -3585,6 +3654,10 @@ boolean shopinit;
 		}
 
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
+		if (willhaveenchantment) {
+			otmp->enchantment = randenchantment();
+		}
 
 		break;
 	case VENOM_CLASS:
@@ -3928,18 +4001,263 @@ boolean shopinit;
 #endif
 		}
 
-		if (!rn2(100) || (In_lategame(&u.uz) && !rn2(100)) || (achieve.get_amulet && !rn2(50)) || (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING && !rn2(20)) ||
-		( (is_shirt(otmp) || otmp->otyp == WHISPERING_HELMET || otmp->otyp == MOMHAT || otmp->otyp == CAPTCHA_HELM || otmp->otyp == QUIZ_HELM || otmp->otyp == LONG_POINTY_HEELS || otmp->otyp == METER_GAUNTLETS || otmp->otyp == WEIGHTING_GAUNTLETS || otmp->otyp == BIGSCRIPT_HELM ) && !rn2(15) ) ||
-		( (otmp->otyp == WEDGE_SANDALS || otmp->otyp == REPEATABLE_BOOTS || otmp->otyp == DANCING_SHOES || otmp->otyp == ANGER_HELM || otmp->otyp == SCRIPTED_HELMET || otmp->otyp == GAUNTLETS_OF_RAINBOW_MOUD || otmp->otyp == POKELIE_GLOVES || otmp->otyp == ASS_KICKER_BOOTS || otmp->otyp == TOP_HELMET || otmp->otyp == ABCDE_HELMET || otmp->otyp == COSTLY_FAILURE_HELMET || otmp->otyp == COLOR_CHANGING_CONE || otmp->otyp == SWEET_MOCASSINS || otmp->otyp == SOFT_SNEAKERS || otmp->otyp == CLOGS ) && !rn2(10) ) ||
-		( (otmp->otyp == CLOAK_OF_UNSPELLING || otmp->otyp == ANTI_CASTER_CLOAK || otmp->otyp == HEAVY_STATUS_CLOAK || otmp->otyp == CLOAK_OF_LUCK_NEGATION || otmp->otyp == YELLOW_SPELL_CLOAK || otmp->otyp == VULNERABILITY_CLOAK || otmp->otyp == CLOAK_OF_INVENTORYLESSNESS || otmp->otyp == CLOAK_OF_NULLIFICATION || otmp->otyp == HELM_OF_LOSE_IDENTIFICATION || otmp->otyp == HELM_OF_OBSCURED_DISPLAY || otmp->otyp == COVETED_BOOTS || otmp->otyp == LIGHTLESS_BOOTS || otmp->otyp == SELF_WILLED_HEELS || otmp->otyp == SOIL_CLINGING_BOOTS || otmp->otyp == PERMANENTLY_BLACK_SHOES || otmp->otyp == AUTOSCOOTER_HEELS || otmp->otyp == FORCEFUL_BOOTS || otmp->otyp == BUM_BUM_BOOTS || otmp->otyp == SADISTIC_BOOTS || otmp->otyp == FLUCKERING_BOOTS || otmp->otyp == SPRAP_BOOTS || otmp->otyp == FAILED_ATTEMPT_BOOTS || otmp->otyp == TECH_LOSS_HELMET || otmp->otyp == BRIGHT_CYAN_BEAUTIES || otmp->otyp == SIA_BOOTS || otmp->otyp == PLATINUM_SPELL_BOOTS || otmp->otyp == INVIS_WALKERS || otmp->otyp == NOISY_BOOTS || otmp->otyp == MORK_BOOTS || otmp->otyp == HELM_OF_THIRST || otmp->otyp == CLOCKLOAK || otmp->otyp == DULLER_GLOVES || otmp->otyp == INACCURATE_GLOVES || otmp->otyp == KILLER_HEELS || otmp->otyp == VIOLET_BEAUTY_HEELS || otmp->otyp == DARK_HAND_GLOVES || otmp->otyp == CHECKER_BOOTS || otmp->otyp == ETERNAL_LIAR_BOOTS || otmp->otyp == ELVIS_SHOES || otmp->otyp == HELM_OF_AMNESIA || otmp->otyp == BLACKY_HELMET || otmp->otyp == BLOODSUCKING_SHOES || otmp->otyp == ANTI_DRINKER_HELMET || otmp->otyp == NOKEDEX_CLOAK || otmp->otyp == CYPHER_HELM || otmp->otyp == DIZZY_HELMET || otmp->otyp == MUTING_HELM || otmp->otyp == ULCH_HELMET || otmp->otyp == GAUNTLETS_OF_BAD_CASTING || otmp->otyp == MARY_SUE_GLOVES || otmp->otyp == DIMMER_HELMET || otmp->otyp == BORDERLESS_HELMET || otmp->otyp == BROWN_SHIT_CLOAK || otmp->otyp == ANTICALL_CLOAK || otmp->otyp == YELLOW_WING || otmp->otyp == ELESDE_CLOAK || otmp->otyp == CLOAK_OF_GRAVATION || otmp->otyp == ALLPICKING_GLOVES || otmp->otyp == SILVER_SPELL_GLOVES || otmp->otyp == SPELLDRAIN_GLOVES || otmp->otyp == CLOAK_OF_NONFOLLOWING || otmp->otyp == SPELL_RETAIN_CLOAK || otmp->otyp == CLOAK_OF_FAST_DECAY || otmp->otyp == ORANGE_SPELL_GLOVES || otmp->otyp == MOJIBAKE_GLOVES || otmp->otyp == DIXPLOSION_GLOVES || otmp->otyp == LEFT_APPENDAGE_GLOVES || otmp->otyp == HELMET_OF_ANTI_SEARCHING || otmp->otyp == RARE_HELMET || otmp->otyp == OPTIONAL_HELMET || otmp->otyp == HEAVY_GRABBING_GLOVES || otmp->otyp == AIRSTEP_BOOTS || otmp->otyp == BOOTS_OF_INTERRUPTION || otmp->otyp == BLACK_SPELL_GAUNTLETS || otmp->otyp == HIGH_HEELED_SKIERS || otmp->otyp == HIGH_SCORING_HEELS || otmp->otyp == HELM_OF_STARVATION || otmp->otyp == QUAFFER_HELMET || otmp->otyp == PSEUDO_TELEPORTER_CLOAK || otmp->otyp == SNARENET_CLOAK || otmp->otyp == PINK_SPELL_CLOAK || otmp->otyp == QUAVERSAL_HELMET || otmp->otyp == HELM_OF_SHUFFLING || otmp->otyp == GOLDSPELL_HELMET || otmp->otyp == AIRHEAD_CAP || otmp->otyp == FALLOUT_HELMET || otmp->otyp == IDENTIFY_CURD_HELMET || otmp->otyp == BAEAEAEP_SPY_HELMET || otmp->otyp == CRUNCHER_HELMET || otmp->otyp == DISTORTED_GRIMACE || otmp->otyp == ELM_ET || otmp->otyp == SANEMAKER_HELMET || otmp->otyp == GRAYOUT_CLOAK || otmp->otyp == TRON_BOOTS || otmp->otyp == RED_SPELL_HEELS || otmp->otyp == KILLER_SPAWN_BOOTS || otmp->otyp == DESTRUCTIVE_HEELS || otmp->otyp == CARTRIDGE_OF_HAVING_A_HORROR || otmp->otyp == SOUND_EFFECT_HELMET || otmp->otyp == INCORRECTLY_ADJUSTED_HELMET || otmp->otyp == CLOAK_OF_RESPAWNING || otmp->otyp == HELM_OF_BAD_ALIGNMENT || otmp->otyp == SOUNDPROOF_HELMET || otmp->otyp == HELM_OF_COUNTER_ROTATION || otmp->otyp == EPVI_SLIPPERS || otmp->otyp == DELIGHT_HELMET || otmp->otyp == OUT_OF_MEMORY_HELMET || otmp->otyp == FUCKUP_MELEE_GAUNTLETS || otmp->otyp == INFOLESS_HELMET || otmp->otyp == UNDETECTION_GLOVES || otmp->otyp == BLUE_SPELL_HELMET || otmp->otyp == MORE_HELMET || otmp->otyp == FISHINGHAIL_MET || otmp->otyp == MESSAGE_FILTER_HELMET || otmp->otyp == FLICKER_VISOR || otmp->otyp == STORMY_CLOAK || otmp->otyp == CLOAK_OF_WRONG_ANNOUNCEMENT || otmp->otyp == BATTERY_CLOAK || otmp->otyp == NAYLIGHT_CLOAK || otmp->otyp == UNDERLAYER_CLOAK || otmp->otyp == EVENCORE_CLOAK || otmp->otyp == SCALER_MITTENS || otmp->otyp == GLOVES_OF_ENERGY_DRAINING || otmp->otyp == MENU_NOSE_GLOVES || otmp->otyp == UNWIELDY_GLOVES || otmp->otyp == ELONGATION_CLOAK || otmp->otyp == CYAN_SPELL_CLOAK || otmp->otyp == BANKING_GLOVES || otmp->otyp == DIFFICULT_GLOVES || otmp->otyp == CHAOS_GLOVES || otmp->otyp == COMPETITION_BOOTS || otmp->otyp == QUASIMODULAR_BOOTS || otmp->otyp == SINFUL_HEELS || otmp->otyp == LEVELING_GLOVES || otmp->otyp == GIMP_CLOAK || otmp->otyp == UNFAIR_ATTACK_CLOAK || otmp->otyp == CLOAK_OF_BAD_PART || otmp->otyp == ADOM_CLOAK || otmp->otyp == EMPTY_LINE_HELMET || otmp->otyp == GREEN_SPELL_HELMET || otmp->otyp == EGOIST_CLOAK || otmp->otyp == CHATBOX_CLOAK || otmp->otyp == VANCIAN_CLOAK || otmp->otyp == CHOICE_O_MATE_CLOAK || otmp->otyp == COVID____COATED_CLOAK || otmp->otyp == HERETIC_CLOAK || otmp->otyp == EERIE_CLOAK || otmp->otyp == PETHATE_CLOAK || otmp->otyp == PET_LASHOUT_CLOAK || otmp->otyp == PETSTARVE_CLOAK || otmp->otyp == PETSCREW_CLOAK || otmp->otyp == NON_PROOF_CLOAK || otmp->otyp == CLOAK_OF_BAD_TRAPPING || otmp->otyp == CLOAK_OF_NAKEDNESS || otmp->otyp == GAUNTLETS_OF_REVERSE_ENCHANTME || otmp->otyp == CLOAK_OF_TIME || otmp->otyp == SPAWN_CLOAK || otmp->otyp == CONFUSING_GLOVES || otmp->otyp == DISENCHANTING_BOOTS || otmp->otyp == LIMITATION_BOOTS || otmp->otyp == THROUGH_THE_FLOOR_BOOTS || otmp->otyp == UNDROPPABLE_GLOVES || otmp->otyp == GAUNTLETS_OF_MISSING_INFORMATI || otmp->otyp == GAUNTLETS_OF_TRAP_CREATION || otmp->otyp == GAUNTLETS_OF_STEALING || otmp->otyp == CLOAK_OF_SUDDEN_ATTACK || otmp->otyp == TRUMP_COAT || otmp->otyp == GREYOUT_CLOAK || otmp->otyp == WHITE_SPELL_CLOAK || otmp->otyp == GAUNTLETS_OF_MISFIRING || otmp->otyp == SADO_MASO_GLOVES || otmp->otyp == FEMININE_PUMPS || otmp->otyp == LEATHER_PEEP_TOES || otmp->otyp == COMBAT_STILETTOS || otmp->otyp == DIDIER_SACHS_SHOES || otmp->otyp == MEN_S_HIGH_HEELS || otmp->otyp == LADY_BOOTS || otmp->otyp == BASIC_SHOES || otmp->otyp == ITALIAN_HEELS || otmp->otyp == STILETTO_SANDALS || otmp->otyp == AUTODESTRUCT_DE_VICE_BOOTS || otmp->otyp == SPEEDBUG_BOOTS || otmp->otyp == DISCONNECTED_BOOTS || otmp->otyp == BOSS_BOOTS || otmp->otyp == PET_STOMPING_PLATFORM_BOOTS || otmp->otyp == DEMENTIA_BOOTS || otmp->otyp == BOOTS_OF_FAINTING || otmp->otyp == DIFFICULT_BOOTS || otmp->otyp == BOOTS_OF_WEAKNESS || otmp->otyp == BUGXPLORE_HELMET || otmp->otyp == YAWNING_VISOR || otmp->otyp == REALLY_BAD_HELM || otmp->otyp == GRIDBUG_CONDUCT_BOOTS || otmp->otyp == STAIRWELL_STOMPING_BOOTS ) && !rn2(5) ) ||
-		((otmp->otyp == HIPPIE_HEELS || otmp->otyp == SENTIENT_HIGH_HEELED_SHOES) && !rn2(3)) ) {
+		if (!rn2(100)) willhaveenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveenchantment = TRUE;
+		if (uarmh && uarmh->oartifact == ART_WHY_NOT_DO_THE_REAL_THING && !rn2(20)) willhaveenchantment = TRUE;
+		if (is_shirt(otmp) && !rn2(15)) willhaveenchantment = TRUE;
 
-			otmp->enchantment = randenchantment();
-
+		switch (otmp->otyp) {
+			default: break;
+			case WHISPERING_HELMET:
+			case MOMHAT:
+			case CAPTCHA_HELM:
+			case QUIZ_HELM:
+			case LONG_POINTY_HEELS:
+			case METER_GAUNTLETS:
+			case WEIGHTING_GAUNTLETS:
+			case BIGSCRIPT_HELM:
+				if (!rn2(15)) willhaveenchantment = TRUE;
+				break;
+			case WEDGE_SANDALS:
+			case REPEATABLE_BOOTS:
+			case DANCING_SHOES:
+			case ANGER_HELM:
+			case SCRIPTED_HELMET:
+			case GAUNTLETS_OF_RAINBOW_MOUD:
+			case POKELIE_GLOVES:
+			case ASS_KICKER_BOOTS:
+			case TOP_HELMET:
+			case ABCDE_HELMET:
+			case COSTLY_FAILURE_HELMET:
+			case COLOR_CHANGING_CONE:
+			case SWEET_MOCASSINS:
+			case SOFT_SNEAKERS:
+			case CLOGS:
+				if (!rn2(10)) willhaveenchantment = TRUE;
+				break;
+			case CLOAK_OF_UNSPELLING:
+			case ANTI_CASTER_CLOAK:
+			case HEAVY_STATUS_CLOAK:
+			case CLOAK_OF_LUCK_NEGATION:
+			case YELLOW_SPELL_CLOAK:
+			case VULNERABILITY_CLOAK:
+			case CLOAK_OF_INVENTORYLESSNESS:
+			case CLOAK_OF_NULLIFICATION:
+			case HELM_OF_LOSE_IDENTIFICATION:
+			case HELM_OF_OBSCURED_DISPLAY:
+			case COVETED_BOOTS:
+			case LIGHTLESS_BOOTS:
+			case SELF_WILLED_HEELS:
+			case SOIL_CLINGING_BOOTS:
+			case PERMANENTLY_BLACK_SHOES:
+			case AUTOSCOOTER_HEELS:
+			case FORCEFUL_BOOTS:
+			case BUM_BUM_BOOTS:
+			case SADISTIC_BOOTS:
+			case FLUCKERING_BOOTS:
+			case SPRAP_BOOTS:
+			case FAILED_ATTEMPT_BOOTS:
+			case TECH_LOSS_HELMET:
+			case BRIGHT_CYAN_BEAUTIES:
+			case SIA_BOOTS:
+			case PLATINUM_SPELL_BOOTS:
+			case INVIS_WALKERS:
+			case NOISY_BOOTS:
+			case MORK_BOOTS:
+			case HELM_OF_THIRST:
+			case CLOCKLOAK:
+			case DULLER_GLOVES:
+			case INACCURATE_GLOVES:
+			case KILLER_HEELS:
+			case VIOLET_BEAUTY_HEELS:
+			case DARK_HAND_GLOVES:
+			case CHECKER_BOOTS:
+			case ETERNAL_LIAR_BOOTS:
+			case ELVIS_SHOES:
+			case HELM_OF_AMNESIA:
+			case BLACKY_HELMET:
+			case BLOODSUCKING_SHOES:
+			case ANTI_DRINKER_HELMET:
+			case NOKEDEX_CLOAK:
+			case CYPHER_HELM:
+			case DIZZY_HELMET:
+			case MUTING_HELM:
+			case ULCH_HELMET:
+			case GAUNTLETS_OF_BAD_CASTING:
+			case MARY_SUE_GLOVES:
+			case DIMMER_HELMET:
+			case BORDERLESS_HELMET:
+			case BROWN_SHIT_CLOAK:
+			case ANTICALL_CLOAK:
+			case YELLOW_WING:
+			case ELESDE_CLOAK:
+			case CLOAK_OF_GRAVATION:
+			case ALLPICKING_GLOVES:
+			case SILVER_SPELL_GLOVES:
+			case SPELLDRAIN_GLOVES:
+			case CLOAK_OF_NONFOLLOWING:
+			case SPELL_RETAIN_CLOAK:
+			case CLOAK_OF_FAST_DECAY:
+			case ORANGE_SPELL_GLOVES:
+			case MOJIBAKE_GLOVES:
+			case DIXPLOSION_GLOVES:
+			case LEFT_APPENDAGE_GLOVES:
+			case HELMET_OF_ANTI_SEARCHING:
+			case RARE_HELMET:
+			case OPTIONAL_HELMET:
+			case HEAVY_GRABBING_GLOVES:
+			case AIRSTEP_BOOTS:
+			case BOOTS_OF_INTERRUPTION:
+			case BLACK_SPELL_GAUNTLETS:
+			case HIGH_HEELED_SKIERS:
+			case HIGH_SCORING_HEELS:
+			case HELM_OF_STARVATION:
+			case QUAFFER_HELMET:
+			case PSEUDO_TELEPORTER_CLOAK:
+			case SNARENET_CLOAK:
+			case PINK_SPELL_CLOAK:
+			case QUAVERSAL_HELMET:
+			case HELM_OF_SHUFFLING:
+			case GOLDSPELL_HELMET:
+			case AIRHEAD_CAP:
+			case FALLOUT_HELMET:
+			case IDENTIFY_CURD_HELMET:
+			case BAEAEAEP_SPY_HELMET:
+			case CRUNCHER_HELMET:
+			case DISTORTED_GRIMACE:
+			case ELM_ET:
+			case SANEMAKER_HELMET:
+			case GRAYOUT_CLOAK:
+			case TRON_BOOTS:
+			case RED_SPELL_HEELS:
+			case KILLER_SPAWN_BOOTS:
+			case DESTRUCTIVE_HEELS:
+			case CARTRIDGE_OF_HAVING_A_HORROR:
+			case SOUND_EFFECT_HELMET:
+			case INCORRECTLY_ADJUSTED_HELMET:
+			case CLOAK_OF_RESPAWNING:
+			case HELM_OF_BAD_ALIGNMENT:
+			case SOUNDPROOF_HELMET:
+			case HELM_OF_COUNTER_ROTATION:
+			case EPVI_SLIPPERS:
+			case DELIGHT_HELMET:
+			case OUT_OF_MEMORY_HELMET:
+			case FUCKUP_MELEE_GAUNTLETS:
+			case INFOLESS_HELMET:
+			case UNDETECTION_GLOVES:
+			case BLUE_SPELL_HELMET:
+			case MORE_HELMET:
+			case FISHINGHAIL_MET:
+			case MESSAGE_FILTER_HELMET:
+			case FLICKER_VISOR:
+			case STORMY_CLOAK:
+			case CLOAK_OF_WRONG_ANNOUNCEMENT:
+			case BATTERY_CLOAK:
+			case NAYLIGHT_CLOAK:
+			case UNDERLAYER_CLOAK:
+			case EVENCORE_CLOAK:
+			case SCALER_MITTENS:
+			case GLOVES_OF_ENERGY_DRAINING:
+			case MENU_NOSE_GLOVES:
+			case UNWIELDY_GLOVES:
+			case ELONGATION_CLOAK:
+			case CYAN_SPELL_CLOAK:
+			case BANKING_GLOVES:
+			case DIFFICULT_GLOVES:
+			case CHAOS_GLOVES:
+			case COMPETITION_BOOTS:
+			case QUASIMODULAR_BOOTS:
+			case SINFUL_HEELS:
+			case LEVELING_GLOVES:
+			case GIMP_CLOAK:
+			case UNFAIR_ATTACK_CLOAK:
+			case CLOAK_OF_BAD_PART:
+			case ADOM_CLOAK:
+			case EMPTY_LINE_HELMET:
+			case GREEN_SPELL_HELMET:
+			case EGOIST_CLOAK:
+			case CHATBOX_CLOAK:
+			case VANCIAN_CLOAK:
+			case CHOICE_O_MATE_CLOAK:
+			case COVID____COATED_CLOAK:
+			case HERETIC_CLOAK:
+			case EERIE_CLOAK:
+			case PETHATE_CLOAK:
+			case PET_LASHOUT_CLOAK:
+			case PETSTARVE_CLOAK:
+			case PETSCREW_CLOAK:
+			case NON_PROOF_CLOAK:
+			case CLOAK_OF_BAD_TRAPPING:
+			case CLOAK_OF_NAKEDNESS:
+			case GAUNTLETS_OF_REVERSE_ENCHANTME:
+			case CLOAK_OF_TIME:
+			case SPAWN_CLOAK:
+			case CONFUSING_GLOVES:
+			case DISENCHANTING_BOOTS:
+			case LIMITATION_BOOTS:
+			case THROUGH_THE_FLOOR_BOOTS:
+			case UNDROPPABLE_GLOVES:
+			case GAUNTLETS_OF_MISSING_INFORMATI:
+			case GAUNTLETS_OF_TRAP_CREATION:
+			case GAUNTLETS_OF_STEALING:
+			case CLOAK_OF_SUDDEN_ATTACK:
+			case TRUMP_COAT:
+			case GREYOUT_CLOAK:
+			case WHITE_SPELL_CLOAK:
+			case GAUNTLETS_OF_MISFIRING:
+			case SADO_MASO_GLOVES:
+			case FEMININE_PUMPS:
+			case LEATHER_PEEP_TOES:
+			case COMBAT_STILETTOS:
+			case DIDIER_SACHS_SHOES:
+			case MEN_S_HIGH_HEELS:
+			case LADY_BOOTS:
+			case BASIC_SHOES:
+			case ITALIAN_HEELS:
+			case STILETTO_SANDALS:
+			case AUTODESTRUCT_DE_VICE_BOOTS:
+			case SPEEDBUG_BOOTS:
+			case DISCONNECTED_BOOTS:
+			case BOSS_BOOTS:
+			case PET_STOMPING_PLATFORM_BOOTS:
+			case DEMENTIA_BOOTS:
+			case BOOTS_OF_FAINTING:
+			case DIFFICULT_BOOTS:
+			case BOOTS_OF_WEAKNESS:
+			case BUGXPLORE_HELMET:
+			case YAWNING_VISOR:
+			case REALLY_BAD_HELM:
+			case GRIDBUG_CONDUCT_BOOTS:
+			case STAIRWELL_STOMPING_BOOTS:
+				if (!rn2(5)) willhaveenchantment = TRUE;
+				break;
+			case HIPPIE_HEELS:
+			case SENTIENT_HIGH_HEELED_SHOES:
+				if (!rn2(3)) willhaveenchantment = TRUE;
+				break;
+		/* certain base items are characterized by the fact that they always have an enchantment and are otherwise
+		 * plain --Amy */
+			case SPECIAL_CLOAK:
+			case CHANTER_SHIRT:
+			case MAGIC_DRAGON_SCALE_MAIL:
+			case MAGIC_DRAGON_SCALES:
+			case MAGIC_DRAGON_SCALE_SHIELD:
+			case SPECIAL_SHIELD:
+			case SPECIAL_LEATHER_ARMOR:
+			case MAGE_PLATE_MAIL:
+			case ROBE_OF_SPECIALTY:
+			case WONDER_HELMET:
+			case ARCANE_GAUNTLETS:
+			case SKY_HIGH_HEELS:
+				willhaveenchantment = TRUE;
+				break;
 		}
 
-		/* certain base items are characterized by the fact that they always have an enchantment and are otherwise plain --Amy */
-		if (otmp->otyp == SPECIAL_CLOAK || otmp->otyp == CHANTER_SHIRT || otmp->otyp == MAGIC_DRAGON_SCALE_MAIL || otmp->otyp == MAGIC_DRAGON_SCALES || otmp->otyp == MAGIC_DRAGON_SCALE_SHIELD || otmp->otyp == SPECIAL_SHIELD || otmp->otyp == SPECIAL_LEATHER_ARMOR || otmp->otyp == MAGE_PLATE_MAIL || otmp->otyp == ROBE_OF_SPECIALTY || otmp->otyp == WONDER_HELMET || otmp->otyp == ARCANE_GAUNTLETS || otmp->otyp == SKY_HIGH_HEELS || itemhasappearance(otmp, APP_SELF_TYPE_HELMET) || itemhasappearance(otmp, APP_ENCHANTMENT_CLOAK) ) {
+		if (itemhasappearance(otmp, APP_SELF_TYPE_HELMET)) willhaveenchantment = TRUE;
+		if (itemhasappearance(otmp, APP_ENCHANTMENT_CLOAK)) willhaveenchantment = TRUE;
+
+		if (willhaveenchantment) {
 			otmp->enchantment = randenchantment();
 		}
 
@@ -4091,6 +4409,53 @@ boolean shopinit;
 		    blessorcurse_on_creation(otmp, 1);
 		}
 
+		if (!rn2(100)) willhaveenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveenchantment = TRUE;
+
+		switch (otmp->otyp) {
+			default: break;
+			case RIN_ARTIFACT_BLASTING:
+			case RIN_INTRINSIC_LOSS:
+			case RIN_BLOOD_LOSS:
+			case RIN_NASTINESS:
+			case RIN_VISIBLE_BECOMING:
+			case RIN_BAD_EFFECT:
+			case RIN_DISENGRAVING:
+			case RIN_SUPERSCROLLING:
+			case RIN_ANTI_DROP:
+			case RIN_ENSNARING:
+			case RIN_DIARRHEA:
+			case RIN_FAST_METABOLISM:
+			case RIN_INCESSANT_FARTING:
+			case RIN_LAMITY:
+			case RIN_WALLFARTING:
+			case RIN_REDUCE_DAMAGE:
+			case RIN_REDUCE_ACCURACY:
+			case RIN_NO_SKILL:
+			case RIN_LOW_STATS:
+			case RIN_FAILED_TRAINING:
+			case RIN_FAILED_EXERCISE:
+			case RIN_AUTOCURSING:
+			case RIN_TIME_SPENDING:
+			case RIN_LOOTCUT:
+			case RIN_FORM_SHIFTING:
+			case RIN_LAGGING:
+			case RIN_BLESSCURSING:
+			case RIN_ILLITERACY:
+			case RIN_STAT_DECREASE:
+			case RIN_SANITY_TIMEOUT:
+			case RIN_WIMPINESS:
+			case RIN_USING_HAZARD:
+			case RIN_EXERTION_LOSS:
+			case RIN_PETCAT:
+			case RIN_POSSESSION_IDENTIFICATION:
+			case RIN_DAYSHIFT:
+			case RIN_DECONSTRUCTION:
+				if (!rn2(5)) willhaveenchantment = TRUE;
+				break;
+		}
+
 		if (!rn2(achieve.get_amulet ? 250 : 1000)) otmp->oerodeproof = 1;
 		if (!rn2(1000)) {
 			if (!rn2(3)) otmp->oeroded = rnd(3);
@@ -4109,6 +4474,10 @@ boolean shopinit;
 		}
 
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
+		if (willhaveenchantment) {
+			otmp->enchantment = randenchantment();
+		}
 
 		break;
 	case ROCK_CLASS:
