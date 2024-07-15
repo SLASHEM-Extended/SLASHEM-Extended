@@ -9101,9 +9101,36 @@ register struct obj *obj;
 		strcat(prefix, flags.simpledescs ? "ench " : "enchanted ");
 	}
 
-	if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->wornknown && obj->known && !(PlayerUninformation) ) {
-		sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
+	/* display what the enchantment is --Amy
+	 * armor: have to know the armor's + to see what the enchantment is
+	 * ring, amulet, implant: have to either wear it or know the base item to see what the enchantment is
+	 * wearable tool: have to wear it to see what the enchantment is */
+	if (obj->enchantment) {
+		switch (obj->oclass) {
+
+			case ARMOR_CLASS:
+				if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
+					sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
+				}
+				break;
+			case RING_CLASS:
+			case AMULET_CLASS:
+			case IMPLANT_CLASS:
+				if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && (obj->wornknown || (ocl->oc_name_known && obj->dknown) ) && obj->known && !(PlayerUninformation) ) {
+					sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
+				}
+				break;
+			case TOOL_CLASS:
+				if(obj->enchantment && is_blindfold_slot(obj) && !(isevilvariant && !(obj->rknown)) && obj->wornknown && obj->known && !(PlayerUninformation) ) {
+					sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
+				}
+				break;
+			default:
+				break;
+
+		}
 	}
+
 
 	switch(obj->oclass) {
 	case SCROLL_CLASS:
