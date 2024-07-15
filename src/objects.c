@@ -9247,6 +9247,9 @@ SCROLL((char *)0,               "EGOTYPES FOR ALL ITEMS",  P_NONE,     1,   0, 1
 SCROLL((char *)0,               "ALCHEMY IS FOR PEOPLE WHO HAVE NO LIFE",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "ITS IMPOSSIBLE TO MAKE RUNECRAFT BALANCED",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 SCROLL((char *)0,               "SUMMONING IS FOR CHEESE WEASELS",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "KRO BAS ENG KAI",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "BUERGERINNENMEISTERINNENKANDIDATINNEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "W GU RN IAH HND DHE EDR AIB LOA SR",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
