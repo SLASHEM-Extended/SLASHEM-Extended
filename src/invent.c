@@ -11840,25 +11840,73 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A basic long sword that does respectable damage."); break;
 			case MAIN_SWORD:
 				pline("A random-material long sword."); break;
+			case SMALL_SWORD:
+				pline("Actually a dagger, which deals above-average damage compared to other daggers but lacks a to-hit bonus. It can be thrown."); break;
+			case BASILARD:
+				pline("Rather weak long sword."); break;
+			case AWL_PIKE:
+				pline("An enchanting two-handed polearm that can be applied to hit monsters standing two squares away. Using it at point blank range is only useful if you're riding."); break;
+			case TULWAR:
+				pline("Medium-strength saber."); break;
+			case SHAMSHIR:
+				pline("This scimitar isn't that great, but made of copper, meaning it can't rust."); break;
+			case ESPANDON:
+				pline("A two-handed sword. It's not all that special."); break;
+			case DIFFICULT_CROSSBOW:
+				pline("A very heavy crossbow made of metal. Generally has an egotype, but if that happens to slay monsters, it only applies when bashing with it. It can be used to fire bolts."); break;
+			case FLIGHT_ARROW:
+				pline("These arrows deal less damage than regular ones, but generally spawn with an egotype."); break;
+			case SEEKER_BOLT:
+				pline("This crossbow ammo is very powerful. And to top it off, it also generally spawns with an egotype."); break;
+			case KITCHEN_KNIFE:
+				pline("A shitty knife-class weapon. It can be thrown."); break;
+			case GREAT_HAMMER:
+				pline("Pretty strong hammer-class weapon."); break;
+			case TRIFURCATE_SPEAR:
+				pline("This spear is rather heavy, but also rather damaging. It can be thrown."); break;
+			case THREE_PIECE_ROD:
+				pline("Quite powerful flail-class weapon, especially against small monsters. Also has a respectable to-hit bonus built in."); break;
+			case HATCHET:
+				pline("A small one-handed axe that doesn't deal much damage."); break;
+			case DARK_SWORD:
+				pline("This broadsword generates an antimagic shell. Its damage output is okay."); break;
+			case BEARDED_AXE:
+				pline("Two-handed axe that doesn't deal all that much damage."); break;
+			case MITHRIL_BOOMERANG:
+				pline("You can throw this weapon and hope to catch something in its weird flight pattern. Don't melee enemies with it or it may break. It has good to-hit and generally spawns with an egotype."); break;
+			case FALCATA:
+				pline("A metallic short sword with average damage output."); break;
+			case BATON:
+				pline("For a club, this weapon is actually pretty powerful."); break;
+			case FASCIA:
+				pline("Rather damaging claw-class weapon that, like all other claws, deals extra damage to fleeing or paralyzed enemies."); break;
+			case KNIGHTLY_MACE:
+				pline("Mace-class weapon. It deals a bit more damage than the regular mace."); break;
+			case CANYON_STAR:
+				pline("A rather good morning star."); break;
+			case CROWBAR:
+				pline("The 'Half-Life bar', it's actually just a quarterstaff. Its damage isn't that great considering it's two-handed."); break;
+			case LONG_WHIP:
+				pline("A relatively strong whip-class weapon, so while whips are generally not that good, if you are going to use one then this might be a good choice."); break;
 			case HEAVY_LONG_SWORD:
 				pline("Apart from its weight and material, this is a regular long sword."); break;
-			case CRYSTAL_SWORD: 
+			case CRYSTAL_SWORD:
 				pline("A basic long sword that breaks when thrown. Use it in melee instead."); break;
-			case SILVER_LONG_SWORD: 
+			case SILVER_LONG_SWORD:
 				pline("A long sword that does respectable damage, with a bonus against undead."); break;
-			case KATANA: 
+			case KATANA:
 				pline("This Japanese long sword can deal more damage than a regular long sword."); break;
 			case AUTOMATIC_KATANA:
 				pline("It's more damaging than a long sword."); break;
 			case FLEURE:
 				pline("A long sword stolen from Elona which deals less small damage but more large damage than a regular long sword."); break;
-			case SUGUHANOKEN: 
+			case SUGUHANOKEN:
 				pline("A totally shitty longsword. You should replace this with a real longsword!"); break;
-			case GREAT_HOUCHOU: 
+			case GREAT_HOUCHOU:
 				pline("Don't be fooled by its name. This thing is basically a longsword that does less damage."); break;
-			case ELECTRIC_SWORD: 
+			case ELECTRIC_SWORD:
 				pline("The most powerful of the long swords. It can be applied to bash iron bars."); break;
-			case TWO_HANDED_SWORD: 
+			case TWO_HANDED_SWORD:
 				pline("It's heavy and requires both hands, but does quite a lot of damage."); break;
 			case CUDSWORD:
 				pline("For a two-handed sword, this weapon is relatively weak."); break;
@@ -11872,11 +11920,11 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Two-handed sword with rather good damage output."); break;
 			case ETHER_SAW:
 				pline("A very powerful two-handed sword."); break;
-			case BASTERD_SWORD: 
+			case BASTERD_SWORD:
 				pline("This huge fucking sword can make short work of anything that tries to oppose you. However, you have to wield it with two hands."); break;
-			case DROVEN_GREATSWORD: 
+			case DROVEN_GREATSWORD:
 				pline("It doesn't actually bisect enemies, but it deals a ton and a half of damage. Basically, it's like you were wielding a tank. It requires both hands though. Do not throw it, because it'll break if you do, even if you changed its material to something else."); break;
-			case SCIMITAR: 
+			case SCIMITAR:
 				pline("A light but useful blade, the scimitar can outdamage a standard short sword."); break;
 			case BUBBLETAR:
 				pline("One-handed scimitar that deals mediocre damage."); break;
@@ -11886,7 +11934,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This scimitar does mediocre damage."); break;
 			case CHROME_BLADE:
 				pline("A scimitar that's especially useful against small enemies."); break;
-			case BENT_SABLE: 
+			case BENT_SABLE:
 				pline("This sharpened scimitar is actually very useful for quickly cutting up your enemies."); break;
 			case HIGH_ELVEN_WARSWORD:
 				pline("An elven scimitar that does more damage than a regular scimitar and also hits more often."); break;
@@ -17380,6 +17428,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Quite damaging one-handed pick-axe that can also be applied to dig through walls and certain other obstacles."); break;
 			case GUITAR:
 				pline("A heavy two-handed weapon that uses the unicorn horn skill. Applying it will play music."); break;
+			case BANJO:
+				pline("This two-handed weapon counts as a unicorn horn and doesn't deal much damage. You can also apply it to play music."); break;
 			case PIANO:
 				pline("Wielding this thing with two hands allows you to deal great damage to enemies. It uses the unicorn horn skill, but unlike an actual unicorn horn it plays music rather than curing status effects. Maybe it'll allow you to open the drawbridge."); break;
 			case RADIOGLASSES:
@@ -17592,6 +17642,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A club-class lightsaber tool that needs to be turned on in order to do good damage. If it's on, it provides radius 3 light and deals fire damage to enemies. But if it's not on, it can use the form IX (Hunk) lightsaber form. Beware: the charge saber technique cannot be used to recharge it, although other recharging methods still work."); break;
 			case PINK_LIGHTSWORD:
 				pline("A lightsaber that uses the scimitar skill and can train lightsaber forms at twice the normal rate. You need to turn it on though, and ATTENTION: while it's on, it slowly drains your maximum mana!"); break;
+			case LOWER_ARM_SWORD:
+				pline("This lightsaber uses the claw skill. It deals good damage when turned on, and is basically useless if it's not on. Since it's a claw, it gains damage bonuses if your target is fleeing or paralyzed."); break;
 			case BEAMSWORD:
 				pline("This lightsaber does good damage, but it needs to be turned on in order to work. It uses the saber skill."); break;
 			case WHITE_DOUBLE_LIGHTSABER: 

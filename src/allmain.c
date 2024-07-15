@@ -8363,7 +8363,7 @@ newbossSTEN:
 		}
 
 		if (uwep && uwep->oartifact == ART_SWITCH_TO_ANOTHER && !rn2(1000)) {
-			switch (rnd(32)) {
+			switch (rnd(33)) {
 				case 1: uwep->otyp = GREEN_LIGHTSABER; break;
 				case 2: uwep->otyp = BLUE_LIGHTSABER; break;
 				case 3: uwep->otyp = RED_LIGHTSABER; break;
@@ -8396,6 +8396,7 @@ newbossSTEN:
 				case 30: uwep->otyp = LASER_FLYAXE; break;
 				case 31: uwep->otyp = PINK_DOUBLE_LIGHTSWORD; break;
 				case 32: uwep->otyp = DARK_LIGHTSABER; break;
+				case 33: uwep->otyp = LOWER_ARM_SWORD; break;
 			}
 			if (bimanual(uwep)) {
 				if (uswapwep) uswapwepgone();

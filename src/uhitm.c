@@ -2716,7 +2716,7 @@ int dieroll;
 			}
 
 		    if (!thrown && (obj == uwep || obj == uswapwep) && 
-				(obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && (rnl(4) != 3) ) {
+				(obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == MITHRIL_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && (rnl(4) != 3) ) {
 			boolean more_than_1 = (obj->quan > 1L);
 
 			pline("As you hit %s, %s%s %s breaks into splinters.",

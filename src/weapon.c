@@ -374,7 +374,7 @@ struct monst *mon;
 	if (otmp->otyp == LASER_SWATTER && ptr == &mons[PM_INVINCIBLE_SUPERMAN]) tmp += 75;
 
 	/* blunt weapons versus undead (Diablo 2) */
-	if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) tmp += 3;
+	if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == ETHER_KNOUT || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) tmp += 3;
 	if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) tmp += 8;
 	if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) tmp += 8;
 
@@ -666,6 +666,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case LOWER_ARM_SWORD:	tmp += rnd(10); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
 		case KLIUSLING:	tmp += rnd(5); break;
 
@@ -789,6 +790,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case LOWER_ARM_SWORD:	tmp += rnd(10); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
 		case KLIUSLING:	tmp += rnd(5); break;
 
@@ -1095,7 +1097,7 @@ struct monst *mon;
 	    }
 
 	    /* blunt weapons versus undead (Diablo 2) */
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
 	    if (objects[otmp->otyp].oc_skill == P_QUARTERSTAFF && is_undead(ptr)) bonus += rnd(4);
 	    if (otmp->otyp == TWO_HANDED_FLAIL && is_undead(ptr)) bonus += rnd(6);
 
@@ -1296,6 +1298,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case LOWER_ARM_SWORD:	tmp += rnd(10); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
 		case KLIUSLING:	tmp += rnd(5); break;
 
@@ -1419,6 +1422,7 @@ struct monst *mon;
 		case LIGHTWHIP:	tmp += rnd(8); break;
 		case ELECTRIC_CIGARETTE:	tmp += rnd(10); break;
 		case NANO_HAMMER:	tmp += rnd(8); break;
+		case LOWER_ARM_SWORD:	tmp += rnd(10); break;
 		case STARWARS_MACE:	tmp += rnd(9); break;
 		case KLIUSLING:	tmp += rnd(5); break;
 
@@ -2516,7 +2520,7 @@ struct monst *mon;
 		}
 
 	    /* blunt weapons versus undead (Diablo 2) */
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr)) bonus += rnd(2);
 
 		if (!(PlayerCannotUseSkills)) {
 
@@ -2541,11 +2545,11 @@ struct monst *mon;
 		if (objects[otmp->otyp].oc_skill == P_GRINDER && P_SKILL(P_AXE) == P_GRAND_MASTER) bonus += rnd(5);
 		if (objects[otmp->otyp].oc_skill == P_GRINDER && P_SKILL(P_AXE) == P_SUPREME_MASTER) bonus += rnd(6);
 
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SKILLED) ) bonus += 1;
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_EXPERT) ) bonus += rnd(3);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_MASTER) ) bonus += rnd(4);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_GRAND_MASTER) ) bonus += rnd(5);
-	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SUPREME_MASTER) ) bonus += rnd(6);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SKILLED) ) bonus += 1;
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_EXPERT) ) bonus += rnd(3);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_MASTER) ) bonus += rnd(4);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_GRAND_MASTER) ) bonus += rnd(5);
+	    if ((objects[otmp->otyp].oc_skill == P_PICK_AXE || objects[otmp->otyp].oc_skill == P_CLUB || objects[otmp->otyp].oc_skill == P_MACE || objects[otmp->otyp].oc_skill == P_PADDLE || objects[otmp->otyp].oc_skill == P_MORNING_STAR || otmp->otyp == FLAIL || otmp->otyp == KNOUT || otmp->otyp == FLOGGER || otmp->otyp == WEIGHTED_FLAIL || otmp->otyp == RIDING_CROP || otmp->otyp == TRIPLE_HEADED_FLAIL || otmp->otyp == THREE_PIECE_ROD || otmp->otyp == SPIKED_CHAIN || otmp->otyp == ETHER_KNOUT || otmp->otyp == SPIKERACK || otmp->otyp == CHAIN_AND_SICKLE || otmp->otyp == OBSID || objects[otmp->otyp].oc_skill == P_HAMMER) && is_undead(ptr) && (P_SKILL(objects[otmp->otyp].oc_skill) == P_SUPREME_MASTER) ) bonus += rnd(6);
 
 		}
 
@@ -3043,7 +3047,7 @@ static NEARDATA const int rwep[] =
 	PISTOL_BULLET, FIVE_SEVEN_BULLET, COATED_AUTO_SHELL, AUTO_LEAD_SHOT,
 	LEAD_SHOT, AUTO_SHOTGUN_SHELL, SHOTGUN_SHELL, SUPERHEAVY_SPEAR,
 	JUMPING_FLAMER, CERAMIC_SPEAR, LOADBOULDER, STARLIGHTSTONE, HOMING_TORPEDO, BRICK_MISSILE,
-	PUNCTURING_JAVELIN, UNDERWORLD_JAVELIN,
+	PUNCTURING_JAVELIN, UNDERWORLD_JAVELIN, TRIFURCATE_SPEAR,
 	COURSE_JAVELIN, SPIRIT_THROWER, DROVEN_SPEAR, ATGEIR, DRAGON_SPEAR, NINJA_STAR, BLADE_OF_PITY, PARAZONIUM,
 	DWARVISH_SPEAR, SILVER_SPEAR, INKA_SPEAR, ELVEN_SPEAR, ASBESTOS_JAVELIN, STACK_JAVELIN, WINDMILL_BLADE,
 	FLINT_SPEAR, BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, RANDOSPEAR, SILK_SPEAR, SPEAR, COBALT_SPEAR, SUPERWEAPON,
@@ -3052,14 +3056,14 @@ static NEARDATA const int rwep[] =
 	DROVEN_ARROW, GOLDEN_ARROW, ANCIENT_ARROW, BRONZE_ARROW, HEAVY_SPEAR,
 	YA, FAR_EAST_ARROW, SILVER_ARROW, TECPATL, DROVEN_DAGGER, WRAITHBLADE, BONE_DAGGER, ELVEN_ARROW,
 	DARK_ELVEN_ARROW, ODOR_SHOT, FORBIDDEN_ARROW, WONDER_ARROW, SET_OF_CROW_TALONS,
-	ARROW, ORCISH_ARROW, BONE_ARROW, PAPER_ARROW, DROVEN_BOLT, KOKKEN, HARDENED_BOLT,
+	ARROW, ORCISH_ARROW, BONE_ARROW, PAPER_ARROW, DROVEN_BOLT, KOKKEN, HARDENED_BOLT, FLIGHT_ARROW, SEEKER_BOLT,
 	MINERAL_BOLT, LIGHT_ARROW, SPIKY_BOLT,
 	POISON_BOLT, HEAVY_CROSSBOW_BOLT, ETHER_BOLT, MATERIAL_BOLT,
 	CROSSBOW_BOLT, INFERIOR_BOLT, FLEECE_BOLT, PIN_BOLT, GREAT_DAGGER, SILVER_DAGGER, ELVEN_DAGGER, 
-	RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, SOFT_STAR, CONSECRATED_KNIFE,
+	RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, SOFT_STAR, CONSECRATED_KNIFE, SMALL_SWORD,
 	DARK_ELVEN_DAGGER, WONDER_DAGGER, DAGGER, ORCISH_DAGGER, BRONZE_DAGGER,
 	METEOR_FRAGMENT, PARRY_DAGGER, STEEL_KNIFE, LOWRATE_ASSAULT_RIFLE_BULLET,
-	SURVIVAL_KNIFE, COLLUSION_KNIFE, CERAMIC_KNIFE, BITUKNIFE,
+	SURVIVAL_KNIFE, COLLUSION_KNIFE, KITCHEN_KNIFE, CERAMIC_KNIFE, BITUKNIFE,
 	FANG_OF_APEP, UNKNOWN_KNIFE, MEASURER, STILETTO, KNIFE, VICTIM_KNIFE,
 	LOADSTONE, CONUNDRUM_NUGGET, SILVER_SLINGSTONE, VOLCANIC_GLASS_FRAGMENT, FLINT, 
 	LEAD_CLUMP, STEEL_SLUG, SLING_AMMO, BONE_FRAGMENT, DIVINE_DART, AMBER_FRAGMENT, BRONZE_NUGGET,
@@ -3082,6 +3086,7 @@ static NEARDATA const int pwep[] =
 	INFERNAL_BARDICHE, INFERNAL_ANCUS, ZEBES_POLE,
 	PHYSICIAN_BAR, DARK_BAR, POLE_LANTERN, SPETUM, BILL_GUISARME, CELESTIAL_POLE, LOCHABER_AXE, SVAERDSTAV,
 	NANO_POLE, BOHEMIAN_EAR_SPOON, VOULGE, RANSEUR, GUISARME, GRAIN_SCYTHE, LEADBAR, VARIED_GRINDER, STANGOEKSE,
+	AWL_PIKE,
 	BLACK_HALBERD, GARDEN_FORK, PITCHFORK, STICKSHOE, GRINDER, CIGAR, PATINA_BAR,
 	GLAIVE, LUCERN_HAMMER, BEC_DE_CORBIN, FAUCHARD, ETERNAL_POLE, LONG_POLE, SHARP_POLE, PENIS_POLE, PIKE,
 	PARTISAN, ELVEN_LANCE, BONE_SCYTHE, SCYTHE, TRISHULA, LAJATANG,
@@ -3232,6 +3237,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 		  if (!propellor) propellor = (oselect(mtmp, ZOOM_SHOT_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, BALLISTA));
 		  if (!propellor) propellor = (oselect(mtmp, HELO_CROSSBOW));
+		  if (!propellor) propellor = (oselect(mtmp, DIFFICULT_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, POWER_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, DROVEN_CROSSBOW));
 		  if (!propellor) propellor = (oselect(mtmp, PILE_BUNKER));
@@ -3380,20 +3386,20 @@ static const NEARDATA short hwep[] = {
 	  BASTERD_SWORD, ZANBATO, CHAINSWORD, UNNATURAL_SWORD, TSURUGI,
 	  DROVEN_GREATSWORD, DWARVISH_BATTLE_AXE, TWO_HANDED_TRIDENT, KITTEN_HEEL_PUMP,
 	  MANCATCHER, STYGIAN_PIKE, MARE_TRIDENT, PLOW, ETERNIUM_MATTOCK,
-	  LOG, SLEDGE_HAMMER, WHITE_FLOWER_SWORD, VOLCANIC_BROADSWORD, ELEGANT_BROADSWORD,
+	  LOG, SLEDGE_HAMMER, WHITE_FLOWER_SWORD, VOLCANIC_BROADSWORD, ELEGANT_BROADSWORD, DARK_SWORD,
 	  BLACK_AESTIVALIS, RUNESWORD, MALLET, HEAVY_HAMMER, BRIDGE_MUZZLE, ISAMUSEI, KACHISEI, HEAVY_WAR_HAMMER,
-	  SEXY_MARY_JANE,
+	  SEXY_MARY_JANE, BEARDED_AXE,
 	  WOODEN_GETA, LACQUERED_DANCING_SHOE, HIGH_HEELED_SANDAL, SEXY_LEATHER_PUMP, SPIKED_BATTLE_BOOT, HOMING_TORPEDO,
 	  DWARVISH_MATTOCK, SOFT_MATTOCK, YATAGAN, CHROME_BLADE, AIR_PRESSURE_HAMMER, LASER_FLYAXE,
-	  BENT_SABLE, HOE_SABLE, MYTHICAL_SABLE, INKA_BOOT, SOFT_LADY_SHOE, MARBLE_CHUNK, LASERXBOW,
+	  BENT_SABLE, HOE_SABLE, MYTHICAL_SABLE, INKA_BOOT, SOFT_LADY_SHOE, MARBLE_CHUNK, GREAT_HAMMER, LASERXBOW,
 	  BLOCK_HEELED_SANDAL, PROSTITUTE_SHOE, LIGHTWHIP, ELECTRIC_CIGARETTE, NANO_HAMMER, LASER_SWATTER, STARWARS_MACE,
-	  PINK_DOUBLE_LIGHTSWORD, TITANIUM_HORN, TRANSPARENCE_THROWER,
+	  PINK_DOUBLE_LIGHTSWORD, TITANIUM_HORN, TRANSPARENCE_THROWER, LOWER_ARM_SWORD,
 	  RED_DOUBLE_LIGHTSABER, WHITE_DOUBLE_LIGHTSABER, LASERDENT, SITH_STAFF, LASER_POLE, RED_LIGHTSABER,
 	  MYSTERY_LIGHTSABER, BLUE_LIGHTSABER, LASER_SWORD, VIOLET_LIGHTSABER, WHITE_LIGHTSABER, YELLOW_LIGHTSABER,
 	  BEAMSWORD, GREEN_LIGHTSABER, PIANO, DESERT_SWORD, STINGING_SWORD,
 	  GROM_AXE, CIRCULAR_SAW, ORANGE_LIGHTSABER, BLACK_LIGHTSABER,
 	  WEDGED_LITTLE_GIRL_SANDAL, SOFT_GIRL_SNEAKER, STURDY_PLATEAU_BOOT_FOR_GIRLS, HUGGING_BOOT, CYAN_DOUBLE_LIGHTSABER,
-	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN,
+	  BLOCK_HEELED_COMBAT_BOOT, ORGANOBLADE, GUITAR, DARK_HORN, SHADOWBLADE, ROMAN_SWORD, ETHER_SAW, SKY_HORN, ESPANDON,
 	  TWO_HANDED_SWORD, YESTERDAY_STAR, DEVIL_STAR, BATTLE_AXE, HUGE_CLUB, FALCHION,
 	  QUATTUORST_AXE, CHEMISTRY_SPACE_AXE, PLATINUM_SABER, GRAND_GRINDER,
 	  GOLDEN_SABER, ETERNIUM_SABER, CRYPTIC_SABER, TWO_HANDED_FLAIL, BOAT_OAR, LASERFIST, LIGHTTORCH, PINK_LIGHTSWORD,
@@ -3403,11 +3409,11 @@ static const NEARDATA short hwep[] = {
 	  AUTOMATIC_KATANA, KATANA, ARCANE_HORN, UNICORN_HORN, CRYSKNIFE, ELECTRIC_SWORD, AMBUSH_QATAR, FLOWING_SWORD,
 	  DIFFICULT_TRIDENT, SHOOMDENT, PINCER_STAFF, MARKET_GRINDER,
 	  FOURDENT, REACH_TRIDENT, TRIDENT, CRYSTAL_SWORD, HEAVY_GRINDER,
-	  ICKY_BLADE, WILD_BLADE, HEAVY_LONG_SWORD, MAIN_SWORD, BRICK_MISSILE, VARIED_GRINDER,
-	  LONG_SWORD, OBSID, TRIPLE_HEADED_FLAIL, PUNCTURING_JAVELIN, UNDERWORLD_JAVELIN, COURSE_JAVELIN,
+	  ICKY_BLADE, WILD_BLADE, HEAVY_LONG_SWORD, MAIN_SWORD, BRICK_MISSILE, VARIED_GRINDER, BASILARD,
+	  LONG_SWORD, OBSID, TRIPLE_HEADED_FLAIL, THREE_PIECE_ROD, PUNCTURING_JAVELIN, UNDERWORLD_JAVELIN, COURSE_JAVELIN,
 	  SPIRIT_THROWER, IMPACT_STAFF, BO_STAFF, BREAKER_STAFF,
 	  WALKING_STICK, SPIKERACK, CUDSWORD, DARK_LIGHTSABER,
-	  DROVEN_SPEAR, MEATSWORD, BIDENHANDER, DIAMOND_SMASHER, GRINDER, SATURNITE_FIST,
+	  DROVEN_SPEAR, MEATSWORD, BIDENHANDER, DIAMOND_SMASHER, GRINDER, SATURNITE_FIST, BANJO,
 
 	  DISGUSTING_CHAIN, GRANITE_SCOURGE, ELYSIUM_SCOURGE, SCOURGE, CHROME_SCOURGE, SHADOW_SCOURGE, COPPER_SCOURGE,
 	  ANTIDOTE_SCOURGE, CELESTIAL_SCOURGE, SINNUM_SCOURGE, TITANIUM_SCOURGE, MOUNTAIN_SWORD,
@@ -3421,24 +3427,25 @@ static const NEARDATA short hwep[] = {
 	  HEAVY_CHAIN, GLASS_CHAIN, STONE_CHAIN, IRON_CHAIN, BRICK_CHAIN, METAL_CHAIN, WAX_CHAIN, ALLOY_CHAIN,
 	  TAR_CHAIN, BAMBOO_CHAIN, BUBBLE_CHAIN, TINSEL_CHAIN, MESH_CHAIN, CHITIN_CHAIN,
 
-	  VACUUM_STAFF, INKUTLASS, GREEN_SABER, RAPIER, ARCANE_RAPIER, LEATHER_SABER, POWERFIST, FLAMETHROWER,
+	  VACUUM_STAFF, INKUTLASS, SHAMSHIR,
+	  GREEN_SABER, TULWAR, RAPIER, ARCANE_RAPIER, LEATHER_SABER, POWERFIST, FLAMETHROWER,
 	  BLADE_OF_PITY, PARAZONIUM, DOUBLE_FORCE_BLADE,
 	  DOGSHIT_BOOT, CHROME_STAFF, CONTRO_STAFF, CALCULATOR, ELITE_BATLETH, HEAVY_MACE, RAKUYO, CROW_QUILL, FLEURE,
 	  PLATINUM_FIRE_HOOK, FIRE_HOOK, BAMBOO_STAFF,
 	  DROVEN_DAGGER, TECPATL, ELVEN_BROADSWORD, BROADSWORD, SCIMITAR, SILVER_SABER,
 	  MILL_PAIL, FLANGED_MACE, BATLETH, TURNING_STAR, BRONZE_MORNING_STAR, STONE_STAR, WRAITHBLADE, BONE_DAGGER,
 	  SPINED_BALL, RHYTHMIC_STAR, JAGGED_STAR, STEEL_WHIP, DIMENSIONAL_SHARD, SECRET_SOUND_WHIP, SET_OF_CROW_TALONS,
-	  SEXPLAY_WHIP, FORMICAN_WHIP, TINMACE,
+	  SEXPLAY_WHIP, FORMICAN_WHIP, TINMACE, KNIGHTLY_MACE,
 	  SILVER_SHORT_SWORD, SILVER_LONG_SWORD, IRON_SABER, VIBROBLADE, INKA_BLADE, ETERNIUM_BLADE,
 	  DROVEN_SHORT_SWORD, SILVER_MACE, ASTERISK, NANO_AXE, SHINY_STAR, SUPERHEAVY_SPEAR, HEAVENLY_BALL,
-        METAL_STAR, ETHER_KNOUT, ATGEIR, CERAMIC_SPEAR, INFERNAL_AXE, TREESTAFF, SPRAY_BOX, CASTER_STAFF,
-  	  MORNING_STAR, GREAT_HOUCHOU, ORCISH_LONG_SWORD, ORCISH_MORNING_STAR,
-	  DARK_ELVEN_SHORT_SWORD, HIGH_ELVEN_WARSWORD, ELVEN_SHORT_SWORD, DARKNESS_CLUB, STEEL_CLUB,
-  	  DWARVISH_SHORT_SWORD, SUGUHANOKEN, SHORT_SWORD, METAL_CLUB, KNOUT, RIDING_CROP, IRON_BAR, TUBING_PLIERS,
-	  ORCISH_SHORT_SWORD, ELVEN_MACE, PLASTIC_MACE, BRONZE_MACE, HEATH_BALL, KAMEREL_VAJRA, QUALITY_AXE,
+        METAL_STAR, CANYON_STAR, ETHER_KNOUT, ATGEIR, CERAMIC_SPEAR, INFERNAL_AXE, TREESTAFF, SPRAY_BOX, CASTER_STAFF,
+  	  CROWBAR, MORNING_STAR, GREAT_HOUCHOU, ORCISH_LONG_SWORD, ORCISH_MORNING_STAR, TRIFURCATE_SPEAR,
+	  DARK_ELVEN_SHORT_SWORD, HIGH_ELVEN_WARSWORD, ELVEN_SHORT_SWORD, DARKNESS_CLUB, STEEL_CLUB, BATON,
+  	  DWARVISH_SHORT_SWORD, FALCATA, SUGUHANOKEN, SHORT_SWORD, METAL_CLUB, KNOUT, RIDING_CROP, IRON_BAR, TUBING_PLIERS,
+	  ORCISH_SHORT_SWORD, HATCHET, ELVEN_MACE, PLASTIC_MACE, BRONZE_MACE, HEATH_BALL, KAMEREL_VAJRA, QUALITY_AXE,
 	  TOMAHAWK, DISKOS,
 	  MACE, MOON_AXE, OBSIDIAN_AXE, SPIRIT_AXE, SHARP_AXE, AXE, DRAGON_SPEAR, DWARVISH_SPEAR, FORCE_WHIP,
-	  SILVER_SPEAR, BELL_CLAWS, GLADIUS, CLAWED_HAND, SUWAYYAH, QUHAB, MEASURER_QATAR,
+	  SILVER_SPEAR, BELL_CLAWS, GLADIUS, CLAWED_HAND, SUWAYYAH, QUHAB, FASCIA, MEASURER_QATAR,
 	  INKA_SPEAR, ELVEN_SPEAR, FLINT_SPEAR, NANO_PICK, SHORT_BLADE, SAND_SWORD,
 	  MIRRORBLADE, BLADE_OF_MERCY, BLADE_OF_GRACE, LIGHTBULB, CESTUS, KHOPESH,
 	  BRONZE_SPEAR, LONG_STAKE, BAMBOO_SPEAR, RANDOSPEAR, MAGISWORD, DRAMA_ORB,
@@ -3450,18 +3457,19 @@ static const NEARDATA short hwep[] = {
 	  RAIN_PIPE, SPECIAL_MOP, SILVER_KHAKKHARA, FOAMY_STAFF, SHAKUJO,
 	  MASSAGER, INSECT_SQUASHER, SPIKED_CLUB, BRICK_PICK, BASEBALL_BAT, MACUAHUITL, PAPER_SWORD, QATAR, CLIMBING_STICK,
 	  GREAT_DAGGER, JAVELIN, BLOW_AKLYS, AKLYS, POURED_CLUB, JAGGED_TOOTH_CLUB, TRASH_SWORD, TONFA, CONSECRATED_KNIFE,
-	  NATURAL_STICK, BONE_CLUB, SHELL_CLUB, CUDGEL, LAJATANG,
+	  SMALL_SWORD, NATURAL_STICK, BONE_CLUB, SHELL_CLUB, CUDGEL, LAJATANG,
 	  CLUB, ALLOY_CLUB, CIGARETTE, BUBBLETAR, CONUNDRUM_PICK, BRONZE_DAGGER, LIGHT_CLUB,
 	  BRONZE_PICK, CONGLOMERATE_PICK, MYSTERY_PICK, PICK_AXE, VERMIN_SWATTER, FLY_SWATTER, TENNIS_RACKET, HEAVY_SPEAR,
 	  RADIOACTIVE_DAGGER, SECRETION_DAGGER, BRITTLE_SPEAR, JARED_STONE, KLIUSLING,
 	  TELEPHONE, FUTON_SWATTER, MAGICAL_PAINTBRUSH, BREAKING_WHEEL, ORCISH_SCIMITAR,
 	  BROOM, MOP, ORNATE_MACE, CONTROVERSY_CODE, STEEL_KNIFE, CANE,
 
-	  HEAVENLY_WHIP, VIPERWHIP, ETHER_WHIP, BULLETPROOF_CHAINWHIP, INKA_SHACKLE, RUBBER_HOSE, SECRET_WHIP,
+	  HEAVENLY_WHIP, VIPERWHIP, LONG_WHIP, ETHER_WHIP, BULLETPROOF_CHAINWHIP, INKA_SHACKLE, RUBBER_HOSE, SECRET_WHIP,
 	  WAR_HAMMER, MITHRIL_WHIP, CHAINWHIP, FLAME_WHIP, ROSE_WHIP, TINSEL_LONGSWORD, TEACHING_STAFF,
 	  SILVER_DAGGER, ELVEN_DAGGER, WOODEN_STAKE, WONDER_DAGGER, DAGGER, ELITE_KNUCKLES, PARRY_SWORD,
 	  ORCISH_DAGGER, NOVICE_HAMMER, RAZOR_WHIP, MYSTERIOUS_PICK, UNWIELDY_PICK, MASTER_KNUCKLES,
 	  MERCURIAL_ATHAME, ATHAME, SCALPEL, SURVIVAL_KNIFE, CERAMIC_KNIFE, BUBBLEHORN, EAGLE_BALL, FANG_OF_APEP,
+	  KITCHEN_KNIFE,
 	  COLLUSION_KNIFE, BITUKNIFE, VICTIM_KNIFE, UNKNOWN_KNIFE, ULTRA_KNUCKLES, PARRY_DAGGER, BALLPEEN_HAMMER,
 	  MEASURER, STILETTO, KNIFE, TORCH, WORM_TOOTH, OTAMA, CARDBOARD_FAN, GARBOWHIP, REPLICA_UNICORN_HORN,
 	  CLOTH_CHAIN, MERCURIAL_CHAIN, SUPER_KNUCKLES, BRASS_KNUCKLES, BROKEN_SWORD
@@ -3627,6 +3635,8 @@ register struct monst *mon;
 			if (!obj || which_armor(mon, W_ARMS))
 			    obj = m_carrying(mon, BATTLE_AXE);
 			if (!obj || which_armor(mon, W_ARMS))
+			    obj = m_carrying(mon, BEARDED_AXE);
+			if (!obj || which_armor(mon, W_ARMS))
 			    obj = m_carrying(mon, CHEMISTRY_SPACE_AXE);
 			if (!obj || which_armor(mon, W_ARMS))
 			    obj = m_carrying(mon, QUATTUORST_AXE);
@@ -3640,6 +3650,7 @@ register struct monst *mon;
 			if (!obj) obj = m_carrying(mon, DISKOS);
 			if (!obj) obj = m_carrying(mon, TOMAHAWK);
 			if (!obj) obj = m_carrying(mon, QUALITY_AXE);
+			if (!obj) obj = m_carrying(mon, HATCHET);
 			if (!obj) obj = m_carrying(mon, INFERNAL_AXE);
 			if (!obj) obj = m_carrying(mon, NANO_AXE);
 			if (!obj) obj = m_carrying(mon, TUBING_PLIERS);
@@ -3651,6 +3662,7 @@ register struct monst *mon;
 			if (!obj) obj = m_carrying(mon, SOFT_MATTOCK);
 			if (!obj) obj = m_carrying(mon, ETERNIUM_MATTOCK);
 			if (!obj) obj = m_carrying(mon, DWARVISH_BATTLE_AXE);
+			if (!obj) obj = m_carrying(mon, BEARDED_AXE);
 			if (!obj) obj = m_carrying(mon, BATTLE_AXE);
 			if (!obj || which_armor(mon, W_ARMS)) {
 			    obj = m_carrying(mon, PICK_AXE);
@@ -3671,6 +3683,7 @@ register struct monst *mon;
 			    if (!obj) obj = m_carrying(mon, DISKOS);
 			    if (!obj) obj = m_carrying(mon, TOMAHAWK);
 			    if (!obj) obj = m_carrying(mon, QUALITY_AXE);
+			    if (!obj) obj = m_carrying(mon, HATCHET);
 			    if (!obj) obj = m_carrying(mon, INFERNAL_AXE);
 			    if (!obj) obj = m_carrying(mon, NANO_AXE);
 			    if (!obj) obj = m_carrying(mon, TUBING_PLIERS);
@@ -7615,8 +7628,8 @@ struct obj *weapon;
 		bonus += 5;
 	}
 
-	if (Role_if(PM_BARD) && weapon && (weapon->otyp == GUITAR || weapon->otyp == PIANO)) bonus += 10;
-	if (Role_if(PM_MUSICIAN) && weapon && (weapon->otyp == GUITAR || weapon->otyp == PIANO)) bonus += 5;
+	if (Role_if(PM_BARD) && weapon && (weapon->otyp == GUITAR || weapon->otyp == BANJO || weapon->otyp == PIANO)) bonus += 10;
+	if (Role_if(PM_MUSICIAN) && weapon && (weapon->otyp == GUITAR || weapon->otyp == BANJO || weapon->otyp == PIANO)) bonus += 5;
 
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER && weapon && weapon_type(weapon) == P_HAMMER) bonus += 8;
 
@@ -8002,6 +8015,12 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
 	if (weapon && weapon->otyp == BATTLE_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
+	if (weapon && weapon->otyp == BEARDED_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == BEARDED_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == BEARDED_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == BEARDED_AXE && (P_SKILL(P_AXE) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == BEARDED_AXE && (P_SKILL(P_AXE) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
 	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_SKILLED) ) bonus += rnd(3);
 	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_EXPERT) ) bonus += rnd(6);
 	if (weapon && weapon->otyp == DWARVISH_BATTLE_AXE && (P_SKILL(P_AXE) == P_MASTER) ) bonus += rnd(10);
@@ -8193,6 +8212,12 @@ struct obj *weapon;
 	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
 	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
 	if (weapon && weapon->otyp == ORGANOBLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
+
+	if (weapon && weapon->otyp == ESPANDON && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(3);
+	if (weapon && weapon->otyp == ESPANDON && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(6);
+	if (weapon && weapon->otyp == ESPANDON && (P_SKILL(P_TWO_HANDED_SWORD) == P_MASTER) ) bonus += rnd(10);
+	if (weapon && weapon->otyp == ESPANDON && (P_SKILL(P_TWO_HANDED_SWORD) == P_GRAND_MASTER) ) bonus += rnd(12);
+	if (weapon && weapon->otyp == ESPANDON && (P_SKILL(P_TWO_HANDED_SWORD) == P_SUPREME_MASTER) ) bonus += rnd(15);
 
 	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_SKILLED) ) bonus += rnd(4);
 	if (weapon && weapon->otyp == COLOSSUS_BLADE && (P_SKILL(P_TWO_HANDED_SWORD) == P_EXPERT) ) bonus += rnd(8);

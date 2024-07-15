@@ -5194,6 +5194,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		case BLADE_OF_PITY:
 		case PARAZONIUM:
 		case BRONZE_DAGGER:
+		case SMALL_SWORD:
 		case TECPATL:
 		case DROVEN_DAGGER:
 			tmp = 3;

@@ -4738,6 +4738,33 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ BRICK_HORN, "todo" },
 	{ SWAMP_TENTACLE, "todo" },
 
+	{ SMALL_SWORD, "todo" },
+	{ BASILARD, "todo" },
+	{ AWL_PIKE, "todo" },
+	{ TULWAR, "todo" },
+	{ SHAMSHIR, "todo" },
+	{ ESPANDON, "todo" },
+	{ DIFFICULT_CROSSBOW, "todo" },
+	{ FLIGHT_ARROW, "todo" },
+	{ SEEKER_BOLT, "todo" },
+	{ KITCHEN_KNIFE, "todo" },
+	{ GREAT_HAMMER, "todo" },
+	{ TRIFURCATE_SPEAR, "todo" },
+	{ THREE_PIECE_ROD, "todo" },
+	{ HATCHET, "todo" },
+	{ BANJO, "todo" },
+	{ DARK_SWORD, "todo" },
+	{ BEARDED_AXE, "todo" },
+	{ MITHRIL_BOOMERANG, "todo" },
+	{ FALCATA, "todo" },
+	{ BATON, "todo" },
+	{ FASCIA, "todo" },
+	{ KNIGHTLY_MACE, "todo" },
+	{ CANYON_STAR, "todo" },
+	{ CROWBAR, "todo" },
+	{ LONG_WHIP, "todo" },
+	{ LOWER_ARM_SWORD, "todo" },
+
 	{0, "" }
 };
 
@@ -8358,6 +8385,33 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ BRICK_HORN, "todo" },
 	{ SWAMP_TENTACLE, "todo" },
 
+	{ SMALL_SWORD, "todo" },
+	{ BASILARD, "todo" },
+	{ AWL_PIKE, "todo" },
+	{ TULWAR, "todo" },
+	{ SHAMSHIR, "todo" },
+	{ ESPANDON, "todo" },
+	{ DIFFICULT_CROSSBOW, "todo" },
+	{ FLIGHT_ARROW, "todo" },
+	{ SEEKER_BOLT, "todo" },
+	{ KITCHEN_KNIFE, "todo" },
+	{ GREAT_HAMMER, "todo" },
+	{ TRIFURCATE_SPEAR, "todo" },
+	{ THREE_PIECE_ROD, "todo" },
+	{ HATCHET, "todo" },
+	{ BANJO, "todo" },
+	{ DARK_SWORD, "todo" },
+	{ BEARDED_AXE, "todo" },
+	{ MITHRIL_BOOMERANG, "todo" },
+	{ FALCATA, "todo" },
+	{ BATON, "todo" },
+	{ FASCIA, "todo" },
+	{ KNIGHTLY_MACE, "todo" },
+	{ CANYON_STAR, "todo" },
+	{ CROWBAR, "todo" },
+	{ LONG_WHIP, "todo" },
+	{ LOWER_ARM_SWORD, "todo" },
+
 	{0, "" }
 };
 
@@ -11896,7 +11950,7 @@ typfnd:
 	if (Race_if(PM_BATMAN)) {
 		if (typ == BATARANG || typ == DARK_BATARANG) maxwishamount = 7;
 	}
-	if ((typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != ALU_BOOMERANG) && (typ != BATARANG) && (typ != ROCKET) && (typ != DARK_BATARANG) && ((oclass == WEAPON_CLASS && is_ammo(otmp)) || typ == ROCK || is_missile(otmp))) {
+	if ((typ != BOOMERANG) && (typ != SILVER_CHAKRAM) && (typ != ALU_BOOMERANG) && (typ != MITHRIL_BOOMERANG) && (typ != BATARANG) && (typ != ROCKET) && (typ != DARK_BATARANG) && ((oclass == WEAPON_CLASS && is_ammo(otmp)) || typ == ROCK || is_missile(otmp))) {
 		/* idea by stenno - wishing for ammo can give up to 100 rounds of ammo */
 		maxwishamount = 100;
 	}

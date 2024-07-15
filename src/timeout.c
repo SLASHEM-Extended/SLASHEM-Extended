@@ -6001,6 +6001,7 @@ long timeout;
 	    case RED_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
+	    case LOWER_ARM_SWORD:
 	    case LIGHTWHIP:
 	    case KLIUSLING:
 	    case STARWARS_MACE:
@@ -6307,6 +6308,7 @@ begin_burn(obj, already_lit)
 	    case PINK_LIGHTSWORD:
 	    case BEAMSWORD:
 	    case NANO_HAMMER:
+	    case LOWER_ARM_SWORD:
 	    case KLIUSLING:
 	    case STARWARS_MACE:
 	    case LIGHTWHIP:

@@ -2626,6 +2626,7 @@ boolean shopinit;
 			case RED_LIGHTSABER:
 			case LASER_SWATTER:
 			case NANO_HAMMER:
+			case LOWER_ARM_SWORD:
 			case LIGHTWHIP:
 			case ELECTRIC_CIGARETTE:
 				otmp->age = (long) rn1(1000,1000);
@@ -2685,6 +2686,7 @@ boolean shopinit;
 		if (otmp->otyp == COATED_AUTO_SHELL) otmp->quan += rnd(30);
 		if (otmp->otyp == ROCKET) otmp->quan += rnd(5);
 		if (otmp->otyp == CROSSBOW_BOLT) otmp->quan += rnd(25);
+		if (otmp->otyp == SEEKER_BOLT) otmp->quan += rnd(25);
 		if (otmp->otyp == DROVEN_BOLT) otmp->quan += rnd(75);
 		if (otmp->otyp == DROVEN_ARROW) otmp->quan += rnd(75);
 		if (otmp->otyp == INFERIOR_BOLT) otmp->quan += rnd(55);
@@ -2866,6 +2868,34 @@ boolean shopinit;
 			case DIMENSIONAL_SHARD:
 			case JUMPING_FLAMER:
 				if (!rn2(3)) willhaveweaponenchantment = TRUE;
+				break;
+			case SMALL_SWORD:
+			case BASILARD:
+			case AWL_PIKE:
+			case TULWAR:
+			case SHAMSHIR:
+			case ESPANDON:
+			case KITCHEN_KNIFE:
+			case GREAT_HAMMER:
+			case TRIFURCATE_SPEAR:
+			case THREE_PIECE_ROD:
+			case HATCHET:
+			case DARK_SWORD:
+			case BEARDED_AXE:
+			case FALCATA:
+			case BATON:
+			case FASCIA:
+			case KNIGHTLY_MACE:
+			case CANYON_STAR:
+			case CROWBAR:
+			case LONG_WHIP:
+				if (!rn2(2)) willhaveweaponenchantment = TRUE;
+				break;
+			case DIFFICULT_CROSSBOW:
+			case FLIGHT_ARROW:
+			case SEEKER_BOLT:
+			case MITHRIL_BOOMERANG:
+				willhaveweaponenchantment = TRUE;
 				break;
 
 		}
@@ -3310,6 +3340,7 @@ boolean shopinit;
 		case RED_LIGHTSABER:
 		case LASER_SWATTER:
 		case NANO_HAMMER:
+		case LOWER_ARM_SWORD:
 		case LIGHTWHIP:
 		case ELECTRIC_CIGARETTE:
 			otmp->recharged = 0;
@@ -3584,6 +3615,10 @@ boolean shopinit;
 				break;
 			case DARK_HORN:
 				if (!rn2(10)) willhaveweaponenchantment = TRUE;
+				break;
+			case BANJO:
+			case LOWER_ARM_SWORD:
+				if (!rn2(2)) willhaveweaponenchantment = TRUE;
 				break;
 		}
 

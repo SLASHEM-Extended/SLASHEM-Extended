@@ -532,6 +532,7 @@ hornchoice:
 	    break;
 	case PIANO:
 	case GUITAR:
+	case BANJO:
 	case BUGLE:			/* Awaken & attract soldiers */
 	    You("extract a loud noise from %s.", the(xname(instr)));
 	    if (instr && instr->oartifact == ART_HEAR_FAR_AND_WIDE) awaken_soldiers(1);

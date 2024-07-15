@@ -10923,6 +10923,8 @@ extrachargechoice:
 						    madechoice = 1; sabertype = 21; }
 					else if (yn("Do you want to switch to a pink double lightsword?")=='y') {
 						    madechoice = 1; sabertype = 22; }
+					else if (yn("Do you want to switch to a lower arm sword?")=='y') {
+						    madechoice = 1; sabertype = 23; }
 
 				}
 
@@ -11009,8 +11011,10 @@ extrachargechoice:
 					uwep->otyp = PINK_LIGHTSWORD;
 				} else if (sabertype == 21) {
 					uwep->otyp = LASER_FLYAXE;
-				} else /* sabertype == 22 */
+				} else if (sabertype == 22) {
 					uwep->otyp = PINK_DOUBLE_LIGHTSWORD;
+				} else /* sabertype == 23 */
+					uwep->otyp = LOWER_ARM_SWORD;
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

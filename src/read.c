@@ -2059,6 +2059,7 @@ int curse_bless;
 	    case WHITE_DOUBLE_LIGHTSABER:
 	    case LASER_SWATTER:
 	    case NANO_HAMMER:
+	    case LOWER_ARM_SWORD:
 	    case STARWARS_MACE:
 	    case LIGHTWHIP:
 	    case KLIUSLING:

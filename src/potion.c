@@ -698,6 +698,7 @@ findmorearrows:
 		if (!prcarrow) prcarrow = carrying(PAPER_ARROW);
 		if (!prcarrow) prcarrow = carrying(METEOR_ARROW);
 		if (!prcarrow) prcarrow = carrying(BONE_ARROW);
+		if (!prcarrow) prcarrow = carrying(FLIGHT_ARROW);
 		if (!prcarrow) prcarrow = carrying(ODOR_SHOT);
 		if (!prcarrow) prcarrow = carrying(FORBIDDEN_ARROW);
 		if (!prcarrow) prcarrow = carrying(SILVER_ARROW);

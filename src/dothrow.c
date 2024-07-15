@@ -2180,7 +2180,7 @@ int thrown;
 	    thrownobj = (struct obj*)0;
 	    return;
 
-	} else if( (obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && !Underwater) {
+	} else if( (obj->otyp == BOOMERANG || obj->otyp == ALU_BOOMERANG || obj->otyp == MITHRIL_BOOMERANG || obj->otyp == SILVER_CHAKRAM || obj->otyp == BATARANG || obj->otyp == DARK_BATARANG) && !Underwater) {
 		if(Is_airlevel(&u.uz) || Levitation)
 		    hurtle(-u.dx, -u.dy, 1, TRUE);
 		mon = boomhit(u.dx, u.dy);
@@ -3422,7 +3422,7 @@ evasionchancedone:
 		    }
 		}
 	    } else {
-		if (otyp == BOOMERANG || otyp == ALU_BOOMERANG || otyp == SILVER_CHAKRAM || otyp == BATARANG || otyp == DARK_BATARANG)		/* arbitrary */
+		if (otyp == BOOMERANG || otyp == ALU_BOOMERANG || otyp == MITHRIL_BOOMERANG || otyp == SILVER_CHAKRAM || otyp == BATARANG || otyp == DARK_BATARANG)		/* arbitrary */
 		    tmp += 4;
 		else if (throwing_weapon(obj))	/* meant to be thrown */
 		    tmp += 2;
