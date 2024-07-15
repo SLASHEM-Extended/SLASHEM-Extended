@@ -2007,11 +2007,17 @@ newbossSING:
 			  /* "Good hunting, brother" */
 			    if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 			} else {
-			    mtmp->minvis = mtmp->perminvis = 0;
-			    /* Why?  For the same reason in real demon talk */
-			    pline("%s gets angry!", Amonnam(mtmp));
-			    mtmp->mpeaceful = 0;
-			    /* since no way is an image going to pay it off */
+			/* dumb if they just auto-hostile on you, because you might not be able to become un-invisible --Amy */
+			    if (!is_silent(youmonst.data)) {
+				You("shout 'Hey, over here!'");
+				if(demon_talk(mtmp)) return(1);
+			    } else {
+				mtmp->minvis = mtmp->perminvis = 0;
+				/* Why?  For the same reason in real demon talk */
+				pline("%s gets angry!", Amonnam(mtmp));
+				mtmp->mpeaceful = 0;
+				/* since no way is an image going to pay it off */
+			    }
 			}
 		} else if(demon_talk(mtmp)) return(1);	/* you paid it off */
 	}
