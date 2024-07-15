@@ -3155,6 +3155,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_SPECIFI_X_) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
 		if (uwep && uwep->oartifact == ART_ARM_OF_OLYMPIA) tmp += 10;
+		if (uwep && uwep->oartifact == ART_MILL_SHOVEL) tmp += 8;
 		if (uwep && uwep->oartifact == ART_KUMIROMI_SCYTHE) tmp += 3;
 		if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) tmp += 4;
 		if (uarmg && uarmg->oartifact == ART_CRUSH_THE_OPPOSITION) tmp += 10;
@@ -3212,6 +3213,7 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 		if (uwep && uwep->enchantment == WEAPEGO_STR) tmp += 2;
 		if (uwep && uwep->enchantment == WEAPEGO_GREAT_STR) tmp += 5;
+		if (uwep && uwep->oartifact == ART_EORLINGAS) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3543,6 +3545,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uleft && uleft->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
+		if (x == A_WIS && uwep && uwep->oartifact == ART_SUISSE_SLAY) tmp += 1;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_SCJWILLX_) tmp += 5;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_HOLY_LANCE) tmp += 6;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_HOLY_RANCE) tmp += 6;
@@ -3773,6 +3776,7 @@ int x;
 
 		if (uwep && uwep->enchantment == WEAPEGO_DEX) tmp += 2;
 		if (uwep && uwep->enchantment == WEAPEGO_GREAT_DEX) tmp += 5;
+		if (uwep && uwep->oartifact == ART_EORLINGAS) tmp += 3;
 
 		if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
 			tmp += 4;

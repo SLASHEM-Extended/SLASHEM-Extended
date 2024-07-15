@@ -1835,6 +1835,8 @@ boolean hitsroof;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_STREET_ROCKZ) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
+	if (dmg > 0 && u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_SUDUNSEL) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_KLOCKING_NOISE) dmg += 2;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALES) dmg += 1;
@@ -2755,6 +2757,8 @@ boolean polearming;
 	}
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
@@ -3461,7 +3465,7 @@ evasionchancedone:
 
 		/* Detonate bolts shot by Hellfire */
 		if (ammo_and_launcher(obj, launcher) &&
-			(launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
+			(launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_LONG_FIREMISSILE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
 		    if (cansee(bhitpos.x,bhitpos.y)) 
 			pline("%s explodes in a ball of fire!", Doname2(obj));
 		    else You_hear("an explosion");
@@ -3485,7 +3489,7 @@ evasionchancedone:
 			(!objects[otyp].oc_magic || !rn2(5) )))	/* also low chance for loadstones etc. to disappear */
 			|| (obj->oartifact == ART_HOUCHOU)
 			/* WAC catch Hellfire */
-			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
+			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_LONG_FIREMISSILE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))
 		   ) {
 		    /* we were breaking 2/3 of everything unconditionally.

@@ -863,6 +863,8 @@ register struct monst *mtmp;
 	if (!uwep && StrongGlib_combat && Glib) tmp += 5;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
@@ -1032,6 +1034,8 @@ register struct monst *mtmp;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SEA_ANGERANCHOR) tmp -= 20;
 	if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) tmp -= 20;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FUNE_NO_IKARI) tmp -= 20;
+	if (uwep && uwep->oartifact == ART_STAB_VERY_HARD) tmp -= 10;
+	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_STAB_VERY_HARD) tmp -= 10;
 
 	if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -4241,6 +4245,8 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_DOUVONED) tmp += 1;
 		if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) tmp += 1;
@@ -5230,6 +5236,10 @@ melatechoice:
 		}
 
 		if (thrown && obj && (obj->oartifact == ART_TURN_INTO_ASH_HEAP)) {
+			(void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+		}
+
+		if (!rn2(10) && obj && (obj->oartifact == ART_DEEAI_DEEAI_DEEAI_DEEAI_DE)) {
 			(void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
 		}
 

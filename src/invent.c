@@ -31173,6 +31173,60 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: doubles randomly spawned gold."); break;
 				case ART_DEFORMED_SWAMP_TENTACLE:
 					pline("Artifact specs: boosts your alla when eaten."); break;
+				case ART_STING_LITTLE:
+					pline("Artifact specs: +3 to-hit and +4 damage."); break;
+				case ART_SUISSE_SLAY:
+					pline("Artifact specs: +10 to-hit and +15 damage against elves, orcs, giants and hobbits, +1 wisdom when wielded."); break;
+				case ART_EORLINGAS:
+					pline("Artifact specs: +10 damage, resist fear, +3 strength and dexterity, very fast speed and see invisible when wielded. 'Forth Eorlingas!'"); break;
+				case ART_STAB_VERY_HARD:
+					pline("Artifact specs: +16 damage, -10 melee to-hit."); break;
+				case ART_WITCHFIRE:
+					pline("Artifact specs: +12 fire damage, peacevision when wielded."); break;
+				case ART_BOEMMELBOEMMEL_OOOAR:
+					pline("Artifact specs: +8 to-hit and +8 damage, 5 extra points of AC when wielded."); break;
+				case ART_LONG_FIREMISSILE:
+					pline("Artifact specs: +5 to-hit and +8 damage, bolts explode when fired."); break;
+				case ART_AMMO_GALORE:
+					pline("Artifact specs: spawns with much bigger stack size."); break;
+				case ART_HOMER_AMMO:
+					pline("Artifact specs: +20 to-hit and +6 damage."); break;
+				case ART_SMEAR_PERMA:
+					pline("Artifact specs: +2 to-hit and +4 damage, and while you're wielding it, this weapon is always erosionproof."); break;
+				case ART_LITTLE_GROND:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_DOUBLECLASH:
+					pline("Artifact specs: +3 to-hit and +3 damage, spawns with +1 stack size."); break;
+				case ART_DEEAI_DEEAI_DEEAI_DEEAI_DE:
+					pline("Artifact specs: +6 damage, occasionally tries to cancel the target."); break;
+				case ART_CHOP_SHOP:
+					pline("Artifact specs: +2 to-hit and +11 damage."); break;
+				case ART_MARC_S_WRONG_SPELL:
+					pline("Artifact specs: red spells, free action, resistance piercing and double spellboost when wielded. Amy's brother just can't spell the word 'Banjo' correctly ;)"); break;
+				case ART_DARKGOD_S_MINUSES:
+					pline("Artifact specs: -6 increase damage and accuracy when wielded and prevents monsters from using breath attacks. Unlike almost every other beneficial artifact effect, the latter is active even if this is your swap weapon (but only while actually dual-wielding, of course)."); break;
+				case ART_MILL_SHOVEL:
+					pline("Artifact specs: double damage, +8 strength when wielded."); break;
+				case ART_DOM_DOM_DOM_DOM_DOM_DOM_:
+					pline("Artifact specs: +11 magic damage."); break;
+				case ART_GRAY_MATTERS:
+					pline("Artifact specs: +2 to-hit and +8 magic damage, magic resistance when wielded."); break;
+				case ART_CRUELTY_OF_EVISCERATION:
+					pline("Artifact specs: triple damage, aggravate monster when wielded and causes monsters to spawn hostile for a while."); break;
+				case ART_PLANTAR_NO:
+					pline("Artifact specs: very fast speed and wonderlegs when wielded, can be invoked to cure wounded legs."); break;
+				case ART_EXCALIMACE:
+					pline("Artifact specs: +5 to-hit and +10 damage, drain resistance and searching bonus when wielded."); break;
+				case ART_ABOVE_IT_ALL:
+					pline("Artifact specs: +6 to-hit and +10 damage, flying when wielded and prevents the instadeath caused by monsters drowning you in water."); break;
+				case ART_GORDON_S_SMASHING:
+					pline("Artifact specs: +10 damage, ESP and warning when wielded."); break;
+				case ART_SIMON_S_ULTRALONGNESS:
+					pline("Artifact specs: can be applied as a polearm, and has more range than a regular polearm."); break;
+				case ART_JADE_TALON:
+					pline("Artifact specs: +10 damage, manaleech and resistance to fire, cold, shock and poison when wielded."); break;
+				case ART_LASTDARK:
+					pline("Artifact specs: +5 to-hit and +5 damage, spawns with greater amount of charge."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

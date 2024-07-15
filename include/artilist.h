@@ -19327,6 +19327,114 @@ A("Deformed Swamp Tentacle",				SWAMP_TENTACLE, /* boosts your alla by 100 when 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
 
+A("Sting-little",				SMALL_SWORD,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Suisse-slay",				BASILARD, /* +1 WIS */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_ELF|M2_ORC|M2_GIANT|M2_HOBBIT),
+	PHYS(10, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Eorlingas",				AWL_PIKE, /* resist fear, +3 STR and DEX, very fast speed, see invisible */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Stab-very-hard",				TULWAR, /* -10 increase accuracy in melee */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Witchfire",				SHAMSHIR, /* peacevision */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Boemmelboemmel oooar",				ESPANDON, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Long Firemissile",				DIFFICULT_CROSSBOW, /* bolts explode like hellfire */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ammo-galore",				FLIGHT_ARROW, /* spawns with 5x stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Homer Ammo",				SEEKER_BOLT,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Smear Perma",				KITCHEN_KNIFE, /* while wielded, it's always erosionproof */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Little Grond",				GREAT_HAMMER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Doubleclash",				TRIFURCATE_SPEAR, /* spawns with +1 stack size */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Deeai-deeai-deeai-deeai-deeai...",				THREE_PIECE_ROD, /* 1 in 10 to try to cancel the target, but it can also resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Chop Shop",				HATCHET,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Marc's Wrong Spell",				BANJO, /* red spells, free action, resistance piercing, double spellboost */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Darkgod's Minuses",				DARK_SWORD, /* -6 increase damage and accuracy, monsters cannot use breath attacks (the latter is active even while this weapon is off-handed) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Mill Shovel",				BEARDED_AXE, /* to-hit h@ck, +8 STR */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4400L ),
+
+A("Dom dom Dom dom Dom dom!",				MITHRIL_BOOMERANG,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	MAGM(0, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Gray Matters",				FALCATA,
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	MAGM(2, 8), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Cruelty of Evisceration",				BATON, /* to-hit h@ck, triple damage, aggravate monster, enmity for 5000 turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Plantar-No",				FASCIA, /* very fast speed, wonderlegs, can be invoked to cure wounded legs */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Excalimace",				KNIGHTLY_MACE,
+	(SPFX_RESTR|SPFX_SEEK|SPFX_DEFN), 0, 0,
+	PHYS(5,10),	DRLI(0,0), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Above It All",				CANYON_STAR, /* flying, prevents drowning instadeath (but only for water) */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Gordon's Smashing",				CROWBAR,
+	(SPFX_RESTR|SPFX_WARN|SPFX_ESP), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Simon's Ultralongness",				LONG_WHIP, /* can be applied as a polearm and has extra range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jade Talon",				LOWER_ARM_SWORD, /* manaleech, resist fire, cold, shock and poison */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Lastdark",				LOWER_ARM_SWORD, /* spawns with 10x charge amount */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

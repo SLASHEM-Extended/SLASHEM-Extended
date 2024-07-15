@@ -7191,6 +7191,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_GRANDMASTER_S_ROBE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) uac -= 10;
 	if (uarmh && uarmh->oartifact == ART_COW_ENCHANTMENT) uac -= 9;
+	if (uwep && uwep->oartifact == ART_BOEMMELBOEMMEL_OOOAR	) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_SAINT_KING) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_CASQUESPIRE_TRANSLATE) uac -= 5;
 	if (uarmh && uarmh->oartifact == ART_HARD_HAT_AREA) uac -= 5;

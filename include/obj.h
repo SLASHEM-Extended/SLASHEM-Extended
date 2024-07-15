@@ -231,6 +231,7 @@ struct obj {
 			 (otmp)->otyp == CHAIN_AND_SICKLE || \
 			 (otmp)->otyp == LAJATANG || \
 			 (otmp)->oartifact == ART_WILD_OAR || \
+			 (otmp)->oartifact == ART_SIMON_S_ULTRALONGNESS || \
 			 (otmp)->oartifact == ART_WOETSCHERSMAG || \
 			 (otmp)->oartifact == ART_STRECKOUT_AND_PULL || \
 			 (otmp)->oartifact == ART_HEAVY_POLE_SKILL || \

@@ -9000,7 +9000,7 @@ dopois:
 
 			}
 
-			if (is_drowningpool(mtmp->mx,mtmp->my) && !(uarmf && uarmf->otyp == ANTI_DROWNING_BOOTS) && !(uwep && uwep->oartifact == ART_REGULARER_ANCHOR) && !Race_if(PM_KORONST) && !Swimming
+			if (is_drowningpool(mtmp->mx,mtmp->my) && !(uwep && uwep->oartifact == ART_ABOVE_IT_ALL) && !(uarmf && uarmf->otyp == ANTI_DROWNING_BOOTS) && !(uwep && uwep->oartifact == ART_REGULARER_ANCHOR) && !Race_if(PM_KORONST) && !Swimming
 			    && !Amphibious && !Breathless && !rn2(StrongFlying ? 5 : 3) && !(uarmf && itemhasappearance(uarmf, APP_FIN_BOOTS)  ) ) { /* greatly lowered chance of getting drowned --Amy */
 			    boolean moat =
 				(levl[mtmp->mx][mtmp->my].typ != POOL) &&

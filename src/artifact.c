@@ -2657,6 +2657,10 @@ register boolean mod;
 			otmp->quan += 5;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_DOUBLECLASH) {
+			otmp->quan += 1;
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_WELLDER_GRANT) {
 			otmp->quan += rn1(3, 2);
 			otmp->owt = weight(otmp);
@@ -2679,6 +2683,10 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_MUHISH) {
 			otmp->quan *= 3;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_AMMO_GALORE) {
+			otmp->quan *= 5;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_SENSHI_NO_BICHIKU) {
@@ -2738,10 +2746,17 @@ register boolean mod;
 			otmp->quan += 25;
 			otmp->owt = weight(otmp);
 		    }
-		    if (otmp && otmp->oartifact == ART_MUCHO_TALCUM) otmp->age *= 3;
-		    if (otmp && otmp->oartifact == ART_HALLOWEEN_FUEL) otmp->age *= 2;
+		    if (otmp && otmp->oartifact == ART_MUCHO_TALCUM) {
+			otmp->age *= 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_HALLOWEEN_FUEL) {
+			otmp->age *= 2;
+		    }
 		    if (otmp && otmp->oartifact == ART_QUASIMAGICAL_SHINE) {
 			otmp->age *= 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_LASTDARK) {
+			otmp->age *= 10;
 		    }
 		    if (otmp && otmp->oartifact == ART_ALL_WASTED) {
 			otmp->quan /= 3;
@@ -3479,6 +3494,8 @@ struct monst *mon;
 			case ART_DO_YOU_EVEN_LIFT:
 			case ART_MARINE_THREAT_NEUTERED:
 			case ART_WILD_HEAVY_SWINGS:
+			case ART_MILL_SHOVEL:
+			case ART_CRUELTY_OF_EVISCERATION:
 			case ART_COMPLETELY_OFF:
 				return 0; /* no to-hit bonus */
 
@@ -3565,6 +3582,9 @@ int tmp;
 	if (spec_dbon_applies) {
 
 	    if (otmp && otmp->oartifact == ART_PULVERIZE_EM) {
+			return rnd(max(tmp * 2, 1)); /* triple damage!! */
+	    }
+	    if (otmp && otmp->oartifact == ART_CRUELTY_OF_EVISCERATION) {
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
 	    }
 
@@ -5710,6 +5730,11 @@ chargingchoice:
 			pline("Use #monster to manage your symbiote.");
 			if (flags.showsymbiotehp) flags.botl = TRUE;
 
+			break;
+		}
+
+		if (obj->oartifact == ART_PLANTAR_NO) {
+			heal_legs();
 			break;
 		}
 

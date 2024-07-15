@@ -2757,6 +2757,8 @@ moveloop()
 		if (!rn2(10000)) u.reddamamount = rne(2);
 		if (!rn2(10000)) u.redincamount = rne(2);
 
+		if (uwep && uwep->oartifact == ART_SMEAR_PERMA) uwep->oerodeproof = TRUE;
+
 		if (!FemtrapActiveSabrina && u.sabrinaactive) u.sabrinaactive = FALSE;
 
 		if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
@@ -7649,6 +7651,9 @@ newbossJANI:
 		}
 		if (autismweaponcheck(ART_BLOODY_MACE)) {
 			if (Muteness < 5000) Muteness = 5000;
+		}
+		if (autismweaponcheck(ART_CRUELTY_OF_EVISCERATION)) {
+			if (EnmityBug < 5000) EnmityBug = 5000;
 		}
 
 		if (autismweaponcheck(ART_SEA_ANGERANCHOR)) {

@@ -4391,6 +4391,7 @@ use_pole (obj)
 	if (obj->oartifact == ART_STRECKOUT_AND_PULL) max_range = 4;
 
 	if (obj->otyp == NOOB_POLLAX || obj->otyp == GREAT_POLLAX) max_range += 5;
+	if (obj->oartifact == ART_SIMON_S_ULTRALONGNESS) max_range += 7;
 	if (obj->otyp == YITH_TENTACLE) max_range += 2;
 	if (obj->otyp == POLE_LANTERN) {
 		max_range += 10;
@@ -5745,7 +5746,7 @@ dyechoice:
 	case SECRET_WHIP:
 	case SECRET_SOUND_WHIP:
 
-		if (obj->oartifact == ART_WOETSCHERSMAG) {
+		if (obj->oartifact == ART_WOETSCHERSMAG || obj->oartifact == ART_SIMON_S_ULTRALONGNESS) {
 			if (uwep && uwep == obj) res = use_pole(obj);
 			else {pline("You must wield this item first if you want to apply it!"); 
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */

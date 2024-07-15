@@ -982,7 +982,7 @@ int x,y;
 	}
 
 	/* D: Detonate crossbow bolts from Hellfire if they hit */
-	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || mwep->oartifact == ART_EVERCONSUMING_HELLFIRE || (obj && obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU) || mwep->oartifact == ART_UNIDENTIFIED_HELLCAST || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
+	if (ohit && mwep && (mwep->oartifact == ART_HELLFIRE || mwep->oartifact == ART_LONG_FIREMISSILE || mwep->oartifact == ART_EVERCONSUMING_HELLFIRE || (obj && obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU) || mwep->oartifact == ART_UNIDENTIFIED_HELLCAST || mwep->oartifact == ART_SEVENTH_SCRIPTURE)
 		  && is_ammo(obj) && ammo_and_launcher(obj, mwep)) {
 	  
 		if (cansee(bhitpos.x,bhitpos.y)) 
@@ -2100,7 +2100,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 	if(lined_up(mtmp)) {
 
-	    if(mtmp->mcan) {
+	    if(mtmp->mcan || autismweaponcheck(ART_DARKGOD_S_MINUSES) ) {
 		if(flags.soundok) {
 		    if(canseemon(mtmp))
 			pline("%s coughs.", Monnam(mtmp));
