@@ -905,6 +905,26 @@ int prop;
 			return "great luck";
 		case WEAPEGO_INCREDIBLE_LUCK:
 			return "incredible luck";
+		case WEAPEGO_DRAINLIFE:
+			return "drain brand";
+		case WEAPEGO_CANCELLING:
+			return "cancel brand";
+		case WEAPEGO_SLOWING:
+			return "slow brand";
+		case WEAPEGO_FLEEING:
+			return "fear brand";
+		case WEAPEGO_BLINDING:
+			return "blindness brand";
+		case WEAPEGO_PARALYZING:
+			return "paralysis brand";
+		case WEAPEGO_STUNNING:
+			return "stun brand";
+		case WEAPEGO_CONFUSING:
+			return "confusion brand";
+		case WEAPEGO_FRENZYING:
+			return "frenzy brand";
+		case WEAPEGO_HEALBLOCK:
+			return "healblock brand";
 
 		default:
 			return "Team Nastytrap";

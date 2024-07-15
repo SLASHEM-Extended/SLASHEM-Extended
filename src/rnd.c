@@ -1465,7 +1465,7 @@ randweaponenchantment()
 		}
 
 	} else if (rn2(3)) { /* most of the remaining time, it'll be another weapon-specific enchantment */
-		switch (rnd(35)) {
+		switch (rnd(53)) {
 			case 1:
  			case 2: return WEAPEGO_FIERY;
 			case 3:
@@ -1501,6 +1501,24 @@ randweaponenchantment()
 			case 33:
 			case 34:
  			case 35: return (rn2(10) ? WEAPEGO_LUCK : rn2(20) ? WEAPEGO_GREAT_LUCK : WEAPEGO_INCREDIBLE_LUCK);
+			case 36: return WEAPEGO_DRAINLIFE;
+			case 37: return WEAPEGO_CANCELLING;
+			case 38:
+			case 39: return WEAPEGO_SLOWING;
+			case 40:
+			case 41:
+			case 42: return WEAPEGO_FLEEING;
+			case 43:
+			case 44:
+			case 45: return WEAPEGO_BLINDING;
+			case 46: return WEAPEGO_PARALYZING;
+			case 47:
+			case 48:
+			case 49: return WEAPEGO_STUNNING;
+			case 50:
+			case 51: return WEAPEGO_CONFUSING;
+			case 52: return WEAPEGO_FRENZYING;
+			case 53: return WEAPEGO_HEALBLOCK;
 
 			default: return WEAPEGO_MAGIC;
 		}

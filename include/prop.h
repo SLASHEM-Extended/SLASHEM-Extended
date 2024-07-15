@@ -1231,7 +1231,7 @@
 #define WEAPEGO_MAGIC 20006
 #define WEAPEGO_VORPAL 20007 /* beheading */
 #define WEAPEGO_SHARP 20008 /* bleeding damage */
-#define WEAPEGO_SLAY_ORC 20009 /* M2_ORC */
+#define WEAPEGO_SLAY_ORC 20009 /* o, M2_ORC */
 #define WEAPEGO_SLAY_ANT 20010
 #define WEAPEGO_SLAY_COCK 20011
 #define WEAPEGO_SLAY_CANINE 20012
@@ -1347,6 +1347,17 @@
 #define WEAPEGO_LUCK 20122 /* +1 luck */
 #define WEAPEGO_GREAT_LUCK 20123 /* +2 luck */
 #define WEAPEGO_INCREDIBLE_LUCK 20124 /* +3 luck */
+
+#define WEAPEGO_DRAINLIFE 20125
+#define WEAPEGO_CANCELLING 20126
+#define WEAPEGO_SLOWING 20127
+#define WEAPEGO_FLEEING 20128
+#define WEAPEGO_BLINDING 20129
+#define WEAPEGO_PARALYZING 20130
+#define WEAPEGO_STUNNING 20131
+#define WEAPEGO_CONFUSING 20132
+#define WEAPEGO_FRENZYING 20133
+#define WEAPEGO_HEALBLOCK 20134
 
 /*** Where the properties come from ***/
 /* Definitions were moved here from obj.h and you.h */

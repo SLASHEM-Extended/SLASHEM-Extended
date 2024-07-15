@@ -2814,6 +2814,109 @@ struct monst *mon;
 		tmp *= 2;
 	}
 
+	if (otmp && otmp->enchantment == WEAPEGO_SHARP) {
+		mon->bleedout += rnd(5);
+		pline("%s gets a cut.", Monnam(mon));
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_CANCELLING) { /* lower proc chance, since this effect is powerful --Amy */
+
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+			cancelmonsterlite(mon);
+			pline("%s is covered in sparkling lights!", Monnam(mon));
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_SLOWING) { /* generally procs rarely --Amy */
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !rn2(3)) {
+			if (canseemon(mon) && mon->permspeed != MSLOW)
+				pline("%s slows down.", Monnam(mon));
+			mon_adjust_speed(mon, -1, (struct obj *)0);
+
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_FLEEING) {
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !(mon->mflee)) {
+			monflee(mon, rnd(5), FALSE, TRUE);
+			pline("%s screams in fear!", Monnam(mon));
+
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_BLINDING) {
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !(mon->mblinded)) {
+			if(!Blind && mon->mcansee)
+				pline("%s is blinded.", Monnam(mon));
+			mon->mblinded = rn1(4, 4);
+		}
+
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_PARALYZING) { /* generally procs very rarely --Amy */
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && mon->mcanmove && !rn2(5)) {
+			if (!Blind) pline("%s is frozen by you!", Monnam(mon));
+			mon->mcanmove = 0;
+			mon->mfrozen = rn1(3, 3);
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_STUNNING) {
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !(mon->mstun)) {
+			pline("%s staggers for a moment.", Monnam(mon));
+			mon->mstun = 1;
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_FRENZYING) {
+		if (!mon->mfrenzied) {
+			mon->mfrenzied = TRUE;
+			mon->mtame = mon->mpeaceful = FALSE;
+			pline("%s is frenzied!", Monnam(mon));
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_CONFUSING) {
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !(mon->mconf)) {
+			pline("%s seems confused.", Monnam(mon));
+			mon->mconf = 1;
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_HEALBLOCK) {
+		if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+			mon->healblock += d(10, 10);
+			pline("%s's healing is blocked!", mon_nam(mon));
+		}
+	}
+
+	if (otmp && otmp->enchantment == WEAPEGO_DRAINLIFE) {
+		if (!resists_drli(mon)) {
+			pline("%s suddenly seems weaker!", mon_nam(mon));
+			mon->mhpmax -= rnd(8);
+			if (mon->mhpmax < 1) mon->mhpmax = 1;
+			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+			if (mon->m_lev) mon->m_lev--;
+		}
+	}
+
+	if (otmp && (tmp > 0) && ego_slay_applies(otmp, mon)) {
+		You("slay %s!", mon_nam(mon));
+		tmp *= 2;
+	}
+	if (otmp && otmp->enchantment == WEAPEGO_VORPAL) {
+
+		if (has_head(mon->data) && !noncorporeal(mon->data) && !amorphous(mon->data)) {
+			if (mon->data->geno & G_UNIQ) {
+				You("critically hit %s!", mon_nam(mon));
+				tmp *= 2;
+			} else {
+				tmp += 10000;
+				You("behead %s with your razor-sharp weapon!", mon_nam(mon));
+			}
+		}
+	}
+
 	if (Race_if(PM_JAPURA) && (is_angbandmonster(mon->data) || is_cowmonster(mon->data) || is_animemonster(mon->data) || is_steammonster(mon->data) || is_dlordsmonster(mon->data) || is_dnethackmonster(mon->data) || is_jokemonster(mon->data) || is_diablomonster(mon->data) || is_jonadabmonster(mon->data) || is_evilpatchmonster(mon->data) || is_elonamonster(mon->data) || is_aoemonster(mon->data) || is_elderscrollsmonster(mon->data) || is_chatgptmonster(mon->data) || is_cddamonster(mon->data) ) ) {
 		tmp *= 2;
 	}

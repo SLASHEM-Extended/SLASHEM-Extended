@@ -2816,6 +2816,60 @@ boolean shopinit;
 		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
 		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
 
+		switch (otmp->otyp) {
+			default: break;
+
+			case WEDGED_LITTLE_GIRL_SANDAL:
+			case SOFT_GIRL_SNEAKER:
+			case STURDY_PLATEAU_BOOT_FOR_GIRLS:
+			case HUGGING_BOOT:
+			case BLOCK_HEELED_COMBAT_BOOT:
+			case HIGH_HEELED_SANDAL:
+			case SEXY_LEATHER_PUMP:
+			case DOGSHIT_BOOT:
+			case STICKSHOE:
+			case ATGEIR:
+				if (!rn2(20)) willhaveweaponenchantment = TRUE;
+				break;
+			case SEXY_MARY_JANE:
+			case BLOCK_HEELED_SANDAL:
+			case WOODEN_GETA:
+			case KITTEN_HEEL_PUMP:
+				if (!rn2(15)) willhaveweaponenchantment = TRUE;
+				break;
+			case TECPATL:
+			case GROM_AXE:
+			case FALCHION:
+			case CIRCULAR_SAW:
+			case INKA_BOOT:
+			case STEEL_CAPPED_SANDAL:
+			case LACQUERED_DANCING_SHOE:
+			case SPIKED_BATTLE_BOOT:
+			case SOFT_LADY_SHOE:
+			case PROSTITUTE_SHOE:
+			case VACUUM_STAFF:
+			case TRAFFIC_LIGHT:
+			case TRANSPARENCE_THROWER:
+			case HYDRA_BOW:
+			case CATAPULT:
+			case PROCESS_CARD:
+			case DEMON_CROSSBOW:
+			case SECRET_SOUND_WHIP:
+				if (!rn2(10)) willhaveweaponenchantment = TRUE;
+				break;
+			case HONOR_KATANA:
+			case COLOSSUS_BLADE:
+			case AMBUSH_QATAR:
+			case PHEONIX_STAFF:
+				if (!rn2(5)) willhaveweaponenchantment = TRUE;
+				break;
+			case DIMENSIONAL_SHARD:
+			case JUMPING_FLAMER:
+				if (!rn2(3)) willhaveweaponenchantment = TRUE;
+				break;
+
+		}
+
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		if (willhaveweaponenchantment) {
@@ -3522,6 +3576,15 @@ boolean shopinit;
 			if (!rn2(100)) willhaveweaponenchantment = TRUE;
 			if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
 			if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+		}
+
+		switch (otmp->otyp) {
+			case ARCANE_HORN:
+				if (!rn2(20)) willhaveweaponenchantment = TRUE;
+				break;
+			case DARK_HORN:
+				if (!rn2(10)) willhaveweaponenchantment = TRUE;
+				break;
 		}
 
 		if (artif && (artif != 2) && artigenechance(40)) {

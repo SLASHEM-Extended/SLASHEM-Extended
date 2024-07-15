@@ -3875,7 +3875,141 @@ int specialtype;			/* by Amy: additional effects for specific artifacts */
 
     return result;
 }
-  
+
+/* will a given weapon "otmp" with an egotype get a double damage bonus against the monster "mtmp"? by Amy
+ * for egotype weapons */
+boolean
+ego_slay_applies(otmp, mtmp)
+struct obj *otmp;
+struct monst *mtmp;
+{
+	if (!otmp) {
+		impossible("ego_slay_applies called with no otmp?");
+		return FALSE;
+	}
+	if (!mtmp) {
+		impossible("ego_slay_applies called with no mtmp?");
+		return FALSE;
+	}
+	if (!otmp->enchantment) return FALSE;
+
+	switch (otmp->enchantment) {
+
+		case WEAPEGO_SLAY_ORC: return ((mtmp->data->mflags2 & M2_ORC) || mtmp->data->mlet == S_ORC);
+		case WEAPEGO_SLAY_ANT: return (mtmp->data->mlet == S_ANT);
+		case WEAPEGO_SLAY_COCK: return (mtmp->data->mlet == S_COCKATRICE);
+		case WEAPEGO_SLAY_CANINE: return (mtmp->data->mlet == S_DOG);
+		case WEAPEGO_SLAY_FELINE: return (mtmp->data->mlet == S_FELINE);
+		case WEAPEGO_SLAY_HUMANOID: return (mtmp->data->mlet == S_HUMANOID);
+		case WEAPEGO_SLAY_DEMON: return (mtmp->data->mlet == S_IMP || mtmp->data->mlet == S_DEMON || (mtmp->data->mflags2 & M2_DEMON) );
+		case WEAPEGO_SLAY_KOBOLD: return (mtmp->data->mlet == S_KOBOLD);
+		case WEAPEGO_SLAY_NYMPH: return (mtmp->data->mlet == S_NYMPH);
+		case WEAPEGO_SLAY_QUADRUPED: return (mtmp->data->mlet == S_QUADRUPED);
+		case WEAPEGO_SLAY_RODENT: return (mtmp->data->mlet == S_RODENT);
+		case WEAPEGO_SLAY_SPIDER: return (mtmp->data->mlet == S_SPIDER || (mtmp->data->mflags3 & M3_SPIDER) );
+		case WEAPEGO_SLAY_EQUINE: return (mtmp->data->mlet == S_UNICORN);
+		case WEAPEGO_SLAY_VORTEX: return (mtmp->data->mlet == S_VORTEX);
+		case WEAPEGO_SLAY_XAN: return (mtmp->data->mlet == S_XAN);
+		case WEAPEGO_SLAY_LIGHT: return (mtmp->data->mlet == S_LIGHT);
+		case WEAPEGO_SLAY_ZOUTHERN: return (mtmp->data->mlet == S_ZOUTHERN);
+		case WEAPEGO_SLAY_ANGEL: return (mtmp->data->mlet == S_ANGEL);
+		case WEAPEGO_SLAY_BIRD: return (mtmp->data->mlet == S_BAT);
+		case WEAPEGO_SLAY_DRAGON: return (mtmp->data->mlet == S_DRAGON);
+		case WEAPEGO_SLAY_ELEMENTAL: return (mtmp->data->mlet == S_ELEMENTAL);
+		case WEAPEGO_SLAY_FUNGUS: return (mtmp->data->mlet == S_FUNGUS);
+		case WEAPEGO_SLAY_GNOME: return (mtmp->data->mlet == S_GNOME || (mtmp->data->mflags2 & M2_GNOME) );
+		case WEAPEGO_SLAY_GIANT: return (mtmp->data->mlet == S_GIANT || (mtmp->data->mflags2 & M2_GIANT) );
+		case WEAPEGO_SLAY_FISH: return (mtmp->data->mlet == S_EEL || mtmp->data->mlet == S_FLYFISH);
+		case WEAPEGO_SLAY_KOP: return (mtmp->data->mlet == S_KOP);
+		case WEAPEGO_SLAY_UNDEAD: return (mtmp->data->mflags2 & M2_UNDEAD);
+		case WEAPEGO_SLAY_SNAKE: return (mtmp->data->mlet == S_NAGA || mtmp->data->mlet == S_SNAKE);
+		case WEAPEGO_SLAY_OGRE: return (mtmp->data->mlet == S_OGRE);
+		case WEAPEGO_SLAY_RUSTMONST: return (mtmp->data->mlet == S_RUSTMONST);
+		case WEAPEGO_SLAY_TROLL: return (mtmp->data->mlet == S_TROLL);
+		case WEAPEGO_SLAY_UMBER: return (mtmp->data->mlet == S_UMBER);
+		case WEAPEGO_SLAY_XORN: return (mtmp->data->mlet == S_XORN);
+		case WEAPEGO_SLAY_APE: return (mtmp->data->mlet == S_YETI);
+		case WEAPEGO_SLAY_HUMAN: return (mtmp->data->mlet == S_HUMAN);
+		case WEAPEGO_SLAY_GOLEM: return (mtmp->data->mlet == S_GOLEM);
+		case WEAPEGO_SLAY_LIZARD: return (mtmp->data->mlet == S_LIZARD);
+		case WEAPEGO_SLAY_FOOD: return (mtmp->data->mlet == S_BAD_FOOD);
+		case WEAPEGO_SLAY_COIN: return (mtmp->data->mlet == S_BAD_COINS);
+		case WEAPEGO_SLAY_NEMESIS: return (mtmp->data->msound == MS_NEMESIS);
+		case WEAPEGO_SLAY_GRUE: return (mtmp->data->mlet == S_GRUE);
+		case WEAPEGO_SLAY_WALL: return (mtmp->data->mlet == S_WALLMONST);
+		case WEAPEGO_SLAY_TURRET: return (mtmp->data->mlet == S_TURRET);
+		case WEAPEGO_SLAY_TILDE: return (mtmp->data->mlet == S_WORM_TAIL);
+		case WEAPEGO_SLAY_SOLDIER: return (mtmp->data->msound == MS_SOLDIER);
+		case WEAPEGO_SLAY_RIDER: return (mtmp->data->msound == MS_RIDER);
+		case WEAPEGO_SLAY_SHOPKEEPER: return (mtmp->data->msound == MS_SELL);
+		case WEAPEGO_SLAY_PRIEST: return (mtmp->data->msound == MS_PRIEST);
+		case WEAPEGO_SLAY_WERE: return (mtmp->data->msound == MS_WERE);
+		case WEAPEGO_SLAY_PROSTITUTE: return (mtmp->data->msound == MS_WHORE);
+		case WEAPEGO_SLAY_SUPERMAN: return (mtmp->data->msound == MS_SUPERMAN);
+		case WEAPEGO_SLAY_FARTER: return (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD);
+		case WEAPEGO_SLAY_BOSS: return (mtmp->data->msound == MS_BOSS);
+		case WEAPEGO_SLAY_SHOE: return (mtmp->data->msound == MS_SHOE);
+		case WEAPEGO_SLAY_PERFUME: return (mtmp->data->msound == MS_STENCH);
+		case WEAPEGO_SLAY_CONVERTER: return (mtmp->data->msound == MS_CONVERT);
+		case WEAPEGO_SLAY_HCALIEN: return (mtmp->data->msound == MS_HCALIEN);
+		case WEAPEGO_SLAY_SOCK: return (mtmp->data->msound == MS_SOCKS);
+		case WEAPEGO_SLAY_PANTS: return (mtmp->data->msound == MS_PANTS);
+		case WEAPEGO_SLAY_CAR: return (mtmp->data->msound == MS_CAR);
+		case WEAPEGO_SLAY_PRINCESS: return (mtmp->data->msound == MS_PRINCESSLEIA);
+		case WEAPEGO_SLAY_SING: return (mtmp->data->msound == MS_SING);
+		case WEAPEGO_SLAY_ALLA: return (mtmp->data->msound == MS_ALLA);
+		case WEAPEGO_SLAY_ROBOT: return (mtmp->data->msound == MS_BOT);
+		case WEAPEGO_SLAY_WOLLOH: return (mtmp->data->msound == MS_WOLLOH);
+		case WEAPEGO_SLAY_MAFIA: return (mtmp->data->msound == MS_METALMAFIA);
+		case WEAPEGO_SLAY_DEEPSTATE: return (mtmp->data->msound == MS_DEEPSTATE);
+		case WEAPEGO_SLAY_TALON: return (mtmp->data->msound == MS_TALONCOMPANY);
+		case WEAPEGO_SLAY_REGULATOR: return (mtmp->data->msound == MS_REGULATOR);
+		case WEAPEGO_SLAY_RAIDER: return (mtmp->data->msound == MS_RAIDER);
+		case WEAPEGO_SLAY_ENCLAVE: return (mtmp->data->msound == MS_ENCLAVE);
+		case WEAPEGO_SLAY_MUTANT: return (mtmp->data->msound == MS_MUTANT);
+		case WEAPEGO_SLAY_BOS: return (mtmp->data->msound == MS_BOS);
+		case WEAPEGO_SLAY_OUTCAST: return (mtmp->data->msound == MS_OUTCAST);
+		case WEAPEGO_SLAY_ENCHRES: return ((mtmp->data->mresists & MR_PLUSFOUR) || (mtmp->data->mresists & MR_PLUSTHREE) || (mtmp->data->mresists & MR_PLUSTWO) || (mtmp->data->mresists & MR_PLUSONE) );
+		case WEAPEGO_SLAY_AIR: return (mtmp->data->mflags1 & M1_FLY);
+		case WEAPEGO_SLAY_STUPID: return (mtmp->data->mflags1 & M1_MINDLESS);
+		case WEAPEGO_SLAY_ANIMAL: return (mtmp->data->mflags1 & M1_ANIMAL);
+		case WEAPEGO_SLAY_VEGETARIAN: return ((mtmp->data->mflags1 & M1_HERBIVORE) && !(mtmp->data->mflags1 & M1_CARNIVORE));
+		case WEAPEGO_SLAY_ELF: return (mtmp->data->mflags2 & M2_ELF);
+		case WEAPEGO_SLAY_DWARF: return (mtmp->data->mflags2 & M2_DWARF);
+		case WEAPEGO_SLAY_HOBBIT: return (mtmp->data->mflags2 & M2_HOBBIT);
+		case WEAPEGO_SLAY_LORD: return ((mtmp->data->mflags2 & M2_LORD) || (mtmp->data->mflags2 & M2_PRINCE) );
+		case WEAPEGO_SLAY_MAN: return (mtmp->data->mflags2 & M2_MALE);
+		case WEAPEGO_SLAY_WOMAN: return (mtmp->data->mflags2 & M2_FEMALE);
+		case WEAPEGO_SLAY_NEUTRUM: return (mtmp->data->mflags2 & M2_NEUTER);
+		case WEAPEGO_SLAY_DOMESTIC: return (mtmp->data->mflags2 & M2_NEUTER);
+		case WEAPEGO_SLAY_NASTY: return (mtmp->data->mflags2 & M2_NASTY);
+		case WEAPEGO_SLAY_NONMOVING: return (mtmp->data->mflags3 & M3_NONMOVING);
+		case WEAPEGO_SLAY_EGO: return (mtmp->isegotype);
+		case WEAPEGO_SLAY_MIND_FLAYER: return (mtmp->data->mflags3 & M3_IS_MIND_FLAYER);
+		case WEAPEGO_SLAY_UNCOMMON: return ((mtmp->data->mflags3 & M3_FREQ_UNCOMMON2) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON3) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON5) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON7) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON10) );
+		case WEAPEGO_SLAY_COW: return (mtmp->data->mflags5 & M5_SPACEWARS);
+		case WEAPEGO_SLAY_JOKE: return (mtmp->data->mflags5 & M5_JOKE);
+		case WEAPEGO_SLAY_DIABLO: return (mtmp->data->mflags5 & M5_DIABLO);
+		case WEAPEGO_SLAY_VANILLA: return (mtmp->data->mflags5 & M5_VANILLA);
+		case WEAPEGO_SLAY_RANDO: return (mtmp->data->mflags5 & M5_RANDOMIZED);
+		case WEAPEGO_SLAY_SCRIPT: return (mtmp->data->mflags5 & M5_JONADAB);
+		case WEAPEGO_SLAY_ELONA: return (mtmp->data->mflags5 & M5_ELONA);
+		case WEAPEGO_SLAY_AOE: return (mtmp->data->mflags5 & M5_AOE);
+		case WEAPEGO_SLAY_CDDA: return (mtmp->data->mflags5 & M5_CDDA);
+
+		case WEAPEGO_FIERY: return (!resists_fire(mtmp));
+		case WEAPEGO_FROSTY: return (!resists_cold(mtmp));
+		case WEAPEGO_ACID: return (!resists_acid(mtmp));
+		case WEAPEGO_SHOCK: return (!resists_elec(mtmp));
+		case WEAPEGO_POISON: return (!resists_poison(mtmp));
+		case WEAPEGO_MAGIC: return (!resists_magm(mtmp));
+
+		default: return FALSE;
+	}
+
+	return FALSE;
+}
+
 /* Function used when someone attacks someone else with an artifact
  * weapon.  Only adds the special (artifact) damage, and returns a 1 if it
  * did something special (in which case the caller won't print the normal

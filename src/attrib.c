@@ -2047,6 +2047,9 @@ set_moreluck()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_LUCKLESS_FOLLY) u.moreluck -= 3;
 	if (uarm && uarm->oartifact == ART_AMMY_S_COMPLAINT) u.moreluck -= 5;
 	if (uamul && uamul->oartifact == ART_HIBA_CHIBA) u.moreluck += 5;
+	if (uwep && uwep->enchantment == WEAPEGO_LUCK) u.moreluck += 1;
+	if (uwep && uwep->enchantment == WEAPEGO_GREAT_LUCK) u.moreluck += 2;
+	if (uwep && uwep->enchantment == WEAPEGO_INCREDIBLE_LUCK) u.moreluck += 3;
 
 }
 
@@ -3207,6 +3210,8 @@ int x;
 		if (uarmg && uarmg->oartifact == ART_LIKE_GRACE) tmp += 5;
 		if ((uwep && uwep->oartifact == ART_BAEFF) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_BAEFF)) tmp += 8;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
+		if (uwep && uwep->enchantment == WEAPEGO_STR) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_STR) tmp += 5;
 
 		if (FemtrapActiveThai) tmp -= 2;
 		if (Race_if(PM_KNOWLEDGABLE)) tmp -= 2;
@@ -3421,6 +3426,8 @@ int x;
 		if (uright && uright->otyp == RIN_ADORNMENT && (uright->oartifact == ART_DOUBLE_ADORNING) ) tmp += uright->spe;
 		if (uright && uright->otyp == RIN_UPPER_ADORNMENT) tmp += uright->spe;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
+		if (uwep && uwep->enchantment == WEAPEGO_CHA) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_CHA) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -3601,6 +3608,10 @@ int x;
 		if (x == A_INT && uwep && uwep->oartifact == ART_ONCHANGE_STAFF) tmp += 3;
 		if (uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY && uwep->spe > 0) tmp += uwep->spe;
 		if (uamul && uamul->otyp == AMULET_OF_MENTAL_BOOST) tmp += 3;
+		if (x == A_INT && uwep && uwep->enchantment == WEAPEGO_INT) tmp += 2;
+		if (x == A_INT && uwep && uwep->enchantment == WEAPEGO_GREAT_INT) tmp += 5;
+		if (x == A_WIS && uwep && uwep->enchantment == WEAPEGO_WIS) tmp += 2;
+		if (x == A_WIS && uwep && uwep->enchantment == WEAPEGO_GREAT_WIS) tmp += 5;
 
 		if (x == A_WIS && uarmf && uarmf->otyp == HEEL_WISE_SHOES && !(PlayerCannotUseSkills)) {
 
@@ -3760,6 +3771,9 @@ int x;
 		if (uright && uright->oartifact == ART_SECOND_EXCHANGE) tmp += 5;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 
+		if (uwep && uwep->enchantment == WEAPEGO_DEX) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_DEX) tmp += 5;
+
 		if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
 			tmp += 4;
 			if (!(PlayerCannotUseSkills)) {
@@ -3915,6 +3929,9 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) tmp += 2;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) tmp += 3;
+
+		if (uwep && uwep->enchantment == WEAPEGO_CON) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_CON) tmp += 5;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;

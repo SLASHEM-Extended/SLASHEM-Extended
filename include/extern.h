@@ -115,6 +115,7 @@ E int find_wildtalentartifact(void);
 E int find_prostituteartifact(void);
 E int find_kurwaartifact(void);
 E void intrinsicgainorloss(int);
+E boolean ego_slay_applies(struct obj *, struct monst *);
 
 /* ### attrib.c ### */
 
