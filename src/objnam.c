@@ -657,6 +657,255 @@ int prop;
 		case FEMTRAP_MAY_BRITT:
 			return "May-Britt's curse";
 
+		case WEAPEGO_FIERY:
+			return "fire brand";
+		case WEAPEGO_FROSTY:
+			return "frost brand";
+		case WEAPEGO_ACID:
+			return "acid brand";
+		case WEAPEGO_SHOCK:
+			return "shock brand";
+		case WEAPEGO_POISON:
+			return "poison brand";
+		case WEAPEGO_MAGIC:
+			return "magic brand";
+		case WEAPEGO_VORPAL:
+			return "vorpal edge";
+		case WEAPEGO_SHARP:
+			return "sharpness";
+		case WEAPEGO_SLAY_ORC:
+			return "slay orc";
+		case WEAPEGO_SLAY_ANT:
+			return "slay ant";
+		case WEAPEGO_SLAY_COCK:
+			return "slay cockatrice";
+		case WEAPEGO_SLAY_CANINE:
+			return "slay canine";
+		case WEAPEGO_SLAY_FELINE:
+			return "slay feline";
+		case WEAPEGO_SLAY_HUMANOID:
+			return "slay humanoid";
+		case WEAPEGO_SLAY_DEMON:
+			return "slay demon";
+		case WEAPEGO_SLAY_KOBOLD:
+			return "slay kobold";
+		case WEAPEGO_SLAY_NYMPH:
+			return "slay nymph";
+		case WEAPEGO_SLAY_QUADRUPED:
+			return "slay quadruped";
+		case WEAPEGO_SLAY_RODENT:
+			return "slay rodent";
+		case WEAPEGO_SLAY_SPIDER:
+			return "slay spider";
+		case WEAPEGO_SLAY_EQUINE:
+			return "slay equine";
+		case WEAPEGO_SLAY_VORTEX:
+			return "slay vortex";
+		case WEAPEGO_SLAY_XAN:
+			return "slay xan";
+		case WEAPEGO_SLAY_LIGHT:
+			return "slay light";
+		case WEAPEGO_SLAY_ZOUTHERN:
+			return "slay zouthern";
+		case WEAPEGO_SLAY_ANGEL:
+			return "slay angel";
+		case WEAPEGO_SLAY_BIRD:
+			return "slay bird";
+		case WEAPEGO_SLAY_DRAGON:
+			return "slay dragon";
+		case WEAPEGO_SLAY_ELEMENTAL:
+			return "slay elemental";
+		case WEAPEGO_SLAY_FUNGUS:
+			return "slay fungus";
+		case WEAPEGO_SLAY_GNOME:
+			return "slay gnome";
+		case WEAPEGO_SLAY_GIANT:
+			return "slay giant";
+		case WEAPEGO_SLAY_FISH:
+			return "slay fish";
+		case WEAPEGO_SLAY_KOP:
+			return "slay kop";
+		case WEAPEGO_SLAY_UNDEAD:
+			return "slay undead";
+		case WEAPEGO_SLAY_SNAKE:
+			return "slay snake";
+		case WEAPEGO_SLAY_OGRE:
+			return "slay ogre";
+		case WEAPEGO_SLAY_RUSTMONST:
+			return "slay rustmonster";
+		case WEAPEGO_SLAY_TROLL:
+			return "slay troll";
+		case WEAPEGO_SLAY_UMBER:
+			return "slay umberhulk";
+		case WEAPEGO_SLAY_XORN:
+			return "slay xorn";
+		case WEAPEGO_SLAY_APE:
+			return "slay ape";
+		case WEAPEGO_SLAY_HUMAN:
+			return "slay human";
+		case WEAPEGO_SLAY_GOLEM:
+			return "slay golem";
+		case WEAPEGO_SLAY_LIZARD:
+			return "slay lizard";
+		case WEAPEGO_SLAY_FOOD:
+			return "slay food";
+		case WEAPEGO_SLAY_COIN:
+			return "slay coin";
+		case WEAPEGO_SLAY_NEMESIS:
+			return "slay nemesis";
+		case WEAPEGO_SLAY_GRUE:
+			return "slay grue";
+		case WEAPEGO_SLAY_WALL:
+			return "slay wallmonster";
+		case WEAPEGO_SLAY_TURRET:
+			return "slay turret";
+		case WEAPEGO_SLAY_TILDE:
+			return "slay tilde";
+		case WEAPEGO_SLAY_SOLDIER:
+			return "slay soldier";
+		case WEAPEGO_SLAY_RIDER:
+			return "slay rider";
+		case WEAPEGO_SLAY_SHOPKEEPER:
+			return "slay shopkeeper";
+		case WEAPEGO_SLAY_PRIEST:
+			return "slay priest";
+		case WEAPEGO_SLAY_WERE:
+			return "slay werecreature";
+		case WEAPEGO_SLAY_PROSTITUTE:
+			return "slay prostitute";
+		case WEAPEGO_SLAY_SUPERMAN:
+			return "slay superman";
+		case WEAPEGO_SLAY_FARTER:
+			return "slay farter";
+		case WEAPEGO_SLAY_BOSS:
+			return "slay boss";
+		case WEAPEGO_SLAY_SHOE:
+			return "slay shoe";
+		case WEAPEGO_SLAY_PERFUME:
+			return "slay perfume-spreader";
+		case WEAPEGO_SLAY_CONVERTER:
+			return "slay converter";
+		case WEAPEGO_SLAY_HCALIEN:
+			return "slay HC alien";
+		case WEAPEGO_SLAY_SOCK:
+			return "slay socks";
+		case WEAPEGO_SLAY_PANTS:
+			return "slay pants";
+		case WEAPEGO_SLAY_CAR:
+			return "slay car";
+		case WEAPEGO_SLAY_PRINCESS:
+			return "slay princess";
+		case WEAPEGO_SLAY_SING:
+			return "slay singagent";
+		case WEAPEGO_SLAY_ALLA:
+			return "slay alladrainer";
+		case WEAPEGO_SLAY_ROBOT:
+			return "slay robot";
+		case WEAPEGO_SLAY_WOLLOH:
+			return "slay wolloh";
+		case WEAPEGO_SLAY_MAFIA:
+			return "slay metal mafia";
+		case WEAPEGO_SLAY_DEEPSTATE:
+			return "slay deep state";
+		case WEAPEGO_SLAY_TALON:
+			return "slay talon company";
+		case WEAPEGO_SLAY_REGULATOR:
+			return "slay regulator";
+		case WEAPEGO_SLAY_RAIDER:
+			return "slay raider";
+		case WEAPEGO_SLAY_ENCLAVE:
+			return "slay enclave";
+		case WEAPEGO_SLAY_MUTANT:
+			return "slay mutant";
+		case WEAPEGO_SLAY_BOS:
+			return "slay brotherhood";
+		case WEAPEGO_SLAY_OUTCAST:
+			return "slay outcast";
+		case WEAPEGO_SLAY_ENCHRES:
+			return "slay ench-requiring foo";
+		case WEAPEGO_SLAY_AIR:
+			return "slay airborne";
+		case WEAPEGO_SLAY_STUPID:
+			return "slay mindless";
+		case WEAPEGO_SLAY_ANIMAL:
+			return "slay animal";
+		case WEAPEGO_SLAY_VEGETARIAN:
+			return "slay vegetarian";
+		case WEAPEGO_SLAY_ELF:
+			return "slay elf";
+		case WEAPEGO_SLAY_DWARF:
+			return "slay dwarf";
+		case WEAPEGO_SLAY_HOBBIT:
+			return "slay hobbit";
+		case WEAPEGO_SLAY_LORD:
+			return "slay lord/prince";
+		case WEAPEGO_SLAY_MAN:
+			return "slay men";
+		case WEAPEGO_SLAY_WOMAN:
+			return "slay women";
+		case WEAPEGO_SLAY_NEUTRUM:
+			return "slay neuter";
+		case WEAPEGO_SLAY_DOMESTIC:
+			return "slay domestic";
+		case WEAPEGO_SLAY_NASTY:
+			return "slay nasty";
+		case WEAPEGO_SLAY_NONMOVING:
+			return "slay non-moving";
+		case WEAPEGO_SLAY_EGO:
+			return "slay egomonster";
+		case WEAPEGO_SLAY_MIND_FLAYER:
+			return "slay mind flayer";
+		case WEAPEGO_SLAY_UNCOMMON:
+			return "slay uncommon monster";
+		case WEAPEGO_SLAY_COW:
+			return "slay castle-of-the-winds";
+		case WEAPEGO_SLAY_JOKE:
+			return "slay joke monster";
+		case WEAPEGO_SLAY_DIABLO:
+			return "slay diablo";
+		case WEAPEGO_SLAY_VANILLA:
+			return "slay vanilla";
+		case WEAPEGO_SLAY_RANDO:
+			return "slay randomonster";
+		case WEAPEGO_SLAY_SCRIPT:
+			return "slay script monster";
+		case WEAPEGO_SLAY_ELONA:
+			return "slay elona";
+		case WEAPEGO_SLAY_AOE:
+			return "slay age of empires";
+		case WEAPEGO_SLAY_CDDA:
+			return "slay cataclysm DDA";
+		case WEAPEGO_STR:
+			return "boost strength";
+		case WEAPEGO_CON:
+			return "boost constitution";
+		case WEAPEGO_DEX:
+			return "boost dexterity";
+		case WEAPEGO_INT:
+			return "boost intelligence";
+		case WEAPEGO_WIS:
+			return "boost wisdom";
+		case WEAPEGO_CHA:
+			return "boost charisma";
+		case WEAPEGO_GREAT_STR:
+			return "great strength";
+		case WEAPEGO_GREAT_CON:
+			return "great constitution";
+		case WEAPEGO_GREAT_DEX:
+			return "great dexterity";
+		case WEAPEGO_GREAT_INT:
+			return "great intelligence";
+		case WEAPEGO_GREAT_WIS:
+			return "great wisdom";
+		case WEAPEGO_GREAT_CHA:
+			return "great charisma";
+		case WEAPEGO_LUCK:
+			return "bonus luck";
+		case WEAPEGO_GREAT_LUCK:
+			return "great luck";
+		case WEAPEGO_INCREDIBLE_LUCK:
+			return "incredible luck";
+
 		default:
 			return "Team Nastytrap";
 
@@ -9122,6 +9371,18 @@ register struct obj *obj;
 				break;
 			case TOOL_CLASS:
 				if(obj->enchantment && is_blindfold_slot(obj) && !(isevilvariant && !(obj->rknown)) && obj->wornknown && obj->known && !(PlayerUninformation) ) {
+					sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
+				}
+				if(obj->enchantment && is_weptool(obj) && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
+					sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
+				}
+				break;
+			case WEAPON_CLASS:
+			case GEM_CLASS:
+			case BALL_CLASS:
+			case CHAIN_CLASS:
+			case VENOM_CLASS:
+				if(obj->enchantment && !(isevilvariant && !(obj->rknown)) && obj->known && !(PlayerUninformation) ) {
 					sprintf(eos(prefix), flags.simpledescs ? "(%s) " : "(of %s) ", enchname(obj->enchantment) );
 				}
 				break;

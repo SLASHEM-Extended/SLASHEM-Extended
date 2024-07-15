@@ -2432,6 +2432,7 @@ boolean shopinit;
 	struct obj *otmp;
 
 	boolean willhaveenchantment = 0;
+	boolean willhaveweaponenchantment = 0;
 
 	if (otyp >= NUM_OBJECTS) {
 		impossible("Error: mksobj() called with invalid object type %d! Debug info for Amy: %d, %d, %d", otyp, (int) init, artif, (int) shopinit);
@@ -2811,7 +2812,15 @@ boolean shopinit;
 					(otmp->blessed ? 15 : rn2(10) + 10));
 		}
 
+		if (!rn2(100)) willhaveweaponenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
+		if (willhaveweaponenchantment) {
+			otmp->enchantment = randweaponenchantment();
+		}
 
 		break;
 	case FOOD_CLASS:
@@ -3088,7 +3097,15 @@ boolean shopinit;
 
 		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
+		if (!rn2(100)) willhaveweaponenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
+		if (willhaveweaponenchantment) {
+			otmp->enchantment = randweaponenchantment();
+		}
 
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */
@@ -3501,6 +3518,11 @@ boolean shopinit;
 			if (In_lategame(&u.uz) && !rn2(100)) willhaveenchantment = TRUE;
 			if (achieve.get_amulet && !rn2(50)) willhaveenchantment = TRUE;
 		}
+		if (is_weptool(otmp)) {
+			if (!rn2(100)) willhaveweaponenchantment = TRUE;
+			if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
+			if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+		}
 
 		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
@@ -3514,6 +3536,10 @@ boolean shopinit;
 
 		if (willhaveenchantment) {
 			otmp->enchantment = randenchantment();
+		}
+
+		if (willhaveweaponenchantment) {
+			otmp->enchantment = randweaponenchantment();
 		}
 
 	    break;
@@ -3733,7 +3759,15 @@ boolean shopinit;
 
 		if (otmp->oartifact == ART_BUS_ERROR || otmp->oartifact == ART_MYSTERIOUS_SPIKES) otmp->quan = 1;
 
+		if (!rn2(100)) willhaveweaponenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
+		if (willhaveweaponenchantment) {
+			otmp->enchantment = randweaponenchantment();
+		}
 
 		break;
 	case CHAIN_CLASS:
@@ -3815,7 +3849,15 @@ boolean shopinit;
 			if (artif != 2) u.fakeartifacts++;
 		}
 
+		if (!rn2(100)) willhaveweaponenchantment = TRUE;
+		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
+		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
+
+		if (willhaveweaponenchantment) {
+			otmp->enchantment = randweaponenchantment();
+		}
 
 		break;
 	case POTION_CLASS:

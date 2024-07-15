@@ -1202,6 +1202,513 @@ randmonsound()
 }
 
 int
+randweaponenchantment()
+{
+	if (!rn2(30)) { /* rarely, give some specific nastytrap effect - keyword "timerun" */
+
+		switch (rnd(89)) { /* it's intentional that this list doesn't contain all the nasty trap effects --Amy */
+
+ 			case 1: return CASTER_PROBLEM;
+ 			case 2: return STATUS_FAILURE;
+ 			case 3: return REPEATING_VULNERABILITY;
+ 			case 4: return VERISIERTEFFECT;
+ 			case 5: return UNIDENTIFY;
+ 			case 6: return DISPLAY_LOST;
+ 			case 7: return RANDOM_RUMORS;
+ 			case 8: return ALIGNMENT_FAILURE;
+ 			case 9: return DEAFNESS;
+ 			case 10: return RECURRING_AMNESIA;
+ 			case 11: return AUTOMATIC_TRAP_CREATION;
+ 			case 12: return AUTO_DESTRUCT;
+ 			case 13: return SPEED_BUG;
+ 			case 14: return FAINT_ACTIVE;
+ 			case 15: return DIFFICULTY_INCREASED;
+ 			case 16: return ITEMCURSING;
+ 			case 17: return INTRINSIC_LOSS;
+ 			case 18: return BLOOD_LOSS;
+ 			case 19: return NASTINESS_EFFECTS;
+ 			case 20: return BAD_EFFECTS;
+ 			case 21: return TOTTER_EFFECT;
+ 			case 22: return NAKEDNESS;
+ 			case 23: return ANTILEVELING;
+ 			case 24: return PROJECTILES_MISFIRE;
+ 			case 25: return WEAKSIGHT;
+ 			case 26: return INTERFACE_SCREW;
+ 			case 27: return ENTIRE_LEVEL;
+ 			case 28: return AUTOCURSE_EQUIP;
+ 			case 29: return SPELL_FORGETTING;
+ 			case 30: return SOUND_EFFECT_BUG;
+ 			case 31: return TIMERUN_BUG;
+ 			case 32: return ENMITY_BUG;
+ 			case 33: return MOMMA_BUG;
+ 			case 34: return EVIL_PATCH_EFFECT;
+ 			case 35: return ANTISEARCH_EFFECT;
+ 			case 36: return NASTY_NATION_BUG;
+ 			case 37: return WAKEUP_CALL_BUG;
+ 			case 38: return PARANOIA_BUG;
+ 			case 39: return BLOODTHIRSTY_EFFECT;
+ 			case 40: return MELEE_PREFIX_BUG;
+ 			case 41: return LONGING_EFFECT;
+ 			case 42: return CURSED_PARTS;
+ 			case 43: return GUSHLUSH;
+ 			case 44: return FALLOUT_EFFECT;
+ 			case 45: return GRAVATION;
+ 			case 46: return EXPLODING_DICE;
+ 			case 47: return FEELER_GAUGES;
+ 			case 48: return LONG_SCREWUP;
+ 			case 49: return AUTOPILOT_EFFECT;
+ 			case 50: return FREQUENTATION_SPAWNS;
+ 			case 51: return SATAN_EFFECT;
+ 			case 52: return DYWYPI_PROBLEM;
+ 			case 53: return ELM_STREET_EFFECT;
+ 			case 54: return MONNOISE_EFFECT;
+ 			case 55: return RANG_CALL_EFFECT;
+ 			case 56: return RECURRING_SPELL_LOSS;
+ 			case 57: return ANTI_TRAINING_EFFECT;
+ 			case 58: return TECHOUT_BUG;
+ 			case 59: return STAT_DECAY;
+ 			case 60: return MOVEMORKING;
+ 			case 61: return BAD_PARTS;
+ 			case 62: return COMPLETELY_BAD_PARTS;
+ 			case 63: return STAT_DECREASE_BUG;
+ 			case 64: return ENTHU_EFFECT;
+ 			case 65: return MIKRA_EFFECT;
+ 			case 66: return GOTS_TOO_GOOD_EFFECT;
+ 			case 67: return NO_FUN_WALLS;
+ 			case 68: return CRADLE_CHAOS_EFFECT;
+ 			case 69: return KILLER_ROOM_EFFECT;
+ 			case 70: return REALLY_BAD_TRAP_EFFECT;
+ 			case 71: return COVID_TRAP_EFFECT;
+ 			case 72: return ESCAPE_PAST_EFFECT;
+ 			case 73: return TECH_LOSS_EFFECT;
+ 			case 74: return PROOFLOSS_EFFECT;
+ 			case 75: return UN_INVIS_EFFECT;
+ 			case 76: return DETECTATION_EFFECT;
+ 			case 77: return FUCKFUCKFUCK_EFFECT;
+ 			case 78: return EPVI_EFFECT;
+ 			case 79: return AEFDE_EFFECT;
+ 			case 80: return MEAN_BURDEN_EFFECT;
+ 			case 81: return CARRCAP_EFFECT;
+ 			case 82: return MULCH_BUG;
+ 			case 83: return SPELL_COOLDOWN_BUG;
+ 			case 84: return HAVE_A_PIN_BUG;
+ 			case 85: return TURBODULL_BUG;
+ 			case 86: return INACCURACY_BUG;
+ 			case 87: return REDDAM_BUG;
+ 			case 88: return REDINC_BUG;
+ 			case 89: return MONSTER_MULTISHOT_EFFECT;
+
+ 			default: return WEAPEGO_SLAY_ORC;
+
+		}
+
+	} else if (rn2(4)) { /* most of the time, it'll be a slay of some kind */
+
+		switch (rnd(156)) {
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+ 			case 5: return WEAPEGO_SLAY_ORC;
+			case 6:
+			case 7:
+			case 8: return WEAPEGO_SLAY_ANT;
+			case 9: return WEAPEGO_SLAY_COCK;
+			case 10:
+			case 11: return WEAPEGO_SLAY_CANINE;
+			case 12:
+			case 13: return WEAPEGO_SLAY_FELINE;
+			case 14:
+			case 15:
+			case 16:
+			case 17:
+			case 18: return WEAPEGO_SLAY_HUMANOID;
+			case 19:
+			case 20:
+			case 21: return WEAPEGO_SLAY_DEMON;
+			case 22:
+			case 23: return WEAPEGO_SLAY_KOBOLD;
+			case 24: return WEAPEGO_SLAY_NYMPH;
+			case 25:
+			case 26: return WEAPEGO_SLAY_QUADRUPED;
+			case 27:
+			case 28: return WEAPEGO_SLAY_RODENT;
+			case 29:
+			case 30: return WEAPEGO_SLAY_SPIDER;
+			case 31: return WEAPEGO_SLAY_EQUINE;
+			case 32: return WEAPEGO_SLAY_VORTEX;
+			case 33: return WEAPEGO_SLAY_XAN;
+			case 34: return WEAPEGO_SLAY_LIGHT;
+			case 35: return WEAPEGO_SLAY_ZOUTHERN;
+			case 36: return WEAPEGO_SLAY_ANGEL;
+			case 37:
+			case 38: return WEAPEGO_SLAY_BIRD;
+			case 39:
+			case 40:
+			case 41: return WEAPEGO_SLAY_DRAGON;
+			case 42:
+			case 43: return WEAPEGO_SLAY_ELEMENTAL;
+			case 44:
+			case 45:
+			case 46: return WEAPEGO_SLAY_FUNGUS;
+			case 47:
+			case 48: return WEAPEGO_SLAY_GNOME;
+			case 49:
+			case 50: return WEAPEGO_SLAY_GIANT;
+			case 51:
+			case 52: return WEAPEGO_SLAY_FISH;
+			case 53:
+			case 54:
+			case 55: return WEAPEGO_SLAY_KOP;
+			case 56:
+			case 57:
+			case 58: return WEAPEGO_SLAY_UNDEAD;
+			case 59:
+			case 60: return WEAPEGO_SLAY_SNAKE;
+			case 61:
+			case 62: return WEAPEGO_SLAY_OGRE;
+			case 63: return WEAPEGO_SLAY_RUSTMONST;
+			case 64:
+			case 65: return WEAPEGO_SLAY_TROLL;
+			case 66: return WEAPEGO_SLAY_UMBER;
+			case 67: return WEAPEGO_SLAY_XORN;
+			case 68: return WEAPEGO_SLAY_APE;
+			case 69:
+			case 70:
+			case 71:
+			case 72:
+			case 73: return WEAPEGO_SLAY_HUMAN;
+			case 74: return WEAPEGO_SLAY_GOLEM;
+			case 75: return WEAPEGO_SLAY_LIZARD;
+			case 76: return WEAPEGO_SLAY_FOOD;
+			case 77: return WEAPEGO_SLAY_COIN;
+			case 78: return WEAPEGO_SLAY_NEMESIS;
+			case 79: return WEAPEGO_SLAY_GRUE;
+			case 80: return WEAPEGO_SLAY_WALL;
+			case 81: return WEAPEGO_SLAY_TURRET;
+			case 82: return WEAPEGO_SLAY_TILDE;
+			case 83:
+			case 84: return WEAPEGO_SLAY_SOLDIER;
+			case 85: return WEAPEGO_SLAY_RIDER;
+			case 86: return WEAPEGO_SLAY_SHOPKEEPER;
+			case 87: return WEAPEGO_SLAY_PRIEST;
+			case 88: return WEAPEGO_SLAY_WERE;
+			case 89: return WEAPEGO_SLAY_PROSTITUTE;
+			case 90: return WEAPEGO_SLAY_SUPERMAN;
+			case 91: return WEAPEGO_SLAY_FARTER;
+			case 92: return WEAPEGO_SLAY_BOSS;
+			case 93: return WEAPEGO_SLAY_SHOE;
+			case 94: return WEAPEGO_SLAY_PERFUME;
+			case 95: return WEAPEGO_SLAY_CONVERTER;
+			case 96: return WEAPEGO_SLAY_HCALIEN;
+			case 97: return WEAPEGO_SLAY_SOCK;
+			case 98: return WEAPEGO_SLAY_PANTS;
+			case 99:
+			case 100: return WEAPEGO_SLAY_CAR;
+			case 101: return WEAPEGO_SLAY_PRINCESS;
+			case 102: return WEAPEGO_SLAY_SING;
+			case 103: return WEAPEGO_SLAY_ALLA;
+			case 104:
+			case 105: return WEAPEGO_SLAY_ROBOT;
+			case 106: return WEAPEGO_SLAY_WOLLOH;
+			case 107: return WEAPEGO_SLAY_MAFIA;
+			case 108: return WEAPEGO_SLAY_DEEPSTATE;
+			case 109: return WEAPEGO_SLAY_TALON;
+			case 110: return WEAPEGO_SLAY_REGULATOR;
+			case 111: return WEAPEGO_SLAY_RAIDER;
+			case 112: return WEAPEGO_SLAY_ENCLAVE;
+			case 113: return WEAPEGO_SLAY_MUTANT;
+			case 114: return WEAPEGO_SLAY_BOS;
+			case 115: return WEAPEGO_SLAY_OUTCAST;
+			case 116: return WEAPEGO_SLAY_ENCHRES;
+			case 117:
+			case 118: return WEAPEGO_SLAY_AIR;
+			case 119:
+			case 120: return WEAPEGO_SLAY_STUPID;
+			case 121:
+			case 122:
+			case 123: return WEAPEGO_SLAY_ANIMAL;
+			case 124: return WEAPEGO_SLAY_VEGETARIAN;
+			case 125:
+			case 126: return WEAPEGO_SLAY_ELF;
+			case 127:
+			case 128: return WEAPEGO_SLAY_DWARF;
+			case 129: return WEAPEGO_SLAY_HOBBIT;
+			case 130: return WEAPEGO_SLAY_LORD;
+			case 131:
+			case 132: return WEAPEGO_SLAY_MAN;
+			case 133:
+			case 134: return WEAPEGO_SLAY_WOMAN;
+			case 135:
+			case 136: return WEAPEGO_SLAY_NEUTRUM;
+			case 137: return WEAPEGO_SLAY_DOMESTIC;
+			case 138:
+			case 139: return WEAPEGO_SLAY_NASTY;
+			case 140: return WEAPEGO_SLAY_NONMOVING;
+			case 141: return WEAPEGO_SLAY_EGO;
+			case 142: return WEAPEGO_SLAY_MIND_FLAYER;
+			case 143: return WEAPEGO_SLAY_UNCOMMON;
+			case 144:
+			case 145: return WEAPEGO_SLAY_COW;
+			case 146: return WEAPEGO_SLAY_JOKE;
+			case 147: return WEAPEGO_SLAY_DIABLO;
+			case 148:
+			case 149:
+			case 150: return WEAPEGO_SLAY_VANILLA;
+			case 151: return WEAPEGO_SLAY_RANDO;
+			case 152: return WEAPEGO_SLAY_SCRIPT;
+			case 153:
+			case 154: return WEAPEGO_SLAY_ELONA;
+			case 155: return WEAPEGO_SLAY_AOE;
+			case 156: return WEAPEGO_SLAY_CDDA;
+			default: return WEAPEGO_SLAY_ELF;
+		}
+
+	} else if (rn2(3)) { /* most of the remaining time, it'll be another weapon-specific enchantment */
+		switch (rnd(35)) {
+			case 1:
+ 			case 2: return WEAPEGO_FIERY;
+			case 3:
+ 			case 4: return WEAPEGO_FROSTY;
+			case 5:
+ 			case 6: return WEAPEGO_ACID;
+			case 7:
+ 			case 8: return WEAPEGO_SHOCK;
+			case 9:
+ 			case 10: return WEAPEGO_POISON;
+ 			case 11: return WEAPEGO_MAGIC;
+ 			case 12: return WEAPEGO_VORPAL;
+			case 13:
+ 			case 14: return WEAPEGO_SHARP;
+			case 15:
+			case 16:
+ 			case 17: return (rn2(8) ? WEAPEGO_STR : WEAPEGO_GREAT_STR);
+			case 18:
+			case 19:
+ 			case 20: return (rn2(8) ? WEAPEGO_CON : WEAPEGO_GREAT_CON);
+			case 21:
+			case 22:
+ 			case 23: return (rn2(8) ? WEAPEGO_DEX : WEAPEGO_GREAT_DEX);
+			case 24:
+			case 25:
+ 			case 26: return (rn2(8) ? WEAPEGO_INT : WEAPEGO_GREAT_INT);
+			case 27:
+			case 28:
+ 			case 29: return (rn2(8) ? WEAPEGO_WIS : WEAPEGO_GREAT_WIS);
+			case 30:
+			case 31:
+ 			case 32: return (rn2(8) ? WEAPEGO_CHA : WEAPEGO_GREAT_CHA);
+			case 33:
+			case 34:
+ 			case 35: return (rn2(10) ? WEAPEGO_LUCK : rn2(20) ? WEAPEGO_GREAT_LUCK : WEAPEGO_INCREDIBLE_LUCK);
+
+			default: return WEAPEGO_MAGIC;
+		}
+
+	} else { /* and the rest of the time, give an enchantment that could also spawn on e.g. armor */
+
+	switch (rnd(127)) {
+
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			return FIRE_RES;
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+			return COLD_RES;
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+			return SLEEP_RES;
+		case 16:
+		case 17:
+		case 18:
+			return DISINT_RES;
+		case 19:
+		case 20:
+		case 21:
+		case 22:
+		case 23:
+			return SHOCK_RES;
+		case 24:
+		case 25:
+		case 26:
+		case 27:
+		case 28:
+			return POISON_RES;
+		case 29:
+		case 30:
+		case 31:
+			return ACID_RES;
+		case 32:
+			return STONE_RES;
+		case 33:
+		case 34:
+		case 35:
+			return REGENERATION;
+		case 36:
+		case 37:
+		case 38:
+			return SEARCHING;
+		case 39:
+		case 40:
+		case 41:
+			return SEE_INVIS;
+		case 42:
+			return INVIS;
+		case 43:
+		case 44:
+			return TELEPORT;
+		case 45:
+			return TELEPORT_CONTROL;
+		case 46:
+		case 47:
+		case 48:
+			return STEALTH;
+		case 49:
+		case 50:
+		case 51:
+			return AGGRAVATE_MONSTER;
+		case 52:
+			return CONFLICT;
+		case 53:
+			return WARNING;
+		case 54:
+			return TELEPAT;
+		case 55:
+		case 56:
+		case 57:
+			return FAST;
+		case 58:
+			return HUNGER;
+		case 59:
+			return REFLECTING;
+		case 60:
+			return ANTIMAGIC;
+		case 61:
+			return ENERGY_REGENERATION;
+		case 62:
+		case 63:
+			return MAGICAL_BREATHING;
+		case 64:
+			return HALF_SPDAM;
+		case 65:
+			return HALF_PHDAM;
+		case 66:
+			return SICK_RES;
+		case 67:
+		case 68:
+			return DRAIN_RES;
+		case 69:
+			return WARN_UNDEAD;
+		case 70:
+		case 71:
+		case 72:
+			return FREE_ACTION;
+		case 73:
+		case 74:
+			return FLYING;
+		case 75:
+		case 76:
+		case 77:
+			return INFRAVISION;
+		case 78:
+		case 79:
+		case 80:
+			return FEAR_RES;
+		case 81:
+			return DISPLACED;
+		case 82:
+			return SWIMMING;
+		case 83:
+			return FIXED_ABIL;
+		case 84:
+			return THE_FORCE;
+		case 85:
+			return SIGHT_BONUS;
+		case 86:
+			return STUN_RES;
+		case 87:
+			return CONF_RES;
+		case 88:
+			return EXTRA_WEAPON_PRACTICE;
+		case 89:
+		case 90:
+		case 91:
+			return DTBEEM_RES;
+		case 92:
+		case 93:
+		case 94:
+			return PSI_RES;
+		case 95:
+		case 96:
+			return MANALEECH;
+		case 97:
+			return MAP_AMNESIA;
+		case 98:
+		case 99:
+			return PEACEVISION;
+		case 100:
+		case 101:
+		case 102:
+		case 103:
+		case 104:
+			return DISCOUNT_ACTION;
+		case 105:
+			return FULL_NUTRIENT;
+		case 106:
+			return TECHNICALITY;
+		case 107:
+			return SCENT_VIEW;
+		case 108:
+			return DIMINISHED_BLEEDING;
+		case 109:
+			return CONTROL_MAGIC;
+		case 110:
+			return HALLUC_RES;
+		case 111:
+		case 112:
+			return PAIN_SENSE;
+		case 113:
+		case 114:
+		case 115:
+			return DEFUSING;
+		case 116:
+		case 117:
+			return RESISTANCE_PIERCING;
+		case 118:
+		case 119:
+		case 120:
+		case 121:
+		case 122:
+			return MYSTERY_RES;
+		case 123:
+		case 124:
+			return MAGIC_FIND;
+		case 125:
+		case 126:
+		case 127:
+			return SPELLBOOST;
+
+		default:
+			return POISON_RES;
+
+		}
+
+
+	}
+
+	return POISON_RES; /* appease compiler */
+}
+
+int
 randenchantment()
 {
 
@@ -1601,9 +2108,11 @@ randenchantment()
 		default:
 			return POISON_RES;
 
-	}
+		}
 
 	} /* didn't pick any RNG enchantments, nasty effects etc. */
+
+	return POISON_RES; /* appease compiler */
 
 }
 

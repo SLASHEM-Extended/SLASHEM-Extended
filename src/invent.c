@@ -10928,6 +10928,7 @@ mergable(otmp, obj)	/* returns TRUE if obj  & otmp can be merged */
 	    obj->obrittle2 != otmp->obrittle2 ||
 	    obj->finalcancel != otmp->finalcancel ||
 	    obj->obroken != otmp->obroken ||
+	    obj->enchantment != otmp->enchantment ||
 	    obj->otrapped != otmp->otrapped ||
 	    obj->lamplit != otmp->lamplit ||
 	    flags.pickup_thrown && obj->was_thrown != otmp->was_thrown ||
