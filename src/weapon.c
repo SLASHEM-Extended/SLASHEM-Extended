@@ -265,6 +265,14 @@ struct monst *mon;
 
 /*	Put weapon specific "to hit" bonuses in below:		*/
 	tmp += objects[otmp->otyp].oc_hitbon;
+	if (otmp->enchantment == WEAPEGO_ACC1) tmp += 5;
+	if (otmp->enchantment == WEAPEGO_PWR1) tmp += 5;
+	if (otmp->enchantment == WEAPEGO_ACC2) tmp += 10;
+	if (otmp->enchantment == WEAPEGO_PWR2) tmp += 10;
+	if (otmp->enchantment == WEAPEGO_ACC3) tmp += 15;
+	if (otmp->enchantment == WEAPEGO_PWR3) tmp += 15;
+	if (otmp->enchantment == WEAPEGO_ACC4) tmp += 20;
+	if (otmp->enchantment == WEAPEGO_PWR4) tmp += 20;
 	tmp += weapon_hit_bonus(otmp);  /* weapon skill */
 	if (u.twoweap && (otmp == uwep || otmp == uswapwep))
 		tmp += (skill_bonus(P_TWO_WEAPON_COMBAT)) - (10 + rnd(10));
@@ -2905,9 +2913,56 @@ struct monst *mon;
 	}
 
 	if (otmp && (tmp > 0) && ego_slay_applies(otmp, mon)) {
-		You("slay %s!", mon_nam(mon));
-		tmp *= 2;
+		/* elemental brands deal randomized extra damage, slays always deal double (balance) --Amy */
+		if (otmp->enchantment == WEAPEGO_FIERY) {
+			You("burn %s!", mon_nam(mon));
+			tmp *= (15 + rn2(6));
+			tmp /= 10;
+			if (!rn2(33)) destroy_mitem(mon, SCROLL_CLASS, AD_FIRE);
+			if (!rn2(33)) destroy_mitem(mon, SPBOOK_CLASS, AD_FIRE);
+			if (!rn2(33)) destroy_mitem(mon, POTION_CLASS, AD_FIRE);
+		} else if (otmp->enchantment == WEAPEGO_FROSTY) {
+			You("freeze %s!", mon_nam(mon));
+			tmp *= (15 + rn2(6));
+			tmp /= 10;
+			if (!rn2(33)) destroy_mitem(mon, POTION_CLASS, AD_COLD);
+		} else if (otmp->enchantment == WEAPEGO_ACID) {
+			You("corrode %s!", mon_nam(mon));
+			tmp *= (15 + rn2(6));
+			tmp /= 10;
+			if (!rn2(5)) hurtmarmor(mon, AD_CORR);
+		} else if (otmp->enchantment == WEAPEGO_SHOCK) {
+			You("shock %s!", mon_nam(mon));
+			tmp *= (15 + rn2(6));
+			tmp /= 10;
+			if (!rn2(33)) destroy_mitem(mon, WAND_CLASS, AD_ELEC);
+			if (!rn2(33)) destroy_mitem(mon, RING_CLASS, AD_ELEC);
+		} else if (otmp->enchantment == WEAPEGO_POISON) {
+			You("poison %s!", mon_nam(mon));
+			tmp *= (15 + rn2(6));
+			tmp /= 10;
+			if (!rn2(500)) {
+				pline_The("poison was deadly...");
+				tmp += 10000;
+			}
+		} else if (otmp->enchantment == WEAPEGO_MAGIC) {
+			You("irradiate %s!", mon_nam(mon));
+			tmp *= (11 + rn2(10)); /* lower extra damage because monsters rarely resist magic */
+			tmp /= 10;
+		} else {
+			You("demolish %s!", mon_nam(mon));
+			tmp *= 2;
+		}
 	}
+	if (otmp && otmp->enchantment == WEAPEGO_DMG1) tmp += 2;
+	if (otmp && otmp->enchantment == WEAPEGO_PWR1) tmp += 2;
+	if (otmp && otmp->enchantment == WEAPEGO_DMG2) tmp += 5;
+	if (otmp && otmp->enchantment == WEAPEGO_PWR2) tmp += 5;
+	if (otmp && otmp->enchantment == WEAPEGO_DMG3) tmp += 7;
+	if (otmp && otmp->enchantment == WEAPEGO_PWR3) tmp += 7;
+	if (otmp && otmp->enchantment == WEAPEGO_DMG4) tmp += 10;
+	if (otmp && otmp->enchantment == WEAPEGO_PWR4) tmp += 10;
+
 	if (otmp && otmp->enchantment == WEAPEGO_VORPAL) {
 
 		if (has_head(mon->data) && !noncorporeal(mon->data) && !amorphous(mon->data)) {

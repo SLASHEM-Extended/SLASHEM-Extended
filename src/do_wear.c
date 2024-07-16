@@ -7258,6 +7258,10 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uwep && uwep->enchantment == WEAPEGO_DEF1) uac -= 5;
+	if (uwep && uwep->enchantment == WEAPEGO_DEF2) uac -= 10;
+	if (uwep && uwep->enchantment == WEAPEGO_DEF3) uac -= 15;
+	if (uwep && uwep->enchantment == WEAPEGO_DEF4) uac -= 20;
 	if (uwep && uwep->oartifact == ART_MAEVE_S_OPULENCE) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_RONIKA_S_NORM) uac -= 2;
 	if (uarmc && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) uac -= 10;

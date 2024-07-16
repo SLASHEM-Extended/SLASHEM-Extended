@@ -1204,7 +1204,10 @@ randmonsound()
 int
 randweaponenchantment()
 {
-	if (!rn2(30)) { /* rarely, give some specific nastytrap effect - keyword "timerun" */
+	if (!rn2(100)) { /* in extremely rare cases, enchant the weapon just like an armor */
+		return randenchantment();
+
+	} else if (!rn2(30)) { /* rarely, give some specific nastytrap effect - keyword "timerun" */
 
 		switch (rnd(89)) { /* it's intentional that this list doesn't contain all the nasty trap effects --Amy */
 
@@ -1300,6 +1303,29 @@ randweaponenchantment()
 
  			default: return WEAPEGO_SLAY_ORC;
 
+		}
+
+	} else if (!rn2(10)) { /* occasionally, give boosts to damage, accuracy or AC */
+		switch (rnd(16)) {
+
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5: return (rn2(4) ? WEAPEGO_DMG1 : rn2(4) ? WEAPEGO_DMG2 : rn2(10) ? WEAPEGO_DMG3 : WEAPEGO_DMG4);
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10: return (rn2(4) ? WEAPEGO_ACC1 : rn2(4) ? WEAPEGO_ACC2 : rn2(10) ? WEAPEGO_ACC3 : WEAPEGO_ACC4);
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 15: return (rn2(4) ? WEAPEGO_DEF1 : rn2(4) ? WEAPEGO_DEF2 : rn2(10) ? WEAPEGO_DEF3 : WEAPEGO_DEF4);
+			case 16: return (rn2(8) ? WEAPEGO_PWR1 : rn2(12) ? WEAPEGO_PWR2 : rn2(50) ? WEAPEGO_PWR3 : WEAPEGO_PWR4);
+
+			default: return WEAPEGO_DMG1;
 		}
 
 	} else if (rn2(4)) { /* most of the time, it'll be a slay of some kind */
@@ -1465,7 +1491,7 @@ randweaponenchantment()
 		}
 
 	} else if (rn2(3)) { /* most of the remaining time, it'll be another weapon-specific enchantment */
-		switch (rnd(53)) {
+		switch (rnd(56)) {
 			case 1:
  			case 2: return WEAPEGO_FIERY;
 			case 3:
@@ -1519,6 +1545,9 @@ randweaponenchantment()
 			case 51: return WEAPEGO_CONFUSING;
 			case 52: return WEAPEGO_FRENZYING;
 			case 53: return WEAPEGO_HEALBLOCK;
+ 			case 54: return (rn2(12) ? WEAPEGO_GRACE : WEAPEGO_GREAT_GRACE);
+ 			case 55: return (rn2(12) ? WEAPEGO_SMART : WEAPEGO_GREAT_SMART);
+ 			case 56: return (rn2(12) ? WEAPEGO_PHYSIS : WEAPEGO_GREAT_PHYSIS);
 
 			default: return WEAPEGO_MAGIC;
 		}

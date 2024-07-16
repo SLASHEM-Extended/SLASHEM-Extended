@@ -925,6 +925,50 @@ int prop;
 			return "frenzy brand";
 		case WEAPEGO_HEALBLOCK:
 			return "healblock brand";
+		case WEAPEGO_DMG1:
+			return "enhanced damage";
+		case WEAPEGO_DMG2:
+			return "great damage";
+		case WEAPEGO_DMG3:
+			return "supreme damage";
+		case WEAPEGO_DMG4:
+			return "ultimate damage";
+		case WEAPEGO_ACC1:
+			return "enhanced accuracy";
+		case WEAPEGO_ACC2:
+			return "great accuracy";
+		case WEAPEGO_ACC3:
+			return "supreme accuracy";
+		case WEAPEGO_ACC4:
+			return "ultimate accuracy";
+		case WEAPEGO_PWR1:
+			return "enhanced power";
+		case WEAPEGO_PWR2:
+			return "great power";
+		case WEAPEGO_PWR3:
+			return "supreme power";
+		case WEAPEGO_PWR4:
+			return "ultimate power";
+		case WEAPEGO_DEF1:
+			return "enhanced defense";
+		case WEAPEGO_DEF2:
+			return "great defense";
+		case WEAPEGO_DEF3:
+			return "supreme defense";
+		case WEAPEGO_DEF4:
+			return "ultimate defense";
+		case WEAPEGO_GRACE:
+			return "grace";
+		case WEAPEGO_GREAT_GRACE:
+			return "great grace";
+		case WEAPEGO_SMART:
+			return "smartness";
+		case WEAPEGO_GREAT_SMART:
+			return "great smartness";
+		case WEAPEGO_PHYSIS:
+			return "physis";
+		case WEAPEGO_GREAT_PHYSIS:
+			return "great physis";
 
 		default:
 			return "Team Nastytrap";

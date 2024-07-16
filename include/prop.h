@@ -1359,6 +1359,29 @@
 #define WEAPEGO_FRENZYING 20133
 #define WEAPEGO_HEALBLOCK 20134
 
+#define WEAPEGO_DMG1 20135 /* +2 damage */
+#define WEAPEGO_DMG2 20136 /* +5 damage */
+#define WEAPEGO_DMG3 20137 /* +7 damage */
+#define WEAPEGO_DMG4 20138 /* +10 damage */
+#define WEAPEGO_ACC1 20139 /* +5 to-hit */
+#define WEAPEGO_ACC2 20140 /* +10 to-hit */
+#define WEAPEGO_ACC3 20141 /* +15 to-hit */
+#define WEAPEGO_ACC4 20142 /* +20 to-hit */
+#define WEAPEGO_PWR1 20143 /* +5 to-hit, +2 damage */
+#define WEAPEGO_PWR2 20144 /* +10 to-hit, +5 damage */
+#define WEAPEGO_PWR3 20145 /* +15 to-hit, +7 damage */
+#define WEAPEGO_PWR4 20146 /* +20 to-hit, +10 damage */
+#define WEAPEGO_DEF1 20147 /* +5 AC */
+#define WEAPEGO_DEF2 20148 /* +10 AC */
+#define WEAPEGO_DEF3 20149 /* +15 AC */
+#define WEAPEGO_DEF4 20150 /* +20 AC */
+#define WEAPEGO_GRACE 20151 /* +2 STR/DEX */
+#define WEAPEGO_GREAT_GRACE 20152 /* +5 STR/DEX */
+#define WEAPEGO_SMART 20153 /* +2 INT/WIS */
+#define WEAPEGO_GREAT_SMART 20154 /* +5 INT/WIS */
+#define WEAPEGO_PHYSIS 20155 /* +2 CON/CHA */
+#define WEAPEGO_GREAT_PHYSIS 20156 /* +5 CON/CHA */
+
 /*** Where the properties come from ***/
 /* Definitions were moved here from obj.h and you.h */
 struct prop {

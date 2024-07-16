@@ -3213,6 +3213,8 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 		if (uwep && uwep->enchantment == WEAPEGO_STR) tmp += 2;
 		if (uwep && uwep->enchantment == WEAPEGO_GREAT_STR) tmp += 5;
+		if (uwep && uwep->enchantment == WEAPEGO_GRACE) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_GRACE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_EORLINGAS) tmp += 3;
 
 		if (FemtrapActiveThai) tmp -= 2;
@@ -3430,6 +3432,8 @@ int x;
 		if (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS) tmp += 6;
 		if (uwep && uwep->enchantment == WEAPEGO_CHA) tmp += 2;
 		if (uwep && uwep->enchantment == WEAPEGO_GREAT_CHA) tmp += 5;
+		if (uwep && uwep->enchantment == WEAPEGO_PHYSIS) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_PHYSIS) tmp += 5;
 
 		if (RngeCoquetry) tmp += 5;
 		if (FemtrapActiveSolvejg) tmp += 5;
@@ -3615,6 +3619,8 @@ int x;
 		if (x == A_INT && uwep && uwep->enchantment == WEAPEGO_GREAT_INT) tmp += 5;
 		if (x == A_WIS && uwep && uwep->enchantment == WEAPEGO_WIS) tmp += 2;
 		if (x == A_WIS && uwep && uwep->enchantment == WEAPEGO_GREAT_WIS) tmp += 5;
+		if (uwep && uwep->enchantment == WEAPEGO_SMART) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_SMART) tmp += 5;
 
 		if (x == A_WIS && uarmf && uarmf->otyp == HEEL_WISE_SHOES && !(PlayerCannotUseSkills)) {
 
@@ -3776,6 +3782,8 @@ int x;
 
 		if (uwep && uwep->enchantment == WEAPEGO_DEX) tmp += 2;
 		if (uwep && uwep->enchantment == WEAPEGO_GREAT_DEX) tmp += 5;
+		if (uwep && uwep->enchantment == WEAPEGO_GRACE) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_GRACE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_EORLINGAS) tmp += 3;
 
 		if (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) {
@@ -3936,6 +3944,8 @@ int x;
 
 		if (uwep && uwep->enchantment == WEAPEGO_CON) tmp += 2;
 		if (uwep && uwep->enchantment == WEAPEGO_GREAT_CON) tmp += 5;
+		if (uwep && uwep->enchantment == WEAPEGO_PHYSIS) tmp += 2;
+		if (uwep && uwep->enchantment == WEAPEGO_GREAT_PHYSIS) tmp += 5;
 
 		if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 			if (uarm && is_metallic(uarm)) tmp++;
