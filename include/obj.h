@@ -540,6 +540,7 @@ struct obj {
 				 (obj)->otyp == LEAD_CLUMP || \
 				 (obj)->otyp == JUNK_METAL || \
 				 (obj)->otyp == COBALT_CHUNK || \
+				 (obj)->otyp == POINTY_SHELL || \
 				 (obj)->otyp == BRONZE_NUGGET || \
 				 (obj)->otyp == STEEL_SLUG || \
 				 (obj)->otyp == SLING_AMMO || \

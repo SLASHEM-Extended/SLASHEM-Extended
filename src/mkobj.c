@@ -3068,6 +3068,10 @@ boolean shopinit;
 			otmp->quan = (long) rn1(7,7);
 			if (!rn2(10)) otmp->quan *= 2;
 		}
+		else if (otmp->otyp == POINTY_SHELL && rn2(2) ) {
+			otmp->quan = (long) rn1(7,7);
+			if (!rn2(10)) otmp->quan *= 2;
+		}
 		else if (otmp->otyp == BRONZE_NUGGET && rn2(2) ) {
 			otmp->quan = (long) rn1(7,7);
 			if (!rn2(10)) otmp->quan *= 2;
@@ -3186,6 +3190,17 @@ boolean shopinit;
 		if (!rn2(100)) willhaveweaponenchantment = TRUE;
 		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
 		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+
+		switch (otmp->otyp) {
+			default: break;
+
+			case METEOR_FRAGMENT:
+				if (!rn2(10)) willhaveweaponenchantment = TRUE;
+				break;
+			case POINTY_SHELL:
+				if (!rn2(2)) willhaveweaponenchantment = TRUE;
+				break;
+		}
 
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
@@ -3863,6 +3878,14 @@ boolean shopinit;
 		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
 		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
 
+		switch (otmp->otyp) {
+			default: break;
+
+			case PHYSIO_VENOM:
+				if (!rn2(2)) willhaveweaponenchantment = TRUE;
+				break;
+		}
+
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		if (willhaveweaponenchantment) {
@@ -3952,6 +3975,15 @@ boolean shopinit;
 		if (!rn2(100)) willhaveweaponenchantment = TRUE;
 		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
 		if (achieve.get_amulet && !rn2(50)) willhaveweaponenchantment = TRUE;
+
+		switch (otmp->otyp) {
+			default: break;
+
+			case HEAVY_SHELL_BALL:
+			case SHELL_CHAIN:
+				if (!rn2(2)) willhaveweaponenchantment = TRUE;
+				break;
+		}
 
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 

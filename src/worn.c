@@ -100,7 +100,7 @@ long mask;
 		     * wp_mask should be same as mask at this point.
 		     */
 		    if (wp->w_mask & ~(W_SWAPWEP|W_QUIVER)) {
-			if (obj->oclass == WEAPON_CLASS || is_weptool(obj) ||
+			if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == GEM_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) ||
 					    mask != W_WEP) {
 			    p = objects[obj->otyp].oc_oprop;
 			    u.uprops[p].extrinsic =

@@ -4044,6 +4044,7 @@ struct obj *obj;
 		case MELON:
 		case ACID_VENOM:
 		case TAIL_SPIKES:
+		case PHYSIO_VENOM:
 		case BLINDING_VENOM:
 		case SEGFAULT_VENOM:
 		case FAERIE_FLOSS_RHING:
@@ -4092,6 +4093,7 @@ boolean in_view;
 			break;
 		case ACID_VENOM:
 		case TAIL_SPIKES:
+		case PHYSIO_VENOM:
 		case BLINDING_VENOM:
 		case SEGFAULT_VENOM:
 		case FAERIE_FLOSS_RHING:

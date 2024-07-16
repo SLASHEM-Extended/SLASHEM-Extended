@@ -3550,6 +3550,7 @@ int tmp;
 			case ART_ANNOYPRICK:
 			case ART_MAUSER_C___CUSTOM:
 			case ART_STRUCK_ON:
+			case ART_HITTEM_:
 			case ART_WINNETOU_S_FRIEND:
 				return 0; /* no damage bonus */
 
@@ -4003,7 +4004,7 @@ struct monst *mtmp;
 		case WEAPEGO_SLAY_NEUTRUM: return (mtmp->data->mflags2 & M2_NEUTER);
 		case WEAPEGO_SLAY_DOMESTIC: return (mtmp->data->mflags2 & M2_NEUTER);
 		case WEAPEGO_SLAY_NASTY: return (mtmp->data->mflags2 & M2_NASTY);
-		case WEAPEGO_SLAY_NONMOVING: return (mtmp->data->mflags3 & M3_NONMOVING);
+		case WEAPEGO_SLAY_NONMOVING: return ((mtmp->data->mflags3 & M3_NONMOVING) || (mtmp->data->mlet == S_TURRET) || !(mtmp->data->mmove) );
 		case WEAPEGO_SLAY_EGO: return (mtmp->isegotype);
 		case WEAPEGO_SLAY_MIND_FLAYER: return (mtmp->data->mflags3 & M3_IS_MIND_FLAYER);
 		case WEAPEGO_SLAY_UNCOMMON: return ((mtmp->data->mflags3 & M3_FREQ_UNCOMMON2) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON3) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON5) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON7) || (mtmp->data->mflags3 & M3_FREQ_UNCOMMON10) );

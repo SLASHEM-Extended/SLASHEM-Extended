@@ -1001,6 +1001,7 @@ struct Jitem {
 			   typ != LEAD_CLUMP && 	\
 			   typ != JUNK_METAL && 	\
 			   typ != COBALT_CHUNK && 	\
+			   typ != POINTY_SHELL && 	\
 			   typ != BRONZE_NUGGET && 	\
 			   typ != STEEL_SLUG && 	\
 			   typ != SLING_AMMO && 	\
@@ -4811,6 +4812,11 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ SCR_WEAPON_SPECIALIZATION, "todo" },
 
+	{ POINTY_SHELL, "todo" },
+	{ HEAVY_SHELL_BALL, "todo" },
+	{ SHELL_CHAIN, "todo" },
+	{ PHYSIO_VENOM, "todo" },
+
 	{0, "" }
 };
 
@@ -8460,6 +8466,11 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ SCR_WEAPON_SPECIALIZATION, "todo" },
 
+	{ POINTY_SHELL, "todo" },
+	{ HEAVY_SHELL_BALL, "todo" },
+	{ SHELL_CHAIN, "todo" },
+	{ PHYSIO_VENOM, "todo" },
+
 	{0, "" }
 };
 
@@ -8597,7 +8608,7 @@ register int otyp;
 		} else {
 			strcpy(buf, dn ? dn : actualn);
 			if(ocl->oc_class == GEM_CLASS)
-				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == JUNK_METAL || otyp == COBALT_CHUNK || otyp == BRONZE_NUGGET || otyp == STEEL_SLUG || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == METEOR_FRAGMENT || otyp == AMBER_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
+				strcat(buf, (ocl->oc_material == MT_MINERAL || otyp == SMALL_PIECE_OF_UNREFINED_MITHR || otyp == VOLCANIC_GLASS_FRAGMENT || otyp == LEAD_CLUMP || otyp == JUNK_METAL || otyp == COBALT_CHUNK || otyp == POINTY_SHELL || otyp == BRONZE_NUGGET || otyp == STEEL_SLUG || otyp == SLING_AMMO || otyp == BONE_FRAGMENT || otyp == METEOR_FRAGMENT || otyp == AMBER_FRAGMENT || otyp == SILVER_SLINGSTONE || otyp == CONUNDRUM_NUGGET ) ?
 						" stone" : " gem");
 			if(un)
 				sprintf(eos(buf), " called %s", un);
@@ -9097,7 +9108,7 @@ boolean showpoisoned;
 	case GEM_CLASS:
 	    {
 		const char *rock =
-			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == JUNK_METAL || typ == COBALT_CHUNK || typ == BRONZE_NUGGET || typ == STEEL_SLUG || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == METEOR_FRAGMENT || typ == AMBER_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
+			    (ocl->oc_material == MT_MINERAL || typ == SMALL_PIECE_OF_UNREFINED_MITHR || typ == VOLCANIC_GLASS_FRAGMENT || typ == LEAD_CLUMP || typ == JUNK_METAL || typ == COBALT_CHUNK || typ == POINTY_SHELL || typ == BRONZE_NUGGET || typ == STEEL_SLUG || typ == SLING_AMMO || typ == BONE_FRAGMENT || typ == METEOR_FRAGMENT || typ == AMBER_FRAGMENT || typ == SILVER_SLINGSTONE || typ == CONUNDRUM_NUGGET) ? "stone" : "gem";
 		if (!obj->dknown || PlayerUninformation) {
 		    strcpy(buf, rock);
 		} else if (!nn) {

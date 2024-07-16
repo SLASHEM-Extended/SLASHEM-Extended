@@ -3573,6 +3573,7 @@ int dieroll;
 		    case HEAVY_SINNUM_BALL:
 		    case HEAVY_CORAL_BALL:
 		    case HEAVY_CHITIN_BALL:
+		    case HEAVY_SHELL_BALL:
 		    case HEAVY_BRONZE_BALL:
 		    case HEAVY_TITANIUM_BALL:
 		    case HEAVY_STEEL_BALL:
@@ -3586,6 +3587,7 @@ int dieroll;
 		    case SINNUM_SCOURGE:
 		    case CORAL_NUNCHIAKU:
 		    case CHITIN_CHAIN:
+		    case SHELL_CHAIN:
 		    case BRONZE_CHAIN:
 		    case TITANIUM_SCOURGE:
 		    case STEEL_NUNCHIAKU:

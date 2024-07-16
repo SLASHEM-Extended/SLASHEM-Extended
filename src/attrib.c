@@ -3342,6 +3342,7 @@ int x;
 		if (uleft && uleft->oartifact == ART_SCARAB_OF_ADORNMENT) tmp += 10;
 		if (uright && uright->oartifact == ART_SCARAB_OF_ADORNMENT) tmp += 10;
 		if (uamul && uamul->oartifact == ART_OH_COME_ON) tmp += 5;
+		if (uwep && uwep->oartifact == ART_NEOLITHIC_ACCESSORY) tmp += 3;
 		if (uamul && uamul->oartifact == ART_NECKLACE_OF_ADORNMENT) tmp += 10;
 		if (uwep && uwep->oartifact == ART_BUNGA_BUNGA && uwep->spe > 0) tmp += (5 + uwep->spe);
 		if (flags.female && uarmu && uarmu->oartifact == ART_FEMALE_BEAUTY) tmp += 5;

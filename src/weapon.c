@@ -303,6 +303,7 @@ struct monst *mon;
 	if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == MESH_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == CHITIN_CHAIN && thick_skinned(ptr)) tmp += 4;
+	if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == MERCURIAL_CHAIN && thick_skinned(ptr)) tmp += 4;
 	if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) tmp += 6;
@@ -633,6 +634,7 @@ struct monst *mon;
 		case BLINDING_VENOM:
 					tmp += 1; break;
 		case SEGFAULT_VENOM:
+		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
 		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
@@ -845,6 +847,7 @@ struct monst *mon;
 		case BLINDING_VENOM:
 					tmp += 1; break;
 		case SEGFAULT_VENOM:
+		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
 		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
@@ -953,6 +956,7 @@ struct monst *mon;
 		if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == MESH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CHITIN_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
+		if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == MERCURIAL_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(5);
@@ -1265,6 +1269,7 @@ struct monst *mon;
 		case BLINDING_VENOM:
 					tmp += 1; break;
 		case SEGFAULT_VENOM:
+		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
 		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
@@ -1478,6 +1483,7 @@ struct monst *mon;
 		case BLINDING_VENOM:
 					tmp += 1; break;
 		case SEGFAULT_VENOM:
+		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
 		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
@@ -1604,6 +1610,7 @@ struct monst *mon;
 		if (otmp->otyp == BUBBLE_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == MESH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CHITIN_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
+		if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == MERCURIAL_CHAIN && thick_skinned(ptr)) bonus += rnd(4);
 		if (otmp->otyp == POURPOOR_LASH && thick_skinned(ptr)) bonus += rnd(5);
@@ -1740,6 +1747,12 @@ struct monst *mon;
 	if (otmp->otyp == CHITIN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(3);
 	if (otmp->otyp == CHITIN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(4);
 	if (otmp->otyp == CHITIN_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(5);
+
+	if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
+	if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
+	if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_MASTER) ) bonus += rnd(3);
+	if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_GRAND_MASTER) ) bonus += rnd(4);
+	if (otmp->otyp == SHELL_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SUPREME_MASTER) ) bonus += rnd(5);
 
 	if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_SKILLED) ) bonus += 1;
 	if (otmp->otyp == CLOTH_CHAIN && thick_skinned(ptr) && (P_SKILL(P_FLAIL) == P_EXPERT) ) bonus += rnd(2);
@@ -3122,7 +3135,7 @@ static NEARDATA const int rwep[] =
 	FANG_OF_APEP, UNKNOWN_KNIFE, MEASURER, STILETTO, KNIFE, VICTIM_KNIFE,
 	LOADSTONE, CONUNDRUM_NUGGET, SILVER_SLINGSTONE, VOLCANIC_GLASS_FRAGMENT, FLINT, 
 	LEAD_CLUMP, STEEL_SLUG, SLING_AMMO, BONE_FRAGMENT, DIVINE_DART, AMBER_FRAGMENT, BRONZE_NUGGET,
-	SMALL_PIECE_OF_UNREFINED_MITHR, TALC, COBALT_CHUNK, GRAPHITE, ROCK, CARCOSAN_BOLT,
+	SMALL_PIECE_OF_UNREFINED_MITHR, TALC, COBALT_CHUNK, POINTY_SHELL, GRAPHITE, ROCK, CARCOSAN_BOLT,
 	STONE_OF_MAGIC_RESISTANCE, 
 
 	SLEEPSTONE, MANASTONE, RAPID_DART,
@@ -3423,7 +3436,7 @@ static const NEARDATA short hwep[] = {
 	  HEAVY_TAR_BALL, HEAVY_BAMBOO_BALL,
 
 	  HEAVY_IRON_BALL, VERY_HEAVY_BALL, HEAVY_GLASS_BALL, HEAVY_STONE_BALL, HEAVY_BRICK_BALL, HEAVY_METAL_BALL,
-	  HEAVY_WAX_BALL, HEAVY_ALLOY_BALL, HEAVY_BUBBLE_BALL, HEAVY_MESH_BALL, HEAVY_CHITIN_BALL,
+	  HEAVY_WAX_BALL, HEAVY_ALLOY_BALL, HEAVY_BUBBLE_BALL, HEAVY_MESH_BALL, HEAVY_CHITIN_BALL, HEAVY_SHELL_BALL,
 
 	  HEAVY_CLOTH_BALL, HEAVY_MERCURIAL_BALL,
 
@@ -3480,7 +3493,7 @@ static const NEARDATA short hwep[] = {
 	  POURPOOR_LASH,
 	  SILK_SCOURGE, ALU_SCOURGE, EXECUTIONER_S_MACE,
 	  HEAVY_CHAIN, GLASS_CHAIN, STONE_CHAIN, IRON_CHAIN, BRICK_CHAIN, METAL_CHAIN, WAX_CHAIN, ALLOY_CHAIN,
-	  TAR_CHAIN, BAMBOO_CHAIN, BUBBLE_CHAIN, TINSEL_CHAIN, MESH_CHAIN, CHITIN_CHAIN,
+	  TAR_CHAIN, BAMBOO_CHAIN, BUBBLE_CHAIN, TINSEL_CHAIN, MESH_CHAIN, CHITIN_CHAIN, SHELL_CHAIN,
 
 	  VACUUM_STAFF, INKUTLASS, SHAMSHIR,
 	  GREEN_SABER, TULWAR, RAPIER, ARCANE_RAPIER, LEATHER_SABER, POWERFIST, FLAMETHROWER,

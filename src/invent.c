@@ -19931,6 +19931,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Total garbage, you can fire this ammo with a sling but it deals less damage than rocks, which means their damage is *really* low."); break;
 			case COBALT_CHUNK:
 				pline("Sling ammo with rather low damage output."); break;
+			case POINTY_SHELL:
+				pline("This type of sling ammo doesn't deal that much damage."); break;
 			case BRONZE_NUGGET:
 				pline("A mediocre type of sling ammo."); break;
 			case STEEL_SLUG:
@@ -20955,6 +20957,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Super heavy ball, which uses the flail skill and deals great damage."); break;
 			case HEAVY_CHITIN_BALL:
 				pline("It's a heavy ball that uses the flail skill to determine its damage output."); break;
+			case HEAVY_SHELL_BALL:
+				pline("Flail-class weapon made of shell."); break;
 			case HEAVY_BRONZE_BALL:
 				pline("A rather damaging flail-class weapon if you can manage the weight."); break;
 			case HEAVY_TITANIUM_BALL:
@@ -21122,6 +21126,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Want to use the flail skill and deal good damage? Then this weapon might be for you, although it also weighs a lot."); break;
 			case CHITIN_CHAIN:
 				pline("A flail-class weapon that doesn't deal much damage."); break;
+			case SHELL_CHAIN:
+				pline("This flail is made of shell and doesn't deal much damage."); break;
 			case BRONZE_CHAIN:
 				pline("This chain uses the flail skill and has d8 base damage output."); break;
 			case TITANIUM_SCOURGE:
@@ -21167,15 +21173,17 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
-			case BLINDING_VENOM: 
+			case BLINDING_VENOM:
 				pline("Splashing an enemy with this venom may blind them."); break;
-			case TAIL_SPIKES: 
+			case TAIL_SPIKES:
 				pline("A barrage of spikes that can be used to damage enemies."); break;
-			case FAERIE_FLOSS_RHING: 
+			case PHYSIO_VENOM:
+				pline("This venom deals some damage when thrown, but not all that much."); break;
+			case FAERIE_FLOSS_RHING:
 				pline("If you get hit with this, you'll lose an experience level. Monsters who don't resist drain life may lose maximum health if you hit them with it."); break;
-			case ACID_VENOM: 
+			case ACID_VENOM:
 				pline("Hitting a monster with this thing may deal some acid damage to it."); break;
-			case SEGFAULT_VENOM: 
+			case SEGFAULT_VENOM:
 				pline("This item is not dangerous in and of itself, but if you're playing the segfaulter race, it can cause a 'segfault panic' that erases your character."); break;
 
  			default: pline("Missing item description (this is a bug). Please tell Amy about the item in question so she can add a description."); break;
@@ -31231,6 +31239,14 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +5 to-hit and +5 damage, spawns with greater amount of charge."); break;
 				case ART_PHOGO_POWER:
 					pline("Artifact specs: adds +7 to the currently wielded weapon's enchantment value. However, this cannot increase the weapon's enchantment beyond +7, so for best results you'll want to read it on a +0 weapon."); break;
+				case ART_CRUSTACEA_VENGE:
+					pline("Artifact specs: +7 damage."); break;
+				case ART_NEOLITHIC_ACCESSORY:
+					pline("Artifact specs: +3 charisma and sight bonus when wielded."); break;
+				case ART_DAINDITSCHEFF:
+					pline("Artifact specs: +4 damage."); break;
+				case ART_HITTEM_:
+					pline("Artifact specs: +9 to-hit."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

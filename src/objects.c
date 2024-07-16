@@ -11208,6 +11208,7 @@ ROCK("small piece of unrefined mithril", "gray", 0, 100, 0, 10, 6, 6, 0, 10, 5, 
 ROCK("silver slingstone", "gray", 		0, 100,  0,  10, 11, 11, 0, 10, 5, MT_SILVER, CLR_GRAY, 1),
 ROCK("junk metal", "gray",			0, 1000,   0,  10, 2, 2, 0, 10, 2, MT_ALUMEN, CLR_GRAY, 1),
 ROCK("cobalt chunk", "gray",			0, 100,   0,  10, 6, 7, 0, 10, 5, MT_COBALT, CLR_GRAY, 1),
+ROCK("pointy shell", "gray",			0, 100,   0,  10, 6, 6, 0, 10, 5, MT_SHELL, CLR_GRAY, 1),
 ROCK("bronze nugget", "gray",			0, 400,   0,  10, 8, 7, 0, 10, 6, MT_BRONZE, CLR_GRAY, 1),
 ROCK("steel slug", "gray",			0, 500,  0,  10, 10, 9, 0, 10, 7, MT_STEEL, CLR_GRAY, 1),
 ROCK("talc", "gray",				0, 20,   0,  10, 7, 7, 0, 10, 1, MT_MINERAL, CLR_GRAY, 1),
@@ -11223,7 +11224,7 @@ ROCK("amber fragment", "gray",		0, 20,   0,  10, 7, 8, 0, 10, 3, MT_AMBER, CLR_G
 ROCK("sling ammo", "gray",			0, 4000, 0,  10, 9, 9, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 /* sling ammo = last random gray stone, for e.g. shk.c --Amy */
 
-ROCK("rock", (char *)0,				1,35739, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
+ROCK("rock", (char *)0,				1,35639, 0,    0, 5, 5, 0, 10, 7, MT_MINERAL, CLR_GRAY, 1),
 #undef GEM
 #undef ROCK
 
@@ -11240,7 +11241,7 @@ OBJECT(OBJ("statue", (char *)0), BITS(1,0,0,1,0,0,0,0,0,0,0,P_NONE,MT_MINERAL), 
 
 /* heavy iron ball must be first */
 OBJECT(OBJ("heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
-		BALL_CLASS,  15650, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
+		BALL_CLASS,  15450, 0,  2400, 10, 25, 25, 0, 0,  200, HI_METAL, 1, 0),
 						/* +d4 when "very heavy" */
 OBJECT(OBJ("heavy tinsel ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TINSEL), 0,
 		BALL_CLASS,  1000, 0,  2400, 10, 18, 18, 0, 0,  200, CLR_BROWN, 1, 0),
@@ -11264,6 +11265,9 @@ OBJECT(OBJ("heavy mesh ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL
 		BALL_CLASS,  3000, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_GRAY, 1, 0),
 OBJECT(OBJ("heavy chitin ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CHITIN), 0,
 		BALL_CLASS,  3000, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_WHITE, 1, 0),
+
+OBJECT(OBJ("heavy shell ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_SHELL), 0,
+		BALL_CLASS,  200, 0,  2400, 10, 25, 25, 0, 0,  200, CLR_GRAY, 1, 0),
 
 OBJECT(OBJ("quite heavy iron ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		BALL_CLASS,  10000, 0,  3200, 10, 32, 32, 0, 0,  200, CLR_GREEN, 10, 0),
@@ -11397,7 +11401,7 @@ OBJECT(OBJ("liquid ball", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_
 
 /* iron chain must be first */
 OBJECT(OBJ("iron chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
-		CHAIN_CLASS, 17850, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
+		CHAIN_CLASS, 17650, 0,  240,  0,  4,  4, 0, 0,  200, HI_METAL, 1, 0),
 						/* +1 both l & s */
 
 OBJECT(OBJ("tinsel chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_TINSEL), 0,
@@ -11422,6 +11426,9 @@ OBJECT(OBJ("mesh chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_M
 		CHAIN_CLASS, 3000, 0,  240,  0,  4,  4, 0, 0,  200, CLR_GRAY, 1, 0),
 OBJECT(OBJ("chitin chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_CHITIN), 0,
 		CHAIN_CLASS, 3000, 0,  240,  0,  4,  4, 0, 0,  200, CLR_WHITE, 1, 0),
+
+OBJECT(OBJ("shell chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_SHELL), 0,
+		CHAIN_CLASS, 200, 0,  240,  0,  4,  4, 0, 0,  200, CLR_GRAY, 1, 0),
 
 OBJECT(OBJ("rotating chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT_IRON), 0,
 		CHAIN_CLASS, 10000, 0,  480,  0,  8,  8, 0, 0,  200, CLR_BRIGHT_BLUE, 10, 0),
@@ -11560,7 +11567,7 @@ OBJECT(OBJ("liquid chain", (char *)0), BITS(1,0,1,0,0,0,0,0,0,0,WHACK,P_FLAIL,MT
 /* blinding venom = first venom */
 OBJECT(OBJ("blinding venom", "splash of venom"),
 		BITS(0,1,1,0,0,0,0,0,0,0,0,P_VENOM,MT_LIQUID), 0,
-		VENOM_CLASS,  49800, 0,	 0,  0,  1,  1, 0, 0,	 0, HI_ORGANIC, 1, 0),
+		VENOM_CLASS,  48800, 0,	 0,  0,  1,  1, 0, 0,	 0, HI_ORGANIC, 1, 0),
 OBJECT(OBJ("tail spikes", "splash of venom"),
 		BITS(0,1,1,0,0,0,0,0,0,0,0,P_VENOM,MT_BONE), 0,
 		VENOM_CLASS,  200, 0,	 0,  0,  6,  6, 0, 0,	 0, CLR_BLACK, 1, 0),
@@ -11569,10 +11576,13 @@ OBJECT(OBJ("faerie floss rhing", "splash of venom"),
 		VENOM_CLASS,  200, 0,	 0,  0,  1,  1, 0, 0,	 0, CLR_BRIGHT_MAGENTA, 1, 0),
 OBJECT(OBJ("acid venom", "splash of venom"),
 		BITS(0,1,1,0,0,0,0,0,0,0,0,P_VENOM,MT_LIQUID), 0,
-		VENOM_CLASS,  49800, 0,	 0,  0,  6,  6, 0, 0,	 0, HI_ORGANIC, 1, 0),
+		VENOM_CLASS,  48799, 0,	 0,  0,  6,  6, 0, 0,	 0, HI_ORGANIC, 1, 0),
+OBJECT(OBJ("physio venom", "splash of venom"),
+		BITS(0,1,1,0,0,0,0,0,0,0,0,P_VENOM,MT_MINERAL), 0,
+		VENOM_CLASS,  2000, 0,	 0,  0,  6,  6, 0, 0,	 0, CLR_GRAY, 1, 0),
 OBJECT(OBJ("segfault venom", "splash of venom"),
 		BITS(0,1,1,0,0,0,0,0,0,0,0,P_VENOM,MT_MYSTERIOUS), 0,
-		VENOM_CLASS,  0, 0,	 0,  0,  6,  6, 0, 0,	 0, CLR_GRAY, 1, 0),
+		VENOM_CLASS,  1, 0,	 0,  0,  6,  6, 0, 0,	 0, CLR_GRAY, 1, 0),
 		/* +d6 small or large */
 /* segfault venom = last venom */
 

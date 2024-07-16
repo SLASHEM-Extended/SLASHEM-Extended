@@ -19439,6 +19439,22 @@ A("Phogo Power",				SCR_WEAPON_SPECIALIZATION, /* adds +7 to the wielded weapon 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
+A("Crustacea Venge",				POINTY_SHELL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 70L ),
+
+A("Neolithic Accessory",				SHELL_CHAIN, /* +3 CHA, sight bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Dainditscheff",				PHYSIO_VENOM,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Hittem!",				PHYSIO_VENOM, /* dmg h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(9, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
