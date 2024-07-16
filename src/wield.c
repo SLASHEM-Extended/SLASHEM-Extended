@@ -2237,6 +2237,20 @@ register int amount;
 	if (Race_if(PM_SPARD) && amount > 0) uwep->spe++;
 	if(amount > 0) {
 
+		/* sometimes, enchanting weapons may give them an actual magical enchantment --Amy */
+		if (uwep) {
+			if (!uwep->enchantment && !rn2((amount > 1) ? 10 : 20) ) {
+				struct obj *tempwep = uwep;
+				long savewornmask;
+				tempwep->enchantment = randweaponenchantment();
+				pline("Your %s seems to have gained special magical properties!", xname(tempwep) );
+				savewornmask = tempwep->owornmask;
+				setworn((struct obj *)0, tempwep->owornmask);
+				setworn(tempwep, savewornmask);
+
+			}
+		}
+
 		if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) {
 			if (!uwep->cursed) bless(uwep);
 			else uncurse(uwep, FALSE);
@@ -2255,12 +2269,23 @@ register int amount;
 
 	}
 
+	/* and cursed enchant weapon is a way to remove the magical enchantment --Amy */
+	if (uwep && uwep->enchantment && amount < 0) {
+		struct obj *tempwep = uwep;
+		long savewornmask;
+		savewornmask = tempwep->owornmask;
+		setworn((struct obj *)0, tempwep->owornmask);
+		tempwep->enchantment = 0;
+		pline("Your %s lost its magical properties!", xname(tempwep) );
+		setworn(tempwep, savewornmask);
+	}
+
 	/*
 	 * Enchantment, which normally improves a weapon, has an
 	 * addition adverse reaction on Magicbane whose effects are
 	 * spe dependent.  Give an obscure clue here.
 	 */
-	if (uwep->oartifact == ART_MAGICBANE && uwep->spe >= 0) {
+	if (uwep && uwep->oartifact == ART_MAGICBANE && uwep->spe >= 0) {
 		Your("right %s %sches!",
 			body_part(HAND),
 			(((amount > 1) && (uwep->spe > 1)) ? "flin" : "it"));
@@ -2268,7 +2293,7 @@ register int amount;
 
 	/* an elven magic clue, cookie@keebler */
 	/* elven weapons vibrate warningly when enchanted beyond a limit */
-	if ((uwep->spe > ((uwep->oartifact == ART_MIDDLING_PIDDLING) ? 19 : is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) )
+	if (uwep && (uwep->spe > ((uwep->oartifact == ART_MIDDLING_PIDDLING) ? 19 : is_droven_weapon(uwep) ? 10 : is_elven_weapon(uwep) ? 8 : 5) )
 		&& (is_elven_weapon(uwep) || uwep->oartifact || !rn2(7)))
 	    Your("%s unexpectedly.",
 		aobjnam(uwep, "suddenly vibrate"));

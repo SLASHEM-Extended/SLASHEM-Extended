@@ -158,6 +158,7 @@ register struct obj *otmp;
 	case SCR_CURE:
 	case SCR_SIN:
 	case SCR_ARMOR_SPECIALIZATION:
+	case SCR_WEAPON_SPECIALIZATION:
 	case SCR_SUMMON_BOSS:
 	case SCR_SUMMON_ELM:
 	case SCR_DEMONOLOGY:

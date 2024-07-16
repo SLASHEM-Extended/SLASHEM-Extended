@@ -1278,6 +1278,7 @@ doread()
 			case SCR_CURE:
 			case SCR_SIN:
 			case SCR_ARMOR_SPECIALIZATION:
+			case SCR_WEAPON_SPECIALIZATION:
 			case SCR_SUMMON_BOSS:
 			case SCR_SUMMON_ELM:
 			case SCR_DEMONOLOGY:
@@ -10785,6 +10786,79 @@ secureidchoice:
 		}
 		break;
 
+	case SCR_WEAPON_SPECIALIZATION:
+
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep)) ) {
+
+			if (sobj->oartifact == ART_PHOGO_POWER) {
+				if (stack_too_big(uwep)) {
+					pline("A waste... the artifact scroll's power failed to affect the stack of weapons because it was too big!");
+				} else {
+					if (uwep->spe < 7) {
+						uwep->spe += 7;
+						if (uwep->spe > 7) uwep->spe = 7;
+						Your("weapon received a high amount of enchantment!");
+					} else {
+						Your("weapon was already highly enchanted and therefore its enchantment value couldn't be increased further!");
+					}
+				}
+			}
+
+			if (stack_too_big(uwep)) {
+				pline("Sadly, your weapon stack was too big and therefore nothing happens.");
+			} else if (confused) {
+				if (sobj->cursed) {
+					if (uwep->spe > -20) {
+						uwep->spe -= 10;
+						p_glow2(uwep, NH_BLACK);
+					}
+				} else {
+					struct obj *tempwep = uwep;
+					long savewornmask;
+					tempwep->spe = 0;
+					tempwep->blessed = 0;
+					savewornmask = tempwep->owornmask;
+					setworn((struct obj *)0, tempwep->owornmask);
+					tempwep->enchantment = 0;
+					setworn(tempwep, savewornmask);
+					p_glow2(tempwep, NH_GREEN);
+				}
+
+			} else {
+				if (sobj->cursed) {
+					struct obj *tempwep = uwep;
+					long savewornmask;
+					savewornmask = tempwep->owornmask;
+					setworn((struct obj *)0, tempwep->owornmask);
+					tempwep->enchantment = 0;
+					setworn(tempwep, savewornmask);
+					p_glow2(tempwep, NH_RED);
+				} else {
+					if (!uwep->enchantment) {
+						struct obj *tempwep = uwep;
+						long savewornmask;
+						tempwep->enchantment = randweaponenchantment();
+						savewornmask = tempwep->owornmask;
+						setworn((struct obj *)0, tempwep->owornmask);
+						setworn(tempwep, savewornmask);
+						p_glow2(tempwep, NH_GOLDEN);
+					} else pline("A feeling of loss comes over you.");
+				}
+
+			}
+			if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(uwep)) {
+				if (!uwep->cursed) bless(uwep);
+				else uncurse(uwep, FALSE);
+			}
+
+		} else {
+			char buf[BUFSZ];
+
+			pline("Your %s itch.", makeplural(body_part(HAND)) );
+		}
+
+		break;
+
 	case SCR_ARMOR_SPECIALIZATION:
 		if (CannotSelectItemsInPrompts) break;
 		pline("You may enchant a worn piece of armor.");
@@ -10812,14 +10886,22 @@ armorspecchoice:
 						p_glow2(otmp, NH_BLACK);
 					}
 				} else {
+					long savewornmask;
 					otmp->spe = 0;
 					otmp->blessed = 0;
+					savewornmask = otmp->owornmask;
+					setworn((struct obj *)0, otmp->owornmask);
 					otmp->enchantment = 0;
+					setworn(otmp, savewornmask);
 					p_glow2(otmp, NH_GREEN);
 				}
 			} else {
 				if (sobj->cursed) {
+					long savewornmask;
+					savewornmask = otmp->owornmask;
+					setworn((struct obj *)0, otmp->owornmask);
 					otmp->enchantment = 0;
+					setworn(otmp, savewornmask);
 					p_glow2(otmp, NH_RED);
 				} else {
 					if (!otmp->enchantment) {

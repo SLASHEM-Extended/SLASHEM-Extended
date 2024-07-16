@@ -19435,6 +19435,10 @@ A("Lastdark",				LOWER_ARM_SWORD, /* spawns with 10x charge amount */
 	(SPFX_RESTR), 0, 0,
 	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Phogo Power",				SCR_WEAPON_SPECIALIZATION, /* adds +7 to the wielded weapon (but the final value cannot be higher than +7) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

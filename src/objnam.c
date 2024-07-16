@@ -4809,6 +4809,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ LONG_WHIP, "todo" },
 	{ LOWER_ARM_SWORD, "todo" },
 
+	{ SCR_WEAPON_SPECIALIZATION, "todo" },
+
 	{0, "" }
 };
 
@@ -8455,6 +8457,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CROWBAR, "todo" },
 	{ LONG_WHIP, "todo" },
 	{ LOWER_ARM_SWORD, "todo" },
+
+	{ SCR_WEAPON_SPECIALIZATION, "todo" },
 
 	{0, "" }
 };

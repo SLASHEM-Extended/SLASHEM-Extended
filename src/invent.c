@@ -18700,6 +18700,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A scroll that doesn't have a magic formula written on it. You may use a magic marker to turn it into another type of scroll."); break;
 			case SCR_ARMOR_SPECIALIZATION:
 				pline("Read this scroll, then select a worn piece of armor to add an egotype to it! However, know that it won't work if the armor piece in question already has an egotype."); break;
+			case SCR_WEAPON_SPECIALIZATION:
+				pline("If you read this scroll while wielding a weapon, it'll receive a random egotype, unless it already has one."); break;
 			case SCR_SECURE_IDENTIFY:
 				pline("Annoyed that regular identify scrolls fail so often? With this scroll, you can identify an object without any chance of it resisting the identification attempt!"); break;
 
@@ -31227,6 +31229,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +10 damage, manaleech and resistance to fire, cold, shock and poison when wielded."); break;
 				case ART_LASTDARK:
 					pline("Artifact specs: +5 to-hit and +5 damage, spawns with greater amount of charge."); break;
+				case ART_PHOGO_POWER:
+					pline("Artifact specs: adds +7 to the currently wielded weapon's enchantment value. However, this cannot increase the weapon's enchantment beyond +7, so for best results you'll want to read it on a +0 weapon."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
