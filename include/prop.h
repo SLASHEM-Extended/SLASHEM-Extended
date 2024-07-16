@@ -1381,6 +1381,10 @@
 #define WEAPEGO_GREAT_SMART 20154 /* +5 INT/WIS */
 #define WEAPEGO_PHYSIS 20155 /* +2 CON/CHA */
 #define WEAPEGO_GREAT_PHYSIS 20156 /* +5 CON/CHA */
+#define WEAPEGO_RANGE1 20157 /* +2 range */
+#define WEAPEGO_RANGE2 20158 /* +5 range */
+#define WEAPEGO_RANGE3 20159 /* +8 range */
+#define WEAPEGO_RANGE4 20160 /* +12 range */
 
 /*** Where the properties come from ***/
 /* Definitions were moved here from obj.h and you.h */

@@ -969,6 +969,14 @@ int prop;
 			return "physis";
 		case WEAPEGO_GREAT_PHYSIS:
 			return "great physis";
+		case WEAPEGO_RANGE1:
+			return "enhanced range";
+		case WEAPEGO_RANGE2:
+			return "great range";
+		case WEAPEGO_RANGE3:
+			return "supreme range";
+		case WEAPEGO_RANGE4:
+			return "ultimate range";
 
 		default:
 			return "Team Nastytrap";

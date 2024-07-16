@@ -1306,7 +1306,7 @@ randweaponenchantment()
 		}
 
 	} else if (!rn2(10)) { /* occasionally, give boosts to damage, accuracy or AC */
-		switch (rnd(16)) {
+		switch (rnd(18)) {
 
 			case 1:
 			case 2:
@@ -1324,6 +1324,8 @@ randweaponenchantment()
 			case 14:
 			case 15: return (rn2(4) ? WEAPEGO_DEF1 : rn2(4) ? WEAPEGO_DEF2 : rn2(10) ? WEAPEGO_DEF3 : WEAPEGO_DEF4);
 			case 16: return (rn2(8) ? WEAPEGO_PWR1 : rn2(12) ? WEAPEGO_PWR2 : rn2(50) ? WEAPEGO_PWR3 : WEAPEGO_PWR4);
+			case 17:
+			case 18: return (rn2(4) ? WEAPEGO_RANGE1 : rn2(4) ? WEAPEGO_RANGE2 : rn2(10) ? WEAPEGO_RANGE3 : WEAPEGO_RANGE4);
 
 			default: return WEAPEGO_DMG1;
 		}

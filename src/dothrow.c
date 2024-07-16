@@ -2244,6 +2244,17 @@ int thrown;
 		if (obj && obj->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 4;
 		if (uwep && uwep->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 3;
 
+		/* range egotype by Amy: if the ammo has it, firing that ammo gives a bonus; if the launcher has it, then
+		 * all ammos fired from that particular launcher get a bonus; these can stack */
+		if (obj && obj->enchantment == WEAPEGO_RANGE1) range += 2;
+		if (obj && obj->enchantment == WEAPEGO_RANGE2) range += 5;
+		if (obj && obj->enchantment == WEAPEGO_RANGE3) range += 8;
+		if (obj && obj->enchantment == WEAPEGO_RANGE4) range += 12;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->enchantment == WEAPEGO_RANGE1) range += 2;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->enchantment == WEAPEGO_RANGE2) range += 5;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->enchantment == WEAPEGO_RANGE3) range += 8;
+		if (launcher && ammo_and_launcher(obj, launcher) && launcher->enchantment == WEAPEGO_RANGE4) range += 12;
+
 		if (!PlayerCannotUseSkills && launcher && ammo_and_launcher(obj, launcher) && launcher->otyp == KLIUSLING && launcher->lamplit) {
 			if (u.kliuskill >= 20) range++;
 			if (u.kliuskill >= 160) range++;
