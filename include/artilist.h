@@ -19455,6 +19455,10 @@ A("Hittem!",				PHYSIO_VENOM, /* dmg h@ck */
 	(SPFX_RESTR), 0, 0,
 	PHYS(9, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
 
+A("Mysteria",				LOW_BOOTS, /* 1 in 10000 chance per turn to get a random good effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

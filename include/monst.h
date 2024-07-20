@@ -69,6 +69,7 @@ struct monst {
 	boolean lisaseen;
 	int legdamage;	/* for butt protection technique */
 	int genderidentity;	/* for MS_GAGA */
+	boolean spawndo;	/* for certain monsters who spawn minions exactly once */
 
 	Bitfield(female,1);	/* is female */
 	Bitfield(minvis,1);	/* currently invisible */

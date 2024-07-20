@@ -17818,6 +17818,10 @@ loveheelover:
 			 m_initthrow(mtmp, SHURIKEN, 50);
 		}
 
+		if (ptr == &mons[PM_SHOE_LOVING_IMELDA]) {
+		  (void) mongets(mtmp, rnd_class(WEDGE_SANDALS,ITALIAN_HEELS));
+		}
+
 		if (ptr == &mons[PM_SWORD_DANCER]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 20);
@@ -25671,6 +25675,7 @@ register int	mmflags;
 	mtmp->lisapantstype = rnd(18);
 	mtmp->genderidentity = rnd(32);
 	mtmp->lisaseen = FALSE;
+	mtmp->spawndo = FALSE;
 	mtmp->codeguessed = FALSE;
 	mtmp->flagged_for_death = FALSE;
 	mtmp->legdamage = 0;

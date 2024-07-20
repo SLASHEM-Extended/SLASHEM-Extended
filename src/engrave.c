@@ -6146,6 +6146,7 @@ static const char *epitaphs[] = {
 	"Arrgh why did Sophia have to miss with her kick attack, I wanted to have the full length of my leg slit open by her razor-sharp stiletto heels and bleed spectacularly to death but now the wimpy white wolf killed me instead!", /* Amy goofing around in ToME-SX */
 	"Mirilith the Queen of Arda, she danced until the end of time with her maid Klara whose black high-heeled sandals are very beautiful <3",
 	"If you find a WoW in the first room, you will die horribly, just like you will die horribly if you spend half an hour startscumming before you finally play the game in earnest.",
+	"HELP! I've deleted the internet!!!",
 
 };
 

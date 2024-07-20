@@ -31247,6 +31247,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +4 damage."); break;
 				case ART_HITTEM_:
 					pline("Artifact specs: +9 to-hit."); break;
+				case ART_MYSTERIA:
+					pline("Artifact specs: rarely, while wearing them, random good things will happen."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

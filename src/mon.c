@@ -8187,6 +8187,34 @@ mnexto(mtmp)	/* Make monster mtmp next to you (if possible) */
 		singclean(mtmp);
 	}
 
+	if (!mtmp->spawndo && !mtmp->mpeaceful) {
+		if (mtmp->data == &mons[PM_SHOE_LOVING_IMELDA]) {
+			mtmp->spawndo = TRUE;
+			int spawnnumber = rn1(10, 10);
+			while (spawnnumber > 0) {
+				spawnnumber--;
+				(void) makemon(specialtensmon(332), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_SHOE */
+			}
+		}
+		if (mtmp->data == &mons[PM_PANTS_LOVING_JANINA]) {
+			mtmp->spawndo = TRUE;
+			int spawnnumber = rn1(10, 10);
+			while (spawnnumber > 0) {
+				spawnnumber--;
+				(void) makemon(specialtensmon(386), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_PANTS */
+			}
+		}
+		if (mtmp->data == &mons[PM_SOCK_LOVING_JILL]) {
+			mtmp->spawndo = TRUE;
+			int spawnnumber = rn1(10, 10);
+			while (spawnnumber > 0) {
+				spawnnumber--;
+				(void) makemon(specialtensmon(385), mtmp->mx, mtmp->my, MM_ADJACENTOK|MM_ANGRY); /* MS_SOCKS */
+			}
+		}
+
+	}
+
 	return;
 }
 

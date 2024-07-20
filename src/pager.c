@@ -29252,6 +29252,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"A monster is summoned!",
 	"A monster is summoned! Thankfully, it's peaceful so you don't have to worry about it trying to kill you.",
 	"A monster is summoned! And it's hellishly out of depth, meaning you'll probably get owned now!",
+	"What's more painful, a kick in the nuts or giving birth to a child? And most importantly, is there anyone who has experienced both and can therefore compare the two?",
 
 };
 

@@ -3151,6 +3151,10 @@ moveloop()
 			}
 		}
 
+		if (uarmf && uarmf->oartifact == ART_MYSTERIA && !rn2(10000)) {
+			goodeffect();
+		}
+
 		if (uarms && uarms->oartifact == ART_XXXXXXXXXXXXXXXXXXXXX) {
 			if (!rn2(10000)) {
 				if (rn2(2)) {
