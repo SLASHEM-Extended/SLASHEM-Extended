@@ -5833,10 +5833,23 @@ dlb *fd;
 	    /* Load the map */
 	    for(y = ystart; y < ystart+ysize; y++)
 		for(x = xstart; x < xstart+xsize; x++) {
-		    levl[x][y].typ = Fgetc(fd);
+		    /* Amy edit: don't overwrite stairs on multi-map levels, for fuck's sake!! */
+		    if (!ISSTAIRORLADDER(levl[x][y].typ) ) {
+			levl[x][y].typ = Fgetc(fd);
+		    } else {
+			(void) Fgetc(fd);
+		    }
 		    levl[x][y].lit = FALSE;
 		    /* clear out levl: load_common_data may set them */
-		    levl[x][y].flags = 0;
+		    if (levl[x][y].flags & LA_DOWN) { /* don't delete the fucking stair flags!! --Amy */
+			levl[x][y].flags = 0;
+			levl[x][y].flags |= LA_DOWN;
+		    } else if (levl[x][y].flags & LA_UP) {
+			levl[x][y].flags = 0;
+			levl[x][y].flags |= LA_UP;
+		    } else {
+			levl[x][y].flags = 0;
+		    }
 		    levl[x][y].horizontal = 0;
 		    levl[x][y].roomno = 0;
 		    levl[x][y].edge = 0;
