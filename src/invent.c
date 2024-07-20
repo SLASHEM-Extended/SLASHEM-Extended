@@ -31249,6 +31249,18 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +9 to-hit."); break;
 				case ART_MYSTERIA:
 					pline("Artifact specs: rarely, while wearing them, random good things will happen."); break;
+				case ART_BRACERS_OF_THE_FIRST_CIRCL:
+					pline("Artifact specs: ESP and stoning resistance when worn, neutral."); break;
+				case ART_DICHOTOMY:
+					pline("Artifact specs: +8 to-hit and double fire and cold damage, fire and cold resistance when wielded."); break;
+				case ART_ARMOR_OF_RETRIBUTION:
+					pline("Artifact specs: half physical and spell damage, resistance to acid and disintegration, protection, tez and enthumesis effect when worn."); break;
+				case ART_ITHILMAR:
+					pline("Artifact specs: a monster wearing this saddle has reflection and magic resistance."); break;
+				case ART_TEMPEST:
+					pline("Artifact specs: +5 to-hit and +12 shock damage, lightning and stun resistance when wielded."); break;
+				case ART_STABITEGRITY:
+					pline("Artifact specs: a monster wearing this saddle has drain and disintegration resistance."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

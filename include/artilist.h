@@ -19459,6 +19459,30 @@ A("Mysteria",				LOW_BOOTS, /* 1 in 10000 chance per turn to get a random good e
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
 
+A("Bracers of the First Circle",				BRACERS_OF_DEFENSE, /* stoning res */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 5000L ),
+
+A("Dichotomy",				RUNESWORD, /* resist fire and cold, also deals cold damage */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(8, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Armor of Retribution",				CRYSTAL_PLATE_MAIL, /* disint res, tez and enthumesis trap effect */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_INTEL|SPFX_HSPDAM|SPFX_HPHDAM|SPFX_PROTEC|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60000L ),
+
+A("Ithilmar",				BARDING, /* steed has reflection and MR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Tempest",				GARDEN_FORK, /* stun res when wielded */
+	(SPFX_RESTR|SPFX_INTEL|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ELEC(5, 12), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Stabitegrity",				TANK_SADDLE, /* steed has resist drain life and disint */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

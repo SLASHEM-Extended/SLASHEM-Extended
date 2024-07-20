@@ -3408,6 +3408,9 @@ struct obj *otmp;
 		case AD_FIRE:
 			if (yours ? Fire_resistance : (resists_fire(mtmp) && !player_will_pierce_resistance()) )
 			    retval = FALSE;
+			if (otmp && otmp->oartifact == ART_DICHOTOMY) { /* special artifact that also deals cold dmg --Amy */
+				if (yours ? !Cold_resistance : !(resists_cold(mtmp)) ) retval = TRUE;
+			}
 			break;
 		case AD_ACID:
 			if (yours ? Acid_resistance : (resists_acid(mtmp) && !player_will_pierce_resistance()) )
@@ -4089,12 +4092,19 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 
 	/* the four basic attacks: fire, cold, shock and missiles */
 	if (attacks(AD_FIRE, otmp)) {
-	    if (realizes_damage)
-		pline_The("fiery weapon %s %s%c",
+	    if (realizes_damage) {
+		if (otmp && otmp->oartifact == ART_DICHOTOMY) { /* too lazy to account for monsters with one of the two res */
+			pline_The("hot-cold weapon %s %s%c",
+			!spec_dbon_applies ? "hits" : "frost-burns",
+			hittee, !spec_dbon_applies ? '.' : '!');
+		} else {
+			pline_The("fiery weapon %s %s%c",
 			!spec_dbon_applies ? "hits" :
 			(mdef->data == &mons[PM_WATER_ELEMENTAL]) ?
 			"vaporizes part of" : "burns",
 			hittee, !spec_dbon_applies ? '.' : '!');
+		}
+	    }
 	    if (!rn2(50)) (void) destroy_mitem(mdef, POTION_CLASS, AD_FIRE);
 	    if (!rn2(50)) (void) destroy_mitem(mdef, SCROLL_CLASS, AD_FIRE);
 	    if (!rn2(75)) (void) destroy_mitem(mdef, SPBOOK_CLASS, AD_FIRE);

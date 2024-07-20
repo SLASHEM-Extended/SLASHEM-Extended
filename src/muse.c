@@ -12538,6 +12538,12 @@ const char *str;
 	    }
 	    return TRUE;
 	} else if ((orefl = which_armor(mon, W_SADDLE)) &&
+				orefl->oartifact == ART_ITHILMAR) {
+	    if (str) {
+		pline(str, s_suffix(mon_nam(mon)), "saddle");
+	    }
+	    return TRUE;
+	} else if ((orefl = which_armor(mon, W_SADDLE)) &&
 				orefl->oartifact == ART_SADDLE_OF_REFLECTION) {
 	    if (str) {
 		pline(str, s_suffix(mon_nam(mon)), "saddle");

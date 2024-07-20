@@ -58,6 +58,8 @@ struct monst *mtmp;
 {
 	if (!mtmp) return FALSE;
 
+	if (mtmp == &youmonst) return FALSE;
+
 	struct obj *osaeddle = which_armor(mtmp, W_SADDLE);
 	if ((osaeddle = which_armor(mtmp, W_SADDLE)) && osaeddle->oartifact == artid) return TRUE;
 
@@ -72,6 +74,8 @@ int saddleid;
 struct monst *mtmp;
 {
 	if (!mtmp) return FALSE;
+
+	if (mtmp == &youmonst) return FALSE;
 
 	struct obj *osaeddle = which_armor(mtmp, W_SADDLE);
 	if ((osaeddle = which_armor(mtmp, W_SADDLE)) && osaeddle->otyp == saddleid) return TRUE;

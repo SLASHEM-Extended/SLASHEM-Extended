@@ -121,6 +121,10 @@ struct monst *mon;
 	struct permonst *ptr = mon->data;
 	struct obj *wep = ((mon == &youmonst) ? 0 : MON_WEP(mon));
 
+	if (mon != &youmonst) {
+		if (mercedesride(ART_STABITEGRITY, mon)) return TRUE;
+	}
+
 	return (boolean)(is_undead(ptr) || mon->egotype_undead || is_demon(ptr) || is_were(ptr) ||
 			 ptr == &mons[PM_DEATH] || is_golem(ptr) ||
 			 resists_drain(mon) ||
@@ -144,6 +148,11 @@ struct monst *mon;
 	o = (mon == &youmonst) ? 0 : MON_WEP(mon);
 	if (o && o->oartifact && defends(AD_MAGM, o))
 	    return TRUE;
+
+	if (mon != &youmonst) {
+		if (mercedesride(ART_ITHILMAR, mon)) return TRUE;
+	}
+
 	/* check for magic resistance granted by worn or carried items */
 	if (mon != &youmonst) {
 		o = mon->minvent;
