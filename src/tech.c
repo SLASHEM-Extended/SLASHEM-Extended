@@ -16,6 +16,7 @@ static boolean getmonabil(int *);
 static boolean doabilitymenu(int, int *, int);
 static void doblitzlist(void);
 static int techeffects(int);
+static int monabileffects(int);
 static int mon_to_zombie(int);
 STATIC_PTR int tinker(void);
 STATIC_PTR int charge_saber(void);
@@ -39,6 +40,10 @@ static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allnoncount[] = { ALL_CLASSES, 0 };
 static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
+
+STATIC_PTR int stefanjerepair(void);
+STATIC_PTR int deseamshoes(void);
+static NEARDATA schar delay;            /* moves left for stefanje repairs */
 
 static int tech_in_memory;
 static int abil_in_memory;
@@ -3367,16 +3372,16 @@ domonabil()
 			switch (abilid(abil_no)) {
 
 				case ABIL_SNAIL_DIG:
-					pline("Fires a digging ray in a direction of your choice.");
+					pline("Fires a digging ray in a direction of your choice. It can only dig out a single tile.");
 					break;
 				case ABIL_STEFANJE_REPAIR:
-					pline("Tries to repair your 'Stefanje' sandals. This can take quite a while and may only be done if their enchantment value is below 0.");
+					pline("Tries to repair your 'Stefanje' sandals (which requires you to actually wear such sandals, obviously). This can take quite a while and may only be done if their enchantment value is below 0.");
 					break;
 				case ABIL_ANASTASIA_DESEAMING:
-					pline("Tries to clean your Anastasia shoes. This can take quite a while and may only be done if they're eroded.");
+					pline("Tries to clean your Anastasia shoes (which requires you to actually wear such shoes, obviously). This can take quite a while and may only be done if they're eroded.");
 					break;
 				case ABIL_KATI_CLEAN:
-					pline("Tries to clean your Kati shoes. This can take quite a while and may only be done if they're eroded.");
+					pline("Tries to clean your Kati shoes (which requires you to actually wear such shoes, obviously). This can take quite a while and may only be done if they're eroded.");
 					break;
 				case ABIL_SOKO_BOULDER:
 					pline("Creates a boulder at your location.");
@@ -3385,123 +3390,870 @@ domonabil()
 					pline("Disarms adjacent traps. This doesn't work on magic portals, pits, holes and any other type of trap that would swallow a boulder.");
 					break;
 				case ABIL_POLY_BREATHE:
-					pline("Breathes at the enemy.");
+					pline("Breathes at the enemy. Requires you to have a breath attack.");
 					break;
 				case ABIL_POLY_SPIT:
-					pline("Spits at the enemy.");
+					pline("Spits at the enemy. Requires you to have a spit attack.");
 					break;
 				case ABIL_POLY_IRON_BALL:
-					pline("Removes a heavy iron ball chained to you.");
+					pline("Removes a heavy iron ball chained to you. Only nymphs can do this.");
 					break;
 				case ABIL_POLY_GAZE:
-					pline("Gazes at the enemy.");
+					pline("Gazes at the enemy. Requires you to have a gaze attack.");
 					break;
 				case ABIL_WERE_SUMMON:
-					pline("Summons creatures who fight on your side, determined by your current wereform.");
+					pline("Summons creatures who fight on your side, determined by your current wereform. Doesn't work if you're not lycanthropic.");
 					break;
 				case ABIL_POLY_WEB:
-					pline("Spins a web.");
+					pline("Spins a web. Requires you to be a spider.");
 					break;
 				case ABIL_POLY_HIDE:
-					pline("Allows you to hide.");
+					pline("Allows you to hide. Requires you to be in a form capable of doing so.");
 					break;
 				case ABIL_POLY_MIND_BLAST:
-					pline("Emits a mind blast.");
+					pline("Emits a mind blast. Requires you to be a mind flayer.");
 					break;
 				case ABIL_POLY_GREMWATER:
-					pline("Allows you to multiply in water.");
+					pline("Allows you to multiply in water. Requires you to be a gremlin.");
 					break;
 				case ABIL_POLY_GREMLAVA:
-					pline("Allows you to multiply in lava.");
+					pline("Allows you to multiply in lava. Requires you to be a lava gremlin.");
 					break;
 				case ABIL_POLY_UNIHORN:
-					pline("Can fix status effects.");
+					pline("Can fix status effects. Requires you to be a unicorn.");
 					break;
 				case ABIL_POLY_CONVERT:
-					pline("Preaches conversion sermon to the enemy.");
+					pline("Preaches conversion sermon to the enemy. Requires you to be a HC converter.");
 					break;
 				case ABIL_POLY_WOUWOU:
-					pline("Taunts the enemy.");
+					pline("Taunts the enemy. Requires you to be a wouwou alien.");
 					break;
 				case ABIL_POLY_WHORE:
-					pline("Talks sexily to mesmerize the enemy.");
+					pline("Talks sexily to mesmerize the enemy. Requires you to be a prostitute.");
 					break;
 				case ABIL_POLY_SUPERMAN:
-					pline("Emits a powerful taunt against the enemy.");
+					pline("Emits a powerful taunt against the enemy. Requires you to be a superman.");
 					break;
 				case ABIL_POLY_BONES:
-					pline("Allows you to rattle and try to paralyze the enemy.");
+					pline("Allows you to rattle and try to paralyze the enemy. Requires you to be a monster capable of rattling its bones.");
 					break;
 				case ABIL_POLY_SHRIEK:
-					pline("Shrieking can wake up monsters.");
+					pline("Shrieking can wake up monsters. Requires you to be a shrieker.");
 					break;
 				case ABIL_POLY_FARTQUIET:
-					pline("Allows you to produce tender farting noises.");
+					pline("Allows you to produce tender farting noises. Requires you to be in a form that can fart.");
 					break;
 				case ABIL_POLY_FARTNORMAL:
-					pline("Allows you to produce squeaky farting noises.");
+					pline("Allows you to produce squeaky farting noises. Requires you to be in a form that can fart.");
 					break;
 				case ABIL_POLY_FARTLOUD:
-					pline("Allows you to produce loud farting noises.");
+					pline("Allows you to produce loud farting noises. Requires you to be in a form that can fart.");
 					break;
 				case ABIL_NATALIA_MENS:
-					pline("Lets you shoot your menstruation at the enemy.");
+					pline("Lets you shoot your menstruation at the enemy. Can only be done if you're female and currently on your period.");
 					break;
 				case ABIL_MOUNT_BOND:
-					pline("Checks the status of your steed.");
+					pline("Checks the status of your steed. Requires you to ride a steed with a specific saddle.");
 					break;
 				case ABIL_HAND_PULL:
-					pline("Allows you to pull monsters to you.");
+					pline("Allows you to pull monsters to you. Can only be done if you're a sentient hand.");
 					break;
 				case ABIL_POLY_PERFUME:
-					pline("Lets you spread perfume to affect enemies.");
+					pline("Lets you spread scentful perfume to affect enemies. Requires you to be in a form that can use perfume.");
 					break;
 				case ABIL_HUSSY_CRAP:
-					pline("Allows you to crap on the ground.");
+					pline("Allows you to crap on the ground. Only hussies can use this ability.");
 					break;
 				case ABIL_IRAHA_POISON:
-					pline("Lets you poison your wielded weapon, even if it's one that normally cannot be poisoned.");
+					pline("Lets you poison your wielded weapon, even if it's one that normally cannot be poisoned. This ability is unique to the iraha race.");
 					break;
 				case ABIL_JUYO_TOGGLE_FLEE:
-					pline("Toggles the increased flee chance caused by the juyo lightsaber form.");
+					pline("The juyo lightsaber form passively increases the chance that monsters flee if you hit them. With this ability, you can turn that effect on or off.");
 					break;
 				case ABIL_PETKEEPING_CONTROL_MAGIC:
-					pline("Toggles the increased chance of your ranged attacks passing through your pets.");
+					pline("The petkeeping skill gives a chance of your ranged attacks passing through your pets, allowing you to avoid accidentally harming them. With this ability, you can turn that effect on or off.");
 					break;
 				case ABIL_JANITOR_CLEAN:
-					pline("Lets you clean items from the ground beneath you.");
+					pline("Lets you clean trash from the ground beneath you. Which is to say, put items at your location into a garbage truck so that they're removed from the dungeon.");
 					break;
 				case ABIL_MUSHROOM_POLE:
-					pline("Switches between regular weapon application mode and 'all weapons can be used like a polearm' mode.");
+					pline("Switches between regular weapon application mode and 'all weapons can be used like a polearm' mode. If the latter is on, you can apply any weapon as if it was a polearm, allowing you to hit monsters at a distance of two squares. In order to use a weapon's 'regular' application effect, you need to turn this effect off.");
 					break;
 				case ABIL_MARTIAL_SWITCH:
-					pline("Lets you switch between the bare-handed combat and martial arts skills.");
+					pline("Lets you switch between the bare-handed combat and martial arts skills. By default, martial arts is used, but you can turn it off if you specifically wish to use bare-handed combat instead.");
 					break;
 				case ABIL_DEMAGOGUE_RECURSION:
-					pline("Allows you to temporarily become a different role.");
+					pline("Allows you to temporarily become a different role. This ability is specific to the demagogue and lasts for a while, but doesn't work in the elemental planes.");
 					break;
 				case ABIL_SYMBIOSIS_CHECK:
-					pline("Checks up on your current symbiote.");
+					pline("Checks up on your current symbiote's stats.");
 					break;
 				case ABIL_EUTHANIZE_SYMBIOTE:
-					pline("Kills your current symbiote. Attention: This action causes an alignment and luck penalty; if you want to replace your symbiote with a different one, just use your preferred method of obtaining a new symbiote instead.");
+					pline("Kills your current symbiote. This gives penalties just like murdering a pet, so if you want to get rid of your symbiote, consider using some other method of obtaining a new symbiote to replace the current one.");
 					break;
 
 				default:
 					pline("This ability doesn't have a description yet, but it might get one in future. --Amy");
 					break;
 			}
-			/* if (yn("Use this technique?") == 'y') return techeffects(tech_no); */
+			if (yn("Use this ability?") == 'y') return monabileffects(abil_no);
 
 			return 0;
 
 		}
 
 	} else if (getmonabil(&abil_no)) {
-		return /*techeffects(tech_no)*/FALSE;
+		return monabileffects(abil_no);
 	}
 
 	return FALSE;
+}
+
+int
+monabileffects(abil_no)
+int abil_no;
+{
+	boolean abilreturncode = 0;
+	char buf[BUFSZ];
+
+	if (!ability_usable(abilid(abil_no)) ) {
+		You("can't use that ability anymore.");
+		return 0;
+	}
+
+	/* if an ability is supposed to take a turn, "abilreturncode" has to be manually set to TRUE --Amy */
+	switch (abilid(abil_no)) {
+
+		case ABIL_SNAIL_DIG:
+			u.snaildigging = rnz(1000);
+			if (!PlayerCannotUseSkills && u.snaildigging >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.snaildigging *= 9; u.snaildigging /= 10; break;
+			      	case P_SKILLED:	u.snaildigging *= 8; u.snaildigging /= 10; break;
+			      	case P_EXPERT:	u.snaildigging *= 7; u.snaildigging /= 10; break;
+			      	case P_MASTER:	u.snaildigging *= 6; u.snaildigging /= 10; break;
+			      	case P_GRAND_MASTER:	u.snaildigging *= 5; u.snaildigging /= 10; break;
+			      	case P_SUPREME_MASTER:	u.snaildigging *= 4; u.snaildigging /= 10; break;
+			      	default: break;
+				}
+			}
+			getdir((char *)0);
+			zap_dig(FALSE); /* dig only one tile, just like in Elona */
+			use_skill(P_SQUEAKING, rnd(20));
+			abilreturncode = TRUE;
+			break;
+		case ABIL_STEFANJE_REPAIR:
+			if (uarmf->spe >= 0) {
+				pline("Your sandals don't need repairs right now!");
+				abilreturncode = TRUE;
+			} else {
+				delay = (uarmf->spe < -10) ? (-((uarmf->spe + 51) * 3)) : (-((uarmf->spe + 23) * 10));
+				set_occupation(stefanjerepair, "repairing your 'Stefanje' sandals", 0);
+				abilreturncode = TRUE;
+			}
+			break;
+		case ABIL_ANASTASIA_DESEAMING:
+			if (!uarmf->oeroded && !uarmf->oeroded2) {
+				pline("Your shoes currently don't have any shit on their soles and therefore don't need cleaning.");
+				abilreturncode = TRUE;
+			} else {
+				delay = -(rn1(50, 50));
+				set_occupation(deseamshoes, "deseaming your Anastasia shoes", 0);
+				abilreturncode = TRUE;
+			}
+			break;
+		case ABIL_KATI_CLEAN:
+			if (!uarmf->oeroded && !uarmf->oeroded2) {
+				pline("Your shoes currently don't have any shit on their soles and therefore don't need cleaning.");
+				abilreturncode = TRUE;
+			} else {
+				delay = -rn1(50, 50);
+				set_occupation(deseamshoes, "deseaming your Kati shoes", 0);
+				abilreturncode = TRUE;
+			}
+			break;
+		case ABIL_SOKO_BOULDER:
+			u.sokosolveboulder = rnz(1000);
+			if (!PlayerCannotUseSkills && u.sokosolveboulder >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.sokosolveboulder *= 9; u.sokosolveboulder /= 10; break;
+			      	case P_SKILLED:	u.sokosolveboulder *= 8; u.sokosolveboulder /= 10; break;
+			      	case P_EXPERT:	u.sokosolveboulder *= 7; u.sokosolveboulder /= 10; break;
+			      	case P_MASTER:	u.sokosolveboulder *= 6; u.sokosolveboulder /= 10; break;
+			      	case P_GRAND_MASTER:	u.sokosolveboulder *= 5; u.sokosolveboulder /= 10; break;
+			      	case P_SUPREME_MASTER:	u.sokosolveboulder *= 4; u.sokosolveboulder /= 10; break;
+			      	default: break;
+				}
+			}
+			register struct obj *otmp2;
+			otmp2 = mksobj(BOULDER, FALSE, FALSE, FALSE);
+			if (!otmp2) {
+				pline("For some strange reason, no boulder appeared!");
+				abilreturncode = TRUE;
+				break;
+			}
+			otmp2->quan = 1;
+			otmp2->owt = weight(otmp2);
+			place_object(otmp2, u.ux, u.uy);
+			stackobj(otmp2);
+			newsym(u.ux, u.uy);
+			pline("Kadoom! A boulder appeared underneath you.");
+			use_skill(P_SQUEAKING, rnd(10));
+
+			abilreturncode = TRUE;
+			break;
+		case ABIL_SOKO_DISARM:
+		{
+			int i, j, bd = 1, trpcount = 0, undtrpcnt = 0;
+			struct trap *ttmp;
+
+			u.sokosolveuntrap = rnz(4000);
+			if (!PlayerCannotUseSkills && u.sokosolveuntrap >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.sokosolveuntrap *= 9; u.sokosolveuntrap /= 10; break;
+			      	case P_SKILLED:	u.sokosolveuntrap *= 8; u.sokosolveuntrap /= 10; break;
+			      	case P_EXPERT:	u.sokosolveuntrap *= 7; u.sokosolveuntrap /= 10; break;
+			      	case P_MASTER:	u.sokosolveuntrap *= 6; u.sokosolveuntrap /= 10; break;
+			      	case P_GRAND_MASTER:	u.sokosolveuntrap *= 5; u.sokosolveuntrap /= 10; break;
+			      	case P_SUPREME_MASTER:	u.sokosolveuntrap *= 4; u.sokosolveuntrap /= 10; break;
+			      	default: break;
+				}
+			}
+
+			for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+
+				if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
+					if (ttmp->ttyp == MAGIC_PORTAL || ttmp->ttyp == HOLE || ttmp->ttyp == TRAPDOOR || ttmp->ttyp == SHAFT_TRAP || ttmp->ttyp == CURRENT_SHAFT || ttmp->ttyp == PIT || ttmp->ttyp == SPIKED_PIT || ttmp->ttyp == GIANT_CHASM || ttmp->ttyp == SHIT_PIT || ttmp->ttyp == MANA_PIT || ttmp->ttyp == ANOXIC_PIT || ttmp->ttyp == HYPOXIC_PIT || ttmp->ttyp == ACID_PIT) {
+						undtrpcnt++;
+						continue;
+					}
+					deltrap(ttmp);
+					trpcount++;
+				}
+
+			}
+			(void) doredraw();
+			pline("%d traps were disarmed.", trpcount);
+			if (undtrpcnt) pline("%d traps could not be disarmed.", undtrpcnt);
+			use_skill(P_SQUEAKING, rnd(30));
+			abilreturncode = TRUE;
+		}
+			break;
+		case ABIL_POLY_BREATHE:
+			abilreturncode = dobreathe();
+			break;
+		case ABIL_POLY_SPIT:
+			abilreturncode = dospit();
+			break;
+		case ABIL_POLY_IRON_BALL:
+			abilreturncode = doremove();
+			break;
+		case ABIL_POLY_GAZE:
+			abilreturncode = dogaze();
+			break;
+		case ABIL_WERE_SUMMON:
+			abilreturncode = dosummon();
+			break;
+		case ABIL_POLY_WEB:
+			abilreturncode = dospinweb();
+			break;
+		case ABIL_POLY_HIDE:
+			abilreturncode = dohide();
+			break;
+		case ABIL_POLY_MIND_BLAST:
+			abilreturncode = domindblast();
+			break;
+		case ABIL_POLY_GREMWATER:
+			if(IS_FOUNTAIN(levl[u.ux][u.uy].typ)) {
+				if (split_mon(&youmonst, (struct monst *)0))
+					dryup(u.ux, u.uy, TRUE);
+			} else There("is no fountain here.");
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_GREMLAVA:
+			if(levl[u.ux][u.uy].typ == LAVAPOOL) {
+				(split_mon(&youmonst, (struct monst *)0));
+			} else There("is no lava here.");
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_UNIHORN:
+			use_unicorn_horn((struct obj *)0);
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_CONVERT:
+			playermsconvert();
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_WOUWOU:
+			playerwouwoutaunt();
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_WHORE:
+			playerwhoretalk();
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_SUPERMAN:
+			playersupermantaunt();
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_BONES:
+			playerrattlebones();
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_SHRIEK:
+			You("shriek.");
+			if(u.uburied)
+				pline("Unfortunately sound does not carry well through rock.");
+			else aggravate();
+			abilreturncode = TRUE;
+			break;
+		case ABIL_POLY_FARTQUIET:
+			if (u.uhunger <= 10) {
+				pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
+			} else {
+				morehungry(10);
+				pline("You produce %s farting noises with your %s butt.", rn2(2) ? "tender" : "soft", flags.female ? "sexy" : "ugly");
+				if (practicantterror) {
+					pline("%s booms: 'Stop farting in public, you disgusting practicant! Now you have to pay a fine of 500 zorkmids to me!'", noroelaname());
+					fineforpracticant(500, 0, 0);
+				}
+
+				use_skill(P_SQUEAKING, 1);
+				u.cnd_fartingcount++;
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+
+				if (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) {
+					healup((level_difficulty() + 5), 0, FALSE, FALSE);
+					morehungry(200);
+					abilreturncode = TRUE;
+				}
+
+				if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+					pline("The farting gas destroys your footwear instantly.");
+				      useup(uarmf);
+				}
+				if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+					pline("Eek! You can't stand farting gas!");
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+				}
+				if (!extralongsqueak()) badeffect();
+
+				if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
+					pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+					badeffect();
+					badeffect();
+				}
+
+				if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+					pline("The farting gas almost asphyxiates you!");
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+					losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+				}
+
+				abilreturncode = TRUE;
+			}
+			break;
+		case ABIL_POLY_FARTNORMAL:
+			if (u.uhunger <= 10) {
+				pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
+			} else {
+				morehungry(10);
+				pline("You produce %s farting noises with your %s butt.", rn2(2) ? "beautiful" : "squeaky", flags.female ? "sexy" : "ugly");
+				if (practicantterror) {
+					pline("%s booms: 'Stop farting in public, you disgusting practicant! Now you have to pay a fine of 500 zorkmids to me!'", noroelaname());
+					fineforpracticant(500, 0, 0);
+				}
+				use_skill(P_SQUEAKING, 1);
+				u.cnd_fartingcount++;
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+
+				if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+					pline("The farting gas destroys your footwear instantly.");
+				      useup(uarmf);
+				}
+				if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+					pline("Eek! You can't stand farting gas!");
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+				}
+				if (!extralongsqueak()) badeffect();
+
+				if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
+					pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+					badeffect();
+					badeffect();
+				}
+
+				if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+					pline("The farting gas almost asphyxiates you!");
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+					losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+				}
+
+				abilreturncode = TRUE;
+			}
+			break;
+		case ABIL_POLY_FARTLOUD:
+			if (u.uhunger <= 10) {
+				pline("There isn't enough gas stored in your %s butt!", flags.female ? "sexy" : "ugly");
+			} else {
+				morehungry(10);
+				pline("You produce %s farting noises with your %s butt.", rn2(2) ? "disgusting" : "loud", flags.female ? "sexy" : "ugly");
+				if (practicantterror) {
+					pline("%s booms: 'Stop farting in public, you disgusting practicant! Now you have to pay a fine of 500 zorkmids to me!'", noroelaname());
+					fineforpracticant(500, 0, 0);
+				}
+				use_skill(P_SQUEAKING, 1);
+				u.cnd_fartingcount++;
+				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+
+				if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) {
+					pline("The farting gas destroys your footwear instantly.");
+				      useup(uarmf);
+				}
+				if (uarmf && uarmf->oartifact == ART_ELIANE_S_COMBAT_SNEAKERS) {
+					pline("Eek! You can't stand farting gas!");
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+				}
+				if (!extralongsqueak()) badeffect();
+
+				if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
+					pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
+					badeffect();
+					badeffect();
+				}
+
+				if (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH) {
+					pline("The farting gas almost asphyxiates you!");
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+					badeffect();
+					losehp(rnd(u.ulevel * 3), "suffocating on farting gas", KILLED_BY);
+				}
+
+				abilreturncode = TRUE;
+			}
+			break;
+		case ABIL_NATALIA_MENS:
+
+			getdir((char *)0);
+
+			struct obj *pseudo;
+			pseudo = mksobj(SPE_MENSTRUATION, FALSE, 2, FALSE);
+			if (!pseudo) {
+				pline("Somehow, it failed.");
+				break;
+			}
+			if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = SPE_MENSTRUATION; /* minimalist fix */
+			pseudo->blessed = pseudo->cursed = 0;
+			pseudo->quan = 20L;			/* do not let useup get it */
+			pseudo->spe = 5;
+			weffects(pseudo);
+			if (pseudo) obfree(pseudo, (struct obj *)0);	/* now, get rid of it */
+
+			if (Upolyd && u.mh < 5) {
+				losehp(10000, "forcibly bleeding out", KILLED_BY);
+			} else if (!Upolyd && u.uhp < 5) {
+				losehp(10000, "forcibly bleeding out", KILLED_BY);
+			}
+			if (rn2(2)) {
+				if (Upolyd) u.mh -= ((u.mh / 5) + 1);
+				else u.uhp -= ((u.uhp / 5) + 1);
+			} else {
+				if (Upolyd) {
+					u.mh -= ((u.mhmax / 5) + 1);
+					if (u.mh < 0) losehp(10000, "forcibly bleeding out", KILLED_BY);
+				} else {
+					u.uhp -= ((u.uhpmax / 5) + 1);
+					if (u.uhp < 0) losehp(10000, "forcibly bleeding out", KILLED_BY);
+				}
+			}
+
+			use_skill(P_SQUEAKING, 1);
+			abilreturncode = TRUE;
+
+			break;
+		case ABIL_MOUNT_BOND:
+			if (u.usteed) pline("Your steed's health: %d (max %d).", u.usteed->mhp, u.usteed->mhpmax);
+			/* does not require you to use a turn --Amy */
+			break;
+		case ABIL_HAND_PULL:
+		{
+			register struct monst *nexusmon;
+			int multiplegather = 0;
+
+			if (u.uen < 100) {
+				You("need at least 100 mana to use this ability!");
+				break;
+			} else {
+				u.uen -= 100;
+				u.handpulling = rnz(2000);
+				if (!PlayerCannotUseSkills && u.handpulling >= 2) {
+					switch (P_SKILL(P_SQUEAKING)) {
+				      	case P_BASIC:	u.handpulling *= 9; u.handpulling /= 10; break;
+				      	case P_SKILLED:	u.handpulling *= 8; u.handpulling /= 10; break;
+				      	case P_EXPERT:	u.handpulling *= 7; u.handpulling /= 10; break;
+				      	case P_MASTER:	u.handpulling *= 6; u.handpulling /= 10; break;
+				      	case P_GRAND_MASTER:	u.handpulling *= 5; u.handpulling /= 10; break;
+				      	case P_SUPREME_MASTER:	u.handpulling *= 4; u.handpulling /= 10; break;
+				      	default: break;
+					}
+				}
+
+				You("attempt to pull a monster to you.");
+				for(nexusmon = fmon; nexusmon; nexusmon = nexusmon->nmon) {
+					if (nexusmon && !nexusmon->mtame && !nexusmon->mpeaceful && !(u.usteed && (u.usteed == nexusmon)) ) {
+						mnexto(nexusmon);
+						pline("%s is pulled near!", Monnam(nexusmon));
+						multiplegather++;
+						goto callingoutdone;
+					}
+				}
+callingoutdone:
+				if (!multiplegather) pline("There seems to be no eligible monster.");
+
+				use_skill(P_SQUEAKING, rnd(5));
+				abilreturncode = TRUE;
+			}
+		}
+			break;
+		case ABIL_POLY_PERFUME:
+		{
+			You("spread the lovely feminine drum stint reluctance brand perfume to intoxicate monsters around you!");
+
+			if (have_femityjewel()) {
+				int attempts = 0;
+				struct permonst *pm = 0;
+
+				EntireLevelMode += 1; /* make sure that their M3_UNCOMMON5 doesn't get in the way --Amy */
+
+				if (Aggravate_monster) {
+					u.aggravation = 1;
+					reset_rndmonst(NON_PM);
+				}
+
+newbossSTEN:
+				do {
+					pm = rndmonst();
+					attempts++;
+					if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+					if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+				} while ( (!pm || (pm && !(pm->msound == MS_STENCH ))) && attempts < 50000);
+
+				if (!pm && rn2(50) ) {
+					attempts = 0;
+					goto newbossSTEN;
+				}
+				if (pm && !(pm->msound == MS_STENCH) && rn2(50) ) {
+					attempts = 0;
+					goto newbossSTEN;
+				}
+
+				if (pm) (void) makemon(pm, 0, 0, MM_ANGRY|MM_FRENZIED);
+
+				u.mondiffhack = 0;
+				u.aggravation = 0;
+
+			}
+
+			int mondistance = 0;
+			struct monst *mtmp3;
+			int k, l;
+			for (k = -5; k <= 5; k++) for(l = -5; l <= 5; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+
+				mondistance = 1;
+				if (k > 1) mondistance = k;
+				if (k < -1) mondistance = -k;
+				if (l > 1 && l > mondistance) mondistance = l;
+				if (l < -1 && (-l > mondistance)) mondistance = -l;
+
+				if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+					mtmp3->mcanmove = 0;
+					mtmp3->mfrozen = (rnd(16 - (mondistance * 2)));
+					mtmp3->mstrategy &= ~STRAT_WAITFORU;
+					mtmp3->mconf = TRUE;
+					pline("%s becomes dizzy from the scent!", Monnam(mtmp3));
+				}
+			}
+			u.hussyperfume = rnz(4000);
+			if (!PlayerCannotUseSkills && u.hussyperfume >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.hussyperfume *= 9; u.hussyperfume /= 10; break;
+			      	case P_SKILLED:	u.hussyperfume *= 8; u.hussyperfume /= 10; break;
+			      	case P_EXPERT:	u.hussyperfume *= 7; u.hussyperfume /= 10; break;
+			      	case P_MASTER:	u.hussyperfume *= 6; u.hussyperfume /= 10; break;
+			      	case P_GRAND_MASTER:	u.hussyperfume *= 5; u.hussyperfume /= 10; break;
+			      	case P_SUPREME_MASTER:	u.hussyperfume *= 4; u.hussyperfume /= 10; break;
+			      	default: break;
+				}
+			}
+			use_skill(P_SQUEAKING, rnd(40));
+			abilreturncode = TRUE;
+
+		}
+			break;
+		case ABIL_HUSSY_CRAP:
+		{
+			if (uarmu && uarmu->oartifact == ART_KATIA_S_SOFT_COTTON) {
+				You("produce very erotic noises.");
+				if (!rn2(10)) adjattrib(rn2(A_CHA), 1, -1, TRUE);
+			} else You("grunt.");
+			morehungry(rn2(400)+200);
+
+			register struct trap *shittrap;
+
+			if (!(t_at(u.ux, u.uy))) {
+
+				shittrap = maketrap(u.ux, u.uy, SHIT_TRAP, 0, FALSE);
+				if (shittrap && !(shittrap->hiddentrap)) {
+					shittrap->tseen = 1;
+				}
+
+				if (practicantterror) {
+					pline("%s thunders: 'You shitty practicant lass! Your act of shitting up my laboratory will not be tolerated! Now you pay 5000 zorkmids and clean away your shit, got it?'", noroelaname());
+					fineforpracticant(5000, 0, 0);
+
+				}
+
+			}
+			use_skill(P_SQUEAKING, rnd(10));
+			abilreturncode = TRUE;
+		}
+			break;
+		case ABIL_IRAHA_POISON:
+			if (!uwep) {
+				pline("You are not holding a weapon!");
+				break;
+			}
+			/* Iraha are somehow capable of poisoning weapons that cannot be poisoned, this is by design --Amy */
+			if (uwep) {
+				if (!stack_too_big(uwep)) {
+					uwep->opoisoned = TRUE;
+					pline("Your weapon was poisoned.");
+				} else pline("Unfortunately your wielded stack of weapons was too big, and so the poisoning failed.");
+
+			}
+
+			u.irahapoison = rnz(1000);
+			if (!PlayerCannotUseSkills && u.irahapoison >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.irahapoison *= 9; u.irahapoison /= 10; break;
+			      	case P_SKILLED:	u.irahapoison *= 8; u.irahapoison /= 10; break;
+			      	case P_EXPERT:	u.irahapoison *= 7; u.irahapoison /= 10; break;
+			      	case P_MASTER:	u.irahapoison *= 6; u.irahapoison /= 10; break;
+			      	case P_GRAND_MASTER:	u.irahapoison *= 5; u.irahapoison /= 10; break;
+			      	case P_SUPREME_MASTER:	u.irahapoison *= 4; u.irahapoison /= 10; break;
+			      	default: break;
+				}
+			}
+			use_skill(P_SQUEAKING, rnd(10));
+			abilreturncode = TRUE;
+			break;
+		case ABIL_JUYO_TOGGLE_FLEE:
+			if (u.juyofleeing) {
+				u.juyofleeing = FALSE;
+				pline("Monsters have the regular chance of fleeing from you now, which is useful mainly if you are a role or race that gets penalties for hitting a fleeing monster.");
+			} else {
+				u.juyofleeing = TRUE;
+				pline("Monsters will now be more likely to flee from you when hit, with the chance depending on your Juyo skill!");
+			}
+			/* don't use a turn */
+			break;
+		case ABIL_PETKEEPING_CONTROL_MAGIC:
+			if (u.controlmiguc) {
+				u.controlmiguc = FALSE;
+				pline("Your missiles now have the regular chance of hitting your pets.");
+			} else {
+				u.controlmiguc = TRUE;
+				pline("Your missiles will now sometimes pass through pets, with the chance depending on your petkeeping skill!");
+			}
+			/* don't use a turn */
+			break;
+		case ABIL_JANITOR_CLEAN:
+		{
+			register struct obj *objchain, *allchain, *blahchain;
+			register int trashvalue = 0;
+			char objroom;
+			struct monst *shkp = (struct monst *)0;
+
+			if (Levitation && !Race_if(PM_LEVITATOR)) {
+				pline("Since you're levitating, you can't reach the trash!");
+				break;
+			} else if (u.uswallow) {
+				pline("Well, it seems you have some other problem to take care of first.");
+				break;
+			} else if (u.garbagecleaned >= 1000) {
+				You("already filled your trash bin! You'll have to wait until the garbage truck arrives so you can empty it.");
+				/* if for some reason the garbage truck time is zero, call a truck now (shouldn't happen) --Amy */
+				if (!u.garbagetrucktime) u.garbagetrucktime = rn1(500,500);
+
+				break;
+			}
+
+			objchain = level.objects[u.ux][u.uy];
+
+			for (allchain = objchain; allchain; allchain = blahchain) {
+
+				if (u.garbagecleaned >= 1000) {
+					You("filled your trash bin, and call a garbage truck that will arrive shortly.");
+					u.garbagetrucktime = rn1(500,500);
+					break;
+				}
+
+				blahchain = allchain->nexthere;
+
+				/* have to special-case some stuff... --Amy
+				 * iron chains and balls could be chained to you, caught by wornmask check
+				 * invocation artifacts are of course immune
+				 * gold is immune
+				 * items of variable weight: statues, corpses and containers are also immune */
+				if (allchain->owornmask) continue;
+				if (evades_destruction(allchain)) continue;
+				if (allchain->oclass == COIN_CLASS) continue;
+				if (allchain->otyp == STATUE || allchain->otyp == CORPSE || Is_container(allchain)) continue;
+
+				if (objects[allchain->otyp].oc_weight > 0) trashvalue = (objects[allchain->otyp].oc_weight) * allchain->quan;
+				else trashvalue = allchain->quan;
+
+				u.garbagecleaned += trashvalue;
+				You("clean up %s and add %d weight units to your trash bin.", doname(allchain), trashvalue);
+
+				objroom = *in_rooms(allchain->ox, allchain->oy, SHOPBASE);
+				shkp = shop_keeper(objroom);
+				if (shkp && inhishop(shkp)) {
+					if (costly_spot(u.ux, u.uy) && objroom == *u.ushops) {
+						Norep("You trash it, you pay for it!");
+						bill_dummy_object(allchain);
+					} else (void) stolen_value(allchain, allchain->ox, allchain->oy, FALSE, FALSE, FALSE);
+				}
+
+				delobj(allchain);
+
+				if (u.garbagecleaned >= 1000) {
+					You("filled your trash bin, and call a garbage truck that will arrive shortly.");
+					u.garbagetrucktime = rn1(500,500);
+					break;
+				}
+
+			}
+			/* don't use a turn */
+		}
+			break;
+		case ABIL_MUSHROOM_POLE:
+
+			if (!u.mushroompoles ) {
+				u.mushroompoles = TRUE;
+				pline("You switch to polearm mode.");
+			} else {
+				u.mushroompoles = FALSE;
+				pline("You switch to regular weapon application mode.");
+			}
+
+			/* This does not consume a turn, which is intentional. --Amy */
+			break;
+		case ABIL_MARTIAL_SWITCH:
+			if (!u.disablemartial) {
+				u.disablemartial = TRUE;
+				pline("You switch to bare-handed combat.");
+			}
+			else if (u.disablemartial) {
+				u.disablemartial = FALSE;
+				pline("You switch to martial arts.");
+			}
+			/* don't use a turn */
+			break;
+		case ABIL_DEMAGOGUE_RECURSION:
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.demagogueabilitytimer = rnz(2500);
+			if (!PlayerCannotUseSkills && u.demagogueabilitytimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.demagogueabilitytimer *= 9; u.demagogueabilitytimer /= 10; break;
+			      	case P_SKILLED:	u.demagogueabilitytimer *= 8; u.demagogueabilitytimer /= 10; break;
+			      	case P_EXPERT:	u.demagogueabilitytimer *= 7; u.demagogueabilitytimer /= 10; break;
+			      	case P_MASTER:	u.demagogueabilitytimer *= 6; u.demagogueabilitytimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.demagogueabilitytimer *= 5; u.demagogueabilitytimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.demagogueabilitytimer *= 4; u.demagogueabilitytimer /= 10; break;
+			      	default: break;
+				}
+			}
+			demagoguerecursioneffect();
+
+			abilreturncode = TRUE;
+
+			break;
+		case ABIL_SYMBIOSIS_CHECK:
+
+			pline("Current symbiote is %s. Health: %d(%d). BUC: %s%s%s%s%s. ", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");
+			if (u.shutdowntime) pline("Your symbiote has been shut down for %d turns.", u.shutdowntime);
+#ifdef EXTENDED_INFO
+			corpsepager(u.usymbiote.mnum);
+#endif
+
+			/* don't use a turn */
+			break;
+		case ABIL_EUTHANIZE_SYMBIOTE:
+
+			if (u.usymbiote.cursed) {
+				You("can't. It's cursed.");
+				abilreturncode = TRUE;
+				break;
+			}
+		/* that a player would *really* be stupid enough to not at least TRY to use a method for obtaining a new one...
+		 * oh well, I guess it should be made obvious because nowadays players always need handholding --Amy */
+			getlin("Attention: This action causes an alignment and luck penalty; if you want to replace your symbiote with a different one, just use your preferred method of obtaining a new symbiote instead. Do you really want to murder your symbiote? [yes/no]?",buf);
+			(void) lcase (buf);
+			if (!(strcmp (buf, "yes"))) {
+
+				if (uarmf && itemhasappearance(uarmf, APP_REMORA_HEELS) && u.usymbiote.mnum == PM_REMORA) {
+					if (uarmf->spe > -1) uarmf->spe = -1;
+				}
+
+				u.usymbiote.active = 0;
+				u.usymbiote.mnum = PM_PLAYERMON;
+				u.usymbiote.mhp = 0;
+				u.usymbiote.mhpmax = 0;
+				u.usymbiote.cursed = u.usymbiote.hvycurse = u.usymbiote.prmcurse = u.usymbiote.bbcurse = u.usymbiote.morgcurse = u.usymbiote.evilcurse = u.usymbiote.stckcurse = 0;
+				if (flags.showsymbiotehp) flags.botl = TRUE;
+				u.cnd_symbiotesdied++;
+
+				adjalign(-50);	/* bad!! */
+				change_luck(-1);
+				if (!FunnyHallu) {(Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) ? pline("Batten down the hatches!") : You_hear("the rumble of distant thunder...");}
+				else You_hear("the studio audience applaud!");
+				if (PlayerHearsSoundEffects) pline(issoviet ? "Molodets, geroy - ty ubil sobstvennogo domashnego zhivotnogo, potomu chto vy byli glupy. Vy na samom dele sovetskaya Pyat' Lo? Potomu chto on ne igrayet namnogo khuzhe, chem vy." : "Wummm. Wummmmmmmm!");
+
+				You("no longer have a symbiote.");
+				use_skill(P_SQUEAKING, 2);
+
+				abilreturncode = TRUE;
+			}
+			/* if the player didn't answer yes, we don't use up a turn */
+			break;
+
+	}
+
+	return abilreturncode;
 }
 
 int
@@ -14158,6 +14910,61 @@ resetretrying:
 
 resettechdone:
 	return;
+}
+
+STATIC_PTR int
+stefanjerepair()
+{
+	if (delay > 0) {
+		impossible("stefanje repair delay greater than zero! (%d)", delay);
+		delay = 0;
+	}
+
+	if (delay < 0) {
+		delay++;
+		return(1);
+	} else {
+		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM && (uarmf->spe < 0)) {
+			uarmf->spe++;
+			pline("Your 'Stefanje' sandals are surrounded by a cyan glow.");
+		} else {
+			pline("Somehow, your 'Stefanje' sandals are no longer there...");
+		}
+		return(0);
+	}
+}
+
+STATIC_PTR int
+deseamshoes()
+{
+	if (delay > 0) {
+		impossible("deseamshoes delay greater than zero! (%d)", delay);
+		delay = 0;
+	}
+
+	if (delay < 0) {
+		delay++;
+		return(1);
+	} else {
+		if (!uarmf) {
+			pline("It seems that someone removed your shoes!");
+			return(0);
+		}
+		if (uarmf && !(uarmf->oartifact == ART_ENDLESS_DESEAMING) && !(uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR)) {
+			pline("It seems that someone replaced your shoes with different ones!");
+			return(0);
+		}
+
+		if (uarmf && uarmf->oeroded) {
+			uarmf->oeroded--;
+			pline("You cleaned some of the dog shit from your shoes.");
+		} else if (uarmf && uarmf->oeroded2) {
+			uarmf->oeroded2--;
+			pline("You cleaned some of the dog shit from your shoes.");
+		}
+
+		return(0);
+	}
 }
 
 #ifdef DEBUG

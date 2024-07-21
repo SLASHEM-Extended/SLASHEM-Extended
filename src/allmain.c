@@ -17492,7 +17492,7 @@ boolean new_game;	/* false => restoring an old game */
 		pline("You are playing '%s' on a public server. For game discussion, bug reports etc. join the #em.slashem.me IRC channel on Libera. You should absolutely do that, unless you want to figure out this complex game on your own. Amy and other players will be glad to give you advice!", versbuf);
 	}
 #ifdef BIGSLEX
-	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. Also, savebreaks will happen without warning in this version. If you have a far-progressed savegame that you want to finish, contact me on the IRC. If your savegame seems to be gone, contact me on the IRC too. Have fun!");
+	pline("Attention: You're playing BIGslex, where the dungeon levels are bigger than normal. Recommended terminal size is 125x45. If you're using other dimensions, change them now, save them in your terminal emulator's settings and then start a new session; changing the dimensions after you've already opened the terminal doesn't work right. Amy takes no responsibility for character deaths caused by a disappearing HP display due to players using wrong terminal settings.");
 #endif /* BIGSLEX */
 
 	if (new_game && !(iflags.num_pad) && iflags.numpadmessage) {
@@ -17503,10 +17503,10 @@ boolean new_game;	/* false => restoring an old game */
 
 #ifdef BIGSLEX
 
-	if (new_game) pline("Message of the day: This is a reminder that you should be playing the game on a terminal with the dimensions 125x45. If you haven't already, open your terminal settings NOW and change it to 125x45 or you'll keep wondering why the bottom status line disappears or gets cut off when it gets too long! Use exactly 125x45 for best results, any other dimensions and it won't work properly!");
+	if (new_game) pline("Message of the day: The #monster command has been improved considerably and is now a menu that presents all the available abilities. Feel free to use it and tell me what you think.");
 
 #else
-	if (new_game) pline("Message of the day: Sorry for all the savebreak updates lately, if you had a previous game on the old version, please use 'Play Slash'EM Extended old version' from the launch menu. Contact me on the IRC or Reddit if nothing works. Special message to mal4ikkarate: sorry for the configuration incompatibility, I was just in the process of updating the version when you started that character ;)");
+	if (new_game) pline("Message of the day: The #monster command has been improved considerably and is now a menu that presents all the available abilities. Feel free to use it and tell me what you think.");
 
 #endif
 
