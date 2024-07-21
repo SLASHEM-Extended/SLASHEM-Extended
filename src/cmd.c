@@ -1511,6 +1511,14 @@ domonability()
 {
 	char buf[BUFSZ];
 
+	int monabiltemp = NO_ABILITY;
+
+	for (monabiltemp = NO_ABILITY; monabiltemp < MAX_ABILITY; monabiltemp++) {
+		if (ability_usable(monabiltemp)) learnmonsterability(monabiltemp);
+	}
+
+	return domonabil();
+
 	/* snail can't equip pick-axes, so should be able to dig without one from time to time --Amy */
 	if (Race_if(PM_ELONA_SNAIL) && !u.snaildigging && yn("Do you want to fire a digging ray?")=='y' ) {
 		u.snaildigging = rnz(1000);

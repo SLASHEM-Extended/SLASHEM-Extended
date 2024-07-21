@@ -461,6 +461,8 @@ E NEARDATA struct spell spl_book[];	/* sized in decl.c */
 #endif
 E NEARDATA struct tech tech_list[];     /* sized in decl.c */
 
+E NEARDATA struct monsterabil abilities_list[];     /* sized in decl.c */
+
 
 /*** The player ***/
 E NEARDATA char pl_character[PL_CSIZ];

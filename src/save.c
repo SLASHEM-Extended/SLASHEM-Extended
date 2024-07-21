@@ -436,6 +436,8 @@ register int fd, mode;
 				sizeof(struct spell) * (MAXSPELL + 1));
 	bwrite(fd, (void *) tech_list,
 			sizeof(struct tech) * (MAXTECH + 1));
+	bwrite(fd, (void *) abilities_list,
+			sizeof(struct monsterabil) * (MAX_ABILITY + 1));
 	save_oracles(fd, mode);
 	if(ustuck_id)
 	    bwrite(fd, (void *) &ustuck_id, sizeof ustuck_id);

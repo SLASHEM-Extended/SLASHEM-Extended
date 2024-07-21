@@ -511,6 +511,8 @@ unsigned int *stuckid, *steedid;	/* STEED */
 				sizeof(struct spell) * (MAXSPELL + 1));
 	mread(fd, (void *) tech_list,
 			sizeof(struct tech) * (MAXTECH + 1));
+	mread(fd, (void *) abilities_list,
+			sizeof(struct monsterabil) * (MAX_ABILITY + 1));
 	restore_oracles(fd);
 	if (u.ustuck)
 		mread(fd, (void *) stuckid, sizeof (*stuckid));

@@ -12,6 +12,8 @@
 
 static boolean gettech(int *);
 static boolean dotechmenu(int, int *, int);
+static boolean getmonabil(int *);
+static boolean doabilitymenu(int, int *, int);
 static void doblitzlist(void);
 static int techeffects(int);
 static int mon_to_zombie(int);
@@ -39,6 +41,7 @@ static const char allnoncount[] = { ALL_CLASSES, 0 };
 static NEARDATA const char recharge_type[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 
 static int tech_in_memory;
+static int abil_in_memory;
 
 /* 
  * Do try to keep the names <= 25 chars long, or else the
@@ -293,6 +296,51 @@ STATIC_OVL NEARDATA const char *tech_names[] = {
 	"jedi jump",
 	"charge saber",
 	"telekinesis",
+	""
+};
+
+STATIC_OVL NEARDATA const char *abil_names[] = {
+	"no ability",
+	"snail dig",
+	"stefanje repair",
+	"anastasia deseaming",
+	"kati cleaning",
+	"create boulder",
+	"disarm traps",
+	"breathe",
+	"spit",
+	"remove iron ball",
+	"gaze",
+	"were summon",
+	"spin web",
+	"hide",
+	"mind blast",
+	"gremlin water",
+	"gremlin lava",
+	"unihorn",
+	"conversion sermon",
+	"wouwou taunt",
+	"whore talk",
+	"superman taunt",
+	"bones rattle",
+	"shriek",
+	"fart quiet",
+	"fart normal",
+	"fart loud",
+	"menstruation",
+	"mount bond",
+	"hand pulling",
+	"perfume spreading",
+	"take a crap",
+	"poison weapon",
+	"toggle flee chance",
+	"toggle control magic",
+	"janitor cleaning",
+	"polearm mode",
+	"toggle martial arts",
+	"temp recursion",
+	"check symbiote",
+	"euthanize symbiote",
 	""
 };
 
@@ -2298,6 +2346,9 @@ static const struct innate_tech
 #define techlet(tech)  \
         ((char)((tech < 26) ? ('a' + tech) : ('A' + tech - 26)))
 
+#define abilid(abil)          abilities_list[abil].abil_id
+#define abilname(abil)        (abil_names[abilid(abil)])
+
 /* A simple pseudorandom number generator
  *
  * This should generate fairly random numbers that will be 
@@ -2530,6 +2581,25 @@ learntech(tech, mask, tlevel)
 	}
 	/*else
 	    impossible("Invalid Tech Level!");*/
+}
+
+void
+learnmonsterability(abil)
+short abil;
+{
+	int i;
+	i = get_ability_no(abil);
+
+	if (i < 0) {
+		i = get_ability_no(NO_ABILITY);
+		if (i < 0) {
+		    impossible("No room for new ability?");
+		    return;
+		}
+	}
+	if (abilities_list[i].abil_id == NO_ABILITY) {
+		abilities_list[i].abil_id = abil;
+	}
 }
 
 /*
@@ -2851,6 +2921,200 @@ dump_techniques()
 } /* dump_techniques */
 #endif
 
+static boolean
+getmonabil(abil_no)
+        int *abil_no;
+{
+        int i, nabils, idx;
+	char ilet, lets[BUFSZ], qbuf[QBUFSZ];
+
+	for (nabils = i = 0; i < MAX_ABILITY; i++)
+	    if (abilid(i) != NO_ABILITY) nabils++;
+
+	/* display the menu anyway, because of vibrating square stuff --Amy */
+/*	if (ntechs == 0)  {
+            You("don't know any techniques right now.");
+	    return FALSE;
+	}*/
+	if (flags.menu_style == MENU_TRADITIONAL) {
+            if (nabils == 1)  strcpy(lets, "a");
+            else if (nabils < 27)  sprintf(lets, "a-%c", 'a' + nabils - 1);
+            else if (nabils == 27)  sprintf(lets, "a-z A");
+            else sprintf(lets, "a-z A-%c", 'A' + nabils - 27);
+
+	    for(;;)  {
+                sprintf(qbuf, "Use which ability? [%s ?]", lets);
+		if ((ilet = yn_function(qbuf, (char *)0, '\0')) == '?')
+		    break;
+
+		if (index(quitchars, ilet))
+		    return FALSE;
+
+		if (letter(ilet) && ilet != '@') {
+		    /* in a-zA-Z, convert back to an index */
+		    if (lowc(ilet) == ilet)     /* lower case */
+			idx = ilet - 'a';
+		    else
+			idx = ilet - 'A' + 26;
+
+                    if (idx < nabils)
+			for(i = 0; i < MAX_ABILITY; i++)
+			    if (abilid(i) != NO_ABILITY) {
+				if (idx-- == 0) {
+				    *abil_no = i;
+				    return TRUE;
+				}
+			    }
+		}
+                You("don't know that ability.");
+	    }
+	}
+        return doabilitymenu(PICK_ONE, abil_no, 0);
+}
+
+static boolean
+doabilitymenu(how, abil_no, specialmenutype)
+	int how;
+	int *abil_no;
+	int specialmenutype; /* 0 = use abils, 1 = sort abils, 2 = pick abil to swap with */
+{
+	winid tmpwin;
+	int i, n, len, longest, abils_useable, tlevel;
+	int splnum, othnum;
+	char buf[BUFSZ], let = 'a';
+	const char *prefix;
+	menu_item *selected;
+	anything any;
+
+restartmenu:
+	let = 'a';
+
+	tmpwin = create_nhwindow(NHW_MENU);
+	start_menu(tmpwin);
+	any.a_void = 0;         /* zero out all bits */
+
+	abil_in_memory = -2;
+	struct monsterabil spl_tmp;
+
+	abils_useable = 0;
+
+	if (!iflags.menu_tab_sep) {
+	    /* find the length of the longest abil */
+	    for (longest = 0, i = 0; i < MAX_ABILITY; i++) {
+		if (abilid(i) == NO_ABILITY) continue;
+		if ((len = strlen(abilname(i))) > longest)
+		    longest = len;
+	    }
+	    sprintf(buf, "    %-*s    Status", longest, "Name");
+	} else
+	    sprintf(buf, "Name\tStatus");
+
+	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, buf, MENU_UNSELECTED);
+
+	for (i = 0; i < MAX_ABILITY; i++) {
+	    if (abilid(i) == NO_ABILITY)
+		continue;
+	    if (wizard || ability_usable(abilid(i))) {
+		/* Ready to use */
+		abils_useable++;
+		prefix = "";
+		any.a_int = i + 1;
+	    } else if (specialmenutype) {
+		/* can always select if we're sorting */
+		abils_useable++;
+		prefix = "";
+		any.a_int = i + 1;
+	    } else {
+		prefix = "    ";
+		any.a_int = 0;
+	    }
+
+	    if (!iflags.menu_tab_sep) {
+		sprintf(buf, "%s%-*s %c  %s",
+			prefix, longest, abilname(i), (!ability_usable(abilid(i)) ? '*' : ' '),
+			ability_usable(abilid(i)) ? "Ready" : "Unusable");
+	    } else
+		sprintf(buf, "%s%s\t%c\t%s",
+			prefix, abilname(i), (!ability_usable(abilid(i)) ? '*' : ' '),
+			ability_usable(abilid(i)) ? "Ready" : "Unusable");
+
+	    add_menu(tmpwin, NO_GLYPH, &any,
+		    (specialmenutype) ? let : (!ability_usable(abilid(i)) && !wizard) ? 0 : let, 0, ATR_NONE, buf, MENU_UNSELECTED);
+	    if (let++ == 'z') let = 'A';
+	    if (let == 'Z') let = 'a';
+	}
+
+	if (specialmenutype == 0) { /* option for sorting your abils */
+		any.a_int = -1;	/* must be non-zero */
+		add_menu(tmpwin, NO_GLYPH, &any, '?', 0, ATR_NONE, "Sort abils", MENU_UNSELECTED);
+	}
+
+	if (!abils_useable)
+	    how = PICK_NONE;
+
+	end_menu(tmpwin, (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)) ? "You're standing on the vibrating square." : (specialmenutype == 1) ? "Pick ability to sort" : (specialmenutype == 2) ? "Swap with which ability?" : how == PICK_ONE ? "Choose an ability" : "Currently known abilities");
+
+	n = select_menu(tmpwin, how, &selected);
+	destroy_nhwindow(tmpwin);
+	if (n > 0) {
+
+	    if (selected[0].item.a_int == -1) {
+		free((void *)selected);
+		return doabilitymenu(PICK_ONE, abil_no, 1);
+	    }
+
+	    int selection = selected[0].item.a_int - 1;
+	    if (selection < 0) { /* shouldn't happen, but according to amateurhour it can... so he fixed it --Amy */
+		    free((void *)selected);
+		    return FALSE;
+	    }
+
+	    /* sort abilities, by Amy, with code shamelessly copied/adjusted from spell.c */
+	    if (specialmenutype == 1) {
+		splnum = selected[0].item.a_int - 1;
+		doabilitymenu(PICK_ONE, abil_no, 2);
+		othnum = abil_in_memory;
+
+		/*pline("nums to swap: %d, %d", splnum, othnum);*/
+
+		if (abilid(splnum) <= NO_ABILITY) {
+			pline("Invalid first ability. Aborting.");
+			free((void *)selected);
+			return FALSE;
+		}
+		if (abilid(othnum) <= NO_ABILITY) {
+			pline("Invalid second ability. Aborting.");
+			free((void *)selected);
+			return FALSE;
+		}
+
+		spl_tmp = abilities_list[splnum];
+		abilities_list[splnum] = abilities_list[othnum];
+		abilities_list[othnum] = spl_tmp;
+
+		free((void *)selected);
+
+		goto restartmenu;
+
+		return FALSE;
+	    }
+
+	    if (specialmenutype == 2) {
+
+		abil_in_memory = selected[0].item.a_int - 1;
+
+		free((void *)selected);
+
+		return FALSE;
+	    }
+
+	    *abil_no = selection;
+	    free((void *)selected);
+	    return TRUE;
+	}
+	return FALSE;
+}
+
 int
 get_tech_no(tech)
 int tech;
@@ -2865,7 +3129,190 @@ int tech;
 	return (-1);
 }
 
+int
+get_ability_no(abil)
+int abil;
+{
+	int i;
 
+	for (i = 0; i < MAX_ABILITY; i++) {
+		if (abilid(i) == abil) {
+			return(i);
+		}
+	}
+	return (-1);
+}
+
+int
+ability_usable(abil)
+int abil;
+{
+	switch (abil) {
+		case ABIL_SNAIL_DIG:
+			if (Race_if(PM_ELONA_SNAIL) && !u.snaildigging) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_STEFANJE_REPAIR:
+			if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_ANASTASIA_DESEAMING:
+			if (uarmf && uarmf->oartifact == ART_ENDLESS_DESEAMING) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_KATI_CLEAN:
+			if (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_SOKO_BOULDER:
+			if (issokosolver && !u.sokosolveboulder) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_SOKO_DISARM:
+			if (issokosolver && !u.sokosolveuntrap) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_BREATHE:
+			if (can_breathe(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && can_breathe(&mons[u.usymbiote.mnum]) ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_SPIT:
+			if (attacktype(youmonst.data, AT_SPIT) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_SPIT) ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_IRON_BALL:
+			if (youmonst.data->mlet == S_NYMPH || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_MASTER && uactivesymbiosis && ((mons[u.usymbiote.mnum].mlet) == S_NYMPH) ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_GAZE:
+			if (attacktype(youmonst.data, AT_GAZE) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && attacktype(&mons[u.usymbiote.mnum], AT_GAZE) ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_WERE_SUMMON:
+			if (is_were(youmonst.data)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_WEB:
+			if (webmaker(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && webmaker(&mons[u.usymbiote.mnum]) ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_HIDE:
+			if (is_hider(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_hider(&mons[u.usymbiote.mnum]) ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_MIND_BLAST:
+			if (is_mind_flayer(youmonst.data) || (uimplant && uimplant->oartifact == ART_TSCHHKRZKRZ) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_GREMWATER:
+			if (splittinggremlin(youmonst.data)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_GREMLAVA:
+			if (splittinglavagremlin(youmonst.data)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_UNIHORN:
+			if (is_unicorn(youmonst.data) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && is_unicorn(&mons[u.usymbiote.mnum])) || (Race_if(PM_PLAYER_UNICORN) && !Upolyd) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_CONVERT:
+			if (youmonst.data->msound == MS_CONVERT || (Race_if(PM_TURMENE) && !Upolyd) || (Race_if(PM_EGYMID) && !Upolyd) || (Race_if(PM_PERVERT) && !Upolyd) || (Race_if(PM_IRAHA) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_CONVERT) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_WOUWOU:
+			if (youmonst.data->msound == MS_HCALIEN || (Race_if(PM_HC_ALIEN) && !Upolyd) || (Race_if(PM_SLYER_ALIEN) && !Upolyd) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_HCALIEN ) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_WHORE:
+			if (youmonst.data->msound == MS_WHORE || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_EXPERT && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_WHORE) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_SUPERMAN:
+			if (youmonst.data->msound == MS_SUPERMAN || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_GRAND_MASTER && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SUPERMAN) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_BONES:
+			if (youmonst.data->msound == MS_BONES || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_BONES) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_SHRIEK:
+			if (youmonst.data->msound == MS_SHRIEK || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_SHRIEK) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_FARTQUIET:
+			if (youmonst.data->msound == MS_FART_QUIET || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_QUIET) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_QUIET) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_FARTNORMAL:
+			if (youmonst.data->msound == MS_FART_NORMAL || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_NORMAL) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_NORMAL) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_FARTLOUD:
+			if (youmonst.data->msound == MS_FART_LOUD || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_FART_LOUD) || (Race_if(PM_LOLI) && !Upolyd && mons[PM_LOLI].msound == MS_FART_LOUD) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_NATALIA_MENS:
+			if (FemtrapActiveNatalia && flags.female && (u.nataliacycletimer >= u.nataliafollicularend) && (u.nataliacycletimer < (u.nataliafollicularend + u.natalialutealstart)) && PlayerBleeds) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_MOUNT_BOND:
+			if (bmwride(ART_MOUNT_BOND)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_HAND_PULL:
+			if (Race_if(PM_HAND) && !u.handpulling) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_POLY_PERFUME:
+			if ( ( (Role_if(PM_HUSSY) && (!Upolyd && flags.female)) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_BEAUTY) || (uarmf && uarmf->oartifact == ART_SCRATCHE_HUSSY) || have_femityjewel() || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && mons[u.usymbiote.mnum].msound == MS_STENCH) || (Upolyd && youmonst.data->msound == MS_STENCH) ) && !u.hussyperfume) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_HUSSY_CRAP:
+			if (Role_if(PM_HUSSY) && flags.female && u.uhs <= 0 && isok(u.ux, u.uy)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_IRAHA_POISON:
+			if (Race_if(PM_IRAHA) && !u.irahapoison) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_JUYO_TOGGLE_FLEE:
+			if (!PlayerCannotUseSkills && P_SKILL(P_JUYO) >= P_BASIC) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_PETKEEPING_CONTROL_MAGIC:
+			if (!PlayerCannotUseSkills && P_SKILL(P_PETKEEPING) >= P_BASIC) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_JANITOR_CLEAN:
+			if (Role_if(PM_JANITOR)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_MUSHROOM_POLE:
+			if (Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_MARTIAL_SWITCH:
+			if (P_SKILL(P_MARTIAL_ARTS) >= P_UNSKILLED && P_SKILL(P_BARE_HANDED_COMBAT) >= P_UNSKILLED) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_DEMAGOGUE_RECURSION:
+			if (Role_if(PM_DEMAGOGUE) && !u.temprecursion && !u.demagoguerecursion && u.demagogueabilitytimer == 0 && !(In_endgame(&u.uz)) ) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_SYMBIOSIS_CHECK:
+			if (uinsymbiosis) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_EUTHANIZE_SYMBIOTE:
+			if (uinsymbiosis) return TRUE;
+			return FALSE;
+			break;
+
+	}
+
+	return FALSE;
+}
 
 int
 dotechwiz()
@@ -2907,6 +3354,154 @@ resettechs()
 	    techtout(i) += rnz(100000);
 	}
 
+}
+
+int
+domonabil()
+{
+	int abil_no;
+
+	if (flags.tech_description) {
+
+		if (getmonabil(&abil_no)) {
+			switch (abilid(abil_no)) {
+
+				case ABIL_SNAIL_DIG:
+					pline("Fires a digging ray in a direction of your choice.");
+					break;
+				case ABIL_STEFANJE_REPAIR:
+					pline("Tries to repair your 'Stefanje' sandals. This can take quite a while and may only be done if their enchantment value is below 0.");
+					break;
+				case ABIL_ANASTASIA_DESEAMING:
+					pline("Tries to clean your Anastasia shoes. This can take quite a while and may only be done if they're eroded.");
+					break;
+				case ABIL_KATI_CLEAN:
+					pline("Tries to clean your Kati shoes. This can take quite a while and may only be done if they're eroded.");
+					break;
+				case ABIL_SOKO_BOULDER:
+					pline("Creates a boulder at your location.");
+					break;
+				case ABIL_SOKO_DISARM:
+					pline("Disarms adjacent traps. This doesn't work on magic portals, pits, holes and any other type of trap that would swallow a boulder.");
+					break;
+				case ABIL_POLY_BREATHE:
+					pline("Breathes at the enemy.");
+					break;
+				case ABIL_POLY_SPIT:
+					pline("Spits at the enemy.");
+					break;
+				case ABIL_POLY_IRON_BALL:
+					pline("Removes a heavy iron ball chained to you.");
+					break;
+				case ABIL_POLY_GAZE:
+					pline("Gazes at the enemy.");
+					break;
+				case ABIL_WERE_SUMMON:
+					pline("Summons creatures who fight on your side, determined by your current wereform.");
+					break;
+				case ABIL_POLY_WEB:
+					pline("Spins a web.");
+					break;
+				case ABIL_POLY_HIDE:
+					pline("Allows you to hide.");
+					break;
+				case ABIL_POLY_MIND_BLAST:
+					pline("Emits a mind blast.");
+					break;
+				case ABIL_POLY_GREMWATER:
+					pline("Allows you to multiply in water.");
+					break;
+				case ABIL_POLY_GREMLAVA:
+					pline("Allows you to multiply in lava.");
+					break;
+				case ABIL_POLY_UNIHORN:
+					pline("Can fix status effects.");
+					break;
+				case ABIL_POLY_CONVERT:
+					pline("Preaches conversion sermon to the enemy.");
+					break;
+				case ABIL_POLY_WOUWOU:
+					pline("Taunts the enemy.");
+					break;
+				case ABIL_POLY_WHORE:
+					pline("Talks sexily to mesmerize the enemy.");
+					break;
+				case ABIL_POLY_SUPERMAN:
+					pline("Emits a powerful taunt against the enemy.");
+					break;
+				case ABIL_POLY_BONES:
+					pline("Allows you to rattle and try to paralyze the enemy.");
+					break;
+				case ABIL_POLY_SHRIEK:
+					pline("Shrieking can wake up monsters.");
+					break;
+				case ABIL_POLY_FARTQUIET:
+					pline("Allows you to produce tender farting noises.");
+					break;
+				case ABIL_POLY_FARTNORMAL:
+					pline("Allows you to produce squeaky farting noises.");
+					break;
+				case ABIL_POLY_FARTLOUD:
+					pline("Allows you to produce loud farting noises.");
+					break;
+				case ABIL_NATALIA_MENS:
+					pline("Lets you shoot your menstruation at the enemy.");
+					break;
+				case ABIL_MOUNT_BOND:
+					pline("Checks the status of your steed.");
+					break;
+				case ABIL_HAND_PULL:
+					pline("Allows you to pull monsters to you.");
+					break;
+				case ABIL_POLY_PERFUME:
+					pline("Lets you spread perfume to affect enemies.");
+					break;
+				case ABIL_HUSSY_CRAP:
+					pline("Allows you to crap on the ground.");
+					break;
+				case ABIL_IRAHA_POISON:
+					pline("Lets you poison your wielded weapon, even if it's one that normally cannot be poisoned.");
+					break;
+				case ABIL_JUYO_TOGGLE_FLEE:
+					pline("Toggles the increased flee chance caused by the juyo lightsaber form.");
+					break;
+				case ABIL_PETKEEPING_CONTROL_MAGIC:
+					pline("Toggles the increased chance of your ranged attacks passing through your pets.");
+					break;
+				case ABIL_JANITOR_CLEAN:
+					pline("Lets you clean items from the ground beneath you.");
+					break;
+				case ABIL_MUSHROOM_POLE:
+					pline("Switches between regular weapon application mode and 'all weapons can be used like a polearm' mode.");
+					break;
+				case ABIL_MARTIAL_SWITCH:
+					pline("Lets you switch between the bare-handed combat and martial arts skills.");
+					break;
+				case ABIL_DEMAGOGUE_RECURSION:
+					pline("Allows you to temporarily become a different role.");
+					break;
+				case ABIL_SYMBIOSIS_CHECK:
+					pline("Checks up on your current symbiote.");
+					break;
+				case ABIL_EUTHANIZE_SYMBIOTE:
+					pline("Kills your current symbiote. Attention: This action causes an alignment and luck penalty; if you want to replace your symbiote with a different one, just use your preferred method of obtaining a new symbiote instead.");
+					break;
+
+				default:
+					pline("This ability doesn't have a description yet, but it might get one in future. --Amy");
+					break;
+			}
+			/* if (yn("Use this technique?") == 'y') return techeffects(tech_no); */
+
+			return 0;
+
+		}
+
+	} else if (getmonabil(&abil_no)) {
+		return /*techeffects(tech_no)*/FALSE;
+	}
+
+	return FALSE;
 }
 
 int

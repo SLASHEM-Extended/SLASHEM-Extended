@@ -334,4 +334,56 @@ struct blitz_tab {
  
 #define MAXTECH 247
 
+/* by Amy: #monster abilities */
+
+struct monsterabil {
+	int abil_id;	/* ability id */
+				/* Unique number for the ability, see the #defines below */
+};
+
+#define NO_ABILITY 0
+
+#define ABIL_SNAIL_DIG	1
+#define ABIL_STEFANJE_REPAIR	2
+#define ABIL_ANASTASIA_DESEAMING	3
+#define ABIL_KATI_CLEAN	4
+#define ABIL_SOKO_BOULDER	5
+#define ABIL_SOKO_DISARM	6
+#define ABIL_POLY_BREATHE	7
+#define ABIL_POLY_SPIT	8
+#define ABIL_POLY_IRON_BALL	9
+#define ABIL_POLY_GAZE	10
+#define ABIL_WERE_SUMMON	11
+#define ABIL_POLY_WEB	12
+#define ABIL_POLY_HIDE	13
+#define ABIL_POLY_MIND_BLAST	14
+#define ABIL_POLY_GREMWATER	15
+#define ABIL_POLY_GREMLAVA	16
+#define ABIL_POLY_UNIHORN	17
+#define ABIL_POLY_CONVERT	18
+#define ABIL_POLY_WOUWOU	19
+#define ABIL_POLY_WHORE	20
+#define ABIL_POLY_SUPERMAN	21
+#define ABIL_POLY_BONES	22
+#define ABIL_POLY_SHRIEK	23
+#define ABIL_POLY_FARTQUIET	24
+#define ABIL_POLY_FARTNORMAL	25
+#define ABIL_POLY_FARTLOUD	26
+#define ABIL_NATALIA_MENS	27
+#define ABIL_MOUNT_BOND	28
+#define ABIL_HAND_PULL	29
+#define ABIL_POLY_PERFUME	30
+#define ABIL_HUSSY_CRAP	31
+#define ABIL_IRAHA_POISON	32
+#define ABIL_JUYO_TOGGLE_FLEE	33
+#define ABIL_PETKEEPING_CONTROL_MAGIC	34
+#define ABIL_JANITOR_CLEAN	35
+#define ABIL_MUSHROOM_POLE	36
+#define ABIL_MARTIAL_SWITCH	37
+#define ABIL_DEMAGOGUE_RECURSION	38
+#define ABIL_SYMBIOSIS_CHECK	39
+#define ABIL_EUTHANIZE_SYMBIOTE	40
+
+#define MAX_ABILITY 41
+
 #endif /* TECH_H */

@@ -9530,6 +9530,9 @@ u_init()
 	/* WAC -- Clear Tech List since adjabil will init the 1st level techs*/
 	for (i = 0; i <= MAXTECH; i++) tech_list[i].t_id = NO_TECH;
 
+	/* Amy: also null the abilities list */
+	for (i = 0; i <= MAX_ABILITY; i++) abilities_list[i].abil_id = NO_ABILITY;
+
 	/* Initialize spells */
 	for (i = 0; i <= MAXSPELL; i++) spl_book[i].sp_id = NO_SPELL;
 

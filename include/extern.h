@@ -3481,6 +3481,7 @@ E boolean nogoodsteed(struct monst *);
 
 E void adjtech(int,int);
 E int dotech(void);
+E int domonabil(void);
 E int dotechwiz(void);
 E void datadeletetechs(void);
 E void resettechs(void);
@@ -3491,6 +3492,7 @@ E void tech_timeout(void);
 E boolean tech_known(SHORT_P);
 E void learntech_or_leveltech(SHORT_P,long,int);
 E void learntech(SHORT_P,long,int);
+E void learnmonsterability(int);
 E int disarm_holdingtrap(struct trap *);
 E int disarm_rust_trap(struct trap *);
 E int disarm_fire_trap(struct trap *);
@@ -3500,6 +3502,7 @@ E int disarm_shooting_trap(struct trap *, int);
 E void techcapincrease(int);
 E void eviltechincrease(void);
 E int get_tech_no(int);
+E int get_ability_no(int);
 E int techlevX(int);
 E void hurtmon(struct monst *,int);
 E void techdrain(void);
@@ -3511,6 +3514,7 @@ E void learnrandomregulartech(void);
 E void resettechniqueextra(void);
 E boolean canuseunarmedtechs(void);
 E void drain_all_techs(void);
+E boolean ability_usable(int);
 
 /* ### teleport.c ### */
 

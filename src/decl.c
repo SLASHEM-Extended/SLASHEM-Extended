@@ -197,6 +197,8 @@ NEARDATA struct spell spl_book[MAXSPELL + 1] = {DUMMY};
 
 NEARDATA struct tech tech_list[MAXTECH + 1] = {DUMMY};
 
+NEARDATA struct monsterabil abilities_list[MAX_ABILITY + 1] = {DUMMY};
+
 NEARDATA long moves = 1L, monstermoves = 1L;
 	 /* These diverge when player is Fast or Very_fast */
 NEARDATA long wailmsg = 0L;
