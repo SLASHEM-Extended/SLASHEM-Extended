@@ -1,6 +1,41 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.4 - May 2024
+- The #monster command is a menu now.
+- Fixed a bug where stairs on special levels could be invisible if the stair was defined in a MAP that wasn't the last one to be loaded.
+- Invisible characters can now bribe demon lords even if the lord doesn't see where the player is.
+- Accessories and weapons can have egotypes now.
+- The "monster requires +X weapon to hit" flags can stack now.
+- Added more martial arts styles.
+- Lost souls can regain the ability to levelport upon reaching dungeon level 1 now.
+- Very big shops should be less common, and rooms in BIGslex are now larger on average.
+- Fixed some bad mplayer monsters and improved the message handling when there is a bug.
+- More trap types can be disarmed now.
+- The + on macguffins can now be identified even if the player doesn't know the base item.
+- Fixed several bugs with the technique menu, including a SLASH'EM bug where the traditional menu style would allow players to use techniques that were beyond recall.
+- Occasionally, a pet may now gain tameness when killing something.
+- Resurrecting a monster now sets some timed effects like bleeding and inertia to zero.
+- Improved the handling of the 200 rocks exploit fix to catch more nuances of that exploit.
+- The searching skill should now work for traps on doors or containers.
+- Portals no longer malfunction upon their first use.
+- Techniques are no longer erased when a player is drained below the level of learning them.
+- Fixed the bug where narcolepsy traps couldn't time out.
+
+2.9.3 - April 2024
+- Some effects that temporarily reduce all of the character's stats are now much less likely to reduce them below 3.
+- Boomerangs now have a small chance of losing a lot of enchantment when hitting something.
+- Levitation interaction with the bottom status line is better now.
+- Added some new martial arts styles.
+- Nerfed several quest nemeses.
+- The techniques menu allows sorting now.
+- Potions are more resistant to item destruction now.
+
 2.9.2 - March 2024
+- Inka saddles no longer damage a dead player.
+- Fixed bugged striped shirt of the thief.
+- Breaking a wand now requires a full "yes" confirmation.
+- Teleportitis no longer considers farmland to be a valid destination if you cannot move over them.
+- Fixed the oversight where casting certain spells would somehow identify the base item of the corresponding spellbook.
 - There is now an extra effect if the player has both in- and extrinsic death resistance. Previously, that property was somehow lacking a "double effect".
 - Added a new "karate" martial arts style.
 - Fixed the oddity where blindfold-slot wearable items would always display a "You have been wearing <foo>" message when they got removed, even if the removal was due to an item-stealing monster, item teleportation effect or the like.
