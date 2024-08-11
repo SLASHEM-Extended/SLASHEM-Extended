@@ -5067,7 +5067,7 @@ dotech()
 			break;
 
 		case T_MARTIAL_STYLE:
-			pline("A must have for martial arts users, this technique lets you switch to different martial arts styles. Depending on your skill levels, certain ones are available, plus brawling, which is the default. All other styles have upsides and downsides, so choose wisely, because the only way to switch is by using this tech again! Also, most of these styles work only if you're fighting bare-handed.");
+			pline("A must have for martial arts users, this technique lets you switch to different martial arts styles. Depending on your skill levels, certain ones are available, plus brawling, which is the default. All other styles have upsides and downsides, so choose wisely, because the only way to switch is by using this tech again! Also, most of these styles work only if you're fighting bare-handed. Your current style is %s.", currentmartialstyle());
 			break;
 
 		case T_PERMAMORPH:

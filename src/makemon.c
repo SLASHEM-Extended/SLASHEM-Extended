@@ -8254,6 +8254,18 @@ register struct	monst	*mtmp;
 			}
 		}
 
+		if (ptr == &mons[PM_SNOROLOGIST]) {
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(50)) (void) mongets(mtmp, rnd_defensive_item(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+		     if (!rn2(400)) (void) mongets(mtmp, rnd_defensive_item_new(mtmp));
+
+		     (void)mongets(mtmp, BULLWHIP);
+		     (void)mongets(mtmp, LEATHER_JACKET);
+		     (void)mongets(mtmp, FEDORA);
+		     if (rn2(2)) (void)mongets(mtmp, PICK_AXE);
+		}
+
 		if (ptr == &mons[PM_ASS_COWBOY]) {
 			(void) mongets(mtmp, BULLWHIP);
 			(void) mongets(mtmp, FLINTLOCK);
@@ -25679,6 +25691,7 @@ register int	mmflags;
 	mtmp->codeguessed = FALSE;
 	mtmp->flagged_for_death = FALSE;
 	mtmp->legdamage = 0;
+	mtmp->caught_stealing = FALSE;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
 	if (MoveMorkXtra) mtmp->movement += rnd(24);

@@ -1615,6 +1615,11 @@ playersteal()
 	if(MON_AT(x, y)) {
 		register struct monst *mdat = m_at(x, y);
 
+		if (mdat->caught_stealing) {
+			pline("That monster has already caught you, so you cannot steal from it anymore.");
+			return(0);
+		}
+
 		/* calculate chanch of sucess */
 		base = 5;
 		dexadj = 1;
@@ -1724,6 +1729,7 @@ playersteal()
 			return(1);
 		} else {
 			You("failed to steal anything.");
+			mdat->caught_stealing = TRUE;
 			setmangry(mdat);
 			return(1);
 	       }

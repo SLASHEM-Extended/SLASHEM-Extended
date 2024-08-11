@@ -187,6 +187,7 @@ struct monst {
 	Bitfield(slowtimeout,1);	/* for spell of slow monster or inertia */
 	Bitfield(codeguessed,1);	/* did you guess the secret code on this monster? */
 	Bitfield(flagged_for_death,1);	/* should die instantly after spawning */
+	Bitfield(caught_stealing,1);	/* did the monster catch you when you tried the #borrow command? */
 
 	Bitfield(mtraitor,1);	/* Former pet that turned traitor */
 	Bitfield(isshk,1);	/* is shopkeeper */

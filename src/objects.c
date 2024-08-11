@@ -9303,6 +9303,11 @@ SCROLL((char *)0,               "KRO BAS ENG KAI",  P_NONE,     1,   0, 100, CLR
 SCROLL((char *)0,               "BUERGERINNENMEISTERINNENKANDIDATINNEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
 SCROLL((char *)0,               "W GU RN IAH HND DHE EDR AIB LOA SR",  P_NONE,     1,   0, 100, CLR_BRIGHT_GREEN, 1),
 SCROLL((char *)0,               "SPAGHETTI WITH RAGU SAUCE IS MEAN",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "AMY IS TOO BAD FOR TOMESX IRONMAN MODE",  P_NONE,     1,   0, 100, CLR_BRIGHT_MAGENTA, 1),
+SCROLL((char *)0,               "EISKUGEL EISKUGEL BUNG BUNG",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
+SCROLL((char *)0,               "GROEOSAZ  GROESSTER OBERSCHUMMLER ALLER ZEITEN",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
+SCROLL((char *)0,               "SEMPER FIDELIS  NOAM VOSTRAM SEELES",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "ZENTRUM FUER STUDIENBERATUNG UND EITERBILDUNG",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
