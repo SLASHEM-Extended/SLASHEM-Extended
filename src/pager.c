@@ -29257,6 +29257,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Any special ability you may have is purely reflexive.",
 	"You don't have another special ability in your normal form!",
 	"You don't have a special ability in your normal form!",
+	"Eating dark chocolate may give you constipation while white chocolate can result in diarrhea. The former means that you constantly feel like you had to take a shit but are unable to actually do so, while the latter could cause you to take a shit uncontrollably before you can reach a toilet.",
+
 };
 
 const char *

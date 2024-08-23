@@ -328,11 +328,13 @@ struct blitz_tab {
 
 #define T_HARDCORE_ALIENIZATION	243 /* lvlup */
 
-#define T_JEDI_JUMP	244 /* lvlup */
-#define T_CHARGE_SABER	245 /* lvlup */
-#define T_TELEKINESIS	246 /* lvlup */
+#define T_BUC_TEST	244
+
+#define T_JEDI_JUMP	245 /* lvlup */
+#define T_CHARGE_SABER	246 /* lvlup */
+#define T_TELEKINESIS	247 /* lvlup */
  
-#define MAXTECH 247
+#define MAXTECH 248
 
 /* by Amy: #monster abilities */
 

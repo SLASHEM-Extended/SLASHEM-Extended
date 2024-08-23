@@ -71,6 +71,7 @@ usecameraagain:
 
 	if (obj->spe <= 0) {
 		pline("%s", nothing_happens);
+		if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
 		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
 			pline("Oh wait, actually something bad happens...");
 			badeffect();
@@ -1908,12 +1909,20 @@ struct obj *obj;
 			|| (obj->otyp == MAGIC_LAMP && obj->spe == 0)) {
 		if ((obj->otyp == BRASS_LANTERN) || (obj->otyp == DIM_LANTERN)
 			|| is_lightsaber(obj)
-			)
+			) {
 			Your("%s has run out of power.", xname(obj));
-		else if (obj->otyp == TORCH) {
-		        Your("torch has burnt out and needs to be recharged.");
+			if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
 		}
-		else pline("This %s has no oil.", xname(obj));
+		else if (obj->otyp == TORCH) {
+			Your("torch has burnt out and needs to be recharged.");
+			if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
+		}
+		else {
+			pline("This %s has no oil.", xname(obj));
+			if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
+		}
+
+
 		return;
 	}
 
@@ -2406,6 +2415,7 @@ register struct obj *obj;
 	 */
 	if (obj->spe <= 0) {
 		You(FunnyHallu ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
+		if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
 	}
@@ -2534,6 +2544,7 @@ register struct obj *obj;
 	 * moves, we've got to deal with decaying corpses...
 	 */
 	if (obj->spe <= 0) {
+		if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
 		You(FunnyHallu ? "can't seem to generate anything. Weird..." : "seem to be out of tins.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
@@ -3433,8 +3444,10 @@ newbossSING:
 	} else {
 	    if (obj->known)
 		pline("%s empty.", Tobjnam(obj, "are"));
-	    else
+	    else {
 		pline("%s to be empty.", Tobjnam(obj, "seem"));
+		if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
+	    }
 
 	    if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 	}
@@ -6270,7 +6283,10 @@ dyechoice:
 
 		if (nochargechange >= rnd(10)) consume_obj_charge(obj, FALSE);
 
-	    } else pline("This orb is burnt out.");
+	    } else {
+		pline("This orb is burnt out.");
+		if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
+	    }
 	    break;
 	case ORB_OF_CHARGING:
 		if(obj->spe > 0) {
@@ -6284,6 +6300,7 @@ dyechoice:
 			recharge(otmp, obj->cursed ? -1 : (obj->blessed ? 1 : 0));
 		} else {
 			pline("This orb is burnt out.");
+			if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
 		}
 		break;
 	case ORB_OF_DESTRUCTION:

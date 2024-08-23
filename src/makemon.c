@@ -34826,6 +34826,7 @@ struct obj *bag;
 	impossible("bad bag o' tricks");
     } else if (bag->spe < 1) {
 	pline("%s", nothing_happens);
+	if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) bag->known = TRUE;
 	if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
 		pline("Oh wait, actually something bad happens...");
 		badeffect();

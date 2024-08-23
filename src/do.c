@@ -330,12 +330,12 @@ doaltarobj(obj)  /* obj is an object dropped on an altar */
 		badeffect();
 	}
 
-	if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && !obj->bknown && !(obj && obj->otyp == POT_WATER) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+	if (!rn2(findpriest(temple_occupied(u.urooms)) ? 1000 : 200) && !obj->bknown && !(obj && obj->otyp == POT_WATER) && !issoviet && (!Is_astralevel(&u.uz)) ) {
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */
 		newsym(u.ux,u.uy);
 		return;
-	} else if (!rn2(findpriest(temple_occupied(u.urooms)) ? 500 : 100) && isfriday && !obj->bknown && !(obj && obj->otyp == POT_WATER) && !issoviet && (!Is_astralevel(&u.uz)) ) {
+	} else if (!rn2(findpriest(temple_occupied(u.urooms)) ? 1000 : 200) && isfriday && !obj->bknown && !(obj && obj->otyp == POT_WATER) && !issoviet && (!Is_astralevel(&u.uz)) ) {
 		levl[u.ux][u.uy].typ = ROOM;
 		pline_The("altar suddenly vanishes!"); /* Yes, we're preventing altar abuse here, or trying to, at least. --Amy */
 		newsym(u.ux,u.uy);

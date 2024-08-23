@@ -1192,9 +1192,10 @@ struct obj *obj;
     You("peer into %s...", the(xname(obj)));
     nomul(-rnd(10), "gazing into a crystal ball", TRUE);
     nomovemsg = "";
-    if (obj->spe <= 0)
+    if (obj->spe <= 0) {
 	pline_The("vision is unclear.");
-    else {
+	if (!PlayerCannotUseSkills && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
+    } else {
 	int class;
 	int ret = 0;
 

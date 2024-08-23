@@ -6147,6 +6147,17 @@ static const char *epitaphs[] = {
 	"Mirilith the Queen of Arda, she danced until the end of time with her maid Klara whose black high-heeled sandals are very beautiful <3",
 	"If you find a WoW in the first room, you will die horribly, just like you will die horribly if you spend half an hour startscumming before you finally play the game in earnest.",
 	"HELP! I've deleted the internet!!!",
+	"Well maybe I shouldn't have played on hard difficulty...",
+	"Told you not to play on hard difficulty.",
+	"Oh man, great game design, having damage traps that deal more damage than an average character has maximum hit points. Press X to not die. The dev of this game certainly doesn't know shit about game balance.",
+	"I tell ya flat out, teleporting bosses are broken. I've done enough damage to kill several Diablos in normal difficulty now but due to that broken healing effect I'm still no closer to killing this teleporting stone skin ghoul lord.",
+	"Man this dev just doesn't know how to balance the playable roles, I picked one that turned out to suck and when I complained, he said 'well some roles are harder than others, tough luck, I won't change them'. That's bullshit.",
+	"This dev made it so that some of the playable roles suck, but he doesn't tell you which ones, meaning you have to figure that out yourself so that you can then steer clear of them. That's some garbage game design and the dev should feel bad.",
+	"Man, this playable role is good at only the one thing it's named after but has sucky values in everything else! Why is that role even in the game, is it a trap so that players pick it thinking it could be good, while that other role is just far better in every way?",
+	"Man, the priest sucks, he can't kill anything in melee but also doesn't have good spellcasting! What a sucky role, why would anyone ever want to play that?? It's not even a jack of all trades, it's a noob of all trades and you're much better off just playing a warrior or mage!",
+	"Goh, the archer is no fun to play, you always have to run after your ammo to pick it back up and the ammo stacks use up valuable slots of your inventory but you cannot even merge them unless their irrelevant bonuses match exactly! It's stupid, you should just play a warrior, then you never have to worry about that shit!",
+	"Mages suck, they always have too little hit points! Sure, your spells can obliterate pretty much anything but few spells can hit monsters around a corner and spending even a single turn in the collective lines of sight of a group of monsters can be enough for you to just die instantly!",
+	"Who the hell came up with the stormbringer and made it so that his critical hits can do 300 or so stun damage when 100 units of stun are enough to knock you out and cause a technical instadeath?????????????",
 
 };
 

@@ -7436,6 +7436,9 @@ whisperchoice:
 			}
 		}
 
+		/* this spell is so costly to cast and so high level, I decide to give it some additional effect --Amy */
+		incr_itimeout(&HKeen_memory, HKeen_memory ? (rnd(50) + spell_damage_bonus(spellid(spell))*2) : (rn1(250, 250) + spell_damage_bonus(spellid(spell))*20));
+
 		break;
 
 	case SPE_STASIS:

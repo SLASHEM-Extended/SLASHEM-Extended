@@ -5679,6 +5679,10 @@ dozap()
 	/* zappable addition done by GAN 11/03/86 */
 	if(!zappable(obj)) {
 		pline("%s", nothing_happens);
+
+		/* Amy addition: if you're good at using devices, identify the charge count if the wand is empty */
+		if (!PlayerCannotUseSkills && (obj->spe == 0) && P_SKILL(P_DEVICES) >= P_SKILLED) obj->known = TRUE;
+
 		if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
 			pline("Oh wait, actually something bad happens...");
 			badeffect();

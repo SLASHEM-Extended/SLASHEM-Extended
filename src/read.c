@@ -9980,7 +9980,7 @@ tunguskaagain:
 		break;
 	case SPE_IDENTIFY:
 		if (confused) break;
-		if (!rn2(1000)) {
+		if (!rn2(2000)) {
 
 			forget(3, FALSE);
 			pline("Oh, no! Your mind has gone blank!");

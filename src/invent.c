@@ -19401,7 +19401,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			case SPE_NATURE_BEAM:
 				pline("This spell fires powerful rays of fire, cold, lightning or poison (randomly chosen)."); break;
 			case SPE_WHISPERS_FROM_BEYOND:
-				pline("Tries to identify your entire inventory, because unlike ToME, there is no *Identify* effect in this game. It additionally allows you to secure identify one item without fail. There is no 'sanity' stat either (well actually there is, but who cares that this spell causes it to go up), so it permanently reduces your INT and WIS by one or two instead, and if any of those go below 3, you die instantly!"); break;
+				pline("Tries to identify your entire inventory, because unlike ToME, there is no *Identify* effect in this game. It additionally allows you to secure identify one item without fail. Plus it grants you temporary keen memory. There is no 'sanity' stat either (well actually there is, but who cares that this spell causes it to go up), so it permanently reduces your INT and WIS by one or two instead, and if any of those go below 1, you die instantly!"); break;
 			case SPE_STASIS:
 				pline("Both you and all monsters will be frozen in time until the spell effect ends. Protip: cast it to wait out annoying status effects or regenerate your health without being interrupted."); break;
 			case SPE_CRYOGENICS:
