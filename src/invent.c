@@ -31261,6 +31261,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +5 to-hit and +12 shock damage, lightning and stun resistance when wielded."); break;
 				case ART_STABITEGRITY:
 					pline("Artifact specs: a monster wearing this saddle has drain and disintegration resistance."); break;
+				case ART_GOLDEN_SPIRIT_GEL:
+					pline("Artifact specs: +20 to-hit and +15 damage against angels, +3 multishot when throwing them."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

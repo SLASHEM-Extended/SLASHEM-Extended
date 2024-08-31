@@ -926,6 +926,7 @@ init_randarts()
 	artilist[ART_FLAI_AWEI].otyp = randartarrowX();
 	artilist[ART_CREAMRES].otyp = randartslingX();
 	artilist[ART_FLIUFLIUFLIUUUUUUU_].otyp = randartdartX();
+	artilist[ART_GOLDEN_SPIRIT_GEL].otyp = randartdartX();
 	artilist[ART_DART_OF_THE_ASSASSIN].otyp = randartdartX();
 	artilist[ART_CAPAUER].otyp = randartshurikenX();
 	artilist[ART_ETERNALE_DELAY].otyp = randartmattockX();

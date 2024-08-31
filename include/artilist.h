@@ -19483,6 +19483,10 @@ A("Stabitegrity",				TANK_SADDLE, /* steed has resist drain life and disint */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
+A("Golden Spirit Gel",				DART, /* randart2 dart, +3 multishot when throwing them */
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_ANGEL),
+	PHYS(20, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

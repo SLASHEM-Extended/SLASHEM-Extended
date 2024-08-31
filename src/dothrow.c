@@ -292,6 +292,7 @@ int thrown;
 	    }
 
 	    if (obj && obj->oartifact == ART_WIWIU_) multishot += rnd(3);
+	    if (obj && obj->oartifact == ART_GOLDEN_SPIRIT_GEL) multishot += 3;
 	    if (obj && obj->oartifact == ART_LEAD_SYRINGE) multishot += 2;
 	    if (obj && obj->otyp == RAPID_DART) multishot += 2;
 	    if (obj && obj->otyp == NINJA_STAR) multishot += 3;
