@@ -2665,3 +2665,5 @@ Aetheric items cannot be obtained in any way. They can only be used by monsters.
 Amy's hobbies, apart from playing video games, involve swimming, traveling around on trains, and buying shoes.
 Amy is chaotic neutral, according to the D&D alignment test. Incidentally, that is the best alignment since it means she's free to do whatever she wants but still has a conscience preventing her from doing truly evil things.
 If you have a weapon that is +5 or higher, you may still run into monsters who cannot reliably be hurt by it. In fact, the "needs +X weapon to hit" monster flags can stack and make it so that a monster will require a weapon with up to +10 enchantment.
+In SLEX, most artifacts that generate randomly can spawn more than once. That's useful, as it allows you to find another copy if anything bad happens to the original, however you cannot wish for artifacts that have been generated already.
+If an artifact that only spawns in a specific location gets generated, it often gets re-flagged to allow more copies of that artifact to generate randomly, but there's no guarantee that you'll find another.

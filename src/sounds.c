@@ -116,6 +116,9 @@ dosounds()
 		"royal trumpets.",
 		"what sounds like a royal ceremony.",
 		"Queen Beruthiel's cats!",
+		"a royal coronation/culmination taking place!",
+		"the king scolding his most trusted advisor for failing a task!",
+		"the queen conducting an execution! Oh my god, a poor, helpless woman was guillotined!!",
 	};
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (DEADMONSTER(mtmp)) continue;
@@ -124,7 +127,7 @@ dosounds()
 		!is_animal(mtmp->data) &&
 		mon_in_room(mtmp, COURT)) {
 		/* finding one is enough, at least for now */
-		int which = rn2(5+hallu);
+		int which = rn2(5+hallu*4);
 
 		if (which != 2) You_hear("%s", throne_msg[which]);
 		else		pline(throne_msg[2], uhis());
@@ -292,8 +295,13 @@ dosounds()
 		"blades being honed.",
 		"loud snoring.",
 		"dice being thrown.",
+		"a soldier checking up on a gun.", /* they have firearms in SLASH'EM */
+		"someone talking about the grenade cache.", /* and also frag grenades */
 		"General MacArthur!",
 		"the senior drill instructor shouting at you for being a lazy fatass!",
+		"someone sneer 'Where you from, soldier? Texas?? Holy shit, you know what comes from Texas!'", /* Half Life: Opposing Forceses */
+		"hear someone scream 'FIRE! IN! THE! ASS! HOLE!'",
+		"hear someone pulling the pin of a grenade, and shockedly realize it's a double free corruption grenade that can crash the game!", /* bug that existed in SLEX */
 	};
 	int count = 0;
 
@@ -307,7 +315,7 @@ dosounds()
 		mon_in_room(mtmp, BARRACKS) &&
 		/* sleeping implies not-yet-disturbed (usually) */
 		(mtmp->msleeping || ++count > 5)) {
-		You_hear("%s", barracks_msg[rn2(3+hallu*2)]);
+		You_hear("%s", barracks_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	}
@@ -317,12 +325,15 @@ dosounds()
 			"hear something about streptococus.",
 			"smell chloroform nearby.",
 			"hear someone cursing viruses.",
+			"hear the sound of an ambulance.",
 			"listen to patients screaming while the doctor is conducting the sectio.",
 			"seem to hear Doctor Frankenstein.",
 			"hear someone scream 'NOOOOOO! Get away from my teeth! Dentists are TERRIBLE people!!!'",
 			"suddenly have a flashback to your last OP!",
+			"do not want to get another covid shot, the last one already caused your body to react all strangely and, most annoyingly, you endured a covid-19 infection anyway! So you have every right to believe that the vaccination does in fact do nothing at all!",
+			"hear a pained woman scream 'WHERE ARE THE DAMN PAINKILLERS YOU FAT BITCH!!'", /* woman trying to give birth to a child */
 		};
-		You("%s", hospital_msg[rn2(4+hallu*3)]);
+		You("%s", hospital_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_nymphhall && !rn2(200)) {
@@ -365,12 +376,14 @@ dosounds()
 			"hear mandibles clicking.",
 			"notice webs everywhere.",
 			"notice little openings in the floor.",
+			"see a tiny insect embedded in a cocoon.",
 			"trip over a broken spider egg.",
 			"see a giant tarantula squittering around!",
 			"have to fight Arich, the old cheater, while listening to a dramatic music that is unfortunately too quiet.",
 			"must get past Barbos' Barrier!",
+			"suddenly get an irrational fear of glowflies, since you just know they'll wait until you sleep, spin a thick cocoon around you, and then very slowly start feasting on your exposed flesh until the only thing that remains of you is a grisly-looking skeleton!", /* based on a crime thriller Amy read once; while she knows that glowflies don't actually do that IRL, she still has to relive the horrible experience of reading that book every time she sees such a glowing, flying bug */
 		};
-		You("%s", spiderhall_msg[rn2(3+hallu*4)]);
+		You("%s", spiderhall_msg[rn2(4+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_trollhall && !rn2(200)) {
@@ -378,12 +391,13 @@ dosounds()
 			"hear a grunting noise.",
 			"notice a horrible smell.",
 			"hear loud footsteps going up and down the halls.",
+			"hear a rough voice comparing the merits of vi and emacs.",
 			"trip over a stinking pile of shit!",
 			"suddenly see a huge monster appearing right in front of you!",
 			"hear some usenetter spouting radical bullshit!",
 			"can't seem to find the plonking switch!",
 		};
-		You("%s", trollhall_msg[rn2(3+hallu*4)]);
+		You("%s", trollhall_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_humanhall && !rn2(200)) {
@@ -397,8 +411,9 @@ dosounds()
 			"hear a glass of wine breaking!",
 			"listen to a radio broadcast: For the next five days, the dungeon's estimated temperature high is 96 degrees. Now, is that in Fahrenheit or Kelvin?",
 			"know that there's a celebration being held for YOU! Where do you get this party started?",
+			"hear somebody announce: 'So are we starting to chase down these intruders yet?'",
 		};
-		You("%s", humanhall_msg[rn2(5+hallu*4)]);
+		You("%s", humanhall_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_golemhall && !rn2(200)) {
@@ -652,8 +667,8 @@ dosounds()
 			"hear water dripping onto metal.",
 			"hear a loud crunching sound.",
 			"hear a ceiling tile fall.",
-			"the scraping of metal on metal.",
-			"chains clinking.",
+			"hear the scraping of metal on metal.",
+			"hear chains clinking.",
 			"smell a lot of rust.",
 			"hear a gun clank.",
 			"hear iron oxidize.",
@@ -662,7 +677,7 @@ dosounds()
 			"hear the sound of a toilet latch.",
 			"wonder why the hell this set of messages is called 'library_msg' in the game's source.",
 			"feel that parts of the floor have been washed away.",
-			"the nearby ACME building!",
+			"hear the nearby ACME building!",
 		};
 		You("%s", library_msg[rn2(7)+hallu*7]);
 		return;
@@ -696,8 +711,9 @@ dosounds()
 			"are chased by a speeding police car!",
 			"feel that the safest place in existence is right in the middle of the enemies' base camp.", /* a joke from one of Amy's fanfics where the robbers were discussing where to hide and one of them sarcastically suggested hiding in the cop station */
 			"hear the sound of a fucking army helicopter!", /* in GTA games, the army comes for you if your cop wanted level is maxed */
+			"encounter a woman who looks dressed like a cop, but she isn't actually a cop, as she's not trying to bust you; in fact, she's wearing high heels! Who the hell is she?", /* a meter maid */
 		};
-		if (rn2(5)) You("%s", kopstation_msg[rn2(5+hallu*4)]);
+		if (rn2(5)) You("%s", kopstation_msg[rn2(5+hallu*5)]);
 		else verbalize("Alert! All units, apprehend %s immediately!", playeraliasname);
 		return;
 	    }
@@ -727,12 +743,14 @@ dosounds()
 			"hear the dungeon master testing a set of dice.",
 			"feel that this particular floor is especially random.",
 			"have an unknown feeling.",
+			"feel that the RNG is putting your abilities to the test.",
 			"just know that the monsters on this level have the most evil and unbalanced attacks possible.",
 			"test your d20 several times, only to realize in shock that it always rolls 1!",
 			"are invited to a game of Dungeons & Dragons by the game master!",
 			"listen to some gamers rolling dice.",
+			"think it's really unbalanced that 'random damage type' monster attacks can roll rider-grade attacks.",
 		};
-		You("%s", rngcenter_msg[rn2(4+hallu*4)]);
+		You("%s", rngcenter_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 
@@ -1006,13 +1024,15 @@ dosounds()
 			"feel the presence of ancient beings.",
 			"have a primordial feeling.", /* the lich in that room is a really ancient being */
 			"are struck with awe at the sight of these structures.", /* refers to the architecture to the mummies' tomb */
+			"definitely feel the presence of a really ancient corpse.",
 			"hear the frightening sounds of something you do NOT, EVER, want to anger.", /* Elona big daddy */
 			"realize that you've trespassed in the tomb of an ancient pharao.",
 			"are afraid of accidentally equipping cursed items.",
 			"hear the dead walking.",
 			"hear the dead potatoes walking. And the dissolved undead potatoes, returned potatoes and whatever other kind of potatoes as well.",
+			"hear someone singing a song that always goes 'Oceanos de oro, y tumbas de sal!' Meaning: oceans of gold, and barrels of salt!", /* yeah I know, it's actually tombs of salt */
 		};
-		You("%s", cursedmummyroom_msg[rn2(4+hallu*5)]);
+		You("%s", cursedmummyroom_msg[rn2(5+hallu*6)]);
 		return;
 	    }
 	    if (level.flags.has_arduousmountain && !rn2(200)) {
@@ -1082,8 +1102,9 @@ dosounds()
 			"fell into an open sewer hole!",
 			"think that it must be raining outside, judging by the ratty smell.", /* canal lids on the ground sometimes emit a horrific smell when it's raining... */
 			"suddenly bear witness to a huge invasion of ants, rats, cockroaches and other vermin!",
+			"feel that the cockroach is an abomination of nature, no animal should have such HUGE antennae!",
 		};
-		You("%s", verminroom_msg[rn2(4+hallu*3)]);
+		You("%s", verminroom_msg[rn2(4+hallu*4)]);
 		return;
 	    }
 	    if (level.flags.has_questorroom && !rn2(200)) {
@@ -1092,12 +1113,18 @@ dosounds()
 			"seem to hear your superiors calling your name.",
 			"suddenly meet one of your colleagues who is just passing by.",
 			"absolutely don't want to visit the canteen.", /* because the "food" that is served there gives your stomach trouble */
+			"think you've slacked off for long enough, time to get back to work.",
+			"feel that the quest leader is looking at you with *the eye*, waiting for you to finally complete that quest.",
+			"wonder whether that cute secretary girl will flirt back today.",
 			"are late for work! Now your boss will give you a final written warning!",
 			"find out that while you didn't lose your job yet, you have to continue working at 20%% reduced pay, and if you make one more mistake it'll get lowered even more.", /* inspired by jonadab */
 			"feel extremely nauseated all of a sudden. Maybe it was a mistake after all to eat canteen calls-itself-food.",
 			"are sooooooo fed up with your annoying colleague! Having to see that same insufferable person every day makes you want to vomit!",
+			"decide that if anyone calls you out for slacking off, you'll just tell them that your code's compiling.",
+			"remember the last letter of your boss, wherein he said that you've been put on probation for six months and if you make any mistake during that time, your pay will be reduced further. Also, you are now responsible for making sure that no customers complain.", /* inspired by jonadab */
+			"are suddenly caught by your supervisor, and he says 'Okay, so your values are all wrong. So now you won't get paid for the work you did today, the faculty manager will be notified, and we will have a close eye on your work from now on to ensure that you do your job properly next time!'",
 		};
-		You("%s", questorroom_msg[rn2(4+hallu*4)]);
+		You("%s", questorroom_msg[rn2(7+hallu*7)]);
 		return;
 	    }
 	    if (level.flags.has_miraspa && !rn2(200)) {
