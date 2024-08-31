@@ -808,7 +808,7 @@ exprecalc(void)
 						pline("You receive an elaborate auspicious message: At experience level %d, intelligent female monsters have more HP, and their to-hit against you is increased while your to-hit against them is reduced.", displaycheck);
 						break;
 					case 8:
-						pline("You receive an elaborate auspicious message: At experience level %d, farting monsters can fart at you from a distance, and if they find a toilet, they can paralyze you from infinitely far away.", displaycheck);
+						pline("You receive an elaborate auspicious message: At experience level %d, farting monsters can fart at you from a distance, and if they find a toilet, they can paralyze you from very far away.", displaycheck);
 						break;
 					case 9:
 						pline("You receive an elaborate auspicious message: At experience level %d, monsters with farting or high heel attacks may use them several times at once.", displaycheck);
