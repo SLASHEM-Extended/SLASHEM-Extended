@@ -1042,7 +1042,7 @@ gcrownu()
 	 * artifacts each game. Yes, random crowning gifts may suck, but this is SLASH'EM Extended, where you're never
 	 * supposed to be guaranteed an awesome item! Randomness and variety ftw! --Amy */
 	/* In Soviet Russia, communism dictates that everyone gets the Stormbringer because the type of ice block said so. */
-
+getrandomartigift:
 		obj = mk_artifact((struct obj *)0, a_align(u.ux,u.uy), TRUE);
 		if (obj) {
 		    if (obj->spe < 3) obj->spe = 3;
@@ -1211,6 +1211,15 @@ gcrownu()
 	    if (!Blind) Your("sword shines brightly for a moment.");
 	    obj = oname(obj, artiname(ART_EXCALIBUR));
 	    if (obj && obj->oartifact == ART_EXCALIBUR) u.ugifts++;
+	} else {
+		/* Amy: holy shit it actually was so that if you were lawful and not holding a plain long sword, you'd not get anything!
+		 * fixed now; in Soviet Russia you do in fact get nothing, of course, because the Kreml has better things to do than
+		 * distribute random artifact items to random adventurers just because those get crowned. */
+		if (issoviet) {
+			pline("Ty nikogda ne poluchish' artefakt, potomu chto idi na kher za igru v sovetskom rezhime. (vstav' chto-nibud' pro ledyanoy blok kharkharkhar kharkhar)");
+		} else {
+			goto getrandomartigift;
+		}
 	}
 	/* acquire Excalibur's skill regardless of weapon or gift */
 

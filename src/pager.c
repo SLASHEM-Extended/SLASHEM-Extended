@@ -5768,6 +5768,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Yesli vy naydete artefakt s nepravil'nym vyravnivaniyem, vy nichego ne smozhete sdelat'. Eto ne pozvolit vam yego zabrat'. Potomu chto tip ledyanoy glyby KHARKHAR-KHARKHAR KHAR samyy luchshiy!",
 "Vash bumerang slomayetsya, i sovetskaya ledyanaya glyba budet GROMKO SMEYAT'SYA MUA KHA KHA!",
 "Kreml' ne pozvolit nikomu uznat' summu obvineniy, ob''yavlennykh v den' otkrytiya, potomu chto grazhdanskiye litsa, imeyushchiye dostup k etoy informatsii, budut obvineny v gosudarstvennoy izmene.",
+"Konechno, v Sovetskoy Rossii ne razreshayetsya poluchat' bol'she odnogo podarka na koronatsiyu. Eto deystvitel'no kul'minatsiya kommunizma.",
 };
 
 static NEARDATA const char * const practicantlines[] = {
@@ -29285,6 +29286,19 @@ static NEARDATA const char * const fake_plines[] = {
 	"You remember the last letter of your boss, wherein he said that you've been put on probation for six months and if you make any mistake during that time, your pay will be reduced further. Also, you are now responsible for making sure that no customers complain.",
 	"You wonder whether that cute secretary girl will flirt back today.",
 	"You are suddenly caught by your supervisor, and he says 'Okay, so your values are all wrong. So now you won't get paid for the work you did today, the faculty manager will be notified, and we will have a close eye on your work from now on to ensure that you do your job properly next time!'",
+	"You have to dive through the next segment, and it's too long for you to hold your breath all the way. Which means that you have to find the hidden underwater oxygen tanks and if you miss one, you'll drown.",
+	"You want to use the shower, but someone rigged it so the water coming out of it is really acid! You gotta avoid that shower!",
+	"You hear someone announce 'Way to go! New record! You are the champion!!'",
+	"You wonder whether this game has control stick support.",
+	"You encounter the annoying bug where the game just closes with no message.",
+	"You suddenly find yourself at the MS-DOS prompt. The game crashed so hard that the entire Windows 3.1 operating system just stopped running, without even giving a message or anything.",
+	"You hear a kid ask 'Ohh, look at all the cute zoo animals! May I feed them? May I pet them? Would you mind if I incinerate them?'",
+	"You feel like calling PETA, since it's cruel if animals are bred in captivity.",
+	"You feel like there will be steak tonight.",
+	"You absolutely feel that people eat tasty animals. In fact, you feel like eating one right now!",
+	"You hear someone chasing after a shoplifter!",
+	"You hear a barker praising the wares of a store.",
+	"You hear a shifty voice say 'Fear not, our wares will definitely last for a whole life and come with a two-day warranty!'",
 
 };
 
