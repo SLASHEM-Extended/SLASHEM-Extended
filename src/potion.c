@@ -7263,6 +7263,7 @@ extralongsqueak()
 	return FALSE;
 }
 
+/* permanent stat drain by Amy */
 void
 statdrain()
 {
@@ -7292,6 +7293,8 @@ statdrain()
 		pline("Your steeled body prevents the stat loss!");
 		return;
 	}
+
+	/* it is intentional that mithril equipment doesn't protect you from this effect */
 
 	u.cnd_permstatdamageamount++;
 
@@ -8319,8 +8322,30 @@ maybehackimplant()
 void
 statdebuff()
 {
+	int mithrilitemcount = 0;
+
 	if (Role_if(PM_ASTRONAUT) && rn2(2)) {
 		pline("Your steeled body prevents the stat loss!");
+		return;
+	}
+
+	if (uwep && objects[uwep->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarm && objects[uarm->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmc && objects[uarmc->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmh && objects[uarmh->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarms && objects[uarms->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmg && objects[uarmg->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmf && objects[uarmf->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uarmu && objects[uarmu->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uamul && objects[uamul->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uimplant && objects[uimplant->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uleft && objects[uleft->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (uright && objects[uright->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+	if (ublindf && objects[ublindf->otyp].oc_material == MT_MITHRIL) mithrilitemcount++;
+
+	if (mithrilitemcount > 0 && (mithrilitemcount >= rnd(20))) {
+		pline("Your mithril equipment prevents the stat loss!");
 		return;
 	}
 
