@@ -3265,10 +3265,10 @@ int x;
 			}
 		}
 
-		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
-		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
-		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
+		if (AllStatsAreLower) tmp -= min(tmp - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= min(tmp - 3, 10);
+		if (have_lowstatstone()) tmp -= min(tmp - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= min(tmp - 3, 10);
 
 	} else if (x == A_CHA) {
 		/*if (tmp < 18 && (youmonst.data && youmonst.data->mlet == S_NYMPH ||
@@ -3521,10 +3521,10 @@ int x;
 		/* having a hemorrhage means you don't look so good... --Amy */
 		if (PlayerBleeds > 100) tmp--;
 
-		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
-		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
-		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
+		if (AllStatsAreLower) tmp -= min(tmp - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= min(tmp - 3, 10);
+		if (have_lowstatstone()) tmp -= min(tmp - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= min(tmp - 3, 10);
 
 	} else if (x == A_INT || x == A_WIS) {
 		/* yes, this may raise int/wis if player is sufficiently
@@ -3680,10 +3680,10 @@ int x;
 			tmp -= norahunger;
 		}
 
-		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
-		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
-		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
+		if (AllStatsAreLower) tmp -= min(tmp - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= min(tmp - 3, 10);
+		if (have_lowstatstone()) tmp -= min(tmp - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= min(tmp - 3, 10);
 
 		if (autismweaponcheck(ART_MCCAULEY_S_INTELLIGENCE) && tmp > 6 && x == A_INT) tmp = 6;
 		if (uarmf && uarmf->oartifact == ART_KILLCAP && tmp > 6) tmp = 6;
@@ -3866,10 +3866,10 @@ int x;
 			tmp -= norahunger;
 		}
 
-		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
-		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
-		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
+		if (AllStatsAreLower) tmp -= min(tmp - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= min(tmp - 3, 10);
+		if (have_lowstatstone()) tmp -= min(tmp - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= min(tmp - 3, 10);
 
 	} else { /* A_CON */
 
@@ -3984,10 +3984,10 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_FAR_EAST_RELATION) tmp -= 3;
 		if (u.martialstyle == MARTIALSTYLE_BOOYAKASHA) tmp -= 5;
 
-		if (AllStatsAreLower) tmp -= min(ACURR(x) - 3, 10);
-		if (u.uprops[STATS_LOWERED].extrinsic) min(ACURR(x) - 3, 10);
-		if (have_lowstatstone()) min(ACURR(x) - 3, 10);
-		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) min(ACURR(x) - 3, 10);
+		if (AllStatsAreLower) tmp -= min(tmp - 3, 10);
+		if (u.uprops[STATS_LOWERED].extrinsic) tmp -= min(tmp - 3, 10);
+		if (have_lowstatstone()) tmp -= min(tmp - 3, 10);
+		if (uarmc && uarmc->oartifact == ART_SIECHELALUER) tmp -= min(tmp - 3, 10);
 
 	}
 
