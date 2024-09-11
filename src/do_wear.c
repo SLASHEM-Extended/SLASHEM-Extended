@@ -2660,6 +2660,8 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_JOLENE_S_ZEAL && uarmh->spe < 5) uarmh->spe = 5;
+
     if (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) {
 	curse(uarmh);
 	uarmh->hvycurse = uarmh->prmcurse = uarmh->stckcurse = TRUE;

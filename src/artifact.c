@@ -233,6 +233,7 @@ init_randarts()
 	 * WAN_MAKE_INVISIBLE = wand, SPE_MAGICTORCH = spellbook */
 
 	artilist[ART_SOULCALIBUR].otyp = randartmeleeweapon();
+	artilist[ART_DAMON_S_SHOCK].otyp = randartmeleeweapon();
 	artilist[ART_MOURNBLADE].otyp = randartmeleeweapon();
 	artilist[ART_NERF_BRAND].otyp = randartmeleeweapon();
 	artilist[ART_GRISGREN].otyp = randartmeleeweapon();

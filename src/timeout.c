@@ -2378,6 +2378,11 @@ nh_timeout()
 		deacrandomintrinsic(rnz(200));
 	}
 
+	if (!rn2(VulnerabilityXtra ? 25 : 250) && uamul && uamul->oartifact == ART_ISRA_S_ANGLE ) {
+
+		deacrandomintrinsic(rnz(200));
+	}
+
 	if (u.uprops[TELEPORTING_ITEMS].extrinsic) {
 
 		if (invent) {

@@ -15290,7 +15290,7 @@ register char *cmd;
 		cmd = parse();
 	}
 
-	if (*cmd && (LagBugEffect || u.uprops[LAG_BUG].extrinsic || have_lagstone()) && !rn2(LagEffectXtra ? 2 : 3) ) {
+	if (*cmd && (LagBugEffect || u.uprops[LAG_BUG].extrinsic || autismringcheck(ART_JOLIE_S_JOLLY) || have_lagstone()) && !rn2(LagEffectXtra ? 2 : 3) ) {
 		flags.move = FALSE;
 		return;
 

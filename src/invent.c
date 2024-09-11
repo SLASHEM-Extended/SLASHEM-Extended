@@ -31263,6 +31263,16 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: a monster wearing this saddle has drain and disintegration resistance."); break;
 				case ART_GOLDEN_SPIRIT_GEL:
 					pline("Artifact specs: +20 to-hit and +15 damage against angels, +3 multishot when throwing them."); break;
+				case ART_DAMON_S_SHOCK:
+					pline("Artifact specs: +12 shock damage, resist lightning and free action when wielded."); break;
+				case ART_ADILA_S_PINNACLE:
+					pline("Artifact specs: stronger version of anna trap effect, mystery and death resistance when worn."); break;
+				case ART_JOLENE_S_ZEAL:
+					pline("Artifact specs: stronger version of eveline trap effect, resistance piercing and spellboost when worn, becomes +5 if equipped while its enchantment value is lower."); break;
+				case ART_JOLIE_S_JOLLY:
+					pline("Artifact specs: stronger version of lag trap effect, half physical damage, double magic find, swimming and protects items from getting wet when worn."); break;
+				case ART_ISRA_S_ANGLE:
+					pline("Artifact specs: stronger version of vulnerability trap effect, prism reflection, resist psi, keen memory, memorization skill trains three times as fast and +10 ranged to-hit when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -19487,6 +19487,26 @@ A("Golden Spirit Gel",				DART, /* randart2 dart, +3 multishot when throwing the
 	(SPFX_RESTR|SPFX_DCLAS), 0, (S_ANGEL),
 	PHYS(20, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
 
+A("Damon's Shock",				LONG_SWORD, /* randart melee weapon, free action */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK), 0, 0,
+	ELEC(0, 12), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Adila's Pinnacle",				CLOAK_OF_FULL_NUTRITION, /* super anna trap, death and mystery resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Jolene's Zeal",				DROVEN_HELM, /* super eveline trap, resistance piercing, spellboost, becomes +5 when equipped if it was lower */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Jolie's Jolly",				RIN_MAGIC_FIND, /* super lag trap effect, double magic find, swimming, protects items from getting wet */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Isra's Angle",				AMULET_VERSUS_DEATH_SPELL, /* super vulnerability trap effect, prism reflection, resist psi, keen memory, memorization skill trains 3x as fast, +10 ranged to-hit */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

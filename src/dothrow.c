@@ -2800,6 +2800,7 @@ boolean polearming;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 	if (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) tmp -= 5;
 	if (uarmf && uarmf->oartifact == ART_CAT_ROCKZ) tmp += 5;
+	if (uamul && uamul->oartifact == ART_ISRA_S_ANGLE) tmp += 10;
 	if (Race_if(PM_SERB)) tmp += 1;
 	if (uarmg && uarmg->oartifact == ART_MAJOR_PRESENCE) tmp += 2;
 	if (uwep && uwep->oartifact == ART_SINSWORD && u.ualign.record < 0) tmp += 1;
