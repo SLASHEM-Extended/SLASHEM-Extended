@@ -9277,6 +9277,14 @@ void
 upnivel(guaranteed)
 boolean guaranteed;
 {
+	/* in evilvariant mode, the covid vaccination still causes you to get covid first :-P
+	 * after all, vaccination means injecting (weaker) viri into the body... and in the evil variant,
+	 * those just happen to be not so weak after all so you actually get infected */
+	if (evilfriday) {
+		Your("body reacts strangely!");
+		nivellate();
+	}
+
 	if (issoviet && !guaranteed) return; /* lol */
 	if (evilfriday && !guaranteed && rn2(3)) return; /* tough luck */
 	if (u.ulevel < 4) return; /* not available yet */
