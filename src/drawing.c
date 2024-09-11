@@ -262,13 +262,13 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'{', "toilet",         C(CLR_YELLOW)},  /* toilet */
 	{'{', "fountain",       C(CLR_BRIGHT_BLUE)},   /* fountain */
 	{'}', "water",		C(CLR_BRIGHT_BLUE)},	/* pool */
-	{'.', "ice",		C(CLR_CYAN)},	/* ice */
+	{'1', "ice",		C(CLR_CYAN)},	/* ice */
 /*40*/	{'}', "molten lava",	C(CLR_RED)},	/* lava */
-	{'.', "lowered drawbridge",C(CLR_ORANGE)},	/* vodbridge */
-	{'.', "lowered drawbridge",C(CLR_ORANGE)},	/* hodbridge */
+	{'1', "lowered drawbridge",C(CLR_MAGENTA)},	/* vodbridge */
+	{'1', "lowered drawbridge",C(CLR_MAGENTA)},	/* hodbridge */
 	{'#', "raised drawbridge",C(CLR_ORANGE)},/* vcdbridge */
 	{'#', "raised drawbridge",C(CLR_ORANGE)},/* hcdbridge */
-	{'`', "air",		C(CLR_YELLOW)},	/* open air */
+	{'`', "air",		C(CLR_BLACK)},	/* open air */
 	{'`', "cloud",		C(CLR_CYAN)},	/* [part of] a cloud */
 	{'#', "solid rock",		C(CLR_BROWN)},	/* dungwall */
 	{'}', "water",		C(CLR_BRIGHT_BLUE)},	/* under water */
@@ -284,17 +284,17 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'\\', "burning wagon",		C(CLR_ORANGE)},	/* burningwagon */
 	{'|', "wooden table",		C(CLR_BROWN)},	/* woodentable */
 /*60*/	{'|', "rude straw mattress",		C(CLR_YELLOW)},	/* strawmattress */
-	{'.', "snow",		C(CLR_WHITE)},	/* snow */
-	{'.', "ash",		C(CLR_ORANGE)},	/* ash */
-	{'.', "sand",		C(CLR_BROWN)},	/* sand */
-	{'.', "paved floor",		C(CLR_BRIGHT_GREEN)},	/* pavedfloor */
-	{'.', "highway",		C(CLR_YELLOW)},	/* highway */
-	{'.', "grass",		C(CLR_GREEN)},	/* grassland */
-	{'.', "nether mist",		C(CLR_BRIGHT_MAGENTA)},	/* nethermist */
-	{'`', "stalactite",		C(CLR_BRIGHT_MAGENTA)},	/* stalactite */
-	{'.', "floor of the crypt",		C(CLR_BRIGHT_BLUE)},	/* cryptfloor */
-/*70*/	{'`', "bubble",		C(CLR_ORANGE)},	/* bubbles */
-	{'`', "rain cloud",		C(CLR_BRIGHT_BLUE)},	/* raincloud */
+	{'1', "snow",		C(CLR_BRIGHT_CYAN)},	/* snow */
+	{'`', "ash",		C(CLR_RED)},	/* ash */
+	{'`', "sand",		C(CLR_BROWN)},	/* sand */
+	{'`', "paved floor",		C(CLR_BRIGHT_GREEN)},	/* pavedfloor */
+	{'`', "highway",		C(CLR_YELLOW)},	/* highway */
+	{'`', "grass",		C(CLR_GREEN)},	/* grassland */
+	{'2', "nether mist",		C(CLR_BRIGHT_MAGENTA)},	/* nethermist */
+	{'1', "stalactite",		C(CLR_ORANGE)},	/* stalactite */
+	{'`', "floor of the crypt",		C(CLR_BRIGHT_BLUE)},	/* cryptfloor */
+/*70*/	{'2', "bubble",		C(CLR_GRAY)},	/* bubbles */
+	{'2', "rain cloud",		C(CLR_BRIGHT_BLUE)},	/* raincloud */
 	{'|', "pentagram inscribed on the floor",		C(CLR_ORANGE)},	/* pentagram */
 	{'|', "ornately carved bed",		C(CLR_BRIGHT_CYAN)},	/* carvedbed */
 	{'#', "grayout",		C(CLR_GRAY)},	/* gray glyph */
@@ -1209,10 +1209,10 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	0xf4, /*(S_toilet),*/
 	0xf4,	/* S_fountain:	meta-t, integral top half */
 	0xf7,	/* S_pool:	meta-w, approx. equals */
-	0xfa,	/* S_ice:	meta-z, centered dot */
+	g_FILLER(S_ice),	/* S_ice:	meta-z, centered dot */
 /*40*/	0xf7,	/* S_lava:	meta-w, approx. equals */
-	0xfa,	/* S_vodbridge:	meta-z, centered dot */
-	0xfa,	/* S_hodbridge:	meta-z, centered dot */
+	g_FILLER(S_vodbridge),	/* S_vodbridge:	meta-z, centered dot */
+	g_FILLER(S_hodbridge),	/* S_hodbridge:	meta-z, centered dot */
 	g_FILLER(S_vcdbridge),
 	g_FILLER(S_hcdbridge),
 	g_FILLER(S_air),
@@ -1231,15 +1231,15 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_burningwagon),
 	g_FILLER(S_woodentable),
 /*60*/	g_FILLER(S_strawmattress),
-	0xfa, /* S_snow */
-	0xfa, /* S_ash */
-	0xfa, /* S_sand */
-	0xfa, /* S_pavedfloor */
-	0xfa, /* S_highway */
-	0xfa, /* S_grass */
-	0xfa, /* S_nethermist */
+	g_FILLER(S_snow), /* S_snow */
+	g_FILLER(S_ash), /* S_ash */
+	g_FILLER(S_sand), /* S_sand */
+	g_FILLER(S_pavedfloor), /* S_pavedfloor */
+	g_FILLER(S_highway), /* S_highway */
+	g_FILLER(S_grass), /* S_grass */
+	g_FILLER(S_nethermist), /* S_nethermist */
 	g_FILLER(S_stalactite),
-	0xfa, /* S_cryptfloor */
+	g_FILLER(S_cryptfloor), /* S_cryptfloor */
 /*70*/	g_FILLER(S_bubbles),
 	g_FILLER(S_raincloud),
 	g_FILLER(S_pentagram),
@@ -2144,10 +2144,10 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_toilet),
 	g_FILLER(S_fountain),	/* 0xdb, \E)3: meta-[, integral top half */
 	0xe0,	/* S_pool:	meta-\, diamond */
-	0xfe,	/* S_ice:	meta-~, centered dot */
+	g_FILLER(S_ice),	/* S_ice:	meta-~, centered dot */
 /*40*/	0xe0,	/* S_lava:	meta-\, diamond */
-	0xfe,	/* S_vodbridge:	meta-~, centered dot */
-	0xfe,	/* S_hodbridge:	meta-~, centered dot */
+	g_FILLER(S_vodbridge),	/* S_vodbridge:	meta-~, centered dot */
+	g_FILLER(S_hodbridge),	/* S_hodbridge:	meta-~, centered dot */
 	g_FILLER(S_vcdbridge),
 	g_FILLER(S_hcdbridge),
 	g_FILLER(S_air),
@@ -2166,15 +2166,15 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_burningwagon),
 	g_FILLER(S_woodentable),
 /*60*/	g_FILLER(S_strawmattress),
-	0xfe, /* S_snow */
-	0xfe, /* S_ash */
-	0xfe, /* S_sand */
-	0xfe, /* S_pavedfloor */
-	0xfe, /* S_highway */
-	0xfe, /* S_grass */
-	0xfe, /* S_nethermist */
+	g_FILLER(S_snow), /* S_snow */
+	g_FILLER(S_ash), /* S_ash */
+	g_FILLER(S_sand), /* S_sand */
+	g_FILLER(S_pavedfloor), /* S_pavedfloor */
+	g_FILLER(S_highway), /* S_highway */
+	g_FILLER(S_grass), /* S_grass */
+	g_FILLER(S_nethermist), /* S_nethermist */
 	g_FILLER(S_stalactite),
-	0xfe, /* S_cryptfloor */
+	g_FILLER(S_cryptfloor), /* S_cryptfloor */
 /*70*/	g_FILLER(S_bubbles),
 	g_FILLER(S_raincloud),
 	g_FILLER(S_pentagram),
