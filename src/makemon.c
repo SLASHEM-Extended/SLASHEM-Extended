@@ -25431,9 +25431,16 @@ register int	mmflags;
 	     * above the 1..49 that indicate "normal" monster levels */
 	    /*mtmp->mhpmax = mtmp->mhp = 5*(ptr->mlevel - 6);*/ /*hp increase --Amy */
 	    /*mtmp->m_lev = mtmp->mhp / 4;*/	/* approximation */
-	/*}*/ else if (ptr->mlet == S_DRAGON && mndx >= PM_GRAY_DRAGON) {
+	/*}*/
+
+	/* dragons: if at least level 18 and "gray dragon" or below, have more HP but only for gigantic-sized ones */
+	else if (ptr->mlet == S_DRAGON && mndx >= PM_GRAY_DRAGON && hugemonst(mtmp->data) ) {
 	    /* adult dragons */
 		leveladjustment = mtmp->m_lev;
+		if (leveladjustment > 50) {
+			leveladjusttemp = (leveladjustment - 49);
+			leveladjustment -= rn2(leveladjusttemp);
+		}
 		if (leveladjustment > 20) {
 			leveladjusttemp = (leveladjustment - 19);
 			leveladjustment -= rn2(leveladjusttemp);
@@ -25445,7 +25452,8 @@ register int	mmflags;
 	    mtmp->mhpmax = mtmp->mhp = rnd(4);
 	} else {
 
-		/* very high-level monsters shouldn't get excessive amounts of HP every single time --Amy */
+		/* very high-level monsters shouldn't get excessive amounts of HP every single time --Amy
+		 * however, m_lev is rarely higher than 50, so for monsters with base levels above that, see below */
 		leveladjustment = mtmp->m_lev;
 		if (leveladjustment > 50) {
 			leveladjusttemp = (leveladjustment - 49);
@@ -25456,34 +25464,32 @@ register int	mmflags;
 			leveladjustment -= rn2(leveladjusttemp);
 		}
 
-	    mtmp->mhpmax = mtmp->mhp = d((int)leveladjustment, weakmon ? (6 + rn2(3)) : 8);
+	    mtmp->mhpmax = mtmp->mhp = leveladjustment + (d((int)leveladjustment, weakmon ? (5 + rn2(3)) : 7) );
 		/* small things like ants and stuff shouldn't have the same amount of health as big monsters --Amy */
 	    if (verysmall(mtmp->data) && mtmp->mhpmax > 3) {
+		mtmp->mhpmax /= 2;
+		mtmp->mhp /= 2;
+	    }
+	    if (rathersmall(mtmp->data) && !verysmall(mtmp->data) && mtmp->mhpmax > 3) {
 		mtmp->mhpmax *= 3;
 		mtmp->mhpmax /= 4;
 		mtmp->mhp *= 3;
 		mtmp->mhp /= 4;
-		if (!rn2(2)) {
-			mtmp->mhpmax *= 3;
-			mtmp->mhpmax /= 4;
-			mtmp->mhp *= 3;
-			mtmp->mhp /= 4;
-		}
 	    }
-	    if (rathersmall(mtmp->data) && !verysmall(mtmp->data) && mtmp->mhpmax > 3) {
+	    if (normalsize(mtmp->data) && rn2(2) && mtmp->mhpmax > 3) {
+		mtmp->mhpmax *= 5;
+		mtmp->mhpmax /= 6;
+		mtmp->mhp *= 5;
+		mtmp->mhp /= 6;
+	    }
+	    if (bigmonst(mtmp->data) && !verybigmonst(mtmp->data) && !rn2(3) && mtmp->mhpmax > 3) {
 		mtmp->mhpmax *= 7;
 		mtmp->mhpmax /= 8;
 		mtmp->mhp *= 7;
 		mtmp->mhp /= 8;
-		if (!rn2(3)) {
-			mtmp->mhpmax *= 7;
-			mtmp->mhpmax /= 8;
-			mtmp->mhp *= 7;
-			mtmp->mhp /= 8;
-		}
 	    }
 
-	    if (rn2(2)) {
+	    if ((evilfriday || !rn2(5)) && rn2(2)) {
 		mtmp->mhpmax += (leveladjustment * rnd(2));
 		mtmp->mhp = mtmp->mhpmax;
 	    }
@@ -25494,9 +25500,9 @@ register int	mmflags;
 
 	if (humanoid(ptr) && is_female(ptr) && FemtrapActiveWendy && (mtmp->mhpmax < 2000) ) mtmp->mhpmax += rnd(mtmp->mhpmax);
 
-	if (ptr->mlevel > 49) { /* so they still get extra HP --Amy */
+	if (ptr->mlevel > 49) { /* for monsters with base levels above 50, so they still get extra HP --Amy */
 
-		mtmp->mhpmax += ( (ptr->mlevel - 49) * 5);
+		mtmp->mhpmax += ( (ptr->mlevel - 49) * (evilfriday ? 5 : weakmon ? 2 : 3) );
 		mtmp->mhp = mtmp->mhpmax;
 
 	}
