@@ -242,7 +242,8 @@ boolean digest_meal;
 	if (regenrate < 6) regenrate = 6;
 	if (ishaxor) regenrate /= 2;
 
-	if (mon->mhp < mon->mhpmax && !(is_golem(mon->data) && issoviet) &&
+	/* golems used to not regenerate at all; in soviet mode they still don't, otherwise they regenerate 5x more slowly --Amy */
+	if (mon->mhp < mon->mhpmax && !(is_golem(mon->data) && (issoviet || rn2(5)) ) &&
 	    (!rn2(regenrate) || (FemtrapActiveGudrun && mon->female && humanoid(mon->data)) || regenerates(mon->data) || mon->egotype_regeneration )) mon->mhp++;
 
 	if ((mon->mhp < mon->mhpmax) && FemtrapActiveRonja && mon->female) mon->mhp++;
