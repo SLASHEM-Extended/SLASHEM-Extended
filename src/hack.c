@@ -2879,6 +2879,23 @@ peacedisplace:
 	    use_skill(P_HIGH_HEELS, 1);
 	}
 
+	/* weight lifting skill by Amy: exercise if you're burdened, stressed or strained, but not if overtaxed or worse */
+	if (near_capacity() >= SLT_ENCUMBER) {
+		int weightliftingtrainingamount = 1;
+		if ((near_capacity() == MOD_ENCUMBER) && !rn2(2)) weightliftingtrainingamount = 2;
+		if (near_capacity() == HVY_ENCUMBER) weightliftingtrainingamount = 2;
+		if (near_capacity() >= EXT_ENCUMBER) weightliftingtrainingamount = 0;
+
+		if (weightliftingtrainingamount > 0) {
+			u.uweightliftingturns += weightliftingtrainingamount;
+
+			if (u.uweightliftingturns >= 40) {
+				u.uweightliftingturns = 0;
+				use_skill(P_WEIGHT_LIFTING, 1);
+			}
+		}
+	}
+
 	if (PlayerInColumnarHeels) {
 
 		/* an odd one: male characters can train it faster, lacking the high heels skill makes it slower, and if
@@ -5500,7 +5517,7 @@ int k_format; /* WAC k_format is an int */
 }
 
 int
-max_carr_cap()
+max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see below) */
 {
 	int maxcarrcap = 5000;
 
@@ -5529,13 +5546,27 @@ max_carr_cap()
 	if (RngeCarryingBoost) maxcarrcap += 1000;
 	if (u.xtralevelmult > 1) maxcarrcap += ((u.xtralevelmult - 1) * 10);
 
+	if (!PlayerCannotUseSkills) {
+
+		switch (P_SKILL(P_WEIGHT_LIFTING)) {
+			case P_BASIC: maxcarrcap += 10; break;
+			case P_SKILLED: maxcarrcap += 30; break;
+			case P_EXPERT: maxcarrcap += 100; break;
+			case P_MASTER: maxcarrcap += 300; break;
+			case P_GRAND_MASTER: maxcarrcap += 750; break;
+			case P_SUPREME_MASTER: maxcarrcap += 2000; break;
+
+		}
+
+	}
+
 	if (uarmh && uarmh->oartifact == ART_LIVIN__IT_UP) maxcarrcap *= 2;
 
 	return maxcarrcap;
 }
 
 int
-weight_cap()
+weight_cap() /* your current max carry cap (the one displayed on the bottom status line) */
 {
 	register long carrcap;
 
@@ -5610,6 +5641,22 @@ weight_cap()
 			case P_SUPREME_MASTER: carrcap += 1200; break;
 
 		}
+
+	}
+
+	if (!PlayerCannotUseSkills) {
+		int carrcapmultiplier = 0;
+
+		switch (P_SKILL(P_WEIGHT_LIFTING)) {
+			case P_BASIC: carrcapmultiplier = 30; break;
+			case P_SKILLED: carrcapmultiplier = 60; break;
+			case P_EXPERT: carrcapmultiplier = 90; break;
+			case P_MASTER: carrcapmultiplier = 120; break;
+			case P_GRAND_MASTER: carrcapmultiplier = 150; break;
+			case P_SUPREME_MASTER: carrcapmultiplier = 180; break;
+		}
+
+		if (carrcapmultiplier > 0) carrcap += (carrcapmultiplier * u.ulevel);
 
 	}
 

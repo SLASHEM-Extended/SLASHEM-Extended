@@ -1557,6 +1557,7 @@ struct you {
 	int uvaapadturns;
 	int uwediturns;
 	int umemorizationturns;
+	int uweightliftingturns;
 	int uguncontrolturns;
 	int usymbiosisslowturns;
 	int usymbiosisfastturns;

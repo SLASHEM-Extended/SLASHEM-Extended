@@ -11504,6 +11504,8 @@ perfumestriding:
 						hiddenpowertype = WAN_FULL_HEALING; break;
 					case P_VENOM:
 						hiddenpowertype = WAN_VENOM_SCATTERING; break;
+					case P_WEIGHT_LIFTING:
+						hiddenpowertype = SCR_WEAPON_SPECIALIZATION; break;
 				}
 
 				pline("A hidden item is created!");

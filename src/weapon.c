@@ -241,6 +241,8 @@ int skill;
 			return "two-weapon combat";
 		case P_RIDING:
 			return "riding";
+		case P_WEIGHT_LIFTING:
+			return "weight lifting";
 
 		default: return "unknown";
 	}
@@ -5430,6 +5432,9 @@ jediskip:
 		case P_MEMORIZATION:
 			    HStealth |= FROMOUTSIDE; pline("Got stealth!"); break;
 		break;
+		case P_WEIGHT_LIFTING:
+			    HResistancePiercing |= FROMOUTSIDE; pline("Got resistance piercing!"); break;
+		break;
 		case P_GUN_CONTROL:
 			    HDiminishedBleeding |= FROMOUTSIDE; pline("Got diminished bleeding!"); break;
 		break;
@@ -5752,6 +5757,11 @@ jediskip:
 		case P_MEMORIZATION:
 				if (!tech_known(T_ZAP_EM)) {    	learntech(T_ZAP_EM, FROMOUTSIDE, 1);
 			    	You("learn how to perform zap em!");
+				}
+		break;
+		case P_WEIGHT_LIFTING:
+				if (!tech_known(T_HARDCORE_ALIENIZATION)) {    	learntech(T_HARDCORE_ALIENIZATION, FROMOUTSIDE, 1);
+			    	You("learn how to perform hardcore alienization!");
 				}
 		break;
 		case P_MISSILE_WEAPONS:
@@ -8750,6 +8760,7 @@ boolean extraskills;
 		if (obj->otyp == SKELETON_KEY) skill = P_BLOCK_HEELS;
 		if (obj->otyp == SECRET_KEY) skill = P_BLOCK_HEELS;
 		if (obj->otyp == CASINO_CHIP) skill = P_WEDGE_HEELS;
+		if (obj->otyp >= LARGE_BOX && obj->otyp <= BAG_OF_TRICKS) skill = P_WEIGHT_LIFTING;
 
 		if (skill == P_NONE) { /* gifts should always be able to unlock a skill; random if none is associated --Amy */
 			skill = randomgoodskill();
@@ -10100,6 +10111,17 @@ rerollthree:
 			else if (P_MAX_SKILL(P_MEMORIZATION) == P_EXPERT) P_MAX_SKILL(P_MEMORIZATION) = P_GRAND_MASTER;
 			else P_MAX_SKILL(P_MEMORIZATION) = P_SUPREME_MASTER;
 		}
+		if (P_RESTRICTED(P_WEIGHT_LIFTING)) {
+			P_SKILL(P_WEIGHT_LIFTING) = P_BASIC;
+			P_ADVANCE(P_WEIGHT_LIFTING) = 20;
+			P_MAX_SKILL(P_WEIGHT_LIFTING) = P_SKILLED;
+		} else {
+			P_SKILL(P_WEIGHT_LIFTING) = P_BASIC;
+			if (P_MAX_SKILL(P_WEIGHT_LIFTING) == P_BASIC) P_MAX_SKILL(P_WEIGHT_LIFTING) = P_EXPERT;
+			else if (P_MAX_SKILL(P_WEIGHT_LIFTING) == P_SKILLED) P_MAX_SKILL(P_WEIGHT_LIFTING) = P_MASTER;
+			else if (P_MAX_SKILL(P_WEIGHT_LIFTING) == P_EXPERT) P_MAX_SKILL(P_WEIGHT_LIFTING) = P_GRAND_MASTER;
+			else P_MAX_SKILL(P_WEIGHT_LIFTING) = P_SUPREME_MASTER;
+		}
 		if (flags.female || Role_if(PM_GENDERSTARIST)) {
 			if (P_RESTRICTED(P_SQUEAKING)) {
 				P_SKILL(P_SQUEAKING) = P_BASIC;
@@ -11401,6 +11423,9 @@ doubleskilltraining()
 	else if (P_ADVANCE(P_MEMORIZATION) && !(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
 		P_ADVANCE(P_MEMORIZATION) *= 2;
 		acquiredskill = 1; }
+	else if (P_ADVANCE(P_WEIGHT_LIFTING) && !(P_RESTRICTED(P_WEIGHT_LIFTING)) && yn("Do you want to train the weight lifting skill?")=='y') {
+		P_ADVANCE(P_WEIGHT_LIFTING) *= 2;
+		acquiredskill = 1; }
 	else if (P_ADVANCE(P_SQUEAKING) && !(P_RESTRICTED(P_SQUEAKING)) && yn("Do you want to train the squeaking skill?")=='y') {
 		P_ADVANCE(P_SQUEAKING) *= 2;
 		acquiredskill = 1; }
@@ -11603,6 +11628,8 @@ unrestrictskillchoice()
 		    unrestrict_weapon_skill(P_SEXY_FLATS);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_MEMORIZATION) && yn("Do you want to learn the memorization skill?")=='y') {
 		    unrestrict_weapon_skill(P_MEMORIZATION);	acquiredskill = 1; }
+	else if (P_RESTRICTED(P_WEIGHT_LIFTING) && yn("Do you want to learn the weight lifting skill?")=='y') {
+		    unrestrict_weapon_skill(P_WEIGHT_LIFTING);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_GUN_CONTROL) && yn("Do you want to learn the gun control skill?")=='y') {
 		    unrestrict_weapon_skill(P_GUN_CONTROL);	acquiredskill = 1; }
 	else if (P_RESTRICTED(P_SQUEAKING) && yn("Do you want to learn the squeaking skill?")=='y') {
@@ -11853,6 +11880,9 @@ int trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_MEMORIZATION)) && yn("Do you want to train the memorization skill?")=='y') {
 		P_ADVANCE(P_MEMORIZATION) += trainamount;
+		acquiredskill = 1; }
+	else if (!(P_RESTRICTED(P_WEIGHT_LIFTING)) && yn("Do you want to train the weight lifting skill?")=='y') {
+		P_ADVANCE(P_WEIGHT_LIFTING) += trainamount;
 		acquiredskill = 1; }
 	else if (!(P_RESTRICTED(P_SQUEAKING)) && yn("Do you want to train the squeaking skill?")=='y') {
 		P_ADVANCE(P_SQUEAKING) += trainamount;

@@ -3652,6 +3652,7 @@ static const struct def_skill Skill_Art[] = {
     { P_CLAW, P_EXPERT, 1},
     { P_STILETTO_HEELS, P_EXPERT, 0 },
     { P_BLOCK_HEELS, P_MASTER, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 2 },
 
 	{ P_FIREARM, P_MASTER, 0 },
 
@@ -3913,6 +3914,7 @@ static const struct def_skill Skill_Sup[] = {
     { P_FIREARM, P_EXPERT, 0 },
     { P_HIGH_HEELS, P_EXPERT, 0 },
     { P_MEMORIZATION, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 1 },
 
     { P_GENERAL_COMBAT, P_EXPERT, 2 },
     { P_POLYMORPHING, P_EXPERT, 0 },
@@ -3935,6 +3937,7 @@ static const struct def_skill Skill_Lib[] = {
     { P_HIGH_HEELS, P_MASTER, 0 },
     { P_MEMORIZATION, P_GRAND_MASTER, 0 },
     { P_SQUEAKING, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 1 },
 
     { P_POLYMORPHING, P_EXPERT, 2 },
     { P_DEVICES, P_MASTER, 0 },
@@ -4018,6 +4021,7 @@ static const struct def_skill Skill_B[] = { /* barbarian */
     { P_GRINDER, P_EXPERT, 0 },
     { P_MISSILE_WEAPONS, P_EXPERT, 2 },  
     { P_TECHNIQUES, P_MASTER, 0 },
+    { P_WEIGHT_LIFTING, P_MASTER, 0 },
 
     { P_TWO_WEAPON_COMBAT, P_MASTER, 0 },
     { P_BARE_HANDED_COMBAT, P_MASTER, 0 },
@@ -4039,6 +4043,7 @@ static const struct def_skill Skill_Noo[] = { /* noob mode barb is much less ski
     { P_BODY_ARMOR, P_EXPERT, 0 },
     { P_TWO_HANDED_WEAPON, P_EXPERT, 0 },
     { P_GRINDER, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 2 },
     { P_MISSILE_WEAPONS, P_EXPERT, 2 },  
     { P_TWO_WEAPON_COMBAT, P_EXPERT, 1 },
     { P_BARE_HANDED_COMBAT, P_EXPERT, 0 },
@@ -4083,6 +4088,7 @@ static const struct def_skill Skill_Sta[] = { /* stand user */
     { P_GUN_CONTROL, P_EXPERT, 1 },
     { P_SYMBIOSIS, P_GRAND_MASTER, 0 },
     { P_BOULDER_THROWING, P_MASTER, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 2 },
 
     { P_GENERAL_COMBAT, P_EXPERT, 1 },
     { P_BODY_ARMOR, P_EXPERT, 1 },
@@ -4123,6 +4129,7 @@ static const struct def_skill Skill_C[] = { /* caveman */
     { P_BOOMERANG, P_EXPERT, 0 },		{ P_UNICORN_HORN, P_EXPERT, 1 },
     { P_MATTER_SPELL, P_EXPERT, 3 },      { P_ENCHANTMENT_SPELL, P_EXPERT, 1 },
     { P_BOULDER_THROWING, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_GENERAL_COMBAT, P_MASTER, 0 },
     { P_SHIELD, P_EXPERT, 2 },
@@ -4449,6 +4456,7 @@ static const struct def_skill Skill_Fir[] = {
     { P_SEXY_FLATS, P_MASTER, 0 },
     { P_MEMORIZATION, P_EXPERT, 2 },
     { P_GRINDER, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_GENERAL_COMBAT, P_EXPERT, 0 },
     { P_SHIELD, P_EXPERT, 0 },
@@ -4498,6 +4506,7 @@ static const struct def_skill Skill_Zyb[] = { /* really has expert in everything
     { P_SQUEAKING, P_EXPERT, 0 },
     { P_GUN_CONTROL, P_EXPERT, 0 },
     { P_SYMBIOSIS, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_ATTACK_SPELL, P_EXPERT, 0 },      { P_HEALING_SPELL, P_EXPERT, 0 },
     { P_DIVINATION_SPELL, P_EXPERT, 0 },   { P_ENCHANTMENT_SPELL, P_EXPERT, 0 },
@@ -4626,6 +4635,7 @@ static const struct def_skill Skill_Lun[] = {
     { P_DIVINATION_SPELL, P_EXPERT, 0 },   { P_ENCHANTMENT_SPELL, P_EXPERT, 0 },
     { P_PROTECTION_SPELL, P_EXPERT, 0 },    { P_BODY_SPELL, P_MASTER, 0 },
     { P_MATTER_SPELL, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_RIDING, P_GRAND_MASTER, 0 },
     { P_SYMBIOSIS, P_EXPERT, 0 },
@@ -4786,6 +4796,7 @@ static const struct def_skill Skill_Com[] = { /* grand master at all combat skil
     { P_TWO_WEAPON_COMBAT, P_GRAND_MASTER, 0 },		{ P_RIDING, P_GRAND_MASTER, 0 },
     { P_STILETTO_HEELS, P_GRAND_MASTER, 0 },     { P_CONE_HEELS, P_GRAND_MASTER, 0 },
     { P_BLOCK_HEELS, P_GRAND_MASTER, 0 },    { P_WEDGE_HEELS, P_GRAND_MASTER, 0 },
+    { P_WEIGHT_LIFTING, P_GRAND_MASTER, 0 },
     { P_NONE, 0, 0 }
 };
 static const struct def_skill Skill_Fjo[] = {
@@ -5079,6 +5090,7 @@ static const struct def_skill Skill_Qua[] = {
     { P_JUYO, P_GRAND_MASTER, 0 },		{ P_TWO_WEAPON_COMBAT, P_EXPERT, 0 },
     { P_RIDING, P_EXPERT, 0 },
     { P_BOULDER_THROWING, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 1 },
     { P_NONE, 0, 0 }
 };
 
@@ -5213,6 +5225,7 @@ static const struct def_skill Skill_Ast[] = {
     { P_GUN_CONTROL, P_EXPERT, 0 },
     { P_GRINDER, P_EXPERT, 2 },
     { P_BLOCK_HEELS, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 2 },
     { P_NONE, 0, 0 }
 };
 
@@ -5287,6 +5300,7 @@ static const struct def_skill Skill_Xel[] = {
     { P_SHII_CHO, P_EXPERT, 0 },		    { P_MAKASHI, P_EXPERT, 0 },
     { P_NIMAN, P_EXPERT, 0 },		    { P_MARTIAL_ARTS, P_EXPERT, 0 },
     { P_SYMBIOSIS, P_MASTER, 0 },
+    { P_WEIGHT_LIFTING, P_MASTER, 0 },
     { P_NONE, 0, 0 }
 };
 
@@ -5342,6 +5356,7 @@ static const struct def_skill Skill_Bin[] = { /* everything at expert, even in v
     { P_SYMBIOSIS, P_EXPERT, 0 },
     { P_VENOM, P_EXPERT, 0 },
     { P_BOULDER_THROWING, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_ATTACK_SPELL, P_EXPERT, 0 },      { P_HEALING_SPELL, P_EXPERT, 0 },
     { P_DIVINATION_SPELL, P_EXPERT, 0 },   { P_ENCHANTMENT_SPELL, P_EXPERT, 0 },
@@ -5519,6 +5534,7 @@ static const struct def_skill Skill_Mys[] = { /* knows all skills, except martia
     { P_PROTECTION_SPELL, P_EXPERT, 0 },    { P_BODY_SPELL, P_EXPERT, 0 },
     { P_MATTER_SPELL, P_EXPERT, 0 },
 
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
     { P_RIDING, P_EXPERT, 0 },
     { P_GENERAL_COMBAT, P_EXPERT, 0 },
     { P_SHIELD, P_EXPERT, 0 },
@@ -5592,6 +5608,7 @@ static const struct def_skill Skill_Dem[] = { /* knows all skills, vanillaoid st
     { P_PROTECTION_SPELL, P_EXPERT, 0 },    { P_BODY_SPELL, P_EXPERT, 0 },
     { P_MATTER_SPELL, P_EXPERT, 0 },
 
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
     { P_TWO_WEAPON_COMBAT, P_EXPERT, 0 },
     { P_RIDING, P_EXPERT, 0 },
     { P_GENERAL_COMBAT, P_EXPERT, 0 },
@@ -6063,6 +6080,7 @@ static const struct def_skill Skill_Con[] = {
     { P_SEXY_FLATS, P_EXPERT, 2 },
     { P_GUN_CONTROL, P_EXPERT, 0 },
 
+    { P_WEIGHT_LIFTING, P_EXPERT, 2 },
     { P_GENERAL_COMBAT, P_EXPERT, 0 },
     { P_POLYMORPHING, P_EXPERT, 0 },
     { P_SEARCHING, P_MASTER, 0 },
@@ -6089,6 +6107,7 @@ static const struct def_skill Skill_Mur[] = {
     { P_SEXY_FLATS, P_EXPERT, 2 },
     { P_GUN_CONTROL, P_EXPERT, 0 },
 
+    { P_WEIGHT_LIFTING, P_EXPERT, 2 },
     { P_GENERAL_COMBAT, P_EXPERT, 0 },
     { P_POLYMORPHING, P_EXPERT, 0 },
     { P_SEARCHING, P_MASTER, 0 },
@@ -6256,6 +6275,7 @@ static const struct def_skill Skill_Mas[] = { /* mason */
     { P_RIDING, P_EXPERT, 0 },
     { P_WEDI, P_GRAND_MASTER, 0 },
     { P_GRINDER, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_MASTER, 0 },
     { P_BOULDER_THROWING, P_EXPERT, 0 },
 
     { P_NONE, 0, 0 }
@@ -6382,6 +6402,7 @@ static const struct def_skill Skill_Top[] = {
     { P_SQUEAKING, P_MASTER, 0 },
     { P_GUN_CONTROL, P_EXPERT, 1 },
     { P_BOULDER_THROWING, P_EXPERT, 2 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_GENERAL_COMBAT, P_EXPERT, 0 },
     { P_TWO_HANDED_WEAPON, P_EXPERT, 2 },
@@ -6428,6 +6449,7 @@ static const struct def_skill Skill_Fai[] = {
     { P_SQUEAKING, P_MASTER, 0 },
     { P_GUN_CONTROL, P_EXPERT, 1 },
     { P_BOULDER_THROWING, P_EXPERT, 2 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_GENERAL_COMBAT, P_EXPERT, 0 },
     { P_TWO_HANDED_WEAPON, P_EXPERT, 2 },
@@ -8238,6 +8260,7 @@ static const struct def_skill Skill_Mus[] = { /* musician */
     { P_PETKEEPING, P_MASTER, 0 },
     { P_SEXY_FLATS, P_EXPERT, 0 },
     { P_MEMORIZATION, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_GRAND_MASTER, 0 },
 
     { P_HIGH_HEELS, P_EXPERT, 0 },
     { P_TWO_WEAPON_COMBAT, P_EXPERT, 1 },
@@ -8579,6 +8602,7 @@ static const struct def_skill Skill_Unt[] = { /* undertaker */
     { P_ATARU, P_EXPERT, 1 },
     { P_NIMAN, P_EXPERT, 2 },
     { P_CONE_HEELS, P_EXPERT, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 2 },
 
     { P_SHIELD, P_EXPERT, 1 },
     { P_BODY_ARMOR, P_EXPERT, 1 },
@@ -8611,6 +8635,7 @@ static const struct def_skill Skill_V[] = { /* valkyrie */
     { P_HIGH_HEELS, P_EXPERT, 1 },
     { P_SEXY_FLATS, P_MASTER, 0 },
     { P_BOULDER_THROWING, P_MASTER, 0 },
+    { P_WEIGHT_LIFTING, P_EXPERT, 0 },
 
     { P_BODY_SPELL, P_EXPERT, 1 },          { P_MATTER_SPELL, P_EXPERT, 0 },
 /*  replace attack spell with matter spell - cone of cold, lightning
