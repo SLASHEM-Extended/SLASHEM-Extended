@@ -2782,6 +2782,7 @@ E boolean player_will_pierce_resistance(void);
 
 E boolean issovietmode();
 E boolean isevilvariantmode();
+E boolean isfridaytoday();
 
 E boolean autismweaponcheck(int);
 E boolean autismringcheck(int);

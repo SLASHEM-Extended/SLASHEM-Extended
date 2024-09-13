@@ -312,7 +312,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define isaquarian (Race_if(PM_AQUATIC_MONSTER) || flags.hybridaquarian)
 #define iscurser (Race_if(PM_CURSER) || flags.hybridcurser)
 #define ishaxor (Race_if(PM_HAXOR) || flags.hybridhaxor)
-#define ishomicider (Race_if(PM_HOMICIDER) || flags.hybridhomicider || (!u.dungeongrowthhack && autismweaponcheck(ART_TRAP_EM_LONG)) )
+#define ishomicider (Race_if(PM_HOMICIDER) || flags.hybridhomicider || (!u.dungeongrowthhack && !program_state.bonesdo && autismweaponcheck(ART_TRAP_EM_LONG)) )
 #define issuxxor (Race_if(PM_SUXXOR) || flags.hybridsuxxor)
 #define iswarper (Race_if(PM_WARPER) || flags.hybridwarper)
 #define israndomizer (Race_if(PM_RANDOMIZER) || flags.hybridrandomizer)
@@ -324,7 +324,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define issokosolver (Race_if(PM_SOKOSOLVER) || flags.hybridsokosolver)
 #define isspecialist (Race_if(PM_SPECIALIST) || flags.hybridspecialist)
 #define isamerican (Race_if(PM_AMERICAN) || flags.hybridamerican)
-#define isminimalist (Race_if(PM_MINIMALIST) || flags.hybridminimalist || (!u.dungeongrowthhack && have_minimejewel() ) )
+#define isminimalist (Race_if(PM_MINIMALIST) || flags.hybridminimalist || (!u.dungeongrowthhack && !program_state.bonesdo && have_minimejewel() ) )
 #define isnastinator (Race_if(PM_NASTINATOR) || flags.hybridnastinator)
 #define isrougelike (Race_if(PM_ROUGELIKE) || flags.hybridrougelike)
 #define issegfaulter (Race_if(PM_SEGFAULTER) || flags.hybridsegfaulter)
@@ -363,9 +363,12 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define iszapem (flags.zapem || u.zapem_mode)
 
 /* Friday the 13th is supposed to make many things harder for the player, including some evilvariant stuff --Amy
- * can also deliberately invoke the effect by playing in elm street mode */
+ * can also deliberately invoke the effect by playing in elm street mode
+ * "evilfriday" is stuff that always happens in evilvariant mode and 1 in 5 in friday the 13th mode */
 #define evilfriday (isevilvariant || (flags.elmstreet && firgatest() && !rn2(5)) || (flags.friday13 && firgatest() && !rn2(5)))
-#define isfriday ((flags.elmstreet || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAR_CATASTROPHE) || (uarm && uarm->oartifact == ART_ELMHERE) || AssholeModeActive || u.badfcursed || flags.friday13 || ElmStreetEffect || u.uprops[ELM_STREET_EFFECT].extrinsic || have_elmstreetstone()) && firgatest() )
+
+/* "isfriday" is stuff that happens in friday the 13th/elm street mode */
+#define isfriday isfridaytoday() /* moved to potion.c */
 
 /* Luxidream wants to be able to name his characters */
 #define playeraliasname (plalias[0] ? plalias : plname)

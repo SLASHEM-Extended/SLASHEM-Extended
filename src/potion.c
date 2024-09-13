@@ -2515,7 +2515,7 @@ boolean
 issovietmode()
 {
 	if (Race_if(PM_SOVIET)) return TRUE;
-	if (!u.dungeongrowthhack) {
+	if (!u.dungeongrowthhack && !program_state.bonesdo) {
 		if (u.soviettemporary) return TRUE;
 		if (uwep && uwep->oartifact == ART_RASSCHEN_TAAK) return TRUE;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RASSCHEN_TAAK) return TRUE;
@@ -2531,7 +2531,7 @@ boolean
 isevilvariantmode()
 {
 	if (Race_if(PM_EVILVARIANT)) return TRUE;
-	if (!u.dungeongrowthhack) {
+	if (!u.dungeongrowthhack && !program_state.bonesdo) {
 		if (u.evilvartemporary) return TRUE;
 		if (u.badfdoomed) return TRUE;
 		if (flags.hybridevilvariant) return TRUE;
@@ -2549,6 +2549,27 @@ isevilvariantmode()
 	return FALSE;
 }
 
+boolean
+isfridaytoday()
+{
+	boolean canreturntrue = FALSE;
+
+	if (flags.elmstreet) canreturntrue = TRUE;
+	if (flags.friday13) canreturntrue = TRUE;
+
+	if (!u.dungeongrowthhack && !program_state.bonesdo) {
+		if (!powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAR_CATASTROPHE) canreturntrue = TRUE;
+		if (uarm && uarm->oartifact == ART_ELMHERE) canreturntrue = TRUE;
+		if (AssholeModeActive) canreturntrue = TRUE;
+		if (u.badfcursed) canreturntrue = TRUE;
+		if (ElmStreetEffect) canreturntrue = TRUE;
+		if (u.uprops[ELM_STREET_EFFECT].extrinsic) canreturntrue = TRUE;
+		if (have_elmstreetstone()) canreturntrue = TRUE;
+	}
+	if (canreturntrue && firgatest()) return TRUE;
+
+	return FALSE;
+}
 
 /* devil race is penalized for being nice; after all, they're devils, not angels --Amy */
 void
@@ -7644,6 +7665,10 @@ firgatest()
 {
 	int firgachance = 0;
 	boolean canfirga = FALSE;
+
+	/* during bones level generation, we shouldn't do anything that checks player inventory or CRASH! --Amy */
+	if (u.dungeongrowthhack || program_state.bonesdo) return TRUE;
+
 	if (uwep && is_lightsaber(uwep) && uwep->lamplit) canfirga = TRUE;
 	if (uarm && uarm->oartifact == ART_ELMHERE) canfirga = TRUE;
 	if (Role_if(PM_HEDDERJEDI)) canfirga = TRUE;
