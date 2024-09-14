@@ -6557,6 +6557,8 @@ rerollX:
 				break;
 		}
 
+			acqo->owt = weight(acqo);
+
 		    dropy(acqo);
 
 			int acqoskill = get_obj_skill(acqo, TRUE);
@@ -25895,8 +25897,11 @@ register boolean force, here;
 					&& obj->oerodeproof && !rn2(5))
 			    obj->oerodeproof = FALSE;
 		    }
-		}
-	}
+
+		} /* switch statement, but it doesn't seem to always be run */
+
+		if (obj) obj->owt = weight(obj);
+	} /* for loop */
 }
 
 void
@@ -26031,8 +26036,10 @@ register boolean force, here;
 			if (obj->oerodeproof && !rn2(5))
 			    obj->oerodeproof = FALSE;
 		    }
-		}
-	}
+		} /* switch statement, but it doesn't seem to always be run */
+
+		if (obj) obj->owt = weight(obj);
+	} /* for loop */
 }
 
 /* A function that can damage all of the player's items. --Amy */

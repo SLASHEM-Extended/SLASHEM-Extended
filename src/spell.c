@@ -10827,6 +10827,9 @@ rerollX:
 				otmp->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_VIRTUE);
 				break;
 		}
+
+		otmp->owt = weight(otmp);
+
 		pline("Your artifact was rerolled to another base item!");
 
 		pline("The strain of casting such a powerful spell damages your maximum health and mana.");

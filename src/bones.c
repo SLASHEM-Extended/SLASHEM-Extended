@@ -109,11 +109,13 @@ boolean restore;
 			} else if (otmp->otyp == AMULET_OF_YENDOR) {
 			    /* no longer the real Amulet */
 			    otmp->otyp = FAKE_AMULET_OF_YENDOR;
+			    otmp->owt = weight(otmp);
 			    curse(otmp);
 			} else if (otmp->otyp == CANDELABRUM_OF_INVOCATION) {
 			    if (otmp->lamplit)
 				end_burn(otmp, TRUE);
 			    otmp->otyp = WAX_CANDLE;
+			    otmp->owt = weight(otmp);
 			    otmp->age = 50L;  /* assume used */
 			    if (otmp->spe > 0)
 				otmp->quan = (long)otmp->spe;
@@ -122,16 +124,21 @@ boolean restore;
 			    curse(otmp);
 			} else if (otmp->otyp == BELL_OF_OPENING) {
 			    otmp->otyp = BELL;
+			    otmp->owt = weight(otmp);
 			    curse(otmp);
 			} else if (otmp->otyp == SPE_BOOK_OF_THE_DEAD) {
 			    otmp->otyp = SPE_BLANK_PAPER;
+			    otmp->owt = weight(otmp);
 			    curse(otmp);
 			} else if (otmp->otyp == WAN_WISHING || otmp->otyp == WAN_ACQUIREMENT) {
 			    otmp->otyp = WAN_NOTHING;
+			    otmp->owt = weight(otmp);
 			} else if (otmp->otyp == MAGIC_LAMP) {
 			    otmp->otyp = TIN_OPENER;
+			    otmp->owt = weight(otmp);
 			} else if (otmp->otyp == SCR_WISHING || otmp->otyp == SCR_ACQUIREMENT) {
 			    otmp->otyp = SCR_AMNESIA;
+			    otmp->owt = weight(otmp);
 			} else if (otmp->oartifact == ART_KEY_OF_LAW ||
 				   otmp->oartifact == ART_KEY_OF_NEUTRALITY ||
 				   otmp->oartifact == ART_KEY_OF_CHAOS ||

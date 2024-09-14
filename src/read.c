@@ -860,6 +860,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"Thaumaturgy is overrated anyway, real magic happens on the catwalk.",
 	"'But it's not thematic' my ass. I don't want a game that is 100%% thematic, I want a game that is 100%% fun.",
 	"Eiskugel, Eiskugel, bung bung!", /* nonsensical german phrase; Amy dreamed that someone was singing it */
+	"Ich gender nicht, ich hab nen Schulabschluss!", /* Mario Barth */
 
 };
 
@@ -5396,6 +5397,8 @@ enchantarmorchoice:
 			otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
 						otmp->otyp - GRAY_DRAGON_SCALES;
 
+			otmp->owt = weight(otmp);
+
 			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			}
@@ -5419,6 +5422,8 @@ enchantarmorchoice:
 			Your("%s merges and hardens!", xname(otmp));
 			setworn((struct obj *)0, W_ARM);
 			otmp->otyp = LIZARD_SCALE_MAIL;
+
+			otmp->owt = weight(otmp);
 
 			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
@@ -5614,6 +5619,8 @@ enchantarmorchoiceX:
 			otmp->otyp = GRAY_DRAGON_SCALE_MAIL +
 						otmp->otyp - GRAY_DRAGON_SCALES;
 
+			otmp->owt = weight(otmp);
+
 			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			}
@@ -5635,6 +5642,8 @@ enchantarmorchoiceX:
 			Your("%s merges and hardens!", xname(otmp));
 			setworn((struct obj *)0, W_ARM);
 			otmp->otyp = LIZARD_SCALE_MAIL;
+
+			otmp->owt = weight(otmp);
 
 			if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 				otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
@@ -11032,6 +11041,8 @@ rerollX:
 				acqo->otyp = rnd_class(IMPLANT_OF_ABSORPTION,IMPLANT_OF_VIRTUE);
 				break;
 		}
+
+			acqo->owt = weight(acqo);
 
 		    dropy(acqo);
 

@@ -685,6 +685,7 @@ register boolean clumsy;
 			You("knock %s %s to the %s!", s_suffix(mon_nam(mon)), xname(monwepon), surface(u.ux, u.uy));
 			if (monwepon->otyp == CRYSKNIFE && (!monwepon->oerodeproof || !rn2(10))) {
 				monwepon->otyp = WORM_TOOTH;
+				monwepon->owt = weight(monwepon);
 				monwepon->oerodeproof = 0;
 			}
 			place_object(monwepon, u.ux, u.uy);

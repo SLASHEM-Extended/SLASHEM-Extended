@@ -6571,6 +6571,7 @@ struct monst *shkp;
 
 	    if (obj->otyp == WORM_TOOTH && !stack_too_big(obj) ) {
 		obj->otyp = CRYSKNIFE;
+		obj->owt = weight(obj);
 		Your("weapon seems sharper now.");
 
 		if ((obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(100) ) {
@@ -6731,6 +6732,8 @@ shk_armor_works(slang, shkp)
 			obj->otyp = GRAY_DRAGON_SCALE_MAIL +
 						obj->otyp - GRAY_DRAGON_SCALES;
 
+			obj->owt = weight(obj);
+
 			if ((obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(100) ) {
 				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = 0;
 			}
@@ -6751,6 +6754,9 @@ shk_armor_works(slang, shkp)
 			Your("%s merges and hardens!", xname(obj));
 			setworn((struct obj *)0, W_ARM);
 			obj->otyp = LIZARD_SCALE_MAIL;
+
+			obj->owt = weight(obj);
+
 			if ((obj->morgcurse || obj->evilcurse || obj->bbrcurse) && !rn2(100) ) {
 				obj->prmcurse = obj->hvycurse = obj->cursed = obj->morgcurse = obj->evilcurse = obj->bbrcurse = obj->stckcurse = 0;
 			}

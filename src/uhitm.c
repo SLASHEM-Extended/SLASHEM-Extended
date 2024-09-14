@@ -11952,7 +11952,7 @@ boolean ranged;
 	char buf[BUFSZ];
 	struct obj *optr;
 	struct obj *otmpi, *otmpii;
-	int hallutime;
+	int hallutime = rn1(7, 16);
 	struct permonst *mdat2;
       struct attack *attspc;
 	boolean rathback = FALSE;
@@ -13990,6 +13990,7 @@ boolean ranged;
 		    case 15:
 			if(!Blind)
 				Your("vision bugged.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + tmp + tmp,TRUE,0L);
@@ -13997,6 +13998,7 @@ boolean ranged;
 		    case 16:
 			if(!Blind)
 				Your("vision turns to screen saver.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
 			break;

@@ -7025,7 +7025,7 @@ hitmu(mtmp, mattk)
 	boolean burnmsg = FALSE;
 	struct obj *optr;
 	struct obj *otmpi, *otmpii;
-	int hallutime;
+	int hallutime = rn1(7, 16);
 
 	/*int randattack = 0;*/
 	int atttyp;
@@ -8605,6 +8605,7 @@ dopois:
 		    case 15:
 			if(!Blind)
 				Your("vision bugged.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + dmg + dmg,TRUE,0L);
@@ -8612,6 +8613,7 @@ dopois:
 		    case 16:
 			if(!Blind)
 				Your("vision turns to screen saver.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + dmg,TRUE,0L);
 			break;
@@ -11092,7 +11094,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	int	i;
 	/*int randattackA = 0;*/
 	int atttypA;
-	int hallutime;
+	int hallutime = rn1(7, 16);
 	struct obj *otmpi, *otmpii;
 	struct obj *optr;
 
@@ -12024,6 +12026,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		    case 15:
 			if(!Blind)
 				Your("vision bugged.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + tmp + tmp,TRUE,0L);
@@ -12031,6 +12034,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		    case 16:
 			if(!Blind)
 				Your("vision turns to screen saver.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
 			break;
@@ -13666,7 +13670,7 @@ boolean ufound;
 	char	 buf[BUFSZ];
 	struct obj *otmpi, *otmpii;
 	struct obj *optr;
-	int hallutime;
+	int hallutime = rn1(7, 16);
 
     if (mtmp->mcan) return(0);
 
@@ -14628,6 +14632,7 @@ common:
 		    case 15:
 			if(!Blind)
 				Your("vision bugged.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + tmp + tmp,TRUE,0L);
@@ -14635,6 +14640,7 @@ common:
 		    case 16:
 			if(!Blind)
 				Your("vision turns to screen saver.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + tmp,TRUE,0L);
 			break;
@@ -15953,7 +15959,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	int dmgplus;
 	struct obj *optr;
 	struct obj *otmpi, *otmpii;
-	int hallutime;
+	int hallutime = rn1(7, 16);
 
 	/*int randattackB = 0;*/
 	int atttypB;
@@ -17123,6 +17129,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    case 15:
 			if(!Blind)
 				Your("vision bugged.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + dmgplus + dmgplus,TRUE,0L);
@@ -17130,6 +17137,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		    case 16:
 			if(!Blind)
 				Your("vision turns to screen saver.");
+			hallutime = rn1(7, 16);
 			hallutime += rn1(10, 25);
 			(void) make_hallucinated(HHallucination + hallutime + dmgplus,TRUE,0L);
 			break;

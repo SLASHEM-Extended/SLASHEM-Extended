@@ -1602,6 +1602,7 @@ struct obj *obj;
 	    /* only changes when not held by player or monster */
 	    if ((!obj->oerodeproof || !rn2(10)) /*&& !obj->oartifact*/ && !stack_too_big(obj)) {
 		obj->otyp = WORM_TOOTH;
+		obj->owt = weight(obj);
 		obj->oerodeproof = 0;
 	    }
 	    break;

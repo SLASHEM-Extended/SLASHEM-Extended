@@ -291,7 +291,7 @@ dosounds()
 	}
     }
     if (level.flags.has_barracks && !rn2(200)) {
-	static const char * const barracks_msg[5] = {
+	static const char * const barracks_msg[] = {
 		"blades being honed.",
 		"loud snoring.",
 		"dice being thrown.",
@@ -1181,8 +1181,10 @@ dosounds()
 			"hear someone scream 'HELP! I can't swim! Save me please, I'm drowning!!!",
 			"realize that the sorcery adept doesn't know how to stop the water...", /* some poem that I forgot the name off, maybe "the mage adept"? the poor sap wants to fill the bathtub with water by using a spell but forgot how to stop the helpers he summoned */
 			"detect a flooding on this sub level.",
+			"have to dive through the next segment, and it's too long for you to hold your breath all the way. Which means that you have to find the hidden underwater oxygen tanks and if you miss one, you'll drown.",
+			"want to use the shower, but someone rigged it so the water coming out of it is really acid! You gotta avoid that shower!",
 		};
-		You("%s", showerroom_msg[rn2(6+hallu*4)]);
+		You("%s", showerroom_msg[rn2(6+hallu*6)]);
 		return;
 	    }
 	    if ((level.flags.has_greencrossroom || (at_dgn_entrance("Green Cross")) ) && !rn2(200)) {
@@ -1216,8 +1218,9 @@ dosounds()
 			"notice a sound: 'Ooeoeoeoep! ... Ooeoeoeoep!' Suddenly someone shouts 'Ey, that's not called 'Ooeoeoeoep', that's a church bell, didn't you know that!'",
 			"remember the bible saying that you should do unto others what you want others to do unto you.",
 			"know that practice makes perfect. Yeah, yeah.",
+			"hear someone announce 'Way to go! New record! You are the champion!!'",
 		};
-		You("%s", ruinedchurch_msg[rn2(5+hallu*4)]);
+		You("%s", ruinedchurch_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	    if (level.flags.has_gamecorner && !rn2(200)) {
@@ -1231,6 +1234,7 @@ dosounds()
 			"encounter a tiny lag that indicates monsters being spawned.",
 			"have to click OK on the shareware notice.",
 			"see the accursed crashy graphics card logo.",
+			"wonder whether this game has control stick support.",
 			"hear a speedrunner curse at Super Kaizo Mario because the game is too damn hard!",
 			"suddenly feel that you're really playing GTA! A cop car appears! The cop wields a shotgun! The cop fires a shotgun shell!--More--",
 			"lost your last hitpoint and jump out of the picture!",
@@ -1242,7 +1246,7 @@ dosounds()
 			"hear someone say 'Die-Far-ben-sind-sehr-flau-schel-bau-schig!'",
 			"push buttons and your stupid PC responds by making annoying 'DIE-DIE-DOE' sounds instead of executing your commands!",
 		};
-		You("%s", gamecorner_msg[rn2(9+hallu*10)]);
+		You("%s", gamecorner_msg[rn2(10+hallu*10)]);
 		return;
 	    }
 	    if (level.flags.has_illusionroom && !rn2(200)) {
@@ -1324,8 +1328,10 @@ dosounds()
 			"listen to Henrietta saying 'Because of you I stepped into dog shit with my Henrietta shoes. As a punishment you have to clean them by hand now.'",
 			"listen to Katrin saying 'Please let me stick my soft chewing gum on your skin! Then I can very slowly and extremely painfully take it off again, ripping off your skin in the process.'",
 			"listen to Jana saying 'Even if you find me, I'll just teleport away and prevent you from defeating me! And your skill certainly isn't good enough to reach Sven, so you won't be fulfilling the alternate victory condition either!'",
+			"encounter the annoying bug where the game just closes with no message.",
+			"suddenly find yourself at the MS-DOS prompt. The game crashed so hard that the entire Windows 3.1 operating system just stopped running, without even giving a message or anything.",
 		};
-		You("%s", insideroom_msg[rn2(12+hallu*27)]);
+		You("%s", insideroom_msg[rn2(12+hallu*29)]);
 		return;
 	    }
 
@@ -1382,14 +1388,18 @@ dosounds()
 		"a sound reminiscent of a seal barking.",
 		"David feeding his animals.",
 		"a roar.",
+		"feel like there will be steak tonight.", /* cooked from the zoo animals, obviously */
 		"Doctor Doolittle!",
 		"someone asking 'Who the fuck is David?'",
+		"hear a kid ask 'Ohh, look at all the cute zoo animals! May I feed them? May I pet them? Would you mind if I incinerate them?'",
+		"feel like calling PETA, since it's cruel if animals are bred in captivity.",
+		"absolutely feel that people eat tasty animals. In fact, you feel like eating one right now!",
 	};
 	for (mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (DEADMONSTER(mtmp)) continue;
 	    if ((mtmp->msleeping || is_animal(mtmp->data)) &&
 		    mon_in_room(mtmp, ZOO)) {
-		You_hear("%s", zoo_msg[rn2(4+hallu*2)]);
+		You_hear("%s", zoo_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	}
@@ -1402,12 +1412,15 @@ dosounds()
 	}
 	if (tended_shop(sroom) &&
 		!index(u.ushops, ROOM_INDEX(sroom) + ROOMOFFSET)) {
-	    static const char * const shop_msg[3] = {
+	    static const char * const shop_msg[] = {
 		    "someone cursing shoplifters.",
 		    "the chime of a cash register.",
+		    "a barker praising the wares of a store.",
 		    "Neiman and Marcus arguing!",
+		    "someone chasing after a shoplifter!",
+		    "a shifty voice say 'Fear not, our wares will definitely last for a whole life and come with a two-day warranty!'", /* Gheed from Diablo 2 */
 	    };
-	    if (rn2(50)) You_hear("%s", shop_msg[rn2(2+hallu)]);
+	    if (rn2(50)) You_hear("%s", shop_msg[rn2(3+hallu*3)]);
 	    else { /* sporkhack; I know they don't always fit, but oh well --Amy */
 		static const char * const shop_sporkmsg[] = {
 			"Any %s would love these!  Finest quality!",
@@ -8483,7 +8496,7 @@ prostitutetaunt()
 		"Don't mess with a lifestyle doll.",
 		"Accept your punishment!",
 		"You can't hit me, I'm a lady!",
-		"I'm gonna beat me just like I beat my children!",
+		"I'm gonna beat you just like I beat my children!",
 	};
 
 	verbalize("%s", whore_msgs[rn2(SIZE(whore_msgs))]);

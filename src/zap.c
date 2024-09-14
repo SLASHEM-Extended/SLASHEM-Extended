@@ -5178,6 +5178,8 @@ secureidchoice:
 		    while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_MAKE_PENTAGRAM || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 			acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
 	
+			acqo->owt = weight(acqo);
+
 			pline("Something appeared on the ground just beneath you!");
 
 			break;
@@ -11446,6 +11448,8 @@ acquireitem()
 
 	while (acqo->otyp == SCR_WISHING || acqo->otyp == SCR_RESURRECTION || acqo->otyp == SCR_ACQUIREMENT || acqo->otyp == SCR_ENTHRONIZATION || acqo->otyp == SCR_MAKE_PENTAGRAM || acqo->otyp == SCR_FOUNTAIN_BUILDING || acqo->otyp == SCR_SINKING || acqo->otyp == SCR_WC)
 		acqo->otyp = rnd_class(SCR_CREATE_MONSTER, SCR_BLANK_PAPER);
+
+	acqo->owt = weight(acqo);
 
 	pline("Something appeared on the ground just beneath you!");
 	u.cnd_acquirementcount++;

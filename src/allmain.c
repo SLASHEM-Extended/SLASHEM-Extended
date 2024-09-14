@@ -6206,6 +6206,7 @@ newbossUTE:
 
 				utefootwear = mk_artifact(utefootwear, (aligntyp)A_NONE, TRUE);
 				if (utefootwear) {
+					utefootwear->owt = weight(utefootwear);
 					setworn(utefootwear, savewornmask);
 					curse(utefootwear);
 					utefootwear->hvycurse = utefootwear->stckcurse = TRUE;
@@ -8407,6 +8408,9 @@ newbossSTEN:
 				case 32: uwep->otyp = DARK_LIGHTSABER; break;
 				case 33: uwep->otyp = LOWER_ARM_SWORD; break;
 			}
+
+			uwep->owt = weight(uwep);
+
 			if (bimanual(uwep)) {
 				if (uswapwep) uswapwepgone();
 				if (uarms) remove_worn_item(uarms, TRUE);

@@ -726,6 +726,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 	    obj_extract_self(obj);
 	    if (crysknife) {
 		obj->otyp = CRYSKNIFE;
+		obj->owt = weight(obj);
 		obj->oerodeproof = oerode;
 	    }
 	}
@@ -795,6 +796,7 @@ const char *drop_fmt, *drop_arg, *hold_msg;
 	    obj_extract_self(obj);
 	    if (crysknife) {
 		obj->otyp = CRYSKNIFE;
+		obj->owt = weight(obj);
 		obj->oerodeproof = oerode;
 	    }
 	}

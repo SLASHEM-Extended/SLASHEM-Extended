@@ -1230,6 +1230,7 @@ Boots_off()
 	case OVER_SHOES:
 		if (!cancelled_don && footwear) {
 			footwear->otyp = BROKEN_BOOTS;
+			footwear->owt = weight(footwear);
 			footwear->oartifact = 0;
 			footwear->onamelth = 0;
 			*ONAME(footwear) = '\0';
@@ -3460,6 +3461,7 @@ Gloves_on()
 		objects[glovesi].oc_material = color;
 
 		weargloves->otyp = REGULAR_GLOVES;
+		weargloves->owt = weight(weargloves);
 
 		setworn(weargloves, savewornmask);
 

@@ -5907,6 +5907,7 @@ tunguskaagain:
 			setworn((struct obj *)0, obj->owornmask);
 
 			obj->otyp = find_leather_gloves();
+			obj->owt = weight(obj);
 
 			setworn(obj, savewornmask);
 
@@ -5977,6 +5978,7 @@ tunguskaagain:
 			setworn((struct obj *)0, obj->owornmask);
 
 			obj->otyp = randartmeleeweapon();
+			obj->owt = weight(obj);
 
 			setworn(obj, savewornmask);
 
@@ -6402,6 +6404,8 @@ protectwhatdone:
 			if (obj->otyp == BUGLE) obj->otyp = UNICORN_HORN;
 			else if (obj->otyp == UNICORN_HORN) obj->otyp = BUGLE;
 
+			obj->owt = weight(obj);
+
 			break;
 		}
 
@@ -6411,6 +6415,8 @@ protectwhatdone:
 
 			if (obj->otyp == WOODEN_HARP) obj->otyp = WOODEN_FLUTE;
 			else if (obj->otyp == WOODEN_FLUTE) obj->otyp = WOODEN_HARP;
+
+			obj->owt = weight(obj);
 
 			break;
 		}
@@ -6430,6 +6436,9 @@ protectwhatdone:
 			else if (obj->otyp == SCALE_MAIL) obj->otyp = CHAIN_MAIL;
 			else if (obj->otyp == CHAIN_MAIL) obj->otyp = SPLINT_MAIL;
 			else if (obj->otyp == SPLINT_MAIL) obj->otyp = PLATE_MAIL;
+
+			obj->owt = weight(obj);
+
 			break;
 		}
 

@@ -6458,6 +6458,7 @@ secureidchoice:
 			    if (obj->otyp == CRYSKNIFE &&
 				    (!obj->oerodeproof || !rn2(10))) {
 				obj->otyp = WORM_TOOTH;
+				obj->owt = weight(obj);
 				obj->oerodeproof = 0;
 			    }
 			    uwep->spe--;
@@ -9081,6 +9082,7 @@ revid_end:
 			You("knock %s %s to the %s!", s_suffix(mon_nam(mtmp)), xname(obj), surface(u.ux, u.uy));
 			if (obj->otyp == CRYSKNIFE && (!obj->oerodeproof || !rn2(10))) {
 				obj->otyp = WORM_TOOTH;
+				obj->owt = weight(obj);
 				obj->oerodeproof = 0;
 			}
 			place_object(obj, u.ux, u.uy);
@@ -11565,6 +11567,7 @@ rockpoisonchoice:
 				} else if (!stack_too_big(otmp)) {
 					otmp->otyp = ACID_VENOM;
 					otmp->oclass = VENOM_CLASS;
+					otmp->owt = weight(otmp);
 					pline("Success! You've concocted some venom.");
 				} else pline("The stack was too big, and therefore nothing happens.");
 
@@ -12515,6 +12518,8 @@ extrachargechoice:
 					uwep->otyp = PINK_DOUBLE_LIGHTSWORD;
 				} else /* sabertype == 23 */
 					uwep->otyp = LOWER_ARM_SWORD;
+
+				uwep->owt = weight(uwep);
 
 				pline("Your lightsaber warps, and changes into a different one!");
 				/* known problem: you can pick the form that your lightsaber already has */

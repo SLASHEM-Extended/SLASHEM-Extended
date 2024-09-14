@@ -2085,6 +2085,8 @@ enchantarmorchoice:
 		/* assumes same order */
 		otmp->otyp = GRAY_DRAGON_SCALE_MAIL + otmp->otyp - GRAY_DRAGON_SCALES;
 
+		otmp->owt = weight(otmp);
+
 		if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 		}
@@ -2104,6 +2106,8 @@ enchantarmorchoice:
 		Your("%s merges and hardens!", xname(otmp));
 		setworn((struct obj *)0, W_ARM);
 		otmp->otyp = LIZARD_SCALE_MAIL;
+
+		otmp->owt = weight(otmp);
 
 		if ((otmp->morgcurse || otmp->evilcurse || otmp->bbrcurse) && !rn2(100) ) {
 			otmp->prmcurse = otmp->hvycurse = otmp->cursed = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
@@ -2172,6 +2176,7 @@ register int amount;
 
 	if(uwep->otyp == WORM_TOOTH && amount >= 0) {
 		uwep->otyp = CRYSKNIFE;
+		uwep->owt = weight(uwep);
 		uwep->oerodeproof = 0;
 		Your("weapon seems sharper now.");
 
@@ -2192,6 +2197,7 @@ register int amount;
 
 	if(uwep->otyp == CRYSKNIFE && amount < 0) {
 		if (!uwep->oartifact) uwep->otyp = WORM_TOOTH;
+		uwep->owt = weight(uwep);
 		uwep->oerodeproof = 0;
 		Your("weapon seems duller now.");
 		if (otyp != STRANGE_OBJECT && otmp->bknown) makeknown(otyp);
@@ -2320,6 +2326,7 @@ register int amount;
 
 	if(otmp->otyp == WORM_TOOTH && amount >= 0) {
 		otmp->otyp = CRYSKNIFE;
+		otmp->owt = weight(otmp);
 		otmp->oerodeproof = 0;
 		Your("weapon seems sharper now.");
 
@@ -2339,6 +2346,7 @@ register int amount;
 
 	if(otmp->otyp == CRYSKNIFE && amount < 0) {
 		if (!otmp->oartifact) otmp->otyp = WORM_TOOTH;
+		otmp->owt = weight(otmp);
 		otmp->oerodeproof = 0;
 		Your("weapon seems duller now.");
 		return(1);
