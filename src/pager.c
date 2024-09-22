@@ -29299,6 +29299,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear someone chasing after a shoplifter!",
 	"You hear a barker praising the wares of a store.",
 	"You hear a shifty voice say 'Fear not, our wares will definitely last for a whole life and come with a two-day warranty!'",
+	"One of the standard adventure game rules goes like this: If it's not nailed down, take it. If it's nailed down, find a way to remove the nails.",
 
 };
 
