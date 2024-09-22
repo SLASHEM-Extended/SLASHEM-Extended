@@ -2704,14 +2704,18 @@ boolean guaranteed;
 		enl_msg("Your areola diameter ", "is", "was", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) { sprintf(buf, " turn %d", u.monstertimeout);
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		sprintf(buf, " turn %d", u.monstertimeout);
 		enl_msg("Monster spawn increase ", "start at", "would have started at", buf);
 	}
 
-	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {sprintf(buf, " turn %d", u.monstertimefinish);
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
+		sprintf(buf, " turn %d", u.monstertimefinish);
 		enl_msg("Monster spawn increase ", "reaches its maximum at", "had reached its maximum at", buf);
+	}
+
+	if ((guaranteed || !rn2(10)) && (wizard || (!rn2(10)) || final >= 1 )) {
 		enl_msg("In this game, Eevee's evolution ", "is ", "was ", mons[u.eeveelution].mname );
-		/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
 	}
 
 	if ((guaranteed || !rn2(10))) {
@@ -7606,8 +7610,8 @@ int final;
 
 	sprintf(buf, " turn %d", u.monstertimefinish);
 	dump("  Monster spawn increase reached its maximum at ", buf);
+
 	dump("  In this game, Eevee's evolution was ", mons[u.eeveelution].mname );
-	/* these two are tied together because the monstertimefinish variable defines the evolution --Amy */
 
 	sprintf(buf, " %d", u.maxrndmonstchoicecount);
 	dump("  Maximum amount of combined random monster spawn freqs was", buf);

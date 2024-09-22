@@ -11441,17 +11441,17 @@ u_init()
 	if (u.usefulitemchance < 0) u.usefulitemchance = 0;
 
 	u.eeveelution = PM_VAPOREON; /* failsafe */
-	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
-	else if (u.monstertimefinish % 29 == 0) u.eeveelution = PM_SPIRITEON;
-	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;
-	else if (u.monstertimefinish % 19 == 0) u.eeveelution = PM_VENOMEON;
-	else if (u.monstertimefinish % 15 == 0) u.eeveelution = PM_SYLVEON;
-	else if (u.monstertimefinish % 13 == 0) u.eeveelution = PM_GLACEON;
-	else if (u.monstertimefinish % 11 == 0) u.eeveelution = PM_LEAFEON;
-	else if (u.monstertimefinish % 10 == 0) u.eeveelution = PM_UMBREON;
-	else if (u.monstertimefinish % 9 == 0) u.eeveelution = PM_ESPEON;
-	else if (u.monstertimefinish % 7 == 0) u.eeveelution = PM_JOLTEON;
-	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
+	if (!rn2(42)) u.eeveelution = PM_VOLAREON;
+	else if (!rn2(29)) u.eeveelution = PM_SPIRITEON;
+	else if (!rn2(23)) u.eeveelution = PM_INSECTEON;
+	else if (!rn2(19)) u.eeveelution = PM_VENOMEON;
+	else if (!rn2(15)) u.eeveelution = PM_SYLVEON;
+	else if (!rn2(13)) u.eeveelution = PM_GLACEON;
+	else if (!rn2(11)) u.eeveelution = PM_LEAFEON;
+	else if (!rn2(10)) u.eeveelution = PM_UMBREON;
+	else if (!rn2(9)) u.eeveelution = PM_ESPEON;
+	else if (!rn2(7)) u.eeveelution = PM_JOLTEON;
+	else if (!rn2(3)) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
 	u.greencrossopen = FALSE; /* initialized at game start only */
@@ -33862,15 +33862,17 @@ int realityflag;
 	if (u.usefulitemchance < 0) u.usefulitemchance = 0;
 
 	u.eeveelution = PM_VAPOREON; /* failsafe */
-	if (u.monstertimefinish % 42 == 0) u.eeveelution = PM_VOLAREON;
-	else if (u.monstertimefinish % 23 == 0) u.eeveelution = PM_INSECTEON;
-	else if (u.monstertimefinish % 15 == 0) u.eeveelution = PM_SYLVEON;
-	else if (u.monstertimefinish % 13 == 0) u.eeveelution = PM_GLACEON;
-	else if (u.monstertimefinish % 11 == 0) u.eeveelution = PM_LEAFEON;
-	else if (u.monstertimefinish % 10 == 0) u.eeveelution = PM_UMBREON;
-	else if (u.monstertimefinish % 9 == 0) u.eeveelution = PM_ESPEON;
-	else if (u.monstertimefinish % 7 == 0) u.eeveelution = PM_JOLTEON;
-	else if (u.monstertimefinish % 3 == 0) u.eeveelution = PM_FLAREON;
+	if (!rn2(42)) u.eeveelution = PM_VOLAREON;
+	else if (!rn2(29)) u.eeveelution = PM_SPIRITEON;
+	else if (!rn2(23)) u.eeveelution = PM_INSECTEON;
+	else if (!rn2(19)) u.eeveelution = PM_VENOMEON;
+	else if (!rn2(15)) u.eeveelution = PM_SYLVEON;
+	else if (!rn2(13)) u.eeveelution = PM_GLACEON;
+	else if (!rn2(11)) u.eeveelution = PM_LEAFEON;
+	else if (!rn2(10)) u.eeveelution = PM_UMBREON;
+	else if (!rn2(9)) u.eeveelution = PM_ESPEON;
+	else if (!rn2(7)) u.eeveelution = PM_JOLTEON;
+	else if (!rn2(3)) u.eeveelution = PM_FLAREON;
 	else u.eeveelution = PM_VAPOREON;
 
 	u.greencrosschance = rnd(20);
