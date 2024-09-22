@@ -9627,13 +9627,14 @@ u_init()
 	u.weakcheat = 0;	/* increases if a character wearing a stat lock ring grows weak to prevent them from restoring strength points they didn't lose in the first place --Amy */
 	u.stethocheat = 0;
 
-      u.monstertimeout = rnz(12000)+rnz(18000);
-	while (u.monstertimeout < 10) u.monstertimeout = rnz(12000)+rnz(18000);
+      u.monstertimeout = rnz(12000)+rnz(18000)+rno(20000);
+	while (u.monstertimeout < 10) u.monstertimeout = rnz(12000)+rnz(18000)+rno(20000);
 
 	if (rn2(3)) u.monstertimeout += rnz(12000)+rnz(18000);
+	if (!rn2(5)) u.monstertimeout += rnz(50000);
 
-      u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
-	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
+      u.monstertimefinish = rnz(36000)+rnz(72000)+rnz(300000)+u.monstertimeout;
+	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(36000)+rnz(72000)+rnz(300000)+u.monstertimeout;
 
 	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(30000)); /* if you still didn't ascend at this turn count, the game becomes much harder */
 	while (u.ascensiontimelimit < (issoviet ? 500000 : 250000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
@@ -11554,10 +11555,21 @@ u_init()
 
 	u.monstermultiplier = 100;
 	if (rn2(3)) {
+		boolean highweather = FALSE;
+		if (!rn2(10)) highweather = TRUE;
+
 		if (rn2(2)) {
-			while (rn2(6)) u.monstermultiplier--;
+			if (highweather) {
+				while (rn2(30)) u.monstermultiplier--;
+			} else {
+				while (rn2(6)) u.monstermultiplier--;
+			}
 		} else {
-			while (rn2(6)) u.monstermultiplier++;
+			if (highweather) {
+				while (rn2(30)) u.monstermultiplier++;
+			} else {
+				while (rn2(6)) u.monstermultiplier++;
+			}
 		}
 	}
 	if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */
@@ -32141,13 +32153,14 @@ int realityflag;
 
 	monst_globals_init();
 
-      u.monstertimeout = rnz(12000)+rnz(18000);
-	while (u.monstertimeout < 10) u.monstertimeout = rnz(12000)+rnz(18000);
+      u.monstertimeout = rnz(12000)+rnz(18000)+rno(20000);
+	while (u.monstertimeout < 10) u.monstertimeout = rnz(12000)+rnz(18000)+rno(20000);
 
 	if (rn2(3)) u.monstertimeout += rnz(12000)+rnz(18000);
+	if (!rn2(5)) u.monstertimeout += rnz(50000);
 
-      u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
-	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(36000)+rnz(72000)+u.monstertimeout;
+      u.monstertimefinish = rnz(36000)+rnz(72000)+rnz(300000)+u.monstertimeout;
+	while (u.monstertimefinish < 20) u.monstertimefinish = rnz(36000)+rnz(72000)+rnz(300000)+u.monstertimeout;
 
 	u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(30000)); /* if you still didn't ascend at this turn count, the game becomes much harder */
 	while (u.ascensiontimelimit < (issoviet ? 500000 : 250000)) u.ascensiontimelimit = rnz(100) * rnz(1000 + rnd(9000));
@@ -33956,10 +33969,21 @@ int realityflag;
 
 	u.monstermultiplier = 100;
 	if (rn2(3)) {
+		boolean highweather = FALSE;
+		if (!rn2(10)) highweather = TRUE;
+
 		if (rn2(2)) {
-			while (rn2(6)) u.monstermultiplier--;
+			if (highweather) {
+				while (rn2(30)) u.monstermultiplier--;
+			} else {
+				while (rn2(6)) u.monstermultiplier--;
+			}
 		} else {
-			while (rn2(6)) u.monstermultiplier++;
+			if (highweather) {
+				while (rn2(30)) u.monstermultiplier++;
+			} else {
+				while (rn2(6)) u.monstermultiplier++;
+			}
 		}
 	}
 	if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */

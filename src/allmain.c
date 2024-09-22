@@ -284,22 +284,38 @@ moveloop()
 			  * dropping newbies off the edge of the planet.  -- DSR 12/2/07
 			  */
 
-			monclock = 90;
+			monclock = 200;
 
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
-				monclock = 30;
+				monclock = 75;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					monclock = 80;
+					monclock = 150;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					monclock -= past_clock*40/clock_base;
+					monclock -= (past_clock * 70 / clock_base);
 				}
 			}
+
+			/* note by Amy: have higher spawn rate very early on or players will be likely to starve!
+			 * but not in lost soul modes since the monster levels are inflated there */
+			if (!flags.lostsoul && !flags.uberlostsoul) {
+				if (u.ulevel < 2 && moves < 1000) {
+					monclock /= 3;
+				} else if (u.ulevel < 3 && moves < 2000) {
+					monclock *= 2; monclock /= 5;
+				} else if (u.ulevel < 4 && moves < 3000) {
+					monclock /= 2;
+				} else if (u.ulevel < 5 && moves < 4000) {
+					monclock *= 2; monclock /= 3;
+				} else if (u.ulevel < 6 && moves < 5000) {
+					monclock *= 4; monclock /= 5;
+				}
+			}
+
 			/* make sure we don't fall off the bottom */
-			if (monclock < 40 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { monclock = 40; }
-			if (monclock < 30) { monclock = 30; }
+			if (monclock < 75) monclock = 75;
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
@@ -335,21 +351,20 @@ moveloop()
 
 			if (!rn2(monclock) && ishomicider ) makerandomtrap(FALSE);
 
-			xtraclock = 200000;
+			xtraclock = 500000;
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
-				xtraclock = 60000;
+				xtraclock = 200000;
 			} else {
 				if (depth(&u.uz) > depth(&stronghold_level)) {
-					xtraclock = 160000;
+					xtraclock = 400000;
 				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					xtraclock -= past_clock*100000/clock_base;
+					xtraclock -= (past_clock * 200000 / clock_base);
 				}
 			}
 			/* make sure we don't fall off the bottom */
-			if (xtraclock < 100000 && !(u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) && !u.uprops[STORM_HELM].extrinsic) { xtraclock = 100000; }
-			if (xtraclock < 60000) { xtraclock = 60000; }
+			if (xtraclock < 200000) xtraclock = 200000;
 
 			xtraclock *= (10000 / u.monstermultiplier); /* values from 52 to 1000 */
 			xtraclock /= 100;
