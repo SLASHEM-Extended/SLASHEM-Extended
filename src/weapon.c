@@ -5901,7 +5901,7 @@ int enhance_skill(boolean want_dump)
 	       with "*" or "#" below */
 	    if (eventually_advance > 0 || maxxed_cnt > 0) {
 		any.a_void = 0;
-		if (eventually_advance > 0) {
+		if (!DarkHanceScreen && (eventually_advance > 0)) {
 		    sprintf(buf,
 			    "(Skill%s flagged by \"*\" may be enhanced %s.)",
 			    plur(eventually_advance),
@@ -5911,7 +5911,7 @@ int enhance_skill(boolean want_dump)
 		    add_menu(win, NO_GLYPH, &any, 0, 0, ATR_NONE,
 			     buf, MENU_UNSELECTED);
 		}
-		if (maxxed_cnt > 0) {
+		if (!DarkHanceScreen && (maxxed_cnt > 0)) {
 		    sprintf(buf,
 		  "(Skill%s flagged by \"#\" cannot be enhanced any further.)",
 			    plur(maxxed_cnt));
