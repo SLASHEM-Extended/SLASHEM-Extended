@@ -280,6 +280,7 @@ kseniaagain:
 					case 2:
 						pline_The("kick hits your %s!", body_part(HAND));
 						incr_itimeout(&Glib, rnz(50) );
+						flags.botl = TRUE;
 						break;
 					case 3:
 						pline_The("kick bludgeoned you, and you drop to the floor!");
@@ -725,6 +726,7 @@ elena10:
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s slides %s mocassins over your %ss, opening your arteries and squirting %s everywhere!", Monnam(mtmp), mhis(mtmp), body_part(HAND), body_part(BLOOD) );
 				    incr_itimeout(&Glib, monsterlev);
+				    flags.botl = TRUE;
 				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
 					goto elena10;
@@ -740,6 +742,7 @@ elena11:
 				if (monsterlev <= 0) monsterlev = 1;
 				pline("%s hits your %s with %s sneakers!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
 				    incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
+				    flags.botl = TRUE;
 				losehp(d(1,monsterlev), "soft sneaker to the hand", KILLED_BY_AN);
 				if (FemtrapActiveElena && !rn2(3)) {
 					pline("You long for more!");
@@ -758,6 +761,7 @@ elena12:
 				if (randomkick == 1) {
 				pline("%s steps on your %s with %s plateau heels!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
 				    incr_itimeout(&Glib, 20); /* painfully jamming your fingers */
+				    flags.botl = TRUE;
 				losehp(d(1,monsterlev), "hippie plateau boot", KILLED_BY_AN);
 				}
 				if (randomkick == 2) {
@@ -1361,6 +1365,7 @@ elena23:
 				if (randomkick == 1) {
 				pline("%s steps on your %s with %s block heels!", Monnam(mtmp), body_part(HAND), mhis(mtmp) );
 				    incr_itimeout(&Glib, 20); /* painfully jamming your fingers */
+				    flags.botl = TRUE;
 				losehp(d(1,monsterlev), "lovely block-heeled boot", KILLED_BY_AN);
 				}
 				if (randomkick == 2) {
@@ -7616,6 +7621,7 @@ hitmu(mtmp, mattk)
 		/* hurt the player's hands --Amy */
 		pline("Your hands got hit hard!");
 		incr_itimeout(&Glib, dmg);
+		flags.botl = TRUE;
 
 		break;
 	    case AD_DARK:
@@ -15802,6 +15808,7 @@ common:
 	    case AD_GLIB:
 		pline("Your hands got ripped off by the explosion!");
 		incr_itimeout(&Glib, tmp);
+		flags.botl = TRUE;
 
 		break;
 

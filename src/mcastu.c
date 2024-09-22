@@ -2030,6 +2030,7 @@ int spellnum;
 		int glibberX;
 		glibberX = (rnz(1 + mtmp->m_lev));
 		    incr_itimeout(&Glib, glibberX);
+		    flags.botl = TRUE;
 		dmg = 0;
 		break;
 	case 34:

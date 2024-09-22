@@ -1865,12 +1865,14 @@ nh_timeout()
 
 				pline("Your footwear suddenly slams against your %ss, opening your arteries and squirting %s everywhere!", body_part(HAND), body_part(BLOOD));
 			      incr_itimeout(&Glib, rnd(10) + rnd(monster_difficulty() + 1));
+				flags.botl = TRUE;
 				break;
 
 				case 4:
 
 				pline("Your footwear suddenly hits your %ss!", body_part(HAND) );
 			      incr_itimeout(&Glib, 2);
+				flags.botl = TRUE;
 				losehp(rnd(10)+ rnd(monster_difficulty() + 1),"sentient high heel to the hands",KILLED_BY_AN);
 				break;
 
@@ -2153,6 +2155,7 @@ nh_timeout()
 					if (randomkick == 1) {
 						pline("Your hippie heel steps on your %s with the plateau heels!", body_part(HAND));
 						incr_itimeout(&Glib, 20 + monster_difficulty()); /* painfully jamming your fingers */
+						flags.botl = TRUE;
 						losehp(rnd(10) + rnd( monster_difficulty() + 1),"being jammed by a plateau heel",KILLED_BY);
 					}
 					if (randomkick == 2) {

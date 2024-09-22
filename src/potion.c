@@ -2810,6 +2810,7 @@ badeffect()
 		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, rnz(50) );
+		flags.botl = TRUE;
 		break;
 
 		case 86:
@@ -4404,6 +4405,7 @@ reallybadeffect()
 		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, rnz(50) );
+		flags.botl = TRUE;
 		break;
 
 		case 8:
@@ -12927,6 +12929,7 @@ peffects(otmp)
 	case POT_GREASE:
 		incr_itimeout(&Glib, rn1(100, 100 - 50 * bcsign(otmp)) );
 		Your("%s become very slippery!", makeplural(body_part(HAND)) );
+		flags.botl = TRUE;
 
 		break;
 	case POT_NUMBNESS:
@@ -15646,6 +15649,7 @@ register struct obj *obj;
 
 		incr_itimeout(&Glib, rnd(30));
 		Your("%s become very slippery!", makeplural(body_part(HAND)) );
+		flags.botl = TRUE;
 
 		break;
 	case POT_NUMBNESS:
@@ -17650,6 +17654,7 @@ poof:
 		pline_The("potion spills and covers your %s with oil.",
 			  makeplural(body_part(FINGER)));
 		incr_itimeout(&Glib, d(2,10));
+		flags.botl = TRUE;
 	    } else if (obj->oclass != WEAPON_CLASS && !is_weptool(obj)) {
 		/* the following cases apply only to weapons */
 		goto more_dips;

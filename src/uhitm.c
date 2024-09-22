@@ -12901,6 +12901,7 @@ boolean ranged;
 		/* hurt the player's hands --Amy */
 		You("rip open your hands as you scrape along %s body!", s_suffix(mon_nam(mon)));
 		incr_itimeout(&Glib, (tmp + 2) );
+		flags.botl = TRUE;
 
 		break;
 	  case AD_LUCK:

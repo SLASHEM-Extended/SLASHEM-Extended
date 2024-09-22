@@ -532,6 +532,7 @@ register struct obj *food;
 		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
+		flags.botl = TRUE;
 	} else if(!rn2(10)) {
 		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
@@ -4283,6 +4284,7 @@ register int pm;
 		if (evilfriday && (amorphous(&mons[pm]) || slithy(&mons[pm]) || mons[pm].mlet == S_BLOB || mons[pm].mlet == S_JELLY || mons[pm].mlet == S_FUNGUS || mons[pm].mlet == S_WORM || mons[pm].mlet == S_PUDDING)) {
 			pline("Harharhar harhar har, you ate the wrong thing and therefore your %s are slippery now.", makeplural(body_part(HAND)));
 			incr_itimeout(&Glib, rnd(15 + level_difficulty()));
+			flags.botl = TRUE;
 
 		}
 
@@ -4617,6 +4619,7 @@ gluttonous()
 		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
+		flags.botl = TRUE;
 	} else if(!rn2(10)) {
 		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
@@ -4707,6 +4710,7 @@ violated_vegetarian()
 		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
+		flags.botl = TRUE;
 	} else if(!rn2(10)) {
 		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
@@ -4976,6 +4980,7 @@ opentin()		/* called during each move whilst opening a tin */
 	    if(r == 0 || r == FRENCH_FRIED_TIN || r == FRENCH_FRIED_TINX) {
 	        /* Assume !Glib, because you can't open tins when Glib. */
 		incr_itimeout(&Glib, rnd(15));
+		flags.botl = TRUE;
 		pline("Eating deep fried food made your %s very slippery.",
 		      makeplural(body_part(FINGER)));
 	    }
@@ -5297,6 +5302,7 @@ struct obj *obj;
 		if (FunnyHallu) You_feel("like you have dementia tremor!"); /* not a real name --Amy */
 		else pline("Your hands start trembling violently!");
 		incr_itimeout(&Glib, d(2,4) );
+		flags.botl = TRUE;
 	} else if(!rn2(10)) {
 		if (FunnyHallu) You_feel("totally down! Seems you tried some illegal shit!");
 		else You_feel("like you're going to throw up.");
@@ -5942,6 +5948,7 @@ struct obj *otmp;
 		    break;
 		  case RIN_DISARMING:
 		    incr_itimeout(&Glib, 2);			
+		    flags.botl = TRUE;
 		    break;
 		  case RIN_LEVITATION:
 		    /* undo the `.intrinsic |= FROMOUTSIDE' done above */

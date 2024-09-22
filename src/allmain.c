@@ -6328,6 +6328,7 @@ newbossUTE:
 				case 1:
 					pline("Elif suddenly kicks your %s with her very soft, female sneakers, and draws %s!", body_part(HAND), body_part(BLOOD));
 					incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
+					flags.botl = TRUE;
 					losehp(rnd(u.ulevel), "Elif's soft female sneakers", KILLED_BY);
 					break;
 				case 2:
@@ -13039,6 +13040,7 @@ newboss:
 
 		if (uarmg && itemhasappearance(uarmg, APP_GRAFFITI_GLOVES) && !rn2(2000) ) {
 		    incr_itimeout(&Glib, 2); /* just enough to make you drop your weapon */
+		    flags.botl = TRUE;
 		}
 
 		if (uarmg && itemhasappearance(uarmg, APP_FATAL_GLOVES) && !rn2(10000) ) {
@@ -21979,6 +21981,7 @@ antjenewturn:
 					case 5:
 						if (playerprone) {
 							incr_itimeout(&Glib, 50);
+							flags.botl = TRUE;
 							pline("Since you can't get up, you can't get to the toilet paper, and Antje doesn't give you any either, but forces you to wipe off her thick butt with your bare %s... eww...", body_part(HAND));
 						} else {
 							pline("Antje agrees, so you grab some toilet paper and use it to wipe off her thick butt.");

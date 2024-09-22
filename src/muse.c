@@ -9922,6 +9922,7 @@ newboss:
 
 		pline("Your %s bend themselves!", makeplural(body_part(FINGER)) );
 		incr_itimeout(&Glib, rnd(15) + rnd(monster_difficulty() + 1) );
+		flags.botl = TRUE;
 
 		if (oseen) makeknown(WAN_FINGER_BENDING);
 
