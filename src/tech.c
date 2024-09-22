@@ -10463,6 +10463,8 @@ repairitemchoice:
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_KOBUDO;
 					} else if (P_SKILL(P_BARE_HANDED_COMBAT) >= P_SKILLED && yn("Switch to the 'booyakasha' style (knuckles deal more damage on consecutive hits, teleport control while wielding knuckles, resist fear, reduces INT, CON and WIS, doubles alignment losses)?")=='y') {
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_BOOYAKASHA;
+					} else if (P_SKILL(P_SQUEAKING) >= P_BASIC && yn("Switch to the 'kinamutay' style (fists can blind female enemies, kick can paralyze male enemies, these special attacks deal more damage but also reduce alignment and occasionally increase the sin counter)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_KINAMUTAY;
 					} else if (yn("Do you choose to not switch your style after all?")=='y') {
 						madechoice = 1;
 					}

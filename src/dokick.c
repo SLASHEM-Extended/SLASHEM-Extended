@@ -437,6 +437,36 @@ register boolean clumsy;
 		u.femcomboactive = TRUE;
 	}
 
+	if (u.martialstyle == MARTIALSTYLE_KINAMUTAY && !mon->female && humanoid(mon->data)) {
+		int kinachance = 0;
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SQUEAKING)) {
+				case P_BASIC: kinachance = 1; break;
+				case P_SKILLED: kinachance = 2; break;
+				case P_EXPERT: kinachance = 3; break;
+				case P_MASTER: kinachance = 4; break;
+				case P_GRAND_MASTER: kinachance = 5; break;
+				case P_SUPREME_MASTER: kinachance = 6; break;
+			}
+		}
+
+		if (kinachance > rn2(20)) {
+			You("fully kick %s in the nuts!", mon_nam(mon));
+
+			dmg += rnd(10);
+			mon->mcanmove = 0;
+			if (mon->mfrozen < 110) mon->mfrozen += rn1(10,5);
+			mon->mstrategy &= ~STRAT_WAITFORU;
+
+			adjalign(-20);
+			if (!rn2(50)) {
+				increasesincounter(1);
+				u.alignlim--;
+				pline_The("gods are probably not very pleased about you fighting dirty, though.");
+			}
+		}
+	}
+
 	if (uarmh && uarmh->oartifact == ART_NYPHERISBANE && (mon->data->mlet == S_SNAKE || mon->data->mlet == S_NAGA) ) {
 		You("totally stomp that stupid snake.");
 		dmg += 100;

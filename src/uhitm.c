@@ -2058,6 +2058,41 @@ int dieroll;
 			}
 		}
 
+		if (u.martialstyle == MARTIALSTYLE_KINAMUTAY && mon->female && humanoid(mon->data)) {
+			int kinachance = 0;
+			if (!PlayerCannotUseSkills) {
+				switch (P_SKILL(P_SQUEAKING)) {
+					case P_BASIC: kinachance = 1; break;
+					case P_SKILLED: kinachance = 2; break;
+					case P_EXPERT: kinachance = 3; break;
+					case P_MASTER: kinachance = 4; break;
+					case P_GRAND_MASTER: kinachance = 5; break;
+					case P_SUPREME_MASTER: kinachance = 6; break;
+				}
+			}
+
+			if (kinachance > rn2(20)) {
+				Your("%snails aim for %s's %s!", body_part(FINGER), mon_nam(mon), makeplural(mbodypart(mon, EYE)) );
+
+				if (mon->mblinded < 100) mon->mblinded += 20;
+				tmp += rnd(10);
+				if (u.nailpolish) {
+					tmp += (u.nailpolish * 2);
+					pline("Due to your nail polish, it's extra effective!");
+					if (rnd(10) <= u.nailpolish) {
+						u.nailpolish--;
+						pline(u.nailpolish ? "One of your nails loses its polish." : "Your nail loses its polish.");
+					}
+				}
+				adjalign(-20);
+				if (!rn2(50)) {
+					increasesincounter(1);
+					u.alignlim--;
+					pline_The("gods are probably not very pleased about you fighting dirty, though.");
+				}
+			}
+		}
+
 		if (u.nailpolish && (!uarmg || FingerlessGloves) ) {
 			tmp += (u.nailpolish * 2);
 			if (rnd(10) <= u.nailpolish) {
