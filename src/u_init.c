@@ -11575,6 +11575,8 @@ u_init()
 	if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */
 	if (u.monstermultiplier > 190) u.monstermultiplier = 190;
 
+	maybe_tell_weather();
+
 	u.drippingtread = 0;
 	u.drippingtreadtype = 0;
 	u.geolysis = 0;

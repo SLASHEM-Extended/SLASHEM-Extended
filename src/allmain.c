@@ -3898,15 +3898,28 @@ moveloop()
 
 		if (!rn2(5000)) {
 			u.monstermultiplier = 100;
-			if (rn2(3)) {
-				if (rn2(2)) {
+
+			boolean highweather = FALSE;
+			if (!rn2(10)) highweather = TRUE;
+
+			if (rn2(2)) {
+				if (highweather) {
+					while (rn2(30)) u.monstermultiplier--;
+				} else {
 					while (rn2(6)) u.monstermultiplier--;
+				}
+			} else {
+				if (highweather) {
+					while (rn2(30)) u.monstermultiplier++;
 				} else {
 					while (rn2(6)) u.monstermultiplier++;
 				}
 			}
+
 			if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */
 			if (u.monstermultiplier > 190) u.monstermultiplier = 190;
+
+			maybe_tell_weather();
 		}
 
 		if (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF && !uarmu->cursed && !rn2(1000)) curse(uarmu);

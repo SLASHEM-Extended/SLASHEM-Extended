@@ -4616,6 +4616,24 @@ maybe_wail()
 }
 
 void
+maybe_tell_weather()
+{
+	if (EcholocationActive || Clairvoyant) {
+		if (u.monstermultiplier < 51) {
+			pline("The current weather is arid.");
+		} else if (u.monstermultiplier < 92) {
+			pline("The current weather is warm.");
+		} else if (u.monstermultiplier < 109) {
+			pline("The current weather is pleasant.");
+		} else if (u.monstermultiplier < 150) {
+			pline("The current weather is cold.");
+		} else {
+			pline("The current weather is stormy.");
+		}
+	}
+}
+
+void
 nomul(nval, txt, discountpossible)
 	register int nval;
 	const char *txt;
