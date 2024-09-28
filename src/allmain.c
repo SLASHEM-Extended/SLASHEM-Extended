@@ -289,12 +289,9 @@ moveloop()
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
 				monclock = 75;
 			} else {
-				if (depth(&u.uz) > depth(&stronghold_level)) {
-					monclock = 150;
-				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					monclock -= (past_clock * 70 / clock_base);
+					monclock -= (past_clock * 125 / clock_base);
 				}
 			}
 
@@ -355,12 +352,9 @@ moveloop()
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
 				xtraclock = 200000;
 			} else {
-				if (depth(&u.uz) > depth(&stronghold_level)) {
-					xtraclock = 400000;
-				}
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					xtraclock -= (past_clock * 200000 / clock_base);
+					xtraclock -= (past_clock * 300000 / clock_base);
 				}
 			}
 			/* make sure we don't fall off the bottom */

@@ -2114,7 +2114,8 @@ d_level *lev;
 /* use instead of depth() wherever a degree of difficulty is made
  * dependent on the location in the dungeon (eg. monster creation).
  */
-xchar /* xchar used to mean it can only be 127 or lower. If a value >127 is returned, the game destabilizes! no longer the 	 * case though, because Amy fixed that */
+xchar /* xchar used to mean it can only be 127 or lower. If a value >127 is returned, the game destabilizes! no longer the
+	 * case though, because Amy fixed that */
 level_difficulty()
 {
 	int retvalue;
@@ -2175,15 +2176,15 @@ level_difficulty()
 		else if (depthuz == 11) depthuz = 8;
 	}
 
-	if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(3))
+	if ((Race_if(PM_IMPERIAL) || (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna) && !rn2(50))
 		retvalue = (depthuz + rn2(u.ulevel) + 2 );
 	else
 		retvalue = depthuz;
 
 	if (In_endgame(&u.uz)) {
-		if (retvalue < (110 + (u.ulevel/2) )) retvalue = 110 + (u.ulevel/2);
+		if (retvalue < 100) retvalue = 100;
 	} else if (u.uhave.amulet && !u.freeplaymode && u.amuletcompletelyimbued) {
-		if (retvalue < 110) retvalue = 110;
+		if (retvalue < 80) retvalue = 80;
 	}
 
 	/* evilvariant addition from 3.6: if the dungeon is entered from below, artificially increase difficulty --Amy */
@@ -2360,7 +2361,7 @@ level_difficulty()
 
 	if (u.mondiffhack > 0) retvalue += u.mondiffhack; /* this needs to be beyond the isimoud division --Amy */
 
-	/*if (retvalue > 126) retvalue = 126;*/ /* fail safe */
+	/*if (retvalue > 126) retvalue = 126;*/ /* fail safe - not needed anymore */
 	if (retvalue < 1) retvalue = 1;
 
 	/*pline("%d diff", retvalue);*/
@@ -2374,21 +2375,25 @@ level_difficulty()
 /* edit - well, actually we can; I decided to max out the amount of possible levels and put the sanctum at 72. --Amy
  * edit again: expanded it greatly, it's at 100 now */
 
-xchar /* 127 or lower */
+xchar /* 127 or lower (but no longer the case, thanks to Amy) */
 monster_difficulty()
 {
 
 	int tempval;
+	int levdiff = level_difficulty(); /* have a fixed value since there's a random factor involved */
 
-	tempval = (level_difficulty() + gentlelevel() + 1)>>1;
-	if (tempval < level_difficulty()) tempval = level_difficulty();
+	tempval = (levdiff + gentlelevel() + 1)>>1;
+	if ((levdiff > 9) && (tempval < levdiff) ) tempval = levdiff;
 	/* this function is meant to make sure high-level characters don't get stupidly easy monsters at shallow depths,
 	 * yet I also don't want monsters at deep dungeon levels to be of a lower level than they should be. --Amy */
 
-	if (Race_if(PM_DEVELOPER)) tempval += rnd(30);
+	if (Race_if(PM_DEVELOPER)) { /* very difficult, but keep it sane... ---Amy */
+		if (rn2(5)) tempval += rno(10);
+		else tempval += rno(30);
+	}
 
 	if (tempval < 1) tempval = 1;
-	/*if (tempval > 125) tempval = 125;*/ /* to be on the safe side */
+	/*if (tempval > 125) tempval = 125;*/ /* to be on the safe side - not needed anymore */
 
 	/*pline("%d mondiff", tempval);*/
 
