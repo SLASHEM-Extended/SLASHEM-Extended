@@ -20656,6 +20656,8 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
+	if (new_game) maybe_tell_weather();
+
 	if (Race_if(PM_HC_ALIEN) && new_game && !flags.female) {
 		makeknown(AMULET_OF_CHANGE);
 		pline("The gods don't allow you to be male.");

@@ -9333,6 +9333,7 @@ SCROLL((char *)0,               "BUMM  WUMM",  P_NONE,     1,   0, 100, CLR_BRIG
 SCROLL((char *)0,               "SADLY I AM NOT THE TENDER KATHARINA",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
 SCROLL((char *)0,               "DONT WANNA BE A VIRGIN BUT AM FORCED TO",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "UHKIR SITAKAWUWIR WOSAIR YOOF PRAAWUN",  P_NONE,     1,   0, 100, CLR_CYAN, 1),
+SCROLL((char *)0,               "TRAIN THAT TRAVELS FROM HASEN VIA FIRAET TO STUHLGOTTRIESE",  P_NONE,     1,   0, 100, CLR_BLUE, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

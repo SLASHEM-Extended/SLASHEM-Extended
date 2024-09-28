@@ -4619,16 +4619,28 @@ void
 maybe_tell_weather()
 {
 	if (EcholocationActive || Clairvoyant) {
-		if (u.monstermultiplier < 51) {
+		if (u.monstermultiplier < 31) {
+			pline("The current weather is extremely arid.");
+		} else if (u.monstermultiplier < 51) {
 			pline("The current weather is arid.");
+		} else if (u.monstermultiplier < 72) {
+			pline("The current weather is very warm.");
 		} else if (u.monstermultiplier < 92) {
 			pline("The current weather is warm.");
-		} else if (u.monstermultiplier < 109) {
+		} else if (u.monstermultiplier < 97) {
+			pline("The current weather is slightly warm.");
+		} else if (u.monstermultiplier < 104) {
 			pline("The current weather is pleasant.");
-		} else if (u.monstermultiplier < 150) {
+		} else if (u.monstermultiplier < 109) {
+			pline("The current weather is slightly cold.");
+		} else if (u.monstermultiplier < 129) {
 			pline("The current weather is cold.");
-		} else {
+		} else if (u.monstermultiplier < 150) {
+			pline("The current weather is very cold.");
+		} else if (u.monstermultiplier < 170) {
 			pline("The current weather is stormy.");
+		} else {
+			pline("The current weather is super stormy.");
 		}
 	}
 }
