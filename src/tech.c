@@ -10437,6 +10437,8 @@ repairitemchoice:
 
 					if (yn("Switch to the 'brawling' style (default martial arts style, no special effects)?")=='y') {
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_BRAWLING;
+					} else if (yn("Switch to the 'boxing' style (gloves increase fists damage, especially when enchanted, kick deals less damage, melee and ranged weapons have reduced to-hit)?")=='y') {
+						madechoice = 1; u.martialstyle = MARTIALSTYLE_BOXING;
 					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC && yn("Switch to the 'judo' style (break holding attacks, boosts dexterity, more frequency for special martial arts strikes, reduces your damage output)?")=='y') {
 						madechoice = 1; u.martialstyle = MARTIALSTYLE_JUDO;
 					} else if (P_SKILL(P_MARTIAL_ARTS) >= P_SKILLED && yn("Switch to the 'taekwondo' style (powers up your kick attack, can block projectiles if both of your hands are free, can also be used while wielding a weapon, your melee attacks have reduced to-hit)?")=='y') {

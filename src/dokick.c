@@ -572,6 +572,11 @@ register boolean clumsy;
 		if (dmg < 1) dmg = 1;
 	}
 
+	if (u.martialstyle == MARTIALSTYLE_BOXING) {
+		dmg /= 2;
+		if (dmg < 1) dmg = 1;
+	}
+
 	if (uarmf && uarmf->oartifact == ART_ELIANE_S_SHIN_SMASH) dmg *= 2;
 	if (u.martialstyle == MARTIALSTYLE_KUNGFU) {
 		dmg *= 11;

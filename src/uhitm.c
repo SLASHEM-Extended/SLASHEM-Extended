@@ -960,6 +960,8 @@ register struct monst *mtmp;
 	if (u.martialstyle == MARTIALSTYLE_SILAT && !uwep && (!u.twoweap || !uswapwep)) tmp += rn1(6, 6);
 	if (u.martialstyle == MARTIALSTYLE_KUNGFU && !uwep && (!u.twoweap || !uswapwep)) tmp += 5;
 
+	if (u.martialstyle == MARTIALSTYLE_BOXING && (uwep || (u.twoweap && uswapwep) ) ) tmp -= 5;
+
 	if (u.martialstyle == MARTIALSTYLE_HAIDONGGUMDO && uwep && uwep->otyp == JEONTU_GEOM) {
 		tmp += 5;
 		if (!PlayerCannotUseSkills) {
@@ -1617,6 +1619,11 @@ martial_dmg()
 
 	if (u.martialstyle == MARTIALSTYLE_KRAVMAGA) damage += rn1(5, 5);
 
+	if (u.martialstyle == MARTIALSTYLE_BOXING && uarmg) {
+		damage += 2;
+		if (uarmg->spe > 0) damage += uarmg->spe;
+	}
+
 	if (uarmg && uarmg->oartifact == ART_BOX_FIST) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) damage += 5;
 	if (uarmg && uarmg->oartifact == ART_FIFTY_SHADES_OF_FUCKED_UP) damage += 5;
@@ -1885,6 +1892,11 @@ int dieroll;
 			if (uarmg && itemhasappearance(uarmg, APP_BOXING_GLOVES) ) tmp += 1;
 
 			if (u.martialstyle == MARTIALSTYLE_KRAVMAGA) tmp += rn1(5, 5);
+
+			if (u.martialstyle == MARTIALSTYLE_BOXING && uarmg) {
+				tmp += 2;
+				if (uarmg->spe > 0) tmp += uarmg->spe;
+			}
 
 			if (uarmg && uarmg->oartifact == ART_BOX_FIST) tmp += 5;
 			if (uarmg && uarmg->oartifact == ART_BOXING_LESSON) tmp += 5;
