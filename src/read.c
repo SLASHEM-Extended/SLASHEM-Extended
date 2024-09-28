@@ -2708,7 +2708,7 @@ struct obj *sobj;
 	if (sobj && !Role_if(PM_NECROMANCER) && sobj->otyp == SPE_COMMAND_UNDEAD) tamediff = 2;
 	int soundresist = 0;
 	if (sobj->otyp == SPE_COMMAND_UNDEAD || sobj->otyp == SPE_CHARM_MONSTER) {
-		switch (mtmp->data->msound) {
+		switch (monstersoundtype(mtmp)) {
 			default: break;
 			case MS_FART_NORMAL: soundresist = 2; break;
 			case MS_FART_QUIET: soundresist = 2; break;
@@ -2723,7 +2723,7 @@ struct obj *sobj;
 	    setmangry(mtmp);
 	} else if (sobj->otyp == SPE_CHARM_MONSTER && mindless(mtmp->data) && (stationary(mtmp->data) || mtmp->data->mmove == 0 || mtmp->data->mlet == S_TURRET) ) {
 		pline("%s cannot be charmed with this method.", Monnam(mtmp));
-	} else if ((sobj->otyp == SPE_COMMAND_UNDEAD || sobj->otyp == SPE_CHARM_MONSTER) && mtmp->data->msound == MS_SUPERMAN) {
+	} else if ((sobj->otyp == SPE_COMMAND_UNDEAD || sobj->otyp == SPE_CHARM_MONSTER) && monstersoundtype(mtmp) == MS_SUPERMAN) {
 		pline("%s is immune!", Monnam(mtmp));
 	} else if (!soundresist || (!rn2(soundresist)) ) {
 	    if (mtmp->isshk)
@@ -10613,7 +10613,7 @@ randenchchoice:
 				if (cansee(mtmp->mx, mtmp->my)) {
 				    pline("%s is hit by %s!", Monnam(mtmp),
 	    	    	    			doname(otmp2));
-				    if (((mtmp->minvis && !canspotmon(mtmp)) || mtmp->minvisreal) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+				    if (((mtmp->minvis && !canspotmon(mtmp)) || mtmp->minvisreal) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 					map_invisible(mtmp->mx, mtmp->my);
 				}
 	    	    	    	mdmg = dmgval(otmp2, mtmp) * otmp2->quan;

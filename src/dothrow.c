@@ -3168,7 +3168,7 @@ evasionchancedone:
 		pline("%s swats the projectile away!", Monnam(mon));
 	}
 
-	if (mon->data->msound == MS_BULLETATOR && bulletate && rn2(4)) {
+	if (monstersoundtype(mon) == MS_BULLETATOR && bulletate && rn2(4)) {
 		tmp = -100;
 		pline("%s absorbs the projectile!", Monnam(mon));
 	}

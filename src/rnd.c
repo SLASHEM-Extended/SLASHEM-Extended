@@ -1001,7 +1001,7 @@ randomillusionattack()
 int
 randmonsound()
 {
-	switch (rnd(79)) {
+	switch (rnd(145)) {
 		case 1:
 			return MS_SILENT;
 		case 2:
@@ -1196,6 +1196,102 @@ randmonsound()
 			return MS_METALMAFIA;
 		case 97:
 			return MS_DEEPSTATE;
+		case 98:
+			return MS_OE;
+		case 99:
+			return MS_NASTYTRAP;
+		case 100:
+			return MS_FEMI;
+		case 101:
+			return MS_BAN;
+		case 102:
+			return MS_TALONCOMPANY;
+		case 103:
+			return MS_REGULATOR;
+		case 104:
+			return MS_RAIDER;
+		case 105:
+			return MS_ENCLAVE;
+		case 106:
+			return MS_MUTANT;
+		case 107:
+			return MS_MYTHICALDAWN;
+		case 108:
+			return MS_BOS;
+		case 109:
+			return MS_OUTCAST;
+		case 110:
+			return MS_DREMORA;
+		case 111:
+			return MS_GENDER;
+		case 112:
+			return MS_AMNESIA;
+		case 113:
+			return MS_SHIVERINGESLES;
+		case 114:
+			return MS_ANOREXIA;
+		case 115:
+			return MS_BULIMIA;
+		case 116:
+			return MS_GRAKA;
+		case 117:
+			return MS_TEMPER;
+		case 118:
+			return MS_BLANKER;
+		case 119:
+			return MS_CONDESCEND;
+		case 120:
+			return MS_MOLEST;
+		case 121:
+			return MS_MODALSHOP;
+		case 122:
+			return MS_GAGA;
+		case 123:
+			return MS_SHOCKTROOPER;
+		case 124:
+			return MS_TRIP;
+		case 125:
+			return MS_AETHERIC;
+		case 126:
+			return MS_COMMON;
+		case 127:
+			return MS_PIRATE;
+		case 128:
+			return MS_BUSY;
+		case 129:
+			return MS_HIRE;
+		case 130:
+			return MS_JAM;
+		case 131:
+			return MS_LOWPRIORITY;
+		case 132:
+			return MS_ARMORER;
+		case 133:
+			return MS_BEG;
+		case 134:
+			return MS_OMEN;
+		case 135:
+			return MS_NEWS;
+		case 136:
+			return MS_MIDI;
+		case 137:
+			return MS_SILLY;
+		case 138:
+			return MS_HERCULES;
+		case 139:
+			return MS_CRYTHROAT;
+		case 140:
+			return MS_SPEEDBUG;
+		case 141:
+			return MS_HOOT;
+		case 142:
+			return MS_RUSTLE;
+		case 143:
+			return MS_SEMEN;
+		case 144:
+			return MS_SCIENTIST;
+		case 145:
+			return MS_INCISION;
 		default:
 			return MS_HUMANOID;
 	}

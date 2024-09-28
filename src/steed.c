@@ -92,7 +92,7 @@ struct monst *mtmp;
 	if (mercedesride(ART_MOUNT_OF_THE_MAD_POTATO, mtmp)) return TRUE;
 	if (index(steeds, mtmp->data->mlet)) return TRUE;
 	if (mtmp->egotype_steed) return TRUE;
-	if (mtmp->data->msound == MS_NEIGH || mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_CAR) return TRUE;
+	if (monstersoundtype(mtmp) == MS_NEIGH || monstersoundtype(mtmp) == MS_SHOE || monstersoundtype(mtmp) == MS_CAR) return TRUE;
 
 	return FALSE;
 }
@@ -102,7 +102,7 @@ boolean
 nogoodsteed(mtmp)
 struct monst *mtmp;
 {
-	if (mtmp->data->msound == MS_BULLETATOR) return TRUE;
+	if (monstersoundtype(mtmp) == MS_BULLETATOR) return TRUE;
 
 	return FALSE;
 }
@@ -138,7 +138,7 @@ mayfalloffsteed()
 	if (opelride(SEATBELT_SADDLE)) {
 		spcsavingthrow = 75;
 		if (bmwride(ART_RULES_MAKE_SENSE)) spcsavingthrow = 90;
-		if (bmwride(ART_CAR_SAFETY) && u.usteed && u.usteed->data->msound == MS_CAR) spcsavingthrow = 100;
+		if (bmwride(ART_CAR_SAFETY) && u.usteed && monstersoundtype(u.usteed) == MS_CAR) spcsavingthrow = 100;
 	}
 
 	if (!PlayerCannotUseSkills) {
@@ -304,7 +304,7 @@ use_saddle(otmp)
 	chance += GushLevel * (mtmp->mtame ? 20 : 5);
 	if (!mtmp->mtame) { /* humpers and steed egotypes should be easier... --Amy */
 
-		if (mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (mtmp->data->msound == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) ) {
+		if (mtmp->egotype_steed || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (monstersoundtype(mtmp) == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_STENCH || monstersoundtype(mtmp) == MS_SUPERMAN ) ) ) {
 			if (mtmp->mpeaceful) chance -= mtmp->m_lev;
 			else chance -= 2*mtmp->m_lev;
 		} else {
@@ -394,9 +394,9 @@ boolean
 can_ride(mtmp)
 	struct monst *mtmp;
 {
-	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && mtmp->data->msound == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (mtmp->data->msound == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE) );
+	if (!issoviet) return (mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && monstersoundtype(mtmp) == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (monstersoundtype(mtmp) == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_STENCH || monstersoundtype(mtmp) == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && monstersoundtype(mtmp) == MS_SHOE) );
 
-	return ((mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && mtmp->data->msound == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (mtmp->data->msound == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) && humanoid(youmonst.data) &&
+	return ((mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && monstersoundtype(mtmp) == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (monstersoundtype(mtmp) == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_STENCH || monstersoundtype(mtmp) == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && monstersoundtype(mtmp) == MS_SHOE)) && humanoid(youmonst.data) &&
 			!verysmall(youmonst.data) && !bigmonst(youmonst.data) &&
 			(!Underwater || is_swimmer(mtmp->data)) );
 
@@ -536,7 +536,7 @@ mount_steed(mtmp, force)
 	    sprintf(kbuf, "attempting to ride a petrifying monster");
 	    instapetrify(kbuf);
 	}
-	if (!(mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && mtmp->data->msound == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (mtmp->data->msound == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && mtmp->data->msound == MS_SHOE)) || mtmp->isminion) {
+	if (!(mtmp->mtame || mtmp->egotype_steed || (FemtrapActiveLarissa && monstersoundtype(mtmp) == MS_SHOE) || canalwaysride(mtmp->data) || ((mercedesride(ART_GRAND_THEFT_AUTO, mtmp)) && (monstersoundtype(mtmp) == MS_CAR) ) || ((mercedesride(ART_UTTER_USELESSNESS, mtmp)) && (monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_STENCH || monstersoundtype(mtmp) == MS_SUPERMAN ) ) || (Race_if(PM_SHOE) && monstersoundtype(mtmp) == MS_SHOE)) || mtmp->isminion) {
 	    pline("I think %s would mind.", mon_nam(mtmp));
 	    return (FALSE);
 	}

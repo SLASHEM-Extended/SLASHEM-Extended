@@ -208,9 +208,9 @@ int otyp,oquan;
 	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
 	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
 	if (is_weptool(otmp)) otmp->mstartinventB = 1;
-	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
-	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
-	if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+	if (is_weptool(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
 
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
@@ -5769,7 +5769,7 @@ register struct monst *mtmp;
 		     if (!rn2(1000)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 		 } /* end of other characters */
 	       /*break;*/
-		else if (ptr->msound == MS_PRIEST ||
+		else if (monstersoundtype(mtmp) == MS_PRIEST ||
 			quest_mon_represents_role(ptr,PM_PRIEST)) {
 
 		    otmp = mksobj(MACE, FALSE, FALSE, FALSE);
@@ -8033,13 +8033,13 @@ register struct monst *mtmp;
 		(void) mongets(mtmp, rnd_offensive_item(mtmp));
 	if (!rn2(3600)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
-	if (mtmp->data->msound == MS_STENCH && !rn2(20)) {
+	if (monstersoundtype(mtmp) == MS_STENCH && !rn2(20)) {
 		(void)mongets(mtmp, WILDHILD_BOW);
 		m_initthrow(mtmp, ODOR_SHOT, 50);
 
 	}
 
-	if (FemtrapActiveRhea && mtmp->data->msound == MS_STENCH) {
+	if (FemtrapActiveRhea && monstersoundtype(mtmp) == MS_STENCH) {
 		u.mongetshack = 100; /* "aetheric" items that don't drop */
 		(void)mongets(mtmp, WILDHILD_BOW);
 		m_initthrow(mtmp, ODOR_SHOT, 50);
@@ -8049,7 +8049,7 @@ register struct monst *mtmp;
 		u.mongetshack = 0;
 	}
 
-	if (mtmp->data->msound == MS_TREESQUAD) {
+	if (monstersoundtype(mtmp) == MS_TREESQUAD) {
 		(void)mongets(mtmp, rn2(2) ? QUARTERSTAFF : TORCH);
 		(void)mongets(mtmp, rn2(2) ? LANCE : PITCHFORK);
 
@@ -9830,7 +9830,7 @@ register struct	monst	*mtmp;
 			default:
 				break;
 		    }
-		} else if (ptr->msound == MS_PRIEST || mtmp->data == &mons[PM_UNALIGNED_PRIEST] ||
+		} else if (monstersoundtype(mtmp) == MS_PRIEST || mtmp->data == &mons[PM_UNALIGNED_PRIEST] ||
 			quest_mon_represents_role(ptr,PM_PRIEST)) {
 
 		    /* evil patch idea by jonadab: 5% chance for aligned priests to be generated invisible */
@@ -24995,12 +24995,12 @@ loveheelover:
 	 * I guess the evil part about it is that you'll have to kill your leader if you want it. --Amy */
 	if (!rn2(2) && ptr->msound == MS_LEADER) (void) mongets(mtmp, KYRT_SHIRT);
 
-	if (ptr->msound == MS_BULLETATOR) {
+	if (monstersoundtype(mtmp) == MS_BULLETATOR) {
 		if (!rn2(3)) (void) mongets(mtmp, LARGE_SHIELD);
 		if (!rn2(20)) (void) mongets(mtmp, rn2(10) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING);
 	}
 
-	if (ptr->msound == MS_METALMAFIA && !rn2(10)) {
+	if (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(10)) {
 		struct obj *otmpX = mksobj(rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING, TRUE, FALSE, FALSE);
 		if (otmpX) {
 			otmpX->finalcancel = TRUE;
@@ -25639,11 +25639,11 @@ register int	mmflags;
 	}
 	if (!rn2(30)) mtmp->crapbonus += rnd(50);
 
-	if (FemtrapActiveJennifer && mtmp->data->msound == MS_FART_QUIET) {
+	if (FemtrapActiveJennifer && monstersoundtype(mtmp) == MS_FART_QUIET) {
 		mtmp->fartbonus += rnd(9);
 		if (mtmp->fartbonus > 9) mtmp->fartbonus = 9;
 	}
-	if (FemtrapActiveInge && mtmp->data->msound == MS_FART_QUIET) mtmp->fartbonus = 9;
+	if (FemtrapActiveInge && monstersoundtype(mtmp) == MS_FART_QUIET) mtmp->fartbonus = 9;
 
 	/* initialize nurse services... yes it's not a bug that we set this for every monster, because monsters are capable
 	 * of polymorphing into MS_NURSE monsters, you noob :P --Amy */
@@ -25764,7 +25764,7 @@ register int	mmflags;
 	if (ptr == &mons[PM_DEEP_SLEEPER]) mtmp->msleeping = 1;
 	if (ptr == &mons[PM_SLEEPING_HULK]) mtmp->msleeping = 1;
 
-	if (mtmp->data->msound == MS_SNORE) mtmp->msleeping = 1;
+	if (monstersoundtype(mtmp) == MS_SNORE) mtmp->msleeping = 1;
 
 	/* or an invisible one, based on an evil patch idea by jonadab */
 
@@ -25862,37 +25862,37 @@ register int	mmflags;
 		mtmp->egotype_sounder = 1;
 	}
 
-	if (!rn2(50) && mtmp->data->msound == MS_SHOE) {
+	if (!rn2(50) && monstersoundtype(mtmp) == MS_SHOE) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_steed = 1;
 	}
 
-	if (!rn2(15) && mtmp->data->msound == MS_STENCH) {
+	if (!rn2(15) && monstersoundtype(mtmp) == MS_STENCH) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_farter = 1;
 	}
 
-	if (!rn2(40) && mtmp->data->msound == MS_CONVERT && is_female(mtmp->data)) {
+	if (!rn2(40) && monstersoundtype(mtmp) == MS_CONVERT && is_female(mtmp->data)) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_perfumespreader = 1;
 	}
 
-	if (!rn2(200) && mtmp->data->msound == MS_STENCH) {
+	if (!rn2(200) && monstersoundtype(mtmp) == MS_STENCH) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_steed = 1;
 	}
 
-	if (!rn2(200) && mtmp->data->msound == MS_FART_NORMAL) {
+	if (!rn2(200) && monstersoundtype(mtmp) == MS_FART_NORMAL) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_steed = 1;
 	}
 
-	if (!rn2(100) && mtmp->data->msound == MS_FART_QUIET) {
+	if (!rn2(100) && monstersoundtype(mtmp) == MS_FART_QUIET) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_steed = 1;
 	}
 
-	if (!rn2(1000) && mtmp->data->msound == MS_FART_LOUD) {
+	if (!rn2(1000) && monstersoundtype(mtmp) == MS_FART_LOUD) {
 		mtmp->isegotype = 1;
 		mtmp->egotype_steed = 1;
 	}
@@ -28093,7 +28093,7 @@ register int	mmflags;
 			set_apparxy(mtmp);
 		}
 	}
-	if(is_dprince(ptr) && ptr->msound == MS_BRIBE) {
+	if(is_dprince(ptr) && monstersoundtype(mtmp) == MS_BRIBE) {
 	    mtmp->mpeaceful = mtmp->minvis = mtmp->perminvis = 1;
 	    mtmp->mavenge = 0;
 	    if (uwep && uwep->oartifact == ART_EXCALIBUR)
@@ -28177,7 +28177,7 @@ register int	mmflags;
 	    if(is_armed(ptr))
 		m_initweap(mtmp);	/* equip with weapons / armor */
 
-	    if (humanoid(ptr) && (ptr->msound == MS_CONVERT || ptr->msound == MS_HCALIEN) && !rn2(100)) {
+	    if (humanoid(ptr) && (monstersoundtype(mtmp) == MS_CONVERT || monstersoundtype(mtmp) == MS_HCALIEN) && !rn2(100)) {
 
 			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
 
@@ -28266,7 +28266,7 @@ register int	mmflags;
 			}
 		}
 
-		if (FemtrapActiveKatia && (mtmp->data->msound == MS_FART_LOUD)) {
+		if (FemtrapActiveKatia && (monstersoundtype(mtmp) == MS_FART_LOUD)) {
 			struct obj *otmpX = mksobj(find_block_heeled_boots(),TRUE,FALSE, FALSE);
 			if (otmpX) {
 				(void) mpickobj(mtmp,otmpX, TRUE);
@@ -28289,7 +28289,7 @@ register int	mmflags;
 			mtmp->mstrategy |= STRAT_CLOSE;
 	}
 
-	if (ptr->msound == MS_DEAD && !monster_is_revived && !(mtmp->mrevived) ) {
+	if (monstersoundtype(mtmp) == MS_DEAD && !monster_is_revived && !(mtmp->mrevived) ) {
 
 		mtmp->flagged_for_death = TRUE;
 
@@ -28365,7 +28365,7 @@ register int	mmflags;
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
-	if (!rn2(4) && !monster_is_revived && uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
+	if (!rn2(4) && !monster_is_revived && uarmf && uarmf->oartifact == ART_SPEAK_TO_OJ && (monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD)) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
@@ -28377,7 +28377,7 @@ register int	mmflags;
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
-	if (!rn2(4) && !monster_is_revived && uarmh && uarmh->oartifact == ART_SQUEAKY_TENDERNESS && (mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET) ) {
+	if (!rn2(4) && !monster_is_revived && uarmh && uarmh->oartifact == ART_SQUEAKY_TENDERNESS && (monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET) ) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
@@ -33295,13 +33295,13 @@ register int otyp;
 	    if (otmp->otyp == SHIELD_OF_REFLECTION && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
 	    if (otmp->otyp == ROBE && mtmp->data->mlet == S_WRAITH) otmp->mstartinventC = 1;
 	    if (otmp->otyp == RUBY && mtmp->data == &mons[PM_RUBY_BOSS]) otmp->mstartinventC = 1;
-	    if (otmp->otyp == LANCE && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
-	    if (otmp->otyp == PITCHFORK && mtmp->data->msound == MS_TREESQUAD) otmp->mstartinventE = 1;
+	    if (otmp->otyp == LANCE && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
+	    if (otmp->otyp == PITCHFORK && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
 
-	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (is_musable(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (is_weptool(otmp) && (mtmp->data->msound == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (is_musable(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if (is_weptool(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
 
 	    if ((otmp->otyp >= WEDGED_LITTLE_GIRL_SANDAL) && (otmp->otyp <= PROSTITUTE_SHOE) && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN)) {
 			otmp->mstartinventD = 1;

@@ -1588,7 +1588,7 @@ register struct monst *mtmp;
 int lev;
 {
     const char *verb;
-    if (mtmp->msleeping || !mtmp->mcanmove || !mtmp->data->msound)
+    if (mtmp->msleeping || !mtmp->mcanmove || !monstersoundtype(mtmp))
 	return;
     /* presumably nearness and soundok checks have already been made */
 
@@ -1619,7 +1619,7 @@ register struct monst *mtmp;
 {
 	const char *ret;
 
-	switch (mtmp->data->msound) {
+	switch (monstersoundtype(mtmp)) {
 	case MS_MEW:
 	case MS_HISS:
 	    ret = "hisses";
@@ -1855,19 +1855,38 @@ register struct monst *mtmp;
 		ret = "screams 'You're cruel.'";
 		break;
 	case MS_HIRE:
-	case MS_ARMORER:
-	case MS_OMEN:
-	case MS_NEWS:
-	case MS_CRYTHROAT:
-	case MS_HOOT:
-	case MS_RUSTLE:
-	case MS_SEMEN:
-	case MS_SCIENTIST:
-	case MS_MODALSHOP:
-		/* todo */
-		ret = "Unfinished sound effect.";
+		ret = "shouts 'I'm gonna switch sides!'";
 		break;
-
+	case MS_ARMORER:
+		ret = "shouts 'Your soul shall be food for hellfire!'";
+		break;
+	case MS_OMEN:
+		ret = "shouts 'That's seven years of bad luck for you!'";
+		break;
+	case MS_NEWS:
+		ret = "shouts 'Police! Someone assaulted me!!'";
+		break;
+	case MS_CRYTHROAT:
+		ret = "shouts 'UAEAEAEAEAE I WAS STRUCK! UAEAEAEAEAE!'";
+		break;
+	case MS_HOOT:
+		ret = "hoots angrily!";
+		break;
+	case MS_RUSTLE:
+		ret = "slashes its roots angrily!";
+		break;
+	case MS_SEMEN:
+		ret = "shouts 'You'll have hell to pay for that insolence.'";
+		break;
+	case MS_SCIENTIST:
+		ret = "shouts 'Diiiiiiiiie, you little biiiiiiiiii-'";
+		break;
+	case MS_INCISION:
+		ret = "shouts 'Now it's gonna get extra painful for you. I'll circumcise you even more slowly just to make you suffer.'";
+		break;
+	case MS_MODALSHOP:
+		ret = "shouts '!Te enterraran cuando termine contigo!'";
+		break;
 	case MS_SPOILER:
 		ret = "Error 25. Please restart the game";
 		break;
@@ -1968,7 +1987,7 @@ register struct monst *mtmp;
 {
     const char *ret;
 
-    switch(mtmp->data->msound) {
+    switch(monstersoundtype(mtmp)) {
 	case MS_MEW:
 	ret = "yowls";
 	    break;
@@ -2187,19 +2206,38 @@ register struct monst *mtmp;
 		ret = "sighs 'Beggars always cry...'";
 		break;
 	case MS_HIRE:
-	case MS_ARMORER:
-	case MS_OMEN:
-	case MS_NEWS:
-	case MS_CRYTHROAT:
-	case MS_HOOT:
-	case MS_RUSTLE:
-	case MS_SEMEN:
-	case MS_SCIENTIST:
-	case MS_MODALSHOP:
-		/* todo */
-		ret = "Unfinished sound effect.";
+		ret = "moans 'Why do I always have to put up with abusive bosses...'";
 		break;
-
+	case MS_ARMORER:
+		ret = "shouts 'Me smashem!'";
+		break;
+	case MS_OMEN:
+		ret = "shouts 'Attacking me causes you to be struck by misfortune!'";
+		break;
+	case MS_NEWS:
+		ret = "shouts 'This will be in tomorrow's newspaper!'";
+		break;
+	case MS_CRYTHROAT:
+		ret = "shouts 'WAAAAAAH! THEY WERE MEAN TO ME!'";
+		break;
+	case MS_HOOT:
+		ret = "hoots alarmingly!";
+		break;
+	case MS_RUSTLE:
+		ret = "emits an unholy-sounding drone!";
+		break;
+	case MS_SEMEN:
+		ret = "shouts 'I'm gonna have my revenge!'";
+		break;
+	case MS_SCIENTIST:
+		ret = "shouts 'Stop attacking, immediately!'";
+		break;
+	case MS_INCISION:
+		ret = "shouts 'You'll be bleeding!'";
+		break;
+	case MS_MODALSHOP:
+		ret = "shouts '!Esa no es manera de tratar a una tendera!'";
+		break;
 	case MS_SPOILER:
 		ret = "Buffer overrun detected. NETHACK cannot safely continue execution and needs to close.";
 		break;
@@ -2302,7 +2340,7 @@ register struct monst *mtmp;
 {
     const char *ret;
 
-    switch (mtmp->data->msound) {
+    switch (monstersoundtype(mtmp)) {
 	case MS_MEW:
 	case MS_GROWL:
 	case MS_GRAKA:
@@ -2506,19 +2544,38 @@ register struct monst *mtmp;
 		ret = "shouts 'Someone wants to kill me!'";
 		break;
 	case MS_HIRE:
-	case MS_ARMORER:
-	case MS_OMEN:
-	case MS_NEWS:
-	case MS_CRYTHROAT:
-	case MS_HOOT:
-	case MS_RUSTLE:
-	case MS_SEMEN:
-	case MS_SCIENTIST:
-	case MS_MODALSHOP:
-		/* todo */
-		ret = "Unfinished sound effect.";
+		ret = "shouts 'Watch out! A trap!'";
 		break;
-
+	case MS_ARMORER:
+		ret = "shouts 'Hurrrrr!'";
+		break;
+	case MS_OMEN:
+		ret = "whispers 'My sixth sense tells me that there's a trap!'";
+		break;
+	case MS_NEWS:
+		ret = "flusters 'Some hate mob must have mined the area!'";
+		break;
+	case MS_CRYTHROAT:
+		ret = "screams 'NOOOOOOOO I DON'T WANT TO GO THERE! NOOOOOOOO!'";
+		break;
+	case MS_HOOT:
+		ret = "hoots loudly!";
+		break;
+	case MS_RUSTLE:
+		ret = "rustles lightly and points a root in a certain direction.";
+		break;
+	case MS_SEMEN:
+		ret = "snickers 'Why don't you step on that tile over there... he he he.'";
+		break;
+	case MS_SCIENTIST:
+		ret = "mutters 'It can't get worse than this.'";
+		break;
+	case MS_INCISION:
+		ret = "says 'That device over there looks useful...'";
+		break;
+	case MS_MODALSHOP:
+		ret = "remarks 'Eso parece sospechoso.'";
+		break;
 	case MS_SPOILER:
 		ret = "An error has occurred in your application. If you choose Close, NETHACK will close. If you choose Ignore, you should save your work in a new file.";
 		break;
@@ -2612,10 +2669,10 @@ register struct monst *mtmp;
 	return;
 
     /* presumably nearness and soundok checks have already been made */
-    if (!is_silent(mtmp->data) && mtmp->data->msound <= MS_ANIMAL)
+    if (!is_silent(mtmp->data) && monstersoundtype(mtmp) <= MS_ANIMAL)
 	(void) domonnoise(mtmp);
-    else if (mtmp->data->msound >= MS_HUMANOID) {
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+    else if (monstersoundtype(mtmp) >= MS_HUMANOID) {
+	if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 	(void) domonnoise(mtmp); /* "I'm hungry" for MS_HUMANOID but different for others --Amy */
 }
@@ -2692,7 +2749,7 @@ register struct monst *mtmp;
     /* be sure to do this before talking; the monster might teleport away, in
      * which case we want to check its pre-teleport position
      */
-    if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+    if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	map_invisible(mtmp->mx, mtmp->my);
 
 	if (ptr == &mons[PM_DONALD_TRUMP]) { /* idea by Crawldragon, actual messages by Amy */
@@ -2703,7 +2760,7 @@ register struct monst *mtmp;
 
 	if (ptr == &mons[PM_EMERA]) verbalize("HATE! HATE! HATE!");
 
-    switch (ptr->msound) {
+    switch (monstersoundtype(mtmp)) {
 	case MS_ORACLE:
 	    return doconsult(mtmp);
 	case MS_PRIEST:
@@ -3126,7 +3183,7 @@ register struct monst *mtmp;
 			remove_worn_item(uright, TRUE);
 		}
 
-		if (uarmf && uarmf->oartifact == ART_ELENA_S_REWARD && quest_status.killed_nemesis && mtmp->data->msound == MS_FART_NORMAL && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied) {
+		if (uarmf && uarmf->oartifact == ART_ELENA_S_REWARD && quest_status.killed_nemesis && monstersoundtype(mtmp) == MS_FART_NORMAL && !mtmp->mpeaceful && !mtmp->mtame && !mtmp->mfrenzied) {
 			mtmp->mpeaceful = TRUE;
 			verbalize("You've won, so I'll be at your service...");
 		}
@@ -3166,7 +3223,7 @@ register struct monst *mtmp;
 				mtmp->mfrenzied = 1;
 			}
 		}
-		else if (FemtrapActiveSueLyn && mtmp->female && !mtmp->mfrenzied && mtmp->data->msound == MS_FART_NORMAL) {
+		else if (FemtrapActiveSueLyn && mtmp->female && !mtmp->mfrenzied && monstersoundtype(mtmp) == MS_FART_NORMAL) {
 			if (!rn2(20)) {
 				pline("%s is satisfied by your caressing touch.", Monnam(mtmp) );
 				mtmp->mpeaceful = TRUE;
@@ -4408,17 +4465,263 @@ repairitemchoice:
 
 		break;
 	case MS_HIRE:
+
+		if (mtmp->mfrenzied) {
+			verbl_msg = "Grrrrrr! You're gonna die, traitor!";
+			break;
+		}
+
+		else if (mtmp->mtame) {
+			if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+				verbl_msg = "Heal me!!";
+				break;
+			}
+			if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+				verbl_msg = "Need a pit stop, I'm hungry!";
+				break;
+			}
+
+			verbl_msg = "Lead the way!";
+			break;
+
+		} else if (!mtmp->mfrenzied && !mtmp->mtame) {
+
+			int hirecost = 1000 + (mtmp->m_lev * 50);
+
+			verbalize("Hey, I'll join your team for %d zorkmids.", hirecost);
+
+			if (u.ugold >= hirecost) {
+				if (yn("Hire the monster?") == 'y') {
+					struct monst *hiredmon;
+
+					u.ugold -= hirecost;
+
+					hiredmon = tamedog(mtmp, (struct obj *) 0, TRUE);
+					if (hiredmon) mtmp = hiredmon;
+					if (!mtmp) impossible("hireable monster was tamed but doesn't exist now??");
+
+					verbalize("Alright! Let's fight the badguys together!");
+
+				}
+			} else {
+				pline("But unfortunately you don't have enough money.");
+			}
+			break;
+		}
+		break;
+
 	case MS_ARMORER:
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Huuuuu!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "GRR! Hungry!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Arrr.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "You will not get my hammer!";
+		}
+		else verbl_msg = "I'm gonna make weapons from your bones!";
+		break;
+
 	case MS_OMEN:
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Hmm, maybe 200 years from now, robots will take over the world...";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I sense the equilibrium drawing near!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Something tells me that I'll soon be eating a big meal.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Beware, taking me along will endarken your future.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Your future entails something nasty, I'm afraid...";
+		}
+		else verbl_msg = "You don't have a future! You're gonna die, a hundred percent sure!";
+		break;
+
 	case MS_NEWS:
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Which newspaper was I reporting to again?";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "My death will make the biggest headline!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Hmm, I gotta report the lack of restaurants in this area...";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Let's look for something sensational!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Hi! Did you hear the news?";
+		}
+		else verbl_msg = "Leave me alone, I'm trying to get some footage here!";
+		break;
+
 	case MS_CRYTHROAT:
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "OEOEOEOEOEOEOEOEOEOEOEHHHHHHHHHH";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "OWWOW! SOMEONE HAS HURT ME, OWWOW! I DON'T WANT THAT!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "MY BELLY ACHES SO MUCH! PLEASE MAKE IT STOP HURTING, OWW!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "HELP ME! EVERYONE IS SO MEAN TO ME!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "IS THERE NO ONE WHO CAN HELP ME?";
+		}
+		else verbl_msg = "YOU MEAN, EVIL... WHY ARE YOU SO UNFAIR... NOW I HAVE TO CRY!";
+		break;
+
 	case MS_HOOT:
+		if (mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "hoots weakly.";
+			break;
+		}
+		if (mtmp->mconf) {
+			pline_msg = "hoots a wrong tune.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			pline_msg = "hoots a whiny tune.";
+			break;
+		}
+		if (mtmp->mtame) {
+			pline_msg = "hoots calmly.";
+		} else if (mtmp->mpeaceful) {
+			pline_msg = "hoots.";
+		}
+		else pline_msg = "hoots aggressively!";
+		break;
+
 	case MS_RUSTLE:
+		if (mtmp->mhp < mtmp->mhpmax/3) {
+			pline_msg = "looks almost dead!";
+			break;
+		}
+		if (mtmp->mconf) {
+			pline_msg = "hums dissonantly.";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			pline_msg = "looks rather colorless.";
+			break;
+		}
+		if (mtmp->mtame) {
+			pline_msg = "rustles calmly.";
+		} else if (mtmp->mpeaceful) {
+			pline_msg = "rustles.";
+		}
+		else pline_msg = "screams at you angrily!";
+		break;
+
 	case MS_SEMEN:
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Where is the vagina? Is it inside the penis?";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "If I catch whoever hurt me like that, they'll wish they had never been born!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Gotta eat something so that my penis can produce new semen!";
+			break;
+		}
+		if (flags.female) {
+			if (mtmp->mtame) {
+				verbl_msg = "Hey, I like you. Would you like to go to bed with me tonight?";
+			} else if (mtmp->mpeaceful) {
+				verbl_msg = "Want me to ejaculate my semen into your orifice, girl? *snicker*";
+			}
+			else verbl_msg = "You will be forced to give birth to my child, bitch!";
+		} else {
+			if (mtmp->mtame) {
+				verbl_msg = "The only reason I'm tolerating your presence is because you're going to find me a nice girl that I can fuck.";
+			} else if (mtmp->mpeaceful) {
+				verbl_msg = "Go away, I don't like male people. They're a waste of space.";
+			}
+			else verbl_msg = "Fuck you, male asshole! I shall cut off your fucking penis!";
+		}
+		break;
+
 	case MS_SCIENTIST:
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Do you think we should appeal to the alien authorities for guidance?";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "I seem to be wounded, but I can keep bleeding!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "At least we no longer need to eat that cafeteria food.";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Eureka! Oh, sorry, just practising.";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Quit staring, you're giving me the heebie-jeebies!";
+		}
+		else verbl_msg = "I'm not following you, you evil person!";
+		break;
+
+	case MS_INCISION:
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Uhh, I'm not so sure, do the gods actually approve of our practices?";
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Rescue me! I'm a state-approved medical doctor!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "Where's my extra bloody beefsteak?";
+			break;
+		}
+		if (flags.female) {
+			if (mtmp->mtame) {
+				verbl_msg = "Did you know there's a huuuuuuge amount of girls in this world whose genitals are waiting for my scalpel?";
+			} else if (mtmp->mpeaceful) {
+				verbl_msg = "Since it's unfair to perform genital circumcision on males only, I perform it on females, too. Why, that's not an act of mutilation, why are you asking?";
+			}
+			else verbl_msg = "Aaaaaahhh! A female! Look, don't scream like a woman, I'm just going to circumcise your genitals. Every woman at your age has to undergo that surgery, and most of them are grateful when it's complete. You won't be an exception.";
+		} else {
+			if (mtmp->mtame) {
+				verbl_msg = "Let's find someone whose penis I can circumcise.";
+			} else if (mtmp->mpeaceful) {
+				verbl_msg = "Every grown-up male must have his foreskin removed. No exceptions will be made.";
+			}
+			else verbl_msg = "Having an intact foreskin is a crime! I shall remove yours with my blood-smeared scalpel!!";
+		}
+		break;
+
 	case MS_MODALSHOP:
-		/* todo */
-		verbl_msg = "The sound effect of this monster has not been implemented yet.";
+
+		if (mtmp->mfrenzied) {
+			verbl_msg = "!Te dare la vuelta los intestinos!";
+		} else if (!mtmp->mpeaceful && !mtmp->mtame) {
+			verbl_msg = "Estas arruinando el ambiente.";
+		} else {
+			verbl_msg = "Hola, ?quieres ver lo que tengo en venta?";
+		}
 		break;
 
 	case MS_FEARHARE:
@@ -6597,7 +6900,7 @@ register struct monst *mtmp;
 		aggravate();
 	}
 
-	if (mtmp->data->msound == MS_FEARHARE) {
+	if (monstersoundtype(mtmp) == MS_FEARHARE) {
 		monflee(mtmp, rnd(10), TRUE, TRUE);
 	}
 
@@ -6607,8 +6910,8 @@ register struct monst *mtmp;
 
 	if (distresslevel == 0) return; /* didn't lose enough health yet */
 
-	if (mtmp->data->msound == MS_SILENT) return; /* never emits any sound */
-	if (mtmp->data->msound == MS_SISSY) painchance = 0; /* always emits a sound whenever it's damaged */
+	if (monstersoundtype(mtmp) == MS_SILENT) return; /* never emits any sound */
+	if (monstersoundtype(mtmp) == MS_SISSY) painchance = 0; /* always emits a sound whenever it's damaged */
 
 	/* petkeeping skill makes it more likely for pets to make sounds, so that you can see how much they've been hurt */
 	if (mtmp->mtame) {
@@ -6656,7 +6959,7 @@ register struct monst *mtmp;
 	if (!(PainSense && !rn2(10)) && !(StrongPainSense && !rn2(5)) && (painchance >= (rnd(11))) ) return;
 
 	/* some of these are sound-based, others are vision-based */
-	switch (mtmp->data->msound) {
+	switch (monstersoundtype(mtmp)) {
 		default:
 			break;
 		case MS_HUMANOID:
@@ -6682,10 +6985,10 @@ register struct monst *mtmp;
 	}
 
 	if (soundbased && !flags.soundok) return; /* can't hear */
-	if (soundbased && mtmp->data->msound != MS_SISSY && (distu(mtmp->mx,mtmp->my) > (BOLT_LIM+1)*(BOLT_LIM+1)) ) return; /* too far away */
-	if (!soundbased && mtmp->data->msound != MS_GIBBERISH && !cansee(mtmp->mx, mtmp->my)) return; /* can't see */
+	if (soundbased && monstersoundtype(mtmp) != MS_SISSY && (distu(mtmp->mx,mtmp->my) > (BOLT_LIM+1)*(BOLT_LIM+1)) ) return; /* too far away */
+	if (!soundbased && monstersoundtype(mtmp) != MS_GIBBERISH && !cansee(mtmp->mx, mtmp->my)) return; /* can't see */
 
-	switch (mtmp->data->msound) {
+	switch (monstersoundtype(mtmp)) {
 
 		default:
 		case MS_BARK:
@@ -6775,18 +7078,11 @@ register struct monst *mtmp;
 		case MS_LOWPRIORITY:
 		case MS_SPEEDBUG:
 		case MS_BEG:
-
-		/* todo all the way down */
-			case MS_HIRE:
-			case MS_ARMORER:
-			case MS_OMEN:
-			case MS_NEWS:
-			case MS_CRYTHROAT:
-			case MS_HOOT:
-			case MS_RUSTLE:
-			case MS_SEMEN:
-			case MS_MODALSHOP:
-			case MS_SCIENTIST: /* todo all the way up */
+		case MS_HIRE:
+		case MS_NEWS:
+		case MS_HOOT:
+		case MS_RUSTLE:
+		case MS_SEMEN:
 
 			switch (distresslevel) {
 				case 1:
@@ -6797,6 +7093,90 @@ register struct monst *mtmp;
 					break;
 				case 3:
 					pline("%s is severely hurt!", Monnam(mtmp));
+					break;
+			}
+			break;
+
+		case MS_MODALSHOP:
+			switch (distresslevel) {
+				case 1:
+					verbalize("?No tienes modales?");
+					break;
+				case 2:
+					verbalize("!Que te jodan, gilipollas!");
+					break;
+				case 3:
+					verbalize("!Hijo de puta!");
+					break;
+			}
+			break;
+
+		case MS_SCIENTIST:
+			switch (distresslevel) {
+				case 1:
+					verbalize("I soiled my lab coat.");
+					break;
+				case 2:
+					verbalize("No! Please!");
+					break;
+				case 3:
+					verbalize("Please, I swear I didn't touch your sister! Aaaaahhh!");
+					break;
+			}
+			break;
+
+		case MS_INCISION:
+			switch (distresslevel) {
+				case 1:
+					verbalize("You won't get to keep your genitals!");
+					break;
+				case 2:
+					verbalize("I said that I'm gonna cut your genitals, and I meant it!");
+					break;
+				case 3:
+					verbalize("Your genital area will be covered by an enormous red lake when I'm finished with you...");
+					break;
+			}
+			break;
+
+		case MS_CRYTHROAT:
+			switch (distresslevel) {
+				case 1:
+					verbalize("WAAAAAH!");
+					break;
+				case 2:
+					verbalize("AEAEAEAEAEAEH! OWWWW!");
+					break;
+				case 3:
+					verbalize("OWWOWOW OW-WOW! OWWOWOW OW-WOW! AAAAAAAAAAAAHHH...");
+					break;
+			}
+			break;
+
+		case MS_OMEN:
+			switch (distresslevel) {
+				case 1:
+					verbalize("You're gonna die anyway.");
+					break;
+				case 2:
+					verbalize("You're just digging your own grave!");
+					break;
+				case 3:
+					verbalize("Even if you defeat me, my death curse will make you wish you hadn't killed me!");
+					break;
+			}
+			break;
+
+		case MS_ARMORER:
+			switch (distresslevel) {
+				case 1:
+					verbalize("Grrr!");
+					break;
+				case 2:
+					verbalize("Hrrrrrgh!");
+					break;
+				case 3:
+					verbalize("Oaaaaaaaaa-aah!");
 					break;
 			}
 			break;
@@ -7594,7 +7974,7 @@ dochat()
     mtmp->mstrategy &= ~STRAT_WAITMASK;
 
     if (mtmp->mtame && mtmp->meating) {
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+	if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 	pline("%s is eating noisily.", Monnam(mtmp));
 	return (0);
@@ -7677,7 +8057,7 @@ dochat()
         return 1;
     }
 
-    if (u.ugold >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && mtmp->data->msound == MS_STENCH) {
+    if (u.ugold >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmh && uarmh->oartifact == ART_CLAUDIA_S_SEXY_SCENT && monstersoundtype(mtmp) == MS_STENCH) {
 
 		if (yn("Hire this pretty lady for 1000 dollars?") == 'y') {
 
@@ -7690,7 +8070,7 @@ dochat()
 
     }
 
-    if (u.smexyberries >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmf && uarmf->oartifact == ART_SMEXY_BERRIES && mtmp->female && mtmp->data->geno & G_UNIQ && (mtmp->data->msound == MS_BOSS || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD) ) {
+    if (u.smexyberries >= 1000 && !mtmp->mtame && mtmp->mnum != quest_info(MS_NEMESIS) && uarmf && uarmf->oartifact == ART_SMEXY_BERRIES && mtmp->female && mtmp->data->geno & G_UNIQ && (monstersoundtype(mtmp) == MS_BOSS || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD) ) {
 
 		if (yn("This lady wants to join your team. Do you want to tame her?") == 'y') {
 
@@ -7727,7 +8107,7 @@ dochat()
 		}
 	}
 
-	if (((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS))) && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
+	if (((uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS))) && (mtmp->data->mlet == S_NYMPH || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD)) {
 
 		if (yn("Pacify this monster?") == 'y') {
 	      	pline("You attempt to pacify %s.",mon_nam(mtmp) );
@@ -7758,7 +8138,7 @@ dochat()
 
 	}
 
-    if (Role_if(PM_LADIESMAN) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 10) && !flags.female && (mtmp->data->mlet == S_NYMPH || mtmp->data->msound == MS_NURSE || mtmp->data->msound == MS_SEDUCE || mtmp->data->msound == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !mtmp->mfrenzied && !(mtmp->data->geno & G_UNIQ) ) {
+    if (Role_if(PM_LADIESMAN) && mtmp->m_lev <= 30 && mtmp->m_lev <= (u.ulevel + 10) && !flags.female && (mtmp->data->mlet == S_NYMPH || monstersoundtype(mtmp) == MS_NURSE || monstersoundtype(mtmp) == MS_SEDUCE || monstersoundtype(mtmp) == MS_WHORE) && !mtmp->mtame && !mtmp->mpeaceful && mtmp->mnum != quest_info(MS_NEMESIS) && !mtmp->mfrenzied && !(mtmp->data->geno & G_UNIQ) ) {
 
 		if (yn("Seduce this pretty lady?") == 'y') {
 
@@ -8017,7 +8397,7 @@ playermsconvert()
 		&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) )
 
 		{
-			if ( (!rn2(10) || mtmp3->data->msound == MS_CONVERT || mtmp3->data->msound == MS_HCALIEN) && !resist(mtmp3, RING_CLASS, 0, NOTELL)) {
+			if ( (!rn2(10) || monstersoundtype(mtmp3) == MS_CONVERT || monstersoundtype(mtmp3) == MS_HCALIEN) && !resist(mtmp3, RING_CLASS, 0, NOTELL)) {
 				pline("%s is converted.", mon_nam(mtmp3));
 				mtmp3->mpeaceful = 1;
 			}
@@ -8060,7 +8440,7 @@ playerwouwoutaunt()
 		if(distu(mtmp->mx, mtmp->my) < 65) {
 			if (!resist(mtmp, SCROLL_CLASS, 0, NOTELL)) {
 
-				if (mtmp->data->msound == MS_CONVERT || mtmp->data->msound == MS_HCALIEN) {
+				if (monstersoundtype(mtmp) == MS_CONVERT || monstersoundtype(mtmp) == MS_HCALIEN) {
 					pline("%s is pacified.", mon_nam(mtmp));
 					mtmp->mpeaceful = 1;
 				} else {
@@ -8578,6 +8958,24 @@ teachertaunt()
 	verbalize("%s", teacher_msgs[rn2(SIZE(teacher_msgs))]);
 
 }
+
+/* which sound effect type is a monster using? this takes stuff like MS_COMMON into account --Amy */
+int
+monstersoundtype(mtmp)
+register struct monst *mtmp;
+{
+	if (!mtmp) {
+		impossible("monstersoundtype called with nonexistant monster!");
+		return MS_SILENT; /* fail safe */
+	}
+
+	if (mtmp->data->msound == MS_COMMON) return u.commonsound;
+
+	return mtmp->data->msound;
+
+	return MS_SILENT; /* fail safe */
+}
+
 #endif /* OVLB */
 
 /*sounds.c*/

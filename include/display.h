@@ -23,7 +23,7 @@
  */
 #define tp_sensemon(mon) (	/* The hero can always sense a monster IF:  */\
       (mon->telepatvisible == 1 || (mon->telepatvisible == 2 && StrongTelepat) ) && /* 0. the monster passes a 66 percent chance check to be visible (addition by Amy) AND */\
-	(mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) && /* 0.5 the monster isn't from the deep state AND */\
+	(monstersoundtype(mon) != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) && /* 0.5 the monster isn't from the deep state AND */\
 	(!mindless((mon)->data) && (!mon->egotype_undead) ) &&	/* 1. the monster has a brain to sense AND  */\
       ((Blind && Blind_telepat &&				/* 2a. hero is blind and telepathic     */\
 	(distu((mon)->mx, (mon)->my) <= 900)) ||	/* and not more than 30 squares away OR	*/\
@@ -39,7 +39,7 @@
  */
 
 /* Only 50 percent of monsters are visible to warning. --Amy */
-#define mon_warning(mon) (((mon->warningvisible == 1) || (mon->warningvisible == 2 && StrongWarning) ) && Warning && !(mon)->mpeaceful && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) &&				\
+#define mon_warning(mon) (((mon->warningvisible == 1) || (mon->warningvisible == 2 && StrongWarning) ) && Warning && !(mon)->mpeaceful && (monstersoundtype(mon) != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) &&				\
 			 (distu((mon)->mx, (mon)->my) < 100) &&				\
 			 (((int) ((mon)->m_lev / 6)) >= flags.warnlevel))
 
@@ -54,8 +54,8 @@
  */
 #define mon_visible(mon) (		/* The hero can see the monster     */\
 					/* IF the monster		    */\
-    (!((mon)->minvis) || (See_invisible && mon->data->msound != MS_DEEPSTATE && (mon->seeinvisble || StrongSee_invisible) ) ) &&	/* 1. is not invisible AND	    */\
-    (!((mon)->mundetected && (!StrongPeacevision || (mon->data->msound == MS_DEEPSTATE) ) ))	&&		/* 2. not an undetected hider	    */\
+    (!((mon)->minvis) || (See_invisible && (monstersoundtype(mon) != MS_DEEPSTATE) && (mon->seeinvisble || StrongSee_invisible) ) ) &&	/* 1. is not invisible AND	    */\
+    (!((mon)->mundetected && (!StrongPeacevision || (monstersoundtype(mon) == MS_DEEPSTATE) ) ))	&&		/* 2. not an undetected hider	    */\
     (!((mon)->mburied || u.uburied)) &&	/* 3. neither you or it is buried   */\
 	(!(mon)->minvisreal)	/* 4. monster is not permanently invisible */\
 )
@@ -69,7 +69,7 @@
  * canseemon() or canspotmon() which already check that.
  * Amy note: night vision goggles also use this codepath, but see all the monsters
  */
-#define see_with_infrared(mon) (!Blind && ((Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data)) || (ublindf && ublindf->otyp == NIGHT_VISION_GOGGLES) ) && couldsee(mon->mx, mon->my) && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
+#define see_with_infrared(mon) (!Blind && ((Infravision && (StrongInfravision || mon->infravisble) && infravisible(mon->data)) || (ublindf && ublindf->otyp == NIGHT_VISION_GOGGLES) ) && couldsee(mon->mx, mon->my) && (monstersoundtype(mon) != MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
 
 
 /*
@@ -104,7 +104,7 @@
  * invisible to infravision.
  */
 #define knowninvisible(mon) \
-	(mon->minvis && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) && \
+	(mon->minvis && (monstersoundtype(mon) != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) && \
 	    ((cansee(mon->mx, mon->my) && ( (See_invisible && !mon->minvisreal && (StrongSee_invisible || mon->seeinvisble) ) || Detect_monsters)) || \
 		(!Blind && (HTelepat & ~INTRINSIC) && \
 		    distu(mon->mx, mon->my) <= (BOLT_LIM * BOLT_LIM) \

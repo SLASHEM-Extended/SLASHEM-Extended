@@ -436,7 +436,7 @@ aggravate()
 
 		if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && (rnd(100) > distagravate) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && !rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(Race_if(PM_KUTAR) && !rn2(3)) ) {
 
-			if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
+			if (monstersoundtype(mtmp) == MS_SNORE) continue; /* won't wake up from this effect */
 
 			mtmp->msleeping = 0;
 			if(!mtmp->mcanmove && !rn2(5)) {

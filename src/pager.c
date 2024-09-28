@@ -520,7 +520,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (StrongNumbopathy && Numbed && (dmgtype(mtmp->data, AD_NUMB) || dmgtype(mtmp->data, AD_PLYS) ) )
 		    ways_seen++;
-		if (StrongDimmopathy && Dimmed && (dmgtype(mtmp->data, AD_DIMN) || mtmp->data->msound == MS_CUSS ) )
+		if (StrongDimmopathy && Dimmed && (dmgtype(mtmp->data, AD_DIMN) || monstersoundtype(mtmp) == MS_CUSS ) )
 		    ways_seen++;
 		if (StrongFreezopathy && Frozen && (dmgtype(mtmp->data, AD_FRZE) || dmgtype(mtmp->data, AD_ICEB) ) )
 		    ways_seen++;
@@ -530,11 +530,11 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (StrongSickopathy && Sick && (dmgtype(mtmp->data, AD_DISE) || dmgtype(mtmp->data, AD_PEST) ) )
 		    ways_seen++;
-		if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) )
+		if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || monstersoundtype(mtmp) == MS_STENCH) )
 		    ways_seen++;
-		if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mtmp->data->msound == MS_SHOE)
+		if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mtmp) == MS_SHOE)
 		    ways_seen++;
-		if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) )
+		if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || monstersoundtype(mtmp) == MS_SOUND || monstersoundtype(mtmp) == MS_SHRIEK || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_FART_QUIET ) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
 		    ways_seen++;
@@ -602,7 +602,7 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_FD_DETH && (mtmp->data->mlet == S_DOG || mtmp->data->mlet == S_FELINE) )
 		    ways_seen++;
-		if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mtmp->data->mlet == S_KOP || mtmp->data->msound == MS_TREESQUAD) )
+		if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mtmp->data->mlet == S_KOP || monstersoundtype(mtmp) == MS_TREESQUAD) )
 		    ways_seen++;
 		if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mtmp->data->mlet == S_DOG)
 		    ways_seen++;
@@ -765,7 +765,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "strong numbopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (StrongDimmopathy && Dimmed && (dmgtype(mtmp->data, AD_DIMN) || mtmp->data->msound == MS_CUSS ) ) {
+		    if (StrongDimmopathy && Dimmed && (dmgtype(mtmp->data, AD_DIMN) || monstersoundtype(mtmp) == MS_CUSS ) ) {
 			strcat(monbuf, "strong dimmopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -785,15 +785,15 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "strong sickopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || mtmp->data->msound == MS_STENCH) ) {
+		    if (ScentView && distu(mtmp->mx, mtmp->my) < 101 && mtmp->scentvisible && (is_animal(mtmp->data) || monstersoundtype(mtmp) == MS_STENCH) ) {
 			strcat(monbuf, "scent view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		     if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mtmp->data->msound == MS_SHOE) {
+		     if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mtmp) == MS_SHOE) {
 			strcat(monbuf, "Amy's shoevision");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || mtmp->data->msound == MS_SOUND || mtmp->data->msound == MS_SHRIEK || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD || mtmp->data->msound == MS_FART_QUIET ) ) {
+		    if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || monstersoundtype(mtmp) == MS_SOUND || monstersoundtype(mtmp) == MS_SHRIEK || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_FART_QUIET ) ) {
 			strcat(monbuf, "echolocation");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
@@ -929,7 +929,7 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "FD Deth");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		    if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mtmp->data->mlet == S_KOP || mtmp->data->msound == MS_TREESQUAD) ) {
+		    if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mtmp->data->mlet == S_KOP || monstersoundtype(mtmp) == MS_TREESQUAD) ) {
 			strcat(monbuf, "theft prevention");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }

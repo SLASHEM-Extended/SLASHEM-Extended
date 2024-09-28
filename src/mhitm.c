@@ -147,9 +147,9 @@ missmm(magr, mdef, target, roll, mattk)
 	}
 
 	if (vis) {
-		if (!canspotmon(magr) && !(magr->data->msound == MS_DEEPSTATE) && !(magr->egotype_deepstatemember))
+		if (!canspotmon(magr) && !(monstersoundtype(magr) == MS_DEEPSTATE) && !(magr->egotype_deepstatemember))
 		    map_invisible(magr->mx, magr->my);
-		if (!canspotmon(mdef) && !(mdef->data->msound == MS_DEEPSTATE) && !(mdef->egotype_deepstatemember))
+		if (!canspotmon(mdef) && !(monstersoundtype(mdef) == MS_DEEPSTATE) && !(mdef->egotype_deepstatemember))
 		    map_invisible(mdef->mx, mdef->my);
 		if (mdef->m_ap_type) seemimic(mdef);
 		if (magr->m_ap_type) seemimic(magr);
@@ -493,14 +493,14 @@ mattackm(magr, mdef)
 	if (magr->data == &mons[PM_FIRST_DUNVEGAN]) tmp += 100; /* this monster also almost always hits */
 	if (magr->data == &mons[PM_DNETHACK_ELDER_PRIEST_TM_]) tmp += rnd(100); /* the elder priest uses an aimbot and a wallhack */
 
-	if (magr->data->msound == MS_FART_LOUD && !magr->butthurt) tmp += rnd(5);
-	if (magr->data->msound == MS_FART_NORMAL && !magr->butthurt) tmp += rnd(7);
-	if (magr->data->msound == MS_FART_QUIET && !magr->butthurt) tmp += rnd(10);
-	if (magr->data->msound == MS_WHORE && !magr->butthurt) tmp += rnd(15);
-	if (magr->data->msound == MS_SHOE) tmp += rnd(10);
-	if (magr->data->msound == MS_STENCH) tmp += rnd(15);
-	if (magr->data->msound == MS_CONVERT) tmp += rnd(5);
-	if (magr->data->msound == MS_HCALIEN) tmp += rnd(10);
+	if (monstersoundtype(magr) == MS_FART_LOUD && !magr->butthurt) tmp += rnd(5);
+	if (monstersoundtype(magr) == MS_FART_NORMAL && !magr->butthurt) tmp += rnd(7);
+	if (monstersoundtype(magr) == MS_FART_QUIET && !magr->butthurt) tmp += rnd(10);
+	if (monstersoundtype(magr) == MS_WHORE && !magr->butthurt) tmp += rnd(15);
+	if (monstersoundtype(magr) == MS_SHOE) tmp += rnd(10);
+	if (monstersoundtype(magr) == MS_STENCH) tmp += rnd(15);
+	if (monstersoundtype(magr) == MS_CONVERT) tmp += rnd(5);
+	if (monstersoundtype(magr) == MS_HCALIEN) tmp += rnd(10);
 	if (magr->egotype_farter) tmp += rnd(7);
 	if (magr->fartbonus) tmp += rnd(magr->fartbonus);
 	if (magr->crapbonus) tmp += rno(magr->crapbonus);
@@ -3162,12 +3162,12 @@ meleeattack:
 
 	}
 
-	if (magr->data->msound == MS_SHRIEK && monnear(magr, mdef->mx, mdef->my)) {
+	if (monstersoundtype(magr) == MS_SHRIEK && monnear(magr, mdef->mx, mdef->my)) {
 		if (!YouAreDeaf) pline("%s shrieks.", Monnam(magr));
 		aggravate();
 	}
 
-	if ((magr->data->msound == MS_PHOTO || egotypecameraclicker) && !rn2(50)) {
+	if ((monstersoundtype(magr) == MS_PHOTO || egotypecameraclicker) && !rn2(50)) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -3186,16 +3186,16 @@ meleeattack:
 
 	}
 
-	if ((magr->data->msound == MS_FART_QUIET || magr->data->msound == MS_FART_NORMAL || magr->data->msound == MS_FART_LOUD || magr->egotype_farter) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_FART_QUIET || monstersoundtype(magr) == MS_FART_NORMAL || monstersoundtype(magr) == MS_FART_LOUD || magr->egotype_farter) && monnear(magr, mdef->mx, mdef->my)) {
 		if (magr->fartbonus > 9) magr->fartbonus = 9; /* fail save */
 		int monfartchance = 10 + magr->butthurt - magr->fartbonus;
 		if (monfartchance < 1) monfartchance = 1; /* yet another fail safe */
 
 		if (!rn2(monfartchance)) {
 			if (vis) {
-				if (magr->data->msound == MS_FART_QUIET) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "tender" : "soft", mhis(magr), magr->female ? "sexy" : "ugly");
-				else if (magr->data->msound == MS_FART_NORMAL) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "beautiful" : "squeaky", mhis(magr), magr->female ? "sexy" : "ugly");
-				else if (magr->data->msound == MS_FART_LOUD) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "loud" : "disgusting", mhis(magr), magr->female ? "sexy" : "ugly");
+				if (monstersoundtype(magr) == MS_FART_QUIET) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "tender" : "soft", mhis(magr), magr->female ? "sexy" : "ugly");
+				else if (monstersoundtype(magr) == MS_FART_NORMAL) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "beautiful" : "squeaky", mhis(magr), magr->female ? "sexy" : "ugly");
+				else if (monstersoundtype(magr) == MS_FART_LOUD) pline("%s produces %s farting noises with %s %s butt.", Monnam(magr), rn2(2) ? "loud" : "disgusting", mhis(magr), magr->female ? "sexy" : "ugly");
 				else pline("%s produces farting noises with %s %s butt.", Monnam(magr), mhis(magr), magr->female ? "sexy" : "ugly");
 			}
 			else if (!YouAreDeaf) pline("You hear farting noises.");
@@ -3219,7 +3219,7 @@ meleeattack:
 
 	}
 
-	if ((magr->data->msound == MS_SOUND || egotypesounder) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_SOUND || egotypesounder) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s lets out an ear-splitting scream!", Monnam(magr) );
 		else if (!YouAreDeaf) pline("You hear a scream.");
 		mdef->mstun = TRUE;
@@ -3227,12 +3227,12 @@ meleeattack:
 		if (!rn2(5)) badpeteffect(mdef);
 	}
 
-	if ((magr->data->msound == MS_ALLA || egotypealladrainer) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_ALLA || egotypealladrainer) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s's alla is reduced!", Monnam(mdef));
 		badpeteffect(mdef);
 	}
 
-	if ((magr->data->msound == MS_SOCKS) && mdef->mcanmove && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_SOCKS) && mdef->mcanmove && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
 
 		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
 		strcpy(buf, mon_nam(mdef));
@@ -3242,7 +3242,7 @@ meleeattack:
 		mdef->mfrozen = rn1(3,4);
 		mdef->mstrategy &= ~STRAT_WAITFORU;
 	}
-	if ((magr->data->msound == MS_PANTS) && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_PANTS) && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
 
 		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
 		strcpy(buf, Monnam(mdef));
@@ -3251,7 +3251,7 @@ meleeattack:
 		badpeteffect(mdef);
 	}
 
-	if (magr->data->msound == MS_CUSS && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+	if (monstersoundtype(magr) == MS_CUSS && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
 
 		/* STUPID bug where the game displays the same name twice for some inexplicable reason --Amy */
 		strcpy(buf, mon_nam(mdef));
@@ -3266,19 +3266,19 @@ meleeattack:
 		}
 	}
 
-	if (magr->data->msound == MS_WHORE && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+	if (monstersoundtype(magr) == MS_WHORE && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
 		mdef->healblock += (1 + magr->m_lev);
 		if (!rn2(50)) badpeteffect(mdef);
 		if (vis) pline("%s is dimmed.", Monnam(mdef));
 	}
 
-	if (magr->data->msound == MS_SUPERMAN && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
+	if (monstersoundtype(magr) == MS_SUPERMAN && !rn2(5) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s is terrorized by the superman!", Monnam(mdef));
 		else You_feel("that something terrible is happening to your companion right now!");
 		allbadpeteffects(mdef);
 	}
 
-	if ((magr->data->msound == MS_CONVERT || magr->egotype_converter) && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_CONVERT || magr->egotype_converter) && !rn2(10) && monnear(magr, mdef->mx, mdef->my)) {
 		mdef->healblock += (1 + magr->m_lev);
 		if (vis) pline("%s seems less faithful.", Monnam(mdef));
 		else You_hear("some foreign sermon.");
@@ -3297,7 +3297,7 @@ meleeattack:
 		}
 	}
 
-	if ((magr->data->msound == MS_HCALIEN || magr->egotype_wouwouer) && !rn2(15) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_HCALIEN || magr->egotype_wouwouer) && !rn2(15) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s seems terrorified.", Monnam(mdef));
 		else You_hear("a frightening taunt.");
 		badpeteffect(mdef);
@@ -3317,7 +3317,7 @@ meleeattack:
 		}
 	}
 
- 	if (magr->data->msound == MS_SHOE && !rn2(50) && evilfriday && monnear(magr, mdef->mx, mdef->my)) {
+ 	if (monstersoundtype(magr) == MS_SHOE && !rn2(50) && evilfriday && monnear(magr, mdef->mx, mdef->my)) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
@@ -3330,7 +3330,7 @@ meleeattack:
 		if (res[i] & MM_DEF_DIED) return res[i];
 	}
 
- 	if (magr->data->msound == MS_BONES && !rn2(100) && monnear(magr, mdef->mx, mdef->my)) {
+ 	if (monstersoundtype(magr) == MS_BONES && !rn2(100) && monnear(magr, mdef->mx, mdef->my)) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TRAM;
@@ -3343,7 +3343,7 @@ meleeattack:
 		if (res[i] & MM_DEF_DIED) return res[i];
 	}
 
-	if ((magr->data->msound == MS_STENCH || magr->egotype_perfumespreader) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
+	if ((monstersoundtype(magr) == MS_STENCH || magr->egotype_perfumespreader) && !rn2(20) && monnear(magr, mdef->mx, mdef->my)) {
 		if (vis) pline("%s inhales the feminine perfume.", Monnam(mdef));
 		badpeteffect(mdef);
 	}
@@ -3759,9 +3759,9 @@ hitmm(magr, mdef, mattk)
 		int compat;
 		char buf[BUFSZ], mdef_name[BUFSZ];
 
-		if (!canspotmon(magr) && !(magr->data->msound == MS_DEEPSTATE) && !(magr->egotype_deepstatemember))
+		if (!canspotmon(magr) && !(monstersoundtype(magr) == MS_DEEPSTATE) && !(magr->egotype_deepstatemember))
 		    map_invisible(magr->mx, magr->my);
-		if (!canspotmon(mdef) && !(mdef->data->msound == MS_DEEPSTATE) && !(mdef->egotype_deepstatemember))
+		if (!canspotmon(mdef) && !(monstersoundtype(mdef) == MS_DEEPSTATE) && !(mdef->egotype_deepstatemember))
 		    map_invisible(mdef->mx, mdef->my);
 		if(mdef->m_ap_type) seemimic(mdef);
 		if(magr->m_ap_type) seemimic(magr);

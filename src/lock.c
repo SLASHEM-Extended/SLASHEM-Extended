@@ -959,7 +959,7 @@ doforce()		/* try to force a chest with your weapon */
 				else if (Role_if(PM_SHADOW_JEDI) && StrongUseTheForce) dmg += u.ulevel;
 				else if (Race_if(PM_BORG) && StrongUseTheForce) dmg += rnd(u.ulevel);
 
-				if (Role_if(PM_EMERA) && (mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_PANTS || mtmp->data->msound == MS_SOCKS)) {
+				if (Role_if(PM_EMERA) && (monstersoundtype(mtmp) == MS_SHOE || monstersoundtype(mtmp) == MS_PANTS || monstersoundtype(mtmp) == MS_SOCKS)) {
 					dmg += rnd(2 * u.ulevel);
 				}
 
@@ -1008,7 +1008,7 @@ doforce()		/* try to force a chest with your weapon */
 				pline("You use the force on %s.", mon_nam(mtmp));
 				u.cnd_forcecount++;
 
-				if (Role_if(PM_EMERA) && (mtmp->data->msound == MS_SHOE || mtmp->data->msound == MS_PANTS || mtmp->data->msound == MS_SOCKS)) pline("Your %s furiously rip into %s. You evil bastard.", makeplural(body_part(HAND)), mon_nam(mtmp));
+				if (Role_if(PM_EMERA) && (monstersoundtype(mtmp) == MS_SHOE || monstersoundtype(mtmp) == MS_PANTS || monstersoundtype(mtmp) == MS_SOCKS)) pline("Your %s furiously rip into %s. You evil bastard.", makeplural(body_part(HAND)), mon_nam(mtmp));
 
 				setmangry(mtmp);
 				wakeup(mtmp);
@@ -1081,7 +1081,7 @@ doforce()		/* try to force a chest with your weapon */
 				(void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH, FALSE);
 				if (mtmp->mhp <= 0 && !trapkilled) killed(mtmp);
 
-				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_QUIET || (!rn2(5) && mtmp->egotype_farter) ) ) {
+				if (mtmp->mhp > 0 && (monstersoundtype(mtmp) == MS_FART_QUIET || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 					if (practicantterror) {
 						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
@@ -1123,7 +1123,7 @@ doforce()		/* try to force a chest with your weapon */
 						}
 					}
 				}
-				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_NORMAL || (!rn2(5) && mtmp->egotype_farter) ) ) {
+				if (mtmp->mhp > 0 && (monstersoundtype(mtmp) == MS_FART_NORMAL || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 					if (practicantterror) {
 						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
@@ -1175,7 +1175,7 @@ doforce()		/* try to force a chest with your weapon */
 						}
 					}
 				}
-				if (mtmp->mhp > 0 && (mtmp->data->msound == MS_FART_LOUD || (!rn2(5) && mtmp->egotype_farter) ) ) {
+				if (mtmp->mhp > 0 && (monstersoundtype(mtmp) == MS_FART_LOUD || (!rn2(5) && mtmp->egotype_farter) ) ) {
 					pline("You bash %s's %s butt using %s %s.", mon_nam(mtmp), mtmp->female ? "sexy" : "ugly", !rn2(3) ? "both your left and right" : rn2(2) ? "your left" : "your right", body_part(HAND) );
 					if (practicantterror) {
 						pline("%s thunders: 'Bashing other people's butts is not permitted! 100 zorkmids!'", noroelaname());
@@ -1438,7 +1438,7 @@ register int x, y;
 		if (mtmp->m_ap_type == M_AP_OBJECT) goto objhere;
 		pline("%s stands in the way!", !canspotmon(mtmp) ?
 			"Some creature" : Monnam(mtmp));
-		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+		if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 		    map_invisible(mtmp->mx, mtmp->my);
 		return(TRUE);
 	}
@@ -1458,7 +1458,7 @@ register int x, y;
 
 	if(mtmp && mtmp->m_ap_type != M_AP_FURNITURE) {
 		if (mtmp->m_ap_type == M_AP_OBJECT) goto objhere;
-		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+		if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 		    map_invisible(mtmp->mx, mtmp->my);
 		return(TRUE);
 	}

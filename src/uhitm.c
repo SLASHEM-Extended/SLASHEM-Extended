@@ -150,7 +150,7 @@ boolean barehanded;
 		 * If the monster dies immediately from the blow, the 'I' will
 		 * not stay there, so the player will have suddenly forgotten
 		 * the square's contents for no apparent reason.
-		if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) &&
+		if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) &&
 		    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy))
 			map_invisible(u.ux+u.dx, u.uy+u.dy);
 		 */
@@ -191,7 +191,7 @@ boolean barehanded;
 		if (!rn2(2) && !mtmp->mpeaceful && !mtmp->mtame) (void) passive(mtmp, TRUE, mtmp->mhp > 0, AT_TUCH, FALSE);
 
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		if (!(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) map_invisible(u.ux+u.dx, u.uy+u.dy);
+		if (!(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) map_invisible(u.ux+u.dx, u.uy+u.dy);
 		/* if it was an invisible mimic, treat it as if we stumbled
 		 * onto a visible mimic
 		 */
@@ -1358,7 +1358,7 @@ atk_done:
 	 * and it returned 0 (it's okay to attack), and the monster didn't
 	 * evade.
 	 */
-	if (flags.forcefight && mtmp->mhp > 0 && !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) &&
+	if (flags.forcefight && mtmp->mhp > 0 && !canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) &&
 	    !memory_is_invisible(u.ux+u.dx, u.uy+u.dy) &&
 	    !(u.uswallow && mtmp == u.ustuck))
 		map_invisible(u.ux+u.dx, u.uy+u.dy);
@@ -4600,7 +4600,7 @@ int dieroll;
 		}
 
 		if (obj && obj->oartifact == ART_RESOLE_THE_WOMAN_S_ASS) {
-			if (mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_QUIET || mon->data->msound == MS_FART_LOUD) {
+			if (monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_QUIET || monstersoundtype(mon) == MS_FART_LOUD) {
 				if (mon->butthurt < 19) {
 					mon->butthurt++;
 					pline("%s's butt is hurt!", Monnam(mon));
@@ -4622,7 +4622,7 @@ int dieroll;
 			}
 		}
 
-		if (obj && obj->oartifact == ART_SHOE_BRAND && mon->data->msound == MS_SHOE) {
+		if (obj && obj->oartifact == ART_SHOE_BRAND && monstersoundtype(mon) == MS_SHOE) {
 
 			if (!rn2(20)) {
 				pline("Shoe Brand tries to tame the shoe...");
@@ -6135,7 +6135,7 @@ melatechoice:
 		}
 	}
 
-	if ((!hittxt || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || (Role_if(PM_SPACEWARS_FIGHTER) || sanitymessage || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || FemtrapActiveAriane || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination) ) &&			/*( thrown => obj exists )*/
+	if ((!hittxt || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || (Role_if(PM_SPACEWARS_FIGHTER) || sanitymessage || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || FemtrapActiveAriane || Role_if(PM_GANG_SCHOLAR) || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination) ) &&			/*( thrown => obj exists )*/
 	  (!destroyed || (thrown && m_shot.n > 1 && m_shot.o == obj->otyp))) {
 
 		if (!thrown && Role_if(PM_HUSSY) && !mon->female && !is_neuter(mon->data)) {
@@ -6145,7 +6145,7 @@ melatechoice:
 		if (thrown) hit(mshot_xname(obj), mon, exclam(tmp));
 		else if (!flags.verbose) You("hit it.");
 
-		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(20) && (PlayerHearsSoundEffects) ) {
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && !rn2(20) && (PlayerHearsSoundEffects) ) {
 
 			switch (rnd(15)) {
 	
@@ -6169,7 +6169,7 @@ melatechoice:
 
 		}
 
-		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) ) {
+		else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || sanitymessage) && (!rn2(5) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) ) {
 
 			switch (rnd(647)) {
 	
@@ -6925,7 +6925,7 @@ melatechoice:
 				u.hussykillturn = (moves + 1000);
 			}
 
-			if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !thrown && !rn2(20) && (PlayerHearsSoundEffects) ) {
+			if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !thrown && !rn2(20) && (PlayerHearsSoundEffects) ) {
 
 				switch (rnd(8)) {
 	
@@ -6941,7 +6941,7 @@ melatechoice:
 
 			}
 
-			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mon->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
+			else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mon) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && !thrown) {
 
 				switch (rnd(773)) {
 
@@ -10143,7 +10143,7 @@ register int roll;
 	
 	if (could_seduce(&youmonst, mdef, mattk) && rn2(5) ) {
 		You("pretend to be friendly to %s.", mon_nam(mdef));
-	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(20) && canspotmon(mdef) && flags.verbose && (PlayerHearsSoundEffects) ) {
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && !rn2(20) && canspotmon(mdef) && flags.verbose && (PlayerHearsSoundEffects) ) {
 
 		switch (rnd(6)) {
 	
@@ -10155,7 +10155,7 @@ register int roll;
 		case 6: pline("Bimmselimmelimm!"); break;
 		}
 
-	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (mdef->data->msound == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
+	} else if ((Role_if(PM_SPACEWARS_FIGHTER) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) || Role_if(PM_CAMPERSTRIKER) || Role_if(PM_HUSSY) || Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane || Role_if(PM_WALSCHOLAR) || ishaxor || Hallucination || (u.usanity > rn2(1000)) ) && (!rn2(5) || (monstersoundtype(mdef) == MS_COMBAT) || (youmonst.data->msound == MS_COMBAT) ) && canspotmon(mdef) && flags.verbose) {
 
 		switch (rnd(840)) {
 
@@ -14949,7 +14949,7 @@ struct obj *otmp;	/* source of flash */
 			    monkilled(mtmp, (char *)0, AD_BLND);
 			else
 			    killed(mtmp);
-		    } else if (cansee(mtmp->mx,mtmp->my) && !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) {
+		    } else if (cansee(mtmp->mx,mtmp->my) && !canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) {
 			map_invisible(mtmp->mx, mtmp->my);
 		    }
 		}

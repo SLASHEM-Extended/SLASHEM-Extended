@@ -1772,6 +1772,7 @@ struct you {
 
 	int adpartattack;	/* what AD_PART does in the given game */
 	int adrunsattack;	/* what AD_RUNS does in the given game */
+	int commonsound;	/* what MS_COMMON does in the given game */
 
 	int combostrike;	/* for technique */
 	boolean comboactive;
@@ -1823,6 +1824,7 @@ struct you {
 	boolean arabellahack;
 	boolean linkmasterswordhack;
 	boolean wollohhack;
+	boolean oehack;
 	boolean polyattackhack;
 	boolean dynamitehack;
 	boolean detonationhack;

@@ -196,7 +196,7 @@ struct monst *mtmp;
 	    mtmp->data == &mons[PM_CTHULHU] || (mtmp->data->mlet == S_LIGHT && rn2(2)) ||
 	   (mtmp->data->mlet == S_FUNGUS && rn2(10)) ||
 	    is_rider(mtmp->data) || is_deadlysin(mtmp->data) || (is_minotaur(mtmp->data)) ||
-	   (mtmp->data->msound == MS_BOSS && rn2(10) ) || (mtmp->data->msound == MS_FART_QUIET && rn2(50) ) || (mtmp->data->msound == MS_FART_NORMAL && rn2(30) ) || (mtmp->data->msound == MS_FART_LOUD && rn2(20) ) || 
+	   (monstersoundtype(mtmp) == MS_BOSS && rn2(10) ) || (monstersoundtype(mtmp) == MS_FART_QUIET && rn2(50) ) || (monstersoundtype(mtmp) == MS_FART_NORMAL && rn2(30) ) || (monstersoundtype(mtmp) == MS_FART_LOUD && rn2(20) ) || 
 		 mtmp->mnum == quest_info(MS_NEMESIS) || mtmp->mnum == PM_VLAD_THE_IMPALER || mtmp->mnum == PM_CHANOP)
 		return(FALSE);
 
@@ -894,14 +894,14 @@ register struct monst *mtmp;
 		}
 	}
 
-	if ((mtmp->data->msound == MS_HANDY || mtmp->egotype_phonecaller) && !mtmp->handytime && !rn2(500)) {
+	if ((monstersoundtype(mtmp) == MS_HANDY || mtmp->egotype_phonecaller) && !mtmp->handytime && !rn2(500)) {
 		mtmp->handytime = 5 + rn2(11);
 		mtmp->handyfirst = FALSE;
 		if (canseemon(mtmp)) pline("%s's phone is ringing!", Monnam(mtmp));
 		else You_hear("a phone ringing!");
 	}
 
-	if ((mtmp->data->msound == MS_PHOTO || mtmp->egotype_cameraclicker) && canseemon(mtmp)) {
+	if ((monstersoundtype(mtmp) == MS_PHOTO || mtmp->egotype_cameraclicker) && canseemon(mtmp)) {
 		int photochance = 20;
 		if (ACURR(A_CHA) > 10) photochance -= (ACURR(A_CHA) - 10);
 		if (photochance < 3) photochance = 3;
@@ -1708,7 +1708,7 @@ register struct monst *mtmp;
 	}
 
 	/* monsters whose butts were bashed by you will slowly recover --Amy */
-	if (mtmp->butthurt && !rn2(mdat->msound == MS_FART_QUIET ? 5 : mdat->msound == MS_FART_NORMAL ? 20 : 50) ) mtmp->butthurt -= 1;
+	if (mtmp->butthurt && !rn2(monstersoundtype(mtmp) == MS_FART_QUIET ? 5 : monstersoundtype(mtmp) == MS_FART_NORMAL ? 20 : 50) ) mtmp->butthurt -= 1;
 
 	/* some monsters teleport */
 	if (mtmp->mflee && !rn2(40) && can_teleport(mdat) && !mtmp->iswiz &&
@@ -1716,7 +1716,7 @@ register struct monst *mtmp;
 		(void) rloc(mtmp, FALSE);
 		return(0);
 	}
-	if (mdat->msound == MS_SHRIEK && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !um_dist(mtmp->mx, mtmp->my, 1))
+	if (monstersoundtype(mtmp) == MS_SHRIEK && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !um_dist(mtmp->mx, mtmp->my, 1))
 	    m_respond(mtmp);
 
 	if (mtmp->fartbonus > 9) mtmp->fartbonus = 9; /* fail save, gaaaaaah */
@@ -1804,21 +1804,21 @@ register struct monst *mtmp;
 
 	}
 
-	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && (!mtmp->mpeaceful || FemtrapActiveJennifer)) {
+	if (monstersoundtype(mtmp) == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && (!mtmp->mpeaceful || FemtrapActiveJennifer)) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
 	}
-	if (mdat->msound == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && (!mtmp->mpeaceful || (FemtrapActiveSueLyn && mtmp->female && !mtmp->mtame) ) ) {
+	if (monstersoundtype(mtmp) == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && (!mtmp->mpeaceful || (FemtrapActiveSueLyn && mtmp->female && !mtmp->mtame) ) ) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
 			m_respond(mtmp);
 		}
 	}
-	if (mdat->msound == MS_FART_LOUD && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
+	if (monstersoundtype(mtmp) == MS_FART_LOUD && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
@@ -1826,13 +1826,13 @@ register struct monst *mtmp;
 		}
 	}
 
-	if (mdat->msound == MS_PANTS && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+	if (monstersoundtype(mtmp) == MS_PANTS && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 	}
-	if (mdat->msound == MS_SOCKS && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+	if (monstersoundtype(mtmp) == MS_SOCKS && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 	}
-	if ((mdat->msound == MS_ALLA || mtmp->egotype_alladrainer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
+	if ((monstersoundtype(mtmp) == MS_ALLA || mtmp->egotype_alladrainer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful) {
 		pline("alla");
 		drain_alla(1);
 	}
@@ -1845,7 +1845,7 @@ register struct monst *mtmp;
 		katiclean(mtmp);
 	}
 
-	if ((mdat->msound == MS_SING || mtmp->egotype_singagent) && !(uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) && !u.singtrapocc && !u.katitrapocc && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->singability) {
+	if ((monstersoundtype(mtmp) == MS_SING || mtmp->egotype_singagent) && !(uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) && !u.singtrapocc && !u.katitrapocc && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->singability) {
 
 		int attempts = 0;
 		struct permonst *pm = 0;
@@ -1895,7 +1895,7 @@ newbossSING:
 		mtmp->singability = TRUE;
 	}
 
-	if (mdat->msound == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && (!mtmp->mpeaceful || FemtrapActiveJennifer))
+	if (monstersoundtype(mtmp) == MS_FART_QUIET && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(2000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && (!mtmp->mpeaceful || FemtrapActiveJennifer))
 	{
 		pline("Using %s %s butt, %s produces tender noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 
@@ -1907,7 +1907,7 @@ newbossSING:
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
-	if (mdat->msound == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(1000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (monstersoundtype(mtmp) == MS_FART_NORMAL && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(1000) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	{
 		pline("Using %s %s butt, %s produces beautiful noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 
@@ -1919,7 +1919,7 @@ newbossSING:
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
-	if (mdat->msound == MS_FART_LOUD && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(400) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if (monstersoundtype(mtmp) == MS_FART_LOUD && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->crapbonus && (rn2(400) < mtmp->crapbonus) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	{
 		pline("Using %s %s butt, %s produces disgusting noises and craps right in your %s.", mhis(mtmp), mtmp->female ? "sexy" : "ugly", mon_nam(mtmp), body_part(FACE) );
 
@@ -1932,7 +1932,7 @@ newbossSING:
 
 	}
 
-	if (!(mdat->msound == MS_FART_LOUD || mdat->msound == MS_FART_NORMAL || mdat->msound == MS_FART_QUIET) && mtmp->egotype_farter && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
+	if (!(monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET) && mtmp->egotype_farter && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(10 + mtmp->butthurt) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
 	    m_respond(mtmp);
 		while (FemtrapActiveElena && !rn2(3)) {
 			pline("You long for more!");
@@ -1940,7 +1940,7 @@ newbossSING:
 		}
 	}
 
-	if ( (mdat->msound == MS_SOUND || mtmp->egotype_sounder) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if ( (monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && couldsee(mtmp->mx, mtmp->my))
 	    m_respond(mtmp);
@@ -1983,7 +1983,7 @@ newbossSING:
 
 	/* Monsters that want to acquire things */
 	/* may teleport, so do it before inrange is set */
-	if( (is_covetous(mdat) || mtmp->egotype_covetous || (FemtrapActiveLuisa && mtmp->female && mtmp->data->msound == MS_SHOE && type_is_pname(mtmp->data) ) || (Role_if(PM_SINGSLAVE) && mtmp->singannoyance) ) && (!rn2(10) || (mdat == &mons[PM_AT_RAINKID] && !rn2(3)) || (mdat == &mons[PM_TEA_HUSSY] && !rn2(3)) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
+	if( (is_covetous(mdat) || mtmp->egotype_covetous || (FemtrapActiveLuisa && mtmp->female && monstersoundtype(mtmp) == MS_SHOE && type_is_pname(mtmp->data) ) || (Role_if(PM_SINGSLAVE) && mtmp->singannoyance) ) && (!rn2(10) || (mdat == &mons[PM_AT_RAINKID] && !rn2(3)) || (mdat == &mons[PM_TEA_HUSSY] && !rn2(3)) || (CovetousnessBug || u.uprops[COVETOUSNESS_BUG].extrinsic || have_covetousstone() ) ) ) (void) tactics(mtmp);
 
 	/* check distance and scariness of attacks */
 	distfleeck(mtmp,&inrange,&nearby,&scared);
@@ -1997,7 +1997,7 @@ newbossSING:
 	}
 
 	/* Demonic Blackmail! */
-	if(nearby && mdat->msound == MS_BRIBE &&
+	if(nearby && monstersoundtype(mtmp) == MS_BRIBE &&
        (monsndx(mdat) != PM_PRISON_GUARD) &&
 	   mtmp->mpeaceful && !mtmp->mtame && !u.uswallow) {
 		if (mtmp->mux != u.ux || mtmp->muy != u.uy) {
@@ -2059,7 +2059,7 @@ newbossSING:
 		}
 	}
 
-	if (FemtrapActiveAnna && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) && (mdat->msound == MS_STENCH)) {
+	if (FemtrapActiveAnna && !rn2(1000) && humanoid(mtmp->data) && is_female(mtmp->data) && (monstersoundtype(mtmp) == MS_STENCH)) {
 		if (!(t_at(mtmp->mx, mtmp->my))) {
 			maketrap(mtmp->mx, mtmp->my, SHIT_TRAP, 0, FALSE);
 		}
@@ -2073,7 +2073,7 @@ newbossSING:
 
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
 	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
-		switch (mdat->msound) {
+		switch (monstersoundtype(mtmp)) {
 
 			case MS_PRIEST:
 				verbalize(rn2(2) ? "Hoyo hoyo!" : "Wololo");
@@ -2339,6 +2339,10 @@ newbossSING:
 			case MS_SCIENTIST:
 				verbalize("I'll plug my quantum harmonizer into your photon resonance chamber!");
 				break;
+			case MS_INCISION:
+				if (flags.female) verbalize("You're a woman about to reach the age of maturity, and for that I have to circumcise your genitals. Don't worry, it's a ritual that every woman has to undergo in her life.");
+				else verbalize("Snip, snap, penis off!");
+				break;
 			case MS_GAARDIEN:
 				verbalize("Why is that weirdo over there not doing %s job?", flags.female ? "her" : "his");
 				break;
@@ -2463,7 +2467,7 @@ newbossSING:
 		}
 	}
 
-	if ((mdat->msound == MS_CONVERT || mtmp->egotype_converter) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(10)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
+	if ((monstersoundtype(mtmp) == MS_CONVERT || mtmp->egotype_converter) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(10)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
 
 		conversionsermon();
 
@@ -2534,7 +2538,7 @@ newbossSING:
 
 convertdone:
 
-	if ((mdat->msound == MS_HCALIEN || mtmp->egotype_wouwouer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(4)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
+	if ((monstersoundtype(mtmp) == MS_HCALIEN || mtmp->egotype_wouwouer) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(4)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(15)) {
 
 		wouwoutaunt();
 		u.cnd_wouwoucount++;
@@ -2605,7 +2609,7 @@ convertdone:
 
 	}
 
-	if (mdat->msound == MS_SHOE && !mtmp->mpeaceful && evilfriday && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(50) && (distu(mtmp->mx, mtmp->my) <= 12)) {
+	if (monstersoundtype(mtmp) == MS_SHOE && !mtmp->mpeaceful && evilfriday && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(50) && (distu(mtmp->mx, mtmp->my) <= 12)) {
 		int paralysistime = mtmp->m_lev / 4;
 		if (!isstunfish && (paralysistime > 1)) paralysistime = rnd(paralysistime);
 		if (paralysistime > 5) {
@@ -2670,18 +2674,18 @@ convertdone:
 		else nomul(-(rnd(10)), "Mikraanesis had stopped time", FALSE);
 	}
 
-	if (FemtrapActiveSueLyn && u.ualign.record < 0 && mtmp->female && mtmp->data->msound == MS_FART_NORMAL) {
+	if (FemtrapActiveSueLyn && u.ualign.record < 0 && mtmp->female && monstersoundtype(mtmp) == MS_FART_NORMAL) {
 		if (mtmp->mtame) mtmp->mtame = FALSE;
 		if (mtmp->mpeaceful) mtmp->mpeaceful = FALSE;
 		mtmp->mfrenzied = TRUE;
 	}
 
-	if (mdat->msound == MS_TREESQUAD && u.treesquadwantedlevel) {
+	if (monstersoundtype(mtmp) == MS_TREESQUAD && u.treesquadwantedlevel) {
 		if (mtmp->mtame) mtmp->mtame = FALSE;
 		if (mtmp->mpeaceful) mtmp->mpeaceful = FALSE;
 	}
 
-	if (mdat->msound == MS_AREOLA && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && m_canseeu(mtmp) ) {
+	if (monstersoundtype(mtmp) == MS_AREOLA && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && m_canseeu(mtmp) ) {
 		int areolachance = 500;
 		int playerareola = u.areoladiameter;
 		if (playerareola >= 10 && playerareola <= 30) {
@@ -2744,18 +2748,18 @@ convertdone:
 
 	}
 
-	if ( ((mdat->msound == MS_STABILIZE) || (mtmp->egotype_stabilizer)) && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ( ((monstersoundtype(mtmp) == MS_STABILIZE) || (mtmp->egotype_stabilizer)) && !u.antitelespelltimeout && !rn2(100) && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		u.antitelespelltimeout = rnz(20);
 		pline("%s stabilizes the space around.", Monnam(mtmp)); /* message is sic from Elona */
 	}
 
-	if ( ((mdat->msound == MS_ESCAPE) || (mtmp->egotype_escaper)) && (mtmp->mhp < (mtmp->mhpmax / 4)) ) {
+	if ( ((monstersoundtype(mtmp) == MS_ESCAPE) || (mtmp->egotype_escaper)) && (mtmp->mhp < (mtmp->mhpmax / 4)) ) {
 		pline("%s vanishs.", Monnam(mtmp)); /* message is sic from Elona */
 		mongone(mtmp);
 		return 1;
 	}
 
-	if ( ((mdat->msound == MS_SELFHARM) || (mtmp->egotype_selfharmer)) && !rn2(50)) {
+	if ( ((monstersoundtype(mtmp) == MS_SELFHARM) || (mtmp->egotype_selfharmer)) && !rn2(50)) {
 
 		if (canseemon(mtmp)) {
 			switch (rnd(7)) {
@@ -2774,13 +2778,13 @@ convertdone:
 
 	}
 
-	if (mdat->msound == MS_POKEDEX && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
+	if (monstersoundtype(mtmp) == MS_POKEDEX && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
 		int pokedexmon = rn2(NUMMONS);
 
 		somepokedex(pokedexmon);
 	}
 
-	if (mdat->msound == MS_BRAG && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
+	if (monstersoundtype(mtmp) == MS_BRAG && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(20)) {
 		switch (rnd(11)) {
 			case 1:
 				pline("%s brags 'No one can take off my remaining %d HP!'", Monnam(mtmp), mtmp->mhp);
@@ -2818,7 +2822,7 @@ convertdone:
 		}
 	}
 
-	if ((mdat->msound == MS_STENCH || mtmp->egotype_perfumespreader) && !(uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER && !mtmp->mfrenzied) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
+	if ((monstersoundtype(mtmp) == MS_STENCH || mtmp->egotype_perfumespreader) && !(uarmf && uarmf->oartifact == ART_BARBED_HOOK_ZIPPER && !mtmp->mfrenzied) && !Role_if(PM_HUSSY) && !(youmonst.data->msound == MS_STENCH) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2((mdat == &mons[PM_NICE_AUNTIE_HILDA]) ? 5 : (mdat == &mons[PM_AUNT_ANITA]) ? 5 : 20)) {
 
 		boolean wouwouresisted = FALSE;
 
@@ -2889,7 +2893,7 @@ convertdone:
 	}
 
 	/* Monsters with MS_BONES can rattle. If this causes you to snap out of a longer paralysis, more power to you :D */
-	if (mdat->msound == MS_BONES && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
+	if (monstersoundtype(mtmp) == MS_BONES && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !rn2(100)) {
 		pline(FunnyHallu ? "%s plays the xylophone!" : "%s rattles noisily!", Monnam(mtmp));
 
 		armpro = magic_negation(&youmonst);
@@ -3085,7 +3089,7 @@ toofar:
 /*	Now the actual movement phase	*/
 
 #ifndef GOLDOBJ
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
 
@@ -3095,7 +3099,7 @@ toofar:
 	    lepgold = findgold(mtmp->minvent);
 	}
 
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (mtmp->data->msound == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
@@ -3554,13 +3558,13 @@ toofar:
 
 	    }
 
-	    if(inrange && mtmp->data->msound == MS_BOSS && !mtmp->mpeaceful && !rn2(10))
+	    if(inrange && monstersoundtype(mtmp) == MS_BOSS && !mtmp->mpeaceful && !rn2(10))
 	    pline("%s %s", Monnam(mtmp), bosstaunt());
 
-	    if(inrange && (mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_WHORE || mtmp->data->msound == MS_SUPERMAN || mtmp->data->msound == MS_HCALIEN || mtmp->data->msound == MS_CONVERT || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_LOUD) && (mtmp->data->geno & G_UNIQ) && !mtmp->mpeaceful && !rn2(10))
+	    if(inrange && (monstersoundtype(mtmp) == MS_STENCH || monstersoundtype(mtmp) == MS_WHORE || monstersoundtype(mtmp) == MS_SUPERMAN || monstersoundtype(mtmp) == MS_HCALIEN || monstersoundtype(mtmp) == MS_CONVERT || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_LOUD) && (mtmp->data->geno & G_UNIQ) && !mtmp->mpeaceful && !rn2(10))
 	    pline("%s %s", Monnam(mtmp), bosstaunt());
 
-	    if(inrange && mtmp->data->msound == MS_GIBBERISH && !mtmp->mpeaceful && !rn2(5)) {
+	    if(inrange && monstersoundtype(mtmp) == MS_GIBBERISH && !mtmp->mpeaceful && !rn2(5)) {
 		pline("%s", generate_garbage_string());
 	    }
 
@@ -3619,14 +3623,14 @@ toofar:
 		adjattrib(A_CHA, -1, FALSE, TRUE);
 	    }
 
-	    if(inrange && mtmp->data->msound == MS_CUSS && !mtmp->mpeaceful && !rn2(5))
+	    if(inrange && monstersoundtype(mtmp) == MS_CUSS && !mtmp->mpeaceful && !rn2(5))
 		    cuss(mtmp);
 
-	    if(inrange && mtmp->data->msound == MS_PUPIL && !mtmp->mpeaceful && !rn2(5)) {
+	    if(inrange && monstersoundtype(mtmp) == MS_PUPIL && !mtmp->mpeaceful && !rn2(5)) {
 		pupiltaunt();
 	    }
 
-	    if(inrange && mtmp->data->msound == MS_WHORE && !mtmp->mpeaceful && !rn2(5))
+	    if(inrange && monstersoundtype(mtmp) == MS_WHORE && !mtmp->mpeaceful && !rn2(5))
 
 		{
 
@@ -3658,7 +3662,7 @@ toofar:
 
 		}
 
-	    if(inrange && mtmp->data->msound == MS_SUPERMAN && !mtmp->mpeaceful && !rn2(mtmp->mnum == PM_BARTOLI_RETARD ? 25 : 5))
+	    if(inrange && monstersoundtype(mtmp) == MS_SUPERMAN && !mtmp->mpeaceful && !rn2(mtmp->mnum == PM_BARTOLI_RETARD ? 25 : 5))
 
 		{
 			supermantaunt();
@@ -3668,13 +3672,13 @@ toofar:
 			stop_occupation();
 		}
 
-	    if(inrange && mtmp->data->msound == MS_PRINCIPAL && !mtmp->mpeaceful && !rn2(5)) {
+	    if(inrange && monstersoundtype(mtmp) == MS_PRINCIPAL && !mtmp->mpeaceful && !rn2(5)) {
 
 		principaltaunt();
 
 	    }
 
-	    if(inrange && mtmp->data->msound == MS_TEACHER && !mtmp->mpeaceful && !rn2(5)) {
+	    if(inrange && monstersoundtype(mtmp) == MS_TEACHER && !mtmp->mpeaceful && !rn2(5)) {
 
 		teachertaunt();
 	    }
@@ -3988,13 +3992,13 @@ altarfound:
 
 	}
 
-	if (mtmp->data->msound == MS_SNORE && !rn2(500)) mtmp->msleeping = 1;
-	if (mtmp->data->msound == MS_SNORE && (mtmp->msleeping || mtmp->masleep) && !rn2(5)) {
+	if (monstersoundtype(mtmp) == MS_SNORE && !rn2(500)) mtmp->msleeping = 1;
+	if (monstersoundtype(mtmp) == MS_SNORE && (mtmp->msleeping || mtmp->masleep) && !rn2(5)) {
 		wake_nearto(mtmp->mx, mtmp->my, 25);
 		if (canseemon(mtmp)) pline("%s snores loudly!", Monnam(mtmp));
 		else You_hear("loud snoring!");
 	}
-	if (mtmp->data->msound == MS_TRUMPET && !rn2(200)) {
+	if (monstersoundtype(mtmp) == MS_TRUMPET && !rn2(200)) {
 		wake_nearto(mtmp->mx, mtmp->my, rn1(50, 50));
 		if (canseemon(mtmp)) pline("%s trumpets loudly!", Monnam(mtmp));
 		else You_hear("a trumpet sound!");
@@ -4137,10 +4141,10 @@ altarfound:
 	if (monsterrandomwalk(ptr)) appr = 0;
 	if (monsterflees(ptr)) appr = -1;
 
-	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && mtmp->data->msound == MS_STENCH) appr = -1;
+	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && monstersoundtype(mtmp) == MS_STENCH) appr = -1;
 	if (uarmh && uarmh->oartifact == ART_VERSCENT_ && mtmp->egotype_perfumespreader) appr = -1;
 
-	if (appr == 1 && mtmp->data->msound == MS_METALMAFIA && distu(mtmp->mx,mtmp->my) <= 3*3 ) appr = 0;
+	if (appr == 1 && monstersoundtype(mtmp) == MS_METALMAFIA && distu(mtmp->mx,mtmp->my) <= 3*3 ) appr = 0;
 
 	if (appr == 1 && u.usteed && uarm && uarm->oartifact == ART_FAER_ME && distu(mtmp->mx,mtmp->my) < 3*3 && (mtmp->m_lev < (GushLevel / 2) ) ) appr = 0;
 

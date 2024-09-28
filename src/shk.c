@@ -3521,7 +3521,7 @@ register xchar x, y;
 			  Monnam(shkp),
 			  (x == shkp->mx && y == shkp->my) ? "" : " reaches over and",
 			  the(xname(obj)));
-		    if (!canspotmon(shkp) && !(shkp->data->msound == MS_DEEPSTATE) && !(shkp->egotype_deepstatemember))
+		    if (!canspotmon(shkp) && !(monstersoundtype(shkp) == MS_DEEPSTATE) && !(shkp->egotype_deepstatemember))
 			map_invisible(x, y);
 		    delay_output();
 		    mark_synch();

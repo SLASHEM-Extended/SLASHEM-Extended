@@ -344,6 +344,94 @@ pline VA_DECL(const char *, line)
                  line = replace(line,", ",", wolloh, ", FALSE);
 
 	  }
+	  if (u.oehack && !program_state.in_impossible && (strlen(line)<(BUFSZ-20)) ) {
+                 line = replace(line,"a","oe", FALSE);
+                 line = replace(line," e"," oe", FALSE);
+                 line = replace(line,"ae","oeoe", FALSE);
+                 line = replace(line,"be","boe", FALSE);
+                 line = replace(line,"ce","coe", FALSE);
+                 line = replace(line,"de","doe", FALSE);
+                 line = replace(line,"ee","oeoe", FALSE);
+                 line = replace(line,"fe","foe", FALSE);
+                 line = replace(line,"ge","goe", FALSE);
+                 line = replace(line,"he","hoe", FALSE);
+                 line = replace(line,"ie","ooe", FALSE);
+                 line = replace(line,"je","joe", FALSE);
+                 line = replace(line,"ke","koe", FALSE);
+                 line = replace(line,"le","loe", FALSE);
+                 line = replace(line,"me","moe", FALSE);
+                 line = replace(line,"ne","noe", FALSE);
+                 line = replace(line,"pe","poe", FALSE);
+                 line = replace(line,"qe","qoe", FALSE);
+                 line = replace(line,"re","roe", FALSE);
+                 line = replace(line,"se","soe", FALSE);
+                 line = replace(line,"te","toe", FALSE);
+                 line = replace(line,"ue","ooe", FALSE);
+                 line = replace(line,"ve","voe", FALSE);
+                 line = replace(line,"we","woe", FALSE);
+                 line = replace(line,"xe","xoe", FALSE);
+                 line = replace(line,"ye","yoe", FALSE);
+                 line = replace(line,"ze","zoe", FALSE);
+                 line = replace(line,"i","o", FALSE);
+                 line = replace(line,"u","o", FALSE);
+
+                 line = replace(line,"Ae","Oeoe", FALSE);
+                 line = replace(line,"Be","Boe", FALSE);
+                 line = replace(line,"Ce","Coe", FALSE);
+                 line = replace(line,"De","Doe", FALSE);
+                 line = replace(line,"Ee","Oeoe", FALSE);
+                 line = replace(line,"Fe","Foe", FALSE);
+                 line = replace(line,"Ge","Goe", FALSE);
+                 line = replace(line,"He","Hoe", FALSE);
+                 line = replace(line,"Ie","Ooe", FALSE);
+                 line = replace(line,"Je","Joe", FALSE);
+                 line = replace(line,"Ke","Koe", FALSE);
+                 line = replace(line,"Le","Loe", FALSE);
+                 line = replace(line,"Me","Moe", FALSE);
+                 line = replace(line,"Ne","Noe", FALSE);
+                 line = replace(line,"Pe","Poe", FALSE);
+                 line = replace(line,"Qe","Qoe", FALSE);
+                 line = replace(line,"Re","Roe", FALSE);
+                 line = replace(line,"Se","Soe", FALSE);
+                 line = replace(line,"Te","Toe", FALSE);
+                 line = replace(line,"Ue","Ooe", FALSE);
+                 line = replace(line,"Ve","Voe", FALSE);
+                 line = replace(line,"We","Woe", FALSE);
+                 line = replace(line,"Xe","Xoe", FALSE);
+                 line = replace(line,"Ye","Yoe", FALSE);
+                 line = replace(line,"Ze","Zoe", FALSE);
+
+                 line = replace(line,"A","OE", FALSE);
+                 line = replace(line," E"," OE", FALSE);
+                 line = replace(line,"AE","OEOE", FALSE);
+                 line = replace(line,"BE","BOE", FALSE);
+                 line = replace(line,"CE","COE", FALSE);
+                 line = replace(line,"DE","DOE", FALSE);
+                 line = replace(line,"EE","OEOE", FALSE);
+                 line = replace(line,"FE","FOE", FALSE);
+                 line = replace(line,"GE","GOE", FALSE);
+                 line = replace(line,"HE","HOE", FALSE);
+                 line = replace(line,"IE","OOE", FALSE);
+                 line = replace(line,"JE","JOE", FALSE);
+                 line = replace(line,"KE","KOE", FALSE);
+                 line = replace(line,"LE","LOE", FALSE);
+                 line = replace(line,"ME","MOE", FALSE);
+                 line = replace(line,"NE","NOE", FALSE);
+                 line = replace(line,"PE","POE", FALSE);
+                 line = replace(line,"QE","QOE", FALSE);
+                 line = replace(line,"RE","ROE", FALSE);
+                 line = replace(line,"SE","SOE", FALSE);
+                 line = replace(line,"TE","TOE", FALSE);
+                 line = replace(line,"UE","OOE", FALSE);
+                 line = replace(line,"VE","VOE", FALSE);
+                 line = replace(line,"WE","WOE", FALSE);
+                 line = replace(line,"XE","XOE", FALSE);
+                 line = replace(line,"YE","YOE", FALSE);
+                 line = replace(line,"ZE","ZOE", FALSE);
+                 line = replace(line,"I","O", FALSE);
+                 line = replace(line,"U","O", FALSE);
+
+	  }
 
 	  if ( (UmengEffect || u.uprops[UMENG_EFFECT].extrinsic || have_umengstone() ) && !program_state.in_impossible && (strlen(line)<(BUFSZ-20)) ) {
 		     if (UmengXtra) line = replace(line,",",", alter ich hab umeng geschrieben", FALSE);

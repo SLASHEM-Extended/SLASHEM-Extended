@@ -219,11 +219,11 @@ experience(mtmp, nk)	/* return # of exp points for mtmp after nk killed */
 	}
 
 	/* fluidators are meant to make your life hard, not be a ready source of experience points --Amy */
-	if (mtmp->data->msound == MS_FLUIDATOR && tmp > 1) {
+	if (monstersoundtype(mtmp) == MS_FLUIDATOR && tmp > 1) {
 		tmp /= 20;
 		if (tmp < 1) tmp = 1;
 	}
-	if (mtmp->data->msound == MS_BULLETATOR && tmp > 1) {
+	if (monstersoundtype(mtmp) == MS_BULLETATOR && tmp > 1) {
 		tmp /= 20;
 		if (tmp < 1) tmp = 1;
 	}

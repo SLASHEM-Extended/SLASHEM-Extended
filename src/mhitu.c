@@ -80,35 +80,35 @@ on the first floor, especially when you're playing as something with drain resis
 		case AT_CLAW:
 			pline("%s claws you!", Monnam(mtmp));
 
-			if (Role_if(PM_PROSTITUTE) && (multi < 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && !rn2(4)) {
+			if (Role_if(PM_PROSTITUTE) && (multi < 0) && (monstersoundtype(mtmp) == MS_SQEEK || !rn2(3)) && !rn2(4)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);
 
 			}
 
-			if (Role_if(PM_PROSTITUTE) && (multi >= 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && !rn2(2)) {
+			if (Role_if(PM_PROSTITUTE) && (multi >= 0) && (monstersoundtype(mtmp) == MS_SQEEK || !rn2(3)) && !rn2(2)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);
 
 			}
 
-			if ((Role_if(PM_KURWA) || autismweaponcheck(ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi < 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(4)) {
+			if ((Role_if(PM_KURWA) || autismweaponcheck(ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi < 0) && (monstersoundtype(mtmp) == MS_SQEEK || !rn2(3)) && rn2(4)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);
 
 			}
 
-			if ((Role_if(PM_KURWA) || autismweaponcheck(ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi >= 0) && (mtmp->data->msound == MS_SQEEK || !rn2(3)) && rn2(10)) {
+			if ((Role_if(PM_KURWA) || autismweaponcheck(ART_DESERT_MAID) || (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) || (uarmf && uarmf->oartifact == ART_VERY_PROSTITUTED) ) && (multi >= 0) && (monstersoundtype(mtmp) == MS_SQEEK || !rn2(3)) && rn2(10)) {
 
 				You_cant("move!");
 				nomul(-2, "being clawed", TRUE);
 
 			}
 
-			if (FemtrapActiveDora && uarmf && (mtmp->data->msound == MS_SQEEK)) {
+			if (FemtrapActiveDora && uarmf && (monstersoundtype(mtmp) == MS_SQEEK)) {
 				if (PlayerInHighHeels && !rn2(15)) {
 					pline("The asshole claws damage your pretty high heels!");
 					u.cnd_doratrapcnt++;
@@ -271,7 +271,7 @@ kseniaagain:
 				}
 			}
 
-			if ( (Role_if(PM_SHOE_FETISHIST) || FemtrapActiveJohanna) && mtmp->data->msound == MS_SHOE && !rn2(5)) {
+			if ( (Role_if(PM_SHOE_FETISHIST) || FemtrapActiveJohanna) && monstersoundtype(mtmp) == MS_SHOE && !rn2(5)) {
 				switch (rnd(7)) {
 					case 1:
 						pline_The("shoe clamps your arm!");
@@ -1827,7 +1827,7 @@ register struct attack *mattk;
 		}			
 	}
 
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+	if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 
 	if(could_seduce(mtmp, &youmonst, mattk) && !mtmp->mcan)
@@ -2494,14 +2494,14 @@ mattacku(mtmp)
 	if (uwep && uwep->oartifact == ART_PERFECT_UNIVERSE && MON_WEP(mtmp)) tmp -= 5;
 
 	/* farting monsters are simply more likely to hit you, except if you bash their sexy butts --Amy */
-	if (mtmp->data->msound == MS_FART_LOUD && !mtmp->butthurt) tmp += rnd(5);
-	if (mtmp->data->msound == MS_FART_NORMAL && !mtmp->butthurt) tmp += rnd(7);
-	if (mtmp->data->msound == MS_FART_QUIET && !mtmp->butthurt) tmp += rnd(10);
-	if (mtmp->data->msound == MS_WHORE && !mtmp->butthurt) tmp += rnd(15);
-	if (mtmp->data->msound == MS_SHOE) tmp += rnd(10);
-	if (mtmp->data->msound == MS_STENCH) tmp += rnd(15);
-	if (mtmp->data->msound == MS_CONVERT) tmp += rnd(5);
-	if (mtmp->data->msound == MS_HCALIEN) tmp += rnd(10);
+	if (monstersoundtype(mtmp) == MS_FART_LOUD && !mtmp->butthurt) tmp += rnd(5);
+	if (monstersoundtype(mtmp) == MS_FART_NORMAL && !mtmp->butthurt) tmp += rnd(7);
+	if (monstersoundtype(mtmp) == MS_FART_QUIET && !mtmp->butthurt) tmp += rnd(10);
+	if (monstersoundtype(mtmp) == MS_WHORE && !mtmp->butthurt) tmp += rnd(15);
+	if (monstersoundtype(mtmp) == MS_SHOE) tmp += rnd(10);
+	if (monstersoundtype(mtmp) == MS_STENCH) tmp += rnd(15);
+	if (monstersoundtype(mtmp) == MS_CONVERT) tmp += rnd(5);
+	if (monstersoundtype(mtmp) == MS_HCALIEN) tmp += rnd(10);
 	if ((uarm && uarm->oartifact == ART_UPPER_RUM) && rathersmall(mtmp->data)) tmp += 20;
 	if (mtmp->egotype_farter) tmp += rnd(7);
 	if (mtmp->fartbonus) tmp += rnd(mtmp->fartbonus);
@@ -5296,7 +5296,7 @@ newboss:
 
 	}
 
-	if (FemtrapActiveJil && (mtmp->data->msound == MS_SOCKS)) {
+	if (FemtrapActiveJil && (monstersoundtype(mtmp) == MS_SOCKS)) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
@@ -5815,7 +5815,7 @@ newboss:
 
 	}
 
-	if ((mtmp->data->msound == MS_METALMAFIA) || (mtmp->egotype_metalmafioso)) {
+	if ((monstersoundtype(mtmp) == MS_METALMAFIA) || (mtmp->egotype_metalmafioso)) {
 		if(lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) && (tmp > (rnd(20+i))) && (rnd(5) > 3) ) {  
 			if (foundyou) {
 				pline("%s blasts you with a metal-attracting magnet!",Monnam(mtmp) );
@@ -5953,7 +5953,7 @@ newboss:
 
 	}
 
-	if (FemtrapActiveSueLyn && mtmp->female && mtmp->data->msound == MS_FART_NORMAL && mtmp->mfrenzied) {
+	if (FemtrapActiveSueLyn && mtmp->female && monstersoundtype(mtmp) == MS_FART_NORMAL && mtmp->mfrenzied) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_SCRA;
@@ -7035,7 +7035,7 @@ hitmu(mtmp, mattk)
 	/*int randattack = 0;*/
 	int atttyp;
 
-	if (!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+	if (!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 	    map_invisible(mtmp->mx, mtmp->my);
 
 /*	If the monster is undetected & hits you, you should know where

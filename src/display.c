@@ -841,7 +841,7 @@ display_warning(mon)
     int wl = (int) (mon->m_lev / 6);
     int glyph;
 
-    if (mon && (mon->data->msound == MS_DEEPSTATE)) return;
+    if (mon && (monstersoundtype(mon) == MS_DEEPSTATE)) return;
     if (mon && mon->egotype_deepstatemember) return;
 
     if (mon_warning(mon)) {
@@ -868,7 +868,7 @@ display_warningX(mon)
     int wl = (int) (mon->m_lev / 6);
     int glyph;
 
-    if (mon && (mon->data->msound == MS_DEEPSTATE)) return;
+    if (mon && (monstersoundtype(mon) == MS_DEEPSTATE)) return;
     if (mon && mon->egotype_deepstatemember) return;
 
     if (mon_warning(mon)) {
@@ -1248,7 +1248,7 @@ newsym(x,y)
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
-		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -1259,10 +1259,10 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
-		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
-		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
-		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
+		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
@@ -1306,7 +1306,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
-		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -1318,12 +1318,12 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
 		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible) )  );
 
-	    if (mon && (mon->data->msound == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
-	    if (mon && (mon->data->msound == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
+	    if (mon && (monstersoundtype(mon) == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
+	    if (mon && (monstersoundtype(mon) == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
 	    if (mon && (mon->egotype_deepstatemember) && !mon_visible(mon) ) see_it = FALSE;
 	    if (mon && (mon->egotype_deepstatemember) && mon->minvis ) see_it = FALSE;
 
-	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) ))) {
+	    if (mon && (see_it || (!worm_tail && Detect_monsters && (monstersoundtype(mon) != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) ))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
 		    int tt = trap ? trap->ttyp : NO_TRAP;
@@ -1386,7 +1386,7 @@ newsym(x,y)
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
-		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -1397,10 +1397,10 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
-		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
-		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
-		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
+		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
@@ -1444,7 +1444,7 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
-		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -1460,7 +1460,7 @@ newsym(x,y)
 		&& !is_worm_tail(mon)) {
 	    /* Monsters are printed every time. */
 	    /* This also gets rid of any invisibility glyph */
-	    if (mon->data->msound != MS_DEEPSTATE && !(mon->egotype_deepstatemember)) display_monster(x, y, mon, see_it ? 0 : DETECTED, 0);
+	    if (monstersoundtype(mon) != MS_DEEPSTATE && !(mon->egotype_deepstatemember)) display_monster(x, y, mon, see_it ? 0 : DETECTED, 0);
 	}
 	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
 		 !is_worm_tail(mon)) {
@@ -1694,7 +1694,7 @@ newsymX(x,y)
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
-		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -1705,10 +1705,10 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
-		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
-		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
-		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
+		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
@@ -1752,7 +1752,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
-		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -1764,12 +1764,12 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_SEE_ANIMALS && is_animal(mon->data)) ||
 		(isselfhybrid && monpolyok(mon->data) && !polyok(mon->data) && ((mon->data->mlevel < 30) || mon->selfhybridvisible ) )  );
 
-	    if (mon && (mon->data->msound == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
-	    if (mon && (mon->data->msound == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
+	    if (mon && (monstersoundtype(mon) == MS_DEEPSTATE) && !mon_visible(mon) ) see_it = FALSE;
+	    if (mon && (monstersoundtype(mon) == MS_DEEPSTATE) && mon->minvis ) see_it = FALSE;
 	    if (mon && (mon->egotype_deepstatemember) && !mon_visible(mon) ) see_it = FALSE;
 	    if (mon && (mon->egotype_deepstatemember) && mon->minvis ) see_it = FALSE;
 
-	    if (mon && (see_it || (!worm_tail && Detect_monsters && (mon->data->msound != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) ))) {
+	    if (mon && (see_it || (!worm_tail && Detect_monsters && (monstersoundtype(mon) != MS_DEEPSTATE) && !(mon->egotype_deepstatemember) ))) {
 		if (mon->mtrapped) {
 		    struct trap *trap = t_at(x, y);
 		    int tt = trap ? trap->ttyp : NO_TRAP;
@@ -1832,7 +1832,7 @@ newsymX(x,y)
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
-		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) ||
+		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
 		(StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) ||
 		(StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) ||
@@ -1843,10 +1843,10 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
-		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) ||
-		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) ||
-		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) ||
-		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) ||
+		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
+		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
+		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
@@ -1890,7 +1890,7 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) ||
 		(uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) ||
 		(uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) ||
-		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) ||
+		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
@@ -1907,7 +1907,7 @@ newsymX(x,y)
 	    /* Monsters are printed every time. */
 	    /* This also gets rid of any invisibility glyph */
 
-	    if (mon->data->msound != MS_DEEPSTATE && !(mon->egotype_deepstatemember)) display_monsterX(x, y, mon, see_it ? 0 : DETECTED, 0);
+	    if (monstersoundtype(mon) != MS_DEEPSTATE && !(mon->egotype_deepstatemember)) display_monsterX(x, y, mon, see_it ? 0 : DETECTED, 0);
 
 	}
 	else if ((mon = m_at(x,y)) && mon_warning(mon) &&
@@ -3784,7 +3784,7 @@ boolean
 sensemon(mon)
 struct monst *mon;
 {
-	if (mon->data->msound == MS_DEEPSTATE) return FALSE;
+	if (monstersoundtype(mon) == MS_DEEPSTATE) return FALSE;
 	if (mon->egotype_deepstatemember) return FALSE;
 	if (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) return FALSE;
 	if (isselfhybrid && (moves % 3 == 0) ) return FALSE;
@@ -3821,16 +3821,16 @@ struct monst *mon;
 	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) return TRUE;
 	if (StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) return TRUE;
 	if (StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) return TRUE;
-	if (StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || mon->data->msound == MS_CUSS ) ) return TRUE;
+	if (StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) return TRUE;
 	if (StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) return TRUE;
 	if (StrongCorrosivity && Slimed && acidic(mon->data) && distu(mon->mx, mon->my) < 226 ) return TRUE;
 	if (StrongBurnopathy && Burned && (dmgtype(mon->data, AD_BURN) || dmgtype(mon->data, AD_FLAM) ) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_RNG_CESSATION && (dmgtype(mon->data, AD_RBRE) || dmgtype(mon->data, AD_RNG) ) ) return TRUE;
 	if (StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) return TRUE;
-	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || mon->data->msound == MS_STENCH) ) return TRUE;
-	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && mon->data->msound == MS_SHOE) return TRUE;
-	if (uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && mon->data->msound == MS_MOLEST) return TRUE;
-	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || mon->data->msound == MS_SOUND || mon->data->msound == MS_SHRIEK || mon->data->msound == MS_FART_NORMAL || mon->data->msound == MS_FART_LOUD || mon->data->msound == MS_FART_QUIET ) ) return TRUE;
+	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) return TRUE;
+	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) return TRUE;
+	if (uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) return TRUE;
+	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) return TRUE;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) return TRUE;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
@@ -3879,7 +3879,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_DEMONSTRANTS_GO_HOME && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uarmu && uarmu->oartifact == ART_PEACE_ADVOCATE && mon->data->mlet == S_HUMAN) return TRUE;
 	if (uwep && uwep->oartifact == ART_DOCTOR_JONES__AID && mon->data->mlet == S_SNAKE) return TRUE;
-	if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || mon->data->msound == MS_TREESQUAD) ) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) return TRUE;
 	if (ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) return TRUE;

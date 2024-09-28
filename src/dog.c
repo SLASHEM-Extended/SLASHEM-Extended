@@ -1226,7 +1226,7 @@ register struct obj *obj;
 		return (obj->otyp == EUCALYPTUS_LEAF ? DOGFOOD : APPORT);
 	if (mon->data == &mons[PM_GIANT_KOALA])
 		return (obj->otyp == EUCALYPTUS_LEAF ? DOGFOOD : APPORT);
-	if (mon->data->msound == MS_SHOE && Race_if(PM_SHOE) && obj->oclass == FOOD_CLASS) return DOGFOOD;
+	if (monstersoundtype(mon) == MS_SHOE && Race_if(PM_SHOE) && obj->oclass == FOOD_CLASS) return DOGFOOD;
 
 	switch(obj->oclass) {
 	case FOOD_CLASS:

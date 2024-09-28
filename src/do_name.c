@@ -806,7 +806,8 @@ stupidsegfault:
 
 	buf[0] = 0;
 
-	if (!program_state.gameover && mtmp->data->msound == MS_WOLLOH) u.wollohhack = TRUE;
+	if (!program_state.gameover && monstersoundtype(mtmp) == MS_WOLLOH) u.wollohhack = TRUE;
+	if (!program_state.gameover && monstersoundtype(mtmp) == MS_OE) u.oehack = TRUE;
 
 	/* unseen monsters, etc.  Use "it" */
 	if (do_it) {

@@ -2036,16 +2036,16 @@ register struct monst *mtmp;
 		if (cansee(mtmp->mx, mtmp->my)) pline("%s cures the well of its poison!", Monnam(mtmp));
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && !rn2(SuperFemtrapKatharina ? 5 : 10) && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || (FemtrapActiveKatharina && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM*4) ) ) ) && ((mtmp->data->msound == MS_FART_QUIET) || (mtmp->data->msound == MS_FART_NORMAL) || (mtmp->data->msound == MS_FART_LOUD) || FemtrapActiveThai ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && multi >= 0 && !rn2(SuperFemtrapKatharina ? 5 : 10) && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || (FemtrapActiveKatharina && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM*4) ) ) ) && ((monstersoundtype(mtmp) == MS_FART_QUIET) || (monstersoundtype(mtmp) == MS_FART_NORMAL) || (monstersoundtype(mtmp) == MS_FART_LOUD) || FemtrapActiveThai ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
-		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
+		pline("%s produces %s crapping noises with %s %s butt.", Monnam(mtmp), monstersoundtype(mtmp) == MS_FART_QUIET ? "tender" : monstersoundtype(mtmp) == MS_FART_NORMAL ? "beautiful" : "disgusting", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
-		You_hear("%s crapping noises.", mtmp->data->msound == MS_FART_QUIET ? "tender" : mtmp->data->msound == MS_FART_NORMAL ? "beautiful" : "disgusting");
+		You_hear("%s crapping noises.", monstersoundtype(mtmp) == MS_FART_QUIET ? "tender" : monstersoundtype(mtmp) == MS_FART_NORMAL ? "beautiful" : "disgusting");
 	}
 	u.cnd_crappingcount++;
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
-	if (mtmp->data->msound == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
-	else if (mtmp->data->msound == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
+	if (monstersoundtype(mtmp) == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
+	else if (monstersoundtype(mtmp) == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
 	else pline("This is really disgusting. You resist the urge to vomit, but fail to pay attention to your surroundings for a moment...");
 
 	crapcnt = 1;
@@ -2057,12 +2057,12 @@ register struct monst *mtmp;
 	if (crapcnt > 10) crapcnt = 10; /* sanity check --Amy */
 
 	if (isstunfish) {
-	      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnz(3 + crapcnt), "listening to tender crapping noises", TRUE);
-	      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnz(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
+	      if (monstersoundtype(mtmp) == MS_FART_QUIET) nomul(-rnz(3 + crapcnt), "listening to tender crapping noises", TRUE);
+	      else if (monstersoundtype(mtmp) == MS_FART_NORMAL) nomul(-rnz(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
 	      else nomul(-rnz(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
 	} else {
-	      if (mtmp->data->msound == MS_FART_QUIET) nomul(-rnd(3 + crapcnt), "listening to tender crapping noises", TRUE);
-	      else if (mtmp->data->msound == MS_FART_NORMAL) nomul(-rnd(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
+	      if (monstersoundtype(mtmp) == MS_FART_QUIET) nomul(-rnd(3 + crapcnt), "listening to tender crapping noises", TRUE);
+	      else if (monstersoundtype(mtmp) == MS_FART_NORMAL) nomul(-rnd(4 + crapcnt), "listening to beautiful crapping noises", TRUE);
 	      else nomul(-rnd(2 + crapcnt), "listening to disgusting crapping noises", TRUE);
 	}
 
@@ -2072,7 +2072,7 @@ register struct monst *mtmp;
 
     }
 
-    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || (FemtrapActiveKatharina && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM*4) ) ) ) && ((mtmp->data->msound != MS_FART_QUIET) && (mtmp->data->msound != MS_FART_NORMAL) && (mtmp->data->msound != MS_FART_LOUD) ) ) {
+    if (IS_TOILET(levl[mtmp->mx][mtmp->my].typ) && uarmc && uarmc->oartifact == ART_TOILET_NOISES && multi >= 0 && flags.soundok && mtmp->mcanmove && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM) || (FemtrapActiveKatharina && ((distu(mtmp->mx,mtmp->my) <= BOLT_LIM*BOLT_LIM*4) ) ) ) && ((monstersoundtype(mtmp) != MS_FART_QUIET) && (monstersoundtype(mtmp) != MS_FART_NORMAL) && (monstersoundtype(mtmp) != MS_FART_LOUD) ) ) {
 	if (cansee(mtmp->mx,mtmp->my)) {
 		pline("%s produces crapping noises with %s %s butt.", Monnam(mtmp), mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 	} else {
@@ -2310,7 +2310,7 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
-	if (Race_if(PM_UNALIGNMENT_THING) && mon->data->msound == MS_CONVERT && !mon->mpeaceful && !mon->mtame && (mmove > 0)) {
+	if (Race_if(PM_UNALIGNMENT_THING) && monstersoundtype(mon) == MS_CONVERT && !mon->mpeaceful && !mon->mtame && (mmove > 0)) {
 		mmove += rnd(mmove);
 	}
 
@@ -2327,7 +2327,7 @@ struct monst *mon;
 	if (mon->egotype_racer) mmove += 12;
 
 	if (is_highway(mon->mx, mon->my)) {
-		if (mon->data->msound == MS_CAR) mmove += mmove;
+		if (monstersoundtype(mon) == MS_CAR) mmove += mmove;
 		else mmove += rnd(mmove);
 	}
 
@@ -2383,7 +2383,7 @@ mcalcdistress()
 	    if (minliquid(mtmp)) continue;
 	}
 
-	if (FemtrapActiveInge && mtmp->data->msound == MS_FART_QUIET && mtmp->fartbonus < 9) mtmp->fartbonus = 9;
+	if (FemtrapActiveInge && monstersoundtype(mtmp) == MS_FART_QUIET && mtmp->fartbonus < 9) mtmp->fartbonus = 9;
 
 	/* regenerate hit points */
 	mon_regen(mtmp, FALSE);
@@ -2626,9 +2626,9 @@ meatmetal(mtmp)
 			/* metal mafia guys technically eat metallic items, but it's flavored as them selling the metal --Amy
 			 * they're secretive about it, so there is no sound if they do so outside your field of view */
 
-			if (mtmp->data->msound == MS_METALMAFIA) pline("%s sells %s to the fences!", Monnam(mtmp), distant_name(otmp,doname));
+			if (monstersoundtype(mtmp) == MS_METALMAFIA) pline("%s sells %s to the fences!", Monnam(mtmp), distant_name(otmp,doname));
 			else pline("%s eats %s!", Monnam(mtmp), distant_name(otmp,doname));
-		    } else if (flags.soundok && flags.verbose && !(mtmp->data->msound == MS_METALMAFIA)) {
+		    } else if (flags.soundok && flags.verbose && !(monstersoundtype(mtmp) == MS_METALMAFIA)) {
 			You_hear("a crunching sound.");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Ochen' tsennyy element metalla tol'ko chto poyel i vy budete pinat' sebya, yesli ya skazhu vam, chto eto bylo." : "Gruum!");
 			}
@@ -2636,7 +2636,7 @@ meatmetal(mtmp)
 		    u.cnd_moneatmetal++;
 		    mtmp->meating = otmp->owt/2 + 1;
 		    if (mtmp->meating > 10) mtmp->meating = 10; /* arbitrary --Amy */
-		    if (mtmp->data->msound == MS_METALMAFIA && mtmp->meating > 1) mtmp->meating = 1; /* not really eating it */
+		    if (monstersoundtype(mtmp) == MS_METALMAFIA && mtmp->meating > 1) mtmp->meating = 1; /* not really eating it */
 		    /* Heal up to the object's weight in hp */
 		    if (mtmp->mhp < mtmp->mhpmax) {
 			mtmp->mhp += objects[otmp->otyp].oc_weight;
@@ -3403,7 +3403,7 @@ mfndpos(mon, poss, info, flag)
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	lavaok = is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
 	thrudoor = ((flag & (ALLOW_WALL|BUSTDOOR)) != 0L);
-	treeok = (is_flyer(mdat) || mon->egotype_flying || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data == &mons[PM_POISONOUS_TREE_FROG]) || (mon->data->msound == MS_TREESQUAD));
+	treeok = (is_flyer(mdat) || mon->egotype_flying || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data == &mons[PM_POISONOUS_TREE_FROG]) || (monstersoundtype(mon) == MS_TREESQUAD));
 	/* flying monsters, but not flying players, can pass over trees; the tree squad can too --Amy */
 	if (flag & ALLOW_DIG) {
 	    struct obj *mw_tmp;
@@ -3440,7 +3440,7 @@ mfndpos(mon, poss, info, flag)
 	    }
 	    thrudoor |= rockok || treeok;
 	}
-	if (is_flyer(mdat) || mon->egotype_flying || (mon->data->msound == MS_TREESQUAD) ) treeok = TRUE; /* fail safe */
+	if (is_flyer(mdat) || mon->egotype_flying || (monstersoundtype(mon) == MS_TREESQUAD) ) treeok = TRUE; /* fail safe */
 
 nexttry:	/* eels prefer the water, but if there is no water nearby,
 		   they will crawl over land */
@@ -4807,7 +4807,7 @@ struct monst *mtmp;
 		} else
 			return;
 
-	} else if (FemtrapActiveMarike && rn2(SuperFemtrapMarike ? 5 : 2) && !mtmp->mpeaceful && (mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD)) {
+	} else if (FemtrapActiveMarike && rn2(SuperFemtrapMarike ? 5 : 2) && !mtmp->mpeaceful && (monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD)) {
 		visible = u.uswallow && u.ustuck == mtmp ||
 			cansee(mtmp->mx, mtmp->my);
 		if (visible) {
@@ -5390,7 +5390,7 @@ register struct monst *mtmp;
 	    }
 	}
 
-	if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME && !rn2(50) && !(mtmp->data->msound == MS_DEAD) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
+	if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME && !rn2(50) && !(monstersoundtype(mtmp) == MS_DEAD) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
 
 		int attempts = 0;
 		struct permonst *pm = 0;
@@ -5440,7 +5440,7 @@ newbossSING:
 	 * a monster to respawn if many of it were already spawned. Good thing this mechanism of monster "respawn" uses
 	 * a function that increases the counter, huh? */
 
-	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || autismweaponcheck(ART_HOL_ON_MAN) || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_respawnstone() || (uarm && uarm->oartifact == ART_BECAUSE_YOU_LOSE) ) && !(mtmp->data->msound == MS_DEAD) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
+	if ( (RespawnProblem || u.uprops[RESPAWN_BUG].extrinsic || (uimplant && uimplant->oartifact == ART_YOU_SHOULD_SURRENDER) || autismweaponcheck(ART_HOL_ON_MAN) || (uarmc && uarmc->oartifact == ART_PERCENTIOEOEPSPERCENTD_THI) || have_respawnstone() || (uarm && uarm->oartifact == ART_BECAUSE_YOU_LOSE) ) && !(monstersoundtype(mtmp) == MS_DEAD) && tmp != PM_UNFORTUNATE_VICTIM && tmp != PM_SCROLLER_MASTER && tmp != PM_BOULDER_MASTER && tmp != PM_ITEM_MASTER && tmp != PM_GOOD_ITEM_MASTER && tmp != PM_BAD_ITEM_MASTER && tmp != PM_HOLE_MASTER && tmp != PM_TRAP_MASTER && !(mtmp->data->geno & G_UNIQ) ) {
 	    switch(rnd(10)) {
 		case 1:
 			if (mvitals[mtmp->mnum].born > 100 && rn2(10)) break;
@@ -5486,7 +5486,7 @@ newbossSING:
 		}
 	}
 
-	if (FemtrapActiveJasieen && !In_endgame(&u.uz) && rn2(10) && (mtmp->data->msound == MS_STENCH || mtmp->data->msound == MS_FART_NORMAL || mtmp->data->msound == MS_FART_QUIET || mtmp->data->msound == MS_FART_LOUD) ) {
+	if (FemtrapActiveJasieen && !In_endgame(&u.uz) && rn2(10) && (monstersoundtype(mtmp) == MS_STENCH || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_QUIET || monstersoundtype(mtmp) == MS_FART_LOUD) ) {
 		register struct monst *jasieenmon;
 		jasieenmon = makemon(mtmp->data,0,0,NO_MM_FLAGS);
 		if (jasieenmon) {
@@ -7184,7 +7184,7 @@ register struct monst *mdef;
 		    oldminvent = obj->nobj;
 
 		/* reduce amount of musable items the player can use --Amy */
-		if (is_musable(obj) && obj->mstartinvent && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (obj->otyp == POT_BLOOD || obj->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || (mdef->data->msound == MS_FLUIDATOR) || (mdef->data->msound == MS_BULLETATOR) || splittinggremlin(mdef->data) || splittinglavagremlin(mdef->data) || !timebasedlowerchance() || (!timebasedlowerchance() && ((u.urexp > 10000) || (moves > 10000)) ) ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
+		if (is_musable(obj) && obj->mstartinvent && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(3) || (rn2(100) < u.musableremovechance) || (rn2(4) && (obj->otyp == POT_BLOOD || obj->otyp == POT_VAMPIRE_BLOOD) ) || LootcutBug || u.uprops[LOOTCUT_BUG].extrinsic || have_lootcutstone() || (monstersoundtype(mdef) == MS_FLUIDATOR) || (monstersoundtype(mdef) == MS_BULLETATOR) || splittinggremlin(mdef->data) || splittinglavagremlin(mdef->data) || !timebasedlowerchance() || (!timebasedlowerchance() && ((u.urexp > 10000) || (moves > 10000)) ) ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventB && !(obj->oartifact) && !(obj->fakeartifact && timebasedlowerchance()) && (!rn2(4) || (rn2(100) < u.equipmentremovechance) || !timebasedlowerchance() ) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventC && !(obj->oartifact) && !(obj->fakeartifact && !rn2(10)) && rn2(10) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
 		else if (obj->mstartinventE && !(obj->oartifact) && !(obj->fakeartifact && !rn2(20)) && rn2(20) && !(mdef->data == &mons[PM_GOOD_ITEM_MASTER]) && !(mdef->data == &mons[PM_BAD_ITEM_MASTER]) ) delobj(obj);
@@ -7373,7 +7373,7 @@ xkilled(mtmp, dest)
 		symbiotemaygainhealth();
 	}
 
-	if ((mtmp->data->msound == MS_HCALIEN) && !mtmp->mrevived) mightbooststat(A_INT);
+	if ((monstersoundtype(mtmp) == MS_HCALIEN) && !mtmp->mrevived) mightbooststat(A_INT);
 
 	if ((mtmp->data->geno & G_UNIQ) && !mtmp->mrevived) mightbooststat(A_CON);
 
@@ -7550,23 +7550,23 @@ xkilled(mtmp, dest)
 		/* might be here after swallowed */
 
 		/* Throw a bone to vampiric and ghast players who cannot unstone themselves easily. --Amy */
-		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_CORK_ESPADRILLE] || mdat == &mons[PM_PACKED_LIZARD] || mdat == &mons[PM_UNSILIZARD] || mdat == &mons[PM_SILILIZARD] || mdat == &mons[PM_VERY_SLOW_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_O_P_E_L] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_DIGLIZARD] || mdat == &mons[PM_DIGGING_LIZARD] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_ELONA_LIZARD_MAN] || mdat == &mons[PM_TOUCAN] || mdat == &mons[PM_GIANT_TOUCAN] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_DANGEROUS_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_PRESSLIZARD] || mdat == &mons[PM_STATIOLIZARD] || mdat == &mons[PM_GIBLIZARD] || mdat == &mons[PM_CASINO_LIZARD] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_PERFUSWAP_LIZARD]  || mdat == &mons[PM_ALL_SUPPLY_LIZARD] || mdat == &mons[PM_TOPSIDE_LIZARD] || mdat == &mons[PM_DEAD_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_YUNICOR_LIZARD] || mdat == &mons[PM_STOPWATCH_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_DARKEN_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_LIZARD] || mdat == &mons[PM_CAVE_LIZARD] || mdat == &mons[PM_PREHISTORIC_CAVE_LIZARD] || mdat == &mons[PM_CHAOS_LIZARD] || mdat == &mons[PM_HUGE_LIZARD] || mdat == &mons[PM_CORK_ESPADRILLE] || mdat == &mons[PM_PACKED_LIZARD] || mdat == &mons[PM_UNSILIZARD] || mdat == &mons[PM_SILILIZARD] || mdat == &mons[PM_VERY_SLOW_HUGE_LIZARD] || mdat == &mons[PM_CHAOTIC_LIZARD] || mdat == &mons[PM_SAND_TIDE] || mdat == &mons[PM_O_P_E_L] || mdat == &mons[PM_FIRE_LIZARD] || mdat == &mons[PM_ROCK_LIZARD] || mdat == &mons[PM_WILL_STONE_LIZARD] || mdat == &mons[PM_WILL_RATCH_LIZARD] || mdat == &mons[PM_BABY_CAVE_LIZARD] || mdat == &mons[PM_LICHZARD] || mdat == &mons[PM_SKELLIZARD] || mdat == &mons[PM_NIGHT_LIZARD] || mdat == &mons[PM_FBI_AGENT] || mdat == &mons[PM_OWN_SMOKE] || mdat == &mons[PM_DIGLIZARD] || mdat == &mons[PM_DIGGING_LIZARD] || mdat == &mons[PM_GRANDPA] || mdat == &mons[PM_ELONA_LIZARD_MAN] || mdat == &mons[PM_TOUCAN] || mdat == &mons[PM_GIANT_TOUCAN] || mdat == &mons[PM_LIZZY] || mdat == &mons[PM_LIZARD_MAGE] || mdat == &mons[PM_BLACK_LIZARDMAN] || mdat == &mons[PM_ASSASSIN_LIZARD] || mdat == &mons[PM_DANGEROUS_ASSASSIN_LIZARD] || mdat == &mons[PM_BLIZZARD_LIZARD] || mdat == &mons[PM_CLOCKBACK_LIZARD] || mdat == &mons[PM_PRESSLIZARD] || mdat == &mons[PM_STATIOLIZARD] || mdat == &mons[PM_GIBLIZARD] || mdat == &mons[PM_CASINO_LIZARD] || mdat == &mons[PM_LIZARD_PRINCE] || mdat == &mons[PM_ADULT_LIZARD] || mdat == &mons[PM_HELTH_LIZARD] || mdat == &mons[PM_NORMAL_LIZARD] || mdat == &mons[PM_LIGHTNING_LIZARD] || mdat == &mons[PM_KARMIC_LIZARD] || mdat == &mons[PM_GREEN_LIZARD] || mdat == &mons[PM_BLACK_LIZARD] || mdat == &mons[PM_SCORZARD] || mdat == &mons[PM_MONSTER_LIZARD] || mdat == &mons[PM_ICE_LIZARD] || mdat == &mons[PM_GRASS_LIZARD] || mdat == &mons[PM_PERFUSWAP_LIZARD]  || mdat == &mons[PM_ALL_SUPPLY_LIZARD] || mdat == &mons[PM_TOPSIDE_LIZARD] || mdat == &mons[PM_DEAD_LIZARD] || mdat == &mons[PM_RUNE_LIZARD] || mdat == &mons[PM_YUNICOR_LIZARD] || mdat == &mons[PM_STOPWATCH_LIZARD] || mdat == &mons[PM_SPECTRAL_LIZARD] || mdat == &mons[PM_BLUE_LIZARD] || mdat == &mons[PM_DARKEN_LIZARD] || mdat == &mons[PM_SWAMP_LIZARD] || mdat == &mons[PM_SPITTING_LIZARD] || mdat == &mons[PM_LIZARD_EEL] || mdat == &mons[PM_INNOCLIZARD] || mdat == &mons[PM_FAT_LIZARD] || mdat == &mons[PM_HIDDEN_LIZARD] || mdat == &mons[PM_DEFORMED_LIZARD] || mdat == &mons[PM_MIMIC_LIZARD] || mdat == &mons[PM_CLINGING_LIZARD] || mdat == &mons[PM_LIZARD_MAN] || mdat == &mons[PM_LIZARD_OF_YENDOR] || mdat == &mons[PM_LIZARD_KING] || mdat == &mons[PM_GIANT_LIZARD] || mdat == &mons[PM_EEL_LIZARD] || mdat == &mons[PM_ANTI_STONE_LIZARD]) && !rn2(5) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(POT_ACID, x, y, TRUE, FALSE, FALSE);
 		/* of course the acid potions are useful for other races too, if they run out of lizard corpses */
 
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(BANANA, x, y, TRUE, FALSE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(MELON, x, y, TRUE, FALSE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(PEAR, x, y, TRUE, FALSE, FALSE);
-		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(50) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(ASIAN_PEAR, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(CARROT, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(BANANA, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(MELON, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(PEAR, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SQUIRREL] || mdat == &mons[PM_IGUANA] || mdat == &mons[PM_HELPFUL_SQUIRREL] || mdat == &mons[PM_STAR_SQUIRREL] || mdat == &mons[PM_BIG_IGUANA]) && !rn2(50) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(ASIAN_PEAR, x, y, TRUE, FALSE, FALSE);
 
-		if ((mdat == &mons[PM_GECKO] || mdat == &mons[PM_GIANT_GECKO] || mdat == &mons[PM_FLYING_GECKO]) && !rn2(40) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(EUCALYPTUS_LEAF, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_GECKO] || mdat == &mons[PM_GIANT_GECKO] || mdat == &mons[PM_FLYING_GECKO]) && !rn2(40) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(EUCALYPTUS_LEAF, x, y, TRUE, FALSE, FALSE);
 
-		if ((mdat == &mons[PM_RHAUMBUSUN] || mdat == &mons[PM_FEMBUSUN] || mdat == &mons[PM_BLOODBUSUN] || mdat == &mons[PM_BIG_RHAUMBUSUN]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_FIRE, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_RHAUMBUSUN] || mdat == &mons[PM_FEMBUSUN] || mdat == &mons[PM_BLOODBUSUN] || mdat == &mons[PM_BIG_RHAUMBUSUN]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_FIRE, x, y, TRUE, FALSE, FALSE);
 
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER] || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(CREAM_PIE, x, y, TRUE, FALSE, FALSE);
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER]  || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(APPLE, x, y, TRUE, FALSE, FALSE);
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER]  || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(ORANGE, x, y, TRUE, FALSE, FALSE);
-		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER]  || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(LEMON, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER] || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(CREAM_PIE, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER]  || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(APPLE, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER]  || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(ORANGE, x, y, TRUE, FALSE, FALSE);
+		if ((mdat == &mons[PM_SALAMANDER] || mdat == &mons[PM_SALAMANDER_SLAVE] || mdat == &mons[PM_SALAMANDER_PRISONER] || mdat == &mons[PM_SALAMANDER_MAGE] || mdat == &mons[PM_SALAMANDER_SHAMAN] || mdat == &mons[PM_PARALYSIS_WHIP_SALAMANDER]  || mdat == &mons[PM_POISON_WHIP_SALAMANDER] || mdat == &mons[PM_FROST_SALAMANDER] || mdat == &mons[PM_KOMODO_DRAGON] || mdat == &mons[PM_PETTY_KOMODO_DRAGON] || mdat == &mons[PM_HISSER_KOMODO_DRAGON]) && !rn2(20) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && timebasedlowerchance() && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(LEMON, x, y, TRUE, FALSE, FALSE);
 
 		if (mdat == &mons[PM_SMALL_ITEM_TROVE]) otmp = mkobj_at(RANDOM_CLASS, x, y, TRUE, FALSE);
 
@@ -7814,26 +7814,26 @@ xkilled(mtmp, dest)
 
 		/* standard id scrolls become a little more common as the game goes on, to ease the ID minigame --Amy */
 
-		if (!rn2(500) && !ishardmoder && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE, FALSE);
-		if (!rn2(Race_if(PM_ROHIRRIM) ? 100 : 250) && !ishardmoder && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE, FALSE);
-		if (!rn2(100) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_MANA : SCR_GREATER_MANA_RESTORATION, x, y, TRUE, FALSE, FALSE);
-		if (!rn2(121 - u.ulevel) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
-		if (!rn2(100) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEAL_OTHER, x, y, TRUE, FALSE, FALSE);
-		if (!rn2(40) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_HEALING : SCR_EXTRA_HEALING, x, y, TRUE, FALSE, FALSE);
+		if (!rn2(500) && !ishardmoder && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE, FALSE);
+		if (!rn2(Race_if(PM_ROHIRRIM) ? 100 : 250) && !ishardmoder && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE, FALSE);
+		if (!rn2(100) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_MANA : SCR_GREATER_MANA_RESTORATION, x, y, TRUE, FALSE, FALSE);
+		if (!rn2(121 - u.ulevel) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
+		if (!rn2(100) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEAL_OTHER, x, y, TRUE, FALSE, FALSE);
+		if (!rn2(40) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_HEALING : SCR_EXTRA_HEALING, x, y, TRUE, FALSE, FALSE);
 
 		if (uarmg && uarmg->oartifact == ART_SCROLLSCROLLSCROLL) {
-			if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE, FALSE);
-			if (!rn2(250) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE, FALSE);
-			if (!rn2(100) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_MANA : SCR_GREATER_MANA_RESTORATION, x, y, TRUE, FALSE, FALSE);
-			if (!rn2(121 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
-			if (!rn2(100) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEAL_OTHER, x, y, TRUE, FALSE, FALSE);
-			if (!rn2(40) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_HEALING : SCR_EXTRA_HEALING, x, y, TRUE, FALSE, FALSE);
+			if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE, FALSE);
+			if (!rn2(250) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE, FALSE);
+			if (!rn2(100) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_MANA : SCR_GREATER_MANA_RESTORATION, x, y, TRUE, FALSE, FALSE);
+			if (!rn2(121 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
+			if (!rn2(100) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEAL_OTHER, x, y, TRUE, FALSE, FALSE);
+			if (!rn2(40) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_HEALING : SCR_EXTRA_HEALING, x, y, TRUE, FALSE, FALSE);
 		}
 
-		if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
+		if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 		/* you should not be able to farm trolls, gremlins, long worms etc. --Amy */
-		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(YouDoNotGetDeathDrops || (mtmp->data->msound == MS_FLUIDATOR) || (mtmp->data->msound == MS_BULLETATOR) ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && (timebasedlowerchance() || timebasedlowerchance() || (timebasedlowerchance() && rn2(2)) ) && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
+		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && (timebasedlowerchance() || timebasedlowerchance() || (timebasedlowerchance() && rn2(2)) ) && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 					&& (!issoviet || (mdat->mlet != S_KOP))
@@ -8398,7 +8398,7 @@ void
 m_respond(mtmp)
 register struct monst *mtmp;
 {
-    if(mtmp->data->msound == MS_SHRIEK) {
+    if(monstersoundtype(mtmp) == MS_SHRIEK) {
 	if(flags.soundok) {
 	    pline("%s shrieks.", Monnam(mtmp));
 	    stop_occupation();
@@ -8422,7 +8422,7 @@ register struct monst *mtmp;
 
 	aggravate();
     }
-    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_QUIET && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) ) {
+    if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_QUIET && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) ) {
 		if (!FemtrapActiveJennifer) pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
@@ -8469,7 +8469,7 @@ register struct monst *mtmp;
 		if (!rn2(20)) increasesanity(1);
     }
 sarahdone:
-    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_NORMAL && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
+    if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_NORMAL && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
@@ -8544,7 +8544,7 @@ sarahdone:
 			}
 		}
     }
-    if(!mtmp->egotype_farter && mtmp->data->msound == MS_FART_LOUD && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
+    if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_LOUD && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
@@ -8625,20 +8625,20 @@ sarahdone:
 		if (!rn2(20)) increasesanity(1);
     }
 
-    if(mtmp->data->msound == MS_SOUND || mtmp->egotype_sounder) {
+    if(monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) {
 		pline("%s lets out an ear-splitting scream!", Monnam(mtmp) );
 		make_stunned(HStun + (mtmp->m_lev + 2), TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
     }
 
-    if(mtmp->data->msound == MS_PANTS) {
+    if(monstersoundtype(mtmp) == MS_PANTS) {
 		u.cnd_pantsmell++;
 		pline("You catch a whiff from %s...", mon_nam(mtmp) );
 		contaminate(rnd((mtmp->m_lev + 1) * 2), TRUE);
 		increasesanity(rnd((mtmp->m_lev + 1) * 2));
     }
-    if(mtmp->data->msound == MS_SOCKS && !(uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) ) {
+    if(monstersoundtype(mtmp) == MS_SOCKS && !(uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) ) {
 		u.cnd_socksmell++;
 		pline("You inhale the beguiling smell that emanates from %s...", mon_nam(mtmp) );
 
@@ -8860,7 +8860,7 @@ wake_nearby()
 	for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && rn2(3)) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && distu(mtmp->mx,mtmp->my) < level_difficulty()*20) {
 
-		if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
+		if (monstersoundtype(mtmp) == MS_SNORE) continue; /* won't wake up from this effect */
 
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
@@ -8870,7 +8870,7 @@ wake_nearby()
 
 	if (!rn2(250)) for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
 	    if (!DEADMONSTER(mtmp) && (rnd(100) > stealthchance) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && rn2(3)) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) ) {
-		if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
+		if (monstersoundtype(mtmp) == MS_SNORE) continue; /* won't wake up from this effect */
 
 		mtmp->msleeping = 0;
 		if (mtmp->mtame && !mtmp->isminion)
@@ -8893,7 +8893,7 @@ register int x, y, distance;
 		if (!DEADMONSTER(mtmp) && !(uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS && rn2(3)) && !(Race_if(PM_VIETIS) && rn2(3)) && !(Race_if(PM_KUTAR) && rn2(3)) && mtmp->msleeping && (distance == 0 ||
 				 dist2(mtmp->mx, mtmp->my, x, y) < distance)) {
 
-			if (mtmp->data->msound == MS_SNORE) continue; /* won't wake up from this effect */
+			if (monstersoundtype(mtmp) == MS_SNORE) continue; /* won't wake up from this effect */
 
 			if (distance > 1) wakedistance = rnd(distance);
 			if (rn2(2) && ( (distance == 0) || (dist2(mtmp->mx, mtmp->my, x, y) < wakedistance)) ) {

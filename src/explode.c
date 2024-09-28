@@ -386,7 +386,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 				break;
 		    }
 		}
-		if (mtmp && cansee(xi,yi) && !canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
+		if (mtmp && cansee(xi,yi) && !canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
 		    map_invisible(xi, yi);
 		else if (!mtmp && memory_is_invisible(xi, yi)) {
 		    unmap_object(xi, yi);

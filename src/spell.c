@@ -7711,7 +7711,7 @@ whisperchoice:
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 && (is_demon(mtmp->data))) {
 
 				soundresist = 0;
-				switch (mtmp->data->msound) {
+				switch (monstersoundtype(mtmp)) {
 					default: break;
 					case MS_FART_NORMAL: soundresist = 2; break;
 					case MS_FART_QUIET: soundresist = 2; break;

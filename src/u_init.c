@@ -10847,6 +10847,8 @@ u_init()
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
 	u.adrunsattack = rnd(285); /* timerun etc. */
 
+	u.commonsound = randmonsound();
+
 	u.scholarturns = 0;
 
 	u.unobtainablegeno = -1;
@@ -33297,6 +33299,8 @@ int realityflag;
 	u.adpartattack = rn2(AD_ENDS);
 	while (u.adpartattack == AD_ENDS || u.adpartattack == AD_WERE) u.adpartattack = rn2(AD_ENDS);
 	u.adrunsattack = rnd(285); /* timerun etc. */
+
+	u.commonsound = randmonsound();
 
 	register int unobtitemamount = rnd(10); /* pick an # of items that are unobtainable --Amy */
 

@@ -3378,6 +3378,8 @@ E void pupiltaunt(void);
 E void teachertaunt(void);
 E void monster_pain(struct monst *);
 
+E int monstersoundtype(struct monst *);
+
 /* ### sys/msdos/sound.c ### */
 
 #ifdef MSDOS

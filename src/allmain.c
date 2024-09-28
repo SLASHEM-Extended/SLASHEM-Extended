@@ -1576,7 +1576,7 @@ moveloop()
 					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 				}
 
-				if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (u.usteed->data->msound == MS_CAR)) {
+				if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (monstersoundtype(u.usteed) == MS_CAR)) {
 					oldspeed = moveamt;
 					moveamt *= 7;
 					moveamt /= 5;
@@ -2135,7 +2135,7 @@ moveloop()
 					if (moveamt > (oldspeed + 15)) moveamt = (oldspeed + 15);
 				}
 
-				if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (u.usteed->data->msound == MS_CAR)) {
+				if (bmwride(ART_DRIVER_S_LICENSE) && u.usteed && (monstersoundtype(u.usteed) == MS_CAR)) {
 					oldspeed = moveamt;
 					moveamt *= 7;
 					moveamt /= 5;
@@ -15963,6 +15963,7 @@ past4:
 	u.symbiotedmghack = FALSE;
 	u.linkmasterswordhack = 0;
 	u.wollohhack = 0;
+	u.oehack = 0;
 	u.polyattackhack = 0;
 	u.mongetshack = 0;
 	u.dynamitehack = 0;

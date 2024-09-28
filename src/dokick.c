@@ -2062,7 +2062,7 @@ dokick()
 		    /* check x and y; a monster that evades your kick by
 		       jumping to an unseen square doesn't leave an I behind */
 		    mtmp->mx == x && mtmp->my == y &&
-		    !memory_is_invisible(x, y) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) &&
+		    !memory_is_invisible(x, y) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember) &&
 		    !(u.uswallow && mtmp == u.ustuck))
 			map_invisible(x, y);
 		if((Is_airlevel(&u.uz) || Levitation) && flags.move) {

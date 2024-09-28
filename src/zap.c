@@ -1729,8 +1729,9 @@ armorsmashdone:
 	 */
 	if (reveal_invis) {
 	    if (mtmp->mhp > 0 && cansee(bhitpos.x, bhitpos.y) &&
-							!canspotmon(mtmp) && !(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember))
-		map_invisible(bhitpos.x, bhitpos.y);
+		!canspotmon(mtmp) && !(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) {
+			map_invisible(bhitpos.x, bhitpos.y);
+		}
 	}
 	return 0;
 }
@@ -8838,7 +8839,7 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 			    }
 			    if (cansee(bhitpos.x,bhitpos.y) && !canspotmon(mtmp)) {
 				if (weapon != INVIS_BEAM) {
-				    if (!(mtmp->data->msound == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) map_invisible(bhitpos.x, bhitpos.y);
+				    if (!(monstersoundtype(mtmp) == MS_DEEPSTATE) && !(mtmp->egotype_deepstatemember)) map_invisible(bhitpos.x, bhitpos.y);
 				    return(mtmp);
 				}
 			    } else
@@ -9934,7 +9935,7 @@ sigilcontroldirection:
 	    /* Normal Zap */
 	    if (!is_mega_spell(type) && cansee(sx,sy)) {
 		/* reveal/unreveal invisible monsters before tmp_at() */
-		if (mon && !canspotmon(mon) && !(mon->data->msound == MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
+		if (mon && !canspotmon(mon) && !(monstersoundtype(mon) == MS_DEEPSTATE) && !(mon->egotype_deepstatemember))
 		    map_invisible(sx, sy);
 		else if (!mon && memory_is_invisible(sx, sy)) {
 		    unmap_object(sx, sy);
