@@ -77824,6 +77824,33 @@ essential in locating the Amulet of Yendor."
 %Cp - 01266
 "Just one more sinner, and I get a promotion!"
 %E
+%Cp - 01267
+"There are no words for how disgusting you are."
+%E
+%Cp - 01268
+"You make me want to puke."
+%E
+%Cp - 01269
+"My handkerchief will wipe up your blood!"
+%E
+%Cp - 01270
+"I've heard you are a contemptible sneak."
+%E
+%Cp - 01271
+"I've got a long, sharp lesson for you to learn today."
+%E
+%Cp - 01272
+"My wisest enemies run away at the first sight of me!"
+%E
+%Cp - 01273
+"No one will ever catch ME fighting as badly as you do."
+%E
+%Cp - 01274
+"Killing you would be justifiable homicide!"
+%E
+%Cp - 01275
+"Nothing on this Earth can save your sorry hide!"
+%E
 
 #
 #       Demonic maledictions.
@@ -78760,6 +78787,72 @@ essential in locating the Amulet of Yendor."
 %E
 %Cp - 02310
 "Thou calls thyself a %r? In sooth?"
+%E
+%Cp - 02311
+"This is the END for you, you gutter crawling cur!"
+%E
+%Cp - 02312
+"Soon you'll be wearing my sword like a shish kebab!"
+%E
+%Cp - 02313
+"Your hemorrhoids are flaring up again eh?"
+%E
+%Cp - 02314
+"I once owned a dog that was smarter than you."
+%E
+%Cp - 02315
+"Have you stopped wearing diapers yet?"
+%E
+%Cp - 02316
+"I hope now you've learned to stop picking your nose."
+%E
+%Cp - 02317
+"You're no match for my brains, you poor fool."
+%E
+%Cp - 02318
+"Now I know what filth and stupidity really are."
+%E
+%Cp - 02319
+"I will milk every drop of blood from your body!"
+%E
+%Cp - 02320
+"Only once have I met such a coward!"
+%E
+%Cp - 02321
+"If your brother's like you, better to marry a pig."
+%E
+%Cp - 02322
+"I usually see people like you passed-out on tavern floors."
+%E
+%Cp - 02323
+"There are no clever moves that can help you now."
+%E
+%Cp - 02324
+"You're as repulsive as a monkey in a negligee."
+%E
+%Cp - 02325
+"When I'm done, your body will be rotted and putrified!"
+%E
+%Cp - 02326
+"I'll skewer you like a sow at a buffet!"
+%E
+%Cp - 02327
+"Would you like to be buried, or cremated?"
+%E
+%Cp - 02328
+"I give you a choice. You can be gutted, or decapitated!"
+%E
+%Cp - 02329
+"When your father first saw you, he must have been mortified!"
+%E
+%Cp - 02330
+"You're a disgrace to your species, you're so undignified!"
+%E
+%Cp - 02331
+"Your stench would make an outhouse cleaner irritated!"
+%E
+%Cp - 02332
+"I'll leave you devastated, mutilated, and perforated!"
 %E
 
 #
