@@ -296,8 +296,9 @@ moveloop()
 			}
 
 			/* note by Amy: have higher spawn rate very early on or players will be likely to starve!
-			 * but not in lost soul modes since the monster levels are inflated there */
-			if (!flags.lostsoul && !flags.uberlostsoul) {
+			 * but not in lost soul modes since the monster levels are inflated there
+			 * and also not in homicider mode since more traps doesn't mean you starve less quickly */
+			if (!flags.lostsoul && !flags.uberlostsoul && !ishomicider) {
 				if (u.ulevel < 2 && moves < 1000) {
 					monclock /= 3;
 				} else if (u.ulevel < 3 && moves < 2000) {
