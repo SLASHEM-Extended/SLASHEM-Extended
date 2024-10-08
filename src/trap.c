@@ -5874,7 +5874,11 @@ newegomon:
 				   You("see an image of someone stalking you.");
 				   pline("But it disappears.");
 				}
-				HSee_invisible |= FROMOUTSIDE;
+				if (u.ulevel < 10) { /* you old scummer, thought it was THAT easy, eh? --Amy */
+					incr_itimeout(&HInvis, rn1(1000,1000));
+				} else {
+					HSee_invisible |= FROMOUTSIDE;
+				}
 				newsym(u.ux,u.uy);
 				exercise(A_WIS, TRUE);
 
@@ -5900,6 +5904,7 @@ newegomon:
 				    if(!DEADMONSTER(brmtmp))
 					monflee(brmtmp, rnd(10), FALSE, FALSE);
 				}
+				make_feared(HFeared + rnz(100), TRUE);
 
 				break;
 			case 21: {

@@ -29300,6 +29300,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear a barker praising the wares of a store.",
 	"You hear a shifty voice say 'Fear not, our wares will definitely last for a whole life and come with a two-day warranty!'",
 	"One of the standard adventure game rules goes like this: If it's not nailed down, take it. If it's nailed down, find a way to remove the nails.",
+	"The whole point of adventure games is that you have to figure out what to do in order to be able to proceed and then make sure the conditions are actually met. Nethack is not an adventure game. Yet there's the quest entry puzzle, which forces you to go out of your way like the devs designing that particular part somehow thought they were designing an adventure game.",
+	"The quest entry puzzle in NetHack is so out of place, forcing you to figure out that you need so-so many levels and alignment record points, and the kicker is that stupid unwinnable scenario. That one is so totally Sierra adventure game, i.e. something that NetHack is not, meaning that particular part of the game sticks out like a sore thumb.",
+	"NetHack is about leveling up, fighting monsters and finding interesting items! It's not about grinding to a particular level and micromanaging your alignment record just so that you're 'allowed' to visit a specific area like in a goddamn adventure game! What does your alignment even have to do with the quest, apart from the stupid entry test there's nothing in there that depends on your alignment in the slightest!",
+	"The alignment test when trying to go on the quest is some silly developer's pet darling game feature, it only exists for the sake of existing and does not add to the game in any significant way. It's fully possible to beat the quest before turn 2000 if you waive that silly barrier, so the barrier has no reason to exist and the fact that it does exist makes the game worse.",
 
 };
 

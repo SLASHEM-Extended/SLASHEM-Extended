@@ -9522,7 +9522,7 @@ boolean guaranteed;
 			if (increaseamount < 1) increaseamount = 1; /* fail safe */
 			u.uhpmax += increaseamount;
 			if (u.uhpmax > ceiling) u.uhpmax = ceiling; /* fail safe */
-			if ((u.uhpmax - actualincrease) > increaseamount) {
+			if ((u.uhpmax - actualincrease) < increaseamount) {
 				increaseamount = (u.uhpmax - actualincrease);
 			}
 			Your("health was recovered by %d.", increaseamount);
@@ -9537,7 +9537,7 @@ boolean guaranteed;
 				if (increaseamount < 1) increaseamount = 1; /* fail safe */
 				u.mhmax += increaseamount;
 				if (u.mhmax > ceiling) u.mhmax = ceiling; /* fail safe */
-				if ((u.mhmax - actualincrease) > increaseamount) {
+				if ((u.mhmax - actualincrease) < increaseamount) {
 					increaseamount = (u.mhmax - actualincrease);
 				}
 				Your("polymorphed health was recovered by %d.", increaseamount);
@@ -9679,7 +9679,7 @@ boolean guaranteed;
 			actualincrease = u.uenmax;
 			u.uenmax += increaseamount;
 			if (u.uenmax > ceiling) u.uenmax = ceiling; /* fail safe */
-			if ((u.uenmax - actualincrease) > increaseamount) {
+			if ((u.uenmax - actualincrease) < increaseamount) {
 				increaseamount = (u.uenmax - actualincrease);
 			}
 			Your("mana was recovered by %d.", increaseamount);
@@ -9704,7 +9704,7 @@ boolean guaranteed;
 			u.usymbiote.mhpmax += increaseamount;
 			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
 			if (u.usymbiote.mhpmax > ceiling) u.usymbiote.mhpmax = ceiling; /* fail safe */
-			if ((u.usymbiote.mhpmax - actualincrease) > increaseamount) {
+			if ((u.usymbiote.mhpmax - actualincrease) < increaseamount) {
 				increaseamount = (u.usymbiote.mhpmax - actualincrease);
 			}
 

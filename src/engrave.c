@@ -6409,6 +6409,8 @@ static const char *epitaphs[] = {
 	"Here lies Graham the Idiot. He had transformed into a rabbit to evade Mordack's dragon form's fireblasts, but Mordack then turned into a snake (who knows only one single insult, namely 'swine') and ate Graham.",
 	"Here lies Graham the Idiot. He had transformed into a mongoose to scare Mordack's snake form, but Mordack then turned into a fire and burned Graham to death.",
 	"Here lies Mordack the Bastard Wizard. He had transformed into a fire in an attempt to burn Graham alive, but Graham summoned a rain cloud and deleted Mordack from existence. And with that, the kingdom was finally saved... well, or it would have been, but there's a King's Quest 6 where the story continues with even more badguys whom Graham and Alexander have to defeat.",
+	"I believe the term is altar-camp? I really don't do it at all and I don't know where the FUCK you got that from, and if I did I wouldn't care. I get an ascension every few months... no need to be suspecting me of things.", /* based on something rebatela said */
+	"NOOOOOOO! Amy fixed the strategy of casting create monster 200 times while next to an altar! How am I going to farm those prayer boosts now? SLEX is unplayable and the opposite of fun! All the good strategies from vanilla don't work for bullshit reasons!",
 
 };
 
