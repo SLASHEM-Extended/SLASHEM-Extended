@@ -2978,7 +2978,7 @@ struct monst *mon;
 	if (otmp && otmp->enchantment == WEAPEGO_DMG4) tmp += 10;
 	if (otmp && otmp->enchantment == WEAPEGO_PWR4) tmp += 10;
 
-	if (otmp && otmp->enchantment == WEAPEGO_VORPAL) {
+	if (otmp && otmp->enchantment == WEAPEGO_VORPAL && !rn2(20)) {
 
 		if (has_head(mon->data) && !noncorporeal(mon->data) && !amorphous(mon->data)) {
 			if (mon->data->geno & G_UNIQ) {
