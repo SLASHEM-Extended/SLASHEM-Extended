@@ -11528,6 +11528,13 @@ bladeangerdone2:
 					}
 				}
 
+				if (uwep && uwep->oartifact == ART_VORPALITY_TEMPTATION && u.vorpalitytempt >= 100) {
+					useupall(uwep);
+					pline("Your overpowered artifact weapon suddenly disintegrates!");
+					pline("Somehow, you get the feeling it might have been a mistake to use that thing after all.");
+					return FALSE;
+				}
+
 				if (FemtrapActivePatricia && uwep && (objects[uwep->otyp].oc_dir == 0 ) && !rn2(uwep->oartifact ? 150 : 30) ) {
 					uwep->spe--;
 					if (SuperFemtrapPatricia) uwep->spe--;
@@ -11657,6 +11664,13 @@ bladeangerdone2:
 						pline("Your steel-capped sandal is destroyed.");
 						return FALSE;
 					}
+				}
+
+				if (u.twoweap && uswapwep && uswapwep->oartifact == ART_VORPALITY_TEMPTATION && u.vorpalitytempt >= 100) {
+					useupall(uswapwep);
+					pline("Your overpowered artifact weapon suddenly disintegrates!");
+					pline("Somehow, you get the feeling it might have been a mistake to use that thing after all.");
+					return FALSE;
 				}
 
 				if (FemtrapActivePatricia && u.twoweap && uswapwep && (objects[uswapwep->otyp].oc_dir == 0 ) && !rn2(uswapwep->oartifact ? 150 : 30) ) {

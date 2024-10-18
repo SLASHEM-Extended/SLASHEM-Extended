@@ -757,6 +757,8 @@ struct you {
 
 	int traprandomizing;	/* chance that a random trap is "completely random" */
 
+	int vorpalitytempt;	/* chance for items to not drop, if you fell for the temptation */
+
 	int trapxtradiff;	/* additional difficulty for finding a trap */
 
 	int shaperoomchance;	/* to control the chance of irregular rooms */

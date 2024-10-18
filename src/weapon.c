@@ -2991,6 +2991,45 @@ struct monst *mon;
 		}
 	}
 
+	if (otmp && otmp->oartifact == ART_VORPALITY_TEMPTATION) {
+
+		/* this OP artifact exists to tempt players who don't understand the SLEX design philosophy --Amy
+		 * if someone *really* thinks I'd make such an OP artifact without a hefty downside, they'll have their char ruined
+		 * of course it won't work on the ascension run or in the planes, since if you're not planning to use freeplay mode,
+		 * you'd otherwise just save it for astral and plow through everything, you filthy exploit exploiter! */
+		if (has_head(mon->data) && (u.freeplaymode || !u.amuletcompletelyimbued) && !noncorporeal(mon->data) && !amorphous(mon->data)) {
+			if (mon->data->geno & G_UNIQ) {
+				You("critically hit %s!", mon_nam(mon));
+				tmp *= 2;
+				u.vorpalitytempt++;
+			} else {
+				tmp += 10000;
+				You("behead %s with your razor-sharp weapon!", mon_nam(mon));
+				u.vorpalitytempt++;
+			}
+
+			/* if a player is even a little bit savvy, they'll notice that something is up when seeing these --Amy */
+			switch (u.vorpalitytempt) {
+				case 10:
+					pline("Having fun yet with that overpowered weapon?");
+					break;
+				case 30:
+					pline("Do you really think the game is supposed to work like that?");
+					break;
+				case 50:
+					pline("You do know that you're a filthy exploit exploiter, right?");
+					break;
+				case 70:
+					pline("You're making a mistake if you think the game would simply ascend itself with that weapon.");
+					break;
+				case 90:
+					pline("You'll regret that power trip. Should have realized you're playing SLEX.");
+					break;
+				default: break;
+			}
+		}
+	}
+
 	if (Race_if(PM_JAPURA) && (is_angbandmonster(mon->data) || is_cowmonster(mon->data) || is_animemonster(mon->data) || is_steammonster(mon->data) || is_dlordsmonster(mon->data) || is_dnethackmonster(mon->data) || is_jokemonster(mon->data) || is_diablomonster(mon->data) || is_jonadabmonster(mon->data) || is_evilpatchmonster(mon->data) || is_elonamonster(mon->data) || is_aoemonster(mon->data) || is_elderscrollsmonster(mon->data) || is_chatgptmonster(mon->data) || is_cddamonster(mon->data) ) ) {
 		tmp *= 2;
 	}

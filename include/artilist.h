@@ -19507,6 +19507,10 @@ A("Isra's Angle",				AMULET_VERSUS_DEATH_SPELL, /* super vulnerability trap effe
 	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
 
+A("Vorpality Temptation",				LONG_SWORD, /* randart2 melee weapon, if you're not on the ascension run it beheads enemies and increases a counter by 1; when that reaches 100, the weapon disintegrates. counter% chance that timebasedlowerchance will make items not drop, gives mocking messages every once in a while. invoke to use up the artifact and get a potion of full healing. the in-game description intentionally gives only a vague hint about this item because Amy wants to tempt players into abusing such an obviously overpowered item; if they do, they'll screw themselves over :-P */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

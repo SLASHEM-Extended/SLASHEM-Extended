@@ -4769,7 +4769,7 @@ static const char *epitaphs[] = {
 	"The guard captain stole my lightsaber, I fell through a hole and got gang banged by invisible scary things all the time being brought back from the dead so I could get pounded again.", /* happened to tubs */
 	"Fuck K-Measurer's alignment system. I have a fucking cursed ring of levitation stuck on me. I pray and god decides that my polymorph form is bigger problem than that shitty ring. After a while I start having serious issues with hunger, so I pray again and this time I get fucking punished! Dude...", /* by Winsalot */
 	"Go team Girl (and shoes)!",
-	"chances of dying in slex to something girl-related: 20%. chances of dying to something shoe-related: 30%.", /* by aosdict */
+	"chances of dying in slex to something girl-related: 20%%. chances of dying to something shoe-related: 30%%.", /* by aosdict */
 	"Sometimes the game just doesn't feel like giving you a source of reflection or magic resistance. So I decided to brave the castle, but the first lieutenant had a wand of death because of course he did.", /* happened to me in Splicehack */
 	"Personally, apart from maybe a handful of games in Junethack to get some cross-variant trophies (walk in the park and such), I mostly would not recommend trying the variants with a lot of added content (Slash'EM, dnethack, or even UnNetHack), nor the ones intended for advanced players (SporkHack, GruntHack) until you are already pretty familiar with the basic game.", /* by jonadab */
 	"Slash'EM Extended combines both of these traits into one variant and cranks them both up to eleven and then some, so starting with that one would definitely be jumping in at the deep end of the lava pool, with a heavy iron ball shackled to each ankle.", /* ditto */

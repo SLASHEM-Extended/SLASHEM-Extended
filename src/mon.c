@@ -2535,7 +2535,7 @@ movemon()
 	}
 
 	/* continue if the monster died fighting */
-	if ((Conflict || (mtmp->mnum == PM_FRENZY_KANGAROO) ) && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
+	if ((Conflict || (mtmp->mnum == PM_FRENZY_KANGAROO) ) && !TimeStopped && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
 	    /* Note:
 	     *  Conflict does not take effect in the first round.
 	     *  Therefore, A monster when stepping into the area will
@@ -2550,7 +2550,7 @@ movemon()
 							fightm(mtmp))
 		continue;	/* mon might have died */
 	}
-	if ((StrongConflict || (mtmp->mnum == PM_FRENZY_KANGAROO)) && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
+	if ((StrongConflict || (mtmp->mnum == PM_FRENZY_KANGAROO)) && !TimeStopped && !mtmp->iswiz && mtmp->mcansee && haseyes(mtmp->data) ) {
 	    /* Note:
 	     *  Conflict does not take effect in the first round.
 	     *  Therefore, A monster when stepping into the area will

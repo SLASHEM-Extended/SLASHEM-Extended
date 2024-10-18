@@ -31276,6 +31276,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: stronger version of lag trap effect, half physical damage, double magic find, swimming and protects items from getting wet when worn."); break;
 				case ART_ISRA_S_ANGLE:
 					pline("Artifact specs: stronger version of vulnerability trap effect, prism reflection, resist psi, keen memory, memorization skill trains three times as fast and +10 ranged to-hit when worn."); break;
+				case ART_VORPALITY_TEMPTATION:
+					pline("Artifact specs: if you're not on the ascension run, it always beheads enemies that can be beheaded. You feel that there's gotta be something wrong with this weapon because that sounds awfully powerful. It can also be invoked, which will remove this artifact from existence and give you a potion of full healing instead."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

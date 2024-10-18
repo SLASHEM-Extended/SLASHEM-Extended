@@ -597,6 +597,7 @@ init_randarts()
 	artilist[ART_HOHO_DINGO].otyp = randartbootsX();
 	artilist[ART_HIGHWAY_FIGHTER].otyp = randartbootsX();
 	artilist[ART_SESDERIRO].otyp = randartmeleeweaponX();
+	artilist[ART_VORPALITY_TEMPTATION].otyp = randartmeleeweaponX();
 	artilist[ART_ABSURD_OVERPOWEREDNESS].otyp = randartmeleeweaponX();
 	artilist[ART_CHRISTIAN_SKY].otyp = randartmeleeweaponX();
 	artilist[ART_POTATO_SKY].otyp = randartmeleeweaponX();
@@ -7453,6 +7454,21 @@ greenchoice:
 
 			break;
 
+		}
+
+		if (obj->oartifact == ART_VORPALITY_TEMPTATION) {
+
+			register struct obj *acqo;
+
+			useupall(obj);
+
+			acqo = mksobj_at(POT_FULL_HEALING, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (acqo) {
+				acqo->bknown = acqo->known = TRUE;
+				pline_The("artifact weapon dissolves, and a potion appeared at your %s!", makeplural(body_part(FOOT)));
+			} else pline_The("artifact weapon dissolves, but somehow no potion appeared. Oh well.");
+
+			break;
 		}
 
 		if (obj->oartifact == ART_GO_AWAY_TYPE_OF_ARMS) {

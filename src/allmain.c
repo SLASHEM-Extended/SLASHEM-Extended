@@ -21179,6 +21179,10 @@ timebasedlowerchance()
 	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
 	if (AssholeModeActive) return FALSE; /* unconditional failure if you're playing asshole mode */
 
+	if (u.vorpalitytempt) { /* serves you right for abusing an obviously OP item instead of realizing what variant you're playing! */
+		if (u.vorpalitytempt > rn2(100)) return FALSE;
+	}
+
 	if (u.cnd_cheaterprayer) { /* unconditional failure if you've cheated */
 		if (rnd(10 + u.cnd_cheaterprayer) > 10) return FALSE; /* fail more often the more cheater prayers you used */
 	}
