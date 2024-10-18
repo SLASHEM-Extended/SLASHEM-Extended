@@ -2339,6 +2339,9 @@ newbossSING:
 			case MS_SCIENTIST:
 				verbalize("I'll plug my quantum harmonizer into your photon resonance chamber!");
 				break;
+			case MS_WEATHER:
+				verbalize("Stormy weather...");
+				break;
 			case MS_INCISION:
 				if (flags.female) verbalize("You're a woman about to reach the age of maturity, and for that I have to circumcise your genitals. Don't worry, it's a ritual that every woman has to undergo in her life.");
 				else verbalize("Snip, snap, penis off!");

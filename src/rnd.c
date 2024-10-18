@@ -1001,7 +1001,7 @@ randomillusionattack()
 int
 randmonsound()
 {
-	switch (rnd(145)) {
+	switch (rnd(146)) {
 		case 1:
 			return MS_SILENT;
 		case 2:
@@ -1292,6 +1292,8 @@ randmonsound()
 			return MS_SCIENTIST;
 		case 145:
 			return MS_INCISION;
+		case 146:
+			return MS_WEATHER;
 		default:
 			return MS_HUMANOID;
 	}

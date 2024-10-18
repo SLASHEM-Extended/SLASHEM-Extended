@@ -158,6 +158,7 @@
 #define MS_SEMEN	149	/* inseminates female characters, which is of course not icky at all */
 #define MS_SCIENTIST	150	/* talks about science */
 #define MS_INCISION	151	/* tries to perform the ultra-evil action of circumcising your genitals */
+#define MS_WEATHER	152	/* can control the weather if the monster has certain abilities */
 
 /* MS_DOUGLAS_ADAMS used to be 42, however I fear the DevTeam eventually 
 ** reaching that number.  - sk */

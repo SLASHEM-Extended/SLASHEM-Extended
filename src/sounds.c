@@ -1884,6 +1884,9 @@ register struct monst *mtmp;
 	case MS_INCISION:
 		ret = "shouts 'Now it's gonna get extra painful for you. I'll circumcise you even more slowly just to make you suffer.'";
 		break;
+	case MS_WEATHER:
+		ret = "screams 'Lightning and thunderhall!'";
+		break;
 	case MS_MODALSHOP:
 		ret = "shouts '!Te enterraran cuando termine contigo!'";
 		break;
@@ -2235,6 +2238,9 @@ register struct monst *mtmp;
 	case MS_INCISION:
 		ret = "shouts 'You'll be bleeding!'";
 		break;
+	case MS_WEATHER:
+		ret = "shouts 'There's a storm brewing...'";
+		break;
 	case MS_MODALSHOP:
 		ret = "shouts '!Esa no es manera de tratar a una tendera!'";
 		break;
@@ -2572,6 +2578,9 @@ register struct monst *mtmp;
 		break;
 	case MS_INCISION:
 		ret = "says 'That device over there looks useful...'";
+		break;
+	case MS_WEATHER:
+		ret = "says 'The soil looks suspicious there.'";
 		break;
 	case MS_MODALSHOP:
 		ret = "remarks 'Eso parece sospechoso.'";
@@ -4681,6 +4690,27 @@ repairitemchoice:
 			verbl_msg = "Quit staring, you're giving me the heebie-jeebies!";
 		}
 		else verbl_msg = "I'm not following you, you evil person!";
+		break;
+
+	case MS_WEATHER:
+		if (mtmp->mtame && mtmp->mconf) {
+			verbl_msg = "Oh, I think we have a portal storm! We need to move away from all friendly NPCs so that they're outside of the reality bubble, or they'll just die!"; /* I hopefully don't have to mention just how utterly unrealistic that is, having stuff not happen just because you're more than two screens away... --Amy */
+			break;
+		}
+		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+			verbl_msg = "Agh! I got hit by lightning!";
+			break;
+		}
+		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
+			verbl_msg = "If you want another weather forecast, please wait until I've eaten!";
+			break;
+		}
+		if (mtmp->mtame) {
+			verbl_msg = "Always take the weather with you, everywhere you go!";
+		} else if (mtmp->mpeaceful) {
+			verbl_msg = "Nice weather, huh?";
+		}
+		else verbl_msg = "You look like three days of rainy weather.";
 		break;
 
 	case MS_INCISION:
@@ -7083,6 +7113,7 @@ register struct monst *mtmp;
 		case MS_HOOT:
 		case MS_RUSTLE:
 		case MS_SEMEN:
+		case MS_WEATHER:
 
 			switch (distresslevel) {
 				case 1:
