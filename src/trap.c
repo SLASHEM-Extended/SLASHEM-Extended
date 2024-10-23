@@ -27222,7 +27222,9 @@ struct trap *ttmp;
 	}
 	newexplevel();
 	deltrap(ttmp);
-	levl[trapx][trapy].typ = FOUNTAIN;
+	if (!(levl[trapx][trapy].typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) ) {
+		levl[trapx][trapy].typ = FOUNTAIN;
+	}
 	newsym(trapx, trapy);
 	level.flags.nfountains++;
 	return 1;
