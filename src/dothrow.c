@@ -3502,6 +3502,7 @@ evasionchancedone:
 			(obj->oclass == GEM_CLASS && 
 			(!objects[otyp].oc_magic || !rn2(5) )))	/* also low chance for loadstones etc. to disappear */
 			|| (obj->oartifact == ART_HOUCHOU)
+			|| (obj->oartifact == ART_VORPALITY_TEMPTATION && u.vorpalitytempt >= 100)
 			/* WAC catch Hellfire */
 			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_LONG_FIREMISSILE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))
@@ -3617,6 +3618,9 @@ evasionchancedone:
 
 		    /* mulch nastytrap: ammo breaks unconditionally no matter what --Amy */
 		    if (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone() || autismweaponcheck(ART_PIN_EM_ONCE) ) broken = 1;
+
+		    if (obj && obj->oartifact == ART_HOUCHOU) broken = 1;
+		    if (obj && obj->oartifact == ART_VORPALITY_TEMPTATION && u.vorpalitytempt >= 100) broken = 1;
 
 		    if (broken) {
 			if (*u.ushops)
