@@ -281,7 +281,7 @@
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
 #define ECold_resistance	u.uprops[COLD_RES].extrinsic
-#define IntCold_resistance	(HCold_resistance || ColdImmunity || (uwep && uwep->oartifact == ART_CUTRELEASE) || resists_cold(&youmonst) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || is_cold_resistant(youmonst.data) || (powerfulsymbiosis() && is_cold_resistant(&mons[u.usymbiote.mnum])))
+#define IntCold_resistance	(HCold_resistance || u.cryopancaketurns || ColdImmunity || (uwep && uwep->oartifact == ART_CUTRELEASE) || resists_cold(&youmonst) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || is_cold_resistant(youmonst.data) || (powerfulsymbiosis() && is_cold_resistant(&mons[u.usymbiote.mnum])))
 #define ExtCold_resistance	(playerextrinsiccoldres())
 
 #define Cold_resistance		(((IntCold_resistance && u.nonintrinsicproperty != COLD_RES) || (ExtCold_resistance && u.nonextrinsicproperty != COLD_RES)) && !Role_if(PM_ALTMER) && !hybridragontype(AD_COLD) && !NoCold_resistance)
@@ -289,7 +289,7 @@
 
 #define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || UHaveAids || (u.impossibleproperty == COLD_RES) || autismweaponcheck(ART_FLARE_FLAKE) || (uarms && uarms->oartifact == ART_HEATEM_UP) || autismringcheck(ART_DEATHLY_COLD) || autismringcheck(ART_BERNCELD) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_GAVIL) || Race_if(PM_JAVA) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define ColdImmunity		((uwep && uwep->oartifact == ART_CUTRELEASE) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_FLEEC_LIE) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP))
+#define ColdImmunity		((uwep && uwep->oartifact == ART_CUTRELEASE) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_FLEEC_LIE) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP))
 
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic

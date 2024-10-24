@@ -714,6 +714,8 @@ struct you {
 	int reddamamount;	/* for reddam nastytrap */
 	int redincamount;	/* for redinc nastytrap */
 
+	int cryopancaketurns;	/* for cryo pancake artifact */
+
 	int greencrosschance;
 	boolean greencrossopen;
 

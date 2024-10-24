@@ -11660,6 +11660,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.cryopancaketurns = 0;
 	u.reddamamount = rne(2);
 	u.redincamount = rne(2);
 	u.spellcooldown = 0;

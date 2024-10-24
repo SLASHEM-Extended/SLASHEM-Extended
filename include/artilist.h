@@ -19511,6 +19511,14 @@ A("Vorpality Temptation",				LONG_SWORD, /* randart2 melee weapon, if you're not
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Cryo Pancake",				PANCAKE, /* eating gives 5000 turns of cold immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("F the Bulletator Squad",				SENSOR_CLOAK, /* reduce damage nastytrap effect, firing automatic weapons while wearing it doesn't result in bulletators */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -11061,10 +11061,16 @@ xtraskillinit()
 
 }
 
+/* is the player allowed to use automatic firearms, hydra bow, demon crossbow, catapult or flamethrower? --Amy
+ * returns TRUE if allowed, FALSE if using the weapon in question summons bulletator squads
+ * bulletators exist specifically to combat the overpoweredness of *automatic* weapons; stuff like rifles or
+ * (regular) shotguns don't summon bulletators, but automatic weapons like SMGs or arm blasters do */
 boolean /* keyword "newroles, newraces" */
 bulletator_allowed(bulletatortype)
 int bulletatortype;
 {
+	if (uarmc && uarmc->oartifact == ART_F_THE_BULLETATOR_SQUAD) return TRUE;
+
 	if (bulletatortype == 1) /* firearms */ {
 		if (Role_if(PM_ANACHRONIST)) return TRUE;
 		if (Role_if(PM_ASTRONAUT)) return TRUE;
@@ -12682,7 +12688,7 @@ increase_damage_bonus_value()
 	if (uleft && uleft->otyp == RIN_HEAVY_ATTACK) damagebonusvalue += uleft->spe;
 	if (uright && uright->otyp == RIN_HEAVY_ATTACK) damagebonusvalue += uright->spe;
 	if (u.udamincxtra) damagebonusvalue += u.udamincxtra;
-	if (ReddamBug || u.uprops[REDDAM_BUG].extrinsic || have_reddamstone()) damagebonusvalue -= u.reddamamount;
+	if (ReddamBug || u.uprops[REDDAM_BUG].extrinsic || have_reddamstone() || (uarmc && uarmc->oartifact == ART_F_THE_BULLETATOR_SQUAD) ) damagebonusvalue -= u.reddamamount;
 
 	return damagebonusvalue;
 }

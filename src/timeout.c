@@ -262,6 +262,12 @@ nh_timeout()
 		if (!u.rangedreload) You("can once again use ranged weapons.");
 	}
 
+	if (u.cryopancaketurns) {
+		u.cryopancaketurns--;
+		if (u.cryopancaketurns < 0) u.cryopancaketurns = 0; /* fail safe */
+		if (!u.cryopancaketurns) You("are no longer immune to cold.");
+	}
+
 	if (u.badfcursed) {
 		u.badfcursed--;
 		if (u.badfcursed < 0) u.badfcursed = 0; /* fail safe */

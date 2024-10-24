@@ -8005,6 +8005,11 @@ register struct obj *otmp;
 		You_feel("lucky.");
 	}
 
+	if (otmp && otmp->oartifact == ART_CRYO_PANCAKE) {
+		u.cryopancaketurns += 5000;
+		You("feel immune to cold!");
+	}
+
 	if (otmp && otmp->oartifact == ART_RARE_RES_OBTAINED) {
 		if(!(HAcid_resistance & FROMOUTSIDE)) {
 			You(FunnyHallu ? "wanna do more acid!" : "feel less afraid of corrosives.");
