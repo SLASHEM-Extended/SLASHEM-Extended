@@ -2628,7 +2628,7 @@ register struct obj *spellbook;
 			    char qbuf[QBUFSZ];
 			    sprintf(qbuf,
 		      "This spellbook is %sdifficult to comprehend. Continue?",
-				    (read_ability < 5 ? "extremely" : read_ability < 12 ? "very " : ""));
+				    (read_ability < 5 ? "extremely " : read_ability < 12 ? "very " : ""));
 			    if (yn(qbuf) != 'y') {
 				spellbook->in_use = FALSE;
 				return(1);
