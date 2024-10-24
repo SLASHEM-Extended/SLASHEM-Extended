@@ -6411,6 +6411,25 @@ static const char *epitaphs[] = {
 	"Here lies Mordack the Bastard Wizard. He had transformed into a fire in an attempt to burn Graham alive, but Graham summoned a rain cloud and deleted Mordack from existence. And with that, the kingdom was finally saved... well, or it would have been, but there's a King's Quest 6 where the story continues with even more badguys whom Graham and Alexander have to defeat.",
 	"I believe the term is altar-camp? I really don't do it at all and I don't know where the FUCK you got that from, and if I did I wouldn't care. I get an ascension every few months... no need to be suspecting me of things.", /* based on something rebatela said */
 	"NOOOOOOO! Amy fixed the strategy of casting create monster 200 times while next to an altar! How am I going to farm those prayer boosts now? SLEX is unplayable and the opposite of fun! All the good strategies from vanilla don't work for bullshit reasons!",
+	"Here lies Fingolfin. Melkor crushed that evil bastard elf's neck as punishment for dealing eight never-healing wounds to him. Why Fingolfin had to do that in the first place instead of simply letting Melkor mind his own business, we will never know.",
+	"Here lies the version of Arda that Eru, Melkor's daddy, had envisioned. Melkor rightfully played some different music of the Valar, thereby creating a richer, more diverse Arda, but of course Eru and Tulkas had to be so evil and punish Melkor for that. At least they weren't able to undo Melkor's music, though.",
+	"Here lies Gollum, or rather, the ashes that remain of him. He jumped into the lava, but at least he also destroyed the One Ring in the process.",
+	"Here lies the One Ring. Gollum threw it into the lava. Due to his inadvertence, he also fell into the lava himself and got consumed as well.",
+	"Here lies Elendil. He had his head smashed in by Sauron's mace.",
+	"Here lies Isildur. He was such a complete failure who couldn't destroy the One Ring, and ended up catching orcish arrows in the back when he tried to run away, the coward.",
+	"Here lies Boromir. Lurtz pumped him full of arrows while shouting 'THEY MUST ALL DIE!'.",
+	"Here lies Hama, the annoying doorwarden of the golden hall who always requests everyone to put their weapons away. Eventually, a warg came along, and Hama still somehow thought it was a good idea to tell the warg to put its weapons away, except the warg's weapons are actually built into its body (teeth and claws) and therefore cannot be put away, and the warg tore Hama apart.",
+	"Here lies Deagol. He got strangled by his brother Smeagol (who is actually Gollum).",
+	"Here lies the Witch-King of Angmar. He got stabbed in the face by Eowyn. Which actually shouldn't have killed him, because Sauron was still alive at that point and as long as Sauron is alive, he can simply resurrect the Nazgul at will.",
+	"Here lies Sauron, the Lord of the Rings. When the One Ring was destroyed, Sauron's fortress inexplicably exploded, and Sauron was disintegrated in the process.",
+	"Here lies Khamul the Black Easterling. Once Sauron was dead, Khamul no longer had protection from death and so the good guys were able to finally kill him.",
+	"Here lies Dwar, Dog Lord of Waw. With Sauron gone, Dwar's ability to summon dogs could only get him so far, and eventually he was overpowered and got killed.",
+	"Here lies Ji Indur Dawndeath. After Sauron's death, Ji's own death also came swiftly.",
+	"Here lies Akhorahil the Blind. He never knew who had actually killed him, but in any case Akhorahil was no longer protected from death when Sauron died.",
+	"Here lies Hoarmurath of Dir. He had tried to protect Sauron in the tower of Dol Guldur, but when Sauron was dead, Hoarmurath got killed as well.",
+	"Here lies Adunaphel the Quiet. She was the only female ringwraith, but that didn't protect her from the wrath of the Gondolindrim and soldiers of Minas Anor, who proceeded to stab her after Sauron was killed.",
+	"Here lies Ren the Unclean. When Arda was freed of the corruption that Sauron had been spreading, the heroes of that battle then decided to seek and destroy all remaining sources of corruption, and so they killed Ren as well.",
+	"Here lies Uvatha the Horseman. After the defeat of Sauron, Bree was finally able to put Uvatha down for good.",
 
 };
 
