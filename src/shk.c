@@ -6331,7 +6331,7 @@ shk_appraisal(slang, shkp)
 
 	/* what, you think you can just easily appraise the charges in a tool? ha! --Amy */
 	if (obj && obj->oclass == TOOL_CLASS && !(is_weptool(obj) ) ) {
-		charge *= 20;
+		charge *= 5;
 		if (!rn2(111)) {
 			ESHK(shkp)->services &= ~SHK_APPRAISE;
 		}
@@ -6457,7 +6457,7 @@ shk_wand_appraisal(slang, shkp)
 	/* Pick object */
 	if ( !(obj = getobj(wand_types, "appraise"))) return;
 
-	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops)) * 5;
+	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops)) * 2;
 
 	/* Smooth out the charge a bit */
 	shk_smooth_charge(&charge, 5, NOBOUND);
