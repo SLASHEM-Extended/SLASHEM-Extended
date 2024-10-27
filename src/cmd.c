@@ -6981,7 +6981,7 @@ boolean guaranteed;
 	    you_are(buf);
 	} else if ((guaranteed || !rn2(10)) && u.ustuck) {
 	    sprintf(buf, "%s %s",
-		    (Upolyd && sticks(youmonst.data)) ? "holding" : "held by",
+		    (Upolyd && (sticks(youmonst.data) ) || (uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) ) ? "holding" : "held by",
 		    a_monnam(u.ustuck));
 	    you_are(buf);
 	}
@@ -11642,7 +11642,7 @@ int final;
 	    dump(youwere, buf);
 	} else if (u.ustuck) {
 	    sprintf(buf, "%s %s",
-		    (Upolyd && sticks(youmonst.data)) ? "holding" : "held by",
+		    (Upolyd && (sticks(youmonst.data) ) || (uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) ) ? "holding" : "held by",
 		    a_monnam(u.ustuck));
 	    dump(youwere, buf);
 	}
@@ -11975,7 +11975,7 @@ minimal_enlightenment()
 		if (Strangled) sprintf(eos(statline), "strangled, ");
 		if (PlayerBleeds) sprintf(eos(statline), "bleeding, ");
 		if (Vomiting) sprintf(eos(statline), "vomiting, ");
-		if(u.ustuck && !u.uswallow && !sticks(youmonst.data)) sprintf(eos(statline), "held by a monster, ");
+		if(u.ustuck && !u.uswallow && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) sprintf(eos(statline), "held by a monster, ");
 		if(near_capacity() > UNENCUMBERED) sprintf(eos(statline), "%s, ", encx_stat[near_capacity()]);
 		if (!YouAreThirsty && u.urealedibility && u.uhunger >= 4500) sprintf(eos(statline), "oversatiated, ");
 		else if(!YouAreThirsty && strcmp(hux_stat[u.uhs], "        ")) sprintf(eos(statline), "%s, ", hux_stat[u.uhs]);

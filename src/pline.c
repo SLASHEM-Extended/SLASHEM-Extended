@@ -929,6 +929,7 @@ register struct monst *mtmp;
 	if (mtmp->minvis)	  strcat(info, ", invisible");
 	if (mtmp == u.ustuck)	  strcat(info,
 			(sticks(youmonst.data)) ? ", held by you" :
+			(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) ? ", held by you" :
 				u.uswallow ? (is_animal(u.ustuck->data) ?
 				", swallowed you" :
 				", engulfed you") :
@@ -1012,6 +1013,7 @@ register struct monst *mtmp;
 	if (mtmp->minvis)	  strcat(info, ", invisible");
 	if (mtmp == u.ustuck)	  strcat(info,
 			(sticks(youmonst.data)) ? ", held by you" :
+			(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) ? ", held by you" :
 				u.uswallow ? (is_animal(u.ustuck->data) ?
 				", swallowed you" :
 				", engulfed you") :
@@ -1097,6 +1099,7 @@ register struct monst *mtmp;
 	if (mtmp->minvis)	  strcat(info, ", invisible");
 	if (mtmp == u.ustuck)	  strcat(info,
 			(sticks(youmonst.data)) ? ", held by you" :
+			(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) ? ", held by you" :
 				u.uswallow ? (is_animal(u.ustuck->data) ?
 				", swallowed you" :
 				", engulfed you") :
@@ -1174,6 +1177,8 @@ ustatusline()
 	if (Invis)		strcat(info, ", invisible");
 	if (u.ustuck) {
 	    if (sticks(youmonst.data))
+		strcat(info, ", holding ");
+	    else if (uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) )
 		strcat(info, ", holding ");
 	    else
 		strcat(info, ", held by ");

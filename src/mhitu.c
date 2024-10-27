@@ -7194,7 +7194,7 @@ hitmu(mtmp, mattk)
 
 		}
 
-		if (mattk->aatyp == AT_HUGS && !sticks(youmonst.data)) {
+		if (mattk->aatyp == AT_HUGS && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 		    if(!u.ustuck && rn2(2)) {
 			if (u_slip_free(mtmp, mattk)) {
 			    dmg = 0;
@@ -8557,7 +8557,7 @@ dopois:
 			}
 			break;
 		    case 5: case 6:
-			if (!u.ustuck && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -8837,7 +8837,7 @@ dopois:
 
 	    case AD_STCK:
 		hitmsg(mtmp, mattk);
-		if (uncancelled && !u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !sticks(youmonst.data)) {
+		if (uncancelled && !u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -8852,7 +8852,7 @@ dopois:
 			break;
 		}
 
-		if ((!mtmp->mcan || u.ustuck == mtmp) && !sticks(youmonst.data)) {
+		if ((!mtmp->mcan || u.ustuck == mtmp) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 		    if (!u.ustuck && !rn2(10)) {
 			if (u_slip_free(mtmp, mattk) || statsavingthrow) {
 			    dmg = 0;
@@ -11978,7 +11978,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			}
 			break;
 		    case 5: case 6:
-			if (!u.ustuck && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -12299,7 +12299,7 @@ do_stone2:
 		break;
 	    case AD_STCK:
 	    pline("You are covered with some sticky substance!");
-		if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !sticks(youmonst.data)) {
+		if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 			setustuck(mtmp);
 			pline("%s grabs you!", Monnam(mtmp));
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
@@ -16642,7 +16642,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	    case AD_STCK:
 		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && (issoviet || rn2(5)) )
 		{ 
-			if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uarmg && uarmg->oartifact == ART_GRAPPLER_S_GRASP) && !(uwep && uwep->oartifact == ART_LATCHSTACK) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s gazes to hold you in place!", Monnam(mtmp));
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -17082,7 +17082,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			}
 			break;
 		    case 5: case 6:
-			if (!u.ustuck && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				setustuck(mtmp);
 				pline("%s grabs you!", Monnam(mtmp));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");

@@ -305,7 +305,7 @@ lookat(x, y, buf, monbuf)
 	    }
 	    if (u.ustuck == mtmp)
 		strcat(buf, (Upolyd && sticks(youmonst.data)) ?
-			", being held" : ", holding you");
+			", being held" : (uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) ? ", being held" : ", holding you");
 	    if (mtmp->mleashed)
 		strcat(buf, ", leashed to you");
 

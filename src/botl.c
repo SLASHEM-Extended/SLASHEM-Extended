@@ -1192,7 +1192,7 @@ bot2str(char *newbot2)
 #else
 		strcat(nb = eos(nb), flags.showlongstats ? " XHallu" : " XHal");
 #endif
-	if(u.ustuck && !u.uswallow && !sticks(youmonst.data))
+	if(u.ustuck && !u.uswallow && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data))
 #if defined(STATUS_COLORS) && defined(TEXTCOLOR)
 	     	add_colored_text(flags.showlongstats ? "Held" : "Hld", newbot2);
 #else

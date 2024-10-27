@@ -2902,7 +2902,7 @@ moveloop()
 		}
 
 		if (u.martialstyle == MARTIALSTYLE_JUDO && (multi >= 0) && !uwep && (!u.twoweap || !uswapwep)) {
-			if (u.ustuck && !u.uswallow && !sticks(youmonst.data)) {
+			if (u.ustuck && !u.uswallow && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				You("break the hold!");
 				setustuck(0);
 			}
@@ -16022,7 +16022,7 @@ past4:
 	}
 
 	if (u.martialstyle == MARTIALSTYLE_JUDO && (multi >= 0) && !uwep && (!u.twoweap || !uswapwep)) {
-		if (u.ustuck && !u.uswallow && !sticks(youmonst.data)) {
+		if (u.ustuck && !u.uswallow && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 			You("break the hold!");
 			setustuck(0);
 		}

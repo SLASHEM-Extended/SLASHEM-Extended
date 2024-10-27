@@ -1849,7 +1849,7 @@ doengrave()
 		return(0);
 	}
 
-	if (isevilvariant && u.ustuck && !u.uswallow && !sticks(youmonst.data)) {
+	if (isevilvariant && u.ustuck && !u.uswallow && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 		You("are being held, and cannot engrave anything because your %s are being squeezed.", makeplural(body_part(HAND)) );
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(0);

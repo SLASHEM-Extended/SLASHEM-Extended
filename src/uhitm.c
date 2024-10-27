@@ -1443,7 +1443,7 @@ int dieroll;
 			monflee(mon, rnd(100), FALSE, TRUE);
 		    } else monflee(mon, rnd(10), FALSE, TRUE);
 
-		    if(u.ustuck == mon && !u.uswallow && !sticks(youmonst.data))
+		    if(u.ustuck == mon && !u.uswallow && !sticks(youmonst.data) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) )
 			setustuck(0);
 		}
 		/* Vorpal Blade hit converted to miss */
@@ -13797,7 +13797,7 @@ boolean ranged;
 
 	      case AD_STCK:
 	      case AD_WRAP:
-			if (malive && !u.ustuck && !sticks(youmonst.data)) {
+			if (malive && !u.ustuck && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				setustuck(mon);
 				pline("%s sticks to you!", Monnam(mon));
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -13953,7 +13953,7 @@ boolean ranged;
 			}
 			break;
 		    case 5: case 6:
-			if (!u.ustuck && !sticks(youmonst.data)) {
+			if (!u.ustuck && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) && !sticks(youmonst.data)) {
 				setustuck(mon);
 				pline("%s grabs you!", Monnam(mon));
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Tam net vykhoda! Ty predatel' russkogo naroda i, sledovatel'no, budut zaderzhany navsegda!" : "Wroa!");
