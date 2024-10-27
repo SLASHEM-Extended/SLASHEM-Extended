@@ -72,6 +72,7 @@ static void shk_identify(char *, struct monst *);
 static void shk_uncurse(char *, struct monst *);
 static void shk_bless(char *, struct monst *);
 static void shk_appraisal(char *, struct monst *);
+static void shk_wand_appraisal(char *, struct monst *);
 static void shk_weapon_works(char *, struct monst *);
 static void shk_armor_works(char *, struct monst *);
 static void shk_charge(char *, struct monst *);
@@ -1844,6 +1845,14 @@ shk_other_services()
 		add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE,
 				"Appraise", MENU_UNSELECTED);
 	}
+
+	/* Wand appraisal for wand shops */
+	if ((ESHK(shkp)->services & (SHK_APPRAISE)) &&
+			(shk_class_match(WAND_CLASS, shkp) == SHK_MATCH)) {
+		any.a_int = 9;
+		add_menu(tmpwin, NO_GLYPH, &any , 'a', 0, ATR_NONE,
+				"Appraise", MENU_UNSELECTED);
+	}
   
   	/* Weapon-works!  Only a weapon store. */
 	if ((ESHK(shkp)->services & (SHK_SPECIAL_A|SHK_SPECIAL_B|SHK_SPECIAL_C))
@@ -1921,6 +1930,9 @@ shk_other_services()
 	                break;
 	        case 8:
 	                shk_bless(slang, shkp);
+	                break;
+	        case 9:
+	                shk_wand_appraisal(slang, shkp);
 	                break;
 
 	        default:
@@ -5883,6 +5895,10 @@ sasc_bug(struct obj *op, unsigned x){
 static NEARDATA const char identify_types[] = { ALL_CLASSES, 0 };
 static NEARDATA const char weapon_types[] = { WEAPON_CLASS, TOOL_CLASS, CHAIN_CLASS, VENOM_CLASS, BALL_CLASS, GEM_CLASS, 0 };
 static NEARDATA const char armor_types[] = { ARMOR_CLASS, 0 };
+static NEARDATA const char wand_types[] = { WAND_CLASS, 0 };
+static NEARDATA const char tool_types[] = { TOOL_CLASS, 0 };
+static NEARDATA const char ring_types[] = { RING_CLASS, IMPLANT_CLASS, 0 };
+static NEARDATA const char spbook_types[] = { SPBOOK_CLASS, 0 };
 
 /*
 ** FUNCTION shk_identify
@@ -6313,6 +6329,14 @@ shk_appraisal(slang, shkp)
 
 	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops)) / 3;
 
+	/* what, you think you can just easily appraise the charges in a tool? ha! --Amy */
+	if (obj && obj->oclass == TOOL_CLASS && !(is_weptool(obj) ) ) {
+		charge *= 20;
+		if (!rn2(111)) {
+			ESHK(shkp)->services &= ~SHK_APPRAISE;
+		}
+	}
+
 	/* Smooth out the charge a bit */
 	shk_smooth_charge(&charge, 5, NOBOUND);
 
@@ -6413,6 +6437,58 @@ shk_appraisal(slang, shkp)
 		}
 		else pline("Sovetskiy khochet, chtoby vse bylo der'mo, dazhe izmeneniya, kotoryye, ochevidno, vygodny, schitayutsya im zlymi, potomu chto Emi sdelala ikh. Takim obrazom, plyus vashego oruzhiya ne oboznachen khar khar!");
 	}
+}
+
+
+/*
+** FUNCTION shk_wand_appraisal
+**
+** Appraise a wand
+*/
+
+static void
+shk_wand_appraisal(slang, shkp)
+	char *slang;
+	struct monst *shkp;
+{
+	struct obj *obj;                /* The object picked            */
+	int charge;                     /* How much for appraisal       */
+
+	/* Pick object */
+	if ( !(obj = getobj(wand_types, "appraise"))) return;
+
+	charge = get_cost(obj, shop_keeper(/* roomno= */*u.ushops)) * 5;
+
+	/* Smooth out the charge a bit */
+	shk_smooth_charge(&charge, 5, NOBOUND);
+
+	verbalize("Ok, %s, let's see what we have here.", slang);
+
+	/* Go ahead? */
+	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
+
+	if (!rn2(100)) {
+		ESHK(shkp)->services &= ~SHK_APPRAISE;
+	}
+
+	/* Shopkeeper deviousness */
+	if (Confusion && !Conf_resist)
+	{
+		pline("The numbers get all mixed up in your head.");
+		return;
+	}
+	else if (Hallucination)
+	{
+		You("hear %s say it has a thousand charges.", mon_nam(shkp));
+		return;
+	}
+
+	obj->known = TRUE;
+	if (u.enchantrecskill < 1 || !rn2(u.enchantrecskill)) {
+		u.enchantrecskill++;
+		if (u.enchantrecskill > 250) u.enchantrecskill = 250;
+	}
+	verbalize("It is %s", doname(obj));
 }
 
 
@@ -6788,10 +6864,6 @@ shk_armor_works(slang, shkp)
 **
 ** Charge something (for a price!)
 */
-static NEARDATA const char wand_types[] = { WAND_CLASS, 0 };
-static NEARDATA const char tool_types[] = { TOOL_CLASS, 0 };
-static NEARDATA const char ring_types[] = { RING_CLASS, IMPLANT_CLASS, 0 };
-static NEARDATA const char spbook_types[] = { SPBOOK_CLASS, 0 };
 
 static void
 shk_charge(slang, shkp)

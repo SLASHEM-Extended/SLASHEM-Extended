@@ -1648,6 +1648,9 @@ struct monst *shk;
 	if (!rn2(2) && shk_class_match(WEAPON_CLASS, shk))
 		ESHK(shk)->services |= SHK_APPRAISE;
 
+	if (!rn2(5) && (shk_class_match(WAND_CLASS, shk) == SHK_MATCH) )
+		ESHK(shk)->services |= SHK_APPRAISE;
+
 	if ((shk_class_match(WEAPON_CLASS, shk) == SHK_MATCH) ||
 	(shk_class_match(ARMOR_CLASS, shk) == SHK_MATCH) ||
 	(shk_class_match(WAND_CLASS, shk) == SHK_MATCH) ||
