@@ -467,6 +467,7 @@ struct monst {
 	boolean phototaken;	/* for MS_PHOTO, should lower the chance of them photographing you after the first time */
 	int repaircredit;	/* for MS_REPAIR, used to pay for their service */
 	boolean singability;	/* for MS_SING */
+	boolean ruinedshoe;	/* for MS_SHOE if you used meltee */
 
 	struct obj *mw;
 	long misc_worn_check;

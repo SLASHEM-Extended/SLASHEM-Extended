@@ -677,6 +677,10 @@ register struct monst *mtmp;
 		return(0);
 	}
 
+	if (mtmp->ruinedshoe) {
+		return(0); /* cannot act anymore */
+	}
+
 	if (mtmp->handytime) {
 		mtmp->handytime--;
 		if (mtmp->handytime < 0) mtmp->handytime = 0; /* fail safe */

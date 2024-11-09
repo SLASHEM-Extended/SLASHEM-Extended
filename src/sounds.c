@@ -5247,7 +5247,9 @@ metalmafiaagain:
 	    break;
 	case MS_SHOE:
 
-		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
+		if (mtmp->ruinedshoe) {
+			pline_msg = "is unresponsive.";
+		} else if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
 			if (u.usteed == mtmp)
 				verbl_msg = "Why do you wear us out like that? Can't you, like, try to avoid the mud and dogshit?";
 			else

@@ -5017,7 +5017,7 @@ dotech()
 			break;
 
 		case T_MELTEE:
-			pline("Shoots acid rays in all directions and may destroy iron bars.");
+			pline("Shoots acid rays in all directions and may destroy iron bars. It can also be used to ruin an adjacent shoe monster, but only if it's not an open-toed one.");
 			break;
 
 		case T_WOMAN_NOISES:
@@ -9775,28 +9775,146 @@ cardtrickchoice:
 		case T_MELTEE:
 
 			{
-			int melteestrength = 1;
-			if (techlevX(tech_no) > 9) melteestrength += (techlevX(tech_no) / 10);
+				register struct monst *nexusmon, *nextmon;
 
-			if (practicantterror) {
-				pline("%s thunders: 'What do you think you're doing here, peeing in my laboratory? That makes 10000 zorkmids, and your mirror is confiscated too to make you hopefully repent your deeds!'", noroelaname());
-				fineforpracticant(10000, 0, 0);
-				u.uprops[DEAC_REFLECTING].intrinsic += 10000;
+				for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				    nextmon = nexusmon->nmon; /* trap might kill mon */
+				    if (DEADMONSTER(nexusmon)) continue;
+				    if (!monnear(nexusmon, u.ux, u.uy)) continue;
+				    if (monstersoundtype(nexusmon) != MS_SHOE) continue;
+				    if (nexusmon->ruinedshoe) continue;
+
+				    pline("You have the possibility of ruining %s.", mon_nam(nexusmon));
+				    if (yn("Perform the evil act of ruining the female shoe?") == 'y') {
+					if (opentoeshoemonster(nexusmon->data)) {
+
+						if (practicantterror) {
+							pline("%s thunders: 'You pay 10000 zorkmids for trying to ruin the other practicants' property!'", noroelaname());
+							fineforpracticant(10000, 0, 0);
+						}
+
+						if (flags.female) pline("You pee into %s... but thankfully they're open-toed, so the pee just flows out at the front and doesn't harm the shoes all that much.", mon_nam(nexusmon) );
+						else pline("Your penis urinates into %s... but thankfully they're open-toed, so your urine just rolls off harmlessly.", mon_nam(nexusmon) );
+						adjalign(-50); /* you're evil for even trying */
+					} else {
+
+						if (practicantterror) {
+							pline("%s thunders: 'That takes the cake, 'practicant'. For this huge crime you pay 100000 zorkmids. And all your properties are deactivated for a long time to come, which will hopefully make you realize just how much you fucked up this time.'", noroelaname());
+							fineforpracticant(100000, 0, 0);
+
+							u.uprops[DEAC_FIRE_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_COLD_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SLEEP_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DISINT_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SHOCK_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_POISON_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DRAIN_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SICK_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_ANTIMAGIC].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_ACID_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_STONE_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_FEAR_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SEE_INVIS].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_TELEPAT].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_WARNING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SEARCHING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_CLAIRVOYANT].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_INFRAVISION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DETECT_MONSTERS].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_INVIS].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DISPLACED].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_STEALTH].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_JUMPING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_TELEPORT_CONTROL].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_FLYING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_MAGICAL_BREATHING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_PASSES_WALLS].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SLOW_DIGESTION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_HALF_SPDAM].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_HALF_PHDAM].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_ENERGY_REGENERATION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_FAST].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_REFLECTING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_FREE_ACTION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_HALLU_PARTY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DRUNKEN_BOXING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_STUNNOPATHY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_NUMBOPATHY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DIMMOPATHY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_FREEZOPATHY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_STONED_CHILLER].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_CORROSIVITY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_FEAR_FACTOR].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_BURNOPATHY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SICKOPATHY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_KEEN_MEMORY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_THE_FORCE].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SIGHT_BONUS].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_VERSUS_CURSES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_STUN_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_CONF_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DOUBLE_ATTACK].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_QUAD_ATTACK].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_PSI_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_WONDERLEGS].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_GLIB_COMBAT].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_MANALEECH].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_PEACEVISION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_CONT_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DISCOUNT_ACTION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_FULL_NUTRIENT].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_TECHNICALITY].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DEFUSING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_MYSTERY_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SPELLBOOST].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_MAGIC_FIND].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_SCENT_VIEW].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_CONTROL_MAGIC].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_EXP_BOOST].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_ASTRAL_VISION].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_BLIND_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_HALLUC_RES].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+							u.uprops[DEAC_PAIN_SENSE].intrinsic += rnz( (monster_difficulty() * 10000) + 1);
+
+						}
+
+						if (flags.female) pline("You pee into %s, which end up ruined and unable to continue fighting. You evil woman.", mon_nam(nexusmon) );
+						else pline("Your penis urinates into %s, and they can no longer fight. Yet you just wouldn't stop, and continue filling the beautiful lady shoe with your urine until they're full because you're such an evil person.", mon_nam(nexusmon) );
+						increasesincounter(1);
+						u.alignlim--;
+					      adjalign(-1000);
+						nexusmon->ruinedshoe = TRUE;
+					}
+					break; /* for loop */
+				    } /* player said yes */
+
+				}
+
+				int melteestrength = 1;
+				if (techlevX(tech_no) > 9) melteestrength += (techlevX(tech_no) / 10);
+
+				if (practicantterror) {
+					pline("%s thunders: 'What do you think you're doing here, peeing in my laboratory? That makes 10000 zorkmids, and your mirror is confiscated too to make you hopefully repent your deeds!'", noroelaname());
+					fineforpracticant(10000, 0, 0);
+					u.uprops[DEAC_REFLECTING].intrinsic += 10000;
+				}
+
+			    	techt_inuse(tech_no) = 1;
+				buzz(17, melteestrength, u.ux, u.uy, -1, 0);
+				buzz(17, melteestrength, u.ux, u.uy, 1, 0);
+				buzz(17, melteestrength, u.ux, u.uy, -1, 1);
+				buzz(17, melteestrength, u.ux, u.uy, 1, 1);
+				buzz(17, melteestrength, u.ux, u.uy, 0, 1);
+				buzz(17, melteestrength, u.ux, u.uy, -1, -1);
+				buzz(17, melteestrength, u.ux, u.uy, 1, -1);
+				buzz(17, melteestrength, u.ux, u.uy, 0, -1);
+			    	techt_inuse(tech_no) = 0;
+
 			}
-
-		    	techt_inuse(tech_no) = 1;
-			buzz(17, melteestrength, u.ux, u.uy, -1, 0);
-			buzz(17, melteestrength, u.ux, u.uy, 1, 0);
-			buzz(17, melteestrength, u.ux, u.uy, -1, 1);
-			buzz(17, melteestrength, u.ux, u.uy, 1, 1);
-			buzz(17, melteestrength, u.ux, u.uy, 0, 1);
-			buzz(17, melteestrength, u.ux, u.uy, -1, -1);
-			buzz(17, melteestrength, u.ux, u.uy, 1, -1);
-			buzz(17, melteestrength, u.ux, u.uy, 0, -1);
-		    	techt_inuse(tech_no) = 0;
-
-			}
-
 			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
 			break;

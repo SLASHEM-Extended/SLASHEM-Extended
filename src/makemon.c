@@ -25673,6 +25673,7 @@ register int	mmflags;
 	mtmp->handytime = 0;
 	mtmp->handyfirst = 0;
 	mtmp->phototaken = 0;
+	mtmp->ruinedshoe = 0;
 	mtmp->repaircredit = 0;
 	mtmp->singability = 0;
 	mtmp->hominglazer = 0;
