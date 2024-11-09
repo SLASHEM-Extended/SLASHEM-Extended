@@ -5002,7 +5002,7 @@ secureidchoice:
 			(void) doredraw();
 			break;
 		case WAN_CREATE_MONSTER:
-			known = create_critters(rn2(23) ? 1 : rn1(7,2),
+			known = create_critters(rn2(23) ? 1 : rno(8),
 					(struct permonst *)0);
 			break;
 		case WAN_CREATE_FAMILIAR:
@@ -5498,7 +5498,7 @@ chargingchoice:
 				if(!findit()) return;
 				break;
 			case 3 : 
-				create_critters(rn2(23) ? 1 : rn1(7,2), (struct permonst *)0);
+				create_critters(rn2(23) ? 1 : rno(8), (struct permonst *)0);
 				break;
 			case 4 : 
 				create_critters(rn1(7,6), (struct permonst *)0);

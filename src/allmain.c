@@ -386,11 +386,11 @@ moveloop()
 			/* new group spawn system by Amy */
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet ) {
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				randmnst = (rn2(187) + 1);
 				randmnsx = (rn2(100) + 1);
 
@@ -549,11 +549,11 @@ moveloop()
 
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet ) {
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				randmnst = (rn2(187) + 1);
 				randmnsx = (rn2(100) + 1);
 			      cx = rn2(COLNO);
@@ -716,11 +716,11 @@ moveloop()
 
 			if (!rn2(ishaxor ? 5000 : 10000) && (moves < 10000 || rn2(3)) && !issoviet) {
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				if (randsp > 1) randsp = rnd(randsp);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that someone reseeded the RNG!" : "You feel that someone was busy hiding treasure!");
@@ -736,11 +736,11 @@ moveloop()
 
 			if (!rn2(ishaxor ? 125000 : 250000) && (moves < 10000 || rn2(3)) && (moves < 50000 || !rn2(3)) && !issoviet) {
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				if (randsp > 1) randsp = rnd(randsp);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that the RNG loves you!" : "You feel that someone was busy hiding useful items!");
@@ -919,12 +919,11 @@ moveloop()
 
 			if (!rn2(nastyitemchance) && !issoviet) {
 
-				randsp = (rn3(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
-				if (randsp > 1) randsp = rnd(randsp);
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that the RNG hates you!" : "You feel that the monsters are coming for you with everything they got!");
 
@@ -951,11 +950,11 @@ moveloop()
 
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of one single monster species --Amy */
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				randmonstforspawn = rndmonst();
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone hacked into the game data files to prevent you from ascending!" : "You feel the arrival of monsters!");
@@ -971,11 +970,11 @@ moveloop()
 
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of colored monster species --Amy */
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				monstercolor = rnd(15);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "The colors, the colors!" : "You feel a colorful sensation!");
@@ -990,11 +989,11 @@ moveloop()
 
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of themed monster species --Amy */
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				monstercolor = rnd(434);
 
 				if (wizard || !rn2(10)) pline(FunnyHallu ? "Someone got in here! Who could that be?" : "You feel that a group has arrived!");
@@ -1009,11 +1008,11 @@ moveloop()
 
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of one single monster species --Amy */
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				randmonstforspawn = rndmonst();
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
@@ -1031,11 +1030,11 @@ moveloop()
 
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of colored monster species --Amy */
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				monstercolor = rnd(15);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
@@ -1052,11 +1051,11 @@ moveloop()
 
 			if (!rn2(xtraclock) && !rn2(2) && !issoviet) { /* group of themed monster species --Amy */
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 				monstercolor = rnd(434);
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
@@ -3276,11 +3275,11 @@ moveloop()
 
 			randsp = 1;
 			if (!rn2(10)) {
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 			}
 
 			for (i = 0; i < randsp; i++) {
@@ -3357,7 +3356,7 @@ moveloop()
 			u.yawmtime++;
 		}
 
-		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(2000)) {
+		if ((KillerRoomEffect || (u.martialstyle == MARTIALSTYLE_WRESTLING) || u.uprops[KILLER_ROOM_EFFECT].extrinsic || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || autismweaponcheck(ART_MAGYAR_IDEA) || have_killerroomstone()) && !rn2(4000)) {
 			int killerroomtype = rnd(28);
 			struct permonst *killermonster = &mons[PM_ANT]; /* arbitrary */
 
@@ -3372,11 +3371,11 @@ moveloop()
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rnd(14);
+			if (!rn2(10)) randsp += rnd(2);
+			if (!rn2(50)) randsp += rnd(5);
+			if (!rn2(250)) randsp += rnd(10);
+			if (!rn2(1000)) randsp += rnd(20);
 			if (uarmf && uarmf->oartifact == ART_TRULY_MAGNIFIED) randsp *= 3;
 
 			for (i = 0; i < randsp; i++) {
@@ -4935,7 +4934,7 @@ trapsdone:
 			}
 		}
 
-		if (FemtrapActiveJennifer && !rn2(SuperFemtrapJennifer ? 1000 : 2000)) {
+		if (FemtrapActiveJennifer && !rn2(SuperFemtrapJennifer ? 2000 : 4000)) {
 			register struct monst *jennymon;
 
 			struct permonst *pm = 0;
@@ -6012,7 +6011,7 @@ newbossPOMP:
 
 		}
 
-		if (Role_if(PM_CLIMACTERIAL) && !rn2(1000) && u.ulevel >= 15) {
+		if (Role_if(PM_CLIMACTERIAL) && !rn2(5000) && u.ulevel >= 15) {
 			int x, y;
 			x = rn1(COLNO-3,2);
 			y = rn2(ROWNO);
@@ -6094,7 +6093,7 @@ newbossPOMP:
 
 		}
 
-		if (FemtrapActiveMayBritt && !rn2(SuperFemtrapMayBritt ? 2500 : 5000)) {
+		if (FemtrapActiveMayBritt && !rn2(SuperFemtrapMayBritt ? 10000 : 20000)) {
 
 			register struct monst *offmon;
 			struct permonst *pm = 0;
@@ -6285,7 +6284,7 @@ newbossUTE:
 							reset_rndmonst(NON_PM);
 						}
 
-						int randsp = rnd(6);
+						int randsp = rno(6);
 
 						for (i = 0; i < randsp; i++) {
 
@@ -6655,11 +6654,11 @@ controlagain:
 			DifficultyIncreased += 1;
 			HighlevelStatus += 1;
 
-			randsp = (rn2(50) + 11);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rnd(14);
+			if (!rn2(10)) randsp += rnd(2);
+			if (!rn2(50)) randsp += rnd(5);
+			if (!rn2(250)) randsp += rnd(10);
+			if (!rn2(1000)) randsp += rnd(20);
 			monstercolor = rnd(434);
 
 			for (i = 0; i < randsp; i++) {
@@ -6846,7 +6845,7 @@ controlagain:
 
 		if (!rn2(Aggravate_monster ? 4 : 20)) reset_rndmonst(NON_PM);
 
-		if (IntAggravate_monster && !(uwep && uwep->oartifact == ART_FREE_FROM_STRAIN && uwep->lamplit) && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
+		if (IntAggravate_monster && !(uwep && uwep->oartifact == ART_FREE_FROM_STRAIN && uwep->lamplit) && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 10000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -6882,7 +6881,7 @@ controlagain:
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		}
 
-		if (!rn2(SuperFemtrapManuela ? 1000 : 2000) && FemtrapActiveManuela ) {
+		if (!rn2(SuperFemtrapManuela ? 2000 : 4000) && FemtrapActiveManuela ) {
 			u.aggravation = 1;
 			u.heavyaggravation = 1;
 
@@ -6919,7 +6918,7 @@ newbossMANU:
 			stop_occupation();
 		}
 
-		if (!rn2(500) && FemtrapActiveNatalia && !flags.female) {
+		if (!rn2(2000) && FemtrapActiveNatalia && !flags.female) {
 
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -6953,7 +6952,7 @@ newbossNATA:
 			u.mondiffhack = 0;
 		}
 
-		if (!rn2(SuperFemtrapSusanne ? 5000 : 10000) && FemtrapActiveSusanne ) {
+		if (!rn2(SuperFemtrapSusanne ? 10000 : 20000) && FemtrapActiveSusanne ) {
 			u.aggravation = 1;
 			u.heavyaggravation = 1;
 			DifficultyIncreased += 1;
@@ -6998,7 +6997,7 @@ newbossSUSA:
 			stop_occupation();
 		}
 
-		if (!rn2(SuperFemtrapKerstin ? 500 : 1000) && FemtrapActiveKerstin ) {
+		if (!rn2(SuperFemtrapKerstin ? 1500 : 3000) && FemtrapActiveKerstin ) {
 
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -7041,7 +7040,7 @@ newbossKERSTIN:
 
 		}
 
-		if (!rn2(SuperFemtrapKsenia ? 1000 : 2000) && FemtrapActiveKsenia ) {
+		if (!rn2(SuperFemtrapKsenia ? 3000 : 6000) && FemtrapActiveKsenia ) {
 
 			struct permonst *pm = 0;
 			int attempts = 0;
@@ -7111,7 +7110,7 @@ newbossKLARA:
 
 		}
 
-		if (uarm && uarm->oartifact == ART_ROBE_OF_INFESTATION && !rn2(5000)) {
+		if (uarm && uarm->oartifact == ART_ROBE_OF_INFESTATION && !rn2(10000)) {
 			int aggroamount = rnd(12);
 			boolean infesttype = rn2(2) ? TRUE : FALSE;
 			if (isfriday) aggroamount *= 2;
@@ -7154,7 +7153,7 @@ newbossKLARA:
 
 		}
 
-		if (uarmc && uarmc->oartifact == ART_GIVE_US_TODAY_OUR_DAILY_GA && !rn2(2000)) {
+		if (uarmc && uarmc->oartifact == ART_GIVE_US_TODAY_OUR_DAILY_GA && !rn2(5000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -7179,7 +7178,7 @@ newbossKLARA:
 
 		}
 
-		if (FemtrapActiveJanina && !rn2(SuperFemtrapJanina ? 500 : 1000)) {
+		if (FemtrapActiveJanina && !rn2(SuperFemtrapJanina ? 1500 : 3000)) {
 			int aggroamount = rnd(10);
 			if (isfriday) aggroamount *= 2;
 			reset_rndmonst(NON_PM);
@@ -7223,7 +7222,7 @@ newbossJANI:
 
 		}
 
-		if (ExtAggravate_monster && !(uwep && uwep->oartifact == ART_FREE_FROM_STRAIN && uwep->lamplit) && !rn2(StrongStealth ? 10000 : Stealth ? 5000 : 1000)) {
+		if (ExtAggravate_monster && !(uwep && uwep->oartifact == ART_FREE_FROM_STRAIN && uwep->lamplit) && !rn2(StrongStealth ? 40000 : Stealth ? 20000 : 4000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -7281,11 +7280,11 @@ newbossJANI:
 
 			if (!rn2(4)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 
@@ -7445,11 +7444,11 @@ newbossJANI:
 
 			else if (!rn2(3)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmonstforspawn = rndmonst();
 
 			if (wizard || !rn2(10)) You_feel("the arrival of monsters!");
@@ -7465,11 +7464,11 @@ newbossJANI:
 
 			else if (!rn2(2)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(15);
 
 			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
@@ -7485,11 +7484,11 @@ newbossJANI:
 
 			else {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(434);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
@@ -7906,7 +7905,7 @@ newbossJANI:
 
 		if (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY && !rn2(1000) && !uarmf->cursed) curse(uarmf);
 
-		if (uarm && uarm->oartifact == ART_A_ROOMFUL_WILL_BE_A_CHALLE && !rn2(5000)) {
+		if (uarm && uarm->oartifact == ART_A_ROOMFUL_WILL_BE_A_CHALLE && !rn2(10000)) {
 			int aggroamount = rn1(9,9);
 
 			struct monst *giantbase;
@@ -8017,7 +8016,7 @@ newbossJANI:
 
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER && !rn2(1000)) u.alignlim++;
 
-		if (uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
+		if (uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 20000)) {
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
@@ -8059,7 +8058,7 @@ newbossFK:
 
 		}
 
-		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 5000)) {
+		if (Role_if(PM_FEMINIST) && u.ualign.record < 0 && !rn2(StrongStealth ? 100000 : Stealth ? 50000 : 20000)) {
 		/* feminist aggravation idea by bugsniper */
 
 			int aggroamount = rnd(6);
@@ -8103,7 +8102,7 @@ newbossF:
 
 		}
 
-		if (uwep && uwep->oartifact == ART_WOMAN_UP_CJ && !rn2(10000)) {
+		if (uwep && uwep->oartifact == ART_WOMAN_UP_CJ && !rn2(20000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -8146,7 +8145,7 @@ newbossWUC:
 
 		}
 
-		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WOMAN_UP_CJ && !rn2(10000)) {
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WOMAN_UP_CJ && !rn2(20000)) {
 
 			int aggroamount = rnd(6);
 			if (isfriday) aggroamount *= 2;
@@ -8189,7 +8188,7 @@ newbossWUCX:
 
 		}
 
-		if (RngeWhoring && !rn2(2000)) {
+		if (RngeWhoring && !rn2(8000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8224,7 +8223,7 @@ newbossWHOR:
 
 		}
 
-		if (RngeStench && !rn2(2000)) {
+		if (RngeStench && !rn2(10000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8445,7 +8444,7 @@ newbossSTEN:
 		/* climacterial always has at least as much sanity as squeaking skill --Amy */
 		if (Role_if(PM_CLIMACTERIAL) && (u.usanity < P_ADVANCE(P_SQUEAKING))) u.usanity = P_ADVANCE(P_SQUEAKING);
 
-		if (Role_if(PM_BUTT_LOVER) && !rn2(2000)) {
+		if (Role_if(PM_BUTT_LOVER) && !rn2(5000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8524,7 +8523,7 @@ newbossBUTT:
 
 		}
 
-		if (Role_if(PM_SHOE_FETISHIST) && !rn2(1000)) {
+		if (Role_if(PM_SHOE_FETISHIST) && !rn2(4000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8557,7 +8556,7 @@ newbossSF:
 
 		}
 
-		if (FemtrapActiveJohanna && !rn2(SuperFemtrapJohanna ? 500 : 1000)) {
+		if (FemtrapActiveJohanna && !rn2(SuperFemtrapJohanna ? 2500 : 5000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8590,7 +8589,7 @@ newbossJOH:
 
 		}
 
-		if (FemtrapActiveRuea && !rn2(SuperFemtrapRuea ? 500 : 1000)) {
+		if (FemtrapActiveRuea && !rn2(SuperFemtrapRuea ? 2500 : 5000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8625,7 +8624,7 @@ newbossCONV:
 
 		}
 
-		if (FemtrapActiveSing && !rn2(2000)) {
+		if (FemtrapActiveSing && !rn2(10000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8668,7 +8667,7 @@ newbossSING:
 
 		}
 
-		if (FemtrapActiveSing && SuperFemtrapSing && !rn2(2000)) {
+		if (FemtrapActiveSing && SuperFemtrapSing && !rn2(10000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8707,7 +8706,7 @@ newbossSUPERSING:
 
 		}
 
-		if (FemtrapActiveIrina && !rn2(10000)) {
+		if (FemtrapActiveIrina && !rn2(25000)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -8733,7 +8732,7 @@ newbossSUPERSING:
 
 		}
 
-		if (FemtrapActiveLuisa && !rn2(SuperFemtrapLuisa ? 2000 : 4000)) {
+		if (FemtrapActiveLuisa && !rn2(SuperFemtrapLuisa ? 5000 : 10000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8774,7 +8773,7 @@ newbossLUISA:
 
 		}
 
-		if (FemtrapActiveLiselotte && !rn2(SuperFemtrapLiselotte ? 2000 : 4000)) {
+		if (FemtrapActiveLiselotte && !rn2(SuperFemtrapLiselotte ? 5000 : 10000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8825,7 +8824,7 @@ newbossLILO:
 
 		}
 
-		if (FemtrapActiveGreta && !rn2(SuperFemtrapGreta ? 1250 : 2500)) {
+		if (FemtrapActiveGreta && !rn2(SuperFemtrapGreta ? 5000 : 10000)) {
 			d_level flev;
 			int gretatype = rnd(4);
 			if (gretatype == 1) gretatype = 333; /* MS_STENCH */
@@ -8844,11 +8843,11 @@ newbossLILO:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			flev = random_banishment_level(); /* send them all to the same level, please --Amy */
 
@@ -8869,7 +8868,7 @@ newbossLILO:
 
 		}
 
-		if (FemtrapActiveCharlotte && !rn2(SuperFemtrapCharlotte ? 3000 : 6000)) {
+		if (FemtrapActiveCharlotte && !rn2(SuperFemtrapCharlotte ? 5000 : 10000)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -8882,11 +8881,11 @@ newbossLILO:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -8910,7 +8909,7 @@ newbossLILO:
 
 		}
 
-		if (FemtrapActiveSueLyn && !rn2(2000)) {
+		if (FemtrapActiveSueLyn && !rn2(4000)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -8923,7 +8922,7 @@ newbossLILO:
 
 		}
 
-		if (FemtrapActiveVictoria && !rn2(SuperFemtrapVictoria ? 2500 : 5000)) {
+		if (FemtrapActiveVictoria && !rn2(SuperFemtrapVictoria ? 5000 : 10000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8962,7 +8961,7 @@ newbossATHL:
 
 		}
 
-		if (FemtrapActiveJil && !rn2(SuperFemtrapJil ? 500 : 1000)) {
+		if (FemtrapActiveJil && !rn2(SuperFemtrapJil ? 2000 : 4000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -8997,7 +8996,7 @@ newbossJIL:
 
 		}
 
-		if (RngeBossing && !rn2(5000)) {
+		if (RngeBossing && !rn2(10000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -9030,7 +9029,7 @@ newbossBOSS:
 
 		}
 
-		if (uleft && uleft->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
+		if (uleft && uleft->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(20000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -9065,7 +9064,7 @@ newbossRLL:
 
 		}
 
-		if (uright && uright->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(2000)) {
+		if (uright && uright->oartifact == ART_REAL_LIFE_EFFECTOR && !rn2(20000)) {
 
 			int attempts = 0;
 			struct permonst *pm = 0;
@@ -9176,10 +9175,10 @@ newbossRLR:
 
 		}
 
-		if (Role_if(PM_FJORDE) && !rn2(1000)) {
+		if (Role_if(PM_FJORDE) && !rn2(4000)) {
 			int madepoolQ = 0;
 
-			do_clear_areaX(u.ux, u.uy, rnd(10), do_fjordefloodingf, (void *)&madepoolQ);
+			do_clear_areaX(u.ux, u.uy, rno(10), do_fjordefloodingf, (void *)&madepoolQ);
 			if (madepoolQ)
 				pline("Oh %s, there's %s flooding on this sub level!", rn2(2) ? "damn" : "great", rn2(2) ? "a" : "another");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -9232,7 +9231,7 @@ newbossRLR:
 			u.fungalsandals = FALSE;
 		}
 
-		if (RngeBossEncounters && !rn2(10000) ) {
+		if (RngeBossEncounters && !rn2(15000) ) {
 			int attempts = 0;
 			register struct permonst *ptrZ;
 
@@ -9300,7 +9299,7 @@ newbossO:
 			if (evilfriday) evilragnarok(TRUE,level_difficulty());
 		}
 
-		if (RngeImmobility && !rn2(5000) ) {
+		if (RngeImmobility && !rn2(20000) ) {
 
 			int monstcnt;
 			monstcnt = 8 + rnd(10);
@@ -9329,7 +9328,7 @@ newbossO:
 			punish((struct obj *)0);
 		}
 
-		if (RngeVortices && !rn2(2000)) {
+		if (RngeVortices && !rn2(15000)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -9346,7 +9345,7 @@ newbossO:
 			u.aggravation = 0;
 		}
 
-		if (RngeExplosions && !rn2(2000)) {
+		if (RngeExplosions && !rn2(25000)) {
 
 			if (Aggravate_monster) {
 				u.aggravation = 1;
@@ -10428,7 +10427,7 @@ newbossO:
 			Your("weapon welds itself to your %s!", makeplural(body_part(HAND)));
 		}
 
-		if (uarmh && uarmh->oartifact == ART_GIRLFUL_FARTING_NOISES && !rn2(1000) ) {
+		if (uarmh && uarmh->oartifact == ART_GIRLFUL_FARTING_NOISES && !rn2(5000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -11050,7 +11049,7 @@ newbossX:
 			u.youaredead = 0;
 		}
 
-		if (FemtrapActiveFemmy && !rn2(SuperFemtrapFemmy ? 1000 : 2000) ) {
+		if (FemtrapActiveFemmy && !rn2(SuperFemtrapFemmy ? 3000 : 6000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -11084,7 +11083,7 @@ newbossZ:
 
 		}
 
-		if (FemtrapActiveLudgera && !rn2(SuperFemtrapLudgera ? 500 : 1000) ) {
+		if (FemtrapActiveLudgera && !rn2(SuperFemtrapLudgera ? 2500 : 5000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -14056,7 +14055,7 @@ newboss:
 			}
 		}
 
-		if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(10000) ) {
+		if (uarmh && itemhasappearance(uarmh, APP_BUG_TRACKING_HELMET) && !rn2(25000) ) {
 			pline("Bugs are alerted to your position.");
 			int ammount;
 			ammount = rnd(15);
@@ -21521,7 +21520,7 @@ void * poolcnt;
 		}
 	}
 
-	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) || !rn2(3) || 
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
@@ -21600,7 +21599,7 @@ void * poolcnt;
 		}
 	}
 
-	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) || !rn2(3) || 
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 

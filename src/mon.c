@@ -8410,7 +8410,7 @@ register struct monst *mtmp;
 	}
 
 	/* [Tom] took out the weird purple worm thing and lowered prob from 10 */
-	if (!rn2(8)) {
+	if (!rn2(20)) {
 /*          if (!rn2(13))
 		(void) makemon(&mons[PM_PURPLE_WORM], 0, 0, NO_MM_FLAGS);
 	    else  */

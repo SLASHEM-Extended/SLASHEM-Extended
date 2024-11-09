@@ -8542,7 +8542,7 @@ register struct attack *mattk;
 		aggravate();
 		if (!rn2(20)) {
 
-			int aggroamount = rnd(6);
+			int aggroamount = rno(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
@@ -9514,7 +9514,7 @@ register struct attack *mattk;
 		aggravate();
 		if (!rn2(20)) {
 
-			int aggroamount = rnd(6);
+			int aggroamount = rno(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
@@ -12496,7 +12496,7 @@ boolean ranged;
 		aggravate();
 		if (!rn2(20)) {
 
-			int aggroamount = rnd(6);
+			int aggroamount = rno(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);

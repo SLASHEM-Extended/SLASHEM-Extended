@@ -1926,8 +1926,8 @@ int mm_flags;
 boolean hostility;
 {
 	int cnt = 1;
-	if (!rn2(2)) cnt = (level_difficulty() + 1)/10;
-	if (!rn2(5)) cnt += rnz(5);
+	if (!rn2(3)) cnt = (level_difficulty() + 1) / 10;
+	if (!rn2(5)) cnt += rnz(3);
 	if (cnt < 1) cnt = 1;
 	struct permonst *mdat;
 	struct obj *otmp;

@@ -1545,7 +1545,7 @@ void * poolcnt;
 		}
 	}
 
-	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) || !rn2(3) || 
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 

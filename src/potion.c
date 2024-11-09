@@ -3959,7 +3959,7 @@ badeffect()
 			break;
 
 		case 459:
-		create_critters(rnz(50), (struct permonst *)0);
+		create_critters(rnz(20), (struct permonst *)0);
 		break;
 
 		case 460:
@@ -5268,7 +5268,7 @@ reallybadeffect()
 			break;
 
 		case 97:
-		create_critters(rnz(50), (struct permonst *)0);
+		create_critters(rnz(20), (struct permonst *)0);
 		break;
 
 		case 98:

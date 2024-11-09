@@ -2998,7 +2998,7 @@ void * poolcnt;
 		}
 	}
 
-	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) || !rn2(3) || 
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
@@ -6596,8 +6596,8 @@ aliasagain:
 
 		break;
 	case SCR_CREATE_MONSTER:
-	    if (create_critters(1 + ((confused || sobj->cursed) ? 12 : 0) +
-				((sobj->blessed || rn2(73)) ? 0 : rnd(4)),
+	    if (create_critters(1 + ((confused || sobj->cursed) ? rno(12) : 0) +
+				((sobj->blessed || rn2(73)) ? 0 : rno(4)),
 			/*confused ? &mons[PM_ACID_BLOB] :*/ (struct permonst *)0)) /* no easy blob fort building --Amy */
 		known = TRUE;
 	    /* no need to flush monsters; we ask for identification only if the
@@ -6629,8 +6629,10 @@ aliasagain:
 
 	case SCR_CREATE_FAMILIAR:
 		known = TRUE;
-		if (confused) create_critters(rn1(7,6), (struct permonst *)0);
-		else 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+		if (confused)
+			create_critters(rno(13), (struct permonst *)0);
+		else
+			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 
 		if (sobj->oartifact == ART_FRIEND_CALL)  		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
 

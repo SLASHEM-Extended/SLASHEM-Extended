@@ -497,10 +497,10 @@ nasty(mcast)
 	msummon((struct monst *) 0, FALSE);	/* summons like WoY */
 	count++;
     } else {
-	tmp = (u.ulevel > 6) ? u.ulevel /6 : 1; /* just in case -- rph */
+	tmp = (u.ulevel > 8) ? u.ulevel / 8 : 1; /* just in case -- rph */
 	/* if we don't have a casting monster, the nasties appear around you */
-	if (rnd(20) > 19) { tmp = (tmp * (rnd(5))); } /* now, summoning storms are generally less nasty */
-	if (rnd(40) > 39) { tmp = (tmp * (rnd(7))); } /* but occasionally they will summon a gigantic horde of stuff! --Amy */
+	if (!rn2(20)) tmp += rno(3); /* now, summoning storms are generally less nasty --Amy */
+	if (!rn2(40)) tmp += rno(5);
 	bypos.x = u.ux;
 	bypos.y = u.uy;
 	for(i = rnd(tmp); i > 0; --i)

@@ -111,6 +111,12 @@ register int x, y, n;
 	register int cnt = rno(n);
 	int kindred = rn2(20) ? 0 : 1;
 
+	/* Amy edit: don't have such huge hordes all the damn time */
+	if (cnt > 2) {
+		cnt = rnd(cnt);
+		if (cnt < 2) cnt = 2;
+	}
+
 	if (mtmp->data->geno & G_PLATOON) kindred = 1;
 	if (mtmp->data->geno & G_UNIQ) kindred = 1; /* uniques are created with others of their kin, instead of clones of themselves */
 	struct monst *mon;
@@ -28432,11 +28438,12 @@ register int	mmflags;
 	if (Race_if(PM_IMMUNIZER) && !rn2(3) ) adjalign(-1);
 
 	if (!rn2(5000) && allow_special) { /* very rarely create some monsters with the same letter --Amy */
-		randsp = (rn2(24) + 2);
-		if (!rn2(3)) randsp *= 2;
-		if (!rn2(7)) randsp *= 3;
-		if (!rn2(20)) randsp *= 5;
-		if (!rn2(100)) randsp *= 10;
+
+		randsp = rno(26);
+		if (!rn2(3)) randsp += rno(2);
+		if (!rn2(70)) randsp += rno(5);
+		if (!rn2(20)) randsp += rno(10);
+		if (!rn2(100)) randsp += rno(20);
 
 		for (i = 0; i < randsp; i++) {
 			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;

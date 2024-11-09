@@ -9501,7 +9501,7 @@ dopois:
 		aggravate();
 		if (!rn2(20)) {
 
-			int aggroamount = rnd(6);
+			int aggroamount = rno(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);
@@ -11715,7 +11715,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			aggravate();
 			if (!rn2(20)) {
 
-				int aggroamount = rnd(6);
+				int aggroamount = rno(6);
 				if (isfriday) aggroamount *= 2;
 				u.aggravation = 1;
 				reset_rndmonst(NON_PM);
@@ -13922,7 +13922,7 @@ common:
 
 		{
 
-			int aggroamount = rnd(6);
+			int aggroamount = rno(6);
 			if (!rn2(2)) aggroamount += rnd(25);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
@@ -18498,7 +18498,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			aggravate();
 			if (!rn2(20)) {
 
-				int aggroamount = rnd(6);
+				int aggroamount = rno(6);
 				if (isfriday) aggroamount *= 2;
 				u.aggravation = 1;
 				reset_rndmonst(NON_PM);
@@ -21795,7 +21795,7 @@ dothepassive:
 		aggravate();
 		if (!rn2(20)) {
 
-			int aggroamount = rnd(6);
+			int aggroamount = rno(6);
 			if (isfriday) aggroamount *= 2;
 			u.aggravation = 1;
 			reset_rndmonst(NON_PM);

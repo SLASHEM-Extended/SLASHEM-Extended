@@ -2533,7 +2533,7 @@ boolean at_stairs, falling, portal;
 				reset_rndmonst(NON_PM);
 			}
 
-			while (rn2(10 + (monster_difficulty() / 3)) && (enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) ) {
+			while (rn2(3 + (monster_difficulty() / 5)) && (enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) ) {
 				(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
 				if (wizard) pline("made bones monster");
 				}
@@ -3001,7 +3001,7 @@ rerollchaloc:
 
 		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
 
-				for (angbandtraps = 0; angbandtraps < 1000; angbandtraps++) {
+				for (angbandtraps = 0; angbandtraps < 100; angbandtraps++) {
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
@@ -3129,7 +3129,7 @@ rerollchaloc:
 
 		 		if (!angbandvar && rn2(2)) (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
 
-				for (angbandtraps = 0; angbandtraps < 500; angbandtraps++) {
+				for (angbandtraps = 0; angbandtraps < 50; angbandtraps++) {
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
@@ -3253,7 +3253,7 @@ rerollchaloc:
 
 		 		if (!angbandvar && !rn2(2)) (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
 
-				for (angbandtraps = 0; angbandtraps < 100; angbandtraps++) {
+				for (angbandtraps = 0; angbandtraps < 35; angbandtraps++) {
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
@@ -3373,7 +3373,7 @@ rerollchaloc:
 
 		 		if (!angbandvar && !rn2(3)) (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
 
-				for (angbandtraps = 0; angbandtraps < 50; angbandtraps++) {
+				for (angbandtraps = 0; angbandtraps < 20; angbandtraps++) {
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
@@ -3493,7 +3493,7 @@ rerollchaloc:
 
 		 		if (!angbandvar && !rn2(5)) (void) makemon(mkclass(S_RUBMONST,0), 0, 0, NO_MM_FLAGS);
 
-				for (angbandtraps = 0; angbandtraps < 20; angbandtraps++) {
+				for (angbandtraps = 0; angbandtraps < 10; angbandtraps++) {
 
 					angbandx = rn1(COLNO-3,2);
 					angbandy = rn2(ROWNO);
@@ -3688,11 +3688,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 
@@ -3851,11 +3851,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 		      cx = rn2(COLNO);
@@ -4016,11 +4016,11 @@ rerollchaloc:
 
 		if (!rn2(ishaxor ? (1500 - (Luck*50)) : (3000 - (Luck*50)) ) ) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			if (randsp > 1) randsp = rnd(randsp);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "The RNG exceptionally seems to be on your side..." : "You feel that there's lots of treasure to be found here!");
@@ -4036,11 +4036,11 @@ rerollchaloc:
 
 		if (!rn2(ishaxor ? (50000 - (Luck*1000)) : (100000 - (Luck*1000)) ) ) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			if (randsp > 1) randsp = rnd(randsp);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "The RNG whispers to you: 'Today's your lucky day!'" : "You feel that there's lots of good stuff to be found here!");
@@ -4056,12 +4056,11 @@ rerollchaloc:
 
 		if (!rn2(ishaxor ? (25000 + (Luck*1000)) : (50000 + (Luck*1000)) ) ) {
 
-			randsp = (rn3(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
-			if (randsp > 1) randsp = rnd(randsp);
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "The RNG's voice booms out: 'You were fated to die on this level. DIE!'" : "You feel that the monsters are exceptionally well-armed here!");
 
@@ -4089,11 +4088,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmonstforspawn = rndmonst();
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "Very unstable architecture here, it seems..." : "It seems there might be lots of monsters around here...");
@@ -4109,11 +4108,11 @@ rerollchaloc:
 
 		if ( (Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane) && !rn2(5)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			switch (rnd(47)) {
 				case 1:
 				case 2: monstercolor = 38; break; /* MS_FART_QUIET */
@@ -4174,11 +4173,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(15);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "Uh... wow, what a strong color flash of rainbows!" : "You feel that a certain color might be prominent around here...");
@@ -4193,11 +4192,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmonstforspawn = rndmonst();
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
@@ -4214,11 +4213,11 @@ rerollchaloc:
 		}
 
 		if ((Role_if(PM_GANG_SCHOLAR) || FemtrapActiveAriane) && !rn2(5)) {
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
 			switch (rnd(47)) {
@@ -4281,11 +4280,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(15);
 		      cx = rn2(COLNO);
 		      cy = rn2(ROWNO);
@@ -4302,11 +4301,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(434);
 
 			if (wizard || !rn2(10)) pline(FunnyHallu ? "Err... is someone here? Hello-o, please show yourself!" : "Seems like someone made their home on this dungeon level.");
@@ -4321,11 +4320,11 @@ rerollchaloc:
 
 		if (!rn2(iswarper ? 160 : 8000)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(434);
 
 		      cx = rn2(COLNO);
@@ -4347,11 +4346,11 @@ rerollchaloc:
 
 			case 1:
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 			if (rn2(2)) {
@@ -4516,11 +4515,11 @@ rerollchaloc:
 
 			case 2:
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmonstforspawn = rndmonst();
 			if (rn2(2)) {
 			      cx = rn2(COLNO);
@@ -4541,11 +4540,11 @@ rerollchaloc:
 
 			case 3:
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(15);
 			if (rn2(2)) {
 			      cx = rn2(COLNO);
@@ -4565,11 +4564,11 @@ rerollchaloc:
 
 			case 4:
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(434);
 			if (rn2(2)) {
 			      cx = rn2(COLNO);

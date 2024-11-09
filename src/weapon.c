@@ -12397,11 +12397,11 @@ int lossamount;
 
 			if (!rn2(4)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 
@@ -12561,11 +12561,11 @@ int lossamount;
 
 			else if (!rn2(3)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmonstforspawn = rndmonst();
 
 			if (wizard || !rn2(10)) You_feel("the arrival of monsters!");
@@ -12581,11 +12581,11 @@ int lossamount;
 
 			else if (!rn2(2)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(15);
 
 			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
@@ -12601,11 +12601,11 @@ int lossamount;
 
 			else {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(434);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");

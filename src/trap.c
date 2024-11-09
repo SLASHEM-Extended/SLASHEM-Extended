@@ -609,7 +609,7 @@ void * poolcnt;
 		}
 	}
 
-	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) || !rn2(3) || 
 	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
 		return;
 
@@ -5449,8 +5449,8 @@ glovecheckZ:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 		monstcnt = 1;
 		if (!rn2(5)) monstcnt += 1;
-		if (!rn2(25)) monstcnt += 2;
-		if (!rn2(125)) monstcnt += 3;
+		if (!rn2(25)) monstcnt += rnd(2);
+		if (!rn2(125)) monstcnt += rnd(3);
 		if (!rn2(725)) monstcnt += rnd(20);
 
 		if (Aggravate_monster) {
@@ -5471,11 +5471,11 @@ glovecheckZ:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 	    case SUMMON_UNDEAD_TRAP:
 
-		monstcnt = rnd(3);
-		if (!rn2(3)) monstcnt += rnd(2);
-		if (!rn2(10)) monstcnt += rnd(5);
-		if (!rn2(50)) monstcnt += rnd(10);
-		if (!rn2(200)) monstcnt += rnd(20);
+		monstcnt = rno(3);
+		if (!rn2(3)) monstcnt += rno(2);
+		if (!rn2(10)) monstcnt += rno(5);
+		if (!rn2(50)) monstcnt += rno(10);
+		if (!rn2(200)) monstcnt += rno(20);
 
 		if (Aggravate_monster) {
 			u.aggravation = 1;
@@ -5517,11 +5517,11 @@ glovecheckZ:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 
 	    case HORDE_TRAP:
 
-		monstcnt = 6 + rnd(12);
-		if (!rn2(5)) monstcnt += rnd(5);
-		if (!rn2(25)) monstcnt += rnd(10);
-		if (!rn2(125)) monstcnt += rnd(20);
-		if (!rn2(725)) monstcnt += rnd(50);
+		monstcnt = 6 + rno(12);
+		if (!rn2(5)) monstcnt += rno(5);
+		if (!rn2(25)) monstcnt += rno(10);
+		if (!rn2(125)) monstcnt += rno(20);
+		if (!rn2(725)) monstcnt += rno(50);
 
 		if (Aggravate_monster) {
 			u.aggravation = 1;
@@ -5542,7 +5542,7 @@ glovecheckZ:		(void) rust_dmg(uarmg, "gauntlets", 1, TRUE, &youmonst);
 	    case IMMOBILITY_TRAP:
 
 		monstcnt = 8;
-		while (rn2(10)) monstcnt++;
+		while (rn2(5)) monstcnt++;
 
 		{
 		int sessileattempts;
@@ -5618,7 +5618,7 @@ newboss:
 
 		{
 			int attempts = 0;
-			int ammount = rnd(9);
+			int ammount = rno(8);
 			register struct permonst *ptrZ;
 newgirl:
 			do {
@@ -5665,7 +5665,7 @@ newgirl:
 
 		{
 			int attempts = 0;
-			int ammount = rnd(9);
+			int ammount = rno(6);
 			register struct permonst *ptrZ;
 newegomon:
 			do {
@@ -6778,11 +6778,11 @@ rerollX:
 
 	    case GATEWAY_FROM_HELL: /* evil patch idea by jonadab */
 
-		monstcnt = d(3, 5);	
-		if (!rn2(5)) monstcnt += rnd(3);
-		if (!rn2(25)) monstcnt += rnd(7);
-		if (!rn2(125)) monstcnt += rnd(15);
-		if (!rn2(725)) monstcnt += rnd(50);
+		monstcnt = rno(15);
+		if (!rn2(5)) monstcnt += rno(3);
+		if (!rn2(25)) monstcnt += rno(7);
+		if (!rn2(125)) monstcnt += rno(15);
+		if (!rn2(725)) monstcnt += rno(50);
 
 		if (Aggravate_monster) {
 			u.aggravation = 1;
@@ -6802,11 +6802,11 @@ rerollX:
 
 	    case ELEMENTAL_PORTAL:
 
-		monstcnt = d(3, 5);	
-		if (!rn2(5)) monstcnt += rnd(3);
-		if (!rn2(25)) monstcnt += rnd(7);
-		if (!rn2(125)) monstcnt += rnd(15);
-		if (!rn2(725)) monstcnt += rnd(50);
+		monstcnt = rno(15);
+		if (!rn2(5)) monstcnt += rno(3);
+		if (!rn2(25)) monstcnt += rno(7);
+		if (!rn2(125)) monstcnt += rno(15);
+		if (!rn2(725)) monstcnt += rno(50);
 
 		if (Aggravate_monster) {
 			u.aggravation = 1;
@@ -8932,11 +8932,11 @@ newbossPENT:
 		badeffect();
 		badeffect();
 
-		monstcnt = 6 + rnd(12);
-		if (!rn2(5)) monstcnt += rnd(5);
-		if (!rn2(25)) monstcnt += rnd(10);
-		if (!rn2(125)) monstcnt += rnd(20);
-		if (!rn2(725)) monstcnt += rnd(50);
+		monstcnt = 6 + rno(12);
+		if (!rn2(5)) monstcnt += rno(5);
+		if (!rn2(25)) monstcnt += rno(10);
+		if (!rn2(125)) monstcnt += rno(20);
+		if (!rn2(725)) monstcnt += rno(50);
 
 		if (Aggravate_monster) {
 			u.aggravation = 1;
@@ -9071,8 +9071,8 @@ newbossPENT:
 		}
 		monstcnt = 1;
 		if (!rn2(5)) monstcnt += 1;
-		if (!rn2(25)) monstcnt += 2;
-		if (!rn2(125)) monstcnt += 3;
+		if (!rn2(25)) monstcnt += rnd(2);
+		if (!rn2(125)) monstcnt += rnd(3);
 		if (!rn2(725)) monstcnt += rnd(20);
 
 		if (Aggravate_monster) {
@@ -11080,7 +11080,7 @@ madnesseffect:
 		}
 
 		reset_rndmonst(NON_PM);
-		int aggroamount = rnd(6);
+		int aggroamount = rno(6);
 		if (isfriday) aggroamount *= 2;
 
 		while (aggroamount) {
@@ -13869,7 +13869,7 @@ madnesseffect:
 			pline("You stepped on a trigger!");
 			deltrap(trap);
 
-			randsp = rnd(9);
+			randsp = rno(6);
 
 			monstercolor = 342; /* M4_SHAPESHIFT */
 
@@ -14275,11 +14275,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14308,11 +14308,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14341,11 +14341,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14374,11 +14374,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14407,11 +14407,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14440,11 +14440,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14473,11 +14473,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14506,11 +14506,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14539,11 +14539,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14572,11 +14572,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14605,11 +14605,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14638,11 +14638,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14671,11 +14671,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14704,11 +14704,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14737,11 +14737,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14770,11 +14770,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14803,11 +14803,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14836,11 +14836,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14869,11 +14869,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14902,11 +14902,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14935,11 +14935,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -14968,11 +14968,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -15001,11 +15001,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -15034,11 +15034,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -15067,11 +15067,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -15100,11 +15100,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -15134,11 +15134,11 @@ skillmultiplyagain:
 			cx = rn2(COLNO);
 			cy = rn2(ROWNO);
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 
 			for (i = 0; i < randsp; i++) {
 
@@ -19785,11 +19785,11 @@ skillrandomizeredo:
 
 			if (!rn2(4)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 
@@ -19949,11 +19949,11 @@ skillrandomizeredo:
 
 			else if (!rn2(3)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmonstforspawn = rndmonst();
 
 			if (wizard || !rn2(10)) You_feel("the arrival of monsters!");
@@ -19969,11 +19969,11 @@ skillrandomizeredo:
 
 			else if (!rn2(2)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(15);
 
 			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
@@ -19989,11 +19989,11 @@ skillrandomizeredo:
 
 			else {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(434);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
@@ -20443,15 +20443,15 @@ skillrandomizeredo:
 
 			if (!rn2(4)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
 
-				if (wizard || !rn2(10)) pline("You suddenly feel a surge of tension!");
+			if (wizard || !rn2(10)) pline("You suddenly feel a surge of tension!");
 
 			for (i = 0; i < randsp; i++) {
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
@@ -20607,11 +20607,11 @@ skillrandomizeredo:
 
 			else if (!rn2(3)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			randmonstforspawn = rndmonst();
 
 			if (wizard || !rn2(10)) You_feel("the arrival of monsters!");
@@ -20627,11 +20627,11 @@ skillrandomizeredo:
 
 			else if (!rn2(2)) {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(15);
 
 			if (wizard || !rn2(10)) You_feel("a colorful sensation!");
@@ -20647,11 +20647,11 @@ skillrandomizeredo:
 
 			else {
 
-			randsp = (rn2(14) + 2);
-			if (!rn2(10)) randsp *= 2;
-			if (!rn2(100)) randsp *= 3;
-			if (!rn2(1000)) randsp *= 5;
-			if (!rn2(10000)) randsp *= 10;
+			randsp = rno(14);
+			if (!rn2(10)) randsp += rno(2);
+			if (!rn2(100)) randsp += rno(5);
+			if (!rn2(1000)) randsp += rno(10);
+			if (!rn2(10000)) randsp += rno(20);
 			monstercolor = rnd(434);
 
 			if (wizard || !rn2(10)) You_feel("that a group has arrived!");
@@ -20720,9 +20720,9 @@ skillrandomizeredo:
 			if (!rn2(4)) {
 
 #ifdef BIGSLEX
-			randsp = 5000;
+			randsp = 1000;
 #else
-			randsp = 1680;
+			randsp = 200;
 #endif
 			randmnst = (rn2(187) + 1);
 			randmnsx = (rn2(100) + 1);
@@ -20734,29 +20734,6 @@ skillrandomizeredo:
 			/* This function will fill the map with a random amount of monsters of one class. --Amy */
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
-
-#ifdef BIGSLEX
-				if (i == 500) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 1000) pline("Stand by while the monsters get generated...");
-				if (i == 1500) pline("Spawning monsters...");
-				if (i == 2000) pline("Please have some patience while monsters are selected...");
-				if (i == 2500) pline("Halfway done...");
-				if (i == 3000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 3500) pline("Soon you can start fighting the hordes...");
-				if (i == 4000) pline("It's taking a while. Sorry. That's because the level is very big...");
-				if (i == 4500) pline("Almost finished...");
-				if (i == 5000) pline("Done! The entire level is filled with monsters now! :-)");
-#else
-				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 200) pline("Stand by while the monsters get generated...");
-				if (i == 400) pline("Spawning monsters...");
-				if (i == 600) pline("Please have some patience while monsters are selected...");
-				if (i == 800) pline("Halfway done...");
-				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 1200) pline("Soon you can start fighting the hordes...");
-				if (i == 1400) pline("Almost finished...");
-				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
-#endif
 
 				if (!rn2(20)) reset_rndmonst(NON_PM);
 
@@ -20910,9 +20887,9 @@ skillrandomizeredo:
 			else if (!rn2(3)) {
 
 #ifdef BIGSLEX
-			randsp = 5000;
+			randsp = 1000;
 #else
-			randsp = 1680;
+			randsp = 200;
 #endif
 			randmonstforspawn = rndmonst();
 
@@ -20922,28 +20899,6 @@ skillrandomizeredo:
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
 
-#ifdef BIGSLEX
-				if (i == 500) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 1000) pline("Stand by while the monsters get generated...");
-				if (i == 1500) pline("Spawning monsters...");
-				if (i == 2000) pline("Please have some patience while monsters are selected...");
-				if (i == 2500) pline("Halfway done...");
-				if (i == 3000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 3500) pline("Soon you can start fighting the hordes...");
-				if (i == 4000) pline("It's taking a while. Sorry. That's because the level is very big...");
-				if (i == 4500) pline("Almost finished...");
-				if (i == 5000) pline("Done! The entire level is filled with monsters now! :-)");
-#else
-				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 200) pline("Stand by while the monsters get generated...");
-				if (i == 400) pline("Spawning monsters...");
-				if (i == 600) pline("Please have some patience while monsters are selected...");
-				if (i == 800) pline("Halfway done...");
-				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 1200) pline("Soon you can start fighting the hordes...");
-				if (i == 1400) pline("Almost finished...");
-				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
-#endif
 
 				(void) makemon(randmonstforspawn, 0, 0, NO_MM_FLAGS);
 			}
@@ -20953,9 +20908,9 @@ skillrandomizeredo:
 			else if (!rn2(2)) {
 
 #ifdef BIGSLEX
-			randsp = 5000;
+			randsp = 1000;
 #else
-			randsp = 1680;
+			randsp = 200;
 #endif
 			monstercolor = rnd(15);
 
@@ -20964,29 +20919,6 @@ skillrandomizeredo:
 			for (i = 0; i < randsp; i++) {
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
-
-#ifdef BIGSLEX
-				if (i == 500) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 1000) pline("Stand by while the monsters get generated...");
-				if (i == 1500) pline("Spawning monsters...");
-				if (i == 2000) pline("Please have some patience while monsters are selected...");
-				if (i == 2500) pline("Halfway done...");
-				if (i == 3000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 3500) pline("Soon you can start fighting the hordes...");
-				if (i == 4000) pline("It's taking a while. Sorry. That's because the level is very big...");
-				if (i == 4500) pline("Almost finished...");
-				if (i == 5000) pline("Done! The entire level is filled with monsters now! :-)");
-#else
-				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 200) pline("Stand by while the monsters get generated...");
-				if (i == 400) pline("Spawning monsters...");
-				if (i == 600) pline("Please have some patience while monsters are selected...");
-				if (i == 800) pline("Halfway done...");
-				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 1200) pline("Soon you can start fighting the hordes...");
-				if (i == 1400) pline("Almost finished...");
-				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
-#endif
 
 				if (!rn2(20)) reset_rndmonst(NON_PM);
 
@@ -20998,9 +20930,9 @@ skillrandomizeredo:
 			else {
 
 #ifdef BIGSLEX
-			randsp = 5000;
+			randsp = 1000;
 #else
-			randsp = 1680;
+			randsp = 200;
 #endif
 			monstercolor = rnd(434);
 
@@ -21009,29 +20941,6 @@ skillrandomizeredo:
 			for (i = 0; i < randsp; i++) {
 
 				if (!enexto(&ee, u.ux, u.uy, (struct permonst *)0) ) continue;
-
-#ifdef BIGSLEX
-				if (i == 500) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 1000) pline("Stand by while the monsters get generated...");
-				if (i == 1500) pline("Spawning monsters...");
-				if (i == 2000) pline("Please have some patience while monsters are selected...");
-				if (i == 2500) pline("Halfway done...");
-				if (i == 3000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 3500) pline("Soon you can start fighting the hordes...");
-				if (i == 4000) pline("It's taking a while. Sorry. That's because the level is very big...");
-				if (i == 4500) pline("Almost finished...");
-				if (i == 5000) pline("Done! The entire level is filled with monsters now! :-)");
-#else
-				if (i == 100) pline("This may take a while. Please be patient while the game selects monsters...");
-				if (i == 200) pline("Stand by while the monsters get generated...");
-				if (i == 400) pline("Spawning monsters...");
-				if (i == 600) pline("Please have some patience while monsters are selected...");
-				if (i == 800) pline("Halfway done...");
-				if (i == 1000) pline("Don't worry, the game does not hang. Give it a little more time...");
-				if (i == 1200) pline("Soon you can start fighting the hordes...");
-				if (i == 1400) pline("Almost finished...");
-				if (i == 1680) pline("Done! The entire level is filled with monsters now! :-)");
-#endif
 
 				if (!rn2(20)) reset_rndmonst(NON_PM);
 

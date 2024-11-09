@@ -3630,11 +3630,11 @@ repairitemchoice:
 			      cx = rn2(COLNO);
 			      cy = rn2(ROWNO);
 
-				randsp = (rn2(14) + 2);
-				if (!rn2(10)) randsp *= 2;
-				if (!rn2(100)) randsp *= 3;
-				if (!rn2(1000)) randsp *= 5;
-				if (!rn2(10000)) randsp *= 10;
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
 
 				for (i = 0; i < randsp; i++) {
 					if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
