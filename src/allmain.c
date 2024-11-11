@@ -1539,6 +1539,10 @@ moveloop()
 				moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			}
 
+			if (uarmh && (uarmh->oartifact == ART_WHO_CAN_DRIVE_BEST_) && flags.female && !rn2(5)) {
+				moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			}
+
 			if (u.usteed) {
 
 				if (bmwride(ART_BIKE_SADDLE)) {
@@ -3895,6 +3899,7 @@ moveloop()
 
 			boolean highweather = FALSE;
 			if (!rn2(10)) highweather = TRUE;
+			if (WildWeatherEffect) highweather = TRUE;
 
 			if (rn2(2)) {
 				if (highweather) {
@@ -3914,6 +3919,29 @@ moveloop()
 			if (u.monstermultiplier > 190) u.monstermultiplier = 190;
 
 			maybe_tell_weather();
+		}
+
+		if (!rn2(StrongWildWeatherEffect ? 2000 : 5000)) {
+			if (rn2(WildWeatherEffect ? 2 : 100)) u.currentweather = WEATHER_OVERCAST;
+			else if (!rn2(1000)) u.currentweather = WEATHER_ETHERWIND;
+			else if (!rn2(1000)) u.currentweather = WEATHER_ECLIPSE;
+			else if (!rn2(200)) u.currentweather = WEATHER_FOG;
+			else if (!rn2(200)) u.currentweather = WEATHER_SANDSTORM;
+			else if (!rn2(50)) u.currentweather = WEATHER_HAIL;
+			else if (!rn2(50)) u.currentweather = WEATHER_THUNDERSTORM;
+			else if (!rn2(20)) u.currentweather = WEATHER_SNOW;
+			else if (!rn2(2)) u.currentweather = WEATHER_RAIN;
+			else u.currentweather = WEATHER_SUNNY;
+
+			/* artifacts that force a certain type of weather, by Amy; these have a tiered priority list */
+			if (uarm && uarm->oartifact == ART_UMBRANOX) u.currentweather = WEATHER_ECLIPSE;
+			else if (autismringcheck(ART_KEEP_FUNKY_)) u.currentweather = WEATHER_FOG;
+			else if (uarmh && uarmh->oartifact == ART_SHREW_WIND) u.currentweather = WEATHER_SANDSTORM;
+			else if (uarmc && uarmc->oartifact == ART_FLEECY_CORN) u.currentweather = WEATHER_HAIL;
+			else if (uarm && uarm->oartifact == ART_THUNDER_) u.currentweather = WEATHER_THUNDERSTORM;
+			else if (uarms && uarms->oartifact == ART_WHY_IS_IT_ALWAYS_RAINING) u.currentweather = WEATHER_RAIN;
+
+			tell_main_weather();
 		}
 
 		if (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF && !uarmu->cursed && !rn2(1000)) curse(uarmu);
@@ -18995,6 +19023,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dextrous gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nimble gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanium helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weather dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tank top")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker helmet")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -20455,6 +20486,9 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dextrous gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nimble gloves")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanium helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weather dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tank top")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker helmet")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -20468,86 +20502,104 @@ boolean new_game;	/* false => restoring an old game */
 
 		while (ammount < 5) {
 
-		switch (rnd(51)) {
+		switch (rnd(59)) {
 
-		case 1: 
-		case 2: 
-		case 3: 
+		case 1:
+		case 2:
+		case 3:
 		    HFire_resistance |= FROMOUTSIDE; break;
-		case 4: 
-		case 5: 
-		case 6: 
+		case 4:
+		case 5:
+		case 6:
 		    HCold_resistance |= FROMOUTSIDE; break;
-		case 7: 
-		case 8: 
-		case 9: 
+		case 7:
+		case 8:
+		case 9:
 		    HSleep_resistance |= FROMOUTSIDE; break;
-		case 10: 
-		case 11: 
+		case 10:
+		case 11:
 		    HDisint_resistance |= FROMOUTSIDE; break;
-		case 12: 
-		case 13: 
-		case 14: 
+		case 12:
+		case 13:
+		case 14:
 		    HShock_resistance |= FROMOUTSIDE; break;
-		case 15: 
-		case 16: 
-		case 17: 
+		case 15:
+		case 16:
+		case 17:
 		    HPoison_resistance |= FROMOUTSIDE; break;
-		case 18: 
+		case 18:
 		    HDrain_resistance |= FROMOUTSIDE; break;
-		case 19: 
+		case 19:
 		    HSick_resistance |= FROMOUTSIDE; break;
-		case 20: 
+		case 20:
 		    HAcid_resistance |= FROMOUTSIDE; break;
-		case 21: 
-		case 22: 
+		case 21:
+		case 22:
 		    HHunger |= FROMOUTSIDE; break;
-		case 23: 
-		case 24: 
+		case 23:
+		case 24:
 		    HSee_invisible |= FROMOUTSIDE; break;
-		case 25: 
+		case 25:
 		    HTelepat |= FROMOUTSIDE; break;
-		case 26: 
-		case 27: 
+		case 26:
+		case 27:
 		    HWarning |= FROMOUTSIDE; break;
-		case 28: 
-		case 29: 
+		case 28:
+		case 29:
 		    HSearching |= FROMOUTSIDE; break;
-		case 30: 
-		case 31: 
+		case 30:
+		case 31:
 		    HStealth |= FROMOUTSIDE; break;
-		case 32: 
-		case 33: 
+		case 32:
+		case 33:
 		    HAggravate_monster |= FROMOUTSIDE; break;
-		case 34: 
+		case 34:
 		    HConflict |= FROMOUTSIDE; break;
-		case 35: 
-		case 36: 
+		case 35:
+		case 36:
 		    HTeleportation |= FROMOUTSIDE; break;
-		case 37: 
+		case 37:
 		    HTeleport_control |= FROMOUTSIDE; break;
-		case 38: 
+		case 38:
 		    HFlying |= FROMOUTSIDE; break;
-		case 39: 
+		case 39:
 		    HSwimming |= FROMOUTSIDE; break;
-		case 40: 
+		case 40:
 		    HMagical_breathing |= FROMOUTSIDE; break;
-		case 41: 
+		case 41:
 		    HSlow_digestion |= FROMOUTSIDE; break;
-		case 42: 
-		case 43: 
+		case 42:
+		case 43:
 		    HRegeneration |= FROMOUTSIDE; break;
-		case 44: 
+		case 44:
 		    HPolymorph |= FROMOUTSIDE; break;
-		case 45: 
+		case 45:
 		    HPolymorph_control |= FROMOUTSIDE; break;
-		case 46: 
-		case 47: 
+		case 46:
+		case 47:
 		    HFast |= FROMOUTSIDE; break;
-		case 48: 
+		case 48:
 		    HInvis |= FROMOUTSIDE; break;
-		case 49: 
+		case 49:
 		    HManaleech |= FROMOUTSIDE; break;
+		case 50:
+		    HPeacevision |= FROMOUTSIDE; break;
+		case 51:
+		    HDefusing |= FROMOUTSIDE; break;
+		case 52:
+		    HPainSense |= FROMOUTSIDE; break;
+		case 53:
+		    HFuckOverEffect |= FROMOUTSIDE; break;
+		case 54:
+		case 55:
+		case 56:
+		    HMysteryResist |= FROMOUTSIDE; break;
+		case 57:
+		    HMagicFindBonus |= FROMOUTSIDE; break;
+		case 58:
+		    HSpellboost |= FROMOUTSIDE; break;
+		case 59:
+		    HWildWeatherEffect |= FROMOUTSIDE; break;
 		default:
 			break;
 			}
@@ -20651,7 +20703,10 @@ boolean new_game;	/* false => restoring an old game */
 
 	}
 
-	if (new_game) maybe_tell_weather();
+	if (new_game) {
+		maybe_tell_weather();
+		tell_main_weather();
+	}
 
 	if (Race_if(PM_HC_ALIEN) && new_game && !flags.female) {
 		makeknown(AMULET_OF_CHANGE);

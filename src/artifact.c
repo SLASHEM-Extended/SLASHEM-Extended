@@ -1062,6 +1062,7 @@ init_appearance_randarts()
 	artilist[ART_CHEATER_S_PROSPERING].otyp = find_air_cloak();
 	artilist[ART_EREA_S_HERITAGE].otyp = find_vindale_cloak();
 	artilist[ART_ALIEN_MINDWAVE].otyp = find_23_helmet();
+	artilist[ART_WHO_CAN_DRIVE_BEST_].otyp = find_biker_helmet();
 	artilist[ART_REVELATION____VERSE__].otyp = find_a_heels();
 	artilist[ART_GLENCHECK_EATING].otyp = find_alligator_pumps();
 	artilist[ART_KLOCKING_NOISE].otyp = find_hammer_shoes();
@@ -5880,6 +5881,14 @@ tunguskaagain:
 			break;
 		}
 
+		if (obj->oartifact == ART_THUNDER_) {
+
+			getdir(NULL);
+			buzz(15,24,u.ux,u.uy,u.dx,u.dy); /* 15 = lightning */
+
+			break;
+		}
+
 		if (obj->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
 
 			if (u.alla < 101) {
@@ -8921,7 +8930,7 @@ retrytrinsic:
 				break;
 
 		}
-	} else switch (rnd(56)) { /* ones that require eating jewelry or other weird actions */
+	} else switch (rnd(57)) { /* ones that require eating jewelry or other weird actions */
 
 			case 1:
 				if (intloss) {
@@ -10090,6 +10099,26 @@ retrytrinsic:
 					if(!(HSpellboost & FROMOUTSIDE)) {
 						You_feel("able to cast spells more powerfully!");
 						HSpellboost |= FROMOUTSIDE;
+						hasmadeachange = 1;
+					}
+				}
+				break;
+			case 57:
+				if (intloss) {
+					if (HWildWeatherEffect & INTRINSIC) {
+						HWildWeatherEffect &= ~INTRINSIC;
+						You_feel("the weather becoming very random!");
+						hasmadeachange = 1;
+					}
+					if (HWildWeatherEffect & TIMEOUT) {
+						HWildWeatherEffect &= ~TIMEOUT;
+						You_feel("the weather becoming very random!");
+						hasmadeachange = 1;
+					}
+				} else {
+					if(!(HWildWeatherEffect & FROMOUTSIDE)) {
+						You_feel("the weather becoming normal again.");
+						HWildWeatherEffect |= FROMOUTSIDE;
 						hasmadeachange = 1;
 					}
 				}

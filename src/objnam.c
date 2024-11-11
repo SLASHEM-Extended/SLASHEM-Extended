@@ -207,6 +207,8 @@ int prop;
 			return "magic vacuum";
 		case FUCK_OVER:
 			return "fuck-over";
+		case WILD_WEATHER:
+			return "wild weather";
 
 		case RNGE_IRREGULARITY:
 			return "irregularity";
@@ -4825,6 +4827,13 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ SHELL_CHAIN, "todo" },
 	{ PHYSIO_VENOM, "todo" },
 
+	{ WEATHER_DRAGON_SCALE_MAIL, "todo" },
+	{ WEATHER_DRAGON_SCALES, "todo" },
+	{ WEATHER_DRAGON_SCALE_SHIELD, "todo" },
+	{ CLOAK_OF_WEATHER, "todo" },
+	{ WEATHER_HELMET, "todo" },
+	{ RIN_WEATHER, "todo" },
+
 	{0, "" }
 };
 
@@ -8478,6 +8487,13 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ HEAVY_SHELL_BALL, "todo" },
 	{ SHELL_CHAIN, "todo" },
 	{ PHYSIO_VENOM, "todo" },
+
+	{ WEATHER_DRAGON_SCALE_MAIL, "todo" },
+	{ WEATHER_DRAGON_SCALES, "todo" },
+	{ WEATHER_DRAGON_SCALE_SHIELD, "todo" },
+	{ CLOAK_OF_WEATHER, "todo" },
+	{ WEATHER_HELMET, "todo" },
+	{ RIN_WEATHER, "todo" },
 
 	{0, "" }
 };

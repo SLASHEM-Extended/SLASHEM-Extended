@@ -2477,6 +2477,7 @@ newbossSING:
 	if ((monstersoundtype(mtmp) == MS_CONVERT || mtmp->egotype_converter) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !Race_if(PM_TURMENE) && !Race_if(PM_HC_ALIEN) && !Race_if(PM_SLYER_ALIEN) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) && !(have_hardcoreaddiction() && rn2(10)) && !(uarmh && uarmh->oartifact == ART_JAMILA_S_BELIEF) && !rn2(10)) {
 
 		conversionsermon();
+		stop_occupation();
 
 		u.cnd_conversioncount++;
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -2780,6 +2781,7 @@ convertdone:
 				case 7: pline("%s pricks %srself with a needle.", Monnam(mtmp), mhim(mtmp)); break;
 			}
 			increasesanity(rnz(25 + mtmp->m_lev));
+			stop_occupation();
 		}
 		mtmp->bleedout += rnz(12);
 
@@ -2922,6 +2924,40 @@ convertdone:
 			You("freeze for a moment.");
 			nomul(-2, "scared by rattling", TRUE);
 			nomovemsg = 0;
+		}
+	}
+
+	/* monsters with MS_WEATHER and certain other traits can force a specific weather, but only once --Amy */
+	if (monstersoundtype(mtmp) == MS_WEATHER && !mtmp->madeweatherchange && m_canseeu(mtmp) ) {
+		if (mtmp->m_lev >= 18 && ( attackdamagetype(mtmp->data, AT_BREA, AD_DARK) || attackdamagetype(mtmp->data, AT_BEAM, AD_DARK) ) ) {
+			mtmp->madeweatherchange = TRUE;
+			pline("%s used Noctem!", Monnam(mtmp));
+			u.currentweather = WEATHER_ECLIPSE;
+			tell_main_weather();
+		/* TODO: if a sandshrew pokemon is added, it should have the sandstorm ability */
+		} else if (attackdamagetype(mtmp->data, AT_BREA, AD_MALK) || attackdamagetype(mtmp->data, AT_BEAM, AD_MALK) ) {
+			mtmp->madeweatherchange = TRUE;
+			pline("%s used Thunderstorm!", Monnam(mtmp));
+			u.currentweather = WEATHER_THUNDERSTORM;
+			tell_main_weather();
+		} else if (dmgtype(mtmp->data, AD_ICEB) && dmgtype(mtmp->data, AD_FRZE) ) {
+			mtmp->madeweatherchange = TRUE;
+			pline("%s used Sleet!", Monnam(mtmp));
+			u.currentweather = rn2(5) ? WEATHER_SNOW : WEATHER_HAIL;
+			tell_main_weather();
+		} else if (attackdamagetype(mtmp->data, AT_BREA, AD_LITE) ) {
+			mtmp->madeweatherchange = TRUE;
+			pline("%s used Sunny Day!", Monnam(mtmp));
+			u.currentweather = WEATHER_SUNNY;
+			tell_main_weather();
+		} else if (dmgtype(mtmp->data, AD_WET) ) {
+			mtmp->madeweatherchange = TRUE;
+			pline("%s used Rain Dance!", Monnam(mtmp));
+			u.currentweather = WEATHER_RAIN;
+			tell_main_weather();
+		} else {
+			/* don't change the weather, but don't run this function every turn either */
+			mtmp->madeweatherchange = TRUE;
 		}
 	}
 
@@ -4012,6 +4048,8 @@ altarfound:
 	}
 
 	if (mtmp->singability && !rn2(10000)) mtmp->singability = FALSE;
+
+	if (autismringcheck(ART_KEEP_FUNKY_) && !rn2(1000)) mtmp->mconf = 1;
 
 	if (monsndx(ptr) == PM_SLEEPING_GIANT && !rn2(10)) mtmp->msleeping = 1;
 	if (monsndx(ptr) == PM_MUEJDE && !rn2(10)) mtmp->msleeping = 1;

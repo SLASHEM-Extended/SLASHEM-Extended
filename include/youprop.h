@@ -281,7 +281,7 @@
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
 #define ECold_resistance	u.uprops[COLD_RES].extrinsic
-#define IntCold_resistance	(HCold_resistance || u.cryopancaketurns || ColdImmunity || (uwep && uwep->oartifact == ART_CUTRELEASE) || resists_cold(&youmonst) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || is_cold_resistant(youmonst.data) || (powerfulsymbiosis() && is_cold_resistant(&mons[u.usymbiote.mnum])))
+#define IntCold_resistance	(HCold_resistance || u.cryopancaketurns || ColdImmunity || (uwep && uwep->oartifact == ART_CUTRELEASE) || resists_cold(&youmonst) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || is_cold_resistant(youmonst.data) || (powerfulsymbiosis() && is_cold_resistant(&mons[u.usymbiote.mnum])))
 #define ExtCold_resistance	(playerextrinsiccoldres())
 
 #define Cold_resistance		(((IntCold_resistance && u.nonintrinsicproperty != COLD_RES) || (ExtCold_resistance && u.nonextrinsicproperty != COLD_RES)) && !Role_if(PM_ALTMER) && !hybridragontype(AD_COLD) && !NoCold_resistance)
@@ -289,7 +289,7 @@
 
 #define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || UHaveAids || (u.impossibleproperty == COLD_RES) || autismweaponcheck(ART_FLARE_FLAKE) || (uarms && uarms->oartifact == ART_HEATEM_UP) || autismringcheck(ART_DEATHLY_COLD) || autismringcheck(ART_BERNCELD) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_GAVIL) || Race_if(PM_JAVA) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define ColdImmunity		((uwep && uwep->oartifact == ART_CUTRELEASE) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_FLEEC_LIE) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP))
+#define ColdImmunity		((uwep && uwep->oartifact == ART_CUTRELEASE) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_FLEEC_LIE) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP))
 
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic
@@ -319,7 +319,7 @@
 #define Shock_resistance	(((IntShock_resistance && u.nonintrinsicproperty != SHOCK_RES) || (ExtShock_resistance && u.nonextrinsicproperty != SHOCK_RES)) && !hybridragontype(AD_ELEC) && !Role_if(PM_ALTMER) && !NoShock_resistance )
 #define StrongShock_resistance	(IntShock_resistance && ExtShock_resistance && Shock_resistance && u.nondoubleproperty != SHOCK_RES)
 
-#define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) || UHaveAids || (u.impossibleproperty == SHOCK_RES) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || autismweaponcheck(ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) || UHaveAids || (u.impossibleproperty == SHOCK_RES) || (uarm && uarm->oartifact == ART_THUNDER_) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || autismweaponcheck(ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define ShockImmunity		(Race_if(PM_PLAYER_DYNAMO) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarms && uarms->oartifact == ART_TEH_SHOCK) || (uarmg && uarmg->oartifact == ART_ENNUI_STOICISM) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER && objects[uarms->otyp].oc_material == MT_WOOD) )
 
@@ -956,7 +956,7 @@
 #define FemtrapActivePatricia	(FemaleTrapPatricia || u.uprops[FEMTRAP_PATRICIA].extrinsic || have_femtrappatricia() || autismweaponcheck(ART_MAEVE_S_OPULENCE) )
 #define FemtrapActiveAntje	(FemaleTrapAntje || u.uprops[FEMTRAP_ANTJE].extrinsic || have_femtrapantje() || (uarm && uarm->oartifact == ART_MEET_WOMAN_ANTJE) || (uarmf && uarmf->oartifact == ART_FANNY_S_ANNOYANCE) )
 #define FemtrapActiveAntjeX	(FemaleTrapAntjeX || u.uprops[FEMTRAP_ANTJE_X].extrinsic || have_femtrapantjex() || (uarmu && uarmu->oartifact == ART_SOME_CHAMBER_DOOR) )
-#define FemtrapActiveKerstin	(FemaleTrapKerstin || u.uprops[FEMTRAP_KERSTIN].extrinsic || have_femtrapkerstin() || bmwride(ART_KERSTIN_S_COWBOY_BOOST) || autismweaponcheck(ART_GONDOLIN_S_HIDDEN_PASSAGE) )
+#define FemtrapActiveKerstin	(FemaleTrapKerstin || u.uprops[FEMTRAP_KERSTIN].extrinsic || have_femtrapkerstin() || (uarmh && uarmh->oartifact == ART_WHO_CAN_DRIVE_BEST_) || bmwride(ART_KERSTIN_S_COWBOY_BOOST) || autismweaponcheck(ART_GONDOLIN_S_HIDDEN_PASSAGE) )
 #define FemtrapActiveLaura	(FemaleTrapLaura || u.uprops[FEMTRAP_LAURA].extrinsic || have_femtraplaura() || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME) )
 #define FemtrapActiveLarissa	(FemaleTrapLarissa || u.uprops[FEMTRAP_LARISSA].extrinsic || have_femtraplarissa() || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || autismweaponcheck(ART_LARISSA_S_LAUGHTER) )
 #define FemtrapActiveNora	(FemaleTrapNora || u.uprops[FEMTRAP_NORA].extrinsic || have_femtrapnora())
@@ -2032,5 +2032,13 @@
 #define StrongSpellboost	(IntSpellboost && ExtSpellboost && Spellboost && u.nondoubleproperty != SPELLBOOST)
 
 #define NoSpellboost	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SPELLBOOST].intrinsic || UHaveAids || (u.impossibleproperty == SPELLBOOST ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+
+#define HWildWeatherEffect		u.uprops[WILD_WEATHER].intrinsic
+#define EWildWeatherEffect		u.uprops[WILD_WEATHER].extrinsic
+#define IntWildWeatherEffect	(HWildWeatherEffect)
+#define ExtWildWeatherEffect	(EWildWeatherEffect)
+
+#define WildWeatherEffect		(IntWildWeatherEffect || ExtWildWeatherEffect)
+#define StrongWildWeatherEffect		(IntWildWeatherEffect && ExtWildWeatherEffect && WildWeatherEffect)
 
 #endif /* YOUPROP_H */

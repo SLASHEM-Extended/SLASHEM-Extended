@@ -19519,6 +19519,34 @@ A("F the Bulletator Squad",				SENSOR_CLOAK, /* reduce damage nastytrap effect, 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
 
+A("Umbranox",				WEATHER_DRAGON_SCALE_MAIL, /* activates noctem when equipped, weather changes always become eclipse, resist death */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("THUNDER!",				WEATHER_DRAGON_SCALES, /* activates thunderstorm when equipped, weather changes always become thunderstorm, can be invoked for strength 24 lightning bolt but you cannot be shock resistant */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Why Is It Always Raining",				WEATHER_DRAGON_SCALE_SHIELD, /* activates rain when equipped, weather changes always become rain */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fleecy Corn",				CLOAK_OF_WEATHER, /* activates hail when equipped, weather changes always become hail, cold immunity when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Shrew Wind",				WEATHER_HELMET, /* activates sandstorm when equipped, weather changes always become sandstorm, +5 CHA, protects from item theft */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Keep funky.",				RIN_WEATHER, /* activates fog when equipped, weather changes always become fog, 80% chance to resist gaze attacks, whenever a monster moves there's 1 in 1000 chance for it to become confused */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Who can drive best?",				STANDARD_HELMET, /* initialized to always be biker helmet, kerstin trap effect, if you're female your riding skill trains three times as fast and you have double real speed devil boosts when riding */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

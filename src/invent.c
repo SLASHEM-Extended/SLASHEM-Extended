@@ -13084,6 +13084,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("Not sure exactly how it works, but this type of cloak makes you resist contamination one out of two times.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_TT_HELMET))
 			pline("Tinfoil-covered helmet, for protection from mind waves (emitted by purple h, for example).");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BIKER_HELMET))
+			pline("If you're riding a motorcycle, NEVER drive without your helmet on! It'll protect your head from becoming stupider if you happen to fall off your bike!");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_A_HEELS))
 			pline("A pair of stiletto heels. They're so clunky that if you try to kick a monster with them, you may randomly miss.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ALLIGATOR_PUMPS))
@@ -13886,8 +13888,10 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Wearing this cloak allows you to recognize peaceful monsters without needing to farlook them. FIQ wanted that to be enabled by default without requiring an extrinsic, but there are reasons why I made it the way it is now. Ask me if you need to know the specifics. (Yes, you should really join the IRC channel, unless you deliberately want to play the game unspoiled!)"); break;
 			case CLOAK_OF_DIMNESS:
 				pline("If you put on this cloak, you are subjected to a status effect that halves your armor class and abuses your wisdom. And in order to fix that, you must take it off again, however these cloaks are usually generated cursed."); break;
+			case CLOAK_OF_WEATHER:
+				pline("This cloak provides 3 points of magic cancellation and causes the weather to undergo wild changes."); break;
 			case CLOAK_OF_CONTAMINATION_RESISTA:
-				pline("A cloak that provides maximum magic cancellation and tones down the effects of weeping angel contamination."); break;
+				pline("A cloak that provides 3 points of magic cancellation and tones down the effects of weeping angel contamination."); break;
 			case CLOAK_OF_BURDEN:
 				pline("Bad cloak that makes your equipment twice as heavy, and it doesn't even grant magic cancellation. It is usually generated cursed."); break;
 			case CLOAK_OF_VACUUM:
@@ -14106,6 +14110,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This armor offers great protection as well as disintegration resistance."); break;
 			case BLUE_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as shock resistance."); break;
+			case WEATHER_DRAGON_SCALE_MAIL: 
+				pline("This armor offers great protection as well as wild weather."); break;
 			case DARK_DRAGON_SCALE_MAIL: 
 				pline("This armor offers great protection as well as +1 to-hit and damage."); break;
 			case COPPER_DRAGON_SCALE_MAIL: 
@@ -14188,6 +14194,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This armor offers moderate protection as well as disintegration resistance."); break;
 			case BLUE_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as shock resistance."); break;
+			case WEATHER_DRAGON_SCALES: 
+				pline("This armor offers moderate protection as well as wild weather."); break;
 			case DARK_DRAGON_SCALES: 
 				pline("This armor offers moderate protection as well as +1 damage and to-hit."); break;
 			case COPPER_DRAGON_SCALES: 
@@ -14370,6 +14378,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While wearing this cap, you can misbehave with less consequences: if you lose alignment, you generally lose less alignment on average, and actions that increase your sin counter won't always do so."); break;
 			case LUCKY_MUSHROOM:
 				pline("A very rare helmet that improves your luck by 5 points when worn!"); break;
+			case WEATHER_HELMET:
+				pline("While wearing this helmet, weather changes will result in very random weather conditions."); break;
 			case OMEGA_HEELS:
 				pline("This pair of cone heels has the ultimate property of letting you lifesave if your reason of death was something other than HP loss. However, if they do lifesave you, they drain 2 experience levels and permanently reduce all of your stats by one, and if any stat was already at the minimum, they can't save you. Unlike many other lifesaving items, they are *not* destroyed when they save you, so they can potentially save you several times."); break;
 			case BUOYANT_BOOTS:
@@ -15346,6 +15356,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A shield made from dragon hide that provides disintegration resistance as well as protection."); break;
 			case BLUE_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides shock resistance as well as protection."); break;
+			case WEATHER_DRAGON_SCALE_SHIELD:
+				pline("A shield made from dragon hide that provides wild weather as well as protection."); break;
 			case DARK_DRAGON_SCALE_SHIELD:
 				pline("A shield made from dragon hide that provides +1 damage and to-hit as well as protection."); break;
 			case COPPER_DRAGON_SCALE_SHIELD: 
@@ -16296,21 +16308,23 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 		if (!nn) pline("Unfortunately you don't know more about it. You will gain more information if you identify this item.");
 		else { switch (obj->otyp) {
 
-			case RIN_ADORNMENT: 
+			case RIN_ADORNMENT:
 				pline("If you wear this ring, you will feel more charismatic."); break;
-			case RIN_UPPER_ADORNMENT: 
+			case RIN_UPPER_ADORNMENT:
 				pline("This particular type of ring increases your charisma by its enchantment value and also prevents your charisma from being damaged."); break;
-			case RIN_HUNGER: 
+			case RIN_WEATHER:
+				pline("If you're wearing this ring, wild weather conditions will affect the dungeon."); break;
+			case RIN_HUNGER:
 				pline("Put this ring on if you no longer want to be satiated. It is usually generated cursed and increases your food consumption rate."); break;
-			case RIN_DISARMING: 
+			case RIN_DISARMING:
 				pline("You will drop your weapon if you wear this ring. It is usually generated cursed."); break;
-			case RIN_DRAIN_RESISTANCE: 
+			case RIN_DRAIN_RESISTANCE:
 				pline("Wear this! It grants level-drain resistance!"); break;
-			case RIN_NUMBNESS: 
+			case RIN_NUMBNESS:
 				pline("Wearing this ring will numb your limbs, which is a Bad Thing (TM). It is usually generated cursed."); break;
 			case RIN_CURSE:
 				pline("While wearing this ring, your items will sometimes get cursed. Putting this ring on causes it to autocurse."); break;
-			case RIN_HALLUCINATION: 
+			case RIN_HALLUCINATION:
 				pline("You will hallucinate as long as you wear this ring. Putting it on causes it to autocurse."); break;
 			case RIN_INTRINSIC_LOSS:
 				pline("This ring can cause intrinsic loss."); break;
@@ -31282,6 +31296,20 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: eating it gives you complete immunity to cold for 5000 turns."); break;
 				case ART_F_THE_BULLETATOR_SQUAD:
 					pline("Artifact specs: reduces your damage output when worn and firing automatic weapons does not result in bulletators chasing you, even if they normally would be summoned."); break;
+				case ART_UMBRANOX:
+					pline("Artifact specs: resist death and drain life when worn, activates a permanent noctem effect when equipped (which lasts at least until this item is unequipped)."); break;
+				case ART_THUNDER_:
+					pline("Artifact specs: activates a permanent thunderstorm effect when equipped (which lasts at least until this item is unequipped), can be invoked to breathe lightning powerfully in a direction of your choice."); break;
+				case ART_WHY_IS_IT_ALWAYS_RAINING:
+					pline("Artifact specs: activates permanent rainy weather when equipped (which lasts at least until this item is unequipped)."); break;
+				case ART_FLEECY_CORN:
+					pline("Artifact specs: cold immunity when worn, activates permanent hail when equipped (which lasts at least until this item is unequipped)."); break;
+				case ART_SHREW_WIND:
+					pline("Artifact specs: +5 charisma and protects from item theft when worn, activates a permanent sandstorm effect when equipped (which lasts at least until this item is unequipped)."); break;
+				case ART_KEEP_FUNKY_:
+					pline("Artifact specs: reflection, half physical damage, high chance of resisting gaze attacks and monsters occasionally become confused while you wear it, activates permanent foggy weather when equipped (which lasts at least until this item is unequipped)."); break;
+				case ART_WHO_CAN_DRIVE_BEST_:
+					pline("Artifact specs: kerstin trap effect when worn, and if you're female and are currently riding, your riding skill trains three times as fast and you're also faster than normal."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

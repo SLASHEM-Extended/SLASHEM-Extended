@@ -936,6 +936,7 @@ E int blackjack_card(void);
 E void maybe_wail(void);
 E void maybe_scream(void);
 E void maybe_tell_weather(void);
+E void tell_main_weather(void);
 
 #ifdef DUNGEON_GROWTH
 E void catchup_dgn_growths(int);
@@ -2246,6 +2247,7 @@ E int find_mantle_of_coat(void);
 E int find_everlasting_boots(void);
 E int find_fatal_gloves(void);
 E int find_cosmetic_helmet(void);
+E int find_biker_helmet(void);
 E int find_beautiful_heels(void);
 E int find_dextrous_gloves(void);
 E int find_buckloak(void);
@@ -2702,6 +2704,7 @@ E void make_inverted(long);
 E void make_wincing(long);
 E void make_burdened(long);
 E void make_magicvacuum(long);
+E void make_wildweather(long);
 E boolean make_hallucinated(long,BOOLEAN_P,long);
 E int dodrink(void);
 E void badeffect(void);

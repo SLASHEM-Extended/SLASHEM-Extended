@@ -1740,7 +1740,7 @@ climdone:
 
 		u.urmaxlvlL++;
 
-		if (!rn2(3)) { switch (rnd(62)) {
+		if (!rn2(3)) { switch (rnd(63)) {
 
 			case 1: 
 			case 2: 
@@ -1844,6 +1844,8 @@ climdone:
 			    HMagicFindBonus |= FROMOUTSIDE; pline("Got magic find!"); break;
 			case 62:
 			    HSpellboost |= FROMOUTSIDE; pline("Got spellboost!"); break;
+			case 63:
+			    HWildWeatherEffect |= FROMOUTSIDE; pline("Got wild weather!"); break;
 
 			default:
 				break;
@@ -1871,7 +1873,7 @@ climdone:
 
 		u.urmaxlvlF++;
 
-		if (!rn2(4)) { switch (rnd(62)) {
+		if (!rn2(4)) { switch (rnd(63)) {
 
 			case 1: 
 			case 2: 
@@ -1975,6 +1977,8 @@ climdone:
 			    HMagicFindBonus |= FROMOUTSIDE; pline("Got magic find!"); break;
 			case 62:
 			    HSpellboost |= FROMOUTSIDE; pline("Got spellboost!"); break;
+			case 63:
+			    HWildWeatherEffect |= FROMOUTSIDE; pline("Got wild weather!"); break;
 
 			default:
 				break;

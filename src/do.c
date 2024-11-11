@@ -744,6 +744,9 @@ giveback:
 	      case RIN_MYSTERY_RESISTANCE:
 		    pline("The sink seems to be surrounded by a magical shield.");
 		    break;
+	      case RIN_WEATHER:
+		    pline("The sink seems to be struck by a thunderbolt!");
+		    break;
 	      case RIN_RANDOM_EFFECTS:
 	      case RIN_SPECIAL_EFFECTS:
 		    pline("You are not sure if there is anything happening to the sink at all.");
@@ -4717,7 +4720,7 @@ rerollchaloc:
 		    You("fall down the %s.", at_ladder ? "ladder" : "stairs");
 		    if (issoviet && (near_capacity() > UNENCUMBERED)) pline("Teper' ty upal, potomu chto ty vsegda tak deyalesh, ty, obremenennyy pridurok. Ty deystvitel'no ne ochen' umnyy.");
 
-		    if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
+		    if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) { /* evil patch idea by jonadab: amnesia */
 
 			if (rn2(50)) {
 				adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);

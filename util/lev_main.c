@@ -944,6 +944,8 @@ static struct {
 
 	{ "magic damage", MAGIC_DAMAGE_TRAP },
 
+	{ "wild weather", WILD_WEATHER_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

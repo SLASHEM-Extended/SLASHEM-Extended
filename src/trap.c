@@ -15633,6 +15633,15 @@ callingoutdone:
 
 			break;
 
+		case WILD_WEATHER_TRAP:
+
+			pline("A blue light surrounds you...");
+			seetrap(trap);
+
+			make_wildweather((HWildWeatherEffect & TIMEOUT) + rnd(10) + rnd(monster_difficulty() * 100) );
+
+			break;
+
 		case U_HAVE_BEEN_TRAP:
 
 			You_feel("like you have been here before...");
@@ -23342,6 +23351,7 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 		case UNLUCKY_TRAP:
 		case ALIGNMENT_REDUCTION_TRAP:
 		case MALIGNANT_TRAP:
+		case WILD_WEATHER_TRAP:
 		case STAT_DAMAGE_TRAP:
 		case HALF_MEMORY_TRAP:
 		case HALF_TRAINING_TRAP:
@@ -26686,6 +26696,7 @@ struct trap *ttmp;
 	if (ttmp->ttyp == SINGLE_UNIDENTIFY_TRAP) chance = 10;
 	if (ttmp->ttyp == UNLUCKY_TRAP) chance = 12;
 	if (ttmp->ttyp == ALIGNMENT_REDUCTION_TRAP) chance = 8;
+	if (ttmp->ttyp == WILD_WEATHER_TRAP) chance = 8;
 	if (ttmp->ttyp == MALIGNANT_TRAP) chance = 16;
 	if (ttmp->ttyp == STAT_DAMAGE_TRAP) chance = 4;
 	if (ttmp->ttyp == HALF_MEMORY_TRAP) chance = 12;
@@ -27349,6 +27360,8 @@ struct trap *ttmp;
 		case DIVINE_ANGER_TRAP:
 			multiplier = 50; break;
 		case ALIGNMENT_REDUCTION_TRAP:
+			multiplier = 5; break;
+		case WILD_WEATHER_TRAP:
 			multiplier = 5; break;
 		case GENETIC_TRAP:
 			multiplier = 25; break;
@@ -28461,6 +28474,7 @@ boolean force;
 			case SINGLE_UNIDENTIFY_TRAP:
 			case UNLUCKY_TRAP:
 			case ALIGNMENT_REDUCTION_TRAP:
+			case WILD_WEATHER_TRAP:
 			case MALIGNANT_TRAP:
 			case STAT_DAMAGE_TRAP:
 			case HALF_MEMORY_TRAP:

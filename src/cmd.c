@@ -6792,6 +6792,7 @@ boolean guaranteed;
 	if ((guaranteed || !rn2(10)) && BurdenedState) enl_msg(You_, "are", "were", StrongBurdenedState ? " heavily burdened" : " burdened");
 	if ((guaranteed || !rn2(10)) && MagicVacuum) enl_msg(You_, "are", "were", StrongMagicVacuum ? " suffering from a complete magic vacuum" : " suffering from a magic vacuum");
 	if ((guaranteed || !rn2(10)) && FuckOverEffect) enl_msg(You_, "are", "were", StrongFuckOverEffect ? " being totally fucked over" : " being fucked over");
+	if ((guaranteed || !rn2(10)) && WildWeatherEffect) enl_msg(You_, "are", "were", StrongWildWeatherEffect ? " experiencing constant random weather changes" : " experiencing random weather conditions");
 
 	if ((guaranteed || !rn2(10)) && Hallu_party) you_are(StrongHallu_party ? "totally hallu partying" : "hallu partying");
 	if ((guaranteed || !rn2(10)) && Drunken_boxing) you_are(StrongDrunken_boxing ? "a very drunken boxer" : "a drunken boxer");
@@ -11491,6 +11492,7 @@ int final;
 	if (BurdenedState) dump("  ", StrongBurdenedState ? "You were heavily burdened" : "You were burdened");
 	if (MagicVacuum) dump("  ", StrongMagicVacuum ? "You were suffering from a complete magic vacuum" : "You were suffering from a magic vacuum");
 	if (FuckOverEffect) dump("  ", StrongFuckOverEffect ? "You were being totally fucked over" : "You were being fucked over");
+	if (WildWeatherEffect) dump("  ", StrongWildWeatherEffect ? "You were experiencing constant random weather changes" : "You were experiencing random weather conditions");
 
 	if ((Blind_telepat || Unblind_telepat) && !StrongTelepat) dump(youwere, "telepathic");
 	if ((Blind_telepat || Unblind_telepat) && StrongTelepat) dump(youwere, "very telepathic");

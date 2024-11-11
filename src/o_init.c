@@ -3750,6 +3750,19 @@ find_cosmetic_helmet()
 }
 
 int
+find_biker_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BIKER_HELMET)) return i;
+    }
+
+    impossible("biker helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_excrement_cloak()
 {
     register int i;

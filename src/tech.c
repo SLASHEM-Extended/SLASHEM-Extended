@@ -346,6 +346,12 @@ STATIC_OVL NEARDATA const char *abil_names[] = {
 	"toggle martial arts",
 	"temp recursion",
 	"check symbiote",
+	"rain dance",
+	"thunderstorm",
+	"sleet",
+	"sunny day",
+	"sandstorm",
+	"noctem",
 	"euthanize symbiote",
 	""
 };
@@ -3172,7 +3178,7 @@ restartmenu:
 
 	if (specialmenutype == 0) { /* option for sorting your abils */
 		any.a_int = -1;	/* must be non-zero */
-		add_menu(tmpwin, NO_GLYPH, &any, '?', 0, ATR_NONE, "Sort abils", MENU_UNSELECTED);
+		add_menu(tmpwin, NO_GLYPH, &any, '?', 0, ATR_NONE, "Sort abilities", MENU_UNSELECTED);
 	}
 
 	if (!abils_useable)
@@ -3434,6 +3440,34 @@ int abil;
 			if (uinsymbiosis) return TRUE;
 			return FALSE;
 			break;
+		case ABIL_WEATHER_RAIN:
+			if (dmgtype(youmonst.data, AD_WET)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_WEATHER_THUNDERSTORM:
+			if (attackdamagetype(youmonst.data, AT_BREA, AD_MALK)) return TRUE;
+			if (attackdamagetype(youmonst.data, AT_BEAM, AD_MALK)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_WEATHER_SLEET:
+			if (dmgtype(youmonst.data, AD_ICEB) && dmgtype(youmonst.data, AD_FRZE)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_WEATHER_SUNNY:
+			if (attackdamagetype(youmonst.data, AT_BREA, AD_LITE)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_WEATHER_SANDSTORM:
+			if (FireImmunity && is_sand(u.ux,u.uy)) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_WEATHER_NOCTEM:
+			if (u.ulevel >= 18 && attackdamagetype(youmonst.data, AT_BREA, AD_DARK)) return TRUE;
+			if (u.ulevel >= 18 && attackdamagetype(youmonst.data, AT_BEAM, AD_DARK)) return TRUE;
+			if (Upolyd && (mons[u.umonnum].mlevel >= 18) && attackdamagetype(youmonst.data, AT_BREA, AD_DARK)) return TRUE;
+			if (Upolyd && (mons[u.umonnum].mlevel >= 18) && attackdamagetype(youmonst.data, AT_BEAM, AD_DARK)) return TRUE;
+			return FALSE;
+			break;
 
 	}
 
@@ -3613,6 +3647,25 @@ domonabil()
 					pline("Kills your current symbiote. This gives penalties just like murdering a pet, so if you want to get rid of your symbiote, consider using some other method of obtaining a new symbiote to replace the current one.");
 					break;
 
+				case ABIL_WEATHER_RAIN:
+					pline("Changes the weather to 'rainy'.");
+					break;
+				case ABIL_WEATHER_THUNDERSTORM:
+					pline("Changes the weather to 'thunderstorm'.");
+					break;
+				case ABIL_WEATHER_SLEET:
+					pline("Changes the weather to 'snow', or occasionally, 'hail'.");
+					break;
+				case ABIL_WEATHER_SUNNY:
+					pline("Changes the weather to 'sunny'.");
+					break;
+				case ABIL_WEATHER_SANDSTORM:
+					pline("Changes the weather to 'sandstorm'.");
+					break;
+				case ABIL_WEATHER_NOCTEM:
+					pline("Changes the weather to 'eclipse'.");
+					break;
+
 				default:
 					pline("This ability doesn't have a description yet, but it might get one in future. --Amy");
 					break;
@@ -3634,7 +3687,7 @@ int
 monabileffects(abil_no)
 int abil_no;
 {
-	boolean abilreturncode = 0;
+	boolean abilreturncode = 0; /* by default, an ability doesn't take a turn */
 	char buf[BUFSZ];
 
 	if (!ability_usable(abilid(abil_no)) ) {
@@ -4323,6 +4376,158 @@ newbossSTEN:
 			abilreturncode = TRUE;
 
 			break;
+
+		case ABIL_WEATHER_RAIN:
+
+			if (u.weathertimer > 0) {
+				pline("Sorry. You must wait %d more turns before you can change the weather again.", u.weathertimer);
+				break;
+			}
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.weathertimer = rnz(5000);
+			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.weathertimer *= 9; u.weathertimer /= 10; break;
+			      	case P_SKILLED:	u.weathertimer *= 8; u.weathertimer /= 10; break;
+			      	case P_EXPERT:	u.weathertimer *= 7; u.weathertimer /= 10; break;
+			      	case P_MASTER:	u.weathertimer *= 6; u.weathertimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.weathertimer *= 5; u.weathertimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.weathertimer *= 4; u.weathertimer /= 10; break;
+			      	default: break;
+				}
+			}
+			u.currentweather = WEATHER_RAIN;
+			tell_main_weather();
+
+			abilreturncode = TRUE;
+			break;
+		case ABIL_WEATHER_THUNDERSTORM:
+
+			if (u.weathertimer > 0) {
+				pline("Sorry. You must wait %d more turns before you can change the weather again.", u.weathertimer);
+				break;
+			}
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.weathertimer = rnz(5000);
+			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.weathertimer *= 9; u.weathertimer /= 10; break;
+			      	case P_SKILLED:	u.weathertimer *= 8; u.weathertimer /= 10; break;
+			      	case P_EXPERT:	u.weathertimer *= 7; u.weathertimer /= 10; break;
+			      	case P_MASTER:	u.weathertimer *= 6; u.weathertimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.weathertimer *= 5; u.weathertimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.weathertimer *= 4; u.weathertimer /= 10; break;
+			      	default: break;
+				}
+			}
+			u.currentweather = WEATHER_THUNDERSTORM;
+			tell_main_weather();
+
+			abilreturncode = TRUE;
+			break;
+		case ABIL_WEATHER_SLEET:
+
+			if (u.weathertimer > 0) {
+				pline("Sorry. You must wait %d more turns before you can change the weather again.", u.weathertimer);
+				break;
+			}
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.weathertimer = rnz(5000);
+			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.weathertimer *= 9; u.weathertimer /= 10; break;
+			      	case P_SKILLED:	u.weathertimer *= 8; u.weathertimer /= 10; break;
+			      	case P_EXPERT:	u.weathertimer *= 7; u.weathertimer /= 10; break;
+			      	case P_MASTER:	u.weathertimer *= 6; u.weathertimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.weathertimer *= 5; u.weathertimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.weathertimer *= 4; u.weathertimer /= 10; break;
+			      	default: break;
+				}
+			}
+			u.currentweather = rn2(5) ? WEATHER_SNOW : WEATHER_HAIL;
+			tell_main_weather();
+
+			abilreturncode = TRUE;
+			break;
+		case ABIL_WEATHER_SUNNY:
+
+			if (u.weathertimer > 0) {
+				pline("Sorry. You must wait %d more turns before you can change the weather again.", u.weathertimer);
+				break;
+			}
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.weathertimer = rnz(5000);
+			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.weathertimer *= 9; u.weathertimer /= 10; break;
+			      	case P_SKILLED:	u.weathertimer *= 8; u.weathertimer /= 10; break;
+			      	case P_EXPERT:	u.weathertimer *= 7; u.weathertimer /= 10; break;
+			      	case P_MASTER:	u.weathertimer *= 6; u.weathertimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.weathertimer *= 5; u.weathertimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.weathertimer *= 4; u.weathertimer /= 10; break;
+			      	default: break;
+				}
+			}
+			u.currentweather = WEATHER_SUNNY;
+			tell_main_weather();
+
+			abilreturncode = TRUE;
+			break;
+		case ABIL_WEATHER_SANDSTORM:
+
+			if (u.weathertimer > 0) {
+				pline("Sorry. You must wait %d more turns before you can change the weather again.", u.weathertimer);
+				break;
+			}
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.weathertimer = rnz(5000);
+			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.weathertimer *= 9; u.weathertimer /= 10; break;
+			      	case P_SKILLED:	u.weathertimer *= 8; u.weathertimer /= 10; break;
+			      	case P_EXPERT:	u.weathertimer *= 7; u.weathertimer /= 10; break;
+			      	case P_MASTER:	u.weathertimer *= 6; u.weathertimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.weathertimer *= 5; u.weathertimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.weathertimer *= 4; u.weathertimer /= 10; break;
+			      	default: break;
+				}
+			}
+			u.currentweather = WEATHER_SANDSTORM;
+			tell_main_weather();
+
+			abilreturncode = TRUE;
+			break;
+		case ABIL_WEATHER_NOCTEM:
+
+			if (u.weathertimer > 0) {
+				pline("Sorry. You must wait %d more turns before you can change the weather again.", u.weathertimer);
+				break;
+			}
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.weathertimer = rnz(5000);
+			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.weathertimer *= 9; u.weathertimer /= 10; break;
+			      	case P_SKILLED:	u.weathertimer *= 8; u.weathertimer /= 10; break;
+			      	case P_EXPERT:	u.weathertimer *= 7; u.weathertimer /= 10; break;
+			      	case P_MASTER:	u.weathertimer *= 6; u.weathertimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.weathertimer *= 5; u.weathertimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.weathertimer *= 4; u.weathertimer /= 10; break;
+			      	default: break;
+				}
+			}
+			u.currentweather = WEATHER_ECLIPSE;
+			tell_main_weather();
+
+			abilreturncode = TRUE;
+			break;
+
 		case ABIL_SYMBIOSIS_CHECK:
 
 			pline("Current symbiote is %s. Health: %d(%d). BUC: %s%s%s%s%s. ", mons[u.usymbiote.mnum].mname, u.usymbiote.mhp, u.usymbiote.mhpmax, u.usymbiote.stckcurse ? "sticky" : "", u.usymbiote.evilcurse ? " evil" : "", u.usymbiote.morgcurse ? " morgothian" : "", u.usymbiote.bbcurse ? " blackbreath" : "", u.usymbiote.prmcurse ? " prime cursed" : u.usymbiote.hvycurse ? " heavily cursed" : u.usymbiote.cursed ? " cursed" : "uncursed");

@@ -266,7 +266,7 @@ kseniaagain:
 			if (FemtrapActiveKlara && (multi < 0) && spawnswithsandals(mtmp->data) ) {
 				pline("%s fully slams %s sandals against your fore%s!", Monnam(mtmp), mhis(mtmp), body_part(HEAD));
 				losehp(rnd((mtmp->m_lev) + 1), "being kicked in the forehead by a pair of female sandals", KILLED_BY);
-				if (!rn2(100)) {
+				if (!rn2(100) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) ) {
 					adjattrib(A_INT, -1, FALSE, TRUE);
 				}
 			}
@@ -9166,7 +9166,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uarmh && uarmh->oartifact == ART_SHREW_WIND) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -16034,13 +16034,19 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		return 0;
 	}
 
+	if (autismringcheck(ART_KEEP_FUNKY_) && rn2(5) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
+		/* cut down on message spam - only display it 1 out of 10 times --Amy */
+		if (!rn2(10)) pline("%s gazes at you, but the fog protects you from the effects!", Monnam(mtmp));
+		return 0;
+	}
+
 	if ((uarmh && itemhasappearance(uarmh, APP_NETRADIATION_HELMET) ) && !rn2(2) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
 		if (!rn2(10)) pline("%s gazes at you, but your netradiation helmet protects you from the effects!", Monnam(mtmp));
 		return 0;
 	}
 
 	if (uarms && uarms->oartifact == ART_AEGIS && !rn2(2) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee) {
-		if (!rn2(10)) pline("%s gazes at you, but Aegis you from the effects!", Monnam(mtmp));
+		if (!rn2(10)) pline("%s gazes at you, but Aegis protects you from the effects!", Monnam(mtmp));
 		return 0;
 	}
 

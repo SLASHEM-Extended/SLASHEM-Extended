@@ -418,6 +418,7 @@ register struct monst *mtmp;
 	    case PM_WHITE_DRAGON:
 	    case PM_BLACK_DRAGON:
 	    case PM_BLUE_DRAGON:
+	    case PM_WEATHER_DRAGON:
 	    case PM_DARK_DRAGON:
 	    case PM_COPPER_DRAGON:
 	    case PM_PLATINUM_DRAGON:
@@ -3876,6 +3877,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != UNLUCKY_TRAP
 				&& ttmp->ttyp != ALIGNMENT_REDUCTION_TRAP
 				&& ttmp->ttyp != MALIGNANT_TRAP
+				&& ttmp->ttyp != WILD_WEATHER_TRAP
 				&& ttmp->ttyp != STAT_DAMAGE_TRAP
 				&& ttmp->ttyp != HALF_MEMORY_TRAP
 				&& ttmp->ttyp != HALF_TRAINING_TRAP

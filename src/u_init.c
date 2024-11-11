@@ -9722,6 +9722,8 @@ u_init()
 	u.nurseshutdowncost = 1000;	/* cost to buy shutdown service from nurses */
 	u.nursevaccinecost = 2000;	/* cost to buy covid-19 vaccine from nurses */
 
+	u.weathertimer = 0;
+
 	u.shutdowntime = 0;
 
 	u.shaperoomchance = (rnd(15) + 3);	/* chance of irregular rooms */
@@ -11560,6 +11562,7 @@ u_init()
 	if (rn2(3)) {
 		boolean highweather = FALSE;
 		if (!rn2(10)) highweather = TRUE;
+		if (WildWeatherEffect) highweather = TRUE;
 
 		if (rn2(2)) {
 			if (highweather) {
@@ -11577,6 +11580,18 @@ u_init()
 	}
 	if (u.monstermultiplier < 10) u.monstermultiplier = 10; /* sanity check */
 	if (u.monstermultiplier > 190) u.monstermultiplier = 190;
+
+	/* set the main weather: 99% chance of overcast, unless you have the wild weather trinsic --Amy */
+	if (rn2(WildWeatherEffect ? 2 : 100)) u.currentweather = WEATHER_OVERCAST;
+	else if (!rn2(1000)) u.currentweather = WEATHER_ETHERWIND;
+	else if (!rn2(1000)) u.currentweather = WEATHER_ECLIPSE;
+	else if (!rn2(200)) u.currentweather = WEATHER_FOG;
+	else if (!rn2(200)) u.currentweather = WEATHER_SANDSTORM;
+	else if (!rn2(50)) u.currentweather = WEATHER_HAIL;
+	else if (!rn2(50)) u.currentweather = WEATHER_THUNDERSTORM;
+	else if (!rn2(20)) u.currentweather = WEATHER_SNOW;
+	else if (!rn2(2)) u.currentweather = WEATHER_RAIN;
+	else u.currentweather = WEATHER_SUNNY;
 
 	u.drippingtread = 0;
 	u.drippingtreadtype = 0;
@@ -33979,6 +33994,7 @@ int realityflag;
 	if (rn2(3)) {
 		boolean highweather = FALSE;
 		if (!rn2(10)) highweather = TRUE;
+		if (WildWeatherEffect) highweather = TRUE;
 
 		if (rn2(2)) {
 			if (highweather) {

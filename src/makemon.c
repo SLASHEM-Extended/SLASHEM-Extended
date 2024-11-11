@@ -25705,6 +25705,7 @@ register int	mmflags;
 	mtmp->flagged_for_death = FALSE;
 	mtmp->legdamage = 0;
 	mtmp->caught_stealing = FALSE;
+	mtmp->madeweatherchange = FALSE;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
 	if (MoveMorkXtra) mtmp->movement += rnd(24);

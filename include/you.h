@@ -2185,6 +2185,20 @@ struct you {
 	boolean symbiotedmghack;	/* make something damage you even if you have a symbiote */
 	int shutdowntime;	/* for nurse's shutdown symbiote service */
 
+#define WEATHER_OVERCAST 0
+#define WEATHER_RAIN 1
+#define WEATHER_THUNDERSTORM 2
+#define WEATHER_SNOW 3
+#define WEATHER_HAIL 4
+#define WEATHER_SUNNY 5
+#define WEATHER_SANDSTORM 6
+#define WEATHER_FOG 7
+#define WEATHER_ECLIPSE 8
+#define WEATHER_ETHERWIND 9
+
+	int currentweather;
+	int weathertimer;	/* for #monster abilities, to prevent you from spamming them */
+
 	/* practicant role: has to pay a fine sometimes */
 	int practicantpenalty;	/* how many zorkmids you have to pay */
 	int practicanttime;	/* how much time you have until you need to have paid */

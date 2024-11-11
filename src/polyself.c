@@ -1181,6 +1181,19 @@ int	mntmp;
 		pline(use_thec,monsterc,"make superman taunts");
 	    if (youmonst.data->msound == MS_BONES)
 		pline(use_thec,monsterc,"rattle");
+	    if (dmgtype(youmonst.data, AD_WET))
+		pline(use_thec,monsterc,"perform a rain dance");
+	    if (attackdamagetype(youmonst.data, AT_BREA, AD_MALK) || attackdamagetype(youmonst.data, AT_BEAM, AD_MALK))
+		pline(use_thec,monsterc,"conjure a thunderstorm");
+	    if (dmgtype(youmonst.data, AD_ICEB) && dmgtype(youmonst.data, AD_FRZE))
+		pline(use_thec,monsterc,"conjure a sleet");
+	    if (attackdamagetype(youmonst.data, AT_BREA, AD_LITE))
+		pline(use_thec,monsterc,"conjure sunny weather");
+	    if (attackdamagetype(youmonst.data, AT_BREA, AD_DARK) || attackdamagetype(youmonst.data, AT_BEAM, AD_DARK)) {
+		if (u.ulevel >= 18 || (Upolyd && (mons[u.umonnum].mlevel >= 18)) ) {
+			pline(use_thec,monsterc,"cause an eclipse");
+		}
+	    }
 	}
 	/* you now know what an egg of your type looks like */
 	if (lays_eggs(youmonst.data)) {
@@ -2520,6 +2533,7 @@ dospinweb()
 		case UNLUCKY_TRAP:
 		case ALIGNMENT_REDUCTION_TRAP:
 		case MALIGNANT_TRAP:
+		case WILD_WEATHER_TRAP:
 		case STAT_DAMAGE_TRAP:
 		case HALF_MEMORY_TRAP:
 		case HALF_TRAINING_TRAP:
@@ -3489,6 +3503,9 @@ int atyp;
 	    case BLUE_DRAGON_SCALE_MAIL:
 	    case BLUE_DRAGON_SCALES:
 		return PM_BLUE_DRAGON;
+	    case WEATHER_DRAGON_SCALE_MAIL:
+	    case WEATHER_DRAGON_SCALES:
+		return PM_WEATHER_DRAGON;
 	    case DARK_DRAGON_SCALE_MAIL:
 	    case DARK_DRAGON_SCALES:
 		return PM_DARK_DRAGON;

@@ -3300,6 +3300,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_IRIS_S_THUNDER) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
+		if (uarmh && uarmh->oartifact == ART_SHREW_WIND) tmp += 5;
 		if (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) tmp += 4;
 		if (uarmh && uarmh->oartifact == ART_DREHTURN) tmp += 5;
 		if (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) tmp += 2;

@@ -1128,7 +1128,7 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		return;
 	}
 
-	switch(rnd(265)) {
+	switch(rnd(266)) {
 	case 1:
 	case 2:
 	case 3:
@@ -2357,6 +2357,17 @@ attrcurse()			/* remove a random INTRINSIC ability */
 		if (HSpellboost & TIMEOUT) {
 			HSpellboost &= ~TIMEOUT;
 			You_feel("your spell power waning!");
+			u.cnd_intrinsiclosscount++;
+		}
+		break;
+	case 266: if (HWildWeatherEffect & INTRINSIC) {
+			HWildWeatherEffect &= ~INTRINSIC;
+			You_feel("the weather becoming normal again.");
+			u.cnd_intrinsiclosscount++;
+		}
+		if (HWildWeatherEffect & TIMEOUT) {
+			HWildWeatherEffect &= ~TIMEOUT;
+			You_feel("the weather becoming normal again.");
 			u.cnd_intrinsiclosscount++;
 		}
 		break;

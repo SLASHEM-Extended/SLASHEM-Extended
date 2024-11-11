@@ -1095,13 +1095,16 @@ int mode;
 				You("crash into a set of iron bars! Ouch!");
 
 				losehp(rnd(10), "walking into iron bars", KILLED_BY);
-				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-					} else {
-						You_feel("dizzy!");
-						forget(1 + rn2(5), FALSE);
+
+				if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5), FALSE);
+						}
 					}
 				}
 
@@ -1172,13 +1175,15 @@ int mode;
 				You("crash into a farmland! Ouch!");
 
 				losehp(rnd(10), "walking into a farmland", KILLED_BY);
-				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-					} else {
-						You_feel("dizzy!");
-						forget(1 + rn2(5), FALSE);
+				if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5), FALSE);
+						}
 					}
 				}
 			} else {
@@ -1198,13 +1203,15 @@ int mode;
 				You("crash into a tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a tunnel", KILLED_BY);
-				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-					} else {
-						You_feel("dizzy!");
-						forget(1 + rn2(5), FALSE);
+				if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5), FALSE);
+						}
 					}
 				}
 			} else {
@@ -1306,13 +1313,15 @@ walscholardone:
 				You("crash into a water tunnel! Ouch!");
 
 				losehp(rnd(10), "walking into a water tunnel", KILLED_BY);
-				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-					} else {
-						You_feel("dizzy!");
-						forget(1 + rn2(5), FALSE);
+				if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5), FALSE);
+						}
 					}
 				}
 			} else {
@@ -1354,13 +1363,15 @@ walscholardone:
 					You("crash into a tree! Ouch!");
 
 					losehp(rnd(10), "walking into a tree", KILLED_BY);
-					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-						} else {
-							You_feel("dizzy!");
-							forget(1 + rn2(5), FALSE);
+					if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+						if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+							if (rn2(50)) {
+								adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+								if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+							} else {
+								You_feel("dizzy!");
+								forget(1 + rn2(5), FALSE);
+							}
 						}
 					}
 				} else pline("There is a tree in the way!");
@@ -1376,13 +1387,15 @@ walscholardone:
 					You("crash into a wall! Ouch!");
 
 					losehp(rnd(10), "walking into a wall", KILLED_BY);
-					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-						if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-						} else {
-							You_feel("dizzy!");
-							forget(1 + rn2(5), FALSE);
+					if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+						if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+							if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+							} else {
+								You_feel("dizzy!");
+								forget(1 + rn2(5), FALSE);
+							}
 						}
 					}
 				} else pline("There is a wall in the way!");
@@ -1431,13 +1444,15 @@ walscholardone:
 				You("crash into a door! Ouch!");
 
 				losehp(rnd(10), "walking into a door", KILLED_BY);
-				if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-					if (rn2(50)) {
-						adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-						if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-					} else {
-						You_feel("dizzy!");
-						forget(1 + rn2(5), FALSE);
+				if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+						if (rn2(50)) {
+							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+						} else {
+							You_feel("dizzy!");
+							forget(1 + rn2(5), FALSE);
+						}
 					}
 				}
 			}
@@ -1464,13 +1479,15 @@ walscholardone:
 					You("crash into a door! Ouch!");
 
 					losehp(rnd(10), "walking into a door", KILLED_BY);
-					if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
-						if (rn2(50)) {
-							adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
-							if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
-						} else {
-							You_feel("dizzy!");
-							forget(1 + rn2(5), FALSE);
+					if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
+						if (!rn2(Role_if(PM_COURIER) ? 1000 : uarmh ? 50 : 10)) {
+							if (rn2(50)) {
+								adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
+								if (!rn2(50)) adjattrib(rn2(2) ? A_INT : A_WIS, -rno(2), FALSE, TRUE);
+							} else {
+								You_feel("dizzy!");
+								forget(1 + rn2(5), FALSE);
+							}
 						}
 					}
 				}
@@ -4616,9 +4633,53 @@ maybe_wail()
 }
 
 void
+tell_main_weather()
+{
+
+	pline("Attention, main weather broadcast coming in:");
+
+	switch (u.currentweather) {
+		case WEATHER_OVERCAST:
+			pline("The sky is cloudy.");
+			break;
+		case WEATHER_RAIN:
+			pline("It is raining.");
+			break;
+		case WEATHER_THUNDERSTORM:
+			pline("There's a thunderstorm going on!");
+			break;
+		case WEATHER_SNOW:
+			pline("It is snowing.");
+			break;
+		case WEATHER_HAIL:
+			pline("It is hailing.");
+			break;
+		case WEATHER_SUNNY:
+			pline("The sunlight is strong.");
+			break;
+		case WEATHER_SANDSTORM:
+			pline("There's a sandstorm going on!");
+			break;
+		case WEATHER_FOG:
+			pline("It is very foggy.");
+			break;
+		case WEATHER_ECLIPSE:
+			pline("The sky is dark.");
+			break;
+		case WEATHER_ETHERWIND:
+			pline("Etherwind is blowing! You should seek shelter!");
+			break;
+	}
+
+}
+
+void
 maybe_tell_weather()
 {
 	if (EcholocationActive || Clairvoyant) {
+
+		pline("Attention, time for today's weather broadcast! Let's see what's up in the Dungeons of Doom...");
+
 		if (u.monstermultiplier < 31) {
 			pline("The current weather is extremely arid.");
 		} else if (u.monstermultiplier < 51) {
@@ -4642,6 +4703,7 @@ maybe_tell_weather()
 		} else {
 			pline("The current weather is super stormy.");
 		}
+		tell_main_weather();
 	}
 }
 

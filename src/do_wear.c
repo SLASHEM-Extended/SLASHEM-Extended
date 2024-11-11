@@ -1372,6 +1372,7 @@ Cloak_on()
 	case CLOAK_OF_DISCOUNT_ACTION:
 	case CLOAK_OF_TECHNICALITY:
 	case CLOAK_OF_SPELL_BOOSTING:
+	case CLOAK_OF_WEATHER:
 	case CLOAK_OF_FULL_NUTRITION:
 	case CLOAK_OF_FUCKING:
 	case CLOAK_OF_MAGIC_FIND:
@@ -1823,6 +1824,12 @@ Cloak_on()
 		}
 	}
 
+	if (uarmc && uarmc->oartifact == ART_FLEECY_CORN) {
+		You("activate the Hail ability.");
+		u.currentweather = WEATHER_HAIL;
+		tell_main_weather();
+	}
+
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_LAB_COAT) {
 		pline("Bad for you - you just cursed yourself with Ina's anorexia. :-(");
 		curse(uarmc);
@@ -2144,6 +2151,7 @@ Cloak_off()
 	case CLOAK_OF_DISCOUNT_ACTION:
 	case CLOAK_OF_TECHNICALITY:
 	case CLOAK_OF_SPELL_BOOSTING:
+	case CLOAK_OF_WEATHER:
 	case CLOAK_OF_FULL_NUTRITION:
 	case CLOAK_OF_FUCKING:
 	case CLOAK_OF_MAGIC_FIND:
@@ -2361,6 +2369,7 @@ Helmet_on()
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
 	case SCENTY_HELMET:
+	case WEATHER_HELMET:
 	case HELMET_OF_SAVING:
 	case HELM_OF_MYSTERY_RES:
 	case OILSKIN_COIF:
@@ -2659,6 +2668,12 @@ Helmet_on()
 			curse(uarmh);
 			pline("Ju kawad jur fes.");
 		}
+    }
+
+    if (uarmh && uarmh->oartifact == ART_SHREW_WIND) {
+		You("activate the Sandstorm ability.");
+		u.currentweather = WEATHER_SANDSTORM;
+		tell_main_weather();
     }
 
     if (uarmh && uarmh->oartifact == ART_JOLENE_S_ZEAL && uarmh->spe < 5) uarmh->spe = 5;
@@ -2983,6 +2998,7 @@ Helmet_off()
 	case HELM_OF_TELEPORT_CONTROL:
 	case HELM_OF_OPAQUE_THOUGHTS:
 	case SCENTY_HELMET:
+	case WEATHER_HELMET:
 	case HELMET_OF_SAVING:
 	case HARMONIUM_HELM:
 	case PONTIFF_S_CROWN:
@@ -3766,6 +3782,7 @@ Shield_on()
 	case ORANGE_DRAGON_SCALE_SHIELD:
 	case BLACK_DRAGON_SCALE_SHIELD:
 	case BLUE_DRAGON_SCALE_SHIELD:
+	case WEATHER_DRAGON_SCALE_SHIELD:
 	case DARK_DRAGON_SCALE_SHIELD:
 	case COPPER_DRAGON_SCALE_SHIELD:
 	case PLATINUM_DRAGON_SCALE_SHIELD:
@@ -3936,6 +3953,12 @@ Shield_on()
 		uarms->hvycurse = TRUE;
     }
 
+    if (uarms && uarms->oartifact == ART_WHY_IS_IT_ALWAYS_RAINING) {
+		You("activate the Rain Dance ability.");
+		u.currentweather = WEATHER_RAIN;
+		tell_main_weather();
+    }
+
     if (uarms && uarms->oartifact == ART_RNG_S_SAFEGUARD && uarms->spe == 0) {
 		if (!rn2(2)) uarms->spe = rnd(7);
 		else uarms->spe = -(rnd(7));
@@ -4038,6 +4061,7 @@ Shield_off()
 	case ORANGE_DRAGON_SCALE_SHIELD:
 	case BLACK_DRAGON_SCALE_SHIELD:
 	case BLUE_DRAGON_SCALE_SHIELD:
+	case WEATHER_DRAGON_SCALE_SHIELD:
 	case DARK_DRAGON_SCALE_SHIELD:
 	case COPPER_DRAGON_SCALE_SHIELD:
 	case PLATINUM_DRAGON_SCALE_SHIELD:
@@ -4407,6 +4431,17 @@ Armor_on()
 		curse(uarm);
 		uarm->hvycurse = uarm->stckcurse = TRUE;
 		pline("Oh no, the armor won't come off!");
+	}
+
+	if (uarm && uarm->oartifact == ART_UMBRANOX) {
+		You("activate the Noctem ability.");
+		u.currentweather = WEATHER_ECLIPSE;
+		tell_main_weather();
+	}
+	if (uarm && uarm->oartifact == ART_THUNDER_) {
+		You("activate the Thunderstorm ability.");
+		u.currentweather = WEATHER_THUNDERSTORM;
+		tell_main_weather();
 	}
 
 	if (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) {
@@ -5471,6 +5506,12 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = obj->prmcurse = 1;
 		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
+    }
+
+    if (obj->oartifact == ART_KEEP_FUNKY_) {
+		You("activate the Fog ability.");
+		u.currentweather = WEATHER_FOG;
+		tell_main_weather();
     }
 
     if (obj->oartifact == ART_BILL_S_CHIP) {

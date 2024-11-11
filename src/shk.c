@@ -4028,6 +4028,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != UNLUCKY_TRAP
 				&& ttmp->ttyp != ALIGNMENT_REDUCTION_TRAP
 				&& ttmp->ttyp != MALIGNANT_TRAP
+				&& ttmp->ttyp != WILD_WEATHER_TRAP
 				&& ttmp->ttyp != STAT_DAMAGE_TRAP
 				&& ttmp->ttyp != HALF_MEMORY_TRAP
 				&& ttmp->ttyp != HALF_TRAINING_TRAP

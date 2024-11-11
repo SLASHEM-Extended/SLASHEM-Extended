@@ -268,6 +268,12 @@ nh_timeout()
 		if (!u.cryopancaketurns) You("are no longer immune to cold.");
 	}
 
+	if (u.weathertimer) {
+		u.weathertimer--;
+		if (u.weathertimer < 0) u.weathertimer = 0; /* fail safe */
+		if (!u.weathertimer) You("are capable of changing the weather again.");
+	}
+
 	if (u.badfcursed) {
 		u.badfcursed--;
 		if (u.badfcursed < 0) u.badfcursed = 0; /* fail safe */
@@ -1191,7 +1197,7 @@ nh_timeout()
 		else nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
 		nomovemsg = "Perhaps you should... I dunno, don some shoes with which it's actually possible to walk?";
 
-		if (!rn2(uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+		if (!rn2(uarmh ? 50 : 10) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 			if (rn2(50)) {
 				adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1221,7 +1227,7 @@ nh_timeout()
 		if (!rn2(slipchance) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1331,7 +1337,7 @@ nh_timeout()
 			else nomul(-(rnd(10) ), "prone from wiping out with their stilettos", TRUE);
 			nomovemsg = "You get back up and curse at your stiletto heels for making you wipe out.";
 
-		    if (!rn2(uarmh ? 50 : 10) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+		    if (!rn2(uarmh ? 50 : 10) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 			if (rn2(50)) {
 				adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1420,7 +1426,7 @@ nh_timeout()
 
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1452,7 +1458,7 @@ nh_timeout()
 	if (u.umoved && (uarmf && itemhasappearance(uarmf, APP_IRREGULAR_BOOTS) ) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1479,7 +1485,7 @@ nh_timeout()
 	if (u.umoved && RngeIrregularity && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1506,7 +1512,7 @@ nh_timeout()
 	if (u.umoved && (uarmh && uarmh->oartifact == ART_ELESSAR_ELENDIL) && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1533,7 +1539,7 @@ nh_timeout()
 	if (u.umoved && evilfriday && !rn2(20) && (rnd(10) > ACURR(A_DEX)) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1560,7 +1566,7 @@ nh_timeout()
 	if (u.umoved && ACURR(A_DEX) == 2 && !rn2(200) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1587,7 +1593,7 @@ nh_timeout()
 	if (u.umoved && ACURR(A_DEX) == 1 && !rn2(100) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -1614,7 +1620,7 @@ nh_timeout()
 	if (u.umoved && (uarmf && uarmf->oartifact == ART_UNEVEN_STILTS) && !rn2(100) && !(uarmf && uarmf->oartifact == ART_NATURAL_SPRING) && !(uarmf && uarmf->oartifact == ART_SO_WONDERFULLY_FLUFFY_SOFT) && !(uarmf && uarmf->oartifact == ART_JENNY_SUPERSOFT) && !(uarmf && !rn2(10) && itemhasappearance(uarmf, APP_BLUE_SNEAKERS) ) && (!(uarmf && uarmf->oartifact == ART_ELEVECULT) || !rn2(4)) && ((rnd(7) > P_SKILL(P_HIGH_HEELS)) || (PlayerCannotUseSkills) ) ) {
 			    slip_or_trip();
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);
@@ -4379,6 +4385,10 @@ nh_timeout()
 			if (!HMagicVacuum)
 				You_feel("capable of casting magic effectively again.");
 			break;
+		case WILD_WEATHER:
+			if (!HWildWeatherEffect)
+				You_feel("the weather becoming normal again.");
+			break;
 		case FUCK_OVER:
 			if (!HFuckOverEffect)
 				You_feel("that the RNG is less likely to fuck you over now.");
@@ -4585,7 +4595,7 @@ nh_timeout()
 
 			/* based on the evil patch idea by jonadab: stupidity or amnesia from falling on your head --Amy */
 
-			    if (!rn2(uarmh ? 5000 : 1000) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
+			    if (!rn2(uarmh ? 5000 : 1000) && !(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET)) && has_head(youmonst.data) && !Role_if(PM_COURIER) ) {
 
 				if (rn2(50)) {
 					adjattrib(rn2(2) ? A_INT : A_WIS, -rno(3), FALSE, TRUE);

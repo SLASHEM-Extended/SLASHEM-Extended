@@ -1995,7 +1995,7 @@ randenchantment()
 
 	} else {
 
-	switch (rnd(163)) {
+	switch (rnd(164)) {
 
 		case 1:
 		case 2:
@@ -2251,6 +2251,8 @@ randenchantment()
 		case 162:
 		case 163:
 			return SPELLBOOST;
+		case 164:
+			return WILD_WEATHER;
 
 		default:
 			return POISON_RES;

@@ -7119,6 +7119,8 @@ int degree;
 
 	if (Role_if(PM_JOCKEY) && skill == P_RIDING) degree *= 2;
 
+	if (uarmh && (uarmh->oartifact == ART_WHO_CAN_DRIVE_BEST_) && flags.female && skill == P_RIDING) degree *= 3;
+
 	if (uarm && uarm->oartifact == ART_HOARDIT && skill == P_BODY_ARMOR) degree *= 2;
 
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
