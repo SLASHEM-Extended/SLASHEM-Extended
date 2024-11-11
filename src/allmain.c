@@ -1387,40 +1387,18 @@ moveloop()
 					moveamt /= 2;
 
 				if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
-						static boolean canwalkonsnow = 0;
-					    static int skates = 0;
-					    if (!skates) skates = find_skates();
-					    static int skates2 = 0;
-					    if (!skates2) skates2 = find_skates2();
-					    static int skates3 = 0;
-					    if (!skates3) skates3 = find_skates3();
-					    static int skates4 = 0;
-					    if (!skates4) skates4 = find_skates4();
-					    static int skates5 = 0;
-					    if (!skates5) skates5 = find_cyan_sneakers();
-					    if ((uarmf && uarmf->otyp == skates)
-						    || (uarmf && uarmf->otyp == skates2)
-						    || (uarmf && uarmf->otyp == skates3)
-						    || (uarmf && uarmf->otyp == skates4)
-						    || (uarmf && uarmf->otyp == skates5)
-						    || (uwep && uwep->oartifact == ART_GLACIERDALE)
-						    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
-						    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
-						    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
-						    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
-						    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
-						    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
-						    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
-						    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
-					if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
-
-					if (!canwalkonsnow && !ColdImmunity) {
+					if (!PlayerCanWalkOnSnow && !ColdImmunity) {
 						if (StrongCold_resistance) moveamt /= 2;
 						else if (Cold_resistance) moveamt /= 3;
 						else moveamt /= 4;
 					}
 
+				}
+
+				if (u.currentweather == WEATHER_SNOW && !PlayerCanWalkOnSnow && !Flying && !Levitation && u.umoved && moveamt > 2) {
+					moveamt *= 3;
+					moveamt /= 4;
 				}
 
 				if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
@@ -1940,40 +1918,18 @@ moveloop()
 			}
 
 			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
-					static boolean canwalkonsnow = 0;
-				    static int skates = 0;
-				    if (!skates) skates = find_skates();
-				    static int skates2 = 0;
-				    if (!skates2) skates2 = find_skates2();
-				    static int skates3 = 0;
-				    if (!skates3) skates3 = find_skates3();
-				    static int skates4 = 0;
-				    if (!skates4) skates4 = find_skates4();
-				    static int skates5 = 0;
-				    if (!skates5) skates5 = find_cyan_sneakers();
-				    if ((uarmf && uarmf->otyp == skates)
-					    || (uarmf && uarmf->otyp == skates2)
-					    || (uarmf && uarmf->otyp == skates3)
-					    || (uarmf && uarmf->otyp == skates4)
-					    || (uarmf && uarmf->otyp == skates5)
-					    || (uwep && uwep->oartifact == ART_GLACIERDALE)
-					    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
-					    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
-					    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
-					    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
-					    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
-					    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
-					    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
-					    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
 
-				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
-
-				if ((youmonst.data->mmove > 1 || !rn2(2)) && !canwalkonsnow && !ColdImmunity) {
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && !PlayerCanWalkOnSnow && !ColdImmunity) {
 					if (StrongCold_resistance) moveamt /= 2;
 					else if (Cold_resistance) moveamt /= 3;
 					else moveamt /= 4;
 				}
 
+			}
+
+			if (u.currentweather == WEATHER_SNOW && !PlayerCanWalkOnSnow && !Flying && !Levitation && u.umoved && moveamt > 2) {
+				moveamt *= 3;
+				moveamt /= 4;
 			}
 
 			if ((uwep && uwep->oartifact == ART_KINGS_RANSOM_FOR_YOU) && moveamt > 1) {
@@ -2164,35 +2120,7 @@ moveloop()
 
 			if (is_snow(u.ux, u.uy) && (u.umoved || !rn2(4)) && !Flying && !Levitation) {
 
-				static boolean canwalkonsnow = 0;
-			    static int skates = 0;
-			    if (!skates) skates = find_skates();
-			    static int skates2 = 0;
-			    if (!skates2) skates2 = find_skates2();
-			    static int skates3 = 0;
-			    if (!skates3) skates3 = find_skates3();
-			    static int skates4 = 0;
-			    if (!skates4) skates4 = find_skates4();
-			    static int skates5 = 0;
-			    if (!skates5) skates5 = find_cyan_sneakers();
-			    if ((uarmf && uarmf->otyp == skates)
-				    || (uarmf && uarmf->otyp == skates2)
-				    || (uarmf && uarmf->otyp == skates3)
-				    || (uarmf && uarmf->otyp == skates4)
-				    || (uarmf && uarmf->otyp == skates5)
-				    || (uwep && uwep->oartifact == ART_GLACIERDALE)
-				    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
-				    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
-				    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
-				    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
-				    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
-				    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
-				    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
-				    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)) canwalkonsnow = 1;
-
-				if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) canwalkonsnow = 1;
-
-				if (canwalkonsnow && ((uarmf && uarmf->otyp == skates4) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) {
+				if (PlayerCanWalkOnSnow && ((uarmf && itemhasappearance(uarmf, APP_SKI_HEELS) || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) || (uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD)) && !rn2(2)) ) {
 					oldspeed = moveamt;
 					moveamt *= 2;
 					if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
@@ -2363,6 +2291,16 @@ moveloop()
 			if (uarmg && !rn2(10) && itemhasappearance(uarmg, APP_RACER_GLOVES) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (StrongDetect_monsters && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (StrongFlying && !rn2(20)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+
+			if (u.currentweather == WEATHER_RAIN && Swimming && !rn2(5)) {
+				if (StrongSwimming || !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			}
+			if (u.currentweather == WEATHER_THUNDERSTORM && Swimming && !rn2(5)) {
+				if (StrongSwimming || !rn2(2)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			}
+			if (u.currentweather == WEATHER_ECLIPSE && !rn2(5)) {
+				if (dmgtype(youmonst.data, AD_DARK) || youmonst.data->mlet == S_GHOST) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			}
 
 			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_MASTER) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (PlayerInHighHeels && !rn2(10) && !(PlayerCannotUseSkills) && (P_SKILL(P_HIGH_HEELS) >= P_GRAND_MASTER) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -5430,6 +5368,10 @@ greasingdone:
 			contaminate(rnd(10), FALSE);
 		}
 
+		if (u.currentweather == WEATHER_ETHERWIND && !(is_wagon(u.ux, u.uy) && u.uundetected) && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
 		if (FalloutEffect && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
@@ -7596,6 +7538,139 @@ newbossJANI:
 		if (uarmg && uarmg->oartifact == ART_KROL_GR && !u.berserktime && !rn2(1000)) {
 			u.berserktime = 25;
 			You("suddenly go berserk!");
+		}
+
+		/* weather effects. annyoingly it seems to be ultra hard to add a delay to the particles... */
+		if (u.currentweather == WEATHER_RAIN) {
+			int weatherparticles = rn1(41,10);
+			while (weatherparticles > 0) {
+				weatherparticles--;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				if (isok(cx, cy)) {
+					tmp_at(DISP_BEAM_ALWAYS, cmap_to_glyph(S_rain_particle));
+					tmp_at(cx,cy);
+					tmp_at(DISP_END, 0);
+					if (u.ux == cx && u.uy == cy) {
+						if (!u.uswallow && !rn2(200) && !dmgtype(youmonst.data, AD_WET) && !dmgtype(youmonst.data, AD_LETH) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(IS_TUNNELWALL(levl[u.ux][u.uy].typ) ) && !(is_wagon(u.ux, u.uy) && u.uundetected) ) {
+							pline("A huge amount of rainwater washes over you!");
+							water_damage(invent, FALSE, FALSE);
+						}
+					}
+				}
+			}
+		}
+		if (u.currentweather == WEATHER_THUNDERSTORM) {
+			int weatherparticles = rn1(171,30);
+			while (weatherparticles > 0) {
+				weatherparticles--;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				if (isok(cx, cy)) {
+					tmp_at(DISP_BEAM_ALWAYS, cmap_to_glyph(S_rain_particle));
+					tmp_at(cx,cy);
+					tmp_at(DISP_END, 0);
+					if (u.ux == cx && u.uy == cy) {
+						if (!u.uswallow && !rn2(200) && !dmgtype(youmonst.data, AD_WET) && !dmgtype(youmonst.data, AD_LETH) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(IS_TUNNELWALL(levl[u.ux][u.uy].typ) ) && !(is_wagon(u.ux, u.uy) && u.uundetected) ) {
+							pline("A huge amount of rainwater washes over you!");
+							water_damage(invent, FALSE, FALSE);
+						}
+					}
+				}
+			}
+
+			if (!rn2(100)) {
+				int dirx, diry;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				dirx = rn2(3) - 1;
+				diry = rn2(3) - 1;
+
+				if(isok(cx, cy) && (dirx != 0 || diry != 0) ) {
+					buzz(-15, 8, cx, cy, dirx, diry); /* lightning bolt */
+				}
+			}
+		}
+		if (u.currentweather == WEATHER_SNOW) {
+			int weatherparticles = rn1(21,5);
+			while (weatherparticles > 0) {
+				weatherparticles--;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				if (isok(cx, cy)) {
+					tmp_at(DISP_BEAM_ALWAYS, cmap_to_glyph(S_snow_particle));
+					tmp_at(cx,cy);
+					tmp_at(DISP_END, 0);
+					if (u.ux == cx && u.uy == cy) {
+						if (!u.uswallow && !(uleft && uleft->otyp == RIN_AURORA) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) && !(uright && uright->otyp == RIN_AURORA) && !rn2(Cold_resistance ? 50 : 10) && !(uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) && !StrongCold_resistance && !(IS_TUNNELWALL(levl[u.ux][u.uy].typ) ) && !(is_wagon(u.ux, u.uy) && u.uundetected) ) {
+							pline("All the snow is causing you to freeze!");
+
+							make_frozen(HFrozen + rnz(25),FALSE);
+							stop_occupation();
+						}
+					}
+				}
+			}
+		}
+		if (u.currentweather == WEATHER_HAIL) {
+			int weatherparticles = rn1(21,10);
+			while (weatherparticles > 0) {
+				weatherparticles--;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				if (isok(cx, cy)) {
+					tmp_at(DISP_BEAM_ALWAYS, cmap_to_glyph(S_hail_particle));
+					tmp_at(cx,cy);
+					tmp_at(DISP_END, 0);
+					if (u.ux == cx && u.uy == cy) {
+						if (!u.uswallow && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !StrongCold_resistance && !(IS_TUNNELWALL(levl[u.ux][u.uy].typ) ) && !(is_wagon(u.ux, u.uy) && u.uundetected) ) {
+							int haildamage = monster_difficulty();
+							if (haildamage > 1) haildamage = rno(haildamage);
+							if (Cold_resistance && haildamage > 1) haildamage /= 2;
+
+							pline("A big chunk of hail hits you!");
+
+							losehp(haildamage, "a hailstorm", KILLED_BY_AN);
+
+							stop_occupation();
+						}
+					}
+				}
+			}
+		}
+		if (u.currentweather == WEATHER_SANDSTORM) {
+			int weatherparticles = rn1(71,30);
+			while (weatherparticles > 0) {
+				weatherparticles--;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				if (isok(cx, cy)) {
+					tmp_at(DISP_BEAM_ALWAYS, cmap_to_glyph(S_sand_particle));
+					tmp_at(cx,cy);
+					tmp_at(DISP_END, 0);
+					if (u.ux == cx && u.uy == cy) {
+						if (!(FemtrapActiveAntje && PlayerInBlockHeels) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uarmh && itemhasappearance(uarmh, APP_SHEMAGH)) && !(uarmf && uarmf->otyp == STILETTO_SANDALS) && !(Race_if(PM_DUTHOL) && rn2(10)) && !(uarmf && itemhasappearance(uarmf, APP_SAND_ALS)) && !(uarmc && uarmc->oartifact == ART_WHISPERWIND_CLOAK) && !u.uswallow && !(IS_TUNNELWALL(levl[u.ux][u.uy].typ) ) && !(is_wagon(u.ux, u.uy) && u.uundetected) ) {
+
+							You("are caught in a sandstorm, and the sand gets in your %s!", body_part(EYE));
+							make_blinded(Blinded + rnz(25),FALSE);
+							stop_occupation();
+						}
+					}
+				}
+			}
+		}
+		if (u.currentweather == WEATHER_ETHERWIND) {
+			int weatherparticles = rn1(31,30);
+			while (weatherparticles > 0) {
+				weatherparticles--;
+			      cx = rn2(COLNO);
+			      cy = rn2(ROWNO);
+				if (isok(cx, cy)) {
+					tmp_at(DISP_BEAM_ALWAYS, cmap_to_glyph(S_ether_particle));
+					tmp_at(cx,cy);
+					tmp_at(DISP_END, 0);
+				}
+			}
 		}
 
 		if (uwep && uwep->oartifact == ART_STRIKE_THE_BALL && !u.berserktime && !rn2(1000)) {

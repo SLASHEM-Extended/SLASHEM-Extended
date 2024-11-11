@@ -1128,6 +1128,11 @@ const struct symdef defsyms[MAXPCHARS] = {
 	{'\\',"wall",		C(CLR_GRAY)},	/* lslant */
 	{'/', "wall",		C(CLR_GRAY)},	/* rslant */
 	{'*', "",		C(CLR_WHITE)},	/* dig beam */
+	{'*', "",		C(CLR_BRIGHT_BLUE)},	/* rain particle (for weather) */
+	{'*', "",		C(CLR_WHITE)},	/* snow particle (for weather) */
+	{'*', "",		C(CLR_BRIGHT_CYAN)},	/* hail particle (for weather) */
+	{'*', "",		C(CLR_ORANGE)},	/* sand particle (for weather) */
+	{'*', "",		C(CLR_BRIGHT_MAGENTA)},	/* ether particle (for weather) */
 	{'!', "",		C(CLR_WHITE)},	/* camera flash beam */
 /*70*/	{')', "",		C(HI_WOOD)},	/* boomerang open left */
 	{'(', "",		C(HI_WOOD)},	/* boomerang open right */
@@ -2077,6 +2082,11 @@ static uchar ibm_graphics[MAXPCHARS] = {
 	g_FILLER(S_lslant),
 	g_FILLER(S_rslant),
 	g_FILLER(S_digbeam),
+	g_FILLER(S_rain_particle),
+	g_FILLER(S_snow_particle),
+	g_FILLER(S_hail_particle),
+	g_FILLER(S_sand_particle),
+	g_FILLER(S_ether_particle),
 	g_FILLER(S_flashbeam),
 /*70*/	g_FILLER(S_boomleft),
 	g_FILLER(S_boomright),
@@ -3014,6 +3024,11 @@ static uchar dec_graphics[MAXPCHARS] = {
 	g_FILLER(S_lslant),
 	g_FILLER(S_rslant),
 	g_FILLER(S_digbeam),
+	g_FILLER(S_rain_particle),
+	g_FILLER(S_snow_particle),
+	g_FILLER(S_hail_particle),
+	g_FILLER(S_sand_particle),
+	g_FILLER(S_ether_particle),
 	g_FILLER(S_flashbeam),
 /*70*/	g_FILLER(S_boomleft),
 	g_FILLER(S_boomright),
@@ -3948,6 +3963,11 @@ static uchar wing_graphics[MAXPCHARS] = {
 	g_FILLER(S_lslant),
 	g_FILLER(S_rslant),
 	g_FILLER(S_digbeam),
+	g_FILLER(S_rain_particle),
+	g_FILLER(S_snow_particle),
+	g_FILLER(S_hail_particle),
+	g_FILLER(S_sand_particle),
+	g_FILLER(S_ether_particle),
 	g_FILLER(S_flashbeam),
 /*70*/	g_FILLER(S_boomleft),
 	g_FILLER(S_boomright),
@@ -4884,6 +4904,11 @@ static uchar mac_graphics[MAXPCHARS] = {
 	g_FILLER(S_lslant),
 	g_FILLER(S_rslant),
 	g_FILLER(S_digbeam),
+	g_FILLER(S_rain_particle),
+	g_FILLER(S_snow_particle),
+	g_FILLER(S_hail_particle),
+	g_FILLER(S_sand_particle),
+	g_FILLER(S_ether_particle),
 	g_FILLER(S_flashbeam),
 /*70*/	g_FILLER(S_boomleft),
 	g_FILLER(S_boomright),

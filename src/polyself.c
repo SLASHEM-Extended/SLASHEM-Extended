@@ -1194,6 +1194,8 @@ int	mntmp;
 			pline(use_thec,monsterc,"cause an eclipse");
 		}
 	    }
+	    if (youmonst.data->msound == MS_WEATHER)
+		pline(use_thec,monsterc,"set the default weather");
 	}
 	/* you now know what an egg of your type looks like */
 	if (lays_eggs(youmonst.data)) {

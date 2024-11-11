@@ -4280,3 +4280,16 @@ In SLEX, most artifacts that generate randomly can spawn more than once. That's 
 If an artifact that only spawns in a specific location gets generated, you can then wish for more copies of that artifact and will get it with 100% certainty, every time.
 The kinamutay martial arts style is the art of fighting dirty, meaning your punches can aim for male enemies' nuts and your bite attacks can aim for female enemies' breasts. If you get caught using that too often, a referee spawns but he's just yet another hostile monster and you can still use the dirty fighting techniques on him, too.
 The boxing martial arts style gives you a chance to knock out enemies with your fists and also improves critical hit chance, but you have to specify the body part you're targetting and (especially with low martial arts skill) you may hit below the belt, which is not allowed. Three strikes below the belt and you're automatically disqualified.
+The default weather in the dungeons is "eclipse", which means that darkness-based monsters are immune to paralysis and can attack twice per turn.
+Rainy weather causes raindrops to fall, but they don't do anything and are purely cosmetic. There is no special effect for rainy weather in fact, so enjoy it.
+Thunderstorm is a weather condition that causes a lot of raindrops to fall, which occasionally make monster inventories wet if they hit a monster. Also, if a lightning bolt hits a water surface while you're on a water tile connected to the one that got hit, you die instantly.
+Snowy weather makes you mysteriously immune to cold, but all monsters also become immune to cold while the weather condition lasts.
+Hail is a common weather condition that causes chunks of hail to fall down. If they hit a water tile or one that contains a pit often enough, the tile in question becomes a normal floor tile.
+If the weather is sunny, it means that the sunlight is harsh, causing solar beams to be randomly fired on the current level. As a bonus, they even give you experience when they kill a monster, but beware, they can also hit peaceful monsters and anger them!
+The sandstorm weather condition will cause sand particles to fly around everywhere, which you can try to catch with the #snap command. You can then fire those sand particles with a pea shooter.
+Foggy weather makes it hard for you to see. But if you cast the light spell, the fog effect ceases for the current dungeon level.
+One of the rarest weather conditions in the dungeon is the overcast. If that is active, both fire- and lightning-based attacks are weakened.
+If the etherwind weather condition is active, you get contaminated over time. But you can protect yourself by either going underwater or hiding on a tunnel tile.
+Some monsters are capable of changing the current weather. This happens once they enter combat with you, and if you then leave the area and come back to the monster later on, the weather will change a second time.
+Tunnels can be useful for hiding from bad weather: they protect you from rain, snow, hail, sandstorm and etherwind weather conditions.
+Certain polymorph forms allow you to change the weather via the #monster command, letting you pick the new weather from a huge list, and you can do that as often as you like. Don't like the weather? Just use the ability again, it doesn't have a cooldown or any other cost!

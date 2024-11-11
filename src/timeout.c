@@ -6158,6 +6158,7 @@ begin_burn(obj, already_lit)
 	boolean already_lit;
 {
 	int radius = 3;
+	if (u.currentweather == WEATHER_FOG) radius = 2;
 	long turns = 0;
 	boolean do_timer = TRUE;
 	int lightsaberchance = 0;
@@ -6353,7 +6354,10 @@ begin_burn(obj, already_lit)
 	    case BLACK_LIGHTSABER:
 	    	turns = 1;
     	    	radius = 1;
-		if (obj && obj->otyp == LIGHTTORCH) radius = 3;
+		if (obj && obj->otyp == LIGHTTORCH) {
+			radius = 3;
+			if (u.currentweather == WEATHER_FOG) radius = 2;
+		}
 		if (obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER){
 			do_timer = FALSE;
 			obj->lamplit = 1;
@@ -6384,7 +6388,10 @@ begin_burn(obj, already_lit)
 		else
 		    turns = obj->age;
 
-		if (obj->oartifact == ART_GALADRIEL_S_AID) radius++;
+		if (obj->oartifact == ART_GALADRIEL_S_AID) {
+			radius++;
+			if (u.currentweather == WEATHER_FOG && radius > 2) radius = 2;
+		}
 		break;
 
 	    case CANDELABRUM_OF_INVOCATION:
@@ -6406,6 +6413,7 @@ begin_burn(obj, already_lit)
 		else
 		    turns = obj->age;
 		radius = candle_light_range(obj);
+		if (u.currentweather == WEATHER_FOG && radius > 2) radius = 2;
 		break;
 
 	    default:

@@ -4108,7 +4108,7 @@ altarfound:
 		boolean should_see = (couldsee(omx, omy) &&
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
-				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : 100) ));
+				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : (u.currentweather == WEATHER_FOG && !rn2(5)) ? 36 : 100) ));
 
 		if (astralspecial) should_see = TRUE;
 
@@ -4383,7 +4383,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (u.currentweather == WEATHER_FOG && !rn2(5)) || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 		/* special coding for "homing" giant wasps from the hunger games --Amy */
 		if ((ptr == &mons[PM_TRACKER_JACKER] || ptr == &mons[PM_FIGHTING_ENTITY] || ptr == &mons[PM_PERSON_WHO_IS_REALLY_AFTER_YOU__NO__YOU_RE_NOT_PARANOID_] || autismweaponcheck(ART_EMERALD_SWORD) || ptr == &mons[PM_TRACKBAG] || ptr == &mons[PM_BLACK_SUN_BASS] || ptr == &mons[PM_LINDEN_BASS] || (FemtrapActiveElla && mtmp->female && humanoid(mtmp->data) && (mtmp->mhp < (mtmp->mhpmax * 9 / 10) )) || ptr == &mons[PM_ASSHOLE_WHO_CANNOT_ENJOY_ANYTHING__NOT_EVEN_A_PAIR_OF_CUDDLE_HEELS] || ptr == &mons[PM_KILLER_GIANT_RAT] || ptr == &mons[PM_POLICE_DOG] || ptr == &mons[PM_MANBOO] || ptr == &mons[PM_SOLARFISH] || ptr == &mons[PM_POLICE_HUSKY] || ptr == &mons[PM_BIG_POLICE_DOG] || ptr == &mons[PM_CURSED____LEFTHANDED_FARTING_ELEPHANT] || ptr == &mons[PM_VERONA_MARBLE] || ptr == &mons[PM_CHASE_BIRD] || ptr == &mons[PM_JAYCEE] || ptr == &mons[PM_OOGABOOGAGOBILITGOOK_SEEKER_AREHETYPE_FUCKING_RETARD_ASS_SHIT_FLINGING_MONKEY_MONSTER] || ptr == &mons[PM_FULL_REFUGE] || ptr == &mons[PM_DRIVE_TRAIN] || ptr == &mons[PM_XTREME_TRACKER] || ptr == &mons[PM_REFUGE_UHLERT] || ptr == &mons[PM_THE_ULTIMATE_REFUGE]) && !mtmp->mpeaceful) appr = 1;

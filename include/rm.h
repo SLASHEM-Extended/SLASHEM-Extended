@@ -1090,41 +1090,46 @@
 #define S_lslant	857	/* zapdir_to_glyph() in display.c.	    */
 #define S_rslant	858
 #define S_digbeam	859	/* dig beam symbol */
-#define S_flashbeam	860	/* camera flash symbol */
-#define S_boomleft	861	/* thrown boomerang, open left, e.g ')'    */
-#define S_boomright	862	/* thrown boomerand, open right, e.g. '('  */
-#define S_ss1		863	/* 4 magic shield glyphs */
-#define S_ss2		864
-#define S_ss3		865 
-#define S_ss4		866
+#define S_rain_particle	860	/* rainy weather effect */
+#define S_snow_particle	861	/* snowy weather effect */
+#define S_hail_particle	862	/* hail weather effect */
+#define S_sand_particle	863	/* sandstorm weather effect */
+#define S_ether_particle	864	/* etherwind weather effect */
+#define S_flashbeam	865	/* camera flash symbol */
+#define S_boomleft	866	/* thrown boomerang, open left, e.g ')'    */
+#define S_boomright	867	/* thrown boomerand, open right, e.g. '('  */
+#define S_ss1		868	/* 4 magic shield glyphs */
+#define S_ss2		869
+#define S_ss3		870 
+#define S_ss4		871
 
 /* The 8 swallow symbols.  Do NOT separate.  To change order or add, see */
 /* the function swallow_to_glyph() in display.c.			 */
-#define S_sw_tl		867	/* swallow top left [1]			*/
-#define S_sw_tc		868	/* swallow top center [2]	Order:	*/
-#define S_sw_tr		869	/* swallow top right [3]		*/
-#define S_sw_ml		870	/* swallow middle left [4]	1 2 3	*/
-#define S_sw_mr		871	/* swallow middle right [6]	4 5 6	*/
-#define S_sw_bl		872	/* swallow bottom left [7]	7 8 9	*/
-#define S_sw_bc		873	/* swallow bottom center [8]		*/
-#define S_sw_br		874	/* swallow bottom right [9]		*/
+#define S_sw_tl		872	/* swallow top left [1]			*/
+#define S_sw_tc		873	/* swallow top center [2]	Order:	*/
+#define S_sw_tr		874	/* swallow top right [3]		*/
+#define S_sw_ml		875	/* swallow middle left [4]	1 2 3	*/
+#define S_sw_mr		876	/* swallow middle right [6]	4 5 6	*/
+#define S_sw_bl		877	/* swallow bottom left [7]	7 8 9	*/
+#define S_sw_bc		878	/* swallow bottom center [8]		*/
+#define S_sw_br		879	/* swallow bottom right [9]		*/
 
-#define S_explode1	875	/* explosion top left			*/
-#define S_explode2	876	/* explosion top center			*/
-#define S_explode3	877	/* explosion top right		 Ex.	*/
-#define S_explode4	878	/* explosion middle left		*/
-#define S_explode5	879	/* explosion middle center	 /-\	*/
-#define S_explode6	880	/* explosion middle right	 |@|	*/
-#define S_explode7	881	/* explosion bottom left	 \-/	*/
-#define S_explode8	882	/* explosion bottom center		*/
-#define S_explode9	883	/* explosion bottom right		*/
+#define S_explode1	880	/* explosion top left			*/
+#define S_explode2	881	/* explosion top center			*/
+#define S_explode3	882	/* explosion top right		 Ex.	*/
+#define S_explode4	883	/* explosion middle left		*/
+#define S_explode5	884	/* explosion middle center	 /-\	*/
+#define S_explode6	885	/* explosion middle right	 |@|	*/
+#define S_explode7	886	/* explosion bottom left	 \-/	*/
+#define S_explode8	887	/* explosion bottom center		*/
+#define S_explode9	888	/* explosion bottom right		*/
   
 /* end effects */
   
-#define MAXPCHARS	884 	/* maximum number of mapped characters */
+#define MAXPCHARS	889 	/* maximum number of mapped characters */
 #define MAXDCHARS	75	/* maximum of mapped dungeon characters */
 #define MAXTCHARS	780	/* maximum of mapped trap characters */
-#define MAXECHARS       29      /* maximum of mapped effects characters */
+#define MAXECHARS       34      /* maximum of mapped effects characters */
 #define MAXEXPCHARS	9	/* number of explosion characters */
 
 struct symdef {

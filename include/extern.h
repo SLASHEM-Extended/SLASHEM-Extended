@@ -2773,6 +2773,7 @@ E void give_code_number(void);
 E void devil_misbehavior(void);
 E void trophy_get(void);
 E char *currentmartialstyle(void);
+E boolean player_can_walk_on_snow(void);
 
 E int shield_block_rate(struct obj *);
 

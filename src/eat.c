@@ -8973,6 +8973,8 @@ gethungry()	/* as time goes by - called by moveloop() and domove() */
 		if (Energy_regeneration && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--;}
 		if (StrongEnergy_regeneration && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--;}
 
+		if (u.currentweather == WEATHER_SUNNY && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) { u.uhunger--; u.uhunger--;}
+
 	    if (near_capacity() > SLT_ENCUMBER && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
 	} else {		/* even turns */
 	    if (Hunger && !(StrongSlow_digestion && rn2(3)) && !(Full_nutrient && !rn2(2) && u.uhunger < 2500) && !(StrongFull_nutrient && !rn2(2) && u.uhunger < 2500)) u.uhunger--;
@@ -9331,6 +9333,9 @@ boolean incr;
 			if (incr && occupation &&
 			    (occupation != eatfood && occupation != opentin))
 			    stop_occupation();
+
+			if (u.currentweather == WEATHER_SUNNY) pline("Due to the extreme sunlight, your vision starts to blur! You need to eat something right away!");
+
 			break;
 		}
 		u.uhs = newhs;

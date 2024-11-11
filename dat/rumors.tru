@@ -2669,3 +2669,16 @@ In SLEX, most artifacts that generate randomly can spawn more than once. That's 
 If an artifact that only spawns in a specific location gets generated, it often gets re-flagged to allow more copies of that artifact to generate randomly, but there's no guarantee that you'll find another.
 The kinamutay martial arts style is the art of fighting dirty, allowing you to kick male enemies in the nuts and scratch female enemies' eyes out. But doing so is highly unfair and, while dealing extra damage, also reduces your alignment record and may increase your sin counter.
 The boxing martial arts style slightly increases the damage of your fists if you're wearing gloves, with better bonuses if the gloves are highly enchanted, but your to-hit with weapons decreases, and so does the damage of your kick attack.
+The default weather in the dungeons is "overcast", which has no special effects and is the most common weather type.
+Rainy weather causes raindrops to fall, which very rarely make your inventory wet if they hit you. Also, all swimming monsters (including you, if your character can swim) will move faster.
+Thunderstorm is a weather condition that causes a lot of raindrops to fall, which occasionally make your inventory wet if they hit you. Everyone who can swim will move faster, and every once in a while a random lightning bolt will be fired.
+Snowy weather makes you move more slowly unless you're flying or capable of walking on snow, and if the snowflakes hit you, they can cause freezing.
+Hail is a rare weather condition that causes chunks of hail to fall from the sky. If one of them hits you, it may deal damage.
+If the weather is sunny, it means that the sunlight is harsh, causing you to burn more nutrition than normal and if you get too hungry, you start hallucinating. Also, solar beams will deal more damage in the sun.
+The sandstorm weather condition will cause sand particles to fly around everywhere, and if one of them hits you, it may cause blindness.
+Foggy weather makes it hard for you to see. Even a lamp will not give as much light radius as it normally would, but on the bright side, monsters also have a harder time spotting you.
+One of the rarest weather conditions in the dungeon is the eclipse. If that is active, everything will be dark and all ghosts or monsters with darkness attacks move faster, including you if you're such a monster. Also, solar beams are weaker during an eclipse.
+If the etherwind weather condition is active, you get contaminated over time. The only way to protect yourself is by hiding underneath a wagon.
+Some monsters are capable of changing the current weather. This happens once they enter combat with you, but if you then leave the area and come back to the monster later on, the weather won't change a second time.
+Tunnels can be useful for hiding from bad weather: they protect you from rain, snow, hail and sandstorm weather conditions. However, they don't work against the horrible etherwind.
+Certain polymorph forms allow you to change the weather via the #monster command, but only once in a while. If you're immune to fire, you can also change the weather to "sandstorm" while you're on a sand tile, regardless of your current form.

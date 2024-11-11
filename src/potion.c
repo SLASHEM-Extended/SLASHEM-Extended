@@ -18145,6 +18145,40 @@ PlayerOnBlacklist()
 	return FALSE;
 }
 
+/* can the player walk on ice and snow unhindered? --Amy */
+boolean
+player_can_walk_on_snow()
+{
+	static int skates = 0;
+	if (!skates) skates = find_skates();
+	static int skates2 = 0;
+	if (!skates2) skates2 = find_skates2();
+	static int skates3 = 0;
+	if (!skates3) skates3 = find_skates3();
+	static int skates4 = 0;
+	if (!skates4) skates4 = find_skates4();
+	static int skates5 = 0;
+	if (!skates5) skates5 = find_cyan_sneakers();
+
+	if (uarmf && uarmf->otyp == skates) return TRUE;
+	if (uarmf && uarmf->otyp == skates2) return TRUE;
+	if (uarmf && uarmf->otyp == skates3) return TRUE;
+	if (uarmf && uarmf->otyp == skates4) return TRUE;
+	if (uarmf && uarmf->otyp == skates5) return TRUE;
+	if (uwep && uwep->oartifact == ART_GLACIERDALE) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_ANTI_SLIDE) return TRUE;
+	if (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf) return TRUE;
+	if (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE) return TRUE;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) return TRUE;
+
+	return FALSE;
+}
+
 /* clone a gremlin or mold (2nd arg non-null implies heat as the trigger);
    hit points are cut in half (odd HP stays with original) */
 struct monst *

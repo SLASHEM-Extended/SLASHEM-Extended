@@ -9274,6 +9274,14 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			boolean literes = FALSE;
 			tmp = d(nd,8);
 
+			if (u.currentweather == WEATHER_SUNNY) {
+				tmp *= 3;
+				tmp /= 2;
+			}
+			if (u.currentweather == WEATHER_ECLIPSE) {
+				tmp /= 2;
+			}
+
 			if (tmp > 1 && dmgtype(mon->data, AD_DARK)) {
 				tmp /= 10;
 				if (tmp < 1) tmp = 1;
@@ -9559,6 +9567,14 @@ xchar sx, sy;
 	    break;
 	case ZT_LITE:
 
+		if (u.currentweather == WEATHER_SUNNY) {
+			dam *= 3;
+			dam /= 2;
+		}
+		if (u.currentweather == WEATHER_ECLIPSE) {
+			dam /= 2;
+		}
+
 		if (uarmh && uarmh->oartifact == ART_SECURE_BATHMASTER && rn2(20) ) {
 			dam = 0;
 		} else if (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS && rn2(20) ) {
@@ -9573,7 +9589,20 @@ xchar sx, sy;
 			dam = 0;
 			pline("Thanks to your parasol, the sunlight doesn't hit you.");
 		} else {
-			pline_The("irradiation hurts like hell!");
+			if (u.currentweather == WEATHER_ECLIPSE) {
+				pline_The("irradiation hurts a bit!");
+			} else {
+				pline_The("irradiation hurts like hell!");
+			}
+			if (u.currentweather == WEATHER_SUNNY) {
+				pline("In fact, it sears you like fire!");
+				if (!FireImmunity) { /* still does extra HP damage even if you are immune to fire */
+					if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 2 : 33)) (burnarmor(&youmonst));	/* "body hit" */
+					if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(POTION_CLASS, AD_FIRE);
+					if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 6 : 33)) destroy_item(SCROLL_CLASS, AD_FIRE);
+					if (isevilvariant || !rn2(Race_if(PM_SEA_ELF) ? 1 : issoviet ? 10 : 50)) destroy_item(SPBOOK_CLASS, AD_FIRE);
+				}
+			}
 			dam = d(nd,8);
 			if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
 				dam *= 2; /* vampires are susceptible to sunlight --Amy */

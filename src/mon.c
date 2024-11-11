@@ -2311,6 +2311,23 @@ struct monst *mon;
 		mmove /= 2;
 	}
 
+	if (u.currentweather == WEATHER_RAIN && is_swimmer(mon->data) && !rn2(2) && (mmove > 0)) {
+		mmove *= 3;
+		if (mmove == 3) mmove = 4;
+		mmove /= 2;
+	}
+	if (u.currentweather == WEATHER_THUNDERSTORM && is_swimmer(mon->data) && !rn2(2) && (mmove > 0)) {
+		mmove *= 3;
+		if (mmove == 3) mmove = 4;
+		mmove /= 2;
+	}
+
+	if (u.currentweather == WEATHER_ECLIPSE && (dmgtype(mon->data, AD_DARK) || mon->data->mlet == S_GHOST) && !rn2(2) && (mmove > 0)) {
+		mmove *= 3;
+		if (mmove == 3) mmove = 4;
+		mmove /= 2;
+	}
+
 	if (Race_if(PM_UNALIGNMENT_THING) && monstersoundtype(mon) == MS_CONVERT && !mon->mpeaceful && !mon->mtame && (mmove > 0)) {
 		mmove += rnd(mmove);
 	}

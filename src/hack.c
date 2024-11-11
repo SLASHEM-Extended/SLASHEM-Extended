@@ -2075,40 +2075,13 @@ domove()
 				pline("Vrooooom, your ski heels speed up thanks to walking on snow!");
 			}
 
-		    static int skates = 0;
-		    if (!skates) skates = find_skates();
-		    static int skates2 = 0;
-		    if (!skates2) skates2 = find_skates2();
-		    static int skates3 = 0;
-		    if (!skates3) skates3 = find_skates3();
-		    static int skates4 = 0;
-		    if (!skates4) skates4 = find_skates4();
-		    static int skates5 = 0;
-		    if (!skates5) skates5 = find_cyan_sneakers();
-		    if ((uarmf && uarmf->otyp == skates)
-			    || (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME)
-			    || (uarmf && uarmf->otyp == skates2)
-			    || (uarmf && uarmf->otyp == skates3)
-			    || (uarmf && uarmf->otyp == skates4)
-			    || (uarmf && uarmf->otyp == skates5)
-			    || (uwep && uwep->oartifact == ART_GLACIERDALE)
-			    || (uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE)
-			    || (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD)
-			    || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_)
-			    || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER)
-			    || (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE)
-			    || (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK)
-			    || (uarmf && uarmf->oartifact == ART_ANTI_SLIDE)
-			    || (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf)
-			    || resists_cold(&youmonst) || Flying
-			    || is_floater(youmonst.data) || is_clinger(youmonst.data)
-			    || is_whirly(youmonst.data))
-			on_ice = FALSE;
-		    else if (!rn2(ColdImmunity ? 20 : Cold_resistance ? 3 : 2)) {
-			HFumbling |= FROMOUTSIDE;
-			HFumbling &= ~TIMEOUT;
-			HFumbling += 1;  /* slip on next move */
-		    }
+			if (PlayerCanWalkOnSnow) {
+				on_ice = FALSE;
+			} else if (!rn2(ColdImmunity ? 20 : Cold_resistance ? 3 : 2)) {
+				HFumbling |= FROMOUTSIDE;
+				HFumbling &= ~TIMEOUT;
+				HFumbling += 1;  /* slip on next move */
+			}
 		}
 		if (!on_ice && !u.fumbleduration && (HFumbling & FROMOUTSIDE))
 		    HFumbling &= ~FROMOUTSIDE;

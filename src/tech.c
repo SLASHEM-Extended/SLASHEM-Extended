@@ -352,6 +352,7 @@ STATIC_OVL NEARDATA const char *abil_names[] = {
 	"sunny day",
 	"sandstorm",
 	"noctem",
+	"overcast",
 	"euthanize symbiote",
 	""
 };
@@ -3468,6 +3469,10 @@ int abil;
 			if (Upolyd && (mons[u.umonnum].mlevel >= 18) && attackdamagetype(youmonst.data, AT_BEAM, AD_DARK)) return TRUE;
 			return FALSE;
 			break;
+		case ABIL_WEATHER_OVERCAST:
+			if (youmonst.data->msound == MS_WEATHER) return TRUE;
+			return FALSE;
+			break;
 
 	}
 
@@ -3664,6 +3669,9 @@ domonabil()
 					break;
 				case ABIL_WEATHER_NOCTEM:
 					pline("Changes the weather to 'eclipse'.");
+					break;
+				case ABIL_WEATHER_OVERCAST:
+					pline("Changes the weather to 'overcast', which is also the default weather theme.");
 					break;
 
 				default:
@@ -4523,6 +4531,32 @@ newbossSTEN:
 				}
 			}
 			u.currentweather = WEATHER_ECLIPSE;
+			tell_main_weather();
+
+			abilreturncode = TRUE;
+			break;
+
+		case ABIL_WEATHER_OVERCAST:
+
+			if (u.weathertimer > 0) {
+				pline("Sorry. You must wait %d more turns before you can change the weather again.", u.weathertimer);
+				break;
+			}
+
+			use_skill(P_SQUEAKING, rnd(20));
+			u.weathertimer = rnz(5000);
+			if (!PlayerCannotUseSkills && u.weathertimer >= 2) {
+				switch (P_SKILL(P_SQUEAKING)) {
+			      	case P_BASIC:	u.weathertimer *= 9; u.weathertimer /= 10; break;
+			      	case P_SKILLED:	u.weathertimer *= 8; u.weathertimer /= 10; break;
+			      	case P_EXPERT:	u.weathertimer *= 7; u.weathertimer /= 10; break;
+			      	case P_MASTER:	u.weathertimer *= 6; u.weathertimer /= 10; break;
+			      	case P_GRAND_MASTER:	u.weathertimer *= 5; u.weathertimer /= 10; break;
+			      	case P_SUPREME_MASTER:	u.weathertimer *= 4; u.weathertimer /= 10; break;
+			      	default: break;
+				}
+			}
+			u.currentweather = WEATHER_OVERCAST;
 			tell_main_weather();
 
 			abilreturncode = TRUE;
