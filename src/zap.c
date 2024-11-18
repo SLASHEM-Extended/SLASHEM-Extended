@@ -1116,6 +1116,9 @@ armorsmashdone:
 		break;
 	case WAN_HASTE_MONSTER:
 		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+			if (canseemon(mtmp) ) {
+				pline("You see %s speed up!", mon_nam(mtmp) );
+			}
 			mon_adjust_speed(mtmp, 2, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 		}
