@@ -7084,7 +7084,7 @@ hitmu(mtmp, mattk)
 			dmg *= 2;
 	}
 
-	if (mtmp->mfrenzied && !rn2(2) && (dmg > 0)) dmg += rnd(dmg);
+	if (mtmp->mfrenzied && !mtmp->singdirty && !rn2(2) && (dmg > 0)) dmg += rnd(dmg);
 /*	Next a cancellation factor	*/
 
 /*	Use uncancelled when the cancellation factor takes into account certain
