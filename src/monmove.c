@@ -2982,7 +2982,7 @@ convertdone:
 			pline("%s concentrates.", Monnam(mtmp));
 		if (distu(mtmp->mx, mtmp->my) > BOLT_LIM * BOLT_LIM) {
 			You(FunnyHallu ? "sense a fantastic wave of psychic energy." : "sense a faint wave of psychic energy.");
-			if (!mtmp->mpeaceful && !(uarmh && uarmh->oartifact == ART_NOTKNOW_EY) && !rn2(5)) maybehackimplant();
+			if (!mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) > 25 * 25) && !(uarmh && uarmh->oartifact == ART_NOTKNOW_EY) && !rn2(5)) maybehackimplant();
 			goto toofar;
 		}
 		pline("A wave of psychic energy pours over you!");
