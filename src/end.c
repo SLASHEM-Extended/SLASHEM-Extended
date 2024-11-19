@@ -591,7 +591,9 @@ boolean taken;
 	boolean ask;
 	boolean hallu=FALSE;
 
+#ifdef USER_SOUNDS
 	play_sound_for_message("duewuepixx");
+#endif
 
 	if (PlayerHearsSoundEffects) pline(issoviet ? "Igra zakonchena! Ty polnyy otstoy! Vy igrali tak uzhasno plokho, chto ty umer, i teper' vy dolzhny nachat' s nulya!" : "Duedeldue-duedeldue-duedeldue-duedelduedeldueueueueue-wueck!");
 
@@ -918,7 +920,9 @@ int how;
 	if (how < PANICKED) u.umortality++;
 
 	if (DywypiProblem || u.uprops[DYWYPI_PROBLEM].extrinsic || have_dywypistone() || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR)) {
+#ifdef USER_SOUNDS
 		play_sound_for_message("duewuepixx");
+#endif
 		wanttodie = 1;
 		char qbuf[QBUFSZ];
 		char possid = 0;
