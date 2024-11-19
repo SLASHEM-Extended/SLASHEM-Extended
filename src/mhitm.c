@@ -5544,7 +5544,7 @@ physical:
 
 	    case AD_FEAR:
 		if (rnd(100) > mdef->data->mr) {
-		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			if (vis) pline("%s screams in fear!",Monnam(mdef));
 		}
 		if (mattk->aatyp == AT_EXPL && tmp > 1) {
@@ -5581,7 +5581,7 @@ physical:
 
 	    case AD_INSA:
 		if (rnd(100) > mdef->data->mr) {
-		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			if (vis) pline("%s screams in fear!",Monnam(mdef));
 		}
 		if (!magr->mcan && !mdef->mconf && !magr->mspec_used) {
@@ -7682,13 +7682,13 @@ int attnumber;
 		break;
 	    case AD_FEAR:
 		if (rnd(100) > magr->data->mr) {
-		     monflee(magr, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(magr, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			if (canseemon(magr)) pline("%s is suddenly very afraid!",Monnam(magr));
 		}
 		break;
 	    case AD_INSA:
 		if (rnd(100) > magr->data->mr) {
-		     monflee(magr, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(magr, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			if (canseemon(magr)) pline("%s is suddenly very afraid!",Monnam(magr));
 		}
 		if (!magr->mstun) {

@@ -2001,7 +2001,7 @@ dosearch()
 		    if (distu(mtmp->mx,mtmp->my) > 50) continue;
 		    if(cansee(mtmp->mx,mtmp->my)) {
 			if (!resist(mtmp, SCROLL_CLASS, 0, NOTELL))
-				monflee(mtmp, rnd(10), FALSE, FALSE);
+				monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 		    }
 		}
 

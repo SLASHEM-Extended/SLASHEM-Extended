@@ -83,7 +83,7 @@ usecameraagain:
 		for(mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
 		    if (DEADMONSTER(mtmp2)) continue;
 		    if(cansee(mtmp2->mx,mtmp2->my))
-			  monflee(mtmp2, rnd(10), FALSE, FALSE);
+			  monflee(mtmp2, rnd(10), FALSE, FALSE, FALSE);
 		}
 	}
 
@@ -1348,7 +1348,7 @@ struct obj *obj;
 			(!mtmp->minvis || perceives(mtmp->data)) && !resist(mtmp, TOOL_CLASS, 0, 0) && !rn2(5)) {
 		if (vis)
 		    pline("%s is frightened by its reflection.", Monnam(mtmp));
-		monflee(mtmp, d(2,4), FALSE, FALSE);
+		monflee(mtmp, d(2,4), FALSE, FALSE, FALSE);
 	} else if (!Blind) {
 		if ((mtmp->minvis && !See_invisible) || mtmp->minvisreal)
 		    ;

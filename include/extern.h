@@ -2039,7 +2039,7 @@ E boolean mb_trapped(struct monst *);
 E void mon_regen(struct monst *,BOOLEAN_P);
 E int dochugw(struct monst *);
 E boolean onscary(int,int,struct monst *);
-E void monflee(struct monst *, int, BOOLEAN_P, BOOLEAN_P);
+E void monflee(struct monst *, int, BOOLEAN_P, BOOLEAN_P, BOOLEAN_P);
 E int dochug(struct monst *);
 E int m_move(struct monst *,int);
 E boolean closed_door(int,int);

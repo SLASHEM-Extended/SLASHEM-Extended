@@ -3410,7 +3410,7 @@ turn_undead()
 			    } /* else flee */
 			    /*FALLTHRU*/
 			default:
-			    monflee(mtmp, rnd(10), FALSE, TRUE);
+			    monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 			    break;
 			}
 		    }
@@ -3436,7 +3436,7 @@ turn_allmonsters()
 	    if (!mtmp->mpeaceful) {
 
 		    mtmp->msleeping = 0;
-			monflee(mtmp, rnd(10), FALSE, TRUE);
+			monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 	    }
 	}
 	return(1);

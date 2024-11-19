@@ -5317,7 +5317,7 @@ metalmafiaagain:
 				pline("You can see tears running down %s's cheeks, and try your best to make her feel better.", mon_nam(mtmp));
 			} else if (u.ualign.record < 0) {
 				mtmp->mfrenzied = TRUE;
-				monflee(mtmp, 100, TRUE, TRUE);
+				monflee(mtmp, 100, TRUE, TRUE, FALSE);
 				verbalize("*sob* *sob* You're just as evil as all the other people... please end this life of misery and agony already...");
 			} else verbalize("Oh... can I talk to you?");
 			break;
@@ -6933,7 +6933,7 @@ register struct monst *mtmp;
 	}
 
 	if (monstersoundtype(mtmp) == MS_FEARHARE) {
-		monflee(mtmp, rnd(10), TRUE, TRUE);
+		monflee(mtmp, rnd(10), TRUE, TRUE, FALSE);
 	}
 
 	if (mtmp->mhp < (mtmp->mhpmax / 4)) distresslevel = 3;
@@ -8477,7 +8477,7 @@ playerwouwoutaunt()
 					pline("%s is pacified.", mon_nam(mtmp));
 					mtmp->mpeaceful = 1;
 				} else {
-					monflee(mtmp, rnd(10), FALSE, FALSE);
+					monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 					pline("%s turns to flee!", Monnam(mtmp));
 				}
 
@@ -8525,7 +8525,7 @@ playerwhoretalk()
 
 			/* doesn't anger peaceful ones - not a bug --Amy */
 			pline("%s cannot resist!", Monnam(nexusmon));
-			monflee(nexusmon, rnd(20), FALSE, TRUE);
+			monflee(nexusmon, rnd(20), FALSE, TRUE, FALSE);
 			if (nexusmon->mblinded < 100) nexusmon->mblinded += 20;
 			nexusmon->mcansee = 0;
 			nexusmon->mstun = TRUE;

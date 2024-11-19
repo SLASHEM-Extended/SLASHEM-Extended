@@ -10325,7 +10325,7 @@ register struct monst *mtmp;
 		case 11:
 		case 12:
 		case 13:
-			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE, FALSE);
 			if (vis) pline("%s becomes afraid.", Monnam(mtmp));
 			break;
 		case 14:
@@ -10427,7 +10427,7 @@ register struct monst *mtmp;
 			break;
 
 		default: /* fail safe */
-			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+			monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE, FALSE);
 			if (vis) pline("%s becomes afraid.", Monnam(mtmp));
 			break;
 
@@ -10465,7 +10465,7 @@ register struct monst *mtmp;
 		if (vis) pline("%s is cancelled.", Monnam(mtmp));
 	}
 
-	monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE);
+	monflee(mtmp, rnd(1 + level_difficulty()), FALSE, TRUE, FALSE);
 	if (vis) pline("%s becomes afraid.", Monnam(mtmp));
 
 	{
@@ -15266,7 +15266,7 @@ boolean your_fault;
 	case POT_DIMNESS:
 	case POT_FEAR: /* monster flees --Amy */
 		if(!is_undead(mon->data) && (!mon->egotype_undead) && !resist(mon, POTION_CLASS, 0, NOTELL))  {
-		     monflee(mon, rnd(10), FALSE, TRUE);
+		     monflee(mon, rnd(10), FALSE, TRUE, FALSE);
 			if (canseemon(mon)) pline("%s is panicking!",Monnam(mon));
 		}
 		break;

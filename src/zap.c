@@ -1140,7 +1140,7 @@ armorsmashdone:
 			}
 			flags.bypasses = TRUE;	/* for make_corpse() */
 			if (!resist(mtmp, otmp->oclass, dmg, NOTELL)) {
-			    if (mtmp->mhp > 0) monflee(mtmp, rnd(10), FALSE, TRUE);
+			    if (mtmp->mhp > 0) monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 			}
 		}
 		break;
@@ -1421,7 +1421,7 @@ armorsmashdone:
 		    (!mtmp->mflee || mtmp->mfleetim)) {
 		     if (canseemon(mtmp))
 			 pline("%s suddenly panics!", Monnam(mtmp));
-		     monflee(mtmp, rnd(10), FALSE, TRUE);
+		     monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 		}
 		break;
 	case WAN_SHARE_PAIN:	/*from Nethack TNG -- WAN_DRAINING */

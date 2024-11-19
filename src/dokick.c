@@ -265,7 +265,7 @@ register boolean clumsy;
 			pline("That kick really knocked the wind out of %s.", mon_nam(mon));
 			mon_adjust_speed(mon, -1, (struct obj *)0);
 			mon->mstun = TRUE;
-			monflee(mon, rnd(10), FALSE, FALSE);
+			monflee(mon, rnd(10), FALSE, FALSE, FALSE);
 			mon->healblock += rnd(10);
 			if (!rn2(10)) cancelmonsterlite(mon);
 		}
@@ -511,7 +511,7 @@ register boolean clumsy;
 	if(mon->mtame) {
 	    abuse_dog(mon);
 	    if (mon->mtame)
-		monflee(mon, (dmg ? rnd(dmg) : 1), FALSE, FALSE);
+		monflee(mon, (dmg ? rnd(dmg) : 1), FALSE, FALSE, FALSE);
 	    else
 		mon->mflee = 0;
 	}

@@ -62,7 +62,7 @@ register struct monst *mtmp;
 	    if(!u.ugold || !rn2(5)) {
 		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
 		/* do not set mtmp->mavenge here; gold on the floor is fair game */
-		monflee(mtmp, rnd(10), FALSE, FALSE);
+		monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 	    }
 	} else if(u.ugold) {
 	    u.ugold -= (tmp = somegold());
@@ -72,7 +72,7 @@ register struct monst *mtmp;
 /* Gold bugs are metallivores, so they're supposed to EAT the gold they steal. --Amy */
 	if (!tele_restrict(mtmp) && !rn2(5)) (void) rloc(mtmp, FALSE);
 	    mtmp->mavenge = 1;
-	    monflee(mtmp, rnd(10), FALSE, FALSE);
+	    monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 	    flags.botl = 1;
 	}
 }
@@ -132,7 +132,7 @@ register struct monst *mtmp;
 		    Monnam(mtmp), makeplural(body_part(FOOT)));
 	    if(!ygold || !rn2(5)) {
 		if (!tele_restrict(mtmp)) (void) rloc(mtmp, FALSE);
-		monflee(mtmp, rnd(10), FALSE, FALSE);
+		monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 	    }
 	} else if(ygold) {
             const int gold_price = objects[GOLD_PIECE].oc_cost;
@@ -143,7 +143,7 @@ register struct monst *mtmp;
             add_to_minv(mtmp, ygold);
 	    Your("purse feels lighter.");
 	    if (!tele_restrict(mtmp) && !rn2(5)) (void) rloc(mtmp, FALSE);
-	    monflee(mtmp, rnd(10), FALSE, FALSE);
+	    monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 	    flags.botl = 1;
 	}
 }
@@ -180,7 +180,7 @@ stealarm()
 			(void) mpickobj(mtmp,otmp,FALSE);	/* may free otmp */
 			/* Implies seduction, "you gladly hand over ..."
 			   so we don't set mavenge bit here. */
-			monflee(mtmp, rnd(10), FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			if (!tele_restrict(mtmp) && !rn2(5)) (void) rloc(mtmp, FALSE);
 		        break;
 		    }

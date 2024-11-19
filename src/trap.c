@@ -5902,7 +5902,7 @@ newegomon:
 				pline("This water gives you bad breath!");
 				for(brmtmp = fmon; brmtmp; brmtmp = brmtmp->nmon)
 				    if(!DEADMONSTER(brmtmp))
-					monflee(brmtmp, rnd(10), FALSE, FALSE);
+					monflee(brmtmp, rnd(10), FALSE, FALSE, FALSE);
 				}
 				make_feared(HFeared + rnz(100), TRUE);
 

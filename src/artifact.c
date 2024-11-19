@@ -3844,7 +3844,7 @@ int specialtype;			/* by Amy: additional effects for specific artifacts */
 	    if (rn2(2) && resist(mdef, WEAPON_CLASS, 0, NOTELL))
 		resisted = TRUE;
 	    else
-		monflee(mdef, 3, FALSE, (mdef->mhp > *dmgptr));
+		monflee(mdef, 3, FALSE, (mdef->mhp > *dmgptr), FALSE);
 	}
 	if (!resisted) do_stun = FALSE;
 	break;

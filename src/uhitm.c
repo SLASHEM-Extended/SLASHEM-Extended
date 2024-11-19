@@ -283,7 +283,7 @@ boolean barehanded;
 		if (canspotmon(mtmp)) {
 
 			/* from the variant that calls itself NetHack 3.70: sometimes, silently scare the priest --Amy */
-			if (isevilvariant && mtmp->ispriest && !rn2(7)) monflee(mtmp, rnd(6), FALSE, FALSE);
+			if (isevilvariant && mtmp->ispriest && !rn2(7)) monflee(mtmp, rnd(6), FALSE, FALSE, FALSE);
 
 			sprintf(qbuf, "Really attack %s?", mon_nam(mtmp));
 			if (yn(qbuf) != 'y') {
@@ -1238,7 +1238,7 @@ register struct monst *mtmp;
 					!passes_walls(mtmp->data))) {
 		    char buf[BUFSZ];
 
-		    monflee(mtmp, rnd(6), FALSE, FALSE);
+		    monflee(mtmp, rnd(6), FALSE, FALSE, FALSE);
 		    strcpy(buf, y_monnam(mtmp));
 		    buf[0] = highc(buf[0]);
 		    You("stop.  %s is in the way!", buf);
@@ -1440,8 +1440,8 @@ int dieroll;
 			    && !(u.uswallow && mon == u.ustuck)) {
 		    /* maybe should regurgitate if swallowed? */
 		    if(!rn2(3)) {
-			monflee(mon, rnd(100), FALSE, TRUE);
-		    } else monflee(mon, rnd(10), FALSE, TRUE);
+			monflee(mon, rnd(100), FALSE, TRUE, FALSE);
+		    } else monflee(mon, rnd(10), FALSE, TRUE, FALSE);
 
 		    if(u.ustuck == mon && !u.uswallow && !sticks(youmonst.data) && !(uactivesymbiosis && sticks(&mons[u.usymbiote.mnum]) ) )
 			setustuck(0);
@@ -2480,7 +2480,7 @@ int dieroll;
 						mightbooststat(A_CON);
 						/* If someone just shattered MY weapon, I'd flee! */
 						if (rn2(4)) {
-						    monflee(mon, d(2,3), TRUE, TRUE);
+						    monflee(mon, d(2,3), TRUE, TRUE, FALSE);
 						}
 
 						hittxt = TRUE;
@@ -2693,7 +2693,7 @@ int dieroll;
 
 			if (obj && obj->enchantment == WEAPEGO_FLEEING) {
 				if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !(mon->mflee)) {
-					monflee(mon, rnd(5), FALSE, TRUE);
+					monflee(mon, rnd(5), FALSE, TRUE, FALSE);
 					pline("%s screams in fear!", Monnam(mon));
 				}
 			}
@@ -2966,7 +2966,7 @@ int dieroll;
 				mightbooststat(A_CON);
 				/* If someone just shattered MY weapon, I'd flee! */
 				if (rn2(4)) {
-				    monflee(mon, d(2,3), TRUE, TRUE);
+				    monflee(mon, d(2,3), TRUE, TRUE, FALSE);
 				}
 				if (obj && obj->oartifact == ART_OUTJUYOING) use_skill(P_JUYO, rnd(7));
 
@@ -3037,7 +3037,7 @@ int dieroll;
 						mightbooststat(A_CON);
 						/* If someone just shattered MY weapon, I'd flee! */
 						if (rn2(4)) {
-						    monflee(mon, d(2,3), TRUE, TRUE);
+						    monflee(mon, d(2,3), TRUE, TRUE, FALSE);
 						}
 
 						if (tech_inuse(T_DECAPABILITY)) {
@@ -3898,7 +3898,7 @@ int dieroll;
 
 				if (obj->oartifact == ART_DIVINE_GARLIC) {
 					if ( (!resist(mon, WEAPON_CLASS, 0, NOTELL) || is_vampire(mdat)) && (is_vampire(mdat) || !rn2(3)) ) {
-						monflee(mon, d(2, 4), FALSE, TRUE);
+						monflee(mon, d(2, 4), FALSE, TRUE, FALSE);
 						mon->mhpmax--;
 						mon->mhp -= 5;
 						if (mon->mhp < 1) mon->mhp = 1;
@@ -3908,7 +3908,7 @@ int dieroll;
 
 				} else {
 					if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && (is_vampire(mdat) || !rn2(3)) ) {
-						monflee(mon, d(2, 4), FALSE, TRUE);
+						monflee(mon, d(2, 4), FALSE, TRUE, FALSE);
 					}
 
 				}
@@ -6109,7 +6109,7 @@ melatechoice:
 	if (mon->mtame && (!mon->mflee || mon->mfleetim) && tmp > 0) {
 
 		abuse_dog(mon);
-		monflee(mon, 10 * rnd(tmp), FALSE, FALSE);
+		monflee(mon, 10 * rnd(tmp), FALSE, FALSE, FALSE);
 	}
 	if((mdat == &mons[PM_SHOCK_PUDDING] || mdat == &mons[PM_VOLT_PUDDING] || mdat == &mons[PM_BLACK_PUDDING] || mdat == &mons[PM_DIVISIBLE_ICE_CREAM_BAR] || mdat == &mons[PM_GEMINICROTTA] || mdat == &mons[PM_GREY_PUDDING] || mdat == &mons[PM_STICKY_PUDDING] || mdat == &mons[PM_DRUDDING] || mdat == &mons[PM_BLACK_DRUDDING] || mdat == &mons[PM_BLACKSTEEL_PUDDING] || mdat == &mons[PM_BLOOD_PUDDING] || mdat == &mons[PM_MORAL_HAZARD] || mdat == &mons[PM_MORAL_EVENT_HORIZON] || mdat == &mons[PM_BLACK_PIERCER] || mdat == &mons[PM_BROWN_PUDDING])
 		   && obj /* && obj == uwep -- !thrown and obj == weapon */
@@ -8709,7 +8709,7 @@ register struct attack *mattk;
 
 	    case AD_FEAR:
 		if (rnd(100) > mdef->data->mr) {
-		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			pline("%s screams in fear!",Monnam(mdef));
 		}
 
@@ -8737,7 +8737,7 @@ register struct attack *mattk;
 
 	    case AD_INSA:
 		if (rnd(100) > mdef->data->mr) {
-		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			pline("%s screams in fear!",Monnam(mdef));
 		}
 		if (!mdef->mconf && !rn2(3)) {
@@ -9619,7 +9619,7 @@ register struct attack *mattk;
 		goto common;
 	    case AD_FEAR:
 		if (rnd(100) > mdef->data->mr) {
-		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			pline("%s screams in fear!",Monnam(mdef));
 		}
 		break;
@@ -9646,7 +9646,7 @@ register struct attack *mattk;
 	    case AD_INSA:
 
 		if (rnd(100) > mdef->data->mr) {
-		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mdef, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			pline("%s screams in fear!",Monnam(mdef));
 		}
 		if (!mdef->mconf && !rn2(3)) {
@@ -11340,12 +11340,12 @@ use_weapon:
 				}
 
 				if (uwep && uwep->oartifact == ART_GEB_ME_ALL_YOUR_MONEY && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
-					monflee(mon, rnd(10), FALSE, FALSE);
+					monflee(mon, rnd(10), FALSE, FALSE, FALSE);
 					pline("%s looks scared.", Monnam(mon));
 				}
 
 				if (uwep && uwep->oartifact == ART_TERROR_DROP && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
-					monflee(mon, 2, FALSE, FALSE);
+					monflee(mon, 2, FALSE, FALSE, FALSE);
 					pline("%s looks scared.", Monnam(mon));
 				}
 
@@ -13293,7 +13293,7 @@ boolean ranged;
 			return 2;
 		    } else if (!rn2(5)) {
 			if (!tele_restrict(mon) || !rn2(2) ) (void) rloc(mon, FALSE); /* sometimes ignore noteleport --Amy */
-			monflee(mon, d(3, 6), TRUE, FALSE);
+			monflee(mon, d(3, 6), TRUE, FALSE, FALSE);
 			return 3;
 		    }
 		    tmp = 0;
@@ -13826,7 +13826,7 @@ boolean ranged;
 			  default:
 				if ( !tele_restrict(mon))
 				    (void) rloc(mon, FALSE);
-				monflee(mon, rnd(10), FALSE, FALSE);
+				monflee(mon, rnd(10), FALSE, FALSE, FALSE);
 				return 3;
 				};
 
@@ -13844,7 +13844,7 @@ boolean ranged;
 			  default:
 				if ( !tele_restrict(mon))
 				    (void) rloc(mon, FALSE);
-				monflee(mon, rnd(10), FALSE, FALSE);
+				monflee(mon, rnd(10), FALSE, FALSE, FALSE);
 				return 3;
 				};
 			}
@@ -14971,9 +14971,9 @@ struct obj *otmp;	/* source of flash */
 		    if (!flags.mon_moving) setmangry(mtmp);
 		    if (tmp < 9 && !mtmp->isshk && rn2(4)) {
 			if (rn2(4))
-			    monflee(mtmp, rnd(100), FALSE, TRUE);
+			    monflee(mtmp, rnd(100), FALSE, TRUE, FALSE);
 			else
-			    monflee(mtmp, rnd(10), FALSE, TRUE);
+			    monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 		    }
 		    mtmp->mcansee = 0;
 		    mtmp->mblinded = (tmp < 3) ? 0 : rnd(1 + 50/tmp);

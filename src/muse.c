@@ -3273,7 +3273,7 @@ struct monst *mtmp;
 	   rushing right straight back; don't override if already scared */
 	fleetim = !mtmp->mflee ? (33 - (30 * mtmp->mhp / mtmp->mhpmax)) : 0;
 #define m_flee(m)	if (fleetim && !m->iswiz) \
-			{ monflee(m, fleetim, FALSE, FALSE); }
+			{ monflee(m, fleetim, FALSE, FALSE, FALSE); }
 
 	switch(m.has_defense) {
 	case MUSE_UNICORN_HORN:
@@ -6374,7 +6374,7 @@ register struct obj *otmp;
 				 pline("%s suddenly panics!", Monnam(mtmp));
 				 makeknown(WAN_FEAR);
 				}
-			     monflee(mtmp, rnd(10), FALSE, TRUE);
+			     monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 			}
 			break;
 

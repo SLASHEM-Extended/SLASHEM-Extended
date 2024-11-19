@@ -10175,7 +10175,7 @@ cardtrickchoice:
 
 					/* doesn't anger peaceful ones - not a bug --Amy */
 					pline("%s cannot resist!", Monnam(nexusmon));
-					monflee(nexusmon, rnd(20), FALSE, TRUE);
+					monflee(nexusmon, rnd(20), FALSE, TRUE, FALSE);
 					if (nexusmon->mblinded < 100) nexusmon->mblinded += 20;
 					nexusmon->mcansee = 0;
 					nexusmon->mstun = TRUE;

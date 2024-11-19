@@ -1049,7 +1049,7 @@ doforce()		/* try to force a chest with your weapon */
 				mtmp->mcanmove = 1;
 				mtmp->masleep = 0;
 				if (mtmp->mtame)
-					monflee(mtmp, (dmg ? rnd(dmg) : 1), FALSE, FALSE);
+					monflee(mtmp, (dmg ? rnd(dmg) : 1), FALSE, FALSE, FALSE);
 				else
 					mtmp->mflee = 0;
 

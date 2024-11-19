@@ -74,7 +74,7 @@ int distance;
 		    /* May scare some monsters */
 		    if (distm < distance/3 &&
 			    !resist(mtmp, TOOL_CLASS, 0, NOTELL))
-			monflee(mtmp, rnd(10), FALSE, TRUE);
+			monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 		}
 	    }
 	    mtmp = mtmp->nmon;

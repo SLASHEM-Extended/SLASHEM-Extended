@@ -9235,7 +9235,7 @@ dopois:
 				      locomotion(mtmp->data, "run"),
 				      buf);
 			}
-			monflee(mtmp, rnd(10), FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			return 3;
 			};
 
@@ -9257,7 +9257,7 @@ dopois:
 				      locomotion(mtmp->data, "run"),
 				      buf);
 			}
-			monflee(mtmp, rnd(10), FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			return 3;
 			};
 		}
@@ -10197,7 +10197,7 @@ dopois:
 			return 2;
 		    } else if (!rn2(15)) {
 			if (!tele_restrict(mtmp) || !rn2(5) ) (void) rloc(mtmp, FALSE); /* sometimes ignore noteleport --Amy */
-			monflee(mtmp, d(3, 6), TRUE, FALSE);
+			monflee(mtmp, d(3, 6), TRUE, FALSE, FALSE);
 			return 3;
 		    }
 		    dmg = 0;
@@ -11284,7 +11284,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 			return 2;
 		    } else if (!rn2(15)) {
 			if (!tele_restrict(mtmp) || !rn2(5) ) (void) rloc(mtmp, FALSE); /* sometimes ignore noteleport --Amy */
-			monflee(mtmp, d(3, 6), TRUE, FALSE);
+			monflee(mtmp, d(3, 6), TRUE, FALSE, FALSE);
 			return 3;
 		    }
 		    tmp = 0;
@@ -12338,7 +12338,7 @@ do_stone2:
 		  default:
 			if ( !tele_restrict(mtmp) && (issoviet || atttypA == AD_SEDU || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
-			monflee(mtmp, rnd(10), FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			return 3;
 			};
 		} else if (issoviet || ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
@@ -12352,7 +12352,7 @@ do_stone2:
 		  default:
 			if ( !tele_restrict(mtmp) && (issoviet || atttypA == AD_SEDU || !rn2(4) ) )
 			    (void) rloc(mtmp, FALSE);
-			monflee(mtmp, rnd(10), FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			return 3;
 			};
 		}
@@ -16217,7 +16217,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			return 2;
 		    } else if (!rn2(15)) {
 			if (!tele_restrict(mtmp) || !rn2(5) ) (void) rloc(mtmp, FALSE); /* sometimes ignore noteleport --Amy */
-			monflee(mtmp, d(3, 6), TRUE, FALSE);
+			monflee(mtmp, d(3, 6), TRUE, FALSE, FALSE);
 			return 3;
 		    }
 		    dmgplus = 0;
@@ -17322,7 +17322,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			  default:
 				if ( !tele_restrict(mtmp) && !rn2(4))
 				    (void) rloc(mtmp, FALSE);
-				monflee(mtmp, rnd(10), FALSE, FALSE);
+				monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 				return 3;
 				};
 
@@ -17347,7 +17347,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		  default:
 			if ( !tele_restrict(mtmp) && (issoviet || atttypB == AD_SEDU || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
-			monflee(mtmp, rnd(10), FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			return 3;
 			};
 
@@ -17367,7 +17367,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		  default:
 			if ( !tele_restrict(mtmp) && (issoviet || atttypB == AD_SEDU || !rn2(4)) )
 			    (void) rloc(mtmp, FALSE);
-			monflee(mtmp, rnd(10), FALSE, FALSE);
+			monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			return 3;
 			};
 		}
@@ -21961,7 +21961,7 @@ dothepassive:
 		break;
 	    case AD_FEAR:
 		if (rnd(100) > mtmp->data->mr) {
-		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			pline("%s is suddenly very afraid!",Monnam(mtmp));
 		}
 		break;
@@ -21986,7 +21986,7 @@ dothepassive:
 		break;
 	    case AD_INSA:
 		if (rnd(100) > mtmp->data->mr) {
-		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE);
+		     monflee(mtmp, rnd(1 + tmp), FALSE, TRUE, FALSE);
 			pline("%s is suddenly very afraid!",Monnam(mtmp));
 		}
 		if (!mtmp->mconf) {

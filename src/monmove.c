@@ -484,11 +484,12 @@ disturb(mtmp)
  * if first, only adds fleetime if monster isn't already fleeing
  * if fleemsg, prints a message about new flight, otherwise, caller should */
 void
-monflee(mtmp, fleetime, first, fleemsg)
+monflee(mtmp, fleetime, first, fleemsg, maystartle)
 struct monst *mtmp;
 int fleetime;
 boolean first;
 boolean fleemsg;
+boolean maystartle; /* by Amy: if this is true, 1 in 3 chance that the monster is just startled and doesn't flee */
 {
 	if (u.ustuck == mtmp) {
 	    if (u.uswallow)
@@ -573,9 +574,9 @@ int *inrange, *nearby, *scared;
 	if(*scared) {
 		u.elberethcheese++;
 		if (rn2(7))
-		    monflee(mtmp, rnd(10), TRUE, TRUE);
+		    monflee(mtmp, rnd(10), TRUE, TRUE, TRUE);
 		else
-		    monflee(mtmp, rnd(100), TRUE, TRUE);
+		    monflee(mtmp, rnd(100), TRUE, TRUE, TRUE);
 	}
 
 }

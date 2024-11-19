@@ -3244,7 +3244,7 @@ moveloop()
 				if (DEADMONSTER(whinymon)) continue;
 				if (!monnear(whinymon, u.ux, u.uy)) continue;
 				if(cansee(whinymon->mx,whinymon->my)) {
-					if (!resist(whinymon, SCROLL_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
+					if (!resist(whinymon, SCROLL_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE, FALSE);
 				}
 			}
 		}
@@ -3256,7 +3256,7 @@ moveloop()
 				if (DEADMONSTER(whinymon)) continue;
 				if (!monnear(whinymon, u.ux, u.uy)) continue;
 				if(cansee(whinymon->mx,whinymon->my)) {
-					if (!resist(whinymon, WEAPON_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE);
+					if (!resist(whinymon, WEAPON_CLASS, 0, NOTELL)) monflee(whinymon, rnd(10), FALSE, FALSE, FALSE);
 				}
 			}
 		}

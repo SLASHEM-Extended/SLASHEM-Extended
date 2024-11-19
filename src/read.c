@@ -5998,7 +5998,7 @@ proofarmorchoice:
 		    if (distu(mtmp->mx,mtmp->my) > 50) continue;
 		    if(cansee(mtmp->mx,mtmp->my)) {
 			if (!resist(mtmp, sobj->oclass, 0, NOTELL))
-				monflee(mtmp, rnd(10), FALSE, FALSE);
+				monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			if(!mtmp->mtame) ct++;	/* pets don't laugh at you */
 		    }
 		}
@@ -6022,7 +6022,7 @@ proofarmorchoice:
 			    mtmp->mcanmove = 1;
 			} else
 			    if (!resist(mtmp, sobj->oclass, 0, NOTELL))
-				monflee(mtmp, rnd(10), FALSE, FALSE);
+				monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			if(!mtmp->mtame) ct++;	/* pets don't laugh at you */
 		    }
 		}

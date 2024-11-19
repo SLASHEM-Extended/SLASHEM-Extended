@@ -511,7 +511,7 @@ drinkfountain()
 			pline("This water gives you bad breath!");
 			for(mtmp = fmon; mtmp; mtmp = mtmp->nmon)
 			    if(!DEADMONSTER(mtmp))
-				monflee(mtmp, rnd(10), FALSE, FALSE);
+				monflee(mtmp, rnd(10), FALSE, FALSE, FALSE);
 			}
 			make_feared(HFeared + rnz(100), TRUE);
 			break;

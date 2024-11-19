@@ -2071,7 +2071,7 @@ raise_dead:
 			    mtmp->mtame++;
 		    } else
 			(void) tamedog(mtmp, (struct obj *)0, FALSE);
-		else monflee(mtmp, rnd(10), FALSE, TRUE);
+		else monflee(mtmp, rnd(10), FALSE, TRUE, FALSE);
 	    }
 	}
 	/* Amy edit: infinite command undead would be way overpowered */
@@ -7502,7 +7502,7 @@ whisperchoice:
 		    if (DEADMONSTER(fleemon)) continue;
 			wakeup(fleemon); /* monster becomes hostile */
 			if (!resist(fleemon, SPBOOK_CLASS, 0, NOTELL))
-				monflee(fleemon, rnd(50), FALSE, FALSE);
+				monflee(fleemon, rnd(50), FALSE, FALSE, FALSE);
 		}
 		You_hear("horrified screaming close by.");
 	    }

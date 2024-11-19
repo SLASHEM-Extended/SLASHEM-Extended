@@ -2865,7 +2865,7 @@ struct monst *mon;
 
 	if (otmp && otmp->enchantment == WEAPEGO_FLEEING) {
 		if (!resist(mon, WEAPON_CLASS, 0, NOTELL) && !(mon->mflee)) {
-			monflee(mon, rnd(5), FALSE, TRUE);
+			monflee(mon, rnd(5), FALSE, TRUE, FALSE);
 			pline("%s screams in fear!", Monnam(mon));
 
 		}
