@@ -1,6 +1,38 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.5 - September 2024
+- Effects that cause monsters to turn to flee which aren't caused by Elbereth squares, scare monster scrolls or temple sanctuaries no longer have a 1 in 3 chance of failing to affect the monster for no reason.
+- The player's implant can no longer be hacked by a monster that is too far away.
+- Dirty shoe monsters (especially ones which the player refused to clean when asked to) no longer get damage bonuses from being frenzied.
+- Fixed a bug where zapping a monster with a wand of haste monster gave no message even if the monster got hasted.
+- Weather themes are a thing now; most of the time, the default "overcast" weather theme is used, but occasionally others can appear.
+- Toned down the system for spawning groups of monsters, including effects that summon a group out of nowhere. Now, the average amount of monsters spawned in such groups should be significantly lower.
+- The meltee technique now has a special effect when the player is adjacent to a shoe monster.
+- Wand shopkeepers can now offer an appraisal service specifically for wands. Also, tool shopkeepers now charge more when trying to appraise a non-weapon tool (e.g. a fire horn).
+- On ports that support actual sound effects, mapping a sound to "duewuepixx" now makes it so that the sound plays upon a "genuine" DYWYPI message, i.e. the one displayed when the game is really over. Previously, it was only possible to map a sound to the "DYWYPI" string which would play whenever any DYWYPI message was displayed, even a fake one.
+- If the player has a symbiote with grab attacks, successfully grabbing a monster with such an attack should now result in the monster being grabbed, as opposed to the player becoming stuck to the monster.
+- Rust traps can no longer overwrite high altars when untrapped.
+- Fixed a previously introduced bug with the vorpal weapon egotype.
+- The nastycurse effect can also affect weapons now.
+- Added new martial arts styles.
+- The eeveelution monster is no longer tied to the monster spawn rate variables.
+- Monster spawn frequencies were revamped; as a result, monsters should spawn more slowly over time.
+- Being glibbed should properly update the status line to immediately show the "Glib" string now.
+
 2.9.4 - May 2024
+- Fixed information leaks when the darkhance nastytrap effect was active.
+- Fixed problems that could sometimes cause items to be generated with the wrong weights.
+- Tried to fix some crashes that could occur upon leaving a bones file.
+- New skill for player characters: weight lifting, which improves (regular and maximum) carry capacity.
+- Lategame monsters spawn with less max HP on average.
+- Fixed a previously introduced bug that could cause the low stats nastytrap to freeze the game.
+- Changed some of the glyphs used for displaying terrain.
+- Golems regenerate HP more slowly now.
+- In evilvariant mode, getting a covid antidote now infects the player with covid first before processing the antidote effects.
+- Mithril equipment now provides partial resistance against debuff effects.
+- Fixed inconsistencies with lawful sacrifice gifts where players would sometimes (erroneously) not get a gift at all.
+- The katharina trap effect can no longer cause players to get paralyzed by monsters from infinitely far away.
+- Identifying items should be much easier now, and players start with a new technique to determine an item's BUC.
 - The #monster command is a menu now.
 - Fixed a bug where stairs on special levels could be invisible if the stair was defined in a MAP that wasn't the last one to be loaded.
 - Invisible characters can now bribe demon lords even if the lord doesn't see where the player is.
