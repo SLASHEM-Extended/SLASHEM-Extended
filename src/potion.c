@@ -17176,6 +17176,8 @@ dodip()
 				pline("The well dries up!");
 			}
 
+			u.cnd_wellamount++;
+
 			return(1);
 		}
 	} else if (IS_POISONEDWELL(here)) { /* item becomes poisoned if possible, *do not* get wet (not a bug) --Amy */
@@ -17192,6 +17194,8 @@ dodip()
 				levl[u.ux][u.uy].typ = CORR;
 				pline("The well dries up!");
 			}
+
+			u.cnd_poisonedwellamount++;
 
 			return(1);
 		}

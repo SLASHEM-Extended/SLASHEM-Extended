@@ -12858,11 +12858,11 @@ int final;
 	}
 	if (u.cnd_wellamount) {
 		sprintf(buf, "%d time%s", u.cnd_wellamount, plur(u.cnd_wellamount));
-		enl_msg(You_, "quaffed from a well ", "quaffed from a well ", buf);
+		enl_msg(You_, "interacted with a well ", "quaffed from a well ", buf);
 	}
 	if (u.cnd_poisonedwellamount) {
 		sprintf(buf, "%d time%s", u.cnd_poisonedwellamount, plur(u.cnd_poisonedwellamount));
-		enl_msg(You_, "quaffed from a poisoned well ", "quaffed from a poisoned well ", buf);
+		enl_msg(You_, "interacted with a poisoned well ", "quaffed from a poisoned well ", buf);
 	}
 	if (u.cnd_bedamount) {
 		sprintf(buf, "%d time%s", u.cnd_bedamount, plur(u.cnd_bedamount));
@@ -13736,10 +13736,10 @@ int final;
 	dump("  You invoked a pentagram ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_wellamount, plur(u.cnd_wellamount));
-	dump("  You quaffed from a well ", buf);
+	dump("  You interacted with a well ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_poisonedwellamount, plur(u.cnd_poisonedwellamount));
-	dump("  You quaffed from a poisoned well ", buf);
+	dump("  You interacted with a poisoned well ", buf);
 
 	sprintf(buf, "%d time%s", u.cnd_bedamount, plur(u.cnd_bedamount));
 	dump("  You slept in a bed ", buf);
