@@ -25533,10 +25533,14 @@ register boolean force, here;
 	int luckpenalty = level.flags.lethe? 7 : 0;
 	struct obj *otmp;
 
+	boolean hasdelled = FALSE; /* if TRUE, don't try to change the object's weight because the object was deleted --Amy */
+
 	/* Scrolls, spellbooks, potions, weapons and
 	   pieces of armor may get affected by the water */
 	for (; obj; obj = otmp) {
 		otmp = here ? obj->nexthere : obj->nobj;
+
+		hasdelled = FALSE;
 
 		if (uarmf && obj == uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) {
 			pline("Urgh, your yellow sneakers hate getting wet!");
@@ -25617,6 +25621,7 @@ register boolean force, here;
 		if (obj && obj->oartifact == ART_ELIANE_S_SHIN_SMASH) {
 			pline("The liquid destroys your footwear instantly.");
 			delobj(obj);
+			hasdelled = TRUE;
 			continue;
 		}
 
@@ -25691,6 +25696,7 @@ register boolean force, here;
 				/* damage player/monster? */
 				pline("A potion explodes!");
 				delobj(obj);
+				hasdelled = TRUE;
 				continue;
 			} else
 			/* Potions turn to water or amnesia... */
@@ -25815,6 +25821,7 @@ register boolean force, here;
 				if (obj == uball) unpunish();
 				if (obj == uchain) unpunish();
 				delobj(obj);
+				hasdelled = TRUE;
 				update_inventory();
 			    
 			}
@@ -25828,7 +25835,7 @@ register boolean force, here;
 
 		} /* switch statement, but it doesn't seem to always be run */
 
-		if (obj) obj->owt = weight(obj);
+		if (!hasdelled && obj) obj->owt = weight(obj);
 	} /* for loop */
 }
 
