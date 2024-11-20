@@ -22089,7 +22089,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"If you are a self-harmer, here's a friendly reminder that every time you cut, a butterfly dies. Pick up a ball-point pen or 'magic' marker and paint a butterfly on the place you use to cut. Draw that butterfly NOW, and name it after a beloved person. Then vow to never allow the beautiful butterfly to be harmed. Stay strong. You can overcome the addiction and prevent the death of the butterflies.",
 	"Captain Cripplejaw Shackleshank once sawed forty men in half with their own beards.",
 	"Curse ye soot-arsed donkey-plowing squid-wife mop-swilling goats!",
-	"Her lesbian harem women are dubbed her 'loves' and they show a cultlike devotion to her. Further intelligence shows she has ranks for her loves, describing the most devoted as 'fleecy', while the least devoted are 'feminist chiropractors'." /* from 4chan */
+	"Her lesbian harem women are dubbed her 'loves' and they show a cultlike devotion to her. Further intelligence shows she has ranks for her loves, describing the most devoted as 'fleecy', while the least devoted are 'feminist chiropractors'.", /* from 4chan */
 	"SLEX = Securing Lesbians for Entertainment of Xerself (the Amy)",
 	"A static discharge shoots through your entire body!",
 	"Need to get clean? Go to the clinic. Or should I say 'cleanic'? :D",

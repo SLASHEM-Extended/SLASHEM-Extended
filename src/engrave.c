@@ -5501,7 +5501,7 @@ static const char *epitaphs[] = {
 	"slex is the variant where you ask amy how to cure stuff and what to wish for and wtf just killed you?",
 	"argh far myaratmo snarg! Warrh! P = NP!",
 	"Sigh, yet another pointless death that could have been avoided if these adventurers just read up on OSHA compliance before entering. They all claim they've been heralded from birth, you'd think they could spare a couple days to gear up properly.",
-	"SLEX is what you would get if playing vanilla NetHack while high." /* supposedly by FIQ */
+	"SLEX is what you would get if playing vanilla NetHack while high.", /* supposedly by FIQ */
 	"SUCH A SHITTE!",
 	"Around to shorten helps only full processor power lay.",
 	"upper shitty lay!",
@@ -5729,7 +5729,7 @@ static const char *epitaphs[] = {
 	"oh lol you thought those blank tiles in vlad's cellar were just unexplored areas? mua ha ha ha ha, they're really bottomless pits, and now your char that you've put 100 hours into is gone. lololololol I'm so great, next time I'll just delete your save 100 hours into a run with the same effect, ain't I a genius?",
 	"omg the 'unconscious girl minigame' is too much i wont play this game anymore",
 	"omg the 'unconscious girl minigame' is too much i wont play this game anymore even though the chance of actually encountering that minigame is about as big as winning the jackpot in the lottery",
-	"Rounded a corner and the level 6 catprincess just instagibbed my level 22 char, very balanced game. I had over a hundred hit points and two dozen points in Evasion and Greater Evasion." /* happened to Amy in Elona */
+	"Rounded a corner and the level 6 catprincess just instagibbed my level 22 char, very balanced game. I had over a hundred hit points and two dozen points in Evasion and Greater Evasion.", /* happened to Amy in Elona */
 	"You could be screwed over at any point in the game! It's balanced!", /* by amateurhour */
 	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame.",
 	"Here lies a former SLEX player who decided to dump the game because of the Antje minigame even though the minigame occurs extremely rarely and when it does, it's possible to simply spacebar-spam past it.",

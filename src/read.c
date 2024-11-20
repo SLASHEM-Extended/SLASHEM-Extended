@@ -389,7 +389,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"Vegetarian",
 	"Vegan and Proud and Soon To Be Starved", /* sorry but I don't support eating disorders --Amy */
 	"Hello, I'm War",
-	"Sredni Vashtar went forth.  " /* Saki short story */
+	"Sredni Vashtar went forth.  ", /* Saki short story */
 	"His thoughts were red and his teeth were white.",
 	"Keep calm and explore the dungeon.",
 	"One does not simply kill the Wizard of Yendor.",
