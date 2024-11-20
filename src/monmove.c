@@ -511,7 +511,7 @@ boolean maystartle; /* by Amy: if this is true, 1 in 3 chance that the monster i
 		mtmp->mfleetim = min(fleetime, 127);
 	    }
 	    if (!mtmp->mflee && fleemsg && canseemon(mtmp) && !mtmp->mfrozen) {
-		if (rn2(3)) {
+		if (rn2(3) || !maystartle) {
 		  pline("%s turns to flee!", (Monnam(mtmp)));
 		  if (isok(u.ux, u.uy) && sengr_at("Elbereth", u.ux, u.uy)) u.cnd_elberethamount++;
 		  mtmp->mflee = 1;
@@ -519,7 +519,7 @@ boolean maystartle; /* by Amy: if this is true, 1 in 3 chance that the monster i
 		else {
 		  pline("%s is startled for a moment.", (Monnam(mtmp)));
 		}
-	    } else if (rn2(3)) mtmp->mflee = 1;
+	    } else if (rn2(3) || !maystartle) mtmp->mflee = 1;
 
 		/* pline("%s turns to flee!", (Monnam(mtmp))); */
 	    /*mtmp->mflee = 1;*/
