@@ -284,14 +284,14 @@ moveloop()
 			  * dropping newbies off the edge of the planet.  -- DSR 12/2/07
 			  */
 
-			monclock = 200;
+			monclock = 150;
 
 			if ((u.uevent.udemigod && !u.freeplaymode && u.amuletcompletelyimbued) || u.uprops[STORM_HELM].extrinsic) {
-				monclock = 75;
+				monclock = 50;
 			} else {
 				past_clock = moves - timeout_start;
 				if (past_clock > 0) {
-					monclock -= (past_clock * 125 / clock_base);
+					monclock -= (past_clock * 100 / clock_base);
 				}
 			}
 
@@ -300,20 +300,20 @@ moveloop()
 			 * and also not in homicider mode since more traps doesn't mean you starve less quickly */
 			if (!flags.lostsoul && !flags.uberlostsoul && !ishomicider) {
 				if (u.ulevel < 2 && moves < 1000) {
-					monclock /= 3;
-				} else if (u.ulevel < 3 && moves < 2000) {
-					monclock *= 2; monclock /= 5;
-				} else if (u.ulevel < 4 && moves < 3000) {
 					monclock /= 2;
+				} else if (u.ulevel < 3 && moves < 2000) {
+					monclock *= 3; monclock /= 5;
+				} else if (u.ulevel < 4 && moves < 3000) {
+					monclock *= 7; monclock /= 10;
 				} else if (u.ulevel < 5 && moves < 4000) {
-					monclock *= 2; monclock /= 3;
-				} else if (u.ulevel < 6 && moves < 5000) {
 					monclock *= 4; monclock /= 5;
+				} else if (u.ulevel < 6 && moves < 5000) {
+					monclock *= 9; monclock /= 10;
 				}
 			}
 
 			/* make sure we don't fall off the bottom */
-			if (monclock < 75) monclock = 75;
+			if (monclock < 50) monclock = 50;
 
 			if (u.sterilized) monclock *= (5 + spell_damage_bonus(SPE_STERILIZE));
 
