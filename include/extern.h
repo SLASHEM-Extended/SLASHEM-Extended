@@ -3168,6 +3168,8 @@ E int randartdragonscales(void);
 E int randartdragonscalemail(void);
 E int randartdragonscaleshield(void);
 
+E int randweaponenchantment(void);
+
 E int randomfeminismtraptype(void);
 
 E int randartbadgraystone(void);
