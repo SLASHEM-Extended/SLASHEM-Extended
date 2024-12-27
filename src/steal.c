@@ -532,7 +532,7 @@ gotobj:
 			int curssv = otmp->cursed;
 			int slowly;
 			boolean seen = canspotmon(mtmp);
-			char pronoun[4];
+			char pronoun[10];
 
 			if (!seen) {
 			    strcpy(pronoun, mhe(mtmp));

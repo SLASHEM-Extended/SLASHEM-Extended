@@ -692,7 +692,7 @@ int forceit;
 void
 kick_steed()
 {
-	char He[4];
+	char He[10];
 	int gallopamount;
 	if (!u.usteed)
 	    return;
