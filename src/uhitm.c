@@ -1589,7 +1589,34 @@ martial_dmg()
 	        else {
 			if (damage > 1) damage += rnd(2);
 			else damage++;
+
+			/* shield gives a small penalty --Amy */
+			if ((damage > 1) && uarms) {
+				damage *= 4;
+				damage /= 5;
+			}
+
+			/* heavy body armor gives bigger penalty --Amy */
+			if ((damage > 1) && uarm && !(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
+				damage *= 3;
+				damage /= 4;
+			}
+
 		  }
+
+	  } else { /* role = PM_HALF_BAKED */
+
+		/* shield gives a small penalty --Amy */
+		if ((damage > 1) && uarms) {
+			damage *= 3;
+			damage /= 4;
+		}
+
+		/* heavy body armor gives bigger penalty --Amy */
+		if ((damage > 1) && uarm && !(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
+			damage *= 2;
+			damage /= 3;
+		}
 
 	  }
 
