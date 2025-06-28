@@ -22,6 +22,16 @@ THE NUMBER PAD SO YOU DON'T HAVE TO SEARCH FOR THE OPTION MANUALLY
                 Control <dir> may or may not work when number_pad is enabled,
                 depending on the platform's capabilities.
   
+Important hints:
+- There is no "dig" command. In order to dig, equip and 'a'pply a pick-axe.
+
+- Press s to search for secret doors and corridors.
+- Press Ctrl-D (or k in number pad mode) to kick.
+- Press Shift-F and then a direction to forcibly attack a location in melee.
+- Press the comma key to pick up items.
+
+- Some commands, like 'e'at, allow you to target the floor. In order to do
+  so, press the comma key at the prompt that asks you for the target item.
 
 General commands:
 ?       help    display one of several informative texts
