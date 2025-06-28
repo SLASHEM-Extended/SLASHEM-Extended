@@ -523,6 +523,7 @@ const char *msg;
     return (revived);
 }
 
+/* move a boulder: apparently returns -1 if it fails, 0 otherwise */
 STATIC_OVL int
 moverock()
 {
@@ -530,6 +531,12 @@ moverock()
     register struct obj *otmp;
     register struct trap *ttmp;
     register struct monst *mtmp;
+
+    if (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) ) {
+	if (flags.nopick == 1 && flags.run == 0) {
+		return 0;
+	}
+    }
 
     sx = u.ux + u.dx,  sy = u.uy + u.dy;	/* boulder starting position */
     while ((otmp = sobj_at(BOULDER, sx, sy)) != 0) {
