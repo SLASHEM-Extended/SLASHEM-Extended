@@ -1465,13 +1465,13 @@ hurtle_step(arg, x, y)
     }
 
     if (!Passes_walls || !(may_pass = may_passwall(x, y))) {
-	if (IS_ROCK(levl[x][y].typ) || closed_door(x,y)) {
+	if (IS_ROCKWFL(levl[x][y].typ) || closed_door(x,y)) {
 	    const char *s;
 
 	    pline("Ouch!");
 	    if (IS_TREE(levl[x][y].typ))
 		s = "bumping into a tree";
-	    else if (IS_ROCK(levl[x][y].typ))
+	    else if (IS_ROCKWFL(levl[x][y].typ))
 		s = "bumping into a wall";
 	    else
 		s = "bumping into a door";
