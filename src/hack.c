@@ -534,6 +534,23 @@ moverock()
 
     if (throws_rocks(youmonst.data) || (uarmg && uarmg->oartifact == ART_MOUNTAIN_FISTS) ) {
 	if (flags.nopick == 1 && flags.run == 0) {
+
+		sx = u.ux + u.dx,  sy = u.uy + u.dy; /* boulder starting position */
+
+		if ((otmp = sobj_at(BOULDER, sx, sy)) != 0) {
+
+		    if (In_sokoban(&u.uz) && !playercancheatinsoko()) {
+
+			if (yn("Squeeze past the boulder?") != 'y') return -1;
+
+			change_luck(-1);
+			pline("You cheater!");
+			if (evilfriday) u.ugangr++;
+		    }
+
+		    You("squeeze past the boulder.");
+		}
+
 		return 0;
 	}
     }
