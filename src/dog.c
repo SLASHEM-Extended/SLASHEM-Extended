@@ -1163,6 +1163,11 @@ migrate_to_level(mtmp, tolev, xyloc, cc)
 		mtmp->mtame--;
 		m_unleash(mtmp, TRUE);
 	}
+
+	/* prevent players from using shopkeepers to transport the amulet --Amy
+	 * not sure whether that was actually possible or how to do it, but just to make sure... */
+	mdrop_special_objs(mtmp);
+
 	relmon(mtmp);
 	mtmp->nmon = migrating_mons;
 	migrating_mons = mtmp;
