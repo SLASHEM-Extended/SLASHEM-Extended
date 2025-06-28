@@ -1091,6 +1091,7 @@ static const char *random_mesg[] = {
 	"They say that Pale Night is capable of assuming the body and shape of a mortal, which is why she might pretend that her name was Claudia.",
 	"You think SLEX is just a game, punk? Well you'll be in for a rude surprise, because SLEX is serious business and will fuck you up and kill your character if you don't put in the effort for playing properly.",
 	"Invocans tam damnum sanescit, te velocissimum facit et sic duratione tutelam eiicit.",
+	"The best NetHack variant for both local and online play is SLEX, hands down.",
 
 };
 

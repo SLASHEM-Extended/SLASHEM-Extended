@@ -300,8 +300,8 @@ dosounds()
 		"General MacArthur!",
 		"the senior drill instructor shouting at you for being a lazy fatass!",
 		"someone sneer 'Where you from, soldier? Texas?? Holy shit, you know what comes from Texas!'", /* Half Life: Opposing Forceses */
-		"hear someone scream 'FIRE! IN! THE! ASS! HOLE!'",
-		"hear someone pulling the pin of a grenade, and shockedly realize it's a double free corruption grenade that can crash the game!", /* bug that existed in SLEX */
+		"someone scream 'FIRE! IN! THE! ASS! HOLE!'",
+		"someone pulling the pin of a grenade, and shockedly realize it's a double free corruption grenade that can crash the game!", /* bug that existed in SLEX */
 	};
 	int count = 0;
 
@@ -1384,13 +1384,13 @@ dosounds()
 	    }
     if (level.flags.has_zoo && !rn2(200)) {
 	static const char * const zoo_msg[] = {
-		"a sound reminiscent of an elephant stepping on a peanut.",
-		"a sound reminiscent of a seal barking.",
-		"David feeding his animals.",
-		"a roar.",
+		"hear a sound reminiscent of an elephant stepping on a peanut.",
+		"hear a sound reminiscent of a seal barking.",
+		"hear David feeding his animals.",
+		"hear a roar.",
 		"feel like there will be steak tonight.", /* cooked from the zoo animals, obviously */
-		"Doctor Doolittle!",
-		"someone asking 'Who the fuck is David?'",
+		"hear Doctor Doolittle!",
+		"hear someone asking 'Who the fuck is David?'",
 		"hear a kid ask 'Ohh, look at all the cute zoo animals! May I feed them? May I pet them? Would you mind if I incinerate them?'",
 		"feel like calling PETA, since it's cruel if animals are bred in captivity.",
 		"absolutely feel that people eat tasty animals. In fact, you feel like eating one right now!",
@@ -1399,7 +1399,7 @@ dosounds()
 	    if (DEADMONSTER(mtmp)) continue;
 	    if ((mtmp->msleeping || is_animal(mtmp->data)) &&
 		    mon_in_room(mtmp, ZOO)) {
-		You_hear("%s", zoo_msg[rn2(5+hallu*5)]);
+		You("%s", zoo_msg[rn2(5+hallu*5)]);
 		return;
 	    }
 	}

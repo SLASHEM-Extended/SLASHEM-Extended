@@ -3770,7 +3770,7 @@ You can in fact move off the screen, by walking beyond the screen edge. Beware, 
 The shape of a dungeon level is square, regardless of what the screen tries to make you believe. That large extra area to the east is actually always made of solid rock on every dungeon level.
 Those 2x2 square rooms that you may see when using magic mapping scrolls are actually just solid rock, and exist only to confuse you. There is no way to enter them and even if there was, they don't contain anything special.
 Cursed lightsabers cannot be used at all, because even if you do get the low chance of them lighting successfully, they'll immediately turn themselves off before you get another turn, every time.
-Bashing with an unlit lightsaber still does quite good damage, so if you run out of power, just continue fighthing with it without a care in the world.
+Bashing with an unlit lightsaber still does quite good damage, so if you run out of power, just continue fighting with it without a care in the world.
 The 10 regular lightsaber forms can all be used even if your lightsaber is deactivated. This is a good thing, because it saves you from having to manage their power.
 There is no way to see your entire inventory at once; if you need to perform an action that requires you to select a specific item, better remember what its hotkey was.
 There is no way for you to give a name to an item in your inventory, so if you want to take notes about a particular item, better write it on a piece of paper or open a text document where you save that information.

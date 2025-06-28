@@ -861,6 +861,7 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"'But it's not thematic' my ass. I don't want a game that is 100%% thematic, I want a game that is 100%% fun.",
 	"Eiskugel, Eiskugel, bung bung!", /* nonsensical german phrase; Amy dreamed that someone was singing it */
 	"Ich gender nicht, ich hab nen Schulabschluss!", /* Mario Barth */
+	"German third league soccer team Reutlingen wins 17-0 against British Premier League team Manchester United.",
 
 };
 
