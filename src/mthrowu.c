@@ -1990,6 +1990,10 @@ struct monst *mtmp;
 		  m_shot.s ? is_bullet(otmp) ? "fires" : "shoots" : "throws",
 		  onm);
 	    m_shot.o = otmp->otyp;
+
+	    /* firearms are loud --Amy */
+	    if (is_bullet(otmp)) wake_nearto(x, y, rnz(250));
+
 	} else {
 
 	    m_shot.s = (mwep && ammo_and_launcher(otmp,mwep)) ? TRUE : FALSE;
@@ -2008,6 +2012,10 @@ struct monst *mtmp;
 			else if (m_shot.s) You_hear("a shooting sound.");
 			else You_hear("a flinging sound.");
 		}
+
+		/* firearms are loud --Amy */
+		if (is_bullet(otmp)) wake_nearto(x, y, rnz(250));
+
 	    }
 	    m_shot.o = STRANGE_OBJECT;	/* don't give multishot feedback */
 	}
