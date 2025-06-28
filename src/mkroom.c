@@ -540,6 +540,8 @@ struct mkroom *sroom;
 	}
 
 	int depthuz;
+	int xdim, ydim, roomsize;
+	boolean densreduce = TRUE;
 
 	if (iszapem && In_ZAPM(&u.uz) && !(u.zapemescape)) {
 
@@ -584,6 +586,12 @@ struct mkroom *sroom;
 #ifdef GCC_WARN
 	tx = ty = goldlim = 0;
 #endif
+
+	/* the smaller a room, the more densely it should be packed with monsters --Amy */
+	xdim = sroom->hx - sroom->lx + 1;
+	ydim = sroom->hy - sroom->ly + 1;
+	roomsize = xdim * ydim;
+	if (roomsize < (6 + rnd(10)) ) densreduce = FALSE;
 
 	sh = sroom->fdoor;
 	switch(type) {
@@ -705,13 +713,16 @@ struct mkroom *sroom;
 	}
 
 	moreorless = 100;
-	if (rn2(10)) moreorless -= 10;
-	if (rn2(10)) moreorless -= rnd(20);
-	if (!rn2(3)) {
-		moreorless -= rnd(30);
-		if (!rn2(5)) moreorless -= rnd(40);
+
+	if (densreduce) {
+		if (rn2(10)) moreorless -= 10;
+		if (rn2(10)) moreorless -= rnd(20);
+		if (!rn2(3)) {
+			moreorless -= rnd(30);
+			if (!rn2(5)) moreorless -= rnd(40);
+		}
+		if (moreorless < 10) moreorless = 10;
 	}
-	if (moreorless < 10) moreorless = 10;
 
 	/* armories don't contain as many monsters; also, some other rooms and settings change the values */
 
@@ -736,8 +747,11 @@ struct mkroom *sroom;
 	if (type == LEVELSEVENTYROOM) moreorless /= 2;
 	if (type == NUCLEARCHAMBER) moreorless /= 2;
 	if (type == HAMLETROOM && moreorless > 5) moreorless = 5;
-	if (issuxxor) moreorless /= 2;
-	moreorless /= rnd(5); /* generally tone it down --Amy */
+
+	if (densreduce) {
+		if (issuxxor) moreorless /= 2;
+		moreorless /= rnd(5); /* generally tone it down --Amy */
+	}
 
 	if (type == LETTERSALADROOM && moreorless < 75) moreorless = 75; /* supposed to always be close to maxxed --Amy */
 
