@@ -8775,7 +8775,7 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 
 		/* can the effect pass through a player's pet? --Amy */
 		if (cancontrol && mtmp && mtmp->mtame) {
-			if (!(obj && weapon != ZAPPED_WAND && weapon != INVIS_BEAM && befriend_with_obj(mtmp->data, obj)) ) {
+			if (!(obj && (weapon != ZAPPED_WAND) && (weapon != INVIS_BEAM) && befriend_with_obj(mtmp->data, obj)) ) {
 				boolean willcontrol = FALSE;
 				switch (obj->otyp) {
 					case WAN_CLONE_MONSTER:
@@ -8807,6 +8807,8 @@ boolean cancontrol;	/* does control magic work on this? --Amy */
 						willcontrol = TRUE;
 						break;
 				}
+
+				if (obj && befriend_with_obj(mtmp->data, obj)) willcontrol = FALSE;
 
 				if (willcontrol && control_magic_works()) {
 					pline_The("spell passes through %s.", mon_nam(mtmp));
