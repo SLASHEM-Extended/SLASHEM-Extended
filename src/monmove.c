@@ -4070,6 +4070,7 @@ altarfound:
 	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (monsndx(ptr) == PM_DRONKBEE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DRUG_ADDICTED_BANG_PIN) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HIGH_PROSTITUTE_OF_MOLOCH) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_LIQUOR_CORPSE) mtmp->mconf = 1;

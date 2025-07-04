@@ -8028,7 +8028,7 @@ register struct monst *mtmp;
 	      break;
 	}
 
-	if (!rn2(3)) m_initweap_normal(mtmp);
+	if (!rn2(3) || (uarm && uarm->oartifact == ART_STAND_YOU_FORWARDS__THERE_ && is_prince(mtmp->data)) ) m_initweap_normal(mtmp);
 
 	if (!rn2(10)) m_initarmorpieces(mtmp);
 
@@ -12324,6 +12324,10 @@ loveheelover:
 			(void) mongets(mtmp, rnd_offensive_potion(mtmp));
 		}
 
+		if (ptr == &mons[PM_DUESTUEN_NAZIN]) {
+			(void) mongets(mtmp, INFERNAL_BARDICHE);
+			(void) mongets(mtmp, LEATHER_JACKET);
+		}
 		if (ptr == &mons[PM_TU_TARA_BATTLEMOWER]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, BONE_FRAGMENT, 40);
