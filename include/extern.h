@@ -1968,7 +1968,7 @@ E void restartcham(void);
 E void restore_cham(struct monst *);
 E void mon_animal_list(BOOLEAN_P);
 E int newcham(struct monst *,struct permonst *,BOOLEAN_P,BOOLEAN_P);
-E int can_be_hatched(int);
+E int can_be_hatched(int,BOOLEAN_P);
 E int egg_type_from_parent(int,BOOLEAN_P);
 E boolean dead_species(int,BOOLEAN_P);
 E void kill_genocided_monsters(void);

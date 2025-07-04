@@ -12261,7 +12261,7 @@ typfnd:
 				otmp->corpsenm = mntmp;
 			break;
 		case EGG:
-			mntmp = can_be_hatched(mntmp);
+			mntmp = can_be_hatched(mntmp, wizard ? TRUE : FALSE); /* in wizard mode, non-oviparous monsters are allowed because hey, it's *wizard mode*. */
 			if (mntmp != NON_PM && !(mons[mntmp].mlet == S_TROVE) && (wizard || rn2(2)) ) { /* sometimes fail --Amy */
 			    otmp->corpsenm = mntmp;
 			    if (!dead_species(mntmp, TRUE))

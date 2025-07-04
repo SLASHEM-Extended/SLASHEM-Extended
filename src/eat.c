@@ -8222,6 +8222,8 @@ struct obj *otmp;
 	    mnum = otmp->corpsenm;
 	long rotted = 0L;
 
+	struct permonst *edimon = &mons[mnum];
+
 	strcpy(foodsmell, Tobjnam(otmp, "smell"));
 	strcpy(it_or_they, (otmp->quan == 1L) ? "it" : "they");
 	sprintf(eat_it_anyway, "Eat %s anyway?",
@@ -8281,6 +8283,34 @@ struct obj *otmp;
 		else return 2;
 	}
 
+	if (dmgtype(&mons[mnum], AD_AMNE)) {
+		sprintf(buf, "%s like %s could make you forget stuff! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (dmgtype(&mons[mnum], AD_INSA)) {
+		sprintf(buf, "%s like %s could damage your mind! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (dmgtype(&mons[mnum], AD_SANI)) {
+		sprintf(buf, "%s like %s could damage your mind! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (dmgtype(&mons[mnum], AD_AGGR)) {
+		sprintf(buf, "%s like %s could aggravate monsters! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
 	if (is_bat(&mons[mnum])) {
 		sprintf(buf, "%s like %s could make you batty! %s",
 			foodsmell, it_or_they, eat_it_anyway);
@@ -8304,6 +8334,27 @@ struct obj *otmp;
 
 	if (dmgtype(&mons[mnum], AD_RBAD)) {
 		sprintf(buf, "%s like %s could be really bad for you! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (dmgtype(&mons[mnum], AD_CONT)) {
+		sprintf(buf, "%s like %s could be contaminated! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (edimon->msound == MS_HCALIEN) {
+		sprintf(buf, "%s like %s carries a disease! %s",
+			foodsmell, it_or_they, eat_it_anyway);
+		if (yn_function(buf,ynchars,'n')=='n') return 1;
+		else return 2;
+	}
+
+	if (edimon->msound == MS_TREESQUAD) {
+		sprintf(buf, "%s like %s might be extremely repulsive! %s",
 			foodsmell, it_or_they, eat_it_anyway);
 		if (yn_function(buf,ynchars,'n')=='n') return 1;
 		else return 2;

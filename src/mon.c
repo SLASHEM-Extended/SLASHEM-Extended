@@ -10055,8 +10055,9 @@ boolean msg;
  * NON_PM if the given monster can't be hatched.
  */
 int
-can_be_hatched(mnum)
+can_be_hatched(mnum, bypass)
 int mnum;
+boolean bypass;
 {
     /* ranger quest nemesis has the oviparous bit set, making it
        be possible to wish for eggs of that unique monster; turn
@@ -10068,6 +10069,10 @@ int mnum;
      * Queen bees lay killer bee eggs (usually), but killer bees don't
      * grow into queen bees.  Ditto for [winged-]gargoyles.
      */
+
+    /* wizard mode wishes for eggs should work even if the monster isn't oviparous --Amy */
+    if (bypass) return mnum;
+
     if (mnum == PM_KILLER_BEE || mnum == PM_GARGOYLE ||
 	    (lays_eggs(&mons[mnum]) && (BREEDER_EGG ||
 		(mnum != PM_QUEEN_BEE && mnum != PM_WINGED_GARGOYLE))))

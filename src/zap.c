@@ -3284,7 +3284,7 @@ poly_obj(obj, id, degradation)
 
 		/* now change it into something layed by the hero */
 		while (tryct--) {
-		    mnum = can_be_hatched(random_monster());
+		    mnum = can_be_hatched(random_monster(), FALSE);
 		    if (mnum != NON_PM && !dead_species(mnum, TRUE)) {
 			otmp->spe = 1;	/* layed by hero */
 			otmp->corpsenm = mnum;

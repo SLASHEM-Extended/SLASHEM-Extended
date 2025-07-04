@@ -2929,7 +2929,7 @@ boolean shopinit;
 	    case EGG:
 		otmp->corpsenm = NON_PM;	/* generic egg */
 		if (rn2(3)) for (tryct = 500; tryct > 0; --tryct) { /* Uncommon egg types may be possible. --Amy */
-		    mndx = (rn2(100) ? can_be_hatched(rndmonnum()) : rndmonnum() );
+		    mndx = (rn2(100) ? can_be_hatched(rndmonnum(), FALSE) : rndmonnum() );
 		    if (mndx != NON_PM && !dead_species(mndx, TRUE)) {
 			otmp->corpsenm = mndx;		/* typed egg */
 			attach_egg_hatch_timeout(otmp);
