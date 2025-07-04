@@ -26,88 +26,124 @@ int prop;
 {
 	switch (prop) {
 		case FIRE_RES:
+			if (flags.simpledescs) return "fire res";
 			return "fire resistance";
 		case COLD_RES:
+			if (flags.simpledescs) return "cold res";
 			return "cold resistance";
 		case SLEEP_RES:
+			if (flags.simpledescs) return "slp res";
 			return "sleep resistance";
 		case DISINT_RES:
+			if (flags.simpledescs) return "disint res";
 			return "disintegration resistance";
 		case SHOCK_RES:
+			if (flags.simpledescs) return "ltng res";
 			return "shock resistance";
 		case POISON_RES:
+			if (flags.simpledescs) return "pois res";
 			return "poison resistance";
 		case ACID_RES:
+			if (flags.simpledescs) return "acid res";
 			return "acid resistance";
 		case STONE_RES:
+			if (flags.simpledescs) return "ston res";
 			return "petrification resistance";
 		case REGENERATION:
+			if (flags.simpledescs) return "regen";
 			return "regeneration";
 		case SEARCHING:
+			if (flags.simpledescs) return "search";
 			return "searching";
 		case SEE_INVIS:
+			if (flags.simpledescs) return "seeinv";
 			return "see invisible";
 		case INVIS:
+			if (flags.simpledescs) return "invis";
 			return "invisibility";
 		case TELEPORT:
+			if (flags.simpledescs) return "tport";
 			return "teleportitis";
 		case TELEPORT_CONTROL:
+			if (flags.simpledescs) return "tctrl";
 			return "teleport control";
 		case POLYMORPH:
+			if (flags.simpledescs) return "poly";
 			return "polymorphitis";
 		case POLYMORPH_CONTROL:
+			if (flags.simpledescs) return "pctrl";
 			return "polymorph control";
 		case LEVITATION:
+			if (flags.simpledescs) return "levi";
 			return "levitation";
 		case STEALTH:
+			if (flags.simpledescs) return "stlth";
 			return "stealth";
 		case AGGRAVATE_MONSTER:
+			if (flags.simpledescs) return "aggrav";
 			return "aggravate monster";
 		case CONFLICT:
 			return "conflict";
 		case WARNING:
 			return "warning";
 		case TELEPAT:
+			if (flags.simpledescs) return "tpathy";
 			return "telepathy";
 		case FAST:
 			return "speed";
 		case PASSES_WALLS:
+			if (flags.simpledescs) return "passwall";
 			return "wallwalking";
 		case HUNGER:
 			return "hunger";
 		case REFLECTING:
+			if (flags.simpledescs) return "reflect";
 			return "reflection";
 		case ANTIMAGIC:
+			if (flags.simpledescs) return "mag res";
 			return "magic resistance";
 		case ENERGY_REGENERATION:
+			if (flags.simpledescs) return "eregen";
 			return "energy regeneration";
 		case MAGICAL_BREATHING:
+			if (flags.simpledescs) return "magbrth";
 			return "magical breathing";
 		case HALF_SPDAM:
+			if (flags.simpledescs) return "halfspell";
 			return "half spell damage";
 		case HALF_PHDAM:
+			if (flags.simpledescs) return "halfphys";
 			return "half physical damage";
 		case SICK_RES:
+			if (flags.simpledescs) return "sick res";
 			return "sickness resistance";
 		case DRAIN_RES:
+			if (flags.simpledescs) return "drain res";
 			return "drain resistance";
 		case WARN_UNDEAD:
+			if (flags.simpledescs) return "und warn";
 			return "undead warning";
 		case FREE_ACTION:
+			if (flags.simpledescs) return "freeact";
 			return "free action";
 		case FLYING:
 			return "flying";
 		case SLOW_DIGESTION:
+			if (flags.simpledescs) return "slowdgst";
 			return "slow digestion";
 		case INFRAVISION:
+			if (flags.simpledescs) return "infravis";
 			return "infravision";
 		case FEAR_RES:
+			if (flags.simpledescs) return "fear res";
 			return "fear resistance";
 		case DISPLACED:
+			if (flags.simpledescs) return "displace";
 			return "displacement";
 		case SWIMMING:
 			return "swimming";
 		case FIXED_ABIL:
+			if (flags.simpledescs) return "sust abil";
 			return "sustain ability";
 		case KEEN_MEMORY:
 			return "keen memory";
@@ -118,50 +154,65 @@ int prop;
 		case CONFUSION:
 			return "confusion";
 		case CLAIRVOYANT:
+			if (flags.simpledescs) return "clairv";
 			return "clairvoyance";
 		case FEARED:
 			return "fear";
 		case FROZEN:
 			return "freezing";
 		case GLIB:
+			if (flags.simpledescs) return "glib";
 			return "glibbery hands";
 		case HALLUC:
+			if (flags.simpledescs) return "hallu";
 			return "hallucination";
 		case BURNED:
 			return "burning";
 		case DIMMED:
 			return "dimness";
 		case WOUNDED_LEGS:
+			if (flags.simpledescs) return "legwound";
 			return "legscratching";
 		case NUMBED:
 			return "numbness";
 		case TRAP_REVEALING:
+			if (flags.simpledescs) return "trapreveal";
 			return "trap revealing";
 		case BLINDED:
 			return "blindness";
 		case PREMDEATH:
+			if (flags.simpledescs) return "premdeath";
 			return "premature death";
 		case SIGHT_BONUS:
+			if (flags.simpledescs) return "xtrasight";
 			return "improved vision";
 		case VERSUS_CURSES:
+			if (flags.simpledescs) return "curse res";
 			return "curse resistance";
 		case STUN_RES:
+			if (flags.simpledescs) return "stun res";
 			return "stun resistance";
 		case CONF_RES:
+			if (flags.simpledescs) return "conf res";
 			return "confusion resistance";
 		case PSI_RES:
+			if (flags.simpledescs) return "psi res";
 			return "psi resistance";
 		case EXTRA_WEAPON_PRACTICE:
 			return "practice";
 		case DTBEEM_RES:
+			if (flags.simpledescs) return "death res";
 			return "death ray resistance";
 		case DOUBLE_ATTACK:
+			if (flags.simpledescs) return "dblattk";
 			return "double attacks";
 		case QUAD_ATTACK:
+			if (flags.simpledescs) return "quadattk";
 			return "quad attacks";
 		case MANALEECH:
 			return "manaleech";
 		case PEACEVISION:
+			if (flags.simpledescs) return "peacevis";
 			return "peacevision";
 		case MAP_AMNESIA:
 			return "map amnesia";
@@ -170,30 +221,40 @@ int prop;
 		case WINCE_STATE:
 			return "wincing";
 		case DETECT_MONSTERS:
+			if (flags.simpledescs) return "dtct mons";
 			return "detect monsters";
 		case JUMPING:
 			return "jumping";
 		case HALLU_PARTY:
 			return "hallu party";
 		case DRUNKEN_BOXING:
+			if (flags.simpledescs) return "drunkbox";
 			return "drunken boxing";
 		case STUNNOPATHY:
+			if (flags.simpledescs) return "stunopat";
 			return "stunnopathy";
 		case NUMBOPATHY:
+			if (flags.simpledescs) return "numbopat";
 			return "numbopathy";
 		case DIMMOPATHY:
+			if (flags.simpledescs) return "dimopat";
 			return "dimmopathy";
 		case FREEZOPATHY:
+			if (flags.simpledescs) return "frzopat";
 			return "freezopathy";
 		case STONED_CHILLER:
+			if (flags.simpledescs) return "stonchil";
 			return "stoned chilling";
 		case CORROSIVITY:
+			if (flags.simpledescs) return "corros";
 			return "corrosivity";
 		case FEAR_FACTOR:
 			return "fear factor";
 		case BURNOPATHY:
+			if (flags.simpledescs) return "burnopat";
 			return "burnopathy";
 		case SICKOPATHY:
+			if (flags.simpledescs) return "sickopat";
 			return "sickopathy";
 		case WONDERLEGS:
 			return "wonderlegs";
@@ -204,6 +265,7 @@ int prop;
 		case BURDENED_STATE:
 			return "burden";
 		case MAGIC_VACUUM:
+			if (flags.simpledescs) return "magvacuum";
 			return "magic vacuum";
 		case FUCK_OVER:
 			return "fuck-over";
@@ -221,12 +283,15 @@ int prop;
 		case RNGE_VAMPIRIC_DRAIN:
 			return "vampiric drain";
 		case RNGE_PSEUDO_IDENTIFICATION:
+			if (flags.simpledescs) return "pseudo id";
 			return "pseudo identification";
 		case RNGE_GHOST_SUMMONING:
+			if (flags.simpledescs) return "ghostsummon";
 			return "ghost summoning";
 		case RNGE_PRAYER:
 			return "prayer";
 		case RNGE_ANTI_BEHEADING:
+			if (flags.simpledescs) return "antibehead";
 			return "anti-beheading";
 		case RNGE_POLAND:
 			return "Poland";
@@ -239,6 +304,7 @@ int prop;
 		case RNGE_UNLIKABILITY:
 			return "unlikability";
 		case RNGE_SPELL_DISRUPTION:
+			if (flags.simpledescs) return "spelldisrupt";
 			return "spell disruption";
 		case RNGE_BDSM:
 			return "BDSM";
@@ -253,6 +319,7 @@ int prop;
 		case RNGE_ANGRY_GODS:
 			return "angry gods";
 		case RNGE_RADIO_BROADCASTS:
+			if (flags.simpledescs) return "radiobrdcst";
 			return "radio broadcasts";
 		case RNGE_OCCASIONAL_DAMAGE:
 			return "occasional damage";
@@ -263,6 +330,7 @@ int prop;
 		case RNGE_EXPLOSIONS:
 			return "explosions";
 		case RNGE_FATAL_ATTRACTION:
+			if (flags.simpledescs) return "fatalattract";
 			return "fatal attraction";
 		case RNGE_VOLTAGE:
 			return "voltage";
@@ -275,16 +343,21 @@ int prop;
 		case RNGE_FORGETTING:
 			return "forgetting";
 		case RNGE_ANTIMAGIC_A:
-			return "antimagic (10%)";
+			if (flags.simpledescs) return "antimag10";
+			return "antimagic (10%%)";
 		case RNGE_ANTIMAGIC_B:
-			return "antimagic (20%)";
+			if (flags.simpledescs) return "antimag20";
+			return "antimagic (20%%)";
 		case RNGE_ANTIMAGIC_C:
-			return "antimagic (50%)";
+			if (flags.simpledescs) return "antimag50";
+			return "antimagic (50%%)";
 		case RNGE_ANTIMAGIC_D:
-			return "antimagic (100%)";
+			if (flags.simpledescs) return "antimag100";
+			return "antimagic (100%%)";
 		case RNGE_CHINA:
 			return "China";
 		case RNGE_LIGHT_ABSORPTION:
+			if (flags.simpledescs) return "liteabsorb";
 			return "light absorption";
 		case RNGE_CHILDBIRTH:
 			return "childbirth";
@@ -305,12 +378,16 @@ int prop;
 		case RNGE_GRAVITY:
 			return "gravity";
 		case RNGE_WISH_IMPROVEMENT:
+			if (flags.simpledescs) return "wishimprov";
 			return "wish improvement";
 		case RNGE_POCKET_MONSTERS:
+			if (flags.simpledescs) return "pockmonst";
 			return "pocket monsters";
 		case RNGE_LEVUNTATION:
+			if (flags.simpledescs) return "levunt";
 			return "levuntation";
 		case RNGE_PERMANENT_OCCUPATION:
+			if (flags.simpledescs) return "perm occup";
 			return "permanent occupation";
 		case RNGE_NURSERY:
 			return "nursery";
@@ -347,6 +424,7 @@ int prop;
 		case RNGE_LOUDSPEAKERS:
 			return "loudspeakers";
 		case RNGE_ARMOR_PRESERVATION:
+			if (flags.simpledescs) return "armorpreserv";
 			return "armor preservation";
 		case RNGE_WEAKNESS:
 			return "weakness";
@@ -367,10 +445,13 @@ int prop;
 		case RNGE_DENASTIFICATION:
 			return "denastification";
 		case CONT_RES:
+			if (flags.simpledescs) return "cont res";
 			return "contamination resistance";
 		case DISCOUNT_ACTION:
+			if (flags.simpledescs) return "disc act";
 			return "discount action";
 		case RNGE_NASTY_REDUCTION:
+			if (flags.simpledescs) return "nastyreduce";
 			return "nastytrap reduction";
 		case RNGE_TECH_REUSE:
 			return "tech reuse";
@@ -385,18 +466,22 @@ int prop;
 		case RNGE_ANTI_COVID:
 			return "anti-covid";
 		case RNGE_FLUIDATOR_REDUCTION:
+			if (flags.simpledescs) return "fluidreduce";
 			return "fluidator reduction";
 		case RNGE_SCROUNGING:
 			return "scrounging";
 		case RNGE_FARMING:
 			return "farming";
 		case FULL_NUTRIENT:
+			if (flags.simpledescs) return "full nutr";
 			return "full nutrients";
 		case TECHNICALITY:
 			return "technicality";
 		case RESISTANCE_PIERCING:
+			if (flags.simpledescs) return "res pierce";
 			return "resistance piercing";
 		case MYSTERY_RES:
+			if (flags.simpledescs) return "myst res";
 			return "mystery resistance";
 		case SPELLBOOST:
 			return "spellboost";
@@ -429,8 +514,10 @@ int prop;
 		case RNGE_WEALTH:
 			return "wealth";
 		case DIMINISHED_BLEEDING:
+			if (flags.simpledescs) return "bleedreduce";
 			return "diminished bleeding";
 		case CONTROL_MAGIC:
+			if (flags.simpledescs) return "contr mag";
 			return "control magic";
 		case EXP_BOOST:
 			return "EXP boost";
@@ -563,8 +650,10 @@ int prop;
 		case FEMTRAP_VERENA:
 			return "Verena's curse";
 		case HALLUC_RES:
+			if (flags.simpledescs) return "hallu res";
 			return "hallucination resistance";
 		case BLIND_RES:
+			if (flags.simpledescs) return "blind res";
 			return "blindness resistance";
 		case ASTRAL_VISION:
 			return "astral vision";
@@ -784,6 +873,7 @@ int prop;
 		case WEAPEGO_SLAY_SHOE:
 			return "slay shoe";
 		case WEAPEGO_SLAY_PERFUME:
+			if (flags.simpledescs) return "slay perfume";
 			return "slay perfume-spreader";
 		case WEAPEGO_SLAY_CONVERTER:
 			return "slay converter";
@@ -824,6 +914,7 @@ int prop;
 		case WEAPEGO_SLAY_OUTCAST:
 			return "slay outcast";
 		case WEAPEGO_SLAY_ENCHRES:
+			if (flags.simpledescs) return "slay enchres";
 			return "slay ench-requiring foo";
 		case WEAPEGO_SLAY_AIR:
 			return "slay airborne";
@@ -858,8 +949,10 @@ int prop;
 		case WEAPEGO_SLAY_MIND_FLAYER:
 			return "slay mind flayer";
 		case WEAPEGO_SLAY_UNCOMMON:
+			if (flags.simpledescs) return "slay uncommon";
 			return "slay uncommon monster";
 		case WEAPEGO_SLAY_COW:
+			if (flags.simpledescs) return "slay cow";
 			return "slay castle-of-the-winds";
 		case WEAPEGO_SLAY_JOKE:
 			return "slay joke monster";
@@ -981,6 +1074,7 @@ int prop;
 			return "ultimate range";
 
 		default:
+			if (flags.simpledescs) return "nastytrap";
 			return "Team Nastytrap";
 
 	}
