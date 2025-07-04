@@ -34650,6 +34650,11 @@ assign_sym:
 		ap_type = M_AP_OBJECT;
 		appear = BOULDER;
 	}
+	if (mtmp->data == &mons[PM_BOULDERER] || mtmp->data == &mons[PM_MOVE_BOULDERER]) {
+		s_sym = ROCK_CLASS;
+		ap_type = M_AP_OBJECT;
+		appear = BOULDER;
+	}
 	if (mtmp->data == &mons[PM_OIL_BEETLE]) {
 		s_sym = FOOD_CLASS;
 		ap_type = M_AP_OBJECT;
