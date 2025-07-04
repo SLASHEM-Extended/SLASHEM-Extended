@@ -248,11 +248,12 @@ boolean unchain_ball;	/* whether to unpunish or just unwield */
  * Avoid stealing the object stealoid
  */
 int
-steal(mtmp, objnambuf, powersteal, instasteal)
+steal(mtmp, objnambuf, powersteal, instasteal, canrootpw)
 struct monst *mtmp;
 char *objnambuf;
 boolean powersteal; /* AD_SEDU - more likely to succeed */
 boolean instasteal; /* offlevel item or starting as matrayser - guaranteed to succeed, don't give messages */
+boolean canrootpw; /* monster can get a root pw scroll to make off with your stuff */
 {
 	struct obj *otmp;
 	int tmp, could_petrify, named = 0, armordelay;
@@ -611,7 +612,7 @@ gotobj:
 	/* evil patch idea by jonadab - levelporting stealers
          he wants them to always levelport if they manage to steal an artifact...
 	   however, if it's an artifact key (those meant for Vlad's Tower), they won't (obvious rule patch) --Amy */
-	if (!rn2(1000) || (otmp->oartifact && !(otmp->otyp == SKELETON_KEY)) ) (void) mongets(mtmp, rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : rn2(5) ? SCR_WARPING : SCR_COURSE_TRAVELING);
+	if ((!rn2(1000) || (otmp->oartifact && !(otmp->otyp == SKELETON_KEY)) ) && canrootpw) (void) mongets(mtmp, rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : rn2(5) ? SCR_WARPING : SCR_COURSE_TRAVELING);
 
 	could_petrify = (otmp->otyp == CORPSE &&
 			 touch_petrifies(&mons[otmp->corpsenm]));

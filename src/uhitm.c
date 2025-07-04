@@ -13845,7 +13845,7 @@ boolean ranged;
 			if (StealersActive) {
 				You_feel("a tug on your backpack!");
 				buf[0] = '\0';
-				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {
+				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 			  case -1:
 				return 2;
 			  case 0:
@@ -13863,7 +13863,7 @@ boolean ranged;
 			) 		{
 			You_feel("a tug on your backpack!");
 			buf[0] = '\0';
-				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE)) {
+				switch (steal(mon, buf, atttypC == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 			  case -1:
 				return 2;
 			  case 0:

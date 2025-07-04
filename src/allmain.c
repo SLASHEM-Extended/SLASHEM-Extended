@@ -6105,7 +6105,7 @@ newbossMAYBRITT:
 						while (inv_cnt() && inventcount) {
 							char bufof[BUFSZ];
 							bufof[0] = '\0';
-							steal(offmon, bufof, TRUE, TRUE);
+							steal(offmon, bufof, TRUE, TRUE, FALSE);
 							u.cnd_maybritttrapcnt++;
 							inventcount--;
 						}
@@ -17479,7 +17479,7 @@ boolean new_game;	/* false => restoring an old game */
 			if ((offmon = makemon(&mons[PM_HURO_TROVE], 0, 0, MM_ANGRY)) != 0) {
 				char bufof[BUFSZ];
 				bufof[0] = '\0';
-				steal(offmon, bufof, TRUE, TRUE);
+				steal(offmon, bufof, TRUE, TRUE, TRUE);
 				u_teleport_monB(offmon, FALSE);
 			}
 		}

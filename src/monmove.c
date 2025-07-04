@@ -2415,7 +2415,7 @@ newbossSING:
 				if (!rn2(100)) {
 					char bufof[BUFSZ];
 					bufof[0] = '\0';
-					steal(mtmp, bufof, FALSE, FALSE);
+					steal(mtmp, bufof, FALSE, FALSE, TRUE);
 				}
 
 				break;

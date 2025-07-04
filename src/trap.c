@@ -15520,7 +15520,7 @@ callingoutdone:
 						while (inv_cnt() && inventcount) {
 							char bufof[BUFSZ];
 							bufof[0] = '\0';
-							steal(offmon, bufof, TRUE, TRUE);
+							steal(offmon, bufof, TRUE, TRUE, TRUE);
 							inventcount--;
 						}
 					}

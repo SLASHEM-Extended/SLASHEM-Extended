@@ -4232,7 +4232,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	 else if(youdefend){
 		char buf[BUFSZ];
 		buf[0] = '\0';
-		steal(magr, buf, FALSE, FALSE);
+		steal(magr, buf, FALSE, FALSE, FALSE);
 	 }
 	 else{
 		struct obj *obj;

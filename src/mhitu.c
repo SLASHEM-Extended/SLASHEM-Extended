@@ -6630,13 +6630,13 @@ newboss:
 				if(invent){
 					You_feel("the tentacles pick through your remaining possessions.");
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE, FALSE);
+					steal(mtmp, buf, TRUE, FALSE, TRUE);
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE, FALSE);
+					steal(mtmp, buf, TRUE, FALSE, TRUE);
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE, FALSE);
+					steal(mtmp, buf, TRUE, FALSE, TRUE);
 					buf[0] = '\0';
-					steal(mtmp, buf, TRUE, FALSE);
+					steal(mtmp, buf, TRUE, FALSE, TRUE);
 				}
 			break;
 		}
@@ -9220,7 +9220,7 @@ dopois:
 		buf[0] = '\0';
 
 		if (StealersActive) {
-			switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE)) {
+			switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -9242,7 +9242,7 @@ dopois:
 		} else if (issoviet || (  (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 /* male characters are more susceptible to nymphs --Amy */
-			{ switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE)) {
+			{ switch (steal(mtmp, buf, atttyp == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -12330,7 +12330,7 @@ do_stone2:
 			buf[0] = '\0';
 
 		if (StealersActive) {
-			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE)) {
+			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -12344,7 +12344,7 @@ do_stone2:
 		} else if (issoviet || ( (rnd(100) > ACURR(A_CHA)) && ((mtmp->female) && !flags.female && rn2(5) ) || ((!mtmp->female) && flags.female && rn2(3) ) || 
 			((mtmp->female) && flags.female && rn2(2) ) || ((!mtmp->female) && !flags.female && rn2(2) ) ) )
 			{ 
-			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE)) {
+			switch (steal(mtmp, buf, atttypA == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -17314,7 +17314,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 			((mtmp->female) && flags.female && !rn2(25) ) || ((!mtmp->female) && !flags.female && !rn2(25) ) ) )
 			{
 				buf[0] = '\0';
-				switch (steal(mtmp, buf, FALSE, FALSE)) {
+				switch (steal(mtmp, buf, FALSE, FALSE, TRUE)) {
 			  case -1:
 				return 2;
 			  case 0:
@@ -17339,7 +17339,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
-			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE, FALSE)) {
+			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 		  case -1:
 			return 2;
 		  case 0:
@@ -17359,7 +17359,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		pline("%s gazes at you with its demanding eyes!", Monnam(mtmp));
 		    stop_occupation();
 		buf[0] = '\0';
-			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE, FALSE)) {
+			switch (steal(mtmp, buf, atttypB == AD_SEDU ? TRUE : FALSE, FALSE, TRUE)) {
 		  case -1:
 			return 2;
 		  case 0:

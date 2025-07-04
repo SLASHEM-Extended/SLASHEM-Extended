@@ -11223,7 +11223,7 @@ newbossC:
 				if ((offmon = makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS)) != 0) {
 					char bufof[BUFSZ];
 					bufof[0] = '\0';
-					steal(offmon, bufof, TRUE, TRUE);
+					steal(offmon, bufof, TRUE, TRUE, TRUE);
 					mdrop_special_objs(offmon); /* don't levelport ones that have the amulet! */
 					u_teleport_monB(offmon, FALSE);
 				}
@@ -11247,7 +11247,7 @@ newoffmon:
 					while (inv_cnt() && inventcount) {
 						char bufof[BUFSZ];
 						bufof[0] = '\0';
-						steal(offmon, bufof, TRUE, TRUE);
+						steal(offmon, bufof, TRUE, TRUE, TRUE);
 						inventcount--;
 					}
 
