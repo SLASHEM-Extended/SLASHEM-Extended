@@ -4670,6 +4670,49 @@ tell_main_weather()
 
 }
 
+char *
+weatherdescription()
+{
+	static char weatherdesc[BUFSZ];
+
+	switch (u.currentweather) {
+		default:
+		case WEATHER_OVERCAST:
+			sprintf(weatherdesc, "overcast"); break;
+			break;
+		case WEATHER_RAIN:
+			sprintf(weatherdesc, "rain"); break;
+			break;
+		case WEATHER_THUNDERSTORM:
+			sprintf(weatherdesc, "thunderstorm"); break;
+			break;
+		case WEATHER_SNOW:
+			sprintf(weatherdesc, "snow"); break;
+			break;
+		case WEATHER_HAIL:
+			sprintf(weatherdesc, "hail"); break;
+			break;
+		case WEATHER_SUNNY:
+			sprintf(weatherdesc, "sunny"); break;
+			break;
+		case WEATHER_SANDSTORM:
+			sprintf(weatherdesc, "sandstorm"); break;
+			break;
+		case WEATHER_FOG:
+			sprintf(weatherdesc, "fog"); break;
+			break;
+		case WEATHER_ECLIPSE:
+			sprintf(weatherdesc, "eclipse"); break;
+			break;
+		case WEATHER_ETHERWIND:
+			sprintf(weatherdesc, "etherwind"); break;
+			break;
+	}
+
+	return weatherdesc;
+
+}
+
 void
 maybe_tell_weather()
 {

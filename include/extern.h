@@ -937,6 +937,7 @@ E void maybe_wail(void);
 E void maybe_scream(void);
 E void maybe_tell_weather(void);
 E void tell_main_weather(void);
+E char *weatherdescription(void);
 
 #ifdef DUNGEON_GROWTH
 E void catchup_dgn_growths(int);

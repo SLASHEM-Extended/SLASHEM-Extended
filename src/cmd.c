@@ -3283,6 +3283,10 @@ boolean guaranteed;
 		enl_msg("Your sanity ", "is", "was", buf);
 	}
 
+	{sprintf(buf, " %s", weatherdescription());
+		enl_msg("Current weather ", "is", "was", buf);
+	}
+
 	if (guaranteed || !rn2(10)) {sprintf(buf, " %d alla remaining", u.alla);
 		enl_msg("You ", "have", "had", buf);
 	}
@@ -8052,6 +8056,9 @@ int final;
 	sprintf(buf, " %d", u.usanity);
 	dump("  Your sanity was", buf);
 
+	sprintf(buf, " %s", weatherdescription());
+	dump("  Current weather was", buf);
+
 	sprintf(buf, " %d alla remaining", u.alla);
 	dump("  You had", buf);
 
@@ -11987,6 +11994,8 @@ minimal_enlightenment()
 		sprintf(eos(statline), " Your hairstyle is '%s.", bundledescription());
 
 		sprintf(eos(statline), " You have %d casino chips.", u.casinochips);
+
+		sprintf(eos(statline), " Weather is %s.", weatherdescription());
 
 		pline("%s", statline);
 
