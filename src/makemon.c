@@ -14854,6 +14854,10 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_ADRIANA_S_CUDDLY_SNEAKER]) (void) mongets(mtmp, SOFT_SNEAKERS);
 
+		if (ptr == &mons[PM_COLT]) {
+			(void) mongets(mtmp, FLINTLOCK);
+			 m_initthrow(mtmp, PISTOL_BULLET, 20);
+		}
 		if (ptr == &mons[PM_GANG_CAR]) {
 			(void) mongets(mtmp, PISTOL_PAIR);
 			 m_initthrow(mtmp, FIVE_SEVEN_BULLET, 50);

@@ -9398,6 +9398,7 @@ SCROLL((char *)0,               "MANFRED VON KARMA THE DEMON LICH",  P_NONE,    
 SCROLL((char *)0,               "MIKE MEEKINS BULLHORN ALWAYS GOES WEEEEEEEEEEEEEEEEEEEEEN",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
 SCROLL((char *)0,               "DAMON GANT WAS A FOOL TO COMMIT MURDER",  P_NONE,     1,   0, 100, CLR_ORANGE, 1),
 SCROLL((char *)0,               "A HAENIN TO THE BREAK FINE",  P_NONE,     1,   0, 100, CLR_YELLOW, 1),
+SCROLL((char *)0,               "OORTO GELD MEANS TOGLE DOOR WHICH ISNT EVEN SPELLED CORRECTLY",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */
