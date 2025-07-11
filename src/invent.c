@@ -1698,6 +1698,18 @@ have_femityjewel()
 }
 
 boolean
+have_sportivox()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_SPORTIVOX)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_minimejewel()
 {
 	register struct obj *otmp;
@@ -31310,6 +31322,56 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: reflection, half physical damage, high chance of resisting gaze attacks and monsters occasionally become confused while you wear it, activates permanent foggy weather when equipped (which lasts at least until this item is unequipped)."); break;
 				case ART_WHO_CAN_DRIVE_BEST_:
 					pline("Artifact specs: kerstin trap effect when worn, and if you're female and are currently riding, your riding skill trains three times as fast and you're also faster than normal."); break;
+				case ART_FEATHER_LIGHT:
+					pline("Artifact specs: increases your carry capacity when worn. Every worn item made of paper will further increase it."); break;
+				case ART_SPORTIVOX:
+					pline("Artifact specs: carrying it in your inventory increases your carry capacity by 250."); break;
+				case ART_CHEST_WITHIN:
+					pline("Artifact specs: spawns with another chest inside."); break;
+				case ART_VIGERIUN_:
+					pline("Artifact specs: very fast speed, regeneration and poison resistance when worn."); break;
+				case ART_CURSING_BROOCH:
+					pline("Artifact specs: if it's cursed, it conveys lightning immunity, otherwise it disables your lightning resistance when worn."); break;
+				case ART_CURSING_SCARAB:
+					pline("Artifact specs: if it's cursed, it conveys acid immunity, otherwise it disables your acid resistance when worn."); break;
+				case ART_CURSING_CHARM:
+					pline("Artifact specs: if it's cursed, it conveys fire immunity, otherwise it disables your fire resistance when worn."); break;
+				case ART_CURSING_PENDANT:
+					pline("Artifact specs: if it's cursed, it conveys cold immunity, otherwise it disables your cold resistance when worn."); break;
+				case ART_HAGEL_CUTTER:
+					pline("Artifact specs: eating it gives twice as much nutrition and temporary slow digestion."); break;
+				case ART_SYLVIE_S_HARMONY:
+					pline("Artifact specs: can be invoked for invulnerability."); break;
+				case ART_DLIM_DLIM_FIEIEIEIEIE:
+					pline("Artifact specs: temporary sickness resistance when eaten."); break;
+				case ART_NORMALITY_FOOD:
+					pline("Artifact specs: after eating it, you cannot be numbed for a while."); break;
+				case ART_GOOD_FOR_YOUR_EYES:
+					pline("Artifact specs: temporary blindness resistance when eaten."); break;
+				case ART_COMPARE_TO_AN_APPLE:
+					pline("Artifact specs: temporary stun resistance when eaten."); break;
+				case ART_TWO_FRUITS_CROSSING:
+					pline("Artifact specs: temporary stun and confusion resistance when eaten."); break;
+				case ART_IBM_COMPUTER_SYSTEM:
+					pline("Artifact specs: temporary fear resistance when eaten."); break;
+				case ART_POPPED_ONCE__POPPED_FOREVE:
+					pline("Artifact specs: temporary diminished bleeding when eaten."); break;
+				case ART_WITH_SOMEONE_S_CREAM_IN_IT:
+					pline("Artifact specs: temporary hallucination resistance when eaten."); break;
+				case ART_GLACIAL_TROPIC_GARDEN:
+					pline("Artifact specs: after eating it, you cannot be frozen for a while."); break;
+				case ART_SQUEEZE_THE_JUICE_OUT:
+					pline("Artifact specs: temporary confusion resistance when eaten."); break;
+				case ART_BANG_YO_BANG:
+					pline("Artifact specs: after eating it, you cannot be burned for a while."); break;
+				case ART_DMMMMMMMMMMMM:
+					pline("Artifact specs: after eating it, you cannot be dimmed for a while."); break;
+				case ART_CAN_YOU_DOUBLE_UP_LIKE_THI:
+					pline("Artifact specs: after eating it, you cannot be burned or dimmed for a while."); break;
+				case ART_CREOSOTE_S_GIANT_STOMACH:
+					pline("Artifact specs: eating it gives you slow digestion for a good long while."); break;
+				case ART_CHARLENE_S_CORONA:
+					pline("Artifact specs: stronger version of covid nastytrap effect and cold immunity when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

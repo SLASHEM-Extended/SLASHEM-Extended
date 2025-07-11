@@ -3048,6 +3048,19 @@ find_greek_cloak()
 }
 
 int
+find_flier_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FLIER_CLOAK)) return i;
+    }
+
+    impossible("flier cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_celtic_helmet()
 {
     register int i;

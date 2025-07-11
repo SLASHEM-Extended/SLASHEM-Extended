@@ -427,6 +427,30 @@ nh_timeout()
 		if (u.battertimer < 0) u.battertimer = 0; /* fail safe */
 	}
 
+	if (u.suppress_dim) {
+		u.suppress_dim--;
+		if (!u.suppress_dim) You("are no longer resistant to dimness.");
+		if (u.suppress_dim < 0) u.suppress_dim = 0; /* fail safe */
+	}
+
+	if (u.suppress_burn) {
+		u.suppress_burn--;
+		if (!u.suppress_burn) You("are no longer resistant to burning.");
+		if (u.suppress_burn < 0) u.suppress_burn = 0; /* fail safe */
+	}
+
+	if (u.suppress_numb) {
+		u.suppress_numb--;
+		if (!u.suppress_numb) You("are no longer resistant to numbness.");
+		if (u.suppress_numb < 0) u.suppress_numb = 0; /* fail safe */
+	}
+
+	if (u.suppress_freeze) {
+		u.suppress_freeze--;
+		if (!u.suppress_freeze) You("are no longer resistant to freezing.");
+		if (u.suppress_freeze < 0) u.suppress_freeze = 0; /* fail safe */
+	}
+
 	if (u.garbagetrucktime) {
 		u.garbagetrucktime--;
 		if (u.garbagetrucktime < 0) u.garbagetrucktime = 0; /* fail safe */
@@ -4561,6 +4585,10 @@ nh_timeout()
 		case CONTROL_MAGIC:
 			if (!ControlMagic)
 				pline("You're no longer controlling your magic.");
+			break;
+		case SLOW_DIGESTION:
+			if (!Slow_digestion)
+				pline("Your stomach digests food at the normal rate once more.");
 			break;
 		case EXP_BOOST:
 			if (!ExpBoost)

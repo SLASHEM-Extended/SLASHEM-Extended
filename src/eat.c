@@ -7820,6 +7820,86 @@ register struct obj *otmp;
 		(void) adjattrib(A_DEX, 1, 0, TRUE);
 	}
 
+	if (otmp && otmp->oartifact == ART_HAGEL_CUTTER) {
+		lesshungry(800);
+		incr_itimeout(&HSlow_digestion, rnz(2000));
+		You_feel("very full!");
+	}
+
+	if (otmp && otmp->oartifact == ART_DLIM_DLIM_FIEIEIEIEIE) {
+		incr_itimeout(&HSick_resistance, rnz(1000));
+		You_feel("resistant to sickness!");
+	}
+
+	if (otmp && otmp->oartifact == ART_NORMALITY_FOOD) {
+		u.suppress_numb += rnz(1000);
+		You_feel("resistant to numbness!");
+	}
+
+	if (otmp && otmp->oartifact == ART_GOOD_FOR_YOUR_EYES) {
+		incr_itimeout(&HBlind_resistance, rnz(1000));
+		You_feel("resistant to blindness!");
+	}
+
+	if (otmp && otmp->oartifact == ART_COMPARE_TO_AN_APPLE) {
+		incr_itimeout(&HStun_resist, rnz(1000));
+		You_feel("resistant to stun!");
+	}
+
+	if (otmp && otmp->oartifact == ART_TWO_FRUITS_CROSSING) {
+		incr_itimeout(&HStun_resist, rnz(1000));
+		You_feel("resistant to stun!");
+		incr_itimeout(&HConf_resist, rnz(1000));
+		You_feel("resistant to confusion!");
+	}
+
+	if (otmp && otmp->oartifact == ART_IBM_COMPUTER_SYSTEM) {
+		incr_itimeout(&HFear_resistance, rnz(1000));
+		You_feel("resistant to fear!");
+	}
+
+	if (otmp && otmp->oartifact == ART_POPPED_ONCE__POPPED_FOREVE) {
+		incr_itimeout(&HDiminishedBleeding, rnz(1000));
+		You_feel("resistant to bleeding damage!");
+	}
+
+	if (otmp && otmp->oartifact == ART_WITH_SOMEONE_S_CREAM_IN_IT) {
+		incr_itimeout(&HHalluc_resistance, rnz(1000));
+		You_feel("resistant to hallucinations!");
+	}
+
+	if (otmp && otmp->oartifact == ART_GLACIAL_TROPIC_GARDEN) {
+		u.suppress_freeze += rnz(1000);
+		You_feel("resistant to freezing!");
+	}
+
+	if (otmp && otmp->oartifact == ART_SQUEEZE_THE_JUICE_OUT) {
+		incr_itimeout(&HConf_resist, rnz(1000));
+		You_feel("resistant to confusion!");
+	}
+
+	if (otmp && otmp->oartifact == ART_BANG_YO_BANG) {
+		u.suppress_burn += rnz(1000);
+		You_feel("resistant to burning!");
+	}
+
+	if (otmp && otmp->oartifact == ART_DMMMMMMMMMMMM) {
+		u.suppress_dim += rnz(1000);
+		You_feel("resistant to dimness!");
+	}
+
+	if (otmp && otmp->oartifact == ART_CAN_YOU_DOUBLE_UP_LIKE_THI) {
+		u.suppress_burn += rnz(1000);
+		You_feel("resistant to burning!");
+		u.suppress_dim += rnz(1000);
+		You_feel("resistant to dimness!");
+	}
+
+	if (otmp && otmp->oartifact == ART_CREOSOTE_S_GIANT_STOMACH) {
+		incr_itimeout(&HSlow_digestion, rnz(10000));
+		You_feel("like you're going to explode if you eat as much as a wafer-thin mint!");
+	}
+
 	if (otmp && otmp->oartifact == ART_CHA_OTHERSTAT) {
 		(void) adjattrib(A_CHA, 5, 0, TRUE);
 

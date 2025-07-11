@@ -5672,6 +5672,24 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 		maxcarrcap += 1000;
 		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;
 	}
+	if (have_sportivox()) maxcarrcap += 250;
+	if (uarmc && uarmc->oartifact == ART_FEATHER_LIGHT) {
+		maxcarrcap += 100;
+		if (uwep && objects[uwep->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uarm && objects[uarm->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uarmc && objects[uarmc->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uarmh && objects[uarmh->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uarms && objects[uarms->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uarmg && objects[uarmg->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uarmf && objects[uarmf->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uarmu && objects[uarmu->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uamul && objects[uamul->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uimplant && objects[uimplant->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uleft && objects[uleft->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (uright && objects[uright->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+		if (ublindf && objects[ublindf->otyp].oc_material == MT_PAPER) maxcarrcap += 300;
+	}
 	if (uwep && uwep->otyp == BAGGY_SLING) maxcarrcap += 100;
 	if (uwep && uwep->oartifact == ART_USEFUL_BINDLE) maxcarrcap += 1000;
 	if (uarmc && uarmc->oartifact == ART_NEUTRINO) maxcarrcap += 1000;
@@ -5745,6 +5763,24 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;
+	}
+	if (have_sportivox()) carrcap += 250;
+	if (uarmc && uarmc->oartifact == ART_FEATHER_LIGHT) {
+		carrcap += 100;
+		if (uwep && objects[uwep->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (u.twoweap && uswapwep && objects[uswapwep->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uarm && objects[uarm->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uarmc && objects[uarmc->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uarmh && objects[uarmh->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uarms && objects[uarms->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uarmg && objects[uarmg->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uarmf && objects[uarmf->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uarmu && objects[uarmu->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uamul && objects[uamul->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uimplant && objects[uimplant->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uleft && objects[uleft->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (uright && objects[uright->otyp].oc_material == MT_PAPER) carrcap += 300;
+		if (ublindf && objects[ublindf->otyp].oc_material == MT_PAPER) carrcap += 300;
 	}
 	if (uleft && uleft->oartifact == ART_RING_OF_STEEL_DRAGON) carrcap += 100;
 	if (uright && uright->oartifact == ART_RING_OF_STEEL_DRAGON) carrcap += 100;

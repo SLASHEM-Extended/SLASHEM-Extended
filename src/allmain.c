@@ -9954,6 +9954,9 @@ newbossO:
 		if (!rn2(CovidEffectXtra ? 20 : 1000) && have_covidstone()) {
 			nivellate();
 		}
+		if (!rn2(CovidEffectXtra ? 20 : 1000) && uarmh && uarmh->oartifact == ART_CHARLENE_S_CORONA) {
+			nivellate();
+		}
 
 		if (!rn2(HorrorEffectXtra ? 100 : 200) && HorrorBugEffect) {
 

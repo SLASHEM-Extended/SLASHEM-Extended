@@ -19547,6 +19547,106 @@ A("Who can drive best?",				STANDARD_HELMET, /* initialized to always be biker h
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
+A("Feather Light",				LEATHER_CLOAK, /* initialized to always be flier cloak, +100 (max) carry cap and +300 for every worn paper item */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sportivox",				LARGE_BOX, /* +250 (max) carry cap if you have it in your inventory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Chest Within",				CHEST, /* spawns with a chest inside */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("vigeriun!",				SOUND_EFFECT_HELMET, /* very fast speed */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_REGEN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cursing Brooch",				AMULET_OF_ESP, /* randart2 amulet, lightning immunity if cursed and deactivates lightning res if not */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Cursing Scarab",				AMULET_OF_ESP, /* randart2 amulet, acid immunity if cursed and deactivates acid res if not */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Cursing Charm",				AMULET_OF_ESP, /* randart2 amulet, fire immunity if cursed and deactivates fire res if not */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Cursing Pendant",				AMULET_OF_ESP, /* randart2 amulet, cold immunity if cursed and deactivates cold res if not */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hagel Cutter",				LEMBAS_WAFER, /* gives twice as much nutrition and also rnz(2000) turns of slow digestion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sylvie's Harmony",				FULL_PLATE_MAIL, /* can be invoked for 10 turns of invulnerability */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Dlim-Dlim fieieieieie",				EUCALYPTUS_LEAF, /* rnz(1000) turns of sickness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Normality Food",				APPLE, /* suppresses numbness for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Good For Your Eyes",				CARROT, /* blindness resistance for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Compare To An Apple",				PEAR, /* stun resistance for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Two Fruits Crossing",				ASIAN_PEAR, /* stun and confusion resistance for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("IBM Computer System",				LEMON, /* fear resistance for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Popped Once, Popped Forever",				CHERRY, /* diminished bleeding for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("With Someone's Cream In It",				BANANA, /* hallu resistance for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Glacial-Tropic Garden",				ORANGE, /* suppresses freeze for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Squeeze The Juice Out",				MELON, /* confusion resistance for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Bang-Yo Bang",				CREAM_PIE, /* suppresses burn for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("dmmmmmmmmmmmm",				CREAM_PIE, /* suppresses dim for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Can you double up like this?",				CREAM_PIE, /* suppresses burn and dim for rnz(1000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Creosote's Giant Stomach",				TWELVE_COURSE_DINNER, /* slow digestion for rnz(10000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Charlene's Corona",				CROWN, /* super covid effect, cold immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

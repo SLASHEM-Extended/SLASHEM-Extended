@@ -739,6 +739,10 @@ init_randarts()
 	artilist[ART_GREEN_COLOR].otyp = randartringX();
 	artilist[ART_SCARAB_OF_ADORNMENT].otyp = randartringX();
 	artilist[ART_SCHWUEU].otyp = randartamuletX();
+	artilist[ART_CURSING_BROOCH].otyp = randartamuletX();
+	artilist[ART_CURSING_SCARAB].otyp = randartamuletX();
+	artilist[ART_CURSING_CHARM].otyp = randartamuletX();
+	artilist[ART_CURSING_PENDANT].otyp = randartamuletX();
 	artilist[ART_TWIN_EDGE].otyp = randartamuletX();
 	artilist[ART_UNKNOWN_SHELL].otyp = randartamuletX();
 	artilist[ART_CURSE_THE_TIME_SHIFT].otyp = randartamuletX();
@@ -1011,6 +1015,7 @@ init_appearance_randarts()
 	artilist[ART_OUT_OF_TIME].otyp = find_castlevania_boots();
 	artilist[ART_KATHERINE_S_BEACHWEAR].otyp = find_tankini();
 	artilist[ART_PALEOLITHIC_ELBOW_CONTRACT].otyp = find_greek_cloak();
+	artilist[ART_FEATHER_LIGHT].otyp = find_flier_cloak();
 	artilist[ART_NUCLEAR_BOMB].otyp = find_celtic_helmet();
 	artilist[ART_HABIBA_S_MATRONAGE].otyp = find_hardcore_cloth();
 	artilist[ART_BEEEEEEEANPOLE].otyp = find_english_gloves();
@@ -2263,6 +2268,17 @@ register boolean mod;
 			if (ocont) {
 				curse(ocont);
 				ocont->hvycurse = TRUE;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_CHEST_WITHIN) {
+			register struct obj *ocont;
+
+			ocont = mksobj(CHEST, TRUE, FALSE, FALSE);
+			if (ocont) {
 				ocont->owt = weight(ocont);
 				(void) add_to_container(otmp, ocont, TRUE);
 			}
@@ -5848,6 +5864,13 @@ tunguskaagain:
 		if (obj->oartifact == ART_WEAVING_WARD) {
 
 			incr_itimeout(&Invulnerable, rn1(3,3));
+			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+			break;
+		}
+
+		if (obj->oartifact == ART_SYLVIE_S_HARMONY) {
+
+			incr_itimeout(&Invulnerable, 10);
 			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
 			break;
 		}

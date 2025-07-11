@@ -225,7 +225,7 @@
 #define MoveMorkXtra	((have_movemorkstone() == 2) || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) )
 #define UbergodXtra	((have_ubergodstone() == 2))
 #define FunwallXtra	((have_funwallstone() == 2))
-#define CovidEffectXtra	((have_covidstone() == 2))
+#define CovidEffectXtra	((have_covidstone() == 2) || (uarmh && uarmh->oartifact == ART_CHARLENE_S_CORONA) )
 #define ProofLossXtra	((have_prooflossstone() == 2))
 #define UnInvisXtra	((have_uninvisstone() == 2))
 #define OptionChangeXtra	((have_optionstone() == 2))
@@ -277,9 +277,9 @@
 #define Fire_resistance		(((IntFire_resistance && u.nonintrinsicproperty != FIRE_RES) || (ExtFire_resistance && u.nonextrinsicproperty != FIRE_RES)) && !hybridragontype(AD_FIRE) && !Race_if(PM_TROLLOR) && !Race_if(PM_ANCIPITAL) && !Race_if(PM_SEA_ELF) && !Race_if(PM_SPRIGGAN) && !Role_if(PM_ALTMER) && !NoFire_resistance)
 #define StrongFire_resistance	(IntFire_resistance && ExtFire_resistance && Fire_resistance && u.nondoubleproperty != FIRE_RES)
 
-#define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || UHaveAids || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (u.impossibleproperty == FIRE_RES) || (uarm && uarm->oartifact == ART_ABSOLUTE_MONSTER_MAIL) || autismweaponcheck(ART_ICEBLOCK_SWORD) || (uarm && uarm->oartifact == ART_FLEEING_MINE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || UHaveAids || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (u.impossibleproperty == FIRE_RES) || (uarm && uarm->oartifact == ART_ABSOLUTE_MONSTER_MAIL) || autismweaponcheck(ART_ICEBLOCK_SWORD) || (uarm && uarm->oartifact == ART_FLEEING_MINE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uamul && uamul->oartifact == ART_CURSING_CHARM && !uamul->cursed) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define FireImmunity		((uarm && uarm->oartifact == ART_COAL_PEER) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarm && uarm->otyp == ASBESTOS_JACKET) || (uarmf && uarmf->oartifact == ART______DEGREES) || (uarmh && uarmh->oartifact == ART_MAGMA_BRINGER) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarms && uarms->oartifact == ART_OGROTIC_CHANT) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || Race_if(PM_HYPOTHERMIC))
+#define FireImmunity		((uarm && uarm->oartifact == ART_COAL_PEER) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarm && uarm->otyp == ASBESTOS_JACKET) || (uarmf && uarmf->oartifact == ART______DEGREES) || (uarmh && uarmh->oartifact == ART_MAGMA_BRINGER) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uamul && uamul->oartifact == ART_CURSING_CHARM && uamul->cursed) || (uarms && uarms->oartifact == ART_OGROTIC_CHANT) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || Race_if(PM_HYPOTHERMIC))
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
 #define ECold_resistance	u.uprops[COLD_RES].extrinsic
@@ -289,9 +289,9 @@
 #define Cold_resistance		(((IntCold_resistance && u.nonintrinsicproperty != COLD_RES) || (ExtCold_resistance && u.nonextrinsicproperty != COLD_RES)) && !Role_if(PM_ALTMER) && !hybridragontype(AD_COLD) && !NoCold_resistance)
 #define StrongCold_resistance	(IntCold_resistance && ExtCold_resistance && Cold_resistance && u.nondoubleproperty != COLD_RES)
 
-#define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || UHaveAids || (u.impossibleproperty == COLD_RES) || autismweaponcheck(ART_FLARE_FLAKE) || (uarms && uarms->oartifact == ART_HEATEM_UP) || autismringcheck(ART_DEATHLY_COLD) || autismringcheck(ART_BERNCELD) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_GAVIL) || Race_if(PM_JAVA) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || UHaveAids || (u.impossibleproperty == COLD_RES) || autismweaponcheck(ART_FLARE_FLAKE) || (uarms && uarms->oartifact == ART_HEATEM_UP) || autismringcheck(ART_DEATHLY_COLD) || (uamul && uamul->oartifact == ART_CURSING_PENDANT && !uamul->cursed) || autismringcheck(ART_BERNCELD) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_GAVIL) || Race_if(PM_JAVA) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define ColdImmunity		((uwep && uwep->oartifact == ART_CUTRELEASE) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_FLEEC_LIE) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP))
+#define ColdImmunity		((uwep && uwep->oartifact == ART_CUTRELEASE) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_FLEEC_LIE) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uarmh && uarmh->oartifact == ART_CHARLENE_S_CORONA) || (uamul && uamul->oartifact == ART_CURSING_PENDANT && uamul->cursed) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP))
 
 #define HSleep_resistance	u.uprops[SLEEP_RES].intrinsic
 #define ESleep_resistance	u.uprops[SLEEP_RES].extrinsic
@@ -321,9 +321,9 @@
 #define Shock_resistance	(((IntShock_resistance && u.nonintrinsicproperty != SHOCK_RES) || (ExtShock_resistance && u.nonextrinsicproperty != SHOCK_RES)) && !hybridragontype(AD_ELEC) && !Role_if(PM_ALTMER) && !NoShock_resistance )
 #define StrongShock_resistance	(IntShock_resistance && ExtShock_resistance && Shock_resistance && u.nondoubleproperty != SHOCK_RES)
 
-#define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) || UHaveAids || (u.impossibleproperty == SHOCK_RES) || (uarm && uarm->oartifact == ART_THUNDER_) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || autismweaponcheck(ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) || UHaveAids || (u.impossibleproperty == SHOCK_RES) || (uarm && uarm->oartifact == ART_THUNDER_) || (uamul && uamul->oartifact == ART_CURSING_BROOCH && !uamul->cursed) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || autismweaponcheck(ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define ShockImmunity		(Race_if(PM_PLAYER_DYNAMO) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarms && uarms->oartifact == ART_TEH_SHOCK) || (uarmg && uarmg->oartifact == ART_ENNUI_STOICISM) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER && objects[uarms->otyp].oc_material == MT_WOOD) )
+#define ShockImmunity		(Race_if(PM_PLAYER_DYNAMO) || (uamul && uamul->oartifact == ART_CURSING_BROOCH && uamul->cursed) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarms && uarms->oartifact == ART_TEH_SHOCK) || (uarmg && uarmg->oartifact == ART_ENNUI_STOICISM) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER && objects[uarms->otyp].oc_material == MT_WOOD) )
 
 #define HPoison_resistance	u.uprops[POISON_RES].intrinsic
 #define EPoison_resistance	u.uprops[POISON_RES].extrinsic
@@ -377,9 +377,9 @@
 #define Acid_resistance		(((IntAcid_resistance && u.nonintrinsicproperty != ACID_RES) || (ExtAcid_resistance && u.nonextrinsicproperty != ACID_RES)) && !hybridragontype(AD_ACID) && !NoAcid_resistance)
 #define StrongAcid_resistance	(IntAcid_resistance && ExtAcid_resistance && Acid_resistance && u.nondoubleproperty != ACID_RES)
 
-#define NoAcid_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ACID_RES].intrinsic || UHaveAids || (u.impossibleproperty == ACID_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoAcid_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ACID_RES].intrinsic || UHaveAids || (uamul && uamul->oartifact == ART_CURSING_SCARAB && !uamul->cursed) || (u.impossibleproperty == ACID_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define AcidImmunity		((uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_LISA_S_YELLOW_STRIPE) || (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uball && uball->oartifact == ART_ACICORNER) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME))
+#define AcidImmunity		((uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_LISA_S_YELLOW_STRIPE) || (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uball && uball->oartifact == ART_ACICORNER) || (uamul && uamul->oartifact == ART_CURSING_SCARAB && uamul->cursed) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME))
 
 #define HStone_resistance	u.uprops[STONE_RES].intrinsic
 #define EStone_resistance	u.uprops[STONE_RES].extrinsic
@@ -420,8 +420,10 @@
 
 #define HNumbed		u.uprops[NUMBED].intrinsic
 #define ENumbed		u.uprops[NUMBED].extrinsic
-#define Numbed		(HNumbed || ENumbed || Race_if(PM_IRRITATOR) || (autismweaponcheck(ART_GAYGUN) && uarmg && (u.homosexual != 1)) || (uarms && uarms->oartifact == ART_NUMBED_CAN_T_DO) || HeavyNumbed)
+#define Numbed		((HNumbed || ENumbed || Race_if(PM_IRRITATOR) || (autismweaponcheck(ART_GAYGUN) && uarmg && (u.homosexual != 1)) || (uarms && uarms->oartifact == ART_NUMBED_CAN_T_DO) || HeavyNumbed) && !(CannotBeNumbed && !Race_if(PM_IRRITATOR)) )
 #define HeavyNumbed		u.uprops[HEAVY_NUMBED].intrinsic
+
+#define CannotBeNumbed	(u.suppress_numb)
 
 #define HFeared		u.uprops[FEARED].intrinsic
 #define EFeared		u.uprops[FEARED].extrinsic
@@ -433,17 +435,21 @@
 #define Frozen		((HFrozen || EFrozen || Race_if(PM_HYPOTHERMIC) || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (uimplant && uimplant->oartifact == ART_MIGHTY_MOLASS) || (uarms && uarms->oartifact == ART_TYPE_OF_ICE_BLOCK_HATES_YO) || autismweaponcheck(ART_LANCE_OF_LONGINUS) || autismweaponcheck(ART_SCHWANZUS_LANGUS) || HeavyFrozen) && !(CannotBeFrozen && !Race_if(PM_HYPOTHERMIC)) )
 #define HeavyFrozen		u.uprops[HEAVY_FROZEN].intrinsic
 
-#define CannotBeFrozen	((uwep && uwep->oartifact == ART_HAH_TSCHH) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER))
+#define CannotBeFrozen	(u.suppress_freeze || (uwep && uwep->oartifact == ART_HAH_TSCHH) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER))
 
 #define HBurned		u.uprops[BURNED].intrinsic
 #define EBurned		u.uprops[BURNED].extrinsic
-#define Burned		(HBurned || EBurned || HeavyBurned || Race_if(PM_BURNINATOR) || (uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) || autismweaponcheck(ART_BURN_FASTER) || (uarms && uarms->oartifact == ART_BURNING_DISK) )
+#define Burned		((HBurned || EBurned || HeavyBurned || Race_if(PM_BURNINATOR) || (uimplant && uimplant->oartifact == ART_BURN_BABY_BURN) || autismweaponcheck(ART_BURN_FASTER) || (uarms && uarms->oartifact == ART_BURNING_DISK) ) && !(CannotBeBurned && !Race_if(PM_BURNINATOR)) )
 #define HeavyBurned		u.uprops[HEAVY_BURNED].intrinsic
+
+#define CannotBeBurned	(u.suppress_burn)
 
 #define HDimmed		u.uprops[DIMMED].intrinsic
 #define EDimmed		u.uprops[DIMMED].extrinsic
-#define Dimmed		(HDimmed || EDimmed || HeavyDimmed || (!flags.female && uarmc && uarmc->oartifact == ART_OVERCOAT_OF_DAUGHTER) || Race_if(PM_INKA) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME) || (uwep && uwep->otyp == TECPATL) || (uwep && uwep->otyp == TRAFFIC_LIGHT) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TRAFFIC_LIGHT) )
+#define Dimmed		( (HDimmed || EDimmed || HeavyDimmed || (!flags.female && uarmc && uarmc->oartifact == ART_OVERCOAT_OF_DAUGHTER) || Race_if(PM_INKA) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME) || (uwep && uwep->otyp == TECPATL) || (uwep && uwep->otyp == TRAFFIC_LIGHT) || (u.twoweap && uswapwep && uswapwep->otyp == TECPATL) || (u.twoweap && uswapwep && uswapwep->otyp == TRAFFIC_LIGHT) ) && !(CannotBeDimmed && !Race_if(PM_INKA)) )
 #define HeavyDimmed		u.uprops[HEAVY_DIMMED].intrinsic
+
+#define CannotBeDimmed	(u.suppress_dim)
 
 #define Blinded			u.uprops[BLINDED].intrinsic
 #define EBlinded			u.uprops[BLINDED].extrinsic
