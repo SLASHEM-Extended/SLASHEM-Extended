@@ -69,6 +69,9 @@ I REPEAT: PRESS SHIFT-O TO OPEN THE OPTIONS MENU!
 DO THAT DURING THE FIRST 50 TURNS TO BE ASKED WHETHER YOU WANT TO TURN ON
 THE NUMBER PAD SO YOU DON'T HAVE TO SEARCH FOR THE OPTION MANUALLY
 
+(alternately, you can open the main menu by pressing escape and select 'g'
+for game commands, which lets you switch the number pad on and off with 'n')
+
                 With the qwertz_layout option, the y and z keys are swapped.
                 If the number_pad option is set, the number keys move instead.
                 Depending on the platform, Shift number (on the numberpad),
@@ -77,12 +80,26 @@ THE NUMBER PAD SO YOU DON'T HAVE TO SEARCH FOR THE OPTION MANUALLY
                 depending on the platform's capabilities.
 
 Important hints:
+- Can't find whatever command you're looking for? Contact Amy and ask her!
+  https://www.reddit.com/r/slashemextended
+  Or use the #em.slashem.me IRC channel on Libera.
+
 - There is no "dig" command. In order to dig, equip and 'a'pply a pick-axe.
 
 - Press s to search for secret doors and corridors.
 - Press Ctrl-D (or k in number pad mode) to kick.
 - Press Shift-F and then a direction to forcibly attack a location in melee.
 - Press the comma key to pick up items.
+
+- In order to look at a tile on the screen, press / and answer 'y' when asked
+  whether to specify an object with the cursor. Now move the cursor around
+  with the standard movement keys, and press , (comma) when on the target
+  square to get a description of what is there.
+  You can also use the ; (semicolon) key to directly get a cursor for looking
+  at things, but then you have to use the command every time you want to look
+  at a single tile; using the / command is usually more convenient.
+  Remember: press the comma key when at the target location!
+  Don't press Escape or Space, or you'll just cancel the command!
 
 - Some commands, like 'e'at, allow you to target the floor. In order to do
   so, press the comma key at the prompt that asks you for the target item.

@@ -57,7 +57,7 @@ const char *goal;
     if(iflags.num_pad) sdp = ndir; else sdp = sdir;	/* DICE workaround */
 
     if (flags.verbose) {
-	pline("(For instructions type a ?)");
+	pline("(Press , when at target location. For instructions type a ?)");
 	msg_given = TRUE;
     }
 

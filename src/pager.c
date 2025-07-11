@@ -1493,11 +1493,11 @@ do_look(quick)
 	    int glyph;	/* glyph at selected position */
 
 	    if (flags.verbose)
-		pline("Please move the cursor to %s.",
+		pline("Please move the cursor to %s and press the , key.",
 		       what_is_an_unknown_object);
 	    else {
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		pline("Pick an object."); }
+		pline("Pick an object with the cursor and press the , key."); }
 
 	    ans = getpos(&cc, /*quick*/TRUE, what_is_an_unknown_object);
 	    if (ans < 0 || cc.x < 0) {
