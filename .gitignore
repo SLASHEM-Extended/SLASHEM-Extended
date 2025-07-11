@@ -144,3 +144,6 @@ util/lev_comp.exe
 util/lev_flex.c
 util/makedefs.exe
 util/uudecode.exe
+cursescompall.brauchtsnedbat
+cursescomp.brauchtsnedbat
+include/curses.h
