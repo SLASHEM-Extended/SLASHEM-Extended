@@ -1,5 +1,21 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.6 - July 2025
+- Items on bones levels are aetheric now, making it impossible for players to interact with them. They no longer get randomly deleted, cursed or disenchanted.
+- Added the current weather to the Ctrl-X command and enlightenment/dumplog.
+- Food appraisal warns against more types of detrimental food now.
+- A player suffering from the may-britt trap effect should no longer have monsters constantly spawn with root password detection scrolls when they steal an artifact.
+- If the simple descriptions option is on, items with magical enchantments ("egotypes") now use shorter descriptions too.
+- When the player is in giant form, prefixing movement with m now allows moving onto a boulder without pushing it.
+- Very small special rooms should no longer have their monster density randomly reduced.
+- Wearing heavy armor and/or a shield now reduces martial arts damage output.
+- Added a failsafe that should prevent monsters from levelporting with the amulet.
+- (Hopefully) Fixed the bug where having control magic would sometimes cause thrown food to pass through a pet even when the player intended to feed the pet.
+- Monsters who fire a gun will now make noise.
+- Improved the help files to (hopefully) point newbies in the right directions when they're figuring out how the commands work.
+- Nerfed pick-axe damage.
+- Player characters can now jump onto or over farmland tiles.
+
 2.9.5 - September 2024
 - Effects that cause monsters to turn to flee which aren't caused by Elbereth squares, scare monster scrolls or temple sanctuaries no longer have a 1 in 3 chance of failing to affect the monster for no reason.
 - The player's implant can no longer be hacked by a monster that is too far away.
