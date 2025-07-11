@@ -8469,6 +8469,11 @@ doeat()		/* generic "eat" command funtion (see cmd.c) */
 	if (!(otmp = floorfood("eat"))) return 0;
 	if (check_capacity((char *)0)) return 0;
 
+	if (otmp->mstartinventX) {
+		pline("That item is aetheric and can't be eaten!");
+		return 0;
+	}
+
 	/* ask satiated players as long as no nasty traps make it impossible to see that you're satiated --Amy */
 	if (!YouAreThirsty && !DisplayDoesNotGo) {
 		int res = will_you_eat_prompts(otmp);

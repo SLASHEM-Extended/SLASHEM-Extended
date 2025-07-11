@@ -898,6 +898,11 @@ doread()
 	scroll = getobj(class_list, "read");
 	if(!scroll) return(0);
 
+	if (scroll->mstartinventX) {
+		pline("That item is aetheric and can't be read!");
+		return 0;
+	}
+
 	if (InterruptEffect || u.uprops[INTERRUPT_EFFECT].extrinsic || have_interruptionstone()) {
 		nomul(-(rnd(5)), "reading a scroll", TRUE);
 	}

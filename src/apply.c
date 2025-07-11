@@ -5621,6 +5621,11 @@ doapply()
 	obj = getobj(class_list, "use or apply");
 	if(!obj) return 0;
 
+	if (obj->mstartinventX) {
+		pline("That item is aetheric and can't be applied!");
+		return 0;
+	}
+
 	/* un-knowledge nastytrap: can't apply any tool, but invocation tools have to be exempt --Amy
 	 * candles must also be exempt because those can be put on the candelabrum */
 	if (UnKnowledgeEffect || u.uprops[UN_KNOWLEDGE_EFFECT].extrinsic || have_unknowledgestone()) {

@@ -12410,6 +12410,11 @@ dodrink()
 	}
 	if(!otmp) return(0);
 
+	if (otmp->mstartinventX) {
+		pline("That item is aetheric and can't be quaffed!");
+		return 0;
+	}
+
 	if (EpviProblemActive && otmp && (objects[otmp->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {
 		verbalize("I cannot use that yet.");
 		return(0);

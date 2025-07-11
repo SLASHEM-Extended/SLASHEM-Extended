@@ -5660,6 +5660,11 @@ dozap()
 	obj = getobj(zap_syms, "zap");
 	if(!obj) return(0);
 
+	if (obj->mstartinventX) {
+		pline("That item is aetheric and can't be zapped!");
+		return 0;
+	}
+
 	if (CurseAsYouUse && obj && obj->otyp != CANDELABRUM_OF_INVOCATION && obj->otyp != SPE_BOOK_OF_THE_DEAD && obj->otyp != BELL_OF_OPENING) curse(obj);
 
 	if (EpviProblemActive && obj && (objects[obj->otyp].oc_minlvl > (u.ulevel + u.xtralevelmult - 1) ) ) {

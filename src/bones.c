@@ -157,17 +157,9 @@ boolean restore;
 					end_burn(otmp, /*FALSE*/TRUE);
 			}
 			if (otmp) {
-
-				if(!rn2(3)) curse(otmp);
-
-				/* still blessed? Roll for a chance to make it uncursed. --Amy */
-				if(!rn2(3) && otmp->blessed) unbless(otmp);
-
-				/* degrade everything to reduce the # of free stuff the finder will get */
-				if (rn2(2)) {
-					if (otmp->spe > 2) otmp->spe /= 2;
-					else if (otmp->spe > -20) otmp->spe--;
-				}
+				/* bones files are supposed to be a challenge, not a bonanza of free stuff, mua ha ha ha --Amy
+				 * vanilla nethack is not a roguelike because bones files are literally metaprogression there */
+				otmp->mstartinventX = TRUE;
 
 			}
 		}
@@ -198,20 +190,21 @@ struct obj *cont;
 		/* At least now the late player will have to keep their stuff out in the open,
 		 * which makes the items likely to be cursed. See below for an additional change... */
 
-		if(rn2(5)) curse(otmp);
+		/* actually, the items will now be rendered unusable for the player :-P --Amy */
+		otmp->mstartinventX = TRUE;
 
-		/* still blessed? Roll for a chance to make it uncursed. --Amy */
-		if(rn2(5) && otmp->blessed) unbless(otmp);
+		/* no need to curse what the player cannot use anyway... */
+		/*if(rn2(5)) curse(otmp);*/
 
-		if (otmp && rn2(2)) delobj(otmp); /* prevent bones finders from getting everything --Amy */
-		else if (mtmp)
+		if (mtmp)
 			(void) add_to_minv(mtmp, otmp);
 		else if (cont)
 			(void) add_to_container(cont, otmp, TRUE);
 		else
 			place_object(otmp, u.ux, u.uy);
 	}
-#ifndef GOLDOBJ
+/*#ifndef GOLDOBJ*/ /* you are not supposed to get stuff you didn't earn from bones files! goddammit! --Amy */
+#if 0
 	if(u.ugold) {
 		long ugold = u.ugold;
 		if (mtmp) mtmp->mgold = ugold;
