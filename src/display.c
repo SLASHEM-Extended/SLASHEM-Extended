@@ -2409,6 +2409,22 @@ curs_on_u()
     flush_screen(1);	/* Flush waiting glyphs & put cursor on hero */
 }
 
+/* switch the goddamn number pad on or off --Amy */
+int
+doswitchnumpad()
+{
+	if (!(iflags.num_pad)) {
+		iflags.num_pad = 2;
+		iflags.num_pad_mode = 1;
+		pline("Number pad mode is ON now.");
+	} else {
+		iflags.num_pad = 0;
+		iflags.num_pad_mode = 0;
+		pline("Number pad mode is OFF now.");
+	}
+	return 0;
+}
+
 int
 doredraw()
 {

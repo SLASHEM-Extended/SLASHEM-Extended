@@ -12126,6 +12126,7 @@ static const struct menu_tab game_menu[] = {
 	{'x', TRUE, enter_explore_mode, "Enter Explore Mode"},
 	{'!', TRUE, dosh, "Jump to Shell"},
 #endif
+	{'n', TRUE, doswitchnumpad, "Switch Number Pad On/Off"},
 	{'S', TRUE, dosave, "Save"},
 	{'q', TRUE, done2, "Quit [M-q]"},
 	{0,0,0,0},

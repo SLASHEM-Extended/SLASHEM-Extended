@@ -404,6 +404,7 @@ E void see_objects(void);
 E void see_traps(void);
 E void curs_on_u(void);
 E int doredraw(void);
+E int doswitchnumpad(void);
 E void docrt(void);
 E void show_glyph(int,int,int);
 E void show_glyphX(int,int,int);
