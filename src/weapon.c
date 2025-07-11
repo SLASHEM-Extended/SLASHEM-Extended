@@ -8892,13 +8892,14 @@ releasetryagain:
 
 	    /* Amy note: gun control and squeaking are gender-specific at game start (but you can unlock the other later)
 	     * except if you're a genderstarist, then you'll start with both
-	     * climacterial specifically starts with squeaking no matter what */
-	    if (!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) continue;
-	    if (!Role_if(PM_GENDERSTARIST) && !Role_if(PM_CLIMACTERIAL) && !flags.female && skill == P_SQUEAKING) continue;
+	     * climacterial specifically starts with squeaking no matter what
+	     * mesher race can have the skills anyway */
+	    if (!Role_if(PM_GENDERSTARIST) && !Race_if(PM_MESHER) && flags.female && skill == P_GUN_CONTROL) continue;
+	    if (!Role_if(PM_GENDERSTARIST) && !Race_if(PM_MESHER) && !Role_if(PM_CLIMACTERIAL) && !flags.female && skill == P_SQUEAKING) continue;
 	    /* orb, claw and grinder are alignment-specific at game start except if you're a diablist */
-	    if (!Role_if(PM_DIABLIST) && u.ualign.type != A_LAWFUL && skill == P_ORB) continue;
-	    if (!Role_if(PM_DIABLIST) && u.ualign.type != A_NEUTRAL && skill == P_CLAW) continue;
-	    if (!Role_if(PM_DIABLIST) && u.ualign.type != A_CHAOTIC && skill == P_GRINDER) continue;
+	    if (!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_LAWFUL && skill == P_ORB) continue;
+	    if (!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_NEUTRAL && skill == P_CLAW) continue;
+	    if (!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_CHAOTIC && skill == P_GRINDER) continue;
 
 	    P_MAX_SKILL(skill) = skmax;
 	    if (P_SKILL(skill) == P_ISRESTRICTED)       /* skill pre-set */
@@ -8915,7 +8916,7 @@ releasetryagain:
 	/* Set skill for all objects in inventory to be basic */
 	if(!Role_if(PM_POLITICIAN) && !Role_if(PM_WILD_TALENT) && !Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && !isamerican && !Role_if(PM_MURDERER)) for (obj = invent; obj; obj = obj->nobj) {
 	    skill = get_obj_skill(obj, FALSE);
-	    if (skill != P_NONE && !(!Role_if(PM_GENDERSTARIST) && flags.female && skill == P_GUN_CONTROL) && !(!Role_if(PM_GENDERSTARIST) && !flags.female && skill == P_SQUEAKING) && !(!Role_if(PM_DIABLIST) && u.ualign.type != A_LAWFUL && skill == P_ORB) && !(!Role_if(PM_DIABLIST) && u.ualign.type != A_NEUTRAL && skill == P_CLAW) && !(!Role_if(PM_DIABLIST) && u.ualign.type != A_CHAOTIC && skill == P_GRINDER) ) {
+	    if (skill != P_NONE && !(!Role_if(PM_GENDERSTARIST) && !Race_if(PM_MESHER) && flags.female && skill == P_GUN_CONTROL) && !(!Role_if(PM_GENDERSTARIST) && !Race_if(PM_MESHER) && !flags.female && skill == P_SQUEAKING) && !(!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_LAWFUL && skill == P_ORB) && !(!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_NEUTRAL && skill == P_CLAW) && !(!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_CHAOTIC && skill == P_GRINDER) ) {
 		if (!Role_if(PM_BINDER) && !Role_if(PM_DEMAGOGUE) && !Race_if(PM_BASTARD) && !Race_if(PM_YEEK) ) P_SKILL(skill) = P_BASIC;
 		else P_SKILL(skill) = P_UNSKILLED;
 		/* KMH -- If you came into the dungeon with it, you should at least be skilled */
@@ -10481,28 +10482,28 @@ rerollthree:
 	}
 
 	/* if you somehow got the other gender's skill, deactivate it now --Amy */
-	if (!Role_if(PM_GENDERSTARIST) && flags.female && P_MAX_SKILL(P_GUN_CONTROL) >= P_BASIC) {
+	if (!Role_if(PM_GENDERSTARIST) && !Race_if(PM_MESHER) && flags.female && P_MAX_SKILL(P_GUN_CONTROL) >= P_BASIC) {
 		P_MAX_SKILL(P_GUN_CONTROL) = P_ISRESTRICTED;
 		P_SKILL(P_GUN_CONTROL) = P_ISRESTRICTED;
 		P_ADVANCE(P_GUN_CONTROL) = 0;
 	}
-	if (!Role_if(PM_GENDERSTARIST) && !Role_if(PM_CLIMACTERIAL) && !flags.female && P_MAX_SKILL(P_SQUEAKING) >= P_BASIC) {
+	if (!Role_if(PM_GENDERSTARIST) && !Race_if(PM_MESHER) && !Role_if(PM_CLIMACTERIAL) && !flags.female && P_MAX_SKILL(P_SQUEAKING) >= P_BASIC) {
 		P_MAX_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_SKILL(P_SQUEAKING) = P_ISRESTRICTED;
 		P_ADVANCE(P_SQUEAKING) = 0;
 	}
 	/* or if you somehow got the other alignment's skill */
-	if (!Role_if(PM_DIABLIST) && u.ualign.type != A_CHAOTIC && P_MAX_SKILL(P_GRINDER) >= P_BASIC) {
+	if (!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_CHAOTIC && P_MAX_SKILL(P_GRINDER) >= P_BASIC) {
 		P_MAX_SKILL(P_GRINDER) = P_ISRESTRICTED;
 		P_SKILL(P_GRINDER) = P_ISRESTRICTED;
 		P_ADVANCE(P_GRINDER) = 0;
 	}
-	if (!Role_if(PM_DIABLIST) && u.ualign.type != A_NEUTRAL && P_MAX_SKILL(P_CLAW) >= P_BASIC) {
+	if (!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_NEUTRAL && P_MAX_SKILL(P_CLAW) >= P_BASIC) {
 		P_MAX_SKILL(P_CLAW) = P_ISRESTRICTED;
 		P_SKILL(P_CLAW) = P_ISRESTRICTED;
 		P_ADVANCE(P_CLAW) = 0;
 	}
-	if (!Role_if(PM_DIABLIST) && u.ualign.type != A_LAWFUL && P_MAX_SKILL(P_ORB) >= P_BASIC) {
+	if (!Role_if(PM_DIABLIST) && !Race_if(PM_MESHER) && u.ualign.type != A_LAWFUL && P_MAX_SKILL(P_ORB) >= P_BASIC) {
 		P_MAX_SKILL(P_ORB) = P_ISRESTRICTED;
 		P_SKILL(P_ORB) = P_ISRESTRICTED;
 		P_ADVANCE(P_ORB) = 0;

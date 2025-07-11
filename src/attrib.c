@@ -4274,6 +4274,12 @@ boolean displaymessage;
 		else themaximum--;
 	}
 
+	/* mesher generally has lower soft cap --Amy */
+	if (Race_if(PM_MESHER)) {
+		if (targetattr == A_STR && themaximum > 18 && themaximum < STR19(19)) themaximum -= 10;
+		else themaximum--;
+	}
+
 	/* now we know our actual limit */
 	actuallimit = themaximum;
 

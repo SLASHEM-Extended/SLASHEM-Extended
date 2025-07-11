@@ -18376,6 +18376,7 @@ u_init()
 	case PM_URGOTH: racebounus = rnz(15); break;
 	case PM_PLAYABLE_NEANDERTHAL: racebounus = rnz(15); break;
 	case PM_THRALL: racebounus = rnz(8); break;
+	case PM_MESHER: racebounus = rnz(5); break;
 	case PM_STARTSCUMMER: racebounus = 0; break;
 	default:	racebounus = rnz(10); break;
 
