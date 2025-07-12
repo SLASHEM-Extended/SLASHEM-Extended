@@ -19094,16 +19094,16 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "falconry gloves")) OBJ_DESCR(objects[i]) = "perchatki dlya sokolinoy okhoty";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latex gloves")) OBJ_DESCR(objects[i]) = "rezinovyye perchatki";
 
-		/* todo area */
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel cloak")) OBJ_DESCR(objects[i]) = "stal'noy plashch";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckloak")) OBJ_DESCR(objects[i]) = "plashch iz olen'yey shersti";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dextrous gloves")) OBJ_DESCR(objects[i]) = "lovkiye perchatki";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nimble gloves")) OBJ_DESCR(objects[i]) = "perchatki dlya lovkosti";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanium helmet")) OBJ_DESCR(objects[i]) = "titanovyy shlem";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weather dragonhide shield")) OBJ_DESCR(objects[i]) = "shchit iz shkury pogodnogo drakona";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tank top")) OBJ_DESCR(objects[i]) = "mayka";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker helmet")) OBJ_DESCR(objects[i]) = "baykerskiy shlem";
 
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel cloak")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckloak")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dextrous gloves")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nimble gloves")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanium helmet")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weather dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tank top")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker helmet")) OBJ_DESCR(objects[i]) = "todo";
+		/* todo area */
 
 	}
 	}
@@ -20557,16 +20557,16 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "falconry gloves")) OBJ_DESCR(objects[i]) = "lochin qo'lqoplari";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "latex gloves")) OBJ_DESCR(objects[i]) = "lateks qo'lqoplar";
 
-		/* todo area */
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel cloak")) OBJ_DESCR(objects[i]) = "temir plash";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckloak")) OBJ_DESCR(objects[i]) = "paqir";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dextrous gloves")) OBJ_DESCR(objects[i]) = "epchil qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nimble gloves")) OBJ_DESCR(objects[i]) = "chaqqon qo'lqoplar";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanium helmet")) OBJ_DESCR(objects[i]) = "titan dubulg'a";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weather dragonhide shield")) OBJ_DESCR(objects[i]) = "ob-havo ajdaho qalqoni";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tank top")) OBJ_DESCR(objects[i]) = "rezervuar yuqori";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker helmet")) OBJ_DESCR(objects[i]) = "velosipedchi dubulg'asi";
 
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "steel cloak")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckloak")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dextrous gloves")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "nimble gloves")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "titanium helmet")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "weather dragonhide shield")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "tank top")) OBJ_DESCR(objects[i]) = "todo";
-		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "biker helmet")) OBJ_DESCR(objects[i]) = "todo";
+		/* todo area */
 
 	}
 	}
