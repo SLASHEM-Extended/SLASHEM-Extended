@@ -1335,6 +1335,8 @@ int artinum;
 			sprintf(elemtypedesc, "magic"); break;
 		case AD_STUN:
 			sprintf(elemtypedesc, "stun"); break;
+		case AD_DRST:
+			sprintf(elemtypedesc, "poison"); break;
 	}
 
 	return elemtypedesc;

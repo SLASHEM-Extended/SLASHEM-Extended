@@ -31372,6 +31372,200 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: eating it gives you slow digestion for a good long while."); break;
 				case ART_CHARLENE_S_CORONA:
 					pline("Artifact specs: stronger version of covid nastytrap effect and cold immunity when worn."); break;
+				case ART_ENDGAME_DAMAGE:
+					pline("Artifact specs: +20 to-hit and +20 damage."); break;
+				case ART_DEAD_IN_YOUR_TANKS:
+					pline("Artifact specs: +20 damage, paralyzes targets for a turn."); break;
+				case ART_DWERLGERETO:
+					pline("Artifact specs: +10 to-hit and +5 stun damage."); break;
+				case ART_AHRTHERING:
+					pline("Artifact specs: +3 to-hit and +13 damage."); break;
+				case ART_COLD_WEATHER_DAMAGE:
+					pline("Artifact specs: +14 cold damage."); break;
+				case ART_PERFECT_ENDARKENING:
+					pline("Artifact specs: +14 damage. If a fired one hits a target, it darkens the area and can give you temporary protection."); break;
+				case ART_BACKHIT:
+					pline("Artifact specs: +6 damage."); break;
+				case ART_SHALESPIKE:
+					pline("Artifact specs: deals bleeding damage to targets."); break;
+				case ART_SPARKLE_DEEDLE:
+					pline("Artifact specs: spawns with increased stack size and if you hit an enemy when firing it, you heal 15 hit points."); break;
+				case ART_PAY_FOR_THE_TOILET:
+					pline("Artifact specs: +30 damage, but every time you fire one, you get 2000 turns of the antje 2 trap effect."); break;
+				case ART_ACCURACITY:
+					pline("Artifact specs: +10 to-hit and +10 damage, mulches a lot less often."); break;
+				case ART_SAY_THE_E_WORD:
+					pline("Artifact specs: firing it at an enemy may cause it to flee."); break;
+				case ART_SIDE_GATE:
+					pline("Artifact specs: +8 to-hit, +20 range when firing it."); break;
+				case ART_STAY_UNDERWATER:
+					pline("Artifact specs: +10 to-hit and +24 damage against semicolons."); break;
+				case ART_ENERGY_LEECH:
+					pline("Artifact specs: firing it at a target and hitting restores 20 mana and may occasionally increase your maximum by one."); break;
+				case ART_SUFFOCATION_BREATH:
+					pline("Artifact specs: firing it from your sling while your alignment is positive fires a poison breath in the direction of your shot, but increases your sin counter by one."); break;
+				case ART_WATSLES_HM:
+					pline("Artifact specs: +1 damage."); break;
+				case ART_WARRIOR_WOMAN:
+					pline("Artifact specs: +15 to-hit, multishot bonus when firing it from a sling."); break;
+				case ART_BLOCKEL_EM:
+					pline("Artifact specs: spawns with a higher stack size and gives multishot bonuses when firing it from a sling."); break;
+				case ART_INNOCUOUS_MOUSE:
+					pline("Artifact specs: firing it at a monster can slow it, but the monster gets a saving throw."); break;
+				case ART_ELECTRO_SHOCK:
+					pline("Artifact specs: +12 lightning damage."); break;
+				case ART_BARB_STRENGTH:
+					pline("Artifact specs: +20 damage."); break;
+				case ART_KON_THE_MAGIC:
+					pline("Artifact specs: +10 magic damage."); break;
+				case ART_SHHHHHHH:
+					pline("Artifact specs: +2 stun damage."); break;
+				case ART_SOME_OF_FORM:
+					pline("Artifact specs: +%d damage.", artilist[obj->oartifact].attk.damd); break;
+				case ART_RONDONOMBO:
+					pline("Artifact specs: deals a certain amount of extra damage, but we won't tell you, nyah-nyah."); break;
+				case ART_COPRICID:
+					pline("Artifact specs: +10 to-hit and +34 damage against fungi."); break;
+				case ART_DREEN_DAMAGE:
+					pline("Artifact specs: +2 to-hit and +8 poison damage."); break;
+				case ART_FALSE_GREEN:
+					pline("Artifact specs: can drain life from enemies."); break;
+				case ART_FLOW_BASIN:
+					pline("Artifact specs: wielding it grants swimming and protects your items from getting wet."); break;
+				case ART_POMME_GRENADE:
+					pline("Artifact specs: firing it causes it to explode and deal fire damage."); break;
+				case ART_HINZ_AND___:
+					pline("Artifact specs: +2 to-hit and +3 damage."); break;
+				case ART_DRUSCOHOL:
+					pline("Artifact specs: dipping it in a potion of booze creates blessed juice."); break;
+				case ART_DICE_NINE_SIDES_TWO:
+					pline("Artifact specs: +9 to-hit and +2 damage. Muahahahaha, upon generation this thing dealt elemental damage to you."); break;
+				case ART_CAPSULITH:
+					pline("Artifact specs: poisons targets."); break;
+				case ART_TIDY_CHARGE_FLOG:
+					pline("Artifact specs: +8 damage."); break;
+				case ART_DAMN_PROCURATION:
+					pline("Artifact specs: magical breathing when wielded."); break;
+				case ART_SYLVIE_S_NECKBAND:
+					pline("Artifact specs: spawns with a much bigger stack size."); break;
+				case ART_SHATTER_IN_TWO:
+					pline("Artifact specs: can bisect targets."); break;
+				case ART_WATERSTRAIN:
+					pline("Artifact specs: +12 to-hit and +4 damage."); break;
+				case ART_HOH_LEVEL_GREENITY:
+					pline("Artifact specs: +4 damage, can poison targets."); break;
+				case ART_ASA_LEHIBE:
+					pline("Artifact specs: +8 range when firing it from a sling."); break;
+				case ART_NORMAL_BLUE:
+					pline("Artifact specs: +3 to-hit and +3 damage."); break;
+				case ART_TOO_VALUABLE_TO_BE_COMMON:
+					pline("Artifact specs: no special effects, but worth a large amount of money."); break;
+				case ART_SLOW_DIFFUSION:
+					pline("Artifact specs: much less likely to mulch."); break;
+				case ART_PICKPRICK:
+					pline("Artifact specs: +2 to-hit and +2 damage."); break;
+				case ART_MADBALL:
+					pline("Artifact specs: +10 to-hit, +6 range."); break;
+				case ART_GREENE_SOLUTE:
+					pline("Artifact specs: +2 to-hit and +6 acid damage."); break;
+				case ART_WELL_MIXED:
+					pline("Artifact specs: +8 to-hit and +8 damage."); break;
+				case ART_LESSER_MIX:
+					pline("Artifact specs: +6 to-hit and +6 damage."); break;
+				case ART_AMMOFORM:
+					pline("Artifact specs: +4 damage, spawns with bigger stack size."); break;
+				case ART_ONE_TO_DAMAGE:
+					pline("Artifact specs: +21 lightning damage."); break;
+				case ART_FLAMBLOW:
+					pline("Artifact specs: +8 to-hit and +9 fire damage."); break;
+				case ART_SLOW_CHILL:
+					pline("Artifact specs: +12 to-hit and +6 cold damage."); break;
+				case ART_DISSOLVE_STYLE:
+					pline("Artifact specs: +7 to-hit and +10 acid damage."); break;
+				case ART_LITHBANE:
+					pline("Artifact specs: +12 to-hit and +5 stun damage."); break;
+				case ART_SNIPOBLOW:
+					pline("Artifact specs: +8 to-hit and +5 damage, +12 range when firing it."); break;
+				case ART_DRAIN_BRAND:
+					pline("Artifact specs: +3 to-hit and +1 drain damage, can drain levels from targets."); break;
+				case ART_GERNIT_H:
+					pline("Artifact specs: +25 to-hit and +2 damage."); break;
+				case ART_TSCHENEREYT_DA_SCHAINYS:
+					pline("Artifact specs: ha ha ha ha :D You wish you knew."); break;
+				case ART_SOME_SINISTER_DIFFICULTY:
+					pline("Artifact specs: hmm, you feel that there's something sinister about this one."); break;
+				case ART_SYLVIE_S_INADVERTENT_GLITC:
+					pline("Artifact specs: something about the high-score list, maybe?"); break;
+				case ART_SYLVIE_S_EYEROLLING:
+					pline("Artifact specs: dimness, infravision and sight bonus when worn."); break;
+				case ART_MEANINGFUL_CHALLENGE:
+					pline("Artifact specs: +2 increase accuracy, +1 increase damage and 10%% lower mana cost for spells when worn, but certain difficult monster types spawn more often."); break;
+				case ART_JUST_GIVE_EM_THE_TRINSIC:
+					pline("Artifact specs: ESP when worn."); break;
+				case ART_ARABELLA_S_SEE_NO_EVIL_MON:
+					pline("Artifact specs: DETECT MONSTERS when worn. Just use it all the time, it certainly has no downsides and if it does, they probably won't be all that bad."); break;
+				case ART_GOOD_TO_SEE_NOTHING:
+					pline("Artifact specs: +5 luck when worn."); break;
+				case ART_TOTALLY_THE_SPECTRUM:
+					pline("Artifact specs: resist fire, cold, shock, acid, poison, sleep, disintegration and magic when worn."); break;
+				case ART_GURKNOOK:
+					pline("Artifact specs: if you hit something with it and it breaks, it deals 50 extra damage to the target."); break;
+				case ART_SPOOOOOOOOOON_:
+					pline("Artifact specs: +10 damage."); break;
+				case ART_BLACKSMITH_S_FORGE:
+					pline("Artifact specs: contains additional weapons and armor."); break;
+				case ART_LAMEMAKER:
+					pline("Artifact specs: heh heh heh, when this one got generated, you received some dead weight."); break;
+				case ART_GIANT_S_CONTAINER:
+					pline("Artifact specs: contains an additional item."); break;
+				case ART_IT_S_TOO_HEAVY_FOR_YOUR:
+					pline("Artifact specs: contains a heavy iron ball."); break;
+				case ART_IT_S_TOO_GREIT_FOR_YOU:
+					pline("Artifact specs: contains a very heavy item. I wonder how you managed to pick up this item to read its description."); break;
+				case ART_ELTRA_GREETINGS:
+					pline("Artifact specs: contains a whole bunch of stuff."); break;
+				case ART_WIELD_HEAVY:
+					pline("Artifact specs: contains some heavy iron balls and iron chains."); break;
+				case ART_BOWN_MAKE:
+					pline("Artifact specs: can be invoked to change its material to bone."); break;
+				case ART_HAKAPERS_QUALITY:
+					pline("Artifact specs: much less likely to become brittle when using it to pick locks."); break;
+				case ART_THEEVERS_PIK:
+					pline("Artifact specs: much less likely to become brittle when using it to pick locks."); break;
+				case ART_HIT_LIKE_A_BOSS:
+					pline("Artifact specs: spawns with a higher enchantment, which may or may not do anything and isn't visible. Hitting a unique monster with it deals extra damage."); break;
+				case ART_INSERTED_SCREW:
+					pline("Artifact specs: can be used to lock things, too."); break;
+				case ART_MASTER_IN_ANOTHER_LANGUAGE:
+					pline("Artifact specs: much less likely to become brittle when using it to pick locks."); break;
+				case ART_DOCTOR_S_ASSISTANT:
+					pline("Artifact specs: much less likely to break upon use."); break;
+				case ART_SARINA_S_EXAM:
+					pline("Artifact specs: probes monsters."); break;
+				case ART_HOLY_CONSERVE:
+					pline("Artifact specs: generates blessed tins."); break;
+				case ART_SPOIL_YOUR_STOMACH:
+					pline("Artifact specs: generates cursed tins, less likely to use up a charge when used."); break;
+				case ART_SUPER_VONK:
+					pline("Artifact specs: using chemistry to create a potion is guaranteed to succeed when using this bottle to hold the potion."); break;
+				case ART_MICHAEL_S_STARTER_SET:
+					pline("Artifact specs: spawns with more charges."); break;
+				case ART_CHRISTIAN_S_ADVANCE:
+					pline("Artifact specs: spawns with much more charges."); break;
+				case ART_THOMAS_S_BREAKTHROUGH:
+					pline("Artifact specs: spawns with a heck of a lot of charges."); break;
+				case ART_ALMIS_MANICIA:
+					pline("Artifact specs: reflection, regeneration, resist drain life, flying and maurah trap effect when worn."); break;
+				case ART_NOT_AT_ALL_SHOCK:
+					pline("Artifact specs: can be invoked to gain intrinsic shock resistance, but the artifact is used up in the process."); break;
+				case ART_OPERATOR_KNOWLEDGE:
+					pline("Artifact specs: can be invoked to double your skill training in devices, but the artifact is used up in the process."); break;
+				case ART_LEVELUP_YOUR_CHAR:
+					pline("Artifact specs: can be invoked to gain a lot of experience, but the artifact is used up in the process. Be aware that you can only gain one experience level by that and excess points of experience you would've gained are lost."); break;
+				case ART_WOLDERHOOH:
+					pline("Artifact specs: is used up only 1 in 5 times."); break;
+				case ART_PRIMA_DONNA:
+					pline("Artifact specs: gives much more bonus charisma when used."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

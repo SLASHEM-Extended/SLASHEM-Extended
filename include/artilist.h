@@ -29,7 +29,8 @@ static const char *artifact_names[] = {
 #define     STUN(a,b)	{0,AD_STUN,a,b}		/* magical attack */
 #define     ACID(a,b)	{0,AD_ACID,a,b}
 #define	MAGM(a,b)	{0,AD_MAGM,a,b}
-/* if new types are added, keep randartiattacktype() in rnd.c synced --Amy */
+#define	DRST(a,b)	{0,AD_DRST,a,b}
+/* if new types are added, keep randartiattacktype() in rnd.c and elementdamagedesc() in do_name.c synced --Amy */
 
 STATIC_OVL NEARDATA struct artifact artilist_pre[] = {
 #endif	/* MAKEDEFS_C */
@@ -19646,6 +19647,394 @@ A("Creosote's Giant Stomach",				TWELVE_COURSE_DINNER, /* slow digestion for rnz
 A("Charlene's Corona",				CROWN, /* super covid effect, cold immunity */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Endgame Damage",				MAGICITE_CRYSTAL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Dead In Your Tanks",				WONDER_STONE, /* sets target's paralysis counter to 2 if it was lower */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1700L ),
+
+A("Dwerlgereto",				SPECTROLITE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(10, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Ahrthering",				JACINTH,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 13), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Cold Weather Damage",				SAPPHIRE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Perfect Endarkening",				BLACK_OPAL, /* makes area dark when it hits a target and sets your temporary protection to 4 if it's lower */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Backhit",				OPAL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Shalespike",				DIOPTASE, /* +d10 bleeding damage if it hits a target */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Sparkle Deedle",				IOLITE, /* spawns with +5 stack size, heals 15 hit points if it hits a target */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Pay For The Toilet",				TURQUOISE, /* every time you fire one, 2000 turns of antje 2 trap effect */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Accuracity",				ORTHOCLASE, /* 90% chance that if it would've mulched, it won't */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 150L ),
+
+A("Say The E-Word",				CITRINE, /* target may turn to flee if it fails a resistance check */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Side Gate",				ANDALUSITE, /* +20 range, dmg h@ck */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Stay Underwater",				AQUAMARINE,
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_EEL),
+	PHYS(10, 24), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Energy Leech",				PERIDOT, /* if it hits a target, restores 20 mana and 1 in 10 to increase the max by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Suffocation Breath",				CHAROITE, /* fires a poison beam with strength 10 when fired as long as your max alignment is positive, but gives +1 sins */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Watsles hm",				AMBER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5L ),
+
+A("Warrior Woman",				AMAZONITE, /* dmg h@ck, +d2 multishot */
+	(SPFX_RESTR), 0, 0,
+	PHYS(15, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Blockel'em",				SODALITH, /* +d3 multishot, spawns with +10 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Innocuous Mouse",				VIVIANITE, /* can slow targets on hit, but they get a saving throw */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Electro Shock",				TOPAZ,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Barb Strength",				TANZANITE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Kon The Magic",				EPIDOTE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	MAGM(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 180L ),
+
+A("Shhhhhhh",				JET,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 170L ),
+
+A("Some of Form",				CHRYSOCOLLA, /* damage is initialized randomly from 1 to 20 */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Rondonombo",				GRANDIDIERITE, /* damage is initialized randomly from 1 to 31, but the description doesn't tell you the value */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Copricid",				MALACHITE,
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_FUNGUS),
+	PHYS(10, 34), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Dreen Damage",				CHRYSOBERYL,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	DRST(2, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("False Green",				COVELLINE,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 480L ),
+
+A("Flow Basin",				ROSE_QUARTZ, /* swimming and protects items from getting wet when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Pomme Grenade",				GARNET, /* explodes like hellfire bolts */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Hinz and...",				KUNZITE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Druscohol",				AMETHYST, /* blesses juice that results from dipping booze */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25L ),
+
+A("Dice Nine Sides Two",				SPINEL, /* hits you with all four elemental item destruction effects upon being spawned */
+	(SPFX_RESTR), 0, 0,
+	PHYS(9, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Capsulith",				CYAN_STONE, /* poisons target */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Tidy Charge Flog",				JASPER,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Damn Procuration",				MOONSTONE, /* magical breathing when wielded */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sylvie's Neckband",				PREHNITE, /* spawns with +rnz(50) stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Shatter-In-Two",				DISTHENE, /* bisects targets */
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Waterstrain",				APOPHYLLITE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(12, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Hoh-Level Greenity",				OBSIDIAN, /* poisons targets */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Asa Lehibe",				LARIMAR, /* +8 range */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Normal Blue",				AGATE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 33L ),
+
+A("Too Valuable To Be Common",				TOURMALINE, /* no special effects, just worth a lot of money */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Slow Diffusion",				RHODOCHROSITE, /* 5x less likely to mulch */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Pickprick",				HALITE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20L ),
+
+A("Madball",				MARBLE, /* dmg h@ck, +6 range */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Greene Solute",				JADE,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(2, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Well Mixed",				ROCK, /* randart2 gem */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Lesser Mix",				ROCK, /* randart2 gem */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Ammoform",				ROCK, /* randart2 gem, spawns with 2x stack size */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25L ),
+
+A("One-To Damage",				ROCK, /* randart2 gem */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(0, 21), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 250L ),
+
+A("Flamblow",				ROCK, /* randart2 gem */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(8, 9), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 160L ),
+
+A("Slow Chill",				ROCK, /* randart2 gem */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(12, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 180L ),
+
+A("Dissolve Style",				ROCK, /* randart2 gem */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ACID(7, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 190L ),
+
+A("Lithbane",				ROCK, /* randart2 gem */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(12, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Snipoblow",				ROCK, /* randart2 gem, +12 range */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 270L ),
+
+A("Drain Brand",				ROCK, /* randart2 gem */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	DRLI(3, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Gernit-h",				ROCK, /* randart2 gem */
+	(SPFX_RESTR), 0, 0,
+	PHYS(25, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Tschenereyt da schainys",				ROCK, /* randart2 gem, gives you the completely bad part nastytrap effect intrinsically upon generating */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Some Sinister Difficulty",				ROCK, /* randart2 gem, gives you the bad part nastytrap effect for 20k turns upon generating */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1L ),
+
+A("Sylvie's Inadvertent Glitch",				ROCK, /* randart2 gem, gives you the highscore nastytrap effect for 15k turns upon generating */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Sylvie's Eyerolling",				RADIOGLASSES, /* dimness, infravision, sight bonus */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Meaningful Challenge",				BOSS_VISOR, /* +5 spawn freq for monster types that become more common when playing a challenger, +2 increase accuracy, +1 increase damage, spells cost 10% less mana */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Just Give Em The Trinsic",				BLINDFOLD,
+	(SPFX_RESTR|SPFX_ESP|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Arabella's See-No-Evil Monkey",				BLINDFOLD, /* detect monsters, autopilot, spell cooldown, turbodull, inventory size bug, carrcap effect, repeating nastycurse, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Good To See Nothing",				EYECLOSER, /* +5 luck when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Totally The Spectrum",				DRAGON_EYEPATCH, /* resist fire, cold, shock, acid, poison, sleep, disint, magic */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Gurknook",				MIRROR, /* +50 damage if you hit something with it in a way that causes it to break */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("SPOOOOOOOOOON!",				SPOON,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Blacksmith's Forge",				CHEST, /* contains 3 weapons and 3 armor pieces in addition to its normal contents */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Lamemaker",				LARGE_BOX, /* gives you an additional 500 weight (that times out) upon generation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Giant's Container",				SACK, /* spawns with an additional random item inside */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("It's Too Heavy For Your",				SACK, /* spawns with a random heavy iron ball inside */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("It's Too Greit For You",				SACK, /* spawns with a treasure chest inside */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Eltra Greetings",				CHEST, /* spawns with one item of each item class inside */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Wield-Heavy",				RUGGED_SACK, /* contains 2 random iron chains and 2 random heavy iron balls */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Bown Make",				SKELETON_KEY, /* invoke to change its material to BONE */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hakapers Quality",				SKELETON_KEY, /* 5x lower risk of becoming brittle */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Theevers Pik",				LOCK_PICK, /* 7x lower risk of becoming brittle */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Hit Like A Boss",				LOCK_PICK, /* spawns with +10 enchantment, deals +10 damage against G_UNIQ */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Inserted Screw",				CREDIT_CARD, /* can also lock things */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Master In Another Language",				CREDIT_CARD, /* 10x lower risk of becoming brittle */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Doctor's Assistant",				STETHOSCOPE, /* 10x lower breakage chance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Sarina's Exam",				STETHOSCOPE, /* probes monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Holy Conserve",				TINNING_KIT, /* always generates blessed tins */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Spoil Your Stomach",				TINNING_KIT, /* always generates cursed tins, only uses up a charge half of the time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Super Vonk",				BOTTLE, /* making a potion with this bottle is guaranteed to work */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Michael's Starter Set",				CHEMISTRY_SET, /* spawns with +10 charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Christian's Advance",				CHEMISTRY_SET, /* spawns with 2x charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Thomas's Breakthrough",				CHEMISTRY_SET, /* spawns with 2x and +15 charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Almis Manicia",				ITALIAN_HEELS, /* resist drain life, flying, maurah trap effect */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_REGEN|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Not At All Shock",				DIODE, /* can be invoked to gain intrinsic shock resistance, but the artifact is used up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Operator Knowledge",				TRANSISTOR, /* can be invoked to double skill training in devices, but the artifact is used up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Levelup Your Char",				IC, /* can be invoked to gain 10 million experience, but the artifact is used up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Wolderhooh",				BLESSER, /* gets used up 1 in 5 times only */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Prima Donna",				BEAUTY_PACK, /* increases your CHA by 5 when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

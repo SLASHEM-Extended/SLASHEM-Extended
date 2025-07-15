@@ -878,6 +878,7 @@ register struct monst *mtmp;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 2;
 	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uright && uright->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uwep && uwep->oartifact == ART_DOUBLE_BESTARD) tmp -= rnd(20);
@@ -3761,7 +3762,11 @@ int dieroll;
 			tmp = dmgvalX(obj, mon);
 			break;
 		    case MIRROR:
+			tmp = 1;
 			if (breaktest(obj)) {
+
+			    if (obj && obj->oartifact == ART_GURKNOOK) tmp += 50;
+
 			    You("break %s mirror.  That's bad luck!",
 				shk_your(yourbuf, obj));
 			    change_luck(-2);
@@ -3771,7 +3776,6 @@ int dieroll;
 			    get_dmg_bonus = FALSE;
 			    hittxt = TRUE;
 			}
-			tmp = 1;
 			break;
 		    case EXPENSIVE_CAMERA:
 			You("succeed in destroying %s camera.  Congratulations!",
@@ -4001,6 +4005,8 @@ int dieroll;
 		    default:
 			/* non-weapons can damage because of their weight */
 			/* (but not too much) */
+			/* Amy note: non-weapon artifacts like shields that should add bash damage go here!! e.g. weapon sign */
+			/* make sure the item isn't one of the specific types like EGG, CREAM_PIE, MIRROR, EXPENSIVE_CAMERA, CLOVE_OF_GARLIC etc. above */
 			tmp = obj->owt/40;
 			if(tmp < 1) tmp = 1;
 			else tmp = rnd(tmp);
@@ -4054,6 +4060,9 @@ int dieroll;
 				}
 			}
 
+			if (obj && obj->oartifact == ART_HIT_LIKE_A_BOSS && (mon->data->geno & G_UNIQ) && tmp > 0) {
+				tmp += 10;
+			}
 			if (obj && obj->oartifact == ART_EXCALISHIELD) {
 				tmp += 6;
 			}
@@ -4377,6 +4386,7 @@ int dieroll;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 		if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 		if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
+		if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 1;
 		if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp += 10;
 		if (uright && uright->oartifact == ART_BLIND_PILOT) tmp += 10;
 		if (uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) tmp += 10;
@@ -4696,6 +4706,27 @@ int dieroll;
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
 			tmp += rnd(40);
+		}
+
+		if (thrown && obj && obj->oartifact == ART_DEAD_IN_YOUR_TANKS && mon->mfrozen < 2) {
+			mon->mfrozen = 2;
+			mon->mcanmove = 0;
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("%s is stopped in %s tracks!", Monnam(mon), mhis(mon));
+		}
+
+		if (thrown && obj && obj->oartifact == ART_SAY_THE_E_WORD) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				monflee(mon, rnd(6), FALSE, TRUE, FALSE);
+			}
+		}
+
+		if (thrown && obj && obj->oartifact == ART_ENERGY_LEECH) {
+			u.uen += 20;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			if (!rn2(10)) u.uenmax++;
+			flags.botl = TRUE;
+			pline("You feel more energised!");
 		}
 
 		if (!thrown && uwep && uwep->oartifact == ART_TOWEL_OF_THE_INTERSTELLAR_ && obj && objects[obj->otyp].oc_skill == P_WHIP) {
@@ -5382,6 +5413,17 @@ melatechoice:
 
 		}
 
+		if (thrown && obj && (obj->oartifact == ART_INNOCUOUS_MOUSE)) {
+			if (mon->mspeed != MSLOW && !resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+			    unsigned int oldspeed = mon->mspeed;
+	
+			    mon_adjust_speed(mon, -1, (struct obj *)0);
+			    if (mon->mspeed != oldspeed && canseemon(mon))
+				pline("%s slows down.", Monnam(mon));
+			}
+
+		}
+
 		if (thrown && obj && (obj->oartifact == ART_HEAVYDRAIN)) {
 			if (mon->mhpmax > 1) mon->mhpmax--;
 			if (mon->mhpmax < mon->mhp) mon->mhp = mon->mhpmax;
@@ -5491,6 +5533,19 @@ melatechoice:
 			}
 		}
 
+		if (thrown && obj && (obj->oartifact == ART_PERFECT_ENDARKENING) ) {
+			if (u.uspellprot < 4) {
+				u.uspellprot = 4;
+				u.uspmtime = 10;
+				if (!u.usptime) u.usptime = u.uspmtime;
+				find_ac();
+				flags.botl = TRUE;
+				You_feel("protected!");
+			}
+			pline("Collusion!");
+			litroomlite(FALSE);
+		}
+
 		if (thrown && obj && (obj->oartifact == ART_TRACKSTOP) && mon->mcanmove ) {
 			mon->mfrozen = 2;
 			mon->mcanmove = 0;
@@ -5515,6 +5570,16 @@ melatechoice:
 		if (wep && wep->oartifact == ART_PRICK_BEARER_S_RANSOM) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (thrown && obj && obj->oartifact == ART_SHALESPIKE) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (thrown && obj && obj->oartifact == ART_SPARKLE_DEEDLE) {
+			healup(15, 0, FALSE, FALSE);
+			You_feel("healthier!");
 		}
 
 		if (wep && wep->otyp == ARCANE_HORN && !thrown) {

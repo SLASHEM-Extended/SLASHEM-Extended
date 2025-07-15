@@ -279,6 +279,8 @@ int thrown;
 	    if (launcher && launcher->oartifact == ART_UZ_I) multishot += rnd(3);
 	    if (launcher && launcher->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) multishot += 2;
 	    if (launcher && obj && obj->oartifact == ART_FUCK_THE_SERVER) multishot += 2;
+	    if (launcher && obj && obj->oartifact == ART_WARRIOR_WOMAN) multishot += rnd(2);
+	    if (launcher && obj && obj->oartifact == ART_BLOCKEL_EM) multishot += rnd(3);
 
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
@@ -875,6 +877,17 @@ newbossO:
 
 	if (launcher && launcher->oartifact == ART_SPEW_THE_BOW) {
 		buzz(10, rnd(4), u.ux, u.uy, u.dx, u.dy);
+	}
+
+	if (launcher && obj && obj->oartifact == ART_SUFFOCATION_BREATH && u.ualign.record > 0) {
+		buzz(16, 10, u.ux, u.uy, u.dx, u.dy); /* poison gas */
+		increasesincounter(1);
+		u.alignlim--;
+		adjalign(-1);
+	}
+
+	if (launcher && obj && obj->oartifact == ART_PAY_FOR_THE_TOILET) {
+		FemaleTrapAntjeX += 2000;
 	}
 
 	if (tech_inuse(T_GREEN_MISSILE) && obj && obj->oclass == VENOM_CLASS) {
@@ -1840,6 +1853,7 @@ boolean hitsroof;
 	if (dmg > 0 && u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_SUDUNSEL) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_KLOCKING_NOISE) dmg += 2;
+	if (dmg > 0 && ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) dmg += 1;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALES) dmg += 1;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) dmg += 1;
 	if (dmg > 0 && uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) dmg += 1;
@@ -2239,6 +2253,10 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPESNIPESNIPE) range += 5;
 		if (obj && obj->oartifact == ART_WAY_TOO_LONG) range += 10;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SAY__CHESS_) range += 2;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SIDE_GATE) range += 20;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_ASA_LEHIBE) range += 8;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_MADBALL) range += 6;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPOBLOW) range += 12;
 		if (obj && obj->oartifact == ART_PEWWWWWWW) range += 15;
 		if (obj && obj->oartifact == ART_WIUNEW) range += 3;
 		if (obj && obj->oartifact == ART_KLUEUEUEU) range += 5;
@@ -2792,6 +2810,7 @@ boolean polearming;
 	if (u.boosttimer) tmp += 5;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
 	if (uarmg && uarmg->oartifact == ART_SOFT_TO_THE_TOUCH) tmp += 5;
+	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 2;
 	if (uwep && uwep->oartifact == ART_JUSTICE_FOR_GARLIC) tmp += 5;
 	if (uwep && uwep->oartifact == ART_ATOMIC_MISSING) tmp -= 20;
 	if (uarmg && uarmg->oartifact == ART_SI_OH_WEE) tmp += 2;
@@ -3403,7 +3422,7 @@ evasionchancedone:
 
 	if (!polearming && befriend_with_obj(mon->data, obj)) goto befriended;
 
-	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) || obj->oartifact == ART_KLUEUEUEU ||
+	if (obj->oclass == WEAPON_CLASS || obj->oclass == BALL_CLASS || obj->oclass == CHAIN_CLASS || obj->oclass == VENOM_CLASS || is_weptool(obj) || obj->oartifact == ART_KLUEUEUEU || obj->oartifact == ART_GURKNOOK ||
 		obj->oclass == GEM_CLASS) {
 	    if (is_ammo(obj)) {
 		if (!ammo_and_launcher(obj, launcher)) {
@@ -3479,7 +3498,7 @@ evasionchancedone:
 
 		/* Detonate bolts shot by Hellfire */
 		if (ammo_and_launcher(obj, launcher) &&
-			(launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_LONG_FIREMISSILE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
+			(launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_LONG_FIREMISSILE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || obj->oartifact == ART_POMME_GRENADE || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)) {
 		    if (cansee(bhitpos.x,bhitpos.y)) 
 			pline("%s explodes in a ball of fire!", Doname2(obj));
 		    else You_hear("an explosion");
@@ -3504,7 +3523,7 @@ evasionchancedone:
 			|| (obj->oartifact == ART_HOUCHOU)
 			|| (obj->oartifact == ART_VORPALITY_TEMPTATION && u.vorpalitytempt >= 100)
 			/* WAC catch Hellfire */
-			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_LONG_FIREMISSILE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
+			|| (launcher && (launcher->oartifact == ART_HELLFIRE || launcher->oartifact == ART_LONG_FIREMISSILE || launcher->oartifact == ART_EVERCONSUMING_HELLFIRE || obj->oartifact == ART_BAKUHATSU_SEI_MISAIRU || obj->oartifact == ART_POMME_GRENADE || launcher->oartifact == ART_UNIDENTIFIED_HELLCAST || launcher->oartifact == ART_SEVENTH_SCRIPTURE)
 			&& is_ammo(obj) && ammo_and_launcher(obj, launcher))
 		   ) {
 		    /* we were breaking 2/3 of everything unconditionally.
@@ -3599,6 +3618,12 @@ evasionchancedone:
 		    }
 		    if (obj->oartifact == ART_BE_CONSERVED) {
 			if (rn2(10)) broken = 0;
+		    }
+		    if (obj->oartifact == ART_ACCURACITY) {
+			if (rn2(10)) broken = 0;
+		    }
+		    if (obj->oartifact == ART_SLOW_DIFFUSION) {
+			if (rn2(5)) broken = 0;
 		    }
 
 		    if (objects[otyp].oc_material == MT_BAMBOO && broken && !rn2(4)) broken = 0;

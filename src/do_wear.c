@@ -5855,6 +5855,9 @@ register struct obj *otmp;
 			pline("Yur bldnflt crrrss tsefl!!!!!111");
 		}
 	}
+	if (otmp && otmp->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON) {
+		curse(otmp);
+	}
 
 	if (otmp && otmp->oartifact == ART_IT_BE_NITE) {
 		if (!otmp->cursed) {

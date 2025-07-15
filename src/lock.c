@@ -382,6 +382,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	struct	obj	**pickp;
 {
 	int picktyp, c, ch;
+	boolean pickwithcard = FALSE;
 	coord cc;
 	int key;
 	struct rm	*door;
@@ -391,6 +392,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	boolean bypassartilock = FALSE;
 
 	picktyp = pick->otyp;
+	if (pick && pick->oartifact == ART_INSERTED_SCREW) pickwithcard = TRUE;
 
 	/* check whether we're resuming an interrupted previous attempt */
 	if (xlock.usedtime && picktyp == xlock.picktyp) {
@@ -494,7 +496,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 			You_cant("fix its broken lock with %s.", doname(pick));
 			return 0;
 		    }
-		    else if (picktyp == CREDIT_CARD && !otmp->olocked) {
+		    else if (picktyp == CREDIT_CARD && !pickwithcard && !otmp->olocked) {
 			/* credit cards are only good for unlocking */
 			You_cant("do that with %s.", doname(pick));
 			return 0;
@@ -505,13 +507,13 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    }
 		    switch(picktyp) {
 			case CREDIT_CARD:
-			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 10 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("credit card breaks in half!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    if(!rn2(isfriday ? 10 : 20) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+			    if(!rn2(isfriday ? 10 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("credit card becomes dull and is no longer capable of picking locks!");
 				pick->obrittle = pick->obrittle2 = 3;
 				return(1);
@@ -534,14 +536,14 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 			    		(!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60: (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 			    		(!pick->blessed || !rn2(3)) && pick->oartifact) {
 				if (pick->oartifact == ART_DITHERS_WUMA) {
 					FemaleTrapJette += 50000;
@@ -557,13 +559,13 @@ pick_lock(pickp) /* pick a lock with a given object */
 			case SKELETON_KEY:
 			case CONTROVERSY_CODE:
 			case SECRET_KEY:
-			    if(!rn2(isfriday ? 7 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key didn't quite fit the lock and snapped!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(1);
 			    }
-			    if(!rn2(isfriday ? 7 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("key becomes brittle and is no longer capable of picking locks!");
 				if (pick->oartifact == ART_UNBRIT_SOV) {
 					u.badfcursed += 10000;
@@ -628,7 +630,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		    return(0);
 		default:
 		    /* credit cards are only good for unlocking */
-		    if(picktyp == CREDIT_CARD && !(door->doormask & D_LOCKED)) {
+		    if(picktyp == CREDIT_CARD && !pickwithcard && !(door->doormask & D_LOCKED)) {
 			You_cant("lock a door with a credit card.");
 			return(0);
 		    }
@@ -647,14 +649,14 @@ pick_lock(pickp) /* pick a lock with a given object */
 
 		    switch(picktyp) {
 			case CREDIT_CARD:
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your card off in the door!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) &&
+			    if(!rn2(isfriday ? 10 : Role_if(PM_LOCKSMITH) ? 40 : (Role_if(PM_TOURIST) || Role_if(PM_CYBERNINJA)) ? 30 : 20) && !((pick->oartifact == ART_MASTER_IN_ANOTHER_LANGUAGE) && rn2(10)) &&
 				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("credit card becomes dull and is no longer capable of picking locks!");
 				pick->obrittle = pick->obrittle2 = 3;
@@ -680,14 +682,14 @@ pick_lock(pickp) /* pick a lock with a given object */
 			    break;
 			case LOCK_PICK:
 			case HAIRCLIP:
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 				    (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				You("break your pick!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) &&
+			    if(!rn2(isfriday ? 20 : Role_if(PM_LOCKSMITH) ? 60 : (Role_if(PM_ROGUE) || Role_if(PM_CYBERNINJA)) ? 40 : 30) && !((pick->oartifact == ART_THEEVERS_PIK) && rn2(7)) &&
 				    (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				if (pick->oartifact == ART_DITHERS_WUMA) {
 					FemaleTrapJette += 50000;
@@ -703,13 +705,13 @@ pick_lock(pickp) /* pick a lock with a given object */
 			case SKELETON_KEY:
 			case CONTROVERSY_CODE:
 			case SECRET_KEY:
-			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && !pick->oartifact) {
 				Your("key wasn't designed for this door and broke!");
 				useup(pick);
 				*pickp = (struct obj *)0;
 				return(0);
 			    }
-			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
+			    if(!rn2(isfriday ? 7 : Role_if(PM_LOCKSMITH) ? 40 : Role_if(PM_CYBERNINJA) ? 30 : 15) && !((pick->oartifact == ART_HAKAPERS_QUALITY) && rn2(5)) && !(pick->oartifact == ART_VANULLA_SCORE) && (!pick->blessed || !rn2(3)) && pick->oartifact) {
 				Your("key becomes brittle and is no longer capable of picking locks!");
 				if (pick->oartifact == ART_UNBRIT_SOV) {
 					u.badfcursed += 10000;

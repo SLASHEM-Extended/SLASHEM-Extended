@@ -3450,6 +3450,12 @@ boolean atme;
 		energy /= 2;
 	}
 
+	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && energy > 1) {
+		if (rn2(10)) energy += 1;
+		energy *= 9;
+		energy /= 10;
+	}
+
 	if (uarmh && uarmh->oartifact == ART_FULLY_WORKING_AT_HALF_MAXI) {
 		if (rn2(10)) energy += 1;
 		energy /= 2;
@@ -3795,7 +3801,7 @@ castanyway:
 		}
 	}
 
-	if (SpellCooldownBug || u.uprops[SPELL_COOLDOWN_BUG].extrinsic || have_spellcooldownstone()) {
+	if (SpellCooldownBug || u.uprops[SPELL_COOLDOWN_BUG].extrinsic || have_spellcooldownstone() || (ublindf && ublindf->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON) ) {
 		if (!u.spellcooldown) {
 			u.spellcooldown = SpellCooldownXtra ? rnz(100) : rnz(10);
 			Your("spellcasting has been put on a timer of %d turns.", u.spellcooldown);

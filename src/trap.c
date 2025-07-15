@@ -25589,6 +25589,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if ((obj->where != OBJ_FLOOR) && powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FLOW_BASIN) continue;
 		if ((obj->where != OBJ_FLOOR) && autismringcheck(ART_JOLIE_S_JOLLY)) continue;
 		if ((obj->where != OBJ_FLOOR) && autismringcheck(ART_CROQUE_FORD)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_FULL_PROTECTION_FROM_WATER) continue;

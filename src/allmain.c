@@ -3149,6 +3149,9 @@ moveloop()
 		if (have_nastycursestone() && !rn2(5000)) {
 			nastytrapcurse();
 		}
+		if (ublindf && ublindf->oartifact == ART_ARABELLA_S_SEE_NO_EVIL_MON && !rn2(5000)) {
+			nastytrapcurse();
+		}
 
 		if (uarmf && uarmf->oartifact == ART_TEACH_YA_BUT_CANNOT_LEARN && !rn2(20000)) {
 			You("are granted some new skills!");

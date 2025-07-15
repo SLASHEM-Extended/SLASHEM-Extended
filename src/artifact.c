@@ -820,6 +820,20 @@ init_randarts()
 	artilist[ART_RACE_ALONG_THE_HIGHWAY].otyp = randartchainX();
 	artilist[ART_PAWNERMASTER].otyp = randartgemX();
 	artilist[ART_SHINING_ROCK].otyp = randartgemX();
+	artilist[ART_ONE_TO_DAMAGE].otyp = randartgemX();
+	artilist[ART_FLAMBLOW].otyp = randartgemX();
+	artilist[ART_SLOW_CHILL].otyp = randartgemX();
+	artilist[ART_DISSOLVE_STYLE].otyp = randartgemX();
+	artilist[ART_LITHBANE].otyp = randartgemX();
+	artilist[ART_SNIPOBLOW].otyp = randartgemX();
+	artilist[ART_DRAIN_BRAND].otyp = randartgemX();
+	artilist[ART_GERNIT_H].otyp = randartgemX();
+	artilist[ART_TSCHENEREYT_DA_SCHAINYS].otyp = randartgemX();
+	artilist[ART_SOME_SINISTER_DIFFICULTY].otyp = randartgemX();
+	artilist[ART_SYLVIE_S_INADVERTENT_GLITC].otyp = randartgemX();
+	artilist[ART_WELL_MIXED].otyp = randartgemX();
+	artilist[ART_LESSER_MIX].otyp = randartgemX();
+	artilist[ART_AMMOFORM].otyp = randartgemX();
 	artilist[ART_GANTULETS_OF_MISPEALING].otyp = randartglovesX();
 	artilist[ART_SECRET_BOOK_OF_VENOM].otyp = randartspellbookX();
 	artilist[ART_ENCYCLOPEDIA_GALACTICA].otyp = randartspellbookX();
@@ -961,6 +975,9 @@ init_randarts()
 	artilist[ART_POSTSCHEME_M].attk.adtyp = randartiattacktype();
 	artilist[ART_POSTSCHEME_M].attk.damn = rnd(11);
 	artilist[ART_POSTSCHEME_M].attk.damd = rnd(15);
+
+	artilist[ART_SOME_OF_FORM].attk.damd = rnd(20);
+	artilist[ART_RONDONOMBO].attk.damd = rnd(31);
 
 	init_appearance_randarts();
 
@@ -1972,6 +1989,19 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+		    if (otmp && otmp->oartifact == ART_MICHAEL_S_STARTER_SET) {
+			otmp->spe += 10;
+		    }
+		    if (otmp && otmp->oartifact == ART_CHRISTIAN_S_ADVANCE) {
+			otmp->spe *= 2;
+		    }
+		    if (otmp && otmp->oartifact == ART_THOMAS_S_BREAKTHROUGH) {
+			otmp->spe *= 2;
+			otmp->spe += 15;
+		    }
+		    if (otmp && otmp->oartifact == ART_HIT_LIKE_A_BOSS) {
+			otmp->spe += 10;
+		    }
 		    if (otmp && otmp->oartifact == ART_SAVOS__SAGERY) {
 			otmp->spe += 2;
 		    }
@@ -2062,6 +2092,64 @@ register boolean mod;
 				case 10: maincontainerclass = FOOD_CLASS; break;
 				case 11: maincontainerclass = GEM_CLASS; break;
 			}
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_BLACKSMITH_S_FORGE) {
+			int maincontainerclass = WEAPON_CLASS;
+			int maincontaineramount = 3;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+			maincontainerclass = ARMOR_CLASS;
+			maincontaineramount = 3;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_WIELD_HEAVY) {
+			int maincontainerclass = BALL_CLASS;
+			int maincontaineramount = 2;
+
+			register struct obj *ocont;
+
+			while (maincontaineramount > 0) {
+				maincontaineramount--;
+				ocont = mkobj(maincontainerclass, FALSE, FALSE);
+				if (ocont) {
+					ocont->owt = weight(ocont);
+					(void) add_to_container(otmp, ocont, TRUE);
+				}
+			}
+
+			maincontainerclass = CHAIN_CLASS;
+			maincontaineramount = 2;
 
 			while (maincontaineramount > 0) {
 				maincontaineramount--;
@@ -2210,6 +2298,121 @@ register boolean mod;
 
 		    }
 
+		    if (otmp && otmp->oartifact == ART_IT_S_TOO_HEAVY_FOR_YOUR) {
+
+			register struct obj *ocont;
+
+			ocont = mkobj(BALL_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_ELTRA_GREETINGS) {
+			register struct obj *ocont;
+
+			ocont = mkobj(WEAPON_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(ARMOR_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(RING_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(AMULET_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(IMPLANT_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(TOOL_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(FOOD_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(POTION_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(SCROLL_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(SPBOOK_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(WAND_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(COIN_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(GEM_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(ROCK_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(BALL_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(CHAIN_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+			ocont = mkobj(VENOM_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_GIANT_S_CONTAINER) {
+
+			register struct obj *ocont;
+
+			ocont = mkobj(RANDOM_CLASS, FALSE, FALSE);
+			if (ocont) {
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
 		    if (otmp && otmp->oartifact == ART_BOOTY_CASE) {
 
 			int maincontaineramount = rnd(3);
@@ -2268,6 +2471,17 @@ register boolean mod;
 			if (ocont) {
 				curse(ocont);
 				ocont->hvycurse = TRUE;
+				ocont->owt = weight(ocont);
+				(void) add_to_container(otmp, ocont, TRUE);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_IT_S_TOO_GREIT_FOR_YOU) {
+			register struct obj *ocont;
+
+			ocont = mksobj(TREASURE_CHEST, TRUE, FALSE, FALSE);
+			if (ocont) {
 				ocont->owt = weight(ocont);
 				(void) add_to_container(otmp, ocont, TRUE);
 			}
@@ -2620,6 +2834,18 @@ register boolean mod;
 			otmp->quan += 4;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_SPARKLE_DEEDLE) {
+			otmp->quan += 5;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_BLOCKEL_EM) {
+			otmp->quan += 10;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_SYLVIE_S_NECKBAND) {
+			otmp->quan += rnz(50);
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_MULTIPOT) {
 			otmp->quan += rn1(6,6);
 			otmp->owt = weight(otmp);
@@ -2705,6 +2931,10 @@ register boolean mod;
 			otmp->quan *= 3;
 			otmp->owt = weight(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_AMMOFORM) {
+			otmp->quan *= 2;
+			otmp->owt = weight(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_AMMO_GALORE) {
 			otmp->quan *= 5;
 			otmp->owt = weight(otmp);
@@ -2735,6 +2965,29 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_COMPLETE_BUGNOSE) {
 			pline("Lol, you have encountered a nose!");
+		    }
+		    if (otmp && otmp->oartifact == ART_LAMEMAKER) {
+			IncreasedGravity += 500;
+		    }
+		    if (otmp && otmp->oartifact == ART_TSCHENEREYT_DA_SCHAINYS) {
+			CompletelyBadPartBug |= FROMOUTSIDE;
+		    }
+		    if (otmp && otmp->oartifact == ART_SOME_SINISTER_DIFFICULTY) {
+			BadPartBug += 20000;
+		    }
+		    if (otmp && otmp->oartifact == ART_SYLVIE_S_INADVERTENT_GLITC) {
+			HighscoreBug += 15000;
+		    }
+		    if (otmp && otmp->oartifact == ART_DICE_NINE_SIDES_TWO) {
+			destroy_item(POTION_CLASS, AD_VENO);
+			destroy_item(FOOD_CLASS, AD_VENO);
+			destroy_item(POTION_CLASS, AD_COLD);
+			destroy_item(POTION_CLASS, AD_FIRE);
+		      destroy_item(SCROLL_CLASS, AD_FIRE);
+		      destroy_item(SPBOOK_CLASS, AD_FIRE);
+			destroy_item(RING_CLASS, AD_ELEC);
+			destroy_item(WAND_CLASS, AD_ELEC);
+			destroy_item(AMULET_CLASS, AD_ELEC);
 		    }
 		    if (otmp && otmp->oartifact == ART_FIELD_INITED__SORRY) {
 			int fieldtrapamount = rn1(11,11);
@@ -3546,7 +3799,8 @@ int tmp;
 	register const struct artifact *weap = get_artifact(otmp);
 
 	/* damage h@ck by Amy because of the brain-dead programming where PHYS(1,0) gives double damage in addition to
-	 * +1 to-hit; how the hell am I supposed to make an artifact that only gives to-hit but no damage bonus??? */
+	 * +1 to-hit; how the hell am I supposed to make an artifact that only gives to-hit but no damage bonus???
+	 * keyword for grepping: 'dmg h@ck' */
 	if (otmp && otmp->oartifact) {
 		switch (otmp->oartifact) {
 
@@ -3568,12 +3822,15 @@ int tmp;
 			case ART_TONA_S_GAMES:
 			case ART_VIHAT_BAGUETTEN_BUS_STOP:
 			case ART_DIG__OF_COURSE:
+			case ART_SIDE_GATE:
 			case ART_THEO_S_BOX:
 			case ART_CRABBOMAT:
 			case ART_ANNOYPRICK:
+			case ART_MADBALL:
 			case ART_MAUSER_C___CUSTOM:
 			case ART_STRUCK_ON:
 			case ART_HITTEM_:
+			case ART_WARRIOR_WOMAN:
 			case ART_WINNETOU_S_FRIEND:
 				return 0; /* no damage bonus */
 
@@ -4139,6 +4396,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	    if (!rn2(100)) (void) destroy_mitem(mdef, POTION_CLASS, AD_COLD);
 	    if (realizes_damage) willreturntrue = 1;
 	}
+	if (attacks(AD_DRST, otmp)) {
+	    if (realizes_damage)
+		pline_The("venom-covered weapon %s %s%c",
+			!spec_dbon_applies ? "hits" : "poisons",
+			hittee, !spec_dbon_applies ? '.' : '!');
+	    if (realizes_damage) willreturntrue = 1;
+	}
 	if (attacks(AD_ELEC, otmp)) {
 	    if (realizes_damage)
 		pline_The("electrified weapon hits%s %s%c",
@@ -4294,7 +4558,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_HOH_LEVEL_GREENITY || otmp->oartifact == ART_CAPSULITH || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -4408,7 +4672,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	/* We really want "on a natural 20" but Nethack does it in */
 	/* reverse from AD&D. */
 	if (spec_ability(otmp, SPFX_BEHEAD)) {
-	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_HAHA_OWNED || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_KAMI_SORI_NO_USUI_HA || otmp->oartifact == ART_ASHIKAGA_S_REVENGE || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_GOOD_GAME_ZUANG_LI || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
+	    if ( (otmp->oartifact == ART_TSURUGI_OF_MURAMASA || otmp->oartifact == ART_HAHA_OWNED || otmp->oartifact == ART_GAYSECT || otmp->oartifact == ART_SHATTER_IN_TWO || otmp->oartifact == ART_THOUSAND_FRAGMENTS || otmp->oartifact == ART_THEIR_DED || otmp->oartifact == ART_KAMI_SORI_NO_USUI_HA || otmp->oartifact == ART_ASHIKAGA_S_REVENGE || otmp->oartifact == ART_SIGMUND_S_SMALL_LOAD || otmp->oartifact == ART_KATANA_OF_MASAMUNE || otmp->oartifact == ART_GOOD_GAME_ZUANG_LI || otmp->oartifact == ART_MINOPOWER || otmp->oartifact == ART_LIGHTNING_STROKE || otmp->oartifact == ART_DRAGONCLAN_SWORD || otmp->oartifact == ART_KILLING_EDGE) && dieroll < 2) {
 		wepdesc = "The razor-sharp blade";
 
 		if (!youdefend && mdef->data->geno & G_UNIQ) {
@@ -6274,6 +6538,12 @@ tunguskaagain:
 			break;
 		}
 
+		if (obj->oartifact == ART_BOWN_MAKE) {
+			objects[obj->otyp].oc_material = MT_BONE;
+			pline_The("key is made of bone now.");
+			break;
+		}
+
 		if (obj->oartifact == ART_MOIST_CHERRY) {
 
 			if (!Role_if(PM_BLEEDER)) {
@@ -6780,6 +7050,33 @@ tscheinschroll:
 			buzz(10, 4, u.ux, u.uy, -1, -1);
 			buzz(10, 4, u.ux, u.uy, 1, -1);
 			buzz(10, 4, u.ux, u.uy, 0, -1);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_NOT_AT_ALL_SHOCK) {
+			useupall(obj);
+
+			HShock_resistance |= FROMOUTSIDE;
+			You_feel("grounded.");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_OPERATOR_KNOWLEDGE) {
+			useupall(obj);
+
+			P_ADVANCE(P_DEVICES) *= 2;
+			You_feel("more knowledgable about devices!");
+
+			break;
+		}
+
+		if (obj->oartifact == ART_LEVELUP_YOUR_CHAR) {
+			useupall(obj);
+
+			more_experienced(10000000, 0);
+			newexplevel();
 
 			break;
 		}

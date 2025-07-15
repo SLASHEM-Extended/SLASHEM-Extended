@@ -4233,7 +4233,7 @@ int
 randartiattacktype()
 {
 	int result;
-	switch (rnd(8)) {
+	switch (rnd(9)) {
 		default:
 		case 1:
 			result = AD_PHYS; break;
@@ -4251,6 +4251,8 @@ randartiattacktype()
 			result = AD_ACID; break;
 		case 8:
 			result = AD_MAGM; break;
+		case 9:
+			result = AD_DRST; break;
 	}
 
 	return result;

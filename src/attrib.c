@@ -2037,6 +2037,7 @@ set_moreluck()
 	else if (luckbon >= 0 && u.moreluckpts > 3) u.moreluck = LUCKADD;
 	else u.moreluck = -LUCKADD;
 	if (uwep && uwep->oartifact == ART_WIRE_OF_LUCK) u.moreluck += 5;
+	if (ublindf && ublindf->oartifact == ART_GOOD_TO_SEE_NOTHING) u.moreluck += 5;
 	if (uarmh && uarmh->otyp == LUCKY_MUSHROOM) u.moreluck += 5;
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_GREAT_LUCK) u.moreluck += 5;
 	if (have_amateurluckstone()) u.moreluck += 5;

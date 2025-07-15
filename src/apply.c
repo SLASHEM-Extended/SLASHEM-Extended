@@ -552,14 +552,14 @@ use_stethoscope(obj)
 	boolean interference = (u.uswallow && is_whirly(u.ustuck->data) &&
 				!rn2(Role_if(PM_HEALER) ? 10 : Race_if(PM_HERBALIST) ? 10 : 3));
 
-	if ((!rn2(20) || !obj->blessed) && !rn2((obj->oartifact == ART_FISSILITY) ? 50 : 500)) {
+	if ((!rn2(20) || !obj->blessed) && !((obj->oartifact == ART_DOCTOR_S_ASSISTANT) && rn2(10)) && !rn2((obj->oartifact == ART_FISSILITY) ? 50 : 500)) {
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return 2;
 		}
 
-	if ((!rn2(20) || !obj->blessed) && isfriday && !rn2((obj->oartifact == ART_FISSILITY) ? 50 : 500)) {
+	if ((!rn2(20) || !obj->blessed) && isfriday && !((obj->oartifact == ART_DOCTOR_S_ASSISTANT) && rn2(10)) && !rn2((obj->oartifact == ART_FISSILITY) ? 50 : 500)) {
 	    useup(obj);
 	    pline("Your stethoscope breaks!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -608,18 +608,21 @@ use_stethoscope(obj)
 		if (interference) {
 			pline("%s interferes.", Monnam(u.ustuck));
 
-			if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
-			mstatuslinebl(u.ustuck);
+			if (obj->oartifact == ART_SARINA_S_EXAM)
+				probe_monster(u.ustuck);
+			else if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+				mstatuslinebl(u.ustuck);
 			else
-			mstatusline(u.ustuck);
+				mstatusline(u.ustuck);
 
 		} else
 
-			if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
-			mstatuslinebl(u.usteed); /* make blessed one better than uncursed --Amy */
+			if (obj->oartifact == ART_SARINA_S_EXAM)
+				probe_monster(u.usteed);
+			else if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+				mstatuslinebl(u.usteed); /* make blessed one better than uncursed --Amy */
 			else
-			mstatusline(u.usteed);
-
+				mstatusline(u.usteed);
 
 		return res;
 	} else
@@ -633,10 +636,12 @@ use_stethoscope(obj)
 			}
 		}
 
-		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
-		mstatuslinebl(u.ustuck);
+		if (obj->oartifact == ART_SARINA_S_EXAM)
+			probe_monster(u.ustuck);
+		else if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+			mstatuslinebl(u.ustuck);
 		else
-		mstatusline(u.ustuck);
+			mstatusline(u.ustuck);
 		return res;
 	} else if (u.uswallow && interference) {
 		pline("%s interferes.", Monnam(u.ustuck));
@@ -649,10 +654,12 @@ use_stethoscope(obj)
 			}
 		}
 
-		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
-		mstatuslinebl(u.ustuck);
+		if (obj->oartifact == ART_SARINA_S_EXAM)
+			probe_monster(u.ustuck);
+		else if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+			mstatuslinebl(u.ustuck);
 		else
-		mstatusline(u.ustuck);
+			mstatusline(u.ustuck);
 		return res;
 	} else if (u.dz) {
 		if (Underwater)
@@ -715,10 +722,12 @@ use_stethoscope(obj)
 			}
 		}
 
-		if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
-		mstatuslinebl(mtmp);
+		if (obj->oartifact == ART_SARINA_S_EXAM)
+			probe_monster(mtmp);
+		else if ((obj->blessed || (obj->otyp == UNSTABLE_STETHOSCOPE && !rn2(5)) || obj->oartifact == ART_MEDICAL_OPHTHALMOSCOPE) && !issoviet)
+			mstatuslinebl(mtmp);
 		else
-		mstatusline(mtmp);
+			mstatusline(mtmp);
 		if (obj->blessed && issoviet) pline("Sovetskaya ne khochet stetoskopa, chtoby byt' poleznym.");
 
 		if (mtmp->mundetected) {
@@ -2470,6 +2479,7 @@ register struct obj *obj;
 			case P_SUPREME_MASTER: nochargechange = 4; break;
 		}
 	}
+	if (obj && obj->oartifact == ART_SPOIL_YOUR_STOMACH && rn2(2)) nochargechange = 0;
 
 	if (nochargechange >= rnd(10)) consume_obj_charge(obj, TRUE);
 
@@ -2500,6 +2510,14 @@ register struct obj *obj;
 		(void) makemon((struct permonst *)0, u.ux, u.uy, NO_MM_FLAGS);
 		u.aggravation = 0;
 
+	    }
+	    if (obj && obj->oartifact == ART_HOLY_CONSERVE) {
+		can->cursed = 0;
+		can->blessed = 1;
+	    }
+	    if (obj && obj->oartifact == ART_SPOIL_YOUR_STOMACH) {
+		can->cursed = 1;
+		can->blessed = 0;
 	    }
 
 	    can->owt = weight(can);
@@ -5467,6 +5485,7 @@ use_chemistry_set(struct obj *chemset)
 	struct obj *new_obj;
 	int cost;
 	char c;
+	boolean explosionpossible = TRUE;
 
 	/* We will allow the player to make a potion occasionally, even if they don't know the spell. --Amy */
 
@@ -5487,6 +5506,8 @@ use_chemistry_set(struct obj *chemset)
 		pline("Exactly how are you going to do this?");
 		return;
 	}
+
+	if (bottle && bottle->oartifact == ART_SUPER_VONK) explosionpossible = FALSE;
 
 	getlin("What potion do you want to make?",namebuf);
 	if (!namebuf[0] || namebuf[0] == '\033') return;
@@ -5553,7 +5574,7 @@ use_chemistry_set(struct obj *chemset)
 	chemset->spe -= cost;
 	useup(bottle);
 
-	if (!chemset->blessed && !(uarmc && uarmc->oartifact == ART_NO_MORE_EXPLOSIONS) && !rn2(chemset->cursed ? 2 : 10)) {
+	if (!chemset->blessed && explosionpossible && !(uarmc && uarmc->oartifact == ART_NO_MORE_EXPLOSIONS) && !rn2(chemset->cursed ? 2 : 10)) {
 blast_him:
 		pline("You seem to have made a mistake!");
 		pline("The bottle explodes!");
@@ -7370,7 +7391,11 @@ materialchoice:
 
 		noartispeak = TRUE;
 
-		delobj(obj);
+		if (obj->oartifact == ART_WOLDERHOOH && rn2(5)) {
+			pline("The special blesser isn't used up yet!");
+		} else {
+			delobj(obj);
+		}
 
 		pline("You may bless an uncursed item.");
 
@@ -7399,6 +7424,9 @@ blesschoice:
 		break;
 
 	case BEAUTY_PACK:
+	{
+		boolean xxmindflay = FALSE;
+		if (obj->oartifact == ART_PRIMA_DONNA) xxmindflay = TRUE;
 
 		noartispeak = TRUE;
 
@@ -7411,9 +7439,41 @@ blesschoice:
 			pline("Your charisma increases.");
 		}
 
+		if (xxmindflay) { /* because "helpfully" obj has been freed... --Amy */
+			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
+			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
+			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
+			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
+			if (Race_if(PM_SUSTAINER) && ABASE(A_CHA) < AMAX(A_CHA)) {
+				ABASE(A_CHA) += 1;
+				AMAX(A_CHA) += 1;
+				flags.botl = 1;
+			}
+			if (Race_if(PM_SUSTAINER) && ABASE(A_CHA) < AMAX(A_CHA)) {
+				ABASE(A_CHA) += 1;
+				AMAX(A_CHA) += 1;
+				flags.botl = 1;
+			}
+			if (Race_if(PM_SUSTAINER) && ABASE(A_CHA) < AMAX(A_CHA)) {
+				ABASE(A_CHA) += 1;
+				AMAX(A_CHA) += 1;
+				flags.botl = 1;
+			}
+			if (Race_if(PM_SUSTAINER) && ABASE(A_CHA) < AMAX(A_CHA)) {
+				ABASE(A_CHA) += 1;
+				AMAX(A_CHA) += 1;
+				flags.botl = 1;
+			}
+
+		}
+
+	}
 		break;
 
 	case INTELLIGENCE_PACK:
+	{
+		boolean xxmindflay = FALSE;
+		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) xxmindflay = TRUE;
 
 		if (obj->unpaid) {
 			struct monst *shkp = shop_keeper(*u.ushops);
@@ -7433,7 +7493,7 @@ blesschoice:
 			pline("Your wisdom increases.");
 		}
 
-		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) {
+		if (xxmindflay) { /* because "helpfully" obj has been freed... --Amy */
 			(void) adjattrib(A_INT, 1, FALSE, TRUE);
 			(void) adjattrib(A_INT, 1, FALSE, TRUE);
 			(void) adjattrib(A_INT, 1, FALSE, TRUE);
@@ -7460,6 +7520,7 @@ blesschoice:
 			}
 
 		}
+	}
 
 		break;
 
