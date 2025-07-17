@@ -29355,6 +29355,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"All the snow is causing you to freeze! Should have stayed at home with these outside temperatures...",
 	"A big chunk of hail hits you!",
 	"A big chunk of hail hits you! It splits your skull, and your blood spectacularly fountains everywhere!",
+	"You act quickly!",
+	"You act quickly, but not quickly enough, and so the monster still gets a turn!",
+	"You feel that you have achieved the impossible.",
+	"You feel that you have achieved the impossible. But that feeling is an illusion, in reality you haven't achieved anything because you're a lazy fuck.",
 
 };
 

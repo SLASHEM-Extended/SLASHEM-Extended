@@ -7846,6 +7846,38 @@ register struct obj *otmp;
 		You_feel("resistant to stun!");
 	}
 
+	if (otmp && otmp->oartifact == ART_CHINESE_WISDOM) {
+		change_luck(1);
+	}
+
+	if (otmp && otmp->oartifact == ART_BIZARRE_WHITE_MILK) {
+		incr_itimeout(&HUnchanging, 10000);
+		You_feel("stuck in your current form.");
+	}
+
+	if (otmp && otmp->oartifact == ART_WOMANMADE) {
+		if (flags.female) {
+			(void) adjattrib(A_WIS, -1, FALSE, TRUE);
+			pline("Gah, you feel bad about obeying all the stupid commands of your insufferable husband!");
+		} else {
+			lesshungry(200);
+			pline("Ahh, it feels good to let your wife do all the work while you sit back and relax.");
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_UNDERWATER_VERMULTIFOLD) {
+		struct obj *createdscroll;
+
+	    	createdscroll = mksobj_at(KELP_FROND, u.ux, u.uy, TRUE, FALSE, FALSE);
+		if (createdscroll) {
+			createdscroll->quan = 10;
+			if (Underwater) createdscroll->quan = 20;
+			createdscroll->owt = weight(createdscroll);
+		}
+		pline("A bunch of kelp fronds has grown.");
+
+	}
+
 	if (otmp && otmp->oartifact == ART_TWO_FRUITS_CROSSING) {
 		incr_itimeout(&HStun_resist, rnz(1000));
 		You_feel("resistant to stun!");

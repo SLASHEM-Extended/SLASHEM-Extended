@@ -20038,6 +20038,710 @@ A("The Prima Donna",				BEAUTY_PACK, /* increases your CHA by 5 when used */
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
+A("Mexboost",				POT_HEALING, /* +5 max HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Quick Use Stunt",				POT_HEALING, /* +24 movement energy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Bill's Special Brew",				POT_EXTRA_HEALING, /* corona antidote */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("What's In A Name",				POT_FULL_HEALING, /* sets your HP to the maximum */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Turn-On Booster",				POT_OBJECT_DETECTION, /* creates rn1(5,5) item masters on the current level */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("SLEX Anthem",				SCR_IDENTIFY, /* identifies d5 extra items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Torche-Lighte-vrything",				SCR_LIGHT, /* lights up the entire level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Ironhard",				SCR_ENCHANT_WEAPON, /* erosionproofs the target item */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Steelwall",				SCR_ENCHANT_ARMOR, /* erosionproofs the target item */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Curse Everything",				SCR_DESTROY_ARMOR, /* procs its effect seven times; in evilvariant mode this also applies when a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Big Boom",				SCR_FIRE, /* more damage for the fire explosion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Satisfying Gruel",				SCR_FOOD_DETECTION, /* +500 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Planewalker",				SCR_GOLD_DETECTION, /* detects traps even when not confused */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Invofear",				SCR_SCARE_MONSTER, /* invoke uncurses the scroll, or blesses it if already uncursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Ease Yourself",				SCR_AMNESIA, /* reduces sanity by 1000 and halves contamination */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Horde Summonation",				SCR_CREATE_MONSTER, /* increases amount of summoned monsters by 13, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("The Better The Power",				SCR_CHARGING, /* creates a regular charging scroll when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Bigball Player",				SCR_PUNISHMENT, /* adds +10 enchantment to the ball (up to a maximum of +20), also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cthulhu's Deliquence",				SCR_STINKING_CLOUD, /* cloud deals more damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Apple Juice",				POT_FRUIT_JUICE, /* cures numbness and +500 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Carrot Juice",				POT_FRUIT_JUICE, /* cures blindness and +300 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Pear Juice",				POT_FRUIT_JUICE, /* cures stun and +400 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Melon Juice",				POT_FRUIT_JUICE, /* cures confusion and +600 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Lemon Juice",				POT_FRUIT_JUICE, /* cures fear and +500 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Cherry Juice",				POT_FRUIT_JUICE, /* cures bleeding and +200 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Banana Juice",				POT_FRUIT_JUICE, /* cures hallu and +250 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Orange Juice",				POT_FRUIT_JUICE, /* cures freeze and +300 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("The Extra Sensor",				POT_SEE_INVISIBLE, /* 5000 turns of ESP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Red Glass Alike",				POT_SEE_INVISIBLE, /* 10000 turns of infravision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Slotless Lantern",				POT_SEE_INVISIBLE, /* 4000 turns of extra sight */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Friend on the Plane",				POT_SEE_INVISIBLE, /* 2500 turns of astral vision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("What doesn't kill you...",				POT_SICKNESS, /* after the poisoning has procced, rnz(5000) turns of sickness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Medium Call",				POT_ESP, /* if you're not on the planes and not have an ongoing temporary recursion effect, turns you into the medium role for 5k turns (using the demagogue recursion code) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Baggle Vilely",				POT_CONFUSION, /* permanently reduces all your stats by 1 (ignores resistances), 50k turns of resist confusion and 100k turns of keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("All Is Good Fun",				POT_HALLUCINATION, /* rnz(20k) turns of funny hallu */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Bundlewing",				POT_SLEEPING, /* fires sleep rays in all directions */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Methyl Spirit",				POT_BLINDNESS, /* quaffing it gives rnz(100) turns of confusion, throwing it can also confuse monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Greater Distillation",				POT_GAIN_ENERGY, /* restores more mana than normal */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Power Of The One",				POT_INVISIBILITY, /* increases intrinsic protection by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Level Dependant",				POT_MONSTER_DETECTION, /* +2000 turns of detect monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Tome Definition",				POT_ENLIGHTENMENT, /* magic mapping and detect objects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Flight Potion",				POT_LEVITATION, /* gives flying for twice as long as it gives levi */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Pretty Tangy",				POT_ACID, /* rnz(10k) turns of acid resistance when quaffed, deals much more damage if you throw it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Yendorian Resource",				POT_OIL, /* gives much more turns of light when filling a lamp with it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Fuck Twit The Dirt Part",				POT_PARALYSIS, /* if a thrown one hits a monster, time is stopped for 5 (more) turns, but you need at least 50 max mana (which gets halved) and 26 max HP (which are reduced by 25) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Kupa Stability",				RIN_TELEPORT_CONTROL, /* disintegration resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bring The Annoyance",				RIN_TELEPORTATION, /* poison resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Crash Recovery",				HEALTHSTONE, /* carrying it grants regeneration and ute trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Chinese Wisdom",				FORTUNE_COOKIE, /* +1 luck when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Underwater Vermultifold",				KELP_FROND, /* eating it creates a stack of 10 regular kelp fronds, or 20 if you were underwater when eating it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Womanmade",				SANDWICH, /* +200 nutrition if you're male, -1 wisdom if you're female */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 240L ),
+
+A("Bizarre White Milk",				SPRIG_OF_WOLFSBANE, /* 10k turns of unchanging when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Implied Effect",				SCR_RUMOR, /* affects your luck when read, depending on the scroll's BUC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Clear The Voyance",				POT_CLAIRVOYANCE, /* much bigger radius */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tempting Fate Will Work",				POT_GAIN_HEALTH, /* +20 max HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Go To The Resist Cold",				POT_ICE, /* intrinsic cold res when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Warmth Within",				POT_FIRE, /* intrinsic burnopathy when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Seven of Middle",				POT_FEAR, /* intrinsic fear factor when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Daennaennaennaennaennaennae",				POT_STUNNING, /* intrinsic stunnopathy and 10k turns of stun res when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Achieve The Impossible",				POT_NUMBNESS, /* intrinsic free action, intrinsic loss and julietta trap effect when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Voided Mind",				POT_DIMNESS, /* intrinsic magic vacuum, mystery resistance and keen memory when quaffed, +3 INT and WIS */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Mira's Cure",				POT_URINE, /* anti corona and -500 contamination when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Goddammit",				POT_CANCELLATION, /* steals 3 intrinsics when it's thrown at you; in evilvariant mode it also cancels your entire inventory, regardless of how you got affected by it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Hal's Clear View",				POT_SANITY, /* +9000 sanity when quaffed and intrinsic scent view and sight bonus */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Gambling Prize",				POT_CURE_INSANITY, /* no special effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("High-Tech Work",				POT_TECH_LEVEL_UP, /* procs its effect 10 times */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Ions Emerging",				POT_SALT_WATER, /* 2000 turns of regeneration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("GOI",				POT_INVULNERABILITY, /* double duration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Haaaaaaarrr",				POT_EXTREME_POWER, /* increases all stats by one */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("D---d-dbb!",				POT_RECOVERY, /* cure amnesia when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tarning Cap",				POT_HEROISM, /* also grants temporary waterwalking and jumping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Gerard's Trap",				POT_RADIUM, /* +1000 contamination when quaffed, +5 CHA, all MS_PRIEST on the current level become peaceful if they were hostile */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hacker Drink",				POT_JOLT_COLA, /* 5000 turns of sleep resistance, 500 turns of free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Zaphod's Barman",				POT_PAN_GALACTIC_GARGLE_BLASTE, /* +500 nutrition, 10k turns of magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Thick Essence",				POT_BLOOD, /* +1000 nutrition for vampiric characters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Undead Coagulation",				POT_VAMPIRE_BLOOD, /* 5k turns of slow digestion when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Explore Like Never Before",				POT_AMNESIA, /* forget all items and levels; if playing evilvariant mode, this applies even when a monster throws it at you; if you quaff it, you gain 5x 10 million EXP */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ghoulcloud",				SCR_SUMMON_UNDEAD, /* summons rnz(6) more undead, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Find Out What The Hell This Is",				SCR_SECURE_IDENTIFY, /* allows you to secure identify a second item */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Discoveryyyyyy...",				SCR_INVENTORY_ID, /* identifies 100 random base items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Loggers's Dirty Cheating",				SCR_FLOOD, /* 5000 turns of magical breathing and half physical damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kwullpkwullpkwullp",				SCR_GAIN_MANA, /* 10k turns of energy regeneration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Megastar",				SCR_GREATER_ENCHANT_WEAPON, /* instead of the normal effect, doubles current weapon's enchantment (but not above +15) */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Bonzorbon",				SCR_GREATER_ENCHANT_ARMOR, /* instead of the normal effect, doubles target armor piece's enchantment (but not above +12) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("The Random Number Game",				SCR_RANDOM_ENCHANTMENT, /* allows you to target a total of five items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("So Long Suckers",				SCR_TELE_LEVEL, /* heals you fully */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("False Exit",				SCR_BRANCH_TELEPORT, /* guaranteed to warp you to minus world */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Greta's Interference",				SCR_WARPING, /* creates 70+(playerlevel*30) monsters like greta trap effect and sends them to different levels; this happens also when a monster reads this scroll */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hightime, Right?",				SCR_ARTIFACT_CREATION, /* spawns two more artifacts */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Teenage Nutant Ninja Turtle",				SCR_MISSING_CODE, /* +1000 contamination and intrinsic autopilot when read, adds +20 to the shirt (up to a maximum of +100); the name of this artifact is ***not*** a misspelling!!! */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Mariya's Bar Stage",				SCR_TERRAFORMING, /* radius 5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Lord Dimwit's Grin",				SCR_ILLUSION, /* spawns 10 more monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Grunt's Bad Breakup",				SCR_EVIL_VARIANT, /* spawns 10 more monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("FleeceYay",				SCR_FEMINISM, /* 5x rnz(10k) turns of a random feminism trap effect, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Gnallbuy",				SCR_INFERIOR_MATERIAL, /* spawns with +4 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Chengorm",				SCR_REGULAR_MATERIAL, /* spawns with +2 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kurpgurp",				SCR_SUPERIOR_MATERIAL, /* spawns with +1 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Wilde Birge",				SCR_MATERIAL_CHANGE, /* procs its effect 10 times */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Taeteteterate-diedae-dae",				SCR_RAGNAROK, /* if you don't have a ragnarok timer, it is set to 10k turns, also if a monster reads it */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Bluuuuuuuuuuh...",				SCR_BAD_EFFECT, /* gives four additional bad effects, also if a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("BUEUEUEUEUEUEP",				SCR_BAD_EFFECT, /* gives an additional really bad effect, also if a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Linley's Help",				SCR_ACQUIREMENT, /* allows you to acquire a total of 5 items */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Oremor Is Back",				SCR_MASS_MURDER, /* replicates world fall technique effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Heptahex",				SCR_WARD, /* lasts 10x as long */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Toustefna",				SCR_WARDING, /* lasts 10x as long */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("What's in the new changelog?",				SCR_ALTER_REALITY, /* gives enlightenment after the reality has been changed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Super-Mega-Double-Jackpot",				SCR_ARTIFACT_JACKPOT, /* spawns two more artifacts */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("We're In This Together",				SCR_BOSS_COMPANION, /* unlocks petkeeping, or increases its cap by one if you know it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Giant Growth",				SCR_EXTRA_SKILL_POINT, /* gives four more skill points */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Universe Center",				SCR_EGOISM, /* spawns twice as many monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Free Time Camp",				SCR_GROUP_SUMMONING, /* spawns twice as many monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Boocastle",				SCR_SUMMON_GHOST, /* spawns twice as many monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Bigger Spacer",				SCR_MEGALOAD, /* +2 STR and CON when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Arabella's Filler",				SCR_VILENESS, /* gives you two more artifacts, also when read by a monster */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mac Bastard",				SCR_HYBRIDIZATION, /* guaranteed to give you a new hybrid race, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bandar-AMC",				SCR_NASTY_CURSE, /* procs its effect five times, also if read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Fuck Crap Swear Grawlix",				SCR_ANTIMATTER, /* disenchants your entire inventory (possibly into the negatives), also if read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Trash from the Street",				SCR_SUMMON_ELM, /* summons two more elms, also if read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Full Deck Shuffle",				SCR_RELOCATION, /* replicates reshuffle trap effect */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Buried Knee Deep",				SCR_IMMOBILITY, /* spawns 3x as many monsters, also if a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Also Still Undertow",				SCR_FLOODING, /* radius 15, also if a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("ghwypyapgbuhwhwnzerzh",				SCR_MESSAGE, /* 10k turns of random message nastytrap, also if a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Lust Envy Pride Wrath Gluttony Sloth Greed",				SCR_SIN, /* gives all eight sin effects, also if a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Arabella's Screwer",				SCR_BAD_EQUIPMENT, /* gives you four more bad equipment pieces, also if a monster reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Holyboah Sprite",				SCR_SECURE_CURSE_REMOVAL, /* 10k turns of versus curses */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Do Not Believe",				SCR_ANTIMAGIC, /* 10x duration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Terrabelle",				SCR_RESISTANCE, /* 20x duration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Huelf Mie",				SCR_ENTHRONIZATION, /* +3 luck */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("BUEUEUEUEUEUEI!",				SCR_FOUNTAIN_BUILDING, /* tries to transform the eight squares surrounding you with water */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Deep Down",				SCR_SINKING, /* -50 alignment when read, and creates a random ring on your square */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Play with the erogenous Antje",				SCR_WC, /* antje minigame when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("A pentagram and another pentagram!",				SCR_MAKE_PENTAGRAM, /* spawns a regular scroll of make pentagram when read */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Useful Feature",				SCR_WELL_BUILDING, /* spawns 5 regular scrolls of well building when read */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("drivingdrivingdrive",				SCR_DRIVING, /* spawns wagons on random nearby tiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Tidy Classroom",				SCR_TABLE_FURNITURE, /* spawns tables on random nearby tiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Graundwork Camp",				SCR_EMBEDDING, /* spawns beds on random nearby tiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mine Bottom",				SCR_MATTRESS_SLEEPING, /* spawns mattresses on random nearby tiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Warm Massage",				SCR_DETECT_WATER, /* rnz(10k) turns of inventory water protection when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Scram Semicolon H2SO4",				SCR_STONING, /* rnz(500) turns of hallu after the stoning effect, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Multi-Fill",				SCR_TRAP_CREATION, /* spawns traps in a much bigger radius, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Gutnacht!",				SCR_SLEEP, /* puts you to sleep for 10x as long, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("The Infernal Part",				SCR_CHAOS_TERRAIN, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Heute Getarrarr",				SCR_REPAIR_ITEM, /* gives 10 regular scrolls of repair item when read */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Wanna Fight The Next Teacher",				SCR_SUMMON_BOSS, /* 20k turns of boss spawn nastytrap effect, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Red Tears",				SCR_WOUNDS, /* also causes bleeding damage when read, regardless of who does the reading */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Inescapable Stench",				SCR_BULLSHIT, /* much bigger radius, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Arabella's Instawin Button",				SCR_NASTINESS, /* gives two more nastytrap effects, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Smothersand",				SCR_DEMONOLOGY, /* summons twice as many monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Unfair Gaia",				SCR_ELEMENTALISM, /* summons twice as many monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("G-e-a-l-*clap*",				SCR_GIRLINESS, /* summons twice as many monsters, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Dissonance Music",				SCR_LAVA, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Tata, tata taaaaaa!",				SCR_ICE, /* turns the entire level icy, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Cuckooland Woohoo",				SCR_CLOUDS, /* turns the entire level cloudy, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Walt's Megacorp",				SCR_GRAVE, /* every tile on the level has 50% chance of getting a grave wall, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ndergrund Tunnel",				SCR_TUNNELS, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sythe for Rent",				SCR_FARMING, /* every tile on the level has 33% chance of getting farmland, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Antis-Wedix",				SCR_MOUNTAINS, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Protected Coral Reef",				SCR_DIVING, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Morton's Winter",				SCR_CRYSTALLIZATION, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Chickocalypse",				SCR_MOORLAND, /* ragnarok, but with moorland and random c- and B-class monsters, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Bssssssssssssssssss--------.....",				SCR_URINE, /* fills the entire level with urine, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Thai's Forcepush",				SCR_QUICKSAND, /* radius 15, also when read by a monster, and also spawns 10 random golems on the level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hey! Here's Jason!",				SCR_STYX, /* fills the entire level with styx rivers, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Leang's Origin",				SCR_SNOW, /* fills the entire level with snow, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mehrunes' Big Plan",				SCR_ASH, /* fills the entire level with ash, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Barning Desert",				SCR_SAND, /* fills the entire level with sand, regardless of who reads it, and also starts the "sandstorm" weather type */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Green Crossroads WHOA",				SCR_PAVING, /* fills the entire level with paved roads, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Infinitesimal Distance",				SCR_HIGHWAY, /* fills the entire level with highways, regardless of who reads it, and the entire level is also lit up in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Spying in the war",				SCR_GRASSLAND, /* fills the entire level with grass, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Go Thru Hell",				SCR_NETHER, /* fills the entire level with nether mist, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sunnchi",				SCR_STALACTITE, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Robin's Forgettal",				SCR_CRYPT, /* fills the entire level with crypt floor, regardless of who reads it, and also makes the entire level unlit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Of because of 'happy'!",				SCR_BUBBLE_BOBBLE, /* fills the entire level with bubbles, regardless of who reads it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("When does the pain release!",				SCR_RAIN, /* fills the entire level with rain clouds, regardless of who reads it, and also starts rainy weather */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Charey's Lock",				SCR_BARRHING, /* radius 15, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ace-Deuce",				SCR_ASTRALCENSION, /* spawns an additional player monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
 	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),

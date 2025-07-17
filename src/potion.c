@@ -2098,7 +2098,7 @@ playerextrinsicdisintres()
 	if ((uarmf && uarmf->oartifact == ART_DEEP_SIGH) || (uarmf && uarmf->oartifact == ART_DOUBLE_DESIRE) || (uarmf && uarmf->oartifact == ART_LITTLE_BUT_ROBUST) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_MEANCANE) || (uarmf && uarmf->oartifact == ART_ELENETTES) || (ublindf && ublindf->oartifact == ART_STABLE_STUNT) || (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT) || (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) || autismringcheck(ART_RING_OF_THE_SCHWARTZ) || (uarms && uarms->oartifact == ART_ANTINSTANT_DEATH)) return TRUE;
 	if (autismringcheck(ART_ACHROMANTIC_RING) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SWORD_OF_ANNIHILATION) || (uwep && uwep->oartifact == ART_KRONSCH_ZADROER_WOFF) || (uwep && uwep->oartifact == ART_WENDELDER) || (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) || (uimplant && uimplant->oartifact == ART_STALWART_OMM) || (uarmu && uarmu->oartifact == ART_CLOUDYBAND) || (uwep && uwep->oartifact == ART_SILVER_ON_BLACK) || (uarmf && uarmf->oartifact == ART_PLAY_THE_GAME_YOURSELF) || (uarms && uarms->oartifact == ART_DRAGONHEAD_SHIELD) || (uwep && uwep->oartifact == ART_RUINED_ANTJEN) || (uwep && uwep->oartifact == ART_TACT_EBONY_GLASS) || (uarmf && uarmf->oartifact == ART_MARIYA_S_SEXYCHARM) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_SOFTWOOD) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarm && uarm->oartifact == ART_ARMOR_OF_RETRIBUTION) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_SOFTWOOD) || autismringcheck(ART_KUPA_STABILITY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarm && uarm->oartifact == ART_ARMOR_OF_RETRIBUTION) ) return TRUE;
 
 	return FALSE;
 }
@@ -2222,7 +2222,7 @@ playerextrinsicpoisonres()
 	if ((uwep && uwep->oartifact == ART_REAL_WALKING) || (uwep && uwep->oartifact == ART_DANGER_SIGN) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_CHROME_GOOD) || have_spectrumplinggem() || (uwep && uwep->oartifact == ART_KLIMA_PLEDSCHE) || (uarms && uarms->oartifact == ART_HEALTHIER_FEEL) || (uwep && uwep->oartifact == ART_SCHOSCHO_BARBITUER) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarmf && uarmf->oartifact == ART_UNDEAD_STINK) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) ) return TRUE;
 	if ( have_sonjartifact() || (uarm && uarm->oartifact == ART_BRINGS_NOTHING) || (uwep && uwep->oartifact == ART_DAGGER_OF_UUKAI) || (uwep && uwep->oartifact == ART_SPINESHOOTER) || (uwep && uwep->oartifact == ART_SHIZUGAMI_S_MIZUCHI) || (uarm && uarm->oartifact == ART_LADIES_NIGHTINGALE) || (uarmc && uarmc->oartifact == ART_GENTLEMANS_NIGHTINGALE) || (uwep && uwep->oartifact == ART_ELEGY_RES) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_GREEN_MYSTERY && uwep && (objects[uwep->otyp].oc_color == CLR_GREEN)) return TRUE;
-	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uarmg && uarmg->oartifact == ART_POISON_HAND) || (uarmc && uarmc->oartifact == ART_USEFUL_BASE) || (uwep && uwep->oartifact == ART_TYPICAL_ORC) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || (uwep && uwep->oartifact == ART_SORBITUR) || (uarm && uarm->oartifact == ART_REDGUARD_APPEARANCE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_POISUSTAIN) || (uarms && uarms->oartifact == ART_YELLOW_STATUS) || (uarmu && uarmu->oartifact == ART_DIMETHYL_ESCUTCHEON) || (uwep && uwep->oartifact == ART_TACT_EBONY_GLASS) || (uarmc && uarmc->oartifact == ART_RUFFLED_SHIRT_OF_THE_ARIST) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmg && uarmg->oartifact == ART_INFECTION_CHAIN_BREAK) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uwep && uwep->oartifact == ART_JADE_TALON) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
+	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uarmg && uarmg->oartifact == ART_POISON_HAND) || (uarmc && uarmc->oartifact == ART_USEFUL_BASE) || (uwep && uwep->oartifact == ART_TYPICAL_ORC) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || (uwep && uwep->oartifact == ART_SORBITUR) || (uarm && uarm->oartifact == ART_REDGUARD_APPEARANCE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_POISUSTAIN) || (uarms && uarms->oartifact == ART_YELLOW_STATUS) || (uarmu && uarmu->oartifact == ART_DIMETHYL_ESCUTCHEON) || (uwep && uwep->oartifact == ART_TACT_EBONY_GLASS) || (uarmc && uarmc->oartifact == ART_RUFFLED_SHIRT_OF_THE_ARIST) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmg && uarmg->oartifact == ART_INFECTION_CHAIN_BREAK) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uwep && uwep->oartifact == ART_JADE_TALON) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || autismringcheck(ART_BRING_THE_ANNOYANCE) ) return TRUE;
 
 	return FALSE;
 }
@@ -7424,6 +7424,54 @@ boolean guaranteed;
 	}
 
 	if (!rn2(5)) create_mplayers(rnd(12), TRUE);
+
+	u.aggravation = 0;
+	u.heavyaggravation = 0;
+
+	stop_occupation();
+
+}
+
+void
+moorlandragnarok()
+{
+	register int x,y;
+
+	u.aggravation = 1;
+	u.heavyaggravation = 1;
+	DifficultyIncreased += 1;
+	HighlevelStatus += 1;
+	EntireLevelMode += 1;
+	if (!rn2(5)) DifficultyIncreased += rnz(100);
+	if (!rn2(5)) HighlevelStatus += rnz(100);
+	if (!rn2(5)) EntireLevelMode += rnz(100);
+
+	incr_itimeout(&HFuckOverEffect, rnz(100) );
+
+	pline("Cucka-cucka-doo!");
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+
+		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == LAVAPOOL || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
+
+			levl[x][y].typ = MOORLAND;
+			blockorunblock_point(x,y);
+			if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+			newsym(x, y);
+
+			if (!rn2(3)) switch (rnd(2)) {
+				case 1:
+					(void) makemon(mkclass(S_BAT,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+					break;
+				case 2:
+					(void) makemon(mkclass(S_COCKATRICE,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+					break;
+			}
+
+		}
+
+	}
 
 	u.aggravation = 0;
 	u.heavyaggravation = 0;
@@ -12655,6 +12703,16 @@ newsymbio:
 			}
 		}
 	}
+	if (otmp->oartifact == ART_BUNDLEWING) {
+		buzz(13, 6, u.ux, u.uy, -1, 0);
+		buzz(13, 6, u.ux, u.uy, 1, 0);
+		buzz(13, 6, u.ux, u.uy, -1, 1);
+		buzz(13, 6, u.ux, u.uy, 1, 1);
+		buzz(13, 6, u.ux, u.uy, 0, 1);
+		buzz(13, 6, u.ux, u.uy, -1, -1);
+		buzz(13, 6, u.ux, u.uy, 1, -1);
+		buzz(13, 6, u.ux, u.uy, 0, -1);
+	}
 	if (itemhasappearance(otmp, APP_POTION_PERFUME)) {
 		int mondistance = 0;
 		struct monst *mtmp3;
@@ -12881,6 +12939,9 @@ peffects(otmp)
 		break;
 	case POT_HALLUCINATION:
             makeknown(POT_HALLUCINATION);
+
+		if (otmp->oartifact == ART_ALL_IS_GOOD_FUN) u.funnyhallutimer += rnz(20000);
+
 		if (Hallucination || Halluc_resistance) nothing++;
 		else makeknown(otmp->otyp);
 		(void) make_hallucinated(itimeout_incr(HHallucination,
@@ -12888,6 +12949,12 @@ peffects(otmp)
 				  TRUE, 0L);
 		break;
 	case POT_ICE:
+
+		if (otmp->oartifact == ART_GO_TO_THE_RESIST_COLD) {
+			HCold_resistance |= FROMOUTSIDE;
+			You_feel("full of hot air.");
+		}
+
 		if(!Frozen) {
 		    if (FunnyHallu) {
 			pline("Giant ice-cream cones... mmmmm!");
@@ -12901,6 +12968,12 @@ peffects(otmp)
 
 		break;
 	case POT_FEAR:
+
+		if (otmp->oartifact == ART_SEVEN_OF_MIDDLE) {
+			HFear_factor |= FROMOUTSIDE;
+			You_feel("ready to face your fears.");
+		}
+
 		if(!Feared) {
 		    if (FunnyHallu) {
 			You_feel("like you're dying from the inside! Waaaaah! Where's my Mommy?");
@@ -12914,6 +12987,12 @@ peffects(otmp)
 
 		break;
 	case POT_FIRE:
+
+		if (otmp->oartifact == ART_WARMTH_WITHIN) {
+			HBurnopathy |= FROMOUTSIDE;
+			You_feel("a burning inside. Strangely, it feels quite soothing.");
+		}
+
 		if(!Burned) {
 		    if (FunnyHallu) {
 			pline("Wow! You just swallowed a flamethrower - your tongue can spit fire! Yee-haw!");
@@ -12943,6 +13022,16 @@ peffects(otmp)
 		break;
 
 	case POT_DIMNESS:
+
+		if (otmp->oartifact == ART_VOIDED_MIND) {
+			HMagicVacuum |= FROMOUTSIDE;
+			HMysteryResist |= FROMOUTSIDE;
+			HKeen_memory |= FROMOUTSIDE;
+			(void) adjattrib(A_WIS, 3, FALSE, TRUE);
+			(void) adjattrib(A_INT, 3, FALSE, TRUE);
+			Your("mind was voided.");
+		}
+
 		if(!Dimmed) {
 		    if (FunnyHallu) {
 			pline("It's antidepressiva - no, wait, it's the opposite of it... oh no! Your life is worthless and you want to jump off a bridge!");
@@ -12956,11 +13045,27 @@ peffects(otmp)
 
 		break;
 	case POT_SANITY:
+
+		if (otmp->oartifact == ART_HAL_S_CLEAR_VIEW) {
+			u.usanity += 9000;
+			HScentView |= FROMOUTSIDE;
+			HSight_bonus |= FROMOUTSIDE;
+			pline("Woah! All the things there are to see!");
+			flags.botl = TRUE;
+		}
+
             makeknown(POT_SANITY);
 		pline("UGH! This tastes incredibly repulsive...");
 		increasesanity(rnz(100));
 		break;
 	case POT_STUNNING:
+
+		if (otmp->oartifact == ART_DAENNAENNAENNAENNAENNAENNA) {
+			HStunnopathy |= FROMOUTSIDE;
+			incr_itimeout(&HStun_resist, 10000);
+			You_feel("steadily observant.");
+		}
+
 		if(!Stunned) {
 		    if (FunnyHallu) {
 			pline("You wobble around! How funny!");
@@ -12980,6 +13085,14 @@ peffects(otmp)
 
 		break;
 	case POT_NUMBNESS:
+
+		if (otmp->oartifact == ART_ACHIEVE_THE_IMPOSSIBLE) {
+			HFree_action |= FROMOUTSIDE;
+			IntrinsicLossProblem |= FROMOUTSIDE;
+			FemaleTrapJulietta |= FROMOUTSIDE;
+			You_feel("that you have achieved the impossible.");
+		}
+
 		if(!Numbed) {
 		    if (FunnyHallu) {
 			pline("Oh! Some of your limbs seem to be talking to you!");
@@ -12994,7 +13107,9 @@ peffects(otmp)
 
 	case POT_CANCELLATION:
 
-		    attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
+		if (isevilvariant) (void) cancel_monst(&youmonst, otmp, FALSE, TRUE, TRUE);
+
+		attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse(); attrcurse();
 
 		unkn++;
 		break;
@@ -13015,11 +13130,15 @@ peffects(otmp)
 
 		pline("Eek! This tastes indescibably bad...");
 
-		if ((monstermoves - otmp->age) < 51) {
+		if (otmp->oartifact == ART_MIRA_S_CURE) {
+			upnivel(FALSE);
+			decontaminate(500);
+		}
 
-		exercise(A_WIS, FALSE);
-		make_vomiting(Vomiting + rnd(10) + 5,TRUE);
-		if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		if ((monstermoves - otmp->age) < 51) {
+			exercise(A_WIS, FALSE);
+			make_vomiting(Vomiting + rnd(10) + 5,TRUE);
+			if (Sick && Sick < 100) 	set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
 		}
 		else {
 			make_sick(Sick ? Sick/2L + 1L : 10, "urine potion", TRUE, SICK_VOMITABLE);
@@ -13036,6 +13155,23 @@ peffects(otmp)
 	case POT_AMNESIA:
 		pline(FunnyHallu? "This tastes like champagne!" :
 			"This liquid bubbles and fizzes as you drink it.");
+
+		if (otmp->oartifact == ART_EXPLORE_LIKE_NEVER_BEFORE) {
+			forget_objects(100, TRUE);
+			forget_levels(100, TRUE);
+			more_experienced(10000000, 0);
+			newexplevel();
+			more_experienced(10000000, 0);
+			newexplevel();
+			more_experienced(10000000, 0);
+			newexplevel();
+			more_experienced(10000000, 0);
+			newexplevel();
+			more_experienced(10000000, 0);
+			newexplevel();
+			pline("Awesome! Now you can explore the dungeon like you've never explored it before!");
+		}
+
 		forget( ((!otmp->blessed? ALL_SPELLS : 0) | ALL_MAP), FALSE);
 		if (FunnyHallu)
 		    pline("Hakuna matata!");
@@ -13195,6 +13331,12 @@ peffects(otmp)
 
 		break;
 	case POT_ENLIGHTENMENT:
+
+		if (otmp->oartifact == ART_TOME_DEFINITION) {
+			object_detect((struct obj *)0, 0);
+			if (!level.flags.nommap) do_mapping();
+		}
+
 		if(otmp->cursed) {
 			unkn++;
 			You("have an uneasy feeling...");
@@ -13223,6 +13365,18 @@ peffects(otmp)
 		}
 		/* FALLTHRU */
 	case POT_INVISIBILITY:
+
+		if (otmp->oartifact == ART_POWER_OF_THE_ONE) {
+			if (!(HProtection & INTRINSIC))  {
+				HProtection |= FROMOUTSIDE;
+				if (!u.ublessed) u.ublessed = (Race_if(PM_MAYMES) ? 2 : 1);
+			} else {
+				u.ublessed++;
+				if (Race_if(PM_MAYMES)) u.ublessed++;
+			}
+			You("feel more protected.");
+		}
+
 		if (Invis || Blind || BInvis) {
 		    nothing++;
 		} else {
@@ -13251,6 +13405,59 @@ peffects(otmp)
 	case POT_FRUIT_JUICE:
 	    {
 		int msg = Invisible && !Blind;
+
+		if (otmp->oartifact == ART_APPLE_JUICE) {
+			lesshungry(500);
+			make_numbed(0L, TRUE);
+		}
+		if (otmp->oartifact == ART_CARROT_JUICE) {
+			lesshungry(300);
+			make_blinded((long)u.ucreamed,TRUE);
+		}
+		if (otmp->oartifact == ART_PEAR_JUICE) {
+			lesshungry(400);
+			make_stunned(0L, TRUE);
+		}
+		if (otmp->oartifact == ART_MELON_JUICE) {
+			lesshungry(600);
+			make_confused(0L, TRUE);
+		}
+		if (otmp->oartifact == ART_LEMON_JUICE) {
+			lesshungry(500);
+			make_feared(0L, TRUE);
+		}
+		if (otmp->oartifact == ART_CHERRY_JUICE) {
+			lesshungry(200);
+			if (PlayerBleeds) {
+				PlayerBleeds = 0;
+				Your("bleeding stops.");
+			}
+		}
+		if (otmp->oartifact == ART_BANANA_JUICE) {
+			lesshungry(250);
+			(void) make_hallucinated(0L, TRUE, 0L);
+		}
+		if (otmp->oartifact == ART_ORANGE_JUICE) {
+			lesshungry(300);
+			make_frozen(0L, TRUE);
+		}
+
+		if (otmp->oartifact == ART_EXTRA_SENSOR) {
+			incr_itimeout(&HTelepat, 5000);
+			You_feel("more mentally acute.");
+		}
+		if (otmp->oartifact == ART_RED_GLASS_ALIKE) {
+			incr_itimeout(&HInfravision, 10000);
+			You_feel("able to see in the dark.");
+		}
+		if (otmp->oartifact == ART_SLOTLESS_LANTERN) {
+			incr_itimeout(&HSight_bonus, 4000);
+			pline("Your vision range increases.");
+		}
+		if (otmp->oartifact == ART_FRIEND_ON_THE_PLANE) {
+			incr_itimeout(&HAstral_vision, 2500);
+			pline("You can see through walls!");
+		}
 
 		unkn++;
 		if (otmp->cursed)
@@ -13712,6 +13919,11 @@ peffects(otmp)
 		break;
 
 	case POT_TECH_LEVEL_UP:
+
+		if (otmp->oartifact == ART_HIGH_TECH_WORK) {
+			techlevelup(); techlevelup(); techlevelup(); techlevelup(); techlevelup(); techlevelup(); techlevelup(); techlevelup(); techlevelup();
+		}
+
 		if(otmp->cursed) {
 			unkn++;
 			You("have a tummy ache...");
@@ -13791,7 +14003,15 @@ peffects(otmp)
 		    }
 		    see_monsters();
 		    if (unkn) You_feel("lonely.");
+
+		    if (otmp->oartifact == ART_LEVEL_DEPENDANT) incr_itimeout(&HDetect_monsters, 2000);
+
 		    break;
+		}
+
+		if (otmp->oartifact == ART_LEVEL_DEPENDANT) {
+			incr_itimeout(&HDetect_monsters, 2000);
+			see_monsters();
 		}
 
 		if (otmp->cursed && evilfriday) {
@@ -13804,6 +14024,16 @@ peffects(otmp)
 		break;
 	case POT_OBJECT_DETECTION:
 	case SPE_DETECT_TREASURE:
+
+		if (otmp->oartifact == ART_TURN_ON_BOOSTER) {
+			int itemmastercnt = rn1(5,5);
+			while (itemmastercnt > 0) {
+				itemmastercnt--;
+				(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+			}
+
+		}
+
 		if (otmp->cursed && evilfriday) {
 			forget(3, FALSE);
 		}
@@ -13852,12 +14082,62 @@ peffects(otmp)
 			exercise(A_CON, FALSE);
 		    }
 		}
+
+		if (otmp->oartifact == ART_WHAT_DOESN_T_KILL_YOU___) {
+			incr_itimeout(&HSick_resistance, rnz(5000));
+			You_feel("resistant to sickness!");
+		}
+
 		if(Hallucination) {
 			You("are shocked back to your senses!");
 			(void) make_hallucinated(0L,FALSE,0L);
 		}
 		break;
 	case POT_CONFUSION:
+
+		if (otmp->oartifact == ART_BAGGLE_VILELY) {
+			ABASE(A_WIS) -= 1;
+			AMAX(A_WIS) -= 1;
+			ABASE(A_CON) -= 1;
+			AMAX(A_CON) -= 1;
+			ABASE(A_STR) -= 1;
+			AMAX(A_STR) -= 1;
+			ABASE(A_DEX) -= 1;
+			AMAX(A_DEX) -= 1;
+			ABASE(A_INT) -= 1;
+			AMAX(A_INT) -= 1;
+			ABASE(A_CHA) -= 1;
+			AMAX(A_CHA) -= 1;
+			if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
+				ABASE(A_WIS) += 1;
+				AMAX(A_WIS) += 1;
+			}
+			if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {
+				ABASE(A_CON) += 1;
+				AMAX(A_CON) += 1;
+			}
+			if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {
+				ABASE(A_STR) += 1;
+				AMAX(A_STR) += 1;
+			}
+			if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {
+				ABASE(A_DEX) += 1;
+				AMAX(A_DEX) += 1;
+			}
+			if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {
+				ABASE(A_INT) += 1;
+				AMAX(A_INT) += 1;
+			}
+			if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {
+				ABASE(A_CHA) += 1;
+				AMAX(A_CHA) += 1;
+			}
+			incr_itimeout(&HConf_resist, 50000);
+			incr_itimeout(&HKeen_memory, 100000);
+			You("feel physically and mentally weaker, but are resistant to confusion and amnesia.");
+			flags.botl = 1;
+		}
+
 		if(!Confusion) {
 		    if (FunnyHallu) {
 			pline("What a trippy feeling!");
@@ -13872,6 +14152,9 @@ peffects(otmp)
 			      FALSE);
 		break;
 	case POT_CLAIRVOYANCE:
+
+		if (otmp->oartifact == ART_CLEAR_THE_VOYANCE) do_vicinity_map_huge();
+
 		/* KMH -- handle cursed, blessed, blocked */
 		if (otmp->cursed)
 			nothing++;
@@ -13885,6 +14168,10 @@ peffects(otmp)
 	case POT_ESP:
 	{
 		const char *mod;
+
+		if (otmp->oartifact == ART_MEDIUM_CALL && !u.temprecursion && !u.demagoguerecursion) {
+			mediumtransformation();
+		}
 
 		/* KMH -- handle cursed, blessed */
 		if (otmp->cursed) {
@@ -13935,6 +14222,9 @@ peffects(otmp)
 		break;
 	case POT_INVULNERABILITY:
 		incr_itimeout(&Invulnerable, rn1(4, 8 + 4 * bcsign(otmp)));
+		if (otmp->oartifact == ART_GOI) {
+			incr_itimeout(&Invulnerable, rn1(4, 8 + 4 * bcsign(otmp)));
+		}
 		You_feel(FunnyHallu ?
 				"like a super-duper hero!" : "invulnerable!");
 		break;
@@ -14050,6 +14340,11 @@ peffects(otmp)
 		else incr_itimeout(&HFast, rn1(10, 100 + 60 * bcsign(otmp)));
 		break;
 	case POT_BLINDNESS:
+
+		if (otmp->oartifact == ART_METHYL_SPIRIT) {
+			make_confused(itimeout_incr(HConfusion, rnz(100)), FALSE);
+		}
+
 		if(Blind) nothing++;
 		make_blinded(itimeout_incr(Blinded,
 					   rn1(200, 250 - 125 * bcsign(otmp))),
@@ -14206,6 +14501,25 @@ peffects(otmp)
 		break;
 	case POT_HEALING:
 		You_feel("better.");
+
+		if (otmp->oartifact == ART_MEXBOOST) {
+			u.uhp += 5;
+			u.uhpmax += 5;
+			if (Upolyd) {
+				u.mh += 5;
+				u.mhmax += 5;
+			}
+
+			u.usymbiote.mhpmax += 5;
+			maybe_evolve_symbiote();
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
+
+		if (otmp->oartifact == ART_QUICK_USE_STUNT) {
+			youmonst.movement += 24;
+			You("act quickly!");
+		}
+
 		healup(d(5,6) + rnz(boosted_ulevel(1)) + 5 * bcsign(otmp),
 		       otmp->blessed ? 2 : !otmp->cursed ? 1 : 0, 1+1*!!otmp->blessed, !otmp->cursed);
 
@@ -14219,6 +14533,10 @@ peffects(otmp)
 		break;
 	case POT_EXTRA_HEALING:
 		You_feel("much better.");
+
+		if (otmp->oartifact == ART_BILL_S_SPECIAL_BREW) {
+			upnivel(FALSE);
+		}
 
 		if (otmp->oartifact == ART_DAMN_WORD_PLAY) {
 
@@ -14263,6 +14581,10 @@ peffects(otmp)
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
 
+		if (otmp->oartifact == ART_WHAT_S_IN_A_NAME) {
+			u.uhp = u.uhpmax;
+		}
+
 		/* Restore one lost level if blessed */
 		if (otmp->blessed && u.ulevel < u.ulevelmax) {
 		    /* when multiple levels have been lost, drinking
@@ -14305,6 +14627,13 @@ peffects(otmp)
 		break;
 	case POT_LEVITATION:
 	case SPE_LEVITATION:
+
+		if (otmp->oartifact == ART_FLIGHT_POTION) {
+			pline("Yay, you can fly!");
+			if (otmp->blessed) incr_itimeout(&HFlying, rn1(100, 500));
+			else incr_itimeout(&HFlying, rn1(280, 20));
+		}
+
 		if (otmp->cursed) HLevitation &= ~I_SPECIAL;
 		if(!Levitation) {
 			/* kludge to ensure proper operation of float_up() */
@@ -14335,12 +14664,12 @@ peffects(otmp)
 		flags.botl = TRUE;
 		break;
 	case POT_GAIN_ENERGY:			/* M. Stephenson */
-		{       register int num , num2;
+		{       register int num, num2;
 			if(otmp->cursed)
 			    You_feel("lackluster.");
 			else
 			    pline("Magical energies course through your body.");
-			num = rnd(25) + rnz(boosted_ulevel(1)) + 5 * otmp->blessed + 10;                        
+			num = rnd(25) + rnz(boosted_ulevel(1)) + 5 * otmp->blessed + 10;
 			num2 = rnd(2) + 2 * otmp->blessed + 1;
 			u.uenmax += (otmp->cursed) ? -num2 : num2;
 			u.uen += (otmp->cursed) ? -num : num;
@@ -14350,12 +14679,29 @@ peffects(otmp)
 				u.uenmax += ((u.uen - u.uenmax) / 2);
 				u.uen = u.uenmax;
 			}
+
+			if (otmp->oartifact == ART_GREATER_DISTILLATION) {
+				u.uen += (num * 4);
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			}
+
 			flags.botl = 1;
 			exercise(A_WIS, TRUE);
 		}
 		break;
-	case POT_GAIN_HEALTH:			/* Amy */
-		{       register int num , num2;
+	case POT_GAIN_HEALTH: /* by Amy */
+		{
+			if (otmp->oartifact == ART_TEMPTING_FATE_WILL_WORK) {
+				u.uhpmax += 20;
+				if (uinsymbiosis) {
+					u.usymbiote.mhpmax += 20;
+					maybe_evolve_symbiote();
+					if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+				}
+				flags.botl = TRUE;
+			}
+
+		       register int num, num2;
 			if(otmp->cursed)
 			    You_feel("drained.");
 			else
@@ -14471,6 +14817,12 @@ peffects(otmp)
 					"potion of acid", KILLED_BY_AN);
 			exercise(A_CON, FALSE);
 		}
+
+		if (otmp->oartifact == ART_PRETTY_TANGY) {
+			incr_itimeout(&HAcid_resistance, rnz(10000));
+			You_feel("less afraid of corrosives.");
+		}
+
 		if (Stoned) fix_petrification();
 		unkn++; /* holy/unholy water can burn like acid too */
 		break;
@@ -14486,6 +14838,11 @@ peffects(otmp)
 		if (!Unchanging) polyself(FALSE);
 		break;
 	case POT_SALT_WATER:
+
+		if (otmp->oartifact == ART_IONS_EMERGING) {
+			incr_itimeout(&HRegeneration, rnz(10000));
+			You("start regenerating.");
+		}
 
 		if (Race_if(PM_ELONA_SNAIL) && !Upolyd) {
 			pline("It's salt! you start to melt."); /* capitalization is NOT an error --Amy */
@@ -14503,24 +14860,30 @@ peffects(otmp)
 		unkn++;
 		u.uconduct.unvegan++;
 
+		if (otmp->oartifact == ART_UNDEAD_COAGULATION) {
+			incr_itimeout(&HSlow_digestion, 5000);
+			You("feel your metabolism slowing down considerably.");
+		}
+
 		if (Role_if(PM_BLEEDER) && !otmp->cursed) {
 
-		pline(FunnyHallu ? "It's the essence of life itself! Damn, you absolutely need more of this stuff! Where's a dealer when you need one?" : "Your tortured body experiences a strange sense of joy as your lips touch the warm red liquid.");
-		if (otmp->otyp == POT_VAMPIRE_BLOOD) u.uhpmax += 1;
-		u.uhp = u.uhpmax;
-
+			pline(FunnyHallu ? "It's the essence of life itself! Damn, you absolutely need more of this stuff! Where's a dealer when you need one?" : "Your tortured body experiences a strange sense of joy as your lips touch the warm red liquid.");
+			if (otmp->otyp == POT_VAMPIRE_BLOOD) u.uhpmax += 1;
+			u.uhp = u.uhpmax;
 		}
 
 		if (Race_if(PM_HEMOPHAGE) && !otmp->cursed) {
 
-		pline(FunnyHallu ? "It's the essence of life itself! Damn, you absolutely need more of this stuff! Where's a dealer when you need one?" : "Your tortured body experiences a strange sense of joy as your lips touch the warm red liquid.");
-		if (otmp->otyp == POT_VAMPIRE_BLOOD) u.uhpmax += 1;
-		u.uhp = u.uhpmax;
-
+			pline(FunnyHallu ? "It's the essence of life itself! Damn, you absolutely need more of this stuff! Where's a dealer when you need one?" : "Your tortured body experiences a strange sense of joy as your lips touch the warm red liquid.");
+			if (otmp->otyp == POT_VAMPIRE_BLOOD) u.uhpmax += 1;
+			u.uhp = u.uhpmax;
 		}
 
 		if (maybe_polyd(is_vampire(youmonst.data), Race_if(PM_VAMPIRE)) || Role_if(PM_GOFF) ) {
 		    violated_vegetarian();
+
+		    if (otmp->oartifact == ART_THICK_ESSENCE) lesshungry(1000);
+
 		    if (otmp->cursed)
 			pline("Yecch!  This %s.", FunnyHallu ?
 			"liquid could do with a good stir" : "blood has congealed");
@@ -14593,6 +14956,21 @@ peffects(otmp)
 		break;
 	case POT_RADIUM:
 		pline(FunnyHallu ? "For some reason, that potion tastes... orange. Yes, the color orange, not the fruit." : "This was radioactive radium!");
+
+		if (otmp->oartifact == ART_GERARD_S_TRAP) {
+			struct monst *mtmp2;
+
+			u.contamination += 1000; /* cannot resist, not a bug --Amy */
+			(void) adjattrib(A_CHA, 5, FALSE, TRUE);
+
+			for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+				if (mtmp2->data->msound == MS_PRIEST) {
+					if (!mtmp2->mfrenzied) mtmp2->mpeaceful = TRUE;
+				}
+			}
+
+		}
+
 		if (!rn2(3)) make_sick(Sick ? Sick/2L + 1L : 50,"radium potion", TRUE, SICK_VOMITABLE);
 		if ((u.ulycn != -1) && !rn2(3)) {
 			you_unwere(TRUE);
@@ -14600,6 +14978,12 @@ peffects(otmp)
 		break;
 	case POT_JOLT_COLA:
 		You("are jolted back to your senses.");
+
+		if (otmp->oartifact == ART_HACKER_DRINK) {
+			incr_itimeout(&HSleep_resistance, 5000);
+			incr_itimeout(&HFree_action, 500);
+		}
+
 		if (otmp->cursed) {
 			You_feel("bad.");
 			u.uhp -= rn2(10);
@@ -14627,6 +15011,15 @@ peffects(otmp)
 	{
 		int x;
 
+		if (otmp->oartifact == ART_HAAAAAAARRR) {
+			(void) adjattrib(A_CHA, 1, FALSE, TRUE);
+			(void) adjattrib(A_STR, 1, FALSE, TRUE);
+			(void) adjattrib(A_DEX, 1, FALSE, TRUE);
+			(void) adjattrib(A_INT, 1, FALSE, TRUE);
+			(void) adjattrib(A_CON, 1, FALSE, TRUE);
+			(void) adjattrib(A_WIS, 1, FALSE, TRUE);
+		}
+
 		x = rn2(otmp->blessed ? 20 : 10) + 1;
 		if (otmp->cursed) {
 			unkn++;
@@ -14647,6 +15040,18 @@ peffects(otmp)
 	} break;
 
 	case POT_RECOVERY: 
+
+		if (otmp->oartifact == ART_D___D_DBB_) {
+			if (HMap_amnesia & INTRINSIC) {
+				HMap_amnesia &= ~INTRINSIC;
+				You_feel("less forgetful!");
+			}
+			if (HMap_amnesia & TIMEOUT) {
+				HMap_amnesia &= ~TIMEOUT;
+				You_feel("less forgetful!");
+			}
+		}
+
 		if (otmp->cursed) {
 			unkn++;
 			You("decide to recover yourself.");
@@ -14681,6 +15086,10 @@ peffects(otmp)
 		incr_itimeout(&Invulnerable, time);
 		incr_itimeout(&HFast, time);
 		incr_itimeout(&HSee_invisible, time);
+		if (otmp->oartifact == ART_TARNING_CAP) {
+			u.wwalktimer += time;
+			incr_itimeout(&HJumping, time);
+		}
 		if (!rnl(3)) make_blinded(Blinded+time,TRUE);	
 		u.uhpmax += rn2(5);
 		if (uinsymbiosis) {
@@ -14771,6 +15180,11 @@ peffects(otmp)
  	case POT_PAN_GALACTIC_GARGLE_BLASTE:
 		You_feel("like having your brain smashed out by a slice of lemon wrapped");
 		pline("around a large gold brick.");
+
+		if (otmp->oartifact == ART_ZAPHOD_S_BARMAN) {
+			lesshungry(500);
+			incr_itimeout(&HMagical_breathing, 10000);
+		}
 
 		if (!(uarmh && itemhasappearance(uarmh, APP_BIKER_HELMET))) {
 			if (otmp->cursed || !rn2(4)) {
@@ -15038,6 +15452,16 @@ boolean your_fault;
 				}
 			}
 		}
+		if (obj && obj->oartifact == ART_BUNDLEWING) {
+			buzz(13, 6, u.ux, u.uy, -1, 0);
+			buzz(13, 6, u.ux, u.uy, 1, 0);
+			buzz(13, 6, u.ux, u.uy, -1, 1);
+			buzz(13, 6, u.ux, u.uy, 1, 1);
+			buzz(13, 6, u.ux, u.uy, 0, 1);
+			buzz(13, 6, u.ux, u.uy, -1, -1);
+			buzz(13, 6, u.ux, u.uy, 1, -1);
+			buzz(13, 6, u.ux, u.uy, 0, -1);
+		}
 
 	} else {
 		if (obj && itemhasappearance(obj, APP_POTION_RESERVATROL) && isok(mon->mx, mon->my)) {
@@ -15057,6 +15481,16 @@ boolean your_fault;
 					run_timers();
 				}
 			}
+		}
+		if (obj && obj->oartifact == ART_BUNDLEWING) {
+			buzz(13, 6, mon->mx, mon->my, -1, 0);
+			buzz(13, 6, mon->mx, mon->my, 1, 0);
+			buzz(13, 6, mon->mx, mon->my, -1, 1);
+			buzz(13, 6, mon->mx, mon->my, 1, 1);
+			buzz(13, 6, mon->mx, mon->my, 0, 1);
+			buzz(13, 6, mon->mx, mon->my, -1, -1);
+			buzz(13, 6, mon->mx, mon->my, 1, -1);
+			buzz(13, 6, mon->mx, mon->my, 0, -1);
 		}
 
 	}
@@ -15335,6 +15769,19 @@ boolean your_fault;
 		break;
 	case POT_PARALYSIS:
 
+		if ((obj->oartifact == ART_FUCK_TWIT_THE_DIRT_PART) && your_fault) {
+			if (u.uenmax >= 50 && u.uhpmax >= 26) {
+				u.uenmax /= 2;
+				if (u.uen > u.uenmax) u.uen = u.uenmax;
+				u.uhpmax -= 25;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+				flags.botl = TRUE;
+
+				pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+				TimeStopped += 5;
+			}
+		}
+
 		/* monsters with paralysis attacks are immune now --Amy */
 		if (mon->mcanmove && !(dmgtype(mon->data, AD_PLYS))) {
 			mon->mcanmove = 0;
@@ -15349,6 +15796,12 @@ boolean your_fault;
 		mon_adjust_speed(mon, 1, obj);
 		break;
 	case POT_BLINDNESS:
+		if (obj->oartifact == ART_METHYL_SPIRIT) {
+			if(!resist(mon, POTION_CLASS, 0, NOTELL))  {
+				mon->mconf = TRUE;
+				if (canseemon(mon)) pline("%s is confused.",Monnam(mon));
+			}
+		}
 		if(haseyes(mon->data)) {
 		    register int btmp = 64 + rn2(32) +
 			rn2(32) * !resist(mon, POTION_CLASS, 0, NOTELL);
@@ -15509,9 +15962,13 @@ boolean your_fault;
 	/* KMH, balance patch -- added */
 	case POT_ACID:
 		if ((!resists_acid(mon) || player_will_pierce_resistance()) && !resist(mon, POTION_CLASS, 0, NOTELL)) {
+
+		    int acidpotdamage = d(obj->cursed ? 2 : 1, obj->blessed ? 4 : 8);
+		    if (obj->oartifact == ART_PRETTY_TANGY) acidpotdamage *= rn1(4, 4);
+
 		    pline("%s %s in pain!", Monnam(mon),
 			  is_silent(mon->data) ? "writhes" : "shrieks");
-		    mon->mhp -= d(obj->cursed ? 2 : 1, obj->blessed ? 4 : 8);
+		    mon->mhp -= acidpotdamage;
 		    if (mon->mhp < 1) {
 			if (your_fault)
 			    killed(mon);
@@ -15658,6 +16115,8 @@ register struct obj *obj;
 	case POT_HALLUCINATION:
 		You("have a momentary vision.");
 
+		if (obj->oartifact == ART_ALL_IS_GOOD_FUN) u.funnyhallutimer += rnz(20000);
+
 		(void) make_hallucinated(itimeout_incr(HHallucination,
 					   rnd(30)), TRUE, 0L);
 		break;
@@ -15709,6 +16168,14 @@ register struct obj *obj;
 		make_numbed(itimeout_incr(HNumbed, rnd(30)), FALSE);
 		break;
 	case POT_CANCELLATION:
+
+		if (obj->oartifact == ART_GODDAMMIT) {
+			attrcurse();
+			attrcurse();
+			attrcurse();
+			if (isevilvariant) (void) cancel_monst(&youmonst, obj, FALSE, TRUE, TRUE);
+		}
+
 	      (void) cancel_monst(&youmonst, obj, FALSE, TRUE, FALSE);
 		break;
 	case POT_SLIME:
@@ -15754,6 +16221,12 @@ register struct obj *obj;
 		exercise(A_DEX, TRUE);
 		break;
 	case POT_BLINDNESS:
+
+		if (obj->oartifact == ART_METHYL_SPIRIT) {
+			if(!Confusion) You_feel("somewhat dizzy.");
+			make_confused(itimeout_incr(HConfusion, rnd(15)), FALSE);
+		}
+
 		if (!Blind && !u.usleep) {
 		    kn++;
 		    pline("It suddenly gets dark.");
@@ -15774,6 +16247,13 @@ register struct obj *obj;
 		}
 		break;
 	case POT_AMNESIA:
+
+		if (isevilvariant && (obj->oartifact == ART_EXPLORE_LIKE_NEVER_BEFORE)) {
+			forget_objects(100, TRUE);
+			forget_levels(100, TRUE);
+			pline("Yep. You just forgot everything.");
+		}
+
 		if (splittinggremlin(youmonst.data)) {
 		    (void)split_mon(&youmonst, (struct monst *)0);
 		} else if(u.umonnum == PM_FLAMING_SPHERE || u.umonnum == PM_SUMMONED_FLAMING_SPHERE) {
@@ -17811,6 +18291,7 @@ poof:
                 You("fill your %s with oil.", yname(obj));
 		if (!(uarmc && itemhasappearance(uarmc, APP_FUEL_CLOAK))) check_unpaid(potion);	/* Yendorian Fuel Tax */
 		obj->age += 2*potion->age;	/* burns more efficiently */
+		if (potion->oartifact == ART_YENDORIAN_RESOURCE) obj->age += 10*potion->age;
 		if (obj->oartifact == ART_EVERYGLASS_IS_WEIRD) obj->age += 5000;
 		if (issoviet && obj->age > 1500L) obj->age = 1500L;
 		useup(potion);

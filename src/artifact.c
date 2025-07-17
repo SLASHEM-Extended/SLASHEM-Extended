@@ -1982,6 +1982,18 @@ register boolean mod;
 			otmp->quan = 1;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_GNALLBUY) {
+			otmp->quan += 4;
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_CHENGORM) {
+			otmp->quan += 2;
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_KURPGURP) {
+			otmp->quan += 1;
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_WORTH_CHECKING_OUT && otmp->spe == 0) {
 			if (rn2(2)) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -7006,6 +7018,13 @@ tscheinschroll:
 
 		if (obj->oartifact == ART_KEEP_IT_WARM_INSIDE) {
 			pline("An aura surrounds your sack...");
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, TRUE);
+			break;
+		}
+
+		if (obj->oartifact == ART_INVOFEAR) {
+			pline("An aura surrounds your scroll...");
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, TRUE);
 			break;

@@ -1698,6 +1698,18 @@ have_femityjewel()
 }
 
 boolean
+have_crashrecoverstone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_CRASH_RECOVERY)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_sportivox()
 {
 	register struct obj *otmp;
@@ -31566,6 +31578,358 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: is used up only 1 in 5 times."); break;
 				case ART_PRIMA_DONNA:
 					pline("Artifact specs: gives much more bonus charisma when used."); break;
+				case ART_MEXBOOST:
+					pline("Artifact specs: improves your maximum health by 5 when quaffed."); break;
+				case ART_QUICK_USE_STUNT:
+					pline("Artifact specs: quaffing it gives you a bunch of additional movement energy for your next turn."); break;
+				case ART_BILL_S_SPECIAL_BREW:
+					pline("Artifact specs: corona antidote when quaffed."); break;
+				case ART_WHAT_S_IN_A_NAME:
+					pline("Artifact specs: sets your hit points to the maximum when quaffed."); break;
+				case ART_TURN_ON_BOOSTER:
+					pline("Artifact specs: quaffing it creates some new items on the current dungeon level."); break;
+				case ART_SLEX_ANTHEM:
+					pline("Artifact specs: reading it allows you to identify more items."); break;
+				case ART_TORCHE_LIGHTE_VRYTHING:
+					pline("Artifact specs: reading it lights up the entire level."); break;
+				case ART_IRONHARD:
+					pline("Artifact specs: makes the target weapon erosionproof in addition to enchanting it."); break;
+				case ART_STEELWALL:
+					pline("Artifact specs: makes the target armor piece erosionproof in addition to enchanting it."); break;
+				case ART_CURSE_EVERYTHING:
+					pline("Artifact specs: reading this scroll causes all your armor pieces to go poof. If you're playing evilvariant mode, this can also happen when a monster reads it."); break;
+				case ART_BIG_BOOM:
+					pline("Artifact specs: explodes for more damage."); break;
+				case ART_SATISFYING_GRUEL:
+					pline("Artifact specs: +500 nutrition when read."); break;
+				case ART_PLANEWALKER:
+					pline("Artifact specs: additionally detects traps when read."); break;
+				case ART_INVOFEAR:
+					pline("Artifact specs: can be invoked to uncurse it, or bless if it's already uncursed."); break;
+				case ART_EASE_YOURSELF:
+					pline("Artifact specs: reduces your sanity by 1000 and halves contamination when read."); break;
+				case ART_HORDE_SUMMONATION:
+					pline("Artifact specs: summons more monsters than normal."); break;
+				case ART_BETTER_THE_POWER:
+					pline("Artifact specs: creates another charging scroll when read."); break;
+				case ART_BIGBALL_PLAYER:
+					pline("Artifact specs: adds a bunch of enchantment to the created iron ball."); break;
+				case ART_CTHULHU_S_DELIQUENCE:
+					pline("Artifact specs: creates a more damaging cloud."); break;
+				case ART_APPLE_JUICE:
+					pline("Artifact specs: cures numbness and provides 500 more nutrition."); break;
+				case ART_CARROT_JUICE:
+					pline("Artifact specs: cures blindness and provides 300 more nutrition."); break;
+				case ART_PEAR_JUICE:
+					pline("Artifact specs: cures stun and provides 400 more nutrition."); break;
+				case ART_MELON_JUICE:
+					pline("Artifact specs: cures confusion and provides 600 more nutrition."); break;
+				case ART_LEMON_JUICE:
+					pline("Artifact specs: cures fear and provides 500 more nutrition."); break;
+				case ART_CHERRY_JUICE:
+					pline("Artifact specs: cures bleeding and provides 200 more nutrition."); break;
+				case ART_BANANA_JUICE:
+					pline("Artifact specs: cures hallucination and provides 250 more nutrition."); break;
+				case ART_ORANGE_JUICE:
+					pline("Artifact specs: cures freezing and provides 300 more nutrition."); break;
+				case ART_EXTRA_SENSOR:
+					pline("Artifact specs: gives temporary ESP when quaffed."); break;
+				case ART_RED_GLASS_ALIKE:
+					pline("Artifact specs: gives temporary infravision when quaffed."); break;
+				case ART_SLOTLESS_LANTERN:
+					pline("Artifact specs: gives temporary vision bonus when quaffed."); break;
+				case ART_FRIEND_ON_THE_PLANE:
+					pline("Artifact specs: gives temporary astral vision when quaffed."); break;
+				case ART_WHAT_DOESN_T_KILL_YOU___:
+					pline("Artifact specs: after poisoning you, it gives temporary sickness resistance."); break;
+				case ART_MEDIUM_CALL:
+					pline("Artifact specs: transforms you into the medium role for a period of time when quaffed. This effect does not work if you currently have temporary recursion or are on the planes, and ends if you enter the planes while it's active."); break;
+				case ART_BAGGLE_VILELY:
+					pline("Artifact specs: permanently reduces all stats by one, but gives long-lasting resist confusion and keen memory when quaffed."); break;
+				case ART_ALL_IS_GOOD_FUN:
+					pline("Artifact specs: gives funny hallu messages for a while."); break;
+				case ART_BUNDLEWING:
+					pline("Artifact specs: if you quaff or throw it, the potion fires sleep rays in all directions."); break;
+				case ART_METHYL_SPIRIT:
+					pline("Artifact specs: if you quaff it, you become confused for a while, and if you throw it, the target monster may become confused."); break;
+				case ART_GREATER_DISTILLATION:
+					pline("Artifact specs: restores a larger amount of mana."); break;
+				case ART_POWER_OF_THE_ONE:
+					pline("Artifact specs: quaffing it increases your intrinsic protection by one."); break;
+				case ART_LEVEL_DEPENDANT:
+					pline("Artifact specs: gives 2000 (more) turns of detect monsters when quaffed."); break;
+				case ART_TOME_DEFINITION:
+					pline("Artifact specs: quaffing it gives magic mapping and detect objects effects."); break;
+				case ART_FLIGHT_POTION:
+					pline("Artifact specs: quaffing allows you to fly for a while."); break;
+				case ART_PRETTY_TANGY:
+					pline("Artifact specs: quaffing it gives acid resistance for a while, throwing it deals extra damage to monsters."); break;
+				case ART_YENDORIAN_RESOURCE:
+					pline("Artifact specs: filling a lamp with this one gives a far greater amount of turns of light."); break;
+				case ART_FUCK_TWIT_THE_DIRT_PART:
+					pline("Artifact specs: throwing it at a monster stops time for 5 (more) turns, but that effect halves your max mana and reduces your max HP by 25. If you don't have enough of either, the effect just doesn't proc at all."); break;
+				case ART_KUPA_STABILITY:
+					pline("Artifact specs: disintegration resistance when worn."); break;
+				case ART_BRING_THE_ANNOYANCE:
+					pline("Artifact specs: poison resistance when worn."); break;
+				case ART_CRASH_RECOVERY:
+					pline("Artifact specs: regeneration and ute trap effect when carried."); break;
+				case ART_CHINESE_WISDOM:
+					pline("Artifact specs: eating it conveys +1 luck."); break;
+				case ART_UNDERWATER_VERMULTIFOLD:
+					pline("Artifact specs: eating it creates a stack of regular kelp fronds, which is bigger if you are currently underwater."); break;
+				case ART_WOMANMADE:
+					pline("Artifact specs: if you're male, it provides more nutrition, but if you're female, eating it damages your wisdom."); break;
+				case ART_BIZARRE_WHITE_MILK:
+					pline("Artifact specs: temporary unchanging when eaten."); break;
+				case ART_IMPLIED_EFFECT:
+					pline("Artifact specs: reading it can affect your luck, depending on the scroll's BUC."); break;
+				case ART_CLEAR_THE_VOYANCE:
+					pline("Artifact specs: much bigger radius for revealing stuff."); break;
+				case ART_TEMPTING_FATE_WILL_WORK:
+					pline("Artifact specs: greatly improves your maximum hit points when quaffed."); break;
+				case ART_GO_TO_THE_RESIST_COLD:
+					pline("Artifact specs: grants intrinsic cold resistance when quaffed."); break;
+				case ART_WARMTH_WITHIN:
+					pline("Artifact specs: grants intrinsic burnopathy when quaffed."); break;
+				case ART_SEVEN_OF_MIDDLE:
+					pline("Artifact specs: grants intrinsic fear factor when quaffed."); break;
+				case ART_DAENNAENNAENNAENNAENNAENNA:
+					pline("Artifact specs: grants intrinsic stunnopathy and temporary stun resistance when quaffed."); break;
+				case ART_ACHIEVE_THE_IMPOSSIBLE:
+					pline("Artifact specs: quaffing it gives intrinsic free action, intrinsic loss and julietta trap effect."); break;
+				case ART_VOIDED_MIND:
+					pline("Artifact specs: quaffing it increases your INT and WIS by 3 and gives intrinsic mystery resistance, keen memory and magic vacuum."); break;
+				case ART_MIRA_S_CURE:
+					pline("Artifact specs: quaffing it gives a corona antidote and reduces your contamination by 500."); break;
+				case ART_GODDAMMIT:
+					pline("Artifact specs: if it's thrown at you, it removes some of your intrinsics. If you're playing evilvariant mode, it can also cancel your whole inventory."); break;
+				case ART_HAL_S_CLEAR_VIEW:
+					pline("Artifact specs: greatly increases your sanity when quaffed, but also gives intrinsic scent view and sight bonus."); break;
+				case ART_GAMBLING_PRIZE:
+					pline("Artifact specs: no special effects."); break;
+				case ART_HIGH_TECH_WORK:
+					pline("Artifact specs: levels up your techniques a bunch of times when quaffed."); break;
+				case ART_IONS_EMERGING:
+					pline("Artifact specs: temporary regeneration when quaffed."); break;
+				case ART_GOI:
+					pline("Artifact specs: double duration."); break;
+				case ART_HAAAAAAARRR:
+					pline("Artifact specs: quaffing it increases all of your stats."); break;
+				case ART_D___D_DBB_:
+					pline("Artifact specs: quaffing it cures map amnesia."); break;
+				case ART_TARNING_CAP:
+					pline("Artifact specs: temporary waterwalking and jumping when quaffed."); break;
+				case ART_GERARD_S_TRAP:
+					pline("Artifact specs: severely contaminates you and +5 charisma when quaffed; if there are aligned priests on the current level, they become peaceful."); break;
+				case ART_HACKER_DRINK:
+					pline("Artifact specs: temporary sleep resistance and free action when quaffed. The latter doesn't last all that long."); break;
+				case ART_ZAPHOD_S_BARMAN:
+					pline("Artifact specs: extra nutrition and temporary magical breathing when quaffed."); break;
+				case ART_THICK_ESSENCE:
+					pline("Artifact specs: vampiric characters gain extra nutrition from quaffing it."); break;
+				case ART_UNDEAD_COAGULATION:
+					pline("Artifact specs: temporary slow digestion when quaffed."); break;
+				case ART_EXPLORE_LIKE_NEVER_BEFORE:
+					pline("Artifact specs: levels you up a bunch of times when quaffed but you forget all items and dungeon levels. In evilvariant mode, you forget everything when a monster throws this at you, too."); break;
+				case ART_GHOULCLOUD:
+					pline("Artifact specs: summons more undead than normal."); break;
+				case ART_FIND_OUT_WHAT_THE_HELL_THI:
+					pline("Artifact specs: lets you secure identify two items."); break;
+				case ART_DISCOVERYYYYYY___:
+					pline("Artifact specs: identifies a bunch of random base items when read. Not necessarily ones you actually have in your possession, mind you."); break;
+				case ART_LOGGERS_S_DIRTY_CHEATING:
+					pline("Artifact specs: temporary magical breathing and half physical damage when quaffed. Ha! Thought it'd make you immune to monster attacks while underwater, eh? Filthy cheater. :-P"); break;
+				case ART_KWULLPKWULLPKWULLP:
+					pline("Artifact specs: temporary energy regeneration when quaffed."); break;
+				case ART_MEGASTAR:
+					pline("Artifact specs: doesn't enchant your weapon the normal way, but doubles its enchantment instead. The maximum value your weapon can reach that way is +15."); break;
+				case ART_BONZORBON:
+					pline("Artifact specs: doesn't enchant your armor the normal way, but doubles its enchantment instead. The maximum value your armor can reach that way is +12."); break;
+				case ART_RANDOM_NUMBER_GAME:
+					pline("Artifact specs: allows you to randomly enchant up to five items in your inventory."); break;
+				case ART_SO_LONG_SUCKERS:
+					pline("Artifact specs: fully heals you when read."); break;
+				case ART_FALSE_EXIT:
+					pline("Artifact specs: warps you to the minus world when read."); break;
+				case ART_GRETA_S_INTERFERENCE:
+					pline("Artifact specs: if someone reads it, a bunch of challenging monsters spawn on various dungeon levels."); break;
+				case ART_HIGHTIME__RIGHT_:
+					pline("Artifact specs: spawns three artifacts when read."); break;
+				case ART_TEENAGE_NUTANT_NINJA_TURTL:
+					pline("Artifact specs: increases your shirt's enchantment value by 20 when read, up to a maximum of +100. But you also get severely contaminated and receive the autopilot nastytrap effect permanently."); break;
+				case ART_MARIYA_S_BAR_STAGE:
+					pline("Artifact specs: cleans up terrain in a 5-tile radius."); break;
+				case ART_LORD_DIMWIT_S_GRIN:
+					pline("Artifact specs: spawns more monsters than normal."); break;
+				case ART_GRUNT_S_BAD_BREAKUP:
+					pline("Artifact specs: spawns more monsters than normal."); break;
+				case ART_FLEECEYAY:
+					pline("Artifact specs: if someone reads this, you get hit by a bunch of random feminism trap effects which will last for a while."); break;
+				case ART_GNALLBUY:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_CHENGORM:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_KURPGURP:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_WILDE_BIRGE:
+					pline("Artifact specs: changes more material types on average."); break;
+				case ART_TAETETETERATE_DIEDAE_DAE:
+					pline("Artifact specs: if someone reads it, in addition to its normal effect, another ragnarok will happen a while into the future."); break;
+				case ART_BLUUUUUUUUUUH___:
+					pline("Artifact specs: hits you with a bunch of additional bad effects."); break;
+				case ART_BUEUEUEUEUEUEP:
+					pline("Artifact specs: hits you with an additional super bad effect."); break;
+				case ART_LINLEY_S_HELP:
+					pline("Artifact specs: lets you acquire five items."); break;
+				case ART_OREMOR_IS_BACK:
+					pline("Artifact specs: world fall when read, which kills monsters whose level isn't higher than yours."); break;
+				case ART_HEPTAHEX:
+					pline("Artifact specs: lasts for a much longer time."); break;
+				case ART_TOUSTEFNA:
+					pline("Artifact specs: lasts for a much longer time."); break;
+				case ART_WHAT_S_IN_THE_NEW_CHANGELO:
+					pline("Artifact specs: enlightenment after the reality has been altered."); break;
+				case ART_SUPER_MEGA_DOUBLE_JACKPOT:
+					pline("Artifact specs: spawns three artifacts."); break;
+				case ART_WE_RE_IN_THIS_TOGETHER:
+					pline("Artifact specs: unlocks the petkeeping skill when read, or if you already have it, its cap is increased by one."); break;
+				case ART_GIANT_GROWTH:
+					pline("Artifact specs: gives 5 skill points when read."); break;
+				case ART_UNIVERSE_CENTER:
+					pline("Artifact specs: spawns more monsters than normal."); break;
+				case ART_FREE_TIME_CAMP:
+					pline("Artifact specs: spawns more monsters than normal."); break;
+				case ART_BOOCASTLE:
+					pline("Artifact specs: spawns more monsters than normal."); break;
+				case ART_BIGGER_SPACER:
+					pline("Artifact specs: if you read it, your STR and CON are increased by two."); break;
+				case ART_ARABELLA_S_FILLER:
+					pline("Artifact specs: fills... something. Why don't you find out by reading it?"); break;
+				case ART_MAC_BASTARD:
+					pline("Artifact specs: always gives you a new hybrid race."); break;
+				case ART_BANDAR_AMC:
+					pline("Artifact specs: curses several of your items."); break;
+				case ART_FUCK_CRAP_SWEAR_GRAWLIX:
+					pline("Artifact specs: if this scroll is read by anyone, your items are disenchanted and can go into the negatives."); break;
+				case ART_TRASH_FROM_THE_STREET:
+					pline("Artifact specs: summons more monsters than normal."); break;
+				case ART_FULL_DECK_SHUFFLE:
+					pline("Artifact specs: shuffles the positions of monsters on the current level when read."); break;
+				case ART_BURIED_KNEE_DEEP:
+					pline("Artifact specs: spawns more monsters than normal."); break;
+				case ART_ALSO_STILL_UNDERTOW:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_GHWYPYAPGBUHWHWNZERZH:
+					pline("Artifact specs: if someone reads it, you're forced to read random messages for a while."); break;
+				case ART_LUST_ENVY_PRIDE_WRATH_GLUT:
+					pline("Artifact specs: hits you with all the sin effect at once, regardless of who reads it."); break;
+				case ART_ARABELLA_S_SCREWER:
+					pline("Artifact specs: Read it, I dare you... :-)"); break;
+				case ART_HOLYBOAH_SPRITE:
+					pline("Artifact specs: temporary curse resistance when read."); break;
+				case ART_DO_NOT_BELIEVE:
+					pline("Artifact specs: lasts for a longer time."); break;
+				case ART_TERRABELLE:
+					pline("Artifact specs: lasts for a longer time."); break;
+				case ART_HUELF_MIE:
+					pline("Artifact specs: improves your luck by 3 when read."); break;
+				case ART_BUEUEUEUEUEUEI_:
+					pline("Artifact specs: reading it creates water tiles around you."); break;
+				case ART_DEEP_DOWN:
+					pline("Artifact specs: reduces your current alignment by 50 when read and creates a ring on your square."); break;
+				case ART_PLAY_WITH_THE_EROGENOUS_AN:
+					pline("Artifact specs: reading it allows you to visit the public toilet. By the way, 'WC' means 'wash and clean', in case you didn't know."); break;
+				case ART_A_PENTAGRAM_AND_ANOTHER_PE:
+					pline("Artifact specs: spawns a regular scroll of make pentagram when read."); break;
+				case ART_USEFUL_FEATURE:
+					pline("Artifact specs: spawns a bunch of regular scrolls of well building when read."); break;
+				case ART_DRIVINGDRIVINGDRIVE:
+					pline("Artifact specs: spawns wagons on random nearby tiles."); break;
+				case ART_TIDY_CLASSROOM:
+					pline("Artifact specs: spawns tables on random nearby tiles."); break;
+				case ART_GRAUNDWORK_CAMP:
+					pline("Artifact specs: spawns beds on random nearby tiles."); break;
+				case ART_MINE_BOTTOM:
+					pline("Artifact specs: spawns mattresses on random nearby tiles."); break;
+				case ART_WARM_MASSAGE:
+					pline("Artifact specs: reading it protects your inventory from water damage for a period of time."); break;
+				case ART_SCRAM_SEMICOLON_H_SO_:
+					pline("Artifact specs: causes you to hallucinate, but the stoning effect procs first, ha-ha-ha!"); break;
+				case ART_MULTI_FILL:
+					pline("Artifact specs: creates traps in a bigger radius."); break;
+				case ART_GUTNACHT_:
+					pline("Artifact specs: puts you to sleep for far longer. Hopefully you wake up in time."); break;
+				case ART_INFERNAL_PART:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_HEUTE_GETARRARR:
+					pline("Artifact specs: gives a bunch of regular scrolls of repair item when read."); break;
+				case ART_WANNA_FIGHT_THE_NEXT_TEACH:
+					pline("Artifact specs: if this is read by anyone, you get a long-lasting boss spawn nastytrap effect."); break;
+				case ART_RED_TEARS:
+					pline("Artifact specs: if someone reads this, you will bleed."); break;
+				case ART_INESCAPABLE_STENCH:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_ARABELLA_S_INSTAWIN_BUTTON:
+					pline("Artifact specs: omg you absolutely need to read this one, it sounds like you'll instantly win the game!!"); break;
+				case ART_SMOTHERSAND:
+					pline("Artifact specs: summons more monsters than usual."); break;
+				case ART_UNFAIR_GAIA:
+					pline("Artifact specs: summons more monsters than usual."); break;
+				case ART_G_E_A_L__CLAP_:
+					pline("Artifact specs: creates more traps than usual."); break;
+				case ART_DISSONANCE_MUSIC:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_TATA__TATA_TAAAAAA_:
+					pline("Artifact specs: if someone reads it, the entire level becomes icy."); break;
+				case ART_CUCKOOLAND_WOOHOO:
+					pline("Artifact specs: if someone reads it, the entire level becomes cloudy."); break;
+				case ART_WALT_S_MEGACORP:
+					pline("Artifact specs: if someone reads it, grave walls spring up on random tiles of the entire level."); break;
+				case ART_NDERGRUND_TUNNEL:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_SYTHE_FOR_RENT:
+					pline("Artifact specs: if someone reads it, random farmland tiles appear everywhere on the level."); break;
+				case ART_ANTIS_WEDIX:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_PROTECTED_CORAL_REEF:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_MORTON_S_WINTER:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_CHICKOCALYPSE:
+					pline("Artifact specs: randomly replaces terrain with moorland and spawns random chickens and birds."); break;
+				case ART_BSSSSSSSSSSSSSSSSSS_______:
+					pline("Artifact specs: if someone reads it, the entire level is covered with urine lakes."); break;
+				case ART_THAI_S_FORCEPUSH:
+					pline("Artifact specs: bigger radius, and regardless of who reads it, a bunch of golems spawn on the current dungeon level."); break;
+				case ART_HEY__HERE_S_JASON_:
+					pline("Artifact specs: if someone reads it, the entire level is filled with styx rivers."); break;
+				case ART_LEANG_S_ORIGIN:
+					pline("Artifact specs: if someone reads it, the entire level becomes snowy."); break;
+				case ART_MEHRUNES__BIG_PLAN:
+					pline("Artifact specs: if someone reads it, the entire level's floor turns to ash."); break;
+				case ART_BARNING_DESERT:
+					pline("Artifact specs: if someone reads it, the entire level's floor turns to sand, and a sandstorm will start."); break;
+				case ART_GREEN_CROSSROADS_WHOA:
+					pline("Artifact specs: if someone reads it, the entire level will be covered with paved roads."); break;
+				case ART_INFINITESIMAL_DISTANCE:
+					pline("Artifact specs: if someone reads it, the entire level's floor turns to highways and is also lit up."); break;
+				case ART_SPYING_IN_THE_WAR:
+					pline("Artifact specs: if someone reads it, the entire level becomes grassy."); break;
+				case ART_GO_THRU_HELL:
+					pline("Artifact specs: if someone reads it, the entire level is filled with nether mist."); break;
+				case ART_SUNNCHI:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_ROBIN_S_FORGETTAL:
+					pline("Artifact specs: if someone reads it, the entire level's floor turns to crypt floor and also becomes unlit."); break;
+				case ART_OF_BECAUSE_OF__HAPPY__:
+					pline("Artifact specs: if someone reads it, the entire level is filled with bubbles."); break;
+				case ART_WHEN_DOES_THE_PAIN_RELEASE:
+					pline("Artifact specs: if someone reads it, the entire level is filled with rain clouds, and rainy weather will start."); break;
+				case ART_CHAREY_S_LOCK:
+					pline("Artifact specs: bigger radius."); break;
+				case ART_ACE_DEUCE:
+					pline("Artifact specs: spawns an additional player monster."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

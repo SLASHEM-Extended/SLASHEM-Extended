@@ -3968,6 +3968,17 @@ boolean from_invent;
 
 	}
 
+	if (obj->oartifact == ART_BUNDLEWING && isok(x, y)) { /* sleep rays in all directions --Amy */
+		buzz(13, 6, x, y, -1, 0);
+		buzz(13, 6, x, y, 1, 0);
+		buzz(13, 6, x, y, -1, 1);
+		buzz(13, 6, x, y, 1, 1);
+		buzz(13, 6, x, y, 0, 1);
+		buzz(13, 6, x, y, -1, -1);
+		buzz(13, 6, x, y, 1, -1);
+		buzz(13, 6, x, y, 0, -1);
+	}
+
 	int am;
 	if (IS_ALTAR(levl[x][y].typ))
 	    am = levl[x][y].altarmask & AM_MASK;

@@ -268,6 +268,23 @@ nh_timeout()
 		if (!u.cryopancaketurns) You("are no longer immune to cold.");
 	}
 
+	if (u.funnyhallutimer) {
+		u.funnyhallutimer--;
+		if (u.funnyhallutimer < 0) u.funnyhallutimer = 0; /* fail safe */
+	}
+
+	if (u.wwalktimer) {
+		u.wwalktimer--;
+		if (u.wwalktimer < 0) u.wwalktimer = 0; /* fail safe */
+		if (!u.wwalktimer) You("can no longer walk on water.");
+	}
+
+	if (u.tempwaterprotection) {
+		u.tempwaterprotection--;
+		if (u.tempwaterprotection < 0) u.tempwaterprotection = 0; /* fail safe */
+		if (!u.tempwaterprotection) Your("items are no longer safe from water.");
+	}
+
 	if (u.weathertimer) {
 		u.weathertimer--;
 		if (u.weathertimer < 0) u.weathertimer = 0; /* fail safe */
@@ -4353,6 +4370,10 @@ nh_timeout()
 			if (!Teleport_control)
 				You_feel("a little less in control of yourself.");
 			break;
+		case UNCHANGING:
+			if (!Unchanging)
+				You_feel("able to change form once more.");
+			break;
 		case POLYMORPH:
 			if (!Polymorph)
 				You_feel("a little less unstable.");
@@ -4364,6 +4385,14 @@ nh_timeout()
 		case TELEPAT:
 			if (!HTelepat)
 				You_feel("a little less mentally acute.");
+			break;
+		case VERSUS_CURSES:
+			if (!HVersus_curses)
+				You_feel("less protected from curses.");
+			break;
+		case JUMPING:
+			if (!HJumping)
+				You("can no longer jump around.");
 			break;
 		case SEARCHING:
 			if (!HSearching)
@@ -4380,6 +4409,10 @@ nh_timeout()
 		case REGENERATION:
 			if (!HRegeneration)
 				pline("You stop regenerating rapidly.");
+			break;
+		case ENERGY_REGENERATION:
+			if (!HEnergy_regeneration)
+				pline("Your mana regeneration slows down again.");
 			break;
 		case CONFLICT:
 			if (!HConflict)

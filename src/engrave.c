@@ -6512,6 +6512,9 @@ static const char *epitaphs[] = {
 	"Here lies Prince Alexander. He confronted Abdul Alhazred for the final battle... but he didn't have a weapon, and he was able to evade the Necronomicon author's sword strikes only for so long. Then... Touche! Alexander should have been on guard.",
 	"Here lies Abdul Alhazred. Prince Alexander was having trouble with his heavy two-handed sword, so Princess Nervkopfcassima came to his aid and wounded the Necronomicon author's shoulder by using the small female dagger that Alex had given to her. While Abdul was still recovering, Alex quickly used his sword and struck him down.",
 	"Here lies the short ending path of King's Quest 6. After the player had beaten the long path, and with maximum score to boot, he just decided that the short path can bite him because the puzzles on that path suck, so that part of the game didn't get played. Shame.",
+	"He died because his mother penised around with her cellphone instead of watching her child.",
+	"The kid couldn't swim but the teacher thought it was a good idea to play on her cellphone instead of, you know, obey her duty of supervision and make sure the kid stays in the shallow water area!",
+	"A dude who decided it was a good idea to take a swim in the Rhine. He suddenly got carried out into the open, tried futilely to struggle against the currents, and ran out of stamina eventually. So he drowned despite being able to swim, and then, after his death, his body floated back up to the surface by itself. Why human bodies aren't programmed to stay afloat WHILE STILL ALIVE, we'll never know; if that were the case, far less people would drown each year!",
 
 };
 

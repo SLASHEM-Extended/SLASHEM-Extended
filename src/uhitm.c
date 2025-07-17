@@ -4096,15 +4096,17 @@ int dieroll;
 				tmp += 20;
 			}
 
-			/* artifact wands get up to +rno(10) --Amy */
+			/* artifact wands get up to +rno(20) --Amy */
 			if (obj && obj->oclass == WAND_CLASS && obj->oartifact && obj->spe > 0) {
 				int spbdmgboost = 0;
 				if (obj->spe > 0) spbdmgboost += obj->spe;
+				if (spbdmgboost > 20) spbdmgboost = 20;
 				if (spbdmgboost > 0) tmp += rno(spbdmgboost);
 			}
 			if (obj && obj->oclass == WAND_CLASS && Race_if(PM_STICKER) && obj->spe > 0) {
 				int spbdmgboost = 0;
 				if (obj->spe > 0) spbdmgboost += obj->spe;
+				if (spbdmgboost > 20) spbdmgboost = 20;
 				if (spbdmgboost > 0) tmp += rno(spbdmgboost);
 			}
 

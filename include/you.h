@@ -769,6 +769,12 @@ struct you {
 	int restfulsleepduration;	/* for narcolepsy trap */
 	int antimagicshell;	/* for scroll of antimagic */
 
+	int funnyhallutimer;	/* temporary funny hallu (changes messages without actually making you hallucinate) */
+
+	int wwalktimer;		/* for temporary water walking */
+
+	int tempwaterprotection; /* temporary protection from water damage for player's inventory */
+
 	int stonedchilltimer;	/* to control whether you get the damage reduction */
 
 	int missingstaircase;	/* for artifact that creates downstairs on the castle level */

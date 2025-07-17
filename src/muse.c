@@ -2445,6 +2445,16 @@ struct obj *obj;
 		}
 
 	    }
+	    if (obj->oartifact == ART_BUNDLEWING) {
+		buzz(13, 6, mon->mx, mon->my, -1, 0);
+		buzz(13, 6, mon->mx, mon->my, 1, 0);
+		buzz(13, 6, mon->mx, mon->my, -1, 1);
+		buzz(13, 6, mon->mx, mon->my, 1, 1);
+		buzz(13, 6, mon->mx, mon->my, 0, 1);
+		buzz(13, 6, mon->mx, mon->my, -1, -1);
+		buzz(13, 6, mon->mx, mon->my, 1, -1);
+		buzz(13, 6, mon->mx, mon->my, 0, -1);
+	    }
 	    if (itemhasappearance(obj, APP_POTION_SYMBIO)) {
 		struct permonst *pm = 0;
 		int attempts = 0;
@@ -3431,6 +3441,11 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
+
+		if (otmp->oartifact == ART_SO_LONG_SUCKERS) {
+			mtmp->mhp = mtmp->mhpmax;
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		how = SCR_TELE_LEVEL;
 
@@ -3554,6 +3569,53 @@ mon_tele:
 		if (mtmp->isshk || mtmp->isgd || mtmp->ispriest) return 2;
 		m_flee(mtmp);
 		mreadmsg(mtmp, otmp);
+
+		if (otmp->oartifact == ART_GRETA_S_INTERFERENCE) {
+			d_level flev;
+			int gretatype;
+
+			pline("Warning, lag spike incoming, please be patient (this can take several minutes)...");
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord cc, dd;
+			int cx,cy;
+
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			int gretaamount = 70 + (u.ulevel * 30);
+			int halfwayamount = gretaamount / 2;
+
+			for (i = 0; i < gretaamount; i++) {
+
+				if (i == halfwayamount) pline("Halfway done, please stay patient...");
+
+				flev = random_banishment_level();
+
+				gretatype = rnd(4);
+				if (gretatype == 1) gretatype = 333; /* MS_STENCH */
+				else if (gretatype == 2) gretatype = 39; /* MS_FART_NORMAL */
+				else if (gretatype == 3) gretatype = 38; /* MS_FART_QUIET */
+				else gretatype = 40; /* MS_FART_LOUD */
+
+				struct monst *gretabitch;
+
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				gretabitch = makemon(specialtensmon(gretatype), cx, cy, MM_ADJACENTOK|MM_ANGRY);
+				if (gretabitch && !mon_has_amulet(gretabitch) && !(In_endgame(&u.uz)) ) {
+					migrate_to_level(gretabitch, ledger_no(&flev), MIGR_RANDOM, (coord *)0);
+				}
+
+			}
+
+			u.aggravation = 0;
+
+		} /* greta artifact end */
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 		if (oseen) makeknown(SCR_WARPING);
@@ -3710,6 +3772,7 @@ mon_tele:
 
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
+		if (otmp->oartifact == ART_HORDE_SUMMONATION) cnt += 13;
 		/*if (mtmp->mconf) pm = fish = &mons[PM_ACID_BLOB];*/ /* no easy blob fort building --Amy */
 		/*else if (is_pool(mtmp->mx, mtmp->my))
 		    fish = &mons[u.uinwater ? PM_GIANT_EEL : PM_CROCODILE];*/
@@ -3889,6 +3952,7 @@ mon_tele:
 		if (rn2(2)) cnt += rnz(2);
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
+		if (otmp->oartifact == ART_GHOULCLOUD) cnt += rnz(6);
 		mreadmsg(mtmp, otmp);
 		while(cnt--) {
 
@@ -3968,6 +4032,7 @@ mon_tele:
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
+		if (otmp->oartifact == ART_FREE_TIME_CAMP) cnt *= 2;
 
 		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -4162,6 +4227,10 @@ mon_tele:
 		boolean known = FALSE;
 		int attempts = 0;
 
+		if (otmp->oartifact == ART_WANNA_FIGHT_THE_NEXT_TEACH) {
+			Bossfights += 20000;
+		}
+
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
 		if (Aggravate_monster) {
@@ -4214,6 +4283,8 @@ newboss:
 		mreadmsg(mtmp, otmp);
 
 		tt_mname(&cc, FALSE, 0);
+		if (otmp->oartifact == ART_BOOCASTLE) tt_mname(&cc, FALSE, 0);
+
 		if (!objects[SCR_SUMMON_GHOST].oc_name_known
 			&& !objects[SCR_SUMMON_GHOST].oc_uname)
 		    docall(otmp);
@@ -4228,10 +4299,14 @@ newboss:
 		mreadmsg(mtmp, otmp);
 
 		{
-		int aligntype;
-		aligntype = rn2((int)A_LAWFUL+2) - 1;
-		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
-		summon_minion(aligntype, TRUE);
+			int aligntype;
+			aligntype = rn2((int)A_LAWFUL+2) - 1;
+			pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+			summon_minion(aligntype, TRUE);
+			if (otmp->oartifact == ART_TRASH_FROM_THE_STREET) {
+				summon_minion(aligntype, TRUE);
+				summon_minion(aligntype, TRUE);
+			}
 		}
 
 		if (!objects[SCR_SUMMON_ELM].oc_name_known
@@ -7051,6 +7126,7 @@ struct monst *mtmp;
 		int cnt = rno(9);
 		if (mtmp->mconf) cnt += rno(12);
 		if (otmp->cursed) cnt += rno(5);
+		if (otmp->oartifact == ART_UNFAIR_GAIA) cnt *= 2;
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -7082,6 +7158,7 @@ struct monst *mtmp;
 		int cnt = rno(9);
 		if (mtmp->mconf) cnt += rno(12);
 		if (otmp->cursed) cnt += rno(5);
+		if (otmp->oartifact == ART_SMOTHERSAND) cnt *= 2;
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -7114,6 +7191,7 @@ struct monst *mtmp;
 		int cnt = rno(9);
 		if (otmp->cursed) cnt += rno(18);
 		if (mtmp->mconf) cnt += rno(100);
+		if (otmp->oartifact == ART_G_E_A_L__CLAP_) cnt *= 2;
 		while(cnt--) {
 			makegirlytrap();
 		}
@@ -7130,7 +7208,7 @@ struct monst *mtmp;
 	case MUSE_SCR_NASTINESS:
 		mreadmsg(mtmp, otmp);
 
-		{
+	{
 
 		int nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
 		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
@@ -7140,7 +7218,12 @@ struct monst *mtmp;
 		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
 
 		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), (blackngdur - (monster_difficulty() * 3)));
+		if (otmp->oartifact == ART_ARABELLA_S_INSTAWIN_BUTTON) {
+			randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+			randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
 		}
+
+	}
 
 		if (!objects[SCR_NASTINESS].oc_name_known
 			&& !objects[SCR_NASTINESS].oc_uname)
@@ -7160,6 +7243,7 @@ struct monst *mtmp;
 		    int i, j, bd;
 			bd = 1;
 			if (!rn2(5)) bd += rnz(1);
+			if (otmp->oartifact == ART_MULTI_FILL) bd += 5;
 			boolean canbeinawall = FALSE;
 			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
@@ -7218,6 +7302,7 @@ struct monst *mtmp;
 		pline("You notice a vile stench...");
 
 		    int i, j, bd = mtmp->mconf ? 100 : otmp->cursed ? 2 : 1;
+		    if (otmp->oartifact == ART_INESCAPABLE_STENCH) bd += rnz(7);
 		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
 				if (!isok(u.ux + i, u.uy + j)) continue;
 				if (levl[u.ux + i][u.uy + j].typ <= DBWALL) continue;
@@ -7269,9 +7354,14 @@ struct monst *mtmp;
 		return 2;
 
 	case MUSE_SCR_DESTROY_ARMOR:
-
+	{
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
+
+		int destroytries = 1;
+		if (otmp && otmp->oartifact == ART_CURSE_EVERYTHING && isevilvariant) destroytries = 7;
+
+destroyagain:
 
 		otmp2 = some_armor(&youmonst);
 		if (otmp2 && otmp2->blessed && rn2(5)) pline("Your body shakes violently!");
@@ -7296,7 +7386,13 @@ struct monst *mtmp;
 		exercise(A_STR, FALSE);
 		exercise(A_CON, FALSE);
 
+		if (destroytries > 1) {
+			destroytries--;
+			goto destroyagain;
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
+	}
 
 		return 2;
 
@@ -7333,6 +7429,10 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
+		if (otmp->oartifact == ART_ARABELLA_S_SCREWER) {
+			bad_equipment(0); bad_equipment(0); bad_equipment(0); bad_equipment(0);
+		}
+
 		bad_equipment(0);
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -7345,6 +7445,10 @@ struct monst *mtmp;
 		makeknown(otmp->otyp);
 
 		bad_artifact();
+		if (otmp->oartifact == ART_ARABELLA_S_FILLER) {
+			bad_artifact();
+			bad_artifact();
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -7355,7 +7459,11 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
-		changehybridization(0); /* random, either give or remove one */
+		if (otmp->oartifact == ART_MAC_BASTARD) {
+			changehybridization(2); /* always give one */
+		} else {
+			changehybridization(0); /* random, either give or remove one */
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -7367,6 +7475,9 @@ struct monst *mtmp;
 		makeknown(otmp->otyp);
 
 		nastytrapcurse();
+		if (otmp->oartifact == ART_BANDAR_AMC) {
+			nastytrapcurse(); nastytrapcurse(); nastytrapcurse(); nastytrapcurse();
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -7429,6 +7540,10 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
+		if (otmp->oartifact == ART_TAETETETERATE_DIEDAE_DAE) {
+			if (!u.ragnaroktimer) u.ragnaroktimer = 10000;
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		ragnarok(TRUE);
@@ -7442,6 +7557,18 @@ struct monst *mtmp;
 		makeknown(otmp->otyp);
 
 		pline("You are caught in an antimatter storm!");
+
+		if (otmp->oartifact == ART_FUCK_CRAP_SWEAR_GRAWLIX) {
+			struct obj *otmpD, *otmpE;
+
+			for (otmpD = invent; otmpD; otmpD = otmpE) {
+			      otmpE = otmpD->nobj;
+
+				if (otmpD->spe > -50) otmpD->spe--;
+			}
+
+		}
+
 		withering_damage(invent, FALSE, FALSE);
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -7471,6 +7598,10 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
+		if (otmp->oartifact == ART_GHWYPYAPGBUHWHWNZERZH) {
+			RandomMessages += 10000;
+		}
+
 		pline("%s", fauxmessage());
 		u.cnd_plineamount++;
 		if (!rn2(3)) {
@@ -7492,6 +7623,7 @@ struct monst *mtmp;
 		int cnt = rnd(6);
 		if (mtmp->mconf) cnt += rno(6);
 		if (otmp->cursed) cnt += rno(3);
+		if (otmp->oartifact == ART_LORD_DIMWIT_S_GRIN) cnt += 10;
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -7543,6 +7675,7 @@ struct monst *mtmp;
 		int cnt = rnd(6);
 		if (mtmp->mconf) cnt += rno(6);
 		if (otmp->cursed) cnt += rno(3);
+		if (otmp->oartifact == ART_GRUNT_S_BAD_BREAKUP) cnt += 10;
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
@@ -7570,6 +7703,14 @@ struct monst *mtmp;
 
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
+
+		if (otmp->oartifact == ART_FLEECEYAY) {
+			randomfeminismtrap(rnz(10000));
+			randomfeminismtrap(rnz(10000));
+			randomfeminismtrap(rnz(10000));
+			randomfeminismtrap(rnz(10000));
+			randomfeminismtrap(rnz(10000));
+		}
 
 		if (!rn2(2)) {
 			randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
@@ -7609,11 +7750,21 @@ struct monst *mtmp;
 
 		mreadmsg(mtmp, otmp);
 
-		{
+	{
 		int dmg = 0;
 		struct obj *otmpi, *otmpii;
+		int typeofsin = rnd(8);
+		boolean specificsin = FALSE;
+		boolean specificsincount = 8;
 
-		switch (rnd(8)) {
+procanothersin:
+
+		if (otmp->oartifact == ART_LUST_ENVY_PRIDE_WRATH_GLUT) {
+			specificsin = TRUE;
+			typeofsin = specificsincount;
+		}
+
+		switch (typeofsin) {
 
 			case 1: /* gluttony */
 				u.negativeprotection++;
@@ -7897,13 +8048,20 @@ struct monst *mtmp;
 				    else You("are getting confused.");
 				    make_confused(HConfusion + monster_difficulty() + 1, FALSE);
 				break;
-			    }
+			} /* 8th sin */
 
 				break;
 
+		} /* type of sin */
+
+		if (specificsin) {
+			if (specificsincount > 1) {
+				specificsincount--;
+				goto procanothersin;
+			}
 		}
 
-		}
+	}
 
 		if (!objects[SCR_SIN].oc_name_known
 			&& !objects[SCR_SIN].oc_uname)
@@ -7924,6 +8082,7 @@ struct monst *mtmp;
 		monstcnt = 8 + rno(10);
 		if (otmp->cursed) monstcnt += (8 + rno(10));
 		if (mtmp->mconf) monstcnt += (12 + rno(15));
+		if (otmp->oartifact == ART_BURIED_KNEE_DEEP) monstcnt *= 3;
 		int sessileattempts;
 		int sessilemnum;
 
@@ -7959,6 +8118,7 @@ struct monst *mtmp;
 		monstcnt = rno(5);
 		if (otmp->cursed) monstcnt += rno(6);
 		if (mtmp->mconf) monstcnt += rno(12);
+		if (otmp->oartifact == ART_UNIVERSE_CENTER) monstcnt *= 2;
 		int sessileattempts;
 		int sessilemnum;
 
@@ -8094,6 +8254,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusB += rnd(4);
 			if (!rn2(10)) radiusB += rnd(6);
 			if (!rn2(25)) radiusB += rnd(8);
+			if (otmp->oartifact == ART_DISSONANCE_MUSIC) radius += 15;
 			if (radiusB > MAX_RADIUS) radiusB = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusB, do_lavafloodd, (void *)&madepoolB);
 
@@ -8149,6 +8310,25 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_WALT_S_MEGACORP) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				if (rn2(2)) {
+					levl[u.ux + i][u.uy + j].typ = GRAVEWALL;
+					blockorunblock_point(u.ux + i,u.uy + j);
+					if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+					del_engr_at(u.ux + i, u.uy + j);
+	
+					newsym(u.ux + i,u.uy + j);
+				}
+			}
+
+		    }
+			pline("Ehh, now you need to dig through all those grave walls...");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8166,6 +8346,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusSS += rnd(4);
 			if (!rn2(10)) radiusSS += rnd(6);
 			if (!rn2(25)) radiusSS += rnd(8);
+			if (otmp->oartifact == ART_NDERGRUND_TUNNEL) radiusSS += 15;
 			if (radiusSS > MAX_RADIUS) radiusSS = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusSS, do_tunnelfloodd, (void *)&madepoolSS);
 
@@ -8223,6 +8404,25 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_SYTHE_FOR_RENT) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				if (!rn2(3)) {
+					levl[u.ux + i][u.uy + j].typ = FARMLAND;
+					blockorunblock_point(u.ux + i,u.uy + j);
+					if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+					del_engr_at(u.ux + i, u.uy + j);
+	
+					newsym(u.ux + i,u.uy + j);
+				}
+			}
+
+		    }
+			pline("Now a lot of area has turned into farmland.");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8240,6 +8440,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusSS += rnd(4);
 			if (!rn2(10)) radiusSS += rnd(6);
 			if (!rn2(25)) radiusSS += rnd(8);
+			if (otmp->oartifact == ART_ANTIS_WEDIX) radiusSS += 15;
 			if (radiusSS > MAX_RADIUS) radiusSS = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusSS, do_mountainfloodd, (void *)&madepoolSS);
 
@@ -8277,6 +8478,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusSS += rnd(4);
 			if (!rn2(10)) radiusSS += rnd(6);
 			if (!rn2(25)) radiusSS += rnd(8);
+			if (otmp->oartifact == ART_PROTECTED_CORAL_REEF) radiusSS += 15;
 			if (radiusSS > MAX_RADIUS) radiusSS = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusSS, do_watertunnelfloodd, (void *)&madepoolSS);
 
@@ -8314,6 +8516,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusSS += rnd(4);
 			if (!rn2(10)) radiusSS += rnd(6);
 			if (!rn2(25)) radiusSS += rnd(8);
+			if (otmp->oartifact == ART_MORTON_S_WINTER) radiusSS += 15;
 			if (radiusSS > MAX_RADIUS) radiusSS = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusSS, do_crystalwaterfloodd, (void *)&madepoolSS);
 
@@ -8342,6 +8545,10 @@ struct monst *mtmp;
 
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
+
+		if (otmp->oartifact == ART_CHICKOCALYPSE) {
+			moorlandragnarok();
+		}
 
 		{
 
@@ -8408,6 +8615,23 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_BSSSSSSSSSSSSSSSSSS_______) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = URINELAKE;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("Blegh, someone peed into the dungeon! Could it have been Mira?");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8417,6 +8641,19 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
+		if (otmp->oartifact == ART_THAI_S_FORCEPUSH) {
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+			(void) makemon(mkclass(S_GOLEM,0), 0, 0, NO_MM_FLAGS);
+		}
+
 		{
 
 			int madepoolSS = 0;
@@ -8425,6 +8662,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusSS += rnd(4);
 			if (!rn2(10)) radiusSS += rnd(6);
 			if (!rn2(25)) radiusSS += rnd(8);
+			if (otmp->oartifact == ART_THAI_S_FORCEPUSH) radius += 15;
 			if (radiusSS > MAX_RADIUS) radiusSS = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusSS, do_shiftingsandfloodd, (void *)&madepoolSS);
 
@@ -8482,6 +8720,23 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_HEY__HERE_S_JASON_) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = STYXRIVER;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("You are... in the Styx.");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8517,6 +8772,23 @@ struct monst *mtmp;
 						"A hailstorm! Quick, find a shelter, because otherwise the hailstones will get bigger and bigger until they crush you!" :
 						"It starts snowing!" );
 
+		}
+
+		if (otmp && otmp->oartifact == ART_LEANG_S_ORIGIN) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = SNOW;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("It's snowing! I'm excited!");
 		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -8556,6 +8828,23 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_MEHRUNES__BIG_PLAN) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = ASH;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("The area becomes dead and lifeless...");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8591,6 +8880,25 @@ struct monst *mtmp;
 						"Oh no, you're stranded in the desert and your water reserves are depleted! This is the end!" :
 						"Soft sand appears in the dungeon." );
 
+		}
+
+		if (otmp && otmp->oartifact == ART_BARNING_DESERT) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = SAND;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			u.currentweather = WEATHER_SANDSTORM;
+			tell_main_weather();
+			pline("Whoa, talk about a desert storm!");
 		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -8630,6 +8938,23 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_GREEN_CROSSROADS_WHOA) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = PAVEDFLOOR;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("Someone went through the trouble of paving all the roads!");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8665,6 +8990,28 @@ struct monst *mtmp;
 						"DUDE! The secret entrance to the right is open! RUN, it will close in 100 turns!" :
 						"Highways are being built all over the dungeon!" );
 
+		}
+
+		if (otmp && otmp->oartifact == ART_INFINITESIMAL_DISTANCE) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = HIGHWAY;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("You look at the highway infinitesimally into the distance...");
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				levl[ulx][uly].lit = 1;
+			}
 		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -8704,6 +9051,23 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_SPYING_IN_THE_WAR) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = GRASSLAND;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("That's a lot of vegetation.");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8741,6 +9105,23 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_GO_THRU_HELL) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = NETHERMIST;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("Now you need to go THROUGH Hell and find what is on the other side so you can kill it, because secretly, this game wants to be a DOOM fanfiction.");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8758,6 +9139,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusSS += rnd(4);
 			if (!rn2(10)) radiusSS += rnd(6);
 			if (!rn2(25)) radiusSS += rnd(8);
+			if (otmp->oartifact == ART_SUNNCHI) radiusSS += 5;
 			if (radiusSS > MAX_RADIUS) radiusSS = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusSS, do_stalactitefloodd, (void *)&madepoolSS);
 
@@ -8815,6 +9197,28 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_ROBIN_S_FORGETTAL) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = CRYPTFLOOR;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("Oh no! Seems like you forgot the torch to light up the crypt!");
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				levl[ulx][uly].lit = 0;
+			}
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8850,6 +9254,23 @@ struct monst *mtmp;
 						"There are some air bubbles... maybe you can reach higher places with them?" :
 						"Floating bubbles appear!" );
 
+		}
+
+		if (otmp && otmp->oartifact == ART_OF_BECAUSE_OF__HAPPY__) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = BUBBLES;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("You don't feel very happy about all those bubbles.");
 		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
@@ -8889,6 +9310,25 @@ struct monst *mtmp;
 
 		}
 
+		if (otmp && otmp->oartifact == ART_WHEN_DOES_THE_PAIN_RELEASE) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = RAINCLOUD;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			u.currentweather = WEATHER_RAIN;
+			tell_main_weather();
+			pline("Oh great, the monsoon is coming in.");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -8904,6 +9344,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusL += rnd(4);
 			if (!rn2(10)) radiusL += rnd(6);
 			if (!rn2(25)) radiusL += rnd(8);
+			if (otmp->oartifact == ART_ALSO_STILL_UNDERTOW) radiusL += 15;
 			if (radiusL > MAX_RADIUS) radiusL = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusL, do_megafloodingd, (void *)&madepoolL);
 
@@ -8931,7 +9372,7 @@ struct monst *mtmp;
 		mreadmsg(mtmp, otmp);
 		makeknown(otmp->otyp);
 
-		    if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
+		if ((!Stone_resistance || (!IntStone_resistance && !rn2(20)) ) &&
 			!(poly_when_stoned(youmonst.data) && polymon(PM_STONE_GOLEM))) {
 			if (!Stoned) {
 				if (Hallucination && rn2(10)) pline("Thankfully you are already stoned.");
@@ -8945,7 +9386,11 @@ struct monst *mtmp;
 			sprintf(killer_buf, "a petrification scroll");
 			delayed_killer = killer_buf;
 		
-		    }
+		}
+
+		if (otmp->oartifact == ART_SCRAM_SEMICOLON_H_SO_) {
+			(void) make_hallucinated(HHallucination + rnz(500), TRUE, 0L);
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -8957,9 +9402,14 @@ struct monst *mtmp;
 		makeknown(otmp->otyp);
 
 		You_feel("bad!");
-			if (!rn2(20)) losehp(d(10,8), "a scroll of wounds", KILLED_BY);
-			else if (!rn2(5)) losehp(d(6,8), "a scroll of wounds", KILLED_BY);
-			else losehp(d(4,6), "a scroll of wounds", KILLED_BY);
+
+		if (!rn2(20)) losehp(d(10,8), "a scroll of wounds", KILLED_BY);
+		else if (!rn2(5)) losehp(d(6,8), "a scroll of wounds", KILLED_BY);
+		else losehp(d(4,6), "a scroll of wounds", KILLED_BY);
+
+		if (otmp->oartifact == ART_RED_TEARS) {
+			playerbleed(d(8, 8));
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -9087,6 +9537,23 @@ struct monst *mtmp;
 						"Damn, this is giving you the chills!" :
 						"The floor crackles with ice!" );
 
+		if (otmp && otmp->oartifact == ART_TATA__TATA_TAAAAAA_) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = ICE;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("The entire area becomes very icy...");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -9098,6 +9565,13 @@ struct monst *mtmp;
 		makeknown(otmp->otyp);
 
 		badeffect();
+
+		if (otmp->oartifact == ART_BLUUUUUUUUUUH___) {
+			badeffect(); badeffect(); badeffect(); badeffect();
+		}
+		if (otmp->oartifact == ART_BUEUEUEUEUEUEP) {
+			reallybadeffect();
+		}
 
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
@@ -9132,6 +9606,23 @@ struct monst *mtmp;
 						"Wow! Floating clouds..." :
 						"Foggy clouds appear out of thin air!" );
 
+		if (otmp && otmp->oartifact == ART_CUCKOOLAND_WOOHOO) {
+		    int i, j, bd = 100;
+		    for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = CLOUD;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+
+		    }
+			pline("Wow, you seem to be above the clouds!");
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);	/* otmp might be free'ed */
 
 		return 2;
@@ -9147,6 +9638,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusG += rnd(4);
 			if (!rn2(10)) radiusG += rnd(6);
 			if (!rn2(25)) radiusG += rnd(8);
+			if (otmp->oartifact == ART_CHAREY_S_LOCK) radiusG += 15;
 			if (radiusG > MAX_RADIUS) radiusG = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusG, do_barfloodd, (void *)&madepoolF);
 
@@ -9180,6 +9672,7 @@ struct monst *mtmp;
 			if (!rn2(3)) radiusR += rnd(4);
 			if (!rn2(10)) radiusR += rnd(6);
 			if (!rn2(25)) radiusR += rnd(8);
+			if (otmp->oartifact == ART_INFERNAL_PART) radiusR += 15;
 			if (radiusR > MAX_RADIUS) radiusR = MAX_RADIUS;
 			do_clear_areaX(u.ux, u.uy, radiusR, do_terrainfloodd, (void *)&madepoolR);
 
@@ -10095,6 +10588,13 @@ newboss:
 
 		punishx();
 
+		if (otmp->oartifact == ART_BIGBALL_PLAYER && uball) {
+			if (uball->spe < 20) {
+				uball->spe += 10;
+				if (uball->spe > 20) uball->spe = 20;
+			}
+		}
+
 		if (rn2(2) || !ishaxor) m_useup(mtmp, otmp);
 		return 2;
 
@@ -10269,7 +10769,16 @@ xxx_noobj:
 			if (!rn2(33)) (void) destroy_mitem(mtmp, SCROLL_CLASS, AD_FIRE);
 			if (!rn2(33)) (void) destroy_mitem(mtmp, SPBOOK_CLASS, AD_FIRE);
 			if (!rn2(33)) (void) destroy_mitem(mtmp, POTION_CLASS, AD_FIRE);
+			if (otmp->oartifact == ART_BIG_BOOM) {
+				if (!rn2(33)) (void) destroy_mitem(mtmp, SCROLL_CLASS, AD_FIRE);
+				if (!rn2(33)) (void) destroy_mitem(mtmp, SPBOOK_CLASS, AD_FIRE);
+				if (!rn2(33)) (void) destroy_mitem(mtmp, POTION_CLASS, AD_FIRE);
+				if (!rn2(33)) (void) destroy_mitem(mtmp, SCROLL_CLASS, AD_FIRE);
+				if (!rn2(33)) (void) destroy_mitem(mtmp, SPBOOK_CLASS, AD_FIRE);
+				if (!rn2(33)) (void) destroy_mitem(mtmp, POTION_CLASS, AD_FIRE);
+			}
 			num = (2*(rn1(3, 3) + 2 * bcsign(otmp)) + 1)/3;
+			if (otmp->oartifact == ART_BIG_BOOM) num *= 3;
 			if (Slimed) {
 			      Your("slimy parts are burned away!");
 			      Slimed = 0;
@@ -11389,6 +11898,10 @@ skipmsg:
 		boolean known = FALSE;
 		int attempts = 0;
 
+		if (otmp->oartifact == ART_WANNA_FIGHT_THE_NEXT_TEACH) {
+			Bossfights += 20000;
+		}
+
 		if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 
 		if (Aggravate_monster) {
@@ -11441,6 +11954,8 @@ newboss:
 		mreadmsg(mtmp, otmp);
 
 		tt_mname(&cc, FALSE, 0);
+		if (otmp->oartifact == ART_BOOCASTLE) tt_mname(&cc, FALSE, 0);
+
 		if (!objects[SCR_SUMMON_GHOST].oc_name_known
 			&& !objects[SCR_SUMMON_GHOST].oc_uname)
 		    docall(otmp);
@@ -11456,10 +11971,14 @@ newboss:
 
 		{
 
-		int aligntype;
-		aligntype = rn2((int)A_LAWFUL+2) - 1;
-		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
-		summon_minion(aligntype, TRUE);
+			int aligntype;
+			aligntype = rn2((int)A_LAWFUL+2) - 1;
+			pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+			summon_minion(aligntype, TRUE);
+			if (otmp->oartifact == ART_TRASH_FROM_THE_STREET) {
+				summon_minion(aligntype, TRUE);
+				summon_minion(aligntype, TRUE);
+			}
 
 		}
 
@@ -11484,6 +12003,7 @@ newboss:
 
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
+		if (otmp->oartifact == ART_HORDE_SUMMONATION) cnt += 13;
 		/*if (mtmp->mconf) pm = fish = &mons[PM_ACID_BLOB];*/ /* no easy blob fort building --Amy */
 		/*else if (is_pool(mtmp->mx, mtmp->my))
 		    fish = &mons[u.uinwater ? PM_GIANT_EEL : PM_CROCODILE];*/
@@ -11662,6 +12182,7 @@ newboss:
 		if (rn2(2)) cnt += rnz(2);
 		if (!rn2(73)) cnt += rno(4);
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
+		if (otmp->oartifact == ART_GHOULCLOUD) cnt += rnz(6);
 		mreadmsg(mtmp, otmp);
 		while(cnt--) {
 
@@ -11741,6 +12262,7 @@ newboss:
 		}
 
 		if (mtmp->mconf || otmp->cursed) cnt += rno(12);
+		if (otmp->oartifact == ART_FREE_TIME_CAMP) cnt *= 2;
 
 		    if (!enexto(&cc, mtmp->mx, mtmp->my, 0)) break;
 

@@ -25617,6 +25617,8 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uleft && uleft->otyp == RIN_AURORA) continue;
 		if ((obj->where != OBJ_FLOOR) && uright && uright->otyp == RIN_AURORA) continue;
 
+		if ((obj->where != OBJ_FLOOR) && u.tempwaterprotection) continue;
+
 		if ((obj->where != OBJ_FLOOR) && Race_if(PM_VIKING) && (rn2(50) < u.ulevel) ) continue;
 
 		if (obj && obj->oartifact == ART_ELIANE_S_SHIN_SMASH) {

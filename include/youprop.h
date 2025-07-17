@@ -993,7 +993,7 @@
 #define FemtrapActiveKlara	(FemaleTrapKlara || u.uprops[FEMTRAP_KLARA].extrinsic || have_femtrapklara() || (uarm && uarm->oartifact == ART_KUSE_MUSE) )
 #define FemtrapActiveFriederike	(FemaleTrapFriederike || u.uprops[FEMTRAP_FRIEDERIKE].extrinsic || have_femtrapfriederike() || (uarmu && uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING) )
 #define FemtrapActiveNaomi	(FemaleTrapNaomi || u.uprops[FEMTRAP_NAOMI].extrinsic || have_femtrapnaomi())
-#define FemtrapActiveUte	(FemaleTrapUte || u.uprops[FEMTRAP_UTE].extrinsic || have_femtrapute() || autismweaponcheck(ART_DE_SID))
+#define FemtrapActiveUte	(FemaleTrapUte || u.uprops[FEMTRAP_UTE].extrinsic || have_femtrapute() || have_crashrecoverstone() || autismweaponcheck(ART_DE_SID))
 #define FemtrapActiveJasieen	(FemaleTrapJasieen || u.uprops[FEMTRAP_JASIEEN].extrinsic || have_femtrapjasieen())
 #define FemtrapActiveYasaman	(FemaleTrapYasaman || u.uprops[FEMTRAP_YASAMAN].extrinsic || have_femtrapyasaman() || (uarms && uarms->oartifact == ART_FROM_MASHHAD_TO_AHVAZ) )
 #define FemtrapActiveMayBritt	(FemaleTrapMayBritt || u.uprops[FEMTRAP_MAY_BRITT].extrinsic || have_femtrapmaybritt() || (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) )
@@ -1187,7 +1187,7 @@
 #define NoHalluc_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALLUC_RES].intrinsic || UHaveAids || (u.impossibleproperty == HALLUC_RES) || (uarmh && uarmh->oartifact == ART_SEE_THE_TOTAL) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 #define Hallucination		((HHallucination && !Halluc_resistance) || (u.uprops[MULTISHOES].extrinsic && !Halluc_resistance) || autismweaponcheck(ART_FADED_USELESSNESS) || autismweaponcheck(ART_LANCE_OF_LONGINUS) || autismweaponcheck(ART_SCHWANZUS_LANGUS) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie || (u.currentweather == WEATHER_SUNNY && u.uhs < 201) || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
-#define FunnyHallu		(Role_if(PM_GOFF) || (uarmc && uarmc->oartifact == ART_BE_HI_WITHOUT_DRUGS) || RngeFunnyHallu || ishallucinator || HHallucination || u.uprops[MULTISHOES].extrinsic || autismweaponcheck(ART_FADED_USELESSNESS) || autismweaponcheck(ART_LANCE_OF_LONGINUS) || (uamul && uamul->oartifact == ART_FUN_ALL) || have_leohighlantern() || autismweaponcheck(ART_SCHWANZUS_LANGUS) || HeavyHallu || EHallucination || u.uprops[SENSORY_DEPRIVATION].extrinsic || (u.funnyhalluroll != 9999999 && u.usanity > u.funnyhalluroll) || flags.hippie || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
+#define FunnyHallu		(Role_if(PM_GOFF) || (uarmc && uarmc->oartifact == ART_BE_HI_WITHOUT_DRUGS) || RngeFunnyHallu || ishallucinator || HHallucination || u.uprops[MULTISHOES].extrinsic || u.funnyhallutimer || autismweaponcheck(ART_FADED_USELESSNESS) || autismweaponcheck(ART_LANCE_OF_LONGINUS) || (uamul && uamul->oartifact == ART_FUN_ALL) || have_leohighlantern() || autismweaponcheck(ART_SCHWANZUS_LANGUS) || HeavyHallu || EHallucination || u.uprops[SENSORY_DEPRIVATION].extrinsic || (u.funnyhalluroll != 9999999 && u.usanity > u.funnyhalluroll) || flags.hippie || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
 /* added possibility of playing the entire game hallucinating --Amy*/
 #define HeavyHallu		u.uprops[HEAVY_HALLU].intrinsic
 
@@ -1583,7 +1583,7 @@
 
 	/* May touch surface; does not override any others */
 
-#define Wwalking		( (u.uprops[WWALKING].extrinsic || (ublindf && ublindf->oartifact == ART_FLOTATION_DEVICE) || (uarmf && uarmf->oartifact == ART_SANDALS_OF_JESUS_CHRIST) || (uwep && uwep->oartifact == ART_POSEIDON_S_OTHER_TRIDENT) || (uwep && uwep->oartifact == ART_SEAFOAM) || (uwep && uwep->oartifact == ART_LOGGERS_S_OVERKILL) || (uwep && uwep->oartifact == ART_MAKESHIFT_BRIDGE) || (uwep && uwep->oartifact == ART_POLAR_STAR) || (uwep && uwep->oartifact == ART_POLARIS) || u.uprops[MULTISHOES].extrinsic) && \
+#define Wwalking		( (u.uprops[WWALKING].extrinsic || u.wwalktimer || (ublindf && ublindf->oartifact == ART_FLOTATION_DEVICE) || (uarmf && uarmf->oartifact == ART_SANDALS_OF_JESUS_CHRIST) || (uwep && uwep->oartifact == ART_POSEIDON_S_OTHER_TRIDENT) || (uwep && uwep->oartifact == ART_SEAFOAM) || (uwep && uwep->oartifact == ART_LOGGERS_S_OVERKILL) || (uwep && uwep->oartifact == ART_MAKESHIFT_BRIDGE) || (uwep && uwep->oartifact == ART_POLAR_STAR) || (uwep && uwep->oartifact == ART_POLARIS) || u.uprops[MULTISHOES].extrinsic) && \
 				 !Is_waterlevel(&u.uz))
 	/* Don't get wet, can't go under water; overrides others except levitation */
 	/* Wwalking is meaningless on water level */
@@ -1679,7 +1679,7 @@
 #define HRegeneration		u.uprops[REGENERATION].intrinsic
 #define ERegeneration		u.uprops[REGENERATION].extrinsic
 #define IntRegeneration	(HRegeneration || (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_THE_HEALING_H) || autismringcheck(ART_RING_OF_HYGIENE_S_DISCIPLE) || (uwep && uwep->oartifact == ART_MAEVE_S_OPULENCE) || (uarmh && uarmh->oartifact == ART_HABIBA_S_MATRONAGE) || regenerates(youmonst.data))
-#define ExtRegeneration	(ERegeneration || (uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == REGENERATION) ) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_THEY_RE_ALL_YELLOW) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) )
+#define ExtRegeneration	(ERegeneration || (uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == REGENERATION) ) || have_crashrecoverstone() || (powerfulimplants() && uimplant && uimplant->oartifact == ART_THEY_RE_ALL_YELLOW) || (uwep && uwep->oartifact == ART_BREAD_FOR_THE_WORLD) || (uarmf && uarmf->oartifact == ART_ERROR_IN_PLAY_ENCHANTMENT) )
 
 #define Regeneration		(((IntRegeneration && u.nonintrinsicproperty != REGENERATION) || (ExtRegeneration && u.nonextrinsicproperty != REGENERATION)) && !NoRegeneration && !Race_if(PM_SYLPH) )
 #define StrongRegeneration	(IntRegeneration && ExtRegeneration && Regeneration && u.nondoubleproperty != REGENERATION)

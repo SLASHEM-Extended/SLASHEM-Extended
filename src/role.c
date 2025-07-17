@@ -11686,7 +11686,23 @@ demagoguerecursioneffect()
 
 	init_uasmon();
 
-	if (Race_if(PM_UNGENOMOLD) && !Upolyd) polyself(FALSE);
+	flags.botl = TRUE;
+}
+
+void
+mediumtransformation()
+{
+	u.demagoguerecursiontime = 5000;
+	u.demagoguerecursion = 1;
+
+	u.oldrecursionrole = flags.initrole;
+	u.oldrecursionrace = -1;
+	flags.initrole = str2role("Med");
+	urole = roles[flags.initrole];
+
+	pline("You turn into a medium!");
+
+	init_uasmon();
 
 	flags.botl = TRUE;
 }

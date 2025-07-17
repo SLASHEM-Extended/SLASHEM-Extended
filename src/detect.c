@@ -1425,6 +1425,33 @@ do_vicinity_map()
 }
 
 void
+do_vicinity_map_huge()
+{
+
+    if (DetectionMethodsDontWork) return;
+    if (level.flags.nommap) {
+	pline("Something blocks your clairvoyance!");
+	return;
+    }
+
+    register int zx, zy;
+    int lo_y = (u.uy-12 < 0 ? 0 : u.uy-12),
+	hi_y = (u.uy+13 > ROWNO ? ROWNO : u.uy+13),
+	lo_x = (u.ux-12 < 1 ? 1 : u.ux-12),	/* avoid column 0 */
+	hi_x = (u.ux+13 > COLNO ? COLNO : u.ux+13);
+
+    for (zx = lo_x; zx < hi_x; zx++)
+	for (zy = lo_y; zy < hi_y; zy++)
+	    show_map_spot(zx, zy);
+
+    if (!level.flags.hero_memory || Underwater) {
+	flush_screen(1);			/* flush temp screen */
+	display_nhwindow(WIN_MAP, TRUE);	/* wait */
+	docrt();
+    }
+}
+
+void
 do_vicinity_mapX()
 {
 
