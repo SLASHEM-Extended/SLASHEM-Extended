@@ -811,9 +811,17 @@ boolean yours; /* is it your fault (for killing monsters) */
 
 				if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
 					makeknown(AMULET_OF_SYMBIOTE_SAVING);
-					useup(uamul);
-					u.usymbiote.mhp = u.usymbiote.mhpmax;
-					Your("symbiote glows, and your amulet crumbles to dust!");
+					if (uamul && uamul->oartifact == ART_EXTREME_HEAT_SCREEN) {
+						u.usymbiote.mhp = u.usymbiote.mhpmax;
+						Your("symbiote glows, but you got very contaminated and also start seeing things!");
+						u.contamination += 1000;
+						u.usanity += 2000;
+						flags.botl = TRUE;
+					} else {
+						useup(uamul);
+						u.usymbiote.mhp = u.usymbiote.mhpmax;
+						Your("symbiote glows, and your amulet crumbles to dust!");
+					}
 				} else {
 					u.usymbiote.active = 0;
 					u.usymbiote.mnum = PM_PLAYERMON;

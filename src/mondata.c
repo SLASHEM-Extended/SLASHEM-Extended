@@ -196,6 +196,52 @@ struct monst *mon;
 	return FALSE;
 }
 
+/* TRUE if monster has one of the flags used for the ones spawned in the illusory castle --Amy */
+boolean
+isillusorymonster(mon)
+struct monst *mon;
+{
+	struct permonst *ptr = mon->data;
+
+	if (dmgtype(ptr, AD_SPC2)) return TRUE;
+	if (dmgtype(ptr, AD_STUN)) return TRUE;
+	if (dmgtype(ptr, AD_DRIN)) return TRUE;
+	if (dmgtype(ptr, AD_HALU)) return TRUE;
+	if (dmgtype(ptr, AD_DARK)) return TRUE;
+	if (dmgtype(ptr, AD_FEAR)) return TRUE;
+	if (dmgtype(ptr, AD_FAKE)) return TRUE;
+	if (dmgtype(ptr, AD_LETH)) return TRUE;
+	if (dmgtype(ptr, AD_CNCL)) return TRUE;
+	if (dmgtype(ptr, AD_BANI)) return TRUE;
+	if (dmgtype(ptr, AD_WISD)) return TRUE;
+	if (dmgtype(ptr, AD_HODS)) return TRUE;
+	if (dmgtype(ptr, AD_CHRN)) return TRUE;
+	if (dmgtype(ptr, AD_WEEP)) return TRUE;
+	if (dmgtype(ptr, AD_STTP)) return TRUE;
+	if (dmgtype(ptr, AD_DEPR)) return TRUE;
+	if (dmgtype(ptr, AD_LAZY)) return TRUE;
+	if (dmgtype(ptr, AD_INER)) return TRUE;
+	if (dmgtype(ptr, AD_VULN)) return TRUE;
+	if (dmgtype(ptr, AD_AMNE)) return TRUE;
+	if (dmgtype(ptr, AD_INSA)) return TRUE;
+	if (dmgtype(ptr, AD_TRAP)) return TRUE;
+	if (dmgtype(ptr, AD_SANI)) return TRUE;
+	if (dmgtype(ptr, AD_SHAN)) return TRUE;
+	if (dmgtype(ptr, AD_TERR)) return TRUE;
+	if (dmgtype(ptr, AD_FEMI)) return TRUE;
+	if (dmgtype(ptr, AD_LEVI)) return TRUE;
+	if (dmgtype(ptr, AD_ILLU)) return TRUE;
+	if (dmgtype(ptr, AD_MCRE)) return TRUE;
+	if (dmgtype(ptr, AD_DEBU)) return TRUE;
+	if (dmgtype(ptr, AD_UNPR)) return TRUE;
+	if (dmgtype(ptr, AD_BLAS)) return TRUE;
+	if (dmgtype(ptr, AD_INVE)) return TRUE;
+	if (dmgtype(ptr, AD_WNCE)) return TRUE;
+	if (shapechanger(ptr)) return TRUE;
+
+	return FALSE;
+}
+
 /* TRUE iff monster can be blinded by the given attack */
 /* Note: may return TRUE when mdef is blind (e.g. new cream-pie attack) */
 boolean

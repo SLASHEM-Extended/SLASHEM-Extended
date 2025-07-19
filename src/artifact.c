@@ -2774,6 +2774,9 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_DAT_S_GOD) {
 			otmp->oerodeproof = TRUE;
 		    }
+		    if (otmp && otmp->oartifact == ART_SPACE_BABY) {
+			otmp->oerodeproof = TRUE;
+		    }
 		    if (otmp && otmp->oartifact == ART_DON_T_GO_AWAY) {
 			otmp->oerodeproof = TRUE;
 		    }
@@ -6001,6 +6004,31 @@ chargingchoice:
 		}
 
 		*/
+
+		if (obj->oartifact == ART_NAMED_NUKA_COLA) {
+
+			if (u.uhunger > 2500) {
+				pline("Well, you're pretty full already.");
+				break;
+			}
+			u.uhunger = 2500;
+			flags.botl = TRUE;
+
+			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(u.nukafemeffect) );
+
+			break;
+		}
+
+		if (obj->oartifact == ART_EXCHANGE_SOUL_FOR_SKILL) {
+			if (u.alla < 201) {
+				break;
+			}
+			u.alla -= 200; /* can't resist */
+			You("only have %d alla remaining!", u.alla);
+			u.weapon_slots++;
+			You("feel very skillful, and gain an extra skill slot!");
+			break;
+		}
 
 		if (obj->oartifact == ART_HOW_LONG_LASTS_IT_) {
 			if (TurbodullBug & FROMOUTSIDE) {

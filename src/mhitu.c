@@ -6920,6 +6920,14 @@ struct monst *mon;
 		if (uarmf && uarmf->oartifact == ART_CAMPERCAMPERCAMPERCAMPERCA && armpro < 10 && !u.umoved) armpro = 10;
 		if (numberofwornadamantiumarmor() && (armpro < numberofwornadamantiumarmor())) armpro = numberofwornadamantiumarmor();
 
+		if (uleft && uleft->oartifact == ART_OBA_WERIENT) {
+			if (uleft->cursed) armpro--;
+			else armpro += (uleft->blessed) ? 2 : 1;
+		}
+		if (uright && uright->oartifact == ART_OBA_WERIENT) {
+			if (uright->cursed) armpro--;
+			else armpro += (uright->blessed) ? 2 : 1;
+		}
 		if (u.magicshield) armpro += 1;
 		if (Race_if(PM_GERTEUT)) armpro++;
 		if (uarm && uarm->oartifact == ART_MITHRAL_CANCELLATION) armpro++;
@@ -8858,6 +8866,8 @@ dopois:
 			    dmg = 0;
 			} else if (Role_if(PM_ASTRONAUT) && rn2(5)) {
 			/* astronauts are good at wriggling free, but will still get hurt by the attack itself --Amy */
+				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
+			} else if (uamul && uamul->oartifact == ART_EMPTYSNAP) {
 				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
 			} else {
 			    pline("%s swings itself around you!", Monnam(mtmp));
@@ -19643,9 +19653,17 @@ register int n;
 
 			if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
 				makeknown(AMULET_OF_SYMBIOTE_SAVING);
-				useup(uamul);
-				u.usymbiote.mhp = u.usymbiote.mhpmax;
-				Your("symbiote glows, and your amulet crumbles to dust!");
+				if (uamul && uamul->oartifact == ART_EXTREME_HEAT_SCREEN) {
+					u.usymbiote.mhp = u.usymbiote.mhpmax;
+					Your("symbiote glows, but you got very contaminated and also start seeing things!");
+					u.contamination += 1000;
+					u.usanity += 2000;
+					flags.botl = TRUE;
+				} else {
+					useup(uamul);
+					u.usymbiote.mhp = u.usymbiote.mhpmax;
+					Your("symbiote glows, and your amulet crumbles to dust!");
+				}
 			} else {
 				u.usymbiote.active = 0;
 				u.usymbiote.mnum = PM_PLAYERMON;
@@ -21252,6 +21270,11 @@ register struct attack *mattk;
 			if (mtmp->mhp > 0) return 1;
 			return 2;
 		}
+	}
+
+	if (uamul && uamul->oartifact == ART_BLEED_MODE) {
+		pline("%s is struck by several thorns.", Monnam(mtmp));
+		mtmp->bleedout += rnd(10);
 	}
 
 	if (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) {

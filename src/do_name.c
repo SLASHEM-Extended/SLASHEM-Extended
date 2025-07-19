@@ -1344,6 +1344,225 @@ int artinum;
 }
 
 char *
+feminismtrapname(femtrapnum)
+int femtrapnum;
+{
+	static char femtrapname[BUFSZ];
+
+	switch (femtrapnum) {
+		case 1:
+			sprintf(femtrapname, "Femmy"); break;
+		case 2:
+			sprintf(femtrapname, "Madeleine"); break;
+		case 3:
+			sprintf(femtrapname, "Marlena"); break;
+		case 4:
+			sprintf(femtrapname, "Anastasia"); break;
+		case 5:
+			sprintf(femtrapname, "Jessica"); break;
+		case 6:
+			sprintf(femtrapname, "Solvejg"); break;
+		case 7:
+			sprintf(femtrapname, "Wendy"); break;
+		case 8:
+			sprintf(femtrapname, "Katharina"); break;
+		case 9:
+			sprintf(femtrapname, "Elena"); break;
+		case 10:
+			sprintf(femtrapname, "Thai"); break;
+		case 11:
+			sprintf(femtrapname, "Elif"); break;
+		case 12:
+			sprintf(femtrapname, "Nadja"); break;
+		case 13:
+			sprintf(femtrapname, "Sandra"); break;
+		case 14:
+			sprintf(femtrapname, "Natalje"); break;
+		case 15:
+			sprintf(femtrapname, "Jeanetta"); break;
+		case 16:
+			sprintf(femtrapname, "Yvonne"); break;
+		case 17:
+			sprintf(femtrapname, "Maurah"); break;
+		case 18:
+			sprintf(femtrapname, "Meltem"); break;
+		case 19:
+			sprintf(femtrapname, "Sarah"); break;
+		case 20:
+			sprintf(femtrapname, "Claudia"); break;
+		case 21:
+			sprintf(femtrapname, "Ludgera"); break;
+		case 22:
+			sprintf(femtrapname, "Kati"); break;
+		case 23:
+			sprintf(femtrapname, "Nelly"); break;
+		case 24:
+			sprintf(femtrapname, "Eveline"); break;
+		case 25:
+			sprintf(femtrapname, "Karin"); break;
+		case 26:
+			sprintf(femtrapname, "Juen"); break;
+		case 27:
+			sprintf(femtrapname, "Kristina"); break;
+		case 28:
+			sprintf(femtrapname, "Lou"); break;
+		case 29:
+			sprintf(femtrapname, "Almut"); break;
+		case 30:
+			sprintf(femtrapname, "Julietta"); break;
+		case 31:
+			sprintf(femtrapname, "Arabella"); break;
+		case 32:
+			sprintf(femtrapname, "Kristin"); break;
+		case 33:
+			sprintf(femtrapname, "Anna"); break;
+		case 34:
+			sprintf(femtrapname, "Ruea"); break;
+		case 35:
+			sprintf(femtrapname, "Dora"); break;
+		case 36:
+			sprintf(femtrapname, "Marike"); break;
+		case 37:
+			sprintf(femtrapname, "Jette"); break;
+		case 38:
+			sprintf(femtrapname, "Ina"); break;
+		case 39:
+			sprintf(femtrapname, "Sing"); break;
+		case 40:
+			sprintf(femtrapname, "Victoria"); break;
+		case 41:
+			sprintf(femtrapname, "Melissa"); break;
+		case 42:
+			sprintf(femtrapname, "Anita"); break;
+		case 43:
+			sprintf(femtrapname, "Henrietta"); break;
+		case 44:
+			sprintf(femtrapname, "Verena"); break;
+		case 45:
+			sprintf(femtrapname, "Annemarie"); break;
+		case 46:
+			sprintf(femtrapname, "Jil"); break;
+		case 47:
+			sprintf(femtrapname, "Jana"); break;
+		case 48:
+			sprintf(femtrapname, "Katrin"); break;
+		case 49:
+			sprintf(femtrapname, "Gudrun"); break;
+		case 50:
+			sprintf(femtrapname, "Ella"); break;
+		case 51:
+			sprintf(femtrapname, "Manuela"); break;
+		case 52:
+			sprintf(femtrapname, "Jennifer"); break;
+		case 53:
+			sprintf(femtrapname, "Patricia"); break;
+		case 54:
+			sprintf(femtrapname, "Antje"); break;
+		case 55:
+			sprintf(femtrapname, "Erotic Antje"); break;
+		case 56:
+			sprintf(femtrapname, "Kerstin"); break;
+		case 57:
+			sprintf(femtrapname, "Laura"); break;
+		case 58:
+			sprintf(femtrapname, "Larissa"); break;
+		case 59:
+			sprintf(femtrapname, "Nora"); break;
+		case 60:
+			sprintf(femtrapname, "Natalia"); break;
+		case 61:
+			sprintf(femtrapname, "Susanne"); break;
+		case 62:
+			sprintf(femtrapname, "Lisa"); break;
+		case 63:
+			sprintf(femtrapname, "Bridghitte"); break;
+		case 64:
+			sprintf(femtrapname, "Julia"); break;
+		case 65:
+			sprintf(femtrapname, "Nicole"); break;
+		case 66:
+			sprintf(femtrapname, "Rita"); break;
+		case 67:
+			sprintf(femtrapname, "Janina"); break;
+		case 68:
+			sprintf(femtrapname, "Rosa"); break;
+		case 69:
+			sprintf(femtrapname, "Ksenia"); break;
+		case 70:
+			sprintf(femtrapname, "Lydia"); break;
+		case 71:
+			sprintf(femtrapname, "Conny"); break;
+		case 72:
+			sprintf(femtrapname, "Katia"); break;
+		case 73:
+			sprintf(femtrapname, "Mariya"); break;
+		case 74:
+			sprintf(femtrapname, "Elise"); break;
+		case 75:
+			sprintf(femtrapname, "Ronja"); break;
+		case 76:
+			sprintf(femtrapname, "Ariane"); break;
+		case 77:
+			sprintf(femtrapname, "Johanna"); break;
+		case 78:
+			sprintf(femtrapname, "Inge"); break;
+		case 79:
+			sprintf(femtrapname, "Ruth"); break;
+		case 80:
+			sprintf(femtrapname, "Magdalena"); break;
+		case 81:
+			sprintf(femtrapname, "Marleen"); break;
+		case 82:
+			sprintf(femtrapname, "Klara"); break;
+		case 83:
+			sprintf(femtrapname, "Friederike"); break;
+		case 84:
+			sprintf(femtrapname, "Naomi"); break;
+		case 85:
+			sprintf(femtrapname, "Ute"); break;
+		case 86:
+			sprintf(femtrapname, "Jasieen"); break;
+		case 87:
+			sprintf(femtrapname, "Yasaman"); break;
+		case 88:
+			sprintf(femtrapname, "May-Britt"); break;
+		case 89:
+			sprintf(femtrapname, "Nadine"); break;
+		case 90:
+			sprintf(femtrapname, "Luisa"); break;
+		case 91:
+			sprintf(femtrapname, "Irina"); break;
+		case 92:
+			sprintf(femtrapname, "Liselotte"); break;
+		case 93:
+			sprintf(femtrapname, "Greta"); break;
+		case 94:
+			sprintf(femtrapname, "Jane"); break;
+		case 95:
+			sprintf(femtrapname, "Sue Lyn"); break;
+		case 96:
+			sprintf(femtrapname, "Charlotte"); break;
+		case 97:
+			sprintf(femtrapname, "Hannah"); break;
+		case 98:
+			sprintf(femtrapname, "Little Marie"); break;
+		case 99:
+			sprintf(femtrapname, "Tanja"); break;
+		case 100:
+			sprintf(femtrapname, "Sonja"); break;
+		case 101:
+			sprintf(femtrapname, "Rhea"); break;
+		case 102:
+			sprintf(femtrapname, "Lara"); break;
+		case 103:
+			sprintf(femtrapname, "Sabrina"); break;
+
+	}
+
+	return femtrapname;
+}
+
+char *
 bundledescription()
 {
 	static char pantsbuf[BUFSZ]; 

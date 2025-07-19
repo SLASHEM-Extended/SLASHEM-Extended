@@ -1247,6 +1247,7 @@ newsym(x,y)
 		(Sickopathy && Sick && extra_nasty(mon->data) && distu(mon->mx, mon->my) < (StrongSickopathy ? 901 : 401) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
@@ -1272,11 +1273,13 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
+		(uamul && uamul->oartifact == ART_MEDI_LEASH && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
+		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -1385,6 +1388,7 @@ newsym(x,y)
 		(Sickopathy && Sick && extra_nasty(mon->data) && distu(mon->mx, mon->my) < (StrongSickopathy ? 901 : 401) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
@@ -1410,11 +1414,13 @@ newsym(x,y)
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
+		(uamul && uamul->oartifact == ART_MEDI_LEASH && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
+		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -1693,6 +1699,7 @@ newsymX(x,y)
 		(Sickopathy && Sick && extra_nasty(mon->data) && distu(mon->mx, mon->my) < (StrongSickopathy ? 901 : 401) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
@@ -1718,11 +1725,13 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
+		(uamul && uamul->oartifact == ART_MEDI_LEASH && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
+		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -1831,6 +1840,7 @@ newsymX(x,y)
 		(Sickopathy && Sick && extra_nasty(mon->data) && distu(mon->mx, mon->my) < (StrongSickopathy ? 901 : 401) ) ||
 		(Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) ||
 		(StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) ||
+		(autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) ||
 		(StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) ||
 		(StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) ||
 		(StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) ||
@@ -1856,11 +1866,13 @@ newsymX(x,y)
 		(uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) ||
 		(haveartileash(ART_PETCAMERA) && mon->mleashed) ||
 		(haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) ||
+		(uamul && uamul->oartifact == ART_MEDI_LEASH && mon->mtame) ||
 		(uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) ||
 		(uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) ||
 		(uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) ||
 		(uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) ||
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
+		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
@@ -3836,6 +3848,7 @@ struct monst *mon;
 	if (Sickopathy && Sick && extra_nasty(mon->data) && distu(mon->mx, mon->my) < (StrongSickopathy ? 901 : 401) ) return TRUE;
 	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) return TRUE;
 	if (StrongStunnopathy && Stunned && dmgtype(mon->data, AD_STUN)) return TRUE;
+	if (autismringcheck(ART_SUCKDISUCK) && dmgtype(mon->data, AD_DRIN)) return TRUE;
 	if (StrongNumbopathy && Numbed && (dmgtype(mon->data, AD_NUMB) || dmgtype(mon->data, AD_PLYS) ) ) return TRUE;
 	if (StrongDimmopathy && Dimmed && (dmgtype(mon->data, AD_DIMN) || monstersoundtype(mon) == MS_CUSS ) ) return TRUE;
 	if (StrongFreezopathy && Frozen && (dmgtype(mon->data, AD_FRZE) || dmgtype(mon->data, AD_ICEB) ) ) return TRUE;
@@ -3862,11 +3875,13 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_TIGATOR_S_THORN && is_pokemon(mon->data) ) return TRUE;
 	if (haveartileash(ART_PETCAMERA) && mon->mleashed) return TRUE;
 	if (haveartileash(ART_ANNOYING_PET_MONITOR) && mon->mtame) return TRUE;
+	if (uamul && uamul->oartifact == ART_MEDI_LEASH && mon->mtame) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_SITHE_DED && mon->data->mlet == S_MUMMY) return TRUE;
 	if (uarm && uarm->oartifact == ART_PATROL_S_ORDERS && (mon->data->mlet == S_ORC || mon->data->mlet == S_OGRE) ) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_CLIERVOYENS && distu(mon->mx, mon->my) < 9 ) return TRUE;
 	if (uarm && uarm->oartifact == ART_PLAYER_RADAR && (is_mplayer(mon->data) || is_umplayer(mon->data)) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) return TRUE;
+	if (autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) return TRUE;
 	if (ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) return TRUE;

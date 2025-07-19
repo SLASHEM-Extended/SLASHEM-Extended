@@ -2813,7 +2813,7 @@ age_spells()
 	for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++)
 	    if (spellknow(i) ) {
 
-		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !tech_inuse(T_SPELL_SPAM) ) {
+		if (!(uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) && !(uamul && uamul->oartifact == ART_SUPER_MEMORY) && !tech_inuse(T_SPELL_SPAM) ) {
 
 			/* 10000 turns is nothing compared to the length of the game; have it last longer, please! --Amy */
 			if (spellmemorize(i) && !rn2(2)) continue;
@@ -11062,6 +11062,7 @@ rerollX:
 		if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) cyanwillgodown = FALSE;
 		if (uarm && uarm->oartifact == ART_COPE_OF_THE_ELDRITCH_KNIGH && rn2(2)) cyanwillgodown = FALSE;
 		if (uarmc && itemhasappearance(uarmc, APP_GUILD_CLOAK) ) cyanwillgodown = FALSE;
+		if (uamul && uamul->oartifact == ART_SUPER_MEMORY) cyanwillgodown = FALSE;
 		if (tech_inuse(T_SPELL_SPAM)) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
 		if (rnd(urole.spelrete + 100) > 100) cyanwillgodown = FALSE;
@@ -12658,6 +12659,8 @@ int spell;
 	if (uarmf && uarmf->oartifact == ART_JONADAB_S_EVERYDAY_WEAR) chance += 5;
 	if (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) chance += 10;
 	if (uwep && uwep->oartifact == ART_BAOBHAN_MOUNTAIN) chance += 10;
+	if (uleft && uleft->oartifact == ART_SPELLER_OUT) chance += 10;
+	if (uright && uright->oartifact == ART_SPELLER_OUT) chance += 10;
 	if (uwep && uwep->oartifact == ART_ORIGIN_OF_CASTING) chance += 20;
 	if (uwep && uwep->oartifact == ART_HELIOKOPIS_S_PLAYSTYLE) chance += 20;
 	if (uarmg && uarmg->oartifact == ART_FLOEMMELFLOEMMELFLOEMMELFL) chance += 5;
@@ -13173,7 +13176,7 @@ int spell;
 
 	if (uarmc && itemhasappearance(uarmc, APP_SHELL_CLOAK) ) chance -= 20;
 
-	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
+	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
 	if (Numbed) chance -= 10;
 
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */

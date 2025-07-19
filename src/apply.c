@@ -3506,6 +3506,7 @@ int
 set_whetstone()
 {
 	struct obj *otmp = whetstoneinfo.tobj, *ows = whetstoneinfo.wsobj;
+	/* otmp = the object being worked on, ows = the whetstone itself */
 	int chance;
 
 	if (!otmp || !ows) {
@@ -3537,6 +3538,9 @@ set_whetstone()
 	}
 
 	chance = 4 - (ows->blessed) + (ows->cursed*2) + (otmp->oartifact ? 3 : 0);
+	if (ows->oartifact == ART_SHERPER_NOISE) chance /= 2;
+
+	if (chance < 2) chance = 2;
 
 	if (!rn2(chance) && (ows->otyp == WHETSTONE)) {
 
@@ -3764,11 +3768,14 @@ struct obj *tstone;
     case RING_CLASS:
 	if (tstone->otyp != TOUCHSTONE) {
 	    do_scratch = TRUE;
-	} else if (obj->oclass == GEM_CLASS && (tstone->blessed ||
+	} else if (obj->oclass == GEM_CLASS && (tstone->blessed || ((tstone->oartifact == ART_BERUEHRSKI_NIXI) && !tstone->cursed) || 
 		(!tstone->cursed &&
 		    (Role_if(PM_ARCHEOLOGIST) || Role_if(PM_GOLDMINER) || Race_if(PM_GNOME))))) {
 	    makeknown(TOUCHSTONE);
 	    makeknown(obj->otyp);
+	    if ((tstone->oartifact == ART_BERUEHRSKI_NIXI) && !tstone->blessed) {
+		randomfeminismtrap(5000);
+	    }
 	    if (!rn2(10)) {
 			if (tstone->blessed) tstone->blessed = 0;
 			else curse(tstone);

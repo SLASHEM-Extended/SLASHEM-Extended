@@ -827,6 +827,7 @@ register struct monst *mtmp;
 
 	/* dragonmaster can of course wear DSM (sorry AntiGulp) and it prevents dragons from rebelling --Amy */
 	if (Role_if(PM_DRAGONMASTER) && mtmp->data->mlet == S_DRAGON && uarm && Is_dragon_armor(uarm) ) return FALSE;
+	if (uamul && uamul->oartifact == ART_MEDI_LEASH) return FALSE;
 
 	/* secret advice member starting pet never rebels --Amy */
 	if (Role_if(PM_SECRET_ADVICE_MEMBER) && mtmp->data == &mons[PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING]) return FALSE;

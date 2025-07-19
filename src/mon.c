@@ -7840,6 +7840,13 @@ xkilled(mtmp, dest)
 		if (!rn2(100) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_HEAL_OTHER, x, y, TRUE, FALSE, FALSE);
 		if (!rn2(40) && !splittinggremlin(mdat) && !ishardmoder && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(rn2(25) ? SCR_HEALING : SCR_EXTRA_HEALING, x, y, TRUE, FALSE, FALSE);
 
+		if (uleft && uleft->oartifact == ART_GOOOOOOOOT) {
+			if (!rn2(70 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
+		}
+		if (uright && uright->oartifact == ART_GOOOOOOOOT) {
+			if (!rn2(70 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
+		}
+
 		if (uarmg && uarmg->oartifact == ART_SCROLLSCROLLSCROLL) {
 			if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE, FALSE);
 			if (!rn2(250) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_PHASE_DOOR, x, y, TRUE, FALSE, FALSE);
@@ -10632,9 +10639,17 @@ killsymbiote()
 
 	if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
 		makeknown(AMULET_OF_SYMBIOTE_SAVING);
-		useup(uamul);
-		u.usymbiote.mhp = u.usymbiote.mhpmax;
-		Your("symbiote glows, and your amulet crumbles to dust!");
+		if (uamul && uamul->oartifact == ART_EXTREME_HEAT_SCREEN) {
+			u.usymbiote.mhp = u.usymbiote.mhpmax;
+			Your("symbiote glows, but you got very contaminated and also start seeing things!");
+			u.contamination += 1000;
+			u.usanity += 2000;
+			flags.botl = TRUE;
+		} else {
+			useup(uamul);
+			u.usymbiote.mhp = u.usymbiote.mhpmax;
+			Your("symbiote glows, and your amulet crumbles to dust!");
+		}
 	} else {
 		u.usymbiote.active = 0;
 		u.usymbiote.mnum = PM_PLAYERMON;

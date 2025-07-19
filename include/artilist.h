@@ -20742,6 +20742,534 @@ A("Ace-Deuce",				SCR_ASTRALCENSION, /* spawns an additional player monster */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("Sherper Noise",				WHETSTONE, /* greater chance of working */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Doctor Energy Steal",				MANASTONE, /* cut nutrition nastytrap effect when carried */
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_EREGEN), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Amateurhour's Extra Prize",				STONE_OF_MAGIC_RESISTANCE,
+	(SPFX_RESTR|SPFX_EVIL), (SPFX_HPHDAM), 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Beruehrski-Nixi",				TOUCHSTONE, /* can properly identify gems even when uncursed, but if it does, 5000 turns of a random feminism trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Clemhoft",				RIN_NUMBNESS,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("SHL Theme",				RIN_HALLUCINATION, /* +2 increase damage and accuracy */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("2x Prot!",				RIN_PROTECTION, /* double bonus from enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Oba Werient",				RIN_PROTECTION, /* -1 MC if cursed, +1 if uncursed, +2 if blessed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Goooooooot",				RIN_DRAIN_RESISTANCE, /* scrolls of standard id spawn more often */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Fuw tenk",				RIN_REVERSE_REGENERATION, /* disables speed, +20 AC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("foll deck",				RIN_ELEMENTS, /* resist poison and acid */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Grava-See",				RIN_LIGHT, /* aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Payn-Hu",				RIN_MAGIC_RESISTANCE, /* pain sense */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Firmblock",				RIN_MATERIAL_STABILITY, /* +7 AC, stone resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Continuous Juice",				RIN_MIND_SHIELDING, /* 1 in 100 per turn to reduce sanity by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Baha-Hard",				RIN_MYSTERY_RESISTANCE, /* +5 CON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Get Up Around Eight",				RIN_SLEEPING, /* confusing problem */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Versoom Day",				RIN_SLEEPING, /* timerun trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Metal Gear Nethack",				RIN_STEALTH, /* double stealth when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Poised Strike",				RIN_STEALTH, /* allows you to backstab monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Higher Lock",				RIN_SUSTAIN_ABILITY, /* +1 all stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Red Infra",				RIN_WARNING, /* infravision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Nitevis",				RIN_WARNING, /* clairvoyance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Clotobble",				RIN_WARNING, /* double warning */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Secca",				RIN_AGGRAVATE_MONSTER, /* sacrificing something with positive value multiplies that value by 1.5 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("set defparm",				RIN_AGGRAVATE_MONSTER, /* increases monster levels like developer race, exp boost, technicality, double ESP */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Arctic Expedite",				RIN_COLD_RESISTANCE, /* cold immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Frester",				RIN_COLD_RESISTANCE, /* protects items from cold damage, suppresses freeze status */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("In(t)er Reducter",				RIN_COLD_RESISTANCE, /* inertia slows you down less */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("I'm Not Afraid!",				RIN_FEAR_RESISTANCE, /* +10 melee to-hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Atlas Globe",				RIN_GAIN_STRENGTH, /* +5 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Buffist",				RIN_GAIN_STRENGTH, /* +2 melee to-damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hextrose",				RIN_GAIN_DEXTERITY, /* +6 DEX, +2 increase accuracy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Speller Out",				RIN_GAIN_INTELLIGENCE, /* 10% better spellcasting chances */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Combine Hold",				RIN_GAIN_INTELLIGENCE, /* keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Stalwart Vitality",				RIN_GAIN_CONSTITUTION, /* doubles HP caps for corona */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Impervious System",				RIN_GAIN_CONSTITUTION, /* sickness resistance */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Super Wise",				RIN_GAIN_WISDOM, /* if cursed, -10 WIS, otherwise +10; this is added on top of the existing bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Preezer",				RIN_GAIN_WISDOM, /* spirituality skill trains twice as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Clericast",				RIN_GAIN_WISDOM, /* spellboost; if your casting stat is WIS, it gives double spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("MengerDenger",				RIN_INCREASE_ACCURACY, /* spellboost, technicality, discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kondre",				RIN_INCREASE_ACCURACY, /* resist psi and contamination */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Fisfis",				RIN_INCREASE_DAMAGE, /* +3 STR and DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hontrino",				RIN_SLOW_DIGESTION, /* autocurses, can't get intrinsics from corpses, trap revealing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Wempen-lo",				RIN_SLOW_DIGESTION, /* flying */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Grishuh",				RIN_SLOW_DIGESTION, /* full nutrients, resist sleep */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wingel around",				RIN_INVISIBILITY, /* displacement */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mahpty",				RIN_POISON_RESISTANCE, /* +3 CON, +1 STR and DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Fubble",				RIN_SEE_INVISIBLE, /* double see invis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Grentamarn",				RIN_SEE_INVISIBLE,
+	(SPFX_RESTR|SPFX_WARN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Red Yellow Orange",				RIN_SEE_INVISIBLE, /* resist fire and shock */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Soil Reality",				RIN_SHOCK_RESISTANCE, /* shock immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Abovecloud",				RIN_SHOCK_RESISTANCE, /* flying, stun res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Exchange Soul For Skill",				RIN_PRACTICE, /* if you invoke it while having at least 200 alla, you lose 200 of it and gain a skill point */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Illusory Help",				RIN_CONFUSION_RESISTANCE, /* allows you to detect illusory castle monsters up to distu(mon->mx, mon->my) of 25 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Suckdisuck",				RIN_RESTRATION, /* displays all AD_DRIN monsters on the level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("It's Not Bedtime Yet",				RIN_DISCOUNT_ACTION, /* sleep res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Bothway Spell",				RIN_DISCOUNT_ACTION, /* spellboost */
+	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Debble-Trebble",				RIN_PIERCING, /* spellboost, double resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Movery Gan",				RIN_ALACRITY, /* jumping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Thousander",				RIN_FIRE_RESISTANCE, /* double fire resist and protects your items from fire damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Plastoretic",				RIN_FIRE_RESISTANCE, /* stun resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Mendafinder",				RIN_FREE_ACTION,
+	(SPFX_RESTR|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Piswiju",				RIN_FREE_ACTION, /* peacevision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Second Stomach",				RIN_FREE_ACTION, /* hunger */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tie-Light",				RIN_INFRAVISION, /* automatically lights up squares you stand on, spacewars spawn trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Reffel",				RIN_LEVITATION,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hoh unne",				RIN_LEVITATION, /* +5 AC, STR and DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Multiplicator Four",				RIN_LEVITATION, /* quad attacks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Iks Up",				RIN_SEARCHING, /* searching skill trains twice as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("foll gud",				RIN_SEARCHING, /* if your searching skill is trained, 1 in (current value) that your enchantment/BUC knowledge values go up by one too */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Oltrobwooi",				RIN_MAGIC_CONTROL, /* ranged attacks always pass through pets */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hero Echo",				RIN_TELEPORTATION, /* scent view and echolocation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Megoheal",				RIN_TELEPORTATION, /* whenever you successfully teleport, you heal 20 hit points */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Wellbewondo",				RIN_LEECH, /* +2 INT, +1 WIS */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Covrule",				RIN_SHUTDOWN, /* 75% chance to resist corona */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dikkin's Emergence",				RIN_POLYMORPH_CONTROL, /* double poly control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fraidlose",				RIN_POLYMORPH_CONTROL, /* you don't break out of your armor when polying into something too big */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Windlisten",				AMULET_OF_CHANGE, /* rnz(25k) turns of a random nasty trap effect when equipped */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dereligion",				AMULET_OF_CHANGE, /* 10% lower duration for triggered (trap.c) nasty/feminism traps, pray timeout is reduced by one more 1 in 5 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Helen's Activity",				AMULET_OF_PEACE, /* allows you to eat stone when worn, intrinsic loss, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Misplaced Gleam",				AMULET_OF_DRAIN_RESISTANCE, /* displacement */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("What The Fuss Is About",				AMULET_OF_CLEAR_VIEW, /* fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blueground",				AMULET_OF_FLYING,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Emptysnap",				AMULET_OF_FLYING, /* AD_WRAP cannot grab you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Divenhoug",				AMULET_OF_LIFE_SAVING, /* autocurses, dschueueuet trap and mysterious force effect, magic find */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Completely Pumped",				AMULET_OF_MAGICAL_BREATHING, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ocean Gear",				AMULET_OF_MAGICAL_BREATHING, /* protects items from water */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Extraneous Protector",				AMULET_OF_MAGICAL_BREATHING,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Narcotic Trade",				AMULET_OF_RESTFUL_SLEEP, /* funny hallu, disables sleep res */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Spiritom",				AMULET_OF_BLINDNESS, /* clairvoyance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Plantit",				AMULET_OF_MYSTERY_RESISTANCE, /* +2 AC for every skill level in implants and +1 for every level of your implants skill cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Unpolyverse",				AMULET_OF_MYSTERY_RESISTANCE, /* poly control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Outta Luck",				AMULET_OF_BURDEN, /* disables magic find */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Rick's Weight System",				AMULET_OF_BURDEN, /* halves your maximum carry cap */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Super-Tec",				AMULET_OF_TECHNICALITY, /* techniques skill trains three times as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Stay At The Target",				AMULET_OF_UNCHANGING,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Myster-deep!",				AMULET_OF_UNCHANGING, /* mystery and death resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Red Aura",				AMULET_VERSUS_POISON,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Attorney's Badge",				AMULET_VERSUS_POISON, /* +8 CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("The Medi Leash",				AMULET_VERSUS_POISON, /* autocurses, madeleine trap effect, displays all pets on the level, they gain tameness whenever they kill something and they won't betray you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Improved Sign",				AMULET_VERSUS_POISON, /* +3 AC, 10% better chance to block if you use a shield */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hall Hall! Hall!",				AMULET_VERSUS_STONE,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("dumdumdum, dumdumdum",				AMULET_VERSUS_STONE, /* free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Artwork",				AMULET_OF_DEPETRIFY, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("17000 Score",				AMULET_OF_MAGIC_RESISTANCE, /* defusing, pain sense, wild weather, inge trap effect, +2 CON, +1 CHA, heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Bodypurge",				AMULET_OF_SICKNESS_RESISTANCE, /* 90% chance to resist stat loss */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Permanently Black",				AMULET_OF_DISINTEGRATION_RESIS, /* autocurses, death resistance, permacurse and elena trap effects, invis, see invis, every equipped black-colored item gives +2 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Wedding Engagement",				AMULET_OF_CONFLICT, /* +5 CHA, peacevision, all M2_FEMALE have 25% chance of spawning peaceful and 1% of spawning tame */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Humble Stumble",				AMULET_OF_FUMBLING, /* free action, very fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Everybody Gets It",				AMULET_OF_SECOND_CHANCE, /* if it lifesaves you, an amulet of third chance is spawned on the ground */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Pexper drrltrrt",				AMULET_OF_DEFUSING, /* disarming a trap gives 10x experience */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Space Baby",				AMULET_OF_WATERWALKING, /* spawns fooproof */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Haven't Eaten In A Week",				AMULET_OF_HUNGER, /* whenever your hunger status is fainting or worse, 1 in 100 chance per turn to gain alla; whenever it's weak or worse, 1 in 20 per turn to lose a point of sanity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 777L ),
+
+A("Christian's Long Lash",				AMULET_OF_POWER, /* +10 damage with whip-class weapons */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, PM_CRUEL_ABUSER, NON_PM, 2000L ),
+
+A("Pitchcover",				AMULET_OF_LEECH, /* blocks invis like mummy wrapping, aggravate monster, +1 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Former Value",				AMULET_OF_AUTOMATIC_SHUTDOWN, /* shuts down your symbiote at 75% HP already */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Named Nuka Cola",				AMULET_OF_INSOMNIA, /* prime curses itself, curse resistance, discount action, you always have a specific feminism trap effect active that changes with 1 in 5000 chance, invoking it while your nutrition is below 2500 sets it to 2500 and shows which feminism trap is currently active "The bottle of Nuka Cola is named '<name>' today!" */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("taaaaaaaaaaa.",				AMULET_OF_CONTAMINATION_RESIST,
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, M2_DEMON,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ethereal Gate",				AMULET_OF_SPEED,
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, M2_UNDEAD,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Contro Move",				AMULET_OF_TELEPORT_CONTROL, /* control magic, can move over grassland without being debuffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Don't Worry",				AMULET_OF_THORNS, /* you can move through farmland and trees */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Lara's Lavawalk",				AMULET_OF_D_TYPE_EQUIPMENT, /* lara and klara trap effects, fire immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 17000L ),
+
+A("Bomber Delivery",				AMULET_OF_QUICK_ATTACK, /* +1 multishot for all firearms */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Playing Quake",				AMULET_OF_QUADRUPLE_ATTACK, /* nakedness trap effect, +5 increase accuracy, +3 increase damage, double spellboost */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 17000L ),
+
+A("Only The Wolf",				PENDANT,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Super Memory",				AMULET_OF_MAGIC_CONTROL, /* spell memory doesn't time out anymore */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Roller Rocks",				AMULET_OF_STONE, /* putting it on while you have at least 501 alla will drain 500 alla and create a stack of 500 rocks on the ground */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Extreme Heat Screen",				AMULET_OF_SYMBIOTE_SAVING, /* isn't used up if it saves your symbiote, but you get 1000 contamination and 2000 sanity every time it happens (can't resist) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Stomach Up-And-Down",				AMULET_OF_NAUSEA, /* fallout effect, 1 in 1000 per turn that contamination is reduced by 25 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Bleed Mode",				AMULET_OF_VULNERABILITY, /* diminished bleeding, every time a monster hits you in melee, its bleeding increases by d10 */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("wo-wo-wo-wo-wo",				FAKE_AMULET_OF_YENDOR, /* burden nastytrap effect when worn, autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5L ),
+
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
 	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10L ),

@@ -28365,6 +28365,10 @@ register int	mmflags;
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
 
+	if (!rn2(100) && !monster_is_revived && uamul && uamul->oartifact == ART_WEDDING_ENGAGEMENT && is_female(mtmp->data)) {
+		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
+	}
+
 	if (!rn2(50) && !monster_is_revived && (mtmp->data->mcolor == CLR_ORANGE) && RngeRedAttunement) {
 		if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) mtmp = mtmp2;
 	}
@@ -34105,6 +34109,7 @@ register struct permonst *ptr;
 	if (is_animal(ptr) && rn2(10) && uarm && uarm->oartifact == ART_BEASTMASTER_S_DUSTER) return TRUE;
 	if (ptr->mlet == S_NYMPH && uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && rn2(10)) return TRUE;
 	if (uwep && uwep->oartifact == ART_ORANGERY && rn2(10) && (ptr->mcolor == CLR_ORANGE) ) return TRUE;
+	if (uamul && uamul->oartifact == ART_WEDDING_ENGAGEMENT && is_female(ptr) && !rn2(4)) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_LIGHT_OF_DECEPTION && !rn2(10)) return TRUE;
 
 	if (autismringcheck(ART_GET_ENGAGED) && flags.female && is_male(ptr) && !rn2(5) ) return TRUE;

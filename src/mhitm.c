@@ -6647,6 +6647,9 @@ physical:
 		if (!rn2(100)) {
 			if (magr->mtame < 20 && !FemtrapActiveAntje) magr->mtame++;
 		}
+		if (uamul && uamul->oartifact == ART_MEDI_LEASH) {
+			if (magr->mtame < 20 && !FemtrapActiveAntje) magr->mtame++;
+		}
 	    }
 
 	    if (mattk->adtyp == AD_DGST) {

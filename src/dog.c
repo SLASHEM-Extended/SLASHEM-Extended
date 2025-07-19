@@ -71,6 +71,8 @@ control_magic_works()
 	if (ControlMagic && rn2(5)) return TRUE;
 	if (StrongControlMagic && rn2(5)) return TRUE;
 
+	if (autismringcheck(ART_OLTROBWOOI)) return TRUE;
+
 	return FALSE; /* catchall */
 }
 

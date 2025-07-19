@@ -949,9 +949,17 @@ int how;
 
 		if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
 			makeknown(AMULET_OF_SYMBIOTE_SAVING);
-			useup(uamul);
-			u.usymbiote.mhp = u.usymbiote.mhpmax;
-			Your("symbiote glows, and your amulet crumbles to dust!");
+			if (uamul && uamul->oartifact == ART_EXTREME_HEAT_SCREEN) {
+				u.usymbiote.mhp = u.usymbiote.mhpmax;
+				Your("symbiote glows, but you got very contaminated and also start seeing things!");
+				u.contamination += 1000;
+				u.usanity += 2000;
+				flags.botl = TRUE;
+			} else {
+				useup(uamul);
+				u.usymbiote.mhp = u.usymbiote.mhpmax;
+				Your("symbiote glows, and your amulet crumbles to dust!");
+			}
 		} else {
 			u.usymbiote.active = 0;
 			u.usymbiote.mnum = PM_PLAYERMON;
@@ -1366,6 +1374,8 @@ oneupdone:
 
 	if ((Second_chance || Lifesaved) && how <= GENOCIDED) {
 
+		boolean thirdchance = FALSE;
+
 		boolean genomold = FALSE;
 		if (uamul && uamul->oartifact == ART_REAL_GENOMOLD) genomold = TRUE;
 
@@ -1376,11 +1386,24 @@ oneupdone:
 		if (how == CHOKING) You("vomit ...");
 		You_feel("much better!");
 		pline_The("medallion crumbles to dust!");
+
+		if (uamul && uamul->oartifact == ART_EVERYBODY_GETS_IT) thirdchance = TRUE;
+
 		useup(uamul);
 
 		if (wanttodie) {
 			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
 			goto lsdone;
+		}
+
+		if (thirdchance) { /* prevent ultra-filthy hangup cheaters from getting the extra amulet and not using up their original one --Amy */
+			struct obj *createditem;
+		    	createditem = mksobj_at(AMULET_OF_THIRD_CHANCE, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (createditem) {
+				createditem->quan = 1;
+				createditem->owt = weight(createditem);
+				pline("You might be given a third chance, check the ground...");
+			}
 		}
 
 		(void) adjattrib(A_CON, -1, TRUE, TRUE);

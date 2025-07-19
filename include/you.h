@@ -1422,6 +1422,7 @@ struct you {
 
 	int feminizeffect; /* for feminizer race to decide which feminism trap effect is currently active */
 	int contamjeweleffect; /* for "not gonna contaminate" artifact jewel */
+	int nukafemeffect; /* for "named nuka cola" artifact amulet */
 
 	char	starlit1[BUFSZ];
 	char	starlit2[BUFSZ];

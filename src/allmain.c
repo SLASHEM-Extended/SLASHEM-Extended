@@ -35,10 +35,10 @@ static const char allowall[] = { ALL_CLASSES, 0 };
 static void p_glow2(struct obj *,const char *);
 
 /* hunger texts used on bottom line (each 8 chars long) */
-#define SATIATED	0
-#define NOT_HUNGRY	1
-#define HUNGRY		2
-#define WEAK		3
+#define SATIATED	0 /* at least 2500 */
+#define NOT_HUNGRY	1 /* at least 500 */
+#define HUNGRY		2 /* at least 200 */
+#define WEAK		3 /* at least 0 */
 #define FAINTING	4
 #define FAINTED		5
 #define STARVED		6
@@ -172,7 +172,7 @@ moveloop()
 #endif
 
 	didmove = flags.move;
-	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone() || (uamul && uamul->oartifact == ART_PROTECTED_MODE_RUN_TIME) ) {
+	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone() || autismringcheck(ART_VERSOOM_DAY) || (uamul && uamul->oartifact == ART_PROTECTED_MODE_RUN_TIME) ) {
 		didmove = TRUE;
 		/* some places in the code use an ugly hack to give you a turn of timerun, which will then not disappear if
 		 * your movement speed is faster than normal and you happen to get a double turn, but we assume that the
@@ -1151,7 +1151,7 @@ moveloop()
 					moveamt /= 12;
 				}
 
-				if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
+				if (u.inertia && moveamt > 1 && !(autismringcheck(ART_IN_T_ER_REDUCTER) && rn2(4)) && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
 					if (moveamt > 12) moveamt /= 2;
 					else if (moveamt > 6) moveamt = 6;
 					else if (moveamt > 1) moveamt--;
@@ -2709,6 +2709,11 @@ moveloop()
 		if (!rn2(10000)) u.redincamount = rne(2);
 
 		if (uwep && uwep->oartifact == ART_SMEAR_PERMA) uwep->oerodeproof = TRUE;
+
+		if (uamul && uamul->oartifact == ART_HAVEN_T_EATEN_IN_A_WEEK) {
+			if (u.uhs >= FAINTING && !rn2(100)) gain_alla(1);
+			if (u.uhs >= WEAK && !rn2(20)) reducesanity(1);
+		}
 
 		if (!FemtrapActiveSabrina && u.sabrinaactive) u.sabrinaactive = FALSE;
 
@@ -5446,6 +5451,10 @@ greasingdone:
 			contaminate(rnd(10), FALSE);
 		}
 
+		if (uamul && uamul->oartifact == ART_STOMACH_UP_AND_DOWN && !rn2(100)) {
+			contaminate(rnd(10), FALSE);
+		}
+
 		if (uarmg && uarmg->oartifact == ART_SIRINE_S_MELLOW_LOOK && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
 		}
@@ -5456,6 +5465,10 @@ greasingdone:
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OCTARINESWANDIR && !rn2(100)) {
 			contaminate(rnd(10), FALSE);
+		}
+
+		if (uamul && uamul->oartifact == ART_STOMACH_UP_AND_DOWN && !rn2(1000)) {
+			decontaminate(25);
 		}
 
 		if (!rn2(2500) && uarmg && itemhasappearance(uarmg, APP_DEMOLITION_GLOVES) ) {
@@ -7819,6 +7832,8 @@ newbossJANI:
 			}
 		}
 
+		if (autismringcheck(ART_TIE_LIGHT)) levl[u.ux][u.uy].lit = 1;
+
 		if (ublindf && ublindf->oartifact == ART_IT_BE_NITE) {
 			int ulx, uly;
 			for (ulx = 1; ulx < (COLNO); ulx++)
@@ -7982,6 +7997,8 @@ newbossJANI:
 		}
 
 		if (have_miraclebeautifulnoises() && !rn2(200)) reducesanity(1);
+		if (uleft && uleft->oartifact == ART_CONTINUOUS_JUICE && !rn2(100)) reducesanity(1);
+		if (uright && uright->oartifact == ART_CONTINUOUS_JUICE && !rn2(100)) reducesanity(1);
 
 		if (autismweaponcheck(ART_LIGHT_____STATED_)) {
 			int ulx, uly;
@@ -9268,6 +9285,7 @@ newbossRLR:
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
 		if (!rn2(5000)) u.feminizeffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
 		if (!rn2(5000)) u.contamjeweleffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.nukafemeffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -10306,7 +10324,7 @@ newbossO:
 
 		}
 
-		if ((HighscoreBug || u.uprops[HIGHSCORE_BUG].extrinsic || have_highscorestone() || (uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH) ) && !rn2(300) ) {
+		if ((HighscoreBug || u.uprops[HIGHSCORE_BUG].extrinsic || have_highscorestone() || autismringcheck(ART_TIE_LIGHT) || (uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH) ) && !rn2(300) ) {
 			if (!rn2(2)) makespacewarstrap();
 			else (void) makemon(insidemon(), 0, 0, MM_ANGRY);
 		}
@@ -14631,6 +14649,7 @@ pastds2:
 			}
 			if (uarmh && uarmh->oartifact == ART_EEOYOO_EEOYOO) u.ublesscnt--;
 			if (uarm && uarm->oartifact == ART_ETERNAL_BAMMELING) u.ublesscnt--;
+			if (uamul && uamul->oartifact == ART_DERELIGION && !rn2(5)) u.ublesscnt--;
 			if (u.ublesscnt < 0) u.ublesscnt = 0; /* fail safe */
 
 			if (uarmg && u.ublesscnt && itemhasappearance(uarmg, APP_COMFORTABLE_GLOVES) ) u.ublesscnt--;

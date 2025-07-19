@@ -2392,6 +2392,11 @@ monster_difficulty()
 		else tempval += rno(30);
 	}
 
+	if (autismringcheck(ART_SET_DEFPARM)) {
+		if (rn2(5)) tempval += rno(10);
+		else tempval += rno(30);
+	}
+
 	if (tempval < 1) tempval = 1;
 	/*if (tempval > 125) tempval = 125;*/ /* to be on the safe side - not needed anymore */
 

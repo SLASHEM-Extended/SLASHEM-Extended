@@ -3923,6 +3923,10 @@ unsigned trflags;
 	if (RngeNastyReduction && nastytrapdur > 1) nastytrapdur /= 2;
 	if (uarmh && uarmh->oartifact == ART_HAHAREDUCTION && nastytrapdur > 1) nastytrapdur /= 2;
 	if (autismringcheck(ART_ARABELLA_S_NASTYGUARD)) nastytrapdur /= 2; /* having two of them does not stack --Amy */
+	if (uamul && uamul->oartifact == ART_DERELIGION) {
+		nastytrapdur *= 9;
+		nastytrapdur /= 10;
+	}
 
 	if (nastytrapdur < 1) nastytrapdur = 1; /* fail safe */
 
@@ -3935,6 +3939,10 @@ unsigned trflags;
 	if (!rn2(2)) femmytrapdur /= 2;
 	if (!rn2(5)) femmytrapdur /= 3;
 	if (!rn2(20)) femmytrapdur /= 5;
+	if (uamul && uamul->oartifact == ART_DERELIGION) {
+		femmytrapdur *= 9;
+		femmytrapdur /= 10;
+	}
 
 	if (femmytrapdur < 1) femmytrapdur = 1; /* fail safe */
 
@@ -15694,9 +15702,17 @@ callingoutdone:
 
 				if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
 					makeknown(AMULET_OF_SYMBIOTE_SAVING);
-					useup(uamul);
-					u.usymbiote.mhp = u.usymbiote.mhpmax;
-					Your("symbiote glows, and your amulet crumbles to dust!");
+					if (uamul && uamul->oartifact == ART_EXTREME_HEAT_SCREEN) {
+						u.usymbiote.mhp = u.usymbiote.mhpmax;
+						Your("symbiote glows, but you got very contaminated and also start seeing things!");
+						u.contamination += 1000;
+						u.usanity += 2000;
+						flags.botl = TRUE;
+					} else {
+						useup(uamul);
+						u.usymbiote.mhp = u.usymbiote.mhpmax;
+						Your("symbiote glows, and your amulet crumbles to dust!");
+					}
 				} else {
 					u.usymbiote.active = 0;
 					u.usymbiote.mnum = PM_PLAYERMON;
@@ -25616,6 +25632,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) continue;
 		if ((obj->where != OBJ_FLOOR) && uleft && uleft->otyp == RIN_AURORA) continue;
 		if ((obj->where != OBJ_FLOOR) && uright && uright->otyp == RIN_AURORA) continue;
+		if ((obj->where != OBJ_FLOOR) && uamul && uamul->oartifact == ART_OCEAN_GEAR) continue;
 
 		if ((obj->where != OBJ_FLOOR) && u.tempwaterprotection) continue;
 
@@ -27096,7 +27113,9 @@ struct trap *ttmp;
 		/* ttmp is probably undefined at this point!!! */
 
 		if (!trapmadebyyou) {
-			more_experienced(5 * (deepest_lev_reached(FALSE) + 1),0);
+			int trapxp = 5 * (deepest_lev_reached(FALSE) + 1);
+			if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+			more_experienced(trapxp, 0);
 			newexplevel();
 		}
 
@@ -27118,7 +27137,11 @@ struct trap *ttmp;
 	You("disarm %s land mine.", the_your[ttmp->madeby_u]);
 	if (!ttmp->madeby_u && u.ualign.type == A_LAWFUL) adjalign(1);
 	if (!ttmp->madeby_u) {
-		more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
+
+		int trapxp = 20 * (deepest_lev_reached(FALSE) + 1);
+		if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+		more_experienced(trapxp, 0);
+ 
 		mightbooststat(A_DEX);
 		if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 			u.uhpmax += 3;
@@ -27143,7 +27166,11 @@ struct trap *ttmp;
 	You("disarm the water trap!");
 	u.cnd_untrapamount++;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
-	more_experienced(10 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 10 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
@@ -27172,7 +27199,11 @@ int exper;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(exper * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = exper * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	flags.botl = TRUE;
 	if (exper < 5) hpboost = 2;
 	else if (exper < 26) hpboost = 5;
@@ -27203,7 +27234,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 2;
@@ -27227,7 +27262,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 2;
@@ -27251,7 +27290,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
@@ -27570,7 +27613,11 @@ struct trap *ttmp;
 		You("disarmed the trap.");
 	}
 	u.cnd_untrapamount++;
-	more_experienced(multiplier * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = multiplier * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
@@ -27594,7 +27641,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
@@ -27618,7 +27669,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
@@ -27642,7 +27697,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
@@ -27666,7 +27725,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 3;
@@ -27691,7 +27754,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(1 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
@@ -27715,7 +27782,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("removed the superscroller!");
 	u.cnd_untrapamount++;
-	more_experienced(1 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	newexplevel();
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
@@ -27737,7 +27808,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(5 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 5 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 5;
@@ -27832,7 +27907,11 @@ struct trap *ttmp;
 			pline("You hurt %s so badly that she retreats her sexy butt, and decides to set up her high heels as a trap instead!", farttrapnames[ttmp->launch_otyp]);
 			u.cnd_untrapamount++;
 			mightbooststat(A_DEX);
-			more_experienced(500 * (deepest_lev_reached(FALSE) + 1),0);
+
+			int trapxp = 500 * (deepest_lev_reached(FALSE) + 1);
+			if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+			more_experienced(trapxp, 0);
+
 			/* always give boost because they're hard to disarm --Amy */
 			u.uhpmax += 25;
 			if (Upolyd) u.mhmax += 25;
@@ -27916,7 +27995,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(3 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 3 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 2;
@@ -27941,7 +28024,11 @@ struct trap *ttmp;
 	if (fails < 2) return fails;
 	You("disarm the trap!");
 	u.cnd_untrapamount++;
-	more_experienced(20 * (deepest_lev_reached(FALSE) + 1),0);
+
+	int trapxp = 20 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 10;
@@ -28038,7 +28125,11 @@ struct trap *ttmp;
 
 	if (!rn2(3)) cnv_trap_obj(POT_OIL, 4 - rnl(4), ttmp);
 	else deltrap(ttmp);
-	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
+
+	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 5);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 5;
@@ -28082,7 +28173,11 @@ struct trap *ttmp;
 	if (u.ualign.type == A_LAWFUL) adjalign(1);
 	deltrap(ttmp);
 	newsym(trapx, trapy);
-	more_experienced(1 * (deepest_lev_reached(FALSE) + 1), 5);
+
+	int trapxp = 1 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 5);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
@@ -28104,7 +28199,11 @@ int otyp;
 	if (fails < 2) return fails;
 	You("disarm %s trap.", the_your[ttmp->madeby_u]);
 	u.cnd_untrapamount++;
-	more_experienced(10 * (deepest_lev_reached(FALSE) + 1), 0);
+
+	int trapxp = 10 * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;
@@ -28136,7 +28235,11 @@ int otyp;
 	}
 
 	u.cnd_untrapamount++;
-	more_experienced(multiplier * (deepest_lev_reached(FALSE) + 1), 0);
+
+	int trapxp = multiplier * (deepest_lev_reached(FALSE) + 1);
+	if (uamul && uamul->oartifact == ART_PEXPER_DRRLTRRT) trapxp *= 10;
+	more_experienced(trapxp, 0);
+
 	mightbooststat(A_DEX);
 	if (ttmp->giveshp && (u.uhpmax < (u.ulevel * 10))) {
 		u.uhpmax += 1;

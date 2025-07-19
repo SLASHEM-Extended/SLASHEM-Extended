@@ -4711,6 +4711,10 @@ Amulet_on()
 		pline("Your form feels unstable!");
     }
 
+    if (uamul && uamul->oartifact == ART_WINDLISTEN) { /* ditto */
+		randomnastytrapeffect(rnz(25000), 1000);
+    }
+
     if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL && !is_metallic(uamul)) {
 		pline_The("amulet automatically becomes metal.");
 		objects[uamul->otyp].oc_material = MT_METAL;
@@ -4980,8 +4984,53 @@ Amulet_on()
 		pline("Mortal creatures cannot master such a powerful amulet, and are therefore afflicted by a dark, evil curse!");
     }
 
+    if (uamul && uamul->oartifact == ART_______SCORE) {
+		curse(uamul);
+		uamul->hvycurse = 1;
+		pline("Your amulet was heavily cursed!");
+    }
+
     if (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) {
 		if (!uamul->cursed) curse(uamul);
+    }
+
+    if (uamul && uamul->oartifact == ART_ROLLER_ROCKS) {
+	if (u.alla > 500) {
+		u.alla -= 500;
+		You("only have %d alla remaining!", u.alla);
+
+		struct obj *createditem;
+	    	createditem = mksobj_at(ROCK, u.ux, u.uy, TRUE, FALSE, FALSE);
+		if (createditem) {
+			createditem->quan = 500;
+			createditem->owt = weight(createditem);
+			pline("There's a bunch of rocks rolling around on the ground.");
+		}
+		else pline("And there weren't even any rocks created.");
+	}
+    }
+
+    if (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) {
+		if (!uamul->cursed) curse(uamul);
+    }
+
+    if (uamul && uamul->oartifact == ART_DIVENHOUG) {
+		if (!uamul->cursed) curse(uamul);
+    }
+
+    if (uamul && uamul->oartifact == ART_HELEN_S_ACTIVITY && !uamul->cursed) {
+		curse(uamul);
+		pline("Helen curses your amulet.");
+    }
+
+    if (uamul && uamul->oartifact == ART_WO_WO_WO_WO_WO && !uamul->cursed) {
+		curse(uamul);
+		verbalize("Wo-wo-wo-wo-wo.");
+    }
+
+    if (uamul && uamul->oartifact == ART_MEDI_LEASH && !uamul->cursed) {
+		curse(uamul);
+		pline("Oops, the leash fastens itself around your throat.");
     }
 
     if (uamul && uamul->oartifact == ART_CIGIT) {
@@ -4993,6 +5042,12 @@ Amulet_on()
 		curse(uamul);
 		uamul->hvycurse = uamul->prmcurse = TRUE;
 		pline_The("aetherial shard glows and pulsates!");
+    }
+
+    if (uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) {
+		curse(uamul);
+		uamul->hvycurse = uamul->prmcurse = TRUE;
+		pline_The("amulet wouldn't come off!");
     }
 
     if (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) {
@@ -5506,6 +5561,11 @@ register struct obj *obj;
 		curse(obj);
 		obj->hvycurse = obj->prmcurse = 1;
 		pline("A terrible aura of darkness and eternal damnation surrounds your ring.");
+    }
+
+    if (obj->oartifact == ART_HONTRINO && !obj->cursed) {
+		curse(obj);
+		Your("ring cursed itself.");
     }
 
     if (obj->oartifact == ART_KEEP_FUNKY_) {
@@ -6888,6 +6948,8 @@ find_ac()
 
 	if(uleft && uleft->otyp == RIN_PROTECTION) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_PROTECTION) uac -= uright->spe;
+	if (uleft && uleft->oartifact == ART__X_PROT_) uac -= uleft->spe;
+	if (uright && uright->oartifact == ART__X_PROT_) uac -= uright->spe;
 	if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uright->spe;
 	if (HProtection & INTRINSIC) uac -= u.ublessed;
@@ -7306,6 +7368,28 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) uac -= 3;
+	if (uamul && uamul->oartifact == ART_ARTWORK) uac -= 5;
+	if (uamul && uamul->oartifact == ART_PLANTIT) {
+		if (P_SKILL(P_IMPLANTS) >= P_BASIC) uac -= 2;
+		if (P_SKILL(P_IMPLANTS) >= P_SKILLED) uac -= 2;
+		if (P_SKILL(P_IMPLANTS) >= P_EXPERT) uac -= 2;
+		if (P_SKILL(P_IMPLANTS) >= P_MASTER) uac -= 2;
+		if (P_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) uac -= 2;
+		if (P_SKILL(P_IMPLANTS) >= P_SUPREME_MASTER) uac -= 2;
+		if (P_MAX_SKILL(P_IMPLANTS) >= P_BASIC) uac -= 1;
+		if (P_MAX_SKILL(P_IMPLANTS) >= P_SKILLED) uac -= 1;
+		if (P_MAX_SKILL(P_IMPLANTS) >= P_EXPERT) uac -= 1;
+		if (P_MAX_SKILL(P_IMPLANTS) >= P_MASTER) uac -= 1;
+		if (P_MAX_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) uac -= 1;
+		if (P_MAX_SKILL(P_IMPLANTS) >= P_SUPREME_MASTER) uac -= 1;
+	}
+	if (uleft && uleft->oartifact == ART_FUW_TENK) uac -= 20;
+	if (uright && uright->oartifact == ART_FUW_TENK) uac -= 20;
+	if (uleft && uleft->oartifact == ART_HOH_UNNE) uac -= 5;
+	if (uright && uright->oartifact == ART_HOH_UNNE) uac -= 5;
+	if (uleft && uleft->oartifact == ART_FIRMBLOCK) uac -= 7;
+	if (uright && uright->oartifact == ART_FIRMBLOCK) uac -= 7;
 	if (uwep && uwep->enchantment == WEAPEGO_DEF1) uac -= 5;
 	if (uwep && uwep->enchantment == WEAPEGO_DEF2) uac -= 10;
 	if (uwep && uwep->enchantment == WEAPEGO_DEF3) uac -= 15;
@@ -7477,6 +7561,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_STEELER) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_NEW_COAT) uac += 1;
 	if (uarmh && uarmh->oartifact == ART_BADLY_DENTED) uac += 1;
+	if (uamul && uamul->oartifact == ART_PITCHCOVER) uac -= 1;
 
 	if (uarmu && uarmu->oartifact == ART_GREENTOP && (objects[uarmu->otyp].oc_color == CLR_GREEN)) uac -= 3;
 	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmh && (objects[uarmh->otyp].oc_color == CLR_GREEN)) uac -= 3;
@@ -7485,6 +7570,23 @@ find_ac()
 	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmf && (objects[uarmf->otyp].oc_color == CLR_GREEN)) uac -= 3;
 	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmc && (objects[uarmc->otyp].oc_color == CLR_GREEN)) uac -= 3;
 	if (uarmu && uarmu->oartifact == ART_GREENTOP && uarmg && (objects[uarmg->otyp].oc_color == CLR_GREEN)) uac -= 3;
+
+	if (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) {
+		if (uarmh && (objects[uarmh->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uarm && (objects[uarm->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uarms && (objects[uarms->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uarmf && (objects[uarmf->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uarmc && (objects[uarmc->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uarmg && (objects[uarmg->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uarmu && (objects[uarmu->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uamul && (objects[uamul->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uimplant && (objects[uimplant->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uleft && (objects[uleft->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uright && (objects[uright->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (ublindf && (objects[ublindf->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (uwep && (objects[uwep->otyp].oc_color == CLR_BLACK)) uac -= 2;
+		if (u.twoweap && uswapwep && (objects[uswapwep->otyp].oc_color == CLR_BLACK)) uac -= 2;
+	}
 
 	if (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE) {
 		if ((!uarm || is_metallic(uarm)) && (!uarmc || is_metallic(uarmc)) && (!uarmu || is_metallic(uarmu)) && (!uarms || is_metallic(uarms)) && (!uarmg || is_metallic(uarmg)) && (!uarmf || is_metallic(uarmf)) && (!uarmh || is_metallic(uarmh)) ) {
@@ -7952,7 +8054,7 @@ find_ac()
 		
 	}
 
-	if (u.uprops[NAKEDNESS].extrinsic || autismweaponcheck(ART_NOT_A_HAMMER) || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() ) uac = 10;
+	if (u.uprops[NAKEDNESS].extrinsic || autismweaponcheck(ART_NOT_A_HAMMER) || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() || (uamul && uamul->oartifact == ART_PLAYING_QUAKE) ) uac = 10;
 
 	if(uac != u.uac){
 		u.uac = uac;

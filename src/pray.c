@@ -140,10 +140,10 @@ in_trouble()
 
 /* Borrowed from eat.c */
 
-#define SATIATED	0
-#define NOT_HUNGRY	1
-#define HUNGRY		2
-#define WEAK		3
+#define SATIATED	0 /* at least 2500 */
+#define NOT_HUNGRY	1 /* at least 500 */
+#define HUNGRY		2 /* at least 200 */
+#define WEAK		3 /* at least 0 */
 #define FAINTING	4
 #define FAINTED		5
 #define STARVED		6
@@ -2440,6 +2440,12 @@ dosacrifice()
 		value = -3;
 	    }
     } /* fake Amulet */
+
+    if (autismringcheck(ART_SECCA) && value > 0) { /* doesn't stack if you wear two of them, this is by design --Amy */
+	value *= 3;
+	value /= 2;
+	if (value > MAXVALUE) value = MAXVALUE;
+    }
 
     if (value == 0) {
 	pline("%s", nothing_happens);

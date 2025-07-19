@@ -981,6 +981,12 @@ nh_timeout()
 	    attrcurse();
 	}
 
+	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+		You_hear("maniacal laughter!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+	    attrcurse();
+	}
+
 	if (u.burrowed) {
 		u.burrowed--;
 		if (u.burrowed < 0) u.burrowed = 0;
@@ -1121,6 +1127,34 @@ nh_timeout()
 	}
 
 	if (uwep && uwep->oartifact == ART_DO_THE_CONTROL) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (uleft && uleft->oartifact == ART_HONTRINO) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	if (uright && uright->oartifact == ART_HONTRINO) {
 
 	    struct trap *t;
 

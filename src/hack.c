@@ -1149,6 +1149,8 @@ int mode;
 	    ;
 	} else if (uarmf && uarmf->oartifact == ART_EVERYTHING_IS_GREEN && tmpr->typ == TREE) {
 	    ;	/* special effect of that artifact --Amy */
+	} else if (uamul && uamul->oartifact == ART_DON_T_WORRY && tmpr->typ == TREE) {
+	    ;	/* special effect of that artifact --Amy */
 	} else if (uarmf && uarmf->oartifact == ART_SAFARI_ROCKZ && tmpr->typ == TREE) {
 	    ;	/* special effect of that artifact --Amy */
 	} else if (uwep && uwep->oartifact == ART_GIFT_TO_NATURE && tmpr->typ == TREE) {
@@ -1191,9 +1193,9 @@ int mode;
 		}
 
 	} else if (tmpr->typ == FARMLAND) {
-		if (mode != DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+		if (mode != DO_MOVE && !Levitation && !Flying && !(uamul && uamul->oartifact == ART_DON_T_WORRY) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(uamul && uamul->oartifact == ART_DON_T_WORRY) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (WallsAreHyperBlue) {
 				You("crash into a farmland! Ouch!");
@@ -5535,9 +5537,17 @@ int k_format; /* WAC k_format is an int */
 
 			if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
 				makeknown(AMULET_OF_SYMBIOTE_SAVING);
-				useup(uamul);
-				u.usymbiote.mhp = u.usymbiote.mhpmax;
-				Your("symbiote glows, and your amulet crumbles to dust!");
+				if (uamul && uamul->oartifact == ART_EXTREME_HEAT_SCREEN) {
+					u.usymbiote.mhp = u.usymbiote.mhpmax;
+					Your("symbiote glows, but you got very contaminated and also start seeing things!");
+					u.contamination += 1000;
+					u.usanity += 2000;
+					flags.botl = TRUE;
+				} else {
+					useup(uamul);
+					u.usymbiote.mhp = u.usymbiote.mhpmax;
+					Your("symbiote glows, and your amulet crumbles to dust!");
+				}
 			} else {
 				u.usymbiote.active = 0;
 				u.usymbiote.mnum = PM_PLAYERMON;
@@ -5711,6 +5721,8 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 	}
 
 	if (uarmh && uarmh->oartifact == ART_LIVIN__IT_UP) maxcarrcap *= 2;
+
+	if (uamul && uamul->oartifact == ART_RICK_S_WEIGHT_SYSTEM) maxcarrcap /= 2;
 
 	return maxcarrcap;
 }
@@ -5953,7 +5965,7 @@ inv_weight()
 
 	wc = weight_cap();
 
-	if ( (MeanBurdenEffect || u.uprops[MEAN_BURDEN_EFFECT].extrinsic || have_meanburdenstone() || autismringcheck(ART_KRATSCHEM_HARD) ) && (wt <= wc)) wt = (wc + 1);
+	if ( (MeanBurdenEffect || u.uprops[MEAN_BURDEN_EFFECT].extrinsic || have_meanburdenstone() || (uamul && uamul->oartifact == ART_WO_WO_WO_WO_WO) || autismringcheck(ART_KRATSCHEM_HARD) ) && (wt <= wc)) wt = (wc + 1);
 
 	return (wt - wc);
 }

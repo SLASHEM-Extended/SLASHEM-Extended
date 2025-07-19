@@ -6217,6 +6217,34 @@ int degree;
 
 /*    if (skill != P_NONE && !P_RESTRICTED(skill)) {*/
 
+	if (uleft && uleft->oartifact == ART_FOLL_GUD && (skill == P_SEARCHING)) {
+		if (u.enchantrecskill < 2) u.enchantrecskill++;
+		else if (!rn2(u.enchantrecskill)) u.enchantrecskill++;
+		if (u.enchantrecskill > 250) u.enchantrecskill = 250;
+
+		if (u.weapchantrecskill < 2) u.weapchantrecskill++;
+		else if (!rn2(u.weapchantrecskill)) u.weapchantrecskill++;
+		if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+
+		if (u.bucskill < 2) u.bucskill++;
+		else if (!rn2(u.bucskill)) u.bucskill++;
+		if (u.bucskill > 250) u.bucskill = 250;
+	}
+
+	if (uright && uright->oartifact == ART_FOLL_GUD && (skill == P_SEARCHING)) {
+		if (u.enchantrecskill < 2) u.enchantrecskill++;
+		else if (!rn2(u.enchantrecskill)) u.enchantrecskill++;
+		if (u.enchantrecskill > 250) u.enchantrecskill = 250;
+
+		if (u.weapchantrecskill < 2) u.weapchantrecskill++;
+		else if (!rn2(u.weapchantrecskill)) u.weapchantrecskill++;
+		if (u.weapchantrecskill > 250) u.weapchantrecskill = 250;
+
+		if (u.bucskill < 2) u.bucskill++;
+		else if (!rn2(u.bucskill)) u.bucskill++;
+		if (u.bucskill > 250) u.bucskill = 250;
+	}
+
 	if (Race_if(PM_MATRIXER)) skill = P_MATRIX(skill);
 
 	int degreebefore = degree;
@@ -7124,11 +7152,16 @@ int degree;
 	if (uarm && uarm->oartifact == ART_HOARDIT && skill == P_BODY_ARMOR) degree *= 2;
 
 	if (Race_if(PM_PERVERT) && skill == P_SPIRITUALITY) degree *= 2;
+	if (uleft && uleft->oartifact == ART_PREEZER && skill == P_SPIRITUALITY) degree *= 2;
+	if (uright && uright->oartifact == ART_PREEZER && skill == P_SPIRITUALITY) degree *= 2;
+	if (uleft && uleft->oartifact == ART_IKS_UP && skill == P_SEARCHING) degree *= 2;
+	if (uright && uright->oartifact == ART_IKS_UP && skill == P_SEARCHING) degree *= 2;
 	if (uarm && uarm->oartifact == ART_PRISMATIC_DRAGON_PLATE && skill == P_PETKEEPING) degree *= 3;
 	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX && skill == P_SHIELD) degree *= 2;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE && skill == P_SORESU) degree *= 3;
+	if (uamul && uamul->oartifact == ART_SUPER_TEC && skill == P_TECHNIQUES) degree *= 3;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
 		else if (P_ADVANCE(skill) >= 2500) degree *= 6;
@@ -7163,7 +7196,7 @@ int degree;
 	}
 
 	if (skill == 0) goto screwupsdone; /* just me covering my butt in case the game somehow thinks you had used
-	* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
+							* some skill that doesn't do anything and thinks it now has to set a blown timer --Amy */
 
 	/* squeaking and gun control are hard to train for the wrong gender --Amy */
 	if (((skill == P_SQUEAKING && !flags.female) || (skill == P_GUN_CONTROL && !(uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS) && flags.female) || (skill == P_GUN_CONTROL && uwep && uwep->oartifact == ART_SYSETTE_S_THIEVINGNESS && !flags.female) ) && !Role_if(PM_GENDERSTARIST)) {
@@ -7752,6 +7785,8 @@ struct obj *weapon;
 	if (Role_if(PM_MUSICIAN) && weapon && (weapon->otyp == GUITAR || weapon->otyp == BANJO || weapon->otyp == PIANO)) bonus += 5;
 
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER && weapon && weapon_type(weapon) == P_HAMMER) bonus += 8;
+
+	if (uamul && uamul->oartifact == ART_CHRISTIAN_S_LONG_LASH && weapon && weapon_type(weapon) == P_WHIP) bonus += 10;
 
 	if (uarmc && weapon && weapon_type(weapon) == P_HAMMER && itemhasappearance(uarmc, APP_AVENGER_CLOAK) ) bonus += 5;
 

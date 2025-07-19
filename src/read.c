@@ -5464,7 +5464,7 @@ register struct obj	*sobj;
 	if (objects[sobj->otyp].oc_magic)
 		exercise(A_WIS, TRUE);		/* just for trying */
 
-	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || (uarmc && uarmc->oartifact == ART_WINDS_OF_CHANGE) || (ublindf && ublindf->oartifact == ART_BLINDFOLD_OF_MISPELLING) || have_confusionstone() ) {
+	if (ConfusionProblem || u.uprops[CONFUSION_PROBLEM].extrinsic || autismringcheck(ART_GET_UP_AROUND_EIGHT) || (uarmc && uarmc->oartifact == ART_WINDS_OF_CHANGE) || (ublindf && ublindf->oartifact == ART_BLINDFOLD_OF_MISPELLING) || have_confusionstone() ) {
 
 		if (sobj->oclass == SCROLL_CLASS) {
 			pline("Suddenly you're very confused!");

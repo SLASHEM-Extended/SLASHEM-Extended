@@ -916,6 +916,9 @@ tele()
 	}
 
 	u.cnd_teleportcount++;
+	if (uleft && uleft->oartifact == ART_MEGOHEAL) healup(20, 0, 0, 0);
+	if (uright && uright->oartifact == ART_MEGOHEAL) healup(20, 0, 0, 0);
+
 	(void) safe_teleds(FALSE);
 }
 

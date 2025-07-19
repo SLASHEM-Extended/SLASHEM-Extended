@@ -168,6 +168,7 @@ const char *name;	/* if null, then format `obj' */
 		if (uarms->spe < 0) shieldblockrate += (uarms->spe * 2);
 
 		if (uarm && uarm->oartifact == ART_WOODSTOCK) shieldblockrate += 5;
+		if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) shieldblockrate += 10;
 		if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) shieldblockrate += 20;
 		if (uwep && uwep->oartifact == ART_SECANTED) shieldblockrate += 5;
 		if (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) shieldblockrate += 10;

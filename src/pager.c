@@ -518,6 +518,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (StrongStunnopathy && Stunned && dmgtype(mtmp->data, AD_STUN))
 		    ways_seen++;
+		if (autismringcheck(ART_SUCKDISUCK) && dmgtype(mtmp->data, AD_DRIN))
+		    ways_seen++;
 		if (StrongNumbopathy && Numbed && (dmgtype(mtmp->data, AD_NUMB) || dmgtype(mtmp->data, AD_PLYS) ) )
 		    ways_seen++;
 		if (StrongDimmopathy && Dimmed && (dmgtype(mtmp->data, AD_DIMN) || monstersoundtype(mtmp) == MS_CUSS ) )
@@ -568,6 +570,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mtmp->data) )
 		    ways_seen++;
+		if (autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mtmp) && distu(mtmp->mx, mtmp->my) < 26)
+		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_ELENETTES && (mtmp->mhp < (mtmp->mhpmax * 9 / 10)) )
 		    ways_seen++;
 		if (uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mtmp->minvis && mtmp->sagesvisible )
@@ -583,6 +587,8 @@ lookat(x, y, buf, monbuf)
 		if (uamul && uamul->otyp == AMULET_OF_PET_VIEW && mtmp->mtame)
 		    ways_seen++;
 		if (haveartileash(ART_ANNOYING_PET_MONITOR) && mtmp->mtame)
+		    ways_seen++;
+		if (uamul && uamul->oartifact == ART_MEDI_LEASH && mtmp->mtame)
 		    ways_seen++;
 		if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame)
 		    ways_seen++;
@@ -761,6 +767,10 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "strong stunnopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
+		    if (autismringcheck(ART_SUCKDISUCK) && dmgtype(mtmp->data, AD_DRIN)) {
+			strcat(monbuf, "sucking");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
 		    if (StrongNumbopathy && Numbed && (dmgtype(mtmp->data, AD_NUMB) || dmgtype(mtmp->data, AD_PLYS) ) ) {
 			strcat(monbuf, "strong numbopathy");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -861,6 +871,11 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "stalker warning");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
+		    if (autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mtmp) && distu(mtmp->mx, mtmp->my) < 26) {
+			strcat(monbuf, "illusory help");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    ways_seen++;
 		    if (uarmf && uarmf->oartifact == ART_ELENETTES && (mtmp->mhp < (mtmp->mhpmax * 9 / 10)) ) {
 			strcat(monbuf, "Elenette's knowledge");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -891,6 +906,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (haveartileash(ART_ANNOYING_PET_MONITOR) && mtmp->mtame) {
 			strcat(monbuf, "pet monitor");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uamul && uamul->oartifact == ART_MEDI_LEASH && mtmp->mtame) {
+			strcat(monbuf, "medi leash");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uarmh && itemhasappearance(uarmh, APP_PETSENSE_HELMET) && mtmp->mtame) {

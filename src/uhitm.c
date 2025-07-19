@@ -863,9 +863,14 @@ register struct monst *mtmp;
 	if (!uwep && StrongGlib_combat && Glib) tmp += 5;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
+	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
+	if (uleft && uleft->oartifact == ART_I_M_NOT_AFRAID_) tmp += 10;
+	if (uright && uright->oartifact == ART_I_M_NOT_AFRAID_) tmp += 10;
 	if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
+	if (uamul && uamul->oartifact == ART_PLAYING_QUAKE) tmp += 5;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
@@ -876,6 +881,8 @@ register struct monst *mtmp;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;
+	if (uright && uright->oartifact == ART_HEXTROSE) tmp += 6;
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 2;
@@ -1078,7 +1085,7 @@ register struct monst *mtmp;
 
 	if (is_table(u.ux, u.uy)) tmp += 3;
 
-	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(SuperFemtrapWendy ? 20 : 10);
@@ -2956,7 +2963,7 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || autismringcheck(ART_POISED_STRIKE) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
@@ -4380,6 +4387,11 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uamul && uamul->oartifact == ART_PLAYING_QUAKE) tmp += 3;
+		if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
+		if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
+		if (!thrown && uleft && uleft->oartifact == ART_BUFFIST) tmp += 2;
+		if (!thrown && uright && uright->oartifact == ART_BUFFIST) tmp += 2;
 		if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
@@ -9950,9 +9962,17 @@ common:
 
 		if (uamul && uamul->otyp == AMULET_OF_SYMBIOTE_SAVING) {
 			makeknown(AMULET_OF_SYMBIOTE_SAVING);
-			useup(uamul);
-			u.usymbiote.mhp = u.usymbiote.mhpmax;
-			Your("symbiote glows, and your amulet crumbles to dust!");
+			if (uamul && uamul->oartifact == ART_EXTREME_HEAT_SCREEN) {
+				u.usymbiote.mhp = u.usymbiote.mhpmax;
+				Your("symbiote glows, but you got very contaminated and also start seeing things!");
+				u.contamination += 1000;
+				u.usanity += 2000;
+				flags.botl = TRUE;
+			} else {
+				useup(uamul);
+				u.usymbiote.mhp = u.usymbiote.mhpmax;
+				Your("symbiote glows, and your amulet crumbles to dust!");
+			}
 		} else {
 			u.usymbiote.active = 0;
 			u.usymbiote.mnum = PM_PLAYERMON;

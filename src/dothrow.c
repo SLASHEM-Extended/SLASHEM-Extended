@@ -327,6 +327,7 @@ int thrown;
 
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
+	    if (uamul && uamul->oartifact == ART_BOMBER_DELIVERY && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
 	    if (uamul && uamul->oartifact == ART_PURPLE_ARBALEST && launcher && objects[launcher->otyp].oc_skill == P_CROSSBOW) multishot++;
 	    if (uamul && uamul->oartifact == ART_PURPLE_ARBALEST) multishot++;
@@ -1849,6 +1850,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_STREET_ROCKZ) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uamul && uamul->oartifact == ART_PLAYING_QUAKE) dmg += 3;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
 	if (dmg > 0 && u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_SUDUNSEL) dmg += 2;
@@ -1861,6 +1863,8 @@ boolean hitsroof;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_YES_TO_RANGED_COMBAT) dmg += rnd(6);
 	if (dmg > 0 && uleft && uleft->oartifact == ART_BLIND_PILOT) dmg += 10;
 	if (dmg > 0 && uright && uright->oartifact == ART_BLIND_PILOT) dmg += 10;
+	if (dmg > 0 && uleft && uleft->oartifact == ART_SHL_THEME) dmg += 2;
+	if (dmg > 0 && uright && uright->oartifact == ART_SHL_THEME) dmg += 2;
 	if (dmg > 0 && uamul && uamul->oartifact == ART_NOW_YOU_HAVE_LOST) dmg += 10;
 	if (dmg > 0 && Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) dmg += 2;
 	if (dmg > 0 && uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) dmg += 3;
@@ -2045,7 +2049,7 @@ int thrown;
 	if (ACURR(A_DEX) == 1) {
 		if (!rn2(7)) misfire = TRUE;
 	}
-	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) ) {
+	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) ) {
 		if (!rn2(7)) misfire = TRUE;
 	}
 	if (obj->greased) {
@@ -2787,6 +2791,7 @@ boolean polearming;
 	}
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uamul && uamul->oartifact == ART_PLAYING_QUAKE) tmp += 5;
 	if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
@@ -2806,6 +2811,10 @@ boolean polearming;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
+	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
+	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
+	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;
+	if (uright && uright->oartifact == ART_HEXTROSE) tmp += 6;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (u.boosttimer) tmp += 5;
 	if (ublindf && ublindf->oartifact == ART_EYEHANDER) tmp += 5;
@@ -2922,7 +2931,7 @@ boolean polearming;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
-	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 
 	if (ACURR(A_DEX) < 2) tmp -= 5;
 	else if (ACURR(A_DEX) < 3) tmp -= 4;

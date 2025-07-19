@@ -10892,6 +10892,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+		    if (autismringcheck(ART_FRESTER)) {
+				skip++;
+				break;
+			}
+
 		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {
 				skip++;
 				break;
@@ -10990,6 +10995,11 @@ register int osym, dmgtyp;
 			}
 
 		    if (!conundrumbreak()) {
+				skip++;
+				break;
+			}
+
+			if (autismringcheck(ART_THOUSANDER)) {
 				skip++;
 				break;
 			}

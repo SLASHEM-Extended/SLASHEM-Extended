@@ -1914,7 +1914,7 @@ dodown()
 		at_ladder = (boolean) (levl[u.ux][u.uy].typ == LADDER);
 
 		/* based on a feature from nethack 3.7, a nastytrap that makes downstairs skip levels sometimes --Amy */
-		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone() || (uamul && uamul->oartifact == ART_FOOK_SRI_SAEVE) || autismweaponcheck(ART_UNATTAINABLE_NINETEEN) ) {
+		if (DschueueuetEffect || u.uprops[DSCHUEUEUET_EFFECT].extrinsic || have_dschueueuetstone() || (uamul && uamul->oartifact == ART_DIVENHOUG) || (uamul && uamul->oartifact == ART_FOOK_SRI_SAEVE) || autismweaponcheck(ART_UNATTAINABLE_NINETEEN) ) {
 			if (!rn2(3) && !(dunlev(&u.uz) == dunlevs_in_dungeon(&u.uz)) && !(dunlev(&u.uz) == (dunlevs_in_dungeon(&u.uz) - 1) ) && !(u.ux == sstairs.sx && u.uy == sstairs.sy) ) {
 
 				d_level dtmp;
@@ -2265,7 +2265,7 @@ boolean at_stairs, falling, portal;
 	 * comment by Amy: Yes, it definitely is. That's why I don't re-enable it...
 	 * except in evilvariant mode, because that one is deliberately designed to screw you over :P */
 
-	if ( ((In_gehennom(&u.uz) && evilfriday && u.uhave.amulet && !u.freeplaymode) || (MysteriousForceActive || u.uprops[MYSTERIOUS_FORCE_EFFECT].extrinsic || have_forcestone())) && up && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
+	if ( ((In_gehennom(&u.uz) && evilfriday && u.uhave.amulet && !u.freeplaymode) || (MysteriousForceActive || u.uprops[MYSTERIOUS_FORCE_EFFECT].extrinsic || (uamul && uamul->oartifact == ART_DIVENHOUG) || have_forcestone())) && up && !newdungeon && !portal && (dunlev(&u.uz) < dunlevs_in_dungeon(&u.uz)-3)) {
 		if (!rn2(4)) {
 			int odds = 3 + (int)u.ualign.type;          /* 2..4 */
 
