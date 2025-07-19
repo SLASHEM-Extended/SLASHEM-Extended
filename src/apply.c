@@ -3712,7 +3712,7 @@ struct obj *tstone;
     }
 
     if (tstone->otyp == TOUCHSTONE && tstone->cursed &&
-	    obj->oclass == GEM_CLASS && !is_graystone(obj) &&
+	    obj->oclass == GEM_CLASS && !is_graystone(obj) && !is_feminismstone(obj) &&
 	    !obj_resists(obj, 80, 100)) {
 	if (Blind)
 	    You_feel("something shatter.");
