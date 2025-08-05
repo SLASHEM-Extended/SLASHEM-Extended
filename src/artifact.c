@@ -959,6 +959,7 @@ init_randarts()
 	artilist[ART_TWO_EDGED_GREAT_SWORD].otyp = randarttwohandedswordX();
 	artilist[ART_DARK_CLAYMORE].otyp = randarttwohandedswordX();
 	artilist[ART_TSCHAPSNAP].otyp = randartwhipX();
+	artilist[ART_FRANZISKA_S_COMPENSATOR].otyp = randartwhipX();
 	artilist[ART_MAGYAR_IDEA].otyp = randartwhipX();
 	artilist[ART_TRUSTY_ADVENTURER_S_WHIP].otyp = randartwhipX();
 	artilist[ART_NEEDLESSLY_MEAN].otyp = randartwhipX();
@@ -995,6 +996,8 @@ init_appearance_randarts()
 	artilist[ART_VORPAL_HEELS].otyp = find_fetish_heels();
 	artilist[ART_LORSKEL_S_INTEGRITY].otyp = find_lolita_boots();
 
+	artilist[ART_TANGO_HEELS].otyp = find_sexy_heels();
+	artilist[ART_BRAVO_HELMET].otyp = find_musical_helmet();
 	artilist[ART_PHANTOM_OF_THE_OPERA].otyp = find_opera_cloak();
 	artilist[ART_HIGH_DESIRE_OF_FATALITY].otyp = find_explosive_boots();
 	artilist[ART_CHOICE_OF_MATTER].otyp = find_irregular_boots();

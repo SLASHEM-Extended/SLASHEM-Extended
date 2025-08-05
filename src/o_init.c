@@ -2983,6 +2983,19 @@ find_treaded_heels()
 }
 
 int
+find_sexy_heels()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SEXY_HEELS)) return i;
+    }
+
+    impossible("sexy heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_fatal_gloves()
 {
     register int i;
@@ -3070,6 +3083,19 @@ find_celtic_helmet()
     }
 
     impossible("celtic helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_musical_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_MUSICAL_HELMET)) return i;
+    }
+
+    impossible("musical helmet not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

@@ -2225,6 +2225,8 @@ E int find_critical_gloves(void);
 E int find_falconry_gloves(void);
 E int find_latex_gloves(void);
 E int find_velcro_boots(void);
+E int find_sexy_heels(void);
+E int find_musical_helmet(void);
 E int find_clumsy_gloves(void);
 E int find_fin_boots(void);
 E int find_winter_boots(void);

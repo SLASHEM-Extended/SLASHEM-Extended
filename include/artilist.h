@@ -20036,8 +20036,6 @@ A("The Prima Donna",				BEAUTY_PACK, /* increases your CHA by 5 when used */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-/* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
-
 A("Mexboost",				POT_HEALING, /* +5 max HP */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
@@ -21269,6 +21267,1240 @@ A("Bleed Mode",				AMULET_OF_VULNERABILITY, /* diminished bleeding, every time a
 A("wo-wo-wo-wo-wo",				FAKE_AMULET_OF_YENDOR, /* burden nastytrap effect when worn, autocurses */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5L ),
+
+A("Incredibly Good Armor",				HAWAIIAN_SHIRT, /* double bonus (or malus) to AC from enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Aloha Print",				HAWAIIAN_SHIRT,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nightlife Sense",				HAWAIIAN_SHIRT, /* infravision, sight bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Angry Tommy!",				HAWAIIAN_SHIRT, /* whenever you take damage while not berserk, 1 in 20 chance that you become so for 25 turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cap The Collector",				HAWAIIAN_SHIRT, /* your weapons deal +d12 damage to all MS_SOLDIER */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Yellow Sympose",				T_SHIRT, /* whenever you're paralyzed, your AC is improved by 50 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Modelwalk",				T_SHIRT, /* no bad side effects when wearing heels without the skill */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Little Padding",				T_SHIRT, /* +2 AC when worn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Metalhold",				T_SHIRT, /* disint res */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Conman's Mistrust",				CHANTER_SHIRT, /* spawns with -15 to enchantment and heavily cursed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Seth's Error",				BAD_SHIRT, /* antje trap effect, +3 CON and CHA, discount action, sleep resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Radiolan",				RADIOACTIVE_UNDERGARMENT, /* disables sickness resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Elite Fan",				BODYGLOVE, /* double vulnerability, prime autocurses, 1% of all randomly generated armor pieces are bodygloves while you're wearing this */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Every Eventuality",				WOOLEN_SHIRT, /* wild weather, resist fire, cold, shock and contamination */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Doubleplug",				PLUGSUIT, /* +2 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gant's Hobby",				SWIMSUIT, /* protects items from water, contamination resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 8000L ),
+
+A("Timona's Inner Bicker",				WONDER_PLATE, /* double dora trap effect, +3 STR, +1 increase damage and kicking a monster adds d5 bleeding damage to it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hloval's Problem",				HIGH_ELVEN_PLATE, /* blood mana, spells cost 75% the usual amount of mana */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Femsense",				EILISTRAN_ARMOR, /* if you're female, it also grants intrinsic searching */
+	(SPFX_RESTR|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Famplate",				MAGE_PLATE_MAIL, /* 20% better spellcasting chances */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Turbulent Time",				EVIL_PLATE_MAIL, /* 25 extra points of AC, evilpatch nastytrap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fuck Ugghh That's Heavy!",				EMBOSSED_PLATE_MAIL, /* burden, +8 AC, disables speed, +4 CON, triples HP corona caps, double fire resistance if your HP is below 33% of the max, double sleep resistance if your HP is below 10% of the max, if you hear the cwnannwn it shoots strength-6 fire blasts in all directions and if you hear the banshee it shoots strength-10 sleep rays in all directions */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Helen's Reveal",				PEACEKEEPER_MAIL, /* +5 CHA, charm monster spell costs half the usual amount of mana */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_ACTIVISTOR, NON_PM, 3000L ),
+
+A("Darken Wallow",				DROVEN_PLATE_MAIL, /* infravision and double sight bonus, but you can't regenerate while on a lit square */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kurain View",				MEDIUM_MITHRIL_COAT, /* undead warning, ghosts have 75% chance of spawning peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Destructo's Coat",				DARK_ELVEN_MITHRIL_COAT, /* autocurses, auto destruct, giant explorer, +4 increase damage, all rays deal double damage regardless of who fired them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Life Drop",				DARK_ELVEN_MITHRIL_COAT, /* bleedout, resist sickness, full nutrients, peacevision */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wood Huntering",				INKA_MITHRIL_COAT, /* +d2 multishot for all ranged weapons that aren't firearms, scent view if you're wielding a bow */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mallnom",				GNOMISH_SUIT, /* +2 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Colored Other",				GNOMISH_SUIT, /* +1 CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Armor Pierce",				TAR_CHAIN_MAIL, /* nakedness, +50 increase accuracy, monsters cannot evade ranged attacks and their block chance is only one tenth of the usual value */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("PlatFlat",				TAR_CHAIN_MAIL, /* material becomes PLATINUM every turn you wear it, +7 AC, contamination resistance on turns divisible by 2 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Trackspur",				TAR_CHAIN_MAIL, /* walking on paved floors doesn't wake up monsters */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Self-Enchant",				NANO_SUIT, /* wearing it while it has a negative enchantment has 1 in 2000 chance per turn to remove a point of negative enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Bastle Back Up",				NANO_SUIT, /* full nutrients, double regen */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Siveglide",				LIZARD_SCALES, /* +7 AC while it's still scales, swimming if it's a scale mail */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Spearpoint Hold",				BAMBOO_MAIL, /* spear traps break off against you, 90% chance of deflecting hostile polearms */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Mire Mire",				SILK_MAIL, /* halves all incoming sanity damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Eletlight",				SILK_MAIL, /* +4 DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dark Minddrill",				DROVEN_CHAIN_MAIL, /* maxxes out your vision range, heavily autocurses, your INT cannot be higher than 6 while wearing it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sem Boost",				POISON_REPELLANT_ARMOR, /* +3 AC and spawns with +3 enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Atlantean Push",				GIANT_SEA_ANEMONE, /* swimming */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Swapschwap",				GIANT_SEA_ANEMONE, /* protects items from water damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Skrollan's Rubbing",				EXCITING_ARMOR, /* wounded legs, double half physical damage, effects that cause you to bleed will cause twice the normal amount of bleeding damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Emse-trade",				EXCITING_ARMOR, /* -5 AC, +3 MC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Locked Twenny",				EVIL_LEATHER_ARMOR, /* +20 AC, but spawns invisible, very burnt and with -20 to enchantment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Nona's Nono",				SPECIAL_LEATHER_ARMOR, /* double katia trap effect, echolocation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rostine's Overcast",				SPECIAL_LEATHER_ARMOR, /* upon equipping, all of your items that aren't rusted yet get one layer of rust, but while wearing it, "rustprone" is always FALSE; double long screwup effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ondons",				TROLL_LEATHER_ARMOR, /* +1 AC, +2 maximum "distu" for polearms */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Swerdel OneHa",				NOBLE_S_DRESS, /* +2 damage with one-handed swords */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Green Dress Nurse",				HEALER_UNIFORM, /* doubles healup effects, can use noncursed medical kits without chance of failure */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Name Honor",				JUMPSUIT, /* jumping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Venter Gut Sap",				CURING_UNIFORM, /* can be invoked to cure sickness */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sail in the Wind",				SAILOR_BLOUSE, /* waterwalking, 50% chance to not be affected by effects that push you away, water tiles you walk over become lit */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gumshoe's Trenchcoat",				LEATHER_JACKET, /* infravision */
+	(SPFX_RESTR|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hidden Operation",				LEATHER_JACKET, /* double stealth */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Paua for me.",				ROBE_OF_POWER, /* 12% better spellcasting chances, +1 INT/WIS */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1300L ),
+
+A("Fire Away",				ROBE_OF_MAGIC_RESISTANCE, /* spellboost, resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Fehliron",				ROBE_OF_PERMANENCE, /* wallwalking, gray center, detectation nastytrap effect, dark mode, black breath curses itself, putting it on changes the material of all your armor pieces to IRON and makes them fooproof */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Mindmend",				ROBE_OF_STASIS, /* resist psi */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Upper Pu",				ROBE_OF_PUGILISM, /* +4 melee damage if you're not wielding any weapons */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lightning Aura",				ROBE_OF_SPELL_POWER, /* can be invoked to fire lightning bolts in all directions with strength 4+(gushlevel/3) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("MendaPau",				ROBE_OF_CONTROL, /* +3 AC, can be safely enchanted up to +9 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Spamresist",				ROBE_OF_ENERGY_SUCTION, /* resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Figger Four",				ROBE_OF_DESTINY, /* protection from shape changers */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("AltDetector",				ROBE_OF_ANTI_CURSING, /* newly spawned items have an additional 1 in 3 chance of spawning with their BUC known */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Finished Become Want",				ROBE_OF_DRAIN_RESISTANCE, /* clairvoyance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("There are too many damn artifacts!",				ROBE_OF_INFRAVISION, /* deafness */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Stalwart Costume",				ROBE_OF_DEFENSE, /* death resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("DeadComm",				ROBE_OF_PSIONICS, /* undead warning, but blocks ESP */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Attractor",				GRAY_DRAGON_SCALE_SHIELD, /* 20% extra chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Levifly",				SILVER_DRAGON_SCALES, /* as long as they're still scales, flying and double reflection */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Silvery Fluid",				MERCURIAL_DRAGON_SCALE_MAIL, /* swimming, 33% chance to evade projectiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Waterglide",				MERCURIAL_DRAGON_SCALE_SHIELD, /* swimming */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Neon Surrounding",				SHIMMERING_DRAGON_SCALES, /* diminished bleeding */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Geodene Cave",				SHIMMERING_DRAGON_SCALE_MAIL, /* can be invoked for ore mining (but unlike the spell, it can affect several tiles at once) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("How do you come up with 300 artifacts",				DEEP_DRAGON_SCALE_MAIL, /* peacevision, use the force, diminished bleeding, resistance piercing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("CancProtect",				DEEP_DRAGON_SCALE_SHIELD, /* protects you from being cancelled */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Sing's Stunning Beauty",				RED_DRAGON_SCALES, /* sing trap effect, +10 CHA */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Heatstand",				RED_DRAGON_SCALE_SHIELD, /* protects your items from fire damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Rouse Me Not",				WHITE_DRAGON_SCALE_MAIL, /* suppresses the dim status */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Wide Eye Bubble",				ORANGE_DRAGON_SCALE_SHIELD, /* magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Let's Do It Already",				BLUE_DRAGON_SCALES, /* if they've been enchanted to DSM, +3 INT/WIS/CHA */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Colors Together",				BLUE_DRAGON_SCALE_SHIELD, /* resist fear */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Boahmm",				DARK_DRAGON_SCALE_MAIL, /* +5 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Tlarkmer",				DARK_DRAGON_SCALE_SHIELD, /* mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fungotide",				COPPER_DRAGON_SCALES, /* if a fungus attacks you in melee, it takes rnz(20) damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Orange AC",				COPPER_DRAGON_SCALE_MAIL, /* +3 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Heave-field",				PLATINUM_DRAGON_SCALE_SHIELD, /* -20% spellcasting chances, +6 AC, +1 MC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("FinickyMag",				PLATINUM_DRAGON_SCALE_MAIL, /* 15% better spellcasting chances, magic vacuum */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Modded Caster",				BRASS_DRAGON_SCALES, /* spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Worker Metal",				BRASS_DRAGON_SCALE_SHIELD, /* material becomes ALLOY when equipped, cannot be eroded (but doesn't actually become erosionproof), +2 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Purple Socket",				AMETHYST_DRAGON_SCALES, /* +3 STR, +4 AC, +5 increase accuracy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ms. Place",				AMETHYST_DRAGON_SCALE_SHIELD, /* displacement */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2300L ),
+
+A("Siainswurb",				PURPLE_DRAGON_SCALES, /* sickness resistance */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Everlasting Gemstone",				DIAMOND_DRAGON_SCALES, /* double lightning resistance; if they're still scales as opposed to DSM, lightning immunity */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Permostand",				DIAMOND_DRAGON_SCALE_SHIELD, /* hard to destruct, becomes +5 when equipped if it was lower, doesn't fall off if you poly into something that cannot wear shields */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sondomag",				EMERALD_DRAGON_SCALES,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Dig-em-out",				EMERALD_DRAGON_SCALE_MAIL, /* magic find */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Disappeared Gemstone",				SAPPHIRE_DRAGON_SCALE_MAIL, /* invis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Cold Mana",				SAPPHIRE_DRAGON_SCALE_SHIELD, /* doubles Pw cap for corona */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Aleit Givesitnot",				RUBY_DRAGON_SCALE_MAIL, /* double verena trap effect, +10 AC, resist death and disint */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Ogrehealth",				RUBY_DRAGON_SCALES, /* multiplies corona cap for HP by 1.5 */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Cough Cloud",				GREEN_DRAGON_SCALE_MAIL, /* 1 in 200 chance per turn to create a stinking cloud centered on you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Florense's Gebloomel",				GREEN_DRAGON_SCALE_SHIELD, /* double artificial nastytrap, can walk through trees and farmland, grass terrain doesn't negatively affect you */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Ultraviolet Rainbow",				GOLDEN_DRAGON_SCALES, /* resist psi, +3 CON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Great Tome",				GOLDEN_DRAGON_SCALE_MAIL, /* flying, +11 AC, but wearing it increases your carried weight by 1000 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Speedstersuit",				FEMINISM_DRAGON_SCALES, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Nomein Dergobla",				FEMINISM_DRAGON_SCALE_SHIELD, /* gives you a random feminism trap intrinsically upon being spawned, wearing it protects you from being kicked in the nuts or clawed in the breasts */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Prenty Tweteen",				MAIDRAGON_SCALE_MAIL, /* acid immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12500L ),
+
+A("FiveFly",				MAIDRAGON_SCALE_SHIELD, /* flying */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Negocurse",				NEGATIVE_DRAGON_SCALES, /* as long as they're still scales, they give curse resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Nexto-ler",				NEGATIVE_DRAGON_SCALE_SHIELD, /* protects you from beheading and bisection */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("*bauns*",				CORONA_DRAGON_SCALES, /* double reflection */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Heck Govah",				CORONA_DRAGON_SCALE_SHIELD,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_WARN|SPFX_DFLAG2), 0, (M2_LORD|M2_PRINCE|M2_PNAME),
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Oberturt",				CONTRO_DRAGON_SCALES, /* grassland doesn't negatively affect you and gives +20 AC while you stand on it (+10 if these were transformed into a DSM) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Rival Low",				CONTRO_DRAGON_SCALE_SHIELD, /* discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Boarmossbrook",				NOPE_DRAGON_SCALES, /* teleportitis */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("You Gotta Separate",				NOPE_DRAGON_SCALE_SHIELD, /* premature death */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Enchantempt",				CRYSTALLINE_DRAGON_SCALES, /* +7 AC if they're still scales */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Franziska's Shoulder Pads",				CRYSTALLINE_DRAGON_SCALE_MAIL, /* 75% chance to not get hit by bullets */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Reality Secret",				MYSTERY_DRAGON_SCALE_MAIL, /* items have an additional 1 in 3 chance of spawning with their + known */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Just x2 it",				MYSTERY_DRAGON_SCALE_SHIELD, /* double mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Moccasyl",				HEROIC_DRAGON_SCALES, /* can train sexy flats twice as fast */
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Porkman's Old Version",				HEROIC_DRAGON_SCALE_MAIL, /* droughter mode while you're wearing it, heavily autocurses, 1 in 5000 per turn for it to gain a point of enchantment up to a maximum of +25 or if it already has that much, +5 max HP and Pw */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Pentray",				STONE_DRAGON_SCALES, /* trying to pray will occasionally tell you whether doing so is safe */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Rockpoke",				STONE_DRAGON_SCALE_MAIL,
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sokoban Thwarted",				CYAN_DRAGON_SCALE_MAIL, /* teleportitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Intogroup",				CYAN_DRAGON_SCALE_SHIELD, /* monsters spawn in groups like grouper race */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Jede-blade hold",				PSYCHIC_DRAGON_SCALES, /* use the force, acts as a robe (for to-hit purposes) if you're a jedi type role */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sablol",				PSYCHIC_DRAGON_SCALE_MAIL, /* allows you to #monster to emit a mind blast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Efheck",				RAINBOW_DRAGON_SCALE_MAIL, /* resist fire, cold, shock, poison */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Shep O'Glo",				RAINBOW_DRAGON_SCALE_SHIELD, /* polymorph control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fibrefix",				BLOOD_DRAGON_SCALES, /* diminished bleeding, can be invoked to heal wounded legs */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Menstrate For Me",				BLOOD_DRAGON_SCALE_MAIL, /* scent view, natalia trap effect, if female it also gives diminished bleeding while if male it gives discount action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Fleecelgirl From The Old Times",				PLAIN_DRAGON_SCALES, /* ariane trap effect, +5 AC while they're still scales and +3 if they're DSM, spell memory decays only half the time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Kavya's Hasple",				PLAIN_DRAGON_SCALE_SHIELD, /* double unidentify effect, free action, resist sleep, suppresses numbness */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Metalpull",				SKY_DRAGON_SCALES, /* defusing, full nutrients */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Kungheaven",				SKY_DRAGON_SCALE_SHIELD, /* doesn't hinder martial arts */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Drehn Pipe",				WATER_DRAGON_SCALE_MAIL, /* conflict, protects items from water and you can walk on snow and ice with no ill effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sealife Reveal",				WATER_DRAGON_SCALE_SHIELD, /* semicolons can no longer hide in the water */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Fucking Wall",				EVIL_DRAGON_SCALE_MAIL, /* +50 AC, but positive enchantments on armor pieces no longer contribute to your AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Indewalbe",				EVIL_DRAGON_SCALE_SHIELD, /* astral vision */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Sidemonde",				MAGIC_DRAGON_SCALES, /* peacevision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Weng's Maht",				MAGIC_DRAGON_SCALE_SHIELD, /* free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("El Gerboblane",				YELLOW_DRAGON_SCALE_MAIL, /* spawns with an extra +7 enchantment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("End of List",				YELLOW_DRAGON_SCALE_SHIELD, /* can be invoked for genocide (always genocides just a single monster species) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bertille's Mousy Attitude",				LORICATED_CLOAK, /* autocurses, double jennifer trap effect, +3 DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, INVIS, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Last Thing We Need",				LORICATED_CLOAK, /* can be invoked for terrain cleanup */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Elfgown",				CLOAK_OF_PROTECTION,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2300L ),
+
+A("Ench+X",				CLOAK_OF_PROTECTION, /* double AC bonus, and an additional +3 if blessed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Plum Aura",				CLOAK_OF_PROTECTION, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Widergo",				CLOAK_OF_INVISIBILITY, /* defusing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Laten De",				CLOAK_OF_INVISIBILITY,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Abde Schrtsch",				CLOAK_OF_INVISIBILITY, /* becomes erosionproof when equipped */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Plaschtyx",				CLOAK_OF_DRAIN_RESISTANCE, /* swimming, styx rivers don't contaminate you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Des Mirren",				CLOAK_OF_REFLECTION, /* +3 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lightnespell",				CLOAK_OF_CONFUSION, /* double resistance piercing, double spellboost */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wintern",				CLOAK_OF_WARMTH, /* spawns with an additional +3 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Writer's Block",				CLOAK_OF_GROUNDING, /* heavy sticky autocurse, prevents you from using a magic marker, double keen memory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Dellen",				CLOAK_OF_QUENCHING, /* double fire resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Schwuuuuuuuuuuh",				CLOAK_OF_LEECH, /* swimming, protects items from water damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Maya's Channeling Costume",				CLOAK_OF_MAGIC_CONTROL, /* becomes purple upon being put on, invoke has 80% chance of spawning hostile monsters, 19% peaceful and 1% tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SUMMON_UNDEAD, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("CowSeeker",				CLOAK_OF_DEFUSING, /* +3 DEX and INT */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Blacker Quiver",				WAND_QUIVER_CLOAK, /* death resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Getout Quick",				UTILITY_CLOAK, /* +12 movement energy when quaffing a potion or reading a scroll, as long as the devices skill is trained in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Powerstink",				TROLL_HIDE, /* +3 STR, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wakestay",				CLOAK_OF_DISCOUNT_ACTION, /* sleep resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Disqualification Ward",				CLOAK_OF_TECHNICALITY, /* if you die to something other than running out of HP, it lifesaves you as long as your debts are less than 50000, but increases them by 50000 in the process */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bleble...",				CLOAK_OF_BURDEN, /* -5 AC, doubles monster spawn rate */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Te Cleaner",				CLOAK_OF_VACUUM, /* heavily autocurses, monster death drops become about 3x as common */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Flection inna bed",				CLOAK_OF_FUCKING, /* free action */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Iden Talut",				CLOAK_OF_LOWER_MYSTERY, /* scrolls of standard id spawn more often */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Extro Boost",				CLOAK_OF_SPELL_BOOSTING, /* double spellboost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Wisdom of the Ancestral",				CLOAK_OF_FLAME, /* +6 INT */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Out Of The Rain",				CLOAK_OF_INSULATION, /* wild weather, protects items from water, magical breathing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Payne's Sweating",				CLOAK_OF_WINCING, /* full nutrients */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Every Condition Suit",				CLOAK_OF_CONTAMINATION_RESISTA, /* resist sickness */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Finderando",				CLOAK_OF_SHUTDOWN, /* magic find */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Deep Rejuve",				CLOAK_OF_MAGICAL_BREATHING, /* 1 in 2000 per turn to restore a lost stat point (with no chance of failure) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Supatect",				ANTIDEATH_CLOAK, /* mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Woah freeze!",				MISSING_CLOAK, /* fire immunity, disables cold resist */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("That Pixel Shape!",				MISSING_CLOAK, /* polymorphitis, doesn't fall off when you poly into something that normally cannot wear cloaks */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Orted Shape",				CLOAK_OF_POLYMORPH, /* resist confusion */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Voltshock",				CLOAK_OF_PARALYSIS, /* autocurses, shoots strength-2 lightning bolts in all directions when you get paralyzed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Terminally Beyond Help",				CLOAK_OF_SICKNESS, /* invis, burn, gaining nutrition heals you by one tenth the amount */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Blackdrip",				CLOAK_OF_SLIMING,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Extremefluid",				CLOAK_OF_OUTRIGHT_EVILNESS, /* wallwalking, fluidator wantedness increases 10x as quickly and they spawn 3x as often, aggravate monster, heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Bad Comes To Worse",				CLOAK_OF_STONE, /* map amnesia */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Megge LYK LYK LYK",				CLOAK_OF_LYCANTHROPY, /* scent view */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Noctem",				CLOAK_OF_UNLIGHT, /* activates noctem when equipped, lets you resist solar beams */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fend For Yourself",				CLOAK_OF_MAGICAL_DRAINAGE, /* magic vacuum, +4 STR, +7 increase accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("din den",				CLOAK_OF_TURN_LOSS, /* +4 all stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1444L ),
+
+A("Fell Garb",				CLOAK_OF_ATTRIBUTE_LOSS, /* resist mystery and contamination */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Silvery Lines",				CLOAK_OF_DRAIN_LIFE, /* displays all bright green monsters on the level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Lycia's Wush",				CLOAK_OF_AWAKENING, /* double laura trap effect, +5 luck, can be invoked to uncurse/bless it */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Hemo goblin bobbin",				CLOAK_OF_STABILITY, /* diminished bleeding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Phewhaunch",				ANTI_DISQUIET_CLOAK, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("HalluPimmle",				COCLOAK,
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Kwull Gong",				CLOAK_OF_HEALTH, /* resist sickness */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Full-Auto",				CLOAK_OF_DISCOVERY, /* autosearching works every turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Implanted Knowledge",				BIONIC_CLOAK, /* clairvoyance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Stealpell",				CLOAK_OF_PORTATION, /* fires strength-2 sleep rays in all directions just before your teleportation happens (but only if it's caused by random teleportitis and you don't have tele control) */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("BLOBLO",				CLOAK_OF_CONTROL, /* life saving (and is used up if it does save you) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Blame Director",				CLOAK_OF_SHIFTING, /* prism reflection */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Fourth Sense",				CLOAK_OF_PRESCIENCE, /* allows you to occasionally sense when enchanted or artifact gear is spawned */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Vinto Mobile",				CLOAK_OF_SPEED, /* can be invoked to gain 36 extra movement energy, heavily autocurses, double susanne trap effect, increased difficulty, fuck over */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("that's just fucked.",				VAULT_CLOAK, /* fuck over */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Argaga",				CLOAK_OF_SPELL_RESISTANCE, /* +2 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hazmat Gear",				CLOAK_OF_PHYSICAL_RESISTANCE, /* 1 in 3 chance to dodge bullets */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ina's Apprenticeship",				OPERATION_CLOAK, /* autocurses, ina trap effect, healing spells trains 3x as fast and they cost 80% of the normal amount of mana, +2 melee damage with knives */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Shrinkback",				CLOAK_OF_SLOW_DIGESTION, /* polymorphitis, displays all 'h' on the current level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Trinser Smiley",				CLOAK_OF_INFRAVISION, /* +1 MC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Face Up To It",				CLOAK_OF_BANISHING_FEAR, /* fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Internal Clear",				CLOAK_OF_SEEING, /* prevents your INT from being damaged, contamination is reduced by one with 1 in 50 chance per turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Hop Quicker",				CLOAK_OF_PRACTICE, /* teleportitis, invoking it costs only one third the usual mana amount */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Fast Aurora",				CLOAK_OF_ELEMENTALISM, /* protects you from slowing like speed holding */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Astro Labyrinth",				PSIONIC_CLOAK, /* astral vision, blue spells, prime curses itself and deactivates poison resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5555L ),
+
+A("Desired Ascendance",				CLOAK_OF_DISPLACEMENT, /* +1 MC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mant Pendle",				CLOAK_OF_DISPLACEMENT, /* +5 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Purple Orc",				ORCISH_HELM, /* mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Rutak",				ORCISH_HELM, /* equipping it sets its material to IRON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Coindimm",				DWARVISH_IRON_HELM, /* random gold spawns have 50% more gold in them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Simple Effect",				DWARVISH_IRON_HELM, /* +2 AC, sets itself to +2 when equipped if it was lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Grovecraft",				ELVEN_HELM,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dark Ombria",				BASINET, /* double satan trap effect, infravision */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_WARN|SPFX_DFLAG2), 0, (M2_HUMAN),
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Memory Commander",				BASINET, /* keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Pex",				HELM_OF_BRILLIANCE, /* sets itself to +6 when worn if it was lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Plusmind",				HELM_OF_BRILLIANCE, /* +2 INT and WIS */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Seekdestruct",				HELM_OF_FEAR, /* double defusing */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1700L ),
+
+A("Lorskel's Backcuss",				HELM_OF_SPEED, /* dimmopathy, all G_UNIQ monsters have 1 in 5 chance to miss their turns while you're dimmed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Iceblock's Filler",				STANDARD_HELMET, /* no specialties */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Spring Breeze",				SCENTY_HELMET, /* wild weather, resist fire and cold */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Burn Into The Mind",				RANDOMIZED_HELMET, /* whenever your contamination is below 100, it increases by 100; losing wisdom from it does "maybegainintelligence" */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("RNG daeoloeoloeoloeoloeoloe",				RANDOMIZED_HELMET, /* every turn, if its + is positive, it becomes +0 */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("You Understand",				HELM_VERSUS_DEATH,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Lianni's Height",				HELM_OF_FULL_NUTRITION, /* double movemork effect, double flying, stun resistance, protects potions from cold */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Arabella's Beauty Bird",				LUCKY_MUSHROOM, /* detect monsters, flying, top line effect, artiblast trap effect, go'ts too good effect, arabella and dora trap effect, pokelie effect, wing yellow changer, damage meter effect, white spells, unchanging, heavily autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("PsyStryke",				HELM_OF_CHAOTIC, /* resist psi */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Aller Mome",				HELM_OF_NEUTRAL, /* +5 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("track stopid",				HELM_OF_LAWFUL, /* free action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Greenswim",				HELM_OF_DECONTAMINATION, /* styx rivers no longer contaminate you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Great Learning Amateur",				WINCING_GRIMACE, /* +5 soft cap for all stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("More Specificer",				HELM_OF_WARNING, /* displays all monsters whose current level is divisible by 5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Full Grunt",				HELM_OF_DETOXIFICATION, /* full nutrients, eating a tainted corpse works like it does in grunthack */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Longhand",				REGULAR_GLOVES, /* use the force */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Water Wings",				GAUNTLETS_OF_SWIMMING, /* magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Deadman's Trick",				GAUNTLETS_OF_SWIMMING, /* double invisibility while you're on a water tile */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Bleg Ejection",				GAUNTLETS_OF_REFLECTION, /* 90% chance to resist gaze attacks */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Interminter",				GAUNTLETS_OF_LEECH, /* discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Loud DUFF!",				UNKNOWN_GAUNTLETS,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Drrdrrdrr! Drrdrrdrr!",				UNKNOWN_GAUNTLETS,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ACID(0, 13), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Exterious Pelt",				SMALL_SHIELD, /* displacement */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Crimson Jackal",				SMALL_SHIELD, /* +2 CON */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("That Is So Sus",				SHIELD_OF_PEACE, /* sustain ability, displays all chaotic-aligned monsters with distu below 226 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4600L ),
+
+A("The Black Tower",				DIFFICULT_SHIELD, /* +10 AC, +10% chance to block, resist disintegration */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Void Chant",				MAGICAL_SHIELD, /* you take d2 less damage (not below 1) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Null0",				MAGICAL_SHIELD, /* you take d4 less damage (not below 1), exercise nastytrap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("spacel-thing",				SPECIAL_SHIELD, /* if the enchantment value is less than +15, 1 in 5000 chance per turn to get strength-10 amnesia, 500 turns of map amnesia and and +1 enchantment on the shield */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("wue wue zap wueu",				BULL_SHIELD, /* manaleech */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Tschingkling",				COMPLETE_BLOCKAGE_SHIELD, /* +20% chance to block and 2% more per shield skill level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Come on, bounce it back",				SHELL_SHIELD,
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Even More Superer",				SUPER_SHIELD, /* +10% chance to block */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Hostro",				TROLL_SHIELD, /* +3 CON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Teh Gameplay",				SPI_IMAGE_MOOSE_SHIELD, /* peacevision, monsters without M2_HOSTILE have 50% chance of spawning peaceful */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Rust-Ok",				LARGE_SHIELD, /* equipping it sets it to "rusty", but it's otherwise immune to rust; +25% chance to block */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Accelerotor Panel",				SHIELD_OF_LIGHT, /* fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Moveret",				SHIELD_OF_MOBILITY, /* very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Flierhach",				SHIELD, /* magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Boengschrack",				SHIELD, /* +2 melee damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Incaputible",				SHIELD, /* removes erosion and becomes erosionproof every turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Easy Hold",				SHIELD, /* can also be used if both hands are equipped with weapon(s), but if you use it with a one-hander it grants 20% extra blocking chance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Perseus' Gamble",				SHIELD_OF_REFLECTION,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Offbow",				SHIELD_OF_REFLECTION, /* allows you to wield two-handed bows with it, and firing arrows has +1 multishot */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gnome Queen's Slippers",				GNOMISH_BOOTS, /* mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("WW of some",				SPEED_BOOTS, /* waterwalking */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tickskip",				SPEED_BOOTS, /* 1 in 10 chance for the turn counter to not advance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sever Saver",				WATER_WALKING_BOOTS, /* +8 WIS */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lava Tread",				WATER_WALKING_BOOTS, /* as long as you have at least 10 Pw, shoots a strength-1 fire bolt when you move like afterburner tech (which costs 10 Pw) */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hek Book",				JUMPING_BOOTS, /* every time you train your memorization skill, your maximum alignment increases by the amount you trained the skill */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gueldre's Coin Cling",				ELVEN_BOOTS, /* random gold spawns have 3x as much gold in them, double turbodull effect, reduces MC by 1 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Hidden Warp Tech",				ELVEN_BOOTS,
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Mishandle Me!",				ELVEN_BOOTS,
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Who is hiding there?",				ELVEN_BOOTS, /* you can hide under items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Entygreb",				ELVEN_BOOTS, /* no negative effects from stepping into a heap of shit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Watch Your Opponent's Move",				KICKING_BOOTS, /* +8 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2300L ),
+
+A("Weakness Exploiting",				KICKING_BOOTS,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Marleen's Softness",				KICKING_BOOTS, /* marleen trap effect, prime autocurses, can be invoked to change your martial arts style (lets you pick any that you like, without the usual requirements) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Stumble Quietly",				FUMBLE_BOOTS,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Comploud",				FUMBLE_BOOTS, /* aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Air Blister",				BOOTS_OF_FREEDOM, /* magical breathing */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Filmer Grab",				BOOTS_OF_INVERSION, /* blindness resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Spellboots",				BOOTS_OF_PLUGSUIT, /* spellboost, 10% better spellcasting chances, +1 INT */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("All The Way North",				CARRYING_BOOTS, /* swimming */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("chrrrrrrr",				SLEEP_INDUCTION_BOOTS, /* halves monster spawn rate */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Kerstin's Little Help",				HIGH_STILETTOS, /* kerstin trap effect, riding a steed whose speed is below 12 acts as if its speed was 12 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Blood Brand",				HIGH_STILETTOS, /* target takes d8 bleeding damage */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Wingle Boots",				LEVITATION_BOOTS, /* flying */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Flotated Desk",				LEVITATION_BOOTS, /* allows you to still reach the ground, but doesn't allow the use of downstairs */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Out of Reach",				LEVITATION_BOOTS, /* MS_TINY monsters have 3 in 4 chance of automissing you in melee, MS_SMALL automiss 1 in 3 times */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Trapavoider",				LEVITATION_BOOTS, /* 20% chance of not triggering a trap (like pickpocket role), but you get a message that you avoided a trap */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Franziska's Compensator",				BULLWHIP, /* randart2 whip, 1 in 12 chance that the monster must either make a saving throw or get paralyzed for d8 turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(8, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Alpha Gloves",				GAUNTLETS_OF_POWER, /* +7 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tango Heels",				LOW_BOOTS, /* initialized to always be sexy heels, 33% chance to evade missiles, 33% chance that monsters have -100 melee to-hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Bravo Helmet",				STANDARD_HELMET, /* initialized to always be musical helmet, can be invoked to pacify adjacent monsters (but they get a saving throw) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Offenduff",				GAUNTLETS_OF_POWER, /* +2 increase melee damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Pentecoste",				GAUNTLETS_OF_DEXTERITY, /* +5 DEX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Body Composure",				GAUNTLETS_OF_DEXTERITY, /* +10 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+/* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
 	(SPFX_NOGEN|SPFX_RESTR), 0, 0,
