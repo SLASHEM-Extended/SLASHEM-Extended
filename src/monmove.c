@@ -3655,13 +3655,13 @@ toofar:
 
 	    }
 
-	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(50) && flags.female && mtmp->female) {
+	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(50) && flags.female && mtmp->female) {
 		verbalize("haha look at that bitch with those silly heels");
 		if (!rn2(3)) verbalize("she can't even walk in them, lol");
 		adjattrib(A_CHA, -1, FALSE, TRUE);
 	    }
 
-	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(100) && !flags.female && !mtmp->female) {
+	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(100) && !flags.female && !mtmp->female) {
 		verbalize("lol look at that fag over there in those ridiculous heels");
 		if (!rn2(5)) verbalize("if he could at least walk in them, but nope...");
 		adjattrib(A_CHA, -1, FALSE, TRUE);

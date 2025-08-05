@@ -2004,11 +2004,24 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+		    if (otmp && otmp->oartifact == ART_LOCKED_TWENNY) {
+			otmp->spe -= 20;
+			otmp->oinvis = TRUE;
+			otmp->oeroded = 2;
+		    }
+		    if (otmp && otmp->oartifact == ART_SEM_BOOST) {
+			otmp->spe += 3;
+		    }
 		    if (otmp && otmp->oartifact == ART_MICHAEL_S_STARTER_SET) {
 			otmp->spe += 10;
 		    }
 		    if (otmp && otmp->oartifact == ART_CHRISTIAN_S_ADVANCE) {
 			otmp->spe *= 2;
+		    }
+		    if (otmp && otmp->oartifact == ART_CONMAN_S_MISTRUST) {
+			otmp->spe -= 15;
+			curse(otmp);
+			otmp->hvycurse = TRUE;
 		    }
 		    if (otmp && otmp->oartifact == ART_THOMAS_S_BREAKTHROUGH) {
 			otmp->spe *= 2;
@@ -6051,6 +6064,13 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_VENTER_GUT_SAP) {
+
+			healup(0, 0, TRUE, FALSE);
+
+			break;
+		}
+
 		if (obj->oartifact == ART_CATALIN_S_ROBBERY) {
 
 			if (uinsymbiosis) {
@@ -7086,6 +7106,22 @@ tscheinschroll:
 			buzz(10, 1, u.ux, u.uy, -1, -1);
 			buzz(10, 1, u.ux, u.uy, 1, -1);
 			buzz(10, 1, u.ux, u.uy, 0, -1);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_LIGHTNING_AURA) {
+
+			int melteestrength = 4 + (GushLevel / 3);
+
+			buzz(15, melteestrength, u.ux, u.uy, -1, 0);
+			buzz(15, melteestrength, u.ux, u.uy, 1, 0);
+			buzz(15, melteestrength, u.ux, u.uy, -1, 1);
+			buzz(15, melteestrength, u.ux, u.uy, 1, 1);
+			buzz(15, melteestrength, u.ux, u.uy, 0, 1);
+			buzz(15, melteestrength, u.ux, u.uy, -1, -1);
+			buzz(15, melteestrength, u.ux, u.uy, 1, -1);
+			buzz(15, melteestrength, u.ux, u.uy, 0, -1);
 
 			break;
 		}

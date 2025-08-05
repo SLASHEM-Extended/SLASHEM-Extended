@@ -2669,6 +2669,10 @@ struct monst *mon;
 			}
 		}
 
+		if (uarmu && uarmu->oartifact == ART_CAP_THE_COLLECTOR) {
+			if (ptr->msound == MS_SOLDIER) bonus += rnd(12);
+		}
+
 		if (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX) {
 			if ( (objects[otmp->otyp].oc_skill == P_SHORT_SWORD) || (objects[otmp->otyp].oc_skill == P_BROAD_SWORD) || (objects[otmp->otyp].oc_skill == P_LONG_SWORD) || (objects[otmp->otyp].oc_skill == P_TWO_HANDED_SWORD) || (objects[otmp->otyp].oc_skill == P_SCIMITAR) || (objects[otmp->otyp].oc_skill == P_SABER) || (objects[otmp->otyp].oc_skill == P_DAGGER) ) {
 			bonus += 1;
@@ -7785,6 +7789,12 @@ struct obj *weapon;
 	if (Role_if(PM_MUSICIAN) && weapon && (weapon->otyp == GUITAR || weapon->otyp == BANJO || weapon->otyp == PIANO)) bonus += 5;
 
 	if (uarmf && uarmf->oartifact == ART_NATALIA_S_PUNISHER && weapon && weapon_type(weapon) == P_HAMMER) bonus += 8;
+
+	if (uarm && uarm->oartifact == ART_SWERDEL_ONEHA && weapon && weapon_type(weapon) == P_SHORT_SWORD) bonus += 2;
+	if (uarm && uarm->oartifact == ART_SWERDEL_ONEHA && weapon && weapon_type(weapon) == P_BROAD_SWORD) bonus += 2;
+	if (uarm && uarm->oartifact == ART_SWERDEL_ONEHA && weapon && weapon_type(weapon) == P_LONG_SWORD) bonus += 2;
+	if (uarm && uarm->oartifact == ART_SWERDEL_ONEHA && weapon && weapon_type(weapon) == P_SABER) bonus += 2;
+	if (uarm && uarm->oartifact == ART_SWERDEL_ONEHA && weapon && weapon_type(weapon) == P_SCIMITAR) bonus += 2;
 
 	if (uamul && uamul->oartifact == ART_CHRISTIAN_S_LONG_LASH && weapon && weapon_type(weapon) == P_WHIP) bonus += 10;
 

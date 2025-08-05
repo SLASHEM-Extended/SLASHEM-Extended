@@ -10506,7 +10506,7 @@ madnesseffect:
 		 case SPEAR_TRAP:
 		seetrap(trap);
 		pline("A spear stabs up from a hole in the ground at you!");
-		if (thick_skinned(youmonst.data) || YouBecameThickSkinned) {
+		if (thick_skinned(youmonst.data) || (uarm && uarm->oartifact == ART_SPEARPOINT_HOLD) || YouBecameThickSkinned) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
 		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
@@ -25606,7 +25606,9 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FLOW_BASIN) continue;
+		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWAPSCHWAP) continue;
 		if ((obj->where != OBJ_FLOOR) && autismringcheck(ART_JOLIE_S_JOLLY)) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmu && uarmu->oartifact == ART_GANT_S_HOBBY) continue;
 		if ((obj->where != OBJ_FLOOR) && autismringcheck(ART_CROQUE_FORD)) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_FULL_PROTECTION_FROM_WATER) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) continue;

@@ -4431,6 +4431,10 @@ use_pole (obj)
 	}
 	if (obj->oartifact == ART_STRECKOUT_AND_PULL) max_range = 4;
 
+	/* bonuses to polearm range are below this point --Amy */
+
+	if (uarm && uarm->oartifact == ART_ONDONS) max_range += 2;
+
 	if (obj->otyp == NOOB_POLLAX || obj->otyp == GREAT_POLLAX) max_range += 5;
 	if (obj->oartifact == ART_SIMON_S_ULTRALONGNESS) max_range += 7;
 	if (obj->otyp == YITH_TENTACLE) max_range += 2;
@@ -6467,7 +6471,7 @@ undark:
 		if (res != 2 && obj && obj->oartifact == ART_TAETAERAETAEAE_TAE && rn2(2)) res = 0;
 		break;
 	case MEDICAL_KIT:        
-		if (Role_if(PM_HEALER) || (obj->oartifact == ART_MARVELOUS_FUNCTION) || Race_if(PM_HERBALIST) || (uarmf && uarmf->oartifact == ART_GOT_THAT_STARWARS_ENTRANCE) ) can_use = TRUE;
+		if (Role_if(PM_HEALER) || (uarm && uarm->oartifact == ART_GREEN_DRESS_NURSE) || (obj->oartifact == ART_MARVELOUS_FUNCTION) || Race_if(PM_HERBALIST) || (uarmf && uarmf->oartifact == ART_GOT_THAT_STARWARS_ENTRANCE) ) can_use = TRUE;
 		else if ((Role_if(PM_PRIEST) || Role_if(PM_MONK) ||
 			Role_if(PM_UNDEAD_SLAYER) || Role_if(PM_SAMURAI)) &&
 			!rn2(2)) can_use = TRUE;

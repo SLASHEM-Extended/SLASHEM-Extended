@@ -893,6 +893,11 @@ boolean yours; /* is it your fault (for killing monsters) */
 			if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
 		}
 
+		if (uarmu && uarmu->oartifact == ART_ANGRY_TOMMY_ && !u.berserktime && !rn2(20)) {
+			u.berserktime = 25;
+			You("feel really angry!");
+		}
+
 		if (Race_if(PM_CELTIC) && !rn2(100)) {
 			if (u.berserktime) {
 				if (!obsidianprotection()) switch (rn2(11)) {

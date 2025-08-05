@@ -693,6 +693,7 @@ vision_recalc(control)
 	if (uarmg && uarmg->oartifact == ART_FARTUBE) efflightradius += 9;
 
 	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
+	if (uarm && uarm->oartifact == ART_DARK_MINDDRILL) efflightradius = MAX_RADIUS;
 
 	if (efflightradius > MAX_RADIUS) efflightradius = MAX_RADIUS; /* fail safe, why isn't that present in vanilla --Amy */
 
@@ -775,7 +776,7 @@ vision_recalc(control)
 	    }
 
 	    else if ((next_row[col] & COULD_SEE)
-				&& ( ( (lev->lit || (u.currentweather == WEATHER_SUNNY) ) && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || (u.currentweather == WEATHER_ECLIPSE) || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || autismweaponcheck(ART_BURGLED_NIGHT_SCYTHE) || have_darkmodestone())) || (next_row[col] & TEMP_LIT))) {
+				&& ( ( (lev->lit || (u.currentweather == WEATHER_SUNNY) ) && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || (u.currentweather == WEATHER_ECLIPSE) || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || autismweaponcheck(ART_BURGLED_NIGHT_SCYTHE) || have_darkmodestone() || (uarm && uarm->oartifact == ART_FEHLIRON) )) || (next_row[col] & TEMP_LIT))) {
 		/*
 		 * We see this position because it is lit.
 		 */
@@ -789,7 +790,7 @@ vision_recalc(control)
 		     */
 		    dx = u.ux - col;	dx = sign(dx);
 		    flev = &(levl[col+dx][row+dy]);
-		    if ( ( (flev->lit || (u.currentweather == WEATHER_SUNNY) ) && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || (u.currentweather == WEATHER_ECLIPSE) || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || autismweaponcheck(ART_BURGLED_NIGHT_SCYTHE) || have_darkmodestone())) || next_array[row+dy][col+dx] & TEMP_LIT) {
+		    if ( ( (flev->lit || (u.currentweather == WEATHER_SUNNY) ) && !(HardcoreAlienMode || (ublindf && ublindf->otyp == SHIELD_PATE_GLASSES) || DarkModeBug || (u.currentweather == WEATHER_ECLIPSE) || autismweaponcheck(ART_PWNHAMMER_DUECE) || autismweaponcheck(ART_LIGHT_____STATED_) || autismweaponcheck(ART_FIRE_EATER) || u.uprops[DARK_MODE_BUG].extrinsic || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING) || autismweaponcheck(ART_BURGLED_NIGHT_SCYTHE) || have_darkmodestone() || (uarm && uarm->oartifact == ART_FEHLIRON) )) || next_array[row+dy][col+dx] & TEMP_LIT) {
 			next_row[col] |= IN_SIGHT;	/* we see it */
 
 			oldseenv = lev->seenv;

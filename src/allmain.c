@@ -1206,7 +1206,7 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
+				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
@@ -1221,7 +1221,7 @@ moveloop()
 				if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
 					moveamt /= 2;
 
-				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
+				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
 				if (Race_if(PM_PLAYER_ZRUTY) && !rn2(3) && moveamt > 1)
@@ -1723,7 +1723,7 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
-			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
+			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
@@ -1738,7 +1738,7 @@ moveloop()
 			if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
 				moveamt /= 2;
 
-			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
+			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)
@@ -2772,6 +2772,11 @@ moveloop()
 
 		}
 
+		if (uarm && uarm->oartifact == ART_SELF_ENCHANT && uarm->spe < 0 && !rn2(2000)) {
+			uarm->spe++;
+			Your("armor repairs itself a bit!");
+		}
+
 		if (uarm && uarm->oartifact == ART_DUH_BEWEGEO_ZISCH && !rn2(100)) {
 			make_confused(HConfusion + rn1(10,10), TRUE);
 			pushplayer(TRUE);
@@ -3568,7 +3573,7 @@ moveloop()
 
 		if (!Upolyd && u.polyformed) u.polyformed = 0; /* catch-all, because coding this in polyself.c is horrible --Amy */
 
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) stop_occupation();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) stop_occupation();
  
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) && Feared && !rn2(100)) {
 			pline("holy shit this is offensive");
@@ -7834,6 +7839,8 @@ newbossJANI:
 
 		if (autismringcheck(ART_TIE_LIGHT)) levl[u.ux][u.uy].lit = 1;
 
+		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && is_drowningpool(u.ux, u.uy) ) levl[u.ux][u.uy].lit = 1;
+
 		if (ublindf && ublindf->oartifact == ART_IT_BE_NITE) {
 			int ulx, uly;
 			for (ulx = 1; ulx < (COLNO); ulx++)
@@ -9945,6 +9952,12 @@ newbossO:
 
 		}
 
+		if (!rn2(EvilPatchEffXtra ? 666 : 2000) && uarm && uarm->oartifact == ART_TURBULENT_TIME) {
+			
+			getnastytrapintrinsic();
+
+		}
+
 		if (!rn2(2000) && u.uprops[ARTIFICER_BUG].extrinsic) {
 			bad_artifact();
 		}
@@ -11796,7 +11809,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
+		if (u.umoved && is_pavedfloor(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_TRACKSPUR) && !(uarmf && uarmf->oartifact == ART_EVERYWHERE_AT_ONCE) && !(uarmf && itemhasappearance(uarmf, APP_DYKE_BOOTS)) && !Flying && !Levitation) {
 			Norep("Walking on paved floor makes lots of noise.");
 			wake_nearby();
 
@@ -14727,12 +14740,12 @@ pastds2:
 			else if (Regeneration ||
 				    (wtcap < MOD_ENCUMBER && !(moves%/*20*/regenrate))) {
 			    flags.botl = 1;
-				if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+				if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1)) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
 				}
-				if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+				if (StrongRegeneration && !CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1)) {
 					u.mh++;
 					if (Race_if(PM_PIERCER)) u.mh++;
 					if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -14818,7 +14831,7 @@ pastds2:
   				if (heal > efflev-9) heal = efflev-9;
 			    }
 			    flags.botl = 1;
-			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1)) {
 					u.uhp += heal;
 					if (Race_if(PM_PIERCER)) u.uhp += heal;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -14826,12 +14839,12 @@ pastds2:
 			} else if (Regeneration ||
 			     (!(moves % (42 / ((GushLevel / 2) + 6) ))) ) {
 			    flags.botl = 1;
-			    if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1)) {
 					u.uhp++;
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				}
-			    if (StrongRegeneration && !Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) ) {
+			    if (StrongRegeneration && !CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1)) {
 					u.uhp++;
 					if (Race_if(PM_PIERCER)) u.uhp++;
 					if(u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -14920,26 +14933,26 @@ pastds2:
 
 		    }
 
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(200) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1) && Race_if(PM_HAXOR) && !rn2(200) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.uhp += rnd(5 + (GushLevel / 5));
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && Upolyd && !rn2(200) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1) && Race_if(PM_HAXOR) && Upolyd && !rn2(200) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.mh += rnd(5 + (GushLevel / 5));
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(35 - GushLevel) ) {
+			if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1) && !rn2(35 - GushLevel) ) {
 				u.uhp++;
 				if (Race_if(PM_PIERCER)) u.uhp++;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(35 - GushLevel) && Upolyd ) {
+			if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1) && !rn2(35 - GushLevel) && Upolyd ) {
 				u.mh++;
 				if (Race_if(PM_PIERCER)) u.mh++;
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
@@ -14947,20 +14960,20 @@ pastds2:
 			}
 
 			/* nice patch addition by Amy - sometimes regenerate more */
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1) && !rn2(150) && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.uhp += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.uhp += rnz(2 + GushLevel);
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 				flags.botl = 1;
 			}
-			if (!Burned && !Race_if(PM_ETHEREALOID) && !Race_if(PM_INCORPOREALOID) && !PlayerBleeds && !contaminationcheck(1) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
+			if (!CannotRegenerateHP() && !PlayerBleeds && !contaminationcheck(1) && !rn2(150) && Upolyd && (rn2(2) || (!sengr_at("Elbereth", u.ux, u.uy) ) ) ) {
 				u.mh += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.mh += rnz(2 + GushLevel);
 				if (u.mh > u.mhmax) u.mh = u.mhmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_HAXOR) && !rn2(200) ) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && Race_if(PM_HAXOR) && !rn2(200) ) {
 				u.uen += rnd(5 + (GushLevel / 5));
 				if (Race_if(PM_PIERCER)) u.uen += rnd(5 + (GushLevel / 5));
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
@@ -14991,7 +15004,7 @@ pastds2:
 
 
 		    /* KMH -- OK to regenerate if you don't move */
-		    if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
+		    if (!CannotRegenerateMP() && !contaminationcheck(2) && (recalc_mana() >= 0 || (!rn2(-(recalc_mana() - 1) ) ) ) && (u.uen < u.uenmax) && 
 				((Energy_regeneration && !rn2(StrongEnergy_regeneration ? 2 : 3)) || /* greatly nerfed overpowered wizard artifact --Amy */
 				(Role_if(PM_ALTMER) && !rn2(5)) || /* altmer have extra mana regeneration --Amy */
 				((wtcap < MOD_ENCUMBER || !flags.mv) &&
@@ -15010,14 +15023,14 @@ pastds2:
 
 			/* nice patch addition by Amy - sometimes regenerate more */
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && ( (rn2(StrongEnergy_regeneration ? 150 : Energy_regeneration ? 225 : 300)) < u.ulevel) && (u.uen < u.uenmax)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !issoviet && ( (rn2(StrongEnergy_regeneration ? 150 : Energy_regeneration ? 225 : 300)) < u.ulevel) && (u.uen < u.uenmax)) {
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !issoviet && !rn2(250) && (u.uen < u.uenmax)) {
 
 				u.uen += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.uen += rnz(2 + GushLevel);
@@ -15025,7 +15038,7 @@ pastds2:
 				flags.botl = 1;
 
 			}
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !issoviet && !rn2(250) && (u.uen < u.uenmax) && Energy_regeneration) {
 
 				u.uen += rnz(2 + GushLevel);
 				if (Race_if(PM_PIERCER)) u.uen += rnz(2 + GushLevel);
@@ -15036,7 +15049,7 @@ pastds2:
 
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && !rn2(50) && (u.uen < u.uenmax) && recalc_mana() > 0) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !issoviet && !rn2(50) && (u.uen < u.uenmax) && recalc_mana() > 0) {
 
 				u.uen += rnd(recalc_mana());
 				if (Race_if(PM_PIERCER)) u.uen += rnd(recalc_mana());
@@ -15045,33 +15058,36 @@ pastds2:
 
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !rn2(3) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && Role_if(PM_PSYKER)) { /* psyker has special built-in energy regeneration --Amy */
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !rn2(3) && Role_if(PM_PSYKER)) { /* psyker has special built-in energy regeneration --Amy */
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH)) && !rn2(40 - GushLevel) ) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !issoviet && !rn2(40 - GushLevel) ) {
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;
 				flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH)) && uarmf && itemhasappearance(uarmf, APP_PLATFORM_FLEECIES) && !rn2(10)) {
-
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && uarmf && itemhasappearance(uarmf, APP_PLATFORM_FLEECIES) && !rn2(10)) {
+				u.uen++;
+				if (Race_if(PM_PIERCER)) u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
 			}
 
 		/* leveling up will give a small boost to mana regeneration now --Amy */
-		    if ( !Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && !issoviet && (rn2(2) || !Race_if(PM_SYLPH) ) && u.uen < u.uenmax && ( 
+		    if ( !CannotRegenerateMP() && !contaminationcheck(2) && !issoviet && (u.uen < u.uenmax) && ( 
 			(GushLevel >= 5 && !rn2(200)) ||
 			(GushLevel >= 10 && !rn2(100)) ||
 			(GushLevel >= 14 && !rn2(100)) ||
@@ -15100,350 +15116,350 @@ pastds2:
 
 			if (!(issoviet || PlayerCannotUseSkills)) {
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ATTACK_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ATTACK_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ATTACK_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ATTACK_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ATTACK_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ATTACK_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_DIVINATION_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_DIVINATION_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_DIVINATION_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_DIVINATION_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_DIVINATION_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_DIVINATION_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_MATTER_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_MATTER_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_MATTER_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_MATTER_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_MATTER_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_MATTER_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_OCCULT_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_OCCULT_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_OCCULT_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_OCCULT_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_OCCULT_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_OCCULT_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ELEMENTAL_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ELEMENTAL_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ELEMENTAL_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_CHAOS_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_CHAOS_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_CHAOS_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_CHAOS_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_CHAOS_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_CHAOS_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_BODY_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_BODY_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_BODY_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_BODY_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_BODY_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_BODY_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_PROTECTION_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_PROTECTION_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_PROTECTION_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_PROTECTION_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_PROTECTION_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_PROTECTION_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ENCHANTMENT_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ENCHANTMENT_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ENCHANTMENT_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_ENCHANTMENT_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SKILLED && !rn2(200)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_HEALING_SPELL) == P_SKILLED && !rn2(200)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_EXPERT && !rn2(100)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_HEALING_SPELL) == P_EXPERT && !rn2(100)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_MASTER && !rn2(50)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_HEALING_SPELL) == P_MASTER && !rn2(50)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_GRAND_MASTER && !rn2(25)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_HEALING_SPELL) == P_GRAND_MASTER && !rn2(25)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;
 			flags.botl = 1;
 			}
 
-			if (!Burned && !contaminationcheck(2) && !(Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) && (rn2(2) || !Race_if(PM_SYLPH) ) && P_SKILL(P_HEALING_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && P_SKILL(P_HEALING_SPELL) == P_SUPREME_MASTER && !rn2(15)) {
 			u.uen += 1;
 			if (Race_if(PM_PIERCER)) u.uen += 1;
 			if (u.uen > u.uenmax)  u.uen = u.uenmax;

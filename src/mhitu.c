@@ -6940,6 +6940,7 @@ struct monst *mon;
 		if (uamul && uamul->oartifact == ART_GIT_DE_PRO) armpro++;
 		if (uarmu && uarmu->oartifact == ART_COVER_THE_SEXY_BUTT) armpro += 2;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
+		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;
 		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
@@ -19720,6 +19721,11 @@ register int n;
 		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
+	}
+
+	if (uarmu && uarmu->oartifact == ART_ANGRY_TOMMY_ && !u.berserktime && !rn2(20)) {
+		u.berserktime = 25;
+		You("feel really angry!");
 	}
 
 	if (Race_if(PM_CELTIC) && !rn2(100)) {

@@ -2489,7 +2489,7 @@ register struct obj *spellbook;
 		       have book become erased somehow, resume reading it */
 		    booktype != SPE_BLANK_PAPER) {
 		You("continue your efforts to memorize the spell.");
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) learn();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) learn();
 	} else {
 		/* KMH -- Simplified this code */
 		if (booktype == SPE_BLANK_PAPER) {
@@ -3450,6 +3450,12 @@ boolean atme;
 		energy /= 2;
 	}
 
+	if (uarm && uarm->oartifact == ART_HLOVAL_S_PROBLEM && energy > 1) {
+		if (rn2(10)) energy += 1;
+		energy *= 3;
+		energy /= 4;
+	}
+
 	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE && energy > 1) {
 		if (rn2(10)) energy += 1;
 		energy *= 9;
@@ -3545,6 +3551,11 @@ boolean atme;
 		if (rn2(10)) energy += 1;
 		energy *= 9;
 		energy /= 10;
+	}
+
+	if (uarm && uarm->oartifact == ART_HELEN_S_REVEAL && (spellid(spell) == SPE_CHARM_MONSTER) ) {
+		if (rn2(10)) energy += 1;
+		energy /= 2;
 	}
 
 	/* Fail safe. Spellcasting should never become too inexpensive. --Amy */
@@ -12490,7 +12501,7 @@ int spell;
 	 */
 	chance = chance * (30-splcaster) / 10;
 
-	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) || (uarmc && uarmc->oartifact == ART_HERETICAL_FIGURE) || (uarm && uarm->oartifact == ART_SHIVANHUNTER_S_UNUSED_PRIZ) ) && chance > 0) {
+	if ( (CasterProblem || u.uprops[CASTER_PROBLEM].extrinsic || have_antimagicstone() || (uarm && uarm->oartifact == ART_HLOVAL_S_PROBLEM) || (uarm && uarm->oartifact == ART_ROBE_OF_THE_ARCHMAGI) || (uarmc && uarmc->oartifact == ART_HERETICAL_FIGURE) || (uarm && uarm->oartifact == ART_SHIVANHUNTER_S_UNUSED_PRIZ) ) && chance > 0) {
 
 		chance = (chance * u.uhp / u.uhpmax);
 
@@ -12647,6 +12658,8 @@ int spell;
 	if (Role_if(PM_CELLAR_CHILD) && uarm && uarm->otyp == MAGE_PLATE_MAIL) chance += 20;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) chance += 12;
+	if (uarm && uarm->oartifact == ART_FAMPLATE) chance += 20;
 	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;
 	if (uwep && uwep->otyp == OLDEST_STAFF) chance += 10;
 	if (uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID) chance += 50;

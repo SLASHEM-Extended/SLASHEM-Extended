@@ -325,6 +325,8 @@ int thrown;
 
 	    }
 
+	    if (uarm && uarm->oartifact == ART_WOOD_HUNTERING && !(launcher && objects[launcher->otyp].oc_skill == P_FIREARM)) multishot += rnd(2);
+
 	    if (Race_if(PM_AZTPOK) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(2);
 	    if (Race_if(PM_TURMENE) && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot += rnd(3);
 	    if (uamul && uamul->oartifact == ART_BOMBER_DELIVERY && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
@@ -1850,6 +1852,8 @@ boolean hitsroof;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_STREET_ROCKZ) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) dmg += 4;
+	if (dmg > 0 && uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) dmg += 1;
 	if (dmg > 0 && uamul && uamul->oartifact == ART_PLAYING_QUAKE) dmg += 3;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
 	if (dmg > 0 && u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
@@ -2805,6 +2809,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
+	if (uarm && uarm->oartifact == ART_ARMOR_PIERCE) tmp += 50;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
@@ -3137,7 +3142,7 @@ inaccurateguns:
 
 	/* certain monsters are capable of deflecting projectiles --Amy */
 
-	if (!pieks && !(gunused && rn2(3)) && !(rn2(13) < skillpierce ) ) {
+	if (!pieks && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !(gunused && rn2(3)) && !(rn2(13) < skillpierce ) ) {
 
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;
@@ -3160,15 +3165,15 @@ inaccurateguns:
 
 	/* certain traits also allow monsters to avoid getting hit */
 
-	if (amorphous(mon->data) && !rn2(5) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
+	if (amorphous(mon->data) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !rn2(5) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s's amorphous body skillfully dodges the projectile!", Monnam(mon));
 	}
-	if (noncorporeal(mon->data) && rn2(3) && tmp > -50 && !(rn2(40) < skillpierce ) ) {
+	if (noncorporeal(mon->data) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && rn2(3) && tmp > -50 && !(rn2(40) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s easily avoids the projectile due to being noncorporeal!", Monnam(mon));
 	}
-	if (unsolid(mon->data) && !rn2(4) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
+	if (unsolid(mon->data) && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && !rn2(4) && tmp > -50 && !(rn2(20) < skillpierce ) ) {
 		tmp = -100;
 		pline("%s's unsolid body lets the projectile pass through harmlessly!", Monnam(mon));
 	}
@@ -3211,7 +3216,7 @@ evasionchancedone:
 		pline("%s uses an ECM system to divert the projectile!", Monnam(mon));
 	}
 
-	if (stupidrock && tmp > -50 && !(rn2(25) < skillpierce ) ) {
+	if (stupidrock && !(uarm && uarm->oartifact == ART_ARMOR_PIERCE) && (tmp > -50) && !(rn2(25) < skillpierce ) ) {
 		if (verysmall(mon->data) && !rn2(4)) {
 			tmp = -100;
 			pline("%s avoids the projectile!", Monnam(mon));
@@ -3271,7 +3276,12 @@ evasionchancedone:
 
 		if (stupidrock && shieldblockrate) shieldblockrate *= 2;
 
-		if (blocker->otyp == BROKEN_SHIELD) tmp = 0;
+		if (uarm && (uarm->oartifact == ART_ARMOR_PIERCE) && (shieldblockrate > 1)) {
+			shieldblockrate /= 10;
+			if (shieldblockrate < 1) shieldblockrate = 1;
+		}
+
+		if (blocker->otyp == BROKEN_SHIELD) shieldblockrate = 0;
 
 		if ((rnd(100) < shieldblockrate) && tmp > -50) {
 			tmp = -100;

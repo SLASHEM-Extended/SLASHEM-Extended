@@ -9332,6 +9332,8 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 	if (spellcaster && (Role_if(PM_KNIGHT) && u.uhave.questart))
 	    tmp *= 2;
 
+	if (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) tmp *= 2;
+
 #ifdef WIZ_PATCH_DEBUG
 	if (spellcaster)
 	    pline("Damage = %d + %d", tmp, skilldmg);
@@ -9682,6 +9684,8 @@ xchar sx, sy;
 
 	    break;
 	}
+
+	if (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) dam *= 2;
 
 	if (type >= 0) {
 		if (!issoviet) {

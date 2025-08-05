@@ -767,6 +767,7 @@ long xtime;
 
 	if (uwep && uwep->oartifact == ART_OLSCRATCH) xtime *= 2;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_OLSCRATCH) xtime *= 2;
+	if (uarm && uarm->oartifact == ART_SKROLLAN_S_RUBBING) xtime *= 2;
 
 	PlayerBleeds += xtime;
 	if (PlayerBleeds > 100) You("have a hemorrhage!");
@@ -2012,7 +2013,7 @@ playerextrinsicsickres()
 	if ( (uarm && uarm->oartifact == ART_ANTISEPSIS_COAT) || (uarmc && uarmc->oartifact == ART_INA_S_LAB_COAT) || (uarmc && uarmc->oartifact == ART_INA_S_OVERCOAT) || (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) || (uarm && uarm->oartifact == ART_CHECK_YOUR_ESCAPES) || (uarmf && uarmf->oartifact == ART_SORROW_AND_DESPAIR) || autismringcheck(ART_RING_OF_P_HUL) || (uarmf && uarmf->oartifact == ART_GREEN_MYSTERY && uwep && (objects[uwep->otyp].oc_color == CLR_BRIGHT_GREEN)) || (uwep && uwep->oartifact == ART_SKAZKA_OB_DURAKE) || autismringcheck(ART_CORGON_S_RING) || (uarm && uarm->oartifact == ART_REQUIRED_POWER_PLANT_GEAR) ) return TRUE;
 	if ( (uwep && uwep->oartifact == ART_KUSANAGI) || (uarms && uarms->oartifact == ART_HEALTHIER_FEEL) || (uwep && uwep->oartifact == ART_KUMIROMI_SCYTHE) || (uwep && uwep->oartifact == ART_DILJANED) || (uarm && uarm->oartifact == ART_MAKE_IT_ALL_CLOTHED) || (uarmg && uarmg->oartifact == ART_STALKY) || (uarmg && uarmg->oartifact == ART_INFECTION_CHAIN_BREAK) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || (uarmc && uarmc->oartifact == ART_HEV_SUIT) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || autismringcheck(ART_RING_OF_STEEL_DRAGON) ) return TRUE;
 	if ( (uarmh && uarmh->oartifact == ART_NYPHERISBANE) || (uwep && uwep->oartifact == ART_HAMMER_OF_THE_GODS) || (uarmc && uarmc->oartifact == ART_CLEANLINESS_LAB) || (uwep && uwep->oartifact == ART_SNAKELASH) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uarmf && uarmf->oartifact == ART_RHEA_S_COMBAT_PUMPS) || (uarmf && uarmf->oartifact == ART_BACTERIA) || (uarmf && uarmf->oartifact == ART_BASE_FOR_SPEED_ASCENSION) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) || (uarm && uarm->oartifact == ART_DOUBLEGREEN_WARD) ) return TRUE;
-	if (autismringcheck(ART_GOLDENIVY_S_RAGE) || autismringcheck(ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || autismringcheck(ART_IMPERVIOUS_SYSTEM) || defends(AD_DISE,uwep) ) return TRUE;
+	if (autismringcheck(ART_GOLDENIVY_S_RAGE) || autismringcheck(ART_GOLDENIVY_S_ENGAGEMENT_RIN) || (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || (uarm && uarm->oartifact == ART_LIFE_DROP) || autismringcheck(ART_IMPERVIOUS_SYSTEM) || defends(AD_DISE,uwep) ) return TRUE;
 
 	return FALSE;
 
@@ -2052,7 +2053,7 @@ playerextrinsicdeathres()
 	if ( (uwep && uwep->oartifact == ART_MELEE_DAMMIT) || (uarmf && uarmf->oartifact == ART_SHIN_KICKING_GAME) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE) || (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_PURITY) || (uwep && uwep->oartifact == ART_RAIDGOOD) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uarmf && uarmf->oartifact == ART_ANITA_S_RASHLUST) || (uarmf && uarmf->oartifact == ART_ULTRACURSED_VAMPIRIC_HIGH_) || (uwep && uwep->oartifact == ART_BLACKGASH) || (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) || (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && uarm && objects[uarm->otyp].oc_color == CLR_BLACK) ) return TRUE;
 	if ( (have_oneinfourstone() && (moves % 4 == 3) ) || (uarmf && uarmf->oartifact == ART_SUPER_PEEP_TOES) || have_allisloststone() || have_haveitallstone() || (uarmf && uarmf->oartifact == ART_PRACTICLASSY) || (uarm && uarm->oartifact == ART_ALUCART_MAIL) || (uarmg && uarmg->oartifact == ART_IDEA_IN_HEADBACK) || (uarm && uarm->oartifact == ART_DEATH_IS_OVERRATED_ANYWAY) || (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) || (uarmc && uarmc->oartifact == ART_PINEAPPLE_TYCOON_S_FINISH) || (uarmf && uarmf->oartifact == ART_EXHAUST_DAMAGE) || (uwep && uwep->oartifact == ART_EXPERIMENTAL_CHUNK) || (uarmf && uarmf->oartifact == ART_JENNIFER_S_FLEECE) || (uwep && uwep->oartifact == ART_GODAWFUL_ENCHANTMENT) ) return TRUE;
 	if ( (uwep && uwep->oartifact == ART_FAMOUS_LANCE) || (uarmf && uarmf->oartifact == ART_SHARPSPIKE) || (uarmf && uarmf->oartifact == ART_TOO_OLD_MODEL) || (uarmf && uarmf->oartifact == ART_EROTICLAMP) || (uarmf && uarmf->oartifact == ART_NADINE_S_CUTENESS) || (uarmf && uarmf->oartifact == ART_LITTLE_BITCH_IS_RUCTIOUS) || (uarmf && uarmf->oartifact == ART_ANJA_S_WIDE_FIELD) || (uarmu && uarmu->oartifact == ART_BLUE_SHIRT_OF_DEATH) || (uarmf && uarmf->oartifact == ART_RONJA_S_FEMALE_PUSHING) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || (uarmf && uarmf->oartifact == ART_PRADA_S_DEVIL_WEAR) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || (uwep && uwep->oartifact == ART_WENDELDER) || (uarmf && uarmf->oartifact == ART_MADELEINE_S_GIRL_FOOTSTEPS) ) return TRUE;
-	if ( (uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) || (uamul && uamul->oartifact == ART_MYSTER_DEEP_) || (uarm && uarm->oartifact == ART_UMBRANOX) || (uarmc && uarmc->oartifact == ART_ADILA_S_PINNACLE) || (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) ) return TRUE;
+	if ( (uarms && uarms->oartifact == ART_ANTINSTANT_DEATH) || (uamul && uamul->oartifact == ART_MYSTER_DEEP_) || (uarm && uarm->oartifact == ART_UMBRANOX) || (uarmc && uarmc->oartifact == ART_ADILA_S_PINNACLE) || (uarm && uarm->oartifact == ART_STALWART_COSTUME) || (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) ) return TRUE;
 
 	return FALSE;
 
@@ -2067,7 +2068,7 @@ playerextrinsicpsires()
 	if ( (uwep && uwep->oartifact == ART_IDSPIKE) || (uwep && uwep->oartifact == ART_EXPERIMENTAL_CHUNK) || (uwep && uwep->oartifact == ART_GODAWFUL_ENCHANTMENT) || (uarmh && uarmh->oartifact == ART_ALIEN_MINDWAVE) || (uarm && uarm->oartifact == ART_GLARINGADERNADIR) || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || (uarmf && uarmf->oartifact == ART_GLOATSANE) || (uarmh && uarmh->oartifact == ART_FESDEBSI) || (uwep && uwep->oartifact == ART_GAUNTLET_ABBREVIATION) || (uwep && uwep->oartifact == ART_PSI_STAFF) || (uarmc && uarmc->oartifact == ART_SUPER_COMBO_) ) return TRUE;
 	if ( (uarm && uarm->oartifact == ART_DERANDERGRAAA) || (uwep && uwep->oartifact == ART_USELESS_TALK) || (uarmf && uarmf->oartifact == ART_CUTESY_GIRL) || (uarmf && uarmf->oartifact == ART_CATALIN_S_ROBBERY) || (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmf && uarmf->oartifact == ART_AIRSHIP_DANCING) || (uarmf && uarmf->oartifact == ART_PSI_ONIC) || (uarmc && uarmc->oartifact == ART_INSANE_MIND_SCREW) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_SHE_S_STILL_AN_ANASTASIA) || (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) ) return TRUE;
 	if ( (uarmh && uarmh->oartifact == ART_PROTECTOR_NO____) || (uarmf && uarmf->oartifact == ART_MAILIE_S_CHALLENGE) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmc && uarmc->oartifact == ART_YOG_SOTHOTH_HELP_ME) || (uarmf && uarmf->oartifact == ART_JOSEFINE_S_EVILNESS) || (uarmh && uarmh->oartifact == ART_NUMBER___) || (uamul && uamul->oartifact == ART_ONE_MOMENT_IN_TIME) || (uwep && uwep->oartifact == ART_YASDORIAN_S_JUNETHACK_IDEN) ) return TRUE;
-	if ( (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || autismringcheck(ART_KONDRE) || (uamul && uamul->oartifact == ART_ISRA_S_ANGLE) ) return TRUE;
+	if ( (uamul && uamul->oartifact == ART_PRECIOUS_UNOBTAINABLE_PROP) || (uarm && uarm->oartifact == ART_MINDMEND) || autismringcheck(ART_KONDRE) || (uamul && uamul->oartifact == ART_ISRA_S_ANGLE) ) return TRUE;
 
 	return FALSE;
 
@@ -2082,7 +2083,8 @@ playerextrinsicsleepres()
 	if ((uwep && uwep->oartifact == ART_MERCILESS_MARE) || (uarmf && uarmf->oartifact == ART_THICK_FARTING_GIRL) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarmf && uarmf->oartifact == ART_THOSEFROMTHERE) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarmf && uarmf->oartifact == ART_BLUEDE) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) ) return TRUE;
 	if ((uarmh && uarmh->oartifact == ART_UNIMPORTANT_ELEMENTS) || (uarmu && uarmu->oartifact == ART_PRISMATIC_SHIRT) || (uimplant && uimplant->oartifact == ART_CORONATION_CULMINATION) || (uarmf && uarmf->oartifact == ART_JESSICA_S_TENDERNESS) || (uarmh && uarmh->oartifact == ART_HAVE_ALL_YOU_NEED) || (uamul && uamul->oartifact == ART_SNOREFEST && (moves % 10 != 0) ) || (uarm && uarm->oartifact == ART_LYNN_S_EVERVIGILANCE) ) return TRUE;
 	if ((uarms && uarms->oartifact == ART_CREMATED) || (uwep && uwep->oartifact == ART_CREAMRES) || (uwep && uwep->oartifact == ART_DROWSING_ROD) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_DAMMIT_PICK_UP) || (uarmh && uarmh->oartifact == ART_ENFORCED_MIND) || (uarmc && uarmc->oartifact == ART_RESIST_BOREDOM) || (uwep && uwep->oartifact == ART_HELF_ME_NEVERTHELESS) || (uwep && uwep->oartifact == ART_HENRIETTENFORCE) || (uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) || (uarmh && uarmh->oartifact == ART_HEAD_W) || (uarm && uarm->oartifact == ART_HEART_INFACT) || (uwep && uwep->oartifact == ART_EVA_S_COLORCHANGE) || (uarm && uarm->oartifact == ART_CHIP_INFACT) || (uwep && uwep->oartifact == ART_YAWNEN) || (uwep && uwep->oartifact == ART_SLAM_) ) return TRUE;
-	if ( (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_FALSE) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmf && uarmf->oartifact == ART_SYLVIE_S_YAWN) || (uarmc && uarmc->oartifact == ART_RUFFLED_SHIRT_OF_THE_ARIST) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmh && uarmh->oartifact == ART_ENSNARED_MIND) || autismringcheck(ART_BUT_YOU_MUST) || (uarmf && uarmf->oartifact == ART_DAPHNE_S_BOREDOM) || autismringcheck(ART_IT_S_NOT_BEDTIME_YET) || autismringcheck(ART_GRISHUH) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
+	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_ && (u.uhp < (u.uhpmax / 10)) ) return TRUE;
+	if ( (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_FALSE) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmf && uarmf->oartifact == ART_SYLVIE_S_YAWN) || (uarmc && uarmc->oartifact == ART_RUFFLED_SHIRT_OF_THE_ARIST) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmh && uarmh->oartifact == ART_ENSNARED_MIND) || autismringcheck(ART_BUT_YOU_MUST) || (uarmf && uarmf->oartifact == ART_DAPHNE_S_BOREDOM) || autismringcheck(ART_IT_S_NOT_BEDTIME_YET) || autismringcheck(ART_GRISHUH) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmu && uarmu->oartifact == ART_SETH_S_ERROR) ) return TRUE;
 
 	return FALSE;
 }
@@ -2098,7 +2100,7 @@ playerextrinsicdisintres()
 	if ((uarmf && uarmf->oartifact == ART_DEEP_SIGH) || (uarmf && uarmf->oartifact == ART_DOUBLE_DESIRE) || (uarmf && uarmf->oartifact == ART_LITTLE_BUT_ROBUST) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarmf && uarmf->oartifact == ART_ANTJE_S_POWERSTRIDE) || (uamul && uamul->oartifact == ART_ARABELLA_S_SWOONING_BEAUTY) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE)) return TRUE;
 	if ((uwep && uwep->oartifact == ART_MEANCANE) || (uarmf && uarmf->oartifact == ART_ELENETTES) || (ublindf && ublindf->oartifact == ART_STABLE_STUNT) || (uarmf && uarmf->oartifact == ART_SMELL_LIKE_DOG_SHIT) || (uarmf && uarmf->oartifact == ART_LARISSA_S_ANGER) || autismringcheck(ART_RING_OF_THE_SCHWARTZ) || (uarms && uarms->oartifact == ART_ANTINSTANT_DEATH)) return TRUE;
 	if (autismringcheck(ART_ACHROMANTIC_RING) || (uamul && uamul->oartifact == ART_STINGING_MEDALLION) || (uwep && uwep->oartifact == ART_SWORD_OF_ANNIHILATION) || (uwep && uwep->oartifact == ART_KRONSCH_ZADROER_WOFF) || (uwep && uwep->oartifact == ART_WENDELDER) || (uwep && uwep->oartifact == ART_TONA_S_GAMES && (PlayerInBlockHeels || PlayerInWedgeHeels) ) || (uimplant && uimplant->oartifact == ART_STALWART_OMM) || (uarmu && uarmu->oartifact == ART_CLOUDYBAND) || (uwep && uwep->oartifact == ART_SILVER_ON_BLACK) || (uarmf && uarmf->oartifact == ART_PLAY_THE_GAME_YOURSELF) || (uarms && uarms->oartifact == ART_DRAGONHEAD_SHIELD) || (uwep && uwep->oartifact == ART_RUINED_ANTJEN) || (uwep && uwep->oartifact == ART_TACT_EBONY_GLASS) || (uarmf && uarmf->oartifact == ART_MARIYA_S_SEXYCHARM) ) return TRUE;
-	if ( (uarmf && uarmf->oartifact == ART_SOFTWOOD) || autismringcheck(ART_KUPA_STABILITY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarm && uarm->oartifact == ART_ARMOR_OF_RETRIBUTION) ) return TRUE;
+	if ( (uarmf && uarmf->oartifact == ART_SOFTWOOD) || autismringcheck(ART_KUPA_STABILITY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarm && uarm->oartifact == ART_ARMOR_OF_RETRIBUTION) || (uarmu && uarmu->oartifact == ART_METALHOLD) ) return TRUE;
 
 	return FALSE;
 }
@@ -2156,7 +2158,8 @@ playerextrinsicfireres()
 	if ((uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && (moves % 3 == 0) ) ) return TRUE;
 	if ((uamul && uamul->oartifact == ART_DEMOBLING) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SILVESTERBLAM) || (uarmf && uarmf->oartifact == ART_MY_LOVE) || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || have_spectrumplinggem() || (uwep && uwep->oartifact == ART_DEATH_S_FATHOM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarms && uarms->oartifact == ART_HEATEM_UP) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_COAL_PEER) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || (uarm && uarm->oartifact == ART_DUEUEUEUET) ) return TRUE;
 	if ( (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_REDGUARD_APPEARANCE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uarm && uarm->oartifact == ART_COMPLETE_ARMORING) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmf && uarmf->oartifact == ART_STANDARDRESE) ) return TRUE;
-	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uwep && uwep->oartifact == ART_JADE_TALON) || (uarmu && uarmu->oartifact == ART_CRIMSON_PLATE) || (uwep && uwep->oartifact == ART_DICHOTOMY) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
+	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_ && (u.uhp < (u.uhpmax / 3)) ) return TRUE;
+	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uwep && uwep->oartifact == ART_JADE_TALON) || (uarmu && uarmu->oartifact == ART_CRIMSON_PLATE) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
 
 	return FALSE;
 }
@@ -2181,7 +2184,7 @@ playerextrinsiccoldres()
 	if ((uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uwep && uwep->oartifact == ART_ELEMENTS_TIME_THREE) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) || (uarmf && uarmf->oartifact == ART_DYKE_RESISTS) || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uarmf && uarmf->oartifact == ART_SIMPLY_WHITE) || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uwep && uwep->oartifact == ART_CUTRELEASE) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) ) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || (uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmf && uarmf->oartifact == ART_STANDARDRESE) ) return TRUE;
-	if ( (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_JADE_TALON) || (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
+	if ( (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_JADE_TALON) || (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
 
 	return FALSE;
 }
@@ -2201,7 +2204,7 @@ playerextrinsicshockres()
 	if ((uwep && uwep->oartifact == ART_STAFF_OF_THE_ARCHMAGI) || (uwep && uwep->oartifact == ART_FIRE_OF_HEAVEN) || (uwep && uwep->oartifact == ART_COLD_SOUL) || u.uprops[STORM_HELM].extrinsic || u.uprops[ELEMENT_RES].extrinsic) return TRUE;
 	if ((uwep && uwep->oartifact == ART_COPPERED_OFF_FROM_ME) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_DYKE_RESISTS) || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || (uwep && uwep->oartifact == ART_DEATH_S_FATHOM) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) || autismringcheck(ART_SHARD_FROM_MORGOTH_S_CROWN) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmf && uarmf->oartifact == ART_STANDARDRESE) ) return TRUE;
-	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || autismringcheck(ART_RING_OF_STEEL_DRAGON) || (uwep && uwep->oartifact == ART_JADE_TALON) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
+	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || autismringcheck(ART_RING_OF_STEEL_DRAGON) || (uwep && uwep->oartifact == ART_JADE_TALON) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) ) return TRUE;
 
 	return FALSE;
 }
@@ -2265,6 +2268,31 @@ playerextrinsicspeed()
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
 	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) || (uarm && uarm->oartifact == ART_AGILITATE) || (uwep && uwep->oartifact == ART_HECTIC_OH_YEAH) ) return TRUE;
 	if ( (uarmg && uarmg->oartifact == ART_TSUNAMI_FISTS) || (uarm && uarm->oartifact == ART_FOR_ONCE_MOVING_SWIFTLY) || (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) || autismringcheck(ART_WILDFIST) || (uarm && uarm->oartifact == ART_GAYIFIED) || (uwep && uwep->oartifact == ART_UNIQUE_WIND_BOW) || (uwep && uwep->oartifact == ART_BOW_SURROUNDED_BY_WIND) || (uwep && uwep->oartifact == ART_PLANTAR_NO) || (uwep && uwep->oartifact == ART_EORLINGAS) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) || (uamul && uamul->oartifact == ART_HUMBLE_STUMBLE) || (uarmh && uarmh->oartifact == ART_VIGERIUN_) || (uamul && uamul->oartifact == ART_COMPLETELY_PUMPED) ) return TRUE;
+
+	return FALSE;
+}
+
+/* is the player prevented from regenerating HP over time? --Amy */
+boolean
+CannotRegenerateHP()
+{
+	if (Burned) return TRUE;
+	if (Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) return TRUE;
+	if (uarm && uarm->oartifact == ART_DARKEN_WALLOW && levl[u.ux][u.uy].lit) return TRUE;
+	if (Race_if(PM_SYLPH) && rn2(2) ) return TRUE;
+	if (Race_if(PM_ETHEREALOID) || Race_if(PM_INCORPOREALOID)) return TRUE;
+
+	return FALSE;
+}
+
+/* is the player prevented from regenerating Pw over time? --Amy */
+boolean
+CannotRegenerateMP()
+{
+	if (Burned) return TRUE;
+	if (Race_if(PM_PLAYER_GREMLIN) && levl[u.ux][u.uy].lit) return TRUE;
+	if (uarm && uarm->oartifact == ART_DARKEN_WALLOW && levl[u.ux][u.uy].lit) return TRUE;
+	if (Race_if(PM_SYLPH) && rn2(2) ) return TRUE;
 
 	return FALSE;
 }
@@ -8939,6 +8967,10 @@ nivellate()
 			upperceiling *= 3;
 			upperceiling /= 2;
 		}
+		if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) {
+			lowerceiling *= 3;
+			upperceiling *= 3;
+		}
 		if (Role_if(PM_DRUID)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
@@ -9455,6 +9487,9 @@ boolean guaranteed;
 		}
 		if (uright && uright->oartifact == ART_STALWART_VITALITY) {
 			ceiling *= 2;
+		}
+		if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) {
+			ceiling *= 3;
 		}
 		if (StrongDeath_resistance) {
 			ceiling *= 3;
@@ -12100,6 +12135,7 @@ int snamount;
 	}
 
 	if (StrongHalluc_resistance) snamount /= 3;
+	if (uarm && uarm->oartifact == ART_MIRE_MIRE) snamount /= 2;
 
 	if (uarmf && uarmf->oartifact == ART_GLOATSANE) {
 		snamount *= 4;
@@ -15299,6 +15335,10 @@ healup(nhp, nxtra, curesick, cureblind)
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}
+	if (uarm && uarm->oartifact == ART_GREEN_DRESS_NURSE) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
 	if (uwep && uwep->oartifact == ART_HEALHEALHEALHEAL) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
@@ -15380,6 +15420,10 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 
 	if (uarmc && itemhasappearance(uarmc, APP_NURSE_CLOAK)) nhp *= 2;
 	if (uarmh && uarmh->oartifact == ART_SEXYNESS_HAS_A_NAME) {
+		nhp *= 2;
+		if (Role_if(PM_HEALER)) nhp *= 2;
+	}
+	if (uarm && uarm->oartifact == ART_GREEN_DRESS_NURSE) {
 		nhp *= 2;
 		if (Role_if(PM_HEALER)) nhp *= 2;
 	}

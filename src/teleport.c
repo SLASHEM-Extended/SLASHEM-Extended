@@ -2780,6 +2780,7 @@ boolean allowtrap;
 		trycnt = 0;
 
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && rn2(2)) return;
 		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
 
 newtry:
@@ -2837,6 +2838,7 @@ int distance;
 		trycnt = 0;
 
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && rn2(2)) return;
 		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
 
 newtry:
@@ -2888,6 +2890,7 @@ boolean allowtrap;
 		trycnt = 0;
 
 		if (uwep && uwep->oartifact == ART_IMHULLU && rn2(10)) return;
+		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && rn2(2)) return;
 		if (uarmf && uarmf->oartifact == ART_STAND_TALL_IN_THE_STORM) return;
 
 newtry:

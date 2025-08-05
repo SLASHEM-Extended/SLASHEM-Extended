@@ -4221,6 +4221,12 @@ Shirt_on()
 		pline("Well, maybe you were here first, but you're gonna stay.");
 	}
 
+	if (uarmu && uarmu->oartifact == ART_ELITE_FAN) {
+		curse(uarmu);
+		uarmu->hvycurse = uarmu->prmcurse = TRUE;
+		pline("A very black aura surrounds your shirt!");
+	}
+
 	if (uarmu && uarmu->oartifact == ART_HEEEEELEEEEEN) {
 		curse(uarmu);
 		uarmu->stckcurse = TRUE;
@@ -4357,6 +4363,21 @@ Armor_on()
 
 	}
 
+	if (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) {
+		register struct obj *rostine;
+
+		for(rostine = invent; rostine; rostine = rostine->nobj) {
+			if (!rostine->oeroded) rostine->oeroded = 1;
+		}
+
+		Your("stuff got rusted.");
+	}
+
+	if (uarm && uarm->oartifact == ART_PLATFLAT && (objects[uarm->otyp].oc_material != MT_PLATINUM)) {
+		pline_The("armor is made of platinum now.");
+		objects[uarm->otyp].oc_material = MT_PLATINUM;
+	}
+
 	if (uarm && uarm->oartifact == ART_LET_IT_STAY && uarm->otyp >= GRAY_DRAGON_SCALES && uarm->otyp <= YELLOW_DRAGON_SCALES) {
 		if (uarm->spe < 3) uarm->spe = 3;
 	}
@@ -4371,6 +4392,10 @@ Armor_on()
 		pline("Well fuck. The armor is cursed.");
 		curse(uarm);
 	}
+	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_DESTRUCTO_S_COAT) {
+		pline("Your armor became cursed.");
+		curse(uarm);
+	}
 	if (uarm && !(uarm->cursed) && uarm->oartifact == ART_RES_BUT_BAD) {
 		pline("BEEEEEEEP! Your armor is cursed!");
 		curse(uarm);
@@ -4379,6 +4404,12 @@ Armor_on()
 		pline("Yeah, and how your armor is cursed.");
 		if (uarm->spe > -3) uarm->spe = -3;
 		curse(uarm);
+	}
+
+	if (uarm && uarm->oartifact == ART_DARK_MINDDRILL) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+		pline("The armor is surrounded by a black aura...");
 	}
 
 	if (uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER) {
@@ -4547,6 +4578,41 @@ Armor_on()
 		pline("Your armor is surrounded by an evil black aura.");
 		curse(uarm);
 		uarm->hvycurse = 1;
+	}
+	if (uarm && uarm->oartifact == ART_FEHLIRON) {
+		curse(uarm);
+		uarm->hvycurse = uarm->prmcurse = uarm->bbrcurse = TRUE;
+
+		if (uarm && (objects[uarm->otyp].oc_material != MT_IRON)) {
+			objects[uarm->otyp].oc_material = MT_PLATINUM;
+			uarm->oerodeproof = TRUE;
+		}
+		if (uarmu && (objects[uarmu->otyp].oc_material != MT_IRON)) {
+			objects[uarmu->otyp].oc_material = MT_PLATINUM;
+			uarmu->oerodeproof = TRUE;
+		}
+		if (uarmc && (objects[uarmc->otyp].oc_material != MT_IRON)) {
+			objects[uarmc->otyp].oc_material = MT_PLATINUM;
+			uarmc->oerodeproof = TRUE;
+		}
+		if (uarms && (objects[uarms->otyp].oc_material != MT_IRON)) {
+			objects[uarms->otyp].oc_material = MT_PLATINUM;
+			uarms->oerodeproof = TRUE;
+		}
+		if (uarmg && (objects[uarmg->otyp].oc_material != MT_IRON)) {
+			objects[uarmg->otyp].oc_material = MT_PLATINUM;
+			uarmg->oerodeproof = TRUE;
+		}
+		if (uarmh && (objects[uarmh->otyp].oc_material != MT_IRON)) {
+			objects[uarmh->otyp].oc_material = MT_PLATINUM;
+			uarmh->oerodeproof = TRUE;
+		}
+		if (uarmf && (objects[uarmf->otyp].oc_material != MT_IRON)) {
+			objects[uarmf->otyp].oc_material = MT_PLATINUM;
+			uarmf->oerodeproof = TRUE;
+		}
+		pline("Everything's hard as iron now...");
+		pline("You feel the Black Breath slowly draining you of life!");
 	}
 	if (uarm && !(uarm->hvycurse) && uarm->oartifact == ART_AH_NAH) {
 		pline("Oh no, your armor turns out to be very cursed!");
@@ -6952,6 +7018,7 @@ find_ac()
 	if (uright && uright->oartifact == ART__X_PROT_) uac -= uright->spe;
 	if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uright->spe;
+	if (uarmu && uarmu->oartifact == ART_INCREDIBLY_GOOD_ARMOR) uac -= uarmu->spe;
 	if (HProtection & INTRINSIC) uac -= u.ublessed;
 	uac -= u.uspellprot;
 
@@ -7336,6 +7403,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
+	if (uarmu && uarmu->oartifact == ART_YELLOW_SYMPOSE && (multi < 0)) uac -= 50;
 	if (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_FORGED_OF_STEEL) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_ACIDSHOCK_CASTLECRUSHER) uac -= 5;
@@ -7353,6 +7421,8 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_ROCKZ_ARMY) uac -= 10;
+	if (uarmu && uarmu->oartifact == ART_LITTLE_PADDING) uac -= 2;
+	if (uarmu && uarmu->oartifact == ART_DOUBLEPLUG) uac -= 2;
 	if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_SEXY_STROKING_UNITS) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ANASTASIA_S_SOFT_CLOTHES) uac -= 10;
@@ -7386,8 +7456,11 @@ find_ac()
 	}
 	if (uleft && uleft->oartifact == ART_FUW_TENK) uac -= 20;
 	if (uright && uright->oartifact == ART_FUW_TENK) uac -= 20;
+	if (uarm && uarm->oartifact == ART_ONDONS) uac -= 1;
 	if (uleft && uleft->oartifact == ART_HOH_UNNE) uac -= 5;
 	if (uright && uright->oartifact == ART_HOH_UNNE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_SEM_BOOST) uac -= 3;
+	if (uarm && uarm->oartifact == ART_TURBULENT_TIME) uac -= 25;
 	if (uleft && uleft->oartifact == ART_FIRMBLOCK) uac -= 7;
 	if (uright && uright->oartifact == ART_FIRMBLOCK) uac -= 7;
 	if (uwep && uwep->enchantment == WEAPEGO_DEF1) uac -= 5;
@@ -7414,6 +7487,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TWO) uac -= 2;
 	if (uarms && uarms->oartifact == ART_INSIDE_OUT) uac -= 3;
 	if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) uac -= 20;
+	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) uac -= 8;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_THREE) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FIVE) uac -= 5;
@@ -7421,13 +7495,18 @@ find_ac()
 	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) ) uac -= 3;
 	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
+	if (uarm && uarm->oartifact == ART_PLATFLAT) uac -= 7;
 	if (uwep && uwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
 	if (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) uac -= 2;
 	if (uwep && uwep->oartifact == ART_SUPERCHANT) uac -= 10;
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
+	if (uarm && uarm->oartifact == ART_MALLNOM) uac -= 2;
+	if (uarm && uarm->oartifact == ART_LOCKED_TWENNY) uac -= 20;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
+	if (uarm && uarm->oartifact == ART_EMSE_TRADE) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
+	if (uarm && uarm->oartifact == ART_SIVEGLIDE && uarm->otyp == LIZARD_SCALES) uac -= 7;
 	if (uarm && uarm->oartifact == ART_BRITNEY_S_DECEPTION) uac -= 6;
 	if (uwep && uwep->oartifact == ART_MAGDALENA_S_CUDDLEWEAPON) uac -= 5;
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
@@ -7463,6 +7542,8 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_RESISTANT_TO_DEADGOING) uac -= 5;
 	if (uwep && uwep->oartifact == ART_ELOPLUS_STAT) uac -= 1;
 	if (uwep && uwep->oartifact == ART_SECANTED) uac -= 3;
+	if (uarm && uarm->oartifact == ART_MENDAPAU) uac -= 3;
+	
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TOTAL_PARRY_GAUCHE) uac -= 10;
 	if (uarm && uarm->oartifact == ART_BLUEFORM) uac -= 2;
 	if (uarms && uarms->oartifact == ART_CUTTING_THROUGH) uac -= 5;
@@ -8054,7 +8135,7 @@ find_ac()
 		
 	}
 
-	if (u.uprops[NAKEDNESS].extrinsic || autismweaponcheck(ART_NOT_A_HAMMER) || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() || (uamul && uamul->oartifact == ART_PLAYING_QUAKE) ) uac = 10;
+	if (u.uprops[NAKEDNESS].extrinsic || autismweaponcheck(ART_NOT_A_HAMMER) || (uarmg && uarmg->oartifact == ART_SPREAD_YOUR_LEGS_WIDE) || (flags.female && uarmu && uarmu->oartifact == ART_GIANT_SWINGING_PENIS) || Nakedness || have_nakedstone() || (uarm && uarm->oartifact == ART_ARMOR_PIERCE) || (uamul && uamul->oartifact == ART_PLAYING_QUAKE) ) uac = 10;
 
 	if(uac != u.uac){
 		u.uac = uac;

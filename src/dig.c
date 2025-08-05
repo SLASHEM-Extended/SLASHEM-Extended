@@ -1497,7 +1497,7 @@ struct obj *obj;
 			    digging.chew = FALSE;
 			}
 			set_occupation(dig, verbing, 0);
-			if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) dig();
+			if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) dig();
 		}
 	} else if (Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)) {
 		/* it must be air -- water checked above */
@@ -1529,7 +1529,7 @@ struct obj *obj;
 		    You("continue %s downward.", verbing);
 		did_dig_msg = FALSE;
 		set_occupation(dig, verbing, 0);
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) dig();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) dig();
 	}
 	return(1);
 }

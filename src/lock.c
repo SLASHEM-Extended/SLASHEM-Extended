@@ -413,7 +413,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 		const char *action = lock_action();
 		You("resume your attempt at %s.", action);
 		set_occupation(picklock, action, 0);
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) picklock();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) picklock();
 		return(1);
 	    }
 	}
@@ -764,7 +764,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	xlock.picktyp = picktyp;
 	xlock.usedtime = 0;
 	set_occupation(picklock, lock_action(), 0);
-	if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) picklock();
+	if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) picklock();
 	return(1);
 }
 
@@ -837,12 +837,12 @@ doforce()		/* try to force a chest with your weapon */
 		}
 		You("resume your attempt to force the lock.");
 		set_occupation(forcelock, "forcing the lock", 0);
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) forcelock();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) forcelock();
 		return(1);
 	    } else if (xlock.door) {
 		You("resume your attempt to force the door.");
 		set_occupation(forcedoor, "forcing the door", 0);
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) forcedoor();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) forcedoor();
 		return(1);
 	    }
 	}
@@ -908,7 +908,7 @@ doforce()		/* try to force a chest with your weapon */
 	    if(xlock.box)   {
 	    	xlock.door = 0;
 	    	set_occupation(forcelock, "forcing the lock", 0);
-		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) forcelock();
+		if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) forcelock();
 	    	return(1);
 	    }
 	    if (u.dz > 0) {
@@ -1299,7 +1299,7 @@ doforce()		/* try to force a chest with your weapon */
 		    xlock.door = door;
 		    xlock.box = 0;
 		    set_occupation(forcedoor, "forcing the door", 0);
-		    if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uchain && uchain->oartifact == ART_SIYID) ) forcedoor();
+		    if (AutoDestruct || u.uprops[AUTO_DESTRUCT].extrinsic || (uarmf && uarmf->oartifact == ART_KHOR_S_REQUIRED_IDEA) || have_autodestructstone() || (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) || (uchain && uchain->oartifact == ART_SIYID) ) forcedoor();
 	return(1);
 	    }
 	}

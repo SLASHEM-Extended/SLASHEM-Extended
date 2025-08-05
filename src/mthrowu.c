@@ -486,6 +486,10 @@ shieldblockboo:
 			else You("sidestep %s.", onm);
 			return(0);
 
+	} else if (uarm && uarm->oartifact == ART_SPEARPOINT_HOLD && is_polearm) {
+			pline_The("weapon glides off your armor.");
+			return(0);
+
 	} else if (Race_if(PM_CUPID) && !rn2(5)) {
 
 			if(Blind || !flags.verbose) You("sidestep a projectile.");

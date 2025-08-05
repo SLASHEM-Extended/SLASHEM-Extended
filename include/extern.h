@@ -2729,6 +2729,8 @@ E boolean enchantreclevel(void);
 E boolean weapchantreclevel(void);
 E boolean grayoutobscuration(void);
 E boolean playercancheatinsoko(void);
+E boolean CannotRegenerateHP(void);
+E boolean CannotRegenerateMP(void);
 E void badpeteffect(struct monst *);
 E void allbadpeteffects(struct monst *);
 E void add_monster_egotype(struct monst *);

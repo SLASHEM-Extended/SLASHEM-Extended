@@ -5518,7 +5518,7 @@ register struct obj	*sobj;
 	case SCR_ENCHANT_ARMOR:
 	    {
 		register schar s;
-		boolean special_armor;
+		boolean special_armor, super_special_armor;
 		boolean same_color;
 
 		if (CannotSelectItemsInPrompts) break;
@@ -5582,10 +5582,11 @@ enchantarmorchoice:
 			break;
 		}
 		/* elven armor vibrates warningly when enchanted beyond a limit */
-		special_armor = is_elven_armor(otmp) || otmp->otyp == KYRT_SHIRT ||
+		special_armor = is_elven_armor(otmp) || (otmp->otyp == KYRT_SHIRT) ||
 		  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
 		  (Role_if(PM_VANILLA_VALK) && otmp->otyp == GAUNTLETS_OF_POWER) ||
 		  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
+		super_special_armor = (is_droven_armor(otmp) || (otmp->oartifact == ART_MENDAPAU));
 
 		if (sobj->cursed)
 		    same_color =
@@ -5601,7 +5602,7 @@ enchantarmorchoice:
 		/* KMH -- catch underflow */
 		s = sobj->cursed ? -otmp->spe : otmp->spe;
 
-		if (s > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
+		if (s > (super_special_armor ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
 
 			if (otmp->oartifact) {
 				otmp->spe = 0;
@@ -5741,7 +5742,7 @@ enchantarmorchoice:
 
 		}
 
-		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
+		if ((otmp->spe > (super_special_armor ? 8 : special_armor ? 5 : 3)) &&
 		    (special_armor || !rn2(7)))
 			Your("%s suddenly %s %s.",
 				xname(otmp), otense(otmp, "vibrate"),
@@ -5759,7 +5760,7 @@ enchantarmorchoice:
 	case SCR_GREATER_ENCHANT_ARMOR:
 	    {
 		register schar s;
-		boolean special_armor;
+		boolean special_armor, super_special_armor;
 		boolean same_color;
 
 		if (CannotSelectItemsInPrompts) break;
@@ -5828,9 +5829,11 @@ enchantarmorchoiceX:
 			break;
 		}
 		/* elven armor vibrates warningly when enchanted beyond a limit */
-		special_armor = is_elven_armor(otmp) || otmp->otyp == KYRT_SHIRT ||
+		special_armor = is_elven_armor(otmp) || (otmp->otyp == KYRT_SHIRT) ||
 		  (Role_if(PM_WIZARD) && otmp->otyp == CORNUTHAUM) ||
+		  (Role_if(PM_VANILLA_VALK) && otmp->otyp == GAUNTLETS_OF_POWER) ||
 		  (Role_if(PM_VALKYRIE) && otmp->otyp == GAUNTLETS_OF_POWER);
+		super_special_armor = (is_droven_armor(otmp) || (otmp->oartifact == ART_MENDAPAU));
 
 		    same_color =
 			(otmp->otyp == SILVER_DRAGON_SCALE_MAIL ||
@@ -5841,7 +5844,7 @@ enchantarmorchoiceX:
 		/* KMH -- catch underflow */
 		s = otmp->spe;
 
-		if (s > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
+		if (s > (super_special_armor ? 8 : special_armor ? 5 : 3) && rn2(s) && !rn2(3) )  {
 
 			if (otmp->oartifact) {
 				otmp->spe = 0;
@@ -5971,7 +5974,7 @@ enchantarmorchoiceX:
 
 		}
 
-		if ((otmp->spe > (is_droven_armor(otmp) ? 8 : special_armor ? 5 : 3)) &&
+		if ((otmp->spe > (super_special_armor ? 8 : special_armor ? 5 : 3)) &&
 		    (special_armor || !rn2(7)))
 			Your("%s suddenly %s %s.",
 				xname(otmp), otense(otmp, "vibrate"),

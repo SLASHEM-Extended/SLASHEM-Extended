@@ -450,7 +450,7 @@ unmap_object(x, y)
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
-	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4) ) {		\
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || (uarm && uarm->oartifact == ART_FEHLIRON) || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4) ) {		\
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));			\
 	return;								\
 	}								\
@@ -546,7 +546,7 @@ int memory_glyph(x, y)
 	return cmap_to_glyph(S_grayglyph);
 	}
 
-	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4)) {
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || (uarm && uarm->oartifact == ART_FEHLIRON) || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4)) {
 	return cmap_to_glyph(S_grayglyph);
 	}
 
@@ -1111,7 +1111,7 @@ newsym(x,y)
 	return;
 	}
 
-	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4)) {
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || (uarm && uarm->oartifact == ART_FEHLIRON) || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4)) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}
@@ -1563,7 +1563,7 @@ newsymX(x,y)
 	return;
 	}
 
-	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4)) {
+	if ((GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || (uarm && uarm->oartifact == ART_FEHLIRON) || have_graycenterstone()) && distu(x, y) < (GrayCenterXtra ? 9 : 4)) {
 	show_glyph(x, y, cmap_to_glyph(S_grayglyph));
 	return;
 	}

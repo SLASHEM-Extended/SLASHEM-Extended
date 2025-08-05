@@ -561,6 +561,10 @@ boolean shopinit;
 
 	else if ((objects[u.veryobtainable20].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost20) ) return(mksobj(u.veryobtainable20, TRUE, artif, shopinit));
 
+	else if (uarmu && uarmu->oartifact == ART_ELITE_FAN && !rn2(100) && (oclass == ARMOR_CLASS)) {
+		return(mksobj(BODYGLOVE, TRUE, artif, shopinit));
+	}
+
 	else if (!rn2(100) && oclass == ARMOR_CLASS) {
 
 		int freqhelmet = find_frequent_helmet();
@@ -4712,6 +4716,7 @@ boolean shopinit;
 	if (otmp && otmp->oclass != COIN_CLASS && trophylevel()) otmp->dknown = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && trophylevel()) otmp->bknown = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && (bucreclevel() > rn2(400)) ) otmp->bknown = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && uarm && uarm->oartifact == ART_ALTDETECTOR && !rn2(3)) otmp->bknown = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) == P_NONE && (enchantreclevel() > rn2(400)) ) otmp->known = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) != P_NONE && (weapchantreclevel() > rn2(400)) ) otmp->known = TRUE;
 
@@ -5618,6 +5623,8 @@ is_rustprone(otmp)
 register struct obj *otmp;
 {
 	int otyp = otmp->otyp;
+
+	if (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) return FALSE;
 
 	if (otmp && otmp->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 

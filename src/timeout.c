@@ -944,7 +944,7 @@ nh_timeout()
 	}
 	if (u.evilvartemporary < 0) u.evilvartemporary = 0; /* fail safe */
 
-	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !autismweaponcheck(ART_SACRIFICE_TONFA) && !have_bloodlossstone() && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !autismweaponcheck(ART_SACRIFICE_TONFA) && !have_bloodlossstone() && !(uarm && uarm->oartifact == ART_LIFE_DROP) && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
@@ -1340,7 +1340,7 @@ nh_timeout()
 
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
 
-	if (u.umoved && !rn2(500) && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+	if (u.umoved && !rn2(500) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 		pline("Well, you don't really feel comfortable with those columnar heels. They slow you down even though they're very pretty, and people might laugh at you.");
 	}
 
@@ -1354,7 +1354,7 @@ nh_timeout()
 		}
 	}
 
-	if (u.umoved && !rn2(flags.female ? 500 : 250) && (rnd(u.ulevel) < 11) && PlayerInBlockHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(flags.female ? 500 : 250) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && PlayerInBlockHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
 		if (uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
 			; /* do nothing */
 		} else {
@@ -1363,12 +1363,12 @@ nh_timeout()
 		}
 	}
 
-	if (u.umoved && !rn2(2000) && PlayerInWedgeHeels && (rnd(u.ulevel) < 11) && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(2000) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInWedgeHeels && (rnd(u.ulevel) < 11) && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
 		pline("Eep, you accidentally stepped into shit with your wedge heels!");
 		doshittrap((struct obj *)0);
 	}
 
-	if (u.umoved && PlayerInHighHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+	if (u.umoved && PlayerInHighHeels && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
 		boolean highheelfail = TRUE;
 
@@ -3294,6 +3294,10 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
+	if (!rn2(500) && uarm && uarm->oartifact == ART_LIFE_DROP) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
 	if (!rn2(500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_VAMPIRIC_SNEAKER) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
@@ -3498,6 +3502,14 @@ nh_timeout()
 		u.uenmax -= 1;
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
+	if (!rn2(2500) && uarm && uarm->oartifact == ART_LIFE_DROP) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
 	if (!rn2(2500) && have_bloodlossstone() ) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;
@@ -3576,6 +3588,10 @@ nh_timeout()
 		u.legscratching++;
 	}
 	if (!rn2(7500) && u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && uarm && uarm->oartifact == ART_LIFE_DROP) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}

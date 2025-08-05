@@ -1460,7 +1460,7 @@ walscholardone:
 		if (mode == DO_MOVE) {
 		    if (amorphous(youmonst.data))
 			You("try to ooze under the door, but can't squeeze your possessions through.");
-		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || autismweaponcheck(ART_HOW_IS_THE_CAR_ROWED) || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || autismweaponcheck(ART_SAY__CHESS_) || WallsAreHyperBlue ) ) {
+		    else if (iflags.autoopen && !Confusion && !Stunned && !Fumbling && levl[ux][uy].seenv && !(RightMouseButtonDoesNotGo || u.totter || (uarms && uarms->oartifact == ART_DOLORES__VIRGINITY) || (uarms && uarms->oartifact == ART_BLUE_SHIRT_OF_DEATH) || u.uprops[TOTTER_EFFECT].extrinsic || TotterTrapEffect || have_directionswapstone() || autismweaponcheck(ART_HOW_IS_THE_CAR_ROWED) || (uimplant && uimplant->oartifact == ART_CORTEX_COPROCESSOR) || ClockwiseSpinBug || u.uprops[CLOCKWISE_SPIN_BUG].extrinsic || have_clockwisestone() || CounterclockwiseSpin || u.uprops[COUNTERCLOCKWISE_SPIN_BUG].extrinsic || have_counterclockwisestone() || InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone() || QuasarVision || u.uprops[QUASAR_BUG].extrinsic || have_quasarstone() || GrayoutBug || u.uprops[GRAYOUT_BUG].extrinsic || have_grayoutstone() || (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST) || autismweaponcheck(ART_PWNHAMMER) || GrayCenterBug || u.uprops[GRAY_CENTER_BUG].extrinsic || have_graycenterstone() || (uarm && uarm->oartifact == ART_FEHLIRON) || Quaversal || u.uprops[QUAVERSAL].extrinsic || have_quaversalstone() || (uimplant && uimplant->oartifact == ART_ND_D___N_NDMNN_ND___NDMN_N) || autismweaponcheck(ART_OMGHAXERETH) || (SpellColorSilver && !u.seesilverspell) || CheckerboardBug || u.uprops[CHECKERBOARD_BUG].extrinsic || have_checkerboardstone() || autismweaponcheck(ART_SAY__CHESS_) || WallsAreHyperBlue ) ) {
 			    door_opened = flags.move = doopen_indir(x, y);
 			    opentry = 1;
 		    }
@@ -4599,6 +4599,18 @@ maybe_wail()
 
     if (u.uhp == 1) {
 	u.cnd_bansheecount++;
+
+	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) {
+		buzz(23, 10, u.ux, u.uy, -1, 0);
+		buzz(23, 10, u.ux, u.uy, 1, 0);
+		buzz(23, 10, u.ux, u.uy, -1, 1);
+		buzz(23, 10, u.ux, u.uy, 1, 1);
+		buzz(23, 10, u.ux, u.uy, 0, 1);
+		buzz(23, 10, u.ux, u.uy, -1, -1);
+		buzz(23, 10, u.ux, u.uy, 1, -1);
+		buzz(23, 10, u.ux, u.uy, 0, -1);
+	}
+
 	if (autismweaponcheck(ART_P_WING)) {
 		if (uwep && uwep->spe > -10) {
 			uwep->spe = -10;
@@ -4608,6 +4620,18 @@ maybe_wail()
 	}
     } else {
 	u.cnd_cwnannwncount++;
+
+	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) {
+		buzz(21, 6, u.ux, u.uy, -1, 0);
+		buzz(21, 6, u.ux, u.uy, 1, 0);
+		buzz(21, 6, u.ux, u.uy, -1, 1);
+		buzz(21, 6, u.ux, u.uy, 1, 1);
+		buzz(21, 6, u.ux, u.uy, 0, 1);
+		buzz(21, 6, u.ux, u.uy, -1, -1);
+		buzz(21, 6, u.ux, u.uy, 1, -1);
+		buzz(21, 6, u.ux, u.uy, 0, -1);
+	}
+
 	if (autismweaponcheck(ART_P_WING)) {
 		if (uwep) {
 			curse(uwep);
@@ -5621,6 +5645,11 @@ int k_format; /* WAC k_format is an int */
 		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
+	}
+
+	if (uarmu && uarmu->oartifact == ART_ANGRY_TOMMY_ && !u.berserktime && !rn2(20)) {
+		u.berserktime = 25;
+		You("feel really angry!");
 	}
 
 	if (Race_if(PM_CELTIC) && !rn2(100)) {
