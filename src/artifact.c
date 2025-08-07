@@ -2004,6 +2004,9 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+		    if (otmp && otmp->oartifact == ART_EL_GERBOBLANE) {
+			otmp->spe += 7;
+		    }
 		    if (otmp && otmp->oartifact == ART_LOCKED_TWENNY) {
 			otmp->spe -= 20;
 			otmp->oinvis = TRUE;
@@ -2065,6 +2068,11 @@ register boolean mod;
 
 		    if (otmp && otmp->oartifact == ART_PITCH_HAD_) {
 			NastinessProblem += 1000; /* no message, this is intentional --Amy */
+		    }
+
+		    if (otmp && otmp->oartifact == ART_NOMEIN_DERGOBLA) {
+				pline("A female voice is laughing incessantly...");
+				getfeminismtrapintrinsic();
 		    }
 
 		    if (otmp && otmp->oartifact == ART_LUCKY_GENERATION) {
@@ -4748,7 +4756,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 			goto beheadingdone;
 		} else {
 			/* Invulnerable player won't be bisected */
-			if (bigmonst(youmonst.data) || (uwep && uwep->oartifact == ART_KATANA_OF_MASAMUNE) || StrongDiminishedBleeding || Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
+			if (bigmonst(youmonst.data) || (uwep && uwep->oartifact == ART_KATANA_OF_MASAMUNE) || (uarms && uarms->oartifact == ART_NEXTO_LER) || StrongDiminishedBleeding || Invulnerable || ((PlayerInBlockHeels || PlayerInWedgeHeels) && tech_inuse(T_EXTREME_STURDINESS) && !rn2(2) ) || (Stoned_chiller && Stoned && !(u.stonedchilltimer) && !rn2(3)) ) {
 				pline("%s cuts deeply into you!",
 				      magr ? Monnam(magr) : wepdesc);
 				*dmgptr *= 2;
@@ -4836,7 +4844,13 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				*dmgptr = 0;
 				willreturntrue = 1;
 				goto beheadingdone;
+			}
 
+			if (uarms && uarms->oartifact == ART_NEXTO_LER) {
+				pline("Somehow, %s misses you wildly.", magr ? mon_nam(magr) : wepdesc);
+				*dmgptr = 0;
+				willreturntrue = 1;
+				goto beheadingdone;
 			}
 
 			if (uarmh && uarmh->oartifact == ART_REST_THE_CASE) {
@@ -4844,20 +4858,17 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 				*dmgptr = 0;
 				willreturntrue = 1;
 				goto beheadingdone;
-
 			}
 
 			if (uarmh && itemhasappearance(uarmh, APP_COMPLETE_HELMET) ) {
 				pline("%s slices into your %s.", wepdesc, body_part(NECK));
 				willreturntrue = 1;
 				goto beheadingdone;
-
 			}
 			if (RngeAntiBeheading) {
 				pline("%s slices into your %s.", wepdesc, body_part(NECK));
 				willreturntrue = 1;
 				goto beheadingdone;
-
 			}
 
 			if (noncorporeal(youmonst.data) || amorphous(youmonst.data)) {
@@ -6031,6 +6042,50 @@ chargingchoice:
 			flags.botl = TRUE;
 
 			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(u.nukafemeffect) );
+
+			break;
+		}
+
+		if (obj->oartifact == ART_FIBREFIX) {
+			heal_legs();
+			break;
+		}
+
+		if (obj->oartifact == ART_END_OF_LIST) {
+			pline("A voice echoes:");
+			verbalize("By thy Imperious order, %s...", flags.female ? "Dame" : "Sire");
+			do_genocide(5);	/* REALLY|ONTHRONE, see do_genocide() */
+			break;
+		}
+
+		if (obj->oartifact == ART_GEODENE_CAVE) {
+
+			int i, j;
+			for (i = -1; i <= 1; i++) for(j = -1; j <= 1; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ == STALACTITE) {
+					levl[u.ux + i][u.uy + j].typ = CORR;
+
+					if (!rn2(3)) { /* 80% chance of glass, 20% of precious gems */
+						if (rn2(5)) mksobj_at(rnd_class(JADE+1, LUCKSTONE-1), u.ux + i, u.uy + j, TRUE, FALSE, FALSE);
+						else mksobj_at(rnd_class(DILITHIUM_CRYSTAL, JADE), u.ux + i, u.uy + j, TRUE, FALSE, FALSE);
+						pline("A stalactite turns into gems!");
+
+						if (practicantterror && !u.pract_oremining) {
+							pline("%s booms: 'Didn't you hear? Mining my ore is forbidden! That's 1000 zorkmids, and you still have one minute to get away from my ore, got it?'", noroelaname());
+							fineforpracticant(1000, 0, 0);
+							u.pract_oremining = TRUE;
+						}
+
+						break;
+					} else {
+						pline("A stalactite shatters!");
+						break;
+					}
+
+				}
+
+			}
 
 			break;
 		}

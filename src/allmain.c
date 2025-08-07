@@ -2633,6 +2633,19 @@ moveloop()
 			u.catwalknastytrap = rnd(285); /* timerun */
 		}
 
+		if (uarm && uarm->oartifact == ART_PORKMAN_S_OLD_VERSION && !rn2(5000)) {
+			if (uarm->spe < 25) {
+				uarm->spe++;
+				Your("armor becomes harder.");
+			} else {
+				u.uhpmax += 5;
+				u.uenmax += 5;
+				if (Upolyd) u.mhmax += 5;
+				flags.botl = TRUE;
+				You_feel("physically and mentally stronger!");
+			}
+		}
+
 		if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && !uarms->oeroded) uarms->oeroded = 1;
 
 		if (FemtrapActiveSabrina) {
@@ -2729,6 +2742,12 @@ moveloop()
 
 		if (autismweaponcheck(ART_ELEMENTAL_STAFF)) {
 			artilist[ART_ELEMENTAL_STAFF].attk.adtyp = !rn2(3) ? AD_FIRE : !rn2(2) ? AD_COLD : AD_ELEC;
+		}
+
+		if (uarm && uarm->oartifact == ART_COUGH_CLOUD && !rn2(200)) {
+
+			if (isok(u.ux,u.uy)) (void) create_gas_cloud(u.ux, u.uy, 4, 10);
+			Your("scale mail creates a poison gas cloud!");
 		}
 
 		if (uarmf && uarmf->oartifact == ART_SEXY_PUMPS_OF_RAGNAROK) {
@@ -3001,6 +3020,16 @@ moveloop()
 		}
 
 		if (uwep && uwep->otyp == PINK_LIGHTSWORD && uwep->lamplit && !rn2(100)) {
+			u.uenmax--;
+			if (u.uenmax < 0) {
+				u.uenmax = 0;
+				drain_alla(1);
+			}
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			flags.botl = TRUE;
+			pline("Attention, the pink lightsword is draining your mana.");
+		}
+		if (u.twoweap && uswapwep && uswapwep->otyp == PINK_LIGHTSWORD && uswapwep->lamplit && !rn2(100)) {
 			u.uenmax--;
 			if (u.uenmax < 0) {
 				u.uenmax = 0;
@@ -9966,6 +9995,10 @@ newbossO:
 			bad_artifact();
 		}
 
+		if (!rn2(2000) && (uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL) ) {
+			bad_artifact();
+		}
+
 		if (!rn2(CovidEffectXtra ? 20 : 1000) && CovidTrapEffect) {
 			nivellate();
 		}
@@ -11695,7 +11728,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uarm && uarm->oartifact == ART_DREHN_PIPE) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -13369,7 +13402,7 @@ newboss:
 		else if (!multi) flags.soundok = 1;
 
 		/* Let's throw a bone to permablind races. --Amy */
-		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() && !(uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) ) {
+		if (!Unidentify && !u.uprops[UNIDENTIFY].extrinsic && !have_unidentifystone() && !(uarms && uarms->oartifact == ART_KAVYA_S_HASPLE) && !(uarmh && uarmh->oartifact == ART_YOU_DON_T_KNOW_SHIT) ) {
 
 			if (invent) {
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {
@@ -13452,6 +13485,33 @@ newboss:
 
 
 		if (Unidentify ) {
+
+			if (invent) {
+			    for (otmpi = invent; otmpi; otmpi = otmpii) {
+			      otmpii = otmpi->nobj;
+	
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
+					otmpi->bknown = FALSE;
+					u.cnd_unidentifycount++;
+				}
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
+					otmpi->dknown = FALSE;
+					u.cnd_unidentifycount++;
+				}
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
+					otmpi->rknown = FALSE;
+					u.cnd_unidentifycount++;
+				}
+				if (!rn2(UnidentifyXtra ? 800 : 4000)) {
+					otmpi->known = FALSE;
+					u.cnd_unidentifycount++;
+				}
+			    }
+			}
+
+		}
+
+		if (uarms && uarms->oartifact == ART_KAVYA_S_HASPLE) {
 
 			if (invent) {
 			    for (otmpi = invent; otmpi; otmpi = otmpii) {

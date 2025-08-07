@@ -142,6 +142,7 @@ const char *name;	/* if null, then format `obj' */
 		}
 
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
+		if (uarms->oartifact == ART_ATTRACTOR) shieldblockrate += 20;
 		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
@@ -448,6 +449,12 @@ shieldblockboo:
 			else You("skillfully evade %s.", onm);
 			return(0);
 
+	} else if (uarm && uarm->oartifact == ART_SILVERY_FLUID && !rn2(3)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
 	} else if (powerfulimplants() && (!rn2(extrachance) || !rn2(extrachance) || !rn2(extrachance)) && uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
@@ -466,6 +473,10 @@ shieldblockboo:
 
 	} else if (uarm && uarm->oartifact == ART_BULLETSTOPPER && !rn2(2) && obj && is_bullet(obj) ) {
 			pline_The("armor deflects the shot.");
+			return(0);
+
+	} else if (uarm && uarm->oartifact == ART_FRANZISKA_S_SHOULDER_PADS && rn2(4) && obj && is_bullet(obj) ) {
+			pline_The("shoulder pad deflects the shot.");
 			return(0);
 
 	} else if (uarmc && itemhasappearance(uarmc, APP_KEVLAR_CLOAK) && !rn2(10)) {

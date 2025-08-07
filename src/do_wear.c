@@ -3863,6 +3863,8 @@ Shield_on()
 	Your("shield is very heavily cursed!");
     }
 
+    if (uarms && uarms->oartifact == ART_PERMOSTAND && uarms->spe < 5) uarms->spe = 5;
+
     if (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) {
 	curse(uarms);
 	uarms->hvycurse = TRUE;
@@ -3872,6 +3874,11 @@ Shield_on()
     if (uarms && uarms->oartifact == ART_CREMATED && (objects[uarms->otyp].oc_color != CLR_ORANGE)) {
 		pline_The("shield becomes orange!");
 		objects[uarms->otyp].oc_color = CLR_ORANGE;
+    }
+
+    if (uarms && uarms->oartifact == ART_WORKER_METAL && (objects[uarms->otyp].oc_material != MT_ALLOY)) {
+		pline_The("shield is made of alloy now.");
+		objects[uarms->otyp].oc_material = MT_ALLOY;
     }
 
     if (uarms && uarms->oartifact == ART_BURNING_DISK) {
@@ -4361,6 +4368,12 @@ Armor_on()
 			pline("Your detect monsters has been deactivated for a very long time.");
 		}
 
+	}
+
+	if (uarm && uarm->oartifact == ART_PORKMAN_S_OLD_VERSION) {
+		curse(uarm);
+		uarm->hvycurse = TRUE;
+		pline("Heh heh heh, now you're stuck playing Porkman's old version of this game.");
 	}
 
 	if (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) {
@@ -6985,6 +6998,8 @@ struct obj *obj;
 	if (obj->otyp == BROKEN_SHIELD && armoringvalue > 0) armoringvalue = 0;
 	if (obj->otyp == CRUMBLED_SHIRT && armoringvalue > 0) armoringvalue = 0;
 
+	if (uarm && uarm->oartifact == ART_FUCKING_WALL && armoringvalue > 0) armoringvalue = 0;
+
 	return armoringvalue;
 
 }
@@ -7042,7 +7057,7 @@ find_ac()
 	else uac -= 10;
 
 	if (Role_if(PM_MONK) && !uwep && (!uarm || (u.martialstyle == MARTIALSTYLE_MARSHALARTS) || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) ||
-		(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) && (!uarms || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) ) {
+		(uarm->otyp >= ELVEN_TOGA && uarm->otyp <= ROBE_OF_WEAKNESS)) && (!uarms || (uarms && uarms->oartifact == ART_KUNGHEAVEN) || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) ) {
 /*WAC cap off the Monk's ac bonus to -11 */
             if (u.ulevel > 18) uac -= 11;
             else uac -= (u.ulevel / 2) + 2;
@@ -7397,6 +7412,9 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_STEEL_ON_STEEL) uac -= 3;
 	if (uarm && uarm->oartifact == ART_MAEDHROS_SARALONDE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_QUARRY) uac -= 5;
+	if (uarm && uarm->oartifact == ART_ORANGE_AC) uac -= 3;
+	if (uarm && uarm->oartifact == ART_FUCKING_WALL) uac -= 50;
+	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) uac -= 6;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
 	if (uarm && uarm->oartifact == ART_FOKING_TENK) uac -= 7;
@@ -7440,6 +7458,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
 	if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) uac -= 3;
 	if (uamul && uamul->oartifact == ART_ARTWORK) uac -= 5;
+	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) uac -= 4;
 	if (uamul && uamul->oartifact == ART_PLANTIT) {
 		if (P_SKILL(P_IMPLANTS) >= P_BASIC) uac -= 2;
 		if (P_SKILL(P_IMPLANTS) >= P_SKILLED) uac -= 2;
@@ -7454,6 +7473,7 @@ find_ac()
 		if (P_MAX_SKILL(P_IMPLANTS) >= P_GRAND_MASTER) uac -= 1;
 		if (P_MAX_SKILL(P_IMPLANTS) >= P_SUPREME_MASTER) uac -= 1;
 	}
+	if (uarm && uarm->oartifact == ART_ALEIT_GIVESITNOT) uac -= 10;
 	if (uleft && uleft->oartifact == ART_FUW_TENK) uac -= 20;
 	if (uright && uright->oartifact == ART_FUW_TENK) uac -= 20;
 	if (uarm && uarm->oartifact == ART_ONDONS) uac -= 1;
@@ -7491,6 +7511,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_THREE) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FIVE) uac -= 5;
+	if (uarm && uarm->oartifact == ART_GREAT_TOME) uac -= 11;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TEN) uac -= 10;
 	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) ) uac -= 3;
 	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
@@ -7503,9 +7524,14 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_NULARMOR) uac += 5;
 	if (uarm && uarm->oartifact == ART_MALLNOM) uac -= 2;
 	if (uarm && uarm->oartifact == ART_LOCKED_TWENNY) uac -= 20;
+	if (uarm && uarm->oartifact == ART_ENCHANTEMPT && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) uac -= 7;
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_EMSE_TRADE) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
+	if (uarm && uarm->oartifact == ART_OBERTURT && is_grassland(u.ux, u.uy)) {
+		uac -= 10;
+		if (uarm->otyp == CONTRO_DRAGON_SCALES) uac -= 10;
+	}
 	if (uarm && uarm->oartifact == ART_SIVEGLIDE && uarm->otyp == LIZARD_SCALES) uac -= 7;
 	if (uarm && uarm->oartifact == ART_BRITNEY_S_DECEPTION) uac -= 6;
 	if (uwep && uwep->oartifact == ART_MAGDALENA_S_CUDDLEWEAPON) uac -= 5;
@@ -7588,6 +7614,10 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) uac -= 5;
 	if (Race_if(PM_HYPOTHERMIC) && uarmc) uac -= 3;
+	if (uarm && uarm->oartifact == ART_FLEECELGIRL_FROM_THE_OLD_T) {
+		uac -= 3;
+		if (uarm->otyp == PLAIN_DRAGON_SCALES) uac -= 2;
+	}
 	if (uarmc && uarmc->oartifact == ART_DANG_ARMOR) {
 		uac -= 3;
 		if (uarmc->spe > 0) uac -= uarmc->spe;

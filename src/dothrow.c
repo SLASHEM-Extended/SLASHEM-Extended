@@ -2053,7 +2053,7 @@ int thrown;
 	if (ACURR(A_DEX) == 1) {
 		if (!rn2(7)) misfire = TRUE;
 	}
-	if (is_grassland(u.ux, u.uy) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) ) {
+	if (is_grassland(u.ux, u.uy) && !(uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL) && !(uarm && uarm->oartifact == ART_OBERTURT) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS)) ) {
 		if (!rn2(7)) misfire = TRUE;
 	}
 	if (obj->greased) {
@@ -2819,6 +2819,7 @@ boolean polearming;
 	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;
+	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) tmp += 5;
 	if (uright && uright->oartifact == ART_HEXTROSE) tmp += 6;
 	if (Role_if(PM_ARCHEOLOGIST) && uamul && uamul->oartifact == ART_ARCHEOLOGIST_SONG) tmp += 2;
 	if (u.boosttimer) tmp += 5;
@@ -2936,7 +2937,7 @@ boolean polearming;
 
 	if (Role_if(PM_OTAKU) && uarmc && itemhasappearance(uarmc, APP_FOURCHAN_CLOAK)) tmp += 1;
 
-	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_OBERTURT) && !(uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 
 	if (ACURR(A_DEX) < 2) tmp -= 5;
 	else if (ACURR(A_DEX) < 3) tmp -= 4;

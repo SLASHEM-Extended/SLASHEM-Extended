@@ -146,7 +146,7 @@ on the first floor, especially when you're playing as something with drain resis
 				}
 			}
 
-			if ((flags.female && !(uarmg && itemhasappearance(uarmg, APP_FALCONRY_GLOVES) && rn2(5) ) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) ) { 
+			if ((flags.female && !(uarmg && itemhasappearance(uarmg, APP_FALCONRY_GLOVES) && rn2(5) ) && !(uarms && uarms->oartifact == ART_NOMEIN_DERGOBLA) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY) && (!issoviet || !rn2(5)) && !rn2(player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10)) || (uarmf && itemhasappearance(uarmf, APP_FETISH_HEELS)) ) { 
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s gently strokes and squeezes your breasts, and you are sexually aroused by the soft touch.", Monnam(mtmp));
@@ -392,7 +392,7 @@ kseniaagain:
 				if (!rn2(20)) badeffect();
 			}
 
-			if ( ((!flags.female && !(uarmg && itemhasappearance(uarmg, APP_LATEX_GLOVES) && rn2(5) ) && !(uarmu && uarmu->oartifact == ART_LUISA_S_FELLOW_FEELING) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
+			if ( ((!flags.female && !(uarmg && itemhasappearance(uarmg, APP_LATEX_GLOVES) && rn2(5) ) && !(uarms && uarms->oartifact == ART_NOMEIN_DERGOBLA) && !(uarmu && uarmu->oartifact == ART_LUISA_S_FELLOW_FEELING) && !(uwep && uwep->oartifact == ART_LUISA_S_CHARMING_BEAUTY)) || FemtrapActiveKarin) && (!issoviet || !rn2(5)) && !rn2(Role_if(PM_PROSTITUTE) ? 1 : Role_if(PM_KURWA) ? 1 : player_shades_of_grey() ? 3 : (u.ualign.type == A_LAWFUL) ? 50 : (u.ualign.type == A_NEUTRAL) ? 30 : 10) ) {
 
 				if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) {
 					pline("%s powerfully kicks you in the nuts, and you moan in lust because you love the pain.", Monnam(mtmp));
@@ -6949,6 +6949,7 @@ struct monst *mon;
 		if (uarmc && uarmc->oartifact == ART_FRADLE_OF_EG) armpro++;
 		if (uarmg && uarmg->oartifact == ART_EM_SI) armpro++;
 		if (uarmc && uarmc->oartifact == ART_NEW_COAT) armpro++;
+		if (uarms && uarms->oartifact == ART_HEAVE_FIELD) armpro++;
 		if (uarmf && uarmf->oartifact == ART_SPFLOTCH__HAHAHAHAHA_) armpro++;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) armpro++;
 		if (Race_if(PM_INKA)) armpro++;
@@ -21361,6 +21362,15 @@ register struct attack *mattk;
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(16) ) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+	if (uarm && uarm->oartifact == ART_FUNGOTIDE && mtmp->data->mlet == S_FUNGUS) {
+		pline("%s is damaged by your copper scales!", Monnam(mtmp));
+		if((mtmp->mhp -= rnz(20) ) <= 0) {
+			pline("%s decomposes!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;

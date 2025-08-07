@@ -1147,6 +1147,8 @@ int mode;
 	    ;	/* dryad can walk thru trees --Amy */
 	} else if (uarmg && uarmg->oartifact == ART_GREEN_THUMB && tmpr->typ == TREE) {
 	    ;
+	} else if (uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL && tmpr->typ == TREE) {
+	    ;
 	} else if (uarmf && uarmf->oartifact == ART_EVERYTHING_IS_GREEN && tmpr->typ == TREE) {
 	    ;	/* special effect of that artifact --Amy */
 	} else if (uamul && uamul->oartifact == ART_DON_T_WORRY && tmpr->typ == TREE) {
@@ -1193,9 +1195,9 @@ int mode;
 		}
 
 	} else if (tmpr->typ == FARMLAND) {
-		if (mode != DO_MOVE && !Levitation && !Flying && !(uamul && uamul->oartifact == ART_DON_T_WORRY) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
+		if (mode != DO_MOVE && !Levitation && !Flying && !(uamul && uamul->oartifact == ART_DON_T_WORRY) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED)) return FALSE;
 
-		if (mode == DO_MOVE && !Levitation && !Flying && !(uamul && uamul->oartifact == ART_DON_T_WORRY) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
+		if (mode == DO_MOVE && !Levitation && !Flying && !(uamul && uamul->oartifact == ART_DON_T_WORRY) && !(uarmf && uarmf->oartifact == ART_PURPLE_JUNGLE) && !(uarmf && uarmf->oartifact == ART_UTE_S_GREENCHANGE) && !(uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL) && !(ublindf && ublindf->oartifact == ART_FREEBOUND) && !(uarm && uarm->oartifact == ART_TILLING_FIELDS) && !(uwep && uwep->oartifact == ART_UNDERIRDIC_) && !(uwep && uwep->oartifact == ART_GARY_S_RIVALRY) && !(uwep && uwep->oartifact == ART_REAL_WALKING) && !(u.usteed && u.usteed->data->mlet == S_QUADRUPED) && !(Upolyd && youmonst.data->mlet == S_QUADRUPED) && !(powerfulimplants() && uimplant && uimplant && uimplant->oartifact == ART_SIGNIFICANT_RNG_JITTER) ) {
 
 			if (WallsAreHyperBlue) {
 				You("crash into a farmland! Ouch!");
@@ -5961,6 +5963,7 @@ inv_weight()
 	if (uarmh && itemhasappearance(uarmh, APP_LEAD_HELMET)) wt += 50;
 	if (uarmf && itemhasappearance(uarmf, APP_LEAD_BOOTS)) wt += 100;
 	if (uarm && uarm->oartifact == ART_SUPERHEAVY_GARBO) wt += 250;
+	if (uarm && uarm->oartifact == ART_GREAT_TOME) wt += 1000;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
 	if (have_stashitcontainer()) wt += 1000;
 	if (uwep && uwep->oartifact == ART_MJOLLNIR) wt += 500;

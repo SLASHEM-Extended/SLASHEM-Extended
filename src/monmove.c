@@ -4728,7 +4728,7 @@ postmov:
 		}
 	    }
 
-	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(uarmc && uarmc->oartifact == ART_SATAN_S_SUGGESTION) && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
+	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(uarms && uarms->oartifact == ART_SEALIFE_REVEAL) && !(uarmc && uarmc->oartifact == ART_SATAN_S_SUGGESTION) && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
 		/* Always set--or reset--mundetected if it's already hidden
 		   (just in case the object it was hiding under went away);
 		   usually set mundetected unless monster can't move.  */

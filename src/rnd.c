@@ -5359,6 +5359,7 @@ getnastytrapintrinsic()
 
 }
 
+/* player gets a random feminism trap effect for a certain time --Amy */
 void
 randomfeminismtrap(duration)
 int duration;
@@ -5788,6 +5789,434 @@ int duration;
 	}
 }
 
+/* player gets a random feminism trap effect permanently --Amy */
+void
+getfeminismtrapintrinsic()
+{
+	switch (rnd(103)) {
+		case 1:
+			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
+			FemaleTrapSarah |= FROMOUTSIDE;
+			break;
+		case 2:
+			if (!FemtrapActiveRuth) pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
+			FemaleTrapClaudia |= FROMOUTSIDE;
+			break;
+		case 3:
+			if (!FemtrapActiveRuth) pline("You'll certainly like to listen to the disgusting toilet noises.");
+			FemaleTrapLudgera |= FROMOUTSIDE;
+			break;
+		case 4:
+			if (!FemtrapActiveRuth) pline("You feel like being kicked by sexy girls and cleaning their shoes.");
+			FemaleTrapKati |= FROMOUTSIDE;
+			break;
+		case 5:
+			if (!FemtrapActiveRuth) pline("All the girls want to use their sexy butt cheeks as weapons now!");
+			FemaleTrapMeltem |= FROMOUTSIDE;
+			break;
+		case 6:
+			if (!FemtrapActiveRuth) pline("Now, the dungeon will be more feminine for a while!");
+			FemaleTrapFemmy |= FROMOUTSIDE;
+			break;
+		case 7:
+			if (!FemtrapActiveRuth) pline("Your shins can expect to get kicked repeatedly by all the girls and women now!");
+			FemaleTrapMadeleine |= FROMOUTSIDE;
+			break;
+		case 8:
+			if (!FemtrapActiveRuth) pline("Green is the new favorite color, it seems!");
+			FemaleTrapMarlena |= FROMOUTSIDE;
+			break;
+		case 9:
+			if (!FemtrapActiveRuth) pline("Suddenly, you feel that you're going to step into a heap of shit.");
+			FemaleTrapAnastasia |= FROMOUTSIDE;
+			break;
+		case 10:
+			if (!FemtrapActiveRuth) pline("Your butt cheeks suddenly feel very tender, and in fact, a similar thing is happening to your entire body!");
+			FemaleTrapJessica |= FROMOUTSIDE;
+			break;
+		case 11:
+			if (!FemtrapActiveRuth) pline("You suddenly have a very grating, aggravating voice, and you start to emit a beguiling odor! In fact, you're super sexy and sweet now!");
+			FemaleTrapSolvejg |= FROMOUTSIDE;
+			break;
+		case 12:
+			if (!FemtrapActiveRuth) pline("All the female denizens of the dungeon will show you their true power, and it will happen very soon!");
+			FemaleTrapWendy |= FROMOUTSIDE;
+			break;
+		case 13:
+			if (!FemtrapActiveRuth) pline("You feel that the girls and women are getting ready to use their sexy butts as weapons.");
+			FemaleTrapKatharina |= FROMOUTSIDE;
+			break;
+		case 14:
+			if (!FemtrapActiveRuth) pline("You long for beautiful sexy women with tender butt cheeks and lovely high heels.");
+			FemaleTrapElena |= FROMOUTSIDE;
+			break;
+		case 15:
+			if (!FemtrapActiveRuth) pline("You feel that you'll want to use the toilet more often. Also, somehow your physique seems weaker now...");
+			FemaleTrapThai |= FROMOUTSIDE;
+			break;
+		case 16:
+			if (!FemtrapActiveRuth) pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
+			FemaleTrapElif |= FROMOUTSIDE;
+			break;
+		case 17:
+			if (!FemtrapActiveRuth) pline("You feel that you angered the womanhood. If you now hit a woman, you will be hit with retribution!");
+			FemaleTrapNadja |= FROMOUTSIDE;
+			break;
+		case 18:
+			if (!FemtrapActiveRuth) pline("You just know that your legs are going to be ripped open by very sharp-edged combat boot heels.");
+			FemaleTrapSandra |= FROMOUTSIDE;
+			break;
+		case 19:
+			if (!FemtrapActiveRuth) pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+			FemaleTrapNatalje |= FROMOUTSIDE;
+			break;
+		case 20:
+			if (!FemtrapActiveRuth) pline("Lots of shreds of skin will be scraped off your shins, and the girls will enjoy it.");
+			FemaleTrapJeanetta |= FROMOUTSIDE;
+			break;
+		case 21:
+			if (!FemtrapActiveRuth) pline("You feel that people are building toilets for you to use.");
+			FemaleTrapYvonne |= FROMOUTSIDE;
+			break;
+		case 22:
+			if (!FemtrapActiveRuth) pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
+			FemaleTrapMaurah |= FROMOUTSIDE;
+			break;
+		case 23:
+			if (!FemtrapActiveRuth) pline("You fear that the women are going to crush you with a hug.");
+			FemaleTrapNelly |= FROMOUTSIDE;
+			break;
+		case 24:
+			if (!FemtrapActiveRuth) pline("It seems that the women are running faster.");
+			FemaleTrapEveline |= FROMOUTSIDE;
+			break;
+		case 25:
+			if (!FemtrapActiveRuth) pline("All the women want to knee you in the delicate nuts now!");
+			FemaleTrapKarin |= FROMOUTSIDE;
+			break;
+		case 26:
+			if (!FemtrapActiveRuth) pline("Oh no, your shins are almost broken!");
+			FemaleTrapJuen |= FROMOUTSIDE;
+			break;
+		case 27:
+			if (!FemtrapActiveRuth) pline("Urgh, you can already smell the stench of stinking cigarettes!");
+			FemaleTrapKristina |= FROMOUTSIDE;
+			break;
+		case 28:
+			if (!FemtrapActiveRuth) pline("These damn people want to use your precious clothing to brush off their dirty shoes!");
+			FemaleTrapLou |= FROMOUTSIDE;
+			break;
+		case 29:
+			if (!FemtrapActiveRuth) pline("The girls feel like kicking your hands bloodily with their sneakers!");
+			FemaleTrapAlmut |= FROMOUTSIDE;
+			break;
+		case 30:
+			if (!FemtrapActiveRuth) pline("Now you'll be subjected to Julietta's torture, and she'll subject you to random punishments from time to time.");
+			FemaleTrapJulietta |= FROMOUTSIDE;
+			break;
+		case 31:
+			if (!FemtrapActiveRuth) pline("Oh no, the master of nasty traps is laying out her snares to get you!");
+			FemaleTrapArabella |= FROMOUTSIDE;
+			break;
+		case 32:
+			if (!FemtrapActiveRuth) pline("You feel that there are women around who really like various high heels.");
+			FemaleTrapKristin |= FROMOUTSIDE;
+			break;
+		case 33:
+			if (!FemtrapActiveRuth) pline("Oh, it seems that the hussies are on the loose!");
+			FemaleTrapAnna |= FROMOUTSIDE;
+			break;
+		case 34:
+			if (!FemtrapActiveRuth) pline("You get the feeling that some women are trying to convert you.");
+			FemaleTrapRuea |= FROMOUTSIDE;
+			break;
+		case 35:
+			if (!FemtrapActiveRuth) pline("Ack! There's birds on the loose, and they want to eat your shoes!");
+			FemaleTrapDora |= FROMOUTSIDE;
+			break;
+		case 36:
+			if (!FemtrapActiveRuth) pline("You want to endlessly listen to squeaking farting noises.");
+			FemaleTrapMarike |= FROMOUTSIDE;
+			break;
+		case 37:
+			if (!FemtrapActiveRuth) pline("The power of feminism compels you.");
+			FemaleTrapJette |= FROMOUTSIDE;
+			break;
+		case 38:
+			if (!FemtrapActiveRuth) pline("Oh my god, you are now afflicted with the life-threatening disease known as anorexia!");
+			FemaleTrapIna |= FROMOUTSIDE;
+			break;
+		case 39:
+			if (!FemtrapActiveRuth) pline("A heinously evil woman plans to force you to clean the shit from all kinds of female shoes...");
+			FemaleTrapSing |= FROMOUTSIDE;
+			break;
+		case 40:
+			if (!FemtrapActiveRuth) pline("There's some karate women who want to demonstrate their combat capabilities to you.");
+			FemaleTrapVictoria |= FROMOUTSIDE;
+			break;
+		case 41:
+			if (!FemtrapActiveRuth) pline("You suddenly feel that the women in this dungeon are quite attractive...");
+			FemaleTrapMelissa |= FROMOUTSIDE;
+			break;
+		case 42:
+			if (!FemtrapActiveRuth) pline("The women want to slit your legs with razor-sharp high heels! Be afraid of them!");
+			FemaleTrapAnita |= FROMOUTSIDE;
+			break;
+		case 43:
+			if (!FemtrapActiveRuth) pline("You feel that someone is going to open the zippers of your boots, making you fumble into a heap of dog shit.");
+			FemaleTrapHenrietta |= FROMOUTSIDE;
+			break;
+		case 44:
+			if (!FemtrapActiveRuth) pline("Oh no, some annoying blonde girl starts to follow you around. Sigh. Why can't you get a clever companion instead?!");
+			FemaleTrapVerena |= FROMOUTSIDE;
+			break;
+		case 45:
+			if (!FemtrapActiveRuth) pline("It seems that the women are doing athletic exercises.");
+			FemaleTrapAnnemarie |= FROMOUTSIDE;
+			break;
+		case 46:
+			if (!FemtrapActiveRuth) pline("The girls are planning to attack you with their sweaty socks!");
+			FemaleTrapJil |= FROMOUTSIDE;
+			break;
+		case 47:
+			if (!FemtrapActiveRuth) pline("Someone's hiding underneath a grave wall, but some of the grave walls have teleporters or cursed calleds underneath, so be careful!");
+			FemaleTrapJana |= FROMOUTSIDE;
+			break;
+		case 48:
+			if (!FemtrapActiveRuth) pline("Some girls are planning to use their sticky chewing gum as a trap to prevent you from getting away!");
+			FemaleTrapKatrin |= FROMOUTSIDE;
+			break;
+		case 49:
+			if (!FemtrapActiveRuth) pline("A stringy feminist named Gudrun is challenging you...");
+			FemaleTrapGudrun |= FROMOUTSIDE;
+			break;
+		case 50:
+			if (!FemtrapActiveRuth) pline("A fearless feminist named Ella is challenging you...");
+			FemaleTrapElla |= FROMOUTSIDE;
+			break;
+		case 51:
+			if (!FemtrapActiveRuth) pline("Some unfair woman wants to crush you with her block-heeled combat boots!");
+			FemaleTrapManuela |= FROMOUTSIDE;
+			break;
+		case 52:
+			if (!FemtrapActiveRuth) pline("The girls are going to fart you in the face without emitting any kind of sound.");
+			FemaleTrapJennifer |= FROMOUTSIDE;
+			break;
+		case 53:
+			if (!FemtrapActiveRuth) pline("You feel like a beautifully thick girl, capable of splitting enemies' skulls with blunt weapons!");
+			FemaleTrapPatricia |= FROMOUTSIDE;
+			break;
+		case 54:
+			if (!FemtrapActiveRuth) pline("You feel like walking the dyke with your extra thick block heels.");
+			FemaleTrapAntje |= FROMOUTSIDE;
+			break;
+		case 55:
+			if (!FemtrapActiveRuth) pline("Something tells you that you'd like to visit the public toilet.");
+			FemaleTrapAntjeX |= FROMOUTSIDE;
+			break;
+		case 56:
+			if (!FemtrapActiveRuth) pline("Those farmer girls plan to use block-heeled lady boots, wooden sandals and scentful sneakers on you!");
+			FemaleTrapKerstin |= FROMOUTSIDE;
+			break;
+		case 57:
+			if (!FemtrapActiveRuth) pline("Every woman is going to attack you with their clothing.");
+			FemaleTrapLaura |= FROMOUTSIDE;
+			break;
+		case 58:
+			if (!FemtrapActiveRuth) pline("You are commanded to seek out heaps of dog shit and step into it with your high heels. Something tells you that there are bad consequences if you don't obey this instruction.");
+			FemaleTrapLarissa |= FROMOUTSIDE;
+			break;
+		case 59:
+			if (!FemtrapActiveRuth) pline("You feel that eating is a sin and should be avoided at all costs, even though that may end up killing you.");
+			FemaleTrapNora |= FROMOUTSIDE;
+			break;
+		case 60:
+			{
+				if (flags.female) {
+					if (!FemtrapActiveRuth) pline("Ack! You suddenly have to deal with the effects of your menstruational period!");
+				} else {
+					if (!FemtrapActiveRuth) pline("Some russian girl decided that you're a very naughty boy, and will continuously bash your head with her high-heeled sandals.");
+				}
+			}
+			FemaleTrapNatalia |= FROMOUTSIDE;
+			break;
+		case 61:
+			if (!FemtrapActiveRuth) pline("You might have to fight some particularly powerful woman!");
+			FemaleTrapSusanne |= FROMOUTSIDE;
+			break;
+		case 62:
+			if (!FemtrapActiveRuth) pline("You're interested in seeing what kind of underwear the girls are wearing.");
+			FemaleTrapLisa |= FROMOUTSIDE;
+			break;
+		case 63:
+			if (!FemtrapActiveRuth) pline("Watch out, walking over the bridge has a large chance of you stepping into a heap of dog shit unexpectedly!");
+			FemaleTrapBridghitte |= FROMOUTSIDE;
+			break;
+		case 64:
+			if (!FemtrapActiveRuth) pline("Since it's unfair that you can simply hit women whenever you want to, you can no longer freely do so.");
+			FemaleTrapJulia |= FROMOUTSIDE;
+			break;
+		case 65:
+			if (!FemtrapActiveRuth) pline("The women are apparently surrounded by a dark aura! Is it some kind of black light, maybe?");
+			FemaleTrapNicole |= FROMOUTSIDE;
+			break;
+		case 66:
+			if (!FemtrapActiveRuth) pline("Hahahahaha, now the women can just trigger feminism traps at will and when they do, the trap effect in question will be activated for YOU! Hahaha!");
+			FemaleTrapRita |= FROMOUTSIDE;
+			break;
+		case 67:
+			if (!FemtrapActiveRuth) pline("Those women are gonna hang their worn pants in front of your %s, forcing you to smell them!", body_part(NOSE));
+			FemaleTrapJanina |= FROMOUTSIDE;
+			break;
+		case 68:
+			if (!FemtrapActiveRuth) pline("You'll have to struggle with feminism for a long time...");
+			FemaleTrapRosa |= FROMOUTSIDE;
+			break;
+		case 69:
+			if (!FemtrapActiveRuth) pline("The incredibly cute female platform sandals are looking forward to kicking you in the shins like a little girl.");
+			FemaleTrapKsenia |= FROMOUTSIDE;
+			break;
+		case 70:
+			if (!FemtrapActiveRuth) pline("You feel that you're gonna fight ladies who wear highly elegant cone-heeled pumps.");
+			FemaleTrapLydia |= FROMOUTSIDE;
+			break;
+		case 71:
+			if (!FemtrapActiveRuth) pline("Uh-oh, you're not sure that you can escape from the thick women...");
+			FemaleTrapConny |= FROMOUTSIDE;
+			break;
+		case 72:
+			if (!FemtrapActiveRuth) pline("Some little girl really wants to take a crap while you are nearby.");
+			FemaleTrapKatia |= FROMOUTSIDE;
+			break;
+		case 73:
+			if (!FemtrapActiveRuth) pline("You feel that some stinking girl is waiting until you're defenseless so that she can fart you into the face without you fighting back!");
+			FemaleTrapMariya |= FROMOUTSIDE;
+			break;
+		case 74:
+			if (!FemtrapActiveRuth) pline("The females are everywhere, it seems!");
+			FemaleTrapElise |= FROMOUTSIDE;
+			break;
+		case 75:
+			if (!FemtrapActiveRuth) pline("Somehow, the women have learned to heal their wounds quickly.");
+			FemaleTrapRonja |= FROMOUTSIDE;
+			break;
+		case 76:
+			if (!FemtrapActiveRuth) pline("You'll have to fight the girls from the Bang Gang as well as Anna's hussies, just like in the old times.");
+			FemaleTrapAriane |= FROMOUTSIDE;
+			break;
+		case 77:
+			if (!FemtrapActiveRuth) pline("Admit it, you fetishize female footwear, especially if they're block-heeled combat boots with long zippers and fleecy colors.");
+			FemaleTrapJohanna |= FROMOUTSIDE;
+			break;
+		case 78:
+			if (!FemtrapActiveRuth) pline("All the elegant ladies will produce very tender farting noises that you just cannot resist.");
+			FemaleTrapInge |= FROMOUTSIDE;
+			break;
+		case 79:
+			/* no message
+			 * "The dark girl has pulled the switch, and now feminism traps will work like nasty traps. Except that this message can never be displayed, because the trap in question works like a nasty trap itself." */
+			FemaleTrapRuth |= FROMOUTSIDE;
+			break;
+		case 80:
+			if (!FemtrapActiveRuth) pline("Oh, apparently you have to fight some particularly burly women. That's gonna be difficult.");
+			FemaleTrapMagdalena |= FROMOUTSIDE;
+			break;
+		case 81:
+			if (!FemtrapActiveRuth) pline("It seems the women are strengthening their defenses.");
+			FemaleTrapMarleen |= FROMOUTSIDE;
+			break;
+		case 82:
+			if (!FemtrapActiveRuth) pline("You become sensitive to the sound of high heels.");
+			FemaleTrapKlara |= FROMOUTSIDE;
+			break;
+		case 83:
+			if (!FemtrapActiveRuth) pline("Yay, a pretty girl with a long blond bundle starts following you around! She's certainly very nice and will have a lot of fun with you!");
+			FemaleTrapFriederike |= FROMOUTSIDE;
+			break;
+		case 84:
+			if (!FemtrapActiveRuth) pline("You have to wear your stiletto heels like a model, and if you fall, you have to smile anyway! That's the obligation of a model...");
+			FemaleTrapNaomi |= FROMOUTSIDE;
+			break;
+		case 85:
+			if (!FemtrapActiveRuth) pline("Uh-oh, the patriarch is coming to take your pretty high heels away. Make sure he doesn't catch you!");
+			FemaleTrapUte |= FROMOUTSIDE;
+			break;
+		case 86:
+			if (!FemtrapActiveRuth) pline("The sexy ladies are gonna challenge you again and again and again.");
+			FemaleTrapJasieen |= FROMOUTSIDE;
+			break;
+		case 87:
+			if (!FemtrapActiveRuth) pline("It seems that monsters may spotaneously turn into sexy women, as if there weren't enough of them running around the dungeon anyway.");
+			FemaleTrapYasaman |= FROMOUTSIDE;
+			break;
+		case 88:
+			if (!FemtrapActiveRuth) pline("Those little girls want to tease you by trying to steal things from your backpack for fun! You certainly know that this 'fun' will happen at your expense...");
+			FemaleTrapMayBritt |= FROMOUTSIDE;
+			break;
+		case 89:
+			if (!FemtrapActiveRuth) pline("Some dark feminists are coming to the dungeon.");
+			FemaleTrapNadine |= FROMOUTSIDE;
+			break;
+		case 90:
+			if (!FemtrapActiveRuth) pline("The girl shoes are starting to cheat in an attempt to kick you!");
+			FemaleTrapLuisa |= FROMOUTSIDE;
+			break;
+		case 91:
+			if (!FemtrapActiveRuth) pline("You'll have to fight a whole lot of women's shoes.");
+			FemaleTrapIrina |= FROMOUTSIDE;
+			break;
+		case 92:
+			if (!FemtrapActiveRuth) pline("The little girl wants to kick you in the shins and then retreat rapidly so that you can't attack her back!");
+			FemaleTrapLiselotte |= FROMOUTSIDE;
+			break;
+		case 93:
+			if (!FemtrapActiveRuth) pline("The Hussies are waiting for you on certain dungeon levels, because they have been hired by the Bang Gang bosses.");
+			FemaleTrapGreta |= FROMOUTSIDE;
+			break;
+		case 94:
+			if (!FemtrapActiveRuth) pline("Don't underestimate the women just because they have a small stature.");
+			FemaleTrapJane |= FROMOUTSIDE;
+			break;
+		case 95:
+			if (!FemtrapActiveRuth) pline("The Asian girls want to fart you in the face, and if you allow it, they'll be nice to you, but treat them badly and they'll slit your skin with very sharp female fingernails!");
+			FemaleTrapSueLyn |= FROMOUTSIDE;
+			break;
+		case 96:
+			if (!FemtrapActiveRuth) pline("Watch out, the Bang Gang is considering you a target. They're coming for you, and they have some tricks and traps ready.");
+			FemaleTrapCharlotte |= FROMOUTSIDE;
+			break;
+		case 97:
+			if (!FemtrapActiveRuth) pline("Careful, the girls may steal your stuff and vanish before your eyes!");
+			FemaleTrapHannah |= FROMOUTSIDE;
+			break;
+		case 98:
+			if (!FemtrapActiveRuth) pline("Oh no! Apparently the girls and women have prepared a really nasty counterattack to make your life miserable!");
+			FemaleTrapLittleMarie |= FROMOUTSIDE;
+			break;
+		case 99:
+			if (!FemtrapActiveRuth) pline("The girls learned takewondo, and will knock the crap out of you with their female sneakers.");
+			FemaleTrapTanja |= FROMOUTSIDE;
+			break;
+		case 100:
+			if (!FemtrapActiveRuth) pline("Seems that the girls will call for help if you attack them.");
+			FemaleTrapSonja |= FROMOUTSIDE;
+			break;
+		case 101:
+			if (!FemtrapActiveRuth) pline("Ugh, the girls and women are really going to beguile you with the horrible odor of their perfume!");
+			FemaleTrapRhea |= FROMOUTSIDE;
+			break;
+		case 102:
+			if (!FemtrapActiveRuth) pline("You look forward to being attacked by treaded block heel boots while you're bound to a stick.");
+			FemaleTrapLara |= FROMOUTSIDE;
+			break;
+		case 103:
+			if (!FemtrapActiveRuth) pline("Wear Sabrina's platform boots! Now! You just know that if you don't, some angry women will try to kill you.");
+			FemaleTrapSabrina |= FROMOUTSIDE;
+			break;
+	}
+}
+
+/* player gets a random nasty trap effect for a duration; different calculation if it's black ng walls --Amy */
 void
 randomnastytrapeffect(duration, blackngvar)
 int duration, blackngvar;
@@ -6116,6 +6545,7 @@ int duration, blackngvar;
 
 }
 
+/* player gets a specific nasty trap effect for a certain amount of time, using different calculations if it's black ng walls --Amy */
 void
 specificnastytrapeffect(efftype, nastyduration, blackngvar)
 int efftype, nastyduration, blackngvar;
@@ -6480,6 +6910,7 @@ boolean withtroves;
 	return monclassresult;
 }
 
+/* select a random feminism trap --Amy */
 int
 randomfeminismtraptype() /* keyword "marlena" */
 {

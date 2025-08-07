@@ -3185,6 +3185,8 @@ E int randweaponenchantment(void);
 
 E int randomfeminismtraptype(void);
 
+E void getfeminismtrapintrinsic(void);
+
 E int randartbadgraystone(void);
 E int randartfeminismjewel(void);
 

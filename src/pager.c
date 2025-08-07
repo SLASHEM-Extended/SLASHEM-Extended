@@ -29378,6 +29378,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You act quickly, but not quickly enough, and so the monster still gets a turn!",
 	"You feel that you have achieved the impossible.",
 	"You feel that you have achieved the impossible. But that feeling is an illusion, in reality you haven't achieved anything because you're a lazy fuck.",
+	"A female voice is laughing incessantly...",
+	"A female voice is laughing incessantly... and since this is SLEX, having to read this message causes all of your alarm bells to go off because it means something really bad must have happened.",
 
 };
 

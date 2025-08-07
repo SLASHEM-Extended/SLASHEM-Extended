@@ -1462,7 +1462,7 @@ glovesdone:
 
 	}
 
-	if ((otmp = uarms) != 0 && !(uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH) && !uarms->stckcurse) {
+	if ((otmp = uarms) != 0 && !(uarms && uarms->oartifact == ART_PERMOSTAND) && !(uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH) && !uarms->stckcurse) {
 	    You("can no longer hold your shield!");
 	    (void) Shield_off();
 	    dropx(otmp);

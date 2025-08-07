@@ -4717,6 +4717,7 @@ boolean shopinit;
 	if (otmp && otmp->oclass != COIN_CLASS && trophylevel()) otmp->bknown = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && (bucreclevel() > rn2(400)) ) otmp->bknown = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && uarm && uarm->oartifact == ART_ALTDETECTOR && !rn2(3)) otmp->bknown = TRUE;
+	if (otmp && otmp->oclass != COIN_CLASS && uarm && uarm->oartifact == ART_REALITY_SECRET && !rn2(3)) otmp->known = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) == P_NONE && (enchantreclevel() > rn2(400)) ) otmp->known = TRUE;
 	if (otmp && otmp->oclass != COIN_CLASS && weapon_type(otmp) != P_NONE && (weapchantreclevel() > rn2(400)) ) otmp->known = TRUE;
 
@@ -5536,6 +5537,8 @@ register struct obj *otmp;
 	int otyp = otmp->otyp;
 	int omat = objects[otyp].oc_material;
 
+	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
+
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));
 	}
@@ -5586,6 +5589,8 @@ register struct obj *otmp;
 	int otyp = otmp->otyp;
 	int omat = objects[otyp].oc_material;
 
+	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
+
 	if (itemhasappearance(otmp, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
 
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
@@ -5628,6 +5633,8 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 
+	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
+
 	if (SpellColorMetal) {
 		return (!(is_metallic(otmp)));
 	}
@@ -5657,6 +5664,8 @@ is_corrodeable(otmp)
 register struct obj *otmp;
 {
 	int otyp = otmp->otyp;
+
+	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));

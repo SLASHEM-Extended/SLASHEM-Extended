@@ -2795,9 +2795,13 @@ age_spells()
 	if (Keen_memory && !rn2(StrongKeen_memory ? 3 : 5)) /* sync this with cyan spells, see below! --Amy */
 		return;
 
+	/* !!! ATTENTION !!! keep *cyan spells* synchronized (much further below)!!! --Amy */
+
 	if (uarm && uarm->oartifact == ART_COPE_OF_THE_ELDRITCH_KNIGH && rn2(2)) return;
 
 	if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) return;
+
+	if (uarm && uarm->oartifact == ART_FLEECELGIRL_FROM_THE_OLD_T && !rn2(2)) return;
 
 	/* the spell color trap that causes your memory to decrease when casting shouldn't be too awfully harsh... --Amy
 	 * ATTENTION: cyan spells reduces memory when casting, please keep that synchronized!!! */
@@ -11076,6 +11080,7 @@ rerollX:
 		if (uamul && uamul->oartifact == ART_SUPER_MEMORY) cyanwillgodown = FALSE;
 		if (tech_inuse(T_SPELL_SPAM)) cyanwillgodown = FALSE;
 		if (uarms && uarms->oartifact == ART_UNUSUAL_ENCH && !rn2(5)) cyanwillgodown = FALSE;
+		if (uarm && uarm->oartifact == ART_FLEECELGIRL_FROM_THE_OLD_T && !rn2(2)) cyanwillgodown = FALSE;
 		if (rnd(urole.spelrete + 100) > 100) cyanwillgodown = FALSE;
 
 		if (!rn2(2) && spellmemorize(spell)) cyanwillgodown = FALSE;
@@ -11123,7 +11128,7 @@ rerollX:
 			drainknow(spell, rnd(100));
 			if (spellknow(spell) < 0) spl_book[spell].sp_know = 0;
 		}
-	}
+	} /* end cyan spells */
 
 	if (pseudo && pseudo->otyp == SPE_REBOOT && !rn2(10) ) {
 
@@ -12646,6 +12651,7 @@ int spell;
 	if (uarm && uarm->oartifact == ART_DRAGON_PLATE) chance -= 20;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) chance -= 20;
 	if (uarm && uarm->oartifact == ART_MADE_OF_IRON) chance -= 20;
+	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) chance -= 20;
 	if (StrongMagicVacuum) chance -= 50;
 
 	if (Race_if(PM_PLAYER_GOLEM)) {
@@ -12660,6 +12666,7 @@ int spell;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
 	if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) chance += 12;
 	if (uarm && uarm->oartifact == ART_FAMPLATE) chance += 20;
+	if (uarm && uarm->oartifact == ART_FINICKYMAG) chance += 15;
 	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;
 	if (uwep && uwep->otyp == OLDEST_STAFF) chance += 10;
 	if (uleft && uleft->oartifact == ART_HENRIETTA_S_MAGICAL_AID) chance += 50;
@@ -13189,7 +13196,7 @@ int spell;
 
 	if (uarmc && itemhasappearance(uarmc, APP_SHELL_CLOAK) ) chance -= 20;
 
-	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
+	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_OBERTURT) && !(uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) chance -= 10;
 	if (Numbed) chance -= 10;
 
 	if (Role_if(PM_FAILED_EXISTENCE)) chance /= 2; /* at least 50% fail for all spells */

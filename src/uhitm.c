@@ -656,7 +656,7 @@ register struct monst *mtmp;
 #endif
 
 	if(Role_if(PM_MONK) && !Upolyd) {
-		if(!uwep && (!u.twoweap || !uswapwep) && (!uarms || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) && 
+		if(!uwep && (!u.twoweap || !uswapwep) && (!uarms || (uarms && uarms->oartifact == ART_KUNGHEAVEN) || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) && 
 		  (!uarm || (u.martialstyle == MARTIALSTYLE_MARSHALARTS) || (uarm->oartifact == ART_HA_MONK) || (uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA && 
 		  	uarm->otyp <= ROBE_OF_WEAKNESS)))
 		  	
@@ -672,7 +672,7 @@ register struct monst *mtmp;
 		tmp -= 20;
 	}
 
-	if(Role_if(PM_HEDDERJEDI) && uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_BOBAIS) && !(uarm->oartifact == ART_AMMY_S_RETRIBUTION) && ((uarm->otyp < ELVEN_TOGA) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
+	if(Role_if(PM_HEDDERJEDI) && uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_JEDE_BLADE_HOLD) && !(uarm->oartifact == ART_BOBAIS) && !(uarm->oartifact == ART_AMMY_S_RETRIBUTION) && ((uarm->otyp < ELVEN_TOGA) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
 		pline("Your armor is rather cumbersome...");
 		tmp -= 20;
 	}
@@ -768,7 +768,7 @@ register struct monst *mtmp;
 	if( (Role_if(PM_JEDI) || Role_if(PM_SHADOW_JEDI) || Role_if(PM_HEDDERJEDI) || Race_if(PM_BORG)) && !Upolyd) {
 		if (((uwep && is_lightsaber(uwep) && uwep->lamplit) ||
 		    (uswapwep && u.twoweap && is_lightsaber(uswapwep) && uswapwep->lamplit)) &&
-		   (uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_BOBAIS) && !(uarm->oartifact == ART_AMMY_S_RETRIBUTION) &&
+		   (uarm && !(uarm->oartifact == ART_HA_MONK) && !(uarm->oartifact == ART_JEDE_BLADE_HOLD) && !(uarm->oartifact == ART_BOBAIS) && !(uarm->oartifact == ART_AMMY_S_RETRIBUTION) &&
 		   (uarm->otyp < ELVEN_TOGA || uarm->otyp > ROBE_OF_WEAKNESS))){
 		    char yourbuf[BUFSZ];
 		    You("can't use %s %s effectively in this armor...", shk_your(yourbuf, uwep), xname(uwep));
@@ -878,6 +878,7 @@ register struct monst *mtmp;
 	if (uwep && uwep->oartifact == ART_WILD_HEAVY_SWINGS) tmp -= 10;
 	if (uwep && uwep->oartifact == ART_JUSTICE_FOR_GARLIC) tmp += 5;
 	if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
+	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) tmp += 5;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
@@ -1086,7 +1087,7 @@ register struct monst *mtmp;
 
 	if (is_table(u.ux, u.uy)) tmp += 3;
 
-	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
+	if (is_grassland(u.ux, u.uy) && !(uamul && uamul->oartifact == ART_CONTRO_MOVE) && !(uarm && uarm->oartifact == ART_OBERTURT) && !(uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL) && !(uarm && uarm->oartifact == ART_DORL_TSCH) && !(uarmf && itemhasappearance(uarmf, APP_GARDEN_SLIPPERS))) tmp -= rnd(5);
 	if (Race_if(PM_VIETIS)) tmp -= rnd(10);
 
 	if (humanoid(mtmp->data) && is_female(mtmp->data) && FemtrapActiveWendy) tmp -= rnd(SuperFemtrapWendy ? 20 : 10);
@@ -1593,7 +1594,7 @@ martial_dmg()
 
 	  if (!Role_if(PM_HALF_BAKED)) {
 
-	        if(( (!uarm && rn2(2)) || u.martialstyle == MARTIALSTYLE_MARSHALARTS || (uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms || u.martialstyle == MARTIALSTYLE_MARSHALARTS) && (damage > 1))
+	        if(( (!uarm && rn2(2)) || u.martialstyle == MARTIALSTYLE_MARSHALARTS || (uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms || (uarms && uarms->oartifact == ART_KUNGHEAVEN) || u.martialstyle == MARTIALSTYLE_MARSHALARTS) && (damage > 1))
 	                damage += rnd(damage);
 	        else {
 			if (damage > 1) damage += rnd(2);
@@ -6072,7 +6073,7 @@ melatechoice:
 	/* Special monk strikes */
 	if ( (Role_if(PM_MONK) || (u.martialstyle == MARTIALSTYLE_JUDO && !uwep && (!u.twoweap || !uswapwep)) ) && !Upolyd && !thrown && no_obj &&
 		(!uarm || (u.martialstyle == MARTIALSTYLE_MARSHALARTS) || (uarm && uarm->oartifact == ART_HA_MONK) || (uarm && uarm->oartifact == ART_BOBAIS) || (uarm->oartifact == ART_AMMY_S_RETRIBUTION) || (uarm && uarm->otyp >= ELVEN_TOGA &&
-		 uarm->otyp <= ROBE_OF_WEAKNESS)) && (!uarms || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) &&
+		 uarm->otyp <= ROBE_OF_WEAKNESS)) && (!uarms || (uarms && uarms->oartifact == ART_KUNGHEAVEN) || (u.martialstyle == MARTIALSTYLE_MARSHALARTS)) &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */
 	    canhitmon = rnd(500);

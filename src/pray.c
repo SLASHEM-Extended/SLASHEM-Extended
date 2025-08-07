@@ -3088,7 +3088,7 @@ dopray()
 		if (Inhell || flags.gehenna) godvoice(u.ualign.type, "My scholar, I cannot help thee in the Under World!");
 	}
 
-    } else if ((Role_if(PM_GANG_SCHOLAR) || (uamul && uamul->oartifact == ART_UNKNOWN_SHELL) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX)) && u.scholarturns < moves) {
+    } else if ((Role_if(PM_GANG_SCHOLAR) || (uamul && uamul->oartifact == ART_UNKNOWN_SHELL) || (uarm && uarm->oartifact == ART_PENTRAY) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX)) && u.scholarturns < moves) {
 
 	u.scholarturns = moves + 1000;
 

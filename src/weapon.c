@@ -7160,6 +7160,7 @@ int degree;
 	if (uright && uright->oartifact == ART_PREEZER && skill == P_SPIRITUALITY) degree *= 2;
 	if (uleft && uleft->oartifact == ART_IKS_UP && skill == P_SEARCHING) degree *= 2;
 	if (uright && uright->oartifact == ART_IKS_UP && skill == P_SEARCHING) degree *= 2;
+	if (uarm && uarm->oartifact == ART_MOCCASYL && skill == P_SEXY_FLATS) degree *= 2;
 	if (uarm && uarm->oartifact == ART_PRISMATIC_DRAGON_PLATE && skill == P_PETKEEPING) degree *= 3;
 	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX && skill == P_SHIELD) degree *= 2;
