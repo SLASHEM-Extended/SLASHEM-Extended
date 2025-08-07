@@ -1229,6 +1229,7 @@ newsym(x,y)
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
+		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1258,6 +1259,7 @@ newsym(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
@@ -1370,6 +1372,7 @@ newsym(x,y)
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
+		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1399,6 +1402,7 @@ newsym(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
@@ -1681,6 +1685,7 @@ newsymX(x,y)
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
+		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1710,6 +1715,7 @@ newsymX(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
@@ -1822,6 +1828,7 @@ newsymX(x,y)
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
+		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1851,6 +1858,7 @@ newsymX(x,y)
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) ||
 		(uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) ||
+		(uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) ||
 		(Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) ||
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
@@ -3829,6 +3837,7 @@ struct monst *mon;
 	if (uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) return TRUE;
 	if (Race_if(PM_VORTEX) && unsolid(mon->data) ) return TRUE;
 	if (Race_if(PM_VORTEX) && nolimbs(mon->data) ) return TRUE;
 	if (Race_if(PM_CORTEX) && unsolid(mon->data) ) return TRUE;
@@ -3863,6 +3872,7 @@ struct monst *mon;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) return TRUE;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mindless(mon->data) && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mon->data->mcolor == CLR_WHITE) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_SILVERY_LINES && mon->data->mcolor == CLR_BRIGHT_GREEN) return TRUE;
 	if (Burnopathy && Burned && infravision(mon->data) && distu(mon->mx, mon->my) < (StrongBurnopathy ? 170 : 101) ) return TRUE;
 	if (Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) return TRUE;
 	if (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) return TRUE;

@@ -7361,6 +7361,19 @@ xkilled(mtmp, dest)
 	boolean redisp = FALSE;
 	boolean wasinside = u.uswallow && (u.ustuck == mtmp);
 
+	int deathdropchance = 30; /* 1 in X (default 1 in 30) chance for monster to have a random death drop --Amy */
+	if (Race_if(PM_DOPPELGANGER)) {
+		deathdropchance *= 5;
+	}
+	if (Race_if(PM_DROW)) {
+		deathdropchance *= 10;
+		deathdropchance /= 3;
+	}
+	if (uarmc && uarmc->oartifact == ART_TE_CLEANER) {
+		deathdropchance /= 3;
+	}
+	if (deathdropchance < 2) deathdropchance = 2; /* don't fall off the bottom */
+
 	mdat = mtmp->data; /* mondead can change that, see below */
 
 	if (practicantterror && !u.pract_shopkeepers) {
@@ -7846,6 +7859,9 @@ xkilled(mtmp, dest)
 		if (uright && uright->oartifact == ART_GOOOOOOOOT) {
 			if (!rn2(70 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
 		}
+		if (uarmc && uarmc->oartifact == ART_IDEN_TALUT) {
+			if (!rn2(70 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
+		}
 
 		if (uarmg && uarmg->oartifact == ART_SCROLLSCROLLSCROLL) {
 			if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE, FALSE);
@@ -7859,7 +7875,7 @@ xkilled(mtmp, dest)
 		if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
 
 		/* you should not be able to farm trolls, gremlins, long worms etc. --Amy */
-		if (!rn2( (Race_if(PM_DROW) ? 100 : Race_if(PM_DOPPELGANGER) ? 150 : 30) ) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && (timebasedlowerchance() || timebasedlowerchance() || (timebasedlowerchance() && rn2(2)) ) && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
+		if (!rn2(deathdropchance) && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && !is_reviver(mdat) && !is_rider(mdat) && !is_deadlysin(mdat) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && mdat != &mons[PM_DUMMY_MONSTER_NEEDED_FOR_VISUAL_INTERFACE] && mdat != &mons[PM_LONG_WORM] && mdat != &mons[PM_GHOST] && mdat != &mons[PM_TROLL_ZOMBIE] && mdat != &mons[PM_TROLL_MUMMY] && mdat != &mons[PM_EVIL_TROLL_MUMMY] && mdat != &mons[PM_TROLL_PERMAMIMIC_MUMMY] && mdat != &mons[PM_EGO_TROLL_MUMMY] && (timebasedlowerchance() || timebasedlowerchance() || (timebasedlowerchance() && rn2(2)) ) && (rn2(100) > u.usefulitemchance) && !(issoviet && (mvitals[mndx].mvflags & G_NOCORPSE)) && !(issoviet && nohands(mdat))
 	/* lowered overall chance, but see below for a chance to get extra items --Amy
 	 * Drow and especially Doppelgangers are super-powerful anyway, so I decided to nerf them a bit. */
 					&& (!issoviet || (mdat->mlet != S_KOP))

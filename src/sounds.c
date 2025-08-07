@@ -6219,7 +6219,6 @@ metalmafiaagain:
 									i = rn2(A_MAX);		/* start at a random point */
 									for (ii = 0; ii < A_MAX; ii++) {
 										lim = AMAX(i);
-										if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 										if (ABASE(i) < lim) {
 											ABASE(i)++;
 											pline("Wow! This makes you feel good!");

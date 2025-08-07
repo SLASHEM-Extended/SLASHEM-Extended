@@ -9231,6 +9231,8 @@ register int num;
 		num /= 2;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_TERMINALLY_BEYOND_HELP && num > 9) healup((num / 10), 0, 0, 0);
+
 	/* eating heals symbiote a bit --Amy */
 	if (num >= 100 && uinsymbiosis) {
 		if (u.usymbiote.mhp < u.usymbiote.mhpmax) {

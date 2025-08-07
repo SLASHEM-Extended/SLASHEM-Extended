@@ -278,7 +278,6 @@ dosit()
 				i = rn2(A_MAX);
 				for (ii = 0; ii < A_MAX; ii++) {
 					lim = AMAX(i);
-					if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 					if (ABASE(i) < lim) {
 						ABASE(i) = lim;
 						flags.botl = 1;

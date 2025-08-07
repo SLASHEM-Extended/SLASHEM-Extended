@@ -328,6 +328,7 @@ moveloop()
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) monclock /= 2;
 			if (uwep && uwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
 			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
+			if (uarmc && uarmc->oartifact == ART_BLEBLE___) monclock *= 2;
 			if (issuxxor) monclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
@@ -378,6 +379,7 @@ moveloop()
 			if (uarmg && uarmg->oartifact == ART_DIFFICULTY__) xtraclock /= 2;
 			if (issuxxor) xtraclock *= 2;
 			if (have_minimejewel()) xtraclock *= 3;
+			if (uarmc && uarmc->oartifact == ART_BLEBLE___) xtraclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) xtraclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) xtraclock *= 2;
 
@@ -2646,6 +2648,23 @@ moveloop()
 			}
 		}
 
+		if (uarmc && uarmc->oartifact == ART_DEEP_REJUVE && !rn2(2000)) {
+			int i, ii, lim;
+
+			i = rn2(A_MAX);		/* start at a random point */
+			for (ii = 0; ii < A_MAX; ii++) {
+				lim = AMAX(i);
+				if (ABASE(i) < lim) {
+					ABASE(i)++;
+					pline("Wow! This makes you feel good!");
+					flags.botl = 1;
+					break; /* only restore one --Amy */
+				}
+				if(++i >= A_MAX) i = 0;
+			}
+
+		}
+
 		if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && !uarms->oeroded) uarms->oeroded = 1;
 
 		if (FemtrapActiveSabrina) {
@@ -3221,10 +3240,16 @@ moveloop()
 			pline("Moloch is really upset with you, and you should really think twice whether you want to keep wallwalking everywhere! Endless armies of fluidators will chase you if you don't stop!");
 		}
 
-		if (IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) u.fluidatorwantedlevel += 5;
+		if (IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) {
+			u.fluidatorwantedlevel += 5;
+			if (uarmc && uarmc->oartifact == ART_EXTREMEFLUID) u.fluidatorwantedlevel += 10;
+		}
 
 		/* walscholar can go into grave walls, but that shouldn't be abusable --Amy */
-		if (levl[u.ux][u.uy].typ == GRAVEWALL && !u.walscholarpass) u.fluidatorwantedlevel += 5;
+		if (levl[u.ux][u.uy].typ == GRAVEWALL && !u.walscholarpass) {
+			u.fluidatorwantedlevel += 5;
+			if (uarmc && uarmc->oartifact == ART_EXTREMEFLUID) u.fluidatorwantedlevel += 10;
+		}
 
 		if (!(IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) && levl[u.ux][u.uy].typ != IRONBARS) {
 			u.fluidatorwantedlevel--;
@@ -5501,6 +5526,10 @@ greasingdone:
 			contaminate(rnd(10), FALSE);
 		}
 
+		if (uarmc && uarmc->oartifact == ART_INTERNAL_CLEAR && !rn2(50)) {
+			decontaminate(1);
+		}
+
 		if (uamul && uamul->oartifact == ART_STOMACH_UP_AND_DOWN && !rn2(1000)) {
 			decontaminate(25);
 		}
@@ -5836,8 +5865,15 @@ greasingdone:
 			if (u.fluidatorwantedlevel > 5000) fluidatorchance = 1500;
 			if (u.fluidatorwantedlevel > 10000) fluidatorchance = 1000;
 			if (u.fluidatorwantedlevel > 20000) fluidatorchance = 500;
+			if (u.fluidatorwantedlevel > 30000) fluidatorchance = 300;
+			if (u.fluidatorwantedlevel > 40000) fluidatorchance = 200;
+			if (u.fluidatorwantedlevel > 50000) fluidatorchance = 100;
+
+			if (uarmc && uarmc->oartifact == ART_EXTREMEFLUID) fluidatorchance /= 3;
 
 			if ((uarms && uarms->oartifact == ART_FLUIDSHIELD) || RngeFluidatorReduction) fluidatorchance *= 10;
+
+			if (fluidatorchance < 2) fluidatorchance = 2; /* fail safe */
 
 			if (!rn2(fluidatorchance)) {
 				register struct monst *fluidone;
@@ -11734,7 +11770,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (is_styxriver(u.ux, u.uy) && !u.uswallow) {
+		if (is_styxriver(u.ux, u.uy) && !(uarmc && uarmc->oartifact == ART_PLASCHTYX) && !u.uswallow) {
 
 			if ((!Flying && !Levitation && !(uarmf && uarmf->otyp == BUOYANT_BOOTS) && !(uarms && uarms->otyp == SHIELDBOAT) && !(u.usteed && is_swimmer(u.usteed->data)) ) || !rn2(5)) {
 				Norep("Continued exposure to the Styx River will cause contamination.");
@@ -15638,6 +15674,18 @@ pastds2:
 		    if(!u.uinvulnerable) {
 			if(Teleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
+
+				if (uarmc && uarmc->oartifact == ART_STEALPELL && !Teleport_control) {
+					buzz(13, 2, u.ux, u.uy, -1, 0);
+					buzz(13, 2, u.ux, u.uy, 1, 0);
+					buzz(13, 2, u.ux, u.uy, -1, 1);
+					buzz(13, 2, u.ux, u.uy, 1, 1);
+					buzz(13, 2, u.ux, u.uy, 0, 1);
+					buzz(13, 2, u.ux, u.uy, -1, -1);
+					buzz(13, 2, u.ux, u.uy, 1, -1);
+					buzz(13, 2, u.ux, u.uy, 0, -1);
+				}
+
 				You(FunnyHallu ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -15653,6 +15701,18 @@ pastds2:
 
 			if(StrongTeleportation && (ishaxor ? !rn2(150) : !rn2(250)) ) {
 			    xchar old_ux = u.ux, old_uy = u.uy;
+
+				if (uarmc && uarmc->oartifact == ART_STEALPELL && !Teleport_control) {
+					buzz(13, 2, u.ux, u.uy, -1, 0);
+					buzz(13, 2, u.ux, u.uy, 1, 0);
+					buzz(13, 2, u.ux, u.uy, -1, 1);
+					buzz(13, 2, u.ux, u.uy, 1, 1);
+					buzz(13, 2, u.ux, u.uy, 0, 1);
+					buzz(13, 2, u.ux, u.uy, -1, -1);
+					buzz(13, 2, u.ux, u.uy, 1, -1);
+					buzz(13, 2, u.ux, u.uy, 0, -1);
+				}
+
 				You(FunnyHallu ? "open a warp gate!" : "suddenly get teleported!");
 			    tele();
 				if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -16088,21 +16148,25 @@ past4:
 		}	/* !u.uinvulnerable */
 
 		if(Searching && multi >= 0 && (!Role_if(PM_CAMPERSTRIKER) || !rn2(3) ) ) {
-				if (StrongSearching && rn2(5)) (void) dosearch0(1);
-				else if (!StrongSearching && !rn2(3)) (void) dosearch0(1);
+
+			if (uarmc && uarmc->oartifact == ART_FULL_AUTO) (void) dosearch0(1);
+
+			if (StrongSearching && rn2(5)) (void) dosearch0(1);
+			else if (!StrongSearching && !rn2(3)) (void) dosearch0(1);
 		}
 
-		    dosounds();
-		    do_storms();
-		    gethungry();
-		    age_spells();
-		    exerchk();
-		    invault();
-		    if (u.uhave.amulet && !u.freeplaymode) amulet();
+		dosounds();
+		do_storms();
+		gethungry();
+		age_spells();
+		exerchk();
+		invault();
 
-			if (at_dgn_entrance("The Subquest") || on_level(&sanctum_level, &u.uz) ) {
-				test_magic_portal();
-			}
+		if (u.uhave.amulet && !u.freeplaymode) amulet();
+
+		if (at_dgn_entrance("The Subquest") || on_level(&sanctum_level, &u.uz) ) {
+			test_magic_portal();
+		}
 
 		if (!rn2(40+(int)(ACURR(A_DEX)*3))) u_wipe_engr(rnd(3));
 		    if ((u.uevent.udemigod && !u.freeplaymode && !rn2(5) && (u.amuletcompletelyimbued || !rn2(10))) && !u.uinvulnerable) {

@@ -863,6 +863,7 @@ register struct monst *mtmp;
 	if (!uwep && StrongGlib_combat && Glib) tmp += 5;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uarmc && uarmc->oartifact == ART_FEND_FOR_YOURSELF) tmp += 7;
 	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uleft && uleft->oartifact == ART_I_M_NOT_AFRAID_) tmp += 10;

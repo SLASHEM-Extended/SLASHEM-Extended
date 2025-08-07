@@ -67,6 +67,33 @@ STATIC_DCL boolean attacks(int,struct obj *);
 
 
 STATIC_PTR void
+terraincleanupY(x, y, roomcnt)
+int x, y;
+void * roomcnt;
+{
+	if (Is_waterlevel(&u.uz)) return;
+
+	if (levl[x][y].typ < GRAVEWALL)
+		return;
+	if (levl[x][y].typ >= SDOOR && levl[x][y].typ <= SCORR)
+		return;
+	if ((levl[x][y].wall_info & W_NONDIGGABLE) != 0)
+		return;
+	if (levl[x][y].typ == DRAWBRIDGE_UP || levl[x][y].typ == DRAWBRIDGE_DOWN)
+		return;
+	if (levl[x][y].typ >= DOOR && levl[x][y].typ <= STRAWMATTRESS)
+		return;
+
+	(*(int *)roomcnt)++;
+
+	/* Get rid of stone at x, y */
+	levl[x][y].typ = CORR;
+	blockorunblock_point(x,y);
+	if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+	newsym(x,y);
+}
+
+STATIC_PTR void
 do_terrainfloodP(x, y, poolcnt)
 int x, y;
 void * poolcnt;
@@ -2003,6 +2030,9 @@ register boolean mod;
 			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+		    if (otmp && otmp->oartifact == ART_WINTERN) {
+			otmp->spe += 3;
 		    }
 		    if (otmp && otmp->oartifact == ART_EL_GERBOBLANE) {
 			otmp->spe += 7;
@@ -5632,7 +5662,6 @@ newboss:
 					i = rn2(A_MAX);
 					for (ii = 0; ii < A_MAX; ii++) {
 						lim = AMAX(i);
-						if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 						if (ABASE(i) < lim) {
 							ABASE(i) = lim;
 							flags.botl = 1;
@@ -6051,6 +6080,23 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_LYCIA_S_WUSH) {
+			if (!obj->cursed) bless(obj);
+			else uncurse(obj, TRUE);
+			Your("cloak is surrounded by a bright aura!");
+			break;
+		}
+
+		if (obj->oartifact == ART_LAST_THING_WE_NEED) {
+			int maderoomX = 0;
+
+			do_clear_areaX(u.ux, u.uy, 1, terraincleanupY, (void *)&maderoomX);
+
+			if (maderoomX) pline("Some annoying terrain was cleaned up!");
+			else pline("There was nothing to clean up...");
+
+			break;
+		}
 		if (obj->oartifact == ART_END_OF_LIST) {
 			pline("A voice echoes:");
 			verbalize("By thy Imperious order, %s...", flags.female ? "Dame" : "Sire");
@@ -6087,6 +6133,12 @@ chargingchoice:
 
 			}
 
+			break;
+		}
+
+		if (obj->oartifact == ART_VINTO_MOBILE) {
+			youmonst.movement += 36;
+			You("activate the turbo boost!");
 			break;
 		}
 
@@ -8291,6 +8343,10 @@ bangbagchoice:
 
 	    break;
 	case SUMMON_UNDEAD:
+	{
+		int sumundflags = 0; /* 0 = always try to tame it */
+		if (obj && obj->oartifact == ART_MAYA_S_CHANNELING_COSTUME) sumundflags = 1;
+
 	    if (u.uluck < -9) {
 		u.uhp -= rn2(20) + 5;
 		pline_The("Hand claws you with its icy nails!");
@@ -8329,10 +8385,28 @@ bangbagchoice:
 			pm = mkclass(S_WRAITH, 0);
 			break;
 		}
-		mtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
-	        if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0)
-		    mtmp = mtmp2;
-		mtmp->mtame = 30;
+
+		if (sumundflags == 1) {
+			if (rn2(5)) mtmp = makemon(pm, u.ux, u.uy, MM_ANGRY);
+			else {
+				mtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+				if (!rn2(20)) {
+				      if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) {
+						mtmp = mtmp2;
+						mtmp->mtame = 30;
+					}
+				} else {
+					if (!mtmp->mfrenzied) mtmp->mpeaceful = TRUE;
+				}
+			}
+		} else {
+			mtmp = makemon(pm, u.ux, u.uy, NO_MM_FLAGS);
+		      if ((mtmp2 = tamedog(mtmp, (struct obj *)0, FALSE)) != 0) {
+				mtmp = mtmp2;
+				mtmp->mtame = 30;
+			}
+		}
+
 		summon_loop--;
 	    } while (summon_loop);
 
@@ -8341,6 +8415,7 @@ bangbagchoice:
 	    /* Tsk,tsk.. */
 	    adjalign(-3);
 	    u.uluck -= 3;
+	}
 	    break;
 	case PROT_POLY:
 	    You_feel("more observant.");

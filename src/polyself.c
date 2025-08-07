@@ -1337,7 +1337,7 @@ break_armor()
 		useup(otmp);
 	}
 	}
-	if (!cloakkeep && !(uarmc && itemhasappearance(uarmc, APP_OSFA_CLOAK)) && (otmp = uarmc) != 0) {
+	if (!cloakkeep && !(uarmc && uarmc->oartifact == ART_THAT_PIXEL_SHAPE_) && !(uarmc && itemhasappearance(uarmc, APP_OSFA_CLOAK)) && (otmp = uarmc) != 0) {
 	    if(otmp->oartifact || facelesskeep || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || autismringcheck(ART_FRAIDLOSE) || (otmp->fakeartifact && rn2(2)) ) {
 		Your("%s falls off!", cloak_simple_name(otmp));
 		(void) Cloak_off();
@@ -1389,7 +1389,7 @@ break_armor()
 		(void) Armor_gone();
 		dropx(otmp);
 	}
-	if (((otmp = uarmc) != 0) && !(uarmc && itemhasappearance(uarmc, APP_OSFA_CLOAK)) && !cloakkeep) {
+	if (((otmp = uarmc) != 0) && !(uarmc && uarmc->oartifact == ART_THAT_PIXEL_SHAPE_) && !(uarmc && itemhasappearance(uarmc, APP_OSFA_CLOAK)) && !cloakkeep) {
 		if (is_whirly(youmonst.data))
 			Your("%s falls, unsupported!", cloak_simple_name(otmp));
 		else You("shrink out of your %s!", cloak_simple_name(otmp));

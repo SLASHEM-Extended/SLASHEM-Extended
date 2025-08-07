@@ -4225,7 +4225,6 @@ register struct obj *wand;
 		i = rn2(A_MAX);
 		for (ii = 0; ii < A_MAX; ii++) {
 			lim = AMAX(i);
-			if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 			if (ABASE(i) < lim) {
 				ABASE(i) = lim;
 				pline("Wow! This makes you feel good!");
@@ -5388,7 +5387,6 @@ controlagain:
 			i = rn2(A_MAX);
 			for (ii = 0; ii < A_MAX; ii++) {
 				lim = AMAX(i);
-				if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 				if (ABASE(i) < lim) {
 					ABASE(i) += 1;
 					pline("Wow! This makes you feel good!");
@@ -9592,6 +9590,8 @@ xchar sx, sy;
 			dam = 0;
 		} else if (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS && rn2(20) ) {
 			dam = 0;
+		} else if (uarmc && uarmc->oartifact == ART_NOCTEM && rn2(20) ) {
+			dam = 0;
 		} else if (Race_if(PM_SAMEDI) && rn2(20) ) {
 			dam = 0;
 		} else if (uwep && uwep->oartifact == ART_LIGHTBLOOM && rn2(20) ) {
@@ -10175,7 +10175,7 @@ raypassthrough: /* if the player's control magic made it pass through --Amy */
 	 * so I just decide that special reflection amulets "overwrite" standard reflection. --Amy
 	 * prism takes precedence over warp reflection, which takes precedence over "regular" reflection */
 
-			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || (uamul && uamul->oartifact == ART_ISRA_S_ANGLE) || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_spectrumplinggem() || (moves % 10 == 0 && uwep && uwep->oartifact == ART_CRABBOMAT) || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarms && uarms->oartifact == ART_ANGULARITY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_SCHWI_SCHWI) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
+			if ((uamul && uamul->otyp == AMULET_OF_PRISM) || (uamul && uamul->oartifact == ART_ISRA_S_ANGLE) || (uarms && uarms->oartifact == ART_ALTERNATE_SPELLWEAVE) || have_spectrumplinggem() || (moves % 10 == 0 && uwep && uwep->oartifact == ART_CRABBOMAT) || (uamul && uamul->oartifact == ART_GUARDIAN_ANGLE) || (uarms && uarms->oartifact == ART_ANGULARITY) || (uarmf && uarmf->oartifact == ART_CINDERELLA_S_SLIPPERS) || (uarmc && uarmc->oartifact == ART_BLAME_DIRECTOR) || (uamul && uamul->oartifact == ART_TYRANITAR_S_OWN_GAME) || (uwep && uwep->oartifact == ART_SCHWI_SCHWI) || (uwep && uwep->oartifact == ART_TEN_DIMENSIONAL_SCYTHE) || (uarm && uarm->oartifact == ART_TERRY_PRATCHETT_S_INGENUIT) || (uarmc && uarmc->oartifact == ART_ALLCOLOR_PRISM) ) {
 
 			    if (dx && dy) {
 

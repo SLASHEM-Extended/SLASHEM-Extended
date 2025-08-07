@@ -6035,7 +6035,7 @@ A("Ziratha's Casting Legend",				SPELL_RETAIN_CLOAK, /* spells cost 10% less man
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Trip Terrain",				QUAVERSAL_HELMET, /* farlooking a quasar square gives a bad effect; can always Ctrl-T to teleport and it costs 10 mana only */
+A("Trip Terrain",				QUAVERSAL_HELMET, /* farlooking a quasar square gives a bad effect; can always Ctrl-T to teleport and it costs only a third of the usual amount of mana */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 

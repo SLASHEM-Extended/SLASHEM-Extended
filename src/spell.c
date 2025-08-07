@@ -3539,6 +3539,12 @@ boolean atme;
 		energy /= 5;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP && skill == P_HEALING_SPELL) {
+		if (rn2(10)) energy += 1;
+		energy *= 4;
+		energy /= 5;
+	}
+
 	if (Race_if(PM_MANSTER) && energy > 1) {
 		if (rn2(10)) energy += 1;
 		energy *= 2;
@@ -6313,7 +6319,6 @@ newbossPENT:
 					i = rn2(A_MAX);
 					for (ii = 0; ii < A_MAX; ii++) {
 						lim = AMAX(i);
-						if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 						if (ABASE(i) < lim) {
 							ABASE(i) = lim;
 							flags.botl = 1;

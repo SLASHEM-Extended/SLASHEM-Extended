@@ -2295,7 +2295,7 @@ level_difficulty()
 	/* Psions are so overpowered if they have all their intrinsics, that I decided to make them harder. --Amy */
 	if (Role_if(PM_PSION) && u.ulevel >= 7) retvalue += rnd(retvalue);
 
-	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || Race_if(PM_PLAYER_DYNAMO) || autismweaponcheck(ART_ARABELLA_S_BLACK_PRONG) || autismweaponcheck(ART_HOL_ON_MAN) || autismweaponcheck(ART_PWNHAMMER_DUECE) || (uarm && uarm->oartifact == ART_ASTRA_MAIL) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
+	if (DifficultyIncreased || u.uprops[DIFFICULTY_INCREASED].extrinsic || have_difficultystone() || (uarmc && uarmc->oartifact == ART_VINTO_MOBILE) || Race_if(PM_PLAYER_DYNAMO) || autismweaponcheck(ART_ARABELLA_S_BLACK_PRONG) || autismweaponcheck(ART_HOL_ON_MAN) || autismweaponcheck(ART_PWNHAMMER_DUECE) || (uarm && uarm->oartifact == ART_ASTRA_MAIL) || autismweaponcheck(ART_CUDGEL_OF_CUTHBERT) || autismweaponcheck(ART_ONE_THROUGH_FOUR_SCEPTER) ) retvalue += 10;
 	if (DifficultyIncrXtra) retvalue += 10;
 	if (Race_if(PM_BULDOZGAR) && !rn2(10)) retvalue += 10;
 	if (Race_if(PM_PHANTOM_GHOST)) retvalue++;

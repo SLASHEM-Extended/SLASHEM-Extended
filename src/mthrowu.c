@@ -479,6 +479,10 @@ shieldblockboo:
 			pline_The("shoulder pad deflects the shot.");
 			return(0);
 
+	} else if (uarmc && uarmc->oartifact == ART_HAZMAT_GEAR && !rn2(3) && obj && is_bullet(obj) ) {
+			pline_The("cloak soaks up the shot.");
+			return(0);
+
 	} else if (uarmc && itemhasappearance(uarmc, APP_KEVLAR_CLOAK) && !rn2(10)) {
 			pline_The("kevlar cloak deflects the projectile.");
 			return(0);

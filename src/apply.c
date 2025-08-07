@@ -3114,7 +3114,6 @@ struct obj *obj;
 	i = rn2(A_MAX);
 	for (ii = 0; ii < A_MAX; ii++) {
 		lim = AMAX(i);
-		if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 		if (ABASE(i) < lim) {
 			if (rn2(3)) {
 				ABASE(i) += 1;
@@ -6492,6 +6491,9 @@ undark:
 			You("find, but cannot eat, a white pill in %s.",
 			  yname(obj));
 		    else {
+			int pilltype = 0; /* for artifact pills, because they may be freed below --Amy */
+			if (otmp->oartifact == ART_PILL_THAT_KILLED_MICHAEL_J) pilltype = 1;
+
 			check_unpaid(obj);
 			if (otmp->quan > 1L) {
 			    otmp->quan--;
@@ -6516,7 +6518,19 @@ undark:
 			 */
 			You("take a white pill from %s and swallow it.",
 				yname(obj));
-			if (can_use) {
+
+			/* artifact pill effects are checked first, then there's the regular ones --Amy */
+
+			if (pilltype == 1) {
+				if (!Sick) make_sick(rn1(15,15), "Michael Jackson's pill", TRUE, SICK_VOMITABLE);
+				losehp(rn1(30, 30),"poisonous pill",KILLED_BY_AN);
+				(void) adjattrib(A_STR, -rnd(6), FALSE, TRUE);
+				(void) adjattrib(A_DEX, -rnd(6), FALSE, TRUE);
+				(void) adjattrib(A_CON, -rnd(6), FALSE, TRUE);
+				(void) adjattrib(A_INT, -rnd(6), FALSE, TRUE);
+				(void) adjattrib(A_WIS, -rnd(6), FALSE, TRUE);
+				(void) adjattrib(A_CHA, -rnd(6), FALSE, TRUE);
+			} else if (can_use) {
 			    upnivel(FALSE);
 			    if (Sick) make_sick(0L, (char *) 0,TRUE ,SICK_ALL);
 			    else if (Blinded > (long)(u.ucreamed+1))
@@ -6546,10 +6560,10 @@ undark:
 				}
 			} else if (!rn2(3))
 			    pline("Nothing seems to happen.");
-			else if (!Sick)
+			else if (!Sick) {
 			    make_sick(rn1(15,15), "bad pill", TRUE,
 			      SICK_VOMITABLE);
-			else {
+			} else {
 			    You("seem to have made your condition worse!");
 			    losehp(rn1(10,10), "a drug overdose", KILLED_BY);
 			}

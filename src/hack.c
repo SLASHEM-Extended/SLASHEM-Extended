@@ -4931,6 +4931,17 @@ newbossLARA:
 		pline("You've been paralyzed for %d turns.", abs(nval));
 	}
 
+	if (uarmc && uarmc->oartifact == ART_VOLTSHOCK) {
+		buzz(15, 2, u.ux, u.uy, -1, 0);
+		buzz(15, 2, u.ux, u.uy, 1, 0);
+		buzz(15, 2, u.ux, u.uy, -1, 1);
+		buzz(15, 2, u.ux, u.uy, 1, 1);
+		buzz(15, 2, u.ux, u.uy, 0, 1);
+		buzz(15, 2, u.ux, u.uy, -1, -1);
+		buzz(15, 2, u.ux, u.uy, 1, -1);
+		buzz(15, 2, u.ux, u.uy, 0, -1);
+	}
+
 	if (uarmg && uarmg->oartifact == ART_NOPE_OUT_OF_PARA && nval < 0 && discountpossible && (uarmg->invoketimer <= monstermoves) ) {
 		if (yn("Nope out of the paralysis?") == 'y') {
 

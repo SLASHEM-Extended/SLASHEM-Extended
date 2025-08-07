@@ -1543,6 +1543,8 @@ designyourowndone:
 
 		u.cnd_scrollcount++;
 
+		if (uarmc && uarmc->oartifact == ART_GETOUT_QUICK) youmonst.movement += 12;
+
 		use_skill(P_DEVICES,1);
 		if (Race_if(PM_FAWN)) {
 			use_skill(P_DEVICES,1);

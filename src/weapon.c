@@ -7167,6 +7167,7 @@ int degree;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE && skill == P_SORESU) degree *= 3;
 	if (uamul && uamul->oartifact == ART_SUPER_TEC && skill == P_TECHNIQUES) degree *= 3;
+	if (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP && skill == P_HEALING_SPELL) degree *= 3;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
 		else if (P_ADVANCE(skill) >= 2500) degree *= 6;
@@ -8147,6 +8148,10 @@ struct obj *weapon;
 	if (FemtrapActivePatricia && weapon && (objects[weapon->otyp].oc_dir == 0 ) ) {
 		bonus += 10;
 		if (SuperFemtrapPatricia) bonus += rnd(5);
+	}
+
+	if (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP && weapon && weapon_type(weapon) == P_KNIFE) {
+		bonus += 2;
 	}
 
 	if (!(PlayerCannotUseSkills)) {

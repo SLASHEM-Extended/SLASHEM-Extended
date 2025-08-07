@@ -1835,10 +1835,33 @@ Cloak_on()
 		curse(uarmc);
 	}
 
+	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_APPRENTICESHIP) {
+		pline("Bad for you - you just cursed yourself with Ina's anorexia. :-(");
+		curse(uarmc);
+	}
+
 	if (uarmc && uarmc->oartifact == ART_EASIFY_THE_GAME && uarmc->spe < 3) uarmc->spe = 3;
 
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_OVERCOAT) {
 		pline("Bad for you - you just cursed yourself with Ina's anorexia. :-(");
+		curse(uarmc);
+	}
+
+	if (uarmc && uarmc->oartifact == ART_ASTRO_LABYRINTH) {
+		curse(uarmc);
+		uarmc->hvycurse = uarmc->prmcurse = TRUE;
+		pline("Oh no, now you gotta brave the astro labyrinth!");
+	}
+
+	if (uarmc && uarmc->oartifact == ART_ABDE_SCHRTSCH) uarmc->oerodeproof = TRUE;
+
+	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_BERTILLE_S_MOUSY_ATTITUDE) {
+		pline("Now your cloak is cursed.");
+		curse(uarmc);
+	}
+
+	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_VOLTSHOCK) {
+		pline("What a shock - your cloak got cursed!");
 		curse(uarmc);
 	}
 
@@ -1854,6 +1877,11 @@ Cloak_on()
 
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_ARABELLA_S_SEXY_GIRL_BUTT) {
 		curse(uarmc);
+	}
+
+	if (uarmc && uarmc->oartifact == ART_MAYA_S_CHANNELING_COSTUME && (objects[uarmc->otyp].oc_color != CLR_MAGENTA)) {
+		pline("Now you look as purple as Maya.");
+		objects[uarmc->otyp].oc_color = CLR_MAGENTA;
 	}
 
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) {
@@ -1906,6 +1934,12 @@ Cloak_on()
 		uarmc->hvycurse = 1;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_WRITER_S_BLOCK) {
+		if (!uarmc->cursed) curse(uarmc);
+		uarmc->hvycurse = uarmc->stckcurse = 1;
+		pline("Now you have the writer's block.");
+	}
+
     if (uarmc && uarmc->oartifact == ART_JEDI_MIND_POWER) {
 		if (!tech_known(T_TELEKINESIS)) {
 			if (yn_function("This cloak allows you to learn telekinesis, but it comes at a price. Do it?", ynchars, 'n') == 'y') {
@@ -1950,6 +1984,36 @@ Cloak_on()
 			curse(uarmc);
 			uarmc->hvycurse = 1;
 			pline("An evil curse goes off as you put on the veil.");
+		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_NOCTEM) {
+		pline("%s used Noctem!", playeraliasname);
+		u.currentweather = WEATHER_ECLIPSE;
+		tell_main_weather();
+	}
+
+	if (uarmc && uarmc->oartifact == ART_EXTREMEFLUID) {
+		if (!uarmc->hvycurse) {
+			curse(uarmc);
+			uarmc->hvycurse = 1;
+			pline("Oh no, your cloak is surrounded by a black aura!");
+		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_VINTO_MOBILE) {
+		if (!uarmc->hvycurse) {
+			curse(uarmc);
+			uarmc->hvycurse = 1;
+			pline("The mobile decides to stick!");
+		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_TE_CLEANER) {
+		if (!uarmc->hvycurse) {
+			curse(uarmc);
+			uarmc->hvycurse = 1;
+			pline("Oh no, your cloak is surrounded by a black aura!");
 		}
 	}
 
@@ -7034,6 +7098,7 @@ find_ac()
 	if(uleft && uleft->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uleft->spe;
 	if(uright && uright->otyp == RIN_THREE_POINT_SEVEN_PROTECTI) uac -= uright->spe;
 	if (uarmu && uarmu->oartifact == ART_INCREDIBLY_GOOD_ARMOR) uac -= uarmu->spe;
+	if (uarmc && uarmc->oartifact == ART_ENCH_X) uac -= uarmc->spe;
 	if (HProtection & INTRINSIC) uac -= u.ublessed;
 	uac -= u.uspellprot;
 
@@ -7416,6 +7481,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_FUCKING_WALL) uac -= 50;
 	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) uac -= 6;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
+	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
 	if (uarm && uarm->oartifact == ART_FOKING_TENK) uac -= 7;
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
@@ -7456,8 +7522,10 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmc && uarmc->oartifact == ART_PLUM_AURA) uac -= 5;
 	if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) uac -= 3;
 	if (uamul && uamul->oartifact == ART_ARTWORK) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_MANT_PENDLE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) uac -= 4;
 	if (uamul && uamul->oartifact == ART_PLANTIT) {
 		if (P_SKILL(P_IMPLANTS) >= P_BASIC) uac -= 2;
@@ -7511,11 +7579,13 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_THREE) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FIVE) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_BLEBLE___) uac += 5;
 	if (uarm && uarm->oartifact == ART_GREAT_TOME) uac -= 11;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TEN) uac -= 10;
 	if (uarm && uarm->otyp == JEDI_ROBE && uwep && is_lightsaber(uwep) ) uac -= 3;
 	if (uarm && uarm->oartifact == ART_GRANT_ESPECIAL) uac -= 10;
 	if (uarm && uarm->oartifact == ART_CHEST_TANK) uac -= 20;
+	if (uarmc && uarmc->oartifact == ART_ARGAGA) uac -= 2;
 	if (uarm && uarm->oartifact == ART_PLATFLAT) uac -= 7;
 	if (uwep && uwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RHALALALALALAAAAR) uac -= 6;
@@ -7538,6 +7608,7 @@ find_ac()
 	if (uwep && uwep->oartifact == ART_VERSUS_ELECTRICALLY_BASED_) uac -= 10;
 	if (uwep && uwep->oartifact == ART_SHARPENED_OAR) uac -= 5;
 	if (uarm && uarm->oartifact == ART_OOOOOOH) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_ENCH_X && uarmc->blessed) uac -= 3;
 	if (uarmf && uarmf->oartifact == ART_MELTEM_S_FEELING) uac -= 3;
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) uac -= 3;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) uac -= 3;

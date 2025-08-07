@@ -1055,6 +1055,7 @@ boolean costly;
 	    if (costly) energy = 100;
 	    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) energy /= 2;
 	    if (uarmh && uarmh->oartifact == ART_TRIP_TERRAIN) energy /= 3;
+	    if (uarmc && uarmc->oartifact == ART_HOP_QUICKER) energy /= 3;
 	    if (u.uen < energy) {
 #ifdef WIZARD
 		if (wizard)

@@ -2795,6 +2795,7 @@ boolean polearming;
 	}
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uarmc && uarmc->oartifact == ART_FEND_FOR_YOURSELF) tmp += 7;
 	if (uamul && uamul->oartifact == ART_PLAYING_QUAKE) tmp += 5;
 	if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;

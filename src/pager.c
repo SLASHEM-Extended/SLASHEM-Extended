@@ -488,6 +488,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mtmp->data->mlet == S_DEMON)
 		    ways_seen++;
+		if (uarmc && uarmc->oartifact == ART_SHRINKBACK && mtmp->data->mlet == S_HUMANOID )
+		    ways_seen++;
 		if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) )
 		    ways_seen++;
 		if (isselfhybrid && monpolyok(mtmp->data) && !polyok(mtmp->data) && ((mtmp->data->mlevel < 30) || mtmp->selfhybridvisible) ) 
@@ -539,6 +541,8 @@ lookat(x, y, buf, monbuf)
 		if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || monstersoundtype(mtmp) == MS_SOUND || monstersoundtype(mtmp) == MS_SHRIEK || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_FART_QUIET ) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
+		    ways_seen++;
+		if (uarmc && uarmc->oartifact == ART_SILVERY_LINES && mtmp->data->mcolor == CLR_BRIGHT_GREEN)
 		    ways_seen++;
 		if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mtmp->data->mlet == S_GOLEM && distu(mtmp->mx, mtmp->my) < 626)
 		    ways_seen++;
@@ -702,6 +706,10 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "warned of demons");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
+		    if (uarmc && uarmc->oartifact == ART_SHRINKBACK && mtmp->data->mlet == S_HUMANOID ) {
+			strcat(monbuf, "warned of humanoids");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
 		    if (isselfhybrid && strongmonst(mtmp->data) && is_wanderer(mtmp->data) ) {
 			strcat(monbuf, "self-hybridization");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
@@ -817,6 +825,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE ) {
 			strcat(monbuf, "freezer vision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmc && uarmc->oartifact == ART_SILVERY_LINES && mtmp->data->mcolor == CLR_BRIGHT_GREEN) {
+			strcat(monbuf, "silvery lines");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (Burnopathy && Burned && infravision(mtmp->data) && distu(mtmp->mx, mtmp->my) < (StrongBurnopathy ? 170 : 101) ) {
@@ -29380,6 +29392,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel that you have achieved the impossible. But that feeling is an illusion, in reality you haven't achieved anything because you're a lazy fuck.",
 	"A female voice is laughing incessantly...",
 	"A female voice is laughing incessantly... and since this is SLEX, having to read this message causes all of your alarm bells to go off because it means something really bad must have happened.",
+	"Now you have the writer's block.",
+	"Now you have the writer's block. Oh no, how are you going to write your terrible Twilight fanfiction now?!",
 
 };
 

@@ -272,6 +272,11 @@ register struct obj *pen;
 	    return 1;
 	}
 
+	if (uarmc && uarmc->oartifact == ART_WRITER_S_BLOCK) {
+		You("try to write, but can't seem to think of anything that you could be writing. Dammit.");
+		return 1;
+	}
+
 	/* get paper to write on */
 	paper = getobj(write_on,"write on");
 	if(!paper)

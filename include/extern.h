@@ -2868,6 +2868,9 @@ E boolean playerextrinsicdisintres(void);
 E boolean playerextrinsicstoneres(void);
 E boolean playerextrinsicdeathres(void);
 E boolean playerextrinsicfreeaction(void);
+E boolean playerextrinsicmysteryres(void);
+E boolean playerextrinsicdiscountaction(void);
+E boolean playerextrinsicmagicalbreath(void);
 
 E boolean itemhasappearance(struct obj *, int);
 E boolean itemnumwithappearance(int, int);

@@ -7635,7 +7635,6 @@ newbossPENT:
 					i = rn2(A_MAX);
 					for (ii = 0; ii < A_MAX; ii++) {
 						lim = AMAX(i);
-						if (i == A_STR && u.uhs >= 3) --lim;	/* WEAK */
 						if (ABASE(i) < lim) {
 							ABASE(i) = lim;
 							flags.botl = 1;
@@ -25605,7 +25604,9 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if ((obj->where != OBJ_FLOOR) && powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCHWUUUUUUUUUUH) continue;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_DREHN_PIPE) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_OUT_OF_THE_RAIN) continue;
 
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FLOW_BASIN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWAPSCHWAP) continue;

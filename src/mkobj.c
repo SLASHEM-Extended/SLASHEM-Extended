@@ -2793,7 +2793,7 @@ boolean shopinit;
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (is_poisonable(otmp) && !rn2(100)) {
 			otmp->opoisoned = 1;
@@ -2808,7 +2808,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(20)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 50)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3016,7 +3016,7 @@ boolean shopinit;
 		if (!rn2(achieve.get_amulet ? 500 : 2000)) otmp->greased = rn2(5) ? 1 : rn2(3) ? 2 : 3;
 		if (artif && (artif != 2) && artigenechance(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3046,7 +3046,7 @@ boolean shopinit;
 
 			if (artif && (artif != 2) && artigenechance(50)) {
 			    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-				if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+				if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 			}
 			else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 			    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3178,7 +3178,7 @@ boolean shopinit;
 		 * versions, so we want to make sure they don't spawn literally everywhere - make them 20x less common */
 		if (artif && (artif != 2) && (!rn2(20) || (otmp->otyp != ROCK) ) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3189,7 +3189,7 @@ boolean shopinit;
 	/* "Disable enchantable rocks. The racial + stregnth + sling enchantment bonus is more than enough." In Soviet Russia, people never use slings anyway so they never noticed that those retarded things never do enough damage. They also completely disregard the fact that higher enchantment means a lower chance for the projectiles to disappear too. Guess they never used a stack of blessed +7 rocks in their life, otherwise they'd know the benefits of having them. --Amy */
 		if (issoviet) otmp->spe = 0;
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (!rn2(100)) willhaveweaponenchantment = TRUE;
 		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
@@ -3419,7 +3419,7 @@ boolean shopinit;
 				otmp->age /= 10;
 			}
 
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 			if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
@@ -3605,7 +3605,7 @@ boolean shopinit;
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
@@ -3645,7 +3645,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif && !rn2(100)) || (otmp->spe && is_weptool(otmp) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 20)) ) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3734,7 +3734,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(140)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3771,7 +3771,7 @@ boolean shopinit;
 				otmp->spe -= rnd(abs(otmp->spe));
 			}
 
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		    /* negative implants are usually cursed */
 		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);
@@ -3790,7 +3790,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(60)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(140)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3866,7 +3866,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(250)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -3874,7 +3874,7 @@ boolean shopinit;
 			if (artif != 2) u.fakeartifacts++;
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (otmp->oartifact == ART_BUS_ERROR || otmp->oartifact == ART_MYSTERIOUS_SPIKES) otmp->quan = 1;
 
@@ -3957,7 +3957,7 @@ boolean shopinit;
 
 		if (issoviet) otmp->spe = 0;
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (!rn2(achieve.get_amulet ? 250 : 1000)) otmp->oerodeproof = 1;
 		if (!rn2(1000)) {
@@ -3968,7 +3968,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 150)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -4015,7 +4015,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(400)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -4069,7 +4069,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(100)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(250)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -4143,7 +4143,7 @@ boolean shopinit;
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		if (!rn2(achieve.get_amulet ? 20 : 80)) otmp->oerodeproof = 1;
 		if (!rn2(80)) {
@@ -4156,7 +4156,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if ((artif || otmp->spe) && !rn2((abs(otmp->spe) > 9) ? 2 : (abs(otmp->spe) > 7) ? 3 : (abs(otmp->spe) > 5) ? 4 : (abs(otmp->spe) > 4) ? 5 : (abs(otmp->spe) > 3) ? 6 : (abs(otmp->spe) > 2) ? 7 : (abs(otmp->spe) > 1) ? 8 : (abs(otmp->spe) > 0) ? 10 : 100)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -4533,7 +4533,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(160)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -4565,7 +4565,7 @@ boolean shopinit;
 				otmp->spe -= rnd(abs(otmp->spe));
 			}
 
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
 
 		    /* negative rings are usually cursed */
 		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);
@@ -4643,7 +4643,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(50)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(125)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -4677,7 +4677,7 @@ boolean shopinit;
 
 		if (artif && (artif != 2) && artigenechance(200)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
+			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
 		else if (artif && !rn2(500)) {
 		    otmp = oname(otmp, !rn2(20) ? generate_garbage_string() : fauxartinames[rn2(SIZE(fauxartinames))] );
@@ -5073,7 +5073,7 @@ register struct obj *otmp;
 void
 uncurse(otmp, guaranteed)
 register struct obj *otmp;
-boolean guaranteed; /* can it work even when you have permacurse nastytrap effect? (can still fail if heavily cursed --Amy */
+boolean guaranteed; /* can it work even when you have permacurse nastytrap effect? (can still fail if heavily cursed) --Amy */
 {
 	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone() || (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) || (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS && !Role_if(PM_CLIMACTERIAL)) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) || (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) ) ) return;
 
