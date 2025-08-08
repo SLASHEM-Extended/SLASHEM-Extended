@@ -286,6 +286,8 @@ int thrown;
 
 	    if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot += 2;
 
+	    if (uarms && uarms->oartifact == ART_OFFBOW && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 1;
+
 	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->invoketimer <= monstermoves) ) {
 		int artitimeout = rnz(2000);
 		if (!rn2(5)) artitimeout = rnz(20000); /* squeaking does not help here, as it's not an actual invoke --Amy */

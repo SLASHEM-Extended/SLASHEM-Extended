@@ -3224,7 +3224,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 
 	if ((mtmp->misc_worn_check & W_ARMS) != 0) {
 		if (blocker = (which_armor(mtmp, W_ARMS))) {
-			if (blocker && (blocker->otyp != GRIM_SHIELD)) wearing_shield = TRUE;
+			if (blocker && (blocker->otyp != GRIM_SHIELD && blocker->oartifact != ART_EASY_HOLD)) wearing_shield = TRUE;
 		}		
 	}
 
@@ -3600,7 +3600,7 @@ register struct monst *mtmp;
 
 	if ((mtmp->misc_worn_check & W_ARMS) != 0) {
 		if (blocker = (which_armor(mtmp, W_ARMS))) {
-			if (blocker && (blocker->otyp != GRIM_SHIELD)) wearing_shield = TRUE;
+			if (blocker && (blocker->otyp != GRIM_SHIELD && blocker->oartifact != ART_EASY_HOLD)) wearing_shield = TRUE;
 		}		
 	}
 
@@ -6247,6 +6247,10 @@ int degree;
 		if (u.bucskill < 2) u.bucskill++;
 		else if (!rn2(u.bucskill)) u.bucskill++;
 		if (u.bucskill > 250) u.bucskill = 250;
+	}
+
+	if (uarmf && uarmf->oartifact == ART_HEK_BOOK && (skill == P_MEMORIZATION)) {
+		u.cnd_maxalignment += degree;
 	}
 
 	if (Race_if(PM_MATRIXER)) skill = P_MATRIX(skill);

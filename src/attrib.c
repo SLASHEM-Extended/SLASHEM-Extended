@@ -2166,16 +2166,16 @@ boolean	inc_or_dec;
 
 		/* note by Amy - it's stupid if you can only lose your attribute points if they're greater than 18. */
 
-		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : -rn2(2);
+		AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || (uarms && uarms->oartifact == ART_NULL_) || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : -rn2(2);
 
 		if (uarms && uarms->oartifact == ART_HIGHER_TRAINING && inc_or_dec && !rn2(2)) AEXE(i) += 1;
 		if (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY && inc_or_dec) AEXE(i) += 2;
 
 		if (Extra_wpn_practice) 
-			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : 0;
+			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || (uarms && uarms->oartifact == ART_NULL_) || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : 0;
 
 		if (StrongExtra_wpn_practice) 
-			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : 0;
+			AEXE(i) += (inc_or_dec) ? (( (rn2(19) > ACURR(i) ) || !rn2(10) ) && !(PlayerCannotExerciseStats || (uarms && uarms->oartifact == ART_NULL_) || u.uprops[EXERCISE_DEACTIVATED].extrinsic || have_exercisestone()) ) : 0;
 
 #ifdef DEBUG
 		pline("%s, %s AEXE = %d",
@@ -2337,6 +2337,8 @@ exerchk()
 				AMAX(A_WIS) -= 1;
 				flags.botl = 1;
 				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
+
+				if (uarmh && uarmh->oartifact == ART_BURN_INTO_THE_MIND) mightbooststat(A_INT);
 
 				/* it's a total crapshoot if any little contamination can instakill you. I decided that
 				 * if it's less than 100, you can't be instakilled but the contamination may go down. --Amy */
@@ -3178,6 +3180,7 @@ int x;
 		if (uright && uright->oartifact == ART_RING_OF_STEEL_DRAGON) tmp += 3;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_FEND_FOR_YOURSELF) tmp += 4;
+		if (uarmg && uarmg->oartifact == ART_ALPHA_GLOVES)
 		if (uwep && uwep->oartifact == ART_SPECIFI_X_) tmp += 5;
 		if (uleft && uleft->oartifact == ART_HIGHER_LOCK) tmp += 1;
 		if (uright && uright->oartifact == ART_HIGHER_LOCK) tmp += 1;
@@ -3618,6 +3621,7 @@ int x;
 		if (x == A_WIS && uright && uright->oartifact == ART_WELLBEWONDO) tmp += 1;
 		if (x == A_WIS && uleft && uleft->oartifact == ART_SUPER_WISE) tmp += (uleft->cursed ? -10 : 10);
 		if (x == A_WIS && uright && uright->oartifact == ART_SUPER_WISE) tmp += (uright->cursed ? -10 : 10);
+		if (x == A_WIS && uarmf && uarmf->oartifact == ART_SEVER_SAVER) tmp += 8;
 		if (x == A_INT && uwep && uwep->oartifact == ART_SPECIFI_X_) tmp += 10;
 		if (x == A_INT && uwep && uwep->oartifact == ART_SHIVERING_STAFF) tmp += 4;
 		if (x == A_INT && uwep && uwep->oartifact == ART_STAFF_OF_INSANITY) tmp += 4;
@@ -3635,6 +3639,7 @@ int x;
 		if (Race_if(PM_WYLVAN)) tmp += 1;
 		if (x == A_INT && uamul && uamul->oartifact == ART_KLENSCHGOR) tmp += 5;
 		if (x == A_INT && uwep && uwep->oartifact == ART_HYPER_INTELLIGENCE) tmp += 7;
+		if (x == A_INT && uarmf && uarmf->oartifact == ART_SPELLBOOTS) tmp += 1;
 		if (x == A_WIS && uarmc && uarmc->oartifact == ART_EXCITEMENT_OF_HAX) tmp += 4;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (x == A_INT && uarms && uarms->oartifact == ART_YELLOW_STATUS) tmp += 2;
@@ -3646,6 +3651,7 @@ int x;
 		if (x == A_INT && uright && uright->otyp == RIN_GAIN_INTELLIGENCE) tmp += uright->spe;
 		if (x == A_WIS && uleft && uleft->otyp == RIN_GAIN_WISDOM) tmp += uleft->spe;
 		if (x == A_WIS && uright && uright->otyp == RIN_GAIN_WISDOM) tmp += uright->spe;
+		if (uarmh && uarmh->oartifact == ART_PLUSMIND) tmp += 2;
 		if (x == A_WIS && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 5;
 		if (x == A_INT && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 7;
 		if (x == A_INT && uleft && uleft->oartifact == ART_FIRST_EXCHANGE) tmp += 5;
@@ -3771,6 +3777,7 @@ int x;
 		if (uleft && uleft->oartifact == ART_HOH_UNNE) tmp += 5;
 		if (uright && uright->oartifact == ART_HOH_UNNE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_BOW_OF_VINDERRE) tmp += 4;
+		if (uarmg && uarmg->oartifact == ART_PENTECOSTE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_SHAKING_BOW) tmp += 4;
 		if (uarmc && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
@@ -3970,6 +3977,7 @@ int x;
 		if (uarm && uarm->oartifact == ART_ULTRAVIOLET_RAINBOW) tmp += 3;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
+		if (uarms && uarms->oartifact == ART_CRIMSON_JACKAL)
 		if (bmwride(ART_PANZER_TANK)) tmp += 10;
 		if (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) tmp += 7;
 		if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) tmp += 7;
@@ -3980,6 +3988,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_SHROUD) tmp += 7;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) tmp += 10;
+		if (uarms && uarms->oartifact == ART_HOSTRO) tmp += 3;
 		if (uleft && uleft->oartifact == ART_MAHPTY) tmp += 3;
 		if (uright && uright->oartifact == ART_MAHPTY) tmp += 3;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
@@ -4381,6 +4390,7 @@ boolean displaymessage;
 
 	if (RngeStatcapIncrease) actuallimit += 5;
 	if (uarmf && uarmf->oartifact == ART_EROTIC_STAT_TRAIN) actuallimit += 5;
+	if (uarmh && uarmh->oartifact == ART_GREAT_LEARNING_AMATEUR) actuallimit += 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && targetattr == A_WIS) actuallimit += 10000; /* guaranteed success */
 	if (uimplant && uimplant->oartifact == ART_FOOD_FOR_THOUGHT && (targetattr == A_WIS || targetattr == A_INT)) {
 		actuallimit += (powerfulimplants() ? 5 : 2);

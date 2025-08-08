@@ -11301,7 +11301,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
+	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 

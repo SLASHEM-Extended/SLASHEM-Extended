@@ -10989,6 +10989,8 @@ register int osym, dmgtyp;
 		case AD_FIRE:
 		    xresist = (Fire_resistance && obj->oclass != POTION_CLASS);
 
+			/* !!! make sure to keep burnarmor() in trap.c in sync with this !!! --Amy */
+
 			if (uarm && uarm->otyp == SATANIC_ARMOR) {
 				skip++;
 				break;

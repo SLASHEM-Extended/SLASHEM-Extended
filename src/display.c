@@ -1241,6 +1241,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226) ) ||
 		(uarm && uarm->oartifact == ART_JEFFERSON_S_LOOKAROUND && bigmonst(mon->data) && distu(mon->mx, mon->my) < 101) ||
+		(uarms && uarms->oartifact == ART_THAT_IS_SO_SUS && distu(mon->mx, mon->my) < 226 && mon->data->maligntyp < 0) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
@@ -1264,6 +1265,7 @@ newsym(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
 		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
@@ -1380,6 +1382,7 @@ newsym(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uarm && uarm->oartifact == ART_JEFFERSON_S_LOOKAROUND && bigmonst(mon->data) && distu(mon->mx, mon->my) < 101) ||
+		(uarms && uarms->oartifact == ART_THAT_IS_SO_SUS && distu(mon->mx, mon->my) < 226 && mon->data->maligntyp < 0) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmh && uarmh->oartifact == ART_HEARING_EAR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
@@ -1407,6 +1410,7 @@ newsym(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
 		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
@@ -1696,6 +1700,7 @@ newsymX(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uarm && uarm->oartifact == ART_JEFFERSON_S_LOOKAROUND && bigmonst(mon->data) && distu(mon->mx, mon->my) < 101) ||
+		(uarms && uarms->oartifact == ART_THAT_IS_SO_SUS && distu(mon->mx, mon->my) < 226 && mon->data->maligntyp < 0) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
@@ -1720,6 +1725,7 @@ newsymX(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
 		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
@@ -1836,6 +1842,7 @@ newsymX(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(uarm && uarm->oartifact == ART_JEFFERSON_S_LOOKAROUND && bigmonst(mon->data) && distu(mon->mx, mon->my) < 101) ||
+		(uarms && uarms->oartifact == ART_THAT_IS_SO_SUS && distu(mon->mx, mon->my) < 226 && mon->data->maligntyp < 0) ||
 		(uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmh && uarmh->oartifact == ART_HEARING_EAR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
@@ -1863,6 +1870,7 @@ newsymX(x,y)
 		(Dimmopathy && Dimmed && mon->m_lev > u.ulevel && distu(mon->mx, mon->my) < (StrongDimmopathy ? 226 : 101) ) ||
 		(ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) ||
 		(uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) ||
+		(uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) ||
 		(uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) ||
 		(EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) ||
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
@@ -3849,6 +3857,7 @@ struct monst *mon;
 	if (ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) return TRUE;
 	if (uarm && uarm->oartifact == ART_JEFFERSON_S_LOOKAROUND && bigmonst(mon->data) && distu(mon->mx, mon->my) < 101) return TRUE;
+	if (uarms && uarms->oartifact == ART_THAT_IS_SO_SUS && distu(mon->mx, mon->my) < 226 && mon->data->maligntyp < 0) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) return TRUE;
 	if (RngeInternetAccess && mon->internetvisible) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) return TRUE;
@@ -3867,6 +3876,7 @@ struct monst *mon;
 	if (StrongSickopathy && Sick && (dmgtype(mon->data, AD_DISE) || dmgtype(mon->data, AD_PEST) ) ) return TRUE;
 	if (ScentView && distu(mon->mx, mon->my) < 101 && mon->scentvisible && (is_animal(mon->data) || monstersoundtype(mon) == MS_STENCH) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mon) == MS_SHOE) return TRUE;
+	if (uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mon->m_lev % 5 == 0)) return TRUE;
 	if (uwep && uwep->oartifact == ART_JENNY_S_PROTECTER && uwep->lamplit && monstersoundtype(mon) == MS_MOLEST) return TRUE;
 	if (EcholocationActive && distu(mon->mx, mon->my) < 626 && mon->echolocatevisible && (dmgtype(mon->data, AD_SOUN) || monstersoundtype(mon) == MS_SOUND || monstersoundtype(mon) == MS_SHRIEK || monstersoundtype(mon) == MS_FART_NORMAL || monstersoundtype(mon) == MS_FART_LOUD || monstersoundtype(mon) == MS_FART_QUIET ) ) return TRUE;
 	if (uarmh && uarmh->otyp == HELM_OF_UNLIVING_ESP && mon->data->mlet == S_GOLEM && distu(mon->mx, mon->my) < 626) return TRUE;

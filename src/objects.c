@@ -1790,7 +1790,7 @@ ARMOR("evil leather armor", (char *)0,
 ARMOR("special leather armor", (char *)0,
 	1, 0, 0, 0,	 250, 3, 60,   5,  8, 0, ARM_SUIT, MT_LEATHER, CLR_BRIGHT_CYAN, 14, 0),
 ARMOR("troll leather armor", (char *)0,
-	1, 0, 0, REGENERATION, 10, 3, 600,   5,  8, 0, ARM_SUIT, MT_LEATHER, HI_LEATHER, 24, 0),
+	1, 0, 0, REGENERATION, 10, 3, 60,   50,  8, 0, ARM_SUIT, MT_LEATHER, HI_LEATHER, 24, 0),
 
 /* starting from here are "light" armors: monks, jedi etc. can use them without penalties --Amy
  * actual boosts are given by robes only, though. elven toga needs to be first */

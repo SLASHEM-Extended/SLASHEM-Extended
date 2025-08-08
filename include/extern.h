@@ -2770,6 +2770,7 @@ E void nastytrapcurse(void);
 E void shank_player(void);
 E void metalmafiaattack(void);
 E void randommartialstyle(void);
+E void choosemartialstyle(void);
 E void addplayerdebt(int, BOOLEAN_P);
 E void terrainterror(int);
 E void giftartifact(void);

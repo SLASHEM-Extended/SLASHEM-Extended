@@ -138,14 +138,28 @@ const char *name;	/* if null, then format `obj' */
 				case P_GRAND_MASTER: shieldblockrate += 10; break;
 				case P_SUPREME_MASTER: shieldblockrate += 12; break;
 			}
-
+			if (uarms->oartifact == ART_TSCHINGKLING) {
+				switch (P_SKILL(P_SHIELD)) {
+					case P_BASIC: shieldblockrate += 2; break;
+					case P_SKILLED: shieldblockrate += 4; break;
+					case P_EXPERT: shieldblockrate += 6; break;
+					case P_MASTER: shieldblockrate += 8; break;
+					case P_GRAND_MASTER: shieldblockrate += 10; break;
+					case P_SUPREME_MASTER: shieldblockrate += 12; break;
+				}
+			}
 		}
 
+		if (uarms->oartifact == ART_RUST_OK) shieldblockrate += 25;
+		if (uarms->oartifact == ART_TSCHINGKLING) shieldblockrate += 20;
 		if (uarms->oartifact == ART_LURTZ_S_WALL) shieldblockrate += 20;
 		if (uarms->oartifact == ART_ATTRACTOR) shieldblockrate += 20;
 		if (uarm && uarm->oartifact == ART_MOEBIUS_ARMOR) shieldblockrate += 10;
 		if (uarms->oartifact == ART_I_M_GETTING_HUNGRY) shieldblockrate += 20;
 		if (uarms->oartifact == ART_WHANG_CLINK_CLONK) shieldblockrate += 10;
+		if (uarms->oartifact == ART_EASY_HOLD && !(uwep && bimanual(uwep)) && !(u.twoweap && uswapwep) ) shieldblockrate += 20;
+		if (uarms->oartifact == ART_BLACK_TOWER) shieldblockrate += 10;
+		if (uarms->oartifact == ART_EVEN_MORE_SUPERER) shieldblockrate += 10;
 		if (uarms->oartifact == ART_BLOCKBETTER) shieldblockrate += 5;
 		if (uarms->oartifact == ART_VITALITY_STORM) shieldblockrate += 2;
 		if (uarms->oartifact == ART_SUPER_SKELLIE) shieldblockrate += 10;
@@ -450,6 +464,12 @@ shieldblockboo:
 			return(0);
 
 	} else if (uarm && uarm->oartifact == ART_SILVERY_FLUID && !rn2(3)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
+	} else if (uarmf && uarmf->oartifact == ART_TANGO_HEELS && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
 			else You("skillfully evade %s.", onm);

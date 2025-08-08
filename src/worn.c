@@ -634,7 +634,7 @@ boolean racialexception;
 		    if (!creation && has_horns(mon->data) && !is_flimsy(obj)) continue;
 		    break;
 		case W_ARMS:
-		    if (MON_WEP(mon) && bimanual(MON_WEP(mon)) && obj->otyp != GRIM_SHIELD) continue;
+		    if (MON_WEP(mon) && bimanual(MON_WEP(mon)) && obj->otyp != GRIM_SHIELD && obj->oartifact != ART_EASY_HOLD) continue;
 		    if (!is_shield(obj)) continue;
 		    break;
 		case W_ARMG:

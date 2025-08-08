@@ -3513,7 +3513,7 @@ touch_artifact(obj,mon)
 	badalign = !!spec_applies(&tmp, mon);
     }
 
-    if (((((badclass || badalign) && self_willed) || (badalign && (!yours || !rn2(4)))) && !RngeBlastShielding) || (ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || have_blaststone()) ) {
+    if (((((badclass || badalign) && self_willed) || (badalign && (!yours || !rn2(4)))) && !RngeBlastShielding) || (ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_blaststone()) ) {
 	int dmg;
 	char buf[BUFSZ];
 
@@ -3536,14 +3536,14 @@ touch_artifact(obj,mon)
 	/* having the artiblast nastytrap means that blast shielding doesn't prevent artifact blasts, but since we don't
 	 * want the property to be completely useless in that case, it reduces the blast damage instead --Amy */
 
-	if ((ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || have_blaststone()) && RngeBlastShielding) {
+	if ((ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_blaststone()) && RngeBlastShielding) {
 		dmg /= 2;
 		if (dmg < 1) dmg = 1;
 	}
 
 	/* the blasts are just too goddamn annoying, and all they really do is blow your symbiote to smithereens... so, I
 	 * decided that they deal much less damage, unless you have the nastytrap effect or soviet mode. --Amy */
-	if (!(ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || have_blaststone()) && !issoviet) {
+	if (!(ArtiblastEffect || u.uprops[ARTIBLAST_EFFECT].extrinsic || autismweaponcheck(ART_ULTRA_ANNOYANCE) || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_blaststone()) && !issoviet) {
 		dmg /= (self_willed ? 4 : 6);
 		if (dmg < 1) dmg = 1;
 	}
@@ -6104,6 +6104,33 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_BRAVO_HELMET) {
+
+			int k, l;
+			struct monst *mtmp3;
+			pline("You try to pacify monsters!");
+
+			 for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+				if (!isok(u.ux + k, u.uy + l)) continue;
+				if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) && !is_infrastructure_monster(mtmp3) && mtmp3->mfrenzied == 0 && mtmp3->mtame == 0 && mtmp3->isminion == 0 && mtmp3->isgyp == 0
+				&& mtmp3->mnum != quest_info(MS_NEMESIS) && !(mtmp3->data->geno & G_UNIQ) )
+
+				{
+
+					if (!resist(mtmp3, RING_CLASS, 0, NOTELL)) {
+						pline("%s is successfully pacified!", mon_nam(mtmp3));
+						mtmp3->mpeaceful = TRUE;
+					} else {
+						pline("%s resists the pacifying attempt!", mon_nam(mtmp3));
+					}
+
+				} /* monster is catchable loop */
+
+			} /* for loop */
+
+			break;
+		}
+
 		if (obj->oartifact == ART_GEODENE_CAVE) {
 
 			int i, j;
@@ -6122,12 +6149,10 @@ chargingchoice:
 							fineforpracticant(1000, 0, 0);
 							u.pract_oremining = TRUE;
 						}
-
-						break;
 					} else {
 						pline("A stalactite shatters!");
-						break;
 					}
+					newsym(u.ux + i, u.uy + j);
 
 				}
 
@@ -6313,6 +6338,13 @@ tunguskaagain:
 
 			incr_itimeout(&Invulnerable, rn1(3,3));
 			You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+			break;
+		}
+
+		if (obj->oartifact == ART_MARLEEN_S_SOFTNESS) {
+
+			choosemartialstyle();
+
 			break;
 		}
 

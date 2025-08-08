@@ -4504,6 +4504,7 @@ magicalenergychoice:
 						alreadydone = TRUE;
 						break;
 					}
+					newsym(u.ux + i, u.uy + j);
 
 					alreadydone = TRUE; /* why the HELL does the break statement not go out of the loop */
 					break; /* only raze one stalactite if there are several --Amy */
@@ -12668,6 +12669,7 @@ int spell;
 	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) chance += 20;
 	if (Role_if(PM_CELLAR_CHILD) && uarm && uarm->otyp == MAGE_PLATE_MAIL) chance += 20;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
+	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
 	if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) chance += 12;
 	if (uarm && uarm->oartifact == ART_FAMPLATE) chance += 20;

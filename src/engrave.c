@@ -1206,7 +1206,7 @@ can_reach_floor()
 	return (boolean)(!u.uswallow &&
 			/* Restricted/unskilled riders can't reach the floor */
 			!(u.usteed && !(uwep && uwep->oartifact == ART_SORTIE_A_GAUCHE) && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_READY_FOR_A_RIDE) && !FemtrapActiveKerstin && !(bmwride(ART_DEEPER_LAID_BMW)) && (PlayerCannotUseSkills || P_SKILL(P_RIDING) < P_BASIC) ) &&
-			 ((!Levitation || StrongLevitation) || is_table(u.ux, u.uy) ||
+			 ((!Levitation || (uarmf && uarmf->oartifact == ART_FLOTATED_DESK) || StrongLevitation) || is_table(u.ux, u.uy) ||
 			  Is_airlevel(&u.uz) || Is_waterlevel(&u.uz)));
 }
 #endif /* OVLB */
@@ -1580,7 +1580,7 @@ freehandX()
 
 	/* grim shield is worn over the shoulder, and therefore doesn't result in unusable hands */
 	return(!uwep || !welded(uwep) ||
-	   (!bimanual(uwep) && (!uarms || (uarms && (uarms->otyp == GRIM_SHIELD || Race_if(PM_THRALL) || Race_if(PM_URGOTH) || Race_if(PM_ZAUR) || Race_if(PM_WYLVAN) ) ) || !uarms->cursed)));
+	   (!bimanual(uwep) && (!uarms || (uarms && (uarms->otyp == GRIM_SHIELD || uarms->oartifact == ART_EASY_HOLD || (uwep && uarms->oartifact == ART_OFFBOW && (objects[uwep->otyp].oc_skill == P_BOW)) || Race_if(PM_THRALL) || Race_if(PM_URGOTH) || Race_if(PM_ZAUR) || Race_if(PM_WYLVAN) ) ) || !uarms->cursed)));
 }
 
 static NEARDATA const char styluses[] =

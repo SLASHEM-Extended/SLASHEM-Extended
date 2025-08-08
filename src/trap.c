@@ -1831,6 +1831,9 @@ struct monst *victim;
 	if (victim == &youmonst && FireImmunity) return 0;
 	if (victim == &youmonst && uarm && uarm->otyp == SATANIC_ARMOR) return 0;
 	if (victim == &youmonst && uarm && uarm->oartifact == ART_DARK_L) return 0;
+	if (victim == &youmonst && uarms && uarms->oartifact == ART_HEATSTAND) return 0;
+	if (victim == &youmonst && autismringcheck(ART_THOUSANDER)) return 0;
+	if (victim == &youmonst && uarmc && uarmc->oartifact == ART_BOWSER_S_FUN_ARENA) return 0;
 
 	if ((victim == &youmonst) && !rn2(2) ) make_burned(HBurned + rnd(20 + (monster_difficulty() * 5) ),TRUE);
     
@@ -3414,7 +3417,7 @@ int *fail_reason;
 	}
 	/* avoid hiding under nothing */
 	if (x == u.ux && y == u.uy &&
-		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
+		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
 	    u.uundetected = 0;
 
 	if (fail_reason) *fail_reason = AS_OK;
@@ -3966,6 +3969,11 @@ unsigned trflags;
 
 	/* Traps are 50% more likely to fail for a pickpocket */
 	if (!In_sokoban(&u.uz) && Role_if(PM_PICKPOCKET) && ttype != MAGIC_PORTAL && rn2(2)) return;
+
+	if (!In_sokoban(&u.uz) && uarmf && uarmf->oartifact == ART_TRAPAVOIDER && !rn2(5) && ttype != MAGIC_PORTAL) {
+		You("avoid a trap!");
+		return;
+	}
 
 	if (!In_sokoban(&u.uz) && uwep && uwep->oartifact == ART_CUTE_JAPANESE_FEET && rn2(2) && ttype != MAGIC_PORTAL) {
 		if ((trap && trap->tseen) || rn2(4)) You("avoid a trap!");
@@ -9175,7 +9183,10 @@ newbossPENT:
 
 			seetrap(trap);
 
-			if (uarmf && uarmf->otyp == CLOGS) {
+			if (uarmf && uarmf->oartifact == ART_ENTYGREB) {
+				You("stepped into a heap of shit, but thankfully your boots are unaffected.");
+				break;
+			} else if (uarmf && uarmf->otyp == CLOGS) {
 				You("stepped into a heap of shit, but thankfully it cannot affect your clogs.");
 				break; /* doesn't help with larissa trap, this is by design */
 			} else {

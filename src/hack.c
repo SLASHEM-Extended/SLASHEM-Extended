@@ -3107,7 +3107,7 @@ peacedisplace:
 		    forcenomul(0, 0);
 	}
 
-	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
+	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 	    u.uundetected = is_waterypool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
@@ -4931,7 +4931,7 @@ newbossLARA:
 		pline("You've been paralyzed for %d turns.", abs(nval));
 	}
 
-	if (uarmc && uarmc->oartifact == ART_VOLTSHOCK) {
+	if (uarmc && uarmc->oartifact == ART_VOLTSHOCK && nval < 0) {
 		buzz(15, 2, u.ux, u.uy, -1, 0);
 		buzz(15, 2, u.ux, u.uy, 1, 0);
 		buzz(15, 2, u.ux, u.uy, -1, 1);
@@ -5028,7 +5028,7 @@ showdmg(n)
 {
 	int lev;
 
-	if (DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) return;
+	if (DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_damagemeterstone()) return;
 	if (Role_if(PM_NOOB_MODE_BARB)) return; /* sorry --Amy */
 
 	if (flags.showdmg && n > 1) {
@@ -5369,6 +5369,14 @@ int k_format; /* WAC k_format is an int */
 		n -= rnd(4);
 		if (n < 1) n = 1;
 	}
+	if (uarms && uarms->oartifact == ART_VOID_CHANT && n > 0) {
+		n -= rnd(2);
+		if (n < 1) n = 1;
+	}
+	if (uarms && uarms->oartifact == ART_NULL_ && n > 0) {
+		n -= rnd(4);
+		if (n < 1) n = 1;
+	}
 
 	/* let's allow the player to deflect some damage if he's lucky (higher chance with good constitution). --Amy */
 	if (rn2(ABASE(A_CON))) {
@@ -5616,7 +5624,7 @@ int k_format; /* WAC k_format is an int */
 		    maybe_wail();
 
 #ifdef SHOW_DMG                
-		if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && n > 0) { 
+		if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && n > 0) { 
 			pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		}
 #endif
@@ -5644,7 +5652,7 @@ int k_format; /* WAC k_format is an int */
 	}
 
 #ifdef SHOW_DMG                
-	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && n > 0) { 
+	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && n > 0) { 
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");

@@ -4893,7 +4893,7 @@ rerollchaloc:
 	    if (mesg) pline("%s", mesg);
 	}
 
-	if (SatanEffect || u.uprops[SATAN_EFFECT].extrinsic || have_satanstone() || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) ) {
+	if (SatanEffect || u.uprops[SATAN_EFFECT].extrinsic || have_satanstone() || (uarmh && uarmh->oartifact == ART_DARK_OMBRIA) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) ) {
 		if (SatanEffectXtra) {
 			nomul(-(rn1(5, 5)), "paralyzed by Satan", TRUE);
 		} else {

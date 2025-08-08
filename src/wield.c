@@ -1028,7 +1028,7 @@ boolean put_away;
 	    You("wield the petrifyium bra in your bare %s.", body_part(HAND));
 	    sprintf(kbuf, "wielding a petrifyium bra");
 	    instapetrify(kbuf);
-	} else if (uarms && (uarms->otyp != GRIM_SHIELD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) && bimanual(wep))
+	} else if (uarms && (uarms->otyp != GRIM_SHIELD && uarms->oartifact != ART_EASY_HOLD && !(uarms->oartifact == ART_OFFBOW && (objects[wep->otyp].oc_skill == P_BOW)) && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) && bimanual(wep))
 	    You("cannot wield a two-handed %s while wearing a shield.",
 		is_sword(wep) ? "sword" :
 		    wep->otyp == BATTLE_AXE ? "axe" : "weapon");
@@ -1473,7 +1473,7 @@ const char *verb;	/* "rub",&c */
 		return FALSE;
 	}
 
-    if (uarms && (uarms->otyp != GRIM_SHIELD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) && bimanual(obj)) {
+    if (uarms && (uarms->otyp != GRIM_SHIELD && uarms->oartifact != ART_EASY_HOLD && !(uarms->oartifact == ART_OFFBOW && (objects[obj->otyp].oc_skill == P_BOW)) && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) && bimanual(obj)) {
 	You("cannot %s a two-handed %s while wearing a shield.",
 	    verb, (obj->oclass == WEAPON_CLASS) ? "weapon" : "tool");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -1572,7 +1572,7 @@ can_twoweapon()
 	} else if ((uwep && bimanual(uwep)) || (uswapwep && bimanual(uswapwep))) {
 	    otmp = (uwep && bimanual(uwep)) ? uwep : uswapwep;
 	    pline("%s isn't one-handed.", Yname2(otmp));
-	} else if (uarms && uarms->otyp != GRIM_SHIELD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) {
+	} else if (uarms && uarms->otyp != GRIM_SHIELD && uarms->oartifact != ART_EASY_HOLD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) {
 	    if (uwep || uswapwep)
 		what = uwep && uswapwep ?  "use two weapons" :
 		    "use more than one weapon";

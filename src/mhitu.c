@@ -2517,6 +2517,15 @@ mattacku(mtmp)
 	if (!rn2(2) && mdat && !strongmonst(mdat) && !extra_nasty(mdat) && !(mdat->geno & G_UNIQ) && tmp > 1) tmp -= rnd(tmp / 2);
 
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
+	if (uarmf && uarmf->oartifact == ART_TANGO_HEELS && !rn2(3)) tmp -= 100;
+
+	if (uarmf && uarmf->oartifact == ART_OUT_OF_REACH) {
+		if (verysmall(mtmp->data)) {
+			if (rn2(4)) tmp -= 100;
+		} else if (rathersmall(mtmp->data)) {
+			if (!rn2(3)) tmp -= 100;
+		}
+	}
 
 	if (u.twoweap && uwep && uswapwep && tech_inuse(T_WEAPON_BLOCKER)) tmp -= rnd(20);
 
@@ -6975,6 +6984,7 @@ struct monst *mon;
 			armpro = objects[uimplant->otyp].a_can;
 
 		if (ACURR(A_WIS) == 1) armpro--;
+		if (uarmf && uarmf->oartifact == ART_GUELDRE_S_COIN_CLING) armpro--;
 
 		if (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) armpro *= 2;
 
@@ -16049,9 +16059,15 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		return 0;
 	}
 
+	if (uarmg && uarmg->oartifact == ART_BLEG_EJECTION && rn2(10) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
+		/* cut down on message spam - only display it 1 out of 50 times --Amy */
+		if (!rn2(50)) pline("%s gazes at you, but your reflecting gloves protect you from the effects!", Monnam(mtmp));
+		return 0;
+	}
+
 	if (autismringcheck(ART_KEEP_FUNKY_) && rn2(5) && !mtmp->mcan && canseemon(mtmp) && mtmp->mcansee ) {
-		/* cut down on message spam - only display it 1 out of 10 times --Amy */
-		if (!rn2(10)) pline("%s gazes at you, but the fog protects you from the effects!", Monnam(mtmp));
+		/* cut down on message spam - only display it 1 out of 25 times --Amy */
+		if (!rn2(25)) pline("%s gazes at you, but the fog protects you from the effects!", Monnam(mtmp));
 		return 0;
 	}
 
@@ -19333,6 +19349,14 @@ register int n;
 		n -= rnd(4);
 		if (n < 1) n = 1;
 	}
+	if (uarms && uarms->oartifact == ART_VOID_CHANT && n > 0) {
+		n -= rnd(2);
+		if (n < 1) n = 1;
+	}
+	if (uarms && uarms->oartifact == ART_NULL_ && n > 0) {
+		n -= rnd(4);
+		if (n < 1) n = 1;
+	}
 
 	/* sometimes you take less damage. The game is deadly enough already. High constitution helps. --Amy */
 	if (!issoviet && rn2(ABASE(A_CON))) {
@@ -19707,7 +19731,7 @@ register int n;
 	}
 
 #ifdef SHOW_DMG
-	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayDoesNotGoAtAll ) {
+	if (flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_damagemeterstone()) && !DisplayDoesNotGoAtAll ) {
 
 		pline("[-%d -> %d]", n, (Upolyd ? (u.mh) : (u.uhp) ) );  /* WAC see damage */
 		if (!Upolyd && (( (u.uhp) * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");

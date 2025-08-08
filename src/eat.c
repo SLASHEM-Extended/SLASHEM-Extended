@@ -5480,7 +5480,7 @@ eatcorpse(otmp)		/* called when a corpse is selected as food */
 				    s_suffix(mons[mnum].mname));
 			make_sick(sick_time, buf, TRUE, SICK_VOMITABLE);
 		}
-		if (!evilfriday) {
+		if (!evilfriday && !(uarmh && uarmh->oartifact == ART_FULL_GRUNT) ) {
 			cpostfx(mnum);
 			articorpseconsume(otmp);
 			if (carried(otmp)) useup(otmp);

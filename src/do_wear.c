@@ -603,6 +603,12 @@ Boots_on()
 		/* except not really, prime curse can still be lifted; the message is intentionally misleading --Amy */
     }
 
+    if (uarmf && uarmf->oartifact == ART_MARLEEN_S_SOFTNESS) {
+	curse(uarmf);
+	uarmf->hvycurse = uarmf->prmcurse = TRUE;
+	pline("Transforming into martial arts master Marleen comes at a price...");
+    }
+
     if (uarmf && uarmf->oartifact == ART_STERDYNES) {
 	if (!uarmf->oerodeproof) {
 		uarmf->oerodeproof = TRUE;
@@ -2727,11 +2733,30 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_RUTAK && (objects[uarmh->otyp].oc_material != MT_IRON)) {
+		pline_The("helmet is made of iron once more."); /* because that's the standard material for that base item --Amy */
+		objects[uarmh->otyp].oc_material = MT_IRON;
+    }
+
+    if (uarmh && uarmh->oartifact == ART_SIMPLE_EFFECT) {
+	if (uarmh->spe < 2) uarmh->spe = 2;
+    }
+
+    if (uarmh && uarmh->oartifact == ART_PEX) {
+	if (uarmh->spe < 6) uarmh->spe = 6;
+    }
+
     if (uarmh && uarmh->oartifact == ART_KAWA_JUR_FES) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
 			pline("Ju kawad jur fes.");
 		}
+    }
+
+    if (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) {
+	curse(uarmh);
+	uarmh->hvycurse = TRUE;
+	/* no message, because hahahahaha you actually expected an Arabella item to tell you??? lol :-P --Amy */
     }
 
     if (uarmh && uarmh->oartifact == ART_SHREW_WIND) {
@@ -3974,6 +3999,8 @@ Shield_on()
 
     }
 
+    if (uarms && uarms->oartifact == ART_RUST_OK) uarms->oeroded = 1;
+
     if (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) {
 		if (!uarms->cursed) {
 			curse(uarms);
@@ -4661,31 +4688,31 @@ Armor_on()
 		uarm->hvycurse = uarm->prmcurse = uarm->bbrcurse = TRUE;
 
 		if (uarm && (objects[uarm->otyp].oc_material != MT_IRON)) {
-			objects[uarm->otyp].oc_material = MT_PLATINUM;
+			objects[uarm->otyp].oc_material = MT_IRON;
 			uarm->oerodeproof = TRUE;
 		}
 		if (uarmu && (objects[uarmu->otyp].oc_material != MT_IRON)) {
-			objects[uarmu->otyp].oc_material = MT_PLATINUM;
+			objects[uarmu->otyp].oc_material = MT_IRON;
 			uarmu->oerodeproof = TRUE;
 		}
 		if (uarmc && (objects[uarmc->otyp].oc_material != MT_IRON)) {
-			objects[uarmc->otyp].oc_material = MT_PLATINUM;
+			objects[uarmc->otyp].oc_material = MT_IRON;
 			uarmc->oerodeproof = TRUE;
 		}
 		if (uarms && (objects[uarms->otyp].oc_material != MT_IRON)) {
-			objects[uarms->otyp].oc_material = MT_PLATINUM;
+			objects[uarms->otyp].oc_material = MT_IRON;
 			uarms->oerodeproof = TRUE;
 		}
 		if (uarmg && (objects[uarmg->otyp].oc_material != MT_IRON)) {
-			objects[uarmg->otyp].oc_material = MT_PLATINUM;
+			objects[uarmg->otyp].oc_material = MT_IRON;
 			uarmg->oerodeproof = TRUE;
 		}
 		if (uarmh && (objects[uarmh->otyp].oc_material != MT_IRON)) {
-			objects[uarmh->otyp].oc_material = MT_PLATINUM;
+			objects[uarmh->otyp].oc_material = MT_IRON;
 			uarmh->oerodeproof = TRUE;
 		}
 		if (uarmf && (objects[uarmf->otyp].oc_material != MT_IRON)) {
-			objects[uarmf->otyp].oc_material = MT_PLATINUM;
+			objects[uarmf->otyp].oc_material = MT_IRON;
 			uarmf->oerodeproof = TRUE;
 		}
 		pline("Everything's hard as iron now...");
@@ -6636,13 +6663,13 @@ boolean noisy;
 	if (uarms) {
 	    if (noisy) already_wearing(an(c_shield));
 	    err++;
-	} else if (uwep && bimanual(uwep) && otmp->otyp != GRIM_SHIELD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN) ) {
+	} else if (uwep && bimanual(uwep) && otmp->otyp != GRIM_SHIELD && otmp->oartifact != ART_EASY_HOLD && !(uwep && otmp->oartifact == ART_OFFBOW && (objects[uwep->otyp].oc_skill == P_BOW)) && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN) ) {
 	    if (noisy) 
 		You("cannot wear a shield while wielding a two-handed %s.",
 		    is_sword(uwep) ? c_sword :
 		    (uwep->otyp == BATTLE_AXE) ? c_axe : (uwep->otyp == DWARVISH_BATTLE_AXE) ? c_axe : c_weapon);
 	    err++;
-	} else if (u.twoweap && otmp->otyp != GRIM_SHIELD && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) {
+	} else if (u.twoweap && otmp->otyp != GRIM_SHIELD && otmp->oartifact != ART_EASY_HOLD && !(uwep && otmp->oartifact == ART_OFFBOW && (objects[uwep->otyp].oc_skill == P_BOW)) && !Race_if(PM_THRALL) && !Race_if(PM_URGOTH) && !Race_if(PM_ZAUR) && !Race_if(PM_WYLVAN)) {
 	    if (noisy) {
 		if (uwep && uswapwep)
 		    You("cannot wear a shield while wielding two weapons.");
@@ -7479,6 +7506,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_QUARRY) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ORANGE_AC) uac -= 3;
 	if (uarm && uarm->oartifact == ART_FUCKING_WALL) uac -= 50;
+	if (uarmh && uarmh->oartifact == ART_ALLER_MOME) uac -= 5;
 	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) uac -= 6;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
 	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
@@ -7503,6 +7531,7 @@ find_ac()
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ENCHANTED__OF_DEFUSING) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) uac -= 10;
+	if (uarms && uarms->oartifact == ART_BLACK_TOWER) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_ROCKZ_ARMY) uac -= 10;
 	if (uarmu && uarmu->oartifact == ART_LITTLE_PADDING) uac -= 2;
@@ -7525,6 +7554,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_PLUM_AURA) uac -= 5;
 	if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) uac -= 3;
 	if (uamul && uamul->oartifact == ART_ARTWORK) uac -= 5;
+	if (uarmg && uarmg->oartifact == ART_BODY_COMPOSURE) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_MANT_PENDLE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) uac -= 4;
 	if (uamul && uamul->oartifact == ART_PLANTIT) {
@@ -7575,6 +7605,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_TWO) uac -= 2;
 	if (uarms && uarms->oartifact == ART_INSIDE_OUT) uac -= 3;
 	if (uwep && uwep->oartifact == ART_HOLD_IT_OUT) uac -= 20;
+	if (uarmf && uarmf->oartifact == ART_WATCH_YOUR_OPPONENT_S_MOVE) uac -= 8;
 	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) uac -= 8;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_THREE) uac -= 3;
 	if (uarm && uarm->oartifact == ART_ARMS_LEVEL_FOUR) uac -= 4;
@@ -7658,6 +7689,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_HIGH_KING_OF_SKIRIM) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_VERY_GOOD_FIT) uac -= 3;
 	if (uwep && uwep->otyp == BREAKING_WHEEL) uac -= 3;
+	if (uarmh && uarmh->oartifact == ART_SIMPLE_EFFECT) uac -= 2;
 	if (u.twoweap && uswapwep && uswapwep->otyp == BREAKING_WHEEL) uac -= 3;
 	if (uarmg && uarmg->oartifact == ART_MARY_INSCRIPTION) uac -= 5;
 	if (u.twoweap && uswapwep && uswapwep->otyp == TONFA) uac -= 3;

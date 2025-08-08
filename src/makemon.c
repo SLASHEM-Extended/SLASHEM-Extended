@@ -25715,7 +25715,7 @@ register int	mmflags;
 	mtmp->caught_stealing = FALSE;
 	mtmp->madeweatherchange = FALSE;
 
-	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
+	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarmh && uarmh->oartifact == ART_LIANNI_S_HEIGHT) || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
 	if (MoveMorkXtra) mtmp->movement += rnd(24);
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
 	if (FemtrapActiveKsenia && spawnswithsandals(mtmp->data)) mtmp->movement += 12;
@@ -34023,6 +34023,8 @@ register struct permonst *ptr;
 	if (uarmf && uarmf->oartifact == ART_SUCH_A_LOVELY_SHARK && ptr->mlet == S_EEL) return TRUE;
 
 	if (uwep && uwep->oartifact == ART_TANKFRIEND && ptr->mlet == S_ANT && rn2(10)) return TRUE;
+
+	if (uarms && uarms->oartifact == ART_TEH_GAMEPLAY && !always_hostile(ptr) && rn2(2)) return TRUE;
 
 	if (uarm && uarm->oartifact == ART_KURAIN_VIEW && ptr->mlet == S_GHOST && rn2(4)) return TRUE;
 

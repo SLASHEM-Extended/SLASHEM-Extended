@@ -329,6 +329,7 @@ moveloop()
 			if (uwep && uwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
 			if (u.twoweap && uswapwep && uswapwep->oartifact == ART_FULLSWANDIR) monclock /= 2;
 			if (uarmc && uarmc->oartifact == ART_BLEBLE___) monclock *= 2;
+			if (uarmf && uarmf->oartifact == ART_CHRRRRRRR) monclock *= 2;
 			if (issuxxor) monclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
@@ -380,6 +381,7 @@ moveloop()
 			if (issuxxor) xtraclock *= 2;
 			if (have_minimejewel()) xtraclock *= 3;
 			if (uarmc && uarmc->oartifact == ART_BLEBLE___) xtraclock *= 2;
+			if (uarmf && uarmf->oartifact == ART_CHRRRRRRR) xtraclock *= 2;
 			if (uarm && uarm->oartifact == ART_ISIMOUD) xtraclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) xtraclock *= 2;
 
@@ -1092,6 +1094,7 @@ moveloop()
 		    if (u.usteed && u.umoved) {
 			/* your speed doesn't augment steed's speed */
 			moveamt = mcalcmove(u.usteed);
+			if (uarmf && uarmf->oartifact == ART_KERSTIN_S_LITTLE_HELP && (moveamt > 0) && (moveamt < 12)) moveamt = 12;
 			if (bmwride(ART_BECHT_S_RIDE) && (moveamt > 0) && (moveamt < 12)) moveamt = 12;
 			if (bmwride(ART_BECHT_S_SPEEDMOBILE) && (moveamt > 0) && (moveamt < 15)) moveamt = 15;
 
@@ -1238,7 +1241,7 @@ moveloop()
 				if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
-				if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone()) && moveamt > 1) {
+				if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_toogoodgostone()) && moveamt > 1) {
 					int testhp, testhpmax;
 					boolean itgoestoogood = FALSE;
 					if (Upolyd) {
@@ -1752,7 +1755,7 @@ moveloop()
 			if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
-			if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || have_toogoodgostone()) && moveamt > 1) {
+			if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_toogoodgostone()) && moveamt > 1) {
 				int testhp, testhpmax;
 				boolean itgoestoogood = FALSE;
 				if (Upolyd) {
@@ -2480,8 +2483,10 @@ moveloop()
 
 			if (!rn2(2) || !(autismringcheck(ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
-				    monstermoves++;
-				    moves++;
+				    if (rn2(10) || !(uarmf && uarmf->oartifact == ART_TICKSKIP)) {
+					monstermoves++;
+					moves++;
+				    }
 				}
 			}
 
@@ -2635,6 +2640,13 @@ moveloop()
 			u.catwalknastytrap = rnd(285); /* timerun */
 		}
 
+		if (uarmh && uarmh->oartifact == ART_RNG_DAEOLOEOLOEOLOEOLOEOLO && uarmh->spe > 0) uarmh->spe = 0;
+
+		if (uarms && uarms->oartifact == ART_INCAPUTIBLE) {
+			uarms->oeroded = uarms->oeroded2 = 0;
+			uarms->oerodeproof = TRUE;
+		}
+
 		if (uarm && uarm->oartifact == ART_PORKMAN_S_OLD_VERSION && !rn2(5000)) {
 			if (uarm->spe < 25) {
 				uarm->spe++;
@@ -2666,6 +2678,13 @@ moveloop()
 		}
 
 		if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && !uarms->oeroded) uarms->oeroded = 1;
+
+		if (uarms && uarms->oartifact == ART_SPACEL_THING && uarms->spe < 15) {
+			forget(10, FALSE);
+			pline("Somehow, your memory is lost...");
+			incr_itimeout(&HMap_amnesia, 500);
+			uarms->spe++;
+		}
 
 		if (FemtrapActiveSabrina) {
 
@@ -3239,6 +3258,14 @@ moveloop()
 			u.fluidatorwarning = 3;
 			pline("Moloch is really upset with you, and you should really think twice whether you want to keep wallwalking everywhere! Endless armies of fluidators will chase you if you don't stop!");
 		}
+		if (u.fluidatorwarning < 4 && u.fluidatorwantedlevel > 19950) {
+			u.fluidatorwarning = 4;
+			pline("Now Moloch will really send in tons of fluidators to stop you from wallwalking all the time! Are you sure you want that to happen?");
+		}
+		if (u.fluidatorwarning < 5 && u.fluidatorwantedlevel > 49950) {
+			u.fluidatorwarning = 5;
+			pline("Well, I guess there's no stopping you from wallwalking constantly. But be aware of the fact that Moloch is going to send more and more fluidators in an attempt to catch you.");
+		}
 
 		if (IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) {
 			u.fluidatorwantedlevel += 5;
@@ -3476,6 +3503,13 @@ moveloop()
 		if (tech_inuse(T_AFTERBURNER) && u.umoved) {
 			buzz(21, 2 + (GushLevel / 10), u.ux, u.uy, -u.dx, -u.dy);
 		}
+
+		if (uarmf && uarmf->oartifact == ART_LAVA_TREAD && u.uen >= 10 && u.umoved) {
+			u.uen -= 10;
+			buzz(21, 1, u.ux, u.uy, -u.dx, -u.dy);
+			flags.botl = TRUE;
+		}
+
 		if (tech_inuse(T_BUGGARD)) {
 		    int i, j, bd = 2;
 		    struct monst *mtmp;
@@ -7612,6 +7646,8 @@ newbossJANI:
 		}
 
 		if (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL && u.contamination < 10) u.contamination = 10;
+
+		if (uarmh && uarmh->oartifact == ART_BURN_INTO_THE_MIND && u.contamination < 100) u.contamination += 100;
 
 		if (uwep && uwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM && !rn2(100)) nivellate();
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_TEZCATLIPOCA_S_BUBBLESTORM && !rn2(100)) nivellate();
@@ -11770,7 +11806,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (is_styxriver(u.ux, u.uy) && !(uarmc && uarmc->oartifact == ART_PLASCHTYX) && !u.uswallow) {
+		if (is_styxriver(u.ux, u.uy) && !(uarmh && uarmh->oartifact == ART_GREENSWIM) && !(uarmc && uarmc->oartifact == ART_PLASCHTYX) && !u.uswallow) {
 
 			if ((!Flying && !Levitation && !(uarmf && uarmf->otyp == BUOYANT_BOOTS) && !(uarms && uarms->otyp == SHIELDBOAT) && !(u.usteed && is_swimmer(u.usteed->data)) ) || !rn2(5)) {
 				Norep("Continued exposure to the Styx River will cause contamination.");
@@ -14736,7 +14772,9 @@ pastds2:
 
 			if (!rn2(2) || !(autismringcheck(ART_GOOD_THINGS_WILL_HAPPEN_EV)) ) {
 				if (!rn2(2) || !RngeIrregularity) {
-				    nh_timeout();
+				    if (rn2(10) || !(uarmf && uarmf->oartifact == ART_TICKSKIP)) {
+					nh_timeout();
+				    }
 				}
 			}
 		    }
@@ -16758,7 +16796,7 @@ past4:
 		u.heavyaggravation = 1;
 	}
 
-	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
+	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) ) {
 		iflags.winggraphics = TRUE;
 #ifdef CURSES_GRAPHICS
 		iflags.cursesgraphics = FALSE;
@@ -16794,7 +16832,7 @@ past4:
 		if (!u.onerainbownumber) u.onerainbownumber = rnd(15);
 	} else u.onerainbownumber = 0;
 
-	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone() ) {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone() ) {
 		if (!u.pokeliedamagetype) {
 			u.pokeliedamagetype = rnd(166);
 		}
@@ -16802,7 +16840,7 @@ past4:
 		u.pokeliedamagetype = 0;
 	}
 
-	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_pokeliestone()) {
 		if (!u.pokelieresistances) {
 			u.pokelieresistances = rnd(17);
 			u.pokeliegeneration = 0;
@@ -17625,7 +17663,7 @@ boolean new_game;	/* false => restoring an old game */
      */
     *buf = '\0';
 
-	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone()) {
+	if (WingYellowChange || u.uprops[WING_YELLOW_GLYPHS].extrinsic || have_wingyellowstone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) ) {
 		iflags.winggraphics = TRUE;
 #ifdef CURSES_GRAPHICS
 		iflags.cursesgraphics = FALSE;
@@ -17656,7 +17694,7 @@ boolean new_game;	/* false => restoring an old game */
 		return;
 	}
 
-	if (new_game && (Movemork || u.uprops[MOVEMORKING].extrinsic || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) || have_movemorkstone())) {
+	if (new_game && (Movemork || u.uprops[MOVEMORKING].extrinsic || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) || (uarmh && uarmh->oartifact == ART_LIANNI_S_HEIGHT) || have_movemorkstone())) {
 		int morkpara = 2;
 		if (MoveMorkXtra) morkpara += rnd(2);
 		nomul(-morkpara, "acclimating in the dungeon", FALSE);

@@ -662,6 +662,8 @@ register struct monst *mtmp;
 	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_HANGFISH] || mdat == &mons[PM_JOHNNY_SINDACCO] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_BLINKLE_BEE] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_HUNCHBACKED_LITTLE_MAN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_OUTER_ONE_NO] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 	if ((mdat == &mons[PM_SARAH_S_AIRTIGHT_PANTS]) && rn2(5)) return 0;
 
+	if (uarmh && uarmh->oartifact == ART_LORSKEL_S_BACKCUSS && !rn2(5) && Dimmed && (mtmp->data->geno & G_UNIQ)) return 0;
+
 	if (uarmu && uarmu->oartifact == ART_ARTITFACT && flags.female && !rn2(5)) return 0;
 
 	if (uwep && uwep->oartifact == ART_STOP_THE_AIRSHIPS && is_flyer(mtmp->data) && !mtmp->mpeaceful && !mtmp->mtame && !rn2(6)) return 0;

@@ -5276,8 +5276,10 @@ int x, y;
 		if (!rn2(25000)) amount += (amtdbl * 99);
 	}
 
+	if (uarmh && uarmh->oartifact == ART_COINDIMM) amount += (amtdbl / 2);
 	if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) amount += amtdbl;
 	if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) amount += (amtdbl * 2);
+	if (uarmf && uarmf->oartifact == ART_GUELDRE_S_COIN_CLING) amount += (amtdbl * 2);
 	if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) amount += amtdbl;
 	if (uwep && uwep->oartifact == ART_CLAW_OF_GIERZAHN) amount += amtdbl;
 
@@ -5634,6 +5636,8 @@ register struct obj *otmp;
 	if (otmp && otmp->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
+
+	if (otmp && otmp->oartifact == ART_RUST_OK) return FALSE;
 
 	if (SpellColorMetal) {
 		return (!(is_metallic(otmp)));

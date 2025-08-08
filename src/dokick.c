@@ -851,6 +851,11 @@ register boolean clumsy;
 		pline("Your razor-sharp high heels scratch up and down %s's %s, drawing %s!", mon_nam(mon), makeplural(mbodypart(mon, LEG)), mbodypart(mon, BLOOD) );
 	}
 
+	if (uarmf && uarmf->oartifact == ART_BLOOD_BRAND) {
+		mon->bleedout += rnd(8);
+		pline("Your razor-sharp high heels scratch up and down %s's %s, drawing %s!", mon_nam(mon), makeplural(mbodypart(mon, LEG)), mbodypart(mon, BLOOD) );
+	}
+
 	if (uarmf && itemhasappearance(uarmf, APP_BLADED_DISKS)) {
 		mon->bleedout += rnd(5);
 		pline("Your metal blades slit %s, drawing a lot of %s!", mon_nam(mon), mbodypart(mon, BLOOD) );

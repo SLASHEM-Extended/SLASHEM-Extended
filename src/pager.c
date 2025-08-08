@@ -538,6 +538,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mtmp) == MS_SHOE)
 		    ways_seen++;
+		if (uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mtmp->m_lev % 5 == 0))
+		    ways_seen++;
 		if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || monstersoundtype(mtmp) == MS_SOUND || monstersoundtype(mtmp) == MS_SHRIEK || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_FART_QUIET ) )
 		    ways_seen++;
 		if (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER && mtmp->data->mcolor == CLR_WHITE )
@@ -807,8 +809,12 @@ lookat(x, y, buf, monbuf)
 			strcat(monbuf, "scent view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
-		     if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mtmp) == MS_SHOE) {
+		    if (uwep && uwep->oartifact == ART_SWISS_AMY_KNIFE && monstersoundtype(mtmp) == MS_SHOE) {
 			strcat(monbuf, "Amy's shoevision");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmh && uarmh->oartifact == ART_MORE_SPECIFICER && (mtmp->m_lev % 5 == 0)) {
+			strcat(monbuf, "specific detection");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (EcholocationActive && distu(mtmp->mx, mtmp->my) < 626 && mtmp->echolocatevisible && (dmgtype(mtmp->data, AD_SOUN) || monstersoundtype(mtmp) == MS_SOUND || monstersoundtype(mtmp) == MS_SHRIEK || monstersoundtype(mtmp) == MS_FART_NORMAL || monstersoundtype(mtmp) == MS_FART_LOUD || monstersoundtype(mtmp) == MS_FART_QUIET ) ) {
@@ -2074,7 +2080,7 @@ append(char * buf, int condition, char * text, boolean many)
 int
 generate_list_of_resistances(char * temp_buf, /*uchar*/unsigned long flags)
 {
-	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD)) {
 		/* UGH. If anyone knows of a better way to implement this, please let me know and I'll refactor. --Amy */
 		int many = 0;
 		if (flags & MR_FIRE) switch (u.pokelieresistances) {
@@ -3098,7 +3104,7 @@ char *
 get_speed_description_of_monster_type(struct permonst * ptr, char * description)
 {
 	int displayspeed = ptr->mmove;
-	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD)) {
 		displayspeed += u.pokeliespeed;
 		if (displayspeed > 49) displayspeed -= 50;
 	}
@@ -3185,7 +3191,7 @@ get_description_of_attack_type(uchar id)
 		else return "undefined attack";
 	}
 
-	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone()) {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD)) {
 		attackid += u.pokelieattacktype;
 		if (attackid > 23) attackid -= 23;
 	}
@@ -3570,7 +3576,7 @@ get_description_of_damage_type(uchar id)
 		else return "undefined damage";
 	}
 
-	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone() ) {
+	if (PokelieEffect || u.uprops[POKELIE_EFFECT].extrinsic || have_pokeliestone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone() ) {
 		damageid += u.pokeliedamagetype;
 		if (damageid > 167) damageid -= 167;
 	}

@@ -4395,6 +4395,8 @@ int dieroll;
 		if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
 		if (!thrown && uleft && uleft->oartifact == ART_BUFFIST) tmp += 2;
 		if (!thrown && uright && uright->oartifact == ART_BUFFIST) tmp += 2;
+		if (!thrown && uarms && uarms->oartifact == ART_BOENGSCHRACK) tmp += 2;
+		if (!thrown && uarmg && uarmg->oartifact == ART_OFFENDUFF) tmp += 2;
 		if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) tmp += 1;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
@@ -5251,6 +5253,15 @@ armorsmashdone:
 		if (wep && wep->oartifact == ART_SHIVERING_STAFF && mon->mcanmove && !rn2(10)) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 				mon->mfrozen = rn1(3, 3);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s is paralyzed!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_FRANZISKA_S_COMPENSATOR && mon->mcanmove && !rn2(12)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mfrozen = rnd(8);
 				mon->mcanmove = 0;
 				mon->mstrategy &= ~STRAT_WAITFORU;
 				pline("%s is paralyzed!", Monnam(mon));

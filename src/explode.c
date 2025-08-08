@@ -590,6 +590,14 @@ boolean yours; /* is it your fault (for killing monsters) */
 			damu -= rnd(4);
 			if (damu < 1) damu = 1;
 		}
+		if (uarms && uarms->oartifact == ART_VOID_CHANT && damu > 0) {
+			damu -= rnd(2);
+			if (damu < 1) damu = 1;
+		}
+		if (uarms && uarms->oartifact == ART_NULL_ && damu > 0) {
+			damu -= rnd(4);
+			if (damu < 1) damu = 1;
+		}
 
 		/* player may get lucky and take less damage --Amy */
 		if (!rn2(3) && damu >= 1) {damu++; damu = damu / 2; if (damu < 1) damu = 1;}
@@ -881,7 +889,7 @@ boolean yours; /* is it your fault (for killing monsters) */
 		}
 		exercise(A_STR, FALSE);
 #ifdef SHOW_DMG                
-		    if ( (uhurt == 2) && flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) pline("[-%d -> %d]", damu, (Upolyd ? u.mh : u.uhp) );
+		    if ( (uhurt == 2) && flags.showdmg && !(DamageMeterBug || u.uprops[DAMAGE_METER_BUG].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_damagemeterstone()) && !DisplayDoesNotGoAtAll && !(uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_CONSORT) ) pline("[-%d -> %d]", damu, (Upolyd ? u.mh : u.uhp) );
 
 			if (!Upolyd && ((u.uhp * 5) < u.uhpmax)) pline(isangbander ? "***LOW HITPOINT WARNING***" : "Warning: HP low!");
 #endif
