@@ -864,6 +864,8 @@ static const char *actualshirtmessages[] = { /* Scott Bigham */
 	"German third league soccer team Reutlingen wins 17-0 against British Premier League team Manchester United.",
 	"In Soviet Russia, a disenchanter enchants you!",
 	"My blonde head has pretty blonde hair, which is remarkable because normally a blonde head has black hair growing on it!",
+	"Miles Edgeworth x Wendy Oldbag - the one true pairing",
+	"Maya Fey x Franziska von Karma - the one true pairing",
 
 };
 
