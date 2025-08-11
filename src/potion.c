@@ -17092,7 +17092,7 @@ boolean amnesia;
 		break;
 	    case TOOL_CLASS:
 		/* Artifacts aren't downgraded by amnesia */
-		if (obj->otyp == BOTTLE) {
+		if (obj->otyp == BOTTLE || obj->otyp == PHIAL) {
 			pline("The bottle%s filled with water.",obj->quan > 1 ? "s are" : " is");
 			obj->oclass = POTION_CLASS;
 			obj->otyp = POT_WATER;

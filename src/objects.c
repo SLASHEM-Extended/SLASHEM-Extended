@@ -6332,7 +6332,7 @@ TOOL("inka saddle", "saddle",   0, 0, 0, 0, 500,0, 150, MT_INKA, HI_LEATHER, 20)
 /* inka saddle = last saddle */
 
 /* leather leash = first leash */
-TOOL("leather leash", "leash",  0, 0, 0, 0, 1150, 0,  20, MT_LEATHER, HI_LEATHER, 1),
+TOOL("leather leash", "leash",  0, 0, 0, 0, 1050, 0,  20, MT_LEATHER, HI_LEATHER, 1),
 TOOL("adamant leash", "leash",  0, 0, 0, 0, 50, 0,  20, MT_ADAMANTIUM, HI_LEATHER, 30),
 TOOL("inka leash", "leash",     0, 0, 0, 0, 100, 0,  20, MT_INKA, HI_LEATHER, 20),
 /* inka leash = last leash */
@@ -6344,7 +6344,7 @@ TOOL("binning kit", (char *)0,  1, 0, 0, 1, 100, 0,  30, MT_COMPOST, CLR_BROWN, 
 CONTAINER("medical kit", "leather bag", 0, 0, 0, 0,  1000, 30, 500, MT_LEATHER, HI_LEATHER, 1),
 
 WEPTOOL("tin opener",  (char *)0,
-	1, 0, 1, 0,  1830, 0, 30, 1,  1, 0, PIERCE, 0, MT_IRON, HI_METAL, 1),
+	1, 0, 1, 0,  1730, 0, 30, 1,  1, 0, PIERCE, 0, MT_IRON, HI_METAL, 1),
 WEPTOOL("laser tin opener", (char *)0,
 	1, 0, 1, 0,  100,  0, 100, 1,  1, 0, PIERCE, P_MARTIAL_ARTS, MT_IRON, CLR_YELLOW, 12),
 WEPTOOL("jeontu geom",  (char *)0,
@@ -6402,10 +6402,10 @@ TOOL("chemistry set",	"box of obscure-looking glass devices",
 /* Two pseudo tools. These can never exist outside of medical kits. */
 OBJECT(OBJ("bandage", (char *)0),
 		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_CLOTH), 0,
-		TOOL_CLASS, 0, 0, 0, 1, 0, 0, 0, 0, 0, CLR_WHITE, 1, 0),
+		TOOL_CLASS, 100, 0, 0, 1, 0, 0, 0, 0, 0, CLR_WHITE, 1, 0),
 OBJECT(OBJ("phial", (char *)0),
 		BITS(1,1,0,0,0,0,0,1,0,0,0,P_NONE,MT_GLASS), 0,
-		TOOL_CLASS, 0, 0, 0, 1, 0, 0, 0, 0, 1, HI_GLASS, 1, 0),
+		TOOL_CLASS, 100, 0, 0, 1, 0, 0, 0, 0, 1, HI_GLASS, 1, 0),
 
 /* Two special unique artifact "tools" */
 OBJECT(OBJ("Candelabrum of Invocation", "candelabrum"),

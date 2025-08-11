@@ -207,6 +207,60 @@ pline VA_DECL(const char *, line)
 /* right : Ye read "Here lies ..."
    wrong : You read "Here lies ..."
    wrong : Ye read "'er lies ..." */
+
+	/* rubles for soviet mode, these suppress any other currency renaming including buckazoids --Amy */
+	  if (rublerename() && (strlen(line)<(BUFSZ-5))
+		 &&(!program_state.in_impossible)
+             &&(strlen(line)>9)) {
+                if(strstr(line,"orkmid") )
+                {
+                 line = replace(line,"zorkmids ","rubles ", FALSE);
+                 line = replace(line,"Zorkmids ","rubles ", FALSE);
+                 line = replace(line,"zorkmids.","rubles.", FALSE);
+                 line = replace(line,"Zorkmids.","rubles.", FALSE);
+                 line = replace(line,"zorkmids,","rubles,", FALSE);
+                 line = replace(line,"Zorkmids,","rubles,", FALSE);
+                 line = replace(line,"zorkmids)","rubles)", FALSE);
+                 line = replace(line,"Zorkmids)","rubles)", FALSE);
+                 line = replace(line,"zorkmid ","ruble ", FALSE);
+                 line = replace(line,"Zorkmid ","ruble ", FALSE);
+                 line = replace(line,"zorkmid.","ruble.", FALSE);
+                 line = replace(line,"Zorkmid.","ruble.", FALSE);
+                 line = replace(line,"zorkmid,","ruble,", FALSE);
+                 line = replace(line,"Zorkmid,","ruble,", FALSE);
+                 line = replace(line,"zorkmid)","ruble)", FALSE);
+                 line = replace(line,"Zorkmid)","ruble)", FALSE);
+                } /* endif orkmid */
+                /* If old coin isn't contained, save some time -CK */
+                if(strstr(line,"old coin") )
+                {
+                 line = replace(line,"gold coins","rubles", FALSE);
+                 line = replace(line,"Gold coins","rubles", FALSE);
+                 line = replace(line,"gold coin","rubles", FALSE);
+                 line = replace(line,"Gold coin","rubles", FALSE);
+                }
+                /* If old piece isn't contained, save some time -CK */
+                if(strstr(line,"old piece") )
+                {
+                 line = replace(line,"gold pieces.","rubles.", FALSE);
+                 line = replace(line,"Gold pieces.","rubles.", FALSE);
+                 line = replace(line,"gold pieces,","rubles,", FALSE);
+                 line = replace(line,"Gold pieces,","rubles,", FALSE);
+                 line = replace(line,"gold pieces ","rubles ", FALSE);
+                 line = replace(line,"Gold pieces ","rubles ", FALSE);
+                 line = replace(line,"gold pieces","rubles", FALSE);
+                 line = replace(line,"Gold pieces","rubles", FALSE);
+                 line = replace(line,"gold piece.","ruble.", FALSE);
+                 line = replace(line,"Gold piece.","ruble.", FALSE);
+                 line = replace(line,"gold piece,","ruble,", FALSE);
+                 line = replace(line,"Gold piece,","ruble,", FALSE);
+                 line = replace(line,"gold piece ","ruble ", FALSE);
+                 line = replace(line,"Gold piece ","ruble ", FALSE);
+                 line = replace(line,"gold piece","ruble", FALSE);
+                 line = replace(line,"Gold piece","ruble", FALSE);
+                } /* endif old piece */
+	  } /* endif ZAPM etc. */
+
         if( (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn) &&(*line!='"')&&(strlen(line)<(BUFSZ-5))
              &&(!program_state.in_impossible)
              &&(strlen(line)>9)){
@@ -337,6 +391,110 @@ pline VA_DECL(const char *, line)
                  line = replace(line,"Gold piece","Buckazoid", FALSE);
                 } /* endif old piece */
 	  } /* endif ZAPM etc. */
+
+	  if (Race_if(PM_CHIQUAI) && (strlen(line)<(BUFSZ-5))
+		 &&(!program_state.in_impossible)
+             &&(strlen(line)>9)) {
+                if(strstr(line,"orkmid") )
+                {
+                 line = replace(line,"zorkmids ","yuan ", FALSE);
+                 line = replace(line,"Zorkmids ","yuan ", FALSE);
+                 line = replace(line,"zorkmids.","yuan.", FALSE);
+                 line = replace(line,"Zorkmids.","yuan.", FALSE);
+                 line = replace(line,"zorkmids,","yuan,", FALSE);
+                 line = replace(line,"Zorkmids,","yuan,", FALSE);
+                 line = replace(line,"zorkmids)","yuan)", FALSE);
+                 line = replace(line,"Zorkmids)","yuan)", FALSE);
+                 line = replace(line,"zorkmid ","yuan ", FALSE);
+                 line = replace(line,"Zorkmid ","yuan ", FALSE);
+                 line = replace(line,"zorkmid.","yuan.", FALSE);
+                 line = replace(line,"Zorkmid.","yuan.", FALSE);
+                 line = replace(line,"zorkmid,","yuan,", FALSE);
+                 line = replace(line,"Zorkmid,","yuan,", FALSE);
+                 line = replace(line,"zorkmid)","yuan)", FALSE);
+                 line = replace(line,"Zorkmid)","yuan)", FALSE);
+                } /* endif orkmid */
+                /* If old coin isn't contained, save some time -CK */
+                if(strstr(line,"old coin") )
+                {
+                 line = replace(line,"gold coins","yuan", FALSE);
+                 line = replace(line,"Gold coins","yuan", FALSE);
+                 line = replace(line,"gold coin","yuan", FALSE);
+                 line = replace(line,"Gold coin","yuan", FALSE);
+                }
+                /* If old piece isn't contained, save some time -CK */
+                if(strstr(line,"old piece") )
+                {
+                 line = replace(line,"gold pieces.","yuan.", FALSE);
+                 line = replace(line,"Gold pieces.","yuan.", FALSE);
+                 line = replace(line,"gold pieces,","yuan,", FALSE);
+                 line = replace(line,"Gold pieces,","yuan,", FALSE);
+                 line = replace(line,"gold pieces ","yuan ", FALSE);
+                 line = replace(line,"Gold pieces ","yuan ", FALSE);
+                 line = replace(line,"gold pieces","yuan", FALSE);
+                 line = replace(line,"Gold pieces","yuan", FALSE);
+                 line = replace(line,"gold piece.","yuan.", FALSE);
+                 line = replace(line,"Gold piece.","yuan.", FALSE);
+                 line = replace(line,"gold piece,","yuan,", FALSE);
+                 line = replace(line,"Gold piece,","yuan,", FALSE);
+                 line = replace(line,"gold piece ","yuan ", FALSE);
+                 line = replace(line,"Gold piece ","yuan ", FALSE);
+                 line = replace(line,"gold piece","yuan", FALSE);
+                 line = replace(line,"Gold piece","yuan", FALSE);
+                } /* endif old piece */
+	  } /* endif chiquai etc. */
+
+	  if (eurorename() && (strlen(line)<(BUFSZ-5))
+		 &&(!program_state.in_impossible)
+             &&(strlen(line)>9)) {
+                if(strstr(line,"orkmid") )
+                {
+                 line = replace(line,"zorkmids ","euro ", FALSE);
+                 line = replace(line,"Zorkmids ","euro ", FALSE);
+                 line = replace(line,"zorkmids.","euro.", FALSE);
+                 line = replace(line,"Zorkmids.","euro.", FALSE);
+                 line = replace(line,"zorkmids,","euro,", FALSE);
+                 line = replace(line,"Zorkmids,","euro,", FALSE);
+                 line = replace(line,"zorkmids)","euro)", FALSE);
+                 line = replace(line,"Zorkmids)","euro)", FALSE);
+                 line = replace(line,"zorkmid ","euro ", FALSE);
+                 line = replace(line,"Zorkmid ","euro ", FALSE);
+                 line = replace(line,"zorkmid.","euro.", FALSE);
+                 line = replace(line,"Zorkmid.","euro.", FALSE);
+                 line = replace(line,"zorkmid,","euro,", FALSE);
+                 line = replace(line,"Zorkmid,","euro,", FALSE);
+                 line = replace(line,"zorkmid)","euro)", FALSE);
+                 line = replace(line,"Zorkmid)","euro)", FALSE);
+                } /* endif orkmid */
+                /* If old coin isn't contained, save some time -CK */
+                if(strstr(line,"old coin") )
+                {
+                 line = replace(line,"gold coins","euro", FALSE);
+                 line = replace(line,"Gold coins","euro", FALSE);
+                 line = replace(line,"gold coin","euro", FALSE);
+                 line = replace(line,"Gold coin","euro", FALSE);
+                }
+                /* If old piece isn't contained, save some time -CK */
+                if(strstr(line,"old piece") )
+                {
+                 line = replace(line,"gold pieces.","euro.", FALSE);
+                 line = replace(line,"Gold pieces.","euro.", FALSE);
+                 line = replace(line,"gold pieces,","euro,", FALSE);
+                 line = replace(line,"Gold pieces,","euro,", FALSE);
+                 line = replace(line,"gold pieces ","euro ", FALSE);
+                 line = replace(line,"Gold pieces ","euro ", FALSE);
+                 line = replace(line,"gold pieces","euro", FALSE);
+                 line = replace(line,"Gold pieces","euro", FALSE);
+                 line = replace(line,"gold piece.","euro.", FALSE);
+                 line = replace(line,"Gold piece.","euro.", FALSE);
+                 line = replace(line,"gold piece,","euro,", FALSE);
+                 line = replace(line,"Gold piece,","euro,", FALSE);
+                 line = replace(line,"gold piece ","euro ", FALSE);
+                 line = replace(line,"Gold piece ","euro ", FALSE);
+                 line = replace(line,"gold piece","euro", FALSE);
+                 line = replace(line,"Gold piece","euro", FALSE);
+                } /* endif old piece */
+	  } /* endif chiquai etc. */
 
 	  if (u.wollohhack && !program_state.in_impossible && (strlen(line)<(BUFSZ-20)) ) {
                  line = replace(line,".",", wolloh.", FALSE);

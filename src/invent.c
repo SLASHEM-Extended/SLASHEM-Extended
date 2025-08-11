@@ -1117,9 +1117,16 @@ const char *
 currency(amount)
 long amount;
 {
-	if (zapmrename()) {
+	if (rublerename()) {
+		if (amount == 1L) return "ruble";
+		else return "rubles";
+	} else if (zapmrename()) {
 		if (amount == 1L) return "buckazoid";
 		else return "buckazoids";
+	} else if (Race_if(PM_CHIQUAI)) {
+		return "yuan";
+	} else if (eurorename()) {
+		return "euro";
 	} else {
 		if (amount == 1L) return "zorkmid";
 		else return "zorkmids";
@@ -17876,9 +17883,9 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			case CHEMISTRY_SET:
 				pline("You can try to create your own potions with this. It requires an empty bottle to work; having the chemistry spell helps, too."); break;
 			case BANDAGE:
-				pline("A pseudo tool that actually can't exist outside of medical kits. It is used for the surgery technique."); break;
+				pline("A pseudo tool that was originally not supposed to exist outside of medical kits. Ones inside a medkit are used for the surgery technique. But this one can be applied to dress your wounds."); break;
 			case PHIAL:
-				pline("A pseudo tool that actually can't exist outside of medical kits. It is used for the draw blood technique."); break;
+				pline("A pseudo tool that was originally not supposed to exist outside of medical kits. Ones inside a medkit are used for the draw blood technique. But this one can hold liquids."); break;
 			case CANDELABRUM_OF_INVOCATION:
 				pline("Also called a menorah. This candelabrum can hold several candles. But without an imbued silver bell it doesn't work."); break;
 			case BELL_OF_OPENING:

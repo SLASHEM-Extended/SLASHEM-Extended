@@ -5512,7 +5512,7 @@ use_chemistry_set(struct obj *chemset)
 
 	bottle = getobj(bottles,"hold the resulting potion in");
 	if (!bottle) return;
-	if (bottle->otyp != BOTTLE) {
+	if (bottle->otyp != BOTTLE && bottle->otyp != PHIAL) {
 		pline("Exactly how are you going to do this?");
 		return;
 	}
@@ -7450,6 +7450,17 @@ blesschoice:
 			} else pline("The stack was so big that the blessing failed.");
 
 		}
+
+		break;
+
+	case BANDAGE:
+
+		noartispeak = TRUE;
+
+		delobj(obj);
+
+		You("dress your wounds with the bandage.");
+		healup(max(8, (u.uhpmax / 10)), 0, FALSE, FALSE);
 
 		break;
 

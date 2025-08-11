@@ -6186,3 +6186,21 @@ zapmrename()
 
 	return FALSE;
 }
+
+/* will zorkmids be renamed to euro? */
+boolean
+eurorename()
+{
+	if (Race_if(PM_GERTEUT) || Race_if(PM_ITAQUE) || Race_if(PM_FRO) || Race_if(PM_SPARD) || Race_if(PM_GREURO) || Race_if(PM_DUTHOL) ) return TRUE;
+
+	return FALSE;
+}
+
+/* will zorkmids be renamed to rubles? */
+boolean
+rublerename()
+{
+	if (Race_if(PM_RUSMOT) || issoviet) return TRUE;
+
+	return FALSE;
+}
