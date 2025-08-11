@@ -281,6 +281,7 @@ int thrown;
 	    if (launcher && obj && obj->oartifact == ART_FUCK_THE_SERVER) multishot += 2;
 	    if (launcher && obj && obj->oartifact == ART_WARRIOR_WOMAN) multishot += rnd(2);
 	    if (launcher && obj && obj->oartifact == ART_BLOCKEL_EM) multishot += rnd(3);
+	    if (launcher && obj && obj->oartifact == ART_EXFLING) multishot += 2;
 
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
@@ -2267,6 +2268,7 @@ int thrown;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_ASA_LEHIBE) range += 8;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_MADBALL) range += 6;
 		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_SNIPOBLOW) range += 12;
+		if (launcher && ammo_and_launcher(obj, launcher) && obj->oartifact == ART_WASGORAE) range += 5;
 		if (obj && obj->oartifact == ART_PEWWWWWWW) range += 15;
 		if (obj && obj->oartifact == ART_WIUNEW) range += 3;
 		if (obj && obj->oartifact == ART_KLUEUEUEU) range += 5;
@@ -3647,6 +3649,9 @@ evasionchancedone:
 		    }
 		    if (obj->oartifact == ART_SLOW_DIFFUSION) {
 			if (rn2(5)) broken = 0;
+		    }
+		    if (obj->oartifact == ART_LAST_LIKE_FOREVER) {
+			if (rn2(25)) broken = 0;
 		    }
 
 		    if (objects[otyp].oc_material == MT_BAMBOO && broken && !rn2(4)) broken = 0;

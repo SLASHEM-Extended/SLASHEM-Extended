@@ -6598,6 +6598,8 @@ aliasagain:
 			if (eliasbuf && !(strncmpi(eliasbuf, "The 'u' command", 16) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "MFer", 5) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Wizardlunch", 12) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Trapperafic", 12) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Satan's Clicklock", 18) ) ) strcpy(eliasbuf, "Cheator");
 
 			strcpy(plalias, eliasbuf);
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));

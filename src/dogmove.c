@@ -107,6 +107,8 @@ struct obj *obj;
 {
 	int nutrit;
 
+	register struct edog *edog = EDOG(mtmp);
+
 	/*
 	 * It is arbitrary that the pet takes the same length of time to eat
 	 * as a human, but gets more nutritional value.
@@ -170,6 +172,26 @@ struct obj *obj;
 	}
 
 	if (obj && obj->oartifact == ART_FEED_THE_HORSE) nutrit += 100000;
+	if (obj && obj->oartifact == ART_DOG_FODDER) nutrit *= 3;
+
+	if (obj && obj->oartifact == ART_HORSEFOOD_ && !carnivorous(mtmp->data)) nutrit += 10000;
+
+	if (obj && obj->oartifact == ART_APPORTAGE_TREAT && edog) {
+		edog->apport += 10;
+	}
+
+	if (obj && obj->oartifact == ART_TAMER_S_TOOL) {
+		mtmp->mtame += 20;
+		if (mtmp->mtame > 30) mtmp->mtame = 30;
+	}
+
+	if (obj && obj->oartifact == ART_WINGGIVER) {
+		mtmp->egotype_flying = TRUE;
+	}
+
+	if (obj && obj->oartifact == ART_WORKING_FIELD_EFFECT) {
+		mtmp->egotype_stabilizer = TRUE;
+	}
 
 	if (isfriday) nutrit /= 2;
 	if (PetstarveEffect || u.uprops[PETSTARVE_EFFECT].extrinsic || have_petstarvestone()) nutrit /= 3;
@@ -200,6 +222,7 @@ struct obj *obj;
 	}
 
 	if (obj && obj->oartifact == ART_FEED_THE_HORSE) nutrit += 100000;
+	if (obj && obj->oartifact == ART_DOG_FODDER) nutrit *= 3;
 
 	if (isfriday) nutrit /= 2;
 

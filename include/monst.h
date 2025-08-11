@@ -420,6 +420,8 @@ struct monst {
 	Bitfield(egotype_inverter,1); /* AD_INVE */
 	Bitfield(egotype_debtor,1); /* AD_DEBT */
 
+	Bitfield(egotype_tracker,1); /* always knows where you are */
+
 	Bitfield(nurse_extrahealth,1); /* to control which services a nurse will offer */
 	Bitfield(nurse_decontaminate,1);
 	Bitfield(nurse_healing,1);

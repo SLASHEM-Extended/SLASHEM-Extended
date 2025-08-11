@@ -1360,7 +1360,7 @@ break_armor()
 		useup(otmp);
 	    }
 	}
-	if (!shirtkeep && (otmp = uarmu) != 0) {
+	if (!shirtkeep && !(uarmu && uarmu->oartifact == ART_JEDE_SIZE_HIZE) && (otmp = uarmu) != 0) {
 
 	    if(otmp->oartifact || facelesskeep || (uarmf && uarmf->oartifact == ART_MALENA_S_LADYNESS) || autismringcheck(ART_FRAIDLOSE) || (otmp->fakeartifact && rn2(2)) ) {
 		Your("shirt falls off!");
@@ -1396,7 +1396,7 @@ break_armor()
 		(void) Cloak_off();
 		dropx(otmp);
 	}
-	if (((otmp = uarmu) != 0) && !shirtkeep) {
+	if (((otmp = uarmu) != 0) && !(uarmu && uarmu->oartifact == ART_JEDE_SIZE_HIZE) && !shirtkeep) {
 		if (is_whirly(youmonst.data))
 			You("seep right through your shirt!");
 		else You("become much too small for your shirt!");
@@ -3968,7 +3968,7 @@ merge_with_armor()
 	 * see do_merge above for correct use
 	 */
 	if ((Race_if(PM_DOPPELGANGER) || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER)) && !uarm->cursed && uarmu &&
-	  !uarmu->cursed) {
+	  !uarmu->cursed && !(uarmu && uarmu->oartifact == ART_JEDE_SIZE_HIZE) ) {
 	    struct obj *otmp = uarmu;
 	    You("quickly remove your shirt as you start to change.");
 	    setworn((struct obj *)0, otmp->owornmask & W_ARMU);

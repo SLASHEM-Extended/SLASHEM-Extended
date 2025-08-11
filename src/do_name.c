@@ -364,6 +364,10 @@ do_mname()
 	    pline("That is an invalid name.");
 	else if (!(strcmpi(buf, "Wizardlunch") ) )
 	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Trapperafic") ) )
+	    pline("That is an invalid name.");
+	else if (!(strcmpi(buf, "Satan's Clicklock") ) )
+	    pline("That is an invalid name.");
 	else
 	    (void) christen_monst(mtmp, buf);
 	return(0);
@@ -1136,6 +1140,7 @@ stupidsegfault:
 	    if (mtmp->egotype_alladrainer && (++egotypeamount < 21) ) sprintf(eos(buf), " Alladrainer");
 	    if (mtmp->egotype_selfharmer && (++egotypeamount < 21) ) sprintf(eos(buf), " Self-Harmer");
 	    if (mtmp->egotype_stabilizer && (++egotypeamount < 21) ) sprintf(eos(buf), " Stabilizer");
+	    if (mtmp->egotype_tracker && (++egotypeamount < 21) ) sprintf(eos(buf), " Tracker");
 	    if (mtmp->egotype_escaper && (++egotypeamount < 21) ) sprintf(eos(buf), " Escaper");
 	    if (mtmp->egotype_spoilerproofer && (++egotypeamount < 21) ) sprintf(eos(buf), " Spoilerproofer");
 	    if (mtmp->egotype_metalmafioso && (++egotypeamount < 21) ) sprintf(eos(buf), " MetalMafioso");

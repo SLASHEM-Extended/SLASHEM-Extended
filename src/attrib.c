@@ -3175,6 +3175,7 @@ int x;
 		if (uarms && uarms->oartifact == ART_WORKER_METAL) tmp += 2;
 		if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) tmp += 3;
 		if (uarmc && uarmc->oartifact == ART_POWERSTINK) tmp += 3;
+		if (uarmu && uarmu->oartifact == ART_GUAH_AVERT_SUEUE) tmp += 6;
 		if (uright && uright->oartifact == ART_SPEECHBREAK) tmp += 5;
 		if (uleft && uleft->oartifact == ART_RING_OF_STEEL_DRAGON) tmp += 3;
 		if (uright && uright->oartifact == ART_RING_OF_STEEL_DRAGON) tmp += 3;
@@ -3316,6 +3317,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_PLAYBOY_SUPPLEMENT) tmp += (5 + uarmh->spe);
 		if (uarmf && uarmf->oartifact == ART_GNOMISH_BOOBS) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_TOO_OLD_MODEL) tmp += 3;
+		if (uarmu && uarmu->oartifact == ART_JEDE_SIZE_HIZE) tmp += 3;
 		if (uarm && uarm->oartifact == ART_SING_S_STUNNING_BEAUTY) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LISSIE_S_SHEAGENTUR) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_EVELINE_S_LOVELIES) tmp += 3;
@@ -3981,6 +3983,7 @@ int x;
 		if (bmwride(ART_PANZER_TANK)) tmp += 10;
 		if (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) tmp += 7;
 		if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) tmp += 7;
+		if (uarmu && uarmu->oartifact == ART_GUAH_AVERT_SUEUE) tmp += 8;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (uarmf && uarmf->otyp == PERMANENCE_BOOTS) tmp += (uarmf->spe + 5);
@@ -4132,6 +4135,10 @@ adjalign(n)
 register int n;
 {
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_RAIDWEAR && !rn2(2) && (n < 0)) {
+		return;
+	}
+
+	if (uwep && uwep->oartifact == ART_EN_GARDE____TOUCHE_ && !rn2(2) && (n < 0)) {
 		return;
 	}
 

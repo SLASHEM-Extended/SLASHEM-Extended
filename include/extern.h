@@ -1084,6 +1084,8 @@ E boolean have_spectrumplinggem(void);
 E boolean have_amateurluckstone(void);
 E boolean have_suckstonearti(void);
 E boolean have_femityjewel(void);
+E boolean have_prettyblond(void);
+E boolean have_meefmeef(void);
 E boolean have_estealdoctor(void);
 E boolean have_crashrecoverstone(void);
 E boolean have_sportivox(void);

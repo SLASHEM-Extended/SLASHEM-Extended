@@ -2636,6 +2636,14 @@ moveloop()
 			}
 		}
 
+		if (uwep && uwep->oartifact == ART_WEDELAGE) {
+			adjalign(-1);
+		}
+
+		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEDELAGE) {
+			adjalign(-1);
+		}
+
 		if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
 			u.catwalknastytrap = rnd(285); /* timerun */
 		}
@@ -3292,6 +3300,27 @@ moveloop()
 				if (uarmf->oeroded2 > MAX_ERODE) uarmf->oeroded2 = MAX_ERODE; /* fail safe */
 				Your("shoes degrade.");
 			}
+		}
+
+		if (uamul && uamul->oartifact == ART_KUNO_S_TRANSCEIVER && !rn2(50)) {
+
+			register struct monst *kunomon;
+
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+
+			coord cc, dd;
+
+			if (enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) {
+				kunomon = makemon((struct permonst *)0, 0, 0, MM_ADJACENTOK);
+				if (kunomon) {
+					kunomon->egotype_tracker = TRUE;
+					kunomon->noegodesc = kunomon->noegodisplay = TRUE;
+				}
+			}
+
+			u.aggravation = 0;
+
 		}
 
 		if (Race_if(PM_RETICULAN) && !rn2(1000)) { /* sorry potato44, but that race has so many upsides! --Amy */
@@ -3980,6 +4009,11 @@ moveloop()
 			else if (uarm && uarm->oartifact == ART_THUNDER_) u.currentweather = WEATHER_THUNDERSTORM;
 			else if (uarms && uarms->oartifact == ART_WHY_IS_IT_ALWAYS_RAINING) u.currentweather = WEATHER_RAIN;
 
+			tell_main_weather();
+		}
+
+		if (uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM && u.currentweather != WEATHER_SUNNY) {
+			u.currentweather = WEATHER_SUNNY;
 			tell_main_weather();
 		}
 
@@ -11800,7 +11834,7 @@ newbossB:
 			stop_occupation();
 		}
 
-		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uarm && uarm->oartifact == ART_DREHN_PIPE) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
+		if (is_snow(u.ux, u.uy) && !u.uswallow && !(powerfulimplants() && uimplant && (uimplant->oartifact == ART_WHITE_WHALE_HATH_COME || uimplant->oartifact == ART_DUBAI_TOWER_BREAK)) && !(uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) && !(uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) && !(uarmf && itemhasappearance(uarmf, APP_CYAN_SNEAKERS) ) && !(uarm && uarm->oartifact == ART_DREHN_PIPE) && !(uleft && uleft->otyp == RIN_AURORA) && !(uright && uright->otyp == RIN_AURORA) && !(uwep && uwep->oartifact == ART_GLACIERDALE) && !(uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) && !(uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM) && !(uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) && !(uarmf && uarmf->oartifact == ART_CORINA_S_SNOWY_TREAD) && !(uarmf && uarmf->oartifact == ART_KATIE_MELUA_S_FLEECINESS) && !ColdImmunity && !rn2(StrongCold_resistance ? 500 : Cold_resistance ? 200 : 50) ) {
 			You("freeze!");
 			make_frozen(HFrozen + rnz(50),FALSE);
 			stop_occupation();
@@ -17354,6 +17388,7 @@ aliasagain:
 		}
 
 		if (eliasbuf[0] && aliaslength < 31) { /* We do NOT want a buffer overflow. --Amy */
+			/* artifact items that you may not name yourself after are CORPSE and STATUE */
 			if (eliasbuf && !(strncmpi(eliasbuf, "Glorious Dead", 14) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Satan's Secret Storage", 23) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Main Container", 15) ) ) strcpy(eliasbuf, "Cheator");
@@ -17390,6 +17425,8 @@ aliasagain:
 			if (eliasbuf && !(strncmpi(eliasbuf, "The 'u' command", 16) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "MFer", 5) ) ) strcpy(eliasbuf, "Cheator");
 			if (eliasbuf && !(strncmpi(eliasbuf, "Wizardlunch", 12) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Trapperafic", 12) ) ) strcpy(eliasbuf, "Cheator");
+			if (eliasbuf && !(strncmpi(eliasbuf, "Satan's Clicklock", 18) ) ) strcpy(eliasbuf, "Cheator");
 			strcpy(plalias, eliasbuf);
 			(void) strncpy(u.aliasname, eliasbuf, sizeof(u.aliasname));
 		}
@@ -17536,6 +17573,14 @@ aliasagain:
 		strcpy(u.aliasname, "Uber Cheator");
 	}
 	if (!strncmpi(plname, "Wizardlunch", 12)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Trapperafic", 12)) {
+		strcpy(plalias, "Uber Cheator");
+		strcpy(u.aliasname, "Uber Cheator");
+	}
+	if (!strncmpi(plname, "Satan's Clicklock", 18)) {
 		strcpy(plalias, "Uber Cheator");
 		strcpy(u.aliasname, "Uber Cheator");
 	}

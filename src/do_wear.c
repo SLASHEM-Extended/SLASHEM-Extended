@@ -5208,6 +5208,11 @@ Amulet_on()
 		uamul->hvycurse = uamul->prmcurse = uamul->stckcurse = TRUE;
     }
 
+    if (uamul && uamul->oartifact == ART_KUNO_S_TRANSCEIVER) {
+		curse(uamul);
+		pline("That was an error, now the amulet is cursed.");
+    }
+
     if (uamul && uamul->oartifact == ART_AETHERIAL_SHARD) {
 		curse(uamul);
 		uamul->hvycurse = uamul->prmcurse = TRUE;

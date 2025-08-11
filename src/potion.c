@@ -10748,7 +10748,7 @@ add_monster_egotype(mtmp)
 register struct monst *mtmp;
 {
 	mtmp->isegotype = 1;
-	switch (rnd(242)) {
+	switch (rnd(244)) {
 		case 1:
 		case 2:
 		case 3: mtmp->egotype_thief = 1; break;
@@ -11006,6 +11006,8 @@ register struct monst *mtmp;
 		case 240:
 		case 241:
 		case 242: mtmp->egotype_debtor = 1; break;
+		case 243:
+		case 244: mtmp->egotype_tracker = 1; break;
 
 	}
 
@@ -18851,6 +18853,7 @@ player_can_walk_on_snow()
 	if (uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_ANTI_SLIDE) return TRUE;
 	if (uwep && uwep->oartifact == ART_DAMN_SKI_WEDGE && uarmf) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_MERLOT_FUTURE) return TRUE;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WHITE_WHALE_HATH_COME) return TRUE;
 

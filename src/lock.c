@@ -1254,7 +1254,7 @@ doforce()		/* try to force a chest with your weapon */
 		}
 
 	    /* Lightsabers dig through doors and walls via dig.c */
-	    if (is_pick(uwep) || is_antibar(uwep) ||
+	    if (is_pick(uwep) || is_antibar(uwep) || (uwep && uwep->oartifact == ART_EN_GARDE____TOUCHE_) ||
 		    is_lightsaber(uwep) ||
 		    is_axe(uwep)) 
 	    	return use_pick_axe2(uwep);

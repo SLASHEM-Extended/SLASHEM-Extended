@@ -6493,6 +6493,10 @@ undark:
 		    else {
 			int pilltype = 0; /* for artifact pills, because they may be freed below --Amy */
 			if (otmp->oartifact == ART_PILL_THAT_KILLED_MICHAEL_J) pilltype = 1;
+			if (otmp->oartifact == ART_LASTER_EVER) pilltype = 2;
+			if (otmp->oartifact == ART_GARAWORK) can_use = TRUE;
+
+			if (pilltype == 2 && rn2(5)) goto pillremoved;
 
 			check_unpaid(obj);
 			if (otmp->quan > 1L) {
@@ -6503,6 +6507,7 @@ undark:
 			    obfree(otmp, (struct obj *)0);
 			}
 
+pillremoved:
 			use_skill(P_DEVICES,1);
 			if (Race_if(PM_FAWN)) {
 				use_skill(P_DEVICES,1);

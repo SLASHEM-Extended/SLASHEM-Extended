@@ -5850,7 +5850,9 @@ long timeout;
 			if (u.polgoskill >= 2500) lightsaberchance3++;
 			if (u.polgoskill >= 4320) lightsaberchance3++;
 		}
-		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) obj->age -= how_long;
+		if (willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) {
+			obj->age -= how_long;
+		}
 
 		begin_burn(obj, TRUE);
 	    }
@@ -6525,6 +6527,13 @@ begin_burn(obj, already_lit)
 		    turns = obj->age;
 		radius = candle_light_range(obj);
 		if (u.currentweather == WEATHER_FOG && radius > 2) radius = 2;
+
+		if (obj->oartifact == ART_SEPTO_END) {
+			obj->lamplit = 1;
+			do_timer = FALSE;
+			obj->age = 300L;
+		}
+
 		break;
 
 	    default:
@@ -6601,7 +6610,9 @@ begin_burn(obj, already_lit)
 			if (u.polgoskill >= 4320) lightsaberchance3++;
 		}
 
-		if ((willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) || !already_lit) obj->age -= turns;
+		if ((willdrainenergy && (rnd(10) > lightsaberchance) && (rnd(10) > lightsaberchance2) && (rnd(10) > lightsaberchance3)) || !already_lit) {
+			obj->age -= turns;
+		}
 		if (carried(obj) && !already_lit)
 		    update_inventory();
 	    } else {
@@ -6642,7 +6653,7 @@ end_burn(obj, timer_attached)
 	    return;
 	}
 
-	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE || obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER || artifact_light(obj))
+	if (obj->otyp == MAGIC_LAMP || obj->otyp == MAGIC_CANDLE || obj->oartifact == ART_SEPTO_END || obj->oartifact == ART_LIGHTSABER_PROTOTYPE || obj->oartifact == ART_DEFINITE_LIGHTSABER || artifact_light(obj))
 	    timer_attached = FALSE;
 
 	if (!timer_attached) {

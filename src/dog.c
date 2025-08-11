@@ -538,6 +538,8 @@ maeney:
 	if (petname && !(strcmpi(petname, "The 'u' command") ) ) petname = "Cheating Bastard";
 	if (petname && !(strcmpi(petname, "MFer") ) ) petname = "Cheating Bastard";
 	if (petname && !(strcmpi(petname, "Wizardlunch") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Trapperafic") ) ) petname = "Cheating Bastard";
+	if (petname && !(strcmpi(petname, "Satan's Clicklock") ) ) petname = "Cheating Bastard";
 
 	mtmp = makemon(&mons[pettype], u.ux, u.uy, MM_EDOG);
 

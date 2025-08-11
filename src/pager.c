@@ -29400,6 +29400,10 @@ static NEARDATA const char * const fake_plines[] = {
 	"A female voice is laughing incessantly... and since this is SLEX, having to read this message causes all of your alarm bells to go off because it means something really bad must have happened.",
 	"Now you have the writer's block.",
 	"Now you have the writer's block. Oh no, how are you going to write your terrible Twilight fanfiction now?!",
+	"You feel the poison circulating your veins...",
+	"You feel the poison circulating your veins... Oh no, you're gonna DIIIIIIIIE and there's nothing you can do about it!",
+	"You would have died, but got perilously transported to a strange place...",
+	"You would have died, but got perilously transported to a strange place... and as you open your inventory, you exclaim 'Oh NO! WHERE are my items!!!', but dude, they're gone. Yes, it really stings, but there's no way to bring them back.",
 
 };
 

@@ -5986,13 +5986,16 @@ secureidchoice:
 		    otmp = use_medical_kit(BANDAGE, FALSE,
 			    "dress your wounds with");
 		    if (otmp) {
-			check_unpaid(otmp);
-			if (otmp->quan > 1L) {
-			    otmp->quan--;
-			    otmp->ocontainer->owt = weight(otmp->ocontainer);
-			} else {
-			    obj_extract_self(otmp);
-			    obfree(otmp, (struct obj *)0);
+
+			if (!(otmp->oartifact == ART_SYKES_S_MULTIUSE) || !rn2(50)) {
+				check_unpaid(otmp);
+				if (otmp->quan > 1L) {
+				    otmp->quan--;
+				    otmp->ocontainer->owt = weight(otmp->ocontainer);
+				} else {
+				    obj_extract_self(otmp);
+				    obfree(otmp, (struct obj *)0);
+				}
 			}
 
 			use_skill(P_DEVICES,1);
@@ -6891,6 +6894,13 @@ breakstare:
 		    You_cant("seem to find a vein.");
 		    return 0;
 		}
+
+		if (obj->oartifact == ART_THICK_RED_SAP) {
+			lesshungry(2000);
+			HFull_nutrient += 5000;
+			You_feel("pretty full.");
+		}
+
 		check_unpaid(obj);
 		if (obj->quan > 1L)
 		    obj->quan--;

@@ -8492,6 +8492,8 @@ register struct monst *mtmp;
 		}
 		if (!extralongsqueak()) badeffect();
 
+		if (uarmu && uarmu->oartifact == ART_GUAH_AVERT_SUEUE) make_blinded(Blinded + 5, FALSE);
+
 		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
@@ -8531,6 +8533,8 @@ sarahdone:
 			badeffect();
 		}
 		if (!extralongsqueak()) badeffect();
+
+		if (uarmu && uarmu->oartifact == ART_GUAH_AVERT_SUEUE) make_blinded(Blinded + 5, FALSE);
 
 		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
@@ -8606,6 +8610,8 @@ sarahdone:
 		}
 		if (!extralongsqueak()) badeffect();
 
+		if (uarmu && uarmu->oartifact == ART_GUAH_AVERT_SUEUE) make_blinded(Blinded + 5, FALSE);
+
 		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));
 			badeffect();
@@ -8647,6 +8653,8 @@ sarahdone:
 			badeffect();
 		}
 		if (!extralongsqueak()) badeffect();
+
+		if (uarmu && uarmu->oartifact == ART_GUAH_AVERT_SUEUE) make_blinded(Blinded + 5, FALSE);
 
 		if (uarmh && itemhasappearance(uarmh, APP_BREATH_CONTROL_HELMET) ) {
 			pline("Your breath control helmet keeps pumping the farting gas into your %s...", body_part(NOSE));

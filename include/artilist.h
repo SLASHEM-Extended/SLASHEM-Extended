@@ -22500,6 +22500,254 @@ A("Body Composure",				GAUNTLETS_OF_DEXTERITY, /* +10 AC */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Trapperafic",				STATUE, /* upon being spawned, 25 statue traps are placed randomly on the current dungeon level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Satan's Clicklock",				STATUE, /* upon being spawned, 15 satatue traps are placed randomly on the current dungeon level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Spark Ignition",				FLINT,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(2, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 80L ),
+
+A("Medium User",				SLING_AMMO,
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 60L ),
+
+A("Low Heap",				SLING_AMMO, /* spawns with rn1(50,50) extra stack size */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Exfling",				SLING_AMMO, /* +2 multishot */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 55L ),
+
+A("Wasgorae",				SLING_AMMO, /* +5 range */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Last Like Forever",				JUNK_METAL, /* if it would have mulched, 24 in 25 chance that it doesn't */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 30L ),
+
+A("Flingengamb",				LUCKSTONE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Prettyblond",				LUCKSTONE, /* verena trap effect when carried */
+	(SPFX_RESTR|SPFX_EVIL), SPFX_REGEN, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Meefmeef",				HEALTHSTONE, /* scent view when carried */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Wrong Green",				HEALTHSTONE, /* poisons targets */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Whoopwhoop",				TOUCHSTONE, /* spawns with its BUC known */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Merely Sooth",				TOUCHSTONE,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Slightly Better Snack",				CANDY_BAR, /* +500 nutrition when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Huahahahaha",				MUSHROOM, /* procs the random effect 5 times */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Luscious Nightshade",				BLACK_HENBANE, /* +3 STR when eaten but disables poison resistance for rnz(10k) (more) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Strong Planescent",				SPIDDAL_STICK, /* cures wincing when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Lashitup",				HARRADA, /* cures inversion when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Rabe's Punch",				LICHOR, /* intrinsic +1 increase damage when eaten */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Ruma's Taunt",				AMBROSIA, /* intrinsic +1 increase accuracy when eaten */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Fruitstock",				SLIME_MOLD, /* spawns with double stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Xtra Delicious",				SLIME_MOLD, /* 500 extra nutrition when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("AntiBedop",				SLIME_MOLD, /* cures sliming when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Oldie Savat",				DIGESTION_CAKE, /* cures diarrhea nastytrap effect when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Grody Time",				FORTUNE_COOKIE, /* spawns heavily cursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Bigturn",				FORTUNE_COOKIE, /* reverses your luck when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Doofo-open",				TORTILLA, /* gain a random intrinsic when eating it */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Angry Burger Ingredient",				CHEESE, /* eating it spawns a hostile angry burger next to you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Go With The Jolt",				HACKER_S_FOOD, /* 5k turns of hallu resist and free action when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Emergency Fill",				K_RATION, /* +1000 extra nutrition when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Planebane",				C_RATION, /* 500 turns of half physical damage when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Dog Fodder",				TRIPE_RATION, /* 3x nutrition when eaten by a pet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Apportage Treat",				TRIPE_RATION, /* +10 apport when eaten by a pet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Tamer's Tool",				TRIPE_RATION, /* +20 tameness when eaten by a pet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Winggiver",				TRIPE_RATION, /* if a pet eats it, it gains the flyer egotype */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Working Field Effect",				TRIPE_RATION, /* if a pet eats it, it gains the stabilizer egotype */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Doggotrainer",				MEATBALL, /* spawns with +99 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15L ),
+
+A("Wedelage",				MEAT_STICK, /* feeler gauges when wielded, but every turn you wield it damages your alignment record by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Constipitate",				HUGE_CHUNK_OF_MEAT, /* slows you down like AD_SLOW when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Hung - er?",				MEAT_RING, /* hunger and slow digestion when worn, eating it gives hunger intrinsically */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Level Minus Three",				SEVERED_HAND, /* if you would die from eating it, you lose all items and spells, then get levelported to the minus world with full health (but if you can't levelport there for whatever reason, you die for real) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Endless Treefall",				APPLE, /* spawns with rnz(100) extra stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Horsefood!",				CARROT, /* if a vegetarian pet eats it, the pet gains 10k extra nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sykes's Multiuse",				BANDAGE, /* is used up with a 1 in 50 chance only; if it spawns outside a medical kit, you can invoke it to use it up and spawn a new medical kit that contains a copy of this artifact */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Thick Red Sap",				PHIAL, /* drawing blood into this particular phial gives you 2000 nutrition and 5000 turns of full nutrients; if it spawns outside a medical kit, you can invoke it to use it up and spawn a new medical kit that contains a copy of this artifact */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 800L ),
+
+A("Easterga",				JAPAN_WAX_CANDLE, /* spawns with +10000 duration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Superlite",				GENERAL_CANDLE, /* if you wield it while it's lit, you have double infravision */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Fell The Ag",				UNSPECIFIED_CANDLE, /* if it's spawned while you have intrinsic aggravate monster, it cures that, otherwise it grants intrinsic stealth */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Septo-end",				UNAFFECTED_CANDLE, /* doesn't burn out */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Brightlight",				SPECIFIC_CANDLE, /* has +2 light radius */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Laster-ever",				PILL, /* is used up only 1 in 5 times if it's in a medkit, eating it gives 5 pill effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Garawork",				PILL, /* always works when in a medkit, gives effect of a positive medkit pill when eaten */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Fillpill",				PILL, /* spawns with +20 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 250L ),
+
+A("Thunderdome Bar",				TRIDENT, /* randart2 trident, wild weather */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	ELEC(0, 15), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Forest Fire",				AXE, /* randart2 axe, wild weather, felling trees doesn't spawn tree squads */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Magihex",				QUARTERSTAFF, /* randart2 quarterstaff, wild weather */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	MAGM(6, 10), DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("En garde... Touche.",				DAGGER, /* randart2 dagger, kerstin and sabrina trap effects, autocurses, can be used to dig via the force command, slows opponents who don't resist if you use it in melee, 50% chance to not lose alignment */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	FIRE(6, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jede Size Hize",				T_SHIRT, /* randart2 shirt, +3 CHA, protects items from fire damage, doesn't fall off if you polymorph into a bad form */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Kuno's Transceiver",				AMULET_OF_ESP, /* randart2 amulet, autocurses, 1 in 50 chance that a hostile monster with aggravate monster rules and tracker egotype spawns somewhere on the level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("ski-can-cerium-form",				ELVEN_CLOAK, /* randart2 cloak, every turn that it's not sunny weather it automatically becomes so, magic find, allows you to walk on ice and snow, getting hit by solar beams causes you to be contaminated by the amount that you got hit, +50 spawn chance for monsters with AT_BREA AD_LITE */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Guah Avert Sueue",				T_SHIRT, /* randart2 shirt, sue lyn trap effect, if a monster farts at you it causes 5 turns of blindness, +6 STR, +8 CON */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -238,6 +238,11 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("bow becomes cursed, hahaha.");
 	}
 
+	if (uwep && uwep->oartifact == ART_EN_GARDE____TOUCHE_ && !uwep->cursed) {
+		curse(uwep);
+		Your("weapon becomes cursed. En garde... bitch.");
+	}
+
 	if (uwep && uwep->oartifact == ART_KRASCHEEP && !uwep->cursed) {
 		curse(uwep);
 		Your("bow becomes cursed, hahaha.");
@@ -700,6 +705,11 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_OZYZEVPDWTVP && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("bow becomes cursed, hahaha.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_EN_GARDE____TOUCHE_ && !uswapwep->cursed) {
+			curse(uswapwep);
+			Your("weapon becomes cursed. En garde... bitch.");
 		}
 
 		if (uswapwep && uswapwep->oartifact == ART_KRASCHEEP && !uswapwep->cursed) {

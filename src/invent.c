@@ -1698,6 +1698,30 @@ have_femityjewel()
 }
 
 boolean
+have_prettyblond()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_PRETTYBLOND)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
+have_meefmeef()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->oartifact == ART_MEEFMEEF)
+			return(TRUE);
+		}
+	return(FALSE);
+}
+
+boolean
 have_estealdoctor()
 {
 	register struct obj *otmp;
@@ -32825,6 +32849,130 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +5 dexterity when worn."); break;
 				case ART_BODY_COMPOSURE:
 					pline("Artifact specs: boosts your AC by 10 when worn."); break;
+				case ART_TRAPPERAFIC:
+					pline("Artifact specs: ha ha ha. :D"); break; /* this is intentional --Amy */
+				case ART_SATAN_S_CLICKLOCK:
+					pline("Artifact specs: Huahahahahahaha! :D:D:D"); break; /* this is intentional --Amy */
+				case ART_SPARK_IGNITION:
+					pline("Artifact specs: +2 to-hit and +12 fire damage."); break;
+				case ART_MEDIUM_USER:
+					pline("Artifact specs: +4 to-hit and +4 damage."); break;
+				case ART_LOW_HEAP:
+					pline("Artifact specs: +4 to-hit and +2 damage, spawns with bigger stack size."); break;
+				case ART_EXFLING:
+					pline("Artifact specs: +3 to-hit and +3 damage, +2 multishot when firing them with a sling."); break;
+				case ART_WASGORAE:
+					pline("Artifact specs: +6 to-hit and +2 damage, +5 range when firing them."); break;
+				case ART_LAST_LIKE_FOREVER:
+					pline("Artifact specs: much less likely to mulch when fired."); break;
+				case ART_FLINGENGAMB:
+					pline("Artifact specs: +20 damage. Nope, you don't just deal extra damage when carrying it, you deal extra damage if you shoot it with a sling (I really shouldn't have to explain that, but if you're one of those powergamer munchkinlords who want the game to be piss easy, you'll somehow automatically assume that a game as well-balanced as SLEX would have such a grossly unbalanced artifact. Nope. Not going to happen, so bury your hopes already.)."); break;
+				case ART_PRETTYBLOND:
+					pline("Artifact specs: regeneration and verena trap effect when carried."); break;
+				case ART_MEEFMEEF:
+					pline("Artifact specs: scent view when carried."); break;
+				case ART_WRONG_GREEN:
+					pline("Artifact specs: poison resistance when wielded, poisons targets if you fire it with a sling."); break;
+				case ART_WHOOPWHOOP:
+					pline("Artifact specs: spawns with its BUC known."); break;
+				case ART_MERELY_SOOTH:
+					pline("Artifact specs: +20 to-hit and +10 damage. And since there are probably still players who expect to find an artifact that just gives those effects while carried with no bad side effects: nope, those bonuses apply *when you fire this artifact with a sling*, of course. 'What? That's useless!!!' Maybe, but at least it's not unbalanced!"); break;
+				case ART_SLIGHTLY_BETTER_SNACK:
+					pline("Artifact specs: 500 extra nutrition when eaten."); break;
+				case ART_HUAHAHAHAHA:
+					pline("Artifact specs: gives you several random mushroom effects when eaten."); break;
+				case ART_LUSCIOUS_NIGHTSHADE:
+					pline("Artifact specs: +3 strength when eaten, but disables poison resistance for a pretty long time."); break;
+				case ART_STRONG_PLANESCENT:
+					pline("Artifact specs: cures wincing when eaten."); break;
+				case ART_LASHITUP:
+					pline("Artifact specs: cures inversion when eaten."); break;
+				case ART_RABE_S_PUNCH:
+					pline("Artifact specs: permanently increases your damage output by one when eaten. By the way, Rabe cannot be permanently killed while his 'Pa-Pa' (Mankar) is still alive ;)"); break;
+				case ART_RUMA_S_TAUNT:
+					pline("Artifact specs: permanently increases your to-hit by one when eaten. By the way, Ruma cannot be permanently killed while her 'Pa-Pa' (Mankar) is still alive ;)"); break;
+				case ART_FRUITSTOCK:
+					pline("Artifact specs: spawns with a bigger stack size."); break;
+				case ART_XTRA_DELICIOUS:
+					pline("Artifact specs: 500 extra nutrition when eaten."); break;
+				case ART_ANTIBEDOP:
+					pline("Artifact specs: cures sliming when eaten."); break;
+				case ART_OLDIE_SAVAT:
+					pline("Artifact specs: cures the diarrhea nastytrap effect when eaten."); break;
+				case ART_GRODY_TIME:
+					pline("Artifact specs: spawns heavily cursed."); break;
+				case ART_BIGTURN:
+					pline("Artifact specs: reverses your luck when eaten, so a positive value becomes negative and a negative one becomes positive."); break;
+				case ART_DOOFO_OPEN:
+					pline("Artifact specs: grants a random intrinsic when eaten, which can be good or bad, or it can be one you already have, in which case nothing happens."); break;
+				case ART_ANGRY_BURGER_INGREDIENT:
+					pline("Artifact specs: spawns an angry burger when eaten. Be careful to not get killed by that."); break;
+				case ART_GO_WITH_THE_JOLT:
+					pline("Artifact specs: grants temporary hallucination resistance and free action when eaten."); break;
+				case ART_EMERGENCY_FILL:
+					pline("Artifact specs: 1000 extra nutrition when eaten."); break;
+				case ART_PLANEBANE:
+					pline("Artifact specs: grants temporary half physical damage when eaten."); break;
+				case ART_DOG_FODDER:
+					pline("Artifact specs: if a pet eats it, the pet in question gains more nutrition than usual."); break;
+				case ART_APPORTAGE_TREAT:
+					pline("Artifact specs: if a pet eats it, its apport increases greatly."); break;
+				case ART_TAMER_S_TOOL:
+					pline("Artifact specs: if a pet eats it, its tameness increases greatly."); break;
+				case ART_WINGGIVER:
+					pline("Artifact specs: if a pet eats it, it grows wings, allowing it to fly."); break;
+				case ART_WORKING_FIELD_EFFECT:
+					pline("Artifact specs: if a pet eats it, it gains the ability to stop teleportation."); break;
+				case ART_DOGGOTRAINER:
+					pline("Artifact specs: spawns with a much bigger stack size."); break;
+				case ART_WEDELAGE:
+					pline("Artifact specs: while wielding it, all monsters follow you very closely regardless of whether they're friendly, hostile or pets, but your alignment record will also go down until you put it away."); break;
+				case ART_CONSTIPITATE:
+					pline("Artifact specs: slows you down when eaten."); break;
+				case ART_HUNG___ER_:
+					pline("Artifact specs: hunger and slow digestion when worn. Eating it gives you the hunger intrinsic permanently."); break;
+				case ART_LEVEL_MINUS_THREE:
+					pline("Artifact specs: if you die from eating it, you get perilous life saving and warp to the Minus World. However, if anything prevents you from levelporting, you'll die for real instead, so be careful."); break;
+				case ART_ENDLESS_TREEFALL:
+					pline("Artifact specs: spawns with bigger stack size."); break;
+				case ART_HORSEFOOD_:
+					pline("Artifact specs: if a vegetarian pet eats it, the pet in question gains much more nutrition."); break;
+				case ART_SYKES_S_MULTIUSE:
+					pline("Artifact specs: can be invoked to use it up and spawn a medkit containing another copy of this artifact. If it's inside a medkit, the surgery technique will be much less likely to use up this bandage, meaning it can potentially be used many times."); break;
+				case ART_THICK_RED_SAP:
+					pline("Artifact specs: can be invoked to use it up and spawn a medkit containing another copy of this artifact. If it's inside a medkit, the draw blood technique will give you lots of extra nutrition and a temporary full nutrients effect upon drawing blood into this particular phial."); break;
+				case ART_EASTERGA:
+					pline("Artifact specs: lasts for a much longer time."); break;
+				case ART_SUPERLITE:
+					pline("Artifact specs: wielding it while it's lit grants double infravision."); break;
+				case ART_FELL_THE_AG:
+					pline("Artifact specs: if you had aggravate monster when this artifact got spawned, it cured that effect, otherwise it gave you intrinsic stealth."); break;
+				case ART_SEPTO_END:
+					pline("Artifact specs: lasts forever."); break;
+				case ART_BRIGHTLIGHT:
+					pline("Artifact specs: bigger light radius when it's lit."); break;
+				case ART_LASTER_EVER:
+					pline("Artifact specs: gives several random pill effects when eaten, or if it's in a medkit, it's less likely to get used up."); break;
+				case ART_GARAWORK:
+					pline("Artifact specs: heals you when eaten, and if it's inside a medkit, it always works regardless of the medkit's BUC (but only if this particular pill is used; if there's other pills inside the medkit as well, applying it will use whatever pill is first in the game's internal order)."); break;
+				case ART_FILLPILL:
+					pline("Artifact specs: spawns with much bigger stack size."); break;
+				case ART_THUNDERDOME_BAR:
+					pline("Artifact specs: +15 shock damage, shock resistance and wild weather when wielded."); break;
+				case ART_FOREST_FIRE:
+					pline("Artifact specs: +10 to-hit and +10 fire damage, wild weather when wielded, using this particular axe to chop down a tree won't summon tree squads."); break;
+				case ART_MAGIHEX:
+					pline("Artifact specs: +6 to-hit and +10 magic damage, magic resistance and wild weather when wielded."); break;
+				case ART_EN_GARDE____TOUCHE_:
+					pline("Artifact specs: +6 to-hit and +10 fire damage, kerstin and sabrina trap effects when wielded, autocurses, slows down opponents who fail a resistance check, effects that lower your alignment may be resisted while you're wielding it and you can use the #force command to dig."); break;
+				case ART_JEDE_SIZE_HIZE:
+					pline("Artifact specs: +3 charisma and protects your inventory from fire damage when wielded. If you polymorph into a monster that cannot wear shirts, this particular one won't fall off, but stays equipped."); break;
+				case ART_KUNO_S_TRANSCEIVER:
+					pline("Artifact specs: autocurses when worn and will periodically spawn hostile monsters who chase you relentlessly."); break;
+				case ART_SKI_CAN_CERIUM_FORM:
+					pline("Artifact specs: magic find and while wearing it, the weather is always sunny. It also allows you to walk on ice and snow, but monsters who breathe light spawn more often and if they breathe at you, your contamination will increase."); break;
+				case ART_GUAH_AVERT_SUEUE:
+					pline("Artifact specs: regeneration and sue lyn trap effect when worn, +6 strength, +8 constitution, monsters who fart at you will cause blindness for a few turns."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

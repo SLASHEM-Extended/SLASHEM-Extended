@@ -4434,7 +4434,7 @@ altarfound:
 		nx = poss[i].x;
 		ny = poss[i].y;
 
-		if (FeelerGauges || u.uprops[FEELER_GAUGES].extrinsic || have_feelergaugesstone() || autismringcheck(ART_BILL_S_CHIP) || (uarm && uarm->oartifact == ART_THEY_SOMEHOW_HAVE_A_RADAR) || autismweaponcheck(ART_BAT_FROM_BALTIMORE) ) appr = 1;
+		if (FeelerGauges || u.uprops[FEELER_GAUGES].extrinsic || have_feelergaugesstone() || autismweaponcheck(ART_WEDELAGE) || autismringcheck(ART_BILL_S_CHIP) || (uarm && uarm->oartifact == ART_THEY_SOMEHOW_HAVE_A_RADAR) || mtmp->egotype_tracker || autismweaponcheck(ART_BAT_FROM_BALTIMORE) ) appr = 1;
 		if (Race_if(PM_BULDOZGAR) && !mtmp->mpeaceful && !mtmp->mtame) appr = 1;
 
 		if (appr != 0) {

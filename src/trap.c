@@ -1832,6 +1832,7 @@ struct monst *victim;
 	if (victim == &youmonst && uarm && uarm->otyp == SATANIC_ARMOR) return 0;
 	if (victim == &youmonst && uarm && uarm->oartifact == ART_DARK_L) return 0;
 	if (victim == &youmonst && uarms && uarms->oartifact == ART_HEATSTAND) return 0;
+	if (victim == &youmonst && uarmu && uarmu->oartifact == ART_JEDE_SIZE_HIZE) return 0;
 	if (victim == &youmonst && autismringcheck(ART_THOUSANDER)) return 0;
 	if (victim == &youmonst && uarmc && uarmc->oartifact == ART_BOWSER_S_FUN_ARENA) return 0;
 

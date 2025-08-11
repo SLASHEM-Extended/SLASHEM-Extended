@@ -610,6 +610,7 @@ init_randarts()
 	artilist[ART_INFINITE_RANGE].otyp = randartleash();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
+	artilist[ART_SKI_CAN_CERIUM_FORM].otyp = randartcloakX();
 	artilist[ART_CLOAK_OF_THE_UNHELD_POTATO].otyp = randartcloakX();
 	artilist[ART_UNBINDALL_CHEAT].otyp = randartcloakX();
 	artilist[ART_FIND_ME_NEVERTHELESS].otyp = randartcloakX();
@@ -781,6 +782,8 @@ init_randarts()
 	artilist[ART_ND_D___N_NDMNN_ND___NDMN_N].otyp = randartimplantX();
 	artilist[ART_WHOOSHZAP].otyp = randartwandX();
 	artilist[ART_CLOUDYBAND].otyp = randartshirtX();
+	artilist[ART_GUAH_AVERT_SUEUE].otyp = randartshirtX();
+	artilist[ART_JEDE_SIZE_HIZE].otyp = randartshirtX();
 	artilist[ART_CRIMSON_PLATE].otyp = randartshirtX();
 	artilist[ART_LISE_S_UNDERWEAR].otyp = randartshirtX();
 	artilist[ART_FIRST_THERE_WE_WERE].otyp = randartshirtX();
@@ -820,6 +823,7 @@ init_randarts()
 	artilist[ART_FORMO____].otyp = randartbootsX();
 	artilist[ART_ELIANE_S_SHIN_SMASH].otyp = randartbootsX();
 	artilist[ART_MYSTERIOUS_MAGIC].otyp = randartamuletX();
+	artilist[ART_KUNO_S_TRANSCEIVER].otyp = randartamuletX();
 	artilist[ART_BAKURETU_KEN].otyp = randartamuletX();
 	artilist[ART_BANGCOCK].otyp = randartlauncherX();
 	artilist[ART_RNG_S_COMPLETION].otyp = randartsuitX();
@@ -875,6 +879,7 @@ init_randarts()
 	artilist[ART_POWER_POLE].otyp = randartpolearmX();
 	artilist[ART_BALANCE_PSEUDOSHIELD].otyp = randartquarterstaffX();
 	artilist[ART_STAFF_OF_ROT].otyp = randartquarterstaffX();
+	artilist[ART_MAGIHEX].otyp = randartquarterstaffX();
 	artilist[ART_STAFF_OF_THE_ARCHMAGIGI].otyp = randartquarterstaffX();
 	artilist[ART_BLU_TOE].otyp = randartorbX();
 	artilist[ART_GIGANTIC_SUN].otyp = randartorbX();
@@ -889,6 +894,7 @@ init_randarts()
 	artilist[ART_MACE_OF_ORCUS].otyp = randartmaceX();
 	artilist[ART_MACE_OF_THE_EVANGELIST].otyp = randartmaceX();
 	artilist[ART_UNWIELDYTINE].otyp = randarttridentX();
+	artilist[ART_THUNDERDOME_BAR].otyp = randarttridentX();
 	artilist[ART_LOGGERS_S_OVERKILL].otyp = randarttridentX();
 	artilist[ART_POSEIDON_S_TRIDENT].otyp = randarttridentX();
 	artilist[ART_TURVANG_S_THUNDER].otyp = randarthammerX();
@@ -921,6 +927,7 @@ init_randarts()
 	artilist[ART_DAGGER_SURROUNDED_BY_WIND].otyp = randartdaggerX();
 	artilist[ART_THIN_DAGGER].otyp = randartdaggerX();
 	artilist[ART_FERRUM_D].otyp = randartdaggerX();
+	artilist[ART_EN_GARDE____TOUCHE_].otyp = randartdaggerX();
 	artilist[ART_GEB_ME_ALL_YOUR_MONEY].otyp = randartdaggerX();
 	artilist[ART_NOCLAF].otyp = randartscimitarX();
 	artilist[ART_BLUE_CORSAR_SWIMMING].otyp = randartscimitarX();
@@ -932,6 +939,7 @@ init_randarts()
 	artilist[ART_AVAL_N].otyp = randartscimitarX();
 	artilist[ART_EUTATS_ENOTS].otyp = randartaxeX();
 	artilist[ART_AXE_OF_DESTRUCTION].otyp = randartaxeX();
+	artilist[ART_FOREST_FIRE].otyp = randartaxeX();
 	artilist[ART_FUNE_NO_IKARI].otyp = randartaxeX();
 	artilist[ART_BRAINSTORM].otyp = randartflailX();
 	artilist[ART_NO_MOON_AT_ALL].otyp = randartflailX();
@@ -1977,6 +1985,7 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_VADER_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_TAVION_S_CHARGE) otmp->age += rnz(5000);
 		    if (otmp && otmp->oartifact == ART_DURATEX) otmp->age += 4000;
+		    if (otmp && otmp->oartifact == ART_EASTERGA) otmp->age += 10000;
 		    if (otmp && otmp->oartifact == ART_BURNER_DREAM) otmp->age += 2000;
 		    if (otmp && otmp->oartifact == ART_OWENER) otmp->age = 0;
 		    if (otmp && otmp->oartifact == ART_OUT_OILED) otmp->age = 0;
@@ -1990,6 +1999,10 @@ register boolean mod;
 			}
 		    if (otmp && otmp->oartifact == ART_BUS_ERROR) {
 			otmp->quan = 1;
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_DOGGOTRAINER) {
+			otmp->quan += 99;
 			otmp->owt = weight(otmp);
 			}
 		    if (otmp && otmp->oartifact == ART_HOL_ON_MAN) {
@@ -2024,12 +2037,99 @@ register boolean mod;
 			otmp->quan += 1;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_FILLPILL) {
+			otmp->quan += 20;
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_LOW_HEAP) {
+			otmp->quan += rn1(50, 50);
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_ENDLESS_TREEFALL) {
+			otmp->quan += rnz(100);
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_WORTH_CHECKING_OUT && otmp->spe == 0) {
 			if (rn2(2)) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+		    if (otmp && otmp->oartifact == ART_GRODY_TIME) {
+			curse(otmp);
+			otmp->hvycurse = TRUE;
+		    }
+		    if (otmp && otmp->oartifact == ART_WHOOPWHOOP) {
+			otmp->bknown = TRUE;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_FELL_THE_AG) {
+			if (!(HAggravate_monster & INTRINSIC) && !(HAggravate_monster & TIMEOUT)) {
+				if(!(HStealth & FROMOUTSIDE)) {
+					HStealth |= FROMOUTSIDE;
+					You_feel("stealthy.");
+				}
+			}
+			if (HAggravate_monster & INTRINSIC) {
+				HAggravate_monster &= ~INTRINSIC;
+				You_feel("more acceptable!");
+			}
+			if (HAggravate_monster & TIMEOUT) {
+				HAggravate_monster &= ~TIMEOUT;
+				You_feel("more acceptable!");
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_TRAPPERAFIC) {
+				int tryct = 0;
+				int x, y;
+				boolean canbeinawall = FALSE;
+
+				int trapcount = 25;
+
+				while (trapcount > 0) {
+
+					trapcount--;
+
+					canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+					register struct trap *ttmp;
+					for (tryct = 0; tryct < 2000; tryct++) {
+						x = rn1(COLNO-3,2);
+						y = rn2(ROWNO);
+
+						if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+							ttmp = maketrap(x, y, STATUE_TRAP, 0, TRUE);
+							break;
+						}
+					}
+				}
+		    }
+		    if (otmp && otmp->oartifact == ART_SATAN_S_CLICKLOCK) {
+				int tryct = 0;
+				int x, y;
+				boolean canbeinawall = FALSE;
+
+				int trapcount = 15;
+
+				while (trapcount > 0) {
+
+					trapcount--;
+
+					canbeinawall = FALSE;
+					if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
+					register struct trap *ttmp;
+					for (tryct = 0; tryct < 2000; tryct++) {
+						x = rn1(COLNO-3,2);
+						y = rn2(ROWNO);
+
+						if (isok(x, y) && ((levl[x][y].typ > DBWALL) || canbeinawall) && !(t_at(x, y)) ) {
+							ttmp = maketrap(x, y, SATATUE_TRAP, 0, TRUE);
+							break;
+						}
+					}
+				}
 		    }
 		    if (otmp && otmp->oartifact == ART_WINTERN) {
 			otmp->spe += 3;
@@ -3001,6 +3101,10 @@ register boolean mod;
 			otmp->owt = weight(otmp);
 		    }
 		    if (otmp && otmp->oartifact == ART_AMMOFORM) {
+			otmp->quan *= 2;
+			otmp->owt = weight(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_FRUITSTOCK) {
 			otmp->quan *= 2;
 			otmp->owt = weight(otmp);
 		    }
@@ -4627,7 +4731,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_HOH_LEVEL_GREENITY || otmp->oartifact == ART_CAPSULITH || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_HOH_LEVEL_GREENITY || otmp->oartifact == ART_CAPSULITH || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_WRONG_GREEN || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -6508,6 +6612,52 @@ tunguskaagain:
 				pline_The("air around you gradually loses power.");
 			} else {
 				setupreturn(0);
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_SYKES_S_MULTIUSE) {
+
+			useupall(obj);
+
+			register struct obj *acqo;
+
+			acqo = mksobj_at(MEDICAL_KIT, u.ux, u.uy, TRUE, FALSE, FALSE);
+
+			if (acqo) {
+				register struct obj *ocont;
+
+				ocont = mksobj(BANDAGE, TRUE, FALSE, FALSE);
+				if (ocont) {
+					ocont = onameX(ocont, artiname(ART_SYKES_S_MULTIUSE));
+					ocont->owt = weight(ocont);
+					(void) add_to_container(acqo, ocont, TRUE);
+				}
+				pline("A medical kit was spawned on the ground.");
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_THICK_RED_SAP) {
+
+			useupall(obj);
+
+			register struct obj *acqo;
+
+			acqo = mksobj_at(MEDICAL_KIT, u.ux, u.uy, TRUE, FALSE, FALSE);
+
+			if (acqo) {
+				register struct obj *ocont;
+
+				ocont = mksobj(PHIAL, TRUE, FALSE, FALSE);
+				if (ocont) {
+					ocont = onameX(ocont, artiname(ART_THICK_RED_SAP));
+					ocont->owt = weight(ocont);
+					(void) add_to_container(acqo, ocont, TRUE);
+				}
+				pline("A medical kit was spawned on the ground.");
 			}
 
 			break;

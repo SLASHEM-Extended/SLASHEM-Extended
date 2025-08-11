@@ -5667,105 +5667,118 @@ struct obj *otmp;
 		}
 		break;
 	    case PILL:
+	    {
 		You("swallow the little pink pill.");
+		int pilleffects = 1;
+		if (otmp->oartifact == ART_LASTER_EVER) pilleffects = 5;
 
-		switch(rn2(7))
-		{
-		   case 0:
+		while (pilleffects > 0) {
+			pilleffects--;
+			switch(rn2(7))
+			{
+			   case 0:
 
-			if (rn2(100)) { /* make wishes much less common --Amy */
+				if (rn2(100)) { /* make wishes much less common --Amy */
 
-				if (rn2(2)) make_sick(rn1(15,15), "bad pill", TRUE, SICK_VOMITABLE);
+					if (rn2(2)) make_sick(rn1(15,15), "bad pill", TRUE, SICK_VOMITABLE);
+					else {
+						pline("Oh god, it was a sex change drug...");
+						change_sex();
+					}
+					break;
+				}
+
 				else {
-					pline("Oh god, it was a sex change drug...");
-					change_sex();
+
+				/* [Tom] wishing pills are from the Land of Oz */
+				pline ("The pink sugar coating hid a silver special pill!"); /* wish no longer guaranteed --Amy */
+				if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
+				else othergreateffect();
+				break;
+				}
+			   case 1:
+				if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
+					You_feel("your stomach twinge.");
+					losestr(rnd(4), TRUE);
+					losehp(rnd(15), "poisonous pill", KILLED_BY_AN);
+				} else  You("seem unaffected by the poison.");
+				break;
+			   case 2:
+				pline ("Everything begins to get blurry.");
+				make_stunned(HStun + 30,FALSE);
+				break;
+			   case 3:
+				pline ("Oh wow!  Look at the lights!");
+				make_hallucinated(HHallucination + 150,FALSE,0L);
+				break;
+			   case 4:
+				pline("That tasted like vitamins...");
+				lesshungry(600);
+				break;
+			   case 5:
+				if(Sleep_resistance && (StrongSleep_resistance || rn2(10)) ) {
+					pline("Hmm. Nothing happens.");
+				} else {
+					You_feel("drowsy...");
+					nomul(-rn2(50), "sleeping from a pink pill", TRUE);
+					u.usleep = 1;
+					nomovemsg = "You wake up.";
 				}
 				break;
-			}
-
-			else {
-
-			/* [Tom] wishing pills are from the Land of Oz */
-			pline ("The pink sugar coating hid a silver special pill!"); /* wish no longer guaranteed --Amy */
-			if (!rn2(4)) makewish(evilfriday ? FALSE : TRUE);
-			else othergreateffect();
-			break;
-			}
-		   case 1:
-			if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
-				You_feel("your stomach twinge.");
-				losestr(rnd(4), TRUE);
-				losehp(rnd(15), "poisonous pill", KILLED_BY_AN);
-			} else  You("seem unaffected by the poison.");
-			break;
-		   case 2:
-			pline ("Everything begins to get blurry.");
-			make_stunned(HStun + 30,FALSE);
-			break;
-		   case 3:
-			pline ("Oh wow!  Look at the lights!");
-			make_hallucinated(HHallucination + 150,FALSE,0L);
-			break;
-		   case 4:
-			pline("That tasted like vitamins...");
-			lesshungry(600);
-			break;
-		   case 5:
-			if(Sleep_resistance && (StrongSleep_resistance || rn2(10)) ) {
-				pline("Hmm. Nothing happens.");
-			} else {
-				You_feel("drowsy...");
-				nomul(-rn2(50), "sleeping from a pink pill", TRUE);
-				u.usleep = 1;
-				nomovemsg = "You wake up.";
-			}
-			break;
-		   case 6:
-			pline("Wow... everything is moving in slow motion...");
-			/* KMH, balance patch -- Use incr_itimeout() instead of += */
-			incr_itimeout(&HFast, rn1(10,200));
-			break;
-		}
+			   case 6:
+				pline("Wow... everything is moving in slow motion...");
+				/* KMH, balance patch -- Use incr_itimeout() instead of += */
+				incr_itimeout(&HFast, rn1(10,200));
+				break;
+			} /* switch end */
+		} /* pilleffect */
+	    }
 		break;
 	    case MUSHROOM:
-		{
-		 boolean canbedelicious = TRUE;
-		 if (u.uhs == SATIATED) canbedelicious = FALSE;
+	    {
+		boolean canbedelicious = TRUE;
+		if (u.uhs == SATIATED) canbedelicious = FALSE;
 
-	       pline("This %s is %s", singular(otmp, xname),
-	       otmp->cursed ? (FunnyHallu ? "far-out!" : "terrible!") :
-		 canbedelicious ? (FunnyHallu ? "groovy!" : "delicious!") :
+		int mushroomeffects = 1;
+		if (otmp->oartifact == ART_HUAHAHAHAHA) mushroomeffects = 5;
+
+		pline("This %s is %s", singular(otmp, xname),
+		otmp->cursed ? (FunnyHallu ? "far-out!" : "terrible!") :
+		canbedelicious ? (FunnyHallu ? "groovy!" : "delicious!") :
 					FunnyHallu ? "hairy." : "so-so.");
-		}
-		switch(rn2(10))
-		{
-		   case 0:
-		   case 1:
-			if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
-				You_feel("rather ill....");
-				losestr(rnd(4), TRUE);
-				losehp(rnd(15), "poisonous mushroom", KILLED_BY_AN);
-			} else  You("burp loudly.");
-			break;
-		   case 2:
-			pline ("That mushroom tasted a little funny.");
-			make_stunned(HStun + 30,FALSE);
-			break;
-		   case 3:
-			pline ("Whoa! Everything looks groovy!");
-			make_hallucinated(HHallucination + 150,FALSE,0L);
-			break;
-		   case 4:
-			gainstr(otmp, 1);
-			pline ("You feel stronger!");
-			break;                                           
-		   case 5:
-		   case 6:
-		   case 7:
-		   case 8:
-		   case 9:
-			break;
-		}
+
+		while (mushroomeffects > 0) {
+			mushroomeffects--;
+			switch(rn2(10)) {
+			   case 0:
+			   case 1:
+				if(!Poison_resistance || (!rn2(10) && !StrongPoison_resistance) ) {
+					You_feel("rather ill....");
+					losestr(rnd(4), TRUE);
+					losehp(rnd(15), "poisonous mushroom", KILLED_BY_AN);
+				} else  You("burp loudly.");
+				break;
+			   case 2:
+				pline ("That mushroom tasted a little funny.");
+				make_stunned(HStun + 30,FALSE);
+				break;
+			   case 3:
+				pline ("Whoa! Everything looks groovy!");
+				make_hallucinated(HHallucination + 150,FALSE,0L);
+				break;
+			   case 4:
+				gainstr(otmp, 1);
+				pline ("You feel stronger!");
+				break;                                           
+			   case 5:
+			   case 6:
+			   case 7:
+			   case 8:
+			   case 9:
+				break;
+			} /* switch end */
+	      } /* mushroomeffect */
+	    }
 		break;
 	    case SHEAF_OF_STRAW:
 	    case COTTON:
@@ -7423,6 +7436,44 @@ register struct obj *otmp;
 		You_feel("the hand scrabbling around inside of you!");
 		u.uhp -= rn1(50,150);
 		if (u.uhp <= 0) {
+
+		  if ((otmp->oartifact == ART_LEVEL_MINUS_THREE) && !playerlevelportdisabled()) {
+			d_level dtmp;
+			struct obj *perilotmp, *perilotmp2;
+			int n;
+			dtmp.dnum = dname_to_dnum("Minus World");
+			dtmp.dlevel = dunlevs_in_dungeon(&dtmp);
+			if (multi >= 0) {
+				nomovemsg = "You feel a little dizzy.";
+				nomul(-1, "being banished", FALSE); /* because it's not called until you get another turn... */
+			}
+
+			while (invent) {
+			    for (perilotmp = invent; perilotmp; perilotmp = perilotmp2) {
+			      perilotmp2 = perilotmp->nobj;
+
+				if (evades_destruction(perilotmp) ) dropx(perilotmp);
+				else if (perilotmp->oartifact == ART_LEVEL_MINUS_THREE) dropx(perilotmp); /* otherwise it segfaults --Amy */
+				else {
+					delete_contents(perilotmp);
+					useup(perilotmp);
+				}
+			    }
+			}
+
+			/* lose all spells */
+			for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+				spellid(n) = NO_SPELL;
+			}
+
+			schedule_goto(&dtmp, FALSE, FALSE, 0, (char *)0, (char *)0);
+			u.uhp = u.uhpmax;
+
+			You("would have died, but got perilously transported to a strange place...");
+
+			break;
+		  }
+
 		  u.youaredead = 1;
 		  killer_format = KILLED_BY;
 		  killer = food_xname(otmp, TRUE);
@@ -7678,6 +7729,131 @@ register struct obj *otmp;
 		adjattrib(A_WIS, 1, 0, TRUE);
 		adjattrib(A_INT, 1, 0, TRUE);
 		adjattrib(A_CHA, 1, 0, TRUE);
+	}
+
+	if (otmp && otmp->oartifact == ART_SLIGHTLY_BETTER_SNACK) {
+		lesshungry(500);
+		pline("That was pretty filling.");
+	}
+
+	if (otmp && otmp->oartifact == ART_XTRA_DELICIOUS) {
+		lesshungry(500);
+		pline("That was pretty filling.");
+	}
+
+	if (otmp && otmp->oartifact == ART_EMERGENCY_FILL) {
+		lesshungry(1000);
+		pline("That was pretty filling.");
+	}
+
+	if (otmp && otmp->oartifact == ART_GARAWORK) {
+	    upnivel(FALSE);
+	    if (Sick) make_sick(0L, (char *) 0,TRUE ,SICK_ALL);
+	    else if (Blinded > (long)(u.ucreamed+1))
+		make_blinded(u.ucreamed ?
+			(long)(u.ucreamed+1) : 0L, TRUE);
+	    else if (HHallucination)
+		make_hallucinated(0L, TRUE, 0L);
+	    else if (Vomiting && !(uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA)) make_vomiting(0L, TRUE);
+	    else if (HConfusion) make_confused(0L, TRUE);
+	    else if (HStun) make_stunned(0L, TRUE);
+	    else if (HNumbed) make_numbed(0L, TRUE);
+	    else if (HFrozen) make_frozen(0L, TRUE);
+	    else if (HBurned) make_burned(0L, TRUE);
+	    else if (HFeared) make_feared(0L, TRUE);
+	    else if (HDimmed) make_dimmed(0L, TRUE);
+	    else if (u.uhp < u.uhpmax) {
+		u.uhp += rn1(10,10);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		You_feel("better.");
+		flags.botl = TRUE;
+	    } else {
+			pline("%s", nothing_happens);
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+	    }
+
+	}
+
+	if (otmp && otmp->oartifact == ART_PLANEBANE) {
+		incr_itimeout(&HHalf_physical_damage, 500);
+		You("feel more resistant to normal damage!");
+	}
+
+	if (otmp && otmp->oartifact == ART_CONSTIPITATE) {
+		u_slow_down();
+	}
+
+	if (otmp && otmp->oartifact == ART_HUNG___ER_) {
+		HHunger |= FROMOUTSIDE;
+		You_feel("very hungry.");
+	}
+
+	if (otmp && otmp->oartifact == ART_ANTIBEDOP) {
+		if (Slimed) {
+		    pline_The("slime disappears!");
+		    Slimed = 0;
+		    flags.botl = 1;
+		}
+	}
+
+	if (otmp && otmp->oartifact == ART_OLDIE_SAVAT) {
+		CrapEffect = 0L;
+		You("no longer suffer from diarrhea.");
+	}
+
+	if (otmp && otmp->oartifact == ART_BIGTURN) {
+		You_feel("something turning around...");
+		u.uluck = -u.uluck;
+	}
+
+	if (otmp && otmp->oartifact == ART_DOOFO_OPEN) {
+		Your("intrinsics change.");
+		intrinsicgainorloss(1);
+	}
+
+	if (otmp && otmp->oartifact == ART_ANGRY_BURGER_INGREDIENT) {
+		(void) makemon(&mons[PM_ANGRY_BURGER], u.ux, u.uy, MM_ADJACENTOK|MM_ANGRY);
+		pline("Gruum."); /* this and the following is supposed to be the sound effect when an angry burger spawns in Amylona */
+		pline("TAAAAAAAAAAA TATATA TAA, TA TAAAAA TA TAAAAAAA, TAAAA TATATATAAAA *TAA TAAAA*, TAA TAAAAAAA! TAAAAA TATATATAAAAA TA TA TAAAAA, TATATATAAAAAAA TAA, TAA TAA, TATATATAAAAA TATATATATAAAAAAAAAAAAA TAAAAA! (dwoeoeoeoe, dwoeoeoeoe, dwoeoeoe dwoeoeoe dwoeoeoe, dwowoeoeoe...)");
+	}
+
+	if (otmp && otmp->oartifact == ART_LUSCIOUS_NIGHTSHADE) {
+		u.uprops[DEAC_POISON_RES].intrinsic += rnz(10000);
+		gainstr(otmp, 3);
+		You("feel the poison circulating your veins...");
+	}
+
+	if (otmp && otmp->oartifact == ART_GO_WITH_THE_JOLT) {
+		incr_itimeout(&HHalluc_resistance, 5000);
+		incr_itimeout(&HFree_action, 5000);
+		You("feel very alert!");
+	}
+
+	if (otmp && otmp->oartifact == ART_STRONG_PLANESCENT) {
+		make_wincing(0L);
+		HWinceState &= ~INTRINSIC;
+		HWinceState &= ~TIMEOUT;
+		Your("wincing was cured.");
+	}
+
+	if (otmp && otmp->oartifact == ART_LASHITUP) {
+		make_inverted(0L);
+		HInvertedState &= ~INTRINSIC;
+		HInvertedState &= ~TIMEOUT;
+		Your("inversion was cured.");
+	}
+
+	if (otmp && otmp->oartifact == ART_RABE_S_PUNCH) {
+		u.udamincxtra += 1;
+		You("feel like the evil bastard Rabe Camoran!");
+	}
+
+	if (otmp && otmp->oartifact == ART_RUMA_S_TAUNT) {
+		u.uhitincxtra += 1;
+		You("feel like the total bitch Ruma Camoran!");
 	}
 
 	if (otmp && otmp->oartifact == ART_YAKKAINA_TORI_O_MITSUKETA) {

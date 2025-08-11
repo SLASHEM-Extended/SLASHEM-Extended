@@ -5329,6 +5329,9 @@ armorsmashdone:
 		if (wep && wep->oartifact == ART_MOURNBLADE) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
 		}
+		if (wep && wep->oartifact == ART_EN_GARDE____TOUCHE_) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
 		if (wep && wep->oartifact == ART_LUCKY_DAGGER) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
 		}

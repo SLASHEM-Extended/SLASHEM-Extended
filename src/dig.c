@@ -138,7 +138,7 @@ dig_typ(otmp, x, y)
 struct obj *otmp;
 xchar x, y;
 {
-	boolean ispick = is_pick(otmp);
+	boolean ispick = (is_pick(otmp) || (otmp->oartifact == ART_EN_GARDE____TOUCHE_) );
 	boolean isantibar = is_antibar(otmp);
 	boolean issaber = is_lightsaber(otmp);
 
@@ -248,7 +248,7 @@ dig()
 {
 	register struct rm *lev;
 	register xchar dpx = digging.pos.x, dpy = digging.pos.y;
-	register boolean ispick = uwep && is_pick(uwep);
+	register boolean ispick = uwep && (is_pick(uwep) || (uwep->oartifact == ART_EN_GARDE____TOUCHE_) );
 	const char *verb =
 	    (!uwep || is_pick(uwep)) ? "dig into" :
 	    is_lightsaber(uwep) ? "cut through" :
@@ -462,7 +462,7 @@ dig()
 			    if (u.ualign.type == A_CHAOTIC) adjalign(1);
 
 				/* the tree squads do not want people who kill trees, and will aggressively chase them --Amy */
-			    u.treesquadwantedlevel += (100 + rnd(u.cnd_treechopamount * 5));
+			    if (!(uwep && uwep->oartifact == ART_FOREST_FIRE)) u.treesquadwantedlevel += (100 + rnd(u.cnd_treechopamount * 5));
 			    if (Role_if(PM_BOSMER)) { /* you have angered Yavanna... */
 				You("violated the sanctity of the grove!");
 				adjalign(-10);
@@ -514,7 +514,7 @@ dig()
 
 			    }
 
-			    if (!rn2(50)) { /* summon the tree squad! --Amy */
+			    if (!rn2(50) && !(uwep && uwep->oartifact == ART_FOREST_FIRE) ) { /* summon the tree squad! --Amy */
 
 				coord cc, dd;
 				int cx,cy;
@@ -1292,7 +1292,7 @@ struct obj *obj;
 	    if (!wield_tool(obj, "swing")) return 0;
 	    else res = 1;
 	}
-	ispick = is_pick(obj);
+	ispick = (is_pick(obj) || (obj->oartifact == ART_EN_GARDE____TOUCHE_) );
 	isantibar = is_antibar(obj);
 	verb = ispick ? "dig" : isantibar ? "lash out" : "chop";
 
@@ -1348,7 +1348,7 @@ struct obj *obj;
 	register int rx, ry;
 	register struct rm *lev;
 	int dig_target, digtyp;
-	boolean ispick = is_pick(obj);
+	boolean ispick = (is_pick(obj) || (obj->oartifact == ART_EN_GARDE____TOUCHE_) );
 	const char *verbing = ispick ? "digging" :
 		is_lightsaber(uwep) ? "cutting" :
 		"chopping";
