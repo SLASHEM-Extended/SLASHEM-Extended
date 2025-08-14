@@ -868,6 +868,7 @@ register struct monst *mtmp;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uleft && uleft->oartifact == ART_I_M_NOT_AFRAID_) tmp += 10;
 	if (uright && uright->oartifact == ART_I_M_NOT_AFRAID_) tmp += 10;
+	if (uarmc && uarmc->oartifact == ART_SELVERFEND) tmp += 1;
 	if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
@@ -886,6 +887,8 @@ register struct monst *mtmp;
 	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;
 	if (uright && uright->oartifact == ART_HEXTROSE) tmp += 6;
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
+	if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 2;
 	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
@@ -4391,12 +4394,14 @@ int dieroll;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
 		if (uamul && uamul->oartifact == ART_PLAYING_QUAKE) tmp += 3;
+		if (uarmc && uarmc->oartifact == ART_SELVERFEND) tmp += 1;
 		if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 		if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
 		if (!thrown && uleft && uleft->oartifact == ART_BUFFIST) tmp += 2;
 		if (!thrown && uright && uright->oartifact == ART_BUFFIST) tmp += 2;
 		if (!thrown && uarms && uarms->oartifact == ART_BOENGSCHRACK) tmp += 2;
 		if (!thrown && uarmg && uarmg->oartifact == ART_OFFENDUFF) tmp += 2;
+		if (!thrown && uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING) tmp += 3;
 		if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) tmp += 1;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
@@ -13818,13 +13823,17 @@ boolean ranged;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
-	       if (!Strangled && !Breathless) {
-		 pline("You inhale a cloud of spores!");
-		 poisoned("spores", A_STR, "spore cloud", 30);
-	       } else {
-		 pline("A cloud of spores surrounds you!");
-		 if (!rn2(StrongMagical_breathing ? 5 : 2)) poisoned("spores", A_STR, "spore cloud", 30);
-	       }
+	      if (!Strangled && !Breathless) {
+			pline("You inhale a cloud of spores!");
+			poisoned("spores", A_STR, "spore cloud", 30);
+			mdamageu(mon, tmp);
+	      } else {
+			pline("A cloud of spores surrounds you!");
+			if (!rn2(StrongMagical_breathing ? 5 : 2)) {
+				poisoned("spores", A_STR, "spore cloud", 30);
+				mdamageu(mon, tmp);
+			}
+	      }
 	      break;
 	      case AD_DRDX:
 
@@ -13832,13 +13841,16 @@ boolean ranged;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
-	       if (!Strangled && !Breathless) {
-		 pline("You inhale a cloud of spores!");
-		 poisoned("spores", A_DEX, "spore cloud", 30);
-	       } else {
-		 pline("A cloud of spores surrounds you!");
-		 if (!rn2(StrongMagical_breathing ? 5 : 2)) poisoned("spores", A_DEX, "spore cloud", 30);
-	       }
+	      if (!Strangled && !Breathless) {
+			pline("You inhale a cloud of spores!");
+			poisoned("spores", A_DEX, "spore cloud", 30);
+	      } else {
+			pline("A cloud of spores surrounds you!");
+			if (!rn2(StrongMagical_breathing ? 5 : 2)) {
+				poisoned("spores", A_DEX, "spore cloud", 30);
+				mdamageu(mon, tmp);
+			}
+	      }
 	      break;
 	      case AD_DRCO:
 
@@ -13846,13 +13858,16 @@ boolean ranged;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
-	       if (!Strangled && !Breathless) {
-		 pline("You inhale a cloud of spores!");
-		 poisoned("spores", A_CON, "spore cloud", 30);
-	       } else {
-		 pline("A cloud of spores surrounds you!");
-		 if (!rn2(StrongMagical_breathing ? 5 : 2)) poisoned("spores", A_CON, "spore cloud", 30);
-	       }
+	      if (!Strangled && !Breathless) {
+			pline("You inhale a cloud of spores!");
+			poisoned("spores", A_CON, "spore cloud", 30);
+	      } else {
+			pline("A cloud of spores surrounds you!");
+			if (!rn2(StrongMagical_breathing ? 5 : 2)) {
+				poisoned("spores", A_CON, "spore cloud", 30);
+				mdamageu(mon, tmp);
+			}
+	      }
 	      break;
 	      case AD_WISD:
 
@@ -13860,13 +13875,16 @@ boolean ranged;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
-	       if (!Strangled && !Breathless) {
-		 pline("You inhale a cloud of spores!");
-		 poisoned("spores", A_WIS, "spore cloud", 30);
-	       } else {
-		 pline("A cloud of spores surrounds you!");
-		 if (!rn2(StrongMagical_breathing ? 5 : 2)) poisoned("spores", A_WIS, "spore cloud", 30);
-	       }
+	      if (!Strangled && !Breathless) {
+			pline("You inhale a cloud of spores!");
+			poisoned("spores", A_WIS, "spore cloud", 30);
+	      } else {
+			pline("A cloud of spores surrounds you!");
+			if (!rn2(StrongMagical_breathing ? 5 : 2)) {
+				poisoned("spores", A_WIS, "spore cloud", 30);
+				mdamageu(mon, tmp);
+			}
+	      }
 	      break;
 	      case AD_DRCH:
 
@@ -13874,13 +13892,16 @@ boolean ranged;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
-	       if (!Strangled && !Breathless) {
-		 pline("You inhale a cloud of spores!");
-		 poisoned("spores", A_CHA, "spore cloud", 30);
-	       } else {
-		 pline("A cloud of spores surrounds you!");
-		 if (!rn2(StrongMagical_breathing ? 5 : 2)) poisoned("spores", A_CHA, "spore cloud", 30);
-	       }
+	      if (!Strangled && !Breathless) {
+			pline("You inhale a cloud of spores!");
+			poisoned("spores", A_CHA, "spore cloud", 30);
+	      } else {
+			pline("A cloud of spores surrounds you!");
+			if (!rn2(StrongMagical_breathing ? 5 : 2)) {
+				poisoned("spores", A_CHA, "spore cloud", 30);
+				mdamageu(mon, tmp);
+			}
+	      }
 	      break;
 	      case AD_POIS:
 
@@ -13888,13 +13909,16 @@ boolean ranged;
 
 		if (RngeGasFiltering && !rn2(2)) break;
 
-	       if (!Strangled && !Breathless) {
-		 pline("You inhale a cloud of spores!");
-		 poisoned("spores", rn2(A_MAX), "spore cloud", 30);
-	       } else {
-		 pline("A cloud of spores surrounds you!");
-		 if (!rn2(StrongMagical_breathing ? 5 : 2)) poisoned("spores", rn2(A_MAX), "spore cloud", 30);
-	       }
+	      if (!Strangled && !Breathless) {
+			pline("You inhale a cloud of spores!");
+			poisoned("spores", rn2(A_MAX), "spore cloud", 30);
+	      } else {
+			pline("A cloud of spores surrounds you!");
+			if (!rn2(StrongMagical_breathing ? 5 : 2)) {
+				poisoned("spores", rn2(A_MAX), "spore cloud", 30);
+				mdamageu(mon, tmp);
+			}
+	      }
 	      break;
 	    case AD_VENO:
 		if (uarmh && itemhasappearance(uarmh, APP_FILTERED_HELMET) && !rn2(3) ) break;
@@ -13902,24 +13926,25 @@ boolean ranged;
 
 		if (RngeGasFiltering && !rn2(3)) break;
 
-	       if (!Strangled && !Breathless) {
+	      if (!Strangled && !Breathless) {
 			pline("You inhale a cloud of superpoisonous gas!");
 		} else {
 			pline("A cloud of superpoisonous gas surrounds you!");
 		}
 
-	       if ((!Strangled && !Breathless) || rn2(StrongMagical_breathing ? 2 : 3)) {
-		if (!Poison_resistance) pline("You're badly poisoned!");
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
-		if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
-		 poisoned("gas", rn2(A_MAX), "superpoisonous gas", 30);
-		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
-		if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
+	      if ((!Strangled && !Breathless) || rn2(StrongMagical_breathing ? 2 : 3)) {
+			if (!Poison_resistance) pline("You're badly poisoned!");
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_STR, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_DEX, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CON, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_INT, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_WIS, -rnd(2), FALSE, TRUE);
+			if (!rn2( (Poison_resistance && rn2(StrongPoison_resistance ? 20 : 5) ) ? 20 : 4 )) (void) adjattrib(A_CHA, -rnd(2), FALSE, TRUE);
+			poisoned("gas", rn2(A_MAX), "superpoisonous gas", 30);
+			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(POTION_CLASS, AD_VENO);
+			if (isevilvariant || !rn2(issoviet ? 2 : 20)) (void)destroy_item(FOOD_CLASS, AD_VENO);
 		}
+		mdamageu(mon, tmp);
 
 		break;
 

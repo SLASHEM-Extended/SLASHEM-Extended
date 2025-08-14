@@ -1471,6 +1471,40 @@ lsdone:
 	}
 flotationdone:
 
+	if (autismringcheck(ART_DUEWUEPI_HAHAHA) && how <= GENOCIDED) {
+		pline("But wait...");
+		Your("ring %s!", !Blind ? "begins to glow" : "feels warm");
+		if (how == CHOKING) You("vomit ...");
+		You_feel("much better!");
+		pline_The("ring crumble to dust!");
+		if (uleft && uleft->oartifact == ART_DUEWUEPI_HAHAHA) useup(uleft);
+		else if (uright && uright->oartifact == ART_DUEWUEPI_HAHAHA) useup(uright);
+
+		if (wanttodie) {
+			pline("Nyehehe-hehe-he, you would have lifesaved but you said you want your possessions identified! GAME OVER!");
+			goto duewudone;
+		}
+
+		(void) adjattrib(A_CON, -1, TRUE, TRUE);
+		if(u.uhpmax <= 0) u.uhpmax = 10;	/* arbitrary */
+		savelife(how);
+		u.lifesavepenalty++;
+		if (how == GENOCIDED)
+			pline("Unfortunately you are still genocided...");
+		else {
+
+			killer = 0;
+			killer_format = 0;
+#ifdef LIVELOGFILE
+			livelog_avert_death();
+#endif
+			u.youaredead = 0;
+
+			return;
+		}
+	}
+duewudone:
+
 	if ((uarm && uarm->oartifact == ART_HOW_AS_CRUDE_LIVER) && how <= GENOCIDED) {
 		pline("But wait...");
 		Your("armor %s!", !Blind ? "begins to glow" : "feels warm");
@@ -1910,7 +1944,7 @@ versusinstadone:
 		You_feel("much better!");
 		/* doesn't use up the cloak --Amy */
 
-		u.superdebt += 50000;
+		addplayerdebt(50000, TRUE);
 		You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
 
 		if (wanttodie) {

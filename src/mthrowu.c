@@ -84,6 +84,9 @@ const char *name;	/* if null, then format `obj' */
 	if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER)) ) {
 		shieldblockrate += 25;
 	}
+	if (u.twoweap && uwep && uswapwep && uarmf && uarmf->oartifact == ART_CAMISHA_THE_INCONSPICUOUS) {
+		shieldblockrate += 25;
+	}
 	if (u.martialstyle == MARTIALSTYLE_TAEKWONDO && !uwep && !uarms && (!u.twoweap || !uswapwep) ) {
 		shieldblockrate = 20;
 		if (!(PlayerCannotUseSkills)) {
@@ -374,6 +377,12 @@ const char *name;	/* if null, then format `obj' */
 				use_skill(P_QUARTERSTAFF, 1);
 
 			} else if (u.twoweap && uwep && uswapwep && (tech_inuse(T_WEAPON_BLOCKER) ) ) {
+
+				Your("weapons block a projectile.");
+				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);
+				use_skill(P_TWO_WEAPON_COMBAT, 1);
+
+			} else if (u.twoweap && uwep && uswapwep && uarmf && uarmf->oartifact == ART_CAMISHA_THE_INCONSPICUOUS) {
 
 				Your("weapons block a projectile.");
 				if (evilfriday && multi >= 0) nomul(-2, "blocking with both weapons", TRUE);

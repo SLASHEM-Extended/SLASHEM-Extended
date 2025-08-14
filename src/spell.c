@@ -12672,6 +12672,10 @@ int spell;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
 	if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) chance += 12;
+	if (uarmh && uarmh->oartifact == ART_SPELLSPELLSPELL___) {
+		chance += 20;
+		if (Role_if(PM_CELLAR_CHILD)) chance += 20;
+	}
 	if (uarm && uarm->oartifact == ART_FAMPLATE) chance += 20;
 	if (uarm && uarm->oartifact == ART_FINICKYMAG) chance += 15;
 	if (uarmf && uarmf->oartifact == ART_SUNALI_S_SUMMONING_STORM) chance += 15;

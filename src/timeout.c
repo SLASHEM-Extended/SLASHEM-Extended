@@ -309,7 +309,7 @@ nh_timeout()
 
 	u.barbertimer++;
 
-	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (uarmf && uarmf->oartifact == ART_HELP_PEOPLE_AND_YOURSELF) || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
+	if (SimeoutBug || u.uprops[SIMEOUT_BUG].extrinsic || have_simeoutstone() || (uarmg && uarmg->oartifact == ART_LUUUUUUUUUUUD) || (uarmf && uarmf->oartifact == ART_HELP_PEOPLE_AND_YOURSELF) || (ublindf && ublindf->oartifact == ART_TOTAL_PERSPECTIVE_VORTEX) ) {
 		if (!rn2(2500)) {
 			increasesanity_noeffect(1, FALSE);
 		}
@@ -944,7 +944,7 @@ nh_timeout()
 	}
 	if (u.evilvartemporary < 0) u.evilvartemporary = 0; /* fail safe */
 
-	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !autismweaponcheck(ART_SACRIFICE_TONFA) && !have_bloodlossstone() && !(uarm && uarm->oartifact == ART_LIFE_DROP) && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
+	if (u.legscratching > 1 && !FemtrapActiveJeanetta && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !BloodLossProblem && !autismweaponcheck(ART_SACRIFICE_TONFA) && !have_bloodlossstone() && !(uarmf && uarmf->oartifact == ART_AMY_S_MISPURCHASE) && !(uarm && uarm->oartifact == ART_LIFE_DROP) && !u.uprops[BLOOD_LOSS].extrinsic && !rn2(1000)) u.legscratching--; /* always time out once per 1000 turns --Amy */
 
 	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && (Role_if(PM_ACTIVISTOR) || Race_if(PM_PEACEMAKER) ) && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
@@ -3294,6 +3294,10 @@ nh_timeout()
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
 	}
+	if (!rn2(500) && (uarmf && uarmf->oartifact == ART_AMY_S_MISPURCHASE) ) {
+		You("are losing blood!");
+		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
 	if (!rn2(500) && uarm && uarm->oartifact == ART_LIFE_DROP) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
@@ -3518,6 +3522,14 @@ nh_timeout()
 		u.uenmax -= 1;
 		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
 	}
+	if (!rn2(2500) && (uarmf && uarmf->oartifact == ART_AMY_S_MISPURCHASE) ) {
+		You("are losing lots of blood!");
+		u.uhp -= 1;
+		u.uhpmax -= 1;
+		u.uen -= 1;
+		u.uenmax -= 1;
+		losehp(rnz(u.legscratching), "severe bleedout", KILLED_BY);
+	}
 	if (!rn2(2500) && uarmf && uarmf->oartifact == ART_AMYBSOD_S_VAMPIRIC_SNEAKER) {
 		You("are losing lots of blood!");
 		u.uhp -= 1;
@@ -3596,6 +3608,10 @@ nh_timeout()
 		u.legscratching++;
 	}
 	if (!rn2(7500) && have_bloodlossstone() ) {
+		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
+		u.legscratching++;
+	}
+	if (!rn2(7500) && (uarmf && uarmf->oartifact == ART_AMY_S_MISPURCHASE) ) {
 		pline("Your scratching wounds are bleeding %s worse than before!", rn2(2) ? "even" : "much");
 		u.legscratching++;
 	}

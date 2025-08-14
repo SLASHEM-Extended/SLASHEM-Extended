@@ -7497,7 +7497,7 @@ register struct obj *otmp;
 		(void) lcase (buf);
 		if (!strcmp (buf, "yes") || !strcmp (buf, "y") || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys"))) {
 
-			if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+			if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING) ) {
 				pline("Because you're illiterate, you can't read it.");
 				break;
 			}
@@ -8458,7 +8458,7 @@ register struct obj *otmp;
 
 		/* reading it will influence the player's luck --Amy */
 
-		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 			pline("Because you're illiterate, you can't read it.");
 			return;
 		}

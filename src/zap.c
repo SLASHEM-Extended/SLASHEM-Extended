@@ -10997,6 +10997,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+			if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) {
+				skip++;
+				break;
+			}
+
 			if (uarmu && uarmu->oartifact == ART_JEDE_SIZE_HIZE) {
 				skip++;
 				break;

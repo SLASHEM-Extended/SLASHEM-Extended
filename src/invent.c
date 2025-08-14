@@ -11332,7 +11332,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
+	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 
@@ -32980,6 +32980,152 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: magic find and while wearing it, the weather is always sunny. It also allows you to walk on ice and snow, but monsters who breathe light spawn more often and if they breathe at you, your contamination will increase."); break;
 				case ART_GUAH_AVERT_SUEUE:
 					pline("Artifact specs: regeneration and sue lyn trap effect when worn, +6 strength, +8 constitution, monsters who fart at you will cause blindness for a few turns."); break;
+				case ART_SYKES_S_BOTTOMLESS_SUPPLY:
+					pline("Artifact specs: spawns with a much bigger stack size."); break;
+				case ART_ROBIN_S_EMERGENCY:
+					pline("Artifact specs: gives a better healing effect when used."); break;
+				case ART_HANDAID:
+					pline("Artifact specs: increases your divine protection by one when used."); break;
+				case ART_VIRUZIDE:
+					pline("Artifact specs: corona antidote when used."); break;
+				case ART_GLASSES_COLLECTION:
+					pline("Artifact specs: spawns with a bigger stack size."); break;
+				case ART_MULTIAL:
+					pline("Artifact specs: generates a couple extra phials if you use the chemistry set on it. If this artifact is inside a medical kit, the draw blood technique will create more blood potions."); break;
+				case ART_SKILLOGUP:
+					pline("Artifact specs: trains the devices skill by 10 when used."); break;
+				case ART_LIGHTBLUE_ELVEN_COLOR:
+					pline("Artifact specs: spawns with a bigger stack size and always starts out blessed."); break;
+				case ART_JENNELLE_S_IMMEDIATIVITY:
+					pline("Artifact specs: double nopeskill effect, ultra fast speed and free action when worn."); break;
+				case ART_CORONA_TIME:
+					pline("Artifact specs: wild weather when worn."); break;
+				case ART_BATTER_MONKEY:
+					pline("Artifact specs: reflection when worn."); break;
+				case ART_LESHTHORN:
+					pline("Artifact specs: boosts your AC by 5, monsters who attack you in melee take passive thorns damage."); break;
+				case ART_SELVERFEND:
+					pline("Artifact specs: +1 increase accuracy and damage when worn."); break;
+				case ART_SURVEILLANCE_THEME:
+					pline("Artifact specs: ESP when worn."); break;
+				case ART_KINLEY_S_WIDENESS:
+					pline("Artifact specs: double proofloss, boosts your AC by 5 and your constitution by 2, makes you thick-skinned when worn."); break;
+				case ART_OF_THE_ETHEREAL_EYE:
+					pline("Artifact specs: see invisible when worn, can be invoked for magic mapping."); break;
+				case ART_HA_IS_EVEN_SUM:
+					pline("Artifact specs: acid resistance when worn."); break;
+				case ART_FLORICE_S_PEACE_POWER:
+					pline("Artifact specs: double stat decay, double peacekeeping, monsters who aren't guaranteed to spawn hostile have a significant chance of spawning peaceful while you're wearing it. Can be invoked to pacify adjacent monsters, but they get a saving throw."); break;
+				case ART_ALL_COLORS_COMBINED:
+					pline("Artifact specs: resistance piercing when worn."); break;
+				case ART_BACK_TO_HALFGRAY_:
+					pline("Artifact specs: improves the odds that switchers are dropped when worn."); break;
+				case ART_SI:
+					pline("Artifact specs: poison resistance, boosts your AC by 8 and your MC by 2 when worn and grants +1000 carry capacity. While you're wearing it, cloaks of sudden attack spawn more often and have a significant chance of being another copy of this artifact."); break;
+				case ART_TEX_SCHHHHH:
+					pline("Artifact specs: technicality when worn, and occasionally a technique won't get a timeout when used, so you can use it again immediately."); break;
+				case ART_DANOISE_S_LEAK:
+					pline("Artifact specs: half physical and spell damage, double wendy trap effect, numbness, super regene and contamination resistance when worn; if you're low on health, minions may be summoned who fight on your side."); break;
+				case ART_VENTE_MODESTE:
+					pline("Artifact specs: double wild weather when worn."); break;
+				case ART_ULFRIC_HIGH_KING:
+					pline("Artifact specs: displays all lawful monsters when worn, +3 melee damage, chaotic."); break;
+				case ART_UUU_LOST_TURN:
+					pline("Artifact specs: prevents the Ctrl-U command from working, allows you to hide underneath items, +2 magic cancellation and also boosts your AC when worn. The latter boost is higher if you're currently hiding underneath an item."); break;
+				case ART_ARABELLA_S_FEAR:
+					pline("Artifact specs: searching bonus and fear factor when worn, can be invoked to detect traps. Are you sure this artifact is safe?"); break;
+				case ART_VERCHANGE_CHILD:
+					pline("Artifact specs: heavily autocurses when worn, +3 luck, effects that reduce your alignment have a chance of not doing so, reduces incoming damage by 3 and randomly generated gold spawns with a bigger amount."); break;
+				case ART_BIG_REAR_END:
+					pline("Artifact specs: +3 charisma when worn, protects you from theft and prevents you from having to pay debts."); break;
+				case ART_WUMMERSOUND:
+					pline("Artifact specs: sound effects and technicality when worn, allows you to train the techniques skill twice as fast."); break;
+				case ART_FIT_THE_FAT_SCHWELLES:
+					pline("Artifact specs: 1 extra point of AC and doesn't fall off if you polymorph into something that cannot wear helmets."); break;
+				case ART_NIAMH_PENH:
+					pline("Artifact specs: fire resistance, double mikraanesis trap effect, +1 multishot with firearms, firearm ammo has a chance of being preserved when fired, allows you to walk through trees and while you're in a tree you're very hard to find. Wearing it also slightly improves your health regeneration rate."); break;
+				case ART_HIDEN_OFF:
+					pline("Artifact specs: stealth when worn."); break;
+				case ART_EMRE_WITH_THE_T___:
+					pline("Artifact specs: magic resistance when worn."); break;
+				case ART_ETERNAL_EYE:
+					pline("Artifact specs: see invisible and blindness resistance when worn."); break;
+				case ART_SPELLSPELLSPELL___:
+					pline("Artifact specs: +4 melee damage while using a quarterstaff, allows you to still use your hands when you're wielding a cursed two-hander, improves your spellcasting chances (more if you're the cellar child role) and can be invoked to cure aggravate monster but if you're not a cellar child, doing so greatly increases your sanity. This artifact is a sacrifice gift for the cellar child role."); break;
+				case ART_LUCIEN_S_INVITATION:
+					pline("Artifact specs: allows you to commit murder without the usual penalties when worn. Be aware that specific monsters (e.g. shopkeepers) still trigger their specific murder penalties if you kill them."); break;
+				case ART_ILLNESS_HEAL:
+					pline("Artifact specs: double regeneration and anorexia when worn."); break;
+				case ART_NO_PARKING:
+					pline("Artifact specs: petrification resistance and natalje trap effect when worn."); break;
+				case ART_LIMIT_:
+					pline("Artifact specs: greatly increases your carry capacity. The higher your experience level, the bigger the boost will be."); break;
+				case ART_GASTER_FIL:
+					pline("Artifact specs: searching bonus and sickness resistance when worn."); break;
+				case ART_MILLION_HIT_POINT:
+					pline("Artifact specs: prevents you from having speed when worn and reduces the damage you take if you're below half health. The closer you are to death, the bigger this damage reduction will be."); break;
+				case ART_AT_LEAST_THE_DISPLAY_DOESN:
+					pline("Artifact specs: protection from shape changers when worn."); break;
+				case ART_LUUUUUUUUUUUD:
+					pline("Artifact specs: rang call and simeout effects when worn, doesn't fall off if you polymorph into a form that cannot wear gloves, causes you to find more randomly generated items."); break;
+				case ART_IRIS_S_SUPER_STEALTH:
+					pline("Artifact specs: can be invoked to change the material of an item in your inventory (which you can choose) to silver. However, doing so will put a sticky curse on the gloves and one of the three super evil curses at random, so proceed with caution!"); break;
+				case ART_MERYN_S_PEAK:
+					pline("Artifact specs: double recurring spell loss, flying and cold immunity when worn, allows you to climb mountains more easily."); break;
+				case ART_AMY_S_MISPURCHASE:
+					pline("Artifact specs: bleedout, resistance to death and disintegration, grants a +4 melee damage bonus when using edged weapons."); break;
+				case ART_EEH_THAT_S_IRRELEVANT_:
+					pline("Artifact specs: half spell damage and curse resistance when worn."); break;
+				case ART_SUSCHEL_KUNA:
+					pline("Artifact specs: boosts your AC by 3 and your charisma by 2 when worn, counts as block heels and protects you from conversion sermon but also causes the anastasia trap effect."); break;
+				case ART_ANALIS_VIRGINALIS:
+					pline("Artifact specs: double marleen trap effect, farting monsters spawn more often, full nutrients and training your martial arts skill to 5000 causes it to reset to zero while increasing the skill's cap by one (up to a maximum of supreme master)."); break;
+				case ART_KRISTIN_S_INNER_FEEL:
+					pline("Artifact specs: +6 kick damage, kristin trap effect and your kick has a small chance of paralyzing targets. If the color of this pair of boots is red, they additionally give large boosts to AC and charisma as well as double half physical damage."); break;
+				case ART_OLTROHOEVY:
+					pline("Artifact specs: half physical damage, boosts your AC by 10 and contamination resistance, but renders messages almost illegible."); break;
+				case ART_CAMISHA_THE_INCONSPICUOUS:
+					pline("Artifact specs: double jana trap effect, your kick does +8 poison damage, +3 strength, +5 dexterity and stealth when worn. If you're dual-wielding, you can block projectiles with your weapons. Can be invoked for temporary very fast speed."); break;
+				case ART_LUSTY_GIGGLE:
+					pline("Artifact specs: boosts your AC by 4 and grants a 50%% chance of avoiding bad effects when worn, and also makes messages more funny."); break;
+				case ART_FINDBOLD:
+					pline("Artifact specs: double magic find, permacurse effect and becomes sticky cursed when worn."); break;
+				case ART_BETTER_GET_RID_QUICKLY:
+					pline("Artifact specs: hunger when worn and halves the monster spawn rate. Hopefully you still get enough corpses to eat, otherwise you'd better get rid of this artifact quickly..."); break;
+				case ART_ACTUAL_CAVE_DWELLING:
+					pline("Artifact specs: +7 wisdom, +2 increase accuracy, +1 multishot with slings and sling ammo has much lower odds of mulching, but while you're wearing this ring, you're forced to be illiterate."); break;
+				case ART_SENSELBLUE:
+					pline("Artifact specs: half physical damage and pain sense when worn."); break;
+				case ART_WINDER_SPECCER:
+					pline("Artifact specs: polymorphitis and polymorph control when worn."); break;
+				case ART_YEEEEEEAH__EXP_SHRINE_:
+					pline("Artifact specs: experience boost when worn."); break;
+				case ART_PALMIEST_SAFE:
+					pline("Artifact specs: control magic when worn."); break;
+				case ART_LONGHAND_JEDI:
+					pline("Artifact specs: allows you to use the force like a real jedi and if your current weapon is positively enchanted, forcing an enemy deals much more damage depending on your weapon's enchantment value."); break;
+				case ART_IT_MAKES_EH_WHAT_IT_WANTS:
+					pline("Artifact specs: petscrew effect when worn and allows you to train the petkeeping skill much faster than normal."); break;
+				case ART_DUEWUEPI_HAHAHA:
+					pline("Artifact specs: premature death and life saving when worn. If it actually saves your life, it'll be used up."); break;
+				case ART_BLUE_SKULL:
+					pline("Artifact specs: shock resistance and manaleech when worn."); break;
+				case ART_SOIL_MAINTENANCE:
+					pline("Artifact specs: defusing when worn."); break;
+				case ART_CONTROL_PORTAL:
+					pline("Artifact specs: teleport control when worn."); break;
+				case ART_LATERAL_IMPROVEMENT:
+					pline("Artifact specs: extra weapon practice when worn."); break;
+				case ART_ROCHELLE_S_SEY:
+					pline("Artifact specs: double skill loss when worn, boosts all your stats by 3."); break;
+				case ART_WHO_CARES__GIMME_THE_POWER:
+					pline("Artifact specs: energy regeneration when worn."); break;
+				case ART_GREETINGS_FROM_EVI:
+					pline("Artifact specs: eveline trap effect, very fast speed and allows you to move even faster on occasion, sexy flats and high heels skills train twice as fast and the specific high heel skills train three times as fast."); break;
+				case ART_SUNSHINE_S_WAKE:
+					pline("Artifact specs: when you put it on, the current weather becomes sunny and your martial arts style is set to capoeira."); break;
+				case ART_ZUBRIT_S_HOTNESS:
+					pline("Artifact specs: double undressing, double fire resistance, protects your items from fire and +8 charisma when worn. If you're wearing boots, they will count as stiletto heels and if you're restricted in stiletto heels, wearing them for long enough will eventually unlock the skill."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

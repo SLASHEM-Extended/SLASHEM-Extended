@@ -24,7 +24,6 @@ STATIC_DCL void consume_offering(struct obj *);
 STATIC_DCL boolean water_prayer(BOOLEAN_P);
 STATIC_DCL boolean blocked_boulder(int,int);
 static void lawful_god_gives_angel(void);
-static void god_gives_pet(ALIGNTYP_P);
 static int offer_oracle(struct monst *, struct obj *);
 static void god_gives_benefit(ALIGNTYP_P);
 STATIC_DCL boolean canofferownrace(void);

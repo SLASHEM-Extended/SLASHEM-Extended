@@ -1145,6 +1145,8 @@ int mode;
 	    ;	/* do nothing */
 	} else if (Race_if(PM_HUMANOID_DRYAD) && tmpr->typ == TREE) {
 	    ;	/* dryad can walk thru trees --Amy */
+	} else if (uarmh && uarmh->oartifact == ART_NIAMH_PENH && tmpr->typ == TREE) {
+	    ;
 	} else if (uarmg && uarmg->oartifact == ART_GREEN_THUMB && tmpr->typ == TREE) {
 	    ;
 	} else if (uarms && uarms->oartifact == ART_FLORENSE_S_GEBLOOMEL && tmpr->typ == TREE) {
@@ -1178,6 +1180,7 @@ int mode;
 			if (uarm && uarm->oartifact == ART_GO_TO_THE_HIGH_RANGE) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (uwep && uwep->otyp == CLIMBING_STICK) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 			if (uarmf && itemhasappearance(uarmf, APP_CLIMBING_BOOTS)) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
+			if (uarmg && uarmg->oartifact == ART_MERYN_S_PEAK) climbingchance = ((levl[u.ux][u.uy].typ == MOUNTAIN) ? 3 : 10);
 
 			if (!(u.usteed) && rn2(climbingchance)) {
 				TimerunBug += 1; /* ugly hack --Amy */
@@ -2932,6 +2935,7 @@ peacedisplace:
 		if (cancolumnar && (u.columnarturns >= columnarneeded)) {
 			u.columnarturns = 0;
 			u.columnarskill++;
+			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
 			if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
 			if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
 			if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");
@@ -3107,7 +3111,7 @@ peacedisplace:
 		    forcenomul(0, 0);
 	}
 
-	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
+	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 	    u.uundetected = is_waterypool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
@@ -4613,6 +4617,14 @@ maybe_wail()
 		buzz(23, 10, u.ux, u.uy, 0, -1);
 	}
 
+	if (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) {
+		god_gives_pet(A_LAWFUL);
+		if (u.ualign.type == A_LAWFUL) {
+			god_gives_pet(A_LAWFUL);
+			if (!rn2(2)) god_gives_pet(A_LAWFUL);
+		}
+	}
+
 	if (autismweaponcheck(ART_P_WING)) {
 		if (uwep && uwep->spe > -10) {
 			uwep->spe = -10;
@@ -4632,6 +4644,14 @@ maybe_wail()
 		buzz(21, 6, u.ux, u.uy, -1, -1);
 		buzz(21, 6, u.ux, u.uy, 1, -1);
 		buzz(21, 6, u.ux, u.uy, 0, -1);
+	}
+
+	if (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) {
+		god_gives_pet(A_CHAOTIC);
+		if (u.ualign.type == A_CHAOTIC) {
+			god_gives_pet(A_CHAOTIC);
+			if (!rn2(2)) god_gives_pet(A_CHAOTIC);
+		}
 	}
 
 	if (autismweaponcheck(ART_P_WING)) {
@@ -5365,8 +5385,20 @@ int k_format; /* WAC k_format is an int */
 		n -= rnd(2);
 		if (n < 1) n = 1;
 	}
+	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD && n > 0) {
+		n -= 3;
+		if (n < 1) n = 1;
+	}
 	if (uarms && uarms->oartifact == ART_OF_NULLING && n > 0) {
 		n -= rnd(4);
+		if (n < 1) n = 1;
+	}
+	if (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT && n > 0) {
+		if (u.uhp < (u.uhpmax / 2)) n--;
+		if (u.uhp < (u.uhpmax * 2 / 5)) n--;
+		if (u.uhp < (u.uhpmax * 3 / 10)) n -= 2;
+		if (u.uhp < (u.uhpmax / 5)) n -= 2;
+		if (u.uhp < (u.uhpmax / 10)) n -= 4;
 		if (n < 1) n = 1;
 	}
 	if (uarms && uarms->oartifact == ART_VOID_CHANT && n > 0) {
@@ -5822,6 +5854,12 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if (uarm && uarm->oartifact == ART_SCHOOL_SATCHEL) carrcap += 2000;
 	if (uarm && uarm->oartifact == ART_NATAS_IS_BACK) carrcap += 2000;
 	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) carrcap += 1000;
+	if (uarmc && uarmc->oartifact == ART_SI) carrcap += 1000;
+	if (uarmg && uarmg->oartifact == ART_LIMIT_) {
+		carrcap += 2000;
+		carrcap += (u.ulevel * 100);
+		if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 100);
+	}
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;

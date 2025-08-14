@@ -1488,7 +1488,7 @@ register struct monst *mtmp;
 		}
 	}
 
-	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
+	if ((mtmp->data->geno & G_UNIQ) && !rn2(20) && (RangCallEffect || (uarmg && uarmg->oartifact == ART_LUUUUUUUUUUUD) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_ONE) || (uarmc && uarmc->oartifact == ART_CLOAK_OF_THE_UNHELD_POTATO) || u.uprops[RANG_CALL_EFFECT].extrinsic || have_rangcallstone())) {
 		pline("A horrible call rang in your head...");
 		if (RangCallXtra) increasesanity(5);
 		else increasesanity(1);
@@ -2505,6 +2505,7 @@ newbossSING:
 			if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) goto convertdone;
 			if (uwep && uwep->oartifact == ART_CRONVERT && rn2(10)) goto convertdone;
 			if (uarmf && uarmf->oartifact == ART_EXHAUST_DAMAGE) goto convertdone;
+			if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) goto convertdone;
 			if (uamul && uamul->otyp == AMULET_OF_SPECIAL_SHIELDING && rn2(3)) goto convertdone;
 
 			You_feel("less faithful!");

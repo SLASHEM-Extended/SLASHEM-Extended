@@ -331,6 +331,7 @@ moveloop()
 			if (uarmc && uarmc->oartifact == ART_BLEBLE___) monclock *= 2;
 			if (uarmf && uarmf->oartifact == ART_CHRRRRRRR) monclock *= 2;
 			if (issuxxor) monclock *= 2;
+			if (autismringcheck(ART_BETTER_GET_RID_QUICKLY)) monclock *= 2; /* doesn't stack if you wear two, this is by design --Amy */
 			if (uarm && uarm->oartifact == ART_ISIMOUD) monclock *= 2;
 			if (uarmu && uarmu->oartifact == ART_FIRST_THERE_WE_WERE) monclock *= 2;
 			if (have_minimejewel()) monclock *= 3;
@@ -736,6 +737,24 @@ moveloop()
 					if (timebasedlowerchance()) (void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
 				}
 
+			}
+
+			if (uarmg && uarmg->oartifact == ART_LUUUUUUUUUUUD && !rn2(1000)) {
+				randsp = rno(14);
+				if (!rn2(10)) randsp += rno(2);
+				if (!rn2(100)) randsp += rno(5);
+				if (!rn2(1000)) randsp += rno(10);
+				if (!rn2(10000)) randsp += rno(20);
+				if (randsp > 1) randsp = rnd(randsp);
+
+				if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that someone reseeded the RNG!" : "You feel that someone was busy hiding treasure!");
+
+				for (i = 0; i < randsp; i++) {
+
+					if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+					if (timebasedlowerchance()) (void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+				}
 			}
 
 			if (!rn2(ishaxor ? 125000 : 250000) && (moves < 10000 || rn2(3)) && (moves < 50000 || !rn2(3)) && !issoviet) {
@@ -2273,6 +2292,7 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_DAEMEL && !rn2(10) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_MAMBO_NUMBER_NINE && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && !rn2(5) && uball && uwep && (uwep == uball)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2982,6 +3002,15 @@ moveloop()
 
 		}
 
+		if (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS && !rn2(ProofLossXtra ? 50 : 500)) {
+			register struct obj *unproof;
+
+			pline("A brown glow surrounds you...");
+			for(unproof = invent; unproof ; unproof = unproof->nobj)
+				if (!rn2(10) && !stack_too_big(unproof) && unproof->oerodeproof) unproof->oerodeproof = FALSE;
+
+		}
+
 		if (UnInvisEffect && !rn2(UnInvisXtra ? 50 : 500)) {
 			register struct obj *objX, *objX2;
 
@@ -3042,6 +3071,32 @@ moveloop()
 		}
 
 		if (have_petscrewstone()) {
+			register struct monst *screwmon;
+
+			for(screwmon = fmon; screwmon; screwmon = screwmon->nmon) {
+				if (DEADMONSTER(screwmon)) continue;
+				if (!screwmon->mtame) continue;
+				if (rn2(1000)) continue;
+
+				if (screwmon->mtame) badpeteffect(screwmon);
+			}
+
+		}
+
+		if (uleft && uleft->oartifact == ART_IT_MAKES_EH_WHAT_IT_WANTS) {
+			register struct monst *screwmon;
+
+			for(screwmon = fmon; screwmon; screwmon = screwmon->nmon) {
+				if (DEADMONSTER(screwmon)) continue;
+				if (!screwmon->mtame) continue;
+				if (rn2(1000)) continue;
+
+				if (screwmon->mtame) badpeteffect(screwmon);
+			}
+
+		}
+
+		if (uright && uright->oartifact == ART_IT_MAKES_EH_WHAT_IT_WANTS) {
 			register struct monst *screwmon;
 
 			for(screwmon = fmon; screwmon; screwmon = screwmon->nmon) {
@@ -5392,7 +5447,7 @@ greasingdone:
 			if (u.tarmustrokingturn < 0) u.tarmustrokingturn = 0; /* fail safe */
 		}
 
-		if (SkillLossEffect || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || u.uprops[SKILL_LOSS_EFFECT].extrinsic || have_skilllossstone()) {
+		if (SkillLossEffect || (uarmf && uarmf->oartifact == ART_SHE_REALLY_LIKES_IT) || u.uprops[SKILL_LOSS_EFFECT].extrinsic || have_skilllossstone() || (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) ) {
 			skillcaploss_severe();
 			if (SkillLossXtra) {
 				skillcaploss_severe();
@@ -5432,6 +5487,11 @@ greasingdone:
 			else spellmemoryloss((level_difficulty() * rnd(3)) + 1);
 		}
 
+		if (uarmg && uarmg->oartifact == ART_MERYN_S_PEAK && !rn2(1000)) {
+			if (RecurringSpellLossXtra) spellmemoryloss((level_difficulty() * rnd(15)) + 1);
+			else spellmemoryloss((level_difficulty() * rnd(3)) + 1);
+		}
+
 		if (TechoutBug && !rn2(1000)) {
 			if (TechoutXtra) techcapincrease((level_difficulty() + 1) * rnd(750));
 			else techcapincrease((level_difficulty() + 1) * rnd(150));
@@ -5465,6 +5525,10 @@ greasingdone:
 		}
 
 		if (have_statdecaystone() && !rn2(StatDecayXtra ? 200 : 1000)) {
+			statdrain();
+		}
+
+		if (uarmc && uarmc->oartifact == ART_FLORICE_S_PEACE_POWER && !rn2(StatDecayXtra ? 200 : 1000)) {
 			statdrain();
 		}
 
@@ -10428,7 +10492,7 @@ newbossO:
 			levl[u.ux][u.uy].lit = FALSE;
 		}
 
-		if (UndressingEffect || u.uprops[UNDRESSING_EFFECT].extrinsic || have_undressingstone()) {
+		if (UndressingEffect || u.uprops[UNDRESSING_EFFECT].extrinsic || have_undressingstone() || (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) ) {
 
 			int undresschance = 10000;
 			if (UndressingXtra) undresschance /= 5;
@@ -15086,7 +15150,7 @@ pastds2:
 			/* super regene from Elona; if it's infinite with no downside, it's OP, so we have to do something
 			 * I decided that it slowly contaminates you, works less well if you're very contaminated, and
 			 * stops working entirely if you're fatally contaminated --Amy */
-			if ( (Race_if(PM_BACTERIA) || (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) || (uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) || (PlayerInSexyFlats && uarmf && uarmf->oartifact == ART_FORMO____) ) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
+			if ( (Race_if(PM_BACTERIA) || (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) || (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) || (uarmf && uarmf->oartifact == ART_JUEN_S_WEAKNESS) || (PlayerInSexyFlats && uarmf && uarmf->oartifact == ART_FORMO____) ) && u.uhpmax > 4 && u.contamination < 1000 && !Upolyd && u.uhp <= ((u.uhpmax / 5) + 1)) {
 				int superregeneamount = 5;
 				if (u.contamination > 200) superregeneamount = 4;
 				if (u.contamination > 400) superregeneamount = 3;
@@ -16304,6 +16368,7 @@ past4:
 	u.linkmasterswordhack = 0;
 	u.wollohhack = 0;
 	u.oehack = 0;
+	if (uarmf && uarmf->oartifact == ART_OLTROHOEVY) u.oehack = TRUE;
 	u.polyattackhack = 0;
 	u.mongetshack = 0;
 	u.dynamitehack = 0;

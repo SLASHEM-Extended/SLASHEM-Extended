@@ -987,6 +987,8 @@ E void reducesanity(int);
 E long money_cnt(struct obj *);
 #endif
 E boolean zapmrename(void);
+E boolean eurorename(void);
+E boolean rublerename(void);
 E int max_carr_cap(void);
 
 /* ### hacklib.c ### */
@@ -2902,6 +2904,7 @@ E const char *a_gname_at(XCHAR_P x,XCHAR_P y);
 E const char *align_gname(ALIGNTYP_P);
 E const char *halu_gname(ALIGNTYP_P);
 E const char *align_gtitle(ALIGNTYP_P);
+E void god_gives_pet(ALIGNTYP_P);
 E void altar_wrath(int,int);
 
 

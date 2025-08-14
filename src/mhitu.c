@@ -6029,7 +6029,7 @@ newboss:
 
 	}
 
-	if (MikraEffect || u.uprops[MIKRA_EFFECT].extrinsic || have_ubergodstone()) {
+	if (MikraEffect || u.uprops[MIKRA_EFFECT].extrinsic || have_ubergodstone() || (uarmh && uarmh->oartifact == ART_NIAMH_PENH) ) {
 		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict || !touch_petrifies(youmonst.data))) {
 			if (foundyou && !rn2(UbergodXtra ? 20 : 100) && tmp > (j = rnd(20+i))) {
 				struct trap *ttmp2 = maketrap(u.ux, u.uy, FARTING_WEB, 0, FALSE);
@@ -6954,11 +6954,13 @@ struct monst *mon;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;
 		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
+		if (uarmc && uarmc->oartifact == ART_SI) armpro += 2;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
 		if (uwep && uwep->oartifact == ART_DAINTY_SLOAD) armpro++;
 		if (uarmc && uarmc->oartifact == ART_FRADLE_OF_EG) armpro++;
 		if (uarmc && uarmc->oartifact == ART_DESIRED_ASCENDANCE) armpro++;
+		if (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) armpro += 2;
 		if (uarmg && uarmg->oartifact == ART_EM_SI) armpro++;
 		if (uarmc && uarmc->oartifact == ART_NEW_COAT) armpro++;
 		if (uarms && uarms->oartifact == ART_HEAVE_FIELD) armpro++;
@@ -9191,7 +9193,7 @@ dopois:
 			if (mtmp->mcan) break;
 			/* Continue below */
 		} else if (rn2(5) && !(StealersActive) &&
-			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uarmh && uarmh->oartifact == ART_SHREW_WIND) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
+			(dmgtype(youmonst.data, AD_SEDU) || (uarmg && uarmg->oartifact == ART_LORSKEL_S_SPECIAL_PROTECTI) || (ublindf && ublindf->oartifact == ART_CLICKPASS) || (uwep && uwep->oartifact == ART_LUCKY_DAGGER) || (uwep && uwep->oartifact == ART_THIN_DAGGER) || autismringcheck(ART_PALMIA_PRIDE) || (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uarmh && uarmh->oartifact == ART_BIG_REAR_END) || (uarmh && uarmh->oartifact == ART_SHREW_WIND) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarm && uarm->oartifact == ART_BELLY_W) || (uleft && uleft->oartifact == ART_DOUBLE_ADORNING && uleft->spe >= 0) || (uright && uright->oartifact == ART_DOUBLE_ADORNING && uright->spe >= 0) || (uarm && uarm->oartifact == ART_TRIANGLE_GIRL && flags.female && u.ulevel < 10) || (uwep && uwep->oartifact == ART_ST_ICKYNESS) || (uarmf && uarmf->oartifact == ART_SHE_S_NOT_FORGOTTEN) || (uwep && uwep->oartifact == ART_ONE_HUNDRED_STARS) || (uwep && uwep->oartifact == ART_SNATCHER) || (uwep && uwep->oartifact == ART_SILPHEED) || (uarmc && uarmc->otyp == CLOAK_OF_THEFT_PREVENTION) || (uarmu && uarmu->oartifact == ART_STRIPED_SHIRT_OF_THE_THIEF)
 			|| dmgtype(youmonst.data, AD_SSEX)
 						) ) {
 			pline("%s %s.", Monnam(mtmp), mtmp->minvent ?
@@ -19345,8 +19347,20 @@ register int n;
 		n -= rnd(2);
 		if (n < 1) n = 1;
 	}
+	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD && n > 0) {
+		n -= 3;
+		if (n < 1) n = 1;
+	}
 	if (uarms && uarms->oartifact == ART_OF_NULLING && n > 0) {
 		n -= rnd(4);
+		if (n < 1) n = 1;
+	}
+	if (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT && n > 0) {
+		if (u.uhp < (u.uhpmax / 2)) n--;
+		if (u.uhp < (u.uhpmax * 2 / 5)) n--;
+		if (u.uhp < (u.uhpmax * 3 / 10)) n -= 2;
+		if (u.uhp < (u.uhpmax / 5)) n -= 2;
+		if (u.uhp < (u.uhpmax / 10)) n -= 4;
 		if (n < 1) n = 1;
 	}
 	if (uarms && uarms->oartifact == ART_VOID_CHANT && n > 0) {
@@ -21398,6 +21412,16 @@ register struct attack *mattk;
 		pline("%s is damaged by your copper scales!", Monnam(mtmp));
 		if((mtmp->mhp -= rnz(20) ) <= 0) {
 			pline("%s decomposes!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_LESHTHORN) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(8) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;

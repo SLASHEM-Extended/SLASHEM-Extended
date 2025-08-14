@@ -8012,36 +8012,36 @@ cleanup:
 
 	}
 
-	if(is_human(mdat) && (!always_hostile(mdat) && mtmp->malign <= 0) &&
+	if(is_human(mdat) && !(uarmg && uarmg->oartifact == ART_LUCIEN_S_INVITATION) && (!always_hostile(mdat) && mtmp->malign <= 0) &&
 	   (mndx < PM_ARCHEOLOGIST || mndx > PM_WIZARD) &&
 	   u.ualign.type != A_CHAOTIC) {
 
 		if (always_peaceful(mdat)) { /* being penalized for killing maia, imperials etc. was just stupid. --Amy */
-		HTelepat &= ~INTRINSIC;
-		change_luck( u.ualign.type == A_LAWFUL ? -2 : -1); /* lower penalty for neutrals --Amy */
-		You(FunnyHallu ? "killed someone you weren't supposed to - whoops!" : "murderer!");
+			HTelepat &= ~INTRINSIC;
+			change_luck( u.ualign.type == A_LAWFUL ? -2 : -1); /* lower penalty for neutrals --Amy */
+			You(FunnyHallu ? "killed someone you weren't supposed to - whoops!" : "murderer!");
 
-		if (Role_if(PM_CELLAR_CHILD)) {
-			register int cellarvar = rnz(25000);
-			incr_itimeout(&HAggravate_monster, cellarvar);
-			u.cellargravate += cellarvar;
-		}
+			if (Role_if(PM_CELLAR_CHILD)) {
+				register int cellarvar = rnz(25000);
+				incr_itimeout(&HAggravate_monster, cellarvar);
+				u.cellargravate += cellarvar;
+			}
 
-		if (Role_if(PM_PALADIN)) { /* more severe murderer penalties */
-			increasesincounter(5);
-			u.alignlim -= 5;
-			change_luck(-1);
-			adjalign(-50);
-		}
+			if (Role_if(PM_PALADIN)) { /* more severe murderer penalties */
+				increasesincounter(5);
+				u.alignlim -= 5;
+				change_luck(-1);
+				adjalign(-50);
+			}
 
-		if(u.ualign.type == A_LAWFUL) {
-			increasesincounter(3);
-			u.alignlim -= 3;
-		} /*fall through*/
-		increasesincounter(2);
-		u.alignlim -= 2;
-		if (Blind && !Blind_telepat)
-		    see_monsters(); /* Can't sense monsters any more. */
+			if(u.ualign.type == A_LAWFUL) {
+				increasesincounter(3);
+				u.alignlim -= 3;
+			} /*fall through*/
+			increasesincounter(2);
+			u.alignlim -= 2;
+			if (Blind && !Blind_telepat)
+			    see_monsters(); /* Can't sense monsters any more. */
 		}
 		adjalign(u.ualign.type == A_LAWFUL ? -2 : -1);
 

@@ -1477,7 +1477,7 @@ boolean read_it; /* Read any sensed engraving */
 	    	unsigned len, maxelen = BUFSZ - sizeof("You feel the words: \"\". ");
 	    	len = strlen(ep->engr_txt);
 
-		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 			pline("You're illiterate! You can't read!");
 			return FALSE;
 		}
@@ -1551,6 +1551,7 @@ freehand()
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP) return 1;
 	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) return 1;
+	if (uarmh && uarmh->oartifact == ART_SPELLSPELLSPELL___ && uwep && bimanual(uwep)) return 1;
 
 	return(!uwep || !welded(uwep) ||
 	   (!bimanual(uwep) && (!uarms || !uarms->cursed)));
@@ -1571,6 +1572,7 @@ freehandX()
 	if (uwep && uwep->oartifact == ART_DE_SID) return 1;
 	if (uwep && uwep->oartifact == ART_OZYZEVPDWTVP) return 1;
 	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) return 1;
+	if (uarmh && uarmh->oartifact == ART_SPELLSPELLSPELL___ && uwep && bimanual(uwep)) return 1;
 
 	if (!PlayerCannotUseSkills) {
 
@@ -2700,7 +2702,7 @@ doengrave()
 	/* A single `x' is the traditional signature of an illiterate person */
 	if (len != 1 || (!index(ebuf, 'x') && !index(ebuf, 'X'))) {
 
-		if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+		if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 			pline("You're illiterate, and therefore you can't write that!");
 			return 0;
 		}

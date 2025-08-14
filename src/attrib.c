@@ -2062,6 +2062,7 @@ set_moreluck()
 	if (uwep && uwep->enchantment == WEAPEGO_LUCK) u.moreluck += 1;
 	if (uwep && uwep->enchantment == WEAPEGO_GREAT_LUCK) u.moreluck += 2;
 	if (uwep && uwep->enchantment == WEAPEGO_INCREDIBLE_LUCK) u.moreluck += 3;
+	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD) u.moreluck += 3;
 
 }
 
@@ -2080,6 +2081,8 @@ recalc_health()
 	    if (otmp->otyp == HEALTHSTONE)
 	    	u.uhealbonus += otmp->quan *
 	    			(otmp->blessed ? 2 : otmp->cursed ? -2 : 1);
+
+	if (uarmh && uarmh->oartifact == ART_NIAMH_PENH) u.uhealbonus += 2;
 
 	if (u.uhealbonus > 1) u.uhealbonus = rno(u.uhealbonus);
 
@@ -3161,8 +3164,10 @@ int x;
 		if (uleft && uleft->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uleft && uleft->oartifact == ART_FISFIS) tmp += 3;
+		if (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) tmp += 3;
 		if (uright && uright->oartifact == ART_FISFIS) tmp += 3;
 		if (uleft && uleft->oartifact == ART_MAHPTY) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_CAMISHA_THE_INCONSPICUOUS) tmp += 3;
 		if (uright && uright->oartifact == ART_MAHPTY) tmp += 1;
 		if (uleft && uleft->oartifact == ART_ATLAS_GLOBE) tmp += 5;
 		if (uright && uright->oartifact == ART_ATLAS_GLOBE) tmp += 5;
@@ -3181,7 +3186,7 @@ int x;
 		if (uright && uright->oartifact == ART_RING_OF_STEEL_DRAGON) tmp += 3;
 		if (uwep && uwep->oartifact == ART_STAR_SLAY_GIANTS) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_FEND_FOR_YOURSELF) tmp += 4;
-		if (uarmg && uarmg->oartifact == ART_ALPHA_GLOVES)
+		if (uarmg && uarmg->oartifact == ART_ALPHA_GLOVES) tmp += 7;
 		if (uwep && uwep->oartifact == ART_SPECIFI_X_) tmp += 5;
 		if (uleft && uleft->oartifact == ART_HIGHER_LOCK) tmp += 1;
 		if (uright && uright->oartifact == ART_HIGHER_LOCK) tmp += 1;
@@ -3326,6 +3331,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_YVONNE_S_MODEL_AMBITION) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_SOFT_KARATE_KICK) tmp += 2;
 		if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) tmp += 5;
+		if (uarmh && uarmh->oartifact == ART_BIG_REAR_END) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_KOKYO_NO_PAFOMANSUU_OKU) tmp += (5 + uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;
@@ -3333,7 +3339,10 @@ int x;
 		if (uleft && uleft->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
+		if (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_IRIS_S_THUNDER) tmp += 3;
+		if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) tmp += 8;
+		if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_SHREW_WIND) tmp += 5;
 		if (uamul && uamul->oartifact == ART_BEGGER_S_PENDANT) tmp += 4;
@@ -3363,6 +3372,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_MELISSA_S_BEAUTY) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_KRISTIN_S_INNER_FEEL && objects[uarmf->otyp].oc_color == CLR_RED) tmp += 8;
 		if (uarmf && uarmf->oartifact == ART_MARIYA_S_SEXYCHARM) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_HUGGING__GROPING_AND_STROK) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_BEAUTIFUL_TOPMODEL) tmp += 25;
@@ -3609,12 +3619,15 @@ int x;
 		if (x == A_WIS && Race_if(PM_MAZIN)) tmp += 1;
 		if (x == A_WIS && uarmh && uarmh->oartifact == ART_CLELIA_S_TONGUE_BREAKER) tmp += 4;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
+		if (x == A_WIS && uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 7;
+		if (x == A_WIS && uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 7;
 		if (uarmc && uarmc->oartifact == ART_DIN_DEN) tmp += 4;
 		if (uarm && uarm->oartifact == ART_LET_S_DO_IT_ALREADY && uarm->otyp == BLUE_DRAGON_SCALE_MAIL) tmp += 3;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
 		if (FemtrapActiveNora && u.uhs == FAINTING) tmp += 5;
 		if (FemtrapActiveNora && u.uhs == FAINTED) tmp += 10;
 		if (FemtrapActiveNora && u.uhs == STARVED) tmp += 25;
+		if (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) tmp += 3;
 		if (x == A_WIS && uleft && uleft->oartifact == ART_FALL_WARTING_NUMBER) tmp += 2;
 		if (x == A_WIS && uright && uright->oartifact == ART_FALL_WARTING_NUMBER) tmp += 2;
 		if (x == A_INT && uleft && uleft->oartifact == ART_WELLBEWONDO) tmp += 2;
@@ -3767,6 +3780,7 @@ int x;
 		if (uleft && uleft->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uleft->spe;
 		if (uright && uright->oartifact == ART_GUARANTEED_HIT_POWER) tmp += uright->spe;
 		if (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) tmp += 5;
+		if (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_LIGHT_DAL_I_THALION) tmp += 2;
 		if (uarmh && itemhasappearance(uarmh, APP_THINKING_HELMET)) tmp += 1;
 		if (uwep && uwep->oartifact == ART_RAFSCHAR_S_SUPERWEAPON) tmp += 1;
@@ -3781,6 +3795,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_BOW_OF_VINDERRE) tmp += 4;
 		if (uarmg && uarmg->oartifact == ART_PENTECOSTE) tmp += 5;
 		if (uwep && uwep->oartifact == ART_SHAKING_BOW) tmp += 4;
+		if (uarmf && uarmf->oartifact == ART_CAMISHA_THE_INCONSPICUOUS) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) tmp += 5;
@@ -3959,6 +3974,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM) tmp += 2;
 		if (x == A_INT && uwep && uwep->oartifact == ART_RIP_STRATEGY) tmp += 5;
 		if (uimplant && uimplant->oartifact == ART_THAI_S_EROTIC_BITCH_FU) tmp -= 10;
+		if (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_CRUEL_GODDESS_ANA) tmp -= 5;
 		if (uarmc && uarmc->oartifact == ART_TOO_MANY_AFFIXES) tmp += 3;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
@@ -3979,7 +3995,8 @@ int x;
 		if (uarm && uarm->oartifact == ART_ULTRAVIOLET_RAINBOW) tmp += 3;
 		if (uwep && uwep->oartifact == ART_STAFF_OF_LEIBNIZ) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) tmp += 3;
-		if (uarms && uarms->oartifact == ART_CRIMSON_JACKAL)
+		if (uarms && uarms->oartifact == ART_CRIMSON_JACKAL) tmp += 2;
+		if (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS) tmp += 2;
 		if (bmwride(ART_PANZER_TANK)) tmp += 10;
 		if (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) tmp += 7;
 		if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) tmp += 7;
@@ -4139,6 +4156,10 @@ register int n;
 	}
 
 	if (uwep && uwep->oartifact == ART_EN_GARDE____TOUCHE_ && !rn2(2) && (n < 0)) {
+		return;
+	}
+
+	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD && !rn2(2) && (n < 0)) {
 		return;
 	}
 

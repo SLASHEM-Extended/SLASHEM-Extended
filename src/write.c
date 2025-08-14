@@ -350,7 +350,7 @@ found:
 		return 1;
 	}
 
-	if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+	if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 		pline("Apparently you forgot that you're illiterate. Anyway, your attempt to write fails.");
 		return 1;
 	}

@@ -5987,6 +5987,11 @@ secureidchoice:
 			    "dress your wounds with");
 		    if (otmp) {
 
+			int bandagetype = 0;
+			if (otmp->oartifact == ART_ROBIN_S_EMERGENCY) bandagetype = 1; /* because it's used up below */
+			if (otmp->oartifact == ART_HANDAID) bandagetype = 2; /* filthy hangup cheater!!! */
+			if (otmp->oartifact == ART_VIRUZIDE) bandagetype = 3;
+
 			if (!(otmp->oartifact == ART_SYKES_S_MULTIUSE) || !rn2(50)) {
 				check_unpaid(otmp);
 				if (otmp->quan > 1L) {
@@ -6007,9 +6012,28 @@ secureidchoice:
 				use_skill(P_DEVICES,1);
 			}
 
+			if (bandagetype = 2) {
+				if (!(HProtection & INTRINSIC))  {
+					HProtection |= FROMOUTSIDE;
+					if (!u.ublessed)  u.ublessed = 1;
+				} else {
+					u.ublessed++;
+				}
+				You_feel("protected.");
+			}
+
+			if (bandagetype = 3) {
+				upnivel(TRUE);
+			}
+
 			pline("Using a bandage, you dress your wounds."); /* read after free fix by Demo */
-			healup(techlevX(tech_no) * (rnd(2)+1) + (rn1(5,5) * techlevX(tech_no)),
+			if (bandagetype == 1) {
+				healup(techlevX(tech_no) * (rnd(10)+5) + (rn1(25,25) * techlevX(tech_no)),
 			  0, FALSE, FALSE);
+			} else {
+				healup(techlevX(tech_no) * (rnd(2)+1) + (rn1(5,5) * techlevX(tech_no)),
+			  0, FALSE, FALSE);
+			}
 		    } else {
 			You("strap your wounds as best you can.");
 			healup(techlevX(tech_no) + rn1(5,5), 0, FALSE, FALSE);
@@ -6873,6 +6897,9 @@ breakstare:
 		t_timeout = rnz(1500);
 		break;            	
 	    case T_DRAW_BLOOD:
+	    {
+		int phialtype = 0;
+
 		/*if (!maybe_polyd(is_vampire(youmonst.data),
 		  Race_if(PM_VAMPIRE)) && !Race_if(PM_UNGENOMOLD) ) {*/
 		    /* ALI
@@ -6894,6 +6921,9 @@ breakstare:
 		    You_cant("seem to find a vein.");
 		    return 0;
 		}
+
+		if (obj->oartifact == ART_MULTIAL) phialtype = 1; /* because it's used up below */
+		if (obj->oartifact == ART_SKILLOGUP) phialtype = 2;
 
 		if (obj->oartifact == ART_THICK_RED_SAP) {
 			lesshungry(2000);
@@ -6918,6 +6948,8 @@ breakstare:
 			use_skill(P_DEVICES,1);
 		}
 
+		if (phialtype == 2) use_skill(P_DEVICES,10);
+
 		pline("Using your medical kit, you draw off a phial of your blood.");
 		/* Amy edit: let's make this much more useful by having the level drain only occur 1 out of 3 times. */
 		if (!rn2(3)) {losexp("drawing blood", TRUE, FALSE);
@@ -6931,8 +6963,13 @@ breakstare:
 			(void) hold_another_object(otmp,
 				"You fill, but have to drop, %s!", doname(otmp),
 				(const char *)0);
+
+			if (phialtype == 1) otmp->quan += 4;
+
+			otmp->owt = weight(otmp);
 		}
 		t_timeout = rnz(1500);
+	    }
 		break;
 	    case T_JEDI_JUMP:
 		if (u.uen < 25){
@@ -13159,9 +13196,10 @@ extrachargechoice:
 			techtout(tech_no) /= 100;
 		}
 
-		if (uamul && uamul->oartifact == ART_TYRANITAR_S_QUEST && !rn2(2)) techtout(tech_no) = 0;
-
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NO_ABNORMAL_FUTURE) techtout(tech_no) /= 4;
+
+		if (uamul && uamul->oartifact == ART_TYRANITAR_S_QUEST && !rn2(2)) techtout(tech_no) = 0;
+		if (uarmc && uarmc->oartifact == ART_TEX_SCHHHHH && !rn2(10)) techtout(tech_no) = 0;
 
 		if (techid(tech_no) == T_ASIAN_KICK) {
 

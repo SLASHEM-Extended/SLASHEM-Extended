@@ -586,6 +586,18 @@ boolean yours; /* is it your fault (for killing monsters) */
 			damu -= rnd(2);
 			if (damu < 1) damu = 1;
 		}
+		if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD && damu > 0) {
+			damu -= 3;
+			if (damu < 1) damu = 1;
+		}
+		if (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT && damu > 0) {
+			if (u.uhp < (u.uhpmax / 2)) damu--;
+			if (u.uhp < (u.uhpmax * 2 / 5)) damu--;
+			if (u.uhp < (u.uhpmax * 3 / 10)) damu -= 2;
+			if (u.uhp < (u.uhpmax / 5)) damu -= 2;
+			if (u.uhp < (u.uhpmax / 10)) damu -= 4;
+			if (damu < 1) damu = 1;
+		}
 		if (uarms && uarms->oartifact == ART_OF_NULLING && damu > 0) {
 			damu -= rnd(4);
 			if (damu < 1) damu = 1;

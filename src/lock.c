@@ -951,6 +951,8 @@ doforce()		/* try to force a chest with your weapon */
 				if (uarmg && uarmg->oartifact == ART_USE_THE_FORCE_LUKE) dmg += 10;
 				if (uwep && uwep->oartifact == ART_DE_SID && uwep->lamplit) dmg += 5;
 				if (uwep && uwep->oartifact == ART_DE_SID && uwep->lamplit && uwep->altmode) dmg += 5;
+				if (uleft && uleft->oartifact == ART_LONGHAND_JEDI && uwep && uwep->spe > 1) dmg += (uwep->spe * 2);
+				if (uright && uright->oartifact == ART_LONGHAND_JEDI && uwep && uwep->spe > 1) dmg += (uwep->spe * 2);
 
 				if (Role_if(PM_JEDI) && UseTheForce) dmg += u.ulevel;
 				else if (Role_if(PM_HEDDERJEDI) && UseTheForce) dmg += u.ulevel;

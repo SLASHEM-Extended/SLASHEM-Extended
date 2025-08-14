@@ -29077,6 +29077,7 @@ loopback:
 		if (ct > 0 && (In_hellbathroom(&u.uz) && (ptr->msound == MS_FART_LOUD) )) ct += 10;
 		if (ct > 0 && (uwep && uwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
 		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (ptr->msound == MS_FART_LOUD) )) ct += 20;
+		if (ct > 0 && (uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && (ptr->msound == MS_FART_NORMAL) )) ct += 10;
 		if (ct > 0 && (uwep && uwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(ptr) )) ct += 10;
 		if (ct > 0 && (u.twoweap && uswapwep && uswapwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(ptr) )) ct += 10;
 		if (ct > 0 && (In_hellbathroom(&u.uz) && dmgtype(ptr, AD_FEMI) )) ct += 15;
@@ -30696,6 +30697,7 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[last].msound == MS_FART_LOUD) )) num += 10;
 		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[last].msound == MS_FART_LOUD) )) num += 20;
+		if ((uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && (mons[last].msound == MS_FART_NORMAL) )) num += 10;
 		if ((uwep && uwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[last]) )) num += 10;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[last]) )) num += 10;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[last], AD_FEMI) )) num += 15;
@@ -31947,6 +31949,7 @@ int     spc;
 		if ((In_hellbathroom(&u.uz) && (mons[first].msound == MS_FART_LOUD) )) num -= 10;
 		if ((uwep && uwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_BIDETHANDER && (mons[first].msound == MS_FART_LOUD) )) num -= 20;
+		if ((uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && (mons[first].msound == MS_FART_NORMAL) )) num -= 10;
 		if ((uwep && uwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[first]) )) num -= 10;
 		if ((u.twoweap && uswapwep && uswapwep->oartifact == ART_CNUTTEL_EM && is_cddamonster(&mons[first]) )) num -= 10;
 		if ((In_hellbathroom(&u.uz) && dmgtype(&mons[first], AD_FEMI) )) num -= 15;
@@ -34028,6 +34031,7 @@ register struct permonst *ptr;
 	if (uwep && uwep->oartifact == ART_TANKFRIEND && ptr->mlet == S_ANT && rn2(10)) return TRUE;
 
 	if (uarms && uarms->oartifact == ART_TEH_GAMEPLAY && !always_hostile(ptr) && rn2(2)) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_FLORICE_S_PEACE_POWER && !always_hostile(ptr) && rn2(4)) return TRUE;
 
 	if (uarm && uarm->oartifact == ART_KURAIN_VIEW && ptr->mlet == S_GHOST && rn2(4)) return TRUE;
 

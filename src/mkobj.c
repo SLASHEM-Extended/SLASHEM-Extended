@@ -565,6 +565,14 @@ boolean shopinit;
 		return(mksobj(BODYGLOVE, TRUE, artif, shopinit));
 	}
 
+	else if (uarmc && uarmc->oartifact == ART_SI && !rn2(50) && (oclass == ARMOR_CLASS)) {
+		return(mksobj(CLOAK_OF_SUDDEN_ATTACK, TRUE, artif, shopinit));
+	}
+
+	else if (uarmc && uarmc->oartifact == ART_BACK_TO_HALFGRAY_ && !rn2(500) && (oclass == TOOL_CLASS)) {
+		return(mksobj(SWITCHER, TRUE, artif, shopinit));
+	}
+
 	else if (!rn2(100) && oclass == ARMOR_CLASS) {
 
 		int freqhelmet = find_frequent_helmet();
@@ -4154,7 +4162,10 @@ boolean shopinit;
 
 		if (itemhasappearance(otmp, APP_ANTISUCK_HELMET)) otmp->greased = rnd(3);
 
-		if (artif && (artif != 2) && artigenechance(40)) {
+		if (uarmc && uarmc->oartifact == ART_SI && (artif != 2) && otmp->otyp == CLOAK_OF_SUDDEN_ATTACK && !rn2(2)) {
+			otmp = onameX(otmp, artiname(ART_SI));
+		} 
+		else if (artif && (artif != 2) && artigenechance(40)) {
 		    otmp = mk_artifact(otmp, (aligntyp)A_NONE, TRUE);
 			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT))) pline("Precognition: made artifact");
 		}
@@ -5075,7 +5086,7 @@ uncurse(otmp, guaranteed)
 register struct obj *otmp;
 boolean guaranteed; /* can it work even when you have permacurse nastytrap effect? (can still fail if heavily cursed) --Amy */
 {
-	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone() || (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) || (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS && !Role_if(PM_CLIMACTERIAL)) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) || (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) ) ) return;
+	if (!guaranteed && (PermacurseEffect || u.uprops[PERMACURSE_EFFECT].extrinsic || have_permacursestone() || autismringcheck(ART_FINDBOLD) || (uamul && uamul->oartifact == ART_PERMANENTLY_BLACK) || (uarmu && uarmu->oartifact == ART_MENSTRUATION_HURTS && !Role_if(PM_CLIMACTERIAL)) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_RECTIFIER) || (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) ) ) return;
 
 	if (!guaranteed && uarm && uarm->oartifact == ART_ARABELLA_S_FEMINIZER && rn2(2)) return;
 
@@ -5277,6 +5288,7 @@ int x, y;
 	}
 
 	if (uarmh && uarmh->oartifact == ART_COINDIMM) amount += (amtdbl / 2);
+	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD) amount += (amtdbl / 2);
 	if (uarmh && uarmh->oartifact == ART_GOLD_STANDARD) amount += amtdbl;
 	if (uarmg && uarmg->oartifact == ART_ROBBERY_GONE_RIGHT) amount += (amtdbl * 2);
 	if (uarmf && uarmf->oartifact == ART_GUELDRE_S_COIN_CLING) amount += (amtdbl * 2);

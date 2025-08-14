@@ -1341,6 +1341,7 @@ doremoveimarkers()
 	int x, y;
 
 	if (uarmc && uarmc->oartifact == ART_TURN_LOSS_EXTREME) return 0;
+	if (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) return 0;
 
 	for(x=0; x<COLNO; x++) for(y=0; y<ROWNO; y++) {
 		if (isok(x, y)) {

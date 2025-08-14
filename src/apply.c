@@ -5496,6 +5496,7 @@ use_chemistry_set(struct obj *chemset)
 	int cost;
 	char c;
 	boolean explosionpossible = TRUE;
+	int phialtype = 0;
 
 	/* We will allow the player to make a potion occasionally, even if they don't know the spell. --Amy */
 
@@ -5518,6 +5519,8 @@ use_chemistry_set(struct obj *chemset)
 	}
 
 	if (bottle && bottle->oartifact == ART_SUPER_VONK) explosionpossible = FALSE;
+	if (bottle && bottle->oartifact == ART_MULTIAL) phialtype = 1; /* because it's used up below */
+	if (bottle && bottle->oartifact == ART_SKILLOGUP) phialtype = 2;
 
 	getlin("What potion do you want to make?",namebuf);
 	if (!namebuf[0] || namebuf[0] == '\033') return;
@@ -5542,6 +5545,20 @@ use_chemistry_set(struct obj *chemset)
 		}
 		if (rnl(5)) {
 			useup(bottle);
+
+			if (phialtype == 1) {
+				struct obj *ufials;
+				ufials = mksobj(PHIAL, TRUE, FALSE, FALSE);
+				if (ufials) {
+					ufials->quan = 4;
+					ufials->owt = weight(ufials);
+					dropy(ufials);
+					stackobj(ufials);
+					pline("A bunch of phials appeared on the ground!");
+				}
+
+			}
+
 			goto blast_him;
 		}
 	}
@@ -5584,6 +5601,18 @@ use_chemistry_set(struct obj *chemset)
 	chemset->spe -= cost;
 	useup(bottle);
 
+	if (phialtype == 1) {
+		struct obj *ufials;
+		ufials = mksobj(PHIAL, TRUE, FALSE, FALSE);
+		if (ufials) {
+			ufials->quan = 4;
+			ufials->owt = weight(ufials);
+			dropy(ufials);
+			stackobj(ufials);
+			pline("A bunch of phials appeared on the ground!");
+		}
+	}
+
 	if (!chemset->blessed && explosionpossible && !(uarmc && uarmc->oartifact == ART_NO_MORE_EXPLOSIONS) && !rn2(chemset->cursed ? 2 : 10)) {
 blast_him:
 		pline("You seem to have made a mistake!");
@@ -5614,6 +5643,9 @@ blast_him:
 		use_skill(P_DEVICES,1);
 		use_skill(P_DEVICES,1);
 	}
+
+	if (phialtype == 2) use_skill(P_DEVICES,10);
+
 	u.cnd_chemistrycount++;
 }
 
@@ -7454,14 +7486,38 @@ blesschoice:
 		break;
 
 	case BANDAGE:
+	{
+		int bandagetype = 0;
+		if (obj->oartifact == ART_ROBIN_S_EMERGENCY) bandagetype = 1; /* because it's used up below */
+		if (obj->oartifact == ART_HANDAID) bandagetype = 2; /* filthy hangup cheater!!! */
+		if (obj->oartifact == ART_VIRUZIDE) bandagetype = 3;
 
 		noartispeak = TRUE;
 
 		delobj(obj);
 
-		You("dress your wounds with the bandage.");
-		healup(max(8, (u.uhpmax / 10)), 0, FALSE, FALSE);
+		if (bandagetype = 2) {
+			if (!(HProtection & INTRINSIC))  {
+				HProtection |= FROMOUTSIDE;
+				if (!u.ublessed)  u.ublessed = 1;
+			} else {
+				u.ublessed++;
+			}
+			You_feel("protected.");
+		}
 
+		if (bandagetype = 3) {
+			upnivel(TRUE);
+		}
+
+		You("dress your wounds with the bandage.");
+		if (bandagetype == 1) {
+			healup(max(40, (u.uhpmax / 2)), 0, FALSE, FALSE);
+		} else {
+			healup(max(8, (u.uhpmax / 10)), 0, FALSE, FALSE);
+		}
+
+	}
 		break;
 
 	case BEAUTY_PACK:

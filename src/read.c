@@ -971,7 +971,7 @@ doread()
 	    if(flags.verbose)
 		You("break up the cookie and throw away the pieces.");
 
-	    if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+	    if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 		pline("Because you can't read, that scrap of paper is of no real use to you.");
 		return 1;
 	    }
@@ -1006,7 +1006,7 @@ doread()
 		You_cant("feel any Braille writing.");
 		return 0;
 	    }
-	    if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+	    if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 		pline("You're illiterate! You can't read!");
 		return 0;
 	    }
@@ -1085,7 +1085,7 @@ doread()
 #endif
 		scroll->otyp != SCR_BLANK_PAPER) {
 
-			if (Race_if(PM_PLAYABLE_NEANDERTHAL)) {
+			if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 				pline("You're illiterate! You can't read!");
 				return 0;
 			}

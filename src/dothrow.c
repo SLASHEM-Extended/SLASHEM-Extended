@@ -283,9 +283,13 @@ int thrown;
 	    if (launcher && obj && obj->oartifact == ART_BLOCKEL_EM) multishot += rnd(3);
 	    if (launcher && obj && obj->oartifact == ART_EXFLING) multishot += 2;
 
+	    if (uarmh && uarmh->oartifact == ART_NIAMH_PENH && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
+
 	    if (uarmf && uarmf->oartifact == ART_FRENCHYPOSS && uarmf->blessed && launcher && objects[launcher->otyp].oc_skill == P_FIREARM) multishot++;
 
 	    if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot += 2;
+	    if (uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot++;
+	    if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot++;
 
 	    if (uarms && uarms->oartifact == ART_OFFBOW && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 1;
 
@@ -1855,6 +1859,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarmf && uarmf->oartifact == ART_STREET_ROCKZ) dmg += 2;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) dmg += 5;
 	if (dmg > 0 && uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) dmg += 10;
+	if (dmg > 0 && uarmc && uarmc->oartifact == ART_SELVERFEND) dmg += 1;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) dmg += 4;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) dmg += 1;
 	if (dmg > 0 && uamul && uamul->oartifact == ART_PLAYING_QUAKE) dmg += 3;
@@ -2194,7 +2199,7 @@ int thrown;
 		}
 		check_shop_obj(obj, u.ux, u.uy, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(uarm && uarm->oartifact == ART_MG_RATTERING && (objects[obj->otyp].w_ammotyp == WP_BULLET_MG) ) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(uarmh && uarmh->oartifact == ART_NIAMH_PENH && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(uarm && uarm->oartifact == ART_MG_RATTERING && (objects[obj->otyp].w_ammotyp == WP_BULLET_MG) ) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -2421,7 +2426,7 @@ int thrown;
 	if (is_bullet(obj) && (ammo_and_launcher(obj, launcher) && !is_grenade(obj))) {
 		check_shop_obj(obj, bhitpos.x,bhitpos.y, TRUE);
 		u.cnd_gunpowderused++; /* even if bulletreuse or lead bullets allows them to be used again --Amy */
-		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(uarm && uarm->oartifact == ART_MG_RATTERING && (objects[obj->otyp].w_ammotyp == WP_BULLET_MG) ) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
+		if (((!(tech_inuse(T_BULLETREUSE)) || rn2(3)) && !(Race_if(PM_VIETIS) && !rn2(3)) && !(uarmh && uarmh->oartifact == ART_NIAMH_PENH && !rn2(3)) && !(obj->oartifact == ART_REUSEME && rn2(4)) && !(uarm && uarm->oartifact == ART_MG_RATTERING && (objects[obj->otyp].w_ammotyp == WP_BULLET_MG) ) && !(obj->oartifact == ART_EVERYTHING_GREENS_SO_GREEN) && !(obj->oartifact == ART_COMBAT_PELLET && rn2(10)) && !(objects[obj->otyp].oc_material == MT_LEAD && !rn2(2))) || (uarmf && uarmf->oartifact == ART_ANACONDA_HEELS) ) {
 			obfree(obj, (struct obj *)0);
 			return;
 		}
@@ -2804,6 +2809,7 @@ boolean polearming;
 	if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 	if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
+	if (uarmc && uarmc->oartifact == ART_SELVERFEND) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALES) tmp += 1;
 	if (uarm && uarm->otyp == DARK_DRAGON_SCALE_MAIL) tmp += 1;
 	if (uarms && uarms->otyp == DARK_DRAGON_SCALE_SHIELD) tmp += 1;
@@ -2823,6 +2829,8 @@ boolean polearming;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
+	if (uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
+	if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) tmp += 5;
 	if (uright && uright->oartifact == ART_HEXTROSE) tmp += 6;
@@ -3633,6 +3641,10 @@ evasionchancedone:
 		    if (Race_if(PM_MACTHEIST) && objects[otyp].oc_skill == P_SLING && broken && !rn2(2))
 			broken = 0;
 		    if (Race_if(PM_MACTHEIST) && objects[otyp].oc_skill == -P_SLING && broken && !rn2(2))
+			broken = 0;
+		    if (autismringcheck(ART_ACTUAL_CAVE_DWELLING) && objects[otyp].oc_skill == P_SLING && broken && rn2(4))
+			broken = 0; /* doesn't stack if you wear two, this is by design --Amy */
+		    if (autismringcheck(ART_ACTUAL_CAVE_DWELLING) && objects[otyp].oc_skill == -P_SLING && broken && rn2(4))
 			broken = 0;
 
 		    if (obj->oartifact == ART_USE_A_LOT) {

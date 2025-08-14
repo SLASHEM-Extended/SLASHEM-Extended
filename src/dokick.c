@@ -793,6 +793,15 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_KRISTIN_S_INNER_FEEL && !rn2(10) && mon->mcanmove) {
+		if (!resist(mon, RING_CLASS, 0, NOTELL)) {
+			mon->mcanmove = 0;
+			mon->mfrozen = rn1(4,4);
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("Your block heels clamp %s's %s!", mon_nam(mon), makeplural(mbodypart(mon, TOE)) );
+		}
+	}
+
 	if (uarmf && uarmf->otyp == EGGKICK_SHOES && mon->mcanmove && humanoid(mon->data) && !(mon->female) && !is_neuter(mon->data) && !rn2(20) ) {
 		pline("Score! %s's nuts got squeezed very painfully by your kick!", Monnam(mon));
 		mon->mcanmove = 0;
@@ -1055,6 +1064,7 @@ register boolean clumsy;
 
 	if (PlayerInColumnarHeels && !rn2((flags.female) ? 200 : 50) ) {
 		u.columnarskill++;
+		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
 		if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");

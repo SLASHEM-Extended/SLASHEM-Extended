@@ -2041,6 +2041,20 @@ register boolean mod;
 			otmp->quan += 20;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_SYKES_S_BOTTOMLESS_SUPPLY) {
+			otmp->quan += rnz(50);
+			otmp->owt = weight(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_GLASSES_COLLECTION) {
+			otmp->quan += rnd(50);
+			otmp->owt = weight(otmp);
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			bless(otmp);
+			}
+		    if (otmp && otmp->oartifact == ART_LIGHTBLUE_ELVEN_COLOR) {
+			otmp->quan += rnd(4);
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_LOW_HEAP) {
 			otmp->quan += rn1(50, 50);
 			otmp->owt = weight(otmp);
@@ -6208,7 +6222,7 @@ chargingchoice:
 			break;
 		}
 
-		if (obj->oartifact == ART_BRAVO_HELMET) {
+		if ((obj->oartifact == ART_BRAVO_HELMET) || (obj->oartifact == ART_FLORICE_S_PEACE_POWER)) {
 
 			int k, l;
 			struct monst *mtmp3;
@@ -6231,6 +6245,50 @@ chargingchoice:
 				} /* monster is catchable loop */
 
 			} /* for loop */
+
+			break;
+		}
+
+		if (obj->oartifact == ART_CAMISHA_THE_INCONSPICUOUS) {
+			incr_itimeout(&HFast, 500);
+			You("feel faster.");
+			break;
+		}
+
+		if (obj->oartifact == ART_ARABELLA_S_FEAR) {
+
+			randomnastytrapeffect(rnz(10000), 1000); /* no message, and only a very vague hint in the item description --Amy */
+
+			trap_detect((struct obj *)0);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_IRIS_S_SUPER_STEALTH) {
+
+			register struct obj *melating;
+			pline("You may change the material of an item to silver.");
+melatechoice:
+			melating = getobj(allowall, "change the material of");
+			if(!melating) {
+				if (yn("Really exit with no object selected?") == 'y') {
+					pline("You just wasted the opportunity to change an item's material.");
+				}
+				else goto melatechoice;
+			} else if ((melating->otyp == GOLD_PIECE) || (melating->otyp == STRANGE_OBJECT) || (melating->otyp == AMULET_OF_YENDOR) || (melating->otyp == CANDELABRUM_OF_INVOCATION) || (melating->otyp == BELL_OF_OPENING) || (melating->otyp == SPE_BOOK_OF_THE_DEAD) || (objects[melating->otyp].oc_prob < 1)) {
+				pline("The material of that item cannot be changed!");
+			} else if (melating) {
+
+				curse(obj);
+				obj->stckcurse = obj->hvycurse = obj->prmcurse = TRUE;
+				if (!rn2(3)) obj->bbrcurse = TRUE;
+				else if (!rn2(2)) obj->morgcurse = TRUE;
+				else obj->evilcurse = TRUE;
+				Your("gloves are surrounded by a terrible black aura...");
+
+				objects[melating->otyp].oc_material = MT_SILVER;
+				pline_The("target item is made of silver now.");
+			}
 
 			break;
 		}
@@ -7524,6 +7582,19 @@ tscheinschroll:
 			break;
 		}
 
+		if (obj->oartifact == ART_SPELLSPELLSPELL___) {
+			if (!Role_if(PM_CELLAR_CHILD)) {
+				u.usanity += 2000;
+				You_feel("mesmerized...");
+				flags.botl = TRUE;
+			}
+			if (HAggravate_monster & INTRINSIC) {
+				HAggravate_monster &= ~INTRINSIC;
+				You_feel("more acceptable!");
+			}
+			break;
+		}
+
 		if (obj->oartifact == ART_CRUEL_PARENTS) {
 			if (flags.female) {
 				int chaloss = rnd(5);
@@ -7996,6 +8067,24 @@ greenchoice:
 			do_mapping();
 
 			if (willdisappear) return 1;
+			break;
+
+		}
+
+		if (obj->oartifact == ART_OF_THE_ETHEREAL_EYE) {
+
+			if (level.flags.nommap) {
+			    Your("mind is filled with crazy lines!");
+			    if (FunnyHallu)
+				pline("Wow!  Modern art.");
+			    else
+				Your("%s spins in bewilderment.", body_part(HEAD));
+			    make_confused(HConfusion + rnd(30), FALSE);
+			    if (!rn2(3)) badeffect();
+			    break;
+			}
+			do_mapping();
+
 			break;
 
 		}

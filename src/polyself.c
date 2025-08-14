@@ -1100,7 +1100,7 @@ int	mntmp;
 		skinback(FALSE);
 	break_armor();
 	drop_weapon(1);
-	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
+	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
 		u.uundetected = OBJ_AT(u.ux, u.uy);
 	else if (youmonst.data->mlet == S_EEL)
 		u.uundetected = is_waterypool(u.ux, u.uy);
@@ -1404,7 +1404,7 @@ break_armor()
 		dropx(otmp);
 	}
     }
-    if (has_horns(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
+    if (has_horns(youmonst.data) && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !Race_if(PM_TRANSFORMER) ) {
 	if (((otmp = uarmh) != 0) && !uarmh->stckcurse) {
 	    if (is_flimsy(otmp) && !donning(otmp)) {
 		char hornbuf[BUFSZ], yourbuf[BUFSZ];
@@ -1421,7 +1421,7 @@ break_armor()
 	    }
 	}
     }
-    if ((otmp = uarmh) != 0 && !uarmh->stckcurse && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
+    if ((otmp = uarmh) != 0 && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !uarmh->stckcurse && !Race_if(PM_TRANSFORMER) && (is_mind_flayer(youmonst.data))) {
 	    if (!otmp->cursed || facelesskeep) {
 	      pline_The("%s is pushed from your head by your tentacles.", xname(otmp));
 	      (void) Helmet_off();
@@ -1446,7 +1446,7 @@ break_armor()
 
 	/* It was really retarded that you would also drop the weapon, because drop_weapon() is already called
 	   someplace else and this was interfering with the "chance to keep stuff on" code. --Amy */
-	if ((otmp = uarmg) != 0 && !uarmg->stckcurse) {
+	if ((otmp = uarmg) != 0 && !(uarmg && uarmg->oartifact == ART_LUUUUUUUUUUUD) && !uarmg->stckcurse) {
 	    if (donning(otmp)) cancel_don();
 	    You("drop your gloves!");
 	    (void) Gloves_off();
@@ -1477,7 +1477,7 @@ shielddone:
 
 	}
 
-	if ((otmp = uarmh) != 0 && !uarmh->stckcurse) {
+	if ((otmp = uarmh) != 0 && !(uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) && !uarmh->stckcurse) {
 	    if (donning(otmp)) cancel_don();
 	    Your("helmet falls to the %s!", surface(u.ux, u.uy));
 	    (void) Helmet_off();

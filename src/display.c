@@ -1316,6 +1316,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING && mon->data->maligntyp > 0) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1461,6 +1462,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING && mon->data->maligntyp > 0) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1776,6 +1778,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING && mon->data->maligntyp > 0) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -1921,6 +1924,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) ||
 		(ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) ||
 		(uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) ||
+		(uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING && mon->data->maligntyp > 0) ||
 		(uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) ||
 		(uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) ||
 		(uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) ||
@@ -3933,6 +3937,7 @@ struct monst *mon;
 	if (uarmc && uarmc->oartifact == ART_KILO_MEGA_GIGA_TERA_PETA_E && (mon->data->mlet == S_KOP || monstersoundtype(mon) == MS_TREESQUAD) ) return TRUE;
 	if (ublindf && ublindf->oartifact == ART_SEEING_THE_PERSON_ANYWAY && mon->data->maligntyp < 0 && distu(mon->mx, mon->my) < 26) return TRUE;
 	if (uarmh && uarmh->otyp == GOOD_ESP_HELMET && mon->data->maligntyp > 0 && distu(mon->mx, mon->my) < 26) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING && mon->data->maligntyp > 0) return TRUE;
 	if (uwep && uwep->oartifact == ART_GOODBYE_TROLLS && mon->data->mlet == S_TROLL) return TRUE;
 	if (uwep && uwep->oartifact == ART_ANTINSTANT_DEATH && mon->data->mlet == S_ANT) return TRUE;
 	if (uwep && uwep->oartifact == ART_DRAGONLANCE && mon->data->mlet == S_DRAGON) return TRUE;

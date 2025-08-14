@@ -1529,6 +1529,9 @@ struct monst *mon;
 	    if (u.martialstyle == MARTIALSTYLE_KOBUDO && otmp->oclass == CHAIN_CLASS)
 		bonus += rnd(10);
 
+	    if (uarmh && uarmh->oartifact == ART_SPELLSPELLSPELL___ && objects[otmp->otyp].oc_skill == P_QUARTERSTAFF)
+		bonus += 4;
+
 	    if (otmp->blessed && (is_undead(ptr) || is_demon(ptr)))
 		bonus += rnd(4);
 	    if (is_axe(otmp) && is_wooden(ptr))
@@ -2621,6 +2624,11 @@ struct monst *mon;
 
 		}
 
+		if (uarmu && uarmu->oartifact == ART_CAP_THE_COLLECTOR) {
+			if (ptr->msound == MS_SOLDIER) bonus += rnd(12);
+		}
+
+
 	  if (!(PlayerCannotUseSkills)) {
 
 	    if (objects[otmp->otyp].oc_skill == P_LANCE && is_animal(ptr) && (P_SKILL(P_LANCE) == P_SKILLED)) bonus += 1;
@@ -2667,10 +2675,6 @@ struct monst *mon;
 			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_GRAND_MASTER) bonus += Role_if(PM_FENCER) ? 2 : 1;
 			if (P_SKILL(objects[otmp->otyp].oc_skill) >= P_SUPREME_MASTER) bonus += Role_if(PM_FENCER) ? 2 : 1;
 			}
-		}
-
-		if (uarmu && uarmu->oartifact == ART_CAP_THE_COLLECTOR) {
-			if (ptr->msound == MS_SOLDIER) bonus += rnd(12);
 		}
 
 		if (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX) {
@@ -4246,7 +4250,7 @@ int skill;
 		}
 	}
 
-	if (NopeskillEffect || u.uprops[NOPESKILL_EFFECT].extrinsic || have_nopeskillstone()) {
+	if (NopeskillEffect || u.uprops[NOPESKILL_EFFECT].extrinsic || have_nopeskillstone() || (uarmc && uarmc->oartifact == ART_JENNELLE_S_IMMEDIATIVITY) ) {
 		if (can_advance(skill, FALSE)) {
 
 			if (NopeskillXtra) {
@@ -7164,6 +7168,8 @@ int degree;
 	if (uright && uright->oartifact == ART_PREEZER && skill == P_SPIRITUALITY) degree *= 2;
 	if (uleft && uleft->oartifact == ART_IKS_UP && skill == P_SEARCHING) degree *= 2;
 	if (uright && uright->oartifact == ART_IKS_UP && skill == P_SEARCHING) degree *= 2;
+	if (uleft && uleft->oartifact == ART_IT_MAKES_EH_WHAT_IT_WANTS && skill == P_PETKEEPING) degree *= 3;
+	if (uright && uright->oartifact == ART_IT_MAKES_EH_WHAT_IT_WANTS && skill == P_PETKEEPING) degree *= 3;
 	if (uarm && uarm->oartifact == ART_MOCCASYL && skill == P_SEXY_FLATS) degree *= 2;
 	if (uarm && uarm->oartifact == ART_PRISMATIC_DRAGON_PLATE && skill == P_PETKEEPING) degree *= 3;
 	if (uarmf && uarmf->oartifact == ART_CANNOT_WALK_WITH_THE_ARIAN && skill == P_HIGH_HEELS) degree *= 3;
@@ -7171,6 +7177,7 @@ int degree;
 	if (Race_if(PM_MAYMES) && (skill == P_FIREARM || skill == P_BOW || skill == P_CROSSBOW)) degree *= 2;
 	if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE && skill == P_SORESU) degree *= 3;
 	if (uamul && uamul->oartifact == ART_SUPER_TEC && skill == P_TECHNIQUES) degree *= 3;
+	if (uarmh && uarmh->oartifact == ART_WUMMERSOUND && skill == P_TECHNIQUES) degree *= 2;
 	if (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP && skill == P_HEALING_SPELL) degree *= 3;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
@@ -7188,6 +7195,14 @@ int degree;
 		if (skill == P_HIGH_HEELS) degree *= 2;
 		if (skill == P_SEXY_FLATS) degree *= 2;
 		if (skill >= P_STILETTO_HEELS && skill <= P_WEDGE_HEELS) degree *= 3;
+	}
+	if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) {
+		if (skill == P_HIGH_HEELS) degree *= 2;
+		if (skill == P_SEXY_FLATS) degree *= 2;
+		if (skill == P_STILETTO_HEELS) degree *= 2;
+		if (skill == P_WEDGE_HEELS) degree *= 2;
+		if (skill == P_CONE_HEELS) degree *= 2;
+		if (skill == P_BLOCK_HEELS) degree *= 2;
 	}
 	if (uwep && uwep->oartifact == ART_GEOLOGY_RULES_THE_WORLD && skill == P_PICK_AXE) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_FINDING_THYSELF && skill == P_SPIRITUALITY) degree *= 5;
@@ -7320,6 +7335,46 @@ screwupsdone:
 			unrestrict_weapon_skill(P_MARTIAL_ARTS);
 			P_MAX_SKILL(P_MARTIAL_ARTS) = P_EXPERT;
 			You("learn the take-won-do fighting style! (Hmm, somehow I think that's not spelled correctly...)");
+		}
+	}
+
+	if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS && skill == P_STILETTO_HEELS && P_RESTRICTED(P_STILETTO_HEELS) ) {
+		if (P_ADVANCE(P_STILETTO_HEELS) >= 500) {
+			unrestrict_weapon_skill(P_STILETTO_HEELS);
+			P_MAX_SKILL(P_STILETTO_HEELS) = P_BASIC;
+			You("finally learn how to walk in stiletto heels!");
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS && skill == P_MARTIAL_ARTS && (P_MAX_SKILL(skill) < P_SUPREME_MASTER) ) {
+		if (P_ADVANCE(P_MARTIAL_ARTS) >= 5000) {
+			if (P_RESTRICTED(P_MARTIAL_ARTS)) {
+				unrestrict_weapon_skill(P_MARTIAL_ARTS);
+				P_MAX_SKILL(P_MARTIAL_ARTS) = P_BASIC;
+				You("learn the martial arts skill!");
+			} else {
+				P_ADVANCE(P_MARTIAL_ARTS) = 0;
+
+				if (P_MAX_SKILL(P_MARTIAL_ARTS) == P_BASIC) {
+					P_MAX_SKILL(P_MARTIAL_ARTS) = P_SKILLED;
+					pline("You can now become skilled in martial arts!");
+				} else if (P_MAX_SKILL(P_MARTIAL_ARTS) == P_SKILLED) {
+					P_MAX_SKILL(P_MARTIAL_ARTS) = P_EXPERT;
+					pline("You can now become expert in martial arts!");
+				} else if (P_MAX_SKILL(P_MARTIAL_ARTS) == P_EXPERT) {
+					P_MAX_SKILL(P_MARTIAL_ARTS) = P_MASTER;
+					pline("You can now become master in martial arts!");
+				} else if (P_MAX_SKILL(P_MARTIAL_ARTS) == P_MASTER) {
+					P_MAX_SKILL(P_MARTIAL_ARTS) = P_GRAND_MASTER;
+					pline("You can now become grand master in martial arts!");
+				} else if (P_MAX_SKILL(P_MARTIAL_ARTS) == P_GRAND_MASTER) {
+					P_MAX_SKILL(P_MARTIAL_ARTS) = P_SUPREME_MASTER;
+					pline("You can now become supreme master in martial arts!");
+				}
+
+				pline("But you need to train the skill all over again.");
+
+			}
 		}
 	}
 
@@ -8054,6 +8109,8 @@ struct obj *weapon;
 		}
 
 	}
+
+	if (uarmf && uarmf->oartifact == ART_AMY_S_MISPURCHASE && weapon && objects[weapon->otyp].oc_dir != 0 ) bonus += 4;
 
 	if (!(PlayerCannotUseSkills) && weapon && is_lightsaber(weapon) && (!rn2(2) || (bimanual(weapon) && weapon->altmode) ) && (weapon->lamplit || Role_if(PM_SHADOW_JEDI))) {
 		switch (P_SKILL(P_SHII_CHO)) {

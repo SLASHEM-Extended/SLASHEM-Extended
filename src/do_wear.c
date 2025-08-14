@@ -2826,6 +2826,12 @@ Helmet_on()
 		/* base item is a "nasty" item, and by definition those give no messages upon cursing themselves --Amy */
     }
 
+    if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD) {
+		if (!uarmh->cursed) curse(uarmh);
+		uarmh->hvycurse = 1;
+		/* base item is a "nasty" item, and by definition those give no messages upon cursing themselves --Amy */
+    }
+
     if (uarmh && uarmh->oartifact == ART_WOLF_KING) {
 		if (!uarmh->cursed) curse(uarmh);
 		uarmh->hvycurse = 1;
@@ -5154,6 +5160,14 @@ Amulet_on()
 		pline("Mortal creatures cannot master such a powerful amulet, and are therefore afflicted by a dark, evil curse!");
     }
 
+    if (uamul && uamul->oartifact == ART_SUNSHINE_S_WAKE) {
+		pline_The("sun comes out.");
+		u.currentweather = WEATHER_SUNNY;
+		tell_main_weather();
+		u.martialstyle = MARTIALSTYLE_CAPOEIRA;
+		pline("Your new martial arts style is %s.", currentmartialstyle());
+    }
+
     if (uamul && uamul->oartifact == ART_______SCORE) {
 		curse(uamul);
 		uamul->hvycurse = 1;
@@ -5773,6 +5787,11 @@ register struct obj *obj;
     if (obj->oartifact == ART_FYRYONI && !obj->cursed) {
 		curse(obj);
 		Your("ring cursed itself.");
+    }
+
+    if (obj->oartifact == ART_FINDBOLD) {
+	if (!obj->cursed) curse(obj);
+	obj->stckcurse = TRUE;
     }
 
     if (obj->oartifact == ART_WEDDING_WASTED && !obj->cursed) {
@@ -7514,6 +7533,7 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_ALLER_MOME) uac -= 5;
 	if (uarms && uarms->oartifact == ART_HEAVE_FIELD) uac -= 6;
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
+	if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
 	if (uarm && uarm->oartifact == ART_FOKING_TENK) uac -= 7;
@@ -7533,9 +7553,11 @@ find_ac()
 	if (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_PORCELAIN_ELEPHANT) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_XTRA_CUTENESS) uac -= 5;
+	if (uarmf && uarmf->oartifact == ART_KRISTIN_S_INNER_FEEL && objects[uarmf->otyp].oc_color == CLR_RED) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_DAMPENER) uac -= 5;
 	if (uarm && uarm->oartifact == ART_ENCHANTED__OF_DEFUSING) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_PROPERTY_GRUMBLE) uac -= 10;
+	if (uarmf && uarmf->oartifact == ART_OLTROHOEVY) uac -= 10;
 	if (uarms && uarms->oartifact == ART_BLACK_TOWER) uac -= 10;
 	if (uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD) uac -= 5;
 	if (uarmf && uarmf->oartifact == ART_ROCKZ_ARMY) uac -= 10;
@@ -7561,6 +7583,9 @@ find_ac()
 	if (uamul && uamul->oartifact == ART_ARTWORK) uac -= 5;
 	if (uarmg && uarmg->oartifact == ART_BODY_COMPOSURE) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_MANT_PENDLE) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_LESHTHORN) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_SI) uac -= 8;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) uac -= 4;
 	if (uamul && uamul->oartifact == ART_PLANTIT) {
 		if (P_SKILL(P_IMPLANTS) >= P_BASIC) uac -= 2;
@@ -7580,6 +7605,10 @@ find_ac()
 	if (uleft && uleft->oartifact == ART_FUW_TENK) uac -= 20;
 	if (uright && uright->oartifact == ART_FUW_TENK) uac -= 20;
 	if (uarm && uarm->oartifact == ART_ONDONS) uac -= 1;
+	if (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) {
+		uac -= 3;
+		if (u.uundetected) uac -= 10;
+	}
 	if (uleft && uleft->oartifact == ART_HOH_UNNE) uac -= 5;
 	if (uright && uright->oartifact == ART_HOH_UNNE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SEM_BOOST) uac -= 3;
@@ -7595,6 +7624,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_ISHITA_S_OVERWHELMING) uac -= 10;
 	if (uamul && uamul->oartifact == ART_SPREAD_AND_SOAR) uac -= 3;
 	if (uamul && uamul->oartifact == ART_ARVIAT_S_LOAD) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_FIT_THE_FAT_SCHWELLES) uac -= 1;
 	if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) uac -= 3;
 	if (uleft && uleft->oartifact == ART_PALMIA_PRIDE) uac -= 4;
 	if (uright && uright->oartifact == ART_PALMIA_PRIDE) uac -= 4;

@@ -22748,6 +22748,298 @@ A("Guah Avert Sueue",				T_SHIRT, /* randart2 shirt, sue lyn trap effect, if a m
 	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
+A("Sykes's Bottomless Supply",				BANDAGE, /* spawns with +rnz(50) amount */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Robin's Emergency",				BANDAGE, /* heals more, both in or out of medkit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Handaid",				BANDAGE, /* +1 intrinsic protection when used, both in or out of medkit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Viruzide",				BANDAGE, /* corona antidote when used, both in or out of medkit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Glasses Collection",				PHIAL, /* spawns with +d50 amount */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40L ),
+
+A("Multial",				PHIAL, /* gives 5 blood potions when using the draw blood technique on it, creates 4 regular phials when using the chemistry set on it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Skillogup",				PHIAL, /* using it trains devices by 10 more points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Lightblue Elven Color",				PHIAL, /* spawns with +d4 amount and blessed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 75L ),
+
+A("Jennelle's Immediativity",				CLOAK_OF_NULLIFICATION, /* double nopeskill effect, ultra fast speed, free action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Corona Time",				COVID____COATED_CLOAK, /* wild weather */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Batter-Monkey",				PETHATE_CLOAK,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Leshthorn",				PET_LASHOUT_CLOAK, /* +5 AC, monsters who hit you in melee take d8 damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1800L ),
+
+A("Selverfend",				PETSTARVE_CLOAK, /* +1 increase damage and accuracy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Surveillance Theme",				PETSCREW_CLOAK,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kinley's Wideness",				NON_PROOF_CLOAK, /* double proofloss effect, +5 AC, you count as being thick-skinned, +2 CON */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("of the Ethereal Eye",				ANTICALL_CLOAK, /* see invisible, can be invoked for magic mapping */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Ha is even sum",				CLOAK_OF_NONFOLLOWING,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Florice's Peace Power",				CLOAK_OF_FAST_DECAY, /* double stat decay, double peacekeeping, can be invoked to pacify adjacent monsters who fail a resistance check, monsters without M2_HOSTILE have 75% chance of spawning peaceful */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("All Colors Combined",				WHITE_SPELL_CLOAK, /* resistance piercing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Back To Halfgray?",				GREYOUT_CLOAK, /* while wearing it, 1 in 500 randomly generated tools is a switcher */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("The SI",				CLOAK_OF_SUDDEN_ATTACK, /* +8 AC, +2 MC, +1000 carry capacity, all randomly generated armor pieces have 1 in 50 of being a cloak of sudden attack and all newly generated cloaks of sudden attack have 50% chance of being another copy of this artifact */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Tex schhhhh",				NOKEDEX_CLOAK, /* technicality, 10% chance to not get a timeout when you use a technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Danoise's Leak",				NAYLIGHT_CLOAK, /* double wendy trap effect, numbness, super regene, resist contamination, if you hear the cwnannwn the game summons a tame chaotic minion and if you hear the banshee it summons a tame lawful minion (in both of those cases, being of the actual alignment in question means d2 more minions are summoned) */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Vente Modeste",				BATTERY_CLOAK, /* double wild weather */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ulfric High King",				STORMY_CLOAK, /* displays all lawful-aligned monsters when worn, +3 melee damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 4500L ),
+
+A("Uuu lost turn",				EVENCORE_CLOAK, /* Ctrl-U doesn't work, you can hide underneath items, +3 AC and +2 MC, and another +10 AC if you're actually concealed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Arabella's Fear",				CLOAK_OF_BAD_PART, /* fear factor, can be invoked to detect traps but doing so gives you rnz(10k) turns of a random nasty trap effect */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Verchange Child",				OPTIONAL_HELMET, /* heavily autocurses, +3 luck, 50% chance to not lose alignment, reduces incoming damage by 3 (but not below one), randomly generated gold spawns have 50% more gold in them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Big Rear End",				TOP_HELMET, /* +3 CHA, protects you from item theft like a nymph and prevents you from getting debts */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Wummersound",				TECH_LOSS_HELMET, /* sound effect trap effect, technicality, techniques skill trains twice as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Fit The Fat Schwelles",				MOMHAT, /* +1 AC, doesn't fall off if you poly into something too big for a helmet */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Niamh Penh",				HELMET_OF_ANTI_SEARCHING, /* double ubergod effect, +1 multishot with firearms and their ammos have 33% chance of not being used up, you can walk through trees and are doubly invisible as well as doubly displaced while standing in one, +2 recalc_health in attrib.c */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Hiden Off",				DELIGHT_HELMET,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Emre with the t...",				MESSAGE_FILTER_HELMET,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("The Eternal Eye",				INFOLESS_HELMET, /* see invisible, blindness resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Spellspellspell...",				BLUE_SPELL_HELMET, /* +4 melee damage with quarterstaff-class weapons, cursed two-handers don't make your hands unusable, 20% better spellcasting chances (40% if you're a cellar child), can be invoked to cure intrinsic aggravate monster but if you're not a cellar child, doing so gives you +2000 sanity (can't be resisted) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, PM_CELLAR_CHILD, NON_PM, 4000L ),
+
+A("Lucien's Invitation",				DARK_HAND_GLOVES, /* while wearing them, you can murder @-class monsters without the murder penalty (but killing e.g. shopkeepers still gives the specific penalties) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Illness Heal",				INACCURATE_GLOVES, /* double regeneration and anorexia when worn */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("No Parking",				METER_GAUNTLETS, /* stone resistance and natalje trap effect when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Limit+",				HEAVY_GRABBING_GLOVES, /* +2000 carry cap when worn, and 100 more for every XL you have (including levels beyond 30) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Gaster Fil",				UNDETECTION_GLOVES, /* sickness resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3600L ),
+
+A("Million Hit Point",				LEFT_APPENDAGE_GLOVES, /* reduces incoming damage by one if your HP is below 50%, two if below 40%, 4 if below 30%, 6 if below 20% and 10 if below 10%, but not below 1, prevents you from having speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("At least the display doesn't lie...",				POKELIE_GLOVES, /* protection from shape changers */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("LUUUUUUUUUUUD",				ALLPICKING_GLOVES, /* additional 1 in 1000 chance per turn (affected by turn counter like regular ones) that item masters spawn, but these gloves don't fall off if you polymorph into a bad form and they also give the rang call and simeout trap effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Iris's Super Stealth",				SILVER_SPELL_GLOVES, /* can be invoked to change the material of an item of your choice to SILVER, but doing so will put a sticky curse and randomly a black breath, topi ylinen or ancient morgothian curse on the gloves */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Meryn's Peak",				SPELLDRAIN_GLOVES, /* double recurring spell loss, flying, mountain climbing, cold immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Amy's Mispurchase",				BLOODSUCKING_SHOES, /* bleedout, resist death and disintegration, +4 melee damage with all edged weapons */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Eeh that's irrelevant.",				REPEATABLE_BOOTS, /* versus curses */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Suschel Kuna",				BOOTS_OF_INTERRUPTION, /* +3 AC, +2 CHA, counts as block heels, anastasia trap effect, MS_CONVERT doesn't affect you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Analis Virginalis",				SELF_WILLED_HEELS, /* double marleen trap effect, +10 spawn chance for MS_FART_NORMAL, full nutrients, every time you train your martial arts skill to 5000 (while its cap is below supreme master) sets it back to 0 and increases the skill's cap by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Kristin's Inner Feel",				SADISTIC_BOOTS, /* kristin trap effect, kick has 1 in 10 chance that the target has to either save or get paralyzed for rn1(4,4) turns; if the color of these boots is red, they additionally give +10 AC, +8 CHA and double half physical damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("OltroHoevy",				PLATINUM_SPELL_BOOTS, /* +10 AC, contamination resistance, oectoevoetes MS_OE loenguoegoe */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Camisha the Inconspicuous",				INVIS_WALKERS, /* double jana trap effect, +3 STR, +5 DEX, can be invoked for 500 turns of very fast speed and if you're dual-wielding, you have 25% chance of blocking projectiles */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH|SPFX_ATTK), 0, 0,
+	DRST(0, 8), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Lusty Giggle",				NOISY_BOOTS, /* funny hallu, +4 AC, 50% chance to avoid bad effects */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Findbold",				RIN_ARTIFACT_BLASTING, /* double magic find, permacurse trap effect, becomes sticky cursed when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Better Get Rid Quickly",				RIN_LOOTCUT, /* halves monster spawn rate, hunger when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Actual Cave Dwelling",				RIN_ILLITERACY, /* +7 WIS, +2 increase accuracy, +1 multishot with slings and sling ammo has 75% chance to not mulch if it otherwise would, but forces illiterate conduct when worn */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Senselblue",				RIN_STAT_DECREASE, /* pain sense */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Winder speccer",				RIN_SANITY_TIMEOUT, /* polymorphitis and poly control */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Yeeeeeeah! EXP shrine.",				RIN_WIMPINESS, /* EXP boost */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Palmiest safe",				RIN_USING_HAZARD, /* control magic */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Longhand Jedi",				RIN_EXERTION_LOSS, /* use the force, and if your weapon is positively enchanted the #force command gives +2x the weapon's enchantment as additional damage bonus */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("It makes eh what it wants",				RIN_PETCAT, /* petscrew effect, petkeeping skill trains three times as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Duewuepi hahaha",				RIN_POSSESSION_IDENTIFICATION, /* premature death and life saving when worn; if it does lifesave you, it's used up */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Blue Skull",				RIN_DECONSTRUCTION, /* manaleech */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Soil Maintenance",				AMULET_OF_HI_LEVEL_CASTING, /* defusing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Control Portal",				AMULET_OF_SPELL_FORGETTING,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Lateral Improvement",				AMULET_OF_STOPPED_EVOLUTION, /* extra weapon practice */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rochelle's Sey",				AMULET_OF_TECHOUT, /* double skill loss, +3 all stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Who cares, gimme the power.",				AMULET_OF_HOSTILITY,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Greetings from Evi",				AMULET_OF_EDIBILITY, /* eveline trap effect, very fast speed and adds extra speed sometimes, sexy flats and high heels skills train twice as fast and the various specific high heels skills train three times as fast */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sunshine's Wake",				AMULET_OF_WAKING, /* putting it on changes the weather to "sunny" and your martial arts style to "capoeira" */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Zubrit's Hotness",				AMULET_OF_UNDRESSING, /* double undressing, double fire resistance, protects items from fire, +8 CHA, your footwear counts as stiletto heels and if you're restricted in the stiletto heels skill, training it up to 500 will unlock it with a cap of basic */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
