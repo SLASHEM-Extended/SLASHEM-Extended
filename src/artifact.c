@@ -2048,12 +2048,12 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_GLASSES_COLLECTION) {
 			otmp->quan += rnd(50);
 			otmp->owt = weight(otmp);
-			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
-			bless(otmp);
 			}
 		    if (otmp && otmp->oartifact == ART_LIGHTBLUE_ELVEN_COLOR) {
 			otmp->quan += rnd(4);
 			otmp->owt = weight(otmp);
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			bless(otmp);
 			}
 		    if (otmp && otmp->oartifact == ART_LOW_HEAP) {
 			otmp->quan += rn1(50, 50);
