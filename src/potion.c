@@ -2705,7 +2705,7 @@ badeffect()
 
 {
 
-	if (ReallyBadTrapEffect || u.uprops[REALLY_BAD_TRAP_EFFECT].extrinsic || have_reallybadstone()) {
+	if (ReallyBadTrapEffect || u.uprops[REALLY_BAD_TRAP_EFFECT].extrinsic || Race_if(PM_ARTIFINDER) || have_reallybadstone()) {
 		/* turns bad effects into really bad ones, so we're calling reallybadeffect() and returning --Amy */
 		reallybadeffect();
 		return;
@@ -9126,6 +9126,10 @@ nivellate()
 			lowerceiling /= 2;
 			upperceiling /= 2;
 		}
+		if (Race_if(PM_ARTIFINDER)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
 		if (Race_if(PM_PLAYER_DOLGSMAN)) {
 			lowerceiling *= 3;
 			lowerceiling /= 4;
@@ -9381,6 +9385,10 @@ nivellate()
 			upperceiling *= 2;
 		}
 		if (Race_if(PM_DUFFLEPUD)) {
+			lowerceiling /= 2;
+			upperceiling /= 2;
+		}
+		if (Race_if(PM_ARTIFINDER)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
 		}
@@ -9648,6 +9656,9 @@ boolean guaranteed;
 		if (Race_if(PM_DUFFLEPUD)) {
 			ceiling /= 2;
 		}
+		if (Race_if(PM_ARTIFINDER)) {
+			ceiling /= 2;
+		}
 		if (Race_if(PM_PLAYER_DOLGSMAN)) {
 			ceiling *= 3;
 			ceiling /= 4;
@@ -9846,6 +9857,9 @@ boolean guaranteed;
 			ceiling *= 2;
 		}
 		if (Race_if(PM_DUFFLEPUD)) {
+			ceiling /= 2;
+		}
+		if (Race_if(PM_ARTIFINDER)) {
 			ceiling /= 2;
 		}
 		if (Race_if(PM_BACTERIA)) {

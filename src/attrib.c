@@ -1096,6 +1096,9 @@ const struct innate {
 		     {  20, &(HQuad_attack), "able to attack ultra fast", "no longer able to attack ultra fast", TRUE },
 			{   0, 0, 0, 0, 0 } },
 
+	arf_abil[] = { { 20, &(HMagicFindBonus), "capable of finding magical items", "less capable of finding magical items", TRUE },
+			{   0, 0, 0, 0, 0 } },
+
 	kst_abil[] = { { 8, &(HTechnicality), "technically knowledgable", "your techniques becoming weaker", TRUE },
 		     {   12, &(HDefusing), "capable of defusing traps", "unable to defuse traps", TRUE },
 			{	20, &(HDisint_resistance), "stable", "brittle", TRUE },
@@ -2809,6 +2812,7 @@ int oldlevel, newlevel;
 	case PM_CELTIC:	rabil = clt_abil;	break;
 	case PM_PEACEMAKER:	rabil = pea_abil;	break;
 	case PM_MONGUNG:	rabil = mog_abil;	break;
+	case PM_ARTIFINDER:	rabil = arf_abil;	break;
 	case PM_AK_THIEF_IS_DEAD_:	rabil = akt_abil;	break;
 	case PM_PLAYER_JABBERWOCK:	rabil = jab_abil;	break;
 	case PM_VIETIS:	rabil = vie_abil;	break;

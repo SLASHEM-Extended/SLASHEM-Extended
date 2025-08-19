@@ -188,7 +188,7 @@ int otyp,oquan;
 {
 	register struct obj *otmp;
 
-	otmp = mksobj(otyp, TRUE, FALSE, FALSE);
+	otmp = mksobj(otyp, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 	if (!otmp) return;
 	otmp->quan = (long) rn1(oquan, 3);
 	if (!issoviet) {
@@ -1173,7 +1173,7 @@ register struct monst *mtmp;
 			(void) mpickobj(mtmp,otmpY, TRUE);
 		}
 
-		struct obj *otmpZ = mksobj(rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY), TRUE, FALSE, FALSE);
+		struct obj *otmpZ = mksobj(rnd_class(PLASTEEL_GLOVES,GAUNTLETS_OF_DEXTERITY), TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 		if (otmpZ) {
 			otmpZ->quan = 1;
 			otmpZ->owt = weight(otmpZ);
@@ -8369,7 +8369,7 @@ register struct	monst	*mtmp;
 			mk_mplayer_armor(mtmp, rnd_class(ELVEN_LEATHER_HELM, HELM_OF_TELEPATHY));
 			mk_mplayer_armor(mtmp, rnd_class(SMALL_SHIELD, SHIELD_OF_REFLECTION));
 
-			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1), TRUE, FALSE, FALSE);
+			otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1), TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->spe = (rn2(2) ? rn1(5,4) : (rn2(4) - rn2(7) ) );
 				if (!rn2(3)) otmp->oerodeproof = 1;
@@ -8379,7 +8379,7 @@ register struct	monst	*mtmp;
 			}
 
 			if (!rn2(3)) {
-				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1), TRUE, FALSE, FALSE);
+				otmp = mksobj(rnd_class(ORCISH_DAGGER,HAWAIIAN_SHIRT-1), TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 				if (otmp) {
 					otmp->spe = (rn2(2) ? rn1(5,4) : (rn2(4) - rn2(7) ) );
 					if (!rn2(3)) otmp->oerodeproof = 1;
@@ -10112,7 +10112,7 @@ loveheeltry:
 				else goto loveheelover;
 			}
 
-			lvhl = mksobj(objtyp, TRUE, FALSE, FALSE);
+			lvhl = mksobj(objtyp, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (lvhl)
 				(void) mpickobj(mtmp, lvhl, TRUE);
 
@@ -13531,7 +13531,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_COP_BIKE]) {
 
-			otmp = mksobj(PISTOL, FALSE, FALSE, FALSE);
+			otmp = mksobj(PISTOL, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->spe += 2;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -15092,7 +15092,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SEEA]) (void) mongets(mtmp, CIGARETTE);
 		if (mtmp->data == &mons[PM_SORC_D_AVANT_LANCER]) (void) mongets(mtmp, LANCE);
 		if (mtmp->data == &mons[PM_SORC_D_AVANT_ASSASSIN]) {
-			otmp = mksobj(IRON_SABER, FALSE, FALSE, FALSE);
+			otmp = mksobj(IRON_SABER, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->opoisoned = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -15185,7 +15185,7 @@ loveheelover:
 
 			if (!rn2(3)) { /* greatly lowered chance --Amy */
 			otmp = mksobj(rnd_class(DILITHIUM_CRYSTAL,LUCKSTONE-1),
-				      FALSE, FALSE, FALSE);
+				      FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->quan = rnd(3); /* lower amount */
 				otmp->owt = weight(otmp);
@@ -15995,7 +15995,7 @@ loveheelover:
 		if (ptr == &mons[PM_SOPHIA_S_HIGH_HEELED_LADY_S_SHOE]) { (void)mongets(mtmp, COMBAT_STILETTOS); (void)mongets(mtmp, SPIKED_BATTLE_BOOT); }
 
 		if (ptr == &mons[PM_NAZGUL]) {
-			otmp = mksobj(RIN_INVISIBILITY, FALSE, FALSE, FALSE);
+			otmp = mksobj(RIN_INVISIBILITY, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				curse(otmp);
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -18062,7 +18062,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_PURPLE_AMPERSAND]) {
-			otmp = mksobj(SCALPEL, FALSE, FALSE, FALSE);
+			otmp = mksobj(SCALPEL, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->spe = 4;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -18415,7 +18415,7 @@ loveheelover:
 		}
 
 		if (monsndx(ptr) == PM_GREEN_COUATL) {
-			otmp = mksobj(DAGGER, FALSE, FALSE, FALSE);
+			otmp = mksobj(DAGGER, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->opoisoned = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -19006,7 +19006,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_CONTAGION_LASHER]) {
-			otmp = mksobj(BULLWHIP, FALSE, FALSE, FALSE);
+			otmp = mksobj(BULLWHIP, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->opoisoned = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -19496,7 +19496,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_LANCE_INFECTOR]) {
-			otmp = mksobj(GLAIVE, FALSE, FALSE, FALSE);
+			otmp = mksobj(GLAIVE, FALSE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmp) {
 				otmp->opoisoned = TRUE;
 				(void) mpickobj(mtmp, otmp, TRUE);
@@ -25015,7 +25015,7 @@ loveheelover:
 	}
 
 	if (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(10)) {
-		struct obj *otmpX = mksobj(rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING, TRUE, FALSE, FALSE);
+		struct obj *otmpX = mksobj(rn2(5) ? SCR_ROOT_PASSWORD_DETECTION : SCR_COURSE_TRAVELING, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 		if (otmpX) {
 			otmpX->finalcancel = TRUE;
 			otmpX->quan = 1;
@@ -25793,10 +25793,10 @@ register int	mmflags;
 		(void) mksobj_at(BOULDER, x, y, TRUE, FALSE, FALSE);
 
 	if (ptr == &mons[PM_GOOD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) )
-		(void) mksobj_at(usefulitem(), x, y, TRUE, FALSE, FALSE);
+		(void) mksobj_at(usefulitem(), x, y, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 
 	if (ptr == &mons[PM_BAD_ITEM_MASTER] && !monster_is_revived && !mtmp->mrevived && isok(x, y) )
-		(void) mksobj_at(nastymusableitem(), x, y, TRUE, FALSE, FALSE);
+		(void) mksobj_at(nastymusableitem(), x, y, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 
 	if (ptr == &mons[PM_HOLE_MASTER] && isok(x, y) && !(t_at(x, y)) )
 		(void) maketrap(x, y, HOLE, 10, TRUE);
@@ -28283,7 +28283,7 @@ register int	mmflags;
 		}
 
 		if (FemtrapActiveKatia && (monstersoundtype(mtmp) == MS_FART_LOUD)) {
-			struct obj *otmpX = mksobj(find_block_heeled_boots(),TRUE,FALSE, FALSE);
+			struct obj *otmpX = mksobj(find_block_heeled_boots(),TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmpX) {
 				(void) mpickobj(mtmp,otmpX, TRUE);
 			}
@@ -28575,18 +28575,18 @@ int mndx;
 	if (uncommon7(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 4 : 7) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 	if (uncommon10(&mons[mndx]) && !jonaspecialspawn(&mons[mndx]) && rn2(issoviet ? 5 : 10) && !(EntireLevelMode || u.uprops[ENTIRE_LEVEL].extrinsic || have_entirelevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && !Race_if(PM_RODNEYAN) ) return TRUE;
 
-	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
-	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
-	if (monstr[mndx] >= 19 && (rn2(200) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
-	if (monstr[mndx] >= 24 && (rn2(250) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
-	if (monstr[mndx] >= 28 && (rn2(290) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
-	if (monstr[mndx] >= 33 && (rn2(340) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
-	if (monstr[mndx] >= 37 && (rn2(380) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
-	if (monstr[mndx] >= 42 && (rn2(420) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
-	if (monstr[mndx] >= 46 && (rn2(460) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
-	if (monstr[mndx] >= 50 && (rn2(500) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
-	if (monstr[mndx] >= 60 && (rn2(600) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
-	if (monstr[mndx] >= 70 && (rn2(700) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
+	if (monstr[mndx] >= 9 && (rn2(100) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 14 && !rn2(10)) return TRUE;
+	if (monstr[mndx] >= 14 && (rn2(150) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 19 && !rn2(5)) return TRUE;
+	if (monstr[mndx] >= 19 && (rn2(200) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 24 && (rnd(10) > 3) ) return TRUE;
+	if (monstr[mndx] >= 24 && (rn2(250) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 28 && (rnd(10) > 4) ) return TRUE;
+	if (monstr[mndx] >= 28 && (rn2(290) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 33 && !rn2(2)) return TRUE;
+	if (monstr[mndx] >= 33 && (rn2(340) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 37 && (rnd(10) > 6) ) return TRUE;
+	if (monstr[mndx] >= 37 && (rn2(380) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 42 && (rnd(10) > 7) ) return TRUE;
+	if (monstr[mndx] >= 42 && (rn2(420) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 46 && rn2(5)) return TRUE;
+	if (monstr[mndx] >= 46 && (rn2(460) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 50 && rn2(10)) return TRUE;
+	if (monstr[mndx] >= 50 && (rn2(500) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 60 && rn2(20)) return TRUE;
+	if (monstr[mndx] >= 60 && (rn2(600) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && monstr[mndx] < 70 && rn2(50)) return TRUE;
+	if (monstr[mndx] >= 70 && (rn2(700) >= notuncommonlate) && !(HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) && rn2(100)) return TRUE;
 
 	/*if (Inhell)
 		return(mons[mndx].maligntyp > A_NEUTRAL);
@@ -30456,7 +30456,7 @@ int     spc;
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(8)) uncommonnewsixty = 0;
 	if (((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) && !rn2(9)) uncommonnewseventy = 0;
 
-	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) {
+	if (HighlevelStatus || u.uprops[HIGHLEVEL_STATUS].extrinsic || have_highlevelstone() || Race_if(PM_ARTIFINDER) || autismweaponcheck(ART_EXTREMELY_HARD_MODE)) {
 		uncommonnewten = 0;
 		uncommonnewfifteen = 0;
 		uncommonnewtwenty = 0;
@@ -33288,7 +33288,7 @@ register int otyp;
 	int spe;
 
 	if (!otyp) return 0;
-	otmp = mksobj(otyp, TRUE, FALSE, FALSE);
+	otmp = mksobj(otyp, TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 	if (otmp) {
 	    if (mtmp->data->mlet == S_DEMON) {
 		/* demons never get blessed objects */
