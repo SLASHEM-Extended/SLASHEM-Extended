@@ -6120,7 +6120,7 @@ dyechoice:
 				}
 			}
 
-			if (cursingchance > rnd(10)) {
+			if ((cursingchance > rnd(10)) && !(obj->otyp == GRASS_WHISTLE && is_grassland(u.ux, u.uy)) ) {
 				if (obj->blessed) unbless(obj);
 				else curse(obj);
 				pline("Your whistle seems less effective.");

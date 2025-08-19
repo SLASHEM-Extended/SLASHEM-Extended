@@ -17503,7 +17503,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			case DATA_CHIP:
 				pline("You can use this tool to open locks, but you cannot lock them again with it."); break;
 			case GRASS_WHISTLE:
-				pline("Applying it will wake up monsters and tell your pets to follow you."); break;
+				pline("Applying it will wake up monsters and tell your pets to follow you. If you're standing in grassland, this whistle can't degrade when blown."); break;
 			case FOG_HORN:
 				pline("Applying it will wake up and scare monsters, although they can resist the latter, and it also causes negative status effects to you."); break;
 			case CONGLOMERATE_PICK:
