@@ -22411,6 +22411,8 @@ register struct monst *mtmp;
 {
 	boolean extraannoying = !rn2(5);
 
+	char buf[BUFSZ];
+
 	if (uwep && uwep->oartifact == ART_KATI_GAVE_YOU_THE_ENGLISH_) return 0;
 
 	pline("Sing announces that %s stepped into %s, and asks you to clean them.", mtmp->data->mname, extraannoying ? "cow dung" : "dog shit");
@@ -22421,7 +22423,10 @@ register struct monst *mtmp;
 	if (extraannoying) mtmp->singdirty = 2;
 	else mtmp->singdirty = 1;
 
-	if (yn("Do you want to clean them?") == 'y') {
+	getlin("Do you want to clean them? [y/yes/no] (warning: declining causes you to be bound for a few turns)", buf);
+	(void) lcase (buf);
+
+	if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys")) ) {
 			delay = (extraannoying ? -200 : -40);
 			if (treadedshoemonster(mtmp->data)) delay *= 2;
 			u.singtrapocc = TRUE;
@@ -22469,9 +22474,15 @@ register struct monst *mtmp;
 	/* kati and sing trap effects are supposed to always tell you the exact name of the monster,
 	 * even if you're blind, hallucinating or whatever, so you know whose shoes you're cleaning --Amy */
 
+	char buf[BUFSZ];
+
 	if (!rn2(20) && !mtmp->mfrenzied) {
+
 		pline("%s asks you to clean the dog shit from her soles. This will take a long time, but if you can do it, she'll no longer hurt you.", mtmp->data->mname);
-		if (yn("Do you want to clean the sexy Kati shoes?") == 'y') {
+		getlin("Do you want to clean them? [y/yes/no]", buf);
+		(void) lcase (buf);
+
+		if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys")) ) {
 			delay = -200;
 			u.katitrapocc = TRUE;
 			set_occupation(katicleaning, "cleaning the sexy Kati shoes", 0);
