@@ -539,7 +539,7 @@ register boolean clumsy;
 
 		    dmg += weapon_dam_bonus((struct obj *)0);
 			/* marital arts skill is supposed to improve this!!! --Amy */
-		    if (P_SKILL(P_MARTIAL_ARTS) > 0) dmg += (rnd(P_SKILL(P_MARTIAL_ARTS)) * rno(2));
+		    if ((P_SKILL(P_MARTIAL_ARTS) > 0) && !rn2(2)) dmg += (rnd(P_SKILL(P_MARTIAL_ARTS)) * rno(2));
 		} else {
 
 			if(uarmf && uarmf->oartifact) {

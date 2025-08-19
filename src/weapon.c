@@ -7709,11 +7709,11 @@ struct obj *weapon;
 		    case P_ISRESTRICTED:
 		    case P_UNSKILLED:	bonus += 0; break;
 		    case P_BASIC:	bonus += 0; break;
-		    case P_SKILLED:	bonus += rnd(2); break;
-		    case P_EXPERT:	bonus += rnd(4); break;
-		    case P_MASTER:	bonus += rnd(6); break;
-		    case P_GRAND_MASTER:	bonus += rnd(8); break;
-		    case P_SUPREME_MASTER:	bonus += rnd(10); break;
+		    case P_SKILLED:	bonus += rnd(1); break;
+		    case P_EXPERT:	bonus += rnd(3); break;
+		    case P_MASTER:	bonus += rnd(4); break;
+		    case P_GRAND_MASTER:	bonus += rnd(6); break;
+		    case P_SUPREME_MASTER:	bonus += rnd(8); break;
 		}
 
 	} else if (!(PlayerCannotUseSkills) && type == P_BARE_HANDED_COMBAT) {

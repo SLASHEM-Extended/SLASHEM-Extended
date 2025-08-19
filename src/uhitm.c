@@ -1590,8 +1590,8 @@ martial_dmg()
 
         } else if ((Role_if(PM_MONK) && !Upolyd && !(PlayerCannotUseSkills) )
                 && (P_SKILL(P_MARTIAL_ARTS) >= P_GRAND_MASTER)
-                && (GushLevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(10) : 0) ;                                
-        else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && GushLevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5))
+                && (GushLevel > 16)) damage = d(6,2) + (P_SKILL(P_MARTIAL_ARTS) == P_SUPREME_MASTER ? rnd(5) : 0) ;                                
+        else if (!(PlayerCannotUseSkills) && (P_SKILL(P_MARTIAL_ARTS) >= P_BASIC) && (!Role_if(PM_HALF_BAKED) || (GushLevel > (2*(P_SKILL(P_MARTIAL_ARTS) - P_BASIC) + 5) )) )
                 damage = d((int) (P_SKILL(P_MARTIAL_ARTS) - P_UNSKILLED),2);
         else
                 damage = rnd(2);
