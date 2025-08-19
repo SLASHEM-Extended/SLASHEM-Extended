@@ -557,6 +557,10 @@ giveback:
 			if (obj->spe < 0) pline_The("water looks as if it might be contaminated!");
 			else pline("There are little sparks in the water.");
 		    break;
+		case RIN_GAMBLING:
+			if (obj->spe < 0) You_feel("unlucky about the ring bouncing down the drain...");
+			else You_feel("lucky about the ring bouncing down the drain!");
+		    break;
 		case RIN_AURORA:
 		    pline_The("sink glows orange for a moment.");
 		    break;

@@ -1262,6 +1262,7 @@ init_appearance_randarts()
 	artilist[ART_KATI_S_ANTAGONISM].otyp = find_telescope();
 	artilist[ART_NOW_YOUR_ABLE_TO_POLY].otyp = find_osfa_cloak();
 	artilist[ART_PINEAPPLE_TYCOON_S_FINISH].otyp = find_tarpaulin_cloak();
+	artilist[ART_MYSTERIA].otyp = find_missys();
 	artilist[ART_SAFARI_ROCKZ].otyp = find_missys();
 	artilist[ART_SMILE_Z].otyp = find_missys();
 	artilist[ART_SECRET_RAINBOW].otyp = find_missys();

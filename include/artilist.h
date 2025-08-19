@@ -5026,7 +5026,7 @@ A("Dead-Slam The Time Shut",				REGULAR_GLOVES, /* unlocks device skill and caps
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Anastasia's Unexpected Ability",				LOW_BOOTS, /* count as high heels, autocurses, teaches you the attire charm and world fall techniques if you didn't have them, but gives 3 or 9 random nasty properties as intrinsic */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
 A("Eliane's Shin Smash",				LOW_BOOTS, /* kicking a monster will always paralyze it and do double damage, and heaps of shit don't affect you and you cannot have wounded legs, but if you ever come into contact with water or something farts, they are vaporized instantly. */
@@ -8662,7 +8662,7 @@ A("Vampire-Sing's Bloodrush",				GROM_AXE, /* sing trap effect */
 	DRLI(5, 6), DRLI(0,0), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
 
 A("Ultimate World Fall",				HONOR_KATANA, /* activates ragnarok timer, teaches world fall technique */
-	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
 	PHYS(24, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Death's Fathom",				DIMENSIONAL_SHARD, /* resist lightning and fire */
@@ -19456,7 +19456,7 @@ A("Hittem!",				PHYSIO_VENOM, /* dmg h@ck */
 	(SPFX_RESTR), 0, 0,
 	PHYS(9, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
 
-A("Mysteria",				LOW_BOOTS, /* 1 in 10000 chance per turn to get a random good effect */
+A("Mysteria",				LOW_BOOTS, /* initialized to always be missys, 1 in 10000 chance per turn to get a random good effect */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1170L ),
 
@@ -20445,7 +20445,7 @@ A("Linley's Help",				SCR_ACQUIREMENT, /* allows you to acquire a total of 5 ite
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
 
 A("Oremor Is Back",				SCR_MASS_MURDER, /* replicates world fall technique effect */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
 A("Heptahex",				SCR_WARD, /* lasts 10x as long */
@@ -23039,6 +23039,10 @@ A("Sunshine's Wake",				AMULET_OF_WAKING, /* putting it on changes the weather t
 A("Zubrit's Hotness",				AMULET_OF_UNDRESSING, /* double undressing, double fire resistance, protects items from fire, +8 CHA, your footwear counts as stiletto heels and if you're restricted in the stiletto heels skill, training it up to 500 will unlock it with a cap of basic */
 	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Four Dragons Table",				RIN_GAMBLING, /* neither you nor the dealer can bust from 11 when drawing an ace */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

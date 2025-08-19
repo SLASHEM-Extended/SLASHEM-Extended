@@ -4925,6 +4925,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CLOAK_OF_WEATHER, "plashch pogody" },
 	{ WEATHER_HELMET, "shlem pogody" },
 	{ RIN_WEATHER, "pogoda" },
+	{ RIN_GAMBLING, "igrat' v azartnyye igry" },
 
 	/* todo area */
 
@@ -8586,6 +8587,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ CLOAK_OF_WEATHER, "ob-havo plashi" },
 	{ WEATHER_HELMET, "ob-havo dubulg'asi" },
 	{ RIN_WEATHER, "ob-havo" },
+	{ RIN_GAMBLING, "qimor o'lyinlari" },
 
 	/* todo area */
 

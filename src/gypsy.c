@@ -984,6 +984,21 @@ newblackjackrun:
 	dealervisiblehand = 0;
 	tempcardvar = 0;
 	dealercheatchance = (10 - Luck + (playerblackjackwins * 5)); /* dealer becomes increasingly more difficult to defeat the more often you win in a row, making it almost impossible to get the later rewards */
+	if (uleft && uleft->otyp == RIN_GAMBLING) dealercheatchance -= (uleft->spe * 5);
+	if (uright && uright->otyp == RIN_GAMBLING) dealercheatchance -= (uright->spe * 5);
+	boolean dealeravoidace = FALSE;
+	boolean youavoidace = FALSE;
+
+	if (uleft && uleft->otyp == RIN_GAMBLING) {
+		if (uleft->oartifact == ART_FOUR_DRAGONS_TABLE) dealeravoidace = youavoidace = TRUE;
+		if (uleft->cursed) dealeravoidace = TRUE;
+		if (uleft->blessed) youavoidace = TRUE;
+	}
+	if (uright && uright->otyp == RIN_GAMBLING) {
+		if (uright->oartifact == ART_FOUR_DRAGONS_TABLE) dealeravoidace = youavoidace = TRUE;
+		if (uright->cursed) dealeravoidace = TRUE;
+		if (uright->blessed) youavoidace = TRUE;
+	}
 
 	/* the dealer's first card is upside down so you don't know what it is */
 	dealerfirstcard = blackjack_card();
@@ -1008,6 +1023,13 @@ newblackjackrun:
 	/* dealer has to draw on 15 and stand on 16; this is probably different from RL blackjack */
 	while (dealercards < 5 && dealerhand < 16) {
 		tempcardvar = blackjack_card();
+
+		/* unlike RL blackjack, you can't just make an ace count as 1, but the ring of gambling can do so
+		 * a cursed ring allows the dealer to do so */
+		if (dealeravoidace) {
+			if (dealerhand == 11 && tempcardvar == 11) tempcardvar = 1; /* can't bust by drawing an ace while having a hand of 11 */
+		}
+
 		if (dealerhand > 21 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to ensure he doesn't bust */
 			tempcardvar = rnd(21 - dealerhand);
 			u.cnd_blackjackdealercheat++;
@@ -1044,6 +1066,13 @@ newblackjackrun:
 			goto blackjackevaluate;
 		}
 		tempcardvar = blackjack_card();
+
+		/* unlike RL blackjack, you can't just make an ace count as 1, but the ring of gambling can do so
+		 * a blessed ring allows the player to do so */
+		if (youavoidace) {
+			if (playerhand == 11 && tempcardvar == 11) tempcardvar = 1; /* can't bust by drawing an ace while having a hand of 11 */
+		}
+
 		if (playerhand >= 11 && (rn2(100) < dealercheatchance)) { /* dealer can cheat to make you bust */
 			tempcardvar = 11;
 			u.cnd_blackjackdealercheat++;

@@ -21,7 +21,7 @@
 */
 
 #define COPYRIGHT_BANNER_A \
-"This is Sadistic Levels of Endless X-Citement (SLEX) 1997-2022 by Amy"
+"This is Sadistic Levels of Endless X-Citement (SLEX) 1997-2025 by Amy"
 
 #define COPYRIGHT_BANNER_B \
 "NetHack, Copyright 1985-2003 Stichting Mathematisch Centrum, M. Stephenson."

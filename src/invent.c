@@ -16473,6 +16473,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This ring curses items that you want to use."); break;
 			case RIN_WINCING:
 				pline("Bad ring that causes you to wince. It is usually generated cursed."); break;
+			case RIN_GAMBLING:
+				pline("If this ring is positively enchanted, it reduces the odds of the dealer cheating when you play blackjack, while a negatively enchanted one makes it more likely. A blessed ring makes it less likely for you to bust when drawing a card, while if you wear a cursed one, the dealer is less likely to bust instead."); break;
 			case RIN_EXERTION_LOSS:
 				pline("This ring degrades your skills."); break;
 			case RIN_PETCAT:
@@ -33126,6 +33128,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: when you put it on, the current weather becomes sunny and your martial arts style is set to capoeira."); break;
 				case ART_ZUBRIT_S_HOTNESS:
 					pline("Artifact specs: double undressing, double fire resistance, protects your items from fire and +8 charisma when worn. If you're wearing boots, they will count as stiletto heels and if you're restricted in stiletto heels, wearing them for long enough will eventually unlock the skill."); break;
+				case ART_FOUR_DRAGONS_TABLE:
+					pline("Artifact specs: while you're wearing it, both you and the dealer are less likely to bust when playing blackjack."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

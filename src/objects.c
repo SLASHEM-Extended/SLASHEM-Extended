@@ -4063,7 +4063,6 @@ RING("hunger",     HUNGER,     "topaz",     200, 1590, 1, 0, 8, MT_GEMSTONE, CLR
 RING("disarming",     GLIB,     "wet",     200,  500, 1, 0, 1, MT_VEGGY, CLR_BRIGHT_BLUE, 1),
 RING("numbness",  NUMBED,  "constricting", 200,  500, 1, 0, 1, MT_METAL, CLR_CYAN, 1),
 RING("hallucination",  HALLUC,  "rainbow", 200,  100, 1, 0, 5, MT_METAL, CLR_BRIGHT_MAGENTA, 10),
-RING("curse",  ITEMCURSING,  "color changing", 200,  100, 1, 0, 8, MT_MINERAL, CLR_WHITE, 12),
 RING("mood",       0,          "ridged",    200, 1300, 1, 0, 8, MT_IRON, HI_METAL, 1),
 RING("protection", PROTECTION, "black onyx",200, 3100, 1, 1, 7, MT_MINERAL, CLR_BLACK, 1),
 RING("three-point-seven protection", PROTECTION, "variantish",200, 50, 1, 1, 9, MT_CONUNDRUM, CLR_WHITE, 18),
@@ -4124,6 +4123,7 @@ RING("ruin", 0, "shaduum", 200, 10, 1, 0, 6, MT_SHADOWSTUFF, CLR_BLUE, 40),
 RING("alignment", 0,    "enchanting", 200, 100, 1, 1, 6, MT_GLASS,  CLR_CYAN, 10),
 RING("5g", 0,    "gatesy", 200, 10, 1, 1, 4, MT_TINSEL,  CLR_ORANGE, 40),
 RING("honored speed", 0,    "elonic", 200, 50, 1, 1, 5, MT_ADAMANTIUM,  CLR_BROWN, 20),
+RING("gambling",   0, "luck-based",        200, 97, 1, 1, 4, MT_PLASTIC, CLR_WHITE, 5),
 
 RING("alacrity", FAST, "black signet", 200, 100, 1, 0, 5, MT_MITHRIL, CLR_BLACK, 40),
 RING("fire resistance", FIRE_RES, "iron",   200, 2300, 1, 0, 5, MT_IRON, HI_METAL, 1),
@@ -4157,6 +4157,7 @@ RING("lamity", GOTS_TOO_GOOD_EFFECT, "moleskin", 200, 3, 1, 0, 2, MT_LEATHER, CL
 RING("wallfarting", NO_FUN_WALLS, "airy", 200, 3, 1, 0, 1, MT_FOAM, CLR_BLUE, 1),
 RING("reduce damage", REDDAM_BUG, "beeping", 200, 3, 1, 0, 5, MT_COBALT, CLR_MAGENTA, 1),
 RING("reduce accuracy", REDINC_BUG, "darkmoon", 200, 3, 1, 0, 6, MT_AMBER, CLR_BLACK, 1),
+RING("curse",  ITEMCURSING,  "color changing", 200,  3, 1, 0, 8, MT_MINERAL, CLR_WHITE, 12),
 
 RING("no skill", SKILL_DEACTIVATED, "shattering", 200, 3, 1, 0, 1, MT_MINERAL, CLR_WHITE, 1),
 RING("low stats", STATS_LOWERED, "cheap", 200, 3, 1, 0, 2, MT_WOOD, CLR_BROWN, 1),
