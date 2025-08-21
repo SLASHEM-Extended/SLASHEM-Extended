@@ -276,6 +276,14 @@ register struct obj *obj;
 		return TRUE;
 	if (uarm && uarm->oartifact == ART_PYROCLASTINATE && is_metallic(obj) && !obj->oerodeproof)
 		return TRUE;
+	if (uwep && uwep->oartifact == ART_P_P_P_PLAS && objects[(obj)->otyp].oc_material == MT_PLASTIC && !(obj->oartifact == ART_P_P_P_PLAS))
+		return TRUE;
+	if (uball && uball->oartifact == ART_P_P_P_PLAS && objects[(obj)->otyp].oc_material == MT_PLASTIC && !(obj->oartifact == ART_P_P_P_PLAS))
+		return TRUE;
+	if (uwep && uwep->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_ && objects[(obj)->otyp].oc_material == MT_PAPER)
+		return TRUE;
+	if (uchain && uchain->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_ && objects[(obj)->otyp].oc_material == MT_PAPER)
+		return TRUE;
 
 	/* lithivores can eat stone; erosionproofing makes it impossible now --Amy */
 	if (lithivorous(youmonst.data) && is_lithic(obj) && !obj->oerodeproof )
@@ -9374,7 +9382,7 @@ register int num;
 	if (Full_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 	if (StrongFull_nutrient && num > 1 && u.uhunger < 2500) num /= 2;
 
-	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
+	if (num < 0 && (CutNutritionEffect || u.uprops[CUT_NUTRITION].extrinsic || have_cutnutritionstone() || (uchain && uchain->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_) || have_estealdoctor() || autismweaponcheck(ART_HAVANA_NERO) ) ) num /= 3;
 
 	u.uhunger -= num;
 	newuhs(TRUE);

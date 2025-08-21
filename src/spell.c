@@ -4602,6 +4602,7 @@ manloop:
 				}
 
 				if (pushmonster(nexusmon)) hasshuffled++;
+				if (DEADMONSTER(nexusmon)) continue; /* just in case a trap killed it */
 				if (pushmonster(nexusmon)) hasshuffled++;
 
 			}

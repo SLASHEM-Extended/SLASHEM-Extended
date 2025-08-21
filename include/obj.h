@@ -233,6 +233,7 @@ struct obj {
 			 (otmp)->oartifact == ART_WILD_OAR || \
 			 (otmp)->oartifact == ART_SIMON_S_ULTRALONGNESS || \
 			 (otmp)->oartifact == ART_WOETSCHERSMAG || \
+			 (otmp)->oartifact == ART_VORGATH_S_GRAVITON || \
 			 (otmp)->oartifact == ART_STRECKOUT_AND_PULL || \
 			 (otmp)->oartifact == ART_HEAVY_POLE_SKILL || \
 			 objects[(otmp)->otyp].oc_skill == P_LANCE))
@@ -473,6 +474,10 @@ struct obj {
 				|| (otmp)->otyp == DROVEN_LANCE\
 				|| (otmp)->otyp == DROVEN_ARROW\
 				|| (otmp)->otyp == DROVEN_BOLT)
+
+/* special artifacts and stuff that can be used for digging despite not being a pick --Amy */
+#define can_dig_with(otmp) ((otmp)->oartifact == ART_EN_GARDE____TOUCHE_\
+				|| (otmp)->oartifact == ART_STONEBREAKER)
 
 /* Light sources */
 #define Is_candle(otmp)	((otmp)->otyp == TALLOW_CANDLE || \

@@ -1036,6 +1036,7 @@ E boolean friday_13th(void);
 E boolean groundhog_day(void);	/* KMH -- February 2 */
 E int night(void);
 E int midnight(void);
+E int twilighttime(void);
 
 /* ### invent.c ### */
 

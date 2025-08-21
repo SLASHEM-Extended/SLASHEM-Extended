@@ -8767,8 +8767,8 @@ struct obj *otmp;
 		      otyp != GAS_GRENADE &&
 		      otyp != STICK_OF_DYNAMITE &&
 		      !is_axe(otmp) && !is_antibar(otmp) && !is_applypole(otmp) && !(objects[otyp].oc_skill == P_WHIP && otyp != RUBBER_HOSE) ) ||
-			(otmp->oclass == BALL_CLASS && otmp->otyp != HEAVY_LASER_BALL) ||
-			(otmp->oclass == CHAIN_CLASS && otmp->otyp != LASER_CHAIN) ||
+			(otmp->oclass == BALL_CLASS && !is_applypole(otmp) && otmp->otyp != HEAVY_LASER_BALL) ||
+			(otmp->oclass == CHAIN_CLASS && !is_applypole(otmp) && otmp->otyp != LASER_CHAIN) ||
 			(otmp->oclass == ROCK_CLASS && otmp->otyp != STATUE) ||
 		    (otmp->oclass == POTION_CLASS && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_VACCINE)) && !(otmp->dknown && itemhasappearance(otmp, APP_POTION_DYE)) &&
 		     /* only applicable potion is oil, and it will only
@@ -33130,6 +33130,214 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: double undressing, double fire resistance, protects your items from fire and +8 charisma when worn. If you're wearing boots, they will count as stiletto heels and if you're restricted in stiletto heels, wearing them for long enough will eventually unlock the skill."); break;
 				case ART_FOUR_DRAGONS_TABLE:
 					pline("Artifact specs: while you're wearing it, both you and the dealer are less likely to bust when playing blackjack."); break;
+				case ART_GORTHRAK_S_SHACKLEBANE:
+					pline("Artifact specs: +12 damage, can be invoked to unpunish you. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Gorthrak, the Liberator of the Damned, carried this to break slave chains — and the bones of their masters.'"); break;
+				case ART_DRAVOK_S_SUNDERING:
+					pline("Artifact specs: +8 damage, allows you to use the #force command to raze mountains next to you but doing so reduces the ball's enchantment by 5. If its enchantment is -5 or worse, this ability cannot be used. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Dravok the Mountain-Splitter swung this weapon once to cleave a peak in half, burying an army beneath the rubble.'"); break;
+				case ART_BUMMERWUMMER:
+					pline("Artifact specs: +4 to-hit and +13 damage, fire resistance and container kabook when wielded. Being chained to this artifact also causes container kaboom."); break;
+				case ART_ORRATH_S_EVENTIDE:
+					pline("Artifact specs: +1 to-hit and +1 damage. If it's between 8 and 10 PM, it's +20 to-hit and +15 damage instead as well as double invisibility and 15 extra points of AC when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Orrath, Lord of the Last Hour, was said to appear only at twilight, striking with this weapon before vanishing into the dark.'"); break;
+				case ART_PRICKENWICK:
+					pline("Artifact specs: can be invoked for lockout. If you're chained to this artifact, doing so will always try to transform the eight squares surrounding you into walls, while if you're not chained to it, the invoke reduces your alignment by 50 and the max by 10."); break;
+				case ART_MORVAK_S_GRINDSTONE:
+					pline("Artifact specs: +4 to-hit and +20 damage. If you wield this artifact or are currently chained to it, doors cannot resist and kicking them will always break them. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Morvak the Siegebreaker rolled this iron sphere through castle gates like a battering ram, its chain cutting through knights like straw.'"); break;
+				case ART_MORNINGSTAR_OF_DAWN:
+					pline("Artifact specs: +5 to-hit and +8 damage, blindness resistance and lights up areas when wielded."); break;
+				case ART_FENRIR_S_FANG:
+					pline("Artifact specs: +3 to-hit and double damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'said to be forged from the shattered tooth of the wolf who will devour the world.'"); break;
+				case ART_LYSARITH_S_TIDEBREAKER:
+					pline("Artifact specs: +8 to-hit and +32 shock damage versus semicolons. While wielding it, semicolons cannot hide underwater and you can also swim and have +1000 carry capacity. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Lysarith the Storm Siren crushed ships in her wake, each swing pulling the sea itself into her strike.'"); break;
+				case ART_KRAVENLOCH_S_MAW:
+					pline("Artifact specs: +14 to-hit and +10 damage, causes the target to bleed. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Kravenloch, a beast-god of the Deep Warrens, used this weapon to grind stone and bone alike. The sphere is carved with its jagged teeth.'"); break;
+				case ART_CORINA_S_BITCHSLAP:
+					pline("Artifact specs: +10 damage, can blind enemies who fail to resist."); break;
+				case ART_GILDED_EXECUTIONER:
+					pline("Artifact specs: beheads enemies."); break;
+				case ART_HECATE_S_ORBIT:
+					pline("Artifact specs: +3 to-hit and +4 damage, improves your vision range by 2 when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'glows in the dark with the magic of crossroads and moonlight.'"); break;
+				case ART_ENVY_ROCK_WORK:
+					pline("Artifact specs: while you wield it, scrolls spawn more often."); break;
+				case ART_P_P_P_PLAS:
+					pline("Artifact specs: if you're chained to it or wielding it, you can eat plastic, but this particular artifact still cannot be eaten. Every time you wield it, you lose 100 alignment."); break;
+				case ART_SPINGERBLOEPP:
+					pline("Artifact specs: if you're chained to it, invoking it will change its base item, but if you're not chained to it, invoking it damages your alignment instead."); break;
+				case ART_TIDEBINDER:
+					pline("Artifact specs: +1 to-hit and +9 damage, erodes the enemy's armor on a hit, neutral."); break;
+				case ART_AEGIR_S_ANCHOR:
+					pline("Artifact specs: +10 to-hit and +20 damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'a crushing weapon of the Norse sea god, wielded to drag ships under the waves.'"); break;
+				case ART_ERYNDREL_S_ECLIPSE:
+					pline("Artifact specs: +40 damage, brings an end, wielding it blinds you and causes monsters to be short-sighted. Every time you wield it, the entire dungeon level you're on becomes unlit. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Eryndrel, the blind prophet, saw the end of the world and forged this weapon to hasten it. Light seems to fade wherever it arcs.'"); break;
+				case ART_SOULBREAKER:
+					pline("Artifact specs: +7 to-hit and +4 drain damage, can drain levels from enemies."); break;
+				case ART_VORGATH_S_GRAVITON:
+					pline("Artifact specs: +15 damage, can be applied to hit targets at a two-square distance like a polearm. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Vorgath, the Titan of Falling Moons, wielded this weapon to drag stars from the sky. Said to bend the air itself as it swings.'"); break;
+				case ART_TIAMAT_S_MAW:
+					pline("Artifact specs: +3 to-hit and +15 damage. The damage type changes every turn. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'forged in the likeness of the five-headed dragon goddess's fury.'"); break;
+				case ART_SERAPH_S_ORBIT:
+					pline("Artifact specs: +10 to-hit and +10 damage, magic resistance when wielded, lawful."); break;
+				case ART_JUDGMENT_S_ORBIT:
+					pline("Artifact specs: +30 to-hit and +4 damage."); break;
+				case ART_BLOOD_MOON_ANCHOR:
+					pline("Artifact specs: +2 to-hit and double damage, or triple damage if it's a full moon. Wielding this weapon gives you the wereform nastytrap effect for a while."); break;
+				case ART_RADIANT_WARDEN:
+					pline("Artifact specs: lights up areas when wielded, prevents your pets from suffering from bad effects and allows you to sometimes resist bad effects, lawful."); break;
+				case ART_SKULLBINDER:
+					pline("Artifact specs: +5 to-hit and +8 damage, can slow and occasionally cancel enemies who fail to resist, chaotic."); break;
+				case ART_BLACK_SUN_ORB:
+					pline("Artifact specs: +12 damage, darkens areas on a hit, and while you're wielding it, monsters are occasionally short-sighted. Chaotic."); break;
+				case ART_WARDEN_S_EMBRACE:
+					pline("Artifact specs: +6 damage, can paralyze enemies who fail to resist."); break;
+				case ART_CRIMSON_GRAVITY:
+					pline("Artifact specs: +10 damage, fire resistance when wielded, can slow enemies who fail to resist."); break;
+				case ART_UNCHAINED_DOOM:
+					pline("Artifact specs: +12 to-hit and +12 damage, can drain levels from enemies."); break;
+				case ART_HELLFORGE_METEOR:
+					pline("Artifact specs: +10 to-hit and +10 fire damage, can be invoked to perform an airstrike on a random square which can also raze undiggable walls but doing so heavily curses the ball. Chaotic."); break;
+				case ART_DOWNLIFT:
+					pline("Artifact specs: you shouldn't have this thing in your inventory, but if you somehow do, we're telling you that while you're chained to it, you cannot drop items."); break;
+				case ART_ALL_CLEAR_SIGNAL:
+					pline("Artifact specs: not sure how on earth you managed to pick up this heavy thing, but anyway, wands of striking spawn more often while you're chained to it."); break;
+				case ART_MAISIE_S_DELIGHT:
+					pline("Artifact specs: wtf how on earth are you picking up these ultra-heavy things??? Anyway, if you're chained to it, you have the stronger version of the wakeup call nastytrap effect."); break;
+				case ART_NUCULATE:
+					pline("Artifact specs: you're supposed to not be able to pick up this item, but eh, I'll talk... +2 intelligence and resist contamination if you're chained to it."); break;
+				case ART_SISYPHUS__BURDEN:
+					pline("Artifact specs: spawns cursed, and if you're chained to it, being jerked back by it causes inertia. Although I'm not sure how you managed to pick up a 30000-weight item. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'a heavy, cursed sphere that returns no matter how far it's thrown.'"); break;
+				case ART_MAREA_S_EXALTITUDE:
+					pline("Artifact specs: double victoria trap effect and +2 all stats while you're chained to it. You shouldn't have been able to get this thing into your inventory in the first place though!"); break;
+				case ART_HIGH_AFFIX:
+					pline("Artifact specs: WTF, how much carry capacity do you have?! Anyway, if you're chained to it, this thing gives double poison resistance."); break;
+				case ART_KYRA_S_ODDNESS:
+					pline("Artifact specs: ...man, what are those players doing that they can pick up things not meant to be picked up due to being to heavy... anyway, if you're chained to it, you have the stronger version of the secret attack nastytrap effect and all male monsters which are always hostile will be displayed."); break;
+				case ART_GLIDEN_WIDE:
+					pline("Artifact specs: double swimming and double flying while you're chained to it. Did that give you enough carry cap to be able to actually lift this ultra-heavy thing by any chance?"); break;
+				case ART_WIDOWMAKER:
+					pline("Artifact specs: +20 to-hit and +11 damage."); break;
+				case ART_MOLTEN_ORBIT:
+					pline("Artifact specs: +20 fire damage, gives you the destruction nastytrap effect for a while when wielded, neutral."); break;
+				case ART_SOUL_ANCHOR:
+					pline("Artifact specs: beheads enemies and can drain levels from enemies, occasionally cancels the target, chaotic."); break;
+				case ART_BUFFBALL:
+					pline("Artifact specs: +10 to-hit and +10 damage."); break;
+				case ART_ASTONI_S_STOUT_EMBANKMENT:
+					pline("Artifact specs: +14 damage, and if you're chained to it, your AC is also improved by 20. If you're chained to it or wielding it, you have the double larissa trap effect."); break;
+				case ART_SUNSPIKE:
+					pline("Artifact specs: lights up areas when wielded, can blind enemies who fail to resist."); break;
+				case ART_FLUFFLEDRAOUT:
+					pline("Artifact specs: +20 damage to dragons, displays all dragons when wielded."); break;
+				case ART_HEPHAESTUS__METEOR:
+					pline("Artifact specs: +8 to-hit and +14 fire damage, throwing it at an enemy can cause a fiery explosion. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'forged in divine flame, falling like a star.'"); break;
+				case ART_ECLIPSE_MAW:
+					pline("Artifact specs: +4 to-hit and +10 damage, activates noctem when wielded, constantly changes weather to eclipse if you're chained to it, doesn't dull if you hit things with it and if you keep wielding it, its enchantment will slowly go up until it reaches +8."); break;
+				case ART_KALI_S_ORBIT:
+					pline("Artifact specs: +4 to-hit and +11 damage, boosts your AC by 10 and death resistance when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'the dancing destruction of the goddess of time and death.'"); break;
+				case ART_ROLLROLLROLL___:
+					pline("Artifact specs: poisons targets. If you wield it or are chained to it, you can swim and your inventory is protected from water damage."); break;
+				case ART_SHYRRA_S_LAMENT:
+					pline("Artifact specs: +8 damage, undead warning when wielded or also when you're chained to it. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Shyrra the Mourning Saint forged this chain from the shackles of her fallen companions. Every strike echoes like a funeral bell.'"); break;
+				case ART_BABA_YAGA_S_TETHER:
+					pline("Artifact specs: hitting enemies with it may occasionally polymorph them. If you were chained to it, you'd have polymorph control instead. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'said to drag enemies screaming into the witch's hut on chicken legs.'"); break;
+				case ART_SPETZFHHHHHHH:
+					pline("Artifact specs: deals bleeding damage to enemies."); break;
+				case ART_GALE_FANG:
+					pline("Artifact specs: +5 cold damage, neutral. If you were chained to it, moving around would shuffle nearby monsters."); break;
+				case ART_MOTORCYCLE_DRIVE:
+					pline("Artifact specs: +5 to-hit and double damage. If you're riding, it deals triple damage."); break;
+				case ART_PERSEPHONE_S_CHAIN:
+					pline("Artifact specs: +7 to-hit and +10 damage, can slow enemies who fail to resist. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'entwined with blossoms and bones, binding the living and the dead.'"); break;
+				case ART_TEMPEST_S_GRASP:
+					pline("Artifact specs: +2 to-hit and +5 shock damage, neutral."); break;
+				case ART_ETERNAL_SWING:
+					pline("Artifact specs: as long as you keep hitting things without doing anything else, every hit deals one more point of damage compared to the last one."); break;
+				case ART_HERMES__SNARE:
+					pline("Artifact specs: fast speed when wielded, can paralyze enemies who fail to resist. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'swift as a thief's hand, inescapable once wrapped around prey.'"); break;
+				case ART_HALO_OF_JUDGMENT:
+					pline("Artifact specs: +20 to-hit and +10 damage to crossaligned monsters, lawful."); break;
+				case ART_RE_CYCLE:
+					pline("Artifact specs: full nutrients, both when wielded and when you're chained to it."); break;
+				case ART_ONI_CRUSHER:
+					pline("Artifact specs: +10 to-hit and +23 damage to demons, warns of demons and +5 strength when wielded. If you're chained to it, this artifact also gives +5 STR. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'the brutal chain of a demon-slaying hero from eastern legend.'"); break;
+				case ART_CAN_TOTALLY_EAT__BUT_LACK_:
+					pline("Artifact specs: temporary cut nutrition effect when wielded, and if you were chained to it you'd have cut nutrition too. In both cases, it allows you to eat items made of paper."); break;
+				case ART_AMORINA_S_CHAIN:
+					pline("Artifact specs: +15 to-hit and +3 damage, wielding it or being chained to it gives double liselotte trap effect and +3 CHA. If you were chained to it, it'd allow you to always opt out of foocubus seduction attempts, but you probably aren't since you're looking at its description which means that it's in your inventory, as opposed to being your punishment chain :-P"); break;
+				case ART_BRIGHT_CHAMBER:
+					pline("Artifact specs: wielding it improves your vision range by one. If you were chained to it, the vision range would be improved by two."); break;
+				case ART_MULTIRAINBOW_NODE:
+					pline("Artifact specs: wielding it or being chained to it will occasionally change its base item type."); break;
+				case ART_BLEERGLANG:
+					pline("Artifact specs: +8 damage, spawns rusty."); break;
+				case ART_BONECRADLE:
+					pline("Artifact specs: +2 to-hit and +2 damage, drain resistance when wielded. If you're chained to it, movement will make noise."); break;
+				case ART_VENOMLASH:
+					pline("Artifact specs: +3 to-hit and +6 damage, poisons targets, chaotic."); break;
+				case ART_BLACKTHORN_CRUSHER:
+					pline("Artifact specs: deals quite some bleeding damage to enemies."); break;
+				case ART_ANANSI_S_WEB:
+					pline("Artifact specs: +14 damage, can confuse monsters who fail to resist. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'entangles foes in trickery before crushing them.'"); break;
+				case ART_HIMMELIE_S_STRAWBERRY:
+					pline("Artifact specs: full nutrients when wielded, lawful. If you're lawful yourself, it also gives full nutrients when you're chained to it, as well as resist confusion and stun both when you're chained to it and when you're wielding it. But if you're chaotic, wielding it or being chained to it gives the may-britt trap effect."); break;
+				case ART_IRON_SERPENT:
+					pline("Artifact specs: +2 to-hit and +11 damage, poisons enemies."); break;
+				case ART_CHAINS_OF_THE_ABYSS:
+					pline("Artifact specs: +4 stun damage, psi resistance when wielded."); break;
+				case ART_STONEBREAKER:
+					pline("Artifact specs: +8 damage, allows you to dig with the #force command, neutral."); break;
+				case ART_MECHINEFELL:
+					pline("Artifact specs: wielding it or being chained to it grants diminished bleeding, magical breathing as well as resistance to sleep and poison."); break;
+				case ART_SANCTIFIER_S_CHAIN:
+					pline("Artifact specs: +10 to-hit and +22 damage to undead, demons, werecreatures and vampires, lawful."); break;
+				case ART_SHATTERSTAR:
+					pline("Artifact specs: +7 to-hit and +7 damage."); break;
+				case ART_DESPLESIR:
+					pline("Artifact specs: reflection when wielded. Wielding it or being chained to it also gives you a chance to avoid projectiles."); break;
+				case ART_STORMLASH:
+					pline("Artifact specs: +4 to-hit and +13 shock damage, shock resistance when wielded."); break;
+				case ART_LAUGHING_ANVIL:
+					pline("Artifact specs: hitting things with it wakes up nearby enemies and may boost your charisma."); break;
+				case ART_IRON_LOTUS:
+					pline("Artifact specs: +2 to-hit and +10 damage, double attacks when wielded, poisons targets, neutral."); break;
+				case ART_IZQUXXISQUID_S_RESEARCH:
+					pline("Artifact specs: ESP and +3 intelligence when wielded. If you were chained to it, the bonus is only +1 INT but it'd also give ESP. In both cases you can use the #monster command to emit mind blasts."); break;
+				case ART_JORMUNGANDR_S_COIL:
+					pline("Artifact specs: while wielding it, this weapon will slowly repair erosion or negative enchantment values. If you were chained to it, it'd give you very fast speed and significant bonuses to your carry capacity instead. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'its links echo the endless loop of the world serpent.'"); break;
+				case ART_FEYNDRAL_S_HOURGLASS:
+					pline("Artifact specs: hitting something with it occasionally stops time for a few turns. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Feyndral the Chrono-Hermit wove time into this chain, making each blow feel like it lands a hundred times in the same instant.'"); break;
+				case ART_SHACKLER:
+					pline("Artifact specs: +3 to-hit and +4 damage, can slow enemies who fail to resist."); break;
+				case ART_VAELGROM_S_SPINE:
+					pline("Artifact specs: +10 damage. This item is resistant to many forms of destruction, erosion and disenchantment. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Vaelgrom the Bone-Tyrant strung his enemies' vertebrae into a chain, binding them to an indestructible iron sphere.'"); break;
+				case ART_ZERATHUL_S_COMET:
+					pline("Artifact specs: +6 to-hit and +12 fire damage. Wielding it or being chained to it conveys magical breathing. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Zerathul, the Celestial Vagabond, wandered the void with this blazing chain, striking down anything that challenged the path of his voyage.'"); break;
+				case ART_DJANGO_S_CHAIN:
+					pline("Artifact specs: wielding it or being chained to it gives +5 to all stats but also aggravates monsters. This artifact has been designed by Demo."); break;
+				case ART_THASSIRA_S_HEARTBIND:
+					pline("Artifact specs: +10 to-hit and +26 damage to monsters who like magical items, gold or jewels. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Thassira, goddess of unbreakable oaths, used this chain to bind liars and oathbreakers — and crush them when they struggled.'"); break;
+				case ART_EARNTRARE:
+					pline("Artifact specs: drains levels from enemies."); break;
+				case ART_CUCHULAINN_S_WHIRL:
+					pline("Artifact specs: +8 damage, double attacks when wielded. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'spins so fast it hums like the Hound of Ulster's spear.'"); break;
+				case ART_ASHEN_ORBIT:
+					pline("Artifact specs: +8 fire damage. Being punished with it would instead shoot fire bolts whenever you move but at the cost of nutrition."); break;
+				case ART_LINTEN_GA:
+					pline("Artifact specs: +2 to-hit and +2 damage."); break;
+				case ART_HELICOPTER_CHAIN:
+					pline("Artifact specs: flying and protects from drowning attacks when wielded or also when you're chained to it. If you wield it without dual-wielding, you can attack faster than normal. This artifact was designed by potato44."); break;
+				case ART_MORRIGAN_S_EMBRACE:
+					pline("Artifact specs: +5 to-hit and +5 damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'a black iron chain that whispers in the voice of the war goddess.'"); break;
+				case ART_CHAINS_OF_ABSOLUTION:
+					pline("Artifact specs: if you hit a chaotic monster with it while your alignment is positive, the monster in question is paralyzed, but you lose a point of alignment in the process. Lawful."); break;
+				case ART_KLASCH_WHAP:
+					pline("Artifact specs: +6 to-hit and +16 damage to thick-skinned monsters."); break;
+				case ART_NYSSANDRA_S_WHISPER:
+					pline("Artifact specs: cancels enemies who fail to resist. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Nyssandra, the Keeper of Lost Names, enchanted this chain to steal the voice of any who hear it swinging through the air.'"); break;
+				case ART_CHAINS_OF_THE_DAMNED:
+					pline("Artifact specs: +5 to-hit and +12 drain damage, can drain levels from enemies, drain resistance when wielded, chaotic."); break;
+				case ART_KRYTHRA_S_BLOOM:
+					pline("Artifact specs: deals quite some bleeding damage to enemies. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Krythra the Thornmother forged this chain from living vines of steel; the sphere sprouts barbed petals upon impact.'"); break;
+				case ART_OLEA_PRETIOSA:
+					pline("Artifact specs: regeneration when wielded. If you wield it or are chained to it, you have scent view and the stronger version of the funwall effect. Being chained to it also boosts your luck and mana regeneration rate."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

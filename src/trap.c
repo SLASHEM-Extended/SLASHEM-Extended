@@ -25621,6 +25621,9 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_DREHN_PIPE) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_OUT_OF_THE_RAIN) continue;
 
+		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_ROLLROLLROLL___) continue;
+		if ((obj->where != OBJ_FLOOR) && uball && uball->oartifact == ART_ROLLROLLROLL___) continue;
+
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_FLOW_BASIN) continue;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_SWAPSCHWAP) continue;
 		if ((obj->where != OBJ_FLOOR) && autismringcheck(ART_JOLIE_S_JOLLY)) continue;

@@ -2888,7 +2888,7 @@ int held;
 
 	}
 
-	if (ContainerKaboom || u.uprops[CONTAINER_KABOOM].extrinsic || have_containerkaboomstone()) {
+	if (ContainerKaboom || u.uprops[CONTAINER_KABOOM].extrinsic || have_containerkaboomstone() || autismweaponcheck(ART_BUMMERWUMMER) || (uball && uball->oartifact == ART_BUMMERWUMMER) ) {
 		containerkaboom();
 	}
 

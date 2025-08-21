@@ -621,6 +621,12 @@ drag:
 		struct monst *victim;
 
 		You("are jerked back by the iron ball!");
+
+		if (uball && uball->oartifact == ART_SISYPHUS__BURDEN) {
+			u.inertia += rn1(5,5);
+			You_feel("exhausted...");
+		}
+
 		if ((victim = m_at(uchain->ox, uchain->oy)) != 0) {
 		    int tmp;
 			int dieroll = rnd(20);

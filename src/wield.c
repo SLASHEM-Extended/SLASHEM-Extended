@@ -100,7 +100,7 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	 * *whenever* Sunsword is unwielded, from whatever cause.
 	 */
 	setworn(obj, W_WEP);
-	if (uwep == obj && olduwep && (olduwep->oartifact == ART_SUNSWORD || olduwep->oartifact == ART_SUNSCREEN || olduwep->oartifact == ART_SUNTINOPENER || olduwep->oartifact == ART_SUNRUBBERHOSE) &&
+	if (uwep == obj && olduwep && (olduwep->oartifact == ART_SUNSWORD || olduwep->oartifact == ART_RADIANT_WARDEN || olduwep->oartifact == ART_MORNINGSTAR_OF_DAWN || olduwep->oartifact == ART_SUNSPIKE || olduwep->oartifact == ART_SUNSCREEN || olduwep->oartifact == ART_SUNTINOPENER || olduwep->oartifact == ART_SUNRUBBERHOSE) &&
 		olduwep->lamplit) {
 	    end_burn(olduwep, FALSE);
 	    if (!Blind) pline("%s glowing.", Tobjnam(olduwep, "stop"));
@@ -218,6 +218,34 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 	if (uwep && uwep->oartifact == ART_GORMALER && objects[uwep->otyp].oc_material != MT_CHROME) {
 		objects[uwep->otyp].oc_material = MT_CHROME;
 		Your("weapon is made of chrome now.");
+	}
+	if (uwep && uwep->oartifact == ART_P_P_P_PLAS) {
+		adjalign(-100);
+		You("feel bad about using plastic.");
+	}
+	if (uwep && uwep->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_) {
+		if (CutNutritionEffect < 5000L) CutNutritionEffect = 5000L;
+	}
+
+	if (uwep && uwep->oartifact == ART_ECLIPSE_MAW) {
+		u.currentweather = WEATHER_ECLIPSE;
+		tell_main_weather();
+	}
+
+	if (uwep && uwep->oartifact == ART_BLOOD_MOON_ANCHOR) {
+		if (WereformBug < 5000L) WereformBug = 5000L;
+	}
+
+	if (uwep && uwep->oartifact == ART_MOLTEN_ORBIT) {
+		if (DestructionEffect < 5000L) DestructionEffect = 5000L;
+	}
+
+	if (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) {
+		int ulx, uly;
+		for (ulx = 1; ulx < (COLNO); ulx++)
+	        for (uly = 0; uly < (ROWNO); uly++) {
+			levl[ulx][uly].lit = 0;
+		}
 	}
 	if (uwep && uwep->oartifact == ART_GRISGREN && objects[uwep->otyp].oc_material != MT_GREEN_STEEL) {
 		objects[uwep->otyp].oc_material = MT_GREEN_STEEL;
@@ -697,6 +725,36 @@ swapweaponchoice:
 			pline("A terrible black aura surrounds your axe...");
 		}
 
+		if (uswapwep && uswapwep->oartifact == ART_BLOOD_MOON_ANCHOR) {
+			if (WereformBug < 5000L) WereformBug = 5000L;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ERYNDREL_S_ECLIPSE) {
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				levl[ulx][uly].lit = 0;
+			}
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_MOLTEN_ORBIT) {
+			if (DestructionEffect < 5000L) DestructionEffect = 5000L;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_CAN_TOTALLY_EAT__BUT_LACK_) {
+			if (CutNutritionEffect < 5000L) CutNutritionEffect = 5000L;
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_P_P_P_PLAS) {
+			adjalign(-100);
+			You("feel bad about using plastic.");
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_ECLIPSE_MAW) {
+			u.currentweather = WEATHER_ECLIPSE;
+			tell_main_weather();
+		}
+
 		if (uswapwep && uswapwep->otyp == HONOR_KATANA && !uswapwep->cursed) {
 			curse(uswapwep);
 			Your("katana welds itself to your other %s!", body_part(HAND));
@@ -1093,7 +1151,7 @@ boolean put_away;
 	    /* KMH -- Talking artifacts are finally implemented */
 	    arti_speak(wep);
 
-	    if ((wep->oartifact == ART_SUNSWORD || wep->oartifact == ART_SUNSCREEN || wep->oartifact == ART_SUNTINOPENER || wep->oartifact == ART_SUNRUBBERHOSE) && !wep->lamplit) {
+	    if ((wep->oartifact == ART_SUNSWORD || wep->oartifact == ART_SUNSPIKE || wep->oartifact == ART_MORNINGSTAR_OF_DAWN || wep->oartifact == ART_RADIANT_WARDEN || wep->oartifact == ART_SUNSCREEN || wep->oartifact == ART_SUNTINOPENER || wep->oartifact == ART_SUNRUBBERHOSE) && !wep->lamplit) {
 		begin_burn(wep, FALSE);
 		if (!Blind)
 		    pline("%s to glow brilliantly!", Tobjnam(wep, "begin"));

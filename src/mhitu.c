@@ -7143,7 +7143,7 @@ hitmu(mtmp, mattk)
 
 	if (mattk->aatyp == AT_SPIT && atttyp == AD_TCKL) atttyp = AD_PHYS; /* manticore fix */
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttyp == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone() || (uball && uball->oartifact == ART_KYRA_S_ODDNESS) ) && atttyp == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttyp == AD_ENDS || atttyp == AD_RBRE || atttyp == AD_WERE || atttyp == AD_PHYS) {
 			atttyp = randattack(); }
 
@@ -7322,6 +7322,13 @@ hitmu(mtmp, mattk)
 			}
 
 			if (otmp && otmp->oartifact == ART_CRUCIFIX_OF_THE_MAD_KING && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
+
+				pline("Collusion!");
+				litroomlite(FALSE);
+
+			}
+
+			if (otmp && otmp->oartifact == ART_BLACK_SUN_ORB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5)) ) {
 
 				pline("Collusion!");
 				litroomlite(FALSE);
@@ -8885,6 +8892,8 @@ dopois:
 			/* astronauts are good at wriggling free, but will still get hurt by the attack itself --Amy */
 				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
 			} else if (uamul && uamul->oartifact == ART_EMPTYSNAP) {
+				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
+			} else if ((uwep && uwep->oartifact == ART_HELICOPTER_CHAIN) || (uchain && uchain->oartifact == ART_HELICOPTER_CHAIN)) {
 				pline("%s constricts you!", Monnam(mtmp)); /* but doesn't wrap around you */
 			} else {
 			    pline("%s swings itself around you!", Monnam(mtmp));
@@ -11203,7 +11212,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypA = reallie(atttypA);
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypA == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone() || (uball && uball->oartifact == ART_KYRA_S_ODDNESS) ) && atttypA == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttypA == AD_ENDS || atttypA == AD_RBRE || atttypA == AD_WERE || atttypA == AD_PHYS) {
 			atttypA = randattack(); }
 
@@ -13728,7 +13737,7 @@ boolean ufound;
 
 	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypC = reallie(atttypC);
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypC == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone() || (uball && uball->oartifact == ART_KYRA_S_ODDNESS) ) && atttypC == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttypC == AD_ENDS || atttypC == AD_RBRE || atttypC == AD_WERE || atttypC == AD_PHYS) {
 			atttypC = randattack(); }
 
@@ -16004,7 +16013,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	if ((RealLieEffect || u.uprops[REAL_LIE_EFFECT].extrinsic || have_realliestone()) && !rn2(2) ) atttypB = reallie(atttypB);
 
-	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone()) && atttypB == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
+	if ((SecretAttackBug || u.uprops[SECRET_ATTACK_BUG].extrinsic || have_secretattackstone() || (uball && uball->oartifact == ART_KYRA_S_ODDNESS) ) && atttypB == AD_PHYS && !rn2(SecretAttackXtra ? 20 : 100)) {
 		while (atttypB == AD_ENDS || atttypB == AD_RBRE || atttypB == AD_WERE || atttypB == AD_PHYS) {
 			atttypB = randattack(); }
 
@@ -21194,7 +21203,7 @@ const char *str;
 
 	if (!obj || !obj->owornmask) return;
 
-	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && flags.female) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !autismweaponcheck(ART_LAIDSWANDIR) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
+	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && flags.female) || (uchain && uchain->oartifact == ART_AMORINA_S_CHAIN) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !autismweaponcheck(ART_LAIDSWANDIR) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
 
 		sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
 			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));

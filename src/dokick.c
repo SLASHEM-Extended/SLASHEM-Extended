@@ -2485,7 +2485,7 @@ dumb:
 
 	exercise(A_DEX, TRUE);
 	/* door is known to be CLOSED or LOCKED */
-	if(rnl(35) < avrg_attrib + (!martial() ? 0 : ACURR(A_DEX))) {
+	if ((rnl(35) < avrg_attrib + (!martial() ? 0 : ACURR(A_DEX))) || (uwep && uwep->oartifact == ART_MORVAK_S_GRINDSTONE) || (uball && uball->oartifact == ART_MORVAK_S_GRINDSTONE) ) {
 		boolean shopdoor = *in_rooms(x, y, SHOPBASE) ? TRUE : FALSE;
 		/* break the door */
 		u.cnd_kicklockcount++;

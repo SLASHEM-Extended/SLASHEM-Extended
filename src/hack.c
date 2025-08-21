@@ -5760,6 +5760,7 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 	if (uarm && uarm->oartifact == ART_NATAS_IS_BACK) maxcarrcap += 2000;
 	if (uarmc && uarmc->otyp == TORNISTER_CLOAK) maxcarrcap += 500;
 	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) maxcarrcap += 2000;
+	if (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) maxcarrcap += 500;
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		maxcarrcap += 1000;
 		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;
@@ -5855,6 +5856,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if (uarm && uarm->oartifact == ART_NATAS_IS_BACK) carrcap += 2000;
 	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) carrcap += 1000;
 	if (uarmc && uarmc->oartifact == ART_SI) carrcap += 1000;
+	if (uwep && uwep->oartifact == ART_LYSARITH_S_TIDEBREAKER) carrcap += 1000;
 	if (uarmg && uarmg->oartifact == ART_LIMIT_) {
 		carrcap += 2000;
 		carrcap += (u.ulevel * 100);
@@ -5864,6 +5866,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;
 	}
+	if (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) carrcap += 2000;
 	if (have_sportivox()) carrcap += 250;
 	if (uarmc && uarmc->oartifact == ART_FEATHER_LIGHT) {
 		carrcap += 100;

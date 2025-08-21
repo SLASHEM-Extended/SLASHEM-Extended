@@ -94,6 +94,79 @@ void * roomcnt;
 }
 
 STATIC_PTR void
+do_lockfloodP(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+
+			if (rn2(3)) doorlockX(randomx, randomy, TRUE);
+			else {
+				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
+				else levl[randomx][randomy].typ = CROSSWALL;
+				blockorunblock_point(randomx,randomy);
+				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+				del_engr_at(randomx, randomy);
+
+				if ((mtmp = m_at(randomx, randomy)) != 0) {
+					(void) minliquid(mtmp);
+				} else {
+					newsym(randomx,randomy);
+				}
+
+			}
+		}
+	}
+
+	if (rn2(3)) doorlockX(x, y, TRUE);
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a wall at x, y */
+		if (levl[x][y].typ != DOOR) levl[x][y].typ = STONE;
+		else levl[x][y].typ = CROSSWALL;
+		blockorunblock_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
+
+STATIC_PTR void
 do_terrainfloodP(x, y, poolcnt)
 int x, y;
 void * poolcnt;
@@ -2075,6 +2148,9 @@ register boolean mod;
 			curse(otmp);
 			otmp->hvycurse = TRUE;
 		    }
+		    if (otmp && otmp->oartifact == ART_SISYPHUS__BURDEN) {
+			curse(otmp);
+		    }
 		    if (otmp && otmp->oartifact == ART_WHOOPWHOOP) {
 			otmp->bknown = TRUE;
 		    }
@@ -2972,6 +3048,9 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_WHO_CARES_ABOUT_A_LITTLE_R) {
 			if (otmp->oeroded < 1) otmp->oeroded = 1;
 		    }
+		    if (otmp && otmp->oartifact == ART_BLEERGLANG) {
+			if (otmp->oeroded < 1) otmp->oeroded = 1;
+		    }
 		    if (otmp && otmp->oartifact == ART_NOTHING_BUT_FILLER) {
 			otmp->oerodeproof = TRUE;
 			if (rn2(2)) {
@@ -3229,7 +3308,7 @@ register boolean mod;
 			 * Holy Spear of Light on creation.
 			 */
 			if (!artiexist[m] && artifact_light(otmp) &&
-			  otmp->oartifact != ART_SUNSWORD && otmp->oartifact != ART_SUNSCREEN && otmp->oartifact != ART_SUNTINOPENER && otmp->oartifact != ART_SUNRUBBERHOSE)
+			  otmp->oartifact != ART_SUNSWORD && otmp->oartifact != ART_SUNSPIKE && otmp->oartifact != ART_MORNINGSTAR_OF_DAWN && otmp->oartifact != ART_RADIANT_WARDEN && otmp->oartifact != ART_SUNSCREEN && otmp->oartifact != ART_SUNTINOPENER && otmp->oartifact != ART_SUNRUBBERHOSE)
 			    begin_burn(otmp, FALSE);
 			/*otmp->quan = 1;*/ /* guarantee only one of this artifact */ /* Amy edit: artifact ammo should not suck... */
 /* Artifacts are immune to unpolypile --ALI */
@@ -3967,6 +4046,10 @@ struct monst *mon;
 				if (Luck < 0) return abs((int)Luck);
 				break;
 
+			case ART_ORRATH_S_EVENTIDE:
+				if (twilighttime()) return 20;
+				break;
+
 			default: break;
 		}
 	}
@@ -4029,6 +4112,9 @@ int tmp;
 				}
 				break;
 
+			case ART_ORRATH_S_EVENTIDE:
+				if (twilighttime()) return 15;
+				break;
 
 			case ART_POINT_DEXTER: /* h@ck for dexterity-dependant damage bonus --Amy */
 				if (ACURR(A_DEX) < 1) return 1;
@@ -4054,6 +4140,12 @@ int tmp;
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
 	    }
 	    if (otmp && otmp->oartifact == ART_CRUELTY_OF_EVISCERATION) {
+			return rnd(max(tmp * 2, 1)); /* triple damage!! */
+	    }
+	    if (otmp && otmp->oartifact == ART_BLOOD_MOON_ANCHOR && (flags.moonphase == FULL_MOON)) {
+			return rnd(max(tmp * 2, 1)); /* triple damage!! */
+	    }
+	    if (otmp && otmp->oartifact == ART_MOTORCYCLE_DRIVE && u.usteed) {
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
 	    }
 
@@ -4746,7 +4838,7 @@ int dieroll; /* needed for Magicbane and vorpal blades */
 	}
 
 	/* STEPHEN WHITE'S NEW CODE */
-	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_HOH_LEVEL_GREENITY || otmp->oartifact == ART_CAPSULITH || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_WRONG_GREEN || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
+	if (otmp->oartifact == ART_SERPENT_S_TONGUE || otmp->oartifact == ART_GIVE_US_A_NAME || otmp->oartifact == ART_DIRGE || otmp->oartifact == ART_IRON_SERPENT || otmp->oartifact == ART_IRON_LOTUS || otmp->oartifact == ART_VENOMLASH || otmp->oartifact == ART_ROLLROLLROLL___ || otmp->oartifact == ART_HOH_LEVEL_GREENITY || otmp->oartifact == ART_CAPSULITH || otmp->oartifact == ART_TOXIC_PINK || otmp->oartifact == ART_BIBLICAL_PLAGUE || otmp->oartifact == ART_THORNS || otmp->oartifact == ART_DEVIOUS_DILJER || otmp->oartifact == ART_NECMEASURE || otmp->oartifact == ART_VENOREAL || otmp->oartifact == ART_TWISTED_TURN || otmp->oartifact == ART_VERYGRIMTOOTH || otmp->oartifact == ART_SHIZUGAMI_S_MIZUCHI || otmp->oartifact == ART_SCHOSCHO_BARBITUER || otmp->oartifact == ART_WONDERLIGHT || otmp->oartifact == ART_WAR_DECLARATION || otmp->oartifact == ART_GREENLINGS_LASH || otmp->oartifact == ART_EGRI_DUEU || otmp->oartifact == ART_WRONG_GREEN || otmp->oartifact == ART_POISON_BURST || otmp->oartifact == ART_THOSE_LAZY_PROGRAMMERS || otmp->oartifact == ART_HALLOW_MOONFALL || otmp->oartifact == ART_QUEUE_STAFF || otmp->oartifact == ART_SNAKELASH || otmp->oartifact == ART_SWORD_OF_BHELEU) {
 	    otmp->dknown = TRUE;
 	    pline_The("twisted weapon poisons %s!",
 		    youdefend ? "you" : mon_nam(mdef));
@@ -6180,6 +6272,14 @@ chargingchoice:
 
 		*/
 
+		if (obj->oartifact == ART_GORTHRAK_S_SHACKLEBANE) {
+			if (Punished) {
+				unpunish();
+			}
+			break;
+		}
+
+
 		if (obj->oartifact == ART_NAMED_NUKA_COLA) {
 
 			if (u.uhunger > 2500) {
@@ -6246,6 +6346,65 @@ chargingchoice:
 				} /* monster is catchable loop */
 
 			} /* for loop */
+
+			break;
+		}
+
+		if (obj->oartifact == ART_SPINGERBLOEPP) {
+			if (!(uball && (uball == obj)) ) {
+				adjalign(-50);
+				You("don't feel too good...");
+				break;
+			} else {
+				long savewornmask;
+
+				savewornmask = obj->owornmask;
+				setworn((struct obj *)0, obj->owornmask);
+
+				obj->otyp = randartball();
+				obj->owt = weight(obj);
+
+				setworn(obj, savewornmask);
+
+				Your("ball morphs...");
+
+				break;
+
+			}
+			break;
+		}
+
+		if (obj->oartifact == ART_PRICKENWICK) {
+
+			int madepool = 0;
+
+			if (!uball || (uball != obj)) {
+				adjalign(-50);
+				u.alignlim -= 10;
+			}
+
+			do_clear_areaX(u.ux, u.uy, 8, do_lockfloodP, (void *)&madepool);
+
+			pline(FunnyHallu ? "It's getting a little bit tight in here!" : "Walls and obstacles shoot up from the ground!");
+
+			if (uball && (uball == obj)) {
+				int k, l;
+
+				for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+					if (!isok(u.ux + k, u.uy + l)) continue;
+					if (k == 0 && l == 0) continue; /* don't place wall on your own position --Amy */
+
+					if (isok(u.ux + k, u.uy + l) && ((levl[u.ux + k][u.uy + l].wall_info & W_NONDIGGABLE) == 0) && (levl[u.ux + k][u.uy + l].typ == ROOM || levl[u.ux + k][u.uy + l].typ == CORR) ) {
+
+						levl[u.ux + k][u.uy + l].typ = STONE;
+						blockorunblock_point(u.ux + k, u.uy + l);
+						newsym(u.ux + k, u.uy + l);
+
+					}
+
+				}
+
+			}
 
 			break;
 		}
@@ -6463,7 +6622,6 @@ tunguskaagain:
 			dynamite = mksobj_at(STICK_OF_DYNAMITE, cc.x, cc.y, TRUE, FALSE, FALSE);
 
 			if (dynamite) {
-				u.dynamitehack = TRUE;
 				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
 				else {
 					dynamite->dynamitekaboom = 1;
@@ -6472,13 +6630,42 @@ tunguskaagain:
 					attach_bomb_blow_timeout(dynamite, 0, 0);
 					run_timers();
 				}
-				u.dynamitehack = FALSE;
 			}
 			if (tunguskas > 0) {
 				tunguskas--;
 				goto tunguskaagain;
 			}
 
+
+			break;
+		}
+
+		if (obj->oartifact == ART_HELLFORGE_METEOR) {
+
+			curse(obj);
+			obj->hvycurse = TRUE;
+
+			struct obj *dynamite;
+			coord cc;
+
+			cc.x = rn1(COLNO-3,2);
+			cc.y = rn2(ROWNO);
+			dynamite = mksobj_at(STICK_OF_DYNAMITE, cc.x, cc.y, TRUE, FALSE, FALSE);
+
+			if (dynamite) {
+				if (dynamite->otyp != STICK_OF_DYNAMITE) delobj(dynamite);
+				else {
+					You("hear a sound that reminds you of fireworks.");
+
+					u.dynamitehack = TRUE;
+					dynamite->dynamitekaboom = 1;
+					dynamite->quan = 1;
+					dynamite->owt = weight(dynamite);
+					attach_bomb_blow_timeout(dynamite, 0, 0);
+					run_timers();
+					u.dynamitehack = FALSE;
+				}
+			}
 
 			break;
 		}
@@ -8981,15 +9168,19 @@ boolean silent;
 	return (-1);
 }
 
-/* WAC return TRUE if artifact is always lit */
+/* WAC return TRUE if artifact is always lit
+ * Amy note: if the weapon becomes lit when wielded, make sure to add code to wield.c!!! */
 boolean
 artifact_light(obj)
     struct obj *obj;
 {
     return get_artifact(obj) && (obj->oartifact == ART_SUNSWORD ||
+	    obj->oartifact == ART_SUNSPIKE ||
 	    obj->oartifact == ART_HOLY_SPEAR_OF_LIGHT ||
+	    obj->oartifact == ART_RADIANT_WARDEN ||
 	    obj->oartifact == ART_SUNSCREEN ||
 	    obj->oartifact == ART_SUNTINOPENER ||
+	    obj->oartifact == ART_MORNINGSTAR_OF_DAWN ||
 	    obj->oartifact == ART_SUNRUBBERHOSE ||
 	    obj->oartifact == ART_CANDLE_OF_ETERNAL_FLAME);
 }

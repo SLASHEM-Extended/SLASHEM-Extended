@@ -643,6 +643,15 @@ midnight()
 {
 	return(getlt()->tm_hour == 0);
 }
+
+int
+twilighttime()
+{
+	register int hour = getlt()->tm_hour;
+
+	return(hour > 19 && hour < 23);
+}
+
 #endif /* OVL2 */
 
 /*hacklib.c*/

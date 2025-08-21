@@ -3334,7 +3334,7 @@ int abil;
 			return FALSE;
 			break;
 		case ABIL_POLY_MIND_BLAST:
-			if (is_mind_flayer(youmonst.data) || (uarm && uarm->oartifact == ART_SABLOL) || (uimplant && uimplant->oartifact == ART_TSCHHKRZKRZ) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) ) ) return TRUE;
+			if (is_mind_flayer(youmonst.data) || (uchain && uchain->oartifact == ART_IZQUXXISQUID_S_RESEARCH) || (uwep && uwep->oartifact == ART_IZQUXXISQUID_S_RESEARCH) || (uarm && uarm->oartifact == ART_SABLOL) || (uimplant && uimplant->oartifact == ART_TSCHHKRZKRZ) || (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_SKILLED && uactivesymbiosis && is_mind_flayer(&mons[u.usymbiote.mnum]) ) ) return TRUE;
 			return FALSE;
 			break;
 		case ABIL_POLY_GREMWATER:

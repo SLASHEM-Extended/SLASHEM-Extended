@@ -13545,7 +13545,7 @@ A("Add The Missing Staircase",				LEATHER_ARMOR, /* randart2 armor, going up to 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
-A("Tunguska Event",				SCR_WORLD_FALL, /* causes dynamite explosions that can also blow up walls and generate lava like the ragnarok effect */
+A("Tunguska Event",				SCR_WORLD_FALL, /* causes dynamite explosions that can also blow up undiggable walls and generate lava like the ragnarok effect */
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
@@ -23043,6 +23043,422 @@ A("Zubrit's Hotness",				AMULET_OF_UNDRESSING, /* double undressing, double fire
 A("Four Dragons Table",				RIN_GAMBLING, /* neither you nor the dealer can bust from 11 when drawing an ace */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Gorthrak's Shacklebane",				HEAVY_TINSEL_BALL, /* can be invoked to unpunish you */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Dravok's Sundering",				HEAVY_STONE_BALL, /* wielding it allows you to #force mountains to destroy them, but doing so reduces the ball's enchantment by 5 (and if it's -5 or less, this ability doesn't work) */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("BummerWummer",				HEAVY_GLASS_BALL, /* container kaboom while wielded or also while you're chained to it */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	PHYS(4, 13), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Orrath's Eventide",				VERY_HEAVY_BALL, /* if the current hour is between 20 and 22, this weapon has +20 to-hit and +15 damage and also grants double invisibility and +15 AC when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 1), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Prickenwick",				HEAVY_BRICK_BALL, /* can be invoked for lockout; if you're chained to it, additionally transforms the eight squares surrounding you into rock if possible but if you're not chained to it, the invoke also gives -50 alignment and -10 max alignment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Morvak's Grindstone",				HEAVY_METAL_BALL, /* if you're wielding it or are chained to it, doors cannot resist and kicking them is guaranteed to break them */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Morningstar of Dawn",				HEAVY_WAX_BALL, /* lights up areas like sunsword when wielded */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(5, 8), DFNS(AD_BLND), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1500L ),
+
+A("Fenrir's Fang",				HEAVY_ALLOY_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Lysarith's Tidebreaker",				HEAVY_CHITIN_BALL, /* while wielding it, semicolons cannot hide underwater; also grants swimming and +1000 carry capacity */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DCLAS), 0, S_EEL,
+	ELEC(8, 32), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Kravenloch's Maw",				HEAVY_SHELL_BALL, /* +d10 bleeding damage to targets */
+	(SPFX_RESTR), 0, 0,
+	PHYS(14, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Corina's Bitchslap",				QUITE_HEAVY_IRON_BALL, /* blinds targets who fail a resistance check */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Gilded Executioner",				HEAVY_GOLD_BALL,
+	(SPFX_RESTR|SPFX_BEHEAD), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Hecate's Orbit",				HEAVY_COMPOST_BALL, /* +2 vision range when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2700L ),
+
+A("Envy Rock Work",				HEAVY_PAPER_BALL, /* while you're wielding it, 1 in 10 chance for RANDOM_CLASS objects (mkobj.c, see also veryobtainclass1 etc.) will be forced to be scrolls */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("P-P-P-Plas",				HEAVY_PLASTIC_BALL, /* while you're chained to it or wielding it, you can eat plastic (but not this particular artifact); every time you wield it, you lose 100 alignment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Spingerbloepp",				HEAVY_SCRAP_BALL, /* invoking while you're chained to it will change its base item, but if you're not chained to it you just lose 50 alignment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Tidebinder",				HEAVY_FOAM_BALL, /* damages a random armor piece of the target, randomly using one of the four types of erosion */
+	(SPFX_RESTR), 0, 0,
+	PHYS(1, 9), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
+
+A("Aegir's Anchor",				HEAVY_FIRMAMENT_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Eryndrel's Eclipse",				HEAVY_ELYSIUM_BALL, /* brings an end, blindness and monsters are short-sighted when wielded; whenever you wield it, the entire dungeon level becomes unlit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 40), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Soulbreaker",				HEAVY_GRANITE_BALL,
+	(SPFX_RESTR|SPFX_DRLI|SPFX_ATTK), 0, 0,
+	DRLI(7, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Vorgath's Graviton",				HEAVY_CHROME_BALL, /* can be applied to hit things at a distance of two squares like a polearm */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Tiamat's Maw",				HEAVY_COPPER_BALL, /* while wielding it, the damage type changes every turn */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(3, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Seraph's Orbit",				HEAVY_ANTIDOTE_BALL,
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(10, 10), DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 2700L ),
+
+A("Judgment's Orbit",				HEAVY_CELESTIAL_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(30, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Blood Moon Anchor",				HEAVY_SINNUM_BALL, /* if it's a full moon, it deals 3x damage, but wielding it gives you 5000 turns of wereform nastytrap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 17000L ),
+
+A("Radiant Warden",				HEAVY_TITANIUM_BALL, /* lights up areas like sunsword when wielded, prevents bad effects for pets and gives 50% chance for you to avoid regular and really bad effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("The Skullbinder",				EXTREMELY_HEAVY_IRON_BALL, /* slows targets and has 20% chance of cancelling them if they fail a resistance check */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 8), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 9000L ),
+
+A("Black Sun Orb",				HEAVY_CONCRETE_BALL, /* darkens areas on a hit; if you're wielding it, monsters have 33% chance of being short-sighted */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
+
+A("The Warden's Embrace",				HEAVY_ELASTHAN_BALL, /* if the monster doesn't resist, it's paralyzed for rn1(2,2) turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Crimson Gravity",				HEAVY_NANO_BALL, /* slows targets who fail a resistance check */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(0, 10), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("The Unchained Doom",				HEAVY_LEAD_BALL,
+	(SPFX_RESTR|SPFX_DRLI|SPFX_ATTK), 0, 0,
+	PHYS(12, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Hellforge Meteor",				HEAVY_ZEBETITE_BALL, /* can be invoked to blow up a stick of dynamite on a random square which can also raze undiggable walls, but doing so heavily curses the ball */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(10, 10), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_CHAOTIC, NON_PM, NON_PM, 25000L ),
+
+A("Downlift",				IMPOSSIBLY_HEAVY_IRON_BALL, /* cannot drop items while you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("All-Clear Signal",				IMPOSSIBLY_HEAVY_GLASS_BALL, /* 1 in 50 randomly generated wands are striking while you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Maisie's Delight",				IMPOSSIBLY_HEAVY_ELYSIUM_BALL, /* if you're chained to it, you have the double wakeup call effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Nuculate",				IMPOSSIBLY_HEAVY_NUCLEAR_BALL, /* +2 INT and resist contamination if you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sisyphus' Burden",				IMPOSSIBLY_HEAVY_SAND_BALL, /* spawns cursed; whenever you're jerked back by the ball, you get rn1(5,5) turns of inertia */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 50L ),
+
+A("Marea's Exaltitude",				IMPOSSIBLY_HEAVY_ETHER_BALL, /* double victoria trap effect and +2 all stats while you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("High Affix",				IMPOSSIBLY_HEAVY_OBSIDIAN_BALL, /* double poison resistance while you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Kyra's Oddness",				IMPOSSIBLY_HEAVY_ALLOY_BALL, /* double secret attack effect and displays all male M2_HOSTILE monsters if you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Gliden Wide",				IMPOSSIBLY_HEAVY_FOAM_BALL, /* if you're chained to it, double swimming and double flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Widowmaker",				BULKY_POURPOOR_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(20, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Molten Orbit",				BULKY_GEMSTONE_BALL, /* 5000 turns of destruction nastytrap effect when wielded */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	FIRE(0, 20), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 25000L ),
+
+A("Soul Anchor",				BULKY_MITHRIL_BALL, /* 20% chance of cancelling the target if it fails to resist */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_ATTK|SPFX_DRLI), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 50000L ),
+
+A("Buffball",				HEAVY_CLOTH_BALL,
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Astoni's Stout Embankment",				HEAVY_SILK_BALL, /* if you're chained to it or wielding it, double larissa trap effect; if you're chained to it, you also have +20 AC */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sunspike",				HEAVY_ALU_BALL, /* lights up areas when wielded like sunsword, blinds targets who fail a resistance check */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("FluffleDraout",				HEAVY_LEATHER_BALL, /* displays all D when wielded */
+	(SPFX_RESTR|SPFX_DCLAS), 0, S_DRAGON,
+	PHYS(0, 20), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Hephaestus' Meteor",				HEAVY_COBALT_BALL, /* fiery explosion if you hit something with a thrown one */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(8, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2800L ),
+
+A("Eclipse Maw",				NULL_BALL, /* activates noctem when wielded, being punished with it constantly changes weather to eclipse, doesn't dull if you hit things, 1 in 5000 chance for it to gain a point of enchantment (up to a maximum of +8) while you're wielding it */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Kali's Orbit",				AMBER_BALL, /* +10 AC and death resistance when wielded */
+	(SPFX_RESTR), 0, 0,
+	PHYS(4, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("rollrollroll...",				LIQUID_BALL, /* poisons targets, wielding it or being punished to it gives swimming and inventory water protection */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Shyrra's Lament",				TINSEL_CHAIN, /* undead warning when wielded or also if you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Baba Yaga's Tether",				STONE_CHAIN, /* polymorph control if you're chained to it; hitting an enemy with it has 1 in 5 to polymorph it if it doesn't resist and didn't die to the initial hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Spetzfhhhhhhh",				GLASS_CHAIN, /* +8 bleeding damage to targets */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Gale Fang",				HEAVY_CHAIN, /* if you move while being chained to it, nearby monsters are shuffled */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(0, 5), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1500L ),
+
+A("Motorcycle Drive",				METAL_CHAIN, /* if you're riding, it deals 3x damage */
+	(SPFX_RESTR), 0, 0,
+	PHYS(5, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Persephone's Chain",				WAX_CHAIN, /* slows targets who fail to resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Tempest's Grasp",				ALLOY_CHAIN,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	ELEC(2, 5), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 1200L ),
+
+A("The Eternal Swing",				BUBBLE_CHAIN, /* every hit deals one more damage than the last as long as you don't do something other than hitting a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hermes' Snare",				MESH_CHAIN, /* fast speed when wielded, paralyzes targets for d3 turns if they fail a resistance check */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Halo of Judgment",				CHITIN_CHAIN,
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
+	PHYS(20, 10), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 1300L ),
+
+A("Re-Cycle",				COMPOST_CHAIN, /* full nutrients when wielded or being chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Oni Crusher",				CLAY_CHAIN, /* +5 STR when wielded or also when you're chained to it */
+	(SPFX_RESTR|SPFX_DFLAG2|SPFX_WARN), 0, (M2_DEMON),
+	PHYS(10, 23), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Can Totally Eat (but lack the enzyme)",				PAPER_CHAIN, /* wielding it gives 5000 turns of cut nutrition effect while being chained to it gives that effect too; in both cases, you can eat items made of paper */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Amorina's Chain",				PLASTIC_CHAIN, /* wielding it or being chained to it gives double liselotte trap effect and +3 CHA; if you're chained to it, you can always say no when a foocubus is trying to seduce you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(15, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Bright Chamber",				WOOD_CHAIN, /* improves vision range by one when wielded or two when you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1300L ),
+
+A("Multirainbow Node",				SCRAP_CHAIN, /* if you're chained to it or wielding it, 1 in 2500 chance per turn that its base item changes */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bleerglang",				BRONZE_CHAIN, /* spawns with one layer of rust */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1400L ),
+
+A("Bonecradle",				GRANITE_SCOURGE, /* makes noise if you move while chained to it */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(2, 2), DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2600L ),
+
+A("Venomlash",				DISGUSTING_CHAIN, /* poisons targets */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 6), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 2500L ),
+
+A("Blackthorn Crusher",				CHROME_SCOURGE, /* deals +d20 bleeding damage to targets */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Anansi's Web",				ANTIDOTE_SCOURGE, /* confuses monsters who fail to resist */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Himmelie's Strawberry",				CELESTIAL_SCOURGE, /* full nutrients when wielded; if you're lawful, this also applies while you're chained to it and you resist stun and confusion both while wielding it and being chained to it; if you're chaotic, wielding it or being chained to it gives the may-britt trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 6000L ),
+
+A("Iron Serpent",				NUNCHIAKU, /* poisons targets */
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 11), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3300L ),
+
+A("Chains of the Abyss",				CONUNDRUM_NUNCHIAKU, /* psi resistance */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(0, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Stonebreaker",				CONCRETE_NUNCHIAKU, /* can #force with it to dig */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 2500L ),
+
+A("MechineFell",				NANO_NUNCHIAKU, /* diminished bleeding, magical breathing, resist sleep and poison; this also applies if you're chained to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sanctifier's Chain",				SILVER_NUNCHIAKU,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_UNDEAD|M2_DEMON|M2_WERE|M2_VAMPIRE),
+	PHYS(10, 22), NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("Shatterstar",				METEORIC_NUNCHIAKU,
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 7), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2800L ),
+
+A("Desplesir",				ZEBETITE_NUNCHIAKU, /* 33% chance to avoid projectiles, also if you're chained to it */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("Stormlash",				CORAL_NUNCHIAKU,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ELEC(4, 13), DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3700L ),
+
+A("The Laughing Anvil",				STEEL_NUNCHIAKU, /* every time you hit something, wake_nearby() is called and mightbooststat(A_CHA) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Iron Lotus",				HOSTAGE_CHAIN, /* double attacks, poisons the target */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(2, 10), NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 3000L ),
+
+A("Izquxxisquid's Research",				GLASS_HOSTAGE_CHAIN, /* +3 INT while wielded, +1 and ESP if you're chained to it; in both cases, you can #monster to emit mind flayer blasts */
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Jormungandr's Coil",				ELYSIUM_HOSTAGE_CHAIN, /* 1 in 1000 chance when wielded to repair one layer of erosion and one point of negative enchantment; if you're chained to it, very fast speed and +2000 carry capacity, +500 max carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Feyndral's Hourglass",				NUCLEAR_HOSTAGE_CHAIN, /* 1 in 50 if you hit that time is stopped for d3 (more) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("The Shackler",				SAND_HOSTAGE_CHAIN, /* slows enemies who fail a resistance check */
+	(SPFX_RESTR), 0, 0,
+	PHYS(3, 4), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Vaelgrom's Spine",				ETHER_HOSTAGE_CHAIN, /* hard to destruct, immune to erosion and disenchantment */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3600L ),
+
+A("Zerathul's Comet",				OBSIDIAN_HOSTAGE_CHAIN, /* magical breathing when wielded or also if you're chained to it */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	FIRE(6, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Django's Chain",				ALLOY_HOSTAGE_CHAIN, /* aggravate monster and +5 to all stats, both when wielded and when you're chained to it; by Demo */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
+
+A("Thassira's Heartbind",				FOAM_HOSTAGE_CHAIN,
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_MAGIC|M2_GREEDY|M2_JEWELS),
+	PHYS(10, 26), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Earntrare",				POURPOOR_LASH,
+	(SPFX_RESTR|SPFX_DRLI), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Cuchulainn's Whirl",				FLESH_LASH, /* double attacks when wielded */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ashen Orbit",				MITHRIL_LASH, /* being punished with it shoots a strength-1 bolt of fire behind you when you move but also drains 2 nutrition in the process */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	FIRE(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3600L ),
+
+A("Linten ga",				CLOTH_CHAIN,
+	(SPFX_RESTR), 0, 0,
+	PHYS(2, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Helicopter Chain",				MERCURIAL_CHAIN, /* flying and protects from drowning attacks, both when wielding it and when you're chained to it; if you wield it and aren't dual-wielding, you get double attacks without the downside; by potato44 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Morrigan's Embrace",				TAR_CHAIN,
+	(SPFX_RESTR|SPFX_SPEAK), 0, 0,
+	PHYS(5, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1300L ),
+
+A("Chains of Absolution",				BAMBOO_CHAIN, /* if your alignment is positive, hitting a chaotic-aligned monster with it paralyzes it for 3 turns, ignoring saving throws, but your alignment record is reduced by one in the process */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 18000L ),
+
+A("Klasch Whap",				LEATHER_NUNCHIAKU,
+	(SPFX_RESTR|SPFX_DFLAG1|SPFX_ATTK), 0, (M1_THICK_HIDE),
+	PHYS(6, 16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 700L ),
+
+A("Nyssandra's Whisper",				WONDER_CHAIN, /* cancels enemies who fail a resistance check */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Chains of the Damned",				AMBER_CHAIN,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DRLI|SPFX_DEFN), 0, 0,
+	DRLI(5, 12), DFNS(AD_DRLI), NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 5000L ),
+
+A("Krythra's Bloom",				GREEN_STEEL_CHAIN, /* +d20 bleeding damage to targets */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Olea Pretiosa",				LIQUID_CHAIN, /* if you're chained to it or wielding it, scent view and double funwall effect; while you're chained to it, you also have +2 luck and +5 recalc_mana() in attrib.c */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3700L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

@@ -5676,6 +5676,8 @@ doapply()
 		add_class(class_list, FOOD_CLASS);
 	if (carrying(HEAVY_LASER_BALL))
 		add_class(class_list, BALL_CLASS);
+	if (carryingarti(ART_VORGATH_S_GRAVITON))
+		add_class(class_list, BALL_CLASS);
 	if (carrying(LASER_CHAIN))
 		add_class(class_list, CHAIN_CLASS);
 	if (carrying(STATUE))

@@ -90,7 +90,7 @@ int thrown;
 	if (uarmg && uarmg->oartifact == ART_WHINY_MARY) multishot += rnd(5);
 	if (uwep && uwep->oartifact == ART_GUNS_IN_MY_HEAD) multishot += 1;
 
-	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) multishot += rn2(multishot + 1);
+	if (Double_attack || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_HELICOPTER_CHAIN && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) multishot += rn2(multishot + 1);
 	if (Quad_attack) multishot += rn2(multishot * 3 + 1);
 
 	if ((long)multishot > obj->quan && (long)multishot > 1) multishot = (int)obj->quan;

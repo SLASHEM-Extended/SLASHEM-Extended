@@ -1842,7 +1842,7 @@ struct you {
 	boolean wollohhack;
 	boolean oehack;
 	boolean polyattackhack;
-	boolean dynamitehack;
+	boolean dynamitehack; /* for special dynamite sticks which can also raze undiggable walls */
 	boolean detonationhack;
 	int mongetshack;
 	boolean evilvarhack;

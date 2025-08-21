@@ -1234,6 +1234,15 @@ doforce()		/* try to force a chest with your weapon */
 		return(0);
 	    }
 
+	    if (uwep && uwep->oartifact == ART_DRAVOK_S_SUNDERING && uwep->spe > -5 && IS_MOUNTAIN(levl[x][y].typ) ) {
+		uwep->spe -= 5;
+		levl[x][y].typ = CORR;
+		newsym(x,y);
+		blockorunblock_point(x,y);
+		You("tear the mountain asunder!");
+		return(1);
+	    }
+
 	    if (is_farmland(x,y)) {
 			if (u.uen < 5) {
 				pline("You have too little energy to force the farmland!");
@@ -1256,7 +1265,7 @@ doforce()		/* try to force a chest with your weapon */
 		}
 
 	    /* Lightsabers dig through doors and walls via dig.c */
-	    if (is_pick(uwep) || is_antibar(uwep) || (uwep && uwep->oartifact == ART_EN_GARDE____TOUCHE_) ||
+	    if (is_pick(uwep) || is_antibar(uwep) || can_dig_with(uwep) ||
 		    is_lightsaber(uwep) ||
 		    is_axe(uwep)) 
 	    	return use_pick_axe2(uwep);
@@ -1410,7 +1419,7 @@ dooragain:
 	}
 
 	/* door is known to be CLOSED */
-	if ((rnl(20) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) || (uwep && uwep->oartifact == ART_DOORBANE) ) {
+	if ((rnl(20) < (ACURRSTR+ACURR(A_DEX)+ACURR(A_CON))/3) || (uwep && uwep->oartifact == ART_DOORBANE) || (uwep && uwep->oartifact == ART_MORVAK_S_GRINDSTONE) || (uball && uball->oartifact == ART_MORVAK_S_GRINDSTONE) ) {
 	    pline_The("door opens.");
 	    if(door->doormask & D_TRAPPED) {
 		b_trapped("door", FINGER);

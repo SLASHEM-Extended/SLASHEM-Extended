@@ -2802,6 +2802,46 @@ moveloop()
 			artilist[ART_BEBE_S_BABE].attk.adtyp = randartiattacktype();
 		}
 
+		if (uwep && uwep->oartifact == ART_MULTIRAINBOW_NODE && !rn2(2500)) {
+			register struct obj *savechange;
+
+			savechange = uwep;
+
+			long savewornmask;
+
+			savewornmask = savechange->owornmask;
+			setworn((struct obj *)0, savechange->owornmask);
+
+			savechange->otyp = randartchain();
+			savechange->owt = weight(savechange);
+
+			setworn(savechange, savewornmask);
+
+			Your("chain morphs...");
+		}
+
+		if (uchain && uchain->oartifact == ART_MULTIRAINBOW_NODE && !rn2(2500)) {
+			register struct obj *savechange;
+
+			savechange = uchain;
+
+			long savewornmask;
+
+			savewornmask = savechange->owornmask;
+			setworn((struct obj *)0, savechange->owornmask);
+
+			savechange->otyp = randartchain();
+			savechange->owt = weight(savechange);
+
+			setworn(savechange, savewornmask);
+
+			Your("chain morphs...");
+		}
+
+		if (autismweaponcheck(ART_TIAMAT_S_MAW)) {
+			artilist[ART_TIAMAT_S_MAW].attk.adtyp = randartiattacktype();
+		}
+
 		if (autismweaponcheck(ART_KILL_KILL_PIANO)) {
 			artilist[ART_KILL_KILL_PIANO].attk.adtyp = randartiattacktype();
 		}
@@ -3588,6 +3628,44 @@ moveloop()
 			buzz(21, 2 + (GushLevel / 10), u.ux, u.uy, -u.dx, -u.dy);
 		}
 
+		if (uchain && uchain->oartifact == ART_ASHEN_ORBIT) {
+			u.uhunger -= 2;
+			buzz(21, 1, u.ux, u.uy, -u.dx, -u.dy);
+		}
+
+		if (uchain && uchain->oartifact == ART_BONECRADLE && u.umoved) {
+			wake_nearby();
+		}
+
+		if (uchain && uchain->oartifact == ART_GALE_FANG && u.umoved) {
+			int hasshuffled = 0;
+
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+			    if (u.usteed && nexusmon == u.usteed) continue;
+	
+			    if (!monnear(nexusmon, u.ux, u.uy)) continue;
+				if (nexusmon->mtrapped) {
+				    /* no longer in previous trap (affects mintrap) */
+				    nexusmon->mtrapped = 0;
+				    fill_pit(nexusmon->mx, nexusmon->my);
+				}
+
+				/* only shuffle the monster one (unlike the spell which shuffles them twice) --Amy */
+				if (pushmonster(nexusmon)) hasshuffled++;
+
+			}
+
+			if (hasshuffled && !(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+
+			if (hasshuffled == 1) pline("A monster was shuffled!");
+			else pline("Several monsters were shuffled!");
+
+		}
+
 		if (uarmf && uarmf->oartifact == ART_LAVA_TREAD && u.uen >= 10 && u.umoved) {
 			u.uen -= 10;
 			buzz(21, 1, u.ux, u.uy, -u.dx, -u.dy);
@@ -4070,6 +4148,16 @@ moveloop()
 		if (uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM && u.currentweather != WEATHER_SUNNY) {
 			u.currentweather = WEATHER_SUNNY;
 			tell_main_weather();
+		}
+
+		if (uball && uball->oartifact == ART_ECLIPSE_MAW && u.currentweather != WEATHER_ECLIPSE) {
+			u.currentweather = WEATHER_ECLIPSE;
+			tell_main_weather();
+		}
+
+		if (uwep && uwep->oartifact == ART_ECLIPSE_MAW && uwep->spe < 8 && !rn2(5000)) {
+			uwep->spe++;
+			Your("ball becomes stronger.");
 		}
 
 		if (uarmu && uarmu->oartifact == ART_ALL_IN_ONE_EFF && !uarmu->cursed && !rn2(1000)) curse(uarmu);
@@ -5237,6 +5325,12 @@ greasingdone:
 				}
 			}
 			if (nanorepaired) pline("Your nanomachines have repaired some of the damage they sustained!");
+		}
+
+		if (uwep && uwep->oartifact == ART_JORMUNGANDR_S_COIL && !rn2(1000)) {
+			if (uwep->oeroded) uwep->oeroded--;
+			if (uwep->oeroded2) uwep->oeroded2--;
+			if (uwep->spe < 0) uwep->spe++;
 		}
 
 		/* items of bulletators and the like shouldn't be allowed to persist --Amy */

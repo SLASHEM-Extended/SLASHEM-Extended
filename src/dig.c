@@ -138,7 +138,7 @@ dig_typ(otmp, x, y)
 struct obj *otmp;
 xchar x, y;
 {
-	boolean ispick = (is_pick(otmp) || (otmp->oartifact == ART_EN_GARDE____TOUCHE_) );
+	boolean ispick = (is_pick(otmp) || can_dig_with(otmp) );
 	boolean isantibar = is_antibar(otmp);
 	boolean issaber = is_lightsaber(otmp);
 
@@ -248,7 +248,7 @@ dig()
 {
 	register struct rm *lev;
 	register xchar dpx = digging.pos.x, dpy = digging.pos.y;
-	register boolean ispick = uwep && (is_pick(uwep) || (uwep->oartifact == ART_EN_GARDE____TOUCHE_) );
+	register boolean ispick = uwep && (is_pick(uwep) || can_dig_with(uwep) );
 	const char *verb =
 	    (!uwep || is_pick(uwep)) ? "dig into" :
 	    is_lightsaber(uwep) ? "cut through" :
@@ -1292,7 +1292,7 @@ struct obj *obj;
 	    if (!wield_tool(obj, "swing")) return 0;
 	    else res = 1;
 	}
-	ispick = (is_pick(obj) || (obj->oartifact == ART_EN_GARDE____TOUCHE_) );
+	ispick = (is_pick(obj) || can_dig_with(obj) );
 	isantibar = is_antibar(obj);
 	verb = ispick ? "dig" : isantibar ? "lash out" : "chop";
 
@@ -1348,7 +1348,7 @@ struct obj *obj;
 	register int rx, ry;
 	register struct rm *lev;
 	int dig_target, digtyp;
-	boolean ispick = (is_pick(obj) || (obj->oartifact == ART_EN_GARDE____TOUCHE_) );
+	boolean ispick = (is_pick(obj) || can_dig_with(obj) );
 	const char *verbing = ispick ? "digging" :
 		is_lightsaber(uwep) ? "cutting" :
 		"chopping";

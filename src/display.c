@@ -1230,6 +1230,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
+		(uwep && uwep->oartifact == ART_FLUFFLEDRAOUT && mon->data->mlet == S_DRAGON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1240,6 +1241,7 @@ newsym(x,y)
 		(ublindf && ublindf->otyp == BOSS_VISOR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmf && uarmf->oartifact == ART_FINAL_EXAM_TIME && (mon->data->geno & G_UNIQ)) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226) ) ||
+		(uball && uball->oartifact == ART_KYRA_S_ODDNESS && always_hostile(mon->data) && humanoid(mon->data) && !mon->female) ||
 		(uarm && uarm->oartifact == ART_JEFFERSON_S_LOOKAROUND && bigmonst(mon->data) && distu(mon->mx, mon->my) < 101) ||
 		(uarms && uarms->oartifact == ART_THAT_IS_SO_SUS && distu(mon->mx, mon->my) < 226 && mon->data->maligntyp < 0) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
@@ -1376,6 +1378,7 @@ newsym(x,y)
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
+		(uwep && uwep->oartifact == ART_FLUFFLEDRAOUT && mon->data->mlet == S_DRAGON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1388,6 +1391,7 @@ newsym(x,y)
 		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmh && uarmh->oartifact == ART_HEARING_EAR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
+		(uball && uball->oartifact == ART_KYRA_S_ODDNESS && always_hostile(mon->data) && humanoid(mon->data) && !mon->female) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
@@ -1692,6 +1696,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
+		(uwep && uwep->oartifact == ART_FLUFFLEDRAOUT && mon->data->mlet == S_DRAGON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1704,6 +1709,7 @@ newsymX(x,y)
 		(uarm && uarm->oartifact == ART_JEFFERSON_S_LOOKAROUND && bigmonst(mon->data) && distu(mon->mx, mon->my) < 101) ||
 		(uarms && uarms->oartifact == ART_THAT_IS_SO_SUS && distu(mon->mx, mon->my) < 226 && mon->data->maligntyp < 0) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
+		(uball && uball->oartifact == ART_KYRA_S_ODDNESS && always_hostile(mon->data) && humanoid(mon->data) && !mon->female) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
@@ -1838,6 +1844,7 @@ newsymX(x,y)
 		(uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) ||
 		(uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) ||
 		(uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) ||
+		(uwep && uwep->oartifact == ART_FLUFFLEDRAOUT && mon->data->mlet == S_DRAGON ) ||
 		(Race_if(PM_VORTEX) && unsolid(mon->data) ) ||
 		(Race_if(PM_VORTEX) && nolimbs(mon->data) ) ||
 		(Race_if(PM_CORTEX) && unsolid(mon->data) ) ||
@@ -1850,6 +1857,7 @@ newsymX(x,y)
 		(uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(uarmh && uarmh->oartifact == ART_HEARING_EAR && (is_covetous(mon->data) || mon->egotype_covetous) ) ||
 		(Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) ||
+		(uball && uball->oartifact == ART_KYRA_S_ODDNESS && always_hostile(mon->data) && humanoid(mon->data) && !mon->female) ||
 		( (uarmh && itemhasappearance(uarmh, APP_INTERNET_HELMET) ) && mon->internetvisible) ||
 		(RngeInternetAccess && mon->internetvisible) ||
 		(uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) ||
@@ -3850,6 +3858,7 @@ struct monst *mon;
 	if (uarmc && uarmc->oartifact == ART_DEMONIC_UNDEAD_RADAR && is_demon(mon->data) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_DAEDRA_SEEKER && mon->data->mlet == S_DEMON ) return TRUE;
 	if (uarmc && uarmc->oartifact == ART_SHRINKBACK && mon->data->mlet == S_HUMANOID ) return TRUE;
+	if (uwep && uwep->oartifact == ART_FLUFFLEDRAOUT && mon->data->mlet == S_DRAGON ) return TRUE;
 	if (Race_if(PM_VORTEX) && unsolid(mon->data) ) return TRUE;
 	if (Race_if(PM_VORTEX) && nolimbs(mon->data) ) return TRUE;
 	if (Race_if(PM_CORTEX) && unsolid(mon->data) ) return TRUE;
@@ -3866,6 +3875,7 @@ struct monst *mon;
 	if (RngeInternetAccess && mon->internetvisible) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_WEB_RADIO && mon->internetvisible) return TRUE;
 	if (Stunnopathy && Stunned && always_hostile(mon->data) && mon->stunnovisible && distu(mon->mx, mon->my) < (StrongStunnopathy ? 401 : 226)) return TRUE;
+	if (uball && uball->oartifact == ART_KYRA_S_ODDNESS && always_hostile(mon->data) && humanoid(mon->data) && !mon->female) return TRUE;
 	if (Numbopathy && Numbed && (avoid_player(mon->data) || mon->egotype_avoider) && distu(mon->mx, mon->my) < (StrongNumbopathy ? 901 : 626) ) return TRUE;
 	if (Sickopathy && Sick && extra_nasty(mon->data) && distu(mon->mx, mon->my) < (StrongSickopathy ? 901 : 401) ) return TRUE;
 	if (Freezopathy && Frozen && mon->data->mcolor == CLR_WHITE && distu(mon->mx, mon->my) < (StrongFreezopathy ? 626 : 401) ) return TRUE;

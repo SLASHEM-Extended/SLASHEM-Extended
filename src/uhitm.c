@@ -1188,7 +1188,7 @@ register struct monst *mtmp;
 	/* Double and quad attacks gives extra attacks per round --Amy
 	 * This means you do all of your normal attacks two or four times. */
 	int attackamount = 0;
-	if (Double_attack || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) attackamount += rn2(2);
+	if (Double_attack || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) || (uwep && uwep->oartifact == ART_MELISSA_S_PEACEBRINGER && !u.twoweap) || (uwep && uwep->oartifact == ART_HELICOPTER_CHAIN && !u.twoweap) || (uwep && uwep->oartifact == ART_CRUSHING_IMPACT && !u.twoweap) ) attackamount += rn2(2);
 	if (Quad_attack) attackamount += rn2(4); /* don't always give the full amount (balance reasons) --Amy */
 
 	/* whirlstaff technique... this is very powerful when polymorphed into a form with several other attacks --Amy */
@@ -4236,7 +4236,7 @@ int dieroll;
 		}
 	}
 
-	if (uwep && uwep->oartifact == ART_DACHA_DACHA_DACHA) {
+	if (uwep && (uwep->oartifact == ART_DACHA_DACHA_DACHA || uwep->oartifact == ART_ETERNAL_SWING) ) {
 		tmp += u.dachacombostrike;
 		if (u.dachacombostrike) {
 			pline("+%d combo!", u.dachacombostrike);
@@ -4286,6 +4286,17 @@ int dieroll;
 	if (obj && obj->oartifact == ART_CRUCIFIX_OF_THE_MAD_KING && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 		pline("Collusion!");
 		litroomlite(FALSE);
+	}
+
+	if (obj && obj->oartifact == ART_BLACK_SUN_ORB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+		pline("Collusion!");
+		litroomlite(FALSE);
+	}
+
+	if (obj && obj->oartifact == ART_LAUGHING_ANVIL) {
+		pline("Huahahahaha!");
+		wake_nearby();
+		mightbooststat(A_CHA);
 	}
 
 	if (obj && obj->oartifact == ART_BURGLED_NIGHT_SCYTHE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
@@ -4900,6 +4911,22 @@ int dieroll;
 			hurtmarmor(mon, AD_CORR);
 		}
 
+		if (wep && wep->oartifact == ART_TIDEBINDER) {
+			switch (rnd(4)) {
+				case 1:
+				default:
+					hurtmarmor(mon, AD_DCAY); break;
+				case 2:
+					hurtmarmor(mon, AD_CORR); break;
+				case 3:
+					hurtmarmor(mon, AD_RUST); break;
+				case 4:
+					hurtmarmor(mon, AD_FLAM); break;
+			}
+		}
+
+tidebinddone:
+
 		if (obj && obj->oartifact == ART_SHREDSHOT && uwep && ammo_and_launcher(obj, uwep)) {
 
 			int astries = 200;
@@ -5095,6 +5122,10 @@ armorsmashdone:
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
 		}
+		if (wep && wep->oartifact == ART_KRAVENLOCH_S_MAW) {
+			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
 		if (wep && wep->oartifact == ART_FUNE_NO_IKARI) {
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
@@ -5248,6 +5279,13 @@ armorsmashdone:
 			}
 		}
 
+		if (wep && wep->oartifact == ART_ANANSI_S_WEB) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				if (!mon->mconf) pline("%s is confused!", Monnam(mon));
+				mon->mconf = TRUE;
+			}
+		}
+
 		if (wep && wep->oartifact == ART_STAFF_OF_INSANITY && !rn2(5)) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 				if (!mon->mconf) pline("%s is confused!", Monnam(mon));
@@ -5258,6 +5296,32 @@ armorsmashdone:
 		if (wep && wep->oartifact == ART_SHIVERING_STAFF && mon->mcanmove && !rn2(10)) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 				mon->mfrozen = rn1(3, 3);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s is paralyzed!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_HERMES__SNARE && mon->mcanmove) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mfrozen = rnd(3);
+				mon->mcanmove = 0;
+				mon->mstrategy &= ~STRAT_WAITFORU;
+				pline("%s is paralyzed!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_CHAINS_OF_ABSOLUTION && u.ualign.record > 0 && mon->mcanmove) {
+			u.ualign.record--; /* cannot resist, this is by design --Amy */
+			mon->mfrozen = 3;
+			mon->mcanmove = 0;
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("%s is paralyzed!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_WARDEN_S_EMBRACE && mon->mcanmove) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mfrozen = rn1(2, 2);
 				mon->mcanmove = 0;
 				mon->mstrategy &= ~STRAT_WAITFORU;
 				pline("%s is paralyzed!", Monnam(mon));
@@ -5319,6 +5383,23 @@ armorsmashdone:
 				pline("%s is blinded by your spray!", Monnam(mon));
 			}
 		}
+
+		if (wep && wep->oartifact == ART_CORINA_S_BITCHSLAP && mon->mcansee && !resists_blnd(mon)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mcansee = 0;
+				mon->mblinded = rnd(10);
+				pline("%s is blinded by your slap!", Monnam(mon));
+			}
+		}
+
+		if (wep && wep->oartifact == ART_SUNSPIKE && mon->mcansee && !resists_blnd(mon)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon->mcansee = 0;
+				mon->mblinded = rnd(10);
+				pline("%s is blinded by the sun!", Monnam(mon));
+			}
+		}
+
 		if (wep && wep->oartifact == ART_YOU_LIL_PUSSY && mon->mcanmove && !rn2(3)) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
 				mon->mfrozen = rnd(10);
@@ -5329,6 +5410,33 @@ armorsmashdone:
 		}
 
 		if (wep && wep->oartifact == ART_BOHEM_FUELKANAL && !rn2(100)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+		if (wep && wep->oartifact == ART_SKULLBINDER) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				mon_adjust_speed(mon, -1, (struct obj *)0);
+				if (!rn2(5)) (void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+			}
+		}
+		if (wep && wep->oartifact == ART_SOUL_ANCHOR && !rn2(5)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) (void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+		}
+
+		if (wep && wep->oartifact == ART_NYSSANDRA_S_WHISPER) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) (void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+		}
+
+		if (wep && wep->oartifact == ART_BABA_YAGA_S_TETHER && !DEADMONSTER(mon) && !rn2(5)) {
+			mon_poly(mon, TRUE, "%s undergoes a freakish metamorphosis!");
+		}
+
+		if (wep && wep->oartifact == ART_CRIMSON_GRAVITY) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+		if (wep && wep->oartifact == ART_SHACKLER) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
+		}
+		if (wep && wep->oartifact == ART_PERSEPHONE_S_CHAIN) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) mon_adjust_speed(mon, -1, (struct obj *)0);
 		}
 		if (wep && wep->oartifact == ART_MOURNBLADE) {
@@ -5368,6 +5476,11 @@ melatechoice:
 
 		}
 
+		if (thrown && obj && obj->oartifact == ART_HEPHAESTUS__METEOR && isok(mon->mx, mon->my)) {
+			explode(mon->mx, mon->my, ZT_SPELL(ZT_FIRE), d(2,6), WEAPON_CLASS, EXPL_FIERY);
+			if (DEADMONSTER(mon)) return FALSE;
+		}
+
 		if (thrown && obj && obj->oartifact == ART_RAZORSHARD) {
 			mon->bleedout += 10;
 			pline("%s is bleeding!", Monnam(mon));
@@ -5403,9 +5516,19 @@ melatechoice:
 			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
 		}
 
+		if (wep && wep->oartifact == ART_ERYNDREL_S_ECLIPSE) {
+			ragnarok(FALSE);
+			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		}
+
 		if (wep && wep->oartifact == ART_CAT_S_TAIL) {
 			ragnarok(FALSE);
 			if (evilfriday && u.ulevel > 1) evilragnarok(FALSE,u.ulevel);
+		}
+
+		if (wep && wep->oartifact == ART_FEYNDRAL_S_HOURGLASS && !rn2(50)) {
+			TimeStopped += rnd(3);
+			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 		}
 
 		if (wep && wep->oartifact == ART_SWORD_THAT_ENDS_ALL) {
@@ -5603,6 +5726,21 @@ melatechoice:
 
 		if (wep && wep->oartifact == ART_MARTHA_S_FOREIGN_GOER) {
 			mon->bleedout += rnd(10);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_BLACKTHORN_CRUSHER) {
+			mon->bleedout += rnd(20);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_KRYTHRA_S_BLOOM) {
+			mon->bleedout += rnd(20);
+			pline("%s is bleeding!", Monnam(mon));
+		}
+
+		if (wep && wep->oartifact == ART_SPETZFHHHHHHH) {
+			mon->bleedout += 8;
 			pline("%s is bleeding!", Monnam(mon));
 		}
 

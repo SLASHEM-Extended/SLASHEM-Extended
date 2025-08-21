@@ -342,8 +342,13 @@ boolean shopinit;
 			oclass = u.veryobtainclass3;
 		}
 
-		if (uarm && uarm->oartifact == ART_CHEST_IN_THE_BANDIT_S_LAIR && !rn2(40))
+		/* special effects that force a specific item class: least likely ones first, please --Amy */
+		if (uarm && uarm->oartifact == ART_CHEST_IN_THE_BANDIT_S_LAIR && !rn2(40)) {
 			oclass = ARMOR_CLASS;
+		}
+		if (uwep && uwep->oartifact == ART_ENVY_ROCK_WORK && !rn2(10)) {
+			oclass = SCROLL_CLASS;
+		}
 
 		if ((oclass == SCROLL_CLASS) && (rn2(100) < u.scrollspawnchance)) {
 			oclass = COIN_CLASS;
@@ -561,18 +566,24 @@ boolean shopinit;
 
 	else if ((objects[u.veryobtainable20].oc_class == oclass) && (rnd(10000) < u.veryobtainableboost20) ) return(mksobj(u.veryobtainable20, TRUE, artif, shopinit));
 
+	/* special spawn effects: least likely ones at the top, please --Amy */
+	else if (uarmc && uarmc->oartifact == ART_BACK_TO_HALFGRAY_ && !rn2(500) && (oclass == TOOL_CLASS)) {
+		return(mksobj(SWITCHER, TRUE, artif, shopinit));
+	}
+
 	else if (uarmu && uarmu->oartifact == ART_ELITE_FAN && !rn2(100) && (oclass == ARMOR_CLASS)) {
 		return(mksobj(BODYGLOVE, TRUE, artif, shopinit));
+	}
+
+	else if (uball && uball->oartifact == ART_ALL_CLEAR_SIGNAL && !rn2(50) && (oclass == WAND_CLASS)) {
+		return(mksobj(WAN_STRIKING, TRUE, artif, shopinit));
 	}
 
 	else if (uarmc && uarmc->oartifact == ART_SI && !rn2(50) && (oclass == ARMOR_CLASS)) {
 		return(mksobj(CLOAK_OF_SUDDEN_ATTACK, TRUE, artif, shopinit));
 	}
 
-	else if (uarmc && uarmc->oartifact == ART_BACK_TO_HALFGRAY_ && !rn2(500) && (oclass == TOOL_CLASS)) {
-		return(mksobj(SWITCHER, TRUE, artif, shopinit));
-	}
-
+	/* frequent helmet and soviet mode wand comes here */
 	else if (!rn2(100) && oclass == ARMOR_CLASS) {
 
 		int freqhelmet = find_frequent_helmet();
@@ -5552,6 +5563,7 @@ register struct obj *otmp;
 	int omat = objects[otyp].oc_material;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
+	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));
@@ -5604,6 +5616,7 @@ register struct obj *otmp;
 	int omat = objects[otyp].oc_material;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
+	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 
 	if (itemhasappearance(otmp, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
 
@@ -5649,6 +5662,8 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 
+	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+
 	if (otmp && otmp->oartifact == ART_RUST_OK) return FALSE;
 
 	if (SpellColorMetal) {
@@ -5682,6 +5697,7 @@ register struct obj *otmp;
 	int otyp = otmp->otyp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
+	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
 
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));

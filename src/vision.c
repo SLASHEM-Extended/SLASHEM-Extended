@@ -691,6 +691,9 @@ vision_recalc(control)
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_mines(&u.uz)) efflightradius += 2;
 	if (uarm && uarm->oartifact == ART_HELP_WITH_THE_MINE && In_deepmines(&u.uz)) efflightradius += 1;
 	if (uarmg && uarmg->oartifact == ART_FARTUBE) efflightradius += 9;
+	if (uwep && uwep->oartifact == ART_HECATE_S_ORBIT) efflightradius += 2;
+	if (uwep && uwep->oartifact == ART_BRIGHT_CHAMBER) efflightradius += 1;
+	if (uchain && uchain->oartifact == ART_BRIGHT_CHAMBER) efflightradius += 2;
 
 	if (uarmg && uarmg->oartifact == ART_MAX_THE_SECRET_AGENT) efflightradius = MAX_RADIUS;
 	if (uarm && uarm->oartifact == ART_DARK_MINDDRILL) efflightradius = MAX_RADIUS;

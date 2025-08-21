@@ -32,7 +32,7 @@ NEARDATA const char *breathwep[] = {
 				"a psionic blast"
 };
 
-NEARDATA const char *hallubreathwep[] = {"fragments", "fire", "frost", "sleep gas", "a disintegration blast", "lightning", "poison gas", "acid", "light", "strange breath #9", "sizzle", "nexus", "slaying", "vomit", "nausea", "repetition", "nether", "chaos", "confusion", "smoke", "--More-- You have died. DYWYPI?", "darkness", "sound", "gravity", "vibration", "penetration", "spitballs", "fart gas", "stinking gas", "slow gas", "rainbows", "air", "balloons", "nitrogen", "chloroform", "prussic acid", "ozone", "spill", "litter", "garbage", "trash", "heat", "cold", "ice", "water", "earth", "hell", "sky", "astral", "stars", "asterisks", "exclamation marks!!!", "feathers", "springs", "fog", "dew", "snow", "drugs", "rock'n'roll", "smog", "sludge", "waste", "temperature", "humidity", "vortices", "clouds", "a psionic blast", "cotton candy", "butterflies", "asteroids", "beads", "bubbles", "champagne", "coins", "crumbs", "dark matter", "dust specks", "emoticons", "emotions", "entropy", "corona viri", "flowers", "foam", "gamma rays", "gelatin", "gemstones", "ghosts", "glass shards", "glitter", "good vibes", "gravel", "gravy", "grawlixes", "holy light", "hornets", "hot air", "hyphens", "hypnosis", "infrared", "insects", "laser beams", "leaves", "lightening", "logic gates", "magma", "marbles", "mathematics", "megabytes", "metal shavings", "metapatterns", "meteors", "mist", "mud", "music", "nanites", "needles", "noise", "nostalgia", "oil", "paint", "photons", "pixels", "plasma", "polarity", "powder", "powerups", "prismatic light", "pure logic", "purple", "radio waves", "rock music", "rocket fuel", "rope", "sadness", "salt", "sand", "scrolls", "smileys", "snowflakes", "sparkles", "specularity", "spores", "steam", "tetrahedrons", "text", "the past", "tornadoes", "toxic waste", "ultraviolet light", "viruses", "waveforms", "wind", "X-rays", "zorkmids", "shoes", "high heels", "hail", "etherwind", "game over", "taunts", "wouwou taunts", "conversion sermon", "perfume", "gramar cheker", "venom", "anti-teleportation fields", "perish songs", "a kick in the nuts", "cuddle", "cloth", "wheels", "dictators", "nasty traps", "crosses", "NHK-fire", "BFG ammo", "green flames", "carbon monoxide", "icicles", "error messages", "segfaults", "queefing gas", "menstruational liquid", "some icky bodily fluid", "pus", "necrosis", "a gleaming, icy gust of wind", "broken glass", "mold spores", "scorching gas", "soap bubbles", "nerve", "mind", "ether", "shards", "mana", "magical energy", 
+NEARDATA const char *hallubreathwep[] = {"fragments", "fire", "frost", "sleep gas", "a disintegration blast", "lightning", "poison gas", "acid", "light", "strange breath #9", "sizzle", "nexus", "slaying", "vomit", "nausea", "repetition", "nether", "chaos", "confusion", "smoke", "--More-- You have died. DYWYPI?", "darkness", "sound", "gravity", "vibration", "penetration", "spitballs", "fart gas", "stinking gas", "slow gas", "rainbows", "air", "balloons", "nitrogen", "chloroform", "prussic acid", "ozone", "spill", "litter", "garbage", "trash", "heat", "cold", "ice", "water", "earth", "hell", "sky", "astral", "stars", "asterisks", "exclamation marks!!!", "feathers", "springs", "fog", "dew", "snow", "drugs", "rock'n'roll", "smog", "sludge", "waste", "temperature", "humidity", "vortices", "clouds", "a psionic blast", "cotton candy", "butterflies", "asteroids", "beads", "bubbles", "champagne", "coins", "crumbs", "dark matter", "dust specks", "emoticons", "emotions", "entropy", "corona viri", "flowers", "foam", "gamma rays", "gelatin", "gemstones", "ghosts", "glass shards", "glitter", "good vibes", "gravel", "gravy", "grawlixes", "holy light", "hornets", "hot air", "hyphens", "hypnosis", "infrared", "insects", "laser beams", "leaves", "lightening", "logic gates", "magma", "marbles", "mathematics", "megabytes", "metal shavings", "metapatterns", "meteors", "mist", "mud", "music", "nanites", "needles", "noise", "nostalgia", "oil", "paint", "photons", "pixels", "plasma", "polarity", "powder", "powerups", "prismatic light", "pure logic", "purple", "radio waves", "rock music", "rocket fuel", "rope", "sadness", "salt", "sand", "scrolls", "smileys", "snowflakes", "sparkles", "specularity", "spores", "steam", "tetrahedrons", "text", "the past", "tornadoes", "toxic waste", "ultraviolet light", "viruses", "waveforms", "wind", "X-rays", "zorkmids", "shoes", "high heels", "hail", "etherwind", "game over", "taunts", "wouwou taunts", "conversion sermon", "perfume", "gramar cheker", "venom", "anti-teleportation fields", "perish songs", "a kick in the nuts", "cuddle", "cloth", "wheels", "dictators", "nasty traps", "crosses", "NHK-fire", "BFG ammo", "green flames", "carbon monoxide", "icicles", "error messages", "segfaults", "queefing gas", "menstruational liquid", "some icky bodily fluid", "pus", "necrosis", "a gleaming, icy gust of wind", "broken glass", "mold spores", "scorching gas", "soap bubbles", "nerve", "mind", "ether", "shards", "mana", "magical energy", "pepper", "rose petals", "hemidemisemiquavers", "paint thinner",
 
 
 };
@@ -479,6 +479,18 @@ shieldblockboo:
 			return(0);
 
 	} else if (uarmf && uarmf->oartifact == ART_TANGO_HEELS && !rn2(3)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
+	} else if (uwep && uwep->oartifact == ART_DESPLESIR && !rn2(3)) {
+
+			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
+			else You("skillfully evade %s.", onm);
+			return(0);
+
+	} else if (uchain && uchain->oartifact == ART_DESPLESIR && !rn2(3)) {
 
 			if(Blind || !flags.verbose) You("skillfully evade a projectile.");
 			else You("skillfully evade %s.", onm);
@@ -1606,6 +1618,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 				litroomlite(FALSE);
 		    }
 		    if (hitu && singleobj->oartifact == ART_CRUCIFIX_OF_THE_MAD_KING && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
+				pline("Collusion!");
+				litroomlite(FALSE);
+		    }
+		    if (hitu && singleobj->oartifact == ART_BLACK_SUN_ORB && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 				pline("Collusion!");
 				litroomlite(FALSE);
 		    }

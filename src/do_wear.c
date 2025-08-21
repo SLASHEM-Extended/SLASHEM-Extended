@@ -7540,6 +7540,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
+	if (uball && uball->oartifact == ART_ASTONI_S_STOUT_EMBANKMENT) uac -= 20;
 	if (uarmu && uarmu->oartifact == ART_YELLOW_SYMPOSE && (multi < 0)) uac -= 50;
 	if (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_FORGED_OF_STEEL) uac -= 3;
@@ -7578,6 +7579,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uwep && uwep->oartifact == ART_KALI_S_ORBIT) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_PLUM_AURA) uac -= 5;
 	if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) uac -= 3;
 	if (uamul && uamul->oartifact == ART_ARTWORK) uac -= 5;
@@ -7664,6 +7666,7 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_COAL_PEER) uac += 5;
 	if (uarm && uarm->oartifact == ART_EMSE_TRADE) uac += 5;
 	if (uarm && uarm->oartifact == ART_ALUCART_MAIL) uac += 5;
+	if (uwep && uwep->oartifact == ART_ORRATH_S_EVENTIDE && twilighttime()) uac -= 15;
 	if (uarm && uarm->oartifact == ART_OBERTURT && is_grassland(u.ux, u.uy)) {
 		uac -= 10;
 		if (uarm->otyp == CONTRO_DRAGON_SCALES) uac -= 10;
