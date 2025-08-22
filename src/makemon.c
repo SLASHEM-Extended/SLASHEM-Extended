@@ -12081,6 +12081,11 @@ loveheelover:
 		if (mtmp->data == &mons[PM_DRAEDOTH_DRUID]) (void) mongets(mtmp, QUARTERSTAFF);
 		if (mtmp->data == &mons[PM_HIGH_HEEL_GIRL]) (void) mongets(mtmp, BASIC_SHOES); /* M4_BLOCKHEELBOOTS */
 
+		if (ptr == &mons[PM_NANCY]) {
+			(void)mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+			(void)mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
+		}
+
 		if (ptr == &mons[PM_LUCKILY_STALLE]) {
 			  if (rn2(2)) {
 				(void) mongets(mtmp, RIFLE);
@@ -17355,6 +17360,7 @@ loveheelover:
 		if (monsndx(ptr) == PM_ELITE_MEANIE_IN_GREEN) (void) mongets(mtmp, BASEBALL_BAT);
 		if (monsndx(ptr) == PM_BULBOUS_LEPRECHAUN) (void) mongets(mtmp, LIGHTBULB);
 		if (monsndx(ptr) == PM_AMBUSH_DUMBBUSH) (void) mongets(mtmp, AMBUSH_QATAR);
+		if (monsndx(ptr) == PM_SUNA) (void) mongets(mtmp, find_sputa_boots()); /* M4_BLOCKHEELBOOTS */
 
 		if (monsndx(ptr) == PM_LUPIN_THE_THIRD) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (monsndx(ptr) == PM_GRETA_S_HUGGING_BOOT) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TRAP_CREATION); }
@@ -17842,6 +17848,12 @@ loveheelover:
 			(void) mongets(mtmp, !rn2(3) ? BATTLE_AXE : rn2(2) ? TWO_HANDED_SWORD : WAR_HAMMER);
 			 m_initthrow(mtmp, SHURIKEN, 50);
 			 m_initthrow(mtmp, SHURIKEN, 50);
+		}
+
+		if(ptr == &mons[PM_INGRID]) {
+			(void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
+			(void) mongets(mtmp, LEATHER_JACKET);
+			(void) mongets(mtmp, rnd_class(BULLWHIP, SECRET_WHIP));
 		}
 
 		if (ptr == &mons[PM_SHOE_LOVING_IMELDA]) {

@@ -6539,6 +6539,7 @@ static const char *epitaphs[] = {
 	"Here lies the awesome music track of Phoenix Wright: Ace Attorney. It was killed by the sequel, Justice for All, which unfortunately decided to replace all the cheery or suspenseful original tracks with sad, depressing melodies in a minor key.",
 	"Here lies the awesome music track of Phoenix Wright: Ace Attorney. While the sequel, Justice for All, had a few pretty good tracks too, the third game, Trials and Tribulations, replaced absolutely every single track with dark and definite tunes. Listening to those makes you believe that the end is inevitable and no matter what you do, things will never turn good again.",
 	"Here lies the darkness and despair that players of the third Phoenix Wright game (Trials and Tribulations) feel while going through the various trials and investigation segments. After enduring hours of psychic pain from hearing those gloomy melodies over and over, the soundtrack finally broke through by switching to the original PRESSING PURSUIT - CORNERED from the first game, and suddenly the player rejoiced, realizing that they'll actually win the trial and beat the game! YEAH!!!",
+	"Shitting chap! FICK YOU!",
 
 };
 

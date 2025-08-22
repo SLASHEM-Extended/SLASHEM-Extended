@@ -2383,6 +2383,19 @@ find_explosive_boots()
 }
 
 int
+find_stroking_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_STROKING_BOOTS)) return i;
+    }
+
+    impossible("stroking boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_bull_helmet()
 {
     register int i;
@@ -2840,6 +2853,19 @@ find_remora_heels()
 }
 
 int
+find_bone_heels()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BONE_HEELS)) return i;
+    }
+
+    impossible("bone heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_heeled_chelsea_boots()
 {
     register int i;
@@ -2940,6 +2966,19 @@ find_fingerless_gloves()
     }
 
     impossible("fingerless gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_sensor_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SENSOR_GLOVES)) return i;
+    }
+
+    impossible("sensor gloves not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -3161,6 +3200,19 @@ find_octarine_robe()
     }
 
     impossible("octarine robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_powersave_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_POWERSAVE_ROBE)) return i;
+    }
+
+    impossible("powersave robe not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

@@ -34,6 +34,7 @@ static int blitz_spirit_bomb(void);
 static int blitz_combo_strike(void);
 static int blitz_draining_punch(void);
 static void maybe_tameX(struct monst *);
+static void set_tech_duration(int, int);
 
 static NEARDATA schar delay;            /* moves left for tinker/energy draw */
 static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
@@ -2471,11 +2472,11 @@ static const struct innate_tech
  * extern function for checking whether a fcn is inuse
  */
 
-#define techt_inuse(tech)       tech_list[tech].t_inuse
+#define techt_inuse(tech)       (u.temptechhack ? u.temptechduration : tech_list[tech].t_inuse)
 #define techtout(tech)        tech_list[tech].t_tout
 #define techlev(tech)         (u.ulevel - tech_list[tech].t_lev)
-#define techid(tech)          tech_list[tech].t_id
-#define techname(tech)        (tech_names[techid(tech)])
+#define techid(tech)          (u.temptechhack ? u.temptech : tech_list[tech].t_id)
+#define techname(tech)        (u.temptechhack ? tech_names[u.temptech] : tech_names[techid(tech)])
 #define techlet(tech)  \
         ((char)((tech < 26) ? ('a' + tech) : ('A' + tech - 26)))
 
@@ -5653,6 +5654,17 @@ char *verb;
     return otmp;
 }
 
+void
+use_temporary_tech(tech_no)
+int tech_no;
+{
+	u.temptechhack = TRUE;
+	u.temptech = tech_no;
+	u.temptechlevel = temptechlev(tech_no);
+	techeffects(tech_no);
+	u.temptechhack = FALSE;
+}
+
 /* gettech is reworked getspell */
 /* reworked class special effects code */
 /* adapted from specialpower in cmd.c */
@@ -5669,6 +5681,10 @@ int tech_no;
 	char allowall[2];
 	int i, j, t_timeout = 0;
 
+	int temptechspecific = 0;
+
+	if (u.temptechhack) temptechspecific = u.temptech;
+
 	boolean maybeleveltech = FALSE;
 
 	/* check timeout */
@@ -5676,7 +5692,7 @@ int tech_no;
 	    pline("This technique is already active!");
 	    return (0);
 	}
-	if (techtout(tech_no) /*&& !can_limitbreak()*/) {
+	if (!u.temptechhack && techtout(tech_no) /*&& !can_limitbreak()*/) {
 		You("have to wait %s before using your technique again.",
 		(techtout(tech_no) > 100) ? "for a while" : "a little longer");
 #ifdef WIZARD
@@ -5684,16 +5700,20 @@ int tech_no;
 #endif
 		return(0);
 	}
-	if (techlev(tech_no) <= 0) {
-		You("can't use that technique anymore.");
-		return(0);
+	if (!u.temptechhack) {
+		if (techlev(tech_no) <= 0) {
+			You("can't use that technique anymore.");
+			return(0);
+		}
 	}
 
 	if ((TechTrapEffect || u.uprops[TECHBUG].extrinsic || have_techniquestone()) && (rn2(10) || TechBugXtra ) ) {
 
 		pline("Unfortunately, nothing happens.");
-		techtout(tech_no) = rnz(5000);
-		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		if (!u.temptechhack) {
+			techtout(tech_no) = rnz(5000);
+			if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		}
 		/*By default,  action should take a turn*/
 		return(1);
 
@@ -5702,8 +5722,10 @@ int tech_no;
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) {
 
 		pline("Unfortunately, nothing happens.");
-		techtout(tech_no) = rnz(1000);
-		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		if (!u.temptechhack) {
+			techtout(tech_no) = rnz(1000);
+			if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		}
 		/*By default,  action should take a turn*/
 		return(1);
 
@@ -5712,8 +5734,10 @@ int tech_no;
 	if (Role_if(PM_FAILED_EXISTENCE) && rn2(2)) {
 
 		pline("Unfortunately, nothing happens.");
-		techtout(tech_no) = rnz(1000);
-		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		if (!u.temptechhack) {
+			techtout(tech_no) = rnz(1000);
+			if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		}
 		/*By default,  action should take a turn*/
 		return(1);
 
@@ -5757,13 +5781,13 @@ int tech_no;
 		}
 		Your("fingernails extend into claws!");
 		aggravate();
-		techt_inuse(tech_no) = d(2,4) + techlevX(tech_no)/2 + 2;
+		set_tech_duration(tech_no, d(2,4) + techlevX(tech_no)/2 + 2);
 		t_timeout = rnz(2000);
 		break;
             case T_BERSERK:
 		You("fly into a berserk rage!");
-		techt_inuse(tech_no) = d(2,8) +
-               		(techlevX(tech_no)/2) + 2;
+		set_tech_duration(tech_no, d(2,8) +
+               		(techlevX(tech_no)/2) + 2);
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 		t_timeout = rnz(1500);
 		break;
@@ -5781,7 +5805,7 @@ int tech_no;
                 Your("%s %s become blurs as they reach for your quiver!",
 			uarmg ? "gloved" : "bare",      /* Del Lamb */
 			makeplural(body_part(HAND)));
-                techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/6 + 1)) + 2;
+                set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/6 + 1)) + 2);
                 t_timeout = rnz(1500);
 		break;
             case T_INVOKE_DEITY: /* ask for healing if your alignment record is positive --Amy */
@@ -6066,7 +6090,7 @@ secureidchoice:
             case T_KIII:
 		You("scream \"KIIILLL!\"");
 		aggravate();
-                techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/2 + 1)) + 2;
+                set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/2 + 1)) + 2);
                 t_timeout = rnz(1500);
 		break;
 	    case T_CALM_STEED:
@@ -6101,7 +6125,7 @@ secureidchoice:
 		if (Invisible && Fast) {
 			You("are already quite nimble and undetectable.");
 		}
-                techt_inuse(tech_no) = rn1(10,10) + (techlevX(tech_no) * 2);
+                set_tech_duration(tech_no, rn1(10,10) + (techlevX(tech_no) * 2) );
 		if (!Invisible) pline("In a puff of smoke,  you disappear!");
 		if (!Fast) You_feel("more nimble!");
 		incr_itimeout(&HInvis, techt_inuse(tech_no));
@@ -6240,7 +6264,7 @@ secureidchoice:
 #if 0
 		str = makeplural(body_part(HAND));
                 You("focus the powers of the elements into your %s", str);
-                techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2;
+                set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2);
 #endif
 		t_timeout = rnz(1500);
 	    	break;
@@ -6248,7 +6272,7 @@ secureidchoice:
 	    	You("let out a bloodcurdling roar!");
 	    	aggravate();
 
-		techt_inuse(tech_no) = d(2,6) + (techlevX(tech_no) * rnd(4)) + 2;
+		set_tech_duration(tech_no, d(2,6) + (techlevX(tech_no) * rnd(4)) + 2);
 
 		incr_itimeout(&HFast, techt_inuse(tech_no));
 
@@ -6394,7 +6418,7 @@ secureidchoice:
 
 		/* Invoke */
 		You("invoke the sigil of tempest!");
-                techt_inuse(tech_no) = d(1,6) + rnd(techlevX(tech_no)/2 + 1) + 2;
+                set_tech_duration(tech_no, d(1,6) + rnd(techlevX(tech_no)/2 + 1) + 2);
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
@@ -6411,7 +6435,7 @@ secureidchoice:
 
 		/* Invoke */
 		You("invoke the sigil of control!");
-                techt_inuse(tech_no) = d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2;
+                set_tech_duration(tech_no, d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2);
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
@@ -6428,7 +6452,7 @@ secureidchoice:
 
 		/* Invoke */
 		You("invoke the sigil of discharge!");
-                techt_inuse(tech_no) = d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2;
+                set_tech_duration(tech_no, d(1,4) + rnd(techlevX(tech_no)/2 + 1) + 2);
 		u_wipe_engr(2);
                 t_timeout = rnz(50);
 		return(0);
@@ -6562,7 +6586,7 @@ secureidchoice:
 		}*/
 	    	You_feel("the anger inside you erupt!");
 		num = 50 + (4 * techlevX(tech_no));
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		if (Upolyd) {
 			u.mhmax += num;
 			u.mh += num;
@@ -6573,7 +6597,7 @@ secureidchoice:
 		break;	    
 	    case T_BLINK:
 	    	You_feel("the flow of time slow down.");
-                techt_inuse(tech_no) = rnd(techlevX(tech_no) + 1) + 2;
+                set_tech_duration(tech_no, rnd(techlevX(tech_no) + 1) + 2);
 		t_timeout = rnz(1500);
 	    	break;
             case T_CHI_STRIKE:
@@ -6597,7 +6621,7 @@ secureidchoice:
             		return(0);
             	}
 		You("direct your internal energy to restoring your body!");
-                techt_inuse(tech_no) = techlevX(tech_no)*10 + 4;
+                set_tech_duration(tech_no, techlevX(tech_no)*10 + 4);
                 t_timeout = rnz(1500);
 		break;	
 	    case T_DISARM:
@@ -7477,7 +7501,7 @@ breakstare:
 
 	    case T_IRON_SKIN:
 		num = 9 + techlevX(tech_no);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		pline("Your skin becomes harder.");
 
 	      t_timeout = rnz(2000);
@@ -7486,15 +7510,15 @@ breakstare:
 	    case T_POLYFORM:
 
 		pline("You feel polyform.");
-	    	techt_inuse(tech_no) = 1;
+	    	set_tech_duration(tech_no, 1);
 		polyself(FALSE);
-	    	techt_inuse(tech_no) = 0;
+	    	set_tech_duration(tech_no, 0);
 	      t_timeout = rnz(10000);
 	      break;
 
 	    case T_CONCENTRATING:
 		num = 1 + (techlevX(tech_no) / 2);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 
 		pline("You start concentrating.");
 	      t_timeout = rnz(2500);
@@ -7546,7 +7570,7 @@ buttpetmarker:
 	    case T_DOUBLE_THROWNAGE:
 
             Your("%s %s become blurs as they reach for your throwing weapons!", uarmg ? "gloved" : "bare", makeplural(body_part(HAND)));
-            techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/6 + 1)) + 2;
+            set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/6 + 1)) + 2);
             t_timeout = rnz(1500);
 
 	      break;
@@ -7557,7 +7581,7 @@ buttpetmarker:
 			return(0);
 		}
 		num = 1 + techlevX(tech_no);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		pline("You ready your shield as an additional weapon.");
 
 	      t_timeout = rnz(2000);
@@ -7777,7 +7801,7 @@ resettechdone:
 		}
 
 		num = 10 + (techlevX(tech_no) * 5);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		t_timeout = rnz(5000);
 
 		}
@@ -7787,7 +7811,7 @@ resettechdone:
 	    case T_GLOWHORN:
 		pline("Suddenly, a glowing unicorn horn appears above your %s!", body_part(HEAD));
 		num = 10 + (techlevX(tech_no) / 2);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		t_timeout = rnz(2000);
 		break;
 
@@ -7874,7 +7898,7 @@ resettechdone:
 			pline("Force field activated!");
 			num = 50 + (techlevX(tech_no) * 3);
 			if (Race_if(PM_PLAYER_ATLANTEAN)) num *= 2;
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			t_timeout = rnz(4000);
 			break;
 
@@ -7947,7 +7971,7 @@ resettechdone:
 
 			You("start whirling like mad with your quarterstaff!");
 			num = 20 + techlevX(tech_no);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			t_timeout = rnz(2500);
 			break;
 
@@ -8414,7 +8438,7 @@ heelschosen:
 				return 0;
 			}
 
-		    	techt_inuse(tech_no) = 11;
+		    	set_tech_duration(tech_no, 11);
 			nomul(-11, "posing sexily", FALSE);
 			pline("You start posing sexily with your high heels, hoping to charm the bystanders.");
 			if (uarmf && uarmf->oartifact == ART_PRECURSOR_TO_THE___) adjattrib(A_CHA, 1, -1, TRUE);
@@ -8429,7 +8453,7 @@ heelschosen:
 				return 0;
 			}
 
-		    	techt_inuse(tech_no) = 51;
+		    	set_tech_duration(tech_no, 51);
 			pline("Your stiletto heels are ready. Quick! Find someone with nuts and kick him for a devastating effect!");
 			t_timeout = rnz(2500);
 			break;
@@ -8442,7 +8466,7 @@ heelschosen:
 			}
 
 			num = 50 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your cone heels are eager to scratch up and down hostile legs. Make sure you kick everyone that crosses your path!");
 
 			t_timeout = rnz(3000);
@@ -8456,7 +8480,7 @@ heelschosen:
 			}
 
 			num = 25 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your wedge heels absolutely want to stomp enemies, so you should try to kick monsters with them now!");
 
 			t_timeout = rnz(4000);
@@ -8470,7 +8494,7 @@ heelschosen:
 			}
 
 			num = 50 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your block heels expect you to repeatedly kick enemies now, hoping to bludgeon them.");
 
 			t_timeout = rnz(2500);
@@ -8478,7 +8502,7 @@ heelschosen:
 
 		case T_PRAYING_SUCCESS:
 
-		    	techt_inuse(tech_no) = 1;
+		    	set_tech_duration(tech_no, 1);
 			dopray();
 			t_timeout = rnz(30000);
 			break;
@@ -8486,7 +8510,7 @@ heelschosen:
 		case T_OVER_RAY:
 
 			num = 100 + (techlevX(tech_no) * 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("For a while, all your rays have extended range!");
 
 			t_timeout = rnz(5000);
@@ -8558,7 +8582,7 @@ heelschosen:
 		case T_JOKERBANE:
 
 			num = 100 + (techlevX(tech_no) * 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your batarang is capable of paralyzing monsters for a while.");
 			t_timeout = rnz(8000);
 
@@ -8675,7 +8699,7 @@ incarnationfinish:
 			}
 
 			num = 30 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You're starting your combo!");
 			u.combostrike = 1;
 			u.comboactive = TRUE;
@@ -8686,25 +8710,25 @@ incarnationfinish:
 		case T_FUNGOISM:
 
 			pline("You feel fungal.");
-		    	techt_inuse(tech_no) = 1;
+		    	set_tech_duration(tech_no, 1);
 			polyself(FALSE);
-		    	techt_inuse(tech_no) = 0;
+		    	set_tech_duration(tech_no, 0);
 		      t_timeout = rnz(8000);
 			break;
 
 		case T_BECOME_UNDEAD:
 
 			pline("You feel dead.");
-		    	techt_inuse(tech_no) = 1;
+		    	set_tech_duration(tech_no, 1);
 			polyself(FALSE);
-		    	techt_inuse(tech_no) = 0;
+		    	set_tech_duration(tech_no, 0);
 		      t_timeout = rnz(8000);
 			break;
 
 		case T_JIU_JITSU:
 
 			num = 1000 + (techlevX(tech_no) * 10);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You start doing jiu-jitsu!");
 			t_timeout = rnz(10000);
 			break;
@@ -8712,7 +8736,7 @@ incarnationfinish:
 		case T_BLADE_ANGER:
 
 			num = 100 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your shuriken can fire beams now!");
 
 			t_timeout = rnz(7500);
@@ -8752,7 +8776,7 @@ incarnationfinish:
 
 	    case T_SPECTRAL_SWORD:
 		You("focus the powers of the elements into your weapon.");
-		techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2;
+		set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2);
 		t_timeout = rnz(1500);
 		break;
 
@@ -9028,7 +9052,7 @@ revid_end:
 
 	    case T_STAT_RESIST:
 		num = 50 + (techlevX(tech_no) * 10);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		t_timeout = rnz(3000);
 		break;
 
@@ -9060,7 +9084,7 @@ revid_end:
 			break;
 		}
 		num = 1000 + (techlevX(tech_no) * 10);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		pline("The energy consumption rate of your lightsaber slows down!");
 		t_timeout = rnz(6000);
 		break;
@@ -9074,7 +9098,7 @@ revid_end:
 		docalm(); /* stop all other techs that might be active --Amy */
 
 		num = 1000 + (techlevX(tech_no) * 10);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		pline("You're focussing on fighting unarmed!");
 		t_timeout = rnz(6000);
 		break;
@@ -9127,7 +9151,7 @@ revid_end:
 			break;
 		}
 		num = 20 + (techlevX(tech_no) * 3);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		t_timeout = rnz(3000);
 		pline("Your lightsabers start attacking rapidly at the cost of accuracy.");
 		break;
@@ -9138,7 +9162,7 @@ revid_end:
 			break;
 		}
 		num = 200 + (techlevX(tech_no) * 7);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		t_timeout = rnz(2500);
 		pline("Your lightsaber becomes capable of absorbing enemy projectiles to gain energy.");
 		break;
@@ -9204,7 +9228,7 @@ revid_end:
 			break;
 		}
 		num = 200 + (techlevX(tech_no) * 20);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		t_timeout = rnz(5000);
 		pline("Your lightsaber gains the ability to pacify monsters when breaking their weapon!");
 		break;
@@ -9215,7 +9239,7 @@ revid_end:
 			break;
 		}
 		num = 100 + (techlevX(tech_no) * 6);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		t_timeout = rnz(2500);
 		pline("Your lightsaber can drain the life of opponents for a while!");
 		break;
@@ -9254,7 +9278,7 @@ revid_end:
 
 	    case T_EDDY_WIND:
 		num = 1 + techlevX(tech_no);
-	    	techt_inuse(tech_no) = num + 1;
+	    	set_tech_duration(tech_no, num + 1);
 		pline("You prepare a powerful axe-and-sword-mill!");
 
 	      t_timeout = rnz(3500);
@@ -9507,7 +9531,7 @@ revid_end:
 
 		case T_STEADY_HAND:
 			num = 100 + (techlevX(tech_no) * 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your %s become steady.", makeplural(body_part(HAND)));
 
 			t_timeout = rnz(2000);
@@ -9571,7 +9595,7 @@ revid_end:
 
 		case T_BEAMSWORD:
 			num = 100 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your lightsaber can fire beams now!");
 
 			t_timeout = rnz(2500);
@@ -9579,7 +9603,7 @@ revid_end:
 
 		case T_ENERGY_TRANSFER:
 			num = 200 + (techlevX(tech_no) * 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("For a while, casting spells will recharge your lightsaber (but it must be lit).");
 
 			t_timeout = rnz(5000);
@@ -9644,7 +9668,7 @@ revid_end:
 
 		case T_POWERFUL_AURA:
 			num = 40 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("A powerful aura surrounds you!");
 
 			t_timeout = rnz(3000);
@@ -9680,7 +9704,7 @@ revid_end:
 
 		case T_REFUGE:
 			num = 20 + techlevX(tech_no);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Refuge activated!");
 
 			t_timeout = rnz(2400);
@@ -9721,7 +9745,7 @@ revid_end:
 			}
 
 			num = 50 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Escrobism started - your bare hands or lightsaber will temporarily deal extra damage while you are wearing a robe.");
 
 			t_timeout = rnz(4000);
@@ -9747,7 +9771,7 @@ revid_end:
 			}
 
 			num = 250 + (techlevX(tech_no) * 10);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Alright, your lightsaber loses no energy and can be recharged by hitting things with the scimitar.");
 
 			t_timeout = rnz(5000);
@@ -10007,7 +10031,7 @@ cardtrickchoice:
 		case T_SHUT_THAT_BITCH_UP:
 
 			num = 20 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your firearms can temporarily shut up bitches upon hitting them.");
 
 			t_timeout = rnz(15000);
@@ -10189,7 +10213,7 @@ cardtrickchoice:
 					u.uprops[DEAC_REFLECTING].intrinsic += 10000;
 				}
 
-			    	techt_inuse(tech_no) = 1;
+			    	set_tech_duration(tech_no, 1);
 				buzz(17, melteestrength, u.ux, u.uy, -1, 0);
 				buzz(17, melteestrength, u.ux, u.uy, 1, 0);
 				buzz(17, melteestrength, u.ux, u.uy, -1, 1);
@@ -10198,7 +10222,7 @@ cardtrickchoice:
 				buzz(17, melteestrength, u.ux, u.uy, -1, -1);
 				buzz(17, melteestrength, u.ux, u.uy, 1, -1);
 				buzz(17, melteestrength, u.ux, u.uy, 0, -1);
-			    	techt_inuse(tech_no) = 0;
+			    	set_tech_duration(tech_no, 0);
 
 			}
 			use_skill(P_SQUEAKING, rnd(50));
@@ -10255,7 +10279,7 @@ cardtrickchoice:
 		case T_EXTRA_LONG_SQUEAK:
 
 			num = 20 + techlevX(tech_no);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your butt starts squeaking.");
 			use_skill(P_SQUEAKING, rnd(50));
 			t_timeout = rnz(5000);
@@ -10438,7 +10462,7 @@ repairitemchoice:
 		case T_BULLETREUSE:
 
 			num = 100 + (techlevX(tech_no) * 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your ammo can temporarily be reused.");
 			t_timeout = rnz(10000);
 			break;
@@ -10778,7 +10802,7 @@ repairitemchoice:
 		case T_SPELL_SPAM:
 
 			num = 100 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your spells are more powerful for a while.");
 			t_timeout = rnz(12000);
 
@@ -10892,7 +10916,7 @@ repairitemchoice:
 			}
 
 			num = 50 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You start sprinting with your heels.");
 
 			t_timeout = rnz(10000);
@@ -10904,7 +10928,7 @@ repairitemchoice:
 			}
 
 			num = 20;
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Quick! Paralyze an opponent and then kick him to death! You have 20 turns to do so!");
 
 			t_timeout = rnz(50000);
@@ -10916,7 +10940,7 @@ repairitemchoice:
 			}
 
 			num = 50 + (techlevX(tech_no));
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You start your female combo. Now make sure you kick an enemy every turn to keep the combo going!");
 
 			u.femcombostrike = 2;
@@ -10956,7 +10980,7 @@ bucchoice:
 			struct obj *uammo;
 
 			num = 100 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Yay, now you can bash enemies with a sexy leather pump! (Be sure to pick it up from the floor.)");
 
 			uammo = mksobj(SEXY_LEATHER_PUMP, TRUE, FALSE, FALSE);
@@ -11020,7 +11044,7 @@ bucchoice:
 			}
 
 			num = 200 + (techlevX(tech_no) * 10);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You perform a sexy stand.");
 
 			t_timeout = rnz(20000);
@@ -11032,7 +11056,7 @@ bucchoice:
 			}
 
 			num = 1000 + (techlevX(tech_no) * 10);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You're starting to run a marathon.");
 
 			t_timeout = rnz(30000);
@@ -11049,7 +11073,7 @@ bucchoice:
 
 			num = 500 - (techlevX(tech_no) * 5);
 			if (num < 50) num = 50;
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("A perfume companion starts to follow you, but now you're obligated to wear your heels for a while.");
 
 			curse(uarmf);
@@ -11091,7 +11115,7 @@ perfumestriding:
 		case T_NAUGHTY_HEELOT:
 
 			num = 1000 + (techlevX(tech_no) * 10);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You become the naughty heelot.");
 
 			if (!PlayerInConeHeels && !PlayerInStilettoHeels) pline("But without the proper shoes, that won't do jack squat.");
@@ -11107,7 +11131,7 @@ perfumestriding:
 			}
 
 			num = 50 + (techlevX(tech_no));
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You become extremely sturdy!");
 
 			t_timeout = rnz(20000);
@@ -11119,7 +11143,7 @@ perfumestriding:
 			}
 
 			num = 50 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your butt is protected now.");
 
 			t_timeout = rnz(10000);
@@ -11269,7 +11293,7 @@ perfumestriding:
 			}
 
 			num = 100 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your heel-shaped knife can stab enemies much more effectively now.");
 
 			t_timeout = rnz(6000);
@@ -11451,21 +11475,21 @@ perfumestriding:
 
 		case T_AFTERBURNER:
 			num = 5 + (techlevX(tech_no) / 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You've activated your afterburner.");
 		      t_timeout = rnz(6000);
 			break;
 
 		case T_BUGGARD:
 			num = 20 + techlevX(tech_no);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You've summoned a blizzard!");
 		      t_timeout = rnz(8000);
 			break;
 
 		case T_THUNDERSTORM:
 			num = 60 + (techlevX(tech_no) * 20);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You've conjured a thunderstorm!");
 		      t_timeout = rnz(12000);
 			break;
@@ -11715,7 +11739,7 @@ perfumestriding:
 
 		case T_BLADE_SHIELD:
 			num = 20 + techlevX(tech_no);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Blade shield activated.");
 		      t_timeout = rnz(3000);
 			break;
@@ -11947,7 +11971,7 @@ perfumestriding:
 			}
 
 			num = 1000 + (techlevX(tech_no) * 10);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			Your("balls get lighter.");
 			if (FunnyHallu) pline("Shame, now no girl will want to kick them because it wouldn't hurt you anymore.");
 
@@ -12061,7 +12085,7 @@ rockpoisonchoice:
 		case T_GREEN_MISSILE:
 
 			num = 10 + (techlevX(tech_no) / 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You've readied your special wood that you can make into poisoned missiles. Launch them by throwing venoms.");
 
 		      t_timeout = rnz(5000);
@@ -12070,7 +12094,7 @@ rockpoisonchoice:
 		case T_BIG_N_VEINY:
 
 			num = 100 + (techlevX(tech_no));
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Now your body is particularly poisonous!");
 
 		      t_timeout = rnz(8000);
@@ -12105,7 +12129,7 @@ rockpoisonchoice:
 		case T_POISON_PEN_LETTER:
 
 			num = 20 + (techlevX(tech_no) / 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("You're planning to write poison pen letters.");
 
 		      t_timeout = rnz(8000);
@@ -12278,7 +12302,7 @@ mkwsh_end:
 		case T_POLE_MELEE:
 			num = 100 + (techlevX(tech_no) * 5);
 			if (Race_if(PM_HUMANOID_CENTAUR)) num *= 10;
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("For a while, your polearms and lances are effective in melee range.");
 		      t_timeout = rnz(5000);
 			break;
@@ -12381,7 +12405,7 @@ mkwsh_end:
 			}
 
 			num = 100 + (techlevX(tech_no) * 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your weapons become capable of blocking attacks.");
 		      t_timeout = rnz(3000);
 			break;
@@ -12394,7 +12418,7 @@ mkwsh_end:
 
 		case T_GRAP_SWAP:
 			num = 1000 + (techlevX(tech_no) * 50);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("For a while, your grinders will work like lances while your lances will work like grinders.");
 		      t_timeout = rnz(7000);
 			break;
@@ -12534,7 +12558,7 @@ definalizechoice:
 			}
 
 			num = 50 + (techlevX(tech_no) * 2);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your symbiote becomes super-powerful for a while!");
 
 			t_timeout = rnz(6000);
@@ -12556,7 +12580,7 @@ definalizechoice:
 			}
 
 			num = 1000 + (techlevX(tech_no) * 50);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Your implant boosts your symbiote!");
 
 			t_timeout = rnz(7500);
@@ -12701,7 +12725,7 @@ extrachargechoice:
 
 		case T_DECAPABILITY:
 			num = 50 + (techlevX(tech_no) * 3);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Polearms and lightsabers can temporarily put monsters to sleep.");
 
 			t_timeout = rnz(2500);
@@ -12769,7 +12793,7 @@ extrachargechoice:
 
 		case T_HIGH_HEELED_SNEAKERS:
 			num = 1000 + (techlevX(tech_no) * 20);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("For a while, you can use high heels and sexy flats at the same time.");
 
 			t_timeout = rnz(5000);
@@ -13002,7 +13026,7 @@ extrachargechoice:
 
 		case T_USE_THE_FORCE_LUKE:
 			num = 200 + (techlevX(tech_no) * 5);
-		    	techt_inuse(tech_no) = num + 1;
+		    	set_tech_duration(tech_no, num + 1);
 			pline("Alright Luke, you can use the force powerfully for a while now!");
 
 			t_timeout = rnz(2500);
@@ -13024,7 +13048,7 @@ extrachargechoice:
 		if ((ttrap=t_at(cc.x, cc.y)) && ttrap->tseen &&
 			yn("Handle the trap here?") == 'y'){
 		  if (yn("Disarm the trap?") == 'y'){
-		    techt_inuse(tech_no) = 1;
+		    set_tech_duration(tech_no, 1);
 		    /* copied from trap.c */
 		switch(ttrap->ttyp) {
 			case BEAR_TRAP:
@@ -13171,6 +13195,8 @@ extrachargechoice:
 		}
 	  }
 
+	if (!u.temptechhack) { /* don't try to set a timeout for the temp tech! --Amy */
+
         if (!can_limitbreak())
 	    techtout(tech_no) = (t_timeout * (100 - min(techlevX(tech_no), 50)) / 100);
 	  else if (!rn2(3))
@@ -13263,8 +13289,9 @@ extrachargechoice:
 			}
 
 		}
+	} /* end timeout-increasing function */
 
-	if (maybeleveltech) {
+	if (maybeleveltech && !u.temptechhack) {
 		if (tech_list[tech_no].t_lev > 0) {
 			tech_list[tech_no].t_lev -= 1;
 			pline("Your %s technique leveled up to level %d!", techname(tech_no), techlev(tech_no));
@@ -13289,6 +13316,9 @@ int tech_id;
                 impossible ("invalid tech: %d", tech_id);
                 return(0);
         }
+
+	  if (tech_id == u.temptech) return u.temptechduration;
+
         for (i = 0; i < MAXTECH; i++) {
                 if (techid(i) == tech_id) {
                         return (techt_inuse(i));
@@ -13309,9 +13339,22 @@ void
 tech_timeout()
 {
 	int i;
-	
-        for (i = 0; i < MAXTECH; i++) {
-	    if (techid(i) == NO_TECH)
+	boolean istemptech = FALSE;
+	boolean techtimerbecamezero = FALSE;
+
+        for (i = 0; i <= MAXTECH; i++) {
+
+	    istemptech = FALSE;
+	    if (i == MAXTECH) {
+		istemptech = TRUE;
+		u.temptechhack = TRUE;
+	    }
+	    if (i > MAXTECH) {
+		istemptech = FALSE;
+		u.temptechhack = FALSE;
+	    }
+
+	    if (!istemptech && (techid(i) == NO_TECH))
 		continue;
 
 	    if (techid(i) == T_SILENT_OCEAN) {
@@ -13321,7 +13364,20 @@ tech_timeout()
 
 	    if (techt_inuse(i) && !(techid(i) == T_UNARMED_FOCUS && !rn2(4) && !uwep && !(u.twoweap && uswapwep) && uarm && uarm->otyp == ROBE_OF_FOCUSSING ) ) {
 	    	/* Check if technique is done */
-	        if (!(--techt_inuse(i)))
+
+		  techtimerbecamezero = FALSE;
+
+		  if (u.temptechhack) {
+			u.temptechduration--;
+			if (u.temptechduration < 0) u.temptechduration = 0;
+			if (u.temptechduration == 0) techtimerbecamezero = TRUE;
+		  }
+		  else {
+			(tech_list[i].t_inuse)--;
+			if (tech_list[i].t_inuse == 0) techtimerbecamezero = TRUE;
+		  }
+
+	        if (techtimerbecamezero)
 	        switch (techid(i)) {
 		    case T_EVISCERATE:
 			You("retract your claws.");
@@ -13585,18 +13641,23 @@ tech_timeout()
 	        }
 	    }  /* technique active check */
 
-	    if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
-	    if (techtout(i) > 0) {
-		if (!(uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD && rn2(2) && (techtout(i) > 1) ) )
-		techtout(i)--;
-	    }
-	    if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && techtout(i) > 0) {
-		if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
-		techtout(i)--;
+	    if (!istemptech) { /* don't run the timeout stuff for the temporary tech!! --Amy */
+		    if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
+		    if (techtout(i) > 0) {
+			if (!(uarmf && uarmf->oartifact == ART_THICKER_THAN_THE_HEAD && rn2(2) && (techtout(i) > 1) ) )
+			techtout(i)--;
+		    }
+		    if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && techtout(i) > 0) {
+			if (techtout(i) == 1) pline("Your %s technique is ready to be used!", techname(i));
+			techtout(i)--;
+		    }
+
+		    if (techtout(i) < 0) techtout(i) = 0; /* fail safe */
 	    }
 
-	    if (techtout(i) < 0) techtout(i) = 0; /* fail safe */
-        }
+	    u.temptechhack = FALSE;
+	    istemptech = FALSE;
+        } /* end for (list of techniques...) check */
 }
 
 void
@@ -13961,6 +14022,17 @@ int oldlevel, newlevel;
 	}
 }
 
+void
+set_tech_duration(tech_no, techdur)
+{
+	if (u.temptechhack) {
+		u.temptechduration = techdur;
+	} else {
+		/*techt_inuse(tech_no) = techdur;*/
+		tech_list[tech_no].t_inuse = techdur;
+	}
+}
+
 int
 mon_to_zombie(monnum)
 int monnum;
@@ -14114,7 +14186,33 @@ int
 techlevX(tech)
 int tech;
 {
+	if (u.temptechhack) {
+		return temptechlev(tech);
+	}
+
 	int finaltechlevel = (u.ulevel - tech_list[tech].t_lev);
+	if (StrongTechnicality) {
+		finaltechlevel *= 4;
+		finaltechlevel /= 3;
+		finaltechlevel += 10;
+	} else if (Technicality) {
+		finaltechlevel *= 4;
+		finaltechlevel /= 3;
+		finaltechlevel += 3;
+	}
+	if (uarmh && itemhasappearance(uarmh, APP_TECHNICAL_HELMET)) finaltechlevel++;
+
+	finaltechlevel += (boost_power_value() * 2);
+
+	if (finaltechlevel > 50) finaltechlevel = 50; /* fail safe */
+	return finaltechlevel;
+}
+
+int
+temptechlev(tech)
+int tech;
+{
+	int finaltechlevel = u.ulevel;
 	if (StrongTechnicality) {
 		finaltechlevel *= 4;
 		finaltechlevel /= 3;
@@ -14480,7 +14578,7 @@ blitz_chi_strike()
             	return(0);
 	}
 	You_feel("energy surge through your hands!");
-	techt_inuse(tech_no) = techlevX(tech_no) + 4;
+	set_tech_duration(tech_no, techlevX(tech_no) + 4);
 	return(1);
 }
 
@@ -14498,7 +14596,7 @@ blitz_e_fist()
 	
 	str = makeplural(body_part(HAND));
 	You("focus the powers of the elements into your %s.", str);
-	techt_inuse(tech_no) = rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2;
+	set_tech_duration(tech_no, rnd((int) (techlevX(tech_no)/3 + 1)) + d(1,4) + 2);
 	return 1;
 }
 
@@ -14719,7 +14817,7 @@ blitz_power_surge()
 	}*/
     	You("tap into the full extent of your power!");
 	num = 50 + (2 * techlevX(tech_no));
-    	techt_inuse(tech_no) = num + 1;
+    	set_tech_duration(tech_no, num + 1);
 	u.uenmax += num;
 	u.uen += num;
 	if (u.uen > u.uenmax) u.uen = u.uenmax;

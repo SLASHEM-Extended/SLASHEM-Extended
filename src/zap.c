@@ -9877,6 +9877,9 @@ register int dx,dy;
 #ifdef LIGHT_SRC_SPELL
     int lits = 0;
 #endif
+
+    int sigilcontrol = 0;
+
 /*for mega crude hack to keep from blowing up in face --WAC*/
     int away=0;
     struct monst *mblamed = m_at(sx, sy);	/* Apparent aggressor */
@@ -9932,12 +9935,18 @@ register int dx,dy;
 	tmp_at(DISP_BEAM, zapdir_to_glyph(dx, dy, abstype));
     }
 
+    if (uarm && uarm->oartifact == ART_CURVATURE_OF_THE_SET) sigilcontrol = 6;
+    if (tech_inuse(T_SIGIL_CONTROL)) sigilcontrol = 4;
+
     while(range-- > 0) {
         /*hack to keep mega spells from blowing up in your face WAC*/
         away++;
 
 	/* Control sigil */
-	if ((away > 4 && !rn2(4)) && tech_inuse(T_SIGIL_CONTROL)) {
+	if ( (away > 4) && sigilcontrol && !rn2(sigilcontrol) ) {
+
+		pline("You can change the ray's direction!");
+
 sigilcontroldirection:
 		if (!getdir((char *)0)) {
 			if (yn("Do you really want to input no direction?") == 'y')

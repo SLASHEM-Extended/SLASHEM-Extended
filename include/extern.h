@@ -2437,6 +2437,10 @@ E int find_bridal_shoes(void);
 E int find_pistol_boots(void);
 E int find_ng_shoes(void);
 E int find_chelsea_boots(void);
+E int find_stroking_boots(void);
+E int find_bone_heels(void);
+E int find_sensor_gloves(void);
+E int find_powersave_robe(void);
 E int find_strip_bandana(void);
 E void oinit(void);
 E void savenames(int,int);
@@ -3553,6 +3557,8 @@ E void resettechniqueextra(void);
 E boolean canuseunarmedtechs(void);
 E void drain_all_techs(void);
 E boolean ability_usable(int);
+E void use_temporary_tech(int);
+E int temptechlev(int);
 
 /* ### teleport.c ### */
 

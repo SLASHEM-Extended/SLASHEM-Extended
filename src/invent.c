@@ -33338,6 +33338,16 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: deals quite some bleeding damage to enemies. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Krythra the Thornmother forged this chain from living vines of steel; the sphere sprouts barbed petals upon impact.'"); break;
 				case ART_OLEA_PRETIOSA:
 					pline("Artifact specs: regeneration when wielded. If you wield it or are chained to it, you have scent view and the stronger version of the funwall effect. Being chained to it also boosts your luck and mana regeneration rate."); break;
+				case ART_SUNA_S_CONTROVERSY_MATTER:
+					pline("Artifact specs: +14 damage when kicking with them, anastasia and bridghitte trap effects, protects you from conversion sermon and sometimes prevents you from losing alignment. They resist some effects that can destroy items. If they're at least 'rotted', the kick can slow monsters who fail a resistance check and occasionally cancel them."); break;
+				case ART_INGRID_S_SECRETARY_OFFICE:
+					pline("Artifact specs: +3 stun damage when kicking with them, +5 charisma, allows your cone heels skill to train three times as fast and improves the bonuses for wearing cone heels."); break;
+				case ART_FOLLOWBSSSSS:
+					pline("Artifact specs: can be invoked to perform the meltee technique. If you're female, doing so will curse random items in your inventory."); break;
+				case ART_CIRCUM_SCYTHE:
+					pline("Artifact specs: +30 damage to monsters who are always male. Hitting a male humanoid with it will cause it to bleed."); break;
+				case ART_CURVATURE_OF_THE_SET:
+					pline("Artifact specs: allows you to occasionally control rays fired by you, similar to the sigil of control technique. Annoyingly, it's not always clear how that works because there's no real indication as to where the ray 'cursor' currently is..."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

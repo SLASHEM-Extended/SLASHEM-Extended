@@ -23460,6 +23460,26 @@ A("Olea Pretiosa",				LIQUID_CHAIN, /* if you're chained to it or wielding it, s
 	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3700L ),
 
+A("Suna's Controversy Matter",				LOW_BOOTS, /* initialized to always be stroking boots, anastasia and bridghitte trap effects, prevents MS_CONVERT from affecting you, 50% chance to resist alignment losses, if "oeroded" is at least 1 the kick can slow monsters who don't resist and has 10% chance of cancelling them if the slowness worked; hard to destruct */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 14), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Ingrid's Secretary Office",				LOW_BOOTS, /* initialized to always be bone heels, +5 CHA, cone heels skill trains three times as fast, boosts bonuses from worn cone heels */
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	STUN(0, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Followbsssss",				REGULAR_GLOVES, /* initialized to always be sensor gloves, can be invoked to perform the meltee technique, but if you're female, doing so causes the "curse items" effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Circum-Scythe",				SCYTHE, /* hitting a male humanoid with it causes it to bleed for d10 (more) turns */
+	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_MALE),
+	PHYS(0, 30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Curvature of the Set",				ROBE, /* initialized to always be powersave robe, allows you to sometimes control rays like sigil of control but with lower chance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

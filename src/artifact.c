@@ -1169,6 +1169,10 @@ init_appearance_randarts()
 	artilist[ART_NOW_IT_BECOMES_DIFFERENT].otyp = find_difficult_cloak();
 	artilist[ART_NATASCHA_S_STROKING_UNITS].otyp = find_velvet_gloves();
 	artilist[ART_SPEAK_TO_OJ].otyp = find_sputa_boots();
+	artilist[ART_SUNA_S_CONTROVERSY_MATTER].otyp = find_stroking_boots();
+	artilist[ART_INGRID_S_SECRETARY_OFFICE].otyp = find_bone_heels();
+	artilist[ART_FOLLOWBSSSSS].otyp = find_sensor_gloves();
+	artilist[ART_CURVATURE_OF_THE_SET].otyp = find_powersave_robe();
 	artilist[ART_DUE_DUE_DUE_DUE_BRMMMMMMM].otyp = find_formula_one_helmet();
 	artilist[ART_TOILET_NOISES].otyp = find_excrement_cloak();
 	artilist[ART_LINE_CAN_PLAY_BY_YOURSELF].otyp = find_racer_gloves();
@@ -6346,6 +6350,18 @@ chargingchoice:
 				} /* monster is catchable loop */
 
 			} /* for loop */
+
+			break;
+		}
+
+		if (obj->oartifact == ART_FOLLOWBSSSSS) {
+
+			if (flags.female) {
+				You_feel("kinda guilty...");
+				rndcurse();
+			}
+
+			use_temporary_tech(T_MELTEE);
 
 			break;
 		}

@@ -2030,6 +2030,7 @@ register int pm;
 	    case PM_DRACOLISK:
 	    case PM_COCKENTRICE:
 	    case PM_CHARISMA_TROVE:
+	    case PM_INGRID_S_LADY_PUMP:
 		if (CannotGetIntrinsics) break;
 		if (ABASE(A_CHA) < ATTRMAX(A_CHA)) {
 			You_feel("more %s!", flags.female ? "pretty" : "attractive");

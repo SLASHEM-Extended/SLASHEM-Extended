@@ -271,6 +271,14 @@ register boolean clumsy;
 		}
 	}
 
+	if (uarmf && uarmf->oartifact == ART_SUNA_S_CONTROVERSY_MATTER && uarmf->oeroded2 >= 1) {
+		if (!resist(mon, ARMOR_CLASS, 0, NOTELL)) {
+			mon_adjust_speed(mon, -1, (struct obj *)0 );
+			m_dowear(mon, FALSE); /* might want speed boots */
+			if (!rn2(10)) cancelmonsterlite(mon);
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_SINGHETA && mon->mcanmove) {
 		if (!resist(mon, ARMOR_CLASS, 0, NOTELL)) {
 			mon->mcanmove = 0;

@@ -2505,6 +2505,7 @@ newbossSING:
 			if (uarmf && uarmf->oartifact == ART_RUEA_S_FAILED_CONVERSION && rn2(20)) goto convertdone;
 			if (uwep && uwep->oartifact == ART_CRONVERT && rn2(10)) goto convertdone;
 			if (uarmf && uarmf->oartifact == ART_EXHAUST_DAMAGE) goto convertdone;
+			if (uarmf && uarmf->oartifact == ART_SUNA_S_CONTROVERSY_MATTER) goto convertdone;
 			if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) goto convertdone;
 			if (uamul && uamul->otyp == AMULET_OF_SPECIAL_SHIELDING && rn2(3)) goto convertdone;
 

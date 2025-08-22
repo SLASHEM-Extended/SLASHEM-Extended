@@ -9438,6 +9438,8 @@ SCROLL((char *)0,               "THE JAPANESE NAME OF PHOENIX WRIGHT IS ACTUALLY
 SCROLL((char *)0,               "SUCH A WING TUFTED AMNESIA",  P_NONE,     1,   0, 100, CLR_BRIGHT_CYAN, 1),
 SCROLL((char *)0,               "ACRO AND BAT KEN BE SEAN DINGLING ON THE TRAPEZE",  P_NONE,     1,   0, 100, CLR_WHITE, 1),
 SCROLL((char *)0,               "THE REAL NAME OF THE JUDGE IN ACE ATTORNEY IS UDGEY",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
+SCROLL((char *)0,               "THAT IS SO OEOEOEOEOEOEOEOEN",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
+SCROLL((char *)0,               "NOOOOOOOOOONOOOOOOOOOONOOOOOOOOOONOOOOOOOOOO",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

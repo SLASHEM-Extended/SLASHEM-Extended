@@ -5130,6 +5130,10 @@ armorsmashdone:
 			mon->bleedout += rnd(10);
 			pline("%s is bleeding!", Monnam(mon));
 		}
+		if (wep && wep->oartifact == ART_CIRCUM_SCYTHE && humanoid(mon->data) && !mon->female) {
+			mon->bleedout += rnd(10);
+			pline("%s's penis is bleeding!", Monnam(mon));
+		}
 		if (wep && wep->oartifact == ART_BLOODLETTER) {
 			mon->bleedout += rnd(12);
 			pline("%s is bleeding!", Monnam(mon));

@@ -11668,6 +11668,11 @@ u_init()
 	u.symbiotedmghack = FALSE;
 	u.lamefarmer = FALSE;
 
+	u.temptech = NO_TECH;
+	u.temptechduration = 0;
+	u.temptechlevel = 1;
+	u.temptechhack = FALSE;
+
 	u.goodoffercount = 10;
 	u.dirtifiedexcalibur = FALSE;
 	u.antjetwotriggered = FALSE;

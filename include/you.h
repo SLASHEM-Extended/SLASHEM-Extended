@@ -422,6 +422,11 @@ struct you {
 
 	int youpolyamount;	/* how many times you can use #youpoly --Amy */
 
+	int temptech;	/* for using a technique that you don't actually have --Amy */
+	int temptechduration;	/* how long the temporary tech lasts (you can only have one active at a time) */
+	int temptechlevel;	/* = your experience level (plus bonuses from technicality etc.) at the time when you used the tech */
+	boolean temptechhack;
+
 	int casinochips;		/* how often you can play blackjack without having to pay money */
 
 	int moneydebt;		/* for AD_DEBT: player has to pay money to the bank --Amy */

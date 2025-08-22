@@ -3350,6 +3350,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_EVA_S_INCONSPICUOUS_CHARM) tmp += (uarmf->spe);
 		if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_STINKING_SLIPPER) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_LYDIA_S_SEXYROOM) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE) tmp += 5;
 		if (uleft && uleft->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
@@ -4181,6 +4182,10 @@ adjalign(n)
 register int n;
 {
 	if (uarmf && uarmf->oartifact == ART_MANDY_S_RAIDWEAR && !rn2(2) && (n < 0)) {
+		return;
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SUNA_S_CONTROVERSY_MATTER && !rn2(2) && (n < 0)) {
 		return;
 	}
 

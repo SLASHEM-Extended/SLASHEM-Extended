@@ -637,6 +637,8 @@ boolean yours; /* is it your fault (for killing monsters) */
 				case P_GRAND_MASTER: dmgreductor = 80; break;
 				case P_SUPREME_MASTER: dmgreductor = 77; break;
 			}
+			if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE) dmgreductor -= 10;
+			if (dmgreductor < 50) dmgreductor = 50;
 			damu++;
 			damu *= dmgreductor;
 			damu /= 100;
@@ -770,6 +772,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    damu = 0;
 		    Your("implant nullifies the damage!");
 		} else if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {
+		    damu = 0;
+		    Your("cone heels nullify the damage!");
+		} else if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE && !rn2(25)) {
 		    damu = 0;
 		    Your("cone heels nullify the damage!");
 		} else if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA && !rn2(10)) {

@@ -3811,6 +3811,15 @@ moveloop()
 		if (u.riderhack) u.riderhack = FALSE;
 		u.mondiffhack = FALSE;
 
+		u.temptechhack = FALSE;
+
+		if (u.temptechduration < 0) {
+			impossible("temp tech %d has negative duration!", u.temptech);
+			u.temptech = NO_TECH;
+			u.temptechduration = 0;
+			u.temptechlevel = 1;
+		}
+
 		if (!occupation) u.katitrapocc = FALSE;
 		if (!occupation) {
 			u.singtrapocc = FALSE;
