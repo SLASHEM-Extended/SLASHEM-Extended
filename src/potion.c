@@ -9319,6 +9319,9 @@ nivellate()
 			lowerceiling /= 100;
 		}
 
+		upperceiling += u.cnd_trophiesobtained;
+		lowerceiling += u.cnd_trophiesobtained;
+
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
 
@@ -9526,6 +9529,9 @@ nivellate()
 			lowerceiling *= (100 + (boost_power_value() * 3) );
 			lowerceiling /= 100;
 		}
+
+		upperceiling += u.cnd_trophiesobtained;
+		lowerceiling += u.cnd_trophiesobtained;
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
@@ -9793,6 +9799,8 @@ boolean guaranteed;
 			ceiling /= 100;
 		}
 
+		ceiling += u.cnd_trophiesobtained;
+
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
 		if (u.uhpmax < ceiling) {
@@ -9955,6 +9963,8 @@ boolean guaranteed;
 			ceiling *= (100 + (boost_power_value() * 3) );
 			ceiling /= 100;
 		}
+
+		ceiling += u.cnd_trophiesobtained;
 
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
