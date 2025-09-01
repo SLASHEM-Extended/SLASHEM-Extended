@@ -3702,9 +3702,8 @@ register boolean newlev;
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case SWAMP:
-		    pline("It %s rather %s down here.",
-			  Blind ? "feels" : "looks",
-			  Blind ? "humid" : "muddy");
+		    if (FunnyHallu) pline("Oh, watch out, it's the Krem Marsh! Don't fall in the water or you'll lose a life!");
+		    else pline("It %s rather %s down here.", Blind ? "feels" : "looks", Blind ? "humid" : "muddy");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case COURT:
@@ -3734,9 +3733,12 @@ register boolean newlev;
 		case MORGUE:
 		    if(midnight()) {
 			const char *run = locomotion(youmonst.data, "Run");
-			pline("%s away!  %s away!", run, run);
-		    } else
-			{ You("have an uncanny feeling..."); }
+			if (FunnyHallu) pline("Suddenly, the Vampire Killer theme starts playing! Quick, ready your whip, and fight off those skeletons!");
+			else pline("%s away!  %s away!", run, run);
+		    } else {
+			if (FunnyHallu) pline("You feel that you'll meet your dead grandmother here!");
+			else You("have an uncanny feeling...");
+		    }
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case BEEHIVE:
@@ -3959,19 +3961,24 @@ register boolean newlev;
 
 		case BARRACKS:
 		    if(anymonstinroom(roomno)) {
-			You("enter a military barracks!");
+			if (FunnyHallu) pline("Ooh, look at all those men in uniform!");
+			else You("enter a military barracks!");
 		    } else {
+			if (FunnyHallu) pline("You feel that the war is over.");
 			You("enter an abandoned barracks.");
 		    }
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case DELPHI:
-		    if(monstinroom(&mons[PM_ORACLE], roomno))
-			verbalize("%s, %s, welcome to Delphi!", Hello((struct monst *) 0), playeraliasname);
+		    if(monstinroom(&mons[PM_ORACLE], roomno)) {
+			if (FunnyHallu) verbalize("Come closer, %s... I have a surprise for you... heh heh...", playeraliasname);
+			else verbalize("%s, %s, welcome to Delphi!", Hello((struct monst *) 0), playeraliasname);
+		    }
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case DOUGROOM:
-		    You_feel("42.");
+		    if (FunnyHallu) pline("The ships hung in the sky is much the same way that bricks don't!");
+		    else You_feel("42.");
 		    if (!issoviet && anymonstinroom(roomno)) wake_nearby();
 		    break;
 		case EVILROOM:
