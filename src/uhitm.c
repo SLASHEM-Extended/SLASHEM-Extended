@@ -12418,7 +12418,7 @@ boolean ranged;
 		break;
 
 	  case AD_DREA:
-		if (multi < 0) {
+		if ((multi < 0) && !u.antidreameater) {
 			tmp *= 4;
 			pline("Your dream is eaten!");
 			mdamageu(mon, tmp);

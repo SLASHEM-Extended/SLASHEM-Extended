@@ -7902,7 +7902,7 @@ hitmu(mtmp, mattk)
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 
-		if (multi < 0) {
+		if ((multi < 0) && !u.antidreameater) {
 			dmg *= 4;
 			pline("Your dream is eaten!");
 		}
@@ -9307,6 +9307,7 @@ dopois:
 		if (uwep && uwep->oartifact == ART_FIGURINE_OF_GALATEA) break;
 		if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) break;
 		if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) break;
+		if (uarmc && uarmc->oartifact == ART_TEAM_BRIDE) break;
 		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
@@ -11454,7 +11455,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 	      case AD_DREA:
 			pline("You have a nightmare!");
 	
-			if (multi < 0) {
+			if ((multi < 0) && !u.antidreameater) {
 				tmp *= 4;
 				pline("Your dream is eaten!");
 			}
@@ -13945,7 +13946,7 @@ common:
 
 	    case AD_DREA:
 
-		if (multi < 0) {
+		if ((multi < 0) && !u.antidreameater) {
 			tmp *= 4;
 			pline("Your dream is eaten!");
 		}
@@ -18725,7 +18726,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 	        if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(5))) {
                 pline("%s saps your soul...", Monnam(mtmp));
 
-			if (multi < 0) {
+			if ((multi < 0) && !u.antidreameater) {
 				dmgplus *= 4;
 				pline("Your dream is eaten!");
 			}

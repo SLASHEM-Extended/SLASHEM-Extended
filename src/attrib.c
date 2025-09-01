@@ -2346,12 +2346,13 @@ exerchk()
 				ABASE(A_WIS) -= 1;
 				AMAX(A_WIS) -= 1;
 				flags.botl = 1;
-				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
 
 				if (uarmh && uarmh->oartifact == ART_BURN_INTO_THE_MIND) mightbooststat(A_INT);
 
-				/* it's a total crapshoot if any little contamination can instakill you. I decided that
-				 * if it's less than 100, you can't be instakilled but the contamination may go down. --Amy */
+				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) { /* you have died */
+
+					/* it's a total crapshoot if any little contamination can instakill you. I decided that
+					 * if it's less than 100, you can't be instakilled but the contamination may go down. --Amy */
 					if (u.contamination < 100) {
 						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
 							ABASE(A_WIS) += 1;
@@ -3342,6 +3343,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_STEFANJE_S_PROBLEM) tmp += 2;
 		if (uwep && uwep->oartifact == ART_AMORINA_S_CHAIN) tmp += 3;
 		if (uchain && uchain->oartifact == ART_AMORINA_S_CHAIN) tmp += 3;
+		if (uarmc && uarmc->oartifact == ART_TEAM_BRIDE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_YVONNE_S_MODEL_AMBITION) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_SOFT_KARATE_KICK) tmp += 2;

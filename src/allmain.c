@@ -8000,6 +8000,18 @@ newbossJANI:
 			}
 		}
 
+		if (uarmh && uarmh->oartifact == ART_DISINT_BEAM && !rn2(1000)) {
+			int dirx, diry;
+		      cx = rn2(COLNO);
+		      cy = rn2(ROWNO);
+			dirx = rn2(3) - 1;
+			diry = rn2(3) - 1;
+
+			if(isok(cx, cy) && (dirx != 0 || diry != 0) ) {
+				buzz(-24, 4, cx, cy, dirx, diry); /* disintegration beam */
+			}
+		}
+
 		if (uwep && uwep->oartifact == ART_STRIKE_THE_BALL && !u.berserktime && !rn2(1000)) {
 			u.berserktime = 25;
 			You("suddenly get angry at the ball and want to strike it.");

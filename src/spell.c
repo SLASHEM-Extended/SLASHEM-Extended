@@ -31,6 +31,7 @@ static NEARDATA const char revivables[] = { ALLOW_FLOOROBJ, FOOD_CLASS, 0 };
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allnoncount[] = { ALL_CLASSES, 0 };
+static const char allowall[] = { ALL_CLASSES, 0 };
 
 #define spellev(spell)		spl_book[spell].sp_lev
 #define spellid(spell)          spl_book[spell].sp_id
@@ -60,6 +61,7 @@ static int spell_dash(void);
 STATIC_DCL void boostknow(int, int);
 STATIC_DCL void drainknow(int, int);
 STATIC_DCL void incrnknow(int, BOOLEAN_P);
+STATIC_DCL void handleartifactspellbook(struct obj *);
 
 boolean
 spell_known(int sbook_id)
@@ -2116,7 +2118,7 @@ learn()
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
 
-	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 500 : 50) ) {		/* became confused while learning */
+	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && (book->oartifact != ART_A_LOT_OF_ENYAS_IN_THE_CAST) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 500 : 50) ) {		/* became confused while learning */
 
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
@@ -2177,92 +2179,37 @@ learn()
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 
-			    if (book->oartifact == ART_SECRET_BOOK_OF_VENOM) {
-				You("gain the secret knowledge of venom mixing!");
-				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
-			    }
+			    handleartifactspellbook(book);
 
-			    if (book->oartifact == ART_DOLCEVAIN) {
-				u.thornspell += rnz(1000);
-				You("grow a thorny hide!");
-			    }
+				/* ultra annoyingly, "boostknow" cannot be used in handleartifactspellbook(), because lol why would we have a function that
+				 * allows you to just say "increase knowledge of the spell with this ID". nooooooo, we have to make it a function that increases
+				 * the knowledge of "spell at a certain point in your list of spells", that's like so annoying I don't even... --Amy
+				 * ATTENTION !!!!!!! handleartifactspellbook() is called again below so all those artifacts that do "boostknow" stuff will
+				 * ***HAVE*** to also be handled again below where that other function call is or they won't work right !!!!! */
 
-			    if (book->oartifact == ART_KING_IN_YELLOW) {
-				int kiypm;
-				kiypm = dprince(rn2((int)A_LAWFUL+2) - 1);
-				if (kiypm >= PM_ORCUS && kiypm <= PM_DEMOGORGON) u.conclusiocount++;
-				if (kiypm && (kiypm != NON_PM)) {
-					(void) makemon(&mons[kiypm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
-					pline("An angry demon is summoned!");
+				if (book->oartifact == ART_YOU_CAN_HURT) {
+					losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
+					boostknow(i, 50000);
+					You("can hurt, but the spell will last for a generous time.");
 				}
-			    }
-
-			    if (book->oartifact == ART_IWA_ERWI) {
-				int iwaerwi;
-				if (rn2(2)) {
-					if (objects[SPE_DEFUSING].oc_level < 8) objects[SPE_DEFUSING].oc_level++;
-				} else {
-					if (objects[SPE_DEFUSING].oc_level > 1) objects[SPE_DEFUSING].oc_level--;
+				if (book->oartifact == ART_BACKLASHPROTECT) {
+					boostknow(i, 40000);
+					pline_The("spell has a lot of memory now.");
 				}
-
-				for (iwaerwi = 0; iwaerwi < MAXSPELL && spellid(iwaerwi) != NO_SPELL; iwaerwi++) {
-					if (spellid(iwaerwi) == SPE_DEFUSING) {
-						spl_book[iwaerwi].sp_lev = objects[SPE_DEFUSING].oc_level;
-					}
+				if (book->oartifact == ART_MULTIPLY_ME) {
+					boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
+					pline_The("spell memory bonus was multiplied!");
 				}
-
-				pline("The level of the defusing spell has changed!");
-			    }
+				if (book->oartifact == ART_PAGAN_POETRY) {
+					u.superspecialspell = booktype;
+					pline_The("spell is your super special spell now.");
+				}
 
 			    use_skill(P_MEMORIZATION, spellev(i));
 			    if (!rn2(3)) u.uenmax++;
 			    u.cnd_spellbookcount++;
 			    incrnknow(i, FALSE);
-			    if (book->oartifact == ART_YOU_CAN_HURT) {
-				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
-				boostknow(i, 50000);
-				You("can hurt, but the spell will last for a generous time.");
-			    }
-			    if (book->oartifact == ART_BACKLASHPROTECT) {
-				boostknow(i, 40000);
-				pline_The("spell has a lot of memory now.");
-			    }
-			    if (book->oartifact == ART_HEALING_RAIN_OBTAINED) {
-				wonderspell(SPE_HEALING_RAIN);
-			    }
-			    if (book->oartifact == ART_MULTIPLY_ME) {
-				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
-				pline_The("spell memory bonus was multiplied!");
-			    }
-			    if (book->oartifact == ART_PAGAN_POETRY) {
-				u.superspecialspell = booktype;
-				pline_The("spell is your super special spell now.");
-			    }
-			    if (book->oartifact == ART_LESSEE_DAT && Role_if(PM_ELECTRIC_MAGE)) {
-				if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_ISRESTRICTED) {
-					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
-					pline("You can now learn the elemental spells skill.");
-				} else if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_UNSKILLED) {
-					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_BASIC;
-					pline("You can now learn the elemental spells skill.");
-				} else if (rn2(2) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_BASIC) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SKILLED;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(4) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_EXPERT;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(10) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_MASTER;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(100) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_MASTER) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_GRAND_MASTER;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(200) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SUPREME_MASTER;
-					pline("Your knowledge of the elemental spells skill increases.");
-				}
-			    }
+
 			    if (u.emynluincomplete) boostknow(i, 1000);
 			    if (uarmc && uarmc->oartifact == ART_READ_UP_ON_IT) boostknow(i, 20000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
@@ -2333,30 +2280,13 @@ learn()
 			You("have keen knowledge of the spell.");
 			You(i > 0 ? "add %s to your repertoire." : "learn %s.",
 			    splname);
-			if (book->oartifact == ART_SECRET_BOOK_OF_VENOM) {
-				You("gain the secret knowledge of venom mixing!");
-				learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
-			}
-			if (book->oartifact == ART_DOLCEVAIN) {
-				u.thornspell += rnz(1000);
-				You("grow a thorny hide!");
-			}
-			if (book->oartifact == ART_KING_IN_YELLOW) {
-				int kiypm;
-				kiypm = dprince(rn2((int)A_LAWFUL+2) - 1);
-				if (kiypm >= PM_ORCUS && kiypm <= PM_DEMOGORGON) u.conclusiocount++;
-				if (kiypm && (kiypm != NON_PM)) {
-					(void) makemon(&mons[kiypm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
-					pline("An angry demon is summoned!");
-				}
-			}
+
+			handleartifactspellbook(book);
+
 			if (book->oartifact == ART_YOU_CAN_HURT) {
 				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
-			}
-			if (book->oartifact == ART_HEALING_RAIN_OBTAINED) {
-				wonderspell(SPE_HEALING_RAIN);
 			}
 			if (book->oartifact == ART_BACKLASHPROTECT) {
 				boostknow(i, 40000);
@@ -2371,46 +2301,6 @@ learn()
 				pline_The("spell is your super special spell now.");
 			}
 
-			if (book->oartifact == ART_LESSEE_DAT && Role_if(PM_ELECTRIC_MAGE)) {
-				if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_ISRESTRICTED) {
-					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
-					pline("You can now learn the elemental spells skill.");
-				} else if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_UNSKILLED) {
-					unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_BASIC;
-					pline("You can now learn the elemental spells skill.");
-				} else if (rn2(2) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_BASIC) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SKILLED;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(4) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_EXPERT;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(10) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_MASTER;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(100) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_MASTER) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_GRAND_MASTER;
-					pline("Your knowledge of the elemental spells skill increases.");
-				} else if (!rn2(200) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER) {
-					P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SUPREME_MASTER;
-					pline("Your knowledge of the elemental spells skill increases.");
-				}
-			}
-
-			if (book->oartifact == ART_IWA_ERWI) {
-				int iwaerwi;
-				if (rn2(2)) {
-					if (objects[SPE_DEFUSING].oc_level < 8) objects[SPE_DEFUSING].oc_level++;
-				} else {
-					if (objects[SPE_DEFUSING].oc_level > 1) objects[SPE_DEFUSING].oc_level--;
-				}
-				for (iwaerwi = 0; iwaerwi < MAXSPELL && spellid(iwaerwi) != NO_SPELL; iwaerwi++) {
-					if (spellid(iwaerwi) == SPE_DEFUSING) {
-						spl_book[iwaerwi].sp_lev = objects[SPE_DEFUSING].oc_level;
-					}
-				}
-				pline("The level of the defusing spell has changed!");
-			}
 			if (booktype == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;
 				if (flags.soundok) You_hear("a thunderous growling and rumbling...");
@@ -2670,7 +2560,7 @@ register struct obj *spellbook;
 		    } else
 			spellbook->in_use = FALSE;
 		    return(1);
-		} else if (confused && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 250 : 50) && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
+		} else if (confused && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 250 : 50) && spellbook->oartifact != ART_A_LOT_OF_ENYAS_IN_THE_CAST && spellbook->otyp != SPE_BOOK_OF_THE_DEAD) {
 		    if (!confused_book(spellbook)) {
 			spellbook->in_use = FALSE;
 		    }
@@ -2712,6 +2602,11 @@ register struct obj *spellbook;
 			}
 
 			if (nochargechange >= rnd(10)) consume_obj_charge(spellbook, FALSE);
+
+			if (spellbook->oartifact == ART_A_LOT_OF_ENYAS_IN_THE_CAST) {
+				incr_itimeout(&HConf_resist, rnz(5000));
+				You_feel("resistant to confusion.");
+			}
 
 			use_skill(P_DEVICES,1);
 			if (Race_if(PM_FAWN)) {
@@ -3273,6 +3168,299 @@ cast_reflection()
 	incr_itimeout(&HReflecting, rn1(10, HReflecting ? 4 : 30));
 }
 
+STATIC_OVL void
+handleartifactspellbook(book2)
+struct obj *book2;
+{
+	if (!book2) {
+		impossible("handleartifactspellbook called without book?!");
+		return;
+	}
+
+	if (book2->oartifact == ART_SECRET_BOOK_OF_VENOM) {
+		You("gain the secret knowledge of venom mixing!");
+		learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
+	}
+
+	if (book2->oartifact == ART_OH_WHAT_A_GOOD_SAME_ME_THR) {
+		if (u.ualign.type == A_LAWFUL) {
+			adjalign(10);
+			u.alignlim += 1;
+			You("feel pious.");
+		}
+		do_vicinity_map();
+	}
+
+	if (book2->oartifact == ART_WARP_CORE_OPEN) {
+		register struct monst *warpcoremon;
+		warpcoremon = makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ADJACENTOK);
+		if (warpcoremon) {
+			tamedog(warpcoremon, (struct obj *) 0, FALSE);
+			pline_The("warp core turned into a vortex!");
+		}
+
+	}
+
+	if (book2->oartifact == ART_HUNDREDS_OF_WOODEN_PALISAD) {
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_farmfloodg, (void *)&madepoolQ);
+		if (madepoolQ) pline("Farmland appears.");
+	}
+
+	if (book2->oartifact == ART_SUI_SUI) {
+		u.antidreameater += 5000;
+		You_feel("more protected from dream eater attacks.");
+	}
+
+	if (book2->oartifact == ART_TEAM_PRIDE) {
+		register struct monst *pridemon;
+
+		if (!uinsymbiosis) {
+
+			pridemon = makemon(specialtensmon(274), u.ux, u.uy, MM_ADJACENTOK); /* AD_DFOO */
+
+			if (pridemon) {
+				turnmonintosymbiote(pridemon, FALSE); /* WARNING: pridemon is removed at this point */
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_THAT_S_SO_MIRA) {
+		int i, j, bd = 100;
+		for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+				levl[u.ux + i][u.uy + j].typ = URINELAKE;
+				blockorunblock_point(u.ux + i,u.uy + j);
+				if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+				del_engr_at(u.ux + i, u.uy + j);
+	
+				newsym(u.ux + i,u.uy + j);
+			}
+		}
+		pline("Ewwwwww, there's urine everywhere... that's so Mira...");
+		u.miraspawncounter++;
+		upnivel(FALSE);
+		u.uhpmax++;
+		if (Upolyd) u.mhmax++;
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			maybe_evolve_symbiote();
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
+
+		flags.botl = TRUE;
+	}
+
+	if (book2->oartifact == ART_KLARISTO_) {
+		incr_itimeout(&HSee_invisible, rnz(5000));
+		pline("You can see invisible things!");
+	}
+
+	if (book2->oartifact == ART_HIGH_SCORING_TRICK) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		coord cc, dd;
+		int cx,cy, randsp, i;
+
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		randsp = rnd(15);
+
+		for (i = 0; i < randsp; i++) {
+
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			(void) makemon(insidemon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+		}
+		pline("Arabella has joined the game. Moloch's minions get stronger.");
+
+		u.aggravation = 0;
+
+	}
+
+	if (book2->oartifact == ART_SOMMERDEN_WANT_TO_BE_USED_) {
+		pline_The("sun comes out.");
+		u.currentweather = WEATHER_SUNNY;
+		tell_main_weather();
+	}
+
+	if (book2->oartifact == ART_SWEET_DREAMS_ARE_MADE_OF_S) {
+		if(HSleep_resistance & INTRINSIC) {
+			HSleep_resistance &= ~INTRINSIC;
+		} 
+		if(HSleep_resistance & TIMEOUT) {
+			HSleep_resistance &= ~TIMEOUT;
+		}
+		You_feel("tired...");
+		u.steeldreamcounter++;
+		u.uprops[DEAC_SLEEP_RES].intrinsic += (u.steeldreamcounter * 10000);
+		fall_asleep(-(u.steeldreamcounter * 10), TRUE);
+
+		register struct obj *melating;
+		pline("You may change the material of an item to steel.");
+melatechoice:
+		melating = getobj(allowall, "change the material of");
+		if(!melating) {
+			if (yn("Really exit with no object selected?") == 'y') {
+				pline("You just wasted the opportunity to change an item's material.");
+			}
+			else goto melatechoice;
+		} else if ((melating->otyp == GOLD_PIECE) || (melating->otyp == STRANGE_OBJECT) || (melating->otyp == AMULET_OF_YENDOR) || (melating->otyp == CANDELABRUM_OF_INVOCATION) || (melating->otyp == BELL_OF_OPENING) || (melating->otyp == SPE_BOOK_OF_THE_DEAD) || (objects[melating->otyp].oc_prob < 1)) {
+			pline("The material of that item cannot be changed!");
+		} else if (melating) {
+
+			objects[melating->otyp].oc_material = MT_STEEL;
+			pline_The("target item is made of steel now.");
+		}
+		You("fall asleep. Sweet dreams...");
+	}
+
+	if (book2->oartifact == ART_MAYONAISE_SHOULD_HAVE_BEEN) {
+		pline("You lose  Wisdom");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Pochemu vy ne sledite luchshe dlya vashikh atributov, tak ili inache?" : "Due-l-ue-l-ue-l!");
+		ABASE(A_WIS) -= 1;
+		AMAX(A_WIS) -= 1;
+		flags.botl = 1;
+
+		if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
+			u.youaredead = 1;
+			pline("Well, you really should have been more wise... your body shuts down forever.");
+			killer = "not being wise enough";
+			killer_format = KILLED_BY;
+			done(DIED);
+			/* lifesaved */
+			u.youaredead = 0;
+			if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {
+				ABASE(A_WIS) += 1;
+				AMAX(A_WIS) += 1;
+			}
+		}
+
+		if (!rn2(3)) {
+			intrinsicgainorloss(1);
+		} else if (!rn2(5)) {
+			intrinsicgainorloss(2);
+		}
+	}
+
+	if (book2->oartifact == ART_BEAT_MY_LOVER) {
+		register struct monst *nexusmon, *nextmon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			nextmon = nexusmon->nmon; /* trap might kill mon */
+			if (DEADMONSTER(nexusmon)) continue;
+
+			if (!is_male(nexusmon->data)) continue;
+
+			nexusmon->mhp -= u.ulevel;
+			if (nexusmon->mhp <= 0) {
+				xkilled(nexusmon, 0);
+				pline("%s was beaten to death!", Monnam(nexusmon));
+			}
+			else {
+				pline("%s was beaten up!", Monnam(nexusmon));
+				wakeup(nexusmon); /* monster becomes hostile */
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_DOLCEVAIN) {
+		u.thornspell += rnz(1000);
+		You("grow a thorny hide!");
+	}
+
+	if (book2->oartifact == ART_LEYDE_HIR_MI_TONIGHT) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		register struct monst *leydemon;
+		leydemon = makemon(courtmon(), u.ux, u.uy, MM_ADJACENTOK);
+		if (leydemon) {
+			if (is_female(leydemon->data)) {
+				tamedog(leydemon, (struct obj *) 0, FALSE);
+				pline("The leyde hirs yu tonight!");
+			} else pline("Oh, looks like your plea was in vain.");
+		}
+
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_ZI_U_U_U_U_U_UUUUU) {
+		struct obj *uammo;
+		uammo = mksobj(randartcrossbowbolt(), TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rnz(50);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A stack of crossbow ammo has formed on the ground!");
+		}
+	}
+
+	if (book2->oartifact == ART_KING_IN_YELLOW) {
+		int kiypm;
+		kiypm = dprince(rn2((int)A_LAWFUL+2) - 1);
+		if (kiypm >= PM_ORCUS && kiypm <= PM_DEMOGORGON) u.conclusiocount++;
+		if (kiypm && (kiypm != NON_PM)) {
+			(void) makemon(&mons[kiypm], u.ux, u.uy, MM_ANGRY|MM_FRENZIED);
+			pline("An angry demon is summoned!");
+		}
+	}
+
+	if (book2->oartifact == ART_IWA_ERWI) {
+		int iwaerwi;
+		if (rn2(2)) {
+			if (objects[SPE_DEFUSING].oc_level < 8) objects[SPE_DEFUSING].oc_level++;
+		} else {
+			if (objects[SPE_DEFUSING].oc_level > 1) objects[SPE_DEFUSING].oc_level--;
+		}
+
+		for (iwaerwi = 0; iwaerwi < MAXSPELL && spellid(iwaerwi) != NO_SPELL; iwaerwi++) {
+			if (spellid(iwaerwi) == SPE_DEFUSING) {
+				spl_book[iwaerwi].sp_lev = objects[SPE_DEFUSING].oc_level;
+			}
+		}
+
+		pline("The level of the defusing spell has changed!");
+	}
+
+	if (book2->oartifact == ART_HEALING_RAIN_OBTAINED) {
+		wonderspell(SPE_HEALING_RAIN);
+	}
+	if (book2->oartifact == ART_LESSEE_DAT && Role_if(PM_ELECTRIC_MAGE)) {
+		if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
+			pline("You can now learn the elemental spells skill.");
+		} else if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_ELEMENTAL_SPELL);
+			P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_BASIC;
+			pline("You can now learn the elemental spells skill.");
+		} else if (rn2(2) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_BASIC) {
+			P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SKILLED;
+			pline("Your knowledge of the elemental spells skill increases.");
+		} else if (!rn2(4) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_SKILLED) {
+			P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_EXPERT;
+			pline("Your knowledge of the elemental spells skill increases.");
+		} else if (!rn2(10) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_EXPERT) {
+			P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_MASTER;
+			pline("Your knowledge of the elemental spells skill increases.");
+		} else if (!rn2(100) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_MASTER) {
+			P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_GRAND_MASTER;
+			pline("Your knowledge of the elemental spells skill increases.");
+		} else if (!rn2(200) && P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_GRAND_MASTER) {
+			P_MAX_SKILL(P_ELEMENTAL_SPELL) = P_SUPREME_MASTER;
+			pline("Your knowledge of the elemental spells skill increases.");
+		}
+	}
+
+}
 
 /* attempting to cast a forgotten spell will cause disorientation */
 STATIC_OVL void
@@ -12710,6 +12898,8 @@ int spell;
 	if (spell_skilltype(spellid(spell)) == P_HEALING_SPELL) {
 		if (uwep && uwep->oartifact == ART_CELESTIAL_SCEPTRE) chance += 50;
 	}
+
+	if (uwep && uwep->oartifact == ART_I_WANT_IT_DEAD_AWAY && (spellid(spell) == SPE_DISINTEGRATION) ) chance += 50;
 
 	/* higher spell skill should do SOMEthing --Amy */
 	skill = P_SKILL(spell_skilltype(spellid(spell)));

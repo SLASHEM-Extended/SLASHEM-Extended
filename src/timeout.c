@@ -970,6 +970,12 @@ nh_timeout()
 	    attrcurse();
 	}
 
+	if (u.antidreameater) {
+		u.antidreameater--;
+		if (u.antidreameater < 0) u.antidreameater = 0;
+		if (u.antidreameater == 0) You("feel no longer protected from dream eater attacks.");
+	}
+
 	if (u.bulletatortimer) {
 		u.bulletatortimer--;
 		if (u.bulletatortimer < 0) u.bulletatortimer = 0;
@@ -1236,6 +1242,524 @@ nh_timeout()
 		}
 	    }
 
+	}
+
+	/* Amy keyword "marlena", for super feminism trap effects that time out */
+	if (u.tempsuperfemtrap_femmy) {
+		u.tempsuperfemtrap_femmy--;
+		if (u.tempsuperfemtrap_femmy < 0) u.tempsuperfemtrap_femmy = 0;
+		if (u.tempsuperfemtrap_femmy == 0) pline("The dungeon no longer seems feminine.");
+	}
+	if (u.tempsuperfemtrap_anastasia) {
+		u.tempsuperfemtrap_anastasia--;
+		if (u.tempsuperfemtrap_anastasia < 0) u.tempsuperfemtrap_anastasia = 0;
+		if (u.tempsuperfemtrap_anastasia == 0) pline("You come back to your senses and realize that stepping into a heap of shit is, well, shit.");
+	}
+	if (u.tempsuperfemtrap_wendy) {
+		u.tempsuperfemtrap_wendy--;
+		if (u.tempsuperfemtrap_wendy < 0) u.tempsuperfemtrap_wendy = 0;
+		if (u.tempsuperfemtrap_wendy == 0) pline("You survived the wrath of the women, and feel safe from them now.");
+	}
+	if (u.tempsuperfemtrap_katharina) {
+		u.tempsuperfemtrap_katharina--;
+		if (u.tempsuperfemtrap_katharina < 0) u.tempsuperfemtrap_katharina = 0;
+		if (u.tempsuperfemtrap_katharina == 0) pline("The female dungeon inhabitants decide to make their butts Geneva-compliant again.");
+	}
+	if (u.tempsuperfemtrap_elif) {
+		u.tempsuperfemtrap_elif--;
+		if (u.tempsuperfemtrap_elif < 0) u.tempsuperfemtrap_elif = 0;
+		if (u.tempsuperfemtrap_elif == 0) pline("The lovely ghostly girl named Elif disappears, telling you that she enjoyed the time she spent with you.");
+	}
+	if (u.tempsuperfemtrap_maurah) {
+		u.tempsuperfemtrap_maurah--;
+		if (u.tempsuperfemtrap_maurah < 0) u.tempsuperfemtrap_maurah = 0;
+		if (u.tempsuperfemtrap_maurah == 0) pline("Your butt is no longer as sexy as before, and will no longer fart unless you tell it to do so.");
+	}
+	if (u.tempsuperfemtrap_sarah) {
+		u.tempsuperfemtrap_sarah--;
+		if (u.tempsuperfemtrap_sarah < 0) u.tempsuperfemtrap_sarah = 0;
+		if (u.tempsuperfemtrap_sarah == 0) pline("Apparently the farting gas is depleted.");
+	}
+	if (u.tempsuperfemtrap_claudia) {
+		u.tempsuperfemtrap_claudia--;
+		if (u.tempsuperfemtrap_claudia < 0) u.tempsuperfemtrap_claudia = 0;
+		if (u.tempsuperfemtrap_claudia == 0) pline("Your sexy butt cheek wood confusion ends.");
+	}
+	if (u.tempsuperfemtrap_ludgera) {
+		u.tempsuperfemtrap_ludgera--;
+		if (u.tempsuperfemtrap_ludgera < 0) u.tempsuperfemtrap_ludgera = 0;
+		if (u.tempsuperfemtrap_ludgera == 0) pline("At last the disgusting toilet noises ceased.");
+	}
+	if (u.tempsuperfemtrap_eveline) {
+		u.tempsuperfemtrap_eveline--;
+		if (u.tempsuperfemtrap_eveline < 0) u.tempsuperfemtrap_eveline = 0;
+		if (u.tempsuperfemtrap_eveline == 0) pline("Apparently the women stopped running.");
+	}
+	if (u.tempsuperfemtrap_julietta) {
+		u.tempsuperfemtrap_julietta--;
+		if (u.tempsuperfemtrap_julietta < 0) u.tempsuperfemtrap_julietta = 0;
+		if (u.tempsuperfemtrap_julietta == 0) pline("It seems that Julietta finally got bored and decides to annoy other people instead of you.");
+	}
+	if (u.tempsuperfemtrap_arabella) {
+		u.tempsuperfemtrap_arabella--;
+		if (u.tempsuperfemtrap_arabella < 0) u.tempsuperfemtrap_arabella = 0;
+		if (u.tempsuperfemtrap_arabella == 0) pline("You're relieved to have gotten over the nastiness. Beware, there may still be some traps around.");
+	}
+	if (u.tempsuperfemtrap_anna) {
+		u.tempsuperfemtrap_anna--;
+		if (u.tempsuperfemtrap_anna < 0) u.tempsuperfemtrap_anna = 0;
+		if (u.tempsuperfemtrap_anna == 0) pline("There's an announcement saying that the hussies no longer consider you a target. Phew.");
+	}
+	if (u.tempsuperfemtrap_ruea) {
+		u.tempsuperfemtrap_ruea--;
+		if (u.tempsuperfemtrap_ruea < 0) u.tempsuperfemtrap_ruea = 0;
+		if (u.tempsuperfemtrap_ruea == 0) pline("The women gave up their attempts to convert you.");
+	}
+	if (u.tempsuperfemtrap_dora) {
+		u.tempsuperfemtrap_dora--;
+		if (u.tempsuperfemtrap_dora < 0) u.tempsuperfemtrap_dora = 0;
+		if (u.tempsuperfemtrap_dora == 0) pline("There's a loud flapping noise indicating that the evil shoe-hating birds are leaving the dungeon.");
+	}
+	if (u.tempsuperfemtrap_marike) {
+		u.tempsuperfemtrap_marike--;
+		if (u.tempsuperfemtrap_marike < 0) u.tempsuperfemtrap_marike = 0;
+		if (u.tempsuperfemtrap_marike == 0) pline("Aww, apparently you no longer want to listen to squeaking farting noises. But why? You didn't even come yet...");
+	}
+	if (u.tempsuperfemtrap_sing) {
+		u.tempsuperfemtrap_sing--;
+		if (u.tempsuperfemtrap_sing < 0) u.tempsuperfemtrap_sing = 0;
+		if (u.tempsuperfemtrap_sing == 0) pline("You got enough and decide to end the evil woman's slavery reign by bashing her face with a platform boot that has cow dung on the soles. After striking her down, you flee from your prison and don't look back.");
+	}
+	if (u.tempsuperfemtrap_victoria) {
+		u.tempsuperfemtrap_victoria--;
+		if (u.tempsuperfemtrap_victoria < 0) u.tempsuperfemtrap_victoria = 0;
+		if (u.tempsuperfemtrap_victoria == 0) pline("You finished playing with the karate women.");
+	}
+	if (u.tempsuperfemtrap_verena) {
+		u.tempsuperfemtrap_verena--;
+		if (u.tempsuperfemtrap_verena < 0) u.tempsuperfemtrap_verena = 0;
+		if (u.tempsuperfemtrap_verena == 0) pline("Now you're so annoyed that you slap that annoying blonde girl right in the face, knocking her out. Maybe now she'll leave you alone, she already caused enough annoyance anyway.");
+	}
+	if (u.tempsuperfemtrap_jil) {
+		u.tempsuperfemtrap_jil--;
+		if (u.tempsuperfemtrap_jil < 0) u.tempsuperfemtrap_jil = 0;
+		if (u.tempsuperfemtrap_jil == 0) pline("Ah, good, the girls decided to put their sweaty socks in the washing machine at last. About time, too.");
+	}
+	if (u.tempsuperfemtrap_jana) {
+		u.tempsuperfemtrap_jana--;
+		if (u.tempsuperfemtrap_jana < 0) u.tempsuperfemtrap_jana = 0;
+		if (u.tempsuperfemtrap_jana == 0) pline("All the grave walls are set up now. But somehow you feel that they behave normally now.");
+	}
+	if (u.tempsuperfemtrap_manuela) {
+		u.tempsuperfemtrap_manuela--;
+		if (u.tempsuperfemtrap_manuela < 0) u.tempsuperfemtrap_manuela = 0;
+		if (u.tempsuperfemtrap_manuela == 0) pline("Apparently you said something that the women consider offensive, and their block-heeled combat boots are retreating as a result.");
+	}
+	if (u.tempsuperfemtrap_jennifer) {
+		u.tempsuperfemtrap_jennifer--;
+		if (u.tempsuperfemtrap_jennifer < 0) u.tempsuperfemtrap_jennifer = 0;
+		if (u.tempsuperfemtrap_jennifer == 0) pline("You've realized that no more silent farters are coming.");
+	}
+	if (u.tempsuperfemtrap_patricia) {
+		u.tempsuperfemtrap_patricia--;
+		if (u.tempsuperfemtrap_patricia < 0) u.tempsuperfemtrap_patricia = 0;
+		if (u.tempsuperfemtrap_patricia == 0) pline("Aww, you're no longer the thick girl with the sexy steel-capped sandals...");
+	}
+	if (u.tempsuperfemtrap_kerstin) {
+		u.tempsuperfemtrap_kerstin--;
+		if (u.tempsuperfemtrap_kerstin < 0) u.tempsuperfemtrap_kerstin = 0;
+		if (u.tempsuperfemtrap_kerstin == 0) pline("Finally those pesky farmer girls are leaving, they were really getting on your nerves.");
+	}
+	if (u.tempsuperfemtrap_laura) {
+		u.tempsuperfemtrap_laura--;
+		if (u.tempsuperfemtrap_laura < 0) u.tempsuperfemtrap_laura = 0;
+		if (u.tempsuperfemtrap_laura == 0) pline("You got really sick of fighting female clothing all the time, hopefully there'll be some actual monsters for a while now...");
+	}
+	if (u.tempsuperfemtrap_larissa) {
+		u.tempsuperfemtrap_larissa--;
+		if (u.tempsuperfemtrap_larissa < 0) u.tempsuperfemtrap_larissa = 0;
+		if (u.tempsuperfemtrap_larissa == 0) pline("Blegh, the asshole tricked you! It seems that you stepped into dog shit for nothing at all, and now you can waste all your free time cleaning your shoes again! If you get that guy into your fingers...");
+	}
+	if (u.tempsuperfemtrap_susanne) {
+		u.tempsuperfemtrap_susanne--;
+		if (u.tempsuperfemtrap_susanne < 0) u.tempsuperfemtrap_susanne = 0;
+		if (u.tempsuperfemtrap_susanne == 0) pline("Well, the powerful women haven't killed you yet, so they decide to spawn no longer.");
+	}
+	if (u.tempsuperfemtrap_bridghitte) {
+		u.tempsuperfemtrap_bridghitte--;
+		if (u.tempsuperfemtrap_bridghitte < 0) u.tempsuperfemtrap_bridghitte = 0;
+		if (u.tempsuperfemtrap_bridghitte == 0) pline("Now be careful, for even though you might have been lucky when you crossed the bridge, you might slip up on the way back...");
+	}
+	if (u.tempsuperfemtrap_nicole) {
+		u.tempsuperfemtrap_nicole--;
+		if (u.tempsuperfemtrap_nicole < 0) u.tempsuperfemtrap_nicole = 0;
+		if (u.tempsuperfemtrap_nicole == 0) pline("Aww, you'd have loved to figure out what that dark aura surrounding the women is, but it's gone...");
+	}
+	if (u.tempsuperfemtrap_janina) {
+		u.tempsuperfemtrap_janina--;
+		if (u.tempsuperfemtrap_janina < 0) u.tempsuperfemtrap_janina = 0;
+		if (u.tempsuperfemtrap_janina == 0) pline("You got enough of smelling female pants.");
+	}
+	if (u.tempsuperfemtrap_rosa) {
+		u.tempsuperfemtrap_rosa--;
+		if (u.tempsuperfemtrap_rosa < 0) u.tempsuperfemtrap_rosa = 0;
+		if (u.tempsuperfemtrap_rosa == 0) pline("At last, the long-lasting powerfeminism has come to an end, you were afraid it'd never happen.");
+	}
+	if (u.tempsuperfemtrap_ksenia) {
+		u.tempsuperfemtrap_ksenia--;
+		if (u.tempsuperfemtrap_ksenia < 0) u.tempsuperfemtrap_ksenia = 0;
+		if (u.tempsuperfemtrap_ksenia == 0) pline("You still don't have enough blue marks on your shins, yet the pretty female sandals are pulling back for some reason...");
+	}
+	if (u.tempsuperfemtrap_katia) {
+		u.tempsuperfemtrap_katia--;
+		if (u.tempsuperfemtrap_katia < 0) u.tempsuperfemtrap_katia = 0;
+		if (u.tempsuperfemtrap_katia == 0) pline("At last you're no longer chased by that little girl who constantly wants to use the toilet!");
+	}
+	if (u.tempsuperfemtrap_mariya) {
+		u.tempsuperfemtrap_mariya--;
+		if (u.tempsuperfemtrap_mariya < 0) u.tempsuperfemtrap_mariya = 0;
+		if (u.tempsuperfemtrap_mariya == 0) pline("You feel that you've got enough distance to the icky girl with her stinking fart butt now.");
+	}
+	if (u.tempsuperfemtrap_elise) {
+		u.tempsuperfemtrap_elise--;
+		if (u.tempsuperfemtrap_elise < 0) u.tempsuperfemtrap_elise = 0;
+		if (u.tempsuperfemtrap_elise == 0) pline("The women have finished setting their traps, now please trigger some of them.");
+	}
+	if (u.tempsuperfemtrap_johanna) {
+		u.tempsuperfemtrap_johanna--;
+		if (u.tempsuperfemtrap_johanna < 0) u.tempsuperfemtrap_johanna = 0;
+		if (u.tempsuperfemtrap_johanna == 0) pline("Aww, you just got told that because you didn't treat the red block-heeled leather boots well, you may no longer look at them now. :-(");
+	}
+	if (u.tempsuperfemtrap_inge) {
+		u.tempsuperfemtrap_inge--;
+		if (u.tempsuperfemtrap_inge < 0) u.tempsuperfemtrap_inge = 0;
+		if (u.tempsuperfemtrap_inge == 0) pline("You wish you'd still encounter pretty ladies who want to fart you in the face tenderly, but no dice. They don't want to waste their time with you anymore it seems.");
+	}
+	if (u.tempsuperfemtrap_marleen) {
+		u.tempsuperfemtrap_marleen--;
+		if (u.tempsuperfemtrap_marleen < 0) u.tempsuperfemtrap_marleen = 0;
+		if (u.tempsuperfemtrap_marleen == 0) pline("The women deconstructed their defenses as they feel they're not really needed anymore.");
+	}
+	if (u.tempsuperfemtrap_klara) {
+		u.tempsuperfemtrap_klara--;
+		if (u.tempsuperfemtrap_klara < 0) u.tempsuperfemtrap_klara = 0;
+		if (u.tempsuperfemtrap_klara == 0) pline("Oh bummer, you can no longer hear the sounds of high heels.");
+	}
+	if (u.tempsuperfemtrap_friederike) {
+		u.tempsuperfemtrap_friederike--;
+		if (u.tempsuperfemtrap_friederike < 0) u.tempsuperfemtrap_friederike = 0;
+		if (u.tempsuperfemtrap_friederike == 0) pline("Aww... the pretty wing-tufted girl is leaving, even though you wanted her to hang her blond bundle into your face again!");
+	}
+	if (u.tempsuperfemtrap_ute) {
+		u.tempsuperfemtrap_ute--;
+		if (u.tempsuperfemtrap_ute < 0) u.tempsuperfemtrap_ute = 0;
+		if (u.tempsuperfemtrap_ute == 0) pline("The patriarch has given up and you're still alive! Whew! Now you can keep your high heels without having to fear that he tries to destroy them!");
+	}
+	if (u.tempsuperfemtrap_yasaman) {
+		u.tempsuperfemtrap_yasaman--;
+		if (u.tempsuperfemtrap_yasaman < 0) u.tempsuperfemtrap_yasaman = 0;
+		if (u.tempsuperfemtrap_yasaman == 0) pline("The monsters are no longer turning into sexy women. Whose idea was that anyway, a crossdresser's???");
+	}
+	if (u.tempsuperfemtrap_maybritt) {
+		u.tempsuperfemtrap_maybritt--;
+		if (u.tempsuperfemtrap_maybritt < 0) u.tempsuperfemtrap_maybritt = 0;
+		if (u.tempsuperfemtrap_maybritt == 0) pline("You hear that the annoying little girls have been relocated to some other dungeon, so they can't steal your stuff anymore now. Are you pitying them? No, not at all. They got what they deserved, as they never fit into this dungeon anyway.");
+	}
+	if (u.tempsuperfemtrap_nadine) {
+		u.tempsuperfemtrap_nadine--;
+		if (u.tempsuperfemtrap_nadine < 0) u.tempsuperfemtrap_nadine = 0;
+		if (u.tempsuperfemtrap_nadine == 0) pline("The dark feminists got enough of the dungeon and are leaving.");
+	}
+	if (u.tempsuperfemtrap_luisa) {
+		u.tempsuperfemtrap_luisa--;
+		if (u.tempsuperfemtrap_luisa < 0) u.tempsuperfemtrap_luisa = 0;
+		if (u.tempsuperfemtrap_luisa == 0) pline("At least the girl shoes can't cheat anymore now.");
+	}
+	if (u.tempsuperfemtrap_liselotte) {
+		u.tempsuperfemtrap_liselotte--;
+		if (u.tempsuperfemtrap_liselotte < 0) u.tempsuperfemtrap_liselotte = 0;
+		if (u.tempsuperfemtrap_liselotte == 0) pline("At last the annoying little girl got enough of kicking you in the shins.");
+	}
+	if (u.tempsuperfemtrap_greta) {
+		u.tempsuperfemtrap_greta--;
+		if (u.tempsuperfemtrap_greta < 0) u.tempsuperfemtrap_greta = 0;
+		if (u.tempsuperfemtrap_greta == 0) pline("Now the Hussies have finished setting up camp, and hopefully you'll run into them soon.");
+	}
+	if (u.tempsuperfemtrap_charlotte) {
+		u.tempsuperfemtrap_charlotte--;
+		if (u.tempsuperfemtrap_charlotte < 0) u.tempsuperfemtrap_charlotte = 0;
+		if (u.tempsuperfemtrap_charlotte == 0) pline("The Bang Gang has exhausted their supplies. Hopefully the warriors they've sent will be enough to stop you.");
+	}
+	if (u.tempsuperfemtrap_littlemarie) {
+		u.tempsuperfemtrap_littlemarie--;
+		if (u.tempsuperfemtrap_littlemarie < 0) u.tempsuperfemtrap_littlemarie = 0;
+		if (u.tempsuperfemtrap_littlemarie == 0) pline("At last that nastiness shield has been deactivated, now the girls and women will be much easier for you to battle.");
+	}
+	if (u.tempsuperfemtrap_tanja) {
+		u.tempsuperfemtrap_tanja--;
+		if (u.tempsuperfemtrap_tanja < 0) u.tempsuperfemtrap_tanja = 0;
+		if (u.tempsuperfemtrap_tanja == 0) pline("Somehow, the girls forgot how to use taekwondo moves. Good for you, I guess.");
+	}
+	if (u.tempsuperfemtrap_sonja) {
+		u.tempsuperfemtrap_sonja--;
+		if (u.tempsuperfemtrap_sonja < 0) u.tempsuperfemtrap_sonja = 0;
+		if (u.tempsuperfemtrap_sonja == 0) pline("Finally, the girls decided to no longer call for help when attacked, after all they're strong and can fight for themselves!");
+	}
+	if (u.tempsuperfemtrap_rhea) {
+		u.tempsuperfemtrap_rhea--;
+		if (u.tempsuperfemtrap_rhea < 0) u.tempsuperfemtrap_rhea = 0;
+		if (u.tempsuperfemtrap_rhea == 0) pline("Seems like the manufacturers are having trouble producing enough perfume for all the girls and women, so for the time being, they're less likely to beguile you.");
+	}
+	if (u.tempsuperfemtrap_lara) {
+		u.tempsuperfemtrap_lara--;
+		if (u.tempsuperfemtrap_lara < 0) u.tempsuperfemtrap_lara = 0;
+		if (u.tempsuperfemtrap_lara == 0) pline("Someone decided to let you free, so you'll no longer be attacked by treaded block heels while bound to a stick.");
+	}
+
+	/* Amy keyword "timerun", for super nasty traps that time out */
+	if (u.tempsupernastytrap_unidentify) {
+		u.tempsupernastytrap_unidentify--;
+		if (u.tempsupernastytrap_unidentify < 0) u.tempsupernastytrap_unidentify = 0;
+	}
+	if (u.tempsupernastytrap_cursing) {
+		u.tempsupernastytrap_cursing--;
+		if (u.tempsupernastytrap_cursing < 0) u.tempsupernastytrap_cursing = 0;
+	}
+	if (u.tempsupernastytrap_difficulty) {
+		u.tempsupernastytrap_difficulty--;
+		if (u.tempsupernastytrap_difficulty < 0) u.tempsupernastytrap_difficulty = 0;
+	}
+	if (u.tempsupernastytrap_amnesia) {
+		u.tempsupernastytrap_amnesia--;
+		if (u.tempsupernastytrap_amnesia < 0) u.tempsupernastytrap_amnesia = 0;
+	}
+	if (u.tempsupernastytrap_technique) {
+		u.tempsupernastytrap_technique--;
+		if (u.tempsupernastytrap_technique < 0) u.tempsupernastytrap_technique = 0;
+	}
+	if (u.tempsupernastytrap_disenchantment) {
+		u.tempsupernastytrap_disenchantment--;
+		if (u.tempsupernastytrap_disenchantment < 0) u.tempsupernastytrap_disenchantment = 0;
+	}
+	if (u.tempsupernastytrap_chaosterrain) {
+		u.tempsupernastytrap_chaosterrain--;
+		if (u.tempsupernastytrap_chaosterrain < 0) u.tempsupernastytrap_chaosterrain = 0;
+	}
+	if (u.tempsupernastytrap_uninformation) {
+		u.tempsupernastytrap_uninformation--;
+		if (u.tempsupernastytrap_uninformation < 0) u.tempsupernastytrap_uninformation = 0;
+	}
+	if (u.tempsupernastytrap_intrinsicloss) {
+		u.tempsupernastytrap_intrinsicloss--;
+		if (u.tempsupernastytrap_intrinsicloss < 0) u.tempsupernastytrap_intrinsicloss = 0;
+	}
+	if (u.tempsupernastytrap_trapcreation) {
+		u.tempsupernastytrap_trapcreation--;
+		if (u.tempsupernastytrap_trapcreation < 0) u.tempsupernastytrap_trapcreation = 0;
+	}
+	if (u.tempsupernastytrap_vulnerability) {
+		u.tempsupernastytrap_vulnerability--;
+		if (u.tempsupernastytrap_vulnerability < 0) u.tempsupernastytrap_vulnerability = 0;
+	}
+	if (u.tempsupernastytrap_itemport) {
+		u.tempsupernastytrap_itemport--;
+		if (u.tempsupernastytrap_itemport < 0) u.tempsupernastytrap_itemport = 0;
+	}
+	if (u.tempsupernastytrap_nasty) {
+		u.tempsupernastytrap_nasty--;
+		if (u.tempsupernastytrap_nasty < 0) u.tempsupernastytrap_nasty = 0;
+	}
+	if (u.tempsupernastytrap_limitation) {
+		u.tempsupernastytrap_limitation--;
+		if (u.tempsupernastytrap_limitation < 0) u.tempsupernastytrap_limitation = 0;
+	}
+	if (u.tempsupernastytrap_dropcurse) {
+		u.tempsupernastytrap_dropcurse--;
+		if (u.tempsupernastytrap_dropcurse < 0) u.tempsupernastytrap_dropcurse = 0;
+	}
+	if (u.tempsupernastytrap_wall) {
+		u.tempsupernastytrap_wall--;
+		if (u.tempsupernastytrap_wall < 0) u.tempsupernastytrap_wall = 0;
+	}
+	if (u.tempsupernastytrap_autocurse) {
+		u.tempsupernastytrap_autocurse--;
+		if (u.tempsupernastytrap_autocurse < 0) u.tempsupernastytrap_autocurse = 0;
+	}
+	if (u.tempsupernastytrap_horror) {
+		u.tempsupernastytrap_horror--;
+		if (u.tempsupernastytrap_horror < 0) u.tempsupernastytrap_horror = 0;
+	}
+	if (u.tempsupernastytrap_artificial) {
+		u.tempsupernastytrap_artificial--;
+		if (u.tempsupernastytrap_artificial < 0) u.tempsupernastytrap_artificial = 0;
+	}
+	if (u.tempsupernastytrap_evilpatch) {
+		u.tempsupernastytrap_evilpatch--;
+		if (u.tempsupernastytrap_evilpatch < 0) u.tempsupernastytrap_evilpatch = 0;
+	}
+	if (u.tempsupernastytrap_secretattack) {
+		u.tempsupernastytrap_secretattack--;
+		if (u.tempsupernastytrap_secretattack < 0) u.tempsupernastytrap_secretattack = 0;
+	}
+	if (u.tempsupernastytrap_wakeupcall) {
+		u.tempsupernastytrap_wakeupcall--;
+		if (u.tempsupernastytrap_wakeupcall < 0) u.tempsupernastytrap_wakeupcall = 0;
+	}
+	if (u.tempsupernastytrap_grayout) {
+		u.tempsupernastytrap_grayout--;
+		if (u.tempsupernastytrap_grayout < 0) u.tempsupernastytrap_grayout = 0;
+	}
+	if (u.tempsupernastytrap_graycenter) {
+		u.tempsupernastytrap_graycenter--;
+		if (u.tempsupernastytrap_graycenter < 0) u.tempsupernastytrap_graycenter = 0;
+	}
+	if (u.tempsupernastytrap_checkerboard) {
+		u.tempsupernastytrap_checkerboard--;
+		if (u.tempsupernastytrap_checkerboard < 0) u.tempsupernastytrap_checkerboard = 0;
+	}
+	if (u.tempsupernastytrap_lag) {
+		u.tempsupernastytrap_lag--;
+		if (u.tempsupernastytrap_lag < 0) u.tempsupernastytrap_lag = 0;
+	}
+	if (u.tempsupernastytrap_undressing) {
+		u.tempsupernastytrap_undressing--;
+		if (u.tempsupernastytrap_undressing < 0) u.tempsupernastytrap_undressing = 0;
+	}
+	if (u.tempsupernastytrap_latency) {
+		u.tempsupernastytrap_latency--;
+		if (u.tempsupernastytrap_latency < 0) u.tempsupernastytrap_latency = 0;
+	}
+	if (u.tempsupernastytrap_wrapover) {
+		u.tempsupernastytrap_wrapover--;
+		if (u.tempsupernastytrap_wrapover < 0) u.tempsupernastytrap_wrapover = 0;
+	}
+	if (u.tempsupernastytrap_destruction) {
+		u.tempsupernastytrap_destruction--;
+		if (u.tempsupernastytrap_destruction < 0) u.tempsupernastytrap_destruction = 0;
+	}
+	if (u.tempsupernastytrap_unfairattack) {
+		u.tempsupernastytrap_unfairattack--;
+		if (u.tempsupernastytrap_unfairattack < 0) u.tempsupernastytrap_unfairattack = 0;
+	}
+	if (u.tempsupernastytrap_cursedpart) {
+		u.tempsupernastytrap_cursedpart--;
+		if (u.tempsupernastytrap_cursedpart < 0) u.tempsupernastytrap_cursedpart = 0;
+	}
+	if (u.tempsupernastytrap_fallout) {
+		u.tempsupernastytrap_fallout--;
+		if (u.tempsupernastytrap_fallout < 0) u.tempsupernastytrap_fallout = 0;
+	}
+	if (u.tempsupernastytrap_mojibake) {
+		u.tempsupernastytrap_mojibake--;
+		if (u.tempsupernastytrap_mojibake < 0) u.tempsupernastytrap_mojibake = 0;
+	}
+	if (u.tempsupernastytrap_longscrewup) {
+		u.tempsupernastytrap_longscrewup--;
+		if (u.tempsupernastytrap_longscrewup < 0) u.tempsupernastytrap_longscrewup = 0;
+	}
+	if (u.tempsupernastytrap_skillloss) {
+		u.tempsupernastytrap_skillloss--;
+		if (u.tempsupernastytrap_skillloss < 0) u.tempsupernastytrap_skillloss = 0;
+	}
+	if (u.tempsupernastytrap_fluctuatingspeed) {
+		u.tempsupernastytrap_fluctuatingspeed--;
+		if (u.tempsupernastytrap_fluctuatingspeed < 0) u.tempsupernastytrap_fluctuatingspeed = 0;
+	}
+	if (u.tempsupernastytrap_satan) {
+		u.tempsupernastytrap_satan--;
+		if (u.tempsupernastytrap_satan < 0) u.tempsupernastytrap_satan = 0;
+	}
+	if (u.tempsupernastytrap_manler) {
+		u.tempsupernastytrap_manler--;
+		if (u.tempsupernastytrap_manler < 0) u.tempsupernastytrap_manler = 0;
+	}
+	if (u.tempsupernastytrap_doorning) {
+		u.tempsupernastytrap_doorning--;
+		if (u.tempsupernastytrap_doorning < 0) u.tempsupernastytrap_doorning = 0;
+	}
+	if (u.tempsupernastytrap_monnoise) {
+		u.tempsupernastytrap_monnoise--;
+		if (u.tempsupernastytrap_monnoise < 0) u.tempsupernastytrap_monnoise = 0;
+	}
+	if (u.tempsupernastytrap_rangcall) {
+		u.tempsupernastytrap_rangcall--;
+		if (u.tempsupernastytrap_rangcall < 0) u.tempsupernastytrap_rangcall = 0;
+	}
+	if (u.tempsupernastytrap_recurringspellloss) {
+		u.tempsupernastytrap_recurringspellloss--;
+		if (u.tempsupernastytrap_recurringspellloss < 0) u.tempsupernastytrap_recurringspellloss = 0;
+	}
+	if (u.tempsupernastytrap_antitraining) {
+		u.tempsupernastytrap_antitraining--;
+		if (u.tempsupernastytrap_antitraining < 0) u.tempsupernastytrap_antitraining = 0;
+	}
+	if (u.tempsupernastytrap_techout) {
+		u.tempsupernastytrap_techout--;
+		if (u.tempsupernastytrap_techout < 0) u.tempsupernastytrap_techout = 0;
+	}
+	if (u.tempsupernastytrap_statdecay) {
+		u.tempsupernastytrap_statdecay--;
+		if (u.tempsupernastytrap_statdecay < 0) u.tempsupernastytrap_statdecay = 0;
+	}
+	if (u.tempsupernastytrap_movemork) {
+		u.tempsupernastytrap_movemork--;
+		if (u.tempsupernastytrap_movemork < 0) u.tempsupernastytrap_movemork = 0;
+	}
+	if (u.tempsupernastytrap_ubergod) {
+		u.tempsupernastytrap_ubergod--;
+		if (u.tempsupernastytrap_ubergod < 0) u.tempsupernastytrap_ubergod = 0;
+	}
+	if (u.tempsupernastytrap_funwall) {
+		u.tempsupernastytrap_funwall--;
+		if (u.tempsupernastytrap_funwall < 0) u.tempsupernastytrap_funwall = 0;
+	}
+	if (u.tempsupernastytrap_covid) {
+		u.tempsupernastytrap_covid--;
+		if (u.tempsupernastytrap_covid < 0) u.tempsupernastytrap_covid = 0;
+	}
+	if (u.tempsupernastytrap_proofloss) {
+		u.tempsupernastytrap_proofloss--;
+		if (u.tempsupernastytrap_proofloss < 0) u.tempsupernastytrap_proofloss = 0;
+	}
+	if (u.tempsupernastytrap_uninvis) {
+		u.tempsupernastytrap_uninvis--;
+		if (u.tempsupernastytrap_uninvis < 0) u.tempsupernastytrap_uninvis = 0;
+	}
+	if (u.tempsupernastytrap_option) {
+		u.tempsupernastytrap_option--;
+		if (u.tempsupernastytrap_option < 0) u.tempsupernastytrap_option = 0;
+	}
+	if (u.tempsupernastytrap_unknowledge) {
+		u.tempsupernastytrap_unknowledge--;
+		if (u.tempsupernastytrap_unknowledge < 0) u.tempsupernastytrap_unknowledge = 0;
+	}
+	if (u.tempsupernastytrap_dschueueuet) {
+		u.tempsupernastytrap_dschueueuet--;
+		if (u.tempsupernastytrap_dschueueuet < 0) u.tempsupernastytrap_dschueueuet = 0;
+	}
+	if (u.tempsupernastytrap_nopeskill) {
+		u.tempsupernastytrap_nopeskill--;
+		if (u.tempsupernastytrap_nopeskill < 0) u.tempsupernastytrap_nopeskill = 0;
+	}
+	if (u.tempsupernastytrap_fuckfuckfuck) {
+		u.tempsupernastytrap_fuckfuckfuck--;
+		if (u.tempsupernastytrap_fuckfuckfuck < 0) u.tempsupernastytrap_fuckfuckfuck = 0;
+	}
+	if (u.tempsupernastytrap_umeng) {
+		u.tempsupernastytrap_umeng--;
+		if (u.tempsupernastytrap_umeng < 0) u.tempsupernastytrap_umeng = 0;
+	}
+	if (u.tempsupernastytrap_spellcooldown) {
+		u.tempsupernastytrap_spellcooldown--;
+		if (u.tempsupernastytrap_spellcooldown < 0) u.tempsupernastytrap_spellcooldown = 0;
+	}
+	if (u.tempsupernastytrap_turbodull) {
+		u.tempsupernastytrap_turbodull--;
+		if (u.tempsupernastytrap_turbodull < 0) u.tempsupernastytrap_turbodull = 0;
+	}
+	if (u.tempsupernastytrap_inventorysize) {
+		u.tempsupernastytrap_inventorysize--;
+		if (u.tempsupernastytrap_inventorysize < 0) u.tempsupernastytrap_inventorysize = 0;
 	}
 
 	if (RngeRadioBroadcasts) {

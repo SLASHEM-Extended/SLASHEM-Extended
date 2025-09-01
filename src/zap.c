@@ -6011,9 +6011,9 @@ boolean ordinary;
 		case WAN_DREAM_EATER: /* does not self-identify because it has no effect */
 		case SPE_DREAM_EATER:
 
-			if (multi >= 0) { /* should always be the case --Amy */
+			if ((multi >= 0) || u.antidreameater) { /* should always be the case --Amy */
 				pline("You are unaffected.");
-			} else {
+			} else { /* but I guess you could be using stuff like inertia control or spellbinder? */
 				pline("Your dream is eaten!");
 			      damage = d(10, 10);
 			}

@@ -13350,6 +13350,10 @@ peffects(otmp)
 
 	case POT_SLIME:
 
+		if ((otmp->oartifact == ART_BLEGH_POTION) && !Sick) {
+			make_sick(rn1(25,25), "blegh potion", TRUE, SICK_VOMITABLE);
+		}
+
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
 			make_slimed(100);
@@ -16424,6 +16428,11 @@ register struct obj *obj;
 	      (void) cancel_monst(&youmonst, obj, FALSE, TRUE, FALSE);
 		break;
 	case POT_SLIME:
+
+		if ((obj->oartifact == ART_BLEGH_POTION) && !Sick) {
+			make_sick(rn1(25,25), "blegh potion", TRUE, SICK_VOMITABLE);
+		}
+
 		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
 		    You("don't feel very well.");
 			stop_occupation();

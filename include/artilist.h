@@ -23520,6 +23520,118 @@ A("Hobart The Golden",				REGULAR_GLOVES, /* initialized to always be digger glo
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Delia's Tenderchunk",				SPE_RESIST_STUN, /* gives 25k turns of super claudia trap effect upon being generated, spawns with 10x as many charges */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blegh Potion",				POT_SLIME, /* makes you deathly sick (vomitable), also when inhaling its vapors */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("DISINT beam",				STANDARD_HELMET, /* initialized to always be lead helmet, 1 in 1000 per turn that a disintegration beam is fired at a random square, disables disintegration resistance and reflection */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Commander's Recipient",				LOW_BOOTS, /* initialized to always be rumble boots, fires disintegration beams in all directions if you hear the cwnannwn and death rays in all directions if you hear the banshee */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Blessful Return",				SCR_UNDO_GENOCIDE, /* lets you specify a monster glyph and all monsters of that class are ungenocided */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Zi-u-u-u-u-u-uuuuu",				SPE_LIGHTNING, /* reading it gives rnz(50) crossbow bolts of a randomized type */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Leyde Hir Mi Tonight",				SPE_DEFOG, /* summons a court monster when read; if it's M2_FEMALE, it spawns tame */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Beat My Lover",				SPE_LINE_LOSS, /* when read, all M2_MALE monsters on the level take damage equal to your XL; this can anger peacefuls and give penalties for killing a pet */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1200L ),
+
+A("Mayonaise Should Have Been More Wise",				SPE_REMOVE_BLESSING, /* reading it permanently reduces wisdom by one (kills you if you don't have enough), 1 in 3 chance to gain a random intrinsic and if not, 1 in 5 chance to lose a random one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sweet Dreams Are Made Of Steel",				SPE_METAL_GUARD, /* reading it allows you to change the material of a choosable item to STEEL, but also removes intrinsic sleep resistance and increases a counter by one, then deactivates sleep res by 10k*counter and puts you to sleep for 10*counter */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sommerden Want To Be Used By You",				SPE_CLOUDS, /* reading it sets the weather to "sunny" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Oh What A Good Same Me Through",				SPE_ICE, /* reading it reveals nearby areas like potion of clairvoyance, and if you're lawful you also gain +10 alignment and +1 to the maximum */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Warp Core Open",				SPE_HYPERSPACE_SUMMON, /* reading summons a tame v */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("hundreds of wooden palisades",				SPE_FARMING, /* reading creates farmland near you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("High-Scoring Trick",				SPE_CLONE_MONSTER, /* reading it spawns a bunch of inside monsters at a specific place */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("That's So Mira",				SPE_URINE, /* reading it fills the entire level with urine lakes and permanently increases spawn freq for monsters who leave urine lakes when walking by 100 (up to a max of 5000), and also gives a corona antidote and then still +1 max HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Klaristo!",				SPE_TRUE_SIGHT, /* reading it gives rnz(5000) turns of see invisible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Clingle Sound",				SCR_BLANK_PAPER, /* cost for writing something on it is halved */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Baperpack",				SCR_BLANK_PAPER, /* successfully writing something on it creates 5 regular blank scrolls */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Illogical Glow",				POT_WATER, /* spawns cursed and with its BUC known */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Autowinthegame",				SPE_BLANK_PAPER, /* cost for writing something on it is divided by three */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("set to HIMEM",				SPE_BLANK_PAPER, /* spawns with rnz(10) extra charges and the + is known from the start */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Luke's Good Vow",				BLUE_LIGHTSABER, /* can be invoked to activate the "use the force" technique */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 4), NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_LAWFUL, NON_PM, NON_PM, 4000L ),
+
+A("I Want It Dead Away",				SPE_DISINTEGRATION, /* while wielding it, your disintegration spell has 50% less failure chance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Team Pride",				SPE_PARALYSIS, /* reading it while you don't have a symbiote gives a random monster with AD_DFOO attacks as a symbiote, even if it's a type that normally cannot be used as a symbiote */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Sui Sui",				SPE_DREAM_EATER, /* reading it makes you immune to dream eater effects for 5000 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Team Bride",				LEATHER_CLOAK, /* initialized to always be pure cloak, +10 CHA, double confusion resist, makes you immune to foocubus advances */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("A lot of Enyas in the castle",				SPE_RESIST_CONFUSION, /* if you use up a charge of it (i.e. when you start reading), you gain rnz(5000) turns of resist confusion */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

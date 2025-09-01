@@ -446,6 +446,8 @@ struct you {
 	int returntimer;		/* for scroll/spell of return */
 	int returndestination;
 
+	int antidreameater;	/* temporary protection from dream eater attacks */
+
 	/* amy keyword: "newdungeons";   dungeons of doom, level 1 is always available */
 	boolean returndest_dod14;	/* dungeons of doom, level 14 */
 	boolean returndest_dod29;	/* dungeons of doom, level 29 */
@@ -808,6 +810,8 @@ struct you {
 
 	int superspecialspell;	/* for pagan poetry artifact: this spell is easier to cast */
 	int repunishcounter;	/* for "Hoho Re-Punish Me" artifact: while nonzero, you can be punished again */
+	int steeldreamcounter;	/* for "Sweet Dreams Are Made Of Steel" artifact */
+	int miraspawncounter;	/* for "That's So Mira" artifact */
 
 	/* Extra nastiness - nastinator race, but also other stuff uses this --Amy
 	 * timerun (keyword for my grepping) */
@@ -1422,6 +1426,125 @@ struct you {
 	int dorian20;
 	int dorian24;
 	int dorian28;
+
+	/* keyword "marlena" */
+	int tempsuperfemtrap_femmy;
+	int tempsuperfemtrap_anastasia;
+	int tempsuperfemtrap_wendy;
+	int tempsuperfemtrap_katharina;
+	int tempsuperfemtrap_elif;
+	int tempsuperfemtrap_maurah;
+	int tempsuperfemtrap_sarah;
+	int tempsuperfemtrap_claudia;
+	int tempsuperfemtrap_ludgera;
+	int tempsuperfemtrap_eveline;
+	int tempsuperfemtrap_julietta;
+	int tempsuperfemtrap_arabella;
+	int tempsuperfemtrap_anna;
+	int tempsuperfemtrap_ruea;
+	int tempsuperfemtrap_dora;
+	int tempsuperfemtrap_marike;
+	int tempsuperfemtrap_sing;
+	int tempsuperfemtrap_victoria;
+	int tempsuperfemtrap_verena;
+	int tempsuperfemtrap_jil;
+	int tempsuperfemtrap_jana;
+	int tempsuperfemtrap_manuela;
+	int tempsuperfemtrap_jennifer;
+	int tempsuperfemtrap_patricia;
+	int tempsuperfemtrap_kerstin;
+	int tempsuperfemtrap_laura;
+	int tempsuperfemtrap_larissa;
+	int tempsuperfemtrap_susanne;
+	int tempsuperfemtrap_bridghitte;
+	int tempsuperfemtrap_nicole;
+	int tempsuperfemtrap_janina;
+	int tempsuperfemtrap_rosa;
+	int tempsuperfemtrap_ksenia;
+	int tempsuperfemtrap_katia;
+	int tempsuperfemtrap_mariya;
+	int tempsuperfemtrap_elise;
+	int tempsuperfemtrap_johanna;
+	int tempsuperfemtrap_inge;
+	int tempsuperfemtrap_marleen;
+	int tempsuperfemtrap_klara;
+	int tempsuperfemtrap_friederike;
+	int tempsuperfemtrap_ute;
+	int tempsuperfemtrap_yasaman;
+	int tempsuperfemtrap_maybritt;
+	int tempsuperfemtrap_nadine;
+	int tempsuperfemtrap_luisa;
+	int tempsuperfemtrap_liselotte;
+	int tempsuperfemtrap_greta;
+	int tempsuperfemtrap_charlotte;
+	int tempsuperfemtrap_littlemarie;
+	int tempsuperfemtrap_tanja;
+	int tempsuperfemtrap_sonja;
+	int tempsuperfemtrap_rhea;
+	int tempsuperfemtrap_lara;
+
+	/* keyword "timerun" */
+	int tempsupernastytrap_unidentify;
+	int tempsupernastytrap_cursing;
+	int tempsupernastytrap_difficulty;
+	int tempsupernastytrap_amnesia;
+	int tempsupernastytrap_technique;
+	int tempsupernastytrap_disenchantment;
+	int tempsupernastytrap_chaosterrain;
+	int tempsupernastytrap_uninformation;
+	int tempsupernastytrap_intrinsicloss;
+	int tempsupernastytrap_trapcreation;
+	int tempsupernastytrap_vulnerability;
+	int tempsupernastytrap_itemport;
+	int tempsupernastytrap_nasty;
+	int tempsupernastytrap_limitation;
+	int tempsupernastytrap_dropcurse;
+	int tempsupernastytrap_wall;
+	int tempsupernastytrap_autocurse;
+	int tempsupernastytrap_horror;
+	int tempsupernastytrap_artificial;
+	int tempsupernastytrap_evilpatch;
+	int tempsupernastytrap_secretattack;
+	int tempsupernastytrap_wakeupcall;
+	int tempsupernastytrap_grayout;
+	int tempsupernastytrap_graycenter;
+	int tempsupernastytrap_checkerboard;
+	int tempsupernastytrap_lag;
+	int tempsupernastytrap_undressing;
+	int tempsupernastytrap_latency;
+	int tempsupernastytrap_wrapover;
+	int tempsupernastytrap_destruction;
+	int tempsupernastytrap_unfairattack;
+	int tempsupernastytrap_cursedpart;
+	int tempsupernastytrap_fallout;
+	int tempsupernastytrap_mojibake;
+	int tempsupernastytrap_longscrewup;
+	int tempsupernastytrap_skillloss;
+	int tempsupernastytrap_fluctuatingspeed;
+	int tempsupernastytrap_satan;
+	int tempsupernastytrap_manler;
+	int tempsupernastytrap_doorning;
+	int tempsupernastytrap_monnoise;
+	int tempsupernastytrap_rangcall;
+	int tempsupernastytrap_recurringspellloss;
+	int tempsupernastytrap_antitraining;
+	int tempsupernastytrap_techout;
+	int tempsupernastytrap_statdecay;
+	int tempsupernastytrap_movemork;
+	int tempsupernastytrap_ubergod;
+	int tempsupernastytrap_funwall;
+	int tempsupernastytrap_covid;
+	int tempsupernastytrap_proofloss;
+	int tempsupernastytrap_uninvis;
+	int tempsupernastytrap_option;
+	int tempsupernastytrap_unknowledge;
+	int tempsupernastytrap_dschueueuet;
+	int tempsupernastytrap_nopeskill;
+	int tempsupernastytrap_fuckfuckfuck;
+	int tempsupernastytrap_umeng;
+	int tempsupernastytrap_spellcooldown;
+	int tempsupernastytrap_turbodull;
+	int tempsupernastytrap_inventorysize;
 
 	int startscummereffect; /* for startscummer race to decide which nastytrap effect is currently active */
 

@@ -1141,6 +1141,9 @@ init_appearance_randarts()
 	artilist[ART_RARE_ASIAN_LADY].otyp = find_beautiful_heels();
 	artilist[ART_JANA_S_FAIRNESS_CUP].otyp = find_homicidal_cloak();
 	artilist[ART_OUT_OF_TIME].otyp = find_castlevania_boots();
+	artilist[ART_DISINT_BEAM].otyp = find_lead_helmet();
+	artilist[ART_COMMANDER_S_RECIPIENT].otyp = find_rumble_boots();
+	artilist[ART_TEAM_BRIDE].otyp = find_pure_cloak();
 	artilist[ART_KATHERINE_S_BEACHWEAR].otyp = find_tankini();
 	artilist[ART_PALEOLITHIC_ELBOW_CONTRACT].otyp = find_greek_cloak();
 	artilist[ART_FEATHER_LIGHT].otyp = find_flier_cloak();
@@ -2143,6 +2146,11 @@ register boolean mod;
 			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
 			bless(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_DELIA_S_TENDERCHUNK) {
+			otmp->spe *= 10;
+			u.tempsuperfemtrap_claudia += 25000;
+			pline("Suddenly you feel a little confused, and also feel like stroking the sexy butt cheeks of a woman in wooden sandals.");
+			}
 		    if (otmp && otmp->oartifact == ART_LOW_HEAP) {
 			otmp->quan += rn1(50, 50);
 			otmp->owt = weight(otmp);
@@ -2165,7 +2173,15 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_SISYPHUS__BURDEN) {
 			curse(otmp);
 		    }
+		    if (otmp && otmp->oartifact == ART_SET_TO_HIMEM) {
+			otmp->spe += rnz(10);
+			otmp->known = TRUE;
+		    }
 		    if (otmp && otmp->oartifact == ART_WHOOPWHOOP) {
+			otmp->bknown = TRUE;
+		    }
+		    if (otmp && otmp->oartifact == ART_ILLOGICAL_GLOW) {
+			curse(otmp);
 			otmp->bknown = TRUE;
 		    }
 
@@ -6372,6 +6388,12 @@ chargingchoice:
 			}
 
 			use_temporary_tech(T_MELTEE);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_LUKE_S_GOOD_VOW) {
+			use_temporary_tech(T_USE_THE_FORCE_LUKE);
 
 			break;
 		}

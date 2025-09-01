@@ -3178,6 +3178,19 @@ find_celtic_helmet()
 }
 
 int
+find_lead_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_LEAD_HELMET)) return i;
+    }
+
+    impossible("lead helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_musical_helmet()
 {
     register int i;
@@ -3399,6 +3412,19 @@ find_block_heeled_boots()
 }
 
 int
+find_rumble_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_RUMBLE_BOOTS)) return i;
+    }
+
+    impossible("rumble boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_quicktravel_cloak()
 {
     register int i;
@@ -3408,6 +3434,19 @@ find_quicktravel_cloak()
     }
 
     impossible("quicktravel cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_pure_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_PURE_CLOAK)) return i;
+    }
+
+    impossible("pure cloak not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

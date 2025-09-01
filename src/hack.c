@@ -4623,6 +4623,16 @@ maybe_wail()
 		buzz(23, 10, u.ux, u.uy, 1, -1);
 		buzz(23, 10, u.ux, u.uy, 0, -1);
 	}
+	if (uarmf && uarmf->oartifact == ART_COMMANDER_S_RECIPIENT) {
+		buzz(4, 2, u.ux, u.uy, -1, 0);
+		buzz(4, 2, u.ux, u.uy, 1, 0);
+		buzz(4, 2, u.ux, u.uy, -1, 1);
+		buzz(4, 2, u.ux, u.uy, 1, 1);
+		buzz(4, 2, u.ux, u.uy, 0, 1);
+		buzz(4, 2, u.ux, u.uy, -1, -1);
+		buzz(4, 2, u.ux, u.uy, 1, -1);
+		buzz(4, 2, u.ux, u.uy, 0, -1);
+	}
 
 	if (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) {
 		god_gives_pet(A_LAWFUL);
@@ -4651,6 +4661,16 @@ maybe_wail()
 		buzz(21, 6, u.ux, u.uy, -1, -1);
 		buzz(21, 6, u.ux, u.uy, 1, -1);
 		buzz(21, 6, u.ux, u.uy, 0, -1);
+	}
+	if (uarmf && uarmf->oartifact == ART_COMMANDER_S_RECIPIENT) {
+		buzz(24, 2, u.ux, u.uy, -1, 0);
+		buzz(24, 2, u.ux, u.uy, 1, 0);
+		buzz(24, 2, u.ux, u.uy, -1, 1);
+		buzz(24, 2, u.ux, u.uy, 1, 1);
+		buzz(24, 2, u.ux, u.uy, 0, 1);
+		buzz(24, 2, u.ux, u.uy, -1, -1);
+		buzz(24, 2, u.ux, u.uy, 1, -1);
+		buzz(24, 2, u.ux, u.uy, 0, -1);
 	}
 
 	if (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) {

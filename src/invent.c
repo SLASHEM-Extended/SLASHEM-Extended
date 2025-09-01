@@ -1853,6 +1853,8 @@ have_femtrapfemmy()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_femmy) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == FEMMY_S_JEWEL) {
 			if (otmp->oartifact == ART_HOW_DEEP_CAN_YOU_SINK_) return 2;
@@ -1895,6 +1897,8 @@ int
 have_femtrapanastasia()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_anastasia) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ANASTASIA_S_JEWEL) {
@@ -1939,6 +1943,8 @@ have_femtrapwendy()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_wendy) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == WENDY_S_JEWEL) {
 			if (otmp->oartifact == ART_MARIO_AND_LUIGI_WILL_FAIL_) return 2;
@@ -1953,6 +1959,8 @@ int
 have_femtrapkatharina()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_katharina) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == KATHARINA_S_JEWEL) {
@@ -1996,6 +2004,8 @@ int
 have_femtrapelif()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_elif) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ELIF_S_JEWEL) {
@@ -2082,6 +2092,8 @@ have_femtrapmaurah()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_maurah) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MAURAH_S_JEWEL) {
 			if (otmp->oartifact == ART_ONION_CAKE_EAT) return 2;
@@ -2111,6 +2123,8 @@ have_femtrapsarah()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_sarah) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SARAH_S_JEWEL) {
 			if (otmp->oartifact == ART_AIRTIGHT_WAR_MATERIAL) return 2;
@@ -2126,6 +2140,8 @@ have_femtrapclaudia()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_claudia) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == CLAUDIA_S_JEWEL) {
 			if (otmp->oartifact == ART_ON_THE_WATERFRONT) return 2;
@@ -2140,6 +2156,8 @@ int
 have_femtrapludgera()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_ludgera) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LUDGERA_S_JEWEL) {
@@ -2183,6 +2201,8 @@ int
 have_femtrapeveline()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_eveline) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == EVELINE_S_JEWEL) {
@@ -2269,6 +2289,8 @@ have_femtrapjulietta()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_julietta) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == JULIETTA_S_JEWEL) {
 			if (otmp->oartifact == ART_LA_MADEMOISELLE_REGNE_SUR_) return 2;
@@ -2283,6 +2305,8 @@ int
 have_femtraparabella()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_arabella) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ARABELLA_S_JEWEL) {
@@ -2313,6 +2337,8 @@ have_femtrapanna()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_anna) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ANNA_S_JEWEL) {
 			if (otmp->oartifact == ART_LITTLE_FLASK_OF_PERFUME) return 2;
@@ -2327,6 +2353,8 @@ int
 have_femtrapruea()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_ruea) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == RUEA_S_JEWEL) {
@@ -2343,6 +2371,8 @@ have_femtrapdora()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_dora) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == DORA_S_JEWEL) {
 			if (otmp->oartifact == ART_FUCKING_BIRDS__MAN_) return 2;
@@ -2357,6 +2387,8 @@ int
 have_femtrapmarike()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_marike) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MARIKE_S_JEWEL) {
@@ -2401,6 +2433,8 @@ have_femtrapsing()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_sing) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SING_S_JEWEL) {
 			if (otmp->oartifact == ART_BONUS_CLEANING_ROUND) return 2;
@@ -2415,6 +2449,8 @@ int
 have_femtrapvictoria()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_victoria) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == VICTORIA_S_JEWEL) {
@@ -2473,6 +2509,8 @@ have_femtrapverena()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_verena) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == VERENA_S_JEWEL) {
 			if (otmp->oartifact == ART_SILLY__FREE_LIKE_A_BIRD___) return 2;
@@ -2502,6 +2540,8 @@ have_femtrapjil()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_jil) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == JIL_S_JEWEL) {
 			if (otmp->oartifact == ART_ODORANT_SOCKS) return 2;
@@ -2516,6 +2556,8 @@ int
 have_femtrapjana()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_jana) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == JANA_S_JEWEL) {
@@ -2574,6 +2616,8 @@ have_femtrapmanuela()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_manuela) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MANUELA_S_JEWEL) {
 			if (otmp->oartifact == ART_SHOULD_SMASH_YOU_AGAIN_) return 2;
@@ -2589,6 +2633,8 @@ have_femtrapjennifer()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_jennifer) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == JENNIFER_S_JEWEL) {
 			if (otmp->oartifact == ART_DARKNESS_STORM__SURE_) return 2;
@@ -2603,6 +2649,8 @@ int
 have_femtrappatricia()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_patricia) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == PATRICIA_S_JEWEL) {
@@ -2647,6 +2695,8 @@ have_femtrapkerstin()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_kerstin) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == KERSTIN_S_JEWEL) {
 			if (otmp->oartifact == ART_LIVE_ON_THE_LAND) return 2;
@@ -2662,6 +2712,8 @@ have_femtraplaura()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_laura) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LAURA_S_JEWEL) {
 			if (otmp->oartifact == ART_WHAT_IF_THE_CUSHION___) return 2;
@@ -2676,6 +2728,8 @@ int
 have_femtraplarissa()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_larissa) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LARISSA_S_JEWEL) {
@@ -2720,6 +2774,8 @@ have_femtrapsusanne()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_susanne) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SUSANNE_S_JEWEL) {
 			if (otmp->oartifact == ART_PRETTY__BUT_POWERFUL_) return 2;
@@ -2748,6 +2804,8 @@ int
 have_femtrapbridghitte()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_bridghitte) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == BRIDGHITTE_S_JEWEL) {
@@ -2778,6 +2836,8 @@ have_femtrapnicole()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_nicole) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == NICOLE_S_JEWEL) {
 			if (otmp->oartifact == ART_ABSORB_LIKE_A_HOLE) return 2;
@@ -2807,6 +2867,8 @@ have_femtrapjanina()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_janina) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == JANINA_S_JEWEL) {
 			if (otmp->oartifact == ART_SEARCHANEK__MISSING_DISPLA) return 2;
@@ -2822,6 +2884,8 @@ have_femtraprosa()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_rosa) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ROSA_S_JEWEL) {
 			if (otmp->oartifact == ART_PAMELA_ROSAN) return 2;
@@ -2836,6 +2900,8 @@ int
 have_femtrapksenia()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_ksenia) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == KSENIA_S_JEWEL) {
@@ -2880,6 +2946,8 @@ have_femtrapkatia()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_katia) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == KATIA_S_JEWEL) {
 			if (otmp->oartifact == ART_SHE_S_INCREDIBLY_SEXY) return 2;
@@ -2895,6 +2963,8 @@ have_femtrapmariya()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_mariya) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MARIYA_S_JEWEL) {
 			if (otmp->oartifact == ART_PRRRRRRRRRRRRRRRRRRRROOOOO) return 2;
@@ -2909,6 +2979,8 @@ int
 have_femtrapelise()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_elise) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ELISE_S_JEWEL) {
@@ -2953,6 +3025,8 @@ have_femtrapjohanna()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_johanna) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == JOHANNA_S_JEWEL) {
 			if (otmp->oartifact == ART_WHERE_HAS_SHE_GONE_) return 2;
@@ -2967,6 +3041,8 @@ int
 have_femtrapinge()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_inge) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == INGE_S_JEWEL) {
@@ -3011,6 +3087,8 @@ have_femtrapmarleen()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_marleen) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MARLEEN_S_JEWEL) {
 			if (otmp->oartifact == ART_HOW_COULD_SHE_FALL_FOR_THE) return 2;
@@ -3026,6 +3104,8 @@ have_femtrapklara()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_klara) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == KLARA_S_JEWEL) {
 			if (otmp->oartifact == ART_KLACK__KLACK_) return 2;
@@ -3040,6 +3120,8 @@ int
 have_femtrapfriederike()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_friederike) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == FRIEDERIKE_S_JEWEL) {
@@ -3070,6 +3152,8 @@ have_femtrapute()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_ute) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UTE_S_JEWEL) {
 			if (otmp->oartifact == ART_PROTECT_HER_BLUE_FOOTWEAR) return 2;
@@ -3099,6 +3183,8 @@ have_femtrapyasaman()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_yasaman) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == YASAMAN_S_JEWEL) {
 			if (otmp->oartifact == ART_INHALE_THE_PERSIAN_VAPORS) return 2;
@@ -3113,6 +3199,8 @@ int
 have_femtrapmaybritt()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_maybritt) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MAY_BRITT_S_JEWEL) {
@@ -3129,6 +3217,8 @@ have_femtrapnadine()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_nadine) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == NADINE_S_JEWEL) {
 			if (otmp->oartifact == ART_SWOONELNADINE) return 2;
@@ -3143,6 +3233,8 @@ int
 have_femtrapluisa()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_luisa) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LUISA_S_JEWEL) {
@@ -3173,6 +3265,8 @@ have_femtrapliselotte()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_liselotte) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LISELOTTE_S_JEWEL) {
 			if (otmp->oartifact == ART_CUTE_FACIAL_EXPRESSION) return 2;
@@ -3187,6 +3281,8 @@ int
 have_femtrapgreta()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_greta) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == GRETA_S_JEWEL) {
@@ -3231,6 +3327,8 @@ have_femtrapcharlotte()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_charlotte) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == CHARLOTTE_S_JEWEL) {
 			if (otmp->oartifact == ART_SEND_IN_THE_HORDE) return 2;
@@ -3260,6 +3358,8 @@ have_femtraplittlemarie()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_littlemarie) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LITTLE_MARIE_S_JEWEL) {
 			if (otmp->oartifact == ART_YOU_WON_T_STOP_US__PERIOD_) return 2;
@@ -3274,6 +3374,8 @@ int
 have_femtraptanja()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_tanja) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TANJA_S_JEWEL) {
@@ -3290,6 +3392,8 @@ have_femtrapsonja()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_sonja) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SONJA_S_JEWEL) {
 			if (otmp->oartifact == ART_PRETEND_THAT_SOME_GUY_BROK) return 2;
@@ -3305,6 +3409,8 @@ have_femtraprhea()
 {
 	register struct obj *otmp;
 
+	if (u.tempsuperfemtrap_rhea) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == RHEA_S_JEWEL) {
 			if (otmp->oartifact == ART_EN_DAN_WIS_SING_WIS_SING_W) return 2;
@@ -3319,6 +3425,8 @@ int
 have_femtraplara()
 {
 	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_lara) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LARA_S_JEWEL) {
@@ -4283,6 +4391,8 @@ have_unidentifystone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_unidentify) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UNIDENTIFY_STONE) {
 			if (otmp->oartifact == ART_DEL_ALLES_BKK) return 2;
@@ -4360,6 +4470,8 @@ int
 have_cursingstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_cursing) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_CURSING) {
@@ -4518,6 +4630,8 @@ have_amnesiastone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_amnesia) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == AMNESIA_STONE) {
 			if (otmp->oartifact == ART_QUAFF_THAT_SPARKLING_WINE) return 2;
@@ -4582,6 +4696,8 @@ have_techniquestone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_technique) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TECHNIQUE_STONE) {
 			if (otmp->oartifact == ART_DONOT_WORK_ATALL) return 2;
@@ -4598,6 +4714,8 @@ int
 have_disenchantmentstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_disenchantment) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == DISENCHANTMENT_STONE) {
@@ -4631,6 +4749,8 @@ int
 have_chaosterrainstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_chaosterrain) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == CHAOS_TERRAIN_STONE) {
@@ -4791,6 +4911,8 @@ have_uninformationstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_uninformation) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UNINFORMATION_STONE) {
 			if (otmp->oartifact == ART_SEVERE_UNINFORMATION) return 2;
@@ -4854,6 +4976,8 @@ have_intrinsiclossstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_intrinsicloss) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_INTRINSIC_LOSS) {
 			if (otmp->oartifact == ART_GREMLIN_S_REVENGE) return 2;
@@ -4902,6 +5026,8 @@ have_trapcreationstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_trapcreation) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TRAP_CREATION_STONE) {
 			if (otmp->oartifact == ART_KEEP_STUMBLING) return 2;
@@ -4917,6 +5043,8 @@ int
 have_vulnerabilitystone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_vulnerability) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_VULNERABILITY) {
@@ -4935,6 +5063,8 @@ have_itemportstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_itemport) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ITEM_TELEPORTING_STONE) {
 			if (otmp->oartifact == ART_WHO_NEEDS_ITEMS_ANYWAY_) return 2;
@@ -4950,6 +5080,8 @@ int
 have_nastystone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_nasty) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == NASTY_STONE) {
@@ -5103,6 +5235,8 @@ int
 have_limitationstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_limitation) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TURN_LIMIT_STONE) {
@@ -5308,6 +5442,8 @@ have_dropcursestone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_dropcurse) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == DROPCURSE_STONE) {
 			if (otmp->oartifact == ART_THATS_DERP) return 2;
@@ -5416,6 +5552,8 @@ have_wallstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_wall) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_PERMANENCE) {
 			if (otmp->oartifact == ART_WALLIFY_UP_) return 2;
@@ -5510,6 +5648,8 @@ int
 have_autocursestone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_autocurse) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == AUTOCURSE_STONE) {
@@ -5717,6 +5857,8 @@ have_horrorstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_horror) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == HORROR_STONE) {
 			if (otmp->oartifact == ART_THIS_IS_SO_FUNNY) return 2;
@@ -5732,6 +5874,8 @@ int
 have_artificialstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_artificial) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ARTIFICIAL_STONE) {
@@ -5779,6 +5923,8 @@ have_evilpatchstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_evilpatch) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == EVIL_PATCH_STONE) {
 			if (otmp->oartifact == ART_UNPLAYABLE_GAME_) return 2;
@@ -5809,6 +5955,8 @@ int
 have_secretattackstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_secretattack) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SECRET_ATTACK_STONE) {
@@ -5934,6 +6082,8 @@ have_wakeupcallstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_wakeupcall) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == WAKEUP_CALL_STONE) {
 			if (otmp->oartifact == ART_ROBBIE_S_WEARINESS) return 2;
@@ -5949,6 +6099,8 @@ int
 have_grayoutstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_grayout) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == GRAYOUT_STONE) {
@@ -5967,6 +6119,8 @@ have_graycenterstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_graycenter) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == GRAY_CENTER_STONE) {
 			if (otmp->oartifact == ART_MAKE_THE_SHROUD_BIGGER) return 2;
@@ -5983,6 +6137,8 @@ int
 have_checkerboardstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_checkerboard) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == CHECKERBOARD_STONE) {
@@ -6032,6 +6188,8 @@ int
 have_lagstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_lag) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LAG_STONE) {
@@ -6156,6 +6314,8 @@ int
 have_undressingstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_undressing) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UNDRESSING_STONE) {
@@ -6369,6 +6529,8 @@ int
 have_latencystone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_latency) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LATENCY_STONE) {
@@ -6667,6 +6829,8 @@ have_wrapoverstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_wrapover) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == WRAPOVER_STONE) {
 			if (otmp->oartifact == ART_BETTER_PUT_IT_ALL_AWAY) return 2;
@@ -6682,6 +6846,8 @@ int
 have_destructionstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_destruction) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == DESTRUCTION_STONE) {
@@ -6729,6 +6895,8 @@ int
 have_unfairattackstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_unfairattack) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UNFAIR_ATTACK_STONE) {
@@ -6793,6 +6961,8 @@ int
 have_cursedpartstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_cursedpart) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == CURSED_PART_STONE) {
@@ -6964,6 +7134,8 @@ have_falloutstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_fallout) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == FALLOUT_STONE) {
 			if (otmp->oartifact == ART_NUCLEAR_WAR_AFTERMATH) return 2;
@@ -6979,6 +7151,8 @@ int
 have_mojibakestone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_mojibake) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MOJIBAKE_STONE) {
@@ -7090,6 +7264,8 @@ have_longscrewupstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_longscrewup) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == LONG_SCREWUP_STONE) {
 			if (otmp->oartifact == ART_QUASI_PERMANENCE) return 2;
@@ -7167,6 +7343,8 @@ int
 have_skilllossstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_skillloss) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SKILL_LOSS_STONE) {
@@ -7290,6 +7468,8 @@ have_fluctuatingspeedstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_fluctuatingspeed) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == FLUCTUATING_SPEED_STONE) {
 			if (otmp->oartifact == ART_FLUCKER_LOW) return 2;
@@ -7382,6 +7562,8 @@ int
 have_satanstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_satan) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SATAN_STONE) {
@@ -7510,6 +7692,8 @@ have_manlerstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_manler) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MANLER_STONE) {
 			if (otmp->oartifact == ART_WOMANLER_GIVES_CHASE) return 2;
@@ -7526,6 +7710,8 @@ int
 have_doorningstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_doorning) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == DOORNING_STONE) {
@@ -7576,6 +7762,8 @@ have_monnoisestone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_monnoise) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MONNOISE_STONE) {
 			if (otmp->oartifact == ART_BLABBERBLABBERWANAMADA_) return 2;
@@ -7592,6 +7780,8 @@ int
 have_rangcallstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_rangcall) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == RANG_CALL_STONE) {
@@ -7610,6 +7800,8 @@ have_recurringspelllossstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_recurringspellloss) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == RECURRING_SPELL_LOSS_STONE) {
 			if (otmp->oartifact == ART_LOSE_ALL_THE_SPELLS) return 2;
@@ -7626,6 +7818,8 @@ int
 have_antitrainingstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_antitraining) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == ANTI_TRAINING_STONE) {
@@ -7644,6 +7838,8 @@ have_techoutstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_techout) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TECHOUT_STONE) {
 			if (otmp->oartifact == ART_TOUT_DAAU___DAAU___DAAU) return 2;
@@ -7661,6 +7857,8 @@ have_statdecaystone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_statdecay) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STAT_DECAY_STONE) {
 			if (otmp->oartifact == ART_WASTEFUL_WITHER) return 2;
@@ -7677,6 +7875,8 @@ int
 have_movemorkstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_movemork) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MOVEMORK_STONE) {
@@ -7881,6 +8081,8 @@ have_ubergodstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_ubergod) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UBERGOD_STONE) {
 			if (otmp->oartifact == ART_FFFFF_QUEAK_PRRRT) return 2;
@@ -7927,6 +8129,8 @@ have_funwallstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_funwall) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == FUNWALL_STONE) {
 			if (otmp->oartifact == ART_GAS_AS_A_WEAPON) return 2;
@@ -7958,6 +8162,8 @@ int
 have_covidstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_covid) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == COVID_STONE) {
@@ -8113,6 +8319,8 @@ have_prooflossstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_proofloss) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == PROOFLOSS_STONE) {
 			if (otmp->oartifact == ART_CLAP_IT_AWAY) return 2;
@@ -8128,6 +8336,8 @@ int
 have_uninvisstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_uninvis) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UN_INVIS_STONE) {
@@ -8160,6 +8370,8 @@ int
 have_optionstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_option) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == OPTION_STONE) {
@@ -8258,6 +8470,8 @@ have_unknowledgestone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_unknowledge) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UN_KNOWLEDGE_STONE) {
 			if (otmp->oartifact == ART_FULLY_ID_OR_NOPE) return 2;
@@ -8291,6 +8505,8 @@ have_dschueueuetstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_dschueueuet) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == DSCHUEUEUET_STONE) {
 			if (otmp->oartifact == ART_DEEP_DESCENT) return 2;
@@ -8306,6 +8522,8 @@ int
 have_nopeskillstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_nopeskill) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == NOPESKILL_STONE) {
@@ -8323,6 +8541,8 @@ int
 have_fuckfuckfuckstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_fuckfuckfuck) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_COMPLETE_FUCKUP) {
@@ -8405,6 +8625,8 @@ have_umengstone()
 {
 	register struct obj *otmp;
 
+	if (u.tempsupernastytrap_umeng) return 2;
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == UMENG_STONE) {
 			if (otmp->oartifact == ART_UMENG_FLYER__UMENG_HIDER__) return 2;
@@ -8420,6 +8642,8 @@ int
 have_spellcooldownstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_spellcooldown) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == SPELL_COOLDOWN_STONE) {
@@ -8437,6 +8661,8 @@ int
 have_turbodullstone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_turbodull) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TURBODULL_STONE) {
@@ -8560,6 +8786,8 @@ int
 have_inventorysizestone()
 {
 	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_inventorysize) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == INVENTORY_SIZE_STONE) {
@@ -33368,6 +33596,62 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: double doorning trap effect when worn, and you cannot take it off even if it's uncursed. Putting this cloak on while not knowing the mimicry spell will teach it to you. If it's nighttime, you can also hide under objects."); break;
 				case ART_HOBART_THE_GOLDEN:
 					pline("Artifact specs: double rosa trap effect when worn, prime autocurses, double sickness resistance, vision bonus, triples random gold spawns and prevents your weapons and armor from dulling."); break;
+				case ART_DELIA_S_TENDERCHUNK:
+					pline("Artifact specs: starts with a bigger amount of charges, unless it spawned out of charges. When this artifact got generated, you were also afflicted with a long-lasting double claudia trap effect, hahahahahahaha!"); break;
+				case ART_BLEGH_POTION:
+					pline("Artifact specs: makes you deathly sick. This applies both if you quaff it and if you inhale its vapors. The idea for this artifact came from Amy's roommate."); break;
+				case ART_DISINT_BEAM:
+					pline("Artifact specs: disables disintegration resistance and reflection when worn and makes it so that random disintegration beams are fired every once in a while."); break;
+				case ART_COMMANDER_S_RECIPIENT:
+					pline("Artifact specs: if you hear the cwn'annwn while wearing them, you'll fire disintegration beams in all directions, and if you hear the banshee you'll fire death rays in all directions. Here's a free hint: make sure you also have something that grants reflection."); break;
+				case ART_BLESSFUL_RETURN:
+					pline("Artifact specs: allows you to ungenocide all monsters of a team of your choosing."); break;
+				case ART_ZI_U_U_U_U_U_UUUUU:
+					pline("Artifact specs: reading it spawns a stack of crossbow bolts for you to use."); break;
+				case ART_LEYDE_HIR_MI_TONIGHT:
+					pline("Artifact specs: reading it summons a court monster. If it's of a type that is always female, the monster will try to spawn tame."); break;
+				case ART_BEAT_MY_LOVER:
+					pline("Artifact specs: reading it damages all 'always male' monsters on the current level. Be aware that this counts as you attacking them for the purpose of handling peaceful or tame ones."); break;
+				case ART_MAYONAISE_SHOULD_HAVE_BEEN:
+					pline("Artifact specs: may randomly grant or remove an intrinsic when read, but not always. What it also does is permanently drain your wisdom by one; if your wisdom was already at the minimum, you'll die!"); break;
+				case ART_SWEET_DREAMS_ARE_MADE_OF_S:
+					pline("Artifact specs: reading it allows you to change the material of an item in your inventory to steel. However, you also lose sleep resistance and the resistance becomes deactivated for a long time, plus you immediately fall asleep. The latter two effects have their duration scale with the amount of times you've read this book."); break;
+				case ART_SOMMERDEN_WANT_TO_BE_USED_:
+					pline("Artifact specs: reading it changes the weather to 'sunny'."); break;
+				case ART_OH_WHAT_A_GOOD_SAME_ME_THR:
+					pline("Artifact specs: reading it reveals your vicinity, and if you're lawful, you additionally gain some alignment points and +1 max alignment."); break;
+				case ART_WARP_CORE_OPEN:
+					pline("Artifact specs: reading it summons a tame vortex."); break;
+				case ART_HUNDREDS_OF_WOODEN_PALISAD:
+					pline("Artifact specs: reading it creates random farmland tiles near you."); break;
+				case ART_HIGH_SCORING_TRICK:
+					pline("Artifact specs: hmm, maybe you'll increase your chances of making it on the top ten list when reading it?"); break; /* intentionally doesn't say what really happens --Amy */
+				case ART_THAT_S_SO_MIRA:
+					pline("Artifact specs: corona antidote and +1 maximum HP when read, but also fills the area with urine and permanently increases the likelihood of monsters spawning who create additional urine lakes."); break;
+				case ART_KLARISTO_:
+					pline("Artifact specs: reading it grants see invisible for a while."); break;
+				case ART_CLINGLE_SOUND:
+					pline("Artifact specs: halves the cost for writing something on it."); break;
+				case ART_BAPERPACK:
+					pline("Artifact specs: if you successfully write something on it, a stack of regular blank scrolls is generated."); break;
+				case ART_ILLOGICAL_GLOW:
+					pline("Artifact specs: spawns cursed."); break;
+				case ART_AUTOWINTHEGAME:
+					pline("Artifact specs: if you try to write something on it, the writing cost for your magic marker is only one third of the usual amount."); break;
+				case ART_SET_TO_HIMEM:
+					pline("Artifact specs: spawns with more charges on average."); break;
+				case ART_LUKE_S_GOOD_VOW:
+					pline("Artifact specs: +10 to-hit and +4 damage, can be invoked to perform the 'use the force' technique, lawful."); break;
+				case ART_I_WANT_IT_DEAD_AWAY:
+					pline("Artifact specs: while wielding it, your failure chance for the disintegration spell will decrease by a bunch."); break;
+				case ART_TEAM_PRIDE:
+					pline("Artifact specs: if you read it while not having a symbiote, you'll gain one with pride attacks."); break;
+				case ART_SUI_SUI:
+					pline("Artifact specs: reading it makes you immune to dream eater effects for a while."); break;
+				case ART_TEAM_BRIDE:
+					pline("Artifact specs: +10 charisma, double confusion resistance and protects you from foocubus seduction attacks when worn."); break;
+				case ART_A_LOT_OF_ENYAS_IN_THE_CAST:
+					pline("Artifact specs: if you start reading it such that a charge is used up, you gain temporary confusion resistance. Of course there is actually only one Enya, but in the music video for her song 'Anywhere Is' you can see several ;)"); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

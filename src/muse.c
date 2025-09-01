@@ -6491,7 +6491,7 @@ register struct obj *otmp;
 		break;
 
 	case WAN_DREAM_EATER:
-		if (mtmp == &youmonst) {
+		if ((mtmp == &youmonst) && !u.antidreameater) {
 			tmp = d(10, 10);
 			tmp += rnd( (monster_difficulty() * 4) + 1);
 			pline("Your dream is eaten!");

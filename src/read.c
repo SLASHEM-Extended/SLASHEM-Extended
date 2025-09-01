@@ -46,6 +46,7 @@ static void p_glow2(struct obj *,const char *);
 static void randomize(int *, int);
 static void maybe_tame(struct monst *,struct obj *);
 static void undo_genocide(void);
+static void undo_class_genocide(void);
 
 STATIC_PTR void set_lit(int,int,void *);
 
@@ -11779,7 +11780,9 @@ randenchchoice:
 	case SCR_UNDO_GENOCIDE:
 		known = TRUE;
 		You("have found a scroll of undo genocide.");
-		undo_genocide();
+
+		if (sobj->oartifact == ART_BLESSFUL_RETURN) undo_class_genocide();
+		else undo_genocide();
 		break;
 
 	case SCR_SECURE_IDENTIFY:
@@ -13758,6 +13761,89 @@ void undo_genocide(void)
 		pline("The race of %s now exist again.",makeplural(buf));
 		break;
 	}
+}
+
+void undo_class_genocide(void)
+{
+	int i, j;
+	char buf[BUFSZ];
+	int mn;
+	int class;
+
+	int ungenoed = 0;
+
+	winid tmpwin;
+	anything any;
+	int n;
+	menu_item *selected;
+
+	for(j=0; ; j++) {
+		if (j >= 5) {
+			pline("%s", thats_enough_tries);
+			return;
+		}
+		do {
+                    getlin("What class of monsters do you wish to ungenocide? [? for help]",
+			buf);
+		    (void)mungspaces(buf);
+		} while (buf[0]=='\033' || !buf[0]);
+		/* choosing "none" preserves genocideless conduct */
+		if (!strcmpi(buf, "none") ||
+		    !strcmpi(buf, "nothing")) return;
+
+		if (strlen(buf) == 1) {
+		    /*WAC adding "help" for those who use graphical displays*/
+                    if (buf[0]=='?'){
+                        tmpwin = create_nhwindow(NHW_MENU);
+                        start_menu(tmpwin);           
+                        any.a_void = 0;         /* zero out all bits */
+                        for (i = 1; i < (MAXMCLASSES - MISCMCLASSES); i++) {
+                           any.a_int = i;        /* must be non-zero */
+			   if (monexplain[i])
+			       add_menu(tmpwin, NO_GLYPH, &any,
+				   def_monsyms[i], 0, ATR_NONE,
+				   an(monexplain[i]), MENU_UNSELECTED);
+                        }
+                        end_menu(tmpwin, "Monster Types");
+                        n = 0;
+                        while (n == 0) n = select_menu(tmpwin, PICK_ONE,
+                                &selected);
+                        destroy_nhwindow(tmpwin);
+                        if (n== -1) continue;  /*user hit escape*/
+                        class = selected[0].item.a_int;
+                    } else {
+		    if (buf[0] == ILLOBJ_SYM)
+			buf[0] = def_monsyms[S_MIMIC];
+		    class = def_char_to_monclass(buf[0]);
+                    }
+		} else {
+		    char buf2[BUFSZ];
+
+		    class = 0;
+		    strcpy(buf2, makesingular(buf));
+		    strcpy(buf, buf2);
+		}
+
+		for (i = LOW_PM; i < NUMMONS; i++) {
+		    if (class == 0 &&
+			    strstri(monexplain[(int)mons[i].mlet], buf) != 0)
+			class = mons[i].mlet;
+
+		    if (mons[i].mlet == class) {
+
+			if (i != PM_UNGENOMOLD) {
+				if (mvitals[i].mvflags & G_GENOD) {
+					mvitals[i].mvflags &= ~G_GENOD;
+					pline("The race of %s can be generated again.", mons[i].mname);
+					ungenoed++;
+				}
+			}
+
+		    }
+		}
+		if (ungenoed) return;
+	}
+
 }
 
 void

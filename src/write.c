@@ -404,6 +404,15 @@ found:
 	if (isfriday && !rn2(10)) actualcost *= 2;
 	if (pen->oartifact == ART_WRITE_THE_UNKNOWN && paper->oclass == SCROLL_CLASS) actualcost *= (2 + rnd(2));
 
+	if (paper && paper->oartifact == ART_CLINGLE_SOUND && actualcost > 1) {
+		actualcost /= 2;
+		if (actualcost < 1) actualcost = 1;
+	}
+	if (paper && paper->oartifact == ART_AUTOWINTHEGAME && actualcost > 1) {
+		actualcost /= 3;
+		if (actualcost < 1) actualcost = 1;
+	}
+
 	if (!(PlayerCannotUseSkills)) {
 		switch (P_SKILL(P_DEVICES)) {
 			default: break;
@@ -581,6 +590,17 @@ found:
 			artilist[ART_SCRIBE_WHAT_YOU_WANT_TO_SC].otyp = new_obj->otyp;
 			new_obj = onameX(new_obj, artiname(oldartifact));
 			artilist[ART_SCRIBE_WHAT_YOU_WANT_TO_SC].otyp = SCR_BLANK_PAPER;
+		}
+
+		if (oldartifact == ART_BAPERPACK) {
+			struct obj *createdscroll;
+		    	createdscroll = mksobj_at(SCR_BLANK_PAPER, u.ux, u.uy, TRUE, FALSE, FALSE);
+			if (createdscroll) {
+				createdscroll->quan = 5;
+				createdscroll->owt = weight(createdscroll);
+				pline("Some new blank scrolls were dropped on the ground.");
+			}
+			else pline("Somehow, no new blank scroll was created.");
 		}
 
 	}
