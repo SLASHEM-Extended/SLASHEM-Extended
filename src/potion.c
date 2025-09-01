@@ -15211,6 +15211,9 @@ peffects(otmp)
 		}
 		break;
 	case POT_JOLT_COLA:
+
+		pline_The("bottle of Jolt Cola is named %s today!", feminismtrapname(rnd(103)) ); /* keyword: "marlena" */
+
 		You("are jolted back to your senses.");
 
 		if (otmp->oartifact == ART_HACKER_DRINK) {
