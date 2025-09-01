@@ -2579,29 +2579,57 @@ aborttech(tech)
 int tech;
 {
 	int i;
+	int aborttechid;
 
-	i = get_tech_no(tech);
+	if (u.temptechhack) {
 
-	if (tech_list[i].t_inuse) {
-	    switch (tech_list[i].t_id) {
-		case T_RAGE:
-		    u.uhpmax -= tech_list[i].t_inuse - 1;
-		    if (u.uhpmax < 1)
-			u.uhpmax = 1;
-		    u.uhp -= tech_list[i].t_inuse - 1;
-		    if (u.uhp < 1)
-			u.uhp = 1;
-		    break;
-		case T_POWER_SURGE:
-		    u.uenmax -= tech_list[i].t_inuse - 1;
-		    if (u.uenmax < 1)
-			u.uenmax = 0;
-		    u.uen -= tech_list[i].t_inuse - 1;
-		    if (u.uen < 0)
-			u.uen = 0;
-		    break;
-	    }
-	    tech_list[i].t_inuse = 0;
+		switch (u.temptech) {
+			case T_RAGE:
+			    u.uhpmax -= (u.temptechduration - 1);
+			    if (u.uhpmax < 1)
+				u.uhpmax = 1;
+			    u.uhp -= (u.temptechduration - 1);
+			    if (u.uhp < 1)
+				u.uhp = 1;
+			    break;
+			case T_POWER_SURGE:
+			    u.uenmax -= (u.temptechduration - 1);
+			    if (u.uenmax < 1)
+				u.uenmax = 0;
+			    u.uen -= (u.temptechduration - 1);
+			    if (u.uen < 0)
+				u.uen = 0;
+			    break;
+
+		}
+		u.temptech = -1;
+		u.temptechduration = 0;
+
+	} else {
+
+		i = get_tech_no(tech);
+
+		if (tech_list[i].t_inuse) {
+		    switch (tech_list[i].t_id) {
+			case T_RAGE:
+			    u.uhpmax -= (tech_list[i].t_inuse - 1);
+			    if (u.uhpmax < 1)
+				u.uhpmax = 1;
+			    u.uhp -= (tech_list[i].t_inuse - 1);
+			    if (u.uhp < 1)
+				u.uhp = 1;
+			    break;
+			case T_POWER_SURGE:
+			    u.uenmax -= (tech_list[i].t_inuse - 1);
+			    if (u.uenmax < 1)
+				u.uenmax = 0;
+			    u.uen -= (tech_list[i].t_inuse - 1);
+			    if (u.uen < 0)
+				u.uen = 0;
+			    break;
+		    }
+		    tech_list[i].t_inuse = 0;
+		}
 	}
 }
 
@@ -2927,6 +2955,12 @@ restartmenu:
 	 * always possible in theory (he he) to find the VS no matter which, or how many(!!!), interface screws are active */
 	end_menu(tmpwin, (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)) ? "You're standing on the vibrating square." : (specialmenutype == 1) ? "Pick tech to sort" : (specialmenutype == 2) ? "Swap with which tech?" : how == PICK_ONE ? "Choose a technique" :
 					   "Currently known techniques");
+
+	if (u.temptech && u.temptechduration) {
+		char temptechbuf[BUFSZ];
+		sprintf(temptechbuf, "Active tech: %s", tech_names[u.temptech]);
+		end_menu(tmpwin, temptechbuf);
+	}
 
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
@@ -5654,10 +5688,16 @@ char *verb;
     return otmp;
 }
 
+/* use a technique that the character doesn't have, by Amy */
 void
 use_temporary_tech(tech_no)
 int tech_no;
 {
+	/* first, stop existing temporary technique, since you can only have one of these active */
+	u.temptechhack = TRUE;
+	if (u.temptechduration) aborttech(u.temptech);
+	u.temptechhack = FALSE;
+
 	u.temptechhack = TRUE;
 	u.temptech = tech_no;
 	u.temptechlevel = temptechlev(tech_no);
@@ -13665,6 +13705,12 @@ docalm()
 {
 	int i, tech, n = 0;
 
+	if (u.temptech) {
+		u.temptechhack = TRUE;
+		aborttech(u.temptech);
+		u.temptechhack = FALSE;
+	}
+
 	for (i = 0; i < MAXTECH; i++) {
 	    tech = techid(i);
 	    if (tech != NO_TECH && techt_inuse(i)) {
@@ -13682,6 +13728,12 @@ stopsingletechnique(whichtech)
 int whichtech;
 {
 	int i, tech;
+
+	if (whichtech == u.temptech) {
+		u.temptechhack = TRUE;
+		aborttech(whichtech);
+		u.temptechhack = FALSE;
+	}
 
 	for (i = 0; i < MAXTECH; i++) {
 	    tech = techid(i);
