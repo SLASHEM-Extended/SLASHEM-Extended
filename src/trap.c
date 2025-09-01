@@ -3419,7 +3419,7 @@ int *fail_reason;
 	}
 	/* avoid hiding under nothing */
 	if (x == u.ux && y == u.uy &&
-		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
+		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (night() && uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
 	    u.uundetected = 0;
 
 	if (fail_reason) *fail_reason = AS_OK;
@@ -29181,7 +29181,7 @@ register int bodypart;
 	register struct trap *ttmp;
 	int dmg = rnd(5 + (lvl < 5 ? lvl : 2+lvl/2));
 
-	if (Role_if(PM_CYBERNINJA) && rn2(5) && !(DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) ) {
+	if (Role_if(PM_CYBERNINJA) && rn2(5) && !(DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) ) {
 		You("safely discharge the trap found on %s.", the(item));
 		return;
 	}
@@ -29195,26 +29195,26 @@ register int bodypart;
 
 	/* Grunthack door traps are evil, so they have to be evil in the Evil Variant too --Amy */
 
-	if (evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
+	if (evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) {
 		(void) destroy_item(POTION_CLASS, AD_FIRE);
 		(void) destroy_item(SCROLL_CLASS, AD_FIRE);
 		(void) destroy_item(SPBOOK_CLASS, AD_FIRE);
 		burnarmor(&youmonst);
 	}
 
-	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) && !rn2(10)) {
 		pline("SCREEEEEECH!");
 		aggravate();
 	}
 
-	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) && !rn2(10)) {
 		pline("A static discharge shoots through your entire body!");
 		destroy_item(WAND_CLASS, AD_ELEC);
 		destroy_item(RING_CLASS, AD_ELEC);
 		destroy_item(AMULET_CLASS, AD_ELEC);
 	}
 
-	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) && !rn2(10)) {
 		pline("Hahaha, a water bucket falls on top of you and all your shit gets wet! LOL!");
 		if ((!StrongSwimming || !rn2(10)) && (!StrongMagical_breathing || !rn2(10))) {
 			water_damage(invent, FALSE, FALSE);
@@ -29222,7 +29222,7 @@ register int bodypart;
 		}
 	}
 
-	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) && !rn2(10)) {
 		register struct obj *otmp3;
 		otmp3 = mksobj(BOULDER, FALSE, FALSE, FALSE);
 		if (!otmp3) goto boulderdone;
@@ -29244,7 +29244,7 @@ register int bodypart;
 
 boulderdone:
 
-	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) && !rn2(10)) {
+	if ((evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) && !rn2(10)) {
 		badeffect();
 		if (!rn2(5)) {
 			badeffect();
@@ -29252,7 +29252,7 @@ boulderdone:
 		}
 	}
 
-	if (!rn2(10) || evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
+	if (!rn2(10) || evilfriday || DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) {
 
 		int i, j;
 

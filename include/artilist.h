@@ -23480,6 +23480,46 @@ A("The Curvature of the Set",				ROBE, /* initialized to always be powersave rob
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Sing and Julietta's Joint Venture",				STANDARD_HELMET, /* initialized to always be antisuck helmet, autocurses, sing and julietta trap effects, if you're male you have the stronger version of the sing trap effect while a female char will have double julietta trap effect, double psi resistance, free action, keen memory, can be invoked to use the glowhorn technique */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Darkflect",				LOW_BOOTS, /* initialized to always be chess boots, double julietta trap effect, resist death, 50% chance to avoid projectiles and if you do, a random stat may go up */
+	(SPFX_RESTR|SPFX_REFLECT|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("My Dear Slave",				LOW_BOOTS, /* initialized to always be plateau boots, double sing trap effect, heavily autocurses, +5 WIS, halves spellcasting failure chances (after all other calculations have been run), -1 increase damage; every time you successfully clean a pair of shoes, these boots gain +1 enchantment (up to a maximum of +7) and if the cleaned shoes were treaded, this pair becomes erosionproof and all erosion damage is repaired; if the cleaned pair was high-heeled, your high heels skill trains by 10; if it was cow dung, you gain 10k turns of temporary acid resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK), 0, 0,
+	STUN(0, 3), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Jonace's Tallness",				LOW_BOOTS, /* initialized to always be platinum filigreed stilettos, double janina trap effect and further increases janina trap triggering to 1 in 500, +10 CON, +4 range when using polearms and +1 when using any missile weapon, +5 ranged to-hit, sticky autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(1, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Abrasive Rupika",				LOW_BOOTS, /* initialized to always be high iron boots, double ludgera trap effect and further increases ludgera trap triggering to 1 in 1000, your kick deals d6 bleeding damage to the target */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DRLI), 0, 0,
+	PHYS(0, 6), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Nude Punam",				LEATHER_CLOAK, /* initialized to always be slexual cloak, heavily autocurses, double femmy trap and double disenchantment nastytrap effect, monsters automiss you in melee 1 in 5 times, +10 CHA, foocubus seduction attacks can't affect you, curse resistance and +5 luck */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Edna's Calm",				LEATHER_CLOAK, /* initialized to always be gentle cloak, double technicality, double anastasia and double nadine trap effects, +5 MC; if you use a technique while wearing it and the cloak isn't currently cursed, it becomes cursed */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6666L ),
+
+A("Dorika's Colorblock",				LOW_BOOTS, /* initialized to always be super comfy heels, sticky autocurses, double chaos terrain and double mojibake effects, prism reflection, resist mystery, fire, cold, shock, poison, sleep, acid and psi, the element for the kick attack changes every turn */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_EVIL|SPFX_REFLECT), 0, 0,
+	FIRE(0, 10), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Zuni's Iridescence",				LEATHER_CLOAK, /* initialized to always be wishful cloak, double doorning trap effect, cannot be taken off, if it's nighttime you can hide under objects, putting it on teaches you the mimicry spell if you don't know it yet */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Hobart The Golden",				REGULAR_GLOVES, /* initialized to always be digger gloves, double rosa trap effect, prime curses itself, double sickness resistance, vision bonus, randomly spawned gold has three times as much gold, your weapons and armor cannot dull anymore */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

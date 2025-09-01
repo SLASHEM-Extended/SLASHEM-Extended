@@ -4445,6 +4445,7 @@ use_pole (obj)
 	if (obj->oartifact == ART_ETHER_PENETRATOR) max_range += 5;
 	if (obj->oartifact == ART_FUURKER) max_range += 6;
 	if (obj->otyp == WOODEN_BAR) max_range += 7;
+	if (uarmf && uarmf->oartifact == ART_JONACE_S_TALLNESS) max_range += 4;
 	if (obj->oartifact == ART_JAPANESE_WOMEN) min_range -= 3;
 	if (obj->oartifact == ART_YOU_RE_STUCCO) min_range += 40; /* can never apply it successfully --Amy */
 	if (obj->oartifact == ART_OVERLONG_STICK) {

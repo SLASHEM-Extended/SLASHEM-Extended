@@ -2949,18 +2949,19 @@ restartmenu:
 	if (!techs_useable)
 	    how = PICK_NONE;
 
+	if (u.temptech && u.temptechduration) {
+		char temptechbuf[BUFSZ];
+		sprintf(temptechbuf, "Active tech: %s", tech_names[u.temptech]);
+		any.a_int = 0;
+	      add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_NONE, temptechbuf, MENU_UNSELECTED);
+	}
+
 	/* Amy addition: if you are on the vibrating square, print a special message. The reason for it being that
 	 * #technique is one of the commands that ALWAYS works, no matter which nasty traps you have. Yes, there is a trap
 	 * that prevents the techniques from actually working, but the menu can be accessed anyway, and therefore it's
 	 * always possible in theory (he he) to find the VS no matter which, or how many(!!!), interface screws are active */
 	end_menu(tmpwin, (isok(u.ux, u.uy) && invocation_pos(u.ux, u.uy)) ? "You're standing on the vibrating square." : (specialmenutype == 1) ? "Pick tech to sort" : (specialmenutype == 2) ? "Swap with which tech?" : how == PICK_ONE ? "Choose a technique" :
 					   "Currently known techniques");
-
-	if (u.temptech && u.temptechduration) {
-		char temptechbuf[BUFSZ];
-		sprintf(temptechbuf, "Active tech: %s", tech_names[u.temptech]);
-		end_menu(tmpwin, temptechbuf);
-	}
 
 	n = select_menu(tmpwin, how, &selected);
 	destroy_nhwindow(tmpwin);
@@ -13197,6 +13198,10 @@ extrachargechoice:
 		}
 		if (timeoutamount >= 1 && (timeoutamount > rn2(1000))) use_skill(P_TECHNIQUES, 1);
 		u.cnd_techcount++;
+
+		if (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) {
+			if (!uarmc->cursed) curse(uarmc);
+		}
 
 		if (rn2(4) && (t_timeout > rnd(StrongExtra_wpn_practice ? 15000 : Extra_wpn_practice ? 25000 : 50000)) ) {
 			maybeleveltech = TRUE;

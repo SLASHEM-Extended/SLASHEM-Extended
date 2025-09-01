@@ -2846,6 +2846,10 @@ moveloop()
 			artilist[ART_KILL_KILL_PIANO].attk.adtyp = randartiattacktype();
 		}
 
+		if (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) {
+			artilist[ART_DORIKA_S_COLORBLOCK].attk.adtyp = randartiattacktype();
+		}
+
 		if (autismweaponcheck(ART_ELEMENTAL_STAFF)) {
 			artilist[ART_ELEMENTAL_STAFF].attk.adtyp = !rn2(3) ? AD_FIRE : !rn2(2) ? AD_COLD : AD_ELEC;
 		}
@@ -5702,7 +5706,7 @@ greasingdone:
 			contaminate(rnd(10), FALSE);
 		}
 
-		if (DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone()) {
+		if (DoorningEffect || u.uprops[DOORNING_EFFECT].extrinsic || have_doorningstone() || (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) ) {
 			if (IS_DOOR(levl[u.ux][u.uy].typ) && (!rn2(10) || DoorningXtra) && u.umoved && !(t_at(u.ux, u.uy)) ) {
 
 				int i, j;
@@ -7469,7 +7473,7 @@ newbossKLARA:
 
 		}
 
-		if (FemtrapActiveJanina && !rn2(SuperFemtrapJanina ? 1500 : 3000)) {
+		if (FemtrapActiveJanina && !rn2((uarmf && uarmf->oartifact == ART_JONACE_S_TALLNESS) ? 500 : SuperFemtrapJanina ? 1500 : 3000)) {
 			int aggroamount = rnd(10);
 			if (isfriday) aggroamount *= 2;
 			reset_rndmonst(NON_PM);
@@ -11529,7 +11533,7 @@ newbossZ:
 
 		}
 
-		if (FemtrapActiveLudgera && !rn2(SuperFemtrapLudgera ? 2500 : 5000) ) {
+		if (FemtrapActiveLudgera && !rn2((uarmf && uarmf->oartifact == ART_ABRASIVE_RUPIKA) ? 1000 : SuperFemtrapLudgera ? 2500 : 5000) ) {
 			struct permonst *pm = 0;
 			int attempts = 0;
 
@@ -13061,6 +13065,17 @@ newboss:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
 		}
 
+		if ((uarmc && uarmc->oartifact == ART_NUDE_PUNAM) && !rn2(DisenchantRepXtra ? 200 : 1000)) {
+
+			struct obj *otmpE;
+		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
+				if (otmpE && !rn2(10)) (void) drain_item(otmpE);
+			}
+			Your("equipment seems less effective.");
+			u.cnd_disenchantamount++;
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vse, chto vy vladeyete budet razocharovalsya v zabveniye, kha-kha-kha!" : "Klatsch!");
+		}
+
 		if (ChaosTerrain && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) ) ) {
 
 			int chaosx, chaosy;
@@ -13343,6 +13358,21 @@ newboss:
 		}
 
 		if (have_chaosterrainstone() && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = randomwalltype();
+				if (!(levl[chaosx][chaosy].wall_info & W_EASYGROWTH)) levl[chaosx][chaosy].wall_info |= W_HARDGROWTH;
+				blockorunblock_point(chaosx,chaosy);
+				del_engr_at(chaosx,chaosy);
+				newsym(chaosx,chaosy);
+			}
+
+		}
+
+		if ((uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) && (!rn2(5) || ChaosTerrainXtra ) && (!In_sokoban(&u.uz) || !rn2(5) )) {
 
 			int chaosx, chaosy;
 			chaosx = rn1(COLNO-3,2);

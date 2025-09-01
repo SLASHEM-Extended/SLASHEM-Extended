@@ -532,6 +532,12 @@ Boots_on()
 	Your("clogs are very heavily cursed!");
     }
 
+    if (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) {
+	curse(uarmf);
+	uarmf->stckcurse = TRUE;
+	Your("colorful heels don't want to be taken off anymore!");
+    }
+
     if (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) {
 	curse(uarmf);
 	uarmf->hvycurse = TRUE;
@@ -563,6 +569,12 @@ Boots_on()
 			pline("The velcro boots constrict your %s, and you can't take them off again!", makeplural(body_part(FOOT)) );
 		}
 
+    }
+
+    if (uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) {
+		curse(uarmf);
+		uarmf->hvycurse = 1;
+		You("are Sing's dear slave now.");
     }
 
     if (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING && (objects[uarmf->otyp].oc_material != MT_SHADOWSTUFF)) {
@@ -601,6 +613,12 @@ Boots_on()
 		uarmf->hvycurse = uarmf->prmcurse = uarmf->stckcurse = TRUE;
 		pline("Lol those shoes can only be removed by death, and are otherwise permanently stuck to your character's %s since you were unlucky enough to equip them.", makeplural(body_part(FOOT)) );
 		/* except not really, prime curse can still be lifted; the message is intentionally misleading --Amy */
+    }
+
+    if (uarmf && uarmf->oartifact == ART_JONACE_S_TALLNESS) {
+	if (!uarmf->cursed) curse(uarmf);
+	uarmf->stckcurse = TRUE;
+	pline("Now your heels won't come off for a while.");
     }
 
     if (uarmf && uarmf->oartifact == ART_MARLEEN_S_SOFTNESS) {
@@ -1846,6 +1864,18 @@ Cloak_on()
 		curse(uarmc);
 	}
 
+	if (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) {
+		if (!spell_known(SPE_MIMICRY)) {
+			wonderspell(SPE_MIMICRY);
+		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) {
+		curse(uarmc);
+		uarmc->hvycurse = TRUE;
+		You_feel("that the cloak is sticking to your body.");
+	}
+
 	if (uarmc && uarmc->oartifact == ART_EASIFY_THE_GAME && uarmc->spe < 3) uarmc->spe = 3;
 
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_OVERCOAT) {
@@ -2726,6 +2756,13 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_SING_AND_JULIETTA_S_JOINT_) {
+		if (!uarmh->cursed) {
+			curse(uarmh);
+			pline("Oops, the helmet cursed itself.");
+		}
+    }
+
     if (uarmh && uarmh->oartifact == ART_FLYYYYY) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
@@ -3425,6 +3462,12 @@ Gloves_on()
 			HBurnopathy |= FROMOUTSIDE;
 		}
 
+    }
+
+    if (uarmg && uarmg->oartifact == ART_HOBART_THE_GOLDEN) {
+	curse(uarmg);
+	uarmg->hvycurse = uarmg->prmcurse = TRUE;
+	pline("Oh no, your gloves are surrounded by a horrible dark aura!");
     }
 
     if (uarmg && uarmg->oartifact == ART_FREEZE_OR_YES) {
@@ -8478,6 +8521,13 @@ register struct obj *otmp;
 	if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) {
 		if ((otmp == uarm) || (otmp == uarmu) || (otmp == uarmh) || (otmp == uarmf) || (otmp == uarmg) || (otmp == uarms) || (otmp == uarmc)) {
 			pline("Due to your shoes, you cannot take off any armor pieces!");
+			return 0;
+		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) {
+		if (otmp == uarmc) {
+			pline_The("cloak cannot be taken off.");
 			return 0;
 		}
 	}

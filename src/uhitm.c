@@ -4568,6 +4568,7 @@ int dieroll;
 			if (P_SKILL(P_FIREARM) == P_SUPREME_MASTER) tmp -= 6;
 		}
 
+		if (uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) tmp -= 1;
 		if (uwep && uwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_BLACK_MARK) tmp -= 1;
 		if (uarm && uarm->oartifact == ART_POWASPEL) tmp -= 3;

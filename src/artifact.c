@@ -1186,6 +1186,16 @@ init_appearance_randarts()
 	artilist[ART_PRECURSOR_TO_THE___].otyp = find_homo_shoes();
 	artilist[ART_HEELMARJI].otyp = find_devil_lettuce_shoes();
 	artilist[ART_SHE_S_STILL_AN_ANASTASIA].otyp = find_loafers();
+	artilist[ART_SING_AND_JULIETTA_S_JOINT_].otyp = find_antisuck_helmet();
+	artilist[ART_DARKFLECT].otyp = find_chess_boots();
+	artilist[ART_MY_DEAR_SLAVE].otyp = find_plateau_boots();
+	artilist[ART_JONACE_S_TALLNESS].otyp = find_platinum_stilettos();
+	artilist[ART_ABRASIVE_RUPIKA].otyp = find_high_iron_boots();
+	artilist[ART_NUDE_PUNAM].otyp = find_slexual_cloak();
+	artilist[ART_EDNA_S_CALM].otyp = find_gentle_cloak();
+	artilist[ART_DORIKA_S_COLORBLOCK].otyp = find_super_comfy_heels();
+	artilist[ART_ZUNI_S_IRIDESCENCE].otyp = find_wishful_cloak();
+	artilist[ART_HOBART_THE_GOLDEN].otyp = find_digger_gloves();
 	artilist[ART_KILLCAP].otyp = find_sweaty_shoes();
 	artilist[ART_KATHARINA_S_SIGH].otyp = find_white_buffalo_boots();
 	artilist[ART_THICK_PLATFORM_CRAZE].otyp = find_white_buffalo_boots();
@@ -6362,6 +6372,13 @@ chargingchoice:
 			}
 
 			use_temporary_tech(T_MELTEE);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_SING_AND_JULIETTA_S_JOINT_) {
+
+			use_temporary_tech(T_GLOWHORN);
 
 			break;
 		}

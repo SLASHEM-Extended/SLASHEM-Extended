@@ -5305,6 +5305,7 @@ int x, y;
 	if (uarmf && uarmf->oartifact == ART_GUELDRE_S_COIN_CLING) amount += (amtdbl * 2);
 	if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) amount += amtdbl;
 	if (uwep && uwep->oartifact == ART_CLAW_OF_GIERZAHN) amount += amtdbl;
+	if (uarmg && uarmg->oartifact == ART_HOBART_THE_GOLDEN) amount += (amtdbl * 2);
 
 	if (RngeWealth) { /* 2.5 times as much gold on average --Amy */
 		if (rn2(3)) amount += (amtdbl * rnd(2));

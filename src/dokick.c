@@ -858,6 +858,11 @@ register boolean clumsy;
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 
+	if (uarmf && uarmf->oartifact == ART_ABRASIVE_RUPIKA) {
+		mon->bleedout += rnd(6);
+		pline("Your rough soles abrade some skin from %s's %s!", mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+	}
+
 	if (uarmf && uarmf->oartifact == ART_KRISTIN_S_CHEAP_EDGE) {
 		mon->bleedout += rnd(4);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );

@@ -454,6 +454,11 @@ shieldblockboo:
 
 		return(0);
 
+	} else if (uarmf && uarmf->oartifact == ART_DARKFLECT && rn2(2)) {
+			You("deflect the missile.");
+			mightbooststat(rn2(A_MAX)); /* select a random stat that may be boosted */
+			return(0);
+
 	} else if (uarmc && uarmc->oartifact == ART_DOEDOEDOEDOEDOEDOEDOE_TEST && rn2(3)) {
 
 			if(Blind || !flags.verbose) You("are not hit by the missile.");

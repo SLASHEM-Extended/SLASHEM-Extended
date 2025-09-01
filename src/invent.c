@@ -11332,7 +11332,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
+	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (night() && uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 
@@ -33348,6 +33348,26 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +30 damage to monsters who are always male. Hitting a male humanoid with it will cause it to bleed."); break;
 				case ART_CURVATURE_OF_THE_SET:
 					pline("Artifact specs: allows you to occasionally control rays fired by you, similar to the sigil of control technique. Annoyingly, it's not always clear how that works because there's no real indication as to where the ray 'cursor' currently is..."); break;
+				case ART_SING_AND_JULIETTA_S_JOINT_:
+					pline("Artifact specs: autocurses, sing and julietta trap effects as well as double psi resistance, free action and keen memory when worn. Can be invoked to use the glowhorn technique. If you're male, it gives the stronger version of the sing trap effect, while a female character gets the stronger version of the julietta trap effect."); break;
+				case ART_DARKFLECT:
+					pline("Artifact specs: reflection, death resistance, double julietta trap effect and allows you to sometimes deflect projectiles when worn. If you do deflect a projectile, a random stat may go up."); break;
+				case ART_MY_DEAR_SLAVE:
+					pline("Artifact specs: your kick deals +3 stun damage while wearing them. They become heavily cursed when worn and give the double sing trap effect as well as +5 wisdom. Your spellcasting chances are greatly increased but you deal -1 damage in melee and with ranged weapons. If you successfully clean a pair of shoes for Sing, these boots can gain enchantment up to +7; if the cleaned pair of shoes had treaded soles, this pair also has all erosion damage repaired and becomes erosionproof; if the cleaned pair of shoes was high-heeled, your high heels skill trains by 10 points; if the cleaned pair of shoes had cow dung, you gain temporary acid resistance."); break;
+				case ART_JONACE_S_TALLNESS:
+					pline("Artifact specs: triple janina trap effect when worn and doubles the damage done by your kick when worn, as well as +10 constitution and improved range for your polearms and missile weapons. Your ranged attacks also gain +5 to-hit, but these boots become sticky cursed when worn."); break;
+				case ART_ABRASIVE_RUPIKA:
+					pline("Artifact specs: your kick deals +6 damage and can drain levels from enemies or make them bleed, but you also have the triple ludgera trap effect while wearing them."); break;
+				case ART_NUDE_PUNAM:
+					pline("Artifact specs: heavily autocurses, half spell damage, double femmy trap and double disenchantment trap effect while worn and +10 charisma, monsters occasionally miss you in melee, foocubi cannot seduce you, curse resistance and +5 luck."); break;
+				case ART_EDNA_S_CALM:
+					pline("Artifact specs: magic resistance, double technicality, double anastasia and double nadine trap effects when worn, boosts your magic cancellation by 5 but if you use a technique while wearing this cloak, it becomes cursed if it wasn't already."); break;
+				case ART_DORIKA_S_COLORBLOCK:
+					pline("Artifact specs: prism reflection when worn and your kick deals +10 damage with a randomized element (rerolled each turn), sticky autocurses, double chaos terrain and double mojibake trap effects. They also grant resistances to mystery, fire, cold, shock, poison, sleep, acid and psi."); break;
+				case ART_ZUNI_S_IRIDESCENCE:
+					pline("Artifact specs: double doorning trap effect when worn, and you cannot take it off even if it's uncursed. Putting this cloak on while not knowing the mimicry spell will teach it to you. If it's nighttime, you can also hide under objects."); break;
+				case ART_HOBART_THE_GOLDEN:
+					pline("Artifact specs: double rosa trap effect when worn, prime autocurses, double sickness resistance, vision bonus, triples random gold spawns and prevents your weapons and armor from dulling."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

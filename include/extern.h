@@ -2277,6 +2277,16 @@ E int find_faceless_robe(void);
 E int find_hooked_gloves(void);
 E int find_bladed_disks(void);
 
+E int find_antisuck_helmet(void);
+E int find_chess_boots(void);
+E int find_high_iron_boots(void);
+E int find_slexual_cloak(void);
+E int find_gentle_cloak(void);
+E int find_super_comfy_heels(void);
+E int find_wishful_cloak(void);
+E int find_digger_gloves(void);
+E int find_platinum_stilettos(void);
+
 E int find_atlas_gloves(void);
 E int find_speedy_gloves(void);
 E int find_air_cloak(void);

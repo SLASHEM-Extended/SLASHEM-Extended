@@ -13181,6 +13181,8 @@ int spell;
 		chance += 20;
 	}
 
+	if (uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE && chance > 0) chance *= 2;
+
 	/* "bullshit change" by Amy: make it quite a bit harder to get to 0% fail, because spells are generally easier to
 	 * cast compared to vanilla which results in difficult spells being too easy for non-caster roles
 	 * THIS MUST COME AFTER ANYTHING THAT BOOSTS THE CHANCE */

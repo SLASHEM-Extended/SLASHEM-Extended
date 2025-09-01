@@ -1961,6 +1961,7 @@ boolean hitsroof;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_CHARGING_MADE_EASY) dmg -= 5;
 	if (uwep && uwep->oartifact == ART_BLACK_MARK) dmg -= 1;
 	if (uarm && uarm->oartifact == ART_POWASPEL) dmg -= 3;
+	if (uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) dmg -= 1;
 
 	if (dmg < 0) dmg = 0;	/* beware negative rings of increase damage */
 	if (Half_physical_damage && (rn2(2) || (uwep && uwep->oartifact == ART_SOOTHE_)) ) dmg = (dmg + 1) / 2;
@@ -2279,6 +2280,7 @@ int thrown;
 		if (obj && obj->oartifact == ART_KLUEUEUEU) range += 5;
 		if (obj && obj->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 4;
 		if (uwep && uwep->oartifact == ART_GEHENNA_MODE && ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) ) range += 3;
+		if (uarmf && uarmf->oartifact == ART_JONACE_S_TALLNESS) range += 1;
 
 		/* range egotype by Amy: if the ammo has it, firing that ammo gives a bonus; if the launcher has it, then
 		 * all ammos fired from that particular launcher get a bonus; these can stack */
@@ -2829,6 +2831,7 @@ boolean polearming;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
+	if (uarmf && uarmf->oartifact == ART_JONACE_S_TALLNESS) tmp += 5;
 	if (uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;

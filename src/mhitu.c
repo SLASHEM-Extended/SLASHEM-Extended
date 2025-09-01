@@ -2518,6 +2518,7 @@ mattacku(mtmp)
 
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 	if (uarmf && uarmf->oartifact == ART_TANGO_HEELS && !rn2(3)) tmp -= 100;
+	if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM && !rn2(5)) tmp -= 100;
 
 	if (uarmf && uarmf->oartifact == ART_OUT_OF_REACH) {
 		if (verysmall(mtmp->data)) {
@@ -6954,6 +6955,7 @@ struct monst *mon;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;
 		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
+		if (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) armpro += 5;
 		if (uarmc && uarmc->oartifact == ART_SI) armpro += 2;
 		if (uamul && uamul->otyp == AMULET_OF_GUARDING) armpro++;
 		if (uarmc && Role_if(PM_PRIEST) && itemhasappearance(uarmc, APP_ORNAMENTAL_COPE) ) armpro++;
@@ -9304,6 +9306,7 @@ dopois:
 		if (uimplant && uimplant->oartifact == ART_DO_NOT_WANT_SEX) break;
 		if (uwep && uwep->oartifact == ART_FIGURINE_OF_GALATEA) break;
 		if (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) break;
+		if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) break;
 		if (statsavingthrow) break;
 
 		if(could_seduceX(mtmp, &youmonst, mattk) == 1
@@ -22394,6 +22397,27 @@ singcleaning()
 	} else {
 		pline("Finally, you cleaned all the shit from the sexy female shoes!");
 		u.cnd_singhelped++;
+
+		if (uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) {
+			if (uarmf->spe < 7) {
+				uarmf->spe++;
+				Your("footwear gains a level of enchantment as a reward!");
+			}
+			if (u.singtraptreaded) {
+				uarmf->oeroded = uarmf->oeroded2 = FALSE;
+				uarmf->oerodeproof = TRUE;
+				Your("footwear becomes harder!");
+			}
+			if (u.singtraphighheel) {
+				use_skill(P_HIGH_HEELS, 10);
+				You("know more about high heels now!");
+			}
+			if (u.singtrapcowdung) {
+				incr_itimeout(&HAcid_resistance, 10000);
+				You("are resistant to acid now. Your items, however, are not.");
+			}
+		}
+
 		u.singtrapocc = FALSE;
 		u.singtraptreaded = FALSE;
 		u.singtraphighheel = FALSE;

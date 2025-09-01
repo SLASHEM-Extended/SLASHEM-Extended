@@ -2067,6 +2067,7 @@ set_moreluck()
 	if (uwep && uwep->enchantment == WEAPEGO_INCREDIBLE_LUCK) u.moreluck += 3;
 	if (uarmh && uarmh->oartifact == ART_VERCHANGE_CHILD) u.moreluck += 3;
 	if (uchain && uchain->oartifact == ART_OLEA_PRETIOSA) u.moreluck += 2;
+	if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) u.moreluck += 5;
 
 }
 
@@ -3354,6 +3355,7 @@ int x;
 		if (uleft && uleft->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
+		if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) tmp += 10;
 		if (uamul && uamul->oartifact == ART_ROCHELLE_S_SEY) tmp += 3;
 		if (uarmf && uarmf->oartifact == ART_IRIS_S_THUNDER) tmp += 3;
 		if (uamul && uamul->oartifact == ART_ZUBRIT_S_HOTNESS) tmp += 8;
@@ -3640,6 +3642,7 @@ int x;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_EMERALD_SWORD) tmp += 5;
 		if (x == A_WIS && uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 7;
 		if (x == A_WIS && uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 7;
+		if (x == A_WIS && uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_DIN_DEN) tmp += 4;
 		if (uarm && uarm->oartifact == ART_LET_S_DO_IT_ALREADY && uarm->otyp == BLUE_DRAGON_SCALE_MAIL) tmp += 3;
 		if (FemtrapActiveNora && u.uhs == WEAK) tmp += 2;
@@ -4051,6 +4054,7 @@ int x;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALES) tmp += 1;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
 		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_JONACE_S_TALLNESS) tmp += 10;
 		if (uamul && uamul->oartifact == ART_______SCORE) tmp += 2;
 		if (uamul && uamul->otyp == AMULET_OF_FLIPPING) {
 			if (uamul->blessed) tmp++;
