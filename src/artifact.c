@@ -2166,6 +2166,37 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+		    if (otmp && otmp->oartifact == ART_FLASHEN_OFTEN) {
+			otmp->spe += 10;
+		    }
+		    if (otmp && otmp->oartifact == ART_LINLEY_S_WARP) {
+			otmp->spe += 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_ULTRADLAENG) {
+			otmp->spe += 100;
+		    }
+		    if (otmp && otmp->oartifact == ART_BLINK_ALL_AROUND) {
+			otmp->spe += rnd(20);
+		    }
+		    if (otmp && otmp->oartifact == ART_ENERGY_FLUCTUATION) {
+			otmp->spe += rnd(50);
+		    }
+		    if (otmp && otmp->oartifact == ART_HMM__THERE_S_A_WEIRD_LIGHT) {
+			otmp->spe *= 5;
+			if (otmp->spe < 10) otmp->spe = 10;
+		    }
+		    if (otmp && otmp->oartifact == ART_PHOENIX_S_SPECIAL_MOVE) {
+			otmp->spe += rnz(10);
+		    }
+		    if (otmp && otmp->oartifact == ART_TOBI_S_FAVORITE) {
+			otmp->spe += rnz(20);
+		    }
+		    if (otmp && otmp->oartifact == ART_HP_UP) {
+			otmp->spe += 5;
+		    }
+		    if (otmp && otmp->oartifact == ART_SPARKLESPARKLESPARKLE) {
+			otmp->spe *= 2;
+		    }
 		    if (otmp && otmp->oartifact == ART_GRODY_TIME) {
 			curse(otmp);
 			otmp->hvycurse = TRUE;
@@ -5290,7 +5321,7 @@ doinvoke()
 					trap_detect((struct obj *)0);
 					break;
 				case 5:
-					object_detect((struct obj *)0, 0);
+					object_detect((struct obj *)0, 0, FALSE);
 					break;
 				case 6:
 					{
@@ -6840,7 +6871,7 @@ tunguskaagain:
 		}
 
 		if (obj->oartifact == ART_RITA_S_DIAMOGIGGLING) {
-			stardigging();
+			stardigging(u.ux, u.uy);
 			break;
 		}
 
@@ -7553,7 +7584,7 @@ tscheinschroll:
 		}
 
 		if (obj->oartifact == ART_WINNNNNG) {
-			(void)object_detect(obj, 0);
+			(void)object_detect(obj, 0, FALSE);
 			trap_detect((struct obj *)0);
 			incr_itimeout(&HDetect_monsters, 20);
 			see_monsters();
@@ -8956,7 +8987,7 @@ bangbagchoice:
 	    mtmp->mtame = 30;
 	    break;
 	case OBJ_DETECTION:
-		(void)object_detect(obj, 0);
+		(void)object_detect(obj, 0, FALSE);
 		break;
 	case CREATE_PORTAL: 
 		if (playerlevelportdisabled()) {
@@ -9084,7 +9115,7 @@ bangbagchoice:
 				       aobjnam(otmp, "fall"), (const char *)0);
 	    break;
 	case OBJECT_DET:
-		object_detect(obj, 0);
+		object_detect(obj, 0, FALSE);
 		artifact_detect(obj);
 		break;
 	case PHASING:   /* Walk through walls and stone like a xorn */

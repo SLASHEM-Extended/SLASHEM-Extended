@@ -4105,7 +4105,7 @@ moveloop()
 		}
 
 		if (uarmc && uarmc->oartifact == ART_REALLY_FIND_EM && !rn2(2000)) {
-			object_detect((struct obj *)0, 0);
+			object_detect((struct obj *)0, 0, FALSE);
 		}
 
 		if (!rn2(5000)) {

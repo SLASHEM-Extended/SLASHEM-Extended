@@ -425,9 +425,10 @@ register struct obj	*sobj;
  *	0 - something was detected
  */
 int
-object_detect(detector, class)
+object_detect(detector, class, guaranteed_det)
 struct obj	*detector;	/* object doing the detecting */
 int		class;		/* an object class, 0 for all */
+boolean guaranteed_det; /* who the fuck came up with this function... wanna be able to have it guaranteed even if "detector" is undefined --Amy */
 {
     register int x, y;
     char stuff[BUFSZ];
@@ -444,6 +445,8 @@ int		class;		/* an object class, 0 for all */
     register struct monst *mtmp;
     int uw = u.uinwater;
     int sym, boulder = 0;
+
+    if (guaranteed_det) guaranteed = TRUE;
 
     if (DetectionMethodsDontWork) {
 	if (detector) strange_feeling(detector, "Huh.");
@@ -1208,11 +1211,11 @@ struct obj *obj;
 	if (ch == DEF_MIMIC_DEF) ch = DEF_MIMIC;
 
 	if ((class = def_char_to_objclass(ch)) != MAXOCLASSES)
-		ret = object_detect((struct obj *)0, class);
+		ret = object_detect((struct obj *)0, class, FALSE);
 	else if ((class = def_char_to_monclass(ch)) != MAXMCLASSES)
 		ret = monster_detect((struct obj *)0, class);
 	else if (iflags.bouldersym && (ch == iflags.bouldersym))
-		ret = object_detect((struct obj *)0, ROCK_CLASS);
+		ret = object_detect((struct obj *)0, ROCK_CLASS, FALSE);
 	else switch(ch) {
 		case '^':
 		    ret = trap_detect((struct obj *)0);

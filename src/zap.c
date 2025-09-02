@@ -129,6 +129,38 @@ const char *yell_types[] = {    /*10 different beam types*/
 	"The might of Arceus will crush you!" /* Psybeam */
 };
 
+STATIC_PTR void
+do_floodC(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	if (/*nexttodoor(x, y) || */(rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = POOL;
+		del_engr_at(x, y);
+		water_damage(level.objects[x][y], FALSE, TRUE);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
 
 /* Routines for IMMEDIATE wands and spells. */
 /* bhitm: monster mtmp was hit by the effect of wand or spell otmp */
@@ -172,6 +204,7 @@ struct obj *otmp;
 		if (otyp == WAN_GOOD_NIGHT) dmg += rnz(boosted_ulevel(1));
 		if(dbldam) dmg *= 2;
 		dmg += skilldmg;
+		if (otmp && otmp->oartifact == ART_GUTNACHT__GUTNACHT_) dmg *= 3;
 		if (mtmp->data->maligntyp > 0) dmg *= 10;
 		if (mtmp->data->maligntyp < 0) dmg /= 2;
 		if (is_undead(mtmp->data)) dmg /= 2;
@@ -192,6 +225,7 @@ struct obj *otmp;
 			dmg = d(4,12) + rnz(boosted_ulevel(1));
 			if (otyp == SPE_BUBBLEBEAM) dmg = d(4,12) + rnd(boosted_ulevel(1));
 			if(dbldam) dmg *= 2;
+			if (otmp && otmp->oartifact == ART_UNHEALTHY_DROWNING) dmg *= 3;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s is immersed in a water bubble!", Monnam(mtmp));
 			(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -646,6 +680,7 @@ armorsmashdone:
 			dmg = d(8,12) + rnz(boosted_ulevel(1) * 3);
 			if (otyp == SPE_DREAM_EATER) dmg = d(8,12) + rnd(boosted_ulevel(1) * 3);
 			if(dbldam) dmg *= 2;
+			if (otmp && otmp->oartifact == ART_NEVER_WAKE_UP_AGAIN) dmg *= 3;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s's dream is eaten!", Monnam(mtmp));
 			(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -806,7 +841,7 @@ armorsmashdone:
 		break;
 
 	case WAN_SLUDGE:
-		if (!resist(mtmp, otmp->oclass, 0, NOTELL) && mtmp->mhp > 0) {
+		if ( (!resist(mtmp, otmp->oclass, 0, NOTELL) || (otmp && otmp->oartifact == ART_ABSOLUTE_SHUTDOWN) ) && mtmp->mhp > 0) {
 			if (mtmp->m_lev < 1)
 				xkilled(mtmp, 1);
 			else {
@@ -887,7 +922,7 @@ armorsmashdone:
 		break;
 
 	case WAN_ICE_BEAM:
-		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+		if (!resist(mtmp, otmp->oclass, 0, NOTELL) || (otmp && otmp->oartifact == ART_SHEER_COLD) ) {
 			mon_adjust_speed(mtmp, -1, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 		}
@@ -910,6 +945,13 @@ armorsmashdone:
 			mtmp->mhp--;
 			mtmp->mhpmax--;
 		    if (canseemon(mtmp)) pline("%s is burned!", Monnam(mtmp));
+		}
+		if (otmp && otmp->oartifact == ART_HOT_FLAME__AS_OPPOSED_TO_A) {
+			if (mtmp->mhp > 1) {
+				mtmp->mhp--;
+				mtmp->mhpmax--;
+			    if (canseemon(mtmp)) pline("%s is burned!", Monnam(mtmp));
+			}
 		}
 		break;
 
@@ -935,6 +977,7 @@ armorsmashdone:
 			if (otyp == SPE_GRAVITY_BEAM) dmg = d(4,12) + rnd(boosted_ulevel(1));
 			if (otyp == SPE_GRAVITY_BEAM && !rn2(3)) dmg = d(2,12) + rnd(boosted_ulevel(1));
 			if (otyp == SPE_GRAVITY_BEAM && !rn2(3) && dmg > 1) dmg = rnd(dmg);
+			if (otmp && otmp->oartifact == ART_TITANIC_STOMP) dmg *= 2;
 			if (bigmonst(mtmp->data)) dmg += rnd(6);
 			if (mtmp->data->msize >= MZ_HUGE) dmg += rnd(12);
 			if (mtmp->data->msize >= MZ_GIGANTIC) dmg += rnd(18);
@@ -983,6 +1026,14 @@ armorsmashdone:
 		} else miss(zap_type_text, mtmp);
 		break;
 	case WAN_CLONE_MONSTER:
+
+		if (otmp && otmp->oartifact == ART_ULTRADLAENG) {
+			if (distu(mtmp->mx, mtmp->my) > 3) {
+				wake = FALSE;
+				break;
+			}
+		}
+
 		clone_mon(mtmp, 0, 0);
 		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
@@ -991,7 +1042,7 @@ armorsmashdone:
 		break;
 	case WAN_SLOW_MONSTER:
 	case SPE_SLOW_MONSTER:
-		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+		if (!resist(mtmp, otmp->oclass, 0, NOTELL) || (otmp && otmp->oartifact == ART_BLANUS_ && !resist(mtmp, otmp->oclass, 0, NOTELL)) ) {
 			mon_adjust_speed(mtmp, -1, otmp);
 			if (otmp && otmp->otyp == SPE_SLOW_MONSTER) mtmp->slowtimeout = TRUE;
 			m_dowear(mtmp, FALSE); /* might want speed boots */
@@ -1095,6 +1146,7 @@ armorsmashdone:
 	case WAN_INERTIA:
 		mtmp->mcanmove = 0;
 		mtmp->mfrozen = rnd(2);
+		if (otmp && otmp->oartifact == ART_STOP_IN_THE_TRACK) mtmp->mfrozen++;
 		mtmp->mstrategy &= ~STRAT_WAITFORU;
 		/* fall through */
 	case SPE_INERTIA:
@@ -1109,13 +1161,13 @@ armorsmashdone:
 		}
 		break;
 	case WAN_SPEED_MONSTER:
-		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+		if (!resist(mtmp, otmp->oclass, 0, NOTELL) || (otmp && otmp->oartifact == ART_SPEED_UP_YOU__DAMMIT_) ) {
 			mon_adjust_speed(mtmp, 1, otmp);
 			m_dowear(mtmp, FALSE); /* might want speed boots */
 		}
 		break;
 	case WAN_HASTE_MONSTER:
-		if (!resist(mtmp, otmp->oclass, 0, NOTELL)) {
+		if (!resist(mtmp, otmp->oclass, 0, NOTELL) || (otmp && otmp->oartifact == ART_TOBI_S_FAVORITE) ) {
 			if (canseemon(mtmp) ) {
 				pline("You see %s speed up!", mon_nam(mtmp) );
 			}
@@ -1178,6 +1230,7 @@ armorsmashdone:
 	case WAN_MUTATION:
 	case SPE_MUTATION:
 		add_monster_egotype(mtmp);
+		if (otmp && otmp->oartifact == ART_MUUUUUU_TA) add_monster_egotype(mtmp);
 		break;
 
 	case WAN_CANCELLATION:
@@ -1213,6 +1266,7 @@ armorsmashdone:
 		}
 		mtmp->mcanmove = 0;
 		mtmp->mfrozen = rnz(20);
+		if (otmp && otmp->oartifact == ART_YOU_KNOW_WHICH_AN_EXPERIEN) mtmp->mfrozen++;
 		mtmp->mstrategy &= ~STRAT_WAITFORU;
 
 		break;
@@ -1357,7 +1411,10 @@ armorsmashdone:
 
 		mtmp->perminvis = 0;
 		mtmp->minvis = 0;
-		if (mtmp->minvisreal) mtmp->perminvis = mtmp->minvis = 1;
+		if (mtmp->minvisreal) {
+			if (otmp && otmp->oartifact == ART_KNOW_ALL__SEE_ALL) mtmp->minvisreal = 0;
+			else mtmp->perminvis = mtmp->minvis = 1;
+		}
 		strcpy(nambuf, Monnam(mtmp));
 		newsym(mtmp->mx, mtmp->my);		/* make it appear */
 		if (oldinvis) {
@@ -1369,7 +1426,7 @@ armorsmashdone:
 
 	case WAN_STUN_MONSTER:
 
-		if(!resist(mtmp, otmp->oclass, 0, NOTELL))  {
+		if(!resist(mtmp, otmp->oclass, 0, NOTELL) || (otmp && otmp->oartifact == ART_MEGATREMBLE) )  {
 			mtmp->mstun = TRUE;
 			if (canseemon(mtmp)) {
 				pline("%s trembles.",Monnam(mtmp));
@@ -1498,6 +1555,9 @@ armorsmashdone:
 		if (otyp == WAN_EXTRA_HEALING) healamount += (d(5,4) + rnz(boosted_ulevel(2)) + rnz(boosted_ulevel(2)) + 10 * !!bcsign(otmp));
 		if (otyp == WAN_FULL_HEALING) healamount += (d(5,8) + rnz(boosted_ulevel(5)) + rnz(boosted_ulevel(5)) + rnz(boosted_ulevel(5)) + 20 * !!bcsign(otmp));
 
+		if (otmp && otmp->oartifact == ART_JONADAB_S_WORDPLAY) mtmp->mhpmax += 5;
+		if (otmp && otmp->oartifact == ART_ACTUALLY_FULL) mtmp->mhp = mtmp->mhpmax;
+
 		if (otyp == SPE_HEALING) {
 			healamount += (rnd(10) + 4);
 			if (rn2(2)) {
@@ -1614,6 +1674,8 @@ armorsmashdone:
 		dmg += skilldmg;
 		if (otyp ==	WAN_DRAINING) dmg *= 2;
 
+		if (otmp && otmp->oartifact == ART_AURA_DAMAGE) dmg *= 3;
+
 		if (resists_drli(mtmp)) {
 			shieldeff(mtmp->mx, mtmp->my);
 			break;	/* skip makeknown */
@@ -1676,10 +1738,22 @@ armorsmashdone:
 			if (canseemon(mtmp))
 				pline("%s suddenly seems weaker!", Monnam(mtmp));
 		}
+
+		if (otmp && otmp->oartifact == ART_BACK_TO_BEFORE_YOUTH) {
+			if (mtmp->m_lev < 1)
+				xkilled(mtmp, 1);
+			else {
+				mtmp->m_lev--;
+				if (canseemon(mtmp))
+					pline("%s suddenly seems weaker!", Monnam(mtmp));
+			}
+		}
+
 		if (owandclass == WAND_CLASS) makeknown(otyp);
 		break;
 	case WAN_REDUCE_MAX_HITPOINTS:
 		dmg = rnd(8);
+		if (otmp && otmp->oartifact == ART_RATTLEOUT) dmg *= 2;
 		if (mtmp->mhp > 0) {
 			mtmp->mhp -= dmg;
 			mtmp->mhpmax -= dmg;
@@ -1704,7 +1778,8 @@ armorsmashdone:
 	case WAN_WIND: /* from Sporkhack */
 	case SPE_WIND:
 		/* Actually distance, not damage */
-		dmg = rnd(2) + (bigmonst(mtmp->data) ? 0 : rnd(3));	
+		dmg = rnd(2) + (bigmonst(mtmp->data) ? 0 : rnd(3));
+		if (otmp && otmp->oartifact == ART_BLOWSTORM) dmg *= rnd(10);
 		hurtlex = sgn(mtmp->mx - u.ux);
 		hurtley = sgn(mtmp->my - u.uy);
 		if (hurtlex) { hurtley = rnd(3)-2; }
@@ -4168,6 +4243,10 @@ register struct obj *wand;
 	if (wand->oartifact && !rn2(2)) willusecharge = FALSE; /* even works for ones that can only be charged once */
 	if (objects[(wand)->otyp].oc_material == MT_VIVA && !rn2(2) && !onlychargeonce) willusecharge = FALSE;
 	if (uarmc && uarmc->oartifact == ART_ARABELLA_S_WEAPON_STORAGE && rn2(4) && !onlychargeonce) willusecharge = FALSE;
+	if (wand->oartifact == ART_SLAM_SHUT_ && Role_if(PM_LOCKSMITH) && rn2(10)) willusecharge = FALSE;
+	if (wand->oartifact == ART_ILLITERATE_FUN && !u.uconduct.literate && rn2(10)) willusecharge = FALSE;
+	if (wand->oartifact == ART_F_O_D_D_E_R && rn2(2)) willusecharge = FALSE;
+	if (wand->oartifact == ART_WANG_DOAAAAAH && rn2(2)) willusecharge = FALSE;
 	if (nochargechange < rnd(10) && !onlychargeonce) willusecharge = FALSE;
 
 	if (willusecharge) wand->spe--;
@@ -4243,6 +4322,11 @@ register struct obj *wand;
 		if (objects[(wand)->otyp].oc_material == MT_INKA) use_skill(P_DEVICES,blessedboost);
 	}
 
+	if (wand && wand->oartifact == ART_A_N_A_L_) {
+		gain_alla(10);
+		Your("anus feels better.");
+	}
+
 	if (wand && wand->oartifact == ART_AVADA_PORKAVRA) {
 		verbalize("Avada Porkavra!");
 		wand->spe -= rnd(8);
@@ -4256,6 +4340,26 @@ register struct obj *wand;
 		buzz(14, 1, u.ux, u.uy, 1, -1);
 		buzz(14, 1, u.ux, u.uy, 0, -1);
 
+	}
+
+	if (wand && wand->oartifact == ART_BAWU_MIXING_FUCK_) {
+		incr_itimeout(&Invulnerable, Invulnerable ? rnd(3) : 5);
+		You_feel(FunnyHallu ? "like a super-duper hero!" : "invulnerable!");
+
+	}
+
+	if (wand && wand->oartifact == ART_SUN_COMES_OUT_FOR_YOU && u.currentweather != WEATHER_SUNNY) {
+		pline_The("sun comes out.");
+		u.currentweather = WEATHER_SUNNY;
+		tell_main_weather();
+	}
+
+	if (wand && wand->oartifact == ART_RATTLESTAR) {
+		stardigging(u.ux, u.uy);
+	}
+
+	if (wand && wand->oartifact == ART_MARIO_S_SAYING) {
+		if (u.temptech != T_OVER_RAY) use_temporary_tech(T_OVER_RAY);
 	}
 
 	if (wand && wand->oartifact == ART_CAST_AK) {
@@ -4301,7 +4405,8 @@ register struct obj *obj;
 		    You_feel("endangered!!");
 		{
 			int rtrap;
-		    int i, j, bd = 1;
+			int i, j, bd = 1;
+			if (obj && obj->oartifact == ART_CHAEAETCHAEAETCHAEAETCHAEA) bd += rnd(4);
 			boolean canbeinawall = FALSE;
 			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
@@ -4317,6 +4422,9 @@ register struct obj *obj;
 		}
 
 		makerandomtrap(TRUE);
+		if (obj && obj->oartifact == ART_CHAEAETCHAEAETCHAEAETCHAEA) {
+			makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE);
+		}
 		if (!rn2(2)) makerandomtrap(TRUE);
 		if (!rn2(4)) makerandomtrap(TRUE);
 		if (!rn2(8)) makerandomtrap(TRUE);
@@ -4371,7 +4479,8 @@ newboss:
 
 		case WAN_BAD_EFFECT:
 
-			badeffect();
+			if (obj && obj->oartifact == ART_REAL_BAD__MAN_) reallybadeffect();
+			else badeffect();
 
 		break;
 
@@ -4384,7 +4493,11 @@ newboss:
 
 		case WAN_BLEEDING:
 
-			playerbleed(rnd(2 + (level_difficulty() * 10)));
+			if (obj && obj->oartifact == ART_PROFUSI) {
+				playerbleed(rnd(6 + (level_difficulty() * 30)));
+			} else {
+				playerbleed(rnd(2 + (level_difficulty() * 10)));
+			}
 			known = TRUE;
 
 		break;
@@ -4392,6 +4505,11 @@ newboss:
 		case WAN_UNDRESSING:
 
 			shank_player();
+
+			if (obj && obj->oartifact == ART_PORKS_SHANK) {
+				shank_player(); shank_player(); shank_player(); shank_player();
+			}
+
 			known = TRUE;
 
 		break;
@@ -4401,6 +4519,7 @@ newboss:
 			pline("A black glow surrounds you...");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 			rndcurse();
+			if (obj && obj->oartifact == ART_BLACK_RED_STRING) rndcurse();
 			known = TRUE;
 
 		break;
@@ -4448,6 +4567,7 @@ secureidchoice:
 			known = TRUE;
 			You_feel("very unlucky.");
 			change_luck(-1);
+			if (obj && obj->oartifact == ART_U_U_) ElmStreetEffect += 10000;
 
 		break;
 
@@ -4457,7 +4577,12 @@ secureidchoice:
 		{
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
-				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
+				if (otmpE && !rn2(10)) {
+					(void) drain_item_severely(otmpE);
+				}
+				if (otmpE && obj && obj->oartifact == ART_NIIIIIIIIIIEAUM___) {
+					(void) drain_item_severely(otmpE);
+				}
 			}
 			u.cnd_disenchantamount++;
 			Your("equipment seems less effective.");
@@ -4468,7 +4593,11 @@ secureidchoice:
 
 		case WAN_CONTAMINATION:
 
-			contaminate(rnd(10 + level_difficulty()), TRUE);
+			if (obj && obj->oartifact == ART_FATAL_RAD_POISONING) {
+				contaminate(rnd(100 + (level_difficulty() * 10) ), TRUE);
+			} else {
+				contaminate(rnd(10 + level_difficulty()), TRUE);
+			}
 
 		break;
 
@@ -4477,18 +4606,27 @@ secureidchoice:
 			known = TRUE;
 			pline("Your %s are trembling!", makeplural(body_part(HAND)));
 			u.tremblingamount++;
+			if (obj && obj->oartifact == ART_ASPEN_LEAF) u.tremblingamount += 2;
 
 		break;
 
 		case WAN_REMOVE_RESISTANCE:
 
 			attrcurse();
+			if (obj && obj->oartifact == ART_AMELIE_S_RAGEQUIT) {
+				attrcurse();
+				attrcurse();
+			}
 
 		break;
 
 		case WAN_CHAOS_TERRAIN:
 
 			wandofchaosterrain();
+			if (obj && obj->oartifact == ART_BIG_CHAOTIC_INSIDE) {
+				wandofchaosterrain();
+				wandofchaosterrain();
+			}
 			known = TRUE;
 
 		break;
@@ -4496,6 +4634,11 @@ secureidchoice:
 		case WAN_FLEECY_TERRAIN:
 
 			wandoffleecyterrain();
+
+			if (obj && obj->oartifact == ART_CUDDLERAGNAR && !rn2(64)) {
+				cuddleragnarok();
+			}
+
 			pline("Some changes in terrain are happening.");
 			known = TRUE;
 
@@ -4504,6 +4647,11 @@ secureidchoice:
 		case WAN_STAT_REDUCTION:
 
 			statdebuff();
+
+			if (obj && obj->oartifact == ART_LAUGHTER_OF_INSANITY) {
+				statdebuff(); statdebuff(); statdebuff(); statdebuff(); statdebuff();
+			}
+
 			known = TRUE;
 
 		break;
@@ -4515,7 +4663,7 @@ secureidchoice:
 		    register struct obj *objX, *objX2;
 		    for (objX = invent; objX; objX = objX2) {
 		      objX2 = objX->nobj;
-			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+			if (!rn2(5) || (obj && obj->oartifact == ART_MELT__EVERYTHING_MUST_MELT) ) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 		    }
 		}
 
@@ -4525,11 +4673,21 @@ secureidchoice:
 
 			HFumbling = FROMOUTSIDE | rnd(5);
 			incr_itimeout(&HFumbling, rnd(20));
-			u.fumbleduration += rnz(1000);
+
+			if (obj && obj->oartifact == ART_FUMBLE_FOR_THE_REST_OF_ALL) {
+				u.fumbleduration += rnz(10000);
+			} else {
+				u.fumbleduration += rnz(1000);
+			}
 
 		break;
 
 		case WAN_SIN:
+
+		if (obj && obj->oartifact == ART_OH_YOU_ARE_SUCH_A_SINNER__) {
+			increasesincounter(1);
+			u.alignlim--;
+		}
 
 		{
 		int dmg = 0;
@@ -4838,6 +4996,10 @@ secureidchoice:
 				reset_rndmonst(NON_PM);
 			}
 
+			if (obj && obj->oartifact == ART_ROB_BEAR) {
+				(void) makemon(specialtensmon(213), 0, 0, MM_ADJACENTOK); /* AD_SEDU */
+			}
+
 			int monstcnt;
 			monstcnt = 8 + rnd(10);
 			int sessileattempts;
@@ -4859,6 +5021,11 @@ secureidchoice:
 
 		case WAN_EGOISM:
 			known = TRUE;
+
+			if (obj && obj->oartifact == ART_MEEGO_IS_TOO_BIG) {
+				AlwaysEgotypeMonsters += 5000;
+			}
+
 			{
 
 			if (Aggravate_monster) {
@@ -4887,13 +5054,21 @@ secureidchoice:
 
 		case WAN_INSANITY:
 
-			increasesanity(rnd((level_difficulty() * 5) + 20));
+			if (obj && obj->oartifact == ART_NINE_HEAD_ABOMINATION) {
+				increasesanity(rnd((level_difficulty() * 50) + 200));
+			} else {
+				increasesanity(rnd((level_difficulty() * 5) + 20));
+			}
 			known = TRUE;
 			break;
 
 		case WAN_BAD_EQUIPMENT:
 
 			bad_equipment(0);
+			if (obj && obj->oartifact == ART_ARABELLA_S_FAST_EQUIPPER) {
+				CursedParts += 5000;
+			}
+
 			known = TRUE;
 			break;
 
@@ -4901,6 +5076,10 @@ secureidchoice:
 
 			pline("You lose  Mana");
 			drain_en(rnz(monster_difficulty() + 1) );
+			if (obj && obj->oartifact == ART_EMPTY_BLUE_ORB) {
+				drain_en(rnz(monster_difficulty() + 1) );
+				drain_en(rnz(monster_difficulty() + 1) );
+			}
 
 		break;
 
@@ -4908,11 +5087,23 @@ secureidchoice:
 
 			pline("Your %s bend themselves!", makeplural(body_part(FINGER)) );
 			incr_itimeout(&Glib, rnd(15) + rnd(monster_difficulty() + 1) );
+
+			if (obj && obj->oartifact == ART_FLAPPING_THE_SEA) {
+				incr_itimeout(&Glib, 100);
+				incr_itimeout(&HGlib_combat, 500);
+			}
+
 			flags.botl = TRUE;
 
 		break;
 
 		case WAN_TIDAL_WAVE:
+
+			if (obj && obj->oartifact == ART_NATURE_CATASTROPHE) {
+				int madepoolX = 0;
+
+				do_clear_areaX(u.ux, u.uy, 5, do_floodC, (void *)&madepoolX);
+			}
 
 			pline("A sudden geyser slams into you from nowhere!");
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
@@ -4933,45 +5124,79 @@ secureidchoice:
 		case WAN_STARVATION:
 
 			morehungry(rnd(1000));
+			if (obj && obj->oartifact == ART_INA_S_THERAPY) {
+				FemaleTrapIna += 5000;
+				You("feel that you're gonna need a therapy for anorexia...");
+				adjalign(20);
+				u.alignlim += 2;
+			}
 
 		break;
 
 		case WAN_CONFUSION:
-		if(!Confusion) {
-		    if (FunnyHallu) {
-			pline("What a trippy feeling!");
-		    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn)
-			pline("Blimey! Ye're one sheet to the wind!");
-			else 
-			pline("Huh, What?  Where am I?");
-		}
-		make_confused(HConfusion + rn1(35, 115), FALSE);
+			if(!Confusion) {
+			    if (FunnyHallu) {
+				pline("What a trippy feeling!");
+			    } else if (Role_if(PM_PIRATE) || Role_if(PM_KORSAIR) || PirateSpeakOn)
+				pline("Blimey! Ye're one sheet to the wind!");
+				else 
+				pline("Huh, What?  Where am I?");
+			}
 
-		break;
+			make_confused(HConfusion + rn1(35, 115), FALSE);
+			if (obj && obj->oartifact == ART_EXCONF) {
+				set_itimeout(&HeavyConfusion, HConfusion);
+			}
+
+			break;
 
 		case WAN_SLIMING:
-		if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
-		    You("don't feel very well.");
-			make_slimed(100);
-		    killer_format = KILLED_BY_AN;
-		    delayed_killer = "slimed by zapping a wand of sliming";
-		}
+			if (!Slimed && !flaming(youmonst.data) && !Unchanging && !slime_on_touch(youmonst.data) ) {
+			    You("don't feel very well.");
+				make_slimed(100);
+			    killer_format = KILLED_BY_AN;
+			    delayed_killer = "slimed by zapping a wand of sliming";
+			}
 
-		break;
+			if (obj && obj->oartifact == ART_GUMMEN) {
+				incr_itimeout(&HPolymorph_control, 120);
+				You_feel("capable of controlling your polymorphs!");
+			}
+
+			break;
 
 		case WAN_LYCANTHROPY:
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
-			u.ulycn = PM_WEREWOLF;
-			You_feel("feverish.");
-			u.cnd_lycanthropecount++;
-		}
 
-		break;
+			if (obj && obj->oartifact == ART_WOLVLE__WOLVLE) {
+				WereformBug += 15000;
+				You_feel("feverish.");
+			} else {
+				if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+					u.ulycn = PM_WEREWOLF;
+					You_feel("feverish.");
+					u.cnd_lycanthropecount++;
+				}
+			}
+
+			break;
 
 		case WAN_LIGHT:
 		case SPE_LIGHT_AREA:
 			litroom(TRUE,obj);
 			if (!Blind) known = TRUE;
+
+			if (obj && obj->oartifact == ART_CASTLE_CHAMBER) {
+			    int rnum = levl[u.ux][u.uy].roomno - ROOMOFFSET;
+			    int rx, ry;
+			    if(rnum >= 0) {
+				for(rx = rooms[rnum].lx-1; rx <= rooms[rnum].hx+1; rx++)
+				    for(ry = rooms[rnum].ly-1; ry <= rooms[rnum].hy+1; ry++)
+					levl[rx][ry].lit = 1;
+				rooms[rnum].rlit = TRUE;
+			    }
+
+			}
+
 			break;
 		case WAN_SECRET_DOOR_DETECTION:
 			if(!findit()) return;
@@ -5013,15 +5238,20 @@ secureidchoice:
 		case WAN_CREATE_FAMILIAR:
 			known = TRUE;
 			(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+			if (obj && obj->oartifact == ART_FAMMYWHERE) {
+				(void) make_familiar((struct obj *)0, 0, 0, FALSE, FALSE);
+			}
 			break;
 		case WAN_SUMMON_ELM:
 			known = TRUE;
 
+			if (obj && obj->oartifact == ART_FROM_THE_STREET) ElmStreetEffect += 5000;
+
 			{
-			int aligntype;
-			aligntype = rn2((int)A_LAWFUL+2) - 1;
-			pline("A servant of %s appears!",aligns[1 - aligntype].noun);
-			summon_minion(aligntype, TRUE);
+				int aligntype;
+				aligntype = rn2((int)A_LAWFUL+2) - 1;
+				pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+				summon_minion(aligntype, TRUE);
 			}
 
 			break;
@@ -5207,6 +5437,9 @@ secureidchoice:
 				i = 10;
 			    else
 				i = rn1(20,11);
+
+			    if (obj && obj->oartifact == ART_DMMMMMMMMM_) i *= 10;
+
 			    incr_itimeout(&HDetect_monsters, i);
 			    for (x = 1; x < COLNO; x++) {
 				for (y = 0; y < ROWNO; y++) {
@@ -5222,13 +5455,20 @@ secureidchoice:
 			break;
 		case WAN_OBJECTION:
 			known = TRUE;
-			object_detect((struct obj *)0, 0);
+			object_detect((struct obj *)0, 0, (obj && obj->oartifact == ART_PHOENIX_S_SPECIAL_MOVE) ? TRUE : FALSE);
 			exercise(A_WIS, TRUE);
 			break;
 		case WAN_DARKNESS:
 		case SPE_DARKNESS:
 			if (!Blind) known = TRUE;
 			litroom(FALSE,obj);
+			if (obj && obj->oartifact == ART_UN_LITE) {
+				int ulx, uly;
+				for (ulx = 1; ulx < (COLNO); ulx++)
+			        for (uly = 0; uly < (ROWNO); uly++) {
+					levl[ulx][uly].lit = 0;
+				}
+			}
 			break;
 		case SPE_AMNESIA:
 			You_feel("dizzy!");
@@ -5238,9 +5478,11 @@ secureidchoice:
 			known = TRUE;
 			pline("A map coalesces in your mind!");
 			do_mappingZ();
+			if (obj && obj->oartifact == ART_FULL_MAPPAGE) do_mapping();
 			break;
 		case WAN_STINKING_CLOUD:
-		      {  coord cc;
+		{
+			coord cc;
 
 			pline("You may place a stinking cloud on the map.");
 			known = TRUE;
@@ -5259,12 +5501,20 @@ secureidchoice:
 			    You("smell rotten eggs.");
 			    return;
 			}
-			(void) create_gas_cloud(cc.x, cc.y, 3, 8);
-			break;
+			if (obj && obj->oartifact == ART_SUFFOCATING_GAS_IMPLEMENTE) {
+				(void) create_gas_cloud(cc.x, cc.y, 4, 12);
+			} else {
+				(void) create_gas_cloud(cc.x, cc.y, 3, 8);
 			}
+			break;
+		}
 		case WAN_TELE_LEVEL:
-		      if (!playerlevelportdisabled()) level_tele();
-			else pline("Hmm... that level teleport wand didn't do anything.");
+		      if (!playerlevelportdisabled()) {
+				level_tele();
+				if (obj && obj->oartifact == ART_GET_ONE_FREE_ACTION) TimeStopped += 1;
+			} else {
+				pline("Hmm... that level teleport wand didn't do anything.");
+			}
 			known = TRUE;
 			break;
 		case WAN_GENOCIDE:
@@ -5290,6 +5540,26 @@ secureidchoice:
 				lev = &levl[u.ux][u.uy];
 				if (!(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER ) lev->typ = LAVAPOOL;
 				pline("Suddenly, the surface underneath your %s feels very hot...", makeplural(body_part(FOOT)) );
+
+				if (obj && obj->oartifact == ART_BRUTZLE_AWAY) {
+					int k, l;
+
+					for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+						if (!isok(u.ux + k, u.uy + l)) continue;
+						if (k == 0 && l == 0) continue; /* not needed */
+
+						if (isok(u.ux + k, u.uy + l) && (levl[u.ux + k][u.uy + l].typ == ROOM || levl[u.ux + k][u.uy + l].typ == CORR) ) {
+
+							levl[u.ux + k][u.uy + l].typ = LAVAPOOL;
+							blockorunblock_point(u.ux + k, u.uy + l);
+							newsym(u.ux + k, u.uy + l);
+
+						}
+
+					}
+					pline("In fact, the area near you feels hot too...");
+				}
+
 			}
 
 			break;
@@ -5297,6 +5567,11 @@ secureidchoice:
 		case WAN_ENTRAPPING:
 			known = TRUE;
 			trap_detect((struct obj *)0);
+			if (obj && obj->oartifact == ART_CLOSE_BY_WHOA) {
+				while (rn2(2)) {
+					trap_detect((struct obj *)0);
+				}
+			}
 			exercise(A_WIS, TRUE);
 			break;
 
@@ -5305,6 +5580,11 @@ secureidchoice:
 			incr_itimeout(&HLevitation, rnd(100) );
 			flags.botl = TRUE;
 			pline("You float up!");
+
+			if (obj && obj->oartifact == ART_YVONNE_S_COMFY_SITTING) {
+				FemaleTrapYvonne += 2000;
+			}
+
 			break;
 
 		case WAN_SPELLBINDER:
@@ -5342,6 +5622,10 @@ secureidchoice:
 		case WAN_INERTIA_CONTROL:
 			known = TRUE;
 
+			if (obj && obj->oartifact == ART_MANAMANAMANAMANAMANA_) {
+				incr_itimeout(&HEnergy_regeneration, 100);
+			}
+
 			pline("Inertia control allows you to automatically cast a spell every turn for a while. You can choose which spell you want to control.");
 
 			if (spellid(0) == NO_SPELL)  {
@@ -5362,7 +5646,13 @@ controlagain:
 			known = TRUE;
 
 			You_feel("an anti-sexual aura.");
-			u.sterilized = 20 + rnd(60);
+
+			if (obj && obj->oartifact == ART_I_DON_T_WANNA_SEX) {
+				u.sterilized += (200 + rnd(600));
+			} else {
+				u.sterilized = 20 + rnd(60);
+			}
+
 			if (wizard) {
 				if (yn("Wanna sterilize for 10000 more turns?") == 'y') u.sterilized += 10000;
 				else if (yn("Wanna un-sterilize?") == 'y') u.sterilized = 0;
@@ -5407,6 +5697,13 @@ controlagain:
 			if (PlayerHearsSoundEffects) pline(issoviet ? "Eto poshel na khuy vverkh. No chto zhe vy ozhidali? Igra, v kotoruyu vy mozhete legko vyigrat'? Durak!" : "DUEUEDUET!");
 			if (!Race_if(PM_UNGENOMOLD)) newman();
 			else polyself(FALSE);
+
+			if (obj && obj->oartifact == ART_NOSE_AWAY) {
+				decontaminate(100);
+				reducesanity(500);
+				You_feel("somewhat debugged.");
+			}
+
 			break;
 
 		case WAN_IDENTIFY:
@@ -5417,6 +5714,9 @@ controlagain:
 			    if (issoviet) pline("Sovet reshil, chto etot vopros byl slishkom silen, khotya eto ne bylo, poetomu on identifitsiruyet tol'ko odin punkt kazhdyy raz.");
 			    identify_pack(issoviet ? 1 : rn2(5), 0, 0);
 			}
+
+			if (obj && obj->oartifact == ART_FIGGERITOUT && invent) identify_pack(1, 0, 0);
+
 			exercise(A_WIS, TRUE);
 			break;
 		case WAN_MANA:
@@ -5425,6 +5725,9 @@ controlagain:
 			if (!rn2(20)) u.uen += (400 + rnz(boosted_ulevel(5)));
 			else if (!rn2(5)) u.uen += (d(6,8) + rnz(boosted_ulevel(2)));
 			else u.uen += (d(5,6) + rnz(boosted_ulevel(1)));
+
+			if (obj && obj->oartifact == ART_BLUE_BALL_FILL) u.uen += 100;
+
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 			break;
 		case WAN_REMOVE_CURSE:
@@ -5436,26 +5739,26 @@ controlagain:
 			if (u.contamination) decontaminate(u.contamination);
 			if (uinsymbiosis) uncursesymbiote(FALSE);
 
-			register struct obj *obj;
+			register struct obj *objX;
 
-			for(obj = invent; obj ; obj = obj->nobj) {
+			for(objX = invent; objX ; objX = objX->nobj) {
 
 				long wornmask;
-				if (obj->oclass == COIN_CLASS) continue;
-				wornmask = (obj->owornmask & ~(W_BALL|W_ART|W_ARTI));
+				if (objX->oclass == COIN_CLASS) continue;
+				wornmask = (objX->owornmask & ~(W_BALL|W_ART|W_ARTI));
 				if (wornmask) {
 				    /* handle a couple of special cases; we don't
 				       allow auxiliary weapon slots to be used to
 				       artificially increase number of worn items */
-				    if (obj == uswapwep) {
+				    if (objX == uswapwep) {
 					if (!u.twoweap) wornmask = 0L;
-				    } else if (obj == uquiver) {
-					if (obj->oclass == WEAPON_CLASS) {
+				    } else if (objX == uquiver) {
+					if (objX->oclass == WEAPON_CLASS) {
 					    /* mergeable weapon test covers ammo,
 					       missiles, spears, daggers & knives */
-					    if (!objects[obj->otyp].oc_merge) 
+					    if (!objects[objX->otyp].oc_merge) 
 						wornmask = 0L;
-					} else if (obj->oclass == GEM_CLASS) {
+					} else if (objX->oclass == GEM_CLASS) {
 					    /* possibly ought to check whether
 					       alternate weapon is a sling... */
 					    if (!uslinging()) wornmask = 0L;
@@ -5467,8 +5770,14 @@ controlagain:
 				    }
 				}
 
-				if ( (!rn2(5) || wornmask) && obj->cursed && !stack_too_big(obj))
-					uncurse(obj, FALSE);
+				if ( (!rn2(5) || wornmask) && objX->cursed && !stack_too_big(objX)) {
+					uncurse(objX, FALSE);
+				}
+				if (obj && obj->oartifact == ART_HEAVYLOCKBREAK) {
+					if ( (!rn2(5) || wornmask) && objX->cursed && !stack_too_big(objX)) {
+						uncurse(objX, FALSE);
+					}
+				}
 			}
 
 			break;
@@ -5476,6 +5785,7 @@ controlagain:
 			known = TRUE;
 			You_feel("someone is punishing you for your misbehavior!");
 			punishx();
+			if (obj && obj->oartifact == ART_INFEEBLE_FLAILING) use_skill(P_FLAIL, 50);
 			break;
 		case WAN_CHARGING:
 			if (CannotSelectItemsInPrompts) break;
@@ -5489,25 +5799,30 @@ chargingchoice:
 				else goto chargingchoice;
 				break;
 			}
-			recharge(otmp, 0);
+
+			if (obj && obj->oartifact == ART_OLDENTIME_REHEARSAL) {
+				recharge(otmp, 1);
+			} else {
+				recharge(otmp, 0);
+			}
 			break;
 		case WAN_WONDER: /* supposed to have a random effect, may be implemented in future */
 
 			known = TRUE;
 			switch(rnd(21)) {
-			case 1 : 
+			case 1: 
 				litroomlite(TRUE);
 				break;
-			case 2 : 
+			case 2: 
 				if(!findit()) return;
 				break;
-			case 3 : 
+			case 3: 
 				create_critters(rn2(23) ? 1 : rno(8), (struct permonst *)0);
 				break;
-			case 4 : 
+			case 4: 
 				create_critters(rn1(7,6), (struct permonst *)0);
 				break;
-			case 5 : 
+			case 5: 
 				pline("Multicolored sparks fly from the wand.");
 				if (!rn2(250)) {
 					if (!rn2(4)) makewish(TRUE);
@@ -5515,21 +5830,21 @@ chargingchoice:
 				}
 		/* since there is a 1% chance of the wand exploding, this _should_ be okay --Amy */
 				break;
-			case 6 : 
+			case 6: 
 				pline("Nothing happens.");
 				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
 					pline("Oh wait, actually something bad happens...");
 					badeffect();
 				}
 				break;
-			case 7 : 
+			case 7: 
 				You_feel("self-knowledgeable...");
 				display_nhwindow(WIN_MESSAGE, FALSE);
 				enlightenment(FALSE, TRUE);
 				pline_The("feeling subsides.");
 				exercise(A_WIS, TRUE);
 				break;
-			case 8 : 
+			case 8: 
 			    { int x, y;
 	
 			    /* after a while, repeated uses become less effective */
@@ -5551,15 +5866,15 @@ chargingchoice:
 				exercise(A_WIS, TRUE);
 				break;
 				}
-			case 9 : 
-				object_detect((struct obj *)0, 0);
+			case 9: 
+				object_detect((struct obj *)0, 0, FALSE);
 				exercise(A_WIS, TRUE);
 				break;
-			case 10 : 
+			case 10: 
 				trap_detect((struct obj *)0);
 				exercise(A_WIS, TRUE);
 				break;
-			case 11 : 
+			case 11: 
 				You_feel("insightful!");
 				if (invent) {
 				    /* rn2(5) agrees w/seffects() */
@@ -5567,7 +5882,7 @@ chargingchoice:
 				}
 				exercise(A_WIS, TRUE);
 				break;
-			case 12 : 
+			case 12: 
 				You_feel("like someone is helping you!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Ba, tip bloka l'da budet proklinat' svoye der'mo snova tak ili inache." : "Daedeldaedimm!");
 
@@ -5575,23 +5890,25 @@ chargingchoice:
 				if (u.contamination) decontaminate(u.contamination);
 				if (uinsymbiosis) uncursesymbiote(FALSE);
 
-				register struct obj *obj;
+				register struct obj *objY;
 	
-				for(obj = invent; obj ; obj = obj->nobj)
-					if (!rn2(5) && obj->cursed && !stack_too_big(obj))	uncurse(obj, FALSE);
-	
+				for(objY = invent; objY ; objY = objY->nobj) {
+					if (!rn2(5) && objY->cursed && !stack_too_big(objY)) {
+						uncurse(objY, FALSE);
+					}
+				}
 				break;
-			case 13 : 
+			case 13: 
 				You_feel("someone is punishing you for your misbehavior!");
 				punishx();
 				break;
-			case 14 : 
-			case 15 : 
-			case 16 : 
-			case 17 : 
-			case 18 : 
-			case 19 : 
-			case 20 : 
+			case 14: 
+			case 15: 
+			case 16: 
+			case 17: 
+			case 18: 
+			case 19: 
+			case 20: 
 			default:
 				pline("Nothing happens.");
 				if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -5602,7 +5919,10 @@ chargingchoice:
 			}
 			break;
 		case WAN_BUGGING:
-			known = TRUE; 
+			known = TRUE;
+
+			if (obj && obj->oartifact == ART_ERROR_FEELING) gain_alla(50);
+
 			{
 				int i;
 				i = rn2(6) + 1;
@@ -5611,6 +5931,10 @@ chargingchoice:
 						(void) makemon(&mons[PM_BUG], u.ux,u.uy, NO_MM_FLAGS);
 					else
 						(void) makemon(&mons[rn2(3) ? PM_BUG : PM_HEISENBUG], u.ux,u.uy, NO_MM_FLAGS);
+
+					if (obj && obj->oartifact == ART_ERROR_FEELING) {
+						(void) makemon(specialtensmon(461), u.ux,u.uy, NO_MM_FLAGS); /* MS_TRIP */
+					}
 				}
 			}
 			break;
@@ -6568,6 +6892,12 @@ boolean ordinary;
 		case WAN_CLONE_MONSTER:
 		    makeknown(WAN_CLONE_MONSTER);
 			You("try to clone yourself!");
+
+			if (obj && obj->oartifact == ART_ULTRADLAENG) {
+				pline("But you're not supposed to do that with this wand, which is why it fails...");
+				break;
+			}
+
 			cloneu();
 		   break;
 		case SPE_CLONE_MONSTER:
@@ -7359,13 +7689,28 @@ boolean ordinary;
 		break;
 		case WAN_HEALING:
 		   You("begin to feel better.");
-		   healup( d(5,6) + rnz(boosted_ulevel(1)),0,0,0);
+		   if (obj && obj->oartifact == ART_DOCTORAL_CARE) {
+			healup(d(5,6) + rnz(boosted_ulevel(1)),0,1,1);
+		   } else {
+			healup(d(5,6) + rnz(boosted_ulevel(1)),0,0,0);
+		   }
 		   exercise(A_STR, TRUE);
 		   makeknown(WAN_HEALING);
 		break;
 		case WAN_EXTRA_HEALING:
 		   You_feel("much better.");
 		   healup(d(6,8) + rnz(boosted_ulevel(2)),0,0,0);
+
+		    if (obj && obj->oartifact == ART_JONADAB_S_WORDPLAY) {
+			if (Upolyd) u.mhmax += 5;
+			else u.uhpmax += 5;
+			if (uinsymbiosis) {
+				u.usymbiote.mhpmax += 5;
+				maybe_evolve_symbiote();
+				if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+			}
+		    }
+
 		   make_hallucinated(0L,TRUE,0L);
 		   exercise(A_STR, TRUE);
 		   exercise(A_CON, TRUE);
@@ -7374,6 +7719,12 @@ boolean ordinary;
 		case WAN_FULL_HEALING:
 		   You_feel("restored to health.");
 		   healup(d(10,20) + rnz(boosted_ulevel(5)),0,0,0);
+
+		   if (obj && obj->oartifact == ART_ACTUALLY_FULL) {
+			u.uhp = u.uhpmax;
+			if (Upolyd) u.mh = u.mhmax;
+		   }
+
 		   make_hallucinated(0L,TRUE,0L);
 		   exercise(A_STR, TRUE);
 		   exercise(A_CON, TRUE);
@@ -8248,6 +8599,7 @@ struct obj *obj;
 
 		if (tech_inuse(T_BLADE_ANGER) && obj->otyp == SPE_BLADE_ANGER) beamrange += rnd(6);
 		if ((tech_inuse(T_BEAMSWORD) || u.linkmasterswordhack) && obj->otyp == SPE_BEAMSWORD) beamrange += rnd(6);
+		if (obj && obj->oartifact == ART_LONGFIELD) beamrange += 10;
 
 		(void) bhit(u.dx,u.dy, obj->otyp == SPE_PARTICLE_CANNON ? 200 : obj->otyp == SPE_SNIPER_BEAM ? 70 : beamrange, ZAPPED_WAND,
 			    bhitm, bhito, &obj, TRUE);
@@ -8318,15 +8670,26 @@ drainingdone:
 			buzz(otyp - WAN_MAGIC_MISSILE,
 		     (otyp == WAN_MAGIC_MISSILE) ? 4 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) : (otyp == WAN_SOLAR_BEAM) ? 8 + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) : (otyp == WAN_PSYBEAM) ? 7 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) : 6 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5),
 		     u.ux, u.uy, u.dx, u.dy);
+
+			if (obj && obj->oartifact == ART_KLOENGLOENGLOENGLOENGLOENG) {
+				buzz((int)(29), 6, u.ux, u.uy, u.dx, u.dy);
+			}
+
 	    }
 
 	    else if (otyp == WAN_POISON) {
 		buzz((int)(26), 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6), u.ux, u.uy, u.dx, u.dy);
-
+		if (obj && obj->oartifact == ART_EXTREMEGREEN) {
+			buzz((int)(26), 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6), u.ux, u.uy, -u.dx, -u.dy);
+		}
 	    }
 
 	    else if (otyp == WAN_HYPER_BEAM) {
-		buzz((int)(20), 6 + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3), u.ux, u.uy, u.dx, u.dy);
+		if (obj && obj->oartifact == ART_MEGA_OVERKILL) {
+			buzz((int)(20), 16 + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3), u.ux, u.uy, u.dx, u.dy);
+		} else {
+			buzz((int)(20), 6 + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3) + (rnz(boosted_ulevel(1)) / 3), u.ux, u.uy, u.dx, u.dy);
+		}
 
 	    }
 
@@ -8338,6 +8701,13 @@ drainingdone:
 	    else if (otyp == WAN_CHROMATIC_BEAM) {
 		int damagetype = 20 + rn2(9);
 		buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) : damagetype == 20 ? 2 + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) : damagetype == 28 ? 8 + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) : 6 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5), u.ux, u.uy, u.dx, u.dy);
+
+		if (obj && obj->oartifact == ART_TRIBBLE_) {
+			damagetype = 20 + rn2(9);
+			buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) : damagetype == 20 ? 2 + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) : damagetype == 28 ? 8 + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) : 6 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5), u.ux, u.uy, u.dx, u.dy);
+			damagetype = 20 + rn2(9);
+			buzz((int)(damagetype), damagetype == 26 ? 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) : damagetype == 20 ? 2 + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) + (rnz(boosted_ulevel(1)) / 10) : damagetype == 28 ? 8 + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) + (rnz(boosted_ulevel(1)) / 4) : 6 + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5) + (rnz(boosted_ulevel(1)) / 5), u.ux, u.uy, u.dx, u.dy);
+		}
 
 	    }
 
@@ -8372,7 +8742,9 @@ drainingdone:
 
 	    else if (otyp == WAN_DISINTEGRATION_BEAM) {
 		buzz((int)(24), 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6), u.ux, u.uy, u.dx, u.dy);
-
+		if (obj && obj->oartifact == ART_DOUBLEWHAM) {
+			buzz((int)(24), 7 + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6) + (rnz(boosted_ulevel(1)) / 6), u.ux, u.uy, u.dx, u.dy);
+		}
 	    }
 
 	    else if (otyp == SPE_DISINTEGRATION_BEAM) {
@@ -8396,7 +8768,11 @@ drainingdone:
 	    }
 
 	    else if (otyp == WAN_NETHER_BEAM) {
-		buzz((int)(29), 7 + (rnz(boosted_ulevel(1)) / 2), u.ux, u.uy, u.dx, u.dy);
+		if (obj && obj->oartifact == ART_WUMMINGEN) {
+			buzz((int)(29), 14 + (rnz(boosted_ulevel(1))), u.ux, u.uy, u.dx, u.dy);
+		} else {
+			buzz((int)(29), 7 + (rnz(boosted_ulevel(1)) / 2), u.ux, u.uy, u.dx, u.dy);
+		}
 
 	    }
 
@@ -8416,7 +8792,11 @@ drainingdone:
 	    }
 
 	    else if (otyp == WAN_INFERNO) {
-		buzz((int)(21), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
+		if (obj && obj->oartifact == ART_HOT_FLAME__AS_OPPOSED_TO_A) {
+			buzz((int)(21), 24 + rnz(boosted_ulevel(2)), u.ux, u.uy, u.dx, u.dy);
+		} else {
+			buzz((int)(21), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
+		}
 
 	    }
 
@@ -8450,7 +8830,11 @@ drainingdone:
 	    }
 
 	    else if (otyp == WAN_THUNDER) {
-		buzz((int)(25), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
+		if (obj && obj->oartifact == ART_BREW_OF_STORMS_CHURN_IT_UP) {
+			buzz((int)(25), 30 + rnz(boosted_ulevel(1 + rnd(2))), u.ux, u.uy, u.dx, u.dy);
+		} else {
+			buzz((int)(25), 12 + rnz(boosted_ulevel(1)), u.ux, u.uy, u.dx, u.dy);
+		}
 
 	    }
 
@@ -8941,9 +9325,19 @@ notamonster:
 	    }
 
 	    if(weapon == ZAPPED_WAND && (obj->otyp == WAN_BUBBLEBEAM || obj->otyp == SPE_BUBBLEBEAM ) ) {
-		if (!rn2(10) && (levl[bhitpos.x][bhitpos.y].typ == ROOM || levl[bhitpos.x][bhitpos.y].typ == CORR) ) {
-			levl[bhitpos.x][bhitpos.y].typ = POOL;
+
+		if (obj->oartifact == ART_UNHEALTHY_DROWNING) {
+			if (!rn2(3) && (levl[bhitpos.x][bhitpos.y].typ == ROOM || levl[bhitpos.x][bhitpos.y].typ == CORR) ) {
+				levl[bhitpos.x][bhitpos.y].typ = POOL;
+				newsym(bhitpos.x,bhitpos.y);
+			}
+		} else {
+			if (!rn2(10) && (levl[bhitpos.x][bhitpos.y].typ == ROOM || levl[bhitpos.x][bhitpos.y].typ == CORR) ) {
+				levl[bhitpos.x][bhitpos.y].typ = POOL;
+				newsym(bhitpos.x,bhitpos.y);
+			}
 		}
+
 	    }
 
 	    if(weapon == ZAPPED_WAND && (obj->otyp == SPE_WATER_BOLT ) ) {
@@ -11120,13 +11514,19 @@ register int osym, dmgtyp;
 		    quan = obj->quan;
 		    switch(osym) {
 			case RING_CLASS:
-			    if(obj->otyp == RIN_SHOCK_RESISTANCE)
-				    { skip++; break; }
+			    if(obj->otyp == RIN_SHOCK_RESISTANCE) {
+				skip++; break;
+			    }
 			    dindx = 4;
 			    dmg = 0;
 			    break;
 			case WAND_CLASS:
-			    if(obj->otyp == WAN_LIGHTNING) { skip++; break; }
+			    if(obj->otyp == WAN_LIGHTNING) {
+				 skip++; break;
+			    }
+			    if(obj->oartifact == ART_BLINK_ALL_AROUND) {
+				 skip++; break;
+			    }
 #if 0
 			    if (obj == current_wand) { skip++; break; }
 #endif

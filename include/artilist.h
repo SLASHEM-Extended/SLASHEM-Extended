@@ -48,7 +48,7 @@ STATIC_OVL NEARDATA struct artifact artilist_pre[] = {
  * 2.  By weapon class (skill).
  */
 
-/* Amy test entry (dummy) for easier copy-n-pasting */
+/* Amy test entry (dummy) for easier copy-n-pasting ("copypasting") */
 /*
 A("",				itemname,
 	(SPFX_RESTR), 0, 0,
@@ -23631,6 +23631,434 @@ A("Team Bride",				LEATHER_CLOAK, /* initialized to always be pure cloak, +10 CH
 A("A lot of Enyas in the castle",				SPE_RESIST_CONFUSION, /* if you use up a charge of it (i.e. when you start reading), you gain rnz(5000) turns of resist confusion */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Is there a girlcott?",				SPE_STALACTITE, /* reading it stops all active feminism trap effects */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("To Shit",				SPE_FLOOD, /* reading it gives permanent -1 increase accuracy and has 1 in 3 chance of giving +1 increase damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Too Late To Pull A Child",				SPE_STINKING_CLOUD, /* -1 luck when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Wuffian Radio",				SPE_LIGHT_AREA, /* while wielding it, the light area spell only costs 66% of its normal amount of mana */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("K-or-ea-sy",				SPE_TOXIC, /* reading it sets "toxic" as your super special spell */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Castle Chamber",				WAN_LIGHT, /* zapping lights the room you're currently in */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blue Ball Fill",				WAN_MANA, /* restores 100 more mana per zap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Shiva Uba",				WAN_GAIN_LEVEL, /* 50% chance that if it would've exploded from recharging, it doesn't */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Doctoral Care",				WAN_HEALING, /* cures sickness and blindness (healup(number, 0, 1, 1)) when you zap yourself */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2300L ),
+
+A("Slam Shut!",				WAN_LOCKING, /* when zapped by a locksmith and it'd have used up a charge, 90% chance that it doesn't */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_LOCKSMITH, NON_PM, 3000L ),
+
+A("Know All, See All",				WAN_MAKE_VISIBLE, /* if a monster zaps you with it, your items can also become visible; if you zap a monster, it becomes visible even if it was super invisible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Figgeritout",				WAN_IDENTIFY, /* allows you to identify one more item after the normal effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Heavylockbreak",				WAN_REMOVE_CURSE, /* tries twice to uncurse your stuff (with separate !rn2(5) calls for non-equipped stuff) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Infeeble Flailing",				WAN_PUNISHMENT, /* if you zap it, your flail skill trains by 50 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("A.N.A.L.",				WAN_PROBING, /* zapping it while it has charges gives +10 alla */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Suffocating Gas Implemented",				WAN_STINKING_CLOUD, /* creates a bigger gas cloud (4, 12) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Illiterate Fun",				WAN_STONE_TO_FLESH, /* if you zap it with the illiterate conduct intact, 90% chance for it to not lose a charge if it would've used one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Brutzle Away",				WAN_LAVA, /* also tries to change the eight squares around you into lava */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Get One Free Action",				WAN_TELE_LEVEL, /* if you successfully levelport with it, time is stopped for one (more) turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Close By Whoa",				WAN_ENTRAPPING, /* iterative 50% chance to detect traps again when zapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("chaeaetchaeaetchaeaetchaeaetchaeaetchaeaetchaeaetchaeaet",				WAN_TRAP_CREATION, /* creates more traps when zapped by anyone */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Un-lite",				WAN_DARKNESS, /* if someone zaps it, the entire level becomes unlit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Full Mappage",				WAN_MAGIC_MAPPING, /* reveals the level like a scroll of magic mapping */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Dmmmmmmmmm!",				WAN_DETECT_MONSTERS, /* lasts 10x as long */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Phoenix's Special Move",				WAN_OBJECTION, /* reveals all objects on the current level and spawns with rnz(10) more charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Blanus-",				WAN_SLOW_MONSTER, /* tries twice to get past the monster's saving throw */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Speed up you! Dammit!",				WAN_SPEED_MONSTER, /* monsters cannot resist if you zap it at them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tobi's Favorite",				WAN_HASTE_MONSTER, /* spawns with rnz(20) more charges and can't be resisted by monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("You know which an experiencing!",				WAN_PARALYSIS, /* anyone hit by the beam is paralyzed for one more turn */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Longfield",				WAN_DISINTEGRATION, /* +10 range when zapped by you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("folldesta",				WAN_STONING, /* no special effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Aura Damage",				WAN_DRAINING, /* deals three times as much damage to whatever gets hit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rattleout",				WAN_REDUCE_MAX_HITPOINTS, /* reduces target's max HP by more */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("HP-UP",				WAN_INCREASE_MAX_HITPOINTS, /* spawns with +5 charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("sparklesparklesparkle",				WAN_CANCELLATION, /* spawns with twice as many charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("F o d d e r",				WAN_CREATE_MONSTER, /* 50% chance that it doesn't use a charge, regardless of who zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Fammywhere",				WAN_CREATE_FAMILIAR, /* creates a second familiar at a random location */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("real bad, man.",				WAN_BAD_EFFECT, /* causes really bad effects, regardless of who zapped it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Black-Red String",				WAN_CURSE_ITEMS, /* curses your inventory twice, regardless of who zapped it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("U.U.",				WAN_BAD_LUCK, /* 10k turns of elm street nastytrap effect whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Niiiiiiiiiieaum...",				WAN_DISENCHANTMENT, /* drains items into the negatives, regardless of who zapped it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Fatal Rad Poisoning",				WAN_CONTAMINATION, /* contaminates you by three times the normal amount, regardless of who zapped it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Aspen Leaf",				WAN_TREMBLING, /* increases trembling by two more whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Amelie's Ragequit",				WAN_REMOVE_RESISTANCE, /* procs its effect twice more whenever it's zapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Melt! Everything must melt!",				WAN_CORROSION, /* corrodes your entire inventory if someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Fumble for the rest of all time",				WAN_FUMBLING, /* increases u.fumbleduration by ten times as much whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Ina's Therapy",				WAN_STARVATION, /* +5000 turns of ina trap effect whenever someone zaps it; if you zap it, also +20 alignment and +2 max alignment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Exconf",				WAN_CONFUSION, /* makes you heavily confused, regardless of who zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Gummen",				WAN_SLIMING, /* 120 turns of polymorph control when zapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("wolvle, wolvle",				WAN_LYCANTHROPY, /* doesn't give you werewolf lycanthropy, but instead increases wereform nastytrap effect by 5000 turns if zapped by a monster or 15000 if you zapped it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Blowstorm",				WAN_WIND, /* more damage to monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Muuuuuu-ta",				WAN_MUTATION, /* adds two egotypes whenever a monster is zapped with it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Blink All Around",				WAN_TELEPORT_SELF, /* spawns with +d20 charges, cannot be destroyed by lightning */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Jonadab's Wordplay",				WAN_EXTRA_HEALING, /* everyone who gets healed by it receives +5 max HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Actually Full",				WAN_FULL_HEALING, /* anyone hit by it has its HP set to the maximum */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Nose Away",				WAN_DEBUGGING, /* decontaminates you by 100 and reduces sanity by 500 when zapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Yvonne's Comfy Sitting",				WAN_LEVITATION, /* 2000 turns of yvonne trap effect whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Energy Fluctuation",				WAN_MISFIRE, /* spawns with d50 extra charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("watch the pain",				WAN_SHARE_PAIN, /* no special effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Extremegreen",				WAN_POISON, /* additionally fires a poison beam in the opposite direction of where you aimed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mega-Overkill",				WAN_HYPER_BEAM, /* +10 dice for the beam when zapped by you, +5 when zapped by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Doublewham",				WAN_DISINTEGRATION_BEAM, /* fires two disintegration beams at once, also when zapped by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Tribble3",				WAN_CHROMATIC_BEAM, /* fires three random beams at once, also when zapped by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Megatremble",				WAN_STUN_MONSTER, /* monsters cannot resist, if you're zapped with it you become heavily stunned */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nature Catastrophe",				WAN_TIDAL_WAVE, /* replicates scroll of flood effect whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("From The Street",				WAN_SUMMON_ELM, /* whenever someone zaps it, 5000 turns of elm street nastytrap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Empty Blue Orb",				WAN_DRAIN_MANA, /* drains your mana twice more */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Flapping The Sea",				WAN_FINGER_BENDING, /* increases glib timeout by 100 more, and if you're the one zapping it, also 500 turns of glib combat */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2300L ),
+
+A("Rob-Bear",				WAN_IMMOBILITY, /* whenever someone zaps it, a monster with AD_SEDU is spawned on a random location on the level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Meego-is-too-big",				WAN_EGOISM, /* 5000 turns of egomonster nastytrap effect whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("oh you are such a sinner...",				WAN_SIN, /* increases sin counter by one whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Stop in the track",				WAN_INERTIA, /* paralyzes monsters for one more turn; if you're zapped by it, gives three times as much inertia */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Back To Before Youth",				WAN_TIME, /* drains two levels from the target, including trying to drain you twice if you're being hit by it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Nine Head Abomination",				WAN_INSANITY, /* gives you 10x as much sanity whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Arabella's Fast Equipper",				WAN_BAD_EQUIPMENT, /* 5000 turns of cursed parts nastytrap effect whenever someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Big Chaotic Inside",				WAN_CHAOS_TERRAIN, /* procs its effect twice more whenever it's zapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Cuddleragnar",				WAN_FLEECY_TERRAIN, /* 1 in 64 chance when someone zaps it to trigger ragnarok, but with randomized terrain and M2_FEMALE monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Laughter of Insanity",				WAN_STAT_REDUCTION, /* procs its effect five more times when someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Hmm, there's a weird light...",				WAN_WONDER, /* spawns with 5x as many charges (at least 10) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Error Feeling",				WAN_BUGGING, /* +50 alla when zapped and additionally spawns monsters with MS_TRIP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Linley's Warp",				WAN_ACQUIREMENT, /* spawns with +3 charges */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("ULTRADLAENG",				WAN_CLONE_MONSTER, /* spawns with +100 charges, but zapping yourself does nothing and it only hits a single monster */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Oldentime Rehearsal",				WAN_CHARGING, /* calls "recharge(otmp, 1)" (i.e. blessed charging) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Profusi",				WAN_BLEEDING, /* causes more bleeding when zapped by anyone */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Porks Shank",				WAN_UNDRESSING, /* procs its effect four more times if someone zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("ManaManaManaManaMana!",				WAN_INERTIA_CONTROL, /* +100 turns of energy regeneration when zapped */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("I don't wanna sex",				WAN_STERILIZE, /* 10x longer duration when zapped, and unlike the non-artifact version, the duration will stack if zapped repeatedly */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Titanic Stomp",				WAN_GRAVITY_BEAM, /* deals twice as much damage, also when zapped by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Never Wake Up Again",				WAN_DREAM_EATER, /* deals three times as much damage to monsters, or twice as much if you're the target */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Unhealthy Drowning",				WAN_BUBBLEBEAM, /* deals three times as much damage to monsters, or twice as much if you're the target; squares have 1 in 3 chance (instead of 1 in 10) to become water */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Gutnacht! Gutnacht!",				WAN_GOOD_NIGHT, /* deals three times as much damage to monsters, or twice as much if you're the target */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hot Flame (as opposed to a cold one)",				WAN_INFERNO, /* deals twice as much damage, including to maximum HP, regardless of who zapped it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Sheer Cold",				WAN_ICE_BEAM, /* monsters can't resist the slowness effect, if you're the target you also get frozen for 100 (more) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Brew Of Storms Churn It Up",				WAN_THUNDER, /* deals 2.5 times as much lightning damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Absolute Shutdown",				WAN_SLUDGE, /* monsters can't resist the level drain effect, if you're the target it'll corrode your entire inventory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("wummingen",				WAN_NETHER_BEAM, /* deals double damage, regardless of who zapped it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("BAWU MIXING FUCK!",				WAN_AURORA_BEAM, /* +5 turns of invulnerability if you zap it, +100 turns of blind/conf/hallu if a monster zaps it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Rattlestar",				WAN_DIGGING, /* fires digging beams in all directions when zapped, also if it's a monster doing the zapping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Mario's Saying",				WAN_COLD, /* if someone zaps it and your special technique isn't currently "over-ray", that one gets activated */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Flashen often",				WAN_LIGHTNING, /* spawns with +10 charges */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Wang-doaaaaah",				WAN_FIREBALL, /* only loses a charge 50% of the time, also when used by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Sun Comes Out For You",				WAN_SOLAR_BEAM, /* whenever someone zaps it and the weather isn't sunny, it becomes so */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kloengloengloengloengloeng-doeoeoeoei",				WAN_PSYBEAM, /* spawns a second psybeam with strength 6 when zapped by anyone */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("There Ain't No Doubt For You",				SPE_SOLAR_BEAM, /* if you start to read it while it's cursed, it tries to uncurse itself */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Sunlight Only One More",				SPE_MAP_LEVEL, /* lights up the entire level when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Kay-or-stau-ne",				SPE_HIGHWAY, /* creates random highways nearby when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Radio Bla-Bla",				SPE_CURE_DIM, /* reading it allows you to suppress the dim status effect for 2000 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 

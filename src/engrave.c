@@ -6540,6 +6540,15 @@ static const char *epitaphs[] = {
 	"Here lies the awesome music track of Phoenix Wright: Ace Attorney. While the sequel, Justice for All, had a few pretty good tracks too, the third game, Trials and Tribulations, replaced absolutely every single track with dark and definite tunes. Listening to those makes you believe that the end is inevitable and no matter what you do, things will never turn good again.",
 	"Here lies the darkness and despair that players of the third Phoenix Wright game (Trials and Tribulations) feel while going through the various trials and investigation segments. After enduring hours of psychic pain from hearing those gloomy melodies over and over, the soundtrack finally broke through by switching to the original PRESSING PURSUIT - CORNERED from the first game, and suddenly the player rejoiced, realizing that they'll actually win the trial and beat the game! YEAH!!!",
 	"Shitting chap! FICK YOU!",
+	"Ugh... telling a woman to calm down is dangerous enough when she ISN'T holding a chainsaw...", /* Carlos, trying to talk Akane out of thinking he had murdered Junpei */
+	"Here lies Eric. He got shot by Q's crossbow, and then Mira did... evil things to Eric's dead body. If you don't know what it is exactly that she did, DO NOT GOOGLE FOR IT. You've been warned.",
+	"Here lies Sigma. Diana shot him in the head with a revolver, but only because the alternative would've been that Phi burns to death.",
+	"Here lies Akane. She tried to murder Carlos with a chainsaw because she illogically thought the latter had beheaded her boyfriend Junpei, but Carlos cut Akane down with his axe instead.",
+	"Here lies Diana. She was too slow to walk through the X-door, so Dark Mira appeared from the shadows and stabbed Diana with a knife.",
+	"Here lies Q. He had tried to shoot Mira with his crossbow, but something (probably Zero with his mind hack powers) caused Q to shoot Eric instead, which caused Mira to get really angry so she stabbed Q to death.",
+	"Here lies Junpei. Zero beheaded him and cut his remaining body into many pieces, then distributed those grisly body parts around an escape room because Zero is a sick bastard.",
+	"Here lies Mira. She got strangled by Zero and put into a pod, but Eric didn't want to believe that and thought Q was the killer instead. Which resulted in Eric killing Q with a shotgun about a dozen times or so.",
+	"Here lie some ashes that used to be Phi. She was burned to death in an incinerator because the only way Diana could've rescued her was to shoot Sigma instead, which she didn't want to do.",
 
 };
 

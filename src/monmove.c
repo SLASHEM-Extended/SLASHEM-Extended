@@ -1558,7 +1558,12 @@ register struct monst *mtmp;
 
 		mtmp->mhp -= bleedingdamage;
 		mtmp->bleedout -= bleedingtimeout;
-		if (cansee(mtmp->mx,mtmp->my) && !rn2(10)) pline("%s bleeds.", Monnam(mtmp));
+		if (cansee(mtmp->mx,mtmp->my) && !rn2(10)) {
+			if (mtmp->bleedout > 100) pline("%s is squirting %s everywhere!", Monnam(mtmp), mbodypart(mtmp, BLOOD));
+			else if (mtmp->bleedout > 50) pline("%s is bleeding severely!", Monnam(mtmp));
+			else pline("%s bleeds.", Monnam(mtmp));
+		}
+		if (cansee(mtmp->mx, mtmp->my)) monster_pain(mtmp); /* to improve odds that the player notices their pet bleeding to death! --Amy */
 		if (mtmp->bleedout < 0) mtmp->bleedout = 0; /* fail safe */
 
 		if (mtmp->mhp <= 0) {

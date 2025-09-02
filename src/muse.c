@@ -3676,6 +3676,13 @@ mon_tele:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		if (oseen) makeknown(WAN_DIGGING);
+
+		if (otmp && otmp->oartifact == ART_RATTLESTAR) {
+			stardigging(mtmp->mx, mtmp->my);
+
+			if (mtmp->mhp < 1) return 2; /* just in case it dies to rock remover or something --Amy */
+		}
+
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		if (IS_FURNITURE(levl[mtmp->mx][mtmp->my].typ) ||
 		    IS_DRAWBRIDGE(levl[mtmp->mx][mtmp->my].typ) ||
@@ -3747,7 +3754,7 @@ mon_tele:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && !(otmp->oartifact == ART_F_O_D_D_E_R && rn2(2)) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);
@@ -3926,11 +3933,13 @@ mon_tele:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 	      makeknown(WAN_SUMMON_ELM);
 
+		if (otmp && otmp->oartifact == ART_FROM_THE_STREET) ElmStreetEffect += 5000;
+
 		{
-		int aligntype;
-		aligntype = rn2((int)A_LAWFUL+2) - 1;
-		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
-		summon_minion(aligntype, TRUE);
+			int aligntype;
+			aligntype = rn2((int)A_LAWFUL+2) - 1;
+			pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+			summon_minion(aligntype, TRUE);
 		}
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -4460,6 +4469,9 @@ newboss:
 		mzapmsg(mtmp, otmp, TRUE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		i = d(5,4) + 10 * !!bcsign(otmp);
+
+		if (otmp && otmp->oartifact == ART_JONADAB_S_WORDPLAY) mtmp->mhpmax += 5;
+
 		mtmp->mhp += i;
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
 		if (!otmp->cursed) mtmp->mcansee = 1;
@@ -4480,6 +4492,9 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		i = d(5,8) + 20 * !!bcsign(otmp);
 		mtmp->mhp += i;
+
+		if (otmp && otmp->oartifact == ART_ACTUALLY_FULL) mtmp->mhp = mtmp->mhpmax;
+
 		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = ++mtmp->mhpmax;
 		if (!otmp->cursed) mtmp->mcansee = 1;
 		if (vismon) pline("%s begins to look better.", Monnam(mtmp));
@@ -6046,6 +6061,7 @@ register struct obj *otmp;
 			tmp += rnd( (monster_difficulty() * 2) + 1);
 			if(Half_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
 			if(StrongHalf_spell_damage && rn2(2) ) tmp = (tmp+1) / 2;
+			if (otmp && otmp->oartifact == ART_TITANIC_STOMP) tmp *= 2;
 			losehp(tmp, "wand of gravity beam", KILLED_BY_AN);
 			stop_occupation();
 			nomul(0, 0, FALSE);
@@ -6053,6 +6069,7 @@ register struct obj *otmp;
 			pushplayer(FALSE);
 		} else {
 			tmp = d(6,12);
+			if (otmp && otmp->oartifact == ART_TITANIC_STOMP) tmp *= 2;
 			hit("wand", mtmp, exclam(tmp));
 			(void) resist(mtmp, otmp->oclass, tmp, TELL);
 			if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
@@ -6104,8 +6121,14 @@ register struct obj *otmp;
 			if (!Free_action || !rn2(StrongFree_action ? 20 : 5)) {
 			    pline("You are frozen in place!");
 				if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vy ne mozhete dvigat'sya. Nadeyus', chto-to ubivayet vas, prezhde chem vash paralich zakonchitsya." : "Klltsch-tsch-tsch-tsch-tsch!");
-			    if (isstunfish) nomul(-rnz(5), "frozen by a wand", TRUE);
-			    else nomul(-rnd(5), "frozen by a wand", TRUE);
+
+			    if (otmp && otmp->oartifact == ART_YOU_KNOW_WHICH_AN_EXPERIEN) {
+				    if (isstunfish) nomul(-rnz(6), "frozen by a wand", TRUE);
+				    else nomul(-rnd(6), "frozen by a wand", TRUE);
+			    } else {
+				    if (isstunfish) nomul(-rnz(5), "frozen by a wand", TRUE);
+				    else nomul(-rnd(5), "frozen by a wand", TRUE);
+			    }
 			    nomovemsg = You_can_move_again;
 			    exercise(A_DEX, FALSE);
 			} else You("stiffen momentarily.");
@@ -6117,6 +6140,7 @@ register struct obj *otmp;
 		    }
 		    mtmp->mcanmove = 0;
 		    mtmp->mfrozen = rnz(20);
+		    if (otmp && otmp->oartifact == ART_YOU_KNOW_WHICH_AN_EXPERIEN) mtmp->mfrozen++;
 		    mtmp->mstrategy &= ~STRAT_WAITFORU;
 
 		}
@@ -6285,6 +6309,7 @@ register struct obj *otmp;
 
 	case WAN_DRAINING:	/* KMH */
 		tmp = d(2,6);
+		if (otmp && otmp->oartifact == ART_AURA_DAMAGE) tmp *= 3;
 		if (mtmp == &youmonst) {
 			if (Drain_resistance && !rn2(StrongDrain_resistance ? 16 : 4) ) {
 				shieldeff(u.ux, u.uy);
@@ -6315,80 +6340,91 @@ register struct obj *otmp;
 			makeknown(WAN_DRAINING);
 		break;
 	case WAN_TIME:
+	{
+		int timeamounts = 1;
+		if (otmp && otmp->oartifact == ART_BACK_TO_BEFORE_YOUTH) timeamounts++;
+
 		tmp = d(2,6);
+
 		if (mtmp == &youmonst && !(powerfulimplants() && uimplant && uimplant->oartifact == ART_TIMEAGE_OF_REALMS) ) {
 
-		int dmg;
-		dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
-		switch (rnd(10)) {
+			int dmg;
+			dmg = (rnd(10) + rnd( (monster_difficulty() * 2) + 1));
 
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-				You_feel("life has clocked back.");
-				if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto poteryannyy uroven' nazad." : "Kloeck!");
-			      if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
-				break;
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-				switch (rnd(A_MAX)) {
-					case A_STR:
-						pline("You're not as strong as you used to be...");
-						ABASE(A_STR) -= 5;
-						if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRABSMIN(A_STR);}
-						break;
-					case A_DEX:
-						pline("You're not as agile as you used to be...");
-						ABASE(A_DEX) -= 5;
-						if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
-						break;
-					case A_CON:
-						pline("You're not as hardy as you used to be...");
-						ABASE(A_CON) -= 5;
-						if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRABSMIN(A_CON);}
-						break;
-					case A_WIS:
-						pline("You're not as wise as you used to be...");
-						ABASE(A_WIS) -= 5;
-						if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
-						break;
-					case A_INT:
-						pline("You're not as bright as you used to be...");
-						ABASE(A_INT) -= 5;
-						if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRABSMIN(A_INT);}
-						break;
-					case A_CHA:
-						pline("You're not as beautiful as you used to be...");
-						ABASE(A_CHA) -= 5;
-						if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
-						break;
-				}
-				break;
-			case 10:
-				pline("You're not as powerful as you used to be...");
-				ABASE(A_STR)--;
-				ABASE(A_DEX)--;
-				ABASE(A_CON)--;
-				ABASE(A_WIS)--;
-				ABASE(A_INT)--;
-				ABASE(A_CHA)--;
-				if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRABSMIN(A_STR);}
-				if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
-				if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRABSMIN(A_CON);}
-				if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
-				if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRABSMIN(A_INT);}
-				if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
-				break;
-		}
-		if (dmg) losehp(dmg, "the forces of time", KILLED_BY);
+timeagain:
+			switch (rnd(10)) {
+
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+					You_feel("life has clocked back.");
+					if (PlayerHearsSoundEffects) pline(issoviet ? "Zhizn' razgonyal nazad, potomu chto vy ne smotreli, i teper' vy dolzhny poluchit', chto 	poteryannyy uroven' nazad." : "Kloeck!");
+				      if (u.urmaxlvlUP >= 2) losexp("time", FALSE, FALSE); /* resistance is futile :D */
+					break;
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+					switch (rnd(A_MAX)) {
+						case A_STR:
+							pline("You're not as strong as you used to be...");
+							ABASE(A_STR) -= 5;
+							if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 3; ABASE(A_STR) = ATTRABSMIN(A_STR);}
+							break;
+						case A_DEX:
+							pline("You're not as agile as you used to be...");
+							ABASE(A_DEX) -= 5;
+							if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 3; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+							break;
+						case A_CON:
+							pline("You're not as hardy as you used to be...");
+							ABASE(A_CON) -= 5;
+							if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 3; ABASE(A_CON) = ATTRABSMIN(A_CON);}
+							break;
+						case A_WIS:
+							pline("You're not as wise as you used to be...");
+							ABASE(A_WIS) -= 5;
+							if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 3; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+							break;
+						case A_INT:
+							pline("You're not as bright as you used to be...");
+							ABASE(A_INT) -= 5;
+							if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 3; ABASE(A_INT) = ATTRABSMIN(A_INT);}
+							break;
+						case A_CHA:
+							pline("You're not as beautiful as you used to be...");
+							ABASE(A_CHA) -= 5;
+							if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 3; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
+							break;
+					}
+					break;
+				case 10:
+					pline("You're not as powerful as you used to be...");
+					ABASE(A_STR)--;
+					ABASE(A_DEX)--;
+					ABASE(A_CON)--;
+					ABASE(A_WIS)--;
+					ABASE(A_INT)--;
+					ABASE(A_CHA)--;
+					if(ABASE(A_STR) < ATTRABSMIN(A_STR)) {dmg *= 2; ABASE(A_STR) = ATTRABSMIN(A_STR);}
+					if(ABASE(A_DEX) < ATTRABSMIN(A_DEX)) {dmg *= 2; ABASE(A_DEX) = ATTRABSMIN(A_DEX);}
+					if(ABASE(A_CON) < ATTRABSMIN(A_CON)) {dmg *= 2; ABASE(A_CON) = ATTRABSMIN(A_CON);}
+					if(ABASE(A_WIS) < ATTRABSMIN(A_WIS)) {dmg *= 2; ABASE(A_WIS) = ATTRABSMIN(A_WIS);}
+					if(ABASE(A_INT) < ATTRABSMIN(A_INT)) {dmg *= 2; ABASE(A_INT) = ATTRABSMIN(A_INT);}
+					if(ABASE(A_CHA) < ATTRABSMIN(A_CHA)) {dmg *= 2; ABASE(A_CHA) = ATTRABSMIN(A_CHA);}
+					break;
+			} /* switch for the various time effects */
+
+			if (timeamounts > 1) {
+				timeamounts--;
+				goto timeagain;
+			}
+			if (dmg) losehp(dmg, "the forces of time", KILLED_BY);
 			if (zap_oseen) makeknown(WAN_TIME);
 
-			break;
-		} else {
+		} else { /* target is a monster */
 			mtmp->mhpmax -= tmp;
 			if (mtmp->mhpmax <= 0 || mtmp->m_lev <= 0)
 				monkilled(mtmp, "", AD_DRLI);
@@ -6401,6 +6437,7 @@ register struct obj *otmp;
 		}
 		if (cansee(mtmp->mx, mtmp->my) && zap_oseen)
 			makeknown(WAN_TIME);
+	}
 		break;
 	case WAN_REDUCE_MAX_HITPOINTS:	/* evil patch idea by jonadab */
 
@@ -6410,6 +6447,10 @@ register struct obj *otmp;
 			You_feel("drained...");
 				if (Upolyd) u.mhmax -= rnd(5);
 				else u.uhpmax -= rnd(5);
+				if (otmp && otmp->oartifact == ART_RATTLEOUT) {
+					if (Upolyd) u.mhmax -= rnd(5);
+					else u.uhpmax -= rnd(5);
+				}
 				if (u.mhmax < 1) u.mhmax = 1;
 				if (u.uhpmax < 1) u.uhpmax = 1;
 				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
@@ -6421,6 +6462,9 @@ register struct obj *otmp;
 			break;
 		} else {
 			mtmp->mhpmax -= rnd(8);
+			if (otmp && otmp->oartifact == ART_RATTLEOUT) {
+				mtmp->mhpmax -= rnd(8);
+			}
 			if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 			if (mtmp->mhpmax <= 0 || mtmp->m_lev <= 0)
 				monkilled(mtmp, "", AD_DRLI);
@@ -6464,6 +6508,7 @@ register struct obj *otmp;
 				pline("You're drowned in a stream of water bubbles and can't breathe!");
 			      tmp = d(4,12);
 			      tmp += rnd(monster_difficulty() + 1);
+				if (otmp && otmp->oartifact == ART_UNHEALTHY_DROWNING) tmp *= 2;
 			      losehp(tmp, "wand of bubblebeam", KILLED_BY_AN);
 			}
 			if (zap_oseen)
@@ -6476,6 +6521,7 @@ register struct obj *otmp;
 		if (mtmp == &youmonst) {
 		    tmp = d(2,12);
 		    tmp += rnd(monster_difficulty() + 1);
+		    if (otmp && otmp->oartifact == ART_GUTNACHT__GUTNACHT_) tmp *= 2;
 		    if (u.ualign.type == A_LAWFUL) tmp *= 2;
 		    if (u.ualign.type == A_CHAOTIC) tmp /= 2;
 		    if (nonliving(youmonst.data)) tmp /= 2;
@@ -6494,6 +6540,7 @@ register struct obj *otmp;
 		if ((mtmp == &youmonst) && !u.antidreameater) {
 			tmp = d(10, 10);
 			tmp += rnd( (monster_difficulty() * 4) + 1);
+			if (otmp && otmp->oartifact == ART_NEVER_WAKE_UP_AGAIN) tmp *= 2; 
 			pline("Your dream is eaten!");
 			losehp(tmp, "wand of dream eater", KILLED_BY_AN);
 			if (zap_oseen)
@@ -6545,6 +6592,7 @@ register struct obj *otmp;
 			u.uprops[DEAC_FAST].intrinsic += (( rnd(10) + rnd(monster_difficulty() + 1) ) * 10);
 			pline(u.inertia ? "You feel even slower." : "You slow down to a crawl.");
 			u.inertia += (rnd(10) + rnd(monster_difficulty() + 1));
+			if (otmp && otmp->oartifact == ART_STOP_IN_THE_TRACK) u.inertia += (rnd(20) + rnd((monster_difficulty() * 2) + 1));
 			if (zap_oseen)
 				makeknown(WAN_INERTIA);
 			break;
@@ -6611,8 +6659,9 @@ struct obj *obj;			/* 2nd arg to fhitm/fhito */
 		    break;
 		}
 
-		if (obj->otyp == WAN_BUBBLEBEAM && !rn2(10) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) ) {
+		if (obj->otyp == WAN_BUBBLEBEAM && !rn2((obj->oartifact == ART_UNHEALTHY_DROWNING) ? 3 : 10) && (levl[x][y].typ == ROOM || levl[x][y].typ == CORR) ) {
 			levl[x][y].typ = POOL;
+			newsym(x,y);
 			/* no minliquid or drowning the player because that would be too evil --Amy */
 		}
 
@@ -6710,7 +6759,18 @@ struct monst *mtmp;
 	case MUSE_WAN_LIGHTNING:
 	case MUSE_WAN_MAGIC_MISSILE:
 		mzapmsg(mtmp, otmp, FALSE);
-		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && !(otmp && otmp->oartifact == ART_WANG_DOAAAAAH && rn2(2)) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		if (otmp && otmp->oartifact == ART_SUN_COMES_OUT_FOR_YOU && u.currentweather != WEATHER_SUNNY) {
+			pline_The("sun comes out.");
+			u.currentweather = WEATHER_SUNNY;
+			tell_main_weather();
+		}
+
+		if (otmp && otmp->oartifact == ART_MARIO_S_SAYING) {
+			if (u.temptech != T_OVER_RAY) use_temporary_tech(T_OVER_RAY);
+		}
+
 		if (oseen) makeknown(otmp->otyp);
 		m_using = TRUE;
 /*WAC Handled later
@@ -6767,6 +6827,10 @@ struct monst *mtmp;
 		m_using = FALSE;
 /*                }*/
 
+		if (mtmp && (mtmp->mhp > 0) && otmp && otmp->oartifact == ART_KLOENGLOENGLOENGLOENGLOENG) {
+		    buzz((int) (-29), 6, mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		}
+
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		}
@@ -6810,7 +6874,27 @@ struct monst *mtmp;
 			u.uhpmax--;
 			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
 		}
+
+		if (otmp && otmp->oartifact == ART_HOT_FLAME__AS_OPPOSED_TO_A) {
+			if (Upolyd && u.mhmax > 1) {
+				u.mhmax--;
+				if (u.mh > u.mhmax) u.mh = u.mhmax;
+			}
+			else if (!Upolyd && u.uhpmax > 1) {
+				u.uhpmax--;
+				if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			}
+		}
+
 		make_blinded(Blinded+rnz(100),FALSE);
+
+		if (otmp && otmp->oartifact == ART_HOT_FLAME__AS_OPPOSED_TO_A) {
+			buzz((int)(-21), 24 + (rnd(monster_difficulty()) / 2),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		} else {
+			buzz((int)(-21), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		}
 
 		buzz((int)(-21), 12 + (rnd(monster_difficulty()) / 4),
 			mtmp->mx, mtmp->my,
@@ -6834,6 +6918,8 @@ struct monst *mtmp;
 		}
 
 		u_slow_down();
+
+		if (otmp && otmp->oartifact == ART_SHEER_COLD) make_frozen(HFrozen + 100, TRUE);
 
 		buzz((int)(-22), 12 + (rnd(monster_difficulty()) / 4),
 			mtmp->mx, mtmp->my,
@@ -6864,9 +6950,14 @@ struct monst *mtmp;
 		}
 		if (!rn2(2)) make_numbed(HNumbed + rnz(150), TRUE);
 
-		buzz((int)(-25), 12 + (rnd(monster_difficulty()) / 4),
-			mtmp->mx, mtmp->my,
-			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		if (otmp && otmp->oartifact == ART_BREW_OF_STORMS_CHURN_IT_UP) {
+			buzz((int)(-25), 30 + (rnd(monster_difficulty()) * 5 / 8),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		} else {
+			buzz((int)(-25), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		}
+
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -6885,7 +6976,7 @@ struct monst *mtmp;
 		    register struct obj *objX, *objX2;
 		    for (objX = invent; objX; objX = objX2) {
 		      objX2 = objX->nobj;
-			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+			if (!rn2(5) || (otmp && otmp->oartifact == ART_ABSOLUTE_SHUTDOWN) ) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 		    }
 		}
 
@@ -6935,9 +7026,14 @@ struct monst *mtmp;
 		else if (!Upolyd && u.uhp > 1) u.uhp /= 2;
 		losehp(1, "nether beam", KILLED_BY_AN);
 
-		buzz((int)(-29), 12 + (rnd(monster_difficulty()) / 4),
-			mtmp->mx, mtmp->my,
-			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		if (otmp && otmp->oartifact == ART_WUMMINGEN) {
+			buzz((int)(-29), 24 + (rnd(monster_difficulty()) / 2),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		} else {
+			buzz((int)(-29), 12 + (rnd(monster_difficulty()) / 4),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		}
+
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -6953,6 +7049,13 @@ struct monst *mtmp;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
 	      (void) cancel_monst(&youmonst, otmp, FALSE, TRUE, FALSE);
+
+		if (otmp && otmp->oartifact == ART_BAWU_MIXING_FUCK_) {
+			make_confused(HConfusion + 100, FALSE);
+			make_blinded(Blinded + 100, FALSE);
+			make_hallucinated(HHallucination + 100, FALSE, 0L);
+			pline("BULLET GIVEN BY BET-BOY GIVEN BY BET-BOY CAN USE");
+		}
 
 		buzz((int)(-28), 16 + (rnd(monster_difficulty()) / 3),
 			mtmp->mx, mtmp->my,
@@ -6990,9 +7093,14 @@ struct monst *mtmp;
 		m_using = TRUE;
 		if (!rn2(3)) u.uprops[DEAC_REFLECTING].intrinsic += rnd(5);
 
-		buzz((int)(-20), 6 + (rnd(monster_difficulty()) / 3),
-			mtmp->mx, mtmp->my,
-			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		if (otmp && otmp->oartifact == ART_MEGA_OVERKILL) {
+			buzz((int)(-20), 11 + (rnd(monster_difficulty()) / 3),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		} else {
+			buzz((int)(-20), 6 + (rnd(monster_difficulty()) / 3),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		}
+
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -7011,6 +7119,20 @@ struct monst *mtmp;
 		buzz((int)(damagetype), damagetype == -26 ? 7 + (rnd(monster_difficulty()) / 6) : damagetype == -20 ? 2 + (rnd(monster_difficulty()) / 10) : damagetype == -28 ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+
+		if (otmp && otmp->oartifact == ART_TRIBBLE_) {
+			if (mtmp && mtmp->mhp > 0) {
+				damagetype = -(20 + rn2(8));
+				buzz((int)(damagetype), damagetype == -26 ? 7 + (rnd(monster_difficulty()) / 6) : damagetype == -20 ? 2 + (rnd(monster_difficulty()) / 10) : damagetype == -28 ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+			}
+			if (mtmp && mtmp->mhp > 0) {
+				damagetype = -(20 + rn2(8));
+				buzz((int)(damagetype), damagetype == -26 ? 7 + (rnd(monster_difficulty()) / 6) : damagetype == -20 ? 2 + (rnd(monster_difficulty()) / 10) : damagetype == -28 ? 8 + (rnd(monster_difficulty()) / 4) : 6 + (rnd(monster_difficulty()) / 8),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+			}
+		}
+
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -7028,6 +7150,12 @@ struct monst *mtmp;
 		buzz((int)(-24), 7 + (rnd(monster_difficulty()) / 6),
 			mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+
+		if (mtmp && (mtmp->mhp > 0) && otmp && otmp->oartifact == ART_DOUBLEWHAM) {
+			buzz((int)(-24), 7 + (rnd(monster_difficulty()) / 6),
+			mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		}
+
 		m_using = FALSE;
 		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -7110,8 +7238,21 @@ struct monst *mtmp;
 		m_using = TRUE;
 		mbhit(mtmp, EnglandMode ? rn1(10,10) : rn1(8,6),mbhitm,bhito,otmp);
 		m_using = FALSE;
-		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+
+		if (otmp && otmp->oartifact == ART_KNOW_ALL__SEE_ALL) {
+			pline("You are surrounded by a translucent glow!");
+			{
+				register struct obj *objX, *objX2;
+				for (objX = invent; objX; objX = objX2) {
+					objX2 = objX->nobj;
+					if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+				}
+			}
+		}
+
+		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp); /* ATTENTION: otmp can be freed at this point */
 		stop_occupation(); /* thanks FIQ - no idea why this wasn't interrupting you */
+
 		return 2;
 	case MUSE_WAN_BANISHMENT:
 		zap_oseen = oseen;
@@ -9752,9 +9893,10 @@ newboss:
 	      You_feel("endangered!!");
 		{
 			int rtrap;
-		    int i, j, bd;
+			int i, j, bd;
 			bd = 1;
 			if (!rn2(5)) bd += rnz(1);
+			if (otmp && otmp->oartifact == ART_CHAEAETCHAEAETCHAEAETCHAEA) bd += rnd(4);
 			boolean canbeinawall = FALSE;
 			if (!rn2(Passes_walls ? 5 : 25)) canbeinawall = TRUE;
 
@@ -9770,6 +9912,9 @@ newboss:
 		}
 
 		makerandomtrap(TRUE);
+		if (otmp && otmp->oartifact == ART_CHAEAETCHAEAETCHAEAETCHAEA) {
+			makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE); makerandomtrap(TRUE);
+		}
 		if (!rn2(2)) makerandomtrap(TRUE);
 		if (!rn2(4)) makerandomtrap(TRUE);
 		if (!rn2(8)) makerandomtrap(TRUE);
@@ -9788,7 +9933,8 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		badeffect();
+		if (otmp && otmp->oartifact == ART_REAL_BAD__MAN_) reallybadeffect();
+		else badeffect();
 
 		if (oseen) makeknown(WAN_BAD_EFFECT);
 
@@ -9800,7 +9946,11 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		playerbleed(rnd(2 + (level_difficulty() * 10)));
+		if (otmp && otmp->oartifact == ART_PROFUSI) {
+			playerbleed(rnd(6 + (level_difficulty() * 30)));
+		} else {
+			playerbleed(rnd(2 + (level_difficulty() * 10)));
+		}
 		if (oseen) makeknown(WAN_BLEEDING);
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -9812,6 +9962,11 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		shank_player();
+
+		if (otmp && otmp->oartifact == ART_PORKS_SHANK) {
+			shank_player(); shank_player(); shank_player(); shank_player();
+		}
+
 		if (oseen) makeknown(WAN_UNDRESSING);
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -9825,6 +9980,7 @@ newboss:
 		pline("A black glow surrounds you...");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
 		rndcurse();
+		if (otmp && otmp->oartifact == ART_BLACK_RED_STRING) rndcurse();
 
 		if (oseen) makeknown(WAN_CURSE_ITEMS);
 
@@ -9839,6 +9995,10 @@ newboss:
 		incr_itimeout(&HLevitation, rnd(100) );
 		flags.botl = TRUE;
 		pline("You float up!");
+
+		if (otmp && otmp->oartifact == ART_YVONNE_S_COMFY_SITTING) {
+			FemaleTrapYvonne += 2000;
+		}
 
 		if (oseen) makeknown(WAN_LEVITATION);
 
@@ -9864,6 +10024,9 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		bad_equipment(0);
+		if (otmp && otmp->oartifact == ART_ARABELLA_S_FAST_EQUIPPER) {
+			CursedParts += 5000;
+		}
 
 		if (oseen) makeknown(WAN_BAD_EQUIPMENT);
 
@@ -9875,7 +10038,11 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		increasesanity(rnd((level_difficulty() * 5) + 20));
+		if (otmp && otmp->oartifact == ART_NINE_HEAD_ABOMINATION) {
+			increasesanity(rnd((level_difficulty() * 50) + 200));
+		} else {
+			increasesanity(rnd((level_difficulty() * 5) + 20));
+		}
 
 		if (oseen) makeknown(WAN_INSANITY);
 
@@ -9886,6 +10053,10 @@ newboss:
 
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		if (otmp && otmp->oartifact == ART_ROB_BEAR) {
+			(void) makemon(specialtensmon(213), 0, 0, MM_ADJACENTOK); /* AD_SEDU */
+		}
 
 		{
 
@@ -9920,6 +10091,10 @@ newboss:
 
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		if (otmp && otmp->oartifact == ART_MEEGO_IS_TOO_BIG) {
+			AlwaysEgotypeMonsters += 5000;
+		}
 
 		{
 
@@ -9971,6 +10146,7 @@ newboss:
 		You_feel("very unlucky.");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Perekhod perekhod monstra s palochkoy nevezeniya! Zapiski igroka neskol'ko raz, chtoby sdelat' etot plaksivyy malen'kiy ublyudok konchatsya udachi polnost'yu i umeret'!" : "Dieuuuuuuu!");
 		change_luck(-1);
+		if (otmp && otmp->oartifact == ART_U_U_) ElmStreetEffect += 10000;
 
 		if (oseen) makeknown(WAN_BAD_LUCK);
 
@@ -9983,6 +10159,10 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		attrcurse();
+		if (otmp && otmp->oartifact == ART_AMELIE_S_RAGEQUIT) {
+			attrcurse();
+			attrcurse();
+		}
 
 		if (oseen) makeknown(WAN_REMOVE_RESISTANCE);
 
@@ -9995,6 +10175,10 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		wandofchaosterrain();
+		if (otmp && otmp->oartifact == ART_BIG_CHAOTIC_INSIDE) {
+			wandofchaosterrain();
+			wandofchaosterrain();
+		}
 
 		if (oseen) makeknown(WAN_CHAOS_TERRAIN);
 
@@ -10007,6 +10191,11 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		wandoffleecyterrain();
+
+		if (otmp && otmp->oartifact == ART_CUDDLERAGNAR && !rn2(64)) {
+			cuddleragnarok();
+		}
+
 		pline("Some changes in terrain are happening.");
 
 		if (oseen) makeknown(WAN_FLEECY_TERRAIN);
@@ -10021,6 +10210,10 @@ newboss:
 
 		statdebuff();
 
+		if (otmp && otmp->oartifact == ART_LAUGHTER_OF_INSANITY) {
+			statdebuff(); statdebuff(); statdebuff(); statdebuff(); statdebuff();
+		}
+
 		if (oseen) makeknown(WAN_STAT_REDUCTION);
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -10034,7 +10227,12 @@ newboss:
 		{
 			struct obj *otmpE;
 		      for (otmpE = invent; otmpE; otmpE = otmpE->nobj) {
-				if (otmpE && !rn2(10)) (void) drain_item_severely(otmpE);
+				if (otmpE && !rn2(10)) {
+					(void) drain_item_severely(otmpE);
+				}
+				if (otmpE && otmp && otmp->oartifact == ART_NIIIIIIIIIIEAUM___) {
+					(void) drain_item_severely(otmpE);
+				}
 			}
 			Your("equipment seems less effective.");
 			u.cnd_disenchantamount++;
@@ -10051,7 +10249,11 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		contaminate(rnd(10 + level_difficulty()), TRUE);
+		if (otmp && otmp->oartifact == ART_FATAL_RAD_POISONING) {
+			contaminate(rnd(100 + (level_difficulty() * 10) ), TRUE);
+		} else {
+			contaminate(rnd(10 + level_difficulty()), TRUE);
+		}
 
 		if (oseen) makeknown(WAN_CONTAMINATION);
 
@@ -10065,6 +10267,7 @@ newboss:
 
 		pline("Your %s are trembling!", makeplural(body_part(HAND)));
 		u.tremblingamount++;
+		if (otmp && otmp->oartifact == ART_ASPEN_LEAF) u.tremblingamount += 2;
 
 		if (oseen) makeknown(WAN_TREMBLING);
 
@@ -10079,7 +10282,7 @@ newboss:
 		    register struct obj *objX, *objX2;
 		    for (objX = invent; objX; objX = objX2) {
 		      objX2 = objX->nobj;
-			if (!rn2(5)) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
+			if (!rn2(5) || (otmp && otmp->oartifact == ART_MELT__EVERYTHING_MUST_MELT) ) rust_dmg(objX, xname(objX), 3, TRUE, &youmonst);
 		    }
 
 		if (oseen) makeknown(WAN_CORROSION);
@@ -10095,7 +10298,12 @@ newboss:
 		pline("You start trembling...");
 		HFumbling = FROMOUTSIDE | rnd(5);
 		incr_itimeout(&HFumbling, rnd(20));
-		u.fumbleduration += rnz(1000);
+
+		if (otmp && otmp->oartifact == ART_FUMBLE_FOR_THE_REST_OF_ALL) {
+			u.fumbleduration += rnz(10000);
+		} else {
+			u.fumbleduration += rnz(1000);
+		}
 
 		if (oseen) makeknown(WAN_FUMBLING);
 
@@ -10106,6 +10314,11 @@ newboss:
 
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		if (otmp && otmp->oartifact == ART_OH_YOU_ARE_SUCH_A_SINNER__) {
+			increasesincounter(1);
+			u.alignlim--;
+		}
 
 		{
 		int dmg = 0;
@@ -10415,6 +10628,9 @@ newboss:
 
 		pline("Your %s bend themselves!", makeplural(body_part(FINGER)) );
 		incr_itimeout(&Glib, rnd(15) + rnd(monster_difficulty() + 1) );
+		if (otmp && otmp->oartifact == ART_FLAPPING_THE_SEA) {
+			incr_itimeout(&Glib, 100);
+		}
 		flags.botl = TRUE;
 
 		if (oseen) makeknown(WAN_FINGER_BENDING);
@@ -10459,6 +10675,10 @@ newboss:
 		pline("You lose  Mana");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Vasha magicheskaya energiya udalyayetsya v nastoyashcheye vremya. Skoro on budet raven nulyu, a zatem vy dolzhny igrat' bez zaklinaniy, potomu chto vy sosat', GA GA GA!" : "Due-l-ue-l-ue-l!");
 		drain_en(rnz(monster_difficulty() + 1) );
+		if (otmp && otmp->oartifact == ART_EMPTY_BLUE_ORB) {
+			drain_en(rnz(monster_difficulty() + 1) );
+			drain_en(rnz(monster_difficulty() + 1) );
+		}
 
 		if (oseen) makeknown(WAN_DRAIN_MANA);
 
@@ -10469,6 +10689,11 @@ newboss:
 
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+
+		if (otmp && otmp->oartifact == ART_NATURE_CATASTROPHE) {
+			int stilldry = -1;
+			do_floodd(u.ux, u.uy, (void *)&stilldry);
+		}
 
 		pline("A sudden geyser slams into you from nowhere!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Teper' vse promokli. Vy zhe pomnite, chtoby polozhit' vodu chuvstvitel'nyy material v konteyner, ne tak li?" : "Schwatschhhhhh!");
@@ -10498,6 +10723,11 @@ newboss:
 		if (u.uhunger > 0) morehungry(rnd(1000));
 		else morehungry(rnd(200)); /* we don't want to be TOO unfair... --Amy */
 
+		if (otmp && otmp->oartifact == ART_INA_S_THERAPY) {
+			FemaleTrapIna += 5000;
+			You("feel that you're gonna need a therapy for anorexia...");
+		}
+
 		if (oseen) makeknown(WAN_STARVATION);
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -10517,6 +10747,9 @@ newboss:
 			pline("Huh, What?  Where am I?");
 		}
 		make_confused(HConfusion + rn1(35, 115), FALSE);
+		if (otmp && otmp->oartifact == ART_EXCONF) {
+			set_itimeout(&HeavyConfusion, HConfusion);
+		}
 
 		if (oseen) makeknown(WAN_CONFUSION);
 
@@ -10529,6 +10762,9 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		make_stunned(HStun + rn1(35, 115), TRUE);
+		if (otmp && otmp->oartifact == ART_MEGATREMBLE) {
+			set_itimeout(&HeavyStunned, HStun);
+		}
 
 		if (oseen) makeknown(WAN_STUN_MONSTER);
 
@@ -10558,10 +10794,15 @@ newboss:
 		mzapmsg(mtmp, otmp, FALSE);
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
-		if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
-			u.ulycn = PM_WEREWOLF;
+		if (otmp && otmp->oartifact == ART_WOLVLE__WOLVLE) {
+			WereformBug += 5000;
 			You_feel("feverish.");
-			u.cnd_lycanthropecount++;
+		} else {
+			if (!Race_if(PM_HUMAN_WEREWOLF) && !Race_if(PM_AK_THIEF_IS_DEAD_) && !Role_if(PM_LUNATIC)) {
+				u.ulycn = PM_WEREWOLF;
+				You_feel("feverish.");
+				u.cnd_lycanthropecount++;
+			}
 		}
 
 		if (oseen) makeknown(WAN_LYCANTHROPY);
@@ -11885,6 +12126,7 @@ skipmsg:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 
 		add_monster_egotype(mtmp);
+		if (otmp && otmp->oartifact == ART_MUUUUUU_TA) add_monster_egotype(mtmp);
 
 		if (oseen) makeknown(WAN_MUTATION);
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -12156,11 +12398,13 @@ newboss:
 		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 	      makeknown(WAN_SUMMON_ELM);
 
+		if (otmp && otmp->oartifact == ART_FROM_THE_STREET) ElmStreetEffect += 5000;
+
 		{
-		int aligntype;
-		aligntype = rn2((int)A_LAWFUL+2) - 1;
-		pline("A servant of %s appears!",aligns[1 - aligntype].noun);
-		summon_minion(aligntype, TRUE);
+			int aligntype;
+			aligntype = rn2((int)A_LAWFUL+2) - 1;
+			pline("A servant of %s appears!",aligns[1 - aligntype].noun);
+			summon_minion(aligntype, TRUE);
 		}
 
 		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
@@ -12462,7 +12706,7 @@ newboss:
 
 		if (!enexto(&cc, mtmp->mx, mtmp->my, pm)) return 0;
 		mzapmsg(mtmp, otmp, FALSE);
-		if ((rn2(2) || !ishaxor) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
+		if ((rn2(2) || !ishaxor) && !(otmp->oartifact == ART_F_O_D_D_E_R && rn2(2)) && (!rn2(2) || !otmp->oartifact)) otmp->spe--;
 		mon = makemon((struct permonst *)0, cc.x, cc.y, NO_MM_FLAGS);
 		if (mon && canspotmon(mon) && oseen)
 		    makeknown(WAN_CREATE_MONSTER);

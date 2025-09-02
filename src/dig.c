@@ -1678,13 +1678,19 @@ register struct monst *mtmp;
 }
 
 void
-stardigging()
+stardigging(stx, sty)
+int stx, sty;
 {
 	struct rm *room;
 	struct monst *mtmp;
         register struct obj *otmp, *next_obj;
 	int zx, zy, digdepth;
 	boolean shopdoor, shopwall, maze_dig;
+
+	if (!isok(stx,sty)) {
+		impossible("star digging called with invalid coordinates %d,%d", stx, sty);
+		return;
+	}
 
 	int diggingiteration = 0;
 
@@ -1730,8 +1736,8 @@ nextiteration:
 	/* normal case: digging across the level */
 	shopdoor = shopwall = FALSE;
 	maze_dig = level.flags.is_maze_lev && !Is_earthlevel(&u.uz);
-	zx = u.ux + u.dx;
-	zy = u.uy + u.dy;
+	zx = stx + u.dx;
+	zy = sty + u.dy;
 	digdepth = rn1(18, 8);
 	if (Race_if(PM_IRAHA)) digdepth *= 2;
 	tmp_at(DISP_BEAM, cmap_to_glyph(S_digbeam));

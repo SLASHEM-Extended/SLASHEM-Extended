@@ -13002,7 +13002,7 @@ extrachargechoice:
 			break;
 
 		case T_STAR_DIGGING:
-			stardigging();
+			stardigging(u.ux, u.uy);
 			pline("Digging complete!");
 
 			t_timeout = rnz(10000);

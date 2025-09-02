@@ -236,7 +236,7 @@ cursed_book(bp)
 		rndcurse();
 		break;
 	}
-	return (bp->spe < 0) ? TRUE : FALSE;
+	return ((bp->spe < 0) && rn2(2)) ? TRUE : FALSE;
 }
 
 /* study while confused: returns TRUE if the book is destroyed */
@@ -2200,7 +2200,7 @@ learn()
 					boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 					pline_The("spell memory bonus was multiplied!");
 				}
-				if (book->oartifact == ART_PAGAN_POETRY) {
+				if (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_K_OR_EA_SY) {
 					u.superspecialspell = booktype;
 					pline_The("spell is your super special spell now.");
 				}
@@ -2296,7 +2296,7 @@ learn()
 				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 				pline_The("spell memory bonus was multiplied!");
 			}
-			if (book->oartifact == ART_PAGAN_POETRY) {
+			if (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_K_OR_EA_SY) {
 				u.superspecialspell = booktype;
 				pline_The("spell is your super special spell now.");
 			}
@@ -2549,7 +2549,7 @@ register struct obj *spellbook;
 
 		    }
 		    delay = 0;
-		    if(gone || (spellbook->spe < 0) || !rn2(5)) {
+		    if ((gone || ((spellbook->spe < 0) && !rn2(4)) || !rn2(5)) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) {
 			if (!gone && !(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook crumbles to dust!");
 			else if (!(booktype == SPE_BOOK_OF_THE_DEAD)) pline_The("spellbook has been destroyed.");
 			if (!objects[spellbook->otyp].oc_name_known &&
@@ -3191,6 +3191,45 @@ struct obj *book2;
 		do_vicinity_map();
 	}
 
+	if (book2->oartifact == ART_KAY_OR_STAU_NE) {
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_highwayfloodg, (void *)&madepoolQ);
+		if (madepoolQ) pline("You build a highway to the left!");
+	}
+
+	if (book2->oartifact == ART_RADIO_BLA_BLA) {
+		u.suppress_dim += 2000;
+		You_feel("resistant to dimness!");
+	}
+
+	if (book2->oartifact == ART_SUNLIGHT_ONLY_ONE_MORE) {
+		int ulx, uly;
+		for (ulx = 1; ulx < (COLNO); ulx++)
+	        for (uly = 0; uly < (ROWNO); uly++) {
+			levl[ulx][uly].lit = 1;
+		}
+		pline("Everything's lit up!");
+	}
+
+	if (book2->oartifact == ART_IS_THERE_A_GIRLCOTT_) {
+		cure_feminism_traps();
+		You("decide to girlcott the feminism traps, because a boycott would be ineffective.");
+	}
+
+	if (book2->oartifact == ART_TO_SHIT) {
+		u.uhitincxtra -= 1;
+		You_feel("very clumsy.");
+		if (!rn2(3)) {
+			u.udamincxtra += 1;
+			You_feel("very strong!");
+		}
+	}
+
+	if (book2->oartifact == ART_TOO_LATE_TO_PULL_A_CHILD) {
+		change_luck(-1);
+		You_feel("unlucky.");
+	}
+
 	if (book2->oartifact == ART_WARP_CORE_OPEN) {
 		register struct monst *warpcoremon;
 		warpcoremon = makemon(mkclass(S_VORTEX,0), u.ux, u.uy, MM_ADJACENTOK);
@@ -3749,6 +3788,12 @@ boolean atme;
 		if (rn2(10)) energy += 1;
 		energy *= 9;
 		energy /= 10;
+	}
+
+	if (uwep && uwep->oartifact == ART_WUFFIAN_RADIO && (spellid(spell) == SPE_LIGHT_AREA) ) {
+		if (rn2(10)) energy += 1;
+		energy *= 2;
+		energy /= 3;
 	}
 
 	if (uarm && uarm->oartifact == ART_HELEN_S_REVEAL && (spellid(spell) == SPE_CHARM_MONSTER) ) {
@@ -5034,7 +5079,7 @@ bucchoice:
 				You("fail to detect anything.");
 				break;
 			case 3:
-				object_detect(pseudo, 0);
+				object_detect(pseudo, 0, FALSE);
 				break;
 			case 4:
 				monster_detect(pseudo, 0);
@@ -5902,7 +5947,7 @@ addspmagain:
 					trap_detect((struct obj *)0);
 					break;
 				case 5:
-					object_detect((struct obj *)0, 0);
+					object_detect((struct obj *)0, 0, FALSE);
 					break;
 				case 6:
 					{
@@ -10511,7 +10556,7 @@ controlagain:
 		    HConfusion = save_Hconf;
 		    HHallucination = save_Hhallu;
 		    You_feel("knowledgable!");
-		    object_detect(pseudo, 0);
+		    object_detect(pseudo, 0, FALSE);
 
 		    if (!rn2(3)) {
 			pline("The spell backlashes!");

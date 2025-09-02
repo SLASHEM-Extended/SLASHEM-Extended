@@ -33652,6 +33652,220 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +10 charisma, double confusion resistance and protects you from foocubus seduction attacks when worn."); break;
 				case ART_A_LOT_OF_ENYAS_IN_THE_CAST:
 					pline("Artifact specs: if you start reading it such that a charge is used up, you gain temporary confusion resistance. Of course there is actually only one Enya, but in the music video for her song 'Anywhere Is' you can see several ;)"); break;
+				case ART_IS_THERE_A_GIRLCOTT_:
+					pline("Artifact specs: reading it stops all active feminism trap effects."); break;
+				case ART_TO_SHIT:
+					pline("Artifact specs: reading it gives a permanent -1 increase accuracy effect and has a 1 in 3 chance of giving you +1 increase damage."); break;
+				case ART_TOO_LATE_TO_PULL_A_CHILD:
+					pline("Artifact specs: reduces your luck when read."); break;
+				case ART_WUFFIAN_RADIO:
+					pline("Artifact specs: while you're wielding it, the light area spell costs less mana than normal."); break;
+				case ART_K_OR_EA_SY:
+					pline("Artifact specs: reading it sets 'toxic' as your super special spell, making it easier to cast."); break;
+				case ART_CASTLE_CHAMBER:
+					pline("Artifact specs: zapping it lights up the room you're in, if you are in a room."); break;
+				case ART_BLUE_BALL_FILL:
+					pline("Artifact specs: restores an extra 100 mana when zapped."); break;
+				case ART_SHIVA_UBA:
+					pline("Artifact specs: may be recharged more than once, but there's still a significant chance of explosions. Maybe you get lucky and maybe you won't."); break;
+				case ART_DOCTORAL_CARE:
+					pline("Artifact specs: if you zap yourself with it, blindness and sickness will be cured."); break;
+				case ART_SLAM_SHUT_:
+					pline("Artifact specs: if you're a locksmith, zapping it will usually not use up a charge. This artifact is a sacrifice gift for the locksmith role."); break;
+				case ART_KNOW_ALL__SEE_ALL:
+					pline("Artifact specs: zapping a super invisible monster with it will make it visible. If a monster zaps you with it, your invisible items may become visible."); break;
+				case ART_FIGGERITOUT:
+					pline("Artifact specs: lets you identify more items on average."); break;
+				case ART_HEAVYLOCKBREAK:
+					pline("Artifact specs: tries twice to uncurse your stuff, making it more likely to uncurse stuff you don't currently have equipped and giving higher odds of uncursing a heavily (or worse) cursed item as a result."); break;
+				case ART_INFEEBLE_FLAILING:
+					pline("Artifact specs: zapping it trains your flail skill by 50 points."); break;
+				case ART_A_N_A_L_:
+					pline("Artifact specs: zapping it increases your alla by 10."); break;
+				case ART_SUFFOCATING_GAS_IMPLEMENTE:
+					pline("Artifact specs: creates bigger gas clouds than usual."); break;
+				case ART_ILLITERATE_FUN:
+					pline("Artifact specs: if you didn't break the illiterate conduct yet, zapping it will only rarely use up a charge."); break;
+				case ART_BRUTZLE_AWAY:
+					pline("Artifact specs: tries to turn the eight squares surrounding you into lava too."); break;
+				case ART_GET_ONE_FREE_ACTION:
+					pline("Artifact specs: if you levelport with it, time is stopped for one turn."); break;
+				case ART_CLOSE_BY_WHOA:
+					pline("Artifact specs: may detect traps several times, giving a better chance of actually revealing them."); break;
+				case ART_CHAEAETCHAEAETCHAEAETCHAEA:
+					pline("Artifact specs: creates more traps when zapped."); break;
+				case ART_UN_LITE:
+					pline("Artifact specs: zapping it makes the entire dungeon level unlit."); break;
+				case ART_FULL_MAPPAGE:
+					pline("Artifact specs: zapping it reveals the entire map of the current dungeon level, as long as it's not unmappable of course."); break;
+				case ART_DMMMMMMMMM_:
+					pline("Artifact specs: gives a much longer-lasting detect monsters effect when zapped."); break;
+				case ART_PHOENIX_S_SPECIAL_MOVE:
+					pline("Artifact specs: spawns with more charges than usual and is guaranteed to reveal all objects on the current dungeon level."); break;
+				case ART_BLANUS_:
+					pline("Artifact specs: more likely to get past the monster's saving throw, but still not guaranteed."); break;
+				case ART_SPEED_UP_YOU__DAMMIT_:
+					pline("Artifact specs: monsters cannot resist if you zap them with it."); break;
+				case ART_TOBI_S_FAVORITE:
+					pline("Artifact specs: spawns with more charges than normal and monsters cannot resist if you zap them with it."); break;
+				case ART_YOU_KNOW_WHICH_AN_EXPERIEN:
+					pline("Artifact specs: increased paralysis duration when zapped at a monster."); break;
+				case ART_LONGFIELD:
+					pline("Artifact specs: if you zap it, the range of the invisible disintegration beam is increased considerably."); break;
+				case ART_FOLLDESTA:
+					pline("Artifact specs: doesn't do anything special."); break;
+				case ART_AURA_DAMAGE:
+					pline("Artifact specs: deals much more damage to targets."); break;
+				case ART_RATTLEOUT:
+					pline("Artifact specs: reduces the target's max HP by more than the usual amount."); break;
+				case ART_HP_UP:
+					pline("Artifact specs: spawns with more charges."); break;
+				case ART_SPARKLESPARKLESPARKLE:
+					pline("Artifact specs: spawns with more charges."); break;
+				case ART_F_O_D_D_E_R:
+					pline("Artifact specs: less likely to lose a charge when zapped."); break;
+				case ART_FAMMYWHERE:
+					pline("Artifact specs: creates a second familiar on the level when zapped, but at a random location."); break;
+				case ART_REAL_BAD__MAN_:
+					pline("Artifact specs: causes really bad effects. You don't want to zap it."); break;
+				case ART_BLACK_RED_STRING:
+					pline("Artifact specs: curses your inventory twice when zapped."); break;
+				case ART_U_U_:
+					pline("Artifact specs: makes you unlucky when zapped. The effect will last for a good long while."); break;
+				case ART_NIIIIIIIIIIEAUM___:
+					pline("Artifact specs: can drain your items into the negatives."); break;
+				case ART_FATAL_RAD_POISONING:
+					pline("Artifact specs: contaminates you much more."); break;
+				case ART_ASPEN_LEAF:
+					pline("Artifact specs: causes you to tremble a lot more."); break;
+				case ART_AMELIE_S_RAGEQUIT:
+					pline("Artifact specs: removes more intrinsics when zapped. The guy who calls himself 'Amelie' ragequit SLEX because of this item."); break;
+				case ART_MELT__EVERYTHING_MUST_MELT:
+					pline("Artifact specs: corrodes your entire inventory when zapped."); break;
+				case ART_FUMBLE_FOR_THE_REST_OF_ALL:
+					pline("Artifact specs: causes you to fumble for a much longer time when zapped."); break;
+				case ART_INA_S_THERAPY:
+					pline("Artifact specs: gives you the ina trap effect for a while when zapped. If you zap it, you also gain +20 alignment and +2 max alignment."); break;
+				case ART_EXCONF:
+					pline("Artifact specs: makes you heavily confused, which means that you cannot cure the confusion and will have to wait it out."); break;
+				case ART_GUMMEN:
+					pline("Artifact specs: grants a couple dozen turns of polymorph control when zapped."); break;
+				case ART_WOLVLE__WOLVLE:
+					pline("Artifact specs: doesn't convey lycanthropy when zapped, but instead you get the wereform nastytrap effect for a while."); break;
+				case ART_BLOWSTORM:
+					pline("Artifact specs: deals more damage if you zap it at a monster."); break;
+				case ART_MUUUUUU_TA:
+					pline("Artifact specs: adds a second egotype if zapped at a monster."); break;
+				case ART_BLINK_ALL_AROUND:
+					pline("Artifact specs: spawns with more charges. This particular item cannot be destroyed by lightning damage."); break;
+				case ART_JONADAB_S_WORDPLAY:
+					pline("Artifact specs: anyone who is healed by it receives +5 maximum HP."); break;
+				case ART_ACTUALLY_FULL:
+					pline("Artifact specs: anyone who is healed by it has their HP set to the maximum."); break;
+				case ART_NOSE_AWAY:
+					pline("Artifact specs: decontaminates you and reduces your sanity when zapped."); break;
+				case ART_YVONNE_S_COMFY_SITTING:
+					pline("Artifact specs: gives you the yvonne trap effect for a while when zapped."); break;
+				case ART_ENERGY_FLUCTUATION:
+					pline("Artifact specs: spawns with many more charges."); break;
+				case ART_WATCH_THE_PAIN:
+					pline("Artifact specs: doesn't do anything special."); break;
+				case ART_EXTREMEGREEN:
+					pline("Artifact specs: if you zap it, you additionally fire a poison beam in the opposite direction of the one you entered."); break;
+				case ART_MEGA_OVERKILL:
+					pline("Artifact specs: deals much more damage."); break;
+				case ART_DOUBLEWHAM:
+					pline("Artifact specs: fires two disintegration beams at once."); break;
+				case ART_TRIBBLE_:
+					pline("Artifact specs: fires three random beams, each of which can be of a different type."); break;
+				case ART_MEGATREMBLE:
+					pline("Artifact specs: monsters cannot resist if you zap them with it. If a monster zaps you with it, you become heavily stunned and will have no choice but to wait out the stun duration."); break;
+				case ART_NATURE_CATASTROPHE:
+					pline("Artifact specs: creates random water tiles nearby when zapped."); break;
+				case ART_FROM_THE_STREET:
+					pline("Artifact specs: makes you rather unlucky for a while when zapped."); break;
+				case ART_EMPTY_BLUE_ORB:
+					pline("Artifact specs: drains your mana much more."); break;
+				case ART_FLAPPING_THE_SEA:
+					pline("Artifact specs: gives you slippery fingers for a longer time, but if you zap it you also get the glib combat intrinsic for a couple hundred turns."); break;
+				case ART_ROB_BEAR:
+					pline("Artifact specs: when zapped, a monster with item-stealing attacks spawns somewhere on the level."); break;
+				case ART_MEEGO_IS_TOO_BIG:
+					pline("Artifact specs: causes you to get the egomonster nastytrap effect for a while when zapped."); break;
+				case ART_OH_YOU_ARE_SUCH_A_SINNER__:
+					pline("Artifact specs: increases your sin counter by one when zapped."); break;
+				case ART_STOP_IN_THE_TRACK:
+					pline("Artifact specs: paralyzes monsters for an additional turn if you zap them with it. If a monster zaps you with this wand, you get a much longer-lasting inertia effect."); break;
+				case ART_BACK_TO_BEFORE_YOUTH:
+					pline("Artifact specs: drains two levels from the target instead of just one."); break;
+				case ART_NINE_HEAD_ABOMINATION:
+					pline("Artifact specs: increases your sanity by much more when zapped."); break;
+				case ART_ARABELLA_S_FAST_EQUIPPER:
+					pline("Artifact specs: hmm... it sounds like it'll let you equip yourself quickly, so you should probably zap it?"); break;
+				case ART_BIG_CHAOTIC_INSIDE:
+					pline("Artifact specs: creates much more chaotic terrain when zapped."); break;
+				case ART_CUDDLERAGNAR:
+					pline("Artifact specs: when zapped, there's a chance of triggering 'fleecy ragnarok', with lots of random terrain and pretty women."); break;
+				case ART_LAUGHTER_OF_INSANITY:
+					pline("Artifact specs: reduces your stats much more when zapped."); break;
+				case ART_HMM__THERE_S_A_WEIRD_LIGHT:
+					pline("Artifact specs: spawns with many more charges."); break;
+				case ART_ERROR_FEELING:
+					pline("Artifact specs: improves your alla by 50 when zapped, but also spawns some bugged monsters."); break;
+				case ART_LINLEY_S_WARP:
+					pline("Artifact specs: spawns with more charges than usual."); break;
+				case ART_ULTRADLAENG:
+					pline("Artifact specs: spawns with a huge amount of charges, but zapping yourself with it does not work and if you zap it in a direction, it only hits the monster standing right next to you."); break;
+				case ART_OLDENTIME_REHEARSAL:
+					pline("Artifact specs: works like blessed charging when zapped."); break;
+				case ART_PROFUSI:
+					pline("Artifact specs: causes you to bleed more when zapped."); break;
+				case ART_PORKS_SHANK:
+					pline("Artifact specs: removes many more of your equipment pieces when zapped."); break;
+				case ART_MANAMANAMANAMANAMANA_:
+					pline("Artifact specs: gives you a couple dozen turns of energy regeneration when zapped."); break;
+				case ART_I_DON_T_WANNA_SEX:
+					pline("Artifact specs: lasts much longer when zapped. Unlike the non-artifact version of this wand, the duration will actually stack if you zap it while the effect is already active."); break;
+				case ART_TITANIC_STOMP:
+					pline("Artifact specs: deals double damage when zapped at a monster."); break;
+				case ART_NEVER_WAKE_UP_AGAIN:
+					pline("Artifact specs: deals three times as much damage when zapped at a monster."); break;
+				case ART_UNHEALTHY_DROWNING:
+					pline("Artifact specs: deals three times as much damage to monsters and is more likely to transform floor squares into water."); break;
+				case ART_GUTNACHT__GUTNACHT_:
+					pline("Artifact specs: deals three times as much damage when zapped at a monster."); break;
+				case ART_HOT_FLAME__AS_OPPOSED_TO_A:
+					pline("Artifact specs: deals double damage to targets, including twice as much damage to max HP."); break;
+				case ART_SHEER_COLD:
+					pline("Artifact specs: zapping it at a monster causes it to be slowed down without the monster getting the usual saving throw. If a monster zaps you with this wand, you become frozen for a while."); break;
+				case ART_BREW_OF_STORMS_CHURN_IT_UP:
+					pline("Artifact specs: deals much more lightning damage."); break;
+				case ART_ABSOLUTE_SHUTDOWN:
+					pline("Artifact specs: zapping a monster will drain it, even if it would normally resist. If a monster zaps you with this wand, your entire inventory is corroded."); break;
+				case ART_WUMMINGEN:
+					pline("Artifact specs: deals double damage to the target when zapped."); break;
+				case ART_BAWU_MIXING_FUCK_:
+					pline("Artifact specs: if you zap it, you become invulnerable for a few turns; if a monster zaps it, you become blinded, confused and hallucinating for a while."); break;
+				case ART_RATTLESTAR:
+					pline("Artifact specs: fires digging beams in all directions when zapped."); break;
+				case ART_MARIO_S_SAYING:
+					pline("Artifact specs: zapping it activates the 'over-ray' technique if it's not currently active. This also applies if you don't actually know that one."); break;
+				case ART_FLASHEN_OFTEN:
+					pline("Artifact specs: spawns with more charges."); break;
+				case ART_WANG_DOAAAAAH:
+					pline("Artifact specs: less likely to lose a charge when zapped."); break;
+				case ART_SUN_COMES_OUT_FOR_YOU:
+					pline("Artifact specs: zapping it changes the weather to 'sunny' if it's currently something else."); break;
+				case ART_KLOENGLOENGLOENGLOENGLOENG:
+					pline("Artifact specs: fires a second, weaker psybeam in addition to the normal one when zapped."); break;
+				case ART_THERE_AIN_T_NO_DOUBT_FOR_Y:
+					pline("Artifact specs: if you try to read it while it's cursed, it becomes uncursed."); break;
+				case ART_SUNLIGHT_ONLY_ONE_MORE:
+					pline("Artifact specs: reading it lights up the current dungeon level."); break;
+				case ART_KAY_OR_STAU_NE:
+					pline("Artifact specs: reading it creates random highways near you."); break;
+				case ART_RADIO_BLA_BLA:
+					pline("Artifact specs: reading it suppresses the 'dim' status effect for a while."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

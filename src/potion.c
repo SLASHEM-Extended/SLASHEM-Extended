@@ -5991,7 +5991,7 @@ goodeffect()
 			case 108:
 			case 109:
 			case 110: /* detect objects */
-				object_detect((struct obj *)0, 0);
+				object_detect((struct obj *)0, 0, FALSE);
 				break;
 			case 111:
 			case 112: /* detect traps */
@@ -7563,6 +7563,49 @@ moorlandragnarok()
 				case 2:
 					(void) makemon(mkclass(S_COCKATRICE,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
 					break;
+			}
+
+		}
+
+	}
+
+	u.aggravation = 0;
+	u.heavyaggravation = 0;
+
+	stop_occupation();
+
+}
+
+void
+cuddleragnarok()
+{
+	register int x,y;
+
+	u.aggravation = 1;
+	u.heavyaggravation = 1;
+	DifficultyIncreased += 1;
+	HighlevelStatus += 1;
+	EntireLevelMode += 1;
+	if (!rn2(5)) DifficultyIncreased += rnz(100);
+	if (!rn2(5)) HighlevelStatus += rnz(100);
+	if (!rn2(5)) EntireLevelMode += rnz(100);
+
+	incr_itimeout(&HFuckOverEffect, rnz(100) );
+
+	pline("The cuddle-fleecy apocalypse is happening!");
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+
+		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == LAVAPOOL || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
+
+			levl[x][y].typ = randomwalltype();
+			blockorunblock_point(x,y);
+			if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+			newsym(x, y);
+
+			if (!rn2(3)) {
+				(void) makemon(specialtensmon(111), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED); /* M2_FEMALE */
 			}
 
 		}
@@ -13571,7 +13614,7 @@ peffects(otmp)
 	case POT_ENLIGHTENMENT:
 
 		if (otmp->oartifact == ART_TOME_DEFINITION) {
-			object_detect((struct obj *)0, 0);
+			object_detect((struct obj *)0, 0, FALSE);
 			if (!level.flags.nommap) do_mapping();
 		}
 
@@ -14276,7 +14319,7 @@ peffects(otmp)
 			forget(3, FALSE);
 		}
 
-		if (object_detect(otmp, 0))
+		if (object_detect(otmp, 0, FALSE))
 			return(1);		/* nothing detected */
 		exercise(A_WIS, TRUE);
 		break;

@@ -29416,6 +29416,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel the poison circulating your veins... Oh no, you're gonna DIIIIIIIIE and there's nothing you can do about it!",
 	"You would have died, but got perilously transported to a strange place...",
 	"You would have died, but got perilously transported to a strange place... and as you open your inventory, you exclaim 'Oh NO! WHERE are my items!!!', but dude, they're gone. Yes, it really stings, but there's no way to bring them back.",
+	"You decide to girlcott the feminism traps, because a boycott would be ineffective.",
+	"Your anus feels better.",
+	"Your anus feels better. (what the hell kind of wacky game even has such a message...)",
 
 };
 

@@ -7037,7 +7037,7 @@ rerollX:
 					trap_detect((struct obj *)0);
 					break;
 				case 5:
-					object_detect((struct obj *)0, 0);
+					object_detect((struct obj *)0, 0, FALSE);
 					break;
 				case 6:
 					{
