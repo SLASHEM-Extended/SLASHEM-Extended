@@ -2315,6 +2315,10 @@ domove()
 
 		if(attack(mtmp)) return;
 
+		/* discovered by potato44: peaceful displacement, from e.g. having a cloak of displacement, made it impossible to attack peacefuls!! */
+		if (peacedisplacer && !displacer && flags.forcefight) {
+			if(attack(mtmp)) return;
+		}
 		if (tech_inuse(T_EDDY_WIND) && flags.forcefight) {
 			if(attack(mtmp)) return;
 		}
