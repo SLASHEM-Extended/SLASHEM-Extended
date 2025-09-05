@@ -285,6 +285,12 @@ nh_timeout()
 		if (!u.tempwaterprotection) Your("items are no longer safe from water.");
 	}
 
+	if (u.tempstdprotection) {
+		u.tempstdprotection--;
+		if (u.tempstdprotection < 0) u.tempstdprotection = 0; /* fail safe */
+		if (!u.tempstdprotection) You("are no longer immune to STDs.");
+	}
+
 	if (u.weathertimer) {
 		u.weathertimer--;
 		if (u.weathertimer < 0) u.weathertimer = 0; /* fail safe */

@@ -638,7 +638,8 @@ struct monst *mon;
 		case SEGFAULT_VENOM:
 		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
-		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:
+		case ICE_BLOCK:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
 
@@ -851,7 +852,8 @@ struct monst *mon;
 		case SEGFAULT_VENOM:
 		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
-		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:
+		case ICE_BLOCK:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
 
@@ -1273,7 +1275,8 @@ struct monst *mon;
 		case SEGFAULT_VENOM:
 		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
-		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:
+		case ICE_BLOCK:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
 
@@ -1487,7 +1490,8 @@ struct monst *mon;
 		case SEGFAULT_VENOM:
 		case PHYSIO_VENOM:
 		case ACID_VENOM:	tmp += rnd(6); break;
-		case FAERIE_FLOSS_RHING:	tmp += rnd(6); tmp += rnd(6); break;
+		case FAERIE_FLOSS_RHING:
+		case ICE_BLOCK:	tmp += rnd(6); tmp += rnd(6); break;
 		case TAIL_SPIKES:	tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); tmp += rnd(6); 
 					break;
 		case SCIMITAR:
@@ -3371,6 +3375,7 @@ boolean polespecial; /* may use polearm for monster-versus-monster combat */
 			propellor = (oselect(mtmp, PISTOL_PAIR));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_MG) {
 			propellor = (oselect(mtmp, HEAVY_MACHINE_GUN));
+			if (!propellor) propellor = (oselect(mtmp, MILITARY_RIFLE));
 		  } else if ((objects[rwep[i]].w_ammotyp) == WP_BULLET_AR) {
 			propellor = (oselect(mtmp, KALASHNIKOV));
 			if (!propellor) propellor = (oselect(mtmp, STORM_RIFLE));

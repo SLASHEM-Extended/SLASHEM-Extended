@@ -1618,6 +1618,20 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    losexp("a sweet ring of faerie floss", TRUE, FALSE);
 		    } /* This ignores level-drain resistance (not a bug). --Amy */
 
+		    if (hitu && singleobj->otyp == ICE_BLOCK) {
+			if (Race_if(PM_GAVIL)) losehp(10, "a block of ice", KILLED_BY);
+			if (Race_if(PM_HYPOTHERMIC)) losehp(20, "a block of ice", KILLED_BY);
+			if (rn2(3)) {
+				if (!ColdImmunity && !(StrongCold_resistance && rn2(5)) && !(Cold_resistance && rn2(2)) ) {
+					make_frozen(HFrozen + rn1(15,15), TRUE);
+				}
+			}
+
+			if (isevilvariant || !rn2(issoviet ? 2 : Race_if(PM_GAVIL) ? 2 : Race_if(PM_HYPOTHERMIC) ? 2 : 10) ) {
+				destroy_item(POTION_CLASS, AD_COLD);
+			}
+		    }
+
 		    if (hitu && singleobj->otyp == COLLUSION_KNIFE && !(Race_if(PM_PLAYER_NIBELUNG) && rn2(5))) {
 				pline("Collusion!");
 				litroomlite(FALSE);
@@ -2130,6 +2144,9 @@ register struct attack *mattk;
 			break;
 		    case AD_DRLI:
 			otmp = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE, FALSE);
+			break;
+		    case AD_ICEB:
+			otmp = mksobj(ICE_BLOCK, TRUE, FALSE, FALSE);
 			break;
 		    case AD_NAST:
 			otmp = mksobj(SEGFAULT_VENOM, TRUE, FALSE, FALSE);

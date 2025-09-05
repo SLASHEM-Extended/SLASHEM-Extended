@@ -781,6 +781,7 @@ struct you {
 	int wwalktimer;		/* for temporary water walking */
 
 	int tempwaterprotection; /* temporary protection from water damage for player's inventory */
+	int tempstdprotection;	/* temporary protection from STDs */
 
 	int stonedchilltimer;	/* to control whether you get the damage reduction */
 

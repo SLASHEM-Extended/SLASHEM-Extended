@@ -15173,6 +15173,13 @@ loveheelover:
 
 		if (ptr == &mons[PM_TAURUS_GIANT]) (void)mongets(mtmp, LASER_FLYAXE);
 
+		if (ptr == &mons[PM_HELICOPTER_GUNNER]) {
+			(void)mongets(mtmp, T_SHIRT);
+			(void)mongets(mtmp, MILITARY_RIFLE);
+			m_initthrow(mtmp, MG_BULLET, 50);
+			m_initthrow(mtmp, MG_BULLET, 50);
+		}
+
 		if (ptr == &mons[PM_FATHIEN_HIRELING]) {
 			(void)mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 			(void)mongets(mtmp, TWO_HANDED_SWORD);

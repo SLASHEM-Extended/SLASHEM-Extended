@@ -2159,12 +2159,25 @@ register boolean mod;
 			otmp->quan += rnz(100);
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_FIREFIRM) {
+			otmp->oerodeproof = TRUE;
+			}
 		    if (otmp && otmp->oartifact == ART_WORTH_CHECKING_OUT && otmp->spe == 0) {
 			if (rn2(2)) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			}
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+		    if (otmp && otmp->oartifact == ART_WHY__THEREFORE_) {
+			LongingEffect += rnz(5000);
+		    }
+		    if (otmp && otmp->oartifact == ART_TOTALLY_THE_EROGENOUS_KATI) {
+			if (otmp->spe < 1) otmp->spe = 1;
+			u.tempsuperfemtrap_katia += (20000 + (otmp->spe * 5000));
+			if (!FemtrapActiveRuth) pline("Some little girl really wants to take a crap while you are nearby.");
+			otmp->spe *= 2;
+			otmp->spe += 5;
 		    }
 		    if (otmp && otmp->oartifact == ART_FLASHEN_OFTEN) {
 			otmp->spe += 10;
@@ -4150,6 +4163,7 @@ int tmp;
 			case ART_LONGBOW_OF_DIANA:
 			case ART_HEFFER_S_BOW:
 			case ART_GUNBOW:
+			case ART_PRECISION_STRIKE:
 			case ART_HOMING_BEAM:
 			case ART_TONA_S_GAMES:
 			case ART_VIHAT_BAGUETTEN_BUS_STOP:
@@ -4198,6 +4212,9 @@ int tmp;
 	if (spec_dbon_applies) {
 
 	    if (otmp && otmp->oartifact == ART_PULVERIZE_EM) {
+			return rnd(max(tmp * 2, 1)); /* triple damage!! */
+	    }
+	    if (otmp && otmp->oartifact == ART_SOVIET_WINTER && issoviet) {
 			return rnd(max(tmp * 2, 1)); /* triple damage!! */
 	    }
 	    if (otmp && otmp->oartifact == ART_CRUELTY_OF_EVISCERATION) {
@@ -6408,6 +6425,12 @@ chargingchoice:
 
 			} /* for loop */
 
+			break;
+		}
+
+		if (obj->oartifact == ART_NINJUTSU) {
+			u.martialstyle = MARTIALSTYLE_MARSHALARTS;
+			You("changed your martial arts style to 'marshal arts'.");
 			break;
 		}
 

@@ -3298,7 +3298,7 @@ doturn()
 
 		    if (sp_no < MAXSPELL &&
 			spl_book[sp_no].sp_id == SPE_TURN_UNDEAD)
-			    return spelleffects(sp_no, TRUE);
+			    return spelleffects(sp_no, TRUE, FALSE);
 		}
 
 		You("don't know how to turn undead!");

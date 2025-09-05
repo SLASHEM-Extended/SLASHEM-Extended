@@ -5701,9 +5701,28 @@ int tech_no;
 
 	u.temptechhack = TRUE;
 	u.temptech = tech_no;
+	You("use the '%s' technique.", tech_names[u.temptech]);
 	u.temptechlevel = temptechlev(tech_no);
 	techeffects(tech_no);
 	u.temptechhack = FALSE;
+}
+
+/* use any random technique, regardless of whether the char has it, by Amy */
+void
+tech_metronome()
+{
+	/* first, stop existing temporary technique, since you can only have one of these active */
+	u.temptechhack = TRUE;
+	if (u.temptechduration) aborttech(u.temptech);
+	u.temptechhack = FALSE;
+
+	u.temptechhack = TRUE;
+	u.temptech = rnd(MAXTECH - 1); /* any random technique, with all of them having the same chance of being picked */
+	You("use the '%s' technique.", tech_names[u.temptech]);
+	u.temptechlevel = temptechlev(u.temptech);
+	techeffects(u.temptech);
+	u.temptechhack = FALSE;
+
 }
 
 /* gettech is reworked getspell */
@@ -8861,7 +8880,7 @@ revid_end:
 			j = rn2(NUM_OBJECTS);
 			while (objects[j].oc_prob < 1) j = rn2(NUM_OBJECTS);
 			makeknown(j);
-			pline("%s (%s).", obj_descr[j].oc_name, obj_descr[j].oc_descr);
+			pline("%s (%s).", obj_descr[j].oc_name, objtypenames[objects[j].oc_class]);
 		}
 		t_timeout = rnz(20000);
 

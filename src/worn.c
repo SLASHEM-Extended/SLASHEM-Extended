@@ -408,6 +408,7 @@ register struct monst *mon;
 	if (fordride(BARDING, mon)) base -= 3;
 
 	if (mercedesride(ART_DEATH_SQUAD_MOBILE, mon)) base -= 5;
+	if (mercedesride(ART_JOCK_S_SPECPLACE, mon)) base -= 5;
 
 	if (FemtrapActiveMarleen && humanoid(mon->data) && is_female(mon->data) ) {
 		if (SuperFemtrapMarleen) base -= (10 + mon->m_lev);

@@ -5476,6 +5476,11 @@ secureidchoice:
 			break;
 		case WAN_MAGIC_MAPPING:
 			known = TRUE;
+			if (level.flags.nommap) {
+				pline("Something blocks your mapping!");
+				break;
+			}
+
 			pline("A map coalesces in your mind!");
 			do_mappingZ();
 			if (obj && obj->oartifact == ART_FULL_MAPPAGE) do_mapping();

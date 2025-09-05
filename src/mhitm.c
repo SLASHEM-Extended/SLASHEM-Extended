@@ -626,7 +626,7 @@ mattackm(magr, mdef)
 			}
 			else res[i] = breamm(magr, mdef, mattk);
 		    } else {
-			if (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_TCKL || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_NAST) {
+			if (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_TCKL || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_NAST || mattk->adtyp == AD_ICEB) {
 				res[i] = spitmm(magr, mdef, mattk);
 			} else goto meleeattack;
 
@@ -3447,6 +3447,9 @@ struct attack *mattk;
 		break;
 	    case AD_DRLI:
 		obj = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE, FALSE);
+		break;
+	    case AD_ICEB:
+		obj = mksobj(ICE_BLOCK, TRUE, FALSE, FALSE);
 		break;
 	    case AD_TCKL:
 		obj = mksobj(TAIL_SPIKES, TRUE, FALSE, FALSE);

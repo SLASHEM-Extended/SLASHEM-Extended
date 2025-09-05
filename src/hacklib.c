@@ -621,6 +621,14 @@ friday_13th()
 	return((boolean)(lt->tm_wday == 5 /* friday */ && lt->tm_mday == 13));
 }
 
+int
+week_day()
+{
+	register struct tm *lt = getlt();
+
+	return (lt->tm_wday); /* 1 = monday, 2 = tuesday, 3 = wednesday, 4 = thursday, 5 = friday, 6 = saturday and I guess 7 = sunday, or is that 0? */
+}
+
 boolean
 groundhog_day()
 {

@@ -3556,13 +3556,21 @@ int dieroll;
 	
 			}
 
-			if (obj && (obj->otyp == SEGFAULT_VENOM || obj->otyp == FAERIE_FLOSS_RHING || obj->otyp == TAIL_SPIKES) ) {
-				if (obj->otyp == FAERIE_FLOSS_RHING && !resists_drain(mon) ) {
+			if (obj && obj->otyp == FAERIE_FLOSS_RHING) {
+				if (!resists_drain(mon) ) {
 					if (mon->mhpmax > 1) {
 						mon->mhpmax--;
 						if (mon->mhp > mon->mhpmax) mon->mhpmax--;
 						pline("%s was hit by the faerie floss rhing and is now small.", Monnam(mon));
 					}
+				}
+			}
+
+			if (obj && obj->otyp == ICE_BLOCK) {
+				if (resists_cold(mon) && !player_will_pierce_resistance()) {
+					Your("ice block harmlessly bounces off %s.", mon_nam(mon));
+					if (issoviet) pline("Ty ne iz tekh, kto pokhozh na ledyanuyu glybu, MUA-KHA-KHA-KHA, TY NUB I SLABAK!");
+					tmp = 0;
 				}
 			}
 

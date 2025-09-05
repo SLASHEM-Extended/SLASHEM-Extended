@@ -29419,6 +29419,26 @@ static NEARDATA const char * const fake_plines[] = {
 	"You decide to girlcott the feminism traps, because a boycott would be ineffective.",
 	"Your anus feels better.",
 	"Your anus feels better. (what the hell kind of wacky game even has such a message...)",
+	"DAMDAMDAM DAMDAMDAM DAMDAMDAMDAMDAMDAM, *DOOH-DODOMM DODODODOOH-DODOMM! DOOH-DODOMM DODODODOOH-DODOMM!*",
+	"DAMDAMDAM DAMDAMDAM DAMDAMDAMDAMDAMDAM, *DOOH-DODOMM DODODODOOH-DODOMM! DOOH-DODOMM DODODODOOH-DODOMM!* (This is supposed to be the bossfight music, which indicates that a very difficult boss monster just got spawned.)",
+	"You pull out your penis.",
+	"You pull out your penis and ready it as your main melee weapon.",
+	"You look mighty sexy in your feminine 'Janina' underwear.",
+	"You feel like smelling your own socks, which is certainly going to be very beguiling.",
+	"You feel like you're 13 months pregnant!",
+	"You have to spend the next 15 minutes without WLAN."
+	"You have to spend the next 15 minutes without WLAN. But you don't know what that is, because in your weird country it's somehow called wifi instead."
+	"You have to spend the next 15 minutes without WLAN. Oh no, what the hell are you going to do! You can't exist without your smartphone and permanent internet access!"
+	"Possible bio reading.",
+	"You feel that the dude who made those XM sound files must have a girlfriend named Tanja.",
+	"You absolutely can't stand that high-pitched 'SSSSSSSSSS!' sound!",
+	"You absolutely can't stand that high-pitched 'SSSSSSSSSS!' sound! Fucking mosquitoes, man, you wish you had a blessed scroll of genocide to get rid of all 'a'-class monsters...",
+	"You feel heterosexual.",
+	"You feel homosexual.",
+	"You feel heterosexual. Boring, the majority of people are that, don't you want to be different?",
+	"You feel homosexual. Hopefully you never have to go to a country where that is considered a crime.",
+	"You hear Mira advertising her 'refreshing' bath to you...",
+	"You hear Mira advertising her 'refreshing' bath to you... but something tells you that bathing in her urine won't be all that great...",
 
 };
 

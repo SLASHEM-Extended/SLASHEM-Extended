@@ -606,8 +606,10 @@ int thrown;
 	     */
 	    if (launcher && is_launcher(launcher))
 	    {
-		if (objects[(launcher->otyp)].oc_rof && launcher->oartifact != ART_EXPERIMENTAL_MIRV) 
+		if (objects[(launcher->otyp)].oc_rof && launcher->oartifact != ART_EXPERIMENTAL_MIRV) {
 		    multishot += (objects[(launcher->otyp)].oc_rof - 1);
+		    if (launcher->oartifact == ART_PRECISION_STRIKE) multishot -= 2;
+		}
 		if (launcher->altmode == WP_MODE_SINGLE)
 		  /* weapons switchable b/w full/semi auto */
 		    multishot = 1;
@@ -668,7 +670,7 @@ int thrown;
 		u.alignlim -= postofficenumber;
 	}
 
-	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == LEAD_UNLOADER || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == STORM_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN ) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {
+	if (launcher && (launcher->otyp == SUBMACHINE_GUN || launcher->otyp == LEAD_UNLOADER || launcher->otyp == ASSAULT_RIFLE || launcher->otyp == STORM_RIFLE || launcher->otyp == KALASHNIKOV || launcher->otyp == AUTO_SHOTGUN || launcher->otyp == MILITARY_RIFLE) && launcher->altmode == WP_MODE_AUTO && !bulletator_allowed(1)) {
 		if (launcher->otyp == SUBMACHINE_GUN) {
 			u.bulletatorwantedlevel += 1;
 			u.bulletatortimer += 100;
@@ -698,6 +700,11 @@ int thrown;
 			u.bulletatorwantedlevel += 4;
 			u.bulletatortimer += 400;
 			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 2000;
+		}
+		if (launcher->otyp == MILITARY_RIFLE) {
+			u.bulletatorwantedlevel += 9;
+			u.bulletatortimer += 850;
+			if (P_MAX_SKILL(P_FIREARM) == P_ISRESTRICTED && P_MAX_SKILL(P_GUN_CONTROL) == P_ISRESTRICTED) u.bulletatortimer += 5000;
 		}
 		if (!u.bulletatorgun) {
 			pline("You're not allowed to use automatic firearms. Bulletators have been alerted.");
@@ -2823,6 +2830,7 @@ boolean polearming;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uarm && uarm->oartifact == ART_ARMOR_PIERCE) tmp += 50;
+	if (Flying && u.usteed && uwep && uwep->oartifact == ART_AIRCRAFT_MISSILE) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
 	if (uwep && uwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SIGIX_BROADSWORD) tmp -= 5;
@@ -3032,6 +3040,10 @@ inaccurateguns:
 		tmp -= rnd(20);
 		if (!rn2(2)) tmp -= rnd(10);
 		if (!rn2(3)) tmp -= rnd(10);
+	}
+	if (launcher && launcher->otyp == MILITARY_RIFLE && (launcher->altmode == WP_MODE_AUTO || (launcher->altmode == WP_MODE_BURST && !rn2(3)) ) ) {
+		tmp -= rnd(18);
+		if (!rn2(2)) tmp -= rnd(9);
 	}
 	if (launcher && launcher->otyp == PISTOL_PAIR && P_RESTRICTED(P_TWO_WEAPON_COMBAT)) {
 		tmp -= rnd(20);
@@ -4142,6 +4154,7 @@ struct obj *obj;
 		case ACID_VENOM:
 		case TAIL_SPIKES:
 		case PHYSIO_VENOM:
+		case ICE_BLOCK:
 		case BLINDING_VENOM:
 		case SEGFAULT_VENOM:
 		case FAERIE_FLOSS_RHING:
@@ -4191,6 +4204,7 @@ boolean in_view;
 		case ACID_VENOM:
 		case TAIL_SPIKES:
 		case PHYSIO_VENOM:
+		case ICE_BLOCK:
 		case BLINDING_VENOM:
 		case SEGFAULT_VENOM:
 		case FAERIE_FLOSS_RHING:

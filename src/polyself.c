@@ -1957,6 +1957,9 @@ dospit()
 		case AD_DRLI:
 		    otmp = mksobj(FAERIE_FLOSS_RHING, TRUE, FALSE, FALSE);
 		    break;
+		case AD_ICEB:
+		    otmp = mksobj(ICE_BLOCK, TRUE, FALSE, FALSE);
+		    break;
 		case AD_TCKL:
 		    otmp = mksobj(TAIL_SPIKES, TRUE, FALSE, FALSE);
 		    break;

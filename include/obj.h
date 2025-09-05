@@ -296,7 +296,7 @@ struct obj {
 			((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill == P_FIREARM)
 #define has_firemodes(otmp) \
-			((otmp)->otyp == ASSAULT_RIFLE || (otmp)->otyp == STORM_RIFLE || (otmp)->otyp == KALASHNIKOV || (otmp)->otyp == AUTO_SHOTGUN || (otmp)->otyp == DEMON_CROSSBOW || (otmp)->otyp == SUBMACHINE_GUN || (otmp)->otyp == LEAD_UNLOADER)
+			((otmp)->otyp == ASSAULT_RIFLE || (otmp)->otyp == STORM_RIFLE || (otmp)->otyp == KALASHNIKOV || (otmp)->otyp == AUTO_SHOTGUN || (otmp)->otyp == DEMON_CROSSBOW || (otmp)->otyp == SUBMACHINE_GUN || (otmp)->otyp == LEAD_UNLOADER || (otmp)->otyp == MILITARY_RIFLE)
 #define is_bullet(otmp)	((otmp)->oclass == WEAPON_CLASS && \
 			 objects[(otmp)->otyp].oc_skill == -P_FIREARM)
 

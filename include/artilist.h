@@ -24060,6 +24060,254 @@ A("Radio Bla-Bla",				SPE_CURE_DIM, /* reading it allows you to suppress the dim
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Ninjutsu",				METAL_LAMELLAR_ARMOR, /* displacement when worn, can be invoked to change the current martial arts style to "marshal arts", suggested by potato44 */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Amusinge Boozer",				SPE_CURE_CONFUSION, /* rn1(15,15) turns of confusion when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("DAMDAMDAM DAMDAMDAM DAMDAMDAMDAMDAMDAM",				SPE_CREATE_FAMILIAR, /* spawns a boss monster somewhere on the current level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Hippocrates' Aid",				SPE_CURE_SICKNESS, /* +1 max HP and Pw when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Adrianen Woman",				SPE_FLYING, /* spawns a MS_SHOE somewhere on the level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Provinzkaja Bitching",				SPE_GIANT_FOOT, /* spawns a frenzied MS_SHOE next to you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Firefirm",				SPE_FLAME_SPHERE, /* spawns fireproof */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Rainzone",				SPE_RAIN, /* changes weather to "rain" when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Heavy Thunderhall",				SPE_MOUNTAINS, /* rnz(10000) turns of wild weather when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Rare Pokespawnage",				SPE_ICE_BEAM, /* reading it picks a random location and spawns rn1(8,8) cooling chamber monsters there */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("15 Minutes Without WLAN",				SPE_POWER_FAILURE, /* reading gives power failure effect, stealth and invisibility for 1500 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Wendsday, Wendsday, We",				SPE_SWIMMING, /* reading it gives 1000 turns of swimming and water protection, or 5000 if you read it on a wednesday (and no, the name of this artifact is not an error, it's misspelled on purpose! --Amy) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Possible Bio Reading",				SPE_DETECT_FOOD, /* reading it gives +10 food appraisal */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Appreten Immediately Terminal Force",				SPE_SNIPER_BEAM, /* activates the create ammo technique when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("GS GF XM Tanja",				SPE_ECHOLOCATION, /* reading it gives the tanja trap effect permanently if you didn't have it already, and if it did that, +rn1(5,5) charisma; if your character is male, it additionally gives +50 training for the gun control skill (also only if the trap effect wasn't active before) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Devils Sound Like Mosquitoes",				SPE_COMMAND_DEMON, /* reading it summons 4 random a and 4 random & around you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("A Little Bittle Jumex",				SPE_FINGER, /* reading it makes your character heterosexual */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The drum! The drum!",				SPE_AGGRAVATE_MONSTER, /* aggravates monsters and then replicates the effect of reading scare monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Extraordinary Metronome",				SPE_HELLISH_BOLT, /* casts a random spell when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("I have spep time",				SPE_KNOW_ENCHANTMENT, /* reading gives a hint about your ascension turn limit */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("God In The Heaven",				SPE_DETECT_ARMOR_ENCHANTMENT, /* reading it tells you your current prayer timeout */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("There come those wueu wueus",				SPE_DRY_UP_FOUNTAIN, /* spawns kops on the level, similar to having a high sin counter */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Go To The Fast Train",				SPE_SEARCHING, /* reading trains your searching skill by 100 and gives rnz(12000) turns of trap creation nastytrap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Metrotechen",				SPE_GAIN_SPACT, /* reading it performs a random technique */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Jock's Specplace",				LEATHER_SADDLE, /* randart saddle, displacement if riding a steed that has it, and the steed has 5 extra points of AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Flashback Jippiejeyo",				SPE_IDENTIFY, /* reading it identifies 5 random base items */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Babyabo Phogo",				SPE_BOTOX_RESIST, /* reading it gives 10000 turns of resistance against STDs */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Memorable Read",				SPE_RADAR, /* trains memorization by 20 when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Attack with all cannon pipes and shells!",				SPE_ENERGY_BOLT, /* trains attack spells by 25 when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Morgan's Studies",				SPE_ANTI_TELEPORTATION, /* trains occult spells by 35 when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Eddy's Uncontrollability",				SPE_TACTICAL_NUKE, /* trains chaos spells by 50 when read, but also causes a random bad effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Laura's Bedbook",				SPE_NATURE_BEAM, /* trains elemental spells by 33 when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Darth Maul's Teachings",				SPE_IMPACT_GUNFIRE, /* trains niman by 50 when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Sue Throwaway Commentary",				SPE_TELEPORT_AWAY, /* trains body spells by 60 when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Meditate, dude!",				SPE_RESIST_PETRIFICATION, /* trains protection spells by 75 when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Wherever you go, there you are",				SPE_INERTIA_CONTROL, /* trains all spell schools by 10 when read, but reduces your max mana by 10 (and if you didn't have that much, it reduces your alla by 100 instead) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Whoa, there are loud wands!",				SPE_IRON_PRISON, /* creates a random wand on the ground when read */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The ice belongs in the ice",				SPE_CRYOGENICS, /* creates a stack of ice blocks on the ground and transforms random tiles to ice like the ice spell */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Like Gemolt",				SPE_PURIFICATION, /* reading it changes the current weather to "overcast" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Sueyue Saa-a",				SPE_REGENERATION, /* reading it gives 2000 turns of regeneration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Ninety-Nate Chi",				SPE_SATISFY_HUNGER, /* +1 INT when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Swean, you know",				SPE_MANA_BATTERY, /* +1 CHA when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Less Must Must",				SPE_KEEP_SATIATION, /* 5000 turns of full nutrients when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("You are stop unable",				SPE_BACKFIRE, /* tries to steal an intrinsic when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Schub Schub",				SPE_RESTORE_ABILITY, /* reading it restores a lost stat point, without chance of failure */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fidedede de dedede dedede",				SPE_JUMPING, /* reading it gives 1000 turns of jumping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Forgetten easy",				SPE_DARKNESS, /* reading it trains memorization by 100 points and then causes amnesia that erases spells */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("FRA-NOAN",				SPE_DOWNER_TRIP, /* reading it gives you a bad equipment piece */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("floepfloepfloepfloepfloepfloepfloep Ha-ha",				SPE_PHASE_DOOR, /* reading it sets your special spell to "phase door" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Maternity",				SPE_BLOOD_STREAM, /* reading it makes you female if you weren't, and gives rnz(5000) turns of the natalia trap effect and +1 intrinsic protection */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("You as stupid as Orpheus are not",				SPE_MAGIC_MAPPING, /* reading it tries to magic map the current level like the scroll */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Downcome in the years",				SPE_LOCKOUT, /* triggers the field break (houzanha) effect and then the hunkajunk effect when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mira's Refreshing Bath",				SPE_WATER_FLAME, /* reading it will, if you're not on the plane of water, transform water squares on the current level to urine lakes with 10% chance for each such tile */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Horrendous Experience",				SPE_VANISHING, /* boosts your alignment and max by 5 and grants (XL*1000) experience points when read but also spawns rn1(5,5) eldritch horrors at a specific place */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("totally the erogenous Katia",				SPE_TIME, /* upon generation, if its amount of charges would be lower than 1 it'll be set to 1, then you get the super katia trap effect for 20000 + (5000 * amount of charges) turns. after that, the amount of charges is doubled and 5 added to it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Colorful Lovenails",				SPE_TAKE_SELFIE, /* reading it sets your nail polish amount to 10 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Why? Therefore!",				SPE_RUMOR, /* upon generating, you get rnz(5000) turns of the longing nastytrap effect, and the same happens if you read it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Aircraft Missile",				MILITARY_RIFLE, /* if you're both riding and flying at the same time, all your ranged attacks have +5 accuracy */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 2), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Precision Strike",				MILITARY_RIFLE, /* dmg h@ck, rate of fire is 5 bullets per salvo */
+	(SPFX_RESTR), 0, 0,
+	PHYS(10, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Soviet Winter",				ICE_BLOCK, /* if you're in soviet mode, it deals triple damage */
+	(SPFX_RESTR), 0, 0,
+	PHYS(6, 0), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Free, asshole!",				ICE_BLOCK,
+	(SPFX_RESTR|SPFX_ATTK), 0, 0,
+	COLD(0, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Dn dn dn! Dn dn dn!",				SPE_TUNNELS, /* creates random tunnels nearby when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -4929,6 +4929,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	/* todo area */
 
+	{ MILITARY_RIFLE, "todo" },
+	{ ICE_BLOCK, "todo" },
+
 	{0, "" }
 };
 
@@ -8590,6 +8593,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ RIN_GAMBLING, "qimor o'lyinlari" },
 
 	/* todo area */
+
+	{ MILITARY_RIFLE, "todo" },
+	{ ICE_BLOCK, "todo" },
 
 	{0, "" }
 };

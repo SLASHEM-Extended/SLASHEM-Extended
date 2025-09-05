@@ -6562,7 +6562,7 @@ secremchoice:
 					j = rn2(NUM_OBJECTS);
 					while (objects[j].oc_prob < 1) j = rn2(NUM_OBJECTS);
 					makeknown(j);
-					pline("%s (%s).", obj_descr[j].oc_name, obj_descr[j].oc_descr);
+					pline("%s (%s).", obj_descr[j].oc_name, objtypenames[objects[j].oc_class]);
 				}
 				}
 				break;

@@ -1078,7 +1078,7 @@ boolean costly;
 
 	    if (castit) {
 		exercise(A_WIS, TRUE);
-		if (spelleffects(sp_no, TRUE))
+		if (spelleffects(sp_no, TRUE, FALSE))
 			return(1);
 		else
 #ifdef WIZARD

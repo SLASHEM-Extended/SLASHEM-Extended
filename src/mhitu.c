@@ -2827,7 +2827,7 @@ cursesatyou:
 
 			if (!issoviet && rn2(2)) break;
 
-			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_TCKL || mattk->adtyp == AD_NAST) )
+			if (/*range2 &&*/ !blue_on_blue(mtmp) && rn2(25) && (mattk->adtyp == AD_ACID || mattk->adtyp == AD_BLND || mattk->adtyp == AD_DRLI || mattk->adtyp == AD_ICEB || mattk->adtyp == AD_TCKL || mattk->adtyp == AD_NAST) )
 			    sum[i] = spitmu(mtmp, mattk);
 			/* Note: spitmu takes care of displacement */
 
@@ -20429,6 +20429,7 @@ enjoyable:
 
         boolean protect_test = !(ublindf && (ublindf->otyp == CONDOME || ublindf->otyp == SOFT_CHASTITY_BELT))
 				    && !(uwep && uwep->oartifact == ART_HARMONY_VIRGIN)
+				    && !(u.tempstdprotection)
 				    && !(uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE)
                             && !(uarm && (uarm->oartifact == ART_CHASTITY_ARMOR || uarm->oartifact == ART_LITTLE_PENIS_WANKER));
 
@@ -21193,9 +21194,10 @@ stdcontracting:
 		if (uwep && uwep->oartifact == ART_HARMONY_VIRGIN) pline("Your harmony whip kept you safe from any diseases you might otherwise have contracted.");
 		if (uwep && uwep->oartifact == ART_MISTY_S_MELEE_PLEASURE) pline("Your pleasure whip kept you safe from any diseases you might otherwise have contracted.");
             if (uarm && uarm->oartifact == ART_CHASTITY_ARMOR) pline("Your chastity armor kept you safe from any diseases you might otherwise have contracted.");
+		if (u.tempstdprotection) pline("You might have contracted a disease, but are currently immune. Thank God.");
             if (uarm && uarm->oartifact == ART_LITTLE_PENIS_WANKER) {
-		pline("Your penis-protection armor kept you safe from any diseases you might otherwise have contracted.");
-		if (flags.female) pline("Thankfully it's shaped such that it also protects vaginas. :-)");
+			pline("Your penis-protection armor kept you safe from any diseases you might otherwise have contracted.");
+			if (flags.female) pline("Thankfully it's shaped such that it also protects vaginas. :-)");
             }
 
             if (!rn2(Role_if(PM_LADIESMAN) ? 100 : 10)) mon->mcan = 1; /* monster is worn out; chance is much higher now --Amy */

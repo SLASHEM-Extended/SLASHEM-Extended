@@ -2175,11 +2175,11 @@ learn()
 		if (spellid(i) == booktype)  {
 			if (book->spestudied > MAX_SPELL_STUDY) {
 			    pline("This spellbook is too faint to be read anymore.");
-			    book->otyp = booktype = SPE_BLANK_PAPER;
+			    if (book) book->otyp = booktype = SPE_BLANK_PAPER;
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
 
-			    handleartifactspellbook(book);
+			    handleartifactspellbook(book); /* ATTENTION: apparently this can cause "book" to be removed */
 
 				/* ultra annoyingly, "boostknow" cannot be used in handleartifactspellbook(), because lol why would we have a function that
 				 * allows you to just say "increase knowledge of the spell with this ID". nooooooo, we have to make it a function that increases
@@ -2187,20 +2187,20 @@ learn()
 				 * ATTENTION !!!!!!! handleartifactspellbook() is called again below so all those artifacts that do "boostknow" stuff will
 				 * ***HAVE*** to also be handled again below where that other function call is or they won't work right !!!!! */
 
-				if (book->oartifact == ART_YOU_CAN_HURT) {
+				if (book && book->oartifact == ART_YOU_CAN_HURT) {
 					losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
 					boostknow(i, 50000);
 					You("can hurt, but the spell will last for a generous time.");
 				}
-				if (book->oartifact == ART_BACKLASHPROTECT) {
+				if (book && book->oartifact == ART_BACKLASHPROTECT) {
 					boostknow(i, 40000);
 					pline_The("spell has a lot of memory now.");
 				}
-				if (book->oartifact == ART_MULTIPLY_ME) {
+				if (book && book->oartifact == ART_MULTIPLY_ME) {
 					boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 					pline_The("spell memory bonus was multiplied!");
 				}
-				if (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_K_OR_EA_SY) {
+				if (book && (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_FLOEPFLOEPFLOEPFLOEPFLOEPF || book->oartifact == ART_K_OR_EA_SY)) {
 					u.superspecialspell = booktype;
 					pline_The("spell is your super special spell now.");
 				}
@@ -2214,7 +2214,7 @@ learn()
 			    if (uarmc && uarmc->oartifact == ART_READ_UP_ON_IT) boostknow(i, 20000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
-			    book->spestudied++;
+			    if (book) book->spestudied++;
 
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 
@@ -2250,7 +2250,7 @@ learn()
 
 				}
 
-			    if (end_delay) {
+			    if (book && end_delay) {
 			    	boostknow(i, end_delay * ((book->spe > 0) ? 20 : 10));
 
 				use_skill(spell_skilltype(book->otyp), end_delay / ((book->spe > 0) ? 10 : 20));
@@ -2276,27 +2276,27 @@ learn()
 			if (uarmc && uarmc->oartifact == ART_READ_UP_ON_IT) boostknow(i, 20000);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
-			book->spestudied++;
+			if (book) book->spestudied++;
 			You("have keen knowledge of the spell.");
 			You(i > 0 ? "add %s to your repertoire." : "learn %s.",
 			    splname);
 
-			handleartifactspellbook(book);
+			handleartifactspellbook(book); /* ATTENTION: apparently this can cause "book" to be removed */
 
-			if (book->oartifact == ART_YOU_CAN_HURT) {
+			if (book && book->oartifact == ART_YOU_CAN_HURT) {
 				losehp( (u.uhpmax / 2) + 2, "being hurt by a spellbook", KILLED_BY);
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
 			}
-			if (book->oartifact == ART_BACKLASHPROTECT) {
+			if (book && book->oartifact == ART_BACKLASHPROTECT) {
 				boostknow(i, 40000);
 				pline_The("spell has a lot of memory now.");
 			}
-			if (book->oartifact == ART_MULTIPLY_ME) {
+			if (book && book->oartifact == ART_MULTIPLY_ME) {
 				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 				pline_The("spell memory bonus was multiplied!");
 			}
-			if (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_K_OR_EA_SY) {
+			if (book && (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_FLOEPFLOEPFLOEPFLOEPFLOEPF || book->oartifact == ART_K_OR_EA_SY)) {
 				u.superspecialspell = booktype;
 				pline_The("spell is your super special spell now.");
 			}
@@ -2352,7 +2352,7 @@ learn()
 	}
 	if (i == MAXSPELL) impossible("Too many spells memorized!");
 
-	if ( (book->cursed || book->spe < 1) && !(uimplant && uimplant->oartifact == ART_DOMPFINATION) && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) {	/* maybe a demon cursed it */
+	if (book && (book->cursed || book->spe < 1) && !(uimplant && uimplant->oartifact == ART_DOMPFINATION) && !Role_if(PM_LIBRARIAN) && !Role_if(PM_PSYKER) && !(booktype == SPE_BOOK_OF_THE_DEAD) ) {	/* maybe a demon cursed it */
 	    if (cursed_book(book)) {
 		if (carried(book)) useup(book);
 		else useupf(book, 1L);
@@ -2361,8 +2361,8 @@ learn()
 		return 0;
 	    }
 	}
-	if (costly) check_unpaid(book);
-	book = 0;
+	if (book && costly) check_unpaid(book);
+	if (book) book = 0;
 	return(0);
 }
 
@@ -2842,7 +2842,7 @@ getspell(spell_no, goldspellpossible)
 
 			if (choicenumber > 0 && thisone >= 0) {
 				pline("You cast %s.", spellname(thisone));
-				spelleffects(thisone, FALSE);
+				spelleffects(thisone, FALSE, FALSE);
 				if (SpellColorPlatinum && u.uen < 0) {
 					u.uenmax -= (0 - u.uen);
 					if (u.uenmax < 0) {
@@ -2955,7 +2955,7 @@ docast()
 			else if (u.spellbinder7 == -1) u.spellbinder7 = spell_no;
 		}
 
-		whatreturn = spelleffects(spell_no, FALSE);
+		whatreturn = spelleffects(spell_no, FALSE, FALSE);
 
 		if (SpellColorPlatinum && u.uen < 0) {
 			u.uenmax -= (0 - u.uen);
@@ -3025,7 +3025,7 @@ castinertiaspell()
 			u.inertiacontrolspellno = -1;
 			return;
 		}
-		spelleffects(u.inertiacontrolspellno, FALSE);
+		spelleffects(u.inertiacontrolspellno, FALSE, FALSE);
 
 		if (SpellColorPlatinum && u.uen < 0) {
 			u.uenmax -= (0 - u.uen);
@@ -3177,9 +3177,423 @@ struct obj *book2;
 		return;
 	}
 
+	/* Amy dummy for copypasting when new artifact books are added
+
+	if (book2->oartifact == ART_) {
+
+	}
+
+	*/
+
+	if (book2->oartifact == ART_MEMORABLE_READ) {
+		use_skill(P_MEMORIZATION, 20);
+	}
+
+	if (book2->oartifact == ART_FORGETTEN_EASY) {
+		use_skill(P_MEMORIZATION, 100);
+		forget(3, FALSE);
+	}
+
+	if (book2->oartifact == ART_MATERNITY) {
+		flags.female = TRUE;
+		flags.botl = TRUE;
+		FemaleTrapNatalia += rnz(5000);
+		pline("Ack! You suddenly have to deal with the effects of your menstruational period!");
+
+		if (!(HProtection & INTRINSIC))  {
+			HProtection |= FROMOUTSIDE;
+			if (!u.ublessed) u.ublessed = (Race_if(PM_MAYMES) ? 2 : 1);
+		} else {
+			u.ublessed++;
+			if (Race_if(PM_MAYMES)) u.ublessed++;
+		}
+		You("feel more protected.");
+	}
+
+	if (book2->oartifact == ART_DOWNCOME_IN_THE_YEARS) {
+		int x, y;
+		int houzanhaamount = 50;
+		register struct rm *lev;
+		while (houzanhaamount) {
+			houzanhaamount--;
+			if (houzanhaamount < 0) houzanhaamount = 0;
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+			lev = &levl[x][y];
+			if (isok(x,y) && lev->typ != STAIRS && lev->typ != LADDER && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER) {
+				lev->typ = CORR;
+			}
+		}
+		pline("Haaaaaaaa!");
+		hunkajunkriver();
+		randhunkrivers();
+		pline("What a hunk 'a junk there is on this level.");
+
+		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+	}
+
+	if (book2->oartifact == ART_DN_DN_DN__DN_DN_DN_) {
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_tunnelfloodg, (void *)&madepoolQ);
+		if (madepoolQ) pline("Lots of tunnels are built!");
+	}
+
+	if (book2->oartifact == ART_COLORFUL_LOVENAILS) {
+		u.nailpolish = 10;
+		Your("cute lovenails are painted very colorfully now! <3");
+	}
+
+	if (book2->oartifact == ART_WHY__THEREFORE_) {
+		LongingEffect += rnz(5000);
+	}
+
+	if (book2->oartifact == ART_HORRENDOUS_EXPERIENCE) {
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		coord cc, dd;
+		int cx,cy, randsp, i;
+
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		randsp = rn1(5,5);
+
+		for (i = 0; i < randsp; i++) {
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			int attempts = 0;
+			register struct permonst *ptrZ;
+newbossHORR:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !(attackdamagetype(ptrZ, AT_GAZE, AD_INSA)) && !(attackdamagetype(ptrZ, AT_GAZE, AD_SANI)) && !(attackdamagetype(ptrZ, AT_GAZE, AD_SPC2)) ) ) && attempts < 50000);
+
+			if (ptrZ && (attackdamagetype(ptrZ, AT_GAZE, AD_INSA) || attackdamagetype(ptrZ, AT_GAZE, AD_SANI) || attackdamagetype(ptrZ, AT_GAZE, AD_SPC2) ) ) {
+				(void) makemon(ptrZ, cx, cy, MM_ANGRY|MM_ADJACENTOK);
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossHORR;
+			}
+
+		}
+
+		u.aggravation = 0;
+
+		u.alignlim += 5;
+		adjalign(5);
+
+		more_experienced(u.ulevel * 1000, 0);
+		newexplevel();
+	}
+
+	if (book2->oartifact == ART_MIRA_S_REFRESHING_BATH) {
+		if (!Is_waterlevel(&u.uz)) {
+			int i, j;
+			for (i = 0; i <= COLNO; i++) for(j = 0; j <= ROWNO; j++) {
+
+				if (!isok(i, j)) continue;
+				if (levl[i][j].typ == POOL || levl[i][j].typ == WATER || levl[i][j].typ == MOAT) {
+
+					if (!rn2(10)) levl[i][j].typ = URINELAKE;
+
+				}
+
+			}
+			You("hear Mira advertising her 'refreshing' bath to you...");
+		}
+	}
+
+	if (book2->oartifact == ART_YOU_AS_STUPID_AS_ORPHEUS_A) {
+		if (!level.flags.nommap) {
+			do_mapping();
+		}
+	}
+
+	if (book2->oartifact == ART_FRA_NOAN) {
+		bad_equipment(0);
+	}
+
+	if (book2->oartifact == ART_ATTACK_WITH_ALL_CANNON_PIP) {
+		use_skill(P_ATTACK_SPELL, 25);
+	}
+
+	if (book2->oartifact == ART_MORGAN_S_STUDIES) {
+		use_skill(P_OCCULT_SPELL, 35);
+	}
+
+	if (book2->oartifact == ART_EDDY_S_UNCONTROLLABILITY) {
+		use_skill(P_CHAOS_SPELL, 50);
+		badeffect();
+	}
+
+	if (book2->oartifact == ART_LAURA_S_BEDBOOK) {
+		use_skill(P_ELEMENTAL_SPELL, 33);
+	}
+
+	if (book2->oartifact == ART_DARTH_MAUL_S_TEACHINGS) {
+		use_skill(P_NIMAN, 50);
+	}
+
+	if (book2->oartifact == ART_SUE_THROWAWAY_COMMENTARY) {
+		use_skill(P_BODY_SPELL, 60);
+	}
+
+	if (book2->oartifact == ART_MEDITATE__DUDE_) {
+		use_skill(P_PROTECTION_SPELL, 75);
+	}
+
+	if (book2->oartifact == ART_WHEREVER_YOU_GO__THERE_YOU) {
+		if (u.uenmax > 9) {
+			u.uenmax -= 10;
+			flags.botl = TRUE;
+			You("bought some spell training at the cost of magical power.");
+		} else if (u.alla > 100) {
+			u.alla -= 100;
+			You("bought some spell training at the cost of your soul.");
+		} else {
+			u.youaredead = 1;
+			You("experience some horrible agony as your soul shatters.");
+			killer = "reading a dangerous book";
+			killer_format = KILLED_BY;
+			done(DIED);
+			/* lifesaved */
+			u.youaredead = 0;
+			u.alla = 1000; /* reset to starting amount */
+		}
+		use_skill(P_PROTECTION_SPELL, 10);
+		use_skill(P_ATTACK_SPELL, 10);
+		use_skill(P_BODY_SPELL, 10);
+		use_skill(P_MATTER_SPELL, 10);
+		use_skill(P_HEALING_SPELL, 10);
+		use_skill(P_CHAOS_SPELL, 10);
+		use_skill(P_OCCULT_SPELL, 10);
+		use_skill(P_ELEMENTAL_SPELL, 10);
+		use_skill(P_PROTECTION_SPELL, 10);
+		use_skill(P_DIVINATION_SPELL, 10);
+
+	}
+
+	if (book2->oartifact == ART_APPRETEN_IMMEDIATELY_TERMI) {
+		use_temporary_tech(T_CREATE_AMMO);
+	}
+
 	if (book2->oartifact == ART_SECRET_BOOK_OF_VENOM) {
 		You("gain the secret knowledge of venom mixing!");
 		learntech_or_leveltech(T_VENOM_MIXING, FROMOUTSIDE, 1);
+	}
+
+	if (book2->oartifact == ART_A_LITTLE_BITTLE_JUMEX) {
+		u.homosexual = 1;
+		You_feel("heterosexual.");
+	}
+
+	if (book2->oartifact == ART_BABYABO_PHOGO) {
+		u.tempstdprotection += 10000;
+		You("are protected from STDs for a while.");
+	}
+
+	if (book2->oartifact == ART_FLASHBACK_JIPPIEJEYO) {
+		int i, j;
+		pline("You learn the identity of some objects:");
+		for (i = 0; i < 5; i++) {
+			j = rn2(NUM_OBJECTS);
+			while (objects[j].oc_prob < 1) j = rn2(NUM_OBJECTS);
+			makeknown(j);
+			pline("%s (%s).", obj_descr[j].oc_name, objtypenames[objects[j].oc_class]);
+		}
+
+	}
+
+	if (book2->oartifact == ART_EXTRAORDINARY_METRONOME) {
+		spell_metronome();
+	}
+
+	if (book2->oartifact == ART_DRUM__THE_DRUM_) {
+		You_feel("that monsters are aware of your presence."); /* aggravate monster */
+		aggravate();
+
+		register struct monst *mtmp;
+
+		for(mtmp = fmon; mtmp; mtmp = mtmp->nmon) {
+		    if (DEADMONSTER(mtmp)) continue;
+		    if (distu(mtmp->mx,mtmp->my) > 100) continue;
+		    if (!resist(mtmp, SCROLL_CLASS, 0, NOTELL)) {
+			monflee(mtmp, rn1(10, 10), FALSE, FALSE, FALSE);
+		    }
+		}
+
+	}
+
+	if (book2->oartifact == ART_GOD_IN_THE_HEAVEN) {
+		Your("prayer timeout is %d.", u.ublesscnt);
+	}
+
+	if (book2->oartifact == ART_METROTECHEN) {
+		tech_metronome();
+	}
+
+	if (book2->oartifact == ART_GO_TO_THE_FAST_TRAIN) {
+		TrapCreationProblem += rnz(12000);
+		use_skill(P_SEARCHING, 100);
+		You("train the searching skill, fast.");
+	}
+
+	if (book2->oartifact == ART_THERE_COME_THOSE_WUEU_WUEU) {
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		u.cnd_kopsummonamount++;
+		int copcnt = rnd(monster_difficulty() ) + 1;
+		if (rn2(5)) copcnt = (copcnt / (rnd(4) + 1)) + 1;
+		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
+
+		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		if (RngeAntiGovernment) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		int tryct = 0;
+		int x, y;
+
+		for (tryct = 0; tryct < 2000; tryct++) {
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (isok(x, y) && (levl[x][y].typ > DBWALL) && !(t_at(x, y)) ) {
+				(void) maketrap(x, y, KOP_CUBE, 0, FALSE);
+				break;
+			}
+		}
+
+	      while(--copcnt >= 0) {
+			if (xupstair) (void) makemon(mkclass(S_KOP,0), xupstair, yupstair, rn2(3) ? MM_ANGRY|MM_ADJACENTOK : MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+			else (void) makemon(mkclass(S_KOP,0), 0, 0, rn2(3) ? MM_ANGRY|MM_ADJACENTOK : MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
+		} /* while */
+
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_I_HAVE_SPEP_TIME) {
+		if (rn2(2)) You("have at least until turn %d before you need to have ascended.", u.ascensionfirsthint * 4);
+		else You("don't have much more than %d turns before you need to have ascended.", u.ascensionsecondhint);
+	}
+
+	if (book2->oartifact == ART_ADRIANEN_WOMAN) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+		(void) makemon(specialtensmon(332), 0, 0, MM_ADJACENTOK); /* MS_SHOE */
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_PROVINZKAJA_BITCHING) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+		(void) makemon(specialtensmon(332), u.ux, u.uy, MM_XFRENZIED|MM_ANGRY|MM_ADJACENTOK); /* MS_SHOE */
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_HIPPOCRATES__AID) {
+		u.uhpmax++;
+		if (Upolyd) u.mhmax++;
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			maybe_evolve_symbiote();
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
+		u.uenmax++;
+		flags.botl = TRUE;
+		pline("Hippocrates decides to aid you.");
+	}
+
+	if (book2->oartifact == ART_GS_GF_XM_TANJA) {
+		if (!(FemaleTrapTanja & INTRINSIC)) {
+
+			FemaleTrapTanja |= FROMOUTSIDE;
+			if (!FemtrapActiveRuth) pline("The girls learned takewondo, and will knock the crap out of you with their female sneakers.");
+
+			adjattrib(A_CHA, rn1(5,5), FALSE, TRUE);
+
+			if (!flags.female) use_skill(P_GUN_CONTROL, 50);
+
+			You_feel("that the dude who made those XM sound files must have a girlfriend named Tanja.");
+		}
+	}
+
+	if (book2->oartifact == ART_DEVILS_SOUND_LIKE_MOSQUITO) {
+		int devilsummon = 4;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while (devilsummon > 0) {
+			devilsummon--;
+			(void) makemon(mkclass(S_DEMON,0), u.ux, u.uy, MM_ADJACENTOK);
+			(void) makemon(mkclass(S_ANT,0), u.ux, u.uy, MM_ADJACENTOK);
+		}
+
+		u.aggravation = 0;
+
+		You("absolutely can't stand that high-pitched 'SSSSSSSSSS!' sound!");
+	}
+
+	if (book2->oartifact == ART_DAMDAMDAM_DAMDAMDAM_DAMDAM) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		{
+			int attempts = 0;
+			register struct permonst *ptrZ;
+newbossDAM:
+			do {
+
+				ptrZ = rndmonst();
+				attempts++;
+				if (attempts && (attempts % 10000 == 0)) u.mondiffhack++;
+				if (!rn2(2000)) reset_rndmonst(NON_PM);
+
+			} while ( (!ptrZ || (ptrZ && !(ptrZ->geno & G_UNIQ))) && attempts < 50000);
+
+			if (ptrZ && ptrZ->geno & G_UNIQ) {
+				(void) makemon(ptrZ, 0, 0, MM_ANGRY);
+				pline("DAMDAMDAM DAMDAMDAM DAMDAMDAMDAMDAMDAM, *DOOH-DODOMM DODODODOOH-DODOMM! DOOH-DODOMM DODODODOOH-DODOMM!*");
+			}
+			else if (rn2(50)) {
+				attempts = 0;
+				goto newbossDAM;
+			}
+
+		}
+
+		u.mondiffhack = 0;
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_AMUSINGE_BOOZER) {
+		make_confused(HConfusion + rn1(15, 15), FALSE);
+		You_feel("intoxicated...");
 	}
 
 	if (book2->oartifact == ART_OH_WHAT_A_GOOD_SAME_ME_THR) {
@@ -3296,6 +3710,56 @@ struct obj *book2;
 		pline("You can see invisible things!");
 	}
 
+	if (book2->oartifact == ART_POSSIBLE_BIO_READING) {
+		u.urealedibility += 10;
+		pline("Possible bio reading.");
+	}
+
+	if (book2->oartifact == ART____MINUTES_WITHOUT_WLAN) {
+		u.powerfailure += 1500;
+		incr_itimeout(&HInvis, 1500);
+		incr_itimeout(&HStealth, 1500);
+		You("have to spend the next 15 minutes without WLAN.");
+	}
+
+	if (book2->oartifact == ART_WENDSDAY__WENDSDAY__WE) {
+		if (week_day() == 3) {
+			incr_itimeout(&HSwimming, 5000);
+			u.tempwaterprotection += 5000;
+			pline("It actually is Wendsday, err Wednesday, so you can swim unharmed for a long time!");
+		} else {
+			incr_itimeout(&HSwimming, 1000);
+			u.tempwaterprotection += 1000;
+			pline("You can swim unharmed for some time.");
+		}
+	}
+
+	if (book2->oartifact == ART_RARE_POKESPAWNAGE) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+		coord cc, dd;
+		int cx,cy, randsp, i;
+
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		randsp = rn1(8,8);
+
+		for (i = 0; i < randsp; i++) {
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			(void) makemon(specialtensmon(!rn2(3) ? 195 : rn2(2) ? 243 : 299), cx, cy, MM_ADJACENTOK); /* AD_COLD, AD_FRZE or AD_ICEB */
+
+		}
+
+		u.aggravation = 0;
+
+		You_feel("a rather cold aura...");
+
+	}
+
 	if (book2->oartifact == ART_HIGH_SCORING_TRICK) {
 		if (Aggravate_monster) {
 			u.aggravation = 1;
@@ -3322,9 +3786,20 @@ struct obj *book2;
 
 	}
 
+	if (book2->oartifact == ART_HEAVY_THUNDERHALL) {
+		incr_itimeout(&HWildWeatherEffect, rnz(10000));
+		pline_The("weather starts changing randomly!");
+	}
+
 	if (book2->oartifact == ART_SOMMERDEN_WANT_TO_BE_USED_) {
 		pline_The("sun comes out.");
 		u.currentweather = WEATHER_SUNNY;
+		tell_main_weather();
+	}
+
+	if (book2->oartifact == ART_RAINZONE) {
+		pline("It starts to rain.");
+		u.currentweather = WEATHER_RAIN;
 		tell_main_weather();
 	}
 
@@ -3429,6 +3904,85 @@ melatechoice:
 		}
 
 		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_WHOA__THERE_ARE_LOUD_WANDS) {
+		struct obj *uammo;
+		uammo = mkobj(WAND_CLASS, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = 1;
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A wand has formed on the ground!");
+		}
+	}
+
+	if (book2->oartifact == ART_LIKE_GEMOLT) {
+		u.currentweather = WEATHER_OVERCAST;
+		tell_main_weather();
+	}
+
+	if (book2->oartifact == ART_SUEYUE_SAA_A) {
+		incr_itimeout(&HRegeneration, 2000);
+		You("start regenerating.");
+	}
+
+	if (book2->oartifact == ART_NINETY_NATE_CHI) {
+		adjattrib(A_INT, 1, FALSE, TRUE);
+	}
+
+	if (book2->oartifact == ART_SWEAN__YOU_KNOW) {
+		adjattrib(A_CHA, 1, FALSE, TRUE);
+	}
+
+	if (book2->oartifact == ART_LESS_MUST_MUST) {
+		incr_itimeout(&HFull_nutrient, 5000);
+		Your("food consumption slows down.");
+	}
+
+	if (book2->oartifact == ART_YOU_ARE_STOP_UNABLE) {
+		intrinsicgainorloss(2); /* lose an intrinsic */
+	}
+
+	if (book2->oartifact == ART_FIDEDEDE_DE_DEDEDE_DEDEDE) {
+		incr_itimeout(&HJumping, 1000);
+		You("feel like Super Mario!");
+	}
+
+	if (book2->oartifact == ART_SCHUB_SCHUB) {
+		int i, ii, lim;
+
+		i = rn2(A_MAX);		/* start at a random point */
+		for (ii = 0; ii < A_MAX; ii++) {
+			lim = AMAX(i);
+			if (ABASE(i) < lim) {
+				ABASE(i)++;
+				pline("Wow! This makes you feel good!");
+				flags.botl = 1;
+				break; /* only restore one --Amy */
+			}
+			if(++i >= A_MAX) i = 0;
+		}
+
+	}
+
+	if (book2->oartifact == ART_ICE_BELONGS_IN_THE_ICE) {
+
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_icefloodg, (void *)&madepoolQ);
+		if (madepoolQ) pline("The landscape is winterized!");
+
+		struct obj *uammo;
+		uammo = mksobj(ICE_BLOCK, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rn1(25, 25);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A stack of ice blocks has formed on the ground!");
+		}
+
 	}
 
 	if (book2->oartifact == ART_ZI_U_U_U_U_U_UUUUU) {
@@ -3544,10 +4098,45 @@ int spell;
     return;
 }
 
+/* cast a random spell, possibly one that you don't even have --Amy */
+void
+spell_metronome()
+{
+	struct obj *pseudo;
+
+	pseudo = mksobj(SPE_MAGIC_BOLT, FALSE, 2, FALSE);
+	pseudo->otyp = randartspellbookX();
+
+	if (!pseudo) {
+		pline("The spell failed spontaneously!");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return;
+	}
+
+	pline("You cast the '%s' spell.", OBJ_NAME(objects[pseudo->otyp]));
+
+metronomestart:
+	if (!getdir((char *)0)) {
+		if (yn("Do you really want to input no direction?") == 'y')
+			pline_The("magical energy is released!");
+		else {
+			goto metronomestart;
+		}
+	}
+
+	pseudo->blessed = pseudo->cursed = 0;
+	pseudo->quan = 20L;			/* do not let useup get it */
+
+	spelleffects(pseudo->otyp, FALSE, TRUE);
+
+	if (pseudo) obfree(pseudo, (struct obj *)0);
+}
+
 int
-spelleffects(spell, atme)
+spelleffects(spell, atme, metronomespell)
 int spell;
 boolean atme;
+boolean metronomespell;
 {
 	int energy, damage, chance, n, intell;
 	int hungr;
@@ -3556,6 +4145,12 @@ boolean atme;
 	struct obj *pseudo;
 	struct obj *otmp;
 	int confusionchance = 0;
+
+	if (metronomespell) {
+		skill = 0;
+		role_skill = 0;
+		goto metronomedoit;
+	}
 
 	/*
 	 * Find the skill the hero has in a spell type category.
@@ -4310,13 +4905,14 @@ castanyway:
 	exercise(A_WIS, TRUE);
 
 	/* pseudo is a temporary "false" object containing the spell stats. */
-	pseudo = mksobj(spellid(spell), FALSE, 2, FALSE);
+metronomedoit:
+	pseudo = (metronomespell ? mksobj(spell, FALSE, 2, FALSE) : mksobj(spellid(spell), FALSE, 2, FALSE) );
 	if (!pseudo) {
 		pline("The spell failed spontaneously!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return(1);
 	}
-	if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = spellid(spell); /* minimalist fix */
+	if (pseudo->otyp == GOLD_PIECE) pseudo->otyp = (metronomespell ? spell : spellid(spell)); /* minimalist fix */
 	pseudo->blessed = pseudo->cursed = 0;
 	pseudo->quan = 20L;			/* do not let useup get it */
 
@@ -4927,7 +5523,7 @@ bucchoice:
 
 		if(!(HDiscount_action & INTRINSIC)) {
 			You("gain paralysis resistance!");
-			incr_itimeout(&HDiscount_action, HDiscount_action ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDiscount_action, HDiscount_action ? (rnd(10) + spell_damage_bonus(SPE_RESIST_PARALYSIS)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_PARALYSIS)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -4942,7 +5538,7 @@ bucchoice:
 
 		if(!(HFull_nutrient & INTRINSIC)) {
 			Your("nutrition consumption slows down!");
-			incr_itimeout(&HFull_nutrient, HFull_nutrient ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HFull_nutrient, HFull_nutrient ? (rnd(10) + spell_damage_bonus(SPE_KEEP_SATIATION)) : (rn1(100, 50) + spell_damage_bonus(SPE_KEEP_SATIATION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -4976,7 +5572,7 @@ bucchoice:
 
 		if(!(HTechnicality & INTRINSIC)) {
 			Your("techniques become stronger!");
-			incr_itimeout(&HTechnicality, HTechnicality ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HTechnicality, HTechnicality ? (rnd(10) + spell_damage_bonus(SPE_TECH_BOOST)) : (rn1(100, 50) + spell_damage_bonus(SPE_TECH_BOOST)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -4991,7 +5587,7 @@ bucchoice:
 
 		if(!(HControlMagic & INTRINSIC)) {
 			You("feel more capable of controlling your magic!");
-			incr_itimeout(&HControlMagic, HControlMagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HControlMagic, HControlMagic ? (rnd(10) + spell_damage_bonus(SPE_MAGIC_CONTROL)) : (rn1(100, 50) + spell_damage_bonus(SPE_MAGIC_CONTROL)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -5006,7 +5602,7 @@ bucchoice:
 
 		if(!(HAstral_vision & INTRINSIC)) {
 			You("can see through walls!");
-			incr_itimeout(&HAstral_vision, HAstral_vision ? 1 : (5 + spell_damage_bonus(spellid(spell)) ) );
+			incr_itimeout(&HAstral_vision, HAstral_vision ? 1 : (5 + spell_damage_bonus(SPE_ASTRAL_VIEW) ) );
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -5033,7 +5629,7 @@ bucchoice:
 
 		if(!(HBlind_resistance & INTRINSIC)) {
 			You("feel able to see freely!");
-			incr_itimeout(&HBlind_resistance, HBlind_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rnd(100) + spell_damage_bonus(spellid(spell))*20));
+			incr_itimeout(&HBlind_resistance, HBlind_resistance ? (rnd(10) + spell_damage_bonus(SPE_CAROTINE_INJECTION)) : (rnd(100) + spell_damage_bonus(SPE_CAROTINE_INJECTION)*20));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -5051,7 +5647,7 @@ bucchoice:
 
 		if(!(HHalluc_resistance & INTRINSIC)) {
 			You("feel like you're on a bad trip that lacks fleecy colors!");
-			incr_itimeout(&HHalluc_resistance, HHalluc_resistance ? (rnd(100) + spell_damage_bonus(spellid(spell))) : (rnd(200) + spell_damage_bonus(spellid(spell))*50));
+			incr_itimeout(&HHalluc_resistance, HHalluc_resistance ? (rnd(100) + spell_damage_bonus(SPE_DOWNER_TRIP)) : (rnd(200) + spell_damage_bonus(SPE_DOWNER_TRIP)*50));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -5064,7 +5660,7 @@ bucchoice:
 
 	case SPE_CONTINGENCY:
 
-		u.contingencyturns = 50 + (spell_damage_bonus(spellid(spell)) * 3);
+		u.contingencyturns = 50 + (spell_damage_bonus(SPE_CONTINGENCY) * 3);
 		You("sign up a contract with the reaper.");
 
 		break;
@@ -5120,7 +5716,7 @@ aulechoice:
 		break;
 
 	case SPE_HORSE_HOP:
-		u.horsehopturns = 50 + rnd(50 + (spell_damage_bonus(spellid(spell)) * 5) );
+		u.horsehopturns = 50 + rnd(50 + (spell_damage_bonus(SPE_HORSE_HOP) * 5) );
 		pline("You can jump while riding!");
 
 		break;
@@ -5230,7 +5826,7 @@ aulechoice:
 				break;
 			}
 
-			opdamage = d(8, 12) + (spell_damage_bonus(spellid(spell)) * 6);
+			opdamage = d(8, 12) + (spell_damage_bonus(SPE_IMPACT_GUNFIRE) * 6);
 
 			if (opbullet) {
 				if (opbullet->spe > 0) opbonus = opbullet->spe;
@@ -5315,7 +5911,7 @@ aulechoice:
 				break;
 			}
 
-			opdamage = d(6, 12) + (spell_damage_bonus(spellid(spell)) * 5);
+			opdamage = d(6, 12) + (spell_damage_bonus(SPE_ONE_POINT_SHOOT) * 5);
 
 			pline("Select the target monster");
 			cc.x = u.ux;
@@ -5400,7 +5996,7 @@ aulechoice:
 
 			    if (!sensemon(nexusmon) && !canseemon(nexusmon)) continue;
 
-				nexusmon->mhp -= (d(10, 10 + (spell_damage_bonus(spellid(spell)) * 5) ) + rnd(boosted_ulevel(1) * 5));
+				nexusmon->mhp -= (d(10, 10 + (spell_damage_bonus(SPE_GROUND_STOMP) * 5) ) + rnd(boosted_ulevel(1) * 5));
 				if (nexusmon->mhp <= 0) {
 					xkilled(nexusmon, 0);
 					pline("%s is crushed flat!", Monnam(nexusmon));
@@ -6974,7 +7570,7 @@ secureidchoice:
 
 		verbalize(!rn2(3) ? "Bohhh!" : rn2(2) ? "Wouuh!" : "Bohhohh!");
 		if (u.combatcommand) u.combatcommand += rnd(10);
-		else u.combatcommand = (rn1(50, 50) + spell_damage_bonus(spellid(spell)) * 5 );
+		else u.combatcommand = (rn1(50, 50) + spell_damage_bonus(SPE_COMBAT_COMMAND) * 5 );
 
 		break;
 
@@ -6982,7 +7578,7 @@ secureidchoice:
 
 		if(!(HDefusing & INTRINSIC)) {
 			You("can disarm traps more effectively!");
-			incr_itimeout(&HDefusing, HDefusing ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDefusing, HDefusing ? (rnd(10) + spell_damage_bonus(SPE_DEFUSING)) : (rn1(100, 50) + spell_damage_bonus(SPE_DEFUSING)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -7016,7 +7612,7 @@ secureidchoice:
 
 	case SPE_MAGIC_SHIELD:
 
-		u.magicshield += (u.magicshield ? rnd(10) : 40 + (spell_damage_bonus(spellid(spell)) * 10) );
+		u.magicshield += (u.magicshield ? rnd(10) : 40 + (spell_damage_bonus(SPE_MAGIC_SHIELD) * 10) );
 		pline("You activate your magic shield!");
 
 		break;
@@ -7030,7 +7626,7 @@ secureidchoice:
 			break;
 		}
 
-		u.berserktime = 7 + spell_damage_bonus(spellid(spell));
+		u.berserktime = 7 + spell_damage_bonus(SPE_BERSERK);
 		pline("Raaaaaargh! You fly into a berserk rage!");
 
 		break;
@@ -7048,7 +7644,7 @@ secureidchoice:
 			if ( (rainedmon = m_at(u.ux + i, u.uy + j)) != 0) {
 				if (dmgtype(rainedmon->data, AD_FIRE) || dmgtype(rainedmon->data, AD_BURN) || dmgtype(rainedmon->data, AD_LAVA)) {
 
-					rainedmon->mhp -= rnd(20 + (spell_damage_bonus(spellid(spell)) * 3) );
+					rainedmon->mhp -= rnd(20 + (spell_damage_bonus(SPE_RAIN_CLOUD) * 3) );
 					pline("%s is damaged by the raindrops!", Monnam(rainedmon));
 					if (rainedmon->mhp <= 0) {
 						pline("%s is killed!", Monnam(rainedmon));
@@ -7238,7 +7834,7 @@ secureidchoice:
 		}
 
 		/* enchanting again while it's already active sets a new timeout and does not add to the old one --Amy */
-		u.enchantspell = (5 + spell_damage_bonus(spellid(spell)));
+		u.enchantspell = (5 + spell_damage_bonus(SPE_ENCHANT));
 		pline("You enchant your weapon.");
 
 		break;
@@ -7288,7 +7884,7 @@ secureidchoice:
 
 			    if (!resists_elec(frostmon)) {
 
-				frostmon->mhp -= rnd(10 + (spell_damage_bonus(spellid(spell)) * 2) );
+				frostmon->mhp -= rnd(10 + (spell_damage_bonus(SPE_THUNDER_WAVE) * 2) );
 				pline("%s is shocked!", Monnam(frostmon));
 				if (frostmon->mhp <= 0) {
 					pline("%s is killed!", Monnam(frostmon));
@@ -7313,7 +7909,7 @@ secureidchoice:
 			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
 				if (dmgtype(mtmp->data, AD_ELEC) || dmgtype(mtmp->data, AD_MALK)) {
 					wakeup(mtmp);
-					mtmp->mhp -= rnd(40 + (spell_damage_bonus(spellid(spell)) * 10) );
+					mtmp->mhp -= rnd(40 + (spell_damage_bonus(SPE_POWER_FAILURE) * 10) );
 					pline("%s's power is down!", Monnam(mtmp));
 					if (rn2(3) && !mtmp->mstun) {
 						mtmp->mstun = TRUE;
@@ -7403,7 +7999,7 @@ secureidchoice:
 	case SPE_THORNS:
 
 		pline("You throw up a thorny skin!");
-		u.thornspell = 10 + (spell_damage_bonus(spellid(spell)) * 2);
+		u.thornspell = 10 + (spell_damage_bonus(SPE_THORNS) * 2);
 		/* casting it repeatedly will not give you a longer duration --Amy */
 
 		break;
@@ -7534,7 +8130,7 @@ secureidchoice:
 			}
 
 			int ammount = 1;
-			if (spell_damage_bonus(spellid(spell)) > 0) ammount += spell_damage_bonus(spellid(spell));
+			if (spell_damage_bonus(SPE_HYPERSPACE_SUMMON) > 0) ammount += spell_damage_bonus(SPE_HYPERSPACE_SUMMON);
 
 			/* make good shit, after all you pay with max health and pw for this spell */
 			u.aggravation = 1;
@@ -7698,7 +8294,7 @@ whisperchoice:
 		}
 
 		/* this spell is so costly to cast and so high level, I decide to give it some additional effect --Amy */
-		incr_itimeout(&HKeen_memory, HKeen_memory ? (rnd(50) + spell_damage_bonus(spellid(spell))*2) : (rn1(250, 250) + spell_damage_bonus(spellid(spell))*20));
+		incr_itimeout(&HKeen_memory, HKeen_memory ? (rnd(50) + spell_damage_bonus(SPE_WHISPERS_FROM_BEYOND)*2) : (rn1(250, 250) + spell_damage_bonus(SPE_WHISPERS_FROM_BEYOND)*20));
 
 		break;
 
@@ -7773,7 +8369,7 @@ whisperchoice:
 	case SPE_SYMHEAL:
 		if (uinsymbiosis) {
 			int healamount;
-			healamount = (rnd(10) + 4 + (spell_damage_bonus(spellid(spell)) * 2) + rndrnz(boosted_ulevel(1)));
+			healamount = (rnd(10) + 4 + (spell_damage_bonus(SPE_SYMHEAL) * 2) + rndrnz(boosted_ulevel(1)));
 			if (healamount > 1) healamount /= 2;
 			Your("symbiote seems healthier!");
 			u.usymbiote.mhp += healamount;
@@ -8748,7 +9344,7 @@ whisperchoice:
 		    pline_The("air around you erupts in a tower of flame!");
 		    burn_away_slime();
 		}
-		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), 3 + (spell_damage_bonus(spellid(spell)) / 2), SCROLL_CLASS, EXPL_FIERY);
+		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), 3 + (spell_damage_bonus(SPE_FIRE) / 2), SCROLL_CLASS, EXPL_FIERY);
 
 		break;
 
@@ -8903,7 +9499,7 @@ whisperchoice:
 	case SPE_TIME_STOP:
 		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
 		if (rn2(3)) TimeStopped += (rnd(3) + 1);
-		else TimeStopped += rnd(3 + spell_damage_bonus(spellid(spell)) );
+		else TimeStopped += rnd(3 + spell_damage_bonus(SPE_TIME_STOP) );
 		break;
 	case SPE_LEVELPORT:
 	      if (!playerlevelportdisabled()) {
@@ -9558,7 +10154,7 @@ dashingchoice:
 
 	case SPE_ANTI_MAGIC_SHELL:
 			pline("You produce an anti-magic shell.");
-			u.antimagicshell += rnd(100 + (spell_damage_bonus(spellid(spell)) * 5) );
+			u.antimagicshell += rnd(100 + (spell_damage_bonus(SPE_ANTI_MAGIC_SHELL) * 5) );
 			/* can't cast it with the shell active, so no need to check for that :D --Amy */
 
 		break;
@@ -9735,7 +10331,7 @@ totemsummonchoice:
 
 		You_feel("an anti-sexual aura.");
 
-		u.sterilized = 10 + (spell_damage_bonus(spellid(spell)) * 4);
+		u.sterilized = 10 + (spell_damage_bonus(SPE_STERILIZE) * 4);
 
 		break;
 
@@ -9743,7 +10339,7 @@ totemsummonchoice:
 
 		You("activate your mana shield.");
 
-		u.disruptionshield = 30 + (spell_damage_bonus(spellid(spell)) * 7);
+		u.disruptionshield = 30 + (spell_damage_bonus(SPE_DISRUPTION_SHIELD) * 7);
 
 		break;
 
@@ -9751,7 +10347,7 @@ totemsummonchoice:
 
 		You("activate your holy shield.");
 
-		u.holyshield = 20 + (spell_damage_bonus(spellid(spell)) * 3);
+		u.holyshield = 20 + (spell_damage_bonus(SPE_HOLY_SHIELD) * 3);
 
 		break;
 
@@ -9960,7 +10556,7 @@ controlagain:
 		}
 
 		/* re-casting it will restart the countdown rather than add to the duration --Amy */
-		u.geolysis = 15 + (spell_damage_bonus(spellid(spell)) * 5);
+		u.geolysis = 15 + (spell_damage_bonus(SPE_GEOLYSIS) * 5);
 
 		break;
 
@@ -10006,7 +10602,7 @@ controlagain:
 		if (u.drippingtreadtype == 4) pline("Generating clouds.");
 
 		/* re-casting it will restart the countdown rather than add to the duration --Amy */
-		u.drippingtread = 20 + (spell_damage_bonus(spellid(spell)) * 3);
+		u.drippingtread = 20 + (spell_damage_bonus(SPE_DRIPPING_TREAD) * 3);
 
 		break;
 
@@ -10048,7 +10644,7 @@ controlagain:
 		else {
 		    pline_The("air around you explodes in a cloud of noxious gas!");
 		}
-		explode(u.ux, u.uy, ZT_SPELL(ZT_POISON_GAS), 24 + (spell_damage_bonus(spellid(spell)) * 2), SCROLL_CLASS, EXPL_NOXIOUS);
+		explode(u.ux, u.uy, ZT_SPELL(ZT_POISON_GAS), 24 + (spell_damage_bonus(SPE_STEAM_VENOM) * 2), SCROLL_CLASS, EXPL_NOXIOUS);
 
 		break;
 
@@ -10104,7 +10700,7 @@ controlagain:
 	case SPE_LOOT_IMPROVEMENT:
 		if(!(HMagicFindBonus & INTRINSIC)) {
 			You_feel("able to find magical items!");
-			incr_itimeout(&HMagicFindBonus, HMagicFindBonus ? rnd(5) : (10 + spell_damage_bonus(spellid(spell))) );
+			incr_itimeout(&HMagicFindBonus, HMagicFindBonus ? rnd(5) : (10 + spell_damage_bonus(SPE_LOOT_IMPROVEMENT)) );
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10117,7 +10713,7 @@ controlagain:
 	case SPE_MYSTERY_PROTECTION:
 		if(!(HMysteryResist & INTRINSIC)) {
 			You_feel("protected from mysterious magic.");
-			incr_itimeout(&HMysteryResist, HMysteryResist ? (rnd(3) + spell_damage_bonus(spellid(spell))) : (rn1(33, 15) + spell_damage_bonus(spellid(spell))*3));
+			incr_itimeout(&HMysteryResist, HMysteryResist ? (rnd(3) + spell_damage_bonus(SPE_MYSTERY_PROTECTION)) : (rn1(33, 15) + spell_damage_bonus(SPE_MYSTERY_PROTECTION)*3));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10130,7 +10726,7 @@ controlagain:
 	case SPE_RESIST_POISON:
 		if(!(HPoison_resistance & INTRINSIC)) {
 			You_feel("healthy ..... for the moment at least.");
-			incr_itimeout(&HPoison_resistance, HPoison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HPoison_resistance, HPoison_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_POISON)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_POISON)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10142,7 +10738,7 @@ controlagain:
 	case SPE_ANTI_DISINTEGRATION:
 		if(!(HDisint_resistance & INTRINSIC)) {
 			You_feel("quite firm for a while.");
-			incr_itimeout(&HDisint_resistance, HDisint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDisint_resistance, HDisint_resistance ? (rnd(10) + spell_damage_bonus(SPE_ANTI_DISINTEGRATION)) : (rn1(100, 50) + spell_damage_bonus(SPE_ANTI_DISINTEGRATION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10154,7 +10750,7 @@ controlagain:
 	case SPE_MAGICTORCH:
 		if(!(HSight_bonus & INTRINSIC)) {
 			You("can see in the dark!");
-			incr_itimeout(&HSight_bonus, rn1(20, 10) + spell_damage_bonus(spellid(spell))*20);
+			incr_itimeout(&HSight_bonus, rn1(20, 10) + spell_damage_bonus(SPE_MAGICTORCH)*20);
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10166,7 +10762,7 @@ controlagain:
 	case SPE_DISPLACEMENT:
 		if(!(HDisplaced & INTRINSIC)) {
 			pline("Your image is displaced!");
-			incr_itimeout(&HDisplaced, HDisplaced ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(200, 100) + spell_damage_bonus(spellid(spell))*20));
+			incr_itimeout(&HDisplaced, HDisplaced ? (rnd(5) + spell_damage_bonus(SPE_DISPLACEMENT)) : (rn1(200, 100) + spell_damage_bonus(SPE_DISPLACEMENT)*20));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10178,7 +10774,7 @@ controlagain:
 	case SPE_TRUE_SIGHT:
 		if(!(HSee_invisible & INTRINSIC)) {
 			pline("You can see invisible things!");
-			incr_itimeout(&HSee_invisible, HSee_invisible ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(50, 25) + spell_damage_bonus(spellid(spell))*5));
+			incr_itimeout(&HSee_invisible, HSee_invisible ? (rnd(5) + spell_damage_bonus(SPE_TRUE_SIGHT)) : (rn1(50, 25) + spell_damage_bonus(SPE_TRUE_SIGHT)*5));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10190,7 +10786,7 @@ controlagain:
 	case SPE_CONFLICT:
 		if(!(HConflict & INTRINSIC)) {
 			pline("You start generating conflict!");
-			incr_itimeout(&HConflict, HConflict ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(20, 10) + spell_damage_bonus(spellid(spell))*3));
+			incr_itimeout(&HConflict, HConflict ? (rnd(5) + spell_damage_bonus(SPE_CONFLICT)) : (rn1(20, 10) + spell_damage_bonus(SPE_CONFLICT)*3));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10202,7 +10798,7 @@ controlagain:
 	case SPE_ESP:
 		if(!(HTelepat & INTRINSIC)) {
 			You_feel("a strange mental acuity.");
-			incr_itimeout(&HTelepat, HTelepat ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HTelepat, HTelepat ? (rnd(5) + spell_damage_bonus(SPE_ESP)) : (rn1(100, 50) + spell_damage_bonus(SPE_ESP)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10214,7 +10810,7 @@ controlagain:
 	case SPE_RADAR:
 		if(!(HWarning & INTRINSIC)) {
 			pline("You turn on your radar.");
-			incr_itimeout(&HWarning, HWarning ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HWarning, HWarning ? (rnd(5) + spell_damage_bonus(SPE_RADAR)) : (rn1(100, 50) + spell_damage_bonus(SPE_RADAR)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10226,7 +10822,7 @@ controlagain:
 	case SPE_REGENERATION:
 		if(!(HRegeneration & INTRINSIC)) {
 			pline("You direct your internal energy to closing your wounds.");
-			incr_itimeout(&HRegeneration, HRegeneration ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HRegeneration, HRegeneration ? (rnd(5) + spell_damage_bonus(SPE_REGENERATION)) : (rn1(100, 50) + spell_damage_bonus(SPE_REGENERATION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10238,7 +10834,7 @@ controlagain:
 	case SPE_SEARCHING:
 		if(!(HSearching & INTRINSIC)) {
 			pline("You start searching.");
-			incr_itimeout(&HSearching, HSearching ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSearching, HSearching ? (rnd(5) + spell_damage_bonus(SPE_SEARCHING)) : (rn1(100, 50) + spell_damage_bonus(SPE_SEARCHING)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10250,7 +10846,7 @@ controlagain:
 	case SPE_FREE_ACTION:
 		if(!(HFree_action & INTRINSIC)) {
 			pline("You are resistant to paralysis.");
-			incr_itimeout(&HFree_action, HFree_action ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HFree_action, HFree_action ? (rnd(5) + spell_damage_bonus(SPE_FREE_ACTION)) : (rn1(100, 50) + spell_damage_bonus(SPE_FREE_ACTION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10262,7 +10858,7 @@ controlagain:
 	case SPE_STEALTH:
 		if(!(HStealth & INTRINSIC)) {
 			pline("You start moving silently.");
-			incr_itimeout(&HStealth, HStealth ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HStealth, HStealth ? (rnd(5) + spell_damage_bonus(SPE_STEALTH)) : (rn1(100, 50) + spell_damage_bonus(SPE_STEALTH)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10274,7 +10870,7 @@ controlagain:
 	case SPE_INFRAVISION:
 		if(!(HInfravision & INTRINSIC)) {
 			pline("Your %s are suddenly very sensitive!", makeplural(body_part(EYE)));
-			incr_itimeout(&HInfravision, HInfravision ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HInfravision, HInfravision ? (rnd(5) + spell_damage_bonus(SPE_INFRAVISION)) : (rn1(100, 50) + spell_damage_bonus(SPE_INFRAVISION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10286,7 +10882,7 @@ controlagain:
 	case SPE_COAGULATION:
 		if(!(HDiminishedBleeding & INTRINSIC)) {
 			pline("Your %s is boiling!", body_part(BLOOD));
-			incr_itimeout(&HDiminishedBleeding, HDiminishedBleeding ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDiminishedBleeding, HDiminishedBleeding ? (rnd(5) + spell_damage_bonus(SPE_COAGULATION)) : (rn1(100, 50) + spell_damage_bonus(SPE_COAGULATION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10305,7 +10901,7 @@ controlagain:
 	case SPE_SMELL_MONSTER:
 		if(!(HScentView & INTRINSIC)) {
 			pline("Your %s is suddenly very sensitive!", body_part(NOSE));
-			incr_itimeout(&HScentView, HScentView ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HScentView, HScentView ? (rnd(5) + spell_damage_bonus(SPE_SMELL_MONSTER)) : (rn1(100, 50) + spell_damage_bonus(SPE_SMELL_MONSTER)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10316,13 +10912,13 @@ controlagain:
 		break;
 	case SPE_ECHOLOCATION:
 		pline("Your ears are suddenly very sensitive!");
-		if (u.echolocationspell) u.echolocationspell += (rnd(5) + spell_damage_bonus(spellid(spell)));
-		else u.echolocationspell += (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10);
+		if (u.echolocationspell) u.echolocationspell += (rnd(5) + spell_damage_bonus(SPE_ECHOLOCATION));
+		else u.echolocationspell += (rn1(100, 50) + spell_damage_bonus(SPE_ECHOLOCATION)*10);
 		break;
 	case SPE_BOTOX_RESIST:
 		if(!(HSick_resistance & INTRINSIC)) {
 			You_feel("resistant to sickness.");
-			incr_itimeout(&HSick_resistance, HSick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSick_resistance, HSick_resistance ? (rnd(10) + spell_damage_bonus(SPE_BOTOX_RESIST)) : (rn1(100, 50) + spell_damage_bonus(SPE_BOTOX_RESIST)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10334,7 +10930,7 @@ controlagain:
 	case SPE_DRAGON_BLOOD:
 		if(!(HDrain_resistance & INTRINSIC)) {
 			You_feel("resistant to level drainage.");
-			incr_itimeout(&HDrain_resistance, HDrain_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HDrain_resistance, HDrain_resistance ? (rnd(10) + spell_damage_bonus(SPE_DRAGON_BLOOD)) : (rn1(100, 50) + spell_damage_bonus(SPE_DRAGON_BLOOD)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10346,7 +10942,7 @@ controlagain:
 	case SPE_ANTI_MAGIC_FIELD:
 		if(!(HAntimagic & INTRINSIC)) {
 			You_feel("resistant to magic.");
-			incr_itimeout(&HAntimagic, HAntimagic ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HAntimagic, HAntimagic ? (rnd(10) + spell_damage_bonus(SPE_ANTI_MAGIC_FIELD)) : (rn1(100, 50) + spell_damage_bonus(SPE_ANTI_MAGIC_FIELD)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10569,13 +11165,13 @@ controlagain:
 
 	case SPE_GODMODE:
 		if (rn2(3)) incr_itimeout(&Invulnerable, rnd(5) );
-		else incr_itimeout(&Invulnerable, rnd(5 + spell_damage_bonus(spellid(spell)) ) );
+		else incr_itimeout(&Invulnerable, rnd(5 + spell_damage_bonus(SPE_GODMODE) ) );
 		You_feel("invincible!");
 		break;
 	case SPE_ACIDSHIELD:
 		if(!(HAcid_resistance & INTRINSIC)) {
 			You("are resistant to acid now. Your items, however, are not.");
-			incr_itimeout(&HAcid_resistance, HAcid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HAcid_resistance, HAcid_resistance ? (rnd(10) + spell_damage_bonus(SPE_ACIDSHIELD)) : (rn1(100, 50) + spell_damage_bonus(SPE_ACIDSHIELD)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10587,7 +11183,7 @@ controlagain:
 	case SPE_RESIST_PETRIFICATION:
 		if(!(HStone_resistance & INTRINSIC)) {
 			You_feel("more limber. Let's eat some cockatrice meat!");
-			incr_itimeout(&HStone_resistance, HStone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
+			incr_itimeout(&HStone_resistance, HStone_resistance ? (rnd(5) + spell_damage_bonus(SPE_RESIST_PETRIFICATION)) : (rn1(40, 20) + spell_damage_bonus(SPE_RESIST_PETRIFICATION)*4));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10602,7 +11198,7 @@ controlagain:
 				pline("Too much coffee!");
 			else
 				You("no longer feel tired.");
-			incr_itimeout(&HSleep_resistance, HSleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSleep_resistance, HSleep_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_SLEEP)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_SLEEP)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10614,7 +11210,7 @@ controlagain:
 	case SPE_FLYING:
 		if(!(HFlying & INTRINSIC)) {
 			You("start flying!");
-			incr_itimeout(&HFlying, HFlying ? (rnd(4) + spell_damage_bonus(spellid(spell))) : (rn1(20, 25) + spell_damage_bonus(spellid(spell))*20));
+			incr_itimeout(&HFlying, HFlying ? (rnd(4) + spell_damage_bonus(SPE_FLYING)) : (rn1(20, 25) + spell_damage_bonus(SPE_FLYING)*20));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10626,7 +11222,7 @@ controlagain:
 	case SPE_ENDURE_COLD:
 		if(!(HCold_resistance & INTRINSIC)) {
 			You_feel("warmer.");
-			incr_itimeout(&HCold_resistance, HCold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HCold_resistance, HCold_resistance ? (rnd(10) + spell_damage_bonus(SPE_ENDURE_COLD)) : (rn1(100, 50) + spell_damage_bonus(SPE_ENDURE_COLD)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10638,7 +11234,7 @@ controlagain:
 	case SPE_RESIST_STUN:
 		if(!(HStun_resist & INTRINSIC)) {
 			You_feel("resistant to stun.");
-			incr_itimeout(&HStun_resist, HStun_resist ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HStun_resist, HStun_resist ? (rnd(10) + spell_damage_bonus(SPE_RESIST_STUN)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_STUN)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10650,7 +11246,7 @@ controlagain:
 	case SPE_RESIST_CONFUSION:
 		if(!(HConf_resist & INTRINSIC)) {
 			You_feel("resistant to confusion.");
-			incr_itimeout(&HConf_resist, HConf_resist ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HConf_resist, HConf_resist ? (rnd(10) + spell_damage_bonus(SPE_RESIST_CONFUSION)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_CONFUSION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10662,7 +11258,7 @@ controlagain:
 	case SPE_RESIST_CONTAMINATION:
 		if(!(HCont_resist & INTRINSIC)) {
 			You_feel("resistant to contamination.");
-			incr_itimeout(&HCont_resist, HCont_resist ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HCont_resist, HCont_resist ? (rnd(10) + spell_damage_bonus(SPE_RESIST_CONTAMINATION)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_CONTAMINATION)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10677,7 +11273,7 @@ controlagain:
 				pline("Excellent! You feel, like, totally cool!");
 			else
 				You_feel("colder.");
-			incr_itimeout(&HFire_resistance, HFire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HFire_resistance, HFire_resistance ? (rnd(10) + spell_damage_bonus(SPE_ENDURE_HEAT)) : (rn1(100, 50) + spell_damage_bonus(SPE_ENDURE_HEAT)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10692,7 +11288,7 @@ controlagain:
 				pline("Bummer! You've been grounded!");
 			else
 				You("are not at all shocked by this feeling.");
-			incr_itimeout(&HShock_resistance, HShock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HShock_resistance, HShock_resistance ? (rnd(10) + spell_damage_bonus(SPE_INSULATE)) : (rn1(100, 50) + spell_damage_bonus(SPE_INSULATE)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10705,7 +11301,7 @@ controlagain:
 	case SPE_HOLD_AIR:
 		if(!(HMagical_breathing & INTRINSIC)) {
 			You("hold your breath.");
-			incr_itimeout(&HMagical_breathing, HMagical_breathing ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HMagical_breathing, HMagical_breathing ? (rnd(5) + spell_damage_bonus(SPE_HOLD_AIR)) : (rn1(40, 20) + spell_damage_bonus(SPE_HOLD_AIR)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10718,7 +11314,7 @@ controlagain:
 	case SPE_SWIMMING:
 		if(!(HSwimming & INTRINSIC)) {
 			You("grow water wings.");
-			incr_itimeout(&HSwimming, HSwimming ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+			incr_itimeout(&HSwimming, HSwimming ? (rnd(10) + spell_damage_bonus(SPE_SWIMMING)) : (rn1(100, 50) + spell_damage_bonus(SPE_SWIMMING)*10));
 		} else {
 			pline("%s", nothing_happens);	/* Already have as intrinsic */
 			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10736,7 +11332,7 @@ controlagain:
 						pline("Bummer! You've been grounded!");
 					else
 						You("are not at all shocked by this feeling.");
-					incr_itimeout(&HShock_resistance, HShock_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HShock_resistance, HShock_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10751,7 +11347,7 @@ controlagain:
 						pline("Excellent! You feel, like, totally cool!");
 					else
 						You_feel("colder.");
-					incr_itimeout(&HFire_resistance, HFire_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HFire_resistance, HFire_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10763,7 +11359,7 @@ controlagain:
 			case 3:
 				if(!(HCold_resistance & INTRINSIC)) {
 					You_feel("warmer.");
-					incr_itimeout(&HCold_resistance, HCold_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HCold_resistance, HCold_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10778,7 +11374,7 @@ controlagain:
 						pline("Too much coffee!");
 					else
 						You("no longer feel tired.");
-					incr_itimeout(&HSleep_resistance, HSleep_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HSleep_resistance, HSleep_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10790,7 +11386,7 @@ controlagain:
 			case 5:
 				if(!(HStone_resistance & INTRINSIC)) {
 					You_feel("more limber. Let's eat some cockatrice meat!");
-					incr_itimeout(&HStone_resistance, HStone_resistance ? (rnd(5) + spell_damage_bonus(spellid(spell))) : (rn1(40, 20) + spell_damage_bonus(spellid(spell))*4));
+					incr_itimeout(&HStone_resistance, HStone_resistance ? (rnd(5) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(40, 20) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*4));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10802,7 +11398,7 @@ controlagain:
 			case 6:
 				if(!(HAcid_resistance & INTRINSIC)) {
 					You("are resistant to acid now. Your items, however, are not.");
-					incr_itimeout(&HAcid_resistance, HAcid_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HAcid_resistance, HAcid_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10814,7 +11410,7 @@ controlagain:
 			case 7:
 				if(!(HSick_resistance & INTRINSIC)) {
 					You_feel("resistant to sickness.");
-					incr_itimeout(&HSick_resistance, HSick_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HSick_resistance, HSick_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10826,7 +11422,7 @@ controlagain:
 			case 8:
 				if(!(HPoison_resistance & INTRINSIC)) {
 					You_feel("healthy ..... for the moment at least.");
-					incr_itimeout(&HPoison_resistance, HPoison_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HPoison_resistance, HPoison_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10838,7 +11434,7 @@ controlagain:
 			case 9:
 				if(!(HDisint_resistance & INTRINSIC)) {
 					You_feel("quite firm for a while.");
-					incr_itimeout(&HDisint_resistance, HDisint_resistance ? (rnd(10) + spell_damage_bonus(spellid(spell))) : (rn1(100, 50) + spell_damage_bonus(spellid(spell))*10));
+					incr_itimeout(&HDisint_resistance, HDisint_resistance ? (rnd(10) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)) : (rn1(100, 50) + spell_damage_bonus(SPE_RESIST_RANDOM_ELEMENT)*10));
 				} else {
 					pline("%s", nothing_happens);	/* Already have as intrinsic */
 					if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
@@ -10857,14 +11453,14 @@ controlagain:
 				pline("Let the casting commence!");
 			else
 				You_feel("a sense of spell knowledge.");
-			incr_itimeout(&HHalf_spell_damage, rn1(500, 250) + spell_damage_bonus(spellid(spell))*50);
+			incr_itimeout(&HHalf_spell_damage, rn1(500, 250) + spell_damage_bonus(SPE_FORBIDDEN_KNOWLEDGE)*50);
 		}
 		if(!(HHalf_physical_damage & INTRINSIC)) {
 			if (FunnyHallu)
 				You_feel("like a tough motherfucker!");
 			else
 				You("are resistant to normal damage.");
-			incr_itimeout(&HHalf_physical_damage, rn1(500, 250) + spell_damage_bonus(spellid(spell))*50);
+			incr_itimeout(&HHalf_physical_damage, rn1(500, 250) + spell_damage_bonus(SPE_FORBIDDEN_KNOWLEDGE)*50);
 		}
 		u.ugangr++;
 
@@ -11189,6 +11785,10 @@ rerollX:
 		pline("You attempted to cast a spell %d that either doesn't exist in this game, or it has been genocided.", spell);
 		obfree(pseudo, (struct obj *)0);
 		return(0);
+	}
+
+	if (metronomespell) {
+		return(1);
 	}
 
 	/* gain skill for successful cast */

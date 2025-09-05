@@ -1034,6 +1034,7 @@ E struct tm *getlt();
 E int phase_of_the_moon(void);
 E boolean friday_13th(void);
 E boolean groundhog_day(void);	/* KMH -- February 2 */
+E int week_day(void);
 E int night(void);
 E int midnight(void);
 E int twilighttime(void);
@@ -3465,7 +3466,7 @@ E void book_substitution(struct obj *,struct obj *);
 E void age_spells(void);
 E int docast(void);
 E int spell_skilltype(int);
-E int spelleffects(int,BOOLEAN_P);
+E int spelleffects(int,BOOLEAN_P,BOOLEAN_P);
 E void losespells(void);
 E void spellmemoryloss(int);
 E void spellmemoryhalve(void);
@@ -3488,6 +3489,7 @@ E int dodeletespell(void);
 E void delete_all_spells(void);
 E void extramemory(void);
 E int manacost(int);
+E void spell_metronome(void);
 
 /* ### steal.c ### */
 
@@ -3573,6 +3575,7 @@ E void drain_all_techs(void);
 E boolean ability_usable(int);
 E void use_temporary_tech(int);
 E int temptechlev(int);
+E void tech_metronome(void);
 
 /* ### teleport.c ### */
 

@@ -7111,6 +7111,7 @@ pillremoved:
 	case ASSAULT_RIFLE:
 	case STORM_RIFLE:
 	case KALASHNIKOV:
+	case MILITARY_RIFLE:
 		/* Switch between WP_MODE_SINGLE, WP_MODE_BURST and WP_MODE_AUTO */
 		/* Amy edit: with enough firearm or gun control skill, you can select the mode */
 

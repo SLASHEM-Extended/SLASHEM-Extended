@@ -2403,7 +2403,7 @@ boolean confused;
 /* Forget known information about this object class. */
 void
 forget_single_object(obj_id)
-	int obj_id;
+int obj_id;
 {
 	if (obj_id == RIN_MEMORY && rn2(6))
 	    return;   /* does not want to be forgotten */
@@ -2426,7 +2426,7 @@ forget_single_object(obj_id)
 /* Forget everything known about a particular object class. */
 static void
 forget_objclass(oclass)
-	int oclass;
+int oclass;
 {
 	int i;
 
@@ -2440,8 +2440,8 @@ forget_objclass(oclass)
 /* randomize the given list of numbers  0 <= i < count */
 static void
 randomize(indices, count)
-	int *indices;
-	int count;
+int *indices;
+int count;
 {
 	int i, iswap, temp;
 
@@ -2457,8 +2457,8 @@ randomize(indices, count)
 /* Forget % of known objects. */
 void
 forget_objects(percent, guaranteed)
-	int percent;
-	boolean guaranteed;
+int percent;
+boolean guaranteed; /* if this is true, you cannot resist with e.g. keen memory */
 {
 	int i, count;
 	int indices[NUM_OBJECTS];
@@ -2511,7 +2511,7 @@ forget_objects(percent, guaranteed)
 /* Forget some or all of map (depends on parameters). */
 void
 forget_map(howmuch)
-	int howmuch;
+int howmuch;
 {
 	register int zx, zy;
 
@@ -2586,8 +2586,8 @@ forget_traps()
  */
 void
 forget_levels(percent, guaranteed)
-	int percent;
-	boolean guaranteed;
+int percent;
+boolean guaranteed; /* if this is true, you can't resist with e.g. keen memory */
 {
 	int i, count;
 	xchar  maxl, this_lev;
@@ -2662,7 +2662,7 @@ forget_levels(percent, guaranteed)
 void
 forget(howmuch, guaranteed)
 int howmuch;
-boolean guaranteed;
+boolean guaranteed; /* if yes, will forget levels and objects with no chance of resisting */
 {
 
 	if (uarmf && uarmf->oartifact == ART_MARJI_JANA && !rn2(100)) {
@@ -7915,7 +7915,7 @@ procanothersin:
 			for (sp_no = 0; sp_no < MAXSPELL; sp_no++)
 			    if (spl_book[sp_no].sp_id == SPE_COMMAND_UNDEAD) {
 				You("try to command %s", mon_nam(mtmp));
-				spelleffects(sp_no, TRUE);
+				spelleffects(sp_no, TRUE, FALSE);
 				break;
 			    }
 			if (sp_no == MAXSPELL)
@@ -10591,7 +10591,7 @@ retry:
 		}
 		if (otmpY != &zeroobj) {
 			u.unobtainablegeno = otmpY->otyp;
-			if (!confused) pline("All %s (%s) items can no longer be generated.", obj_descr[u.unobtainablegeno].oc_name, obj_descr[u.unobtainablegeno].oc_descr);
+			if (!confused) pline("All %s (%s) items can no longer be generated.", obj_descr[u.unobtainablegeno].oc_name, objtypenames[objects[u.unobtainablegeno].oc_class]);
 			else pline("In your confusion, you genocided some item. But you forgot what it is.");
 		}
 
@@ -10973,7 +10973,7 @@ tunguskaagain:
 				j = rn2(NUM_OBJECTS);
 				while (objects[j].oc_prob < 1) j = rn2(NUM_OBJECTS);
 				makeknown(j);
-				pline("%s (%s).", obj_descr[j].oc_name, obj_descr[j].oc_descr);
+				pline("%s (%s).", obj_descr[j].oc_name, objtypenames[objects[j].oc_class]);
 			}
 
 		}

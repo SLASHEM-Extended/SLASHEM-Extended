@@ -8985,6 +8985,7 @@ struct obj *otmp;
 		    ((otmp->oclass == WEAPON_CLASS && !(u.mushroompoles && (Race_if(PM_PLAYER_MUSHROOM) || (uchain && uchain->oartifact == ART_ERO_ERO_ERO_ERO_MUSHROOM_M)) ) && !is_pick(otmp) &&
 		      otyp != SUBMACHINE_GUN &&
 		      otyp != LEAD_UNLOADER &&
+		      otyp != MILITARY_RIFLE &&
 		      otyp != DEMON_CROSSBOW &&
 		      otyp != AUTO_SHOTGUN &&
 		      otyp != ASSAULT_RIFLE &&
@@ -13150,6 +13151,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("An automatic firearm that can fire three bullets in a single round of combat. Its spread makes it slightly harder to hit things with it though."); break;
 			case HEAVY_MACHINE_GUN:
 				pline("The heavy machine gun requires two hands to use, but it can rip monsters a new one by firing 8 bullets per turn. Problem is, it's about as accurate as the Para in Counter-Strike, meaning that unless you have an absurdly high bonus to-hit (e.g. from firearm skill), you'll often miss the target, wasting your ammo."); break;
+			case MILITARY_RIFLE:
+				pline("A two-handed machine gun that can fire MG ammo. It's rather inaccurate, meaning that you'll want a lot of firearms skill to be able to hit with it, but you can also switch to a different fire mode to reduce the rate of fire while boosting the accuracy."); break;
 			case RIFLE:
 				pline("A two-handed gun with a low rate of fire that shoots single bullets at enemies."); break;
 			case ASSAULT_RIFLE:
@@ -21493,6 +21496,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("Splashing an enemy with this venom may blind them."); break;
 			case TAIL_SPIKES:
 				pline("A barrage of spikes that can be used to damage enemies."); break;
+			case ICE_BLOCK:
+				pline("This is a block of ice that can be thrown at enemies."); break;
 			case PHYSIO_VENOM:
 				pline("This venom deals some damage when thrown, but not all that much."); break;
 			case FAERIE_FLOSS_RHING:
@@ -33866,6 +33871,130 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: reading it creates random highways near you."); break;
 				case ART_RADIO_BLA_BLA:
 					pline("Artifact specs: reading it suppresses the 'dim' status effect for a while."); break;
+				case ART_NINJUTSU:
+					pline("Artifact specs: stealth and displacement when worn, can be invoked to change your current martial arts style to 'marshal arts' which means that heavy armor and shields no longer hinder your attacks. This artifact was suggested by potato44."); break;
+				case ART_AMUSINGE_BOOZER:
+					pline("Artifact specs: reading it confuses you for a couple of turns."); break;
+				case ART_DAMDAMDAM_DAMDAMDAM_DAMDAM:
+					pline("Artifact specs: reading it spawns a boss monster somewhere on the current level."); break;
+				case ART_HIPPOCRATES__AID:
+					pline("Artifact specs: reading it boosts your maximum HP and Pw by one."); break;
+				case ART_ADRIANEN_WOMAN:
+					pline("Artifact specs: reading it spawns a shoe monster somewhere on the level."); break;
+				case ART_PROVINZKAJA_BITCHING:
+					pline("Artifact specs: reading it spawns a hostile shoe monster next to you that cannot be tamed."); break;
+				case ART_FIREFIRM:
+					pline("Artifact specs: spawns fireproof."); break;
+				case ART_RAINZONE:
+					pline("Artifact specs: reading it changes the current weather to 'rain'."); break;
+				case ART_HEAVY_THUNDERHALL:
+					pline("Artifact specs: reading it gives wild weather for a while."); break;
+				case ART_RARE_POKESPAWNAGE:
+					pline("Artifact specs: reading it spawns a bunch of cooling chamber monsters on the current dungeon level."); break;
+				case ART____MINUTES_WITHOUT_WLAN:
+					pline("Artifact specs: reading it gives stealth, invisibility and power failure for a while."); break;
+				case ART_WENDSDAY__WENDSDAY__WE:
+					pline("Artifact specs: reading it gives temporary swimming and inventory protection from water. If you read this book on a Wednesday, these effects last much longer."); break;
+				case ART_POSSIBLE_BIO_READING:
+					pline("Artifact specs: reading it allows you to recognize detrimental food a couple of times."); break;
+				case ART_APPRETEN_IMMEDIATELY_TERMI:
+					pline("Artifact specs: activates the 'create ammo' technique when read, even if you don't actually have that one."); break;
+				case ART_GS_GF_XM_TANJA:
+					pline("Artifact specs: if you don't have a permanent tanja trap effect while reading it, you get afflicted with that one and gain a bunch of charisma. A male character will additionally train the gun control skill by a bunch. None of these happen if you already have the permanent version of the tanja trap effect active."); break;
+				case ART_DEVILS_SOUND_LIKE_MOSQUITO:
+					pline("Artifact specs: reading it summons insects and demons around you."); break;
+				case ART_A_LITTLE_BITTLE_JUMEX:
+					pline("Artifact specs: reading it makes your character heterosexual if you weren't before."); break;
+				case ART_DRUM__THE_DRUM_:
+					pline("Artifact specs: reading it aggravates monsters and scares nearby ones."); break;
+				case ART_EXTRAORDINARY_METRONOME:
+					pline("Artifact specs: reading it causes you to cast a random spell, which can also be one your character doesn't actually know. WARNING: this can roll the 'selfdestruct' spell, and then you'll die! If you want to make sure you don't lose the game as a result, you should probably wear an amulet of life saving or something like that."); break;
+				case ART_I_HAVE_SPEP_TIME:
+					pline("Artifact specs: reading it gives a hint about the ascension turn limit."); break;
+				case ART_GOD_IN_THE_HEAVEN:
+					pline("Artifact specs: reading it tells you what your current prayer timeout is."); break;
+				case ART_THERE_COME_THOSE_WUEU_WUEU:
+					pline("Artifact specs: reading it spawns hostile kops on the current level."); break;
+				case ART_GO_TO_THE_FAST_TRAIN:
+					pline("Artifact specs: reading it trains your searching skill a bunch and gives a long-lasting trap creation effect."); break;
+				case ART_METROTECHEN:
+					pline("Artifact specs: reading it performs a random technique, which can also roll one your character doesn't actually know."); break;
+				case ART_JOCK_S_SPECPLACE:
+					pline("Artifact specs: if you're riding a steed with this saddle, you have displacement and the steed's AC is boosted by 5."); break;
+				case ART_FLASHBACK_JIPPIEJEYO:
+					pline("Artifact specs: reading it identifies some random base items."); break;
+				case ART_BABYABO_PHOGO:
+					pline("Artifact specs: reading it protects you from contracting STDs for a while."); break;
+				case ART_MEMORABLE_READ:
+					pline("Artifact specs: reading it trains the memorization skill a bit (more, because reading spellbooks already trains it)."); break;
+				case ART_ATTACK_WITH_ALL_CANNON_PIP:
+					pline("Artifact specs: reading it gives some attack spell skill training."); break;
+				case ART_MORGAN_S_STUDIES:
+					pline("Artifact specs: reading it gives some occult spell skill training."); break;
+				case ART_EDDY_S_UNCONTROLLABILITY:
+					pline("Artifact specs: reading it gives some chaos spell skill training and causes a random bad effect."); break;
+				case ART_LAURA_S_BEDBOOK:
+					pline("Artifact specs: reading it gives some elemental spell skill training."); break;
+				case ART_DARTH_MAUL_S_TEACHINGS:
+					pline("Artifact specs: reading it trains the form VI (Niman) skill a bunch."); break;
+				case ART_SUE_THROWAWAY_COMMENTARY:
+					pline("Artifact specs: reading it gives some body spell skill training."); break;
+				case ART_MEDITATE__DUDE_:
+					pline("Artifact specs: reading it gives some protection spell skill training."); break;
+				case ART_WHEREVER_YOU_GO__THERE_YOU:
+					pline("Artifact specs: reading it trains all the spell schools a bit, but reduces your maximum mana by 10. If you don't have that much, you lose 100 alla instead."); break;
+				case ART_WHOA__THERE_ARE_LOUD_WANDS:
+					pline("Artifact specs: reading it spawns a random wand on the ground for you to use."); break;
+				case ART_ICE_BELONGS_IN_THE_ICE:
+					pline("Artifact specs: reading it spawns a stack of ice blocks on the ground and randomly transforms nearby floor into ice."); break;
+				case ART_LIKE_GEMOLT:
+					pline("Artifact specs: reading it changes the current weather to 'overcast' if it wasn't already."); break;
+				case ART_SUEYUE_SAA_A:
+					pline("Artifact specs: reading it gives regeneration for a while."); break;
+				case ART_NINETY_NATE_CHI:
+					pline("Artifact specs: reading it boosts your intelligence by one."); break;
+				case ART_SWEAN__YOU_KNOW:
+					pline("Artifact specs: reading it boosts your charisma by one."); break;
+				case ART_LESS_MUST_MUST:
+					pline("Artifact specs: reading it gives full nutrients for a while."); break;
+				case ART_YOU_ARE_STOP_UNABLE:
+					pline("Artifact specs: reading it tries to steal a random intrinsic. If it rolls one that you don't actually have, nothing happens."); break;
+				case ART_SCHUB_SCHUB:
+					pline("Artifact specs: reading it restores a lost stat point."); break;
+				case ART_FIDEDEDE_DE_DEDEDE_DEDEDE:
+					pline("Artifact specs: reading it gives you the ability to jump with the 'j' key (or #jump I guess, if you're using vikeys) for a while."); break;
+				case ART_FORGETTEN_EASY:
+					pline("Artifact specs: reading it trains the memorization skill a bunch, but also hits you with amnesia."); break;
+				case ART_FRA_NOAN:
+					pline("Artifact specs: reading it creates a cursed piece of equipment and forces you to equip it."); break;
+				case ART_FLOEPFLOEPFLOEPFLOEPFLOEPF:
+					pline("Artifact specs: reading it sets your special spell to 'phase door', making it easier to cast."); break;
+				case ART_MATERNITY:
+					pline("Artifact specs: reading it makes your character female if you weren't already, and gives you +1 intrinsic protection but also the natalia trap effect for a while."); break;
+				case ART_YOU_AS_STUPID_AS_ORPHEUS_A:
+					pline("Artifact specs: reading it magically maps the current dungeon level, as long as it's not unmappable."); break;
+				case ART_DOWNCOME_IN_THE_YEARS:
+					pline("Artifact specs: reading it razes random wall tiles on the current level and then creates random new ones."); break;
+				case ART_MIRA_S_REFRESHING_BATH:
+					pline("Artifact specs: if you read it while not on the plane of Water, random water tiles on the dungeon level will turn into urine lakes."); break;
+				case ART_HORRENDOUS_EXPERIENCE:
+					pline("Artifact specs: reading it boosts your maximum alignment by 5 and grants a bunch of experience points, but also spawns eldritch horrors on the current dungeon level."); break;
+				case ART_TOTALLY_THE_EROGENOUS_KATI:
+					pline("Artifact specs: spawns with many more charges than usual, but when it got generated, you also had a long-lasting double katia trap effect activated. Hahahahahahaha..."); break;
+				case ART_COLORFUL_LOVENAILS:
+					pline("Artifact specs: reading it paints all your fingernails, causing them to look very lovely and colorful <3 while also increasing your unarmed melee damage as long as the nail polish lasts."); break;
+				case ART_WHY__THEREFORE_:
+					pline("Artifact specs: causes the longing nastytrap effect for a while, both when you read it and also when the book originally got generated."); break;
+				case ART_AIRCRAFT_MISSILE:
+					pline("Artifact specs: +2 damage. If you're flying and riding a steed while wielding it, all your ranged attacks also have +5 accuracy."); break;
+				case ART_PRECISION_STRIKE:
+					pline("Artifact specs: +10 to-hit, but will only fire 5 bullets per turn (compared to 7 for a non-artifact version of this gun)."); break;
+				case ART_SOVIET_WINTER:
+					pline("Artifact specs: +6 to-hit and double damage. If you're playing soviet mode, it deals triple damage."); break;
+				case ART_FREE__ASSHOLE_:
+					pline("Artifact specs: +15 cold damage."); break;
+				case ART_DN_DN_DN__DN_DN_DN_:
+					pline("Artifact specs: reading it creates tunnels on random nearby tiles."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

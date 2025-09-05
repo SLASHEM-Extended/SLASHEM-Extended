@@ -10861,7 +10861,7 @@ newbossO:
 
 		}
 
-		if ((uarmc && itemhasappearance(uarmc, APP_ROADMAP_CLOAK)) && !rn2(10000)) {
+		if ((uarmc && itemhasappearance(uarmc, APP_ROADMAP_CLOAK)) && !level.flags.nommap && !rn2(10000)) {
 			if (!HConfusion) HConfusion = 1;
 			do_mappingX();
 			do_mappingX();
