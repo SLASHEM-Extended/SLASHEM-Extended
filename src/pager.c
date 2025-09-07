@@ -29439,6 +29439,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel homosexual. Hopefully you never have to go to a country where that is considered a crime.",
 	"You hear Mira advertising her 'refreshing' bath to you...",
 	"You hear Mira advertising her 'refreshing' bath to you... but something tells you that bathing in her urine won't be all that great...",
+	"Now your copilot wanted level has increased!",
+	"Now your copilot wanted level has increased! This means that two cops are coming at the same time to bust you, making it harder for you to escape!",
 
 };
 

@@ -24277,7 +24277,7 @@ A("Horrendous Experience",				SPE_VANISHING, /* boosts your alignment and max by
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("totally the erogenous Katia",				SPE_TIME, /* upon generation, if its amount of charges would be lower than 1 it'll be set to 1, then you get the super katia trap effect for 20000 + (5000 * amount of charges) turns. after that, the amount of charges is doubled and 5 added to it */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
 
 A("Colorful Lovenails",				SPE_TAKE_SELFIE, /* reading it sets your nail polish amount to 10 */
@@ -24285,7 +24285,7 @@ A("Colorful Lovenails",				SPE_TAKE_SELFIE, /* reading it sets your nail polish 
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
 A("Why? Therefore!",				SPE_RUMOR, /* upon generating, you get rnz(5000) turns of the longing nastytrap effect, and the same happens if you read it */
-	(SPFX_RESTR), 0, 0,
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
 
 A("Aircraft Missile",				MILITARY_RIFLE, /* if you're both riding and flying at the same time, all your ranged attacks have +5 accuracy */
@@ -24305,6 +24305,90 @@ A("Free, asshole!",				ICE_BLOCK,
 	COLD(0, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
 
 A("Dn dn dn! Dn dn dn!",				SPE_TUNNELS, /* creates random tunnels nearby when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Not Much Battery Remaining",				SPE_CHARGING, /* can be invoked to set its charge count to 3 while increasing the recharge count by one, but that only works if the recharge count is 3 or lower */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 3333L ),
+
+A("Socketed Angular Sign",				SPE_DETECT_TREASURE, /* reading it creates a valuable gem on the ground */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("find me nevertheless, you old hole",				SPE_INVISIBILITY, /* spawns invisible */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Full Monte Hall",				SPE_THRONE_GAMBLE, /* reading it allows you to play blackjack */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("i eppere",				SPE_TECH_BOOST, /* reading it reduces trembling by 1 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("MORPHOGENETIC FIELD",				SPE_CHARACTER_RECURSION, /* upon generating, this artifact causes character recursion */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Dieaudieaudieaudieaudieaudieaudiiiiiiiiiiieauw!",				SPE_FORBIDDEN_KNOWLEDGE, /* rnz(50k) turns of stat decay trap effect upon generating */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Ty - glupaya ledyanaya glyba, yego marionetka ili rab!",				SPE_AVALANCHE, /* gives 50k turns of soviet mode upon generating, reading gives 3x as much memory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("in halt cpehman halti est keh baes mishod bazi ra bebazid. tazmini.",				SPE_SWITCHEROO, /* gives 50k turns of evilvariant mode upon generating, spawns with rnz(20) more charges and blessed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Secret Advice's Badfill",				SPE_ANTI_MAGIC_SHELL, /* triggers the bad equipment effect seven times upon generating, but sets your occult spells skill cap to expert if it was lower than that and otherwise increases it by one */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 14000L ),
+
+A("Shoepocalypse",				SPE_RAGNAROK, /* causes ragnarok upon generating, but with paved floors and 80% MS_SHOE, 10% MS_PANTS and 10% MS_SOCKS, reading it gives a random wonderspell */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Fontomat",				SPE_MOORLAND, /* upon generating, 80% of the squares on the current level transform into fountains */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Wyny",				SPE_ACQUIREMENT, /* teaches a random wonderspell when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Upper Smarto",				SPE_CLAIRVOYANCE, /* spawns 3x greased */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Faeauapart suun",				SPE_DIG, /* spawns 3x burnt */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Heliokopis's Short Reappearance",				SPE_SLEEP, /* spawns with +5 charges and reading it makes sleep into your super special spell but sets the escape past trap effect to 25k turns if it was lower */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("We got a 10-34 in Central Ramalla",				SPE_CREATE_MONSTER, /* reading it increases cop wanted level by 5000 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Unit Nine in nate of the systems",				SPE_MAGIC_MISSILE, /* reading it gives verisiert effect for rnz(2000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("All units to the billity respand",				SPE_PSYBEAM, /* reading it gives respawn trap effect for rnz(5000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Armed Forces Arm-Real",				SPE_LEVELPORT, /* reading it spawns rn1(8,8) barracks monsters at a specific place on the level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("South-West Mosambik",				SPE_BUBBLE_BOBBLE, /* reading it replicates the flooding trap effect */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 

@@ -2169,6 +2169,23 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+		    if (otmp && otmp->oartifact == ART_MORPHOGENETIC_FIELD) {
+			recursioneffect();
+		    }
+		    if (otmp && otmp->oartifact == ART_DIEAUDIEAUDIEAUDIEAUDIEAUD) {
+			StatDecay += rnz(50000);
+		    }
+		    if (otmp && otmp->oartifact == ART_IN_HALT_CPEHMAN_HALTI_EST_) {
+			u.evilvartemporary += 50000;
+			pline("Have fun with the evil variant, sucker.");
+			otmp->spe += rnz(20);
+			otmp->cursed = otmp->hvycurse = otmp->prmcurse = otmp->morgcurse = otmp->evilcurse = otmp->bbrcurse = otmp->stckcurse = 0;
+			bless(otmp);
+		    }
+		    if (otmp && otmp->oartifact == ART_TY___GLUPAYA_LEDYANAYA_GLY) {
+			u.soviettemporary += 50000;
+			pline("KHAR KHAR TY NUB TEPER' TY OBLAZHALSYA KHEKHEKHE!");
+		    }
 		    if (otmp && otmp->oartifact == ART_WHY__THEREFORE_) {
 			LongingEffect += rnz(5000);
 		    }
@@ -2178,6 +2195,34 @@ register boolean mod;
 			if (!FemtrapActiveRuth) pline("Some little girl really wants to take a crap while you are nearby.");
 			otmp->spe *= 2;
 			otmp->spe += 5;
+		    }
+		    if (otmp && otmp->oartifact == ART_SECRET_ADVICE_S_BADFILL) {
+			bad_equipment(0); bad_equipment(0); bad_equipment(0); bad_equipment(0); bad_equipment(0); bad_equipment(0); bad_equipment(0);
+
+			if (P_MAX_SKILL(P_OCCULT_SPELL) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_OCCULT_SPELL);
+				P_MAX_SKILL(P_OCCULT_SPELL) = P_EXPERT;
+				pline("You can now learn the occult spells skill!");
+			} else if (P_MAX_SKILL(P_OCCULT_SPELL) <= P_SKILLED) {
+				P_MAX_SKILL(P_OCCULT_SPELL) = P_EXPERT;
+				pline("You can now become expert in occult spells!");
+			} else if (P_MAX_SKILL(P_OCCULT_SPELL) == P_EXPERT) {
+				P_MAX_SKILL(P_OCCULT_SPELL) = P_MASTER;
+				pline("You can now become master in occult spells!");
+			} else if (P_MAX_SKILL(P_OCCULT_SPELL) == P_MASTER) {
+				P_MAX_SKILL(P_OCCULT_SPELL) = P_GRAND_MASTER;
+				pline("You can now become grand master in occult spells!");
+			} else if (P_MAX_SKILL(P_OCCULT_SPELL) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_OCCULT_SPELL) = P_SUPREME_MASTER;
+				pline("You can now become supreme master in occult spells!");
+			} else pline("Sadly your knowledge of the occult spells skill is already maxed.");
+
+		    }
+		    if (otmp && otmp->oartifact == ART_SHOEPOCALYPSE) {
+			shoeragnarok();
+		    }
+		    if (otmp && otmp->oartifact == ART_FONTOMAT) {
+			fountainstorm();
 		    }
 		    if (otmp && otmp->oartifact == ART_FLASHEN_OFTEN) {
 			otmp->spe += 10;
@@ -2306,6 +2351,9 @@ register boolean mod;
 			otmp->spe -= 20;
 			otmp->oinvis = TRUE;
 			otmp->oeroded = 2;
+		    }
+		    if (otmp && otmp->oartifact == ART_FIND_ME_NEVERTHELESS__YOU_) {
+			otmp->oinvis = TRUE;
 		    }
 		    if (otmp && otmp->oartifact == ART_SEM_BOOST) {
 			otmp->spe += 3;
@@ -3101,6 +3149,15 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_SUK_ME_HAHAHAHAHAH) {
 			otmp->greased = rnd(3);
+		    }
+		    if (otmp && otmp->oartifact == ART_UPPER_SMARTO) {
+			otmp->greased = 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_FAEAUAPART_SUUN) {
+			otmp->oeroded = 3;
+		    }
+		    if (otmp && otmp->oartifact == ART_HELIOKOPIS_S_SHORT_REAPPEA) {
+			otmp->spe += 5;
 		    }
 		    if (otmp && otmp->oartifact == ART_START_WITH_EVERYTHING) {
 			otmp->greased = 3;
@@ -6425,6 +6482,17 @@ chargingchoice:
 
 			} /* for loop */
 
+			break;
+		}
+
+		if (obj->oartifact == ART_NOT_MUCH_BATTERY_REMAINING) {
+			if (obj->recharged > 3) {
+				pline_The("book has been recharged often enough already!");
+				break;
+			}
+			obj->recharged++;
+			obj->spe = 3;
+			pline_The("book was recharged.");
 			break;
 		}
 

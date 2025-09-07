@@ -33,6 +33,7 @@ static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allnoncount[] = { ALL_CLASSES, 0 };
 static const char allowall[] = { ALL_CLASSES, 0 };
 
+
 #define spellev(spell)		spl_book[spell].sp_lev
 #define spellid(spell)          spl_book[spell].sp_id
 #define spellname(spell)	OBJ_NAME(objects[spellid(spell)])
@@ -62,6 +63,7 @@ STATIC_DCL void boostknow(int, int);
 STATIC_DCL void drainknow(int, int);
 STATIC_DCL void incrnknow(int, BOOLEAN_P);
 STATIC_DCL void handleartifactspellbook(struct obj *);
+STATIC_PTR void do_megafloodings(int, int, void *);
 
 boolean
 spell_known(int sbook_id)
@@ -149,6 +151,80 @@ char ilet;
     indx = ilet - '0';
     if (indx >= 0 && indx < 10) return indx + 52;
     return -1;
+}
+
+STATIC_PTR void
+do_megafloodings(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			levl[randomx][randomy].typ = MOAT;
+			makemon(mkclass(S_EEL,0), randomx, randomy, NO_MM_FLAGS);
+
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) || !rn2(3) || 
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+
+		levl[x][y].typ = MOAT;
+		makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
+
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+	u.aggravation = 0;
+
 }
 
 STATIC_PTR void
@@ -2192,6 +2268,10 @@ learn()
 					boostknow(i, 50000);
 					You("can hurt, but the spell will last for a generous time.");
 				}
+				if (book && book->oartifact == ART_TY___GLUPAYA_LEDYANAYA_GLY) {
+					boostknow(i, 20000);
+					pline_The("spell has a lot of memory now.");
+				}
 				if (book && book->oartifact == ART_BACKLASHPROTECT) {
 					boostknow(i, 40000);
 					pline_The("spell has a lot of memory now.");
@@ -2200,7 +2280,7 @@ learn()
 					boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 					pline_The("spell memory bonus was multiplied!");
 				}
-				if (book && (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_FLOEPFLOEPFLOEPFLOEPFLOEPF || book->oartifact == ART_K_OR_EA_SY)) {
+				if (book && (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_FLOEPFLOEPFLOEPFLOEPFLOEPF || book->oartifact == ART_HELIOKOPIS_S_SHORT_REAPPEA || book->oartifact == ART_K_OR_EA_SY)) {
 					u.superspecialspell = booktype;
 					pline_The("spell is your super special spell now.");
 				}
@@ -2288,6 +2368,10 @@ learn()
 				boostknow(i, 50000);
 				You("can hurt, but the spell will last for a generous time.");
 			}
+			if (book && book->oartifact == ART_TY___GLUPAYA_LEDYANAYA_GLY) {
+				boostknow(i, 20000);
+				pline_The("spell has a lot of memory now.");
+			}
 			if (book && book->oartifact == ART_BACKLASHPROTECT) {
 				boostknow(i, 40000);
 				pline_The("spell has a lot of memory now.");
@@ -2296,7 +2380,7 @@ learn()
 				boostknow(i, Role_if(PM_OCCULT_MASTER) ? 40000 : 10000);
 				pline_The("spell memory bonus was multiplied!");
 			}
-			if (book && (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_FLOEPFLOEPFLOEPFLOEPFLOEPF || book->oartifact == ART_K_OR_EA_SY)) {
+			if (book && (book->oartifact == ART_PAGAN_POETRY || book->oartifact == ART_FLOEPFLOEPFLOEPFLOEPFLOEPF || book->oartifact == ART_HELIOKOPIS_S_SHORT_REAPPEA || book->oartifact == ART_K_OR_EA_SY)) {
 				u.superspecialspell = booktype;
 				pline_The("spell is your super special spell now.");
 			}
@@ -3210,6 +3294,18 @@ struct obj *book2;
 		You("feel more protected.");
 	}
 
+	if (book2->oartifact == ART_FULL_MONTE_HALL) {
+		play_blackjack(TRUE);
+	}
+
+	if (book2->oartifact == ART_I_EPPERE) {
+		if (u.tremblingamount > 0) {
+			u.tremblingamount--;
+			You("control your trembling.");
+			if (!u.tremblingamount) pline("In fact, you aren't trembling at all anymore.");
+		}
+	}
+
 	if (book2->oartifact == ART_DOWNCOME_IN_THE_YEARS) {
 		int x, y;
 		int houzanhaamount = 50;
@@ -3232,6 +3328,15 @@ struct obj *book2;
 		if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
 	}
 
+	if (book2->oartifact == ART_UNIT_NINE_IN_NATE_OF_THE_S) {
+		verisiertEffect += rnz(2000);
+	}
+
+	if (book2->oartifact == ART_WE_GOT_A_______IN_CENTRAL_) {
+		u.copwantedlevel += 5000;
+		pline("Now your copilot wanted level has increased!");
+	}
+
 	if (book2->oartifact == ART_DN_DN_DN__DN_DN_DN_) {
 		int madepoolQ = 0;
 		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_tunnelfloodg, (void *)&madepoolQ);
@@ -3241,6 +3346,10 @@ struct obj *book2;
 	if (book2->oartifact == ART_COLORFUL_LOVENAILS) {
 		u.nailpolish = 10;
 		Your("cute lovenails are painted very colorfully now! <3");
+	}
+
+	if (book2->oartifact == ART_HELIOKOPIS_S_SHORT_REAPPEA) {
+		if (EscapePastEffect < 25000) EscapePastEffect = 25000;
 	}
 
 	if (book2->oartifact == ART_WHY__THEREFORE_) {
@@ -3293,6 +3402,18 @@ newbossHORR:
 
 		more_experienced(u.ulevel * 1000, 0);
 		newexplevel();
+	}
+
+	if (book2->oartifact == ART_SHOEPOCALYPSE) {
+		wonderspell(-1);
+	}
+
+	if (book2->oartifact == ART_ALL_UNITS_TO_THE_BILLITY_R) {
+		RespawnProblem += rnz(5000);
+	}
+
+	if (book2->oartifact == ART_WYNY) {
+		wonderspell(-1);
 	}
 
 	if (book2->oartifact == ART_MIRA_S_REFRESHING_BATH) {
@@ -3734,6 +3855,40 @@ newbossDAM:
 		}
 	}
 
+	if (book2->oartifact == ART_SOUTH_WEST_MOSAMBIK) {
+		int madepoolQ = 0;
+
+		do_clear_areaX(u.ux, u.uy, rno(10), do_megafloodings, (void *)&madepoolQ);
+		if (madepoolQ)
+			pline("Oh %s, there's %s flooding on this sub level!", rn2(2) ? "damn" : "great", rn2(2) ? "a" : "another");
+
+	}
+
+	if (book2->oartifact == ART_ARMED_FORCES_ARM_REAL) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+		coord cc, dd;
+		int cx,cy, randsp, i;
+
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		randsp = rn1(8,8);
+
+		for (i = 0; i < randsp; i++) {
+			if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			(void) makemon(squadmon(), cx, cy, MM_ADJACENTOK|MM_ANGRY);
+
+		}
+
+		u.aggravation = 0;
+
+		You_feel("that the army is chasing after you!");
+	}
+
 	if (book2->oartifact == ART_RARE_POKESPAWNAGE) {
 		if (Aggravate_monster) {
 			u.aggravation = 1;
@@ -3966,6 +4121,20 @@ melatechoice:
 		}
 
 	}
+
+	if (book2->oartifact == ART_SOCKETED_ANGULAR_SIGN) {
+		struct obj *uammo;
+		uammo = mksobj(DILITHIUM_CRYSTAL + rn2((JADE + 1) - DILITHIUM_CRYSTAL), TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = 1;
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A gem has formed on the ground!");
+		}
+
+	}
+
 
 	if (book2->oartifact == ART_ICE_BELONGS_IN_THE_ICE) {
 

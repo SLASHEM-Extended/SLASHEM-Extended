@@ -7549,7 +7549,7 @@ moorlandragnarok()
 	for (x = 0; x < COLNO; x++)
 	  for (y = 0; y < ROWNO; y++) {
 
-		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == LAVAPOOL || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
+		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == MOORLAND || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
 
 			levl[x][y].typ = MOORLAND;
 			blockorunblock_point(x,y);
@@ -7577,6 +7577,89 @@ moorlandragnarok()
 }
 
 void
+shoeragnarok()
+{
+	register int x,y;
+
+	u.aggravation = 1;
+	u.heavyaggravation = 1;
+	DifficultyIncreased += 1;
+	HighlevelStatus += 1;
+	EntireLevelMode += 1;
+	if (!rn2(5)) DifficultyIncreased += rnz(100);
+	if (!rn2(5)) HighlevelStatus += rnz(100);
+	if (!rn2(5)) EntireLevelMode += rnz(100);
+
+	incr_itimeout(&HFuckOverEffect, rnz(100) );
+
+	pline("The female shoes are taking over the world!!");
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+
+		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == PAVEDFLOOR || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
+
+			levl[x][y].typ = PAVEDFLOOR;
+			blockorunblock_point(x,y);
+			if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+			newsym(x, y);
+
+			if (!rn2(3)) switch (rnd(10)) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+				case 8:
+					(void) makemon(specialtensmon(332), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED); /* MS_SHOE */
+					break;
+				case 9:
+					(void) makemon(specialtensmon(385), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED); /* MS_SOCKS */
+					break;
+				case 10:
+					(void) makemon(specialtensmon(386), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED); /* MS_PANTS */
+					break;
+			}
+
+		}
+
+	}
+
+	u.aggravation = 0;
+	u.heavyaggravation = 0;
+
+	stop_occupation();
+
+}
+
+void
+fountainstorm()
+{
+	register int x,y;
+
+	pline("There's lots of fountains springing up from the ground!");
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+
+		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && rn2(5) ) {
+
+			levl[x][y].typ = FOUNTAIN;
+			blockorunblock_point(x,y);
+			if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+			newsym(x, y);
+
+		}
+
+	}
+
+	stop_occupation();
+
+}
+
+void
 cuddleragnarok()
 {
 	register int x,y;
@@ -7597,7 +7680,7 @@ cuddleragnarok()
 	for (x = 0; x < COLNO; x++)
 	  for (y = 0; y < ROWNO; y++) {
 
-		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == LAVAPOOL || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
+		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
 
 			levl[x][y].typ = randomwalltype();
 			blockorunblock_point(x,y);

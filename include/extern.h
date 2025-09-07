@@ -2759,6 +2759,8 @@ E void allbadpeteffects(struct monst *);
 E void add_monster_egotype(struct monst *);
 E void ragnarok(BOOLEAN_P);
 E void moorlandragnarok(void);
+E void shoeragnarok(void);
+E void fountainstorm(void);
 E void cuddleragnarok(void);
 E void evilragnarok(BOOLEAN_P,int);
 E void datadeleteattack(void);

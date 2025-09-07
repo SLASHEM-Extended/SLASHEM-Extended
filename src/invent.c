@@ -33995,6 +33995,48 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +15 cold damage."); break;
 				case ART_DN_DN_DN__DN_DN_DN_:
 					pline("Artifact specs: reading it creates tunnels on random nearby tiles."); break;
+				case ART_NOT_MUCH_BATTERY_REMAINING:
+					pline("Artifact specs: can be invoked to set the amount of charges to 3, as long as the recharge count isn't higher than 3. The latter will be increased by one in the process."); break;
+				case ART_SOCKETED_ANGULAR_SIGN:
+					pline("Artifact specs: reading it creates a valuable gem on the ground."); break;
+				case ART_FIND_ME_NEVERTHELESS__YOU_:
+					pline("Artifact specs: spawns invisible, but apparently you found it anyway."); break;
+				case ART_FULL_MONTE_HALL:
+					pline("Artifact specs: reading it allows you to play blackjack."); break;
+				case ART_I_EPPERE:
+					pline("Artifact specs: reading it reduces your trembling by one."); break;
+				case ART_MORPHOGENETIC_FIELD:
+					pline("Artifact specs: when this artifact got generated, your character transformed into another one, hahaha!"); break;
+				case ART_DIEAUDIEAUDIEAUDIEAUDIEAUD:
+					pline("Artifact specs: when this artifact got generated, you got hit by a long-lasting stat decay trap effect because the creator of this game is evil."); break;
+				case ART_TY___GLUPAYA_LEDYANAYA_GLY:
+					pline("Artifact specs: Zastavili igrat' v sovetskiy rezhim, KHUA-KHA-KHA-KHARR! Takzhe dayot bol'she pamyati pri chtenii, no eto vas ne spasot."); break;
+				case ART_IN_HALT_CPEHMAN_HALTI_EST_:
+					pline("Artifact specs: has more charges than usual and spawns blessed, but also forces you to play in evilvariant mode for quite a while upon generating."); break;
+				case ART_SECRET_ADVICE_S_BADFILL:
+					pline("Artifact specs: upon generating, it filled your inventory with cursed equipment and also tried to boost your occult spell skill."); break;
+				case ART_SHOEPOCALYPSE:
+					pline("Artifact specs: when it generated, the shoepocalypse happened. You probably noticed unless you got your head in the clouds."); break;
+				case ART_FONTOMAT:
+					pline("Artifact specs: upon generating, a lot of tiles transformed into fountains. Reading it teaches a random spell."); break;
+				case ART_WYNY:
+					pline("Artifact specs: reading it teaches a random spell."); break;
+				case ART_UPPER_SMARTO:
+					pline("Artifact specs: spawns thoroughly greased."); break;
+				case ART_FAEAUAPART_SUUN:
+					pline("Artifact specs: spawns thoroughly burnt."); break;
+				case ART_HELIOKOPIS_S_SHORT_REAPPEA:
+					pline("Artifact specs: spawns with more charges, and reading it sets sleep as your super special spell (making it easier to cast) but also gives a long-lasting escape past trap effect."); break;
+				case ART_WE_GOT_A_______IN_CENTRAL_:
+					pline("Artifact specs: reading it increases your cop wanted level by a fair amount."); break;
+				case ART_UNIT_NINE_IN_NATE_OF_THE_S:
+					pline("Artifact specs: reading it causes monsters to spawn more quickly for a while."); break;
+				case ART_ALL_UNITS_TO_THE_BILLITY_R:
+					pline("Artifact specs: reading it causes dead monsters to respawn for a while."); break;
+				case ART_ARMED_FORCES_ARM_REAL:
+					pline("Artifact specs: reading it spawns soldiers on the current level."); break;
+				case ART_SOUTH_WEST_MOSAMBIK:
+					pline("Artifact specs: reading it floods the current dungeon level and fills the water with sea monsters."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
