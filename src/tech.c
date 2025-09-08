@@ -6096,7 +6096,7 @@ secureidchoice:
 				use_skill(P_DEVICES,1);
 			}
 
-			if (bandagetype = 2) {
+			if (bandagetype == 2) {
 				if (!(HProtection & INTRINSIC))  {
 					HProtection |= FROMOUTSIDE;
 					if (!u.ublessed)  u.ublessed = 1;
@@ -6106,7 +6106,7 @@ secureidchoice:
 				You_feel("protected.");
 			}
 
-			if (bandagetype = 3) {
+			if (bandagetype == 3) {
 				upnivel(TRUE);
 			}
 
