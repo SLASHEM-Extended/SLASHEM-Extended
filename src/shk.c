@@ -7104,7 +7104,7 @@ shk_offer_price(slang, charge, shkp)
 
 #ifndef GOLDOBJ
 	u.ugold -= charge;
-	if (rn2(2) || charge < 0) shkp->mgold += charge;
+	if (charge < 0) shkp->mgold += charge; /* being able to get the money back is also such a filthy cheat... --Amy */
 #else
 	money2mon(shkp, charge);
 #endif

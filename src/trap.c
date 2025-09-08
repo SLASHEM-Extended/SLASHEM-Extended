@@ -26793,9 +26793,12 @@ struct trap *ttmp;
 	if (ttmp->ttyp == NOISE_TRAP) chance = 10;
 	if (ttmp->ttyp == GLUE_TRAP) chance = 50;
 	if (ttmp->ttyp == VOLT_TRAP) chance = 24;
+	if (ttmp->ttyp == PREMATURE_DEATH_TRAP) chance = 20;
 	if (ttmp->ttyp == DEATH_TRAP) chance = 100;
 	if (ttmp->ttyp == PESTILENCE_TRAP) chance = 100;
 	if (ttmp->ttyp == FAMINE_TRAP) chance = 100;
+	if (ttmp->ttyp == DISINTEGRATION_TRAP) chance = 50;
+	if (ttmp->ttyp == DRAIN_TRAP) chance = 50;
 	if (ttmp->ttyp == GUILLOTINE_TRAP) chance = 50;
 	if (ttmp->ttyp == BISECTION_TRAP) chance = 50;
 	if (ttmp->ttyp == CORROSION_TRAP) chance = 6;
@@ -27418,6 +27421,8 @@ struct trap *ttmp;
 			multiplier = 5; break;
 		case UNLIGHT_TRAP:
 			multiplier = 10; break;
+		case PREMATURE_DEATH_TRAP:
+			multiplier = 10; break;
 		case ELEMENTAL_TRAP:
 			multiplier = 10; break;
 		case SINGLE_UNIDENTIFY_TRAP:
@@ -27472,6 +27477,10 @@ struct trap *ttmp;
 			multiplier = 50; break;
 		case GUILLOTINE_TRAP:
 			multiplier = 40; break;
+		case DISINTEGRATION_TRAP:
+			multiplier = 25; break;
+		case DRAIN_TRAP:
+			multiplier = 25; break;
 		case BISECTION_TRAP:
 			multiplier = 40; break;
 		case BANANA_TRAP:
@@ -28659,8 +28668,11 @@ boolean force;
 			case GLUE_TRAP:
 			case VOLT_TRAP:
 			case DEATH_TRAP:
+			case PREMATURE_DEATH_TRAP:
 			case PESTILENCE_TRAP:
 			case FAMINE_TRAP:
+			case DISINTEGRATION_TRAP:
+			case DRAIN_TRAP:
 			case GUILLOTINE_TRAP:
 			case BISECTION_TRAP:
 			case CORROSION_TRAP:
