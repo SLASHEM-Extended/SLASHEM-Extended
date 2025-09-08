@@ -17225,6 +17225,7 @@ past4:
 		}
 		if (!u.moneydebt && !u.superdebt) Your("debt has been erased.");
 		else You("paid some of your debts, but still have to pay %d zorkmids.", (u.moneydebt + u.superdebt) );
+		flags.botl = TRUE;
 	}
 
 	/* superdebt is like regular debt but unresistable and the money is paid "to the void" as opposed to a bank --Amy */
@@ -17239,6 +17240,7 @@ past4:
 		}
 		if (!u.moneydebt && !u.superdebt) Your("debt has been erased.");
 		else You("paid some of your debts, but still have to pay %d zorkmids.", (u.moneydebt + u.superdebt) );
+		flags.botl = TRUE;
 	}
 
 	if ((BankTrapEffect || (uarm && uarm->oartifact == ART_PLANTOPLIM) || (uarmf && uarmf->oartifact == ART_SONJA_S_TORN_SOUL) || autismringcheck(ART_ARABELLA_S_RESIST_COLD) || autismweaponcheck(ART_THROW_ALL_THE_CASH_AWAY) || (uamul && uamul->oartifact == ART_LOW_ZERO_NUMBER) || autismringcheck(ART_WEDDING_WASTED) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uamul && uamul->oartifact == ART_ARABELLA_S_PRECIOUS_GADGET) || u.uprops[BANKBUG].extrinsic || autismweaponcheck(ART_BAT_FROM_BALTIMORE) || have_bankstone()) && u.ugold) {
@@ -17257,6 +17259,7 @@ past4:
 		if (u.bankcashamount > u.bankcashlimit) {
 			(void) makemon(&mons[PM_ARABELLA_THE_MONEY_THIEF], 0, 0, NO_MM_FLAGS);
 		}
+		flags.botl = TRUE;
 	}
 
 	/* copy undead warning code over from attrib.c - this needs to update in real time due to items --Amy */
