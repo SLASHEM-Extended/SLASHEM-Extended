@@ -13522,7 +13522,20 @@ struct monst *mtmp;
 	register struct obj *obj;
 	struct obj *curr, *otmp;
 
-	if (!isevilvariant) return; /* limiting this to evilvariant mode because it's just too aggravating --Amy */
+	boolean wontemptycontainer = FALSE;
+
+	if (!isevilvariant) {
+
+		wontemptycontainer = TRUE;
+
+		if (mtmp->data == &mons[PM_BOXPORT_NYMPH]) wontemptycontainer = FALSE;
+		if (mtmp->data == &mons[PM_BOXDUMP_NYMPH]) wontemptycontainer = FALSE;
+		if (mtmp->data == &mons[PM_HURO_NYMPH]) wontemptycontainer = FALSE;
+		if (mtmp->data == &mons[PM_SUPERHURO_NYMPH]) wontemptycontainer = FALSE;
+		if (mtmp->data == &mons[PM_STEALING_JOURNALIST_BITCH]) wontemptycontainer = FALSE;
+
+		if (wontemptycontainer) return; /* limiting this to evilvariant mode because it's just too aggravating --Amy */
+	}
 
 	if (mtmp->data == &mons[PM_COW_HILL_GIANT]) return;
 	if (mtmp->data == &mons[PM_IT_S_TOO_HEAVY_FOR_YOUR_HILL_GIANT]) return;

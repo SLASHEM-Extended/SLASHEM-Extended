@@ -10831,6 +10831,10 @@ loveheelover:
 
 		if (mtmp->data == &mons[PM_LIZARD_MAGE]) (void) mongets(mtmp, !rn2(3) ? SHORT_SWORD : !rn2(2) ? BROADSWORD : LONG_SWORD);
 
+		if (ptr == &mons[PM_UTMZUHWOIW]) {
+			(void) mongets(mtmp, rnd_class(PLASTEEL_BOOTS,LEVITATION_BOOTS));
+		}
+
 		if (ptr == &mons[PM_TALCUM_DRACONIAN]) {
 			(void) mongets(mtmp, SLING);
 			 m_initthrow(mtmp, TALC, 25);
@@ -12667,6 +12671,9 @@ loveheelover:
 		if (mtmp->data == &mons[PM_SCRATCH_NYMPH]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_MARIA_S_PINK_STILETTO_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_LOVELY_FEMMY]) (void) mongets(mtmp, STILETTO_SANDALS);
+
+		if (mtmp->data == &mons[PM_WARPNYMPH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
+		if (mtmp->data == &mons[PM_BUTTBURROWER_MODIFIER_WARPNYMPH]) (void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
 
 		if (ptr == &mons[PM_BLUE_NYMPH]) {
 			(void) mongets(mtmp, SLING);
@@ -19632,6 +19639,7 @@ loveheelover:
 		if (ptr == &mons[PM_GRINDRAGON]) (void) mongets(mtmp, GRINDER);
 		if (ptr == &mons[PM_STEAM_SMOKER]) (void) mongets(mtmp, ELECTRIC_CIGARETTE);
 		if (ptr == &mons[PM_EDDOMINA]) (void) mongets(mtmp, LEATHER_PEEP_TOES);
+		if (ptr == &mons[PM_STEALING_JOURNALIST_BITCH]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (ptr == &mons[PM_LANE_MUGGER]) (void) mongets(mtmp, KNIFE);
 		if (ptr == &mons[PM_MERCYLADY]) (void) mongets(mtmp, BLADE_OF_MERCY);
 		if (ptr == &mons[PM_SHIELD_KITE]) (void) mongets(mtmp, KITE_SHIELD);
