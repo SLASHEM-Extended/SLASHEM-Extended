@@ -1,5 +1,22 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.7 - July 2025
+- Purchasing shopkeeper services no longer transfers the money to the shopkeeper; instead, the money is simply deleted from the game to avoid players paying hundreds of thousands of gold for services and then simply murdering the shopkeeper to get all the money back.
+- Player characters who have the disarming property can now also attempt to disarm drain, disintegration and premature death traps.
+- Certain situations, such as playing the batman race or ladiesman role, or suffering from the nadja trap effect, will now highlight monsters that you're not allowed to attack in a dark red color.
+- The bank trap effect as well as paying off debts should now properly update the gold display on the bottom status line.
+- Fixed a bug where the displacement property made it impossible to forcibly attack a peaceful monster.
+- Potions of cola now have random names. This is just cosmetic.
+- The amount of trophies that a player has obtained, as well as the amount of times they leveled up past XL30, will now increase the HP/Pw caps for corona effects.
+- There are now effects that can allow the player to use techniques or spells that they don't have.
+- Rebalanced martial arts damage output.
+- Grass whistles now don't degrade if the player uses them while standing in grassland.
+- When the player is asked by Sing to clean a pair of shoes, the question now requires the player to type out "yes" because it was all too easy to accidentally skip past the prompt in the heat of combat.
+- Bandages and phials can generate randomly now, and have effects outside of medical kits.
+- Fixed an oversight that caused the player character to always hallucinate during sunny weather.
+- Fixed a bug where the cartomancer quest was impossible to complete since the player couldn't reach the downstair.
+- Cursed touchstones can no longer shatter feminism gems.
+
 2.9.6 - July 2025
 - Items on bones levels are aetheric now, making it impossible for players to interact with them. They no longer get randomly deleted, cursed or disenchanted.
 - Added the current weather to the Ctrl-X command and enlightenment/dumplog.
