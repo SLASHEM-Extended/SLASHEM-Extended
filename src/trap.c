@@ -8286,6 +8286,7 @@ newbossPENT:
 		else u.ualign.type = -(u.ualign.type);
 		u.ublessed = 0; /* lose your god's protection */
 		Your("mind oscillates briefly.");
+		flags.botl = TRUE;
 
 		break;
 

@@ -2166,6 +2166,9 @@ register boolean mod;
 			if (rn2(2)) otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			}
+		    if (otmp && otmp->oartifact == ART_INSTANALATER) {
+			RecurringAmnesia += rnz(5000);
+		    }
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }

@@ -14157,6 +14157,11 @@ peffects(otmp)
 
 	case POT_CURE_AIDS:
 
+		if (otmp->oartifact == ART_DEMO_S_SPECIALTY) {
+			u.badfcursed = u.badfdoomed = 0;
+			You("don't feel like walking on the road to nowhere.");
+		}
+
 		makeknown(POT_CURE_AIDS);
 
 		if (isevilvariant && otmp->cursed) {
@@ -15198,6 +15203,12 @@ peffects(otmp)
 		}
 
 	case POT_MUTATION:
+
+		if (otmp->oartifact == ART_ETHER_CHANGER) {
+			u.contamination += 100;
+			intrinsicgainorloss(1);
+		}		
+
 		You_feel("a little %s.", FunnyHallu ? "normal" : "strange");
 		if (!Unchanging) polyself(FALSE);
 		break;

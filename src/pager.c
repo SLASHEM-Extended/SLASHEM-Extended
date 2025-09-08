@@ -29441,6 +29441,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear Mira advertising her 'refreshing' bath to you... but something tells you that bathing in her urine won't be all that great...",
 	"Now your copilot wanted level has increased!",
 	"Now your copilot wanted level has increased! This means that two cops are coming at the same time to bust you, making it harder for you to escape!",
+	"You feel that the gods are pleased with your progress."
+	"You feel that the gods are pleased with your progress. But that feeling is misleading, because the gods are really about to smite you for being naughty."
 
 };
 

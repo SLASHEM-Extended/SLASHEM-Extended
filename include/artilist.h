@@ -24392,6 +24392,82 @@ A("South-West Mosambik",				SPE_BUBBLE_BOBBLE, /* reading it replicates the floo
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
+A("Instanalater",				SCR_INSTANT_AMNESIA, /* upon generation, you get rnz(5000) turns of recurring amnesia trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Demo's Specialty",				POT_CURE_AIDS, /* cures cursed/doomed when quaffed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Ether Changer",				POT_MUTATION, /* quaffing it gives a random intrinsic and +100 contamination (the latter cannot be resisted) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Actual Cone Form",				SPE_CONE_OF_COLD, /* reading it uses the sigil of tempest technique */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("SpritzWhoosh",				SPE_ACID_STREAM, /* reading it uses the sigil of discharge technique */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Amy's Childhood Fear",				SPE_BUBBLING_HOLE, /* reading it reduces your maximum HP by 10 (sets it to 1 if you didn't have enough) and banishes you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Yavanna's Placitude",				SPE_GROW_TREES, /* if you're lawful, reading it increases your alignment and max by 10 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Patricia's Ability",				SPE_BATTERING_RAM, /* reading it gives the patricia trap effect for rnz(10k) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Attention, let op!",				SPE_STEAM_VENOM, /* reading it performs the spirit bomb technique */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("AAAAAAAAAAAAAAAAaaaaaaaa",				SPE_NETHER_MIST, /* reading it spawns 8 frenzied A-class monsters around you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Mafia Boss Method",				SPE_NERVE_POISON, /* reading it poisons your currently wielded weapon as long as it's WEAPON_CLASS; large stacks have the usual chance of resist, but it works even on weapons that normally can't be poisoned */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Elif's Asian Butt",				SPE_AIR_CURRENT, /* reading it gives rnz(2000) turns of the elif trap effect and trains shii-cho by 100 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Not obvious in one hundred years",				SPE_WHISPERS_FROM_BEYOND, /* reading it reduces your sanity by 1000 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Not just a little imba",				SPE_AULE_SMITHING, /* reading it improves your weapon's enchantment value by one, up to a maximum of +13 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Potato44's Fortune",				SPE_LOOT_IMPROVEMENT, /* reading it spawns 5 item masters on the current dungeon level */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Tschiingdiae",				SPE_REROLL_ARTIFACT, /* reading it sets your alignment to a random one (if it rolls the one you already have, nothing happens) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Mutagen Container",				SPE_MUTATION, /* reading it adds an egotype to every monster on the current dungeon level */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The shade ignores you.",				SPE_ULTRA_P, /* reading it paralyzes you for 10 turns and also gives 10 turns of invulnerability */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Lorilore",				SPE_DETECT_FOOT, /* reading it unlocks the divination skill if you don't have it, or gives a 1 in (3^cap) chance that the cap goes up by one */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

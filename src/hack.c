@@ -4830,7 +4830,7 @@ void
 nomul(nval, txt, discountpossible)
 	register int nval;
 	const char *txt;
-	boolean discountpossible;
+	boolean discountpossible; /* can the paralysis duration be reduced by discount action? if FALSE, you're always paralyzed for the full duration --Amy */
 {
 	if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL && nval == 0) return;
 

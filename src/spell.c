@@ -3278,6 +3278,93 @@ struct obj *book2;
 		forget(3, FALSE);
 	}
 
+	if (book2->oartifact == ART_ACTUAL_CONE_FORM) {
+		use_temporary_tech(T_SIGIL_TEMPEST);
+	}
+
+	if (book2->oartifact == ART_SPRITZWHOOSH) {
+		use_temporary_tech(T_SIGIL_DISCHARGE);
+	}
+
+	if (book2->oartifact == ART_ELIF_S_ASIAN_BUTT) {
+		if (!FemtrapActiveRuth) pline("A ghostly girl (named Elif) starts following you around, and apparently she wants to play with you!");
+		FemaleTrapElif += rnz(2000);
+		use_skill(P_SHII_CHO, 100);
+	}
+
+	if (book2->oartifact == ART_ATTENTION__LET_OP_) {
+		use_temporary_tech(T_SPIRIT_BOMB);
+	}
+
+	if (book2->oartifact == ART_MAFIA_BOSS_METHOD) {
+		if (uwep && uwep->oclass == WEAPON_CLASS) {
+			if (!stack_too_big(uwep)) {
+				uwep->opoisoned = TRUE;
+				Your("weapon was poisoned!");
+			} else {
+				Your("stack of weapons was too big and therefore didn't get poisoned.");
+			}
+		} else pline("Sadly, you weren't wielding a weapon, so the poisoning didn't work.");
+	}
+
+	if (book2->oartifact == ART_AAAAAAAAAAAAAAAAAAAAAAAA) {
+		int angelsummon = 8;
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while (angelsummon > 0) {
+			angelsummon--;
+			(void) makemon(mkclass(S_ANGEL,0), u.ux, u.uy, MM_ADJACENTOK|MM_ANGRY|MM_XFRENZIED);
+		}
+
+		u.aggravation = 0;
+
+		You("feel that the angels are out to punish you for your misdeeds!");
+
+	}
+
+	if (book2->oartifact == ART_YAVANNA_S_PLACITUDE) {
+		if (u.ualign.type == A_LAWFUL) {
+			u.alignlim += 10;
+			adjalign(10);
+			You_feel("that the gods are pleased with your progress.");
+		}
+	}
+
+	if (book2->oartifact == ART_PATRICIA_S_ABILITY) {
+		if (!FemtrapActiveRuth) pline("You feel like a beautifully thick girl, capable of splitting enemies' skulls with blunt weapons!");
+		FemaleTrapPatricia += rnz(10000);
+	}
+
+	if (book2->oartifact == ART_AMY_S_CHILDHOOD_FEAR) {
+		if (u.uhpmax < 11) u.uhpmax = 1;
+		else u.uhpmax -= 10;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (Upolyd) {
+			u.mhmax -= 10;
+			if (u.mhmax < 1) u.mhmax = 1;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		}
+		flags.botl = TRUE;
+		Your("health was damaged.");
+
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+			pline("You shudder for a moment.");
+		} else if (playerlevelportdisabled()) { 
+			pline("For some reason, you resist the banishment!");
+		} else {
+			make_stunned(HStun + 2, FALSE); /* to suppress teleport control that you might have */
+			/* delay the banishment, because you might be reading the book off the ground --Amy */
+			if (!u.banishmentbeam) {
+				u.banishmentbeam = 1;
+				nomul(-2, "being banished", FALSE); /* because it's not called until you get another turn... */
+			}
+		}
+	}
+
 	if (book2->oartifact == ART_MATERNITY) {
 		flags.female = TRUE;
 		flags.botl = TRUE;
@@ -3437,6 +3524,91 @@ newbossHORR:
 		if (!level.flags.nommap) {
 			do_mapping();
 		}
+	}
+
+	if (book2->oartifact == ART_NOT_OBVIOUS_IN_ONE_HUNDRED) {
+		reducesanity(1000);
+	}
+
+	if (book2->oartifact == ART_NOT_JUST_A_LITTLE_IMBA) {
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep))) {
+			if (uwep->spe < 13) {
+				uwep->spe++;
+				Your("weapon was enchanted!");
+			} else pline("Unfortunately your weapon cannot be enchanted further.");
+		} else {
+			You("didn't wield a weapon, so the enchantment didn't work!");
+		}
+	}
+
+	if (book2->oartifact == ART_SHADE_IGNORES_YOU_) {
+		nomul(-10, "being ignored by the shade", FALSE);
+		incr_itimeout(&Invulnerable, 10);
+		You_feel("that the shade ignores you.");
+	}
+
+	if (book2->oartifact == ART_LORILORE) {
+
+		if (P_MAX_SKILL(P_DIVINATION_SPELL) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_DIVINATION_SPELL);
+			pline("You can now learn the divination spells skill!");
+		} else if (P_MAX_SKILL(P_DIVINATION_SPELL) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_DIVINATION_SPELL);
+			pline("You can now learn the divination spells skill!");
+			P_MAX_SKILL(P_DIVINATION_SPELL) = P_BASIC;
+		} else if (!rn2(3) && (P_MAX_SKILL(P_DIVINATION_SPELL) == P_BASIC)) {
+			P_MAX_SKILL(P_DIVINATION_SPELL) = P_SKILLED;
+			pline("You can now become skilled in divination spells!");
+		} else if (!rn2(9) && (P_MAX_SKILL(P_DIVINATION_SPELL) == P_SKILLED)) {
+			P_MAX_SKILL(P_DIVINATION_SPELL) = P_EXPERT;
+			pline("You can now become expert in divination spells!");
+		} else if (!rn2(27) && (P_MAX_SKILL(P_DIVINATION_SPELL) == P_EXPERT)) {
+			P_MAX_SKILL(P_DIVINATION_SPELL) = P_MASTER;
+			pline("You can now become master in divination spells!");
+		} else if (!rn2(81) && (P_MAX_SKILL(P_DIVINATION_SPELL) == P_MASTER)) {
+			P_MAX_SKILL(P_DIVINATION_SPELL) = P_GRAND_MASTER;
+			pline("You can now become grand master in divination spells!");
+		} else if (!rn2(243) && (P_MAX_SKILL(P_DIVINATION_SPELL) == P_GRAND_MASTER)) {
+			P_MAX_SKILL(P_DIVINATION_SPELL) = P_SUPREME_MASTER;
+			pline("You can now become supreme master in divination spells!");
+		} else if (P_MAX_SKILL(P_DIVINATION_SPELL) >= P_SUPREME_MASTER) {
+			pline("Sadly your knowledge of the divination spell skill is already maxed.");
+		}
+
+	}
+
+	if (book2->oartifact == ART_MUTAGEN_CONTAINER) {
+		register struct monst *nexusmon, *nextmon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			nextmon = nexusmon->nmon; /* trap might kill mon */
+			if (DEADMONSTER(nexusmon)) continue;
+
+			add_monster_egotype(nexusmon);
+		}
+		pline_The("mutagen container was distributed.");
+	}
+
+	if (book2->oartifact == ART_TSCHIINGDIAE) {
+		int randomalignment = !rn2(3) ? A_CHAOTIC : rn2(2) ? A_NEUTRAL : A_LAWFUL;
+
+		if (u.ualign.type != randomalignment) {
+			u.ublessed = 0; /* lose your god's protection */
+		}
+
+		u.ualign.type = randomalignment;
+		flags.botl = TRUE;
+
+		Your("mind oscillates briefly.");
+	}
+
+	if (book2->oartifact == ART_POTATO___S_FORTUNE) {
+		int randsp = 5;
+		while (randsp > 0) {
+			randsp--;
+			(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+		}
+		You_feel("that there might be treasure available...");
 	}
 
 	if (book2->oartifact == ART_FRA_NOAN) {

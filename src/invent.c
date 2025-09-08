@@ -34037,6 +34037,44 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: reading it spawns soldiers on the current level."); break;
 				case ART_SOUTH_WEST_MOSAMBIK:
 					pline("Artifact specs: reading it floods the current dungeon level and fills the water with sea monsters."); break;
+				case ART_INSTANALATER:
+					pline("Artifact specs: hahaha, you probably forgot what it did ;) Maybe it has something to do with amnesia? (Also, how on earth did you manage to pick up this scroll without it turning to dust?)"); break;
+				case ART_DEMO_S_SPECIALTY:
+					pline("Artifact specs: cures the cursed/doomed status when quaffed. That one can be caused by e.g. quaffing from fountains and is generally not very common."); break;
+				case ART_ETHER_CHANGER:
+					pline("Artifact specs: quaffing it gives a random intrinsic and contaminates you a bit."); break;
+				case ART_ACTUAL_CONE_FORM:
+					pline("Artifact specs: reading it performs the sigil of tempest technique, even if you don't know that one."); break;
+				case ART_SPRITZWHOOSH:
+					pline("Artifact specs: reading it performs the sigil of discharge technique, even if you don't know that one."); break;
+				case ART_AMY_S_CHILDHOOD_FEAR:
+					pline("Artifact specs: reading it reduces your maximum hit points by 10 and banishes you."); break;
+				case ART_YAVANNA_S_PLACITUDE:
+					pline("Artifact specs: if you're lawful, reading it increases your alignment and maximum by 10."); break;
+				case ART_PATRICIA_S_ABILITY:
+					pline("Artifact specs: reading it gives you the patricia trap effect for a while."); break;
+				case ART_ATTENTION__LET_OP_:
+					pline("Artifact specs: reading it performs the spirit bomb technique, even if your character doesn't know that one."); break;
+				case ART_AAAAAAAAAAAAAAAAAAAAAAAA:
+					pline("Artifact specs: reading it surrounds you with very hostile angels."); break;
+				case ART_MAFIA_BOSS_METHOD:
+					pline("Artifact specs: reading it attempts to poison your currently wielded weapon. It must be an actual weapon; this effect doesn't work on weapon tools like pick-axes, and also not on heavy iron balls et.al.!"); break;
+				case ART_ELIF_S_ASIAN_BUTT:
+					pline("Artifact specs: reading it gives you the elif trap effect for a while and trains the form I (Shii-Cho) skill by a generous amount."); break;
+				case ART_NOT_OBVIOUS_IN_ONE_HUNDRED:
+					pline("Artifact specs: reading it reduces your sanity by 1000."); break;
+				case ART_NOT_JUST_A_LITTLE_IMBA:
+					pline("Artifact specs: reading it improves your currently wielded weapon's enchantment by one, up to a maximum of +13."); break;
+				case ART_POTATO___S_FORTUNE:
+					pline("Artifact specs: reading it spawns some items on the current dungeon level."); break;
+				case ART_TSCHIINGDIAE:
+					pline("Artifact specs: reading it randomizes your alignment, with a 1 in 3 chance of nothing happening if it rolls the one you currently are. Be aware that this counts as abandoning your current god if it switches your alignment and therefore forfeits any divine protection you might have!"); break;
+				case ART_MUTAGEN_CONTAINER:
+					pline("Artifact specs: reading it adds a random egotype to every monster on the current dungeon level."); break;
+				case ART_SHADE_IGNORES_YOU_:
+					pline("Artifact specs: reading it paralyzes you for 10 turns, and makes you invulnerable during that time."); break;
+				case ART_LORILORE:
+					pline("Artifact specs: reading it unlocks your divination spells skill if you don't have that, or if you do have it, there's a chance (lower if the cap is higher) of increasing the skill's cap by one. This artifact cannot be wished for."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
