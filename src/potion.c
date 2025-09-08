@@ -9447,6 +9447,8 @@ nivellate()
 
 		upperceiling += u.cnd_trophiesobtained;
 		lowerceiling += u.cnd_trophiesobtained;
+		upperceiling += u.cnd_overlevelcount;
+		lowerceiling += u.cnd_overlevelcount;
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
@@ -9658,6 +9660,8 @@ nivellate()
 
 		upperceiling += u.cnd_trophiesobtained;
 		lowerceiling += u.cnd_trophiesobtained;
+		upperceiling += u.cnd_overlevelcount;
+		lowerceiling += u.cnd_overlevelcount;
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
@@ -9926,6 +9930,7 @@ boolean guaranteed;
 		}
 
 		ceiling += u.cnd_trophiesobtained;
+		ceiling += u.cnd_overlevelcount;
 
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
@@ -10091,6 +10096,7 @@ boolean guaranteed;
 		}
 
 		ceiling += u.cnd_trophiesobtained;
+		ceiling += u.cnd_overlevelcount;
 
 		if (ceiling < 10) ceiling = 10; /* fail safe */
 
