@@ -1816,7 +1816,15 @@ unsigned *ospecial;
 	mtmp = m_at(x, y);
 	if (mtmp && mtmp->isegotype && !mtmp->noegodisplay && !ThereIsNoLite && !PlayerUninformation) special |= MG_EGOTYPE;
 
-	if (mtmp && !ThereIsNoLite && mtmp->mpeaceful && Peacevision && !Hallucination) special |= MG_PEACEFUL;
+	if (Peacevision && mtmp && !ThereIsNoLite && mtmp->mpeaceful && !Hallucination) special |= MG_PEACEFUL;
+
+	if (FemtrapActiveNadja && mtmp && !ThereIsNoLite && mtmp->female && humanoid(mtmp->data) && !Hallucination) special |= MG_AVOIDATTACK;
+
+	if (Race_if(PM_BATMAN) && mtmp && !ThereIsNoLite && !flags.female && mtmp->female && humanoid(mtmp->data) && !Hallucination) special |= MG_AVOIDATTACK;
+
+	if (Role_if(PM_LADIESMAN) && mtmp && !ThereIsNoLite && !flags.female && mtmp->female && humanoid(mtmp->data) && !Hallucination) special |= MG_AVOIDATTACK;
+
+	if (Race_if(PM_BATMAN) && mtmp && !ThereIsNoLite && flags.female && !mtmp->female && humanoid(mtmp->data) && !Hallucination) special |= MG_AVOIDATTACK;
 
 	if (mtmp && mtmp->mnum == PM_ULTRAYOUSEE) {
 		if (!MessagesSuppressed && !Clairvoyant && !RightMouseButtonDoesNotGo) {

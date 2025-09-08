@@ -4054,6 +4054,9 @@ tty_print_glyph(window, x, y, glyph)
     if (!reverse_on && (special & (MG_PEACEFUL)))
 		    term_start_bgcolor(CLR_BRIGHT_GREEN);
 
+    if (!reverse_on && (special & (MG_AVOIDATTACK)))
+		    term_start_bgcolor(CLR_RED);
+
 #if defined(USE_TILES) && defined(MSDOS)
     if (iflags.grmode && iflags.tile_view)
       xputg(glyph,ch,special);
@@ -4093,6 +4096,12 @@ tty_print_glyph(window, x, y, glyph)
     } 
 
     if (!reverse_on && (special & (MG_PEACEFUL))) { 
+	    term_end_bgcolor(); 
+	    term_end_color(); 
+	    ttyDisplay->color = NO_COLOR;
+    } 
+
+    if (!reverse_on && (special & (MG_AVOIDATTACK))) { 
 	    term_end_bgcolor(); 
 	    term_end_color(); 
 	    ttyDisplay->color = NO_COLOR;
