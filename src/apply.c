@@ -7500,7 +7500,7 @@ blesschoice:
 
 		delobj(obj);
 
-		if (bandagetype = 2) {
+		if (bandagetype == 2) {
 			if (!(HProtection & INTRINSIC))  {
 				HProtection |= FROMOUTSIDE;
 				if (!u.ublessed)  u.ublessed = 1;
@@ -7510,7 +7510,7 @@ blesschoice:
 			You_feel("protected.");
 		}
 
-		if (bandagetype = 3) {
+		if (bandagetype == 3) {
 			upnivel(TRUE);
 		}
 
