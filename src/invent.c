@@ -33364,7 +33364,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				case ART_FOUR_DRAGONS_TABLE:
 					pline("Artifact specs: while you're wearing it, both you and the dealer are less likely to bust when playing blackjack."); break;
 				case ART_GORTHRAK_S_SHACKLEBANE:
-					pline("Artifact specs: +12 damage, can be invoked to unpunish you. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Gorthrak, the Liberator of the Damned, carried this to break slave chains — and the bones of their masters.'"); break;
+					pline("Artifact specs: +12 damage, can be invoked to unpunish you. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Gorthrak, the Liberator of the Damned, carried this to break slave chains - and the bones of their masters.'"); break;
 				case ART_DRAVOK_S_SUNDERING:
 					pline("Artifact specs: +8 damage, allows you to use the #force command to raze mountains next to you but doing so reduces the ball's enchantment by 5. If its enchantment is -5 or worse, this ability cannot be used. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Dravok the Mountain-Splitter swung this weapon once to cleave a peak in half, burying an army beneath the rubble.'"); break;
 				case ART_BUMMERWUMMER:
@@ -33546,7 +33546,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				case ART_DJANGO_S_CHAIN:
 					pline("Artifact specs: wielding it or being chained to it gives +5 to all stats but also aggravates monsters. This artifact has been designed by Demo."); break;
 				case ART_THASSIRA_S_HEARTBIND:
-					pline("Artifact specs: +10 to-hit and +26 damage to monsters who like magical items, gold or jewels. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Thassira, goddess of unbreakable oaths, used this chain to bind liars and oathbreakers — and crush them when they struggled.'"); break;
+					pline("Artifact specs: +10 to-hit and +26 damage to monsters who like magical items, gold or jewels. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Thassira, goddess of unbreakable oaths, used this chain to bind liars and oathbreakers - and crush them when they struggled.'"); break;
 				case ART_EARNTRARE:
 					pline("Artifact specs: drains levels from enemies."); break;
 				case ART_CUCHULAINN_S_WHIRL:
