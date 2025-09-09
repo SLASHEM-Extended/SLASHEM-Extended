@@ -1504,11 +1504,11 @@ moveloop()
 				}
 
 				if (Double_attack && moveamt > 1) {
-					if (rn2(StrongDouble_attack ? 2 : 3))
+					if (!rn2(StrongDouble_attack ? 4 : 3))
 					moveamt /= 2;
 				}
 				if (Quad_attack && moveamt > 1) {
-					if (!StrongQuad_attack || rn2(3))
+					if (!rn2(StrongQuad_attack ? 3 : 2))
 					moveamt /= 2;
 				}
 
@@ -2071,11 +2071,11 @@ moveloop()
 
 			/* double and quad attack are teh pwnz0r, so they need to have a downside --Amy */
 			if (Double_attack && moveamt > 1) {
-				if ((youmonst.data->mmove > 1 || !rn2(2)) && rn2(StrongDouble_attack ? 2 : 3))
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && !rn2(StrongDouble_attack ? 4 : 3) )
 				moveamt /= 2;
 			}
 			if (Quad_attack && moveamt > 1) {
-				if ((youmonst.data->mmove > 1 || !rn2(2)) && (!StrongQuad_attack || rn2(3)) )
+				if ((youmonst.data->mmove > 1 || !rn2(2)) && !rn2(StrongQuad_attack ? 3 : 2) )
 				moveamt /= 2;
 			}
 
