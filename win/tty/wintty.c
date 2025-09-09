@@ -419,7 +419,7 @@ give_up:	/* Quit */
 	    } else {	/* pick4u == 'n' */
 	    	if (tty_race_select(pbuf, plbuf) < 0) goto give_up;
 
-		if (yn("Use hybrid races?") == 'y') {
+		if (yn("Add hybrid races to your character? (these can change how the game plays; most of them will make the game harder and are generally meant for experienced players)") == 'y') {
 
 			int tryct = 0;
 
