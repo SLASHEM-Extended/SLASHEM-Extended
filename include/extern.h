@@ -491,6 +491,7 @@ E char *mongenderidentity(struct monst *);
 E char *pantsdescription(struct monst *);
 E char *bundledescription(void);
 E char *elementdamagedesc(int);
+E char *feminismtrapname(int);
 
 E char *playerweaponname(void);
 
