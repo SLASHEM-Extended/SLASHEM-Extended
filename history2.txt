@@ -1,6 +1,7 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
 2.9.7 - July 2025
+- Changed the player speed calculations when having double/quad attacks to give less of a penalty.
 - Purchasing shopkeeper services no longer transfers the money to the shopkeeper; instead, the money is simply deleted from the game to avoid players paying hundreds of thousands of gold for services and then simply murdering the shopkeeper to get all the money back.
 - Player characters who have the disarming property can now also attempt to disarm drain, disintegration and premature death traps.
 - Certain situations, such as playing the batman race or ladiesman role, or suffering from the nadja trap effect, will now highlight monsters that you're not allowed to attack in a dark red color.
