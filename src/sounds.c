@@ -4163,19 +4163,19 @@ repairitemchoice:
 		break;
 	case MS_GENDER:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
-			verbl_msg = "I may die, but let everyone know that I'm %s!", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male";
+			verbalize("I may die, but let everyone know that I'm %s!", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male");
 			break;
 		}
 		if (mtmp->mtame && hastoeat && moves > EDOG(mtmp)->hungrytime) {
-			verbl_msg = "This %s needs something to eat!", is_neuter(mtmp->data) ? "neutrum" : mtmp->female ? "woman" : "man";
+			verbalize("This %s needs something to eat!", is_neuter(mtmp->data) ? "neutrum" : mtmp->female ? "woman" : "man");
 			break;
 		}
 		if (mtmp->mtame) {
-			verbl_msg = "Do you like the fact that you have a %s ally?", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male";
+			verbalize("Do you like the fact that you have a %s ally?", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male");
 		} else if (mtmp->mpeaceful) {
-			verbl_msg = "Hey look at me! I'm %s!", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male";
+			verbalize("Hey look at me! I'm %s!", is_neuter(mtmp->data) ? "neuter" : mtmp->female ? "female" : "male");
 		}
-		else verbl_msg = "You're gonna lose to a %s!", is_neuter(mtmp->data) ? "neutrum" : mtmp->female ? "girl" : "boy";
+		else verbalize("You're gonna lose to a %s!", is_neuter(mtmp->data) ? "neutrum" : mtmp->female ? "girl" : "boy");
 		break;
 	case MS_AMNESIA:
 		if (mtmp->mtame && mtmp->mhp < mtmp->mhpmax/3) {
