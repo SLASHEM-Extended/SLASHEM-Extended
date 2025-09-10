@@ -7165,7 +7165,7 @@ aliasagain:
 			register struct obj *objX, *objX2;
 			for (objX = invent; objX; objX = objX2) {
 				objX2 = objX->nobj;
-				if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+				if (!rn2(5) || (sobj->oartifact == ART_WANDENWASTER) ) objX->oinvis = objX->oinvisreal = FALSE;
 			}
 		}
 
@@ -7957,16 +7957,18 @@ procanothersin:
 	case SCR_ENRAGE:
 
 		{
+		boolean moreenrage = FALSE;
+		if (sobj->oartifact == ART_RAAAAAAAAAH__RAAAAAAAAAH__) moreenrage = TRUE;
 		int effectradius = (sobj->blessed ? 5 : sobj->cursed ? 20 : 10);
 		if (confused) effectradius *= 3;
 	      register struct monst *mtmp2;
 		struct edog* edog;
 
 		for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
-			if (rn2(3) && distu(mtmp2->mx,mtmp2->my) < effectradius) {
+			if ( (rn2(3) || moreenrage) && distu(mtmp2->mx,mtmp2->my) < effectradius) {
 				if (mtmp2->mtame) {
 					edog = (mtmp2->isminion) ? 0 : EDOG(mtmp2);
-					if (mtmp2->mtame <= rnd(21) || (edog && edog->abuse >= rn2(6) )) {
+					if (mtmp2->mtame <= rnd(21) || moreenrage || (edog && edog->abuse >= rn2(6) )) {
 
 						int untamingchance = 10;
 

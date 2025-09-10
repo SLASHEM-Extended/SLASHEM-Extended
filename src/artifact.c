@@ -4,6 +4,7 @@
 
 #include "hack.h"
 #include "artifact.h"
+#include "edog.h"
 #ifdef OVLB
 #include "artilist.h"
 struct artifact artilist[SIZE(artilist_pre)];		/* the master list of artifacts */
@@ -2221,8 +2222,155 @@ register boolean mod;
 			} else pline("Sadly your knowledge of the occult spells skill is already maxed.");
 
 		    }
+		    if (otmp && otmp->oartifact == ART_ENRAAAAAAAAGE) {
+		      register struct monst *mtmp2;
+			struct edog* edog;
+
+			for (mtmp2 = fmon; mtmp2; mtmp2 = mtmp2->nmon) {
+				if (rn2(3) && distu(mtmp2->mx,mtmp2->my) < 25) {
+					if (mtmp2->mtame) {
+						edog = (mtmp2->isminion) ? 0 : EDOG(mtmp2);
+						if (mtmp2->mtame <= rnd(21) || (edog && edog->abuse >= rn2(6) )) {
+
+							int untamingchance = 10;
+
+							if (!(PlayerCannotUseSkills)) {
+								switch (P_SKILL(P_PETKEEPING)) {
+									default: untamingchance = 10; break;
+									case P_BASIC: untamingchance = 9; break;
+									case P_SKILLED: untamingchance = 8; break;
+									case P_EXPERT: untamingchance = 7; break;
+									case P_MASTER: untamingchance = 6; break;
+									case P_GRAND_MASTER: untamingchance = 5; break;
+									case P_SUPREME_MASTER: untamingchance = 4; break;
+								}
+							}
+
+							if (untamingchance > rnd(10) && !(Role_if(PM_DRAGONMASTER) && uarms && Is_dragon_shield(uarms) && mtmp2->data->mlet == S_DRAGON) && !((rnd(30 - ACURR(A_CHA))) < 4) ) {
+
+								mtmp2->mtame = mtmp2->mpeaceful = 0;
+								if (mtmp2->mleashed) { m_unleash(mtmp2,FALSE); }
+							}
+						}
+					} else if (mtmp2->mpeaceful && !is_infrastructure_monster(mtmp2)) {
+						mtmp2->mpeaceful = 0;
+					} else {
+						if (!is_infrastructure_monster(mtmp2)) {
+							if (!rn2(5)) mtmp2->mfrenzied = 1;
+							mtmp2->mhp = mtmp2->mhpmax;
+						}
+					}
+				}
+			}
+			pline("It seems a little more dangerous here now...");
+
+		    }
+		    if (otmp && otmp->oartifact == ART_SALTING_THE_WATER) {
+			level.flags.lethe = 1;
+			You_feel("the presence of the Lethe Gorge...");
+		    }
+		    if (otmp && otmp->oartifact == ART_BAD_LSD_TRIP__HAHAHAHAH) {
+			make_hallucinated(HHallucination + 1000, FALSE, 0L);
+			set_itimeout(&HeavyHallu, HHallucination);
+			You_feel("like on a bad trip!");
+		    }
 		    if (otmp && otmp->oartifact == ART_SHOEPOCALYPSE) {
 			shoeragnarok();
+		    }
+		    if (otmp && otmp->oartifact == ART_TURN_ON_THE_ICE) {
+			int i, j, bd = 100;
+			for (i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+				if (!isok(u.ux + i, u.uy + j)) continue;
+				if (levl[u.ux + i][u.uy + j].typ == ROOM || levl[u.ux + i][u.uy + j].typ == CORR) {
+					levl[u.ux + i][u.uy + j].typ = ICE;
+					blockorunblock_point(u.ux + i,u.uy + j);
+					if (!(levl[u.ux + i][u.uy + j].wall_info & W_EASYGROWTH)) levl[u.ux + i][u.uy + j].wall_info |= W_HARDGROWTH;
+					del_engr_at(u.ux + i, u.uy + j);
+	
+					newsym(u.ux + i,u.uy + j);
+				}
+
+			}
+			pline("The entire area becomes very icy...");
+
+		    }
+		    if (otmp && otmp->oartifact == ART_WHAT_FOR_A_T_SPRECHER) {
+			int tryct = 0;
+			int x, y;
+
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, LOUDSPEAKER, 0, FALSE);
+					break;
+				}
+			}
+
+		    }
+		    if (otmp && otmp->oartifact == ART_HUB_ONE_S_FOOLING) {
+			bad_equipment_implant();
+		    }
+		    if (otmp && otmp->oartifact == ART_WE_WOULD_LOVE_TO_WEAR_HIGH) {
+			bad_equipment_heel();
+		    }
+
+		    if (otmp && otmp->oartifact == ART_FINDST_MER) {
+			u.veryobtainclass1 = SPBOOK_CLASS;
+			if (!u.veryobtainclass1boost) u.veryobtainclass1boost = rnd(100);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_FEMINIST_CENT_RAL) {
+
+			int x, y;
+			int numfemtraps = rnz(20);
+			while (numfemtraps > 0) {
+
+				numfemtraps--;
+
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, randomfeminismtraptype(), 0, FALSE);
+				}
+			}
+
+		    }
+		    if (otmp && otmp->oartifact == ART_MARIARI_S_CRAZY_PLAYSTYLE) {
+
+			int x, y;
+			int numfemtraps = 10;
+			while (numfemtraps > 0) {
+
+				numfemtraps--;
+
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, QUASAR_TRAP, 0, FALSE);
+				}
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_MALOR_S_VIEWHIDE) {
+			u.invisotrap = CHECKERBOARD_TRAP;
+		    }
+		    if (otmp && otmp->oartifact == ART_A_SOUND_THAT_SOUNDS_LIKE_R) {
+			int boulderamount = 10;
+			while (boulderamount) {
+				boulderamount--;
+				(void) makemon(&mons[PM_BOULDER_MASTER], 0, 0, NO_MM_FLAGS);
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_MALOR_S_REMOVAL_FAILURE) {
+			u.frequenttrap = BISHOP_TRAP;
+		    }
+		    if (otmp && otmp->oartifact == ART_GOTSYM) {
+			if (!uinsymbiosis) {
+				getrandomsymbiote(FALSE, FALSE);
+			}
 		    }
 		    if (otmp && otmp->oartifact == ART_FONTOMAT) {
 			fountainstorm();
@@ -3404,6 +3552,9 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_ETHER_DAGGER) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;
+		    }
+		    if (otmp && otmp->oartifact == ART_FULLY_ADAMANT) {
+			if (objects[otmp->otyp].oc_material != MT_ADAMANTIUM) objects[otmp->otyp].oc_material = MT_ADAMANTIUM;
 		    }
 		    if (otmp && otmp->oartifact == ART_DAGGER_SURROUNDED_BY_WIND) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;

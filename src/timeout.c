@@ -262,6 +262,26 @@ nh_timeout()
 		if (!u.rangedreload) You("can once again use ranged weapons.");
 	}
 
+	if (u.trilightningdelay) {
+		u.trilightningdelay--;
+		if (u.trilightningdelay == 100) use_temporary_tech(T_AUTOKILL);
+		if (u.trilightningdelay == 50) use_temporary_tech(T_CHAIN_THUNDERBOLT);
+		if (u.trilightningdelay < 0) u.trilightningdelay = 0; /* fail safe */
+		if (!u.trilightningdelay) use_temporary_tech(T_FLASHING_MISCHIEF);
+	}
+
+	if (u.tempharenwah) {
+		u.tempharenwah--;
+		if (u.tempharenwah < 0) u.tempharenwah = 0; /* fail safe */
+		if (!u.tempharenwah) You("feel that the animals are no longer as peaceful as before.");
+	}
+
+	if (u.tempnofluidators) {
+		u.tempnofluidators--;
+		if (u.tempnofluidators < 0) u.tempnofluidators = 0; /* fail safe */
+		if (!u.tempnofluidators) You("are no longer safe from the fluidator squad when wallwalking.");
+	}
+
 	if (u.cryopancaketurns) {
 		u.cryopancaketurns--;
 		if (u.cryopancaketurns < 0) u.cryopancaketurns = 0; /* fail safe */
@@ -5159,6 +5179,10 @@ nh_timeout()
 			if (!Flying)
 				You_feel("less airborne.");
 			break;
+		case MANALEECH:
+			if (!Manaleech)
+				You("no longer leech mana.");
+			break;
 		case CONF_RES:
 			if (!Conf_resist)
 				pline("You no longer resist confusion.");
@@ -5198,6 +5222,10 @@ nh_timeout()
 		case SPELLBOOST:
 			if (!Spellboost)
 				pline("Your spellcasting boost has timed out.");
+			break;
+		case WONDERLEGS:
+			if (!Wonderlegs)
+				You("lost your wonderlegs, and they're once again vulnerable! Oh no!!");
 			break;
 		case MAGIC_FIND:
 			if (!MagicFindBonus)

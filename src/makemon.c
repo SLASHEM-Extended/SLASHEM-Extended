@@ -34065,6 +34065,8 @@ register struct permonst *ptr;
 
 	if (uarm && uarm->oartifact == ART_KURAIN_VIEW && ptr->mlet == S_GHOST && rn2(4)) return TRUE;
 
+	if (u.tempharenwah && is_animal(ptr) && rn2(10)) return TRUE;
+
 	if (uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && rn2(2) && (ptr->mlet == S_DOG || ptr->mlet == S_FELINE)) return TRUE;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FRIEND_OF_ALL_THE_ANIMALS && rn2(2) && is_animal(ptr) ) return TRUE;
 

@@ -24468,6 +24468,194 @@ A("Lorilore",				SPE_DETECT_FOOT, /* reading it unlocks the divination skill if 
 	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
+A("You and your welding feet!",				SPE_DRIPPING_TREAD, /* rnz(5000) turns of sabrina and kerstin trap effect when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("RAAAAAAAAAH! RAAAAAAAAAH! RAAAAAAAAAH! RAAAAAAAAAH! RAAAAAAAAAH!",				SCR_ENRAGE, /* much less likely for the pets to resist, also when read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Wandenwaster",				SCR_VISIBLE_ITEM, /* makes your entire inventory visible when read, also if it's read by a monster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Minterglobe",				POT_REFLECTION, /* lasts 10 times as long */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("null in brackets null",				SPE_NO_EFFECT, /* no special effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Golemequipment",				SPE_FIRE_GOLEM, /* creates a stack of rnz(10) torches on the ground when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("myheart magigi",				SPE_SHINING_WAVE, /* reading it gives 2500 turns of manaleech */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Harenwah",				SPE_HORSE_HOP, /* reading it gives 2000 turns of M1_ANIMAL having 90% chance of spawning peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Enraaaaaaaage",				SPE_ANGER_PEACEFUL_MONSTER, /* upon generating, it acts like a scroll of enrage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Nopefluid",				SPE_PASSWALL, /* reading it gives 100 turns of no fluidator wantedness when walking through walls */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Cruelty Proof",				SPE_UNTAME_MONSTER, /* reading it trains the axe skill by 50 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Salting The Water",				SPE_LEVITATION, /* upon generation, the current level is flagged as lethe; reading it while not on a lethe level flags the level as lethe and gives +3 intrinsic protection */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Goffic Coolness",				SPE_CUTTING, /* reading it transforms you into a vampire like the potion and forces you to equip a cursed pair of hippie heels; if they don't spawn with an enchantment, they get the "of hallucination resistance" one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("dueueueueuei accelerotor!",				SPE_FORCIBLE_MOVE, /* reading it gives rn1(20,20) turns of temporary speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Punybody",				SPE_GODMODE, /* reading it gives you the prayer_done effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("percentes spell",				SPE_DEFENSIVE_FIREBALL, /* reading it randomly gives either a good or bad effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Smell The Coffee",				SPE_RESIST_SLEEP, /* reading it spawns a potion of coffee on the ground */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Deepwood Venom Seekout",				SPE_THORNS, /* reading it trains the venom skill by 50 points */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("X-Treme Firebranding",				SPE_ENCHANT, /* if you're wielding a weapon while reading it and the weapon doesn't have an enchantment, it gets the "of fire brand" one */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Let Rhea help you",				SPE_SMELL_MONSTER, /* reading it gives 2000 turns of scent view, rhea trap effect and poison/blindness resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Like a candle in the wind",				SPE_LIGHT, /* reading it spawns tallow candles on the ground with rnz(35) stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Now level up at once!",				SPE_GAIN_LEVEL, /* reading it gives 1000 turns of exp boost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Yearly Wonder",				SPE_CURE_WOUNDED_LEGS, /* rnz(2000) turns of wonderlegs when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Find The Useful Way",				SPE_CURE_PARALYSIS, /* while wielding it, if you get paralyzed you get inertia control for 5 turns but at the cost of -d2 max HP; if your max HP is lower than 10, that effect won't trigger at all */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("bad lsd trip, hahahahah",				SPE_ACID_INGESTION, /* 1000 turns of heavy hallu when generated, reading it grants 500 turns of petrification resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Turn On The Ice",				SPE_CURE_FREEZE, /* upon generation, all regular floor on the current dungeon level becomes ice; reading it will turn ice on your square and the eight surrounding ones to regular floor */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Alla dann!",				SPE_RESIST_RANDOM_ELEMENT, /* reading it increases your alla by 100 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Sporksta Pane",				SPE_ENCHANT_WEAPON, /* reading it increases the minimum turn count for increased monster respawn by rnz(5000), saves that value and then adds that to the maximum respawn rate turn count as well as another rnz(10k) to the latter */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Hopes and Dreams",				SPE_ENCHANT_ARMOR, /* reading it increases the ascension turn limit by rnz(10k) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("What for a t-sprecher",				SPE_DETECT_WATER, /* upon generating and if you read it, a loudspeaker is spawned somewhere on the current level (can also be in a wall) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Ute's Challenge",				SPE_GRASSLAND, /* reading it spawns Ute on the current level and gives her a random artifact pair of missys */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hub One's Fooling",				SPE_CONVERGE_BREATH, /* forces you to wear a cursed implant upon generating, and also if you read it while not currently wearing an implant; if you read it while already having an implant, the implant in question is cursed 10 times */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4400L ),
+
+A("Gotsym",				SPE_SYMHEAL, /* upon generating, and also if you read it, you get a symbiote if you don't have one already */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("We would love to wear high heels!",				SPE_WISHING, /* forces you to equip some bad high heels upon generating; reading it while you're not wearing high heels does the same, but if you read it while wearing some, you get strength-15 amnesia instead */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Feminist Cent RAL",				SPE_WATER_BOLT, /* upon generating, rnz(20) random feminism traps are spawned on the current dungeon level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Mariari's Crazy Playstyle",				SPE_SUMMON_UNDEAD, /* upon generating, 10 quasar traps are spawned on the current dungeon level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Malor's Viewhide",				SPE_GAIN_CORRUPTION, /* upon generating, the checkerboard trap is set as the one that always spawns invisible */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Malor's Removal Failure",				SPE_EARTHQUAKE, /* upon generating, the bishop trap is set as the trap that spawns more often in the current game */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("a sound that sounds like Rumble!",				SPE_STONE_TO_FLESH, /* spawns 10 boulders on random squares upon generation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("Fully Adamant",				SPE_DRAGON_BLOOD, /* material becomes ADAMANTIUM upon generation */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Tri-Delay Lightning",				SPE_THUNDER, /* reading it sets a delay of 150 turns; if it reaches 100 you use the autokill technique, at 50 you use chain thunderbolt and when it runs out you use flashing mischief */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rhea's Aura",				SPE_POISON_BRAND, /* reading it gives 1000 turns of poison resistance and shoots poison beams (strength 8) in all directions */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fartomat",				SPE_FORCE_BOLT, /* reading it gives twice the usual amount of spell memory and rnz(3000) turns of maurah trap effect, as well as +1 luck */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("only mm haha",				SPE_MAGIC_BOLT, /* reading it increases your maximum Pw by one and has a chance of increasing your wisdom */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Know how to do it?",				SPE_COMMAND_UNDEAD, /* reading it summons 5 random undead around you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("findst mer",				SPE_HEALING_RAIN, /* upon generation, u.veryobtainclass1 is set to SPBOOK_CLASS and if u.veryobtainclass1boost is currently zero, it's set to rnd(100) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Paranormal",				SPE_CURE_NUMBNESS, /* reading it grants +200 nutrition */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1100L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -4930,6 +4930,28 @@ nomul(nval, txt, discountpossible)
 		if (nval > -2) nval = -2;
 	}
 
+	if (nval < 0 && uwep && uwep->oartifact == ART_FIND_THE_USEFUL_WAY && (u.uhpmax >= 10)) {
+		u.uhpmax -= rnd(2);
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		flags.botl = TRUE;
+
+		pline("Inertia control allows you to automatically cast a spell every turn for a while. You can choose which spell you want to control.");
+
+		if (spellid(0) == NO_SPELL)  {
+			You("don't know any spells, and therefore inertia control fails.");
+			goto controldone;
+		}
+
+controlagain:
+		if (!inertiacontrolspell(5)) { /* see spell.c */
+			if (yn("Really exit with no spell selected?") == 'y')
+				pline("You just wasted the opportunity to control a spell.");
+			else goto controlagain;
+		}
+
+	}
+
+controldone:
 	if (nval < 0 && FemtrapActiveLara && !u.laratraptimer) {
 
 		struct permonst *pm = 0;

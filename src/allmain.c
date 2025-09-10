@@ -3374,13 +3374,13 @@ moveloop()
 			pline("Well, I guess there's no stopping you from wallwalking constantly. But be aware of the fact that Moloch is going to send more and more fluidators in an attempt to catch you.");
 		}
 
-		if (IS_STWALL(levl[u.ux][u.uy].typ) && levl[u.ux][u.uy].typ <= ROCKWALL) {
+		if (IS_STWALL(levl[u.ux][u.uy].typ) && (levl[u.ux][u.uy].typ <= ROCKWALL) && !u.tempnofluidators) {
 			u.fluidatorwantedlevel += 5;
 			if (uarmc && uarmc->oartifact == ART_EXTREMEFLUID) u.fluidatorwantedlevel += 10;
 		}
 
 		/* walscholar can go into grave walls, but that shouldn't be abusable --Amy */
-		if (levl[u.ux][u.uy].typ == GRAVEWALL && !u.walscholarpass) {
+		if (levl[u.ux][u.uy].typ == GRAVEWALL && !u.walscholarpass && !u.tempnofluidators) {
 			u.fluidatorwantedlevel += 5;
 			if (uarmc && uarmc->oartifact == ART_EXTREMEFLUID) u.fluidatorwantedlevel += 10;
 		}
@@ -6909,7 +6909,7 @@ fukrosiondone:
 				if (!(strcmp (buf, "yes")) || !(strcmp (buf, "y")) || !(strcmp (buf, "ye")) || !(strcmp (buf, "ys")) ) {
 
 controlagain:
-					if (!inertiacontrolspell()) { /* see spell.c */
+					if (!inertiacontrolspell(50)) { /* see spell.c */
 						if (yn("Really exit with no spell selected?") == 'y')
 							pline("You just wasted the opportunity to control a spell.");
 						else goto controlagain;

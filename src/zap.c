@@ -5639,7 +5639,7 @@ secureidchoice:
 			}
 
 controlagain:
-			if (!inertiacontrolspell()) { /* see spell.c */
+			if (!inertiacontrolspell(50)) { /* see spell.c */
 				if (yn("Really exit with no spell selected?") == 'y')
 					pline("You just wasted the opportunity to control a spell.");
 				else goto controlagain;

@@ -13695,6 +13695,7 @@ peffects(otmp)
 			int reflectdur = rn1(250,250);
 			if (otmp->cursed) reflectdur /= 2;
 			if (otmp->blessed) reflectdur *= rn1(2, 2);
+			if (otmp->oartifact == ART_MINTERGLOBE) reflectdur *= 10;
 			incr_itimeout(&HReflecting, reflectdur);
 			You_feel("reflexive!");
 		}
@@ -14574,13 +14575,14 @@ peffects(otmp)
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case POT_FIRE_RESISTANCE:
-	       if(!(HFire_resistance & FROMOUTSIDE)) {
-		if (FunnyHallu)
-		   pline("You feel, like, totally cool!");
-		   else You_feel("cooler.");
+	      if(!(HFire_resistance & FROMOUTSIDE)) {
+		   if (FunnyHallu)
+			pline("You feel, like, totally cool!");
+		   else
+			You_feel("cooler.");
 		   HFire_resistance += rn1(100,50 + 25 * bcsign(otmp) );
 		   unkn++;
-		   HFire_resistance |= FROMOUTSIDE;
+		   if (otmp->blessed) HFire_resistance |= FROMOUTSIDE;
 		}
 		break;
 	case POT_RESISTANCE:

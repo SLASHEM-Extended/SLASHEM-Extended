@@ -1908,6 +1908,7 @@ E void mkundead(coord *,BOOLEAN_P,int,BOOLEAN_P);
 /*E void mkundeadboo(coord *,BOOLEAN_P,int);*/
 E void mkundeadX(coord *,BOOLEAN_P,int);
 E struct permonst *courtmon(void);
+E struct permonst *morguemon(void);
 E struct permonst *insidemon(void);
 E struct permonst *antholemon(void);
 E struct permonst *realzoomon(void);
@@ -3476,7 +3477,7 @@ E void spellmemoryhalve(void);
 E int dovspell(void);
 E void learnspell(struct obj *);
 E boolean studyspell(void);
-E boolean inertiacontrolspell(void);
+E boolean inertiacontrolspell(int);
 E boolean dememorizespell(void);
 E boolean addsomespellmemory(void);
 E boolean addsomespellmemoryX(void);

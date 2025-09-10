@@ -29443,6 +29443,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"Now your copilot wanted level has increased! This means that two cops are coming at the same time to bust you, making it harder for you to escape!",
 	"You feel that the gods are pleased with your progress."
 	"You feel that the gods are pleased with your progress. But that feeling is misleading, because the gods are really about to smite you for being naughty."
+	"You feel the presence of the Lethe Gorge...",
+	"You feel the presence of the Lethe Gorge... and an intense desire to take a bath, since it'll allow you to forget all the bad things you've seen.",
+	"You lost your wonderlegs, and they're once again vulnerable! Oh no!!"
 
 };
 

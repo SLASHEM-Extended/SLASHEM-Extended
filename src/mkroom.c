@@ -22,7 +22,6 @@ STATIC_DCL struct mkroom * pick_room(BOOLEAN_P);
 STATIC_DCL void mkshop(void), mkzoo(int), mkswamp(void);
 STATIC_DCL void mktemple(void);
 STATIC_DCL coord * shrine_pos(int);
-STATIC_DCL struct permonst * morguemon(void);
 STATIC_DCL struct permonst * tenshallmon(void);
 STATIC_DCL struct permonst * tenshallmonB(void);
 STATIC_DCL struct permonst * prisonermon(void);
@@ -2032,7 +2031,7 @@ int mm_flags;
 	u.aggravation = 0;
 }
 
-STATIC_OVL struct permonst *
+struct permonst *
 morguemon()
 {
 	register int i = rn2(100), hd = rn2(level_difficulty());

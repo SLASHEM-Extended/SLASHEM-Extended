@@ -782,6 +782,10 @@ struct you {
 
 	int tempwaterprotection; /* temporary protection from water damage for player's inventory */
 	int tempstdprotection;	/* temporary protection from STDs */
+	int tempharenwah;	/* for harenwah artifact: animals have 90% chance of spawning peaceful */
+	int tempnofluidators;	/* temporarily don't rack up fluidator wantedness when wallwalking */
+
+	int trilightningdelay;	/* for tri-delay lightning artifact: performs certain techs at certain timeouts */
 
 	int stonedchilltimer;	/* to control whether you get the damage reduction */
 

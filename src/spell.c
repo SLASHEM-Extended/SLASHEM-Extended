@@ -2272,6 +2272,10 @@ learn()
 					boostknow(i, 20000);
 					pline_The("spell has a lot of memory now.");
 				}
+				if (book && book->oartifact == ART_FARTOMAT) {
+					boostknow(i, 10000);
+					pline_The("spell has a lot of memory now.");
+				}
 				if (book && book->oartifact == ART_BACKLASHPROTECT) {
 					boostknow(i, 40000);
 					pline_The("spell has a lot of memory now.");
@@ -2370,6 +2374,10 @@ learn()
 			}
 			if (book && book->oartifact == ART_TY___GLUPAYA_LEDYANAYA_GLY) {
 				boostknow(i, 20000);
+				pline_The("spell has a lot of memory now.");
+			}
+			if (book && book->oartifact == ART_FARTOMAT) {
+				boostknow(i, 10000);
 				pline_The("spell has a lot of memory now.");
 			}
 			if (book && book->oartifact == ART_BACKLASHPROTECT) {
@@ -3273,6 +3281,200 @@ struct obj *book2;
 		use_skill(P_MEMORIZATION, 20);
 	}
 
+	if (book2->oartifact == ART_BAD_LSD_TRIP__HAHAHAHAH) {
+		incr_itimeout(&HStone_resistance, 500);
+		You_feel("more limber. Let's eat some cockatrice meat!");
+	}
+
+	if (book2->oartifact == ART_CRUELTY_PROOF) {
+		use_skill(P_AXE, 50);
+	}
+
+	if (book2->oartifact == ART_DUEUEUEUEUEI_ACCELEROTOR_) {
+		incr_itimeout(&HFast, rn1(20, 20));
+		You_feel("faster.");
+	}
+
+	if (book2->oartifact == ART_PUNYBODY) {
+		prayer_done();
+	}
+
+	if (book2->oartifact == ART_PERCENTES_SPELL) {
+		if (rn2(2)) goodeffect();
+		else badeffect();
+	}
+
+	if (book2->oartifact == ART_GOFFIC_COOLNESS) {
+		int vampirepolypm = PM_LONG_WORM_TAIL;
+		while (!is_vampire(&mons[vampirepolypm]) || !polyok(&mons[vampirepolypm]) || (notake(&mons[vampirepolypm]) && rn2(4) ) || ((mons[vampirepolypm].mlet == S_BAT) && rn2(2)) || ((mons[vampirepolypm].mlet == S_EYE) && rn2(2) ) || ((mons[vampirepolypm].mmove == 1) && rn2(4) ) || ((mons[vampirepolypm].mmove == 2) && rn2(3) ) || ((mons[vampirepolypm].mmove == 3) && rn2(2) ) || ((mons[vampirepolypm].mmove == 4) && !rn2(3) ) || ( (mons[vampirepolypm].mlevel < 10) && ((mons[vampirepolypm].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[vampirepolypm]) && rn2(2) ) || ( is_nonmoving(&mons[vampirepolypm]) && rn2(5) ) || ( is_eel(&mons[vampirepolypm]) && rn2(5) ) || ( is_nonmoving(&mons[vampirepolypm]) && rn2(20) ) || (is_jonadabmonster(&mons[vampirepolypm]) && rn2(20)) || ( uncommon2(&mons[vampirepolypm]) && !rn2(4) ) || ( uncommon3(&mons[vampirepolypm]) && !rn2(3) ) || ( uncommon5(&mons[vampirepolypm]) && !rn2(2) ) || ( uncommon7(&mons[vampirepolypm]) && rn2(3) ) || ( uncommon10(&mons[vampirepolypm]) && rn2(5) ) || ( is_eel(&mons[vampirepolypm]) && rn2(20) ) ) {
+			vampirepolypm = rn2(NUMMONS);
+		}
+		if (!Unchanging) {
+			polymon(vampirepolypm);
+
+			register struct obj *vampheels;
+			vampheels = mksobj(HIPPIE_HEELS, TRUE, FALSE, FALSE);
+			if (vampheels) {
+				if (!vampheels->enchantment) vampheels->enchantment = HALLUC_RES;
+				(void) pickup_object(vampheels, vampheels->quan, TRUE, TRUE);
+				if (uarmf) remove_worn_item(uarmf, TRUE);
+				setworn(vampheels, W_ARMF);
+				Boots_on();
+				if (vampheels) curse(vampheels);
+
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_ALLA_DANN_) {
+		gain_alla(100);
+		pline("Alla dann!");
+	}
+
+	if (book2->oartifact == ART_PARANORMAL) {
+		lesshungry(200);
+		Your("stomach fills a bit.");
+	}
+
+	if (book2->oartifact == ART_ONLY_MM_HAHA) {
+		u.uenmax++;
+		flags.botl = TRUE;
+		mightbooststat(A_WIS);
+	}
+
+	if (book2->oartifact == ART_KNOW_HOW_TO_DO_IT_) {
+		int morgueamount = 5;
+		while (morgueamount > 0) {
+			morgueamount--;
+			(void) makemon(morguemon(), u.ux, u.uy, MM_ADJACENTOK);
+		}
+	}
+
+	if (book2->oartifact == ART_FARTOMAT) {
+		if (!FemtrapActiveRuth) pline("Your sexy butt signals that it wants to produce beautiful farting noises!");
+		FemaleTrapMaurah += rnz(3000);
+		change_luck(1);
+		You_feel("lucky.");
+	}
+
+	if (book2->oartifact == ART_SPORKSTA_PANE) {
+		int sporkstatemp = rnz(5000);
+		u.monstertimeout += sporkstatemp;
+		u.monstertimefinish += sporkstatemp;
+		u.monstertimefinish += rnz(10000);
+	}
+
+	if (book2->oartifact == ART_HOPES_AND_DREAMS) {
+		u.ascensiontimelimit += rnz(10000);
+	}
+
+	if (book2->oartifact == ART_WE_WOULD_LOVE_TO_WEAR_HIGH) {
+		if (PlayerInHighHeels) {
+			forget(15, FALSE);
+		} else {
+			bad_equipment_heel();
+		}
+	}
+
+	if (book2->oartifact == ART_TRI_DELAY_LIGHTNING) {
+		u.trilightningdelay = 150;
+		You("prepare your lightning-based techniques.");
+	}
+
+	if (book2->oartifact == ART_RHEA_S_AURA) {
+		incr_itimeout(&HPoison_resistance, 1000);
+		You_feel("resistant to poison.");
+
+		buzz(16, 8, u.ux, u.uy, -1, 0);
+		buzz(16, 8, u.ux, u.uy, 1, 0);
+		buzz(16, 8, u.ux, u.uy, -1, 1);
+		buzz(16, 8, u.ux, u.uy, 1, 1);
+		buzz(16, 8, u.ux, u.uy, 0, 1);
+		buzz(16, 8, u.ux, u.uy, -1, -1);
+		buzz(16, 8, u.ux, u.uy, 1, -1);
+		buzz(16, 8, u.ux, u.uy, 0, -1);
+
+	}
+
+	if (book2->oartifact == ART_GOTSYM) {
+		if (!uinsymbiosis) {
+			getrandomsymbiote(FALSE, FALSE);
+		}
+	}
+
+	if (book2->oartifact == ART_HUB_ONE_S_FOOLING) {
+		if (!uimplant) bad_equipment_implant();
+		else if (uimplant) {
+			curse(uimplant); curse(uimplant); curse(uimplant); curse(uimplant); curse(uimplant); curse(uimplant); curse(uimplant); curse(uimplant); curse(uimplant); curse(uimplant);
+			You_feel("a very dark aura surrounding your implant...");
+		}
+	}
+
+	if (book2->oartifact == ART_UTE_S_CHALLENGE) {
+
+		register struct monst *utemon;
+		utemon = makemon(&mons[PM_UTE], 0, 0, NO_MM_FLAGS);
+
+		if (utemon) {
+			register struct obj *uteheels;
+			uteheels = mksobj(find_missys(), FALSE, 2, FALSE);
+			if (uteheels) uteheels = mk_artifact(uteheels, (aligntyp)A_NONE, TRUE);
+			if (uteheels) {
+				(void) mpickobj(utemon, uteheels, TRUE);
+			}
+			You_feel("challenged by the beautiful Ute!");
+		}
+
+	}
+
+	if (book2->oartifact == ART_WHAT_FOR_A_T_SPRECHER) {
+		int tryct = 0;
+		int x, y;
+
+		for (tryct = 0; tryct < 2000; tryct++) {
+			x = rn1(COLNO-3,2);
+			y = rn2(ROWNO);
+
+			if (isok(x, y) && !(t_at(x, y)) ) {
+				(void) maketrap(x, y, LOUDSPEAKER, 0, FALSE);
+				break;
+			}
+		}
+
+	}
+
+	if (book2->oartifact == ART_TURN_ON_THE_ICE) {
+		int k, l;
+
+		for (k = -1; k <= 1; k++) for(l = -1; l <= 1; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+
+			if (isok(u.ux + k, u.uy + l) && (levl[u.ux + k][u.uy + l].typ == ICE) ) {
+
+				levl[u.ux + k][u.uy + l].typ = CORR;
+				blockorunblock_point(u.ux + k, u.uy + l);
+				newsym(u.ux + k, u.uy + l);
+
+			}
+
+		}
+		You_feel("the ice thawing.");
+	}
+
+	if (book2->oartifact == ART_SALTING_THE_WATER) {
+		if (level.flags.lethe == 0) {
+			level.flags.lethe = 1;
+			if (!(HProtection & INTRINSIC))  {
+				HProtection |= FROMOUTSIDE;
+				if (!u.ublessed) u.ublessed = (Race_if(PM_MAYMES) ? 6 : 3);
+			} else {
+				u.ublessed += 3;
+				if (Race_if(PM_MAYMES)) u.ublessed += 3;
+			}
+			You_feel("protected, but also realize that the water has started to sparkle.");
+		}
+	}
+
 	if (book2->oartifact == ART_FORGETTEN_EASY) {
 		use_skill(P_MEMORIZATION, 100);
 		forget(3, FALSE);
@@ -3294,6 +3496,13 @@ struct obj *book2;
 
 	if (book2->oartifact == ART_ATTENTION__LET_OP_) {
 		use_temporary_tech(T_SPIRIT_BOMB);
+	}
+
+	if (book2->oartifact == ART_YOU_AND_YOUR_WELDING_FEET_) {
+		if (!FemtrapActiveRuth) pline("Wear Sabrina's platform boots! Now! You just know that if you don't, some angry women will try to kill you.");
+		FemaleTrapSabrina += rnz(5000);
+		if (!FemtrapActiveRuth) pline("Those farmer girls plan to use block-heeled lady boots, wooden sandals and scentful sneakers on you!");
+		FemaleTrapKerstin += rnz(5000);
 	}
 
 	if (book2->oartifact == ART_MAFIA_BOSS_METHOD) {
@@ -3526,18 +3735,48 @@ newbossHORR:
 		}
 	}
 
+	if (book2->oartifact == ART_LET_RHEA_HELP_YOU) {
+		if (!FemtrapActiveRuth) pline("Ugh, the girls and women are really going to beguile you with the horrible odor of their perfume!");
+		FemaleTrapRhea += 2000;
+		incr_itimeout(&HScentView, 2000);
+		incr_itimeout(&HPoison_resistance, 2000);
+		incr_itimeout(&HBlind_resistance, 2000);
+		Your("sense of smell expands, and you feel resistant to poison and blindness.");
+	}
+
 	if (book2->oartifact == ART_NOT_OBVIOUS_IN_ONE_HUNDRED) {
 		reducesanity(1000);
 	}
 
 	if (book2->oartifact == ART_NOT_JUST_A_LITTLE_IMBA) {
 		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep))) {
-			if (uwep->spe < 13) {
+			if (stack_too_big(uwep)) {
+				pline("Unfortunately your stack of weapons was too big and therefore the enchantment failed!");
+			} else if (uwep->spe < 13) {
 				uwep->spe++;
 				Your("weapon was enchanted!");
 			} else pline("Unfortunately your weapon cannot be enchanted further.");
 		} else {
 			You("didn't wield a weapon, so the enchantment didn't work!");
+		}
+	}
+
+	if (book2->oartifact == ART_X_TREME_FIREBRANDING) {
+		if(uwep && (uwep->oclass == WEAPON_CLASS || uwep->oclass == BALL_CLASS || uwep->oclass == GEM_CLASS || uwep->oclass == CHAIN_CLASS || uwep->oclass == VENOM_CLASS || is_weptool(uwep))) {
+			if (stack_too_big(uwep)) {
+				pline("Unfortunately your stack of weapons was too big and therefore the branding didn't work.");
+			} else if (!uwep->enchantment) {
+				struct obj *tempwep = uwep;
+				long savewornmask;
+				savewornmask = tempwep->owornmask;
+				setworn((struct obj *)0, tempwep->owornmask);
+				tempwep->enchantment = WEAPEGO_FIERY;
+				setworn(tempwep, savewornmask);
+
+				Your("weapon is now branded with fire!");
+			} else pline("Unfortunately your weapon already had an egotype.");
+		} else {
+			You("didn't wield a weapon, so the branding didn't work!");
 		}
 	}
 
@@ -3634,6 +3873,10 @@ newbossHORR:
 
 	if (book2->oartifact == ART_DARTH_MAUL_S_TEACHINGS) {
 		use_skill(P_NIMAN, 50);
+	}
+
+	if (book2->oartifact == ART_DEEPWOOD_VENOM_SEEKOUT) {
+		use_skill(P_VENOM, 50);
 	}
 
 	if (book2->oartifact == ART_SUE_THROWAWAY_COMMENTARY) {
@@ -4290,6 +4533,70 @@ melatechoice:
 				break; /* only restore one --Amy */
 			}
 			if(++i >= A_MAX) i = 0;
+		}
+
+	}
+
+	if (book2->oartifact == ART_HARENWAH) {
+		u.tempharenwah += 2000;
+		You("feel that the animals will be peaceful.");
+	}
+
+	if (book2->oartifact == ART_NOPEFLUID) {
+		u.tempnofluidators += 100;
+		You("are safe from the fluidators for the time being.");
+	}
+
+	if (book2->oartifact == ART_MYHEART_MAGIGI) {
+		incr_itimeout(&HManaleech, 2500);
+		You("start leeching mana!");
+	}
+
+	if (book2->oartifact == ART_GOLEMEQUIPMENT) {
+		struct obj *uammo;
+		uammo = mksobj(TORCH, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rnz(10);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A torch has formed on the ground!");
+		}
+
+	}
+
+	if (book2->oartifact == ART_NOW_LEVEL_UP_AT_ONCE_) {
+		incr_itimeout(&HExpBoost, 1000);
+		pline("Quickly! You'll get bonus experience!");
+	}
+
+	if (book2->oartifact == ART_YEARLY_WONDER) {
+		incr_itimeout(&HWonderlegs, rnz(2000));
+		Your("%s feel much better!", makeplural(body_part(LEG)) );
+	}
+
+	if (book2->oartifact == ART_LIKE_A_CANDLE_IN_THE_WIND) {
+		struct obj *uammo;
+		uammo = mksobj(TALLOW_CANDLE, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rnz(35);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A stack of candles has formed on the ground!");
+		}
+
+	}
+
+	if (book2->oartifact == ART_SMELL_THE_COFFEE) {
+		struct obj *uammo;
+		uammo = mksobj(POT_COFFEE, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = 1;
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A mug of coffee has formed on the ground!");
 		}
 
 	}
@@ -10782,7 +11089,7 @@ dememostart:
 
 		pline("Choose a spell to control.");
 controlagain:
-		if (!inertiacontrolspell()) {
+		if (!inertiacontrolspell(50)) {
 			if (yn("Really exit with no spell selected?") == 'y')
 				pline("You just wasted the opportunity to control a spell.");
 			else goto controlagain;
@@ -14608,7 +14915,8 @@ studyspell()
 }
 
 boolean
-inertiacontrolspell()
+inertiacontrolspell(duration)
+int duration;
 {
 	int spell_no;
 
@@ -14619,7 +14927,7 @@ inertiacontrolspell()
 		} else if (spellid(spell_no) != NO_SPELL) {
 			u.inertiacontrolspell = spellid(spell_no);
 			u.inertiacontrolspellno = spell_no;
-			u.inertiacontrol = 50;
+			u.inertiacontrol = duration;
 			You("start controlling the %s spell.", spellname(spell_no));
 			return (TRUE);
 		} else {

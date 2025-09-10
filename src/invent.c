@@ -34075,6 +34075,100 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: reading it paralyzes you for 10 turns, and makes you invulnerable during that time."); break;
 				case ART_LORILORE:
 					pline("Artifact specs: reading it unlocks your divination spells skill if you don't have that, or if you do have it, there's a chance (lower if the cap is higher) of increasing the skill's cap by one. This artifact cannot be wished for."); break;
+				case ART_YOU_AND_YOUR_WELDING_FEET_:
+					pline("Artifact specs: reading it gives you the sabrina and kerstin trap effects for a while."); break;
+				case ART_RAAAAAAAAAH__RAAAAAAAAAH__:
+					pline("Artifact specs: if someone reads it, the chance that your pets are untamed is much greater."); break;
+				case ART_WANDENWASTER:
+					pline("Artifact specs: if someone reads it, your entire inventory becomes visible."); break;
+				case ART_MINTERGLOBE:
+					pline("Artifact specs: lasts 10 times as long when quaffed."); break;
+				case ART_NULL_IN_BRACKETS_NULL:
+					pline("Artifact specs: doesn't do anything special."); break;
+				case ART_GOLEMEQUIPMENT:
+					pline("Artifact specs: reading it creates a bunch of torches on the ground."); break;
+				case ART_MYHEART_MAGIGI:
+					pline("Artifact specs: reading it gives you the manaleech intrinsic for a period of time."); break;
+				case ART_HARENWAH:
+					pline("Artifact specs: after reading it, animals are more likely to spawn peaceful for a while."); break;
+				case ART_ENRAAAAAAAAGE:
+					pline("Artifact specs: when it got generated, your pets may have been untamed."); break;
+				case ART_NOPEFLUID:
+					pline("Artifact specs: after reading it, for the next 100 turns no fluidators will be alerted if you wallwalk."); break;
+				case ART_CRUELTY_PROOF:
+					pline("Artifact specs: reading it trains the axe skill by a bunch of points."); break;
+				case ART_SALTING_THE_WATER:
+					pline("Artifact specs: when it got generated, the dungeon level it was on got flagged as having lethe water. If you read it on a level that's not yet flagged as having lethe water, it becomes so and you gain 3 points of intrinsic protection."); break;
+				case ART_GOFFIC_COOLNESS:
+					pline("Artifact specs: reading it transforms you into a vampire for a while and forces you to equip a cursed pair of hippie heels. The heels are likely to spawn with hallucination resistance as their enchantment."); break;
+				case ART_DUEUEUEUEUEI_ACCELEROTOR_:
+					pline("Artifact specs: reading it gives a few turns of very fast speed."); break;
+				case ART_PUNYBODY:
+					pline("Artifact specs: reading it acts like you had just prayed, causing your deity to respond."); break;
+				case ART_PERCENTES_SPELL:
+					pline("Artifact specs: reading it can randomly give either a good or bad effect."); break;
+				case ART_SMELL_THE_COFFEE:
+					pline("Artifact specs: reading it spawns a cup of coffee on the ground."); break;
+				case ART_DEEPWOOD_VENOM_SEEKOUT:
+					pline("Artifact specs: reading it trains the venom skill by a bunch of points."); break;
+				case ART_X_TREME_FIREBRANDING:
+					pline("Artifact specs: reading it while you wield a weapon that doesn't have a special property will give the 'of fire branding' enchantment to the weapon, allowing it to deal fire damage. This artifact cannot be wished for."); break;
+				case ART_LET_RHEA_HELP_YOU:
+					pline("Artifact specs: reading it gives you the rhea trap effect, scent view and resistance to poison and blindness for a while."); break;
+				case ART_LIKE_A_CANDLE_IN_THE_WIND:
+					pline("Artifact specs: reading it spawns a stack of candles on the ground."); break;
+				case ART_NOW_LEVEL_UP_AT_ONCE_:
+					pline("Artifact specs: reading it gives you the experience boost intrinsic for a period of time, allowing you to gain more experience like Diablo 2's experience shrine."); break;
+				case ART_YEARLY_WONDER:
+					pline("Artifact specs: reading it gives you wonderlegs for a while."); break;
+				case ART_FIND_THE_USEFUL_WAY:
+					pline("Artifact specs: if you wield it and get paralyzed, you can inertia control a spell of your choice for a few turns. But this will reduce your maximum health by up to 2 points every time it happens. Don't want that? Just don't wield the book then :-P"); break;
+				case ART_BAD_LSD_TRIP__HAHAHAHAH:
+					pline("Artifact specs: when it got generated, this artifact gave you heavy hallucination for a pretty long time. Reading it makes you petrification resistant for a while."); break;
+				case ART_TURN_ON_THE_ICE:
+					pline("Artifact specs: when this artifact was generated, the entire dungeon level became icy. Reading it will turn ice into regular floor in a 3x3 radius centered on you."); break;
+				case ART_ALLA_DANN_:
+					pline("Artifact specs: reading it increases your alla by 100. The name of this artifact is a set phrase from the German dialect spoken in the state of Rhineland-Palatinate."); break;
+				case ART_SPORKSTA_PANE:
+					pline("Artifact specs: reading it increases the turn counts at which monster spawn rates will increase, meaning you can play for longer before the monster spawning speeds up."); break;
+				case ART_HOPES_AND_DREAMS:
+					pline("Artifact specs: reading it increases your ascension turn limit by a bunch of turns."); break;
+				case ART_WHAT_FOR_A_T_SPRECHER:
+					pline("Artifact specs: when it generated, this artifact spawned a loudspeaker somewhere on the current dungeon level, and it will do the same if you read it."); break;
+				case ART_UTE_S_CHALLENGE:
+					pline("Artifact specs: reading it spawns Ute, a difficult boss monster, on the current dungeon level and gives her an artifact pair of missys. Defeat her to get the beautiful missys so you can wear them for yourself <3!"); break;
+				case ART_HUB_ONE_S_FOOLING:
+					pline("Artifact specs: when it got generated, this artifact force-equipped a cursed implant on you. Reading it while you don't currently wear an implant will do the same, but if you read it while you already have an implant, it'll very heavily curse the implant instead."); break;
+				case ART_GOTSYM:
+					pline("Artifact specs: when it got generated, you'll have received a symbiote if you didn't have one at the time. The same will happen if you read it while not having a symbiote."); break;
+				case ART_WE_WOULD_LOVE_TO_WEAR_HIGH:
+					pline("Artifact specs: when it got generated, this artifact forced you to wear some cursed high heels. Reading it while not wearing high heels does the same, but if you're actually wearing heels when you read it, you get amnesia instead."); break;
+				case ART_FEMINIST_CENT_RAL:
+					pline("Artifact specs: when it generated, this artifact spawned a bunch of feminism traps on the dungeon level, hahahahaha!"); break;
+				case ART_MARIARI_S_CRAZY_PLAYSTYLE:
+					pline("Artifact specs: if you see this artifact, you'd better not play like a crazy person on whatever dungeon level you found it on..."); break;
+				case ART_MALOR_S_VIEWHIDE:
+					pline("Artifact specs: the checkerboard trap is probably invisible now. Because stuff doesn't get removed from SLEX, only trash variants would do that. The mere attempt only makes the trap in question invisible :-P"); break;
+				case ART_MALOR_S_REMOVAL_FAILURE:
+					pline("Artifact specs: you will probably encounter a certain nasty trap more often now. Because if you try to remove stuff from SLEX, you get a different game and the real SLEX (the one that's being developed by Amy) will always remain pure, with zero removals, and whatever thing someone did try to remove just becomes more common as a result :-P"); break;
+				case ART_A_SOUND_THAT_SOUNDS_LIKE_R:
+					pline("Artifact specs: when it generated, this artifact caused a bunch of boulders appear on the current dungeon level."); break;
+				case ART_FULLY_ADAMANT:
+					pline("Artifact specs: is made of adamantium."); break;
+				case ART_TRI_DELAY_LIGHTNING:
+					pline("Artifact specs: reading it will cause you to automatically use the autokill, chain thunderbolt and flashing mischief techniques in the future, with a 50 turn delay between each. This also applies if you don't actually know those techniques."); break;
+				case ART_RHEA_S_AURA:
+					pline("Artifact specs: reading it gives you poison resistance for a while and shoots poison blasts in all directions."); break;
+				case ART_FARTOMAT:
+					pline("Artifact specs: reading it gives more spell memory than normal and causes you to fart for a while. It also increases your luck by one every time you read it, up to the normal maximum of course."); break;
+				case ART_ONLY_MM_HAHA:
+					pline("Artifact specs: reading it increases your max mana by one and may occasionally increase your wisdom."); break;
+				case ART_KNOW_HOW_TO_DO_IT_:
+					pline("Artifact specs: reading it summons a bunch of undead around you."); break;
+				case ART_FINDST_MER:
+					pline("Artifact specs: if you see this spellbook, you'll probably have a better chance of finding more spellbooks later on."); break;
+				case ART_PARANORMAL:
+					pline("Artifact specs: reading it fills your belly a bit."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;
