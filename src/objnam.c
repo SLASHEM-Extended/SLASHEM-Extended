@@ -4931,6 +4931,8 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 
 	{ MILITARY_RIFLE, "todo" },
 	{ ICE_BLOCK, "todo" },
+	{ ANTISWITCH_HELMET, "todo" },
+	{ ANTISWITCH_STONE, "todo" },
 
 	{0, "" }
 };
@@ -8596,6 +8598,8 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ MILITARY_RIFLE, "todo" },
 	{ ICE_BLOCK, "todo" },
+	{ ANTISWITCH_HELMET, "todo" },
+	{ ANTISWITCH_STONE, "todo" },
 
 	{0, "" }
 };

@@ -176,10 +176,11 @@
 
 #define CannotGetIntrinsics (u.uprops[NONINTRINSIC_EFFECT].extrinsic || Nonintrinsics || have_nonintrinsicstone() || autismringcheck(ART_HONTRINO) )
 
-/* supernasty traps go here */
+/* supernasty traps go here, keyword "timerun"!!! */
 
 #define UnidentifyXtra	((have_unidentifystone() == 2) || (uarms && uarms->oartifact == ART_KAVYA_S_HASPLE) )
 #define CursingThingsXtra	((have_cursingstone() == 2))
+#define AntiswitchBugXtra	((have_antiswitchstone() == 2) || (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) )
 #define DifficultyIncrXtra	((have_difficultystone() == 2))
 #define AmnesiaRecurrXtra	((have_amnesiastone() == 2))
 #define TechBugXtra	((have_techniquestone() == 2))
@@ -607,6 +608,7 @@
 #define ArtiblastEffect		u.uprops[ARTIBLAST_EFFECT].intrinsic
 #define RepeatingNastycurseEffect		u.uprops[REPEATING_NASTYCURSE_EFFECT].intrinsic
 #define FuckfuckfuckEffect		u.uprops[FUCKFUCKFUCK_EFFECT].intrinsic
+#define AntiswitchBug		u.uprops[ANTISWITCH_BUG].intrinsic
 
 #define MulchBug		u.uprops[MULCH_BUG].intrinsic
 #define SpellCooldownBug		u.uprops[SPELL_COOLDOWN_BUG].intrinsic
@@ -1004,12 +1006,13 @@
 #define FemtrapActiveIrina	(FemaleTrapIrina || u.uprops[FEMTRAP_IRINA].extrinsic || have_femtrapirina())
 #define FemtrapActiveLiselotte	(FemaleTrapLiselotte || u.uprops[FEMTRAP_LISELOTTE].extrinsic || have_femtrapliselotte() || autismweaponcheck(ART_AMORINA_S_CHAIN) || (uchain && uchain->oartifact == ART_AMORINA_S_CHAIN) )
 #define FemtrapActiveGreta	(FemaleTrapGreta || u.uprops[FEMTRAP_GRETA].extrinsic || have_femtrapgreta() || autismweaponcheck(ART_FREAK_VERSUS_BANGER) || (uamul && uamul->oartifact == ART_HIBA_CHIBA) )
-#define FemtrapActiveJane	(FemaleTrapJane || u.uprops[FEMTRAP_JANE].extrinsic || have_femtrapjane() || autismweaponcheck(ART_FREAK_VERSUS_BANGER) || (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) )
+#define FemtrapActiveJane	(FemaleTrapJane || u.uprops[FEMTRAP_JANE].extrinsic || have_femtrapjane() || autismweaponcheck(ART_FREAK_VERSUS_BANGER) || (uarm && uarm->oartifact == ART_SUIT_OF_JANE_MAIL) || (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) )
 #define FemtrapActiveSueLyn	(FemaleTrapSueLyn || u.uprops[FEMTRAP_SUE_LYN].extrinsic || have_femtrapsuelyn() || (uarmu && uarmu->oartifact == ART_GUAH_AVERT_SUEUE) )
 #define FemtrapActiveCharlotte	(FemaleTrapCharlotte || u.uprops[FEMTRAP_CHARLOTTE].extrinsic || have_femtrapcharlotte() || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) )
 #define FemtrapActiveHannah	(FemaleTrapHannah || u.uprops[FEMTRAP_HANNAH].extrinsic || have_femtraphannah() || (uarm && uarm->oartifact == ART_STACHEL_SATCHEL) )
 #define FemtrapActiveLittleMarie	(FemaleTrapLittleMarie || u.uprops[FEMTRAP_LITTLE_MARIE].extrinsic || have_femtraplittlemarie() || (uarmu && uarmu->oartifact == ART_HA_HA_HA_HA___))
 
+/* super feminism traps; keyword "marlena" */
 #define SuperFemtrapFemmy	( (have_femtrapfemmy() == 2) || (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) )
 #define SuperFemtrapAnastasia	( (have_femtrapanastasia() == 2) || (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) )
 #define SuperFemtrapWendy	( (have_femtrapwendy() == 2) || (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) )

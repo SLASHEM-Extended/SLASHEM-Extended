@@ -1303,6 +1303,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
+		(uarmh && uarmh->oartifact == ART_DOGGERSEE && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uarmf && uarmf->oartifact == ART_PECTORAL_HEEL && distu(mon->mx, mon->my) < 101 && mon->data->mlet == S_EEL) ||
@@ -1451,6 +1452,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
+		(uarmh && uarmh->oartifact == ART_DOGGERSEE && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uarmf && uarmf->oartifact == ART_PECTORAL_HEEL && distu(mon->mx, mon->my) < 101 && mon->data->mlet == S_EEL) ||
@@ -1769,6 +1771,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
+		(uarmh && uarmh->oartifact == ART_DOGGERSEE && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uarmf && uarmf->oartifact == ART_PECTORAL_HEEL && distu(mon->mx, mon->my) < 101 && mon->data->mlet == S_EEL) ||
@@ -1917,6 +1920,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) ||
 		(uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) ||
 		(uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) ||
+		(uarmh && uarmh->oartifact == ART_DOGGERSEE && mon->data->mlet == S_DOG) ||
 		(uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) ||
 		(uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) ||
 		(uarmf && uarmf->oartifact == ART_PECTORAL_HEEL && distu(mon->mx, mon->my) < 101 && mon->data->mlet == S_EEL) ||
@@ -3932,6 +3936,7 @@ struct monst *mon;
 	if (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE && (mon->data->mlet == S_GOLEM || nonliving(mon->data) ) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_FD_DETH && (mon->data->mlet == S_DOG || mon->data->mlet == S_FELINE) ) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_DOGGO_FRIENDSHIP && mon->data->mlet == S_DOG) return TRUE;
+	if (uarmh && uarmh->oartifact == ART_DOGGERSEE && mon->data->mlet == S_DOG) return TRUE;
 	if (uarmg && uarmg->oartifact == ART_WHAT_S_UP_BITCHES && (mon->data->mlet == S_NYMPH) ) return TRUE;
 	if (uwep && uwep->oartifact == ART_FISHING_GRANDPA && mon->data->mlet == S_EEL) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_PECTORAL_HEEL && distu(mon->mx, mon->my) < 101 && mon->data->mlet == S_EEL) return TRUE;

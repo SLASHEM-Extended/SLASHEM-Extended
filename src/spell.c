@@ -3342,6 +3342,13 @@ struct obj *book2;
 		mightbooststat(A_WIS);
 	}
 
+	if (book2->oartifact == ART_SUDDEN_MEMORY_FAILURE) {
+		if (LLMMessages) {
+			u.sterilized = rnz(1500);
+			/* no message because the memory trap effect means you can't read it anyway --Amy */
+		}
+	}
+
 	if (book2->oartifact == ART_KNOW_HOW_TO_DO_IT_) {
 		int morgueamount = 5;
 		while (morgueamount > 0) {

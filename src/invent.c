@@ -4471,7 +4471,7 @@ have_cursingstone()
 {
 	register struct obj *otmp;
 
-	if (u.tempsupernastytrap_cursing) return 2;
+	if (u.tempsupernastytrap_cursing) return 2; /* keyword "timerun", because supernasty traps are a thing that exists --Amy */
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_CURSING) {
@@ -8801,6 +8801,23 @@ have_inventorysizestone()
 	return(FALSE);
 }
 
+int
+have_antiswitchstone()
+{
+	register struct obj *otmp;
+
+	if (u.tempsupernastytrap_antiswitch) return 2;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == ANTISWITCH_STONE) {
+			if (otmp->oartifact == ART_ANASTASIA_S_INSURANCE) return 2;
+			return(TRUE);
+		}
+	}
+	if (u.nastinator286) return TRUE;
+	if (sjwcheck(286)) return TRUE;
+	return(FALSE);
+}
 
 struct obj *
 o_on(id, objchn)
@@ -14030,6 +14047,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("Due to its randomized appearance, this helmet always spawned with an egotype.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_HIGHER_HELMET))
 			pline("The randomized appearance of this helmet causes it to usually spawn with a higher enchantment value.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_DOGBONE_HELMET))
+			pline("If your pet is a dog, it'll walk over this helmet even if it's cursed.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MISSYS))
 			pline("These stiletto heels are supposed to be 'sneaker high heels', but despite that they only count as high heels, not sexy flats.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ENCHANTMENT_CLOAK))
@@ -15305,6 +15324,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While wearing this helmet, monsters that would usually be uncommon by a certain frequency will instead be common, so they spawn more often. It has moderate AC and 3 points of magic cancellation."); break;
 			case SOUND_EFFECT_HELMET:
 				pline("A helmet that causes sound effects in written form. It has no AC and no magic cancellation."); break;
+			case ANTISWITCH_HELMET:
+				pline("A helmet that causes your switchers to not work. It has good AC and no magic cancellation."); break;
 
 			case QUAVERSAL_HELMET:
 				pline("A helmet that causes you to see nothing unless you're standing on specific tiles. It has extremely good AC and 8 points of magic cancellation."); break;
@@ -21055,6 +21076,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A stone that curses itself and causes every action to take time."); break;
 			case MULCH_STONE:
 				pline("A stone that curses itself and causes your ammo to mulch every time."); break;
+			case ANTISWITCH_STONE:
+				pline("A stone that curses itself and causes your switchers to not work."); break;
 			case SPELL_COOLDOWN_STONE:
 				pline("A stone that curses itself and causes spell cooldown."); break;
 			case HAVE_A_PIN_STONE:
@@ -34173,6 +34196,14 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: can be read by an illiterate character without breaking the conduct."); break;
 				case ART___EJOHM_V_Y_EJOHM_V_Y_EJOH:
 					pline("Artifact specs: causes an alarm when read, and also when it got generated."); break;
+				case ART_DOGGERSEE:
+					pline("Artifact specs: displays all dogs on the level when worn, and tame dogs won't betray you."); break;
+				case ART_SENOBIA_S_CROWN:
+					pline("Artifact specs: double antiswitch trap effect, jane trap effect, deals thorns damage to monsters who attack you, lords and princes usually generate peaceful, +1 MC, boosts your AC by 10%%, +3 INT/WIS and +4 melee to-hit when worn."); break;
+				case ART_ANASTASIA_S_INSURANCE:
+					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
+				case ART_SUDDEN_MEMORY_FAILURE:
+					pline("Artifact specs: when it got generated, you got a long-lasting low local memory and antiswitch trap effect. If you were to read it while still having low local memory, monster spawning would be slowed for a while, but since you're reading this, you currently do not have that effect so it'll just act like a normal spellbook."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -946,6 +946,8 @@ static struct {
 
 	{ "wild weather", WILD_WEATHER_TRAP },
 
+	{ "antiswitch", ANTISWITCH_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

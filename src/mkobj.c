@@ -4429,6 +4429,7 @@ boolean shopinit;
 			case YAWNING_VISOR:
 			case REALLY_BAD_HELM:
 			case GRIDBUG_CONDUCT_BOOTS:
+			case ANTISWITCH_HELMET:
 			case STAIRWELL_STOMPING_BOOTS:
 				if (!rn2(5)) willhaveenchantment = TRUE;
 				break;

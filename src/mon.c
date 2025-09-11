@@ -3690,6 +3690,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != DSCHUEUEUET_TRAP
 				&& ttmp->ttyp != NOPESKILL_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != ANTISWITCH_TRAP
 				&& ttmp->ttyp != SPELL_COOLDOWN_TRAP
 				&& ttmp->ttyp != TURBODULL_TRAP
 				&& ttmp->ttyp != REDDAM_TRAP

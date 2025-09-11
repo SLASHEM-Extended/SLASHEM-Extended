@@ -24664,6 +24664,22 @@ A("1=eJohm+V,Y2eJohm+V,Y2eJohm+V,Y2",				SPE_BOILER_KABOOM, /* replicates alarm 
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
 
+A("Doggersee",				STANDARD_HELMET, /* initialized to always be dogbone helmet, displays all d-class monsters on the current level and tame dogs won't betray you (dogmove.c) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Senobia's Crown",				ANTISWITCH_HELMET, /* double antiswitch trap effect, jane trap effect, monsters who attack you take d8 thorns damage, M2_LORD and M2_PRINCE have 90% chance of spawning peaceful, +1 MC, +10% AC, +3 INT/WIS and +4 melee to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Anastasia's Insurance",				ANTISWITCH_STONE, /* double antiswitch trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Sudden Memory Failure",				SPE_FIREWORKS, /* rnz(10k) turns of low local memory and antiswitch trap upon generation, reading it while you still have low local memory sets the sterilization timeout to rnz(1500) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

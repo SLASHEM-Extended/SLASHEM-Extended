@@ -6953,6 +6953,7 @@ struct monst *mon;
 		if (uarmc && uarmc->oartifact == ART_TRINSER_SMILEY) armpro++;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
+		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) armpro++;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;
 		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) armpro += 5;
@@ -9594,7 +9595,7 @@ dopois:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 285) midentity -= 285; /* timerun! */
+			while (midentity > 286) midentity -= 286; /* timerun! */
 
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -11796,7 +11797,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 285) midentity -= 285; /* timerun! */
+			while (midentity > 286) midentity -= 286; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -14007,7 +14008,7 @@ common:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 285) midentity -= 285; /* timerun! */
+			while (midentity > 286) midentity -= 286; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -18607,7 +18608,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 285) midentity -= 285; /* timerun! */
+			while (midentity > 286) midentity -= 286; /* timerun! */
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -21442,6 +21443,16 @@ register struct attack *mattk;
 	}
 
 	if (uarmc && uarmc->oartifact == ART_LESHTHORN) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(8) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(8) ) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));

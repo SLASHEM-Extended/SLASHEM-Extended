@@ -3683,6 +3683,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (AntiswitchBug || u.uprops[ANTISWITCH_BUG].extrinsic || have_antiswitchstone())) {
+		sprintf(buf, "the following problem: Switchers don't work and will only cure the antiswitch nastytrap effect.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", AntiswitchBug);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone())) {
 		sprintf(buf, "the following problem: Your ranged weapon ammo mulches every time.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", MulchBug);
@@ -8469,6 +8475,11 @@ int final;
 	if (TimerunBug || u.uprops[TIMERUN_BUG].extrinsic || have_timerunstone()) {
 		sprintf(buf, "the following problem: All actions take turns.");
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
+		dump(youhad, buf);
+	}
+	if (AntiswitchBug || u.uprops[ANTISWITCH_BUG].extrinsic || have_antiswitchstone()) {
+		sprintf(buf, "the following problem: Switchers don't work and will only cure the antiswitch nastytrap effect.");
+		sprintf(eos(buf), " (%ld)", AntiswitchBug);
 		dump(youhad, buf);
 	}
 	if (MulchBug || u.uprops[MULCH_BUG].extrinsic || have_mulchstone()) {

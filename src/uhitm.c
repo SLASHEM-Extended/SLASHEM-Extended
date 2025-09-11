@@ -890,6 +890,7 @@ register struct monst *mtmp;
 	if (uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
+	if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) tmp += 3;
 	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 2;
 	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uright && uright->oartifact == ART_CHERRYTAPPER) tmp += 10;
@@ -12821,7 +12822,7 @@ boolean ranged;
 		{
 			register int midentity = mon->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 285) midentity -= 285; /* timerun! */
+			while (midentity > 286) midentity -= 286; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;

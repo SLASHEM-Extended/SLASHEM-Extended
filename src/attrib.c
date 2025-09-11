@@ -3636,6 +3636,7 @@ int x;
 		if (x == A_WIS && uwep && uwep->oartifact == ART_HOLY_RANCE) tmp += 6;
 		if (x == A_WIS && uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) tmp += 3;
 		if (x == A_INT && Race_if(PM_MAZIN)) tmp += 2;
+		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) tmp += 3;
 		if (x == A_INT && uball && uball->oartifact == ART_NUCULATE) tmp += 2;
 		if (x == A_INT && uwep && uwep->oartifact == ART_FRISIA_S_TAIL) tmp += 20;
 		if (x == A_INT && uwep && uwep->oartifact == ART_CAT_S_TAIL) tmp += 20;

@@ -6722,6 +6722,8 @@ eatspecial() /* called after eating non-food */
 				    TimerunBug |= FROMOUTSIDE; break;
 			case MULCH_STONE:
 				    MulchBug |= FROMOUTSIDE; break;
+			case ANTISWITCH_STONE:
+				    AntiswitchBug |= FROMOUTSIDE; break;
 			case SPELL_COOLDOWN_STONE:
 				    SpellCooldownBug |= FROMOUTSIDE; break;
 			case HAVE_A_PIN_STONE:

@@ -1105,6 +1105,7 @@ struct you {
 	boolean nastinator283;
 	boolean nastinator284;
 	boolean nastinator285;
+	boolean nastinator286;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;
@@ -1550,6 +1551,7 @@ struct you {
 	int tempsupernastytrap_spellcooldown;
 	int tempsupernastytrap_turbodull;
 	int tempsupernastytrap_inventorysize;
+	int tempsupernastytrap_antiswitch;
 
 	int startscummereffect; /* for startscummer race to decide which nastytrap effect is currently active */
 

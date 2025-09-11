@@ -95,6 +95,8 @@ int x, y;
 		debugpline("%s thinks %s at (%d,%d) is `cursed'",
 		  noit_Monnam(mtmp), doname(otmp), x, y);
 #endif
+		if (mtmp->data->mlet == S_DOG && itemhasappearance(otmp, APP_DOGBONE_HELMET)) continue;
+
 		return TRUE;
 	}
 	return FALSE;
@@ -570,8 +572,8 @@ int udist;
 		if(can_carry(mtmp, obj) && u.petcollectitems && (issoviet || !Has_contents(obj)) &&
 		  !(obj == uchain) && !(obj == uball) &&
 		  could_reach_item(mtmp, obj->ox, obj->oy) &&
-		  (!obj->cursed || is_demon(mtmp->data) || is_undead(mtmp->data) || mtmp->egotype_undead) &&
-		  (!obj->blessed || (!is_demon(mtmp->data) && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ))) {
+		  (!obj->cursed || is_demon(mtmp->data) || (mtmp->data->mlet == S_DOG && itemhasappearance(obj, APP_DOGBONE_HELMET)) || is_undead(mtmp->data) || mtmp->egotype_undead) &&
+		  (!obj->blessed || (mtmp->data->mlet == S_DOG && itemhasappearance(obj, APP_DOGBONE_HELMET)) || (!is_demon(mtmp->data) && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ))) {
 		    if(rn2(20) < edog->apport+3) {
 			if (rn2(udist) || !rn2(edog->apport)) {
 				/* KMH, balance patch -- 10*level
@@ -851,6 +853,8 @@ register struct monst *mtmp;
 	/* dragonmaster can of course wear DSM (sorry AntiGulp) and it prevents dragons from rebelling --Amy */
 	if (Role_if(PM_DRAGONMASTER) && mtmp->data->mlet == S_DRAGON && uarm && Is_dragon_armor(uarm) ) return FALSE;
 	if (uamul && uamul->oartifact == ART_MEDI_LEASH) return FALSE;
+
+	if (uarmh && uarmh->oartifact == ART_DOGGERSEE && mtmp->data->mlet == S_DOG) return FALSE;
 
 	/* secret advice member starting pet never rebels --Amy */
 	if (Role_if(PM_SECRET_ADVICE_MEMBER) && mtmp->data == &mons[PM_BUST_SUPERSECRET_ADVICE_RIFLING_UNVERIFIED_BOSOMING]) return FALSE;
@@ -1351,9 +1355,9 @@ register int after;	/* this is extra fast monster movement */
 		/* (minion isn't interested; `cursemsg' stays FALSE) */
 		if (has_edog && !is_spell) {
 		for (obj = level.objects[nx][ny]; obj; obj = obj->nexthere) {
-		    if ((obj->cursed) && has_edog && !is_demon(mtmp->data) 
+		    if ((obj->cursed) && has_edog && !is_demon(mtmp->data) && !(mtmp->data->mlet == S_DOG && itemhasappearance(obj, APP_DOGBONE_HELMET))
 		    && !is_undead(mtmp->data) && (!mtmp->egotype_undead) ) cursemsg[i] = TRUE;
-		    if (obj->blessed && has_edog && (is_demon(mtmp->data) 
+		    if (obj->blessed && has_edog && (is_demon(mtmp->data) && !(mtmp->data->mlet == S_DOG && itemhasappearance(obj, APP_DOGBONE_HELMET))
 		    || is_undead(mtmp->data) || mtmp->egotype_undead)) cursemsg[i] = TRUE;
 		    else if ((otyp = dogfood(mtmp, obj)) < MANFOOD && u.petcaneat &&
 			     (otyp < ACCFOOD || edog->hungrytime <= monstermoves)) {

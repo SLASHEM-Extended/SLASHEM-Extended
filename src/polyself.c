@@ -2592,6 +2592,7 @@ dospinweb()
 		case BISHOP_TRAP:
 		case UNINFORMATION_TRAP:
 		case TIMERUN_TRAP:
+		case ANTISWITCH_TRAP:
 		case SPELL_COOLDOWN_TRAP:
 		case TURBODULL_TRAP:
 		case REDDAM_TRAP:

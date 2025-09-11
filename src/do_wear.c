@@ -2643,6 +2643,7 @@ Helmet_on()
 	case HELM_OF_STARVATION:
 	case QUAFFER_HELMET:
 	case SOUND_EFFECT_HELMET:
+	case ANTISWITCH_HELMET:
 	case INCORRECTLY_ADJUSTED_HELMET:
 	case CAPTCHA_HELM:
 	case HELM_OF_BAD_ALIGNMENT:
@@ -3062,6 +3063,7 @@ Helmet_off()
 	case HELM_OF_STARVATION:
 	case QUAFFER_HELMET:
 	case SOUND_EFFECT_HELMET:
+	case ANTISWITCH_HELMET:
 
 	case MOMHAT:
 	case CARTRIDGE_OF_HAVING_A_HORROR:
@@ -8115,6 +8117,12 @@ find_ac()
 		difference = difference / 10;
 		if (difference > 0) uac -= difference;
 
+	}
+
+	if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) {
+		int difference = valuetoboost;
+		difference = difference / 10;
+		if (difference > 0) uac -= difference;
 	}
 
 	if (u.martialstyle == MARTIALSTYLE_SILAT && !uwep && (!u.twoweap || !uswapwep)) {

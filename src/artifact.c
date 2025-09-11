@@ -1149,6 +1149,7 @@ init_appearance_randarts()
 	artilist[ART_PALEOLITHIC_ELBOW_CONTRACT].otyp = find_greek_cloak();
 	artilist[ART_FEATHER_LIGHT].otyp = find_flier_cloak();
 	artilist[ART_NUCLEAR_BOMB].otyp = find_celtic_helmet();
+	artilist[ART_DOGGERSEE].otyp = find_dogbone_helmet();
 	artilist[ART_HABIBA_S_MATRONAGE].otyp = find_hardcore_cloth();
 	artilist[ART_BEEEEEEEANPOLE].otyp = find_english_gloves();
 	artilist[ART_LEGMA].otyp = find_korean_sandals();
@@ -2173,6 +2174,10 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART___EJOHM_V_Y_EJOHM_V_Y_EJOH) {
 			pline((FunnyHallu || Confusion) ?	"Oops! Alarm:" : "Oops! Here is alarm!");
 			aggravate();
+		    }
+		    if (otmp && otmp->oartifact == ART_SUDDEN_MEMORY_FAILURE) {
+			MemoryLoss += rnz(10000);
+			AntiswitchBug += rnz(10000);
 		    }
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
