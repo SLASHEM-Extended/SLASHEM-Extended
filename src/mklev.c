@@ -13012,7 +13012,20 @@ mineralize()
 			maketrap(x, y, SUPERTHING_TRAP, 0, FALSE);
 		}
 
-		if ((levl[x][y].typ <= DBWALL && !rn2(100000)) && !t_at(x, y) ) {
+#ifdef BIGSLEX
+		if ((levl[x][y].typ <= DBWALL && !rn2(750000)) && !t_at(x, y) ) {
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
+		}
+
+		if ((levl[x][y].typ <= DBWALL && Role_if(PM_SPACEWARS_FIGHTER) && !rn2(10000)) && !t_at(x, y) ) {
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
+		}
+
+		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(5000)) && !t_at(x, y) ) {
+			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
+		}
+#else
+		if ((levl[x][y].typ <= DBWALL && !rn2(250000)) && !t_at(x, y) ) {
 			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
 
@@ -13023,6 +13036,7 @@ mineralize()
 		if ((levl[x][y].typ <= DBWALL && Role_if(PM_CAMPERSTRIKER) && !rn2(2500)) && !t_at(x, y) ) {
 			maketrap(x, y, ARABELLA_SPEAKER, 0, FALSE);
 		}
+#endif
 
 		/* Since you can now pick up items from the bottom with swimming, let's reduce the amount of kelp --Amy */
 		if (((levl[x][y].typ == POOL && !rn2(150)) || (levl[x][y].typ == MOAT && !rn2(50))) && timebasedlowerchance())
