@@ -623,6 +623,7 @@ nh_timeout()
 	if (u.larissatimer) {
 		u.larissatimer--;
 
+		if (u.larissatimer == 800) pline("You need to step into a heap of shit, don't you forget that. There's only a certain amount of time you have in order to do so.");
 		if (u.larissatimer == 400) pline("Remember that you need to step into a heap of shit. You still have lots of time, but not endless amounts of time.");
 		if (u.larissatimer == 100) pline("Reminder that you have to step into a heap of shit!");
 		if (u.larissatimer == 40) pline("You're running out of time to step into a heap of shit!");

@@ -12236,9 +12236,9 @@ newbossB:
 						larissatrap->tseen = TRUE; /* always visible */
 						larissatrap->hiddentrap = FALSE;
 #ifdef BIGSLEX
-						u.larissatimer = 1000;
+						u.larissatimer = 1500;
 #else
-						u.larissatimer = 500;
+						u.larissatimer = 600;
 #endif
 						pline("Something commands you to step into dog shit within %d turns, and if you don't comply, bad things will happen!", u.larissatimer);
 						if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
