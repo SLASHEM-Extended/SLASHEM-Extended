@@ -1084,7 +1084,7 @@ doread()
 #ifdef MAIL
 		scroll->otyp != SCR_MAIL &&
 #endif
-		scroll->otyp != SCR_BLANK_PAPER) {
+		scroll->otyp != SCR_BLANK_PAPER && scroll->oartifact != ART_PICTURES_AND_DRAWINGS) {
 
 			if (Race_if(PM_PLAYABLE_NEANDERTHAL) || autismringcheck(ART_ACTUAL_CAVE_DWELLING)) {
 				pline("You're illiterate! You can't read!");

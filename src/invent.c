@@ -34169,6 +34169,10 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: if you see this spellbook, you'll probably have a better chance of finding more spellbooks later on."); break;
 				case ART_PARANORMAL:
 					pline("Artifact specs: reading it fills your belly a bit."); break;
+				case ART_PICTURES_AND_DRAWINGS:
+					pline("Artifact specs: can be read by an illiterate character without breaking the conduct."); break;
+				case ART___EJOHM_V_Y_EJOHM_V_Y_EJOH:
+					pline("Artifact specs: causes an alarm when read, and also when it got generated."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -2170,6 +2170,10 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_INSTANALATER) {
 			RecurringAmnesia += rnz(5000);
 		    }
+		    if (otmp && otmp->oartifact == ART___EJOHM_V_Y_EJOHM_V_Y_EJOH) {
+			pline((FunnyHallu || Confusion) ?	"Oops! Alarm:" : "Oops! Here is alarm!");
+			aggravate();
+		    }
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }

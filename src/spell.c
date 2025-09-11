@@ -4511,6 +4511,11 @@ melatechoice:
 		Your("food consumption slows down.");
 	}
 
+	if (book2->oartifact == ART___EJOHM_V_Y_EJOHM_V_Y_EJOH) {
+		pline((FunnyHallu || Confusion) ?	"Oops! Alarm:" : "Oops! Here is alarm!");
+		aggravate();
+	}
+
 	if (book2->oartifact == ART_YOU_ARE_STOP_UNABLE) {
 		intrinsicgainorloss(2); /* lose an intrinsic */
 	}

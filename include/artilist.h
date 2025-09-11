@@ -24656,6 +24656,14 @@ A("Paranormal",				SPE_CURE_NUMBNESS, /* reading it grants +200 nutrition */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1100L ),
 
+A("Pictures and Drawings",				SPE_GOUGE_DICK, /* reading it doesn't break illiterate conduct */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("1=eJohm+V,Y2eJohm+V,Y2eJohm+V,Y2",				SPE_BOILER_KABOOM, /* replicates alarm trap effect both when generating and if you read it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */
