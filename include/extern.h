@@ -2278,6 +2278,9 @@ E int find_castlevania_boots(void);
 E int find_greek_cloak(void);
 E int find_flier_cloak(void);
 E int find_celtic_helmet(void);
+E int find_netradiation_helmet(void);
+E int find_jarring_cloak(void);
+E int find_deep_cloak(void);
 E int find_dogbone_helmet(void);
 E int find_english_gloves(void);
 E int find_wedge_espadrilles(void);
@@ -2764,6 +2767,7 @@ E void add_monster_egotype(struct monst *);
 E void ragnarok(BOOLEAN_P);
 E void moorlandragnarok(void);
 E void shoeragnarok(void);
+E void bloomragnarokweak(void);
 E void fountainstorm(void);
 E void cuddleragnarok(void);
 E void evilragnarok(BOOLEAN_P,int);
@@ -3476,6 +3480,7 @@ E int spelleffects(int,BOOLEAN_P,BOOLEAN_P);
 E void losespells(void);
 E void spellmemoryloss(int);
 E void spellmemoryhalve(void);
+E void spellmemorynull(void);
 E int dovspell(void);
 E void learnspell(struct obj *);
 E boolean studyspell(void);
@@ -3486,16 +3491,17 @@ E boolean addsomespellmemoryX(void);
 E void initialspell(struct obj *);
 E void initialwonderspell(int);
 E void castinertiaspell(void);
-E void wonderspell(int);
+E void wonderspell(int,int);
 E int isqrt(int);
 E boolean mastermindsave(void);
-E void removeforgottenspell(void);
+E void removeforgottenspell(BOOLEAN_P);
 E void evilspellforget(void);
 E int dodeletespell(void);
 E void delete_all_spells(void);
 E void extramemory(void);
 E int manacost(int);
-E void spell_metronome(void);
+E void spell_metronome(int, int);
+E void castspecificspell(int);
 
 /* ### steal.c ### */
 
@@ -4170,6 +4176,7 @@ E void zap_strike_fx(XCHAR_P, XCHAR_P, int);
 E void throwspell(void);
 
 E void cancelmonsterlite(struct monst *);
+E void removemonsteregotypes(struct monst *);
 
 /* ### livelog.c ### */
 #ifdef LIVELOGFILE

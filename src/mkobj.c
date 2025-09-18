@@ -145,6 +145,10 @@ int artichance;
 
 	if (Race_if(PM_LISTENER)) artichance *= 2;
 
+	if (u.temptriplemf) {
+		artichance *= 7;
+		artichance /= 10;
+	}
 	if (MagicFindBonus) {
 		artichance *= 9;
 		artichance /= 10;
@@ -2797,6 +2801,10 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (u.temptriplemf && !rn2(4) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -2812,7 +2820,10 @@ boolean shopinit;
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+			if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+			else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		}
 
 		if (is_poisonable(otmp) && !rn2(100)) {
 			otmp->opoisoned = 1;
@@ -3173,6 +3184,10 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (u.temptriplemf && !rn2(6) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3208,7 +3223,10 @@ boolean shopinit;
 	/* "Disable enchantable rocks. The racial + stregnth + sling enchantment bonus is more than enough." In Soviet Russia, people never use slings anyway so they never noticed that those retarded things never do enough damage. They also completely disregard the fact that higher enchantment means a lower chance for the projectiles to disappear too. Guess they never used a stack of blessed +7 rocks in their life, otherwise they'd know the benefits of having them. --Amy */
 		if (issoviet) otmp->spe = 0;
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+			if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+			else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		}
 
 		if (!rn2(100)) willhaveweaponenchantment = TRUE;
 		if (In_lategame(&u.uz) && !rn2(100)) willhaveweaponenchantment = TRUE;
@@ -3420,6 +3438,10 @@ boolean shopinit;
 				if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 				else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 			}
+			if (u.temptriplemf && !rn2(4) && otmp->spe == 0) {
+				if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+				else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+			}
 			if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
 				if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 				else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3438,7 +3460,11 @@ boolean shopinit;
 				otmp->age /= 10;
 			}
 
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+				if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+				else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			}
+
 			if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
 		break;
@@ -3611,6 +3637,10 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (u.temptriplemf && !rn2(4) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3624,7 +3654,10 @@ boolean shopinit;
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+			if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+			else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		}
 
 		if (uarmh && uarmh->oartifact == ART_RULE_CONFORMING_SCHWANZLUT && otmp->spe > 0) otmp->spe = 0;
 
@@ -3790,7 +3823,10 @@ boolean shopinit;
 				otmp->spe -= rnd(abs(otmp->spe));
 			}
 
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+				if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+				else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			}
 
 		    /* negative implants are usually cursed */
 		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);
@@ -3845,6 +3881,10 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (u.temptriplemf && !rn2(4) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3893,7 +3933,10 @@ boolean shopinit;
 			if (artif != 2) u.fakeartifacts++;
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+			if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+			else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		}
 
 		if (otmp->oartifact == ART_BUS_ERROR || otmp->oartifact == ART_MYSTERIOUS_SPIKES) otmp->quan = 1;
 
@@ -3961,6 +4004,10 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (u.temptriplemf && !rn2(4) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -3976,7 +4023,10 @@ boolean shopinit;
 
 		if (issoviet) otmp->spe = 0;
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+			if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+			else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		}
 
 		if (!rn2(achieve.get_amulet ? 250 : 1000)) otmp->oerodeproof = 1;
 		if (!rn2(1000)) {
@@ -4149,6 +4199,10 @@ boolean shopinit;
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
+		if (u.temptriplemf && !rn2(3) && otmp->spe == 0) {
+			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
+			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
+		}
 		if (uwep && uwep->oartifact == ART_MR__OF_HIGH_HEELS && !flags.female && otmp->spe == 0 && !rn2(10)) {
 			if (rn2(2)) otmp->spe = rne(Race_if(PM_LISTENER) ? 3 : 2);
 			else otmp->spe = -rne(Race_if(PM_LISTENER) ? 3 : 2);
@@ -4162,7 +4216,10 @@ boolean shopinit;
 			else otmp->spe -= rne(Race_if(PM_LISTENER) ? 3 : 2);
 		}
 
-		if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+			if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+			else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+		}
 
 		if (!rn2(achieve.get_amulet ? 20 : 80)) otmp->oerodeproof = 1;
 		if (!rn2(80)) {
@@ -4588,7 +4645,10 @@ boolean shopinit;
 				otmp->spe -= rnd(abs(otmp->spe));
 			}
 
-			if ((Race_if(PM_LISTENER) || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			if ((Race_if(PM_LISTENER) || u.tempsenserlistener || (uimplant && uimplant->oartifact == ART_FOREBODING) || (uarmc && uarmc->oartifact == ART_FOURTH_SENSE) || RngeListening) && !Hallucination && (rnd(30) < ACURR(A_INT)) && (abs(otmp->spe) > 3 || (abs(otmp->spe) == 3 && rn2(2) ) || (abs(otmp->spe) == 2 && !rn2(3) )|| (abs(otmp->spe) == 1 && !rn2(5) ) ) ) {
+				if (u.tempsenserlistener && !rn2(10)) pline("Precognition: made object with enchantment %d", rnd(10));
+				else pline("Precognition: made object with enchantment %d", abs(otmp->spe));
+			}
 
 		    /* negative rings are usually cursed */
 		    if (otmp->spe < 0 && rn2(5)) curse_on_creation(otmp);

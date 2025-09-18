@@ -617,12 +617,12 @@ boolean allow_drag;
 	u.ux0 = u.ux;
 	u.uy0 = u.uy;
 
-	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (night() && uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE))
-		u.uundetected = OBJ_AT(nux, nuy);
+	if (PlayerHidesUnderItems && OBJ_AT(nux, nuy))
+		u.uundetected = TRUE;
 	else if (is_wagon(nux, nuy))
 	    u.uundetected = TRUE;
-	else if (youmonst.data->mlet == S_EEL)
-		u.uundetected = is_waterypool(nux, nuy);
+	else if ((youmonst.data->mlet == S_EEL) && is_waterypool(nux, nuy))
+		u.uundetected = TRUE;
 	else {
 		u.uundetected = 0;
 		/* mimics stop being unnoticed */

@@ -2193,8 +2193,11 @@ learn()
 	    delay++;
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
+	if (delay < end_delay && u.tempbooklenses && rn2(2)) {
+	    delay++;
+	}
 
-	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && (book->oartifact != ART_A_LOT_OF_ENYAS_IN_THE_CAST) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 500 : 50) ) {		/* became confused while learning */
+	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && (book->oartifact != ART_A_LOT_OF_ENYAS_IN_THE_CAST) && (book->oartifact != ART_QUIET_NOTEBOOK) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 500 : 50) ) {		/* became confused while learning */
 
 	    (void) confused_book(book);
 	    book = 0;			/* no longer studying */
@@ -2453,6 +2456,14 @@ learn()
 		return 0;
 	    }
 	}
+	if (book && (book->oartifact == ART_CHRONICLE_OF_THE_LAST_DAWN)) {
+		if (carried(book)) useup(book);
+		else useupf(book, 1L);
+		pline_The("book falls apart.");
+		book = 0;
+		return 0;
+
+	}
 	if (book && costly) check_unpaid(book);
 	if (book) book = 0;
 	return(0);
@@ -2463,7 +2474,7 @@ study_book(spellbook)
 register struct obj *spellbook;
 {
 	register int	 booktype = spellbook->otyp;
-	register boolean confused = ((Confusion != 0) && !(Conf_resist && (StrongConf_resist ? rn2(3) : !rn2(3)) ));
+	register boolean confused = ((Confusion != 0) && !(spellbook->oartifact == ART_QUIET_NOTEBOOK) && !(Conf_resist && (StrongConf_resist ? rn2(3) : !rn2(3)) ));
 	boolean too_hard = FALSE;
 
 	if (delay && !confused && spellbook == book &&
@@ -2602,6 +2613,7 @@ register struct obj *spellbook;
 			/* uncursed - chance to fail */
 			int read_ability = ACURR(A_INT) + 4 + GushLevel/2
 			    - 2*objects[booktype].oc_level
+			    + (u.tempbooklenses ? 2 : 0)
 			    + ((ublindf && (ublindf->otyp == LENSES || ublindf->otyp == RADIOGLASSES || ublindf->otyp == SHIELD_PATE_GLASSES || ublindf->otyp == BOSS_VISOR)) ? 2 : 0);
 			/* only wizards know if a spell is too difficult */
 			/* Amy edit: others may randomly know it sometimes */
@@ -3022,7 +3034,7 @@ docast()
 
 	/* Amy note: use autismweaponcheck and not uwep here!!! after all, this is a *negative* effect */
 
-	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uwep && uwep->otyp == DARK_SWORD) || (u.twoweap && uswapwep && uswapwep->otyp == DARK_SWORD) || (RngeAntimagicA && (moves % 10 == 0)) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || autismweaponcheck(ART_LONG_SWORD_OF_ETERNITY) || autismweaponcheck(ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || (Role_if(PM_UNBELIEVER) && !(uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) ) || autismweaponcheck(ART_ARK_OF_THE_COVENANT) || (uarmc && uarmc->oartifact == ART_SPELL_WARDED_WRAPPINGS_OF_) || autismweaponcheck(ART_ANTIMAGICBANE) ) {
+	if (u.antimagicshell || (uarmh && uarmh->otyp == HELM_OF_ANTI_MAGIC) || (uwep && uwep->otyp == DARK_SWORD) || (u.twoweap && uswapwep && uswapwep->otyp == DARK_SWORD) || (RngeAntimagicA && (moves % 10 == 0)) || (u.tempantimagic33 && (moves % 3 == 0) ) || (u.tempantimagic10 && (moves % 10 == 0) ) || (RngeAntimagicB && (moves % 5 == 0)) || (RngeAntimagicC && (moves % 2 == 0)) || (RngeAntimagicD) || (uarmc && uarmc->oartifact == ART_SHELLY && (moves % 3 == 0)) || (uarmc && uarmc->oartifact == ART_BLACK_VEIL_OF_BLACKNESS) || (uarmc && uarmc->oartifact == ART_ARABELLA_S_WAND_BOOSTER) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_SHELL) || autismweaponcheck(ART_LONG_SWORD_OF_ETERNITY) || autismweaponcheck(ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmu && uarmu->oartifact == ART_ANTIMAGIC_FIELD) || (Role_if(PM_UNBELIEVER) && !(uwep && uwep->oartifact == ART_MAGE_STAFF_OF_ETERNITY) ) || autismweaponcheck(ART_ARK_OF_THE_COVENANT) || (uarmc && uarmc->oartifact == ART_SPELL_WARDED_WRAPPINGS_OF_) || autismweaponcheck(ART_ANTIMAGICBANE) ) {
 
 		pline("Your anti-magic shell prevents spellcasting.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -3286,6 +3298,438 @@ struct obj *book2;
 		You_feel("more limber. Let's eat some cockatrice meat!");
 	}
 
+	if (book2->oartifact == ART_BEGINNER_S_PRIMER) {
+		int i;
+
+		for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
+			if (spellknow(i)) {
+				if (spellev(i) == 1) {
+					boostknow(i, 2000);
+				}
+			}
+		}
+		You_feel("an increase of your basic spell knowledge.");
+	}
+
+	if (book2->oartifact == ART_CODEX_OF_ECHOES) {
+		int i;
+
+		for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
+			if (spellknow(i)) {
+				boostknow(i, 500);
+			}
+		}
+		You_feel("an increase of your spell knowledge.");
+
+		u.tempenemyspell33 += rnz(2000);
+		pline("All enemy spellcasters are inhibited for a while, and may randomly fail their spells.");
+
+	}
+
+	if (book2->oartifact == ART_AURORA_CODEX) {
+		u.uenmax += 10;
+		flags.botl = TRUE;
+		You("reinforce your memory...");
+		use_temporary_tech(T_REINFORCE);
+		u.tempspellcost90 += 2000;
+	}
+
+	if (book2->oartifact == ART_CODEX_OF_THE_ENDLESS_LABYR) {
+		tele();
+		if (!level.flags.nommap) {
+			do_mapping();
+		}
+	}
+
+	if (book2->oartifact == ART_DAEDAEDAEDAEDAEDAEUEUEUEUE) {
+		int i, j, bd = 5;
+		struct monst *mtmp;
+
+		u.youaredead = 1;
+		pline("Daedaedaedaedaedaeueueueueuei! %s exploded and died!", playeraliasname);
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+				mtmp->mhp -= rnd(u.uhpmax * 10);
+				pline("%s is hit by the explosion!", Monnam(mtmp));
+				if (mtmp->mhp <= 0) {
+					pline("%s is killed!", Monnam(mtmp));
+					xkilled(mtmp, 0);
+				} else wakeup(mtmp); /* monster becomes hostile */
+			}
+
+		}
+
+		killer = "exploding";
+		killer_format = KILLED_BY;
+		done(DIED);
+		u.youaredead = 0;
+	}
+
+	if (book2->oartifact == ART_CODEX_PANDEMONIUM) {
+		spell_metronome(1, 8);
+		spell_metronome(1, 8);
+	}
+
+	if (book2->oartifact == ART_I_SEE_NO_REASON_BECAUSE_TH) {
+		if (week_day() == 1) {
+			forget(1, FALSE);
+			u.tempincrdmg1 += 5000;
+			You_feel("dizzy and somewhat angry.");
+		}
+	}
+
+	if (book2->oartifact == ART_WHAT_IF_I_NEED_TO_KNOW_) {
+		struct obj *uammo;
+		uammo = mksobj(SCR_STANDARD_ID, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rnd(5);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A stack of standard identify scrolls has formed on the ground!");
+		}
+	}
+
+	if (book2->oartifact == ART_FIELD_GUIDE_TO_FAMILIAR_SP) {
+		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+	}
+
+	if (book2->oartifact == ART_QUIET_NOTEBOOK) {
+		make_confused(0L, TRUE);
+		make_stunned(0L, TRUE);
+		u.tempspellchance20 += 500;
+		You("can cast spells more easily for a while.");
+	}
+
+	if (book2->oartifact == ART_RUNIC_LEXICON_OF_ELDAMIR) {
+		u.tempdblspelldmg += 5000;
+		You("feel your spell power increasing greatly!");
+
+		if (!rn2(10)) {
+			int spell_no;
+
+			pline("Select a spell to increase spell memory.");
+
+			if (getspell(&spell_no, FALSE)) {
+				if (spellknow(spell_no) <= 0) {
+					You("are unable to focus your memory of the spell.");
+					return;
+				} else {
+					Your("focus and reinforce your memory of the spell.");
+					incrnknow(spell_no, FALSE);
+				}
+			}
+
+		}
+	}
+
+	if (book2->oartifact == ART_CODEX_OF_MEDEA) {
+		wonderspell(SPE_TOXIC, 0);
+		incr_itimeout(&HPoison_resistance, 5000);
+		You_feel("resistant to poison.");
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		int medeamons = rnd(6);
+
+		while (medeamons > 0) {
+			medeamons--;
+			makemon(mkclass(S_BAD_FOOD,0), 0, 0, MM_XFRENZIED);
+		}
+
+		medeamons = rnd(6);
+
+		while (medeamons > 0) {
+			medeamons--;
+			makemon(mkclass(S_FUNGUS,0), 0, 0, MM_XFRENZIED);
+		}
+
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_SCRIPTURE_OF_THE_SILENT_CH) {
+		pline("You produce an anti-magic shell.");
+		u.antimagicshell += 100;
+		u.tempantimagic10 += 5000;
+		You_feel("the presence of a weak antimagic aura.");
+	}
+
+	if (book2->oartifact == ART_FRACTURED_CODEX) {
+		alter_reality(0);
+	}
+
+	if (book2->oartifact == ART_APPRENTICE_S_LEXICON) {
+		u.tempintwisboost2 += 200;
+		You_feel("smarter and wiser for a while.");
+		if (!rn2(5)) {
+			You("reinforce your memory...");
+			use_temporary_tech(T_REINFORCE);
+		}
+	}
+
+	if (book2->oartifact == ART_CHRONICLE_OF_THOTH) {
+		u.tempintwisboost2 += 5000;
+		You_feel("smarter and wiser for a while.");
+		use_skill(P_MEMORIZATION, 30);
+		if (!rn2(5)) {
+			if(invent) {
+				identify_pack(1, 0, 0);
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_BOOK_OF_THE_ASHEN_STAR) {
+		coord cc;
+		struct monst *psychmonst;
+		pline("Select a monster to strike with a meteor");
+		cc.x = u.ux;
+		cc.y = u.uy;
+		getpos(&cc, TRUE, "the spot to attack");
+		if (cc.x == -10) return; /* user pressed esc */
+		psychmonst = m_at(cc.x, cc.y);
+
+		if (!psychmonst || (!canseemon(psychmonst) && !canspotmon(psychmonst))) {
+			You("don't see a monster there!");
+			return;
+		}
+
+		if (psychmonst) {
+
+			pline("%s is hit by a meteor!", Monnam(psychmonst));
+
+			if (resists_fire(psychmonst)) {
+				pline("But %s is unaffected!", mon_nam(psychmonst));
+			} else {
+				psychmonst->mhp -= 100;
+				psychmonst->mhpmax -= rnd(3);
+				if (psychmonst->mhpmax < 1) psychmonst->mhpmax = 1;
+				if (psychmonst->mhp < 1) {
+					pline("%s dies!", Monnam(psychmonst));
+					xkilled(psychmonst,0);
+				} else wakeup(psychmonst); /* monster becomes hostile */
+			}
+
+		}
+		u.tempfirelightspellbonus += 5000;
+		You_feel("the power of fire and light spells increasing.");
+	}
+
+	if (book2->oartifact == ART_SOLOMON_S_KEY_OF_WISDOM) {
+		int i, j, bd = 3;
+		struct monst *mtmp;
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0 && (is_demon(mtmp->data))) {
+
+			    if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			    }
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_MERLIN_S_TESTAMENT) {
+		make_confused(HConfusion + rn1(20, 20), FALSE);
+		wonderspell(-1, 10000);
+	}
+
+	if (book2->oartifact == ART_GRIMOIRE_OF_THASSILON) {
+		getdir(NULL);
+		buzz(21,4,u.ux,u.uy,u.dx,u.dy); /* fire */
+		buzz(22,4,u.ux,u.uy,u.dx,u.dy); /* cold */
+		buzz(25,4,u.ux,u.uy,u.dx,u.dy); /* lightning */
+		use_skill(P_ELEMENTAL_SPELL, 20);
+	}
+
+	if (book2->oartifact == ART_TOME_OF_MORGANA) {
+		int i, j, bd = 1;
+		struct monst *mtmp;
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+
+			    if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+				(void) tamedog(mtmp, (struct obj *) 0, FALSE);
+			    }
+			}
+		}
+
+		bd = 3;
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+
+			    if (mtmp->mpeaceful) continue;
+
+			    if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+				mtmp->mconf = TRUE;
+				pline("%s is confused!", Monnam(mtmp));
+			    }
+			}
+		}
+
+		adjattrib(A_CHA, 1, FALSE, TRUE);
+		u.tempspellchance20 += 5000;
+		You_feel("more capable of casting spells.");
+	}
+
+	if (book2->oartifact == ART_BLOOMING_SCRIPTURE) {
+		incr_itimeout(&HRegeneration, 5000);
+		You("start regenerating.");
+		if (!rn2(5)) {
+	 	    (void) makemon(mkclass(S_BAD_FOOD,0), u.ux, u.uy, MM_ADJACENTOK|MM_ANGRY);
+		}
+	}
+
+	if (book2->oartifact == ART_BEGINNER_S_COMPENDIUM_OF_C) {
+		if (u.uspellprot < 2) {
+			u.uspellprot = 2;
+			u.uspmtime = 10;
+			if (!u.usptime) u.usptime = u.uspmtime;
+			find_ac();
+		}
+		flags.botl = TRUE;
+		incr_itimeout(&HRegeneration, 100);
+		incr_itimeout(&HFast, 50);
+		You("feel faster, and start regenerating!");
+
+		register struct monst *nexusmon, *nextmon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+		    nextmon = nexusmon->nmon; /* trap might kill mon */
+		    if (DEADMONSTER(nexusmon)) continue;
+
+		    if (!sensemon(nexusmon) && !canseemon(nexusmon)) continue;
+
+		    if (nexusmon->data->geno & G_UNIQ) continue;
+		    if (nexusmon->mpeaceful) continue;
+		    if (nexusmon->mfrenzied) continue;
+
+		    if (!resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) {
+			nexusmon->mpeaceful = TRUE;
+			pline("%s is pacified!", Monnam(nexusmon));
+		    }
+
+		}
+
+	}
+
+	if (book2->oartifact == ART_SEFER_RAZIEL) {
+		if (u.uenmax > 2) {
+			u.uenmax -= rnd(3);
+			flags.botl = TRUE;
+		} else drain_alla(300);
+
+		if (u.usteed) {
+			u.usteed->mhp = u.usteed->mhpmax;
+			u.usteed->mfrozen = 0;
+			u.usteed->msleeping = 0;
+			u.usteed->masleep = 0;
+			u.usteed->mcanmove = 1;
+			u.usteed->mflee = 0;
+			u.usteed->mcansee = 1;
+			u.usteed->mblinded = 0;
+			u.usteed->mstun = 0;
+			u.usteed->mconf = 0;
+			pline("%s is cured.", Monnam(u.usteed));
+		}
+
+		register struct monst *nexusmon, *nextmon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+		    nextmon = nexusmon->nmon; /* trap might kill mon */
+		    if (DEADMONSTER(nexusmon)) continue;
+
+		    if (!nexusmon->mtame) continue;
+
+			nexusmon->mhp = nexusmon->mhpmax;
+			nexusmon->mfrozen = 0;
+			nexusmon->msleeping = 0;
+			nexusmon->masleep = 0;
+			nexusmon->mcanmove = 1;
+			nexusmon->mflee = 0;
+			nexusmon->mcansee = 1;
+			nexusmon->mblinded = 0;
+			nexusmon->mstun = 0;
+			nexusmon->mconf = 0;
+			pline("%s is cured.", Monnam(nexusmon));
+
+
+		}
+
+		int k, l;
+		struct monst *mtmp3;
+
+		for (k = -4; k <= 4; k++) for(l = -4; l <= 4; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0))
+
+			{
+
+				if (!mtmp3->mpeaceful && (mtmp3->data->maligntyp < 0)) {
+					mtmp3->mhp -= (GushLevel * 3);
+					pline("%s is hit by divine retribution!", Monnam(mtmp3));
+					if (mtmp3->mhp <= 0) {
+						pline("%s is killed!", Monnam(mtmp3));
+						xkilled(mtmp3, 0);
+					} else wakeup(mtmp3); /* monster becomes hostile */
+
+				}
+
+			}
+		} /* for loop */
+	}
+
+	if (book2->oartifact == ART_CELESTIAL_CODEX) {
+
+		make_blinded(Blinded + rn1(10,10), TRUE);
+
+		int k, l;
+		struct monst *mtmp3;
+
+		for (k = -4; k <= 4; k++) for(l = -4; l <= 4; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+			if ( ((mtmp3 = m_at(u.ux + k, u.uy + l)) != 0))
+
+			{
+				if (is_demon(mtmp3->data) || is_undead(mtmp3->data)) {
+					mtmp3->mhp -= (GushLevel * 3);
+					pline("%s is hit by divine retribution!", Monnam(mtmp3));
+					if (mtmp3->mhp <= 0) {
+						pline("%s is killed!", Monnam(mtmp3));
+						xkilled(mtmp3, 0);
+					} else wakeup(mtmp3); /* monster becomes hostile */
+
+				}
+			}
+		} /* for loop */
+
+	}
+
+	if (book2->oartifact == ART_FLICKERING_PALIMPSEST) {
+		register struct obj *acqo;
+
+		acqo = mkobj_at(RANDOM_CLASS, u.ux, u.uy, FALSE, FALSE);
+		if (acqo) {
+			pline("An object appeared at your %s!", makeplural(body_part(FOOT)));
+		} else {
+			pline("Nothing happens...");
+			if (FailureEffects || u.uprops[FAILURE_EFFECTS].extrinsic || have_failurestone()) {
+				pline("Oh wait, actually something bad happens...");
+				badeffect();
+			}
+		}
+
+	}
+
 	if (book2->oartifact == ART_CRUELTY_PROOF) {
 		use_skill(P_AXE, 50);
 	}
@@ -3295,8 +3739,293 @@ struct obj *book2;
 		You_feel("faster.");
 	}
 
+	if (book2->oartifact == ART_TOME_OF______TONGUES) {
+		spellmemorynull();
+		wonderspell(-1, 0);
+	}
+	if (book2->oartifact == ART_BLACK_CHRONICLE) {
+		u.uhpmax += 5;
+
+		if (Upolyd) u.mhmax += 5;
+
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax += 5;
+			maybe_evolve_symbiote();
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
+
+		flags.botl = TRUE;
+
+		struct monst *mtmp3;
+		int k, l;
+		for (k = -6; k <= 6; k++) for(l = -6; l <= 6; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+
+			if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+
+				if (!mtmp3->mpeaceful) {
+
+					if (!resist(mtmp3, SPBOOK_CLASS, 0, NOTELL)) {
+						mtmp3->mconf = TRUE;
+					}
+					if (!resist(mtmp3, SPBOOK_CLASS, 0, NOTELL)) {
+						mtmp3->mstun = TRUE;
+					}
+					if (!resist(mtmp3, SPBOOK_CLASS, 0, NOTELL)) {
+						monflee(mtmp3, rn1(15,15), FALSE, TRUE, FALSE);
+					}
+					if (!resist(mtmp3, SPBOOK_CLASS, 0, NOTELL)) {
+						mtmp3->mhpmax = (mtmp3->mhpmax * 4 / 5);
+						if (mtmp3->mhpmax < 1) mtmp3->mhpmax = 1;
+						if (mtmp3->mhp > mtmp3->mhpmax) mtmp3->mhp = mtmp3->mhpmax;
+					}
+					if (!resist(mtmp3, SPBOOK_CLASS, 0, NOTELL) && mtmp3->mcansee) {
+						mtmp3->mcansee = FALSE;
+						mtmp3->mblinded = rn1(15,15);
+					}
+					removemonsteregotypes(mtmp3);
+				}
+
+			}
+		}
+
+
+	}
+
+	if (book2->oartifact == ART_CLOCKWORK_GRIMOIRE) {
+		pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+		TimeStopped += rn1(2,2);
+
+	      u_slow_down();
+		u.uprops[DEAC_FAST].intrinsic += 120;
+		u.inertia += 30;
+		monstermoves += 30;
+		moves += 30;
+	}
+
+	if (book2->oartifact == ART_NULL_SCRIPT) {
+		spellmemorynull();
+		removeforgottenspell(TRUE);
+		u.tempsupereregen += 100;
+		You("start regenerating mana rapidly!");
+	}
+
+	if (book2->oartifact == ART_LIBER_ARCANUM_OF_MERLIN) {
+		switch (rnd(3)) {
+			case 1:
+				castspecificspell(SPE_INVISIBILITY);
+				break;
+			case 2:
+				castspecificspell(SPE_HASTE_SELF);
+				break;
+			case 3:
+				castspecificspell(SPE_FIREBALL);
+				break;
+		}
+
+		if (!rn2(3)) {
+
+			register struct monst *tamegolem;
+			tamegolem = makemon(mkclass(S_GOLEM,0), u.ux, u.uy, MM_NOSPECIALS);
+			if (tamegolem) {
+				tamegolem = tamedog(tamegolem, (struct obj *) 0, FALSE);
+				if (tamegolem) You("dominate %s!", mon_nam(tamegolem));
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_BOOK_OF_BABA_YAGA) {
+		LuckLoss += 1000;
+		register struct monst *tamegolem;
+		tamegolem = makemon(mkclass(S_GOLEM,0), u.ux, u.uy, MM_NOSPECIALS);
+		if (tamegolem) {
+			tamegolem = tamedog(tamegolem, (struct obj *) 0, FALSE);
+			if (tamegolem) You("dominate %s!", mon_nam(tamegolem));
+		}
+	}
+
+	if (book2->oartifact == ART_TRAVELOGUE_OF_THE_WANDERIN) {
+		phase_door(0);
+		incr_itimeout(&HTeleport_control, 100);
+		You_feel("a bit more in control of yourself.");
+	}
+
 	if (book2->oartifact == ART_PUNYBODY) {
 		prayer_done();
+	}
+
+	if (book2->oartifact == ART_MORGANA_S_MIRROR_SCRIPT) {
+		make_confused(HConfusion + rn1(5, 5), FALSE);
+
+		register struct monst *nexusmon, *nextmon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			nextmon = nexusmon->nmon; /* trap might kill mon */
+			if (DEADMONSTER(nexusmon)) continue;
+
+			if (resist(nexusmon, SPBOOK_CLASS, 0, NOTELL)) continue;
+			nexusmon->mconf = TRUE;
+		}
+		You_feel("a confusing aura!");
+	}
+
+	if (book2->oartifact == ART_TABLET_OF_CIRCE) {
+
+		struct monst *mtmp3;
+		int k, l;
+		for (k = -2; k <= 2; k++) for(l = -2; l <= 2; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+
+			if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+
+				if (!resist(mtmp3, SPBOOK_CLASS, 0, NOTELL)) {
+					mon_spec_poly(mtmp3, (struct permonst *)0, 0L, 0, canseemon(mtmp3), FALSE, FALSE);
+				}
+
+			}
+		}
+
+		incr_itimeout(&HPolymorph_control, 5000);
+		You_feel("capable of controlling your polymorphs.");
+	}
+
+	if (book2->oartifact == ART_SONGBOOK_OF_THE_MEADOW) {
+
+		struct monst *mtmp3;
+		int k, l;
+		for (k = -5; k <= 5; k++) for(l = -5; l <= 5; l++) {
+			if (!isok(u.ux + k, u.uy + l)) continue;
+
+			if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+
+				if (is_animal(mtmp3->data)) {
+					if (!resist(mtmp3, SPBOOK_CLASS, 0, NOTELL)) {
+						if (!mtmp3->mfrenzied) mtmp3->mfrenzied = TRUE;
+					}	
+				}
+
+			}
+		}
+
+		if (u.usteed && u.usteed->mtame < 30) u.usteed->mtame += 1;
+
+		register struct monst *nexusmon, *nextmon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			nextmon = nexusmon->nmon; /* trap might kill mon */
+			if (DEADMONSTER(nexusmon)) continue;
+			if (!nexusmon->mtame) continue;
+
+			if (nexusmon->mtame < 30) nexusmon->mtame += 1;
+		}
+
+		You_feel("a peaceful aura.");
+	}
+
+	if (book2->oartifact == ART_LANTERN_LEXICON) {
+		castspecificspell(SPE_LIGHT);
+	}
+
+	if (book2->oartifact == ART_POCKET_ALMANAC) {
+		castspecificspell(SPE_MAGIC_MAPPING);
+		incr_itimeout(&HRegeneration, 500);
+		You("start regenerating.");
+	}
+
+	if (book2->oartifact == ART_LIBRAM_OF_THE_LIVING_WORD) {
+		AlwaysEgotypeMonsters += rnz(10000);
+		wonderspell(-1, 0);
+		wonderspell(-1, 0);
+		wonderspell(-1, 0);
+	}
+
+	if (book2->oartifact == ART_MIRRORBINDER_S_JOURNAL) {
+		struct monst *mirrormon;
+
+		mirrormon = makemon(&mons[urole.malenum], u.ux, u.uy, NO_MM_FLAGS);
+		if (mirrormon) (void) tamedog(mirrormon, (struct obj *) 0, TRUE);
+		You("summon a clone of yourself!");
+	}
+
+	if (book2->oartifact == ART_LIBER_UMBRAE) {
+		register struct monst *nexusmon, *nextmon, *umbramon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			nextmon = nexusmon->nmon; /* trap might kill mon */
+			if (DEADMONSTER(nexusmon)) continue;
+			if (nexusmon->umbraeconf) continue;
+
+			umbramon = makemon(&mons[monsndx(nexusmon->data)], nexusmon->mx, nexusmon->my, MM_ANGRY|MM_XFRENZIED|MM_ADJACENTOK);
+			if (umbramon) {
+				umbramon->umbraeconf = TRUE;
+				umbramon->mpeaceful = umbramon->mtame = FALSE;
+			}
+		}
+		You_feel("the arrival of some shadows...");
+	}
+
+	if (book2->oartifact == ART_DREAMWEAVER_S_JOURNAL) {
+		fall_asleep(-(rn1(10, 10)), TRUE);
+		adjattrib(A_INT, 1, FALSE, TRUE);
+		adjattrib(A_WIS, 1, FALSE, TRUE);
+		u.tempmonssleepconf += 500;
+	}
+
+	if (book2->oartifact == ART_UNWRITTEN_GOSPEL) {
+		u.tempsenserlistener += rnz(1000);
+	}
+
+	if (book2->oartifact == ART_BOOK_OF_THOTH) {
+		Itemcursing += rnz(2500);
+		if (!Blind) {
+			You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
+			if (PlayerHearsSoundEffects) pline(issoviet ? "Vashe der'mo tol'ko chto proklinal." : "Woaaaaaa-AAAH!");
+		}
+		rndcurse();
+		adjattrib(A_INT, 1, FALSE, TRUE);
+	}
+
+	if (book2->oartifact == ART_GRIMOIRE_OF_THE_BLACK_SUN) {
+
+		int darkgrimmonst = rn1(3,3);
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		while (darkgrimmonst > 0) {
+			darkgrimmonst--;
+			(void) makemon(specialtensmon(239), u.ux, u.uy, MM_ADJACENTOK); /* AD_DARK */
+		}
+
+		int ulx, uly;
+		for (ulx = 1; ulx < (COLNO); ulx++)
+	        for (uly = 0; uly < (ROWNO); uly++) {
+			levl[ulx][uly].lit = 0;
+		}
+		DeLightBug += rnz(4000);
+
+		use_skill(P_OCCULT_SPELL, rnz(50));
+
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_ATLAS_OF_FORGOTTEN_WORLDS) {
+		WallTrapping += rnz(5000);
+		ChaosTerrain += rnz(5000);
+
+		if (((u.uhave.amulet) && !u.freeplaymode) || CannotTeleport || (u.usteed && mon_has_amulet(u.usteed))) {
+			Your("soul was drained!");
+			drain_alla(200);
+		} else if (playerlevelportdisabled()) {
+			pline("For some reason you resist the banishment!");
+			drain_alla(200);
+		} else {
+			banishplayer();
+			You("entered the forgotten world!");
+		}
+
 	}
 
 	if (book2->oartifact == ART_PERCENTES_SPELL) {
@@ -3336,6 +4065,15 @@ struct obj *book2;
 		Your("stomach fills a bit.");
 	}
 
+	if (book2->oartifact == ART_WAYFARER_S_ALMANAC) {
+		lesshungry(100);
+		Your("stomach fills a bit.");
+		if (!BClairvoyant)
+		    do_vicinity_mapX();
+		incr_itimeout(&HFull_nutrient, 100);
+		incr_itimeout(&HClairvoyant, 100);
+	}
+
 	if (book2->oartifact == ART_ONLY_MM_HAHA) {
 		u.uenmax++;
 		flags.botl = TRUE;
@@ -3350,11 +4088,19 @@ struct obj *book2;
 	}
 
 	if (book2->oartifact == ART_KNOW_HOW_TO_DO_IT_) {
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
 		int morgueamount = 5;
 		while (morgueamount > 0) {
 			morgueamount--;
 			(void) makemon(morguemon(), u.ux, u.uy, MM_ADJACENTOK);
 		}
+
+		u.aggravation = 0;
 	}
 
 	if (book2->oartifact == ART_FARTOMAT) {
@@ -3635,6 +4381,15 @@ struct obj *book2;
 		verisiertEffect += rnz(2000);
 	}
 
+	if (book2->oartifact == ART_SPIRAL_MANUSCRIPT) {
+		You_feel("like you're going to throw up.");
+	      make_vomiting(Vomiting+20, TRUE);
+		if (Sick && Sick < 100)
+			set_itimeout(&Sick, (Sick * 2) + 10); /* higher chance to survive long enough --Amy */
+		NoReturnEffect += rnz(2000);
+		You("can't teleport for a while.");
+	}
+
 	if (book2->oartifact == ART_WE_GOT_A_______IN_CENTRAL_) {
 		u.copwantedlevel += 5000;
 		pline("Now your copilot wanted level has increased!");
@@ -3708,7 +4463,7 @@ newbossHORR:
 	}
 
 	if (book2->oartifact == ART_SHOEPOCALYPSE) {
-		wonderspell(-1);
+		wonderspell(-1, 0);
 	}
 
 	if (book2->oartifact == ART_ALL_UNITS_TO_THE_BILLITY_R) {
@@ -3716,7 +4471,7 @@ newbossHORR:
 	}
 
 	if (book2->oartifact == ART_WYNY) {
-		wonderspell(-1);
+		wonderspell(-1, 0);
 	}
 
 	if (book2->oartifact == ART_MIRA_S_REFRESHING_BATH) {
@@ -3821,6 +4576,120 @@ newbossHORR:
 			pline("Sadly your knowledge of the divination spell skill is already maxed.");
 		}
 
+	}
+
+	if (book2->oartifact == ART_GRIMOIRE_OF_CIRCE) {
+		use_temporary_tech(T_POLYFORM);
+	}
+
+	if (book2->oartifact == ART_CHILD_S_BOOK_OF_FAIRY_TALE) {
+		use_temporary_tech(T_PACIFY);
+	}
+
+	if (book2->oartifact == ART_EXPENSIVE_PHYSICIAN_FEES) {
+		u.ugold += rn1(500, 500);
+		You("gain some money!");
+	}
+
+	if (book2->oartifact == ART_BOOK_OF_MORMON) {
+		if ((u.ualign.type != A_CHAOTIC) && (u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL]) ) {
+			You("have a strong feeling that %s is angry...", u_gname());
+			pline("%s accepts your allegiance.", align_gname(A_CHAOTIC));
+
+			u.ualign.type = u.ualignbase[A_CURRENT] = A_CHAOTIC;
+			u.ublessed = 0;
+			flags.botl = 1;
+
+			You("have a sudden sense of a new direction.");
+			/* Beware, Conversion is costly */
+			change_luck(-3);
+			u.ublesscnt += (ishaxor ? 150 : 300);
+			adjalign((int)(u.ualignbase[A_ORIGINAL] * (u.alignlim / 2)));
+		} else {
+			HateTrapEffect |= FROMOUTSIDE;
+		}
+
+		int vampirepolypm = PM_LONG_WORM_TAIL;
+		while (!is_vampire(&mons[vampirepolypm]) || !polyok(&mons[vampirepolypm]) || (notake(&mons[vampirepolypm]) && rn2(4) ) || ((mons[vampirepolypm].mlet == S_BAT) && rn2(2)) || ((mons[vampirepolypm].mlet == S_EYE) && rn2(2) ) || ((mons[vampirepolypm].mmove == 1) && rn2(4) ) || ((mons[vampirepolypm].mmove == 2) && rn2(3) ) || ((mons[vampirepolypm].mmove == 3) && rn2(2) ) || ((mons[vampirepolypm].mmove == 4) && !rn2(3) ) || ( (mons[vampirepolypm].mlevel < 10) && ((mons[vampirepolypm].mlevel + 1) < rnd(u.ulevel)) ) || (!haseyes(&mons[vampirepolypm]) && rn2(2) ) || ( is_nonmoving(&mons[vampirepolypm]) && rn2(5) ) || ( is_eel(&mons[vampirepolypm]) && rn2(5) ) || ( is_nonmoving(&mons[vampirepolypm]) && rn2(20) ) || (is_jonadabmonster(&mons[vampirepolypm]) && rn2(20)) || ( uncommon2(&mons[vampirepolypm]) && !rn2(4) ) || ( uncommon3(&mons[vampirepolypm]) && !rn2(3) ) || ( uncommon5(&mons[vampirepolypm]) && !rn2(2) ) || ( uncommon7(&mons[vampirepolypm]) && rn2(3) ) || ( uncommon10(&mons[vampirepolypm]) && rn2(5) ) || ( is_eel(&mons[vampirepolypm]) && rn2(20) ) ) {
+			vampirepolypm = rn2(NUMMONS);
+		}
+		if (!Unchanging) {
+			polymon(vampirepolypm);
+		}
+ 
+	}
+
+	if (book2->oartifact == ART_BOOK_OF_JEHOVA) {
+		if ((u.ualign.type != A_LAWFUL) && (u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL]) ) {
+			You("have a strong feeling that %s is angry...", u_gname());
+			pline("%s accepts your allegiance.", align_gname(A_LAWFUL));
+
+			u.ualign.type = u.ualignbase[A_CURRENT] = A_LAWFUL;
+			u.ublessed = 0;
+			flags.botl = 1;
+
+			You("have a sudden sense of a new direction.");
+			/* Beware, Conversion is costly */
+			change_luck(-3);
+			u.ublesscnt += (ishaxor ? 150 : 300);
+			adjalign((int)(u.ualignbase[A_ORIGINAL] * (u.alignlim / 2)));
+		} else {
+			u.usanity += 500;
+			flags.botl = TRUE;
+			You_feel("incapable of understanding what you just read!");
+		}
+
+	}
+
+	if (book2->oartifact == ART_NOTEBOOK_OF_ERRANT_SPARKS) {
+		u.uen += rn1(20,20);
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		You_feel("full of mystic power!");
+
+		getdir(NULL);
+		buzz(25,2,u.ux,u.uy,u.dx,u.dy); /* lightning */
+	}
+
+	if (book2->oartifact == ART_BOOK_OF_SCIENTOLOGY) {
+		if ((u.ualign.type != A_NEUTRAL) && (u.ualignbase[A_CURRENT] == u.ualignbase[A_ORIGINAL]) ) {
+			You("have a strong feeling that %s is angry...", u_gname());
+			pline("%s accepts your allegiance.", align_gname(A_NEUTRAL));
+
+			u.ualign.type = u.ualignbase[A_CURRENT] = A_NEUTRAL;
+			u.ublessed = 0;
+			flags.botl = 1;
+
+			You("have a sudden sense of a new direction.");
+			/* Beware, Conversion is costly */
+			change_luck(-3);
+			u.ublesscnt += (ishaxor ? 150 : 300);
+			adjalign((int)(u.ualignbase[A_ORIGINAL] * (u.alignlim / 2)));
+		} else {
+			switch (rnd(5)) {
+				case 1:
+					if (!FemtrapActiveRuth) pline("You feel that people are building toilets for you to use.");
+					FemaleTrapYvonne |= FROMOUTSIDE;
+					break;
+				case 2:
+					if (!FemtrapActiveRuth) pline("There's some karate women who want to demonstrate their combat capabilities to you.");
+					FemaleTrapVictoria |= FROMOUTSIDE;
+					break;
+				case 3:
+					if (!FemtrapActiveRuth) pline("Some unfair woman wants to crush you with her block-heeled combat boots!");
+					FemaleTrapManuela |= FROMOUTSIDE;
+					break;
+				case 4:
+					if (!FemtrapActiveRuth) pline("The girls are going to fart you in the face without emitting any kind of sound.");
+					FemaleTrapJennifer |= FROMOUTSIDE;
+					break;
+				case 5:
+					if (!FemtrapActiveRuth) pline("It seems that monsters may spotaneously turn into sexy women, as if there weren't enough of them running around the dungeon anyway.");
+					FemaleTrapYasaman |= FROMOUTSIDE;
+					break;
+			}
+		}
+
+		if (invent) identify_pack(0, 0, 0);
 	}
 
 	if (book2->oartifact == ART_MUTAGEN_CONTAINER) {
@@ -3957,7 +4826,7 @@ newbossHORR:
 	}
 
 	if (book2->oartifact == ART_EXTRAORDINARY_METRONOME) {
-		spell_metronome();
+		spell_metronome(1, 8);
 	}
 
 	if (book2->oartifact == ART_DRUM__THE_DRUM_) {
@@ -4439,6 +5308,12 @@ melatechoice:
 		}
 	}
 
+	if (book2->oartifact == ART_ENTROPY_S_LEDGER) {
+		losexp("entropy ledger", TRUE, FALSE);
+		u.temptriplemf += rnz(5000);
+		You_feel("more capable of finding magic items!");
+	}
+
 	if (book2->oartifact == ART_BEAT_MY_LOVER) {
 		register struct monst *nexusmon, *nextmon;
 
@@ -4564,6 +5439,13 @@ melatechoice:
 		You("start leeching mana!");
 	}
 
+	if (book2->oartifact == ART_MANUAL_OF_THE_THOUSAND_HAN) {
+		incr_itimeout(&HManaleech, 2000);
+		MonsterSpeedBug += 2000;
+		u.tempxtrapwregen += 2000;
+		You("start leeching mana, and also regenerate mana more quickly!");
+	}
+
 	if (book2->oartifact == ART_GOLEMEQUIPMENT) {
 		struct obj *uammo;
 		uammo = mksobj(TORCH, TRUE, FALSE, FALSE);
@@ -4685,7 +5567,171 @@ melatechoice:
 	}
 
 	if (book2->oartifact == ART_HEALING_RAIN_OBTAINED) {
-		wonderspell(SPE_HEALING_RAIN);
+		wonderspell(SPE_HEALING_RAIN, 0);
+	}
+
+	if (book2->oartifact == ART_PRIMER_OF_SPARKS) {
+		wonderspell(SPE_FLAME_SPHERE, 0);
+		incr_itimeout(&HFire_resistance, 1000);
+		You_feel("cooler for a while.");
+	}
+
+	if (book2->oartifact == ART_ELEMENTALIST_S_CODEX) {
+		wonderspell(SPE_FIREBALL, 0);
+		wonderspell(SPE_CONE_OF_COLD, 0);
+	}
+
+	if (book2->oartifact == ART_CHRONICLE_OF_THE_LAST_DAWN) {
+		u.uhp = u.uhpmax;
+		u.uen = u.uenmax;
+		if (Upolyd) u.mh = u.mhmax;
+		flags.botl = TRUE;
+		u.boosttimer += 5000;
+		u.combatcommand += 5000;
+		You_feel("fully powered!");
+	}
+
+	if (book2->oartifact == ART_LIBRAM_OF_SPARKS) {
+		wonderspell(SPE_VOLT_ROCK, 0);
+
+		register struct obj *wandchargor;
+		pline("You may improve the charge count of one of your wands.");
+
+wandchargechoice:
+		wandchargor = getobj(allowall, "boost the charge count");
+
+		if(!wandchargor) {
+			if (yn("Really exit with no object selected?") == 'y') {
+				pline("You just wasted the opportunity to charge a wand.");
+			}
+			else goto wandchargechoice;
+		} else if (wandchargor->oclass != WAND_CLASS) {
+			pline("That isn't a wand, and therefore nothing happens!");
+		} else if (wandchargor->otyp == WAN_WISHING || wandchargor->otyp == WAN_CHARGING || wandchargor->otyp == WAN_ACQUIREMENT || wandchargor->otyp == WAN_GAIN_LEVEL || wandchargor->otyp == WAN_INCREASE_MAX_HITPOINTS) {
+			pline("Sadly, you decided to pick a wand that cannot be recharged indefinitely, even though the description of that spellbook explicitly said that you can't do that, and therefore the recharging fails. Maybe you should work on your real-life reading comprehension skills, because currently your character's is better than your own...");
+		} else {
+			wandchargor->spe++;
+			pline_The("wand glows briefly.");
+		}
+
+	}
+
+	if (book2->oartifact == ART_CODEX_OF_FEATHERED_WORDS) {
+		incr_itimeout(&HLevitation, 100);
+		HLevitation |= I_SPECIAL;
+		You("float into the air!");
+		heal_legs();
+		if (u.inertia) {
+			u.inertia -= 50;
+			if (u.inertia < 1) {
+				u.inertia = 0;
+				You_feel("less slow.");
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_TRICKSTER_S_MANUAL) {
+
+		spell_metronome(1, 2); /* can only select level 1 or 2 spells */
+
+		if (!rn2(20)) badeffect();
+
+	}
+
+	if (book2->oartifact == ART_CANDLELIGHT_CODEX) {
+		register struct obj *pseudoobj;
+		pseudoobj = mksobj(WAN_LIGHT, FALSE, 2, FALSE);
+		wonderspell(SPE_LIGHT, 0);
+		litroom(TRUE, pseudoobj);
+		if (pseudoobj) obfree(pseudoobj, (struct obj *)0);	/* now, get rid of it */
+		incr_itimeout(&HSight_bonus, 200);
+		You("feel the area lighting up!");
+	}
+
+	if (book2->oartifact == ART_NOVICE_S_COMPANION) {
+		u.uen += rn1(10,10);
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		flags.botl = TRUE;
+		You_feel("full of mystic power!");
+		u.tempbooklenses += 1000;
+	}
+
+	if (book2->oartifact == ART_HEALER_S_HANDBOOK) {
+		wonderspell(SPE_HEALING, 0);
+		healup(rn1(10,10), 0, FALSE, FALSE);
+		incr_itimeout(&HPoison_resistance, 100);
+		You_feel("healthy for the time being.");
+	}
+
+	if (book2->oartifact == ART_WEEPING_CODEX) {
+		losestr(1, TRUE);
+		healup(rn1(25,25), 0, FALSE, FALSE);
+		You_feel("healthier!");
+		castspecificspell(SPE_BUBBLEBEAM);
+
+	}
+
+	if (book2->oartifact == ART_POCKET_HERBAL_GRIMOIRE) {
+		healup(rn1(25,25), 0, TRUE, FALSE);
+		incr_itimeout(&HPoison_resistance, 500);
+		You_feel("healthy for the time being.");
+	}
+
+	if (book2->oartifact == ART_TOME_OF_ENDLESS_HUNGER) {
+		if (u.uhpmax < 11) {
+			u.youaredead = 1;
+			You("have been drained to the point of death...");
+			killer = "endless hunger";
+			killer_format = KILLED_BY;
+			done(DIED);
+			u.youaredead = 0;
+		} else {
+			u.uhpmax -= rnd(10);
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			flags.botl = TRUE;
+		}
+		u.tempundeaddbldmg += rnz(5000);
+		wonderspell(SPE_DRAIN_LIFE, 0);
+		wonderspell(SPE_COMMAND_UNDEAD, 0);
+	}
+
+	if (book2->oartifact == ART_JUST_AND_JOSEPH_LOOKING_FO) {
+		if (u.ualign.type != A_LAWFUL) {
+			u.alignlim -= 5;	
+			adjalign(-20);
+			You_feel("kinda naughty.");
+		}
+		god_gives_pet(A_LAWFUL);
+	}
+
+	if (book2->oartifact == ART_NECRONOMICON_OF_ABDUL_ALHA) {
+		if (u.uhpmax < 11) {
+			u.youaredead = 1;
+			You("have been drained to the point of death...");
+			killer = "endless hunger";
+			killer_format = KILLED_BY;
+			done(DIED);
+			u.youaredead = 0;
+		} else {
+			u.uhpmax -= 10;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+			flags.botl = TRUE;
+		}
+
+		register int randomspell;
+		int attempts = 50000;
+
+newabdulspell:
+		randomspell = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
+
+		if (objects[randomspell].oc_level != 8) {
+			if (attempts > 0) {
+				attempts--;
+				goto newabdulspell;
+			}
+		}
+
+		wonderspell(randomspell, 0);
 	}
 	if (book2->oartifact == ART_LESSEE_DAT && Role_if(PM_ELECTRIC_MAGE)) {
 		if (P_MAX_SKILL(P_ELEMENTAL_SPELL) == P_ISRESTRICTED) {
@@ -4760,17 +5806,27 @@ int spell;
 
 /* cast a random spell, possibly one that you don't even have --Amy */
 void
-spell_metronome()
+spell_metronome(minsplvl, maxsplvl)
+int minsplvl, maxsplvl;
 {
 	struct obj *pseudo;
+	int attempts = 50000;
 
 	pseudo = mksobj(SPE_MAGIC_BOLT, FALSE, 2, FALSE);
+metronomeroll:
 	pseudo->otyp = randartspellbookX();
 
 	if (!pseudo) {
 		pline("The spell failed spontaneously!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 		return;
+	}
+
+	/* random spell must always be at least "minsplvl" and cannot be higher than "maxsplvl" --Amy */
+	if (attempts > 0) {
+		attempts--;
+		if (objects[pseudo->otyp].oc_level < minsplvl) goto metronomeroll;
+		if (objects[pseudo->otyp].oc_level > maxsplvl) goto metronomeroll;
 	}
 
 	pline("You cast the '%s' spell.", OBJ_NAME(objects[pseudo->otyp]));
@@ -4781,6 +5837,43 @@ metronomestart:
 			pline_The("magical energy is released!");
 		else {
 			goto metronomestart;
+		}
+	}
+
+	pseudo->blessed = pseudo->cursed = 0;
+	pseudo->quan = 20L;			/* do not let useup get it */
+
+	spelleffects(pseudo->otyp, FALSE, TRUE);
+
+	if (pseudo) obfree(pseudo, (struct obj *)0);
+}
+
+/* cast a specific spell, regardless of whether you actually have it --Amy */
+void
+castspecificspell(spelltype)
+int spelltype;
+{
+	struct obj *pseudo;
+	int attempts = 50000;
+
+	pseudo = mksobj(spelltype, FALSE, 2, FALSE);
+
+	pseudo->otyp = spelltype;
+
+	if (!pseudo) {
+		pline("The spell failed spontaneously!");
+		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		return;
+	}
+
+	pline("You cast the '%s' spell.", OBJ_NAME(objects[pseudo->otyp]));
+
+specificspellstart:
+	if (!getdir((char *)0)) {
+		if (yn("Do you really want to input no direction?") == 'y')
+			pline_The("magical energy is released!");
+		else {
+			goto specificspellstart;
 		}
 	}
 
@@ -4934,6 +6027,12 @@ boolean metronomespell;
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) {  /* Casting any sort of magic uses half power for them */
 		if (rn2(10)) energy += 1;
 		energy /= 2;
+	}
+
+	if (u.tempspellcost90 && energy > 1) {
+		if (rn2(10)) energy += 1;
+		energy *= 9;
+		energy /= 10;
 	}
 
 	if (uarm && uarm->oartifact == ART_HLOVAL_S_PROBLEM && energy > 1) {
@@ -7757,7 +8856,7 @@ newbossPENT:
 
 					break;
 				case 24:
-					wonderspell(-1);
+					wonderspell(-1, 0);
 					break;
 				case 25:
 
@@ -13008,13 +14107,14 @@ removeagain:
 
 /* having too many forgotten spells just clogs up the interface, so we'll occasionally remove one --Amy */
 void
-removeforgottenspell()
+removeforgottenspell(guaranteed)
+boolean guaranteed;
 {
 	int n, thisone, thisonetwo, choicenumber;
 
 	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
 		continue;
-	if (n > 4) {
+	if ((n > 4) || guaranteed) {
 		thisone = -1;
 		thisonetwo = -1;
 		choicenumber = 0;
@@ -13025,7 +14125,7 @@ removeforgottenspell()
 			}
 		}
 
-		if (choicenumber > 5 && thisone >= 0 && spellknow(thisone) <= 0) {
+		if ( ((choicenumber > 5) || guaranteed) && thisone >= 0 && spellknow(thisone) <= 0) {
 
 			pline("You completely forgot the %s spell.", spellname(thisone));
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
@@ -13161,6 +14261,33 @@ spellmemoryhalve()
 				pline("You lose all knowledge of the %s spell!", spellname(thisone));
 			}
 			else pline("Your knowledge of the %s spell is cut in half!", spellname(thisone));
+		}
+
+	}
+
+}
+
+/* delete all memory of a randomly selected spell with nonzero memory --Amy */
+void
+spellmemorynull()
+{
+	int n, thisone, choicenumber, spell, nzap;
+
+	for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++)
+		continue;
+	if (n) {
+		thisone = -1;
+		choicenumber = 0;
+		for (n = 0; n < MAXSPELL && spellid(n) != NO_SPELL; n++) {
+			if ((spellknow(n) > 0) && (!choicenumber || (!rn2(choicenumber + 1))) ) {
+				thisone = n;
+			}
+			if (spellknow(n) > 0) choicenumber++;
+		}
+
+		if (choicenumber > 0 && thisone >= 0) {
+			spl_book[thisone].sp_know = 0;
+			pline("You lose all knowledge of the %s spell!", spellname(thisone));
 		}
 
 	}
@@ -14166,6 +15293,7 @@ int spell;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
 	if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) chance += 12;
+	if (u.tempspellchance20) chance += 20;
 	if (uarmh && uarmh->oartifact == ART_SPELLSPELLSPELL___) {
 		chance += 20;
 		if (Role_if(PM_CELLAR_CHILD)) chance += 20;
@@ -15152,8 +16280,8 @@ int spellnum;
 
 /* learn a random spell ("whichspell" == -1) or a specific one ("whichspell" = ID of the book) --Amy */
 void
-wonderspell(whichspell)
-int whichspell;
+wonderspell(whichspell, memorybonus)
+int whichspell, memorybonus; /* "memorybonus" is a bonus to the memory of the newly learned spell */
 {
 	register int randomspell = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
 
@@ -15172,6 +16300,7 @@ int whichspell;
 				if (u.emynluincomplete) boostknow(i, 1000);
 				if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, FALSE);
 				if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, FALSE);
+				if (memorybonus) boostknow(i, memorybonus);
 
 				if (!PlayerCannotUseSkills && P_SKILL(P_MEMORIZATION) >= P_BASIC) {
 
@@ -15219,6 +16348,7 @@ int whichspell;
 			if (u.emynluincomplete) boostknow(i, 1000);
 			if (uarmg && itemhasappearance(uarmg, APP_RUNIC_GLOVES) && !rn2(2) ) incrnknow(i, TRUE);
 			if (Role_if(PM_MAHOU_SHOUJO)) incrnknow(i, TRUE);
+			if (memorybonus) boostknow(i, memorybonus);
 			You("gain knowledge of the %s spell.", splname);
 			if (randomspell == SPE_FORBIDDEN_KNOWLEDGE) {
 				u.ugangr += 15;

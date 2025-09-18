@@ -66,6 +66,7 @@ STATIC_OVL int artidisco[NROFARTIFACTS];
 STATIC_DCL void hack_artifacts(void);
 STATIC_DCL boolean attacks(int,struct obj *);
 
+STATIC_PTR void do_megafloodingO(int, int, void *);
 
 STATIC_PTR void
 terraincleanupY(x, y, roomcnt)
@@ -164,6 +165,80 @@ void * poolcnt;
 	} else if ((x == u.ux) && (y == u.uy)) {
 		(*(int *)poolcnt)--;
 	}
+
+}
+
+STATIC_PTR void
+do_megafloodingO(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	if (Aggravate_monster) {
+		u.aggravation = 1;
+		reset_rndmonst(NON_PM);
+	}
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && !MON_AT(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+
+			levl[randomx][randomy].typ = MOAT;
+			if (!rn2(3)) makemon(mkclass(S_EEL,0), randomx, randomy, NO_MM_FLAGS);
+
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+	}
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) || !rn2(3) || 
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR) || MON_AT(x, y))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+
+		levl[x][y].typ = MOAT;
+		if (!rn2(3)) makemon(mkclass(S_EEL,0), x, y, NO_MM_FLAGS);
+
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+	u.aggravation = 0;
 
 }
 
@@ -1149,6 +1224,9 @@ init_appearance_randarts()
 	artilist[ART_PALEOLITHIC_ELBOW_CONTRACT].otyp = find_greek_cloak();
 	artilist[ART_FEATHER_LIGHT].otyp = find_flier_cloak();
 	artilist[ART_NUCLEAR_BOMB].otyp = find_celtic_helmet();
+	artilist[ART_BABY_JOYN_ME_IN_THERE].otyp = find_netradiation_helmet();
+	artilist[ART_DOUBLE_ARROW_NOSE].otyp = find_jarring_cloak();
+	artilist[ART_MESSEN_PLES].otyp = find_deep_cloak();
 	artilist[ART_DOGGERSEE].otyp = find_dogbone_helmet();
 	artilist[ART_HABIBA_S_MATRONAGE].otyp = find_hardcore_cloth();
 	artilist[ART_BEEEEEEEANPOLE].otyp = find_english_gloves();
@@ -2179,8 +2257,306 @@ register boolean mod;
 			MemoryLoss += rnz(10000);
 			AntiswitchBug += rnz(10000);
 		    }
+		    if (otmp && otmp->oartifact == ART_FRACTURED_CODEX) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			int fracturing = 10;
+			while (fracturing > 0) {
+				fracturing--;
+				(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+				(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+				makerandomtrap(TRUE);
+			}
+
+			u.aggravation = 0;
+		    }
+		    if (otmp && otmp->oartifact == ART_SOLOMON_S_KEY_OF_WISDOM) {
+			int pm;
+		      register struct monst *solodemon;
+			pm = rn2(2) ? dprince(rn2((int)A_LAWFUL+2) - 1) : dlord(rn2((int)A_LAWFUL+2) - 1);
+			if (pm >= PM_ORCUS && pm <= PM_DEMOGORGON) u.conclusiocount++;
+			if (pm && (pm != NON_PM)) {
+				solodemon = makemon(&mons[pm], 0, 0, MM_ADJACENTOK|NO_MINVENT);
+				if (solodemon) {
+					solodemon->mhp = (solodemon->mhpmax / 10);
+					if (solodemon->mhp < 1) solodemon->mhp = 1;
+					solodemon->mcansee = 0;
+					solodemon->mblinded = 100;
+					solodemon->mstun = 1;
+					solodemon->mconf = 1;
+				}
+			}
+
+		    }
+		    if (otmp && otmp->oartifact == ART_TOME_OF______TONGUES) {
+			u.tempantimagic33 += 10000;
+			FilteringBug += rnz(10000);
+			pline("It seems that the air is filled with an anti-magical aura.");
+		    }
+		    if (otmp && otmp->oartifact == ART_ENTROPY_S_LEDGER) {
+			register struct monst *nexusmon, *nextmon;
+			int entropymons = 0;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+
+			    if (!rn2(5)) entropymons++;
+
+			    if (!rn2(10)) {
+				monkilled(nexusmon, "", AD_PHYS);
+			    }
+			}
+
+			while (entropymons > 0) {
+				entropymons--;
+				(void) makemon((struct permonst *)0, 0, 0, MM_ADJACENTOK|MM_MAYSLEEP);
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_CELESTIAL_CODEX) {
+			incr_itimeout(&HReflecting, 1);
+			int randsolarbeams = 25;
+			You("notice a constant ringing sound!");
+			register int mapendx, mapendy;
+			int dirx, diry;
+			while (randsolarbeams > 0) {
+				randsolarbeams--;
+
+				mapendx = rnd(COLNO-1);
+				mapendy = rn2(ROWNO);
+				dirx = rn2(3) - 1;
+				diry = rn2(3) - 1;
+				if(dirx != 0 || diry != 0)
+					buzz(18, 6, mapendx, mapendy, dirx, diry); /* solar beam */
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SCRIPTURE_OF_THE_SILENT_CH) {
+			u.tempantimagic10 += 5000;
+			You_feel("the presence of a weak antimagic aura.");
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SEFER_RAZIEL) {
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			    nextmon = nexusmon->nmon; /* trap might kill mon */
+			    if (DEADMONSTER(nexusmon)) continue;
+
+			    if (!is_demon(nexusmon->data) && !is_undead(nexusmon->data)) continue;
+
+			    nexusmon->mflee = TRUE;
+			}
+			summon_minion(A_LAWFUL, TRUE);
+			pline("A servant of law appears!");
+		    }
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+		    if (otmp && otmp->oartifact == ART_SPIRAL_MANUSCRIPT) {
+
+			int x, y;
+			int houzanhaamount = 50;
+			register struct rm *lev;
+			while (houzanhaamount) {
+				houzanhaamount--;
+				if (houzanhaamount < 0) houzanhaamount = 0;
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+				lev = &levl[x][y];
+				if (isok(x,y) && lev->typ != STAIRS && lev->typ != LADDER && !(lev->typ == ALTAR && (Is_astralevel(&u.uz) || Is_sanctum(&u.uz)) ) && !(lev->wall_info & W_NONDIGGABLE) && lev->typ != STAIRS && lev->typ != LADDER) {
+					lev->typ = CORR;
+				}
+			}
+			if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+
+			hunkajunkriver();
+			randhunkrivers();
+			if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+			TrapwarpingBug += rnz(10000);
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_CODEX_PANDEMONIUM) {
+			u.temprandgoodbadeffects += rnz(10000);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_CODEX_OF_THE_ENDLESS_LABYR) {
+			hunkajunkriver();
+			randhunkrivers();
+			if (!(InterfaceScrewed || u.uprops[INTERFACE_SCREW].extrinsic || have_interfacescrewstone())) doredraw();
+
+			int madepoolQ = 0;
+
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodP, (void *)&madepoolQ);
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_WEEPING_CODEX) {
+			int madepoolQ = 0;
+
+			do_clear_areaX(u.ux, u.uy, rno(10), do_megafloodingO, (void *)&madepoolQ);
+			if (madepoolQ)
+				pline("Oh %s, there's %s flooding on this sub level!", rn2(2) ? "damn" : "great", rn2(2) ? "a" : "another");
+			}
+		    if (otmp && otmp->oartifact == ART_CHRONICLE_OF_THE_LAST_DAWN) {
+			MaximumDamageBug += 5000;
+		    }
+		    if (otmp && otmp->oartifact == ART_BLOOMING_SCRIPTURE) {
+			bloomragnarokweak();
+		    }
+		    if (otmp && otmp->oartifact == ART_FLICKERING_PALIMPSEST) {
+			int itemmasters = rnz(20);
+			while (itemmasters > 0) {
+				itemmasters--;
+				(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_CLOCKWORK_GRIMOIRE) {
+			FluctuatingSpeed += rnz(2500);
+		    }
+		    if (otmp && otmp->oartifact == ART_NULL_SCRIPT) {
+			struct obj *otmpO, *otmpP;
+
+			for (otmpO = fobj; otmpO; otmpO = otmpP) {
+				otmpP = otmpO->nobj; /* otmpO could be deleted */
+				if (otmpO && (otmpO->where == OBJ_FLOOR) ) {
+					if (!evades_destruction(otmpO) && !(otmpO->oartifact == ART_NULL_SCRIPT) ) {
+						delobj(otmpO);
+					}
+				}
+			}
+
+		    }
+		    if (otmp && otmp->oartifact == ART_UNWRITTEN_GOSPEL) {
+			u.tempsenserlistener += rnz(5000);
+		    }
+		    if (otmp && otmp->oartifact == ART_BOOK_OF_THOTH) {
+			struct trap *t;
+			YellowSpells += rnz(10000);
+			do_mapping();
+		      for (t = ftrap; t != 0; t = t->ntrap) {
+			  if (!t->hiddentrap) t->tseen = 1;
+			  if (!t->hiddentrap) map_trap(t, TRUE);
+		      }
+			object_detect((struct obj *)0, 0, TRUE);
+
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				if (levl[ulx][uly].typ == SDOOR) cvt_sdoor_to_door(&levl[ulx][uly]);
+			}
+		    }
+		    if (otmp && otmp->oartifact == ART_LIBER_UMBRAE) {
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				levl[ulx][uly].lit = 0;
+			}
+			level.flags.shortsighted = TRUE;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_MORGANA_S_MIRROR_SCRIPT) {
+			makemon(&mons[urole.malenum], 0, 0, MM_ADJACENTOK);
+			makemon(&mons[urole.undeadmalenum], 0, 0, MM_ADJACENTOK);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_BOOK_OF_BABA_YAGA) {
+			int i, j;
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+		      for (i = 0; i <= COLNO; i++) for(j = 0; j <= ROWNO; j++) {
+
+				if (isok(i, j) && ACCESSIBLE(levl[i][j].typ) ) {
+					if (!rn2(10)) {
+						(void) maketrap(i, j, rndtrap(), 100, TRUE);
+					}
+					if (!rn2(10)) {
+						(void) makemon((struct permonst *)0, i, j, MM_ADJACENTOK|MM_MAYSLEEP|MM_ANGRY);
+					}
+				}
+
+			}
+
+			u.aggravation = 0;
+		    }
+		    if (otmp && otmp->oartifact == ART_GRIMOIRE_OF_CIRCE) {
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				nextmon = nexusmon->nmon; /* trap might kill mon */
+				if (DEADMONSTER(nexusmon)) continue;
+				if (!humanoid(nexusmon->data)) continue;
+				if (nexusmon->data->geno & G_UNIQ) continue;
+
+				mon_spec_poly(nexusmon, (struct permonst *)0, 0L, 0, canseemon(nexusmon), FALSE, FALSE);
+			}
+
+		    }
+		    if (otmp && otmp->oartifact == ART_NECRONOMICON_OF_ABDUL_ALHA) {
+			u.tempeldritchspawn += 50000;
+			SimeoutBug += rnz(25000);
+			u.usanity += 1000;
+			flags.botl = TRUE;
+			You_feel("an eldritch presence...");
+		    }
+		    if (otmp && otmp->oartifact == ART_BLACK_CHRONICLE) {
+			register struct monst *nexusmon, *nextmon;
+
+			for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+				nextmon = nexusmon->nmon; /* trap might kill mon */
+				if (DEADMONSTER(nexusmon)) continue;
+				if (nexusmon->mpeaceful) continue;
+				nexusmon->mfrenzied = TRUE;
+				if (nexusmon->m_lev < 50) nexusmon->m_lev++;
+				if (nexusmon->m_lev < 50) nexusmon->m_lev++;
+				nexusmon->mhp += 16;
+				nexusmon->mhpmax += 16;
+			}
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				levl[ulx][uly].lit = 0;
+			}
+			level.flags.shortsighted = TRUE;
+
+		    }
+		    if (otmp && otmp->oartifact == ART_MERLIN_S_TESTAMENT) {
+
+			u.aggravation = 1;
+			u.heavyaggravation = 1;
+
+			(void) makemon(specialtensmon(284), 0, 0, MM_XFRENZIED); /* AD_SPEL */
+
+			u.aggravation = 0;
+			u.heavyaggravation = 0;
+
+			switch (rnd(3)) {
+				case 1:
+					incr_itimeout(&HInvis, 5000);
+					You_feel("invisible!");
+					break;
+				case 2:
+					incr_itimeout(&HFast, 5000);
+					You_feel("faster!");
+					break;
+				case 3:
+					incr_itimeout(&HFlying, 5000);
+					You("suddenly grow a pair of wings!");
+					break;
+
+			}
+
 		    }
 		    if (otmp && otmp->oartifact == ART_MORPHOGENETIC_FIELD) {
 			recursioneffect();
@@ -2551,7 +2927,14 @@ register boolean mod;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_FIGHTEBOSSIT) {
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
 			(void) makemon(specialtensmon(165), 0, 0, MM_ADJACENTOK); /* G_UNIQ */
+
+			u.aggravation = 0;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_LEGENDARY_BATTLE) {
@@ -6118,7 +6501,7 @@ newboss:
 
 					break;
 				case 24:
-					wonderspell(-1);
+					wonderspell(-1, 0);
 					break;
 				case 25:
 

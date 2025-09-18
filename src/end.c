@@ -2208,6 +2208,7 @@ omegadone:
 			    losexp("menu bug", TRUE, FALSE);
 			    losexp("menu bug", TRUE, FALSE);
 			    pline("You hit the 'exit' button to escape from the grave! There you are again, back from the dead...");
+			    if (uarmh && uarmh->oartifact == ART_BABY_JOYN_ME_IN_THERE) MenuBug |= FROMOUTSIDE;
 			    if(u.uhpmax <= 0) u.uhpmax = 1;	/* arbitrary */
 			    savelife(how);
 			    killer = 0;

@@ -3165,6 +3165,32 @@ find_flier_cloak()
 }
 
 int
+find_jarring_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_JARRING_CLOAK)) return i;
+    }
+
+    impossible("jarring cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_deep_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DEEP_CLOAK)) return i;
+    }
+
+    impossible("deep cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_celtic_helmet()
 {
     register int i;
@@ -3174,6 +3200,19 @@ find_celtic_helmet()
     }
 
     impossible("celtic helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_netradiation_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_NETRADIATION_HELMET)) return i;
+    }
+
+    impossible("netradiation helmet not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 

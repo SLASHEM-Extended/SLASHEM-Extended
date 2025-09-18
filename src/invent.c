@@ -11578,7 +11578,7 @@ long numused;
 		    TRUE);
 	}
 	delobj(otmp);
-	if (at_u && u.uundetected && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET)) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (night() && uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) )
+	if (at_u && u.uundetected && PlayerHidesUnderItems)
 	    u.uundetected = OBJ_AT(u.ux, u.uy);
 }
 
@@ -34204,6 +34204,154 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: makes the nastytrap effect caused by the base item even worse."); break;
 				case ART_SUDDEN_MEMORY_FAILURE:
 					pline("Artifact specs: when it got generated, you got a long-lasting low local memory and antiswitch trap effect. If you were to read it while still having low local memory, monster spawning would be slowed for a while, but since you're reading this, you currently do not have that effect so it'll just act like a normal spellbook."); break;
+				case ART_BABY_JOYN_ME_IN_THERE:
+					pline("Artifact specs: half spell damage, +1 constitution and 4 extra points of AC when worn. While wearing it, you also have the menu nose effect and if you use that to lifesave, you then get the menu nose effect permanently."); break;
+				case ART_DOUBLE_ARROW_NOSE:
+					pline("Artifact specs: while wearing it, you have +5 to-hit with ranged weapons and if you use a bow, it has +1 multishot and 50%% less risk of your arrows mulching."); break;
+				case ART_MESSEN_PLES:
+					pline("Artifact specs: autocurses when worn and gives the antiswitch effect, 5 extra points of AC and displacement, plus it allows you to hide underneath items."); break;
+				case ART_TOME_OF_ENDLESS_HUNGER:
+					pline("Artifact specs: reading it teaches 'drain life' and 'command undead', but drains your maximum health by up to 10 points. Also, hostile undead will deal more damage to you for a while after you've read it. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Bound in stitched skin, this book gnaws at the soul.'"); break;
+				case ART_POCKET_HERBAL_GRIMOIRE:
+					pline("Artifact specs: reading it heals you a bit, cures sickness and gives temporary poison resistance. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A pocket-sized field guide with pressed flowers.'"); break;
+				case ART_HEALER_S_HANDBOOK:
+					pline("Artifact specs: reading it teaches the 'healing' spell, heals you a bit and gives you a few turns of poison resistance. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A practical, plain book with pressed herbs between the pages.'"); break;
+				case ART_NOVICE_S_COMPANION:
+					pline("Artifact specs: reading it restores a bit of your mana and temporarily allows you to read books faster. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A spellbook with a glowing bookmark ribbon that always finds the right page.'"); break;
+				case ART_WAYFARER_S_ALMANAC:
+					pline("Artifact specs: reading it fills your stomach a bit, detects a bit of your surroundings and gives you full nutrients and clairvoyance for a few turns. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A dog-eared travel guide to strange lands.'"); break;
+				case ART_CANDLELIGHT_CODEX:
+					pline("Artifact specs: reading it teaches the 'light' spell, lights up the area around you and gives a few turns of improved vision. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Bound in wax, faintly glowing like a lantern.'"); break;
+				case ART_QUIET_NOTEBOOK:
+					pline("Artifact specs: can be read successfully even while you're confused and will cure confusion and stun, plus your spell failure rates are lower for a while, making spells easier to cast. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A simple gray notebook with faint scribbles.'"); break;
+				case ART_FRACTURED_CODEX:
+					pline("Artifact specs: spawned stuff when it got generated, and reading it alters the reality. This artifact cannot be wished for. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Pages are torn, bloodstained, and sometimes repeat themselves in paradoxical loops.'"); break;
+				case ART_BEGINNER_S_COMPENDIUM_OF_C:
+					pline("Artifact specs: reading it gives a short-lived protection effect as well as a few turns of regeneration and very fast speed. Hostile monsters whose level is below your own and which are currently in your field of view may become peaceful, but bosses are immune to that effect. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A colorful book filled with cheerful incantations.'"); break;
+				case ART_APPRENTICE_S_LEXICON:
+					pline("Artifact specs: reading it temporarily boosts your INT and WIS, and has a chance of allowing you to reinforce the memory of one of your spells. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A dictionary of magical terms with little illustrations.'"); break;
+				case ART_SOLOMON_S_KEY_OF_WISDOM:
+					pline("Artifact specs: when it got generated, this artifact made a weakened demon lord somewhere on the level. Reading it tries to tame demons near you, but they get a saving throw. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A radiant tome inscribed with 72 seals of command.'"); break;
+				case ART_LIBRAM_OF_SPARKS:
+					pline("Artifact specs: reading it teaches the 'volt rock' spell, and allows you to pick a wand in your inventory which will gain an additional charge. The latter effect does not work on wand types that can only be recharged once. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Its pages crackle faintly when opened.'"); break;
+				case ART_CODEX_OF_FEATHERED_WORDS:
+					pline("Artifact specs: reading it gives you a couple of turns of controlled levitation and cures wounded legs, and also reduces the time for which you're suffering from inertia. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Pages are impossibly light, rustling like wings.'"); break;
+				case ART_TRICKSTER_S_MANUAL:
+					pline("Artifact specs: reading it casts a random low-level spell, which can also be one you don't actually know, but there's a small chance of backfiring. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A colorful, messy tome full of doodles.'"); break;
+				case ART_TOME_OF_MORGANA:
+					pline("Artifact specs: reading it tries to tame adjacent monsters and confuse monsters in a larger radius around you, both subjected to saving throws. You also gain +1 charisma and your spells will have increased odds of success for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Dark velvet binding with an alluring shimmer.'"); break;
+				case ART_TOME_OF______TONGUES:
+					pline("Artifact specs: when it got generated, this spellbook activated a 33%% strength antimagic field and also filters out messages for a while. Reading it will cause you to forget a random spell from your list while teaching a new random one. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Every page is written in a different language, many incomprehensible. Sometimes the book speaks on its own.'"); break;
+				case ART_LIBER_ARCANUM_OF_MERLIN:
+					pline("Artifact specs: reading it causes you to randomly cast either 'invisibility', 'haste self' or 'fireball', even if you don't know those spells, and may occasionally summon a tame golem. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Pages shimmer with shifting illustrations.'"); break;
+				case ART_GRIMOIRE_OF_CIRCE:
+					pline("Artifact specs: when it got generated, humanoid monsters on the level were randomly polymorphed. Reading it will polymorph you into a completely random monster. Don't bother putting on a ring of polymorph control; you will not be able to control that polymorph either way. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Pages smell faintly of herbs and seawater, illustrated with strange beasts.'"); break;
+				case ART_BOOK_OF_SCIENTOLOGY:
+					pline("Artifact specs: reading it tries to identify your entire inventory. If you're not permanently converted yet and not currently of neutral alignment, you will be permanently converted to neutral, otherwise you get some permanent detrimental effect because joining the scientology sect comes at a price."); break;
+				case ART_CHILD_S_BOOK_OF_FAIRY_TALE:
+					pline("Artifact specs: acts as a luckstone when wielded, and reading it causes you to use the 'pacify' technique even if you don't know that one. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A harmless-looking picture book.'"); break;
+				case ART_BOOK_OF_BABA_YAGA:
+					pline("Artifact specs: when it got generated, traps and monsters were placed on the current dungeon level; reading it summons a tame golem, but trashes your luck for the next 1000 turns. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Bound in bone and moss, smells faintly of smoke and stew.'"); break;
+				case ART_TRAVELOGUE_OF_THE_WANDERIN:
+					pline("Artifact specs: reading it teleports you over a short distance (don't bother trying that on a no-teleport level, it won't work!) and gives you teleport control for a few turns. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A battered, travel-stained diary filled with magical sketches.'"); break;
+				case ART_MORGANA_S_MIRROR_SCRIPT:
+					pline("Artifact specs: when it got generated, this book summoned evil mirror versions of your character for you to fight. Reading it will try to confuse all monsters on the current dungeon level (they get a saving throw), but you will get confused as well. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A reflective book of mirrored ink that shows the reader's face in strange distortions.'"); break;
+				case ART_ATLAS_OF_FORGOTTEN_WORLDS:
+					pline("Artifact specs: reading it banishes you, or massively drains your alla if you can't be banished. The dungeon will also grow walls and random terrain quickly for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'An immense tome too heavy for one person to carry — yet it floats in the air.'"); break;
+				case ART_TABLET_OF_CIRCE:
+					pline("Artifact specs: reading it tries to polymorph monsters in a 5x5 area around you who don't make a saving throw, and gives you polymorph control for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Heavy stone-bound pages with bestial carvings.'"); break;
+				case ART_LANTERN_LEXICON:
+					pline("Artifact specs: infravision when wielded, reading it lights up your immediate vicinity. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A slim volume that glows faintly in the dark.'"); break;
+				case ART_LIBER_UMBRAE:
+					pline("Artifact specs: when it got generated, this book made the dungeon level dark and monsters short-sighted. Reading it clones the monsters on the current dungeon level, with the clones being frenzied and permanently confused. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'The Book of Shadows. Bound in shadowy vellum, hard to see except in dim light.'"); break;
+				case ART_GRIMOIRE_OF_THE_BLACK_SUN:
+					pline("Artifact specs: reading it trains your occult spells skill by a bunch and summons darkness-based monsters around you. The entire dungeon level also becomes unlit and you get the de-light trap effect for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A tome inked in voidlight, its pages radiate darkness.'"); break;
+				case ART_BEGINNER_S_PRIMER:
+					pline("Artifact specs: reading it boosts the spell memory of all your currently known level 1 spells. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A plain little book with big friendly letters.'"); break;
+				case ART_FIELD_GUIDE_TO_FAMILIAR_SP:
+					pline("Artifact specs: reading it summons a tame familiar who fights on your side. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Looks like a student's notebook full of doodles of animals.'"); break;
+				case ART_SONGBOOK_OF_THE_MEADOW:
+					pline("Artifact specs: reading it tries to pacify animals around you in a rather wide radius, but they get a saving throw. All of your current pets also gain a point of tameness. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Pages filled with music notes and soft green ink.'"); break;
+				case ART_POCKET_ALMANAC:
+					pline("Artifact specs: reading it gives a weak magic mapping effect (which obviously doesn't work on unmappable levels) and gives you regeneration for a couple of turns. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A farmer's magical weather book.'"); break;
+				case ART_LIBRAM_OF_THE_LIVING_WORD:
+					pline("Artifact specs: reading it teaches you three random spells, but monsters will spawn with egotypes for quite a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Each time the book is opened, new text writes itself.'"); break;
+				case ART_MIRRORBINDER_S_JOURNAL:
+					pline("Artifact specs: reflection when wielded, reading it summons a tame clone of your player character. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Silver-edged pages reflect the reader's face strangely distorted.'"); break;
+				case ART_BOOK_OF_THOTH:
+					pline("Artifact specs: when it got generated, the current dungeon level got fully mapped and detected but you also got the yellow spell trap effect for a good long while. Reading it boosts your intelligence by one but curses some of your items and will continue to do so for a while afterwards. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Ancient papyrus codex filled with divine geometry and impossible diagrams.'"); break;
+				case ART_DREAMWEAVER_S_JOURNAL:
+					pline("Artifact specs: reading it puts you to sleep for a few turns and increases your intelligence and wisdom. It will also make monsters randomly fall asleep or become confused for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A diary written in lucid dreamscript.'"); break;
+				case ART_UNWRITTEN_GOSPEL:
+					pline("Artifact specs: when it got generated, you got an effect that will, for a while, tell you about newly generated monsters and items. You also get a shorter version of that effect whenever you read it. But be careful: occasionally it lies to you. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A book that writes itself about the player as they act, predicting possible futures.'"); break;
+				case ART_NULL_SCRIPT:
+					pline("Artifact specs: when it got generated, this artifact deleted items from the dungeon floor it was spawned on. Reading it deletes a random spell from your spell list but gives massively increased Pw regeneration rate (without the usual increased hunger that comes with it) for a few turns. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A blank book — no text, just endless empty pages that suck in light.'"); break;
+				case ART_CLOCKWORK_GRIMOIRE:
+					pline("Artifact specs: reading it stops time for a few turns but also ages you. When this artifact came into existence, it activated the fluctuating speed effect for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Metallic pages that tick like gears when turned.'"); break;
+				case ART_BLACK_CHRONICLE:
+					pline("Artifact specs: when it got generated, all monsters that were on the level at that time became a bit stronger, and the level in question also became unlit and was flagged as short-sighted. Reading it boosts your maximum HP by 5 and tries to massively debuff monsters in a wide radius around you; they get saving throws, but will always lose any egotypes they have. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'An ancient tome that constantly rewrites itself in dripping black ink.'"); break;
+				case ART_NECRONOMICON_OF_ABDUL_ALHA:
+					pline("Artifact specs: when it got generated, this book gave you a whole bunch of sanity and your sanity will continue to increase for a long time. Eldritch horrors are also more likely to spawn. Reading it reduces your maximum HP by 10 and teaches a random level 8 spell. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'The infamous tome bound in human hide, written in an impossible tongue.'"); break;
+				case ART_JUST_AND_JOSEPH_LOOKING_FO:
+					pline("Artifact specs: reading it summons a tame lawful minion who fights on your side, but unless you're lawful yourself, this will damage your alignment including reducing the maximum by five."); break;
+				case ART_MERLIN_S_TESTAMENT:
+					pline("Artifact specs: when it got generated, this book gave you temporary invisibility, speed or flying, and also spawned a hostile mage somewhere. Reading it teaches a random spell, which will get more spell memory than normal but you also become confused for a few turns. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A heavy tome written in shifting silver runes that rearrange as you watch.'"); break;
+				case ART_SEFER_RAZIEL:
+					pline("Artifact specs: when it got generated, this book caused all undead and demons on the level to get the 'fear' status effect but also spawned a hostile angel next to you. Reading it will permanently drain your maximum mana by up to 3 (and massively damages your alla if you don't have enough), but fully heals all pets on the level and deals damage to hostile chaotic-aligned monsters near you. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'The Book of the Angel. A radiant codex of fiery letters, painful to stare at.'"); break;
+				case ART_FLICKERING_PALIMPSEST:
+					pline("Artifact specs: when it got generated, the dungeon level was seeded with random items; reading it creates a random item beneath you. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Every word is overwritten by older text; glyphs shimmer in and out of existence.'"); break;
+				case ART_GRIMOIRE_OF_THASSILON:
+					pline("Artifact specs: reading it trains the elemental spells skill a bit and lets you fire a tri-elemental beam in a direction of your choice. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Written in a spiraling, almost hypnotic script.'"); break;
+				case ART_BLOOMING_SCRIPTURE:
+					pline("Artifact specs: when it got generated, this book caused grass to grow with hostile fungi and plant monsters, and reading it grants regeneration for a good amount of turns but may spawn a hostile plant monster next to you. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Bound in living vines, flowers sprouting between its pages.'"); break;
+				case ART_ELEMENTALIST_S_CODEX:
+					pline("Artifact specs: resist cold and fire when wielded, reading it teaches 'fireball' and 'cone of cold'. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A rotating cover of stone, wood, flame, and frost.'"); break;
+				case ART_CHRONICLE_OF_THE_LAST_DAWN:
+					pline("Artifact specs: when it got generated, you were afflicted with the maximum damage trap effect for a while. Reading it fully restores HP and Pw and gives you stat boosts for a while, but upon being read, this book disintegrates. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A radiant book said to be written at the end of time.'"); break;
+				case ART_RUNIC_LEXICON_OF_ELDAMIR:
+					pline("Artifact specs: reading it doubles the damage of your spells for a while and may occasionally let you boost the memory of a known spell. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Bound with runes that shift whenever they're not observed.'"); break;
+				case ART_CODEX_OF_ECHOES:
+					pline("Artifact specs: reading it adds a little bit of memory to all of your known spells, and enemy spellcasters will fail their spells more often for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A book that remembers every spell ever cast near it.'"); break;
+				case ART_AURORA_CODEX:
+					pline("Artifact specs: boosts your maximum Pw when read and lets you reinforce the memory of an almost forgotten spell, plus your spells cost a bit less mana for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A radiant book with shimmering, multicolored pages.'"); break;
+				case ART_CHRONICLE_OF_THOTH:
+					pline("Artifact specs: reading it temporarily boosts your INT and WIS, trains memorization and occasionally lets you identify an item in your inventory. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Papyrus scroll with hieroglyphs glowing faintly gold.'"); break;
+				case ART_BOOK_OF_THE_ASHEN_STAR:
+					pline("Artifact specs: reading it gives you a target cursor, allowing you to deal severe damage to a single enemy by dropping a meteor on it, but it works only if the monster in question isn't fire resistant. Your fire and light spells will also deal increased damage for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Blackened pages with faint star patterns that rearrange when looked at.'"); break;
+				case ART_MANUAL_OF_THE_THOUSAND_HAN:
+					pline("Artifact specs: reading it allows you to leech mana for a while and also boosts the Pw regeneration rate without causing extra hunger, but monsters will also move a bit faster for the same duration. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'The pages shift like living arms of ink.'"); break;
+				case ART_ENTROPY_S_LEDGER:
+					pline("Artifact specs: when it got generated, some monsters on the level may have died while new ones may have spawned. Reading it will drain your experience level but greatly boosts your chance of finding interesting items for a while. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A huge, dusty tome with numbers, dates, and names — constantly tallying deaths and disasters.'"); break;
+				case ART_CELESTIAL_CODEX:
+					pline("Artifact specs: when it got generated, this book fired random solar beams on the dungeon level. Reading it blinds you for a few turns and deals good damage to hostile undead and demons near you. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Gilded pages glowing faintly with constellations.'"); break;
+				case ART_PRIMER_OF_SPARKS:
+					pline("Artifact specs: reading it teaches the 'flame sphere' spell and gives temporary fire resistance. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A small charred booklet, warm to the touch.'"); break;
+				case ART_SCRIPTURE_OF_THE_SILENT_CH:
+					pline("Artifact specs: when it got generated, this book generated a weak, temporary antimagic field; reading it does the same and also gives a complete antimagic shell for 100 turns. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A tome that hums with the sound of inaudible voices.'"); break;
+				case ART_WEEPING_CODEX:
+					pline("Artifact specs: when it got generated, this book flooded the dungeon level. Reading it heals you a bit and casts the bubblebeam spell, but damages your stealth (which can be restored with the usual methods). This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Pages drip with salty water, and faint sobbing echoes from it.'"); break;
+				case ART_SPIRAL_MANUSCRIPT:
+					pline("Artifact specs: when it got generated, it rearranged the dungeon level and caused a trapwarping effect for a while. Reading it gives you temporary anti-teleportation and makes you nauseated. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Pages spiral inward infinitely; staring at them induces vertigo.'"); break;
+				case ART_BOOK_OF_MORMON:
+					pline("Artifact specs: reading it transforms you into a vampire, because lol Twilight lol :-P If you're not permanently converted yet and not currently of chaotic alignment, you will be permanently converted to chaotic, otherwise you get a permanent nasty trap effect because converting to Mormonism comes at a price."); break;
+				case ART_EXPENSIVE_PHYSICIAN_FEES:
+					pline("Artifact specs: reading it gives you some extra money."); break;
+				case ART_BOOK_OF_JEHOVA:
+					pline("Artifact specs: reading it while you're not yet permanently converted and not currently lawful will permanently convert you to lawful, otherwise your sanity will increase by 500 because converting to the Jehova's witnesses comes at a price."); break;
+				case ART_NOTEBOOK_OF_ERRANT_SPARKS:
+					pline("Artifact specs: reading it restores a bit of mana and allows you to fire a weak lightning bolt in a direction of your choice. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'Crackling pages that smell faintly of ozone.'"); break;
+				case ART_CODEX_OF_MEDEA:
+					pline("Artifact specs: reading it teaches the 'toxic' spell and gives poison resistance for a while but summons some rather hostile fungi and plant monsters on the current dungeon level. This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A dark leather-bound tome smelling faintly of herbs and blood.'"); break;
+				case ART_CODEX_OF_THE_ENDLESS_LABYR:
+					pline("Artifact specs: when it got generated, this book locked up corridors and passages on the dungeon level. Reading it teleports you (yeah don't even think about having that work on a no-teleport level, lol!) and tries to magic map the dungeon level (obviously that doesn't work if the current level cannot be mapped!). This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A maze of shifting diagrams etched into pages of stone.'"); break;
+				case ART_DAEDAEDAEDAEDAEDAEUEUEUEUE:
+					pline("Artifact specs: reading it causes you to explode and deal massive damage to nearby monsters, just like casting the spell. Make sure you're wearing an amulet of life saving!"); break;
+				case ART_CODEX_PANDEMONIUM:
+					pline("Artifact specs: when it got generated, this artifact caused a temporary status that makes random good or bad things happen every once in a while. Reading it causes you to cast two random spells. Since there's a chance that this causes you to cast something like 'selfdestruct', you should wear an amulet of life saving as an insurance, and hope it doesn't roll selfdestruct twice :-P If that sounds like too big a risk to you, well, nobody's forcing you to read this book! This artifact has been suggested by honorary SLEX devteam member ChatGPT, who has this to say: 'A tome with ever-changing pages, words that scream, laugh, and vanish as you read.'"); break;
+				case ART_I_SEE_NO_REASON_BECAUSE_TH:
+					pline("Artifact specs: if you read it on a Monday, you get a weak amnesia effect and temporary +1 increase damage."); break;
+				case ART_WHAT_IF_I_NEED_TO_KNOW_:
+					pline("Artifact specs: reading it spawns a stack of standard id scrolls on the ground."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

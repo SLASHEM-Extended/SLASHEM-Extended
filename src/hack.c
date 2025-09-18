@@ -3115,14 +3115,14 @@ peacedisplace:
 		    forcenomul(0, 0);
 	}
 
-	if (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (night() && uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) )
-	    u.uundetected = OBJ_AT(u.ux, u.uy);
-	else if (youmonst.data->mlet == S_EEL)
-	    u.uundetected = is_waterypool(u.ux, u.uy) && !Is_waterlevel(&u.uz);
+	if (PlayerHidesUnderItems && (OBJ_AT(u.ux, u.uy)) )
+		u.uundetected = TRUE;
+	else if ( (youmonst.data->mlet == S_EEL) && (is_waterypool(u.ux, u.uy) && !Is_waterlevel(&u.uz)) )
+		u.uundetected = TRUE;
 	else if (is_wagon(u.ux, u.uy))
-	    u.uundetected = TRUE;
+		u.uundetected = TRUE;
 	else if (u.dx || u.dy)
-	    u.uundetected = 0;
+		u.uundetected = 0;
 
 	/*
 	 * Mimics (or whatever) become noticeable if they move and are

@@ -25741,6 +25741,7 @@ register int	mmflags;
 	mtmp->legdamage = 0;
 	mtmp->caught_stealing = FALSE;
 	mtmp->madeweatherchange = FALSE;
+	mtmp->umbraeconf = FALSE;
 
 	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarmh && uarmh->oartifact == ART_LIANNI_S_HEIGHT) || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
 	if (MoveMorkXtra) mtmp->movement += rnd(24);
@@ -28470,8 +28471,16 @@ register int	mmflags;
 	if ((uarmc && itemhasappearance(uarmc, APP_HEARING_CLOAK) ) && !rn2(50)) willsenser = TRUE;
 	if (uarm && uarm->oartifact == ART_RADIOGRAM_OVERHEARING) willsenser = TRUE;
 
-	if (willsenser) {
+	if (willsenser && !u.tempsenserlistener) {
 		pline("You sense the arrival of %s.", noit_mon_nam(mtmp));
+	}
+
+	if (u.tempsenserlistener) {
+		if (rn2(5)) {
+			pline("You sense the arrival of %s.", noit_mon_nam(mtmp));
+		} else if (!rn2(10)) {
+			pline("You sense the arrival of %s.", rndmonnam());
+		}
 	}
 
 	/* immunizer needs a disadvantage; I'm randomly reducing their alignment --Amy */
@@ -28997,6 +29006,9 @@ loopback:
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(ptr))) ct += 5;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK && attackdamagetype(ptr, AT_BREA, AD_DISN) )) ct += 200;
 		if (ct > 0 && (uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM && attackdamagetype(ptr, AT_BREA, AD_LITE) )) ct += 50;
+		if (ct > 0 && (u.tempeldritchspawn && attackdamagetype(ptr, AT_GAZE, AD_SANI) )) ct += 100;
+		if (ct > 0 && (u.tempeldritchspawn && attackdamagetype(ptr, AT_GAZE, AD_INSA) )) ct += 100;
+		if (ct > 0 && (u.tempeldritchspawn && attackdamagetype(ptr, AT_GAZE, AD_SPC2) )) ct += 100;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(ptr) && attacktype(ptr, AT_KICK) )) ct += 20;
 		if (ct > 0 && (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(ptr, AD_SUCK) )) ct += 50;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(ptr, AD_RUST) )) ct += 5;
@@ -30642,6 +30654,9 @@ int     spc;
 		if ((uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(&mons[last]) )) num += 5;
 		if ((uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK && attackdamagetype(&mons[last], AT_BREA, AD_DISN) )) num += 200;
 		if ((uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM && attackdamagetype(&mons[last], AT_BREA, AD_LITE) )) num += 50;
+		if ((u.tempeldritchspawn && attackdamagetype(&mons[last], AT_GAZE, AD_SANI) )) num += 100;
+		if ((u.tempeldritchspawn && attackdamagetype(&mons[last], AT_GAZE, AD_INSA) )) num += 100;
+		if ((u.tempeldritchspawn && attackdamagetype(&mons[last], AT_GAZE, AD_SPC2) )) num += 100;
 		if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(&mons[last]) && attacktype(&mons[last], AT_KICK) )) num += 20;
 		if ((uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(&mons[last], AD_SUCK) )) num += 50;
 		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[last], AD_RUST) )) num += 5;
@@ -31895,6 +31910,9 @@ int     spc;
 		if ((uarmf && uarmf->oartifact == ART_POWERWARP && is_covetous(&mons[first]) )) num -= 5;
 		if ((uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK && attackdamagetype(&mons[first], AT_BREA, AD_DISN) )) num -= 200;
 		if ((uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM && attackdamagetype(&mons[first], AT_BREA, AD_LITE) )) num -= 50;
+		if ((u.tempeldritchspawn && attackdamagetype(&mons[first], AT_GAZE, AD_SANI) )) num -= 100;
+		if ((u.tempeldritchspawn && attackdamagetype(&mons[first], AT_GAZE, AD_INSA) )) num -= 100;
+		if ((u.tempeldritchspawn && attackdamagetype(&mons[first], AT_GAZE, AD_SPC2) )) num -= 100;
 		if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(&mons[first]) && attacktype(&mons[first], AT_KICK) )) num -= 20;
 		if ((uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(&mons[first], AD_SUCK) )) num -= 50;
 		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[first], AD_RUST) )) num -= 5;

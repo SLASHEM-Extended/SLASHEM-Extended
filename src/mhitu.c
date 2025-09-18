@@ -7095,7 +7095,7 @@ hitmu(mtmp, mattk)
 
 /*	First determine the base damage done */
 	dmg = d((int)mattk->damn, (int)mattk->damd);
-	if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
+	if( (is_undead(mdat) || mtmp->egotype_undead) && (midnight() || u.tempundeaddbldmg) )
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
 	if( (is_undead(mdat) || mtmp->egotype_undead) && uwep && uwep->oartifact == ART_ASTRAL_LIGHTWELL)
 		dmg += d((int)mattk->damn, (int)mattk->damd); /* extra damage */
@@ -7104,7 +7104,7 @@ hitmu(mtmp, mattk)
 
 	if (YouTakeMaximumDamage) {
 		dmg = (int)mattk->damn * (int)mattk->damd;
-		if( (is_undead(mdat) || mtmp->egotype_undead) && midnight())
+		if( (is_undead(mdat) || mtmp->egotype_undead) && (midnight() || u.tempundeaddbldmg) )
 			dmg *= 2;
 		if( (is_undead(mdat) || mtmp->egotype_undead) && uwep && uwep->oartifact == ART_ASTRAL_LIGHTWELL)
 			dmg *= 2;

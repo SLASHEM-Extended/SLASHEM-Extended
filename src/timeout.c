@@ -276,10 +276,118 @@ nh_timeout()
 		if (!u.tempharenwah) You("feel that the animals are no longer as peaceful as before.");
 	}
 
+	if (u.tempspellchance20) {
+		u.tempspellchance20--;
+		if (u.tempspellchance20 < 0) u.tempspellchance20 = 0; /* fail safe */
+		if (!u.tempspellchance20) You("can no longer cast spells super easily.");
+	}
+
+	if (u.tempantimagic33) {
+		u.tempantimagic33--;
+		if (u.tempantimagic33 < 0) u.tempantimagic33 = 0; /* fail safe */
+		if (!u.tempantimagic33) pline("The antimagic aura leaves the air around you.");
+	}
+
+	if (u.tempantimagic10) {
+		u.tempantimagic10--;
+		if (u.tempantimagic10 < 0) u.tempantimagic10 = 0; /* fail safe */
+		if (!u.tempantimagic10) pline("The weak antimagic aura leaves the air around you.");
+	}
+
+	if (u.tempenemyspell33) {
+		u.tempenemyspell33--;
+		if (u.tempenemyspell33 < 0) u.tempenemyspell33 = 0; /* fail safe */
+		if (!u.tempenemyspell33) pline("Enemy spellcasters are no longer inhibited.");
+	}
+
+	if (u.tempspellcost90) {
+		u.tempspellcost90--;
+		if (u.tempspellcost90 < 0) u.tempspellcost90 = 0; /* fail safe */
+		if (!u.tempspellcost90) Your("spellcasting costs are back to normal.");
+	}
+
+	if (u.tempfirelightspellbonus) {
+		u.tempfirelightspellbonus--;
+		if (u.tempfirelightspellbonus < 0) u.tempfirelightspellbonus = 0; /* fail safe */
+		if (!u.tempfirelightspellbonus) pline("Fire and light spells no longer deal increased damage.");
+	}
+
+	if (u.tempxtrapwregen) {
+		u.tempxtrapwregen--;
+		if (u.tempxtrapwregen < 0) u.tempxtrapwregen = 0; /* fail safe */
+		if (!u.tempxtrapwregen) Your("mana regenerates more slowly again.");
+	}
+
+	if (u.temptriplemf) {
+		u.temptriplemf--;
+		if (u.temptriplemf < 0) u.temptriplemf = 0; /* fail safe */
+		if (!u.temptriplemf) Your("extra magic find chance fades.");
+	}
+
+	if (u.tempincrdmg1) {
+		u.tempincrdmg1--;
+		if (u.tempincrdmg1 < 0) u.tempincrdmg1 = 0; /* fail safe */
+		if (!u.tempincrdmg1) Your("anger has faded.");
+	}
+
+	if (u.temprandgoodbadeffects) {
+		u.temprandgoodbadeffects--;
+		if (u.temprandgoodbadeffects < 0) u.temprandgoodbadeffects = 0; /* fail safe */
+		/* no message if it times out */
+	}
+
+	if (u.tempmonssleepconf) {
+		u.tempmonssleepconf--;
+		if (u.tempmonssleepconf < 0) u.tempmonssleepconf = 0; /* fail safe */
+		if (!u.tempmonssleepconf) pline("Monsters are no longer randomly falling asleep or becoming confused.");
+	}
+
+	if (u.tempsenserlistener) {
+		u.tempsenserlistener--;
+		if (u.tempsenserlistener < 0) u.tempsenserlistener = 0; /* fail safe */
+		if (!u.tempsenserlistener) You("can no longer sense the generation of monsters or items.");
+	}
+
+	if (u.tempsupereregen) {
+		u.tempsupereregen--;
+		if (u.tempsupereregen < 0) u.tempsupereregen = 0; /* fail safe */
+		if (!u.tempsupereregen) You("no longer regenerate mana super quickly.");
+	}
+
+	if (u.tempdblspelldmg) {
+		u.tempdblspelldmg--;
+		if (u.tempdblspelldmg < 0) u.tempdblspelldmg = 0; /* fail safe */
+		if (!u.tempdblspelldmg) You("no longer deal double spell damage.");
+	}
+
+	if (u.tempeldritchspawn) {
+		u.tempeldritchspawn--;
+		if (u.tempeldritchspawn < 0) u.tempeldritchspawn = 0; /* fail safe */
+		/* no message if it times out */
+	}
+
+	if (u.tempintwisboost2) {
+		u.tempintwisboost2--;
+		if (u.tempintwisboost2 < 0) u.tempintwisboost2 = 0; /* fail safe */
+		if (!u.tempintwisboost2) Your("intelligence and wisdom are no longer boosted.");
+	}
+
+	if (u.tempbooklenses) {
+		u.tempbooklenses--;
+		if (u.tempbooklenses < 0) u.tempbooklenses = 0; /* fail safe */
+		if (!u.tempbooklenses) You("can no longer read books more quickly.");
+	}
+
 	if (u.tempnofluidators) {
 		u.tempnofluidators--;
 		if (u.tempnofluidators < 0) u.tempnofluidators = 0; /* fail safe */
 		if (!u.tempnofluidators) You("are no longer safe from the fluidator squad when wallwalking.");
+	}
+
+	if (u.tempundeaddbldmg) {
+		u.tempundeaddbldmg--;
+		if (u.tempundeaddbldmg < 0) u.tempundeaddbldmg = 0; /* fail safe */
+		if (!u.tempundeaddbldmg) pline("It seems that the undead are no longer super powerful.");
 	}
 
 	if (u.cryopancaketurns) {
@@ -5710,13 +5818,13 @@ const char *change_fmt;
 int
 mon_spec_poly(mtmp, type, when, polyspot, transform_msg, system_shock,
 	your_fault)
-struct monst *mtmp;
-struct permonst *type;
-long when;
-boolean polyspot;
-boolean transform_msg;
-boolean system_shock;
-boolean your_fault;
+struct monst *mtmp; /* monster that is being polymorphed */
+struct permonst *type; /* seems to be the monster to turn into, in case we want a particular one */
+long when; /* can give a number to set a specific polymorph timeout, otherwise it's random and based on the regular calculations */
+boolean polyspot; /* means whether the change is the result of a wand, to avoid polying stuff again I guess? */
+boolean transform_msg; /* give a message? caller can use canseemon(mtmp) to avoid superfluous messages */
+boolean system_shock; /* TRUE if a system shock can happen */
+boolean your_fault; /* player gets penalized if something bad happens to a peaceful polymorph target or something */
 {
 	int i;
 	int wasrider = 0;

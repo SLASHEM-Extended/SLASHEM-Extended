@@ -784,6 +784,24 @@ struct you {
 	int tempstdprotection;	/* temporary protection from STDs */
 	int tempharenwah;	/* for harenwah artifact: animals have 90% chance of spawning peaceful */
 	int tempnofluidators;	/* temporarily don't rack up fluidator wantedness when wallwalking */
+	int tempundeaddbldmg;	/* undead temporarily deal double damage to you */
+	int tempbooklenses;	/* temporarily read books faster */
+	int tempspellchance20;	/* temporarily have 20% better spellcasting chances */
+	int tempintwisboost2;	/* temporarily have +2 INT/WIS */
+	int tempantimagic10;	/* temporary 10% antimagic field */
+	int tempantimagic33;	/* temporary 33% antimagic field */
+	int tempmonssleepconf;	/* temporarily all monsters have 1 in 100 chance per turn to either get confused or fall asleep */
+	int tempsenserlistener;	/* temporarily gives senser and listener type effects, but they can also lie sometimes */
+	int tempsupereregen;	/* temporarily regenerate 10 more Pw per turn without extra hunger */
+	int tempeldritchspawn;	/* temporary +100 spawn freq for eldritch horrors */
+	int tempdblspelldmg;	/* temporary double spell damage, stacks with magic mirror of merlin */
+	int tempenemyspell33;	/* temporary 33% chance for enemy spellcasters to fail their spells */
+	int tempspellcost90;	/* temporarily have your spellcasting cost reduced to 90% of the normal value */
+	int tempfirelightspellbonus;	/* temporary 50% damage boost for all ZT_FIRE and ZT_LITE rays when they hit monsters */
+	int tempxtrapwregen;	/* temporary energy regeneration that stacks with the trinsic and doesn't cause hunger */
+	int temptriplemf;		/* temporary magic find, stacks with the trinsic and is 3x as strong */
+	int temprandgoodbadeffects;	/* temporary 1 in 500 chance per turn to get either a good or bad effect */
+	int tempincrdmg1;		/* temporary +1 increase damage */
 
 	int trilightningdelay;	/* for tri-delay lightning artifact: performs certain techs at certain timeouts */
 

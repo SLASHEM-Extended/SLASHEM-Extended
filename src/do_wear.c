@@ -1859,6 +1859,11 @@ Cloak_on()
 		curse(uarmc);
 	}
 
+	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_MESSEN_PLES) {
+		pline("Your cloak becomes cursed.");
+		curse(uarmc);
+	}
+
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_APPRENTICESHIP) {
 		pline("Bad for you - you just cursed yourself with Ina's anorexia. :-(");
 		curse(uarmc);
@@ -1866,7 +1871,7 @@ Cloak_on()
 
 	if (uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) {
 		if (!spell_known(SPE_MIMICRY)) {
-			wonderspell(SPE_MIMICRY);
+			wonderspell(SPE_MIMICRY, 0);
 		}
 	}
 
@@ -7631,6 +7636,7 @@ find_ac()
 	if (uarmg && uarmg->oartifact == ART_BODY_COMPOSURE) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_MANT_PENDLE) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_LESHTHORN) uac -= 5;
+	if (uarmh && uarmh->oartifact == ART_BABY_JOYN_ME_IN_THERE) uac -= 4;
 	if (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SI) uac -= 8;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) uac -= 4;
@@ -7799,6 +7805,7 @@ find_ac()
 	if (uamul && uamul->otyp == AMULET_OF_THE_MATRIX) uac -= 2;
 	if (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) uac -= 20;
 	if (Race_if(PM_DUTHOL) && PlayerInBlockHeels) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_MESSEN_PLES) uac -= 5;
 	if (Race_if(PM_HYPOTHERMIC) && uarmc) uac -= 3;
 	if (uarm && uarm->oartifact == ART_FLEECELGIRL_FROM_THE_OLD_T) {
 		uac -= 3;

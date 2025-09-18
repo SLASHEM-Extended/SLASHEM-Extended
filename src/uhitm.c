@@ -4424,6 +4424,7 @@ int dieroll;
 		if (!thrown && uarmc && uarmc->oartifact == ART_ULFRIC_HIGH_KING) tmp += 3;
 		if (uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) tmp += 1;
+		if (u.tempincrdmg1) tmp += 1;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) tmp -= 6;
 		if (uarmh && uarmh->oartifact == ART_SUDUNSEL) tmp += 2;
 		if (uarmh && uarmh->oartifact == ART_DOUVONED) tmp += 1;

@@ -3419,7 +3419,7 @@ int *fail_reason;
 	}
 	/* avoid hiding under nothing */
 	if (x == u.ux && y == u.uy &&
-		Upolyd && (hides_under(youmonst.data) || (uarmh && itemhasappearance(uarmh, APP_SECRET_HELMET) ) || (uarmc && uarmc->oartifact == ART_UUU_LOST_TURN) || (uarmf && uarmf->oartifact == ART_WHO_IS_HIDING_THERE_) || (night() && uarmc && uarmc->oartifact == ART_ZUNI_S_IRIDESCENCE) || (!night() && uarmg && uarmg->oartifact == ART_NIGHTLY_HIGHWAY) || (uarmc && uarmc->oartifact == ART_JANA_S_EXTREME_HIDE_AND_SE) ) && !OBJ_AT(x, y))
+		Upolyd && PlayerHidesUnderItems && !OBJ_AT(x, y))
 	    u.uundetected = 0;
 
 	if (fail_reason) *fail_reason = AS_OK;
@@ -7593,7 +7593,7 @@ newbossPENT:
 
 					break;
 				case 24:
-					wonderspell(-1);
+					wonderspell(-1, 0);
 					break;
 				case 25:
 
@@ -12087,14 +12087,14 @@ madnesseffect:
 		 {
 			struct obj *otmpO, *otmpP;
 
-		    for (otmpO = fobj; otmpO; otmpO = otmpO->nobj) {
-			otmpP = otmpO->nobj;
-			if (otmpP && (otmpP->where == OBJ_FLOOR) && !rn2(10)) {
-				if (!evades_destruction(otmpP)) {
-					delobj(otmpP);
+			for (otmpO = fobj; otmpO; otmpO = otmpP) {
+				otmpP = otmpO->nobj; /* otmpO could be deleted */
+				if (otmpO && (otmpO->where == OBJ_FLOOR) && !rn2(10)) {
+					if (!evades_destruction(otmpO)) {
+						delobj(otmpO);
+					}
 				}
 			}
-		    }
 
 		 }		 
 		 break;
@@ -16116,7 +16116,7 @@ callingoutdone:
 			deltrap(trap);
 			forget(ALL_SPELLS, FALSE);
 			forget(ALL_SPELLS, FALSE);
-			wonderspell(-1);
+			wonderspell(-1, 0);
 			break;
 
 		case SKILL_SWAP_TRAP:

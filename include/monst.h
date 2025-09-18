@@ -189,6 +189,7 @@ struct monst {
 	Bitfield(flagged_for_death,1);	/* should die instantly after spawning */
 	Bitfield(caught_stealing,1);	/* did the monster catch you when you tried the #borrow command? */
 	Bitfield(madeweatherchange,1);	/* for MS_WEATHER monsters with special traits */
+	Bitfield(umbraeconf,1);	/* monster is permanently confused */
 
 	Bitfield(mtraitor,1);	/* Former pet that turned traitor */
 	Bitfield(isshk,1);	/* is shopkeeper */

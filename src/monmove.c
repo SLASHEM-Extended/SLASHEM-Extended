@@ -4045,6 +4045,19 @@ altarfound:
 
 	}
 
+	if (u.tempmonssleepconf) {
+		if (!rn2(100)) {
+			switch (rnd(2)) {
+				case 1:
+					mtmp->mconf = TRUE;
+					break;
+				case 2:
+					sleep_monst(mtmp, rnd(5), -1);
+					break;
+			}
+		}
+	}
+
 	if (monstersoundtype(mtmp) == MS_SNORE && !rn2(500)) mtmp->msleeping = 1;
 	if (monstersoundtype(mtmp) == MS_SNORE && (mtmp->msleeping || mtmp->masleep) && !rn2(5)) {
 		wake_nearto(mtmp->mx, mtmp->my, 25);
@@ -4079,6 +4092,7 @@ altarfound:
 	if (monsndx(ptr) == PM_CONTRULLA) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_GAGAGAGOGL) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_IRMGARD) mtmp->mconf = 1;
+	if (mtmp->umbraeconf) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DRONKBEE) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_DRUG_ADDICTED_BANG_PIN) mtmp->mconf = 1;
 	if (monsndx(ptr) == PM_HIGH_PROSTITUTE_OF_MOLOCH) mtmp->mconf = 1;

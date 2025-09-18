@@ -2714,6 +2714,11 @@ moveloop()
 			uarms->spe++;
 		}
 
+		if (u.temprandgoodbadeffects && !rn2(500)) {
+			if (rn2(2)) goodeffect();
+			else badeffect();
+		}
+
 		if (FemtrapActiveSabrina) {
 
 			/* spawn a platform boot monster only if the trap hasn't been active intermittently, and only if enough
@@ -7010,6 +7015,12 @@ controlagain:
 
 		}
 
+		if (u.tempsupereregen) {
+			u.uen += 10;
+			if (u.uen > u.uenmax) u.uen = u.uenmax;
+			flags.botl = TRUE;
+		}
+
 		if (uarmc && uarmc->oartifact == ART_ARABELLA_S_LIGHTNINGROD && !rn2(CursingThingsXtra ? 200 : 1000) ) {
 			if (!Blind) {
 				You("notice a %s glow surrounding you.", hcolor(NH_BLACK));
@@ -9604,7 +9615,7 @@ newbossRLR:
 
 		/* if you have many forgotten spells, maybe remove one of them entirely --Amy */
 		if (!rn2(2000)) {
-			removeforgottenspell();
+			removeforgottenspell(FALSE);
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
@@ -15436,6 +15447,13 @@ pastds2:
 			}
 
 			if (!CannotRegenerateMP() && !contaminationcheck(2) && Race_if(PM_RODNEYAN)) { /* rodney has special built-in energy regeneration --Amy */
+				u.uen++;
+				if (Race_if(PM_PIERCER)) u.uen++;
+				if (u.uen > u.uenmax)  u.uen = u.uenmax;
+				flags.botl = 1;
+			}
+
+			if (!CannotRegenerateMP() && !contaminationcheck(2) && !rn2(3) && u.tempxtrapwregen) {
 				u.uen++;
 				if (Race_if(PM_PIERCER)) u.uen++;
 				if (u.uen > u.uenmax)  u.uen = u.uenmax;

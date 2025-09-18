@@ -292,6 +292,7 @@ int thrown;
 	    if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING && launcher && objects[launcher->otyp].oc_skill == P_SLING) multishot++;
 
 	    if (uarms && uarms->oartifact == ART_OFFBOW && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 1;
+	    if (uarmc && uarmc->oartifact == ART_DOUBLE_ARROW_NOSE && launcher && objects[launcher->otyp].oc_skill == P_BOW) multishot += 1;
 
 	    if (launcher && launcher->oartifact == ART_NOCK_GUN && (launcher->invoketimer <= monstermoves) ) {
 		int artitimeout = rnz(2000);
@@ -1869,6 +1870,7 @@ boolean hitsroof;
 	if (dmg > 0 && uarmc && uarmc->oartifact == ART_SELVERFEND) dmg += 1;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) dmg += 4;
 	if (dmg > 0 && uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) dmg += 1;
+	if (dmg > 0 && u.tempincrdmg1) dmg += 1;
 	if (dmg > 0 && uamul && uamul->oartifact == ART_PLAYING_QUAKE) dmg += 3;
 	if (dmg > 0 && uwep && uwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
 	if (dmg > 0 && u.twoweap && uswapwep && uswapwep->oartifact == ART_DARKGOD_S_MINUSES) dmg -= 6;
@@ -2837,6 +2839,7 @@ boolean polearming;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uleft && uleft->oartifact == ART_BLIND_PILOT) tmp -= 10;
 	if (uright && uright->oartifact == ART_BLIND_PILOT) tmp -= 10;
+	if (uarmc && uarmc->oartifact == ART_DOUBLE_ARROW_NOSE) tmp += 5;
 	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uarmf && uarmf->oartifact == ART_JONACE_S_TALLNESS) tmp += 5;
@@ -3646,6 +3649,8 @@ evasionchancedone:
 			}
 
 		    if (objects[otyp].oc_skill == -P_BOW && uarm && uarm->oartifact == ART_WOODSTOCK && broken && !rn2(2))
+			broken = 0;
+		    if (objects[otyp].oc_skill == -P_BOW && uarmc && uarmc->oartifact == ART_DOUBLE_ARROW_NOSE && broken && !rn2(2))
 			broken = 0;
 		    if (objects[otyp].oc_skill == -P_SLING && uarms && uarms->oartifact == ART_MISSING_LETTER_D && broken && rn2(4))
 			broken = 0;

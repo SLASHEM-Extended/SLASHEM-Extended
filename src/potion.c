@@ -2209,7 +2209,7 @@ playerextrinsicfireres()
 	if ((uamul && uamul->oartifact == ART_DEMOBLING) || (uarmf && uarmf->oartifact == ART_AMPERSAND_HAREM) || (uarmf && uarmf->oartifact == ART_DESEAMING_GAME) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SILVESTERBLAM) || (uarmf && uarmf->oartifact == ART_MY_LOVE) || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || have_spectrumplinggem() || (uwep && uwep->oartifact == ART_DEATH_S_FATHOM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || (uarms && uarms->oartifact == ART_HEATEM_UP) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_COAL_PEER) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || (uarm && uarm->oartifact == ART_DUEUEUEUET) ) return TRUE;
 	if ( (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_REDGUARD_APPEARANCE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uarm && uarm->oartifact == ART_COMPLETE_ARMORING) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmf && uarmf->oartifact == ART_STANDARDRESE) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_ && (u.uhp < (u.uhpmax / 3)) ) return TRUE;
-	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uwep && uwep->oartifact == ART_JADE_TALON) || (uarmu && uarmu->oartifact == ART_CRIMSON_PLATE) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (uarm && uarm->oartifact == ART_EFHECK) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmc && uarmc->oartifact == ART_DELLEN) ) return TRUE;
+	if ( (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uwep && uwep->oartifact == ART_JADE_TALON) || (uarmu && uarmu->oartifact == ART_CRIMSON_PLATE) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (uarm && uarm->oartifact == ART_EFHECK) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || autismringcheck(ART_RED_YELLOW_ORANGE) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmc && uarmc->oartifact == ART_DELLEN) || (uwep && uwep->oartifact == ART_ELEMENTALIST_S_CODEX) ) return TRUE;
 
 	return FALSE;
 }
@@ -2234,7 +2234,7 @@ playerextrinsiccoldres()
 	if ((uarmu && uarmu->oartifact == ART_GIVE_ME_STROKE__JO_ANNA) || (uarmf && uarmf->oartifact == ART_CLAUDIA_S_SELF_WILL) || (uarmf && uarmf->oartifact == ART_RUTH_S_UNDEAD_INLAY) || (uarmf && uarmf->oartifact == ART_NOW_YOU_LOOK_LIKE_A_BEGGAR) || (uwep && uwep->oartifact == ART_ELEMENTS_TIME_THREE) || (uarms && uarms->oartifact == ART_SPECTRATE_ETTECKOR) || (uwep && uwep->oartifact == ART_SPECTRATE_ETTECKOR) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || have_spectrumplinggem() || (uarmf && uarmf->oartifact == ART_OH_THE_ELEMENTS) || (uarmf && uarmf->oartifact == ART_GRAVY_HIDE) || (uarmf && uarmf->oartifact == ART_DYKE_RESISTS) || (uarmf && uarmf->oartifact == ART_ONSET_OF_WINTER) ) return TRUE;
 	if ((uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) || (uarmf && uarmf->oartifact == ART_SIMPLY_WHITE) || (uarmf && uarmf->oartifact == ART_NE_PROSTO_KRASIVO) || (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) || (uwep && uwep->oartifact == ART_PURPLE_SPECTRUM) || (uarm && uarm->oartifact == ART_CHANGERING_ENVIROMENT) || autismringcheck(ART_RING_OF_EVERYTHING_RESISTA) || (uwep && uwep->oartifact == ART_CUTRELEASE) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) ) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uwep && uwep->oartifact == ART_BLUE_CORSAR_SWIMMING) || (uarmc && uarmc->oartifact == ART_KRASCH_XTRA) || (uwep && uwep->oartifact == ART_CREAMRES) || (uarmh && uarmh->oartifact == ART_HAVEWINGS) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarmh && uarmh->oartifact == ART_TEN_MINUTES_COLDER) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP) || (uleft && uleft->oartifact == ART_BLACHWARTZ) || (uright && uright->oartifact == ART_BLACHWARTZ) || (uwep && uwep->oartifact == ART_LAINCHANTMENT) || (uarmh && uarmh->oartifact == ART_MASK_OF_TLALOC) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmf && uarmf->oartifact == ART_STANDARDRESE) ) return TRUE;
-	if ( (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_JADE_TALON) || (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && uarm->oartifact == ART_EFHECK) ) return TRUE;
+	if ( (uarm && uarm->oartifact == ART_VERY_HOT_IN_HERE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_JADE_TALON) || (uwep && uwep->oartifact == ART_ELEMENTAL_STAFF) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uarmf && uarmf->oartifact == ART_SARAH_S_REPLACEMENT) || (uarmu && uarmu->oartifact == ART_EVERY_EVENTUALITY) || (uwep && uwep->oartifact == ART_DICHOTOMY) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || (uarmh && uarmh->oartifact == ART_SPRING_BREEZE) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && uarm->oartifact == ART_EFHECK) || (uwep && uwep->oartifact == ART_ELEMENTALIST_S_CODEX) ) return TRUE;
 
 	return FALSE;
 }
@@ -7093,7 +7093,7 @@ gain_nastinator()
 void
 cure_nasty_traps()
 {
-	if (AntiswitchBug || u.uprops[ANTISWITCH_BUG].extrinsic || have_antiswitchstone()) {
+	if (AntiswitchBug || u.uprops[ANTISWITCH_BUG].extrinsic || have_antiswitchstone() || (uarmc && uarmc->oartifact == ART_MESSEN_PLES) ) {
 		/* antiswitch nastytrap effect: if you have that, only it is cured by the switcher
 		 * having the stronger version of this effect means switchers don't work at all */
 
@@ -7584,6 +7584,41 @@ moorlandragnarok()
 
 	u.aggravation = 0;
 	u.heavyaggravation = 0;
+
+	stop_occupation();
+
+}
+
+void
+bloomragnarokweak()
+{
+	register int x,y;
+
+	pline("Blooming! Greenery is growing everywhere!");
+	/* no increased levels for these monsters --Amy */
+
+	for (x = 0; x < COLNO; x++)
+	  for (y = 0; y < ROWNO; y++) {
+
+		if (isok(x,y) && (IS_STWALL(levl[x][y].typ) || levl[x][y].typ == ROOM || levl[x][y].typ == GRASSLAND || levl[x][y].typ == CORR) && levl[x][y].typ != SDOOR && ((levl[x][y].wall_info & W_NONDIGGABLE) == 0) && !(*in_rooms(x,y,SHOPBASE)) && !rn2(5) ) {
+
+			levl[x][y].typ = GRASSLAND;
+			blockorunblock_point(x,y);
+			if (!(levl[x][y].wall_info & W_HARDGROWTH)) levl[x][y].wall_info |= W_EASYGROWTH;
+			newsym(x, y);
+
+			if (!rn2(3)) switch (rnd(2)) {
+				case 1:
+					(void) makemon(mkclass(S_FUNGUS,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+					break;
+				case 2:
+					(void) makemon(mkclass(S_BAD_FOOD,0), x, y, rn2(10) ? MM_ADJACENTOK|MM_ANGRY : MM_ADJACENTOK|MM_ANGRY|MM_FRENZIED);
+					break;
+			}
+
+		}
+
+	}
 
 	stop_occupation();
 

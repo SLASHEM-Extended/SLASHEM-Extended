@@ -24680,6 +24680,302 @@ A("Sudden Memory Failure",				SPE_FIREWORKS, /* rnz(10k) turns of low local memo
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
 
+A("Baby Joyn Me In There",				STANDARD_HELMET, /* initialized to always be netradiation helmet, menu nose when worn and if you actually use that to lifesave, you get the menu nose effect intrinsically; also gives +1 CON and +4 AC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Double Arrow Nose",				LEATHER_CLOAK, /* initialized to always be jarring cloak, your bows have +1 multishot, +5 ranged to-hit and arrows fired by you have 50% chance to not mulch if they normally would have */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Messen Ples",				LEATHER_CLOAK, /* initialized to always be deep cloak, autocurses, antiswitch trap effect, +5 AC, displacement, allows you to hide underneath items */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Tome of Endless Hunger",				SPE_HYPER_BEAM, /* reading it teaches the "drain life" and "command undead" spells or boosts their memory if you already know them, but drains your max HP by d10 (kills you if you don't have enough) and makes hostile undead deal double damage for rnz(5000) turns (doesn't stack with midnight effect) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Pocket Herbal Grimoire",				SPE_HEALING, /* reading it heals rn1(25,25) HP, gives 500 turns of poison resistance and cures sickness */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1600L ),
+
+A("The Healer's Handbook",				SPE_CURE_BLINDNESS, /* reading it teaches the healing spell, or improves its memory if you know it; also restores rn1(10,10) HP and gives 100 turns of poison resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("The Novice's Companion",				SPE_CONFUSE_SELF, /* restores rn1(10,10) Pw when read and gives 1000 turns of an effect that replicates lenses (but stacks with it), making you read books faster */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Wayfarer's Almanac",				SPE_DISSOLVE_FOOD, /* reading it gives 100 nutrition and 100 turns of full nutrients and clairvoyance, and also immediately replicates the clairvoyance spell effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("The Candlelight Codex",				SPE_DETECT_UNSEEN, /* reading it teaches the light spell or increases its spell memory if known, and gives 200 turns of increased vision and replicates wand of light effect when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2400L ),
+
+A("The Quiet Notebook",				SPE_CONFUSE_MONSTER, /* can be read even while confused and will cure confusion and stun when read, plus you get 500 turns of a temporary effect that reduces all spell failure chance by 20% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("The Fractured Codex",				SPE_TRAP_CREATION, /* upon generation, spawns 10 random monsters, 10 item masters and 10 traps on the current dungeon level; reading it causes alter reality */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Beginner's Compendium of Charms",				SPE_CHARM_MONSTER, /* reading it gives +2 temporary protection (like the spell), 100 turns of regeneration and 50 turns of very fast speed, and hostile non-boss monsters in your field of view whose level is below your own must make a saving throw or become peaceful */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Apprentice's Lexicon",				SPE_INSULATE, /* reading it gives 200 turns of temporary +2 INT/WIS and has 1 in 5 chance of replicating the reinforce memory technique effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Solomon's Key of Wisdom",				SPE_ANTI_DISINTEGRATION, /* upon generation, a random demon lord or prince is summoned somewhere on the current dungeon level, has all its inventory removed (if any) and its health set to 10% of the maximum, plus the monster in question starts out stunned, confused and blinded; reading it tries to tame demons in a 7x7 area around you, but they get a saving throw */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Libram of Sparks",				SPE_SHOCKING_SPHERE, /* reading it teaches the volt rock spell (or improves its memory if you already know it) and allows you to pick a wand in your inventory: if that one is of a type that can be recharged more than once, it gains an additional charge without increasing the recharge counter */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Codex of Feathered Words",				SPE_UNLEVITATE, /* reading it grants 100 turns of controlled levitation and cures wounded legs; if suffering from inertia, the inertia timer is reduced by 50 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Trickster's Manual",				SPE_SWAP_POSITION, /* reading it casts a random level 1 or 2 spell (can also be one you don't have), but there's a 1 in 20 chance to get a random bad effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Tome of Morgana",				SPE_CANCELLATION, /* reading it tries to tame adjacent monsters (but they get a saving throw) and tries to confuse hostile monsters in a 7x7 radius around you (again they get a saving throw), plus you gain +1 CHA and 5000 turns of "reduce spell failure chance by 20%" effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("The Tome of 1000 Tongues",				SPE_PETRIFY, /* upon generation, 10000 turns of 33% antimagic field and rnz(10000) turns of filtering trap effect; reading it sets the memory of a known, non-forgotten spell to 0% and teaches a random wonderspell */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SPEAK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Liber Arcanum of Merlin",				SPE_CHAOS_BOLT, /* reading it randomly casts either the invisibility, haste self or fireball spells (even if you don't know them) and has a 1 in 3 chance of summoning a tame golem */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Grimoire of Circe",				SPE_LYCANTHROPY, /* upon generation, all non-boss humanoid monsters on the current level are randomly polymorphed; reading it will polyform you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("The Book of Scientology",				SPE_RANDOM_DETECTION, /* reading it tries to identify your entire inventory, and if you're not neutral and not permanently converted yet, you become permanently converted to neutral, otherwise you randomly get the yvonne, victoria, manuela, jennifer or yasaman trap effect permanently */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Child's Book of Fairy Tales",				SPE_PREACHING, /* reading it causes you to use the pacify technique, even if you don't know that one */
+	(SPFX_RESTR|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("The Book of Baba Yaga",				SPE_FORGOTTEN_SPELL, /* upon generation, every walkable floor tile on the current level has 1 in 10 (independent) chance of getting a random trap and a random hostile monster; reading it gives 1000 turns of SOL trap effect and summons a tame golem */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Travelogue of the Wandering Mage",				SPE_MIMICRY, /* reading it gives a phase door effect and 100 turns of teleport control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Morgana's Mirror Script",				SPE_CONFLICT, /* upon generation, a regular version and an undead one of your current role is spawned somewhere on the current dungeon level; reading it confuses all enemies on the current level who fail a saving throw but also confuses you for rn1(5,5) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Atlas of Forgotten Worlds",				SPE_NEXUSPORT, /* reading it banishes the player character (or drains 200 alla if you can't be banished for whatever reason) and gives rnz(5000) turns of "trap of walls" and "chaos terrain" effects */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Tablet of Circe",				SPE_POLYFORM, /* when read, all monsters within a 5x5 radius around you must make a saving throw or become polymorphed, and you get 5000 turns of polymorph control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Lantern Lexicon",				SPE_INFRAVISION, /* infravision when wielded, reading it lights up the area like the light spell */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Liber Umbrae",				SPE_HORRIFY, /* upon generation, the current dungeon level becomes unlit and flagged as shortsighted, reading it clones all monsters on the current dungeon level but the clones are frenzied and permanently confused */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Grimoire of the Black Sun",				SPE_ASTRAL_VIEW, /* reading it summons rn1(3,3) monsters with AD_DARK attacks around you and trains occult spells by rnz(50), and makes the entire dungeon level unlit and gives the de-light trap effect for rnz(4000) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Beginner's Primer",				SPE_VOLT_ROCK, /* reading it adds 20% spell memory to all level 1 spells you know, except forgotten ones */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Field Guide to Familiar Spirits",				SPE_CRYPT, /* reading it summons a familiar */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Songbook of the Meadow",				SPE_POWDER_SPRAY, /* reading it tries to pacify M1_ANIMAL monsters in a 11x11 area centered on you (but they get a saving throw), and all of your pets on the current level including your steed get +1 tameness up to a maximum of 30 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("The Pocket Almanac",				SPE_RAIN_CLOUD, /* reading it replicates the magic mapping spell effect and gives 500 turns of regeneration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Libram of the Living Word",				SPE_CODE_EDITING, /* every time you read it, you gain three random wonderspells and rnz(10k) turns of egoism nastytrap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("The Mirrorbinder's Journal",				SPE_CHROMATIC_BEAM, /* summons a tame clone of you when read, like the double trouble technique */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("The Book of Thoth",				SPE_DISINTEGRATION_BEAM, /* rnz(10000) turns of yellow spells upon generation and also detects all traps, objects and doors and fully maps the level, even if it cannot be mapped normally; reading it gives +1 INT and rnz(2500) of the itemcursing nastytrap effect and immediately curses random items in your inventory */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("The Dreamweaver's Journal",				SPE_FREE_ACTION, /* reading it puts you to sleep for rn1(10,10) turns and boosts your INT and WIS by 1, and for the next 500 turns, monsters have a 1 in 100 chance per turn to randomly fall asleep for d5 turns of become confused */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("The Unwritten Gospel",				SPE_REDEMPTION, /* upon generation, rnz(5000) turns of a temporary effect that combines senser and listener effects (but the senser ones are always 80% chance and if it fails, 10% chance of saying that some random monster got spawned, and the listener effect has 1 in 10 chance of giving something random instead); reading it gives rnz(1000) turns of the same effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Null Script",				SPE_PARTICLE_CANNON, /* upon generation, all non-macguffin items on the current dungeon level's floor are deleted; reading it erases a random spell from your list but gives 100 turns of "regenerate an extra 10 Pw per turn" */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Clockwork Grimoire",				SPE_TIME_STOP, /* reading it stops time for rn1(2,2) turns but ages you like the evilvariant ghost attack (using 30 for the monster level of that calculation); upon generation, gives rnz(2500) turns of fluctuating speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Black Chronicle",				SPE_TERROR, /* upon generation, all hostile monsters on the current dungeon level gain two levels and become frenzied, and the dungeon level becomes completely unlit but also gains the shortsighted flag; reading it grants +5 max HP and tries (in a 13x13 area centered on you) to blind, confuse, stun and fear hostile monsters and reduce their max HP to 80% of the original value (with individual saving throws for each of those effects) and removes any egotypes from monsters in that radius without giving them a saving throw */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Necronomicon of Abdul Alhazred",				SPE_WORLD_FALL, /* upon generation, you get rnz(25k) turns of simeout and immediately gain 1000 sanity (can't resist), and for the next 50k turns, all monsters with AT_GAZE and one of AD_SANI, AD_INSA or AD_SPC2 have +100 spawn freq. reading it reduces your max HP by 10 (kills you if you don't have enough) and teaches a random level 8 spell, or increases its memory if it rolls one you already know */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Just and Joseph looking for a mangel",				SPE_TOTEM_SUMMONING, /* reading it summons a tame lawful minion, but if you're not lawful yourself you lose 20 alignment and 5 max alignment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Merlin's Testament",				SPE_DISRUPTION_SHIELD, /* upon generation, you get 5000 turns of either invisibility, speed or flying, but a hostile AD_SPEL is summoned somewhere on the level with superaggravatefrenzy; reading it teaches a wonderspell and gives double the normal amount of memory for the spell it taught you but confuses you for rn1(20,20) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Sefer Raziel",				SPE_CONTINGENCY, /* upon generation, all undead and demons on the current level get an untimed fear effect but a hostile "Angel of <lawful god>" spawns next to you; reading it permanently drains your max Pw by d3 (reduces your alla by 300 if you don't have enough) and fully heals all pets (removing their afflictions as well) on the level including your steed, and deals (gushlevel*3) damage to all chaotic-aligned hostile monsters in a 9x9 area around you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Flickering Palimpsest",				SPE_CRYSTALLIZATION, /* upon generating, rnz(20) item masters are spawned on the current floor; reading it spawns a random item on the ground beneath you */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("The Grimoire of Thassilon",				SPE_MULTIBEAM, /* reading it lets you choose a direction and fires strength-4 beams of fire, cold and lightning in that direction, and also trains elemental spell skill by 20 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Blooming Scripture",				SPE_VAPORIZE, /* causes ragnarok upon generation but with grassland and random F- and %-class monsters (and they don't have massively increased levels); reading it gives 5000 turns of regeneration and has 1 in 5 chance of spawning a hostile % next to you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Elementalist's Codex",				SPE_GEOLYSIS, /* resist cold and fire when wielded, reading it teaches the fireball and cone of cold spells or improves their memory if you know them already */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Chronicle of the Last Dawn",				SPE_INFERNO, /* 5000 turns of maximum damage nastytrap effect when generated, reading it fully restores HP and Pw and gives 5000 turns of "boost" and "combat command" effects but the book will always disintegrate after reading */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("The Runic Lexicon of Eldamir",				SPE_SLUDGE, /* reading it gives 5000 turns of temporary double spell damage (like the magic mirror of Merlin, but stacks with that), and 1 in 10 chance of letting you select a non-forgotten spell to boost its memory by 100% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("The Codex of Echoes",				SPE_NETHER_BEAM, /* reading it adds 5% spell memory to all the spells you know (except forgotten ones) and gives a temporary effect for rnz(2000) turns that makes enemy spellcasters automatically fail their spells 33% of the time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 17000L ),
+
+A("The Aurora Codex",				SPE_AURORA_BEAM, /* +10 max Pw when read and replicates the reinforce memory technique, gives a temporary effect for 2000 turns that reduces your spellcasting mana cost to 90% of the normal amount for all spells */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Chronicle of Thoth",				SPE_FIREBALL, /* reading it gives 5000 turns of temporary +2 INT/WIS and trains memorization by 30 points, 1 in 5 chance to be allowed to identify one item in your inventory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Book of the Ashen Star",				SPE_LAVA, /* gives you a target cursor to select a monster, which will take 100 damage and lose d3 maximum HP, but the monster may not be fire resistant; for the next 5000 turns, all zhitm effects with ZT_FIRE or ZT_LITE deal 1.5 times as much damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Manual of the Thousand Hands",				SPE_DASHING, /* reading it gives 2000 turns of manaleech and a temporary effect that boosts your Pw regeneration like energy regeneration but stacks with it and doesn't cause additional hunger, but also 2000 turns of monster speed trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Entropy's Ledger",				SPE_STASIS, /* upon generation, all monsters on the level have 1 in 10 chance of dying outright, and there's an independent 1 in 5 chance for every monster on the level that a random new monster is spawned somewhere; reading it drains a level from you (can't resist) and gives rnz(5000) turns of triple magic find */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("The Celestial Codex",				SPE_MELTDOWN, /* upon generation, gives you one turn of reflection and fires strength-6 solar beams on 25 random tiles which count as being fired by you; reading it blinds you for rn1(10,10) turns and deals gushlevel*3 damage to all undead and demons in a 9x9 area around you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Primer of Sparks",				SPE_FIRE, /* reading it teaches the flame sphere spell or increases its memory if you know it, and gives 1000 turns of fire resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Scripture of the Silent Choir",				SPE_TUNNELIZATION, /* upon generation, causes 5000 turns of a 10% antimagic effect; when read, gives the generation effect again and also 100 turns of complete antimagic shell effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The Weeping Codex",				SPE_BUBBLEBEAM, /* replicates the flooding trap effect upon generation but with only water and only a 1 in 3 chance per square to get a sea monster; reading it heals you by rn1(25,25) turns and casts the bubblebeam spell but damages your strength by one (can be restored via unihorn etc.) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Spiral Manuscript",				SPE_GEYSER, /* upon generation, field break trap effect followed by hunkajunk effect is triggered and you get rnz(10k) turns of trapwarp nastytrap effect; reading it grants rnz(2000) turns of anti-teleportation and makes you nauseated */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("The Book of Mormon",				SPE_GRAVE, /* reading it transforms you into a vampire like the blood potion, and if you're not chaotic and not permaconverted yet, you permanently get converted to chaotic, otherwise you get the hate trap effect permanently */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 150L ),
+
+A("Expensive Physician Fees",				SPE_EXTRA_HEALING, /* reading it grants rn1(500,500) $ */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The Book of Jehova",				SPE_QUICKSAND, /* reading it while non-lawful and not yet permaconverted will permanently convert you to lawful alignment; in all other cases, reading it increases your sanity by 500 with no chance to resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Notebook of Errant Sparks",				SPE_AIMBOT_LIGHTNING, /* restores rn1(20,20) Pw when read and lets you fire a strength-2 lightning bolt in a direction of your choice */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Codex of Medea",				SPE_GROUND_STOMP, /* reading it teaches the toxic spell or improves its memory if you know it, and 5000 turns of poison resistance but summons rnd(6) %-class monsters and rnd(6) F-class monsters randomly distributed over the current dungeon level, which are generated frenzied */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Codex of the Endless Labyrinth",				SPE_RELOCATION, /* upon generation, causes the hunkajunk and lockout effects; reading it teleports you (unless noteleport) and tries to magic map the current level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Daedaedaedaedaedaeueueueueuei",				SPE_FINAL_EXPLOSION, /* replicates final explosion effect when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Codex Pandemonium",				SPE_ATTUNE_MAGIC, /* upon generation, gives rnz(10k) of a temporary effect where with a 1 in 500 chance per turn, either a random good or bad effect will happen; reading it casts two random spells regardless of whether you know them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("I see no reason because there's no reason",				SPE_CURE_MONSTER, /* reading it on a monday gives strength-1 amnesia and 5000 turns of +1 increase damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("What if I need to know?",				SPE_DETECT_MONSTERS, /* reading it spawns a stack of d5 scrolls of standard id on the ground */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -172,7 +172,8 @@ struct obj *otmp;
 	boolean wake = TRUE;	/* Most 'zaps' should wake monster */
 	boolean reveal_invis = FALSE;
 	boolean dbldam = Role_if(PM_KNIGHT) && u.uhave.questart;
-	int dmg, otyp = otmp->otyp;
+	boolean dbldam2 = u.tempdblspelldmg;
+	int dmg, basedmg, otyp = otmp->otyp;
 	int owandclass = otmp->oclass;
 	int hurtlex,hurtley;
 	const char *zap_type_text = "spell";
@@ -202,7 +203,9 @@ struct obj *otmp;
 		dmg = d(2,12) + rnz(boosted_ulevel(1));
 		if (otyp == SPE_GOOD_NIGHT) dmg = d(2,12) + rnd(boosted_ulevel(1));
 		if (otyp == WAN_GOOD_NIGHT) dmg += rnz(boosted_ulevel(1));
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
 		dmg += skilldmg;
 		if (otmp && otmp->oartifact == ART_GUTNACHT__GUTNACHT_) dmg *= 3;
 		if (mtmp->data->maligntyp > 0) dmg *= 10;
@@ -224,7 +227,9 @@ struct obj *otmp;
 		} else {
 			dmg = d(4,12) + rnz(boosted_ulevel(1));
 			if (otyp == SPE_BUBBLEBEAM) dmg = d(4,12) + rnd(boosted_ulevel(1));
-			if(dbldam) dmg *= 2;
+			basedmg = dmg;
+			if (dbldam) dmg += basedmg;
+			if (dbldam2) dmg += basedmg;
 			if (otmp && otmp->oartifact == ART_UNHEALTHY_DROWNING) dmg *= 3;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s is immersed in a water bubble!", Monnam(mtmp));
@@ -332,7 +337,11 @@ struct obj *otmp;
 		}
 
 		dmg = d(4,12) + rnd(boosted_ulevel(1) * rnd(3));
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += skilldmg;
 
 		if (dmg > 0) pline("%s is buffeted by the water.", Monnam(mtmp));
@@ -679,7 +688,12 @@ armorsmashdone:
 		if (!(mtmp->mcanmove)) {
 			dmg = d(8,12) + rnz(boosted_ulevel(1) * 3);
 			if (otyp == SPE_DREAM_EATER) dmg = d(8,12) + rnd(boosted_ulevel(1) * 3);
-			if(dbldam) dmg *= 2;
+
+			basedmg = dmg;
+
+			if (dbldam) dmg += basedmg;
+			if (dbldam2) dmg += basedmg;
+
 			if (otmp && otmp->oartifact == ART_NEVER_WAKE_UP_AGAIN) dmg *= 3;
 			dmg += skilldmg;
 			if (canseemon(mtmp)) pline("%s's dream is eaten!", Monnam(mtmp));
@@ -700,7 +714,11 @@ armorsmashdone:
 	case SPE_MANA_BOLT:
 		dmg = d(2, 8);
 		if (u.ulevel > 5) dmg += rnd(boosted_ulevel(1) / 3);
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -709,7 +727,12 @@ armorsmashdone:
 	case SPE_SNIPER_BEAM:
 		dmg = d(4, 8);
 		if (u.ulevel > 5) dmg += rnd(boosted_ulevel(1) / 2);
-		if(dbldam) dmg *= 2;
+
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -718,7 +741,11 @@ armorsmashdone:
 	case SPE_ULTRA_P:
 		dmg = d(4, 7);
 		if (u.ulevel > 5) dmg += rnd(boosted_ulevel(1) / 2);
-		if (dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += (skilldmg * rnd(3));
 		if (canseemon(mtmp)) pline("%s is blasted!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -727,7 +754,11 @@ armorsmashdone:
 	case SPE_PARTICLE_CANNON:
 		dmg = d(5, 10);
 		dmg += rnd(boosted_ulevel(1) * rno(3));
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += (skilldmg * rnd(10));
 		if (canseemon(mtmp)) pline("%s is caught in the particle beam!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -783,7 +814,11 @@ armorsmashdone:
 	case SPE_ENERGY_BOLT:
 		dmg = d(8, 8);
 		if (u.ulevel > 1) dmg += rnd(boosted_ulevel(1));
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += (skilldmg * 4);
 		if (canseemon(mtmp)) pline("%s is irradiated with energy!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -794,7 +829,11 @@ armorsmashdone:
 		dmg = d(2, 9) + (rnz(boosted_ulevel(1)) / 2);
 		if (otyp == SPE_CHLOROFORM) dmg = d(2, 9) + (rnd(boosted_ulevel(1)) / 2);
 		if (otyp == WAN_CHLOROFORM) dmg += (rnz(boosted_ulevel(1)) / 2);
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += skilldmg;
 		if (canseemon(mtmp)) pline("%s is enveloped in a cloud of gas!", Monnam(mtmp));
 		(void) resist(mtmp, otmp->oclass, dmg, NOTELL);
@@ -982,7 +1021,12 @@ armorsmashdone:
 			if (mtmp->data->msize >= MZ_HUGE) dmg += rnd(12);
 			if (mtmp->data->msize >= MZ_GIGANTIC) dmg += rnd(18);
 			if (otyp == WAN_GRAVITY_BEAM) dmg += rnz(boosted_ulevel(1) * 2);
-			if(dbldam) dmg *= 2;
+
+			basedmg = dmg;
+
+			if (dbldam) dmg += basedmg;
+			if (dbldam2) dmg += basedmg;
+
 			dmg += (skilldmg * 2);
 			hit(zap_type_text, mtmp, exclam(dmg));
 			(void) resist(mtmp, otmp->oclass, dmg, TELL);
@@ -1003,7 +1047,11 @@ armorsmashdone:
 			if (otyp == WAN_STRIKING) dmg += rnz(boosted_ulevel(1));
 			if (otyp == SPE_FORCE_BOLT && !rn2(3)) dmg = d(2,8) + rnd(boosted_ulevel(1));
 			if (otyp == SPE_FORCE_BOLT && !rn2(3) && dmg > 1) dmg = rnd(dmg);
-			if(dbldam) dmg *= 2;
+			basedmg = dmg;
+
+			if (dbldam) dmg += basedmg;
+			if (dbldam2) dmg += basedmg;
+
 			dmg += skilldmg;
 			hit(zap_type_text, mtmp, exclam(dmg));
 			(void) resist(mtmp, otmp->oclass, dmg, TELL);
@@ -1019,7 +1067,11 @@ armorsmashdone:
 			dmg = rnd(18) + rnd(boosted_ulevel(1));
 			if (rn2(3)) dmg = rnd(12) + rnd(boosted_ulevel(1));
 			if (rn2(2) && dmg > 1) dmg = rnd(dmg);
-			if(dbldam) dmg *= 2;
+			basedmg = dmg;
+
+			if (dbldam) dmg += basedmg;
+			if (dbldam2) dmg += basedmg;
+
 			dmg += skilldmg;
 			hit(zap_type_text, mtmp, exclam(dmg));
 			(void) resist(mtmp, otmp->oclass, dmg, TELL);
@@ -1184,7 +1236,11 @@ armorsmashdone:
 			wake = TRUE;
 			dmg = rnd(8);
 			dmg += rnd(boosted_ulevel(1));
-			if(dbldam) dmg *= 2;
+			basedmg = dmg;
+
+			if (dbldam) dmg += basedmg;
+			if (dbldam2) dmg += basedmg;
+
 			dmg += skilldmg;
 			if (otyp == WAN_UNDEAD_TURNING) {
 				dmg += rnz(boosted_ulevel(1));
@@ -1670,7 +1726,11 @@ armorsmashdone:
 	case SPE_DRAIN_LIFE:
 	case WAN_DRAINING:	/* KMH */
 		dmg = rnd(8);
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += skilldmg;
 		if (otyp ==	WAN_DRAINING) dmg *= 2;
 
@@ -1725,7 +1785,11 @@ armorsmashdone:
 	case SPE_TIME:
 	case WAN_TIME:
 		dmg = rnd(8);
-		if(dbldam) dmg *= 2;
+		basedmg = dmg;
+
+		if (dbldam) dmg += basedmg;
+		if (dbldam2) dmg += basedmg;
+
 		dmg += skilldmg;
 		if (otyp ==	WAN_TIME) dmg *= 4;
 		
@@ -8278,7 +8342,7 @@ boolean			youattack, allow_cancel_kill, self_cancel;
 		if (obj && obj->otyp == SPE_AURORA_BEAM) mdef->canceltimeout = TRUE;
 
 		/* successfully cancelling a monster removes all egotypes --Amy */
-		mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_flamer = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = mdef->egotype_psychic = mdef->egotype_abomination = mdef->egotype_gazer = mdef->egotype_seducer = mdef->egotype_flickerer = mdef->egotype_hitter = mdef->egotype_piercer = mdef->egotype_petshielder = mdef->egotype_displacer = mdef->egotype_lifesaver = mdef->egotype_venomizer = mdef->egotype_nastinator = mdef->egotype_baddie = mdef->egotype_dreameater = mdef->egotype_sludgepuddle = mdef->egotype_vulnerator = mdef->egotype_marysue = mdef->egotype_shader = mdef->egotype_amnesiac = mdef->egotype_trapmaster = mdef->egotype_midiplayer = mdef->egotype_rngabuser = mdef->egotype_mastercaster = mdef->egotype_aligner = mdef->egotype_sinner = mdef->egotype_minator = mdef->egotype_aggravator = mdef->egotype_contaminator = mdef->egotype_radiator = mdef->egotype_weeper = mdef->egotype_reactor = mdef->egotype_destructor = mdef->egotype_datadeleter = mdef->egotype_trembler = mdef->egotype_worldender = mdef->egotype_damager = mdef->egotype_antitype = mdef->egotype_painlord = mdef->egotype_empmaster = mdef->egotype_spellsucker = mdef->egotype_eviltrainer = mdef->egotype_statdamager = mdef->egotype_sanitizer = mdef->egotype_nastycurser = mdef->egotype_damagedisher = mdef->egotype_thiefguildmember = mdef->egotype_rogue = mdef->egotype_steed = mdef->egotype_champion = mdef->egotype_boss = mdef->egotype_atomizer = mdef->egotype_perfumespreader = mdef->egotype_converter = mdef->egotype_wouwouer = mdef->egotype_allivore = mdef->egotype_laserpwnzor = mdef->egotype_badowner = mdef->egotype_bleeder = mdef->egotype_shanker = mdef->egotype_terrorizer = mdef->egotype_feminizer = mdef->egotype_levitator = mdef->egotype_illusionator = mdef->egotype_stealer = mdef->egotype_stoner = mdef->egotype_maecke = mdef->egotype_blasphemer = mdef->egotype_dropper = mdef->egotype_amberite = mdef->egotype_phonecaller = mdef->egotype_cameraclicker = mdef->egotype_singagent = mdef->egotype_alladrainer = mdef->egotype_selfharmer = mdef->egotype_stabilizer = mdef->egotype_escaper = mdef->egotype_spoilerproofer = mdef->egotype_metalmafioso = mdef->egotype_deepstatemember = mdef->egotype_inverter = mdef->egotype_debtor = mdef->egotype_tracker = 0;
+		removemonsteregotypes(mdef);
 
 	    if (is_were(mdef->data) && mdef->data->mlet != S_HUMAN)
 		were_change(mdef);
@@ -8308,6 +8372,15 @@ register struct monst	*mdef;
 	if (osaeddle) cancel_item(osaeddle, TRUE);
 
 	/* successfully cancelling a monster removes all egotypes --Amy */
+	removemonsteregotypes(mdef);
+
+}
+
+/* remove all egotypes from target monster, by Amy */
+void
+removemonsteregotypes(mdef)
+register struct monst	*mdef;
+{
 	mdef->isegotype = mdef->egotype_thief = mdef->egotype_wallwalk = mdef->egotype_disenchant = mdef->egotype_rust = mdef->egotype_corrosion = mdef->egotype_decay = mdef->egotype_flamer = mdef->egotype_wither = mdef->egotype_grab = mdef->egotype_flying = mdef->egotype_hide = mdef->egotype_regeneration = mdef->egotype_undead = mdef->egotype_domestic = mdef->egotype_covetous = mdef->egotype_avoider = mdef->egotype_petty = mdef->egotype_pokemon = mdef->egotype_slows = mdef->egotype_vampire = mdef->egotype_teleportself = mdef->egotype_teleportyou = mdef->egotype_wrap = mdef->egotype_disease = mdef->egotype_slime = mdef->egotype_engrave = mdef->egotype_dark = mdef->egotype_luck = mdef->egotype_push = mdef->egotype_arcane = mdef->egotype_clerical = mdef->egotype_armorer = mdef->egotype_tank = mdef->egotype_speedster = mdef->egotype_racer = mdef->egotype_randomizer = mdef->egotype_blaster = mdef->egotype_multiplicator = mdef->egotype_gator = mdef->egotype_reflecting = mdef->egotype_hugger = mdef->egotype_mimic = mdef->egotype_permamimic = mdef->egotype_poisoner = mdef->egotype_elementalist = mdef->egotype_resistor = mdef->egotype_acidspiller = mdef->egotype_watcher = mdef->egotype_metallivore = mdef->egotype_lithivore = mdef->egotype_organivore = mdef->egotype_breather = mdef->egotype_beamer = mdef->egotype_troll = mdef->egotype_faker = mdef->egotype_farter = mdef->egotype_timer = mdef->egotype_thirster = mdef->egotype_watersplasher = mdef->egotype_cancellator = mdef->egotype_banisher = mdef->egotype_shredder = mdef->egotype_abductor = mdef->egotype_incrementor = mdef->egotype_mirrorimage = mdef->egotype_curser = mdef->egotype_horner = mdef->egotype_lasher = mdef->egotype_cullen = mdef->egotype_webber = mdef->egotype_itemporter = mdef->egotype_schizo = mdef->egotype_nexus = mdef->egotype_sounder = mdef->egotype_gravitator = mdef->egotype_inert = mdef->egotype_antimage = mdef->egotype_plasmon = mdef->egotype_weaponizer = mdef->egotype_engulfer = mdef->egotype_bomber = mdef->egotype_exploder = mdef->egotype_unskillor = mdef->egotype_blinker = mdef->egotype_psychic = mdef->egotype_abomination = mdef->egotype_gazer = mdef->egotype_seducer = mdef->egotype_flickerer = mdef->egotype_hitter = mdef->egotype_piercer = mdef->egotype_petshielder = mdef->egotype_displacer = mdef->egotype_lifesaver = mdef->egotype_venomizer = mdef->egotype_nastinator = mdef->egotype_baddie = mdef->egotype_dreameater = mdef->egotype_sludgepuddle = mdef->egotype_vulnerator = mdef->egotype_marysue = mdef->egotype_shader = mdef->egotype_amnesiac = mdef->egotype_trapmaster = mdef->egotype_midiplayer = mdef->egotype_rngabuser = mdef->egotype_mastercaster = mdef->egotype_aligner = mdef->egotype_sinner = mdef->egotype_minator = mdef->egotype_aggravator = mdef->egotype_contaminator = mdef->egotype_radiator = mdef->egotype_weeper = mdef->egotype_reactor = mdef->egotype_destructor = mdef->egotype_datadeleter = mdef->egotype_trembler = mdef->egotype_worldender = mdef->egotype_damager = mdef->egotype_antitype = mdef->egotype_painlord = mdef->egotype_empmaster = mdef->egotype_spellsucker = mdef->egotype_eviltrainer = mdef->egotype_statdamager = mdef->egotype_sanitizer = mdef->egotype_nastycurser = mdef->egotype_damagedisher = mdef->egotype_thiefguildmember = mdef->egotype_rogue = mdef->egotype_steed = mdef->egotype_champion = mdef->egotype_boss = mdef->egotype_atomizer = mdef->egotype_perfumespreader = mdef->egotype_converter = mdef->egotype_wouwouer = mdef->egotype_allivore = mdef->egotype_laserpwnzor = mdef->egotype_badowner = mdef->egotype_bleeder = mdef->egotype_shanker = mdef->egotype_terrorizer = mdef->egotype_feminizer = mdef->egotype_levitator = mdef->egotype_illusionator = mdef->egotype_stealer = mdef->egotype_stoner = mdef->egotype_maecke = mdef->egotype_blasphemer = mdef->egotype_dropper = mdef->egotype_amberite = mdef->egotype_phonecaller = mdef->egotype_cameraclicker = mdef->egotype_singagent = mdef->egotype_alladrainer = mdef->egotype_selfharmer = mdef->egotype_stabilizer = mdef->egotype_escaper = mdef->egotype_spoilerproofer = mdef->egotype_metalmafioso = mdef->egotype_deepstatemember = mdef->egotype_inverter = mdef->egotype_debtor = mdef->egotype_tracker = 0;
 
 }
@@ -9520,6 +9593,7 @@ register int type, nd;
 struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 {
 	register int tmp = 0;
+	register int basedmg = 0;
 	register int abstype = abs(type) % 10;
 	boolean sho_shieldeff = FALSE;
 	boolean spellcaster = (is_hero_spell(type) || is_mega_spell(type)); 
@@ -9554,6 +9628,9 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		}
 		tmp = d(nd,6);
 		if (resists_cold(mon)) tmp += 7;
+		if (u.tempfirelightspellbonus) {
+			tmp *= 3; tmp /= 2;
+		}
 		if (spellcaster)
 		    skilldmg = spell_damage_bonus(SPE_FIREBALL);
 		if (!rn2(33)) (burnarmor(mon));
@@ -9685,6 +9762,10 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			boolean literes = FALSE;
 			tmp = d(nd,8);
 
+			if (u.tempfirelightspellbonus) {
+				tmp *= 3;
+				tmp /= 2;
+			}
 			if (u.currentweather == WEATHER_SUNNY) {
 				tmp *= 3;
 				tmp /= 2;
@@ -9711,8 +9792,8 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 			if (literes) pline("%s resists a lot.", Monnam(mon));
 
 			if (is_vampire(mon->data)) {
-			tmp *= 2; /* vampires take more damage from sunlight --Amy */
-			pline(literes ? "The light ray slightly burns %s's pale skin." : "The light ray sears %s's pale skin!",mon_nam(mon));
+				tmp *= 2; /* vampires take more damage from sunlight --Amy */
+				pline(literes ? "The light ray slightly burns %s's pale skin." : "The light ray sears %s's pale skin!",mon_nam(mon));
 			}
 
 		}
@@ -9730,10 +9811,20 @@ struct obj **ootmp;	/* to return worn armor for caller to disintegrate */
 		break;
 	}
 	if (sho_shieldeff) shieldeff(mon->mx, mon->my);
-	if (spellcaster && (Role_if(PM_KNIGHT) && u.uhave.questart))
-	    tmp *= 2;
 
-	if (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) tmp *= 2;
+	basedmg = tmp;
+
+	if (spellcaster && (Role_if(PM_KNIGHT) && u.uhave.questart)) {
+	    tmp += basedmg;
+	}
+
+	if (uarm && uarm->oartifact == ART_DESTRUCTO_S_COAT) {
+	    tmp += basedmg;
+	}
+
+	if (u.tempdblspelldmg) {
+	    tmp += basedmg;
+	}
 
 #ifdef WIZ_PATCH_DEBUG
 	if (spellcaster)
