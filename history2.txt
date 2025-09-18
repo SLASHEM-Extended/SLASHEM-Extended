@@ -1,6 +1,13 @@
 Changelog for SLASH'EM Extended, written by Amy, given in reverse chronological order
 
+2.9.8 - September 2025
+- Really fixed the bug where the narcolepsy trap effect couldn't time out; the previous fix wasn't working.
+- Changed the damage calculation when the player character is wearing explosive boots.
+- Loudspeakers should spawn less often now, especially in BIGslex.
+- Increased the timer when the larissa trap effect triggers.
+
 2.9.7 - July 2025
+- Improved the prompt when the player is asked whether they want to select a hybrid race.
 - Changed the player speed calculations when having double/quad attacks to give less of a penalty.
 - Purchasing shopkeeper services no longer transfers the money to the shopkeeper; instead, the money is simply deleted from the game to avoid players paying hundreds of thousands of gold for services and then simply murdering the shopkeeper to get all the money back.
 - Player characters who have the disarming property can now also attempt to disarm drain, disintegration and premature death traps.
