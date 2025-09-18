@@ -1202,8 +1202,8 @@ nh_timeout()
 	if (uarmf && itemhasappearance(uarmf, APP_EXPLOSIVE_BOOTS) && !rn2(uarmf->oartifact ? 200000 : 50000) ) {
 	      useup(uarmf);
 		pline("KAABLAMM!!! Your explosive boots suddenly detonate!");
-		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), rnz(u.ulevel * 2), 0, EXPL_FIERY);
-		losehp(rnz(u.ulevel * 2), "exploding TNT boots", KILLED_BY);
+		explode(u.ux, u.uy, ZT_SPELL(ZT_FIRE), rnd(u.ulevel * 2), 0, EXPL_FIERY);
+		losehp(rnd(u.ulevel * 2), "exploding TNT boots", KILLED_BY);
 		set_wounded_legs(LEFT_SIDE, HWounded_legs + 1000);
 		set_wounded_legs(RIGHT_SIDE, HWounded_legs + 1000);
 	}
