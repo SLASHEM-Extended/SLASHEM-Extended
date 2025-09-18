@@ -6106,7 +6106,11 @@ struct obj *otmp;
 	    case RIN_SLEEPING:
 		if (!(HSleeping & FROMOUTSIDE))
 		    accessory_has_effect(otmp);
-		if (!Race_if(PM_KOBOLT)) HSleeping = FROMOUTSIDE | rnd(1000);
+		if (!Race_if(PM_KOBOLT)) {
+			int restfulsleepdur = rnd(1000);
+			HSleeping = restfulsleepdur;
+			u.restfulsleepduration += restfulsleepdur;
+		}
 		break;
 	    case AMULET_OF_FUMBLING: /* another bad idea! */
 		if (!(HFumbling & FROMOUTSIDE))

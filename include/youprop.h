@@ -1209,8 +1209,10 @@
 
 #define HSleeping		u.uprops[SLEEPING].intrinsic
 #define ESleeping		u.uprops[SLEEPING].extrinsic
-#define Sleeping		(HSleeping || ESleeping || Race_if(PM_KOBOLT))
-#define PlayerWillFallAsleep		(ESleeping || (HSleeping & INTRINSIC) || u.restfulsleepduration || Race_if(PM_KOBOLT))
+/* "Sleeping" = you will fall asleep if the timeout reaches zero */
+#define Sleeping		(HSleeping || ESleeping || u.restfulsleepduration || Race_if(PM_KOBOLT))
+/* "Player will fall asleep" = after falling asleep, a new timeout is set so that you'll fall asleep again */
+#define PlayerWillFallAsleep		(ESleeping || u.restfulsleepduration || Race_if(PM_KOBOLT))
 
 #define HHunger			u.uprops[HUNGER].intrinsic
 #define EHunger			u.uprops[HUNGER].extrinsic

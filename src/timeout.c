@@ -1044,6 +1044,7 @@ nh_timeout()
 
 	if (u.antimagicshell) {
 		u.antimagicshell--;
+		if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
 		if (!u.antimagicshell) pline("You no longer produce an anti-magic shell.");
 	}
 	if (u.antimagicshell < 0) u.antimagicshell = 0; /* fail safe */
@@ -5278,6 +5279,7 @@ nh_timeout()
 				sleeptime = rnd(20);
 				fall_asleep(-sleeptime, TRUE);
 				/* have to make *sure* you're still supposed to be falling asleep --Amy */
+
 				if (PlayerWillFallAsleep) {
 					HSleeping += (sleeptime + rnd(1000));
 				}

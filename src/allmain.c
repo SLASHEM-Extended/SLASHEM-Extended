@@ -16554,6 +16554,10 @@ past4:
 
 	if (Race_if(PM_SAMEDI)) u.martialstyle = MARTIALSTYLE_CAPOEIRA; /* sons of samedi always use capoeira */
 
+	if (PlayerWillFallAsleep && !HSleeping) { /* shouldn't happen, but if you're supposed to be falling asleep, you should really keep falling asleep --Amy */
+		HSleeping = 5;
+	}
+
 	if (!(uwep && uwep->oartifact == ART_GORMALER)) u.gormalerturns = 0;
 
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */

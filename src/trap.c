@@ -20456,9 +20456,9 @@ skillrandomizeredo:
 
 			seetrap(trap);
 
-			HSleeping = FROMOUTSIDE | rnd(5);
+			HSleeping = rnd(5);
 			incr_itimeout(&HSleeping, rnd(20));
-			u.restfulsleepduration += rnz(10 * (monster_difficulty() + 1) );
+			u.restfulsleepduration += rnz(100 * (monster_difficulty() + 1) );
 
 			if (!rn2(3)) u.uprops[DEAC_SLEEP_RES].intrinsic += rn1(500,500);
 
