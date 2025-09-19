@@ -29451,7 +29451,7 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel that the gods are pleased with your progress. But that feeling is misleading, because the gods are really about to smite you for being naughty."
 	"You feel the presence of the Lethe Gorge...",
 	"You feel the presence of the Lethe Gorge... and an intense desire to take a bath, since it'll allow you to forget all the bad things you've seen.",
-	"You lost your wonderlegs, and they're once again vulnerable! Oh no!!"
+	"You lost your wonderlegs, and they're once again vulnerable! Oh no!!",
 	"You have been drained to the point of death...",
 	"You have been drained to the point of death... maybe you shouldn't have allowed the monster with drain life attacks to constantly hit you.",
 	"It seems that the air is filled with an anti-magical aura.",
