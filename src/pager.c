@@ -29432,9 +29432,9 @@ static NEARDATA const char * const fake_plines[] = {
 	"You look mighty sexy in your feminine 'Janina' underwear.",
 	"You feel like smelling your own socks, which is certainly going to be very beguiling.",
 	"You feel like you're 13 months pregnant!",
-	"You have to spend the next 15 minutes without WLAN."
-	"You have to spend the next 15 minutes without WLAN. But you don't know what that is, because in your weird country it's somehow called wifi instead."
-	"You have to spend the next 15 minutes without WLAN. Oh no, what the hell are you going to do! You can't exist without your smartphone and permanent internet access!"
+	"You have to spend the next 15 minutes without WLAN.",
+	"You have to spend the next 15 minutes without WLAN. But you don't know what that is, because in your weird country it's somehow called wifi instead.",
+	"You have to spend the next 15 minutes without WLAN. Oh no, what the hell are you going to do! You can't exist without your smartphone and permanent internet access!",
 	"Possible bio reading.",
 	"You feel that the dude who made those XM sound files must have a girlfriend named Tanja.",
 	"You absolutely can't stand that high-pitched 'SSSSSSSSSS!' sound!",
@@ -29447,8 +29447,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"You hear Mira advertising her 'refreshing' bath to you... but something tells you that bathing in her urine won't be all that great...",
 	"Now your copilot wanted level has increased!",
 	"Now your copilot wanted level has increased! This means that two cops are coming at the same time to bust you, making it harder for you to escape!",
-	"You feel that the gods are pleased with your progress."
-	"You feel that the gods are pleased with your progress. But that feeling is misleading, because the gods are really about to smite you for being naughty."
+	"You feel that the gods are pleased with your progress.",
+	"You feel that the gods are pleased with your progress. But that feeling is misleading, because the gods are really about to smite you for being naughty.",
 	"You feel the presence of the Lethe Gorge...",
 	"You feel the presence of the Lethe Gorge... and an intense desire to take a bath, since it'll allow you to forget all the bad things you've seen.",
 	"You lost your wonderlegs, and they're once again vulnerable! Oh no!!",
