@@ -27132,7 +27132,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				case ART_MURASAME:
 					pline("Artifact specs: +8 damage, lawful."); break;
 				case ART_DAGGER_OF_UUKAI:
-					pline("Artifact specs: +2 to-hit and +4 damage, poison resistance when wielded, lawful."); break;
+					pline("Artifact specs: +2 to-hit and +4 damage, poison resistance when wielded, chaotic."); break;
 				case ART_WINBLOWS:
 					pline("Artifact specs: +5 to-hit and double damage to gremlins, neutral."); break;
 				case ART_MANEATER:
