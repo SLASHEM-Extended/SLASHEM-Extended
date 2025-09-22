@@ -2253,6 +2253,7 @@ dospinweb()
 		case FEMMY_TRAP:
 		case MADELEINE_TRAP:
 		case MARLENA_TRAP:
+		case JANET_TRAP:
 		case SABRINA_TRAP:
 		case TANJA_TRAP:
 		case SONJA_TRAP:

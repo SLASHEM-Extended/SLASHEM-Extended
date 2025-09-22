@@ -5298,6 +5298,34 @@ find_chess_boots()
 }
 
 int
+find_otting_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_OTTING_BOOTS)) return i;
+    }
+
+    impossible("otting boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_ballerinas()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BALLERINAS)) return i;
+    }
+
+    impossible("ballerinas not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
 find_machinery_boots()
 {
     register int i;

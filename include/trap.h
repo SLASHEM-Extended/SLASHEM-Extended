@@ -890,6 +890,8 @@ extern struct trap *ftrap;
 
 #define ANTISWITCH_TRAP 780
 
+#define JANET_TRAP 781
+
 /* todo area
 
 normal ones:
@@ -972,9 +974,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	781
+#define TIMERUN_TRAP	782
 
-#define TRAPNUM 782
+#define TRAPNUM 783
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

@@ -2044,6 +2044,10 @@ register struct monst *mtmp;
 		You_hear("%s crapping noises.", monstersoundtype(mtmp) == MS_FART_QUIET ? "tender" : monstersoundtype(mtmp) == MS_FART_NORMAL ? "beautiful" : "disgusting");
 	}
 	u.cnd_crappingcount++;
+	if (FemtrapActiveJanet) {
+		You_feel("nauseous about having to listen to that...");
+		drain_alla(SuperFemtrapJanet ? 10 : 5);
+	}
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 	if (monstersoundtype(mtmp) == MS_FART_QUIET) pline("Because of the wonderfully soft noises, you briefly forget what you were doing and just stand there.");
 	else if (monstersoundtype(mtmp) == MS_FART_NORMAL) pline("You just can't believe that someone could produce such erotic noises, and are immobilized by your feelings.");
@@ -2080,6 +2084,10 @@ register struct monst *mtmp;
 		You_hear("crapping noises.");
 	}
 	u.cnd_crappingcount++;
+	if (FemtrapActiveJanet) {
+		You_feel("nauseous about having to listen to that...");
+		drain_alla(SuperFemtrapJanet ? 10 : 5);
+	}
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	crapcnt = 1;
@@ -2104,6 +2112,10 @@ register struct monst *mtmp;
 		You_hear("crapping noises.");
 	}
 	u.cnd_crappingcount++;
+	if (FemtrapActiveJanet) {
+		You_feel("nauseous about having to listen to that...");
+		drain_alla(SuperFemtrapJanet ? 10 : 5);
+	}
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	crapcnt = 1;
@@ -4229,6 +4241,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != JANET_TRAP
 				&& ttmp->ttyp != SABRINA_TRAP
 				&& ttmp->ttyp != TANJA_TRAP
 				&& ttmp->ttyp != SONJA_TRAP
@@ -8468,6 +8481,10 @@ register struct monst *mtmp;
     if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_QUIET && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) ) {
 		if (!FemtrapActiveJennifer) pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "tender" : "soft", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("humiliated by those air current noises...");
+			drain_alla(SuperFemtrapJanet ? 2 : 1);
+		}
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -8517,6 +8534,10 @@ sarahdone:
     if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_NORMAL && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("uncomfortably aroused by those girlful noises!");
+			drain_alla(SuperFemtrapJanet ? 2 : 1);
+		}
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -8594,6 +8615,10 @@ sarahdone:
     if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_LOUD && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("bad about having to listen to those rumbling noises.");
+			drain_alla(SuperFemtrapJanet ? 2 : 1);
+		}
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -8639,6 +8664,10 @@ sarahdone:
     if (mtmp->egotype_farter && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), !rn2(6) ? "disgusting" : !rn2(5) ? "loud" : !rn2(4) ? "tender" : !rn2(3) ? "soft" : !rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("that those farting noises really should be banned...");
+			drain_alla(SuperFemtrapJanet ? 2 : 1);
+		}
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -8686,12 +8715,20 @@ sarahdone:
     if(monstersoundtype(mtmp) == MS_PANTS) {
 		u.cnd_pantsmell++;
 		pline("You catch a whiff from %s...", mon_nam(mtmp) );
+		if (FemtrapActiveJanet) {
+			You_feel("rather uncomfortable...");
+			drain_alla(SuperFemtrapJanet ? 10 : 5);
+		}
 		contaminate(rnd((mtmp->m_lev + 1) * 2), TRUE);
 		increasesanity(rnd((mtmp->m_lev + 1) * 2));
     }
     if(monstersoundtype(mtmp) == MS_SOCKS && !(uarmf && uarmf->oartifact == ART_KATHARINA_S_SIGH) ) {
 		u.cnd_socksmell++;
 		pline("You inhale the beguiling smell that emanates from %s...", mon_nam(mtmp) );
+		if (FemtrapActiveJanet) {
+			You_feel("intoxicated...");
+			drain_alla(SuperFemtrapJanet ? 10 : 5);
+		}
 
 		int armpro, armprolimit;
 

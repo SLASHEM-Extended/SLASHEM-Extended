@@ -4168,6 +4168,11 @@ moveloop()
 			tell_main_weather();
 		}
 
+		if (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER && !rn2(10000)) {
+			u.currentweather = WEATHER_THUNDERSTORM;
+			tell_main_weather();
+		}
+
 		if (uball && uball->oartifact == ART_ECLIPSE_MAW && u.currentweather != WEATHER_ECLIPSE) {
 			u.currentweather = WEATHER_ECLIPSE;
 			tell_main_weather();
@@ -6656,6 +6661,10 @@ newbossUTE:
 				case 2:
 					pline("Elif suddenly produces %s farting noises with her sexy butt.", rn2(2) ? "tender" : "soft");
 					u.cnd_fartingcount++;
+					if (FemtrapActiveJanet) {
+						You_feel("humiliated by those air current noises...");
+						drain_alla(SuperFemtrapJanet ? 2 : 1);
+					}
 					if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 					if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 					if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -9619,9 +9628,9 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.contamjeweleffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.nukafemeffect = rnd(103); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(104); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(104); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.nukafemeffect = rnd(104); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -19586,6 +19595,7 @@ boolean new_game;	/* false => restoring an old game */
 		/* todo area */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dogbone helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ballerinas")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -21051,6 +21061,8 @@ boolean new_game;	/* false => restoring an old game */
 		/* todo area */
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "dogbone helmet")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "ballerinas")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 

@@ -1560,6 +1560,10 @@ m_throw(mon, x, y, dx, dy, range, obj)
 			    if (singleobj->otyp == BOULDER && (mon->data == &mons[PM_BOULDER_FART] || mon->data == &mons[PM_FIRM_BOULDER_FART])) {
 				pline("%s produces %s farting noises with %s %s butt.", Monnam(mon), !rn2(2) ? "loud" : "disgusting", mhis(mon), mon->female ? "sexy" : "ugly");
 				u.cnd_fartingcount++;
+				if (FemtrapActiveJanet) {
+					You_feel("bad about having to listen to those rumbling noises.");
+					drain_alla(SuperFemtrapJanet ? 2 : 1);
+				}
 				if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 				if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();

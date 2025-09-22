@@ -1430,6 +1430,7 @@ E int have_covidstone(void);
 E int have_femtrapfemmy(void);
 E int have_femtrapmadeleine(void);
 E int have_femtrapmarlena(void);
+E int have_femtrapjanet(void);
 E int have_femtrapsabrina(void);
 E int have_femtrapsonja(void);
 E int have_femtraprhea(void);
@@ -2290,6 +2291,8 @@ E int find_bladed_disks(void);
 
 E int find_antisuck_helmet(void);
 E int find_chess_boots(void);
+E int find_otting_boots(void);
+E int find_ballerinas(void);
 E int find_high_iron_boots(void);
 E int find_slexual_cloak(void);
 E int find_gentle_cloak(void);

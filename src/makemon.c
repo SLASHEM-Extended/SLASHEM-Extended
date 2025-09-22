@@ -20015,6 +20015,10 @@ loveheelover:
 	if (!rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 18000 : 3600)) (void) mongets(mtmp, rnd_misc_item_new(mtmp));
 	if (!rn2((is_animal(mtmp->data) || mindless(mtmp->data)) ? 45000 : 9000)) (void) mongets(mtmp, rnd_offensive_item_new(mtmp));
 
+	if (uarmf && uarmf->oartifact == ART_SEXEHSQUIRT && !rn2(100)) {
+		(void) mongets(mtmp, SCR_URINE);
+	}
+
 	/* inventory initialization for bosses --Amy */
 
 	if (ptr == &mons[PM_CHRIS_CHENG]) {
@@ -27720,8 +27724,11 @@ register int	mmflags;
 			if (mndx == PM_SECLUDED_COLONY) set_mimic_sym(mtmp);
 			break;
 		case S_EEL:
-			if (is_waterypool(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y))
-			    mtmp->mundetected = TRUE;
+			if (is_waterypool(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y)) {
+				if (!(uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER)) {
+					mtmp->mundetected = TRUE;
+				}
+			}
 			if (mtmp->data == &mons[PM_CAMO_FISH] || mtmp->data == &mons[PM_DEFORMED_FISH] || mtmp->data == &mons[PM_AMORPHOUS_FISH]) set_mimic_sym(mtmp);
 
 			if (mndx == PM_FLOUNDER || mndx == PM_FLAT_FISH) {
@@ -27734,8 +27741,11 @@ register int	mmflags;
 
 			break;
 		case S_FLYFISH:
-			if (is_waterypool(x, y) || is_lava(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y) )
-			    mtmp->mundetected = TRUE;
+			if (is_waterypool(x, y) || is_lava(x, y) || is_watertunnel(x, y) || is_shiftingsand(x, y) ) {
+				if (!(uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER)) {
+					mtmp->mundetected = TRUE;
+				}
+			}
 			if (mtmp->data == &mons[PM_FLYING_CAMO_FISH]) set_mimic_sym(mtmp);
 			if (ptr == &mons[PM_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}
 			if (ptr == &mons[PM_UBER_STALKISH]) {mtmp->minvis = TRUE; mtmp->perminvis = TRUE;}

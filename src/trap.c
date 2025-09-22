@@ -2931,7 +2931,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	register int newlevel = dunlev(&u.uz);
 
 	/* KMH -- You can't escape the Sokoban level traps */
-	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !In_sokoban(&u.uz)) return;
+	if(Blind && Levitation && !StillTriggerGroundTraps && !In_sokoban(&u.uz)) return;
 
 	do {
 	    newlevel++;
@@ -2961,7 +2961,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (In_gehennom(&u.uz) && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
-		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		&& !StillTriggerGroundTraps) {
 		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)            
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
@@ -3056,7 +3056,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	register int newlevel = dunlev(&u.uz);
 
 	/* KMH -- You can't escape the Sokoban level traps */
-	if(Blind && Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !In_sokoban(&u.uz)) return;
+	if(Blind && Levitation && !StillTriggerGroundTraps && !In_sokoban(&u.uz)) return;
 
 	do {
 	    newlevel++;
@@ -3086,7 +3086,7 @@ boolean td;	/* td == TRUE : trap door or hole */
 	   || Flying || is_clinger(youmonst.data)
 	   || (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 	   || (In_gehennom(&u.uz) && !u.uevent.invoked && newlevel == dunlevs_in_dungeon(&u.uz)))
-		&& !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		&& !StillTriggerGroundTraps) {
 		if (Role_if(PM_ARCHEOLOGIST) && uwep && uwep->otyp >= BULLWHIP && uwep->otyp <= SECRET_WHIP && uwep->otyp != RUBBER_HOSE)
 		pline("But thanks to your trusty whip ...");
 	    dont_fall = "don't fall in.";
@@ -4018,7 +4018,7 @@ unsigned trflags;
 	    	defsyms[trap_to_defsym(ttype)].explanation);
 	    /* then proceed to normal trap effect */
 	} else if (already_seen) {
-	    if ((Levitation || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) &&
+	    if ((Levitation || Flying) && !StillTriggerGroundTraps &&
 		    (ttype == PIT || ttype == SPIKED_PIT || ttype == GIANT_CHASM || ttype == HOLE ||
 		    ttype == BEAR_TRAP)) {
 		You("%s over %s %s.",
@@ -4456,6 +4456,10 @@ dothetrap:
 		else if (trap->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[trap->launch_otyp], rn2(2) ? "disgusting" : "loud");
 		u.cnd_fartingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("that those farting noises really should be banned...");
+			drain_alla(SuperFemtrapJanet ? 2 : 1);
+		}
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -4878,7 +4882,7 @@ dothetrap:
 		break;
 
 	    case SQKY_BOARD:	    /* stepped on a squeaky board */
-		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) {
 		    if (!Blind) {
 			seetrap(trap);
 			if (FunnyHallu)
@@ -4915,7 +4919,7 @@ dothetrap:
 		break;
 
 	    case BEAR_TRAP:
-		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break;
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) break;
 		seetrap(trap);
 		if(amorphous(youmonst.data) || is_whirly(youmonst.data) ||
 						    unsolid(youmonst.data)) {
@@ -5107,7 +5111,7 @@ dothetrap:
 
 	    case ACID_POOL:
 
-		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -5153,7 +5157,7 @@ dothetrap:
 
 	    case WATER_POOL:
 
-		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) break; /* this trap is ground-based */
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) break; /* this trap is ground-based */
 
 		seetrap(trap);
 
@@ -7966,7 +7970,7 @@ newbossPENT:
 
 	    case QUICKSAND_TRAP:
 
-		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) {
 
 			if (rn2(10)) break;
 			else pline("You are pulled downwards...");
@@ -9177,7 +9181,7 @@ newbossPENT:
 		{
 			boolean larissashoes = (uarmf ? TRUE : FALSE);
 
-			if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
+			if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying || (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS) ) ) && !(Role_if(PM_GANG_SCHOLAR)) && !StillTriggerGroundTraps && !SpellColorBrown && !FemtrapActiveAnastasia && !FemtrapActiveBridghitte && !FemtrapActiveLarissa && !FemtrapActiveHenrietta && !FemtrapActiveAnna && !(uarmg && uarmg->oartifact == ART_MADELINE_S_STUPID_GIRL) && !(uarmf && itemhasappearance(uarmf, APP_SKI_HEELS)) && !(uarmf && itemhasappearance(uarmf, APP_TREADED_HEELS)) && !(autismweaponcheck(ART_LUISA_S_CHARMING_BEAUTY) && !rn2(200) ) && !(uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYFULNESS) && !(uarmf && uarmf->oartifact == ART_BRIDGE_SHITTE) && !(uarmf && (itemhasappearance(uarmf, APP_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_HEELED_HUGGING_BOOTS) || itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) ) ) { /* ground-based trap, obviously */
 			    if (!already_seen && rn2(3)) break;
 			    seetrap(trap);
 			    pline("%s %s on the ground below you.",
@@ -9228,7 +9232,7 @@ newbossPENT:
 		if (uarmf && uarmf->oartifact == ART_BEWARE_OF_THE_PITFALL) break; /* yes, even in sokoban! */
 
 		/* KMH -- You can't escape the Sokoban level traps */
-		if (!In_sokoban(&u.uz) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) && (Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying)) break;
+		if (!In_sokoban(&u.uz) && !StillTriggerGroundTraps && (Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying)) break;
 
 		if (ttype == SHIT_PIT && (uarmf && itemhasappearance(uarmf, APP_YELLOW_SNEAKERS))) break;
 
@@ -10288,7 +10292,8 @@ madnesseffect:
 		break;
 		}
 
-	    case LANDMINE: {
+	    case LANDMINE:
+	    {
 
 		int projectiledamage = rnd(16) + rnd(monster_difficulty() + 1);
 		if (projectiledamage > 1) {
@@ -10310,7 +10315,7 @@ madnesseffect:
 
 		unsigned steed_mid = 0;
 		struct obj *saddle = 0;
-		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) {
 		    if (!already_seen && rn2(3)) break;
 		    seetrap(trap);
 		    pline("%s %s in a pile of soil below you.",
@@ -10523,7 +10528,7 @@ madnesseffect:
 		if (thick_skinned(youmonst.data) || (uarm && uarm->oartifact == ART_SPEARPOINT_HOLD) || YouBecameThickSkinned) {
 			pline("But it breaks off against your body.");
 			deltrap(trap);
-		} else if (Levitation && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) {
+		} else if (Levitation && !StillTriggerGroundTraps) {
 			pline("The spear isn't long enough to reach you.");
 		} else if (unsolid(youmonst.data)) {
 			pline("It passes right through you!");
@@ -10632,7 +10637,7 @@ madnesseffect:
 		break;
 
 	    case TURN_TABLE:
-		if ( ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK)) ) || unsolid(youmonst.data)) break;
+		if ( ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) || unsolid(youmonst.data)) break;
 
 		i = rn2(15);
 		if (trap->once && i < 1) {
@@ -10857,7 +10862,7 @@ madnesseffect:
 		break;
 
 	    case BANANA_TRAP:
-		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone()) ) break;
+		if ((Levitation || (uarmf && uarmf->otyp == BUOYANT_BOOTS) || Flying) && !StillTriggerGroundTraps) break;
 		trap->once = 1;
 		seetrap(trap);
 
@@ -16862,6 +16867,25 @@ skillrandomizeredo:
 			FemaleTrapMarlena = rnz(femmytrapdur * (monster_difficulty() + 1));
 			if (rn2(3)) FemaleTrapMarlena += 100;
 			if (!rn2(3)) FemaleTrapMarlena += rnz(500);
+
+		 break;
+
+		 case JANET_TRAP:
+
+			if (FemaleTrapJanet) break;
+			if (!dontreveal && !FemtrapActiveRuth) seetrap(trap);
+
+			if (!FemtrapActiveRuth) {
+				pline("Whoops... you seem to have stumbled into a trap that was set by Janet.");
+				pline("You get a bad feeling about the attacks of those women all of a sudden...");
+			}
+			u.cnd_feminismtrapamount++;
+			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
+			if (Role_if(PM_EMERA)) emerafrenzy();
+
+			FemaleTrapJanet = rnz(femmytrapdur * (monster_difficulty() + 1));
+			if (rn2(3)) FemaleTrapJanet += 100;
+			if (!rn2(3)) FemaleTrapJanet += rnz(500);
 
 		 break;
 
@@ -23539,6 +23563,13 @@ glovecheck:		    target = which_armor(mtmp, W_ARMG);
 				u.cnd_ritatrapcnt++;
 			}
 			break;
+		case JANET_TRAP:
+			if (FemtrapActiveRita && !FemaleTrapJanet) {
+				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
+				dotrap(trap, DONTREVEAL|SKIPGARBAGE);
+				u.cnd_ritatrapcnt++;
+			}
+			break;
 		case SABRINA_TRAP:
 			if (FemtrapActiveRita && !FemaleTrapSabrina) {
 				if (!FemtrapActiveRuth) pline("Haha, someone triggered a feminism trap and now YOU are affected by it! Hahaha!");
@@ -29387,6 +29418,10 @@ fartingweb()
 	else if (ttmp->launch_otyp < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "beautiful" : "squeaky");
 	else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[ttmp->launch_otyp], rn2(2) ? "disgusting" : "loud");
 	u.cnd_fartingcount++;
+	if (FemtrapActiveJanet) {
+		You_feel("that those farting noises really should be banned...");
+		drain_alla(SuperFemtrapJanet ? 2 : 1);
+	}
 	if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 	if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -29436,6 +29471,10 @@ int x, y;
 		else if (funwalltype < 33) pline("%s produces %s farting noises with her sexy butt.", farttrapnames[funwalltype], rn2(2) ? "beautiful" : "squeaky");
 		else pline("%s produces %s farting noises with her sexy butt.", farttrapnames[funwalltype], rn2(2) ? "disgusting" : "loud");
 		u.cnd_fartingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("that those farting noises really should be banned...");
+			drain_alla(SuperFemtrapJanet ? 2 : 1);
+		}
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();

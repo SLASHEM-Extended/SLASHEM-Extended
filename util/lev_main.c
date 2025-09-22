@@ -948,6 +948,8 @@ static struct {
 
 	{ "antiswitch", ANTISWITCH_TRAP },
 
+	{ "janet", JANET_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

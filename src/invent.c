@@ -1884,6 +1884,8 @@ have_femtrapmarlena()
 {
 	register struct obj *otmp;
 
+	/*if (u.tempsuperfemtrap_marlena) return 2;*/
+
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == MARLENA_S_JEWEL) {
 			return(TRUE);
@@ -3452,6 +3454,23 @@ have_femtrapsabrina()
 	return(FALSE);
 }
 
+int
+have_femtrapjanet()
+{
+	register struct obj *otmp;
+
+	if (u.tempsuperfemtrap_janet) return 2;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == JANET_S_JEWEL) {
+			if (otmp->oartifact == ART_NAME_SAYS_IT_ALL) return 2;
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(104)) return TRUE;
+	return(FALSE);
+}
+
 boolean
 have_primecurse()
 {
@@ -4471,7 +4490,7 @@ have_cursingstone()
 {
 	register struct obj *otmp;
 
-	if (u.tempsupernastytrap_cursing) return 2; /* keyword "timerun", because supernasty traps are a thing that exists --Amy */
+	if (u.tempsupernastytrap_cursing) return 2;
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == STONE_OF_CURSING) {
@@ -5714,6 +5733,8 @@ int
 have_timerunstone()
 {
 	register struct obj *otmp;
+
+	/*if (u.tempsupernastytrap_timerun) return 2;*/
 
 	for(otmp = invent; otmp; otmp = otmp->nobj) {
 		if(otmp->otyp == TIME_USE_STONE) { /* Amy note: femauspices for certain nasty traps */
@@ -13575,6 +13596,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("If you want to turn into a sweet asian amazon, wear these multicolored sweeties. They make you more resistant to fire and also confer weak displacement, but monsters will hit you more often in melee. Also, wearing them trains the sexy flats skill.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GENTLE_BOOTS))
 			pline("These boots are soooooo gentle! Wearing them will use the sexy flats skill.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BALLERINAS))
+			pline("This cute pair of pink girl shoes counts as sexy flats, at least as long as the base item type isn't high-heeled.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WARM_WERDING_BOOTS))
 			pline("As soon as you put on this pair of boots, its base type identifies itself.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLED_BOOTS))
@@ -16069,6 +16092,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A very pretty pair of light cyan platform sandals with block heels. They carry Ksenia's curse, and have 1 AC and 2 MC."); break;
 			case LYDIA_LADY_PUMPS:
 				pline("Wow, you absolutely love the tender cone heels of this pair of red velvet pumps! They carry Lydia's curse, and have 2 AC and 2 MC."); break;
+			case JANET_LADY_PUMPS:
+				pline("A very sexy pair of lady pumps with lovely cone heels. They carry Janet's curse, and have 2 AC and 2 MC."); break;
 			case CONNY_COMBAT_BOOTS:
 				pline("These black combat boots have everything: block heels, zippers and buckles. They carry Conny's curse, and have 3 AC and 1 MC."); break;
 			case KATIA_COMBAT_BOOTS:
@@ -20504,6 +20529,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While having this jewel in your inventory, you're afflicted with Ksenia's curse. It autocurses and cannot be dropped while cursed."); break;
 			case LYDIA_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Lydia's curse. It autocurses and cannot be dropped while cursed."); break;
+			case JANET_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Janet's curse. It autocurses and cannot be dropped while cursed."); break;
 			case CONNY_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Conny's curse. It autocurses and cannot be dropped while cursed."); break;
 			case KATIA_S_JEWEL:
@@ -34352,6 +34379,14 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: if you read it on a Monday, you get a weak amnesia effect and temporary +1 increase damage."); break;
 				case ART_WHAT_IF_I_NEED_TO_KNOW_:
 					pline("Artifact specs: reading it spawns a stack of standard id scrolls on the ground."); break;
+				case ART_NAME_SAYS_IT_ALL:
+					pline("Artifact specs: This very cursed jewel will make the corresponding feminism trap effect much worse. In this case: Farting noises, as well as sniffing pants and socks and such, will drain your soul even more."); break;
+				case ART_SEXEHSQUIRT:
+					pline("Artifact specs: waterwalking when worn, can be invoked to perform the meltee technique even if you don't know that one, and monsters have a chance of spawning with scrolls of urine which they can read."); break;
+				case ART_HANH_S_UNEXPECTED_POWER:
+					pline("Artifact specs: +8 kick damage."); break;
+				case ART_ELIZAH_S_SINKER:
+					pline("Artifact specs: your kick deals +10 lightning damage, acid resistance and unbreathing when worn, double janet trap effect, soiltype effect, prevents semicolons and flying fish from hiding in water and makes them sometimes lose their turns, and the weather has a chance of being set to 'thunderstorm'."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

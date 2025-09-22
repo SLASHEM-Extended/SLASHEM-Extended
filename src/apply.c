@@ -6798,6 +6798,7 @@ pillremoved:
 	case JANINA_S_JEWEL:
 	case KSENIA_S_JEWEL:
 	case LYDIA_S_JEWEL:
+	case JANET_S_JEWEL:
 	case CONNY_S_JEWEL:
 	case KATIA_S_JEWEL:
 	case MARIYA_S_JEWEL:

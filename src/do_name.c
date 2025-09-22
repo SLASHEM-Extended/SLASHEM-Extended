@@ -1561,6 +1561,8 @@ int femtrapnum;
 			sprintf(femtrapname, "Lara"); break;
 		case 103:
 			sprintf(femtrapname, "Sabrina"); break;
+		case 104:
+			sprintf(femtrapname, "Janet"); break;
 
 	}
 

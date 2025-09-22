@@ -24976,6 +24976,22 @@ A("What if I need to know?",				SPE_DETECT_MONSTERS, /* reading it spawns a stac
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("The Name Says It All",				JANET_S_JEWEL, /* double janet trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Sexehsquirt",				JANET_LADY_PUMPS, /* waterwalking, can be invoked to perform the meltee technique even if you don't have that one, all monsters have a 1 in 100 chance of spawning with a scroll of urine (which you CAN retrieve and potentially blank, if you're fast enough to kill the monster before it uses the scroll) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Hanh's Unexpected Power",				LOW_BOOTS, /* initialized to always be ballerinas */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Elizah's Sinker",				LOW_BOOTS, /* initialized to always be otting boots, double janet trap effect, soiltype effect, unbreathing, monsters of class ; or I have 50% chance of losing their turns and can't hide in water, 1 in 10000 chance per turn to change the weather to "thunderstorm" */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK|SPFX_DEFN), 0, 0,
+	ELEC(0, 10), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

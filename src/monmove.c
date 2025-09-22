@@ -662,6 +662,8 @@ register struct monst *mtmp;
 	if ((mdat == &mons[PM_BUGBEAM_CUBE] || mdat == &mons[PM_HANGFISH] || mdat == &mons[PM_JOHNNY_SINDACCO] || mdat == &mons[PM_BOXIT_CUBE] || mdat == &mons[PM_IRMGARD] || mdat == &mons[PM_WORM_THAT_WANKS] || mdat == &mons[PM_METH_HEAD] || mdat == &mons[PM_TORSTINA] || mdat == &mons[PM_MARINERV] || mdat == &mons[PM_BLINKLE_BEE] || mdat == &mons[PM_MARISTIN] || mdat == &mons[PM_HUNCHBACKED_LITTLE_MAN] || mdat == &mons[PM_MARIVERT] || mdat == &mons[PM_MARISISTER] || mdat == &mons[PM_OUTER_ONE_NO] || mdat == &mons[PM_FUNNY_ITALIAN] || mdat == &mons[PM_EAR_FIG_MACHINE] || mdat == &mons[PM_POLEPOKER] || mdat == &mons[PM_DISTURBMENT_HEAD]) && !rn2(4)) return 0; /* can sometimes not move; this is by design */
 	if ((mdat == &mons[PM_SARAH_S_AIRTIGHT_PANTS]) && rn2(5)) return 0;
 
+	if (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER && (mtmp->data->mlet == S_EEL || mtmp->data->mlet == S_FLYFISH) && rn2(2)) return 0;
+
 	if (uarmh && uarmh->oartifact == ART_LORSKEL_S_BACKCUSS && !rn2(5) && Dimmed && (mtmp->data->geno & G_UNIQ)) return 0;
 
 	if (uarmu && uarmu->oartifact == ART_ARTITFACT && flags.female && !rn2(5)) return 0;
@@ -1736,6 +1738,10 @@ register struct monst *mtmp;
 	if (FemtrapActiveMeltem && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && mtmp->female && humanoid(mdat) && !rn2(10 + mtmp->butthurt - mtmp->fartbonus) && (distu(mtmp->mx, mtmp->my) <= fartdistance) && !mtmp->mpeaceful) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("uncomfortably aroused by those girlful noises!");
+			drain_alla(SuperFemtrapJanet ? 2 : 1);
+		}
 		if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 		if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1776,6 +1782,10 @@ register struct monst *mtmp;
 			pline("You long for more!");
 			pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "beautiful" : "squeaky", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 			u.cnd_fartingcount++;
+			if (FemtrapActiveJanet) {
+				You_feel("uncomfortably aroused by those girlful noises!");
+				drain_alla(SuperFemtrapJanet ? 2 : 1);
+			}
 			if (Role_if(PM_CLIMACTERIAL)) climtrainsqueaking(1);
 			if (Role_if(PM_BUTT_LOVER) && !rn2(20)) buttlovertrigger();
 			if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -1916,6 +1926,10 @@ newbossSING:
 		make_blinded(Blinded + (long)blindinc, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("extremely nauseous all of a sudden...");
+			drain_alla(SuperFemtrapJanet ? 100 : 50);
+		}
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
@@ -1928,6 +1942,10 @@ newbossSING:
 		make_blinded(Blinded + (long)blindinc, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("extremely nauseous all of a sudden...");
+			drain_alla(SuperFemtrapJanet ? 100 : 50);
+		}
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
@@ -1940,6 +1958,10 @@ newbossSING:
 		make_blinded(Blinded + (long)blindinc, FALSE);
 		if (!rn2(5)) increasesanity(rnd(10));
 		u.cnd_crappingcount++;
+		if (FemtrapActiveJanet) {
+			You_feel("extremely nauseous all of a sudden...");
+			drain_alla(SuperFemtrapJanet ? 100 : 50);
+		}
 		if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
 
 	}
@@ -4752,7 +4774,7 @@ postmov:
 		}
 	    }
 
-	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(uarms && uarms->oartifact == ART_SEALIFE_REVEAL) && !(uwep && uwep->oartifact == ART_LYSARITH_S_TIDEBREAKER) && !(uarmc && uarmc->oartifact == ART_SATAN_S_SUGGESTION) && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
+	    if(hides_under(ptr) || (ptr->mlet == S_EEL && !(uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER) && !(uarms && uarms->oartifact == ART_SEALIFE_REVEAL) && !(uwep && uwep->oartifact == ART_LYSARITH_S_TIDEBREAKER) && !(uarmc && uarmc->oartifact == ART_SATAN_S_SUGGESTION) && !(ptr == &mons[PM_DEFORMED_FISH]) ) ) {
 		/* Always set--or reset--mundetected if it's already hidden
 		   (just in case the object it was hiding under went away);
 		   usually set mundetected unless monster can't move.  */

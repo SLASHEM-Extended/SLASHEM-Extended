@@ -1271,6 +1271,8 @@ init_appearance_randarts()
 	artilist[ART_SHE_S_STILL_AN_ANASTASIA].otyp = find_loafers();
 	artilist[ART_SING_AND_JULIETTA_S_JOINT_].otyp = find_antisuck_helmet();
 	artilist[ART_DARKFLECT].otyp = find_chess_boots();
+	artilist[ART_ELIZAH_S_SINKER].otyp = find_otting_boots();
+	artilist[ART_HANH_S_UNEXPECTED_POWER].otyp = find_ballerinas();
 	artilist[ART_MY_DEAR_SLAVE].otyp = find_plateau_boots();
 	artilist[ART_JONACE_S_TALLNESS].otyp = find_platinum_stilettos();
 	artilist[ART_ABRASIVE_RUPIKA].otyp = find_high_iron_boots();
@@ -7054,6 +7056,13 @@ chargingchoice:
 				You_feel("kinda guilty...");
 				rndcurse();
 			}
+
+			use_temporary_tech(T_MELTEE);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_SEXEHSQUIRT) {
 
 			use_temporary_tech(T_MELTEE);
 

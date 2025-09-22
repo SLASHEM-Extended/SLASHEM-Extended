@@ -94,6 +94,8 @@
 
 #define AefdeActive	(AefdeEffect || u.uprops[AEFDE_EFFECT].extrinsic || have_aefdestone() || (uarm && uarm->oartifact == ART_BECAUSE_YOU_LOSE) )
 
+#define StillTriggerGroundTraps	(SoiltypeEffect || u.uprops[SOILTYPE].extrinsic || have_soiltypestone() || (uarmf && uarmf->oartifact == ART_ARABELLA_S_GIRL_KICK) || (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER) )
+
 #define InventoryDoesNotGo	(InventoryLoss || u.uprops[INVENTORY_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_DEEP_INSANITY) || (uarmh && uarmh->oartifact == ART_FLAT_INSANITY) || have_inventorylossstone())
 
 #define TopLineIsFleecy		(TopLineEffect || u.uprops[TOP_LINE_EFFECT].extrinsic || have_toplinestone() || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD))
@@ -809,6 +811,7 @@
 #define FemaleTrapFemmy	u.uprops[FEMTRAP_FEMMY].intrinsic
 #define FemaleTrapMadeleine	u.uprops[FEMTRAP_MADELEINE].intrinsic
 #define FemaleTrapMarlena	u.uprops[FEMTRAP_MARLENA].intrinsic
+#define FemaleTrapJanet	u.uprops[FEMTRAP_JANET].intrinsic
 #define FemaleTrapTanja	u.uprops[FEMTRAP_TANJA].intrinsic
 #define FemaleTrapSonja	u.uprops[FEMTRAP_SONJA].intrinsic
 #define FemaleTrapRhea	u.uprops[FEMTRAP_RHEA].intrinsic
@@ -913,6 +916,7 @@
 #define FemtrapActiveFemmy	(FemaleTrapFemmy || u.uprops[FEMTRAP_FEMMY].extrinsic || have_femtrapfemmy() || (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) )
 #define FemtrapActiveMadeleine	(FemaleTrapMadeleine || u.uprops[FEMTRAP_MADELEINE].extrinsic || have_femtrapmadeleine() || (uamul && uamul->oartifact == ART_MEDI_LEASH) )
 #define FemtrapActiveMarlena	(FemaleTrapMarlena || u.uprops[FEMTRAP_MARLENA].extrinsic || have_femtrapmarlena())
+#define FemtrapActiveJanet	(FemaleTrapJanet || u.uprops[FEMTRAP_JANET].extrinsic || have_femtrapjanet() || (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER) )
 #define FemtrapActiveSabrina	(FemaleTrapSabrina || u.uprops[FEMTRAP_SABRINA].extrinsic || have_femtrapsabrina() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || (uarmf && uarmf->oartifact == ART_SABRINA_S_FREEDOM) || autismweaponcheck(ART_EN_GARDE____TOUCHE_) )
 #define FemtrapActiveTanja	(FemaleTrapTanja || u.uprops[FEMTRAP_TANJA].extrinsic || have_femtraptanja() || (uarmu && uarmu->oartifact == ART_THEY_ALL_FEEL_FLEECY) )
 #define FemtrapActiveSonja	(FemaleTrapSonja || u.uprops[FEMTRAP_SONJA].extrinsic || have_femtrapsonja() || (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) )
@@ -1019,6 +1023,7 @@
 #define SuperFemtrapAnastasia	( (have_femtrapanastasia() == 2) || (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) )
 #define SuperFemtrapWendy	( (have_femtrapwendy() == 2) || (uarmc && uarmc->oartifact == ART_DANOISE_S_LEAK) )
 #define SuperFemtrapKatharina	( (have_femtrapkatharina() == 2) )
+#define SuperFemtrapJanet	( (have_femtrapjanet() == 2) || (uarmf && uarmf->oartifact == ART_ELIZAH_S_SINKER) )
 #define SuperFemtrapElif	( (have_femtrapelif() == 2) )
 #define SuperFemtrapMaurah	( (have_femtrapmaurah() == 2) )
 #define SuperFemtrapSarah	( (have_femtrapsarah() == 2) )
@@ -1592,7 +1597,7 @@
 
 	/* May touch surface; does not override any others */
 
-#define Wwalking		( (u.uprops[WWALKING].extrinsic || u.wwalktimer || (ublindf && ublindf->oartifact == ART_FLOTATION_DEVICE) || (uarmf && uarmf->oartifact == ART_SANDALS_OF_JESUS_CHRIST) || (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND) || (uwep && uwep->oartifact == ART_POSEIDON_S_OTHER_TRIDENT) || (uwep && uwep->oartifact == ART_SEAFOAM) || (uwep && uwep->oartifact == ART_LOGGERS_S_OVERKILL) || (uwep && uwep->oartifact == ART_MAKESHIFT_BRIDGE) || (uwep && uwep->oartifact == ART_POLAR_STAR) || (uwep && uwep->oartifact == ART_POLARIS) || (uarmf && uarmf->oartifact == ART_WW_OF_SOME) || u.uprops[MULTISHOES].extrinsic) && \
+#define Wwalking		( (u.uprops[WWALKING].extrinsic || u.wwalktimer || (ublindf && ublindf->oartifact == ART_FLOTATION_DEVICE) || (uarmf && uarmf->oartifact == ART_SANDALS_OF_JESUS_CHRIST) || (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND) || (uwep && uwep->oartifact == ART_POSEIDON_S_OTHER_TRIDENT) || (uwep && uwep->oartifact == ART_SEAFOAM) || (uwep && uwep->oartifact == ART_LOGGERS_S_OVERKILL) || (uwep && uwep->oartifact == ART_MAKESHIFT_BRIDGE) || (uwep && uwep->oartifact == ART_POLAR_STAR) || (uwep && uwep->oartifact == ART_POLARIS) || (uarmf && uarmf->oartifact == ART_WW_OF_SOME) || (uarmf && uarmf->oartifact == ART_SEXEHSQUIRT) || u.uprops[MULTISHOES].extrinsic) && \
 				 !Is_waterlevel(&u.uz))
 	/* Don't get wet, can't go under water; overrides others except levitation */
 	/* Wwalking is meaningless on water level */

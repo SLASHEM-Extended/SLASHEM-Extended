@@ -29458,6 +29458,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"It seems that the air is filled with an anti-magical aura. So you'd better hope that your char isn't a spellcaster, or you're screwed.",
 	"You feel incapable of understanding what you just read!",
 	"You feel incapable of understanding what you just read! Maybe you should steer clear of horrible Twilight fanfiction, eh?",
+	"You get a bad feeling about the attacks of those women all of a sudden...",
+	"Finally, you overcome your fear of the feminine attacks.",
 
 };
 

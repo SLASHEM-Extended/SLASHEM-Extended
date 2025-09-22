@@ -1086,6 +1086,9 @@ exprecalc(void)
 					case 103:
 						pline("You receive an elaborate auspicious message: At experience level %d, you're supposed to wear Sabrina's platform boots, and are chased by angry women. If you don't wear the boots, you won't be able to defeat the women, hahaha!", displaycheck);
 						break;
+					case 104:
+						pline("You receive an elaborate auspicious message: At experience level %d, farting attacks, as well as catching a whiff from odoriferous socks or pants, can drain your very soul.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 
