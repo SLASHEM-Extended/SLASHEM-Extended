@@ -112,6 +112,13 @@ int thrown;
 	}
 	else launcher = (struct obj *)0;
 
+	if (obj && u.tempnospearthrow) {
+		if (objects[obj->otyp].oc_skill == P_SPEAR || objects[obj->otyp].oc_skill == -P_SPEAR) {
+			You("cannot throw spears right now!");
+			return 0;
+		}
+	}
+
 	/* ask "in what direction?" */
 #ifndef GOLDOBJ
 	if (!getdir((char *)0)) {

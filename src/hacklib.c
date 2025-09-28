@@ -660,6 +660,14 @@ twilighttime()
 	return(hour > 19 && hour < 23);
 }
 
+int
+eveningtime()
+{
+	register int hour = getlt()->tm_hour;
+
+	return(hour >= 18 && hour <= 24);
+}
+
 #endif /* OVL2 */
 
 /*hacklib.c*/

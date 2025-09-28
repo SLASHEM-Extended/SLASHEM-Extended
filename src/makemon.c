@@ -211,12 +211,14 @@ int otyp,oquan;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXY]) otmp->opoisoned = TRUE;
 	if (otyp == CROSSBOW_BOLT && mtmp->data == &mons[PM_ROXANNE]) otmp->opoisoned = TRUE;
 
-	if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
-	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
-	if (is_weptool(otmp)) otmp->mstartinventB = 1;
-	if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
-	if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
-	if (is_weptool(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+	if ((u.mongetshack != 33) || u.lamefarmer || (monstersoundtype(mtmp) == MS_BULLETATOR) ) {
+		if (otmp->oclass == WEAPON_CLASS) otmp->mstartinventB = 1;
+		if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
+		if (is_weptool(otmp)) otmp->mstartinventB = 1;
+		if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+		if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+		if (is_weptool(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100) ) otmp->mstartinventX = 1;
+	}
 
 	(void) mpickobj(mtmp, otmp, TRUE);
 }
@@ -28607,7 +28609,7 @@ int mndx;
 	if (notuncommonlate > 1000) notuncommonlate = 1000;
 
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
-	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
+	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.tempnevernmbf || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
@@ -29222,6 +29224,7 @@ loopback:
 		if (ct > 0 && (Role_if(PM_PALADIN) && is_diablomonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_PIRATE) && is_dnethackmonster(ptr))) ct += 5;
 		if (ct > 0 && (Role_if(PM_POKEMON) && is_pokemon(ptr))) ct += 10;
+		if (ct > 0 && (u.tempmorepokemon && is_pokemon(ptr))) ct += 15;
 		if (ct > 0 && (Role_if(PM_PRIEST) && is_vanillamonster(ptr))) ct += 1;
 		if (ct > 0 && (Role_if(PM_PSION) && extra_nasty(ptr))) ct += 2;
 		if (ct > 0 && (Role_if(PM_PSION) && is_covetous(ptr))) ct += 10;
@@ -29797,6 +29800,7 @@ loopback:
 		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_ILLU) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_OUTSIDER) && dmgtype(ptr, AD_FEMI) )) ct += 1;
 		if (ct > 0 && (Race_if(PM_PLAYER_DYNAMO) && (ptr->mlet == S_KOP) )) ct += 5;
+		if (ct > 0 && (u.tempspiderspawns && (ptr->mlet == S_SPIDER) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_PLAYER_DYNAMO) && (ptr->msound == MS_ARREST) )) ct += 5;
 		if (ct > 0 && (Race_if(PM_NEMESIS) && always_hostile(ptr) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_UNMAGIC_FISH) && dmgtype(ptr, AD_MCRE) )) ct += 3;
@@ -29882,6 +29886,7 @@ loopback:
 		if (ct > 0 && (Race_if(PM_TONBERRY) && is_steammonster(ptr) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_TONBERRY) && is_jokemonster(ptr) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(ptr) )) ct += 50;
+		if (ct > 0 && (u.temprandospawnfreq && is_randomizedmonster(ptr) )) ct += 200;
 		if (ct > 0 && (Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(ptr) )) ct += 10;
 		if (ct > 0 && (Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(ptr) )) ct += 12;
 		if (ct > 0 && (ischallenger && (ptr->msound == MS_STENCH) )) ct += (((int)(ptr->geno & G_FREQ)) * 4);
@@ -30395,7 +30400,7 @@ int     spc;
 {
 	register int	first, last, num = 0;
 	int maxmlev, mask = (G_NOGEN | G_UNIQ) & ~spc;
-	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Race_if(PM_PLAYER_DYNAMO) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
+	if (!rn2(((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) || (Bossfights || u.tempnevernmbf || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) || Role_if(PM_TRANSSYLVANIAN) || Race_if(PM_PLAYER_DYNAMO) || isbossrusher || Role_if(PM_GANG_SCHOLAR) ) mask = (G_NOGEN) & ~spc;
 
 	int uncommontwo = 0;
 	int uncommonthree = 0;
@@ -30835,6 +30840,7 @@ int     spc;
 		if ((Role_if(PM_PALADIN) && is_diablomonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_PIRATE) && is_dnethackmonster(&mons[last]))) num += 5;
 		if ((Role_if(PM_POKEMON) && is_pokemon(&mons[last]))) num += 10;
+		if ((u.tempmorepokemon && is_pokemon(&mons[last]))) num += 15;
 		if ((Role_if(PM_PRIEST) && is_vanillamonster(&mons[last]))) num += 1;
 		if ((Role_if(PM_PSION) && extra_nasty(&mons[last]))) num += 2;
 		if ((Role_if(PM_PSION) && is_covetous(&mons[last]))) num += 10;
@@ -31483,6 +31489,7 @@ int     spc;
 		if ((Race_if(PM_TONBERRY) && is_steammonster(&mons[last]) )) num += 10;
 		if ((Race_if(PM_TONBERRY) && is_jokemonster(&mons[last]) )) num += 2;
 		if ((Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(&mons[last]) )) num += 50;
+		if ((u.temprandospawnfreq && is_randomizedmonster(&mons[last]) )) num += 200;
 		if ((Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(&mons[last]) )) num += 10;
 		if ((Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(&mons[last]) )) num += 12;
 		if ((ischallenger && (mons[last].msound == MS_STENCH) )) num += ((mons[last].geno & G_FREQ) * 4);
@@ -32091,6 +32098,7 @@ int     spc;
 		if ((Role_if(PM_PALADIN) && is_diablomonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_PIRATE) && is_dnethackmonster(&mons[first]))) num -= 5;
 		if ((Role_if(PM_POKEMON) && is_pokemon(&mons[first]))) num -= 10;
+		if ((u.tempmorepokemon && is_pokemon(&mons[first]))) num -= 15;
 		if ((Role_if(PM_PRIEST) && is_vanillamonster(&mons[first]))) num -= 1;
 		if ((Role_if(PM_PSION) && extra_nasty(&mons[first]))) num -= 2;
 		if ((Role_if(PM_PSION) && is_covetous(&mons[first]))) num -= 10;
@@ -32739,6 +32747,7 @@ int     spc;
 		if ((Race_if(PM_TONBERRY) && is_steammonster(&mons[first]) )) num -= 10;
 		if ((Race_if(PM_TONBERRY) && is_jokemonster(&mons[first]) )) num -= 2;
 		if ((Race_if(PM_PLAYER_GLORKUM) && is_randomizedmonster(&mons[first]) )) num -= 50;
+		if ((u.temprandospawnfreq && is_randomizedmonster(&mons[first]) )) num -= 200;
 		if ((Race_if(PM_RACE_THAT_DOESN_T_EXIST) && always_peaceful(&mons[first]) )) num -= 10;
 		if ((Race_if(PM_HYBRIDRAGON) && is_dnethackmonster(&mons[first]) )) num -= 12;
 		if ((ischallenger && (mons[first].msound == MS_STENCH) )) num -= ((mons[first].geno & G_FREQ) * 4);
@@ -33340,6 +33349,7 @@ register int otyp;
 	/* Amy notice: u.mongetshack can be set by the caller to set startinvent flags for these items
 	 * different values may be set and will have different meanings
 	 * u.mongetshack == 100 -> mstartinventX will be set, so the item can never drop
+	 * u.mongetshack == 33 -> none of the mstartinvent variables will be set, so the item will always drop (unless mstartinventX is supposed to be set)
 	 */
 
 	register struct obj *otmp;
@@ -33400,31 +33410,36 @@ register int otyp;
 	    }
 
 	    spe = otmp->spe;
-	    if (is_musable(otmp)) otmp->mstartinvent = 1;
-	    if (otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) otmp->mstartinventB = 1;
-	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
-	    if (is_weptool(otmp)) otmp->mstartinventB = 1;
-	    if (otmp->otyp == MUMMY_WRAPPING && mtmp->data->mlet == S_MUMMY) otmp->mstartinventC = 1;
-	    if (otmp->otyp == LONG_SWORD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
-	    if (otmp->otyp == LARGE_SHIELD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
-	    if (otmp->otyp == SHIELD_OF_REFLECTION && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
-	    if (otmp->otyp == ROBE && mtmp->data->mlet == S_WRAITH) otmp->mstartinventC = 1;
-	    if (otmp->otyp == RUBY && mtmp->data == &mons[PM_RUBY_BOSS]) otmp->mstartinventC = 1;
-	    if (otmp->otyp == LANCE && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
-	    if (otmp->otyp == PITCHFORK && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
 
-	    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (is_musable(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
-	    if (is_weptool(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+	    if ((u.mongetshack != 33) || u.lamefarmer || (monstersoundtype(mtmp) == MS_BULLETATOR) ) {
 
-	    if ((otmp->otyp >= WEDGED_LITTLE_GIRL_SANDAL) && (otmp->otyp <= PROSTITUTE_SHOE) && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN)) {
-			otmp->mstartinventD = 1;
-		}
-	    if ((otmp->otyp >= WEDGE_SANDALS) && (otmp->otyp <= ITALIAN_HEELS) && !Role_if(PM_TOPMODEL)) {
-			otmp->mstartinventD = 1;
-		}
-	    if ((otmp->otyp >= WEDGE_SANDALS) && (otmp->otyp <= ITALIAN_HEELS) && Role_if(PM_FAILED_EXISTENCE)) otmp->mstartinventC = 1;
+		    if (is_musable(otmp)) otmp->mstartinvent = 1;
+		    if (otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) otmp->mstartinventB = 1;
+		    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic) otmp->mstartinventB = 1;
+		    if (is_weptool(otmp)) otmp->mstartinventB = 1;
+		    if (otmp->otyp == MUMMY_WRAPPING && mtmp->data->mlet == S_MUMMY) otmp->mstartinventC = 1;
+		    if (otmp->otyp == LONG_SWORD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
+		    if (otmp->otyp == LARGE_SHIELD && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
+		    if (otmp->otyp == SHIELD_OF_REFLECTION && mtmp->data->mlet == S_ANGEL) otmp->mstartinventC = 1;
+		    if (otmp->otyp == ROBE && mtmp->data->mlet == S_WRAITH) otmp->mstartinventC = 1;
+		    if (otmp->otyp == RUBY && mtmp->data == &mons[PM_RUBY_BOSS]) otmp->mstartinventC = 1;
+		    if (otmp->otyp == LANCE && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
+		    if (otmp->otyp == PITCHFORK && monstersoundtype(mtmp) == MS_TREESQUAD) otmp->mstartinventE = 1;
+
+		    if ((otmp->oclass == WEAPON_CLASS || otmp->oclass == ARMOR_CLASS) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+		    if (otmp->oclass == GEM_CLASS && !objects[otmp->otyp].oc_magic && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+		    if (is_musable(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+		    if (is_weptool(otmp) && (monstersoundtype(mtmp) == MS_BULLETATOR || u.lamefarmer || u.mongetshack == 100)) otmp->mstartinventX = 1;
+
+		    if ((otmp->otyp >= WEDGED_LITTLE_GIRL_SANDAL) && (otmp->otyp <= PROSTITUTE_SHOE) && !Role_if(PM_TRANSVESTITE) && !Role_if(PM_TRANSSYLVANIAN)) {
+				otmp->mstartinventD = 1;
+			}
+		    if ((otmp->otyp >= WEDGE_SANDALS) && (otmp->otyp <= ITALIAN_HEELS) && !Role_if(PM_TOPMODEL)) {
+				otmp->mstartinventD = 1;
+			}
+		    if ((otmp->otyp >= WEDGE_SANDALS) && (otmp->otyp <= ITALIAN_HEELS) && Role_if(PM_FAILED_EXISTENCE)) otmp->mstartinventC = 1;
+	    }
+
 	    (void) mpickobj(mtmp, otmp, TRUE);	/* might free otmp */
 	    return(spe);
 	} else return(0);

@@ -276,6 +276,119 @@ nh_timeout()
 		if (!u.tempharenwah) You("feel that the animals are no longer as peaceful as before.");
 	}
 
+	if (u.tempfountainbuild) {
+		u.tempfountainbuild--;
+		if (u.tempfountainbuild < 0) u.tempfountainbuild = 0; /* fail safe */
+	}
+
+	if (u.tempnospearthrow) {
+		u.tempnospearthrow--;
+		if (u.tempnospearthrow < 0) u.tempnospearthrow = 0; /* fail safe */
+		if (!u.tempnospearthrow) pline("It is once again possible to throw spears.");
+	}
+
+	if (u.tempnukaeffect) {
+		u.tempnukaeffect--;
+		if (u.tempnukaeffect < 0) u.tempnukaeffect = 0; /* fail safe */
+		if (!u.tempnukaeffect) pline("Seems like that feminism trap effect has ended.");
+	}
+
+	if (u.tempnoflysee) {
+		u.tempnoflysee--;
+		if (u.tempnoflysee < 0) u.tempnoflysee = 0; /* fail safe */
+		if (!u.tempnoflysee) You("can fly once more (as long as you're capable of doing so), but no longer see flying opponents.");
+	}
+
+	if (u.tempcarrcap1000) {
+		u.tempcarrcap1000--;
+		if (u.tempcarrcap1000 < 0) u.tempcarrcap1000 = 0; /* fail safe */
+		if (!u.tempcarrcap1000) You("can no longer carry excessive amounts of stuff.");
+	}
+
+	if (u.temprumormessages) {
+		u.temprumormessages--;
+		if (u.temprumormessages < 0) u.temprumormessages = 0; /* fail safe */
+	}
+
+	if (u.tempradiusto) {
+		u.tempradiusto--;
+		if (u.tempradiusto < 0) u.tempradiusto = 0; /* fail safe */
+		if (!u.tempradiusto) You("feel that the radius time-out has ended.");
+	}
+
+	if (u.tempmonitemtrapsp) {
+		u.tempmonitemtrapsp--;
+		if (u.tempmonitemtrapsp < 0) u.tempmonitemtrapsp = 0; /* fail safe */
+	}
+
+	if (u.tempuninterapprf) {
+		u.tempuninterapprf--;
+		if (u.tempuninterapprf < 0) u.tempuninterapprf = 0; /* fail safe */
+		if (!u.tempuninterapprf) You("can once again be interrupted, and monsters no longer automatically flee.");
+	}
+
+	if (u.tempspiderspawns) {
+		u.tempspiderspawns--;
+		if (u.tempspiderspawns < 0) u.tempspiderspawns = 0; /* fail safe */
+	}
+
+	if (u.tempcritical10) {
+		u.tempcritical10--;
+		if (u.tempcritical10 < 0) u.tempcritical10 = 0; /* fail safe */
+		if (!u.tempcritical10) Your("critical hit chance is no longer boosted.");
+	}
+
+	if (u.tempnofartloud) {
+		u.tempnofartloud--;
+		if (u.tempnofartloud < 0) u.tempnofartloud = 0; /* fail safe */
+		if (!u.tempnofartloud) pline("Oh no, apparently those annoying monsters can produce loud farting noises again.");
+	}
+
+	if (u.tempspelllossmagvac) {
+		u.tempspelllossmagvac--;
+		if (u.tempspelllossmagvac < 0) u.tempspelllossmagvac = 0; /* fail safe */
+		if (!u.tempspelllossmagvac) You("can finally use your spells effectively again.");
+	}
+
+	if (u.tempgoodsuppreffects) {
+		u.tempgoodsuppreffects--;
+		if (u.tempgoodsuppreffects < 0) u.tempgoodsuppreffects = 0; /* fail safe */
+	}
+
+	if (u.tempveryfastspeed) {
+		u.tempveryfastspeed--;
+		if (u.tempveryfastspeed < 0) u.tempveryfastspeed = 0; /* fail safe */
+		if (!u.tempveryfastspeed) You("feel a bit slower.");
+	}
+
+	if (u.tempnevernmbf) {
+		u.tempnevernmbf--;
+		if (u.tempnevernmbf < 0) u.tempnevernmbf = 0; /* fail safe */
+		if (!u.tempnevernmbf) You("feel that the never-non-move bossfight has ended.");
+	}
+
+	if (u.tempmorepokemon) {
+		u.tempmorepokemon--;
+		if (u.tempmorepokemon < 0) u.tempmorepokemon = 0; /* fail safe */
+		if (!u.tempmorepokemon) You("feel that pokemon are no longer more likely to spawn.");
+	}
+
+	if (u.temprandospawnfreq) {
+		u.temprandospawnfreq--;
+		if (u.temprandospawnfreq < 0) u.temprandospawnfreq = 0; /* fail safe */
+	}
+
+	if (u.temptimebasefail75) {
+		u.temptimebasefail75--;
+		if (u.temptimebasefail75 < 0) u.temptimebasefail75 = 0; /* fail safe */
+	}
+
+	if (u.tempfireimmune) {
+		u.tempfireimmune--;
+		if (u.tempfireimmune < 0) u.tempfireimmune = 0; /* fail safe */
+		if (!u.tempfireimmune) You("no longer feel incombustible.");
+	}
+
 	if (u.tempspellchance20) {
 		u.tempspellchance20--;
 		if (u.tempspellchance20 < 0) u.tempspellchance20 = 0; /* fail safe */
@@ -5440,6 +5553,11 @@ nh_timeout()
 
 		case TIME_STOPPED:
 			pline("Time is no longer stopped.");
+			break;
+
+		case FEAR_FACTOR:
+			if (!Fear_factor)
+				pline("It seems that you no longer have an increased fear factor.");
 			break;
 
 		case DEAC_FIRE_RES:

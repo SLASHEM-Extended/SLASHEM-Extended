@@ -1273,6 +1273,7 @@ newsym(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
@@ -1422,6 +1423,7 @@ newsym(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
@@ -1741,6 +1743,7 @@ newsymX(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
@@ -1890,6 +1893,7 @@ newsymX(x,y)
 		(Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) ||
 		(Race_if(PM_RODNEYAN) && mon_has_special(mon)) ||
 		(Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) ||
+		(u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) ||
 		(isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) ||
 		(uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) ||
 		(have_maybrittclick() && is_jokemonster(mon->data) ) ||
@@ -3906,6 +3910,7 @@ struct monst *mon;
 	if (Race_if(PM_RODNEYAN) && mon_has_amulet(mon)) return TRUE;
 	if (Race_if(PM_RODNEYAN) && mon_has_special(mon)) return TRUE;
 	if (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) return TRUE;
+	if (u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) return TRUE;
 	if (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) return TRUE;

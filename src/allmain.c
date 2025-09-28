@@ -2668,6 +2668,21 @@ moveloop()
 			u.catwalknastytrap = rnd(286); /* timerun */
 		}
 
+		if (u.temprumormessages) {
+			if (!rn2(100)) {
+				const char *line;
+				char buflin[BUFSZ];
+				if (rn2(2)) line = getrumor(-1, buflin, TRUE);
+				else line = getrumor(0, buflin, TRUE);
+				if (!*line) line = "Slash'EM rumors file closed for renovation.";
+				pline("%s", line);
+			}
+			if (!rn2(100)) {
+				pline("%s", fauxmessage());
+				u.cnd_plineamount++;
+			}
+		}
+
 		if (uarmh && uarmh->oartifact == ART_RNG_DAEOLOEOLOEOLOEOLOEOLO && uarmh->spe > 0) uarmh->spe = 0;
 
 		if (uarms && uarms->oartifact == ART_INCAPUTIBLE) {
@@ -2703,6 +2718,30 @@ moveloop()
 				if(++i >= A_MAX) i = 0;
 			}
 
+		}
+
+		if (u.tempmonitemtrapsp) {
+			if (!rn2(1000)) {
+				(void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+			}
+			if (!rn2(1000)) {
+				(void) makemon((struct permonst *)0, 0, 0, NO_MM_FLAGS);
+			}
+			if (!rn2(1000)) {
+				int tryct = 0;
+				int x, y;
+
+				for (tryct = 0; tryct < 2000; tryct++) {
+					x = rn1(COLNO-3,2);
+					y = rn2(ROWNO);
+
+					if (isok(x, y) && !(t_at(x, y)) ) {
+						(void) maketrap(x, y, rndtrap(), 100, FALSE);
+						break;
+					}
+				}
+
+			}
 		}
 
 		if (uarms && uarms->oartifact == ART_MISSING_LETTER_D && !uarms->oeroded) uarms->oeroded = 1;
@@ -2849,6 +2888,11 @@ moveloop()
 
 		if (autismweaponcheck(ART_KILL_KILL_PIANO)) {
 			artilist[ART_KILL_KILL_PIANO].attk.adtyp = randartiattacktype();
+		}
+
+		if (u.tempgoodsuppreffects && !rn2(1000)) {
+			MessageSuppression += rnz(50);
+			goodeffect();
 		}
 
 		if (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) {
@@ -6707,6 +6751,22 @@ newbossUTE:
 			}
 
 			if (moves == (u.capoeiraturns + 10)) pline("Standing still for that long isn't conducive to the capoeira style.");
+		}
+
+		if (u.tempnevernmbf) {
+			if ((u.ux != u.nmbfx) || (u.uy != u.nmbfy)) {
+				u.nmbfturns = moves;
+				u.nmbfx = u.ux;
+				u.nmbfy = u.uy;
+			}
+
+			if (moves > (u.nmbfturns + 1)) {
+				u.nmbfturns = moves;
+				u.nmbfturnactive = moves;
+				u.nmbfx = u.ux;
+				u.nmbfy = u.uy;
+			}
+
 		}
 
 		if (FemtrapActiveNatalje) {
@@ -13322,6 +13382,17 @@ newboss:
 
 		}
 
+		if (u.tempfountainbuild && !rn2(250)) {
+
+			int chaosx, chaosy;
+			chaosx = rn1(COLNO-3,2);
+			chaosy = rn2(ROWNO);
+			if (chaosx && chaosy && isok(chaosx, chaosy) && (levl[chaosx][chaosy].typ == ROOM || levl[chaosx][chaosy].typ == CORR) ) {
+				levl[chaosx][chaosy].typ = FOUNTAIN;
+			}
+
+		}
+
 		if (uimplant && uimplant->oartifact == ART_RUBBER_SHOALS && !rn2(200)) {
 
 			int chaosx, chaosy;
@@ -17471,6 +17542,8 @@ stop_occupation()
 {
 
 	if (uarmc && itemhasappearance(uarmc, APP_QUICKTRAVEL_CLOAK) ) return;
+
+	if (u.tempuninterapprf) return;
 
 	if (uarmf && uarmf->oartifact == ART_TOO_FAST__TOO_FURIOUS) return;
 
@@ -21805,6 +21878,8 @@ timebasedlowerchance()
 {
 	if (isfriday && !rn2(10)) return FALSE; /* unconditional failure on the unlucky day */
 	if (AssholeModeActive) return FALSE; /* unconditional failure if you're playing asshole mode */
+
+	if (u.temptimebasefail75 && rn2(4)) return FALSE;
 
 	if (u.vorpalitytempt) { /* serves you right for abusing an obviously OP item instead of realizing what variant you're playing! */
 		if (u.vorpalitytempt > rn2(100)) return FALSE;

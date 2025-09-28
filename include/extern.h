@@ -1039,6 +1039,7 @@ E int week_day(void);
 E int night(void);
 E int midnight(void);
 E int twilighttime(void);
+E int eveningtime(void);
 
 /* ### invent.c ### */
 
@@ -3622,7 +3623,7 @@ E void mtele_trap(struct monst *, struct trap *,int);
 E int mlevel_tele_trap(struct monst *, struct trap *,BOOLEAN_P,int);
 E void rloco(struct obj *);
 E int random_teleport_level(void);
-E int random_banish_level(void);
+E int random_lvlport_level(void);
 E d_level random_branchport_level(void);
 E d_level random_banishment_level(void);
 E void randombranchtele(void);

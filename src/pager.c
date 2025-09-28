@@ -5825,6 +5825,7 @@ static NEARDATA const char * const soviettaunts[] = {
 "Vash bumerang slomayetsya, i sovetskaya ledyanaya glyba budet GROMKO SMEYAT'SYA MUA KHA KHA!",
 "Kreml' ne pozvolit nikomu uznat' summu obvineniy, ob''yavlennykh v den' otkrytiya, potomu chto grazhdanskiye litsa, imeyushchiye dostup k etoy informatsii, budut obvineny v gosudarstvennoy izmene.",
 "Konechno, v Sovetskoy Rossii ne razreshayetsya poluchat' bol'she odnogo podarka na koronatsiyu. Eto deystvitel'no kul'minatsiya kommunizma.",
+"Sovetskiy mododel tochno znayet, chto vam zakhochetsya chitat' knigi zaklinaniy bol'she tridtsati raz, i poetomu sdelal eto nevozmozhnym! KHO-kho-kho.",
 };
 
 static NEARDATA const char * const practicantlines[] = {
@@ -29460,6 +29461,11 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel incapable of understanding what you just read! Maybe you should steer clear of horrible Twilight fanfiction, eh?",
 	"You get a bad feeling about the attacks of those women all of a sudden...",
 	"Finally, you overcome your fear of the feminine attacks.",
+	"It's celebration evening, which is actually specific to Germany for some reason because the Americans don't celebrate when their working hours are over (wtf)!",
+	"It's celebration evening, which is actually specific to Germany for some reason because the Americans don't celebrate when their working hours are over (wtf)! The German 'Feierabend' doesn't even have a specific expression in the English language for that reason...",
+	"Radius request timed out.",
+	"You feel like running away from the enemy!",
+	"You feel like running away from the enemy! But that's probably not the best idea if your goal is to kill the monsters...",
 
 };
 

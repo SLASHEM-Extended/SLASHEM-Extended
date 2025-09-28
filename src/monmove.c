@@ -3007,7 +3007,7 @@ convertdone:
 
 	/* [DS] Cthulhu also uses psychic blasts */
 	else if ((is_mind_flayer(mdat) || mdat == &mons[PM_CTHULHU] || mdat == &mons[PM_FLYING_ASSHOLE] ) 
-			&& !rn2( (uarmh && itemhasappearance(uarmh, APP_NARROW_HELMET) ) ? 4 : 20)) {
+			&& !(u.tempradiusto) && !rn2( (uarmh && itemhasappearance(uarmh, APP_NARROW_HELMET) ) ? 4 : 20)) {
 		struct monst *m2, *nmon = (struct monst *)0;
 
 		if (canseemon(mtmp))
@@ -3164,7 +3164,7 @@ toofar:
 /*	Now the actual movement phase	*/
 
 #ifndef GOLDOBJ
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.tempuninterapprf && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !u.ugold && (mtmp->mgold || rn2(2))) ||
 
@@ -3174,7 +3174,7 @@ toofar:
 	    lepgold = findgold(mtmp->minvent);
 	}
 
-	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
+	if(!nearby || (monsterflees(mtmp->data) && !rn2(3)) || (mtmp->mnum == PM_YOU_SEE_) || (mtmp->mnum == PM_BROKEN_UMBRELLA && !rn2(3)) || (monstersoundtype(mtmp) == MS_METALMAFIA && !rn2(3)) || (u.singtrapocc && rn2(5)) || (u.tempuninterapprf && rn2(5)) || (u.katitrapocc && rn2(5)) || (uarmc && uarmc->oartifact == ART_AT_ARMS_LENGTH) || mtmp->mflee || scared ||
 	   mtmp->mconf || mtmp->mstun || (mtmp->minvis && !rn2(3)) ||
 	   (mdat->mlet == S_LEPRECHAUN && !ygold && (lepgold || rn2(2))) ||
 #endif
@@ -4155,7 +4155,7 @@ altarfound:
 		boolean should_see = (couldsee(omx, omy) &&
 				      (levl[gx][gy].lit ||
 				       !levl[omx][omy].lit) &&
-				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) ? 36 : (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : (u.currentweather == WEATHER_FOG && !rn2(5)) ? 36 : 100) ));
+				      (dist2(omx, omy, gx, gy) <= (level.flags.shortsighted ? 36 : u.tempradiusto ? 36 : (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) ? 36 : (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) ? 36 : (ublindf && ublindf->oartifact == ART_IT_BE_NITE) ? 36 : (u.currentweather == WEATHER_FOG && !rn2(5)) ? 36 : 100) ));
 
 		if (astralspecial) should_see = TRUE;
 
@@ -4253,6 +4253,7 @@ altarfound:
 
 	if (u.katitrapocc && !mtmp->mpeaceful) appr = -1; /* they're supposed to let you perform your occupation in peace */
 	if (u.singtrapocc && !mtmp->mpeaceful) appr = -1;
+	if (u.tempuninterapprf && !mtmp->mpeaceful) appr = -1;
 
 	if ((!mtmp->mpeaceful || !rn2(10))
 #ifdef REINCARNATION
@@ -4430,7 +4431,7 @@ altarfound:
 	    chi = -1;
 	    nidist = dist2(nix,niy,gx,gy);
 	    /* allow monsters be shortsighted on some levels for balance */
-	    if(!mtmp->mpeaceful && (level.flags.shortsighted || (u.currentweather == WEATHER_FOG && !rn2(5)) || (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
+	    if(!mtmp->mpeaceful && (level.flags.shortsighted || u.tempradiusto || (u.currentweather == WEATHER_FOG && !rn2(5)) || (uwep && uwep->oartifact == ART_ERYNDREL_S_ECLIPSE) || (ublindf && ublindf->oartifact == ART_IT_BE_NITE) || (uwep && uwep->oartifact == ART_BLACK_SUN_ORB && !rn2(3)) || (uarmf && uarmf->oartifact == ART_UPWARD_HEELS) || (uarm && uarm->oartifact == ART_THEY_WON_T_SEE_ME___ && !rn2(4)) || (uarm && uarm->oartifact == ART_DARK_L) || (rn2(10) && RngeLightAbsorption) || (rn2(10) && uarmc && itemhasappearance(uarmc, APP_ABSORBING_CLOAK) ) ) &&
 	       nidist > (couldsee(nix,niy) ? 144 : 36) && appr == 1) appr = 0;
 
 		/* special coding for "homing" giant wasps from the hunger games --Amy */

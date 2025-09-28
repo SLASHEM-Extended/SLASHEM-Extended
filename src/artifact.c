@@ -2202,6 +2202,10 @@ register boolean mod;
 			otmp->quan += 4;
 			otmp->owt = weight(otmp);
 			}
+		    if (otmp && otmp->oartifact == ART_LU_NU_SEV) {
+			otmp->quan += 6;
+			otmp->owt = weight(otmp);
+			}
 		    if (otmp && otmp->oartifact == ART_CHENGORM) {
 			otmp->quan += 2;
 			otmp->owt = weight(otmp);
@@ -2358,8 +2362,167 @@ register boolean mod;
 			summon_minion(A_LAWFUL, TRUE);
 			pline("A servant of law appears!");
 		    }
+		    if (otmp && otmp->oartifact == ART_NEVERNONMOVE_BOSSFIGHT) {
+			u.tempnevernmbf += rnz(25000);
+			u.nmbfturns = moves;
+			u.nmbfturnactive = moves;
+			u.nmbfx = u.ux;
+			u.nmbfy = u.uy;
+			pline("Welcome to the Never-Non-Move Bossfight! You'll have to fight boss monsters more often now, and if you always move at least once every 2 turns, your AC will slowly go up. But if you ever stand still for two turns straight, the AC bonus will be reset to zero and has to be built up again.");
+		    }
+
+		    if (otmp && otmp->oartifact == ART_NUKA_ROLL) {
+			int nukaroll = rnd(104); /* keyword: "marlena" */
+
+			u.tempnukaefftype = nukaroll;
+			u.tempnukaeffect += rnz(5000);
+
+			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(nukaroll));
+
+			lesshungry(500);
+		    }
+
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+		    if (otmp && otmp->oartifact == ART_YOU_LOOK_LIKE_YOU_HAVE_SEE) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord dd;
+			coord cc;
+			int cx,cy;
+			int i;
+			int randsp = rn1(10,10);
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(specialtensmon(322), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			u.aggravation = 0;
+		    }
+		    if (otmp && otmp->oartifact == ART_AMY__WHAT_THE_HELL_IS_A_BE) {
+
+			if (Aggravate_monster) {
+				u.aggravation = 1;
+				reset_rndmonst(NON_PM);
+			}
+
+			coord dd;
+			coord cc;
+			int cx,cy;
+			int i;
+			int randsp = rnz(10);
+			cx = rn2(COLNO);
+			cy = rn2(ROWNO);
+
+			for (i = 0; i < randsp; i++) {
+
+				if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				(void) makemon(beehivemon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+			}
+
+			u.aggravation = 0;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_EST_FUENF_NACH_PLATTFORMIN) {
+
+			register struct monst *specialangel;
+			specialangel = makemon(&mons[PM_BEAUTIFUL_GIRL], 0, 0, MM_NOSPECIALS);
+
+			if (specialangel) {
+				register struct obj *platformfleeceboots;
+
+				platformfleeceboots = mksobj(find_white_buffalo_boots(), FALSE, FALSE, FALSE);
+
+				if (platformfleeceboots) {
+					platformfleeceboots->spe += otmp->spe;
+					platformfleeceboots->enchantment = COLD_RES;
+					platformfleeceboots = mk_artifact(platformfleeceboots, (aligntyp)A_NONE, TRUE);
+
+					if (platformfleeceboots) (void) mpickobj(specialangel, platformfleeceboots, TRUE);
+				}
+			}
+
+		    }
+
+		    if (otmp && otmp->oartifact == ART_I_WEAR_WHAT_I_WANT__BASTA_) {
+			bad_equipment_heel();
+		    }
+
+		    if (otmp && otmp->oartifact == ART_CANCELLATOION) {
+			(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_AND_THEN_THE_TESTER_CAME) {
+			addplayerdebt(u.ulevel * 60, FALSE);
+			You("have to pay %d zorkmids to the bank.", u.moneydebt + u.superdebt);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_AMY__YOU_DON_T_NEED_TO_ADD) {
+			randomnastytrapeffect(rnz(5000), 1000);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_AMUSINGER_BANKSKY) {
+			otmp->finalcancel = FALSE;
+
+			if (otmp && otmp->oartifact == ART_AMUSINGER_BANKSKY) {
+				otmp->oartifact = 0;
+				otmp->onamelth = 0;
+				otmp->otyp = GOLD_PIECE;
+				otmp->oclass = COIN_CLASS;
+			}
+			u.tempmonitemtrapsp += rnz(10000);
+		    }
+		    if (otmp && otmp->oartifact == ART_MORTON_S_ICECAVE_PRICKLE && !Is_waterlevel(&u.uz)) {
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				if (levl[ulx][uly].typ == POOL || levl[ulx][uly].typ == WATER || levl[ulx][uly].typ == MOAT) {
+					levl[ulx][uly].typ = CRYSTALWATER;
+					blockorunblock_point(ulx,uly);
+				}
+			}
+			You_feel("like being in an ice cave!");
+		    }
+		    if (otmp && otmp->oartifact == ART_KRT_DESERT_TUB) {
+			if (!FemtrapActiveRuth) pline("You are commanded to seek out heaps of dog shit and step into it with your high heels. Something tells you that there are bad consequences if you don't obey this instruction.");
+			FemaleTrapLarissa += 20000;
+			if (!FemtrapActiveRuth) pline("You gotta dance! You've suddenly become super sexy and attractive, and neither sleep nor paralysis can stop you in your tracks. And you can kick your enemies to stomp their toes flat. But if you ever stand still for too long, a bunch of bloodthirsty female painted toenails is going to hurt your beautiful skin, so make sure you keep moving!");
+			FemaleTrapNatalje += 20000;
+			You_feel("faster!");
+		    }
+		    if (otmp && otmp->oartifact == ART_HIGH_ABOVE_THE_CLOUDS) {
+			int ulx, uly;
+			for (ulx = 1; ulx < (COLNO); ulx++)
+		        for (uly = 0; uly < (ROWNO); uly++) {
+				if (levl[ulx][uly].typ == MOORLAND || levl[ulx][uly].typ == URINELAKE || levl[ulx][uly].typ == SHIFTINGSAND || levl[ulx][uly].typ == LAVAPOOL || levl[ulx][uly].typ == STYXRIVER) {
+					levl[ulx][uly].typ = CLOUD;
+					blockorunblock_point(ulx,uly);
+				}
+			}
+
+		    }
+		    if (otmp && otmp->oartifact == ART_NORTHHOME) {
+			u.tempgoodsuppreffects += 20000;
+		    }
+		    if (otmp && otmp->oartifact == ART_ER_EN_DE) {
+			u.temprandospawnfreq += 20000;
+		    }
+		    if (otmp && otmp->oartifact == ART_INVTOOFULL) {
+			InventorySizeBug += rnz(10000);
+			u.temptimebasefail75 += rnz(10000);
+
+			You_feel("that your inventory is way too full, so we're going to make sure to relieve you of that problem.");
 		    }
 		    if (otmp && otmp->oartifact == ART_SPIRAL_MANUSCRIPT) {
 
@@ -2692,6 +2855,25 @@ register boolean mod;
 				if (isok(x, y) && !(t_at(x, y)) ) {
 					(void) maketrap(x, y, LOUDSPEAKER, 0, FALSE);
 					break;
+				}
+			}
+
+		    }
+		    if (otmp && otmp->oartifact == ART_MORE_COMMERCIAL_GOES_REALL) {
+			int newloudspeakers = rnz(15);
+			int tryct = 0;
+			int x, y;
+
+			while (newloudspeakers > 0) {
+				newloudspeakers--;
+				for (tryct = 0; tryct < 2000; tryct++) {
+					x = rn1(COLNO-3,2);
+					y = rn2(ROWNO);
+
+					if (isok(x, y) && !(t_at(x, y)) ) {
+						(void) maketrap(x, y, LOUDSPEAKER, 0, FALSE);
+						break;
+					}
 				}
 			}
 

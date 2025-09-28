@@ -907,6 +907,77 @@ void * poolcnt;
 
 }
 
+STATIC_PTR void
+do_crystalwaterfloodgX(x, y, poolcnt) /* transforms regular water into crystal water as well, as long as you're not on the plane of water, you cheater */
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+	if (rn2(5)) randomamount = 0;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR) ) {
+			levl[randomx][randomy].typ = CRYSTALWATER;
+			del_engr_at(randomx, randomy);
+	
+			if ((mtmp = m_at(randomx, randomy)) != 0) {
+				(void) minliquid(mtmp);
+			} else {
+				newsym(randomx,randomy);
+			}
+
+		}
+		if (!Is_waterlevel(&u.uz)) {
+			if (isok(randomx, randomy) && (levl[randomx][randomy].typ == WATER || levl[randomx][randomy].typ == MOAT || levl[randomx][randomy].typ == POOL) ) {
+				levl[randomx][randomy].typ = CRYSTALWATER;
+				del_engr_at(randomx, randomy);
+	
+				if ((mtmp = m_at(randomx, randomy)) != 0) {
+					(void) minliquid(mtmp);
+				} else {
+					newsym(randomx,randomy);
+				}
+
+			}
+		}
+	}
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].typ != ROOM && levl[x][y].typ != CORR && (Is_waterlevel(&u.uz) || (levl[x][y].typ != WATER && levl[x][y].typ != MOAT && levl[x][y].typ != POOL) ) ) || MON_AT(x, y) )
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a pool at x, y */
+		levl[x][y].typ = CRYSTALWATER;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
+}
 
 STATIC_PTR void
 do_moorfloodg(x, y, poolcnt)
@@ -2252,8 +2323,9 @@ learn()
 		OBJ_NAME(objects[booktype]) );
 	for (i = 0; i < MAXSPELL; i++)  {
 		if (spellid(i) == booktype)  {
-			if (book->spestudied > MAX_SPELL_STUDY) {
+			if ((book->spestudied > MAX_SPELL_STUDY) && issoviet) { /* stupid feature, which has no place in SLEX, so let's relegate it to soviet mode */
 			    pline("This spellbook is too faint to be read anymore.");
+			    if (issoviet) pline("mua kha kha kha teper' kniga zaklinaniy bol'she ne rabotayet, ty tupoy osel!");
 			    if (book) book->otyp = booktype = SPE_BLANK_PAPER;
 			} else if (spellknow(i) <= MAX_CAN_STUDY) {
 			    Your("knowledge of that spell is keener.");
@@ -2707,6 +2779,11 @@ register struct obj *spellbook;
 
 			if (nochargechange >= rnd(10)) consume_obj_charge(spellbook, FALSE);
 
+			if (spellbook->oartifact == ART_SABINE_S_STUBBORNNESS) {
+				u.tempuninterapprf += 50;
+				You_feel("like reading the hell out of that book, disregarding anyone who tries to interrupt you.");
+			}
+
 			if (spellbook->oartifact == ART_A_LOT_OF_ENYAS_IN_THE_CAST) {
 				incr_itimeout(&HConf_resist, rnz(5000));
 				You_feel("resistant to confusion.");
@@ -2889,23 +2966,23 @@ age_spells()
 		 * they prefer to suddenly discover their cure sickness spell was forgotten just as they're about to
 		 * cure that green slime effect on level 66 of Gehennom, after investing 500 hours into their character. --Amy */
 
-		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+		if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		if (spellknow(i) && uarmc && itemhasappearance(uarmc, APP_FORGETFUL_CLOAK) ) {
 			decrnknow(i);
-			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		}
 
 		if (spellknow(i) && RngeForgetting) {
 			decrnknow(i);
-			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
-			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
-			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 1000) pline("Your %s spell is beginning to fade from your memory.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 100) pline("You are about to forget the %s spell.", spellname(i));
+			if (!issoviet && !SpellColorCyan && !(SpellForgetting || u.uprops[SPELL_FORGETTING].extrinsic || have_spellforgettingstone()) && !YouHaveLostSpells && spellknow(i) == 0) pline("You no longer know how to cast the %s spell.", spellname(i));
 
 		}
 
@@ -3293,9 +3370,322 @@ struct obj *book2;
 		use_skill(P_MEMORIZATION, 20);
 	}
 
+	if (book2->oartifact == ART_NUKA_ROLL) {
+		int nukaroll = rnd(104); /* keyword: "marlena" */
+
+		u.tempnukaefftype = nukaroll;
+		u.tempnukaeffect += rnz(5000);
+
+		pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(nukaroll));
+
+		lesshungry(500);
+	}
+
+	if (book2->oartifact == ART_ANGEL_LACK_BOWAY) {
+
+		u.aggravation = 1;
+		u.heavyaggravation = 1;
+
+		register struct monst *specialangel;
+		specialangel = makemon(mkclass(S_ANGEL,0), 0, 0, MM_NOSPECIALS);
+		if (specialangel) {
+			u.mongetshack = 33; /* make sure the items can drop regardless of timebasedlowerchance crap --Amy */
+			(void) mongets(specialangel, LACQUERED_PLATE_MAIL);
+			(void) mongets(specialangel, rnd_class(ORCISH_BOW, WILDHILD_BOW));
+			u_teleport_monD(specialangel, FALSE);
+
+			u.mongetshack = 0;
+		}
+
+		u.aggravation = 0;
+		u.heavyaggravation = 0;
+
+	}
+
+	if (book2->oartifact == ART_THIRST_HOLES) {
+
+		Thirst += rnz(5000);
+
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
+			You_feel("claustrophobic!");
+		} else {
+			pline("You build a fountain.");
+			levl[u.ux][u.uy].typ = FOUNTAIN;
+		}
+
+		u.tempfountainbuild += 5000;
+	}
+
+	if (book2->oartifact == ART_MORTON_S_ICECAVE_PRICKLE) {
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_crystalwaterfloodgX, (void *)&madepoolQ);
+
+	}
+
+	if (book2->oartifact == ART_I_M_GONNA_TELL_MY_HEART) {
+		incr_itimeout(&HDiminishedBleeding, 10000);
+		pline("Your %s is boiling!", body_part(BLOOD));
+	}
+
+	if (book2->oartifact == ART_SYLVIE_S_YAWNING_HISTORY) {
+		fall_asleep(-(rn1(20, 20)), TRUE);
+		upnivel(FALSE);
+	}
+
+	if (book2->oartifact == ART_RADIUS_REQUEST_TIMED_OUT) {
+		u.powerfailure += 5000;
+		u.tempradiusto += 5000;
+		pline("Radius request timed out.");
+	}
+
+	if (book2->oartifact == ART_WA_WA__WA_WA__WA_WA_) {
+		incr_itimeout(&HFear_factor, 10000);
+		You_feel("like running away from the enemy!");
+	}
+
+	if (book2->oartifact == ART_LIVE_IN_THE_SENSE_OF_YOUR_) {
+		AEXE(A_WIS) += 10;
+		if (AEXE(A_WIS) > 50) AEXE(A_WIS) = 50;
+	}
+
+	if (book2->oartifact == ART_NICHT_SPEER_WERFEN) {
+		u.tempnospearthrow += 10000;
+		pline("Spears can no longer be thrown.");
+	}
+
+	if (book2->oartifact == ART_AND_THEN_THE_TESTER_CAME) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		(void) makemon(specialtensmon(430), 0, 0, MM_ADJACENTOK); /* AD_DEBT */
+
+		u.aggravation = 0;
+
+	}
+
+	if (book2->oartifact == ART_CANCELLATOION) {
+		(void) cancel_monst(&youmonst, (struct obj *)0, FALSE, TRUE, FALSE);
+	}
+
+	if (book2->oartifact == ART_CAMA_CAMA_CAMA_MAYBE) {
+		if (rn2(2)) {
+			change_luck(1);
+			You_feel("lucky.");
+		} else {
+			change_luck(-1);
+			You_feel("unlucky.");
+		}
+	}
+
+	if (book2->oartifact == ART_FOUR_ON_THE_FLOOR__I_WILL_) {
+		u.tempnoflysee += 5000;
+		You("can no longer fly, but are capable of seeing any monsters that can.");
+	}
+
+	if (book2->oartifact == ART_STRETCHER_CAPACITY) {
+		u.tempcarrcap1000 += 10000;
+		You("can carry more stuff for a while!");
+	}
+
+	if (book2->oartifact == ART_AND_I_LOVE_THE_BAUR) {
+		adjattrib(A_STR, 1, FALSE, TRUE);
+		if (!FemtrapActiveRuth) pline("Those farmer girls plan to use block-heeled lady boots, wooden sandals and scentful sneakers on you!");
+		FemaleTrapKerstin += rnz(5000);
+	}
+
+	if (book2->oartifact == ART_CONUNDRAL_PLAYBACK) {
+		int conundralitem = DAGGER;
+		int attempts = 50000;
+		struct obj *uammo;
+
+		while (attempts > 1) { /* roll random equipment pieces until one made of conundrum is rolled */
+			attempts--;
+
+			switch (rnd(21)) {
+				case 1:
+					conundralitem = randartmeleeweapon();
+					break;
+				case 2:
+					conundralitem = randartlauncher();
+					break;
+				case 3:
+					conundralitem = randartmissile();
+					break;
+				case 4:
+					conundralitem = randartlightsaber();
+					break;
+				case 5:
+					conundralitem = randartunihorn();
+					break;
+				case 6:
+					conundralitem = randartpickaxe();
+					break;
+				case 7:
+					conundralitem = randartsuit();
+					break;
+				case 8:
+					conundralitem = randartshirt();
+					break;
+				case 9:
+					conundralitem = randartcloak();
+					break;
+				case 10:
+					conundralitem = randarthelm();
+					break;
+				case 11:
+					conundralitem = randartgloves();
+					break;
+				case 12:
+					conundralitem = randartshield();
+					break;
+				case 13:
+					conundralitem = randartboots();
+					break;
+				case 14:
+					conundralitem = randartring();
+					break;
+				case 15:
+					conundralitem = randartamulet();
+					break;
+				case 16:
+					conundralitem = randartimplant();
+					break;
+				case 17:
+					conundralitem = randartwand();
+					break;
+				case 18:
+					conundralitem = randartball();
+					break;
+				case 19:
+					conundralitem = randartchain();
+					break;
+				case 20:
+					conundralitem = randartgem();
+					break;
+				case 21:
+					conundralitem = randartvenom();
+					break;
+			}
+
+			if (objects[conundralitem].oc_material == MT_CONUNDRUM) break; /* take this one */
+
+		}
+
+		uammo = mksobj(conundralitem, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("An item made of conundrum has been dropped on the ground!");
+		}
+
+	}
+
+	if (book2->oartifact == ART_YOU_LOOK_LIKE_YOU_HAVE_SEE) {
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		coord dd;
+		coord cc;
+		int cx,cy;
+		int i;
+		int randsp = rn1(5,5);
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		for (i = 0; i < randsp; i++) {
+
+			if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			(void) makemon(specialtensmon(322), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+		}
+
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_AMY__WHAT_THE_HELL_IS_A_BE) {
+
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		coord dd;
+		coord cc;
+		int cx,cy;
+		int i;
+		int randsp = rnz(10);
+		cx = rn2(COLNO);
+		cy = rn2(ROWNO);
+
+		for (i = 0; i < randsp; i++) {
+
+			if (!enexto(&dd, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+			(void) makemon(beehivemon(), cx, cy, MM_ADJACENTOK); /* M5_SPACEWARS */
+		}
+
+		u.aggravation = 0;
+	}
+
+	if (book2->oartifact == ART_READ_OUT_EKE) {
+		if (Upolyd) {
+			u.mh++;
+			u.mhmax++;
+			if (u.mh > u.mhmax) u.mh = u.mhmax;
+		} else {
+			u.uhp++;
+			u.uhpmax++;
+			if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		}
+		if (uinsymbiosis) {
+			u.usymbiote.mhpmax++;
+			maybe_evolve_symbiote();
+			if (u.usymbiote.mhpmax > 500) u.usymbiote.mhpmax = 500;
+		}
+		You_feel("vitalized.");
+		flags.botl = 1;
+	}
+
 	if (book2->oartifact == ART_BAD_LSD_TRIP__HAHAHAHAH) {
 		incr_itimeout(&HStone_resistance, 500);
 		You_feel("more limber. Let's eat some cockatrice meat!");
+	}
+
+	if (book2->oartifact == ART_Q___WHA_BOYS) {
+		u.temprumormessages += rnz(3000);
+	}
+
+	if (book2->oartifact == ART_GREENE_BLIEGE) {
+		u.greencrosschance = rnd(20);
+	}
+
+	if (book2->oartifact == ART_STD_IDENTIFY) {
+		You_feel("self-knowledgeable...");
+		display_nhwindow(WIN_MESSAGE, FALSE);
+		enlightenment(FALSE, TRUE);
+		pline_The("feeling subsides.");
+		exercise(A_WIS, TRUE);
+	}
+
+	if (book2->oartifact == ART_GRAIN_FARMING__CLICK_) {
+		int i;
+
+		for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
+			if (spellknow(i)) {
+				if (spellknow(i) > 20000) {
+					spellknow(i) = 20000;
+				} else if (spellknow(i) < 10200) {
+					boostknow(i, 5000);
+				}
+			}
+		}
+		You_feel("a redistribution of spell memory.");
 	}
 
 	if (book2->oartifact == ART_BEGINNER_S_PRIMER) {
@@ -3309,6 +3699,26 @@ struct obj *book2;
 			}
 		}
 		You_feel("an increase of your basic spell knowledge.");
+	}
+
+	if (book2->oartifact == ART_NORTHHOME) {
+		u.tempgoodsuppreffects += 2500;
+	}
+
+	if (book2->oartifact == ART_SEVENTH_GAME__DEDEDE_) {
+		int i;
+
+		for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
+			if (spellknow(i)) {
+				if (spellev(i) == 7) {
+					boostknow(i, 10000);
+				} else if (spellev(i) < 7) {
+					spellknow(i) -= 10000;
+					if (spellknow(i) < 0) spellknow(i) = 0;
+				}
+			}
+		}
+		You_feel("like casting some high-level spells.");
 	}
 
 	if (book2->oartifact == ART_CODEX_OF_ECHOES) {
@@ -3334,11 +3744,151 @@ struct obj *book2;
 		u.tempspellcost90 += 2000;
 	}
 
+	if (book2->oartifact == ART_ASKING_TELNET_PLESCHE) {
+		LatencyBugEffect += rn1(500,500);
+		incr_itimeout(&HDetect_monsters, 100);
+		see_monsters();
+	}
+
+	if (book2->oartifact == ART_I_DISCOVERED_EQUALMUCH) {
+		int nivelamount = (u.uhpmax += u.uenmax) / 2;
+		if (nivelamount < 1) nivelamount = 1;
+		u.uhpmax = u.uenmax = nivelamount;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+		if (u.uen > u.uenmax) u.uen = u.uenmax;
+		flags.botl = TRUE;
+		Your("HP and Pw maximums have been nivellated.");
+	}
+
+	if (book2->oartifact == ART_DOESMUJETE) {
+		if (FemtrapActiveJanet) {
+			FemaleTrapJanet += rnz(10000);
+			if (u.tempsuperfemtrap_janet < FemaleTrapJanet) u.tempsuperfemtrap_janet = FemaleTrapJanet;
+		} else {
+			FemaleTrapJanet += rnz(10000);
+		}
+		if (!FemtrapActiveRuth) pline("You get a bad feeling about the attacks of those women all of a sudden...");
+
+		if (P_MAX_SKILL(P_SQUEAKING) == P_ISRESTRICTED) {
+			unrestrict_weapon_skill(P_SQUEAKING);
+			P_MAX_SKILL(P_SQUEAKING) = P_SKILLED;
+			pline("You can now learn the squeaking skill!");
+		} else if (P_MAX_SKILL(P_SQUEAKING) == P_UNSKILLED) {
+			unrestrict_weapon_skill(P_SQUEAKING);
+			P_MAX_SKILL(P_SQUEAKING) = P_SKILLED;
+			pline("You can now learn the squeaking skill!");
+		} else if (P_MAX_SKILL(P_SQUEAKING) == P_BASIC) {
+			P_MAX_SKILL(P_SQUEAKING) = P_SKILLED;
+			pline("You can now become skilled in squeaking!");
+		} else if (!rn2(3) && (P_MAX_SKILL(P_SQUEAKING) == P_SKILLED)) {
+			P_MAX_SKILL(P_SQUEAKING) = P_EXPERT;
+			pline("You can now become expert in squeaking!");
+		} else if (!rn2(3) && (P_MAX_SKILL(P_SQUEAKING) == P_EXPERT)) {
+			P_MAX_SKILL(P_SQUEAKING) = P_MASTER;
+			pline("You can now become master in squeaking!");
+		} else if (!rn2(3) && (P_MAX_SKILL(P_SQUEAKING) == P_MASTER)) {
+			P_MAX_SKILL(P_SQUEAKING) = P_GRAND_MASTER;
+			pline("You can now become grand master in squeaking!");
+		} else if (!rn2(3) && (P_MAX_SKILL(P_SQUEAKING) == P_GRAND_MASTER)) {
+			P_MAX_SKILL(P_SQUEAKING) = P_SUPREME_MASTER;
+			pline("You can now become supreme master in squeaking!");
+		} else if (P_MAX_SKILL(P_SQUEAKING) >= P_SUPREME_MASTER) {
+			pline("Sadly your knowledge of the squeaking skill is already maxed.");
+		}
+
+		use_skill(P_SQUEAKING, rnz(50));
+
+	}
+
+	if (book2->oartifact == ART_CELEBRATION_EVENING) {
+		if (eveningtime()) {
+
+			pline("It's celebration evening, which is actually specific to Germany for some reason because the Americans don't celebrate when their working hours are over (wtf)!");
+			if (FunnyHallu) pline("The German 'Feierabend' doesn't even have a specific expression in the English language for that reason...");
+
+			if (HWinceState & TIMEOUT) {
+				int wincecure = (HWinceState & TIMEOUT);
+				if (wincecure > 5000) wincecure = 5000;
+
+				HWinceState -= wincecure;
+
+				if (!HWinceState) {
+					You("no longer have to wince.");
+				} else {
+					You("seem to be wincing a bit less.");
+				}
+
+			}
+
+			if (HInvertedState & TIMEOUT) {
+				int invertcure = (HInvertedState & TIMEOUT);
+				if (invertcure > 5000) invertcure = 5000;
+
+				HInvertedState -= invertcure;
+
+				if (!HInvertedState) {
+					You("manage to stand up.");
+				} else {
+					You("feel a bit better, but cannot stand up yet.");
+				}
+			}
+
+			if (HBurdenedState & TIMEOUT) {
+				int burdencure = (HBurdenedState & TIMEOUT);
+				if (burdencure > 5000) burdencure = 5000;
+
+				HBurdenedState -= burdencure;
+
+				if (!HBurdenedState) {
+					You("feel lighter!");
+				} else {
+					You("still feel burdened, but hope that it'll end soon.");
+				}
+			}
+
+			if (u.inertia) {
+				if (u.inertia < 5001) {
+					u.inertia = 0;
+					You("don't feel lazy anymore!");
+				} else {
+					u.inertia -= 5000;
+					You_feel("a bit less lazy.");
+				}
+			}
+		}
+	}
+
 	if (book2->oartifact == ART_CODEX_OF_THE_ENDLESS_LABYR) {
 		tele();
 		if (!level.flags.nommap) {
 			do_mapping();
 		}
+	}
+
+	if (book2->oartifact == ART_HIGH_ABOVE_THE_CLOUDS) {
+		int ulx, uly;
+		for (ulx = 1; ulx < (COLNO); ulx++)
+		  for (uly = 0; uly < (ROWNO); uly++) {
+			if (levl[ulx][uly].typ == MOORLAND || levl[ulx][uly].typ == URINELAKE || levl[ulx][uly].typ == SHIFTINGSAND || levl[ulx][uly].typ == LAVAPOOL || levl[ulx][uly].typ == STYXRIVER) {
+				if (!rn2(5)) {
+					levl[ulx][uly].typ = CLOUD;
+					newsym(ulx, uly);
+					blockorunblock_point(ulx,uly);
+				}
+			}
+		}
+
+		int i, j, bd = 3;
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if (levl[u.ux + i][u.uy+ j].typ == MOORLAND || levl[u.ux + i][u.uy + j].typ == URINELAKE || levl[u.ux + i][u.uy + j].typ == SHIFTINGSAND || levl[u.ux + i][u.uy + j].typ == LAVAPOOL || levl[u.ux + i][u.uy + j].typ == STYXRIVER) {
+				levl[u.ux + i][u.uy + j].typ = CLOUD;
+					newsym(u.ux + i, u.uy + j);
+					blockorunblock_point(u.ux + i,u.uy + j);
+			}
+		}
+		You_feel("the liquids turning into clouds.");
 	}
 
 	if (book2->oartifact == ART_DAEDAEDAEDAEDAEDAEUEUEUEUE) {
@@ -3392,8 +3942,91 @@ struct obj *book2;
 		}
 	}
 
+	if (book2->oartifact == ART_THAT_S_SO_MEDIEVAL_) {
+		struct obj *uammo;
+		int medievalweapontype = SPEAR;
+
+		switch (rnd(20)) {
+			case 1:
+				medievalweapontype = randartpolearm();
+				break;
+			case 2:
+				medievalweapontype = randartlongsword();
+				break;
+			case 3:
+				medievalweapontype = randartbroadsword();
+				break;
+			case 4:
+				medievalweapontype = randartshortsword();
+				break;
+			case 5:
+				medievalweapontype = randartscimitar();
+				break;
+			case 6:
+				medievalweapontype = randarttrident();
+				break;
+			case 7:
+				medievalweapontype = randartflail();
+				break;
+			case 8:
+				medievalweapontype = randartlance();
+				break;
+			case 9:
+				medievalweapontype = randartcrossbow();
+				break;
+			case 10:
+				medievalweapontype = randarthammer();
+				break;
+			case 11:
+				medievalweapontype = randartmorningstar();
+				break;
+			case 12:
+				medievalweapontype = randartaxe();
+				break;
+			case 13:
+				medievalweapontype = randartspear();
+				break;
+			case 14:
+				medievalweapontype = randarttwohandedsword();
+				break;
+			case 15:
+				medievalweapontype = randartmace();
+				break;
+			case 16:
+				medievalweapontype = randartdagger();
+				break;
+			case 17:
+				medievalweapontype = randartquarterstaff();
+				break;
+			case 18:
+				medievalweapontype = randartbow();
+				break;
+			case 19:
+				medievalweapontype = randartjavelin();
+				break;
+			case 20:
+				medievalweapontype = randartsaber();
+				break;
+		}
+
+		uammo = mksobj(medievalweapontype, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = 1;
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A medieval weapon has formed on the ground!");
+		}
+
+	}
+
 	if (book2->oartifact == ART_FIELD_GUIDE_TO_FAMILIAR_SP) {
 		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+	}
+
+	if (book2->oartifact == ART_YOU_SIR_ARE_A_LO_SIR) {
+		make_feared(HFeared + 200, FALSE);
+		You_feel("like a loser.");
 	}
 
 	if (book2->oartifact == ART_QUIET_NOTEBOOK) {
@@ -3423,6 +4056,52 @@ struct obj *book2;
 			}
 
 		}
+	}
+
+	if (book2->oartifact == ART_FULLY_CHAOTIC_MONTE) {
+
+		u.tempspelllossmagvac += 200000;
+		You("feel like you're not gonna be able to use your spells effectively for a good long while...");
+
+		int chaoticmontespell = SPE_FORCE_BOLT;
+		while (chaoticmontespell <= SPE_PSYBEAM) {
+			if (objects[chaoticmontespell].oc_subtyp == P_CHAOS_SPELL) wonderspell(chaoticmontespell, 0);
+			chaoticmontespell++;
+		}
+	}
+
+	if (book2->oartifact == ART_RODIN_THINKS_CRITICAL_HITS) {
+		u.tempcritical10 += 5000;
+		You_feel("that critical hits are beautiful!");
+	}
+
+	if (book2->oartifact == ART_ES_TWO_TO_EK) {
+		u.tempspiderspawns += 5000;
+	}
+
+	if (book2->oartifact == ART_MORE_COMMERCIAL_GOES_REALL) {
+		int newloudspeakers = rnz(5);
+		int tryct = 0;
+		int x, y;
+
+		while (newloudspeakers > 0) {
+			newloudspeakers--;
+			for (tryct = 0; tryct < 2000; tryct++) {
+				x = rn1(COLNO-3,2);
+				y = rn2(ROWNO);
+
+				if (isok(x, y) && !(t_at(x, y)) ) {
+					(void) maketrap(x, y, LOUDSPEAKER, 0, FALSE);
+					break;
+				}
+			}
+		}
+	}
+
+	if (book2->oartifact == ART_YOUR_BUTT_HAS_A_TRACK_CLOS) {
+		u.tempnofartloud += 10000;
+		You_feel("that you won't hear any loud farting noises for a while.");
+		if (FunnyHallu) pline("Probably the monsters' butts have a track closure.");
 	}
 
 	if (book2->oartifact == ART_CODEX_OF_MEDEA) {
@@ -3534,6 +4213,25 @@ struct obj *book2;
 		}
 	}
 
+	if (book2->oartifact == ART_ONE_BEFORE_LAST) {
+		register int randomspell;
+		int attempts = 50000;
+
+newbeforespell:
+		randomspell = SPE_FORCE_BOLT + rn2((SPE_PSYBEAM + 1) - SPE_FORCE_BOLT);
+
+		if (objects[randomspell].oc_level != 7) {
+			if (attempts > 0) {
+				attempts--;
+				goto newbeforespell;
+			}
+		}
+
+		wonderspell(randomspell, 0);
+	}
+
+
+
 	if (book2->oartifact == ART_MERLIN_S_TESTAMENT) {
 		make_confused(HConfusion + rn1(20, 20), FALSE);
 		wonderspell(-1, 10000);
@@ -3587,6 +4285,38 @@ struct obj *book2;
 		if (!rn2(5)) {
 	 	    (void) makemon(mkclass(S_BAD_FOOD,0), u.ux, u.uy, MM_ADJACENTOK|MM_ANGRY);
 		}
+	}
+
+	if (book2->oartifact == ART_BINI_PIENSI) {
+		u.negativeprotection++;
+		if (evilfriday && u.ublessed > 0) {
+			u.ublessed -= 1;
+			if (u.ublessed < 0) u.ublessed = 0;
+		}
+		You_feel("less protected!");
+
+		if (u.ualign.type == A_CHAOTIC) adjalign(5);
+	}
+
+	if (book2->oartifact == ART_HEY__I_ADORE_YOU__OKAY_) {
+		int i, j, bd = 4;
+		struct monst *mtmp;
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+
+			    if (mtmp->mfrenzied) continue;
+			    if (mtmp->data->geno & G_UNIQ) continue;
+			    if (mtmp->mpeaceful) continue;
+
+			    if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+				mtmp->mpeaceful = TRUE;
+				pline("%s is pacified!", Monnam(mtmp));
+			    }
+			}
+		}
+
 	}
 
 	if (book2->oartifact == ART_BEGINNER_S_COMPENDIUM_OF_C) {
@@ -3985,6 +4715,25 @@ struct obj *book2;
 		adjattrib(A_INT, 1, FALSE, TRUE);
 	}
 
+	if (book2->oartifact == ART_KRT_DESERT_TUB) {
+		wonderspell(SPE_TELEPORT_SELF, 0);
+		wonderspell(SPE_TELEPORT_AWAY, 0);
+		wonderspell(SPE_PHASE_DOOR, 0);
+		use_skill(P_BODY_SPELL, 50);
+		use_skill(P_OCCULT_SPELL, 25);
+	}
+
+	if (book2->oartifact == ART_STAYHEEL) {
+		if (Aggravate_monster) {
+			u.aggravation = 1;
+			reset_rndmonst(NON_PM);
+		}
+
+		(void) makemon(specialtensmon(116), u.ux, u.uy, MM_ADJACENTOK); /* M2_DOMESTIC */
+
+		u.aggravation = 0;
+	}
+
 	if (book2->oartifact == ART_GRIMOIRE_OF_THE_BLACK_SUN) {
 
 		int darkgrimmonst = rn1(3,3);
@@ -4212,6 +4961,15 @@ struct obj *book2;
 
 		}
 		You_feel("the ice thawing.");
+	}
+
+	if (book2->oartifact == ART_KWUKSPLASH) {
+		if (levl[u.ux][u.uy].typ != ROOM && levl[u.ux][u.uy].typ != CORR) {
+			You_feel("claustrophobic!");
+		} else {
+			pline("You build a toilet.");
+			levl[u.ux][u.uy].typ = TOILET;
+		}
 	}
 
 	if (book2->oartifact == ART_SALTING_THE_WATER) {
@@ -4462,6 +5220,11 @@ newbossHORR:
 		newexplevel();
 	}
 
+	if (book2->oartifact == ART_SPRAY_THE_MON_OUT_) {
+		u.tempmorepokemon += 5000;
+		You_feel("that pokemon are more likely to spawn now!");
+	}
+
 	if (book2->oartifact == ART_SHOEPOCALYPSE) {
 		wonderspell(-1, 0);
 	}
@@ -4482,7 +5245,10 @@ newbossHORR:
 				if (!isok(i, j)) continue;
 				if (levl[i][j].typ == POOL || levl[i][j].typ == WATER || levl[i][j].typ == MOAT) {
 
-					if (!rn2(10)) levl[i][j].typ = URINELAKE;
+					if (!rn2(10)) {
+						levl[i][j].typ = URINELAKE;
+						blockorunblock_point(i,j);
+					}
 
 				}
 
@@ -5444,6 +6210,32 @@ melatechoice:
 		MonsterSpeedBug += 2000;
 		u.tempxtrapwregen += 2000;
 		You("start leeching mana, and also regenerate mana more quickly!");
+	}
+
+	if (book2->oartifact == ART_DAILY_FRESHE_BREAD) {
+		struct obj *uammo;
+		uammo = mksobj(BREAD, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rnd(3);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("Some bread has formed on the ground!");
+		}
+
+	}
+
+	if (book2->oartifact == ART_PART_PIZZA) {
+		struct obj *uammo;
+		uammo = mksobj(SLICE_OF_PIZZA, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rnd(8);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("Some slices of pizza have formed on the ground!");
+		}
+
 	}
 
 	if (book2->oartifact == ART_GOLEMEQUIPMENT) {
@@ -7117,6 +7909,7 @@ manloop:
 				if (levl[u.ux + i][u.uy + j].typ == RAINCLOUD) {
 
 					levl[u.ux + i][u.uy + j].typ = CORR;
+					blockorunblock_point(u.ux + i,u.uy + j);
 					explode(u.ux + i, u.uy + j, ZT_FIRE, rnd(boosted_ulevel(1) * 3), WAND_CLASS, EXPL_FIERY);
 
 				}
@@ -9691,6 +10484,7 @@ secureidchoice:
 			if (!isok(u.ux + i, u.uy + j)) continue;
 			if (levl[u.ux + i][u.uy + j].typ == IRONBARS && !rn2(1000) ) {
 				levl[u.ux + i][u.uy + j].typ = CLOUD;
+				newsym(u.ux + i,u.uy + j);
 				pline("The iron bars break apart and leave behind a cloud!");
 			}
 		    }
@@ -14336,7 +15130,7 @@ dovspell()
 	else {
 	    while (dospellmenu( spellcolorbuf, SPELLMENU_VIEW, &splnum, 0)) {
 		sprintf(qbuf, "Reordering spells; swap '%s' with",
-			(SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) ? "spell" : spellname(splnum));
+			YouHaveLostSpells ? "spell" : spellname(splnum));
 		if (!dospellmenu(qbuf, splnum, &othnum, 0)) break;
 
 		spl_tmp = spl_book[splnum];
@@ -14395,7 +15189,7 @@ int specialmenutype;
 	if (flags.menu_style == MENU_TRADITIONAL)
 		strcat(buf, iflags.menu_tab_sep ? "\tKey" : "  Key");
 	add_menu(tmpwin, NO_GLYPH, &any, 0, 0, ATR_BOLD, buf, MENU_UNSELECTED);
-	if (!SpellLoss && !u.uprops[SPELLS_LOST].extrinsic && !have_spelllossstone()) {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
+	if (!YouHaveLostSpells) {for (i = 0; i < MAXSPELL && spellid(i) != NO_SPELL; i++) {
 		sprintf(buf, iflags.menu_tab_sep ?
 			"%s\t%-d%s\t%s%s %d\t%-d%%" : "%-20s  %2d%s%s %3d  %-8s %4d%%"
 			"   %3d%%",
@@ -14498,7 +15292,7 @@ int specialmenutype;
 		pseudo->blessed = pseudo->cursed = 0;
 		pseudo->quan = 20L;			/* do not let useup get it */
 
-		if (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) {
+		if (YouHaveLostSpells) {
 			/* you cheater! you're not supposed to see what the spells are :P */
 			return dospellmenu(prompt, splaction, spell_no, specialmenutype);
 		}
@@ -14513,7 +15307,7 @@ int specialmenutype;
 
 		char spellcolorbuf[BUFSZ];
 
-		if (SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone()) sprintf(spellcolorbuf, "Memorization setting changed."); /* no, you don't get to see what it is now :P */
+		if (YouHaveLostSpells) sprintf(spellcolorbuf, "Memorization setting changed."); /* no, you don't get to see what it is now :P */
 		else if (spl_book[selected[0].item.a_int - 1].sp_memorize) sprintf(spellcolorbuf, "Spell set to memorization mode!");
 		else sprintf(spellcolorbuf, "Memorization for this spell deactivated.");
 

@@ -1982,7 +1982,7 @@ randombranchtele()
 
 }
 
-/* Random branchport level decision */
+/* Random branchport level decision - this is for selecting a branch that the player has actually reached --Amy */
 d_level
 random_branchport_level()
 {
@@ -2040,9 +2040,9 @@ random_branchport_level()
 
 }
 
-/* Levelport level decision */
+/* Levelport level decision - this is actually just levelport, not banishment --Amy */
 int
-random_banish_level()
+random_lvlport_level()
 {
 	int nlev, max_depth, min_depth, cur_depth = (int)depth(&u.uz);
 ;
@@ -2069,7 +2069,7 @@ random_banish_level()
 	return nlev;
 }
 
-/* Random branchport level decision */
+/* Banishment level decision - this is actually used for banishment --Amy */
 d_level
 random_banishment_level()
 {
@@ -2435,7 +2435,7 @@ boolean give_feedback;
 				if (give_feedback) pline("%s seems very disoriented for a moment.", Monnam(mtmp));
 				return 2;
 			}
-			nlev = random_banish_level();
+			nlev = random_lvlport_level();
 			if (nlev == depth(&u.uz)) {
 				if (give_feedback) pline("%s shudders for a moment.", Monnam(mtmp));
 				return 2;

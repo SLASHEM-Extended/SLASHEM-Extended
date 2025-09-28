@@ -2319,7 +2319,7 @@ playerextrinsicspeed()
 	if ((uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT) || autismringcheck(ART_POLYFAST) || (uwep && uwep->oartifact == ART_SHARPTOOTH_SAYER) || (uwep && uwep->oartifact == ART_ZANTASBORE) || (uwep && uwep->oartifact == ART_HACHURATE) || (uarmf && uarmf->oartifact == ART_BALE_OF_BODEN_SPEEDSTOCK) || (uwep && uwep->oartifact == ART_BOINDIL_S_CHOICE) || (uwep && uwep->oartifact == ART_MOVENIN_HOSASA) || (uarm && uarm->oartifact == ART_WHAT_MISS_I_CONSTANTLY) || (uwep && uwep->oartifact == ART_HACKNSLASH) || (uwep && uwep->oartifact == ART_NOOBY_BONUS_STYLE && bimanual(uwep)) || (uwep && uwep->oartifact == ART_STORM_ON) || (uwep && uwep->oartifact == ART_POWERVALK) || (uarmg && uarmg->oartifact == ART_GO_UP_AND_SOAR) || (uarmf && u.uinwater && uarmf->oartifact == ART_PECTORAL_HEEL) || (uwep && uwep->oartifact == ART_RACE_ALONG_THE_HIGHWAY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SONIC_TONFA) || (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && uball && uwep && (uwep == uball)) || (uarm && uarm->oartifact == ART_KWOURSTOMAL_) || (uarm && uarm->oartifact == ART_I_AM_YOUR_FALL) || (uwep && uwep->oartifact == ART_P_WING) || (uarmf && uarmf->oartifact == ART_SEVENLEAGUEBOOTS) ) return TRUE;
 	if ( (uarmf && uarmf->oartifact == ART_HERMES_S_SANDALS) || (uarmf && uarmf->oartifact == ART_BRIGHT_AURORA) || (uarmf && uarmf->oartifact == ART_FENG_HUO_LUN) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_FIGHTBOOST) || (uwep && uwep->oartifact == ART_TURNINGIKE) || (uwep && uwep->oartifact == ART_DAEMEL) || autismringcheck(ART_CERBERUS_BAND) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || autismringcheck(ART_GOD_STAT) || (uarm && uarm->oartifact == ART_AGILITATE) || (uwep && uwep->oartifact == ART_HECTIC_OH_YEAH) ) return TRUE;
 	if ( (uarmg && uarmg->oartifact == ART_TSUNAMI_FISTS) || (uarm && uarm->oartifact == ART_FOR_ONCE_MOVING_SWIFTLY) || (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) || autismringcheck(ART_WILDFIST) || (uarm && uarm->oartifact == ART_GAYIFIED) || (uwep && uwep->oartifact == ART_UNIQUE_WIND_BOW) || (uwep && uwep->oartifact == ART_BOW_SURROUNDED_BY_WIND) || (uwep && uwep->oartifact == ART_PLANTAR_NO) || (uwep && uwep->oartifact == ART_EORLINGAS) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) || (uamul && uamul->oartifact == ART_HUMBLE_STUMBLE) || (uarmh && uarmh->oartifact == ART_VIGERIUN_) || (uamul && uamul->oartifact == ART_COMPLETELY_PUMPED) || (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) || (uarmc && uarmc->oartifact == ART_JENNELLE_S_IMMEDIATIVITY) || (uarms && uarms->oartifact == ART_MOVERET) || (uarmc && uarmc->oartifact == ART_PHEWHAUNCH) || (uarm && uarm->oartifact == ART_SPEEDSTERSUIT) ) return TRUE;
-	if ( (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) ) return TRUE;
+	if ( (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) || u.tempveryfastspeed ) return TRUE;
 
 	return FALSE;
 }
@@ -14329,6 +14329,11 @@ peffects(otmp)
 
 	case POT_TRAINING:
 
+		if (otmp->oartifact == ART_STATS__TOO_) {
+			AEXE(A_STR) = AEXE(A_DEX) = AEXE(A_WIS) = AEXE(A_CON) = 50;
+			Your("stats have been exercised a lot!");
+		}
+
 		doubleskilltraining();
 		break;
 
@@ -14337,6 +14342,8 @@ peffects(otmp)
 		int boostduration = rn1(100,100);
 		if (otmp->cursed) boostduration = rn1(50,50);
 		if (otmp->blessed) boostduration = rn1(150,150);
+
+		if (otmp->oartifact == ART_HANIFE_S_GODLY_POWER) boostduration *= 5;
 
 		u.boosttimer += boostduration;
 		You("gain massive power.");
@@ -14372,7 +14379,12 @@ peffects(otmp)
 
 	case POT_RANDOM_INTRINSIC:
 		Your("intrinsics change.");
-		intrinsicgainorloss(0);
+
+		if (otmp->oartifact == ART_ONTEN_GAINEN) {
+			intrinsicgainorloss(1); intrinsicgainorloss(1); intrinsicgainorloss(1);
+		} else {
+			intrinsicgainorloss(0);
+		}
 		break;
 
 	case POT_PARALYSIS:
@@ -14625,6 +14637,13 @@ peffects(otmp)
 	/* KMH, balance patch -- removed */
 	/* but re-inserted by Amy */
 	case POT_FIRE_RESISTANCE:
+
+		if (otmp->oartifact == ART_FLAMETARD) {
+			u.tempfireimmune += 5000;
+			You_feel("incombustible!");
+			if (Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) pline("Shikashi, anata no isan o kangaeru to, izure ni seyo so naru hazudesu.");
+		}
+
 	      if(!(HFire_resistance & FROMOUTSIDE)) {
 		   if (FunnyHallu)
 			pline("You feel, like, totally cool!");
@@ -18554,7 +18573,8 @@ poof:
 
 	if (potion->otyp == POT_GREASE) {
 		if (!stack_too_big(obj)) {
-			if (obj->greased >= 3) obj->greased = 3;
+			if (potion->oartifact == ART_SPORK_INTENSIFIES) obj->greased = 3;
+			else if (obj->greased >= 3) obj->greased = 3;
 			else obj->greased++;
 
 			pline("Your %s with a translucent gleam.", aobjnam(obj, "shine"));

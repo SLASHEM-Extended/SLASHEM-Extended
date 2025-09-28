@@ -6175,8 +6175,26 @@ destroyarmorchoice:
 		badeffect();
 	    break;
 
-	case SCR_PROOF_ARMOR: /*scroll added by Amy*/
+	case SCR_PROOF_ARMOR: /* scroll added by Amy */
 	      {
+
+		if (sobj->oartifact == ART_COMPLETE_THE_LOCK) {
+			NoFunWallsEffect |= FROMOUTSIDE;
+			WallTrapping |= FROMOUTSIDE;
+
+			if (uarm) uarm->oerodeproof = uarm->rknown = 1;
+			if (uarms) uarms->oerodeproof = uarms->rknown = 1;
+			if (uarmu) uarmu->oerodeproof = uarmu->rknown = 1;
+			if (uarmc) uarmc->oerodeproof = uarmc->rknown = 1;
+			if (uarmg) uarmg->oerodeproof = uarmg->rknown = 1;
+			if (uarmf) uarmf->oerodeproof = uarmf->rknown = 1;
+			if (uarmh) uarmh->oerodeproof = uarmh->rknown = 1;
+
+			Your("armor has been erosionproofed, but that comes at a price...");
+
+			break;
+		}
+
 		if (CannotSelectItemsInPrompts) break;
 		pline("You may enchant a worn piece of armor.");
 proofarmorchoice:
@@ -6439,6 +6457,19 @@ proofarmorchoice:
 	case SCR_PROOF_ACCESSORY:
 
 	      {
+
+		if (sobj->oartifact == ART_PURPLE_BLENDIND) {
+			make_blinded(Blinded+rnz(1000),FALSE);
+			set_itimeout(&HeavyBlind, Blinded);
+			if (uleft) uleft->oerodeproof = uleft->rknown = 1;
+			if (uright) uright->oerodeproof = uright->rknown = 1;
+			if (uamul) uamul->oerodeproof = uamul->rknown = 1;
+			if (uimplant) uimplant->oerodeproof = uimplant->rknown = 1;
+			Your("accessories have been erosionproofed.");
+
+			break;
+		}
+
 		if (CannotSelectItemsInPrompts) break;
 
 		known = TRUE;
@@ -6473,7 +6504,9 @@ proofaccchoice:
 		break;
 	case SCR_PROOF_TOOL:
 
-	      {
+      {
+		int amountproofing = 1;
+		if (sobj->oartifact == ART_COATSHINE_PROFICIENT) amountproofing += 4;
 		if (CannotSelectItemsInPrompts) break;
 
 		known = TRUE;
@@ -6481,29 +6514,35 @@ proofaccchoice:
 prooftoolchoice:
 		otmp = getobj(allnoncount, "proof");
 
-			if(!otmp) {
-				if (yn("Really exit with no object selected?") == 'y')
-					pline("You just wasted the opportunity to proof your tools.");
-				else goto prooftoolchoice;
-				strange_feeling(sobj,"Some weird things are happening to your equipment!");
-				exercise(A_STR, FALSE);
-				exercise(A_CON, FALSE);
-				return(1);
-			}
-			if (otmp->oclass != TOOL_CLASS) {
-	
-				strange_feeling(sobj, "You have a feeling of loss.");
-				return(1);
-			}
-
-			otmp->oerodeproof = 1;
-			if (!Blind) otmp->rknown = TRUE;
-			p_glow2(otmp, NH_PURPLE);
-			if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
-				if (!otmp->cursed) bless(otmp);
-				else uncurse(otmp, FALSE);
-			}
+		if(!otmp) {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to proof your tools.");
+			else goto prooftoolchoice;
+			strange_feeling(sobj,"Some weird things are happening to your equipment!");
+			exercise(A_STR, FALSE);
+			exercise(A_CON, FALSE);
+			return(1);
 		}
+		if (otmp->oclass != TOOL_CLASS) {
+	
+			strange_feeling(sobj, "You have a feeling of loss.");
+			return(1);
+		}
+
+		otmp->oerodeproof = 1;
+		if (!Blind) otmp->rknown = TRUE;
+		p_glow2(otmp, NH_PURPLE);
+		if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+			if (!otmp->cursed) bless(otmp);
+			else uncurse(otmp, FALSE);
+		}
+
+		if (amountproofing > 1) {
+			amountproofing--;
+			You("may erosionproof another tool. Please select a tool-class item.");
+			goto prooftoolchoice;
+		}
+	}
 
 		break;
 	case SCR_NAME:
@@ -8442,7 +8481,7 @@ newboss:
 				       uwep->spe >= 9 ? /*(rn2(uwep->spe) == 0)*/1 : rnd(3-uwep->spe/3));
 		break;
 	case SCR_PROOF_WEAPON: /* scroll added by Amy */
-		if (uwep && stack_too_big(uwep)) {
+		if (uwep && stack_too_big(uwep) && !(sobj->oartifact == ART_RULES_ARE_MADE_TO_BE_BROKE) ) {
 			pline("The enchantment failed due to the stack being too big.");
 			break;
 		}
@@ -8466,6 +8505,31 @@ newboss:
 				sobj->cursed ? "glow" : "shield");
 			}
 		}
+
+		else if (uwep && (sobj->oartifact == ART_RULES_ARE_MADE_TO_BE_BROKE)) {
+			if (uwep && stack_too_big(uwep)) {
+				pline("The enchantment failed due to the stack being too big.");
+				break;
+			}
+			uwep->oerodeproof = 1;
+			if (uwep && objects[(uwep)->otyp].oc_material == MT_CELESTIUM) {
+				if (!uwep->cursed) bless(uwep);
+				else uncurse(uwep, FALSE);
+			}
+			if (Blind) {
+			    uwep->rknown = FALSE;
+			    Your("currently wielded item feels warm for a moment.");
+			} else {
+			    uwep->rknown = TRUE;
+			    Your("%s covered by a %s %s %s!",
+				aobjnam(uwep, "are"),
+				sobj->cursed ? "mottled" : "shimmering",
+				hcolor(sobj->cursed ? NH_PURPLE : NH_GOLDEN),
+				sobj->cursed ? "glow" : "shield");
+			}
+
+		}
+
 		break;
 	case SCR_SLEEP:
 		known = TRUE;
@@ -10565,6 +10629,60 @@ newboss:
 		break;
 	case SCR_ITEM_GENOCIDE:
 		You("have found a scroll of item genocide!");
+
+		if (sobj->oartifact == ART_IMPERISHABLE_PART_TIME_RER) {
+			register int unobtitemamount = rnd(10); /* pick an # of items that are unobtainable --Amy */
+
+			u.unobtainable = -1;
+			while ( (u.unobtainable == -1) || (u.unobtainable == GOLD_PIECE) || (u.unobtainable == STRANGE_OBJECT) || (u.unobtainable == AMULET_OF_YENDOR) || (u.unobtainable == CANDELABRUM_OF_INVOCATION) || (u.unobtainable == BELL_OF_OPENING) || (u.unobtainable == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable].oc_prob < 1) ) u.unobtainable = rn2(NUM_OBJECTS);
+
+			u.unobtainable2 = -1;
+			if (unobtitemamount >= 2) {
+			while ( (u.unobtainable2 == -1) || (u.unobtainable2 == GOLD_PIECE) || (u.unobtainable2 == STRANGE_OBJECT) || (u.unobtainable2 == AMULET_OF_YENDOR) || (u.unobtainable2 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable2 == BELL_OF_OPENING) || (u.unobtainable2 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable2].oc_prob < 1) ) u.unobtainable2 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable3 = -1;
+			if (unobtitemamount >= 3) {
+			while ( (u.unobtainable3 == -1) || (u.unobtainable3 == GOLD_PIECE) || (u.unobtainable3 == STRANGE_OBJECT) || (u.unobtainable3 == AMULET_OF_YENDOR) || (u.unobtainable3 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable3 == BELL_OF_OPENING) || (u.unobtainable3 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable3].oc_prob < 1) ) u.unobtainable3 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable4 = -1;
+			if (unobtitemamount >= 4) {
+			while ( (u.unobtainable4 == -1) || (u.unobtainable4 == GOLD_PIECE) || (u.unobtainable4 == STRANGE_OBJECT) || (u.unobtainable4 == AMULET_OF_YENDOR) || (u.unobtainable4 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable4 == BELL_OF_OPENING) || (u.unobtainable4 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable4].oc_prob < 1) ) u.unobtainable4 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable5 = -1;
+			if (unobtitemamount >= 5) {
+			while ( (u.unobtainable5 == -1) || (u.unobtainable5 == GOLD_PIECE) || (u.unobtainable5 == STRANGE_OBJECT) || (u.unobtainable5 == AMULET_OF_YENDOR) || (u.unobtainable5 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable5 == BELL_OF_OPENING) || (u.unobtainable5 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable5].oc_prob < 1) ) u.unobtainable5 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable6 = -1;
+			if (unobtitemamount >= 6) {
+			while ( (u.unobtainable6 == -1) || (u.unobtainable6 == GOLD_PIECE) || (u.unobtainable6 == STRANGE_OBJECT) || (u.unobtainable6 == AMULET_OF_YENDOR) || (u.unobtainable6 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable6 == BELL_OF_OPENING) || (u.unobtainable6 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable6].oc_prob < 1) ) u.unobtainable6 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable7 = -1;
+			if (unobtitemamount >= 7) {
+			while ( (u.unobtainable7 == -1) || (u.unobtainable7 == GOLD_PIECE) || (u.unobtainable7 == STRANGE_OBJECT) || (u.unobtainable7 == AMULET_OF_YENDOR) || (u.unobtainable7 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable7 == BELL_OF_OPENING) || (u.unobtainable7 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable7].oc_prob < 1) ) u.unobtainable7 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable8 = -1;
+			if (unobtitemamount >= 8) {
+			while ( (u.unobtainable8 == -1) || (u.unobtainable8 == GOLD_PIECE) || (u.unobtainable8 == STRANGE_OBJECT) || (u.unobtainable8 == AMULET_OF_YENDOR) || (u.unobtainable8 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable8 == BELL_OF_OPENING) || (u.unobtainable8 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable8].oc_prob < 1) ) u.unobtainable8 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable9 = -1;
+			if (unobtitemamount >= 9) {
+			while ( (u.unobtainable9 == -1) || (u.unobtainable9 == GOLD_PIECE) || (u.unobtainable9 == STRANGE_OBJECT) || (u.unobtainable9 == AMULET_OF_YENDOR) || (u.unobtainable9 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable9 == BELL_OF_OPENING) || (u.unobtainable9 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable9].oc_prob < 1) ) u.unobtainable9 = rn2(NUM_OBJECTS);
+			}
+
+			u.unobtainable10 = -1;
+			if (unobtitemamount >= 10) {
+			while ( (u.unobtainable10 == -1) || (u.unobtainable10 == GOLD_PIECE) || (u.unobtainable10 == STRANGE_OBJECT) || (u.unobtainable10 == AMULET_OF_YENDOR) || (u.unobtainable10 == CANDELABRUM_OF_INVOCATION) || (u.unobtainable10 == BELL_OF_OPENING) || (u.unobtainable10 == SPE_BOOK_OF_THE_DEAD) || (objects[u.unobtainable10].oc_prob < 1) ) u.unobtainable10 = rn2(NUM_OBJECTS);
+			}
+
+		}
+
 		known = TRUE;
 		char buf[BUFSZ];
 		int tries = 0;
@@ -11228,6 +11346,20 @@ chargingchoice:
 		break;
 
 	case SCR_POWER_CHARGING:
+
+		if (sobj->oartifact == ART_XTREME_CHARGOR) {
+			struct obj *uroub;
+
+			uroub = mksobj(WAN_CHARGING, TRUE, FALSE, FALSE);
+
+			if (uroub) {
+				dropy(uroub);
+				stackobj(uroub);
+				pline("A wand appeared at your %s!", makeplural(body_part(FOOT)));
+			}
+
+		}
+
 		if (confused) {
 		    You_feel("charged up!");
 		    if (u.uen < u.uenmax)
@@ -11947,6 +12079,18 @@ armorspecchoice:
 					if (!otmp->enchantment) {
 						long savewornmask;
 						otmp->enchantment = randenchantment();
+
+						if (sobj->oartifact == ART_WORKING_UNDO_BUTTON) {
+							pline("The enchantment is %s.", enchname(otmp->enchantment) );
+
+							getlin("Do you want to cancel this enchantment? If you answer yes, the enchantment will be removed. [yes/no]", buf);
+							(void) lcase (buf);
+							if (!(strcmp (buf, "yes")) ) {
+								otmp->enchantment = 0;
+								pline("Enchantment cancelled.");
+							}
+						}
+
 						savewornmask = otmp->owornmask;
 						setworn((struct obj *)0, otmp->owornmask);
 						setworn(otmp, savewornmask);

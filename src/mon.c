@@ -8612,7 +8612,7 @@ sarahdone:
 			}
 		}
     }
-    if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_LOUD && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
+    if(!mtmp->egotype_farter && monstersoundtype(mtmp) == MS_FART_LOUD && !u.tempnofartloud && !(uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS)) {
 		pline("%s produces %s farting noises with %s %s butt.", Monnam(mtmp), rn2(2) ? "disgusting" : "loud", mhis(mtmp), mtmp->female ? "sexy" : "ugly" );
 		u.cnd_fartingcount++;
 		if (FemtrapActiveJanet) {

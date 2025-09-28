@@ -7664,6 +7664,18 @@ find_ac()
 		uac -= 3;
 		if (u.uundetected) uac -= 10;
 	}
+
+	if (u.tempnevernmbf) {
+		int nmbfbonus = 0;
+		if (moves > (u.nmbfturnactive + 19)) {
+			nmbfbonus = (moves - u.nmbfturnactive) / 20;
+			if (nmbfbonus < 0) nmbfbonus = 0; /* fail safe */
+			if (nmbfbonus > 50) nmbfbonus = 50;
+			uac -= nmbfbonus;
+		}
+
+	}
+
 	if (uleft && uleft->oartifact == ART_HOH_UNNE) uac -= 5;
 	if (uright && uright->oartifact == ART_HOH_UNNE) uac -= 5;
 	if (uarm && uarm->oartifact == ART_SEM_BOOST) uac -= 3;

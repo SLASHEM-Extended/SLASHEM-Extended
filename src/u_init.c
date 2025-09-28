@@ -11681,6 +11681,7 @@ u_init()
 	u.mushroompoles = 0;
 	u.grenadoninlauncher = 0;
 	u.nataljetrapturns = 0;
+	u.nmbfturns = 0;
 	u.cryopancaketurns = 0;
 	u.reddamamount = rne(2);
 	u.redincamount = rne(2);
@@ -11800,6 +11801,8 @@ u_init()
 	u.automorefuckthisshit = 0;
 	u.nataljetrapx = 0;
 	u.nataljetrapy = 0;
+	u.nmbfx = 0;
+	u.nmbfy = 0;
 	u.riennevaplus = 0;
 	u.stairscumslowing = 0;
 	u.swappositioncount = 0;

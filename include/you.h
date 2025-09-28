@@ -802,6 +802,28 @@ struct you {
 	int temptriplemf;		/* temporary magic find, stacks with the trinsic and is 3x as strong */
 	int temprandgoodbadeffects;	/* temporary 1 in 500 chance per turn to get either a good or bad effect */
 	int tempincrdmg1;		/* temporary +1 increase damage */
+	int tempfireimmune;	/* temporary immunity to fire */
+	int temptimebasefail75;	/* temporary 75% fail for timebasedlowerchance check */
+	int tempmorepokemon;	/* temporary +15 spawn freq for M3_POKEMON */
+	int tempnevernmbf;	/* temporary bossfight nastytrap effect and if you move around once every 2 turns or more often, your AC slowly goes up */
+	int tempveryfastspeed;	/* temporary very fast speed, like the intrinsic but can't lose it to u_slow_down or similar stuff */
+	int tempgoodsuppreffects;	/* temporary 1 in 1000 chance per turn to get a good effect, but you always get rnz(50) turns of message suppression whenever such an effect happens */
+	int temprandospawnfreq;	/* temporary +200 spawn freq for M4_RANDOMIZED */
+	int tempspelllossmagvac;	/* temporary spell loss and magic vacuum */
+	int tempnofartloud;	/* temporarily deactivates loud farting noises from monsters */
+	int tempcritical10;	/* temporarily have +10% critical hit chance */
+	int tempspiderspawns;	/* temporary +10 spawn freq for S_SPIDER */
+	int tempuninterapprf;	/* temporarily cannot be interrupted at all, and monsters have appr=-1 */
+	int tempmonitemtrapsp;	/* temporarily spawn random monsters, items and traps */
+	int tempradiusto;		/* temporary power failure, detectation trap effect, blah blah blah */
+	int temprumormessages;	/* temporary chance of getting random messages or rumors every turn */
+	int tempcarrcap1000;	/* temporary +1000 to carry cap including the max */
+	int tempnoflysee;		/* temporary deactivated flying but can see all flying monsters */
+	int tempnospearthrow;	/* temporarily no one (neither player nor monsters) can throw spears */
+	int tempfountainbuild;	/* temporarily transform random floor tiles into fountains */
+
+	int tempnukaeffect;	/* temporary feminism trap effect that corresponds to a bottle of Nuka Cola */
+	int tempnukaefftype;	/* the type of temporary feminism trap effect for the above */
 
 	int trilightningdelay;	/* for tri-delay lightning artifact: performs certain techs at certain timeouts */
 
@@ -1820,6 +1842,9 @@ struct you {
 	boolean symbioteattacking;
 	boolean marleenproperties;
 
+	int nmbfturns, nmbfturnactive;
+	int nmbfx, nmbfy;
+
 	int nataljetrapturns;
 	int nataljetrapx, nataljetrapy;
 
@@ -1998,7 +2023,7 @@ struct you {
 	boolean polyattackhack;
 	boolean dynamitehack; /* for special dynamite sticks which can also raze undiggable walls */
 	boolean detonationhack;
-	int mongetshack;
+	int mongetshack; /* 100 = player can't ever get the item ("aetheric"), 33 = player can always get the item */
 	boolean evilvarhack;
 
 	int secretcodenumber;

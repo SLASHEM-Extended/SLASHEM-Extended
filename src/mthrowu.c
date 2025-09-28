@@ -1840,6 +1840,12 @@ struct monst *mtmp;
 	otmp = select_rwep(mtmp, FALSE);
 	if (!otmp) return;
 
+	if (otmp && u.tempnospearthrow) {
+		if (objects[otmp->otyp].oc_skill == P_SPEAR || objects[otmp->otyp].oc_skill == -P_SPEAR) {
+			return;
+		}
+	}
+
 	if ((MON_WEP(mtmp) == otmp) && is_applypole(otmp)) {
 	    int dam, hitv;
 
@@ -2199,7 +2205,7 @@ breamu(mtmp, mattk)			/* monster breathes at you (ranged) */
 
 	if(lined_up(mtmp)) {
 
-	    if(mtmp->mcan || autismweaponcheck(ART_DARKGOD_S_MINUSES) ) {
+	    if(mtmp->mcan || u.tempradiusto || autismweaponcheck(ART_DARKGOD_S_MINUSES) ) {
 		if(flags.soundok) {
 		    if(canseemon(mtmp))
 			pline("%s coughs.", Monnam(mtmp));

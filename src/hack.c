@@ -4838,6 +4838,8 @@ nomul(nval, txt, discountpossible)
 {
 	if (uarmc && uarmc->oartifact == ART_LIGHTSPEED_TRAVEL && nval == 0) return;
 
+	if (u.tempuninterapprf && nval == 0) return;
+
 	if (uarmf && nval == 0 && itemhasappearance(uarmf, APP_TURBO_BOOTS) ) return;
 
 	if (u.katitrapocc && nval == 0) {
@@ -5823,6 +5825,7 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 	if (uarmc && uarmc->otyp == TORNISTER_CLOAK) maxcarrcap += 500;
 	if (uamul && uamul->oartifact == ART_ATLAS_WEIGHT_CRUNCH) maxcarrcap += 2000;
 	if (uchain && uchain->oartifact == ART_JORMUNGANDR_S_COIL) maxcarrcap += 500;
+	if (u.tempcarrcap1000) maxcarrcap += 1000;
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		maxcarrcap += 1000;
 		if (flags.female && u.ulevel < 10) maxcarrcap += 4000;
@@ -5924,6 +5927,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 		carrcap += (u.ulevel * 100);
 		if (u.xtralevelmult > 1) carrcap += ((u.xtralevelmult - 1) * 100);
 	}
+	if (u.tempcarrcap1000) carrcap += 1000;
 	if (uarm && uarm->oartifact == ART_TRIANGLE_GIRL) {
 		carrcap += 1000;
 		if (flags.female && u.ulevel < 10) carrcap += 4000;

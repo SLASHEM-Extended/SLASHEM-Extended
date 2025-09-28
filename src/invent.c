@@ -3593,7 +3593,7 @@ boolean
 feminizecheck(femnumber)
 int femnumber;
 {
-	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL) && !(uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) && !have_contaminatejewel() ) return FALSE;
+	if (!isfeminizer && !Role_if(PM_CLIMACTERIAL) && !(uamul && uamul->oartifact == ART_NAMED_NUKA_COLA) && !u.tempnukaeffect && !have_contaminatejewel() ) return FALSE;
 
 	if (Role_if(PM_CLIMACTERIAL)) {
 		if (u.urmaxlvlUP >= 3 && u.climauspices3 == femnumber) return TRUE;
@@ -3612,6 +3612,8 @@ int femnumber;
 	if (isfeminizer && u.feminizeffect == femnumber) return TRUE;
 	if (have_contaminatejewel() && (u.contamjeweleffect == femnumber)) return TRUE;
 	if (uamul && uamul->oartifact == ART_NAMED_NUKA_COLA && (u.nukafemeffect == femnumber)) return TRUE;
+	if (u.tempnukaeffect && (u.tempnukaefftype == femnumber) ) return TRUE;
+	/* caution: make sure any added items are also checked above!! --Amy */
 
 	return FALSE;
 }
@@ -3643,9 +3645,11 @@ int nastynumber;
 		if (u.ulevel >= 28 && u.dorian28 == nastynumber) return TRUE;
 	}
 
+	/* caution: make sure any added items are also checked above!! --Amy */
 	if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
 		if (u.catwalknastytrap == nastynumber) return TRUE;
 	}
+	/* caution: make sure any added items are also checked above!! --Amy */
 
 	if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR) || autismweaponcheck(ART_POLITICAL_CORRECTNESS_FOR_) ) {
 	switch (u.ulevel) {
@@ -34387,6 +34391,144 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: +8 kick damage."); break;
 				case ART_ELIZAH_S_SINKER:
 					pline("Artifact specs: your kick deals +10 lightning damage, acid resistance and unbreathing when worn, double janet trap effect, soiltype effect, prevents semicolons and flying fish from hiding in water and makes them sometimes lose their turns, and the weather has a chance of being set to 'thunderstorm'."); break;
+				case ART_SPORK_INTENSIFIES:
+					pline("Artifact specs: dipping an item into it immediately applies the full three layers of grease."); break;
+				case ART_HANIFE_S_GODLY_POWER:
+					pline("Artifact specs: lasts much longer when quaffed."); break;
+				case ART_FLAMETARD:
+					pline("Artifact specs: quaffing it makes you immune to fire for a while."); break;
+				case ART_LU_NU_SEV:
+					pline("Artifact specs: spawns with a bigger stack size."); break;
+				case ART_ONTEN_GAINEN:
+					pline("Artifact specs: quaffing it will always try to give you three random intrinsics."); break;
+				case ART_STATS__TOO_:
+					pline("Artifact specs: quaffing it sets the training amount for all of your stats to the maximum."); break;
+				case ART_WORKING_UNDO_BUTTON:
+					pline("Artifact specs: if you successfully enchant an item with it, you're told what the enchantment is and can then opt to delete it from the item, in case it's one you didn't want."); break;
+				case ART_XTREME_CHARGOR:
+					pline("Artifact specs: reading it creates a wand of charging on the ground."); break;
+				case ART_COMPLETE_THE_LOCK:
+					pline("Artifact specs: reading it proofs all currently worn armor pieces (so make sure you're wearing as many as you can), but also gives the wall regrowth and funwall nastytrap effects permanently!"); break;
+				case ART_RULES_ARE_MADE_TO_BE_BROKE:
+					pline("Artifact specs: can proof a stack of weapons without failure chance regardless of the stack size. You can also use it to proof a non-weapon, but then the stack size limitation still applies (so e.g. trying to fireproof a stack of scrolls can fail)."); break;
+				case ART_PURPLE_BLENDIND:
+					pline("Artifact specs: reading it will proof your amulet, implant and both rings, so make sure to equip something in all those slots for maximum effect. You will also become heavily blinded for a while though."); break;
+				case ART_COATSHINE_PROFICIENT:
+					pline("Artifact specs: reading it allows you to proof a total of 5 tools. Make sure you have that many in your open inventory."); break;
+				case ART_IMPERISHABLE_PART_TIME_RER:
+					pline("Artifact specs: reading it rerolls the set of items that the RNG made ungenerateable."); break;
+				case ART_THAT_S_SO_MEDIEVAL_:
+					pline("Artifact specs: reading it spawns a weapon on the ground, which will be of a type that's appropriate for medieval warfare."); break;
+				case ART_YOU_SIR_ARE_A_LO_SIR:
+					pline("Artifact specs: reading it afflicts you with fear for a while."); break;
+				case ART_INVTOOFULL:
+					pline("Artifact specs: ha ha ha, your inventory is too full, right? Well you won't need to worry about that for a while :D"); break;
+				case ART_HEY__I_ADORE_YOU__OKAY_:
+					pline("Artifact specs: reading it tries to pacify monsters in a 9x9 area around you. They must make a saving throw or become peaceful."); break;
+				case ART_BINI_PIENSI:
+					pline("Artifact specs: reading it reduces your protection, but if you're chaotic, you also gain a few points of alignment (not beyond the maximum though)."); break;
+				case ART_SPRAY_THE_MON_OUT_:
+					pline("Artifact specs: reading it temporarily increases the spawn chance for pokemon."); break;
+				case ART_MORTON_S_ICECAVE_PRICKLE:
+					pline("Artifact specs: when it got generated, it transformed the water on the dungeon level into crystal water. Reading it creates crystal water around you and may also transform some nearby water tiles into crystal water."); break;
+				case ART_ONE_BEFORE_LAST:
+					pline("Artifact specs: reading it teaches a random level 7 spell."); break;
+				case ART_HIGH_ABOVE_THE_CLOUDS:
+					pline("Artifact specs: when it generated, certain liquids on the level transformed into clouds; reading it does the same in a 7x7 area around you and may affect some other tiles on the level. It works on urine, moorland, styx rivers, shifting sand and lava, but not on any type of water."); break;
+				case ART_KWUKSPLASH:
+					pline("Artifact specs: reading it creates a toilet on your current location, at least if it's a regular floor tile."); break;
+				case ART_GRAIN_FARMING__CLICK_:
+					pline("Artifact specs: reading it improves your spell memory for all spells whose memory is 101%% or lower, but those whose memory is above 200%% will be set to 200%%."); break;
+				case ART_STAYHEEL:
+					pline("Artifact specs: reading it spawns a domestic monster."); break;
+				case ART_NEVERNONMOVE_BOSSFIGHT:
+					pline("Artifact specs: when it generated, you got an effect that causes boss monsters to spawn more often for quite a while. As long as that effect is still active, your AC will slowly go up as long as you always perform a movement action once every 2 turns, but standing still for two turns apiece resets that bonus to zero so you have to start over if you want to build it back up."); break;
+				case ART_KRT_DESERT_TUB:
+					pline("Artifact specs: when it generated, you got the larissa and natalje trap effects for quite a long time, but also very fast speed. Reading it teaches teleport self, teleport away and phase door, and trains the occult and body spell skills."); break;
+				case ART_SEVENTH_GAME__DEDEDE_:
+					pline("Artifact specs: reading it greatly boosts the spell memory of all your spells which are exactly spell level 7, but all those whose level is 6 or lower will lose a bunch of memory."); break;
+				case ART_NORTHHOME:
+					pline("Artifact specs: makes good stuff happen, but doesn't tell you what the good effects are. Reading it will prolong the time for which that effect stays active."); break;
+				case ART_ER_EN_DE:
+					pline("Artifact specs: hmm, you feel that randomized monsters are spawning more often...?"); break;
+				case ART_FULLY_CHAOTIC_MONTE:
+					pline("Artifact specs: reading it will teach all the chaos spells in the game to you, and increases your chaos spell skill cap. If you didn't have that skill, it is unlocked with a cap of skilled. But you won't be able to see what the spells are and all your spells are also weaker; these effects will last for 200000 turns and cannot be cured!"); break;
+				case ART_YOUR_BUTT_HAS_A_TRACK_CLOS:
+					pline("Artifact specs: reading it will prevent monsters who can produce loud farting noises from doing so, for a period of time."); break;
+				case ART_RODIN_THINKS_CRITICAL_HITS:
+					pline("Artifact specs: reading it boosts your critical hit chance for a while."); break;
+				case ART_ES_TWO_TO_EK:
+					pline("Artifact specs: reading it causes spiders to spawn more often for a while."); break;
+				case ART_MORE_COMMERCIAL_GOES_REALL:
+					pline("Artifact specs: when it got generated, it built a bunch of loudspeakers on the dungeon level; reading it builds a few more. Have fun with the constant message spammage."); break;
+				case ART_ASKING_TELNET_PLESCHE:
+					pline("Artifact specs: reading it gives detect monsters for a bunch of turns, but also causes the game to lag for a while."); break;
+				case ART_SABINE_S_STUBBORNNESS:
+					pline("Artifact specs: reading it cannot be interrupted (at all, not even if monsters are trying to kill you), but during that time, monsters will also tend to move away from you."); break;
+				case ART_I_DISCOVERED_EQUALMUCH:
+					pline("Artifact specs: reading it sets your maximum HP and Pw to the mean of those two values."); break;
+				case ART_DOESMUJETE:
+					pline("Artifact specs: reading it unlocks the squeaking skill, or if you already have that one, there's a chance of increasing the cap; it also gives you the janet trap effect for a while and if you already have that one, its effects are intensified."); break;
+				case ART_CELEBRATION_EVENING:
+					pline("Artifact specs: if you read it between 18 and 24 o'clock (which is 6 to 12 PM in case you're living in a weird country without 24-hour systems :P), it tries to cure burden, wince, inversion and inertia. The timers for those four negative effects are reduced by 5000, so if they would've lasted longer than that, they're not fully cured but will at least time out sooner."); break;
+				case ART_I_M_GONNA_TELL_MY_HEART:
+					pline("Artifact specs: reading it gives diminished bleeding for a good long while."); break;
+				case ART_SYLVIE_S_YAWNING_HISTORY:
+					pline("Artifact specs: reading it gives a corona antidote, but also causes you to fall asleep for up to 40 turns."); break;
+				case ART_READ_OUT_EKE:
+					pline("Artifact specs: reading it boosts your maximum HP by one."); break;
+				case ART_AMUSINGER_BANKSKY:
+					pline("Artifact specs: you shouldn't be seeing this item, how on earth did you obtain it??? We don't feel like telling you what it does because you're not supposed to have it!"); break;
+				case ART_RADIUS_REQUEST_TIMED_OUT:
+					pline("Artifact specs: reading it gives temporary power failure and makes it harder for you to detect stuff, but monsters will be short-sighted during that duration, are likely to fail their breath attacks, and cannot mind blast you."); break;
+				case ART_CONUNDRAL_PLAYBACK:
+					pline("Artifact specs: reading it spawns an equipment piece made of conundrum on the ground."); break;
+				case ART_YOU_LOOK_LIKE_YOU_HAVE_SEE:
+					pline("Artifact specs: when it generated, and also whenever you read it, some spacewars monsters will spawn on the current level."); break;
+				case ART_RODNEYBANE:
+					pline("Artifact specs: +10 to-hit and +50 damage against Rodney. This specifically affects the 'Wizard of Yendor' monster and no other ones."); break;
+				case ART_AMY__WHAT_THE_HELL_IS_A_BE:
+					pline("Artifact specs: when it generated, and also whenever you read it, bees are spawned on the current dungeon level."); break;
+				case ART_Q___WHA_BOYS:
+					pline("Artifact specs: reading it causes you to have to read random messages and rumors for a while."); break;
+				case ART_GREENE_BLIEGE:
+					pline("Artifact specs: reading it rerolls the status of the portal that leads to Green Cross. Maybe you get lucky and it becomes unlocked so you can actually enter."); break;
+				case ART_STD_IDENTIFY:
+					pline("Artifact specs: reading it gives enlightenment, but as if you had used the wand, which is stronger than the spell."); break;
+				case ART_ANGEL_LACK_BOWAY:
+					pline("Artifact specs: reading it spawns an angel with interesting equipment somewhere in the dungeon. Good luck finding him."); break;
+				case ART_STRETCHER_CAPACITY:
+					pline("Artifact specs: reading it temporarily increases your carry capacity."); break;
+				case ART_AND_I_LOVE_THE_BAUR:
+					pline("Artifact specs: reading it increases your strength and gives the kerstin trap effect for a while."); break;
+				case ART_AMY__YOU_DON_T_NEED_TO_ADD:
+					pline("Artifact specs: hehehehehehehe hahahahaha wuaharharharhar! :D"); break;
+				case ART_WA_WA__WA_WA__WA_WA_:
+					pline("Artifact specs: reading it gives you the fear factor intrinsic for a while."); break;
+				case ART_I_WEAR_WHAT_I_WANT__BASTA_:
+					pline("Artifact specs: haha, I guess you love to wear high heels :D"); break;
+				case ART_FOUR_ON_THE_FLOOR__I_WILL_:
+					pline("Artifact specs: reading it deactivates flying for a while, but during that time you'll be able to see all flying enemies."); break;
+				case ART_CAMA_CAMA_CAMA_MAYBE:
+					pline("Artifact specs: reading it randomly increases or decreases your luck by one."); break;
+				case ART_LIVE_IN_THE_SENSE_OF_YOUR_:
+					pline("Artifact specs: reading it exercises your wisdom by a bunch, making it more likely that it eventually goes up."); break;
+				case ART_CANCELLATOION:
+					pline("Artifact specs: cancels you when read, and it also did that when you generated. It mimics the effect of a monster zapping you with a wand of cancellation, so each of your item has a 1 in 25 or so chance of being affected."); break;
+				case ART_NICHT_SPEER_WERFEN:
+					pline("Artifact specs: reading it makes it so that for 10000 turns, no one (neither you nor monsters) can throw spears."); break;
+				case ART_AND_THEN_THE_TESTER_CAME:
+					pline("Artifact specs: heh, too bad, you had to pay a fine :D And reading it spawns monsters whose attacks can increase your debts."); break;
+				case ART_EST_FUENF_NACH_PLATTFORMIN:
+					pline("Artifact specs: have you seen a beautiful girl wearing lovely platform boots? And are you aware of the fact that they can be tamed with thrown food, meaning you don't have to mindlessly slaughter her like you probably do with every other monster you come across?"); break;
+				case ART_DAILY_FRESHE_BREAD:
+					pline("Artifact specs: reading it creates a couple loaves of bread on the ground."); break;
+				case ART_PART_PIZZA:
+					pline("Artifact specs: reading it creates a couple slices of pizza on the ground."); break;
+				case ART_NUKA_ROLL:
+					pline("Artifact specs: when it generated, and also if you read it, you drink a random bottle of Nuka Cola(TM) and the bottle's name has an effect."); break;
+				case ART_THIRST_HOLES:
+					pline("Artifact specs: reading it tries to transform the tile you're standing on into a fountain (it needs to be an ordinary floor tile though), and gives you thirst for a while but for a period of time, random floor tiles will turn into fountains."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

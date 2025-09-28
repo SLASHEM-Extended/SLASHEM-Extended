@@ -88,6 +88,8 @@
 
 #define FleeceyScripts	(FleecescriptBug || u.uprops[FLEECESCRIPT_BUG].extrinsic || have_fleecestone() || (uarmh && uarmh->oartifact == ART_TELEVISION_WONDER) || (uimplant && uimplant->oartifact == ART_IME_SPEW) )
 
+#define YouHaveLostSpells (u.tempspelllossmagvac || SpellLoss || u.uprops[SPELLS_LOST].extrinsic || have_spelllossstone())
+
 #define CurseAsYouUse	(CurseuseEffect || u.uprops[CURSEUSE_EFFECT].extrinsic || have_curseusestone() || (uamul && uamul->oartifact == ART_ARABELLA_S_DICINATOR) )
 
 #define EpviProblemActive	(EpviEffect || u.uprops[EPVI_EFFECT].extrinsic || have_epvistone() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) )
@@ -137,7 +139,7 @@
 
 #define MenuIsBugged	(MenuBug || u.uprops[MENU_LOST].extrinsic || have_menubugstone() || autismweaponcheck(ART_BERSERK_RAGE) || (uarmh && uarmh->oartifact == ART_BABY_JOYN_ME_IN_THERE) )
 
-#define DetectionMethodsDontWork	(DetectationEffect || (uarm && uarm->oartifact == ART_FEHLIRON) || (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) || u.uprops[DETECTATION_EFFECT].extrinsic || have_detectationstone() || (uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH) )
+#define DetectionMethodsDontWork	(DetectationEffect || u.tempradiusto || (uarm && uarm->oartifact == ART_FEHLIRON) || (uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) || u.uprops[DETECTATION_EFFECT].extrinsic || have_detectationstone() || (uarm && uarm->oartifact == ART_ARABELLA_S_LIGHTSWITCH) )
 
 #define YouHaveBigscript	(BigscriptEffect || (uarmh && uarmh->oartifact == ART_YOU_SEE_HERE_AN_ARTIFACT) || u.uprops[BIGSCRIPT].extrinsic || have_bigscriptstone() )
 
@@ -286,7 +288,7 @@
 
 #define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || UHaveAids || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (u.impossibleproperty == FIRE_RES) || (uarm && uarm->oartifact == ART_ABSOLUTE_MONSTER_MAIL) || autismweaponcheck(ART_ICEBLOCK_SWORD) || (uarm && uarm->oartifact == ART_FLEEING_MINE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uamul && uamul->oartifact == ART_CURSING_CHARM && !uamul->cursed) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
-#define FireImmunity		((uarm && uarm->oartifact == ART_COAL_PEER) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarm && uarm->otyp == ASBESTOS_JACKET) || (uarmf && uarmf->oartifact == ART______DEGREES) || (uarmh && uarmh->oartifact == ART_MAGMA_BRINGER) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uamul && uamul->oartifact == ART_LARA_S_LAVAWALK) || (uamul && uamul->oartifact == ART_CURSING_CHARM && uamul->cursed) || (uarms && uarms->oartifact == ART_OGROTIC_CHANT) || (uarmc && uarmc->oartifact == ART_WOAH_FREEZE_) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || Race_if(PM_HYPOTHERMIC))
+#define FireImmunity		((uarm && uarm->oartifact == ART_COAL_PEER) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarm && uarm->otyp == ASBESTOS_JACKET) || (uarmf && uarmf->oartifact == ART______DEGREES) || (uarmh && uarmh->oartifact == ART_MAGMA_BRINGER) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uamul && uamul->oartifact == ART_LARA_S_LAVAWALK) || (uamul && uamul->oartifact == ART_CURSING_CHARM && uamul->cursed) || (uarms && uarms->oartifact == ART_OGROTIC_CHANT) || u.tempfireimmune || (uarmc && uarmc->oartifact == ART_WOAH_FREEZE_) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || Race_if(PM_HYPOTHERMIC))
 
 #define HCold_resistance	u.uprops[COLD_RES].intrinsic
 #define ECold_resistance	u.uprops[COLD_RES].extrinsic
@@ -1593,7 +1595,7 @@
 #define Flying			(((IntFlying && u.nonintrinsicproperty != FLYING) || (ExtFlying && u.nonextrinsicproperty != FLYING)) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongFlying	(IntFlying && ExtFlying && Flying && u.nondoubleproperty != FLYING)
 
-#define NoFlying	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FLYING].intrinsic || (Race_if(PM_NEMESIS) && uarmc) || UHaveAids || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (u.impossibleproperty == FLYING) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFlying	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FLYING].intrinsic || (Race_if(PM_NEMESIS) && uarmc) || UHaveAids || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (FemtrapActiveNaomi && !PlayerInHighHeels) || u.tempnoflysee || (u.impossibleproperty == FLYING) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
 
 	/* May touch surface; does not override any others */
 
@@ -2004,7 +2006,7 @@
 #define HMagicVacuum		u.uprops[MAGIC_VACUUM].intrinsic
 #define EMagicVacuum		u.uprops[MAGIC_VACUUM].extrinsic
 #define IntMagicVacuum	(HMagicVacuum || u.martialstyle == MARTIALSTYLE_WRESTLING || Role_if(PM_ALLTECHER) || u.alltecherpersist )
-#define ExtMagicVacuum	(EMagicVacuum || (uarm && uarm->oartifact == ART_FINICKYMAG) || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || (uarmc && uarmc->oartifact == ART_FEND_FOR_YOURSELF) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || autismweaponcheck(ART_ARABELLA_S_THINNER) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
+#define ExtMagicVacuum	(EMagicVacuum || (uarm && uarm->oartifact == ART_FINICKYMAG) || autismringcheck(ART_SPEECHBREAK) || autismweaponcheck(ART_SHADOWBLADE_BASED_ON_STORM) || autismringcheck(ART_ARABELLA_S_NASTYGUARD) || u.tempspelllossmagvac || (uarmc && uarmc->oartifact == ART_FEND_FOR_YOURSELF) || autismweaponcheck(ART_MCCAULEY_S_ARGUMENT) || (uarmc && uarmc->oartifact == ART_OLD_PERSON_TALK) || autismweaponcheck(ART_ARABELLA_S_THINNER) || (uwep && uwep->otyp == VACUUM_STAFF) || (u.twoweap && uswapwep && uswapwep->otyp == VACUUM_STAFF) )
 
 #define MagicVacuum		(IntMagicVacuum || ExtMagicVacuum )
 #define StrongMagicVacuum		(IntMagicVacuum && ExtMagicVacuum && MagicVacuum)

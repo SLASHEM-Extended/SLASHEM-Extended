@@ -24992,6 +24992,282 @@ A("Elizah's Sinker",				LOW_BOOTS, /* initialized to always be otting boots, dou
 	(SPFX_RESTR|SPFX_EVIL|SPFX_ATTK|SPFX_DEFN), 0, 0,
 	ELEC(0, 10), DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
 
+A("Spork Intensifies",				POT_GREASE, /* dipping something into it applies 3 layers of grease */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 600L ),
+
+A("Hanife's Godly Power",				POT_BOOST, /* lasts 5x as long */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Flametard",				POT_FIRE_RESISTANCE, /* quaffing gives 5000 turns of fire immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Lu-nu-sev",				POT_BENEFICIAL_EFFECT, /* spawns with +6 stack size */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 777L ),
+
+A("Onten Gainen",				POT_RANDOM_INTRINSIC, /* instead of the usual "gain or lose a random intrinsic", quaffing it grants three random intrinsics */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Stats, too!",				POT_TRAINING, /* quaffing it sets the training amount for all four trainable stats to 50 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Working Undo Button",				SCR_ARMOR_SPECIALIZATION, /* tells you what the enchantment is that got added to your armor and gives a yes/no prompt asking whether you want to remove it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Xtreme Chargor",				SCR_POWER_CHARGING, /* reading it creates a wand of charging on the ground */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Complete The Lock",				SCR_PROOF_ARMOR, /* reading it proofs all currently worn armor pieces, but gives the wall regrowth and funwall nastytrap effects permanently */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Rules are made to be broken",				SCR_PROOF_WEAPON, /* ignores the normal stack size limitation if you're wielding a weapon while reading it, and can also proof a non-weapon (but then the limitation still applies) */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Purple Blendind",				SCR_PROOF_ACCESSORY, /* proofs amulet, implant and both rings when read, but gives rnz(1000) turns of heavy blindness */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 13000L ),
+
+A("Coatshine proficient",				SCR_PROOF_TOOL, /* allows you to proof a total of 5 tools */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Imperishable Part-Time Reroll",				SCR_ITEM_GENOCIDE, /* reading it rerolls the "items that the RNG decided to prevent from generating" */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("That's so medieval!",				SPE_REPAIR_WEAPON, /* reading it creates a weapon on the ground, which has to be of a set of specific types */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("You sir are a lo-sir",				SPE_ENDURE_COLD, /* reading it gives 200 turns of fear */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Invtoofull",				SPE_FUMBLING, /* upon generating, you get rnz(10k) turns of inventory size limit and an effect that causes timebasedlowerchance to fail 75% of the time */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Hey, I adore you, okay?",				SPE_STUN_MONSTER, /* reading it tries to pacify monsters around you in a 9x9 area; they get a saving throw */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bini-Piensi",				SPE_SHUFFLE_MONSTER, /* reading it gives the negative protection effect (AD_NPRO) and if you're chaotic, you gain 5 alignment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Spray the mon out!",				SPE_ASH, /* reading it gives 5000 turns of +15 spawn chance for M3_POKEMON */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Morton's Icecave Prickle",				SPE_CALL_THE_ELEMENTS, /* upon generating, if you're not on the plane of water, all water on the current level becomes crystal water, reading it gives crystal flood effect which can also transform water into crystal water */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("One Before Last",				SPE_CHLOROFORM, /* reading it teaches a random level 7 spell */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("High Above The Clouds",				SPE_WIND, /* upon generating, all moorland, urine and lava (i.e. all liquid terrain that isn't some form of water) becomes clouds; reading it gives the same effect in a 7x7 area around you and all other squares on the level have a 1 in 5 chance of being affected */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("kwuksplash",				SPE_SAND, /* reading it creates a toilet on your location like the scroll of WC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("The grain farming *click*",				SPE_PAVING, /* reading it gives 50% extra memory for all your spells whose memory isn't higher than 101%, but all those whose memory is greater than 200% are reduced to 200% */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Stayheel",				SPE_DIRECTIVE, /* reading it spawns a M2_DOMESTIC monster next to you */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Nevernonmove Bossfight",				SPE_TELEPORT_SELF, /* upon generating, you get rnz(25k) turns of an effect that replicates the boss spawn nastytrap and if you perform a movement action at least once every 2 turns during that time, you have extra AC equal to (amount of turns where you adhered to that rule / 20) up to a maximum of +50 but failing to move within that time resets the bonus to zero */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("krt-desert tub",				SPE_TRACKER, /* upon generating, gives 20k turns of larissa and natalje trap effect and very fast speed as an additional "u.tempveryfast" effect (so that it can't be stolen), reading teaches the teleport self, teleport away and phase door spells and trains body spells by 50 and occult spells by 25 */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Seventh game, dedede!",				SPE_POSSESSION, /* reading it increases the spell memory of all your level 7 spells by 100% (should ideally not be affected by any sort of reduction) but all your spells that are level 6 or lower lose 100% memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Northhome",				SPE_RESIST_PARALYSIS, /* upon generating, you get 20k turns of an effect that gives a random good effect with 1 in 1000 chance per turn, but every time such an effect happens, you get rnz(50) turns of message suppression; reading it gives this effect for 2500 (more) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("ER EN DE",				SPE_ARMOR_SMASH, /* upon generating, 20k turns of +200 spawn freq for M5_RANDOMIZED */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Fully Chaotic Monte",				SPE_BUC_RANDOMIZATION, /* reading it teaches all the chaos spells and increases chaos spells skill cap by one (or two if you were restricted), but you get an effect for 200k turns that gives spell loss and magic vacuum, which cannot be cured and has to be waited out */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Your butt has a track closure!",				SPE_STEALTH, /* reading it makes it so that for the next 10k turns, MS_FART_LOUD monsters cannot fart anymore */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Rodin thinks critical hits are beautiful!",				SPE_HASTE_SELF, /* reading it boosts your critical hit chance by 10% for 5000 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Es Two To Ek",				SPE_ACID_SPHERE, /* reading it gives +10 spawn freq for s-class monsters for the next 5000 turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("More Commercial Goes Really Not",				SPE_REBOOT, /* upon generating, creates rnz(15) loudspeakers on random squares (can also be in a wall) and reading it generates rnz(5) more */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Asking Telnet Plesche",				SPE_ESP, /* reading it gives 100 turns of detect monsters and rn1(500,500) turns of lag */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Sabine's Stubbornness",				SPE_FULL_HEALING, /* if you start reading it (checked by seeing that the charge is gone), monsters will have appr=-1 for the next 50 turns and try to move away like sing cleaning, but you absolutely cannot be interrupted anymore during that time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("I Discovered Equalmuch",				SPE_MASS_HEALING, /* reading it sets your max HP and Pw to half the sum of both */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Doesmujete",				SPE_SUPER_HEALING, /* reading it gives rnz(10k) turns of janet trap effect and unlocks the squeaking skill, or if you already know it, there's a 1 in 3 chance of increasing its cap by one (100% chance if currently capped at basic); every read also trains squeaking by rnz(50); if you already have the janet trap effect when reading it, you get the double version of it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Celebration Evening",				SPE_FIXING, /* reading it between 18 and 24 o'clock reduces your timers for burden, wince, inversion and inertia by 5000 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("I'm Gonna Tell My Heart",				SPE_COAGULATION, /* 10k turns of diminished bleeding when read */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Sylvie's Yawning History",				SPE_CURE_STUN, /* reading it causes you to fall asleep for rn1(20,20) turns and gives a covid antidote effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Read Out Eke",				SPE_MEDIUM_HEALING, /* reading it gives +1 max HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("amusinger Banksky",				SPE_STUN_SELF, /* upon generating, rnz(10k) turns of an effect where every turn you have an independent 1 in 1000 chance of the game spawning a monster, a trap and an item master; when generated, this artifact should polymorph into a non-artifact */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 40000L ),
+
+A("Radius request timed out",				SPE_ANTI_MAGIC_FIELD, /* reading gives 5000 turns of an effect that causes power failure, detectation trap effect, monsters behaving like they're short-sighted and immunity to mind blasts as well as 90% chance for breathing monsters to fail their breath attack */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Conundral Playback",				SPE_GRAVITY_BEAM, /* reading it spawns a random piece of equipment made of conundrum */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("You look like you have seen a spirit!",				SPE_ELEMENTAL_MINION, /* upon generating, spawns rn1(10,10) M5_SPACEWARS monsters at a specific place; reading does the same, but only rn1(5,5) of them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rodneybane",				SPE_ENTRAPPING,
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DMONS), 0, PM_WIZARD_OF_YENDOR,
+	PHYS(10, 50), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Amy, what the hell is a bee badass?",				SPE_RESIST_POISON, /* upon generating and also when read, spawns rnz(10) beehive monsters at a specific place */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Q100wha boys",				SPE_ENDURE_HEAT, /* reading it gives rnz(3000) turns of a random effect that gives separate 1 in 100 chances per turn to get a random rumor or a random faux message */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5010L ),
+
+A("Greene Bliege",				SPE_CURE_GLIB, /* reading it rerolls the variable that controls whether green cross is available */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("STD Identify",				SPE_ENLIGHTEN, /* by Demo, reading it gives enlightenment like the wand */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Angel-lack boway",				SPE_DISPLACEMENT, /* reading it spawns an A with superaggravatefrenzy rules, gives it a lacquered plate mail and a random bow, and then banishes it to a completely random dungeon level */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Stretcher Capacity",				SPE_INERTIA, /* reading gives 10k turns of +1000 (max) carry cap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("And I Love The Baur",				SPE_BODYFLUID_STRENGTHENING, /* reading it gives +1 STR and rnz(5k) turns of kerstin trap effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Amy, you don't need to add all those artifacts, because all of them suck anyway.",				SPE_DEMEMORIZE, /* upon generating, you get rnz(5000) turns of a random nasty trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Wa wa! Wa wa! Wa wa!",				SPE_PROTECTION, /* reading it gives 10k turns of fear factor */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("I wear what I want! Basta!",				SPE_SNOW, /* upon generating, forces you to equip a cursed pair of high heels */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Four on the floor, I will show you!",				SPE_ONE_POINT_SHOOT, /* reading gives 5000 turns of deactivated flying and displays all flying monsters for that time */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("cama cama cama maybe",				SPE_BERSERK, /* reading it randomly increases or decreases your luck by one */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Live in the sense of your studies",				SPE_STRANGLING, /* reading it increases wisdom exercise counter by 10, up to the max of 50 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Cancellatoion",				SPE_SPELLBINDER, /* upon generating, and also upon reading it, works as if a monster had zapped you with the wand of cancellation */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("nicht Speer werfen",				SPE_WIZARD_LOCK, /* reading makes it so that for 10k turns, no one can throw spear-class weapons */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("And then the tester came",				SPE_BUC_KNOWLEDGE, /* upon generating, you get 60*XL debts, reading spawns an AD_DEBT monster somewhere on the level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Est Fuenf nach Plattformingen",				SPE_DIVING, /* upon generating, spawns a beautiful girl somewhere on the level and gives her a pair of white buffalo boots which get their enchantment increased by the spellbook's and receive the cold resistance enchantment, plus they're made into an artifact */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Daily Freshe Bread",				SPE_MYSTERY_PROTECTION, /* reading it creates d3 bread on the ground */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Part Pizza",				SPE_MESSAGE, /* reading it creates d8 slices of pizza on the ground */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nuka Roll",				SPE_MAGIC_WHISTLING, /* upon generation and also when read, gives a random name for a bottle of nuka cola and the corresponding feminism trap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Thirst Holes",				SPE_STYX, /* reading it creates a fountain at your location if possible and gives rnz(5000) turns of thirst and 5000 turns of an effect that randomly turns floor tiles into fountains */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

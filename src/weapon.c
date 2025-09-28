@@ -1213,6 +1213,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_DACHA_DACHA_DACHA && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_KILL_KILL_PIANO && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
+	if (u.tempcritical10 && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA && !rn2(20)) willcriticalhit = TRUE;
