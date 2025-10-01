@@ -1125,7 +1125,7 @@ cgrfinished:
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(10)) {
 				levl[sx][sy].typ = rn2(2) ? SNOW : ICE;
 			}
-			if(!rn2(10))
+			if(!rn2(25))
 			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE, FALSE);
 			break;
 
@@ -1147,7 +1147,7 @@ cgrfinished:
 			if((levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR) && rn2(3)) {
 				levl[sx][sy].typ = rn2(4) ? WATERTUNNEL : MOAT;
 			}
-			if (!rn2(5)) (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE, FALSE);
+			if (!rn2(20)) (void) mkobj_at(RANDOM_CLASS, sx, sy, FALSE, FALSE);
 			break;
 
 		    case WIZARDSDORM:
@@ -1179,7 +1179,7 @@ cgrfinished:
 			if(!rn2(5) && !t_at(sx, sy))
 				(void) maketrap(sx, sy, CONTAMINATION_TRAP, 100, TRUE);
 
-			if(!rn2(20))
+			if(!rn2(25))
 			    (void) mksobj_at(rn2(10) ? CHARGER : SYMBIOTE,sx,sy,TRUE,FALSE, FALSE);
 
 			break;
@@ -1225,10 +1225,10 @@ cgrfinished:
 			if(rn2(5) && (levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR)) {
 				levl[sx][sy].typ = GRASSLAND;
 			}
-			if(!rn2(5))
+			if(!rn2(40))
 			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE, FALSE);
 
-			if(!rn2(25))
+			if(!rn2(35))
 			    (void) mksobj_at(MEADOWFOAM, sx, sy, TRUE, FALSE, FALSE);
 
 			break;
@@ -1237,7 +1237,7 @@ cgrfinished:
 			if(!rn2(2) && (levl[sx][sy].typ == ROOM || levl[sx][sy].typ == CORR)) {
 				levl[sx][sy].typ = LAVAPOOL;
 			}
-			if (!rn2(10) && levl[sx][sy].typ != LAVAPOOL) {
+			if (!rn2(20) && levl[sx][sy].typ != LAVAPOOL) {
 				makemon(&mons[rn2(2) ? PM_SPIDDAL_STICK : PM_HARRADA], sx, sy, MM_ADJACENTOK);
 			}
 
@@ -1274,7 +1274,7 @@ cgrfinished:
 
 		    case BADFOODSHOP:
 
-			if(!rn2(ishaxor ? 20 : 40))
+			if(!rn2(ishaxor ? 25 : 50))
 			    (void) mksobj_at(BLACK_HENBANE, sx, sy, TRUE, FALSE, FALSE);
 
 			break;
@@ -1294,7 +1294,7 @@ cgrfinished:
 				mmm.y = sy;
 			    (void) tt_mname(&mmm, FALSE, 0);
 				}
-			if(!rn2(ishaxor ? 10 : 20))	/* lots of treasure buried with dead */
+			if(!rn2(ishaxor ? 15 : 30))	/* lots of treasure buried with dead */
 			    (void) mksobj_at((rn2(3)) ? LARGE_BOX : CHEST, sx, sy, TRUE, FALSE, FALSE);
 			if (!rn2(10)) {
 			    make_grave(sx, sy, (char *)0);
@@ -1314,7 +1314,7 @@ cgrfinished:
 			}
 			break;
 		    case BEEHIVE:
-			if(!rn2(12)) /* slightly lowered chance --Amy */
+			if(!rn2(20)) /* lowered chance --Amy */
 			    (void) mksobj_at(rn2(30) ? LUMP_OF_ROYAL_JELLY : HONEYCOMB, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case FUNGUSFARM:
@@ -1326,7 +1326,7 @@ cgrfinished:
 			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case MIGOHIVE:
-			switch (rn2(100)) { /* greatly lowered chance --Amy */
+			switch (rn2(250)) { /* greatly lowered chance --Amy */
 			    case 9:
 				mksobj_at(DIAMOND, sx, sy, TRUE, FALSE, FALSE);
 				break;
@@ -1367,9 +1367,9 @@ cgrfinished:
 			break;
 
 		    case CLINIC:
-			if(!rn2(10))
+			if(!rn2(30))
 			    (void) mksobj_at(ICE_BOX,sx,sy,TRUE,FALSE, FALSE);
-			if (!rn2(100))
+			if (!rn2(120))
 			    (void) mksobj_at(SYMBIOTE, sx, sy, TRUE, FALSE, FALSE);
 			break;
 		    case GOLEMHALL:
@@ -1422,7 +1422,7 @@ cgrfinished:
 			}
 			break;
 		    case ANTHOLE:
-			if(!rn2(15))
+			if(!rn2(40))
 			    (void) mkobj_at(FOOD_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		    case ANGELHALL:
@@ -1437,7 +1437,7 @@ cgrfinished:
 			if(!rn2(10) && !t_at(sx, sy))
 				(void) maketrap(sx, sy, rn2(50) ? STATUE_TRAP : SATATUE_TRAP, 100, TRUE);
 
-			if(!rn2(10)) {
+			if(!rn2(25)) {
 				struct obj *enchantedgear;
 				enchantedgear = mkobj_at(rn2(2) ? WEAPON_CLASS : ARMOR_CLASS, sx, sy, FALSE, FALSE);
 
@@ -1466,7 +1466,7 @@ cgrfinished:
 			    (void) mkobj_at(SCROLL_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		    case MIMICHALL: /* lower overall amount of items --Amy */
-			if(!rn2(10))
+			if(!rn2(30))
 			    (void) mkobj_at(rn2(5) ? COIN_CLASS : RANDOM_CLASS, sx, sy, FALSE, FALSE);
 			break;
 		    case HUMANHALL:
