@@ -1944,7 +1944,7 @@ dokick()
 
 	if (!Race_if(PM_TRANSFORMER) && (nolimbs(youmonst.data) || slithy(youmonst.data))) {
 		You("have no legs to kick with.");
-		if (yn("Try a full-body tackle instead?") == 'y') {
+		if (yn("Try a full-body tackle instead? Warning: this can fail and damage your lower body.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 				set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
 				pline("Argh! That didn't work!");
@@ -1955,7 +1955,7 @@ dokick()
 		else {no_kick = TRUE;}
 	} else if (verysmall(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You("are too small to do any kicking.");
-		if (yn("Try it anyway?") == 'y') {
+		if (yn("Try it anyway? Warning: this can fail and damage your lower body.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 				set_wounded_legs(LEFT_SIDE, HWounded_legs + rnd(60-ACURR(A_DEX)));
 				pline("You hurt your muscles!");

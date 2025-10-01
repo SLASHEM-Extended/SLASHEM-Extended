@@ -458,7 +458,7 @@ int what;		/* should be a long */
 			You("are physically incapable of picking anything up.");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-			if (yn("But maybe you can reach the items anyway. Try it?") == 'y') {
+			if (yn("But maybe you can reach the items anyway. Try it? Warning: this can fail and cause hallucination.") == 'y') {
 				if (rn2(3) && !polyskillchance()) {
 				 	make_hallucinated(HHallucination + rnd(50),FALSE,0L);
 					pline("Oh wow! Is that your own shiny reflection you just saw?");
@@ -2733,7 +2733,7 @@ int held;
 		You("have no hands!");	/* not `body_part(HAND)' */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (yn("Try to open the container with another part of your body instead?") == 'y') {
+		if (yn("Try to open the container with another part of your body instead? Warning: this can fail and cause paralysis.") == 'y') {
 			if (rn2(3) && !polyskillchance()) { 			
 				You_feel("a wrenching sensation.");
 				if (!rn2(20)) badeffect();

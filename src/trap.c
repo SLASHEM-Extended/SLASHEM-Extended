@@ -26698,7 +26698,7 @@ dountrap()	/* disarm a trap */
 	}
 	if ((nohands(youmonst.data) && !webmaker(youmonst.data) && !Race_if(PM_TRANSFORMER) ) || !youmonst.data->mmove) {
 	    pline("And just how do you expect to do that?");
-		if (yn("Attempt it anyway?") == 'y') {
+		if (yn("Attempt it anyway? Warning: this can fail and cause slippery hands.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 				incr_itimeout(&Glib, rnd(40));
 				flags.botl = TRUE;

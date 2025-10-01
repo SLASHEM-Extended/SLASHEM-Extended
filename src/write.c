@@ -254,7 +254,7 @@ register struct obj *pen;
 
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 	    You("need hands to be able to write!");
-		if (yn("Attempt it anyway?") == 'y') {
+		if (yn("Attempt it anyway? Warning: this can fail and drain your mana.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 				drain_en(rnz(monster_difficulty() + 1) );
 				pline("You lose  Mana");

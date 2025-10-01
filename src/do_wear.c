@@ -6675,7 +6675,7 @@ boolean noisy;
 	    (racial_exception(&youmonst, otmp) < 1)) {
 	if (noisy) { pline_The("%s will not fit on your body.", which);
 
-		if (yn("Try to put it on anyway?") == 'y') {
+		if (yn("Try to put it on anyway? Warning: this can fail and increase your prayer timeout.") == 'y') {
 			if (rn2(2) && !polyskillchance()) {
 			 	u.ublesscnt += rnz(5);
 				pline("Feeling uncomfortable, you decide to stop trying.");
@@ -6875,7 +6875,7 @@ dowear()
 	if (!Race_if(PM_TRANSFORMER) && !Race_if(PM_HUMAN_WRAITH) && (verysmall(youmonst.data) || nohands(youmonst.data))) {
 		pline("Don't even bother. Your current form can't realistically wear armor!");
 
-		if (yn("But you may try to wear something anyway. Do it?") == 'y') {
+		if (yn("But you may try to wear something anyway. Do it? Warning: this can fail and cause stun.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 		 		make_stunned(HStun + rnd(40),FALSE);
 				pline("Damn! You just stagger around aimlessly!");
@@ -6995,7 +6995,7 @@ doputon()
 		if(nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 			You("cannot make the ring stick to your body.");
 
-			if (yn("Try to put it on anyway?") == 'y') {
+			if (yn("Try to put it on anyway? Warning: this can fail and cause dimness.") == 'y') {
 				if (rn2(3) && !polyskillchance()) {
 					make_dimmed(HDimmed + rnd(40),FALSE);
 					pline("The only thing that happens is that you got dimmed...");

@@ -5172,7 +5172,7 @@ start_tin(otmp)		/* called when starting to open a tin */
 		tmp = 1;
 	} else if (nolimbs(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You("cannot handle the tin properly to open it.");
-		if (yn("Attempt to force it open?") == 'y') {
+		if (yn("Attempt to force it open? Warning: this can fail and cause bleeding.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 				playerbleed(rnd(2 + (level_difficulty() * 10)));
 				pline("Great. Now your %s is squirting everywhere.", body_part(BLOOD));

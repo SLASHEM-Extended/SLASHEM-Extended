@@ -1146,7 +1146,7 @@ dothrow()
 	    You("are physically incapable of throwing anything.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (yn("But you can try to throw anyway. Okay?") == 'y') {
+		if (yn("But you can try to throw anyway. Okay? Warning: this can fail and make you hungry.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 		 		morehungry(10);
 				pline("The darn thing doesn't seem to fly very far.");
@@ -1289,7 +1289,7 @@ dofire()
 	    You("are physically incapable of doing that.");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (yn("But you can try to fire anyway. Okay?") == 'y') {
+		if (yn("But you can try to fire anyway. Okay? Warning: this can fail and make you hungry.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 	 		morehungry(10);
 			pline("The darn thing doesn't seem to fly very far.");

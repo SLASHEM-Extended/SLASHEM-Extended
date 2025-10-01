@@ -577,7 +577,7 @@ use_stethoscope(obj)
 	if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {	/* should also check for no ears and/or deaf */
 		You("have no hands, so you can't use the stethoscope!");	/* not `body_part(HAND)' */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		if (yn("Attempt it anyway?") == 'y') {
+		if (yn("Attempt it anyway? Warning: this can fail and cause bleeding.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 				playerbleed(rnd(2 + (level_difficulty() * 10)));
 				pline("Great. Now your %s is squirting everywhere.", body_part(BLOOD));
@@ -5030,7 +5030,7 @@ do_break_wand(obj)
 
     if (nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 	You_cant("break %s without hands!", the_wand);
-	if (yn("Attempt it anyway?") == 'y') {
+	if (yn("Attempt it anyway? Warning: this can fail and cause bad effects.") == 'y') {
 		if (rn2(3) && !polyskillchance()) {
 			badeffect();
 			pline("Hmm, that seems to have been a magical discharge!");

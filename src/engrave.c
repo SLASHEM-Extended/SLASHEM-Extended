@@ -1699,7 +1699,7 @@ doengrave()
 	if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) ) {
 		You_cant("even hold anything!");
 
-		if (yn("Do you want to try engraving anyway?") == 'y') {
+		if (yn("Do you want to try engraving anyway? Warning: this can fail and cause you to lose a turn.") == 'y') {
 			if (rn2(3) && !polyskillchance()) { 		
 				pline("You failed to engrave anything.");
 				if (!rn2(20)) badeffect();

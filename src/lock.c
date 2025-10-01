@@ -421,7 +421,7 @@ pick_lock(pickp) /* pick a lock with a given object */
 	if(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER)) {
 		You_cant("hold %s -- you have no hands!", doname(pick));
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
-		if (yn("Attempt it anyway?") == 'y') {
+		if (yn("Attempt it anyway? Warning: this can fail and cause bleeding.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 				playerbleed(rnd(2 + (level_difficulty() * 10)));
 				pline("Great. Now your %s is squirting everywhere.", body_part(BLOOD));
@@ -1336,7 +1336,7 @@ doopen_indir(x, y)		/* try to open a door in direction u.dx/u.dy */
 	    You_cant("open anything -- you have no hands!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (yn("Try to open it with another part of your body instead?") == 'y') {
+		if (yn("Try to open it with another part of your body instead? Warning: this can fail and cause blindness.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 	 			make_blinded(Blinded + rnd(50),TRUE);
 				pline("Off - you just blinded yourself!");
@@ -1492,7 +1492,7 @@ doclose()		/* try to close a door */
 	    You_cant("close anything -- you have no hands!");
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (yn("Try to close it with another part of your body instead?") == 'y') {
+		if (yn("Try to close it with another part of your body instead? Warning: this can fail and cause blindness.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 	 			make_blinded(Blinded + rnd(50),TRUE);
 				pline("Something got in your face! You can't see!");

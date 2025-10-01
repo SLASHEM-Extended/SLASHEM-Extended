@@ -230,7 +230,7 @@ use_saddle(otmp)
 		You("have no hands!");	/* not `body_part(HAND)' */
 		if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
-		if (yn("Try to use the saddle with another part of your body instead?") == 'y') {
+		if (yn("Try to use the saddle with another part of your body instead? Warning: this can fail and cause blindness.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 	 			make_blinded(Blinded + rnd(50),TRUE);
 				pline("You got something in your face!");
@@ -476,15 +476,19 @@ mount_steed(mtmp, force)
 
 	if (Upolyd && !Race_if(PM_TRANSFORMER) && (!humanoid(youmonst.data) || verysmall(youmonst.data) ||
 			bigmonst(youmonst.data) || slithy(youmonst.data))) {
-	    You("won't fit on a saddle.");
+		You("won't fit on a saddle.");
 
-		if (yn("But you can try to get on your steed anyway. Do it?") == 'y') {
-			if (rn2(3) && !polyskillchance()) { losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
-			pline("Ouch! You slip and hurt yourself a lot!");
-			if (!rn2(20)) badeffect();
-		    /*return 1;*/}
+		if (yn("But you can try to get on your steed anyway. Do it? Warning: this can do up to 30 points of damage!") == 'y') {
+			if (rn2(3) && !polyskillchance()) {
+				losehp(rn1(10,20), "trying an illegal ride", NO_KILLER_PREFIX);
+				pline("Ouch! You slip and hurt yourself a lot!");
+				if (!rn2(20)) badeffect();
+				return(FALSE); /* failed, need to try again */
+			}
 		}
-		else {return(FALSE);}
+		else {
+			return(FALSE);
+		}
 
 	}
 	if(!force && (near_capacity() > SLT_ENCUMBER)) {

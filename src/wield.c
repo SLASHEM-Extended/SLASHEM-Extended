@@ -1225,7 +1225,7 @@ dowield()
 	if (cantwield(youmonst.data) && !Race_if(PM_TRANSFORMER) && !Race_if(PM_HUMAN_WRAITH) ) {
 		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
 
-		if (yn("Try anyway?") == 'y') {
+		if (yn("Try anyway? Warning: this can fail and cause confusion.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 		 		make_confused(HConfusion + rnd(40),FALSE);
 				pline("Uhh... that didn't seem to work.");
@@ -1327,7 +1327,7 @@ doswapweapon()
 
 		pline("Don't be ridiculous! Your current form cannot realistically wield a weapon!");
 
-		if (yn("Try anyway?") == 'y') {
+		if (yn("Try anyway? Warning: this can fail and cause confusion.") == 'y') {
 			if (rn2(3) && !polyskillchance()) {
 		 		make_confused(HConfusion + rnd(40),FALSE);
 				pline("Uhh... that didn't seem to work.");
