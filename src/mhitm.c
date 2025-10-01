@@ -6684,6 +6684,7 @@ physical:
 
 #ifdef OVL0
 
+/* monster has no active attack: means all of them are AT_NONE */
 int
 noattacks(ptr)			/* returns 1 if monster doesn't attack */
 	struct	permonst *ptr;
@@ -6692,6 +6693,32 @@ noattacks(ptr)			/* returns 1 if monster doesn't attack */
 
 	for(i = 0; i < NATTK; i++)
 		if(ptr->mattk[i].aatyp) return(0);
+
+	return(1);
+}
+
+/* for polymorphed player, or symbiote participating in combat: non-melee attacks still count as "no attacks" --Amy */
+int
+noattacks_plr(ptr)			/* returns 1 if monster doesn't attack */
+	struct	permonst *ptr;
+{
+	int i;
+
+	for(i = 0; i < NATTK; i++)
+		if(ptr->mattk[i].aatyp) {
+			if (ptr->mattk[i].aatyp >= AT_CLAW && ptr->mattk[i].aatyp <= AT_LASH) {
+				return(0);
+			}
+			if (ptr->mattk[i].aatyp == AT_ENGL || ptr->mattk[i].aatyp == AT_EXPL || ptr->mattk[i].aatyp == AT_MULTIPLY) {
+				return(0);
+			}
+			if (ptr->mattk[i].aatyp >= AT_GAZE && ptr->mattk[i].aatyp <= AT_BEAM) {
+				return(0);
+			}
+			if (ptr->mattk[i].aatyp == AT_WEAP || ptr->mattk[i].aatyp == AT_MAGC) {
+				return(0);
+			}
+		}
 
 	return(1);
 }

@@ -1744,6 +1744,7 @@ E int buzzmu(struct monst *,struct attack *);
 E int fightm(struct monst *);
 E int mattackm(struct monst *,struct monst *);
 E int noattacks(struct permonst *);
+E int noattacks_plr(struct permonst *);
 E int sleep_monst(struct monst *,int,int);
 E void slept_monst(struct monst *);
 E long attk_protection(int);

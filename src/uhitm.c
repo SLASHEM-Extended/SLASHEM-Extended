@@ -1282,7 +1282,7 @@ register struct monst *mtmp;
 
 	if (Upolyd) {
 		/* certain "pacifist" monsters don't attack */
-		if(noattacks(youmonst.data) && (!uactivesymbiosis || noattacks(&mons[u.usymbiote.mnum])) ) {
+		if(noattacks_plr(youmonst.data) && (!uactivesymbiosis || noattacks_plr(&mons[u.usymbiote.mnum])) ) {
 			You("have no way to attack monsters physically.");
 			mtmp->mstrategy &= ~STRAT_WAITMASK;
 			goto atk_done;
@@ -12240,7 +12240,7 @@ bladeangerdone2:
 		break; /* If paralyzed while attacking, i.e. floating eye */
 	}
 	if (willsymattack && !symbioteprocess && uactivesymbiosis) {
-		if (!noattacks(&mons[u.usymbiote.mnum])) {
+		if (!noattacks_plr(&mons[u.usymbiote.mnum])) {
 			Your("%s symbiote attacks!", mons[u.usymbiote.mnum].mname);
 			u.symbioteattacking = TRUE;
 			u.usymbiosisfastturns++;
