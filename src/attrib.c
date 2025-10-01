@@ -4260,7 +4260,7 @@ register int n;
 	/* evil patch idea by jonadab: losing alignment points can result in punishment
 	 * immunizer can lose alignment during level changes, which would result in a panic; poison the player instead --Amy */
 	if (n < 0 && u.ualign.record < 0 && !rn2(500)) {
-		if (Race_if(PM_IMMUNIZER)) poisoned("The alignment", rn2(A_MAX), "immunized alignment failure", 30);
+		if (in_mklev) poisoned("The alignment", rn2(A_MAX), "immunized alignment failure", 30);
 		else punishx();
 	}
 
