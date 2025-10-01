@@ -286,7 +286,7 @@
 #define Fire_resistance		(((IntFire_resistance && u.nonintrinsicproperty != FIRE_RES) || (ExtFire_resistance && u.nonextrinsicproperty != FIRE_RES)) && !hybridragontype(AD_FIRE) && !Race_if(PM_TROLLOR) && !Race_if(PM_ANCIPITAL) && !Race_if(PM_SEA_ELF) && !Race_if(PM_SPRIGGAN) && !Role_if(PM_ALTMER) && !NoFire_resistance)
 #define StrongFire_resistance	(IntFire_resistance && ExtFire_resistance && Fire_resistance && u.nondoubleproperty != FIRE_RES)
 
-#define NoFire_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FIRE_RES].intrinsic || UHaveAids || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (u.impossibleproperty == FIRE_RES) || (uarm && uarm->oartifact == ART_ABSOLUTE_MONSTER_MAIL) || autismweaponcheck(ART_ICEBLOCK_SWORD) || (uarm && uarm->oartifact == ART_FLEEING_MINE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uamul && uamul->oartifact == ART_CURSING_CHARM && !uamul->cursed) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFire_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FIRE_RES].intrinsic) || UHaveAids || (uarm && uarm->oartifact == ART_SUPERESCAPE_MAIL) || (u.impossibleproperty == FIRE_RES) || (uarm && uarm->oartifact == ART_ABSOLUTE_MONSTER_MAIL) || autismweaponcheck(ART_ICEBLOCK_SWORD) || (uarm && uarm->oartifact == ART_FLEEING_MINE_MAIL) || (uarmf && uarmf->oartifact == ART_MEPHISTO_S_BROGUES) || (uamul && uamul->oartifact == ART_CURSING_CHARM && !uamul->cursed) || (uarmf && uarmf->oartifact == ART_VERA_S_FREEZER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define FireImmunity		((uarm && uarm->oartifact == ART_COAL_PEER) || (uwep && uwep->oartifact == ART_HARDENED_IN_THE_FORGE) || (uarm && uarm->otyp == ASBESTOS_JACKET) || (uarmf && uarmf->oartifact == ART______DEGREES) || (uarmh && uarmh->oartifact == ART_MAGMA_BRINGER) || (uwep && uwep->oartifact == ART_ONCHANGE_STAFF) || (uball && uball->oartifact == ART_HARDENED_IN_THE_FORGE) || (uamul && uamul->oartifact == ART_LARA_S_LAVAWALK) || (uamul && uamul->oartifact == ART_CURSING_CHARM && uamul->cursed) || (uarms && uarms->oartifact == ART_OGROTIC_CHANT) || u.tempfireimmune || (uarmc && uarmc->oartifact == ART_WOAH_FREEZE_) || (uarms && uarms->oartifact == ART_THATS_ENOUGH_RIGHT_THERE) || Race_if(PM_HYPOTHERMIC))
 
@@ -298,7 +298,7 @@
 #define Cold_resistance		(((IntCold_resistance && u.nonintrinsicproperty != COLD_RES) || (ExtCold_resistance && u.nonextrinsicproperty != COLD_RES)) && !Role_if(PM_ALTMER) && !hybridragontype(AD_COLD) && !NoCold_resistance)
 #define StrongCold_resistance	(IntCold_resistance && ExtCold_resistance && Cold_resistance && u.nondoubleproperty != COLD_RES)
 
-#define NoCold_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_COLD_RES].intrinsic || UHaveAids || (u.impossibleproperty == COLD_RES) || autismweaponcheck(ART_FLARE_FLAKE) || (uarms && uarms->oartifact == ART_HEATEM_UP) || (uarmc && uarmc->oartifact == ART_WOAH_FREEZE_) || autismringcheck(ART_DEATHLY_COLD) || (uamul && uamul->oartifact == ART_CURSING_PENDANT && !uamul->cursed) || autismringcheck(ART_BERNCELD) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_GAVIL) || Race_if(PM_JAVA) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoCold_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_COLD_RES].intrinsic) || UHaveAids || (u.impossibleproperty == COLD_RES) || autismweaponcheck(ART_FLARE_FLAKE) || (uarms && uarms->oartifact == ART_HEATEM_UP) || (uarmc && uarmc->oartifact == ART_WOAH_FREEZE_) || autismringcheck(ART_DEATHLY_COLD) || (uamul && uamul->oartifact == ART_CURSING_PENDANT && !uamul->cursed) || autismringcheck(ART_BERNCELD) || Race_if(PM_PLAYER_SALAMANDER) || Race_if(PM_GAVIL) || Race_if(PM_JAVA) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define ColdImmunity		((uwep && uwep->oartifact == ART_CUTRELEASE) || (uchain && uchain->oartifact == ART_HEI_THE_COLD) || (uarmf && uarmf->oartifact == ART_FLEEC_LIE) || (uwep && uwep->oartifact == ART_LONG_SWORD_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_LOIS_S_CHILL) || (uarmf && uarmf->oartifact == ART_BRIGHT_WHITE) || (uwep && uwep->oartifact == ART_COLD_HAHA) || (uarmg && uarmg->oartifact == ART_MERYN_S_PEAK) || autismringcheck(ART_ARCTIC_EXPEDITE) || (uarmh && uarmh->oartifact == ART_CHARLENE_S_CORONA) || (uamul && uamul->oartifact == ART_CURSING_PENDANT && uamul->cursed) || (uarmc && uarmc->oartifact == ART_FLEECY_CORN) || (uwep && uwep->oartifact == ART_GOOTE_UTE) || u.cryopancaketurns || (uwep && uwep->oartifact == ART_COOLSHIELDING) || (uwep && uwep->oartifact == ART_WINTERHOLD_S_KEEP))
 
@@ -310,7 +310,7 @@
 #define Sleep_resistance	( !(YouAreThirsty && (u.uhunger > 2000)) && !(uarmf && uarmf->otyp == SLEEP_INDUCTION_BOOTS) && !Race_if(PM_KOBOLT) && !Race_if(PM_DEEP_ELF) && !have_sleepstone() && !NoSleep_resistance && !hybridragontype(AD_SLEE) && ((IntSleep_resistance && u.nonintrinsicproperty != SLEEP_RES) || (ExtSleep_resistance && u.nonextrinsicproperty != SLEEP_RES)) )
 #define StrongSleep_resistance	(IntSleep_resistance && ExtSleep_resistance && Sleep_resistance && u.nondoubleproperty != SLEEP_RES)
 
-#define NoSleep_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLEEP_RES].intrinsic || UHaveAids || (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) || (u.impossibleproperty == SLEEP_RES) || (uamul && uamul->oartifact == ART_NARCOTIC_TRADE) || (uamul && uamul->oartifact == ART_SPELLCASTER_S_DREAM) || (uarmh && uarmh->oartifact == ART_DULLIFIER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSleep_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SLEEP_RES].intrinsic) || UHaveAids || (uarms && uarms->oartifact == ART_LITTLE_THORN_ROSE) || (u.impossibleproperty == SLEEP_RES) || (uamul && uamul->oartifact == ART_NARCOTIC_TRADE) || (uamul && uamul->oartifact == ART_SPELLCASTER_S_DREAM) || (uarmh && uarmh->oartifact == ART_DULLIFIER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDisint_resistance	u.uprops[DISINT_RES].intrinsic
 #define EDisint_resistance	u.uprops[DISINT_RES].extrinsic
@@ -320,7 +320,7 @@
 #define Disint_resistance	(((IntDisint_resistance && u.nonintrinsicproperty != DISINT_RES) || (ExtDisint_resistance && u.nonextrinsicproperty != DISINT_RES)) && !hybridragontype(AD_DISN) && !NoDisint_resistance)
 #define StrongDisint_resistance	(IntDisint_resistance && ExtDisint_resistance && Disint_resistance && u.nondoubleproperty != DISINT_RES)
 
-#define NoDisint_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DISINT_RES].intrinsic || (uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || (uarmh && uarmh->oartifact == ART_DISINT_BEAM) || (uarmu && uarmu->oartifact == ART_TINY_THREAD) || (uarmh && uarmh->oartifact == ART_UBB_RUPTURE) || UHaveAids || (u.impossibleproperty == DISINT_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDisint_resistance ( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DISINT_RES].intrinsic) || (uarmf && uarmf->oartifact == ART_SATAN_S_CHOPPING_BLOCK) || (uarm && uarm->oartifact == ART_NATAS_IS_BACK) || (uarmh && uarmh->oartifact == ART_DISINT_BEAM) || (uarmu && uarmu->oartifact == ART_TINY_THREAD) || (uarmh && uarmh->oartifact == ART_UBB_RUPTURE) || UHaveAids || (u.impossibleproperty == DISINT_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HShock_resistance	u.uprops[SHOCK_RES].intrinsic
 #define EShock_resistance	u.uprops[SHOCK_RES].extrinsic
@@ -330,7 +330,7 @@
 #define Shock_resistance	(((IntShock_resistance && u.nonintrinsicproperty != SHOCK_RES) || (ExtShock_resistance && u.nonextrinsicproperty != SHOCK_RES)) && !hybridragontype(AD_ELEC) && !Role_if(PM_ALTMER) && !NoShock_resistance )
 #define StrongShock_resistance	(IntShock_resistance && ExtShock_resistance && Shock_resistance && u.nondoubleproperty != SHOCK_RES)
 
-#define NoShock_resistance (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SHOCK_RES].intrinsic || (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) || UHaveAids || (u.impossibleproperty == SHOCK_RES) || (uarm && uarm->oartifact == ART_THUNDER_) || (uamul && uamul->oartifact == ART_CURSING_BROOCH && !uamul->cursed) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || autismweaponcheck(ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoShock_resistance ( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SHOCK_RES].intrinsic) || (uarmf && uarmf->otyp == SHOCK_ISOLATED_HEELS) || UHaveAids || (u.impossibleproperty == SHOCK_RES) || (uarm && uarm->oartifact == ART_THUNDER_) || (uamul && uamul->oartifact == ART_CURSING_BROOCH && !uamul->cursed) || (uarm && uarm->oartifact == ART_FIRE_COLD_AEFF) || autismweaponcheck(ART_SHOCKING_THERAPY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define ShockImmunity		(Race_if(PM_PLAYER_DYNAMO) || (uamul && uamul->oartifact == ART_CURSING_BROOCH && uamul->cursed) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarm && uarm->oartifact == ART_EVERLASTING_GEMSTONE && uarm->otyp == DIAMOND_DRAGON_SCALES) || autismringcheck(ART_SOIL_REALITY) || (uarms && uarms->oartifact == ART_TEH_SHOCK) || (uarmg && uarmg->oartifact == ART_ENNUI_STOICISM) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER && objects[uarms->otyp].oc_material == MT_WOOD) )
 
@@ -342,7 +342,7 @@
 #define Poison_resistance	(((IntPoison_resistance && u.nonintrinsicproperty != POISON_RES) || (ExtPoison_resistance && u.nonextrinsicproperty != POISON_RES)) && !NoPoison_resistance && !hybridragontype(AD_DRST) && !Race_if(PM_POISONER) )
 #define StrongPoison_resistance	(IntPoison_resistance && ExtPoison_resistance && Poison_resistance && u.nondoubleproperty != POISON_RES)
 
-#define NoPoison_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_POISON_RES].intrinsic || UHaveAids || (uarmc && uarmc->oartifact == ART_ASTRO_LABYRINTH) || (u.impossibleproperty == POISON_RES) || autismweaponcheck(ART_SWORD_OF_BHELEU) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPoison_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_POISON_RES].intrinsic) || UHaveAids || (uarmc && uarmc->oartifact == ART_ASTRO_LABYRINTH) || (u.impossibleproperty == POISON_RES) || autismweaponcheck(ART_SWORD_OF_BHELEU) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDrain_resistance	u.uprops[DRAIN_RES].intrinsic
 #define EDrain_resistance	u.uprops[DRAIN_RES].extrinsic
@@ -352,7 +352,7 @@
 #define Drain_resistance	(((IntDrain_resistance && u.nonintrinsicproperty != DRAIN_RES) || (ExtDrain_resistance && u.nonextrinsicproperty != DRAIN_RES)) && !NoDrain_resistance)
 #define StrongDrain_resistance	(IntDrain_resistance && ExtDrain_resistance && Drain_resistance && u.nondoubleproperty != DRAIN_RES)
 
-#define NoDrain_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DRAIN_RES].intrinsic || UHaveAids || (u.impossibleproperty == DRAIN_RES) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDrain_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DRAIN_RES].intrinsic) || UHaveAids || (u.impossibleproperty == DRAIN_RES) || (uamul && uamul->oartifact == ART___TH_NAZGUL) || (uamul && uamul->oartifact == ART_NAZGUL_S_REVENGE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 /* Intrinsics only */
 #define HSick_resistance	u.uprops[SICK_RES].intrinsic
@@ -363,7 +363,7 @@
 #define Sick_resistance		(((IntSick_resistance && u.nonintrinsicproperty != SICK_RES) || (ExtSick_resistance && u.nonextrinsicproperty != SICK_RES)) && !NoSick_resistance)
 #define StrongSick_resistance	(IntSick_resistance && ExtSick_resistance && Sick_resistance && u.nondoubleproperty != SICK_RES)
 
-#define NoSick_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SICK_RES].intrinsic || (uarmu && uarmu->oartifact == ART_RADIOLAN) || UHaveAids || (u.impossibleproperty == SICK_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSick_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SICK_RES].intrinsic) || (uarmu && uarmu->oartifact == ART_RADIOLAN) || UHaveAids || (u.impossibleproperty == SICK_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define Invulnerable		u.uprops[INVULNERABLE].intrinsic    /* [Tom] */
 
@@ -376,7 +376,7 @@
 #define Antimagic		(((IntAntimagic && u.nonintrinsicproperty != ANTIMAGIC) || (ExtAntimagic && u.nonextrinsicproperty != ANTIMAGIC)) && !NoAntimagic_resistance && !hybridragontype(AD_MAGM) && !Race_if(PM_UNMAGIC_FISH))
 #define StrongAntimagic	(IntAntimagic && ExtAntimagic && Antimagic && u.nondoubleproperty != ANTIMAGIC)
 
-#define NoAntimagic_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ANTIMAGIC].intrinsic || (UHaveAids && !(uwep && uwep->oartifact == ART_IT_S_A_POLEARM)) || (u.impossibleproperty == ANTIMAGIC) || autismweaponcheck(ART_AMYSBANE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoAntimagic_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_ANTIMAGIC].intrinsic) || (UHaveAids && !(uwep && uwep->oartifact == ART_IT_S_A_POLEARM)) || (u.impossibleproperty == ANTIMAGIC) || autismweaponcheck(ART_AMYSBANE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HAcid_resistance	u.uprops[ACID_RES].intrinsic
 #define EAcid_resistance	u.uprops[ACID_RES].extrinsic
@@ -386,7 +386,7 @@
 #define Acid_resistance		(((IntAcid_resistance && u.nonintrinsicproperty != ACID_RES) || (ExtAcid_resistance && u.nonextrinsicproperty != ACID_RES)) && !hybridragontype(AD_ACID) && !NoAcid_resistance)
 #define StrongAcid_resistance	(IntAcid_resistance && ExtAcid_resistance && Acid_resistance && u.nondoubleproperty != ACID_RES)
 
-#define NoAcid_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ACID_RES].intrinsic || UHaveAids || (uamul && uamul->oartifact == ART_CURSING_SCARAB && !uamul->cursed) || (u.impossibleproperty == ACID_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoAcid_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_ACID_RES].intrinsic) || UHaveAids || (uamul && uamul->oartifact == ART_CURSING_SCARAB && !uamul->cursed) || (u.impossibleproperty == ACID_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define AcidImmunity		((uarm && uarm->oartifact == ART_NULARMOR) || (uarmf && uarmf->oartifact == ART_LISA_S_YELLOW_STRIPE) || (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uarm && uarm->oartifact == ART_PRENTY_TWETEEN) || (uball && uball->oartifact == ART_ACICORNER) || (uamul && uamul->oartifact == ART_CURSING_SCARAB && uamul->cursed) || (uarmf && uarmf->oartifact == ART_POCAHONTAS_HOME))
 
@@ -398,7 +398,7 @@
 #define Stone_resistance	(((IntStone_resistance && u.nonintrinsicproperty != STONE_RES) || (ExtStone_resistance && u.nonextrinsicproperty != STONE_RES)) && !NoStone_resistance)
 #define StrongStone_resistance	(IntStone_resistance && ExtStone_resistance && Stone_resistance && u.nondoubleproperty != STONE_RES)
 
-#define NoStone_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STONE_RES].intrinsic || UHaveAids || (u.impossibleproperty == STONE_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoStone_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STONE_RES].intrinsic) || UHaveAids || (u.impossibleproperty == STONE_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HFear_resistance	u.uprops[FEAR_RES].intrinsic
 #define EFear_resistance	u.uprops[FEAR_RES].extrinsic
@@ -408,7 +408,7 @@
 #define Fear_resistance		(((IntFear_resistance && u.nonintrinsicproperty != FEAR_RES) || (ExtFear_resistance && u.nonextrinsicproperty != FEAR_RES)) && !NoFear_resistance)
 #define StrongFear_resistance	(IntFear_resistance && ExtFear_resistance && Fear_resistance && u.nondoubleproperty != FEAR_RES)
 
-#define NoFear_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FEAR_RES].intrinsic || UHaveAids || (u.impossibleproperty == FEAR_RES) || (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFear_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FEAR_RES].intrinsic) || UHaveAids || (u.impossibleproperty == FEAR_RES) || (uarmf && uarmf->oartifact == ART_DON_T_FALL_INTO_THE_ABYSS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 
 /*** Troubles ***/
@@ -478,7 +478,7 @@
 #define Blind_resistance	( ( (ExtBlind_resistance && u.nonextrinsicproperty != BLIND_RES) || (IntBlind_resistance && u.nonintrinsicproperty != BLIND_RES) ) && !NoBlind_resistance)
 #define StrongBlind_resistance	(IntBlind_resistance && ExtBlind_resistance && Blind_resistance && u.nondoubleproperty != BLIND_RES)
 
-#define NoBlind_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_BLIND_RES].intrinsic || UHaveAids || (u.impossibleproperty == BLIND_RES) || flags.blindfox || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoBlind_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_BLIND_RES].intrinsic) || UHaveAids || (u.impossibleproperty == BLIND_RES) || flags.blindfox || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define PlayerBleeds			u.uprops[PLAYERBLEEDING].intrinsic
 #define Sick			u.uprops[SICK].intrinsic
@@ -1198,7 +1198,7 @@
 #define Halluc_resistance	( ( (ExtHalluc_resistance && u.nonextrinsicproperty != HALLUC_RES) || (IntHalluc_resistance && u.nonintrinsicproperty != HALLUC_RES) ) && !u.halresdeactivated && !NoHalluc_resistance)
 #define StrongHalluc_resistance	(IntHalluc_resistance && ExtHalluc_resistance && Halluc_resistance && u.nondoubleproperty != HALLUC_RES)
 
-#define NoHalluc_resistance	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALLUC_RES].intrinsic || UHaveAids || (u.impossibleproperty == HALLUC_RES) || (uarmh && uarmh->oartifact == ART_SEE_THE_TOTAL) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoHalluc_resistance	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_HALLUC_RES].intrinsic) || UHaveAids || (u.impossibleproperty == HALLUC_RES) || (uarmh && uarmh->oartifact == ART_SEE_THE_TOTAL) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define Hallucination		((HHallucination && !Halluc_resistance) || (u.uprops[MULTISHOES].extrinsic && !Halluc_resistance) || autismweaponcheck(ART_FADED_USELESSNESS) || autismweaponcheck(ART_LANCE_OF_LONGINUS) || autismweaponcheck(ART_SCHWANZUS_LANGUS) || (HeavyHallu && !Halluc_resistance) || (EHallucination && !Halluc_resistance) || u.uprops[SENSORY_DEPRIVATION].extrinsic || flags.hippie || (u.currentweather == WEATHER_SUNNY && u.uhunger < 201) || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
 #define FunnyHallu		(Role_if(PM_GOFF) || (uamul && uamul->oartifact == ART_NARCOTIC_TRADE) || (uarmc && uarmc->oartifact == ART_BE_HI_WITHOUT_DRUGS) || RngeFunnyHallu || ishallucinator || HHallucination || (uarmf && uarmf->oartifact == ART_LUSTY_GIGGLE) || u.uprops[MULTISHOES].extrinsic || u.funnyhallutimer || autismweaponcheck(ART_FADED_USELESSNESS) || autismweaponcheck(ART_LANCE_OF_LONGINUS) || (uamul && uamul->oartifact == ART_FUN_ALL) || have_leohighlantern() || autismweaponcheck(ART_SCHWANZUS_LANGUS) || HeavyHallu || EHallucination || u.uprops[SENSORY_DEPRIVATION].extrinsic || (u.funnyhalluroll != 9999999 && u.usanity > u.funnyhalluroll) || flags.hippie || ( (u.uprops[DEHYDRATION].extrinsic || Dehydration || have_dehydratingstone()) && ((u.dehydrationtime - moves) < 1) )  )
@@ -1239,7 +1239,7 @@
 #define See_invisible		(((IntSee_invisible && u.nonintrinsicproperty != SEE_INVIS) || (ExtSee_invisible && u.nonextrinsicproperty != SEE_INVIS)) && !Race_if(PM_ELEMENTAL) && !NoSee_invisible)
 #define StrongSee_invisible	(IntSee_invisible && ExtSee_invisible && See_invisible && u.nondoubleproperty != SEE_INVIS)
 
-#define NoSee_invisible	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SEE_INVIS].intrinsic || UHaveAids || (u.impossibleproperty == SEE_INVIS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSee_invisible	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SEE_INVIS].intrinsic) || UHaveAids || (u.impossibleproperty == SEE_INVIS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HTelepat		u.uprops[TELEPAT].intrinsic
 #define ETelepat		u.uprops[TELEPAT].extrinsic
@@ -1251,7 +1251,7 @@
 #define Unblind_telepat		(!(u.nonextrinsicproperty == TELEPAT) && !Race_if(PM_KUTAR) && ExtTelepat && !NoTelepat && !DetectionMethodsDontWork)
 #define StrongTelepat		(IntTelepat && ExtTelepat && Blind_telepat && Unblind_telepat && u.nondoubleproperty != TELEPAT)
 
-#define NoTelepat	( (!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPAT].intrinsic || Race_if(PM_KUTAR) || UHaveAids || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0))) || (uarmc && uarmc->oartifact == ART_GODLESS_VOID) || (uarm && uarm->oartifact == ART_DEADCOMM) || (u.impossibleproperty == TELEPAT) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uarmh && ( (uarmh->otyp == TINFOIL_HELMET) || itemhasappearance(uarmh, APP_ALUMINIUM_HELMET) ) ) )
+#define NoTelepat	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_TELEPAT].intrinsic) || Race_if(PM_KUTAR) || UHaveAids || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) || (uarmc && uarmc->oartifact == ART_GODLESS_VOID) || (uarm && uarm->oartifact == ART_DEADCOMM) || (u.impossibleproperty == TELEPAT) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uarmh && uarmh->otyp == TINFOIL_HELMET) || (uarmh && itemhasappearance(uarmh, APP_ALUMINIUM_HELMET)) )
 
 #define HHallu_party	u.uprops[HALLU_PARTY].intrinsic
 #define EHallu_party	u.uprops[HALLU_PARTY].extrinsic
@@ -1261,7 +1261,7 @@
 #define Hallu_party	(((IntHallu_party && !(u.nonintrinsicproperty == HALLU_PARTY)) || (ExtHallu_party && u.nonextrinsicproperty != HALLU_PARTY)) && !NoHallu_party)
 #define StrongHallu_party	(IntHallu_party && ExtHallu_party && Hallu_party && u.nondoubleproperty != HALLU_PARTY)
 
-#define NoHallu_party	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALLU_PARTY].intrinsic || UHaveAids || (u.impossibleproperty == HALLU_PARTY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoHallu_party	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_HALLU_PARTY].intrinsic) || UHaveAids || (u.impossibleproperty == HALLU_PARTY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDrunken_boxing		u.uprops[DRUNKEN_BOXING].intrinsic
 #define EDrunken_boxing		u.uprops[DRUNKEN_BOXING].extrinsic
@@ -1271,7 +1271,7 @@
 #define Drunken_boxing		(((IntDrunken_boxing && !(u.nonintrinsicproperty == DRUNKEN_BOXING)) || (ExtDrunken_boxing && u.nonextrinsicproperty != DRUNKEN_BOXING)) && !NoDrunken_boxing)
 #define StrongDrunken_boxing	(IntDrunken_boxing && ExtDrunken_boxing && Drunken_boxing && u.nondoubleproperty != DRUNKEN_BOXING)
 
-#define NoDrunken_boxing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DRUNKEN_BOXING].intrinsic || UHaveAids || (u.impossibleproperty == DRUNKEN_BOXING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDrunken_boxing	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DRUNKEN_BOXING].intrinsic) || UHaveAids || (u.impossibleproperty == DRUNKEN_BOXING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HStunnopathy	u.uprops[STUNNOPATHY].intrinsic
 #define EStunnopathy	u.uprops[STUNNOPATHY].extrinsic
@@ -1281,7 +1281,7 @@
 #define Stunnopathy	(((IntStunnopathy && !(u.nonintrinsicproperty == STUNNOPATHY)) || (ExtStunnopathy && u.nonextrinsicproperty != STUNNOPATHY)) && !NoStunnopathy && !DetectionMethodsDontWork)
 #define StrongStunnopathy	(IntStunnopathy && ExtStunnopathy && Stunnopathy && u.nondoubleproperty != STUNNOPATHY)
 
-#define NoStunnopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STUNNOPATHY].intrinsic || UHaveAids || (u.impossibleproperty == STUNNOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoStunnopathy	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STUNNOPATHY].intrinsic) || UHaveAids || (u.impossibleproperty == STUNNOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HNumbopathy	u.uprops[NUMBOPATHY].intrinsic
 #define ENumbopathy	u.uprops[NUMBOPATHY].extrinsic
@@ -1291,7 +1291,7 @@
 #define Numbopathy	(((IntNumbopathy && !(u.nonintrinsicproperty == NUMBOPATHY)) || (ExtNumbopathy && u.nonextrinsicproperty != NUMBOPATHY)) && !NoNumbopathy && !DetectionMethodsDontWork)
 #define StrongNumbopathy	(IntNumbopathy && ExtNumbopathy && Numbopathy && u.nondoubleproperty != NUMBOPATHY)
 
-#define NoNumbopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_NUMBOPATHY].intrinsic || UHaveAids || (u.impossibleproperty == NUMBOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoNumbopathy	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_NUMBOPATHY].intrinsic) || UHaveAids || (u.impossibleproperty == NUMBOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDimmopathy	u.uprops[DIMMOPATHY].intrinsic
 #define EDimmopathy	u.uprops[DIMMOPATHY].extrinsic
@@ -1301,7 +1301,7 @@
 #define Dimmopathy	(((IntDimmopathy && !(u.nonintrinsicproperty == DIMMOPATHY)) || (ExtDimmopathy && u.nonextrinsicproperty != DIMMOPATHY)) && !NoDimmopathy && !DetectionMethodsDontWork)
 #define StrongDimmopathy	(IntDimmopathy && ExtDimmopathy && Dimmopathy && u.nondoubleproperty != DIMMOPATHY)
 
-#define NoDimmopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DIMMOPATHY].intrinsic || UHaveAids || (u.impossibleproperty == DIMMOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDimmopathy	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DIMMOPATHY].intrinsic) || UHaveAids || (u.impossibleproperty == DIMMOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HFreezopathy	u.uprops[FREEZOPATHY].intrinsic
 #define EFreezopathy	u.uprops[FREEZOPATHY].extrinsic
@@ -1311,7 +1311,7 @@
 #define Freezopathy	(((IntFreezopathy && !(u.nonintrinsicproperty == FREEZOPATHY)) || (ExtFreezopathy && u.nonextrinsicproperty != FREEZOPATHY)) && !NoFreezopathy && !DetectionMethodsDontWork)
 #define StrongFreezopathy	(IntFreezopathy && ExtFreezopathy && Freezopathy && u.nondoubleproperty != FREEZOPATHY)
 
-#define NoFreezopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FREEZOPATHY].intrinsic || UHaveAids || (u.impossibleproperty == FREEZOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFreezopathy	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FREEZOPATHY].intrinsic) || UHaveAids || (u.impossibleproperty == FREEZOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HStoned_chiller		u.uprops[STONED_CHILLER].intrinsic
 #define EStoned_chiller		u.uprops[STONED_CHILLER].extrinsic
@@ -1321,7 +1321,7 @@
 #define Stoned_chiller		(((IntStoned_chiller && !(u.nonintrinsicproperty == STONED_CHILLER)) || (ExtStoned_chiller && u.nonextrinsicproperty != STONED_CHILLER)) && !NoStoned_chiller)
 #define StrongStoned_chiller	(IntStoned_chiller && ExtStoned_chiller && Stoned_chiller && u.nondoubleproperty != STONED_CHILLER)
 
-#define NoStoned_chiller	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STONED_CHILLER].intrinsic || UHaveAids || (u.impossibleproperty == STONED_CHILLER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoStoned_chiller	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STONED_CHILLER].intrinsic) || UHaveAids || (u.impossibleproperty == STONED_CHILLER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HCorrosivity	u.uprops[CORROSIVITY].intrinsic
 #define ECorrosivity	u.uprops[CORROSIVITY].extrinsic
@@ -1331,7 +1331,7 @@
 #define Corrosivity	(((IntCorrosivity && !(u.nonintrinsicproperty == CORROSIVITY)) || (ExtCorrosivity && u.nonextrinsicproperty != CORROSIVITY)) && !NoCorrosivity)
 #define StrongCorrosivity	(IntCorrosivity && ExtCorrosivity && Corrosivity && u.nondoubleproperty != CORROSIVITY)
 
-#define NoCorrosivity	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CORROSIVITY].intrinsic || UHaveAids || (u.impossibleproperty == CORROSIVITY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoCorrosivity	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CORROSIVITY].intrinsic) || UHaveAids || (u.impossibleproperty == CORROSIVITY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HFear_factor	u.uprops[FEAR_FACTOR].intrinsic
 #define EFear_factor	u.uprops[FEAR_FACTOR].extrinsic
@@ -1341,7 +1341,7 @@
 #define Fear_factor	(((IntFear_factor && !(u.nonintrinsicproperty == FEAR_FACTOR)) || (ExtFear_factor && u.nonextrinsicproperty != FEAR_FACTOR)) && !NoFear_factor)
 #define StrongFear_factor	(IntFear_factor && ExtFear_factor && Fear_factor && u.nondoubleproperty != FEAR_FACTOR)
 
-#define NoFear_factor	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FEAR_FACTOR].intrinsic || UHaveAids || (u.impossibleproperty == FEAR_FACTOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFear_factor	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FEAR_FACTOR].intrinsic) || UHaveAids || (u.impossibleproperty == FEAR_FACTOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HBurnopathy	u.uprops[BURNOPATHY].intrinsic
 #define EBurnopathy	u.uprops[BURNOPATHY].extrinsic
@@ -1351,7 +1351,7 @@
 #define Burnopathy	(((IntBurnopathy && !(u.nonintrinsicproperty == BURNOPATHY)) || (ExtBurnopathy && u.nonextrinsicproperty != BURNOPATHY)) && !NoBurnopathy && !DetectionMethodsDontWork)
 #define StrongBurnopathy	(IntBurnopathy && ExtBurnopathy && Burnopathy && u.nondoubleproperty != BURNOPATHY)
 
-#define NoBurnopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_BURNOPATHY].intrinsic || UHaveAids || (u.impossibleproperty == BURNOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoBurnopathy	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_BURNOPATHY].intrinsic) || UHaveAids || (u.impossibleproperty == BURNOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HSickopathy	u.uprops[SICKOPATHY].intrinsic
 #define ESickopathy	u.uprops[SICKOPATHY].extrinsic
@@ -1361,7 +1361,7 @@
 #define Sickopathy	(((IntSickopathy && !(u.nonintrinsicproperty == SICKOPATHY)) || (ExtSickopathy && u.nonextrinsicproperty != SICKOPATHY)) && !NoSickopathy && !DetectionMethodsDontWork)
 #define StrongSickopathy	(IntSickopathy && ExtSickopathy && Sickopathy && u.nondoubleproperty != SICKOPATHY)
 
-#define NoSickopathy	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SICKOPATHY].intrinsic || UHaveAids || (u.impossibleproperty == SICKOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSickopathy	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SICKOPATHY].intrinsic) || UHaveAids || (u.impossibleproperty == SICKOPATHY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HWonderlegs	u.uprops[WONDERLEGS].intrinsic
 #define EWonderlegs	u.uprops[WONDERLEGS].extrinsic
@@ -1371,7 +1371,7 @@
 #define Wonderlegs	(((IntWonderlegs && !(u.nonintrinsicproperty == WONDERLEGS)) || (ExtWonderlegs && u.nonextrinsicproperty != WONDERLEGS)) && !NoWonderlegs)
 #define StrongWonderlegs	(IntWonderlegs && ExtWonderlegs && Wonderlegs && u.nondoubleproperty != WONDERLEGS)
 
-#define NoWonderlegs	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_WONDERLEGS].intrinsic || UHaveAids || (u.impossibleproperty == WONDERLEGS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoWonderlegs	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_WONDERLEGS].intrinsic) || UHaveAids || (u.impossibleproperty == WONDERLEGS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HGlib_combat	u.uprops[GLIB_COMBAT].intrinsic
 #define EGlib_combat	u.uprops[GLIB_COMBAT].extrinsic
@@ -1381,7 +1381,7 @@
 #define Glib_combat	(((IntGlib_combat && !(u.nonintrinsicproperty == GLIB_COMBAT)) || (ExtGlib_combat && u.nonextrinsicproperty != GLIB_COMBAT)) && !NoGlib_combat)
 #define StrongGlib_combat	(IntGlib_combat && ExtGlib_combat && Glib_combat && u.nondoubleproperty != GLIB_COMBAT)
 
-#define NoGlib_combat	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_GLIB_COMBAT].intrinsic || UHaveAids || (u.impossibleproperty == GLIB_COMBAT) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoGlib_combat	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_GLIB_COMBAT].intrinsic) || UHaveAids || (u.impossibleproperty == GLIB_COMBAT) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HManaleech	u.uprops[MANALEECH].intrinsic
 #define EManaleech	u.uprops[MANALEECH].extrinsic
@@ -1391,7 +1391,7 @@
 #define Manaleech		(((IntManaleech && u.nonintrinsicproperty != MANALEECH) || (ExtManaleech && u.nonextrinsicproperty != MANALEECH)) && !NoManaleech)
 #define StrongManaleech	(IntManaleech && ExtManaleech && Manaleech && u.nondoubleproperty != MANALEECH)
 
-#define NoManaleech	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MANALEECH].intrinsic || UHaveAids || (u.impossibleproperty == MANALEECH) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoManaleech	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_MANALEECH].intrinsic) || UHaveAids || (u.impossibleproperty == MANALEECH) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HPeacevision	u.uprops[PEACEVISION].intrinsic
 #define EPeacevision	u.uprops[PEACEVISION].extrinsic
@@ -1401,7 +1401,7 @@
 #define Peacevision		(((IntPeacevision && u.nonintrinsicproperty != PEACEVISION) || (ExtPeacevision && u.nonextrinsicproperty != PEACEVISION)) && !NoPeacevision)
 #define StrongPeacevision	(IntPeacevision && ExtPeacevision && Peacevision && u.nondoubleproperty != PEACEVISION)
 
-#define NoPeacevision	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PEACEVISION].intrinsic || UHaveAids || (u.impossibleproperty == PEACEVISION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPeacevision	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_PEACEVISION].intrinsic) || UHaveAids || (u.impossibleproperty == PEACEVISION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HMap_amnesia	u.uprops[MAP_AMNESIA].intrinsic
 #define EMap_amnesia	u.uprops[MAP_AMNESIA].extrinsic
@@ -1418,7 +1418,7 @@
 #define Warning			(((IntWarning && u.nonintrinsicproperty != WARNING) || (ExtWarning && u.nonextrinsicproperty != WARNING)) && !Race_if(PM_KUTAR) && !u.powerfailure && !NoWarning && !DetectionMethodsDontWork && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongWarning	(IntWarning && ExtWarning && Warning && u.nondoubleproperty != WARNING)
 
-#define NoWarning	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_WARNING].intrinsic || UHaveAids || (u.impossibleproperty == WARNING) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoWarning	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_WARNING].intrinsic) || UHaveAids || (u.impossibleproperty == WARNING) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 /* Warning for a specific type of monster */
 #define HWarn_of_mon		u.uprops[WARN_OF_MON].intrinsic
@@ -1437,7 +1437,7 @@
 #define Searching		(((IntSearching && u.nonintrinsicproperty != SEARCHING) || (ExtSearching && u.nonextrinsicproperty != SEARCHING)) && !Race_if(PM_KUTAR) && !NoSearching)
 #define StrongSearching	(IntSearching && ExtSearching && Searching && u.nondoubleproperty != SEARCHING)
 
-#define NoSearching	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SEARCHING].intrinsic || UHaveAids || (u.impossibleproperty == SEARCHING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSearching	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SEARCHING].intrinsic) || UHaveAids || (u.impossibleproperty == SEARCHING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HClairvoyant		u.uprops[CLAIRVOYANT].intrinsic
 #define EClairvoyant		u.uprops[CLAIRVOYANT].extrinsic
@@ -1448,7 +1448,7 @@
 #define Clairvoyant		(((IntClairvoyant && u.nonintrinsicproperty != CLAIRVOYANT) || (ExtClairvoyant && u.nonextrinsicproperty != CLAIRVOYANT)) && !BClairvoyant && !NoClairvoyant)
 #define StrongClairvoyant	(IntClairvoyant && ExtClairvoyant && Clairvoyant && u.nondoubleproperty != CLAIRVOYANT)
 
-#define NoClairvoyant	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CLAIRVOYANT].intrinsic || UHaveAids || (u.impossibleproperty == CLAIRVOYANT) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoClairvoyant	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CLAIRVOYANT].intrinsic) || UHaveAids || (u.impossibleproperty == CLAIRVOYANT) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HInfravision		u.uprops[INFRAVISION].intrinsic
 #define EInfravision		u.uprops[INFRAVISION].extrinsic
@@ -1458,7 +1458,7 @@
 #define Infravision		(((IntInfravision && u.nonintrinsicproperty != INFRAVISION) || (ExtInfravision && u.nonextrinsicproperty != INFRAVISION)) && !Race_if(PM_KUTAR) && !u.powerfailure && !NoInfravision)
 #define StrongInfravision	(IntInfravision && ExtInfravision && Infravision && u.nondoubleproperty != INFRAVISION)
 
-#define NoInfravision	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_INFRAVISION].intrinsic || UHaveAids || (u.impossibleproperty == INFRAVISION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoInfravision	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_INFRAVISION].intrinsic) || UHaveAids || (u.impossibleproperty == INFRAVISION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDetect_monsters	u.uprops[DETECT_MONSTERS].intrinsic
 #define EDetect_monsters	u.uprops[DETECT_MONSTERS].extrinsic
@@ -1468,7 +1468,7 @@
 #define Detect_monsters		(((IntDetect_monsters && u.nonintrinsicproperty != DETECT_MONSTERS) || (ExtDetect_monsters && u.nonextrinsicproperty != DETECT_MONSTERS)) && !Race_if(PM_KUTAR) && !u.powerfailure && !NoDetect_monsters && !DetectionMethodsDontWork)
 #define StrongDetect_monsters	(IntDetect_monsters && ExtDetect_monsters && Detect_monsters && u.nondoubleproperty != DETECT_MONSTERS)
 
-#define NoDetect_monsters	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DETECT_MONSTERS].intrinsic || UHaveAids || (u.impossibleproperty == DETECT_MONSTERS) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (isselfhybrid && (moves % 3 == 0) ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDetect_monsters	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DETECT_MONSTERS].intrinsic) || UHaveAids || (u.impossibleproperty == DETECT_MONSTERS) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || (isselfhybrid && (moves % 3 == 0) ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 
 /*** Appearance and behavior ***/
@@ -1485,7 +1485,7 @@
 		/* Note: invisibility also hides inventory and steed */
 #define StrongInvis	(IntInvis && ExtInvis && Invis && u.nondoubleproperty != INVIS)
 
-#define NoInvisible	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_INVIS].intrinsic || (uamul && uamul->oartifact == ART_PITCHCOVER) || UHaveAids || (u.impossibleproperty == INVIS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoInvisible	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_INVIS].intrinsic) || (uamul && uamul->oartifact == ART_PITCHCOVER) || UHaveAids || (u.impossibleproperty == INVIS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDisplaced		u.uprops[DISPLACED].intrinsic
 #define EDisplaced		u.uprops[DISPLACED].extrinsic
@@ -1495,7 +1495,7 @@
 #define Displaced		(((IntDisplaced && u.nonintrinsicproperty != DISPLACED) || (ExtDisplaced && u.nonextrinsicproperty != DISPLACED)) && !NoDisplaced && !autismringcheck(ART_BILL_S_CHIP) && !(uarm && uarm->oartifact == ART_PLANTOPLIM))
 #define StrongDisplaced	(IntDisplaced && ExtDisplaced && Displaced && u.nondoubleproperty != DISPLACED)
 
-#define NoDisplaced	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DISPLACED].intrinsic || UHaveAids || (u.impossibleproperty == DISPLACED) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDisplaced	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DISPLACED].intrinsic) || UHaveAids || (u.impossibleproperty == DISPLACED) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HStealth		u.uprops[STEALTH].intrinsic
 #define EStealth		u.uprops[STEALTH].extrinsic
@@ -1506,7 +1506,7 @@
 #define Stealth			(((IntStealth && u.nonintrinsicproperty != STEALTH) || (ExtStealth && u.nonextrinsicproperty != STEALTH)) && !BStealth && !NoStealth && !Race_if(PM_OGRO) && !autismweaponcheck(ART_ARMORWREAKER) && !Race_if(PM_ROHIRRIM) && !Race_if(PM_THUNDERLORD) && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongStealth	(IntStealth && ExtStealth && Stealth && u.nondoubleproperty != STEALTH)
 
-#define NoStealth	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STEALTH].intrinsic || UHaveAids || (uarmc && itemhasappearance(uarmc, APP_EXCREMENT_CLOAK) ) || (u.impossibleproperty == STEALTH) || (uarmf && itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS)) || have_fireringcandle() || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) || (uarm && uarm->oartifact == ART_YESEXI) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || FemtrapActiveSolvejg || autismweaponcheck(ART_HENRIETTA_S_MISTAKE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoStealth	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STEALTH].intrinsic) || UHaveAids || (uarmc && itemhasappearance(uarmc, APP_EXCREMENT_CLOAK) ) || (u.impossibleproperty == STEALTH) || (uarmf && itemhasappearance(uarmf, APP_HEAP_OF_SHIT_BOOTS)) || have_fireringcandle() || (uarm && uarm->oartifact == ART_HAZARDOUS_EQUIPMENT) || (uarm && uarm->oartifact == ART_YESEXI) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmf && uarmf->oartifact == ART_TOO_MUCH_BRAVERY) || (uarmf && uarmf->oartifact == ART_HENRIETTA_S_DOGSHIT_BOOTS) || FemtrapActiveSolvejg || autismweaponcheck(ART_HENRIETTA_S_MISTAKE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].intrinsic
 #define EExtra_wpn_practice	u.uprops[EXTRA_WEAPON_PRACTICE].extrinsic
@@ -1553,7 +1553,7 @@
 #define Jumping			(((IntJumping && u.nonintrinsicproperty != JUMPING) || (ExtJumping && u.nonextrinsicproperty != JUMPING)) && !NoJumping)
 #define StrongJumping	(IntJumping && ExtJumping && Jumping && u.nondoubleproperty != JUMPING)
 
-#define NoJumping	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_JUMPING].intrinsic || UHaveAids || (u.impossibleproperty == JUMPING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoJumping	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_JUMPING].intrinsic) || UHaveAids || (u.impossibleproperty == JUMPING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HTeleportation		u.uprops[TELEPORT].intrinsic
 #define ETeleportation		u.uprops[TELEPORT].extrinsic
@@ -1571,7 +1571,7 @@
 #define Teleport_control	(((IntTeleport_control && u.nonintrinsicproperty != TELEPORT_CONTROL) || (ExtTeleport_control && u.nonextrinsicproperty != TELEPORT_CONTROL)) && !Race_if(PM_MAIA) && !(u.uprops[STORM_HELM].extrinsic) && !Race_if(PM_HUMANOID_LEPRECHAUN) && !NoTeleport_control)
 #define StrongTeleport_control	(IntTeleport_control && ExtTeleport_control && Teleport_control && u.nondoubleproperty != TELEPORT_CONTROL && !(uarmc && uarmc->oartifact == ART_KLALTER) )
 
-#define NoTeleport_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TELEPORT_CONTROL].intrinsic || UHaveAids || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || In_mainframe(&u.uz) || In_bellcaves(&u.uz) || In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || (uarm && uarm->oartifact == ART_LYNN_S_ELUSION) || (uimplant && uimplant->oartifact == ART_POTATOROK && !(powerfulimplants()) ) || autismringcheck(ART_HENRIETTA_S_MAGICAL_AID) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (u.impossibleproperty == TELEPORT_CONTROL) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uwep && uwep->otyp == POKER_STICK) || (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoTeleport_control	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_TELEPORT_CONTROL].intrinsic) || UHaveAids || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || In_mainframe(&u.uz) || In_bellcaves(&u.uz) || In_forging(&u.uz) || In_ordered(&u.uz) || In_deadground(&u.uz) || (uarm && uarm->oartifact == ART_LYNN_S_ELUSION) || (uimplant && uimplant->oartifact == ART_POTATOROK && !(powerfulimplants()) ) || autismringcheck(ART_HENRIETTA_S_MAGICAL_AID) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (u.impossibleproperty == TELEPORT_CONTROL) || (uarmg && uarmg->oartifact == ART_OUT_OF_CONTROL) || (uwep && uwep->otyp == POKER_STICK) || (uarmg && uarmg->oartifact == ART_ARABELLA_S_GREAT_BANISHER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HLevitation		u.uprops[LEVITATION].intrinsic
 #define ELevitation		u.uprops[LEVITATION].extrinsic
@@ -1595,7 +1595,7 @@
 #define Flying			(((IntFlying && u.nonintrinsicproperty != FLYING) || (ExtFlying && u.nonextrinsicproperty != FLYING)) && !(uarm && uarm->oartifact == ART_WATER_SHYNESS) && !NoFlying && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongFlying	(IntFlying && ExtFlying && Flying && u.nondoubleproperty != FLYING)
 
-#define NoFlying	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FLYING].intrinsic || (Race_if(PM_NEMESIS) && uarmc) || UHaveAids || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (FemtrapActiveNaomi && !PlayerInHighHeels) || u.tempnoflysee || (u.impossibleproperty == FLYING) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFlying	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FLYING].intrinsic) || (Race_if(PM_NEMESIS) && uarmc) || UHaveAids || (uarmc && uarmc->oartifact == ART_BROKEN_WINGS) || (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) || (uarms && uarms->oartifact == ART_GROUNDED_FOREVER) || (uarmc && uarmc->oartifact == ART_GROUNDBUMMER) || (FemtrapActiveNaomi && !PlayerInHighHeels) || u.tempnoflysee || (u.impossibleproperty == FLYING) || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 	/* May touch surface; does not override any others */
 
@@ -1628,7 +1628,7 @@
 #define Breathless		(((IntMagical_breathing && u.nonintrinsicproperty != MAGICAL_BREATHING) || (ExtMagical_breathing && u.nonextrinsicproperty != MAGICAL_BREATHING)) && !Role_if(PM_FJORDE) && !NoBreathless && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongMagical_breathing	(IntMagical_breathing && ExtMagical_breathing && (Breathless || Amphibious) && u.nondoubleproperty != MAGICAL_BREATHING)
 
-#define NoBreathless	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MAGICAL_BREATHING].intrinsic || UHaveAids || (u.impossibleproperty == MAGICAL_BREATHING) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoBreathless	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_MAGICAL_BREATHING].intrinsic) || UHaveAids || (u.impossibleproperty == MAGICAL_BREATHING) || (FemtrapActiveNaomi && !PlayerInHighHeels) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define Underwater		(u.uinwater)
 /* Note that Underwater and u.uinwater are both used in code.
@@ -1644,7 +1644,7 @@
 #define Phasing            u.uprops[PASSES_WALLS].intrinsic
 #define StrongPasses_walls	(IntPasses_walls && ExtPasses_walls && Passes_walls && u.nondoubleproperty != PASSES_WALLS)
 
-#define NoPasses_walls	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PASSES_WALLS].intrinsic || UHaveAids || (u.impossibleproperty == PASSES_WALLS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPasses_walls	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_PASSES_WALLS].intrinsic) || UHaveAids || (u.impossibleproperty == PASSES_WALLS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 
 /*** Physical attributes ***/
@@ -1656,7 +1656,7 @@
 #define Slow_digestion		(((IntSlow_digestion && u.nonintrinsicproperty != SLOW_DIGESTION) || (ExtSlow_digestion && u.nonextrinsicproperty != SLOW_DIGESTION)) && !Race_if(PM_PERVERT) && !Race_if(PM_GIGANT) && !NoSlow_digestion)  /* KMH */
 #define StrongSlow_digestion	(IntSlow_digestion && ExtSlow_digestion && Slow_digestion && u.nondoubleproperty != SLOW_DIGESTION)
 
-#define NoSlow_digestion	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SLOW_DIGESTION].intrinsic || UHaveAids || (u.impossibleproperty == SLOW_DIGESTION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSlow_digestion	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SLOW_DIGESTION].intrinsic) || UHaveAids || (u.impossibleproperty == SLOW_DIGESTION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 /* Half spell/physical damage only works 50% of the time, so it's more like three quarter spell/physical damage. --Amy */
 
@@ -1668,7 +1668,7 @@
 #define Half_spell_damage	(((IntHalf_spell_damage && u.nonintrinsicproperty != HALF_SPDAM) || (ExtHalf_spell_damage && u.nonextrinsicproperty != HALF_SPDAM)) && !Race_if(PM_KUTAR) && !NoHalf_spell_damage)
 #define StrongHalf_spell_damage	(IntHalf_spell_damage && ExtHalf_spell_damage && Half_spell_damage && u.nondoubleproperty != HALF_SPDAM)
 
-#define NoHalf_spell_damage	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALF_SPDAM].intrinsic || UHaveAids || (u.impossibleproperty == HALF_SPDAM) || autismweaponcheck(ART_ATLUS_HEAVE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoHalf_spell_damage	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_HALF_SPDAM].intrinsic) || UHaveAids || (u.impossibleproperty == HALF_SPDAM) || autismweaponcheck(ART_ATLUS_HEAVE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HHalf_physical_damage	u.uprops[HALF_PHDAM].intrinsic
 #define EHalf_physical_damage	u.uprops[HALF_PHDAM].extrinsic
@@ -1678,7 +1678,7 @@
 #define Half_physical_damage	(((IntHalf_physical_damage && u.nonintrinsicproperty != HALF_PHDAM) || (ExtHalf_physical_damage && u.nonextrinsicproperty != HALF_PHDAM)) && !NoHalf_physical_damage)
 #define StrongHalf_physical_damage	(IntHalf_physical_damage && ExtHalf_physical_damage && Half_physical_damage && u.nondoubleproperty != HALF_PHDAM)
 
-#define NoHalf_physical_damage	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_HALF_PHDAM].intrinsic || UHaveAids || (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) || autismweaponcheck(ART_ATLUS_HEAVE) || (u.impossibleproperty == HALF_PHDAM) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoHalf_physical_damage	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_HALF_PHDAM].intrinsic) || UHaveAids || (uarmf && uarmf->oartifact == ART_WILD_SEX_GAME) || autismweaponcheck(ART_ATLUS_HEAVE) || (u.impossibleproperty == HALF_PHDAM) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HAstral_vision	u.uprops[ASTRAL_VISION].intrinsic
 #define EAstral_vision	u.uprops[ASTRAL_VISION].extrinsic
@@ -1688,7 +1688,7 @@
 #define Astral_vision	(((IntAstral_vision && u.nonintrinsicproperty != ASTRAL_VISION) || (ExtAstral_vision && u.nonextrinsicproperty != ASTRAL_VISION)) && !NoAstral_vision)
 #define StrongAstral_vision	(IntAstral_vision && ExtAstral_vision && Astral_vision && u.nondoubleproperty != ASTRAL_VISION)
 
-#define NoAstral_vision	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ASTRAL_VISION].intrinsic || UHaveAids || (u.impossibleproperty == ASTRAL_VISION) || (!flags.female && uarmh && uarmh->oartifact == ART_HAT_OF_LADY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoAstral_vision	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_ASTRAL_VISION].intrinsic) || UHaveAids || (u.impossibleproperty == ASTRAL_VISION) || (!flags.female && uarmh && uarmh->oartifact == ART_HAT_OF_LADY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define Second_chance		u.uprops[SECOND_CHANCE].extrinsic
 
@@ -1700,7 +1700,7 @@
 #define Regeneration		(((IntRegeneration && u.nonintrinsicproperty != REGENERATION) || (ExtRegeneration && u.nonextrinsicproperty != REGENERATION)) && !NoRegeneration && !Race_if(PM_SYLPH) )
 #define StrongRegeneration	(IntRegeneration && ExtRegeneration && Regeneration && u.nondoubleproperty != REGENERATION)
 
-#define NoRegeneration	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REGENERATION].intrinsic || UHaveAids || (u.impossibleproperty == REGENERATION) || (uleft && uleft->otyp == RIN_REVERSE_REGENERATION) || (uright && uright->otyp == RIN_REVERSE_REGENERATION)|| (uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoRegeneration	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_REGENERATION].intrinsic) || UHaveAids || (u.impossibleproperty == REGENERATION) || (uleft && uleft->otyp == RIN_REVERSE_REGENERATION) || (uright && uright->otyp == RIN_REVERSE_REGENERATION)|| (uimplant && uimplant->oartifact == ART_RESTROOM_DRENCHING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HEnergy_regeneration	u.uprops[ENERGY_REGENERATION].intrinsic
 #define EEnergy_regeneration	u.uprops[ENERGY_REGENERATION].extrinsic
@@ -1710,7 +1710,7 @@
 #define Energy_regeneration	(((IntEnergy_regeneration && u.nonintrinsicproperty != ENERGY_REGENERATION) || (ExtEnergy_regeneration && u.nonextrinsicproperty != ENERGY_REGENERATION)) && !NoEnergy_regeneration && !Race_if(PM_SYLPH) )
 #define StrongEnergy_regeneration	(IntEnergy_regeneration && ExtEnergy_regeneration && Energy_regeneration && u.nondoubleproperty != ENERGY_REGENERATION)
 
-#define NoEnergy_regeneration	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_ENERGY_REGENERATION].intrinsic || UHaveAids || (u.impossibleproperty == ENERGY_REGENERATION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoEnergy_regeneration	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_ENERGY_REGENERATION].intrinsic) || UHaveAids || (u.impossibleproperty == ENERGY_REGENERATION) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HProtection		u.uprops[PROTECTION].intrinsic
 #define EProtection		u.uprops[PROTECTION].extrinsic
@@ -1741,7 +1741,7 @@
 #define Polymorph_control	(((IntPolymorph_control && u.nonintrinsicproperty != POLYMORPH_CONTROL) || (ExtPolymorph_control && u.nonextrinsicproperty != POLYMORPH_CONTROL)) && !Race_if(PM_MOULD) && !NoPolymorph_control && !Race_if(PM_TRANSFORMER) && !Race_if(PM_POLYINITOR) && !Race_if(PM_DESTABILIZER) && !Race_if(PM_WORM_THAT_WALKS) && !Race_if(PM_WARPER) && !Race_if(PM_MISSINGNO) && !Race_if(PM_UNGENOMOLD) && !Race_if(PM_DEATHMOLD) && !Race_if(PM_AK_THIEF_IS_DEAD_))
 #define StrongPolymorph_control	(IntPolymorph_control && ExtPolymorph_control && Polymorph_control && u.nondoubleproperty != POLYMORPH_CONTROL)
 
-#define NoPolymorph_control	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic || UHaveAids || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmf && uarmf->oartifact == ART_CLONE_) || (uarmc && uarmc->oartifact == ART_SHAPETAKE_NUMBER_FIVE) || (u.impossibleproperty == POLYMORPH_CONTROL) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPolymorph_control	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_POLYMORPH_CONTROL].intrinsic) || UHaveAids || (uarmc && uarmc->oartifact == ART_PERMANENTITIS) || (uarmf && uarmf->oartifact == ART_CLONE_) || (uarmc && uarmc->oartifact == ART_SHAPETAKE_NUMBER_FIVE) || (u.impossibleproperty == POLYMORPH_CONTROL) || (uarmh && uarmh->oartifact == ART_RANDOMNESS_PREVAILS) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HUnchanging		u.uprops[UNCHANGING].intrinsic
 #define EUnchanging		u.uprops[UNCHANGING].extrinsic
@@ -1759,7 +1759,7 @@
 #define Very_fast		((ExtFast && u.nonextrinsicproperty != FAST) && !(uwep && uwep->oartifact == ART_DONGDODONGDODONG) && !Race_if(PM_DEVELOPER) && !autismweaponcheck(ART_HYPER_INTELLIGENCE) && !autismringcheck(ART_CORGON_S_RING) && !(uarmf && uarmf->oartifact == ART_IMPOSSIBLE_CATWALK) && !(autismweaponcheck(ART_HEAVY_POLE_SKILL) && P_RESTRICTED(P_POLEARMS)) && !Race_if(PM_ITAQUE) && !(Race_if(PM_BOVER) && u.usteed) && !Race_if(PM_MONGUNG) && !(uarmf && uarmf->otyp == CATWALK_SANDALS) && !HardcoreAlienMode && !(uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) && !NoFast && !(Role_if(PM_TRANSVESTITE) && !flags.female && !PlayerInHighHeels) && !(Role_if(PM_TOPMODEL) && flags.female && !PlayerInHighHeels) )
 #define StrongFast	(IntFast && ExtFast && Fast && u.nondoubleproperty != FAST)
 
-#define NoFast	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FAST].intrinsic || (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) || autismringcheck(ART_FUW_TENK) || UHaveAids || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT) || (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) || (u.impossibleproperty == FAST) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFast	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FAST].intrinsic) || (uarmf && uarmf->oartifact == ART_END_OF_LEWDNESS) || autismringcheck(ART_FUW_TENK) || UHaveAids || (FemtrapActiveNaomi && !PlayerInHighHeels) || (uarmg && uarmg->oartifact == ART_MILLION_HIT_POINT) || (uarm && uarm->oartifact == ART_FUCK_UGGHH_THAT_S_HEAVY_) || (u.impossibleproperty == FAST) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HReflecting		u.uprops[REFLECTING].intrinsic
 #define EReflecting		u.uprops[REFLECTING].extrinsic
@@ -1769,7 +1769,7 @@
 #define Reflecting		(((IntReflecting && u.nonintrinsicproperty != REFLECTING) || (ExtReflecting && u.nonextrinsicproperty != REFLECTING)) && !NoReflecting && !(uarmc && itemhasappearance(uarmc, APP_ANGBAND_CLOAK)) && !Race_if(PM_ANGBANDER) && !RngeAngband )
 #define StrongReflecting	(IntReflecting && ExtReflecting && Reflecting && u.nondoubleproperty != REFLECTING)
 
-#define NoReflecting	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_REFLECTING].intrinsic || UHaveAids || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && (moves % 4 == 0) ) || (u.impossibleproperty == REFLECTING) || (uarmh && uarmh->oartifact == ART_DISINT_BEAM) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoReflecting	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_REFLECTING].intrinsic) || UHaveAids || (uarm && uarm->oartifact == ART_ARMOR_OF_EREBOR && (moves % 4 == 0) ) || (u.impossibleproperty == REFLECTING) || (uarmh && uarmh->oartifact == ART_DISINT_BEAM) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HFree_action	u.uprops[FREE_ACTION].intrinsic
 #define EFree_action	u.uprops[FREE_ACTION].extrinsic
@@ -1779,7 +1779,7 @@
 #define Free_action		(((IntFree_action && u.nonintrinsicproperty != FREE_ACTION) || (ExtFree_action && u.nonextrinsicproperty != FREE_ACTION)) && !NoFree_action) /* [Tom] */
 #define StrongFree_action	(IntFree_action && ExtFree_action && Free_action && u.nondoubleproperty != FREE_ACTION)
 
-#define NoFree_action	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FREE_ACTION].intrinsic || UHaveAids || (u.impossibleproperty == FREE_ACTION) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (uarm && uarm->oartifact == ART_ELMHERE) || (uarmf && uarmf->otyp == PLASTEEL_BOOTS && (!Role_if(PM_BINDER) || uarmf->oartifact != ART_BINDER_CRASH) ) || (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFree_action	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FREE_ACTION].intrinsic) || UHaveAids || (u.impossibleproperty == FREE_ACTION) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (uarm && uarm->oartifact == ART_ELMHERE) || (uarmf && uarmf->otyp == PLASTEEL_BOOTS && (!Role_if(PM_BINDER) || uarmf->oartifact != ART_BINDER_CRASH) ) || (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 /* Sustain ability */
 #define Fixed_abil		u.uprops[FIXED_ABIL].extrinsic	/* KMH */
@@ -1797,7 +1797,7 @@
 #define Keen_memory		(((IntKeen_memory && u.nonintrinsicproperty != KEEN_MEMORY) || (ExtKeen_memory && u.nonextrinsicproperty != KEEN_MEMORY)) && !Role_if(PM_NOOB_MODE_BARB) && !NoKeen_memory)
 #define StrongKeen_memory	(IntKeen_memory && ExtKeen_memory && Keen_memory && u.nondoubleproperty != KEEN_MEMORY)
 
-#define NoKeen_memory	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_KEEN_MEMORY].intrinsic || UHaveAids || (u.impossibleproperty == KEEN_MEMORY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoKeen_memory	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_KEEN_MEMORY].intrinsic) || UHaveAids || (u.impossibleproperty == KEEN_MEMORY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HSight_bonus		u.uprops[SIGHT_BONUS].intrinsic
 #define ESight_bonus		u.uprops[SIGHT_BONUS].extrinsic
@@ -1807,7 +1807,7 @@
 #define Sight_bonus		(((IntSight_bonus && u.nonintrinsicproperty != SIGHT_BONUS) || (ExtSight_bonus && u.nonextrinsicproperty != SIGHT_BONUS)) && !NoSight_bonus)
 #define StrongSight_bonus	(IntSight_bonus && ExtSight_bonus && Sight_bonus && u.nondoubleproperty != SIGHT_BONUS)
 
-#define NoSight_bonus	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SIGHT_BONUS].intrinsic || UHaveAids || (u.impossibleproperty == SIGHT_BONUS) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSight_bonus	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SIGHT_BONUS].intrinsic) || UHaveAids || (u.impossibleproperty == SIGHT_BONUS) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HVersus_curses		u.uprops[VERSUS_CURSES].intrinsic
 #define EVersus_curses		u.uprops[VERSUS_CURSES].extrinsic
@@ -1817,7 +1817,7 @@
 #define Versus_curses		(((IntVersus_curses && u.nonintrinsicproperty != VERSUS_CURSES) || (ExtVersus_curses && u.nonextrinsicproperty != VERSUS_CURSES)) && !NoVersus_curses)
 #define StrongVersus_curses	(IntVersus_curses && ExtVersus_curses && Versus_curses && u.nondoubleproperty != VERSUS_CURSES)
 
-#define NoVersus_curses	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_VERSUS_CURSES].intrinsic || UHaveAids || (u.impossibleproperty == VERSUS_CURSES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoVersus_curses	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_VERSUS_CURSES].intrinsic) || UHaveAids || (u.impossibleproperty == VERSUS_CURSES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HStun_resist		u.uprops[STUN_RES].intrinsic
 #define EStun_resist		u.uprops[STUN_RES].extrinsic
@@ -1827,7 +1827,7 @@
 #define Stun_resist		(((IntStun_resist && u.nonintrinsicproperty != STUN_RES) || (ExtStun_resist && u.nonextrinsicproperty != STUN_RES)) && !hybridragontype(AD_LITE) && !NoStun_resist)
 #define StrongStun_resist	(IntStun_resist && ExtStun_resist && Stun_resist && u.nondoubleproperty != STUN_RES)
 
-#define NoStun_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_STUN_RES].intrinsic || Race_if(PM_TUMBLRER) || UHaveAids || (u.impossibleproperty == STUN_RES) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoStun_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_STUN_RES].intrinsic) || Race_if(PM_TUMBLRER) || UHaveAids || (u.impossibleproperty == STUN_RES) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HConf_resist		u.uprops[CONF_RES].intrinsic
 #define EConf_resist		u.uprops[CONF_RES].extrinsic
@@ -1837,7 +1837,7 @@
 #define Conf_resist		(((IntConf_resist && u.nonintrinsicproperty != CONF_RES) || (ExtConf_resist && u.nonextrinsicproperty != CONF_RES)) && !Race_if(PM_TONBERRY) && !hybridragontype(AD_LITE) && !NoConf_resist)
 #define StrongConf_resist	(IntConf_resist && ExtConf_resist && Conf_resist && u.nondoubleproperty != CONF_RES)
 
-#define NoConf_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CONF_RES].intrinsic || Race_if(PM_ADDICT) || (uarmh && uarmh->oartifact == ART_UBB_RUPTURE) || autismweaponcheck(ART_ATLUS_HEAVE) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || UHaveAids || (u.impossibleproperty == CONF_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoConf_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CONF_RES].intrinsic) || Race_if(PM_ADDICT) || (uarmh && uarmh->oartifact == ART_UBB_RUPTURE) || autismweaponcheck(ART_ATLUS_HEAVE) || (uarmf && uarmf->oartifact == ART_FERGIE_S_GLACIER) || UHaveAids || (u.impossibleproperty == CONF_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HPsi_resist		u.uprops[PSI_RES].intrinsic
 #define EPsi_resist		u.uprops[PSI_RES].extrinsic
@@ -1847,7 +1847,7 @@
 #define Psi_resist		(((IntPsi_resist && u.nonintrinsicproperty != PSI_RES) || (ExtPsi_resist && u.nonextrinsicproperty != PSI_RES)) && !hybridragontype(AD_SPC2) && !NoPsi_resist)
 #define StrongPsi_resist	(IntPsi_resist && ExtPsi_resist && Psi_resist && u.nondoubleproperty != PSI_RES)
 
-#define NoPsi_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PSI_RES].intrinsic || UHaveAids || (u.impossibleproperty == PSI_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPsi_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_PSI_RES].intrinsic) || UHaveAids || (u.impossibleproperty == PSI_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDouble_attack		u.uprops[DOUBLE_ATTACK].intrinsic
 #define EDouble_attack		u.uprops[DOUBLE_ATTACK].extrinsic
@@ -1857,7 +1857,7 @@
 #define Double_attack		(((IntDouble_attack && u.nonintrinsicproperty != DOUBLE_ATTACK) || (ExtDouble_attack && u.nonextrinsicproperty != DOUBLE_ATTACK)) && !NoDouble_attack)
 #define StrongDouble_attack	(IntDouble_attack && ExtDouble_attack && Double_attack && u.nondoubleproperty != DOUBLE_ATTACK)
 
-#define NoDouble_attack	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DOUBLE_ATTACK].intrinsic || UHaveAids || (u.nonextrinsicproperty == DOUBLE_ATTACK && !HDouble_attack) || (u.impossibleproperty == DOUBLE_ATTACK) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDouble_attack	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DOUBLE_ATTACK].intrinsic) || UHaveAids || (u.nonextrinsicproperty == DOUBLE_ATTACK && !HDouble_attack) || (u.impossibleproperty == DOUBLE_ATTACK) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HQuad_attack		u.uprops[QUAD_ATTACK].intrinsic
 #define EQuad_attack		u.uprops[QUAD_ATTACK].extrinsic
@@ -1867,7 +1867,7 @@
 #define Quad_attack		(((IntQuad_attack && u.nonintrinsicproperty != QUAD_ATTACK) || (ExtQuad_attack && u.nonextrinsicproperty != QUAD_ATTACK)) && !NoQuad_attack)
 #define StrongQuad_attack	(IntQuad_attack && ExtQuad_attack && Quad_attack && u.nondoubleproperty != QUAD_ATTACK)
 
-#define NoQuad_attack	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_QUAD_ATTACK].intrinsic || UHaveAids || (u.nonextrinsicproperty == QUAD_ATTACK && !HQuad_attack) || (u.impossibleproperty == QUAD_ATTACK) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoQuad_attack	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_QUAD_ATTACK].intrinsic) || UHaveAids || (u.nonextrinsicproperty == QUAD_ATTACK && !HQuad_attack) || (u.impossibleproperty == QUAD_ATTACK) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HUseTheForce		u.uprops[THE_FORCE].intrinsic
 #define EUseTheForce		u.uprops[THE_FORCE].extrinsic
@@ -1877,7 +1877,7 @@
 #define UseTheForce		(((IntUseTheForce && u.nonintrinsicproperty != THE_FORCE) || (ExtUseTheForce && u.nonextrinsicproperty != THE_FORCE)) && !NoUseTheForce)
 #define StrongUseTheForce	(IntUseTheForce && ExtUseTheForce && UseTheForce && u.nondoubleproperty != THE_FORCE)
 
-#define NoUseTheForce	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_THE_FORCE].intrinsic || UHaveAids || (u.impossibleproperty == THE_FORCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoUseTheForce	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_THE_FORCE].intrinsic) || UHaveAids || (u.impossibleproperty == THE_FORCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HCont_resist		u.uprops[CONT_RES].intrinsic
 #define ECont_resist		u.uprops[CONT_RES].extrinsic
@@ -1887,7 +1887,7 @@
 #define Cont_resist		(((IntCont_resist && u.nonintrinsicproperty != CONT_RES) || (ExtCont_resist && u.nonextrinsicproperty != CONT_RES)) && !NoCont_resist)
 #define StrongCont_resist	(IntCont_resist && ExtCont_resist && Cont_resist && u.nondoubleproperty != CONT_RES)
 
-#define NoCont_resist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CONT_RES].intrinsic || UHaveAids || (u.impossibleproperty == CONT_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoCont_resist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CONT_RES].intrinsic) || UHaveAids || (u.impossibleproperty == CONT_RES) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDiscount_action	u.uprops[DISCOUNT_ACTION].intrinsic
 #define EDiscount_action	u.uprops[DISCOUNT_ACTION].extrinsic
@@ -1897,7 +1897,7 @@
 #define Discount_action		(((IntDiscount_action && u.nonintrinsicproperty != DISCOUNT_ACTION) || (ExtDiscount_action && u.nonextrinsicproperty != DISCOUNT_ACTION)) && !NoDiscount_action)
 #define StrongDiscount_action	(IntDiscount_action && ExtDiscount_action && Discount_action && u.nondoubleproperty != DISCOUNT_ACTION)
 
-#define NoDiscount_action	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DISCOUNT_ACTION].intrinsic || (isevilvariant && Free_action) || UHaveAids || (u.impossibleproperty == DISCOUNT_ACTION) || (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDiscount_action	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DISCOUNT_ACTION].intrinsic) || (isevilvariant && Free_action) || UHaveAids || (u.impossibleproperty == DISCOUNT_ACTION) || (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HFull_nutrient		u.uprops[FULL_NUTRIENT].intrinsic
 #define EFull_nutrient		u.uprops[FULL_NUTRIENT].extrinsic
@@ -1907,7 +1907,7 @@
 #define Full_nutrient		(((IntFull_nutrient && u.nonintrinsicproperty != FULL_NUTRIENT) || (ExtFull_nutrient && u.nonextrinsicproperty != FULL_NUTRIENT)) && !Race_if(PM_PERVERT) && !NoFull_nutrient)
 #define StrongFull_nutrient	(IntFull_nutrient && ExtFull_nutrient && Full_nutrient && u.nondoubleproperty != FULL_NUTRIENT)
 
-#define NoFull_nutrient	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_FULL_NUTRIENT].intrinsic || UHaveAids || (u.impossibleproperty == FULL_NUTRIENT) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoFull_nutrient	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FULL_NUTRIENT].intrinsic) || UHaveAids || (u.impossibleproperty == FULL_NUTRIENT) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HTechnicality		u.uprops[TECHNICALITY].intrinsic
 #define ETechnicality		u.uprops[TECHNICALITY].extrinsic
@@ -1917,7 +1917,7 @@
 #define Technicality		(((IntTechnicality && u.nonintrinsicproperty != TECHNICALITY) || (ExtTechnicality && u.nonextrinsicproperty != TECHNICALITY)) && !NoTechnicality)
 #define StrongTechnicality	(IntTechnicality && ExtTechnicality && Technicality && u.nondoubleproperty != TECHNICALITY)
 
-#define NoTechnicality	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_TECHNICALITY].intrinsic || UHaveAids || (u.impossibleproperty == TECHNICALITY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoTechnicality	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_TECHNICALITY].intrinsic) || UHaveAids || (u.impossibleproperty == TECHNICALITY) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HScentView		u.uprops[SCENT_VIEW].intrinsic
 #define EScentView		u.uprops[SCENT_VIEW].extrinsic
@@ -1929,7 +1929,7 @@
 #define HaveEcholocation	((Role_if(PM_BARD) || (uwep && uwep->oartifact == ART_GAME_KNOWLEDGE_CHEAT_SHEET) || (uwep && uwep->oartifact == ART_PEREGRINE_OF_NIGHT) || (uarm && uarm->oartifact == ART_FARTHER_INTO_THE_JUNGLE) || (uarm && uarm->oartifact == ART_PUNKED_BY_HEIDI) || (uarmh && uarmh->oartifact == ART_HEARING_EAR) || (uarmh && uarmh->oartifact == ART_COMPLETE_SIGHT) || (uarm && uarm->oartifact == ART_NONA_S_NONO) || autismringcheck(ART_HERO_ECHO) || (uarmf && uarmf->oartifact == ART_SQUARE_ZONE) || (uwep && uwep->oartifact == ART_SKODIT) || (uwep && uwep->oartifact == ART_HELIOPOLIS_MISTAKE) || (Upolyd && !haseyes(youmonst.data) && !is_animal(youmonst.data)) || Role_if(PM_STAND_USER) || RngeEcholocation || Race_if(PM_ANCIPITAL) || Race_if(PM_BATMAN) || Race_if(PM_CHIROPTERAN) || Race_if(PM_HC_ALIEN) || Race_if(PM_SLYER_ALIEN) || u.echolocationspell || (Upolyd && youmonst.data->mlet == S_BAT) ) && !NoScentView && u.nonintrinsicproperty != SCENT_VIEW)
 #define EcholocationActive	(StrongScentView || HaveEcholocation)
 
-#define NoScentView	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SCENT_VIEW].intrinsic || UHaveAids || (u.impossibleproperty == SCENT_VIEW) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoScentView	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SCENT_VIEW].intrinsic) || UHaveAids || (u.impossibleproperty == SCENT_VIEW) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HDiminishedBleeding		u.uprops[DIMINISHED_BLEEDING].intrinsic
 #define EDiminishedBleeding		u.uprops[DIMINISHED_BLEEDING].extrinsic
@@ -1939,7 +1939,7 @@
 #define DiminishedBleeding		(((IntDiminishedBleeding && u.nonintrinsicproperty != DIMINISHED_BLEEDING) || (ExtDiminishedBleeding && u.nonextrinsicproperty != DIMINISHED_BLEEDING)) && !Role_if(PM_BLEEDER) && !Race_if(PM_HEMOPHAGE) && !NoDiminishedBleeding)
 #define StrongDiminishedBleeding	(IntDiminishedBleeding && ExtDiminishedBleeding && DiminishedBleeding && u.nondoubleproperty != DIMINISHED_BLEEDING)
 
-#define NoDiminishedBleeding	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic || UHaveAids || (u.impossibleproperty == DIMINISHED_BLEEDING) || Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDiminishedBleeding	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DIMINISHED_BLEEDING].intrinsic) || UHaveAids || (u.impossibleproperty == DIMINISHED_BLEEDING) || Role_if(PM_BLEEDER) || Race_if(PM_HEMOPHAGE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HControlMagic		u.uprops[CONTROL_MAGIC].intrinsic
 #define EControlMagic		u.uprops[CONTROL_MAGIC].extrinsic
@@ -1949,7 +1949,7 @@
 #define ControlMagic		(((IntControlMagic && u.nonintrinsicproperty != CONTROL_MAGIC) || (ExtControlMagic && u.nonextrinsicproperty != CONTROL_MAGIC)) && !NoControlMagic)
 #define StrongControlMagic	(IntControlMagic && ExtControlMagic && ControlMagic && u.nondoubleproperty != CONTROL_MAGIC)
 
-#define NoControlMagic	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_CONTROL_MAGIC].intrinsic || UHaveAids || (u.impossibleproperty == CONTROL_MAGIC) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoControlMagic	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_CONTROL_MAGIC].intrinsic) || UHaveAids || (u.impossibleproperty == CONTROL_MAGIC) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HExpBoost		u.uprops[EXP_BOOST].intrinsic
 #define EExpBoost		u.uprops[EXP_BOOST].extrinsic
@@ -1959,7 +1959,7 @@
 #define ExpBoost		(((IntExpBoost && u.nonintrinsicproperty != EXP_BOOST) || (ExtExpBoost && u.nonextrinsicproperty != EXP_BOOST)) && !NoExpBoost)
 #define StrongExpBoost	(IntExpBoost && ExtExpBoost && ExpBoost && u.nondoubleproperty != EXP_BOOST)
 
-#define NoExpBoost	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_EXP_BOOST].intrinsic || UHaveAids || (u.impossibleproperty == EXP_BOOST) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoExpBoost	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_EXP_BOOST].intrinsic) || UHaveAids || (u.impossibleproperty == EXP_BOOST) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HPainSense		u.uprops[PAIN_SENSE].intrinsic
 #define EPainSense		u.uprops[PAIN_SENSE].extrinsic
@@ -1969,7 +1969,7 @@
 #define PainSense		(((IntPainSense && u.nonintrinsicproperty != PAIN_SENSE) || (ExtPainSense && u.nonextrinsicproperty != PAIN_SENSE)) && !NoPainSense)
 #define StrongPainSense	(IntPainSense && ExtPainSense && PainSense && u.nondoubleproperty != PAIN_SENSE)
 
-#define NoPainSense	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_PAIN_SENSE].intrinsic || UHaveAids || (u.impossibleproperty == PAIN_SENSE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoPainSense	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_PAIN_SENSE].intrinsic) || UHaveAids || (u.impossibleproperty == PAIN_SENSE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HInvertedState		u.uprops[INVERT_STATE].intrinsic
 #define EInvertedState		u.uprops[INVERT_STATE].extrinsic
@@ -1993,7 +1993,7 @@
 #define Defusing		(((IntDefusing && u.nonintrinsicproperty != DEFUSING) || (ExtDefusing && u.nonextrinsicproperty != DEFUSING)) && !NoDefusing)
 #define StrongDefusing	(IntDefusing && ExtDefusing && Defusing && u.nondoubleproperty != DEFUSING)
 
-#define NoDefusing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_DEFUSING].intrinsic || UHaveAids || (u.impossibleproperty == DEFUSING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoDefusing	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_DEFUSING].intrinsic) || UHaveAids || (u.impossibleproperty == DEFUSING) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HBurdenedState		u.uprops[BURDENED_STATE].intrinsic
 #define EBurdenedState		u.uprops[BURDENED_STATE].extrinsic
@@ -2019,7 +2019,7 @@
 #define ResistancePiercing		(((IntResistancePiercing && u.nonintrinsicproperty != RESISTANCE_PIERCING) || (ExtResistancePiercing && u.nonextrinsicproperty != RESISTANCE_PIERCING)) && !NoResistancePiercing)
 #define StrongResistancePiercing	(IntResistancePiercing && ExtResistancePiercing && ResistancePiercing && u.nondoubleproperty != RESISTANCE_PIERCING)
 
-#define NoResistancePiercing	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic || UHaveAids || (u.impossibleproperty == RESISTANCE_PIERCING ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoResistancePiercing	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_RESISTANCE_PIERCING].intrinsic) || UHaveAids || (u.impossibleproperty == RESISTANCE_PIERCING ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HFuckOverEffect		u.uprops[FUCK_OVER].intrinsic
 #define EFuckOverEffect		u.uprops[FUCK_OVER].extrinsic
@@ -2037,7 +2037,7 @@
 #define MysteryResist		(((IntMysteryResist && u.nonintrinsicproperty != MYSTERY_RES) || (ExtMysteryResist && u.nonextrinsicproperty != MYSTERY_RES)) && !NoMysteryResist)
 #define StrongMysteryResist	(IntMysteryResist && ExtMysteryResist && MysteryResist && u.nondoubleproperty != MYSTERY_RES)
 
-#define NoMysteryResist	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MYSTERY_RES].intrinsic || UHaveAids || (u.impossibleproperty == MYSTERY_RES ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoMysteryResist	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_MYSTERY_RES].intrinsic) || UHaveAids || (u.impossibleproperty == MYSTERY_RES ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HMagicFindBonus		u.uprops[MAGIC_FIND].intrinsic
 #define EMagicFindBonus		u.uprops[MAGIC_FIND].extrinsic
@@ -2047,7 +2047,7 @@
 #define MagicFindBonus		(((IntMagicFindBonus && u.nonintrinsicproperty != MAGIC_FIND) || (ExtMagicFindBonus && u.nonextrinsicproperty != MAGIC_FIND)) && !NoMagicFindBonus)
 #define StrongMagicFindBonus	(IntMagicFindBonus && ExtMagicFindBonus && MagicFindBonus && u.nondoubleproperty != MAGIC_FIND)
 
-#define NoMagicFindBonus	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_MAGIC_FIND].intrinsic || (uamul && uamul->oartifact == ART_OUTTA_LUCK) || UHaveAids || (u.impossibleproperty == MAGIC_FIND ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoMagicFindBonus	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_MAGIC_FIND].intrinsic) || (uamul && uamul->oartifact == ART_OUTTA_LUCK) || UHaveAids || (u.impossibleproperty == MAGIC_FIND ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HSpellboost		u.uprops[SPELLBOOST].intrinsic
 #define ESpellboost		u.uprops[SPELLBOOST].extrinsic
@@ -2057,7 +2057,7 @@
 #define Spellboost		(((IntSpellboost && u.nonintrinsicproperty != SPELLBOOST) || (ExtSpellboost && u.nonextrinsicproperty != SPELLBOOST)) && !NoSpellboost)
 #define StrongSpellboost	(IntSpellboost && ExtSpellboost && Spellboost && u.nondoubleproperty != SPELLBOOST)
 
-#define NoSpellboost	(!Race_if(PM_IMMUNIZER) && (u.uprops[DEAC_SPELLBOOST].intrinsic || UHaveAids || (u.impossibleproperty == SPELLBOOST ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0)))
+#define NoSpellboost	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_SPELLBOOST].intrinsic) || UHaveAids || (u.impossibleproperty == SPELLBOOST ) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 #define HWildWeatherEffect		u.uprops[WILD_WEATHER].intrinsic
 #define EWildWeatherEffect		u.uprops[WILD_WEATHER].extrinsic
