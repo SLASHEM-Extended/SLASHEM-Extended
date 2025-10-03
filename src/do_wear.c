@@ -1302,7 +1302,7 @@ Cloak_on()
 	case DWARVISH_CLOAK:
 	case CLOAK_OF_MAGIC_RESISTANCE:
 	case CLOAK_OF_REFLECTION:
-	case ROBE:
+	/*case PLAIN_ROBE:*/
 	case ALCHEMY_SMOCK:
 	case LEO_NEMAEUS_HIDE:
 	case LEATHER_CLOAK:
@@ -2122,7 +2122,7 @@ Cloak_off()
 	case POISONOUS_CLOAK:
 	case CLOAK_OF_DEATH:
 	case OILSKIN_CLOAK:
-	case ROBE:
+	/*case PLAIN_ROBE:*/
 	case ALCHEMY_SMOCK:
 	case LEO_NEMAEUS_HIDE:
 	case PLASTEEL_CLOAK:
@@ -4451,6 +4451,87 @@ Armor_on()
 		case JEDI_ROBE:
 			makeknown(uarm->otyp);
 			break;
+
+		case DUMMY_ROBE_A:
+		case DUMMY_ROBE_B:
+		case DUMMY_ROBE_C:
+		case DUMMY_ROBE_D:
+		case DUMMY_ROBE_E:
+		case DUMMY_ROBE_F:
+		case DUMMY_ROBE_G:
+		case DUMMY_ROBE_H:
+		case DUMMY_ROBE_I:
+		case DUMMY_ROBE_J:
+		case DUMMY_ROBE_K:
+		case DUMMY_ROBE_L:
+		case DUMMY_ROBE_M:
+		case DUMMY_ROBE_N:
+		case DUMMY_ROBE_O:
+		case DUMMY_ROBE_P:
+		case DUMMY_ROBE_Q:
+		case DUMMY_ROBE_R:
+		case DUMMY_ROBE_S:
+		case DUMMY_ROBE_T:
+		case DUMMY_ROBE_U:
+		case DUMMY_ROBE_V:
+		case DUMMY_ROBE_W:
+		case DUMMY_ROBE_X:
+		case DUMMY_ROBE_Y:
+		case DUMMY_ROBE_Z:
+		case DUMMY_ROBE_AA:
+		case DUMMY_ROBE_AB:
+		case DUMMY_ROBE_AC:
+		case DUMMY_ROBE_AD:
+		case DUMMY_ROBE_AE:
+		case DUMMY_ROBE_AF:
+		case DUMMY_ROBE_AG:
+		case DUMMY_ROBE_AH:
+		case DUMMY_ROBE_AI:
+		case DUMMY_ROBE_AJ:
+		case DUMMY_ROBE_AK:
+		case DUMMY_ROBE_AL:
+		case DUMMY_ROBE_AM:
+		case DUMMY_ROBE_AN:
+		case DUMMY_ROBE_AO:
+		case DUMMY_ROBE_AP:
+		case DUMMY_ROBE_AQ:
+		case DUMMY_ROBE_AR:
+		case DUMMY_ROBE_AS:
+		case DUMMY_ROBE_AT:
+		case DUMMY_ROBE_AU:
+		case DUMMY_ROBE_AV:
+		case DUMMY_ROBE_AW:
+		case DUMMY_ROBE_AX:
+		case DUMMY_ROBE_AY:
+		case DUMMY_ROBE_AZ:
+		case DUMMY_ROBE_BA:
+		case DUMMY_ROBE_BB:
+		case DUMMY_ROBE_BC:
+		case DUMMY_ROBE_BD:
+		case DUMMY_ROBE_BE:
+		case DUMMY_ROBE_BF:
+		case DUMMY_ROBE_BG:
+		case DUMMY_ROBE_BH:
+		case DUMMY_ROBE_BI:
+		case DUMMY_ROBE_BJ:
+		case DUMMY_ROBE_BK:
+		case DUMMY_ROBE_BL:
+		case DUMMY_ROBE_BM:
+		case DUMMY_ROBE_BN:
+		case DUMMY_ROBE_BO:
+		case DUMMY_ROBE_BP:
+		case DUMMY_ROBE_BQ:
+		case DUMMY_ROBE_BR:
+		case DUMMY_ROBE_BS:
+		case DUMMY_ROBE_BT:
+		case DUMMY_ROBE_BU:
+		case DUMMY_ROBE_BV:
+		case DUMMY_ROBE_BW:
+		case DUMMY_ROBE_BX:
+		case DUMMY_ROBE_BY:
+		case DUMMY_ROBE_BZ:
+			if (!uarm->cursed) curse(uarm);
+			break;
 	}
 
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_YAH__YAH && uarm && objects[uarm->otyp].oc_color == CLR_RED && uarm->spe < 0) uarm->spe++;
@@ -4491,12 +4572,23 @@ Armor_on()
 	if (uarm && uarm->otyp == EVIL_LEATHER_ARMOR) {
 		if (!uarm->cursed) curse(uarm);
 	}
+	if (uarm && (itemhasappearance(uarm, APP_METAL_FOCUS_ROBE) || itemhasappearance(uarm, APP_FOCUSED_ROBE) || itemhasappearance(uarm, APP_SUPERFOCUSED_ROBE) ) ) {
+		if (!tech_known(T_UNARMED_FOCUS)) {
+			learntech(T_UNARMED_FOCUS, FROMOUTSIDE, 1);
+		    	pline("You learn the unarmed focus technique!");
+		}
+	}
+
 	if (uarm && uarm->otyp == ROBE_OF_FOCUSSING) {
 		makeknown(uarm->otyp);
 		if (!tech_known(T_UNARMED_FOCUS)) {
 			learntech(T_UNARMED_FOCUS, FROMOUTSIDE, 1);
 		    	pline("You learn the unarmed focus technique!");
 		}
+	}
+
+	if (uarm && itemhasappearance(uarm, APP_EASY_ID_ROBE)) {
+		makeknown(uarm->otyp);
 	}
 
 	if (uarm && uarm->oartifact == ART_NOW_FOR_THE_DISCHARGE) {
@@ -7341,7 +7433,7 @@ find_ac()
 
 	}
 
-	if (!PlayerCannotUseSkills && uwep && uarm && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+	if (!PlayerCannotUseSkills && uwep && uarm && is_lightsaber(uwep) && (uwep->lamplit || Role_if(PM_SHADOW_JEDI)) && (uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 
 		switch (P_SKILL(P_SORESU)) {
 			case P_BASIC: uac -= 1; break;
@@ -7631,6 +7723,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && itemhasappearance(uarm, APP_ARMORED_ROBE)) uac -= 5;
 	if (uwep && uwep->oartifact == ART_KALI_S_ORBIT) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_PLUM_AURA) uac -= 5;
 	if (uamul && uamul->oartifact == ART_IMPROVED_SIGN) uac -= 3;

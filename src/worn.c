@@ -392,7 +392,7 @@ register struct monst *mon;
 	/* soresu monster lightsaber form */
 	if (which_armor(mon, W_ARM)) {
 		struct obj *monarmor = which_armor(mon, W_ARM);
-		if (monarmor && (monarmor->otyp >= ROBE && monarmor->otyp <= ROBE_OF_WEAKNESS) ) {
+		if (monarmor && (monarmor->otyp >= PLAIN_ROBE && monarmor->otyp <= ROBE_OF_WEAKNESS) ) {
 			struct obj *monweapon;
 			if (MON_WEP(mon)) {
 				monweapon = MON_WEP(mon);

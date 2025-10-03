@@ -13614,6 +13614,24 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("This robe is imbued with special magic. Sometimes it will send beams back at whoever fired them.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_POWERSAVE_ROBE))
 			pline("Wearing this robe reduces the rate of energy usage for all of your lightsabers.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_METAL_FOCUS_ROBE))
+			pline("Putting this robe on will teach you the unarmed focus technique, if you don't have that one yet.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SUPER_HEAVY_ROBE))
+			pline("An extremely heavy robe. Wearing it may well end up weighing you down.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_GROMY_ROBE))
+			pline("This robe makes you poison resistant when worn.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_MAGICPROT_ROBE))
+			pline("A super powerful robe that grants magic resistance when worn.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ARMORED_ROBE))
+			pline("Wearing this robe boosts your AC significantly.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_VANILLIC_ROBE))
+			pline("While wearing this robe, your spells are a bit easier to cast.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_FOCUSED_ROBE))
+			pline("Put on this robe to learn the unarmed focus technique, if you don't know it yet.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_SUPERFOCUSED_ROBE))
+			pline("Putting this robe on teaches the unarmed focus technique. If you use that one while wearing the robe, its duration is doubled.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_EASY_ID_ROBE))
+			pline("Identifying the base type of this robe is pretty easy: just put it on, and the type reveals itself.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_ARENA_ROBE))
 			pline("Wearing this robe increases your unarmed damage by one point. If you're a gladiator, it additionally increases all melee damage you deal by one (additional) point.");
 
@@ -14380,7 +14398,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("One of Chris_ANG's overpowered creations, this uniform grants sickness resistance. However, there is a dragon scale mail that gives the same property and much more AC. :D"); break;
 			case HAWAIIAN_SHORTS:
 				pline("A totally useless armor that grants absolutely nothing. Bonus points if it is cursed and prevents you from wearing an actual armor."); break;
-			case ROBE:
+			case PLAIN_ROBE:
 				pline("Robes can be worn instead of armor. This is mainly useful for monks and jedi who are penalized for wearing 'real' armor."); break;
 			case ROBE_OF_PROTECTION:
 				pline("If you don't want to wear a real armor, you can use this for some armor class."); break;
@@ -16602,10 +16620,167 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AU].oc_oprop), objects[DUMMY_BOOTS_AU].a_ac, objects[DUMMY_BOOTS_AU].a_can ); break;
 			case DUMMY_BOOTS_AV:
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AV].oc_oprop), objects[DUMMY_BOOTS_AV].a_ac, objects[DUMMY_BOOTS_AV].a_can ); break;
-			case DUMMY_BOOTS_AW: 
+			case DUMMY_BOOTS_AW:
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AW].oc_oprop), objects[DUMMY_BOOTS_AW].a_ac, objects[DUMMY_BOOTS_AW].a_can ); break;
-			case DUMMY_BOOTS_AX: 
+			case DUMMY_BOOTS_AX:
 				pline("This pair of boots is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_BOOTS_AX].oc_oprop), objects[DUMMY_BOOTS_AX].a_ac, objects[DUMMY_BOOTS_AX].a_can ); break;
+
+			case DUMMY_ROBE_A:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_A].oc_oprop), objects[DUMMY_ROBE_A].a_ac, objects[DUMMY_ROBE_A].a_can ); break;
+			case DUMMY_ROBE_B:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_B].oc_oprop), objects[DUMMY_ROBE_B].a_ac, objects[DUMMY_ROBE_B].a_can ); break;
+			case DUMMY_ROBE_C:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_C].oc_oprop), objects[DUMMY_ROBE_C].a_ac, objects[DUMMY_ROBE_C].a_can ); break;
+			case DUMMY_ROBE_D:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_D].oc_oprop), objects[DUMMY_ROBE_D].a_ac, objects[DUMMY_ROBE_D].a_can ); break;
+			case DUMMY_ROBE_E:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_E].oc_oprop), objects[DUMMY_ROBE_E].a_ac, objects[DUMMY_ROBE_E].a_can ); break;
+			case DUMMY_ROBE_F:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_F].oc_oprop), objects[DUMMY_ROBE_F].a_ac, objects[DUMMY_ROBE_F].a_can ); break;
+			case DUMMY_ROBE_G:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_G].oc_oprop), objects[DUMMY_ROBE_G].a_ac, objects[DUMMY_ROBE_G].a_can ); break;
+			case DUMMY_ROBE_H:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_H].oc_oprop), objects[DUMMY_ROBE_H].a_ac, objects[DUMMY_ROBE_H].a_can ); break;
+			case DUMMY_ROBE_I:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_I].oc_oprop), objects[DUMMY_ROBE_I].a_ac, objects[DUMMY_ROBE_I].a_can ); break;
+			case DUMMY_ROBE_J:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_J].oc_oprop), objects[DUMMY_ROBE_J].a_ac, objects[DUMMY_ROBE_J].a_can ); break;
+			case DUMMY_ROBE_K:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_K].oc_oprop), objects[DUMMY_ROBE_K].a_ac, objects[DUMMY_ROBE_K].a_can ); break;
+			case DUMMY_ROBE_L:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_L].oc_oprop), objects[DUMMY_ROBE_L].a_ac, objects[DUMMY_ROBE_L].a_can ); break;
+			case DUMMY_ROBE_M:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_M].oc_oprop), objects[DUMMY_ROBE_M].a_ac, objects[DUMMY_ROBE_M].a_can ); break;
+			case DUMMY_ROBE_N:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_N].oc_oprop), objects[DUMMY_ROBE_N].a_ac, objects[DUMMY_ROBE_N].a_can ); break;
+			case DUMMY_ROBE_O:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_O].oc_oprop), objects[DUMMY_ROBE_O].a_ac, objects[DUMMY_ROBE_O].a_can ); break;
+			case DUMMY_ROBE_P:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_P].oc_oprop), objects[DUMMY_ROBE_P].a_ac, objects[DUMMY_ROBE_P].a_can ); break;
+			case DUMMY_ROBE_Q:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_Q].oc_oprop), objects[DUMMY_ROBE_Q].a_ac, objects[DUMMY_ROBE_Q].a_can ); break;
+			case DUMMY_ROBE_R:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_R].oc_oprop), objects[DUMMY_ROBE_R].a_ac, objects[DUMMY_ROBE_R].a_can ); break;
+			case DUMMY_ROBE_S:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_S].oc_oprop), objects[DUMMY_ROBE_S].a_ac, objects[DUMMY_ROBE_S].a_can ); break;
+			case DUMMY_ROBE_T:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_T].oc_oprop), objects[DUMMY_ROBE_T].a_ac, objects[DUMMY_ROBE_T].a_can ); break;
+			case DUMMY_ROBE_U:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_U].oc_oprop), objects[DUMMY_ROBE_U].a_ac, objects[DUMMY_ROBE_U].a_can ); break;
+			case DUMMY_ROBE_V:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_V].oc_oprop), objects[DUMMY_ROBE_V].a_ac, objects[DUMMY_ROBE_V].a_can ); break;
+			case DUMMY_ROBE_W:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_W].oc_oprop), objects[DUMMY_ROBE_W].a_ac, objects[DUMMY_ROBE_W].a_can ); break;
+			case DUMMY_ROBE_X:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_X].oc_oprop), objects[DUMMY_ROBE_X].a_ac, objects[DUMMY_ROBE_X].a_can ); break;
+			case DUMMY_ROBE_Y:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_Y].oc_oprop), objects[DUMMY_ROBE_Y].a_ac, objects[DUMMY_ROBE_Y].a_can ); break;
+			case DUMMY_ROBE_Z:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_Z].oc_oprop), objects[DUMMY_ROBE_Z].a_ac, objects[DUMMY_ROBE_Z].a_can ); break;
+			case DUMMY_ROBE_AA:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AA].oc_oprop), objects[DUMMY_ROBE_AA].a_ac, objects[DUMMY_ROBE_AA].a_can ); break;
+			case DUMMY_ROBE_AB:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AB].oc_oprop), objects[DUMMY_ROBE_AB].a_ac, objects[DUMMY_ROBE_AB].a_can ); break;
+			case DUMMY_ROBE_AC:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AC].oc_oprop), objects[DUMMY_ROBE_AC].a_ac, objects[DUMMY_ROBE_AC].a_can ); break;
+			case DUMMY_ROBE_AD:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AD].oc_oprop), objects[DUMMY_ROBE_AD].a_ac, objects[DUMMY_ROBE_AD].a_can ); break;
+			case DUMMY_ROBE_AE:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AE].oc_oprop), objects[DUMMY_ROBE_AE].a_ac, objects[DUMMY_ROBE_AE].a_can ); break;
+			case DUMMY_ROBE_AF:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AF].oc_oprop), objects[DUMMY_ROBE_AF].a_ac, objects[DUMMY_ROBE_AF].a_can ); break;
+			case DUMMY_ROBE_AG:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AG].oc_oprop), objects[DUMMY_ROBE_AG].a_ac, objects[DUMMY_ROBE_AG].a_can ); break;
+			case DUMMY_ROBE_AH:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AH].oc_oprop), objects[DUMMY_ROBE_AH].a_ac, objects[DUMMY_ROBE_AH].a_can ); break;
+			case DUMMY_ROBE_AI:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AI].oc_oprop), objects[DUMMY_ROBE_AI].a_ac, objects[DUMMY_ROBE_AI].a_can ); break;
+			case DUMMY_ROBE_AJ:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AJ].oc_oprop), objects[DUMMY_ROBE_AJ].a_ac, objects[DUMMY_ROBE_AJ].a_can ); break;
+			case DUMMY_ROBE_AK:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AK].oc_oprop), objects[DUMMY_ROBE_AK].a_ac, objects[DUMMY_ROBE_AK].a_can ); break;
+			case DUMMY_ROBE_AL:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AL].oc_oprop), objects[DUMMY_ROBE_AL].a_ac, objects[DUMMY_ROBE_AL].a_can ); break;
+			case DUMMY_ROBE_AM:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AM].oc_oprop), objects[DUMMY_ROBE_AM].a_ac, objects[DUMMY_ROBE_AM].a_can ); break;
+			case DUMMY_ROBE_AN:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AN].oc_oprop), objects[DUMMY_ROBE_AN].a_ac, objects[DUMMY_ROBE_AN].a_can ); break;
+			case DUMMY_ROBE_AO:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AO].oc_oprop), objects[DUMMY_ROBE_AO].a_ac, objects[DUMMY_ROBE_AO].a_can ); break;
+			case DUMMY_ROBE_AP:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AP].oc_oprop), objects[DUMMY_ROBE_AP].a_ac, objects[DUMMY_ROBE_AP].a_can ); break;
+			case DUMMY_ROBE_AQ:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AQ].oc_oprop), objects[DUMMY_ROBE_AQ].a_ac, objects[DUMMY_ROBE_AQ].a_can ); break;
+			case DUMMY_ROBE_AR:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AR].oc_oprop), objects[DUMMY_ROBE_AR].a_ac, objects[DUMMY_ROBE_AR].a_can ); break;
+			case DUMMY_ROBE_AS:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AS].oc_oprop), objects[DUMMY_ROBE_AS].a_ac, objects[DUMMY_ROBE_AS].a_can ); break;
+			case DUMMY_ROBE_AT:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AT].oc_oprop), objects[DUMMY_ROBE_AT].a_ac, objects[DUMMY_ROBE_AT].a_can ); break;
+			case DUMMY_ROBE_AU:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AU].oc_oprop), objects[DUMMY_ROBE_AU].a_ac, objects[DUMMY_ROBE_AU].a_can ); break;
+			case DUMMY_ROBE_AV:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AV].oc_oprop), objects[DUMMY_ROBE_AV].a_ac, objects[DUMMY_ROBE_AV].a_can ); break;
+			case DUMMY_ROBE_AW:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AW].oc_oprop), objects[DUMMY_ROBE_AW].a_ac, objects[DUMMY_ROBE_AW].a_can ); break;
+			case DUMMY_ROBE_AX:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AX].oc_oprop), objects[DUMMY_ROBE_AX].a_ac, objects[DUMMY_ROBE_AX].a_can ); break;
+			case DUMMY_ROBE_AY:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AY].oc_oprop), objects[DUMMY_ROBE_AY].a_ac, objects[DUMMY_ROBE_AY].a_can ); break;
+			case DUMMY_ROBE_AZ:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_AZ].oc_oprop), objects[DUMMY_ROBE_AZ].a_ac, objects[DUMMY_ROBE_AZ].a_can ); break;
+			case DUMMY_ROBE_BA:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BA].oc_oprop), objects[DUMMY_ROBE_BA].a_ac, objects[DUMMY_ROBE_BA].a_can ); break;
+			case DUMMY_ROBE_BB:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BB].oc_oprop), objects[DUMMY_ROBE_BB].a_ac, objects[DUMMY_ROBE_BB].a_can ); break;
+			case DUMMY_ROBE_BC:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BC].oc_oprop), objects[DUMMY_ROBE_BC].a_ac, objects[DUMMY_ROBE_BC].a_can ); break;
+			case DUMMY_ROBE_BD:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BD].oc_oprop), objects[DUMMY_ROBE_BD].a_ac, objects[DUMMY_ROBE_BD].a_can ); break;
+			case DUMMY_ROBE_BE:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BE].oc_oprop), objects[DUMMY_ROBE_BE].a_ac, objects[DUMMY_ROBE_BE].a_can ); break;
+			case DUMMY_ROBE_BF:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BF].oc_oprop), objects[DUMMY_ROBE_BF].a_ac, objects[DUMMY_ROBE_BF].a_can ); break;
+			case DUMMY_ROBE_BG:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BG].oc_oprop), objects[DUMMY_ROBE_BG].a_ac, objects[DUMMY_ROBE_BG].a_can ); break;
+			case DUMMY_ROBE_BH:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BH].oc_oprop), objects[DUMMY_ROBE_BH].a_ac, objects[DUMMY_ROBE_BH].a_can ); break;
+			case DUMMY_ROBE_BI:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BI].oc_oprop), objects[DUMMY_ROBE_BI].a_ac, objects[DUMMY_ROBE_BI].a_can ); break;
+			case DUMMY_ROBE_BJ:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BJ].oc_oprop), objects[DUMMY_ROBE_BJ].a_ac, objects[DUMMY_ROBE_BJ].a_can ); break;
+			case DUMMY_ROBE_BK:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BK].oc_oprop), objects[DUMMY_ROBE_BK].a_ac, objects[DUMMY_ROBE_BK].a_can ); break;
+			case DUMMY_ROBE_BL:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BL].oc_oprop), objects[DUMMY_ROBE_BL].a_ac, objects[DUMMY_ROBE_BL].a_can ); break;
+			case DUMMY_ROBE_BM:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BM].oc_oprop), objects[DUMMY_ROBE_BM].a_ac, objects[DUMMY_ROBE_BM].a_can ); break;
+			case DUMMY_ROBE_BN:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BN].oc_oprop), objects[DUMMY_ROBE_BN].a_ac, objects[DUMMY_ROBE_BN].a_can ); break;
+			case DUMMY_ROBE_BO:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BO].oc_oprop), objects[DUMMY_ROBE_BO].a_ac, objects[DUMMY_ROBE_BO].a_can ); break;
+			case DUMMY_ROBE_BP:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BP].oc_oprop), objects[DUMMY_ROBE_BP].a_ac, objects[DUMMY_ROBE_BP].a_can ); break;
+			case DUMMY_ROBE_BQ:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BQ].oc_oprop), objects[DUMMY_ROBE_BQ].a_ac, objects[DUMMY_ROBE_BQ].a_can ); break;
+			case DUMMY_ROBE_BR:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BR].oc_oprop), objects[DUMMY_ROBE_BR].a_ac, objects[DUMMY_ROBE_BR].a_can ); break;
+			case DUMMY_ROBE_BS:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BS].oc_oprop), objects[DUMMY_ROBE_BS].a_ac, objects[DUMMY_ROBE_BS].a_can ); break;
+			case DUMMY_ROBE_BT:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BT].oc_oprop), objects[DUMMY_ROBE_BT].a_ac, objects[DUMMY_ROBE_BT].a_can ); break;
+			case DUMMY_ROBE_BU:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BU].oc_oprop), objects[DUMMY_ROBE_BU].a_ac, objects[DUMMY_ROBE_BU].a_can ); break;
+			case DUMMY_ROBE_BV:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BV].oc_oprop), objects[DUMMY_ROBE_BV].a_ac, objects[DUMMY_ROBE_BV].a_can ); break;
+			case DUMMY_ROBE_BW:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BW].oc_oprop), objects[DUMMY_ROBE_BW].a_ac, objects[DUMMY_ROBE_BW].a_can ); break;
+			case DUMMY_ROBE_BX:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BX].oc_oprop), objects[DUMMY_ROBE_BX].a_ac, objects[DUMMY_ROBE_BX].a_can ); break;
+			case DUMMY_ROBE_BY:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BY].oc_oprop), objects[DUMMY_ROBE_BY].a_ac, objects[DUMMY_ROBE_BY].a_can ); break;
+			case DUMMY_ROBE_BZ:
+				pline("This robe is not randomly generated and only appears under certain rare conditions, but it has properties anyway just in case one does generate (as seen here, since otherwise you wouldn't be reading this). Its main property is %s, but it gives armor class of %d and magic cancellation of %d as well.", enchname(objects[DUMMY_ROBE_BZ].oc_oprop), objects[DUMMY_ROBE_BZ].a_ac, objects[DUMMY_ROBE_BZ].a_can ); break;
 
 			case EVIL_DRAGON_SCALE_MAIL:
 				pline("An extremely sturdy armor that can deflect a heck of a lot of attacks. It also does something very nasty when worn, though..."); break;

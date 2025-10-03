@@ -5960,7 +5960,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 	if (uwep && uwep->otyp == BAGGY_SLING) carrcap += 250;
 	if (uwep && uwep->oartifact == ART_USEFUL_BINDLE) carrcap += 1000;
 
-	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+	if (!PlayerCannotUseSkills && uarm && (uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 
 		switch (P_SKILL(P_SORESU)) {
 			case P_BASIC: carrcap += 200; break;
@@ -6084,6 +6084,7 @@ inv_weight()
 	if (uarm && uarm->oartifact == ART_SUPERHEAVY_GARBO) wt += 250;
 	if (uarm && uarm->oartifact == ART_GREAT_TOME) wt += 1000;
 	if (uarmf && itemhasappearance(uarmf, APP_WEIGHT_ATTACHMENT_BOOTS)) wt += 500;
+	if (uarm && itemhasappearance(uarm, APP_SUPER_HEAVY_ROBE)) wt += 500;
 	if (have_stashitcontainer()) wt += 1000;
 	if (uwep && uwep->oartifact == ART_MJOLLNIR) wt += 500;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_MJOLLNIR) wt += 500;

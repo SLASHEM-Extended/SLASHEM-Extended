@@ -3424,7 +3424,7 @@ int
 randartrobe()
 {
 	int result;
-	result = rnd_class(ROBE, ROBE_OF_WEAKNESS);
+	result = rnd_class(PLAIN_ROBE, ROBE_OF_WEAKNESS);
 	return result;
 }
 
@@ -3958,7 +3958,7 @@ int
 randartrobeX()
 {
 	int result;
-	result = ROBE + rn2((ROBE_OF_WEAKNESS + 1) - ROBE);
+	result = PLAIN_ROBE + rn2((ROBE_OF_WEAKNESS + 1) - PLAIN_ROBE);
 	return result;
 }
 

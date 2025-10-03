@@ -841,7 +841,7 @@ A("Laura Croft's Battlewear",			LEATHER_JACKET, /* like d-type equipment, preven
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("Offense Owns Defense",			ROBE, /* double attacks */
+A("Offense Owns Defense",			PLAIN_ROBE, /* double attacks */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -1867,7 +1867,7 @@ A("Acid Brand",                 LONG_SWORD,
 	ACID(5,0),	ACID(0,0),	NO_CARY,	0, A_NONE, NON_PM, NON_PM, 3000L ),
 
 /* 5lo: Generic artifact since Psions are deferred for now */
-A("Snakeskin",             ROBE,
+A("Snakeskin",		PLAIN_ROBE,
     (SPFX_RESTR|SPFX_HALRES|SPFX_PROTEC), 0, 0,
     NO_ATTK,    ACID(0,0),   NO_CARY,    0, A_NEUTRAL, NON_PM, NON_PM, 700L ),
 
@@ -2284,7 +2284,7 @@ A("The Tie-Dye Shirt of Shambhala",	T_SHIRT, //needs quote
 	NO_ATTK,	NO_DFNS,	NO_CARY,
 	0, A_NEUTRAL, NON_PM, NON_PM, 4500L), 
 
-A("The Grandmaster's Robe",	ROBE, /*double robe effect*/
+A("The Grandmaster's Robe",	PLAIN_ROBE, /*double robe effect*/
 	(SPFX_RESTR), 0, 0,/*martial arts attacks use exploding dice and get extra damage*/
 	NO_ATTK,	NO_DFNS,	NO_CARY, /* Amy edit: +5 AC, +10 marital arts damage */
 	0, A_NEUTRAL, NON_PM, NON_PM, 4500L), 
@@ -2577,7 +2577,7 @@ A("The Staff of the Archmagi",			QUARTERSTAFF, /* resist cold, elec, fire */
 	STUN(20,4),	NO_DFNS,	NO_CARY,
 	0, A_NONE, NON_PM, NON_PM, 9000L), 
 
-A("The Robe of the Archmagi",			ROBE, /* displacement, blood mana, stun */
+A("The Robe of the Archmagi",			PLAIN_ROBE, /* displacement, blood mana, stun */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_REFLECT|SPFX_INTEL|SPFX_EVIL), 0, 0,
 	NO_ATTK,	DFNS(AD_MAGM),	NO_CARY,	
 	0, A_NONE, NON_PM, NON_PM, 9000L), 
@@ -5189,7 +5189,7 @@ A("Legma",				LOW_BOOTS, /* initialized to always be korean sandals */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_LAWFUL, NON_PM, NON_PM, 5000L ),
 
-A("Terry Pratchett's Ingenuity",				ROBE, /* initialized to always be an octarine robe; prism reflection whenever it triggers */
+A("Terry Pratchett's Ingenuity",				PLAIN_ROBE, /* initialized to always be an octarine robe; prism reflection whenever it triggers */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
 
@@ -12073,7 +12073,7 @@ A("Indoburdenia Virii",				MACE, /* randart mace, burden, +10 strength */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	PHYS(0, 5), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Altadoon Herma Mora",				ROBE, /* randart robe, 20% better spellcasting like failuncap, resistance piercing, wakeup call, enmity */
+A("Altadoon Herma Mora",				PLAIN_ROBE, /* randart robe, 20% better spellcasting like failuncap, resistance piercing, wakeup call, enmity */
 	(SPFX_RESTR|SPFX_HPHDAM|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 6000L ),
 
@@ -12209,19 +12209,19 @@ A("Measure Skilling",				ELVEN_BOW, /* +1 multishot */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Monksterman",				ROBE, /* +5 unarmed damage */
+A("Monksterman",				PLAIN_ROBE, /* +5 unarmed damage */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
 
-A("Tech It Up",				ROBE, /* technicality */
+A("Tech It Up",				PLAIN_ROBE, /* technicality */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
 
-A("Hoardit",				ROBE, /* body armor skill trains twice as fast, and the passive soresu training when you have a lightsaber is 10x faster */
+A("Hoardit",				PLAIN_ROBE, /* body armor skill trains twice as fast, and the passive soresu training when you have a lightsaber is 10x faster */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("Some Actual Armor",				ROBE, /* putting it on sets it to +5 if it was lower */
+A("Some Actual Armor",				PLAIN_ROBE, /* putting it on sets it to +5 if it was lower */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
 
@@ -14465,11 +14465,11 @@ A("Pewwwwwww",				JAVELIN, /* randart2 javelin, +15 range, +rn1(9,9) stack size 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
 
-A("Special Robung",				ROBE, /* randart2 robe, intrinsic control magic and double spellboost */
+A("Special Robung",				PLAIN_ROBE, /* randart2 robe, intrinsic control magic and double spellboost */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
 
-A("Eternal Bammeling",				ROBE, /* randart robe, spellboost, prayer timeout decreases twice as fast */
+A("Eternal Bammeling",				PLAIN_ROBE, /* randart robe, spellboost, prayer timeout decreases twice as fast */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -16309,7 +16309,7 @@ A("Glaringadernadir",				SMOKY_VIOLET_FACELESS_ROBE, /* resist confusion and psi
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
-A("Derandergraaa",				ROBE, /* always initialized to be faceless robe, resist stun and psi */
+A("Derandergraaa",				PLAIN_ROBE, /* always initialized to be faceless robe, resist stun and psi */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -16717,7 +16717,7 @@ A("Esscooahlipboourrr",				BASTERD_SWORD, /* heap trap while wielded */
 	(SPFX_RESTR|SPFX_SEARCH|SPFX_SEEK|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	PHYS(20, 10), DFNS(AD_DRLI), NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
 
-A("The Robe of Closed Eyes",				ROBE, /* randart2 robe, invis, 75% chance to resist gazes */
+A("The Robe of Closed Eyes",				PLAIN_ROBE, /* randart2 robe, invis, 75% chance to resist gazes */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NEUTRAL, NON_PM, NON_PM, 4000L ),
 
@@ -16865,7 +16865,7 @@ A("The Ring of Hygiene's Disciple",				RIN_REGENERATION, /* also gives intrinsic
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
-A("The Cope of the Eldritch Knight",				ROBE, /* randart2 robe, spells lose memory 50% more slowly */
+A("The Cope of the Eldritch Knight",				PLAIN_ROBE, /* randart2 robe, spells lose memory 50% more slowly */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
@@ -17747,7 +17747,7 @@ A("Aetherial Shard",				AMULET_OF_INCREASED_FREQUENCY, /* prime autocurses */
 	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
 	NO_ATTK, DFNS(AD_MAGM), NO_CARY, PHASING, A_NONE, NON_PM, NON_PM, 20000L ),
 
-A("Chaosweaver Robes",				ROBE, /* randart2 robe, resist cold, fire, shock and poison, spellboost, every time you get hit in melee there's a 1% chance that something happens, which is 75% random bad effect, 24% random good effect and 1% really bad effect. */
+A("Chaosweaver Robes",				PLAIN_ROBE, /* randart2 robe, resist cold, fire, shock and poison, spellboost, every time you get hit in melee there's a 1% chance that something happens, which is 75% random bad effect, 24% random good effect and 1% really bad effect. */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
@@ -17987,7 +17987,7 @@ A("Everlasting Heels",				LOW_BOOTS, /* initialized to always be diamond stilett
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
 
-A("Upperweaver's Thread",				ROBE, /* randart2 robe, sight bonus */
+A("Upperweaver's Thread",				PLAIN_ROBE, /* randart2 robe, sight bonus */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
 
@@ -19164,7 +19164,7 @@ A("Sarah's Replacement",				SNEAKERS, /* resist cold, shock and sickness */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
-A("Zura's Dresscode",				ROBE, /* randart robe, super monnoise, +5 CHA, 3 extra points of AC, soresu skill trains three times as fast */
+A("Zura's Dresscode",				PLAIN_ROBE, /* randart robe, super monnoise, +5 CHA, 3 extra points of AC, soresu skill trains three times as fast */
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
 
@@ -23476,7 +23476,7 @@ A("Circum-Scythe",				SCYTHE, /* hitting a male humanoid with it causes it to bl
 	(SPFX_RESTR|SPFX_DFLAG2), 0, (M2_MALE),
 	PHYS(0, 30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
-A("The Curvature of the Set",				ROBE, /* initialized to always be powersave robe, allows you to sometimes control rays like sigil of control but with lower chance */
+A("The Curvature of the Set",				PLAIN_ROBE, /* initialized to always be powersave robe, allows you to sometimes control rays like sigil of control but with lower chance */
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
 
@@ -25337,7 +25337,7 @@ A("The Gauntlet Key", SKELETON_KEY,
 	0,      A_LAWFUL, NON_PM, NON_PM, 1000L ),
 
 /* reward for defeating the elder priest, can generate randomly after you both defeated an elder priest and ascended */
-A("Motherfucker Trophy", ROBE, /* +5 increase damage and accuracy, 20% better spellcasting chances, fast skill training */
+A("Motherfucker Trophy", PLAIN_ROBE, /* +5 increase damage and accuracy, 20% better spellcasting chances, fast skill training */
 	(SPFX_NOGEN|SPFX_DEFN|SPFX_RESTR|SPFX_INTEL|SPFX_REFLECT|SPFX_NOWISH), 0, 0,
 	NO_ATTK,        DFNS(AD_MAGM),        NO_CARY,
 	0,      A_NONE, NON_PM, NON_PM, 50000L ),

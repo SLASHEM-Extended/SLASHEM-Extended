@@ -1189,7 +1189,7 @@ STATIC_OVL struct Jitem Japanese_items[] = {
 	{ PLATE_MAIL, "o-yoroi" },
 	{ POT_BOOZE, "sake" },
 	{ QUARTERSTAFF, "bo" },
-	{ ROBE, "kimono" },
+	{ PLAIN_ROBE, "kimono" },
 	{ ROCK, "koishi" },
 	{ RUNESWORD, "run no ken" },
 	{ SACK, "fukuro" },
@@ -1337,7 +1337,7 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ POT_BOOZE, "vodka" },
 	{ QUARTERSTAFF, "dubina s zheleznym nakonechnikom" },
 	{ RIFLE, "vintovka" },
-	{ ROBE, "khalat" },
+	{ PLAIN_ROBE, "khalat" },
 	{ ROCK, "kamen'" },
 	{ ROCKET, "vechernitsa" },
 	{ ROCKET_LAUNCHER, "puskovaya ustanovka" },
@@ -5005,7 +5005,7 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ POT_BOOZE, "olam" },
 	{ QUARTERSTAFF, "chorak xodimlari" },
 	{ RIFLE, "miltiq" },
-	{ ROBE, "rido" },
+	{ PLAIN_ROBE, "rido" },
 	{ ROCK, "qoya" },
 	{ ROCKET, "reaktiv snaryad" },
 	{ ROCKET_LAUNCHER, "raketa uchirish" },
@@ -12571,7 +12571,7 @@ struct obj *cloak;
 {
     if (cloak) {
 	switch (cloak->otyp) {
-	case ROBE:
+	case PLAIN_ROBE:
 	    return "robe";
 	case MUMMY_WRAPPING:
 	    return "wrapping";

@@ -15840,6 +15840,7 @@ int spell;
 		splcaster += special;
 
 	if (uarm && uarm->otyp == ROBE_OF_POWER) splcaster -= 3;
+	if (uarm && itemhasappearance(uarm, APP_VANILLIC_ROBE)) splcaster -= 3;
 	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) splcaster -= 3;
 	if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SPELL_POWER) splcaster -= 3;
 	if (uarm && uarm->oartifact == ART_SPIDERSILK) splcaster -= 3;

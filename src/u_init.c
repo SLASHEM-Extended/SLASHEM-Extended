@@ -147,7 +147,7 @@ static struct trobj Gamer[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 static struct trobj Librarian[] = {
-	{ ROBE, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ LENSES, 0, TOOL_CLASS, 1, UNDEF_BLESS },
 	{ MAGIC_MARKER, 0, TOOL_CLASS, 1, UNDEF_BLESS }, /* empty on purpose */
 	{ FELT_TIP_MARKER, 100, TOOL_CLASS, 1, UNDEF_BLESS },
@@ -284,7 +284,7 @@ static struct trobj Spellmaster[] = {
 };
 
 static struct trobj Cook[] = {
-	{ ROBE, 2, ARMOR_CLASS, 1, 0 },
+	{ PLAIN_ROBE, 2, ARMOR_CLASS, 1, 0 },
 	{ FOOD_RATION, 0, FOOD_CLASS, 2, 0 },
 	{ UNDEF_TYP, 0, FOOD_CLASS, 2, 0 },
 	{ KNIFE, 2, WEAPON_CLASS, 1, 0 },
@@ -549,7 +549,7 @@ static struct trobj Medium[] = {
 	{ YUMI, 0, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ YA, 2, WEAPON_CLASS, 50, UNDEF_BLESS },
 	{ YA, 0, WEAPON_CLASS, 30, UNDEF_BLESS },
-	{ ROBE, 1, ARMOR_CLASS,	1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 1, ARMOR_CLASS,	1, UNDEF_BLESS },
 	{ POT_WATER, 0, POTION_CLASS,	4, 1 },	/* holy water */
 	{ SPE_HEALING, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ BOTA_MOCHI, 0, FOOD_CLASS, 4, 0 },
@@ -1232,12 +1232,12 @@ static struct trobj Ice_Mage[] = {
 	{ 0, 0, 0, 0, 0 }
 };
 static struct trobj Jedi[] = {
-	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 static struct trobj ShadowJedi[] = {
-	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ BLACK_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
@@ -1280,7 +1280,7 @@ static struct trobj WhiteDoubleSaber[] = {
 };
 static struct trobj BorgItems[] = {
 	{ RED_LIGHTSABER, 1, WEAPON_CLASS, 1, UNDEF_BLESS },
-	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ REGULAR_GLOVES, 0, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0, }
 };
@@ -1389,7 +1389,7 @@ static struct trobj DollMistress[] = {
 static struct trobj Monk[] = {
 #define M_BOOK		2
 	{ REGULAR_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ POT_HEALING, 0, POTION_CLASS, 3, UNDEF_BLESS },
@@ -1420,14 +1420,14 @@ static struct trobj HalfBaked[] = {
 };
 
 static struct trobj Saiyan[] = {
-	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ 0, 0, 0, 0, 0 }
 };
 
 static struct trobj Psion[] = {
 #define PS_BOOK		2
 	{ REGULAR_GLOVES, 2, ARMOR_CLASS, 1, UNDEF_BLESS },
-	{ ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
+	{ PLAIN_ROBE, 1, ARMOR_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 1, UNDEF_BLESS },
 	{ POT_MONSTER_DETECTION, 0, POTION_CLASS, 3, UNDEF_BLESS },
@@ -1496,7 +1496,7 @@ static struct trobj Gladiator[] = {
 
 static struct trobj Altmer[] = {
 	{ QUARTERSTAFF, 2, WEAPON_CLASS, 1, 1 },
-	{ ROBE, 2, ARMOR_CLASS, 1, 1 },
+	{ PLAIN_ROBE, 2, ARMOR_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, WAND_CLASS, 1, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, POTION_CLASS, 2, UNDEF_BLESS },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 2, UNDEF_BLESS },
@@ -1609,7 +1609,7 @@ static struct trobj Necromancer[] = {
 
 static struct trobj Chevalier[] = {
 	{ TRIDENT, 0, WEAPON_CLASS, 1, 1 },
-	{ ROBE, 0, ARMOR_CLASS, 1, 1 },
+	{ PLAIN_ROBE, 0, ARMOR_CLASS, 1, 1 },
 	{ SMALL_SHIELD, 2, ARMOR_CLASS, 1, 1 },
 	{ POT_WATER, 0, POTION_CLASS, 2, 1 },	/* holy water */
 	{ CLOVE_OF_GARLIC, 0, FOOD_CLASS, 1, 1 },
@@ -1623,7 +1623,7 @@ static struct trobj Chevalier[] = {
 static struct trobj Priest[] = {
 #define P_BOOK          7
 	{ MACE, 0, WEAPON_CLASS, 1, 1 },
-	{ ROBE, 0, ARMOR_CLASS, 1, 1 },
+	{ PLAIN_ROBE, 0, ARMOR_CLASS, 1, 1 },
 	{ SMALL_SHIELD, 2, ARMOR_CLASS, 1, 1 },
 	{ POT_WATER, 0, POTION_CLASS, 4, 1 },	/* holy water */
 	{ CLOVE_OF_GARLIC, 0, FOOD_CLASS, 1, 1 },
@@ -2112,7 +2112,7 @@ static struct trobj Wizard[] = {
 static struct trobj Sage[] = {
 
 	{ MACE, 1, WEAPON_CLASS, 1, 1 },
-	{ ROBE, 2, ARMOR_CLASS, 1, 1 },
+	{ PLAIN_ROBE, 2, ARMOR_CLASS, 1, 1 },
 	{ UNDEF_TYP, UNDEF_SPE, SCROLL_CLASS, 2, UNDEF_BLESS },
 	{ SPE_MAGIC_BOLT, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },
 	{ SPE_HEALING, UNDEF_SPE, SPBOOK_CLASS, 1, 1 },

@@ -238,7 +238,7 @@ boolean sanctum;   /* is it the seat of the high priest? */
 
 		if (In_yendorian(&u.uz) && depth(&u.uz) == 1) {
 			struct obj *obj;
-			obj = mksobj(ROBE, TRUE, FALSE, FALSE);
+			obj = mksobj(PLAIN_ROBE, TRUE, FALSE, FALSE);
 			if (obj) {
 				obj = oname(obj, artiname(ART_MOTHERFUCKER_TROPHY));
 				if (obj) {

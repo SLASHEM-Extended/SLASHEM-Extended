@@ -2278,7 +2278,7 @@ playerextrinsicpoisonres()
 	if ( have_sonjartifact() || (uarm && uarm->oartifact == ART_BRINGS_NOTHING) || (uwep && uwep->oartifact == ART_DAGGER_OF_UUKAI) || (uwep && uwep->oartifact == ART_SPINESHOOTER) || (uwep && uwep->oartifact == ART_SHIZUGAMI_S_MIZUCHI) || (uarm && uarm->oartifact == ART_LADIES_NIGHTINGALE) || (uarmc && uarmc->oartifact == ART_GENTLEMANS_NIGHTINGALE) || (uwep && uwep->oartifact == ART_ELEGY_RES) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_GREEN_MYSTERY && uwep && (objects[uwep->otyp].oc_color == CLR_GREEN)) return TRUE;
 	if ((uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (uarmg && uarmg->oartifact == ART_POISON_HAND) || (uarmc && uarmc->oartifact == ART_USEFUL_BASE) || (uwep && uwep->oartifact == ART_TYPICAL_ORC) || (u.umoved && uarmc && uarmc->oartifact == ART_BUT_SHES_HOMELESS) || (uwep && uwep->oartifact == ART_SORBITUR) || (uarm && uarm->oartifact == ART_REDGUARD_APPEARANCE) || (uarm && uarm->oartifact == ART_FULL_SPECTRUM) || (uarm && uarm->oartifact == ART_POISUSTAIN) || (uarms && uarms->oartifact == ART_YELLOW_STATUS) || (uarmu && uarmu->oartifact == ART_DIMETHYL_ESCUTCHEON) || (uwep && uwep->oartifact == ART_TACT_EBONY_GLASS) || (uarmc && uarmc->oartifact == ART_RUFFLED_SHIRT_OF_THE_ARIST) || (uarm && uarm->oartifact == ART_CHROMATIC_DRAGON_SCALES) || (uarmg && uarmg->oartifact == ART_INFECTION_CHAIN_BREAK) || (uarms && uarms->oartifact == ART_ANGULAR_SIGN) || (uarmc && uarmc->oartifact == ART_NUTKNU_KOLAS) || (uarm && uarm->oartifact == ART_CHAOSWEAVER_ROBES) || (uwep && uwep->oartifact == ART_JADE_TALON) || (ublindf && ublindf->oartifact == ART_TOTALLY_THE_SPECTRUM) || autismringcheck(ART_BRING_THE_ANNOYANCE) ) return TRUE;
-	if (autismringcheck(ART_FOLL_DECK) || (uwep && uwep->oartifact == ART_MECHINEFELL) || (uchain && uchain->oartifact == ART_MECHINEFELL) || (uball && uball->oartifact == ART_HIGH_AFFIX) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && uarm->oartifact == ART_EFHECK) ) return TRUE;
+	if (autismringcheck(ART_FOLL_DECK) || (uwep && uwep->oartifact == ART_MECHINEFELL) || (uchain && uchain->oartifact == ART_MECHINEFELL) || (uball && uball->oartifact == ART_HIGH_AFFIX) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) || (uarm && itemhasappearance(uarm, APP_GROMY_ROBE)) || (uarm && uarm->oartifact == ART_EFHECK) ) return TRUE;
 
 	return FALSE;
 }
@@ -17856,13 +17856,13 @@ boolean canarti;
 			break;
 
 		/* robes */
-		case ROBE:
+		case PLAIN_ROBE:
 			if (!rn2(2)) obj->otyp = ROBE_OF_PROTECTION;
 			else obj->otyp = ROBE_OF_POWER;
 			break;
 		case ROBE_OF_PROTECTION:
 		case ROBE_OF_POWER:
-			obj->otyp = ROBE;
+			obj->otyp = PLAIN_ROBE;
 			break;
 		/* cloaks */
 		case CLOAK_OF_PROTECTION:

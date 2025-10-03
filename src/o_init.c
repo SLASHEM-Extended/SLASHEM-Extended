@@ -2175,6 +2175,477 @@ register char oclass;
 		if (objects[DUMMY_BOOTS_AX].a_ac < 20) objects[DUMMY_BOOTS_AX].a_ac++;
 	}
 
+	objects[DUMMY_ROBE_A].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_B].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_C].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_D].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_E].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_F].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_G].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_H].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_I].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_J].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_K].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_L].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_M].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_N].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_O].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_P].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_Q].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_R].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_S].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_T].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_U].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_V].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_W].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_X].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_Y].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_Z].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AA].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AB].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AC].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AD].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AF].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AG].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AH].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AI].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AJ].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AK].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AL].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AM].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AN].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AO].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AP].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AQ].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AR].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AS].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AT].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AU].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AV].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AW].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AX].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AY].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_AZ].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BA].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BB].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BC].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BD].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BE].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BF].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BG].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BH].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BI].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BJ].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BK].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BL].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BM].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BN].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BO].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BP].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BQ].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BR].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BS].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BT].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BU].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BV].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BW].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BX].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BY].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+	objects[DUMMY_ROBE_BZ].oc_oprop = !rn2(10) ? randnastyenchantment() : randenchantment();
+
+	objects[DUMMY_ROBE_A].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_B].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_C].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_D].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_E].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_F].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_G].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_H].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_I].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_J].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_K].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_L].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_M].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_N].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_O].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_P].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_Q].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_R].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_S].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_T].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_U].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_V].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_W].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_X].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_Y].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_Z].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AA].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AB].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AC].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AD].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AE].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AF].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AG].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AH].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AI].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AJ].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AK].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AL].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AM].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AN].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AO].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AP].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AQ].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AR].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AT].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AU].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AV].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AW].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AX].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AY].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_AZ].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BA].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BB].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BC].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BD].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BE].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BF].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BG].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BH].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BI].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BJ].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BK].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BL].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BM].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BN].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BO].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BP].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BQ].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BR].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BS].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BT].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BU].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BV].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BW].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BX].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BY].a_can = rnd(10) ? 0 : rnd(3);
+	objects[DUMMY_ROBE_BZ].a_can = rnd(10) ? 0 : rnd(3);
+
+	objects[DUMMY_ROBE_A].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_A].a_ac < 20) objects[DUMMY_ROBE_A].a_ac++;
+	}
+	objects[DUMMY_ROBE_B].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_B].a_ac < 20) objects[DUMMY_ROBE_B].a_ac++;
+	}
+	objects[DUMMY_ROBE_C].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_C].a_ac < 20) objects[DUMMY_ROBE_C].a_ac++;
+	}
+	objects[DUMMY_ROBE_D].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_D].a_ac < 20) objects[DUMMY_ROBE_D].a_ac++;
+	}
+	objects[DUMMY_ROBE_E].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_E].a_ac < 20) objects[DUMMY_ROBE_E].a_ac++;
+	}
+	objects[DUMMY_ROBE_F].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_F].a_ac < 20) objects[DUMMY_ROBE_F].a_ac++;
+	}
+	objects[DUMMY_ROBE_G].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_G].a_ac < 20) objects[DUMMY_ROBE_G].a_ac++;
+	}
+	objects[DUMMY_ROBE_H].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_H].a_ac < 20) objects[DUMMY_ROBE_H].a_ac++;
+	}
+	objects[DUMMY_ROBE_I].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_I].a_ac < 20) objects[DUMMY_ROBE_I].a_ac++;
+	}
+	objects[DUMMY_ROBE_J].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_J].a_ac < 20) objects[DUMMY_ROBE_J].a_ac++;
+	}
+	objects[DUMMY_ROBE_K].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_K].a_ac < 20) objects[DUMMY_ROBE_K].a_ac++;
+	}
+	objects[DUMMY_ROBE_L].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_L].a_ac < 20) objects[DUMMY_ROBE_L].a_ac++;
+	}
+	objects[DUMMY_ROBE_M].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_M].a_ac < 20) objects[DUMMY_ROBE_M].a_ac++;
+	}
+	objects[DUMMY_ROBE_N].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_N].a_ac < 20) objects[DUMMY_ROBE_N].a_ac++;
+	}
+	objects[DUMMY_ROBE_O].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_O].a_ac < 20) objects[DUMMY_ROBE_O].a_ac++;
+	}
+	objects[DUMMY_ROBE_P].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_P].a_ac < 20) objects[DUMMY_ROBE_P].a_ac++;
+	}
+	objects[DUMMY_ROBE_Q].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_Q].a_ac < 20) objects[DUMMY_ROBE_Q].a_ac++;
+	}
+	objects[DUMMY_ROBE_R].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_R].a_ac < 20) objects[DUMMY_ROBE_R].a_ac++;
+	}
+	objects[DUMMY_ROBE_S].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_S].a_ac < 20) objects[DUMMY_ROBE_S].a_ac++;
+	}
+	objects[DUMMY_ROBE_T].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_T].a_ac < 20) objects[DUMMY_ROBE_T].a_ac++;
+	}
+	objects[DUMMY_ROBE_U].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_U].a_ac < 20) objects[DUMMY_ROBE_U].a_ac++;
+	}
+	objects[DUMMY_ROBE_V].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_V].a_ac < 20) objects[DUMMY_ROBE_V].a_ac++;
+	}
+	objects[DUMMY_ROBE_W].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_W].a_ac < 20) objects[DUMMY_ROBE_W].a_ac++;
+	}
+	objects[DUMMY_ROBE_X].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_X].a_ac < 20) objects[DUMMY_ROBE_X].a_ac++;
+	}
+	objects[DUMMY_ROBE_Y].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_Y].a_ac < 20) objects[DUMMY_ROBE_Y].a_ac++;
+	}
+	objects[DUMMY_ROBE_Z].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_Z].a_ac < 20) objects[DUMMY_ROBE_Z].a_ac++;
+	}
+	objects[DUMMY_ROBE_AA].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AA].a_ac < 20) objects[DUMMY_ROBE_AA].a_ac++;
+	}
+	objects[DUMMY_ROBE_AB].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AB].a_ac < 20) objects[DUMMY_ROBE_AB].a_ac++;
+	}
+	objects[DUMMY_ROBE_AC].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AC].a_ac < 20) objects[DUMMY_ROBE_AC].a_ac++;
+	}
+	objects[DUMMY_ROBE_AD].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AD].a_ac < 20) objects[DUMMY_ROBE_AD].a_ac++;
+	}
+	objects[DUMMY_ROBE_AE].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AE].a_ac < 20) objects[DUMMY_ROBE_AE].a_ac++;
+	}
+	objects[DUMMY_ROBE_AF].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AF].a_ac < 20) objects[DUMMY_ROBE_AF].a_ac++;
+	}
+	objects[DUMMY_ROBE_AG].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AG].a_ac < 20) objects[DUMMY_ROBE_AG].a_ac++;
+	}
+	objects[DUMMY_ROBE_AH].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AH].a_ac < 20) objects[DUMMY_ROBE_AH].a_ac++;
+	}
+	objects[DUMMY_ROBE_AI].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AI].a_ac < 20) objects[DUMMY_ROBE_AI].a_ac++;
+	}
+	objects[DUMMY_ROBE_AJ].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AJ].a_ac < 20) objects[DUMMY_ROBE_AJ].a_ac++;
+	}
+	objects[DUMMY_ROBE_AK].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AK].a_ac < 20) objects[DUMMY_ROBE_AK].a_ac++;
+	}
+	objects[DUMMY_ROBE_AL].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AL].a_ac < 20) objects[DUMMY_ROBE_AL].a_ac++;
+	}
+	objects[DUMMY_ROBE_AM].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AM].a_ac < 20) objects[DUMMY_ROBE_AM].a_ac++;
+	}
+	objects[DUMMY_ROBE_AN].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AN].a_ac < 20) objects[DUMMY_ROBE_AN].a_ac++;
+	}
+	objects[DUMMY_ROBE_AO].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AO].a_ac < 20) objects[DUMMY_ROBE_AO].a_ac++;
+	}
+	objects[DUMMY_ROBE_AP].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AP].a_ac < 20) objects[DUMMY_ROBE_AP].a_ac++;
+	}
+	objects[DUMMY_ROBE_AQ].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AQ].a_ac < 20) objects[DUMMY_ROBE_AQ].a_ac++;
+	}
+	objects[DUMMY_ROBE_AR].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AR].a_ac < 20) objects[DUMMY_ROBE_AR].a_ac++;
+	}
+	objects[DUMMY_ROBE_AS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AS].a_ac < 20) objects[DUMMY_ROBE_AS].a_ac++;
+	}
+	objects[DUMMY_ROBE_AT].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AT].a_ac < 20) objects[DUMMY_ROBE_AT].a_ac++;
+	}
+	objects[DUMMY_ROBE_AU].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AU].a_ac < 20) objects[DUMMY_ROBE_AU].a_ac++;
+	}
+	objects[DUMMY_ROBE_AV].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AV].a_ac < 20) objects[DUMMY_ROBE_AV].a_ac++;
+	}
+	objects[DUMMY_ROBE_AW].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AW].a_ac < 20) objects[DUMMY_ROBE_AW].a_ac++;
+	}
+	objects[DUMMY_ROBE_AX].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AX].a_ac < 20) objects[DUMMY_ROBE_AX].a_ac++;
+	}
+	objects[DUMMY_ROBE_AY].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AY].a_ac < 20) objects[DUMMY_ROBE_AY].a_ac++;
+	}
+	objects[DUMMY_ROBE_AZ].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_AZ].a_ac < 20) objects[DUMMY_ROBE_AZ].a_ac++;
+	}
+	objects[DUMMY_ROBE_BA].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BA].a_ac < 20) objects[DUMMY_ROBE_BA].a_ac++;
+	}
+	objects[DUMMY_ROBE_BB].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BB].a_ac < 20) objects[DUMMY_ROBE_BB].a_ac++;
+	}
+	objects[DUMMY_ROBE_BC].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BC].a_ac < 20) objects[DUMMY_ROBE_BC].a_ac++;
+	}
+	objects[DUMMY_ROBE_BD].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BD].a_ac < 20) objects[DUMMY_ROBE_BD].a_ac++;
+	}
+	objects[DUMMY_ROBE_BE].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BE].a_ac < 20) objects[DUMMY_ROBE_BE].a_ac++;
+	}
+	objects[DUMMY_ROBE_BF].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BF].a_ac < 20) objects[DUMMY_ROBE_BF].a_ac++;
+	}
+	objects[DUMMY_ROBE_BG].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BG].a_ac < 20) objects[DUMMY_ROBE_BG].a_ac++;
+	}
+	objects[DUMMY_ROBE_BH].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BH].a_ac < 20) objects[DUMMY_ROBE_BH].a_ac++;
+	}
+	objects[DUMMY_ROBE_BI].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BI].a_ac < 20) objects[DUMMY_ROBE_BI].a_ac++;
+	}
+	objects[DUMMY_ROBE_BJ].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BJ].a_ac < 20) objects[DUMMY_ROBE_BJ].a_ac++;
+	}
+	objects[DUMMY_ROBE_BK].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BK].a_ac < 20) objects[DUMMY_ROBE_BK].a_ac++;
+	}
+	objects[DUMMY_ROBE_BL].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BL].a_ac < 20) objects[DUMMY_ROBE_BL].a_ac++;
+	}
+	objects[DUMMY_ROBE_BM].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BM].a_ac < 20) objects[DUMMY_ROBE_BM].a_ac++;
+	}
+	objects[DUMMY_ROBE_BN].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BN].a_ac < 20) objects[DUMMY_ROBE_BN].a_ac++;
+	}
+	objects[DUMMY_ROBE_BO].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BO].a_ac < 20) objects[DUMMY_ROBE_BO].a_ac++;
+	}
+	objects[DUMMY_ROBE_BP].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BP].a_ac < 20) objects[DUMMY_ROBE_BP].a_ac++;
+	}
+	objects[DUMMY_ROBE_BQ].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BQ].a_ac < 20) objects[DUMMY_ROBE_BQ].a_ac++;
+	}
+	objects[DUMMY_ROBE_BR].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BR].a_ac < 20) objects[DUMMY_ROBE_BR].a_ac++;
+	}
+	objects[DUMMY_ROBE_BS].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BS].a_ac < 20) objects[DUMMY_ROBE_BS].a_ac++;
+	}
+	objects[DUMMY_ROBE_BT].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BT].a_ac < 20) objects[DUMMY_ROBE_BT].a_ac++;
+	}
+	objects[DUMMY_ROBE_BU].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BU].a_ac < 20) objects[DUMMY_ROBE_BU].a_ac++;
+	}
+	objects[DUMMY_ROBE_BV].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BV].a_ac < 20) objects[DUMMY_ROBE_BV].a_ac++;
+	}
+	objects[DUMMY_ROBE_BW].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BW].a_ac < 20) objects[DUMMY_ROBE_BW].a_ac++;
+	}
+	objects[DUMMY_ROBE_BX].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BX].a_ac < 20) objects[DUMMY_ROBE_BX].a_ac++;
+	}
+	objects[DUMMY_ROBE_BY].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BY].a_ac < 20) objects[DUMMY_ROBE_BY].a_ac++;
+	}
+	objects[DUMMY_ROBE_BZ].a_ac = 1;
+	while (!rn2(3)) {
+		if (objects[DUMMY_ROBE_BZ].a_ac < 20) objects[DUMMY_ROBE_BZ].a_ac++;
+	}
+
 	objects[SPE_FORBIDDEN_KNOWLEDGE].oc_level = rnd(8);
 
 	objects[SPE_CHARACTER_RECURSION].oc_level = rnd(8);
@@ -2292,7 +2763,7 @@ shuffle_all()
 	shuffle(REGULAR_GLOVES, GAUNTLETS_OF_DEXTERITY, TRUE);
 
     /* shuffle the robes */
-    shuffle(ROBE, ROBE_OF_WEAKNESS, TRUE);
+    shuffle(PLAIN_ROBE, ROBE_OF_WEAKNESS, TRUE);
 
 	/* shuffle the cloaks */
 	shuffle(CLOAK_OF_PROTECTION, CLOAK_OF_DISPLACEMENT, TRUE);

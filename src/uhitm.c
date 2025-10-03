@@ -667,7 +667,7 @@ register struct monst *mtmp;
 		}
 	}
 
-	if(Role_if(PM_HALF_BAKED) && uarm && ((uarm->otyp < ROBE) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
+	if(Role_if(PM_HALF_BAKED) && uarm && ((uarm->otyp < PLAIN_ROBE) || (uarm->otyp > ROBE_OF_WEAKNESS)) ) {
 		pline("Your armor is rather cumbersome...");
 		tmp -= 20;
 	}
@@ -1599,7 +1599,7 @@ martial_dmg()
 
 	  if (!Role_if(PM_HALF_BAKED)) {
 
-	        if(( (!uarm && rn2(2)) || u.martialstyle == MARTIALSTYLE_MARSHALARTS || (uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms || (uarms && uarms->oartifact == ART_KUNGHEAVEN) || u.martialstyle == MARTIALSTYLE_MARSHALARTS) && (damage > 1))
+	        if(( (!uarm && rn2(2)) || u.martialstyle == MARTIALSTYLE_MARSHALARTS || (uarm && (uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS))) && (!uarms || (uarms && uarms->oartifact == ART_KUNGHEAVEN) || u.martialstyle == MARTIALSTYLE_MARSHALARTS) && (damage > 1))
 	                damage += rnd(damage);
 	        else {
 			if (damage > 1) damage += rnd(2);
@@ -1873,7 +1873,7 @@ int dieroll;
 			}
 		}
 
-		if (!(PlayerCannotUseSkills) && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
+		if (!(PlayerCannotUseSkills) && uarm && (uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS) ) {
 			switch (P_SKILL(P_SORESU)) {
 		
 				case P_BASIC:		tmp +=  rn2(2); break;
@@ -2006,7 +2006,7 @@ int dieroll;
 				if (jiuextradmg) pline("You deal %d extra points of damage!", jiuextradmg);
 				tmp += jiuextradmg;
 			}
-			if (tech_inuse(T_ESCROBISM) && uarm && (uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+			if (tech_inuse(T_ESCROBISM) && uarm && (uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 				if (uarm && uarm->spe > 0) tmp += (uarm->spe + rnd(5));
 				else tmp += rnd(5);
 			}
@@ -6280,7 +6280,7 @@ melatechoice:
 	}
 
 	if (Role_if(PM_HALF_BAKED) && !Upolyd && !thrown && no_obj &&
-		(!uarm || (uarm && uarm->otyp >= ROBE &&
+		(!uarm || (uarm && uarm->otyp >= PLAIN_ROBE &&
 		 uarm->otyp <= ROBE_OF_WEAKNESS)) && !uarms &&
 		 distu(mon->mx, mon->my) <= 2) {
 	    /* just so we don't need another variable ... */

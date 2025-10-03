@@ -4637,7 +4637,7 @@ TRAP:"hole", (36,09)
 
 OBJECT:'%',"corpse",(37,09)
 OBJECT:')',"quarterstaff",(37,09)
-OBJECT:'[',"robe",(37,09)
+OBJECT:'[',"plain robe",(37,09)
 
 MONSTER: '&',random,(66,09),hostile, awake
 

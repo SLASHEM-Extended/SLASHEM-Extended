@@ -9197,6 +9197,7 @@ revid_end:
 		docalm(); /* stop all other techs that might be active --Amy */
 
 		num = 1000 + (techlevX(tech_no) * 10);
+		if (uarm && itemhasappearance(uarm, APP_SUPERFOCUSED_ROBE)) num *= 2;
 	    	set_tech_duration(tech_no, num + 1);
 		pline("You're focussing on fighting unarmed!");
 		t_timeout = rnz(6000);
@@ -9211,7 +9212,7 @@ revid_end:
 				pline("Without armor, that technique won't do anything.");
 				break;
 			}
-			if (uarm && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+			if (uarm && !(uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 				pline("Nope, that won't work. Wear a robe!");
 				break;
 			}
@@ -9663,7 +9664,7 @@ revid_end:
 
 			struct obj *uroub;
 
-			uroub = mksobj(rnd_class(ROBE, ROBE_OF_WEAKNESS), TRUE, FALSE, FALSE);
+			uroub = mksobj(rnd_class(PLAIN_ROBE, ROBE_OF_WEAKNESS), TRUE, FALSE, FALSE);
 
 			if (uroub) {
 				dropy(uroub);
@@ -9847,7 +9848,7 @@ revid_end:
 				pline("Without armor, that technique won't do anything.");
 				break;
 			}
-			if (uarm && !(uarm->otyp >= ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
+			if (uarm && !(uarm->otyp >= PLAIN_ROBE && uarm->otyp <= ROBE_OF_WEAKNESS)) {
 				pline("That technique won't work if your worn armor isn't a robe!");
 				break;
 			}

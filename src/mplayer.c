@@ -693,7 +693,7 @@ register boolean special;
 		case PM_UNDEAD_MONK:
 		case PM_UNDEAD_PSION:
 		    weapon = STRANGE_OBJECT;
-		    armor = ROBE;
+		    armor = PLAIN_ROBE;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
 		    break;
 		case PM_HALF_BAKED:
@@ -836,7 +836,7 @@ register boolean special;
 		case PM_UNDEAD_PRIEST:
 		case PM_UNDEAD_PRIESTESS:
 		    if (rn2(2)) weapon = MACE;
-		    if (rn2(4)) armor = ROBE;
+		    if (rn2(4)) armor = PLAIN_ROBE;
 		    else if (rn2(2)) armor = rnd_class(PLATE_MAIL, CHAIN_MAIL);
 		    if (rn2(4)) helm = rn2(2) ? HELM_OF_BRILLIANCE : HELM_OF_TELEPATHY;
 		    if (rn2(2)) shield = STRANGE_OBJECT;
@@ -1012,7 +1012,7 @@ register boolean special;
 		      case 13: weapon = DARK_LIGHTSABER; break;
 		    }
 		    cloak = STRANGE_OBJECT;
-		    armor = rn2(2) ? ROBE : ROBE_OF_POWER;
+		    armor = rn2(2) ? PLAIN_ROBE : ROBE_OF_POWER;
 		    helm = STRANGE_OBJECT;
 		    shield = STRANGE_OBJECT;
 		    break;

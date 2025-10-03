@@ -96,9 +96,9 @@ struct objclass {
 #define MT_ALLOY		47	/* metallic */
 #define MT_TINSEL		48	/* metallic */
 #define MT_AMBER		49	/* lithic */
-#define MT_FILM		50	/* organic */
-#define MT_ALKALINE		51	/* organic, metallic and lithic (all three at the same time) */
-#define MT_MENGETIUM		52	/* inedible */
+#define MT_FILM		50	/* organic, not assigned to any specific base item */
+#define MT_ALKALINE		51	/* organic, metallic and lithic (all three at the same time), not assigned to any specific base item */
+#define MT_MENGETIUM		52	/* inedible, not assigned to any specific base item */
 #define MT_CHITIN		53	/* organic */
 #define MT_SHELL		54	/* lithic */
 #define MT_GREEN_STEEL		55	/* metallic */
@@ -115,7 +115,7 @@ struct objclass {
 #define MT_TITANIUM	66		/* metallic */
 #define MT_ADAMANTIUM		67	/* organic */
 #define MT_LACQUER		68	/* organic */
-#define MT_ALIMATHIUM		69	/* inedible */
+#define MT_ALIMATHIUM		69	/* inedible, not assigned to any specific base item */
 #define LASTMATERIAL	MT_ALIMATHIUM
 /* grep for "materialeffect" to see all the places that need changing if we add new ones --Amy */
 
