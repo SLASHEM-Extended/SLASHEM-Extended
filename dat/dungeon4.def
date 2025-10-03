@@ -497,24 +497,24 @@ DUNGEON:        "Sheol" "V" (25, 0)
 ALIGNMENT:      noalign
 DESCRIPTION:    hellish
 BRANCH:         "Vlad's Tower" @ (2, 24) up -1
-RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
-RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
-RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
-RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
-RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
-RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
-RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
-RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
 LEVEL:          "palace_f" "P" @ (1, 25) 95
 LEVEL:          "palace_e" "U" @ (1, 25) 95
+RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
+RNDLEVEL:          "shfil" "A" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
+RNDLEVEL:          "shrnd" "H" @ (1, 25) 95 10
 
 ### Vlad's Tower ###
 #   It has been removed from Gehennom, and it is surrounded by stone.
