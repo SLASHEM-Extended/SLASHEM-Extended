@@ -4318,3 +4318,6 @@ Even though firearms would be very loud in real life, they don't actually make n
 Pick-axes are actually awesome weapons, because of all the bonuses they get. A +0 pick-axe at expert skill will always outdamage a +0 long sword at the same skill level.
 Trying to jump over or onto farmland squares will not work. It acts as if you had bumped into an invisible barrier, which even deals damage to you.
 Monsters who can emit mind blasts may try to hack your implant, if you're wearing one. This happens even if the monster is at the other end of the level, so the only cure is to take off that implant.
+Effects that heal you will always heal a fixed amount, no matter what. This means that if you have a lot of maximum HP, you'll need to heal yourself many times in order to get back to the maximum.
+No matter how much petkeeping or riding skill you have, your pets or steeds will always take full damage and therefore die just as easily as they would if you didn't have those skills at all.
+If you have good symbiosis skill, your symbiote will take reduced damage and therefore survive many more attacks. There is no way to turn that effect off, so if you want to get rid of your symbiote, tough luck.

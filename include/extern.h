@@ -1977,6 +1977,7 @@ E void poisontell(int);
 E void poisoned(const char *,int,const char *,int);
 E void m_respond(struct monst *);
 E void setmangry(struct monst *);
+E int monsterdmgresist(struct monst *, int);
 E void wakeup(struct monst *);
 E void wake_nearby(void);
 E void wake_nearto(int,int,int);

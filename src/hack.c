@@ -5659,15 +5659,8 @@ int k_format; /* WAC k_format is an int */
 	}
 
 	if (uactivesymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity) && !(u.usymbiote.mhpmax >= 5 && u.usymbiote.mhp <= (u.usymbiote.mhpmax / 5) && rn2(5))) {
-		if (tech_inuse(T_POWERBIOSIS) && n > 1) n /= 2;
-		if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
-			int imbiophases = uimplant->spe;
-			while ((imbiophases > 0) && n > 1) {
-				imbiophases--;
-				n *= 10;
-				n /= 11;
-			}
-		}
+		n = symbiodamageresist(n);
+
 		u.usymbiote.mhp -= n;
 		Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
 		if (u.usymbiote.mhp <= 0) {

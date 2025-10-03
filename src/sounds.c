@@ -6908,7 +6908,7 @@ void
 monster_pain(mtmp)
 register struct monst *mtmp;
 {
-	int painchance = 10;
+	int painchance = 10; /* chance of making a sound is higher the *LOWER* this value is */
 	boolean soundbased = FALSE;
 	int distresslevel = 0;
 

@@ -1337,6 +1337,9 @@ blockingdone:
 		    else if (verbose) pline("It is burned!");
 		}
 	    }
+
+	    damage = monsterdmgresist(mtmp, damage);
+
 	    mtmp->mhp -= damage;
 	    if (mtmp->mhp < 1) {
 		if (vis || verbose)

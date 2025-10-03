@@ -9576,9 +9576,13 @@ nivellate()
 			lowerceiling *= 5;
 			upperceiling *= 5;
 		}
-		if (Role_if(PM_NOOB_MODE_BARB)) {
+		if (Role_if(PM_BARBARIAN)) {
 			lowerceiling /= 2;
 			upperceiling /= 2;
+		}
+		if (Role_if(PM_NOOB_MODE_BARB)) {
+			lowerceiling /= 3;
+			upperceiling /= 3;
 		}
 		if (Race_if(PM_YEEK)) {
 			lowerceiling /= 2;
@@ -9649,7 +9653,13 @@ nivellate()
 			upperceiling /= 2;
 		}
 		if (Race_if(PM_URGOTH)) {
+			lowerceiling /= 4;
+			upperceiling /= 4;
+		}
+		if (Role_if(PM_WARRIOR)) {
+			lowerceiling *= 2;
 			lowerceiling /= 3;
+			upperceiling *= 2;
 			upperceiling /= 3;
 		}
 		if (Race_if(PM_YOKUDA)) {
@@ -10071,8 +10081,11 @@ boolean guaranteed;
 		if (Role_if(PM_SPELLMASTER)) {
 			ceiling *= 5;
 		}
-		if (Role_if(PM_NOOB_MODE_BARB)) {
+		if (Role_if(PM_BARBARIAN)) {
 			ceiling /= 2;
+		}
+		if (Role_if(PM_NOOB_MODE_BARB)) {
+			ceiling /= 3;
 		}
 		if (Race_if(PM_YEEK)) {
 			ceiling /= 2;
@@ -10118,6 +10131,10 @@ boolean guaranteed;
 			ceiling /= 2;
 		}
 		if (Race_if(PM_URGOTH)) {
+			ceiling /= 4;
+		}
+		if (Role_if(PM_WARRIOR)) {
+			ceiling *= 2;
 			ceiling /= 3;
 		}
 		if (Race_if(PM_YOKUDA)) {

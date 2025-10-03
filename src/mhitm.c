@@ -3577,6 +3577,7 @@ struct monst *magr, *mdef;
 	    if (obj->otyp == ODOR_SHOT && hates_odor(mdef->data) && canseemon(mdef)) {
 		    pline("%s groans at the odor!", s_suffix(Monnam(mdef)));
 	    }
+	    dam = monsterdmgresist(mdef, dam);
 	    mdef->mhp -= dam;
 	    if (mdef->mhp < 1) {
 		if (canseemon(mdef))
@@ -6628,8 +6629,10 @@ physical:
 		tmp *= 2; /* Double Damage! */
 	}
 
-	if (Race_if(PM_BOVER) && u.usteed && (mdef == u.usteed) && tmp > 1) tmp /= 2;
-	if (Race_if(PM_CARTHAGE) && u.usteed && (mdef == u.usteed) && (mcalcmove(u.usteed) < 12) && tmp > 1) tmp /= 2;
+	/* monster will now take "tmp" amount of damage, and die if it had less HP than that remaining --Amy
+	 * monster may now resist the damage done */
+
+	tmp = monsterdmgresist(mdef, tmp);
 
 	if((mdef->mhp -= tmp) < 1) {
 	    if (m_at(mdef->mx, mdef->my) == magr) {  /* see gulpmm() */
@@ -8405,8 +8408,7 @@ int attnumber;
 
     assess_dmg:
 
-	if (Race_if(PM_BOVER) && u.usteed && (magr == u.usteed) && tmp > 1) tmp /= 2;
-	if (Race_if(PM_CARTHAGE) && u.usteed && (magr == u.usteed) && (mcalcmove(u.usteed) < 12) && tmp > 1) tmp /= 2;
+	tmp = monsterdmgresist(magr, tmp);
 
 	if((magr->mhp -= tmp) <= 0) {
 		/* get experience from spell creatures */
@@ -8415,6 +8417,8 @@ int attnumber;
 
 		return (mdead | mhit | MM_AGR_DIED);
 	}
+	if (magr->mhp > 0) monster_pain(magr);
+
 	return (mdead | mhit);
 }
 

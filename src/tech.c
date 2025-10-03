@@ -354,6 +354,8 @@ STATIC_OVL NEARDATA const char *abil_names[] = {
 	"sandstorm",
 	"noctem",
 	"overcast",
+	"toggle pet damage reduction",
+	"toggle symbiote damage reduction",
 	"euthanize symbiote",
 	""
 };
@@ -3453,6 +3455,15 @@ int abil;
 			if (!PlayerCannotUseSkills && P_SKILL(P_PETKEEPING) >= P_BASIC) return TRUE;
 			return FALSE;
 			break;
+		case ABIL_PET_DMG_REDUC:
+			if (!PlayerCannotUseSkills && P_SKILL(P_PETKEEPING) >= P_BASIC) return TRUE;
+			if (!PlayerCannotUseSkills && P_SKILL(P_RIDING) >= P_BASIC) return TRUE;
+			return FALSE;
+			break;
+		case ABIL_SYMBIO_DMG_REDUC:
+			if (!PlayerCannotUseSkills && P_SKILL(P_SYMBIOSIS) >= P_BASIC) return TRUE;
+			return FALSE;
+			break;
 		case ABIL_JANITOR_CLEAN:
 			if (Role_if(PM_JANITOR)) return TRUE;
 			return FALSE;
@@ -3668,6 +3679,12 @@ domonabil()
 					break;
 				case ABIL_PETKEEPING_CONTROL_MAGIC:
 					pline("The petkeeping skill gives a chance of your ranged attacks passing through your pets, allowing you to avoid accidentally harming them. With this ability, you can turn that effect on or off.");
+					break;
+				case ABIL_PET_DMG_REDUC:
+					pline("The petkeeping and riding skills give a damage reduction effect to your pets and steeds (respectively). With this ability, you can turn that effect on or off.");
+					break;
+				case ABIL_SYMBIO_DMG_REDUC:
+					pline("The symbiosis skill give a damage reduction effect to your symbiote. With this ability, you can turn that effect on or off.");
 					break;
 				case ABIL_JANITOR_CLEAN:
 					pline("Lets you clean trash from the ground beneath you. Which is to say, put items at your location into a garbage truck so that they're removed from the dungeon.");
@@ -4304,6 +4321,26 @@ newbossSTEN:
 			} else {
 				u.controlmiguc = TRUE;
 				pline("Your missiles will now sometimes pass through pets, with the chance depending on your petkeeping skill!");
+			}
+			/* don't use a turn */
+			break;
+		case ABIL_PET_DMG_REDUC:
+			if (u.petdmgreduced) {
+				u.petdmgreduced = FALSE;
+				pline("Your pets and steed now take full damage from all attacks.");
+			} else {
+				u.petdmgreduced = TRUE;
+				pline("Your pets and steed now take reduced damage depending on your skill level.");
+			}
+			/* don't use a turn */
+			break;
+		case ABIL_SYMBIO_DMG_REDUC:
+			if (u.symbiodmgreduced) {
+				u.symbiodmgreduced = FALSE;
+				pline("Your symbiote now takes full damage from all attacks.");
+			} else {
+				u.symbiodmgreduced = TRUE;
+				pline("Your symbiote now takes reduced damage depending on your skill level.");
 			}
 			/* don't use a turn */
 			break;

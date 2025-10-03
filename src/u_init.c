@@ -11966,8 +11966,10 @@ u_init()
 	}
 
 	u.alla = 1000;
-	u.juyofleeing = 1;
-	u.controlmiguc = 1;
+	u.juyofleeing = 1; /* chance for monsters to flee if your juyo skill is high starts out enabled; can turn it off if you're e.g. a knight */
+	u.controlmiguc = 1; /* chance for missiles to pass through your pets starts out enabled; can turn it off if you want to kill the pet on purpose */
+	u.petdmgreduced = 1; /* damage reduction for pets and steeds starts out enabled; can turn it off if you want to kill the pet/steed on purpose */
+	u.symbiodmgreduced = 1; /* damage reduction for symbiotes starts out enabled; can turn it off if you want to kill the symbiote on purpose */
 	u.riderhack = 0;
 	u.bodyfluideffect = 0;
 	u.garbagecleaned = 0;

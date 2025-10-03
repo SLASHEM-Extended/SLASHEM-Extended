@@ -10115,6 +10115,84 @@ boolean msg;
 	return(1);
 }
 
+/* monster takes damage and has a chance of taking reduced damage --Amy */
+int
+monsterdmgresist(mtmp, dmgamount)
+struct monst *mtmp;
+int dmgamount; /* original amount of damage, which can be reduced */
+{
+	if (dmgamount < 1) return dmgamount;
+
+	if (Race_if(PM_BOVER) && u.usteed && (mtmp == u.usteed) && dmgamount > 1) dmgamount /= 2;
+	if (Race_if(PM_CARTHAGE) && u.usteed && (mtmp == u.usteed) && (mcalcmove(u.usteed) < 12) && dmgamount > 1) dmgamount /= 2;
+
+	if (FemtrapActiveMagdalena && humanoid(mtmp->data) && is_female(mtmp->data) && dmgamount > 1) dmgamount /= 2;
+
+	if (u.usteed && (mtmp == u.usteed)) { /* steed can take reduced damage if you got the riding skill */
+		if (!PlayerCannotUseSkills && u.petdmgreduced) { /* only if you didn't turn the damage reduction off */
+			switch (P_SKILL(P_RIDING)) {
+				default: break;
+				case P_BASIC: dmgamount *= 93; dmgamount /= 100; break;
+				case P_SKILLED: dmgamount *= 85; dmgamount /= 100; break;
+				case P_EXPERT: dmgamount *= 80; dmgamount /= 100; break;
+				case P_MASTER: dmgamount *= 70; dmgamount /= 100; break;
+				case P_GRAND_MASTER: dmgamount *= 65; dmgamount /= 100; break;
+				case P_SUPREME_MASTER: dmgamount *= 60; dmgamount /= 100; break;
+			}
+			if (dmgamount < 1) dmgamount = 1;
+		}
+
+	} else if (mtmp->mtame) { /* pet that isn't currently your steed can take reduced damage if you got the petkeeping skill */
+		if (!PlayerCannotUseSkills && u.petdmgreduced) { /* only if you didn't turn the damage reduction off */
+			switch (P_SKILL(P_PETKEEPING)) {
+				default: break;
+				case P_BASIC: dmgamount *= 93; dmgamount /= 100; break;
+				case P_SKILLED: dmgamount *= 85; dmgamount /= 100; break;
+				case P_EXPERT: dmgamount *= 80; dmgamount /= 100; break;
+				case P_MASTER: dmgamount *= 70; dmgamount /= 100; break;
+				case P_GRAND_MASTER: dmgamount *= 65; dmgamount /= 100; break;
+				case P_SUPREME_MASTER: dmgamount *= 60; dmgamount /= 100; break;
+			}
+			if (dmgamount < 1) dmgamount = 1;
+		}
+	}
+
+	return dmgamount; /* need to return the amount of damage to be done --Amy */
+}
+
+/* your symbiote takes damage and has a chance of taking reduced damage --Amy */
+int
+symbiodamageresist(dmgamount)
+int dmgamount; /* original amount of damage, which can be reduced */
+{
+	if (dmgamount < 1) return dmgamount;
+
+	if (tech_inuse(T_POWERBIOSIS) && dmgamount > 1) dmgamount /= 2;
+	if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
+		int imbiophases = uimplant->spe;
+		while ((imbiophases > 0) && dmgamount > 1) {
+			imbiophases--;
+			dmgamount *= 10;
+			dmgamount /= 11;
+		}
+	}
+
+	if (!PlayerCannotUseSkills && u.symbiodmgreduced) { /* only if you didn't turn the damage reduction off */
+		switch (P_SKILL(P_SYMBIOSIS)) {
+			default: break;
+			case P_BASIC: dmgamount *= 93; dmgamount /= 100; break;
+			case P_SKILLED: dmgamount *= 85; dmgamount /= 100; break;
+			case P_EXPERT: dmgamount *= 80; dmgamount /= 100; break;
+			case P_MASTER: dmgamount *= 70; dmgamount /= 100; break;
+			case P_GRAND_MASTER: dmgamount *= 65; dmgamount /= 100; break;
+			case P_SUPREME_MASTER: dmgamount *= 60; dmgamount /= 100; break;
+		}
+		if (dmgamount < 1) dmgamount = 1;
+	}
+
+	return dmgamount; /* need to return the amount of damage to be done --Amy */
+}
+
 /* sometimes an egg will be special */
 #define BREEDER_EGG (!rn2(77))
 

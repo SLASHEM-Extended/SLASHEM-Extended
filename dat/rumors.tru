@@ -2706,3 +2706,6 @@ Firearms make a loud noise whenever they're fired, which wakes up monsters.
 Pick-axes are meant to be used mostly as tools, which is why their melee damage output is rather subpar. Unless you find a really good one with high enchantment values, you should opt for a different type of weapon, e.g. a long sword.
 Farmland in your way, blocking the way forward? Jump onto it! Or over it, if the squares behind it are free.
 Monsters who can emit mind blasts may try to hack your implant, if you're wearing one. But if you're far enough away, this cannot affect you.
+Most effects that heal you will also restore a percentage of your hit points in addition to the fixed amount, meaning they'll be stronger if you have a lot of maximum HP.
+Heroes who have high petkeeping or riding skills will benefit by their pets or steeds having a permanent, slight damage reduction effect, allowing them to survive longer.
+If you have good symbiosis skill, your symbiote will take reduced damage and therefore survive many more attacks. But you can #monster to turn that effect off, if for some reason you want your symbiote to take full damage.

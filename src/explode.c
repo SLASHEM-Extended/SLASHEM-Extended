@@ -817,15 +817,9 @@ boolean yours; /* is it your fault (for killing monsters) */
 		ugolemeffects((int) adtyp, damu);
 
 		if (uactivesymbiosis && !u.symbiotedmghack && (rn2(100) < u.symbioteaggressivity) && !(u.usymbiote.mhpmax >= 5 && u.usymbiote.mhp <= (u.usymbiote.mhpmax / 5) && rn2(5)) ) {
-			if (tech_inuse(T_POWERBIOSIS) && damu > 1) damu /= 2;
-			if (tech_inuse(T_IMPLANTED_SYMBIOSIS) && uimplant && objects[uimplant->otyp].oc_charged && uimplant->spe > 0) {
-				int imbiophases = uimplant->spe;
-				while ((imbiophases > 0) && damu > 1) {
-					imbiophases--;
-					damu *= 10;
-					damu /= 11;
-				}
-			}
+
+			damu = symbiodamageresist(damu);
+
 			u.usymbiote.mhp -= damu;
 			Your("%s symbiote takes the damage for you.", mons[u.usymbiote.mnum].mname);
 			if (u.usymbiote.mhp <= 0) {

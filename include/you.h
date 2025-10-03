@@ -2087,6 +2087,8 @@ struct you {
 	boolean youhavememorized;	/* one-time message for memorization skill */
 	boolean juyofleeing;	/* control whether your juyo skill increases the odds that a monster flees */
 	boolean controlmiguc;	/* does the petkeeping skill make it less likely for you to hit your pets? */
+	boolean petdmgreduced;	/* does the petkeeping/riding skill make your pets/steeds resistant to damage? */
+	boolean symbiodmgreduced;	/* does the symbiosis skill make your symbiote resistant to damage? */
 
 	int garbagecleaned;	/* for janitor role */
 	int garbagetrucktime;	/* ditto */

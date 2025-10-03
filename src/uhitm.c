@@ -6374,14 +6374,17 @@ melatechoice:
 		if (heavyreduction < rnd(100)) tmp /= 2;
 	}
 
-	if (FemtrapActiveMagdalena && humanoid(mon->data) && is_female(mon->data) && tmp > 1) tmp /= 2;
-
 	if (obj && obj->oartifact == ART_RHALALALALALAAAAR && (mon->mhp > tmp) ) {
 		if ((mon->mhp - tmp) < (mon->mhpmax / 10)) {
 			tmp += 10000; /* instant death for the monster */
 			pline("Rhalalalalalaaaar!");
 		}
 	}
+
+	/* monster now takes "tmp" amount of damage from your attack, and die if it didn't have enough HP --Amy
+	 * monster may resist the damage done */
+
+	tmp = monsterdmgresist(mon, tmp);
 
 	if (!already_killed) mon->mhp -= tmp;
 	/* adjustments might have made tmp become less than what
