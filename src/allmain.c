@@ -6688,6 +6688,7 @@ newbossUTE:
 			u.cnd_verenatrapcnt++;
 			pline("Verena announces: 'Oh no, you're badly hurt! Here, let me caress you a bit, does that make it feel better?'");
 			healup( ( (level_difficulty() * 3) + 5), 0, FALSE, FALSE);
+			percentheal(5);
 		}
 
 		if (FemtrapActiveElif && !rn2(SuperFemtrapElif ? 250 : 500)) {

@@ -1633,6 +1633,28 @@ armorsmashdone:
 		if ((otyp == SPE_HEALING || otyp == SPE_EXTRA_HEALING || otyp == SPE_FULL_HEALING) && healamount > 1 && rn2(2)) healamount /= 2;
 
 		mtmp->mhp += healamount;
+
+		switch (otyp) {
+			case SPE_HEALING:
+				if (!rn2(2)) percentheal_mon(mtmp, 1);
+				break;
+			case SPE_EXTRA_HEALING:
+				percentheal_mon(mtmp, rno(2));
+				break;
+			case SPE_FULL_HEALING:
+				percentheal_mon(mtmp, rno(4));
+				break;
+			case WAN_HEALING:
+				percentheal_mon(mtmp, 2);
+				break;
+			case WAN_EXTRA_HEALING:
+				percentheal_mon(mtmp, 4);
+				break;
+			case WAN_FULL_HEALING:
+				percentheal_mon(mtmp, 7);
+				break;
+		}
+
 		if (mtmp->bleedout && mtmp->bleedout <= healamount) {
 			mtmp->bleedout = 0;
 			if (canseemon(mtmp)) pline("%s's bleeding stops.", Monnam(mtmp));
@@ -5337,11 +5359,13 @@ secureidchoice:
 		case WAN_MEDIUM_HEALING:
 			You_feel("healthier!");
 			healup( d(5,8) + rnz(boosted_ulevel(1)),0,0,0);
+			percentheal(2);
 			exercise(A_STR, TRUE);
 			known = TRUE;
 
 			if (u.usteed) {
 				u.usteed->mhp += d(2, 16);
+				percentheal_mon(u.usteed, 2);
 				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 				pline("%s looks healthier.", Monnam(u.usteed));
 			}
@@ -5354,6 +5378,7 @@ secureidchoice:
 		case WAN_STRONG_HEALING:
 			You_feel("much more healthy!");
 			healup(d(8,12) + rnz(boosted_ulevel(2)),0,0,0);
+			percentheal(4);
 			make_hallucinated(0L,TRUE,0L);
 			exercise(A_STR, TRUE);
 			exercise(A_CON, TRUE);
@@ -5361,6 +5386,7 @@ secureidchoice:
 
 			if (u.usteed) {
 				u.usteed->mhp += d(4, 12);
+				percentheal_mon(u.usteed, 4);
 				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 				pline("%s looks healthier.", Monnam(u.usteed));
 			}
@@ -5374,6 +5400,7 @@ secureidchoice:
 		case WAN_SUPER_HEALING:
 			You_feel("healthy again!");
 			healup(d(13,20) + rnz(boosted_ulevel(4)),0,0,0);
+			percentheal(7);
 			make_hallucinated(0L,TRUE,0L);
 			exercise(A_STR, TRUE);
 			exercise(A_CON, TRUE);
@@ -5381,6 +5408,7 @@ secureidchoice:
 
 			if (u.usteed) {
 				u.usteed->mhp += d(13, 10);
+				percentheal_mon(u.usteed, 7);
 				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 				pline("%s looks healthier.", Monnam(u.usteed));
 			}
@@ -5791,9 +5819,18 @@ controlagain:
 		case WAN_MANA:
 			known = TRUE;
 			You_feel("full of mystic power!");
-			if (!rn2(20)) u.uen += (400 + rnz(boosted_ulevel(5)));
-			else if (!rn2(5)) u.uen += (d(6,8) + rnz(boosted_ulevel(2)));
-			else u.uen += (d(5,6) + rnz(boosted_ulevel(1)));
+			if (!rn2(20)) {
+				u.uen += (400 + rnz(boosted_ulevel(5)));
+				percentrestoremana(7);
+			}
+			else if (!rn2(5)) {
+				u.uen += (d(6,8) + rnz(boosted_ulevel(2)));
+				percentrestoremana(4);
+			}
+			else {
+				u.uen += (d(5,6) + rnz(boosted_ulevel(1)));
+				percentrestoremana(2);
+			}
 
 			if (obj && obj->oartifact == ART_BLUE_BALL_FILL) u.uen += 100;
 
@@ -7763,12 +7800,14 @@ boolean ordinary;
 		   } else {
 			healup(d(5,6) + rnz(boosted_ulevel(1)),0,0,0);
 		   }
+		   percentheal(2);
 		   exercise(A_STR, TRUE);
 		   makeknown(WAN_HEALING);
 		break;
 		case WAN_EXTRA_HEALING:
 		   You_feel("much better.");
 		   healup(d(6,8) + rnz(boosted_ulevel(2)),0,0,0);
+		   percentheal(4);
 
 		    if (obj && obj->oartifact == ART_JONADAB_S_WORDPLAY) {
 			if (Upolyd) u.mhmax += 5;
@@ -7788,6 +7827,7 @@ boolean ordinary;
 		case WAN_FULL_HEALING:
 		   You_feel("restored to health.");
 		   healup(d(10,20) + rnz(boosted_ulevel(5)),0,0,0);
+		   percentheal(7);
 
 		   if (obj && obj->oartifact == ART_ACTUALLY_FULL) {
 			u.uhp = u.uhpmax;
@@ -7960,6 +8000,7 @@ boolean ordinary;
 			if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 			healup(healamount, 0, FALSE, FALSE);
+			if (!rn2(2)) percentheal(1);
 
 			}
 
@@ -7974,6 +8015,7 @@ boolean ordinary;
 			if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 			healup(healamount, 0, FALSE, FALSE);
+			percentheal(rno(2));
 
 			}
 
@@ -7986,7 +8028,8 @@ boolean ordinary;
 			int healamount = (d(10,10) + rnz(boosted_ulevel(5) ) + (rn2(2) ? 0 : rnz(boosted_ulevel(5) )) );
 			if (healamount > 1 && !rn2(2)) healamount /= 2;
 
-		    healup(healamount, 0, FALSE, FALSE);
+			healup(healamount, 0, FALSE, FALSE);
+			percentheal(rno(4));
 
 			}
 		    You_feel("restored to health.");

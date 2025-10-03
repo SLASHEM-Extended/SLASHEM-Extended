@@ -8712,12 +8712,14 @@ register struct attack *mattk;
 
 					pline("This tastes good.");
 					healup(d(5,5) + rnz(u.ulevel), 0, FALSE, FALSE);
+					percentheal(1);
 					exercise(A_CON, TRUE);
 				}
 				if (Race_if(PM_HEMOPHAGE)) { /* Hemophages too */
 
 					pline("This tastes good.");
 					healup(d(5,5) + rnz(u.ulevel), 0, FALSE, FALSE);
+					percentheal(1);
 					exercise(A_CON, TRUE);
 				}
 			}

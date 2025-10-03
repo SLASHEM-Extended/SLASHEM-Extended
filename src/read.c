@@ -10857,7 +10857,10 @@ tunguskaagain:
 			u.youaredead = 0;
 		}
 
-		if (sobj->oartifact == ART_HEALAPORTATION) healup(400 + rnz(boosted_ulevel(5)), 0, 0, 0);
+		if (sobj->oartifact == ART_HEALAPORTATION) {
+			healup(400 + rnz(boosted_ulevel(5)), 0, 0, 0);
+			percentheal(10);
+		}
 
 		if(confused || sobj->cursed) 
 			{
@@ -11130,26 +11133,62 @@ tunguskaagain:
 		makeknown(SCR_HEALING);
 		You_feel("healthier!");
 		if (sobj->oartifact == ART_OVERHEAL_ME) {
-			if (!rn2(20)) healup(1200 + rnz(boosted_ulevel(1) * 3), 0, FALSE, FALSE);
-			else if (!rn2(5)) healup(d(18,8) + rnz(boosted_ulevel(1) * 3), 0, FALSE, FALSE);
-			else healup(d(15,6) + rnz(boosted_ulevel(1) * 3), 0, FALSE, FALSE);
+			if (!rn2(20)) {
+				healup(1200 + rnz(boosted_ulevel(1) * 3), 0, FALSE, FALSE);
+				percentheal(10);
+			}
+			else if (!rn2(5)) {
+				healup(d(18,8) + rnz(boosted_ulevel(1) * 3), 0, FALSE, FALSE);
+				percentheal(6);
+			}
+			else {
+				healup(d(15,6) + rnz(boosted_ulevel(1) * 3), 0, FALSE, FALSE);
+				percentheal(2);
+			}
 		} else {
-			if (!rn2(20)) healup(400 + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
-			else if (!rn2(5)) healup(d(6,8) + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
-			else healup(d(5,6) + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
+			if (!rn2(20)) {
+				healup(400 + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
+				percentheal(5);
+			}
+			else if (!rn2(5)) {
+				healup(d(6,8) + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
+				percentheal(3);
+			}
+			else {
+				healup(d(5,6) + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
+				percentheal(1);
+			}
 		}
 		break;
 	case SCR_EXTRA_HEALING: /* better healing scroll --Amy */
 		makeknown(SCR_EXTRA_HEALING);
 		You_feel("healthier!");
 		if (sobj->oartifact == ART_SAVING_FOR_A_RAINY_DAY) {
-			if (!rn2(20)) healup(20000 + rnz(boosted_ulevel(1) * 50), 0, FALSE, FALSE);
-			else if (!rn2(5)) healup(d(60,40) + rnz(boosted_ulevel(1) * 50), 0, FALSE, FALSE);
-			else healup(d(50,30) + rnz(boosted_ulevel(1) * 50), 0, FALSE, FALSE);
+			if (!rn2(20)) {
+				healup(20000 + rnz(boosted_ulevel(1) * 50), 0, FALSE, FALSE);
+				percentheal(20);
+			}
+			else if (!rn2(5)) {
+				healup(d(60,40) + rnz(boosted_ulevel(1) * 50), 0, FALSE, FALSE);
+				percentheal(10);
+			}
+			else {
+				healup(d(50,30) + rnz(boosted_ulevel(1) * 50), 0, FALSE, FALSE);
+				percentheal(4);
+			}
 		} else {
-			if (!rn2(20)) healup(2000 + rnz(boosted_ulevel(1) * 5), 0, FALSE, FALSE);
-			else if (!rn2(5)) healup(d(6,40) + rnz(boosted_ulevel(1) * 5), 0, FALSE, FALSE);
-			else healup(d(5,30) + rnz(boosted_ulevel(1) * 5), 0, FALSE, FALSE);
+			if (!rn2(20)) {
+				healup(2000 + rnz(boosted_ulevel(1) * 5), 0, FALSE, FALSE);
+				percentheal(10);
+			}
+			else if (!rn2(5)) {
+				healup(d(6,40) + rnz(boosted_ulevel(1) * 5), 0, FALSE, FALSE);
+				percentheal(5);
+			}
+			else {
+				healup(d(5,30) + rnz(boosted_ulevel(1) * 5), 0, FALSE, FALSE);
+				percentheal(2);
+			}
 		}
 		break;
 	case SCR_POWER_HEALING:
@@ -11210,6 +11249,7 @@ tunguskaagain:
 						frostmon->mconf = 0;
 						pline("%s is cured.", Monnam(frostmon));
 						frostmon->mhp += (rnd(50) + 30 + rnz(boosted_ulevel(1) * 3));
+						percentheal_mon(frostmon, 5);
 						if (frostmon->mhp > frostmon->mhpmax) frostmon->mhp = frostmon->mhpmax;
 						if (u.ualign.type == A_LAWFUL) adjalign(1);
 					}
@@ -11227,6 +11267,7 @@ tunguskaagain:
 				u.usteed->mconf = 0;
 				pline("%s is cured.", Monnam(u.usteed));
 				u.usteed->mhp += (rnd(50) + 30 + rnz(boosted_ulevel(1) * 3));
+				percentheal_mon(u.usteed, 5);
 				if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 				if (u.ualign.type == A_LAWFUL) adjalign(1);
 			}
@@ -11251,13 +11292,31 @@ tunguskaagain:
 		makeknown(SCR_MANA);
 		You_feel("full of mystic power!");
 		if (sobj->oartifact == ART_FULL_OF_MYSTIC_POWER) {
-			if (!rn2(20)) u.uen += (1200 + rnz(boosted_ulevel(1) * 3));
-			else if (!rn2(5)) u.uen += (d(18,8) + rnz(boosted_ulevel(1) * 3));
-			else u.uen += (d(15,6) + rnz(boosted_ulevel(1) * 3));
+			if (!rn2(20)) {
+				u.uen += (1200 + rnz(boosted_ulevel(1) * 3));
+				percentrestoremana(14);
+			}
+			else if (!rn2(5)) {
+				u.uen += (d(18,8) + rnz(boosted_ulevel(1) * 3));
+				percentrestoremana(8);
+			}
+			else {
+				u.uen += (d(15,6) + rnz(boosted_ulevel(1) * 3));
+				percentrestoremana(4);
+			}
 		} else {
-			if (!rn2(20)) u.uen += (400 + rnz(boosted_ulevel(1)));
-			else if (!rn2(5)) u.uen += (d(6,8) + rnz(boosted_ulevel(1)));
-			else u.uen += (d(5,6) + rnz(boosted_ulevel(1)));
+			if (!rn2(20)) {
+				u.uen += (400 + rnz(boosted_ulevel(1)));
+				percentrestoremana(7);
+			}
+			else if (!rn2(5)) {
+				u.uen += (d(6,8) + rnz(boosted_ulevel(1)));
+				percentrestoremana(4);
+			}
+			else {
+				u.uen += (d(5,6) + rnz(boosted_ulevel(1)));
+				percentrestoremana(2);
+			}
 		}
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		break;
@@ -11265,13 +11324,31 @@ tunguskaagain:
 		makeknown(SCR_GREATER_MANA_RESTORATION);
 		You_feel("full of mystic power!");
 		if (sobj->oartifact == ART_RESTORE_ALL_MANA) {
-			if (!rn2(20)) u.uen += (20000 + rnz(boosted_ulevel(1) * 50));
-			else if (!rn2(5)) u.uen += (d(60,40) + rnz(boosted_ulevel(1) * 50));
-			else u.uen += (d(50,30) + rnz(boosted_ulevel(1) * 50));
+			if (!rn2(20)) {
+				u.uen += (20000 + rnz(boosted_ulevel(1) * 50));
+				percentrestoremana(20);
+			}
+			else if (!rn2(5)) {
+				u.uen += (d(60,40) + rnz(boosted_ulevel(1) * 50));
+				percentrestoremana(12);
+			}
+			else {
+				u.uen += (d(50,30) + rnz(boosted_ulevel(1) * 50));
+				percentrestoremana(6);
+			}
 		} else {
-			if (!rn2(20)) u.uen += (2000 + rnz(boosted_ulevel(1) * 5));
-			else if (!rn2(5)) u.uen += (d(6,40) + rnz(boosted_ulevel(1) * 5));
-			else u.uen += (d(5,30) + rnz(boosted_ulevel(1) * 5));
+			if (!rn2(20)) {
+				u.uen += (2000 + rnz(boosted_ulevel(1) * 5));
+				percentrestoremana(10);
+			}
+			else if (!rn2(5)) {
+				u.uen += (d(6,40) + rnz(boosted_ulevel(1) * 5));
+				percentrestoremana(6);
+			}
+			else {
+				u.uen += (d(5,30) + rnz(boosted_ulevel(1) * 5));
+				percentrestoremana(3);
+			}
 		}
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		break;

@@ -5409,6 +5409,7 @@ newbossHORR:
 
 	if (book2->oartifact == ART_NOTEBOOK_OF_ERRANT_SPARKS) {
 		u.uen += rn1(20,20);
+		percentrestoremana(1);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		You_feel("full of mystic power!");
 
@@ -6442,6 +6443,7 @@ wandchargechoice:
 
 	if (book2->oartifact == ART_NOVICE_S_COMPANION) {
 		u.uen += rn1(10,10);
+		percentrestoremana(1);
 		if (u.uen > u.uenmax) u.uen = u.uenmax;
 		flags.botl = TRUE;
 		You_feel("full of mystic power!");
@@ -6451,6 +6453,7 @@ wandchargechoice:
 	if (book2->oartifact == ART_HEALER_S_HANDBOOK) {
 		wonderspell(SPE_HEALING, 0);
 		healup(rn1(10,10), 0, FALSE, FALSE);
+		percentheal(2);
 		incr_itimeout(&HPoison_resistance, 100);
 		You_feel("healthy for the time being.");
 	}
@@ -6458,6 +6461,7 @@ wandchargechoice:
 	if (book2->oartifact == ART_WEEPING_CODEX) {
 		losestr(1, TRUE);
 		healup(rn1(25,25), 0, FALSE, FALSE);
+		percentheal(5);
 		You_feel("healthier!");
 		castspecificspell(SPE_BUBBLEBEAM);
 
@@ -6465,6 +6469,7 @@ wandchargechoice:
 
 	if (book2->oartifact == ART_POCKET_HERBAL_GRIMOIRE) {
 		healup(rn1(25,25), 0, TRUE, FALSE);
+		percentheal(5);
 		incr_itimeout(&HPoison_resistance, 500);
 		You_feel("healthy for the time being.");
 	}
@@ -8015,6 +8020,7 @@ manloop:
 
 				healamount = d(15, 10 + spell_damage_bonus(SPE_PET_SYRINGE) );
 				nexusmon->mhp += healamount;
+				percentheal_mon(nexusmon, 1);
 
 				if (nexusmon->mhp > nexusmon->mhpmax) nexusmon->mhp = nexusmon->mhpmax;
 
@@ -10565,7 +10571,10 @@ secureidchoice:
 		      mbobj2 = mbobj->nobj;
 
 			if (mbobj->oclass == WAND_CLASS) {
-				if (mbobj->spe > 1) u.uen += (mbobj->spe * 10);
+				if (mbobj->spe > 1) {
+					u.uen += (mbobj->spe * 10);
+					percentrestoremana(1);
+				}
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				delobj(mbobj);
 			}
@@ -10955,11 +10964,13 @@ whisperchoice:
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
+		percentheal(rno(2));
 
 		You_feel("healthier!");
 
 		if (u.usteed) {
 			u.usteed->mhp += rnd(12);
+			percentheal_mon(u.usteed, rno(2));
 			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 			pline("%s looks healthier.", Monnam(u.usteed));
 
@@ -10975,11 +10986,13 @@ whisperchoice:
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
+		percentheal(rno(4));
 
 		You_feel("much more healthy!");
 
 		if (u.usteed) {
 			u.usteed->mhp += d(5, 5);
+			percentheal_mon(u.usteed, rno(4));
 			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 			pline("%s looks healthier.", Monnam(u.usteed));
 
@@ -10995,11 +11008,13 @@ whisperchoice:
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
+		percentheal(rno(7));
 
 		You_feel("healthy again!");
 
 		if (u.usteed) {
 			u.usteed->mhp += d(5, 13);
+			percentheal_mon(u.usteed, rno(7));
 			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 			pline("%s looks healthier.", Monnam(u.usteed));
 
@@ -11018,11 +11033,13 @@ whisperchoice:
 		if (healamount > 1 && !rn2(2)) healamount /= 2;
 
 		healup(healamount, 0, FALSE, FALSE);
+		percentheal(rno(2));
 
 		You_feel("healthier!");
 
 		if (u.usteed) {
 			u.usteed->mhp += rnd(12);
+			percentheal_mon(u.usteed, rno(2));
 			if (u.usteed->mhp > u.usteed->mhpmax) u.usteed->mhp = u.usteed->mhpmax;
 			pline("%s looks healthier.", Monnam(u.usteed));
 
@@ -11034,6 +11051,7 @@ whisperchoice:
 			if (!hrmon->mtame) continue;
 
 			hrmon->mhp += rnd(12);
+			percentheal_mon(hrmon, rno(2));
 			if (hrmon->mhp > hrmon->mhpmax) hrmon->mhp = hrmon->mhpmax;
 			pline("%s looks healthier.", Monnam(hrmon));
 
@@ -11517,6 +11535,7 @@ whisperchoice:
 			if (!canspotmon(mtmp)) continue;	/*you can't see it and can't sense it*/
 
 			mtmp->mhp += rnd(50);
+			percentheal_mon(mtmp, rno(3));
 			if (mtmp->mhp > mtmp->mhpmax) {
 			    mtmp->mhp = mtmp->mhpmax;
 			}
@@ -11532,6 +11551,7 @@ whisperchoice:
 		    if (healamount > 1) healamount /= 2;
 
 		    healup(healamount,0,0,0);
+		    percentheal(rno(3));
 		}
 		break;
 

@@ -5877,6 +5877,7 @@ int tech_no;
 
 			if (u.ualign.record < 0) {
 
+				/* If your deity feels annoyed, they will damage you and increase your prayer timeout. They won't get angry though. */
 				if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
 					pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : Role_if(PM_WALSCHOLAR) ? "Anna" : "Moloch" );
 					u.ublesscnt += rnz(-u.ualign.record);
@@ -5888,29 +5889,28 @@ int tech_no;
 					u.ublesscnt += rnz(-u.ualign.record);
 					losehp(rnz(-u.ualign.record), "disturbing their deity", KILLED_BY);
 				}
-/* If your deity feels annoyed, they will damage you and increase your prayer timeout. They won't get angry though. */
 			} 
 
 			else if (Race_if(PM_IMPERIAL)) {
+				/* Imperials cannot use this technique successfully. */
 				pline("%s hates you and decides you need to be punished!",u_gname() );
 				u.ublesscnt += rnz(monster_difficulty() + 1 );
 				losehp(rnz(monster_difficulty() + 1 ), "being a pesky heretic", KILLED_BY);
-/* Imperials cannot use this technique successfully. */
 			} 
 
 			else if ( (Inhell && !Race_if(PM_HERETIC) ) || flags.gehenna ) {
+				/* Trying to invoke a deity in Gehennom is never a good idea... */
 				pline("%s is inaccessible, and %s decides to smite you!",u_gname(), Role_if(PM_GANG_SCHOLAR) ? "Anna" : Role_if(PM_WALSCHOLAR) ? "Anna" : "Moloch" );
 				u.ublesscnt += rnz(monster_difficulty() + 1 );
 				losehp(rnz(monster_difficulty() + 1 ), "trying to contact their deity in Gehennom", KILLED_BY);
-/* Trying to invoke a deity in Gehennom is never a good idea... */
 			} 
 
 			else if (u.ualign.record > 0) {
+				/* If your deity is pleased with you, heal some damage and decrease your prayer timeout. */
 				pline("%s commends your efforts and grants you a boon.",u_gname() );
 				u.ublesscnt -= rnz(u.ualign.record + techlevX(tech_no) );
 				if(u.ublesscnt < 0) u.ublesscnt = 0;
 				healup( rnz(u.ualign.record + techlevX(tech_no)) , 0, FALSE, FALSE);
-/* If your deity is pleased with you, heal some damage and decrease your prayer timeout. */
 			}
 
 			else { /* alignment record exactly 0, do nothing */
@@ -6138,6 +6138,7 @@ secureidchoice:
 		} else if (Upolyd ? u.mh < u.mhmax : u.uhp < u.uhpmax) {
 		    pline("A warm glow spreads through your body!");
 		    healup(techlevX(tech_no) * 4, 0, FALSE, FALSE);
+		    percentheal(1);
 		    t_timeout = rnz(3000);
 		} else {
 			pline("%s", nothing_happens);
@@ -7753,6 +7754,7 @@ chargingchoice:
 	    case T_ENT_S_POTION:
 		pline("You feel very good.");
 		healup(techlevX(tech_no) * 10, 0, FALSE, FALSE);
+		percentheal(1);
 		make_blinded(0L,FALSE);
 	      make_stunned(0L,TRUE);
 	      make_confused(0L,TRUE);
@@ -9601,9 +9603,18 @@ revid_end:
 
 			You_feel("full of mystic power!");
 
-			if (!rn2(20)) u.uen += (400 + rnz(techlevX(tech_no)));
-			else if (!rn2(5)) u.uen += (d(6,8) + rnz(techlevX(tech_no)));
-			else u.uen += (d(5,6) + rnz(techlevX(tech_no)));
+			if (!rn2(20)) {
+				u.uen += (400 + rnz(techlevX(tech_no)));
+				percentrestoremana(10);
+			}
+			else if (!rn2(5)) {
+				u.uen += (d(6,8) + rnz(techlevX(tech_no)));
+				percentrestoremana(5);
+			}
+			else {
+				u.uen += (d(5,6) + rnz(techlevX(tech_no)));
+				percentrestoremana(2);
+			}
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 
 			t_timeout = rnz(1000);

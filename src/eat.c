@@ -858,6 +858,7 @@ boolean message;
 
 		pline(FunnyHallu ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
 		healup(d(8,8) + rnz(u.ulevel), 0, TRUE, TRUE);
+		percentheal(1);
 		exercise(A_CON, TRUE);
 
 	}
@@ -866,6 +867,7 @@ boolean message;
 
 		pline(FunnyHallu ? "It tastes like sweet, delicious nectar!" : "That blood really hit the spot!");
 		healup(d(8,8) + rnz(u.ulevel), 0, TRUE, TRUE);
+		percentheal(1);
 		exercise(A_CON, TRUE);
 
 	}

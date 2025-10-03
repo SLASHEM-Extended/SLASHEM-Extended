@@ -1725,6 +1725,11 @@ climdone:
 			if (u.urmaxlvlN == 25) u.weapon_slots += 1;
 			if (u.urmaxlvlN == 30) u.weapon_slots += 5;
 		}
+		if (u.urmaxlvlN > 19) { /* very high-level characters should have better maximum HP --Amy */
+			u.uhp += 9;
+			u.uhpmax += 9;
+			flags.botl = TRUE;
+		}
 	}
 
 	while (Race_if(PM_RODNEYAN) && u.ulevel > u.urmaxlvl) {

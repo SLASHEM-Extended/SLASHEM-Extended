@@ -5898,6 +5898,7 @@ goodeffect()
 			case 70: /* healing */
 				You("are healed!");
 				healup(rn1(400, 400), 0, TRUE, TRUE);
+				percentheal(10);
 				break;
 			case 71:
 			case 72:
@@ -6130,6 +6131,7 @@ enchantweaponchoice:
 			case 153: /* restore mana */
 				Your("mana is restored.");
 				u.uen += rn1(400, 400);
+				percentrestoremana(10);
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
 				flags.botl = TRUE;
 				break;
@@ -9488,10 +9490,14 @@ nivellate()
 			upperceiling /= 2;
 		}
 
-		if (boost_power_value() > 0) {
-			upperceiling *= (100 + (boost_power_value() * 3) );
+		if ((boost_power_value() > 0) || (u.ulevel > 19)) {
+			int boostingpower = 0;
+			if (boost_power_value() > 0) boostingpower += boost_power_value();
+			if (u.ulevel > 19) boostingpower += (u.ulevel - 19);
+
+			upperceiling *= (100 + (boostingpower * 3) );
 			upperceiling /= 100;
-			lowerceiling *= (100 + (boost_power_value() * 3) );
+			lowerceiling *= (100 + (boostingpower * 3) );
 			lowerceiling /= 100;
 		}
 
@@ -9738,6 +9744,11 @@ nivellate()
 		else if (symlevel == 5) symlevel = 6;
 		if (u.usymbiote.mhpmax > (symlevel * 8)) upperceiling = (symlevel * 8);
 
+		if (u.ulevel > 10) {
+			lowerceiling += ((u.ulevel - 10) * 3);
+			upperceiling += ((u.ulevel - 10) * 5);
+		}
+
 		if (Role_if(PM_SYMBIANT)) {
 			lowerceiling = 400;
 			upperceiling = 500;
@@ -9745,6 +9756,9 @@ nivellate()
 
 		if (lowerceiling < 10) lowerceiling = 10; /* fail safe */
 		if (upperceiling < 15) upperceiling = 15; /* fail safe */
+
+		if (lowerceiling > 500) lowerceiling = 500; /* fail safe */
+		if (upperceiling < 500) upperceiling = 500; /* fail safe */
 
 		if (u.usymbiote.mhpmax > upperceiling) {
 			reduceamount = rnd(u.usymbiote.mhpmax / 10);
@@ -9974,8 +9988,12 @@ boolean guaranteed;
 			ceiling /= 2;
 		}
 
-		if (boost_power_value() > 0) {
-			ceiling *= (100 + (boost_power_value() * 3) );
+		if ((boost_power_value() > 0) || (u.ulevel > 19)) {
+			int boostingpower = 0;
+			if (boost_power_value() > 0) boostingpower += boost_power_value();
+			if (u.ulevel > 19) boostingpower += (u.ulevel - 19);
+
+			ceiling *= (100 + (boostingpower * 3) );
 			ceiling /= 100;
 		}
 
@@ -10168,11 +10186,33 @@ boolean guaranteed;
 	if (uinsymbiosis) {
 		int symlevel = mons[u.usymbiote.mnum].mlevel;
 		if (symlevel < 6) symlevel = 6;
+		if (u.ulevel > 11) {
+			if (symlevel < ((u.ulevel / 2) + 1)) symlevel = ((u.ulevel / 2) + 1);
+		}
 		ceiling = (symlevel * 10);
 		if (PlayerCannotUseSkills || (P_SKILL(P_SYMBIOSIS) < P_SKILLED)) ceiling = (symlevel * 8);
+		if (!PlayerCannotUseSkills) {
+			switch (P_SKILL(P_SYMBIOSIS)) {
+				case P_EXPERT:
+					ceiling = (symlevel * 11);
+					break;
+				case P_MASTER:
+					ceiling = (symlevel * 12);
+					break;
+				case P_GRAND_MASTER:
+					ceiling = (symlevel * 14);
+					break;
+				case P_SUPREME_MASTER:
+					ceiling = (symlevel * 16);
+					break;
+			}
+		}
+
 		if (Role_if(PM_SYMBIANT)) {
 			ceiling *= 2;
 		}
+
+		if (ceiling > 500) ceiling = 500; /* fail safe */
 
 		if (u.usymbiote.mhpmax < ceiling) {
 			int actualincrease = 1;
@@ -12717,6 +12757,7 @@ dodrink()
 		}
 		reducesanity(10);
 		healup(d(2,6) + rnz(boosted_ulevel(1)), 0, FALSE, FALSE);
+		percentheal(2);
 
 		{
 			int i, ii, lim;
@@ -13640,13 +13681,17 @@ peffects(otmp)
 		    } else if(otmp->cursed) {
 			You_feel("quite proud of yourself.");
 			healup(d(6,6),0,0,0);
+			percentheal(2);
 			if (u.ulycn >= LOW_PM && !Upolyd) you_were();
 			exercise(A_CON, TRUE);
 		    }
 		} else {
 		    if(otmp->blessed) {
 			You_feel("full of awe.");
-			if(u.ualign.type == A_LAWFUL) healup(d(6,6),0,0,0);                        
+			if(u.ualign.type == A_LAWFUL) {
+				healup(d(6,6),0,0,0);                        
+				percentheal(2);
+			}
 			make_sick(0L, (char *) 0, TRUE, SICK_ALL);
 			exercise(A_WIS, TRUE);
 			exercise(A_CON, TRUE);
@@ -14968,6 +15013,7 @@ peffects(otmp)
 
 		healup(d(5,6) + rnz(boosted_ulevel(1)) + 5 * bcsign(otmp),
 		       otmp->blessed ? 2 : !otmp->cursed ? 1 : 0, 1+1*!!otmp->blessed, !otmp->cursed);
+		percentheal(2);
 
 		if (evilfriday && otmp->cursed) {
 			u.uhpmax--;
@@ -15008,6 +15054,8 @@ peffects(otmp)
 		healup(d(6,8) + rnz(boosted_ulevel(2)) + 5 * bcsign(otmp),
 		       otmp->blessed ? 5 : !otmp->cursed ? 2 : 0,
 		       !otmp->cursed, TRUE);
+		percentheal(4);
+
 		if (evilfriday && otmp->cursed) {
 			u.uhpmax -= 2;
 			if (u.uhpmax < 1) u.uhpmax = 1;
@@ -15021,6 +15069,8 @@ peffects(otmp)
 	case POT_FULL_HEALING:
 		You_feel("completely healed.");
 		healup(400 + rnz(boosted_ulevel(5)), 4+4*bcsign(otmp), !otmp->cursed, TRUE);
+		percentheal(7);
+
 		if (evilfriday && otmp->cursed) {
 			u.uhpmax -= 4;
 			if (u.uhpmax < 1) u.uhpmax = 1;
@@ -15045,6 +15095,8 @@ peffects(otmp)
 	case POT_CURE_WOUNDS:
 		You_feel("better.");
 		healup(d(5,6) + rnz(boosted_ulevel(1)) + 5 * bcsign(otmp), 0, 0, 0);
+		percentheal(3);
+
 		if (otmp->oartifact == ART_PLUS_ONE_LINE) {
 			healup(1, 1, 0, 0);
 		}
@@ -15053,6 +15105,8 @@ peffects(otmp)
 	case POT_CURE_SERIOUS_WOUNDS:
 		You_feel("much better.");
 		healup(d(6,8) + rnz(boosted_ulevel(2)) + 5 * bcsign(otmp), 0, 0, 0);
+		percentheal(6);
+
 		if (otmp->oartifact == ART_PLUS_TWO_LINES) {
 			healup(2, 2, 0, 0);
 		}
@@ -15062,6 +15116,8 @@ peffects(otmp)
 	case POT_CURE_CRITICAL_WOUNDS:
 		You_feel("completely healed.");
 		healup(400 + rnz(boosted_ulevel(5)), 0, 0, 0);
+		percentheal(10);
+
 		if (otmp->oartifact == ART_FULL_RECOVERY) {
 			u.uhp = u.uhpmax;
 			if (Upolyd) u.mh = u.mhmax;
@@ -15129,6 +15185,10 @@ peffects(otmp)
 			if (otmp->oartifact == ART_GREATER_DISTILLATION) {
 				u.uen += (num * 4);
 				if (u.uen > u.uenmax) u.uen = u.uenmax;
+			}
+
+			if (!otmp->cursed) {
+				percentrestoremana(5);
 			}
 
 			flags.botl = 1;
@@ -15242,6 +15302,7 @@ peffects(otmp)
 					pline("Gasoline!!");
 					good_for_you = TRUE;
 					healup(200, 0, FALSE, FALSE);
+					percentheal(5);
 					u.uhunger += 500;
 				} else {
 					pline("That was smooth!");
@@ -15807,7 +15868,7 @@ healup(nhp, nxtra, curesick, cureblind)
 	return;
 }
 
-	/* For healing monsters - analogous to healup for players */
+/* For healing monsters - analogous to healup for players */
 void
 healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	struct monst *mtmp;
@@ -15852,6 +15913,60 @@ healup_mon(mtmp, nhp, nxtra, curesick, cureblind)
 	if(curesick)  ; /* NOT DONE YET */
 #endif 
 	return;
+}
+
+/* heal a percentage of the player's hit points, by Amy */
+void
+percentheal(healamount)
+int healamount;
+{
+	int amounttoheal = 1;
+
+	if (Upolyd) {
+		amounttoheal = (u.mhmax * healamount / 100);
+	} else {
+		amounttoheal = (u.uhpmax * healamount / 100);
+	}
+	if (amounttoheal < 1) amounttoheal = 1;
+
+	if (Upolyd) {
+		u.mh += amounttoheal;
+		if (u.mh > u.mhmax) u.mh = u.mhmax;
+	} else {
+		u.uhp += amounttoheal;
+		if (u.uhp > u.uhpmax) u.uhp = u.uhpmax;
+	}
+
+	flags.botl = TRUE;
+}
+
+/* heal a percentage of the monster's hit points, by Amy */
+void
+percentheal_mon(mtmp, healamount)
+int healamount;
+struct monst *mtmp;
+{
+	int amounttoheal = 1;
+	amounttoheal = (mtmp->mhpmax * healamount / 100);
+	if (amounttoheal < 1) amounttoheal = 1;
+
+	mtmp->mhp += amounttoheal;
+	if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
+}
+
+/* restore a percentage of the player's Pw, by Amy */
+void
+percentrestoremana(healamount)
+int healamount;
+{
+	int amounttoheal = 1;
+	amounttoheal = (u.uenmax * healamount / 100);
+	if (amounttoheal < 1) amounttoheal = 1;
+
+	u.uen += amounttoheal;
+	if (u.uen > u.uenmax) u.uen = u.uenmax;
+
+	flags.botl = TRUE;
 }
 
 void
@@ -16049,6 +16164,7 @@ boolean your_fault;
 			pline("%s looks better.", Monnam(mon));
 		healup_mon(mon, d(5,6) + rnz(u.ulevel) + 5 * bcsign(obj),
 			!obj->cursed ? 1 : 0, 1+1*!!obj->blessed, !obj->cursed);
+		percentheal_mon(mon, 3);
 		break;
 	case POT_EXTRA_HEALING:
 		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
@@ -16058,6 +16174,7 @@ boolean your_fault;
 		healup_mon(mon, d(6,8) + rnz(u.ulevel) + 5 * bcsign(obj),
 			obj->blessed ? 5 : !obj->cursed ? 2 : 0,
 			!obj->cursed, TRUE);
+		percentheal_mon(mon, 6);
 		break;
 	case POT_FULL_HEALING:
 		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
@@ -16068,24 +16185,28 @@ boolean your_fault;
 		    if (canseemon(mon))
 			pline("%s looks sound and hale again.", Monnam(mon));
 		healup_mon(mon, 400 + rnz(u.ulevel), 5+5*!!(obj->blessed), !(obj->cursed), 1);
+		percentheal_mon(mon, 10);
 		break;
 	case POT_CURE_WOUNDS:
 		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
 		angermon = FALSE;
 		if (canseemon(mon)) pline("%s looks better.", Monnam(mon));
 		healup_mon(mon, d(5,6) + rnz(u.ulevel) + 5 * bcsign(obj), 0, 0, 0);
+		percentheal_mon(mon, 4);
 		break;
 	case POT_CURE_SERIOUS_WOUNDS:
 		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
 		angermon = FALSE;
 		if (canseemon(mon)) pline("%s looks much better.", Monnam(mon));
 		healup_mon(mon, d(6,8) + rnz(u.ulevel) + 5 * bcsign(obj), 0, 0, 0);
+		percentheal_mon(mon, 8);
 		break;
 	case POT_CURE_CRITICAL_WOUNDS:
 		if (mon->data == &mons[PM_PESTILENCE]) goto do_illness;
 		angermon = FALSE;
 		if (canseemon(mon)) pline("%s looks sound and hale again.", Monnam(mon));
 		healup_mon(mon, 400 + rnz(u.ulevel),  0, 0, 0);
+		percentheal_mon(mon, 15);
 		break;
 	case POT_SICKNESS:
 	case POT_POISON:
@@ -16293,6 +16414,7 @@ boolean your_fault;
 			if (canseemon(mon))
 			    pline("%s looks healthier.", Monnam(mon));
 			mon->mhp += d(2,6);
+			percentheal_mon(mon, 5);
 			if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 			if (is_were(mon->data) && is_human(mon->data) &&
 				!Protection_from_shape_changers)

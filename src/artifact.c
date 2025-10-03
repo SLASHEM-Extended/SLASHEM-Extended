@@ -7008,6 +7008,7 @@ arti_invoke(obj)
 	    if(epboost) {
 		You_feel("re-energized.");
 		u.uen += epboost;
+		percentrestoremana(2);
 		flags.botl = 1;
 	    } else
 		goto nothing_special;
@@ -8538,6 +8539,7 @@ tscheinschroll:
 		if (obj->oartifact == ART_BRINGS_WHICH) {
 
 			u.uen += (d(8,8));
+			percentrestoremana(2);
 			if (u.uen > u.uenmax) u.uen = u.uenmax;
 			You_feel("full of mystic power!");
 			flags.botl = TRUE;
