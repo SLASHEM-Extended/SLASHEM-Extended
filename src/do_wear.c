@@ -5585,6 +5585,17 @@ Implant_on()
 	}
     }
 
+    if (uimplant && uimplant->oartifact == ART_FLICKERING_OF_OZONE) {
+	pline_The("sun comes out.");
+	u.currentweather = WEATHER_SUNNY;
+	tell_main_weather();
+    }
+
+    if (uimplant && uimplant->oartifact == ART_HAXOR_AND_SLASH) {
+	curse(uimplant);
+	uimplant->hvycurse = TRUE;
+    }
+
     if (uimplant && uimplant->oartifact == ART_RNG_S_EXTRAVAGANZA && uimplant->spe == 0) {
 		if (!rn2(2)) uimplant->spe = rnd(9);
 		else uimplant->spe = -(rnd(9));

@@ -1224,6 +1224,7 @@ newsym(x,y)
 		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
 		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
@@ -1374,6 +1375,7 @@ newsym(x,y)
 		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
 		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
@@ -1694,6 +1696,7 @@ newsymX(x,y)
 		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
 		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
@@ -1844,6 +1847,7 @@ newsymX(x,y)
 		(Role_if(PM_ACTIVISTOR) && type_is_pname(mon->data) && uwep && is_quest_artifact(uwep) ) ||
 		(uamul && uamul->otyp == AMULET_OF_POISON_WARNING && poisonous(mon->data) ) ||
 		(uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) ||
+		(powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) ||
 		(Role_if(PM_PALADIN) && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_PALADIN && is_demon(mon->data) ) ||
 		(uarms && uarms->oartifact == ART_SHIELD_OF_THE_CHEVALIER__W && is_demon(mon->data) ) ||
@@ -3872,6 +3876,7 @@ struct monst *mon;
 	if (Race_if(PM_CORTEX) && unsolid(mon->data) ) return TRUE;
 	if (Race_if(PM_CORTEX) && nolimbs(mon->data) ) return TRUE;
 	if (uamul && uamul->otyp == AMULET_OF_OWN_RACE_WARNING && your_race(mon->data) ) return TRUE;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT && (poisonous(mon->data) || your_race(mon->data) || is_covetous(mon->data) || mon->egotype_covetous ) ) return TRUE;
 	if (uamul && uamul->otyp == AMULET_OF_COVETOUS_WARNING && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_THAT_GIVES_IT_NOT && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;
 	if (uarmh && uarmh->oartifact == ART_HEARING_EAR && (is_covetous(mon->data) || mon->egotype_covetous) ) return TRUE;

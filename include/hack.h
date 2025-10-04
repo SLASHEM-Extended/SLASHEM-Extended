@@ -312,7 +312,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define isangbander (Race_if(PM_ANGBANDER) || flags.hybridangbander)
 #define isaquarian (Race_if(PM_AQUATIC_MONSTER) || flags.hybridaquarian)
 #define iscurser (Race_if(PM_CURSER) || flags.hybridcurser)
-#define ishaxor (Race_if(PM_HAXOR) || flags.hybridhaxor)
+#define ishaxor (Race_if(PM_HAXOR) || flags.hybridhaxor || (!u.dungeongrowthhack && !program_state.bonesdo && uimplant && uimplant->oartifact == ART_HAXOR_AND_SLASH) )
 #define ishomicider (Race_if(PM_HOMICIDER) || flags.hybridhomicider || (!u.dungeongrowthhack && !program_state.bonesdo && autismweaponcheck(ART_TRAP_EM_LONG)) )
 #define issuxxor (Race_if(PM_SUXXOR) || flags.hybridsuxxor)
 #define iswarper (Race_if(PM_WARPER) || flags.hybridwarper)
@@ -356,7 +356,7 @@ NEARDATA extern coord bhitpos;	/* place where throw or zap hits or stops */
 #define isstunfish (Race_if(PM_STUNNED_LIKE_A_FISH) || flags.hybridstunfish)
 #define iskillfiller (Race_if(PM_KILLFILLER) || flags.hybridkillfiller)
 #define isbadstatter (Race_if(PM_BADSTATTER) || flags.hybridbadstatter)
-#define isdroughter (Race_if(PM_DROUGHTER) || flags.hybriddroughter || (!u.dungeongrowthhack && !program_state.bonesdo && uarm && uarm->oartifact == ART_PORKMAN_S_OLD_VERSION) )
+#define isdroughter (Race_if(PM_DROUGHTER) || flags.hybriddroughter || (!u.dungeongrowthhack && !program_state.bonesdo && uimplant && uimplant->oartifact == ART_HORRIBLE_LATEGAME) || (!u.dungeongrowthhack && !program_state.bonesdo && uarm && uarm->oartifact == ART_PORKMAN_S_OLD_VERSION) )
 #define isvanillaoid (Race_if(PM_VANILLAOID) || flags.hybridvanillaoid)
 
 #define isdemagogue (Role_if(PM_DEMAGOGUE) || u.demagoguerecursion)

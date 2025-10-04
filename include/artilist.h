@@ -25420,6 +25420,158 @@ A("Inkscover",				PLAIN_ROBE, /* randart robe, material becomes INKA when genera
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
 
+A("O saccado",				SPE_MAGICTORCH, /* randart spellbook, reading it trains spirituality by 100 and halves your prayer timeout (if it was 1000 or less to begin with, it's set to 0) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Torsten's Feminineness",				IMPLANT_OF_WANNABE, /* if you're male, the high heels skill trains twice as fast and all the specific high heel skills train five times as fast; if you're in a form without hands, you can wear all kinds of high heels without penalties even if you don't have the skills for them */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Covid does not exist",				IMPLANT_OF_LINES, /* +20% increased HP caps for corona, or +100% if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Marian's Purple Likeness",				IMPLANT_OF_ANTHRAX, /* can be invoked to fire a strength-12 poison blast in a direction of your choice; if you're in a form without hands, it additionally fires strength-12 poison blasts in all directions */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Flickering of Ozone",				IMPLANT_OF_SUNLIGHT, /* putting it on sets the weather to "sunny", and weather changes always become sunny weather; if in a form without hands, double see invisible and suppresses the ghost world nastytrap effect */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Horrible Lategame",				IMPLANT_OF_ATTRITION, /* acts like droughter mode; if in a form without hands, 1 in 10000 chance per turn to learn a wonderspell and a separate 1 in 10000 chance per turn to increase the level of a random technique by one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("At Your Service",				IMPLANT_OF_CREDIT, /* shop services don't disappear when you buy them; if in a form without hands, they cost 80% of the regular price */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Nienna's Feeling",				IMPLANT_OF_SORROW, /* halves sanity-increasing effects, or reduces them to 20% if in a form without hands (but not below 1) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Haxor-and-Slash",				IMPLANT_OF_CARNAGE, /* haxor mode when worn, heavily autocurses; if in a form without hands, double magic find */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8888L ),
+
+A("Eyesight of the 'e'",				IMPLANT_OF_BEHOLDING, /* infravision, and if you're in a form without hands, the invoke magic maps the dungeon level like the scroll */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Phoenix's Clean Streak",				IMPLANT_OF_FINGER_POINTING, /* can be invoked to reduce the maximum HP of all hostile monsters in a 9x9 area around you by 2; if in a form without hands, it works on the entire dungeon level and reduces their max HP by 5 */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Dynamohack When",				IMPLANT_OF_GALVANIZATION, /* lightning immunity; unless you're in a form without hands, you can't have reflection */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Fake Bonus Room",				IMPLANT_OF_TEN_THOUSAND_THINGS, /* turn limitation effect, 1 in 10000 chance per turn (if timebasedlowerchance is true) to spawn rn1(5,5) item masters on the current dungeon level; if in a form without hands, it spawns rn1(20,20) of them */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Genderequalness",				IMPLANT_OF_QUOTA, /* +9 spawn freq for M2_MALE and +10 for M2_FEMALE; if you're in a form without hands, sickness resistance and halved duration for feminism traps triggered by you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Buggedness of the company",				IMPLANT_OF_BLIZZARD, /* can be invoked to use the blizzard technique; if in a form without hands, it also grants cold immunity */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Live at Reading",				IMPLANT_OF_NIRVANA, /* 90% chance to resist AD_SOUN and MS_SOUND effects; if in a form without hands, double stun resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Great Harbor Wave",				IMPLANT_OF_TSUNAMI, /* dungeon can get flooded like the fjorde role; if in a form without hands, unbreathing and protects your inventory from getting wet */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("It's everything in the city",				IMPLANT_OF_RESPECT, /* 20% chance for chaotic-aligned monsters to spawn peaceful, or 50% if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Feelbribe",				IMPLANT_OF_TRIBUTE, /* 1 in 5000 chance per turn to get bribe money; if in a form without hands, additional 1 in 3000 chance to get more */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Three Field Economy",				IMPLANT_OF_IRRIGATION, /* full nutrients, and double version of that if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3333L ),
+
+A("Ancourageous",				IMPLANT_OF_GRACE, /* +3 DEX, or +10 if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Kop Station Time",				IMPLANT_OF_DISPATCH, /* your cop wanted level is always at least 5000 while wearing it; if in a form without hands, monsters who are coaligned with you have 33% chance of spawning peaceful */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Meldam-percs",				IMPLANT_OF_CRAFTSMANSHIP, /* +1 increase damage, or +2 if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Thorne of Quilt",				IMPLANT_OF_CREMATION, /* monsters who attack you in melee take d4 damage, or d16 if you're in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Gwen's Trauma",				IMPLANT_OF_SEARING, /* +3 STR; if in a form without hands, exp boost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Abraded Fully",				IMPLANT_OF_EROSION, /* spawns thoroughly eroded (both types of erosion); unless you're in a form without hands, it becomes thoroughly eroded again each turn you wear it in case you try to repair it */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 100L ),
+
+A("Sexual Pleasure",				IMPLANT_OF_JOY, /* can't resist AD_SSEX effects; if in a form without hands, higher chance of good results */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Useless Stat",				IMPLANT_OF_HONOR, /* +5 CHA, or +10 if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Payback to them",				IMPLANT_OF_VENGEANCE, /* double attacks; if in a form without hands, adds extra speed like double version of real speed devil */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("is lightningen",				IMPLANT_OF_BLITZEN, /* attacking in melee has 1 in 10 chance of firing a (gushlevel/2) blast of lightning in the direction of your attack; if in a form without hands, it also grants lightning immunity */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("FullPower",				IMPLANT_OF_ABSORPTION, /* resist fire, cold and shock; if in a form without hands, you have the double version of those resistances and also magic resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Multifunctional Cell",				IMPLANT_OF_REPLENISHING, /* is_multigen items can get rnd(otmp->quan) extra ammo like you were in the late game; if you're in a form without hands, it adds otmp->quan without the randomizing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Inglas Range",				IMPLANT_OF_PUNCTURING, /* improves range of beams like england mode; if in a form without hands, +1 multishot for all ranged weapons */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Autoaim Hand",				IMPLANT_OF_TRANSCENDENCE, /* +3 increase accuracy, or +10 if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Jane's Body Size",				IMPLANT_OF_STATURE, /* jane trap effect, if in a form without hands it also gives undead warning and double ESP */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Didi's Leg Painting",				IMPLANT_OF_PROSPERING, /* +1 STR and CON, if in a form without hands you have free action and discount action; if you're specifically in a form where "nohands" is true, you never misengrave */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Breahna's Garble",				IMPLANT_OF_CRUELTY, /* double uninformation effect, +2 increase damage, +10% critical hit chance, and if you're in a form without hands you get an additional +8 increased melee damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Imani's Point",				IMPLANT_OF_EVISCERATION, /* double manuela trap effect, squares you walk over automatically become lit, if you're in a form without hands you also see all poisonous and covetous monsters as well as those that are of the same race as you and have +5 increased accuracy and 10% failuncap-like better spellcasting chances and all percentage-based healing effects for your char are doubled plus whenever you get such a healing effect you gain 6 movement energy */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

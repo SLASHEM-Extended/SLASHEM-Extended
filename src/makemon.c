@@ -28157,7 +28157,9 @@ register int	mmflags;
 	}
 
 	if (u.uprops[GHOST_WORLD].extrinsic || (uarmc && uarmc->oartifact == ART_HAUNTNIGHT) || (uarmh && uarmh->oartifact == ART_RADAR_NOT_WORKING) || GhostWorld || have_ghostlystone() || autismweaponcheck(ART_SCHWILLSCHWILLSCHWILLSCHWI) ) {
-		mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
+		if (!(powerfulimplants() && uimplant && uimplant->oartifact == ART_FLICKERING_OF_OZONE) ) {
+			mtmp->minvis = mtmp->perminvis = mtmp->minvisreal = 1;
+		}
 	}
 
 	if (Race_if(PM_PLAYER_NIBELUNG) && !rn2(20)) {
@@ -29444,6 +29446,8 @@ loopback:
 		if (ct > 0 && (Race_if(PM_SINNER) && dmgtype(ptr, AD_SIN) )) ct += 2;
 		if (ct > 0 && (Race_if(PM_SPIRIT) && dmgtype(ptr, AD_AGGR) )) ct += 6;
 		if (ct > 0 && (Role_if(PM_FEMINIST) && is_male(ptr) )) ct += 2;
+		if (ct > 0 && (uimplant && uimplant->oartifact == ART_GENDEREQUALNESS && is_male(ptr) )) ct += 9;
+		if (ct > 0 && (uimplant && uimplant->oartifact == ART_GENDEREQUALNESS && is_female(ptr) )) ct += 10;
 		if (ct > 0 && (Role_if(PM_FEMINIST) && attacktype(ptr, AT_LASH) )) ct += 3;
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_FART_NORMAL) )) ct += 20;
 		if (ct > 0 && (Role_if(PM_GANG_SCHOLAR) && (ptr->msound == MS_FART_QUIET) )) ct += 20;
@@ -31058,6 +31062,8 @@ int     spc;
 		if ((Race_if(PM_SINNER) && dmgtype(&mons[last], AD_SIN) )) num += 2;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[last], AD_AGGR) )) num += 6;
 		if ((Role_if(PM_FEMINIST) && is_male(&mons[last]) )) num += 2;
+		if ((uimplant && uimplant->oartifact == ART_GENDEREQUALNESS && is_male(&mons[last]) )) num += 9;
+		if ((uimplant && uimplant->oartifact == ART_GENDEREQUALNESS && is_female(&mons[last]) )) num += 10;
 		if ((Role_if(PM_FEMINIST) && attacktype(&mons[last], AT_LASH) )) num += 3;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_FART_NORMAL) )) num += 20;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[last].msound == MS_FART_QUIET) )) num += 20;
@@ -32316,6 +32322,8 @@ int     spc;
 		if ((Race_if(PM_SINNER) && dmgtype(&mons[first], AD_SIN) )) num -= 2;
 		if ((Race_if(PM_SPIRIT) && dmgtype(&mons[first], AD_AGGR) )) num -= 6;
 		if ((Role_if(PM_FEMINIST) && is_male(&mons[first]) )) num -= 2;
+		if ((uimplant && uimplant->oartifact == ART_GENDEREQUALNESS && is_male(&mons[first]) )) num -= 9;
+		if ((uimplant && uimplant->oartifact == ART_GENDEREQUALNESS && is_female(&mons[first]) )) num -= 10;
 		if ((Role_if(PM_FEMINIST) && attacktype(&mons[first], AT_LASH) )) num -= 3;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_FART_NORMAL) )) num -= 20;
 		if ((Role_if(PM_GANG_SCHOLAR) && (mons[first].msound == MS_FART_QUIET) )) num -= 20;
@@ -34116,6 +34124,10 @@ register struct permonst *ptr;
 	if (uarm && uarm->oartifact == ART_CLANGFRIEND && is_dwarf(ptr)) return TRUE;
 
 	if (uarmf && uarmf->oartifact == ART_NANCY_S_ASSISTANCE && (uarmf->oeroded || uarmf->oeroded2) && ptr->maligntyp < 0 && !rn2(4)) return TRUE;
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_KOP_STATION_TIME && !rn2(3) && (sgn(u.ualign.type) == sgn(ptr->maligntyp) ) ) return TRUE;
+
+	if (uimplant && uimplant->oartifact == ART_IT_S_EVERYTHING_IN_THE_CIT && ptr->maligntyp < 0 && !rn2(powerfulimplants() ? 2 : 5) ) return TRUE;
 
 	if (is_pokemon(ptr) && rn2(5) && uarmc && itemhasappearance(uarmc, APP_POKE_MONGO_CLOAK) ) return TRUE;
 

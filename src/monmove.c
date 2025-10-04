@@ -1974,7 +1974,7 @@ newbossSING:
 		}
 	}
 
-	if ( (monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
+	if ( (monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) && !(uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) && !rn2(20) && !um_dist(mtmp->mx, mtmp->my, 1) && !mtmp->mpeaceful)
 	    m_respond(mtmp);
 	if (mdat == &mons[PM_MEDUSA] && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && couldsee(mtmp->mx, mtmp->my))
 	    m_respond(mtmp);
@@ -3686,13 +3686,13 @@ toofar:
 
 	    }
 
-	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(50) && flags.female && mtmp->female) {
+	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(50) && flags.female && mtmp->female) {
 		verbalize("haha look at that bitch with those silly heels");
 		if (!rn2(3)) verbalize("she can't even walk in them, lol");
 		adjattrib(A_CHA, -1, FALSE, TRUE);
 	    }
 
-	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(100) && !flags.female && !mtmp->female) {
+	    if (inrange && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !mtmp->mpeaceful && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && humanoid(mtmp->data) && !rn2(100) && !flags.female && !mtmp->female) {
 		verbalize("lol look at that fag over there in those ridiculous heels");
 		if (!rn2(5)) verbalize("if he could at least walk in them, but nope...");
 		adjattrib(A_CHA, -1, FALSE, TRUE);

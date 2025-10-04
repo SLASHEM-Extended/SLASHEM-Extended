@@ -1078,6 +1078,7 @@ register boolean clumsy;
 	if (PlayerInColumnarHeels && !rn2((flags.female) ? 200 : 50) ) {
 		u.columnarskill++;
 		if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
+		if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.columnarskill += 4;
 		if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
 		if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");

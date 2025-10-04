@@ -3381,6 +3381,13 @@ struct obj *book2;
 		lesshungry(500);
 	}
 
+	if (book2->oartifact == ART_O_SACCADO) {
+		use_skill(P_SPIRITUALITY, 100);
+		if (u.ublesscnt < 1001) u.ublesscnt = 0;
+		else u.ublesscnt /= 2;
+		You_feel("the gods watching over you.");
+	}
+
 	if (book2->oartifact == ART_ANGEL_LACK_BOWAY) {
 
 		u.aggravation = 1;
@@ -16826,6 +16833,7 @@ int spell;
 
 	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) chance += 5;
 	if (uarm && uarm->oartifact == ART_ROBXOR_ZSCH) chance += 5;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT) chance += 10;
 	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
 	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;

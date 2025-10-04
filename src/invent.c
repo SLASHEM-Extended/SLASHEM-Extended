@@ -34780,6 +34780,82 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: is made of inka."); break;
 				case ART_ORANI_IS_SOMEBODY:
 					pline("Artifact specs: reading it summons a familiar."); break;
+				case ART_O_SACCADO:
+					pline("Artifact specs: reading it trains the spirituality skill a bunch and reduces your prayer timeout, allowing you to pray again sooner."); break;
+				case ART_TORSTEN_S_FEMININENESS:
+					pline("Artifact specs: if you're male, it allows you to train high heels and the various specific high heel skills more quickly. If you're in a form without hands, you can also wear high heels without penalties even if you lack the corresponding skills."); break;
+				case ART_COVID_DOES_NOT_EXIST:
+					pline("Artifact specs: boosts your HP caps for corona effects. If you are in a form without hands, the bonus is much greater."); break;
+				case ART_MARIAN_S_PURPLE_LIKENESS:
+					pline("Artifact specs: can be invoked to fire a powerful poison blast in a direction of your choice. If you are in a form without hands, it additionally fires poison beams in all directions."); break;
+				case ART_FLICKERING_OF_OZONE:
+					pline("Artifact specs: wearing it forces sunny weather. If you are in a form without hands, you have double see invisible and the 'ghost world' nastytrap effect is suppressed."); break;
+				case ART_HORRIBLE_LATEGAME:
+					pline("Artifact specs: while wearing it, items drop a lot less often. If you're in a form without hands, you may randomly learn spells or have the levels of your techniques boosted over time."); break;
+				case ART_AT_YOUR_SERVICE:
+					pline("Artifact specs: while wearing it, shopkeeper services are no longer used up when bought. If you're in a form without hands, those services also cost less money."); break;
+				case ART_NIENNA_S_FEELING:
+					pline("Artifact specs: reduces the amount of sanity you get when hit by a sanity-increasing effect. If you're in a form without hands, the reduction is bigger."); break;
+				case ART_HAXOR_AND_SLASH:
+					pline("Artifact specs: makes the game run on steroids when worn and heavily autocurses. If you're in a form without hands, it also grants double magic find bonus."); break;
+				case ART_EYESIGHT_OF_THE__E_:
+					pline("Artifact specs: infravision when worn, and if you're in a form without hands, it can be invoked to map the current dungeon level."); break;
+				case ART_PHOENIX_S_CLEAN_STREAK:
+					pline("Artifact specs: can be invoked to reduce the maximum HP of nearby enemies. If you're in a form without hands, the invocation effect works on all hostile monsters on the current dungeon level and also reduces their HP by more."); break;
+				case ART_DYNAMOHACK_WHEN:
+					pline("Artifact specs: lightning immunity when worn, but unless you're in a form without hands, it prevents you from having reflection."); break;
+				case ART_FAKE_BONUS_ROOM:
+					pline("Artifact specs: turn limitation effect and increases the chance of you finding randomly generated loot; if you're in a form without hands, the loot increase is more significant."); break;
+				case ART_GENDEREQUALNESS:
+					pline("Artifact specs: wearing it increases the odds that monsters of a specific gender are spawned, and if you're in a form without hands, it also grants sickness resistance and halved feminism trap duration."); break;
+				case ART_BUGGEDNESS_OF_THE_COMPANY:
+					pline("Artifact specs: can be invoked to perform the blizzard technique, even if you don't have that one. If you're in a form without hands, it also grants cold immunity."); break;
+				case ART_LIVE_AT_READING:
+					pline("Artifact specs: makes you highly resistant to sound-based attacks when worn, and if you're in a form without hands it also grants double stun resistance."); break;
+				case ART_GREAT_HARBOR_WAVE:
+					pline("Artifact specs: while wearing it, the dungeon can randomly get flooded. If you're in a form without hands, it also grants unbreathing and protects your inventory from water damage."); break;
+				case ART_IT_S_EVERYTHING_IN_THE_CIT:
+					pline("Artifact specs: while wearing it, chaotic-aligned monsters sometimes spawn peaceful. If you're in a form without hands, the odds of those monsters being peaceful are much bigger."); break;
+				case ART_FEELBRIBE:
+					pline("Artifact specs: while wearing it, you randomly gain money. If you're in a form without hands, this happens more often."); break;
+				case ART_THREE_FIELD_ECONOMY:
+					pline("Artifact specs: full nutrients when worn, and if you're in a form without hands, you get the double version of that property."); break;
+				case ART_ANCOURAGEOUS:
+					pline("Artifact specs: improves your dexterity by 3 when worn, or 10 if in a form without hands."); break;
+				case ART_KOP_STATION_TIME:
+					pline("Artifact specs: while wearing it, you're always chased by the kops; if you're in a form without hands, coaligned monsters have a chance of spawning peaceful."); break;
+				case ART_MELDAM_PERCS:
+					pline("Artifact specs: boosts your damage output by one, or two if you're in a form without hands."); break;
+				case ART_THORNE_OF_QUILT:
+					pline("Artifact specs: deals thorns damage to monsters who attack you in melee. If you're in a form without hands, this damage is much stronger."); break;
+				case ART_GWEN_S_TRAUMA:
+					pline("Artifact specs: +3 strength when worn, and if you're in a form without hands it also grants experience boost."); break;
+				case ART_ABRADED_FULLY:
+					pline("Artifact specs: is thoroughly eroded. Unless you're in a form without hands, trying to repair it will be futile."); break;
+				case ART_SEXUAL_PLEASURE:
+					pline("Artifact specs: while wearing it, you can't resist foocubus advances. If you're in a form without hands, your odds of coming out on top are bigger."); break;
+				case ART_USELESS_STAT:
+					pline("Artifact specs: +5 charisma when worn, or +10 if you're in a form without hands."); break;
+				case ART_PAYBACK_TO_THEM:
+					pline("Artifact specs: double attacks when worn, and if you're in a form without hands, you also move faster."); break;
+				case ART_IS_LIGHTNINGEN:
+					pline("Artifact specs: while wearing it, your melee attacks can occasionally fire a lightning bolt; if you're in a form without hands, you also have lightning immunity."); break;
+				case ART_FULLPOWER:
+					pline("Artifact specs: fire, cold and shock resistance when worn. If you're in a form without hands, you have the double version of those resistances, and also magic resistance."); break;
+				case ART_MULTIFUNCTIONAL_CELL:
+					pline("Artifact specs: while wearing it, weapons that spawn in a stack will occasionally spawn with bigger stack sizes. The amount of extra ammo is bigger if you're in a form without hands."); break;
+				case ART_INGLAS_RANGE:
+					pline("Artifact specs: while wearing it, beams have bigger range. This applies both to beams fired by you and the ones fired by monsters. If you're in a form without hands, you additionally have +1 multishot with all ranged weapons."); break;
+				case ART_AUTOAIM_HAND:
+					pline("Artifact specs: +3 increase accuracy when worn, or +10 if you're in a form without hands."); break;
+				case ART_JANE_S_BODY_SIZE:
+					pline("Artifact specs: jane trap effect when worn, and if you're in a form without hands, undead warning and double ESP."); break;
+				case ART_DIDI_S_LEG_PAINTING:
+					pline("Artifact specs: +1 strength and constitution when worn. If you're in a handicapped form, it grants free action and discount action, and if your current form specifically has the 'lacks hands' flag, your engravings will never fail."); break;
+				case ART_BREAHNA_S_GARBLE:
+					pline("Artifact specs: double uninformation and +2 increased damage when worn, as well as 10%% better critical hit chances. If you're in a form without hands, another +8 to your melee damage is added on top."); break;
+				case ART_IMANI_S_POINT:
+					pline("Artifact specs: double manuela trap effect when worn and lights up tiles you walk over. If you're in a form without hands, it also displays poisonous and covetous monsters as well as all those who are the same race as you, and gives +5 increase accuracy, slightly better spellcasting chances, and boosts effects that heal you as well as giving extra movement energy whenever you do get healed."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

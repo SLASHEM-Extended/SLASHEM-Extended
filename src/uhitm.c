@@ -883,6 +883,7 @@ register struct monst *mtmp;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) tmp += 5;
 	if (uarmc && uarmc->oartifact == ART_ENEMIES_SHALL_LAUGH_TOO) tmp += 10;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
+	if (uimplant && uimplant->oartifact == ART_AUTOAIM_HAND) tmp += (powerfulimplants() ? 10 : 3);
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
 	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;
 	if (uright && uright->oartifact == ART_HEXTROSE) tmp += 6;
@@ -891,6 +892,7 @@ register struct monst *mtmp;
 	if (uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 2;
 	if (uright && uright->oartifact == ART_CERBERUS_BAND) tmp += 3;
 	if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) tmp += 3;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT) tmp += 5;
 	if (ublindf && ublindf->oartifact == ART_MEANINGFUL_CHALLENGE) tmp += 2;
 	if (uleft && uleft->oartifact == ART_CHERRYTAPPER) tmp += 10;
 	if (uright && uright->oartifact == ART_CHERRYTAPPER) tmp += 10;
@@ -4416,8 +4418,11 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) tmp += 2;
+		if (powerfulimplants() && !thrown && uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) tmp += 8;
 		if (uamul && uamul->oartifact == ART_PLAYING_QUAKE) tmp += 3;
 		if (uarmc && uarmc->oartifact == ART_SELVERFEND) tmp += 1;
+		if (uimplant && uimplant->oartifact == ART_MELDAM_PERCS) tmp += (powerfulimplants() ? 2 : 1);
 		if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 		if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
 		if (!thrown && uleft && uleft->oartifact == ART_BUFFIST) tmp += 2;
@@ -11867,6 +11872,14 @@ bladeangerdone2:
 					if (DEADMONSTER(mon)) return FALSE;
 				}
 
+				if (uimplant && uimplant->oartifact == ART_IS_LIGHTNINGEN && !rn2(10) && (u.dx || u.dy) && !u.dz) {
+					int lightningstrength = GushLevel / 2;
+					if (lightningstrength < 1) lightningstrength = 1;
+					buzz(25, lightningstrength, u.ux, u.uy, u.dx, u.dy);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
 				if (uleft && uleft->oartifact == ART_NARYA && !rn2(20) && (u.dx || u.dy) && !u.dz) {
 					buzz(21, rnd(4), u.ux, u.uy, u.dx, u.dy);
 					if (!mon) return FALSE;
@@ -12944,6 +12957,8 @@ boolean ranged;
 		break;
 
 	    case AD_SOUN:
+		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
+
 		pline("%s screams terribly at your attack, and the noise seems to blow your ears!", Monnam(mon) );
 		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);

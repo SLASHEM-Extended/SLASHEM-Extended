@@ -2944,6 +2944,7 @@ peacedisplace:
 			u.columnarturns = 0;
 			u.columnarskill++;
 			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI) u.columnarskill += 2;
+			if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) u.columnarskill += 4;
 			if (u.columnarskill == 20) You("are now more skilled in type 5: columnar heels.");
 			if (u.columnarskill == 160) You("are now more skilled in type 5: columnar heels.");
 			if (u.columnarskill == 540) You("are now more skilled in type 5: columnar heels.");
@@ -5750,7 +5751,7 @@ int k_format; /* WAC k_format is an int */
 	}
 #endif
 
-	if (u.uprops[TURNLIMITATION].extrinsic || (uarmh && uarmh->oartifact == ART_TEJUS__VACANCY) || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
+	if (u.uprops[TURNLIMITATION].extrinsic || (uarmh && uarmh->oartifact == ART_TEJUS__VACANCY) || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uimplant && uimplant->oartifact == ART_FAKE_BONUS_ROOM) || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
 
 		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;

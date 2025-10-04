@@ -1214,6 +1214,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_KILL_KILL_PIANO && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_EEEP && !rn2(10)) willcriticalhit = TRUE;
 	if (u.tempcritical10 && !rn2(10)) willcriticalhit = TRUE;
+	if (uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE && !rn2(10)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_UNWIELDYTINE && flags.female && !rn2(20)) willcriticalhit = TRUE;
 	if (uwep && (objects[(uwep)->otyp].oc_material == MT_GREEN_STEEL) && !rn2(20)) willcriticalhit = TRUE;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA && !rn2(20)) willcriticalhit = TRUE;
@@ -7211,6 +7212,13 @@ int degree;
 		if (skill == P_WEDGE_HEELS) degree *= 2;
 		if (skill == P_CONE_HEELS) degree *= 2;
 		if (skill == P_BLOCK_HEELS) degree *= 2;
+	}
+	if (uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && !flags.female) {
+		if (skill == P_HIGH_HEELS) degree *= 2;
+		if (skill == P_STILETTO_HEELS) degree *= 5;
+		if (skill == P_WEDGE_HEELS) degree *= 5;
+		if (skill == P_CONE_HEELS) degree *= 5;
+		if (skill == P_BLOCK_HEELS) degree *= 5;
 	}
 	if (uwep && uwep->oartifact == ART_GEOLOGY_RULES_THE_WORLD && skill == P_PICK_AXE) degree *= 3;
 	if (uarmc && uarmc->oartifact == ART_FINDING_THYSELF && skill == P_SPIRITUALITY) degree *= 5;

@@ -1230,7 +1230,7 @@ moveloop()
 				if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
-				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
+				if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 					moveamt /= 2;
 
 				if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
@@ -1245,7 +1245,7 @@ moveloop()
 				if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
 					moveamt /= 2;
 
-				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
+				if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 					moveamt /= 2;
 
 				if (Race_if(PM_PLAYER_ZRUTY) && !rn2(3) && moveamt > 1)
@@ -1747,7 +1747,7 @@ moveloop()
 			if (Race_if(PM_SPIRIT) && !rn2(8) && moveamt > 1) /* Spirits too are slower sometimes. */
 				moveamt /= 2;
 
-			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
+			if (PlayerInStilettoHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_STILETTO_HEELS) == P_ISRESTRICTED) && !rn2(flags.female ? 24 : 20) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uwep && uwep->otyp == FALCHION && !rn2(8) && moveamt > 1)
@@ -1762,7 +1762,7 @@ moveloop()
 			if (uarmf && uarmf->otyp == OVER_SHOES && !(is_drowningpool(u.ux, u.uy)) && !rn2(8) && moveamt > 1 && u.umoved)
 				moveamt /= 2;
 
-			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
+			if (PlayerInColumnarHeels && u.umoved && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && !rn2(8) && moveamt > 1)
 				moveamt /= 2;
 
 			if (uarmf && uarmf->oartifact == ART_SLOWING && !rn2(4) && moveamt > 1)
@@ -2292,6 +2292,7 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_PAYBACK_TO_THEM && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_DAEMEL && !rn2(10) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_MAMBO_NUMBER_NINE && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2703,6 +2704,10 @@ moveloop()
 			}
 		}
 
+		if (uimplant && uimplant->oartifact == ART_ABRADED_FULLY && !powerfulimplants()) {
+			uimplant->oeroded = uimplant->oeroded2 = 3;
+		}
+
 		if (uarmc && uarmc->oartifact == ART_DEEP_REJUVE && !rn2(2000)) {
 			int i, ii, lim;
 
@@ -2718,6 +2723,19 @@ moveloop()
 				if(++i >= A_MAX) i = 0;
 			}
 
+		}
+
+		if (uimplant && uimplant->oartifact == ART_FAKE_BONUS_ROOM && !rn2(10000)) {
+			randsp = rn1(5,5);
+			if (powerfulimplants()) randsp = rn1(20,20);
+
+			if (wizard || !rn2(10)) pline(FunnyHallu ? "You feel that someone reseeded the RNG!" : "You feel that someone was busy hiding treasure!");
+
+			for (i = 0; i < randsp; i++) {
+				if (!enexto(&cc, u.ux, u.uy, (struct permonst *)0) ) continue;
+
+				if (timebasedlowerchance()) (void) makemon(&mons[PM_ITEM_MASTER], 0, 0, NO_MM_FLAGS);
+			}
 		}
 
 		if (u.tempmonitemtrapsp) {
@@ -2756,6 +2774,15 @@ moveloop()
 		if (u.temprandgoodbadeffects && !rn2(500)) {
 			if (rn2(2)) goodeffect();
 			else badeffect();
+		}
+
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HORRIBLE_LATEGAME) {
+			if (!rn2(10000)) {
+				wonderspell(-1, 0);
+			}
+			if (!rn2(10000)) {
+				techlevelup();
+			}
 		}
 
 		if (FemtrapActiveSabrina) {
@@ -3036,6 +3063,8 @@ moveloop()
 				setustuck(0);
 			}
 		}
+
+		if (uimplant && uimplant->oartifact == ART_KOP_STATION_TIME && u.copwantedlevel < 5000) u.copwantedlevel = 5000;
 
 		if (uarmf && uarmf->oartifact == ART_CLIMATE_PROTECTION_IS_ERRI && u.copwantedlevel < 1000) {
 			u.copwantedlevel += 1000;
@@ -4208,6 +4237,11 @@ moveloop()
 		}
 
 		if (uarmc && uarmc->oartifact == ART_SKI_CAN_CERIUM_FORM && u.currentweather != WEATHER_SUNNY) {
+			u.currentweather = WEATHER_SUNNY;
+			tell_main_weather();
+		}
+
+		if (uimplant && uimplant->oartifact == ART_FLICKERING_OF_OZONE && u.currentweather != WEATHER_SUNNY) {
 			u.currentweather = WEATHER_SUNNY;
 			tell_main_weather();
 		}
@@ -8240,6 +8274,8 @@ newbossJANI:
 
 		if (uarm && uarm->oartifact == ART_SAIL_IN_THE_WIND && is_drowningpool(u.ux, u.uy) ) levl[u.ux][u.uy].lit = 1;
 
+		if (uimplant && uimplant->oartifact == ART_IMANI_S_POINT) levl[u.ux][u.uy].lit = 1;
+
 		if (ublindf && ublindf->oartifact == ART_IT_BE_NITE) {
 			int ulx, uly;
 			for (ulx = 1; ulx < (COLNO); ulx++)
@@ -9713,6 +9749,25 @@ newbossRLR:
 				pline("Oh %s, there's %s flooding on this sub level!", rn2(2) ? "damn" : "great", rn2(2) ? "a" : "another");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
+		}
+
+		if (uimplant && uimplant->oartifact == ART_GREAT_HARBOR_WAVE && !rn2(4000)) {
+			int madepoolQ = 0;
+
+			do_clear_areaX(u.ux, u.uy, rno(10), do_fjordefloodingf, (void *)&madepoolQ);
+			if (madepoolQ)
+				pline("Oh %s, there's %s flooding on this sub level!", rn2(2) ? "damn" : "great", rn2(2) ? "a" : "another");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+
+		}
+
+		if (uimplant && uimplant->oartifact == ART_FEELBRIBE && !rn2(5000)) {
+			u.ugold += rnz(100);
+			pline(FunnyHallu ? "Bribe money! Yay!" : "Your budget is extended!");
+		}
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FEELBRIBE && !rn2(3000)) {
+			u.ugold += rnz(100);
+			pline(FunnyHallu ? "Bribe money! Yay!" : "Your budget is extended!");
 		}
 
 		if (uwep && uwep->oartifact == ART_FLAGELLATOR && !rn2(5000)) {

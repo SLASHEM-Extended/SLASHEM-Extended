@@ -6022,7 +6022,7 @@ shk_identify(slang, shkp)
 
 	/* evil patch idea: buying the same service many times will eventually cause the shk to run out. --Amy */
 
-	if (!rn2(10)) {
+	if (!rn2(10) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 		if (ident_type == 'b') ESHK(shkp)->services &= ~SHK_ID_BASIC;
 		if (ident_type == 'p') ESHK(shkp)->services &= ~SHK_ID_PREMIUM;
 	}
@@ -6127,7 +6127,7 @@ shk_uncurse(slang, shkp)
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-	if (!rn2(5)) { /* curses should not be meaningless --Amy */
+	if (!rn2(5) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) { /* curses should not be meaningless --Amy */
 		ESHK(shkp)->services &= ~SHK_UNCURSE;
 	}
 
@@ -6248,7 +6248,7 @@ shk_bless(slang, shkp)
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-	if (!rn2(5)) {
+	if (!rn2(5) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 		ESHK(shkp)->services &= ~SHK_BLESS;
 	}
 
@@ -6335,7 +6335,7 @@ shk_appraisal(slang, shkp)
 	/* what, you think you can just easily appraise the charges in a tool? ha! --Amy */
 	if (obj && obj->oclass == TOOL_CLASS && !(is_weptool(obj) ) ) {
 		charge *= 5;
-		if (!rn2(111)) {
+		if (!rn2(111) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 			ESHK(shkp)->services &= ~SHK_APPRAISE;
 		}
 	}
@@ -6364,7 +6364,7 @@ shk_appraisal(slang, shkp)
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-	if (!rn2(1000)) {
+	if (!rn2(1000) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 		ESHK(shkp)->services &= ~SHK_APPRAISE;
 	}
 
@@ -6470,7 +6470,7 @@ shk_wand_appraisal(slang, shkp)
 	/* Go ahead? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-	if (!rn2(100)) {
+	if (!rn2(100) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 		ESHK(shkp)->services &= ~SHK_APPRAISE;
 	}
 
@@ -6596,7 +6596,7 @@ struct monst *shkp;
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(10)) {
+		if (!rn2(10) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_A;
 		}
 
@@ -6632,7 +6632,7 @@ struct monst *shkp;
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(50)) {
+		if (!rn2(50) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_B;
 		}
 
@@ -6684,7 +6684,7 @@ struct monst *shkp;
 
 	    if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(100)) {
+		if (!rn2(100) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_C;
 		}
 
@@ -6757,7 +6757,7 @@ shk_armor_works(slang, shkp)
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(10)) {
+		if (!rn2(10) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_A;
 		}
 
@@ -6790,7 +6790,7 @@ shk_armor_works(slang, shkp)
 
 		if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-		if (!rn2(50)) {
+		if (!rn2(50) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 			ESHK(shkp)->services &= ~SHK_SPECIAL_B;
 		}
 
@@ -6926,7 +6926,7 @@ shk_charge(slang, shkp)
 	/* Go for it? */
 	if (shk_offer_price(slang, charge, shkp) == FALSE) return;
 
-	if (!rn2(15)) {
+	if (!rn2(15) && !(uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) ) {
 		if (type == 'b') ESHK(shkp)->services &= ~SHK_SPECIAL_A;
 		if (type == 'p') ESHK(shkp)->services &= ~SHK_SPECIAL_B;
 	}
@@ -7193,6 +7193,14 @@ shk_smooth_charge(pcharge, lower, upper)
 	if (ublindf && ublindf->oartifact == ART_STRIKE_OVER_THE_EARS) *pcharge *= 2;
 
 	if (Is_blackmarket(&u.uz)) *pcharge *= 3;
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_AT_YOUR_SERVICE) {
+		if (*pcharge > 1) {
+			*pcharge *= 4;
+			*pcharge /= 5;
+		}
+	}
+
 	/* Skip upper stuff? */
 	if (upper == NOBOUND) goto check_lower;
 

@@ -2761,7 +2761,7 @@ doengrave()
 
 	for (sp = ebuf; *sp; sp++) {
 	    if (isspace(*sp)) continue;
-	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD || isfriday) && !(uwep && uwep->oartifact == ART_PINSELFLINSELING) && (ishaxor ? !rn2(40) : !rn2(30) ) ) || (isfriday && !rn2(30)) ||
+	    if ( (rn2(5) || !Role_if(PM_ARTIST)) && ((type == DUST || type == ENGR_BLOOD || isfriday) && !(nohands(youmonst.data) && !Race_if(PM_TRANSFORMER) && uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) && !(uwep && uwep->oartifact == ART_PINSELFLINSELING) && (ishaxor ? !rn2(40) : !rn2(30) ) ) || (isfriday && !rn2(30)) ||
 		    (Blind && (ishaxor ? !rn2(35) : !rn2(25)) ) || 
 			(Confusion && (ishaxor ? !rn2(30) : !rn2(20)) ) ||
 			(Burned && (ishaxor ? !rn2(32) : !rn2(22)) ) ||

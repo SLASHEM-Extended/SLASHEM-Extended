@@ -2760,6 +2760,13 @@ boolean shopinit;
 			if (!rn2(20)) otmp->quan += rnz(otmp->quan + 3);
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
+		if (uimplant && uimplant->oartifact == ART_MULTIFUNCTIONAL_CELL && !rn2(is_multigen(otmp) ? 6 : is_lower_multigen(otmp) ? 20 : 1000) ) {
+			if (powerfulimplants()) {
+				otmp->quan += otmp->quan;
+			} else {
+				otmp->quan += rnd(otmp->quan);
+			}
+		}
 
 		if (uarmc && itemhasappearance(uarmc, APP_QUANTITY_CLOAK) && !rn2(3) && is_multigen(otmp)) {
 			otmp->quan += rnd(otmp->quan);

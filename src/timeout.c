@@ -2128,11 +2128,11 @@ nh_timeout()
 
 	/* if you wear high heels without having the skill at all, bad stuff can happen --Amy */
 
-	if (u.umoved && !rn2(500) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInColumnarHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+	if (u.umoved && !rn2(500) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInColumnarHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 		pline("Well, you don't really feel comfortable with those columnar heels. They slow you down even though they're very pretty, and people might laugh at you.");
 	}
 
-	if (u.umoved && !rn2(flags.female ? 2000 : 1000) && (rnd(u.ulevel) < 11) && PlayerInConeHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_CONE_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(flags.female ? 2000 : 1000) && (rnd(u.ulevel) < 11) && PlayerInConeHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_CONE_HEELS) == P_ISRESTRICTED) ) {
 		if (uarmf->spe > -20) {
 			uarmf->spe--;
 			Your("cone heels degrade because you don't know how to walk in them properly.");
@@ -2142,7 +2142,7 @@ nh_timeout()
 		}
 	}
 
-	if (u.umoved && !rn2(flags.female ? 500 : 250) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && PlayerInBlockHeels && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(flags.female ? 500 : 250) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && (rnd(u.ulevel) < 11) && PlayerInBlockHeels && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_BLOCK_HEELS) == P_ISRESTRICTED) ) {
 		if (uarmf && itemhasappearance(uarmf, APP_RETRACTABLE_BLOCK_HEELS)) {
 			; /* do nothing */
 		} else {
@@ -2151,12 +2151,12 @@ nh_timeout()
 		}
 	}
 
-	if (u.umoved && !rn2(2000) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInWedgeHeels && (rnd(u.ulevel) < 11) && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
+	if (u.umoved && !rn2(2000) && !(uarmu && uarmu->oartifact == ART_MODELWALK) && PlayerInWedgeHeels && (rnd(u.ulevel) < 11) && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED) && (P_MAX_SKILL(P_WEDGE_HEELS) == P_ISRESTRICTED) ) {
 		pline("Eep, you accidentally stepped into shit with your wedge heels!");
 		doshittrap((struct obj *)0);
 	}
 
-	if (u.umoved && PlayerInHighHeels && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !FemtrapActiveNaomi && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
+	if (u.umoved && PlayerInHighHeels && !(uarmu && uarmu->oartifact == ART_MODELWALK) && !FemtrapActiveNaomi && !(uimplant && uimplant->oartifact == ART_TORSTEN_S_FEMININENESS && powerfulimplants()) && (P_MAX_SKILL(P_HIGH_HEELS) == P_ISRESTRICTED)) {
 
 		boolean highheelfail = TRUE;
 

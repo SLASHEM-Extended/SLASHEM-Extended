@@ -8709,10 +8709,12 @@ sarahdone:
     }
 
     if(monstersoundtype(mtmp) == MS_SOUND || mtmp->egotype_sounder) {
+	if (!(uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10))) {
 		pline("%s lets out an ear-splitting scream!", Monnam(mtmp) );
 		make_stunned(HStun + (mtmp->m_lev + 2), TRUE);
 		if (isevilvariant || !rn2(issoviet ? 2 : 5)) (void)destroy_item(POTION_CLASS, AD_COLD);
 		wake_nearby();
+	}
     }
 
     if(monstersoundtype(mtmp) == MS_PANTS) {

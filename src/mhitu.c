@@ -9869,6 +9869,7 @@ dopois:
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
 		if (mtmp->mcan) break;
+		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
 		pline("Your ears are blasted by hellish noise!");
 		if (YouAreDeaf) dmg /= 2;
 		make_stunned(HStun + dmg, TRUE);
@@ -12670,6 +12671,7 @@ do_stone2:
 
 	    case AD_SOUN:
 		if (mtmp->mcan) break;
+		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
 		pline("AUUUUUUGGGGGHHHHHGGHH - the noise in here is unbearable!");
 		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
@@ -15247,6 +15249,7 @@ common:
 
 	    case AD_SOUN:
 
+		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
 		pline("Your ears are blasted by hellish noise!");
 		if (YouAreDeaf) tmp /= 2;
 		make_stunned(HStun + tmp, TRUE);
@@ -17896,6 +17899,9 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 		break;
 
 	    case AD_SOUN:
+
+		if (uimplant && uimplant->oartifact == ART_LIVE_AT_READING && rn2(10)) break;
+
 		if (!mtmp->mcan && canseemon(mtmp) &&
 			couldsee(mtmp->mx, mtmp->my) &&
 			mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(10))) {
@@ -19780,7 +19786,7 @@ register int n;
 		You("become invulnerable!");
 	}
 
-	if (u.uprops[TURNLIMITATION].extrinsic || (uarmh && uarmh->oartifact == ART_TEJUS__VACANCY) || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
+	if (u.uprops[TURNLIMITATION].extrinsic || (uarmh && uarmh->oartifact == ART_TEJUS__VACANCY) || (uarmf && uarmf->oartifact == ART_OUT_OF_TIME) || (uarmu && uarmu->oartifact == ART_THERMAL_BATH) || TurnLimitation || have_limitationstone() || (uimplant && uimplant->oartifact == ART_FAKE_BONUS_ROOM) || (uarm && uarm->oartifact == ART_AMMY_S_EASYMODE) ) {
 		if (LimitationXtra && (n > 0)) u.ascensiontimelimit -= (n * 10);
 		else if (n > 0) u.ascensiontimelimit -= n;
 		if (u.ascensiontimelimit < 1) u.ascensiontimelimit = 1;
@@ -20221,8 +20227,12 @@ skiptreason:
 	if (u.homosexual == 2 && (flags.female && mon->female) && rn2(3)) goto enjoyable;
 	if (u.homosexual == 2 && (!flags.female && !(mon->female)) && rn2(3)) goto enjoyable;
 
-	goodoutcomechance = 135;
-	if (Race_if(PM_BOVER)) goodoutcomechance = 300;
+	goodoutcomechance = 135; /* lower value = better chance of good outcome */
+	if (Race_if(PM_BOVER)) goodoutcomechance += 165;
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SEXUAL_PLEASURE) goodoutcomechance -= 60;
+
+	/* effects that multiply or divide the chance need to come last --Amy */
 	if (bridalheels) goodoutcomechance /= 2;
 
 	if (((rn2(goodoutcomechance) > ACURR(A_CHA) + ACURR(A_INT)) || (u.homosexual == 2 && flags.female && !(mon->female)) || (u.homosexual == 2 && !flags.female && mon->female) ) && (mon->data != &mons[PM_FEMME] || !rn2(2) ) ) /*much higher chance of negative outcome now --Amy */ {
@@ -21217,7 +21227,7 @@ const char *str;
 
 	if (!obj || !obj->owornmask) return;
 
-	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && flags.female) || (uchain && uchain->oartifact == ART_AMORINA_S_CHAIN) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !autismweaponcheck(ART_LAIDSWANDIR) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
+	if (((rn2(120) < ACURR(A_CHA)) || (uarmf && uarmf->oartifact == ART_FINAL_CHALLENGE && flags.female) || (uchain && uchain->oartifact == ART_AMORINA_S_CHAIN) || (uarmf && uarmf->oartifact == ART_RARE_ASIAN_LADY)) && !autismweaponcheck(ART_LAIDSWANDIR) && !(uimplant && uimplant->oartifact == ART_SEXUAL_PLEASURE) && !Race_if(PM_BOVER) && !(uarmc && uarmc->oartifact == ART_KING_OF_PORN) ) { /*much lower chance for the player to resist --Amy*/
 
 		sprintf(qbuf,"\"Shall I remove your %s, %s?\" [yes/no]",
 			str, (!rn2(2) ? "lover" : !rn2(2) ? "dear" : "sweetheart"));
@@ -21454,6 +21464,16 @@ register struct attack *mattk;
 	if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(8) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (uimplant && uimplant->oartifact == ART_THORNE_OF_QUILT) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(powerfulimplants() ? 16 : 4) ) <= 0) {
 			pline("%s bleeds to death!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

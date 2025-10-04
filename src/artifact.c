@@ -609,6 +609,7 @@ init_randarts()
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
 	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
+	artilist[ART_O_SACCADO].otyp = randartspellbook();
 	artilist[ART_BUILDING_M_WORK].otyp = randartspellbook();
 	artilist[ART_ORANI_IS_SOMEBODY].otyp = randartspellbook();
 	artilist[ART_COMPLETE_MON_DIEU].otyp = randartspellbook();
@@ -2399,6 +2400,10 @@ register boolean mod;
 			pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(nukaroll));
 
 			lesshungry(500);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_ABRADED_FULLY) {
+			otmp->oeroded = otmp->oeroded2 = 3;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NINER) {
@@ -7238,6 +7243,57 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_EYESIGHT_OF_THE__E_) {
+			if (powerfulimplants()) {
+				if (level.flags.nommap) {
+				    Your("mind is filled with crazy lines!");
+				    if (FunnyHallu)
+					pline("Wow!  Modern art.");
+				    else
+					Your("%s spins in bewilderment.", body_part(HEAD));
+				    make_confused(HConfusion + rnd(30), FALSE);
+				    if (!rn2(3)) badeffect();
+				    break;
+				}
+				do_mapping();
+			} else pline("Sadly, your current form doesn't allow you to tap into this artifact's power!");
+			break;
+		}
+
+		if (obj->oartifact == ART_PHOENIX_S_CLEAN_STREAK) {
+			struct monst *mtmp3;
+			int k, l;
+
+			if (!powerfulimplants()) {
+				for (k = -4; k <= 4; k++) for(l = -4; l <= 4; l++) {
+					if (!isok(u.ux + k, u.uy + l)) continue;
+
+					if ( (mtmp3 = m_at(u.ux + k, u.uy + l)) != 0) {
+
+						if (!mtmp3->mpeaceful) {
+							mtmp3->mhpmax -= 2;
+							if (mtmp3->mhpmax < 1) mtmp3->mhpmax = 1;
+							if (mtmp3->mhp > mtmp3->mhpmax) mtmp3->mhp = mtmp3->mhpmax;
+						}
+					}
+
+				}
+			} else {
+				register struct monst *nexusmon, *nextmon;
+
+				for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+					nextmon = nexusmon->nmon; /* trap might kill mon */
+					if (DEADMONSTER(nexusmon)) continue;
+					if (nexusmon->mpeaceful) continue;
+
+					nexusmon->mhpmax -= 5;
+					if (nexusmon->mhpmax < 1) nexusmon->mhpmax = 1;
+					if (nexusmon->mhp > nexusmon->mhpmax) nexusmon->mhp = nexusmon->mhpmax;
+				}
+			}
+			You("object to the presence of all those hostile creatures!");
+		}
+
 		if (obj->oartifact == ART_NOT_MUCH_BATTERY_REMAINING) {
 			if (obj->recharged > 3) {
 				pline_The("book has been recharged often enough already!");
@@ -7246,6 +7302,24 @@ chargingchoice:
 			obj->recharged++;
 			obj->spe = 3;
 			pline_The("book was recharged.");
+			break;
+		}
+
+		if (obj->oartifact == ART_MARIAN_S_PURPLE_LIKENESS) {
+			getdir(NULL);
+			buzz(26,12,u.ux,u.uy,u.dx,u.dy); /* 26 = poison */
+
+			if (powerfulimplants()) {
+				buzz(26, 12, u.ux, u.uy, -1, 0);
+				buzz(26, 12, u.ux, u.uy, 1, 0);
+				buzz(26, 12, u.ux, u.uy, -1, 1);
+				buzz(26, 12, u.ux, u.uy, 1, 1);
+				buzz(26, 12, u.ux, u.uy, 0, 1);
+				buzz(26, 12, u.ux, u.uy, -1, -1);
+				buzz(26, 12, u.ux, u.uy, 1, -1);
+				buzz(26, 12, u.ux, u.uy, 0, -1);
+			}
+
 			break;
 		}
 
@@ -7263,6 +7337,12 @@ chargingchoice:
 			}
 
 			use_temporary_tech(T_MELTEE);
+
+			break;
+		}
+
+		if (obj->oartifact == ART_BUGGEDNESS_OF_THE_COMPANY) {
+			use_temporary_tech(T_BUGGARD);
 
 			break;
 		}
