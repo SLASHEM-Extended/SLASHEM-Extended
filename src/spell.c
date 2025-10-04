@@ -3402,6 +3402,10 @@ struct obj *book2;
 
 	}
 
+	if (book2->oartifact == ART_FREE_OF_WEED) {
+		(void) make_hallucinated(0L, TRUE, 0L);
+	}
+
 	if (book2->oartifact == ART_THIRST_HOLES) {
 
 		Thirst += rnz(5000);
@@ -3414,6 +3418,11 @@ struct obj *book2;
 		}
 
 		u.tempfountainbuild += 5000;
+	}
+
+	if (book2->oartifact == ART_RRRRRRRRRRRRHHH__RRRRRRRRR) {
+		u.breathenhancetimer += 5000;
+		Your("breath is magically enhanced!");
 	}
 
 	if (book2->oartifact == ART_MORTON_S_ICECAVE_PRICKLE) {
@@ -3930,6 +3939,18 @@ struct obj *book2;
 		}
 	}
 
+	if (book2->oartifact == ART_MATPLAS_OLGE) {
+		struct obj *uammo;
+		uammo = mksobj(!rn2(10) ? SCR_SUPERIOR_MATERIAL : !rn2(3) ? SCR_REGULAR_MATERIAL : SCR_INFERIOR_MATERIAL, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = 1;
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A scroll has formed on the ground!");
+		}
+	}
+
 	if (book2->oartifact == ART_WHAT_IF_I_NEED_TO_KNOW_) {
 		struct obj *uammo;
 		uammo = mksobj(SCR_STANDARD_ID, TRUE, FALSE, FALSE);
@@ -3939,6 +3960,37 @@ struct obj *book2;
 			dropy(uammo);
 			stackobj(uammo);
 			pline("A stack of standard identify scrolls has formed on the ground!");
+		}
+	}
+
+	if (book2->oartifact == ART_CLINICAL_CLEANLINESSES) {
+		You_feel("an anti-sexual aura.");
+		u.sterilized += 2000;
+	}
+
+	if (book2->oartifact == ART_BUILDING_M_WORK) {
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodg, (void *)&madepoolQ);
+		if (madepoolQ) pline("The area is walled off!");
+		madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_treefloodg, (void *)&madepoolQ);
+		if (madepoolQ) pline("Trees start to grow rapidly!");
+
+	}
+
+	if (book2->oartifact == ART_ORANI_IS_SOMEBODY) {
+		(void) make_familiar((struct obj *)0, u.ux, u.uy, FALSE, FALSE);
+	}
+
+	if (book2->oartifact == ART_MOE_S_COLLECTION) {
+		struct obj *uammo;
+		uammo = mksobj(CARROT, TRUE, FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = rn1(5,5);
+			uammo->owt = weight(uammo);
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A stack of carrots has formed on the ground!");
 		}
 	}
 
@@ -4213,6 +4265,39 @@ struct obj *book2;
 		}
 	}
 
+	if (book2->oartifact == ART_UNCURSEONE) {
+		if (uwep && !stack_too_big(uwep)) uncurse(uwep, FALSE);
+	}
+
+	if (book2->oartifact == ART_PALLYHACK) {
+		u.holyshield += 200;
+		You("activate your holy shield.");
+	}
+
+	if (book2->oartifact == ART_BLUE_ROUGE_DROP) {
+		u.magicshield += 2000;
+		pline("You activate your magic shield!");
+	}
+
+	if (book2->oartifact == ART_SLOWUNG_FIELD) {
+		int i, j, bd = 4;
+		struct monst *mtmp;
+
+		for(i = -bd; i <= bd; i++) for(j = -bd; j <= bd; j++) {
+			if (!isok(u.ux + i, u.uy + j)) continue;
+			if ((mtmp = m_at(u.ux + i, u.uy + j)) != 0) {
+
+			    if (mtmp->mpeaceful) continue;
+
+			    if (!resist(mtmp, SPBOOK_CLASS, 0, NOTELL)) {
+				mon_adjust_speed(mtmp, -1, (struct obj *)0);
+				m_dowear(mtmp, FALSE); /* might want speed boots */
+
+			    }
+			}
+		}
+	}
+
 	if (book2->oartifact == ART_ONE_BEFORE_LAST) {
 		register int randomspell;
 		int attempts = 50000;
@@ -4284,6 +4369,56 @@ newbeforespell:
 		You("start regenerating.");
 		if (!rn2(5)) {
 	 	    (void) makemon(mkclass(S_BAD_FOOD,0), u.ux, u.uy, MM_ADJACENTOK|MM_ANGRY);
+		}
+	}
+
+	if (book2->oartifact == ART_BEN_MN_A) {
+		adjalign(1);
+	}
+
+	if (book2->oartifact == ART_YEAH_HOMIE_FIX_IT_UP) {
+		struct obj *otmp;
+		if (CannotSelectItemsInPrompts) return;
+repairhomiechoice:
+		otmp = getobj(allnoncount, "magically enchant");
+		/*otmp = some_armor(&youmonst);*/
+		if (otmp) {
+			if (!(otmp->owornmask & W_ARMOR) ) { /* bug discovered by Heliokopis - did Sporkhack never fix this? */
+	
+				pline("You have a feeling of loss.");
+			} else if (greatest_erosion(otmp) > 0) {
+				if (!Blind) {
+					pline("Your %s glows golden for a moment.",xname(otmp));
+				}
+				if (otmp->oeroded > 0) { otmp->oeroded = 0; }
+				if (otmp->oeroded2 > 0) { otmp->oeroded2 = 0; }
+				if (otmp && objects[(otmp)->otyp].oc_material == MT_CELESTIUM && !stack_too_big(otmp)) {
+					if (!otmp->cursed) bless(otmp);
+					else uncurse(otmp, FALSE);
+				}
+			} else {
+				if (!Blind) {
+					pline("Your %s glows briefly, but looks as new as ever.",xname(otmp));
+				}
+			}
+		} else {
+			if (yn("Really exit with no object selected?") == 'y')
+				pline("You just wasted the opportunity to enchant your armor.");
+			else goto repairhomiechoice;
+			/* the player can probably feel this, so no need for a !Blind check :) */
+			pline("Your embarrassing skin rash clears up slightly.");
+		}
+	}
+
+	if (book2->oartifact == ART_FROSTFIELD) {
+		int frostbombs = 8;
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_icefloodg, (void *)&madepoolQ);
+		if (madepoolQ) pline("The landscape is winterized!");
+
+		while (frostbombs > 0) {
+			makemon(&mons[PM_BOEBOEBOEBOEBOE_M_M], 0, 0, NO_MM_FLAGS);
+			frostbombs--;
 		}
 	}
 
@@ -6014,6 +6149,98 @@ newbossDAM:
 		pline("It starts to rain.");
 		u.currentweather = WEATHER_RAIN;
 		tell_main_weather();
+	}
+
+	if (book2->oartifact == ART_PAINKILLER_THING) {
+		u.temppainresist += 10000;
+		You_feel("immune to pain.");
+	}
+
+	if (book2->oartifact == ART_GARY_S_MEGA_CONTRO) {
+		incr_itimeout(&HControlMagic, 5000);
+		You("feel more capable of controlling your magic!");
+	}
+
+	if (book2->oartifact == ART_DANGER_BYGONE) {
+		You_feel("out of the danger zone.");
+		struct trap *ttmp;
+
+		int i, j;
+
+		for (i = -2; i <= 2; i++) for(j = -2; j <= 2; j++) {
+
+			if ((ttmp = t_at(u.ux + i, u.uy + j)) != 0) {
+			    if (ttmp->ttyp == MAGIC_PORTAL) continue;
+				deltrap(ttmp);
+			}
+
+		}
+
+		(void) doredraw();
+
+	}
+
+	if (book2->oartifact == ART_SHUFFLE_O_MATIC) {
+		register struct monst *nexusmon, *nextmon;
+
+		for(nexusmon = fmon; nexusmon; nexusmon = nextmon) {
+			nextmon = nexusmon->nmon; /* trap might kill mon */
+			if (DEADMONSTER(nexusmon)) continue;
+			if (nexusmon == u.usteed) continue;
+
+			if (nexusmon->mtrapped) {
+			    /* no longer in previous trap (affects mintrap) */
+			    nexusmon->mtrapped = 0;
+			    fill_pit(nexusmon->mx, nexusmon->my);
+			}
+			wakeup(nexusmon); /* monster becomes hostile */
+			rloc(nexusmon, FALSE);
+		}
+
+	}
+
+	if (book2->oartifact == ART_REINFORCE___) {
+		if (spellid(0) == NO_SPELL) {
+			You("don't know any spells, and therefore you cannot add spell memory to them either.");
+			return;
+		}
+
+		pline("Choose a spell to add spell memory.");
+addxtragainSS:
+		if (!addsomespellmemoryX()) {
+			if (yn("Really exit with no spell selected?") == 'y')
+				pline("You just wasted the opportunity to add memory to a spell.");
+			else goto addxtragainSS;
+		}
+
+	}
+
+	if (book2->oartifact == ART_LOCKEMOUT) {
+		int madepoolQ = 0;
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodg, (void *)&madepoolQ);
+		tele();
+		do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodg, (void *)&madepoolQ);
+		You_feel("locked out.");
+	}
+
+	if (book2->oartifact == ART_VITABACK) {
+		You_feel("revitalized.");
+		if (Stoned) fix_petrification();
+		if (Slimed) {
+			pline("The slime disappears.");
+			Slimed =0;
+		}
+		make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+		make_blinded(0L,FALSE);
+		make_stunned(0L,TRUE);
+		make_confused(0L,TRUE);
+		(void) make_hallucinated(0L,FALSE,0L);
+		make_numbed(0L,TRUE);
+		make_feared(0L,TRUE);
+		make_frozen(0L,TRUE);
+		make_burned(0L,TRUE);
+		make_dimmed(0L,TRUE);
+		Glib = 0;
 	}
 
 	if (book2->oartifact == ART_SWEET_DREAMS_ARE_MADE_OF_S) {
@@ -11366,7 +11593,6 @@ whisperchoice:
 
 		You_feel("out of the danger zone.");
 		{
-			int rtrap;
 			struct trap *ttmp;
 
 		    int i, j;
@@ -15840,6 +16066,7 @@ int spell;
 		splcaster += special;
 
 	if (uarm && uarm->otyp == ROBE_OF_POWER) splcaster -= 3;
+	if (uarm && uarm->oartifact == ART_ROBUN_NUMBER) splcaster -= 3;
 	if (uarm && itemhasappearance(uarm, APP_VANILLIC_ROBE)) splcaster -= 3;
 	if (uarm && uarm->otyp == ROBE_OF_SPELL_POWER) splcaster -= 3;
 	if (uarmg && uarmg->oartifact == ART_GAUNTLETS_OF_SPELL_POWER) splcaster -= 3;
@@ -16107,6 +16334,7 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (uarm && uarm->oartifact == ART_ROBXOR_ZSCH) chance += 20;
 	if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) chance += 12;
 	if (u.tempspellchance20) chance += 20;
 	if (uarmh && uarmh->oartifact == ART_SPELLSPELLSPELL___) {
@@ -16597,6 +16825,7 @@ int spell;
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
 	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) chance += 5;
+	if (uarm && uarm->oartifact == ART_ROBXOR_ZSCH) chance += 5;
 	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;
 	if (uarmg && itemhasappearance(uarmg, APP_FAILUNCAP_GLOVES) ) chance += 5;
 	if (uarmf && itemhasappearance(uarmf, APP_FAILUNCAP_SHOES) ) chance += 5;

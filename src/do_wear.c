@@ -4579,6 +4579,13 @@ Armor_on()
 		}
 	}
 
+	if (uarm && uarm->oartifact == ART_COME_ON_AMMY) {
+		if (!tech_known(T_UNARMED_FOCUS)) {
+			learntech(T_UNARMED_FOCUS, FROMOUTSIDE, 1);
+		    	pline("You learn the unarmed focus technique!");
+		}
+	}
+
 	if (uarm && uarm->otyp == ROBE_OF_FOCUSSING) {
 		makeknown(uarm->otyp);
 		if (!tech_known(T_UNARMED_FOCUS)) {
@@ -7679,11 +7686,16 @@ find_ac()
 	if (uarm && uarm->oartifact == ART_SHRINK_S_AID) uac -= 7;
 	if (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) uac -= 3;
 	if (uarmc && uarmc->oartifact == ART_DES_MIRREN) uac -= 3;
+	if (uarm && uarm->oartifact == ART_HARDUP) uac -= 2;
 	if (uarm && uarm->oartifact == ART_JUST_A_HUNK_OF_AC) uac -= 7;
 	if (uarm && uarm->oartifact == ART_FOKING_TENK) uac -= 7;
 	if (uarm && uarm->oartifact == ART_SOFT_GIRL) uac -= 5;
 	if (uarm && uarm->oartifact == ART_NOPPED_SUIT) uac -= 3;
 	if (uarm && uarm->oartifact == ART_BLASWON) uac -= 1;
+	if (uarm && uarm->oartifact == ART_TANKSTA_S_SUIT) uac -= 6;
+	if (uarm && uarm->oartifact == ART_WOOHOO_AMATEURHOUR_) uac -= 5;
+	if (uarm && uarm->oartifact == ART_COME_ON_AMMY) uac -= 5;
+	if (uarm && uarm->oartifact == ART_HANDSOME_THREESOME) uac -= 3;
 	if (uball && uball->oartifact == ART_ASTONI_S_STOUT_EMBANKMENT) uac -= 20;
 	if (uarmu && uarmu->oartifact == ART_YELLOW_SYMPOSE && (multi < 0)) uac -= 50;
 	if (uarmc && uarmc->oartifact == ART_FIREBURN_COLDSHATTER) uac -= 5;

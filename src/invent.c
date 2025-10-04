@@ -34704,6 +34704,82 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: when it generated, and also if you read it, you drink a random bottle of Nuka Cola(TM) and the bottle's name has an effect."); break;
 				case ART_THIRST_HOLES:
 					pline("Artifact specs: reading it tries to transform the tile you're standing on into a fountain (it needs to be an ordinary floor tile though), and gives you thirst for a while but for a period of time, random floor tiles will turn into fountains."); break;
+				case ART_FREE_OF_WEED:
+					pline("Artifact specs: cures hallucination when read."); break;
+				case ART_SLOWUNG_FIELD:
+					pline("Artifact specs: reading it tries to slow down hostile monsters in a 9x9 area around you, but they get a saving throw."); break;
+				case ART_PALLYHACK:
+					pline("Artifact specs: reading it gives you the holy shield effect for a while."); break;
+				case ART_BLUE_ROUGE_DROP:
+					pline("Artifact specs: reading it gives you the magic shield effect for a while."); break;
+				case ART_UNCURSEONE:
+					pline("Artifact specs: reading it tries to uncurse your currently wielded weapon. This works even if the item in question isn't actually a weapon."); break;
+				case ART_BEN_MN_A:
+					pline("Artifact specs: reading it improves your alignment record by one, but not above the maximum."); break;
+				case ART_FROSTFIELD:
+					pline("Artifact specs: reading it transforms random nearby tiles into ice and causes a couple of random explosions on the dungeon level."); break;
+				case ART_YEAH_HOMIE_FIX_IT_UP:
+					pline("Artifact specs: reading it allows you to choose a worn armor piece, which will be repaired completely."); break;
+				case ART_PAINKILLER_THING:
+					pline("Artifact specs: reading it protects you from pain attacks for a while."); break;
+				case ART_VITABACK:
+					pline("Artifact specs: reading it cures a wide variety of status effects."); break;
+				case ART_LOCKEMOUT:
+					pline("Artifact specs: reading it creates walls, and also tries to teleport you."); break;
+				case ART_GARY_S_MEGA_CONTRO:
+					pline("Artifact specs: reading it gives you the control magic effect for a while."); break;
+				case ART_REINFORCE___:
+					pline("Artifact specs: reading it allows you to select a spell to add some memory to it."); break;
+				case ART_SHUFFLE_O_MATIC:
+					pline("Artifact specs: reading it teleports all the monsters on the current dungeon level. WARNING: this will anger peaceful monsters (e.g. shopkeepers), so be careful where you read it!"); break;
+				case ART_DANGER_BYGONE:
+					pline("Artifact specs: reading it tries to disarm all traps in a 5x5 area around you."); break;
+				case ART_RRRRRRRRRRRRHHH__RRRRRRRRR:
+					pline("Artifact specs: reading it gives you enhanced breath for a while."); break;
+				case ART_MATPLAS_OLGE:
+					pline("Artifact specs: reading it spawns a material-changing scroll on the ground."); break;
+				case ART_MOE_S_COLLECTION:
+					pline("Artifact specs: reading it spawns some carrots on the ground."); break;
+				case ART_CLINICAL_CLEANLINESSES:
+					pline("Artifact specs: reading it sterilizes the air for a generous amount of time."); break;
+				case ART_BUILDING_M_WORK:
+					pline("Artifact specs: reading it spawns random walls and trees."); break;
+				case ART_HARDUP:
+					pline("Artifact specs: half physical damage and 2 extra points of AC when worn."); break;
+				case ART_ANTOCONT:
+					pline("Artifact specs: contamination resistance when worn, +5 strength and constitution but -5 dexterity."); break;
+				case ART_SMALLIST:
+					pline("Artifact specs: boosts your MC by 1 when worn."); break;
+				case ART_MYSTIOSITY:
+					pline("Artifact specs: mystery resistance when worn."); break;
+				case ART_TANKSTA_S_SUIT:
+					pline("Artifact specs: boosts your AC by 6 when worn."); break;
+				case ART_SATAN_S_REVERENCE:
+					pline("Artifact specs: satan and movemork effects when worn as well as spellboost and double sight bonus."); break;
+				case ART_MOTA_ROLA:
+					pline("Artifact specs: double kerstin trap effect and very fast speed when worn. If you're riding, your steed will benefit from taking 20%% reduced damage and you get a good saving throw against falling off."); break;
+				case ART_WOOHOO_AMATEURHOUR_:
+					pline("Artifact specs: boosts your AC by 5 and your unarmed melee damage by 4."); break;
+				case ART_IDENTIFYING:
+					pline("Artifact specs: while wearing it, scrolls of standard id spawn more often."); break;
+				case ART_HANDSOME_THREESOME:
+					pline("Artifact specs: boosts your AC, strength and dexterity by 3 when worn."); break;
+				case ART_YETA_S_BEAR_BEING:
+					pline("Artifact specs: double rang call effect, wereform effect, aggravate monster, +5 increased melee damage and -5 intelligence and wisdom when worn."); break;
+				case ART_TELESTAFFEN:
+					pline("Artifact specs: teleportitis and deactivates teleport control when worn. Using the Ctrl-T command to teleport at will costs only one third of the usual amount of mana while you're wearing this."); break;
+				case ART_POLYFITTED:
+					pline("Artifact specs: polymorph control when worn and prevents you from breaking your stuff when polymorphing into something too big."); break;
+				case ART_ROBUN_NUMBER:
+					pline("Artifact specs: boosts spellcasting chances when worn."); break;
+				case ART_ROBXOR_ZSCH:
+					pline("Artifact specs: improves your spellcasting success chances when worn, possibly beyond the normal maximum."); break;
+				case ART_COME_ON_AMMY:
+					pline("Artifact specs: putting it on teaches the unarmed focus technique if you don't know it yet, and it also boosts your AC by 5 and your unarmed melee damage by 4. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_INKSCOVER:
+					pline("Artifact specs: is made of inka."); break;
+				case ART_ORANI_IS_SOMEBODY:
+					pline("Artifact specs: reading it summons a familiar."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

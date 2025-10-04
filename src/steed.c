@@ -135,6 +135,10 @@ mayfalloffsteed()
 	int spcsavingthrow = 0;
 	char buf[BUFSZ];
 
+	if (uarm && uarm->oartifact == ART_MOTA_ROLA) {
+		if (spcsavingthrow < 75) spcsavingthrow = 75;
+	}
+
 	if (opelride(SEATBELT_SADDLE)) {
 		spcsavingthrow = 75;
 		if (bmwride(ART_RULES_MAKE_SENSE)) spcsavingthrow = 90;

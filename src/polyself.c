@@ -1248,7 +1248,7 @@ break_armor()
 	char buf[BUFSZ];
 
     register struct obj *otmp;
-    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || RngeArmorPreservation || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
+    boolean controlled_change = (Race_if(PM_DOPPELGANGER) || (uarm && uarm->oartifact == ART_POLYFITTED) || RngeArmorPreservation || Role_if(PM_SHAPESHIFTER) || Race_if(PM_HEMI_DOPPELGANGER) || Role_if(PM_LUNATIC) || Race_if(PM_AK_THIEF_IS_DEAD_) || (Race_if(PM_HUMAN_WEREWOLF) && u.umonnum == PM_WEREWOLF));
 
 	if (!(PlayerCannotUseSkills)) {
 		if (rnd(10) < P_SKILL(P_POLYMORPHING)) controlled_change = TRUE;

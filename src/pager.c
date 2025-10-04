@@ -29466,6 +29466,8 @@ static NEARDATA const char * const fake_plines[] = {
 	"Radius request timed out.",
 	"You feel like running away from the enemy!",
 	"You feel like running away from the enemy! But that's probably not the best idea if your goal is to kill the monsters...",
+	"You feel locked out.",
+	"You feel locked out. But actually you're locked in, which is a lot worse.",
 
 };
 

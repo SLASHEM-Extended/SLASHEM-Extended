@@ -608,12 +608,14 @@ init_randarts()
 	artilist[ART_RNG_S_SEXINESS].otyp = randartboots();
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
+	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
+	artilist[ART_BUILDING_M_WORK].otyp = randartspellbook();
+	artilist[ART_ORANI_IS_SOMEBODY].otyp = randartspellbook();
 	artilist[ART_COMPLETE_MON_DIEU].otyp = randartspellbook();
 	artilist[ART_AGATHE_BAUER].otyp = randartspellbook();
 	artilist[ART_ANNELIESE_BROWN].otyp = randartspellbook();
 	artilist[ART_I_WILL_THINK_ABOUT_YOU].otyp = randartspellbook();
 	artilist[ART_DEL_OLELONG].otyp = randartspellbook();
-	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
 	artilist[ART_DUEDELDUEDELDUEDELDUEDELDU].otyp = randartspellbook();
 	artilist[ART_CAUSE_I_M_A_CHEATER].otyp = randartspellbook();
 	artilist[ART_BATMAN_NIGHT].otyp = randartspellbook();
@@ -728,7 +730,12 @@ init_randarts()
 	artilist[ART_DOLORES__WINNING_STRAT].otyp = randartbow();
 	artilist[ART_GRADIUS].otyp = randartshortsword();
 	artilist[ART_U_TSCHELLI].otyp = randartpaddle();
+	artilist[ART_TELESTAFFEN].otyp = randartrobe();
 	artilist[ART_ZURA_S_DRESSCODE].otyp = randartrobe();
+	artilist[ART_HANDSOME_THREESOME].otyp = randartrobe();
+	artilist[ART_ROBUN_NUMBER].otyp = randartrobe();
+	artilist[ART_ROBXOR_ZSCH].otyp = randartrobe();
+	artilist[ART_INKSCOVER].otyp = randartrobe();
 	artilist[ART_ALTADOON_HERMA_MORA].otyp = randartrobe();
 	artilist[ART_ETERNAL_BAMMELING].otyp = randartrobe();
 	artilist[ART_VIHAT_BAGUETTEN_BUS_STOP].otyp = randartclaw();
@@ -867,7 +874,10 @@ init_randarts()
 	artilist[ART_ABSOLUTE_MONSTER_MAIL].otyp = randartsuitX();
 	artilist[ART_RITA_S_TENDER_STILETTOS].otyp = randartbootsX();
 	artilist[ART_EROTIC_STAT_TRAIN].otyp = randartbootsX();
+	artilist[ART_POLYFITTED].otyp = randartrobeX();
 	artilist[ART_SPECIAL_ROBUNG].otyp = randartrobeX();
+	artilist[ART_COME_ON_AMMY].otyp = randartrobeX();
+	artilist[ART_YETA_S_BEAR_BEING].otyp = randartrobeX();
 	artilist[ART_UPPERWEAVER_S_THREAD].otyp = randartrobeX();
 	artilist[ART_CHAOSWEAVER_ROBES].otyp = randartrobeX();
 	artilist[ART_COPE_OF_THE_ELDRITCH_KNIGH].otyp = randartrobeX();
@@ -1233,6 +1243,15 @@ init_appearance_randarts()
 	artilist[ART_LEGMA].otyp = find_korean_sandals();
 	artilist[ART_BRITTA_S_MURDER_STORY].otyp = find_sling_pumps();
 	artilist[ART_TERRY_PRATCHETT_S_INGENUIT].otyp = find_octarine_robe();
+	artilist[ART_HARDUP].otyp = find_metal_focus_robe();
+	artilist[ART_ANTOCONT].otyp = find_super_heavy_robe();
+	artilist[ART_SMALLIST].otyp = find_gromy_robe();
+	artilist[ART_MYSTIOSITY].otyp = find_magicprot_robe();
+	artilist[ART_TANKSTA_S_SUIT].otyp = find_armored_robe();
+	artilist[ART_SATAN_S_REVERENCE].otyp = find_vanillic_robe();
+	artilist[ART_MOTA_ROLA].otyp = find_focused_robe();
+	artilist[ART_WOOHOO_AMATEURHOUR_].otyp = find_superfocused_robe();
+	artilist[ART_IDENTIFYING].otyp = find_easy_id_robe();
 	artilist[ART_DERANDERGRAAA].otyp = find_faceless_robe();
 	artilist[ART_ARABELLA_S_SEXY_GIRL_BUTT].otyp = find_chinese_cloak();
 	artilist[ART_LONG_LASTING_JOY].otyp = find_polyform_cloak();
@@ -4128,6 +4147,9 @@ register boolean mod;
 		    }
 		    if (otmp && otmp->oartifact == ART_ETHER_DAGGER) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;
+		    }
+		    if (otmp && otmp->oartifact == ART_INKSCOVER) {
+			if (objects[otmp->otyp].oc_material != MT_INKA) objects[otmp->otyp].oc_material = MT_INKA;
 		    }
 		    if (otmp && otmp->oartifact == ART_FULLY_ADAMANT) {
 			if (objects[otmp->otyp].oc_material != MT_ADAMANTIUM) objects[otmp->otyp].oc_material = MT_ADAMANTIUM;

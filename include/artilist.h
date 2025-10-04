@@ -25268,6 +25268,158 @@ A("Thirst Holes",				SPE_STYX, /* reading it creates a fountain at your location
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Free of Weed",				SPE_CURE_HALLUCINATION, /* reading it cures hallu */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Slowung Field",				SPE_SLOW_MONSTER, /* reading it tries to slow all hostile monsters in a 9x9 radius around you who fail to make a saving throw */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Pallyhack",				SPE_HOLY_SHIELD, /* reading gives +200 turns of holy shield */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Blue Rouge Drop",				SPE_MAGIC_SHIELD, /* reading it gives +2000 turns of magic shield */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("UncurseOne",				SPE_REMOVE_CURSE, /* reading it tries to uncurse your currently wielded weapon, even if it's not a weapon-class item */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Ben Mn'a",				SPE_KNOCK, /* reading it gives +1 alignment */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 200L ),
+
+A("Frostfield",				SPE_FREEZE_SPHERE, /* reading it transforms random nearby tiles to ice and spawns 8 "boeboeboeboeboe-m-m" on random tiles */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Yeah homie fix it up",				SPE_REPAIR_ARMOR, /* reading it allows you to repair a worn armor piece completely */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Painkiller Thing",				SPE_PET_SYRINGE, /* reading it makes you immune to AD_PAIN effects for 10k turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Vitaback",				SPE_CURE_RANDOM_STATUS, /* reading it replicates scroll of cure effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("LockEmOut",				SPE_LOCK_MANIPULATION, /* reading it replicates lockout spell effect, teleports you (if possible) and then procs lockout once more */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Gary's Mega Contro",				SPE_MAGIC_CONTROL, /* reading it gives 5000 turns of control magic */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Reinforce...",				SPE_ADD_SPELL_MEMORY, /* reading it calls addsomespellmemoryX */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Shuffle O Matic",				SPE_NEXUS_FIELD, /* reading it teleports all monsters on the current level around */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Danger-bygone",				SPE_TRAP_DISARMING, /* reading it tries to disarm all traps around you in a 5x5 area */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Rrrrrrrrrrrrhhh! Rrrrrrrrrrrrhhh!",				SPE_ENHANCE_BREATH, /* reading it gives 5000 turns of enhanced breath */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Matplas-olge",				SPE_HOLD_AIR, /* reading it spawns a scroll on the ground: 10% chance of superior material, otherwise 33% of regular material and the rest of the time it's inferior material */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Moe's Collection",				SPE_CAROTINE_INJECTION, /* reading it spawns a stack of rn1(5,5) carrots on the ground */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Clinical Cleanlinesses",				SPE_STERILIZE, /* reading it sterilizes the air for 2000 (more) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Building-M Work",				SPE_MAGICTORCH, /* randart spellbook, reading it causes lockout and tree flood */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Orani is somebody",				SPE_MAGICTORCH, /* randart spellbook, reading it summons a familiar */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Hardup",				PLAIN_ROBE, /* initialized to always be metal focus robe, +2 AC */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Antocont",				PLAIN_ROBE, /* initialized to always be super heavy robe, contamination resistance, +5 STR/CON, -5 DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Smallist",				PLAIN_ROBE, /* initialized to always be gromy robe, +1 MC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Mystiosity",				PLAIN_ROBE, /* initialized to always be magic-protecting robe, mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tanksta's Suit",				PLAIN_ROBE, /* initialized to always be armored robe, +6 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Satan's Reverence",				PLAIN_ROBE, /* initialized to always be vanillic robe, satan and movemork trap effects, double sight bonus, spellboost */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Mota Rola",				PLAIN_ROBE, /* initialized to always be focused robe, double kerstin trap effect, very fast speed, your steed takes 20% reduced damage and you have the seatbelt saddle's saving throw against falling off even when using some other kind of saddle */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Woohoo amateurhour!",				PLAIN_ROBE, /* initialized to always be superfocused robe, +5 AC, +4 unarmed melee damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("identifying",				PLAIN_ROBE, /* initialized to always be easy-id robe, scrolls of standard id spawn more often from defeated monsters */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Handsome Threesome",				PLAIN_ROBE, /* randart robe, +3 AC/DEX/STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3333L ),
+
+A("Yeta's Bear Being",				PLAIN_ROBE, /* randart2 robe, double rang call effect, wereform effect, aggravate monster, +5 increased melee damage, -5 INT/WIS */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Telestaffen",				PLAIN_ROBE, /* randart robe, teleportitis, deactivates teleport control, reduces ctrl-t costs to one third of the normal amount */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Polyfitted",				PLAIN_ROBE, /* randart2 robe, polymorph control, break_armor() assumes that the controlled change variable is always true */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Robun Number",				PLAIN_ROBE, /* randart robe, boosts spellcasting chances like robe of power (and stacks with that) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Robxor-zsch",				PLAIN_ROBE, /* randart robe, 20% better spellcasting chances and 5% like failuncap */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Come on Ammy",				PLAIN_ROBE, /* randart2 robe, teaches unarmed focus when equipped, +5 AC, +4 unarmed melee damage */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Inkscover",				PLAIN_ROBE, /* randart robe, material becomes INKA when generated */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

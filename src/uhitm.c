@@ -2279,6 +2279,9 @@ int dieroll;
 
 		if (uarmf && uarmf->oartifact == ART_FINGERNAIL_FRONT && (!uarmg || FingerlessGloves) ) tmp += 3;
 
+		if (uarm && uarm->oartifact == ART_WOOHOO_AMATEURHOUR_) tmp += 4;
+		if (uarm && uarm->oartifact == ART_COME_ON_AMMY) tmp += 4;
+
 		if (u.martialstyle == MARTIALSTYLE_JUDO && tmp > 1) {
 			tmp *= 4;
 			tmp /= 5;
@@ -4459,6 +4462,7 @@ int dieroll;
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_RIP_STRATEGY) tmp -= 5;
 		if (!thrown && Race_if(PM_TURMENE) && tmp > 0) tmp -= 2;
 		if (!thrown && uamul && uamul->oartifact == ART_NO_SUCH_THING_AS_BETTER_AM) tmp += 1;
+		if (!thrown && uarm && uarm->oartifact == ART_YETA_S_BEAR_BEING) tmp += 5;
 		if (Race_if(PM_SERB)) tmp += 1;
 		if (Race_if(PM_MONGUNG)) tmp += 3;
 		if (Race_if(PM_RUSMOT)) tmp += 2;
@@ -12582,6 +12586,8 @@ boolean ranged;
 		break;
 
 	    case AD_PAIN:
+
+		if (u.temppainresist) break;
 
 		pline("Ouch - you've hurt yourself!");
 		losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful attack", KILLED_BY);

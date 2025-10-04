@@ -821,6 +821,7 @@ struct you {
 	int tempnoflysee;		/* temporary deactivated flying but can see all flying monsters */
 	int tempnospearthrow;	/* temporarily no one (neither player nor monsters) can throw spears */
 	int tempfountainbuild;	/* temporarily transform random floor tiles into fountains */
+	int temppainresist;	/* temporarily don't get affected by AD_PAIN effects */
 
 	int tempnukaeffect;	/* temporary feminism trap effect that corresponds to a bottle of Nuka Cola */
 	int tempnukaefftype;	/* the type of temporary feminism trap effect for the above */

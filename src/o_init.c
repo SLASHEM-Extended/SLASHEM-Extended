@@ -3805,6 +3805,123 @@ find_octarine_robe()
 }
 
 int
+find_metal_focus_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_METAL_FOCUS_ROBE)) return i;
+    }
+
+    impossible("metal focus robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_super_heavy_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SUPER_HEAVY_ROBE)) return i;
+    }
+
+    impossible("super heavy robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_gromy_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_GROMY_ROBE)) return i;
+    }
+
+    impossible("gromy robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_magicprot_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_MAGICPROT_ROBE)) return i;
+    }
+
+    impossible("magic-protected robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_armored_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ARMORED_ROBE)) return i;
+    }
+
+    impossible("armored robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_vanillic_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_VANILLIC_ROBE)) return i;
+    }
+
+    impossible("vanillic robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_focused_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FOCUSED_ROBE)) return i;
+    }
+
+    impossible("focused robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_superfocused_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SUPERFOCUSED_ROBE)) return i;
+    }
+
+    impossible("superfocused robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_easy_id_robe()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_EASY_ID_ROBE)) return i;
+    }
+
+    impossible("easy-id robe not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_powersave_robe()
 {
     register int i;

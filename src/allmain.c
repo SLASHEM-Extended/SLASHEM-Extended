@@ -16474,7 +16474,7 @@ past4:
 
 			}
 
-			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone() || autismweaponcheck(ART_LUNATICBRINGER) || (uarmf && uarmf->oartifact == ART_USE_THE_NORMALNESS_TURNS)) && !rn2(1200 - (200 * night()))) {
+			if ((WereformBug || u.uprops[WEREFORM_BUG].extrinsic || have_wereformstone() || (uarm && uarm->oartifact == ART_YETA_S_BEAR_BEING) || autismweaponcheck(ART_LUNATICBRINGER) || (uarmf && uarmf->oartifact == ART_USE_THE_NORMALNESS_TURNS)) && !rn2(1200 - (200 * night()))) {
 
 				int wereformattempts = 0;
 
@@ -18057,7 +18057,7 @@ boolean new_game;	/* false => restoring an old game */
 		return;
 	}
 
-	if (new_game && (Movemork || u.uprops[MOVEMORKING].extrinsic || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) || (uarmh && uarmh->oartifact == ART_LIANNI_S_HEIGHT) || have_movemorkstone())) {
+	if (new_game && (Movemork || u.uprops[MOVEMORKING].extrinsic || (uarm && uarm->oartifact == ART_SATAN_S_REVERENCE) || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) || (uarmh && uarmh->oartifact == ART_LIANNI_S_HEIGHT) || have_movemorkstone())) {
 		int morkpara = 2;
 		if (MoveMorkXtra) morkpara += rnd(2);
 		nomul(-morkpara, "acclimating in the dungeon", FALSE);

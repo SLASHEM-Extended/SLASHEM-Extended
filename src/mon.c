@@ -7876,6 +7876,9 @@ xkilled(mtmp, dest)
 		if (uarmc && uarmc->oartifact == ART_IDEN_TALUT) {
 			if (!rn2(70 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
 		}
+		if (uarm && uarm->oartifact == ART_IDENTIFYING) {
+			if (!rn2(70 - u.ulevel) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_STANDARD_ID, x, y, TRUE, FALSE, FALSE);
+		}
 
 		if (uarmg && uarmg->oartifact == ART_SCROLLSCROLLSCROLL) {
 			if (!rn2(500) && !splittinggremlin(mdat) && !splittinglavagremlin(mdat) && timebasedlowerchance() && !(YouDoNotGetDeathDrops || (monstersoundtype(mtmp) == MS_FLUIDATOR) || (monstersoundtype(mtmp) == MS_BULLETATOR) ) && (rn2(100) > u.usefulitemchance) ) otmp = mksobj_at(SCR_CURE, x, y, TRUE, FALSE, FALSE);
@@ -10125,6 +10128,10 @@ int dmgamount; /* original amount of damage, which can be reduced */
 
 	if (Race_if(PM_BOVER) && u.usteed && (mtmp == u.usteed) && dmgamount > 1) dmgamount /= 2;
 	if (Race_if(PM_CARTHAGE) && u.usteed && (mtmp == u.usteed) && (mcalcmove(u.usteed) < 12) && dmgamount > 1) dmgamount /= 2;
+	if (uarm && uarm->oartifact == ART_MOTA_ROLA && u.usteed && (mtmp == u.usteed) && dmgamount > 1) {
+		dmgamount *= 4;
+		dmgamount /= 5;
+	}
 
 	if (FemtrapActiveMagdalena && humanoid(mtmp->data) && is_female(mtmp->data) && dmgamount > 1) dmgamount /= 2;
 

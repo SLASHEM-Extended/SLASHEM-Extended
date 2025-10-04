@@ -18630,6 +18630,10 @@ skillrandomizeredo:
 
 			seetrap(trap);
 			pline("You stepped on a trigger!");
+			if (u.temppainresist) {
+				pline("But nothing happened.");
+				break;
+			}
 			You_feel("a painful sensation!");
 			losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a pain trap", KILLED_BY);
 

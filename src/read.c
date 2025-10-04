@@ -11367,21 +11367,21 @@ tunguskaagain:
 		}
 
 		if (Stoned) fix_petrification();
-		    if (Slimed) {
+		if (Slimed) {
 			pline("The slime disappears.");
 			Slimed =0;
-		    }
-		    make_sick(0L, (char *) 0, FALSE, SICK_ALL);
-			make_blinded(0L,FALSE);
-		    make_stunned(0L,TRUE);
-		    make_confused(0L,TRUE);
-		    (void) make_hallucinated(0L,FALSE,0L);
-		    make_numbed(0L,TRUE);
-		    make_feared(0L,TRUE);
-		    make_frozen(0L,TRUE);
-		    make_burned(0L,TRUE);
-		    make_dimmed(0L,TRUE);
-		    Glib = 0;
+		}
+		make_sick(0L, (char *) 0, FALSE, SICK_ALL);
+		make_blinded(0L,FALSE);
+		make_stunned(0L,TRUE);
+		make_confused(0L,TRUE);
+		(void) make_hallucinated(0L,FALSE,0L);
+		make_numbed(0L,TRUE);
+		make_feared(0L,TRUE);
+		make_frozen(0L,TRUE);
+		make_burned(0L,TRUE);
+		make_dimmed(0L,TRUE);
+		Glib = 0;
 
 		break;
 	case SPE_CHARGING:

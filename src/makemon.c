@@ -25749,7 +25749,7 @@ register int	mmflags;
 	mtmp->madeweatherchange = FALSE;
 	mtmp->umbraeconf = FALSE;
 
-	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarmh && uarmh->oartifact == ART_LIANNI_S_HEIGHT) || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
+	if (Movemork || u.uprops[MOVEMORKING].extrinsic || have_movemorkstone() || (uarm && uarm->oartifact == ART_SATAN_S_REVERENCE) || (uarmh && uarmh->oartifact == ART_LIANNI_S_HEIGHT) || (uarms && uarms->oartifact == ART_CAYLEEN_S_BLUSH) ) mtmp->movement += 12;
 	if (MoveMorkXtra) mtmp->movement += rnd(24);
 	if (uarmf && uarmf->oartifact == ART_SATAN_S_HYPERCHARGE) mtmp->movement += rnd(24);
 	if (FemtrapActiveKsenia && spawnswithsandals(mtmp->data)) mtmp->movement += 12;

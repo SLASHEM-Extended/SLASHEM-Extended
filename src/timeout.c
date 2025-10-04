@@ -276,6 +276,12 @@ nh_timeout()
 		if (!u.tempharenwah) You("feel that the animals are no longer as peaceful as before.");
 	}
 
+	if (u.temppainresist) {
+		u.temppainresist--;
+		if (u.temppainresist < 0) u.temppainresist = 0; /* fail safe */
+		if (!u.temppainresist) You("feel that the painkillers are no longer working.");
+	}
+
 	if (u.tempfountainbuild) {
 		u.tempfountainbuild--;
 		if (u.tempfountainbuild < 0) u.tempfountainbuild = 0; /* fail safe */

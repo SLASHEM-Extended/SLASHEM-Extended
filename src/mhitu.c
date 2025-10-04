@@ -6954,6 +6954,7 @@ struct monst *mon;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALES) armpro += 2;
 		if (uarm && uarm->oartifact == ART_EMSE_TRADE) armpro += 3;
 		if (uarmh && uarmh->oartifact == ART_SENOBIA_S_CROWN) armpro++;
+		if (uarm && uarm->oartifact == ART_SMALLIST) armpro++;
 		if (uarm && uarm->otyp == NOPE_DRAGON_SCALE_MAIL) armpro += 2;
 		if (uarms && uarms->otyp == NOPE_DRAGON_SCALE_SHIELD) armpro += 2;
 		if (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) armpro += 5;
@@ -8063,6 +8064,7 @@ hitmu(mtmp, mattk)
 
 		hitmsg(mtmp, mattk);
 		if (statsavingthrow) break;
+		if (u.temppainresist) break;
 
 		pline("It's painful!");
 		losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful attack", KILLED_BY);
@@ -11598,6 +11600,8 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 
 	    case AD_PAIN:
 
+		if (u.temppainresist) break;
+
 		pline("Pain shoots into your body!");
 		losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "painful engulfing", KILLED_BY);
 
@@ -14839,6 +14843,8 @@ common:
 		break;
 
 	    case AD_PAIN:
+
+		if (u.temppainresist) break;
 
 		pline("OUCH!");
 		losehp(Upolyd ? ((u.mh / 4) + 1) : ((u.uhp / 4) + 1), "a painful explosion", KILLED_BY);
@@ -18911,7 +18917,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 	    case AD_PAIN:
 
-		if(!mtmp->mcan && canseemon(mtmp) && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(3))) {
+		if(!mtmp->mcan && canseemon(mtmp) && !u.temppainresist && mtmp->mcansee && !mtmp->mspec_used && (issoviet || !rn2(3))) {
             	pline("%s spikes you!", Monnam(mtmp));
 			losehp(Upolyd ? ((u.mh / 10) + 1) : ((u.uhp / 10) + 1), "a painful gaze", KILLED_BY);
 		}
