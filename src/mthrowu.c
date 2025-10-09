@@ -692,6 +692,11 @@ shieldblockboo:
 			pline("An unholy aura blasts you!");
 			exercise(A_CON, FALSE);
 		}
+		if (obj && obj->blessed && ( (uimplant && uimplant->oartifact == ART_VEIN_COIL_OF_KAIN) || (uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK) ) ) {
+			dam += rnd(20);
+			pline("A holy aura blasts you!");
+			exercise(A_CON, FALSE);
+		}
 		if (obj && objects[obj->otyp].oc_material == MT_VIVA && hates_viva(youmonst.data)) {
 			dam += 20;
 			pline_The("irradiation severely hurts you!");

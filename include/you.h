@@ -229,12 +229,12 @@ struct Gender {
 				/* increment to 3 if you allow neuter roles */
 
 extern const struct Gender genders[];	/* table of available genders */
-#define uhe()	( (Role_if(PM_GENDERSTARIST) || autismweaponcheck(ART_DAEMEL)) ? "he/she/it" : genders[flags.female ? 1 : 0].he)
-#define uhim()	( (Role_if(PM_GENDERSTARIST) || autismweaponcheck(ART_DAEMEL)) ? "him/her/it" : genders[flags.female ? 1 : 0].him)
-#define uhis()	( (Role_if(PM_GENDERSTARIST) || autismweaponcheck(ART_DAEMEL)) ? "his/her/its" : genders[flags.female ? 1 : 0].his)
-#define mhe(mtmp)	( (Role_if(PM_GENDERSTARIST) || autismweaponcheck(ART_DAEMEL)) ? "he/she/it" : genders[pronoun_gender(mtmp)].he)
-#define mhim(mtmp)	( (Role_if(PM_GENDERSTARIST) || autismweaponcheck(ART_DAEMEL)) ? "him/her/it" : genders[pronoun_gender(mtmp)].him)
-#define mhis(mtmp)	( (Role_if(PM_GENDERSTARIST) || autismweaponcheck(ART_DAEMEL)) ? "his/her/its" : genders[pronoun_gender(mtmp)].his)
+#define uhe()	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "he/she/it" : genders[flags.female ? 1 : 0].he)
+#define uhim()	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "him/her/it" : genders[flags.female ? 1 : 0].him)
+#define uhis()	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "his/her/its" : genders[flags.female ? 1 : 0].his)
+#define mhe(mtmp)	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "he/she/it" : genders[pronoun_gender(mtmp)].he)
+#define mhim(mtmp)	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "him/her/it" : genders[pronoun_gender(mtmp)].him)
+#define mhis(mtmp)	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "his/her/its" : genders[pronoun_gender(mtmp)].his)
 
 
 /*** Unified structure specifying alignment information ***/
@@ -822,6 +822,7 @@ struct you {
 	int tempnospearthrow;	/* temporarily no one (neither player nor monsters) can throw spears */
 	int tempfountainbuild;	/* temporarily transform random floor tiles into fountains */
 	int temppainresist;	/* temporarily don't get affected by AD_PAIN effects */
+	int tempburntbooks;	/* temporarily cause all spellbooks to spawn burnt */
 
 	int tempnukaeffect;	/* temporary feminism trap effect that corresponds to a bottle of Nuka Cola */
 	int tempnukaefftype;	/* the type of temporary feminism trap effect for the above */

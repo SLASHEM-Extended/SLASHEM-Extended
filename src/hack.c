@@ -4566,6 +4566,23 @@ maybe_scream()
      * known issue: you might be in a form that cannot "scream", I decided that I don't care and you scream anyway :P */
     int painchance = 10;
     int distresslevel = 0;
+    char bufX[BUFSZ];
+
+    if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NERVE_HOOK_OF_CONAN && !u.berserktime) {
+	if (Upolyd && (u.mh < (u.mhmax * 3 / 10)) ) {
+		getlin ("Do you want to go berserk? [yes/no]?",bufX);
+		if (!strcmp (bufX, "yes")) {
+			u.berserktime = 25;
+			You("fly into a berserk rage!");
+		}
+	} else if (!Upolyd && (u.uhp < (u.uhpmax * 3 / 10)) ) {
+		getlin ("Do you want to go berserk? [yes/no]?",bufX);
+		if (!strcmp (bufX, "yes")) {
+			u.berserktime = 25;
+			You("fly into a berserk rage!");
+		}
+	}
+    }
 
     if (Upolyd) {
 	if (u.mh < (u.mhmax / 4)) distresslevel = 3;
@@ -5595,6 +5612,10 @@ int k_format; /* WAC k_format is an int */
 		n *= 11;
 		n /= 10;
 	}
+	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) {
+		n *= 11;
+		n /= 10;
+	}
 	if (Role_if(PM_DANCER) && !rn2(3)) n = n * 2;
 	if (Race_if(PM_METAL)) n *= rnd(10);
 	if (HardModeEffect || u.uprops[HARD_MODE_EFFECT].extrinsic || have_hardmodestone() || autismringcheck(ART_RING_OF_FAST_LIVING) || autismweaponcheck(ART_PAINBOWSWANDIR) || autismweaponcheck(ART_RAISING_HEART) || (uimplant && uimplant->oartifact == ART_IME_SPEW) || (uarm && uarm->oartifact == ART_CHEST_TANK)) n = n * 2;
@@ -5621,6 +5642,12 @@ int k_format; /* WAC k_format is an int */
 	    	n = 0;
 		Your("shield nullifies the damage!");
 	} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
+		n = 0;
+		Your("implant nullifies the damage!");
+	} else if (uimplant && uimplant->oartifact == ART_BONE_PLUG_OF_MORVANE_THE_H && !rn2(10)) {
+		n = 0;
+		Your("implant nullifies the damage!");
+	} else if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HEARTSHARD_OF_ARAGORN && !rn2(10)) {
 		n = 0;
 		Your("implant nullifies the damage!");
 	} else if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {

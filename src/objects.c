@@ -9603,6 +9603,8 @@ SCROLL((char *)0,               "ACRO AND BAT KEN BE SEAN DINGLING ON THE TRAPEZ
 SCROLL((char *)0,               "THE REAL NAME OF THE JUDGE IN ACE ATTORNEY IS UDGEY",  P_NONE,     1,   0, 100, CLR_GRAY, 1),
 SCROLL((char *)0,               "THAT IS SO OEOEOEOEOEOEOEOEN",  P_NONE,     1,   0, 100, CLR_BROWN, 1),
 SCROLL((char *)0,               "NOOOOOOOOOONOOOOOOOOOONOOOOOOOOOONOOOOOOOOOO",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
+SCROLL((char *)0,               "AND A BELL RANG",  P_NONE,     1,   0, 100, CLR_BRIGHT_BLUE, 1),
+SCROLL((char *)0,               "YOURE MY WONDER ONE",  P_NONE,     1,   0, 100, CLR_BLACK, 1),
 
 /* dummy for easier copypasting */
 /* SCROLL((char *)0,               "",  P_NONE,     1,   0, 100, CLR_, 1), */

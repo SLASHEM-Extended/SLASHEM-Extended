@@ -609,6 +609,8 @@ init_randarts()
 	artilist[ART_RNG_S_EMBRACE].otyp = randartcloak();
 	artilist[ART_RNG_S_GRIMACE].otyp = randarthelm();
 	artilist[ART_JUBELJUBIJEEAH].otyp = randartspellbook();
+	artilist[ART_I_PONSER_TO_MAKE_STINGER_B].otyp = randartspellbook();
+	artilist[ART_SCARS_ETCHED_BY_FLAME].otyp = randartspellbook();
 	artilist[ART_O_SACCADO].otyp = randartspellbook();
 	artilist[ART_BUILDING_M_WORK].otyp = randartspellbook();
 	artilist[ART_ORANI_IS_SOMEBODY].otyp = randartspellbook();
@@ -623,6 +625,7 @@ init_randarts()
 	artilist[ART_NIKKENIKKENIK].otyp = randartspellbook();
 	artilist[ART_POLITICAL_CORRECTNESS_FOR_].otyp = randartspellbook();
 	artilist[ART_DOWNDRIVE].otyp = randartimplant();
+	artilist[ART_I_LL_GIVE_YOU_A_GENDER_STA].otyp = randartimplant();
 	artilist[ART_CORTEX_COPROCESSOR].otyp = randartimplant();
 	artilist[ART_ND___NND_D___NDMD__DM_D_D_].otyp = randartimplant();
 	artilist[ART_ARABELLA_S_EXCHANGER].otyp = randartimplant();
@@ -939,6 +942,7 @@ init_randarts()
 	artilist[ART_FULLY_THE_LONG_PENIS].otyp = randartwandX();
 	artilist[ART_WORLD_OF_COQ].otyp = randartwandX();
 	artilist[ART_GIVE_IT_ME_YOUR_WILL].otyp = randartimplantX();
+	artilist[ART_CHOOSE_EMATISCRACE_AND_ELE].otyp = randartimplantX();
 	artilist[ART_ND_D___N_NDMNN_ND___NDMN_N].otyp = randartimplantX();
 	artilist[ART_WHOOSHZAP].otyp = randartwandX();
 	artilist[ART_CLOUDYBAND].otyp = randartshirtX();
@@ -2409,6 +2413,12 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
 		    }
+
+		    if (otmp && otmp->oartifact == ART_SCARS_ETCHED_BY_FLAME) {
+			otmp->oeroded = 2;
+			u.tempburntbooks += 20000;
+		    }
+
 		    if (otmp && otmp->oartifact == ART_YOU_LOOK_LIKE_YOU_HAVE_SEE) {
 
 			if (Aggravate_monster) {
@@ -7192,6 +7202,29 @@ chargingchoice:
 			break;
 		}
 
+		if (obj->oartifact == ART_LIVE_LONG__IF_YOU_CAN) {
+			use_temporary_tech(T_TELEKINESIS);
+
+			if (powerfulimplants()) {
+				register struct obj *otmp3;
+
+				if (CannotSelectItemsInPrompts) break;
+				pline("Select an item to charge.");
+chargingchoiceTT:
+				otmp3 = getobj(allnoncount, "charge");
+				if (!otmp3) {
+					if (yn("Really exit with no object selected?") == 'y')
+						pline("You just wasted the opportunity to charge your items.");
+					else goto chargingchoiceTT;
+					break;
+				}
+
+				recharge(otmp3, 0);
+			}
+
+			break;
+		}
+
 		if (obj->oartifact == ART_LYCIA_S_WUSH) {
 			if (!obj->cursed) bless(obj);
 			else uncurse(obj, TRUE);
@@ -7256,6 +7289,24 @@ chargingchoice:
 				    break;
 				}
 				do_mapping();
+			} else pline("Sadly, your current form doesn't allow you to tap into this artifact's power!");
+			break;
+		}
+
+		if (obj->oartifact == ART_MINDFRAME_OF_NYSSARA_THE_T) {
+			if (powerfulimplants()) {
+				struct monst *mirrormon;
+
+				mirrormon = makemon(&mons[urole.malenum], u.ux, u.uy, NO_MM_FLAGS);
+				if (mirrormon) (void) tamedog(mirrormon, (struct obj *) 0, TRUE);
+				You("summon a clone of yourself!");
+			} else pline("Sadly, your current form doesn't allow you to tap into this artifact's power!");
+			break;
+		}
+
+		if (obj->oartifact == ART_GIULY_AH) {
+			if (powerfulimplants()) {
+				use_temporary_tech(T_BLINK);
 			} else pline("Sadly, your current form doesn't allow you to tap into this artifact's power!");
 			break;
 		}

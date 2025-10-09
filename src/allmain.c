@@ -22,6 +22,7 @@ STATIC_PTR int unfaintX(void);
 STATIC_DCL void pumpsminigame(void);
 
 STATIC_PTR void do_megafloodingf(int, int, void *);
+STATIC_PTR void do_lockfloodAL(int, int, void *);
 STATIC_PTR void do_fjordefloodingf(int, int, void *);
 
 #define decrnknow(spell)	spl_book[spell].sp_know--
@@ -31,6 +32,7 @@ STATIC_PTR void do_fjordefloodingf(int, int, void *);
 
 static const char all_count[] = { ALLOW_COUNT, ALL_CLASSES, 0 };
 static const char allowall[] = { ALL_CLASSES, 0 };
+static const char allnoncount[] = { ALL_CLASSES, 0 };
 
 static void p_glow2(struct obj *,const char *);
 
@@ -2292,9 +2294,13 @@ moveloop()
 			}
 
 			if (uarmh && (uarmh->oartifact == ART_REAL_SPEED_DEVIL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uimplant && uimplant->oartifact == ART_COMBAT_NODE_OF_THARION_BLA && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uimplant && uimplant->oartifact == ART_CORELINK_OF_CU_CHULAINN && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_PAYBACK_TO_THEM && !rn2(5)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uamul && uamul->oartifact == ART_GREETINGS_FROM_EVI && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_DAEMEL && !rn2(10) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_GIULY_AH && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uwep && uwep->oartifact == ART_MAMBO_NUMBER_NINE && (rnd(10) > 3) ) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uchain && uchain->oartifact == ART_RACE_ALONG_THE_HIGHWAY && !rn2(5) && uball && uwep && (uwep == uball)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
 			if (uarmf && u.uinwater && (uarmf->oartifact == ART_PECTORAL_HEEL) && !rn2(10)) moveamt += speedbonus(moveamt / 2, NORMAL_SPEED / 2);
@@ -2665,8 +2671,84 @@ moveloop()
 			adjalign(-1);
 		}
 
+		if (uimplant && uimplant->oartifact == ART_SANTANA_S_CHICANERY && !rn2(5000)) {
+			int madepoolQ = 0;
+			do_clear_areaX(u.ux, u.uy, 5 + rnd(5), do_lockfloodAL, (void *)&madepoolQ);
+
+		}
+
+		if (uimplant && uimplant->oartifact == ART_MINDFRAME_OF_NYSSARA_THE_T && !rn2(5000)) {
+
+			register struct obj *nyssaraotmp, *nyssaranewotmp;
+
+			pline("You may create a weak clone of an object. It must be a weapon or armor piece.");
+nyssarachoice:
+			nyssaraotmp = getobj(allnoncount, "randomly enchant");
+			if (!nyssaraotmp) {
+				if (yn("Really exit with no object selected?") == 'y')
+					pline("You just wasted the opportunity to clone your items.");
+				else goto nyssarachoice;
+				pline("A feeling of loss comes over you.");
+				goto nyssaraend;
+			} else if (!is_enchantable(nyssaraotmp)) {
+				pline("Nope, we told you that the item must be a weapon or armor piece. You selected an invalid item and therefore nothing happens (as was to be expected).");
+			} else {
+				nyssaranewotmp = mksobj(nyssaraotmp->otyp, TRUE, FALSE, FALSE);
+
+				if (nyssaranewotmp) {
+					int nyssaracurses = rnd(5);
+					while (nyssaracurses > 0) {
+						curse(nyssaranewotmp);
+						nyssaracurses--;
+					}
+					if (nyssaranewotmp->spe >= 0) nyssaranewotmp->spe = -rn1(10, 10);
+					dropy(nyssaranewotmp);
+					stackobj(nyssaranewotmp);
+					pline("An item appeared on the ground!");
+				}
+
+			}
+
+		}
+
+nyssaraend:
+
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_WENDLEWOOD && !rn2(5000)) {
+			use_temporary_tech(T_CLONE_JAVELIN);
+		}
+
 		if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
 			u.catwalknastytrap = rnd(286); /* timerun */
+		}
+
+		if (uimplant && uimplant->oartifact == ART_OCULAR_LENS_OF_DRIZZT && !rn2(5000)) {
+			You_feel("less faithful!");
+			adjalign(-10);
+
+			if (u.ualign.record < -20 && !rn2(Race_if(PM_KORONST) ? 10 : 100) && !rn2(3) ) { /* You have been converted! */
+				aligntyp drizztalign;
+
+				if (u.ualign.type == A_CHAOTIC) drizztalign = (rn2(2) ? A_NEUTRAL : A_LAWFUL);
+				else if (u.ualign.type == A_LAWFUL) drizztalign = (rn2(2) ? A_NEUTRAL : A_CHAOTIC);
+				else drizztalign = (rn2(2) ? A_LAWFUL : A_CHAOTIC);
+
+				You("have a strong feeling that %s is angry...", u_gname());
+				pline("%s accepts your allegiance.", align_gname(drizztalign));
+
+				/* The player wears a helm of opposite alignment? */
+				if (uarmh && uarmh->otyp == HELM_OF_OPPOSITE_ALIGNMENT)
+					u.ualignbase[A_CURRENT] = drizztalign;
+				else
+					u.ualign.type = u.ualignbase[A_CURRENT] = drizztalign;
+				u.ublessed = 0;
+				flags.botl = 1;
+
+				You("have a sudden sense of a new direction.");
+				/* Beware, Conversion is costly */
+				change_luck(-3);
+				u.ublesscnt += (ishaxor ? 150 : 300);
+				adjalign((int)(u.ualignbase[A_ORIGINAL] * (u.alignlim / 2)));
+			}
 		}
 
 		if (u.temprumormessages) {
@@ -2706,6 +2788,11 @@ moveloop()
 
 		if (uimplant && uimplant->oartifact == ART_ABRADED_FULLY && !powerfulimplants()) {
 			uimplant->oeroded = uimplant->oeroded2 = 3;
+		}
+
+		if (uimplant && uimplant->oartifact == ART_TENDON_COIL_OF_DRAXUN_THE_ && !rn2(2500)) {
+			Your("clumsiness is showing, and you have trouble keeping everything in your knapsack...");
+			dropitemattack();
 		}
 
 		if (uarmc && uarmc->oartifact == ART_DEEP_REJUVE && !rn2(2000)) {
@@ -6157,6 +6244,11 @@ greasingdone:
 
 		}
 
+		if (uimplant && uimplant->oartifact == ART_NEURAL_GRAFT_OF_VAELRIC_TH && !rn2(100)) {
+			u.inertia += rn1(3,3);
+			You_feel("lethargic...");
+		}
+
 		if (uarmu && uarmu->oartifact == ART_SUE_LYN_S_USAGE && uarmu->cursed && !inertiaprotection() && !rn2(1000)) {
 			u.inertia += rnd(50);
 			Your("butt feels sore...");
@@ -6466,6 +6558,11 @@ newbossPOMP:
 			}
 
 		}
+
+		if (uimplant && uimplant->oartifact == ART_FOCUS_GEM_OF_KAEDRA_MOONVE && !rn2(1000))
+			make_confused(HConfusion + rn1(5,5), FALSE);
+			You("suddenly feel confused!");
+			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 
 		if (FemtrapActiveClaudia && !rn2(250)) {
 			make_confused(HConfusion + rnd(20), FALSE);
@@ -16694,6 +16791,8 @@ past4:
 		HSleeping = 5;
 	}
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAURENA_S_ALTERNATIVE && uimplant->spe < 5) uimplant->spe = 5;
+
 	if (!(uwep && uwep->oartifact == ART_GORMALER)) u.gormalerturns = 0;
 
 	/* fail safe for banishment in case the player would somehow get a turn --Amy */
@@ -22302,6 +22401,10 @@ int conttype; /* 1 = HP, 2 = Pw */
 		if (conttype == 2 && Upolyd && u.uen >= u.mhmax) return TRUE;
 	}
 
+	if (uimplant && uimplant->oartifact == ART_BONE_PLUG_OF_MORVANE_THE_H && (conttype == 1) && rn2(2)) return TRUE;
+	if (uimplant && uimplant->oartifact == ART_CRANIAL_PRISM_OF_MERLIN && (conttype == 2) && !rn2(4)) return TRUE;
+	if (uimplant && uimplant->oartifact == ART_BLOODPUMP_OF_HARKON_BLOODR && (conttype == 1) && rn2(10)) return TRUE;
+
 	/* piercer only regenerates when hidden */
 	if (Race_if(PM_PIERCER) && !u.uundetected) return TRUE;
 
@@ -22383,6 +22486,79 @@ int amount, max;
 {
 	if (amount > max) amount = max;
 	return amount;
+}
+
+STATIC_PTR void
+do_lockfloodAL(x, y, poolcnt)
+int x, y;
+void * poolcnt;
+{
+	register struct monst *mtmp;
+	register struct trap *ttmp;
+	int randomamount = 0;
+	int randomx, randomy;
+	if (!rn2(25)) randomamount += rnz(2);
+	if (!rn2(125)) randomamount += rnz(5);
+	if (!rn2(625)) randomamount += rnz(20);
+	if (!rn2(3125)) randomamount += rnz(50);
+	if (isaquarian) {
+		if (!rn2(25)) randomamount += rnz(2);
+		if (!rn2(125)) randomamount += rnz(5);
+		if (!rn2(625)) randomamount += rnz(20);
+		if (!rn2(3125)) randomamount += rnz(50);
+	}
+
+	if (In_sokoban(&u.uz) && rn2(5)) return;
+
+	while (randomamount) {
+		randomamount--;
+		randomx = rn1(COLNO-3,2);
+		randomy = rn2(ROWNO);
+		if (isok(randomx, randomy) && ((levl[randomx][randomy].wall_info & W_NONDIGGABLE) == 0) && (levl[randomx][randomy].typ == ROOM || levl[randomx][randomy].typ == CORR || (levl[randomx][randomy].typ == DOOR && levl[randomx][randomy].doormask == D_NODOOR) ) ) {
+
+			if (rn2(3)) doorlockX(randomx, randomy, TRUE);
+			else {
+				if (levl[randomx][randomy].typ != DOOR) levl[randomx][randomy].typ = STONE;
+				else levl[randomx][randomy].typ = CROSSWALL;
+				blockorunblock_point(randomx,randomy);
+				if (!(levl[randomx][randomy].wall_info & W_EASYGROWTH)) levl[randomx][randomy].wall_info |= W_HARDGROWTH;
+				del_engr_at(randomx, randomy);
+
+				if ((mtmp = m_at(randomx, randomy)) != 0) {
+					(void) minliquid(mtmp);
+				} else {
+					newsym(randomx,randomy);
+				}
+
+			}
+		}
+	}
+
+	if (rn2(3)) doorlockX(x, y, TRUE);
+
+	if ((rn2(1 + distmin(u.ux, u.uy, x, y))) ||
+	    (sobj_at(BOULDER, x, y)) || (levl[x][y].wall_info & W_NONDIGGABLE) != 0 || (levl[x][y].typ != CORR && levl[x][y].typ != ROOM && (levl[x][y].typ != DOOR || levl[x][y].doormask != D_NODOOR) ))
+		return;
+
+	(*(int *)poolcnt)++;
+
+	if (!((*(int *)poolcnt) && (x == u.ux) && (y == u.uy))) {
+		/* Put a wall at x, y */
+		if (levl[x][y].typ != DOOR) levl[x][y].typ = STONE;
+		else levl[x][y].typ = CROSSWALL;
+		blockorunblock_point(x,y);
+		if (!(levl[x][y].wall_info & W_EASYGROWTH)) levl[x][y].wall_info |= W_HARDGROWTH;
+		del_engr_at(x, y);
+
+		if ((mtmp = m_at(x, y)) != 0) {
+			(void) minliquid(mtmp);
+		} else {
+			newsym(x,y);
+		}
+	} else if ((x == u.ux) && (y == u.uy)) {
+		(*(int *)poolcnt)--;
+	}
+
 }
 
 STATIC_PTR void

@@ -7432,6 +7432,11 @@ xkilled(mtmp, dest)
 	if (Role_if(PM_BLOODSEEKER)) healup(mtmp->m_lev, 0, FALSE, FALSE); /* special ability called "Stygwyr's Thirst" */
 	if (uwep && uwep->oartifact == ART_ALDEBARAN_FORM) healup(mtmp->m_lev, 0, FALSE, FALSE);
 	if (uwep && uwep->oartifact == ART_FOR_STYGWYR_) healup(mtmp->m_lev, 0, FALSE, FALSE);
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_VEIN_COIL_OF_KAIN) healup(mtmp->m_lev, 0, FALSE, FALSE);
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BLOODPUMP_OF_HARKON_BLOODR) healup(mtmp->m_lev, 0, FALSE, FALSE);
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_OPTIC_COIL_OF_ELRIC) healup(mtmp->m_lev, 0, FALSE, FALSE);
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK && !rn2(4)) incr_itimeout(&HInvis, 100);
 
 	if (uwep && uwep->oartifact == ART_TECPATL_OF_HUHETOTL) {
 		u.ublesscnt -= 50;
@@ -8353,6 +8358,8 @@ int  typ, fatal;
 	int i, plural, kprefix = KILLED_BY_AN;
 	boolean thrown_weapon = (fatal < 0);
 
+	int poisonstatreducechance = 10;
+
 	if (chromeprotection()) return;
 
 	u.cnd_poisonamount++;
@@ -8372,15 +8379,20 @@ int  typ, fatal;
 			if(!strcmp(string, "blast")) shieldeff(u.ux, u.uy);
 			pline_The("poison doesn't seem to affect you.");
 
-			if(!rn2(StrongPoison_resistance ? 20 : 4)) {
-			/* Check that a stat change was made */
+			poisonstatreducechance = (StrongPoison_resistance ? 20 : 4);
+			if (uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) poisonstatreducechance /= 2;
+			if (poisonstatreducechance < 1) poisonstatreducechance = 1;
 
 			if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) return;
 
-			if (adjattrib(typ, -1, 1, TRUE)) {
-			    pline("You%s!", poiseff[typ]);
-				pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");			 }
+			if(!rn2(poisonstatreducechance)) {
+				/* Check that a stat change was made */
+
+				if (adjattrib(typ, -1, 1, TRUE)) {
+					pline("You%s!", poiseff[typ]);
+					pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");
 				}
+			}
 			return;
 		}
 	} else {
@@ -8388,14 +8400,19 @@ int  typ, fatal;
 			if(!strcmp(string, "blast")) shieldeff(u.ux, u.uy);
 			pline_The("poison doesn't seem to affect you.");
 
+			poisonstatreducechance = (StrongPoison_resistance ? 100 : 20);
+			if (uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) poisonstatreducechance /= 2;
+			if (poisonstatreducechance < 1) poisonstatreducechance = 1;
+
 			if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) return;
 
-			if(!rn2(StrongPoison_resistance ? 100 : 20)) {
-			/* Check that a stat change was made */
-			if (adjattrib(typ, -1, 1, TRUE)) {
-			    pline("You%s!", poiseff[typ]);
-				pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");			 }
+			if(!rn2(poisonstatreducechance)) {
+				/* Check that a stat change was made */
+				if (adjattrib(typ, -1, 1, TRUE)) {
+					pline("You%s!", poiseff[typ]);
+					pline("You lose  %s", typ == 0 ? "Strength" : typ == 1 ? "Intelligence" : typ == 2 ? "Wisdom" : typ == 3 ? "Dexterity" : typ == 4 ? "Constitution" : "Charisma");
 				}
+			}
 			return;
 		}
 	}
@@ -8417,7 +8434,7 @@ int  typ, fatal;
 		u.uhp = -1;
 		pline_The("poison was deadly...");
 		}
-	} else if(i <= 5) {
+	} else if(i <= ((uimplant && uimplant->oartifact == ART_PULSE_NODE_OF_GERALT) ? 10 : 5) ) {
 
 		if (uarmg && uarmg->oartifact == ART_POISON_HAND && rn2(2)) goto statchangedone;
 

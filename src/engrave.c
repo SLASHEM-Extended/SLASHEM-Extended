@@ -6553,6 +6553,7 @@ static const char *epitaphs[] = {
 	"Here lies the DOOM 2 engine. It blew up on the 'Industrial Zone' level, because the player decided to play with respawning monsters and all those zombiemans and shotgun guys kept dropping ammo every time they died and eventually the items array overflowed, because the genius programming hadn't accounted for that possibility. So the game just crashed.",
 	"Here lies the DOOM 2 hero. He was playing with godmode ('degreelessness mode') enabled, but on the very last level of the game, after Oremorj had done his 'eygoorts togaal jezehh' speech that is really John Romero saying 'To win the game you must kill me, John Romero' backwards, the player got hit by one of Oremorj's monster-spawning 'pitschaeff!' cubes and died immediately. When that happened, the player was shocked out of their seat, not expecting a scenario where godmode doesn't prevent death.",
 	"Here lies the DOOM hero. He was playing through some episode with godmode on (wikipedia says it's E1M8, Phobos Anomaly), but eventually he triggered a teleporter trapping him in a room with several barons of hell and for some weird-ass reason they were still capable of damaging him. The player, not being very skilled at the game and not expecting to suddenly be able to die, got killed very quickly.",
+	"The miracle never happen.",
 
 };
 

@@ -2519,6 +2519,7 @@ mattacku(mtmp)
 	if (uimplant && uimplant->oartifact == ART_GYMNASTIC_LOVE && !rn2(5)) tmp -= 100;
 	if (uarmf && uarmf->oartifact == ART_TANGO_HEELS && !rn2(3)) tmp -= 100;
 	if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM && !rn2(5)) tmp -= 100;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_OCULAR_LENS_OF_DRIZZT && (rnd(100) < 16) ) tmp -= 100;
 
 	if (uarmf && uarmf->oartifact == ART_OUT_OF_REACH) {
 		if (verysmall(mtmp->data)) {
@@ -5410,6 +5411,24 @@ newboss:
 
 	}
 
+	if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT && is_demon(mtmp->data)) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_BREA;
+		a->adtyp = AD_CONF;
+		a->damn = 1;
+		a->damd = (1 + (mtmp->m_lev * 3));
+
+		if ( (rnd(5) > 3) && ( (tmp > (rnd(20+i))) || (tmp > (rnd(20+i))) ) && lined_up(mtmp) && ((dist2(mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy) <= BOLT_LIM*BOLT_LIM) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) )
+		{
+		    if (foundyou) {
+			(void) hitmu(mtmp, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+
+	}
+
 	if (mtmp->egotype_radiator) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -7487,6 +7506,9 @@ hitmu(mtmp, mattk)
 			}
 			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");
+			}
+			if (otmp->blessed && ( (uimplant && uimplant->oartifact == ART_VEIN_COIL_OF_KAIN) || (uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK)) ) {
+			    pline("A holy aura blasts you!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_VIVA && hates_viva(youmonst.data)) {
 			    pline("The irradiation severely hurts you!");
@@ -10889,6 +10911,9 @@ dopois:
 			}
 			if (otmp->cursed && (hates_cursed(youmonst.data) || youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)) ) {
 			    pline("An unholy aura blasts you!");
+			}
+			if (otmp->blessed && ( (uimplant && uimplant->oartifact == ART_VEIN_COIL_OF_KAIN) || (uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK)) ) {
+			    pline("A holy aura blasts you!");
 			}
 			if (objects[otmp->otyp].oc_material == MT_VIVA && hates_viva(youmonst.data)) {
 			    pline("The irradiation severely hurts you!");
@@ -19531,6 +19556,10 @@ register int n;
 		n *= 12;
 		n /= 10;
 	}
+	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) {
+		n *= 11;
+		n /= 10;
+	}
 	if (uarmh && uarmh->oartifact == ART_HEAD_W) {
 		n *= 11;
 		n /= 10;
@@ -19556,6 +19585,18 @@ register int n;
 	}
 
 	if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && n > 0 && !rn2(10)) {
+		n = 0;
+		Your("implant nullifies the damage!");
+		return;
+	}
+
+	if (uimplant && uimplant->oartifact == ART_BONE_PLUG_OF_MORVANE_THE_H && n > 0 && !rn2(10)) {
+		n = 0;
+		Your("implant nullifies the damage!");
+		return;
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HEARTSHARD_OF_ARAGORN && n > 0 && !rn2(10)) {
 		n = 0;
 		Your("implant nullifies the damage!");
 		return;
@@ -21471,6 +21512,16 @@ register struct attack *mattk;
 		}
 	}
 
+	if (RngeThorns) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(6) ) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
 	if (uimplant && uimplant->oartifact == ART_THORNE_OF_QUILT) {
 		pline("%s is damaged by your thorns!", Monnam(mtmp));
 		if((mtmp->mhp -= rnd(powerfulimplants() ? 16 : 4) ) <= 0) {
@@ -21478,6 +21529,69 @@ register struct attack *mattk;
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;
 			return 2;
+		}
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BONE_PLUG_OF_MORVANE_THE_H) {
+		if (!resists_drli(mtmp) && !resist(mtmp, WEAPON_CLASS, 0, NOTELL) ) {
+			pline("%s suddenly seems weaker!", Monnam(mtmp));
+			if (mtmp->m_lev == 0) {
+				xkilled(mtmp,0);
+				if (mtmp->mhp > 0) return 1;
+				return 2;
+			}
+			else mtmp->m_lev--;
+		}
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_EARCLIP_OF_BEOWULF && !mtmp->mstun && !rn2(10)) {
+		if (!resist(mtmp, WEAPON_CLASS, 0, NOTELL) ) {
+			mtmp->mstun = TRUE;
+			pline("%s staggers.", Monnam(mtmp));
+		}
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_MEMORY_CHIP_OF_RED_SONJA) {
+		pline("%s is damaged by your thorns!", Monnam(mtmp));
+		if((mtmp->mhp -= rnd(10)) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SOLAR_RING_OF_LYSIRA_DAWNF) {
+		if ( (Upolyd && (u.mh < (u.mhmax / 4))) || (!Upolyd && (u.uhp < (u.uhpmax / 4))) ) {
+			if (!resists_fire(mtmp) || player_will_pierce_resistance() ) {
+				pline("%s is seared by flames!", Monnam(mtmp));
+				if((mtmp->mhp -= rn1(15,15) ) <= 0) {
+					pline("%s is burnt to ashes!", Monnam(mtmp));
+					xkilled(mtmp,0);
+					if (mtmp->mhp > 0) return 1;
+					return 2;
+				}
+			}
+		}
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BLIZZGUY_IDEA && !rn2(20)) {
+		if (!resist(mtmp, WEAPON_CLASS, 0, NOTELL) ) {
+			monflee(mtmp, rn1(15, 15), FALSE, TRUE, FALSE);
+			pline("%s is suddenly very afraid!", Monnam(mtmp));
+
+		}
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) {
+		if (is_undead(mtmp->data) || mtmp->egotype_undead) {
+			pline("%s is damaged by your holy aura!", Monnam(mtmp));
+			if((mtmp->mhp -= rnd(15)) <= 0) {
+				pline("%s bleeds to death!", Monnam(mtmp));
+				xkilled(mtmp,0);
+				if (mtmp->mhp > 0) return 1;
+				return 2;
+			}
 		}
 	}
 
@@ -21624,6 +21738,15 @@ register struct attack *mattk;
 
 	if (uarmc && (!resists_elec(mtmp) || player_will_pierce_resistance()) && itemhasappearance(uarmc, APP_ELECTROSTATIC_CLOAK) ) {
 		if((mtmp->mhp -= rnd(4) ) <= 0) {
+			pline("%s is electrocuted and dies!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SYNAPSE_CROWN_OF_GANDALF && (!resists_elec(mtmp) || player_will_pierce_resistance()) && !rn2(10)) {
+		if((mtmp->mhp -= rnd(8) ) <= 0) {
 			pline("%s is electrocuted and dies!", Monnam(mtmp));
 			xkilled(mtmp,0);
 			if (mtmp->mhp > 0) return 1;

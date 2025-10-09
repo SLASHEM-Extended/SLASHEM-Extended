@@ -404,6 +404,7 @@ int thrown;
 	    }
 
 	    if (Role_if(PM_TOSSER) && obj && objects[obj->otyp].oc_skill == P_JAVELIN) multishot += 1;
+	    if (uimplant && uimplant->oartifact == ART_WENDLEWOOD && obj && objects[obj->otyp].oc_skill == P_JAVELIN) multishot += rnd(2);
 	    if (Role_if(PM_MILL_SWALLOWER) && obj && (objects[obj->otyp].oc_skill == P_CROSSBOW || objects[obj->otyp].oc_skill == -P_CROSSBOW)) multishot += 1;
 
 	    if (uarmg && uarmg->oartifact == ART_PEEPING_GROOVE && launcher && (launcher->otyp == SHOTGUN || launcher->otyp == PAPER_SHOTGUN || launcher->otyp == SAWED_OFF_SHOTGUN || launcher->otyp == AUTO_SHOTGUN)) multishot += rnd(7);

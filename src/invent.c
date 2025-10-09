@@ -19102,7 +19102,7 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 #ifdef PHANTOM_CRASH_BUG
 				pline("Pick an item to randomly enchant. For best results, use it on a +0 one. Line length restrictions prevent me from elaborating so just trust me on that one."); break;
 #else
-				pline("Using this scroll will allow you to pick an item that you want to have randomly enchanted. The item in question might get a positive or negative enchantment. However, if the item had a positive enchantment before it will first be set to +0 and get enchanted afterwards, so it's probably better to use it on items that are already +0 or worse."); break;
+				pline("Using this scroll will allow you to pick an item that you want to have randomly enchanted. It must be a weapon or armor (stuff like iron balls, venoms or gems count as weapons for this purpose). The item in question might get a positive or negative enchantment. However, if the item had a positive enchantment before, it will first be set to +0 and get enchanted afterwards, so it's almost always better to use it on items that are exactly +0. Yes, you read that right: using it on a +5 item is a waste, because the odds of it being enchanted to something higher are almost zero and most likely its enchantment will be reduced. Use it on a +0 item or be prepared for some disappointment."); break;
 #endif
 			case SCR_GENOCIDE:
 				pline("A powerful magic scroll that can be read to permanently get rid of a monster type and also prevent any more of them to spawn. Not all monster types can be genocided though."); break;
@@ -34856,6 +34856,96 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: double uninformation and +2 increased damage when worn, as well as 10%% better critical hit chances. If you're in a form without hands, another +8 to your melee damage is added on top."); break;
 				case ART_IMANI_S_POINT:
 					pline("Artifact specs: double manuela trap effect when worn and lights up tiles you walk over. If you're in a form without hands, it also displays poisonous and covetous monsters as well as all those who are the same race as you, and gives +5 increase accuracy, slightly better spellcasting chances, and boosts effects that heal you as well as giving extra movement energy whenever you do get healed."); break;
+				case ART_I_PONSER_TO_MAKE_STINGER_B:
+					pline("Artifact specs: reading it spawns a pair of boots on the ground which deal damage to things attacking you in melee."); break;
+				case ART_SCARS_ETCHED_BY_FLAME:
+					pline("Artifact specs: spawns very burnt and makes it so that newly generated spellbooks also spawn burnt for a while."); break;
+				case ART_OMEN_EYE_OF_SELORA_THE_SEE:
+					pline("Artifact specs: searching bonus when worn, and if you're in a form without hands it also grants clairvoyance and ESP. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A prophet who saw the end of all things, but gouged out her own sight.'"); break;
+				case ART_VEIN_COIL_OF_KAIN:
+					pline("Artifact specs: regeneration when when but makes you vulnerable to blessed weapons. If you're in a form without hands, it allows you to restore some HP whenever you kill an enemy. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Tiny emerald scales pulse beneath the skin when worn.'"); break;
+				case ART_GRAV_NODE_OF_SERAPHIS_VALE:
+					pline("Artifact specs: improves the maximum range when you jump, but still requires that you actually have a source of jumping. If you're in a form without hands, it also grants flying. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'He fell from heaven-and built his wings anew in the dark.'"); break;
+				case ART_SYNAPSE_CROWN_OF_GANDALF:
+					pline("Artifact specs: boosts your WIS by 2 and improves spellcasting success chances, but you can't have double stealth while wearing it. If you're in a form without hands, you're immune to lightning and occasionally monsters who hit you take lightning damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The battle fury of a forgotten champion still burns within.'"); break;
+				case ART_LIVE_LONG__IF_YOU_CAN:
+					pline("Artifact specs: can be invoked to perform the telekinesis technique, even if you don't know that one. If you're in a form without hands, the invocation effect additionally allows you to recharge an item."); break;
+				case ART_CORELINK_OF_CU_CHULAINN:
+					pline("Artifact specs: makes you slightly faster and grants +1 constitution and the conny trap effect when worn. If you're in a form without hands, you'll occasionally hit in melee even if your attack was inaccurate. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Ancient necrotech channels rebirth and decay in equal measure.'"); break;
+				case ART_HEARTSHARD_OF_ARAGORN:
+					pline("Artifact specs: +2 strength and hunger when worn. If you're in a form without hands, it grants regeneration and occasionally nullifies damage you take. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Forged from the essence of the first hero's undying ambition, it still beats faintly with defiance.'"); break;
+				case ART_TENDON_COIL_OF_DRAXUN_THE_:
+					pline("Artifact specs: +3 dexterity when worn but causes you to occasionally drop items from your inventory. If you're in a form without hands, it allows you to backstab opponents and when you do, they take bleeding damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'He struck down his master mid-bow, and his nerves still twitch with guilt.'"); break;
+				case ART_HAPPY_IGNORANCE:
+					pline("Artifact specs: +13 luck and uninformation when worn. If you're in a form without hands, it grants half physical damage and double magic find."); break;
+				case ART_WHAT____BARCUFF_HE_WOULD__:
+					pline("Artifact specs: improves your unarmed melee damage by 2, or 5 if you're in a form without hands."); break;
+				case ART_LUCK_WEAVE_OF_ARDENT_SOLWY:
+					pline("Artifact specs: +2 luck and +1 wisdom when worn but halves your charisma. If you're in a form without hands, it also conveys curse resistance. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A gambler-saint who rewove fate until luck itself turned on him.'"); break;
+				case ART_LUNG_INFUSER_OF_LINK:
+					pline("Artifact specs: +2 luck and +1 dexterity when worn but also burdens you. If you're in a form without hands, all your pets have additional AC and deal more damage to enemies. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Each breath feels like thunder in your chest.'"); break;
+				case ART_NEURAL_GRAFT_OF_VAELRIC_TH:
+					pline("Artifact specs: +2 strength and constitution when worn but you get afflicted with inertia every now and then. If you're in a form without hands, all of your weapon attacks deal extra damage versus undead and wallwalking monsters. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The cursed champion who chained his own heart to control his power.'"); break;
+				case ART_NERVE_HOOK_OF_CONAN:
+					pline("Artifact specs: +3 strength but -2 intelligence when worn. If you're in a form without hands and get damaged below 30%% of your health, you may choose to go berserk for a while. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The metal veins within still hum from the flight of a hero's blade.'"); break;
+				case ART_BONE_PLUG_OF_MORVANE_THE_H:
+					pline("Artifact specs: occasionally nullifies damage you take, but your HP regenerates more slowly. If you're in a form without hands, monsters who hit you and don't resist may lose a level. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A hollow monk who traded flesh for stone and silence.'"); break;
+				case ART_CRANIAL_PRISM_OF_MERLIN:
+					pline("Artifact specs: slightly boosts your spellcasting success chances, potentially beyond the normal cap, but slows your Pw regeneration rate. If you're in a form without hands, scrolls and spellbook will spawn with their BUC, enchantment etc. known. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Its colors shift like a siren's eyes, mesmerizing those who look too deeply.'"); break;
+				case ART_TEMPORAL_LOBE_OF_ZORATH_TH:
+					pline("Artifact specs: +3 intelligence when worn but your techniques may occasionally fail when you try to use them. If you're in a form without hands, hitting anything in melee will give you a few turns of invisibility. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A time-thief who folded seconds like parchment.'"); break;
+				case ART_EARCLIP_OF_BEOWULF:
+					pline("Artifact specs: +2 constitution and +1 strength when worn but your techniques get twice the normal amount of timeout when used. If you're in a form without hands, monsters who hit you may occasionally get stunned if they fail a saving throw. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Its whispering gemstone is never silent for long.'"); break;
+				case ART_FOCUS_GEM_OF_KAEDRA_MOONVE:
+					pline("Artifact specs: spellboost and +1 dexterity when worn but you occasionally become confused for a few turns. If you're in a form without hands, your spells cost less mana to cast. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A dreammage who wove stars into her thoughts.'"); break;
+				case ART_MEMORY_CHIP_OF_RED_SONJA:
+					pline("Artifact specs: +2 dexterity and strength, but you can't have double cold resistance or cold immunity (if you would have those, you'll just have single cold resistance). If you're in a form without hands, monsters who hit you in melee take thorns damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Its silver circuit sings with the sorrow of forbidden enchantments.'"); break;
+				case ART_NEURAL_THREAD_OF_GALADRIEL:
+					pline("Artifact specs: sight bonus when worn, and if you're in a form without hands it also grants half spell damage and energy regeneration. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Rumor says this ancient filament hums with echoes of the Archmage's final experiment.'"); break;
+				case ART_SOLAR_RING_OF_LYSIRA_DAWNF:
+					pline("Artifact specs: fire resistance and +1 charisma when worn but deactivates stealth. If you're in a form without hands and your health is low, all monsters who hit you in melee take a bunch of fire damage unless they're resistant. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A warrior-priestess who burned with divine fire until nothing remained but her will.'"); break;
+				case ART_BLOODPUMP_OF_HARKON_BLOODR:
+					pline("Artifact specs: +2 strength when worn but greatly reduces your HP regeneration rate. If you're in a form without hands, you will recover some HP whenever you kill an enemy and also have double drain resistance. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A berserker who replaced his heart with a black iron engine.'"); break;
+				case ART_OPTIC_COIL_OF_ELRIC:
+					pline("Artifact specs: allows you to occasionally suck mana from the enemy if you land a melee hit, and if you're in a form without hands, killing a monster causes you to recover some health. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'The goddess's gaze sees truth-even when you wish it didn't.'"); break;
+				case ART_SHADOW_SPINE_OF_VELAN_DUSK:
+					pline("Artifact specs: stealth when worn and slightly increases your speed but makes you vulnerable to blessed weapons. If you're in a form without hands, killing a monster will sometimes make you invisible for a while. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A spy who replaced his skeleton with living smoke.'"); break;
+				case ART_COMBAT_NODE_OF_THARION_BLA:
+					pline("Artifact specs: double attacks and slightly increases your speed when worn, but makes your spells slightly harder to cast. If you're in a form without hands, your melee attacks may occasionally grind nearby enemies. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A duelist so fast he claimed to strike between seconds.'"); break;
+				case ART_BLIZZGUY_IDEA:
+					pline("Artifact specs: fear factor when worn, and if you're in a form without hands, monsters who hit you in melee may occasionally turn to flee unless they make a saving throw."); break;
+				case ART_CORE_HALO_OF_AURELION_THE_:
+					pline("Artifact specs: slightly increases your caps for corona effects but prevents you from gaining experience. If you're in a form without hands, it grants regeneration as well as energy regeneration. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A being who transcended mortality-and abandoned ambition.'"); break;
+				case ART_VITAELITAET:
+					pline("Artifact specs: +5 constitution when worn. If you're in a form without hands, that bonus is increased to +12 and you also have higher HP caps for corona effects."); break;
+				case ART_BONE_LATTICE_OF_LANCELOT:
+					pline("Artifact specs: boosts your charisma and AC by 2 when worn but hostile demons may breathe confusion. If you're in a form without hands, any undead who hit you take thorns damage. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Bone grafts etched with twelve symbols-one for each impossible trial.'"); break;
+				case ART_GIULY_AH:
+					pline("Artifact specs: julia trap effect when worn, and that effect prevents your attacks more often than normal, plus it also grants very fast speed. If you're in a form without hands, you get significant amounts of extra movement speed and can invoke this artifact to perform the 'blink' technique, regardless of whether you know that one."); break;
+				case ART_YOU_HAVE_GECRITTED:
+					pline("Artifact specs: boosts your critical hit chance. If you're in a form without hands, the bonus is greater."); break;
+				case ART_PULSE_NODE_OF_GERALT:
+					pline("Artifact specs: boosts effects that heal your character, but if you get hit by poison, the risk of losing stats is bigger than normal. If you're in a form without hands, it also grants double poison resistance. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Forged from dragon blood and meadfire, it throbs to the rhythm of valor.'"); break;
+				case ART_MINDFRAME_OF_NYSSARA_THE_T:
+					pline("Artifact specs: occasionally allows you to select a weapon or armor in your inventory and spawn another copy of that base item, but the newly generated item will be cursed and negatively enchanted. If you're in a form without hands, you can invoke this artifact to clone yourself. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Her mind fractured into infinite echoes-each still whispering in unison.'"); break;
+				case ART_VIRAL_CORE_OF_ISKAR_THE_PA:
+					pline("Artifact specs: poison and sickness resistance when worn but damages you every now and then. If you're in a form without hands, your unarmed melee attacks deal cold damage and may occasionally slow non-resistant foes. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A scholar who infected himself to understand decay, and became eternal rot.'"); break;
+				case ART_OCULAR_LENS_OF_DRIZZT:
+					pline("Artifact specs: +3 dexterity when worn but occasionally damages your alignment and if that causes it to become too negative, you may be permanently converted. If you're in a form without hands, melee attackers may randomly miss you. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'A single raven feather trapped beneath the lens still flutters when danger is near.'"); break;
+				case ART_WENDLEWOOD:
+					pline("Artifact specs: boosts your multishot with javelins. If you're in a form without hands, you'll occasionally perform the clone javelin technique even if you don't have that one."); break;
+				case ART_LAURENA_S_ALTERNATIVE:
+					pline("Artifact specs: double difficulty trap effect when worn, and if you're in a form without hands, it doubles randomly spawned gold and enchants itself to +5 if it was lower."); break;
+				case ART_TOO_MUCH_HEALTH:
+					pline("Artifact specs: double regeneration when when, and if you're in a form without hands it also grants full nutrients."); break;
+				case ART_SPINAL_MATRIX_OF_RAISTLIN:
+					pline("Artifact specs: spellboost and improved spellcasting chances when worn, but you take 10%% more damage. If you're in a form without hands, there's a small chance that casting a spell procs the spell's effect twice. This artifact was designed by honorary SLEX devteam member ChatGPT, who has this to say: 'Said to contain strands of sinew from a warrior who could not die-except once.'"); break;
+				case ART_SANTANA_S_CHICANERY:
+					pline("Artifact specs: occasionally triggers lockout when worn, and if you're in a form without hands, it boosts all of your stats by one."); break;
+				case ART_I_LL_GIVE_YOU_A_GENDER_STA:
+					pline("Artifact specs: irina trap effect, and if you're not in a form without hands, everything is gendered, otherwise you'll have mystery resistance."); break;
+				case ART_CHOOSE_EMATISCRACE_AND_ELE:
+					pline("Artifact specs: putting it on prime curses it and polymorphs you as well as changing your gender. If you're in a form without hands, it grants undead warning and contamination resistance."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

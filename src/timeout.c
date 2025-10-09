@@ -276,6 +276,11 @@ nh_timeout()
 		if (!u.tempharenwah) You("feel that the animals are no longer as peaceful as before.");
 	}
 
+	if (u.tempburntbooks) {
+		u.tempburntbooks--;
+		if (u.tempburntbooks < 0) u.tempburntbooks = 0; /* fail safe */
+	}
+
 	if (u.temppainresist) {
 		u.temppainresist--;
 		if (u.temppainresist < 0) u.temppainresist = 0; /* fail safe */
@@ -4109,6 +4114,10 @@ nh_timeout()
 	if (!rn2(500) && u.twoweap && uswapwep && uswapwep->oartifact == ART_SCALPEL_OF_THE_BLOODLETTER) {
 		You("are losing blood!");
 		losehp(rnz(u.legscratching), "bleeding out", KILLED_BY);
+	}
+
+	if (uimplant && uimplant->oartifact == ART_VIRAL_CORE_OF_ISKAR_THE_PA && !rn2(20)) {
+		losehp(1, "Iskar's viral core", KILLED_BY);
 	}
 
 	if (uarmc && itemhasappearance(uarmc, APP_DEADLY_CLOAK) && !rn2(1000) ) {

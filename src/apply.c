@@ -2181,6 +2181,9 @@ int magic; /* 0=Physical, otherwise skill level; -5 = forcible move spell with v
 	struct trap *trap;
 
 	boolean minijump = FALSE;
+
+	int jumpdistance = 0;
+
 	if (magic == -5) {
 		minijump = TRUE;
 		magic = 1;
@@ -2291,6 +2294,16 @@ int magic; /* 0=Physical, otherwise skill level; -5 = forcible move spell with v
 		return (0);
 	}
 
+	if (magic) {
+		jumpdistance = 6 + magic * 3;
+		if (uimplant && uimplant->oartifact == ART_GRAV_NODE_OF_SERAPHIS_VALE) jumpdistance += 2;
+		if (StrongJumping) jumpdistance += 3;
+	} else {
+		jumpdistance = 9;
+		if (uimplant && uimplant->oartifact == ART_GRAV_NODE_OF_SERAPHIS_VALE) jumpdistance += 2;
+		if (StrongJumping) jumpdistance += 3;
+	}
+
 	pline("Where do you want to jump?");
 	cc.x = u.ux;
 	cc.y = u.uy;
@@ -2306,7 +2319,7 @@ int magic; /* 0=Physical, otherwise skill level; -5 = forcible move spell with v
 	} else if (minijump && distu(cc.x, cc.y) > 2) {
 		pline(FunnyHallu ? "Now that would be a world-class jump." : "Too far!");
 		return 0;
-	} else if (distu(cc.x, cc.y) > (magic ? (6 + magic * 3 + (StrongJumping ? 3 : 0) ) : StrongJumping ? 12 : 9)) {
+	} else if (distu(cc.x, cc.y) > jumpdistance) {
 		pline(FunnyHallu ? "Now that would be a world-class jump." : "Too far!");
 		return 0;
 	} else if (!cansee(cc.x, cc.y)) {

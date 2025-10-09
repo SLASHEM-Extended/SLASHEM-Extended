@@ -739,6 +739,10 @@ boolean yours; /* is it your fault (for killing monsters) */
 			damu *= 12;
 			damu /= 10;
 		}
+		if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) {
+			damu *= 11;
+			damu /= 10;
+		}
 		if (uarmh && uarmh->oartifact == ART_HEAD_W) {
 			damu *= 11;
 			damu /= 10;
@@ -769,6 +773,12 @@ boolean yours; /* is it your fault (for killing monsters) */
 		    damu = 0;
 		    Your("shield nullifies the damage!");
 		} else if (uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL && !rn2(10)) {
+		    damu = 0;
+		    Your("implant nullifies the damage!");
+		} else if (uimplant && uimplant->oartifact == ART_BONE_PLUG_OF_MORVANE_THE_H && !rn2(10)) {
+		    damu = 0;
+		    Your("implant nullifies the damage!");
+		} else if (powerfulimplants() && uimplant && uimplant->oartifact == ART_HEARTSHARD_OF_ARAGORN && !rn2(10)) {
 		    damu = 0;
 		    Your("implant nullifies the damage!");
 		} else if (PlayerInConeHeels && !PlayerCannotUseSkills && P_SKILL(P_CONE_HEELS) >= P_BASIC && (rnd(100) < P_SKILL(P_CONE_HEELS)) ) {

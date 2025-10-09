@@ -3138,6 +3138,11 @@ docast()
 
 		whatreturn = spelleffects(spell_no, FALSE, FALSE);
 
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN && !rn2(10)) {
+			pline_The("spell fires twice!");
+			spelleffects(spell_no, FALSE, FALSE);
+		}
+
 		if (SpellColorPlatinum && u.uen < 0) {
 			u.uenmax -= (0 - u.uen);
 			if (u.uenmax < 0) {
@@ -4600,6 +4605,19 @@ repairhomiechoice:
 			}
 		}
 
+	}
+
+	if (book2->oartifact == ART_I_PONSER_TO_MAKE_STINGER_B) {
+		struct obj *uammo;
+		uammo = mkobj(randartboots(), FALSE, FALSE);
+		if (uammo) {
+			uammo->quan = 1;
+			uammo->owt = weight(uammo);
+			uammo->enchantment = RNGE_THORNS;
+			dropy(uammo);
+			stackobj(uammo);
+			pline("A pair of boots has formed on the ground!");
+		}
 	}
 
 	if (book2->oartifact == ART_CRUELTY_PROOF) {
@@ -7058,6 +7076,12 @@ boolean metronomespell;
 	if (Role_if(PM_MAHOU_SHOUJO) && energy > 1) {  /* Casting any sort of magic uses half power for them */
 		if (rn2(10)) energy += 1;
 		energy /= 2;
+	}
+
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_FOCUS_GEM_OF_KAEDRA_MOONVE && energy > 1) {
+		if (rn2(10)) energy += 1;
+		energy *= 4;
+		energy /= 5;
 	}
 
 	if (u.tempspellcost90 && energy > 1) {
@@ -16341,6 +16365,8 @@ int spell;
 	if (uarmh && uarmh->oartifact == ART_ZERO_PERCENT_FAILURE) chance += 10;
 	if (uarmf && uarmf->oartifact == ART_SPELLBOOTS) chance += 10;
 	if (uarmc && uarmc->oartifact == ART_HENRIETTA_S_HEAVY_CASTER) chance += 15;
+	if (uimplant && uimplant->oartifact == ART_SPINAL_MATRIX_OF_RAISTLIN) chance += 20;
+	if (uimplant && uimplant->oartifact == ART_SYNAPSE_CROWN_OF_GANDALF) chance += 15;
 	if (uarm && uarm->oartifact == ART_ROBXOR_ZSCH) chance += 20;
 	if (uarm && uarm->oartifact == ART_PAUA_FOR_ME_) chance += 12;
 	if (u.tempspellchance20) chance += 20;
@@ -16822,6 +16848,7 @@ int spell;
 
 	if (Race_if(PM_VIETIS)) chance -= 20;
 
+	if (uimplant && uimplant->oartifact == ART_COMBAT_NODE_OF_THARION_BLA) chance -= 10;
 	if (uarmc && itemhasappearance(uarmc, APP_DNETHACK_CLOAK)) chance -= 10;
 	if (uarms && uarms->oartifact == ART_DNETHACKC_NOONISHNESS) chance -= 10;
 	if (RngeDnethack) chance -= 10;
@@ -16832,6 +16859,7 @@ int spell;
 	/* artifacts and other items that boost the chance after "hard" penalties are applied go here --Amy */
 
 	if (uarmc && itemhasappearance(uarmc, APP_FAILUNCAP_CLOAK) ) chance += 5;
+	if (uimplant && uimplant->oartifact == ART_CRANIAL_PRISM_OF_MERLIN) chance += 10;
 	if (uarm && uarm->oartifact == ART_ROBXOR_ZSCH) chance += 5;
 	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_IMANI_S_POINT) chance += 10;
 	if (uarmh && itemhasappearance(uarmh, APP_FAILUNCAP_HELMET) ) chance += 5;

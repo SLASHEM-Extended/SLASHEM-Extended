@@ -4115,6 +4115,10 @@ boolean shopinit;
 			if (!rn2(50)) otmp->quan += rnz( rnd( (otmp->quan * 2) + 3) );
 		}
 
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_CRANIAL_PRISM_OF_MERLIN && (let == SCROLL_CLASS) ) {
+			otmp->known = otmp->bknown = otmp->rknown = otmp->dknown = TRUE;
+		}
+
 		break;
 	case SPBOOK_CLASS:
 		/* WAC charged books are easier to read */
@@ -4153,6 +4157,12 @@ boolean shopinit;
 			if (artif != 2) u.fakeartifacts++;
 		}
 		if (!rn2(4)) otmp->finalcancel = TRUE;
+
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_CRANIAL_PRISM_OF_MERLIN) {
+			otmp->known = otmp->bknown = otmp->rknown = otmp->dknown = TRUE;
+		}
+
+		if (u.tempburntbooks && !otmp->oeroded) otmp->oeroded = 1;
 
 		break;
 /* -----------============STEPHEN WHITE'S NEW CODE============----------- */           
@@ -5373,6 +5383,7 @@ int x, y;
 	if (uarmf && uarmf->oartifact == ART_GUELDRE_S_COIN_CLING) amount += (amtdbl * 2);
 	if (uarmf && uarmf->oartifact == ART_SPARKLING_GOLD) amount += amtdbl;
 	if (uwep && uwep->oartifact == ART_CLAW_OF_GIERZAHN) amount += amtdbl;
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LAURENA_S_ALTERNATIVE) amount += amtdbl;
 	if (uarmg && uarmg->oartifact == ART_HOBART_THE_GOLDEN) amount += (amtdbl * 2);
 
 	if (RngeWealth) { /* 2.5 times as much gold on average --Amy */

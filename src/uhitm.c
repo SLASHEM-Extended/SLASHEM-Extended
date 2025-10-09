@@ -1090,6 +1090,8 @@ register struct monst *mtmp;
 
 	if (Race_if(PM_PLAYER_SKELETON)) tmp -= u.ulevel; /* sorry */
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_CORELINK_OF_CU_CHULAINN && !rn2(12)) tmp += 100;
+
 	if (Race_if(PM_DEVELOPER)) tmp += 3;
 
 	if (is_table(u.ux, u.uy)) tmp += 3;
@@ -1344,7 +1346,7 @@ register struct monst *mtmp;
 		return(FALSE);
 	}
 
-	if (FemtrapActiveJulia && !rn2(5) && mtmp->female && humanoid(mtmp->data) ) {
+	if (FemtrapActiveJulia && !rn2( (uimplant && uimplant->oartifact == ART_GIULY_AH) ? 3 : 5) && mtmp->female && humanoid(mtmp->data) ) {
 		u.cnd_juliatrapcnt++;
 		You("are held back by the referee, who states that it's unfair of you to try to attack %s!", mon_nam(mtmp));
 		return(FALSE);
@@ -2283,6 +2285,7 @@ int dieroll;
 
 		if (uarm && uarm->oartifact == ART_WOOHOO_AMATEURHOUR_) tmp += 4;
 		if (uarm && uarm->oartifact == ART_COME_ON_AMMY) tmp += 4;
+		if (uimplant && uimplant->oartifact == ART_WHAT____BARCUFF_HE_WOULD__) tmp += (powerfulimplants() ? 5 : 2);
 
 		if (u.martialstyle == MARTIALSTYLE_JUDO && tmp > 1) {
 			tmp *= 4;
@@ -2299,6 +2302,17 @@ int dieroll;
 					return FALSE;
 				if (tmp == 0) return TRUE;
 				hittxt = TRUE;
+			}
+		}
+
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_VIRAL_CORE_OF_ISKAR_THE_PA && !resists_cold(mon) ) {
+			tmp += rnd(6);
+			if (!rn2(10) && !resist(mon, WEAPON_CLASS, 0, NOTELL) ) {
+			    unsigned int oldspeed = mon->mspeed;
+			    mon_adjust_speed(mon, -1, (struct obj *)0);
+			    if (mon->mspeed != oldspeed && canseemon(mon))
+				pline("%s slows down.", Monnam(mon));
+
 			}
 		}
 
@@ -2975,10 +2989,14 @@ int dieroll;
 
 		    if (!valid_weapon_attack || mon == u.ustuck) {
 			;	/* no special bonuses */
-		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || autismringcheck(ART_POISED_STRIKE) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
+		    } else if (mon->mflee && (Role_if(PM_ROGUE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_TENDON_COIL_OF_DRAXUN_THE_) || (uwep && uwep->oartifact == ART_SUPERSTAB) || (uarmc && uarmc->oartifact == ART_CLANCY_S_FURTIVENESS) || (uarmc && uarmc->oartifact == ART_BEHIND_CUNTINGNESS) || autismringcheck(ART_POISED_STRIKE) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_MURDE) || (uarmf && uarmf->oartifact == ART_BACKGROUND_HOLDING) || Race_if(PM_VIETIS) || Role_if(PM_MURDERER) || Role_if(PM_DISSIDENT) || Role_if(PM_ASSASSIN) ) && !Upolyd) {
 			if (!issoviet) You("strike %s from behind!", mon_nam(mon));
 			else pline("K schast'yu, vy ne chuvstvuyete sebya vo vsem, chto vasha spina koloto odolevayet!");
 			tmp += issoviet ? GushLevel : rno(GushLevel); /* nerf by Amy */
+			if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TENDON_COIL_OF_DRAXUN_THE_) {
+				mon->bleedout += tmp;
+				pline("%s is bleeding!", Monnam(mon));
+			}
 			hittxt = TRUE;
 		    } else if ((dieroll == 2 || (juyohelpchance >= rnd(100))) && obj == uwep &&
 			  !u.twoweap && obj->oclass == WEAPON_CLASS && (bimanual(obj) || obj->oartifact == ART_OUTJUYOING ||
@@ -4241,6 +4259,10 @@ int dieroll;
 		}
 	}
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_TEMPORAL_LOBE_OF_ZORATH_TH && !thrown && !pieks) {
+		incr_itimeout(&HInvis, 10);
+	}
+
 	if (obj && obj->oartifact == ART_MANA_SLASHER) {
 		mon->m_en -= 5;
 		if (mon->m_en < 0) {
@@ -4760,6 +4782,10 @@ int dieroll;
 		if (obj && obj->oartifact == ART_RANKIS && !rn2(100)) {
 			TimeStopped += rn1(2,2);
 			pline((Role_if(PM_SAMURAI) || Role_if(PM_NINJA)) ? "Jikan ga teishi shimashita." : "Time has stopped.");
+		}
+
+		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEURAL_GRAFT_OF_VAELRIC_TH && (is_undead(mon->data) || mon->egotype_undead || passes_walls(mon->data)) ) {
+			tmp += rnd(15);
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {
@@ -11756,6 +11782,21 @@ bladeangerdone2:
 
 				}
 
+				if (uwep && powerfulimplants() && uimplant && uimplant->oartifact == ART_COMBAT_NODE_OF_THARION_BLA && !rn2(20)) {
+					int grindirection = 0;
+					if (u.dx > 0 && u.dy == 0) grindirection = 1; /* east */
+					if (u.dx > 0 && u.dy > 0) grindirection = 2; /* southeast */
+					if (u.dx == 0 && u.dy < 0) grindirection = 3; /* north */
+					if (u.dx < 0 && u.dy < 0) grindirection = 4; /* northwest */
+					if (u.dx < 0 && u.dy == 0) grindirection = 5; /* west */
+					if (u.dx < 0 && u.dy > 0) grindirection = 6; /* southwest */
+					if (u.dx == 0 && u.dy > 0) grindirection = 7; /* south */
+					if (u.dx > 0 && u.dy < 0) grindirection = 8; /* northeast */
+					if (grindirection >= 1 && grindirection <= 8) grinderattack(grindirection);
+					if (!mon) return FALSE;
+					if (DEADMONSTER(mon)) return FALSE;
+				}
+
 				if (uwep && ((objects[uwep->otyp].oc_skill == P_ORB) || (uwep->oartifact == ART_KHALIM_S_FEMUR)) ) {
 					int suckingchance = 12;
 					if (uwep && uwep->otyp == JARED_STONE) suckingchance = 11;
@@ -11824,6 +11865,14 @@ bladeangerdone2:
 						flags.botl = TRUE;
 					}
 				}
+
+				if (uimplant && uimplant->oartifact == ART_OPTIC_COIL_OF_ELRIC && !rn2(12) ) {
+					You("suck some mana from the target.");
+					u.uen += rn1(3,3);
+					if (u.uen > u.uenmax) u.uen = u.uenmax;
+					flags.botl = TRUE;
+				}
+
 				if (uwep && uwep->otyp == STEEL_CAPPED_SANDAL && !rn2(uwep->oartifact == ART_PATRICIA_S_FEMININITY ? 150 : 30)) {
 					uwep->spe--;
 					pline("Your steel-capped sandal degrades.");

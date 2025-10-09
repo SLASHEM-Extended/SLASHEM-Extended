@@ -5516,7 +5516,16 @@ Implant_on()
 	}
 
     switch(uimplant->otyp) {
+	/* currently nothing */
+    }
 
+    if (uimplant && uimplant->oartifact == ART_CHOOSE_EMATISCRACE_AND_ELE) {
+	curse(uimplant);
+	uimplant->hvycurse = uimplant->prmcurse = TRUE;
+	You_feel("rather strange.");
+	polyself(FALSE);
+	change_sex();
+	flags.botl = TRUE;
     }
 
     if (uimplant && uimplant->oartifact == ART_HENRIETTA_S_TENACIOUSNESS) {
@@ -7746,6 +7755,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) uac -= 2;
 	if (uarm && itemhasappearance(uarm, APP_ARMORED_ROBE)) uac -= 5;
 	if (uwep && uwep->oartifact == ART_KALI_S_ORBIT) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_PLUM_AURA) uac -= 5;

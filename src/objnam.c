@@ -472,6 +472,8 @@ int prop;
 			return "scrounging";
 		case RNGE_FARMING:
 			return "farming";
+		case RNGE_THORNS:
+			return "thorns";
 		case FULL_NUTRIENT:
 			if (flags.simpledescs) return "full nutr";
 			return "full nutrients";
@@ -9368,14 +9370,14 @@ char *prefix;
 	/* The only cases where any of these bits do double duty are for
 	 * rotted food and diluted potions, which are all not is_damageable().
 	 */
-	if (obj->oeroded && !iscrys) {
+	if (obj->oeroded/* && !iscrys*/) {
 		switch (obj->oeroded) {
 			case 2:	strcat(prefix, flags.simpledescs ? "2x" : "very "); break;
 			case 3:	strcat(prefix, flags.simpledescs ? "3x" : "thoroughly "); break;
 		}			
 		strcat(prefix, is_rustprone(obj) ? "rusty " : "burnt ");
 	}
-	if (obj->oeroded2 && !iscrys) {
+	if (obj->oeroded2/* && !iscrys*/) {
 		switch (obj->oeroded2) {
 			case 2:	strcat(prefix, flags.simpledescs ? "2x" : "very "); break;
 			case 3:	strcat(prefix, flags.simpledescs ? "3x" : "thoroughly "); break;

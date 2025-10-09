@@ -4158,6 +4158,8 @@ mdamagem(magr, mdef, mattk)
 
 	}
 
+	if (powerfulimplants() && uimplant && uimplant->oartifact == ART_LUNG_INFUSER_OF_LINK) petdamagebonus += 10;
+
 	if (magr->mtame && !mdef->mtame) petdamagebonus += (boost_power_value() * 3);
 
 	if (magr->mtame && !mdef->mtame && (magr->data->mlet == S_QUADRUPED) && Race_if(PM_ENGCHIP)) {

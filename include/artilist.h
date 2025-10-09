@@ -25572,6 +25572,186 @@ A("Imani's Point",				IMPLANT_OF_EVISCERATION, /* double manuela trap effect, sq
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
 
+A("I ponser to make stinger boots.",				SPE_MAGICTORCH, /* randart spellbook, reading it spawns a random pair of boots with the thorns enchantment */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Scars etched by flame",				SPE_MAGICTORCH, /* randart spellbook, spawns very burnt and upon generation gives 20k turns of an effect that makes newly spawned spellbooks generate burnt */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Omen Eye of Selora the Seer",				IMPLANT_OF_REDEMPTION, /* if you're in a form without hands, it grants clairvoyance and ESP */
+	(SPFX_RESTR|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Vein Coil of Kain",				IMPLANT_OF_BADNESS, /* while wearing it, you take extra damage from blessed weapons; if you're in a form without hands, killing enemies restores some HP */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Grav Node of Seraphis Vale",				IMPLANT_OF_PROPOGATION, /* improves the permissible range when you try to jump; if in a form without hands, it grants flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Synapse Crown of Gandalf",				IMPLANT_OF_PASSION, /* +2 WIS, +15% spellcasting success chances, but you can't have double stealth; if you're in a form without hands, you have lightning immunity and 10% chance that a monster who hits you takes d8 lightning damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Live long, if you can",				IMPLANT_OF_PROSPERITY, /* can be invoked to perform the telekinesis technique; if you're in a form without hands, doing so additionally allows you to uncursed-recharge an item */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Corelink of Cu Chulainn",				IMPLANT_OF_FERVOR, /* increases speed like real speed devil, +1 CON and conny trap effect when worn; if you're in a form without hands, 1 in 12 chance when you attack that you have +100 to-hit */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Heartshard of Aragorn",				IMPLANT_OF_BADASS, /* +2 strength and hunger when worn; if in a form without hands, also gives regeneration and 10% to nullify damage you take */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Tendon Coil of Draxun the Betrayer",				IMPLANT_OF_PILFERING, /* +3 DEX, but 1 in 2500 chance per turn to randomly drop items from your inventory; if you're in a form without hands, you can backstab opponents and those backstabs additionally deal bleeding damage equal to the amount of damage the attack did */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Happy Ignorance",				IMPLANT_OF_BLISS, /* +13 luck, uninformation effect; if you're in a form without hands, it grants half physical damage and double magic find */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("What... Barcuff he would...",				IMPLANT_OF_IRE, /* +2 unarmed melee damage, or +5 if in a form without hands */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1500L ),
+
+A("Luck Weave of Ardent Solwyn",				IMPLANT_OF_TRUTH, /* +2 luck, +1 WIS, halves your charisma; if you're in a form without hands, it grants curse resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Lung Infuser of Link",				IMPLANT_OF_REMORSE, /* +2 luck, +1 DEX and burden when worn; if you're in a form without hands, all tame monsters have +5 AC and a 10% "petdamagebonus" (mhitm.c) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Neural Graft of Vaelric the Bound",				IMPLANT_OF_WASTE, /* +2 STR and CON, but 1 in 100 chance per turn to get rn1(3,3) turns of inertia; if you're in a form without hands, your weapon attacks deal d15 extra damage to all undead or wallwalking enemies */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Nerve Hook of Conan",				IMPLANT_OF_DREAD, /* +3 STR, -2 INT, if you're in a form without hands and something reduces you below 30% of your health you may choose to go berserk for 25 turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bone Plug of Morvane the Hollow",				IMPLANT_OF_MAGGOTS, /* 10% chance to nullify damage you take, but 50% chance per turn to not be able to regenerate any HP; if you're in a form without hands, monsters who hit you in melee must make a saving throw (or be drain resistant) or lose a level */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Cranial Prism of Merlin",				IMPLANT_OF_DUSK, /* boosts spellcasting chances by 10% like failuncap, but 1 in 4 chance per turn to not regenerate any Pw; if in a form without hands, all scrolls and spellbooks spawn with their appearance, BUC, enchantment value and rustproofing status known */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Temporal Lobe of Zorath the Trickbinder",				IMPLANT_OF_SWEETNESS, /* +3 INT, but your techniques have a 10% chance of failing and getting a timeout; if in a form without hands, hitting something in melee gives +10 turns of invisibility */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Earclip of Beowulf",				IMPLANT_OF_TWILIGHT, /* +2 CON, +1 STR, but techniques have twice as much timeout when used; if you're in a form without hands, monsters who hit you have 10% chance of requiring a saving throw or get stunned */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Focus Gem of Kaedra Moonveil",				IMPLANT_OF_LOVE, /* spellboost, +1 DEX, but 1 in 1000 chance for you to become confused for rn1(5,5) turns; if in a form without hands, your spells cost 20% less mana */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Memory Chip of Red Sonja",				IMPLANT_OF_VINES, /* +2 DEX and STR, but you can't have double cold resistance or cold immunity; if you're in a form without hands, monsters who hit you in melee take d10 damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Neural Thread of Galadriel",				IMPLANT_OF_ANIMA, /* sight bonus when worn, and if you're in a form without hands it also grants half spell damage and energy regeneration */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Solar Ring of Lysira Dawnflame",				IMPLANT_OF_DESIRE, /* +1 CHA, but you cannot have stealth; if you're in a form without hands and your HP is below 25%, monsters who attack you in melee take rn1(15,15) fire damage */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Bloodpump of Harkon Bloodreaver",				IMPLANT_OF_DARING, /* +2 STR, but you regenerate hit points 90% slower; if in a form without hands, killing things restores your HP and you have double drain resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Optic Coil of Elric",				IMPLANT_OF_HACKING, /* if you hit in melee, you may suck mana from the target like if you were wielding an eagle ball; if in a form without hands, you gain health when killing something like the bloodseeker */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Shadow Spine of Velan Duskheart",				IMPLANT_OF_DECEPTION, /* increases speed like real speed devil but makes you vulnerable to hits from blessed weapons; if in a form without hands, every time you kill a monster you have 25% chance of getting +100 turns of invisibility */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Combat Node of Tharion Bladewind",				IMPLANT_OF_BUTCHERY, /* double attacks, increases your speed like real speed devil, 10% increased spellcasting failure rate; if you're in a form without hands, 1 in 20 chance when attacking in melee to grind enemies (uhitm.c) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Blizzguy Idea",				IMPLANT_OF_TERROR, /* fear factor; if you're in a form without hands, monsters who hit you in melee have a 1 in 20 chance of needing to make a saving throw or become afraid for rn1(15,15) turns */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Core Halo of Aurelion the Eternal",				IMPLANT_OF_DAWN, /* 10% better HP/Pw caps for corona, anti-experience effect; if you're in a form without hands, it grants regen and eregen */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Vitaelitaet",				IMPLANT_OF_VIRILITY, /* +5 CON, or +12 if in a form without hands; if the latter is the case, 20% increased HP caps for corona */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Bone Lattice of Lancelot",				IMPLANT_OF_HOPE, /* +2 CHA and AC, but all hostile M2_DEMON have an AD_BREA, AD_CONF, mlvl*3 attack; if you're in a form without hands, any M2_UNDEAD that hits you in melee takes d15 damage */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Giuly Ah",				IMPLANT_OF_ENNUI, /* julia trap effect and it prevents your attacks 33% of the time; very fast speed, and if you're in a form without hands it boosts your speed like 3x real speed devil and can be invoked to perform the "blink" technique, even if you don't know that one */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("You have gecritted",				IMPLANT_OF_EXCELLENCE, /* +10% chance of landing critical hits, or 20% if in a form without hands */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Pulse Node of Geralt",				IMPLANT_OF_PUNITION, /* healing effects heal 30% more for your character, but poison attacks are more likely to reduce your stats; if you're in a form without hands, it also grants double poison resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mindframe of Nyssara the Thousandfold",				IMPLANT_OF_JUSTICE, /* 1 in 5000 chance per turn that you may select a weapon or armor piece in your inventory and obtain another copy of that base item, but d5 curses are applied to it and if the enchantment value wasn't negative, it becomes -rn1(10,10); if you're in a form without hands, the invoke clones you like the double trouble technique */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Viral Core of Iskar the Pale",				IMPLANT_OF_DA_GUSHA, /* sickness resistance, but 1 in 20 chance per turn to take one point of damage; if you're in a form without hands, your unarmed melee attacks deal d6 extra damage to monsters who don't resist cold and have 1 in 10 chance of slowing them if they fail a saving throw */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ocular Lens of Drizzt",				IMPLANT_OF_BIG_OL, /* +3 DEX, but 1 in 5000 chance to lose alignment like AD_CONVERT with a chance of permaconverting you if your alignment record is too low; if you're in a form without hands, melee attackers have 15% chance to have a to-hit of -100 against you */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wendlewood",				IMPLANT_OF_TOSSING, /* +d2 multishot with javelin-class weapons; if you're in a form without hands, 1 in 5000 chance per turn to perform the clone javelin technique */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Laurena's Alternative",				IMPLANT_OF_MISANTHROPHY, /* double difficulty trap effect, and if you're in a form without hands it doubles random gold spawns and becomes +5 whenever it's lower */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Too Much Health",				IMPLANT_OF_PUMPING, /* double regeneration; if you're in a form without hands, it also grants full nutrients */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3400L ),
+
+A("Spinal Matrix of Raistlin",				IMPLANT_OF_SWALLOWING, /* spell power and 20% better spellcasting chances, but you take 10% more damage; if you're in a form without hands and cast a spell, there's a 10% chance that the spell effect is applied twice */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Santana's Chicanery",				IMPLANT_OF_ENFORCING, /* 1 in 5000 chance per turn to trigger lockout; if you're in a form without hands, +1 all stats */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("I'll give you a gender star!",				IMPLANT_OF_ENFORCING, /* randart implant, irina trap effect and unless you're in a form without hands, monsters will get pronouns like genderstarist role; if you are in a form without hands, it grants mystery resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("choose ematiscrace and eleasgender",				IMPLANT_OF_ENFORCING, /* randart2 implant, putting it on polymorphs you and switches your gender as well as prime curses the implant; if you're in a form without hands, it grants undead warning and contamination resist */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -902,6 +902,9 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (objects[otyp].oc_material == MT_PLATINUM && hates_platinum(ptr))
 		bonus += 20;
+	    if (otmp->blessed && (ptr == youmonst.data) && ( (uimplant && uimplant->oartifact == ART_VEIN_COIL_OF_KAIN) || (uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK) ) ) {
+		bonus += rnd(20);
+	    }
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {
 		bonus += 4;
 		if (otmp->hvycurse) bonus += 4;
@@ -1225,6 +1228,7 @@ struct monst *mon;
 	if (uwep && uwep->oartifact == ART_AXE_OF_DESTRUCTION && !rn2(5)) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR && (rnd(10) < 4) ) willcriticalhit = TRUE;
 	if (uwep && uwep->oartifact == ART_FUNE_NO_IKARI && (rnd(10) < 4) ) willcriticalhit = TRUE;
+	if (uimplant && uimplant->oartifact == ART_YOU_HAVE_GECRITTED && !rn2(powerfulimplants() ? 5 : 10) ) willcriticalhit = TRUE;
 
 	if (uarmc && uarmc->oartifact == ART_ROKKO_CHAN_S_SUIT) willcriticalhit = 0;
 	/* end critical hit chance calculation */
@@ -1550,6 +1554,9 @@ struct monst *mon;
 		bonus += rnd(4);
 	    if (objects[otyp].oc_material == MT_PLATINUM && hates_platinum(ptr))
 		bonus += 20;
+	    if (otmp->blessed && (ptr == youmonst.data) && ( (uimplant && uimplant->oartifact == ART_VEIN_COIL_OF_KAIN) || (uimplant && uimplant->oartifact == ART_SHADOW_SPINE_OF_VELAN_DUSK) ) ) {
+		bonus += rnd(20);
+	    }
 	    if (otmp->cursed && (hates_cursed(ptr) || (ptr == youmonst.data && (youmonst.data->mlet == S_ANGEL || Race_if(PM_HUMANOID_ANGEL)))) ) {
 		bonus += 4;
 		if (otmp->hvycurse) bonus += 4;

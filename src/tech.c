@@ -5816,6 +5816,17 @@ int tech_no;
 
 	}
 
+	if (uimplant && uimplant->oartifact == ART_TEMPORAL_LOBE_OF_ZORATH_TH && !rn2(10)) {
+		pline("Unfortunately, nothing happens.");
+		if (!u.temptechhack) {
+			techtout(tech_no) = rnz(1000);
+			if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
+		}
+		/*By default,  action should take a turn*/
+		return(1);
+
+	}
+
 	if (uarmc && uarmc->oartifact == ART_ARTIFICIAL_FAKE_DIFFICULTY && !rn2(6)) {
 
 		pline("Unfortunately, nothing happens.");
@@ -13277,7 +13288,7 @@ extrachargechoice:
 
 	  }
 
-	  if (!PlayerCannotUseSkills) {
+	if (!PlayerCannotUseSkills) {
 
 		switch (P_SKILL(P_TECHNIQUES)) {
 			default: break;
@@ -13306,7 +13317,7 @@ extrachargechoice:
 				t_timeout /= 10;
 				break;
 		}
-	  }
+	}
 
 	if (!u.temptechhack) { /* don't try to set a timeout for the temp tech! --Amy */
 
@@ -13317,6 +13328,8 @@ extrachargechoice:
 	  else if (!rn2(2))
 	    techtout(tech_no) = (t_timeout * (100 - min(techlevX(tech_no), 50)) / 1000);
 	/* limit break can be used for endless exploits, so this fix was urgently necessary... --Amy */
+
+		if (uimplant && uimplant->oartifact == ART_EARCLIP_OF_BEOWULF) techtout(tech_no) *= 2;
 
 		if (ishaxor && techtout(tech_no) > 1) techtout(tech_no) /= 2;
 
