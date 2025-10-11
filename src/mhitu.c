@@ -4336,6 +4336,19 @@ elena37:
 
 	}
 
+	if (BoundDayActive && (mtmp->data->mcolor == CLR_BLACK)) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_BREA;
+		a->adtyp = AD_DRST;
+		a->damn = (1 + (mtmp->m_lev / 4));
+		a->damd = (1 + (mtmp->m_lev / 4));
+
+		if (range2 && (rn2(2) || issoviet) && !blue_on_blue(mtmp) && (ZAP_POS(levl[u.ux][u.uy].typ) ) )
+		    (void) breamu(mtmp, a);
+		/* Note: breamu takes care of displacement */
+	}
+
 	if (mtmp->egotype_breather ) {
 
 		mdat2 = &mons[PM_CAST_DUMMY];
@@ -4525,6 +4538,27 @@ elena37:
 		a = &mdat2->mattk[3];
 		a->aatyp = AT_TUCH;
 		a->adtyp = AD_DEPR;
+		a->damn = 2;
+		a->damd = (1 + (mtmp->m_lev));
+
+		if(!range2 && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+				!touch_petrifies(youmonst.data))) {
+		    if (foundyou) {
+			if(tmp > (j = rnd(20+i))) {
+				(void) hitmu(mtmp, a);
+			} else
+			    missmu(mtmp, tmp, j, a);
+		    } else wildmiss(mtmp, a);
+		}
+
+	}
+
+	if (BoundDayActive && (mtmp->data->mcolor == CLR_WHITE)) {
+
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_TUCH;
+		a->adtyp = AD_ALIN;
 		a->damn = 2;
 		a->damd = (1 + (mtmp->m_lev));
 
@@ -9619,7 +9653,7 @@ dopois:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 286) midentity -= 286; /* timerun! */
+			while (midentity > 287) midentity -= 287; /* timerun! */
 
 			register int nastyduration = ((dmg + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -11827,7 +11861,7 @@ gulpmu(mtmp, mattk)	/* monster swallows you, or damage if u.uswallow */
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 286) midentity -= 286; /* timerun! */
+			while (midentity > 287) midentity -= 287; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -14039,7 +14073,7 @@ common:
 		{
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 286) midentity -= 286; /* timerun! */
+			while (midentity > 287) midentity -= 287; /* timerun! */
 
 			register int nastyduration = ((tmp + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;
@@ -18645,7 +18679,7 @@ gazemu(mtmp, mattk)	/* monster gazes at you */
 
 			register int midentity = mtmp->m_id;
 			if (midentity < 0) midentity *= -1;
-			while (midentity > 286) midentity -= 286; /* timerun! */
+			while (midentity > 287) midentity -= 287; /* timerun! */
 
 			register int nastyduration = ((dmgplus + 2) * rnd(10));
 			if (YouAreScrewedEternally) nastyduration *= 20;

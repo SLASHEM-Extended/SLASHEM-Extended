@@ -950,6 +950,8 @@ static struct {
 
 	{ "janet", JANET_TRAP },
 
+	{ "boundday", BOUND_DAY_CHOICE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

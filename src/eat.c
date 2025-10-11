@@ -6602,6 +6602,8 @@ eatspecial() /* called after eating non-food */
 				    BadEffectProblem |= FROMOUTSIDE; break;
 			case TRAP_CREATION_STONE:
 				    TrapCreationProblem |= FROMOUTSIDE; break;
+			case BOUND_DAY_STONE:
+				    BoundDayChoiceEffect |= FROMOUTSIDE; break;
 			case STONE_OF_VULNERABILITY:
 				    AutomaticVulnerabilitiy |= FROMOUTSIDE; break;
 			case ITEM_TELEPORTING_STONE:

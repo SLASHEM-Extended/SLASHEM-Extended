@@ -263,6 +263,11 @@ boolean digest_meal;
 		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
 	}
 
+	if (BoundDayActive && (mon->data->mcolor == CLR_GREEN) && IS_FARMLAND(levl[mon->mx][mon->my].typ) ) {
+		mon->mhp += (1 + mon->m_lev);
+		if (mon->mhp > mon->mhpmax) mon->mhp = mon->mhpmax;
+	}
+
 	if (mon->data == &mons[PM_CRITICALLY_INJURED_PERCENTS]) {
 		mon->mhp = mon->mhpmax;
 	}
@@ -3243,7 +3248,7 @@ toofar:
 			/* Maybe it stepped on a trap and fell asleep... */
 			if (mtmp->msleeping || !mtmp->mcanmove) return(0);
 			if(!nearby &&
-			  (!issoviet || ranged_attk(mdat) || mtmp->egotype_weaponizer || mtmp->egotype_arcane || mtmp->egotype_clerical || mtmp->egotype_mastercaster || mtmp->egotype_hugger || (evilfriday && mtmp->data->mlet == S_GIANT) || (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp->data, AD_NIVE)) || mtmp->egotype_abomination || mtmp->egotype_weeper || mtmp->egotype_breather || mtmp->egotype_radiator || (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) || (FemtrapActiveConny && thick_skinned(mtmp->data) && is_female(mtmp->data)) || mtmp->egotype_reactor || find_offensive(mtmp)))
+			  (!issoviet || ranged_attk(mdat) || mtmp->egotype_weaponizer || mtmp->egotype_arcane || mtmp->egotype_clerical || mtmp->egotype_mastercaster || mtmp->egotype_hugger || (evilfriday && mtmp->data->mlet == S_GIANT) || (uarmf && itemhasappearance(uarmf, APP_CHRISTMAS_CHILD_MODE_BOOTS) && dmgtype(mtmp->data, AD_NIVE)) || mtmp->egotype_abomination || mtmp->egotype_weeper || mtmp->egotype_breather || (BoundDayActive && (mtmp->data->mcolor == CLR_BLACK)) || (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT && is_demon(mtmp->data)) || mtmp->egotype_radiator || (FemtrapActiveNelly && humanoid(mtmp->data) && is_female(mtmp->data)) || (FemtrapActiveConny && thick_skinned(mtmp->data) && is_female(mtmp->data)) || mtmp->egotype_reactor || find_offensive(mtmp)))
 			    break;
  			else if(u.uswallow && mtmp == u.ustuck) {
 			    /* a monster that's digesting you can move at the

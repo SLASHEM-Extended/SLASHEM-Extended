@@ -8844,6 +8844,21 @@ have_antiswitchstone()
 	return(FALSE);
 }
 
+int
+have_bounddaychoicestone()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == BOUND_DAY_STONE) {
+			return(TRUE);
+		}
+	}
+	if (u.nastinator287) return TRUE;
+	if (sjwcheck(287)) return TRUE;
+	return(FALSE);
+}
+
 struct obj *
 o_on(id, objchn)
 unsigned int id;
@@ -14693,6 +14708,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("This cloak causes your skills to be drained if you try to enhance them, and if that drains them enough you won't be able to actually enhance them. It grants mediocre armor class and 3 points of magic cancellation."); break;
 			case YELLOW_SPELL_CLOAK:
 				pline("This cloak causes yellow spells. It grants great armor class and 8 points of magic cancellation."); break;
+			case CHANCERAL_FEDELLOR_CLOAK:
+				pline("This cloak causes the bound day choice. It grants mediocre armor class and 3 points of magic cancellation."); break;
 			case VULNERABILITY_CLOAK:
 				pline("This cloak causes vulnerability. It grants low armor class and 5 points of magic cancellation."); break;
 
@@ -20898,6 +20915,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("A stone that curses itself and causes bad effects."); break;
 			case TRAP_CREATION_STONE:
 				pline("A stone that curses itself and causes traps to be generated."); break;
+			case BOUND_DAY_STONE:
+				pline("A stone that curses itself and causes the bound day choice."); break;
 			case STONE_OF_VULNERABILITY:
 				pline("A stone that curses itself and causes vulnerability."); break;
 			case ITEM_TELEPORTING_STONE:

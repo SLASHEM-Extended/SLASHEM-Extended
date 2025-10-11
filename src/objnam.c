@@ -4940,6 +4940,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ JANET_LADY_PUMPS, "todo" },
 	{ JANET_S_JEWEL, "todo" },
 
+	{ CHANCERAL_FEDELLOR_CLOAK, "todo" },
+	{ BOUND_DAY_STONE, "todo" },
+
 	{0, "" }
 };
 
@@ -8608,6 +8611,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 	{ ANTISWITCH_STONE, "todo" },
 	{ JANET_LADY_PUMPS, "todo" },
 	{ JANET_S_JEWEL, "todo" },
+
+	{ CHANCERAL_FEDELLOR_CLOAK, "todo" },
+	{ BOUND_DAY_STONE, "todo" },
 
 	{0, "" }
 };

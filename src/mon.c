@@ -3433,7 +3433,7 @@ mfndpos(mon, poss, info, flag)
 	wantlava = (mdat->mlet == S_FLYFISH || mdat == &mons[PM_HUMAN_WEREFLYFISH] || mdat == &mons[PM_CONCORDE__]);
 	lavaok = is_flyer(mdat) || mon->egotype_flying || is_clinger(mdat) || (likes_lava(mdat) && !wantlava);
 	thrudoor = ((flag & (ALLOW_WALL|BUSTDOOR)) != 0L);
-	treeok = (is_flyer(mdat) || mon->egotype_flying || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data == &mons[PM_POISONOUS_TREE_FROG]) || (monstersoundtype(mon) == MS_TREESQUAD));
+	treeok = (is_flyer(mdat) || mon->egotype_flying || (BoundDayActive && (mon->data->mcolor == CLR_GREEN)) || (mon->data == &mons[PM_GIANT_TREE_SPIDER]) || (mon->data == &mons[PM_POISONOUS_TREE_FROG]) || (monstersoundtype(mon) == MS_TREESQUAD));
 	/* flying monsters, but not flying players, can pass over trees; the tree squad can too --Amy */
 	if (flag & ALLOW_DIG) {
 	    struct obj *mw_tmp;
@@ -3702,6 +3702,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != DSCHUEUEUET_TRAP
 				&& ttmp->ttyp != NOPESKILL_TRAP
 				&& ttmp->ttyp != TIMERUN_TRAP
+				&& ttmp->ttyp != BOUND_DAY_CHOICE_TRAP
 				&& ttmp->ttyp != ANTISWITCH_TRAP
 				&& ttmp->ttyp != SPELL_COOLDOWN_TRAP
 				&& ttmp->ttyp != TURBODULL_TRAP

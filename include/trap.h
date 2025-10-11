@@ -892,6 +892,8 @@ extern struct trap *ftrap;
 
 #define JANET_TRAP 781
 
+#define BOUND_DAY_CHOICE_TRAP 782
+
 /* todo area
 
 normal ones:
@@ -951,7 +953,6 @@ nasty traps:
 #define IDENTITY_TRAP
 #define WAIT_TRAP
 #define EROSATING_TRAP
-#define BOUND_DAY_CHOICE_TRAP
 #define CASTING_LIMIT_TRAP
 #define FICKYOU_TRAP
 #define MOVESPFLOTCH_TRAP
@@ -974,9 +975,9 @@ special ones that don't spawn randomly:
 
 */
 
-#define TIMERUN_TRAP	782
+#define TIMERUN_TRAP	783
 
-#define TRAPNUM 783
+#define TRAPNUM 784
 
 /* "newtraps" in particular, but also timerun and vulnerate may be targets for grepping --Amy */
 

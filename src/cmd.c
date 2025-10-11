@@ -3683,6 +3683,12 @@ boolean guaranteed;
 		you_have(buf);
 	}
 
+	if ((guaranteed || !rn2(10)) && (BoundDayChoiceEffect || u.uprops[BOUND_DAY_CHOICE_EFFECT].extrinsic || have_bounddaychoicestone())) {
+		sprintf(buf, "the following problem: The bound day choice is happening.");
+	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", BoundDayChoiceEffect);
+		you_have(buf);
+	}
+
 	if ((guaranteed || !rn2(10)) && (AntiswitchBug || u.uprops[ANTISWITCH_BUG].extrinsic || have_antiswitchstone())) {
 		sprintf(buf, "the following problem: Switchers don't work and will only cure the antiswitch nastytrap effect.");
 	    if (wizard || (!rn2(10)) || final >= 1 ) sprintf(eos(buf), " (%ld)", AntiswitchBug);
@@ -8483,6 +8489,12 @@ int final;
 	      sprintf(eos(buf), " (%ld)", TimerunBug);
 		dump(youhad, buf);
 	}
+	if (BoundDayChoiceEffect || u.uprops[BOUND_DAY_CHOICE_EFFECT].extrinsic || have_bounddaychoicestone()) {
+		sprintf(buf, "the following problem: The bound day choice is happening.");
+		sprintf(eos(buf), " (%ld)", BoundDayChoiceEffect);
+		dump(youhad, buf);
+	}
+
 	if (AntiswitchBug || u.uprops[ANTISWITCH_BUG].extrinsic || have_antiswitchstone()) {
 		sprintf(buf, "the following problem: Switchers don't work and will only cure the antiswitch nastytrap effect.");
 		sprintf(eos(buf), " (%ld)", AntiswitchBug);

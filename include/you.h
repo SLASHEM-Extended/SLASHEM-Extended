@@ -232,9 +232,9 @@ extern const struct Gender genders[];	/* table of available genders */
 #define uhe()	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "he/she/it" : genders[flags.female ? 1 : 0].he)
 #define uhim()	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "him/her/it" : genders[flags.female ? 1 : 0].him)
 #define uhis()	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "his/her/its" : genders[flags.female ? 1 : 0].his)
-#define mhe(mtmp)	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "he/she/it" : genders[pronoun_gender(mtmp)].he)
-#define mhim(mtmp)	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "him/her/it" : genders[pronoun_gender(mtmp)].him)
-#define mhis(mtmp)	( (Role_if(PM_GENDERSTARIST) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "his/her/its" : genders[pronoun_gender(mtmp)].his)
+#define mhe(mtmp)	( (Role_if(PM_GENDERSTARIST) || (BoundDayActive && (mtmp->data->mcolor == CLR_RED)) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "he/she/it" : genders[pronoun_gender(mtmp)].he)
+#define mhim(mtmp)	( (Role_if(PM_GENDERSTARIST) || (BoundDayActive && (mtmp->data->mcolor == CLR_RED)) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "him/her/it" : genders[pronoun_gender(mtmp)].him)
+#define mhis(mtmp)	( (Role_if(PM_GENDERSTARIST) || (BoundDayActive && (mtmp->data->mcolor == CLR_RED)) || (!powerfulimplants() && uimplant && uimplant->oartifact == ART_I_LL_GIVE_YOU_A_GENDER_STA) || autismweaponcheck(ART_DAEMEL)) ? "his/her/its" : genders[pronoun_gender(mtmp)].his)
 
 
 /*** Unified structure specifying alignment information ***/
@@ -1148,6 +1148,7 @@ struct you {
 	boolean nastinator284;
 	boolean nastinator285;
 	boolean nastinator286;
+	boolean nastinator287;
 
 	/* SJW role - I wonder if there'd be an easier way to do this... --Amy */
 	int sjwL1E1;

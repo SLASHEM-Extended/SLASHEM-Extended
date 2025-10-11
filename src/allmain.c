@@ -2718,7 +2718,7 @@ nyssaraend:
 		}
 
 		if (uarmf && uarmf->oartifact == ART__K_FCJZ_OEAL_I_NE___P_OAMB) {
-			u.catwalknastytrap = rnd(286); /* timerun */
+			u.catwalknastytrap = rnd(287); /* timerun */
 		}
 
 		if (uimplant && uimplant->oartifact == ART_OCULAR_LENS_OF_DRIZZT && !rn2(5000)) {
@@ -8667,7 +8667,7 @@ newbossJANI:
 		}
 
 		if (!rn2(5000)) {
-			u.startscummereffect = rnd(286); /* timerun effect */
+			u.startscummereffect = rnd(287); /* timerun effect */
 		}
 
 		if (FemtrapActiveElla && u.ulevel >= 10 && !rn2(20000)) {
@@ -19905,6 +19905,8 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "patterned robe")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "easy-id robe")) OBJ_DESCR(objects[i]) = "todo";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bloomer")) OBJ_DESCR(objects[i]) = "todo";
+
 	}
 	}
 
@@ -21450,6 +21452,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "patterned robe")) OBJ_DESCR(objects[i]) = "todo";
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "easy-id robe")) OBJ_DESCR(objects[i]) = "todo";
 
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bloomer")) OBJ_DESCR(objects[i]) = "todo";
 	}
 	}
 

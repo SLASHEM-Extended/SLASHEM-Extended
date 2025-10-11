@@ -1229,6 +1229,7 @@ E int have_spellforgettingstone(void);
 E int have_soundeffectstone(void);
 E int have_timerunstone(void); /* Amy note: some nasty traps have "supernasty" versions */
 E int have_antiswitchstone(void);
+E int have_bounddaychoicestone(void);
 E int have_epvistone(void);
 E int have_meanburdenstone(void);
 E int have_carrcapstone(void);

@@ -140,6 +140,8 @@
 
 #define RightMouseButtonDoesNotGo	(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone())
 
+#define BoundDayActive	(BoundDayChoiceEffect || u.uprops[BOUND_DAY_CHOICE_EFFECT].extrinsic || have_bounddaychoicestone())
+
 #define WeightDisplayIsArbitrary	(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone())
 
 #define SkillTrainingImpossible	(PlayerCannotTrainSkills || u.uprops[TRAINING_DEACTIVATED].extrinsic || have_trainingstone() || (uarmf && uarmf->oartifact == ART_TEACH_YA_BUT_CANNOT_LEARN) )
@@ -614,6 +616,7 @@
 #define SpellForgetting		u.uprops[SPELL_FORGETTING].intrinsic
 #define SoundEffectBug		u.uprops[SOUND_EFFECT_BUG].intrinsic
 #define TimerunBug		u.uprops[TIMERUN_BUG].intrinsic
+#define BoundDayChoiceEffect		u.uprops[BOUND_DAY_CHOICE_EFFECT].intrinsic
 #define AefdeEffect		u.uprops[AEFDE_EFFECT].intrinsic
 #define EpviEffect		u.uprops[EPVI_EFFECT].intrinsic
 #define ReallyBadTrapEffect		u.uprops[REALLY_BAD_TRAP_EFFECT].intrinsic

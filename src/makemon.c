@@ -25632,6 +25632,11 @@ register int	mmflags;
 
 	if (!mtmp->mpeaceful && ACURR(A_CHA) == 1 && !rn2(10)) mtmp->mfrenzied = TRUE;
 
+	if (BoundDayActive && (mtmp->data->mcolor == CLR_CYAN || mtmp->data->mcolor == CLR_BRIGHT_CYAN)) {
+		mtmp->mpeaceful = mtmp->mtame = FALSE;
+		mtmp->mfrenzied = TRUE;
+	}
+
 	if (uarms && uarms->oartifact == ART_YOHUALLI_TEZCATL && !rn2(10)) {
 		mtmp->mpeaceful = mtmp->mtame = FALSE;
 		mtmp->mfrenzied = TRUE;
