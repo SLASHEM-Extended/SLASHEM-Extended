@@ -2926,7 +2926,7 @@ dopray()
 {
     /* Confirm accidental slips of Alt-P */
 
-	if (near_capacity() >= OVERLOADED) { /* cheater prayer by Amy, so you can save yourself from a starlightstone etc. */
+	if ((near_capacity() >= OVERLOADED) && !(tech_inuse(T_PRAYING_SUCCESS)) ) { /* cheater prayer by Amy, so you can save yourself from a starlightstone etc. */
 
 		/* the cheater prayer ALWAYS works, even if you cannot pray for whatever reason */
 
@@ -3074,7 +3074,7 @@ dopray()
 			}
 
 		}
-	}
+	} /* cheater prayer end */
 
     if (have_superjonadabstone()) {
 
@@ -3110,7 +3110,7 @@ dopray()
 		return 0;
 	}
 
-    if (flags.prayconfirm)
+    if (flags.prayconfirm && !(tech_inuse(T_PRAYING_SUCCESS)) )
 	if (yn("Are you sure you want to pray?") == 'n')
 	    return 0;
 
@@ -3140,9 +3140,11 @@ dopray()
 		fineforpracticant(2500, 0, 0);
 	}
 
-	if (!rn2(10)) {levl[u.ux][u.uy].typ = ROOM;
-	pline_The("toilet suddenly vanishes!"); /* otherwise you could just cure food poisoning indefinitely --Amy */
-	newsym(u.ux,u.uy); return(1);}
+	if (!rn2(10)) {
+		levl[u.ux][u.uy].typ = ROOM;
+		pline_The("toilet suddenly vanishes!"); /* otherwise you could just cure food poisoning indefinitely --Amy */
+		newsym(u.ux,u.uy); return(1);
+	}
 
 	if (!Sick && !HConfusion && !HStun) {
 	    pline("He ignores your pleas.");
