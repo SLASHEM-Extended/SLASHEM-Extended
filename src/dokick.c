@@ -259,6 +259,13 @@ register boolean clumsy;
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_ANASTASIA_S_PLAYTIME && !(mon->mflee)) {
+		if (!resist(mon, TOOL_CLASS, 0, NOTELL)) {
+			monflee(mon, rn1(10,10), FALSE, FALSE, FALSE);
+			pline("%s turns to flee!", Monnam(mon));
+		}
+	}
+
 	if (uarmf && uarmf->oartifact == ART_SLAM_INTO && humanoid(mon->data) && !is_neuter(mon->data) && !(mon->female)) {
 		dmg += 8;
 		if (!resist(mon, TOOL_CLASS, 0, NOTELL)) {
@@ -276,6 +283,15 @@ register boolean clumsy;
 			mon_adjust_speed(mon, -1, (struct obj *)0 );
 			m_dowear(mon, FALSE); /* might want speed boots */
 			if (!rn2(10)) cancelmonsterlite(mon);
+		}
+	}
+
+	if (uarmf && uarmf->oartifact == ART_JUEN_S_ROLLOVER && mon->mcanmove && !rn2(10)) {
+		if (!resist(mon, ARMOR_CLASS, 0, NOTELL)) {
+			mon->mcanmove = 0;
+			mon->mfrozen = rnd(12);
+			mon->mstrategy &= ~STRAT_WAITFORU;
+			pline("You roll over %s with your roller blades!", mon_nam(mon));
 		}
 	}
 

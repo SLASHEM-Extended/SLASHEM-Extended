@@ -857,8 +857,9 @@ nh_timeout()
 
 		if (u.larissatimer == 800) pline("You need to step into a heap of shit, don't you forget that. There's only a certain amount of time you have in order to do so.");
 		if (u.larissatimer == 400) pline("Remember that you need to step into a heap of shit. You still have lots of time, but not endless amounts of time.");
-		if (u.larissatimer == 100) pline("Reminder that you have to step into a heap of shit!");
-		if (u.larissatimer == 40) pline("You're running out of time to step into a heap of shit!");
+		if (u.larissatimer == 200) pline("Did you forget that you need to step into a heap of shit with your shoes? You need to do it soon!");
+		if (u.larissatimer == 100) pline("Reminder that you have to step into a heap of shit with your shoes!");
+		if (u.larissatimer == 40) pline("You're running out of time to step into a heap of shit with your shoes!");
 		if (u.larissatimer == 20) pline("Quick, find a heap of shit to step into!");
 		if (u.larissatimer == 10) pline("Hurry up!!! You have to step into a heap of shit, now!");
 
@@ -1242,6 +1243,12 @@ nh_timeout()
 	}
 
 	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && have_intrinsiclossstone() && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
+		You_hear("maniacal laughter!");
+		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
+	    attrcurse();
+	}
+
+	if (!rn2(IntrinsicLossXtra ? 200 : 1000) && uarmh && uarmh->oartifact == ART_LEHOBAUM && ( !( uarmu && (uarmu->otyp == RUFFLED_SHIRT || uarmu->otyp == VICTORIAN_UNDERWEAR)) || !rn2(10)) ) {
 		You_hear("maniacal laughter!");
 		if (PlayerHearsSoundEffects) pline(issoviet ? "Kha-kha-kha-kha-kha-KDZH KDZH, tip bloka l'da smeyetsya yego tortsa, potomu chto vy teryayete vse vashi vstroyennyye funktsii!" : "Hoehoehoehoe!");
 	    attrcurse();

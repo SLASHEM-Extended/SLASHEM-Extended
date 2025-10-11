@@ -2071,6 +2071,7 @@ set_moreluck()
 	if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) u.moreluck += 5;
 	if (uimplant && uimplant->oartifact == ART_LUCK_WEAVE_OF_ARDENT_SOLWY) u.moreluck += 2;
 	if (uimplant && uimplant->oartifact == ART_LUNG_INFUSER_OF_LINK) u.moreluck += 2;
+	if (uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES) u.moreluck += 3;
 
 }
 
@@ -3194,6 +3195,7 @@ int x;
 		if (uarmf && uarmf->oartifact == ART_DORA_S_SCRATCHY_HEELS) tmp += 1;
 		if (uarm && uarm->oartifact == ART_UBERGAGE) tmp += 3;
 		if (uwep && uwep->oartifact == ART_DJANGO_S_CHAIN) tmp += 5;
+		if (uarmf && uarmf->oartifact == ART_ASTER_IX_BOOKLET) tmp += 6;
 		if (uchain && uchain->oartifact == ART_DJANGO_S_CHAIN) tmp += 5;
 		if (uarm && uarm->oartifact == ART_GARYX) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_DIDI_S_LEG_PAINTING) tmp += 1;
@@ -3216,6 +3218,7 @@ int x;
 		if (uwep && uwep->oartifact == ART_ONI_CRUSHER) tmp += 5;
 		if (uarm && uarm->oartifact == ART_ANTOCONT) tmp += 5;
 		if (uchain && uchain->oartifact == ART_ONI_CRUSHER) tmp += 5;
+		if (uarmg && uarmg->oartifact == ART_LE_MOUVEMENT_DE_LA_BOUCHE_) tmp += 4;
 		if (uleft && uleft->oartifact == ART_HIGHER_LOCK) tmp += 1;
 		if (uright && uright->oartifact == ART_HIGHER_LOCK) tmp += 1;
 		if (uarmc && uarmc->oartifact == ART_JUST_TO_HAVE_IT) tmp += 1;
@@ -3710,6 +3713,7 @@ int x;
 		if (x == A_WIS && uimplant && uimplant->oartifact == ART_SYNAPSE_CROWN_OF_GANDALF) tmp += 2;
 		if (uarm && uarm->oartifact == ART_SMILEY_FACE) tmp += 1;
 		if (x == A_INT && uarms && uarms->oartifact == ART_YELLOW_STATUS) tmp += 2;
+		if (x == A_INT && uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS) tmp += 3;
 		if (have_superjonadabstone()) tmp += 10;
 		if (x == A_WIS && powerfulimplants() && uimplant && uimplant->oartifact == ART_GLEN_HOSPITAL) tmp += 10;
 		if (x == A_INT && powerfulimplants() && uimplant && uimplant->oartifact == ART_FOOD_FOR_THOUGHT) tmp += 2;
@@ -3845,6 +3849,7 @@ int x;
 		if (uarmh && uarmh->oartifact == ART_TEH_PHYSIQUE) tmp += 10;
 		if (uarmc && uarmc->oartifact == ART_DIN_DEN) tmp += 4;
 		if (uamul && uamul->oartifact == ART_DO_NOT_FORGET_GRACE) tmp += 10;
+		if (uarmg && uarmg->oartifact == ART_LE_MOUVEMENT_DE_LA_BOUCHE_) tmp += 2;
 		if (uarm && uarm->oartifact == ART_ELETLIGHT) tmp += 4;
 		if (uimplant && uimplant->oartifact == ART_LUNG_INFUSER_OF_LINK) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) tmp += 1;

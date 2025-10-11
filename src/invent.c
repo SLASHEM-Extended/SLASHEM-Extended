@@ -34965,6 +34965,54 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: irina trap effect, and if you're not in a form without hands, everything is gendered, otherwise you'll have mystery resistance."); break;
 				case ART_CHOOSE_EMATISCRACE_AND_ELE:
 					pline("Artifact specs: putting it on prime curses it and polymorphs you as well as changing your gender. If you're in a form without hands, it grants undead warning and contamination resistance."); break;
+				case ART_ZERO_SUGAR:
+					pline("Artifact specs: putting them on displays a random nuka cola name and gives you the corresponding feminism trap effect as well as some nutrition and makes you use less food for the next 200 turns. Doing so also puts a heavy sticky curse on them."); break;
+				case ART_JUEN_S_ROLLOVER:
+					pline("Artifact specs: +8 kick damage, and occasionally you may paralyze a monster with your kick if it fails a saving throw."); break;
+				case ART_ASTER_IX_BOOKLET:
+					pline("Artifact specs: +6 strength and resist fear when worn. If you're also wearing a shield, you'll have reflection."); break;
+				case ART_MARIA_S_FLEECLE_FLOPS:
+					pline("Artifact specs: resist fire, cold, shock and poison when worn, and prevents your items from being destroyed by fire."); break;
+				case ART_ANASTASIA_S_PLAYTIME:
+					pline("Artifact specs: shock and stone resistance when worn, and your kick causes monsters to flee if they fail a saving throw."); break;
+				case ART_LE_MOUVEMENT_DE_LA_BOUCHE_:
+					pline("Artifact specs: +4 strength and +2 dexterity when worn, but you can't have free action while wearing them."); break;
+				case ART_NIA_S_NEAR_MISS:
+					pline("Artifact specs: double klara trap effect when worn, autocurses, slowly increases your alla over time, +5 increase accuracy, +3 intelligence and your missile weapons skill trains twice as fast."); break;
+				case ART_NINA_S_NONCOOPERATION:
+					pline("Artifact specs: your kick does +16 damage while wearing them and if you put them on while they're not erosionproof yet, they become so."); break;
+				case ART_UP_UP_UP_AD_NAUSEAM:
+					pline("Artifact specs: can be invoked to increase the enchantment value by one, up to a maximum of +25."); break;
+				case ART_COUNT_DOWN_FROM___:
+					pline("Artifact specs: spawns with an extraordinarily high enchantment value."); break;
+				case ART_LEHOBAUM:
+					pline("Artifact specs: slows you down to half speed when worn and gives double intrinsic loss but also boosts your AC by 100."); break;
+				case ART_ALEJANDRA_S_EDUCATION:
+					pline("Artifact specs: fire resistance when worn and allows you to read spellbooks faster."); break;
+				case ART_SHIT_:
+					pline("Artifact specs: wearing it causes shit traps to spawn more often and you trigger them even if you fly."); break;
+				case ART_ORNA_S_DOUBLE:
+					pline("Artifact specs: double option trap effect, +4 increase damage, death and disintegration resistance, becomes sticky cursed when worn."); break;
+				case ART_DRIVECHAIR_OF_ETERNITY:
+					pline("Artifact specs: flying and glib when worn, and if you put it on while wielding a weapon, the weapon in question becomes cursed. This cloak autocurses when worn, becoming sticky cursed in the process."); break;
+				case ART_MARLOWE_S_CAMEL:
+					pline("Artifact specs: riding a steed that has this saddle equipped gives the double version of the rhea trap effect but your attacks deal extra damage to all 'C' and 'u', plus you have very fast speed and resistance to slowing effects. If this artifact got generated while you were restricted in the riding skill, it got unlocked in the process."); break;
+				case ART_KING_SAYS_WHERE_IT_GOES:
+					pline("Artifact specs: causes your nemesis to terrorize you, even if they're dead. It becomes heavily sticky cursed when worn. You also have sustain ability, +3 luck and can see all monsters whose health is below their maximum, and it can be invoked for detect objects."); break;
+				case ART_HENRIETTA_S_BOMB_SUIT:
+					pline("Artifact specs: can be invoked to use up all the rocks in your inventory and if the total amount of such spent rocks reaches 2500, it summons a tame hydra."); break; /* deliberately doesn't mention the downsides or anything */
+				case ART_CURSED_APACHE:
+					pline("Artifact specs: can be invoked to use up all the rocks in your inventory and if the total amount of such spent rocks reaches 2000, it summons a tame hydra, but all that works only if the wearer is Henrietta. Otherwise, this armor is cursed and will always tell Henrietta where the wearer is."); break; /* deliberately vague */
+				case ART_TOLLEGAL_WRIGHT:
+					pline("Artifact specs: confusion resistance when worn, and whenever a monster hits you in melee, it loses a point of maximum health."); break;
+				case ART_ENA_WUSELEY:
+					pline("Artifact specs: fire resistance when worn, and slightly boosts your movement speed if you're riding."); break;
+				case ART_OGRE_AND_GIANTSLAYER:
+					pline("Artifact specs: +5 to-hit and +25 damage versus ogres and giants."); break;
+				case ART_GERMAN_CHANCELLOR_SAYS_:
+					pline("Artifact specs: half spell and half physical damage, double free action, double discount action, sickness resistance and bound day choice effect when worn, heavily autocurses."); break;
+				case ART_GUILDED_MISDIRECTION:
+					pline("Artifact specs: +16 damage versus crossaligned monsters, is made of gold, chaotic."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

@@ -140,7 +140,7 @@
 
 #define RightMouseButtonDoesNotGo	(RMBLoss || u.uprops[RMB_LOST].extrinsic || (uarmh && uarmh->oartifact == ART_NO_RMB_VACATION) || (uamul && uamul->oartifact == ART_BUEING) || (uimplant && uimplant->oartifact == ART_ARABELLA_S_SEXY_CHARM) || (uarmh && uarmh->oartifact == ART_WOLF_KING) || (uamul && uamul->oartifact == ART_YOU_HAVE_UGH_MEMORY) || have_rmbstone())
 
-#define BoundDayActive	(BoundDayChoiceEffect || u.uprops[BOUND_DAY_CHOICE_EFFECT].extrinsic || have_bounddaychoicestone())
+#define BoundDayActive	(BoundDayChoiceEffect || u.uprops[BOUND_DAY_CHOICE_EFFECT].extrinsic || have_bounddaychoicestone() || (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) )
 
 #define WeightDisplayIsArbitrary	(ArbitraryWeightBug || u.uprops[ARBITRARY_WEIGHT_BUG].extrinsic || have_weightstone())
 
@@ -202,7 +202,7 @@
 #define DisenchantRepXtra	((have_disenchantmentstone() == 2) || (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) )
 #define ChaosTerrainXtra	((have_chaosterrainstone() == 2) || (uarmf && uarmf->oartifact == ART_DORIKA_S_COLORBLOCK) )
 #define UninformationXtra	((have_uninformationstone() == 2) || (uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) )
-#define IntrinsicLossXtra	((have_intrinsiclossstone() == 2))
+#define IntrinsicLossXtra	((have_intrinsiclossstone() == 2) || (uarmh && uarmh->oartifact == ART_LEHOBAUM) )
 #define TrapCreationXtra	((have_trapcreationstone() == 2) || autismringcheck(ART_CROQUE_FORD) )
 #define VulnerabilityXtra	((have_vulnerabilitystone() == 2) || (uamul && uamul->oartifact == ART_ISRA_S_ANGLE) || (uarmu && uarmu->oartifact == ART_ELITE_FAN) )
 #define ItemportingXtra	((have_itemportstone() == 2))
@@ -246,7 +246,7 @@
 #define CovidEffectXtra	((have_covidstone() == 2) || (uarmh && uarmh->oartifact == ART_CHARLENE_S_CORONA) )
 #define ProofLossXtra	((have_prooflossstone() == 2) || (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS) )
 #define UnInvisXtra	((have_uninvisstone() == 2))
-#define OptionChangeXtra	((have_optionstone() == 2))
+#define OptionChangeXtra	((have_optionstone() == 2) || (uarmc && uarmc->oartifact == ART_ORNA_S_DOUBLE) )
 #define UnKnowledgeXtra	((have_unknowledgestone() == 2))
 #define DschueueuetXtra	((have_dschueueuetstone() == 2) || (uarmf && uarmf->oartifact == ART_PARTICULARLY_HEAVY_STONE) )
 #define NopeskillXtra	((have_nopeskillstone() == 2) || (uarmc && uarmc->oartifact == ART_JENNELLE_S_IMMEDIATIVITY) )
@@ -502,7 +502,7 @@
 
 #define Glib			u.uprops[GLIB].intrinsic
 #define EGlib			u.uprops[GLIB].extrinsic
-#define IsGlib			((Glib || EGlib || (uarmg && uarmg->oartifact == ART_TANKS_A_LOT) || autismweaponcheck(ART_FADED_USELESSNESS) ) && !NoGlib)
+#define IsGlib			((Glib || EGlib || (uarmc && uarmc->oartifact == ART_DRIVECHAIR_OF_ETERNITY) || (uarmg && uarmg->oartifact == ART_TANKS_A_LOT) || autismweaponcheck(ART_FADED_USELESSNESS) ) && !NoGlib)
 #define NoGlib		(uwep && uwep->oartifact == ART_ST_ICKYNESS)
 
 #define Slimed			u.uprops[SLIMED].intrinsic	/* [Tom] */
@@ -932,7 +932,7 @@
 #define FemtrapActiveSabrina	(FemaleTrapSabrina || u.uprops[FEMTRAP_SABRINA].extrinsic || have_femtrapsabrina() || (uarm && uarm->oartifact == ART_YOU_REALLY_HAVE_A_TOTAL_DA) || (uarmf && uarmf->oartifact == ART_SABRINA_S_FREEDOM) || autismweaponcheck(ART_EN_GARDE____TOUCHE_) )
 #define FemtrapActiveTanja	(FemaleTrapTanja || u.uprops[FEMTRAP_TANJA].extrinsic || have_femtraptanja() || (uarmu && uarmu->oartifact == ART_THEY_ALL_FEEL_FLEECY) )
 #define FemtrapActiveSonja	(FemaleTrapSonja || u.uprops[FEMTRAP_SONJA].extrinsic || have_femtrapsonja() || (uarmu && uarmu->oartifact == ART_TILLMANN_S_TARGET) )
-#define FemtrapActiveRhea	(FemaleTrapRhea || u.uprops[FEMTRAP_RHEA].extrinsic || have_femtraprhea() || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || (uarmf && uarmf->oartifact == ART_HIGHWAY_FIGHTER) )
+#define FemtrapActiveRhea	(FemaleTrapRhea || u.uprops[FEMTRAP_RHEA].extrinsic || have_femtraprhea() || bmwride(ART_MARLOWE_S_CAMEL) || (uarmf && uarmf->oartifact == ART_HIGHWAY_HUNTER) || (uarmf && uarmf->oartifact == ART_HIGHWAY_FIGHTER) )
 #define FemtrapActiveLara	(FemaleTrapLara || u.uprops[FEMTRAP_LARA].extrinsic || have_femtraplara() || (uamul && uamul->oartifact == ART_LARA_S_LAVAWALK) || (uarms && uarms->oartifact == ART_CASTLE_CRUSH_GLITCH) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) )
 #define FemtrapActiveAnastasia	(FemaleTrapAnastasia || u.uprops[FEMTRAP_ANASTASIA].extrinsic || have_femtrapanastasia() || (uarmf && uarmf->oartifact == ART_THAT_S_SUPER_UNFAIR) || (uarmf && uarmf->oartifact == ART_SUSCHEL_KUNA) || (uarmf && uarmf->oartifact == ART_SUNA_S_CONTROVERSY_MATTER) || (uarmf && uarmf->oartifact == ART_PLAYING_ANASTASIA) || (uarmc && uarmc->oartifact == ART_EDNA_S_CALM) || (uarmf && uarmf->oartifact == ART_WHITE_LOAFERS) || (uarmf && uarmf->oartifact == ART_SOFT_COW_DUNG) || (uarmf && uarmf->oartifact == ART_THICK_PLATFORM_CRAZE) || (uarmf && uarmf->oartifact == ART_LORENZI_S_CLEANING_RESIDUE) || (uarmf && uarmf->oartifact == ART_NANCY_S_ASSISTANCE) || (uarmf && uarmf->oartifact == ART_SHE_S_STILL_AN_ANASTASIA) || autismweaponcheck(ART_REAL_WALKING) || (autismweaponcheck(ART_DAMN_SKI_WEDGE) && !uarmf) || (uarmf && uarmf->oartifact == ART_FASTER_THAN_ALL_OTHERS_INT))
 #define FemtrapActiveJessica	(FemaleTrapJessica || u.uprops[FEMTRAP_JESSICA].extrinsic || have_femtrapjessica() || (uarmf && uarmf->oartifact == ART_WEDDING_CHALLENGE))
@@ -1012,7 +1012,7 @@
 #define FemtrapActiveRuth	(FemaleTrapRuth || u.uprops[FEMTRAP_RUTH].extrinsic || have_femtrapruth() || autismweaponcheck(ART_PROFANED_GREATSCYTHE))
 #define FemtrapActiveMagdalena	(FemaleTrapMagdalena || u.uprops[FEMTRAP_MAGDALENA].extrinsic || have_femtrapmagdalena() || (autismweaponcheck(ART_MAGDALENA_S_CUDDLEWEAPON)) )
 #define FemtrapActiveMarleen	(FemaleTrapMarleen || u.uprops[FEMTRAP_MARLEEN].extrinsic || have_femtrapmarleen() || (uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS) || (uarmf && uarmf->oartifact == ART_MARLEEN_S_SOFTNESS) || (uarmf && uarmf->oartifact == ART_EROTIC_STAT_TRAIN) )
-#define FemtrapActiveKlara	(FemaleTrapKlara || u.uprops[FEMTRAP_KLARA].extrinsic || have_femtrapklara() || (uamul && uamul->oartifact == ART_LARA_S_LAVAWALK) || (uarm && uarm->oartifact == ART_KUSE_MUSE) )
+#define FemtrapActiveKlara	(FemaleTrapKlara || u.uprops[FEMTRAP_KLARA].extrinsic || have_femtrapklara() || (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS) || (uamul && uamul->oartifact == ART_LARA_S_LAVAWALK) || (uarm && uarm->oartifact == ART_KUSE_MUSE) )
 #define FemtrapActiveFriederike	(FemaleTrapFriederike || u.uprops[FEMTRAP_FRIEDERIKE].extrinsic || have_femtrapfriederike() || (uarmu && uarmu->oartifact == ART_FRIEDERIKE_S_BUNDLING) )
 #define FemtrapActiveNaomi	(FemaleTrapNaomi || u.uprops[FEMTRAP_NAOMI].extrinsic || have_femtrapnaomi())
 #define FemtrapActiveUte	(FemaleTrapUte || u.uprops[FEMTRAP_UTE].extrinsic || have_femtrapute() || have_crashrecoverstone() || autismweaponcheck(ART_DE_SID))
@@ -1071,7 +1071,7 @@
 #define SuperFemtrapJohanna	( (have_femtrapjohanna() == 2) )
 #define SuperFemtrapInge	( (have_femtrapinge() == 2) )
 #define SuperFemtrapMarleen	( (have_femtrapmarleen() == 2) || (uarmf && uarmf->oartifact == ART_ANALIS_VIRGINALIS) )
-#define SuperFemtrapKlara	( (have_femtrapklara() == 2) )
+#define SuperFemtrapKlara	( (have_femtrapklara() == 2) || (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS) )
 #define SuperFemtrapFriederike	( (have_femtrapfriederike() == 2) )
 #define SuperFemtrapUte	( (have_femtrapute() == 2) )
 #define SuperFemtrapYasaman	( (have_femtrapyasaman() == 2) )
@@ -1084,7 +1084,7 @@
 #define SuperFemtrapLittleMarie	( (have_femtraplittlemarie() == 2) )
 #define SuperFemtrapTanja	( (have_femtraptanja() == 2) )
 #define SuperFemtrapSonja	( (have_femtrapsonja() == 2) )
-#define SuperFemtrapRhea	( (have_femtraprhea() == 2) )
+#define SuperFemtrapRhea	( (have_femtraprhea() == 2) || bmwride(ART_MARLOWE_S_CAMEL) )
 #define SuperFemtrapLara	( (have_femtraplara() == 2) || (uarmg && uarmg->oartifact == ART_ELARA_S_AGILITY) )
 
 #define RngeIrregularity		(u.uprops[RNGE_IRREGULARITY].intrinsic || u.uprops[RNGE_IRREGULARITY].extrinsic)
@@ -1775,7 +1775,7 @@
 #define HReflecting		u.uprops[REFLECTING].intrinsic
 #define EReflecting		u.uprops[REFLECTING].extrinsic
 #define IntReflecting	(HReflecting || (uarm && objects[uarm->otyp].oc_material == MT_MENGETIUM) || tech_inuse(T_POWERFUL_AURA) || (uarms && uarms->oartifact == ART_SIGNUM_ARGENTUM_POLISHIUM) || (uarm && uarm->oartifact == ART_LEVIFLY && uarm->otyp == SILVER_DRAGON_SCALES) || (uarmc && uarmc->oartifact == ART_INVSTATE) || (irissetbonus() >= 2) || (uarm && uarm->oartifact == ART__BAUNS_) || (is_reflector(youmonst.data)) )
-#define ExtReflecting	(EReflecting || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == REFLECTING) ) || (moves % 2 == 0 && (uarm && itemhasappearance(uarm, APP_OCTARINE_ROBE)) ) || (moves % 3 == 0 && uarmf && itemhasappearance(uarmf, APP_REFLECTIVE_SLIPPERS)) || (moves % 10 == 0 && uwep && uwep->oartifact == ART_CRABBOMAT) || (uarmu && uarmu->oartifact == ART_LEGENDARY_SHIRT) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SLEX_WANTS_YOU_TO_DIE_A_PA) || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uwep && uwep->otyp == BEAM_REFLECTOR_GUN) || (ublindf && ublindf->otyp == DRAGON_EYEPATCH) || (!flags.female && uarmf && uarmf->oartifact == ART_CATALIN_S_ROBBERY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) || (uarms && uarms->otyp == INVERSION_SHIELD) || (uarmc && uarmc->otyp == CLOAK_OF_INVERSION) || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uwep && uwep->oartifact == ART_LETS_MAKE_IT_OFFICIAL && u.kliuskill >= 2500) || (irissetbonus() >= 2) || (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) || (uwep && uwep->oartifact == ART_DIS_IS_E_PRISEM && uwep->lamplit) || (uarmc && uarmc->oartifact == ART_RNG_S_GAMBLE) || (uchain && uchain->oartifact == ART_TSCHEND_FOR_ETERNITY) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_PLUG_AND_PRAY) || (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) || (uarmg && uarmg->oartifact == ART_SEALED_KNOWLEDGE) || (uarmg && uarmg->oartifact == ART_UNOBTAINABLE_BEAUTIES) )
+#define ExtReflecting	(EReflecting || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == REFLECTING) ) || (moves % 2 == 0 && (uarm && itemhasappearance(uarm, APP_OCTARINE_ROBE)) ) || (moves % 3 == 0 && uarmf && itemhasappearance(uarmf, APP_REFLECTIVE_SLIPPERS)) || (moves % 10 == 0 && uwep && uwep->oartifact == ART_CRABBOMAT) || (uarmu && uarmu->oartifact == ART_LEGENDARY_SHIRT) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_SLEX_WANTS_YOU_TO_DIE_A_PA) || (uarm && uarm->oartifact == ART_VOLUME_ARMAMENT) || (uarm && uarm->oartifact == ART_DON_SUICUNE_DOES_NOT_APPRO) || (uwep && uwep->otyp == BEAM_REFLECTOR_GUN) || (ublindf && ublindf->otyp == DRAGON_EYEPATCH) || (!flags.female && uarmf && uarmf->oartifact == ART_CATALIN_S_ROBBERY) || (u.twoweap && uswapwep && uswapwep->oartifact == ART_SACRIFICE_TONFA) || (uarms && uarms->otyp == INVERSION_SHIELD) || (uarmc && uarmc->otyp == CLOAK_OF_INVERSION) || (uarmc && uarmc->oartifact == ART_A_REASON_TO_LIVE) || (uarmc && uarmc->oartifact == ART_ALL_IN_ONE_ASCENSION_KIT) || (uarms && uarmf && uarmf->oartifact == ART_ASTER_IX_BOOKLET) || (uwep && uwep->oartifact == ART_LETS_MAKE_IT_OFFICIAL && u.kliuskill >= 2500) || (irissetbonus() >= 2) || (uamul && uamul->oartifact == ART_AMULET_OF_SPLENDOR) || (uwep && uwep->oartifact == ART_DIS_IS_E_PRISEM && uwep->lamplit) || (uarmc && uarmc->oartifact == ART_RNG_S_GAMBLE) || (uchain && uchain->oartifact == ART_TSCHEND_FOR_ETERNITY) || (uarmh && uarmh->oartifact == ART_YOU_ARE_ALREADY_DEAD) || (uarmg && uarmg->oartifact == ART_PLUG_AND_PRAY) || (uarmg && uarmg->oartifact == ART_IRIS_S_PRECIOUS_METAL) || (uarmg && uarmg->oartifact == ART_SEALED_KNOWLEDGE) || (uarmg && uarmg->oartifact == ART_UNOBTAINABLE_BEAUTIES) )
 
 #define Reflecting		(((IntReflecting && u.nonintrinsicproperty != REFLECTING) || (ExtReflecting && u.nonextrinsicproperty != REFLECTING)) && !NoReflecting && !(uarmc && itemhasappearance(uarmc, APP_ANGBAND_CLOAK)) && !Race_if(PM_ANGBANDER) && !RngeAngband )
 #define StrongReflecting	(IntReflecting && ExtReflecting && Reflecting && u.nondoubleproperty != REFLECTING)
@@ -1784,17 +1784,17 @@
 
 #define HFree_action	u.uprops[FREE_ACTION].intrinsic
 #define EFree_action	u.uprops[FREE_ACTION].extrinsic
-#define IntFree_action	(HFree_action || (tech_inuse(T_SEXY_STAND) && PlayerInBlockHeels) || (uwep && uwep->oartifact == ART_YES_OCCIFER) || FemtrapActiveNatalje || (uarmg && uarmg->oartifact == ART_SIRINE_S_MELLOW_LOOK) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) )
+#define IntFree_action	(HFree_action || (tech_inuse(T_SEXY_STAND) && PlayerInBlockHeels) || (uwep && uwep->oartifact == ART_YES_OCCIFER) || FemtrapActiveNatalje || (uarmg && uarmg->oartifact == ART_SIRINE_S_MELLOW_LOOK) || (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) )
 #define ExtFree_action	(playerextrinsicfreeaction())
 
 #define Free_action		(((IntFree_action && u.nonintrinsicproperty != FREE_ACTION) || (ExtFree_action && u.nonextrinsicproperty != FREE_ACTION)) && !NoFree_action) /* [Tom] */
 #define StrongFree_action	(IntFree_action && ExtFree_action && Free_action && u.nondoubleproperty != FREE_ACTION)
 
-#define NoFree_action	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FREE_ACTION].intrinsic) || UHaveAids || (u.impossibleproperty == FREE_ACTION) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (uarm && uarm->oartifact == ART_ELMHERE) || (uarmf && uarmf->otyp == PLASTEEL_BOOTS && (!Role_if(PM_BINDER) || uarmf->oartifact != ART_BINDER_CRASH) ) || (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
+#define NoFree_action	( (!Race_if(PM_IMMUNIZER) && u.uprops[DEAC_FREE_ACTION].intrinsic) || UHaveAids || (u.impossibleproperty == FREE_ACTION) || autismweaponcheck(ART_HYPER_INTELLIGENCE) || (uarm && uarm->oartifact == ART_ELMHERE) || (uarmf && uarmf->otyp == PLASTEEL_BOOTS && (!Role_if(PM_BINDER) || uarmf->oartifact != ART_BINDER_CRASH) ) || (uarmg && uarmg->oartifact == ART_LE_MOUVEMENT_DE_LA_BOUCHE_) || (uimplant && uimplant->oartifact == ART_KATRIN_S_SUDDEN_APPEARANCE) || (Race_if(PM_HUMANOID_ANGEL) && u.ualign.record < 0) )
 
 /* Sustain ability */
 #define Fixed_abil		u.uprops[FIXED_ABIL].extrinsic	/* KMH */
-#define SustainAbilityOn	(Fixed_abil || Race_if(PM_SUSTAINER) || (uarmh && uarmh->oartifact == ART_SLIPPING_SUCKING) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarmc && uarmc->oartifact == ART_UNWERTH) || (uarms && uarms->oartifact == ART_NO_REDUCTION_ALLOWED) || (uarmf && uarmf->oartifact == ART_NO_LITTLE_BIT_OF_WISDOM) || (uarms && uarms->oartifact == ART_THAT_IS_SO_SUS) || (uimplant && uimplant->oartifact == ART_HIGHERHOLDER) || (uarm && uarm->oartifact == ART_POISUSTAIN) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES))
+#define SustainAbilityOn	(Fixed_abil || Race_if(PM_SUSTAINER) || (uarmh && uarmh->oartifact == ART_SLIPPING_SUCKING) || (uarms && uarms->oartifact == ART_SYSTEMATIC_CHAOS) || (uarmc && uarmc->oartifact == ART_UNWERTH) || (uarms && uarms->oartifact == ART_NO_REDUCTION_ALLOWED) || (uarmf && uarmf->oartifact == ART_NO_LITTLE_BIT_OF_WISDOM) || (uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES) || (uarms && uarms->oartifact == ART_THAT_IS_SO_SUS) || (uimplant && uimplant->oartifact == ART_HIGHERHOLDER) || (uarm && uarm->oartifact == ART_POISUSTAIN) || (uarms && uarms->oartifact == ART_BONUS_HOLD) || (uamul && uamul->oartifact == ART_FIX_EVERYTHING) || (uarmf && uarmf->oartifact == ART_ELENETTES))
 /* note by Amy: unless you're the sustainer race, there's 10% chance that stat loss still happens, stat gain is disabled */
 #define SustainLossSafe		(Race_if(PM_SUSTAINER) || (uimplant && uimplant->oartifact == ART_HIGHERHOLDER) || rn2(10))
 
@@ -1843,7 +1843,7 @@
 #define HConf_resist		u.uprops[CONF_RES].intrinsic
 #define EConf_resist		u.uprops[CONF_RES].extrinsic
 #define IntConf_resist	(HConf_resist || (uarmc && uarmc->oartifact == ART_TEAM_BRIDE) || Race_if(PM_EROSATOR) || tech_inuse(T_STAT_RESIST) || FemtrapActiveClaudia )
-#define ExtConf_resist	(EConf_resist || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == CONF_RES) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE) || (uwep && uwep->oartifact == ART_LAUGHTERSNEE) || (uwep && uwep->oartifact == ART_OGRESMASHER____) || (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) || (uarmf && uarmf->oartifact == ART_KRAWASAKI_STEERER) || (uwep && uwep->oartifact == ART_BLOOD_MOON) || (uwep && uwep->oartifact == ART_BLOODY_MACE) || (uarmh && uarmh->oartifact == ART_EFGOURD) || (uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) || (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) || (uarmf && uarmf->otyp == CATWALK_SANDALS) || (uarmh && uarmh->oartifact == ART_SEE_THE_TOTAL) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarmc && uarmc->oartifact == ART_ORTED_SHAPE) || (uarmf && uarmf->oartifact == ART_PURPLE_SANDSTORM) || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_DIRECTION_FINDER) || (uwep && uwep->oartifact == ART_SHINING_SILVER_KATANA) || (uwep && uwep->oartifact == ART_ZANTETSU) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmh && uarmh->oartifact == ART_SAGE_S_HELM) || (uarmf && uarmf->oartifact == ART_SABRINA_S_FREEDOM) || (uarmh && uarmh->oartifact == ART_ENFORCED_MIND) || (uchain && uchain->oartifact == ART_HIMMELIE_S_STRAWBERRY && u.ualign.type == A_LAWFUL) || (uwep && uwep->oartifact == ART_HIMMELIE_S_STRAWBERRY && u.ualign.type == A_LAWFUL) || (uarm && uarm->oartifact == ART_GLARINGADERNADIR) || (uarmh && uarmh->oartifact == ART_ENSNARED_MIND) || (uamul && uamul->oartifact == ART_STAR_OF_HYPERNOTUS) || (uarmg && uarmg->oartifact == ART_GLOVES_OF_VESDA) || (uwep && uwep->oartifact == ART_SPEAR_OF_PEACE) || (uimplant && uimplant->oartifact == ART_SARREFREE) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_CLONE_) || (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) || (uarmc && uarmc->oartifact == ART_TEAM_BRIDE) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || (uarmu && uarmu->oartifact == ART_TOTAL_CONTROL) || (uarmc && uarmc->oartifact == ART_FREQUENT_BUT_WEAK_STATUS) )
+#define ExtConf_resist	(EConf_resist || (powerfulimplants() && uimplant && (goodimplanteffect(uimplant) == CONF_RES) ) || (uarmf && uarmf->oartifact == ART_BOOTS_OF_THE_MACHINE) || (uwep && uwep->oartifact == ART_LAUGHTERSNEE) || (uwep && uwep->oartifact == ART_OGRESMASHER____) || (uarmg && uarmg->oartifact == ART_EGASSO_S_GIBBERISH) || (uarmf && uarmf->oartifact == ART_KRAWASAKI_STEERER) || (uwep && uwep->oartifact == ART_BLOOD_MOON) || (uwep && uwep->oartifact == ART_BLOODY_MACE) || (uarmh && uarmh->oartifact == ART_EFGOURD) || (uarmh && uarmh->oartifact == ART_CAP_OF_THENGEL) || (uarmf && uarmf->oartifact == ART_CRASHING_YOUR_SISTER_S_WED) || (uarmf && uarmf->otyp == CATWALK_SANDALS) || (uarmh && uarmh->oartifact == ART_SEE_THE_TOTAL) || (uwep && uwep->oartifact == ART_SEA_ANGERANCHOR) || (uwep && uwep->oartifact == ART_FUNE_NO_IKARI) || (uarmc && uarmc->oartifact == ART_ORTED_SHAPE) || (uarmf && uarmf->oartifact == ART_PURPLE_SANDSTORM) || (uarmh && uarmh->oartifact == ART_CLAUDIA_S_DIRECTION_FINDER) || (uwep && uwep->oartifact == ART_SHINING_SILVER_KATANA) || (uwep && uwep->oartifact == ART_ZANTETSU) || (uarmh && uarmh->oartifact == ART_CROWN_OF_THE_PERCIPIENT) || (uarmh && uarmh->oartifact == ART_SAGE_S_HELM) || (uarmf && uarmf->oartifact == ART_SABRINA_S_FREEDOM) || (uarmh && uarmh->oartifact == ART_ENFORCED_MIND) || (uchain && uchain->oartifact == ART_HIMMELIE_S_STRAWBERRY && u.ualign.type == A_LAWFUL) || (uwep && uwep->oartifact == ART_HIMMELIE_S_STRAWBERRY && u.ualign.type == A_LAWFUL) || (uarm && uarm->oartifact == ART_GLARINGADERNADIR) || (uarmh && uarmh->oartifact == ART_ENSNARED_MIND) || (uamul && uamul->oartifact == ART_STAR_OF_HYPERNOTUS) || (uarmg && uarmg->oartifact == ART_TOLLEGAL_WRIGHT) || (uarmg && uarmg->oartifact == ART_GLOVES_OF_VESDA) || (uwep && uwep->oartifact == ART_SPEAR_OF_PEACE) || (uimplant && uimplant->oartifact == ART_SARREFREE) || (uwep && uwep->oartifact == ART_HEAVY_CROSSBOW_OF_ETERNITY) || (uarmf && uarmf->oartifact == ART_CLONE_) || (uarmf && uarmf->oartifact == ART_UNFELLABLE_TREE && u.burrowed) || (uarmc && uarmc->oartifact == ART_TEAM_BRIDE) || (uarmf && uarmf->oartifact == ART_SANDRA_S_BEAUTIFUL_FOOTWEA) || (uarmf && uarmf->oartifact == ART_SARAH_S_GRANNY_WEAR) || (uarms && uarms->oartifact == ART_FIVE_STAR_PARTY) || (uarmf && uarmf->oartifact == ART_SARAH_S_SNEAKERS_OF_INSTAN) || (uarmu && uarmu->oartifact == ART_TOTAL_CONTROL) || (uarmc && uarmc->oartifact == ART_FREQUENT_BUT_WEAK_STATUS) )
 
 #define Conf_resist		(((IntConf_resist && u.nonintrinsicproperty != CONF_RES) || (ExtConf_resist && u.nonextrinsicproperty != CONF_RES)) && !Race_if(PM_TONBERRY) && !hybridragontype(AD_LITE) && !NoConf_resist)
 #define StrongConf_resist	(IntConf_resist && ExtConf_resist && Conf_resist && u.nondoubleproperty != CONF_RES)
@@ -1902,7 +1902,7 @@
 
 #define HDiscount_action	u.uprops[DISCOUNT_ACTION].intrinsic
 #define EDiscount_action	u.uprops[DISCOUNT_ACTION].extrinsic
-#define IntDiscount_action	(HDiscount_action || (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_FALSE) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) )
+#define IntDiscount_action	(HDiscount_action || (uarmf && uarmf->oartifact == ART_HEIKE_S_BIGOTRY) || (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) || (uarmc && uarmc->oartifact == ART_STRIPED_SHIRT_OF_THE_FALSE) || (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) || (powerfulimplants() && uimplant && uimplant->oartifact == ART_CLEAN_ASCENSION_RUN && In_endgame(&u.uz)) )
 #define ExtDiscount_action	(playerextrinsicdiscountaction())
 
 #define Discount_action		(((IntDiscount_action && u.nonintrinsicproperty != DISCOUNT_ACTION) || (ExtDiscount_action && u.nonextrinsicproperty != DISCOUNT_ACTION)) && !NoDiscount_action)

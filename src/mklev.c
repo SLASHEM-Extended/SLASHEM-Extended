@@ -13892,6 +13892,8 @@ boolean cangivehp;
 	    kind = FART_TRAP;
 	} else if (Role_if(PM_BUTT_LOVER) && !rn2(500) ) {
 	    kind = FARTING_WEB;
+	} else if (uarmh && uarmh->oartifact == ART_SHIT_ && !rn2(20)) {
+	    kind = SHIT_TRAP;
 	} else if ((uarmf && itemhasappearance(uarmf, APP_BUFFALO_BOOTS)) && !rn2(100) ) {
 	    kind = SHIT_TRAP;
 	} else {

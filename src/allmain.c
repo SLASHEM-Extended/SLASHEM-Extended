@@ -1177,6 +1177,12 @@ moveloop()
 					moveamt /= 12;
 				}
 
+				if (uarmh && uarmh->oartifact == ART_LEHOBAUM && moveamt > 1) {
+					if (moveamt > 12) moveamt /= 2;
+					else if (moveamt > 6) moveamt = 6;
+					else if (moveamt > 1) moveamt--;
+				}
+
 				if (u.inertia && moveamt > 1 && !(autismringcheck(ART_IN_T_ER_REDUCTER) && rn2(4)) && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
 					if (moveamt > 12) moveamt /= 2;
 					else if (moveamt > 6) moveamt = 6;
@@ -1526,6 +1532,12 @@ moveloop()
 				moveamt *= 2;
 			}
 
+			if (uarmf && uarmf->oartifact == ART_ENA_WUSELEY && !rn2(3)) {
+				oldspeed = moveamt;
+				moveamt *= 2;
+				if (moveamt > (oldspeed + 24)) moveamt = (oldspeed + 24);
+			}
+
 			if (uarmf && itemhasappearance(uarmf, APP_BIKER_BOOTS) && !rn2(10)) {
 				oldspeed = moveamt;
 				moveamt *= 2;
@@ -1681,10 +1693,18 @@ moveloop()
 		  * into something sessile. Also, you're still slower than a lichen (speed 1), so this should be ok.
 		  * if you actually are an ungenomold, you should at least have a chance of using #youpoly again --Amy */
 
-			if (u.inertia && moveamt > 1 && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
+			if (u.inertia && moveamt > 1 && !(autismringcheck(ART_IN_T_ER_REDUCTER) && rn2(4)) && !(uarmg && uarmg->oartifact == ART_RESIST_INERTIA && rn2(4)) ) {
 				if (youmonst.data->mmove > 1 || !rn2(2)) { /* inert characters move at half speed --Amy */
 					if (moveamt > 12) moveamt /= 2;
 					else if (moveamt > 6) moveamt = 6; /* some sanity checks to make it not too crippling... */
+					else if (moveamt > 1) moveamt--;
+				}
+			}
+
+			if (uarmh && uarmh->oartifact == ART_LEHOBAUM && moveamt > 1) {
+				if (youmonst.data->mmove > 1 || !rn2(2)) {
+					if (moveamt > 12) moveamt /= 2;
+					else if (moveamt > 6) moveamt = 6;
 					else if (moveamt > 1) moveamt--;
 				}
 			}
@@ -2947,6 +2967,8 @@ nyssaraend:
 
 		if (uwep && uwep->oartifact == ART_SMEAR_PERMA) uwep->oerodeproof = TRUE;
 
+		if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS && !rn2(1000)) gain_alla(1);
+
 		if (uamul && uamul->oartifact == ART_HAVEN_T_EATEN_IN_A_WEEK) {
 			if (u.uhs >= FAINTING && !rn2(100)) gain_alla(1);
 			if (u.uhs >= WEAK && !rn2(20)) reducesanity(1);
@@ -3181,6 +3203,9 @@ nyssaraend:
 			randomoptionchange();
 		}
 		if (have_optionstone() && !rn2(OptionChangeXtra ? 200 : 1000)) {
+			randomoptionchange();
+		}
+		if (uarmc && uarmc->oartifact == ART_ORNA_S_DOUBLE && !rn2(OptionChangeXtra ? 200 : 1000)) {
 			randomoptionchange();
 		}
 
@@ -12474,7 +12499,7 @@ newbossB:
 #else
 						u.larissatimer = 600;
 #endif
-						pline("Something commands you to step into dog shit within %d turns, and if you don't comply, bad things will happen!", u.larissatimer);
+						pline("Something commands you to step into dog shit with your shoes within %d turns, and if you don't comply, bad things will happen!", u.larissatimer);
 						if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
 						stop_occupation();
 					}

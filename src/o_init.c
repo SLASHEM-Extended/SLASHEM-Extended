@@ -3205,6 +3205,19 @@ find_persian_boots()
 }
 
 int
+find_heap_of_shit_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_HEAP_OF_SHIT_BOOTS)) return i;
+    }
+
+    impossible("heap of shit boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_higher_helmet()
 {
     register int i;
@@ -3214,6 +3227,45 @@ find_higher_helmet()
     }
 
     impossible("higher helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_filtered_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FILTERED_HELMET)) return i;
+    }
+
+    impossible("filtered helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_less_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_LESS_HELMET)) return i;
+    }
+
+    impossible("less helmet not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_thinking_helmet()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_THINKING_HELMET)) return i;
+    }
+
+    impossible("thinking helmet not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -3270,6 +3322,19 @@ find_superhard_sandals()
 }
 
 int
+find_roman_sandals()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ROMAN_SANDALS)) return i;
+    }
+
+    impossible("roman sandals not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_telescope()
 {
     register int i;
@@ -3283,6 +3348,19 @@ find_telescope()
 }
 
 int
+find_flipflops()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FLIPFLOPS)) return i;
+    }
+
+    impossible("flipflops not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_osfa_cloak()
 {
     register int i;
@@ -3292,6 +3370,45 @@ find_osfa_cloak()
     }
 
     impossible("osfa cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_politician_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_POLITICIAN_CLOAK)) return i;
+    }
+
+    impossible("politician cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_different_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_DIFFERENT_CLOAK)) return i;
+    }
+
+    impossible("different cloak not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_up_down_cloak()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_UP_DOWN_CLOAK)) return i;
+    }
+
+    impossible("up-down cloak not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -3480,6 +3597,45 @@ find_fingerless_gloves()
 }
 
 int
+find_runic_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_RUNIC_GLOVES)) return i;
+    }
+
+    impossible("runic gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_bise_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_BISE_GLOVES)) return i;
+    }
+
+    impossible("bise gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_surefire_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_SUREFIRE_GLOVES)) return i;
+    }
+
+    impossible("surefire gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_sensor_gloves()
 {
     register int i;
@@ -3532,6 +3688,19 @@ find_treaded_heels()
 }
 
 int
+find_clunky_heels()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_CLUNKY_HEELS)) return i;
+    }
+
+    impossible("clunky heels not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
 find_sexy_heels()
 {
     register int i;
@@ -3554,6 +3723,19 @@ find_fatal_gloves()
     }
 
     impossible("fatal gloves not found?");
+    return -1;	/* not 0, or caller would try again each move */
+}
+
+int
+find_inverse_gloves()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_INVERSE_GLOVES)) return i;
+    }
+
+    impossible("inverse gloves not found?");
     return -1;	/* not 0, or caller would try again each move */
 }
 
@@ -6147,6 +6329,48 @@ find_chelsea_boots()
     }
 
     impossible("chelsea boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_fur_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_FUR_BOOTS)) return i;
+    }
+
+    impossible("fur boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_named_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_NAMED_BOOTS)) return i;
+    }
+
+    impossible("named boots not found?");
+    return -1;	/* not 0, or caller would try again each move */
+
+}
+
+int
+find_roller_boots()
+{
+    register int i;
+
+    for (i = HAWAIIAN_SHIRT; i <= LEVITATION_BOOTS; i++) {
+	if (itemnumwithappearance(i, APP_ROLLER_BOOTS)) return i;
+    }
+
+    impossible("roller boots not found?");
     return -1;	/* not 0, or caller would try again each move */
 
 }

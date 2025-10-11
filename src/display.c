@@ -1289,6 +1289,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
+		(uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES && (mon->mhp < mon->mhpmax)) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -1440,6 +1441,7 @@ newsym(x,y)
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
+		(uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES && (mon->mhp < mon->mhpmax)) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -1761,6 +1763,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
+		(uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES && (mon->mhp < mon->mhpmax)) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -1912,6 +1915,7 @@ newsymX(x,y)
 		(uarmf && uarmf->oartifact == ART_AWAY_YOU_STALKER && is_stalker(mon->data) ) ||
 		(autismringcheck(ART_ILLUSORY_HELP) && isillusorymonster(mon) && distu(mon->mx, mon->my) < 26) ||
 		(uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) ||
+		(uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES && (mon->mhp < mon->mhpmax)) ||
 		(uarmh && itemhasappearance(uarmh, APP_SAGES_HELMET) && mon->minvis && mon->sagesvisible ) ||
 		(ublindf && ublindf->oartifact == ART_BREATHER_SHOW && attacktype(mon->data, AT_BREA)) ||
 		(uarmc && uarmc->oartifact == ART_POKEWALKER && is_pokemon(mon->data) ) ||
@@ -3917,6 +3921,7 @@ struct monst *mon;
 	if (Race_if(PM_LEVITATOR) && (is_flyer(mon->data) || mon->egotype_flying) ) return TRUE;
 	if (u.tempnoflysee && (is_flyer(mon->data) || mon->egotype_flying) ) return TRUE;
 	if (uarmf && uarmf->oartifact == ART_ELENETTES && (mon->mhp < (mon->mhpmax * 9 / 10)) ) return TRUE;
+	if (uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES && (mon->mhp < mon->mhpmax)) return TRUE;
 	if (isselfhybrid && strongmonst(mon->data) && is_wanderer(mon->data) ) return TRUE;
 	if (uarm && uarm->oartifact == ART_JOKE_S_OVER && is_jokemonster(mon->data) ) return TRUE;
 	if (have_maybrittclick() && is_jokemonster(mon->data) ) return TRUE;

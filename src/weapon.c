@@ -7195,6 +7195,7 @@ int degree;
 	if (uarmh && uarmh->oartifact == ART_WUMMERSOUND && skill == P_TECHNIQUES) degree *= 2;
 	if (uarmc && uarmc->oartifact == ART_INA_S_APPRENTICESHIP && skill == P_HEALING_SPELL) degree *= 3;
 	if (uarmf && uarmf->oartifact == ART_INGRID_S_SECRETARY_OFFICE && skill == P_CONE_HEELS) degree *= 3;
+	if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS && skill == P_MISSILE_WEAPONS) degree *= 2;
 	if (Race_if(PM_AZTPOK) && skill == P_SPIRITUALITY) {
 		if (P_ADVANCE(skill) >= 4320) degree *= 7;
 		else if (P_ADVANCE(skill) >= 2500) degree *= 6;

@@ -11586,6 +11586,11 @@ register int osym, dmgtyp;
 				skip++;
 				break;
 			}
+			if (uarmf && uarmf->oartifact == ART_MARIA_S_FLEECLE_FLOPS) {
+				skip++;
+				break;
+			}
+
 			if (FireImmunity) {
 				skip++;
 				break;

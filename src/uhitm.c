@@ -885,6 +885,7 @@ register struct monst *mtmp;
 	if (uimplant && uimplant->oartifact == ART_ACTUAL_PRECISION) tmp += 5;
 	if (uimplant && uimplant->oartifact == ART_AUTOAIM_HAND) tmp += (powerfulimplants() ? 10 : 3);
 	if (uimplant && uimplant->oartifact == ART_RHEA_S_MISSING_EYESIGHT) tmp -= rnd(20);
+	if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS) tmp += 5;
 	if (uleft && uleft->oartifact == ART_HEXTROSE) tmp += 6;
 	if (uright && uright->oartifact == ART_HEXTROSE) tmp += 6;
 	if (uleft && uleft->oartifact == ART_CERBERUS_BAND) tmp += 3;
@@ -4440,6 +4441,7 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uarmc && uarmc->oartifact == ART_ORNA_S_DOUBLE) tmp += 4;
 		if (uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) tmp += 2;
 		if (powerfulimplants() && !thrown && uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) tmp += 8;
 		if (uamul && uamul->oartifact == ART_PLAYING_QUAKE) tmp += 3;
@@ -4786,6 +4788,10 @@ int dieroll;
 
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_NEURAL_GRAFT_OF_VAELRIC_TH && (is_undead(mon->data) || mon->egotype_undead || passes_walls(mon->data)) ) {
 			tmp += rnd(15);
+		}
+
+		if (bmwride(ART_MARLOWE_S_CAMEL) && (mon->data->mlet == S_CENTAUR || mon->data->mlet == S_UNICORN) ) {
+			tmp += rn1(8,8);
 		}
 
 		if (thrown && obj && obj->oartifact == ART_MESHERABANE && is_elonamonster(mon->data)) {

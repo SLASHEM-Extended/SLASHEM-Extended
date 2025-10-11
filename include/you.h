@@ -831,6 +831,9 @@ struct you {
 
 	int stonedchilltimer;	/* to control whether you get the damage reduction */
 
+	int henriettahydracount;	/* for Henrietta's Bomb Suit artifact */
+	int henriettahydracount2;	/* for Cursed Apache artifact */
+
 	int missingstaircase;	/* for artifact that creates downstairs on the castle level */
 
 	int soviettemporary;	/* for fleecey light */
@@ -2483,7 +2486,7 @@ struct you {
 #define uactivesymbiosis	(u.usymbiote.active && !symbiote_is_shut_down() && u.usymbiote.mnum > PM_PLAYERMON && u.usymbiote.mnum < NUMMONS)
 
 /* is the player a practicant who has to pay fines? (only the case when nemesis is still alive) */
-#define practicantterror	((Role_if(PM_PRACTICANT) || isbeacher) && !quest_status.killed_nemesis)
+#define practicantterror	( ((Role_if(PM_PRACTICANT) || isbeacher) && !quest_status.killed_nemesis) || (uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES) )
 
 #define Upolyd (u.umonnum != u.umonster)
 

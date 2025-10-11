@@ -669,6 +669,7 @@ init_randarts()
 	artilist[ART_WEDIFORCE].otyp = randartvenom();
 	artilist[ART_RIDGET_PHASTO].otyp = randartvenom();
 	artilist[ART_ACIDFALL].otyp = randartlongsword();
+	artilist[ART_GUILDED_MISDIRECTION].otyp = randartlongsword();
 	artilist[ART_FLYING_DRAGON_SWORD].otyp = randartlongsword();
 	artilist[ART_SILVER_SKY].otyp = randartlongsword();
 	artilist[ART_AVENGER].otyp = randartlongsword();
@@ -714,6 +715,7 @@ init_randarts()
 	artilist[ART_PENDULUM_OF_BALANCE].otyp = randartmace();
 	artilist[ART_BLOODY_MACE].otyp = randartmace();
 	artilist[ART_POLAR_STAR].otyp = randartmorningstar();
+	artilist[ART_OGRE_AND_GIANTSLAYER].otyp = randartmorningstar();
 	artilist[ART_PARRYINGSTAFF].otyp = randartquarterstaff();
 	artilist[ART_STONEBITER].otyp = randartpickaxe();
 	artilist[ART_Y_SWORD].otyp = randartpickaxe();
@@ -767,6 +769,7 @@ init_randarts()
 	artilist[ART_FROM_MASHHAD_TO_AHVAZ].otyp = randartdragonscaleshield();
 	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
 	artilist[ART_ZIN_BA].otyp = randartsaddle();
+	artilist[ART_MARLOWE_S_CAMEL].otyp = randartsaddle();
 	artilist[ART_INFINITE_RANGE].otyp = randartleash();
 
 	artilist[ART_JANA_S_GRAVE_WALL].otyp = randartcloakX();
@@ -1208,6 +1211,24 @@ init_appearance_randarts()
 	artilist[ART_VULTUREHANDLER].otyp = find_falconry_gloves();
 	artilist[ART_MOUNTAIN_FISTS].otyp = find_fencing_gloves();
 	artilist[ART_STORMING_FISTS].otyp = find_critical_gloves();
+	artilist[ART_ZERO_SUGAR].otyp = find_named_boots();
+	artilist[ART_JUEN_S_ROLLOVER].otyp = find_roller_boots();
+	artilist[ART_ASTER_IX_BOOKLET].otyp = find_roman_sandals();
+	artilist[ART_MARIA_S_FLEECLE_FLOPS].otyp = find_flipflops();
+	artilist[ART_ANASTASIA_S_PLAYTIME].otyp = find_heap_of_shit_boots();
+	artilist[ART_LE_MOUVEMENT_DE_LA_BOUCHE_].otyp = find_bise_gloves();
+	artilist[ART_NIA_S_NEAR_MISS].otyp = find_surefire_gloves();
+	artilist[ART_NINA_S_NONCOOPERATION].otyp = find_clunky_heels();
+	artilist[ART_UP_UP_UP_AD_NAUSEAM].otyp = find_inverse_gloves();
+	artilist[ART_COUNT_DOWN_FROM___].otyp = find_less_helmet();
+	artilist[ART_LEHOBAUM].otyp = find_thinking_helmet();
+	artilist[ART_ALEJANDRA_S_EDUCATION].otyp = find_strip_bandana();
+	artilist[ART_SHIT_].otyp = find_filtered_helmet();
+	artilist[ART_ORNA_S_DOUBLE].otyp = find_different_cloak();
+	artilist[ART_DRIVECHAIR_OF_ETERNITY].otyp = find_up_down_cloak();
+	artilist[ART_TOLLEGAL_WRIGHT].otyp = find_runic_gloves();
+	artilist[ART_ENA_WUSELEY].otyp = find_fur_boots();
+	artilist[ART_GERMAN_CHANCELLOR_SAYS_].otyp = find_politician_cloak();
 	artilist[ART_TECH_OF_X].otyp = find_latex_gloves();
 	artilist[ART_ROBBERY_GONE_RIGHT].otyp = find_polnish_gloves();
 	artilist[ART_JOSEFINE_S_EVILNESS].otyp = find_velcro_boots();
@@ -2410,8 +2431,20 @@ register boolean mod;
 			otmp->oeroded = otmp->oeroded2 = 3;
 		    }
 
+		    if (bmwride(ART_MARLOWE_S_CAMEL)) {
+			if (P_MAX_SKILL(P_RIDING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_RIDING);
+				P_MAX_SKILL(P_RIDING) = P_BASIC;
+				pline("You can now learn the riding skill!");
+			}
+		    }
+
 		    if (otmp && otmp->oartifact == ART_NINER) {
 			otmp->spe += 9;
+		    }
+
+		    if (otmp && otmp->oartifact == ART_COUNT_DOWN_FROM___) {
+			otmp->spe += 10;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_SCARS_ETCHED_BY_FLAME) {
@@ -4163,6 +4196,9 @@ register boolean mod;
 		    if (otmp && otmp->oartifact == ART_ETHER_DAGGER) {
 			if (objects[otmp->otyp].oc_material != MT_ETHER) objects[otmp->otyp].oc_material = MT_ETHER;
 		    }
+		    if (otmp && otmp->oartifact == ART_GUILDED_MISDIRECTION) {
+			if (objects[otmp->otyp].oc_material != MT_GOLD) objects[otmp->otyp].oc_material = MT_GOLD;
+		    }
 		    if (otmp && otmp->oartifact == ART_INKSCOVER) {
 			if (objects[otmp->otyp].oc_material != MT_INKA) objects[otmp->otyp].oc_material = MT_INKA;
 		    }
@@ -4811,6 +4847,9 @@ struct obj *otmp;
 
 		if (otmp && otmp->oartifact == ART_JONADAB_S_BRAINSTORMING) {
 			if (S_DEMON == (unsigned long)ptr->mlet) retval = TRUE;
+		}
+		if (otmp && otmp->oartifact == ART_OGRE_AND_GIANTSLAYER) {
+			if (S_GIANT == (unsigned long)ptr->mlet) retval = TRUE;
 		}
 		if (otmp && otmp->oartifact == ART_SHUGO) {
 			if (S_UNICORN == (unsigned long)ptr->mlet) retval = TRUE;
@@ -7242,10 +7281,76 @@ chargingchoiceTT:
 
 			break;
 		}
+
+		if (obj->oartifact == ART_HENRIETTA_S_BOMB_SUIT) {
+			if (!(uarmf && uarmf->otyp == HENRIETTA_COMBAT_BOOTS)) break;
+
+			register struct obj *prcstone;
+findmorestones:
+			prcstone = carrying(ROCK);
+			if (prcstone) {
+				u.henriettahydracount += prcstone->quan;
+				useupall(prcstone);
+
+				goto findmorestones;
+			}
+			if (u.henriettahydracount > 2499) {
+				u.henriettahydracount -= 2500;
+
+				register struct monst *hydramon;
+				hydramon = makemon(&mons[PM_HYDRA], u.ux, u.uy, 0);
+				if (hydramon) {
+					tamedog(hydramon, (struct obj *) 0, FALSE);
+					You("built a hydra!");
+				}
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_CURSED_APACHE) {
+			if (!(uarmf && uarmf->otyp == HENRIETTA_COMBAT_BOOTS)) break;
+
+			register struct obj *prcstone;
+findmorestonesX:
+			prcstone = carrying(ROCK);
+			if (prcstone) {
+				u.henriettahydracount += prcstone->quan;
+				useupall(prcstone);
+
+				goto findmorestonesX;
+			}
+			if (u.henriettahydracount > 1999) {
+				u.henriettahydracount -= 2000;
+
+				register struct monst *hydramon;
+				hydramon = makemon(&mons[PM_HYDRA], u.ux, u.uy, 0);
+				if (hydramon) {
+					tamedog(hydramon, (struct obj *) 0, FALSE);
+					You("built a hydra!");
+				}
+			}
+
+			break;
+		}
+
+		if (obj->oartifact == ART_KING_SAYS_WHERE_IT_GOES) {
+			object_detect((struct obj *)0, 0, FALSE);
+			break;
+		}
+
 		if (obj->oartifact == ART_END_OF_LIST) {
 			pline("A voice echoes:");
 			verbalize("By thy Imperious order, %s...", flags.female ? "Dame" : "Sire");
 			do_genocide(5);	/* REALLY|ONTHRONE, see do_genocide() */
+			break;
+		}
+
+		if (obj->oartifact == ART_UP_UP_UP_AD_NAUSEAM) {
+			if (obj->spe < 25) {
+				obj->spe++;
+				Your("gloves gain a point of enchantment!");
+			} else pline("Sadly, your gloves cannot be enchanted further.");
 			break;
 		}
 

@@ -523,6 +523,27 @@ Boots_on()
 	}
     }
 
+    if (uarmf && uarmf->oartifact == ART_NINA_S_NONCOOPERATION) {
+	uarmf->oerodeproof = TRUE;
+	uarmf->rknown = TRUE;
+    }
+
+    if (uarmf && uarmf->oartifact == ART_ZERO_SUGAR) {
+	int nukaroll = rnd(104); /* keyword: "marlena" */
+
+	curse(uarmf);
+	uarmf->hvycurse = uarmf->stckcurse = TRUE;
+
+	u.tempnukaefftype = nukaroll;
+	u.tempnukaeffect += rnz(5000);
+
+	pline_The("bottle of Nuka Cola is named %s today!", feminismtrapname(nukaroll));
+
+	lesshungry(500);
+	incr_itimeout(&HSlow_digestion, 200);
+
+    }
+
     if (uarmf && uarmf->oartifact == ART_MARIYA_S_SEXYCHARM) {
 	if (!uarmf->cursed) curse(uarmf);
     }
@@ -1884,6 +1905,12 @@ Cloak_on()
 		You_feel("that the cloak is sticking to your body.");
 	}
 
+	if (uarmc && uarmc->oartifact == ART_GERMAN_CHANCELLOR_SAYS_) {
+		curse(uarmc);
+		uarmc->hvycurse = TRUE;
+		You("know that the German Chancellor says: %s has to keep wearing this cloak!", playeraliasname);
+	}
+
 	if (uarmc && uarmc->oartifact == ART_EASIFY_THE_GAME && uarmc->spe < 3) uarmc->spe = 3;
 
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_INA_S_OVERCOAT) {
@@ -1912,6 +1939,12 @@ Cloak_on()
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_BROKEN_WINGS) {
 		pline("A terrible black glow surrounds your nonfunctional wings and roots you to the ground.");
 		curse(uarmc);
+	}
+
+	if (uarmc && uarmc->oartifact == ART_ORNA_S_DOUBLE) {
+		if (!uarmc->cursed) curse(uarmc);
+		uarmc->stckcurse = TRUE;
+		Your("cloak sticks and refuses to come off!");
 	}
 
 	if (uarmc && !(uarmc->cursed) && uarmc->oartifact == ART_GROUNDBUMMER) {
@@ -1945,6 +1978,22 @@ Cloak_on()
 	if (uarmc && uarmc->oartifact == ART_RNG_S_EMBRACE && uarmc->spe == 0) {
 		if (!rn2(2)) uarmc->spe = rnd(5);
 		else uarmc->spe = -(rnd(5));
+	}
+
+	if (uarmc && uarmc->oartifact == ART_DRIVECHAIR_OF_ETERNITY) {
+		curse(uarmc);
+		uarmc->stckcurse = TRUE;
+		if (uwep) {
+			curse(uwep);
+			Your("weapon got cursed!");
+		}
+	}
+
+	if (uarmc && uarmc->oartifact == ART_KING_SAYS_WHERE_IT_GOES) {
+		curse(uarmc);
+		uarmc->hvycurse = uarmc->stckcurse = TRUE;
+
+		pline("%s thunders: 'Alright %s you little practicant maggot, get ready for another hard day of work! You're late by 5 minutes but that's your loss! If you do your work properly this time you'll not get any problems with me, but if you step out of line you'll pay zorkmids for each of your offenses!'", noroelaname(), playeraliasname);
 	}
 
 	if (uarmc && uarmc->oartifact == ART_RITA_S_DECEPTIVE_MANTLE) {
@@ -3452,6 +3501,13 @@ Gloves_on()
 		}
     }
 
+    if (uarmg && uarmg->oartifact == ART_NIA_S_NEAR_MISS) {
+	      if (!uarmg->cursed) {
+			curse(uarmg);
+			Your("gloves became cursed.");
+		}
+    }
+
     if (uarmg && uarmg->oartifact == ART_KATI_S_ANTAGONISM) {
 	      if (!uarmg->cursed) {
 			curse(uarmg);
@@ -4598,6 +4654,13 @@ Armor_on()
 
 	if (uarm && itemhasappearance(uarm, APP_EASY_ID_ROBE)) {
 		makeknown(uarm->otyp);
+	}
+
+	if (uarm && uarm->oartifact == ART_HENRIETTA_S_BOMB_SUIT && !(uarmf && uarmf->otyp == HENRIETTA_COMBAT_BOOTS) ) {
+		curse(uarm);
+	}
+	if (uarm && uarm->oartifact == ART_CURSED_APACHE && !(uarmf && uarmf->otyp == HENRIETTA_COMBAT_BOOTS) ) {
+		curse(uarm);
 	}
 
 	if (uarm && uarm->oartifact == ART_NOW_FOR_THE_DISCHARGE) {
@@ -7757,6 +7820,7 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmh && uarmh->oartifact == ART_LEHOBAUM) uac -= 100;
 	if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) uac -= 2;
 	if (uarm && itemhasappearance(uarm, APP_ARMORED_ROBE)) uac -= 5;
 	if (uwep && uwep->oartifact == ART_KALI_S_ORBIT) uac -= 10;

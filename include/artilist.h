@@ -25752,6 +25752,102 @@ A("choose ematiscrace and eleasgender",				IMPLANT_OF_ENFORCING, /* randart2 imp
 	(SPFX_RESTR|SPFX_EVIL), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
 
+A("Zero Sugar",				LOW_BOOTS, /* initialized to always be named boots; putting them on displays a random nuka cola name and gives you the corresponding feminism trap effect for rnz(5000) turns as well as 500 nutrition and 200 turns of slow digestion, but also heavily sticky curses the boots */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Juen's Rollover",				LOW_BOOTS, /* initialized to always be roller boots, kicking a monster has 1 in 10 chance that it has to make a saving throw or gets paralyzed for d12 turns */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Aster-IX booklet",				LOW_BOOTS, /* initialized to always be roman sandals, +6 STR, resist fear and if you're wearing a shield, you have reflection */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Maria's Fleecle-Flops",				LOW_BOOTS, /* initialized to always be flipflops, resist fire, cold, shock and poison, protects your items from fire */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Anastasia's Playtime",				LOW_BOOTS, /* initialized to always be heap of shit boots, stone resistance, kicking an enemy forces it to either make a saving throw or flee for rn1(10,10) turns */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("le mouvement de la bouche m'agace",				REGULAR_GLOVES, /* initialized to always be bise gloves, +4 STR, +2 DEX, but disables free action */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nia's Near Miss",				REGULAR_GLOVES, /* initialized to always be surefire gloves, autocurses, double klara trap effect, 1 in 1000 chance per turn for you to gain a point of alla, +5 increase accuracy, missile weapons skill trains twice as fast, +3 INT */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Nina's Noncooperation",				LOW_BOOTS, /* initialized to always be clunky heels, putting them on erosionproofs them */
+	(SPFX_RESTR), 0, 0,
+	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Up Up Up ad nauseam",				REGULAR_GLOVES, /* initialized to always be inverse gloves, can be invoked to increase the enchantment value by one (up to a maximum of +25) */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Count Down From 10",				STANDARD_HELMET, /* initialized to always be less helmet, spawns with +10 enchantment */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1111L ),
+
+A("Lehobaum",				STANDARD_HELMET, /* initialized to always be thinking helmet, slows you down to half speed like inertia, +100 AC and double intrinsic loss */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Alejandra's Education",				STANDARD_HELMET, /* initialized to always be strip bandana, boosts reading speed like lenses */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("shit.",				STANDARD_HELMET, /* initialized to always be filtered helmet, while wearing it 1 in 20 random traps are shit traps and you trigger them even if you fly */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 400L ),
+
+A("Orna's Double",				LEATHER_CLOAK, /* initialized to always be different cloak, double option trap effect, +4 increase damage, resist death and disintegration, becomes sticky cursed when equipped */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Drivechair of Eternity",				LEATHER_CLOAK, /* initialized to always be up-down cloak, flying, glib, putting it on curses your currently wielded weapon (if any), sticky autocurses */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Marlowe's Camel",				LEATHER_SADDLE, /* randart saddle, double rhea trap effect, your weapons deal rn1(8,8) extra damage to C and u, very fast speed and protects you from "u_slow_down" effects; if it's generated while you don't know the riding skill, it gets unlocked with a cap of basic */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("The KING says where it goes",				CHANCERAL_FEDELLOR_CLOAK, /* beacher effect even if your nemesis is dead, becomes heavily sticky cursed when equipped, sustain ability, displays all monsters whose HP is below the maximum, +3 luck, can be invoked to detect objects "object_detect((struct obj *)0, 0, FALSE);" */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Henrietta's Bomb Suit",				SPLINT_MAIL, /* if you're wearing henrietta combat boots, the invoke allows you to summon a tame hydra for 2500 rocks (which have to be in your inventory and are used up), otherwise it autocurses and gives the feeler gauges effect; description doesn't tell you the condition */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Cursed Apache",				PLATE_MAIL, /* if you're wearing henrietta combat boots, the invoke allows you to summon a tame hydra for 2000 rocks (which have to be in your inventory and are used up), otherwise it autocurses and gives aggravate monster and the feeler gauges effect; uncurse() doesn't work on this artifact */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("tollegal wright",				REGULAR_GLOVES, /* initialized to always be runic gloves, confusion resist, monsters who hit you in melee lose 1 max HP */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Ena Wuseley",				LOW_BOOTS, /* initialized to always be fur boots, 1 in 3 chance while riding that speed is boosted like biker boots */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Ogre-and-Giantslayer",				MORNING_STAR, /* randart morning star, bonus also works against S_GIANT */
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_OGRE),
+	PHYS(5, 25), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("The German Chancellor Says:",				LEATHER_CLOAK, /* initialized to always be politician cloak, heavily autocurses, bound day choice effect, double free action, double discount action, sickness resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HSPDAM|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Guilded Misdirection",				LONG_SWORD, /* randart long sword, material becomes GOLD when generated */
+	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
+	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

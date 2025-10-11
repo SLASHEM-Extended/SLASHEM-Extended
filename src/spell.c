@@ -2264,9 +2264,10 @@ learn()
 	    delay++;
 	if (delay < end_delay && ublindf && ublindf->otyp == BOSS_VISOR && rn2(2))
 	    delay++;
-	if (delay < end_delay && u.tempbooklenses && rn2(2)) {
+	if (delay < end_delay && u.tempbooklenses && rn2(2))
 	    delay++;
-	}
+	if (delay < end_delay && uarmh && uarmh->oartifact == ART_ALEJANDRA_S_EDUCATION && rn2(2))
+	    delay++;
 
 	if (Confusion && (book->otyp != SPE_BOOK_OF_THE_DEAD) && (book->oartifact != ART_A_LOT_OF_ENYAS_IN_THE_CAST) && (book->oartifact != ART_QUIET_NOTEBOOK) && !(Conf_resist && rn2(StrongConf_resist ? 25 : 5)) && !rn2((Role_if(PM_LIBRARIAN) || Role_if(PM_PSYKER)) ? 500 : 50) ) {		/* became confused while learning */
 

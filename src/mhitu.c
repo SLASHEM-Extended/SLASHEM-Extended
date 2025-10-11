@@ -2038,6 +2038,7 @@ u_slow_down()
 	if (uarmf && uarmf->oartifact == ART_ROLLKABUDD) return;
 	if (uarm && uarm->oartifact == ART_GO_MIEFTLY_THEN_QUEUE__DAE) return;
 	if (uarmf && uarmf->otyp == SPEED_HOLDING_BOOTS) return;
+	if (bmwride(ART_MARLOWE_S_CAMEL)) return;
 	if (uarmc && uarmc->oartifact == ART_FAST_AURORA) return;
 	if (uwep && uwep->oartifact == ART_MAILIE_S_SELF_CENTRATION) return;
 	if (Race_if(PM_SAMEDI)) return;
@@ -21627,6 +21628,17 @@ register struct attack *mattk;
 				return 2;
 			}
 		}
+	}
+
+	if (uarmg && uarmg->oartifact == ART_TOLLEGAL_WRIGHT) {
+		if((mtmp->mhp -= 1) <= 0) {
+			pline("%s bleeds to death!", Monnam(mtmp));
+			xkilled(mtmp,0);
+			if (mtmp->mhp > 0) return 1;
+			return 2;
+		}
+		if (mtmp->mhpmax > 1) mtmp->mhpmax--;
+		if (mtmp->mhp > mtmp->mhpmax) mtmp->mhp = mtmp->mhpmax;
 	}
 
 	if (uwep && uwep->oartifact == ART_RHORN) {
