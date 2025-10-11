@@ -4609,7 +4609,7 @@ repairhomiechoice:
 
 	if (book2->oartifact == ART_I_PONSER_TO_MAKE_STINGER_B) {
 		struct obj *uammo;
-		uammo = mkobj(randartboots(), FALSE, FALSE);
+		uammo = mksobj(randartboots(), TRUE, FALSE, FALSE);
 		if (uammo) {
 			uammo->quan = 1;
 			uammo->owt = weight(uammo);

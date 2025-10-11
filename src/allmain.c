@@ -6559,10 +6559,11 @@ newbossPOMP:
 
 		}
 
-		if (uimplant && uimplant->oartifact == ART_FOCUS_GEM_OF_KAEDRA_MOONVE && !rn2(1000))
+		if (uimplant && uimplant->oartifact == ART_FOCUS_GEM_OF_KAEDRA_MOONVE && !rn2(1000)) {
 			make_confused(HConfusion + rn1(5,5), FALSE);
 			You("suddenly feel confused!");
 			if (flags.moreforced && !MessagesSuppressed) display_nhwindow(WIN_MESSAGE, TRUE);    /* --More-- */
+		}
 
 		if (FemtrapActiveClaudia && !rn2(250)) {
 			make_confused(HConfusion + rnd(20), FALSE);
