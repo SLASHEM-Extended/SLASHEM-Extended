@@ -5478,6 +5478,11 @@ armorsmashdone:
 				if (!rn2(5)) (void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
 			}
 		}
+		if (wep && wep->oartifact == ART_JENSEMAN_S_LUCK && !rn2(10)) {
+			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) {
+				(void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
+			}
+		}
 		if (wep && wep->oartifact == ART_SOUL_ANCHOR && !rn2(5)) {
 			if (!resist(mon, WEAPON_CLASS, 0, NOTELL)) (void) cancel_monst(mon, obj, TRUE, TRUE, FALSE);
 		}

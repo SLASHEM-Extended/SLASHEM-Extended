@@ -1268,7 +1268,7 @@ moveloop()
 				if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
 					moveamt /= 2;
 
-				if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_toogoodgostone()) && moveamt > 1) {
+				if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || (uarmf && uarmf->oartifact == ART_KARIN_S_SHARP_EDGE) || have_toogoodgostone()) && moveamt > 1) {
 					int testhp, testhpmax;
 					boolean itgoestoogood = FALSE;
 					if (Upolyd) {
@@ -1796,7 +1796,7 @@ moveloop()
 			if (PlayerInHighHeels && uarmf && uarmf->oartifact == ART_FORMO____ && !rn2(4) && moveamt > 1)
 				moveamt /= 2;
 
-			if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || have_toogoodgostone()) && moveamt > 1) {
+			if ((GotsTooGoodEffect || u.uprops[GOTS_TOO_GOOD_EFFECT].extrinsic || (uarmh && uarmh->oartifact == ART_ARABELLA_S_BEAUTY_BIRD) || (uarmf && uarmf->oartifact == ART_KARIN_S_SHARP_EDGE) || have_toogoodgostone()) && moveamt > 1) {
 				int testhp, testhpmax;
 				boolean itgoestoogood = FALSE;
 				if (Upolyd) {
@@ -2689,6 +2689,11 @@ moveloop()
 
 		if (u.twoweap && uswapwep && uswapwep->oartifact == ART_WEDELAGE) {
 			adjalign(-1);
+		}
+
+		if (bmwride(ART_WI_O_WI_O_WACKIWE_) && !rn2(10000)) {
+			u.casinochips++;
+			You("gain a casino chip out of nowhere and have %d now!", u.casinochips);
 		}
 
 		if (uimplant && uimplant->oartifact == ART_SANTANA_S_CHICANERY && !rn2(5000)) {

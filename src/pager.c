@@ -29474,8 +29474,14 @@ static NEARDATA const char * const fake_plines[] = {
 	"You feel like running away from the enemy! But that's probably not the best idea if your goal is to kill the monsters...",
 	"You feel locked out.",
 	"You feel locked out. But actually you're locked in, which is a lot worse.",
+	"Ouch, the narrow peep-toes are sqeezing your feet! They're your shoe size, right? Wait, it says 'CN' in front of the number... guess chinese shoe sizes aren't the same as european shoe sizes...",
 
 };
+
+/* for the purpose of catching errors... --Amy
+	"message that doesn't have a comma after the closing quotation mark"
+	"search for hex 22 0D 0A"
+*/
 
 const char *
 noroelaname()

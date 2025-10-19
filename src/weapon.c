@@ -7206,6 +7206,10 @@ int degree;
 	}
 	if ((uamul && uamul->oartifact == ART_ISRA_S_ANGLE) && skill == P_MEMORIZATION) degree *= 3;
 	if ((skill == u.hiddenpowerskill) && uamul && uamul->otyp == AMULET_OF_X) degree *= 5;
+	if (bmwride(ART_RHINE_CROSSING) && skill == P_RIDING) {
+		if (P_ADVANCE(skill) >= 20) degree *= 2;
+		else degree *= 5;
+	}
 	if (Race_if(PM_EGYMID) && skill == P_SPIRITUALITY) degree *= 2;
 	if (Race_if(PM_ITAQUE) && !rn2(10)) degree *= 2;
 	if (uamul && uamul->oartifact == ART_REGGIE_S_POINTSTEP) {

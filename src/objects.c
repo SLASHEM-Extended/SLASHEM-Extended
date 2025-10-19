@@ -6296,6 +6296,7 @@ TOOL("pan pipe of summoning", "set of pipes",    0, 0, 1, 1,  10,  0,  50, MT_WO
 TOOL("pan pipe of the sewers", "set of pipes",    0, 0, 1, 1,  10,  0,  50, MT_WOOD, HI_WOOD, 7),
 TOOL("tooled horn", "horn",     0, 0, 0, 0,  180, 0,  50, MT_BONE, CLR_WHITE, 1),
 TOOL("fog horn", "horn",        0, 0, 0, 0,   20, 0,  50, MT_MYSTERIOUS, CLR_WHITE, 1),
+/* elemental horns: frost horn must be first */
 TOOL("frost horn", "horn",      0, 0, 1, 1,  100, 0,  50, MT_BONE, CLR_WHITE, 5),
 TOOL("fire horn", "horn",       0, 0, 1, 1,  100, 0,  50, MT_BONE, CLR_WHITE, 5),
 TOOL("tempest horn", "horn",    0, 0, 1, 1,   20, 0,  50, MT_BONE, CLR_WHITE, 5),
@@ -6303,6 +6304,7 @@ TOOL("ether horn", "horn",      0, 0, 1, 1,   10, 0,  50, MT_ETHER, CLR_WHITE, 5
 TOOL("shadow horn", "horn",     0, 0, 1, 1,   10, 0,  50, MT_SHADOWSTUFF, CLR_WHITE, 5), /* shoots acid */
 TOOL("chrome horn", "horn",     0, 0, 1, 1,   50, 0,  50, MT_CHROME, CLR_WHITE, 5), /* shoots poison */
 TOOL("death horn", "horn",     0, 0, 1, 1,    1, 0,  50, MT_OBSIDIAN, CLR_WHITE, 50), /* shoots disintegration */
+/* death horn is last elemental horn */
 TOOL("horn of plenty", "horn",  0, 0, 1, 1,  100, 0,  50, MT_BONE, CLR_WHITE, 25),
 TOOL("wooden harp", "harp",     0, 0, 0, 0,  200, 0,  50, MT_WOOD, HI_WOOD, 8),
 TOOL("magic harp", "harp",      0, 0, 1, 1,  100, 0,  50, MT_WOOD, HI_WOOD, 30),

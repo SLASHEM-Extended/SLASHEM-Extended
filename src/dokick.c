@@ -870,6 +870,11 @@ register boolean clumsy;
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
 	}
 
+	if (uarmf && uarmf->oartifact == ART_KARIN_S_SHARP_EDGE) {
+		mon->bleedout += rnd(GushLevel);
+		pline("Your razor-sharp cone heels scratch very %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
+	}
+
 	if (uarm && uarm->oartifact == ART_TIMONA_S_INNER_BICKER) {
 		mon->bleedout += rnd(5);
 		pline("Your very pretty block heels scratch %sy wounds on %s's %s!", mbodypart(mon, BLOOD), mon_nam(mon), makeplural(mbodypart(mon, LEG)) );
@@ -1001,6 +1006,18 @@ register boolean clumsy;
 		mon->mfrozen += 2;
 		mon->mcanmove = 0;
 		mon->mstrategy &= ~STRAT_WAITFORU;
+
+	}
+
+	if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_SQUEEZE_IN && !rn2(3) && !mon->msleeping) {
+		if (!resist(mon, TOOL_CLASS, 0, NOTELL)) {
+			sleep_monst(mon, rnd(10), -1);
+			if (mon->msleeping || !(mon->mcanmove)) {
+				pline("%s has to grapple with the pain from your girl kick and can't fight back!", Monnam(mon));
+			}
+			slept_monst(mon);
+
+		}
 
 	}
 

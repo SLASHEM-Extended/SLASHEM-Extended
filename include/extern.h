@@ -2924,6 +2924,8 @@ E int randartorb(void);
 E int randartorbX(void);
 E int randartunihorn(void);
 E int randartunihornX(void);
+E int randartelementhorn(void);
+E int randartelementhornX(void);
 E int randarttrident(void);
 E int randarttridentX(void);
 E int randartflail(void);

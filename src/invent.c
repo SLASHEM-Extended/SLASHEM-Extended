@@ -35157,6 +35157,38 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: flying when worn."); break;
 				case ART_MANTLE_OF_CONFLICT:
 					pline("Artifact specs: shock resistance and conflict when worn."); break;
+				case ART_JENSEMAN_S_LUCK:
+					pline("Artifact specs: beheads targets, acts as a luckstone when wielded and occasionally cancels monsters who fail a saving throw."); break;
+				case ART_ANIMO_EATER:
+					pline("Artifact specs: +1 to-hit and +31 lightning damage against humanoid monsters."); break;
+				case ART_EMERGENCY_WATER:
+					pline("Artifact specs: quaffing it grants 1000 extra nutrition."); break;
+				case ART_EXTREME_ENCHANTMENT:
+					pline("Artifact specs: +15 to-hit and +15 damage, +10 constitution when wielded but you'll suffer from the ariane trap effect for quite a while."); break;
+				case ART_PLAY_FIGUT_EIGHT:
+					pline("Artifact specs: +8 damage, +8 strength and dexterity, invisibility but deactivates see invisible when wielded."); break;
+				case ART_KARIN_S_SHARP_EDGE:
+					pline("Artifact specs: your kick deals +10 damage and makes monsters bleed for a while, fire and sleep resistance, karin trap and go'ts too good trap effect when worn."); break;
+				case ART_JESSICA_S_RAINBOW:
+					pline("Artifact specs: resistance to fire, sleep, poison, shock, acid and draining when worn, but all humanoid monsters can use dimness gaze attacks against you."); break;
+				case ART_GUDRUN_S_SURPRISE:
+					pline("Artifact specs: half physical damage, regeneration, gudrun trap effect, autocurses when worn."); break;
+				case ART_SOLVEJG_S_SQUEEZE_IN:
+					pline("Artifact specs: searching bonus, sleeping resistance, sticky autocurses when worn, numbness, flying and your kick can put enemies to sleep who fail a saving throw."); break;
+				case ART_STOP_THE_SCRIPT_NONSENSE:
+					pline("Artifact specs: +7 to-hit and +8 damage, and while you're wielding it, script monsters cannot spawn randomly."); break;
+				case ART_RHINE_CROSSING:
+					pline("Artifact specs: riding a steed with this saddle gives the janet trap effect and allows you to train the riding skill more quickly. The latter effect is particularly strong if you've not yet reached the threshold for basic riding skill."); break;
+				case ART_WI_O_WI_O_WACKIWE_:
+					pline("Artifact specs: riding a steed with this saddle increases your luck by 1, slightly increases the odds that you get a black jack in the casino and occasionally increases your amount of casino chips."); break;
+				case ART_KERSTIN_S_CLEARSOUND:
+					pline("Artifact specs: riding a steed with this saddle gives the stronger version of the kerstin trap effect and also resistance to confusion and stun as well as +2 intelligence."); break;
+				case ART_A_HOHES_U:
+					pline("Artifact specs: much less likely to use a charge when played."); break;
+				case ART_TURN_TO_ELEVEN:
+					pline("Artifact specs: if someone plays it, this horn fires two beams at once."); break;
+				case ART_MAMA_LAUDA:
+					pline("Artifact specs: recharging this horn adds a bigger amount of charges than usual."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

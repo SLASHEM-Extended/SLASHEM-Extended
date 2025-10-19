@@ -3296,6 +3296,14 @@ randartunihorn()
 }
 
 int
+randartelementhorn()
+{
+	int result;
+	result = rnd_class(FROST_HORN, DEATH_HORN);
+	return result;
+}
+
+int
 randarttrident()
 {
 	int result;
@@ -3826,6 +3834,14 @@ randartunihornX()
 {
 	int result;
 	result = UNICORN_HORN + rn2((BUBBLEHORN + 1) - UNICORN_HORN);
+	return result;
+}
+
+int
+randartelementhornX()
+{
+	int result;
+	result = FROST_HORN + rn2((DEATH_HORN + 1) - FROST_HORN);
 	return result;
 }
 

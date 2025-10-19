@@ -7210,9 +7210,23 @@ struct monst *mtmp;
 			buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : (otmp->otyp==SHADOW_HORN) ? AD_ACID-1 : (otmp->otyp==ETHER_HORN) ? AD_MAGM-1 : (otmp->otyp==CHROME_HORN) ? AD_DRST-1 : (otmp->otyp==DEATH_HORN) ? AD_DISN-1 : AD_FIRE-1),
 			rn1(6,6), mtmp->mx, mtmp->my,
 			sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+
+		if (mtmp && mtmp->mhp > 0 && otmp->oartifact == ART_TURN_TO_ELEVEN) {
+
+			if (otmp->otyp == CHROME_HORN)
+				buzz(-26, rn1(6,6), mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+			else if (otmp->otyp == DEATH_HORN)
+				buzz(-24, rn1(6,6), mtmp->mx, mtmp->my, sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+
+			else
+				buzz(-30 - ((otmp->otyp==FROST_HORN) ? AD_COLD-1 : (otmp->otyp==TEMPEST_HORN) ? AD_ELEC-1 : (otmp->otyp==SHADOW_HORN) ? AD_ACID-1 : (otmp->otyp==ETHER_HORN) ? AD_MAGM-1 : (otmp->otyp==CHROME_HORN) ? AD_DRST-1 : (otmp->otyp==DEATH_HORN) ? AD_DISN-1 : AD_FIRE-1),
+				rn1(6,6), mtmp->mx, mtmp->my,
+				sgn(mtmp->mux-mtmp->mx), sgn(mtmp->muy-mtmp->my));
+		}
+
 		m_using = FALSE;
-		if (mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
-		if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
+		if (mtmp && mtmp->mhp > 0) { /* cutting down on annoying segfaults --Amy */
+			if (otmp->spe == 0 && rn2(4) ) m_useup(mtmp, otmp);
 		}
 		return (mtmp->mhp <= 0) ? 1 : 2;
 /*      case MUSE_WAN_TELEPORTATION:*/

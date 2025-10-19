@@ -26136,6 +26136,70 @@ A("Mantle of Conflict",				LEATHER_CLOAK, /* initialized to always be irradiatio
 	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
 	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
 
+A("Jenseman's Luck",				HALBERD, /* randart polearm, 1 in 10 chance that the target needs to make a saving throw or gets cancelled */
+	(SPFX_RESTR|SPFX_BEHEAD|SPFX_LUCK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Animo Eater",				TRIDENT, /* randart2 trident */
+	(SPFX_RESTR|SPFX_ATTK|SPFX_DFLAG1), 0, (M1_HUMANOID),
+	ELEC(1, 31), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7500L ),
+
+A("Emergency Water",				POT_WATER, /* +1000 nutrition when quaffed, regardless of BUC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Extreme Enchantment",				TWO_HANDED_SWORD, /* randart two-handed sword, sets your ariane trap timeout to 20k if it's lower when wielded, +10 CON */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(15, 15), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("play figut eight",				SHORT_SWORD, /* randart melee weapon, invis, deactivates see invis, +8 STR/DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 888L ),
+
+A("Karin's Sharp Edge",				FEMININE_PUMPS, /* karin and go'ts to good trap effect, resist sleep, your kick deals d(gushlevel) bleeding damage to targets */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_ATTK|SPFX_EVIL), 0, 0,
+	PHYS(0, 10), DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 16000L ),
+
+A("Jessica's Rainbow",				SYNTHETIC_SANDALS, /* all M1_HUMANOID have a dimness gaze attack, resist fire, sleep, poison, shock, acid and drain */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Gudrun's Surprise",				WEDGE_SANDALS, /* gudrun trap effect, autocurses */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_HPHDAM|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 9000L ),
+
+A("Solvejg's Squeeze-In",				LEATHER_PEEP_TOES, /* solvejg trap effect, sticky autocurses, resist sleep, your kick has 1 in 3 to put targets to sleep who don't resist, numbness, flying */
+	(SPFX_RESTR|SPFX_SEEK|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Stop The Script Nonsense",				QATAR, /* randart claw, prevents jonadab script monsters from spawning randomly */
+	(SPFX_RESTR), 0, 0,
+	PHYS(7, 8), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Rhine Crossing",				LEATHER_SADDLE, /* randart saddle, janet trap effect, riding skill trains 5x as fast if the training amount is below 20, otherwise it trains 2x as fast */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wi-o-wi-o-wackiwe!",				LEATHER_SADDLE, /* randart2 saddle, +1 luck, if your first two cards score a total of 21 you always get a blackjack and 1 in 10000 chance per turn to gain a casino chip */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Kerstin's Clearsound",				LEATHER_SADDLE, /* randart2 saddle, double kerstin trap effect, resist confusion and stun, +2 INT */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("a hohes U",				FIRE_HORN, /* randart elemental horn, only loses a charge 1 in 3 times you play it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Turn To Eleven",				FIRE_HORN, /* randart elemental horn, fires two beams whenever someone plays it */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Mama Lauda",				FIRE_HORN, /* randart2 elemental horn, gains 10 more charges when recharged */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

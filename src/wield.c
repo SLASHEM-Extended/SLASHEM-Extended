@@ -256,6 +256,10 @@ boolean cancurseshit; /* otherwise, saving and loading would trigger it every ti
 		Your("weapon is made of secree now (eww, that's disgusting!).");
 	}
 
+	if (uwep && uwep->oartifact == ART_EXTREME_ENCHANTMENT) {
+		if (FemaleTrapAriane < 20000) FemaleTrapAriane = 20000;
+	}
+
 	if (uwep && uwep->otyp == HONOR_KATANA && !uwep->cursed) {
 		curse(uwep);
 		Your("katana welds itself to your %s!", body_part(HAND));
@@ -753,6 +757,10 @@ swapweaponchoice:
 		if (uswapwep && uswapwep->oartifact == ART_ECLIPSE_MAW) {
 			u.currentweather = WEATHER_ECLIPSE;
 			tell_main_weather();
+		}
+
+		if (uswapwep && uswapwep->oartifact == ART_EXTREME_ENCHANTMENT) {
+			if (FemaleTrapAriane < 20000) FemaleTrapAriane = 20000;
 		}
 
 		if (uswapwep && uswapwep->otyp == HONOR_KATANA && !uswapwep->cursed) {

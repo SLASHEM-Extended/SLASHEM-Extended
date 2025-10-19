@@ -5839,6 +5839,16 @@ newboss:
 
 	}
 
+	if (uarmf && uarmf->oartifact == ART_JESSICA_S_RAINBOW) {
+		mdat2 = &mons[PM_CAST_DUMMY];
+		a = &mdat2->mattk[3];
+		a->aatyp = AT_GAZE;
+		a->adtyp = AD_DIMN;
+		a->damn = 2;
+		a->damd = 1 + (mtmp->m_lev / 2);
+		gazemu(mtmp, a);
+	}
+
 	if (mtmp->egotype_abomination) {
 		mdat2 = &mons[PM_CAST_DUMMY];
 		a = &mdat2->mattk[3];

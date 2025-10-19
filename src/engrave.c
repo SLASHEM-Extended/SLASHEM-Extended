@@ -2038,9 +2038,7 @@ doengrave()
 			 * previous engraving even if turning to dust.
 			 */
 		    case WAN_STRIKING:
-			strcpy(post_engr_text,
-			"The wand unsuccessfully fights your attempt to write!"
-			);
+			strcpy(post_engr_text, "The wand unsuccessfully fights your attempt to write!");
 			break;
 		    case WAN_DISINTEGRATION:
 		    case WAN_DISINTEGRATION_BEAM:

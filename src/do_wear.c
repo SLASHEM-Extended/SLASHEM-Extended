@@ -599,9 +599,22 @@ Boots_on()
 		You("are Sing's dear slave now.");
     }
 
+    if (uarmf && uarmf->oartifact == ART_SOLVEJG_S_SQUEEZE_IN) {
+		curse(uarmf);
+		uarmf->stckcurse = 1;
+		pline("Ouch, the narrow peep-toes are sqeezing your %s! They're your shoe size, right? Wait, it says 'CN' in front of the number... guess chinese shoe sizes aren't the same as european shoe sizes...", makeplural(body_part(FOOT)) );
+    }
+
     if (uarmf && uarmf->oartifact == ART_ENDARKEN_EVERYTHING && (objects[uarmf->otyp].oc_material != MT_SHADOWSTUFF)) {
 		pline_The("boots are made of shadowstuff now.");
 		objects[uarmf->otyp].oc_material = MT_SHADOWSTUFF;
+    }
+
+    if (uarmf && uarmf->oartifact == ART_GUDRUN_S_SURPRISE) {
+	if (!uarmf->cursed) {
+		curse(uarmf);
+		pline("It seems that the cute 'Gudrun' sandals want you to keep wearing them.");
+	}
     }
 
     if (uarmf && uarmf->oartifact == ART_IRIS_S_THUNDER && (objects[uarmf->otyp].oc_material != MT_SILVER)) {

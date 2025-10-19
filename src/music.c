@@ -448,7 +448,14 @@ panpipeduedeldiedue:
 	case DEATH_HORN:		/* Idem wand of disint beam */
 	case SHADOW_HORN:		/* Idem wand of acid */
 	    if (do_spec && instr->spe > 0) {
-		if ((!instr->oartifact || !rn2(2) ) && (nochargechange >= rnd(10)) ) consume_obj_charge(instr, TRUE);
+		boolean nochargechange = FALSE;
+		if (instr && instr->oartifact == ART_A_HOHES_U && rn2(3)) nochargechange = TRUE;
+
+		if ((!instr->oartifact || !rn2(2) ) && (nochargechange >= rnd(10)) ) {
+			if (!nochargechange) {
+				consume_obj_charge(instr, TRUE);
+			}
+		}
 		use_skill(P_DEVICES,1);
 		if (Race_if(PM_FAWN)) {
 			use_skill(P_DEVICES,1);
@@ -478,7 +485,12 @@ hornchoice:
 		    }
 		} else {
 		    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? 26 : (instr->otyp == DEATH_HORN) ? 24 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
-			 rn1(6,6), u.ux, u.uy, u.dx, u.dy);
+			rn1(6,6), u.ux, u.uy, u.dx, u.dy);
+		    if (instr->oartifact == ART_TURN_TO_ELEVEN) {
+			    buzz((instr->otyp == FROST_HORN) ? AD_COLD-1 : (instr->otyp == TEMPEST_HORN) ? AD_ELEC-1 : (instr->otyp == ETHER_HORN) ? AD_MAGM-1 : (instr->otyp == CHROME_HORN) ? 26 : (instr->otyp == DEATH_HORN) ? 24 : (instr->otyp == SHADOW_HORN) ? AD_ACID-1 : AD_FIRE-1,
+				rn1(6,6), u.ux, u.uy, u.dx, u.dy);
+
+		    }
 		}
 		makeknown(instr->otyp);
 		break;

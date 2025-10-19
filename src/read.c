@@ -2307,6 +2307,7 @@ int curse_bless;
 		} else if (is_blessed) {
 		    obj->spe += d(2,4);
 		    if (obj->oartifact == ART_TADA) obj->spe += d(2,4);
+		    if (obj->oartifact == ART_MAMA_LAUDA) obj->spe += 10;
 		    /*if (obj->spe > 20) obj->spe = 20;*/
 		    p_glow2(obj, NH_BLUE);
 			u.cnd_chargingcount++;
@@ -2318,6 +2319,7 @@ int curse_bless;
 		} else {
 		    obj->spe += rnd(4);
 		    if (obj->oartifact == ART_TADA) obj->spe += rnd(4);
+		    if (obj->oartifact == ART_MAMA_LAUDA) obj->spe += 10;
 		    /*if (obj->spe > 20) obj->spe = 20;*/
 		    p_glow1(obj);
 			u.cnd_chargingcount++;

@@ -28618,6 +28618,7 @@ int mndx;
 	if (mons[mndx].geno & (G_NOGEN/* | G_UNIQ*/)) return TRUE;
 	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.tempnevernmbf || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
+	if (uwep && uwep->oartifact == ART_STOP_THE_SCRIPT_NONSENSE && is_jonadabmonster(&mons[mndx]) ) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
 
@@ -30603,6 +30604,7 @@ int     spc;
 		last < SPECIAL_PM && mons[last].mlet == class; last++)
 	    if (!(mvitals[last].mvflags & G_GONE) && !(mons[last].geno & mask)
 					&& !is_placeholder(&mons[last])
+					&& !(uwep && uwep->oartifact == ART_STOP_THE_SCRIPT_NONSENSE && is_jonadabmonster(&mons[last]) )
 					&& !(uncommontwo && uncommon2(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonthree && uncommon3(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonfive && uncommon5(&mons[last]) && !jonaspecialspawn(&mons[last]) && !Race_if(PM_RODNEYAN) )
@@ -31872,6 +31874,7 @@ int     spc;
 	for(num = rnd(num); num > 0; first++)
 	    if (!(mvitals[first].mvflags & G_GONE) && !(mons[first].geno & mask)
 					&& !is_placeholder(&mons[first])
+					&& !(uwep && uwep->oartifact == ART_STOP_THE_SCRIPT_NONSENSE && is_jonadabmonster(&mons[first]) )
 					&& !(uncommontwo && uncommon2(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonthree && uncommon3(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )
 					&& !(uncommonfive && uncommon5(&mons[first]) && !jonaspecialspawn(&mons[first]) && !Race_if(PM_RODNEYAN) )

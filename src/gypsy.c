@@ -1054,7 +1054,7 @@ newblackjackrun:
 	}
 	playerhand += tempcardvar;
 	playercards = 2;
-	if (playerhand == 21 && rn2(5)) {
+	if (playerhand == 21 && (rn2(5) || bmwride(ART_WI_O_WI_O_WACKIWE_)) ) {
 		pline("Yeah! You scored a black jack and automatically win!");
 		goto blackjackwin;
 		/* we know by this point that the dealer doesn't have a black jack */
