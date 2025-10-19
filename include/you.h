@@ -823,6 +823,7 @@ struct you {
 	int tempfountainbuild;	/* temporarily transform random floor tiles into fountains */
 	int temppainresist;	/* temporarily don't get affected by AD_PAIN effects */
 	int tempburntbooks;	/* temporarily cause all spellbooks to spawn burnt */
+	int tempnastystonefreq;	/* temporary +200 spawn chance for gray snipers and the like, and nasty stones aren't less likely to spawn */
 
 	int tempnukaeffect;	/* temporary feminism trap effect that corresponds to a bottle of Nuka Cola */
 	int tempnukaefftype;	/* the type of temporary feminism trap effect for the above */
