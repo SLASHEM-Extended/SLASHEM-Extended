@@ -25679,6 +25679,7 @@ register boolean force, here;
 		if ((obj->where != OBJ_FLOOR) && uwep && uwep->oartifact == ART_GARY_S_RIVALRY ) continue;
 		if ((obj->where != OBJ_FLOOR) && powerfulimplants() && uimplant && uimplant->oartifact == ART_NEWFOUND_AND_USEFUL) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_JESUS_FOOTWEAR) continue;
+		if ((obj->where != OBJ_FLOOR) && uarmf && uarmf->oartifact == ART_ALL_WEATHER_HEELS) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_SCHWUUUUUUUUUUH) continue;
 		if ((obj->where != OBJ_FLOOR) && uarm && uarm->oartifact == ART_DREHN_PIPE) continue;
 		if ((obj->where != OBJ_FLOOR) && uarmc && uarmc->oartifact == ART_OUT_OF_THE_RAIN) continue;
@@ -29597,6 +29598,7 @@ lava_effects()
     if (uarm && uarm->oartifact == ART_LAURA_CROFT_S_BATTLEWEAR) return FALSE;
     if (uwep && uwep->oartifact == ART_MANUELA_S_PRACTICANT_TERRO) return FALSE;
     if (uarm && uarm->oartifact == ART_D_TYPE_EQUIPMENT) return FALSE;
+    if (uarmf && uarmf->oartifact == ART_VERY_WARM_TYPE) return FALSE;
     if (uarmc && uarmc->oartifact == ART_SCOOBA_COOBA) return FALSE;
     if (uarmf && uarmf->oartifact == ART_JOHANNA_S_RED_CHARM) return FALSE;
     if (uarmf && itemhasappearance(uarmf, APP_HOT_BOOTS) ) return FALSE;

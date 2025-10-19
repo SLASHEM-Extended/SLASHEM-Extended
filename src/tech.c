@@ -11464,8 +11464,8 @@ perfumestriding:
 		{
 			register struct obj *shemagh;
 
-			if ((find_shemagh()) != -1) {
-				shemagh = mksobj(find_shemagh(), TRUE, FALSE, FALSE);
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) {
+				shemagh = mksobj(find_appearance_armor(APP_SHEMAGH), TRUE, FALSE, FALSE);
 
 				if (shemagh) {
 

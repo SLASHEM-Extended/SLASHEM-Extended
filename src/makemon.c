@@ -1672,7 +1672,7 @@ register struct monst *mtmp;
 			  }
 			  w2 = rn2(2) ? SAND_SWORD : DESERT_SWORD;
 			  if (rn2(2)) (void) mongets(mtmp, FRAG_GRENADE);
-			  if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			  if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH) );
 			  break;
 			case PM_ASIAN_SOLDIER:
 			  if (rn2(2)) {
@@ -6888,7 +6888,7 @@ register struct monst *mtmp;
 			if(ptr == &mons[PM_SMART_TRAPPER]) (void) mongets(mtmp, SCR_TRAP_CREATION);
 			if(ptr == &mons[PM_TRAPPER_KING]) (void) mongets(mtmp, WAN_TRAP_CREATION);
 
-			if(ptr == &mons[PM_GRAY_SNIPER]) {
+			if(ptr == &mons[PM_GRAY_SNIPER]) { /* tempnastystonefreq */
 				(void) mongets(mtmp, SLING);
 				(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
 			}
@@ -6903,13 +6903,13 @@ register struct monst *mtmp;
 			  	m_initthrow(mtmp, ARROW, 50);
 			}
 
-			if(ptr == &mons[PM_NASTYSTONE_SNIPER]) {
+			if(ptr == &mons[PM_NASTYSTONE_SNIPER]) { /* tempnastystonefreq */
 				(void) mongets(mtmp, SLING);
 				(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
 				(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
 			}
 
-			if(ptr == &mons[PM_EVIL_PATCH_IDEA_IMPLEMENTATOR]) {
+			if(ptr == &mons[PM_EVIL_PATCH_IDEA_IMPLEMENTATOR]) { /* tempnastystonefreq */
 				(void) mongets(mtmp, SLING);
 				(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
 				(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
@@ -8209,7 +8209,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_ELVEN_CANCERFAG]) (void) mongets(mtmp, CIGARETTE);
 		if (ptr == &mons[PM_OBVIOUS_TRANNY]) (void) mongets(mtmp, MEN_S_HIGH_HEELS);
 		if (ptr == &mons[PM_SLYER_ALIEN]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_WOOD_ELVEN_ASSAILANT]) (void) mongets(mtmp, CESTUS);
 		if (ptr == &mons[PM_FEMININE_ASSASSIN]) (void) mongets(mtmp, BELL_CLAWS);
@@ -8218,7 +8218,7 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FIGHTING_VILLAGE_INHABITANT]) (void) mongets(mtmp, CLUB);
 		if (ptr == &mons[PM_FARM_TILLER]) (void) mongets(mtmp, SICKLE);
 		if (ptr == &mons[PM_LUMBERJACK]) (void) mongets(mtmp, AXE);
-		if (mtmp->data == &mons[PM_MASK_MAN]) (void) mongets(mtmp, find_corona_mask());
+		if (mtmp->data == &mons[PM_MASK_MAN]) (void) mongets(mtmp, find_appearance_armor(APP_CORONA_MASK));
 		if (ptr == &mons[PM_REGULAR_JEDI]) (void) mongets(mtmp, BEAMSWORD);
 		if (ptr == &mons[PM_LIGHTSABER_ART_JEDI]) (void) mongets(mtmp, BEAMSWORD);
 		if (ptr == &mons[PM_PUMPS_GIRL]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
@@ -8628,7 +8628,7 @@ register struct	monst	*mtmp;
 		}
 
 		if (ptr == &mons[PM_VERA_THE_ICE_QUEEN]) {
-			if ((find_cyan_sneakers()) != -1) (void)mongets(mtmp, find_cyan_sneakers());
+			if ((find_appearance_armor(APP_CYAN_SNEAKERS)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_CYAN_SNEAKERS));
 			(void) mongets(mtmp, ATHAME);
 			(void) mongets(mtmp, GAUNTLETS);
 			(void) mongets(mtmp, AMULET_OF_REFLECTION);
@@ -8636,7 +8636,7 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, CLOAK_OF_MAGIC_RESISTANCE);
 		}
 		if (ptr == &mons[PM_ELAINE_THE_ENCHANTRESS]) {
-			if ((find_yellow_sneakers()) != -1) (void)mongets(mtmp, find_yellow_sneakers());
+			if ((find_appearance_armor(APP_YELLOW_SNEAKERS)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_YELLOW_SNEAKERS));
 		}
 		if (ptr == &mons[PM_BERNING_MAKER]) {
 			(void) mongets(mtmp, ORGANOSHIELD);
@@ -8952,21 +8952,21 @@ register struct	monst	*mtmp;
 			(void) mongets(mtmp, rnd_class(HAWAIIAN_SHIRT,LEVITATION_BOOTS));
 		}
 		if (ptr == &mons[PM_OASIS_GIRL]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 			(void) mongets(mtmp, WEDGE_SANDALS); /* M4_SANDALS */
 		}
 		if (ptr == &mons[PM_OASIS_WOMAN]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL); /* M4_HAMMERSANDAL */
 		}
 		if (ptr == &mons[PM_DESERT_MAID]) {
 			(void) mongets(mtmp, BLOCK_HEELED_SANDAL); /* M4_HAMMERSANDAL */
 			(void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_OASIS_LADY]) {
 			(void) mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_MECH_GIRL]) {
 			(void) mongets(mtmp, PICK_AXE);
@@ -9005,10 +9005,10 @@ register struct	monst	*mtmp;
 		}
 
 		if (ptr == &mons[PM_ALABASTER_ELF]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_ALABASTER_ELF_ELDER]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 
 		if (ptr == &mons[PM_SHARPWOODSMAN]) {
@@ -9104,27 +9104,27 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_DESERT_GIRL]) {
 			(void)mongets(mtmp, SAND_SWORD);
 			(void)mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_DESERT_LASS]) {
 			(void)mongets(mtmp, SAND_SWORD);
 			(void)mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_DESERT_WOMAN]) {
 			(void)mongets(mtmp, DESERT_SWORD);
 			(void)mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_DESERT_WOMAN]) {
 			(void)mongets(mtmp, DESERT_SWORD);
 			(void)mongets(mtmp, COMBAT_STILETTOS);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_DESERT_GRANNY]) {
 			(void)mongets(mtmp, DESERT_SWORD);
 			(void)mongets(mtmp, SWEET_MOCASSINS);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_BORD_KNIGHT]) {
 			(void) mongets(mtmp, HEAVY_LONG_SWORD);
@@ -9157,12 +9157,12 @@ register struct	monst	*mtmp;
 		if (ptr == &mons[PM_FAR_EAST_ELF]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_HARDCORE_ELF]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 
 		if (ptr == &mons[PM_SACRAL_PRIEST]) {
@@ -9346,7 +9346,7 @@ register struct	monst	*mtmp;
 		}
 		if (ptr == &mons[PM_FUNNY_JAVA]) {
 			m_initthrow(mtmp, STACK_JAVELIN, 5);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 			(void)mongets(mtmp, HAWAIIAN_SHIRT);
 		}
 		if (ptr == &mons[PM_GREURO]) {
@@ -10163,7 +10163,7 @@ loveheelover:
 			 m_initthrow(mtmp, ROCK, 50);
 		}
 
-		if(mtmp->data == &mons[PM_GRAY_STONE_GOLEM]) {
+		if(mtmp->data == &mons[PM_GRAY_STONE_GOLEM]) { /* tempnastystonefreq */
 			(void) mongets(mtmp, SLING);
 			(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
 			(void) mongets(mtmp, rnd_class(RIGHT_MOUSE_BUTTON_STONE,NASTY_STONE));
@@ -11651,12 +11651,12 @@ loveheelover:
 		if(mtmp->data == &mons[PM_ARAB_KOBOLD_SHAMAN]) {
 			(void) mongets(mtmp, SAND_SWORD);
 			(void) mongets(mtmp, STILETTO_SANDALS); /* M4_SANDALS */
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if(mtmp->data == &mons[PM_HARDCORE_KOBOLD_SHAMAN]) {
 			(void) mongets(mtmp, DESERT_SWORD);
 			(void) mongets(mtmp, RAPIRAPI);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if(mtmp->data == &mons[PM_KOBOLD_MACEBIMMER]) (void) mongets(mtmp, MACE);
 		if (ptr == &mons[PM_KOBOLD_WOARER]) {
@@ -12318,7 +12318,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_BRITTA]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 
 		if (ptr == &mons[PM_BIGHEADED_TEACHER_OFFICE_PRACTICANT]) {
-			if ((find_heeled_hugging_boots()) != -1) (void)mongets(mtmp, find_heeled_hugging_boots());
+			if ((find_appearance_armor(APP_HEELED_HUGGING_BOOTS)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_HEELED_HUGGING_BOOTS));
 		}
 
 		if (mtmp->data == &mons[PM_NOBLE_CHILD]) {
@@ -13418,13 +13418,13 @@ loveheelover:
 			(void) mongets(mtmp, DESERT_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_SLY_DESERT_FOX]) {
 			(void) mongets(mtmp, DESERT_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_RUM_RUNNER]) {
 			(void) mongets(mtmp, POT_CONFUSION);
@@ -13442,13 +13442,13 @@ loveheelover:
 			(void) mongets(mtmp, DESERT_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_POISON_DOCTOR]) {
 			(void) mongets(mtmp, DESERT_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 
 		if (mtmp->data == &mons[PM_ALIEN_DEMONSTRANT]) {
@@ -13855,10 +13855,10 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_BOBBY]) {
-			if ((find_bull_helmet()) != -1) (void)mongets(mtmp, find_bull_helmet());
+			if ((find_appearance_armor(APP_BULL_HELMET)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_BULL_HELMET));
 		}
 		if (ptr == &mons[PM_BOBBIE]) {
-			if ((find_bull_helmet()) != -1) (void)mongets(mtmp, find_bull_helmet());
+			if ((find_appearance_armor(APP_BULL_HELMET)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_BULL_HELMET));
 		}
 
 		if (ptr == &mons[PM_FREEMASON_CASER]) {
@@ -14491,7 +14491,7 @@ loveheelover:
 			(void) mongets(mtmp, LORICATED_CLOAK);
 			(void) mongets(mtmp, ROCKET_GAUNTLETS);
 			(void) mongets(mtmp, BRONZE_PLATE_MAIL);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_FUNNY_ITALIAN]) {
 			(void) mongets(mtmp, SCR_ROOT_PASSWORD_DETECTION);
@@ -15097,7 +15097,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_HC_STENGLER]) (void) mongets(mtmp, BARDICHE);
 		if (mtmp->data == &mons[PM_INDOCTRINATED_ALIEN]) (void) mongets(mtmp, NASTYPOLE);
 		if (mtmp->data == &mons[PM_ARMVIPER]) (void) mongets(mtmp, VIPERWHIP);
-		if (mtmp->data == &mons[PM_DIRE_MASK_WOMAN]) (void) mongets(mtmp, find_corona_mask());
+		if (mtmp->data == &mons[PM_DIRE_MASK_WOMAN]) (void) mongets(mtmp, find_appearance_armor(APP_CORONA_MASK));
 		if (mtmp->data == &mons[PM_VACCINATION_GESTAPO]) (void) mongets(mtmp, SCALPEL);
 		if (mtmp->data == &mons[PM_HORNY_FEMMY]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if (mtmp->data == &mons[PM_UNMOUNT_VIPER]) (void) mongets(mtmp, BARDICHE);
@@ -15136,7 +15136,7 @@ loveheelover:
 		if (mtmp->data == &mons[PM_ARMED_SNAKE]) { (void) mongets(mtmp, ORCISH_BOW); m_initthrow(mtmp, ARROW, 30);}
 
 		if (mtmp->data == &mons[PM_NUNSISTER]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 
 		if (ptr == &mons[PM_GRAPH_SNAKE]) {
@@ -16869,7 +16869,7 @@ loveheelover:
 	    case S_OGRE:
 
 		if (ptr == &mons[PM_HULL_USING_CRIMINAL]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 
 		if (monsndx(ptr) == PM_POUR_OGRE) (void) mongets(mtmp, POURED_CLUB);
@@ -17056,7 +17056,7 @@ loveheelover:
 		if (monsndx(ptr) == PM_MORNING_STAR_FIGHTER) (void) mongets(mtmp, METAL_STAR);
 		if (monsndx(ptr) == PM_ELITE_MORNING_STAR_FIGHTER) (void) mongets(mtmp, STONE_STAR);
 		if (monsndx(ptr) == PM_REACHES_MUMMY) (void) mongets(mtmp, REACH_TRIDENT);
-		if (mtmp->data == &mons[PM_MASK_GESTAPO]) (void) mongets(mtmp, find_corona_mask());
+		if (mtmp->data == &mons[PM_MASK_GESTAPO]) (void) mongets(mtmp, find_appearance_armor(APP_CORONA_MASK));
 		if (monsndx(ptr) == PM_MYSTERY_WOMAN) (void) mongets(mtmp, SILVER_DAGGER);
 
 		if (ptr == &mons[PM_MAUREEN]) {
@@ -17072,7 +17072,7 @@ loveheelover:
 			(void) mongets(mtmp, MESH_ARMOR);
 		}
 		if (ptr == &mons[PM_ALABASTER_MUMMY]) {
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_WAKE_ELDER_MUMMY]) {
 			(void) mongets(mtmp, REACH_TRIDENT);
@@ -17127,13 +17127,13 @@ loveheelover:
 			(void) mongets(mtmp, LEATHER_SADDLE);
 		}
 		if (monsndx(ptr) == PM_DELTA_HELMET_WEARER) {
-			if ((find_orange_visored_helmet()) != -1) (void)mongets(mtmp, find_orange_visored_helmet());
+			if ((find_appearance_armor(APP_ORANGE_VISORED_HELMET)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_ORANGE_VISORED_HELMET));
 		}
 		if (monsndx(ptr) == PM_DELTA_TEN) {
-			if ((find_visored_helmet()) != -1) (void)mongets(mtmp, find_visored_helmet());
+			if ((find_appearance_armor(APP_VISORED_HELMET)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_VISORED_HELMET));
 		}
 		if (monsndx(ptr) == PM_DELTA_INFINITE) {
-			if ((find_visored_helmet()) != -1) (void)mongets(mtmp, find_visored_helmet());
+			if ((find_appearance_armor(APP_VISORED_HELMET)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_VISORED_HELMET));
 			(void) mongets(mtmp, FLAIL);
 			(void) mongets(mtmp, IRON_CHAIN);
 			(void) mongets(mtmp, BASEBALL_BAT);
@@ -17212,12 +17212,12 @@ loveheelover:
 		if (ptr == &mons[PM_ARAB_GUARD]) {
 			(void) mongets(mtmp, DESERT_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 		if (ptr == &mons[PM_HARDCORE_GUARD]) {
 			(void) mongets(mtmp, DESERT_SWORD);
 			 m_initthrow(mtmp, SAND_DART, 50);
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 		}
 
 		if (monsndx(ptr) == PM_MURDERER_BURNER) {
@@ -17376,7 +17376,7 @@ loveheelover:
 		if (monsndx(ptr) == PM_ELITE_MEANIE_IN_GREEN) (void) mongets(mtmp, BASEBALL_BAT);
 		if (monsndx(ptr) == PM_BULBOUS_LEPRECHAUN) (void) mongets(mtmp, LIGHTBULB);
 		if (monsndx(ptr) == PM_AMBUSH_DUMBBUSH) (void) mongets(mtmp, AMBUSH_QATAR);
-		if (monsndx(ptr) == PM_SUNA) (void) mongets(mtmp, find_sputa_boots()); /* M4_BLOCKHEELBOOTS */
+		if (monsndx(ptr) == PM_SUNA) (void) mongets(mtmp, find_appearance_armor(APP_SPUTA_BOOTS)); /* M4_BLOCKHEELBOOTS */
 
 		if (monsndx(ptr) == PM_LUPIN_THE_THIRD) (void) mongets(mtmp, WAN_TRAP_CREATION);
 		if (monsndx(ptr) == PM_GRETA_S_HUGGING_BOOT) { (void) mongets(mtmp, HUGGING_BOOT); (void) mongets(mtmp, SCR_TRAP_CREATION); }
@@ -17834,8 +17834,8 @@ loveheelover:
 		if(ptr == &mons[PM_LILITU_QUEEN]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(ptr == &mons[PM_IRMA_S_LILAC_PUMP]) (void) mongets(mtmp, FEMININE_PUMPS); /* M4_PUMPS */
 		if(ptr == &mons[PM_LOSER_DEVIL]) (void) mongets(mtmp, GARBOWHIP);
-		if(ptr == &mons[PM_PLATFORMINA]) (void) mongets(mtmp, find_plateau_boots());
-		if(ptr == &mons[PM_HC_SEDUCTRESS]) (void) mongets(mtmp, find_filigree_stilettos());
+		if(ptr == &mons[PM_PLATFORMINA]) (void) mongets(mtmp, find_appearance_armor(APP_PLATEAU_BOOTS));
+		if(ptr == &mons[PM_HC_SEDUCTRESS]) (void) mongets(mtmp, find_appearance_armor(APP_FILIGREE_STILETTOS));
 		if(ptr == &mons[PM_HC_TEMPTRESS]) (void) mongets(mtmp, LADY_BOOTS); /* M4_BLOCKHEELBOOTS */
 		if(ptr == &mons[PM_ELISE]) (void) mongets(mtmp, HIPPIE_HEELS); /* M4_BLOCKHEELBOOTS */
 		if(ptr == &mons[PM_LASERCHAIN_DEVIL]) (void) mongets(mtmp, LASER_CHAIN);
@@ -18627,7 +18627,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_FLEECY_SUSPICIOUS_PERSON]) {
-			if ((find_warning_coat()) != -1) (void)mongets(mtmp, find_warning_coat());
+			if ((find_appearance_armor(APP_WARNING_COAT)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_WARNING_COAT));
 		}
 
 		if (ptr == &mons[PM_CARBON_XORN]) {
@@ -18875,7 +18875,7 @@ loveheelover:
 		}
 		if (ptr == &mons[PM_HELFRIEKA]) {
 			(void) mongets(mtmp, BLOCK_HEELED_COMBAT_BOOT);
-			  if ((find_iceblock_heels()) != -1) (void)mongets(mtmp, find_iceblock_heels());
+			  if ((find_appearance_armor(APP_ICEBLOCK_HEELS)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_ICEBLOCK_HEELS));
 		}
 
 		if (ptr == &mons[PM_PRISON_ZRUTY]) {
@@ -19491,7 +19491,7 @@ loveheelover:
 		if (ptr == &mons[PM_SCARAB_GUARDIAN]) (void) mongets(mtmp, SHIELD);
 
 		if (ptr == &mons[PM_MISUSED_BEAUTY_IN_BUFFALO_BOOTS]) {
-			if ((find_white_buffalo_boots()) != -1) (void)mongets(mtmp, find_white_buffalo_boots());
+			if ((find_appearance_armor(APP_WHITE_BUFFALO_BOOTS)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_WHITE_BUFFALO_BOOTS));
 		}
 
 		if (mtmp->data == &mons[PM_NESTING_SPIDER]) { 
@@ -19650,7 +19650,7 @@ loveheelover:
 		if (ptr == &mons[PM_GROWN_CLOUDY]) (void) mongets(mtmp, CLOGS); /* M4_SANDALS */
 
 		if (ptr == &mons[PM_BANDANA_ROCKZ]) {
-			  if ((find_strip_bandana()) != -1) (void)mongets(mtmp, find_strip_bandana());
+			  if ((find_appearance_armor(APP_STRIP_BANDANA)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_STRIP_BANDANA));
 		}
 
 		if (ptr == &mons[PM_NEXT_LEVEL]) {
@@ -19660,7 +19660,7 @@ loveheelover:
 		}
 
 		if (ptr == &mons[PM_BRAZEN_GANG_HUSSY]) {
-			  if ((find_hugging_boots()) != -1) (void)mongets(mtmp, find_hugging_boots());
+			  if ((find_appearance_armor(APP_HUGGING_BOOTS)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_HUGGING_BOOTS));
 			(void) mongets(mtmp, QUATTUORST_AXE);
 			(void) mongets(mtmp, REINFORCED_SHIRT);
 			(void) mongets(mtmp, CUIRASS_ARMOR);
@@ -21716,7 +21716,7 @@ loveheelover:
 		(void) mongets(mtmp, POT_VAMPIRE_BLOOD);
 		(void) mongets(mtmp, POT_VAMPIRE_BLOOD);
 		(void) mongets(mtmp, STURDY_PLATEAU_BOOT_FOR_GIRLS);
-		(void) mongets(mtmp, find_buffalo_boots());
+		(void) mongets(mtmp, find_appearance_armor(APP_BUFFALO_BOOTS));
 	}
 
 	if (ptr == &mons[PM_EROGENOUS_KATIA]) {
@@ -28242,7 +28242,7 @@ register int	mmflags;
 
 	    if (humanoid(ptr) && (monstersoundtype(mtmp) == MS_CONVERT || monstersoundtype(mtmp) == MS_HCALIEN) && !rn2(100)) {
 
-			if ((find_shemagh()) != -1) (void)mongets(mtmp, find_shemagh());
+			if ((find_appearance_armor(APP_SHEMAGH)) != -1) (void)mongets(mtmp, find_appearance_armor(APP_SHEMAGH));
 
 	    }
 
@@ -28330,7 +28330,7 @@ register int	mmflags;
 		}
 
 		if (FemtrapActiveKatia && (monstersoundtype(mtmp) == MS_FART_LOUD)) {
-			struct obj *otmpX = mksobj(find_block_heeled_boots(),TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
+			struct obj *otmpX = mksobj(find_appearance_armor(APP_BLOCK_HEELED_BOOTS),TRUE, Race_if(PM_ARTIFINDER) ? TRUE : FALSE, FALSE);
 			if (otmpX) {
 				(void) mpickobj(mtmp,otmpX, TRUE);
 			}
@@ -29028,6 +29028,7 @@ loopback:
 		if (ct > 0 && (u.tempeldritchspawn && attackdamagetype(ptr, AT_GAZE, AD_SANI) )) ct += 100;
 		if (ct > 0 && (u.tempeldritchspawn && attackdamagetype(ptr, AT_GAZE, AD_INSA) )) ct += 100;
 		if (ct > 0 && (u.tempeldritchspawn && attackdamagetype(ptr, AT_GAZE, AD_SPC2) )) ct += 100;
+		if (ct > 0 && (u.tempnastystonefreq && ( (monsndx(ptr) == PM_GRAY_SNIPER) || (monsndx(ptr) == PM_NASTYSTONE_SNIPER) || (monsndx(ptr) == PM_GRAY_STONE_GOLEM) || (monsndx(ptr) == PM_EVIL_PATCH_IDEA_IMPLEMENTATOR)) )) ct += 200;
 		if (ct > 0 && (uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(ptr) && attacktype(ptr, AT_KICK) )) ct += 20;
 		if (ct > 0 && (uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(ptr, AD_SUCK) )) ct += 50;
 		if (ct > 0 && (uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(ptr, AD_RUST) )) ct += 5;
@@ -30681,6 +30682,7 @@ int     spc;
 		if ((u.tempeldritchspawn && attackdamagetype(&mons[last], AT_GAZE, AD_SANI) )) num += 100;
 		if ((u.tempeldritchspawn && attackdamagetype(&mons[last], AT_GAZE, AD_INSA) )) num += 100;
 		if ((u.tempeldritchspawn && attackdamagetype(&mons[last], AT_GAZE, AD_SPC2) )) num += 100;
+		if ((u.tempnastystonefreq && ( (monsndx(&mons[last]) == PM_GRAY_SNIPER) || (monsndx(&mons[last]) == PM_NASTYSTONE_SNIPER) || (monsndx(&mons[last]) == PM_GRAY_STONE_GOLEM) || (monsndx(&mons[last]) == PM_EVIL_PATCH_IDEA_IMPLEMENTATOR)) )) num += 200;
 		if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(&mons[last]) && attacktype(&mons[last], AT_KICK) )) num += 20;
 		if ((uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(&mons[last], AD_SUCK) )) num += 50;
 		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[last], AD_RUST) )) num += 5;
@@ -31941,6 +31943,7 @@ int     spc;
 		if ((u.tempeldritchspawn && attackdamagetype(&mons[first], AT_GAZE, AD_SANI) )) num -= 100;
 		if ((u.tempeldritchspawn && attackdamagetype(&mons[first], AT_GAZE, AD_INSA) )) num -= 100;
 		if ((u.tempeldritchspawn && attackdamagetype(&mons[first], AT_GAZE, AD_SPC2) )) num -= 100;
+		if ((u.tempnastystonefreq && ( (monsndx(&mons[first]) == PM_GRAY_SNIPER) || (monsndx(&mons[first]) == PM_NASTYSTONE_SNIPER) || (monsndx(&mons[first]) == PM_GRAY_STONE_GOLEM) || (monsndx(&mons[first]) == PM_EVIL_PATCH_IDEA_IMPLEMENTATOR)) )) num -= 200;
 		if ((uamul && uamul->oartifact == ART_MOSH_PIT_SCRAMBLE && is_female(&mons[first]) && attacktype(&mons[first], AT_KICK) )) num -= 20;
 		if ((uarmh && uarmh->oartifact == ART_VACUUM_CLEANER_DEATH && dmgtype(&mons[first], AD_SUCK) )) num -= 50;
 		if ((uarmf && uarmf->oartifact == ART_CLICHE_WEAR && dmgtype(&mons[first], AD_RUST) )) num -= 5;

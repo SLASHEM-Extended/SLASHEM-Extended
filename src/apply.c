@@ -5785,7 +5785,7 @@ dyechoice:
 				else goto dyechoice;
 				pline("Oh well, if you don't wanna...");
 			} else {
-				int dyepotion = find_potion_of_dye();
+				int dyepotion = find_appearance_potion(APP_POTION_DYE);
 				objects[steeling->otyp].oc_color = objects[dyepotion].oc_color;
 				pline_The("item was dyed successfully!");
 			}

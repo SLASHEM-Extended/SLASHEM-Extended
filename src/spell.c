@@ -5080,7 +5080,7 @@ repairhomiechoice:
 
 		if (utemon) {
 			register struct obj *uteheels;
-			uteheels = mksobj(find_missys(), FALSE, 2, FALSE);
+			uteheels = mksobj(find_appearance_armor(APP_MISSYS), FALSE, 2, FALSE);
 			if (uteheels) uteheels = mk_artifact(uteheels, (aligntyp)A_NONE, TRUE);
 			if (uteheels) {
 				(void) mpickobj(utemon, uteheels, TRUE);
@@ -16106,6 +16106,7 @@ int spell;
 	if (uarm && uarm->oartifact == ART_WEB_OF_LOLTH) splcaster -= 3;
 	if (uarm && uarm->oartifact == ART_WEB_OF_HOHOTH) splcaster -= 3;
 	if (uwep && uwep->oartifact == ART_ARYFAERN_KERYM) splcaster -= 3;
+	if (uarmg && uarmg->oartifact == ART_POWERORB_BOOSTING) splcaster -= 3;
 
 	if (Role_if(PM_PALADIN)) splcaster -= 3; /* it is assumed some of their power is granted by the Lord of Light himself */
 

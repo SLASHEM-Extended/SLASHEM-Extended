@@ -276,6 +276,11 @@ nh_timeout()
 		if (!u.tempharenwah) You("feel that the animals are no longer as peaceful as before.");
 	}
 
+	if (u.tempnastystonefreq) {
+		u.tempnastystonefreq--;
+		if (u.tempnastystonefreq < 0) u.tempnastystonefreq = 0; /* fail safe */
+	}
+
 	if (u.tempburntbooks) {
 		u.tempburntbooks--;
 		if (u.tempburntbooks < 0) u.tempburntbooks = 0; /* fail safe */

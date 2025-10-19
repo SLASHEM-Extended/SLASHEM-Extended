@@ -610,6 +610,8 @@ lookat(x, y, buf, monbuf)
 		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS)
 		    ways_seen++;
+		if (uarmf && uarmf->oartifact == ART_FUNGUS_ERADICATION && mtmp->data->mlet == S_FUNGUS)
+		    ways_seen++;
 		if (uwep && uwep->oartifact == ART_SNICKERSNACK && mtmp->data->mlet == S_JABBERWOCK)
 		    ways_seen++;
 		if (uarm && uarm->oartifact == ART_FUNGIRADAR && mtmp->data->mlet == S_FUNGUS)
@@ -962,6 +964,10 @@ lookat(x, y, buf, monbuf)
 		    }
 		    if (uwep && uwep->oartifact == ART_FUYER_BREV && mtmp->data->mlet == S_FUNGUS) {
 			strcat(monbuf, "fuyer brev");
+			if (ways_seen-- > 1) strcat(monbuf, ", ");
+		    }
+		    if (uarmf && uarmf->oartifact == ART_FUNGUS_ERADICATION && mtmp->data->mlet == S_FUNGUS) {
+			strcat(monbuf, "fungus view");
 			if (ways_seen-- > 1) strcat(monbuf, ", ");
 		    }
 		    if (uwep && uwep->oartifact == ART_SNICKERSNACK && mtmp->data->mlet == S_JABBERWOCK) {

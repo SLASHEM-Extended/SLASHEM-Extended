@@ -499,17 +499,19 @@ boolean shopinit;
 		i = makeobject_core(oclass);
 	}
 
-	/* Gray stones are too common; have a chance to reroll them at least once --Amy */
-	if (i >= RIGHT_MOUSE_BUTTON_STONE && i <= NASTY_STONE && rn2(5)) {
+	/* Nasty gray stones are too common; have a chance to reroll them at least once --Amy */
+	if (i >= RIGHT_MOUSE_BUTTON_STONE && i <= NASTY_STONE && !u.tempnastystonefreq && rn2(5)) {
 
 		i = makeobject_core(oclass);
 	}
 
+	/* ditto for feminism jewels */
 	if (i >= ELIF_S_JEWEL && i <= DORA_S_JEWEL && rn2(5)) {
 
 		i = makeobject_core(oclass);
 	}
 
+	/* scroll of ragnarok is supposed to be extremely rare --Amy */
 	if (i == SCR_RAGNAROK && rn2(64)) {
 		i = makeobject_core(oclass);
 
@@ -590,7 +592,7 @@ boolean shopinit;
 	/* frequent helmet and soviet mode wand comes here */
 	else if (!rn2(100) && oclass == ARMOR_CLASS) {
 
-		int freqhelmet = find_frequent_helmet();
+		int freqhelmet = find_appearance_armor(APP_FREQUENT_HELMET);
 		if (freqhelmet != -1 && freqhelmet < NUM_OBJECTS) {
 			return(mksobj(freqhelmet, TRUE, artif, shopinit));
 		} else {

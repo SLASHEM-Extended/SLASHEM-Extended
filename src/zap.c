@@ -11453,6 +11453,11 @@ register int osym, dmgtyp;
 				break;
 			}
 
+		    if (uarmf && uarmf->oartifact == ART_COLDCLINK) {
+				skip++;
+				break;
+			}
+
 		    if (uarmf && itemhasappearance(uarmf, APP_FLEECY_BOOTS) ) {
 				skip++;
 				break;
@@ -11636,6 +11641,11 @@ register int osym, dmgtyp;
 		    xresist = (Shock_resistance && obj->oclass != RING_CLASS);
 
 			if (objects[obj->otyp].oc_material == MT_ALIMATHIUM) {
+				skip++;
+				break;
+			}
+
+			if (uarmf && uarmf->oartifact == ART_ALL_WEATHER_HEELS) {
 				skip++;
 				break;
 			}

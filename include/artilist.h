@@ -25848,6 +25848,294 @@ A("Guilded Misdirection",				LONG_SWORD, /* randart long sword, material becomes
 	(SPFX_RESTR|SPFX_DALIGN), 0, 0,
 	PHYS(0, 16), NO_DFNS, NO_CARY, 0, A_CHAOTIC, NON_PM, NON_PM, 3000L ),
 
+A("Offzeeh Brun",				LOW_BOOTS, /* initialized to always be enarmoring boots, discount action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Porystone",				LOW_BOOTS, /* initialized to always be geometry heels, stone resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Marc's Somewhat Equip",				LOW_BOOTS, /* initialized to always be rustprone boots, defusing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("wingelwingelwingel",				LOW_BOOTS, /* initialized to always be girl boots, flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("ADHS Diagnosis",				LOW_BOOTS, /* initialized to always be boy boots, very fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Don't Run In Fear",				LOW_BOOTS, /* initialized to always be super boots, fear resistance */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Very Warm Type",				LOW_BOOTS, /* initialized to always be warm-werding boots, d-type equipment effect */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_FIRE), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("All-Weather Heels",				LOW_BOOTS, /* initialized to always be printed wedges, wild weather, blindness resistance, protects items from becoming wet, your items cannot be destroyed by lightning */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 20000L ),
+
+A("Know The Rules",				LOW_BOOTS, /* initialized to always be fluffy boots, poly control */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Elefsoh",				LOW_BOOTS, /* initialized to always be generic high heels, contamination resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Roughgravel Master",				LOW_BOOTS, /* initialized to always be cross country boots, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Kuugruu! Kuugruu!",				LOW_BOOTS, /* initialized to always be industrial boots, +2 increase damage, fast speed, aggravate monster */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Train Hard!",				LOW_BOOTS, /* initialized to always be climbing boots, extra weapon practice */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fungus Eradication",				LOW_BOOTS, /* initialized to always be copper filigreed stilettos, sickness resistance, displays all F when worn */
+	(SPFX_RESTR|SPFX_DCLAS), 0, (S_FUNGUS),
+	PHYS(0, 30), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Poi-Sen-Sux",				LOW_BOOTS, /* initialized to always be failuncap shoes, double poison resistance */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Do Not Fear Death",				LOW_BOOTS, /* initialized to always be spooky boots, death resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 6000L ),
+
+A("Backplayshild",				LOW_BOOTS, /* initialized to always be gentle sneakers */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Coldclink",				LOW_BOOTS, /* initialized to always be porcelain sandals, protects potions from cold */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_COLD), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Wanna Be The Best",				LOW_BOOTS, /* initialized to always be rainbow boots, undead warning */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ride Control",				LOW_BOOTS, /* initialized to always be riding boots */
+	(SPFX_RESTR|SPFX_TCTRL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Turboshrine",				LOW_BOOTS, /* initialized to always be gentle boots, exp boost */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Toad's Control Button",				LOW_BOOTS, /* initialized to always be buckled boots, stun resist; if you're the releasier race, double stun resist and double conf resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Sprungung Game",				LOW_BOOTS, /* initialized to always be spider boots, jumping */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("woot woot",				LOW_BOOTS, /* initialized to always be battle boots, +1 increase damage, fast speed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Tank Sole Pair",				LOW_BOOTS, /* initialized to always be platform boots, +15 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Ringfighter's Guard",				LOW_BOOTS, /* initialized to always be combat boots, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Strongest Stomp",				LOW_BOOTS, /* initialized to always be jungle boots, +8 STR */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("Nose Finder",				REGULAR_GLOVES, /* initialized to always be brand-new gloves */
+	(SPFX_RESTR|SPFX_SEEK), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Powerorb Boosting",				REGULAR_GLOVES, /* initialized to always be silk fingerlings, spellboost, +3 "splcaster" */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Failmaster's Boredom",				REGULAR_GLOVES, /* initialized to always be failuncap gloves */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Fillgers of Arcane",				REGULAR_GLOVES, /* initialized to always be occultism gloves */
+	(SPFX_RESTR|SPFX_EREGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Nothal smiley",				STANDARD_HELMET, /* initialized to always be technical helmet */
+	(SPFX_RESTR|SPFX_HALRES), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Ekolot L",				STANDARD_HELMET, /* initialized to always be frequent helmet, echolocation, -1 DEX */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Lightspygel",				REGULAR_GLOVES, /* initialized to always be mirrored gloves, infravision, sight bonus */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Justkit Part",				STANDARD_HELMET, /* initialized to always be self-type helmet */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Laddersorry Tears",				STANDARD_HELMET, /* initialized to always be weeping helmet, +4 INT, +3 WIS, teleportitis */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("THE GAME IS NOW FULL OF BUGS",				STANDARD_HELMET, /* initialized to always be bluy helmet, upon generation there's rnz(25k) turns of an effect that causes gray snipers and the like to have +200 spawn freq and random nastystones to no longer have reduced spawn chance, autocurses, +5 increase accuracy, double magic find and double spellboost but every time you put it on you get a random nasty trap effect that lasts rnz(5000) turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Enwahster",				STANDARD_HELMET, /* initialized to always be failuncap helmet, mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Deeperbreath",				STANDARD_HELMET, /* initialized to always be narrow helmet, magical breathing */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("SeenBC",				STANDARD_HELMET, /* initialized to always be knowledgeable helmet, see invisible */
+	(SPFX_RESTR|SPFX_ESP), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("more resistant to drain life",				STANDARD_HELMET, /* initialized to always be rng helmet */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Ghoster Visor",				STANDARD_HELMET, /* initialized to always be visored helmet, psi resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Controglare",				STANDARD_HELMET, /* initialized to always be orange visored helmet, magic control */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Song Rememberance",				STANDARD_HELMET, /* initialized to always be radio helmet, keen memory */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4500L ),
+
+A("Natalia's Protector Power",				LEATHER_CLOAK, /* initialized to always be rifling power cloak, diminished bleeding, and if you're suffering from the natalia trap effect as a female character, it additionally gives +8 AC and +3 MC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("klauung",				LEATHER_CLOAK, /* initialized to always be failuncap cloak */
+	(SPFX_RESTR|SPFX_STLTH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("X2 Token",				LEATHER_CLOAK, /* initialized to always be enchantment cloak, magic find */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Panzer Mantle",				LEATHER_CLOAK, /* initialized to always be kevlar cloak, death resistance, +5 AC */
+	(SPFX_RESTR|SPFX_HSPDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Hunting Time Hint",				LEATHER_CLOAK, /* initialized to always be hungry cloak, very fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Lifehold Value",				LEATHER_CLOAK, /* initialized to always be science cloak */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_DRLI), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("See The Mono World",				LEATHER_CLOAK, /* initialized to always be colorfade cloak, blindness resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 12000L ),
+
+A("Sven's Laughing",				LEATHER_CLOAK, /* initialized to always be slowing gown, 1 in 4000 chance per turn to have a random good item spawn at your feet */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Piercelight",				LEATHER_CLOAK, /* initialized to always be hearing cloak */
+	(SPFX_RESTR|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Winder Wander",				LEATHER_CLOAK, /* initialized to always be roadmap cloak */
+	(SPFX_RESTR|SPFX_HPHDAM), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Curie's Whole Life",				LEATHER_CLOAK, /* initialized to always be cyanism cloak, contamination resistance, but you cannot resist poison or sickness */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("is the not so very mysterious?",				LEATHER_CLOAK, /* initialized to always be shrouded cloak, double mystery resist */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Invisogown",				LEATHER_CLOAK, /* initialized to always be mysterious cloak, invis */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Gray Doesn't Change Anymore",				LEATHER_CLOAK, /* initialized to always be straitjacket cloak, unchanging */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Hard Chest Grin",				LEATHER_CLOAK, /* initialized to always be angelic cloak, +10 AC */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Earring Stolen",				LEATHER_CLOAK, /* initialized to always be changing cloak, resistance piercing, can be invoked for detect objects but doing so disables polymorph control for 10k turns */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Chargeup Cell",				LEATHER_CLOAK, /* initialized to always be energizer cloak */
+	(SPFX_RESTR|SPFX_REGEN), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Blond Anticliche",				LEATHER_CLOAK, /* initialized to always be electrostatic cloak, confusion resist */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Antiblack Aura",				LEATHER_CLOAK, /* initialized to always be pink cloak, versus curses */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Diss Place",				LEATHER_CLOAK, /* initialized to always be grass cloak, displacement, you always have at least MC3 (MC5 if you're in grassland) */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Stead-fast",				LEATHER_CLOAK, /* initialized to always be gravity cloak, fast speed */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Marc's Manafill",				LEATHER_CLOAK, /* initialized to always be geek cloak, manaleech and if you're male, +1 unarmed melee damage and your kick cannot be clumsy */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
+
+A("Someday's Useness",				LEATHER_CLOAK, /* initialized to always be withered cloak */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ACID), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2200L ),
+
+A("Merry's Help",				LEATHER_CLOAK, /* initialized to always be ignorant cloak, 1 in 10000 chance per turn that a random great item is spawned at the ground beneath your feet */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 18000L ),
+
+A("Arabella's Safety Equipment",				LEATHER_CLOAK, /* initialized to always be fleecy-colored cloak, double defusing, +8 DEX, +4 WIS, miscolor, colorshift and top line trap effects */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_SEARCH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Extrashock",				LEATHER_CLOAK, /* initialized to always be flash cloak, double shock resistance */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Seth's Flying Cape",				LEATHER_CLOAK, /* initialized to always be boxing gown, flying */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Mantle of Conflict",				LEATHER_CLOAK, /* initialized to always be irradiation cloak, conflict */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

@@ -2786,6 +2786,24 @@ nyssaraend:
 			}
 		}
 
+		if (uarmc && uarmc->oartifact == ART_SVEN_S_LAUGHING && !rn2(4000)) {
+			register struct obj *acqo;
+			acqo = mksobj(usefulitem(), TRUE, TRUE, FALSE);
+			if (acqo) {
+				dropy(acqo);
+				pline("A good item was spawned on the ground!");
+			}
+		}
+
+		if (uarmc && uarmc->oartifact == ART_MERRY_S_HELP && !rn2(10000)) {
+			register struct obj *acqo;
+			acqo = mksobj(makegreatitem(), TRUE, TRUE, FALSE);
+			if (acqo) {
+				dropy(acqo);
+				pline("A great item was spawned on the ground!");
+			}
+		}
+
 		if (uarmh && uarmh->oartifact == ART_RNG_DAEOLOEOLOEOLOEOLOEOLO && uarmh->spe > 0) uarmh->spe = 0;
 
 		if (uarms && uarms->oartifact == ART_INCAPUTIBLE) {
@@ -6729,7 +6747,7 @@ newbossUTE:
 				savewornmask = utefootwear->owornmask;
 				setworn((struct obj *)0, utefootwear->owornmask);
 
-				utefootwear->otyp = find_missys();
+				utefootwear->otyp = find_appearance_armor(APP_MISSYS);
 				if (utefootwear->otyp == -1) utefootwear->otyp = LOW_BOOTS; /* fail safe */
 
 				utefootwear = mk_artifact(utefootwear, (aligntyp)A_NONE, TRUE);
@@ -17351,7 +17369,7 @@ past4:
 		u.manlerx = u.manlery = -1;
 	}
 
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) {
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) {
 		if (!u.miscolornumber) u.miscolornumber = rnd(15);
 	} else u.miscolornumber = 0;
 

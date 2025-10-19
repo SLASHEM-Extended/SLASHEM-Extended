@@ -863,6 +863,7 @@ register struct monst *mtmp;
 	if (!uwep && StrongGlib_combat && Glib) tmp += 5;
 
 	if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+	if (uarmh && uarmh->oartifact == ART_GAME_IS_NOW_FULL_OF_BUGS) tmp += 5;
 	if (uarmc && uarmc->oartifact == ART_FEND_FOR_YOURSELF) tmp += 7;
 	if (uleft && uleft->oartifact == ART_SHL_THEME) tmp += 2;
 	if (uright && uright->oartifact == ART_SHL_THEME) tmp += 2;
@@ -2286,6 +2287,7 @@ int dieroll;
 
 		if (uarm && uarm->oartifact == ART_WOOHOO_AMATEURHOUR_) tmp += 4;
 		if (uarm && uarm->oartifact == ART_COME_ON_AMMY) tmp += 4;
+		if (uarmc && uarmc->oartifact == ART_MARC_S_MANAFILL && !flags.female) tmp += 1;
 		if (uimplant && uimplant->oartifact == ART_WHAT____BARCUFF_HE_WOULD__) tmp += (powerfulimplants() ? 5 : 2);
 
 		if (u.martialstyle == MARTIALSTYLE_JUDO && tmp > 1) {
@@ -4441,6 +4443,8 @@ int dieroll;
 		if (uarmf && uarmf->oartifact == ART_MAY_BRITT_S_ADULTHOOD) tmp += 1;
 		if (uwep && uwep->oartifact == ART_THOR_S_STRIKE && ACURR(A_STR) >= STR19(25)) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_IRON_HELM_OF_GORLIM) tmp += 10;
+		if (uarmf && uarmf->oartifact == ART_WOOT_WOOT) tmp += 1;
+		if (uarmf && uarmf->oartifact == ART_KUUGRUU__KUUGRUU_) tmp += 2;
 		if (uarmc && uarmc->oartifact == ART_ORNA_S_DOUBLE) tmp += 4;
 		if (uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) tmp += 2;
 		if (powerfulimplants() && !thrown && uimplant && uimplant->oartifact == ART_BREAHNA_S_GARBLE) tmp += 8;

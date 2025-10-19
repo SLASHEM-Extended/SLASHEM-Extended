@@ -49,8 +49,8 @@ int n;
 	}
 
 	color = zapcolors[n];
-	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 	if (SpellColorGreen) color = CLR_GREEN;
 	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
@@ -81,8 +81,8 @@ int n;
 	}
 
 	color = defsyms[n].color;
-	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 	if (SpellColorGreen) color = CLR_GREEN;
 	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
@@ -135,8 +135,8 @@ int n;
 		}
 	}
 
-	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 	if (SpellColorGreen) color = CLR_GREEN;
 	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
@@ -195,8 +195,8 @@ int n;
 		}
 	}
 
-	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 	if (SpellColorGreen) color = CLR_GREEN;
 	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
@@ -264,8 +264,8 @@ int n;
 		}
 	}
 
-	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 	if (SpellColorGreen) color = CLR_GREEN;
 	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
@@ -298,8 +298,8 @@ int n;
 	}
 
 	color = def_warnsyms[n].color;
-	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 	if (SpellColorGreen) color = CLR_GREEN;
 	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
@@ -331,8 +331,8 @@ int n;
 	}
 
 	color = explcolors[n];
-	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+	if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+	if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 	if (SpellColorGreen) color = CLR_GREEN;
 	if (uamul && uamul->oartifact == ART_FLEECY_GREEN) color = CLR_GREEN;
 	if (FemtrapActiveMarlena && !rn2(10) ) color = rn2(2) ? CLR_GREEN : CLR_BRIGHT_GREEN;
@@ -1644,8 +1644,8 @@ unsigned *ospecial;
 #endif
 	    if (color == NO_COLOR) color = cmap_color(offset);
 
-		if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone()) color = colorshifting(color);
-		if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone()) color = miscoloring(color);
+		if (ColorshiftEffect || u.uprops[COLORSHIFT_EFFECT].extrinsic || have_colorshiftstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = colorshifting(color);
+		if (MiscolorEffect || u.uprops[MISCOLOR_EFFECT].extrinsic || have_miscolorstone() || (uarmc && uarmc->oartifact == ART_ARABELLA_S_SAFETY_EQUIPMEN) ) color = miscoloring(color);
 
 		if (uarmh && uarmh->oartifact == ART_BLUE_SCREEN_OF_DEATH) color = CLR_BRIGHT_BLUE;
 		else if (BlackNgWalls || (uamul && uamul->oartifact == ART_BLACK_DARKNESS) || have_blackystone() || u.uprops[BLACK_NG_WALLS].extrinsic ) color = CLR_BLACK;

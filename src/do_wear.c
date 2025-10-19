@@ -2822,6 +2822,13 @@ Helmet_on()
 		}
     }
 
+    if (uarmh && uarmh->oartifact == ART_GAME_IS_NOW_FULL_OF_BUGS) {
+		randomnastytrapeffect(rnz(5000), 1000);
+		if (!uarmh->cursed) {
+			curse(uarmh);
+		}
+    }
+
     if (uarmh && uarmh->oartifact == ART_FLYYYYY) {
 		if (!uarmh->cursed) {
 			curse(uarmh);
@@ -7819,7 +7826,9 @@ find_ac()
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SMASH_TONFA) uac -= 8;
 	if (u.twoweap && uswapwep && uswapwep->oartifact == ART_SHIELD_TONFA) uac -= 12;
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
+	if (uarmf && uarmf->oartifact == ART_TANK_SOLE_PAIR) uac -= 15;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarmc && uarmc->oartifact == ART_NATALIA_S_PROTECTOR_POWER && flags.female && FemtrapActiveNatalia) uac -= 8;
 	if (uarmh && uarmh->oartifact == ART_LEHOBAUM) uac -= 100;
 	if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) uac -= 2;
 	if (uarm && itemhasappearance(uarm, APP_ARMORED_ROBE)) uac -= 5;
@@ -7830,6 +7839,8 @@ find_ac()
 	if (uarmg && uarmg->oartifact == ART_BODY_COMPOSURE) uac -= 10;
 	if (uarmc && uarmc->oartifact == ART_MANT_PENDLE) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_LESHTHORN) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_PANZER_MANTLE) uac -= 5;
+	if (uarmc && uarmc->oartifact == ART_HARD_CHEST_GRIN) uac -= 10;
 	if (uarmh && uarmh->oartifact == ART_BABY_JOYN_ME_IN_THERE) uac -= 4;
 	if (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SI) uac -= 8;
