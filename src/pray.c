@@ -795,6 +795,10 @@ aligntyp resp_god;
 		copcnt = (copcnt / 2) + 1;
 	}
 
+	if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
+		copcnt = (copcnt / 2) + 1;
+	}
+
 	if (RngeAntiGovernment) {
 		copcnt = (copcnt / 2) + 1;
 	}
@@ -3087,7 +3091,7 @@ dopray()
 		if (Inhell || flags.gehenna) godvoice(u.ualign.type, "My scholar, I cannot help thee in the Under World!");
 	}
 
-    } else if ((Role_if(PM_GANG_SCHOLAR) || (uamul && uamul->oartifact == ART_UNKNOWN_SHELL) || (uarm && uarm->oartifact == ART_PENTRAY) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX)) && u.scholarturns < moves) {
+    } else if ((Role_if(PM_GANG_SCHOLAR) || autismringcheck(ART_DEVINE_S_PRAYER) || (uamul && uamul->oartifact == ART_UNKNOWN_SHELL) || (uarm && uarm->oartifact == ART_PENTRAY) || (uarmh && uarmh->oartifact == ART_SALADIN_S_DESERT_FOX)) && u.scholarturns < moves) {
 
 	u.scholarturns = moves + 1000;
 

@@ -354,6 +354,10 @@ boolean shopinit;
 			oclass = SCROLL_CLASS;
 		}
 
+		if (uarm && uarm->oartifact == ART_JACINTA_S_PRECIOUS && !rn2(10)) {
+			oclass = RING_CLASS;
+		}
+
 		if ((oclass == SCROLL_CLASS) && (rn2(100) < u.scrollspawnchance)) {
 			oclass = COIN_CLASS;
 		}
@@ -5648,6 +5652,7 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));
@@ -5701,6 +5706,7 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 
 	if (itemhasappearance(otmp, APP_WHITE_BUFFALO_BOOTS)) return TRUE;
 
@@ -5743,12 +5749,10 @@ register struct obj *otmp;
 	if (uarm && uarm->oartifact == ART_ROSTINE_S_OVERCAST) return FALSE;
 
 	if (otmp && otmp->oartifact == ART_CAN_T_BE_DAMAGED_FURTHER) return FALSE;
-
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
-
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
-
 	if (otmp && otmp->oartifact == ART_RUST_OK) return FALSE;
+	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 
 	if (SpellColorMetal) {
 		return (!(is_metallic(otmp)));
@@ -5782,6 +5786,7 @@ register struct obj *otmp;
 
 	if (otmp && otmp->oartifact == ART_WORKER_METAL) return FALSE;
 	if (otmp && otmp->oartifact == ART_VAELGROM_S_SPINE) return FALSE;
+	if (otmp && otmp->oartifact == ART_MASSIVITY_CUTEBLOCK) return FALSE;
 
 	if (uamul && uamul->oartifact == ART_AUTOMATICALLY_METAL) {
 		return (!(is_metallic(otmp)));

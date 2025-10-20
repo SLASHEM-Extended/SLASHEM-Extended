@@ -481,7 +481,7 @@ elena1:
 			}
 
 			/* high stilettos use M4_SANDALS */
-			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIGH_STILETTOS) || (footwear && itemhasappearance(footwear, APP_IMAGINARY_HEELS)) || (footwear && itemhasappearance(footwear, APP_ANKLE_STRAP_SANDALS)) || (footwear && footwear->otyp == VERENA_STILETTO_SANDALS) || (footwear && footwear->otyp == NADINE_STILETTO_SANDALS) || (footwear && footwear->otyp == UTE_PLATFORM_SANDALS) || (footwear && footwear->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (footwear && itemhasappearance(footwear, APP_NOBLE_SANDALS)) || mtmp->data == &mons[PM_ANIMATED_STILETTO_SANDAL] || mtmp->data == &mons[PM_WERESTILETTOSANDAL] || mtmp->data == &mons[PM_ILSE_MARIE_S_SILVER_BLOCK_SANDAL] || mtmp->data == &mons[PM_HUMAN_WERESTILETTOSANDAL] || (randomsexyheels == 3) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_SANDRA_S_EVIL_SANDAL] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->data == &mons[PM_NADINE_S_ANKLE_STRAP_SANDAL]) ) {
+			if ( (!rn2(3) || player_shades_of_grey() ) && (!issoviet || !rn2(5)) && ((footwear && footwear->otyp == HIGH_STILETTOS) || (footwear && itemhasappearance(footwear, APP_IMAGINARY_HEELS)) || (footwear && itemhasappearance(footwear, APP_ANKLE_STRAP_SANDALS)) || (footwear && footwear->otyp == VERENA_STILETTO_SANDALS) || (footwear && footwear->otyp == NADINE_STILETTO_SANDALS) || (footwear && footwear->otyp == UTE_PLATFORM_SANDALS) || (footwear && footwear->otyp == NATALJE_BLOCK_HEEL_SANDALS) || (footwear && footwear->otyp == SABINE_BLOCK_HEEL_SANDALS) || (footwear && itemhasappearance(footwear, APP_NOBLE_SANDALS)) || mtmp->data == &mons[PM_ANIMATED_STILETTO_SANDAL] || mtmp->data == &mons[PM_WERESTILETTOSANDAL] || mtmp->data == &mons[PM_ILSE_MARIE_S_SILVER_BLOCK_SANDAL] || mtmp->data == &mons[PM_HUMAN_WERESTILETTOSANDAL] || (randomsexyheels == 3) || mtmp->data == &mons[PM_SUPER_STRONG_GIRL] || mtmp->data == &mons[PM_SANDRA_S_EVIL_SANDAL] || mtmp->data == &mons[PM_SANDRA_S_MINDDRILL_SANDAL] || mtmp->data == &mons[PM_NADINE_S_ANKLE_STRAP_SANDAL]) ) {
 elena2:
 				u.cnd_shoedamageamount++;
 				if (Role_if(PM_SOCIAL_JUSTICE_WARRIOR)) sjwtrigger();
@@ -2701,7 +2701,7 @@ mattacku(mtmp)
 		case AT_TUCH:
 		case AT_BUTT:
 		case AT_TENT:
-			if(( (!range2 || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
+			if(( (!range2 || (FemtrapActiveSabine && (mattk->aatyp == AT_KICK) && !rn2(10) && is_female(mtmp->data) && (dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) ) || (Race_if(PM_WEAPON_XORN) && distu(mtmp->mx, mtmp->my) < 9) ) && (!MON_WEP(mtmp) || mtmp->mconf || Conflict ||
 					!touch_petrifies(youmonst.data))) || (mtmp->egotype_hugger && !rn2(20) && ((dist2(mtmp->mx, mtmp->my, mtmp->mux, mtmp->muy) <= (BOLT_LIM * BOLT_LIM)) || (elongation_monster(mtmp->data) || ElongationBug || u.uprops[ELONGATION_BUG].extrinsic || have_elongatedstone()) ) ) ) {
 			    if (foundyou) {
 				if ((tmp > (j = rnd(20+i))) || (uarmf && itemhasappearance(uarmf, APP_KOREAN_SANDALS) && !rn2(3) ) ) {
@@ -8311,7 +8311,7 @@ dopois:
 			if (mtmp->mhp < 1) break;
 		}
 
-		if (defends(AD_DRIN, uwep) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->otyp == ANTIMINDFLAY_HELMET) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
+		if (defends(AD_DRIN, uwep) || (ublindf && ublindf->oartifact == ART_HEADHORN) || (uarmh && itemhasappearance(uarmh, APP_HARDCORE_CLOTH)) || (StrongPsi_resist && rn2(3)) || !has_head(youmonst.data) || (uarmh && uarmh->otyp == ANTIMINDFLAY_HELMET) || (uarmh && uarmh->oartifact == ART_NO_MIND_DECAY) || Role_if(PM_COURIER)  || Race_if(PM_KUTAR) || (uwep && uwep->oartifact == ART_MAGEMASHER) || (uwep && uwep->oartifact == ART_GOSSIP_HARISEN) || (rn2(8) && uarmf && itemhasappearance(uarmf, APP_MARY_JANES) ) ) {
 		    You("don't seem harmed.");
 		    /* Not clear what to do for green slimes */
 		    break;
@@ -20041,6 +20041,7 @@ struct attack *mattk;
 	}
 
 	if (ublindf && ublindf->oartifact == ART_CLICKPASS) return 0; /* immunity */
+	if (ublindf && ublindf->oartifact == ART_I_LL_BE_NEXT_TO_TWINEA) return 0;
 
 	if (rn2(5) && is_animal(magr->data)) return (0); /* Oh come on. In Elona snails can have sex with humans too. --Amy */
 

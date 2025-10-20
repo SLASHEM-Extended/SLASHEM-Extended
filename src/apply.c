@@ -5427,7 +5427,7 @@ void use_floppies(struct obj *obj)
 	};
 	int x;
 
-	if (!Role_if(PM_GEEK) && !Role_if(PM_GRADUATE) && !Role_if(PM_CRACKER) && !Role_if(PM_SOFTWARE_ENGINEER) ) {
+	if (!Role_if(PM_GEEK) && !Role_if(PM_GRADUATE) && !Role_if(PM_CRACKER) && !Role_if(PM_SOFTWARE_ENGINEER) && !(obj->oartifact == ART_EASYREAD_FILE) ) {
 		pline(FunnyHallu ? "Is this some old Atari or Commodore machine? It's not starting, it seems..." : "If only you knew what the heck this is ... ");
 		return;
 	}
@@ -6748,6 +6748,7 @@ pillremoved:
 	case GRETA_S_JEWEL:
 	case JANE_S_JEWEL:
 	case SUE_LYN_S_JEWEL:
+	case SABINE_S_JEWEL:
 	case CHARLOTTE_S_JEWEL:
 	case HANNAH_S_JEWEL:
 	case LITTLE_MARIE_S_JEWEL:
@@ -7470,6 +7471,10 @@ materialchoice:
 		break;
 
 	case BLESSER:
+	{
+		int blessertype = 0;
+		if (obj->oartifact == ART_HOLYGE_AURA) blessertype = 1; /* because it's used up below */
+		if (obj->oartifact == ART_MEH_ALTADOON) blessertype = 2; /* filthy hangup cheater!!! */
 
 		noartispeak = TRUE;
 
@@ -7477,6 +7482,23 @@ materialchoice:
 			pline("The special blesser isn't used up yet!");
 		} else {
 			delobj(obj);
+		}
+
+		if (blessertype == 1) {
+			if (uarm && !uarm->cursed && !uarm->blessed) bless(uarm);
+			if (uarmc && !uarmc->cursed && !uarmc->blessed) bless(uarmc);
+			if (uarmf && !uarmf->cursed && !uarmf->blessed) bless(uarmf);
+			if (uarmg && !uarmg->cursed && !uarmg->blessed) bless(uarmg);
+			if (uarmh && !uarmh->cursed && !uarmh->blessed) bless(uarmh);
+			if (uarmu && !uarmu->cursed && !uarmu->blessed) bless(uarmu);
+			if (uarms && !uarms->cursed && !uarms->blessed) bless(uarms);
+		}
+
+		if (blessertype == 2) {
+			NastinessProblem |= FROMOUTSIDE;
+			FemaleTrapJulietta |= FROMOUTSIDE;
+			You("learn the blessing technique!");
+			learntech_or_leveltech(T_BLESSING, FROMOUTSIDE, 1);
 		}
 
 		pline("You may bless an uncursed item.");
@@ -7505,6 +7527,7 @@ blesschoice:
 
 		break;
 
+	}
 	case BANDAGE:
 	{
 		int bandagetype = 0;
@@ -7591,6 +7614,7 @@ blesschoice:
 	{
 		boolean xxmindflay = FALSE;
 		if (obj->oartifact == ART_SUCK_THE_MIND_FLAYER) xxmindflay = TRUE;
+		boolean twohaspawn = (obj->oartifact == ART_TWOHA);
 
 		if (obj->unpaid) {
 			struct monst *shkp = shop_keeper(*u.ushops);
@@ -7608,6 +7632,19 @@ blesschoice:
 			AMAX(A_WIS) += 1;
 			flags.botl = 1;
 			pline("Your wisdom increases.");
+		}
+
+		if (twohaspawn) {
+			register struct obj *extratwohas;
+
+			extratwohas = mksobj(randarttwohandedsword(), TRUE, FALSE, FALSE);
+			if (extratwohas) {
+				extratwohas = mk_artifact(extratwohas, (aligntyp)A_NONE, TRUE);
+			}
+			if (extratwohas) {
+				dropy(extratwohas);
+				pline("Check out the sword on the ground!");
+			}
 		}
 
 		if (xxmindflay) { /* because "helpfully" obj has been freed... --Amy */
@@ -7642,6 +7679,8 @@ blesschoice:
 		break;
 
 	case CHARGER:
+	{
+		boolean blessedcharging = (obj->oartifact == ART_AMMY_S_TEMPTATION);
 
 		if (CannotSelectItemsInPrompts) return 0;
 
@@ -7651,6 +7690,10 @@ blesschoice:
 				You("use it, you pay for it!");
 				bill_dummy_object(obj);
 			}
+		}
+
+		if (obj->oartifact == ART_OUTRADIATE) {
+			decontaminate(1000);
 		}
 
 		if (obj->oartifact == ART_MULTICHARGE && rn2(5)) {
@@ -7671,7 +7714,7 @@ chargingchoice:
 				else goto chargingchoice;
 				return(0);
 			}
-			recharge(otmpC, 0);
+			recharge(otmpC, blessedcharging ? 1 : 0);
 		}
 
 		use_skill(P_DEVICES,10);
@@ -7692,6 +7735,7 @@ chargingchoice:
 
 		break;
 
+	}
 	case BITCHER:
 	{
 		boolean wildcunt = (obj->oartifact == ART_BITCHER____THE_WILD_CUNT);
@@ -7760,7 +7804,7 @@ chargingchoice:
 			}
 		}
 
-		if (obj->cursed && rn2(2)) {
+		if (obj->cursed && !(obj->oartifact == ART_RED__GREEN_) && rn2(2)) {
 
 			delobj(obj);
 			noartispeak = TRUE;

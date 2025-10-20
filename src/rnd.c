@@ -2570,7 +2570,7 @@ randnastyenchantment()
 int
 randfemienchantment()
 {
-		switch (rnd(104)) {
+		switch (rnd(105)) {
 			case 1: return FEMTRAP_FEMMY;
 			case 2: return FEMTRAP_MADELEINE;
 			case 3: return FEMTRAP_MARLENA;
@@ -2675,6 +2675,7 @@ randfemienchantment()
 			case 102: return FEMTRAP_LARA;
 			case 103: return FEMTRAP_SABRINA;
 			case 104: return FEMTRAP_JANET;
+			case 105: return FEMTRAP_SABINE;
 		}
 
 	return FEMTRAP_ELISE; /* appease compiler */
@@ -5394,7 +5395,7 @@ int duration;
 		if (SuperFemtrapRosa) duration *= 2;
 	}
 
-	switch (rnd(104)) {
+	switch (rnd(105)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah += duration;
@@ -5815,6 +5816,10 @@ int duration;
 			if (!FemtrapActiveRuth) pline("You get a bad feeling about the attacks of those women all of a sudden...");
 			FemaleTrapJanet += duration;
 			break;
+		case 105:
+			if (!FemtrapActiveRuth) pline("You're afraid that the girls will kick you in the back of your %s!", body_part(HEAD));
+			FemaleTrapSabine += duration;
+			break;
 	}
 }
 
@@ -5822,7 +5827,7 @@ int duration;
 void
 getfeminismtrapintrinsic()
 {
-	switch (rnd(104)) {
+	switch (rnd(105)) {
 		case 1:
 			if (!FemtrapActiveRuth) pline("You can already imagine the farting noises you're gonna hear.");
 			FemaleTrapSarah |= FROMOUTSIDE;
@@ -6245,6 +6250,10 @@ getfeminismtrapintrinsic()
 		case 104:
 			if (!FemtrapActiveRuth) pline("You get a bad feeling about the attacks of those women all of a sudden...");
 			FemaleTrapJanet |= FROMOUTSIDE;
+			break;
+		case 105:
+			if (!FemtrapActiveRuth) pline("You're afraid that the girls will kick you in the back of your %s!", body_part(HEAD));
+			FemaleTrapSabine |= FROMOUTSIDE;
 			break;
 	}
 }
@@ -6951,7 +6960,7 @@ boolean withtroves;
 int
 randomfeminismtraptype() /* keyword "marlena" */
 {
-	switch (rnd(104)) {
+	switch (rnd(105)) {
 			case 1: return FEMMY_TRAP;
 			case 2: return MADELEINE_TRAP;
 			case 3: return MARLENA_TRAP;
@@ -7056,6 +7065,7 @@ randomfeminismtraptype() /* keyword "marlena" */
 			case 102: return LARA_TRAP;
 			case 103: return SABRINA_TRAP;
 			case 104: return JANET_TRAP;
+			case 105: return JANET_TRAP;
 	}
 	return INGE_TRAP; /* fail safe */
 

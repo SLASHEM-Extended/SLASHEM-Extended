@@ -344,6 +344,7 @@ Boots_on()
 	case NADJA_BUCKLED_LADY_SHOES:
 	case SANDRA_COMBAT_BOOTS:
 	case NATALJE_BLOCK_HEEL_SANDALS:
+	case SABINE_BLOCK_HEEL_SANDALS:
 	case JEANETTA_GIRL_BOOTS:
 	case YVONNE_GIRL_SNEAKERS:
 	case MAURAH_HUGGING_BOOTS:
@@ -529,7 +530,7 @@ Boots_on()
     }
 
     if (uarmf && uarmf->oartifact == ART_ZERO_SUGAR) {
-	int nukaroll = rnd(104); /* keyword: "marlena" */
+	int nukaroll = rnd(105); /* keyword: "marlena" */
 
 	curse(uarmf);
 	uarmf->hvycurse = uarmf->stckcurse = TRUE;
@@ -1185,6 +1186,7 @@ Boots_off()
 	case NADJA_BUCKLED_LADY_SHOES:
 	case SANDRA_COMBAT_BOOTS:
 	case NATALJE_BLOCK_HEEL_SANDALS:
+	case SABINE_BLOCK_HEEL_SANDALS:
 	case JEANETTA_GIRL_BOOTS:
 	case YVONNE_GIRL_SNEAKERS:
 	case MAURAH_HUGGING_BOOTS:
@@ -7841,6 +7843,7 @@ find_ac()
 	if (uarms && uarms->oartifact == ART_AL_UD) uac -= 4;
 	if (uarmf && uarmf->oartifact == ART_TANK_SOLE_PAIR) uac -= 15;
 	if (uarm && uarm->oartifact == ART_THA_WALL) uac -= 9;
+	if (uarm && uarm->oartifact == ART_DONNICA_S_SUPERLATIVE) uac -= 30;
 	if (uarmc && uarmc->oartifact == ART_NATALIA_S_PROTECTOR_POWER && flags.female && FemtrapActiveNatalia) uac -= 8;
 	if (uarmh && uarmh->oartifact == ART_LEHOBAUM) uac -= 100;
 	if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) uac -= 2;
@@ -7855,6 +7858,7 @@ find_ac()
 	if (uarmc && uarmc->oartifact == ART_PANZER_MANTLE) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_HARD_CHEST_GRIN) uac -= 10;
 	if (uarmh && uarmh->oartifact == ART_BABY_JOYN_ME_IN_THERE) uac -= 4;
+	if (uarms && uarms->oartifact == ART_EDIVA_S_SEE_THROUGH) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_KINLEY_S_WIDENESS) uac -= 5;
 	if (uarmc && uarmc->oartifact == ART_SI) uac -= 8;
 	if (uarm && uarm->oartifact == ART_PURPLE_SOCKET) uac -= 4;

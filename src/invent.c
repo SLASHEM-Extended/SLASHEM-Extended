@@ -3471,6 +3471,20 @@ have_femtrapjanet()
 	return(FALSE);
 }
 
+int
+have_femtrapsabine()
+{
+	register struct obj *otmp;
+
+	for(otmp = invent; otmp; otmp = otmp->nobj) {
+		if(otmp->otyp == SABINE_S_JEWEL) {
+			return(TRUE);
+		}
+	}
+	if (feminizecheck(105)) return TRUE;
+	return(FALSE);
+}
+
 boolean
 have_primecurse()
 {
@@ -13617,6 +13631,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 			pline("These boots are soooooo gentle! Wearing them will use the sexy flats skill.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BALLERINAS))
 			pline("This cute pair of pink girl shoes counts as sexy flats, at least as long as the base item type isn't high-heeled.");
+		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLE_SLIPPERS))
+			pline("These lady shoes have very cute metallic buckles <3! And therefore they count as sexy flats.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_WARM_WERDING_BOOTS))
 			pline("As soon as you put on this pair of boots, its base type identifies itself.");
 		if (OBJ_DESCR(objects[obj->otyp]) && obj->dknown && itemhasappearance(obj, APP_BUCKLED_BOOTS))
@@ -16011,6 +16027,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("The cone heels of this pair of long-shaft lady boots are very sharp-edged, and you absolutely love their sexy orange color. They carry Sandra's curse, and have 3 AC and 3 MC."); break;
 			case NATALJE_BLOCK_HEEL_SANDALS:
 				pline("It's a pair of purple heel sandals that is purple. Yes, their block heels are also purple. Did I mention that they are purple? :D They carry Natalje's curse, and have 1 AC and 1 MC."); break;
+			case SABINE_BLOCK_HEEL_SANDALS:
+				pline("A totally cuuuuuute pair of white lady sandals with lovely block heels. They carry Sabine's curse, and have 1 AC and 2 MC."); break;
 			case JEANETTA_GIRL_BOOTS:
 				pline("A super cute pair of girl boots with exciting patterns on the soles, which you probably guessed count as sexy flats. They carry Jeanetta's curse, and have 3 AC and 0 MC."); break;
 			case YVONNE_GIRL_SNEAKERS:
@@ -20599,6 +20617,8 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 				pline("While having this jewel in your inventory, you're afflicted with Jane's curse. It autocurses and cannot be dropped while cursed."); break;
 			case SUE_LYN_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Sue Lyn's curse. It autocurses and cannot be dropped while cursed."); break;
+			case SABINE_S_JEWEL:
+				pline("While having this jewel in your inventory, you're afflicted with Sabine's curse. It autocurses and cannot be dropped while cursed."); break;
 			case CHARLOTTE_S_JEWEL:
 				pline("While having this jewel in your inventory, you're afflicted with Charlotte's curse. It autocurses and cannot be dropped while cursed."); break;
 			case HANNAH_S_JEWEL:
@@ -35189,6 +35209,52 @@ boolean obscurefirst; /* skip the screen that gives the item class description *
 					pline("Artifact specs: if someone plays it, this horn fires two beams at once."); break;
 				case ART_MAMA_LAUDA:
 					pline("Artifact specs: recharging this horn adds a bigger amount of charges than usual."); break;
+				case ART_JACINTA_S_PRECIOUS:
+					pline("Artifact specs: double jil trap effect, randomly generated items are much more likely to be rings, trap revealing, monster sound effects, +4 wisdom and blindness resistance when worn."); break;
+				case ART_DONNICA_S_SUPERLATIVE:
+					pline("Artifact specs: double nastiness, double magic resistance, 30 extra points of AC, +20 strength, +5 charisma and experience boost when worn."); break;
+				case ART_EDIVA_S_SEE_THROUGH:
+					pline("Artifact specs: ESP, reflection, double un-invisible trap effect, double see invisible and 5 extra points of AC when worn."); break;
+				case ART_DEVINE_S_PRAYER:
+					pline("Artifact specs: double ute trap effect, double shock resistance, +6 intelligence and +4 wisdom when worn, allows you to occasionally see whether it's safe to pray when you enter the pray command, makes it easier for you to gain alignment points and if you're wearing high heels, the naomi trap effect is active."); break;
+				case ART_I_LL_BE_NEXT_TO_TWINEA:
+					pline("Artifact specs: while wearing it, foocubi cannot seduce you."); break;
+				case ART_HEADHORN:
+					pline("Artifact specs: free action while worn and makes you immune to mind flayer tentacles."); break;
+				case ART_NO_CUPS:
+					pline("Artifact specs: while wearing it, kops can't spawn randomly unless something specifically requests them to be spawned, and effects that call kops on you (like shoplifting) will spawn less kops on average."); break;
+				case ART_AMMY_S_TEMPTATION:
+					pline("Artifact specs: using it allows you to perform blessed charging on an item. 'Ammy' does not mean the creator of this game; rather, it's shorthand for 'amateurhour'."); break;
+				case ART_OUTRADIATE:
+					pline("Artifact specs: using it reduces your contamination by 1000."); break;
+				case ART____DEETREKS:
+					pline("Artifact specs: when it generated, lots and lots of hairclips were spawned."); break;
+				case ART_SABINE_S_UNBUNDLING:
+					pline("Artifact specs: when it generated, you got the sabine trap effect permanently! Only a bitcher can save you now and put Sabine's long bundle back in its rightful place!"); break;
+				case ART_SUPER_SQUEAK_NOISE:
+					pline("Artifact specs: can be invoked to improve the cap of your squeaking skill by one or two skill levels (determined randomly), but doing so will use up this artifact."); break;
+				case ART_SUCH_A_CUTE_ASIAN_GIRL_:
+					pline("Artifact specs: don't you agree that Arabella looks quite cute? :-)"); break;
+				case ART_RED__GREEN_:
+					pline("Artifact specs: works with 100%% certainty even if it's cursed."); break;
+				case ART_EASYREAD_FILE:
+					pline("Artifact specs: can be understood by non-geeky people."); break;
+				case ART_EMERGENCY_BOOT_DISK:
+					pline("Artifact specs: if you're geeky enough, carrying this in your inventory allows you to perform perilous life saving upon death, but only roles with knowledge of computers will qualify. This item is a sacrifice gift for the geek role (who is, nonsurprisingly, eligible for the perilous life saving effect)."); break;
+				case ART_INT_BOOST:
+					pline("Artifact specs: doesn't do anything special beyond its base item."); break;
+				case ART_TWOHA:
+					pline("Artifact specs: using it tries to spawn an artifact two-handed sword on the ground."); break;
+				case ART_HOLYGE_AURA:
+					pline("Artifact specs: using it blesses all of your currently worn armor pieces, but that only works on ones that are uncursed (i.e. neither cursed nor blessed)."); break;
+				case ART_MEH_ALTADOON:
+					pline("Artifact specs: using it teaches the blessing technique, or improves its level if you know it already, but you'll be subjected to random nasty and feminism trap effects from that point on and it'll be very difficult to stop those effects from occurring."); break;
+				case ART_SYLVIE_S_EASY_MODE:
+					pline("Artifact specs: +5 to-hit and +4 damage, double poison resistance, death resistance, greatly boosts your HP and Pw regeneration rate without causing additional hunger and multiplies your carry capacity (including the maximum) by 10 when wielded."); break;
+				case ART_MASSIVITY_CUTEBLOCK:
+					pline("Artifact specs: +12 kick damage, and this artifact is resistant to many effects that could otherwise damage or destroy items."); break;
+				case ART_JANET_S_DETACHMENT:
+					pline("Artifact specs: janet trap effect, death resistance, diminished bleeding, free action and +5 charisma when worn."); break;
 
 				default:
 					pline("Missing artifact description (this is a bug). Tell Amy about it, including the name of the artifact in question, so she can add it!"); break;

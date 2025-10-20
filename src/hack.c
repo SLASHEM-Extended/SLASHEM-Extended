@@ -5889,6 +5889,8 @@ max_carr_cap() /* your absolute maximum carry cap (the actual one is lower, see 
 
 	}
 
+	if (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) maxcarrcap *= 10;
+
 	if (uarmh && uarmh->oartifact == ART_LIVIN__IT_UP) maxcarrcap *= 2;
 
 	if (uamul && uamul->oartifact == ART_RICK_S_WEIGHT_SYSTEM) maxcarrcap /= 2;
@@ -6036,6 +6038,7 @@ weight_cap() /* your current max carry cap (the one displayed on the bottom stat
 
 	/* multipliers go here */
 
+	if (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) carrcap *= 10;
 	if (Race_if(PM_HAXOR)) carrcap *= 2;
 	if (Race_if(PM_HUMANOID_CENTAUR)) carrcap /= 2;
 

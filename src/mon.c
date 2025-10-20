@@ -4242,6 +4242,7 @@ impossible("A monster looked at a very strange trap of type %d.", ttmp->ttyp);
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != SABINE_TRAP
 				&& ttmp->ttyp != JANET_TRAP
 				&& ttmp->ttyp != SABRINA_TRAP
 				&& ttmp->ttyp != TANJA_TRAP
@@ -5405,8 +5406,13 @@ register struct monst *mtmp;
 
 	if (mtmp->data->mlet == S_KOP) {
 
+		int kopcomebackchance = 25;
+		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) kopcomebackchance *= 2;
+		if (RngeAntiGovernment) kopcomebackchance *= 2;
+		if (ublindf && ublindf->oartifact == ART_NO_CUPS) kopcomebackchance *= 2;
+
 	    /* Dead Kops may come back. */
-	    switch(rnd( (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) ? 50 : RngeAntiGovernment ? 50 : 25)) {
+	    switch(rnd(kopcomebackchance)) {
 		case 1:	     /* returns near the stairs */
 			(void) makemon(mtmp->data,xdnstair,ydnstair,MM_ADJACENTOK);
 			break;
@@ -5576,6 +5582,10 @@ newbossSING:
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
 			copcnt = (copcnt / 2) + 1;
 		}
 
@@ -10459,6 +10469,10 @@ register boolean silent;
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
 			copcnt = (copcnt / 2) + 1;
 		}
 

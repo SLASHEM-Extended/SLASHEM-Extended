@@ -3377,7 +3377,7 @@ struct obj *book2;
 	}
 
 	if (book2->oartifact == ART_NUKA_ROLL) {
-		int nukaroll = rnd(104); /* keyword: "marlena" */
+		int nukaroll = rnd(105); /* keyword: "marlena" */
 
 		u.tempnukaefftype = nukaroll;
 		u.tempnukaeffect += rnz(5000);
@@ -5800,6 +5800,10 @@ newbossHORR:
 		if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 		if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+			copcnt = (copcnt / 2) + 1;
+		}
+
+		if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
 			copcnt = (copcnt / 2) + 1;
 		}
 

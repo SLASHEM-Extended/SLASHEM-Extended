@@ -4306,6 +4306,7 @@ boolean catchup;	/* restoring a level */
 				&& ttmp->ttyp != FEMMY_TRAP
 				&& ttmp->ttyp != MADELEINE_TRAP
 				&& ttmp->ttyp != MARLENA_TRAP
+				&& ttmp->ttyp != SABINE_TRAP
 				&& ttmp->ttyp != JANET_TRAP
 				&& ttmp->ttyp != SABRINA_TRAP
 				&& ttmp->ttyp != TANJA_TRAP
@@ -4872,6 +4873,15 @@ coord *mm;
 	}
 
 	if (RngeAntiGovernment) {
+		kop_cnt[0] = ( kop_cnt[0] / 2) + 1;
+		kop_cnt[1] = ( kop_cnt[1] / 2) + 1;
+		kop_cnt[2] = ( kop_cnt[2] / 2) + 1;
+		kop_cnt[3] = ( kop_cnt[3] / 2) + 1;
+		kop_cnt[4] = ( kop_cnt[4] / 2) + 1;
+		kop_cnt[5] = ( kop_cnt[5] / 2) + 1;
+	}
+
+	if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
 		kop_cnt[0] = ( kop_cnt[0] / 2) + 1;
 		kop_cnt[1] = ( kop_cnt[1] / 2) + 1;
 		kop_cnt[2] = ( kop_cnt[2] / 2) + 1;

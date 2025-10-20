@@ -792,6 +792,10 @@ moveloop()
 					copcnt = (copcnt / 2) + 1;
 				}
 
+				if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
 				if (RngeAntiGovernment) {
 					copcnt = (copcnt / 2) + 1;
 				}
@@ -824,10 +828,15 @@ moveloop()
 
 			if (u.copwantedlevel) {
 
+				boolean kopswillcome = TRUE;
+				if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) && !rn2(2)) kopswillcome = FALSE;
+				if (RngeAntiGovernment && !rn2(2)) kopswillcome = FALSE;
+				if (ublindf && ublindf->oartifact == ART_NO_CUPS && !rn2(2)) kopswillcome = FALSE;
+
 				u.copwantedlevel--;
 				if (u.copwantedlevel < 0) u.copwantedlevel = 0; /* fail safe */
 
-				if ( !(rn2(2) && (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET))) && !(rn2(2) && RngeAntiGovernment) && !rn2(100)) {
+				if (kopswillcome && !rn2(100)) {
 
 					(void) makemon(mkclass(S_KOP,0), 0, 0, MM_ANGRY|MM_ADJACENTOK|MM_FRENZIED);
 					if (!rn2(200)) {
@@ -3301,6 +3310,17 @@ nyssaraend:
 
 		}
 
+		if (uarms && uarms->oartifact == ART_EDIVA_S_SEE_THROUGH && !rn2(UnInvisXtra ? 50 : 500)) {
+			register struct obj *objX, *objX2;
+
+			pline("You are surrounded by a translucent glow!");
+			for (objX = invent; objX; objX = objX2) {
+				objX2 = objX->nobj;
+				if (!rn2(5)) objX->oinvis = objX->oinvisreal = FALSE;
+			}
+
+		}
+
 		if (PetscrewEffect) {
 			register struct monst *screwmon;
 
@@ -4604,6 +4624,10 @@ newbossAEFDE:
 					copcnt = (copcnt / 2) + 1;
 				}
 
+				if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
 				if (RngeAntiGovernment) {
 					copcnt = (copcnt / 2) + 1;
 				}
@@ -4645,6 +4669,10 @@ newbossAEFDE:
 				if (Role_if(PM_CAMPERSTRIKER)) copcnt *= (rn2(5) ? 2 : rn2(5) ? 3 : 5);
 
 				if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+					copcnt = (copcnt / 2) + 1;
+				}
+
+				if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
 					copcnt = (copcnt / 2) + 1;
 				}
 
@@ -9871,9 +9899,9 @@ newbossRLR:
 		}
 
 		/* for feminizer hybrid race: re-randomize feminism effect that is active --Amy */
-		if (!rn2(5000)) u.feminizeffect = rnd(104); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.contamjeweleffect = rnd(104); /* amount of feminism trap effects; keyword: "marlena" */
-		if (!rn2(5000)) u.nukafemeffect = rnd(104); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.feminizeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.contamjeweleffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
+		if (!rn2(5000)) u.nukafemeffect = rnd(105); /* amount of feminism trap effects; keyword: "marlena" */
 
 		if (isfeminizer && !rn2(5000)) randomfeminismtrap(rnz( (level_difficulty() + 2) * rnd(50)));
 
@@ -19954,6 +19982,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "easy-id robe")) OBJ_DESCR(objects[i]) = "todo";
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bloomer")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckle slippers")) OBJ_DESCR(objects[i]) = "todo";
 
 	}
 	}
@@ -21501,6 +21530,7 @@ boolean new_game;	/* false => restoring an old game */
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "easy-id robe")) OBJ_DESCR(objects[i]) = "todo";
 
 		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "bloomer")) OBJ_DESCR(objects[i]) = "todo";
+		if ((s = OBJ_DESCR(objects[i])) != 0 && !strcmp(s, "buckle slippers")) OBJ_DESCR(objects[i]) = "todo";
 	}
 	}
 
@@ -23292,6 +23322,10 @@ antjenewturn:
 						int copcnt = rnd(15);
 
 						if (uarmh && itemhasappearance(uarmh, APP_ANTI_GOVERNMENT_HELMET) ) {
+							copcnt = (copcnt / 2) + 1;
+						}
+
+						if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
 							copcnt = (copcnt / 2) + 1;
 						}
 

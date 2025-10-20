@@ -1376,6 +1376,7 @@ nh_timeout()
 		litroomlite(FALSE);
 	}
 
+	/* trap revealing - be aware that the chance per turn is different depending on the source */
 	if (Race_if(PM_WEAPON_TRAPPER)) { /* they know about the existence of traps --Amy */
 
 	    struct trap *t;
@@ -1390,6 +1391,21 @@ nh_timeout()
 
 	}
 
+	if (uarm && uarm->oartifact == ART_JACINTA_S_PRECIOUS) {
+
+	    struct trap *t;
+
+	    for (t = ftrap; t != 0; t = t->ntrap) {
+		if (t && !rn2(500) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
+			t->tseen = 1;
+			u.cnd_traprevealcount++;
+			map_trap(t, TRUE);
+		}
+	    }
+
+	}
+
+	/* sharp smoky stench specifically reveals fire traps and no other types */
 	if (uarm && uarm->oartifact == ART_SHARP_SMOKY_STENCH) {
 
 	    struct trap *t;
@@ -1409,7 +1425,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+		if (t && !rn2(500) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
@@ -1423,7 +1439,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+		if (t && !rn2(500) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
@@ -1437,7 +1453,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+		if (t && !rn2(500) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
@@ -1451,7 +1467,7 @@ nh_timeout()
 	    struct trap *t;
 
 	    for (t = ftrap; t != 0; t = t->ntrap) {
-		if (t && !rn2(500) && !t->tseen && t->ttyp == FIRE_TRAP && !t->hiddentrap) {
+		if (t && !rn2(500) && !t->tseen && (t->trapdiff < rnd(150)) && !t->hiddentrap) {
 			t->tseen = 1;
 			u.cnd_traprevealcount++;
 			map_trap(t, TRUE);
@@ -4007,6 +4023,19 @@ nh_timeout()
 
 	}
 
+	if (!rn2(NastinessXtra ? 200 : 1000) && uarm && uarm->oartifact == ART_DONNICA_S_SUPERLATIVE ) {
+
+		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
+		if (!nastytrapdur) nastytrapdur = 24; /* fail safe */
+		blackngdur = (Role_if(PM_GRADUATE) ? 2000 : Role_if(PM_GEEK) ? 1000 : 500);
+		if (!blackngdur ) blackngdur = 500; /* fail safe */
+
+		if (!rn2(100)) pline("You have a bad feeling in your %s.",body_part(STOMACH) );
+
+		randomnastytrapeffect(rnz(nastytrapdur * (monster_difficulty() + 1)), blackngdur - (monster_difficulty() * 3));
+
+	}
+
 	if (!rn2(NastinessXtra ? 200 : 1000) && uarmf && uarmf->oartifact == ART_ELENA_S_CHALLENGE ) {
 
 		nastytrapdur = (Role_if(PM_GRADUATE) ? 6 : Role_if(PM_GEEK) ? 12 : 24);
@@ -4564,6 +4593,12 @@ nh_timeout()
 		 case FEMTRAP_MARLENA:
 
 			pline("The dungeon is less green now.");
+
+		 break;
+
+		 case FEMTRAP_SABINE:
+
+			pline("It seems that the girls are no longer trying to aim their kicks at the back of your %s.", body_part(HEAD));
 
 		 break;
 

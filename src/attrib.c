@@ -2093,6 +2093,7 @@ recalc_health()
 	    			(otmp->blessed ? 2 : otmp->cursed ? -2 : 1);
 
 	if (uarmh && uarmh->oartifact == ART_NIAMH_PENH) u.uhealbonus += 2;
+	if (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) u.uhealbonus += 10;
 
 	if (u.uhealbonus > 1) u.uhealbonus = rno(u.uhealbonus);
 
@@ -2112,6 +2113,7 @@ recalc_mana()
 	    			(otmp->blessed ? 2 : otmp->cursed ? -2 : 1);
 
 	if (uchain && uchain->oartifact == ART_OLEA_PRETIOSA) manabonus += 5;
+	if (uwep && uwep->oartifact == ART_SYLVIE_S_EASY_MODE) manabonus += 5;
 
 	if (manabonus > 1) manabonus = rno(manabonus);
 
@@ -3163,6 +3165,7 @@ int x;
 		if (uarm && uarm->otyp == CRYSTALLINE_DRAGON_SCALE_MAIL) tmp += 1;
 		if (uarms && uarms->otyp == CRYSTALLINE_DRAGON_SCALE_SHIEL) tmp += 1;
 		if (uarm && uarm->oartifact == ART_BOAHMM) tmp += 5;
+		if (uarm && uarm->oartifact == ART_DONNICA_S_SUPERLATIVE) tmp += 20;
 		if (uamul && uamul->otyp == AMULET_OF_FLIPPING) {
 			if (uamul->blessed) tmp++;
 			if (!uamul->cursed) tmp++;
@@ -3366,6 +3369,7 @@ int x;
 		if (uarmc && uarmc->oartifact == ART_TEAM_BRIDE) tmp += 10;
 		if (uarmf && uarmf->oartifact == ART_LITTLE_ICE_BLOCK_WITH_THE_) tmp += 2;
 		if (uarmf && uarmf->oartifact == ART_YVONNE_S_MODEL_AMBITION) tmp += 2;
+		if (uarm && uarm->oartifact == ART_DONNICA_S_SUPERLATIVE) tmp += 5;
 		if (uarmf && uarmf->oartifact == ART_SOFT_KARATE_KICK) tmp += 2;
 		if (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) tmp += 5;
 		if (uarmh && uarmh->oartifact == ART_BIG_REAR_END) tmp += 3;
@@ -3379,6 +3383,7 @@ int x;
 		if (uimplant && uimplant->oartifact == ART_BONE_LATTICE_OF_LANCELOT) tmp += 2;
 		if (uleft && uleft->oartifact == ART_CROQUE_FORD) tmp += 4;
 		if (uright && uright->oartifact == ART_CROQUE_FORD) tmp += 4;
+		if (uarmf && uarmf->oartifact == ART_JANET_S_DETACHMENT) tmp += 5;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SANTANA_S_CHICANERY) tmp += 1;
 		if (uarmf && uarmf->oartifact == ART_LOVELANE) tmp += 5;
 		if (uarmc && uarmc->oartifact == ART_NUDE_PUNAM) tmp += 10;
@@ -3673,6 +3678,7 @@ int x;
 		if (x == A_WIS && uleft && uleft->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 7;
 		if (x == A_WIS && uright && uright->oartifact == ART_ACTUAL_CAVE_DWELLING) tmp += 7;
 		if (x == A_WIS && uarmf && uarmf->oartifact == ART_MY_DEAR_SLAVE) tmp += 5;
+		if (x == A_WIS && uarm && uarm->oartifact == ART_JACINTA_S_PRECIOUS) tmp += 4;
 		if (uarmc && uarmc->oartifact == ART_DIN_DEN) tmp += 4;
 		if (uarm && uarm->oartifact == ART_LET_S_DO_IT_ALREADY && uarm->otyp == BLUE_DRAGON_SCALE_MAIL) tmp += 3;
 		if (powerfulimplants() && uimplant && uimplant->oartifact == ART_SANTANA_S_CHICANERY) tmp += 1;
@@ -3728,6 +3734,10 @@ int x;
 		if (x == A_INT && uright && uright->otyp == RIN_GAIN_INTELLIGENCE) tmp += uright->spe;
 		if (x == A_WIS && uleft && uleft->otyp == RIN_GAIN_WISDOM) tmp += uleft->spe;
 		if (x == A_WIS && uright && uright->otyp == RIN_GAIN_WISDOM) tmp += uright->spe;
+		if (x == A_INT && uleft && uleft->oartifact == ART_DEVINE_S_PRAYER) tmp += 6;
+		if (x == A_INT && uright && uright->oartifact == ART_DEVINE_S_PRAYER) tmp += 6;
+		if (x == A_WIS && uleft && uleft->oartifact == ART_DEVINE_S_PRAYER) tmp += 4;
+		if (x == A_WIS && uright && uright->oartifact == ART_DEVINE_S_PRAYER) tmp += 4;
 		if (uarmh && uarmh->oartifact == ART_PLUSMIND) tmp += 2;
 		if (x == A_WIS && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 5;
 		if (x == A_INT && uarmf && uarmf->oartifact == ART_BRITTA_S_MURDER_STORY) tmp += 7;
@@ -4274,6 +4284,8 @@ register int n;
 	}
 	if (Race_if(PM_KORONST) && n < 0) n *= 3;
 	if (Race_if(PM_BABYLONIAN) && n > 0 && rn2(2)) n *= 2;
+	if (uleft && uleft->oartifact == ART_DEVINE_S_PRAYER && n > 0) n *= 2;
+	if (uright && uright->oartifact == ART_DEVINE_S_PRAYER && n > 0) n *= 2;
 	if (u.martialstyle == MARTIALSTYLE_BOOYAKASHA && n < 0) n *= 2;
 
 	if (uimplant && uimplant->oartifact == ART_SINFUL_REPENTER && n > 0) {

@@ -762,13 +762,16 @@ init_randarts()
 	artilist[ART_REGROWN_RESOURCE].otyp = randartjavelin();
 	artilist[ART_NINJINGY].otyp = randartshuriken();
 	artilist[ART_LET_IT_STAY].otyp = randartdragonscales();
+	artilist[ART_JACINTA_S_PRECIOUS].otyp = randartdragonscales();
 	artilist[ART_KRAH_HOOOOO].otyp = randartdragonscales();
 	artilist[ART_ICE_FROM_THE_NORTH].otyp = randartdragonscales();
 	artilist[ART_PROTPOW].otyp = randartdragonscalemail();
+	artilist[ART_DONNICA_S_SUPERLATIVE].otyp = randartdragonscalemail();
 	artilist[ART_HA_MONK].otyp = randartdragonscalemail();
 	artilist[ART_CUDDLE_CHALLENGE].otyp = randartdragonscalemail();
 	artilist[ART_PRISMATIC_DRAGON_PLATE].otyp = randartdragonscalemail();
 	artilist[ART_POFFGO].otyp = randartdragonscaleshield();
+	artilist[ART_EDIVA_S_SEE_THROUGH].otyp = randartdragonscaleshield();
 	artilist[ART_IT_IS_COMPLETE_NOW].otyp = randartdragonscaleshield();
 	artilist[ART_FROM_MASHHAD_TO_AHVAZ].otyp = randartdragonscaleshield();
 	artilist[ART_DIG__OF_COURSE].otyp = randartmattock();
@@ -1089,6 +1092,7 @@ init_randarts()
 	artilist[ART_HOLY_GRAIL].otyp = randartquarterstaffX();
 	artilist[ART_LIBRA_OF_JUSTICE].otyp = randartflailX();
 	artilist[ART_TENRAI].otyp = randartspearX();
+	artilist[ART_SYLVIE_S_EASY_MODE].otyp = randartspearX();
 	artilist[ART_QUIXOTIC_SPIRIT].otyp = randartlanceX();
 	artilist[ART_GODAWFUL_ENCHANTMENT].otyp = randartclubX();
 	artilist[ART_LOG_OF_THE_CURATOR].otyp = randartclubX();
@@ -1562,6 +1566,7 @@ init_appearance_randarts()
 	artilist[ART_CLAUDIA_S_BEAUTY].otyp = find_appearance_armor(APP_SUPERHARD_SANDALS);
 	artilist[ART_MAX_THE_SECRET_AGENT].otyp = find_appearance_armor(APP_TELESCOPE);
 	artilist[ART_KATI_S_ANTAGONISM].otyp = find_appearance_armor(APP_TELESCOPE);
+	artilist[ART_JANET_S_DETACHMENT].otyp = find_appearance_armor(APP_BUCKLE_SLIPPERS);
 	artilist[ART_NOW_YOUR_ABLE_TO_POLY].otyp = find_appearance_armor(APP_OSFA_CLOAK);
 	artilist[ART_PINEAPPLE_TYCOON_S_FINISH].otyp = find_appearance_armor(APP_TARPAULIN_CLOAK);
 	artilist[ART_MYSTERIA].otyp = find_appearance_armor(APP_MISSYS);
@@ -2502,7 +2507,7 @@ register boolean mod;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NUKA_ROLL) {
-			int nukaroll = rnd(104); /* keyword: "marlena" */
+			int nukaroll = rnd(105); /* keyword: "marlena" */
 
 			u.tempnukaefftype = nukaroll;
 			u.tempnukaeffect += rnz(5000);
@@ -2522,6 +2527,39 @@ register boolean mod;
 				P_MAX_SKILL(P_RIDING) = P_BASIC;
 				pline("You can now learn the riding skill!");
 			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART____DEETREKS) {
+			int deetrekamount = 50;
+			while (deetrekamount > 0) {
+				int attempts = 50000;
+				deetrekamount--;
+
+				coord cc;
+
+				cc.x = rn1(COLNO-3,2);
+				cc.y = rn2(ROWNO);
+
+				while (attempts > 0 && !ACCESSIBLE(levl[cc.x][cc.y].typ)) {
+					attempts--;
+					cc.x = rn1(COLNO-3,2);
+					cc.y = rn2(ROWNO);
+				}
+
+				if (isok(cc.x, cc.y)) {
+					(void) mksobj_at(HAIRCLIP, cc.x, cc.y, TRUE, FALSE, FALSE);
+				}
+			}
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SUCH_A_CUTE_ASIAN_GIRL_) {
+			if (!FemtrapActiveRuth) pline("Oh no, the master of nasty traps is laying out her snares to get you!");
+			FemaleTrapArabella += rnz(50000);
+		    }
+
+		    if (otmp && otmp->oartifact == ART_SABINE_S_UNBUNDLING) {
+			if (!FemtrapActiveRuth) pline("You're afraid that the girls will kick you in the back of your %s!", body_part(HEAD));
+			FemaleTrapSabine |= FROMOUTSIDE;
 		    }
 
 		    if (otmp && otmp->oartifact == ART_NINER) {
@@ -8115,6 +8153,33 @@ tunguskaagain:
 
 			break;
 
+		}
+
+		if (obj->oartifact == ART_SUPER_SQUEAK_NOISE) {
+			useupall(obj);
+
+			if (P_MAX_SKILL(P_SQUEAKING) == P_ISRESTRICTED) {
+				unrestrict_weapon_skill(P_SQUEAKING);
+				P_MAX_SKILL(P_SQUEAKING) = rn2(2) ? P_BASIC : P_SKILLED;
+				pline("You can now learn the squeaking skill!");
+			} else if (P_MAX_SKILL(P_SQUEAKING) <= P_BASIC) {
+				P_MAX_SKILL(P_SQUEAKING) = rn2(2) ? P_SKILLED : P_EXPERT;
+				pline("You can now become more skilled in squeaking!");
+			} else if (P_MAX_SKILL(P_SQUEAKING) == P_SKILLED) {
+				P_MAX_SKILL(P_SQUEAKING) = rn2(2) ? P_MASTER : P_EXPERT;
+				pline("You can now become more skilled in squeaking!");
+			} else if (P_MAX_SKILL(P_SQUEAKING) == P_EXPERT) {
+				P_MAX_SKILL(P_SQUEAKING) = rn2(2) ? P_GRAND_MASTER : P_MASTER;
+				pline("You can now become more skilled in squeaking!");
+			} else if (P_MAX_SKILL(P_SQUEAKING) == P_MASTER) {
+				P_MAX_SKILL(P_SQUEAKING) = rn2(2) ? P_SUPREME_MASTER : P_GRAND_MASTER;
+				pline("You can now become more skilled in squeaking!");
+			} else if (P_MAX_SKILL(P_SQUEAKING) == P_GRAND_MASTER) {
+				P_MAX_SKILL(P_SQUEAKING) = P_SUPREME_MASTER;
+				pline("You can now become more skilled in squeaking!");
+			} else pline("Sadly your knowledge of the squeaking skill is already maxed.");
+
+			break;
 		}
 
 		if (obj->oartifact == ART_RANOFRIT) {

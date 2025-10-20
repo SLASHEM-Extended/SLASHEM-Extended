@@ -26200,6 +26200,98 @@ A("Mama Lauda",				FIRE_HORN, /* randart2 elemental horn, gains 10 more charges 
 	(SPFX_RESTR), 0, 0,
 	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 4000L ),
 
+A("Jacinta's Precious",				RED_DRAGON_SCALES, /* randart dragon scales, double jil trap effect, all RANDOM_CLASS items have 1 in 10 chance of being RING_CLASS, trap revealing, monster sound effect, +4 WIS, blindness resistance */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("Donnica's Superlative",				RED_DRAGON_SCALE_MAIL, /* randart DSM, double nastiness, +30 AC, +20 STR, +5 CHA, double magic resistance, exp boost */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_DEFN), 0, 0,
+	NO_ATTK, DFNS(AD_MAGM), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 7000L ),
+
+A("Ediva's See-Through",				RED_DRAGON_SCALE_SHIELD, /* randart DSS, double un-invis, double see invis, +5 AC */
+	(SPFX_RESTR|SPFX_EVIL|SPFX_ESP|SPFX_REFLECT), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Devine's Prayer",				RIN_MEMORY, /* double ute trap effect, +6 INT, +4 WIS, double shock resistance, trying to pray can tell if it's safe like saladin's desert fox, effects that increase your alignment increase it by double the normal amount and if you're wearing high heels, you have the naomi trap effect active */
+	(SPFX_RESTR|SPFX_DEFN|SPFX_EVIL), 0, 0,
+	NO_ATTK, DFNS(AD_ELEC), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("I'll Be Next To Twinea",				CONDOME, /* prevents foocubus advances */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3000L ),
+
+A("Headhorn",				CONDOME, /* makes you immune to mind flayer tentacles, free action */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("No Cups",				CONDOME, /* K-class monsters can't spawn randomly while you're wearing it (except via mkclass), replicates anti-government helmet effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 3500L ),
+
+A("Ammy's Temptation",				CHARGER, /* provides blessed charging effect */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Outradiate",				CHARGER, /* reduces contamination by 1000 when used */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
+A("50 Deetreks",				HAIRCLIP, /* upon generating, 50 hairclips are spawned on random empty locations */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2500L ),
+
+A("Sabine's Unbundling",				HAIRCLIP, /* gives the sabine trap effect permanently upon generating */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 300L ),
+
+A("Super Squeak Noise",				HAIRCLIP, /* can be invoked to increase the cap of your squeaking skill by 1-2 skill levels (randomly rolled), but doing so uses up the artifact */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, SPECIAL_INVOKE, A_NONE, NON_PM, NON_PM, 50000L ),
+
+A("Such a cute asian girl!",				SWITCHER, /* gives rnz(50k) turns of arabella trap effect upon generating */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 1000L ),
+
+A("Red- green!",				SWITCHER, /* guaranteed to work even if it's cursed */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 10000L ),
+
+A("Easyread File",				PACK_OF_FLOPPIES, /* can be used even if you're not a geeky role */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 500L ),
+
+A("Emergency Boot Disk",				PACK_OF_FLOPPIES, /* if you're one of the geeky roles and die while having this in your inventory, you can use perilous life saving */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, PM_GEEK, NON_PM, 1200L ),
+
+A("INT Boost",				INTELLIGENCE_PACK, /* doesn't do anything special */
+	(SPFX_RESTR), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 2000L ),
+
+A("TwoHa",				INTELLIGENCE_PACK, /* using it spawns a random type of two-handed sword and tries to make it into an artifact */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Holyge Aura",				BLESSER, /* using it blesses all worn, uncursed armor pieces */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Meh-Altadoon",				BLESSER, /* using it teaches the blessing technique, or improves its level if you already know it, but also gives intrinsic nastiness and julietta trap effects */
+	(SPFX_RESTR|SPFX_NOWISH), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 25000L ),
+
+A("Sylvie's Easy Mode",				SPEAR, /* randart2 spear, double poison resistance, death resistance, acts like 10 healthstones and 5 manastones, multiplies your carry capacity (and max) by 10 when wielded */
+	(SPFX_RESTR|SPFX_DEFN), 0, 0,
+	PHYS(5, 4), DFNS(AD_DRST), NO_CARY, 0, A_NONE, NON_PM, NON_PM, 15000L ),
+
+A("Massivity Cuteblock",				SABINE_BLOCK_HEEL_SANDALS, /* hard to destruct, resists withering and isn't susceptible to any erosion type regardless of material */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	PHYS(0, 12), NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 8000L ),
+
+A("Janet's Detachment",				LOW_BOOTS, /* initialized to always be buckle slippers, janet trap effect, death resistance, diminished bleeding, free action, +5 CHA */
+	(SPFX_RESTR|SPFX_EVIL), 0, 0,
+	NO_ATTK, NO_DFNS, NO_CARY, 0, A_NONE, NON_PM, NON_PM, 5000L ),
+
 /* place new artifacts above this, and NOGEN or otherwise "special" artifacts below --Amy */
 
 A("Wendyhole",				BOULDER, /* 1 in 10000 randomly generated boulders should be this; if you push it, the boulder farts */

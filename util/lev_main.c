@@ -952,6 +952,8 @@ static struct {
 
 	{ "boundday", BOUND_DAY_CHOICE_TRAP },
 
+	{ "sabine", SABINE_TRAP },
+
 	{ "timerun", TIMERUN_TRAP },
 	{ 0, 0 }
 };

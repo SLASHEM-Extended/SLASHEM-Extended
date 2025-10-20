@@ -529,6 +529,8 @@ int prop;
 			return "Madeleine's curse";
 		case FEMTRAP_MARLENA:
 			return "Marlena's curse";
+		case FEMTRAP_SABINE:
+			return "Sabine's curse";
 		case FEMTRAP_JANET:
 			return "Janet's curse";
 		case FEMTRAP_TANJA:
@@ -4943,6 +4945,9 @@ STATIC_OVL struct Jitem Soviet_items[] = {
 	{ CHANCERAL_FEDELLOR_CLOAK, "todo" },
 	{ BOUND_DAY_STONE, "todo" },
 
+	{ SABINE_BLOCK_HEEL_SANDALS, "todo" },
+	{ SABINE_S_JEWEL, "todo" },
+
 	{0, "" }
 };
 
@@ -8614,6 +8619,9 @@ STATIC_OVL struct Jitem Ancient_items[] = {
 
 	{ CHANCERAL_FEDELLOR_CLOAK, "todo" },
 	{ BOUND_DAY_STONE, "todo" },
+
+	{ SABINE_BLOCK_HEEL_SANDALS, "todo" },
+	{ SABINE_S_JEWEL, "todo" },
 
 	{0, "" }
 };

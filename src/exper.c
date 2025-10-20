@@ -1089,6 +1089,9 @@ exprecalc(void)
 					case 104:
 						pline("You receive an elaborate auspicious message: At experience level %d, farting attacks, as well as catching a whiff from odoriferous socks or pants, can drain your very soul.", displaycheck);
 						break;
+					case 105:
+						pline("You receive an elaborate auspicious message: At experience level %d, women can kick you at a distance.", displaycheck);
+						break;
 				}
 			} else pline("Your auspices say: %d %d", displaycheck, whichcheck);
 

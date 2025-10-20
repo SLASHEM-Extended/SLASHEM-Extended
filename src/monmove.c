@@ -2111,7 +2111,7 @@ newbossSING:
 	}
 
 	/* monster noise trap: some of these noises have effects, might add others in future --Amy */
-	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
+	if ((MonnoiseEffect || (uarmf && uarmf->oartifact == ART_IS_THERE_A_SOUND_) || (uarm && uarm->oartifact == ART_JACINTA_S_PRECIOUS) || (uarm && uarm->oartifact == ART_ZURA_S_DRESSCODE) || u.uprops[MONNOISE_EFFECT].extrinsic || have_monnoisestone()) && !(bmwride(ART_SHUT_UP_YOU_FUCK) && u.usteed && (mtmp == u.usteed) ) && !rn2(MonNoiseXtra ? 50 : 250) && !mtmp->mpeaceful && (distu(mtmp->mx, mtmp->my) <= BOLT_LIM * BOLT_LIM) ) {
 		switch (monstersoundtype(mtmp)) {
 
 			case MS_PRIEST:

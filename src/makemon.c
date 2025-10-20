@@ -28619,6 +28619,7 @@ int mndx;
 	if ((mons[mndx].geno & (G_UNIQ)) && rn2(u.outtadepthtrap ? 5 : ((u.aggravation || isaggravator || isextravator || GravationAggravation) && ((ExtAggravate_monster || isextravator || GravationAggravation) || !rn2(2))) ? 10 : 20) && !(Bossfights || u.tempnevernmbf || u.uprops[BOSSFIGHT].extrinsic || have_bossfightstone() || autismweaponcheck(ART_SHADOWLOCK) || (ublindf && ublindf->oartifact == ART_CRAWLING_FROM_THE_WOODWORK) || autismweaponcheck(ART_EXTREMELY_HARD_MODE) ) && !Race_if(PM_PLAYER_DYNAMO) && !Role_if(PM_TRANSSYLVANIAN) && !isbossrusher && !Role_if(PM_GANG_SCHOLAR) ) return TRUE;
 	if (mvitals[mndx].mvflags & G_GONE) return TRUE;
 	if (uwep && uwep->oartifact == ART_STOP_THE_SCRIPT_NONSENSE && is_jonadabmonster(&mons[mndx]) ) return TRUE;
+	if (ublindf && ublindf->oartifact == ART_NO_CUPS && (mons[mndx].mlet == S_KOP) ) return TRUE;
 
 	/* In Soviet Russia, uncommon entities are more common because "harharhar har!" --Amy */
 

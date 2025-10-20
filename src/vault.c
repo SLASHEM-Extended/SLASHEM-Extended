@@ -602,6 +602,10 @@ letknow:
 				copcnt = (copcnt / 2) + 1;
 			}
 
+			if (ublindf && ublindf->oartifact == ART_NO_CUPS) {
+				copcnt = (copcnt / 2) + 1;
+			}
+
 			if (RngeAntiGovernment) {
 				copcnt = (copcnt / 2) + 1;
 			}

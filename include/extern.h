@@ -1533,6 +1533,7 @@ E int have_femtrapute(void);
 E int have_femtrapjasieen(void);
 E int have_femtrapyasaman(void);
 E int have_femtrapmaybritt(void);
+E int have_femtrapsabine(void);
 
 E boolean have_primecurse(void);
 
