@@ -13467,8 +13467,8 @@ peffects(otmp)
 			    if (otmp->otyp == SPE_RESTORE_ABILITY) {
 					if (rn2(8)) ABASE(i)++;
 					else {
-						pline("It actually didn't work though...");
 						AMAX(i) -= 1;
+						pline("It actually didn't work though and your stat point is lost forever...");
 					}
 			    }
 			    else ABASE(i) = lim;

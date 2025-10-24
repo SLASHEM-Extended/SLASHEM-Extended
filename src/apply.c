@@ -3037,7 +3037,7 @@ fixthings:
 		  (did_prop + did_attr) == (trouble_count + unfixable_trbl) ?
 		  "great" : "better");
 	else if (did_atno)
-	    pline(FunnyHallu ? "Bummer! It just beeps loudly!" : "Damn! It didn't work!");
+	    pline(FunnyHallu ? "Bummer! It just beeps loudly! You feel that this is a bad sign!" : "Damn! It didn't work and your stat point is lost forever!");
 	else if (!did_prop)
 	    pline("Nothing seems to happen.");
 
@@ -3136,7 +3136,7 @@ struct obj *obj;
 				break;
 			} else {
 				AMAX(i) -= 1;
-				pline(FunnyHallu ? "Bummer! It just beeps loudly!" : "Damn! It didn't work!");
+				pline(FunnyHallu ? "Bummer! It just beeps loudly! You feel that this is a bad sign!" : "Damn! It didn't work and your stat point is lost forever!");
 				resulteffect = 2;
 				break;
 			}
